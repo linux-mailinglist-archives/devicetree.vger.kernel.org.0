@@ -2,122 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A80632CFEA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D676632CFF9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 10:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237809AbhCDJn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 04:43:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237808AbhCDJnN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:43:13 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0A2C061574;
-        Thu,  4 Mar 2021 01:42:32 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id q25so21881088lfc.8;
-        Thu, 04 Mar 2021 01:42:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bEHZ/Frn9iwzx4diKW6uN1aBQ3lfmU4krVx1yJhDOA4=;
-        b=MoIboQDU+NHyjg+PGQjitOqCTdZNe7jYETiwVCov73FkhT/WyUvCnqjTZlx4A8GmF0
-         OIWew0saIIX+QnCvMdjsg7wKg+BlbKxOcfCGALVX9LG5HPd1mrb3/865f4wnWHriQ7Ez
-         0RZHySAEchv/sekCYdT1+HrvImzUFLj2art5hVnN/BL9u2qLynJd1T3aQYyFJnhMPZX1
-         wTvXT1dpo7nkiJmBhLmGmWZcuy2l5UkomZP0TqXkuu9CazCfi/IEMlqGPVCi062NE5L8
-         msK4XEFkZzFbK1yvts1H5IJAOde4tE8I9PL2qYmv9vUTOJ0sFCmIbh7lx68Jx8oqElwL
-         ROQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bEHZ/Frn9iwzx4diKW6uN1aBQ3lfmU4krVx1yJhDOA4=;
-        b=Ma6zruhz1QMhiG/I1k8vjW0wpiqQDseYOgXqshTzhFO0aawXxyhu4+gyj37NJ69WP7
-         I1U9AnfJ5tSSBb92K0R7G11Xa2b5ljkDAVgqOyEQvTK9qBra+l3T8OHxup2NZjZwj+6S
-         3fNn3wgdsHOp8nAstQT59DE+jFijsn51SeWDpj6WY8mis//HjLUCXNX5p9+geKr59QD4
-         OjBtPJ4UgZnhoBRnvJoty8RzAsSl9bs0gPZYNsGWaMTFZmnF2m/Z2S/WbHbv4ryJsbOq
-         Pf9o4+zZZB6EdTUtdK+IbAQtn58uOGtsVMBc2SMNrqXoAbYcFh/CZzLgNki/vFwwklNn
-         kJ6A==
-X-Gm-Message-State: AOAM530XwOT/xGRkWfSqFFfsA7i9SKM+N89idW/QpBi/D4hkG+PTnTSJ
-        Z8jfCo9zaAwwI2AM4yfTDjv6nVPTdMs=
-X-Google-Smtp-Source: ABdhPJxiTZQIWODAtj6+oKhwC7rv65S7mwjUAbzllukSkqBegigEZuay9DFOE/w38bc9b6Ft8KD7PQ==
-X-Received: by 2002:ac2:4ecd:: with SMTP id p13mr1730346lfr.421.1614850950963;
-        Thu, 04 Mar 2021 01:42:30 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.googlemail.com with ESMTPSA id r11sm1638373lfn.30.2021.03.04.01.42.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Mar 2021 01:42:30 -0800 (PST)
-Subject: Re: [PATCH v1 5/5] ASoC: tegra30: i2s: Add reset control
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Paul Fertser <fercerpav@gmail.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210302112123.24161-1-digetx@gmail.com>
- <20210302112123.24161-6-digetx@gmail.com>
- <cbb1f0d4-ddc5-733d-896d-dd76ce01ca69@gmail.com>
- <f581865a299091371a8450349e23ffdc8abb7b37.camel@pengutronix.de>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <26e504b7-1077-d43b-07c7-abe2bcf50cc4@gmail.com>
-Date:   Thu, 4 Mar 2021 12:42:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S237850AbhCDJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 04:46:07 -0500
+Received: from mout.kundenserver.de ([212.227.17.10]:37689 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237909AbhCDJpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 04:45:40 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MKKpV-1l4KvM311b-00LnNe; Thu, 04 Mar 2021 10:43:07 +0100
+Received: by mail-ot1-f45.google.com with SMTP id j8so1196745otc.0;
+        Thu, 04 Mar 2021 01:43:06 -0800 (PST)
+X-Gm-Message-State: AOAM531LkWx+WR7CbwGtzEMUdZiCjH3TRYdXoT81BUobxv2kHrKHJqyt
+        E1vx2B9BSSe7lEshfBg1R0fkQEQNF98HyjbrIKw=
+X-Google-Smtp-Source: ABdhPJzXUnZi1hHLvC4dUbPTb80i0k+xJjv00UqbhC+F0NRGhVxE6/TJKObEP1C8smvDLYSAYZqvGq7BFJ7u+C6SdbE=
+X-Received: by 2002:a9d:6b8b:: with SMTP id b11mr2818377otq.210.1614850985815;
+ Thu, 04 Mar 2021 01:43:05 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <f581865a299091371a8450349e23ffdc8abb7b37.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-7-brad@pensando.io>
+In-Reply-To: <20210304034141.7062-7-brad@pensando.io>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 4 Mar 2021 10:42:49 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0EaT28a55dJKJxhQKa3p3ZmpFw7sj3G+o4C419UfT5oQ@mail.gmail.com>
+Message-ID: <CAK8P3a0EaT28a55dJKJxhQKa3p3ZmpFw7sj3G+o4C419UfT5oQ@mail.gmail.com>
+Subject: Re: [PATCH 6/8] arm64: Add config for Pensando SoC platforms
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:dMRRch4nDV6kqVsPZq21veOwypuVReTnzCSu1bzqAYhR2YmxfMY
+ ZTVsQSZ+GCktNzUmTZMnTbrORRW48iiyKMh1PRiFY5kZ6bqoIg3ei3y5FmSAqrkJqwhr57t
+ tXmriHFu2kkCEDUX22ucSvm5AnXcLFT6CTOMb0zs6urq6svDsfL8H6GMJtHq+M/ZljgANvf
+ c4w/tOdjJ7n8D0K1fo5nA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Uf3BXgtTBH4=:ZcFmGL+UJ7zNCZq3v/gJ4v
+ kf6W84D+Fk5OpAuTkDDJEtv1TGws5Caw+Dhe/sJgQ2AyNZOJnwL5v4kxsauR8ccSIo88A5FL2
+ I7skBGTiZuPw6UnD5OJZnEV4HBLG8JUn0WXbAub1hnmmUdXE6hNL7mUacEI0XavtlpTCfikJH
+ PTOvU8sPosVYYemphPkVYw2oG3ttHsE81K5arqKJOmGS3+SkzBbu7ELSoCnUsV0sNPjFaDGhG
+ asxcckNYsH3H8RFF+KeDquj25Kne/9TwIoGBB6gkcvlKeKGZkhS6c8/DEkpg4SUdoSeeqJICs
+ ybf2Kwk9/rmCBD6nBIviH8ETvxLZRvs18m+hKZi2Mngewxfap0qr3KrZ1H5pYtvXXLWj0lYH+
+ aAei+98l2CBoCpy9/GSQzyIaX+kODFvKChkaO6R0U6rtOTm2xvP6Yu4jOCbrwCEqv6+tMLpGY
+ PS3xnEda8fvcGWDupkmDvkHNIHHoX0b83EweuyWnm/TV8t7dGxzZHWDwhpPjVbrtehuoPBA0L
+ ohUbtkgtJCRoPHuipoNpHr9VR/FjxNB4h2dd/mR+NF6FLWCNx9QlKTiLQAQAATxKg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-03.03.2021 15:09, Philipp Zabel пишет:
-> Hi Dmitry,
-> 
-> On Wed, 2021-03-03 at 11:28 +0300, Dmitry Osipenko wrote:
->> 02.03.2021 14:21, Dmitry Osipenko пишет:
->>> The I2S reset may be asserted at a boot time. Tegra30 I2S driver doesn't
->>> manage the reset control and currently it happens to work because reset
->>> is implicitly deasserted by the Tegra AHUB driver, but the reset of I2C
->>> controller should be synchronous and I2S clock is disabled when AHUB is
->>> reset. Add reset control to the Tegra30 I2S driver.
->>>
->>> Note that I2S reset was always specified in Tegra30+ device-trees, hence
->>> DTB ABI changes aren't required. Also note that AHUB touches I2S resets,
->>> hence AHUB resets are now requested in a released state, allowing both
->>> drivers to control the I2S resets together.
->>>
->>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>> ---
->>>  sound/soc/tegra/tegra30_ahub.c | 14 ++++++++++---
->>>  sound/soc/tegra/tegra30_i2s.c  | 36 +++++++++++++++++++++++++++++++++-
->>>  sound/soc/tegra/tegra30_i2s.h  |  1 +
->>>  3 files changed, 47 insertions(+), 4 deletions(-)
->>
->> ...
->>> @@ -579,7 +587,7 @@ static int tegra30_ahub_probe(struct platform_device *pdev)
->>>  	if (ret)
->>>  		return ret;
->>>  
->>> -	ahub->reset = devm_reset_control_array_get_exclusive(&pdev->dev);
->>> +	ahub->reset = devm_reset_control_array_get_exclusive_released(&pdev->dev);
->>
->> Thinking a bit more about this, it looks like we actually want something
->> like:
->>
->> 	devm_reset_control_array_get_exclusive_released_named()
->>
->> that will request resets by given names and in a given order, similarly
->> to devm_clk_bulk_get(). This will be very handy for both Tegra audio and
->> GPU drivers. I'll prepare a v2 if there are no objections.
-> 
-> I do have an untested reset control bulk API patch that I've just never
-> finished, because I had no user. I'll send you an RFC, let me know if
-> you can build on that.
+On Thu, Mar 4, 2021 at 4:41 AM Brad Larson <brad@pensando.io> wrote:
+>
+> Add ARCH_PENSANDO configuration option for Pensando SoC
+> based platforms.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
 
-Hello, Philipp! Thank you very much for sharing the patch, it should be
-very useful!
+The changelog and the platform help text could use a little more information
+about what that platform is and where to find more information. This will
+help users decide whether they should enable support for the platform or not.
+
+       Arnd
