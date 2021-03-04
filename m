@@ -2,173 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD52132D436
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 14:32:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF9A32D44D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 14:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239118AbhCDNcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 08:32:03 -0500
-Received: from mx2.suse.de ([195.135.220.15]:52730 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241289AbhCDNbs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 08:31:48 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 8ABA2ADDB;
-        Thu,  4 Mar 2021 13:31:06 +0000 (UTC)
-Message-ID: <c750ae9f6c55011c07868ba563ac8e5af3e01a2a.camel@suse.de>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     =?ISO-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?ISO-8859-1?Q?=22N=EDcolas?= "F. R. A. Prado\"" 
-        <nfraprado@protonmail.com>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-crypto@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Thu, 04 Mar 2021 14:30:59 +0100
-In-Reply-To: <419CC9A9-1C14-4D44-8305-3F7DFF656C1F@gmail.com>
-References: <20210222194510.14004-1-noltari@gmail.com>
-         <20210223170006.29558-1-noltari@gmail.com>
-         <20210223170006.29558-2-noltari@gmail.com>
-         <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
-         <419CC9A9-1C14-4D44-8305-3F7DFF656C1F@gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-m3cXGXZUPPGptSRcXp8J"
-User-Agent: Evolution 3.38.4 
+        id S241349AbhCDNjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 08:39:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241355AbhCDNjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 08:39:21 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45734C061762
+        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 05:38:14 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id n16so26290686lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 05:38:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Sy4nEQi288EJ0M7NsP9fNgE7Qbg6ZfSce++n7QC7VuE=;
+        b=HDEyZwrEB46msqvh9yZL6EIpSxJmqDcC7gwO0qmA5ppFeUZZynGA6jUe7EyfCmsk8Q
+         rcBnKK1vNt9y/wlSP7cHt9bjTpe55w38EsfRix7wkpzfpiWxwAsFdAyMlNpRS2Vvh6w3
+         fawXFbtO/97KGmx+9feW42Ya5GUueAsIb/TRpTlmNJ5s6egRp9BtUOyo0gqFaq+xdPEV
+         T1zZT8nF1Ni3+X79Dae5i7HiscmcOz6U3D2PZKXsvPFXricPI9lr/5a9b1eetyEuexsL
+         QYuoLhT95aAs2djBuEz3/JU7g7CqeaarcznXmDsFvDWyfCEJvHFKCp3bOPwouJhVFNPf
+         XRfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sy4nEQi288EJ0M7NsP9fNgE7Qbg6ZfSce++n7QC7VuE=;
+        b=WciqciwNeIHhCGBtE9Ld4ZOggs/fjPz39ymQwaizBGK6VKhgXuhureLWRsZOiJEGp/
+         xhf2Jk+MWa72dJAyePv6YQVxW6j1yQlZ7qcfnOH7jpvgHGkgK9cQp3JRVtVp+W6eaPZI
+         BPhUX/6uG2PQ+F+KsrIi8RWSjozxlG0oRt34ygwdlyLfocUzYIsz1fYQpqoXH/3h7DXG
+         MsvdPd8eXIng6A7uZQnumVFla4AjKpfaB/G1mGuRN/izCNS9Z3kYIBb5AEUaXEFCRZ/B
+         64Weo0rVLYOlosmRwMytHAzKs/Pd/KOUqOr6hiMjvjU/kYyRR0lWgPN/O7mUmYCMZHo9
+         7v8Q==
+X-Gm-Message-State: AOAM532F2rczsZlwTzPNZzj7svGnnXdF9ebbivIyvXcQay6/9ztXbaXg
+        nYD2xoneOztcZqdC1ERQlPwUakl5YId2J9lbZClgcw==
+X-Google-Smtp-Source: ABdhPJzFb3M5KKDc0P6vzgQhF75tV/IB16cKzRo83AG6u77j3RQ1zLFiwZGnOCt2xN7WcZZR4msr6H1Iqkoxi26D0cs=
+X-Received: by 2002:a19:548:: with SMTP id 69mr2287824lff.465.1614865092582;
+ Thu, 04 Mar 2021 05:38:12 -0800 (PST)
 MIME-Version: 1.0
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
+ <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com> <20210304091025.ny52qjm7wbfvmjgl@mobilestation>
+In-Reply-To: <20210304091025.ny52qjm7wbfvmjgl@mobilestation>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 4 Mar 2021 14:38:01 +0100
+Message-ID: <CACRpkdZroi+_oHqipS71MAGif190y7jWU5Myf55vz=_um4w5cQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Brad Larson <brad@pensando.io>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 4, 2021 at 10:10 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+> On Thu, Mar 04, 2021 at 09:29:33AM +0100, Linus Walleij wrote:
 
---=-m3cXGXZUPPGptSRcXp8J
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> > > + * pin:             3            2        |       1            0
+> > > + * bit:         7------6------5------4----|---3------2------1------0
+> > > + *             cs1  cs1_ovr  cs0  cs0_ovr |  cs1  cs1_ovr  cs0  cs0_ovr
+> > > + *                        ssi1            |             ssi0
+> > > + */
+> > > +#define SPICS_PIN_SHIFT(pin)   (2 * (pin))
+> > > +#define SPICS_MASK(pin)                (0x3 << SPICS_PIN_SHIFT(pin))
+> > > +#define SPICS_SET(pin, val)    ((((val) << 1) | 0x1) << SPICS_PIN_SHIFT(pin))
+> >
+>
+> > So 2 bits per GPIO line in one register? (Nice doc!)
+>
+> I suppose the first bit is the CS-pin-override flag. So when it's set
+> the output is directly driven by the second bit, otherwise the
+> corresponding DW APB SPI controller drives it. That's how the
+> multiplexing is implemented here.
 
-On Thu, 2021-03-04 at 13:18 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
->=20
-> > El 4 mar 2021, a las 13:07, Nicolas Saenz Julienne <nsaenzjulienne@suse=
-.de> escribi=C3=B3:
-> >=20
-> > Hi Alvaro,
-> >=20
-> > On Tue, 2021-02-23 at 18:00 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas wro=
-te:
-> > > Some devices may need to perform a reset before using the RNG, such a=
-s the
-> > > BCM6368.
-> > >=20
-> > > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > > ---
-> > > =C2=A0v3: make resets required if brcm,bcm6368-rng.
-> > > =C2=A0v2: document reset support.
-> > >=20
-> > > =C2=A0.../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 ++++++++++=
-+++++++
-> > > =C2=A01 file changed, 17 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml =
-b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > > index c147900f9041..11c23e1f6988 100644
-> > > --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > > +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
-> > > @@ -37,6 +37,21 @@ required:
-> > > =C2=A0
-> > >=20
-> > >=20
-> > > =C2=A0additionalProperties: false
-> >=20
-> > I can't claim I fully understand all the meta stuff in shemas, so I gen=
-erally
-> > just follow the patterns already available out there.
->=20
-> Well, that makes two of us :).
->=20
-> > That said, shoudln't this be at the end, just before the examples?
->=20
-> I don=E2=80=99t know but I can move it there =C2=AF\_(=E3=83=84)_/=C2=AF
+If these output lines are so tightly coupled to the SPI block
+and will not be used for any other GPO (general purpose output)
+I think it makes more sense to bundle the handling into the
+DW SPI driver, and activate it based on the Elba compatible
+string (if of_is_compatible(...)).
 
-Yes please do. See commit 7f464532b05 ("dt-bindings: Add missing
-'additionalProperties: false'") which expands on why it is needed, and why =
-it
-should be at the end.
+I am a bit cautious because it has happened in the past that
+people repurpose CS lines who were originally for SPI CS
+to all kind of other purposes, such as a power-on LED and
+in that case it needs to be a separate GPIO driver. So the
+author needs to have a good idea about what is a realistic
+use case here.
 
-> > Maybe the cause of that odd warning
-> > you got there?
->=20
-> Which odd warning?
-
-The one pointed out by Rob Herring's script, which I can reproduce too BTW.=
- On
-the other hand I can't really tell what's wrong right away.
-
-> I don=E2=80=99t get any warnings when running (or at least warnings relat=
-ed to rig, because I get warnings related to other yamls):
-> make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings=
-/rng/brcm,bcm2835.yaml
->=20
-> >=20
-> > > +if:
-> > > +  properties:
-> > > +    compatible:
-> > > +      enum:
-> > > +        - brcm,bcm6368-rng
-> > > +then:
-> > > +  properties:
-> > > +    resets:
-> > > +      maxItems: 1
-> > > +  required:
-> > > +    - resets
-> >=20
-> > I belive you can't really make a property required when the bindings fo=
-r
-> > 'brcm,bcm6368-rng' were already defined. This will break the schema for=
- those
-> > otherwise correct devicetrees.
->=20
-> Why not?
-> Wouldn=E2=80=99t just be required for brcm,bcm6368-rng?
-
-Well, do all 'brcm,bcm6368-rng' users absolutely need the reset controller?=
- If
-so, the original binding is wrong, which should be mentioned and a 'Fixes:'=
- tag
-should be added to the commit message. Otherwise, the requirement is option=
-al.
-
-Regards,
-Nicolas
-
-
---=-m3cXGXZUPPGptSRcXp8J
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBA4RMACgkQlfZmHno8
-x/7rPAf+J04FGcPATCGmYKMHpyyL+ImHtpN3qzv3OQXQ2oSmUYXMxxZcq69ph1fx
-CyVbaksI8BpmmVxnW+LXFFHdbBp9eRbXWy+6jNByWe09TDNDk5e8ETYq7TPdo8ul
-ZIBTkzrrIIFnvliKOFQJaYZjzWEiWk+uRFpUN6Fsua/tUt/2fBvKabZqgrsvBJsV
-p0i+T+U9q9436VixW9ZCAksjxwyZa7SeUct0ev+u/StWmyO2nPmG2fSDCBVaF5q6
-zKLOVFJAwurSv9J5YC2P7f4NET9aYCP5S+71SH9uXWM7sX98ZCdHuPEhWk79geOO
-vzL6yXGZq8WSt3FK7A37DAweCj0ang==
-=hG4s
------END PGP SIGNATURE-----
-
---=-m3cXGXZUPPGptSRcXp8J--
-
+Yours,
+Linus Walleij
