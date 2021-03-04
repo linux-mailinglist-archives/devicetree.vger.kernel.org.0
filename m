@@ -2,127 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD10932CE78
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 09:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAEAA32CEB5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 09:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235778AbhCDIax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 03:30:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236832AbhCDIa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 03:30:26 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AED4CC061756
-        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 00:29:45 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id n16so24851993lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 00:29:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z/YunITDzSj54Y4k2da7IIbwcZOzFgpMcTcXrvSJIsY=;
-        b=JaUPYLR7xkZXBatHr7s2xfITNdM0H4Jctt/Fw2uA9rVTPRXS2ypGfQgeG9h77/gY5y
-         7R8yulF7mLSY0OgIKuT6J/Ojr06v7NT7A6N5Nkq6CnoaP8Yr0tttUmgXRo9RzzIK0UnP
-         UVtLZe4POq614g7G8HEaMlTlNd/edz0pZ/qrLnEd/fMjim5WibSx3ajwVPMfR0eZ2ABR
-         f02UlJEuLJBHeRh0WEyp58aIIIxQeyyyLJX8vDD1h13rv3fk1tJqBy+UArpvwCFZt+GW
-         WZgE6/MLDaJg5nIEm/9E9KW4ILP0L+viXBuImxX4kz7o8HLReWKq8Y/Pv7jUdUKfuVSr
-         3rIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z/YunITDzSj54Y4k2da7IIbwcZOzFgpMcTcXrvSJIsY=;
-        b=OUnYaqcw/K8ztO7lWUlrYSHvxAm1JTtxKZe39A7+qdQDcC5Cptefgd6VdjYiMSvAkx
-         8fbxG0HG0ruuopMAeqgkXpRjdbQqX8hqyudONpEo2PQ+XqfZ7TKJI5JO5yUac1gDxSXo
-         Zj9ltGUhNOwJqgg8+u56Gqs/rO9cjFmJP61pC4g/ueEXp5fXwt3FPp84nyo99b16t1iE
-         sCvv1thzAfd3jmeK2A7wlKy+Ym86JoEza/LSSEDzxHRwV8/+3WPxczaiFHwG/dusuE/7
-         DNin5efsccObjCblysHYTPLO6jrqgCvp6Qq5OENhMVpB9il4FcfIYjRitna+oTnh6Wno
-         5rAQ==
-X-Gm-Message-State: AOAM5300hBj9r24BmCHQ50fNyy8xq2hORRv1vBas0uBgE7M0MET9vMmQ
-        O76GkIIobLaycRrlF2E2a5ONAZP4zoV8dZav72HCZw==
-X-Google-Smtp-Source: ABdhPJy5zH9v2taHTbOivNt/jHFRx+P8htUtEtdRjWfaZYj8ZCyXiyfzifW75rVWQfROIBOwLzH5JMbjd+5Vk4a/t7c=
-X-Received: by 2002:a05:6512:10d1:: with SMTP id k17mr1556851lfg.649.1614846584130;
- Thu, 04 Mar 2021 00:29:44 -0800 (PST)
+        id S236375AbhCDIqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 03:46:21 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40442 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236387AbhCDIpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 03:45:49 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1248iTrn065629;
+        Thu, 4 Mar 2021 02:44:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614847469;
+        bh=X7WVajiilZwT20Vssv+HGu1wdi5InlNHQ+n5NfjV1ts=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=kS+beaIsNm/ClNNRlf0DqER3yJWmx/6BmWjOPjb9EGHHGD0lfuNKw4o5nofGeaPNm
+         Sm5iMi78ud0x3IzsHbogkoYusayEIzbq3mgA+z06wp+7rxL0OxNqrBMVrMtflvqyX3
+         ayMPbTgrHOHu2V60TiP+AGvvUw1/gzcIJscuIlHQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1248iTwQ064981
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Mar 2021 02:44:29 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
+ 2021 02:44:29 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 4 Mar 2021 02:44:28 -0600
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1248iPar101493;
+        Thu, 4 Mar 2021 02:44:26 -0600
+Subject: Re: [PATCH 1/4] arm64: dts: ti: am64-main: Add CPSW DT node
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+References: <20210303192114.12292-1-grygorii.strashko@ti.com>
+ <20210303192114.12292-2-grygorii.strashko@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <a2526aef-ed2e-c33b-0afb-b5363fb17969@ti.com>
+Date:   Thu, 4 Mar 2021 14:14:25 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
-In-Reply-To: <20210304034141.7062-2-brad@pensando.io>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 4 Mar 2021 09:29:33 +0100
-Message-ID: <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Brad Larson <brad@pensando.io>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210303192114.12292-2-grygorii.strashko@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
 
-thanks for your patch!
 
-On Thu, Mar 4, 2021 at 4:42 AM Brad Larson <brad@pensando.io> wrote:
+On 04/03/21 12:51 am, Grygorii Strashko wrote:
+> From: Vignesh Raghavendra <vigneshr@ti.com>
+> 
+> Add CPSW3g DT node with two external ports, MDIO and CPTS support. For
+> CPSW3g DMA channels the ASEL is set to 15 (AM642x per DMA channel coherency
+> feature), so that CPSW DMA channel participates in Coherency and thus avoid
+> need to cache maintenance for SKBs. This improves bidirectional TCP
+> performance by up to 100Mbps (on 1G link).
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-> This GPIO driver is for the Pensando Elba SoC which
-> provides control of four chip selects on two SPI busses.
->
-> Signed-off-by: Brad Larson <brad@pensando.io>
-(...)
+nit pick. In $subject : k3-am64-main.
 
-> +#include <linux/gpio.h>
+Thanks and regards,
+Lokesh
 
-Use this in new drivers:
-#include <linux/gpio/driver.h>
-
-> + * pin:             3            2        |       1            0
-> + * bit:         7------6------5------4----|---3------2------1------0
-> + *     cs1  cs1_ovr  cs0  cs0_ovr |  cs1  cs1_ovr  cs0  cs0_ovr
-> + *                ssi1            |             ssi0
-> + */
-> +#define SPICS_PIN_SHIFT(pin)   (2 * (pin))
-> +#define SPICS_MASK(pin)                (0x3 << SPICS_PIN_SHIFT(pin))
-> +#define SPICS_SET(pin, val)    ((((val) << 1) | 0x1) << SPICS_PIN_SHIFT(pin))
-
-So 2 bits per GPIO line in one register? (Nice doc!)
-
-> +struct elba_spics_priv {
-> +       void __iomem *base;
-> +       spinlock_t lock;
-> +       struct gpio_chip chip;
-> +};
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 74 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi      |  2 +
+>  2 files changed, 76 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index 5f85950daef7..80443dbf272c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -178,6 +178,12 @@
+>  			compatible = "ti,am654-chipid";
+>  			reg = <0x00000014 0x4>;
+>  		};
 > +
-> +static int elba_spics_get_value(struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       return -ENXIO;
-> +}
-
-Write a comment that the chip only supports output mode,
-because it repurposes SPI CS pins as generic GPIO out,
-maybe at the top of the file?
-
-I suppose these systems also actually (ab)use the SPI cs
-for things that are not really SPI CS? Because otherwise
-this could just be part of the SPI driver (native chip select).
-
-> +static const struct of_device_id ebla_spics_of_match[] = {
-> +       { .compatible = "pensando,elba-spics" },
-
-Have you documented this?
-
-Other than that this is a nice and complete driver.
-
-Yours,
-Linus Walleij
+> +		phy_gmii_sel: phy@4044 {
+> +			compatible = "ti,am654-phy-gmii-sel";
+> +			reg = <0x4044 0x8>;
+> +			#phy-cells = <1>;
+> +		};
+>  	};
+>  
+>  	main_uart0: serial@2800000 {
+> @@ -402,4 +408,72 @@
+>  		ti,otap-del-sel-ddr50 = <0x9>;
+>  		ti,clkbuf-sel = <0x7>;
+>  	};
+> +
+> +	cpsw3g: ethernet@8000000 {
+> +		compatible = "ti,am642-cpsw-nuss";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		reg = <0x0 0x8000000 0x0 0x200000>;
+> +		reg-names = "cpsw_nuss";
+> +		ranges = <0x0 0x0 0x0 0x8000000 0x0 0x200000>;
+> +		clocks = <&k3_clks 13 0>;
+> +		assigned-clocks = <&k3_clks 13 1>;
+> +		assigned-clock-parents = <&k3_clks 13 9>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		dmas = <&main_pktdma 0xC500 15>,
+> +		       <&main_pktdma 0xC501 15>,
+> +		       <&main_pktdma 0xC502 15>,
+> +		       <&main_pktdma 0xC503 15>,
+> +		       <&main_pktdma 0xC504 15>,
+> +		       <&main_pktdma 0xC505 15>,
+> +		       <&main_pktdma 0xC506 15>,
+> +		       <&main_pktdma 0xC507 15>,
+> +		       <&main_pktdma 0x4500 15>;
+> +		dma-names = "tx0", "tx1", "tx2", "tx3", "tx4", "tx5", "tx6",
+> +			    "tx7", "rx";
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			cpsw_port1: port@1 {
+> +				reg = <1>;
+> +				ti,mac-only;
+> +				label = "port1";
+> +				phys = <&phy_gmii_sel 1>;
+> +				mac-address = [00 00 de ad be ef];
+> +			};
+> +
+> +			cpsw_port2: port@2 {
+> +				reg = <2>;
+> +				ti,mac-only;
+> +				label = "port2";
+> +				phys = <&phy_gmii_sel 2>;
+> +				mac-address = [00 01 de ad be ef];
+> +			};
+> +		};
+> +
+> +		cpsw3g_mdio: mdio@f00 {
+> +			compatible = "ti,cpsw-mdio","ti,davinci_mdio";
+> +			reg = <0x0 0xf00 0x0 0x100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			clocks = <&k3_clks 13 0>;
+> +			clock-names = "fck";
+> +			bus_freq = <1000000>;
+> +		};
+> +
+> +		cpts@3d000 {
+> +			compatible = "ti,j721e-cpts";
+> +			reg = <0x0 0x3d000 0x0 0x400>;
+> +			clocks = <&k3_clks 13 1>;
+> +			clock-names = "cpts";
+> +			interrupts-extended = <&gic500 GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "cpts";
+> +			ti,cpts-ext-ts-inputs = <4>;
+> +			ti,cpts-periodic-outputs = <2>;
+> +		};
+> +	};
+>  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> index 0ae8c844c482..de6805b0c72c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> @@ -28,6 +28,8 @@
+>  		serial6 = &main_uart4;
+>  		serial7 = &main_uart5;
+>  		serial8 = &main_uart6;
+> +		ethernet0 = &cpsw_port1;
+> +		ethernet1 = &cpsw_port2;
+>  	};
+>  
+>  	chosen { };
+> 
