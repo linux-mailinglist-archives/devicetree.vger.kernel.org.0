@@ -2,78 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3256732D9BE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 19:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0544332DA9B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 20:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235483AbhCDS4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 13:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235423AbhCDS4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 13:56:06 -0500
-Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDDEDC06175F
-        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 10:55:25 -0800 (PST)
-Received: by mail-qk1-x741.google.com with SMTP id z128so28886844qkc.12
-        for <devicetree@vger.kernel.org>; Thu, 04 Mar 2021 10:55:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=hBJ71Avg3fR9I4kA/nxdZqod78FNAAtBJSGMuibYEBw=;
-        b=JMNSD6tOw7m+spTbhCJ96ZQjiodVyR3KwHRS1xTBVWbjlM9EWl1O+M+yPLGtCGg3yJ
-         YmnDd222u+N9P6UP+8V5dNkKm6SP/y/vXmIFYOaWzKb58s+fOL8NqXkf6zzbLBh/aXUN
-         5bMwpLHA4VkrNsA1EQ2Hj5n4b+jEYaaqX3yMP3xSNlVjUrHTFj0iCTeum6iPaIVIKAlT
-         PMlneSIx1f3BJcHklnuHTz5JmWXuCJCiWGLTp/SrIRoyDMYe0tZ8Dvs7GusEsm/DA7h5
-         z/9gDt/voHG2Dm1r5bPYpjllUQj++OxtXoDlLPvCVL0pfdSydnhXe9KhQ3fucfmvOl3l
-         Bgpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=hBJ71Avg3fR9I4kA/nxdZqod78FNAAtBJSGMuibYEBw=;
-        b=dGD1SZu62JsHjR0xiX02fotCruYSwMve0hr0hQNHb++EiwjAuCP6hm0YQVJkxV6Pd1
-         hM1Yr99gNcsHXV/tlKCsSdmEsOhd53Pc2bYQhFqUKPgyIz8Ep4mVEnj8g9SAe3LJY4Tq
-         wZ5FEj9Qhq51O1dmcUQwaPfDdZZIkUubd1XGlAFTQbDItnGL6OkAe6Mv2HMGaLZPA6LS
-         HmHtF72MJBqobcudWDTwFCt7vgdu8Ev3+mFKWU3yiOGPqBX9qcSE+Ghwz0h5jYglKROn
-         MDMuvGXwqmnAp3pM9GbLJxa8cMMFqGJtqoh4INXSZSm6bwq6x1FnPiYAdP1awT9OB9M6
-         h51Q==
-X-Gm-Message-State: AOAM533hMDcVf0C9AjhT5AVBARB2PiQWgOe10OCQTuXreeWxIHWkUyQ1
-        mbGzLSBIJEdQb8vdB+s5cFWscYZBas+hLe/sOb8=
-X-Google-Smtp-Source: ABdhPJwfnREVucJs4AMve0qhD8fhiSZhPe/nugslpLTX3mDjn4yLtYuxxsKJywdGmGFZKtQDTvvVddodyzbsFk6YNRE=
-X-Received: by 2002:a37:6848:: with SMTP id d69mr5515454qkc.159.1614884125191;
- Thu, 04 Mar 2021 10:55:25 -0800 (PST)
+        id S236229AbhCDTxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 14:53:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231969AbhCDTxw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 14:53:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BEF1764F60;
+        Thu,  4 Mar 2021 19:53:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614887592;
+        bh=aKfROlW6yt2qNu6xFPea/Qku5lp+xUm/2rId3LuoEoA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UpE/cobWrecDZuQKRpqXV7X0Sinqf8F0DcNW2h0Jtj+5dPKmAw1EW/z5QK1Eudyo5
+         GyrcYzqNBK/ek2Dk1d6XkALrQ7E0w8Mrbdd4fgT5Bj6pLjFNxMGo/xGKYXUZoQCD5+
+         dbg+TKEt256VEckp8XLaNLmmUFcLc9wH91FoO/tHe6W70Dcyki7lUw8Et3lKQnuw0O
+         atl098HVyFZj08thgJ+sFz60z5icjvDinYKv/o47uYlDrX2Yhl0q0hwAFsKMXZ7HPw
+         LPZFUvxyICXuS7m7mrOpQTgkDN5XhNqwWoSTKp50vLhAFmtfk4kfoQB1LLUgN1zgO4
+         Sy6s17ruD03pA==
+Date:   Thu, 4 Mar 2021 19:52:04 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     Markus Elfring <Markus.Elfring@web.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joe Perches <joe@perches.com>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Anirudh Ghayal <aghayal@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] regmap-irq: Add support for peripheral offsets
+Message-ID: <20210304195204.GF4731@sirena.org.uk>
+References: <cover.1603402280.git.gurus@codeaurora.org>
+ <40581a58bd16442f03db1abea014ca1eedc94d3c.1603402280.git.gurus@codeaurora.org>
+ <20201112193312.GE4742@sirena.org.uk>
+ <20210304182735.GA31587@codeaurora.org>
 MIME-Version: 1.0
-Received: by 2002:a0c:d688:0:0:0:0:0 with HTTP; Thu, 4 Mar 2021 10:55:24 -0800 (PST)
-Reply-To: doradesmond2@gmail.com
-From:   Dora Desmond <davchuks527@gmail.com>
-Date:   Thu, 4 Mar 2021 18:55:24 +0000
-Message-ID: <CAJe77=da-j0GKHTCcV9KX5ruyUqdZRLBVffpnf8y0hJEpsWFcg@mail.gmail.com>
-Subject: Please Contact Me Back
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SxgehGEc6vB0cZwN"
+Content-Disposition: inline
+In-Reply-To: <20210304182735.GA31587@codeaurora.org>
+X-Cookie: I think my career is ruined!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Please Contact Me Back
 
-I apologize for intruding into your privacy; since we do not know each
-other,but pay attention and understand my reason of
+--SxgehGEc6vB0cZwN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-contacting you please don't be angry with me. I am happy to get in
-contact with you after the direction to find a nice
+On Thu, Mar 04, 2021 at 10:27:35AM -0800, Guru Das Srinagesh wrote:
+> On Thu, Nov 12, 2020 at 07:33:12PM +0000, Mark Brown wrote:
 
-trusted and sincere reliable friend I was motivated when I saw your
-email address when browsing Google.
+> > supposed to do.  Nothing here says what POLARITY_HI and POLARITY_LO are,
+> > how they interact or anything.
 
- I am here to seek your advice of which I know that it will help me to
-overcome my situation, I am presently single girl. In
+> The POLARITY_HI and POLARITY_LO registers were described very briefly in
+> the cover letter. If an interrupt is already configured as either edge-
+> or level-triggered, setting the corresponding bit for it in the
+> POLARITY_HI register further configures it as rising-edge or level-high
+> triggered (as the case may be), while setting the same bit in
+> POLARITY_LO further configures it as falling-edge or level-low
+> triggered. I could certainly add this information to the commit message
+> as well.
 
-your usual time, may it please you to e-mail me back So that I will
-explain more about myself.
+So this is just a trigger type control that's in two discontiguous bits
+possibly in different registers or something?  This doesn't sound like
+anything generic with the API you're describing, if that's what it is
+the interface should also handle things like four bits (one for each
+type) or having the different values mapped differently within the two
+bits that are spread out (eg, you could have one bit for polarity and
+another for edge/level).
 
- A good friendship is the foundation build on other relative things to
-come. I wait patiently to hear from you. Please Write
+> > For the address offsets I'm not sure that this is the best way to
+> > represent things.  It looks like the hardware this is trying to describe
+> > is essentially a bunch of separate interrupt controllers that happen to
+> > share an upstream interrupt
 
-me on my email address (doradesmond2@gmail.com )
+> Sorry but isn't this essentially the same as what the framework already knows as
+> the "sub-irq" concept, with the key difference that the register stride
+> is not fixed? Everything else is the same (except for a couple of minor
+> points noted below) - a main IRQ register that indicates sub-irq blocks
+> that have unhandled interrupts, as well as interrupt handling and
+> servicing.
+
+Like I said in my original review it is extremely hard to tell from your
+patch what you are trying to implement, and it's now been more than four
+months since you sent it which isn't helping anything.  This means it is
+also extremely hard to tell if the patch is doing the same thing as
+sub_irq.
+
+IIRC it appeared that there was no top level interrupt status register,
+the point with sub_irq is that we don't need to read all the status
+registers because there's a top level status register which says which
+of them have signals in them (including the possibility that more than
+one bit in the top level status might indicate the same leaf status
+register).  If the device doesn't have that it doesn't have sub_irqs.
+Note that sub_irq only affects status register reads, it doesn't affect
+other things like acking or masking.
+
+On the other hand if this *is* the same thing as sub_irqs then why is it
+completely separate code and not sharing anything with it?
+
+As I said at the time you need to split this into at least two distinct
+patches with clear changelogs which explain what they are trying to
+implement, I don't think it's useful to discuss this further without
+that.  I can't give you any clearer advice on how to implement whatever
+you are trying to implement without having some idea of what that is.
+
+> > clearer if at least the implementation looked like this.  Instead of
+> > having to check for this array of offsets at every use point (which is
+> > going to be rarely used and hence prone to bugs)
+
+> Well, using irq_reg_stride already does exactly this - calculating the
+> right register to access at every use point, as an offset from the _base
+> register (status, ack, type, et c.). Peripheral offsets would just be
+> another way of calculating the right register, that's all. And we could
+> have a macro as well.
+
+The stride code is executed in all paths, it doesn't add conditional
+statements all over the place.  This helps a lot, we know it's being run
+all the time as opposed to being a lot of separate code paths that are
+rarely run - the case without a stride is just a stride of 1.
+
+> Sure, I can look into how this approach would look like, but given that
+> the QCOM register arrangement of main vs sub-irq is essentially the same
+> as what the framework currently understands, couldn't we simply have a
+> macro to change the way the right register offset is calculated
+> (irq_reg_stride vs. peripheral offsets)?
+
+I'm not sure macros all over the place is going to be clearer than
+conditional statements all over the place.  As with what you were saying
+about sub_irq if you think the two things are equivalent then why is one
+not implemented in terms of the other rather than doing conditional code
+on every single use?
+
+> Also, could you elaborate more on the genirq route? I'm not sure where
+> to start looking to evaluate one route vs the other.
+
+Register a separate regmap-irq for each of these perhiperals in your
+list, using the same parent interrupt for all of them and setting
+IRQF_SHARED.  They will then be handled like any other shared interrupt,
+if the parent interrupt fires then genirq will go through and call each
+of the handlers until one reports that it handled an interrupt.
+
+--SxgehGEc6vB0cZwN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBBOmMACgkQJNaLcl1U
+h9Ci/wf/YdAWi2sLpT85ZACdQRt7UQEBt6s5oCAHS4JkLd3uk1MHLUDAmQbpxbZw
+sZyBtxUiALtcItac49fePucY6fBs1Ad63NP+7oICKszol3wBfzlmUHi+U3mWUqgT
+ZjTQ3J9hPSuzLWWZNhK/7noyLZXxWe0YRmQy8HkHCfB0wyrfC9tPtccHhVnUzuhV
+yy84zXU/gMaYcxwse7vs1K7MnQQLz2CR6leKSlwOeVhA/qi5X2wxCThSEVflyJYK
+RTNaQ0Cj+6BBTUeKHYC+15IRr02KvaSZQF09K7dXC8zj0cVHaMnAQ3GwWjsPf0gw
+eHPLtI/R4kNoFDCzioIf89dHcHBNGg==
+=SQVA
+-----END PGP SIGNATURE-----
+
+--SxgehGEc6vB0cZwN--
