@@ -2,199 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC76232CD15
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 07:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA8432CD39
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 08:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235587AbhCDGpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 01:45:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234425AbhCDGpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 01:45:17 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5A3C061574;
-        Wed,  3 Mar 2021 22:44:37 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id u18so18311977ljd.3;
-        Wed, 03 Mar 2021 22:44:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5dPNy/fWUlSOC24Di7+vnxbeD5VbGpIQk9p1aWlyy6Y=;
-        b=B+36IKDutQlaSTLSRwDQk7mlCQQvnvswJ72hNIJSI/QcUrFTyxhPVELjisK4A94UkS
-         giIcHkUX/XoRY1tFS8rARf4+OPuykhuGqY2iBngTHjFRg7z+veyaN+YT9o8M8YTQVCGg
-         fBOO6g+0ACwDdGAp+WnPTcm9pVhptZ34kH9inrBcp/1i6TJa2tSV8t5IRF/hBHRq9Bdf
-         Vulko/veRZo7C9vNa6GhW5DHdF+1dJiFjuNvlC6/hIqHce3hPUqnFXboE89cA/jrP7eb
-         Iss9BZyfDWjbl2Ns6ZDNn+uMu6Do+iPpAEG2tHgaRvJhPH1IsVreXqR7nFtdms+ZuEZp
-         26kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5dPNy/fWUlSOC24Di7+vnxbeD5VbGpIQk9p1aWlyy6Y=;
-        b=tgl3iplLaB2rGbk0cg5AIVEslkd8Q5Rktueo5nz+gEcsVIfsUAmTzjLurt23+U5JS+
-         dL0ViZqYjmH2LB6H4rLWE1AKfJNmt8uYgZ8gfJRR9xmomUE2KQkyYIONtP+z/utGJqO0
-         3WDzLxPsaQXpGo3VuhcRg7XSVd8V+AGP9jDU0qsjv/izcn/5a4eLoikMh8Gbdzm3dJA1
-         kRMasBiiu+b3lhGHA3S9ZoL63B+yoOwm7WcKsuqRxT+OIvlrVHxYMbIJVfQ++KVn28Ob
-         8CmgnGWy5r6j5UWUbkM6AHJp0KzAiimZQQTr5N613+peXQdyhsTVpGAagjHPm2ScNc1v
-         u+lw==
-X-Gm-Message-State: AOAM532ih5aXG7c+oOzCyLUNhalS5+73ncD9u6pnU53u1NZQjnY2fT+G
-        AggpC08lLcK3fzDL+R1KB4E=
-X-Google-Smtp-Source: ABdhPJzV1HBtHmReuq2K6OSZOnFhY7SteJrDtkacYg724y7AqJ6DEZTRHBlDHO9Ip2lQWLbRxzbbaA==
-X-Received: by 2002:a2e:8114:: with SMTP id d20mr1468091ljg.83.1614840275562;
-        Wed, 03 Mar 2021 22:44:35 -0800 (PST)
-Received: from mobilestation ([95.79.88.254])
-        by smtp.gmail.com with ESMTPSA id p21sm3173217lfu.227.2021.03.03.22.44.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Mar 2021 22:44:35 -0800 (PST)
-Date:   Thu, 4 Mar 2021 09:44:33 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/8] spi: dw: Add support for Pensando Elba SoC SPI
-Message-ID: <20210304064433.vqyqg3byedvc4quz@mobilestation>
-References: <20210304034141.7062-1-brad@pensando.io>
- <20210304034141.7062-4-brad@pensando.io>
+        id S232206AbhCDG7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 01:59:41 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50126 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236517AbhCDG73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 01:59:29 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1246wNDH102724;
+        Thu, 4 Mar 2021 00:58:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614841103;
+        bh=4ud8kZ1bZeikUJSDGbMVvjTvW9JdEr9/2XJ/vMSr4dI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=NKA2DlLHddlpjapdYttVJUPapQ5C5yTqCsPa3tf52qcSM5DsSMnoIPt7NKYcrfAUm
+         b4oIbfV/RDtCMilyLYRb1VnLw+RAsHqQAVeF6gs/zmWwCOyDc7HNUzMGZARxZpTFjI
+         bWppFgFW/OmBg9KYEzXFn6TgoNCgw0+Yqy34vacg=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1246wNUP044152
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Mar 2021 00:58:23 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
+ 2021 00:58:22 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 4 Mar 2021 00:58:22 -0600
+Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1246wJBO032193;
+        Thu, 4 Mar 2021 00:58:20 -0600
+Subject: Re: [PATCH v2 3/4] arm64: dts: ti: Add support for Siemens IOT2050
+ boards
+To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Le Jin <le.jin@siemens.com>
+References: <cover.1613071976.git.jan.kiszka@siemens.com>
+ <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
+Date:   Thu, 4 Mar 2021 12:28:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210304034141.7062-4-brad@pensando.io>
+In-Reply-To: <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Brad.
-Thanks for the patch. See my comments below.
+Hi,
 
-On Wed, Mar 03, 2021 at 07:41:36PM -0800, Brad Larson wrote:
-> The Pensando Elba SoC uses a GPIO based chip select
-> for two DW SPI busses with each bus having two
-> chip selects.
-
-I see a contradiction here. Normally GPIO-based chip-select is a
-property of a platform, but not a SoC/CPU/MCU/etc. Most of the time
-SoC SPI interfaces still get to have native CS pins, while at some
-platform configurations (like in case of DW APB SPI, which doesn't
-provide a way to directly toggle its native CSs) it's easier or even
-safer to use GPIOs as CS signals. Of course theoretically a SoC could
-be synthesized so it doesn't have native CS output pins, but only some
-virtual internal CS flags, but I've never seen such. Anyway according
-to the custom CS method below it's not your case because you still
-provide support for SPI-devices handled by native CS (else branch in
-the if (spi->cs_gpiod) {} else {} statement).
-
+On 2/12/21 1:02 AM, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> Signed-off-by: Brad Larson <brad@pensando.io>
-> ---
->  drivers/spi/spi-dw-mmio.c | 35 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
+> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
+> Advanced. They are based on the TI AM6528 GP and AM6548 SOCs HS, thus
+> differ in their number of cores and availability of security features.
+> Furthermore the Advanced version comes with more RAM, an eMMC and a few
+> internal differences.
 > 
-> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> index 17c06039a74d..417bd2125c07 100644
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -56,7 +56,7 @@ struct dw_spi_mscc {
->  /*
->   * The Designware SPI controller (referred to as master in the documentation)
->   * automatically deasserts chip select when the tx fifo is empty. The chip
-> - * selects then needs to be either driven as GPIOs or, for the first 4 using the
-> + * selects then needs to be either driven as GPIOs or, for the first 4 using
->   * the SPI boot controller registers. the final chip select is an OR gate
->   * between the Designware SPI controller and the SPI boot controller.
->   */
-> @@ -237,6 +237,38 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
->  	return 0;
->  }
->
-  
-> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
-> +{
-> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
-> +
-> +	if (!enable) {
-> +		if (spi->cs_gpiod) {
-> +			/*
-> +			 * Using a GPIO-based chip-select, the DW SPI
-> +			 * controller still needs its own CS bit selected
-> +			 * to start the serial engine.  On Elba the specific
-> +			 * CS doesn't matter, so use CS0.
-> +			 */
-> +			dw_writel(dws, DW_SPI_SER, BIT(0));
-> +		} else {
-> +			/*
-> +			 * Using the intrinsic DW chip-select; set the
-> +			 * appropriate CS.
-> +			 */
-> +			dw_writel(dws, DW_SPI_SER, BIT(spi->chip_select));
-> +		}
-> -	} else
-  +	} else {
-> +		dw_writel(dws, DW_SPI_SER, 0);
-  +	} /* See [1] */
-> +}
-
-The custom CS-method above doesn't look much different from the
-dw_spi_set_cs() method defined in the spi-dw-core.o driver, except
-having at least two problems:
-1) It assumes that "enable" argument means the CS-enabling flag, while
-in fact it's the CS-level which depending on the SPI_CS_HIGH flag
-set/cleared will be 1/0 respectively if CS is supposed to be enabled.
-That aspect has already been fixed in the dw_spi_set_cs() method.
-2) The method enables CS[0] if GPIO-CS is used for a particular SPI
-device. That will cause problems for a GPIO/native CS intermixed case
-of having for instance one SPI-device connected to native CS[0] and
-another one - to a GPIO. So trying to communicate with the second SPI
-device you'll end up having the native CS[0] activated too thus
-having an SPI transfer sent to two SPI-device at the same time.
-Of course that's not what you'd want.
-
-Anyway I don't really see why you even need a custom CS method here. A
-generic method dw_spi_set_cs() shall work for your SPI interface.
-If I am wrong, please explain why. Did you try the generic CS method
-on your platform?
-
-[1] Placing Braces and Spaces. Chapter 3). Documentation/process/coding-style.rst
-
-> +
-> +static int dw_spi_elba_init(struct platform_device *pdev,
-> +			    struct dw_spi_mmio *dwsmmio)
-> +{
-> +	dwsmmio->dws.set_cs = dw_spi_elba_set_cs;
-> +
-> +	return 0;
-> +}
-> +
->  static int dw_spi_mmio_probe(struct platform_device *pdev)
->  {
->  	int (*init_func)(struct platform_device *pdev,
-> @@ -351,6 +383,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
->  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
->  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
->  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
-
-> +	{ .compatible = "pensando,elba-spi", .data = dw_spi_elba_init },
-
-If you agree with me and remove the custom CS-method defined above in
-this patch, then all you'll need is just to add "pensando,elba-spi" here
-with generic init-callback set - dw_spi_dw_apb_init.
-
-Finally defining new compatible string requires the bindings update.
-In the framework of DW APB SPI interface they are defined in:
-Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-So you need to have that DT-schema accordingly altered.
-
-The bindings note concerns the rest of the updates in your patchset too.
-
--Sergey
-
->  	{ /* end of table */}
->  };
->  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
-> -- 
-> 2.17.1
+> Based on original version by Le Jin.
 > 
+> Link: https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
+> Link: https://github.com/siemens/meta-iot2050
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+
+Few minor comments below:
+
+[...]
+
+> +
+> +&mcu_i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
+> +	clock-frequency = <400000>;
+> +
+> +	psu: tps62363@60 {
+
+Please use generic node names:
+
+	psu: regulator@60 { ... };
+
+> +		compatible = "ti,tps62363";
+> +		reg =  <0x60>;
+> +		regulator-name = "tps62363-vout";
+> +		regulator-min-microvolt = <500000>;
+> +		regulator-max-microvolt = <1500000>;
+> +		regulator-boot-on;
+> +		ti,vsel0-state-high;
+> +		ti,vsel1-state-high;
+> +		ti,enable-vout-discharge;
+> +	};
+> +
+> +	/* D4200 */
+> +	pcal9535_1: gpio@20 {
+> +		compatible = "nxp,pcal9535";
+> +		reg = <0x20>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		gpio-line-names =
+> +			"A0-pull", "A1-pull", "A2-pull", "A3-pull", "A4-pull",
+> +			"A5-pull", "", "",
+> +			"IO14-enable", "IO15-enable", "IO16-enable",
+> +			"IO17-enable", "IO18-enable", "IO19-enable";
+> +	};
+> +
+> +	/* D4201 */
+> +	pcal9535_2: gpio@21 {
+> +		compatible = "nxp,pcal9535";
+> +		reg = <0x21>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		gpio-line-names =
+> +			"IO0-direction", "IO1-direction", "IO2-direction",
+> +			"IO3-direction", "IO4-direction", "IO5-direction",
+> +			"IO6-direction", "IO7-direction",
+> +			"IO8-direction", "IO9-direction", "IO10-direction",
+> +			"IO11-direction", "IO12-direction", "IO13-direction",
+> +			"IO19-direction";
+> +	};
+> +
+> +	/* D4202 */
+> +	pcal9535_3: gpio@25 {
+> +		compatible = "nxp,pcal9535";
+> +		reg = <0x25>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		gpio-line-names =
+> +			"IO0-pull", "IO1-pull", "IO2-pull", "IO3-pull",
+> +			"IO4-pull", "IO5-pull", "IO6-pull", "IO7-pull",
+> +			"IO8-pull", "IO9-pull", "IO10-pull", "IO11-pull",
+> +			"IO12-pull", "IO13-pull";
+> +	};
+> +};
+
+[...]
+
+> +&dwc3_0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb0_phy {
+> +	status = "okay";
+> +};
+> +
+
+These nodes are enabled by default right? Above is redundant.
+
+> +&usb0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&usb0_pins_default>;
+> +	dr_mode = "host";
+> +};
+> +
+> +&dwc3_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb1_phy {
+> +	status = "okay";
+> +};
+> +
+
+Same here...
+
+> +&usb1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&usb1_pins_default>;
+> +	dr_mode = "host";
+> +};
+> +
+
+[...]
+
+> +&mcu_spi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_spi0_pins_default>;
+> +
+> +	#address-cells = <1>;
+> +	#size-cells= <0>;
+> +	ti,pindir-d0-out-d1-in = <1>;
+> +
+> +	spidev@0 {
+> +		compatible = "rohm,dh2228fv";
+> +		spi-max-frequency = <20000000>;
+> +		reg = <0>;
+> +	};
+
+Is the device really dh2228fv?
+
+> +};
+> +
+> +&tscadc0 {
+> +	status = "disabled";
+> +};
+> +
+> +&tscadc1 {
+> +	adc {
+> +		ti,adc-channels = <0 1 2 3 4 5>;
+> +	};
+> +};
+> +
+> +&ospi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-rx-bus-width = <1>;
+> +		spi-max-frequency = <50000000>;
+> +		cdns,tshsl-ns = <60>;
+> +		cdns,tsd2d-ns = <60>;
+> +		cdns,tchsh-ns = <60>;
+> +		cdns,tslch-ns = <60>;
+> +		cdns,read-delay = <2>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +	};
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +
+
+Node is enabled by default. Please drop above line for consistency.
+
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&dss_vout1_pins_default>;
+> +
+> +	assigned-clocks = <&k3_clks 67 2>;
+> +	assigned-clock-parents = <&k3_clks 67 5>;
+> +};
+> +
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	port@1 {
+> +		reg = <1>;
+> +
+> +		dpi_out: endpoint {
+> +			remote-endpoint = <&bridge_in>;
+> +		};
+> +	};
+> +};
+> +
+
+[...]
+
+Regards
+Vignesh
