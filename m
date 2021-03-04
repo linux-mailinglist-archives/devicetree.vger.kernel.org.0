@@ -2,218 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A6032D59C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 15:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A64AD32D5BC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 15:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbhCDOnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 09:43:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
+        id S229793AbhCDO63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 09:58:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232287AbhCDOmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 09:42:39 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CFD9C06175F;
-        Thu,  4 Mar 2021 06:41:58 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id t9so4464626ljt.8;
-        Thu, 04 Mar 2021 06:41:58 -0800 (PST)
+        with ESMTP id S232674AbhCDO6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 09:58:18 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56455C061574;
+        Thu,  4 Mar 2021 06:57:38 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id f12so24179875wrx.8;
+        Thu, 04 Mar 2021 06:57:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uaToOPE5Jw50VJdHITMFWjh+kkyiVY45ldzA1CqmWhE=;
-        b=IFiRJE5Ufvpn4xyBUAOWEx+s44tz4E4fvv+Qfms4YFWawYDjnzHhTUY7undfh9VCBy
-         Gu5GRIM625V9w6VQBmMenJCYW7cGGuH1AGAWLbRpVT+MdnqJ6CS1d+mbSx+01sdsdSLz
-         MI8yjwCT4yHnOVOHjxzToA91uUkUp4bX3IBA/vtvts9xKpsmUnNoSVU2nB1JrzY9AIAF
-         EIy3duM+Y1+i4OZx8l2ukolwogwsCIfZkKgVeto1jqtnaz72zBJ+2oVMBv7Iy9cJPev6
-         KThARsywx+TWVi+rjEJZ1iKrIRYxeVjPMBMt5CGrWIQq9SdaFLajvvSa+QJ5MaY34lm8
-         VYDQ==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=VoPx2Cdxwn60O0M6Vi5u1Ygt08JDUk/3AjCskxZyugQ=;
+        b=Rxnisa3mPdPHv7NNTjmf51YPOHNbAi/xTRBJeTM5zxCilomemS7p+h8DW66PIzPBoQ
+         7wwKbiZLOLdV7XBMCg3txRoFf+emEUV2RJhnggO3ZfOO8bHeU9/AmsWHX3ceoVhZkYyT
+         rYeJYyHgeYY6iPqr4QTOcjut4W8SrBVjq1xPc5DhWbXd1mXXdA+gKpZmds+52zcd8h3y
+         Yy1NNo2hWDMMmazgiBuCfKBHuINfSOgUSL0X0hdFGD3uK4S4+m2pgZ0JmQswinbHPhgt
+         pb4n6t9ED8V1pFJgG7k+drVBjmyyEwnMbF/9zIO60elVwZWD3PTyJigSfv+Pu4EKKBi2
+         4jkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uaToOPE5Jw50VJdHITMFWjh+kkyiVY45ldzA1CqmWhE=;
-        b=JNISx/IyHiNIetJjuN8jcIUEKFNpkbLWS5SfqAc9+cK02F/1glBbeIpaA869nOmvsr
-         MAzOdkUrUVQz9pMbpDYw0H+/gZ8IEAYKOmsfvUpheEm137S/AR0oQIiyz6jIfn1iD6pP
-         zXmQh9SOCC37/BhIDo3MZU4XPBRgVW+ENcc4l4O0LAp3WM0rgW+fuTqrfKXSmlSSFAzi
-         XZpALkc/heMDNu243WTVKOMgc5YBmdK1hKubVTTzzYocxX/PEFyA6xK7041W4OW7Hvt8
-         BDIroqSc4WtS6xnGS1Jdikb+IxPG8GsDpo9fisQDwXhAB5LmX4JUiom6UEoBewWPvYpm
-         nPXQ==
-X-Gm-Message-State: AOAM533+byJkfDbZ8ag95uc7jDPQT/anf0lm3UcSY+TjtHVq7vUla25p
-        GGHAznRO9zs8f8PnADIWA/Q=
-X-Google-Smtp-Source: ABdhPJzmJPgT99W49RI/oOGskBC6aiEbDOVWhiQ3mevfIK/4fCpF4d++kbxPXhMFdMpNAEooWKxadQ==
-X-Received: by 2002:a2e:9f08:: with SMTP id u8mr2607503ljk.50.1614868917081;
-        Thu, 04 Mar 2021 06:41:57 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t17sm1396694lft.224.2021.03.04.06.41.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Mar 2021 06:41:56 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mips@vger.kernel.org,
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=VoPx2Cdxwn60O0M6Vi5u1Ygt08JDUk/3AjCskxZyugQ=;
+        b=nj9+Nkbm2tFwUVOVGQxcUu0fvSW/yhfTQCv/1IL4irHHiy/3Y227fwlf0JSQyxKscA
+         Npj3Lr/AennbQjJRyzzNMBrZHkVgRZkFY+WLrVPAR7TmMyXdcwTUxAV/Ah/i8F4WuOd/
+         wHxLZnmRUO/xi2jaQY//uSDjfVItrVumVG2V35YXOyfJBHBB5rvghezQ7QRn9HjxxQ7Y
+         3SkG50cbZxb3QudhQ2G2zI6b9FtAGTnsDuwjRG3n+HJ49edGf3ekSduCRqQ0nB92rSZr
+         yOirGyvjehISyqOC7sbRR3hT7m3jnw5bBWCcvndc8nqkSmvsnxh6XlLAj5eq++IM35x8
+         8e8g==
+X-Gm-Message-State: AOAM532QcIJoElUIKtxKh/Km4gpCni8hRQZbGLgMNecrbOIsiX7smlW6
+        WuyxNbQSigICTCMJ1JH31R8=
+X-Google-Smtp-Source: ABdhPJyBS18SvzoNqUADJrKfF34ApnOWPmd4o1EiF+kk+KM0ZRbpeTw7Dm3eUpT8m8TD4tPcEqyPbw==
+X-Received: by 2002:adf:ff8c:: with SMTP id j12mr4370114wrr.297.1614869857011;
+        Thu, 04 Mar 2021 06:57:37 -0800 (PST)
+Received: from macbook-pro-alvaro.lan (170.red-88-1-105.dynamicip.rima-tde.net. [88.1.105.170])
+        by smtp.gmail.com with ESMTPSA id s83sm1236045wmf.26.2021.03.04.06.57.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Mar 2021 06:57:36 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
+Subject: Re: [PATCH v3 1/2] dt-bindings: rng: bcm2835: document reset support
+From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+In-Reply-To: <c750ae9f6c55011c07868ba563ac8e5af3e01a2a.camel@suse.de>
+Date:   Thu, 4 Mar 2021 15:57:36 +0100
+Cc:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
         bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] nvmem: iomap: new driver exposing NVMEM accessible using I/O mapping
-Date:   Thu,  4 Mar 2021 15:41:32 +0100
-Message-Id: <20210304144132.24098-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210304144132.24098-1-zajec5@gmail.com>
-References: <20210304144132.24098-1-zajec5@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        nfraprado@protonmail.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <91B364C3-022E-4FB8-905C-C5B6EB74E784@gmail.com>
+References: <20210222194510.14004-1-noltari@gmail.com>
+ <20210223170006.29558-1-noltari@gmail.com>
+ <20210223170006.29558-2-noltari@gmail.com>
+ <d6e5b3be7e2add03b8d00a931b7fe254cd39077e.camel@suse.de>
+ <419CC9A9-1C14-4D44-8305-3F7DFF656C1F@gmail.com>
+ <c750ae9f6c55011c07868ba563ac8e5af3e01a2a.camel@suse.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Nicolas,
 
-This is a generic NVMEM access method used e.g. by Broadcom for their
-NVRAM on MIPS and Northstar devices.
+> El 4 mar 2021, a las 14:30, Nicolas Saenz Julienne =
+<nsaenzjulienne@suse.de> escribi=C3=B3:
+>=20
+> On Thu, 2021-03-04 at 13:18 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas =
+wrote:
+>>=20
+>>> El 4 mar 2021, a las 13:07, Nicolas Saenz Julienne =
+<nsaenzjulienne@suse.de> escribi=C3=B3:
+>>>=20
+>>> Hi Alvaro,
+>>>=20
+>>> On Tue, 2021-02-23 at 18:00 +0100, =C3=81lvaro Fern=C3=A1ndez Rojas =
+wrote:
+>>>> Some devices may need to perform a reset before using the RNG, such =
+as the
+>>>> BCM6368.
+>>>>=20
+>>>> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+>>>> ---
+>>>>  v3: make resets required if brcm,bcm6368-rng.
+>>>>  v2: document reset support.
+>>>>=20
+>>>>  .../devicetree/bindings/rng/brcm,bcm2835.yaml   | 17 =
++++++++++++++++++
+>>>>  1 file changed, 17 insertions(+)
+>>>>=20
+>>>> diff --git =
+a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml =
+b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>>>> index c147900f9041..11c23e1f6988 100644
+>>>> --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>>>> +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>>>> @@ -37,6 +37,21 @@ required:
+>>>> =20
+>>>>=20
+>>>>=20
+>>>>  additionalProperties: false
+>>>=20
+>>> I can't claim I fully understand all the meta stuff in shemas, so I =
+generally
+>>> just follow the patterns already available out there.
+>>=20
+>> Well, that makes two of us :).
+>>=20
+>>> That said, shoudln't this be at the end, just before the examples?
+>>=20
+>> I don=E2=80=99t know but I can move it there =C2=AF\_(=E3=83=84)_/=C2=AF=
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/Kconfig  |  7 +++
- drivers/nvmem/Makefile |  2 +
- drivers/nvmem/iomap.c  | 99 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 108 insertions(+)
- create mode 100644 drivers/nvmem/iomap.c
+>=20
+> Yes please do. See commit 7f464532b05 ("dt-bindings: Add missing
+> 'additionalProperties: false'") which expands on why it is needed, and =
+why it
+> should be at the end.
+>=20
+>>> Maybe the cause of that odd warning
+>>> you got there?
+>>=20
+>> Which odd warning?
+>=20
+> The one pointed out by Rob Herring's script, which I can reproduce too =
+BTW. On
+> the other hand I can't really tell what's wrong right away.
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 75d2594c16e1..3d5c5684685d 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -278,4 +278,11 @@ config NVMEM_RMEM
- 
- 	  This driver can also be built as a module. If so, the module
- 	  will be called nvmem-rmem.
-+
-+config NVMEM_IOMAP
-+	tristate "I/O mapped NVMEM support"
-+	depends on HAS_IOMEM
-+	help
-+	  This driver supports NVMEM that can be accessed using I/O mapping.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 5376b8e0dae5..88a3b6979c53 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -57,3 +57,5 @@ obj-$(CONFIG_SPRD_EFUSE)	+= nvmem_sprd_efuse.o
- nvmem_sprd_efuse-y		:= sprd-efuse.o
- obj-$(CONFIG_NVMEM_RMEM) 	+= nvmem-rmem.o
- nvmem-rmem-y			:= rmem.o
-+obj-$(CONFIG_NVMEM_IOMAP)	+= nvmem_iomap.o
-+nvmem_iomap-y			:= iomap.o
-diff --git a/drivers/nvmem/iomap.c b/drivers/nvmem/iomap.c
-new file mode 100644
-index 000000000000..ab6b40858a64
---- /dev/null
-+++ b/drivers/nvmem/iomap.c
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+
-+struct iomap {
-+	struct device *dev;
-+	void __iomem *base;
-+};
-+
-+static int iomap_read(void *context, unsigned int offset, void *val,
-+		      size_t bytes)
-+{
-+	struct iomap *priv = context;
-+	u8 *src = priv->base + offset;
-+	u8 *dst = val;
-+	size_t tmp;
-+
-+	tmp = offset % 4;
-+	memcpy_fromio(dst, src, tmp);
-+	dst += tmp;
-+	src += tmp;
-+	bytes -= tmp;
-+
-+	tmp = rounddown(bytes, 4);
-+	__ioread32_copy(dst, src, tmp / 4);
-+	dst += tmp;
-+	src += tmp;
-+	bytes -= tmp;
-+
-+	memcpy_fromio(dst, src, bytes);
-+
-+	return 0;
-+}
-+
-+static int iomap_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.name = "iomap",
-+		.reg_read = iomap_read,
-+	};
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	struct iomap *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		dev_err(dev, "Failed to get resource\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(priv->base)) {
-+		dev_err(dev, "Failed to map resource: %ld\n", PTR_ERR(priv->base));
-+		return PTR_ERR(priv->base);
-+	}
-+
-+	config.dev = dev;
-+	config.priv = priv;
-+	config.size = resource_size(res);
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-+}
-+
-+static const struct of_device_id iomap_of_match_table[] = {
-+	{ .compatible = "brcm,nvram", },
-+	{ .compatible = "nvmem-iomap", },
-+	{},
-+};
-+
-+static struct platform_driver iomap_driver = {
-+	.probe = iomap_probe,
-+	.driver = {
-+		.name = "nvmem_iomap",
-+		.of_match_table = iomap_of_match_table,
-+	},
-+};
-+
-+static int __init iomap_init(void)
-+{
-+	return platform_driver_register(&iomap_driver);
-+}
-+
-+subsys_initcall_sync(iomap_init);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DEVICE_TABLE(of, iomap_of_match_table);
--- 
-2.26.2
+Well, I can=E2=80=99t reproduce that locally and I don=E2=80=99t know =
+what=E2=80=99s wrong either, I think that the best option is to remove =
+the full if block.
 
+>=20
+>> I don=E2=80=99t get any warnings when running (or at least warnings =
+related to rig, because I get warnings related to other yamls):
+>> make dt_binding_check =
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+>>=20
+>>>=20
+>>>> +if:
+>>>> +  properties:
+>>>> +    compatible:
+>>>> +      enum:
+>>>> +        - brcm,bcm6368-rng
+>>>> +then:
+>>>> +  properties:
+>>>> +    resets:
+>>>> +      maxItems: 1
+>>>> +  required:
+>>>> +    - resets
+>>>=20
+>>> I belive you can't really make a property required when the bindings =
+for
+>>> 'brcm,bcm6368-rng' were already defined. This will break the schema =
+for those
+>>> otherwise correct devicetrees.
+>>=20
+>> Why not?
+>> Wouldn=E2=80=99t just be required for brcm,bcm6368-rng?
+>=20
+> Well, do all 'brcm,bcm6368-rng' users absolutely need the reset =
+controller? If
+> so, the original binding is wrong, which should be mentioned and a =
+'Fixes:' tag
+> should be added to the commit message. Otherwise, the requirement is =
+optional.
+
+I=E2=80=99m not sure about this...
+
+>=20
+> Regards,
+> Nicolas
+
+Best regards,
+=C3=81lvaro.=
