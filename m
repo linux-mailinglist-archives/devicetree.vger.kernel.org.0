@@ -2,84 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E920932C8CC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F27F32C8CE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 02:16:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345764AbhCDAwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Mar 2021 19:52:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46310 "EHLO
+        id S1346071AbhCDAwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Mar 2021 19:52:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392371AbhCDAOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:14:34 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD97C0613E6
-        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 16:13:26 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id u4so40161560lfs.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 16:13:26 -0800 (PST)
+        with ESMTP id S1392394AbhCDAOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Mar 2021 19:14:35 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568A7C0613E9
+        for <devicetree@vger.kernel.org>; Wed,  3 Mar 2021 16:13:42 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id e6so17607216pgk.5
+        for <devicetree@vger.kernel.org>; Wed, 03 Mar 2021 16:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OKu9rvgBil0k6tR4pYyiR6wjoHr0+cu17RpPhjhwkTc=;
-        b=IpjtF+K+hruehTwmwGiSLec3MXobzKIJ30Y6ZmWQJunyXLeup+LmOCVT5Nxumb+LXq
-         qIRGRRxLUv+vvqSMVM5R9D6dxubkhFTO6ayZNQiAMtwEzLbswTymeuz7Ozkv4oCczk6L
-         CGKaTot0aoO4H5QxO/3lg7K/snPxuWNCpZgTFKt9efgx5VmtbYn+223I0yjuc6ElJuPU
-         +NqBvtxU4Fd36vrsMJUY/djET0UEYnRbDdxCcq8eA8dcqpZvIerGhwjHFU6iNyiN/wcM
-         Dfz7xc117A/msLNFmaaR9w9LEAC7eSVn0DOmpNIbhZkJuce2a4LijAnAwOJRk8s14UWG
-         rKJA==
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=jWLf/e+EL6DZASxmlKaI5K9b0nZdvsE6NX7/3HdAC7U=;
+        b=c+FjYQmwaRinCqyo0+52fhpid5Xwc97PzuMFrg83WkMJp1JGtsp1+XO0GbeEM69+NM
+         Mx+/iK+BS9M7n1Glh7rfhjNPDkY6fS2UEkQ0rAYwyZ6DEFoOKVMxv2qCpJIK+4TEL/Wp
+         tIxRh+SOzjC4mjjpfdFUyZCIWaC3gXDJn1wiE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OKu9rvgBil0k6tR4pYyiR6wjoHr0+cu17RpPhjhwkTc=;
-        b=MfydKj0f7jB7aL6nCm3Bp7r1cDVeVjsvQhedspRMFaSEJ9EbIYs2KxGMU+sIA1LhyJ
-         2Yvp/du2Nb76XLxg2aop3zC+kBs0iDixquEA0bYIXcdKDUZEzQuIJNzxZkjYIsJPpolB
-         8vL9cBDGtqs+E+qQYNgbOIOi8Y58pnhV0dXi0YAsQhhceqL+szHm3D1Vu61fC8wpz/kU
-         HwvGt+R3lF3p1JZSwK3fjhd3AJ5mSyzinodrmh8/ZDbwe60a1aWQZp1O46LO9NnfuIU1
-         804JpiTptCsiWks/VvIl+AtKIIb2C1mP/S8tIxZ4GkqzAd0kH8jzXQRiqDcCsfZH0Obp
-         nQzw==
-X-Gm-Message-State: AOAM530LTWjQwba63WMlOlFCOvXN+53Ig0CFzEIgVXQ056hDHlOLvJaV
-        2wVTWBO7PUstQ7C/cgoX5uHLrmASMGnAhDw4hV01pA==
-X-Google-Smtp-Source: ABdhPJwUF1F8cAZ3I10nUfVKg6JQz8+hWV9fUNGUsjQoMGB56CK2zNgX/OcKAfDexLsxS2Tm4fxqKsRx+PeSf7Mqulg=
-X-Received: by 2002:a05:6512:74a:: with SMTP id c10mr709694lfs.586.1614816804951;
- Wed, 03 Mar 2021 16:13:24 -0800 (PST)
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=jWLf/e+EL6DZASxmlKaI5K9b0nZdvsE6NX7/3HdAC7U=;
+        b=ZZgScjtmT46y6ob3QaTSIvisS7Xe+5ZgntwswjhpN1Fk03KNPZkhnkrKgi7QKZeLJ5
+         biFtrbZxIlzNIp6NdFSSfWFBA+/oBxG+rTqjx7Ho9HkUeGIH4mLX4DL1zyM+p3A4MFhw
+         GvPEsX8GT4N2cEigD+COzbk7hqI2zhGk3cH3/Lji7fD4K6PfEwFSx9iIplwZpWi+xuzB
+         hDob6kXBAvFfXB3LD7DpWI0ybpx1ysKK6rc9RQgKcSGJFXOmqleGUBOfBLbO+iSTdynp
+         Mwpb91FPexMzK1g7BpOE1Qe9Az4DW9dn3Gaaw2lgV0D0+L3tAXubFbJIUuwVSqwJjf/L
+         FuDw==
+X-Gm-Message-State: AOAM5309ueoIqPOfzxH5dM5g0S4lrDxtsJVt+aFZlBHrL7+sQYmAuTMb
+        h8Lg7lGqOdTSeh/CSVhzR5rDBA==
+X-Google-Smtp-Source: ABdhPJyVroPzn9oixV9FeT2IFau8Sa9+DilTKFAVShOzPeMnb8mVrAPic1zVIiJMCylWI0i0E+p+dA==
+X-Received: by 2002:a62:7708:0:b029:1ee:f656:51d5 with SMTP id s8-20020a6277080000b02901eef65651d5mr1242886pfc.59.1614816821943;
+        Wed, 03 Mar 2021 16:13:41 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:2510:ab07:78a:7d78])
+        by smtp.gmail.com with ESMTPSA id b15sm24334134pgj.84.2021.03.03.16.13.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Mar 2021 16:13:41 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210303142310.6371-1-noltari@gmail.com> <CACRpkdbi77SBsssMOnx43fP9RgqnzkUUw=TXaE2_LDexpE2WEg@mail.gmail.com>
- <D875EBA4-F881-4F1E-A251-78CEF8E6A40B@gmail.com>
-In-Reply-To: <D875EBA4-F881-4F1E-A251-78CEF8E6A40B@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 4 Mar 2021 01:13:13 +0100
-Message-ID: <CACRpkdYPMT_D=pKau1c9Df7rq9gwVGtA8ZYvPHDYU6zO-y+SgQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/14] pinctrl: add BCM63XX pincontrol support
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1614773878-8058-14-git-send-email-rnayak@codeaurora.org>
+References: <1614773878-8058-1-git-send-email-rnayak@codeaurora.org> <1614773878-8058-14-git-send-email-rnayak@codeaurora.org>
+Subject: Re: [PATCH v2 13/14] arm64: dts: qcom: sc7280: Add cpuidle states
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org
+Date:   Wed, 03 Mar 2021 16:13:39 -0800
+Message-ID: <161481681986.1478170.12709137949867727549@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 3, 2021 at 5:23 PM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
-ail.com> wrote:
+Quoting Rajendra Nayak (2021-03-03 04:17:57)
+> From: Maulik Shah <mkshah@codeaurora.org>
+>=20
+> Add cpuidle states for little and big cpus.
 
-> Or maybe we could guard these lines of gpio-regmap.c with #ifdef GPIOLIB_=
-IRQCHIP:
-> https://github.com/torvalds/linux/blob/f69d02e37a85645aa90d18cacfff36dba3=
-70f797/drivers/gpio/gpio-regmap.c#L282-L286
+Please also say "The latency values are preliminary placeholders and will b=
+e updated
+once testing provides the real numbers".
 
-That's the best approach. I wasn't a big fan of this ability to insert
-an external
-irqdomain in the first place, so it should be as optional as possible.
+>=20
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
 
-Yours,
-Linus Walleij
+With that commit text update
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
