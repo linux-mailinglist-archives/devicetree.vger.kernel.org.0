@@ -2,198 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D55732D761
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 17:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4272932D770
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 17:10:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236413AbhCDQGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 11:06:12 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22836 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236376AbhCDQF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 11:05:57 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 124Fm8r5009927;
-        Thu, 4 Mar 2021 17:05:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=oLvuUpvGKibfsuzVWM/OQOO33y/CmonVA+gnsrS2MG4=;
- b=Md6unwaJjUL5SKH+MULDLNRtU508xa2sJk8MKmA8wZl3GdDQPKJf8dVjTRgI4oVaK2br
- Bu1dC5pUQ9l3Iwo8+sDGld9vXqZJ1reJ2hZhhrtGzHOJrkupOxJm4PpfTXDf4PrQyhcF
- lfsK84OhajBDVSQuSldhZGXk6CBwht5jYv42f7JWL/g6gwPbacupNcxKd7jo/TrbDHqj
- eM5oZRWc3awSx/foeic7NfidrXE7/1eFlZM5X4Qz1XytiYcOJo8yzT2OkdRHUUSdwlHP
- GrsOBMAz+ZNswq9AIxhdUxRP5mKbb2TNIyVFVBt30FBz/5FiBdl4BrUgMOUpclWsGK91 AQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 36yfdyge3e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 04 Mar 2021 17:05:03 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DDA3110002A;
-        Thu,  4 Mar 2021 17:05:02 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CF8082073BB;
-        Thu,  4 Mar 2021 17:05:02 +0100 (CET)
-Received: from localhost (10.75.127.49) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 4 Mar 2021 17:05:02
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S236557AbhCDQIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 11:08:52 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38248 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236243AbhCDQIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 11:08:25 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124G7Hmp048628;
+        Thu, 4 Mar 2021 10:07:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1614874037;
+        bh=KFHEIwfXAq5wnSODJmppb3Cbchngj54+NlIGvRbFz/E=;
+        h=From:To:CC:Subject:Date;
+        b=ah5OBhvu4CqnzJ70PeLSIetZYD81EFW+Z8+GYVV8KFG9B/SQE60+2qDUe9UHGGPwn
+         dTe3h2lpgQD3X375OfG/9JF5NQK2PM9OCjvfl8XxPV7BPd01k7EZ0qfXUpH4/SC+F3
+         HKwcmjxuHdHXy+4dJoSeJugd2wdFDusSorIIqalI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124G7HBM052548
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Mar 2021 10:07:17 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
+ 2021 10:07:17 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 4 Mar 2021 10:07:17 -0600
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 124G7HdD102212;
+        Thu, 4 Mar 2021 10:07:17 -0600
+Received: from localhost ([10.250.35.110])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 124G7HXF013405;
+        Thu, 4 Mar 2021 10:07:17 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+CC:     Jan Kiszka <jan.kiszka@siemens.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [RESEND PATCH v3 2/2] phy: stm32: register usbphyc as clock provider of ck_usbo_48m clock
-Date:   Thu, 4 Mar 2021 17:04:40 +0100
-Message-ID: <20210304160440.27612-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210304160440.27612-1-amelie.delaunay@foss.st.com>
-References: <20210304160440.27612-1-amelie.delaunay@foss.st.com>
+        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v2 0/2] Add ICSSG nodes on AM65x & J721E SoCs
+Date:   Thu, 4 Mar 2021 10:07:10 -0600
+Message-ID: <20210304160712.8452-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-04_05:2021-03-03,2021-03-04 signatures=0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ck_usbo_48m is generated by usbphyc PLL and used by OTG controller
-for Full-Speed use cases with dedicated Full-Speed transceiver.
+Hi Nishanth,
 
-ck_usbo_48m is available as soon as the PLL is enabled.
+The following series is a resend of the ICSSG DT nodes [1] for the 5.13
+merge window. Patches are just rebased on top of 5.12-rc1 + your latest
+ti-k3-dts-next branch HEAD commit 0d7571c36331 ("arm64: dts: ti: k3-am65-main:
+Add device_type to pcie*_rc nodes"). There are no code changes w.r.t v1, I
+have picked up Vignesh's Reviewed-by tags. 
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
-No changes in v3.
-Changes in v2:
-- fix COMMON_CLK dependency issue reported by kernel test robot
----
- drivers/phy/st/Kconfig             |  1 +
- drivers/phy/st/phy-stm32-usbphyc.c | 65 ++++++++++++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+Note that the interrupt nodes continue to generate a warning about missing
+'#address-cells' when compiled using W=2, and this was concluded to be not
+an issue [2]. The nodename for PRUSS INTC is now enforced as per the
+discussion in [2] and added in commit 5ab931402a17 ("dt-bindings: irqchip:
+Add node name to PRUSS INTC") in v5.12-rc1.
 
-diff --git a/drivers/phy/st/Kconfig b/drivers/phy/st/Kconfig
-index b32f44ff9033..3fc3d0781fb8 100644
---- a/drivers/phy/st/Kconfig
-+++ b/drivers/phy/st/Kconfig
-@@ -36,6 +36,7 @@ config PHY_STIH407_USB
- config PHY_STM32_USBPHYC
- 	tristate "STMicroelectronics STM32 USB HS PHY Controller driver"
- 	depends on ARCH_STM32 || COMPILE_TEST
-+	depends on COMMON_CLK
- 	select GENERIC_PHY
- 	help
- 	  Enable this to support the High-Speed USB transceivers that are part
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index d08fbb180e43..c184f4e34584 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -7,6 +7,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -70,6 +71,7 @@ struct stm32_usbphyc {
- 	struct regulator *vdda1v1;
- 	struct regulator *vdda1v8;
- 	atomic_t n_pll_cons;
-+	struct clk_hw clk48_hw;
- 	int switch_setup;
- };
- 
-@@ -295,6 +297,61 @@ static const struct phy_ops stm32_usbphyc_phy_ops = {
- 	.owner = THIS_MODULE,
- };
- 
-+static int stm32_usbphyc_clk48_prepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	return stm32_usbphyc_pll_enable(usbphyc);
-+}
-+
-+static void stm32_usbphyc_clk48_unprepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	stm32_usbphyc_pll_disable(usbphyc);
-+}
-+
-+static unsigned long stm32_usbphyc_clk48_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-+{
-+	return 48000000;
-+}
-+
-+static const struct clk_ops usbphyc_clk48_ops = {
-+	.prepare = stm32_usbphyc_clk48_prepare,
-+	.unprepare = stm32_usbphyc_clk48_unprepare,
-+	.recalc_rate = stm32_usbphyc_clk48_recalc_rate,
-+};
-+
-+static void stm32_usbphyc_clk48_unregister(void *data)
-+{
-+	struct stm32_usbphyc *usbphyc = data;
-+
-+	of_clk_del_provider(usbphyc->dev->of_node);
-+	clk_hw_unregister(&usbphyc->clk48_hw);
-+}
-+
-+static int stm32_usbphyc_clk48_register(struct stm32_usbphyc *usbphyc)
-+{
-+	struct device_node *node = usbphyc->dev->of_node;
-+	struct clk_init_data init = { };
-+	int ret = 0;
-+
-+	init.name = "ck_usbo_48m";
-+	init.ops = &usbphyc_clk48_ops;
-+
-+	usbphyc->clk48_hw.init = &init;
-+
-+	ret = clk_hw_register(usbphyc->dev, &usbphyc->clk48_hw);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_clk_add_hw_provider(node, of_clk_hw_simple_get, &usbphyc->clk48_hw);
-+	if (ret)
-+		clk_hw_unregister(&usbphyc->clk48_hw);
-+
-+	return ret;
-+}
-+
- static void stm32_usbphyc_switch_setup(struct stm32_usbphyc *usbphyc,
- 				       u32 utmi_switch)
- {
-@@ -473,6 +530,12 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 		goto clk_disable;
- 	}
- 
-+	ret = stm32_usbphyc_clk48_register(usbphyc);
-+	if (ret) {
-+		dev_err(dev, "failed to register ck_usbo_48m clock: %d\n", ret);
-+		goto clk_disable;
-+	}
-+
- 	version = readl_relaxed(usbphyc->base + STM32_USBPHYC_VERSION);
- 	dev_info(dev, "registered rev:%lu.%lu\n",
- 		 FIELD_GET(MAJREV, version), FIELD_GET(MINREV, version));
-@@ -497,6 +560,8 @@ static int stm32_usbphyc_remove(struct platform_device *pdev)
- 		if (usbphyc->phys[port]->active)
- 			stm32_usbphyc_phy_exit(usbphyc->phys[port]->phy);
- 
-+	stm32_usbphyc_clk48_unregister(usbphyc);
-+
- 	clk_disable_unprepare(usbphyc->clk);
- 
- 	return 0;
+Boot logs:
+AM65x: https://pastebin.ubuntu.com/p/dVgBWB3xCv/
+J721E: https://pastebin.ubuntu.com/p/YpmRPyCkRn/
+
+Please see the v1 cover-letter [1] for all the original details.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
+[2] https://patchwork.kernel.org/comment/23926133/
+
+Suman Anna (2):
+  arm64: dts: ti: k3-am65-main: Add ICSSG nodes
+  arm64: dts: ti: k3-j721e-main: Add ICSSG nodes
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 393 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 262 +++++++++++++++
+ 2 files changed, 655 insertions(+)
+
 -- 
-2.17.1
+2.30.1
 
