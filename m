@@ -2,103 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F7EF32D226
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5345632D22C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 13:02:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239690AbhCDMAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 07:00:18 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:57169 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239692AbhCDL7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 06:59:51 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id B8AD722234;
-        Thu,  4 Mar 2021 12:59:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1614859149;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=J4jQxSQc2O+Dp19ZUEJeXtkJeo+b2+R/H3+DatoVNa8=;
-        b=iibl/jgxTK3CDY2ohc7hOG1NwWctzi+rRAN8RJYyCXy/RJ16Q0ZOiRckVrOIUFG+vHGK3O
-        s0AupfwFidBvPpzjVN5dHNf87dc9lL1Ac9LxBpyWIbq/6DzIykf3Kp4cnOKPs6YNRWN1Vc
-        6sXuJxnfQf871vlcZ7De6shCsk8DmvQ=
+        id S239708AbhCDMBV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 Mar 2021 07:01:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239663AbhCDMBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 07:01:18 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF1AC061756
+        for <devicetree@vger.kernel.org>; Thu,  4 Mar 2021 04:00:37 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1lHmeU-0002Qy-MG; Thu, 04 Mar 2021 13:00:22 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1lHmeP-0005IT-4s; Thu, 04 Mar 2021 13:00:17 +0100
+Message-ID: <807b832828d95bc003e7caed63ff86b4f9ff6eaa.camel@pengutronix.de>
+Subject: Re: [RFC PATCH 5/6] PCI: designware: Add SiFive FU740 PCIe host
+ controller driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Greentime Hu <greentime.hu@sifive.com>, paul.walmsley@sifive.com,
+        hes@sifive.com, erik.danie@sifive.com, zong.li@sifive.com,
+        bhelgaas@google.com, robh+dt@kernel.org, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, mturquette@baylibre.com, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Date:   Thu, 04 Mar 2021 13:00:17 +0100
+In-Reply-To: <34c2c3985443b23a75ce89c605c4b833bbafd134.1614681831.git.greentime.hu@sifive.com>
+References: <cover.1614681831.git.greentime.hu@sifive.com>
+         <34c2c3985443b23a75ce89c605c4b833bbafd134.1614681831.git.greentime.hu@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 04 Mar 2021 12:59:09 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
- Collector
-In-Reply-To: <20210304113659.GQ15865@dragon>
-References: <20210209005259.29725-1-michael@walle.cc>
- <20210304113659.GQ15865@dragon>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <4d45ac1495eea68aca7d2b85063c2559@walle.cc>
-X-Sender: michael@walle.cc
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-04 12:37, schrieb Shawn Guo:
-> On Tue, Feb 09, 2021 at 01:52:59AM +0100, Michael Walle wrote:
->> The legacy interrupt INT_A is hardwired to the event collector. RCEC 
->> is
->> bascially supported starting with v5.11. Having a correct interrupt, 
->> will
->> make RCEC at least probe correctly.
->> 
->> There are still issues with how RCEC is implemented in the RCiEP on 
->> the
->> LS1028A. RCEC will report an error, but it cannot find the correct
->> subdevice.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 6 ++++++
->>  1 file changed, 6 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi 
->> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
->> index 262fbad8f0ec..c1f2f402ad53 100644
->> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
->> @@ -1114,6 +1114,12 @@
->>  					full-duplex;
->>  				};
->>  			};
->> +
->> +			rcec@1f,0 {
-> 
-> Just curious how unit-address comes to '1f,0'?
+On Tue, 2021-03-02 at 18:59 +0800, Greentime Hu wrote:
+[...]
+> +static int fu740_pcie_probe(struct platform_device *pdev)
+> +{
+[...]
+> +       /* Fetch reset */
+> +       afp->rst = devm_reset_control_get(dev, NULL);
 
-You mean that it's pci dev 1f func 0?
-0x00f800 >> 11 == 0x1f
+Please use
+       afp->rst = devm_reset_control_get_exclusive(dev, NULL);	
 
-See also:
-https://elixir.bootlin.com/linux/v5.12-rc1/source/scripts/dtc/checks.c#L916
-
--michael
-
-> 
-> Shawn
-> 
->> +				reg = <0x00f800 0 0 0 0>;
->> +				/* IEP INT_A */
->> +				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
->> +			};
->>  		};
->> 
->>  		rcpm: power-controller@1e34040 {
->> --
->> 2.20.1
->> 
+regards
+Philipp
