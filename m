@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BED8832D76D
+	by mail.lfdr.de (Postfix) with ESMTP id 723BC32D76C
 	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 17:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233780AbhCDQJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 11:09:24 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38430 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236689AbhCDQJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 11:09:06 -0500
+        id S236243AbhCDQIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 11:08:52 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56514 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236552AbhCDQI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Mar 2021 11:08:27 -0500
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124G7NA5048701;
-        Thu, 4 Mar 2021 10:07:23 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124G7Sfb097987;
+        Thu, 4 Mar 2021 10:07:28 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614874043;
-        bh=3UEyUYYGnt6koxS5oADjWVgjwl6jIZCKsHJeIgBiO0Y=;
+        s=ti-com-17Q1; t=1614874048;
+        bh=Twcf/eq0ZLmWmTYgytyk8YwaMkwHVVx6aovMmmn3MTs=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ggHxs/6CjLtS95JQ/9tHJVt1E8uCCuPRRAQ2N/tq8c61x3zjSJGsXqfOjB+/HLKY1
-         YI70b+xf3CxMQCoEUkBBUYI4tdokYlQHUKJWYNbz4f8ICd3dlAqGjGobH04nDNp3Ko
-         BriRcUnm5srcuNNiqpQDsZqCA2TGirywVHsB4bzQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124G7NXt088975
+        b=DgdAG0Jo5VeXZv0nzOvGyBg3TlnWp9KfSfIVUdo/mECK8Xk7lm4WNW/MD7xZnGSSN
+         uiq+31N5QWbu21T0qYtQnQevGSNbsp24O9PHVoLpCu2n7jimWJQ5XE3Khj45J2MsD2
+         uMnzMhs6Sc5Mi56Ti5AR0aeYpBZpVLVlr3I4yqe0=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124G7SxY089158
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 Mar 2021 10:07:23 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 4 Mar 2021 10:07:28 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
- 2021 10:07:22 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 10:07:28 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 4 Mar 2021 10:07:22 -0600
+ Frontend Transport; Thu, 4 Mar 2021 10:07:27 -0600
 Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 124G7Md7033974;
-        Thu, 4 Mar 2021 10:07:22 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 124G7RsG102555;
+        Thu, 4 Mar 2021 10:07:27 -0600
 Received: from localhost ([10.250.35.110])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 124G7MGN124419;
-        Thu, 4 Mar 2021 10:07:22 -0600
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 124G7RNk124430;
+        Thu, 4 Mar 2021 10:07:27 -0600
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
 CC:     Jan Kiszka <jan.kiszka@siemens.com>,
@@ -48,9 +48,9 @@ CC:     Jan Kiszka <jan.kiszka@siemens.com>,
         Roger Quadros <rogerq@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 1/2] arm64: dts: ti: k3-am65-main: Add ICSSG nodes
-Date:   Thu, 4 Mar 2021 10:07:11 -0600
-Message-ID: <20210304160712.8452-2-s-anna@ti.com>
+Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-main: Add ICSSG nodes
+Date:   Thu, 4 Mar 2021 10:07:12 -0600
+Message-ID: <20210304160712.8452-3-s-anna@ti.com>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210304160712.8452-1-s-anna@ti.com>
 References: <20210304160712.8452-1-s-anna@ti.com>
@@ -62,35 +62,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for the ICSSG0, ICSSG1 and ICSSG2 processor subsystems
-that are present on the K3 AM65x SoCs. The three ICSSGs are identical
-to each other for the most part, with the ICSSG2 supporting slightly
-enhanced features for supporting SGMII PRU Ethernet. Each ICSSG instance
-is represented by a PRUSS subsystem node. These nodes are enabled by
+Add the DT nodes for the ICSSG0 and ICSSG1 processor subsystems that are
+present on the K3 J721E SoCs. The two ICSSGs are identical to each other
+for the most part, with the ICSSG1 supporting slightly enhanced features
+for supporting SGMII PRU Ethernet. Each ICSSG instance is represented by
+a PRUSS subsystem node and other child nodes. These nodes are enabled by
 default.
 
-The ICSSGs on K3 AM65x SoCs are super-sets of the PRUSS on the AM57xx/
-6AK2G SoCs except for larger Shared Data RAM and the lack of a PRU-ICSS
-crossbar. They include two auxiliary PRU cores called RTUs and few other
-additional sub-modules. The interrupt integration is also different on
-the K3 AM65x SoCs and are propagated through various SoC-level Interrupt
-Router and Interrupt Aggregator blocks. The AM65x SR2.0 SoCs have a
-revised ICSSG IP that is based off the subsequent IP used on J721E SoCs,
-and has two new auxiliary PRU cores called Tx_PRUs. The Tx_PRUs have 6 KB
-of IRAMs and leverage the same host interrupts as the regular PRU cores.
-The Broadside (BS) RAM within each core is also sized differently w.r.t
-SR1.0.
+The ICSSGs on K3 J721E SoCs are revised versions of the ICSSG on the first
+AM65x SR1.0 SoCs. The PRU IRAMs are slightly smaller, and the IP includes
+two new auxiliary PRU cores called Tx_PRUs. The Tx_PRUs have 6 KB of IRAMs
+and leverage the same host interrupts as the regular PRU cores. All The
+ICSSG host interrupts intended towards the main Arm core are also shared
+with other processors on the SoC, and can be partitioned as per system
+integration needs.
 
 The ICSSG subsystem node contains the entire address space. The various
 sub-modules of the ICSSG are represented as individual child nodes (so
 platform devices themselves) of the PRUSS subsystem node. These include
-the various PRU cores and the interrupt controller. All the Data RAMs
-are represented within a child node of its own named 'memories' without
-any compatible. The Real Time Media Independent Interface controllers
-(MII_RT and MII_G_RT), and the CFG sub-module are represented as syscon
-nodes. The ICSSG CFG module has clock muxes for IEP clock and CORE clock,
-these clk nodes are added under the CFG child node 'clocks'. The default
-parents for these mux clocks are also assigned.
+the two PRU cores, two RTU cores, two Tx_PRU cores and the interrupt
+controller. All the Data RAMs are represented within a child node of
+its own named 'memories' without any compatible. The Real Time Media
+Independent Interface controller (MII_RT), the Gigabit capable MII_G_RT
+and the CFG sub-module are represented as syscon nodes. The ICSSG CFG
+sub-module provides two internal clock muxes, and these are represented
+as children of the CFG child node 'clocks' by the 'coreclk-mux' and
+iepclk-mux' clk nodes. The default parents for these mux clocks are also
+defined using the assigned-clock-parents property.
 
 The DT nodes use all standard properties. The regs property in the
 PRU/RTU/Tx_PRU nodes define the addresses for the Instruction RAM, the
@@ -100,54 +98,46 @@ PRU/RTU/Tx_PRU core is defined through a 'firmware-name' property.
 The default names for the firmware images for each PRU, RTU and Tx_PRU
 cores are defined as follows (these can be adjusted either in derivative
 board dts files or through sysfs at runtime if required):
- ICSSG0 PRU0 Core    : am65x-pru0_0-fw   ; PRU1 Core    : am65x-pru0_1-fw
- ICSSG0 RTU0 Core    : am65x-rtu0_0-fw   ; RTU1 Core    : am65x-rtu0_1-fw
- ICSSG0 Tx_PRU0 Core : am65x-txpru0_0-fw ; Tx_PRU1 Core : am65x-txpru0_1-fw
- ICSSG1 PRU0 Core    : am65x-pru1_0-fw   ; PRU1 Core    : am65x-pru1_1-fw
- ICSSG1 RTU0 Core    : am65x-rtu1_0-fw   ; RTU1 Core    : am65x-rtu1_1-fw
- ICSSG1 Tx_PRU0 Core : am65x-txpru1_0-fw ; Tx_PRU1 Core : am65x-txpru1_1-fw
- ICSSG2 PRU0 Core    : am65x-pru2_0-fw   ; PRU1 Core    : am65x-pru2_1-fw
- ICSSG2 RTU0 Core    : am65x-rtu2_0-fw   ; RTU1 Core    : am65x-rtu2_1-fw
- ICSSG2 Tx_PRU0 Core : am65x-txpru2_0-fw ; Tx_PRU1 Core : am65x-txpru2_1-fw
+ ICSSG0 PRU0 Core    : j7-pru0_0-fw   ; PRU1 Core    : j7-pru0_1-fw
+ ICSSG0 RTU0 Core    : j7-rtu0_0-fw   ; RTU1 Core    : j7-rtu0_1-fw
+ ICSSG0 Tx_PRU0 Core : j7-txpru0_0-fw ; Tx_PRU1 Core : j7-txpru0_1-fw
+ ICSSG1 PRU0 Core    : j7-pru1_0-fw   ; PRU1 Core    : j7-pru1_1-fw
+ ICSSG1 RTU0 Core    : j7-rtu1_0-fw   ; RTU1 Core    : j7-rtu1_1-fw
+ ICSSG1 Tx_PRU0 Core : j7-txpru1_0-fw ; Tx_PRU1 Core : j7-txpru1_1-fw
 
 Note:
-1. The ICSSG nodes are all added as per the SR2.0 device. Any sub-module IP
-   differences need to be handled within the driver using SoC device match
-   logic or separate dts/overlay files (if needs to be supported) with the
-   Tx_PRU nodes expected to be disabled at the minimum.
-2. The ICSSG INTC on AM65x SoCs share 5, 6, 7 host interrupts with other
+1. The ICSSG INTC on J721E SoCs share all the host interrupts with other
    processors, so use the 'ti,irqs-reserved' property in derivative board
    dts files _if_ any of them should not be handled by the host OS.
-3. There are few more sub-modules like the Industrial Ethernet Peripherals
+2. There are few more sub-modules like the Industrial Ethernet Peripherals
    (IEPs), MDIO, PWM, UART that do not have bindings and so will be added
    in the future.
 
 Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Roger Quadros <rogerq@ti.com>
 Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
 ---
 v2: No code changes, picked up review tags
-v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210114194805.8231-2-s-anna@ti.com/
+v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210114194805.8231-3-s-anna@ti.com/
 
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 393 +++++++++++++++++++++++
- 1 file changed, 393 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 262 ++++++++++++++++++++++
+ 1 file changed, 262 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index abd7b7847ce9..cb340d1b401f 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -921,4 +921,397 @@ ehrpwm5: pwm@3050000 {
- 		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 45 0>;
- 		clock-names = "tbclk", "fck";
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index f1e7da3dfa27..c2aa45a3ac79 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1662,4 +1662,266 @@ c71_0: dsp@64800000 {
+ 		resets = <&k3_reset 15 1>;
+ 		firmware-name = "j7-c71_0-fw";
  	};
 +
 +	icssg0: icssg@b000000 {
-+		compatible = "ti,am654-icssg";
++		compatible = "ti,j721e-icssg";
 +		reg = <0x00 0xb000000 0x00 0x80000>;
-+		power-domains = <&k3_pds 62 TI_SCI_PD_EXCLUSIVE>;
++		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
 +		#address-cells = <1>;
 +		#size-cells = <1>;
-+		ranges = <0x0 0x00 0xb000000 0x80000>;
++		ranges = <0x0 0x00 0x0b000000 0x100000>;
 +
 +		icssg0_mem: memories@0 {
 +			reg = <0x0 0x2000>,
@@ -171,16 +161,16 @@ index abd7b7847ce9..cb340d1b401f 100644
 +				icssg0_coreclk_mux: coreclk-mux@3c {
 +					reg = <0x3c>;
 +					#clock-cells = <0>;
-+					clocks = <&k3_clks 62 19>, /* icssg0_core_clk */
-+						 <&k3_clks 62 3>;  /* icssg0_iclk */
++					clocks = <&k3_clks 119 24>, /* icssg0_core_clk */
++						 <&k3_clks 119 1>;  /* icssg0_iclk */
 +					assigned-clocks = <&icssg0_coreclk_mux>;
-+					assigned-clock-parents = <&k3_clks 62 3>;
++					assigned-clock-parents = <&k3_clks 119 1>;
 +				};
 +
 +				icssg0_iepclk_mux: iepclk-mux@30 {
 +					reg = <0x30>;
 +					#clock-cells = <0>;
-+					clocks = <&k3_clks 62 10>,	/* icssg0_iep_clk */
++					clocks = <&k3_clks 119 3>,	/* icssg0_iep_clk */
 +						 <&icssg0_coreclk_mux>;	/* core_clk */
 +					assigned-clocks = <&icssg0_iepclk_mux>;
 +					assigned-clock-parents = <&icssg0_coreclk_mux>;
@@ -218,69 +208,69 @@ index abd7b7847ce9..cb340d1b401f 100644
 +		};
 +
 +		pru0_0: pru@34000 {
-+			compatible = "ti,am654-pru";
-+			reg = <0x34000 0x4000>,
++			compatible = "ti,j721e-pru";
++			reg = <0x34000 0x3000>,
 +			      <0x22000 0x100>,
 +			      <0x22400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru0_0-fw";
++			firmware-name = "j7-pru0_0-fw";
 +		};
 +
 +		rtu0_0: rtu@4000 {
-+			compatible = "ti,am654-rtu";
++			compatible = "ti,j721e-rtu";
 +			reg = <0x4000 0x2000>,
 +			      <0x23000 0x100>,
 +			      <0x23400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu0_0-fw";
++			firmware-name = "j7-rtu0_0-fw";
 +		};
 +
 +		tx_pru0_0: txpru@a000 {
-+			compatible = "ti,am654-tx-pru";
++			compatible = "ti,j721e-tx-pru";
 +			reg = <0xa000 0x1800>,
 +			      <0x25000 0x100>,
 +			      <0x25400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru0_0-fw";
++			firmware-name = "j7-txpru0_0-fw";
 +		};
 +
 +		pru0_1: pru@38000 {
-+			compatible = "ti,am654-pru";
-+			reg = <0x38000 0x4000>,
++			compatible = "ti,j721e-pru";
++			reg = <0x38000 0x3000>,
 +			      <0x24000 0x100>,
 +			      <0x24400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru0_1-fw";
++			firmware-name = "j7-pru0_1-fw";
 +		};
 +
 +		rtu0_1: rtu@6000 {
-+			compatible = "ti,am654-rtu";
++			compatible = "ti,j721e-rtu";
 +			reg = <0x6000 0x2000>,
 +			      <0x23800 0x100>,
 +			      <0x23c00 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu0_1-fw";
++			firmware-name = "j7-rtu0_1-fw";
 +		};
 +
 +		tx_pru0_1: txpru@c000 {
-+			compatible = "ti,am654-tx-pru";
++			compatible = "ti,j721e-tx-pru";
 +			reg = <0xc000 0x1800>,
 +			      <0x25800 0x100>,
 +			      <0x25c00 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru0_1-fw";
++			firmware-name = "j7-txpru0_1-fw";
 +		};
 +	};
 +
 +	icssg1: icssg@b100000 {
-+		compatible = "ti,am654-icssg";
++		compatible = "ti,j721e-icssg";
 +		reg = <0x00 0xb100000 0x00 0x80000>;
-+		power-domains = <&k3_pds 63 TI_SCI_PD_EXCLUSIVE>;
++		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
 +		#address-cells = <1>;
 +		#size-cells = <1>;
-+		ranges = <0x0 0x00 0xb100000 0x80000>;
++		ranges = <0x0 0x00 0x0b100000 0x100000>;
 +
-+		icssg1_mem: memories@0 {
++		icssg1_mem: memories@b100000 {
 +			reg = <0x0 0x2000>,
 +			      <0x2000 0x2000>,
 +			      <0x10000 0x10000>;
@@ -302,16 +292,16 @@ index abd7b7847ce9..cb340d1b401f 100644
 +				icssg1_coreclk_mux: coreclk-mux@3c {
 +					reg = <0x3c>;
 +					#clock-cells = <0>;
-+					clocks = <&k3_clks 63 19>, /* icssg1_core_clk */
-+						 <&k3_clks 63 3>;  /* icssg1_iclk */
++					clocks = <&k3_clks 120 54>, /* icssg1_core_clk */
++						 <&k3_clks 120 4>;  /* icssg1_iclk */
 +					assigned-clocks = <&icssg1_coreclk_mux>;
-+					assigned-clock-parents = <&k3_clks 63 3>;
++					assigned-clock-parents = <&k3_clks 120 4>;
 +				};
 +
 +				icssg1_iepclk_mux: iepclk-mux@30 {
 +					reg = <0x30>;
 +					#clock-cells = <0>;
-+					clocks = <&k3_clks 63 10>,	/* icssg1_iep_clk */
++					clocks = <&k3_clks 120 9>,	/* icssg1_iep_clk */
 +						 <&icssg1_coreclk_mux>;	/* core_clk */
 +					assigned-clocks = <&icssg1_iepclk_mux>;
 +					assigned-clock-parents = <&icssg1_coreclk_mux>;
@@ -349,188 +339,57 @@ index abd7b7847ce9..cb340d1b401f 100644
 +		};
 +
 +		pru1_0: pru@34000 {
-+			compatible = "ti,am654-pru";
++			compatible = "ti,j721e-pru";
 +			reg = <0x34000 0x4000>,
 +			      <0x22000 0x100>,
 +			      <0x22400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru1_0-fw";
++			firmware-name = "j7-pru1_0-fw";
 +		};
 +
 +		rtu1_0: rtu@4000 {
-+			compatible = "ti,am654-rtu";
++			compatible = "ti,j721e-rtu";
 +			reg = <0x4000 0x2000>,
 +			      <0x23000 0x100>,
 +			      <0x23400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu1_0-fw";
++			firmware-name = "j7-rtu1_0-fw";
 +		};
 +
 +		tx_pru1_0: txpru@a000 {
-+			compatible = "ti,am654-tx-pru";
++			compatible = "ti,j721e-tx-pru";
 +			reg = <0xa000 0x1800>,
 +			      <0x25000 0x100>,
 +			      <0x25400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru1_0-fw";
++			firmware-name = "j7-txpru1_0-fw";
 +		};
 +
 +		pru1_1: pru@38000 {
-+			compatible = "ti,am654-pru";
++			compatible = "ti,j721e-pru";
 +			reg = <0x38000 0x4000>,
 +			      <0x24000 0x100>,
 +			      <0x24400 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru1_1-fw";
++			firmware-name = "j7-pru1_1-fw";
 +		};
 +
 +		rtu1_1: rtu@6000 {
-+			compatible = "ti,am654-rtu";
++			compatible = "ti,j721e-rtu";
 +			reg = <0x6000 0x2000>,
 +			      <0x23800 0x100>,
 +			      <0x23c00 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu1_1-fw";
++			firmware-name = "j7-rtu1_1-fw";
 +		};
 +
 +		tx_pru1_1: txpru@c000 {
-+			compatible = "ti,am654-tx-pru";
++			compatible = "ti,j721e-tx-pru";
 +			reg = <0xc000 0x1800>,
 +			      <0x25800 0x100>,
 +			      <0x25c00 0x100>;
 +			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru1_1-fw";
-+		};
-+	};
-+
-+	icssg2: icssg@b200000 {
-+		compatible = "ti,am654-icssg";
-+		reg = <0x00 0xb200000 0x00 0x80000>;
-+		power-domains = <&k3_pds 64 TI_SCI_PD_EXCLUSIVE>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x00 0xb200000 0x80000>;
-+
-+		icssg2_mem: memories@0 {
-+			reg = <0x0 0x2000>,
-+			      <0x2000 0x2000>,
-+			      <0x10000 0x10000>;
-+			reg-names = "dram0", "dram1",
-+				    "shrdram2";
-+		};
-+
-+		icssg2_cfg: cfg@26000 {
-+			compatible = "ti,pruss-cfg", "syscon";
-+			reg = <0x26000 0x200>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x26000 0x2000>;
-+
-+			clocks {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				icssg2_coreclk_mux: coreclk-mux@3c {
-+					reg = <0x3c>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 64 19>, /* icssg1_core_clk */
-+						 <&k3_clks 64 3>;  /* icssg1_iclk */
-+					assigned-clocks = <&icssg2_coreclk_mux>;
-+					assigned-clock-parents = <&k3_clks 64 3>;
-+				};
-+
-+				icssg2_iepclk_mux: iepclk-mux@30 {
-+					reg = <0x30>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 64 10>,	/* icssg1_iep_clk */
-+						 <&icssg2_coreclk_mux>;	/* core_clk */
-+					assigned-clocks = <&icssg2_iepclk_mux>;
-+					assigned-clock-parents = <&icssg2_coreclk_mux>;
-+				};
-+			};
-+		};
-+
-+		icssg2_mii_rt: mii-rt@32000 {
-+			compatible = "ti,pruss-mii", "syscon";
-+			reg = <0x32000 0x100>;
-+		};
-+
-+		icssg2_mii_g_rt: mii-g-rt@33000 {
-+			compatible = "ti,pruss-mii-g", "syscon";
-+			reg = <0x33000 0x1000>;
-+		};
-+
-+		icssg2_intc: interrupt-controller@20000 {
-+			compatible = "ti,icssg-intc";
-+			reg = <0x20000 0x2000>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "host_intr0", "host_intr1",
-+					  "host_intr2", "host_intr3",
-+					  "host_intr4", "host_intr5",
-+					  "host_intr6", "host_intr7";
-+		};
-+
-+		pru2_0: pru@34000 {
-+			compatible = "ti,am654-pru";
-+			reg = <0x34000 0x4000>,
-+			      <0x22000 0x100>,
-+			      <0x22400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru2_0-fw";
-+		};
-+
-+		rtu2_0: rtu@4000 {
-+			compatible = "ti,am654-rtu";
-+			reg = <0x4000 0x2000>,
-+			      <0x23000 0x100>,
-+			      <0x23400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu2_0-fw";
-+		};
-+
-+		tx_pru2_0: txpru@a000 {
-+			compatible = "ti,am654-tx-pru";
-+			reg = <0xa000 0x1800>,
-+			      <0x25000 0x100>,
-+			      <0x25400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru2_0-fw";
-+		};
-+
-+		pru2_1: pru@38000 {
-+			compatible = "ti,am654-pru";
-+			reg = <0x38000 0x4000>,
-+			      <0x24000 0x100>,
-+			      <0x24400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-pru2_1-fw";
-+		};
-+
-+		rtu2_1: rtu@6000 {
-+			compatible = "ti,am654-rtu";
-+			reg = <0x6000 0x2000>,
-+			      <0x23800 0x100>,
-+			      <0x23c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-rtu2_1-fw";
-+		};
-+
-+		tx_pru2_1: txpru@c000 {
-+			compatible = "ti,am654-tx-pru";
-+			reg = <0xc000 0x1800>,
-+			      <0x25800 0x100>,
-+			      <0x25c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "am65x-txpru2_1-fw";
++			firmware-name = "j7-txpru1_1-fw";
 +		};
 +	};
  };
