@@ -2,67 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FAC32E65B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CACDD32E66E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:31:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbhCEK3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:29:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbhCEK2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:28:50 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC78C061761
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:28:50 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id b1so2747950lfb.7
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:28:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lo7hHCf2xoJPHW7HnDCyEwaSFaM7Keg2AX2jZ4uVfBI=;
-        b=W50MxM+40GpkXjVUgQZ+hglkhIatQ62en1ksXZx59zKvAOfcZtgwWtdXoYBHbG7Q23
-         AqbI/7ojmTDD4QGv0lw8kRBK/x1R3M7p046e8wJ9yk0jYBxUiHfx2gNulxd5b2VkSfEn
-         FQpet8cbJgwx+ZAH1E58hlDWyP2/BJOZ8MPWCf0sXMFllAX98uCZ3wbY5ayGxbMs4OXY
-         0ELSFzLEg/Oig2lds2PIkXAjDMUnftrtBWKSIEXKfQzpOgXgiPiHqw6il4Rg8bh1JzBm
-         Ely81fAir1FA+I23NIFzQHAxRDDpkYyqM2YyJJ9hcyu3flk6I1hwaOVux6oKkJYSxbzh
-         KMTQ==
+        id S229578AbhCEKa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:30:56 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:50041 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229768AbhCEKac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:30:32 -0500
+Received: from mail-wm1-f72.google.com ([209.85.128.72])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lI7j5-0007C0-1u
+        for devicetree@vger.kernel.org; Fri, 05 Mar 2021 10:30:31 +0000
+Received: by mail-wm1-f72.google.com with SMTP id z26so593510wml.4
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:30:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lo7hHCf2xoJPHW7HnDCyEwaSFaM7Keg2AX2jZ4uVfBI=;
-        b=LGDJXw71X+xFl02ISIxDWcy2gR2yhXY7vWt2kWQqGv2ZIjp8xAvRgHbp4uk5OgbSJw
-         42eEoX6U4mkxYN3iZSCHo8imOQSopI6YpOf154jsFnJOdcbTdsQaV8YpzPJPrS0nKRds
-         aAuGQUd+p/eAo2OG/yHk67+QKKbly0no0OfCOHfkh1MtrVXUsbme7Sp3oxJC9XGuSq8H
-         oLiaTzXXEK4WoP6Ib38piZ3+B6bw3kJ7/vMxr+rCvIWWbsVXyPYl+9roNagkbiN8sYQf
-         n2x0X4ynma6eFpTRssVEq6ey0MNtP35E6DQlTtJ477p6808fYB/7CeLpA1rQ9WgjveKC
-         Ov1g==
-X-Gm-Message-State: AOAM5311DUQP/s8P48Xrk+9jt09qT8itTZtcecQslbUxzs8sVrxvfvKv
-        skwSKHdjA1f40DoRpnGrT8eKsoCMWx8w0gOjG+F5UQ==
-X-Google-Smtp-Source: ABdhPJxqboRmk7GaUgHUNxF2rciULSS6Cfp4YQ2azcCXSVJPJxIT8FGFZd/sqZPKGLsQ+vg8Pkh7I/AkoigHnc7uIX0=
-X-Received: by 2002:a05:6512:74a:: with SMTP id c10mr5124313lfs.586.1614940128739;
- Fri, 05 Mar 2021 02:28:48 -0800 (PST)
-MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
-In-Reply-To: <20210304213902.83903-13-marcan@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 5 Mar 2021 11:28:37 +0100
-Message-ID: <CACRpkdZHpqF1f2rSmgb90d8v_7NDe=Bqk4M1YbRJpOMFZmod4w@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kJu6iNTkK4wSmf0pqRfj82yyDdC0OqRkZT1hSBnQXr8=;
+        b=YvIfHOYKWVgDFjnIef8mCPEnxAnfFkPv1a/uScnEYfeW6yYIhcbFKaXOvY41CyYtHH
+         GyORLyE4FIqq6lgeG3dcyu98YX9yQtNC3FL2yiyz8re9vnjL7r+41EVHBjqyYKF7aRhy
+         wIUG+Wn+tjOS2E6I2Jts3mHpFk0hwGPqmSkTtf7kbZ29Wm9D0A5U/foh+6dqjEt3jEiN
+         61o/YskSFB+fc4ouBtQ2udfyUNo1pwtIZZG01k0VXK3csgVS0pBH7Wfdpjy+9b+2YQr+
+         knCLbPKM0jwe3mJfuF/QorhK5yBY93BLeB/XBlkk5o7GavquOrpvNkF8prgWva/SZvrE
+         ZQCw==
+X-Gm-Message-State: AOAM531BFrIv3eOkO7I+sT5vNzwc0Yc8wcDROeF3+W2tCjFVL4ZJEhgI
+        6sZkui5sX+D/ZIfrbUNEfG1RQXLA8x/i36oP6NvW+ZAnXSyTTbB6l4HkIuul3N0QWmkKjVJreF+
+        /ZJYrlvYahugZFViqjyLOB0agnnJXwPtOCWXDKAY=
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr7981738wmi.107.1614940230674;
+        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy800OFDrvV/rynegL9gdp5sOoCnfFTAFviFAiUlwZkphbdPaIzFS7W/py4nWV80SKpjFhzmQ==
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr7981727wmi.107.1614940230567;
+        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
+Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.gmail.com with ESMTPSA id 1sm3878530wmj.2.2021.03.05.02.30.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
+Subject: Re: [RFT PATCH v3 18/27] tty: serial: samsung_tty: Separate S3C64XX
+ ops structure
+To:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
         Arnd Bergmann <arnd@kernel.org>,
         Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
         Mark Kettenis <mark.kettenis@xs4all.nl>,
         Tony Lindgren <tony@atomide.com>,
         Mohamed Mediouni <mohamed.mediouni@caramail.com>,
         Stan Skowronek <stan@corellium.com>,
         Alexander Graf <graf@amazon.com>,
         Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -70,43 +64,43 @@ Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Catalin Marinas <catalin.marinas@arm.com>,
         Christoph Hellwig <hch@infradead.org>,
         "David S. Miller" <davem@davemloft.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Linux-Arch <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-19-marcan@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <cf61a889-b84d-f788-52f2-9b68bcc83d52@canonical.com>
+Date:   Fri, 5 Mar 2021 11:30:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <20210304213902.83903-19-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 10:40 PM Hector Martin <marcan@marcan.st> wrote:
-
-> This implements the 'nonposted-mmio' and 'posted-mmio' boolean
-> properties. Placing these properties in a bus marks all child devices as
-> requiring non-posted or posted MMIO mappings. If no such properties are
-> found, the default is posted MMIO.
->
-> of_mmio_is_nonposted() performs the tree walking to determine if a given
-> device has requested non-posted MMIO.
->
-> of_address_to_resource() uses this to set the IORESOURCE_MEM_NONPOSTED
-> flag on resources that require non-posted MMIO.
->
-> of_iomap() and of_io_request_and_map() then use this flag to pick the
-> correct ioremap() variant.
->
-> This mechanism is currently restricted to Apple ARM platforms, as an
-> optimization.
->
+On 04/03/2021 22:38, Hector Martin wrote:
+> Instead of patching a single global ops structure depending on the port
+> type, use a separate s3c64xx_serial_ops for the S3C64XX type. This
+> allows us to mark the structures as const.
+> 
+> Also split out s3c64xx_serial_shutdown into a separate function now that
+> we have a separate ops structure; this avoids excessive branching
+> control flow and mirrors s3c64xx_serial_startup. tx_claimed and
+> rx_claimed are only used in the S3C24XX functions.
+> 
 > Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  drivers/tty/serial/samsung_tty.c | 71 ++++++++++++++++++++++++--------
+>  1 file changed, 54 insertions(+), 17 deletions(-)
 
-This is fine with me atleast given that the nonposted IO is acceptable.
-Caching the quirk state in a static local is maybe a bit overoptimized
-but if the compiler can't see it but we can, why not.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Yours,
-Linus Walleij
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+Best regards,
+Krzysztof
