@@ -2,276 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D23232EBFF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8D9F32EC27
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:31:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbhCENXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 08:23:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbhCENXy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 08:23:54 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DABBC061574
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 05:23:53 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id m11so2692773lji.10
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 05:23:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PPJSM/MVU+EIeUzdeZ0OH1Y9gGkhi9PwxkOqz+xt+XI=;
-        b=NznEWDYTz2RuXsPvJrP+Shu7L6ZRXJ+JW7nqVgW5w+YYBkKRawEATdgWyP+3XnxFhI
-         XGy+FxuPbGjJ3zxlnpKsWwCOK+9lTCmDgykTkOSc/A8TJa2K5x2EpjShDoIE7U3h+8I2
-         HwFKPyNUAG4TDK3PYlVG9r4uE0UXdvmGwWLV93ssuEUim18fZMM/12DQ2w0VcTYy/iP9
-         tgNPxx2CZOnIp9u1854ZG/fv+Jc9M3iif33cJRkldvqDr6oZULOGxQ+tp3nFrN2aAGdX
-         GhldROo5wOkfHxJuupNB6OZ6QEXO8QhiutMPMIaRulqHAYzRVCAoKx2gJ58sCTI3k72n
-         puzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PPJSM/MVU+EIeUzdeZ0OH1Y9gGkhi9PwxkOqz+xt+XI=;
-        b=CvXTvQecSMHZPwmzr/t0p5IHYZfoBvZ0tgOuDIqjEf7o9juN4UapHiDQCxucdY25P+
-         qtf0CHfpo8JtjMsxa8w1vdI6HszA+MGgRVMV+2JqSAMg9L7jT6M2nJDGDTPt1NUmKBvY
-         KBrCJdwv/LUtOFkzblq2MjsY72PKSMAM7BGWd9ZsxXBhI0k+KvsKi8VfamEJpk7hnz1o
-         5KWwttgTTWasFvw3OWnERFaayaCXgmrebPrjglbMofI4IG4mRHYsLQV7NzTIOS8T2Fel
-         dYFmkh+SPnP0MUTkWSUZh75W2pK211ZAIUJBonIV5dxRbXEnUNtpsuUVcr2J/BlI45n4
-         xrpw==
-X-Gm-Message-State: AOAM53165PuX0EiN9SGGH2ChSE0vnjdiCFFd9S/jc8IeOpqIP/La4jh1
-        o13Qb9fMaig/EulDEclrdDL/AA==
-X-Google-Smtp-Source: ABdhPJwHdqJ4rzZVVm0rbGIuhhxMzRg/jHQq1mrin7BBdrUJpfoErI95FcW+fYYfW82zg9+wIhyhzg==
-X-Received: by 2002:a2e:7403:: with SMTP id p3mr5086835ljc.239.1614950631842;
-        Fri, 05 Mar 2021 05:23:51 -0800 (PST)
-Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
-        by smtp.gmail.com with ESMTPSA id v28sm298420ljv.66.2021.03.05.05.23.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 05:23:51 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>
-Cc:     linux-bluetooth@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2 v2] Bluetooth: btbcm: Rewrite bindings in YAML and add reset
-Date:   Fri,  5 Mar 2021 14:23:42 +0100
-Message-Id: <20210305132343.2070583-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S230404AbhCENax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 08:30:53 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:58114 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230390AbhCENan (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 08:30:43 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 29BA12010AA;
+        Fri,  5 Mar 2021 14:30:40 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 240B02006AC;
+        Fri,  5 Mar 2021 14:30:35 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BF263402AA;
+        Fri,  5 Mar 2021 14:30:28 +0100 (CET)
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
+        robh+dt@kernel.org, linux-imx@nxp.com, jan.kiszka@siemens.com,
+        Dong Aisheng <aisheng.dong@nxp.com>
+Subject: [PATCH v5 00/18] arm64: dts: imx8: architecture improvement and adding imx8qm support
+Date:   Fri,  5 Mar 2021 21:17:29 +0800
+Message-Id: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the Broadcom bluetooth bindings in YAML and
-adds a GPIO handle for the BT_RST_N line as used on some
-platforms.
+IMX SCU based platforms (e.g. MX8QM/MX8QXP) are comprised of a number of SS
+(Subsystems), those SS may be shared between different SoCs while most of them
+can be reused like Devices Resources, Clocks, Power domains and etc.
 
-The Ingenic UART binding was using this binding in its
-example DTS fragment, however mistakenly using "vcc-supply"
-for what is called "vbat-supply". The proper DTS files
-and the code in the kernel all use "vbat-supply" so
-fix up the example in this patch so we ge a clean
-check.
+This patch series aims to improve the MX8 architecture to comply with the HW
+design to save a lot of duplicated codes and benefits us a better
+maintainability and scalability in the future.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Fix the error in the Ingenic UART binding example as
-  part of adding this patch.
----
- .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
- .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
- 2 files changed, 117 insertions(+), 56 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
- create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+ChangeLog:
+v5:
+ * rebase to latest shawn/for-next
+ * make mx8qm usdhc compatible with imx8qxp
+v4-resend:
+ * no change except put three module binding patches first which are used
+   by this patchset.
+v3->v4:
+ * mainly rebase to latest kernel except a few very minor changes like change to use
+   new scu protocol binding which was not supported in last version
+v2->v3:
+ * use clock-indices property instead of bit-offset property suggested by Shawn Guo
+ * rebase to latest shawn/for-next
+v1->v2:
+ * change to the new two cells scu clock binding, so original adding scu clocks
+   patches were removed.
+ * Move scu pd node above clk node
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-deleted file mode 100644
-index a7d57ba5f2ac..000000000000
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--Broadcom Bluetooth Chips
-----------------------
--
--This documents the binding structure and common properties for serial
--attached Broadcom devices.
--
--Serial attached Broadcom devices shall be a child node of the host UART
--device the slave device is attached to.
--
--Required properties:
--
-- - compatible: should contain one of the following:
--   * "brcm,bcm20702a1"
--   * "brcm,bcm4329-bt"
--   * "brcm,bcm4330-bt"
--   * "brcm,bcm43438-bt"
--   * "brcm,bcm4345c5"
--   * "brcm,bcm43540-bt"
--   * "brcm,bcm4335a0"
--
--Optional properties:
--
-- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-- - shutdown-gpios: GPIO specifier, used to enable the BT module
-- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
-- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
--                      deprecated, replaced by interrupts and
--                      "host-wakeup" interrupt-names
-- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
-- - clock-names: names for clock inputs, matching the clocks given
--   - "extclk": deprecated, replaced by "txco"
--   - "txco": external reference clock (not a standalone crystal)
--   - "lpo": external low power 32.768 kHz clock
-- - vbat-supply: phandle to regulator supply for VBAT
-- - vddio-supply: phandle to regulator supply for VDDIO
-- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
--    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
--    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
--    - pcm-frame-type: short, long
--    - pcm-sync-mode: slave, master
--    - pcm-clock-mode: slave, master
-- - interrupts: must be one, used to wakeup the host processor
-- - interrupt-names: must be "host-wakeup"
--
--Example:
--
--&uart2 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart2_pins>;
--
--       bluetooth {
--               compatible = "brcm,bcm43438-bt";
--               max-speed = <921600>;
--               brcm,bt-pcm-int-params = [01 02 00 01 01];
--       };
--};
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-new file mode 100644
-index 000000000000..bdd6ca617e23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Bluetooth Chips
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  This binding describes Broadcom UART-attached bluetooth chips.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm20702a1
-+      - brcm,bcm4329-bt
-+      - brcm,bcm4330-bt
-+      - brcm,bcm43438-bt
-+      - brcm,bcm4345c5
-+      - brcm,bcm43540-bt
-+      - brcm,bcm4335a0
-+
-+  shutdown-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_REG_ON used to
-+      power on the BT module
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_RST_N used to
-+      reset the BT module. This should be marked as
-+      GPIO_ACTIVE_LOW.
-+
-+  device-wakeup-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_WAKE used to
-+      wakeup the controller. This is using the BT_GPIO_0
-+      pin on the chip when in use.
-+
-+  host-wakeup-gpios:
-+    maxItems: 1
-+    deprecated: true
-+    description: GPIO specifier for the line HOST_WAKE used
-+      to wakeup the host processor. This is using he BT_GPIO_1
-+      pin on the chip when in use. This is deprecated and replaced
-+      by interrupts and "host-wakeup" interrupt-names
-+
-+  clocks:
-+    maxItems: 2
-+    description: 1 or 2 clocks as defined in clock-names below,
-+      in that order
-+
-+  clock-names:
-+    description: Names of the 1 to 2 supplied clocks
-+    items:
-+      - const: txco
-+      - const: lpo
-+      - const: extclk
-+
-+  vbat-supply:
-+    description: phandle to regulator supply for VBAT
-+
-+  vddio-supply:
-+    description: phandle to regulator supply for VDDIO
-+
-+  brcm,bt-pcm-int-params:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    minItems: 5
-+    maxItems: 5
-+    description: |-
-+      configure PCM parameters via a 5-byte array:
-+       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
-+       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
-+       pcm-frame-type: short, long
-+       pcm-sync-mode: slave, master
-+       pcm-clock-mode: slave, master
-+
-+  interrupts:
-+    items:
-+      - description: Handle to the line HOST_WAKE used to wake
-+          up the host processor. This uses the BT_GPIO_1 pin on
-+          the chip when in use.
-+
-+  interrupt-names:
-+    items:
-+      - const: host-wakeup
-+
-+  max-speed: true
-+  current-speed: true
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    uart {
-+        uart-has-rtscts;
-+
-+        bluetooth {
-+            compatible = "brcm,bcm4330-bt";
-+            max-speed = <921600>;
-+            brcm,bt-pcm-int-params = [01 02 00 01 01];
-+            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
-+            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
+
+Dong Aisheng (18):
+  dt-bindings: arm: fsl: add imx8qm boards compatible string
+  dt-bindings: mailbox: mu: add imx8qm support
+  arm64: dts: imx8qxp: add fallback compatible string for scu pd
+  arm64: dts: imx8qxp: move scu pd node before scu clock node
+  arm64: dts: imx8qxp: orginize dts in subsystems
+  arm64: dts: imx8: add lsio lpcg clocks
+  arm64: dts: imx8: add conn lpcg clocks
+  arm64: dts: imx8: add adma lpcg clocks
+  arm64: dts: imx8: switch to two cell scu clock binding
+  arm64: dts: imx8: switch to new lpcg clock binding
+  arm64: dts: imx8qm: add lsio ss support
+  arm64: dts: imx8qm: add conn ss support
+  arm64: dts: imx8: split adma ss into dma and audio ss
+  arm64: dts: imx8qm: add dma ss support
+  arm64: dts: imx: add imx8qm common dts file
+  arm64: dts: imx: add imx8qm mek support
+  arm64: defconfig: add imx8qm mek support
+  firmware: imx: scu-pd: do not power off console domain
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../devicetree/bindings/mailbox/fsl,mu.yaml   |   5 +-
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8-ss-adma.dtsi      |   8 +
+ .../boot/dts/freescale/imx8-ss-audio.dtsi     |  68 +++
+ .../boot/dts/freescale/imx8-ss-conn.dtsi      | 184 ++++++++
+ .../arm64/boot/dts/freescale/imx8-ss-ddr.dtsi |  18 +
+ .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 202 +++++++++
+ .../boot/dts/freescale/imx8-ss-lsio.dtsi      | 311 +++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 144 ++++++
+ .../boot/dts/freescale/imx8qm-ss-conn.dtsi    |  21 +
+ .../boot/dts/freescale/imx8qm-ss-dma.dtsi     |  51 +++
+ .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    |  61 +++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 176 ++++++++
+ .../boot/dts/freescale/imx8qxp-ai_ml.dts      |  20 +-
+ .../freescale/imx8qxp-colibri-eval-v3.dtsi    |   8 +-
+ .../boot/dts/freescale/imx8qxp-colibri.dtsi   |  12 +-
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  50 +--
+ .../boot/dts/freescale/imx8qxp-ss-adma.dtsi   |  37 ++
+ .../boot/dts/freescale/imx8qxp-ss-conn.dtsi   |  25 ++
+ .../boot/dts/freescale/imx8qxp-ss-lsio.dtsi   |  61 +++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 423 ++----------------
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/firmware/imx/scu-pd.c                 |  28 +-
+ 24 files changed, 1481 insertions(+), 440 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-lsio.dtsi
+
 -- 
-2.29.2
+2.25.1
 
