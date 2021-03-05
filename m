@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E028C32E4FB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 10:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9443432E525
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 10:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbhCEJgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 04:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56066 "EHLO
+        id S229582AbhCEJpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 04:45:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbhCEJfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 04:35:51 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60197C061574;
-        Fri,  5 Mar 2021 01:35:51 -0800 (PST)
-Received: from [IPv6:2a01:e0a:4cb:a870:b9e2:e9f:d661:5a2f] (unknown [IPv6:2a01:e0a:4cb:a870:b9e2:e9f:d661:5a2f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 79EF21F468C5;
-        Fri,  5 Mar 2021 09:35:47 +0000 (GMT)
-Subject: Re: [PATCH v3 0/5] Reset driver for IMX8MQ VPU hardware block
-To:     Philipp Zabel <p.zabel@pengutronix.de>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        ezequiel@collabora.com, mchehab@kernel.org,
-        gregkh@linuxfoundation.org
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-References: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
- <e6f8537d2a1f34d0a424b68e056c0ae556c93efd.camel@pengutronix.de>
- <2d55ad69-9b93-ab0e-04af-cd775cc9248b@collabora.com>
- <c12d84b955b0265dbcf89f2d7fc4d5c28bc74756.camel@pengutronix.de>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <f6cbb1e4-f288-36d0-a188-041093821f66@collabora.com>
-Date:   Fri, 5 Mar 2021 10:35:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        with ESMTP id S229668AbhCEJpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 04:45:06 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8ACC061574;
+        Fri,  5 Mar 2021 01:45:04 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id y67so1784287pfb.2;
+        Fri, 05 Mar 2021 01:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/UcxhiEkfccqsDr9yQQr2scZAanKlqasnKIOowcaKCo=;
+        b=Zavc3YVUJ2VHnvMJDlyxudjYrwJv+6yWogOYN+mJW/svEBETf0TnMHYniTCyuG9+Ua
+         pgV1z26C8wwRk3BAgjYAa379mcdvXCqeY4ayvVF21SnPP/QI1Kz2szzLIExRem1A7Llr
+         PLyvcF2fRAJ71XxTD3Pxz11+9Yt7V5Z8ng3ZbmZeRnOxfJO8BZ2obobgXNKiX0eo5jqz
+         v4sD9zPaIdgCAAlcKY9s4CZbPYto1rw7h6v9pD/u5qUiisj/KytJkUms70O96BE2C8OA
+         KM5JsWkikIB2FeF5COy2VpuTtkQ6Sz1oEJRj7bft+WAae33vcg1pp3Xb0eH3ZOVq8qEm
+         J7xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/UcxhiEkfccqsDr9yQQr2scZAanKlqasnKIOowcaKCo=;
+        b=GhBAcQXuQOSiOT/JScYlTv/ZRRYdrJuSpEWxbiVQu5kMp6TVO4Hp2NxOecLfS0sQkK
+         B2IVLNNMfox+dKgyOaLLeeDkltOpKgyDtLhglzliUbMW4xNzpJTo3FciDaZoIiCVRiJN
+         aHc+JoRyYqBCMKfcH/5KMQ/zBETS0nkUIXzuOGOqjBRrya/e/bGyAdzTgr+kuMpenYlj
+         H8Z+roXgP3uo+y0GcJoqQ8fUpY/YE4Sf/tgLHYvBz/QQotMQA2MLgTRmi5vmctgBX8Yr
+         T0fK3UQzruSG30L4F0jTFctxgwHE1OxZIGmLByKvQaCCaERSEF+Bru065OxTBqbjHFuf
+         2i3g==
+X-Gm-Message-State: AOAM533W088wWihAOdYJzXd4Cl1yPc+OA5lbFpWrNMMBwi7eWtDNFhw7
+        am9eE00RuRGWTeQ5+ejkva29AEb+LKau6lh+0Qb7yv9kefFzUw==
+X-Google-Smtp-Source: ABdhPJx97tw7a65MIzc72su7Bv0bGiXPG8gMCT8Mo4SxkoI98C/0nDR7Tvt3WHExo4l9dKkgsHMeq5cqlXt7b3QSkNM=
+X-Received: by 2002:a65:5ac9:: with SMTP id d9mr7646277pgt.74.1614937504035;
+ Fri, 05 Mar 2021 01:45:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <c12d84b955b0265dbcf89f2d7fc4d5c28bc74756.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <20210304085710.7128-1-noltari@gmail.com> <20210304085710.7128-3-noltari@gmail.com>
+ <CAHp75VcpGNaQDR5puEX3nTGOQC0vHNjCje3MLLynoBHdjEi0_w@mail.gmail.com>
+ <9A8A595D-2556-4493-AA96-41A3C3E39292@gmail.com> <CAHp75VdJGh=Vy=kJr2CemPbSa-amYykNoYd0-jaz0utdC_bkbg@mail.gmail.com>
+ <0504ADC2-0DD5-4E9E-B7DF-353B4EBAB6B4@gmail.com> <CAHp75VdkCxBeh_cWwN9dKRpEMntMp22yVjWRCuYumhMzrWi+SA@mail.gmail.com>
+ <68F60F3F-33DD-4183-84F9-8D62BFA8A8F1@gmail.com> <CAHp75VdJ0=EewuHW2Ja5MQ=e9q0njGun8iN5Q6JWUxe=CLB=MQ@mail.gmail.com>
+ <CAHp75Ve9uW6+kpNmsG2BaaOymoAKXPdebNCfRnxUpAZoQnfZ0Q@mail.gmail.com> <4839e31730b22004f1ebe9510d3823ce@walle.cc>
+In-Reply-To: <4839e31730b22004f1ebe9510d3823ce@walle.cc>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Mar 2021 11:44:47 +0200
+Message-ID: <CAHp75VcQ4H_+A_JrVH+trBzDFctUGoNr7KfgQ-Og_eH3YzxVFg@mail.gmail.com>
+Subject: Re: [PATCH v4 02/15] gpio: regmap: set gpio_chip of_node
+To:     Michael Walle <michael@walle.cc>
+Cc:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Le 03/03/2021 à 17:25, Philipp Zabel a écrit :
-> On Wed, 2021-03-03 at 16:20 +0100, Benjamin Gaignard wrote:
->> Le 03/03/2021 à 15:17, Philipp Zabel a écrit :
->>> Hi Benjamin,
->>>
->>> On Mon, 2021-03-01 at 16:17 +0100, Benjamin Gaignard wrote:
->>>> The two VPUs inside IMX8MQ share the same control block which can be see
->>>> as a reset hardware block.
->>> This isn't a reset controller though. The control block also contains
->>> clock gates of some sort and a filter register for the featureset fuses.
->>> Those shouldn't be manipulated via the reset API.
->> They are all part of the control block and of the reset process for this
->> hardware that why I put them here. I guess it is border line :-)
-> I'm pushing back to keep the reset control framework focused on
-> controlling reset lines. Every side effect (such as the asymmetric clock
-> ungating) in a random driver makes it harder to reason about behaviour
-> at the API level, and to review patches for hardware I am not familiar
-> with.
+On Thu, Mar 4, 2021 at 7:24 PM Michael Walle <michael@walle.cc> wrote:
+> Am 2021-03-04 17:46, schrieb Andy Shevchenko:
+> > On Thu, Mar 4, 2021 at 6:33 PM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> >> On Thu, Mar 4, 2021 at 5:44 PM =C3=81lvaro Fern=C3=A1ndez Rojas
+> >> <noltari@gmail.com> wrote:
+> >
+> > Let me summarize what we can do this independently on any of my
+> > patches and be okay with.
+> >
+> > In the regmap GPIO configuration you supply struct fwnode_handle
+> > *fwnode.
+> > You can you fwnode API in the actual GPIO controller driver.
+> > Inside gpio-regmap simply do this for now
+> >
+> > gc->of_node =3D to_of_node(config->fwnode);
 >
->>>> In order to be able to add the second VPU (for HECV decoding) it will be
->>>> more handy if the both VPU drivers instance don't have to share the
->>>> control block registers. This lead to implement it as an independ reset
->>>> driver and to change the VPU driver to use it.
->>> Why not switch to a syscon regmap for the control block? That should
->>> also allow to keep backwards compatibility with the old binding with
->>> minimal effort.
->> I will give a try in this direction.
-> Thank you.
->
->>>> Please note that this series break the compatibility between the DTB and
->>>> kernel. This break is limited to IMX8MQ SoC and is done when the driver
->>>> is still in staging directory.
->>> I know in this case we are pretty sure there are no users of this
->>> binding except for a staging driver, but it would still be nice to keep
->>> support for the deprecated binding, to avoid the requirement of updating
->>> kernel and DT in lock-step.
->> If I want to use a syscon (or a reset) the driver must not ioremap the "ctrl"
->> registers. It means that "ctrl" has to be removed from the driver requested
->> reg-names (imx8mq_reg_names[]). Doing that break the kernel/DT compatibility.
->> Somehow syscon and "ctrl" are exclusive.
-> The way the driver is set up currently, yes. You could add a bit of
-> platform specific probe code, though, that would set up the regmap
-> either by calling
-> 	syscon_regmap_lookup_by_phandle();
-> for the new binding, or, if the phandle is not available, fall back to
-> 	platform_get_resource_byname(..., "ctrl");
-> 	devm_ioremap_resource();
-> 	devm_regmap_init_mmio();
-> for the old binding.
-> The actual codec .reset and variant .runtime_resume ops could be
-> identical then.
+> If doing so, can we please have a comment saying that config->fwnode
+> might be NULL in which case the fwnode of the parent is used?
 
-I made it works with syscon and your proposal.
-The next version of the patches will be without reset and won't break
-DT compatibility.
+Good comments are always welcome!
 
-Thanks for your help,
-Benjamin
+> > The last part is an amendment I have told about, but it can be done
+> > later on by switching the entire GPIO chip to use fwnode instead of
+> > of_node.
 
->
-> regards
-> Philipp
->
+
+--=20
+With Best Regards,
+Andy Shevchenko
