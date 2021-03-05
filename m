@@ -2,133 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69DE132F541
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 22:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B75D232F54C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 22:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhCEVWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 16:22:31 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:44195 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbhCEVWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 16:22:23 -0500
-Received: by mail-ot1-f54.google.com with SMTP id f33so3151711otf.11;
-        Fri, 05 Mar 2021 13:22:23 -0800 (PST)
+        id S229493AbhCEVbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 16:31:22 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:39230 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229672AbhCEVbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 16:31:18 -0500
+Received: by mail-ot1-f50.google.com with SMTP id h22so3201152otr.6;
+        Fri, 05 Mar 2021 13:31:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Kgp+8TKM8Byg9mm9YN8yCXWXwp0Cjl6dB6xN7JrKEoA=;
-        b=mK9SiAsUQRFuhszOALgGTyb8pIIJhDOTvoZGvRWEqqkYpFsgOHcya82W4r2a8d9DfR
-         pUukeCPv/HsmoKnzS2/2c2T6Cl6Dla8aHYtsxjIithKkT3QMVbXc57n1RNIe8/frDuP6
-         vKHVEabOhDRyReYzA8n4m+Zf1o2HTqJcnv8Age6vLiLrr6AvPod74J6Y8zc1fss1V9Je
-         jLyMveNlI884Vhrjo+A8xX2miJupu4yUTypqcsEfq0zrE/HBUEWrSqt8MGNKJOu5MgQB
-         yZzS9QEG5lrAoIzRyVykXq7h7yNocCmESkYodXCwYzrflKCv7Qzvs5iFP8HUY8FePEbW
-         r5gQ==
-X-Gm-Message-State: AOAM5318ruahZUtfMV9va7IkVeWK/kpAgkLG4x3twiIXNHfl5xDLXnL0
-        N2I+/IMxNryBt96S+dgebw==
-X-Google-Smtp-Source: ABdhPJxyV6oOQN8jtAqS+9qD1PurYNE5/fuZV85hlswq63NopRqt9wgna7asDgqiQi9Ks2vJ9nJ4Kg==
-X-Received: by 2002:a9d:6019:: with SMTP id h25mr9691347otj.203.1614979342668;
-        Fri, 05 Mar 2021 13:22:22 -0800 (PST)
+        bh=YaYRFmOSsTSCJH3nlj7VYHkJOn8JEF8SQCyPLZclNWk=;
+        b=Q1kNUbRnGaaFTW5TR5WwXzkFp+ChSR4DJ2ByDUMYGTfQsKuhTuaFYr3AOzbtiAPTnL
+         pHNTLgZrbcGcBxRgw/FHphCtZrrW6HOeL9J89yhm3mPxW2xDYilu5S1ii6BzTj7s9ldV
+         mXjFN1zSC+ILGEAxBcfO3WqlcCbZ1a/M2ENgu5RXgvp+PPcnFrKldZvi43HAymTxLFvi
+         xuPGUyTt8JXkPzp/SbiV7HoRx5dsSaHXhzRDh3ag6hH3e64A/LCM4iU1h3m80LmbEG+v
+         /GT2gBMtG01hJT6awHPSZP5azHFLZw1+c25wLWKNETn1Xn7689zn80C+01Hs/DJRj/po
+         KWoQ==
+X-Gm-Message-State: AOAM5301D1hTxO48s01EUb3X2no1R34dYGNmfel5mvKOuugmAFV7KPUa
+        EPsdYdQQ7eAlnjd4D8QpKA==
+X-Google-Smtp-Source: ABdhPJzEJR00WVTj8cfDpg5WVP9Pt+R77bzbj6urppKWYJmUZ3DXDxunIzI8Rc3KQC9HjtNKp5r/fQ==
+X-Received: by 2002:a9d:4004:: with SMTP id m4mr9734139ote.63.1614979877565;
+        Fri, 05 Mar 2021 13:31:17 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w11sm770351ooc.35.2021.03.05.13.22.21
+        by smtp.gmail.com with ESMTPSA id n6sm767969oop.48.2021.03.05.13.31.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 13:22:22 -0800 (PST)
-Received: (nullmailer pid 668925 invoked by uid 1000);
-        Fri, 05 Mar 2021 21:22:21 -0000
-Date:   Fri, 5 Mar 2021 15:22:21 -0600
+        Fri, 05 Mar 2021 13:31:17 -0800 (PST)
+Received: (nullmailer pid 680730 invoked by uid 1000);
+        Fri, 05 Mar 2021 21:31:15 -0000
+Date:   Fri, 5 Mar 2021 15:31:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Orson Zhai <orsonzhai@gmail.com>
-Cc:     Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Haidong Yao <yaohaidong369@gmail.com>,
-        Orson Zhai <orson.zhai@unisoc.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mailbox: Add interrupt-names to SPRD
- mailbox
-Message-ID: <20210305212221.GA667054@robh.at.kernel.org>
-References: <20210213122143.19240-1-orsonzhai@gmail.com>
- <20210213122143.19240-3-orsonzhai@gmail.com>
+To:     Oliver Graute <oliver.graute@gmail.com>
+Cc:     shawnguo@kernel.org, m.felsch@pengutronix.de, festevam@gmail.com,
+        narmstrong@baylibre.com, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: arm: fsl: Add Variscite i.MX6UL
+ compatibles
+Message-ID: <20210305213115.GA676128@robh.at.kernel.org>
+References: <1613308450-27958-1-git-send-email-oliver.graute@gmail.com>
+ <1613308450-27958-4-git-send-email-oliver.graute@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210213122143.19240-3-orsonzhai@gmail.com>
+In-Reply-To: <1613308450-27958-4-git-send-email-oliver.graute@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 13, 2021 at 08:21:42PM +0800, Orson Zhai wrote:
-> From: Orson Zhai <orson.zhai@unisoc.com>
+On Sun, Feb 14, 2021 at 02:13:50PM +0100, Oliver Graute wrote:
+> Add the compatibles for Variscite i.MX6UL compatibles
 > 
-> We add an optional supp-outbox interrupt support to SPRD mailbox driver
-> with newly added sc9863a support and change to configure interrupts with
-> names in device tree files.
-> 
-> Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
+> Signed-off-by: Oliver Graute <oliver.graute@gmail.com>
 > ---
->  .../bindings/mailbox/sprd-mailbox.yaml         | 18 +++++++++++++++---
->  1 file changed, 15 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> index 26a5cca3f838..67736450ee93 100644
-> --- a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
-> @@ -15,6 +15,7 @@ properties:
->    compatible:
->      enum:
->        - sprd,sc9860-mailbox
-> +      - sprd,sc9863a-mailbox
->  
->    reg:
->      items:
-> @@ -22,9 +23,18 @@ properties:
->        - description: outbox registers' base address
->  
->    interrupts:
-> -    items:
-> -      - description: inbox interrupt
-> -      - description: outbox interrupt
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    oneOf:
-> +      - items:
-> +          - const: inbox
-> +          - const: outbox
-> +      - items:
-> +          - const: inbox
-> +          - const: outbox
-> +          - const: supp-outbox
-
-You can do this instead:
-
-interrupt-names:
-  minItems: 2
-  items:
-    - const: inbox
-    - const: outbox
-    - const: supp-outbox
-
->  
->    clocks:
->      maxItems: 1
-> @@ -40,6 +50,7 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> +  - interrupt-names
->    - "#mbox-cells"
->    - clocks
->    - clock-names
-> @@ -56,5 +67,6 @@ examples:
->        clock-names = "enable";
->        clocks = <&aon_gate 53>;
->        interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +      interrupt-names = "inbox", "outbox";
->      };
->  ...
-> -- 
-> 2.17.1
+> Changelog:
 > 
+> v4:
+>  - added missing 6 in i.MX6
+> 
+>  v3:
+>  - rebased
+> 
+>  v2:
+>  - renamed binding
+>  - removed superflous "
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 297c87f..e67b622 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -499,6 +499,7 @@ properties:
+>                - technexion,imx6ul-pico-dwarf   # TechNexion i.MX6UL Pico-Dwarf
+>                - technexion,imx6ul-pico-hobbit  # TechNexion i.MX6UL Pico-Hobbit
+>                - technexion,imx6ul-pico-pi      # TechNexion i.MX6UL Pico-Pi
+> +              - variscite,imx6ul-var-6ulcustomboard # i.MX6 UltraLite Carrier-board
+
+Doesn't match your dts file. Plus looks like a lot of redundancy.
+
+Run dtbs_checks and with W=1 and make sure you aren't adding more 
+warnings. Lots will be from the base SoC dtsi, but feel free to fix some 
+of those too.
