@@ -2,190 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ACBB32E543
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 10:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EED032E597
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:03:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbhCEJuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 04:50:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59094 "EHLO
+        id S229706AbhCEKCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:02:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbhCEJuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 04:50:00 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7A0C061574;
-        Fri,  5 Mar 2021 01:50:00 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id d11so1133982plo.8;
-        Fri, 05 Mar 2021 01:50:00 -0800 (PST)
+        with ESMTP id S229938AbhCEKC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:02:28 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E43CC06175F
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:02:28 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id u16so1418371wrt.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:02:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=laL6zCf03DrMkWEQ+Hck/bL2esEnBZj6TYpWSAvdSNg=;
-        b=hvfrvbknr3o7UhJrMJNDoFDbSJOHEkHspm/ayCdp5NfSDsPv8LBG1QlI70EXDvre2O
-         MYuXAF1HO0f5glU4s2niWReBObuNL9OLQTgGdabjijiAihwC9w0cGAzQhotBvnMFDdb9
-         +6919eOwkE8SXAtqH66z0YeHo/3IHL+1XIcz75C+/cJ5I9CGgbgzFkaNcEzu0ubHI7+9
-         4/XvKtuqzJOETmbYZttTppe5ZobfjrC7tpHGI6+HIHH8EIhdsQouHb0ercaRWZ6Fp2Yg
-         yhNwOToktu8SKXquXvIm/vheZxwqQb3VHWZycb3VfJfH01Wi4c6TGtmyuBNLRENscS0x
-         odbQ==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=srQiEmEbSXK3g8AjQSw3FOYImi25tk6IpcEAOabHzAk=;
+        b=zNOFeQRXq8z7xO09fDAtKQ05SGpdaL4fLK8MYaq1f/2h3uCafJFSpkr2bjJQIgzb1R
+         ipXvaXuPt98haEv2q60y5M0NJwPRmFBqzx4ZqIP26l+1zJeRhoBuLDOcciPeGmxtgNRd
+         LzUFHkOEE/Ii05HniUnIlzjY3r/NLk+w2FbBl5hzX/bp0flQTsvjfIAMVLhsFJK5jVIc
+         suBcQcYLsFT+Y/BpkXw2MA+LO58yOVHHQOfSA+n27dyOQiC8tDXOh2zMyJr/25Q2vVB8
+         l+lS5D298jTL2wkZfGLU1/sJ1enb3w2FrdUupL8bNEbVmszr4icOk4lNwhfhvzt/CtrT
+         viYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=laL6zCf03DrMkWEQ+Hck/bL2esEnBZj6TYpWSAvdSNg=;
-        b=XrSSF5VxCCCg2ML1krWHzP/+neqONLxW46j0Z4t4byd+hcdaU1/iu2Q5ihpUFZPVzk
-         lnoH8Sf0qcadY+W5x6f+aetIWjodpBxsMe43Z5F+Dzntm3++YupioR/tocfFWfeKN8S/
-         3xpN+lIR+bpgvk9kVEbSaOQ+dfu16sDBRksY9hH75o/o6QHO0U5oqKRa2XOiIqqewJEH
-         Ozz0xrXVUlxjCYo262MBS9R8uIe7N/JF5EebXlkKwIMcTkV4gztJ3xVGZNe8ZRcXQvuz
-         1V+cU3A/bJjbM7eyTnyWxj5URr5B+7WVw4S3faIfKb+ELOsbb8JYb5hwA4xgroeBWjLw
-         ZPxw==
-X-Gm-Message-State: AOAM5315866hwxUD9UWwtZHTgXP/j1oMXcA9qInkTIavZSagUe8wKx5x
-        xkm781rFo7S7SepX73+VNw1Q253mj/7W/T1Cyj4=
-X-Google-Smtp-Source: ABdhPJwd/iyR6XcRxo2Q5a9b5HqoQiosIKcqPmPBov3Lp/DcR3e2GbmWuCHWzUs+2wubCL0usByRRELQiW+K99hDayM=
-X-Received: by 2002:a17:902:e904:b029:e5:cd76:20ce with SMTP id
- k4-20020a170902e904b02900e5cd7620cemr7990228pld.82.1614937799693; Fri, 05 Mar
- 2021 01:49:59 -0800 (PST)
-MIME-Version: 1.0
-References: <20210304085710.7128-1-noltari@gmail.com> <20210304085710.7128-3-noltari@gmail.com>
- <CAHp75VcpGNaQDR5puEX3nTGOQC0vHNjCje3MLLynoBHdjEi0_w@mail.gmail.com>
- <9A8A595D-2556-4493-AA96-41A3C3E39292@gmail.com> <CAHp75VdJGh=Vy=kJr2CemPbSa-amYykNoYd0-jaz0utdC_bkbg@mail.gmail.com>
- <0504ADC2-0DD5-4E9E-B7DF-353B4EBAB6B4@gmail.com> <CAHp75VdkCxBeh_cWwN9dKRpEMntMp22yVjWRCuYumhMzrWi+SA@mail.gmail.com>
- <68F60F3F-33DD-4183-84F9-8D62BFA8A8F1@gmail.com> <CAHp75VdJ0=EewuHW2Ja5MQ=e9q0njGun8iN5Q6JWUxe=CLB=MQ@mail.gmail.com>
- <891B849E-32A0-4115-BCE9-2F0495274404@gmail.com>
-In-Reply-To: <891B849E-32A0-4115-BCE9-2F0495274404@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Mar 2021 11:49:43 +0200
-Message-ID: <CAHp75VcKNGDduFAo9fmzNFTE9icmJOb7Ex3=YrVgHFPtxhVuLg@mail.gmail.com>
-Subject: Re: [PATCH v4 02/15] gpio: regmap: set gpio_chip of_node
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=srQiEmEbSXK3g8AjQSw3FOYImi25tk6IpcEAOabHzAk=;
+        b=liJdn22BW6bBTOC4AJKGMTlC1wgtFOEuH9JhnHOk2N1ppcKZepu4pIvgeYTrxRGx37
+         hrFvbeBzS1KUYhEENNDzDxORtlD0/Cfwq2CA1B14+tP2MyF0Eh0GIwuCgi5gaOGu4ctH
+         XsVLKywcmlYdJvk1AG3/VoqdnGQo4ohXc1Oa33TobMFQvDrSdqry6ZTRVCdAKllstX4o
+         +Ot4+6LwAkMZ5MS31GsWzrSHKf0km5BUNQuxldUDUNrRcURv4/Wak6ATvSYAJDccH8bU
+         66ERuN08lDPPaUvG04rbm7EBbmP94l2fEZDeLLqOhCV3P+H0lqU2cwg81FRlw/hSHcog
+         rQGw==
+X-Gm-Message-State: AOAM530pMG8HldWspzGbI7u4AM5iMDkgYhZOoxmjyknopRiWDRSKL7vn
+        wrW3GldJLxADj35Kd2VylH8Fyg==
+X-Google-Smtp-Source: ABdhPJySU5UjzWdLQA7bJpkWYodfVlke7suoJXxUJrYG4aHXdseXfMidzPfs6pAXSn2J5oiaplcdcw==
+X-Received: by 2002:adf:82af:: with SMTP id 44mr8138496wrc.279.1614938547137;
+        Fri, 05 Mar 2021 02:02:27 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id r2sm3572882wrt.8.2021.03.05.02.02.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 05 Mar 2021 02:02:26 -0800 (PST)
+Subject: Re: [PATCH 2/2] nvmem: iomap: new driver exposing NVMEM accessible
+ using I/O mapping
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mips@vger.kernel.org,
         Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210304144132.24098-1-zajec5@gmail.com>
+ <20210304144132.24098-2-zajec5@gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <047bced8-6c20-4a0a-c7ea-e0ad83318461@linaro.org>
+Date:   Fri, 5 Mar 2021 10:02:25 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20210304144132.24098-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 5, 2021 at 9:45 AM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
-ail.com> wrote:
-> > El 4 mar 2021, a las 17:33, Andy Shevchenko <andy.shevchenko@gmail.com>=
- escribi=C3=B3:
-> > On Thu, Mar 4, 2021 at 5:44 PM =C3=81lvaro Fern=C3=A1ndez Rojas <noltar=
-i@gmail.com> wrote:
-> >>> El 4 mar 2021, a las 16:28, Andy Shevchenko <andy.shevchenko@gmail.co=
-m> escribi=C3=B3:
-> >>> On Thu, Mar 4, 2021 at 5:24 PM =C3=81lvaro Fern=C3=A1ndez Rojas <nolt=
-ari@gmail.com> wrote:
-> >>>>> El 4 mar 2021, a las 16:17, Andy Shevchenko <andy.shevchenko@gmail.=
-com> escribi=C3=B3:
-> >>>>> On Thu, Mar 4, 2021 at 5:06 PM =C3=81lvaro Fern=C3=A1ndez Rojas <no=
-ltari@gmail.com> wrote:
-> >>>>>>> El 4 mar 2021, a las 11:35, Andy Shevchenko <andy.shevchenko@gmai=
-l.com> escribi=C3=B3:
-> >>>>>>> On Thu, Mar 4, 2021 at 10:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-> >>>>>>> <noltari@gmail.com> wrote:
-> >>>>>
-> >>>>>>>> + * @of_node:           (Optional) The device node
-> >>>>>>>
-> >>>>>>>> +       struct device_node *of_node;
-> >>>>>>>
-> >>>>>>> Can we use fwnode from day 1, please?
-> >>>>>>
-> >>>>>> Could you explain this? I haven=E2=80=99t dealt with fwnode never =
-:$
-> >>>>>> BTW, this is done to fix this check when parsing gpio ranges:
-> >>>>>> https://github.com/torvalds/linux/blob/f69d02e37a85645aa90d18cacff=
-f36dba370f797/drivers/gpio/gpiolib-of.c#L933-L934
-> >>>>>
-> >>>>> Use struct fwnode_handle pointer instead of OF-specific one.
-> >>>>
-> >>>> But is that compatible with the current gpiolib-of code? :$
-> >>>
-> >>> Yes (after a bit of amendment I have sent today as v2:
-> >>> https://lore.kernel.org/linux-gpio/20210304150215.80652-1-andriy.shev=
-chenko@linux.intel.com/T/#u).
-> >>
-> >> Well that doesn=E2=80=99t fulfill my definition of =E2=80=9Ccurrent gp=
-iolib-of code=E2=80=9D=E2=80=A6
-> >> @Linus what should I do about this?
-> >
-> > Well, fwnode is a generic, and I strongly against spreading
-> > OF-specific code when we have fwnode working. But let's hear Linus
-> > out, of course!
-> >
-> > But it seems you are right and the library needs a few more amendments.
->
-> Yes, but I=E2=80=99m trying to do as few amendments as possible since I a=
-lready have quite a large amount of patches :)
 
-I understand your goal.
-But as far I can say you don't need to rely on my patch series.
 
-> >>>>> Also here is the question, why do you need to have that field in th=
-e
-> >>>>> regmap config structure and can't simply use the parent's fwnode?
-> >>>>> Also I'm puzzled why it's not working w/o this patch: GPIO library
-> >>>>> effectively assigns parent's fwnode (okay, of_node right now).
-> >>>>
-> >>>> Because gpio regmap a child node of the pin controller, which is the=
- one probed (gpio regmap is probed from the pin controller).
-> >>>> Therefore the parent=E2=80=99s fwnode is useless, since the correct =
-gpio_chip node is the child's one (we have pin-ranges declared in the child=
- node, referencing the parent pinctrl node).
-> >>>
-> >>> I see. Can you point me out to the code where we get the node and
-> >>> where it's being retrieved / filled?
-> >>
-> >> Sure, this is where the child node is searched: https://github.com/Nol=
-tari/linux/blob/6d1ebb8ff26ed54592eef1fcd3b58834acb48c04/drivers/pinctrl/bc=
-m/pinctrl-bcm63xx.c#L100-L109
-> >> Then the gpio child node is probed and assigned here: https://github.c=
-om/Noltari/linux/blob/6d1ebb8ff26ed54592eef1fcd3b58834acb48c04/drivers/pinc=
-trl/bcm/pinctrl-bcm63xx.c#L51
-> >
-> > So, this is not (*yet) in upstream, correct?
->
-> No it=E2=80=99s not, but I've already changed the approach several times =
-and I=E2=80=99m starting to get tired about it...
+On 04/03/2021 14:41, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This is a generic NVMEM access method used e.g. by Broadcom for their
+> NVRAM on MIPS and Northstar devices.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>   drivers/nvmem/Kconfig  |  7 +++
+>   drivers/nvmem/Makefile |  2 +
+>   drivers/nvmem/iomap.c  | 99 ++++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 108 insertions(+)
+>   create mode 100644 drivers/nvmem/iomap.c
+> 
+> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> index 75d2594c16e1..3d5c5684685d 100644
+> --- a/drivers/nvmem/Kconfig
+> +++ b/drivers/nvmem/Kconfig
+> @@ -278,4 +278,11 @@ config NVMEM_RMEM
+>   
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called nvmem-rmem.
+> +
+> +config NVMEM_IOMAP
+> +	tristate "I/O mapped NVMEM support"
+> +	depends on HAS_IOMEM
+> +	help
+> +	  This driver supports NVMEM that can be accessed using I/O mapping.
+> +
+>   endif
+> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+> index 5376b8e0dae5..88a3b6979c53 100644
+> --- a/drivers/nvmem/Makefile
+> +++ b/drivers/nvmem/Makefile
+> @@ -57,3 +57,5 @@ obj-$(CONFIG_SPRD_EFUSE)	+= nvmem_sprd_efuse.o
+>   nvmem_sprd_efuse-y		:= sprd-efuse.o
+>   obj-$(CONFIG_NVMEM_RMEM) 	+= nvmem-rmem.o
+>   nvmem-rmem-y			:= rmem.o
+> +obj-$(CONFIG_NVMEM_IOMAP)	+= nvmem_iomap.o
+> +nvmem_iomap-y			:= iomap.o
+> diff --git a/drivers/nvmem/iomap.c b/drivers/nvmem/iomap.c
+> new file mode 100644
+> index 000000000000..ab6b40858a64
+> --- /dev/null
+> +++ b/drivers/nvmem/iomap.c
+> @@ -0,0 +1,99 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/platform_device.h>
+> +
+> +struct iomap {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +};
+> +
+> +static int iomap_read(void *context, unsigned int offset, void *val,
+> +		      size_t bytes)
+> +{
+> +	struct iomap *priv = context;
+> +	u8 *src = priv->base + offset;
+> +	u8 *dst = val;
+> +	size_t tmp;
+> +
+> +	tmp = offset % 4;
+> +	memcpy_fromio(dst, src, tmp);
+> +	dst += tmp;
+> +	src += tmp;
+> +	bytes -= tmp;
+> +
+> +	tmp = rounddown(bytes, 4);
+> +	__ioread32_copy(dst, src, tmp / 4);
+> +	dst += tmp;
+> +	src += tmp;
+> +	bytes -= tmp;
+> +
+> +	memcpy_fromio(dst, src, bytes);
+> +
 
-I feel your pain, although I think that the best way is avoid
-spreading OF-specifics over generic code.
-Using fwnode API is pretty much straightforward. It has been designed
-in a way to make it less invasive for existing code to be converted.
-There are plenty of changes in the upstream that show how it looks
-like.
 
-You may check drivers under drivers/leds/ which have been switched to
-fwnode (and AFAIK new code is usually not OF specific).
+You could just do this!
 
-> > So, why not to switch to fwnode API in that driver as well?
-> >
-> > When you do that and supply fwnode thru the regmap configuration, in
-> > the gpio-regmap we may assign it to of_node (via to_of_node() API).
-> >
-> >> Basically, I based that part of the code on the ingenic pin controller=
-: https://github.com/torvalds/linux/blob/f69d02e37a85645aa90d18cacfff36dba3=
-70f797/drivers/pinctrl/pinctrl-ingenic.c#L2485-L2491
-> >> https://github.com/torvalds/linux/blob/f69d02e37a85645aa90d18cacfff36d=
-ba370f797/Documentation/devicetree/bindings/pinctrl/ingenic%2Cpinctrl.yaml#=
-L155-L176
-> >
-> > This doesn't use remgap GPIO.
->
-> Yes, I know, but there aren=E2=80=99t any pinctrl drivers using regmap GP=
-IO right now, so I couldn=E2=80=99t base my code on anything else :)
+	while (bytes--)
+		*val++ = readb(priv->base + offset + i++);
 
-Be a pioneer!
 
---=20
-With Best Regards,
-Andy Shevchenko
+
+> +	return 0;
+> +}
+> +
+> +static int iomap_probe(struct platform_device *pdev)
+> +{
+> +	struct nvmem_config config = {
+> +		.name = "iomap",
+> +		.reg_read = iomap_read,
+> +	};
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	struct iomap *priv;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +	priv->dev = dev;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+
+
+> +	if (!res) {
+> +		dev_err(dev, "Failed to get resource\n");
+> +		return -ENODEV;
+> +	}
+
+This is redundant check and error message!
+
+You can just do :
+res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+priv->base = devm_ioremap_resource(dev, res);
+
+
+> +
+> +	priv->base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(priv->base)) {
+> +		dev_err(dev, "Failed to map resource: %ld\n", PTR_ERR(priv->base));
+This message is redundant!
+
+> +		return PTR_ERR(priv->base);
+> +	}
+
+
+> +
+> +	config.dev = dev;
+> +	config.priv = priv;
+> +	config.size = resource_size(res);
+> +
+> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
+> +}
+> +
+> +static const struct of_device_id iomap_of_match_table[] = {
+> +	{ .compatible = "brcm,nvram", },
+> +	{ .compatible = "nvmem-iomap", },
+
+Generic compatible does not really makes sense at all, you can probably 
+consider adding some generic functions rather than having a compatible, 
+in case you want to reduce code duplication!
+
+
+> +	{},
+> +};
+> +
+> +static struct platform_driver iomap_driver = {
+> +	.probe = iomap_probe,
+> +	.driver = {
+> +		.name = "nvmem_iomap",
+> +		.of_match_table = iomap_of_match_table,
+> +	},
+> +};
+> +
+> +static int __init iomap_init(void)
+> +{
+> +	return platform_driver_register(&iomap_driver);
+> +}
+> +
+> +subsys_initcall_sync(iomap_init);
+> +
+> +MODULE_AUTHOR("Rafał Miłecki");
+> +MODULE_LICENSE("GPL v2");
+
+it should be
+MODULE_LICENSE("GPL");
+
+
+> +MODULE_DEVICE_TABLE(of, iomap_of_match_table);
+> 
