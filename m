@@ -2,118 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E49C532F56B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 22:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D70D32F56F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 22:44:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhCEVnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 16:43:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43086 "EHLO
+        id S229669AbhCEVoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 16:44:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbhCEVnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 16:43:11 -0500
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3523EC061761
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 13:43:11 -0800 (PST)
-Received: by mail-oo1-xc34.google.com with SMTP id x23so787375oop.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 13:43:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4QnN4YsB1edIr8X2Vj7cXXHiapi33m7m7f0fEZDlVLo=;
-        b=JJByvBdbUshot5c6rAG4/RL11oDwFpx/j/CUdhj7hWbWGxMs7bTXh66gYKCMuPlKkx
-         UbvVNWDvgnmXzn7XDz99Y5wldwGN2HFcH5yiDN7Swc6H7u62PhGl7tQ3VEhtC2Eh5XTb
-         cRH+aer6kGnlzc0ZUDPnC6Dx2ktMhJ571iuBtODBgdsHBsYF+JevM+7d6WjbrNqvNxwy
-         ivvXjCE0zI1b7efhVrfuFObnFqBMJE2ui5SlN1jxQycmZuUp+DEZ62S6ph7l6Ilby4io
-         ouUpzFTUH1WXlZuNsI3VfDg09TTtmVXlp1Cvahq67xY4wmkpn1px93nAHvw+9jsAgyeP
-         +KBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4QnN4YsB1edIr8X2Vj7cXXHiapi33m7m7f0fEZDlVLo=;
-        b=InNAM2jPPjDsLz/ZaNIPv6OYtWn3/FgFIdKT+tVJIqLbsz5TsUOeq9A4kGpXo5f2O5
-         YNn9kAlohhyFq6T/c+Pm7DKLiz6I02m0/UGcOsca1oH59bXMe9hTWtt3tXAo5Yawi7cp
-         nli7BjfKVHOuUTX5NvtpmC2As7rPrxzmKai9dUkwnQLkkqvBKDMgxdiGx0kEjuWC3vP5
-         wNYLsZk6kOUCMl1dAqNnjNtrdiFNp2nj867eQBV35T9R5No3L/x+SqnO+EYoE1i+KvdE
-         4nvV/JcXVOulSqQCh+lAACTfpmHamuDdWH5WY8WU93s0JFjWGib28JghRgcpp+xF/RI8
-         PqGA==
-X-Gm-Message-State: AOAM531PdkgK5qyD5AWsjKypFyUoVyb+8dpCLs++o97eYdX7xOzOTJGj
-        5Xi++lhvY15vWTtuWtq/2rrb9A==
-X-Google-Smtp-Source: ABdhPJy4eZ0JGEiyyEW5mWTURNNMiA9RtniVPWvPsitPH/LgrX6/OVuHlk2llyKwdHivHrKqK04jXA==
-X-Received: by 2002:a4a:e14f:: with SMTP id p15mr9527254oot.25.1614980590387;
-        Fri, 05 Mar 2021 13:43:10 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y83sm763379oig.15.2021.03.05.13.43.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 13:43:09 -0800 (PST)
-Date:   Fri, 5 Mar 2021 15:43:08 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
- 'gpio-ranges'
-Message-ID: <YEKl7GbxBhui4eoT@builder.lan>
-References: <20210303033106.549-1-shawn.guo@linaro.org>
- <20210303033106.549-2-shawn.guo@linaro.org>
+        with ESMTP id S229589AbhCEVnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 16:43:51 -0500
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2ABFC06175F;
+        Fri,  5 Mar 2021 13:43:50 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4Dsh7g59sjz1rwn0;
+        Fri,  5 Mar 2021 22:43:43 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4Dsh7g3fl1z1qr4d;
+        Fri,  5 Mar 2021 22:43:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id zA9oLoIZs84D; Fri,  5 Mar 2021 22:43:41 +0100 (CET)
+X-Auth-Info: GmqYrIyAYBzZBk9/Hy/h0siIg5F0MIUqR5KnsSVg2Bc=
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Fri,  5 Mar 2021 22:43:40 +0100 (CET)
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
+ SN65DSI83/84/85
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+References: <20210214174453.104616-1-jagan@amarulasolutions.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <be0fdd57-507d-0f9b-89db-65891531908c@denx.de>
+Date:   Fri, 5 Mar 2021 22:43:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210303033106.549-2-shawn.guo@linaro.org>
+In-Reply-To: <20210214174453.104616-1-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
-
-> The last cell of 'gpio-ranges' should be number of GPIO pins, and in
-> case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
-> than msm_pinctrl_soc_data.ngpio - 1.
+On 2/14/21 6:44 PM, Jagan Teki wrote:
+> SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
+> controller IC's from Texas Instruments.
 > 
+> SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
+> SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
+> SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
 
-This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
-this there's an output-only pin for UFS, which I exposed as an GPIO as
-well - but it's only supposed to be used as a reset-gpio for the UFS
-device.
+[...]
 
-Perhaps that still mandates that gpio-ranges should cover it?
+> +description: |
+> +  SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge controller
+> +  IC's from Texas Instruments.
+> +
+> +  SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
+> +  SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
+> +  SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
 
-> This fixes the problem that when the last GPIO pin in the range is
-> configured with the following call sequence, it always fails with
-> -EPROBE_DEFER.
-> 
->     pinctrl_gpio_set_config()
->         pinctrl_get_device_gpio_range()
->             pinctrl_match_gpio_range()
+[...]
 
-When do we hit this sequence? I didn't think operations on the UFS
-GP(I)O would ever take this code path?
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,sn65dsi83
+> +      - ti,sn65dsi84
 
-Regards,
-Bjorn
+DSI85 seems missing ?
 
-> 
-> Fixes: bc2c806293c6 ("arm64: dts: qcom: sdm845: Add gpio-ranges to TLMM node")
-> Cc: Evan Green <evgreen@chromium.org>
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 454f794af547..6a2ed02d383d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2382,7 +2382,7 @@
->  			#gpio-cells = <2>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
-> -			gpio-ranges = <&tlmm 0 0 150>;
-> +			gpio-ranges = <&tlmm 0 0 151>;
->  			wakeup-parent = <&pdc_intc>;
->  
->  			cci0_default: cci0-default {
-> -- 
-> 2.17.1
-> 
+> +  reg:
+> +    const: 0x2c
+
+I have the DSI83 device at 0x2d, so this cannot be const 0x2c ?
+
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO specifier for bridge enable pin (active high).
+
+The bridge can work without this GPIO, so its optional.
+
+[...]
+
+Also, Doug reported that vcc and vcore regulators should likely be 
+listed, see feedback on:
+[PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI SN65DSI83 bindings
