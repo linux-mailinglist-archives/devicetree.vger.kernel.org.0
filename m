@@ -2,69 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D8532F69E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 00:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7037532F6A8
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 00:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbhCEX3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 18:29:47 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:38465 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCEX3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 18:29:25 -0500
-Received: by mail-ot1-f43.google.com with SMTP id a17so3466337oto.5;
-        Fri, 05 Mar 2021 15:29:25 -0800 (PST)
+        id S229690AbhCEXhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 18:37:01 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:35145 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229679AbhCEXhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 18:37:01 -0500
+Received: by mail-ot1-f54.google.com with SMTP id r19so3491199otk.2;
+        Fri, 05 Mar 2021 15:37:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iKRgquV/vXUrEGo0YcM7TxZEX4fPND//V0LED3FIsgg=;
-        b=OGVYYg2bGaBnehxAS54YDItfUMiMYifkaGHolBJ8Bk/i7wPIIM6tbmMdvO46Kt19rO
-         GxjTK3T0aL79ecnDgb+OwMdyTTDMDfaraqfs7b8VCCXo483CWqy8AulKRgUvqdwy4VU+
-         9vQwjbHQQsOETcoAIxkoMeAWxuBYjzzLfdwh/b0YQVS3Z8ixNnqkjLXx3kMK4nRkG+xJ
-         sJw2effSsyWlYQO433HD/wPGAHB54ygnnHk5AGWw3mBKineVTFRbbqp45DO+4f7crlqg
-         5p91MWgFEUwoJqpwrdVNRE5zwUW5P5Z0MvQ32dtVhtJL80C4y68lFjJ4YVIZtkV0EVoA
-         Ch+g==
-X-Gm-Message-State: AOAM533A/HqWNILwsYzSAWLMjnDLVqJZKJ8zG+krLAI2tM3NBh7k9F73
-        E6TGVtgv1FaL2CQIEAxs6w==
-X-Google-Smtp-Source: ABdhPJzHhvdjsYrT7iTPxHuGcSSSs7Klj5z9aHCOABPdeVGJyKvyq2/rbmyb1HZQqsM9BK5US7ZTBg==
-X-Received: by 2002:a9d:67cb:: with SMTP id c11mr9942429otn.290.1614986964702;
-        Fri, 05 Mar 2021 15:29:24 -0800 (PST)
+        bh=1tLdHqPjOw0oS3E1Aqx3XDxrDkeAhsjwl8ce7IJGqqI=;
+        b=pWAtbB3gaP2omiadZTZeWf6qwUJANf1WBD7e6vq3IQAQ0YxdeUQG3L7ta3gO57XxKk
+         bjpwxbxL+AIRA8Y/bpl1IZZ4NimQ2DTMZZ4rYZ4BgW+OSZYGqUkjA4UX/DPHp8BlJlvR
+         pRuCY8q9ZBpwxkeZzQBNcumaPNsqif/UfYDemLsJqe4VoM29lH9Mf7mABT9tKII8a4Mz
+         OZNdqEfzF3qda4e/dZbas8IOiCCX6uiUZtMgudWGcaqXyYU5dIkd9/lDoviTO3jMCejb
+         AHd+mwyKBpJFs+t3wjTicPvwmBTr8mOx48T/JQwmJaw0I8VK12qfVwuUWdHZLVhFml1z
+         W2TQ==
+X-Gm-Message-State: AOAM531afTLgf9WPEesWU0vks+YE8bVWbu4BBeA3wW07gzr9Y4rvhuG0
+        HLYqkfB/+uArC4abMuMJ98GfEaHUNA==
+X-Google-Smtp-Source: ABdhPJzHIrEx/psMaWb5sExfGryDm/kqhblVrz2IFl77edEGkv1dHe6mbZVPg7UElvfJxzq0E6btvw==
+X-Received: by 2002:a9d:63d1:: with SMTP id e17mr10054802otl.183.1614987420688;
+        Fri, 05 Mar 2021 15:37:00 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e131sm834716oia.41.2021.03.05.15.29.23
+        by smtp.gmail.com with ESMTPSA id l25sm831240oic.49.2021.03.05.15.36.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 15:29:23 -0800 (PST)
-Received: (nullmailer pid 839646 invoked by uid 1000);
-        Fri, 05 Mar 2021 23:29:22 -0000
-Date:   Fri, 5 Mar 2021 17:29:22 -0600
+        Fri, 05 Mar 2021 15:36:58 -0800 (PST)
+Received: (nullmailer pid 849924 invoked by uid 1000);
+        Fri, 05 Mar 2021 23:36:57 -0000
+Date:   Fri, 5 Mar 2021 17:36:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Tom Joseph <tjoseph@cadence.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: PCI: ti, j721e: Add endpoint mode
- dt-bindings for TI's AM64 SoC
-Message-ID: <20210305232922.GA839612@robh.at.kernel.org>
-References: <20210222114030.26445-1-kishon@ti.com>
- <20210222114030.26445-4-kishon@ti.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        boris.brezillon@collabora.com
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
+ regions in Qcom NANDc
+Message-ID: <20210305233657.GA839767@robh.at.kernel.org>
+References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
+ <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210222114030.26445-4-kishon@ti.com>
+In-Reply-To: <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Feb 2021 17:10:29 +0530, Kishon Vijay Abraham I wrote:
-> Add endpoint mode dt-bindings for TI's AM64 SoC. This is the same IP
-> used in J7200, however AM64 is a non-coherent architecture.
+On Mon, Feb 22, 2021 at 05:32:58PM +0530, Manivannan Sadhasivam wrote:
+> On a typical end product, a vendor may choose to secure some regions in
+> the NAND memory which are supposed to stay intact between FW upgrades.
+> The access to those regions will be blocked by a secure element like
+> Trustzone. So the normal world software like Linux kernel should not
+> touch these regions (including reading).
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> So let's add a property for declaring such secure regions so that the
+> driver can skip touching them.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../devicetree/bindings/pci/ti,j721e-pci-ep.yaml         | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> index 84ad7ff30121..7500e20da9c1 100644
+> --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> @@ -48,6 +48,13 @@ patternProperties:
+>          enum:
+>            - 512
+>  
+> +      qcom,secure-regions:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Don't you need 64-bit regions potentially? Though 4GB should be enough 
+for anyone.
+
+If more than one addr+size, then you need a matrix.
+
+> +        description:
+> +          Regions in the NAND memory which are protected using a secure element
+> +          like Trustzone. This property contains the start address and size of
+> +          the secure regions present (optional).
+> +
+>  allOf:
+>    - $ref: "nand-controller.yaml#"
+>  
+> -- 
+> 2.25.1
+> 
