@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA2F32F1A7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 18:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 389B632F24C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:19:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbhCERqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 12:46:06 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:38316 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhCERqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 12:46:04 -0500
-Received: by mail-ot1-f53.google.com with SMTP id a17so2592792oto.5;
-        Fri, 05 Mar 2021 09:46:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=nOKtk0y5WMQw47OTedpnXuJ5YQISVB72ATji7kcK9eM=;
-        b=Q8qt/68EalyoBIuYjAS3GLtYm/qsEpQ4dUnttvLH82zlbvCj0SeW1FFbe8fbkLTjSC
-         qRSurbUUXeNOKQ2uMqmvtQGF/fXaXBm46wkzniHQHu2roh5vVUxjCkQ+12h70+eW0rYA
-         y5ulq00zdIBgFux/RV13tk1+vLqASLUee89qejbBr7tJnyR3zPp4SWIipEsIiGvEpBgq
-         v9HqajPHPooo2xG/JPG9JfjFlFkBIru0CjZEeD9D5dMenhmgvW5w+L9y8t7o0YjH/stG
-         TAokWW2vYoai2Na8fWld76yEuEjuwnBHzt4d/d1pvOdMt87BXXUu1bCNYseBmRIEkdmx
-         X/zg==
-X-Gm-Message-State: AOAM530nQcCwBpmYgkOKnjR6/hni+Dd1Qbx0QvLELoLk4Gnyz0dahyQW
-        551MjkLvvLOCebDGEgWFWw==
-X-Google-Smtp-Source: ABdhPJzB21BEzMOy3cPZ61yFLrnbNdGM+BT9Nq8FRNw0k/eUVObTt4OrBFOMGytkHQvyP0UQAdm43A==
-X-Received: by 2002:a9d:6c88:: with SMTP id c8mr9078064otr.87.1614966363818;
-        Fri, 05 Mar 2021 09:46:03 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n17sm680206oos.20.2021.03.05.09.46.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 09:46:03 -0800 (PST)
-Received: (nullmailer pid 368864 invoked by uid 1000);
-        Fri, 05 Mar 2021 17:46:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Johan Hedberg <johan.hedberg@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210305132343.2070583-1-linus.walleij@linaro.org>
-References: <20210305132343.2070583-1-linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/2 v2] Bluetooth: btbcm: Rewrite bindings in YAML and add reset
-Date:   Fri, 05 Mar 2021 11:46:02 -0600
-Message-Id: <1614966362.385480.368863.nullmailer@robh.at.kernel.org>
+        id S229756AbhCESSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 13:18:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229693AbhCESS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:18:28 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF153C061574;
+        Fri,  5 Mar 2021 10:18:27 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 44CF842037;
+        Fri,  5 Mar 2021 18:18:18 +0000 (UTC)
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+Message-ID: <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st>
+Date:   Sat, 6 Mar 2021 03:18:16 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Mar 2021 14:23:42 +0100, Linus Walleij wrote:
-> This rewrites the Broadcom bluetooth bindings in YAML and
-> adds a GPIO handle for the BT_RST_N line as used on some
-> platforms.
+On 06/03/2021 02.39, Rob Herring wrote:
+> I'm still a little hesitant to add these properties and having some
+> default. I worry about a similar situation as 'dma-coherent' where the
+> assumed default on non-coherent on Arm doesn't work for PowerPC which
+> defaults coherent. More below on this.
+
+The intent of the default here is that it matches what ioremap() does on 
+other platforms already (where it does not make any claims of being 
+posted, though it could be on some platforms). It could be per-platform 
+what that means... but either way it should be what drivers get today 
+without asking for anything special.
+
+>> -       return ioremap(res.start, resource_size(&res));
+>> +       if (res.flags & IORESOURCE_MEM_NONPOSTED)
+>> +               return ioremap_np(res.start, resource_size(&res));
+>> +       else
+>> +               return ioremap(res.start, resource_size(&res));
 > 
-> The Ingenic UART binding was using this binding in its
-> example DTS fragment, however mistakenly using "vcc-supply"
-> for what is called "vbat-supply". The proper DTS files
-> and the code in the kernel all use "vbat-supply" so
-> fix up the example in this patch so we ge a clean
-> check.
+> This and the devm variants all scream for a ioremap_extended()
+> function. IOW, it would be better if the ioremap flavor was a
+> parameter. Unless we could implement that just for arm64 first, that's
+> a lot of refactoring...
+
+I agree, but yeah... that's one big refactor to try to do now...
+
+> What's the code path using these functions on the M1 where we need to
+> return 'posted'? It's just downstream PCI mappings (PCI memory space),
+> right? Those would never hit these paths because they don't have a DT
+> node or if they do the memory space is not part of it. So can't the
+> check just be:
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - Fix the error in the Ingenic UART binding example as
->   part of adding this patch.
-> ---
->  .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
->  .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
->  2 files changed, 117 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
->  create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> 
+> bool of_mmio_is_nonposted(struct device_node *np)
+> {
+>      return np && of_machine_is_compatible("apple,arm-platform");
+> }
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yes; the implementation was trying to be generic, but AIUI we don't need 
+this on M1 because the PCI mappings don't go through this codepath, and 
+nothing else needs posted mode. My first hack was something not too 
+unlike this, then I was going to get rid of apple,arm-platform and just 
+have this be a generic mechanism with the properties, but then we added 
+the optimization to not do the lookups on other platforms, and now we're 
+coming full circle... :-)
 
-yamllint warnings/errors:
+If you prefer to handle it this way for now I can do it like this. I 
+think we should still have the DT bindings and properties though (even 
+if not used), as they do describe the hardware properly, and in the 
+future we might want to use them instead of having a quirk.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/ingenic,uart.example.dt.yaml: bluetooth: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-
-See https://patchwork.ozlabs.org/patch/1447828
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
