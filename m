@@ -2,191 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0612432F3E8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E17D332F3ED
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230058AbhCETbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 14:31:03 -0500
-Received: from mail-oo1-f51.google.com ([209.85.161.51]:44717 "EHLO
-        mail-oo1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229882AbhCETat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:30:49 -0500
-Received: by mail-oo1-f51.google.com with SMTP id n19so689460ooj.11;
-        Fri, 05 Mar 2021 11:30:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=l0zxLtovtFMmT2lNUt8ysKJIO/ypRqEiptzm/NiMSFQ=;
-        b=AgiRzHJpIzRcXhdMgJICJXUYvQCqnwR9JsPZVcUaT7GqmtZysLmcaoqK/jIxcV3i4y
-         bwhz0MVZOYAyINFDUwT9iJ0F82Ve4pBzyo6wxsrLOk2a202XDA+86wo8M9Tkky5wOnP7
-         driMdHOKKQm1K0F9WKVW416eW/C68JMH1tf9fBFh4OIxj3AuikI/H0L/ymqQMc+s6uwA
-         z/I6lViu+d4RfqWGJn+fNHe/A5r6koS0uQu1RNerzs65L8R3dhffQpcva1TOZoFkGYvm
-         mI3wKVxcrqYjOPkcYo6yi+0HmLVGPKz4VCmTueWbzH1Q0v4sAFzFfyTMnD4hjfkL9t6s
-         zF/A==
-X-Gm-Message-State: AOAM530fynt9U4HsXaR5UxtVTJDFit0UjJkb6a4Z8QZQqTLmTdCtFcs7
-        mKFXqfAqa6o75i6rnLRbwg==
-X-Google-Smtp-Source: ABdhPJxJDrzt/TBa6fY+TozGvrzJCeACfv2dQy+Qq8U3kai7NfGEWdqFCDVsqBp1S/vleECBLSDpmA==
-X-Received: by 2002:a4a:ac49:: with SMTP id q9mr8988525oon.73.1614972649122;
-        Fri, 05 Mar 2021 11:30:49 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f29sm812537ots.22.2021.03.05.11.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 11:30:48 -0800 (PST)
-Received: (nullmailer pid 516963 invoked by uid 1000);
-        Fri, 05 Mar 2021 19:30:47 -0000
-Date:   Fri, 5 Mar 2021 13:30:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [RFC PATCH 1/7] dt_bindings: Add protection limit properties
-Message-ID: <20210305193047.GA501479@robh.at.kernel.org>
-References: <cover.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
- <eacb8a0aad9190219b36763927602e9a566649c2.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
+        id S229791AbhCETcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 14:32:39 -0500
+Received: from smtpweb146.aruba.it ([62.149.158.146]:45712 "EHLO
+        smtpweb146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229718AbhCETcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:32:16 -0500
+Received: from [192.168.126.129] ([146.241.168.111])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id IGBKlk06d1jmzIGBKlEDoe; Fri, 05 Mar 2021 20:32:15 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1614972735; bh=aWcSdCyOdN8bFj+KL9uggJlcu9J1GAlTZV/p6mAPXfQ=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=PmSPrya+P5IFvlbZR4LOvV24OWPq/aZF36OpmG4lAcx6NOznd6oBLk50DY2fnRuHa
+         DkF7dyC9V1/nlfWwbuQabM+GmA26c/m91X0BvF07frSWvYXFGNqCd9sZfJ32OJYGgn
+         SpUjWljcTfs7nSGK3DIptRnqrM2N5lR2WNQwNKknQPHSWgayEkd3rzykITTrAFFowV
+         RbIRB2Zcu2w4Tjglr/4r1wQxvo4FBGo92YxD/78SDjRRQx9lY7rYfn2fKGWiY1VpK8
+         7tWLDKVl+fvEmFp5k688X1N4DvvkwAgVude4IW4SqdbJZb17SLm5EWwNtXZSLHNEnh
+         hnH2u8pI8YV4w==
+Subject: Re: [PATCH 1/3] dt-bindings: Add Hycon Technology vendor prefix
+To:     Giulio Benetti <giulio.benetti@micronovasrl.com>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
+ <20210305163834.70924-2-giulio.benetti@benettiengineering.com>
+ <YEJpogUgOHHPFUQ+@latitude>
+ <f1c78d68-5e84-ab52-3de6-44a9312f2afa@micronovasrl.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <5f2b2d8f-40a5-1a2c-2491-273c371241f5@benettiengineering.com>
+Date:   Fri, 5 Mar 2021 20:32:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eacb8a0aad9190219b36763927602e9a566649c2.1613042245.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <f1c78d68-5e84-ab52-3de6-44a9312f2afa@micronovasrl.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4wfHyp0t4xqITEPZZGaawoHXLASJ1gdUXaoJP3ueZzXWcDGKJYSAog/IykCiSteU7LLc3sUKuGQOOCIJLKHBb6oiTTMMID3Jxvaov41bdnopumhqLNmJd3
+ OkXo2DlCDnLAbztS7sylIwbROc3Z3fcsYukAYT4pxvo1NthwY+KmaqBKHXbYlmuZjZNIBFd4Bwmjfh3+WVD8efDLjJRbIn9sb6iX13cwgwJU/sHtOnLhNmZP
+ JA01q+HcQ4N+M5LW4ApNLSaIW1ho9KTMxvGidhm0ABwklCMsP53T8oT1jmii7M72YHYz2ksW0ZMJAaDdNtg7OfyvR2b73gSu4Rmh7KvCSEY7RMZp7MAyUExm
+ dgoYS/4HuLG0QlHCuAzfVQeygGMdRMExlsZP3CL8lEdg4C08XRLT0F9+CP4n3cMmEKHxBFxM
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 11, 2021 at 02:34:17PM +0200, Matti Vaittinen wrote:
-> Support specifying protection/error/warning limits for regulator
-> over current, over temperature and over/under voltage.
-> 
-> Most of the PMICs support only "protection" feature but few
-> setups do also support error/warning level indications.
-> 
-> On many ICs most of the protection limits can't actually be set.
-> But for example the ampere limit for over-current protection on ROHM
-> BD9576 can be configured - or feature can be completely disabled.
-> 
-> Provide limit setting for all protections/errors for the sake of
-> the completeness and do that using own properties for all so that
-> not all users would need to set all levels when only one or few are
-> supported.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
->  .../bindings/regulator/regulator.yaml         | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
-> index 6d0bc9cd4040..47fff75f0554 100644
-> --- a/Documentation/devicetree/bindings/regulator/regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
-> @@ -117,6 +117,88 @@ properties:
->      description: Enable over current protection.
->      type: boolean
->  
-> +  regulator-over-current-protection-microamp:
++Cc Dmitry
 
-Kind of long and 'current' is implied by 'microamp'. Perhaps 
-regulator-oc-protection-microamp and similar.
+On 3/5/21 6:33 PM, Giulio Benetti wrote:
+> Hi Jonathan,
+> 
+> Il 05/03/2021 18:25, Jonathan Neuschäfer ha scritto:
+>> Hello,
+>>
+>> On Fri, Mar 05, 2021 at 05:38:32PM +0100, Giulio Benetti wrote:
+>>> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>>>
+>>> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to
+>>> include "hycon" as a vendor prefix for "Hycon Technology".
+>>> Company website: http://www.hycontek.com/
+>>
+>> As far as I can see, https would be possible here.
+> 
+> +1
+> 
+>>> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>>> ---
+>>>    Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>    1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index a1312637d6ff..51b00aa96dff 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -488,6 +488,8 @@ patternProperties:
+>>>      "^hugsun,.*":
+>>>        description: Shenzhen Hugsun Technology Co. Ltd.
+>>>      "^hwacom,.*":
+>>> +    description: Hycon Technology Corp.
+>>> +  "^hycon,.*":
+>>>        description: HwaCom Systems Inc.
+>>
+>> This is the wrong way around. You declared "hwacom," to mean "Hycon
+>> Technology Corp.", and "hycon," to mean "HwaCom Systems Inc.".
+>>
+> 
+> Thank you, I've modified it and I'll send a v2 with the rest of
+> patchset.
+> 
+> Best regards
+> 
 
-> +    description: Set over current protection limit. This is a limit where
-> +      hardware performs emergency shutdown. Zero can be passed to disable
-> +      protection and value '1' indicates that protection should be enabled but
-> +      limit setting can be omitted.
-> +
-> +  regulator-over-current-error-microamp:
-> +    description: Set over current error limit. This is a limit where part of
-> +      the hardware propably is malfunctional and damage prevention is requested.
-> +      Zero can be passed to disable error detection and value '1' indicates
-> +      that detection should be enabled but limit setting can be omitted.
-> +
-> +  regulator-over-current-warn-microamp:
-> +    description: Set over current warning limit. This is a limit where hardware
-> +      is assumed still to be functional but approaching limit where it gets
-> +      damaged. Recovery actions should be initiated. Zero can be passed to
-> +      disable detection and value '1' indicates that detection should
-> +      be enabled but limit setting can be omitted.
-> +
-> +  regulator-over-voltage-protection-microvolt:
-> +    description: Set over voltage protection limit. This is a limit where
-> +      hardware performs emergency shutdown. Zero can be passed to disable
-> +      protection and value '1' indicates that protection should be enabled but
-> +      limit setting can be omitted. Limit is given as microvolt offset from
-> +      voltage set to regulator.
-> +
-> +  regulator-over-voltage-error-microvolt:
-> +    description: Set over voltage error limit. This is a limit where part of
-> +      the hardware propably is malfunctional and damage prevention is requested
-> +      Zero can be passed to disable error detection and value '1' indicates
-> +      that detection should be enabled but limit setting can be omitted. Limit
-> +      is given as microvolt offset from voltage set to regulator.
-> +
-> +  regulator-over-voltage-warn-microvolt:
-> +    description: Set over voltage warning limit. This is a limit where hardware
-> +      is assumed still to be functional but approaching limit where it gets
-> +      damaged. Recovery actions should be initiated. Zero can be passed to
-> +      disable detection and value '1' indicates that detection should
-> +      be enabled but limit setting can be omitted. Limit is given as microvolt
-> +      offset from voltage set to regulator.
-> +
-> +  regulator-under-voltage-protection-microvolt:
-> +    description: Set over under voltage protection limit. This is a limit where
-> +      hardware performs emergency shutdown. Zero can be passed to disable
-> +      protection and value '1' indicates that protection should be enabled but
-> +      limit setting can be omitted. Limit is given as microvolt offset from
-> +      voltage set to regulator.
-> +
-> +  regulator-under-voltage-error-microvolt:
-> +    description: Set under voltage error limit. This is a limit where part of
-> +      the hardware propably is malfunctional and damage prevention is requested
-> +      Zero can be passed to disable error detection and value '1' indicates
-> +      that detection should be enabled but limit setting can be omitted. Limit
-> +      is given as microvolt offset from voltage set to regulator.
-> +
-> +  regulator-under-voltage-warn-microvolt:
-> +    description: Set over under voltage warning limit. This is a limit where
-> +      hardware is assumed still to be functional but approaching limit where
-> +      it gets damaged. Recovery actions should be initiated. Zero can be passed
-> +      to disable detection and value '1' indicates that detection should
-> +      be enabled but limit setting can be omitted. Limit is given as microvolt
-> +      offset from voltage set to regulator.
-> +
-> +  regulator-over-temperature-protection-kelvin:
-> +    description: Set over temperature protection limit. This is a limit where
-> +      hardware performs emergency shutdown. Zero can be passed to disable
-> +      protection and value '1' indicates that protection should be enabled but
-> +      limit setting can be omitted.
-> +
-> +  regulator-over-temperature-error-kelvin:
-> +    description: Set over temperature error limit. This is a limit where part of
-> +      the hardware propably is malfunctional and damage prevention is requested
-> +      Zero can be passed to disable error detection and value '1' indicates
-> +      that detection should be enabled but limit setting can be omitted.
-> +
-> +  regulator-over-temperature-warn-kelvin:
-> +    description: Set over temperature warning limit. This is a limit where
-> +      hardware is assumed still to be functional but approaching limit where it
-> +      gets damaged. Recovery actions should be initiated. Zero can be passed to
-> +      disable detection and value '1' indicates that detection should
-> +      be enabled but limit setting can be omitted.
-> +
->    regulator-active-discharge:
->      description: |
->        tristate, enable/disable active discharge of regulators. The values are:
-> -- 
-> 2.25.4
-> 
-> 
-> -- 
-> Matti Vaittinen, Linux device drivers
-> ROHM Semiconductors, Finland SWDC
-> Kiviharjunlenkki 1E
-> 90220 OULU
-> FINLAND
-> 
-> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-> Simon says - in Latin please.
-> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-> Thanks to Simon Glass for the translation =] 
+-- 
+Giulio Benetti
+Benetti Engineering sas
