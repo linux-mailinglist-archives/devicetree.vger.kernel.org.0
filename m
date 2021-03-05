@@ -2,162 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DDFC32F637
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 23:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED12232F65D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 00:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbhCEW6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 17:58:46 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:45364 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbhCEW63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 17:58:29 -0500
-Received: by mail-oi1-f177.google.com with SMTP id m25so4251683oie.12;
-        Fri, 05 Mar 2021 14:58:29 -0800 (PST)
+        id S230070AbhCEXIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 18:08:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32954 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229837AbhCEXIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 18:08:04 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8656C061760
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 15:08:03 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id z128so3682610qkc.12
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 15:08:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dNOfy+4JVngKRWmS3lpLOlIxvZssBG0MFQQkKbrKJlg=;
+        b=O5GL+LmzFSaO5vYSK6DQ1VSdrnRjKWpzQWa1N/14LIh2qXKbGuJGk05JDwf7u+wLSZ
+         yY/UoYFg5qyUg8Zq4MXqL+G11I+V0jQq+2oCXPPfhDMOFYC8ilkxTha6eM+T24xPGdp7
+         rmXhMA7d5w1m0xRZdtnWjHhw8na3gTQBWw+Q/QwW/i10b6vbxTM7EhDuEnPFzXUM0rfy
+         /VTebUQzz+sM+4Ez6VoeVlH6jeki/JUyPcj3sHzBgUkpgdM/5D+yzAjr/Lt+B3+6k5el
+         nDw0UniH5uwGi5KXr7MnNwHIhA/BB377tBompL1e1ayIfffm4RNPrkPEmqrw7YGVYHSd
+         rvng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1oJfp5wOtSpahzuVaU4L5ORJxXB79SaHjEEoQZLe6IM=;
-        b=txJFUgxeEMvtu9URK7YJhe4kKuj9NFs/c4RhIQeZD8QkQRG63meWRv3mGP/iSGuxkq
-         M8OP34PUx56bynJO8vwoi5Ikc7tAHviTGWG2i/I0TEsNUmyEkHCixs2uA4iK+O/N7ZUf
-         rtHM3nrA/UBk+qZ8k3eE/geLU0VTNoNf+HA/v6+Rl4UV3lRwUOFTsvvsJr3etoz/Twah
-         zrOAXnqfZDNDdL1ZxY7NbwRj3niaTWP9CpW8jPihX6w8sY1hOlPyrqqBm4lJn6yx/1HS
-         oZR7eyrU9ayaMdKc7pqSmPfg2fHHKjQEZ3QCOqOu2b7h5PsWaxQh94eXd971M7NLMRWk
-         G8zg==
-X-Gm-Message-State: AOAM532L4jcZRtxJRefOzd0avZ0yLb14BG3CSUCr/KTPC9E6vZqOFNA9
-        zx6OvdlcH/rmEoT1BxisYtg/O2OJcw==
-X-Google-Smtp-Source: ABdhPJyO9xP+BYGZnmgcyS3UuIcaVDE+wxMS21R4xRm7ICyJ4KPOJLuGtTr8m3fWtV3XUCNE5UYccw==
-X-Received: by 2002:aca:ab09:: with SMTP id u9mr8745691oie.153.1614985109238;
-        Fri, 05 Mar 2021 14:58:29 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f44sm933509otf.7.2021.03.05.14.58.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 14:58:28 -0800 (PST)
-Received: (nullmailer pid 798293 invoked by uid 1000);
-        Fri, 05 Mar 2021 22:58:27 -0000
-Date:   Fri, 5 Mar 2021 16:58:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v4 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
-Message-ID: <20210305225826.GA794278@robh.at.kernel.org>
-References: <20210219081514.1592033-1-maxime.chevallier@bootlin.com>
- <20210219081514.1592033-3-maxime.chevallier@bootlin.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dNOfy+4JVngKRWmS3lpLOlIxvZssBG0MFQQkKbrKJlg=;
+        b=aXHu1IusMc6SvFwyowlPlQ89vy8ZiZM/xokgvxn1xcAegx2NQwhnvTDiYwgoryGPuo
+         Qn0p9kiMBy8jUbpRCCc1oJML25fUH2b6wbMC1iXmf6cHTmjxrUctJLdaaVcDkvKckPhK
+         53Ei+/KIE6VieI/VMsYq30Mig0ru1l9J6lUZZU/nRRLluaXSsay1dOTIBly/QR69NzXL
+         GX40Rcd+UaO/yEoecwUYKwb4ZqqEq0sllSPjU1dz7JtD8b9RoBaKxGC6firNnkNUS7fI
+         F0xidwWJcUPnrSgQ6sa2UB35BKSLRb+h6yRBSUMGNUFeNVPBCivKw08x8ISJhryQqK4K
+         ZrwA==
+X-Gm-Message-State: AOAM533ztPE3MAgxXQ6qgEuAx/WOLN6Pcd8SLcPemn+HF5tq+js0acfE
+        sRmqA3J5WoBgW4xGpOAke/sfxg==
+X-Google-Smtp-Source: ABdhPJxw8pg7Vjat2LQVDgSIs8+7LU4dkFVLn4MTIo8uqHTehUq8Npi3JYT07t8hM0E3jHzk4La6QA==
+X-Received: by 2002:a37:6244:: with SMTP id w65mr11172754qkb.393.1614985682638;
+        Fri, 05 Mar 2021 15:08:02 -0800 (PST)
+Received: from [192.168.0.189] (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id s133sm2870546qke.1.2021.03.05.15.08.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Mar 2021 15:08:01 -0800 (PST)
+Subject: Re: [PATCH] drm/msm/dsi: support CPHY mode for 7nm pll/phy
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        freedreno@lists.freedesktop.org
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@google.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Dave Airlie <airlied@redhat.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210215162805.21481-1-jonathan@marek.ca>
+ <3e511cd9-2dbc-abf0-23c0-26779eb1777f@linaro.org>
+From:   Jonathan Marek <jonathan@marek.ca>
+Message-ID: <cafc7dad-68bf-28f0-4134-e494c6f68256@marek.ca>
+Date:   Fri, 5 Mar 2021 18:06:43 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210219081514.1592033-3-maxime.chevallier@bootlin.com>
+In-Reply-To: <3e511cd9-2dbc-abf0-23c0-26779eb1777f@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 19, 2021 at 09:15:13AM +0100, Maxime Chevallier wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards, such as PAL, NTSC and SECAM, and outputs a BT.656 video
-> signal.
+On 3/5/21 5:45 PM, Dmitry Baryshkov wrote:
+> On 15/02/2021 19:27, Jonathan Marek wrote:
+>> Add the required changes to support 7nm pll/phy in CPHY mode.
+>>
+>> This adds a "qcom,dsi-phy-cphy-mode" property for the PHY node to enable
+>> the CPHY mode.
+>>
+>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 > 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection.
+> Other that few comments bellow:
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
-> V2->V3 : Fix the example not compiling due to a typo in the reset-gpios
-> node.
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> V3->V4 : Add the missing reset-gpios node to the binding
+>> ---
+>>   .../devicetree/bindings/display/msm/dsi.txt   |  1 +
+>>   drivers/gpu/drm/msm/dsi/dsi.c                 | 12 +--
+>>   drivers/gpu/drm/msm/dsi/dsi.h                 |  6 +-
+>>   drivers/gpu/drm/msm/dsi/dsi.xml.h             |  2 +
+>>   drivers/gpu/drm/msm/dsi/dsi_host.c            | 34 +++++--
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         | 49 +++++++++-
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |  3 +
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 89 ++++++++++++++-----
+>>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.c         |  4 +-
+>>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.h         |  5 +-
+>>   drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c     | 71 +++++++++------
+>>   11 files changed, 210 insertions(+), 66 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt 
+>> b/Documentation/devicetree/bindings/display/msm/dsi.txt
+>> index b9a64d3ff184..7ffc86a9816b 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
+>> @@ -124,6 +124,7 @@ Required properties:
+>>   Optional properties:
+>>   - qcom,dsi-phy-regulator-ldo-mode: Boolean value indicating if the 
+>> LDO mode PHY
+>>     regulator is wanted.
+>> +- qcom,dsi-phy-cphy-mode: Boolean value indicating if CPHY mode is 
+>> wanted.
+>>   - qcom,mdss-mdp-transfer-time-us:    Specifies the dsi transfer time 
+>> for command mode
+>>                       panels in microseconds. Driver uses this number 
+>> to adjust
+>>                       the clock rate according to the expected 
+>> transfer time.
 > 
->  .../devicetree/bindings/media/i2c/tw9900.yaml | 64 +++++++++++++++++++
-
-Use the compatible string for the filename.
-
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+> This should go in a separate patch, shan't it?
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/tw9900.yaml b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
-> new file mode 100644
-> index 000000000000..d27196e37416
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/tw9900.yaml#
+>> diff --git a/drivers/gpu/drm/msm/dsi/dsi.c 
+>> b/drivers/gpu/drm/msm/dsi/dsi.c
+>> index 627048851d99..68d8547f7264 100644
+>> --- a/drivers/gpu/drm/msm/dsi/dsi.c
+>> +++ b/drivers/gpu/drm/msm/dsi/dsi.c
+>> @@ -13,7 +13,7 @@ struct drm_encoder *msm_dsi_get_encoder(struct 
+>> msm_dsi *msm_dsi)
+>>       return msm_dsi->encoder;
+>>   }
+>> -static int dsi_get_phy(struct msm_dsi *msm_dsi)
+>> +static int dsi_get_phy(struct msm_dsi *msm_dsi, bool *cphy_mode)
+> 
+> I see no need to pass the 'cphy_mode' through the bool pointer and back 
+> to msm_dsi_host_init. What about just putting it into struct msm_dsi?
+> 
 
-Don't forget to update this...
+Because it doesn't need to be stored in msm_dsi (need it in msm_dsi_host 
+which doesn't have access to msm_dsi). But I suppose it doesn't hurt to 
+also have it in msm_dsi and make things a bit cleaner.
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Techwell TW9900 NTSC/PAL/SECAM video decoder
-> +
-> +maintainers:
-> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
-> +
-> +description:
-> +  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL and SECAM
-> +  standards with auto-detection features.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - techwell,tw9900
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: VDD power supply
-> +
-> +  reset-gpios:
-> +    description: GPIO descriptor for the RESET input pin
-> +    maxItems: 1
-> +
-> +  port:
-> +    type: object
-> +    description:
-> +      A node containing a single endpoint as doucmented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-
-It's now video-interfaces.yaml, but you aren't using anything from it. 
-You need to reference graph.yaml though. See the examples in the tree 
-now.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            tw9900: tw9900@44 {
-> +                    compatible = "techwell,tw9900";
-> +                    reg = <0x44>;
-> +
-> +                    vdd-supply = <&tw9900_supply>;
-> +                    reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
-> +
-> +                    port {
-> +                            tw9900_out: endpoint {
-> +                                    remote-endpoint = <&vip_in>;
-> +                            };
-> +                    };
-> +            };
-> +    };
-> -- 
-> 2.25.4
+>>   {
+>>       struct platform_device *pdev = msm_dsi->pdev;
+>>       struct platform_device *phy_pdev;
+>> @@ -29,6 +29,7 @@ static int dsi_get_phy(struct msm_dsi *msm_dsi)
+>>       if (phy_pdev)
+>>           msm_dsi->phy = platform_get_drvdata(phy_pdev);
+>> +    *cphy_mode = of_property_read_bool(phy_node, 
+>> "qcom,dsi-phy-cphy-mode");
+>>       of_node_put(phy_node);
+>>       if (!phy_pdev || !msm_dsi->phy) {
+>> @@ -65,6 +66,7 @@ static void dsi_destroy(struct msm_dsi *msm_dsi)
+>>   static struct msm_dsi *dsi_init(struct platform_device *pdev)
+>>   {
+>>       struct msm_dsi *msm_dsi;
+>> +    bool cphy_mode;
+>>       int ret;
+>>       if (!pdev)
+>> @@ -79,13 +81,13 @@ static struct msm_dsi *dsi_init(struct 
+>> platform_device *pdev)
+>>       msm_dsi->pdev = pdev;
+>>       platform_set_drvdata(pdev, msm_dsi);
+>> -    /* Init dsi host */
+>> -    ret = msm_dsi_host_init(msm_dsi);
+>> +    /* GET dsi PHY */
+>> +    ret = dsi_get_phy(msm_dsi, &cphy_mode);
+>>       if (ret)
+>>           goto destroy_dsi;
+>> -    /* GET dsi PHY */
+>> -    ret = dsi_get_phy(msm_dsi);
+>> +    /* Init dsi host */
+>> +    ret = msm_dsi_host_init(msm_dsi, cphy_mode);
+>>       if (ret)
+>>           goto destroy_dsi;
+> 
 > 
