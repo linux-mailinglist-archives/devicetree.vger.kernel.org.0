@@ -2,98 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC3A832F49D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 21:29:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4317832F4A7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 21:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbhCEU2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 15:28:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCEU2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 15:28:23 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F244C061760
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 12:28:23 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id l2so2126813pgb.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 12:28:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=piAdAlxX6cGUOE8F0JpLHJ9nmpFDMC1HCkTuqOWznxk=;
-        b=ZMfRcZ4TDA8/dEClsxUS/L/u5rgoabu87qxGNj+0yZa6lwgQL/N63UEyBzxVDnJEjx
-         DXNVeoKNIf5KrdFrRI9cQira81+9a6MNvsobpoLqJJddXEESNUp4iHimhrfUFs5l2/0G
-         NY4CCDs4A9g/GCPH//PsA3BIjozH84M+Boneo=
+        id S229631AbhCEUjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 15:39:21 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:33695 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229446AbhCEUiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 15:38:52 -0500
+Received: by mail-oi1-f176.google.com with SMTP id a13so3973079oid.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 12:38:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=piAdAlxX6cGUOE8F0JpLHJ9nmpFDMC1HCkTuqOWznxk=;
-        b=pg9VOMwOkuygv85doJpwq4vYFiqw87GNr2q6xFTjIQtVFU4evTtslQCVPTEXNUn9Hs
-         9ojae9xie53UfEJTN/DuJuBKfln4NQpqSf61dRPT1nSO2NOce6z6Q2A6d4qaF6jFS9fH
-         27gdKk0lKEqnq7XK0HYj9+B9lss5Gde869VTO60bYSyk2iuwTuQyVKYzRKciMlgwNRT6
-         lMpfvcgRglgjRmu1+Ok0hdtko5Wkr5CvOzPVL8M9+FL/HmMLf+l9JUgm4waV7SI0LN1X
-         VMtGVZNm/UwO8xhzZFO/W6G/aA+HceVhpX53MU5s41MTfMw1XSxdA9N8y2I1EX4iRiPR
-         umag==
-X-Gm-Message-State: AOAM531E4u1F+5zu1IZ0Q4gudWGgxN1M+fZzaFa5DPXgq5jmE1ORMdH+
-        hvIcBsRoFnLoBDACNacZkArmDg==
-X-Google-Smtp-Source: ABdhPJwDP89NM72Xmxkxt3+td/+HHTavGdq0RdR0KUyjCNPkQps+ga54WgNdcBG9JtaZDqAFts+g2Q==
-X-Received: by 2002:a63:fa4d:: with SMTP id g13mr10282679pgk.201.1614976102793;
-        Fri, 05 Mar 2021 12:28:22 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:2878:25d1:94cb:a547])
-        by smtp.gmail.com with UTF8SMTPSA id i128sm2955938pfe.64.2021.03.05.12.28.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 12:28:22 -0800 (PST)
-Date:   Fri, 5 Mar 2021 12:28:20 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc7180: Disable charger thermal
- zone for coachz rev1 and rev2
-Message-ID: <YEKUZI2zfdDLe7mP@google.com>
-References: <20210304180415.1531430-1-mka@chromium.org>
- <20210304100341.4.I95b8a63103b77cab6a7cf9c150f0541db57fda98@changeid>
- <CAD=FV=UQoXsPYqv8a25Kn+=z1pZu4YUKK7VZSm4rq_i9KpD3rQ@mail.gmail.com>
+        bh=5Uv2fBsdzVzAjrkZscaxWC7WQeabh4APOPETOERYi/I=;
+        b=kqWc6UxYb7Qj94cDWrk2ClwfZDr3ISkuto8M1TVRVg3bTAr4VpaATNC0sccN0x+tnU
+         /Nw03YFIE2hBbzYomuf4PVKP8bx0VEcL/JsYQ3jp5b+/aIbTPH6zqOlp9Wvoz48srDOn
+         4NeZKTS+aAc7/1tbcQI0v+jqDP8iM3eDd1F78uzZe1UfnndC3so8YORaPBGOK6awauyX
+         vq6K1eJoalIf2kdMG/rnziFLVcOJFJKYMoGo+MK1jp6RbLvLc+5Fosj9Pckvxpu0rDEK
+         HzuiDN1uBqQs60wF7f5WtWS0BjeMoFnLt788EUrCsQ0PBjwqejvqsPGqQc3e9DMAaI61
+         XxKw==
+X-Gm-Message-State: AOAM532rUqF5R1BJ6+328GScfFV483sERi7zYDABbq5GSGXSYCV69y19
+        GsOygH9MOTw2Cs/WGGiRPg==
+X-Google-Smtp-Source: ABdhPJzzpNKS6xGg7OHNDAzJY160AxS0PJb9i0/5L1J0+7iQqrqMCku2u/Ura0ufM5ACxWmsy/9msg==
+X-Received: by 2002:aca:c792:: with SMTP id x140mr8470741oif.86.1614976731709;
+        Fri, 05 Mar 2021 12:38:51 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t6sm789926otc.49.2021.03.05.12.38.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Mar 2021 12:38:50 -0800 (PST)
+Received: (nullmailer pid 606466 invoked by uid 1000);
+        Fri, 05 Mar 2021 20:38:49 -0000
+Date:   Fri, 5 Mar 2021 14:38:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: Arm: Add Firmware Framework for
+ Armv8-A (FF-A) binding
+Message-ID: <20210305203849.GA585154@robh.at.kernel.org>
+References: <20210212154614.38604-1-sudeep.holla@arm.com>
+ <20210212154614.38604-2-sudeep.holla@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=UQoXsPYqv8a25Kn+=z1pZu4YUKK7VZSm4rq_i9KpD3rQ@mail.gmail.com>
+In-Reply-To: <20210212154614.38604-2-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 10:50:12AM -0800, Doug Anderson wrote:
-> Hi,
+On Fri, Feb 12, 2021 at 03:46:08PM +0000, Sudeep Holla wrote:
+> Since the FF-A v1.0 specification doesn't list the UUID of all the
+> partitions in the discovery API, we need to specify the UUID of the
+> partitions that need to be accessed by drivers within the kernel.
 > 
-> On Thu, Mar 4, 2021 at 10:04 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > CoachZ rev1 and rev2 are stuffed with a 47k NTC as thermistor for the
-> > charger temperature which currently isn't supported by the PM6150 ADC
-> > driver. Disable the charger thermal zone to avoid the use of bogus
-> > temperature values.
-> >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> >
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts | 9 +++++++++
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts | 9 +++++++++
-> >  2 files changed, 18 insertions(+)
+> This binding to provide the list of partitions that kernel drivers
+> may need to access.
 > 
-> I guess this patch is written with the assumption that eventually
-> we'll create a "-r3" or "-r4" that has a proper thermistor stuffed but
-> maybe we're not sure which one?  Right now you're disabling it for
-> both -r1 and -r2+ which is all revisions, so this could go in the
-> coachz.dtsi file...
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>  .../devicetree/bindings/arm/arm,ffa.yaml      | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,ffa.yaml
+> 
+> Hi Rob,
+> 
+> Sorry to send the same version again just to keep the driver review progress.
+> I am still exploring on how to add "format: uuid" support in the dt-schemas.
+> I am seeing errors as format is used in some of the audio/video DT bindings.
+> I get errors for all those files, may be I need to use $format, initial
+> trial to do that also failed.
 
-The proper thermistor should be stuffed in rev3.
+Other bindings shouldn't affect you. The meta-schema and maybe the 
+fixups are probably the issue. It's something I need to fix.
 
-For some reason there was already a -r3 .dts in my mental model,
-probably I created one when I started with a downstream version of
-this series just before you posted your's to bring upstream (mostly)
-in sync with downstream. I'll add it in v2.
+
+> Regarding other comment, I had replied earlier[1] as why we need to keep
+> separate DT nodes for each partitions.
+
+That's fine. It's the other users like TF-A that I'm now more concerned 
+about...
+
+> [1] https://lore.kernel.org/linux-arm-kernel/20210113100011.bnn75jogx22cgkk4@bogus/
+> 
+> Regards,
+> Sudeep
+> 
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,ffa.yaml b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
+> new file mode 100644
+> index 000000000000..a014a5801c34
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/arm,ffa.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Arm Firmware Framework for Arm v8-A (in-kernel users)
+> +
+> +maintainers:
+> +  - Sudeep Holla <sudeep.holla@arm.com>
+> +
+> +description: |
+> +  Firmware frameworks implementing partition according to the FF-A
+> +  specification defined by ARM document number ARM DEN 0077A ("Arm Firmware
+> +  Framework for Arm v8-A") [0], providing services to be used by other
+> +  partitions.
+> +
+> +  [0] https://developer.arm.com/docs/den0077/latest
+> +
+> +properties:
+> +  $nodename:
+> +    const: ffa
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: arm,ffa-1.0
+> +
+> +patternProperties:
+> +  "^ffa_partition[0-9]+$":
+
+'^ffa-partition-[0-9a-f]+$'
+
+> +    type: object
+> +    description: One or more child nodes, each describing an FFA partition.
+> +    properties:
+> +      $nodename:
+> +        const: ffa_partition
+> +
+> +      compatible:
+> +        oneOf:
+
+Don't need oneOf.
+
+> +          - const: arm,ffa-1.0-partition
+> +
+> +      uuid:
+> +        $ref: '/schemas/types.yaml#definitions/string'
+> +        description: |
+> +          The 128-bit UUID [2] of the service implemented by this partition.
+> +
+> +          [2] https://tools.ietf.org/html/rfc4122
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ffa {
+> +      compatible = "arm,ffa-1.0";
+> +
+> +      ffa_partition0 {
+> +        compatible = "arm,ffa-1.0-partition";
+> +        uuid = "12345678-9abc-def0-1234-56789abcdef0";
+> +      };
+> +    };
+> -- 
+> 2.25.1
+> 
