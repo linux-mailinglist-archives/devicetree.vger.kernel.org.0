@@ -2,131 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD6732E682
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9960732E68F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbhCEKes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:34:48 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:50159 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbhCEKel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:34:41 -0500
-Received: from mail-lf1-f69.google.com ([209.85.167.69])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lI7n5-0007ZX-Pa
-        for devicetree@vger.kernel.org; Fri, 05 Mar 2021 10:34:40 +0000
-Received: by mail-lf1-f69.google.com with SMTP id a9so615984lfb.19
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:34:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=RWwbwcqn7+V68bGLU4ZDn1q+MKGqnLhOEC9uAVuE8zc=;
-        b=P0SuzfTy2sEa83iEJ5rjW3zAhnZwHCCLJOue5cssFmNgyzNG+csg7XTVzQGYimLPaC
-         Se+zTuF5U3Q0L6vfhaoXvzloBn/QCMX9OuVOwNDp+61OaU8qS0TxqNUKIjdjaAMwRsYr
-         iksq0j+69CjcxcravSAvbSvTO7kF+BkeTgoM7dqDNyeYDVtYsSUwild8NBZKxBgrkF85
-         dd+l0raDIJOCCvnlSmRtnBWf6uIaB8TnuvB95WvXLKO8TLoX26dqEUxsKOONBMVtHL2X
-         xl/f7JndPaCZvgOP81tFYI8icAfKIi7XQkRhVVkRITDHXpn6psiE2f0z1HNSreIQdekc
-         DEAw==
-X-Gm-Message-State: AOAM532fRhD+v6xcu+XdOzEVzaAnympYICg4iKg01k9X30JX3ivHc3iK
-        YvAyyFy8O4lUq7d9KstnuU08BEK8qH4Uz9UEZik9x6XJNJ1M7416drLnTow6jVYypP8K0rWFrxw
-        ROkDR/BRwOjIqJfq7sZTcJ2TDjlbb1I/1hdMckD0=
-X-Received: by 2002:adf:fe01:: with SMTP id n1mr8647748wrr.341.1614940478804;
-        Fri, 05 Mar 2021 02:34:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxL/xW+AO3OBrJBdGRjyMx7XXgn/DcEVAjw6nrX4rZjq/i98eqo/Tr07xkBjjsbwJ/68iC9lg==
-X-Received: by 2002:adf:fe01:: with SMTP id n1mr8647714wrr.341.1614940478678;
-        Fri, 05 Mar 2021 02:34:38 -0800 (PST)
-Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id p6sm3759537wru.2.2021.03.05.02.34.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 02:34:38 -0800 (PST)
-Subject: Re: [RFT PATCH v3 19/27] tty: serial: samsung_tty: Add ucon_mask
- parameter
-To:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-20-marcan@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <1e665346-15eb-3a9f-6dc3-7494a8050972@canonical.com>
-Date:   Fri, 5 Mar 2021 11:34:37 +0100
+        id S229528AbhCEKkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:40:18 -0500
+Received: from 2.mo173.mail-out.ovh.net ([178.33.251.49]:35106 "EHLO
+        2.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229494AbhCEKjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:39:49 -0500
+Received: from player787.ha.ovh.net (unknown [10.108.35.158])
+        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 773B6160A8F
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 11:39:47 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player787.ha.ovh.net (Postfix) with ESMTPSA id 46D2E1BE6FC32;
+        Fri,  5 Mar 2021 10:39:37 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-97G002147fd398-b58b-41e1-ab1a-00ab95efaa5d,
+                    4F7D11A3904BD8E553EC742B87CBB6774FEDAA0F) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH 2/2] nvmem: iomap: new driver exposing NVMEM accessible
+ using I/O mapping
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mips@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-kernel@vger.kernel.org
+References: <20210304144132.24098-1-zajec5@gmail.com>
+ <20210304144132.24098-2-zajec5@gmail.com>
+ <047bced8-6c20-4a0a-c7ea-e0ad83318461@linaro.org>
+ <93708a21-3444-f68e-c834-a4f769a0acba@milecki.pl>
+ <35e498b6-3b2c-d154-db00-d755af339b60@linaro.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <ba4e4376-7d75-4b0e-9d59-26e32dbe2029@milecki.pl>
+Date:   Fri, 5 Mar 2021 11:39:36 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210304213902.83903-20-marcan@marcan.st>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <35e498b6-3b2c-d154-db00-d755af339b60@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 752945565747678743
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddtiedgudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeduheejheffudefhffghfegjeejleetkeevueelveegkefhhfffieehleelgfevnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2021 22:38, Hector Martin wrote:
-> This simplifies the code by removing the only distinction between the
-> S3C2410 and S3C2440 codepaths.
+On 05.03.2021 11:33, Srinivas Kandagatla wrote:
+> On 05/03/2021 10:24, Rafał Miłecki wrote:
+>>>>
+>>>> +static int iomap_read(void *context, unsigned int offset, void *val,
+>>>> +              size_t bytes)
+>>>> +{
+>>>> +    struct iomap *priv = context;
+>>>> +    u8 *src = priv->base + offset;
+>>>> +    u8 *dst = val;
+>>>> +    size_t tmp;
+>>>> +
+>>>> +    tmp = offset % 4;
+>>>> +    memcpy_fromio(dst, src, tmp);
+>>>> +    dst += tmp;
+>>>> +    src += tmp;
+>>>> +    bytes -= tmp;
+>>>> +
+>>>> +    tmp = rounddown(bytes, 4);
+>>>> +    __ioread32_copy(dst, src, tmp / 4);
+>>>> +    dst += tmp;
+>>>> +    src += tmp;
+>>>> +    bytes -= tmp;
+>>>> +
+>>>> +    memcpy_fromio(dst, src, bytes);
+>>>> +
+>>>
+>>>
+>>> You could just do this!
+>>>
+>>>      while (bytes--)
+>>>          *val++ = readb(priv->base + offset + i++);
+>>
+>> Do you mean that as replacement for "memcpy_fromio" or the whole
+>> function code?
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  drivers/tty/serial/samsung_tty.c | 11 ++++-------
->  1 file changed, 4 insertions(+), 7 deletions(-)
+> Yes please!
 > 
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> index 78dc6e9240fb..33b421dbeb83 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -70,6 +70,7 @@ struct s3c24xx_uart_info {
->  	unsigned long		num_clks;
->  	unsigned long		clksel_mask;
->  	unsigned long		clksel_shift;
-> +	unsigned long		ucon_mask;
->  
->  	/* uart port features */
->  
-> @@ -1736,14 +1737,9 @@ static void s3c24xx_serial_resetport(struct uart_port *port,
->  {
->  	struct s3c24xx_uart_info *info = s3c24xx_port_to_info(port);
->  	unsigned long ucon = rd_regl(port, S3C2410_UCON);
-> -	unsigned int ucon_mask;
->  
-> -	ucon_mask = info->clksel_mask;
-> -	if (info->type == PORT_S3C2440)
-> -		ucon_mask |= S3C2440_UCON0_DIVMASK;
-> -
-> -	ucon &= ucon_mask;
-> -	wr_regl(port, S3C2410_UCON,  ucon | cfg->ucon);
-> +	ucon &= (info->clksel_mask | info->ucon_mask);
-> +	wr_regl(port, S3C2410_UCON, ucon | cfg->ucon);
+>> The reason for using __ioread32_copy() was to improve reading
+>> performance (using aligned 32 bit access where possible). I'm not sure
+>> if that really matters?
+> 
+> Just simple while loop is much readable than the previous code TBH!
+> 
+>>
+> 
+>> P.S.
+>> Please don't yell at me in every sentence :( Makes me a bit sad :(
+> Sorry!! I did not mean anything as such! :-)
 
-This line (wr_regl()) is not related, please split it to separate
-white-space cleanups.
-
-With the change:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
+All clear (I hope)! Thanks for your review!
