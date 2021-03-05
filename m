@@ -2,77 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E47732F4C6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 21:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D6B532F50A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 22:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbhCEUub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 15:50:31 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:36462 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCEUuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 15:50:25 -0500
-Received: by mail-oo1-f49.google.com with SMTP id x10so755722oor.3;
-        Fri, 05 Mar 2021 12:50:25 -0800 (PST)
+        id S229592AbhCEVB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 16:01:57 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:36576 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230213AbhCEVBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 16:01:43 -0500
+Received: by mail-ot1-f50.google.com with SMTP id t16so3135145ott.3;
+        Fri, 05 Mar 2021 13:01:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xxudWTQxZK+9ycvs/GcyZMOtlJ6x1HLohTyz9rI2C/8=;
-        b=aeaHh4oyECuzEywAZA3RqVdt6SZiufqQT2AvvAGo9ee4H+pUsIMv9ocihEZ9zNNlY3
-         E4IHIGsfqui3Dv6yO7wQR/9S0iEy5wKmhCKlDKcBds+6jSiqVIdhQ/Tmi199ZFF8rB6I
-         N7ZVG3R0MJhOAbnFsr4/28YFAeWAzcpzLp5SFfEQugrVgrtBrUm0r9cnAHUEPnnUTj+f
-         WYR7xAKMpJImsv+bhoKgR8CbSJoyyX6/Xg2RCt1oG79AOPQ/U3LP6n7N0VGzFqIM52nl
-         bBVEbvDuteuZyRQgSlTlwksouh2ONBJpnqUaMyk4nx8vEeU9j+FnO9d8LUjSySaQVBu3
-         fXfg==
-X-Gm-Message-State: AOAM533rIKKWUCeoZX6lv216tgAcDKok/jp/Ir1b65qu8fSQdbkA5Hzy
-        zcs9H2rN1WjPV7KGLtTkmQ==
-X-Google-Smtp-Source: ABdhPJzv+EDixs5xzwCy1Hkn0ymZdtdR/kZiYhhJkzZnPP68bdXdn/A7TPW34L9FkBMJp0RxYfnXYg==
-X-Received: by 2002:a4a:bb14:: with SMTP id f20mr9304125oop.1.1614977424707;
-        Fri, 05 Mar 2021 12:50:24 -0800 (PST)
+        bh=tCTsWhSOl0VSvNM9dJzSETj+napvS3H1QXFbSSLzpV0=;
+        b=Nj1pWHd49J1Sg5sEE5xvSOM5cAF4vDA4rQbRxCR8IkzhgcvPpQwi9hUwvOI2Y7Yi+A
+         Q/ShyMMwAnsIw2iS8pAkEEFPoeqqpCp1joA9STHkwjXzoIaR8N1yzspeaW956/DyuhfE
+         DLspNK/GJaA1u0ucsx+UvAuQSI0tV9vFITLWPQLQyw1zFWDA8x0w8ilZ60qatrzH1RlC
+         d/NkhIEARTF7ooFzuSllcuLN3PtxBrCBfn/zSzACcZ2j1c3p6NHoxsgHEQPBoAoWTcvA
+         8xEXuVjzrAppqPca5lJOxVv+AKYgQMiMlKpxG55hQ5iA9GbhWdXm0fbh3fve+/1uo2Xg
+         kH6Q==
+X-Gm-Message-State: AOAM533en4uP1mooSBTXjgY4GSOU52bw6/vpACE5Vri/rpQuLNdCIvuf
+        b2ofEYISn8YsTknCsShAIg==
+X-Google-Smtp-Source: ABdhPJxZev2D1I4Q9LzV3e74lC2o5oxAXT6c99TN3OZNkH26a4it0BFlXTgREs3ZAlErkNfA0Mur3A==
+X-Received: by 2002:a9d:7c3:: with SMTP id 61mr9704874oto.349.1614978102375;
+        Fri, 05 Mar 2021 13:01:42 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 85sm732499oii.39.2021.03.05.12.50.23
+        by smtp.gmail.com with ESMTPSA id r3sm746186oif.5.2021.03.05.13.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 12:50:24 -0800 (PST)
-Received: (nullmailer pid 622024 invoked by uid 1000);
-        Fri, 05 Mar 2021 20:50:22 -0000
-Date:   Fri, 5 Mar 2021 14:50:22 -0600
+        Fri, 05 Mar 2021 13:01:41 -0800 (PST)
+Received: (nullmailer pid 636697 invoked by uid 1000);
+        Fri, 05 Mar 2021 21:01:40 -0000
+Date:   Fri, 5 Mar 2021 15:01:40 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     mgross@linux.intel.com
-Cc:     markgross@kernel.org, damien.lemoal@wdc.com,
-        paul.walmsley@sifive.com, bp@suse.de, robh+dt@kernel.org,
-        dragan.cvetic@xilinx.com, jassisinghbrar@gmail.com,
+Cc:     markgross@kernel.org, arnd@arndb.de, bp@suse.de,
+        damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        peng.fan@nxp.com, shawnguo@kernel.org, jassisinghbrar@gmail.com,
+        linux-kernel@vger.kernel.org,
         Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        palmerdabbelt@google.com, gregkh@linuxfoundation.org,
-        peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, corbet@lwn.net, arnd@arndb.de,
-        shawnguo@kernel.org
-Subject: Re: [PATCH v6 02/34] dt-bindings: mailbox: Add Intel VPU IPC mailbox
- bindings
-Message-ID: <20210305205022.GA621972@robh.at.kernel.org>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 04/34] dt-bindings: Add bindings for Keem Bay IPC
+ driver
+Message-ID: <20210305210140.GA622142@robh.at.kernel.org>
 References: <20210212222304.110194-1-mgross@linux.intel.com>
- <20210212222304.110194-3-mgross@linux.intel.com>
+ <20210212222304.110194-5-mgross@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210212222304.110194-3-mgross@linux.intel.com>
+In-Reply-To: <20210212222304.110194-5-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Feb 2021 14:22:32 -0800, mgross@linux.intel.com wrote:
+On Fri, Feb 12, 2021 at 02:22:34PM -0800, mgross@linux.intel.com wrote:
 > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 > 
-> Add bindings for the Intel VPU IPC mailbox driver.
+> Add DT binding documentation for the Intel Keem Bay IPC driver, which
+
+Bindings are for h/w blocks, not drivers. From a binding perspective, I 
+don't really care what the driver architecture for some OS looks like. I 
+continue to not understand what this h/w looks like. A block diagram 
+would help as would understanding what blocks have multiple clients 
+(mailboxes and xlink in particular).
+
+> enables communication between the Computing Sub-System (CSS) and the
+> Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+> Bay.
 > 
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: devicetree@vger.kernel.org
+> Reviewed-by: Mark Gross <mgross@linux.intel.com>
 > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 > Signed-off-by: Mark Gross <mgross@linux.intel.com>
 > ---
->  .../mailbox/intel,vpu-ipc-mailbox.yaml        | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/intel,vpu-ipc-mailbox.yaml
+>  .../bindings/soc/intel/intel,keembay-ipc.yaml | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
 > 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+> new file mode 100644
+> index 000000000000..586fe73f4cd4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2020 Intel Corporation
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Keem Bay IPC
+> +
+> +maintainers:
+> +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> +
+> +description:
+> +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
+> +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
+> +  Keem Bay.
+> +
+> +properties:
+> +  compatible:
+> +    const: intel,keembay-ipc
+> +
+> +  memory-region:
+> +    items:
+> +      - description:
+> +          Reserved memory region used by the CPU to allocate IPC packets.
+> +      - description:
+> +          Reserved memory region used by the VPU to allocate IPC packets.
+> +
+> +  mboxes:
+> +    description: VPU IPC Mailbox.
+> +
+> +required:
+> +  - compatible
+> +  - memory-region
+> +  - mboxes
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ipc {
+> +          compatible = "intel,keembay-ipc";
+> +          memory-region = <&ipc_cpu_reserved>, <&ipc_vpu_reserved>;
+> +          mboxes = <&vpu_ipc_mbox 0>;
+> +    };
+> -- 
+> 2.17.1
+> 
