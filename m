@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F5C32ECE8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 15:16:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2A132ECEC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 15:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbhCEOPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 09:15:46 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:33434 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbhCEOPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 09:15:38 -0500
-Received: by mail-oi1-f182.google.com with SMTP id a13so2684602oid.0;
-        Fri, 05 Mar 2021 06:15:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=TY2WFlvvKzi+Asx6ZLSCbDuaLyq9jcqvoByqP07qDkM=;
-        b=V8UU1LRuVo0L2JE3zNIq47SkBVP2KBX3B3L5j4TFejTbbGSHJuIKejhVPAG+XzZ689
-         d1Fge2oLOpZzX8lMzw2eNTbX7h8HDXLqvHDWyQDoa/Nksv43Jczrrp8FrEeLQmFt3ZkI
-         wV/cDLuQU3BNIxX9vQLkSCqqf8rXqypIMk1icHto0iB3k95SL5mTEQO2yRiMd9YSIvzs
-         FkAv46YPpNhrEEhEPLTdMhonJv5nz7lSZOqZTA2Jzp19IcLQl8AphTds7jbVEI2+JztE
-         P2GRM3NjAfimsvMIU0KNxIe7l31jsgmrsKTi+Icu5uffqBF3v9gVPltNY90IqjNHEl3Y
-         WHaA==
-X-Gm-Message-State: AOAM533nKSlZJpnx2pRrFVF7Rp0okYH7If2kQfjoMi34fM7GcNaN8hTE
-        s2fjvDJ1q0jhI+wC97pWRbCWMlCSZg==
-X-Google-Smtp-Source: ABdhPJxetbETFVSnBrp8x8stRbb4Pkr3ZJTZWPOABSPyCyCBvbNxFitUWeVEPZyr4YkhLVYhF7tp8w==
-X-Received: by 2002:aca:2411:: with SMTP id n17mr6213097oic.40.1614953737997;
-        Fri, 05 Mar 2021 06:15:37 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w7sm550451oie.7.2021.03.05.06.15.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 06:15:37 -0800 (PST)
-Received: (nullmailer pid 90443 invoked by uid 1000);
-        Fri, 05 Mar 2021 14:15:34 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        kgunda@codeaurora.org, Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-In-Reply-To: <1614925799-3172-3-git-send-email-skakit@codeaurora.org>
-References: <1614925799-3172-1-git-send-email-skakit@codeaurora.org> <1614925799-3172-3-git-send-email-skakit@codeaurora.org>
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert pmic gpio bindings to YAML
-Date:   Fri, 05 Mar 2021 08:15:34 -0600
-Message-Id: <1614953734.197344.90442.nullmailer@robh.at.kernel.org>
+        id S231249AbhCEOQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 09:16:17 -0500
+Received: from www.zeus03.de ([194.117.254.33]:34610 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231163AbhCEOPp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 09:15:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=l+NCnkmBW6GUHne74p++MuxOz+5D
+        xZBxL3e3nPiwtms=; b=rIKVyKH3Bq62aYGC2FdhEUwQ4/mIxTcIR0dSKePya7MM
+        NXGp3jgLNTpfMu79KThaCPWTghhPrjrC8I/Ek7ZCFyzNeYRditt1x9zzneTF0r90
+        Fd+osSd5CvVpfVS7eCYPZiZGqkbzg6XtmoEBRhpAAAlPd6pbC/Bx82I7Rq2oNWQ=
+Received: (qmail 2247248 invoked from network); 5 Mar 2021 15:15:43 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Mar 2021 15:15:43 +0100
+X-UD-Smtp-Session: l3s3148p1@EPcxuMq8VplN91Vm
+Date:   Fri, 5 Mar 2021 15:15:43 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] arm64: dts: renesas: falcon: Add I2C EEPROMs and
+ sub-boards
+Message-ID: <20210305141543.GB1312@kunai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210304153257.4059277-1-geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
+Content-Disposition: inline
+In-Reply-To: <20210304153257.4059277-1-geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Mar 2021 11:59:58 +0530, satya priya wrote:
-> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 272 --------------------
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 273 +++++++++++++++++++++
->  2 files changed, 273 insertions(+), 272 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+--WYTEVAkct0FjGQmd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:10:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:131:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:136:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:141:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:155:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:190:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:195:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:198:12: [warning] wrong indentation: expected 12 but found 11 (indentation)
-./Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml:200:16: [warning] wrong indentation: expected 13 but found 15 (indentation)
+On Thu, Mar 04, 2021 at 04:32:54PM +0100, Geert Uytterhoeven wrote:
+> 	Hi all,
+>=20
+> This patch series adds the device nodes for all I2C EEPROMs in the
+> Falcon board stack.  As some EEPROMs are located on sub-boards,
+> it also introduces individual .dtsi files for these sub-boards.
+> Note that (for now) these sub-boards don't have compatible values or
+> model strings, as I think this needs more discussion.
+>=20
+> This has been tested on the Falcon boards in Magnus' and Kieran's farms.
+> The EEPROM on the CPU board in Magnus' farm contains some data.
+> All other EEPROMs are present, but in pristine state (all ones).
+>=20
+> Changes compared to v1:
+>   - Move EEPROMs in sub-boards to separate .dtsi files and patches.
+>=20
 
-dtschema/dtc warnings/errors:
+Checked the datasheets and tested, too, so:
 
-See https://patchwork.ozlabs.org/patch/1447657
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+One minor question is: why do the labels in patches 2+3 have the "-id"
+suffix and patch 1 does not? Don't we want consistency here?
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
+--WYTEVAkct0FjGQmd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please check and re-submit.
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBCPQ8ACgkQFA3kzBSg
+KbbZiw/7B5Oc+BXTdoAgF3/MDzjhNCKKHa6IUQF9j8fnTep2l5tL1t33xUN9GMxw
+I0nOXQ1WJ96STgAOArStQhUH/0PdhQ/AGpOSD7Iz7xz8giGePfRkRUR3oPjRJOym
+P8kxiI9qGkWP06D2JFfngoRaGmtGezD4Xa35PjiREVOCdYq74/f4M2Dif/TwpgvT
+4jFf6+3pF+3Tn1ciNzXRXW2OzvG+hI4wIH3kyykMYdFor3rNbxo0K/BL7b90uApU
+XTpXQK5MnFU2TM88O9okGVcOoE1bDUo+tvGgQt+ZrvKe2AKv9Uo9DZI1cY8/2AvY
+F6sdeLqR3GOUybRX5+g5U1htIlUqS3NBpqOYYQ5Tx8vUgqRCJGl9jt1UaRFKVhYG
+hCOYMknp8kvoZNhGOH2ciNg2r4lE10/tIx55WpIFOGXAOIvKJF+jsm7aKqGju7ac
+pF0dYThf5AjU9wV+1b+OyyjqTLg1CdAVClwFrAmwfIulL8yfTmN7/ANblYKHztNu
+Xk7NGK0ibwhNLjJaxsY1VSNANj+lHIo1eGkU5OQrF0exFXl5e+JiKSYbM/z9G0Rx
+GDLc+Dl1Nh3SUh4JGmgfGcZ5dhk/p5ir8tSB/GejiKwO+7cegIzIBGoUs03VXYg8
+mIDsmNr9+mkkv2f868kRJwLkHdWkeLWYOhODa2FmxVO7N6rkd+E=
+=EK0H
+-----END PGP SIGNATURE-----
+
+--WYTEVAkct0FjGQmd--
