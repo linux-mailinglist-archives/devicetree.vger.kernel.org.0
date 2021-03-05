@@ -2,177 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6569732E4CA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 10:28:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7EA32E4E3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 10:33:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbhCEJ2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 04:28:17 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35630 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbhCEJ1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 04:27:54 -0500
-Received: from [IPv6:2a01:e0a:4cb:a870:b9e2:e9f:d661:5a2f] (unknown [IPv6:2a01:e0a:4cb:a870:b9e2:e9f:d661:5a2f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 9279D1F468C9;
-        Fri,  5 Mar 2021 09:27:47 +0000 (GMT)
-Subject: Re: [PATCH v4 05/11] media: hantro: Add a field to distinguish the
- hardware versions
-To:     Ezequiel Garcia <ezequiel@collabora.com>, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, peng.fan@nxp.com,
-        hverkuil-cisco@xs4all.nl, dan.carpenter@oracle.com
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20210303113952.178519-1-benjamin.gaignard@collabora.com>
- <20210303113952.178519-6-benjamin.gaignard@collabora.com>
- <32899bc605ae7173c29b25a396e21d7fad32d4bf.camel@collabora.com>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <23f62276-237d-1161-259a-84748db7365b@collabora.com>
-Date:   Fri, 5 Mar 2021 10:27:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229589AbhCEJdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 04:33:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229666AbhCEJcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 04:32:36 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBD0C061574;
+        Fri,  5 Mar 2021 01:32:36 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id o6so1605712pjf.5;
+        Fri, 05 Mar 2021 01:32:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qlaOlPxH8Zhtxoq9sQT2kqVDB3VTC2lAkFE3uKaCSs0=;
+        b=l9zC5NxXiCZPKfyavKoqgPEuKb/8RgMHLiiAPqENWvDj50ekCI9sFM2AsQ7c+sFMJX
+         sfEJ9qY5Y/C7xKhzqObiw4eK3jZfm5eWM1FjxWBUOJZLAvYaAmkvdeq2NBMHLywUHtVY
+         7dIfvcnXm3X8okewZuBqUyYWDLSRymOMlILXQqlOFv7w/A0jcB0zc43is/HZTwVnPnf5
+         ygAC2dz52JSQrAkTAA7X8Ir59b3te3tesx7DTl8EDItlrbd3f1C4HVkPvJZtaL+t+6EF
+         nwk72iDQ7ajE4ujKe3TUBAPUmVNjl7OhJa1aRWWVIpDuDV2EEtvStyaDhPfOz3nXaTPd
+         HOjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qlaOlPxH8Zhtxoq9sQT2kqVDB3VTC2lAkFE3uKaCSs0=;
+        b=e0FAzxsU3Qm39RvAuqcXy1mj/1OnsBRMJAZFNqufwerU4tW/uVPz/xI36tquuU5l1A
+         uE80bn6TjcRatbvMcl2MWPrCnDfjU9BdQAuUy007s6FKHcSoxr7VsQz4KrmazpR4Qqcd
+         FKi9G463Ibj2RSwD1EbVH5G6g8kWxtntNrIzQ/lLruHR1GNMILb68oTYO/CsH02vWC/p
+         A83OFiRbhcrseW5mt/cY1iw+a1idItLfkPVUiJqKsLzoyZ5vIa0oGZAnGuJDVfVhpIxh
+         /Hz0KktuTOA8GR+ma2pSPYvEPBKRdLIRWzqWw1+I1X+sqnNe8amiPmvxUWnF66qNz0lJ
+         TUDQ==
+X-Gm-Message-State: AOAM5302sGCjntY8jqEELZ8Nj4k5b5wZoX06p6X5krdFVcs/Re7Lk0Ml
+        afn+9aMXBxsrkWeCHj+2HCM=
+X-Google-Smtp-Source: ABdhPJxwaZiAt9xWzko57VylfxIb4L8IF71cfnxEDaKk95zKhLLEFv/627CqdtqbrJaREDsl3Ylv+Q==
+X-Received: by 2002:a17:90a:34cc:: with SMTP id m12mr9128555pjf.232.1614936755648;
+        Fri, 05 Mar 2021 01:32:35 -0800 (PST)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id f3sm1873967pfe.25.2021.03.05.01.32.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Mar 2021 01:32:35 -0800 (PST)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Kevin Tang <kevin.tang@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: [PATCH v5 0/2] Add Unisoc IOMMU basic driver
+Date:   Fri,  5 Mar 2021 17:32:14 +0800
+Message-Id: <20210305093216.201897-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <32899bc605ae7173c29b25a396e21d7fad32d4bf.camel@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-Le 03/03/2021 à 23:05, Ezequiel Garcia a écrit :
-> On Wed, 2021-03-03 at 12:39 +0100, Benjamin Gaignard wrote:
->> Decoders hardware blocks could exist in multiple versions: add
->> a field to distinguish them at runtime.
->> G2 hardware block doesn't have postprocessor hantro_needs_postproc
->> function should always returns false in for this hardware.
->> hantro_needs_postproc function becoming to much complex to
->> stay inline in .h file move it to .c file.
->>
-> Note that I already questioned this patch before:
->
-> https://lkml.org/lkml/2021/2/17/722
->
-> I think it's better to rely on of_device_id.data for this
-> type of thing.
->
-> In particular, I was expecting that just using
-> hantro_variant.postproc_regs would be enough.
->
-> Can you try if that works and avoid reading swreg(0)
-> and probing the hardware core?
+Changes since v4 (https://lkml.org/lkml/2021/2/4/85):
+* Rebased on v5.12-rc1;
+* Dropped using syscon node for mapping registers according to Rob's comments.
 
-I have found a way to remove this: if the variant doesn't define
-post processor formats, needs_postproc function will always returns
-false and that what the only useful usage of this version field.
+Changes since v3 (https://lkml.org/lkml/2021/2/3/161):
+* Rebased on iommu/next, and fixed compile error reported by kernel test robot <lkp@intel.com>;
+* %s/iommu/IOMMU/ properly in the whole patchset.
 
-Benjamin
+Changes since v2 (https://lkml.org/lkml/2021/2/2/106):
+* Added a WARN and return 0 if an invalid iova was passed to sprd_iommu_iova_to_phys();
+* Changed the name of sprd_iommu_write();
+* Revised CONFIG_SPRD_IOMMU help graph in Kconfig.
+* Revised comments for the struct sprd_iommu_device;
+* Converted to use "GPL" instread of "GPL v2", they are same as license-rules.rst shows.
 
->
-> Thanks!
-> Ezequiel
->
->> Keep the default behavoir to be G1 hardware.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   drivers/staging/media/hantro/hantro.h          | 13 +++++++------
->>   drivers/staging/media/hantro/hantro_drv.c      |  2 ++
->>   drivers/staging/media/hantro/hantro_postproc.c | 17 +++++++++++++++++
->>   3 files changed, 26 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
->> index a76a0d79db9f..05876e426419 100644
->> --- a/drivers/staging/media/hantro/hantro.h
->> +++ b/drivers/staging/media/hantro/hantro.h
->> @@ -37,6 +37,9 @@ struct hantro_codec_ops;
->>   #define HANTRO_HEVC_DECODER    BIT(19)
->>   #define HANTRO_DECODERS                0xffff0000
->>   
->> +#define HANTRO_G1_REV          0x6731
->> +#define HANTRO_G2_REV          0x6732
->> +
->>   /**
->>    * struct hantro_irq - irq handler and name
->>    *
->> @@ -171,6 +174,7 @@ hantro_vdev_to_func(struct video_device *vdev)
->>    * @enc_base:          Mapped address of VPU encoder register for convenience.
->>    * @dec_base:          Mapped address of VPU decoder register for convenience.
->>    * @ctrl_base:         Mapped address of VPU control block.
->> + * @core_hw_dec_rev    Runtime detected HW decoder core revision
->>    * @vpu_mutex:         Mutex to synchronize V4L2 calls.
->>    * @irqlock:           Spinlock to synchronize access to data structures
->>    *                     shared with interrupt handlers.
->> @@ -190,6 +194,7 @@ struct hantro_dev {
->>          void __iomem *enc_base;
->>          void __iomem *dec_base;
->>          void __iomem *ctrl_base;
->> +       u32 core_hw_dec_rev;
->>   
->>          struct mutex vpu_mutex; /* video_device lock */
->>          spinlock_t irqlock;
->> @@ -412,12 +417,8 @@ hantro_get_dst_buf(struct hantro_ctx *ctx)
->>          return v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
->>   }
->>   
->> -static inline bool
->> -hantro_needs_postproc(const struct hantro_ctx *ctx,
->> -                     const struct hantro_fmt *fmt)
->> -{
->> -       return !ctx->is_encoder && fmt->fourcc != V4L2_PIX_FMT_NV12;
->> -}
->> +bool hantro_needs_postproc(const struct hantro_ctx *ctx,
->> +                          const struct hantro_fmt *fmt);
->>   
->>   static inline dma_addr_t
->>   hantro_get_dec_buf_addr(struct hantro_ctx *ctx, struct vb2_buffer *vb)
->> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
->> index f0b68e16fcc0..e3e6df28f470 100644
->> --- a/drivers/staging/media/hantro/hantro_drv.c
->> +++ b/drivers/staging/media/hantro/hantro_drv.c
->> @@ -836,6 +836,8 @@ static int hantro_probe(struct platform_device *pdev)
->>          }
->>          vpu->enc_base = vpu->reg_bases[0] + vpu->variant->enc_offset;
->>          vpu->dec_base = vpu->reg_bases[0] + vpu->variant->dec_offset;
->> +       /* by default decoder is G1 */
->> +       vpu->core_hw_dec_rev = HANTRO_G1_REV;
->>   
->>          ret = dma_set_coherent_mask(vpu->dev, DMA_BIT_MASK(32));
->>          if (ret) {
->> diff --git a/drivers/staging/media/hantro/hantro_postproc.c b/drivers/staging/media/hantro/hantro_postproc.c
->> index 6d2a8f2a8f0b..050880f720d6 100644
->> --- a/drivers/staging/media/hantro/hantro_postproc.c
->> +++ b/drivers/staging/media/hantro/hantro_postproc.c
->> @@ -50,6 +50,23 @@ const struct hantro_postproc_regs hantro_g1_postproc_regs = {
->>          .display_width = {G1_REG_PP_DISPLAY_WIDTH, 0, 0xfff},
->>   };
->>   
->> +bool hantro_needs_postproc(const struct hantro_ctx *ctx,
->> +                          const struct hantro_fmt *fmt)
->> +{
->> +       struct hantro_dev *vpu = ctx->dev;
->> +
->> +       if (ctx->is_encoder)
->> +               return false;
->> +
->> +       if (vpu->core_hw_dec_rev == HANTRO_G1_REV):q
->> +               return fmt->fourcc != V4L2_PIX_FMT_NV12;
->> +
->> +       if (vpu->core_hw_dec_rev == HANTRO_G2_REV)
->> +               return false;
->> +
->> +       return false;
->> +}
->> +
->>   void hantro_postproc_enable(struct hantro_ctx *ctx)
->>   {
->>          struct hantro_dev *vpu = ctx->dev;
->
->
+Changes since v1 (https://lkml.org/lkml/2021/1/21/563):
+* Fixed compile errors reported by kernel test robot <lkp@intel.com>.
+* Changed to use syscon to get mapped registers for iommu and media devices to avoid double map issue.
+* Addressed Robin's comments:
+- Added including offset in the returned physical address if the input virtual address isn't page-aligned;
+- Added platform_device_put() after calling of_find_device_by_node();
+- Removed iommu register offset from driver, it will be defined as the cell of DT reference to syscon phandle;
+- Removed multi compatible strings which are not needed;
+- Added comments for the function sprd_iommu_clk_enable();
+- Added clocks property in bindings;
+- Set device_driver.suppress_bind_attrs to disable unbind the devices via sysfs;
+- A few trivial fixes.
+
+Changes since RFC v2 (https://lkml.org/lkml/2021/1/8/277):
+* Addressed Robin's comments:
+- Add COMPILE_TEST support;
+- Use DMA allocator for PTE;
+- Revised to avoid resource leak issue;
+- Added ->iotlb_sync implemented;
+- Moved iommu group allocation to probe;
+- Changed some function names to make them sprd specific;
+* Added support for more iommu instance;
+
+Changes since RFC v1 (https://lkml.org/lkml/2020/12/23/209):
+* Rebased on v5.11-rc1;
+* Changed sprd-iommu to tristate;
+* Removed check for args_count of iommu OF node, since there's no args
+  for sprd-iommu device node;
+* Added another IP version (i.e. vau);
+* Removed unnecessary configs selection from CONFIG_SPRD_IOMMU;
+* Changed to get zeroed pages.
+
+Chunyan Zhang (2):
+  dt-bindings: iommu: add bindings for sprd IOMMU
+  iommu: add Unisoc IOMMU basic driver
+
+ .../devicetree/bindings/iommu/sprd,iommu.yaml |  57 ++
+ drivers/iommu/Kconfig                         |  12 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/sprd-iommu.c                    | 577 ++++++++++++++++++
+ 4 files changed, 647 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+ create mode 100644 drivers/iommu/sprd-iommu.c
+
+-- 
+2.25.1
+
