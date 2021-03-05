@@ -2,77 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C50F32DD58
-	for <lists+devicetree@lfdr.de>; Thu,  4 Mar 2021 23:48:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB70C32DE5B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 01:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232040AbhCDWsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Mar 2021 17:48:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37466 "EHLO mail.kernel.org"
+        id S229653AbhCEAgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Mar 2021 19:36:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36220 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231736AbhCDWsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Mar 2021 17:48:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D15E6501C;
-        Thu,  4 Mar 2021 22:48:54 +0000 (UTC)
+        id S229601AbhCEAgC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Mar 2021 19:36:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A07D965012;
+        Fri,  5 Mar 2021 00:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1614898134;
-        bh=GrerDAoTAovyyWNYvvC+zs2BPxmDLs2XKLKb4mqZLDY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fl2hoAYr4FyvTGzDjQer3murYeBpxPsKxixW9QAs3SiMjkbVs1F6FyKCasSDdBKDp
-         zms401sqEExyK82KF2BP0C5B1QnWwF8GmIE9Rht6pQkWowXTn1Xp/S3LL6Oba5r0nQ
-         fULHUIHs0N1ZDiSWS/9Zyac6uOLCmzYZvxglLV5bpA286cjBBokgvz4c8AJFxjB8+8
-         ORBXxQ3v1FqOKOS7oGjPWBs5NziUFCirD/ZmwTFS5WzWJCCMITmC37DONZR5KN48R3
-         e6ZhYA4UocjazvhXkVhggBXfwbffEMI3He5G+faTJl3AjHo03NKinnRCBxeqmKF4nP
-         Hg7CymCsevq4g==
-Received: by mail-ej1-f46.google.com with SMTP id w1so52703037ejf.11;
-        Thu, 04 Mar 2021 14:48:53 -0800 (PST)
-X-Gm-Message-State: AOAM532shjaGSfTJW3GVXYwzHU4fQjeVzgcy307Wk6xGu3GgzPg52dMO
-        B/S9rGWEGcN73G4U1+Tcoq7lauTljwHNT175ng==
-X-Google-Smtp-Source: ABdhPJwsSfTpWjPL+cZrEMvosQ1IPs0l8gQZ/vIA9NHMjVhs68GFDG/L9SRf5PtvlaFJJ8yVPqheQ48Al0kdk2WAF/c=
-X-Received: by 2002:a17:906:380b:: with SMTP id v11mr6717737ejc.183.1614898132557;
- Thu, 04 Mar 2021 14:48:52 -0800 (PST)
+        s=k20201202; t=1614904560;
+        bh=QahLWcayjeOiRUW3v4DB9LFDRrJlGBEW+fmSDFtQRJI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lDgESxh3pPujVLaec0g5T7ZoVok0qWQMFBwLUXrDL5DzknLQ+orjNAs+7uvmospRs
+         DsZuZktnRzROZvvchvy8dBiQUaLOk7R7KMuTSG0dX+6G8AgOuZ80QAwuohZaCYmT/l
+         9pI2Y48TelCVyFuNscRG56kbNbEd6JPgQix0HpTJmtBThVF0ULUkSLXfbE2QMog9CY
+         I9R72Xe1G/oPd0UUVu0PDmRWWOlWbSxxuZc1/a/pGdMBPsL3z+EZzzjtk72hXuCwto
+         tZ5y0Qs3vq4109QJHgRQ0yWMUU5YMcLB7DxzeTcqZsy+EQpaMeeEYt8MQT2ijS+mBD
+         e7zAm6O3gM0Tw==
+Date:   Fri, 5 Mar 2021 08:35:55 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: add interrupt to Root Complex Event
+ Collector
+Message-ID: <20210305003554.GS15865@dragon>
+References: <20210209005259.29725-1-michael@walle.cc>
 MIME-Version: 1.0
-References: <1614222604-27066-1-git-send-email-peng.fan@oss.nxp.com> <1614222604-27066-5-git-send-email-peng.fan@oss.nxp.com>
-In-Reply-To: <1614222604-27066-5-git-send-email-peng.fan@oss.nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 4 Mar 2021 16:48:40 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKAOUKnVLvu-VNeDVg0ShXPy56wxhCQv38+rO2k961v+g@mail.gmail.com>
-Message-ID: <CAL_JsqKAOUKnVLvu-VNeDVg0ShXPy56wxhCQv38+rO2k961v+g@mail.gmail.com>
-Subject: Re: [PATCH V3 4/5] dt-bindings: mmc: fsl-imx-esdhc: add clock bindings
-To:     peng.fan@oss.nxp.com
-Cc:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209005259.29725-1-michael@walle.cc>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 9:23 PM <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Add clock bindings for fsl-imx-esdhc yaml
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+On Tue, Feb 09, 2021 at 01:52:59AM +0100, Michael Walle wrote:
+> The legacy interrupt INT_A is hardwired to the event collector. RCEC is
+> bascially supported starting with v5.11. Having a correct interrupt, will
+> make RCEC at least probe correctly.
+> 
+> There are still issues with how RCEC is implemented in the RCiEP on the
+> LS1028A. RCEC will report an error, but it cannot find the correct
+> subdevice.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-Looks like this landed in linux-next and introduces warnings:
-
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml:
-mmc@5b010000: clock-names:1: 'ahb' was expected
- From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml:
-mmc@5b010000: clock-names:2: 'per' was expected
- From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+Applied, thanks.
