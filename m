@@ -2,125 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D9F32EC27
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:31:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 323A232EC2A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:31:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230404AbhCENax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230341AbhCENax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 5 Mar 2021 08:30:53 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:58114 "EHLO inva021.nxp.com"
+Received: from inva021.nxp.com ([92.121.34.21]:58134 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230390AbhCENan (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S230386AbhCENan (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Fri, 5 Mar 2021 08:30:43 -0500
 Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 29BA12010AA;
-        Fri,  5 Mar 2021 14:30:40 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3C8162006AC;
+        Fri,  5 Mar 2021 14:30:41 +0100 (CET)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 240B02006AC;
-        Fri,  5 Mar 2021 14:30:35 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6D7362010B6;
+        Fri,  5 Mar 2021 14:30:36 +0100 (CET)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BF263402AA;
-        Fri,  5 Mar 2021 14:30:28 +0100 (CET)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 00C65402C9;
+        Fri,  5 Mar 2021 14:30:29 +0100 (CET)
 From:   Dong Aisheng <aisheng.dong@nxp.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
         robh+dt@kernel.org, linux-imx@nxp.com, jan.kiszka@siemens.com,
         Dong Aisheng <aisheng.dong@nxp.com>
-Subject: [PATCH v5 00/18] arm64: dts: imx8: architecture improvement and adding imx8qm support
-Date:   Fri,  5 Mar 2021 21:17:29 +0800
-Message-Id: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
+Subject: [PATCH v5 01/18] dt-bindings: arm: fsl: add imx8qm boards compatible string
+Date:   Fri,  5 Mar 2021 21:17:30 +0800
+Message-Id: <1614950268-22073-2-git-send-email-aisheng.dong@nxp.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
+References: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IMX SCU based platforms (e.g. MX8QM/MX8QXP) are comprised of a number of SS
-(Subsystems), those SS may be shared between different SoCs while most of them
-can be reused like Devices Resources, Clocks, Power domains and etc.
+Add imx8qm boards compatible string
 
-This patch series aims to improve the MX8 architecture to comply with the HW
-design to save a lot of duplicated codes and benefits us a better
-maintainability and scalability in the future.
+Cc: devicetree@vger.kernel.org
+Cc: Shawn Guo <shawnguo@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-ChangeLog:
-v5:
- * rebase to latest shawn/for-next
- * make mx8qm usdhc compatible with imx8qxp
-v4-resend:
- * no change except put three module binding patches first which are used
-   by this patchset.
-v3->v4:
- * mainly rebase to latest kernel except a few very minor changes like change to use
-   new scu protocol binding which was not supported in last version
-v2->v3:
- * use clock-indices property instead of bit-offset property suggested by Shawn Guo
- * rebase to latest shawn/for-next
-v1->v2:
- * change to the new two cells scu clock binding, so original adding scu clocks
-   patches were removed.
- * Move scu pd node above clk node
-
-
-Dong Aisheng (18):
-  dt-bindings: arm: fsl: add imx8qm boards compatible string
-  dt-bindings: mailbox: mu: add imx8qm support
-  arm64: dts: imx8qxp: add fallback compatible string for scu pd
-  arm64: dts: imx8qxp: move scu pd node before scu clock node
-  arm64: dts: imx8qxp: orginize dts in subsystems
-  arm64: dts: imx8: add lsio lpcg clocks
-  arm64: dts: imx8: add conn lpcg clocks
-  arm64: dts: imx8: add adma lpcg clocks
-  arm64: dts: imx8: switch to two cell scu clock binding
-  arm64: dts: imx8: switch to new lpcg clock binding
-  arm64: dts: imx8qm: add lsio ss support
-  arm64: dts: imx8qm: add conn ss support
-  arm64: dts: imx8: split adma ss into dma and audio ss
-  arm64: dts: imx8qm: add dma ss support
-  arm64: dts: imx: add imx8qm common dts file
-  arm64: dts: imx: add imx8qm mek support
-  arm64: defconfig: add imx8qm mek support
-  firmware: imx: scu-pd: do not power off console domain
-
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- .../devicetree/bindings/mailbox/fsl,mu.yaml   |   5 +-
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8-ss-adma.dtsi      |   8 +
- .../boot/dts/freescale/imx8-ss-audio.dtsi     |  68 +++
- .../boot/dts/freescale/imx8-ss-conn.dtsi      | 184 ++++++++
- .../arm64/boot/dts/freescale/imx8-ss-ddr.dtsi |  18 +
- .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 202 +++++++++
- .../boot/dts/freescale/imx8-ss-lsio.dtsi      | 311 +++++++++++++
- arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 144 ++++++
- .../boot/dts/freescale/imx8qm-ss-conn.dtsi    |  21 +
- .../boot/dts/freescale/imx8qm-ss-dma.dtsi     |  51 +++
- .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    |  61 +++
- arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 176 ++++++++
- .../boot/dts/freescale/imx8qxp-ai_ml.dts      |  20 +-
- .../freescale/imx8qxp-colibri-eval-v3.dtsi    |   8 +-
- .../boot/dts/freescale/imx8qxp-colibri.dtsi   |  12 +-
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  50 +--
- .../boot/dts/freescale/imx8qxp-ss-adma.dtsi   |  37 ++
- .../boot/dts/freescale/imx8qxp-ss-conn.dtsi   |  25 ++
- .../boot/dts/freescale/imx8qxp-ss-lsio.dtsi   |  61 +++
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 423 ++----------------
- arch/arm64/configs/defconfig                  |   1 +
- drivers/firmware/imx/scu-pd.c                 |  28 +-
- 24 files changed, 1481 insertions(+), 440 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-mek.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-adma.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-lsio.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 297c87f45db8..842bb061d1e4 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -755,6 +755,12 @@ properties:
+           - const: zii,imx8mq-ultra
+           - const: fsl,imx8mq
+ 
++      - description: i.MX8QM based Boards
++        items:
++          - enum:
++              - fsl,imx8qm-mek           # i.MX8QM MEK Board
++          - const: fsl,imx8qm
++
+       - description: i.MX8QXP based Boards
+         items:
+           - enum:
 -- 
 2.25.1
 
