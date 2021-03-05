@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9960732E68F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7C232E6AB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhCEKkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:40:18 -0500
-Received: from 2.mo173.mail-out.ovh.net ([178.33.251.49]:35106 "EHLO
-        2.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbhCEKjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:39:49 -0500
-Received: from player787.ha.ovh.net (unknown [10.108.35.158])
-        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 773B6160A8F
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 11:39:47 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player787.ha.ovh.net (Postfix) with ESMTPSA id 46D2E1BE6FC32;
-        Fri,  5 Mar 2021 10:39:37 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-97G002147fd398-b58b-41e1-ab1a-00ab95efaa5d,
-                    4F7D11A3904BD8E553EC742B87CBB6774FEDAA0F) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH 2/2] nvmem: iomap: new driver exposing NVMEM accessible
- using I/O mapping
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mips@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-kernel@vger.kernel.org
-References: <20210304144132.24098-1-zajec5@gmail.com>
- <20210304144132.24098-2-zajec5@gmail.com>
- <047bced8-6c20-4a0a-c7ea-e0ad83318461@linaro.org>
- <93708a21-3444-f68e-c834-a4f769a0acba@milecki.pl>
- <35e498b6-3b2c-d154-db00-d755af339b60@linaro.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <ba4e4376-7d75-4b0e-9d59-26e32dbe2029@milecki.pl>
-Date:   Fri, 5 Mar 2021 11:39:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S229597AbhCEKrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:47:01 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:45984 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229558AbhCEKqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:46:40 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 57AFC1C0B7D; Fri,  5 Mar 2021 11:46:35 +0100 (CET)
+Date:   Fri, 5 Mar 2021 11:46:35 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: serdev: ngsm: Add binding for GNSS
+ child node
+Message-ID: <20210305104635.GA16695@duo.ucw.cz>
+References: <20200512214713.40501-1-tony@atomide.com>
+ <20200512214713.40501-4-tony@atomide.com>
+ <20200527192817.GA2587830@bogus>
+ <20200528095151.GE10358@localhost>
 MIME-Version: 1.0
-In-Reply-To: <35e498b6-3b2c-d154-db00-d755af339b60@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 752945565747678743
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddtiedgudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeduheejheffudefhffghfegjeejleetkeevueelveegkefhhfffieehleelgfevnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="CE+1k2dSO48ffgeK"
+Content-Disposition: inline
+In-Reply-To: <20200528095151.GE10358@localhost>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05.03.2021 11:33, Srinivas Kandagatla wrote:
-> On 05/03/2021 10:24, Rafał Miłecki wrote:
->>>>
->>>> +static int iomap_read(void *context, unsigned int offset, void *val,
->>>> +              size_t bytes)
->>>> +{
->>>> +    struct iomap *priv = context;
->>>> +    u8 *src = priv->base + offset;
->>>> +    u8 *dst = val;
->>>> +    size_t tmp;
->>>> +
->>>> +    tmp = offset % 4;
->>>> +    memcpy_fromio(dst, src, tmp);
->>>> +    dst += tmp;
->>>> +    src += tmp;
->>>> +    bytes -= tmp;
->>>> +
->>>> +    tmp = rounddown(bytes, 4);
->>>> +    __ioread32_copy(dst, src, tmp / 4);
->>>> +    dst += tmp;
->>>> +    src += tmp;
->>>> +    bytes -= tmp;
->>>> +
->>>> +    memcpy_fromio(dst, src, bytes);
->>>> +
->>>
->>>
->>> You could just do this!
->>>
->>>      while (bytes--)
->>>          *val++ = readb(priv->base + offset + i++);
->>
->> Do you mean that as replacement for "memcpy_fromio" or the whole
->> function code?
-> 
-> Yes please!
-> 
->> The reason for using __ioread32_copy() was to improve reading
->> performance (using aligned 32 bit access where possible). I'm not sure
->> if that really matters?
-> 
-> Just simple while loop is much readable than the previous code TBH!
-> 
->>
-> 
->> P.S.
->> Please don't yell at me in every sentence :( Makes me a bit sad :(
-> Sorry!! I did not mean anything as such! :-)
 
-All clear (I hope)! Thanks for your review!
+--CE+1k2dSO48ffgeK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+> > > For motorola modem case, we may have a GNSS device on channel 4.
+> > > Let's add that to the binding and example.
+> > >=20
+> > > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > ---
+> > >  .../devicetree/bindings/serdev/serdev-ngsm.yaml          | 9 +++++++=
+++
+> > >  1 file changed, 9 insertions(+)
+
+>=20
+> And since we're describing a mux, I think you need nodes for the virtual
+> ports rather than a reg property in what should be a serial client. That
+> is something like
+>=20
+> 	serial@nnn {
+> 		modem {
+> 			compatible =3D "etsi,ts27001-mux";
+>=20
+> 			serial@4 {
+> 				compatible =3D "etsi,ts27001-serial";
+> 				reg =3D <4>;
+>=20
+> 				gnss {
+> 					compatible =3D "motorola,motmdm-gnss";
+> 				};
+> 			};
+> 		};
+> 	};
+>=20
+> This way you can actually use serdev for the client drivers (e.g. for
+> gnss), and those drivers also be used for non-muxed ports if needed
+> (e.g. over USB).
+
+I have done changes you requested, and then hit "serdev is busy
+because it can have at most one child" limit in the code. You have
+pretty clean driver in your inbox, and no reply. No help with serdev
+core limitations, either. Can you start to communicate?
+
+Best regards,
+								Pavel
+
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--CE+1k2dSO48ffgeK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYEIMCwAKCRAw5/Bqldv6
+8vX6AKDEZXZzQRsFq96/zZjnwyH4M5OK9ACgvXWJAfROdL/PovAeI57QNdO1xfY=
+=nOBS
+-----END PGP SIGNATURE-----
+
+--CE+1k2dSO48ffgeK--
