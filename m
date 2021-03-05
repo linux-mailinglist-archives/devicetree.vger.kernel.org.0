@@ -2,71 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C34EE32F39C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F33032F3A3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:15:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbhCETN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 14:13:58 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33091 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229730AbhCETNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:13:41 -0500
-Received: by mail-oi1-f169.google.com with SMTP id a13so3711104oid.0;
-        Fri, 05 Mar 2021 11:13:41 -0800 (PST)
+        id S229783AbhCETPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 14:15:03 -0500
+Received: from mail-oo1-f42.google.com ([209.85.161.42]:37395 "EHLO
+        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230056AbhCETOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:14:38 -0500
+Received: by mail-oo1-f42.google.com with SMTP id e17so686585oow.4
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 11:14:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7j21bnY8V6XoojzoBkuZb1Em80loFildh8CKtjCoQFY=;
-        b=YjhR0zhQOuDi8B6hlFlfTN2GWwV0YjD6D6S1kMhRPy5C0DoxrjGF6aCm3eoCSR+Evt
-         mBI+9AqrJ2TbDc4df7bRU615bI3JozY6zzItwQNTSNhCJiTZoD/uIassja2sOMQDkPiC
-         JgIes2QOCWrdlY+Hch8gFj1wgtgvofIBjmerR/GDow/BBH8y7YbT5Xgqd82MTHBLBbL8
-         nN+xqIoUi6+PWrh9GJyGq4ooweBXulEv39DW4Y9ihcFYDDLogkkNpoWsdT0MpPk93rWX
-         Dlv0cZULv4t/tbtBgy9SbxqDew/U/b2QoNPPiBZeuRMr9DvGgW5kVxPjAZ39YZWUsSv3
-         rnkw==
-X-Gm-Message-State: AOAM533U7duIaqYbnlwt2BbSe1fgMMgU7NFiXJjZYZOznj+VBaz8dArj
-        PiQsoIFJ5NknJljAVUT6Pw==
-X-Google-Smtp-Source: ABdhPJzdQQd2b6iohPA/qBq+VyyV2jEDmlGbzbgOGcsS+r86TXvBx5D0DH4bTuYrinqaApp6cKEM0w==
-X-Received: by 2002:aca:5cd6:: with SMTP id q205mr8201202oib.94.1614971621083;
-        Fri, 05 Mar 2021 11:13:41 -0800 (PST)
+        bh=ahnVuVrp3hmi8OUmRx9LZ5ZjgKO6WwU83me0vSNT/jM=;
+        b=AoxKHzkctgiNGDxEmQVb0vGchbqSvwd9DxWrEVXBLzgOsg3K4mohjC2f2/vJHH5D4A
+         4RZn+B9io73E0uoyEOYK29iEzLrAmkF3jJvyuhpgm8iVsMEGuEEPIJyfvuDWiQrc7y/w
+         +xlcwRWIupLTcnVsA3N8SUKQpWk0F0x1QLpEjfXrgW+W2CWOGrimBpMVhqEofOHC+2+w
+         9p4vrlpqm8fhLnJAXkIMmZ8OuIdwDSiVyN33dt8BNn7d0Yn60mtDZG+32wGOkieK48Z/
+         Vk9T7ISeh7vrq5pfE1Ee62fbFMfMhJxKX4SXHZ3gQ1voM8dtT7V+dIcwzrTrkWgSKHD8
+         /H9g==
+X-Gm-Message-State: AOAM530lgMRZPtJpqWH7+TSr7Q2Bwe/kkj5M9lTbv67oeWAqr+FPMbFh
+        iqKk65l7PHvZ8v/GSPPcNg==
+X-Google-Smtp-Source: ABdhPJxAtGAYmnXHAGusGObW6k43DZ48CS1JE+xa7Bv8d5o3UT8yuZqG/VMK0adpv9k9plZkOCTHCQ==
+X-Received: by 2002:a4a:6b44:: with SMTP id h4mr8948136oof.38.1614971677892;
+        Fri, 05 Mar 2021 11:14:37 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k21sm763429otl.27.2021.03.05.11.13.39
+        by smtp.gmail.com with ESMTPSA id y143sm694815oie.50.2021.03.05.11.14.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 11:13:40 -0800 (PST)
-Received: (nullmailer pid 494318 invoked by uid 1000);
-        Fri, 05 Mar 2021 19:13:39 -0000
-Date:   Fri, 5 Mar 2021 13:13:39 -0600
+        Fri, 05 Mar 2021 11:14:37 -0800 (PST)
+Received: (nullmailer pid 495683 invoked by uid 1000);
+        Fri, 05 Mar 2021 19:14:36 -0000
+Date:   Fri, 5 Mar 2021 13:14:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     ezequiel@collabora.com, robh+dt@kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        cmuellner@linux.com, kishon@ti.com, vkoul@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add yaml binding for
- rockchip-inno-csi-dphy
-Message-ID: <20210305191339.GA494261@robh.at.kernel.org>
-References: <20210210214205.2496336-1-heiko@sntech.de>
- <20210210214205.2496336-2-heiko@sntech.de>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        David Airlie <airlied@linux.ie>
+Subject: Re: [PATCH v7] dt-bindings: display: panel: one file of all simple
+ LVDS panels with dual ports
+Message-ID: <20210305191436.GA495631@robh.at.kernel.org>
+References: <1613017672-2734-1-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210210214205.2496336-2-heiko@sntech.de>
+In-Reply-To: <1613017672-2734-1-git-send-email-victor.liu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Feb 2021 22:42:04 +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+On Thu, 11 Feb 2021 12:27:52 +0800, Liu Ying wrote:
+> To complement panel-simple.yaml, create panel-simple-lvds-dual-ports.yaml.
+> panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels that
+> have dual LVDS ports and require only a single power-supply.
+> The first port receives odd pixels, and the second port receives even pixels.
+> Optionally, a backlight and an enable GPIO can be specified as properties.
 > 
-> Some Rockchip SoCs like the rk3368, rk3326, px30 use a CSI dphy
-> based on an Innosilicon IP. Add a binding for them.
+> Panels with swapped pixel order, if any, need dedicated bindings.
 > 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
+> 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
+> 
+> The objectives with one file for all the simple LVDS panels with dual ports are:
+> - Make it simpler to add bindings for this kind of LVDS panels
+> - Keep the number of bindings file lower
+> - Keep the binding documentation for this kind of LVDS panels more consistent
+> - Make it possible for drivers to get pixel order via
+>   drm_of_lvds_get_dual_link_pixel_order(), as the 'ports' property is required
+> 
+> Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  .../bindings/phy/rockchip-inno-csi-dphy.yaml  | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> v6->v7:
+> * Reference '#/$defs/port-base' instead of '#/properties/port'. (Rob)
+> 
+> v5->v6:
+> * Use OF graph schema.
+> * Drop Rob's R-b tag, as review is needed.
+> 
+> v4->v5:
+> * Require the 'ports' property and update commit message accordingly. (Rob)
+> * Add Rob's R-b tag.
+> 
+> v3->v4:
+> * Add type and descriptions for dual-lvds-{odd,even}-pixels properties.
+>   Also, update descriptions for port@0 and port@1 properties accordingly. (Rob)
+> 
+> v2->v3:
+> * Do not allow 'port' property. (Rob)
+> * Define port number. (Rob)
+> * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels' properties. (Rob)
+> 
+> v1->v2:
+> * Correct pixel order in example LVDS panel node.
+> 
+>  .../panel/panel-simple-lvds-dual-ports.yaml        | 118 +++++++++++++++++++++
+>  .../bindings/display/panel/panel-simple.yaml       |  10 --
+>  2 files changed, 118 insertions(+), 10 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
