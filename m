@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B6832F010
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 17:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AC332F046
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 17:46:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231250AbhCEQaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 11:30:35 -0500
-Received: from marcansoft.com ([212.63.210.85]:48736 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231249AbhCEQaK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Mar 2021 11:30:10 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id A1AC442037;
-        Fri,  5 Mar 2021 16:30:01 +0000 (UTC)
-Subject: Re: [RFT PATCH v3 21/27] tty: serial: samsung_tty: IRQ rework
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Documentation List <linux-doc@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Linux-Arch <linux-arch@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-22-marcan@marcan.st>
- <CAHp75Vc+t9_FNHZ0xYNaJ1+Ny+FFeZKA79abxV2NAsZvpBh3Bg@mail.gmail.com>
- <535ff48e-160e-4ba4-23ac-54e478a2f3ee@marcan.st>
- <CAHp75Vd_kwdjbus3iq_39+p_xRk3rum2ek3nLLFbBDzMwggnKA@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <05ccc09f-ffea-71cd-4288-beed3020bd45@marcan.st>
-Date:   Sat, 6 Mar 2021 01:29:59 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S231151AbhCEQqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 11:46:12 -0500
+Received: from smtpweb146.aruba.it ([62.149.158.146]:54320 "EHLO
+        smtpweb146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229719AbhCEQpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 11:45:46 -0500
+X-Greylist: delayed 420 seconds by postgrey-1.27 at vger.kernel.org; Fri, 05 Mar 2021 11:45:46 EST
+Received: from ubuntu.localdomain ([146.241.168.111])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id IDTPlgHCw1jmzIDTQlCrA6; Fri, 05 Mar 2021 17:38:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1614962324; bh=Hz6URvn9uT/AAP9n5uDOBQH/4ROFVPnPAWploexpxk4=;
+        h=From:To:Subject:Date:MIME-Version;
+        b=cC7juDXqzv7NDDD4TA2OpjM9n8nULqhWv0KIbFaG0gLMljIhBiX0FidGh8dczKwXR
+         ZbQin06IhRahFRjRB0uO/ux7yr/mZarKa1DnGFMjHzWTmbRH4x+WtHR6bCzV0TNKtp
+         tzO09vLDEP4rL0goJreBQNzunv0E/ky2WNE+OeeI9plXyvfSeD3BtqT7WFId+67YeO
+         a8ZGjKrB0Lr+NWsacLQ9UV7BhvWmH/UE50kaBPgvB1fhthjZmRt34i7ttmz4p7d8Ne
+         5ck+ovNdzuSmRgUBBXfu7/ee1HeJguXPvLRMhU0tffE6X3+bm3fjhaNMv4B0WDAoD1
+         QYJ4QYV6fJP3Q==
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Giulio Benetti <giulio.benetti@micronovasrl.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: Add Hycon Technology vendor prefix
+Date:   Fri,  5 Mar 2021 17:38:32 +0100
+Message-Id: <20210305163834.70924-2-giulio.benetti@benettiengineering.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
+References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Vd_kwdjbus3iq_39+p_xRk3rum2ek3nLLFbBDzMwggnKA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4wfMvPfMKV7LIyVpOZptBjgPGK0m1MMa2RYvm8SlWF41K9nvfSofX+Xh47T+5zrFaYSnp5p5YUNJAc5H5FQNDXbcc6uUl3BnXPxzVCUgflIJ/v1V0pc8Ol
+ I3L37nFJj0C8qkSjgBow7Ou3fGrHB5/kYHGTS9BccAdrmDS2r9ECcUBL2Kis/XTaU1vp4v9g2msO8tljxpDYy11P/ygeGFNvXlRQCQzebM5BmgsbIoD6vD4D
+ lyd01miKaQs5m3rtm6+qILJBevBIYw0Kso0HKcNk0Cbx519mFX7D4/tffynTrSLb2sRx085SCQTl71hnXNJcMDAb2r4zUVjPKtLJlUEj16BCu59NPZgFAURK
+ KNpKEHET
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2021 01.20, Andy Shevchenko wrote:
->> I am just splitting an
->> existing function into two, where one takes the lock and the other does
->> the work. Do you mean using a different locking function? I'm not
->> entirely sure what you're suggesting.
-> 
-> Yes, as a prerequisite
-> 
-> spin_lock_irqsave -> spin_lock().
+From: Giulio Benetti <giulio.benetti@micronovasrl.com>
 
-Krzysztof, is this something you want in this series? I was trying to 
-avoid logic changes to the non-Apple paths.
+Update Documentation/devicetree/bindings/vendor-prefixes.yaml to
+include "hycon" as a vendor prefix for "Hycon Technology".
+Company website: http://www.hycontek.com/
 
+Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index a1312637d6ff..51b00aa96dff 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -488,6 +488,8 @@ patternProperties:
+   "^hugsun,.*":
+     description: Shenzhen Hugsun Technology Co. Ltd.
+   "^hwacom,.*":
++    description: Hycon Technology Corp.
++  "^hycon,.*":
+     description: HwaCom Systems Inc.
+   "^hydis,.*":
+     description: Hydis Technologies
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.25.1
+
