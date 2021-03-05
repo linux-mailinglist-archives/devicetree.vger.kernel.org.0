@@ -2,65 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 154CC32E730
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 12:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBCB432E75B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 12:46:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbhCEL0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 06:26:04 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:51986 "EHLO
+        id S229669AbhCELqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 06:46:04 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:52462 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbhCELZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 06:25:42 -0500
-Received: from mail-wr1-f69.google.com ([209.85.221.69])
+        with ESMTP id S229646AbhCELp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 06:45:58 -0500
+Received: from mail-ed1-f71.google.com ([209.85.208.71])
         by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
         (Exim 4.86_2)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lI8aT-00036I-4T
-        for devicetree@vger.kernel.org; Fri, 05 Mar 2021 11:25:41 +0000
-Received: by mail-wr1-f69.google.com with SMTP id r12so922095wro.15
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 03:25:41 -0800 (PST)
+        id 1lI8u4-0004Ke-HU
+        for devicetree@vger.kernel.org; Fri, 05 Mar 2021 11:45:56 +0000
+Received: by mail-ed1-f71.google.com with SMTP id v27so809176edx.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 03:45:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=nj2PrFHb6kGq6ooWb10NVgoyTadWZycXGzOn28nDuhA=;
-        b=Vq4pt5u/do3E7A8bt6DvYHB85d0/12bStUIe+lXmOBx7K4nACkGngI/xlYElrPAAHc
-         nQNNuw5b02TPKj0TQXmp0UxV3pu5tUhB44aNFqyar7F35V45KcaMxFveBL+1qwoM0Xhw
-         rydbERNvQvOYYh/hoWKZDWOyFqkfHfEBBVWa74xFYvZ4f6O5DT+tNQ37Mo6exCG8tFo0
-         0mKFolVX2ssxltvaezq28BiNVcLHUa9OYadcP5cZdVJldOfqD2AMRj7GosLK+g70oUmQ
-         6Z5aw0W3KByXmnt+yOKVxa4bXS6MxZGeVXBgN+m0xfNg7kiqj34+cPsdu1cT+DCw093x
-         PYAw==
-X-Gm-Message-State: AOAM532TyrYArF4PsvQImf9A5Ki8Q+W3VE7MwcKEP+gy9zBNxJHSL3J0
-        7B4MkOnWAK5Qe1bwWO2BSLpCPo2QI8UHXDijQk0JPtrU6i2BZVow88gSNbYsYNXQDtHGgGAmFWw
-        O/oOlQc0s08KRcbFyxZH2rYFkceAGohdPgHbMGo8=
-X-Received: by 2002:a1c:2e56:: with SMTP id u83mr2579099wmu.122.1614943540841;
-        Fri, 05 Mar 2021 03:25:40 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzJkdDADi29npR5jm6uaXHLDmTZ2JOEJEIdQVKiI0LHTOo9fZorrcqw7Wzeekw0PSc44FlBMw==
-X-Received: by 2002:a1c:2e56:: with SMTP id u83mr2579081wmu.122.1614943540739;
-        Fri, 05 Mar 2021 03:25:40 -0800 (PST)
+        bh=2TleSw0QiCwuJ7skQQModBnCrT+uYovU4V6hKBAXhss=;
+        b=gNqw1/NMTA+ryRglAeKaZ9QF6/Jk21Hm2mfb8LISE5ssdBiV7LLi2JlaEcZmHEns/8
+         Mhgl5vBddFY1zvaRUmHdIo/EXKlk4rRvO02wj7SVMfBzuL2tMeYifH1QVMoBKilfCAC1
+         ZQ0e+euj7qVL1d235g51IYG4Gt85Wdzl3o04HQRf4TkOk5TdR8qcCFoaB0x6PKOlFvog
+         21Vsc2GWmPS9jUAIhBFUtGAclriud6jkPsE97w4LMQ1pCLSZzNtA1YNSQ9817ZEAOSM3
+         VEOxSU/AvjrmxFpg9t3Y1j9ObrWRWTvDhVGJliycB/Q4OOVAUH8bQxXRwmcF4pHj6WBS
+         HJUA==
+X-Gm-Message-State: AOAM532fHX3sP5gNzjfbUUe9/+NELKOgQfeN1W2NtBbe5D+NOO4sJw21
+        Cd1APiFwJs6SBtFfDHX9u9hpbWcaee/kv9hvfeNM1ZcHhFwIgdRc9CkqOpmDNkRgjBxuLIfZM3R
+        uPQgG78AsTPOoSFWrU5zfFLPFSVKATRiVRJDdl5s=
+X-Received: by 2002:a50:da8b:: with SMTP id q11mr8953743edj.352.1614944756169;
+        Fri, 05 Mar 2021 03:45:56 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxKeo3Q/o1g2HQg4LFqmEh5BntZBVMe2z8slgQtUV9JbA5vQAZ8ZZGavMyBJMDCCXlKF5n8Tw==
+X-Received: by 2002:a50:da8b:: with SMTP id q11mr8953731edj.352.1614944756036;
+        Fri, 05 Mar 2021 03:45:56 -0800 (PST)
 Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id u4sm4256737wrm.24.2021.03.05.03.25.40
+        by smtp.gmail.com with ESMTPSA id s2sm1431854edt.35.2021.03.05.03.45.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 03:25:40 -0800 (PST)
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Brad Larson <brad@pensando.io>,
+        Fri, 05 Mar 2021 03:45:55 -0800 (PST)
+Subject: Re: [RFT PATCH v3 27/27] arm64: apple: Add initial Apple Mac mini
+ (M1, 2020) devicetree
+To:     Hector Martin <marcan@marcan.st>,
         linux-arm-kernel@lists.infradead.org
-Cc:     arnd@arndb.de, linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, fancer.lancer@gmail.com,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210304034141.7062-1-brad@pensando.io>
- <20210304034141.7062-2-brad@pensando.io>
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-28-marcan@marcan.st>
+ <e45c15ae-ee81-139c-5da1-a6759e39fd71@canonical.com>
+ <2a4c461a-51d1-60b7-b698-edb3c0bfb243@marcan.st>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <605880ad-6c12-bf1d-45f8-ef70181e4eec@canonical.com>
-Date:   Fri, 5 Mar 2021 12:25:39 +0100
+Message-ID: <32c136df-f4d4-4fbe-6605-5366b06d9f0a@canonical.com>
+Date:   Fri, 5 Mar 2021 12:45:54 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210304034141.7062-2-brad@pensando.io>
+In-Reply-To: <2a4c461a-51d1-60b7-b698-edb3c0bfb243@marcan.st>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -68,59 +85,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2021 04:41, Brad Larson wrote:
-> This GPIO driver is for the Pensando Elba SoC which
-> provides control of four chip selects on two SPI busses.
+On 05/03/2021 12:14, Hector Martin wrote:
+> On 05/03/2021 20.03, Krzysztof Kozlowski wrote:
+>>> +	memory@800000000 {
+>>> +		device_type = "memory";
+>>> +		reg = <0x8 0 0x2 0>; /* To be filled by loader */
+>>
+>> Shouldn't this be 0x800000000 with ~0x80000000 length (or whatever is
+>> more common)? Or did I miss some ranges?
 > 
-> Signed-off-by: Brad Larson <brad@pensando.io>
-> ---
->  drivers/gpio/Kconfig           |   6 ++
->  drivers/gpio/Makefile          |   1 +
->  drivers/gpio/gpio-elba-spics.c | 120 +++++++++++++++++++++++++++++++++
->  3 files changed, 127 insertions(+)
->  create mode 100644 drivers/gpio/gpio-elba-spics.c
+> The base model has 8GB of RAM, and RAM always starts at 0x800000000, 
+> hence that reg property.
 
-(...)
-
-> +static int elba_spics_probe(struct platform_device *pdev)
-> +{
-> +	struct elba_spics_priv *p;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	p = devm_kzalloc(&pdev->dev, sizeof(*p), GFP_KERNEL);
-> +	if (!p)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	p->base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(p->base)) {
-> +		dev_err(&pdev->dev, "failed to remap I/O memory\n");
-> +		return PTR_ERR(p->base);
-> +	}
-> +	spin_lock_init(&p->lock);
-> +	platform_set_drvdata(pdev, p);
-> +
-> +	p->chip.ngpio = 4;	/* 2 cs pins for spi0, and 2 for spi1 */
-> +	p->chip.base = -1;
-> +	p->chip.direction_input = elba_spics_direction_input;
-> +	p->chip.direction_output = elba_spics_direction_output;
-> +	p->chip.get = elba_spics_get_value;
-> +	p->chip.set = elba_spics_set_value;
-> +	p->chip.label = dev_name(&pdev->dev);
-> +	p->chip.parent = &pdev->dev;
-> +	p->chip.owner = THIS_MODULE;
-> +
-> +	ret = devm_gpiochip_add_data(&pdev->dev, &p->chip, p);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "unable to add gpio chip\n");
-> +		return ret;
-> +	}
-> +
-> +	dev_info(&pdev->dev, "elba spics registered\n");
-
-Don't print trivial probe results, unless you print here something
-useful. If you need it for debugging, keep it dev_dbg.
+Ah, I messed up the unit addressing and number of zeros... it's OK.
 
 Best regards,
 Krzysztof
