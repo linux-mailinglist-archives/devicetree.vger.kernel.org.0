@@ -2,105 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CACDD32E66E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B75F532E67D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbhCEKa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:30:56 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:50041 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbhCEKac (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:30:32 -0500
-Received: from mail-wm1-f72.google.com ([209.85.128.72])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lI7j5-0007C0-1u
-        for devicetree@vger.kernel.org; Fri, 05 Mar 2021 10:30:31 +0000
-Received: by mail-wm1-f72.google.com with SMTP id z26so593510wml.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:30:31 -0800 (PST)
+        id S229592AbhCEKeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:34:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbhCEKdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:33:38 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274A6C061756
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:33:38 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id 7so1533087wrz.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:33:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e/f2HBL5HAx1NUma9mvmRmVDl3EiEhBl3GuuJNNNQY8=;
+        b=Ps57ex3qdSjN6SajeH2qheQ5Uuljya8Hy8/Ycu6qOMJj1gTIuVJxai8xYZUiVeVwzw
+         AuQpt1mGs74K7Gz7SLXAqT1ZCpyAAT8n6mISxvSuzKIqyddGdJAtDgt9BSI5vUTzWaUo
+         qz79tdXz6shT6kc4vqMhoOV53bYXDIEWWE+M6YemL6q8AnbzX6MsCvziHgSzusyAtevp
+         bX1bZOxbxL1Wd4dzXEJ/O/Sp2WFi4C8lHDU7tuVhQ6siwreNzJTuH01bQH8Znt1VxQDX
+         DwEx45cieHNDHDSoGN1afR8ACVb2B1aQvdU9t4rMSAT6nkDw9vlZRNKFywIgPvEI7hbe
+         1qCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=kJu6iNTkK4wSmf0pqRfj82yyDdC0OqRkZT1hSBnQXr8=;
-        b=YvIfHOYKWVgDFjnIef8mCPEnxAnfFkPv1a/uScnEYfeW6yYIhcbFKaXOvY41CyYtHH
-         GyORLyE4FIqq6lgeG3dcyu98YX9yQtNC3FL2yiyz8re9vnjL7r+41EVHBjqyYKF7aRhy
-         wIUG+Wn+tjOS2E6I2Jts3mHpFk0hwGPqmSkTtf7kbZ29Wm9D0A5U/foh+6dqjEt3jEiN
-         61o/YskSFB+fc4ouBtQ2udfyUNo1pwtIZZG01k0VXK3csgVS0pBH7Wfdpjy+9b+2YQr+
-         knCLbPKM0jwe3mJfuF/QorhK5yBY93BLeB/XBlkk5o7GavquOrpvNkF8prgWva/SZvrE
-         ZQCw==
-X-Gm-Message-State: AOAM531BFrIv3eOkO7I+sT5vNzwc0Yc8wcDROeF3+W2tCjFVL4ZJEhgI
-        6sZkui5sX+D/ZIfrbUNEfG1RQXLA8x/i36oP6NvW+ZAnXSyTTbB6l4HkIuul3N0QWmkKjVJreF+
-        /ZJYrlvYahugZFViqjyLOB0agnnJXwPtOCWXDKAY=
-X-Received: by 2002:a1c:7714:: with SMTP id t20mr7981738wmi.107.1614940230674;
-        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy800OFDrvV/rynegL9gdp5sOoCnfFTAFviFAiUlwZkphbdPaIzFS7W/py4nWV80SKpjFhzmQ==
-X-Received: by 2002:a1c:7714:: with SMTP id t20mr7981727wmi.107.1614940230567;
-        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
-Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id 1sm3878530wmj.2.2021.03.05.02.30.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 02:30:30 -0800 (PST)
-Subject: Re: [RFT PATCH v3 18/27] tty: serial: samsung_tty: Separate S3C64XX
- ops structure
-To:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-19-marcan@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <cf61a889-b84d-f788-52f2-9b68bcc83d52@canonical.com>
-Date:   Fri, 5 Mar 2021 11:30:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        bh=e/f2HBL5HAx1NUma9mvmRmVDl3EiEhBl3GuuJNNNQY8=;
+        b=Ym/wWR8PZEtAUgwPi5d+ha1YVezgLzPWgiGvz6w53zoA+9CPLML4qhFtmAmJEHTsVG
+         O1PQmnVD9tkgbkUtKsSdQo6Ieq3n5XgBajnMOmAV/Q3j77UA6P60bPxeJKW90rbAzlXz
+         2Ok5tfsFqOPXn6sfHVMcQXNul96Mqg7QYfAnW6EQoffbMavWyYIBgPg2t03HBQWm6Jij
+         vi9pglMZ7VqP+d5LfzrrIQO3wb50g4hZJCIF/2EdBDSUui0yMImX6NdHK4CZLlM9AyC1
+         deSjIIY8TJUrghTElFZ/QL5cVle8gCAobsgAEMpx+xoqbo9iUznB67VN4lRExmWXPJ+R
+         eViw==
+X-Gm-Message-State: AOAM531Aae4hBbIJb+SUnqHWWcRs8DVtQzW3PbRy7Xlzqnzr6RtpS0/2
+        pvRRpYaf3JGjcI+Io4EoqjsJlg==
+X-Google-Smtp-Source: ABdhPJzkzTcQAx9qG/Sr55DSWp5FisqN0cMPXYb8CAL1I9wDHEa8kQ0XSjJTOBtJnVulk4nUetim9Q==
+X-Received: by 2002:a5d:6810:: with SMTP id w16mr8729907wru.333.1614940416762;
+        Fri, 05 Mar 2021 02:33:36 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id x6sm3975204wmj.32.2021.03.05.02.33.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 05 Mar 2021 02:33:36 -0800 (PST)
+Subject: Re: [PATCH 2/2] nvmem: iomap: new driver exposing NVMEM accessible
+ using I/O mapping
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mips@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-kernel@vger.kernel.org
+References: <20210304144132.24098-1-zajec5@gmail.com>
+ <20210304144132.24098-2-zajec5@gmail.com>
+ <047bced8-6c20-4a0a-c7ea-e0ad83318461@linaro.org>
+ <93708a21-3444-f68e-c834-a4f769a0acba@milecki.pl>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <35e498b6-3b2c-d154-db00-d755af339b60@linaro.org>
+Date:   Fri, 5 Mar 2021 10:33:35 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20210304213902.83903-19-marcan@marcan.st>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <93708a21-3444-f68e-c834-a4f769a0acba@milecki.pl>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2021 22:38, Hector Martin wrote:
-> Instead of patching a single global ops structure depending on the port
-> type, use a separate s3c64xx_serial_ops for the S3C64XX type. This
-> allows us to mark the structures as const.
+
+
+On 05/03/2021 10:24, Rafał Miłecki wrote:
+>>>
+>>> +static int iomap_read(void *context, unsigned int offset, void *val,
+>>> +              size_t bytes)
+>>> +{
+>>> +    struct iomap *priv = context;
+>>> +    u8 *src = priv->base + offset;
+>>> +    u8 *dst = val;
+>>> +    size_t tmp;
+>>> +
+>>> +    tmp = offset % 4;
+>>> +    memcpy_fromio(dst, src, tmp);
+>>> +    dst += tmp;
+>>> +    src += tmp;
+>>> +    bytes -= tmp;
+>>> +
+>>> +    tmp = rounddown(bytes, 4);
+>>> +    __ioread32_copy(dst, src, tmp / 4);
+>>> +    dst += tmp;
+>>> +    src += tmp;
+>>> +    bytes -= tmp;
+>>> +
+>>> +    memcpy_fromio(dst, src, bytes);
+>>> +
+>>
+>>
+>> You could just do this!
+>>
+>>      while (bytes--)
+>>          *val++ = readb(priv->base + offset + i++);
 > 
-> Also split out s3c64xx_serial_shutdown into a separate function now that
-> we have a separate ops structure; this avoids excessive branching
-> control flow and mirrors s3c64xx_serial_startup. tx_claimed and
-> rx_claimed are only used in the S3C24XX functions.
+> Do you mean that as replacement for "memcpy_fromio" or the whole
+> function code?
+
+Yes please!
+
+> The reason for using __ioread32_copy() was to improve reading
+> performance (using aligned 32 bit access where possible). I'm not sure
+> if that really matters?
+
+Just simple while loop is much readable than the previous code TBH!
+
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  drivers/tty/serial/samsung_tty.c | 71 ++++++++++++++++++++++++--------
->  1 file changed, 54 insertions(+), 17 deletions(-)
 
+> P.S.
+> Please don't yell at me in every sentence :( Makes me a bit sad :(
+Sorry!! I did not mean anything as such! :-)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-Best regards,
-Krzysztof
+--srini
