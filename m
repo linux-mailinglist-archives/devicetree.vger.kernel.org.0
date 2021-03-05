@@ -2,194 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1B132EDA0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF49032EDB1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:06:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbhCEPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 10:03:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
+        id S229750AbhCEPFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 10:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbhCEPDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:03:22 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6753C061756
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 07:03:21 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id o38so1550819pgm.9
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 07:03:21 -0800 (PST)
+        with ESMTP id S229960AbhCEPF0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:05:26 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C647FC061574;
+        Fri,  5 Mar 2021 07:05:25 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id q20so2273475pfu.8;
+        Fri, 05 Mar 2021 07:05:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2mlYSW9obf6ZHWc89hkL3cxC+hIY8OuKOPTUYIiFH0A=;
-        b=J6MTCpdKN6RbHYeZCKONYiDSec9HN6g5MOD48exdVQl9rBzpoKxe/fXU+ub+InlwI9
-         /C/O5SHDUrqEQzJLItBfA2St18/8xW4RlUw2Vdiq6eImAdMCgIT0yqEX7IQhpqQI2vFL
-         wkpDjHAah8KBj+GLj5hxch3CWWG6By1Ccf9ydjZK3219BeHiOumA8j/3qN97VUW/L05V
-         52imTqTtuj3UId+UJKsPtoBYPeCQD2C/OmCtRG2e5c//Thl94OKaJ9m3pDzQGcUEUgzU
-         PF4V3iTv0FNO9x5d71GxoWw8s2s1gdCsB3D8ww4Bly8RJ3Q0Mt89b9ZbdKlKlCvBG6JK
-         IuFQ==
+        bh=FBuTidaAi6iwCqMpRkLwLZrGR1e8aOX98e+4hVPySss=;
+        b=lcmixUX6YegcsdUJe3+kVvgS2KXWlyVjhgykODPMN7gGrrTc/RhzkOTA/XNJK/2kEo
+         Mz+bRk5IRaqnBG3GjYfQNIfanQW/GK+49TQXnoXhVpxoAKYu7aZCeLSKRQ4hppdclxpp
+         kL9o6sLLFNzbTI5Dm+vMyPeCtioXY97nVXq3iCfyspxX+u5gHZ+V0JTe127ltY/4QLcm
+         5eho94oTYQZwC6pXbn1kPgmIGXZNKKDzjDt/RMm6PFic3oLg3IijVzmZI8GmAqoQHmO9
+         HY37IoXcfkle59kc/DHibr7SSTeiNa5/j8HVbX+GA03midoCBXhBZu1NvAhfUREGhmIB
+         oCAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2mlYSW9obf6ZHWc89hkL3cxC+hIY8OuKOPTUYIiFH0A=;
-        b=lzjOCakCS0cK/K9kZxMpPTllNpVveUpQCvVB8v4NMPvLt8QMFKBr+Amud5mwS94JEz
-         B6ITi4t7+2dsRknwsugIpv7xQ+43k8TrQygJnez/sQKsH4Pel0VhExMBHc15AAvLNCC6
-         kwsuk+8rDteOF86CeI0jGRkde9EsagItUmGQxQJHlUnsWMEUicuJDqgtOpzb+Ajoy2jg
-         wpE1t80LfsfXKGYEqK1fLMOXXlPKb/aNklPj2d0yUtL4gu1zabHaP/gZb0cJWGUM9Om6
-         goSP6endMb9afzfV9UHwwK5yGKmIxba9HPVuQGe/V6GE9W1M2X5F9WXlk5g8ft5/e1Uf
-         +0Ag==
-X-Gm-Message-State: AOAM533IS3N9V/wfnYBrekI8Qn8ngzJqTQl5fl3WR6XIi09Ofet9Lk70
-        QseGq3gO+G6AEvB+x1I5kosa5x9NkDznZsZz6scLjQ==
-X-Google-Smtp-Source: ABdhPJx2AsMoIAD1vR1ykd/0xY4yQ2cyON9Ui1Hcd4m8KbzbgFcFYC24pz+4T8epFidgoa72a1Ero5G2nRWHf8lhQ54=
-X-Received: by 2002:a63:ee4b:: with SMTP id n11mr9173347pgk.265.1614956601438;
- Fri, 05 Mar 2021 07:03:21 -0800 (PST)
+        bh=FBuTidaAi6iwCqMpRkLwLZrGR1e8aOX98e+4hVPySss=;
+        b=QA5NVLVb+gUf3gPcZtvpysjuFopO1eh6qG4gA+KX47zK3/gs80mRF1ZvmBxpc950RM
+         CbBmS6hoyUrQae2x3GA/B0ecd62KDzUmf9xVCZ0Nzf/a7j1PWPU33tTiWPFRAUDrtqfn
+         551ltUfBnGm+MGQZcm442L4QblH631HMpqCYzcbVSEUAngLKdlr/a2iReIJhZZPvdMok
+         u8U+7GdE5BBDblZ8Y6qhA5vtF7BHL0uzsiVc84X+1KjdNwtqtlNBojsArk0rtXfvcnxP
+         euos0aST/sxDsi8ry0pq202PNEQqtSZOwCZzaBSUohV+85fZXmoplwjtIhZtPOLX2Ovx
+         7vyw==
+X-Gm-Message-State: AOAM532v6f7rjKihpVG9RRSElRCEEfikymBmEkYlcdAfJPuImD9X4nu7
+        5yabBm9Yntdv25K++3E6ivCLCqftb/CGxJIIGik=
+X-Google-Smtp-Source: ABdhPJxj8+iP5+xaC9ZC+EsDKt8oM6DmSbnNGsU+YI8Ww4DOTpmFYGme8ndS9PqZtW501q/eIxT9iJ9OCL8HO+I+KjE=
+X-Received: by 2002:a63:ce15:: with SMTP id y21mr9147237pgf.4.1614956725251;
+ Fri, 05 Mar 2021 07:05:25 -0800 (PST)
 MIME-Version: 1.0
-References: <1607651182-12307-1-git-send-email-victor.liu@nxp.com> <1607651182-12307-3-git-send-email-victor.liu@nxp.com>
-In-Reply-To: <1607651182-12307-3-git-send-email-victor.liu@nxp.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 5 Mar 2021 16:03:10 +0100
-Message-ID: <CAG3jFyvJZkVRs4NnDmPmGk-Qkr0voyvf3JNvKFAKDyxcCNR3Cw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] phy: Add LVDS configuration options
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, kishon@ti.com,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        agx@sigxcpu.org, robert.chiras@nxp.com, martin.kepplinger@puri.sm
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-17-marcan@marcan.st>
+In-Reply-To: <20210304213902.83903-17-marcan@marcan.st>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Mar 2021 17:05:08 +0200
+Message-ID: <CAHp75Vco_rcjHJ4THLZ8CJP=yX2fesfAo_tOY8zohfSmTLEVgw@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 16/27] irqchip/apple-aic: Add support for the Apple
+ Interrupt Controller
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Liu,
+On Thu, Mar 4, 2021 at 11:41 PM Hector Martin <marcan@marcan.st> wrote:
+>
+> This is the root interrupt controller used on Apple ARM SoCs such as the
+> M1. This irqchip driver performs multiple functions:
+>
+> * Handles both IRQs and FIQs
+>
+> * Drives the AIC peripheral itself (which handles IRQs)
+>
+> * Dispatches FIQs to downstream hard-wired clients (currently the ARM
+>   timer).
+>
+> * Implements a virtual IPI multiplexer to funnel multiple Linux IPIs
+>   into a single hardware IPI
 
-This patch seems to be included in both this series and the "Add some
-DRM bridge drivers support for i.MX8qm/qxp SoCs" series. Instead of
-having the two series have a conflict I would suggest either merging
-them (if that makes sense) or removing this patch from one of them and
-explicitly stating that there is a dependency on the other series.
+...
 
-(the patch itself still looks good though :) )
+> + *   - <0 nr flags> - hwirq #nr
+> + *   - <1 nr flags> - FIQ #nr
+> + *     - nr=0  Physical HV timer
+> + *     - nr=1  Virtual HV timer
+> + *     - nr=2  Physical guest timer
+> + *     - nr=3  Virtual guest timer
 
-On Fri, 11 Dec 2020 at 02:56, Liu Ying <victor.liu@nxp.com> wrote:
->
-> This patch allows LVDS PHYs to be configured through
-> the generic functions and through a custom structure
-> added to the generic union.
->
-> The parameters added here are based on common LVDS PHY
-> implementation practices.  The set of parameters
-> should cover all potential users.
->
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2->v3:
-> * No change.
->
-> v1->v2:
-> * No change.
->
->  include/linux/phy/phy-lvds.h | 48 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/phy/phy.h      |  4 ++++
->  2 files changed, 52 insertions(+)
->  create mode 100644 include/linux/phy/phy-lvds.h
->
-> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
-> new file mode 100644
-> index 00000000..1b5b9d6
-> --- /dev/null
-> +++ b/include/linux/phy/phy-lvds.h
-> @@ -0,0 +1,48 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright 2020 NXP
-> + */
-> +
-> +#ifndef __PHY_LVDS_H_
-> +#define __PHY_LVDS_H_
-> +
-> +/**
-> + * struct phy_configure_opts_lvds - LVDS configuration set
 > + *
-> + * This structure is used to represent the configuration state of a
-> + * LVDS phy.
+
+Unneeded blank line.
+
 > + */
-> +struct phy_configure_opts_lvds {
-> +       /**
-> +        * @bits_per_lane_and_dclk_cycle:
-> +        *
-> +        * Number of bits per data lane and differential clock cycle.
-> +        */
-> +       unsigned int bits_per_lane_and_dclk_cycle;
+
+...
+
+> +#define pr_fmt(fmt) "%s: " fmt, __func__
+
+This is not needed, really, if you have unique / distinguishable
+messages in the first place.
+Rather people include module names, which may be useful.
+
+...
+
+> +#define MASK_REG(x)            (4 * ((x) >> 5))
+> +#define MASK_BIT(x)            BIT((x) & 0x1f)
+
+GENMASK(4,0)
+
+...
+
+> +/*
+> + * Max 31 bits in IPI SEND register (top bit is self).
+> + * >=32-core chips will need code changes anyway.
+> + */
+> +#define AIC_MAX_CPUS           31
+
+I would put it as (32 - 1) to show that the register is actually 32-bit long.
+
+...
+
+> +static atomic_t aic_vipi_flag[AIC_MAX_CPUS];
+> +static atomic_t aic_vipi_enable[AIC_MAX_CPUS];
+
+Isn't it easier to handle these when they are full width, i.e. 32
+items per the array?
+
+...
+
+> +static int aic_irq_set_affinity(struct irq_data *d,
+> +                               const struct cpumask *mask_val, bool force)
+> +{
+> +       irq_hw_number_t hwirq = irqd_to_hwirq(d);
+> +       struct aic_irq_chip *ic = irq_data_get_irq_chip_data(d);
+> +       int cpu;
 > +
-> +       /**
-> +        * @differential_clk_rate:
-> +        *
-> +        * Clock rate, in Hertz, of the LVDS differential clock.
-> +        */
-> +       unsigned long differential_clk_rate;
+> +       if (hwirq > ic->nr_hw)
+
+>= ?
+
+> +               return -EINVAL;
 > +
-> +       /**
-> +        * @lanes:
-> +        *
-> +        * Number of active, consecutive, data lanes, starting from
-> +        * lane 0, used for the transmissions.
-> +        */
-> +       unsigned int lanes;
+> +       if (force)
+> +               cpu = cpumask_first(mask_val);
+> +       else
+> +               cpu = cpumask_any_and(mask_val, cpu_online_mask);
 > +
-> +       /**
-> +        * @is_slave:
-> +        *
-> +        * Boolean, true if the phy is a slave which works together
-> +        * with a master phy to support dual link transmission,
-> +        * otherwise a regular phy or a master phy.
-> +        */
-> +       bool is_slave;
-> +};
+> +       aic_ic_write(ic, AIC_TARGET_CPU + hwirq * 4, BIT(cpu));
+> +       irq_data_update_effective_affinity(d, cpumask_of(cpu));
 > +
-> +#endif /* __PHY_LVDS_H_ */
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index e435bdb..d450b44 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -17,6 +17,7 @@
->  #include <linux/regulator/consumer.h>
->
->  #include <linux/phy/phy-dp.h>
-> +#include <linux/phy/phy-lvds.h>
->  #include <linux/phy/phy-mipi-dphy.h>
->
->  struct phy;
-> @@ -51,10 +52,13 @@ enum phy_mode {
->   *             the MIPI_DPHY phy mode.
->   * @dp:                Configuration set applicable for phys supporting
->   *             the DisplayPort protocol.
-> + * @lvds:      Configuration set applicable for phys supporting
-> + *             the LVDS phy mode.
->   */
->  union phy_configure_opts {
->         struct phy_configure_opts_mipi_dphy     mipi_dphy;
->         struct phy_configure_opts_dp            dp;
-> +       struct phy_configure_opts_lvds          lvds;
->  };
->
->  /**
-> --
-> 2.7.4
->
+> +       return IRQ_SET_MASK_OK;
+> +}
+
+...
+
+> +static void aic_fiq_mask(struct irq_data *d)
+> +{
+> +       /* Only the guest timers have real mask bits, unfortunately. */
+> +       switch (d->hwirq) {
+> +       case AIC_TMR_GUEST_PHYS:
+> +               sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, VM_TMR_FIQ_ENABLE_P, 0);
+> +               break;
+> +       case AIC_TMR_GUEST_VIRT:
+> +               sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, VM_TMR_FIQ_ENABLE_V, 0);
+> +               break;
+
+default case? // some compilers may not be happy
+Ditto for all similar places in the series.
+
+> +       }
+> +}
+
+...
+
+> +#define TIMER_FIRING(x)                                                        \
+> +       (((x) & (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_MASK |            \
+> +                ARCH_TIMER_CTRL_IT_STAT)) ==                                  \
+> +        (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_STAT))
+
+It's a bit hard to read. Perhaps
+
+#define FOO_MASK  (_ENABLE | _STAT)
+#define _FIRING ... (FOO_MASK | _MASK == FOO_MASK)
+
+?
+
+...
+
+> +       if ((read_sysreg_s(SYS_APL_PMCR0_EL1) & (PMCR0_IMODE | PMCR0_IACT))
+> +                       == (FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_FIQ) | PMCR0_IACT)) {
+
+It's better to have == on the previous line.
+
+...
+
+> +       for_each_set_bit(i, &firing, AIC_NR_SWIPI) {
+> +               handle_domain_irq(aic_irqc->ipi_domain, i, regs);
+> +       }
+
+No {} needed.
+
+...
+
+> +static int aic_init_smp(struct aic_irq_chip *irqc, struct device_node *node)
+> +{
+> +       int base_ipi;
+
+Introducing a temporary variable may help with readability
+
+...  *d = irqc->hw_domain;
+
+> +       irqc->ipi_domain = irq_domain_create_linear(irqc->hw_domain->fwnode, AIC_NR_SWIPI,
+> +                                                   &aic_ipi_domain_ops, irqc);
+> +       if (WARN_ON(!irqc->ipi_domain))
+> +               return -ENODEV;
+> +
+> +       irqc->ipi_domain->flags |= IRQ_DOMAIN_FLAG_IPI_SINGLE;
+> +       irq_domain_update_bus_token(irqc->ipi_domain, DOMAIN_BUS_IPI);
+> +
+> +       base_ipi = __irq_domain_alloc_irqs(irqc->ipi_domain, -1, AIC_NR_SWIPI,
+> +                                          NUMA_NO_NODE, NULL, false, NULL);
+> +
+> +       if (WARN_ON(!base_ipi)) {
+> +               irq_domain_remove(irqc->ipi_domain);
+> +               return -ENODEV;
+> +       }
+> +
+> +       set_smp_ipi_range(base_ipi, AIC_NR_SWIPI);
+> +
+> +       return 0;
+> +}
+
+...
+
+> +       return 0;
+> +
+
+Extra blank line.
+
+...
+
+> +       irqc->hw_domain = irq_domain_create_linear(of_node_to_fwnode(node),
+> +                                                  irqc->nr_hw + AIC_NR_FIQ,
+> +                                                  &aic_irq_domain_ops, irqc);
+
+If you are sure it will be always OF-only, why not to use
+irq_domain_add_linear()?
+
+...
+
+> +       for (i = 0; i < BITS_TO_U32(irqc->nr_hw); i++)
+> +               aic_ic_write(irqc, AIC_MASK_SET + i * 4, ~0);
+> +       for (i = 0; i < BITS_TO_U32(irqc->nr_hw); i++)
+> +               aic_ic_write(irqc, AIC_SW_CLR + i * 4, ~0);
+
+~0 is a beast when it suddenly gets into > int size.
+
+I would recommend using either GENMASK() if it's a bit field, or
+type_MAX values if it's a plain number.
+
+-- 
+With Best Regards,
+Andy Shevchenko
