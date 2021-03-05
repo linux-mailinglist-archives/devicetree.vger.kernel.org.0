@@ -2,129 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9615A32E11A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 06:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D4432E150
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 06:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbhCEFFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 00:05:42 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41320 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbhCEFFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 00:05:41 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12555IMB125585;
-        Thu, 4 Mar 2021 23:05:18 -0600
+        id S229478AbhCEFOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 00:14:11 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50896 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229469AbhCEFOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 00:14:10 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1255E3nh078090;
+        Thu, 4 Mar 2021 23:14:03 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1614920718;
-        bh=PswJzuVJEpo2V7rLJvAKEapfrXwbPZ/ywMR3JM+8zp4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=galF1hDSGYo5AiK1GQzq18N9xdhnaKS4ZsR0R3liPXzfpbIUZGRU+Cd4uIiVBrll4
-         E8qqybUJ9EAVaswmX6XhFdiwwicUvxqTEDFCfrmdAlOyRDYB54onv2HyOevKg/MtWt
-         Bp1ibl5OdBNt4StefrvhdG4OGhgU8jl8ZxNi/jlM=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12555IEt013649
+        s=ti-com-17Q1; t=1614921243;
+        bh=Hil26d5EMhmIypDQtZPF9LmSciGeygxpCyytRBHQ5D0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=pGdNDbL1q0wiS0mdML6g9U4uagMSnmX3k7eDPi+R20LDG0YGNp4ThmQ0dYnXqbXc8
+         q7BtPyknmbX5vWxC744ctS6/DJOEW+OJ0znzKrk/nqn/fJkj7ruGFaDwsnmqQJa5aF
+         sHwZAnu3azoDGHJ0JUByj7n4oq43i0Mo3PZHBILY=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1255E3YI020328
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 Mar 2021 23:05:18 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 4 Mar 2021 23:14:03 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 4 Mar
- 2021 23:05:18 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 23:14:03 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 4 Mar 2021 23:05:18 -0600
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12554D9C116197;
-        Thu, 4 Mar 2021 23:05:11 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Corbet <corbet@lwn.net>,
+ Frontend Transport; Thu, 4 Mar 2021 23:14:03 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1255E3Cl102945;
+        Thu, 4 Mar 2021 23:14:03 -0600
+Date:   Thu, 4 Mar 2021 23:14:03 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Aswath Govindraju <a-govindraju@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Nadeem Athani <nadeem@cadence.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v3 7/7] Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
-Date:   Fri, 5 Mar 2021 10:34:10 +0530
-Message-ID: <20210305050410.9201-8-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210305050410.9201-1-kishon@ti.com>
-References: <20210305050410.9201-1-kishon@ti.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-main: Update the speed modes
+ supported and their itap delay values for MMCSD subsystems
+Message-ID: <20210305051403.y4lzv5woisimzlgb@persuader>
+References: <20210225132736.26429-1-a-govindraju@ti.com>
+ <969c38e2-01e8-55a1-b97e-cf72f07fcd62@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <969c38e2-01e8-55a1-b97e-cf72f07fcd62@ti.com>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Documentation to help users use PCI endpoint to create virtual
-functions using configfs. An endpoint function is designated as a
-virtual endpoint function device when it is linked to a physical
-endpoint function device (instead of a endpoint controller).
+On 10:59-20210301, Kishon Vijay Abraham I wrote:
+> On 25/02/21 6:57 pm, Aswath Govindraju wrote:
+> > According to latest errata of J721e [1], HS400 mode is not supported
+> > in MMCSD0 subsystem (i2024) and SDR104 mode is not supported in MMCSD1/2
+> > subsystems (i2090). Therefore, replace mmc-hs400-1_8v with mmc-hs200-1_8v
+> > in MMCSD0 subsystem and add a sdhci mask to disable SDR104 speed mode.
+> > 
+> > Also, update the itap delay values for all the MMCSD subsystems according
+> > the latest J721e data sheet[2]
+> > 
+> > [1] - https://www.ti.com/lit/er/sprz455/sprz455.pdf
+> > [2] - https://www.ti.com/lit/ds/symlink/tda4vm.pdf
+> > 
+> > Fixes: e6dc10f200da ("arm64: dts: ti: j721e-main: Add SDHCI nodes")
+> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> 
+> Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- Documentation/PCI/endpoint/pci-endpoint-cfs.rst | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-index 696f8eeb4738..56fb33c5e8fd 100644
---- a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-+++ b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-@@ -43,6 +43,7 @@ entries corresponding to EPF driver will be created by the EPF core.
- 		.. <EPF Driver1>/
- 			... <EPF Device 11>/
- 			... <EPF Device 21>/
-+			... <EPF Device 31>/
- 		.. <EPF Driver2>/
- 			... <EPF Device 12>/
- 			... <EPF Device 22>/
-@@ -68,6 +69,7 @@ created)
- 				... subsys_vendor_id
- 				... subsys_id
- 				... interrupt_pin
-+			        ... <Symlink EPF Device 31>/
-                                 ... primary/
- 			                ... <Symlink EPC Device1>/
-                                 ... secondary/
-@@ -79,6 +81,13 @@ interface should be added in 'primary' directory and symlink of endpoint
- controller connected to secondary interface should be added in 'secondary'
- directory.
- 
-+The <EPF Device> directory can have a list of symbolic links
-+(<Symlink EPF Device 31>) to other <EPF Device>. These symbolic links should
-+be created by the user to represent the virtual functions that are bound to
-+the physical function. In the above directory structure <EPF Device 11> is a
-+physical function and <EPF Device 31> is a virtual function. An EPF device once
-+it's linked to another EPF device, cannot be linked to a EPC device.
-+
- EPC Device
- ==========
- 
-@@ -98,7 +107,8 @@ entries corresponding to EPC device will be created by the EPC core.
- 
- The <EPC Device> directory will have a list of symbolic links to
- <EPF Device>. These symbolic links should be created by the user to
--represent the functions present in the endpoint device.
-+represent the functions present in the endpoint device. Only <EPF Device>
-+that represents a physical function can be linked to a EPC device.
- 
- The <EPC Device> directory will also have a *start* field. Once
- "1" is written to this field, the endpoint device will be ready to
+In some offline testing, I realized that the patch wont apply cleanly to e6dc10f200da
+
+cd48ce86a4d0c1ffec86aa46a26da993c9af5f53 might be a better candidate for
+this - I will drop the patch from my queue in the morning, could you
+update the patch with a new rev with appropriate Fixes?
 -- 
-2.17.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
