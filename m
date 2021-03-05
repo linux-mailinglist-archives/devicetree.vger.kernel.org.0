@@ -2,246 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C079832F136
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 18:31:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B9632F190
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 18:42:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbhCERa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 12:30:57 -0500
-Received: from vps.xff.cz ([195.181.215.36]:34908 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229558AbhCERao (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Mar 2021 12:30:44 -0500
-X-Greylist: delayed 365 seconds by postgrey-1.27 at vger.kernel.org; Fri, 05 Mar 2021 12:30:44 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1614965077; bh=5Y+9PdnDq+BMTwfZCHboxIyKzCWxFiVB0rNq3zU7Vbk=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=UbOJJomFwtAtzPxgqchpo3YN54Agn9GrD/hgCsktzFSqUirjtbFS8wKbe3AaLMkh2
-         bpmkZzvWfDfXupyxlwE2QFCQvUG2chxyqYekMPJMWcmhG3WVMvooX0KwcgQNf2dkia
-         pR5kGj0wHHeSUDxF6pH88CHsZBQB1VGnyY2oow24=
-Date:   Fri, 5 Mar 2021 18:24:37 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
-        airlied@linux.ie, daniel@ffwll.ch, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, enric.balletbo@collabora.com,
-        drinkcat@chromium.org, hsinyi@chromium.org, kernel@collabora.com,
-        dafna3@gmail.com, robh+dt@kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: add analogix,anx7688.yaml
-Message-ID: <20210305172437.meu45ol7d4c3w2lr@core.my.home>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20210305124351.15079-1-dafna.hirschfeld@collabora.com>
- <20210305124351.15079-2-dafna.hirschfeld@collabora.com>
- <YEJBgEPO4J5+/HhD@pendragon.ideasonboard.com>
- <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
+        id S229465AbhCERmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 12:42:11 -0500
+Received: from mail.micronovasrl.com ([212.103.203.10]:48622 "EHLO
+        mail.micronovasrl.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229690AbhCERmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 12:42:02 -0500
+X-Greylist: delayed 483 seconds by postgrey-1.27 at vger.kernel.org; Fri, 05 Mar 2021 12:42:01 EST
+Received: from mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1])
+        by mail.micronovasrl.com (Postfix) with ESMTP id 1D82FB04914
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 18:33:57 +0100 (CET)
+Authentication-Results: mail.micronovasrl.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)" header.d=micronovasrl.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=micronovasrl.com;
+         h=content-transfer-encoding:content-language:content-type
+        :content-type:in-reply-to:mime-version:user-agent:date:date
+        :message-id:from:from:references:to:subject:subject; s=dkim; t=
+        1614965636; x=1615829637; bh=eODxb9VuSlFhNpsqeLIuCjA+kSmV2Ml2tuY
+        wtb7TzUg=; b=QAS/zB4c13tNsmfk3/WNdu+Q2AMBKKqTXjhQHAmoOLIItz1PoZz
+        cUeq9TenABcXqccz8+Z8Ih4uy5Nd5I1QNu9/bbAHGJCFC0PPBZJ+1qtWFXsmqw9p
+        hwMh5F6CNsGzTgZilIagfC9Qxtwy8kUwl9Qr80BjMJbt+HLcMQmQOkuQ=
+X-Virus-Scanned: Debian amavisd-new at mail.micronovasrl.com
+X-Spam-Flag: NO
+X-Spam-Score: -2.901
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.901 tagged_above=-10 required=4.5
+        tests=[ALL_TRUSTED=-1, BAYES_00=-1.9, NICE_REPLY_A=-0.001]
+        autolearn=unavailable autolearn_force=no
+Received: from mail.micronovasrl.com ([127.0.0.1])
+        by mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id p4wTSDtm3Kdj for <devicetree@vger.kernel.org>;
+        Fri,  5 Mar 2021 18:33:56 +0100 (CET)
+Received: from [192.168.50.85] (146-241-168-111.dyn.eolo.it [146.241.168.111])
+        by mail.micronovasrl.com (Postfix) with ESMTPSA id 1252CB04750;
+        Fri,  5 Mar 2021 18:33:55 +0100 (CET)
+Subject: Re: [PATCH 1/3] dt-bindings: Add Hycon Technology vendor prefix
+To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
+ <20210305163834.70924-2-giulio.benetti@benettiengineering.com>
+ <YEJpogUgOHHPFUQ+@latitude>
+From:   Giulio Benetti <giulio.benetti@micronovasrl.com>
+Message-ID: <f1c78d68-5e84-ab52-3de6-44a9312f2afa@micronovasrl.com>
+Date:   Fri, 5 Mar 2021 18:33:55 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
+In-Reply-To: <YEJpogUgOHHPFUQ+@latitude>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: it
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dafna,
+Hi Jonathan,
 
-On Fri, Mar 05, 2021 at 04:14:03PM +0100, Dafna Hirschfeld wrote:
-> Hi
+Il 05/03/2021 18:25, Jonathan Neuschäfer ha scritto:
+> Hello,
 > 
-> On 05.03.21 15:34, Laurent Pinchart wrote:
-> > Hi Dafna,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Fri, Mar 05, 2021 at 01:43:50PM +0100, Dafna Hirschfeld wrote:
-> > > ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
-> > > DisplayPort 1.3 Ultra-HDi (4096x2160p60).
-> > > The integrated crosspoint switch (the MUX) supports USB 3.1 data transfer
-> > > along with the DisplayPort Alternate Mode signaling over USB Type-C.
-> > > Additionally, an on-chip microcontroller (OCM) is available to manage the
-> > > signal switching, Channel Configuration (CC) detection, USB Power
-> > > Delivery (USB-PD), Vendor Defined Message (VDM) protocol support and other
-> > > functions as defined in the USB TypeC and USB Power Delivery
-> > > specifications.
-> > > 
-> > > ANX7688 is found on Acer Chromebook R13 (elm) and on
-> > > Pine64 PinePhone.
-
-Thanks for your work on the bindings. :) It would be great to find something
-acceptable for mainlining.
-
-A few comments based on my experience implementing the USB-PD part for PinePhone
-are bellow.
-
-> > > +properties:
-> > > +  compatible:
-> > > +    const: analogix,anx7688
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  avdd33-supply:
-> > > +    description: 3.3V Analog core supply voltage.
-> > > +
-> > > +  dvdd18-supply:
-> > > +    description: 1.8V Digital I/O supply voltage.
-> > > +
-> > > +  avdd18-supply:
-> > > +    description: 1.8V Analog core power supply voltage.
-> > > +
-> > > +  avdd10-supply:
-> > > +    description: 1.0V Analog core power supply voltage.
-> > > +
-> > > +  dvdd10-supply:
-> > > +    description: 1.0V Digital core supply voltage.
-> > > +
-> > 
-> > That's lots of supplies. If there's a reasonable chance that some of
-> > them will always be driven by the same regulator (especially if the
-> > ANX7688 documentation requires that), then they could be grouped. For
-> > instance dvdd18-supply and avdd18-supply could be grouped into
-> > vdd18-supply. It would still allow us to extend the bindings in a
-> > backward compatible way later if a system uses different regulators. You
-> > have more information about the hardware than I do, so it's your call.
-
-On PinePhone, AVDD and DVDD for 1.0V are just separately fitlered outputs
-from the same regulator. So it would work there to just use vdd18 and
-vdd10. The same is true for reference design, so it's probably safe
-to assume this can be simplified.
-
-> > > +  hdmi5v-supply:
-> > > +    description: 5V power supply for the HDMI.
-> > > +
-> > > +  hdmi_vt-supply:
-> > > +    description: Termination voltage for HDMI input.
-> > 
-> > Maybe hdmi-vt-supply ?
-> > 
-> > > +
-> > > +  clocks:
-> > > +    description: The input clock specifier.
-> > > +    maxItems: 1
-> > 
-> > How about
-> > 
-> >      items:
-> >        - description: The input clock specifier.
-> > 
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: xtal
-> > > +
-> > > +  hpd-gpios:
-> > > +    description: |
-> > > +      In USB Type-C applications, DP_HPD has no use. In standard DisplayPort
-> > > +      applications, DP_HPD is used as DP hot-plug.
-> > > +    maxItems: 1
-
-On PinePhone this is wired to a HDMI port on the SoC, and HPD is handled by the
-sun4i HDMI DRM driver. Seems like HPD will be handled by HDMI controller on
-many/all? other platforms too. Why have it here?
-
-> > > +  enable-gpios:
-> > > +    description: Chip power down control. No internal pull-down or pull-up resistor.
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    description: Reset input signal. Active low.
-> > > +    maxItems: 1
-> > > +
-> > > +  vbus-det-gpios:
-> > > +    description: |
-> > > +      An input gpio for VBUS detection and high voltage detection,
-> > > +      external resistance divide VBUS voltage to 1/8.
-> > > +    maxItems: 1
-
-Why have this in the bindings? It seems that this is handled internally by the
-ANX7688 via OCM firmware. And it's not really gpio either, it's an analog input
-with AD converter hooked to it internally.
-
-> > > +  interrupts:
-> > > +    description: |
-> > > +      The interrupt notifies 4 possible events - TCPC ALERT int, PD int, DP int, HDMI int.
-> > > +    maxItems: 1
-> > > +
-> > > +  cabledet-gpios:
-> > > +    description: An output gpio, indicates by the device that a cable is plugged.
-> > > +    maxItems: 1
-> > > +
-> > > +  vbus-ctrl-gpios:
-> > > +    description:
-> > > +      External VBUS power path. Enable VBUS source and disable VBUS sink or vice versa.
-> > > +    maxItems: 1
-
-VBUS control seems to be already modelled by the usb-connector bindings. Why
-have this here?
-
-> > > +  vconn-en1-gpios:
-> > > +    description: Controls the VCONN switch on the CC1 pin.
-> > > +    maxItems: 1
-> > > +
-> > > +  vconn-en2-gpios:
-> > > +    description: Controls the VCONN switch on the CC2 pin.
-> > > +    maxItems: 1
-
-VCONN is a voltage regulator that can be enabled either on CC1 or CC2
-pin, or disabled completely. This control is *partially* performed in reference
-design directly by the OCM. OCM only decides which CC pin to switch
-the VCONN regulator to, and informs the SoC when the base VCONN regulator
-for the switches needs to be enabled.
-
-So vconn-en1/2 gpios are irrelevant to the driver, but the driver needs
-to control VCONN power supply somehow and defer control over it to the OCM.
-
-I don't know how to express it in the bindings. Maybe a vconn-supply here
-on the anx7688 node?
-
-It may also be part of the usb-connector binding, but this is really when it
-comes to anx7688 a parent regulator for the switches, and switches are not
-controlled by this driver, just their parent regulator is.
-
-Any ideas?
-
-kind regards,
-	o.
-
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Video port for HDMI input.
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: USB port for the USB3 input.
-> > > +
-> > > +      port@2:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: USB Type-c connector, see connector/usb-connector.yaml.
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > 
-> > As all the ports exist at the hardware level, should they always be
-> > present ? The endpoints are optional of course, in case a port isn't
-> > connected on a particular system.
-> > 
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > 
-> > Shouldn't clocks and regulators be also required ?
+> On Fri, Mar 05, 2021 at 05:38:32PM +0100, Giulio Benetti wrote:
+>> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>>
+>> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to
+>> include "hycon" as a vendor prefix for "Hycon Technology".
+>> Company website: http://www.hycontek.com/
 > 
-> hmm, theoretically yes. Practically, in the case of Acer R13 (mediatek elm) device,
-> the ANX7688 is powered up and controlled by the Embedded Controller. The kernel only
-> needs to read few registers from that device for the drm bridge driver.
-> (also mentioned that in the cover letter).
+> As far as I can see, https would be possible here.
+
++1
+
+>> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>> ---
+>>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> index a1312637d6ff..51b00aa96dff 100644
+>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> @@ -488,6 +488,8 @@ patternProperties:
+>>     "^hugsun,.*":
+>>       description: Shenzhen Hugsun Technology Co. Ltd.
+>>     "^hwacom,.*":
+>> +    description: Hycon Technology Corp.
+>> +  "^hycon,.*":
+>>       description: HwaCom Systems Inc.
 > 
-> Thanks,
-> Dafna
+> This is the wrong way around. You declared "hwacom," to mean "Hycon
+> Technology Corp.", and "hycon," to mean "HwaCom Systems Inc.".
+> 
+
+Thank you, I've modified it and I'll send a v2 with the rest of
+patchset.
+
+Best regards
+-- 
+Giulio Benetti
+CTO
+
+MICRONOVA SRL
+Sede: Via A. Niedda 3 - 35010 Vigonza (PD)
+Tel. 049/8931563 - Fax 049/8931346
+Cod.Fiscale - P.IVA 02663420285
+Capitale Sociale € 26.000 i.v.
+Iscritta al Reg. Imprese di Padova N. 02663420285
+Numero R.E.A. 258642
