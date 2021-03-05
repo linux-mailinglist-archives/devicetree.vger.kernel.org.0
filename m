@@ -2,192 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D1232ECD6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 15:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3D632ECDB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 15:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbhCEONG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 09:13:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbhCEONF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 09:13:05 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F023C061574;
-        Fri,  5 Mar 2021 06:13:05 -0800 (PST)
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89F7ACC;
-        Fri,  5 Mar 2021 15:13:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614953582;
-        bh=74H6ou4QSy7Iwva3VR4LPA27SWDjUCNqWGQzbDSr2cg=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=hLmbgyCMRm2Qn+D6g1DpEG8li4MenDCdZQW9pGzXMxtGPNWNPD8f3560cMuikjFix
-         CvoqW6lj5zw0l9dsNkbLz7rwaUgPg7zDO8pcPVCpGt6G6vgaRICFplnuw7Hj9so5kl
-         gv8dYryW2ESTk1dFuCPueaFx8JPN4A8+fBDHOJ1s=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH RFC] dt-bindings: arm: renesas: Document Renesas Falcon
- sub-boards
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210305133703.42179-1-geert+renesas@glider.be>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <a7e20040-beed-03f4-e1ce-759934886736@ideasonboard.com>
-Date:   Fri, 5 Mar 2021 14:12:58 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231142AbhCEOOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 09:14:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58234 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230514AbhCEOOh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 09:14:37 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A0C06501A;
+        Fri,  5 Mar 2021 14:14:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614953676;
+        bh=nJW/qzlXmQLjEx5WtjuS7q3GToRzq3WGjVZX19qD8Jg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ujT6mUNrqJ6jlXFWAX1PRjYK0tftZpfJWLEY3DbgBEJ/3/vZY2zPlcu+MPfP/f/C9
+         gxcjtYUNWqGHyIP9Offdvt5GU/9lHxv8AgwSewkvn98xQOyhslh/E3TD+W51q56Nkz
+         1GR68fvhBdnD7bdTOneaZ/DzbB8Su8/p/5IaM1MNgwvXqLnxwLTlUs8qTw3was3Ut+
+         b/k34hD8fPTzR7sA4hcj9I/mvl3YS09wjbpjo7NPx0tNYggrK048TXf4Vg7CBpfgRI
+         RfPHFba9UWVx7rLCUvzU7IL0LBGymZCJZ8ZQ/J79ggYzOeK8B6xuw7wX6NOz2rFgiw
+         jNOB5eYbz/9Cg==
+Received: by mail-ej1-f54.google.com with SMTP id c10so3700009ejx.9;
+        Fri, 05 Mar 2021 06:14:36 -0800 (PST)
+X-Gm-Message-State: AOAM533JXMe/UOx97mPDBvOudoA4AmL2PsFIIbSr2XeiCQ25MrOFeMrp
+        1QwGe+ZQKF/lpLYpQbg9ajCo6yxvNRYRzDIgPw==
+X-Google-Smtp-Source: ABdhPJwNz6f1WnjfIEjnIlOIQSeFUxdiphznagy089tysI2uTGcdeuYk8oheFpgpAvN7aSri3oqhBTW4L9fuXdOWSes=
+X-Received: by 2002:a17:906:d153:: with SMTP id br19mr2329504ejb.360.1614953674952;
+ Fri, 05 Mar 2021 06:14:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210305133703.42179-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <1614222604-27066-1-git-send-email-peng.fan@oss.nxp.com>
+ <1614222604-27066-5-git-send-email-peng.fan@oss.nxp.com> <AM6PR04MB4966041BFFDDAF1EF00BE1AD80969@AM6PR04MB4966.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB4966041BFFDDAF1EF00BE1AD80969@AM6PR04MB4966.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 5 Mar 2021 08:14:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKK8t6XUqTuOKPzOviJbysqWqga_mdxWE0P0N4ejTgG=A@mail.gmail.com>
+Message-ID: <CAL_JsqKK8t6XUqTuOKPzOviJbysqWqga_mdxWE0P0N4ejTgG=A@mail.gmail.com>
+Subject: Re: [PATCH V3 4/5] dt-bindings: mmc: fsl-imx-esdhc: add clock bindings
+To:     Aisheng Dong <aisheng.dong@nxp.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Fri, Mar 5, 2021 at 8:09 AM Aisheng Dong <aisheng.dong@nxp.com> wrote:
+>
+> Hi Rob,
+>
+> > From: Peng Fan (OSS) <peng.fan@oss.nxp.com>
+> > Sent: Thursday, February 25, 2021 11:10 AM
+> >
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > Add clock bindings for fsl-imx-esdhc yaml
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml        | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > index a7fbd8cc1e38..369471814496 100644
+> > --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> > @@ -103,6 +103,17 @@ properties:
+> >        Only eMMC HS400 mode need to take care of this property.
+> >      default: 0
+> >
+> > +  clocks:
+> > +    maxItems: 3
+> > +    description:
+> > +      Handle clocks for the sdhc controller.
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ipg
+> > +      - const: ahb
+> > +      - const: per
+>
+> One question:
+> The side effect of this patch is that it imposes a forced order of clk names
+> In DT which actually was not needed.
+>
+> Do we really have to do that?
 
-On 05/03/2021 13:37, Geert Uytterhoeven wrote:
-> Add device tree bindings documentation for the Renesas R-Car V3U Falcon
-> CSI/DSI and Ethernet sub-boards.  These are plugged into the Falcon
-> BreakOut board to form the full Falcon board stack.
+Yes.
 
-Aha, so this answers my questions this week ;-)
+> Or any other better approach to allow a random order to match the DT
+> usage better?
 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Marked as RFC
-> 
-> The Falcon board stack consists of 4 boards:
->   1. CPU board, containing the R-Car V3U SoC, and core system parts like
->      RAM, console, eMMC,
->   2. BreakOut board, providing power, an Ethernet PHY, and a backplane
->      where boards 1, 3, and 4 are plugged in,
->   3. CSI/DSI sub-board, providing 2 GMSL displays and 12 GMSL cameras,
->   4. Ethernet sub-board, providing 6 Ethernet PHYs.
-> 
-> As the BreakOut board provides power, the CPU board cannot be used
-> without the BreakOut board.  However, both the CSI/DSI and Ethernet
-> sub-boards are optional.  So that means we have to support 4 stacks of
-> board combinations (1+2, 1+2+3, 1+2+4, 1+2+3+4).
+Why do you need random order?
 
-Presumably however - of course 2 could itself also be optional, with
-/another/ board being designed to fit in place. Which I assume is why 1
-is separated at all.
+We can not enforce the order, but we only do that when there's
+multiple optional entries.
 
-But that only comes when someone adds the DTB for that 'alternative'
-breakout.
-
-> That sounds like a good target for fdtoverlay, right?
-> 
-> For now[1] the Falcon include hierarchy looks like this (supporting only
-> the full stack 1+2+3+4):
-> 
->     r8a779a0-falcon.dts
->     |-- r8a779a0-falcon-cpu.dtsi
->     |   `-- r8a779a0.dtsi
->     |-- r8a779a0-falcon-csi-dsi.dtsi
->     `-- r8a779a0-falcon-ethernet.dtsi
-> 
-> Traditionally, we augmented the "model" and "compatible" properties of
-> the root node in each additional layer:
-> 
->     r8a779a0.dtsi:
-> 	compatible = "renesas,r8a779a0";
-> 
->     r8a779a0-falcon-cpu.dtsi:
-> 	model = "Renesas Falcon CPU board";
-> 	compatible = "renesas,falcon-cpu", "renesas,r8a779a0";
-> 
->     r8a779a0-falcon.dts:
-> 	model = "Renesas Falcon CPU and Breakout boards based on r8a779a0";
-> 	compatible = "renesas,falcon-breakout", "renesas,falcon-cpu", "renesas,r8a779a0";
-> 
-> (Note: I haven't done that yet for the CSI/DSI and Ethernet sub-boards)
-> 
-> With a stack of 4 boards, some optional, this becomes a bit cumbersome.
-> But it is still doable when using .dts and .dtsi files, by just adding 3
-> more r8a779a0-falcon*.dts files.
-> 
-> So we can add model/compatible properties to the sub-boards:
-> 
->     r8a779a0-falcon-csi-dsi.dtsi
-> 	model = "Renesas Falcon CSI/DSI sub-board";
-> 	compatible = "renesas,falcon-csi-dsi";
-> 
->     r8a779a0-falcon-ethernet.dtsi:
-> 	model = "Renesas Falcon Ethernet sub-board";
-> 	compatible = "renesas,falcon-ethernet";
-> 
-> and update r8a779a0-falcon*dts to augment the properties.
-> 
-> However, this is currently not possible when using overlays, as applying
-> an overlay would override the properties in the underlying DTB, not
-> augment them.
-> 
-> Questions:
->   a. Should we document all possible combinations in the bindings file?
->      After this patch, we only have 1, 1+2, and 1+2+3+4 documented.
-
-Will '1' on it's own be of any use? Or will there always need to be a
-'2'? (which might be undefined / other board / '5').
-
-
-
-
->   b. How to handle "model" and "compatible" properties for (sub)boards?
->      Perhaps fdtoverlay could combine the "model" and "compatible"
->      properties in the root nodes?  However, that is not always desired.
-> 
-
-Combining the models could get ... long and repetitive couldn't it ?
-I guess this is one advantage of having a separate .dts file and setting
-it explicitly...
-
-I guess there's no way to easily pass that in as a parameter of sorts :-(
-
-
-
-> Thanks for your comments!
-
-I'm looking forward to seeing this in action, and develop further.
-
-Especially for cleaning up some of the GMSL add on boards we have.
-
---
-Kieran
-
-
-> 
-> [1] [PATCH v2 0/3] arm64: dts: renesas: falcon: Add I2C EEPROMs and sub-boards
->     https://lore.kernel.org/linux-renesas-soc/20210304153257.4059277-1-geert+renesas@glider.be
-> ---
->  Documentation/devicetree/bindings/arm/renesas.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-> index 5fd0696a9f91f383..08ba12632f52c317 100644
-> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> @@ -296,6 +296,13 @@ properties:
->            - const: renesas,falcon-cpu
->            - const: renesas,r8a779a0
->  
-> +      - items:
-> +          - const: renesas,falcon-breakout # Falcon BreakOut board (RTP0RC779A0BOB0010S)
-> +          - const: renesas,falcon-csi-dsi # Falcon CSI/DSI sub-board (RTP0RC779A0DCS0010S)
-> +          - const: renesas,falcon-ethernet # Falcon Ethernet sub-board (RTP0RC779A0ETS0010S)
-> +          - const: renesas,falcon-cpu
-> +          - const: renesas,r8a779a0
-> +
->        - description: RZ/N1D (R9A06G032)
->          items:
->            - enum:
-> 
-
+Rob
