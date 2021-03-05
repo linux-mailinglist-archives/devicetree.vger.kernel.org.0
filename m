@@ -2,242 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D9932F3FE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:35:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D374132F40A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 20:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbhCETes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 14:34:48 -0500
-Received: from mail.micronovasrl.com ([212.103.203.10]:51500 "EHLO
-        mail.micronovasrl.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbhCETej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:34:39 -0500
-Received: from mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1])
-        by mail.micronovasrl.com (Postfix) with ESMTP id EF9DDB04914
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 20:34:37 +0100 (CET)
-Authentication-Results: mail.micronovasrl.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)" header.d=micronovasrl.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=micronovasrl.com;
-         h=content-transfer-encoding:content-language:content-type
-        :content-type:in-reply-to:mime-version:user-agent:date:date
-        :message-id:from:from:references:to:subject:subject; s=dkim; t=
-        1614972877; x=1615836878; bh=40qqWWYiV8u0uDD13PgfVBrPGwJ3ra6RP9t
-        mBK4Ri4k=; b=VFw1fJDe5Mfa5fPKcAjcKog0EkpuD/fOppubbcG1pB/GYeXIBlf
-        hIuLLxe/z7hIOmT0EjLmjumxw8/ucNkYHoR1lz95wjVxTcAtTv3FzJ/ci8WFZzWf
-        SC7x6JYnBen8JP2M4ZA3KI5rVoGCJ022Q8D7VDiCPHq+4p06O6j3gFoA=
-X-Virus-Scanned: Debian amavisd-new at mail.micronovasrl.com
-X-Spam-Flag: NO
-X-Spam-Score: -2.9
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 tagged_above=-10 required=4.5
-        tests=[ALL_TRUSTED=-1, BAYES_00=-1.9, LOTS_OF_MONEY=0.001,
-        NICE_REPLY_A=-0.001] autolearn=unavailable autolearn_force=no
-Received: from mail.micronovasrl.com ([127.0.0.1])
-        by mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id X5uu9ykO9sIl for <devicetree@vger.kernel.org>;
-        Fri,  5 Mar 2021 20:34:37 +0100 (CET)
-Received: from [192.168.50.85] (146-241-168-111.dyn.eolo.it [146.241.168.111])
-        by mail.micronovasrl.com (Postfix) with ESMTPSA id BD1F8B04814;
-        Fri,  5 Mar 2021 20:34:36 +0100 (CET)
-Subject: Re: [PATCH 2/3] dt-bindings: touchscreen: Add HY46XX bindings
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
- <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
-From:   Giulio Benetti <giulio.benetti@micronovasrl.com>
-Message-ID: <a3e916f7-9c27-3ff9-d8df-4c145125fa09@micronovasrl.com>
-Date:   Fri, 5 Mar 2021 20:34:36 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S229793AbhCETjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 14:39:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229788AbhCETjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 14:39:00 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25ED6C061761
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 11:39:00 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id jx13so2473586pjb.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 11:39:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LG9oyAMtJgx3MZnF1cjNx0Z73nyJ3bl+UDBONgUWEek=;
+        b=ggOIM+SG40FpYO7nKWVXfsxUahWUDooTMRZxn5l7gTA+HO/Oshx+xFI2gJm8FjGFWd
+         yMO+6a4sKQ33MZPPDgF876Qspmsq41SzfPC/U+EkXbRZT8Zkft54CY+9UkImiYl134kk
+         OFr4e0tyCp9zZaaDPh2DcKIA2ZE1YKPtxO9Ao=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LG9oyAMtJgx3MZnF1cjNx0Z73nyJ3bl+UDBONgUWEek=;
+        b=AxAmUbaRS55+BNADewmdocAXGJIVFYzoAClbJ82fJ/h1pmSv5eLHos45WzhvGon10r
+         bVZXRBBPbw7lgBoXgGxQX5HwJssSvh6VK6ZS8lRi+bbZJ+bP1vDF9gckl4qTwpSihDm3
+         fr+hDGoS+Tx2rmEElMe7bhntnXqspAHb+SqYLS0RnNkRpN++/keVAEraraKEVrCEr+Wd
+         H8iptM9dRJHAKnmE7d5S+qdxfsfaRcgrLBPLxglaabWRuKtOIeJ2SRZ1jf83Vj/pe4xz
+         o4sNEPVHL43hb6tbjwV07Wml1LAcJr2V+4hYWauWDt4vwAkoRouwpT7Dw/e5270+gT8I
+         NCaQ==
+X-Gm-Message-State: AOAM532bd7R9JQsCVmovGqUQocWW03Ma2ds1981Wc0uUK9E52ArJkjvY
+        LMybGzXAXGOlwFnLwqd3p7p3VA==
+X-Google-Smtp-Source: ABdhPJwEqqVsUn2z3JJUJIjh06VPSNzyrfBYQ53qJrtc/OUW5yoK9NJOztaUq6/kipxliMh2j0bnsg==
+X-Received: by 2002:a17:90a:7d05:: with SMTP id g5mr11477597pjl.173.1614973139627;
+        Fri, 05 Mar 2021 11:38:59 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:2878:25d1:94cb:a547])
+        by smtp.gmail.com with UTF8SMTPSA id o13sm3355640pfp.26.2021.03.05.11.38.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Mar 2021 11:38:59 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        linux-usb@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v6 0/5] USB: misc: Add onboard_usb_hub driver
+Date:   Fri,  5 Mar 2021 11:38:48 -0800
+Message-Id: <20210305193853.2040456-1-mka@chromium.org>
+X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
 MIME-Version: 1.0
-In-Reply-To: <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: it
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding +CC Dmitry
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the xhci-plat driver to create the onboard_usb_hub
+  platform device if needed
+- a device tree binding for the Realtek RTS5411 USB hub controller
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
+
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
+
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
+
+Changes in v6:
+- updated summary
+
+Changes in v5:
+- cover letter added
+
+Matthias Kaehlcke (5):
+  dt-bindings: usb: Add binding for Realtek RTS5411 hub controller
+  USB: misc: Add onboard_usb_hub driver
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  usb: host: xhci-plat: Create platform device for onboard hubs in
+    probe()
+  arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
+
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ .../bindings/usb/realtek,rts5411.yaml         |  58 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  11 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  15 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  21 +-
+ drivers/usb/host/xhci-plat.c                  |  16 +
+ drivers/usb/misc/Kconfig                      |  17 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 415 ++++++++++++++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/hcd.h                       |   2 +
+ include/linux/usb/onboard_hub.h               |  15 +
+ 14 files changed, 593 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 include/linux/usb/onboard_hub.h
 
 -- 
-Giulio Benetti
-CTO
+2.30.1.766.gb4fecdf3b7-goog
 
-MICRONOVA SRL
-Sede: Via A. Niedda 3 - 35010 Vigonza (PD)
-Tel. 049/8931563 - Fax 049/8931346
-Cod.Fiscale - P.IVA 02663420285
-Capitale Sociale ¤ 26.000 i.v.
-Iscritta al Reg. Imprese di Padova N. 02663420285
-Numero R.E.A. 258642
-
-Il 05/03/2021 17:38, Giulio Benetti ha scritto:
-> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
-> 
-> This adds device tree bindings for the Hycon HY46XX touchscreen series.
-> 
-> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
-> ---
->   .../input/touchscreen/hycon,hy46xx.yaml       | 130 ++++++++++++++++++
->   MAINTAINERS                                   |   6 +
->   2 files changed, 136 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> new file mode 100644
-> index 000000000000..cddd5e5bae92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/hycon-hy46xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: hyconon HY46XX series touchscreen controller Bindings
-> +
-> +description: |
-> +             There are 6 variants of the chip for various touch panel sizes and coverl len material
-> +              Glass: 0.3mm--4.0mm
-> +              PET/PMMA: 0.2mm--2.0mm
-> +               HY4613(B)-N048  < 6"
-> +               HY4614(B)-N068  7" .. 10.1"
-> +               HY4621-NS32  < 5"
-> +               HY4623-NS48  5.1" .. 7"
-> +              Glass: 0.3mm--8.0mm
-> +              PET/PMMA: 0.2mm--4.0mm
-> +               HY4633(B)-N048  < 6"
-> +               HY4635(B)-N048  < 7" .. 10.1"
-> +
-> +maintainers:
-> +  - Giulio Benetti <giulio.benetti@micronovasrl.com>
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hycon,hycon-hy4613
-> +      - hycon,hycon-hy4614
-> +      - hycon,hycon-hy4621
-> +      - hycon,hycon-hy4623
-> +      - hycon,hycon-hy4633
-> +      - hycon,hycon-hy4635
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vcc-supply: true
-> +
-> +  threshold:
-> +    description: Allows setting the sensitivity in the range from 0 to 255.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 255
-> +
-> +  proximity-sensor-switch:
-> +    description: Allows enabling or disabling the Proximity Sensor.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +  glove-enable:
-> +    description: Allows enabling or disabling glove setting.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +  report-speed:
-> +    description: Allows setting the report speed(i.e 0x64 => 100Hz).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 255
-> +
-> +  power-noise-enable:
-> +    description: Allows enabling or disabling power noise filter.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +  filter-data:
-> +    description: Allows setting the filtering data before reporting touch
-> +                 in the range from 0 to 5.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 5
-> +
-> +  gain:
-> +    description: Allows setting the sensitivity distance in the range from 0 to 5.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 5
-> +
-> +  edge-offset:
-> +    description: Allows setting the edge compensation in the range from 0 to 16.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 16
-> +
-> +  touchscreen-size-x: true
-> +  touchscreen-size-y: true
-> +  touchscreen-fuzz-x: true
-> +  touchscreen-fuzz-y: true
-> +  touchscreen-inverted-x: true
-> +  touchscreen-inverted-y: true
-> +  touchscreen-swapped-x-y: true
-> +  interrupt-controller: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      hycon-hy4633@1c {
-> +        compatible = "hycon,hy4633";
-> +        reg = <0x1c>;
-> +        interrupt-parent = <&gpio2>;
-> +        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> +        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
-> +      };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d92f85ca831d..3f83daf6b2bf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8245,6 +8245,12 @@ S:	Maintained
->   F:	mm/hwpoison-inject.c
->   F:	mm/memory-failure.c
->   
-> +HYCON HY46XX TOUCHSCREEN SUPPORT
-> +M:	Giulio Benetti <giulio.benetti@micronovasrl.com>
-> +L:	linux-input@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> +
->   HYGON PROCESSOR SUPPORT
->   M:	Pu Wen <puwen@hygon.cn>
->   L:	linux-kernel@vger.kernel.org
-> 
