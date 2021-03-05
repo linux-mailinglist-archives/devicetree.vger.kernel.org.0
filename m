@@ -2,292 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3811F32F2E0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08FA732F325
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:49:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbhCESjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 13:39:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
+        id S229488AbhCEStA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 13:49:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbhCEShr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:37:47 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F9CC061574
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 10:37:39 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id m22so5259002lfg.5
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:37:39 -0800 (PST)
+        with ESMTP id S229615AbhCESsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:48:30 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6C4C061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 10:48:30 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id t13so1155866qta.11
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:48:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/bUlq/wPF3yJYJShp7VG2mRZDBWcT8EiKpB3if3AI6c=;
-        b=vyJcEoVKHnVIlXU3QVkMKljvyvfYOTgX8mO06rqy+CaMtP+6ytqA/t/nBbWcJLSHLs
-         cjdIngnDqEN00+ykNDyLiZhm2eo6cwPgSQrD/kB/BM9AoJx6UCb3HvIlgOd9EGVsgewl
-         Pe6v3KEEbs0VG0gu6nmhB+3RWnrgOFunALUVBseHJ3gMk9/JG7N+r2hFfM8oY8/0z/K1
-         kOSr3ckbONAKVh3bQy4KwLONzpHQGuNB1KurFLFd+9L3PbMYHf0fTvCpDjEVo+dfK/+s
-         sPYC8H+WGJ7/xqK6mL+dEDqvxpUer+BBok0D0FPuwMxc/OZd/opK6KFhami6G9PqlTV+
-         jBLg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+lW0O727rhlk3/EmX1NxZE3NA/fIKhpZMCBiUvxp/JM=;
+        b=X2eizvrPuMXNHR9aaeDDlQSEk/VqDe+9QFlhTPm1n5ug8099MCdnK57mRh2NWtZdel
+         09GnXXoBZWzt4cvd/Iyb5bbh+AjX5LT0UGhtewuNMbdZAlfHKlwkGvytXnaFLaE9YxGV
+         /jHqz4Q6Wb5c/BO1508xAEmJQik5n8tURj08A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/bUlq/wPF3yJYJShp7VG2mRZDBWcT8EiKpB3if3AI6c=;
-        b=H9buAoq7Na1cGhjb34oGZQxyDW8mZ786HotOc5/1ljzQEde7FXxQnGdZdaSxGxFtMw
-         TcZpc8cnoQpQoLKo2hiQxWUUNMgeAQhjAxS6Fs1fZ8vmQPFepavVus1aAPM9g13ByRKm
-         0XTVDfKijCgztrl3fb5YFZRmWSNw5aWpojkFtTbONw5FoAH8NhN102kDusQykfD3A6g0
-         PUit6jgx4vXbcutiyXl+zwN14fnV48Cc+tdbhQ93+XGB0dSxFOkguIfN73VqHXOD0kMf
-         RdQjHDNjAHJF6i7IzdI98tJTAXA0lnUjPkdpJiti+UyQdJ96p+GIYG3ap5Pzgq+8XXVw
-         TxJQ==
-X-Gm-Message-State: AOAM531MFzZQrNcW0VeTrWHLK3ZOYB4h6r/cmNu0Pwh0Bd/cVGS0R9nS
-        5u/k0m1skNOkuYNyE7uC09sItA==
-X-Google-Smtp-Source: ABdhPJzm7+WAI1pCsVfTV6gTabWD8HHIj3+AWaEZgNghLia5kOKkE5VvphxGiSb294nomX2AWIw19A==
-X-Received: by 2002:a05:6512:303:: with SMTP id t3mr6436550lfp.196.1614969458136;
-        Fri, 05 Mar 2021 10:37:38 -0800 (PST)
-Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
-        by smtp.gmail.com with ESMTPSA id o16sm400374lfo.166.2021.03.05.10.37.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 10:37:37 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>
-Cc:     linux-bluetooth@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2 v3] Bluetooth: btbcm: Rewrite bindings in YAML and add reset
-Date:   Fri,  5 Mar 2021 19:37:35 +0100
-Message-Id: <20210305183736.2123083-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+lW0O727rhlk3/EmX1NxZE3NA/fIKhpZMCBiUvxp/JM=;
+        b=dj/ItuDCC+s6U4bTQgbPQsGgxa+v7OsKsEArj1At0ugjSUhHvQpaf2QrPq73R7Kqa2
+         YcKKNqR2arXXUc7eo5brtnKTCBWOgpkHMgzhCb0ETvlu4QoCgoxhvJ/y5jWWP2EieTCM
+         o7YwPWq/Fd+jVBufs+h1dVQ1hyGojzDbcydjBq5i0DoLKxGodQyma4cH9QuAt9Ugrot+
+         WhWbkIy6JR3F13c8pGkDNdjvVBjqQZen7Zkw5FXmXIT1uQMBcpvDaBmkU2QZTYBEQEOR
+         UeMBfOuQ9w32nuHleJ80Ze37sPcGmkwUSWieoIbv6hP0QHfXfdndu3kW+U3oLq9Yh9NG
+         lD8w==
+X-Gm-Message-State: AOAM533orbgeS22Wb2r2XW63MX5k2iUhxSBXV24ogvcVWcefy7HVqgN+
+        xUPvm17ppOt8fX1+xvgyvZN0tfKVdoYWYA==
+X-Google-Smtp-Source: ABdhPJzTsyeTSDAgkEYKiH0K2so/VfdMloPKIIMxWxTHF8M0Uzcqb7TV69VEmkFRHizGNGlrV+RmXA==
+X-Received: by 2002:ac8:774b:: with SMTP id g11mr10269283qtu.335.1614970109469;
+        Fri, 05 Mar 2021 10:48:29 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id 9sm2361140qtw.22.2021.03.05.10.48.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Mar 2021 10:48:28 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id f4so2956426ybk.11
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:48:28 -0800 (PST)
+X-Received: by 2002:a25:d3c5:: with SMTP id e188mr16284311ybf.345.1614970108212;
+ Fri, 05 Mar 2021 10:48:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210304180415.1531430-1-mka@chromium.org> <20210304100341.2.I7fef1a0e82bd2f3c1bc35501f8652e027aae4fcc@changeid>
+In-Reply-To: <20210304100341.2.I7fef1a0e82bd2f3c1bc35501f8652e027aae4fcc@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 5 Mar 2021 10:48:16 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WwWPJNqZoUPU+opAPLgTAOT5RMJoWx0xg=FTyoaW3_Gg@mail.gmail.com>
+Message-ID: <CAD=FV=WwWPJNqZoUPU+opAPLgTAOT5RMJoWx0xg=FTyoaW3_Gg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7180: Add pompom rev3
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the Broadcom bluetooth bindings in YAML and
-adds a GPIO handle for the BT_RST_N line as used on some
-platforms.
+Hi,
 
-The Ingenic UART binding was using this binding in its
-example DTS fragment, however mistakenly using "vcc-supply"
-for what is called "vbat-supply". The proper DTS files
-and the code in the kernel all use "vbat-supply" so
-fix up the example in this patch so we ge a clean
-check.
+On Thu, Mar 4, 2021 at 10:04 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The only kernel visible change with respect to rev2 is that pompom
+> rev3 changed the charger thermistor from a 47k to a 100k NTC to use
+> a thermistor which is supported by the PM6150 ADC driver.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+>  .../dts/qcom/sc7180-trogdor-pompom-r2-lte.dts |  4 +-
+>  .../dts/qcom/sc7180-trogdor-pompom-r2.dts     |  4 +-
+>  .../dts/qcom/sc7180-trogdor-pompom-r3-lte.dts | 14 ++++++
+>  .../dts/qcom/sc7180-trogdor-pompom-r3.dts     | 46 +++++++++++++++++++
+>  4 files changed, 64 insertions(+), 4 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dts
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dts
+> index 791d496ad046..00e187c08eb9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dts
+> @@ -9,6 +9,6 @@
+>  #include "sc7180-trogdor-lte-sku.dtsi"
+>
+>  / {
+> -       model = "Google Pompom (rev2+) with LTE";
+> -       compatible = "google,pompom-sku0", "qcom,sc7180";
+> +       model = "Google Pompom (rev2) with LTE";
+> +       compatible = "google,pompom-rev2-sku0", "qcom,sc7180";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+> index 984d7337da78..2b2bd906321d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+> @@ -10,8 +10,8 @@
+>  #include "sc7180-trogdor-pompom.dtsi"
+>
+>  / {
+> -       model = "Google Pompom (rev2+)";
+> -       compatible = "google,pompom", "qcom,sc7180";
+> +       model = "Google Pompom (rev2)";
+> +       compatible = "google,pompom-rev2", "qcom,sc7180";
+>  };
+>
+>  &keyboard_controller {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dts
+> new file mode 100644
+> index 000000000000..067cb75a011e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dts
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Pompom board device tree source
+> + *
+> + * Copyright 2020 Google LLC.
+> + */
+> +
+> +#include "sc7180-trogdor-pompom-r3.dts"
+> +#include "sc7180-trogdor-lte-sku.dtsi"
+> +
+> +/ {
+> +       model = "Google Pompom (rev3+) with LTE";
+> +       compatible = "google,pompom-sku0", "qcom,sc7180";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dts
+> new file mode 100644
+> index 000000000000..12d2d1e8e9e1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dts
+> @@ -0,0 +1,46 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Pompom board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180-trogdor-pompom.dtsi"
+> +
+> +/ {
+> +       model = "Google Pompom (rev3+)";
+> +       compatible = "google,pompom", "qcom,sc7180";
+> +};
+> +
+> +&keyboard_controller {
+> +       function-row-physmap = <
+> +               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
+> +               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
+> +               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
+> +               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
+> +               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
+> +               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
+> +               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
+> +               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
+> +               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
+> +               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> +       >;
+> +       linux,keymap = <
+> +               MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> +               MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> +               MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> +               MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> +               MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
+> +               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> +               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> +               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> +               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> +               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> +
+> +               MATRIX_KEY(0x03, 0x09, KEY_SLEEP)       /* LOCK key */
+> +
+> +               CROS_STD_MAIN_KEYMAP
+> +       >;
+> +};
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Actually fold in the required fix.
-ChangeLog v1->v2:
-- Fix the error in the Ingenic UART binding example as
-  part of adding this patch.
----
- .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
- .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
- .../bindings/serial/ingenic,uart.yaml         |   2 +-
- 3 files changed, 118 insertions(+), 57 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
- create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+I don't love copying all this keymap stuff.  Options I can think of:
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-deleted file mode 100644
-index a7d57ba5f2ac..000000000000
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--Broadcom Bluetooth Chips
-----------------------
--
--This documents the binding structure and common properties for serial
--attached Broadcom devices.
--
--Serial attached Broadcom devices shall be a child node of the host UART
--device the slave device is attached to.
--
--Required properties:
--
-- - compatible: should contain one of the following:
--   * "brcm,bcm20702a1"
--   * "brcm,bcm4329-bt"
--   * "brcm,bcm4330-bt"
--   * "brcm,bcm43438-bt"
--   * "brcm,bcm4345c5"
--   * "brcm,bcm43540-bt"
--   * "brcm,bcm4335a0"
--
--Optional properties:
--
-- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-- - shutdown-gpios: GPIO specifier, used to enable the BT module
-- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
-- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
--                      deprecated, replaced by interrupts and
--                      "host-wakeup" interrupt-names
-- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
-- - clock-names: names for clock inputs, matching the clocks given
--   - "extclk": deprecated, replaced by "txco"
--   - "txco": external reference clock (not a standalone crystal)
--   - "lpo": external low power 32.768 kHz clock
-- - vbat-supply: phandle to regulator supply for VBAT
-- - vddio-supply: phandle to regulator supply for VDDIO
-- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
--    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
--    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
--    - pcm-frame-type: short, long
--    - pcm-sync-mode: slave, master
--    - pcm-clock-mode: slave, master
-- - interrupts: must be one, used to wakeup the host processor
-- - interrupt-names: must be "host-wakeup"
--
--Example:
--
--&uart2 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart2_pins>;
--
--       bluetooth {
--               compatible = "brcm,bcm43438-bt";
--               max-speed = <921600>;
--               brcm,bt-pcm-int-params = [01 02 00 01 01];
--       };
--};
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-new file mode 100644
-index 000000000000..bdd6ca617e23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Bluetooth Chips
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  This binding describes Broadcom UART-attached bluetooth chips.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm20702a1
-+      - brcm,bcm4329-bt
-+      - brcm,bcm4330-bt
-+      - brcm,bcm43438-bt
-+      - brcm,bcm4345c5
-+      - brcm,bcm43540-bt
-+      - brcm,bcm4335a0
-+
-+  shutdown-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_REG_ON used to
-+      power on the BT module
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_RST_N used to
-+      reset the BT module. This should be marked as
-+      GPIO_ACTIVE_LOW.
-+
-+  device-wakeup-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_WAKE used to
-+      wakeup the controller. This is using the BT_GPIO_0
-+      pin on the chip when in use.
-+
-+  host-wakeup-gpios:
-+    maxItems: 1
-+    deprecated: true
-+    description: GPIO specifier for the line HOST_WAKE used
-+      to wakeup the host processor. This is using he BT_GPIO_1
-+      pin on the chip when in use. This is deprecated and replaced
-+      by interrupts and "host-wakeup" interrupt-names
-+
-+  clocks:
-+    maxItems: 2
-+    description: 1 or 2 clocks as defined in clock-names below,
-+      in that order
-+
-+  clock-names:
-+    description: Names of the 1 to 2 supplied clocks
-+    items:
-+      - const: txco
-+      - const: lpo
-+      - const: extclk
-+
-+  vbat-supply:
-+    description: phandle to regulator supply for VBAT
-+
-+  vddio-supply:
-+    description: phandle to regulator supply for VDDIO
-+
-+  brcm,bt-pcm-int-params:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    minItems: 5
-+    maxItems: 5
-+    description: |-
-+      configure PCM parameters via a 5-byte array:
-+       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
-+       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
-+       pcm-frame-type: short, long
-+       pcm-sync-mode: slave, master
-+       pcm-clock-mode: slave, master
-+
-+  interrupts:
-+    items:
-+      - description: Handle to the line HOST_WAKE used to wake
-+          up the host processor. This uses the BT_GPIO_1 pin on
-+          the chip when in use.
-+
-+  interrupt-names:
-+    items:
-+      - const: host-wakeup
-+
-+  max-speed: true
-+  current-speed: true
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    uart {
-+        uart-has-rtscts;
-+
-+        bluetooth {
-+            compatible = "brcm,bcm4330-bt";
-+            max-speed = <921600>;
-+            brcm,bt-pcm-int-params = [01 02 00 01 01];
-+            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
-+            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/serial/ingenic,uart.yaml b/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
-index 559213899d73..7748d8c3bab8 100644
---- a/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
-@@ -91,7 +91,7 @@ examples:
-       bluetooth {
-         compatible = "brcm,bcm4330-bt";
-         reset-gpios = <&gpf 8 GPIO_ACTIVE_HIGH>;
--        vcc-supply = <&wlan0_power>;
-+        vbat-supply = <&wlan0_power>;
-         device-wakeup-gpios = <&gpf 5 GPIO_ACTIVE_HIGH>;
-         host-wakeup-gpios = <&gpf 6 GPIO_ACTIVE_HIGH>;
-         shutdown-gpios = <&gpf 4 GPIO_ACTIVE_LOW>;
--- 
-2.29.2
+1. Just put it in "-rev3".  Have the "-rev2" dts just include the
+"-rev3" dts and then override the model/compatible and disable the
+charger_thermal.
 
+2. Put the keyboard stuff in the "dtsi" file and then "-rev1" can have
+something like:
+
+/delete-node/ keyboard_controller;
+#include <arm/cros-ec-keyboard.dtsi>
+
+In general the preference is that the ugly device trees should get
+pushed down to earlier revs since (eventually) they can just be
+dropped.
+
+I'll also mention that I don't see a huge benefit in this being a
+separate patch from the next one--I'd just squash them together...
+
+-Doug
