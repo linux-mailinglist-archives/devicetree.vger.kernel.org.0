@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C7432EC36
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E59E32EC34
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbhCENb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230053AbhCENb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 5 Mar 2021 08:31:26 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:33844 "EHLO inva020.nxp.com"
+Received: from inva021.nxp.com ([92.121.34.21]:58486 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230224AbhCENa5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Mar 2021 08:30:57 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B88DD1A1407;
-        Fri,  5 Mar 2021 14:30:56 +0100 (CET)
+        id S230426AbhCENa7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 08:30:59 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 77F002006AC;
+        Fri,  5 Mar 2021 14:30:58 +0100 (CET)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0D9021A1436;
-        Fri,  5 Mar 2021 14:30:51 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C0D692010AA;
+        Fri,  5 Mar 2021 14:30:52 +0100 (CET)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3B4AB40249;
-        Fri,  5 Mar 2021 14:30:44 +0100 (CET)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7D866402E3;
+        Fri,  5 Mar 2021 14:30:45 +0100 (CET)
 From:   Dong Aisheng <aisheng.dong@nxp.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
@@ -27,9 +27,9 @@ Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
         Dong Aisheng <aisheng.dong@nxp.com>,
         Mark Rutland <mark.rutland@arm.com>,
         Fabio Estevam <fabio.estevam@nxp.com>
-Subject: [PATCH v5 11/18] arm64: dts: imx8qm: add lsio ss support
-Date:   Fri,  5 Mar 2021 21:17:41 +0800
-Message-Id: <1614950268-22073-13-git-send-email-aisheng.dong@nxp.com>
+Subject: [PATCH v5 12/18] arm64: dts: imx8qm: add conn ss support
+Date:   Fri,  5 Mar 2021 21:17:42 +0800
+Message-Id: <1614950268-22073-14-git-send-email-aisheng.dong@nxp.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
 References: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
@@ -38,9 +38,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LSIO SS of MX8QM is exactly the same as MX8QXP. So we can fully
-reuse the exist LSIO SS dtsi. Add <soc>-ss-lsio.dtsi with compatible
-string updated according to imx8-ss-lsio.dtsi.
+The CONN SS of MX8QM is mostly the same as MX8QXP except it has one more
+USB HSIC module support. So we can fully reuse the exist CONN SS dtsi.
+Add <soc>-ss-conn.dtsi with compatible string updated according to
+imx8-ss-conn.dtsi.
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>
@@ -51,81 +52,43 @@ Cc: Fabio Estevam <fabio.estevam@nxp.com>
 Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
 ChangeLog:
-v2->v5:
+v4->v5:
+ * make mx8qm usdhc compatible with mx8qxp according to Haibo's suggestion
+v2->v3:
  * no changes
 v1->v2:
  * change to the new two cell scu clk binding
 ---
- .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+ .../boot/dts/freescale/imx8qm-ss-conn.dtsi    | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
 new file mode 100644
-index 000000000000..30896610c654
+index 000000000000..42637a45701c
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
-@@ -0,0 +1,61 @@
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+@@ -0,0 +1,21 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright 2019-2020 NXP
 + *	Dong Aisheng <aisheng.dong@nxp.com>
 + */
 +
-+&lsio_gpio0 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++&fec1 {
++	compatible = "fsl,imx8qm-fec", "fsl,imx6sx-fec";
 +};
 +
-+&lsio_gpio1 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++&fec2 {
++	compatible = "fsl,imx8qm-fec", "fsl,imx6sx-fec";
 +};
 +
-+&lsio_gpio2 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++&usdhc1 {
++	compatible = "fsl,imx8qm-usdhc", "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
 +};
 +
-+&lsio_gpio3 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
-+};
-+
-+&lsio_gpio4 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
-+};
-+
-+&lsio_gpio5 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
-+};
-+
-+&lsio_gpio6 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
-+};
-+
-+&lsio_gpio7 {
-+	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
-+};
-+
-+&lsio_mu0 {
-+	compatible = "fsl,imx8-mu-scu", "fsl,imx8qm-mu", "fsl,imx6sx-mu";
-+};
-+
-+&lsio_mu1 {
-+	compatible = "fsl,imx8-mu-scu", "fsl,imx8qm-mu", "fsl,imx6sx-mu";
-+};
-+
-+&lsio_mu2 {
-+	compatible = "fsl,imx8-mu-scu", "fsl,imx8qm-mu", "fsl,imx6sx-mu";
-+};
-+
-+&lsio_mu3 {
-+	compatible = "fsl,imx8-mu-scu", "fsl,imx8qm-mu", "fsl,imx6sx-mu";
-+};
-+
-+&lsio_mu4 {
-+	compatible = "fsl,imx8-mu-scu", "fsl,imx8qm-mu", "fsl,imx6sx-mu";
-+};
-+
-+&lsio_mu13 {
-+	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++&usdhc2 {
++	compatible = "fsl,imx8qm-usdhc", "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
 +};
 -- 
 2.25.1
