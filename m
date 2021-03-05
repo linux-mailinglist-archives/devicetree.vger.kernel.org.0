@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E58A32E61C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8594832E636
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:23:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbhCEKUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:20:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37306 "EHLO
+        id S229597AbhCEKXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:23:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230050AbhCEKTs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:19:48 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F6AC061762
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:19:48 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id q14so2074808ljp.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:19:47 -0800 (PST)
+        with ESMTP id S229517AbhCEKXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:23:03 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E539C06175F
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:23:02 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id k9so2675418lfo.12
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:23:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=JDO5cCl4ab76RhZZa944rFupwI7HROFvYkUlweaxUwo=;
-        b=qIY3nYPxmlMkINpKQiBMSeeBQTVK8USHlSHQXdncm8KrnyeCScP+mOkJJc5SxnnOBG
-         jQepYSTDBoekD8Ui13A+aY7BoB2CPDbd4/2P9hOdzcFH/S9P2sFvm+DW7T/9SlIAU0V+
-         LAMf4r1pLGKAaKu20gZpIRUCnscpQSlDRgWFD5lQlUEFE91X1NA196H+w3EIY8gRwE9i
-         L7HN9Xy7wUv2zsYrB4TFcOwwBPEHxoADtq1m5VphOvaseh4DZCTG/Clts9h4NiLQmIah
-         dGSwL2z9C18/k7BFost9pDSBp4m6exHoXHAvlHQX1ySOMLcAaYdRVTwNK5KR9CF/ca8P
-         pqxw==
+        bh=LfHQxtXLpgHzWWehAxy54rgqvbReyYhSet51OAulNz0=;
+        b=kD6/l/0Vi2BEoQPUIUTVfySLU+oGOH8dhaVp52y9xqPK9vrBGwOXrYPqAdVsioaq7Q
+         BSVl0SrF2rmu7/8jAVon7ihnGEcn1/xFoZERo0vcXrkf23f2qRZ3HXS5Mj9uOvek+Cdu
+         TzxpO49nda2QldHAqLTx7lZ38Vwou2bm+b276mzMWUNqeyqT/F6ZuHInNRj3pp6VaVJF
+         Hb0KdVNazzZiWHllpGCCXqyTs/i7KImP3DmYD9uOvCawQxqaWjw7S8a8D9F7wSpS9oU+
+         Mk2IXHel6lwAq2blqHQayb642ZFEC+pJQpyAsFDWWhbf5xNWING9veK8vpg+s+EXiYUA
+         oAeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=JDO5cCl4ab76RhZZa944rFupwI7HROFvYkUlweaxUwo=;
-        b=ipIvOTi6quPAJCVZkeydFR96fw5Kzvs9Ap0jyiKn9OJXdAt87PVf75kvCrOEBL1kOf
-         clXOkM2QLOi+bNcitJNAmrSjBgN1loEOxWXaXOclJqEP1zKWIWja6OE92sawAn/3zqcx
-         zwqwcR7kkneIcO6ibhYLMaB6955GHpYKRpV1skuyIEGS+AM+uF7ELy0ZzS0BLTkQlAQJ
-         VU6pDqMeBshdnRfvSZ+Y4OrT9C2n+/uiChZ9+Y1+H4dXJA5OtNfh/U6SbERsxYW2BWCT
-         +X9vDAGA0h3BWm834wMGb9P/tCDmGDYt0tsZZPRH2iYQqg/zFM53xB3QkbyIzxfsQn/y
-         dO5g==
-X-Gm-Message-State: AOAM533Q1u3oRlu2hqwo9OI5qirx5SH8O37oFOERlBcoMb3mJGgzJ/80
-        f4gNX3f/JYOIygIGZ4THN8RObw1bHdK3iNRPWtZGsw==
-X-Google-Smtp-Source: ABdhPJwRgUIWxfa2aV8J9wD3ud6vgUSRuFAmd+gtcmSPw1J0W4alY19sVHBN3MdTwWOgNSbglUlPJGdcSNF/1qK6V1A=
-X-Received: by 2002:a05:651c:103a:: with SMTP id w26mr2052805ljm.273.1614939586539;
- Fri, 05 Mar 2021 02:19:46 -0800 (PST)
+        bh=LfHQxtXLpgHzWWehAxy54rgqvbReyYhSet51OAulNz0=;
+        b=m8J2yCB4XRLyq2ux064ZIrGtb77qkyxgGfSgYECQ3g5JXKFlIHVx149Hc23giGbhvW
+         djRMB0NPTAXYOp0K7AcoACAVzIDzW64et2hchehrqzXeEpcA9woVnadjfBICFCNuc/8x
+         PYRcCfOLIB5KO2hnoH7cArj2TLQOSB0s2bQVZyxlcbhpj6rYJdsaH1+Dxdpg7j1MzjfO
+         m7dZYoWw42HAwZx8FqgwIyeh141BQJ62Ispf4JP7Pw8zVYfWO0ui7EpFfuO5q1aPlicl
+         vh3A69LTwVldGHCKbitOZrkfDmTC3G7YaGzJAZNOPOnHXKgQesUdRaWcepUONxJRYKl+
+         5khw==
+X-Gm-Message-State: AOAM533dOv1z+vrLYQVvL6F9rCyLAnmxiTXg+GW0SVpcI0q/gUIR7SYj
+        HlBSPajPp5sf9KI2p1e15AY06fWQoi+9OCnhoK2e6w==
+X-Google-Smtp-Source: ABdhPJx+i531/mdEEsILHSu2PXPp+jA1Jld7y10Dq0JMoPYIdD19rJgXaEDARwuiGdh9W28fAuFk1UFedpx77+cLayM=
+X-Received: by 2002:a05:6512:243:: with SMTP id b3mr1467597lfo.529.1614939780828;
+ Fri, 05 Mar 2021 02:23:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-8-marcan@marcan.st>
-In-Reply-To: <20210304213902.83903-8-marcan@marcan.st>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-10-marcan@marcan.st>
+In-Reply-To: <20210304213902.83903-10-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 5 Mar 2021 11:19:35 +0100
-Message-ID: <CACRpkdbcFzH1eHhEzwxx+x+4TXX-QtJ5kmvLk-GJiuS2YMAzGw@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 07/27] arm64: arch_timer: implement support for interrupt-names
+Date:   Fri, 5 Mar 2021 11:22:49 +0100
+Message-ID: <CACRpkdZ7S=9nSZ9EknYVRAdY7-teHWXjZ6CRB6UGOnALV0UgXg@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 09/27] docs: driver-api: device-io: Document I/O
+ access functions
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -75,7 +76,8 @@ Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Linux Doc Mailing List <linux-doc@vger.kernel.org>,
         linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
         Linux-Arch <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -83,17 +85,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Mar 4, 2021 at 10:40 PM Hector Martin <marcan@marcan.st> wrote:
 
-> This allows the devicetree to correctly represent the available set of
-> timers, which varies from device to device, without the need for fake
-> dummy interrupts for unavailable slots.
+> From: Arnd Bergmann <arnd@arndb.de>
 >
-> Also add the hyp-virt timer/PPI, which is not currently used, but worth
-> representing.
+> This adds more detailed descriptions of the various read/write
+> primitives available for use with I/O memory/ports.
 >
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 > Signed-off-by: Hector Martin <marcan@marcan.st>
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
 
-This is the right solution.
+Excellent work!
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
