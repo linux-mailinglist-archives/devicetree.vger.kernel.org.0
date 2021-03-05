@@ -2,304 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B0832EE5C
+	by mail.lfdr.de (Postfix) with ESMTP id 2322132EE59
 	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:20:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230122AbhCEPUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 10:20:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45206 "EHLO
+        id S229969AbhCEPUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 10:20:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbhCEPTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:19:55 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A177CC061574;
-        Fri,  5 Mar 2021 07:19:55 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF8C4CC;
-        Fri,  5 Mar 2021 16:19:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1614957592;
-        bh=OJaSeqHuYX4URWLTn0r4dTt7CYEu53v9sGWUz0AdWqc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r6OXEZOcCitV4MvEGH7aJ510S5qKfHLYCNXrVody+ALgDxGySoRAgHh5duY546TM2
-         lgsQssiDUR3N54Ym308GGYr8/ZfRUrnRpATayxH93zOGisXT8ZMhcEA1M1vs6qRiSl
-         xYbwW/Lmk0Rb2fwdv9qDqrFMrlobU9ve9Er8JKa8=
-Date:   Fri, 5 Mar 2021 17:19:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
-        airlied@linux.ie, daniel@ffwll.ch, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, enric.balletbo@collabora.com,
-        drinkcat@chromium.org, hsinyi@chromium.org, kernel@collabora.com,
-        dafna3@gmail.com, robh+dt@kernel.org, megous@megous.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: add analogix,anx7688.yaml
-Message-ID: <YEJL+T7IaW8Asq1Q@pendragon.ideasonboard.com>
-References: <20210305124351.15079-1-dafna.hirschfeld@collabora.com>
- <20210305124351.15079-2-dafna.hirschfeld@collabora.com>
- <YEJBgEPO4J5+/HhD@pendragon.ideasonboard.com>
- <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
+        with ESMTP id S229818AbhCEPTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:19:46 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A003EC061574;
+        Fri,  5 Mar 2021 07:19:45 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id t26so1587810pgv.3;
+        Fri, 05 Mar 2021 07:19:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jOwzVtdSZN3Mcc6ru/DtiZXCgWq3L7CnPEmLp7eBzyY=;
+        b=hk0W+oEhT/rlmb4k6N1zzaT1VFxS8NVWKLhR8E5O8DCl9+cAG4aQMXRp0n3OGLMhGs
+         GFvWXtxEsay1ZLJzVmyIWyspeUN91t7w5zG7ENk4W6e3Eq+4vhKaQPkWPGgHgBBZNYHL
+         Al35Ou5WH8msg/mtgp4rFz45uITmiL6gJNMUORvaviYmCIzcxVLrvAPUsCrfrnIfSBFL
+         /TU02D4CBUH3w1tweH/aNrwg4gdw3v4wCfQge4CTg5LrfCRi0A0BhGqiPQcNjGWX1T4m
+         LrBHjUfgSib9TO5V2huX1SHNOVGzBAjUfzExI/H5b5glBQ4PwFPFLpG/+kwZdrCqC2+a
+         P4jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jOwzVtdSZN3Mcc6ru/DtiZXCgWq3L7CnPEmLp7eBzyY=;
+        b=kN72TxEVrnLXF8crgzWsb0U0AigNQLJhpULGZaZPPhU1IlRhzORR7dOp+6+KDLWNJh
+         pD2gByNbzHfaCNd14q4iueS9lYy3nfaEwCbwUpaTu0B1NP0BMTj6FGDF8HEmIZ+Arx7o
+         yxDj8Hp2RUyaucG2tYTPmU85rFPKiKvRSz0+17oiYSNbxf4dbCiLAN9MC12CyHTE+3PS
+         PdNiUnIV6qgt9caoD+UnADHX3d/Ie7VSWPzi9eOEWPP2JQBOkUwLXvrWkDaKNmnuuk2X
+         gRnH2RYA2UzyrODA8wEokfhMx4r43AikOvphiFaeYiKB0+fnozI6OnnMX54mJyjE/db2
+         otnw==
+X-Gm-Message-State: AOAM532REalkd3H1d8niXtwhuLi1TBmeDaDiTj25RoWV8XdKfGRuo2GO
+        I5l91341f7PhzB+7UDEZ3MQ58pSIcIjtZpC8mxg=
+X-Google-Smtp-Source: ABdhPJxxxItHDKqmrPdbQja5GEzQAgqG8i/ggoAr5RBsl0yKB14P57ZpL5tYhovl3rx4zMTmAU8vESO/+qlNyO1Nsj0=
+X-Received: by 2002:a65:4c08:: with SMTP id u8mr8909928pgq.203.1614957585225;
+ Fri, 05 Mar 2021 07:19:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-23-marcan@marcan.st>
+ <fe2cbf68-8b88-5128-035d-f941a9d17d74@canonical.com>
+In-Reply-To: <fe2cbf68-8b88-5128-035d-f941a9d17d74@canonical.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Mar 2021 17:19:29 +0200
+Message-ID: <CAHp75VePm=O+xxeEibC=BptwK+vd9TfgJ6mAid=smqpNgozDoQ@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 22/27] tty: serial: samsung_tty: Use devm_ioremap_resource
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna,
+On Fri, Mar 5, 2021 at 12:55 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 04/03/2021 22:38, Hector Martin wrote:
+> > This picks up the non-posted I/O mode needed for Apple platforms to
+> > work properly.
+> >
+> > This removes the request/release functions, which are no longer
+> > necessary, since devm_ioremap_resource takes care of that already. Most
+> > other drivers already do it this way, anyway.
+> >
 
-On Fri, Mar 05, 2021 at 04:14:03PM +0100, Dafna Hirschfeld wrote:
-> On 05.03.21 15:34, Laurent Pinchart wrote:
-> > On Fri, Mar 05, 2021 at 01:43:50PM +0100, Dafna Hirschfeld wrote:
-> >> ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
-> >> DisplayPort 1.3 Ultra-HDi (4096x2160p60).
-> >> The integrated crosspoint switch (the MUX) supports USB 3.1 data transfer
-> >> along with the DisplayPort Alternate Mode signaling over USB Type-C.
-> >> Additionally, an on-chip microcontroller (OCM) is available to manage the
-> >> signal switching, Channel Configuration (CC) detection, USB Power
-> >> Delivery (USB-PD), Vendor Defined Message (VDM) protocol support and other
-> >> functions as defined in the USB TypeC and USB Power Delivery
-> >> specifications.
-> >>
-> >> ANX7688 is found on Acer Chromebook R13 (elm) and on
-> >> Pine64 PinePhone.
-> >>
-> >> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> >> ---
-> >>   .../bindings/usb/analogix,anx7688.yaml        | 177 ++++++++++++++++++
-> >>   1 file changed, 177 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
-> >> new file mode 100644
-> >> index 000000000000..6c4dd6b4b28b
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
-> >> @@ -0,0 +1,177 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/usb/analogix,anx7688.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Analogix ANX7688 Type-C Port Controller with HDMI to DP conversion
-> >> +
-> >> +maintainers:
-> >> +  - Nicolas Boichat <drinkcat@chromium.org>
-> >> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> >> +
-> >> +description: |
-> >> +  ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
-> >> +  DisplayPort 1.3 Ultra-HDi (4096x2160p60).
-> >> +  The integrated crosspoint switch (the MUX) supports USB 3.1 data transfer along with
-> >> +  the DisplayPort Alternate Mode signaling over USB Type-C. Additionally,
-> >> +  an on-chip microcontroller (OCM) is available to manage the signal switching,
-> >> +  Channel Configuration (CC) detection, USB Power Delivery (USB-PD), Vendor
-> >> +  Defined Message (VDM) protocol support and other functions as defined in the
-> >> +  USB TypeC and USB Power Delivery specifications.
-> >> +
-> >> +
-> > 
-> > Extra blank line ?
-> > 
-> >> +properties:
-> >> +  compatible:
-> >> +    const: analogix,anx7688
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  avdd33-supply:
-> >> +    description: 3.3V Analog core supply voltage.
-> >> +
-> >> +  dvdd18-supply:
-> >> +    description: 1.8V Digital I/O supply voltage.
-> >> +
-> >> +  avdd18-supply:
-> >> +    description: 1.8V Analog core power supply voltage.
-> >> +
-> >> +  avdd10-supply:
-> >> +    description: 1.0V Analog core power supply voltage.
-> >> +
-> >> +  dvdd10-supply:
-> >> +    description: 1.0V Digital core supply voltage.
-> >> +
-> > 
-> > That's lots of supplies. If there's a reasonable chance that some of
-> > them will always be driven by the same regulator (especially if the
-> > ANX7688 documentation requires that), then they could be grouped. For
-> > instance dvdd18-supply and avdd18-supply could be grouped into
-> > vdd18-supply. It would still allow us to extend the bindings in a
-> > backward compatible way later if a system uses different regulators. You
-> > have more information about the hardware than I do, so it's your call.
-> > 
-> >> +  hdmi5v-supply:
-> >> +    description: 5V power supply for the HDMI.
-> >> +
-> >> +  hdmi_vt-supply:
-> >> +    description: Termination voltage for HDMI input.
-> > 
-> > Maybe hdmi-vt-supply ?
-> > 
-> >> +
-> >> +  clocks:
-> >> +    description: The input clock specifier.
-> >> +    maxItems: 1
-> > 
-> > How about
-> > 
-> >      items:
-> >        - description: The input clock specifier.
-> > 
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: xtal
-> >> +
-> >> +  hpd-gpios:
-> >> +    description: |
-> >> +      In USB Type-C applications, DP_HPD has no use. In standard DisplayPort
-> >> +      applications, DP_HPD is used as DP hot-plug.
-> >> +    maxItems: 1
-> >> +
-> >> +  enable-gpios:
-> >> +    description: Chip power down control. No internal pull-down or pull-up resistor.
-> >> +    maxItems: 1
-> >> +
-> >> +  reset-gpios:
-> >> +    description: Reset input signal. Active low.
-> >> +    maxItems: 1
-> >> +
-> >> +  vbus-det-gpios:
-> >> +    description: |
-> >> +      An input gpio for VBUS detection and high voltage detection,
-> >> +      external resistance divide VBUS voltage to 1/8.
-> >> +    maxItems: 1
-> >> +
-> >> +  interrupts:
-> >> +    description: |
-> >> +      The interrupt notifies 4 possible events - TCPC ALERT int, PD int, DP int, HDMI int.
-> >> +    maxItems: 1
-> >> +
-> >> +  cabledet-gpios:
-> >> +    description: An output gpio, indicates by the device that a cable is plugged.
-> >> +    maxItems: 1
-> >> +
-> >> +  vbus-ctrl-gpios:
-> >> +    description:
-> >> +      External VBUS power path. Enable VBUS source and disable VBUS sink or vice versa.
-> >> +    maxItems: 1
-> >> +
-> >> +  vconn-en1-gpios:
-> >> +    description: Controls the VCONN switch on the CC1 pin.
-> >> +    maxItems: 1
-> >> +
-> >> +  vconn-en2-gpios:
-> >> +    description: Controls the VCONN switch on the CC2 pin.
-> >> +    maxItems: 1
-> >> +
-> >> +  ports:
-> >> +    $ref: /schemas/graph.yaml#/properties/ports
-> >> +
-> >> +    properties:
-> >> +      port@0:
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +        description: Video port for HDMI input.
-> >> +
-> >> +      port@1:
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +        description: USB port for the USB3 input.
-> >> +
-> >> +      port@2:
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +        description: USB Type-c connector, see connector/usb-connector.yaml.
-> >> +
-> >> +    required:
-> >> +      - port@0
-> > 
-> > As all the ports exist at the hardware level, should they always be
-> > present ? The endpoints are optional of course, in case a port isn't
-> > connected on a particular system.
-> > 
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> > 
-> > Shouldn't clocks and regulators be also required ?
-> 
-> hmm, theoretically yes. Practically, in the case of Acer R13 (mediatek elm) device,
-> the ANX7688 is powered up and controlled by the Embedded Controller. The kernel only
-> needs to read few registers from that device for the drm bridge driver.
-> (also mentioned that in the cover letter).
+For the patches 18-22, with Krzysztof's and mine comments addressed
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-This may not be a popular opinion, but if the ANX7688 is fully
-controlled by the EC, I wonder if we shouldn't have an "EC DRM bridge"
-driver that would interrogate the EC instead :-)
+> > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > ---
+> >  drivers/tty/serial/samsung_tty.c | 25 +++----------------------
+> >  1 file changed, 3 insertions(+), 22 deletions(-)
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+> Best regards,
+> Krzysztof
 
-Is there a risk of bus conflicts if the EC and the main SoC try to
-access the ANX7688 over I2C at the same time ?
 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    #include <dt-bindings/gpio/gpio.h>
-> >> +    #include <dt-bindings/interrupt-controller/irq.h>
-> >> +
-> >> +    i2c0 {
-> >> +        #address-cells = <1>;
-> >> +        #size-cells = <0>;
-> >> +
-> >> +        anx7688: anx7688@2c {
-> >> +            compatible = "analogix,anx7688";
-> >> +            reg = <0x2c>;
-> >> +            avdd33-supply = <&reg_dcdc1>;
-> >> +            dvdd18-supply = <&reg_ldo_io1>;
-> >> +            avdd18-supply = <&reg_ldo_io1>;
-> >> +            avdd10-supply = <&reg_anx1v0>;
-> >> +            dvdd10-supply = <&reg_anx1v0>;
-> >> +            hdmi_vt-supply = <&reg_dldo1>;
-> >> +            enable-gpios = <&pio 3 10 GPIO_ACTIVE_LOW>; /* PD10 */
-> >> +            reset-gpios = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-> >> +            interrupt-parent = <&r_pio>;
-> >> +            interrupts = <0 11 IRQ_TYPE_EDGE_FALLING>; /* PL11 */
-> >> +            cabledet-gpios = <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
-> >> +            vconn-en1-gpios = <&pio 3 9 GPIO_ACTIVE_LOW>; /* PD9 */
-> >> +            vconn-en2-gpios = <&pio 3 9 GPIO_ACTIVE_LOW>; /* PD9 */
-> >> +            ports {
-> >> +                #address-cells = <1>;
-> >> +                #size-cells = <0>;
-> >> +
-> >> +                port@0 {
-> >> +                    reg = <0>;
-> >> +                    anx7688_in0: endpoint {
-> >> +                        remote-endpoint = <&hdmi0_out>;
-> >> +                    };
-> >> +                };
-> >> +
-> >> +                port@1 {
-> >> +                    reg = <1>;
-> >> +                    anx7688_in1: endpoint {
-> >> +                        remote-endpoint = <&usbdrd_phy_ss>;
-> >> +                    };
-> >> +                };
-> >> +                port@2 {
-> >> +                    reg = <2>;
-> >> +                    anx7688_out: endpoint {
-> >> +                        remote-endpoint = <&typec_connector>;
-> >> +                    };
-> >> +                };
-> >> +            };
-> >> +        };
-> >> +    };
 
 -- 
-Regards,
-
-Laurent Pinchart
+With Best Regards,
+Andy Shevchenko
