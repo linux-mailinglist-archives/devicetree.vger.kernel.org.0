@@ -2,213 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BB0632F047
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 17:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ACD332F043
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 17:44:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231249AbhCEQqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 11:46:12 -0500
-Received: from smtpweb146.aruba.it ([62.149.158.146]:38839 "EHLO
-        smtpweb146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbhCEQpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 11:45:46 -0500
-Received: from ubuntu.localdomain ([146.241.168.111])
-        by Aruba Outgoing Smtp  with ESMTPSA
-        id IDTPlgHCw1jmzIDTRlCrB3; Fri, 05 Mar 2021 17:38:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1614962326; bh=XFPljTLEpx+iDJEZVKAEvkdEGU2G+Au15VT749VzRcI=;
-        h=From:To:Subject:Date:MIME-Version;
-        b=KI54Uu7vZQbo0vKor1OOaOQ4cptRs7rYunM9mlIGJyZsY1ytHlAGnkrAQy/G+U5Mn
-         O+Sgk8NxUGsZ5mYCQ7sX0GAY6rwiTcv77XTd+V1Cu+4sEriYdUTSvoJvLqjT3jxcbv
-         9+T/tyoDvBkoqNvt5uNGFj0vunfW8Pqilmhx0e61mRUzsAvNTqzjEfGiHwqcUjhWF3
-         LMMstKXrSkVJcAl0kl0RffRhZoUiFIHPYqTEPsnhX4mken1jRRi2fNsYQkmvpQConl
-         Flk1UHgygOB/O55UX0WJnJnNEiAODTcwaAO9phU0S7INdw+xRY51fhayNgMGkGcKCp
-         y7/FySFIypXTQ==
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-To:     Giulio Benetti <giulio.benetti@micronovasrl.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: touchscreen: Add HY46XX bindings
-Date:   Fri,  5 Mar 2021 17:38:33 +0100
-Message-Id: <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
-References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
+        id S229682AbhCEQoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 11:44:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41070 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231282AbhCEQno (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 11:43:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 41F6E6508B;
+        Fri,  5 Mar 2021 16:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614962624;
+        bh=LU9abYarido7jBUFI+h2VPbi2pDJZpL4e6lVWkDvYEs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AOuCgeOm68/J35XdVGCCO8ObjBJTPneMFSBUISgLzKiwKQ3i4kgD18HMxT2Iw48vM
+         qWAAZJfmamD3N/ZAm48YBZWXiUtRjKCfaEjQ+WVQ2AC5Dm2duScHddzPa+Ei7Vyhim
+         XuiZKe/AaiFmlxHLirNqcoqlJ0GemxUGXpcMzUW+RVHE57OzkYY52LWsPt9tZLD1Dm
+         2hUCGHpuB1IUu5ad30iHnFh/3RWUwdxsyM9XFG9QISrzDcEfASyqBuQoD7G2ZQVjen
+         9mf2Zy9zKpqINWBxzS4c0m7OqjATJEO0sceAo57Ti8Y0MJDJSpmI2kX0hC3EzzmkDL
+         hX7bVP3Md+WDg==
+Received: by mail-ot1-f43.google.com with SMTP id g8so2397197otk.4;
+        Fri, 05 Mar 2021 08:43:44 -0800 (PST)
+X-Gm-Message-State: AOAM533jyLqcasg0cL/+vKaSF5K5buniGM4xfrYNXyWShX0H/8s6Fw5b
+        elwl3fXgUuBpUzN74kXCxnDQBngn8CCWfT0YQhA=
+X-Google-Smtp-Source: ABdhPJwz5Ow9XqsCCIrLLR9sMDo1pxHzHSiQz3uG5gZVUFQzrpgBZzCWoAerPcV8PVcXgONzd+LKsBQ6Gbx962ZNWVY=
+X-Received: by 2002:a9d:12e1:: with SMTP id g88mr5425358otg.305.1614962623492;
+ Fri, 05 Mar 2021 08:43:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4wfOjOXavtwRgjjMB8Lcj823f0m6pi8u/nB6O1dPedYSb4BkzaAht/8t+7QmiR8+K7dDfr3baH+CwS5Cap4tW7nMNtxPCnPSA2J3hNQpQCVdUbvroCOjBY
- a2uLfDHcVT4ZGg/oRC9r6cIbspABP/2O9ebJYjTc56VsMQCyvolkG7hWYv+sD5KNo6cNUfbPc3P8kQmWzkiQQIRw4Ecdb9u7UG0tq/7KQnU5eepacDsfD5yl
- dEN1pDu+tRLVmv77LgQqaMn0X2nT93BHIQ3r8qrMixpPJ+Vj1rmUO1tffxn0FLRYB7BtEhYJ41QomyYWtq8NqEK0iuMJ8e3ahRFHQbvWtJVDuN7DESWdZNq4
- dHWH6irjW4MItTTIMhgWU3Zo9mXB40A4dssgxGWd3Oak81SjHzp5mUHhQ9lYlL5b7L8aU/A4
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAHp75VdGYDDCRBRmd3O3Mt1opgDdwuRBoS1E=vaVc45h9eR-0w@mail.gmail.com>
+ <04ea35d6-cd7d-d6de-75ae-59b1e0c77f04@marcan.st> <CAHp75Vd6adVM94G1vCrQcZoegQFWHbK14YRRuBTQZwrM5CV2jQ@mail.gmail.com>
+In-Reply-To: <CAHp75Vd6adVM94G1vCrQcZoegQFWHbK14YRRuBTQZwrM5CV2jQ@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Fri, 5 Mar 2021 17:43:27 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1X4DyWdeBM1Vx+QMXU7+VhJrLHFLVzwAE4a4mb_xuqMQ@mail.gmail.com>
+Message-ID: <CAK8P3a1X4DyWdeBM1Vx+QMXU7+VhJrLHFLVzwAE4a4mb_xuqMQ@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Giulio Benetti <giulio.benetti@micronovasrl.com>
+On Fri, Mar 5, 2021 at 5:08 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Fri, Mar 5, 2021 at 5:55 PM Hector Martin <marcan@marcan.st> wrote:
+> > On 06/03/2021 00.13, Andy Shevchenko wrote:
+>
+> ...
+>
+> > >> -       return ioremap(res.start, resource_size(&res));
+> > >> +       if (res.flags & IORESOURCE_MEM_NONPOSTED)
+> > >> +               return ioremap_np(res.start, resource_size(&res));
+> > >> +       else
+> > >> +               return ioremap(res.start, resource_size(&res));
+> > >
+> > > This doesn't sound right. Why _np is so exceptional? Why don't we have
+> > > other flavours (it also rings a bell to my previous comment that the
+> > > flag in ioresource is not in the right place)?
+> >
+> > This is different from other variants, because until now *drivers* have
+> > made the choice of what ioremap mode to use based on device requirements
+> > (which means ioremap() 99% of the time, and then framebuffers and other
+> > memory-ish things such use something else). Now we have a *SoC fabric*
+> > that is calling the shots on what ioremap mode we have to use - and
+> > *every* non-PCIe driver needs to use ioremap_np() on these SoCs, or they
+> > break. So it seems a lot cleaner to make the choice for drivers here to
+> > upgrade ioremap() to ioremap_np() for SoCs that need it.
+>
+> Yes, that is a good idea. Once we discussed x86 and _uc cases and
+> actually on x86 it makes a lot of sense to have ioremap() ==
+> ioremap_uc(). Can't be this a similar case here?
 
-This adds device tree bindings for the Hycon HY46XX touchscreen series.
+The difference is that ioremap() should be ioremap_uc() on /all/
+architectures, it's just that x86 and ia64 for a long time were the
+exception and defined ioremap() as 'do whatever the mtrr says'.
 
-Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
----
- .../input/touchscreen/hycon,hy46xx.yaml       | 130 ++++++++++++++++++
- MAINTAINERS                                   |   6 +
- 2 files changed, 136 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> Arnd, what do you think of actually providing an ioremap() as some
+> kind of "best for the architecture the code is running on"?
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-new file mode 100644
-index 000000000000..cddd5e5bae92
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/hycon-hy46xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: hyconon HY46XX series touchscreen controller Bindings
-+
-+description: |
-+             There are 6 variants of the chip for various touch panel sizes and coverl len material
-+              Glass: 0.3mm--4.0mm
-+              PET/PMMA: 0.2mm--2.0mm
-+               HY4613(B)-N048  < 6"
-+               HY4614(B)-N068  7" .. 10.1"
-+               HY4621-NS32  < 5"
-+               HY4623-NS48  5.1" .. 7"
-+              Glass: 0.3mm--8.0mm
-+              PET/PMMA: 0.2mm--4.0mm
-+               HY4633(B)-N048  < 6"
-+               HY4635(B)-N048  < 7" .. 10.1"
-+
-+maintainers:
-+  - Giulio Benetti <giulio.benetti@micronovasrl.com>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hycon,hycon-hy4613
-+      - hycon,hycon-hy4614
-+      - hycon,hycon-hy4621
-+      - hycon,hycon-hy4623
-+      - hycon,hycon-hy4633
-+      - hycon,hycon-hy4635
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vcc-supply: true
-+
-+  threshold:
-+    description: Allows setting the sensitivity in the range from 0 to 255.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 255
-+
-+  proximity-sensor-switch:
-+    description: Allows enabling or disabling the Proximity Sensor.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+
-+  glove-enable:
-+    description: Allows enabling or disabling glove setting.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+
-+  report-speed:
-+    description: Allows setting the report speed(i.e 0x64 => 100Hz).
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 255
-+
-+  power-noise-enable:
-+    description: Allows enabling or disabling power noise filter.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+
-+  filter-data:
-+    description: Allows setting the filtering data before reporting touch
-+                 in the range from 0 to 5.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 5
-+
-+  gain:
-+    description: Allows setting the sensitivity distance in the range from 0 to 5.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 5
-+
-+  edge-offset:
-+    description: Allows setting the edge compensation in the range from 0 to 16.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 16
-+
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-fuzz-x: true
-+  touchscreen-fuzz-y: true
-+  touchscreen-inverted-x: true
-+  touchscreen-inverted-y: true
-+  touchscreen-swapped-x-y: true
-+  interrupt-controller: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      hycon-hy4633@1c {
-+        compatible = "hycon,hy4633";
-+        reg = <0x1c>;
-+        interrupt-parent = <&gpio2>;
-+        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-+        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
-+      };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d92f85ca831d..3f83daf6b2bf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8245,6 +8245,12 @@ S:	Maintained
- F:	mm/hwpoison-inject.c
- F:	mm/memory-failure.c
- 
-+HYCON HY46XX TOUCHSCREEN SUPPORT
-+M:	Giulio Benetti <giulio.benetti@micronovasrl.com>
-+L:	linux-input@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-+
- HYGON PROCESSOR SUPPORT
- M:	Pu Wen <puwen@hygon.cn>
- L:	linux-kernel@vger.kernel.org
--- 
-2.25.1
+Linus has been pretty clear about wanting all the default functions
+to have similar behavior across architectures and be at least as
+strict as x86. In case of ioremap() that usually means that writes
+are posted, because they are that way on PCI buses on x86.
 
+There are definitely some advantages of making all writes non-posted
+by default on Arm because that would be a simpler model, but there
+are some important downsides:
+
+- non-posted writes can be much slower than posted ones, depending
+  on the specific hardware
+
+- it would change the behavior of all Arm platforms, with no easy
+  way to validate it
+
+- setting ioremap() on PCI buses non-posted only makes them
+  only slower but not more reliable, because the non-posted flag
+  on the bus is discarded by the PCI host bridge.
+
+> Otherwise if the same driver happens to be needed on different
+> architectures, oops, ifdeffery or simple conditionals over the code is
+> really not the best way to solve it.
+
+The behavior of devm_platform_ioremap_resource() is now to
+do the right thing automatically, and I think that is good enough. For
+all I can tell, we can use that in all drivers without conditional
+compilation.
+
+> > If we don't do something like this here or in otherwise common code,
+> > we'd have to have an open-coded "if apple then ioremap_np, else ioremap"
+> > in every driver that runs on-die devices on these SoCs, even ones that
+> > are otherwise standard and need few or no Apple-specific quirks.
+>
+> Exactly! But what about architectures where _uc is that one? So, why
+> does your patch only take part of _np case?
+> (Hint we have x86 Device Tree based platforms)
+
+Usually, the driver knows the requirements, and they are independent
+of the platform. If a driver wants _wc or _wt mappings, it will want that
+on all machines, and should be able to deal with platforms that implement
+that through a stricter mapping.
+
+The two drivers that need to override ioremap() to ioremap_uc()
+in order to override the mtrr already have that logic. You are right
+that these are a bit like the _np() case in that the device needs
+something stricter than the default mapping, but the difference is
+that for x86 ioremap_uc() this is needed to work around broken
+firmware, while for the apple ioremap_np() case we trust the firmware
+to tell us what to do.
+
+> Yep, and why not to make ioremap() == ioremap_nc() on architecture
+> that requires it?
+> Can it be detected at run time?
+
+I think doing this requires auditing a lot of legacy driver code,
+especially drivers/video/fbdev. Once all drivers that need write-combining
+mappings explicitly ask for them, the default ioremap can be changed
+over to act like ioremap_nc() on the remaining two architectures that
+don't do that yet.
+
+There has been a lot of work toward that goal, but the problem
+is knowing exactly which drivers need it.
+
+       Arnd
