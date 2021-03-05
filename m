@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE5CC32EBA4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 13:54:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A422532EBC0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 13:59:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbhCEMx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 07:53:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41902 "EHLO
+        id S229690AbhCEM7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 07:59:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbhCEMxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 07:53:13 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB2DC061574
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 04:53:13 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id z11so3389918lfb.9
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 04:53:13 -0800 (PST)
+        with ESMTP id S230039AbhCEM7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 07:59:16 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE3EC061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 04:59:15 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id n16so3465965lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 04:59:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=kNlcFUH19pvEaUNeWFkJfhL9RcG2IrR9oS9s05kiN+0=;
-        b=CkmfNqKY6uqClT02ECWjtjNuzDKkAX3mxy0GNnOlVYweSOW3K16BaAMcb71k2H2j6V
-         cxgZ/UXKSzwPHDd1w3HjJKcv5HDFacLSRagydd/XaXrRwtc58E/Iqybnya5TrOTnlzi5
-         +U/jiJa7LV3RJyJiKD0ci4vo3JytML+Iq7f99l/rebusOwuWfnKjJ+G5OIMakN/lpAeE
-         CUibCfiRZKDY5tNA0YpdyjfHuXeRQYvzL7Zji+toxX9hfMgh0TI/eENcMbl0NaBCFfbV
-         yH2rczwCFUGIX20fCVEi7vn38sFeKbFihEfiTDr2MwXgBX2Getw1qyZ2376Sy0uNvbZQ
-         WkhQ==
+        bh=HkWBKDaRVhrdmZiH0J1SfPgamJVu7fZc0LeYHE+u9S4=;
+        b=pAd9m4p6Eg8xInjhY1qO0Sabq8silRnD3+3iCAF1stH25y1juuQSesvPlCA4hm1m6i
+         uxP8i0/0zQdH20MKUy67mgy+BeBSHO+2qHBEZLqaM5aMmMCHRpeONuAm3tlCrPgsEx3Q
+         PpMN1nuzBEWtScs6YCdEOzV4oXL98eSXW1We3xEPLWpK27N265W11EhUfARUpLfJzoRE
+         1WBxuZiVfYKmHMr/eIb4dF5i/x8qxTN/rZb8VbX6tOwzc+JjZh4eRRcBfYSkthkQcp2J
+         g++oLUN3QoQ5tUtCaEsM5brnt/FJf64efJO6vPDEjZ3+Xl1aNLSDfodc88PSFB5b/2/d
+         DpnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=kNlcFUH19pvEaUNeWFkJfhL9RcG2IrR9oS9s05kiN+0=;
-        b=rL3kQxHSD/kHXXSFjk4rgjN3jK22Vu4W5vKaum+fC4WNjjiSznHqalfP1uZ/hjaAj2
-         y73KUXB8L3o63tIoc6YRKABNhkCFO3dbyxdAXjxCjZWh/qrCxEh8S2kRUUqrwEdKyiDQ
-         BZtgtF/YJb71adgD+ff14U9nTy8Ub818FrKJFcePWKCo6O/GesSMLfxRU4JTpGp/UWDB
-         S9H4P7dcHI5RRgbBFZjA5BjzT9BpkJ6iS4SXtD2pEna/CeEH0uuQgt4Ck1lqu4w3jZiL
-         eD6uqiXxAYwOsLVCQyb3ys6u5ETK59n7F05ana3GMQQU+SC6zrPt/2cCtbVib4nVeZRr
-         IjHQ==
-X-Gm-Message-State: AOAM531itawNGQz/toRECMZJe3tSJ4b60QuDzV/i1kctHYB67zRRovA6
-        WxsZ8njKVHavA8kxJE3cWBQ=
-X-Google-Smtp-Source: ABdhPJyCSq5dx/pWY6qnpUVMpPHsgkoyJ2Q6xaAUecjksWCdxTFhdMotByDHEExoTCjCeg38AS0ZMw==
-X-Received: by 2002:a05:6512:398d:: with SMTP id j13mr5270880lfu.41.1614948791967;
-        Fri, 05 Mar 2021 04:53:11 -0800 (PST)
+        bh=HkWBKDaRVhrdmZiH0J1SfPgamJVu7fZc0LeYHE+u9S4=;
+        b=Bh4g+Df6u1GJX7kEKyW3/aIf+K5cn+dOSS885+P/DOn/oAxIz1MbcC3YHiTMMvIyPb
+         N0hCI91pVSyN1LyHSFOWs9SZH0hDfVF6059Of/tTvrQ6j4MIejB/T0d/onin6R7oh5EK
+         93uNUGM8xWk3CcfVar2RJqB4zbw8ruv4YColcAIyx4scjpwPqCyZsD+FbUxG1iWJ4TgS
+         9FhgYoVR4cpokQF2guLLx8ETQ7J3N4Cuxj8kLH4McuZhfZO/+NY0x4qeVz65SBP8y555
+         ngrNULhzIRHBoQbGWrRpyAt54WouQa/XN4yXiMnWBf2XuomEGIrGvMQTBZLPIBlcMgks
+         yZFw==
+X-Gm-Message-State: AOAM532yJBT95WitFTYm9/s3CvfOtvUGN2g2F2sFLU+m6D7ZGIhY6Fy1
+        Im/wJSPeXL3TjxH0iLUjKt4=
+X-Google-Smtp-Source: ABdhPJwf3JpN1G0cXxJ+IB8fDk6dSWqaP38QeGKV0megKYlZBBjNbobiYapPomNhwOIagWMgu7kr3g==
+X-Received: by 2002:a19:e48:: with SMTP id 69mr5126693lfo.469.1614949154068;
+        Fri, 05 Mar 2021 04:59:14 -0800 (PST)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id u3sm301359lfu.24.2021.03.05.04.53.10
+        by smtp.gmail.com with ESMTPSA id 30sm308138lfr.200.2021.03.05.04.59.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 04:53:11 -0800 (PST)
+        Fri, 05 Mar 2021 04:59:13 -0800 (PST)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] arm64: dts: broadcom: bcm4908: add TP-Link Archer C2300 V1
-Date:   Fri,  5 Mar 2021 13:53:02 +0100
-Message-Id: <20210305125302.21593-2-zajec5@gmail.com>
+Subject: [PATCH RESEND 1/2] dt-bindings: arm: bcm: document TP-Link Archer C2300 binding
+Date:   Fri,  5 Mar 2021 13:59:06 +0100
+Message-Id: <20210305125907.21943-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210305125302.21593-1-zajec5@gmail.com>
 References: <20210305125302.21593-1-zajec5@gmail.com>
@@ -68,214 +68,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Archer C2300 V1 is a home router based on the BCM4906 (2 CPU cores). It
-has 512 MiB of RAM, NAND flash, USB 2.0 and USB 3.0 ports, 4 LAN ports,
-1 WAN port.
+One more BCM4906 based device.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/boot/dts/broadcom/bcm4908/Makefile |   1 +
- .../bcm4906-tplink-archer-c2300-v1.dts        | 182 ++++++++++++++++++
- 2 files changed, 183 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+RESEND: Got "550 Unknown recipient" for linux-arm-kernel@lists.infradead.org
+<dwmw2_go`> yeah, the mailman setup on the new host got commented out for a few seconds.
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/Makefile b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-index ebebc0cd421f..cc75854519ac 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_BCM4908) += bcm4906-netgear-r8000p.dtb
-+dtb-$(CONFIG_ARCH_BCM4908) += bcm4906-tplink-archer-c2300-v1.dtb
- dtb-$(CONFIG_ARCH_BCM4908) += bcm4908-asus-gt-ac5300.dtb
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
-new file mode 100644
-index 000000000000..85820c760260
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "bcm4906.dtsi"
-+
-+/ {
-+	compatible = "tplink,archer-c2300-v1", "brcm,bcm4906", "brcm,bcm4908";
-+	model = "TP-Link Archer C2300 V1";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00 0x00 0x00 0x20000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		power-white {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		2ghz {
-+			function = "2ghz";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		5ghz {
-+			function = "5ghz";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wan-amber {
-+			function = LED_FUNCTION_WAN;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		wan-blue {
-+			function = LED_FUNCTION_WAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		lan {
-+			function = LED_FUNCTION_LAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wps {
-+			function = LED_FUNCTION_WPS;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		usb-high-white {
-+			function = "usbup";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		usb-low-white {
-+			function = "usbdown";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		brightness {
-+			function = LED_FUNCTION_BACKLIGHT;
-+			color = <LED_COLOR_ID_WHITE>;
-+			gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		brightness {
-+			label = "LEDs";
-+			linux,code = <KEY_BRIGHTNESS_ZERO>;
-+			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wifi {
-+			label = "WiFi";
-+			linux,code = <KEY_RFKILL>;
-+			gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		restart {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&gpio0 23 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&usb_phy {
-+	brcm,ioc = <1>;
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+&xhci {
-+	status = "okay";
-+};
-+
-+&ports {
-+	port@0 {
-+		label = "lan4";
-+	};
-+
-+	port@1 {
-+		label = "lan3";
-+	};
-+
-+	port@2 {
-+		label = "lan2";
-+	};
-+
-+	port@3 {
-+		label = "lan1";
-+	};
-+
-+	port@7 {
-+		reg = <7>;
-+		phy-mode = "internal";
-+		phy-handle = <&phy12>;
-+		label = "wan";
-+	};
-+};
-+
-+&nandcs {
-+	nand-ecc-strength = <4>;
-+	nand-ecc-step-size = <512>;
-+	nand-on-flash-bbt;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	partitions {
-+		compatible = "brcm,bcm4908-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			label = "cferom";
-+			reg = <0x0 0x100000>;
-+		};
-+
-+		partition@100000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x100000 0x3900000>;
-+		};
-+
-+		partition@5800000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x3a00000 0x3900000>;
-+		};
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+index e55731f43c84..2cd4e4a32278 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+@@ -21,6 +21,7 @@ properties:
+         items:
+           - enum:
+               - netgear,r8000p
++              - tplink,archer-c2300-v1
+           - const: brcm,bcm4906
+           - const: brcm,bcm4908
+ 
 -- 
 2.26.2
 
