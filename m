@@ -2,154 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A803D32EB95
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 13:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1459532EBA5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 13:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbhCEMtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 07:49:45 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:16416 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229737AbhCEMtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Mar 2021 07:49:14 -0500
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4DsSGm00BQz9tyKH;
-        Fri,  5 Mar 2021 13:49:03 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id X6AkLw5kGVzF; Fri,  5 Mar 2021 13:49:03 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4DsSGl5zSdz9tyKG;
-        Fri,  5 Mar 2021 13:49:03 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 3D85B8B827;
-        Fri,  5 Mar 2021 13:49:05 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id FCMvPv1BqI8E; Fri,  5 Mar 2021 13:49:05 +0100 (CET)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 84AB68B826;
-        Fri,  5 Mar 2021 13:49:04 +0100 (CET)
-Subject: Re: [PATCH v2 1/7] cmdline: Add generic function to build command
- line.
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Will Deacon <will@kernel.org>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, danielwa@cisco.com,
-        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
- <d8cf7979ad986de45301b39a757c268d9df19f35.1614705851.git.christophe.leroy@csgroup.eu>
- <20210303172810.GA19713@willie-the-truck>
- <a0cfef11-efba-2e5c-6f58-ed63a2c3bfa0@csgroup.eu>
- <20210303174627.GC19713@willie-the-truck>
- <dc6576ac-44ff-7db4-d718-7565b83f50b8@csgroup.eu>
- <20210303181651.GE19713@willie-the-truck> <87sg59rewl.fsf@mpe.ellerman.id.au>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <11d7af27-28cb-0eed-0f33-6669cbf7f1bb@csgroup.eu>
-Date:   Fri, 5 Mar 2021 13:49:03 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229978AbhCEMx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 07:53:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230051AbhCEMxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 07:53:11 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47CCC061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 04:53:10 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id k12so2571286ljg.9
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 04:53:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o2gecnujG3aRfX027+2eR9MVO7oDDGNp/dYCPVkl014=;
+        b=tvqRWV6/ZyaS22KJgtNNf/en9gigh2da2sqDRgvTs/ifDF7ys4PugFvJYsgmjM5qHh
+         B8H9DsalfBc/lmMhhwTzYiBbXShRonHQw8hUe8p9kzsuYUmoIxPkX8BN0o+YHwt9hb5I
+         aYj3Q3dxpGinaxlFQTw6ebDPYwd5uHPP3T4isYlhOqFlfIZkAxniluoj5/lDZWIHruod
+         X2E476oEEsKn95cK94GuuTeid7wryh1LPPt8x2syH5TUFj6yS+tRjLZSMyWMKYFx27rk
+         rg0mK369SO9kkxusAefJ0Tb24toxPJrF8DQszWetrM0dp3rc9jJTGSdnAQ+iNilqKAtS
+         UOhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o2gecnujG3aRfX027+2eR9MVO7oDDGNp/dYCPVkl014=;
+        b=UXkHV+Tb+47wf7Y/xh6X93m0Ryqpu0YrZLtJwrCX6NwsibE7yqw9P7rnPblH07qVry
+         SaYWibmj04t0LX7/bzFo9GoPYqY3k5brQctrNnWN/QOc3J/UUqP/G0BFTkqWclXpgK4W
+         Lof+MWW1yo/OQIzAzU0S+ujAtqMOybvFV9VPpT2bojDv+Z5L50/7qQ63DeTZTopv+AgF
+         cZ3P4oNcwr64abdhng5Dyzt0Ktwjfj6lpFrcM7fs538AZHLZDH6oVtbgmN1L9WnvsxyB
+         q1w0R99btithTCCZ15zTlKe9yQRrLORs5MZeKIeTsHdufA3O7wyQckRfxwe0bEhMoirI
+         NvhA==
+X-Gm-Message-State: AOAM531LYe7zqeHuq3iGmuN2e5QxCscxXFL2CBt7WF32IHqJYT/GHHpj
+        LHX8u652lVJaGTbhT9Mnu2c=
+X-Google-Smtp-Source: ABdhPJwj0JqZgoHuIX1kyzLvq8AnjdG7hb5ZgJHk5Z7LxGdLi9mmmILSYplVk4Qf1sChiY1TAQnWJA==
+X-Received: by 2002:a2e:b4c3:: with SMTP id r3mr5057459ljm.232.1614948789434;
+        Fri, 05 Mar 2021 04:53:09 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id u3sm301359lfu.24.2021.03.05.04.53.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Mar 2021 04:53:08 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: arm: bcm: document TP-Link Archer C2300 binding
+Date:   Fri,  5 Mar 2021 13:53:01 +0100
+Message-Id: <20210305125302.21593-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <87sg59rewl.fsf@mpe.ellerman.id.au>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+One more BCM4906 based device.
 
-Le 05/03/2021 à 12:58, Michael Ellerman a écrit :
-> Will Deacon <will@kernel.org> writes:
->> On Wed, Mar 03, 2021 at 06:57:09PM +0100, Christophe Leroy wrote:
->>> Le 03/03/2021 à 18:46, Will Deacon a écrit :
->>>> On Wed, Mar 03, 2021 at 06:38:16PM +0100, Christophe Leroy wrote:
->>>>> Le 03/03/2021 à 18:28, Will Deacon a écrit :
->>>>>> On Tue, Mar 02, 2021 at 05:25:17PM +0000, Christophe Leroy wrote:
->>>>>>> This code provides architectures with a way to build command line
->>>>>>> based on what is built in the kernel and what is handed over by the
->>>>>>> bootloader, based on selected compile-time options.
->>>>>>>
->>>>>>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
->>>>>>> ---
->>>>>>>     include/linux/cmdline.h | 62 +++++++++++++++++++++++++++++++++++++++++
->>>>>>>     1 file changed, 62 insertions(+)
->>>>>>>     create mode 100644 include/linux/cmdline.h
->>>>>>>
->>>>>>> diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..ae3610bb0ee2
->>>>>>> --- /dev/null
->>>>>>> +++ b/include/linux/cmdline.h
->>>>>>> @@ -0,0 +1,62 @@
->>>>>>> +/* SPDX-License-Identifier: GPL-2.0 */
->>>>>>> +#ifndef _LINUX_CMDLINE_H
->>>>>>> +#define _LINUX_CMDLINE_H
->>>>>>> +
->>>>>>> +static __always_inline size_t cmdline_strlen(const char *s)
->>>>>>> +{
->>>>>>> +	const char *sc;
->>>>>>> +
->>>>>>> +	for (sc = s; *sc != '\0'; ++sc)
->>>>>>> +		; /* nothing */
->>>>>>> +	return sc - s;
->>>>>>> +}
->>>>>>> +
->>>>>>> +static __always_inline size_t cmdline_strlcat(char *dest, const char *src, size_t count)
->>>>>>> +{
->>>>>>> +	size_t dsize = cmdline_strlen(dest);
->>>>>>> +	size_t len = cmdline_strlen(src);
->>>>>>> +	size_t res = dsize + len;
->>>>>>> +
->>>>>>> +	/* This would be a bug */
->>>>>>> +	if (dsize >= count)
->>>>>>> +		return count;
->>>>>>> +
->>>>>>> +	dest += dsize;
->>>>>>> +	count -= dsize;
->>>>>>> +	if (len >= count)
->>>>>>> +		len = count - 1;
->>>>>>> +	memcpy(dest, src, len);
->>>>>>> +	dest[len] = 0;
->>>>>>> +	return res;
->>>>>>> +}
->>>>>>
->>>>>> Why are these needed instead of using strlen and strlcat directly?
->>>>>
->>>>> Because on powerpc (at least), it will be used in prom_init, it is very
->>>>> early in the boot and KASAN shadow memory is not set up yet so calling
->>>>> generic string functions would crash the board.
->>>>
->>>> Hmm. We deliberately setup a _really_ early shadow on arm64 for this, can
->>>> you not do something similar? Failing that, I think it would be better to
->>>> offer the option for an arch to implement cmdline_*, but have then point to
->>>> the normal library routines by default.
->>>
->>> I don't think it is possible to setup an earlier early shadow.
->>>
->>> At the point we are in prom_init, the code is not yet relocated at the
->>> address it was linked for, and it is running with the MMU set by the
->>> bootloader, I can't imagine being able to setup MMU entries for the early
->>> shadow KASAN yet without breaking everything.
->>
->> That's very similar to us; we're not relocated, although we are at least
->> in control of the MMU (which is using a temporary set of page-tables).
-> 
-> prom_init runs as an OF client, with the MMU off (except on some Apple
-> machines), and we don't own the MMU. So there's really nothing we can do :)
-> 
-> Though now that I look at it, I don't think we should be doing this
-> level of commandline handling in prom_init. It should just grab the
-> value from firmware and pass it to the kernel proper, and then all the
-> prepend/append/force etc. logic should happen there.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-But then, how do you handle the command line parameters that are needed by prom_init ?
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+index e55731f43c84..2cd4e4a32278 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+@@ -21,6 +21,7 @@ properties:
+         items:
+           - enum:
+               - netgear,r8000p
++              - tplink,archer-c2300-v1
+           - const: brcm,bcm4906
+           - const: brcm,bcm4908
+ 
+-- 
+2.26.2
 
-For instance, prom_init_mem() use 'prom_memory_limit', which comes from the "mem=" option in the 
-command line.
-
-Christophe
