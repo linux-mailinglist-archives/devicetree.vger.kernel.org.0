@@ -2,130 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C150132F28B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C90AC32F2BD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:36:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbhCESaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 13:30:06 -0500
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:38609 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbhCES3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:29:41 -0500
-Received: by mail-oo1-f47.google.com with SMTP id z12so215111ooh.5;
-        Fri, 05 Mar 2021 10:29:41 -0800 (PST)
+        id S229818AbhCESfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 13:35:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59116 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230426AbhCESfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:35:21 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F21C061763;
+        Fri,  5 Mar 2021 10:32:53 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id q14so4001725ljp.4;
+        Fri, 05 Mar 2021 10:32:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yCWtEFyrceH7BJ6AukIJ81DQ9V6t6R7qk/KayCrGAnE=;
+        b=IwjMsHqY0DBH5/GX0MF09rd8LLvvJZArlEX+lXLd7JDgWs4ZfESNowujUiqKdWwPu0
+         PglTOEeijYt0rq+5tBZ8LDE2oW06KcKOlmBffkhibSn9eS/CFqKU/knEbnAdoP0sqKNH
+         0+w4647siaUVFtvf5FX4VZNzEgtOR4Yc6/DSHYfdtxrXq1hTilZP/tTuOD4VVhMIWKPv
+         0yOzKeQJ3IVXJM5XjwgZL81gNZO9UGjZcns2DDW9ikyl3NdiNuS12ebbAyrXpMJWzqKT
+         GKrKOdcWVYq37VmUdfFyLb1itwQvtPaqRIjsAeeGRY5KsaPNgNyvjmXLdFMaSR1NpHxI
+         wNPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Q7C5srUMjqR7mTHLtb1KoH/0EwvHmEFAeiLqZIKcwu0=;
-        b=Vcl+davoyETZnqjslkSziPoMr5FAks7fskLe8cjXbgl4PYAND4NdhFj3TN9rcgPl62
-         TZx+BZ/GdX5v2CGgeg4R9R84AMhH+tQIRAL7NywBk/OSMudsoyOF/CQe3RaAWzbe6Vb6
-         MMxkJjmIhH7xNIrS+CXUn9fb+YdxVag+Bybb2mdeiiNEURlyDtNJitWPEYRz5/8DbWhD
-         6JZJYjd44ksJTO5BH+HL0+h3lbEQGeC51eUp3H7qE4ZU33+SvwbDnZ683xGvZzbhmCBz
-         +q7uEquLnLemsal0XwPJIF301MOmfsWXiMrCQEqeEEH+kNWI8UzH0+pJeGphxrgBr9Wl
-         4aNA==
-X-Gm-Message-State: AOAM533vCooEKxp+YqIbkAhSr0dBCnJ9RAo1DY9T/3qy3KZup9lPGNjC
-        7T5GGoB2TvRDLOnaxQlBfg==
-X-Google-Smtp-Source: ABdhPJyT1c951it0I+dEcjhFtGuostLapU+mgEJBGNONsUTb0jkyqE/bGOpWC/zWjA7Pl52aBS0wCg==
-X-Received: by 2002:a4a:6b44:: with SMTP id h4mr8817110oof.38.1614968981184;
-        Fri, 05 Mar 2021 10:29:41 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s73sm684339oih.36.2021.03.05.10.29.39
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yCWtEFyrceH7BJ6AukIJ81DQ9V6t6R7qk/KayCrGAnE=;
+        b=GwMmGgEErNh8kmka/G4MhN7rDxk/uK4sYK6LrjTyJuhba00x2h5WLFmElEyweyokGx
+         ax3jYRy3C5ls9a4lFJKGsEzO6JQIkxILUKTsP1nh2cE3BE2DZFIDhTMwNHypcKqTekNp
+         SkK2ioQbJ0Jo/p+AuKAPI7/D4O/JTrNZB3ouYosLyFLSwcWx94Qa5oFAmiQ/nlHGADi+
+         3qI9/b4LARJjwqIhe34HZkyaZ0oTPo2QT+wIFT2gR1LDX2JT3uzjXNlqYVUiWEIAdl4B
+         6vIXO+Kw/ZazRvMAU2qboxKmvkJGzS45kKztffTb7jXDPynSEjo5brB7j3ja2OCxulg5
+         Du1w==
+X-Gm-Message-State: AOAM532XDcPogS8n5XxF99VFOozoquSYvil9kSKCIPn9Ird5SxObSZvo
+        9Gw0FJWDKiw8ACRJiZZhWI4=
+X-Google-Smtp-Source: ABdhPJyxr9PnPzpKcN7Pkw/wsx3UbzX9kFmZsLiHylfTvjTD1rjrTAiozInXXb3SfwdQIijlVCvKPw==
+X-Received: by 2002:a2e:a48f:: with SMTP id h15mr6002521lji.234.1614969172315;
+        Fri, 05 Mar 2021 10:32:52 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a10sm396571lfu.263.2021.03.05.10.32.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 10:29:39 -0800 (PST)
-Received: (nullmailer pid 430979 invoked by uid 1000);
-        Fri, 05 Mar 2021 18:29:38 -0000
-Date:   Fri, 5 Mar 2021 12:29:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: RFC: oftree based setup of composite board devices
-Message-ID: <20210305182938.GA399009@robh.at.kernel.org>
-References: <20210208222203.22335-1-info@metux.net>
- <CAL_JsqJ-bz35mUM3agYjq5x+Y+u9rL1RwesCaA-x=MW8uv5CrA@mail.gmail.com>
- <76bf0f7c-9477-f370-8fbd-ce8ef15188b1@gmail.com>
- <44b9b561-5e0d-6a1c-ca5d-4e9f6000884c@metux.net>
- <89086c87-c730-ff35-3865-4cf145883a95@gmail.com>
+        Fri, 05 Mar 2021 10:32:51 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mips@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] dt-bindings: nvmem: add Broadcom's NVRAM
+Date:   Fri,  5 Mar 2021 19:32:35 +0100
+Message-Id: <20210305183236.11784-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <89086c87-c730-ff35-3865-4cf145883a95@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 05:14:10PM -0600, Frank Rowand wrote:
-> On 2/24/21 7:00 AM, Enrico Weigelt, metux IT consult wrote:
-> > On 15.02.21 02:12, Frank Rowand wrote:
-> > 
-> >> Why not compile in ACPI data (tables?) instead of devicetree description?
-> > 
-> > The problem is a bit more complex than it might seem.
-> > 
-> > Let's take the APU2/37/4 boards as an example. They've got some aux
-> > devices, eg. some gpio controller, and some things (leds, keys, reset
-> > lines, etc) attached to it.
-> > 
-> > Now we've got lots of different bios versions in the field,
-> > enumerating only some of the devices. For example, older ones didn't
-> > even contain the gpio, later ones added just gpio, other ones just
-> > added LEDs (with different names than the Linux driver already mainlined
-> > and field-deployed at that time), but still other lines unhandled, etc, etc. etc.
-> > 
-> > A big mess :( And I can't ask everybody to do bios uprade on devices far
-> > out in the field (litterally open field, sometimes offshore, ...). So, I
-> > need a usable solution, that's also maintainable, w/o testing each
-> > single combination of board, bios, etc. IOW: without relying on bios
-> > (except for board identification)
-> > 
-> > OTOH, I'm also looking for a solution get rid writing those kind of
-> > relatively huge board drivers, that pretty are much like old fashioned
-> > board files from pre-DT times - just made up of lots of tables and
-> > a few trivial register-something calls. Sounds pretty much like the
-> > original use case of oftree.
-> > 
-> > The primary difference between classic oftree and this scanario:
-> > * this is additional to existing platform information, which is
-> > � incomplete or even incorrect (and that can't be fixed)
-> > * extra carrier boards that are detected by other means, but no
-> > � enumeration of the devices on it.
-> > 
-> >>> This is something I've wanted to see for a while. There's use cases
-> >>> for DT based systems too. The example I'd like to see supported are
-> >>> USB serial adapters with downstream serdev, GPIO, I2C, SPI, etc. Then
-> >>> plug more than one of those in.
-> >>
-> >> My understanding from the past is that the experts (those who understand both
-> >> devicetree and ACPI) regard trying to mix devicetree and ACPI in a single
-> >> running Linux kernel image is insanity, or at least likely to be confusing,
-> >> difficult, and problematic.
-> 
-> Since you have persisted, a more referenced and emphatic "no" to mixing ACPI
-> and devicetree:
-> 
->   https://elinux.org/Device_Tree_Linux#mixing_devicetree_and_ACPI
+From: Rafał Miłecki <rafal@milecki.pl>
 
-The 'no' is for mixing the 2. Despite the no, it's been happening 
-anyways. That's mostly been the reusing DT bindings in ACPI tables. I 
-won't review such bindings if I realize that's what they are, but 
-usually that's not evident.
+Broadcom's NVRAM structure contains device data and can be accessed
+using I/O mapping.
 
-This is a bit different I think where both ACPI and DT are used, but 
-they are totally disjoint. I don't have any issue with that. Why would 
-we want to force 2 different firmware descriptions for something 
-otherwise independent of the base system's firmware. Maybe that's not 
-exactly the case here, but the same changes to the DT code are needed 
-(unless you have a better solution for my example than multiple roots). 
-If someone wants to implement the changes that align with what I want, 
-then I don't really care what their motivation is.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Use Broadcom's NVRAM specific binding. Generic "nvmem-iomap" binding
+    didn't make much sense. Thanks Srinivas!
+---
+ .../devicetree/bindings/nvmem/brcm,nvram.yaml | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
+new file mode 100644
+index 000000000000..58ff6b0bdb1a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
+@@ -0,0 +1,34 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/brcm,nvram.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom's NVRAM
++
++description: |
++  Broadcom's NVRAM is a structure containing device specific environment
++  variables. It is used for storing device configuration, booting parameters
++  and calibration data.
++
++  NVRAM can be accessed on Broadcom BCM47xx MIPS and Northstar ARM Cortex-A9
++  devices usiong I/O mapped memory.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  compatible:
++    const: brcm,nvram
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    nvram@1eff0000 {
++            compatible = "brcm,nvram";
++            reg = <0x1eff0000 0x10000>;
++    };
+-- 
+2.26.2
+
