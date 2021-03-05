@@ -2,97 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BFBA32EF03
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:37:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7A832EF0F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:39:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbhCEPgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 10:36:46 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:38590 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbhCEPgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:36:20 -0500
-Received: by mail-oo1-f41.google.com with SMTP id z12so76427ooh.5;
-        Fri, 05 Mar 2021 07:36:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=g0o6eQ87KIdf1+D3jUpOGRpp3kvL6eKc0GpPfwwZS8U=;
-        b=XyXBzRQGzK4K1bV3R7+RhgUyj2kl8vTTdU/6GYOyarmJchC+WwLUpqaa6LmRqwxRNl
-         iUqe/zpBgFhMAUhvUDh3dVdAyQKdN14QSpI6dSYEbZ2VGhslnGkvXNOw7q0jXthdqG9G
-         Ipy64wWPSdsG3ugKVtDFt6zUL6odmpqOGB7j44SMywBXVVyUhQKWffr7YgPiktlsap6R
-         0JWuF6YdZL/abcjcu4v2B/az6thKSUEjJrGNoPo1imAmD9urv7XFOKu79JNt+DYJllAB
-         YH/+8kKx4jqqHyVnH+10aJWLHdV0RVBmd1j7ngAzlGJVC1jUZoQAUqZuPgMOlaozZ33f
-         bcJQ==
-X-Gm-Message-State: AOAM530IQjjfS9gMithjAfEpPF82gBv6NJhOKeSJlNNf91FenJc/FZm3
-        ZFWZt2wBLca4BSFSxg6Rug==
-X-Google-Smtp-Source: ABdhPJxTSYMGULmDAauZLCztHx9WYn8h7yEZJQLHRXX5u52cCx+YWs5IDU8IT/awxKlz6IlmpyAPkg==
-X-Received: by 2002:a4a:88ee:: with SMTP id q43mr8290467ooh.61.1614958579778;
-        Fri, 05 Mar 2021 07:36:19 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u110sm655002otb.32.2021.03.05.07.36.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 07:36:18 -0800 (PST)
-Received: (nullmailer pid 200830 invoked by uid 1000);
-        Fri, 05 Mar 2021 15:36:17 -0000
-Date:   Fri, 5 Mar 2021 09:36:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for v5.12
-Message-ID: <20210305153617.GA198234@robh.at.kernel.org>
+        id S229642AbhCEPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 10:38:55 -0500
+Received: from msg-1.mailo.com ([213.182.54.11]:46954 "EHLO msg-1.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230409AbhCEPik (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 10:38:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1614958706; bh=IJWTVFVLVMiRjAF1EDvvIM29SEwvY2ZYRcWp/GQI8rI=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=XE56SCppg1580xBH8Z+79j67RZrcWDxxVWps1USrIz4qyhBoJHUlH1FCFLlgMrkDz
+         6uExHSltNLRWyFuX2EzbmwDAl0wKYVdxLLsrGl5o07d4lV4KnIFmpWDOcFP+cELucx
+         k/Qj08BSN8c41ktE1ecd2wE3MApTdlb/+12QZ9rI=
+Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Fri,  5 Mar 2021 16:38:26 +0100 (CET)
+X-EA-Auth: Gd1awqFxyD+mTJVbODcKBi2spwT16i1aNLBodGHcrQIuJUI+URUu2rsIDz+LiL2ptYO6KFQRQzUXBTpUio79cAX56L8w6EAZM5Zc1BIt/FA=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: input/touchscreen: add bindings for msg2638
+Date:   Fri,  5 Mar 2021 16:38:04 +0100
+Message-Id: <20210305153815.126937-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+This adds dts bindings for the mstar msg2638 touchscreen.
 
-Please pull a couple of DT fixes.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+Changed in v6:
+- change touchscreen-size-x/y values in example section to reflect
+  scaling removal in driver (Dmitry)
+- add Linus W. Reviewed-by
+Changed in v5: nothing
+Changed in v4:
+- don't use wildcards in compatible strings (Rob H)
+- rename from msg26xx to msg2638
+- rename example pinctrl-0 to &ts_int_reset_default for consistency
+Changed in v3:
+- added `touchscreen-size-x: true` and `touchscreen-size-y: true` properties
+Changed in v2:
+- changed M-Star to MStar in title line
+- changed reset gpio to active-low in example section
+---
+ .../input/touchscreen/mstar,msg2638.yaml      | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
+new file mode 100644
+index 000000000000..3a42c23faf6f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg2638.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MStar msg2638 touchscreen controller Bindings
++
++maintainers:
++  - Vincent Knecht <vincent.knecht@mailoo.org>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    const: mstar,msg2638
++
++  reg:
++    const: 0x26
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdd-supply:
++    description: Power supply regulator for the chip
++
++  vddio-supply:
++    description: Power supply regulator for the I2C bus
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@26 {
++        compatible = "mstar,msg2638";
++        reg = <0x26>;
++        interrupt-parent = <&msmgpio>;
++        interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&msmgpio 100 GPIO_ACTIVE_LOW>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&ts_int_reset_default>;
++        vdd-supply = <&pm8916_l17>;
++        vddio-supply = <&pm8916_l5>;
++        touchscreen-size-x = <2048>;
++        touchscreen-size-y = <2048>;
++      };
++    };
++
++...
+-- 
+2.29.2
 
 
-The following changes since commit 3b9cdafb5358eb9f3790de2f728f765fef100731:
 
-  Merge tag 'pinctrl-v5.12-1' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl (2021-02-22 18:39:11 -0800)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.12-1
-
-for you to fetch changes up to b5a95bb1883e2bac1009cc88e65c71cff6f931e6:
-
-  dt-bindings: media: Use graph and video-interfaces schemas, round 2 (2021-03-01 11:30:21 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.12-rc:
-
-- Another batch of graph and video-interfaces schema conversions
-
-- Drop DT header symlink for dropped C6X arch
-
-- Fix bcm2711-hdmi schema error
-
-----------------------------------------------------------------
-Maxime Ripard (1):
-      dt-bindings: bcm2711-hdmi: Fix broken schema
-
-Michal Kubecek (1):
-      dts: drop dangling c6x symlink
-
-Rob Herring (1):
-      dt-bindings: media: Use graph and video-interfaces schemas, round 2
-
- .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml   |  2 +-
- Documentation/devicetree/bindings/media/i2c/imx258.yaml  | 14 +++++++-------
- .../devicetree/bindings/media/i2c/ovti,ov5647.yaml       |  5 ++---
- .../devicetree/bindings/media/i2c/ovti,ov5648.yaml       | 16 +++++-----------
- .../devicetree/bindings/media/i2c/ovti,ov8865.yaml       | 16 +++++-----------
- .../devicetree/bindings/media/i2c/sony,imx334.yaml       | 11 +++++------
- scripts/dtc/include-prefixes/c6x                         |  1 -
- 7 files changed, 25 insertions(+), 40 deletions(-)
- delete mode 120000 scripts/dtc/include-prefixes/c6x
