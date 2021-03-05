@@ -2,191 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4541F32F2CB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:37:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3811F32F2E0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 19:40:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbhCEShW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 13:37:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59566 "EHLO
+        id S230192AbhCESjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 13:39:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbhCEShF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:37:05 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB2F3C061756
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 10:37:04 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id v3so2515608qtw.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:37:04 -0800 (PST)
+        with ESMTP id S230126AbhCEShr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 13:37:47 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F9CC061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 10:37:39 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id m22so5259002lfg.5
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:37:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tAzU/ER1YTxKVrtAuXzIX1YVd5lSI8a7UASsaMYtGqY=;
-        b=F6v+gi5njFo02gEo0z1Nd6777zf+xCNjxdwa0X7VeLeXPMrOu1HTtE8AEdqXdq/MBZ
-         v3VsLDdlwbKBVJPztcbzun5R+lehMx0t5bH9SrbuuXC2HAXbGKoeLlQXamfNJCHa13+P
-         R509ASsFL8WM9LRpe9/eBWPPLKwj+LSpaWjv8=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/bUlq/wPF3yJYJShp7VG2mRZDBWcT8EiKpB3if3AI6c=;
+        b=vyJcEoVKHnVIlXU3QVkMKljvyvfYOTgX8mO06rqy+CaMtP+6ytqA/t/nBbWcJLSHLs
+         cjdIngnDqEN00+ykNDyLiZhm2eo6cwPgSQrD/kB/BM9AoJx6UCb3HvIlgOd9EGVsgewl
+         Pe6v3KEEbs0VG0gu6nmhB+3RWnrgOFunALUVBseHJ3gMk9/JG7N+r2hFfM8oY8/0z/K1
+         kOSr3ckbONAKVh3bQy4KwLONzpHQGuNB1KurFLFd+9L3PbMYHf0fTvCpDjEVo+dfK/+s
+         sPYC8H+WGJ7/xqK6mL+dEDqvxpUer+BBok0D0FPuwMxc/OZd/opK6KFhami6G9PqlTV+
+         jBLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tAzU/ER1YTxKVrtAuXzIX1YVd5lSI8a7UASsaMYtGqY=;
-        b=krf5OqXAiG/GpZ7CgqDMlo/dYLDeZqPVTVY5JfrusUfzH+5If1z9+qDWwhHM6yOHr7
-         WxxV0gGgnPnKWi5aKYJ9R10kPelKPZsRdBZBcsGWnUiuswhJV9hraAmJPsurFYmWAiKC
-         biQzdQCDPBUFBPCzZF7DnpSmlRR69mesfKQEC3x3TUy1pTn7Ld28nHsuXQ0miOa+aS8Z
-         Blh/bH/RSjbvcVwY5aqK63SoCjKoFNerSgzYRp8CMvTqHp4kQS1FFkEfkEFQnpS6LMRe
-         dfuTWa/JUAyRrRKiDhUtPlKQDIOvY3ubmCQfKlCIpMK4c2pa9bqhRkmbwwo7g1+RwQso
-         5VuQ==
-X-Gm-Message-State: AOAM532aZLjkaK80BKud5M3xlrxPpEA3GPSGsZnycKpbfePbmJpEuna+
-        CkFLoQ2pHnmqq7U4BY1JKLJgP15NlVEo5g==
-X-Google-Smtp-Source: ABdhPJyrRXHu7nusmt63zs7x8orkqUalVE9GDu8oO3UFWkifhKhUaZDkTE9UpSNZ23vkr4GMsnho+g==
-X-Received: by 2002:ac8:6bd8:: with SMTP id b24mr9979714qtt.372.1614969423516;
-        Fri, 05 Mar 2021 10:37:03 -0800 (PST)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id r190sm2388279qke.26.2021.03.05.10.37.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 10:37:02 -0800 (PST)
-Received: by mail-yb1-f174.google.com with SMTP id c131so2946913ybf.7
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 10:37:02 -0800 (PST)
-X-Received: by 2002:a25:ab54:: with SMTP id u78mr16373727ybi.276.1614969422178;
- Fri, 05 Mar 2021 10:37:02 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/bUlq/wPF3yJYJShp7VG2mRZDBWcT8EiKpB3if3AI6c=;
+        b=H9buAoq7Na1cGhjb34oGZQxyDW8mZ786HotOc5/1ljzQEde7FXxQnGdZdaSxGxFtMw
+         TcZpc8cnoQpQoLKo2hiQxWUUNMgeAQhjAxS6Fs1fZ8vmQPFepavVus1aAPM9g13ByRKm
+         0XTVDfKijCgztrl3fb5YFZRmWSNw5aWpojkFtTbONw5FoAH8NhN102kDusQykfD3A6g0
+         PUit6jgx4vXbcutiyXl+zwN14fnV48Cc+tdbhQ93+XGB0dSxFOkguIfN73VqHXOD0kMf
+         RdQjHDNjAHJF6i7IzdI98tJTAXA0lnUjPkdpJiti+UyQdJ96p+GIYG3ap5Pzgq+8XXVw
+         TxJQ==
+X-Gm-Message-State: AOAM531MFzZQrNcW0VeTrWHLK3ZOYB4h6r/cmNu0Pwh0Bd/cVGS0R9nS
+        5u/k0m1skNOkuYNyE7uC09sItA==
+X-Google-Smtp-Source: ABdhPJzm7+WAI1pCsVfTV6gTabWD8HHIj3+AWaEZgNghLia5kOKkE5VvphxGiSb294nomX2AWIw19A==
+X-Received: by 2002:a05:6512:303:: with SMTP id t3mr6436550lfp.196.1614969458136;
+        Fri, 05 Mar 2021 10:37:38 -0800 (PST)
+Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
+        by smtp.gmail.com with ESMTPSA id o16sm400374lfo.166.2021.03.05.10.37.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Mar 2021 10:37:37 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v3] Bluetooth: btbcm: Rewrite bindings in YAML and add reset
+Date:   Fri,  5 Mar 2021 19:37:35 +0100
+Message-Id: <20210305183736.2123083-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210304180415.1531430-1-mka@chromium.org> <20210304100341.1.I6d587e7ae72a5a47253bb95dfdc3158f8cc8a157@changeid>
-In-Reply-To: <20210304100341.1.I6d587e7ae72a5a47253bb95dfdc3158f8cc8a157@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 5 Mar 2021 10:36:49 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XKpzSq2GqvoDieuZVZFrwmO0Q2prPaKeJRKXJmxPGWpg@mail.gmail.com>
-Message-ID: <CAD=FV=XKpzSq2GqvoDieuZVZFrwmO0Q2prPaKeJRKXJmxPGWpg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7180: lazor: Simplify disabling
- of charger thermal zone
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This rewrites the Broadcom bluetooth bindings in YAML and
+adds a GPIO handle for the BT_RST_N line as used on some
+platforms.
 
-On Thu, Mar 4, 2021 at 10:04 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Commit f73558cc83d1 ("arm64: dts: qcom: sc7180: Disable charger
-> thermal zone for lazor") disables the charger thermal zone for
-> specific lazor revisions due to an unsupported thermistor type.
-> The initial idea was to disable the thermal zone for older
-> revisions and leave it enabled for newer ones that use a
-> supported thermistor. Finally the thermistor won't be changed
-> on newer revisions, hence the thermal zone should be disabled
-> for all lazor (and limozeen) revisions. Instead of disabling
-> it per revision do it once in the shared .dtsi for lazor.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 9 ---------
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 9 ---------
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts | 9 ---------
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 9 +++++++++
->  4 files changed, 9 insertions(+), 27 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-> index 5c997cd90069..30e3e769d2b4 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-> @@ -14,15 +14,6 @@ / {
->         compatible = "google,lazor-rev0", "qcom,sc7180";
->  };
->
-> -/*
-> - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
-> - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
-> - * to avoid using bogus temperature values.
-> - */
-> -&charger_thermal {
-> -       status = "disabled";
-> -};
-> -
->  &pp3300_hub {
->         /* pp3300_l7c is used to power the USB hub */
->         /delete-property/regulator-always-on;
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-> index d9fbcc7bc5bd..c2ef06367baf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-> @@ -14,15 +14,6 @@ / {
->         compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
->  };
->
-> -/*
-> - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
-> - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
-> - * to avoid using bogus temperature values.
-> - */
-> -&charger_thermal {
-> -       status = "disabled";
-> -};
-> -
->  &pp3300_hub {
->         /* pp3300_l7c is used to power the USB hub */
->         /delete-property/regulator-always-on;
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
-> index 19e69adb9e04..1b9d2f46359e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
-> @@ -13,12 +13,3 @@ / {
->         model = "Google Lazor (rev3+)";
->         compatible = "google,lazor", "qcom,sc7180";
->  };
-> -
-> -/*
-> - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
-> - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
-> - * to avoid using bogus temperature values.
-> - */
-> -&charger_thermal {
-> -       status = "disabled";
-> -};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> index 89e5cd29ec09..aa2c4a9098db 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> @@ -58,6 +58,15 @@ ap_ts: touchscreen@10 {
->         };
->  };
->
-> +/*
-> + * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
-> + * not supported by the PM6150 ADC driver. Disable the charger thermal zone
-> + * to avoid using bogus temperature values.
-> + */
-> +&charger_thermal {
-> +       status = "disabled";
-> +};
-> +
->  /* PINCTRL - modifications to sc7180-trogdor.dtsi */
->
->  &ts_reset_l {
+The Ingenic UART binding was using this binding in its
+example DTS fragment, however mistakenly using "vcc-supply"
+for what is called "vbat-supply". The proper DTS files
+and the code in the kernel all use "vbat-supply" so
+fix up the example in this patch so we ge a clean
+check.
 
-The idea is right, but I'm having a hard time figuring out what tree
-you posted your patch against. You said you did it atop my "v2" series
-[1], right?  ...but the "sc7180-trogdor-lazor.dtsi" really doesn't
-match. In my tree, for instance, right above the PINCTRL comment
-should be:
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Actually fold in the required fix.
+ChangeLog v1->v2:
+- Fix the error in the Ingenic UART binding example as
+  part of adding this patch.
+---
+ .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
+ .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
+ .../bindings/serial/ingenic,uart.yaml         |   2 +-
+ 3 files changed, 118 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+ create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 
-&wifi {
-  qcom,ath10k-calibration-variant = "GO_LAZOR";
-};
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+deleted file mode 100644
+index a7d57ba5f2ac..000000000000
+--- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-Broadcom Bluetooth Chips
+----------------------
+-
+-This documents the binding structure and common properties for serial
+-attached Broadcom devices.
+-
+-Serial attached Broadcom devices shall be a child node of the host UART
+-device the slave device is attached to.
+-
+-Required properties:
+-
+- - compatible: should contain one of the following:
+-   * "brcm,bcm20702a1"
+-   * "brcm,bcm4329-bt"
+-   * "brcm,bcm4330-bt"
+-   * "brcm,bcm43438-bt"
+-   * "brcm,bcm4345c5"
+-   * "brcm,bcm43540-bt"
+-   * "brcm,bcm4335a0"
+-
+-Optional properties:
+-
+- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+- - shutdown-gpios: GPIO specifier, used to enable the BT module
+- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
+- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
+-                      deprecated, replaced by interrupts and
+-                      "host-wakeup" interrupt-names
+- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
+- - clock-names: names for clock inputs, matching the clocks given
+-   - "extclk": deprecated, replaced by "txco"
+-   - "txco": external reference clock (not a standalone crystal)
+-   - "lpo": external low power 32.768 kHz clock
+- - vbat-supply: phandle to regulator supply for VBAT
+- - vddio-supply: phandle to regulator supply for VDDIO
+- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
+-    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
+-    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
+-    - pcm-frame-type: short, long
+-    - pcm-sync-mode: slave, master
+-    - pcm-clock-mode: slave, master
+- - interrupts: must be one, used to wakeup the host processor
+- - interrupt-names: must be "host-wakeup"
+-
+-Example:
+-
+-&uart2 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart2_pins>;
+-
+-       bluetooth {
+-               compatible = "brcm,bcm43438-bt";
+-               max-speed = <921600>;
+-               brcm,bt-pcm-int-params = [01 02 00 01 01];
+-       };
+-};
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+new file mode 100644
+index 000000000000..bdd6ca617e23
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Bluetooth Chips
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  This binding describes Broadcom UART-attached bluetooth chips.
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm20702a1
++      - brcm,bcm4329-bt
++      - brcm,bcm4330-bt
++      - brcm,bcm43438-bt
++      - brcm,bcm4345c5
++      - brcm,bcm43540-bt
++      - brcm,bcm4335a0
++
++  shutdown-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_REG_ON used to
++      power on the BT module
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_RST_N used to
++      reset the BT module. This should be marked as
++      GPIO_ACTIVE_LOW.
++
++  device-wakeup-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_WAKE used to
++      wakeup the controller. This is using the BT_GPIO_0
++      pin on the chip when in use.
++
++  host-wakeup-gpios:
++    maxItems: 1
++    deprecated: true
++    description: GPIO specifier for the line HOST_WAKE used
++      to wakeup the host processor. This is using he BT_GPIO_1
++      pin on the chip when in use. This is deprecated and replaced
++      by interrupts and "host-wakeup" interrupt-names
++
++  clocks:
++    maxItems: 2
++    description: 1 or 2 clocks as defined in clock-names below,
++      in that order
++
++  clock-names:
++    description: Names of the 1 to 2 supplied clocks
++    items:
++      - const: txco
++      - const: lpo
++      - const: extclk
++
++  vbat-supply:
++    description: phandle to regulator supply for VBAT
++
++  vddio-supply:
++    description: phandle to regulator supply for VDDIO
++
++  brcm,bt-pcm-int-params:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 5
++    maxItems: 5
++    description: |-
++      configure PCM parameters via a 5-byte array:
++       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
++       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
++       pcm-frame-type: short, long
++       pcm-sync-mode: slave, master
++       pcm-clock-mode: slave, master
++
++  interrupts:
++    items:
++      - description: Handle to the line HOST_WAKE used to wake
++          up the host processor. This uses the BT_GPIO_1 pin on
++          the chip when in use.
++
++  interrupt-names:
++    items:
++      - const: host-wakeup
++
++  max-speed: true
++  current-speed: true
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    uart {
++        uart-has-rtscts;
++
++        bluetooth {
++            compatible = "brcm,bcm4330-bt";
++            max-speed = <921600>;
++            brcm,bt-pcm-int-params = [01 02 00 01 01];
++            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
++            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
++            interrupt-parent = <&gpio>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/serial/ingenic,uart.yaml b/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+index 559213899d73..7748d8c3bab8 100644
+--- a/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+@@ -91,7 +91,7 @@ examples:
+       bluetooth {
+         compatible = "brcm,bcm4330-bt";
+         reset-gpios = <&gpf 8 GPIO_ACTIVE_HIGH>;
+-        vcc-supply = <&wlan0_power>;
++        vbat-supply = <&wlan0_power>;
+         device-wakeup-gpios = <&gpf 5 GPIO_ACTIVE_HIGH>;
+         host-wakeup-gpios = <&gpf 6 GPIO_ACTIVE_HIGH>;
+         shutdown-gpios = <&gpf 4 GPIO_ACTIVE_LOW>;
+-- 
+2.29.2
 
-...but that's definitely not what's there in whatever your patch was
-written against... It seems like you're also missing the panel and
-trackpad nodes...
-
-[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=440315
-
-
--Doug
