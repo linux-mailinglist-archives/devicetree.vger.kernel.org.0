@@ -2,127 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B603532F5CB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 23:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF6832F5DA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 23:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbhCEWSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 17:18:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbhCEWSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 17:18:30 -0500
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4BADC061760
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 14:18:29 -0800 (PST)
-Received: by mail-qk1-x72c.google.com with SMTP id b130so3587779qkc.10
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 14:18:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kEPdvK71SYnnYxU/iYMYQe/u4D1Hboa4Ycom7Yjf1Uw=;
-        b=LAiu13ud2ieteI1GC7oTRufOmHJCXPRSrLKl5fh0T8ZtOH0SD/XlcVSIeqtPxBrL0v
-         iorOjbfWYdI1rWZzDfENDWZx8rWebaQIaZN0iTWtJd+9UisdnfWvF0ZbBMn7/8T5RkXE
-         /BvplMJpUvWr0rMw7G6eU9PvsjcrG7DHhnA8e9G2HaD31Up6Hhrnod7o+pyJem9nXIsv
-         K1CQefEQsOIioZWB7+IYnXZLZkLGu0yxY44HFIDj+BNXPnXLC0BZQT4bOoPA/QB135zk
-         p3SNWX8ZsmJeiCQG6SQZfV52KZp/A/Wi8b9PP/MEeArtw/cAjHY26STc9U0jeXtca+xb
-         H2fQ==
+        id S229672AbhCEWXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 17:23:10 -0500
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:41925 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229597AbhCEWXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 17:23:04 -0500
+Received: by mail-oo1-f41.google.com with SMTP id h38so803120ooi.8;
+        Fri, 05 Mar 2021 14:23:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kEPdvK71SYnnYxU/iYMYQe/u4D1Hboa4Ycom7Yjf1Uw=;
-        b=Lw6UaKMK5/pNdESrmUD/8+DgUygDTBxepjeWBtllnGB0jb+KX8nMoRRjEvz3mmcDA/
-         bG2awHtOO48Z42BLv7s19Ys3Lhp8LXAyQAI4zBYvSuPnFgQvTFUN3cCWbjbBJiLZEtBe
-         9q1GSr2J5Dt+bn8WTKJtAkB8C5cMytj9OH/4ONG7v0jTVBdgnOlKL3IVy9VxdsoYuwe3
-         I4V1+6tW9ClMJj/3jPZdVYNUVlpSyaEx7qX8PV7/luFIxaf8g+ilNl0qjnBXAejrnont
-         HsahrLniYt4BhflqLPYgZd0bcstEpCCkINPWG3tyMw1wgizsqkkLqok0RbZ7X1vlWOIg
-         jsRA==
-X-Gm-Message-State: AOAM5303qFSJ8tFhXpDnPhJ5ICT+ZxotRG8GGJ5LLfIjPTSKq+RhDCeh
-        tP227YukJwMIr6hBtPVQSjyivQ==
-X-Google-Smtp-Source: ABdhPJzQrZBfsrI9YYiNPI9gMDvzV87Lgi/44erfU6o3ciulWwl/Z0QtFrZefcU5AlH8znMSAZt34w==
-X-Received: by 2002:ae9:ef89:: with SMTP id d131mr11080051qkg.214.1614982709146;
-        Fri, 05 Mar 2021 14:18:29 -0800 (PST)
-Received: from [192.168.0.189] (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id z2sm2898711qkg.22.2021.03.05.14.18.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 14:18:28 -0800 (PST)
-Subject: Re: [PATCH] drm/msm/dsi: support CPHY mode for 7nm pll/phy
-To:     Rob Herring <robh@kernel.org>
-Cc:     freedreno@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Douglas Anderson <dianders@chromium.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        "Kristian H. Kristensen" <hoegsberg@google.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Emil Velikov <emil.velikov@collabora.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Dave Airlie <airlied@redhat.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210215162805.21481-1-jonathan@marek.ca>
- <20210305214802.GA701567@robh.at.kernel.org>
-From:   Jonathan Marek <jonathan@marek.ca>
-Message-ID: <cbaf67d2-d5b8-9684-061b-8de9382a438b@marek.ca>
-Date:   Fri, 5 Mar 2021 17:17:10 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=b8P+vy/tLdxvp5/ToJi80Q/DHBxXI6Ot1Z2gtZWpXw8=;
+        b=OiU5TlzzQbhrPvgFCbqqx43HKubGaGdUXicwxF2LerJxK0Erq07MqWXetSeviTotvA
+         nI9fijQaBiGNWw+u+FYN/qUS75949jv3+iYgUJtDb1q4EgmAtkDZdh8msJ45Ynmjdwug
+         znm+oCrNumui9x2MlexOnVlIY6/34ifAuIzo1naJKmT/6Oow73P8umNEjV1cvK7Qxz6z
+         Ztb13QGX1JoEGuV9MjYmGfuDW0ZY7u8bku55oz6F9+9qkcTQIGZJ4NvWZc5WCGZO4z04
+         XUdbrK8tQ/2XHw88kZzVWnhesbRnQfew/s0XwdMbIoguHAP3eAYXOH0lbKAq0C4YkxGG
+         6xZg==
+X-Gm-Message-State: AOAM532qdusV+yrCAWMsbvzn5Rgu4GQHrFkg/+7hYk5lI+Ii0Wt596gF
+        4NZCS48Ja8ey78C5JoYNoA==
+X-Google-Smtp-Source: ABdhPJyOKMFlHRvt9nZGqAzqrlWl3iV1hED2sgZuiivhtD5q9gLMMzNY/ECHThZmidDO6Y8cIe1wLQ==
+X-Received: by 2002:a4a:3012:: with SMTP id q18mr9540216oof.21.1614982982146;
+        Fri, 05 Mar 2021 14:23:02 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s73sm818019oih.36.2021.03.05.14.23.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Mar 2021 14:23:01 -0800 (PST)
+Received: (nullmailer pid 750912 invoked by uid 1000);
+        Fri, 05 Mar 2021 22:23:00 -0000
+Date:   Fri, 5 Mar 2021 16:23:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Document use of
+ nvmem-partitions compatible
+Message-ID: <20210305222300.GA718014@robh.at.kernel.org>
+References: <20210216212638.28382-1-ansuelsmth@gmail.com>
+ <20210216212638.28382-4-ansuelsmth@gmail.com>
+ <1cf374f1-09d5-9fa9-9b0d-d8079f2f6fbc@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210305214802.GA701567@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1cf374f1-09d5-9fa9-9b0d-d8079f2f6fbc@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/5/21 4:48 PM, Rob Herring wrote:
-> On Mon, Feb 15, 2021 at 11:27:44AM -0500, Jonathan Marek wrote:
->> Add the required changes to support 7nm pll/phy in CPHY mode.
->>
->> This adds a "qcom,dsi-phy-cphy-mode" property for the PHY node to enable
->> the CPHY mode.
->>
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->> ---
->>   .../devicetree/bindings/display/msm/dsi.txt   |  1 +
->>   drivers/gpu/drm/msm/dsi/dsi.c                 | 12 +--
->>   drivers/gpu/drm/msm/dsi/dsi.h                 |  6 +-
->>   drivers/gpu/drm/msm/dsi/dsi.xml.h             |  2 +
->>   drivers/gpu/drm/msm/dsi/dsi_host.c            | 34 +++++--
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         | 49 +++++++++-
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |  3 +
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 89 ++++++++++++++-----
->>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.c         |  4 +-
->>   drivers/gpu/drm/msm/dsi/pll/dsi_pll.h         |  5 +-
->>   drivers/gpu/drm/msm/dsi/pll/dsi_pll_7nm.c     | 71 +++++++++------
->>   11 files changed, 210 insertions(+), 66 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dsi.txt b/Documentation/devicetree/bindings/display/msm/dsi.txt
->> index b9a64d3ff184..7ffc86a9816b 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dsi.txt
->> +++ b/Documentation/devicetree/bindings/display/msm/dsi.txt
->> @@ -124,6 +124,7 @@ Required properties:
->>   Optional properties:
->>   - qcom,dsi-phy-regulator-ldo-mode: Boolean value indicating if the LDO mode PHY
->>     regulator is wanted.
->> +- qcom,dsi-phy-cphy-mode: Boolean value indicating if CPHY mode is wanted.
+On Wed, Mar 03, 2021 at 11:01:55AM +0100, Rafał Miłecki wrote:
+> [Rob: please advise]
 > 
-> This is board or SoC dependent? The latter should be implied by an SoC
-> specific compatible.
+> On 16.02.2021 22:26, Ansuel Smith wrote:
+> > Document nvmem-partitions compatible used to treat mtd partitions as a
+> > nvmem provider.
 > 
+> Until now we were using "compatible" string in partition node only for
+> parsers (looking for subpartitions). We need to think if this change can
+> break anything from DT / Linux perspective.
+> 
+> Compatible strings should be unique, so there is no risk of conflict
+> between NVMEM and parsers.
+> 
+> Now: can we ever need mtd partition to:
+> 1. Contain subpartitions
+> 2. Provide NVMEM
+> at the same time?
+> 
+> Let's say:
+> 
+> partition@0 {
+> 	compatible = "vendor,dynamic-firmware-partitions", "nvmem-partitions";
 
-It is board specific, 7nm dsi phy can operate in either D-PHY or C-PHY mode.
+I think you'd want the "vendor,dynamic-firmware-partitions" parser/code 
+to serve up any nvmem regions. Whether you have a fallback here depends 
+if an OS could make use of the regions knowing nothing about 
+"vendor,dynamic-firmware-partitions".
 
+> 	label = "firmware";
+> 	reg = <0x0 0x100000>;
+> 	#address-cells = <1>;
+> 	#size-cells = <1>;
+> 	ranges = <0 0x0 0x100000>;
+> 
+> 	firmware-version@10 {
+> 		reg = <0x10 0x4>;
+> 	};
+> 
+> 	firmware-date@10 {
+> 		reg = <0x20 0x4>;
+> 	};
+> };
+> 
+> Is that allowed to respect both "compatible" strings and have:
+> 1. Linux parser parse "firmware" for subpartitions
+> 2. Linux MTD register "firmware" as NVMEM device
+> ?
+> 
+> If not, what other options do we have? Is that allowed to have a
+> dangling MTD NVMEM node with phandle to MTD partition?
+> 
+> firmware: partition@0 {
+> 	compatible = "vendor,dynamic-firmware-partitions";
+> 	label = "firmware";
+> 	reg = <0x0 0x100000>;
+> };
+> 
+> (...)
+> 
+> firmware-version@10 {
+> 	compatible = "mtd-nvmem";
+> 	reg = <0x10 0x4>;
+> 	mtd = <&firmware>;
+> };
+> 
+> firmware-date@10 {
+> 	compatible = "mtd-nvmem";
+> 	reg = <0x20 0x4>;
+> 	mtd = <&firmware>;
+> };
+
+This, I would not like to see.
+
+Rob
