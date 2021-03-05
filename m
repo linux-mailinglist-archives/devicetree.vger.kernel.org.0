@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B6C32E648
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FAC32E65B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 11:29:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbhCEK0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 05:26:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38548 "EHLO
+        id S229578AbhCEK3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 05:29:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbhCEKZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:25:32 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6089C061760
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:25:31 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u4so2085671ljh.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:25:31 -0800 (PST)
+        with ESMTP id S229719AbhCEK2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 05:28:50 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC78C061761
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 02:28:50 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id b1so2747950lfb.7
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 02:28:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=leQw7QODR4CyZQiZgP9OPt/5ZEqXQr46bOHgh0kpZlk=;
-        b=iSUpKEpRqonYV1gt46fEBjz/fG1evvGP933Hm8NDO8DF1Nf82vxEvrPe92LonMVaj5
-         cDE4IcRvvO1ntfTn5itxZs+RgWOz8mw4hJMZdVy/8h2ViibMQXl1AgXPtgXQM11LX0a1
-         RhKFE3xqBC792VlT4JGclRKp0uaCgPW6l2Fb9cHIdP+2mUUor2Hr91JIg6O+aC5Fvdbf
-         +dYsoxFLntrw49PjvfalTLzJsU9XYkeIK3tTqUIWRgHmgkKh6DAj/8G88mtElmj6EDwm
-         mBuK4v6HFEIDG7XjAVIoY9pgDp6ULe7Abxl3AljZx0i4k7liqPevlL5AQL78ZahYYIdz
-         kc3g==
+        bh=lo7hHCf2xoJPHW7HnDCyEwaSFaM7Keg2AX2jZ4uVfBI=;
+        b=W50MxM+40GpkXjVUgQZ+hglkhIatQ62en1ksXZx59zKvAOfcZtgwWtdXoYBHbG7Q23
+         AqbI/7ojmTDD4QGv0lw8kRBK/x1R3M7p046e8wJ9yk0jYBxUiHfx2gNulxd5b2VkSfEn
+         FQpet8cbJgwx+ZAH1E58hlDWyP2/BJOZ8MPWCf0sXMFllAX98uCZ3wbY5ayGxbMs4OXY
+         0ELSFzLEg/Oig2lds2PIkXAjDMUnftrtBWKSIEXKfQzpOgXgiPiHqw6il4Rg8bh1JzBm
+         Ely81fAir1FA+I23NIFzQHAxRDDpkYyqM2YyJJ9hcyu3flk6I1hwaOVux6oKkJYSxbzh
+         KMTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=leQw7QODR4CyZQiZgP9OPt/5ZEqXQr46bOHgh0kpZlk=;
-        b=OX/44NgwY/Syru8W6LZOwoJdwAxPzZ9Eka0P9k1QcG0ZdZMRWVeQO+NIn7kBgCt88D
-         pSEi2rkraJL4UX2qZPaeYlTe1lpC7k7ab3/CksjicmG7s1ZeWwaSNXNNIqibEFcqCw0D
-         OXPHxt+jad89DDkPZV/pCs8xjKl6s4eOQ3TwUzhaAYanOKxAAndXFOeyeKKT42D44N35
-         wUlfIYSp6CcOgNK1sSZQmLdmFVHbqQqgLKgRjZCWZAMteqzrcg1V7mUYDmHsh8ml9Eus
-         iK4s85GOH65x701aX4W3RuhAMT3R/0+voGfxV9PJmSGPkBoRLS/GNx2P91uq9l24KtT7
-         gKuw==
-X-Gm-Message-State: AOAM532XGLo0yaPSJpZQuPeSmXQJQUbEUmM72Mlj0E98vPDssb4pBKjo
-        GOprNutWlnkDjWMrQjX50sRhEDacHwJHiRT+J+1wkQ==
-X-Google-Smtp-Source: ABdhPJxsMc8mauXfaPMwsKihYulLxZ/6kfZ3EeDp5br7yesRj8HC0FjQsUqFiEGezYIKsMpnpQHfiXS3MNRkjkU9flk=
-X-Received: by 2002:a2e:700a:: with SMTP id l10mr4752980ljc.368.1614939930235;
- Fri, 05 Mar 2021 02:25:30 -0800 (PST)
+        bh=lo7hHCf2xoJPHW7HnDCyEwaSFaM7Keg2AX2jZ4uVfBI=;
+        b=LGDJXw71X+xFl02ISIxDWcy2gR2yhXY7vWt2kWQqGv2ZIjp8xAvRgHbp4uk5OgbSJw
+         42eEoX6U4mkxYN3iZSCHo8imOQSopI6YpOf154jsFnJOdcbTdsQaV8YpzPJPrS0nKRds
+         aAuGQUd+p/eAo2OG/yHk67+QKKbly0no0OfCOHfkh1MtrVXUsbme7Sp3oxJC9XGuSq8H
+         oLiaTzXXEK4WoP6Ib38piZ3+B6bw3kJ7/vMxr+rCvIWWbsVXyPYl+9roNagkbiN8sYQf
+         n2x0X4ynma6eFpTRssVEq6ey0MNtP35E6DQlTtJ477p6808fYB/7CeLpA1rQ9WgjveKC
+         Ov1g==
+X-Gm-Message-State: AOAM5311DUQP/s8P48Xrk+9jt09qT8itTZtcecQslbUxzs8sVrxvfvKv
+        skwSKHdjA1f40DoRpnGrT8eKsoCMWx8w0gOjG+F5UQ==
+X-Google-Smtp-Source: ABdhPJxqboRmk7GaUgHUNxF2rciULSS6Cfp4YQ2azcCXSVJPJxIT8FGFZd/sqZPKGLsQ+vg8Pkh7I/AkoigHnc7uIX0=
+X-Received: by 2002:a05:6512:74a:: with SMTP id c10mr5124313lfs.586.1614940128739;
+ Fri, 05 Mar 2021 02:28:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-11-marcan@marcan.st>
-In-Reply-To: <20210304213902.83903-11-marcan@marcan.st>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+In-Reply-To: <20210304213902.83903-13-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 5 Mar 2021 11:25:19 +0100
-Message-ID: <CACRpkdYeeUb6WUe_RBxBEjNnTJ9o55Z-8Ma7CLokFOdCtF0M+Q@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 10/27] docs: driver-api: device-io: Document
- ioremap() variants & access funcs
+Date:   Fri, 5 Mar 2021 11:28:37 +0100
+Message-ID: <CACRpkdZHpqF1f2rSmgb90d8v_7NDe=Bqk4M1YbRJpOMFZmod4w@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -84,20 +84,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Mar 4, 2021 at 10:40 PM Hector Martin <marcan@marcan.st> wrote:
 
-> This documents the newly introduced ioremap_np() along with all the
-> other common ioremap() variants, and some higher-level abstractions
-> available.
+> This implements the 'nonposted-mmio' and 'posted-mmio' boolean
+> properties. Placing these properties in a bus marks all child devices as
+> requiring non-posted or posted MMIO mappings. If no such properties are
+> found, the default is posted MMIO.
+>
+> of_mmio_is_nonposted() performs the tree walking to determine if a given
+> device has requested non-posted MMIO.
+>
+> of_address_to_resource() uses this to set the IORESOURCE_MEM_NONPOSTED
+> flag on resources that require non-posted MMIO.
+>
+> of_iomap() and of_io_request_and_map() then use this flag to pick the
+> correct ioremap() variant.
+>
+> This mechanism is currently restricted to Apple ARM platforms, as an
+> optimization.
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
-I like this, I just want one change:
-
-Put the common ioremap() on top in all paragraphs, so the norm
-comes before the exceptions.
-
-I.e. it is weird to mention ioremap_np() before mentioning ioremap().
-
-With that change:
+This is fine with me atleast given that the nonposted IO is acceptable.
+Caching the quirk state in a static local is maybe a bit overoptimized
+but if the compiler can't see it but we can, why not.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
