@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6440632EF38
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4145332EF60
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhCEPnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 10:43:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCEPmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:42:51 -0500
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62F6C061756
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 07:42:50 -0800 (PST)
-Received: by mail-qv1-xf2c.google.com with SMTP id n4so1183251qvl.4
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 07:42:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0yV7w8lFfqbTYmvCeqaDZrkMh+QKf4ua1fYumR1UcKc=;
-        b=F6SAI2tnULetz3th26nEFSei84A+5/Gay++NqJcsy0GFDLlWIIsqXy2OuBCr6X8SVj
-         h02R5IOAhuvDQDalhmwrws3iQJJy8gPPXxshlmBbcXT2B/ebFBdjA9NbXyyWfw7w0SMA
-         ZWTCuEb+r5LYLR8gJj/5R8u3QTTfBfmFq33iw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0yV7w8lFfqbTYmvCeqaDZrkMh+QKf4ua1fYumR1UcKc=;
-        b=R8RCJQMhjSZOhEIQsQdrOXpT4F1B25E+MkwPi2REctdF4H9fL/Ocfs6R88PK6DRdbJ
-         vxyhMk6cLmKODDFmslxDQrNtgI3lcq+XOwE8qCA3GF+rmyYR76xkxkUdR0bfxH7yVbwZ
-         +5ew8ISJRhrcvyJDowi7VAs7g5CJcU+3HxIfBAd/YiDfDlNb93S1mgoyk9JDf1lKFEhA
-         U8qToHLzNvM5/EM7bUQYxjQssNo+OKtoag4RXoUZsFMh+3QI2oq3thVziv3CJwF8JmZS
-         RYJDGtb6P1oBfAuGOhrKIP77hFTBaztlPDBIF2At1Ke6Wk0/1KT91/+xFK8P96MV6tqt
-         tbBg==
-X-Gm-Message-State: AOAM531JETqpd6ABDigJZfFJpuYgPSeF/N7QJaxVBDCNEvtF5z3Nxgqn
-        AUlIxJ33tj0ps6DI6UAxkmlg01r6zsGa7Q==
-X-Google-Smtp-Source: ABdhPJznq4FTG1g7A4ARkodPL16IN/v5DdoX8sIuouVdxSyW/87CTTWA7mzpIXB01IrySd3KEMLrEA==
-X-Received: by 2002:ad4:542b:: with SMTP id g11mr9760929qvt.47.1614958969740;
-        Fri, 05 Mar 2021 07:42:49 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 18sm2069928qkr.90.2021.03.05.07.42.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Mar 2021 07:42:48 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id u3so2397133ybk.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 07:42:47 -0800 (PST)
-X-Received: by 2002:a25:ab54:: with SMTP id u78mr15215866ybi.276.1614958967269;
- Fri, 05 Mar 2021 07:42:47 -0800 (PST)
+        id S229604AbhCEPvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 10:51:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55844 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229558AbhCEPv0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Mar 2021 10:51:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 763CE65098;
+        Fri,  5 Mar 2021 15:51:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1614959485;
+        bh=xaeKME6Ua+2h67Q5RJolMrcXStqSWyB8CTRElNWIdNw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rRBl/eyvNDoud0LUtrcLX3ZHlvFGYju9nRGC39q3t+sL/avqv7YMNUYtgGz+64bC4
+         ba8t52YZcQZP3AD6bZ40jv96cX+sdGEI0xEQY69Fbif8/ZX1LK24REnFh0qun1HSu0
+         5IczDBfK5rRw7HW1wAcDu2AahDGioeTqPBOqmZTXY20PjFiFwdylWietKbwwJKWI9O
+         Uk8JbPVhPc8ueXo/5GNzJcCWtvuK07/7q06/fB7srsrwWAEMz62zIBsYjdlgx7dQU9
+         7StWGQz91kPVR5yitBRxn8gdnBYy3vcdj8DLTrS8breER6uZJnWc2M72edeVGicex9
+         VEiPkVgxaxidQ==
+Received: by mail-ot1-f44.google.com with SMTP id j8so2244956otc.0;
+        Fri, 05 Mar 2021 07:51:25 -0800 (PST)
+X-Gm-Message-State: AOAM5326SrXlvMIBpYRMXBOye3ZeFynQj4E8mh7z7mkwHAadR9s876Cu
+        wzR+KylaFjbfe9TeKm4xa09dUXKqy3CUkBcPyvY=
+X-Google-Smtp-Source: ABdhPJy9oV+4qLl47P+rrukasKtK8n7azdZjxa8hAXJBGcPPcFGMLNqAWqsBN3UFc1UFX0r7zYKKwNbJzSCj+keSlF4=
+X-Received: by 2002:a9d:12e1:: with SMTP id g88mr5226195otg.305.1614959484753;
+ Fri, 05 Mar 2021 07:51:24 -0800 (PST)
 MIME-Version: 1.0
-References: <20210115224420.1635017-1-dianders@chromium.org>
-In-Reply-To: <20210115224420.1635017-1-dianders@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 5 Mar 2021 07:42:35 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=Vwgd0FeKThVRHQjne9npRjojAWpkY4O4nXr=_vDcEK9g@mail.gmail.com>
-Message-ID: <CAD=FV=Vwgd0FeKThVRHQjne9npRjojAWpkY4O4nXr=_vDcEK9g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] drm/panel-simple: Patches for N116BCA-EA1
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Rob Clark <robdclark@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-11-marcan@marcan.st>
+ <CACRpkdYeeUb6WUe_RBxBEjNnTJ9o55Z-8Ma7CLokFOdCtF0M+Q@mail.gmail.com> <CAHp75VfEshraJMUfmCNvMgm5yVRNLk-yDkbJ+6m6NuLV4tme7g@mail.gmail.com>
+In-Reply-To: <CAHp75VfEshraJMUfmCNvMgm5yVRNLk-yDkbJ+6m6NuLV4tme7g@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Fri, 5 Mar 2021 16:51:08 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a20yXBktB_QqgqgSP69-PXnfs1AwNOf01v-DYFWktmRYQ@mail.gmail.com>
+Message-ID: <CAK8P3a20yXBktB_QqgqgSP69-PXnfs1AwNOf01v-DYFWktmRYQ@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 10/27] docs: driver-api: device-io: Document
+ ioremap() variants & access funcs
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi folks,
+On Fri, Mar 5, 2021 at 4:09 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Fri, Mar 5, 2021 at 12:25 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > On Thu, Mar 4, 2021 at 10:40 PM Hector Martin <marcan@marcan.st> wrote:
+> >
+> > > This documents the newly introduced ioremap_np() along with all the
+> > > other common ioremap() variants, and some higher-level abstractions
+> > > available.
+> > >
+> > > Signed-off-by: Hector Martin <marcan@marcan.st>
+> >
+> > I like this, I just want one change:
+> >
+> > Put the common ioremap() on top in all paragraphs, so the norm
+> > comes before the exceptions.
+> >
+> > I.e. it is weird to mention ioremap_np() before mentioning ioremap().
+>
+> +1 here. That is what I have stumbled upon reading carefully.
 
-On Fri, Jan 15, 2021 at 2:44 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> This series is to get the N116BCA-EA1 panel working. Most of the
-> patches are simple, but on hardware I have in front of me the panel
-> sometimes doesn't come up. I'm still working with the hardware
-> manufacturer to get to the bottom of it, but I've got it working with
-> retries. Adding the retries doesn't seem like an insane thing to do
-> and makes some of the error handling more robust, so I've gone ahead
-> and included those patches here. Hopefully they look OK.
->
-> Changes in v2:
-> - Set the "unprepared_time" so if we retry we give the proper delay.
-> - ("drm/panel-simple: Don't wait longer for HPD...") new for v2.
-> - ("drm/panel-simple: Retry if we timeout waiting for HPD") new for v2.
-> - ("dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1") new for v2.
-> - ("drm/panel-simple: Add N116BCA-EA1") new for v2.
->
-> Douglas Anderson (5):
->   drm/panel-simple: Undo enable if HPD never asserts
->   drm/panel-simple: Don't wait longer for HPD than hpd_absent_delay
->   drm/panel-simple: Retry if we timeout waiting for HPD
->   dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1
->   drm/panel-simple: Add N116BCA-EA1
->
->  .../bindings/display/panel/panel-simple.yaml  |  2 +
->  drivers/gpu/drm/panel/panel-simple.c          | 84 +++++++++++++++++--
->  2 files changed, 80 insertions(+), 6 deletions(-)
+In that case, the order should probably be:
 
-While this isn't massively urgent, I'm hoping to get some confirmation
-that it's still in someone's queue to look at.  A quick "it's still in
-my queue" would be much appreciated!  :-)  If I don't hear anything
-then I guess next week I'll see if I can find other ways to poke folks
-or find a different route to land this series.  Thanks!
+ioremap
+ioremap_wc
+ioremap_wt
+ioremap_np
+ioremap_uc
+ioremap_cache
 
--Doug
+Going from most common to least common, rather than going from
+strongest to weakest.
+
+       Arnd
