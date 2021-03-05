@@ -2,101 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F020132F476
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 21:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D19A632F47D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 21:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbhCEUJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 15:09:27 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:42355 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbhCEUJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 15:09:26 -0500
-Received: by mail-oi1-f175.google.com with SMTP id l64so3810692oig.9
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 12:09:26 -0800 (PST)
+        id S229576AbhCEULe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 15:11:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229488AbhCEULP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 15:11:15 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6199CC061760
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 12:11:15 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id a4so2103982pgc.11
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 12:11:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XpRWrCpvKq9nt1h78wFpc/rhz9Ju6DpPSZWvCQyczCw=;
+        b=i5inxvA0mUjOzQNjG7ciEg6oz8aIWcIRZsDlhjBbs/19w1v7F2XVzfzADNzTUz9DFI
+         0DATDju49awK+y15gl32BddzbO9uDs5x80mn7xvPdesARvf0Hw2/nQrDTboWADj7jCxo
+         afl7HId/BZeUxy2VwiuwgDoOSJj4LMSERIs5I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ss792e9AzN8pjeKvrYSJl54ETIcPVmGeIfafQZbwyRs=;
-        b=cuTAoNsOkr6G5U0twahzoL3Ep35oDnZx1Nn+jqc/j5ye0PekCjVUzjTJZFJBX8bv/L
-         fipTRmnIWwhe1VkPU3yRcdhxM2gpvnjaCrQSsGdiXSX4SbcWvXagqjSGya0ICGFJXcYP
-         EnvUVtenXZgF/19r/NTQDW4eORr0FR6MIqE/aRCfSf7q7R5MMFminFVST4KkbABwWGC8
-         v2SFbS3pfBe8K0hk8Yq/ElHgFUFcxA5A9T8oNHwXQMDTSh9erX3E5zfZbn3rl3QapriS
-         24hW9o0kxpdCZ5M2I/jPtuBXggjW9w+NoJlMS53nYRNLDpW2eg+WX3opbi3tT/h4iSwH
-         hTpg==
-X-Gm-Message-State: AOAM531xmhv/8SAhyYKEk2eKs88PnwNkuP/aUWwCCYxx1kCLK8PfSyJh
-        ibZRewiXKxrNaCKdD/dk+Q==
-X-Google-Smtp-Source: ABdhPJyWzH5vssnBk81mBIlieZqf96YvWnGr6QQXuZ9SWUS5ishKqyWBA+wIeKLkC43T5cLuSXWafA==
-X-Received: by 2002:aca:de82:: with SMTP id v124mr8418177oig.125.1614974965977;
-        Fri, 05 Mar 2021 12:09:25 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u19sm795835ote.15.2021.03.05.12.09.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 12:09:25 -0800 (PST)
-Received: (nullmailer pid 567755 invoked by uid 1000);
-        Fri, 05 Mar 2021 20:09:23 -0000
-Date:   Fri, 5 Mar 2021 14:09:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: add bindings for
- newhaven,1.8-128160EF
-Message-ID: <20210305200923.GA566941@robh.at.kernel.org>
-References: <20210212095336.635701-1-daniel@zonque.org>
+        bh=XpRWrCpvKq9nt1h78wFpc/rhz9Ju6DpPSZWvCQyczCw=;
+        b=sditqYMZFw3Vo1fcPN7iBM7kMZ3XRQ64pyo6+Uo+msw+hE3rlrh+UB4ATDMQWdrVac
+         yuVqN+KmpeywhjfCt/kWakyF3lyuB2Mu3gjp+MlXR8inI4GXoYZmioLzfWXWU4nfeMbR
+         15tlcqhb3yG1boYhGmu7nDynYtBM3xH+zphl08AuDVqjzVADHKc9gPIt3VRvVeXvItnq
+         P0VEPjL/fKYLGJtksOKd1+3EelZLqadxkSSZysjtu4tBOpHWTCdKYpKjVeZGmDWKPjoX
+         JAI+/kEykXUbVFZUSdUzM078Z0k1j3/Fdo0/EALlhwpOnjlIu0dDRauDtQto2FI+Qp2V
+         Hh9A==
+X-Gm-Message-State: AOAM531gAFbzJS283OWHRtfTk7SflzBar6XYgvv8Y8FlAOjnHuuQES9Z
+        z2cVr2d2746EyC1b24XetYdmlw==
+X-Google-Smtp-Source: ABdhPJzp+MS3v5CN7KWxUphZ2+tM3MVGymlJxG+hV9vMQn8t2v+QgGLYQanFrGOnwfplkbU3TPajHA==
+X-Received: by 2002:a63:ee4e:: with SMTP id n14mr10174615pgk.422.1614975074818;
+        Fri, 05 Mar 2021 12:11:14 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:2878:25d1:94cb:a547])
+        by smtp.gmail.com with UTF8SMTPSA id x14sm29266pfn.162.2021.03.05.12.11.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Mar 2021 12:11:14 -0800 (PST)
+Date:   Fri, 5 Mar 2021 12:11:12 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7180: lazor: Simplify disabling
+ of charger thermal zone
+Message-ID: <YEKQYPIjisL+V1xH@google.com>
+References: <20210304180415.1531430-1-mka@chromium.org>
+ <20210304100341.1.I6d587e7ae72a5a47253bb95dfdc3158f8cc8a157@changeid>
+ <CAD=FV=XKpzSq2GqvoDieuZVZFrwmO0Q2prPaKeJRKXJmxPGWpg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210212095336.635701-1-daniel@zonque.org>
+In-Reply-To: <CAD=FV=XKpzSq2GqvoDieuZVZFrwmO0Q2prPaKeJRKXJmxPGWpg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 10:53:35AM +0100, Daniel Mack wrote:
-> This adds documentation for a new ILI9163 based, SPI connected display.
+On Fri, Mar 05, 2021 at 10:36:49AM -0800, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
-> ---
->  .../bindings/display/ilitek,ili9163.txt       | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9163.txt
+> On Thu, Mar 4, 2021 at 10:04 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > Commit f73558cc83d1 ("arm64: dts: qcom: sc7180: Disable charger
+> > thermal zone for lazor") disables the charger thermal zone for
+> > specific lazor revisions due to an unsupported thermistor type.
+> > The initial idea was to disable the thermal zone for older
+> > revisions and leave it enabled for newer ones that use a
+> > supported thermistor. Finally the thermistor won't be changed
+> > on newer revisions, hence the thermal zone should be disabled
+> > for all lazor (and limozeen) revisions. Instead of disabling
+> > it per revision do it once in the shared .dtsi for lazor.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 9 ---------
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 9 ---------
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts | 9 ---------
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 9 +++++++++
+> >  4 files changed, 9 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> > index 5c997cd90069..30e3e769d2b4 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+> > @@ -14,15 +14,6 @@ / {
+> >         compatible = "google,lazor-rev0", "qcom,sc7180";
+> >  };
+> >
+> > -/*
+> > - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> > - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> > - * to avoid using bogus temperature values.
+> > - */
+> > -&charger_thermal {
+> > -       status = "disabled";
+> > -};
+> > -
+> >  &pp3300_hub {
+> >         /* pp3300_l7c is used to power the USB hub */
+> >         /delete-property/regulator-always-on;
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> > index d9fbcc7bc5bd..c2ef06367baf 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+> > @@ -14,15 +14,6 @@ / {
+> >         compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
+> >  };
+> >
+> > -/*
+> > - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> > - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> > - * to avoid using bogus temperature values.
+> > - */
+> > -&charger_thermal {
+> > -       status = "disabled";
+> > -};
+> > -
+> >  &pp3300_hub {
+> >         /* pp3300_l7c is used to power the USB hub */
+> >         /delete-property/regulator-always-on;
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> > index 19e69adb9e04..1b9d2f46359e 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+> > @@ -13,12 +13,3 @@ / {
+> >         model = "Google Lazor (rev3+)";
+> >         compatible = "google,lazor", "qcom,sc7180";
+> >  };
+> > -
+> > -/*
+> > - * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> > - * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> > - * to avoid using bogus temperature values.
+> > - */
+> > -&charger_thermal {
+> > -       status = "disabled";
+> > -};
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > index 89e5cd29ec09..aa2c4a9098db 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > @@ -58,6 +58,15 @@ ap_ts: touchscreen@10 {
+> >         };
+> >  };
+> >
+> > +/*
+> > + * Lazor is stuffed with a 47k NTC as charger thermistor which currently is
+> > + * not supported by the PM6150 ADC driver. Disable the charger thermal zone
+> > + * to avoid using bogus temperature values.
+> > + */
+> > +&charger_thermal {
+> > +       status = "disabled";
+> > +};
+> > +
+> >  /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+> >
+> >  &ts_reset_l {
+> 
+> The idea is right, but I'm having a hard time figuring out what tree
+> you posted your patch against. You said you did it atop my "v2" series
+> [1], right?  ...but the "sc7180-trogdor-lazor.dtsi" really doesn't
+> match. In my tree, for instance, right above the PINCTRL comment
+> should be:
+> 
+> &wifi {
+>   qcom,ath10k-calibration-variant = "GO_LAZOR";
+> };
+> 
+> ...but that's definitely not what's there in whatever your patch was
+> written against... It seems like you're also missing the panel and
+> trackpad nodes...
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=440315
 
-Bindings are in schema format now.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9163.txt b/Documentation/devicetree/bindings/display/ilitek,ili9163.txt
-> new file mode 100644
-> index 0000000000000..fee119991c14e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/ilitek,ili9163.txt
-> @@ -0,0 +1,27 @@
-> +Ilitek ILI9163 display panels
-> +
-> +This binding is for display panels using an Ilitek ILI9163 controller in SPI
-> +mode.
-> +
-> +Required properties:
-> +- compatible:	"newhaven,1.8-128160EF", "ilitek,ili9163"
-> +- dc-gpios:	D/C pin
-> +- reset-gpios:	Reset pin
-> +
-> +The node for this driver must be a child node of a SPI controller, hence
-> +all mandatory properties described in ../spi/spi-bus.txt must be specified.
-> +
-> +Optional properties:
-> +- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
-> +- backlight:	phandle of the backlight device attached to the panel
-> +
-> +Example:
-> +	display@0{
-> +		compatible = "newhaven,1.8-128160EF", "ilitek,ili9163"
-> +		reg = <0>;
-> +		spi-max-frequency = <32000000>;
-> +		dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
-> +		rotation = <270>;
-> +		backlight = <&backlight>;
-> +	};
-> -- 
-> 2.29.2
-> 
+You got me! I was too lazy to pick all 13 patches, since most of them are
+irrelevant for this series, but apparently I missed some that are. I guess
+I'll pick them all for v2 ...
