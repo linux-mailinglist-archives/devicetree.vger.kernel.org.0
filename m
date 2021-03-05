@@ -2,134 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3DF32E3B9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 09:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 678A132E3D8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 09:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbhCEIey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 03:34:54 -0500
-Received: from mail-eopbgr80081.outbound.protection.outlook.com ([40.107.8.81]:50147
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229497AbhCEIe1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Mar 2021 03:34:27 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R44kC5duUcQdhGj7NfVRq1Hh2ofuflBw6MOGtGd+XaIU8lzv/hhAk3G9ED4MheXpp/jZ9tL0Qriay1dPTOjRSGeUcdm2AeHPicKmXzMl6XbAWLdGtSos88ek2yxd+BSLfXOf4PrhcjLNOCbkWj2S+aSr9g0D92YJOKZmSqsGjaTq2l6p0fvZB8ezjiUy9w+IVo49OnUB+3ZbZenCGDNnlNwAiWz0S3kfMAid3if4INo6jwFX0S6BvA3uoQ94BGOTsF73pimJOGZvq+hU9XDEat9NgT8jo8uqtAqIcp/Ew6/eA7pNVA+6hK5gHlImrCvzsLX5aCD6yHONG7vn398Krg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jCSedFIDIkHRsWQfpwuBI4tP/8nDYr+XIFOwWgteIrc=;
- b=j0wE0JAVdsf7eWWV8jOrZGVkL2rlDGYHJGFGKO/yxUCZZOMsLOjqpsvK3/OAs3OMT7KxWv3s6+rK0GTuAyi6d3duEwrDB0Vmp/puTfqEnwKIG6Lix8k1In4e6tRdrzgNQT/DWqN2NrtvoTi7USN64rVu7J+2q3MjoQ2HtPx8DbeQayAZFUlxQLEObg678pGe051f2p7cDerJ4MqL9t0yWPEZ5RFnXB5u2jkDkobG7Mwni24QRqlcI7r3apigDIUQ/fGTf5/q10DrDRP1w6L8yF4s5xQ/ovG2X+Y73XnNvaw8lxJzU7FxncwSIgC3K5Jj1xCe6X4m1WUa5aqPcS6bWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jCSedFIDIkHRsWQfpwuBI4tP/8nDYr+XIFOwWgteIrc=;
- b=CYZ4FzyYBEEOile2rvsVb560jK96VvX+KXbiALJdh/WNjWYVGd/h4mJBE3WF4ZwqfDUWCx6gOacN/TuV7rqJ1Xr/9uvVL8a3xcEJ5tepd/mj0Ms015cDWLO+wiAQEYvCrti+L+EIrm1owKqFAswKrPOUKiqnOsqgHMz/1gDQOuQ=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB7PR04MB5322.eurprd04.prod.outlook.com (2603:10a6:10:1f::15)
- by DB8PR04MB6940.eurprd04.prod.outlook.com (2603:10a6:10:11a::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Fri, 5 Mar
- 2021 08:34:24 +0000
-Received: from DB7PR04MB5322.eurprd04.prod.outlook.com
- ([fe80::7c4b:7e9d:a414:d34]) by DB7PR04MB5322.eurprd04.prod.outlook.com
- ([fe80::7c4b:7e9d:a414:d34%3]) with mapi id 15.20.3890.029; Fri, 5 Mar 2021
- 08:34:24 +0000
-From:   Sahil Malhotra <sahil.malhotra@oss.nxp.com>
-To:     shawnguo@kernel.org
-Cc:     sahil.malhotra@oss.nxp.com,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE
-        LAYERSCAPE ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: ls1028a: enable optee node
-Date:   Fri,  5 Mar 2021 14:03:51 +0530
-Message-Id: <20210305083351.13598-1-sahil.malhotra@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-Originating-IP: [14.142.151.118]
-X-ClientProxiedBy: MA1PR0101CA0041.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:22::27) To DB7PR04MB5322.eurprd04.prod.outlook.com
- (2603:10a6:10:1f::15)
+        id S229562AbhCEIl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 03:41:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229551AbhCEIl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 03:41:26 -0500
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [IPv6:2001:67c:2050::465:103])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD63C061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 00:41:25 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:105:465:1:2:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4DsLmy1k1xzQlWv;
+        Fri,  5 Mar 2021 09:41:22 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=loebl.cz; s=MBO0001;
+        t=1614933680;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9NGe2v8m7hT4U9JyTNesd080kA9zRHphsbi53pfG0WU=;
+        b=KuBYxoQMTvOn5YwQGzufpTnCblEytEt0k2ThazKnK8Uw3WdwEpbjE7K5/mVYLE6kFxw7c2
+        Dl8HtKO5q3T/pA2pV7MYE93J3nwVcQn0AgffYLessFI0iJDjNpYARCEP1Q+NiLNaTTjgX/
+        LmcrOXSNWAWFixVjGKr9y3tnLaUnDxoerqXlsLrG7Af0GyYVc/5QDMEVXAmPtOoF9PO4RQ
+        Vd9PvPOTY89eykAKE98dbR8ttW+p/+qtcWmTdGnih0CG5N82Zok8rqwluxmlNWq0OrNlrm
+        l0aaO4RpSMzFqPxQDCtJCXfgDWdrB13JD3YBrl6TNhRcBJnAFPm+Yv0yd5iboA==
+Received: from smtp2.mailbox.org ([80.241.60.241])
+        by spamfilter06.heinlein-hosting.de (spamfilter06.heinlein-hosting.de [80.241.56.125]) (amavisd-new, port 10030)
+        with ESMTP id SrozabomE4b9; Fri,  5 Mar 2021 09:41:19 +0100 (CET)
+From:   =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     devicetree@vger.kernel.org,
+        =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+Subject: [PATCH v2] ARM: dts: sun8i: h2+: add support for Banana Pi P2 Zero board
+Date:   Fri,  5 Mar 2021 09:40:53 +0100
+Message-Id: <20210305084053.3514231-1-pavel@loebl.cz>
+In-Reply-To: <20210106153915.er5fpqwquksdaaql@gilmour>
+References: <20210106153915.er5fpqwquksdaaql@gilmour>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lsv03303.swis.in-blr01.nxp.com (14.142.151.118) by MA1PR0101CA0041.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:22::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend Transport; Fri, 5 Mar 2021 08:34:21 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: aa6a1914-f1f4-4b37-2fb7-08d8dfb17abf
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6940:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB6940B67C37FAC041EBFC201FC3969@DB8PR04MB6940.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j3JltZBELjW9fao6g8pLiV2Ec1K6JgLe/t+vXZwOzN2WqMfGAlmkWXJbMdzEikB9MFvJ1cMIYKQJPZtRdU34TdF04I+3wUm4FSWMQGWz6TWN9DPiFSRDPiYeC4Etotqk1bxLnM8wGHJT7wDQv/PYg4MU+8W01GC+uYijZD+wPvV/lKgzugip97elyvgFrSJAomCJQbhPPIiDFjxIxnQbRIVyo9bBRqiq2XGpF0wKPAyXjBqcPkXcthljFVwl6l/5BboxwfMXKFGU6S78VB4CUO6DoWIELVeOYvI0oWP70F6pLVHvN3d/tHrPgh/yQINvlQhBApZkc26KtEjjL306UpZBjAcyVKeiwOg3cQ2bxvZU1zUi4LhOKOVGe7oXVRzwqkt2e0NynPaeliZVf4Pr+cpwO/nbQ1yoadVG52KtjfRP/Qv8PUgI/LTRBUpaOHByPpugLjdQrLg3Q/CsPAJ7Cokndl9QeSDkuYqN8Gwfm+4ZahlqXz//WChHfjVLWDd++FpF9rxdbDa6VOj3TmNFLSpye5kaTYAPkoxooX0vGn5hY73ITEHEDhaHLzuHsdlsvGN+hrABFTc1Ooa4otinyw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB5322.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(376002)(136003)(396003)(346002)(66556008)(86362001)(66946007)(83380400001)(5660300002)(54906003)(6506007)(4326008)(66476007)(6666004)(1006002)(4744005)(8936002)(2906002)(52116002)(6916009)(478600001)(55236004)(26005)(16526019)(2616005)(956004)(44832011)(6486002)(8676002)(1076003)(6512007)(186003)(316002)(110426009);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?AzutoYRCioaE5mXgUjnAqGsVR2bNLVOHb3djcQqFeviBzyyibZD7ks36HRD5?=
- =?us-ascii?Q?OB2N/kIP2VkEWb+YUWwZHwKpu0V3Ma37Iaj2iyndB8rFYOyoIM6FGfhfe0t2?=
- =?us-ascii?Q?q9NUETP6JqW0pkfTOUBAyvh8V2syljohxENmSuR4CA67EpZsCDiWc9sABLYT?=
- =?us-ascii?Q?HF5Hp4w2KtQTMGXYY7+XJm7OEUEsFh46Hhe1NlEeN6h+TFhVIqolH6u7OhJc?=
- =?us-ascii?Q?1aCSTeVPHkG0Y0hjJD0q3vzDk1tuqEUFMmdjOzX35od8fw8IrKl/UGdaF7UQ?=
- =?us-ascii?Q?M7gsaU8u/tdcAvkUdFI16DVt6UZKSjCOfG5/YxyxzALn4lPELdrcYiSY7wua?=
- =?us-ascii?Q?Piv/Btpgo51g9+KJdeBJIro6p1oGpLet1B3UrFQantqrZRNssWoEpeCZZn9e?=
- =?us-ascii?Q?5vrMexHj4FWUee3VwA0mbynDnpr4O/WXyDs6gZ5nW3L2XFdi4RrBSO4qYjJ1?=
- =?us-ascii?Q?vWbklOvvAtoOrWXkPPGq6etEn7a7HQdyrlf0rg/HbBR63by54z4qLuL+dKm/?=
- =?us-ascii?Q?x08X3Y5G2chQHdaTbvOqraohQvmEDXm/Ut0AvgUT/zKAvN1oJ7+xgK7BJ8fR?=
- =?us-ascii?Q?HF7ciBw29UCCiv+qvF1DfJtqlQbSFMoOVxlj4EIOrwyJF596tKL41o9IZOiw?=
- =?us-ascii?Q?ArXShVey6VwK498PkVcAk28Rq9jik0Rx29tp7iBfX/FUqQ3KwYAGpReHAXpp?=
- =?us-ascii?Q?wuxR/CZ5K6N/h4yI2PbEd192OacDf6vgEWxKJd5jzVN52rSkuwknBzGkK7al?=
- =?us-ascii?Q?LmMtYlfYU5y/gP97d8RSiK2MH6BbN/rpHeQ14+yAIDWVx0yL/QU6w8y8Vv1S?=
- =?us-ascii?Q?jHIzVTT7/TcTXWKrGp2ooEQBjypz4U2E9yt/lglvKjnYAYDds7oqcuEZM11G?=
- =?us-ascii?Q?ZBAPo6IhUKkiokAHb7R2oZLhVSqbhTdZcmVBMBtQX1jP/gFWlrT3lQNo6jkK?=
- =?us-ascii?Q?mFVBz9wwnnO4+0Csl6f+FFixGUdWJJPWGkuAZKn3GAQjFix5eR6W2QrtM9z+?=
- =?us-ascii?Q?PvXkHLNdftMSh93mwqTEZiFiNWYTt/uyMtCJSv/CCyw4sKgYf1yUdZUedHRp?=
- =?us-ascii?Q?QgTOvYdbBikyZ+241Goxt+Cy8VZIcri6ltEsfrIQJqs8WCcxFZY0qQA1v2dF?=
- =?us-ascii?Q?0Pwiy25onWfSxFPvN7q8wIxfy9CZPiMGYT+XoRPx8PppkUW9GMMS6XY7mY9p?=
- =?us-ascii?Q?bGvscEErq/7Y5olmKktBghemKReBuBRj+BacLxdgiJa6GmiLK/TfTb0ZGo/P?=
- =?us-ascii?Q?LU+W/5LteLBG0FDEhpx9zQuHkPYIxA9vEmP9IZfI2sgeD22pHC+xa9XoRe/b?=
- =?us-ascii?Q?plnriFcsGE4xx3pNWzL7CsNR?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa6a1914-f1f4-4b37-2fb7-08d8dfb17abf
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB5322.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2021 08:34:24.8072
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LA4VEdk1S1mQ0tTeN+jdLl2e6OXKlHuVhX+qMbZZ73loAFFPBeq05eQnOrSwyiJC5f+Nx1AF9G222vIiM8Nbgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6940
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -1.29 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 2D81517DD
+X-Rspamd-UID: 357a74
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sahil Malhotra <sahil.malhotra@nxp.com>
+Banana Pi P2 Zero is H2+-based board by Sinovoip internally
+similar to Banana Pi M2 Zero.
 
-optee node was disabled in ls1028a.dtsi, enabling it by default.
+It features:
+- Allwinner H2+, Quad-core Cortex-A7
+- 512MB DDR3 SDRAM
+- 8G eMMC flash
+- MicroSD card slot
+- 100M LAN
+- WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
+- Micro USB OTG port
+- Micro USB connector (power only)
+- Mini HDMI
+- 40 PIN GPIO includes UART, SPI, I2C, IO etc.
+- GPIO-connected key and LED
+- CSI connector
+- IEEE 802.3af PoE standard PoE module support (optional)
 
-Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
+This adds support for v1.1 revision. There was also v1.0 available
+which has different SDcard CD polarity and Ethernet port LEDs
+disconnected in layout.
+
+Signed-off-by: Pavel Löbl <pavel@loebl.cz>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../sun8i-h2-plus-bananapi-p2-zero-v1.1.dts   | 197 ++++++++++++++++++
+ 3 files changed, 203 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 262fbad8f0ec..762fbccaf586 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -95,7 +95,6 @@
- 		optee {
- 			compatible = "linaro,optee-tz";
- 			method = "smc";
--			status = "disabled";
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 6db32fbf813f..3accfa23cbad 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -136,6 +136,11 @@ properties:
+           - const: sinovoip,bananapi-m64
+           - const: allwinner,sun50i-a64
  
++      - description: Banana Pi P2 Zero
++        items:
++          - const: sinovoip,bpi-p2-zero-v1.1
++          - const: allwinner,sun8i-h2-plus
++
+       - description: BananaPro
+         items:
+           - const: lemaker,bananapro
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 3d1ea0b25168..26c1fd13375a 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1190,6 +1190,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+ 	sun8i-a83t-cubietruck-plus.dtb \
+ 	sun8i-a83t-tbs-a711.dtb \
+ 	sun8i-h2-plus-bananapi-m2-zero.dtb \
++	sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb \
+ 	sun8i-h2-plus-libretech-all-h3-cc.dtb \
+ 	sun8i-h2-plus-orangepi-r1.dtb \
+ 	sun8i-h2-plus-orangepi-zero.dtb \
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+new file mode 100644
+index 000000000000..7297183af3af
+--- /dev/null
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
+@@ -0,0 +1,197 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2021 Pavel Löbl <pavel@xxxxxxxx>
++ *
++ * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
++ *   Copyright (C) 2017 Icenowy Zheng <icenowy@xxxxxxx>
++ */
++
++/dts-v1/;
++#include "sun8i-h3.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "Banana Pi BPI-P2-Zero v1.1";
++	compatible = "sinovoip,bpi-p2-zero-v1.1", "allwinner,sun8i-h2-plus";
++
++	aliases {
++		serial0 = &uart0;
++		serial1 = &uart1;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led {
++			function = LED_FUNCTION_POWER;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
++			default-state = "on";
++		};
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		power {
++			label = "power";
++			linux,code = <KEY_POWER>;
++			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;  /* PL3 */
++			wakeup-source;
++		};
++	};
++
++	reg_vcc_5v: reg-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "usb1-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-boot-on;
++	};
++
++	reg_vcc_1v2: reg-vcc-1v2 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-1v2";
++		regulator-type = "voltage";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-boot-on;
++		vin-supply = <&reg_vcc_5v>;
++	};
++
++	reg_vcc_3v3: reg-vcc-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-3v3";
++		regulator-type = "voltage";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		vin-supply = <&reg_vcc_5v>;
++	};
++
++	reg_vdd_cpux: vdd-cpux-regulator {
++		compatible = "regulator-gpio";
++		regulator-name = "vdd-cpux";
++		regulator-type = "voltage";
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1300000>;
++		regulator-ramp-delay = <50>; /* 4ms */
++
++		gpios = <&r_pio 0 1 GPIO_ACTIVE_HIGH>; /* PL1 */
++		enable-active-high;
++		gpios-states = <0x1>;
++		states = <1100000 0>, <1300000 1>;
++	};
++
++	wifi_pwrseq: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
++	};
++};
++
++&cpu0 {
++	cpu-supply = <&reg_vdd_cpux>;
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ohci0 {
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc_3v3>;
++	bus-width = <4>;
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	cd-inverted;
++	status = "okay";
++};
++
++&mmc1 {
++	vmmc-supply = <&reg_vcc_3v3>;
++	vqmmc-supply = <&reg_vcc_3v3>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&pio>;
++		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT10 */
++		interrupt-names = "host-wake";
++		clocks = <&rtc 1>;
++		clock-names = "ext_clock";
++	};
++};
++
++&mmc2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc2_8bit_pins>;
++	vmmc-supply = <&reg_vcc_3v3>;
++	vqmmc-supply = <&reg_vcc_3v3>;
++	bus-width = <8>;
++	non-removable;
++	cap-mmc-hw-reset;
++	status = "okay";
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pa_pins>;
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm4345c5";
++		vbat-supply = <&reg_vcc_3v3>;
++		vddio-supply = <&reg_vcc_3v3>;
++		device-wakeup-gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>; /* PG13 */
++		host-wakeup-gpios = <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
++		shutdown-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
++		clocks = <&rtc 1>;
++		clock-names = "ext_clock";
++	};
++};
++
++&emac {
++	phy-handle = <&int_mii_phy>;
++	phy-mode = "mii";
++	phy-supply = <&reg_vcc_1v2>;
++	allwinner,leds-active-low;
++	status = "okay";
++};
++
++&usb_otg {
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usbphy {
++	usb0_id_det-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
++	/*
++	 * There're two micro-USB connectors, one is power-only and another is
++	 * OTG. The Vbus of these two connectors are connected together, so
++	 * the external USB device will be powered just by the power input
++	 * from the power-only USB port or optional POE module.
++	 */
++	status = "okay";
++};
 -- 
-2.17.1
+2.30.1
 
