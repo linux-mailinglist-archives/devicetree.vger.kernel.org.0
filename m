@@ -2,104 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1C732ED65
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 15:47:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A1B132EDA0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 16:03:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbhCEOqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 09:46:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37872 "EHLO
+        id S229637AbhCEPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 10:03:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhCEOqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 09:46:10 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1198C061574;
-        Fri,  5 Mar 2021 06:46:09 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id fu20so1994750pjb.2;
-        Fri, 05 Mar 2021 06:46:09 -0800 (PST)
+        with ESMTP id S229688AbhCEPDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 10:03:22 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6753C061756
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 07:03:21 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id o38so1550819pgm.9
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 07:03:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SLYTD0kAvjqxy4t6HYU1DX6C4LCII/OyaiVaeCrW9qM=;
-        b=ukIyLWd7IPrGz9FmT55xeMgIjS0mmGxYHjvHsblVSvKp5DH+2v6c1csGjb8bjvqpKP
-         6jd95CW7LyETGi+XP/VoNTtJ7cSHj5EU7NQ2C3CsL2hRV102BUM5CmUjGiXeAIjnya0R
-         uvCpCzW+CMQi/sEkyfgtYPgLPK/9TnxDx6U9w9TRkMHKwSYBX+ubyuVgPOubpU62azrO
-         Ap8ZLiSMWMpP9qijIog4MyARVO3i+Te3juTjZTuch5RCT5iKDnbTMJUurMN3dWSTlPpe
-         rM84CWmNWYc/zecadzic8UHPKKOIU/6BHSQfX5MtKZAaz8GepkfJGAsESZs93jl2574K
-         cCTg==
+        bh=2mlYSW9obf6ZHWc89hkL3cxC+hIY8OuKOPTUYIiFH0A=;
+        b=J6MTCpdKN6RbHYeZCKONYiDSec9HN6g5MOD48exdVQl9rBzpoKxe/fXU+ub+InlwI9
+         /C/O5SHDUrqEQzJLItBfA2St18/8xW4RlUw2Vdiq6eImAdMCgIT0yqEX7IQhpqQI2vFL
+         wkpDjHAah8KBj+GLj5hxch3CWWG6By1Ccf9ydjZK3219BeHiOumA8j/3qN97VUW/L05V
+         52imTqTtuj3UId+UJKsPtoBYPeCQD2C/OmCtRG2e5c//Thl94OKaJ9m3pDzQGcUEUgzU
+         PF4V3iTv0FNO9x5d71GxoWw8s2s1gdCsB3D8ww4Bly8RJ3Q0Mt89b9ZbdKlKlCvBG6JK
+         IuFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SLYTD0kAvjqxy4t6HYU1DX6C4LCII/OyaiVaeCrW9qM=;
-        b=pBi5F3bVIaKBNI0bz6R5pNR8F3uM8pX+wVqI4ZZhwA6817cK44+sWUFfPsisH19w/C
-         QE8IDHrnVGifHIteIKv7cLjAIX2tTfCCqf8jpXphrGrOioFsYpMfmJim1QShn91/hnb2
-         GeolswU4RXO/6RhCGhq2DphoyuF/C7c/NDIZRC5IUfmOEsgHxI/MkESHHETNcLgWILxJ
-         8J7cV1AuH0jSc9dWeSErNiZZccIyrx/1CErlIXztJT9RZCtaGsjFGL9w/wxq2KnNCdao
-         RpOM5hiEPDDMdl1F+F1McS2J0V7oCnqtKu/XPMhnO5v+2U/PXbxI1ndDqysMObsEr8VY
-         n5UQ==
-X-Gm-Message-State: AOAM533LQIvsbtPDEcRddPhdiQF3ZRVkZpu0bYXTZHxchpKeN992RF90
-        vbs7YhCCMhlbS/81Ait6u2iXIfdVoNCQi9fgUNE=
-X-Google-Smtp-Source: ABdhPJy1hcFeT7++NM/FsF4zGG36/dA0n6KUzt61a1Rr+S1F6UUjFavqe8V/stSRz3GNxaBc6EYTzdQVZaZ3LMDXf+g=
-X-Received: by 2002:a17:90a:c84:: with SMTP id v4mr10807897pja.228.1614955569419;
- Fri, 05 Mar 2021 06:46:09 -0800 (PST)
+        bh=2mlYSW9obf6ZHWc89hkL3cxC+hIY8OuKOPTUYIiFH0A=;
+        b=lzjOCakCS0cK/K9kZxMpPTllNpVveUpQCvVB8v4NMPvLt8QMFKBr+Amud5mwS94JEz
+         B6ITi4t7+2dsRknwsugIpv7xQ+43k8TrQygJnez/sQKsH4Pel0VhExMBHc15AAvLNCC6
+         kwsuk+8rDteOF86CeI0jGRkde9EsagItUmGQxQJHlUnsWMEUicuJDqgtOpzb+Ajoy2jg
+         wpE1t80LfsfXKGYEqK1fLMOXXlPKb/aNklPj2d0yUtL4gu1zabHaP/gZb0cJWGUM9Om6
+         goSP6endMb9afzfV9UHwwK5yGKmIxba9HPVuQGe/V6GE9W1M2X5F9WXlk5g8ft5/e1Uf
+         +0Ag==
+X-Gm-Message-State: AOAM533IS3N9V/wfnYBrekI8Qn8ngzJqTQl5fl3WR6XIi09Ofet9Lk70
+        QseGq3gO+G6AEvB+x1I5kosa5x9NkDznZsZz6scLjQ==
+X-Google-Smtp-Source: ABdhPJx2AsMoIAD1vR1ykd/0xY4yQ2cyON9Ui1Hcd4m8KbzbgFcFYC24pz+4T8epFidgoa72a1Ero5G2nRWHf8lhQ54=
+X-Received: by 2002:a63:ee4b:: with SMTP id n11mr9173347pgk.265.1614956601438;
+ Fri, 05 Mar 2021 07:03:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-9-marcan@marcan.st>
-In-Reply-To: <20210304213902.83903-9-marcan@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Mar 2021 16:45:53 +0200
-Message-ID: <CAHp75Ven4piceFaBhn1kc=vtwM4o-GXmz3eAZoNhU8w+iP5qxQ@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 08/27] asm-generic/io.h: Add a non-posted variant
- of ioremap()
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Documentation List <linux-doc@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Linux-Arch <linux-arch@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <1607651182-12307-1-git-send-email-victor.liu@nxp.com> <1607651182-12307-3-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <1607651182-12307-3-git-send-email-victor.liu@nxp.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Fri, 5 Mar 2021 16:03:10 +0100
+Message-ID: <CAG3jFyvJZkVRs4NnDmPmGk-Qkr0voyvf3JNvKFAKDyxcCNR3Cw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] phy: Add LVDS configuration options
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, kishon@ti.com,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        agx@sigxcpu.org, robert.chiras@nxp.com, martin.kepplinger@puri.sm
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 11:40 PM Hector Martin <marcan@marcan.st> wrote:
+Hey Liu,
+
+This patch seems to be included in both this series and the "Add some
+DRM bridge drivers support for i.MX8qm/qxp SoCs" series. Instead of
+having the two series have a conflict I would suggest either merging
+them (if that makes sense) or removing this patch from one of them and
+explicitly stating that there is a dependency on the other series.
+
+(the patch itself still looks good though :) )
+
+On Fri, 11 Dec 2020 at 02:56, Liu Ying <victor.liu@nxp.com> wrote:
 >
-> ARM64 currently defaults to posted MMIO (nGnRnE), but some devices
-> require the use of non-posted MMIO (nGnRE). Introduce a new ioremap()
-> variant to handle this case. ioremap_np() is aliased to ioremap() by
-> default on arches that do not implement this variant.
-
-Hmm... But isn't it basically a requirement to those device drivers to
-use readX()/writeX() instead of readX_relaxed() / writeX_relaxed()?
-
-...
-
->  #define IORESOURCE_MEM_32BIT           (3<<3)
->  #define IORESOURCE_MEM_SHADOWABLE      (1<<5)  /* dup: IORESOURCE_SHADOWABLE */
->  #define IORESOURCE_MEM_EXPANSIONROM    (1<<6)
-> +#define IORESOURCE_MEM_NONPOSTED       (1<<7)
-
-Not sure it's the right location (in a bit field) for this flag.
-
--- 
-With Best Regards,
-Andy Shevchenko
+> This patch allows LVDS PHYs to be configured through
+> the generic functions and through a custom structure
+> added to the generic union.
+>
+> The parameters added here are based on common LVDS PHY
+> implementation practices.  The set of parameters
+> should cover all potential users.
+>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v2->v3:
+> * No change.
+>
+> v1->v2:
+> * No change.
+>
+>  include/linux/phy/phy-lvds.h | 48 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/phy/phy.h      |  4 ++++
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 include/linux/phy/phy-lvds.h
+>
+> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
+> new file mode 100644
+> index 00000000..1b5b9d6
+> --- /dev/null
+> +++ b/include/linux/phy/phy-lvds.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2020 NXP
+> + */
+> +
+> +#ifndef __PHY_LVDS_H_
+> +#define __PHY_LVDS_H_
+> +
+> +/**
+> + * struct phy_configure_opts_lvds - LVDS configuration set
+> + *
+> + * This structure is used to represent the configuration state of a
+> + * LVDS phy.
+> + */
+> +struct phy_configure_opts_lvds {
+> +       /**
+> +        * @bits_per_lane_and_dclk_cycle:
+> +        *
+> +        * Number of bits per data lane and differential clock cycle.
+> +        */
+> +       unsigned int bits_per_lane_and_dclk_cycle;
+> +
+> +       /**
+> +        * @differential_clk_rate:
+> +        *
+> +        * Clock rate, in Hertz, of the LVDS differential clock.
+> +        */
+> +       unsigned long differential_clk_rate;
+> +
+> +       /**
+> +        * @lanes:
+> +        *
+> +        * Number of active, consecutive, data lanes, starting from
+> +        * lane 0, used for the transmissions.
+> +        */
+> +       unsigned int lanes;
+> +
+> +       /**
+> +        * @is_slave:
+> +        *
+> +        * Boolean, true if the phy is a slave which works together
+> +        * with a master phy to support dual link transmission,
+> +        * otherwise a regular phy or a master phy.
+> +        */
+> +       bool is_slave;
+> +};
+> +
+> +#endif /* __PHY_LVDS_H_ */
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index e435bdb..d450b44 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -17,6 +17,7 @@
+>  #include <linux/regulator/consumer.h>
+>
+>  #include <linux/phy/phy-dp.h>
+> +#include <linux/phy/phy-lvds.h>
+>  #include <linux/phy/phy-mipi-dphy.h>
+>
+>  struct phy;
+> @@ -51,10 +52,13 @@ enum phy_mode {
+>   *             the MIPI_DPHY phy mode.
+>   * @dp:                Configuration set applicable for phys supporting
+>   *             the DisplayPort protocol.
+> + * @lvds:      Configuration set applicable for phys supporting
+> + *             the LVDS phy mode.
+>   */
+>  union phy_configure_opts {
+>         struct phy_configure_opts_mipi_dphy     mipi_dphy;
+>         struct phy_configure_opts_dp            dp;
+> +       struct phy_configure_opts_lvds          lvds;
+>  };
+>
+>  /**
+> --
+> 2.7.4
+>
