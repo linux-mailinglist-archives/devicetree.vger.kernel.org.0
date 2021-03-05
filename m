@@ -2,284 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0C332EBC3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:00:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D23232EBFF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Mar 2021 14:24:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229851AbhCENAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 08:00:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43330 "EHLO
+        id S229505AbhCENXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 08:23:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbhCEM7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 07:59:53 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E43C061574
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 04:59:53 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id e7so3496559lft.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 04:59:53 -0800 (PST)
+        with ESMTP id S229711AbhCENXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 08:23:54 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DABBC061574
+        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 05:23:53 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id m11so2692773lji.10
+        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 05:23:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fIPYnHu8W1UjB++rGDH/JyymAkB0dWNTk3phuhPLgqU=;
-        b=FNXVO3/2M6AC3JH9wqiPKQfR9VILfioNfXmksNpg5cJ23OpQN+pB9oW86jmwNugDLR
-         FXsteptEjpLZfHSppzrvaTZvy90auVnwD0hml3oqzHFPG06OxhVSJotSjwXTC53mPx/S
-         FD9SPPwiXishdtsvcaQN4DXVAkFnjqV+ntOxDNBQinmlpOtoeMsqMa07eQV3u0/TvK5j
-         Zdt1/4SXIj+1lcFi3JDH2oq2uECk8Fk1rDR7hBAjUzMOEn5KI7hd+4FCdd6JJYfjAPgS
-         rq6uEtdibUnOMqIsDJyo6yn9faAApDn9rSfJby6M7FDtKsHv0rJXiHcHx8bRcinDTpjl
-         msww==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PPJSM/MVU+EIeUzdeZ0OH1Y9gGkhi9PwxkOqz+xt+XI=;
+        b=NznEWDYTz2RuXsPvJrP+Shu7L6ZRXJ+JW7nqVgW5w+YYBkKRawEATdgWyP+3XnxFhI
+         XGy+FxuPbGjJ3zxlnpKsWwCOK+9lTCmDgykTkOSc/A8TJa2K5x2EpjShDoIE7U3h+8I2
+         HwFKPyNUAG4TDK3PYlVG9r4uE0UXdvmGwWLV93ssuEUim18fZMM/12DQ2w0VcTYy/iP9
+         tgNPxx2CZOnIp9u1854ZG/fv+Jc9M3iif33cJRkldvqDr6oZULOGxQ+tp3nFrN2aAGdX
+         GhldROo5wOkfHxJuupNB6OZ6QEXO8QhiutMPMIaRulqHAYzRVCAoKx2gJ58sCTI3k72n
+         puzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fIPYnHu8W1UjB++rGDH/JyymAkB0dWNTk3phuhPLgqU=;
-        b=X4IRqlkV/sBoHgfSzV4dfMFKe592fRuvGqiolBoah2Ua1xE2sLvqNOymUV3ro2e46d
-         H+MrXumRqLL7q9iwG/OPnT1Hr15T4IAmIxUSA4zBUT2dZa0i1qw+9kqVsJeVc1E61skK
-         Xf7uuwQ5FC019Y+hSPWq4yPr6XH0Yh9kOowc1qc3IBeYEik4C1qv6+HVFyxCgmg4CYl2
-         ZIUMHfE9CYgHtxY3cKJIIVEWZqret137Xp4cpVDL0kqsUK8ak0b04nJdtKEiFDmEgQdx
-         ALNV1rFg8BMpaUDsab2Um9Qtm+MFl201W1LgdsZpQ3fXPyRMLZse1lcGfrARVKy/lANw
-         t/Jg==
-X-Gm-Message-State: AOAM532lYjCVXZDojKRHUyTWBa06jZmP0AAxm6Wam6BIWvA+gs63yCmk
-        wD0Xks2oakSo9Jje4/Qxv0c=
-X-Google-Smtp-Source: ABdhPJw9We/mMQn/EyulNhbJL+ENEdE77AIA9CKFlLikZV/sDS+iOWRkrxN1/N6pa8xI69aHLd0T4g==
-X-Received: by 2002:a05:6512:12c1:: with SMTP id p1mr5787432lfg.374.1614949192029;
-        Fri, 05 Mar 2021 04:59:52 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id 30sm308138lfr.200.2021.03.05.04.59.51
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PPJSM/MVU+EIeUzdeZ0OH1Y9gGkhi9PwxkOqz+xt+XI=;
+        b=CvXTvQecSMHZPwmzr/t0p5IHYZfoBvZ0tgOuDIqjEf7o9juN4UapHiDQCxucdY25P+
+         qtf0CHfpo8JtjMsxa8w1vdI6HszA+MGgRVMV+2JqSAMg9L7jT6M2nJDGDTPt1NUmKBvY
+         KBrCJdwv/LUtOFkzblq2MjsY72PKSMAM7BGWd9ZsxXBhI0k+KvsKi8VfamEJpk7hnz1o
+         5KWwttgTTWasFvw3OWnERFaayaCXgmrebPrjglbMofI4IG4mRHYsLQV7NzTIOS8T2Fel
+         dYFmkh+SPnP0MUTkWSUZh75W2pK211ZAIUJBonIV5dxRbXEnUNtpsuUVcr2J/BlI45n4
+         xrpw==
+X-Gm-Message-State: AOAM53165PuX0EiN9SGGH2ChSE0vnjdiCFFd9S/jc8IeOpqIP/La4jh1
+        o13Qb9fMaig/EulDEclrdDL/AA==
+X-Google-Smtp-Source: ABdhPJwHdqJ4rzZVVm0rbGIuhhxMzRg/jHQq1mrin7BBdrUJpfoErI95FcW+fYYfW82zg9+wIhyhzg==
+X-Received: by 2002:a2e:7403:: with SMTP id p3mr5086835ljc.239.1614950631842;
+        Fri, 05 Mar 2021 05:23:51 -0800 (PST)
+Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
+        by smtp.gmail.com with ESMTPSA id v28sm298420ljv.66.2021.03.05.05.23.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Mar 2021 04:59:51 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH RESEND 2/2] arm64: dts: broadcom: bcm4908: add TP-Link Archer C2300 V1
-Date:   Fri,  5 Mar 2021 13:59:07 +0100
-Message-Id: <20210305125907.21943-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210305125907.21943-1-zajec5@gmail.com>
-References: <20210305125302.21593-1-zajec5@gmail.com>
- <20210305125907.21943-1-zajec5@gmail.com>
+        Fri, 05 Mar 2021 05:23:51 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v2] Bluetooth: btbcm: Rewrite bindings in YAML and add reset
+Date:   Fri,  5 Mar 2021 14:23:42 +0100
+Message-Id: <20210305132343.2070583-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+This rewrites the Broadcom bluetooth bindings in YAML and
+adds a GPIO handle for the BT_RST_N line as used on some
+platforms.
 
-Archer C2300 V1 is a home router based on the BCM4906 (2 CPU cores). It
-has 512 MiB of RAM, NAND flash, USB 2.0 and USB 3.0 ports, 4 LAN ports,
-1 WAN port.
+The Ingenic UART binding was using this binding in its
+example DTS fragment, however mistakenly using "vcc-supply"
+for what is called "vbat-supply". The proper DTS files
+and the code in the kernel all use "vbat-supply" so
+fix up the example in this patch so we ge a clean
+check.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-RESEND: Got "550 Unknown recipient" for linux-arm-kernel@lists.infradead.org
-<dwmw2_go`> yeah, the mailman setup on the new host got commented out for a few seconds.
+ChangeLog v1->v2:
+- Fix the error in the Ingenic UART binding example as
+  part of adding this patch.
 ---
- arch/arm64/boot/dts/broadcom/bcm4908/Makefile |   1 +
- .../bcm4906-tplink-archer-c2300-v1.dts        | 182 ++++++++++++++++++
- 2 files changed, 183 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+ .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
+ .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
+ 2 files changed, 117 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+ create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/Makefile b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-index ebebc0cd421f..cc75854519ac 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_BCM4908) += bcm4906-netgear-r8000p.dtb
-+dtb-$(CONFIG_ARCH_BCM4908) += bcm4906-tplink-archer-c2300-v1.dtb
- dtb-$(CONFIG_ARCH_BCM4908) += bcm4908-asus-gt-ac5300.dtb
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+deleted file mode 100644
+index a7d57ba5f2ac..000000000000
+--- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-Broadcom Bluetooth Chips
+----------------------
+-
+-This documents the binding structure and common properties for serial
+-attached Broadcom devices.
+-
+-Serial attached Broadcom devices shall be a child node of the host UART
+-device the slave device is attached to.
+-
+-Required properties:
+-
+- - compatible: should contain one of the following:
+-   * "brcm,bcm20702a1"
+-   * "brcm,bcm4329-bt"
+-   * "brcm,bcm4330-bt"
+-   * "brcm,bcm43438-bt"
+-   * "brcm,bcm4345c5"
+-   * "brcm,bcm43540-bt"
+-   * "brcm,bcm4335a0"
+-
+-Optional properties:
+-
+- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+- - shutdown-gpios: GPIO specifier, used to enable the BT module
+- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
+- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
+-                      deprecated, replaced by interrupts and
+-                      "host-wakeup" interrupt-names
+- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
+- - clock-names: names for clock inputs, matching the clocks given
+-   - "extclk": deprecated, replaced by "txco"
+-   - "txco": external reference clock (not a standalone crystal)
+-   - "lpo": external low power 32.768 kHz clock
+- - vbat-supply: phandle to regulator supply for VBAT
+- - vddio-supply: phandle to regulator supply for VDDIO
+- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
+-    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
+-    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
+-    - pcm-frame-type: short, long
+-    - pcm-sync-mode: slave, master
+-    - pcm-clock-mode: slave, master
+- - interrupts: must be one, used to wakeup the host processor
+- - interrupt-names: must be "host-wakeup"
+-
+-Example:
+-
+-&uart2 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart2_pins>;
+-
+-       bluetooth {
+-               compatible = "brcm,bcm43438-bt";
+-               max-speed = <921600>;
+-               brcm,bt-pcm-int-params = [01 02 00 01 01];
+-       };
+-};
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 new file mode 100644
-index 000000000000..85820c760260
+index 000000000000..bdd6ca617e23
 --- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
++title: Broadcom Bluetooth Chips
 +
-+#include "bcm4906.dtsi"
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 +
-+/ {
-+	compatible = "tplink,archer-c2300-v1", "brcm,bcm4906", "brcm,bcm4908";
-+	model = "TP-Link Archer C2300 V1";
++description:
++  This binding describes Broadcom UART-attached bluetooth chips.
 +
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00 0x00 0x00 0x20000000>;
-+	};
++properties:
++  compatible:
++    enum:
++      - brcm,bcm20702a1
++      - brcm,bcm4329-bt
++      - brcm,bcm4330-bt
++      - brcm,bcm43438-bt
++      - brcm,bcm4345c5
++      - brcm,bcm43540-bt
++      - brcm,bcm4335a0
 +
-+	leds {
-+		compatible = "gpio-leds";
++  shutdown-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_REG_ON used to
++      power on the BT module
 +
-+		power-white {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-+		};
++  reset-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_RST_N used to
++      reset the BT module. This should be marked as
++      GPIO_ACTIVE_LOW.
 +
-+		2ghz {
-+			function = "2ghz";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-+		};
++  device-wakeup-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_WAKE used to
++      wakeup the controller. This is using the BT_GPIO_0
++      pin on the chip when in use.
 +
-+		5ghz {
-+			function = "5ghz";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-+		};
++  host-wakeup-gpios:
++    maxItems: 1
++    deprecated: true
++    description: GPIO specifier for the line HOST_WAKE used
++      to wakeup the host processor. This is using he BT_GPIO_1
++      pin on the chip when in use. This is deprecated and replaced
++      by interrupts and "host-wakeup" interrupt-names
 +
-+		wan-amber {
-+			function = LED_FUNCTION_WAN;
-+			color = <LED_COLOR_ID_AMBER>;
-+			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-+		};
++  clocks:
++    maxItems: 2
++    description: 1 or 2 clocks as defined in clock-names below,
++      in that order
 +
-+		wan-blue {
-+			function = LED_FUNCTION_WAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-+		};
++  clock-names:
++    description: Names of the 1 to 2 supplied clocks
++    items:
++      - const: txco
++      - const: lpo
++      - const: extclk
 +
-+		lan {
-+			function = LED_FUNCTION_LAN;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-+		};
++  vbat-supply:
++    description: phandle to regulator supply for VBAT
 +
-+		wps {
-+			function = LED_FUNCTION_WPS;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
-+		};
++  vddio-supply:
++    description: phandle to regulator supply for VDDIO
 +
-+		usb-high-white {
-+			function = "usbup";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-+		};
++  brcm,bt-pcm-int-params:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 5
++    maxItems: 5
++    description: |-
++      configure PCM parameters via a 5-byte array:
++       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
++       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
++       pcm-frame-type: short, long
++       pcm-sync-mode: slave, master
++       pcm-clock-mode: slave, master
 +
-+		usb-low-white {
-+			function = "usbdown";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-+		};
++  interrupts:
++    items:
++      - description: Handle to the line HOST_WAKE used to wake
++          up the host processor. This uses the BT_GPIO_1 pin on
++          the chip when in use.
 +
-+		brightness {
-+			function = LED_FUNCTION_BACKLIGHT;
-+			color = <LED_COLOR_ID_WHITE>;
-+			gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
-+		};
-+	};
++  interrupt-names:
++    items:
++      - const: host-wakeup
 +
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
++  max-speed: true
++  current-speed: true
 +
-+		brightness {
-+			label = "LEDs";
-+			linux,code = <KEY_BRIGHTNESS_ZERO>;
-+			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
-+		};
++required:
++  - compatible
 +
-+		wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
-+		};
++additionalProperties: false
 +
-+		wifi {
-+			label = "WiFi";
-+			linux,code = <KEY_RFKILL>;
-+			gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-+		};
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
 +
-+		restart {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&gpio0 23 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
++    uart {
++        uart-has-rtscts;
 +
-+&usb_phy {
-+	brcm,ioc = <1>;
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+&xhci {
-+	status = "okay";
-+};
-+
-+&ports {
-+	port@0 {
-+		label = "lan4";
-+	};
-+
-+	port@1 {
-+		label = "lan3";
-+	};
-+
-+	port@2 {
-+		label = "lan2";
-+	};
-+
-+	port@3 {
-+		label = "lan1";
-+	};
-+
-+	port@7 {
-+		reg = <7>;
-+		phy-mode = "internal";
-+		phy-handle = <&phy12>;
-+		label = "wan";
-+	};
-+};
-+
-+&nandcs {
-+	nand-ecc-strength = <4>;
-+	nand-ecc-step-size = <512>;
-+	nand-on-flash-bbt;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	partitions {
-+		compatible = "brcm,bcm4908-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			label = "cferom";
-+			reg = <0x0 0x100000>;
-+		};
-+
-+		partition@100000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x100000 0x3900000>;
-+		};
-+
-+		partition@5800000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x3a00000 0x3900000>;
-+		};
-+	};
-+};
++        bluetooth {
++            compatible = "brcm,bcm4330-bt";
++            max-speed = <921600>;
++            brcm,bt-pcm-int-params = [01 02 00 01 01];
++            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
++            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
++            interrupt-parent = <&gpio>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
 -- 
-2.26.2
+2.29.2
 
