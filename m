@@ -2,140 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E09D33305BC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 03:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C074A3305D5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 03:16:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233587AbhCHB77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 20:59:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233592AbhCHB7y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 20:59:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E8DDF65142;
-        Mon,  8 Mar 2021 01:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615168794;
-        bh=uQ6mDQWqa0shKWrCvrrYn1Ikf+NWyzhzqSj/6Jc0JBg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UIkpSX4+2Me/XQu7gfHRXrD38JIZm5NeAS32GHKdqemMz91z66n0CBIJXfkH33Gor
-         vapAm1Igel/YagA3ZwctpzB1UxEGRG+XvvgRDHoMdV5VZ7mtLH6mgAo9QlrS6SELcZ
-         DYf+JjqtDwbJM8gysRnGJh2rrGbXcQrxC6IeZRfbJRVDapxfk990fnil71D2QPMS7K
-         9ptNWmMypHGqUneWZjKvWSJXWaUmdDORHk33RiA91WCUo5ypYkXBZgz8CRPpiuQJuO
-         jnWoyImxnsSlS2lgdTmlhW7yaN16UecTTOMobPPsCo5YtElTibyhVV1K3mZ3Vv61+u
-         J2EyYRTZBIbhw==
-Date:   Mon, 8 Mar 2021 09:59:49 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dongas86@gmail.com, kernel@pengutronix.de, robh+dt@kernel.org,
-        linux-imx@nxp.com, jan.kiszka@siemens.com
-Subject: Re: [PATCH v5 00/18] arm64: dts: imx8: architecture improvement and
- adding imx8qm support
-Message-ID: <20210308015949.GZ543@dragon>
-References: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
+        id S229919AbhCHCP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 21:15:59 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:44142 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230521AbhCHCPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Mar 2021 21:15:37 -0500
+Received: by mail-io1-f52.google.com with SMTP id 81so8319693iou.11;
+        Sun, 07 Mar 2021 18:15:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zUhMpHW1VVHowuwumAIjSibq4yrtfBm/0FQm+5qDnvo=;
+        b=r64NK7knaXssnmTQXPbBeQeyxjNj5ctP3w+7UP9emCNrb/E3T7d9lcbLWPXEJ1zbF1
+         fPKUMO6EFJkdPkgKEcQM3X9cYqZjGqNXGs5PAIAggcV0QYLbYt3SdSXNVqY23kGfouvC
+         ont29slnYt3PWh9YP2GcqvrUjZGNfPbaitVT/BL/DBd5Fw+yr+Hn3HZoXVvqAVA853ch
+         VO/C6s8gqbU//zDujnQQENIMZ+pF60p0kuDDY9Dcz+gHsLPCM1dBuuM4orAqDVaj226e
+         KvMouA1+hs0S4ZLBxaSeQTX9VhTY2Tz4OUPzHGoB2QPzOX4rwjePBmIscp0GYNtEiSa/
+         928g==
+X-Gm-Message-State: AOAM533qQUKCXAIHOgOWKR+nNxtQuHQKBMC6Cmz/1ZiioP+8iuQKHq6i
+        yGZOA+lyvqAtu4YgAgpakQ==
+X-Google-Smtp-Source: ABdhPJyJ4+Xk5fu91tItzXJMFfQKHGOUGzBjfazjdZbIWp1LHEJoenrI8ZrmQ27FjmyvsTP16nOXmA==
+X-Received: by 2002:a5d:9250:: with SMTP id e16mr17112049iol.27.1615169736731;
+        Sun, 07 Mar 2021 18:15:36 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id 74sm5340847iob.43.2021.03.07.18.15.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Mar 2021 18:15:35 -0800 (PST)
+Received: (nullmailer pid 1282752 invoked by uid 1000);
+        Sat, 06 Mar 2021 21:52:32 -0000
+Date:   Sat, 6 Mar 2021 14:52:32 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 2/3] dt-bindings: phy: brcm,ns-usb2-phy: bind single CRU
+ reg
+Message-ID: <20210306215232.GA1238918@robh.at.kernel.org>
+References: <20210226114501.31086-1-zajec5@gmail.com>
+ <20210226114501.31086-2-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1614950268-22073-1-git-send-email-aisheng.dong@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210226114501.31086-2-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 09:17:29PM +0800, Dong Aisheng wrote:
-> IMX SCU based platforms (e.g. MX8QM/MX8QXP) are comprised of a number of SS
-> (Subsystems), those SS may be shared between different SoCs while most of them
-> can be reused like Devices Resources, Clocks, Power domains and etc.
+On Fri, Feb 26, 2021 at 12:45:00PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> This patch series aims to improve the MX8 architecture to comply with the HW
-> design to save a lot of duplicated codes and benefits us a better
-> maintainability and scalability in the future.
+> The old binding was using whole DMU space. It was an overkill. DMU is a
+> big block which contains e.g. CRU which contains e.g. PLLs, PHY, pinctrl
+> and thermal blocks.
 > 
-> ChangeLog:
-> v5:
->  * rebase to latest shawn/for-next
->  * make mx8qm usdhc compatible with imx8qxp
-> v4-resend:
->  * no change except put three module binding patches first which are used
->    by this patchset.
-> v3->v4:
->  * mainly rebase to latest kernel except a few very minor changes like change to use
->    new scu protocol binding which was not supported in last version
-> v2->v3:
->  * use clock-indices property instead of bit-offset property suggested by Shawn Guo
->  * rebase to latest shawn/for-next
-> v1->v2:
->  * change to the new two cells scu clock binding, so original adding scu clocks
->    patches were removed.
->  * Move scu pd node above clk node
+> Rework the binding to directly use a single CRU register that controls
+> USB 2.0 PHY. It's still required to reference CRU generic clkset
+> register so add a syscon for that.
 > 
+> For a full DMU & CRU description see arch/arm/boot/dts/bcm5301x.dtsi .
 > 
-> Dong Aisheng (18):
->   dt-bindings: arm: fsl: add imx8qm boards compatible string
->   dt-bindings: mailbox: mu: add imx8qm support
->   arm64: dts: imx8qxp: add fallback compatible string for scu pd
->   arm64: dts: imx8qxp: move scu pd node before scu clock node
->   arm64: dts: imx8qxp: orginize dts in subsystems
+> The old binding is deprecated now.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> This has been verified using dt_binding_check
+> 
+> I'd really like to get Rob's ack to make sure I don't do anything stupid
+> 
+> It's a reworked version of my abonded 2019 patch:
+> [PATCH V2 1/2] dt-bindings: bcm-ns-usb2-phy: rework binding to use CRU syscon
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20190108123907.19816-1-zajec5@gmail.com/
+> ---
+>  .../bindings/phy/brcm,ns-usb2-phy.yaml        | 46 +++++++++++++++----
+>  1 file changed, 36 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/brcm,ns-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,ns-usb2-phy.yaml
+> index b8b683ce8fa9..8e056d4d205a 100644
+> --- a/Documentation/devicetree/bindings/phy/brcm,ns-usb2-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/brcm,ns-usb2-phy.yaml
+> @@ -16,11 +16,20 @@ properties:
+>      const: brcm,ns-usb2-phy
+>  
+>    reg:
+> -    maxItems: 1
+> -    description: DMU (Device Management Unit) address range
+> +    anyOf:
+> +      - maxItems: 1
+> +        description: PHY control register
+> +      - maxItems: 1
+> +        description: DMU (Device Management Unit) address range
+> +        deprecated: true
+>  
+>    reg-names:
+>      const: dmu
+> +    deprecated: true
+> +
+> +  brcm,syscon-clkset:
+> +    description: phandle to syscon for clkset register
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-The dts patches stop applying for me at this one.  Please rebase and
-resend them.
+Don't really need this as it's just a compatible node of the parent 
+node.
 
-Shawn
+>  
+>    clocks:
+>      maxItems: 1
+> @@ -34,22 +43,39 @@ properties:
+>  
+>  required:
+>    - reg
+> -  - reg-names
+>    - clocks
+>    - clock-names
+>    - "#phy-cells"
+>  
+> +oneOf:
+> +  - required:
+> +      - brcm,syscon-clkset
+> +  - required:
+> +      - reg-names
+> +
+>  additionalProperties: false
+>  
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/bcm-nsp.h>
+>  
+> -    usb2-phy@1800c000 {
+> -        compatible = "brcm,ns-usb2-phy";
+> -        reg = <0x1800c000 0x1000>;
+> -        reg-names = "dmu";
+> -        clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
+> -        clock-names = "phy-ref-clk";
+> -        #phy-cells = <0>;
+> +    cru-bus@1800c100 {
+> +        compatible = "simple-bus";
 
->   arm64: dts: imx8: add lsio lpcg clocks
->   arm64: dts: imx8: add conn lpcg clocks
->   arm64: dts: imx8: add adma lpcg clocks
->   arm64: dts: imx8: switch to two cell scu clock binding
->   arm64: dts: imx8: switch to new lpcg clock binding
->   arm64: dts: imx8qm: add lsio ss support
->   arm64: dts: imx8qm: add conn ss support
->   arm64: dts: imx8: split adma ss into dma and audio ss
->   arm64: dts: imx8qm: add dma ss support
->   arm64: dts: imx: add imx8qm common dts file
->   arm64: dts: imx: add imx8qm mek support
->   arm64: defconfig: add imx8qm mek support
->   firmware: imx: scu-pd: do not power off console domain
-> 
->  .../devicetree/bindings/arm/fsl.yaml          |   6 +
->  .../devicetree/bindings/mailbox/fsl,mu.yaml   |   5 +-
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../boot/dts/freescale/imx8-ss-adma.dtsi      |   8 +
->  .../boot/dts/freescale/imx8-ss-audio.dtsi     |  68 +++
->  .../boot/dts/freescale/imx8-ss-conn.dtsi      | 184 ++++++++
->  .../arm64/boot/dts/freescale/imx8-ss-ddr.dtsi |  18 +
->  .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 202 +++++++++
->  .../boot/dts/freescale/imx8-ss-lsio.dtsi      | 311 +++++++++++++
->  arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 144 ++++++
->  .../boot/dts/freescale/imx8qm-ss-conn.dtsi    |  21 +
->  .../boot/dts/freescale/imx8qm-ss-dma.dtsi     |  51 +++
->  .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    |  61 +++
->  arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 176 ++++++++
->  .../boot/dts/freescale/imx8qxp-ai_ml.dts      |  20 +-
->  .../freescale/imx8qxp-colibri-eval-v3.dtsi    |   8 +-
->  .../boot/dts/freescale/imx8qxp-colibri.dtsi   |  12 +-
->  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  50 +--
->  .../boot/dts/freescale/imx8qxp-ss-adma.dtsi   |  37 ++
->  .../boot/dts/freescale/imx8qxp-ss-conn.dtsi   |  25 ++
->  .../boot/dts/freescale/imx8qxp-ss-lsio.dtsi   |  61 +++
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 423 ++----------------
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/firmware/imx/scu-pd.c                 |  28 +-
->  24 files changed, 1481 insertions(+), 440 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-mek.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qm.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-adma.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-lsio.dtsi
-> 
-> -- 
-> 2.25.1
-> 
+A specific compatible is needed for this block.
+
+> +        ranges = <0 0x1800c100 0x1a4>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        usb2-phy@64 {
+> +            compatible = "brcm,ns-usb2-phy";
+> +            reg = <0x64 0x4>;
+> +            brcm,syscon-clkset = <&clkset>;
+> +            clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
+> +            clock-names = "phy-ref-clk";
+> +            #phy-cells = <0>;
+> +        };
+> +
+> +        clkset: syscon@80 {
+> +            compatible = "brcm,cru-clkset", "syscon";
+> +            reg = <0x80 0x4>;
+> +        };
+
+Is this going to expand to 0x1a4/4 child nodes? The problem with one 
+node per register is I don't know when it ends and you have to 
+constantly update your DT.
+
+Rob
