@@ -2,818 +2,1281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17BC832FC2E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 18:12:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC89532FC39
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 18:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230449AbhCFRMZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 6 Mar 2021 12:12:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57748 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230426AbhCFRML (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 6 Mar 2021 12:12:11 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D9E4D65000;
-        Sat,  6 Mar 2021 17:12:06 +0000 (UTC)
-Date:   Sat, 6 Mar 2021 17:12:02 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     "alexandru.tachici@analog.com" <alexandru.tachici@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        id S231208AbhCFRT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 12:19:29 -0500
+Received: from mail-pj1-f44.google.com ([209.85.216.44]:55908 "EHLO
+        mail-pj1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231222AbhCFRTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 12:19:12 -0500
+Received: by mail-pj1-f44.google.com with SMTP id t9so897056pjl.5;
+        Sat, 06 Mar 2021 09:19:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=8+o4SwmDNxYK3kxzmXytehnhx0LmjSV0w9rh4sJ4dsY=;
+        b=nmlZ57lquiv+R22DJB3LPYRLoUVo9NvS4bi55tKwvzaHYlbV8z5hBmFfrsTwhz2aJd
+         gttwTDiG7F9RgE735w21rzk9nYG2ATWoW3PaxxrkN5b3fuyXoAY8os3edKb/+YMMYMa2
+         fqbu1UlMuMq7naHrqiXz6lQxO3X1QOoUzAF/RC/e6JSw9QoXb5yC8jP/kISnhF8ztoDL
+         Gt7daeCDNSFclzLGJy70dzsApD/gcopMkQOtlgwLMPvPu7+TggBIgUNPwxxd5NLQhJ+Y
+         l8JKHjrrWoU9V+CLoxslz79dorC6RWjklJUsImclE/IytGZNp9qyQ3a6qWFncReIrNUO
+         ZifA==
+X-Gm-Message-State: AOAM5302v7NpCy7Zd8CJB8d9zdVEC55oXWxLq7Pq4PflsosUBX4ITaQ4
+        UEDUQUwbNHk7OPtzRt9XeOOc+VtEp9o=
+X-Google-Smtp-Source: ABdhPJyUgFDyZ0eUg3OJ1dYzaf3oSWlMqMRks6Vk1RnYtKG6FYxO2ToYC1I3gLCO0tHQkpIjrvqktg==
+X-Received: by 2002:a17:90a:62c1:: with SMTP id k1mr16138931pjs.79.1615051151819;
+        Sat, 06 Mar 2021 09:19:11 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id v134sm5832048pfc.182.2021.03.06.09.19.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Mar 2021 09:19:10 -0800 (PST)
+Date:   Sat, 6 Mar 2021 09:19:08 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Sonal Santan <sonals@xilinx.com>
+Cc:     Tom Rix <trix@redhat.com>, Lizhi Hou <lizhih@xilinx.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        Max Zhen <maxz@xilinx.com>, Michal Simek <michals@xilinx.com>,
+        Stefano Stabellini <stefanos@xilinx.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 0/1] iio: adc: ad7124: allow more than 8 channels
-Message-ID: <20210306171202.5124b0c6@archlinux>
-In-Reply-To: <CAHp75VdRpLJpkikSRsmX_Z-A_vVzVLop=0QkAZLhahDwGc4r7w@mail.gmail.com>
-References: <20210301161526.72884-1-alexandru.tachici@analog.com>
-        <20210301161526.72884-2-alexandru.tachici@analog.com>
-        <CAHp75VdRpLJpkikSRsmX_Z-A_vVzVLop=0QkAZLhahDwGc4r7w@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH V3 XRT Alveo 01/18] Documentation: fpga: Add a document
+ describing XRT Alveo drivers
+Message-ID: <YEO5jF3C8BVKStav@epycbox.lan>
+References: <20210218064019.29189-1-lizhih@xilinx.com>
+ <20210218064019.29189-2-lizhih@xilinx.com>
+ <3d3028aa-163f-7e5c-8730-1eb94ebf61c5@redhat.com>
+ <BY5PR02MB626086C657770C4DA5399294BB9A9@BY5PR02MB6260.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BY5PR02MB626086C657770C4DA5399294BB9A9@BY5PR02MB6260.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Mar 2021 01:50:01 +0200
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-
-> On Monday, March 1, 2021, <alexandru.tachici@analog.com> wrote:
+On Mon, Mar 01, 2021 at 06:48:46AM +0000, Sonal Santan wrote:
+> Hello Tom,
 > 
-> > From: Alexandru Tachici <alexandru.tachici@analog.com>
-> >
-
-Nothing to add to Andy's comment, but curious at this being 0/1
-that should be the cover letter, not a second copy of the patch.
-
-> > Currently AD7124-8 driver cannot use more than 8 IIO channels
-> > because it was assigning the channel configurations bijectively
-> > to channels specified in the device-tree. This is not possible
-> > to do when using more than 8 channels as AD7124-8 has only 8
-> > configuration registers.
-> >
-> > To allow the user to use all channels at once the driver
-> > will keep in memory configurations for all channels but
-> > will program only 8 of them at a time on the device.
-> > If multiple channels have the same configuration, only
-> > one configuration register will be used. If there
-> > are more configurations than available registers only
-> > the last 8 used configurations will be allowed to exist
-> > on the device in a LRU fashion.
-> >
-> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> > ---
-> >  drivers/iio/adc/ad7124.c | 470 ++++++++++++++++++++++++++-------------
-> >  1 file changed, 313 insertions(+), 157 deletions(-)
-> >
-> > diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-> > index 766c73333604..9588df981e4e 100644
-> > --- a/drivers/iio/adc/ad7124.c
-> > +++ b/drivers/iio/adc/ad7124.c
-> > @@ -5,12 +5,14 @@
-> >   * Copyright 2018 Analog Devices Inc.
-> >   */
-> >  #include <linux/bitfield.h>
-> > +#include <linux/bitops.h>
-> >  #include <linux/clk.h>
-> >  #include <linux/delay.h>
-> >  #include <linux/device.h>
-> >  #include <linux/err.h>
-> >  #include <linux/interrupt.h>
-> >  #include <linux/kernel.h>
-> > +#include <linux/kfifo.h>
-> >  #include <linux/module.h>
-> >  #include <linux/of_device.h>
-> >  #include <linux/regulator/consumer.h>
-> > @@ -86,6 +88,10 @@
-> >  #define AD7124_SINC3_FILTER 2
-> >  #define AD7124_SINC4_FILTER 0
-> >
-> > +#define AD7124_CONF_ADDR_OFFSET        20
-> > +#define AD7124_MAX_CONFIGS     8
-> > +#define AD7124_MAX_CHANNELS    16
-> > +
-> >  enum ad7124_ids {
-> >         ID_AD7124_4,
-> >         ID_AD7124_8,
-> > @@ -136,25 +142,37 @@ struct ad7124_chip_info {
-> >  };
-> >
-> >  struct ad7124_channel_config {
-> > +       bool live;
-> > +       unsigned int cfg_slot;
-> >         enum ad7124_ref_sel refsel;
-> >         bool bipolar;
-> >         bool buf_positive;
-> >         bool buf_negative;
-> > -       unsigned int ain;
-> >         unsigned int vref_mv;
-> >         unsigned int pga_bits;
-> >         unsigned int odr;
-> > +       unsigned int odr_sel_bits;
-> >         unsigned int filter_type;
-> >  };
-> >
-> > +struct ad7124_channel {
-> > +       unsigned int nr;
-> > +       struct ad7124_channel_config cfg;
-> > +       unsigned int ain;
-> > +       unsigned int slot;
-> > +};
-> > +
-> >  struct ad7124_state {
-> >         const struct ad7124_chip_info *chip_info;
-> >         struct ad_sigma_delta sd;
-> > -       struct ad7124_channel_config *channel_config;
-> > +       struct ad7124_channel *channels;
-> >         struct regulator *vref[4];
-> >         struct clk *mclk;
-> >         unsigned int adc_control;
-> >         unsigned int num_channels;
-> > +       struct mutex cfgs_lock; /* lock for configs access */
-> > +       unsigned long cfg_slots_status; /* bitmap with slot status (1
-> > means it is used) */
-> > +       DECLARE_KFIFO(live_cfgs_fifo, struct ad7124_channel_config *,
-> > AD7124_MAX_CONFIGS);
-> >  };
-> >
-> >  static const struct iio_chan_spec ad7124_channel_template = {
-> > @@ -238,33 +256,9 @@ static int ad7124_set_mode(struct ad_sigma_delta *sd,
-> >         return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL, 2,
-> > st->adc_control);
-> >  }
-> >
-> > -static int ad7124_set_channel(struct ad_sigma_delta *sd, unsigned int
-> > channel)
-> > -{
-> > -       struct ad7124_state *st = container_of(sd, struct ad7124_state,
-> > sd);
-> > -       unsigned int val;
-> > -
-> > -       val = st->channel_config[channel].ain | AD7124_CHANNEL_EN(1) |
-> > -             AD7124_CHANNEL_SETUP(channel);
-> > -
-> > -       return ad_sd_write_reg(&st->sd, AD7124_CHANNEL(channel), 2, val);
-> > -}
-> > -
-> > -static const struct ad_sigma_delta_info ad7124_sigma_delta_info = {
-> > -       .set_channel = ad7124_set_channel,
-> > -       .set_mode = ad7124_set_mode,
-> > -       .has_registers = true,
-> > -       .addr_shift = 0,
-> > -       .read_mask = BIT(6),
-> > -       .data_reg = AD7124_DATA,
-> > -       .irq_flags = IRQF_TRIGGER_FALLING,
-> > -};
-> > -
-> > -static int ad7124_set_channel_odr(struct ad7124_state *st,
-> > -                                 unsigned int channel,
-> > -                                 unsigned int odr)
-> > +static void ad7124_set_channel_odr(struct ad7124_state *st, unsigned int
-> > channel, unsigned int odr)
-> >  {
-> >         unsigned int fclk, odr_sel_bits;
-> > -       int ret;
-> >
-> >         fclk = clk_get_rate(st->mclk);
-> >         /*
-> > @@ -280,36 +274,12 @@ static int ad7124_set_channel_odr(struct
-> > ad7124_state *st,
-> >         else if (odr_sel_bits > 2047)
-> >                 odr_sel_bits = 2047;
-> >
-> > -       ret = ad7124_spi_write_mask(st, AD7124_FILTER(channel),
-> > -                                   AD7124_FILTER_FS_MSK,
-> > -                                   AD7124_FILTER_FS(odr_sel_bits), 3);
-> > -       if (ret < 0)
-> > -               return ret;
-> > -       /* fADC = fCLK / (FS[10:0] x 32) */
-> > -       st->channel_config[channel].odr =
-> > -               DIV_ROUND_CLOSEST(fclk, odr_sel_bits * 32);
-> > -
-> > -       return 0;
-> > -}
-> > -
-> > -static int ad7124_set_channel_gain(struct ad7124_state *st,
-> > -                                  unsigned int channel,
-> > -                                  unsigned int gain)
-> > -{
-> > -       unsigned int res;
-> > -       int ret;
-> > +       if (odr_sel_bits != st->channels[channel].cfg.odr_sel_bits)
-> > +               st->channels[channel].cfg.live = false;
-> >
-> > -       res = ad7124_find_closest_match(ad7124_gain,
-> > -                                       ARRAY_SIZE(ad7124_gain), gain);
-> > -       ret = ad7124_spi_write_mask(st, AD7124_CONFIG(channel),
-> > -                                   AD7124_CONFIG_PGA_MSK,
-> > -                                   AD7124_CONFIG_PGA(res), 2);
-> > -       if (ret < 0)
-> > -               return ret;
-> > -
-> > -       st->channel_config[channel].pga_bits = res;
-> > -
-> > -       return 0;
-> > +       /* fADC = fCLK / (FS[10:0] x 32) */
-> > +       st->channels[channel].cfg.odr = DIV_ROUND_CLOSEST(fclk,
-> > odr_sel_bits * 32);
-> > +       st->channels[channel].cfg.odr_sel_bits = odr_sel_bits;
-> >  }
-> >
-> >  static int ad7124_get_3db_filter_freq(struct ad7124_state *st,
-> > @@ -317,9 +287,9 @@ static int ad7124_get_3db_filter_freq(struct
-> > ad7124_state *st,
-> >  {
-> >         unsigned int fadc;
-> >
-> > -       fadc = st->channel_config[channel].odr;
-> > +       fadc = st->channels[channel].cfg.odr;
-> >
-> > -       switch (st->channel_config[channel].filter_type) {
-> > +       switch (st->channels[channel].cfg.filter_type) {
-> >         case AD7124_SINC3_FILTER:
-> >                 return DIV_ROUND_CLOSEST(fadc * 230, 1000);
-> >         case AD7124_SINC4_FILTER:
-> > @@ -329,9 +299,8 @@ static int ad7124_get_3db_filter_freq(struct
-> > ad7124_state *st,
-> >         }
-> >  }
-> >
-> > -static int ad7124_set_3db_filter_freq(struct ad7124_state *st,
-> > -                                     unsigned int channel,
-> > -                                     unsigned int freq)
-> > +static void ad7124_set_3db_filter_freq(struct ad7124_state *st, unsigned
-> > int channel,
-> > +                                      unsigned int freq)
-> >  {
-> >         unsigned int sinc4_3db_odr;
-> >         unsigned int sinc3_3db_odr;
-> > @@ -349,21 +318,223 @@ static int ad7124_set_3db_filter_freq(struct
-> > ad7124_state *st,
-> >                 new_odr = sinc3_3db_odr;
-> >         }
-> >
-> > -       if (st->channel_config[channel].filter_type != new_filter) {
-> > -               int ret;
-> > +       if (new_odr != st->channels[channel].cfg.odr)
-> > +               st->channels[channel].cfg.live = false;
-> >
-> > -               st->channel_config[channel].filter_type = new_filter;
-> > -               ret = ad7124_spi_write_mask(st, AD7124_FILTER(channel),
-> > -                                           AD7124_FILTER_TYPE_MSK,
-> > -                                           AD7124_FILTER_TYPE_SEL(new_
-> > filter),
-> > -                                           3);
-> > -               if (ret < 0)
-> > -                       return ret;
-> > +       st->channels[channel].cfg.filter_type = new_filter;
-> > +       st->channels[channel].cfg.odr = new_odr;
-> > +}
-> > +
-> > +static bool ad7124_configs_equal(struct ad7124_channel_config *cfg1,
-> > +                                struct ad7124_channel_config *cfg2)
-> > +{
-> > +       return ((cfg1->refsel == cfg2->refsel) &&
-> > +               (cfg1->bipolar == cfg2->bipolar) &&
-> > +               (cfg1->buf_positive == cfg2->buf_positive) &&
-> > +               (cfg1->buf_negative == cfg2->buf_negative) &&
-> > +               (cfg1->vref_mv == cfg2->vref_mv) &&
-> > +               (cfg1->pga_bits == cfg2->pga_bits) &&
-> > +               (cfg1->odr == cfg2->odr) &&
-> > +               (cfg1->odr_sel_bits == cfg2->odr_sel_bits) &&
-> > +               (cfg1->filter_type == cfg2->filter_type));
-> > +}
-> >
-> >  
-> I’m wondering why you are using custom version of memcmp(). You may group
-> members together which must be equal, and leave the rest st the end of
-> structure .
+> > -----Original Message-----
+> > From: Tom Rix <trix@redhat.com>
+> > Sent: Friday, February 19, 2021 2:26 PM
+> > To: Lizhi Hou <lizhih@xilinx.com>; linux-kernel@vger.kernel.org
+> > Cc: Lizhi Hou <lizhih@xilinx.com>; linux-fpga@vger.kernel.org; Max Zhen
+> > <maxz@xilinx.com>; Sonal Santan <sonals@xilinx.com>; Michal Simek
+> > <michals@xilinx.com>; Stefano Stabellini <stefanos@xilinx.com>;
+> > devicetree@vger.kernel.org; mdf@kernel.org; robh@kernel.org; Max Zhen
+> > <maxz@xilinx.com>
+> > Subject: Re: [PATCH V3 XRT Alveo 01/18] Documentation: fpga: Add a
+> > document describing XRT Alveo drivers
+> > 
+> > From the documentation, there are a couple of big questions and a bunch of
+> > word smithing.
+> > 
+> > pseudo-bus : do we need a bus ?
+> We are looking for guidance here. 
+> > 
+> > xrt-lib real platform devices that aren't fpga, do they need to move to another
+> > subsystem ?
+> > 
 > 
+> Drivers for the IPs that show up in the Alveo shell are not generic enough. They 
+> fit into the framework that XRT uses. Is the idea that that they can be used in a 
+> different context?
 > 
-> > +static struct ad7124_channel_config *ad7124_find_similar_live_cfg(struct
-> > ad7124_state *st,
-> > +                                                                 struct
-> > ad7124_channel_config *cfg)
-> > +{
-> > +       struct ad7124_channel_config *cfg_aux;
-> > +       int i;
-> > +
-> > +       for (i = 0; i < st->num_channels; i++) {
-> > +               cfg_aux = &st->channels[i].cfg;
-> > +
-> > +               if (cfg_aux->live && ad7124_configs_equal(cfg, cfg_aux))
-> > +                       return cfg_aux;
-> >         }
-> >
-> > -       return ad7124_set_channel_odr(st, channel, new_odr);
-> > +       return NULL;
-> >  }
-> >
-> > +static int ad7124_find_free_config_slot(struct ad7124_state *st)
-> > +{
-> > +       unsigned int free_cfg_slot;
-> > +
-> > +       free_cfg_slot = find_next_zero_bit(&st->cfg_slots_status,
-> > AD7124_MAX_CONFIGS, 0);
-> > +       if (free_cfg_slot == AD7124_MAX_CONFIGS)
-> > +               return -1;
-> > +
-> > +       return free_cfg_slot;
-> > +}
-> > +
-> > +static int ad7124_init_config_vref(struct ad7124_state *st, struct
-> > ad7124_channel_config *cfg)
-> > +{
-> > +       unsigned int refsel = cfg->refsel;
-> > +
-> > +       switch (refsel) {
-> > +       case AD7124_REFIN1:
-> > +       case AD7124_REFIN2:
-> > +       case AD7124_AVDD_REF:
-> > +               if (IS_ERR(st->vref[refsel])) {
-> > +                       dev_err(&st->sd.spi->dev,
-> > +                               "Error, trying to use external voltage
-> > reference without a %s regulator.\n",
-> > +                               ad7124_ref_names[refsel]);
-> > +                               return PTR_ERR(st->vref[refsel]);
-> > +               }
-> > +               cfg->vref_mv = regulator_get_voltage(st->vref[refsel]);
-> > +               /* Conversion from uV to mV */
-> > +               cfg->vref_mv /= 1000;
-> > +               return 0;
-> > +       case AD7124_INT_REF:
-> > +               cfg->vref_mv = 2500;
-> > +               st->adc_control &= ~AD7124_ADC_CTRL_REF_EN_MSK;
-> > +               st->adc_control |= AD7124_ADC_CTRL_REF_EN(1);
-> > +               return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL,
-> > +                                     2, st->adc_control);
-> > +       default:
-> > +               dev_err(&st->sd.spi->dev, "Invalid reference %d\n",
-> > refsel);
-> > +               return -EINVAL;
-> > +       }
-> > +}
-> > +
-> > +static int ad7124_write_config(struct ad7124_state *st, struct
-> > ad7124_channel_config *cfg,
-> > +                              unsigned int cfg_slot)
-> > +{
-> > +       unsigned int tmp;
-> > +       unsigned int val;
-> > +       int ret;
-> > +
-> > +       cfg->cfg_slot = cfg_slot;
-> > +
-> > +       tmp = (cfg->buf_positive << 1) + cfg->buf_negative;
-> > +       val = AD7124_CONFIG_BIPOLAR(cfg->bipolar) |
-> > AD7124_CONFIG_REF_SEL(cfg->refsel) |
-> > +             AD7124_CONFIG_IN_BUFF(tmp);
-> > +       ret = ad_sd_write_reg(&st->sd, AD7124_CONFIG(cfg->cfg_slot), 2,
-> > val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       tmp = AD7124_FILTER_TYPE_SEL(cfg->filter_type);
-> > +       ret = ad7124_spi_write_mask(st, AD7124_FILTER(cfg->cfg_slot),
-> > AD7124_FILTER_TYPE_MSK,
-> > +                                   tmp, 3);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       ret = ad7124_spi_write_mask(st, AD7124_FILTER(cfg->cfg_slot),
-> > AD7124_FILTER_FS_MSK,
-> > +                                   AD7124_FILTER_FS(cfg->odr_sel_bits),
-> > 3);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       return ad7124_spi_write_mask(st, AD7124_CONFIG(cfg->cfg_slot),
-> > AD7124_CONFIG_PGA_MSK,
-> > +                                    AD7124_CONFIG_PGA(cfg->pga_bits), 2);
-> > +}
-> > +
-> > +static struct ad7124_channel_config *ad7124_pop_config(struct
-> > ad7124_state *st)
-> > +{
-> > +       struct ad7124_channel_config *lru_cfg;
-> > +       struct ad7124_channel_config *cfg;
-> > +       int ret;
-> > +       int i;
-> > +
-> > +       /*
-> > +        * Pop least recently used config from the fifo
-> > +        * in order to make room for the new one
-> > +        */
-> > +       ret = kfifo_get(&st->live_cfgs_fifo, &lru_cfg);
-> > +       if (ret <= 0)
-> > +               return NULL;
-> > +
-> > +       lru_cfg->live = false;
-> > +
-> > +       /* mark slot as free */
-> > +       assign_bit(lru_cfg->cfg_slot, &st->cfg_slots_status, 0);
-> > +
-> > +       /* invalidate all other configs that pointed to this one */
-> > +       for (i = 0; i < st->num_channels; i++) {
-> > +               cfg = &st->channels[i].cfg;
-> > +
-> > +               if (cfg->cfg_slot == lru_cfg->cfg_slot)
-> > +                       cfg->live = false;
-> > +       }
-> > +
-> > +       return lru_cfg;
-> > +}
-> > +
-> > +static int ad7124_push_config(struct ad7124_state *st, struct
-> > ad7124_channel_config *cfg)
-> > +{
-> > +       struct ad7124_channel_config *lru_cfg;
-> > +       int free_cfg_slot;
-> > +
-> > +       free_cfg_slot = ad7124_find_free_config_slot(st);
-> > +       if (free_cfg_slot >= 0) {
-> > +               /* push the new config in configs queue */
-> > +               kfifo_put(&st->live_cfgs_fifo, cfg);
-> > +       } else {
-> > +               /* pop one config to make room for the new one */
-> > +               lru_cfg = ad7124_pop_config(st);
-> > +               if (!lru_cfg)
-> > +                       return -EINVAL;
-> > +
-> > +               /* push the new config in configs queue */
-> > +               free_cfg_slot = lru_cfg->cfg_slot;
-> > +               kfifo_put(&st->live_cfgs_fifo, cfg);
-> > +       }
-> > +
-> > +       /* mark slot as used */
-> > +       assign_bit(free_cfg_slot, &st->cfg_slots_status, 1);
-> > +
-> > +       return ad7124_write_config(st, cfg, free_cfg_slot);
-> > +}
-> > +
-> > +static int ad7124_enable_channel(struct ad7124_state *st, struct
-> > ad7124_channel *ch)
-> > +{
-> > +       ch->cfg.live = true;
-> > +       return ad_sd_write_reg(&st->sd, AD7124_CHANNEL(ch->nr), 2, ch->ain
-> > |
-> > +                             AD7124_CHANNEL_SETUP(ch->cfg.cfg_slot) |
-> > AD7124_CHANNEL_EN(1));
-> > +}
-> > +
-> > +static int ad7124_prepare_read(struct ad7124_state *st, int address)
-> > +{
-> > +       struct ad7124_channel_config *cfg = &st->channels[address].cfg;
-> > +       struct ad7124_channel_config *live_cfg;
-> > +
-> > +       /*
-> > +        * Before doing any reads assign the channel a configuration.
-> > +        * Check if channel's config is on the device
-> > +        */
-> > +       if (!cfg->live) {
-> > +               /* check if config matches another one */
-> > +               live_cfg = ad7124_find_similar_live_cfg(st, cfg);
-> > +               if (!live_cfg)
-> > +                       ad7124_push_config(st, cfg);
-> > +               else
-> > +                       cfg->cfg_slot = live_cfg->cfg_slot;
-> > +       }
-> > +
-> > +       /* point channel to the config slot and enable */
-> > +       return ad7124_enable_channel(st, &st->channels[address]);
-> > +}
-> > +
-> > +static int ad7124_set_channel(struct ad_sigma_delta *sd, unsigned int
-> > channel)
-> > +{
-> > +       struct ad7124_state *st = container_of(sd, struct ad7124_state,
-> > sd);
-> > +       int ret;
-> > +
-> > +       mutex_lock(&st->cfgs_lock);
-> > +       ret = ad7124_prepare_read(st, channel);
-> > +       mutex_unlock(&st->cfgs_lock);
-> > +
-> > +       return ret;
-> > +}
-> > +
-> > +static const struct ad_sigma_delta_info ad7124_sigma_delta_info = {
-> > +       .set_channel = ad7124_set_channel,
-> > +       .set_mode = ad7124_set_mode,
-> > +       .has_registers = true,
-> > +       .addr_shift = 0,
-> > +       .read_mask = BIT(6),
-> > +       .data_reg = AD7124_DATA,
-> > +       .irq_flags = IRQF_TRIGGER_FALLING
-> > +};
-> > +
-> >  static int ad7124_read_raw(struct iio_dev *indio_dev,
-> >                            struct iio_chan_spec const *chan,
-> >                            int *val, int *val2, long info)
-> > @@ -378,36 +549,44 @@ static int ad7124_read_raw(struct iio_dev *indio_dev,
-> >                         return ret;
-> >
-> >                 /* After the conversion is performed, disable the channel
-> > */
-> > -               ret = ad_sd_write_reg(&st->sd,
-> > -                                     AD7124_CHANNEL(chan->address), 2,
-> > -                                     st->channel_config[chan->address].ain
-> > |
-> > -                                     AD7124_CHANNEL_EN(0));
-> > +               ret = ad_sd_write_reg(&st->sd,
-> > AD7124_CHANNEL(chan->address), 2,
-> > +                                     st->channels[chan->address].ain |
-> > AD7124_CHANNEL_EN(0));
-> >                 if (ret < 0)
-> >                         return ret;
-> >
-> >                 return IIO_VAL_INT;
-> >         case IIO_CHAN_INFO_SCALE:
-> > -               idx = st->channel_config[chan->address].pga_bits;
-> > -               *val = st->channel_config[chan->address].vref_mv;
-> > -               if (st->channel_config[chan->address].bipolar)
-> > +               mutex_lock(&st->cfgs_lock);
-> > +
-> > +               idx = st->channels[chan->address].cfg.pga_bits;
-> > +               *val = st->channels[chan->address].cfg.vref_mv;
-> > +               if (st->channels[chan->address].cfg.bipolar)
-> >                         *val2 = chan->scan_type.realbits - 1 + idx;
-> >                 else
-> >                         *val2 = chan->scan_type.realbits + idx;
-> >
-> > +               mutex_unlock(&st->cfgs_lock);
-> >                 return IIO_VAL_FRACTIONAL_LOG2;
-> >         case IIO_CHAN_INFO_OFFSET:
-> > -               if (st->channel_config[chan->address].bipolar)
-> > +               mutex_lock(&st->cfgs_lock);
-> > +               if (st->channels[chan->address].cfg.bipolar)
-> >                         *val = -(1 << (chan->scan_type.realbits - 1));
-> >                 else
-> >                         *val = 0;
-> >
-> > +               mutex_unlock(&st->cfgs_lock);
-> >                 return IIO_VAL_INT;
-> >         case IIO_CHAN_INFO_SAMP_FREQ:
-> > -               *val = st->channel_config[chan->address].odr;
-> > +               mutex_lock(&st->cfgs_lock);
-> > +               *val = st->channels[chan->address].cfg.odr;
-> > +               mutex_unlock(&st->cfgs_lock);
-> >
-> >                 return IIO_VAL_INT;
-> >         case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> > +               mutex_lock(&st->cfgs_lock);
-> >                 *val = ad7124_get_3db_filter_freq(st, chan->scan_index);
-> > +               mutex_unlock(&st->cfgs_lock);
-> > +
-> >                 return IIO_VAL_INT;
-> >         default:
-> >                 return -EINVAL;
-> > @@ -420,35 +599,54 @@ static int ad7124_write_raw(struct iio_dev
-> > *indio_dev,
-> >  {
-> >         struct ad7124_state *st = iio_priv(indio_dev);
-> >         unsigned int res, gain, full_scale, vref;
-> > +       int ret = 0;
-> > +
-> > +       mutex_lock(&st->cfgs_lock);
-> >
-> >         switch (info) {
-> >         case IIO_CHAN_INFO_SAMP_FREQ:
-> > -               if (val2 != 0)
-> > -                       return -EINVAL;
-> > +               if (val2 != 0) {
-> > +                       ret = -EINVAL;
-> > +                       break;
-> > +               }
-> >
-> > -               return ad7124_set_channel_odr(st, chan->address, val);
-> > +               ad7124_set_channel_odr(st, chan->address, val);
-> > +               break;
-> >         case IIO_CHAN_INFO_SCALE:
-> > -               if (val != 0)
-> > -                       return -EINVAL;
-> > +               if (val != 0) {
-> > +                       ret = -EINVAL;
-> > +                       break;
-> > +               }
-> >
-> > -               if (st->channel_config[chan->address].bipolar)
-> > +               if (st->channels[chan->address].cfg.bipolar)
-> >                         full_scale = 1 << (chan->scan_type.realbits - 1);
-> >                 else
-> >                         full_scale = 1 << chan->scan_type.realbits;
-> >
-> > -               vref = st->channel_config[chan->address].vref_mv *
-> > 1000000LL;
-> > +               vref = st->channels[chan->address].cfg.vref_mv *
-> > 1000000LL;
-> >                 res = DIV_ROUND_CLOSEST(vref, full_scale);
-> >                 gain = DIV_ROUND_CLOSEST(res, val2);
-> > +               res = ad7124_find_closest_match(ad7124_gain,
-> > ARRAY_SIZE(ad7124_gain), gain);
-> >
-> > -               return ad7124_set_channel_gain(st, chan->address, gain);
-> > +               if (st->channels[chan->address].cfg.pga_bits != res)
-> > +                       st->channels[chan->address].cfg.live = false;
-> > +
-> > +               st->channels[chan->address].cfg.pga_bits = res;
-> > +               break;
-> >         case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> > -               if (val2 != 0)
-> > -                       return -EINVAL;
-> > +               if (val2 != 0) {
-> > +                       ret = -EINVAL;
-> > +                       break;
-> > +               }
-> >
-> > -               return ad7124_set_3db_filter_freq(st, chan->address, val);
-> > +               ad7124_set_3db_filter_freq(st, chan->address, val);
-> > +               break;
-> >         default:
-> > -               return -EINVAL;
-> > +               ret =  -EINVAL;
-> >         }
-> > +
-> > +       mutex_unlock(&st->cfgs_lock);
-> > +       return ret;
-> >  }
-> >
-> >  static int ad7124_reg_access(struct iio_dev *indio_dev,
-> > @@ -547,47 +745,14 @@ static int ad7124_check_chip_id(struct ad7124_state
-> > *st)
-> >         return 0;
-> >  }
-> >
-> > -static int ad7124_init_channel_vref(struct ad7124_state *st,
-> > -                                   unsigned int channel_number)
-> > -{
-> > -       unsigned int refsel = st->channel_config[channel_number].refsel;
-> > -
-> > -       switch (refsel) {
-> > -       case AD7124_REFIN1:
-> > -       case AD7124_REFIN2:
-> > -       case AD7124_AVDD_REF:
-> > -               if (IS_ERR(st->vref[refsel])) {
-> > -                       dev_err(&st->sd.spi->dev,
-> > -                               "Error, trying to use external voltage
-> > reference without a %s regulator.\n",
-> > -                               ad7124_ref_names[refsel]);
-> > -                       return PTR_ERR(st->vref[refsel]);
-> > -               }
-> > -               st->channel_config[channel_number].vref_mv =
-> > -                       regulator_get_voltage(st->vref[refsel]);
-> > -               /* Conversion from uV to mV */
-> > -               st->channel_config[channel_number].vref_mv /= 1000;
-> > -               break;
-> > -       case AD7124_INT_REF:
-> > -               st->channel_config[channel_number].vref_mv = 2500;
-> > -               st->adc_control &= ~AD7124_ADC_CTRL_REF_EN_MSK;
-> > -               st->adc_control |= AD7124_ADC_CTRL_REF_EN(1);
-> > -               return ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL,
-> > -                                     2, st->adc_control);
-> > -       default:
-> > -               dev_err(&st->sd.spi->dev, "Invalid reference %d\n",
-> > refsel);
-> > -               return -EINVAL;
-> > -       }
-> > -
-> > -       return 0;
-> > -}
-> > -
-> >  static int ad7124_of_parse_channel_config(struct iio_dev *indio_dev,
-> >                                           struct device_node *np)
-> >  {
-> >         struct ad7124_state *st = iio_priv(indio_dev);
-> > +       struct ad7124_channel_config *cfg;
-> > +       struct ad7124_channel *channels;
-> >         struct device_node *child;
-> >         struct iio_chan_spec *chan;
-> > -       struct ad7124_channel_config *chan_config;
-> >         unsigned int ain[2], channel = 0, tmp;
-> >         int ret;
-> >
-> > @@ -602,16 +767,18 @@ static int ad7124_of_parse_channel_config(struct
-> > iio_dev *indio_dev,
-> >         if (!chan)
-> >                 return -ENOMEM;
-> >
-> > -       chan_config = devm_kcalloc(indio_dev->dev.parent,
-> > st->num_channels,
-> > -                                  sizeof(*chan_config), GFP_KERNEL);
-> > -       if (!chan_config)
-> > +       channels = devm_kcalloc(indio_dev->dev.parent, st->num_channels,
-> > sizeof(*channels),
-> > +                               GFP_KERNEL);
-> > +       if (!channels)
-> >                 return -ENOMEM;
-> >
-> >         indio_dev->channels = chan;
-> >         indio_dev->num_channels = st->num_channels;
-> > -       st->channel_config = chan_config;
-> > +       st->channels = channels;
-> >
-> >         for_each_available_child_of_node(np, child) {
-> > +               cfg = &st->channels[channel].cfg;
-> > +
-> >                 ret = of_property_read_u32(child, "reg", &channel);
-> >                 if (ret)
-> >                         goto err;
-> > @@ -621,21 +788,20 @@ static int ad7124_of_parse_channel_config(struct
-> > iio_dev *indio_dev,
-> >                 if (ret)
-> >                         goto err;
-> >
-> > -               st->channel_config[channel].ain =
-> > AD7124_CHANNEL_AINP(ain[0]) |
-> > +               st->channels[channel].nr = channel;
-> > +               st->channels[channel].ain = AD7124_CHANNEL_AINP(ain[0]) |
-> >
-> > AD7124_CHANNEL_AINM(ain[1]);
-> > -               st->channel_config[channel].bipolar =
-> > -                       of_property_read_bool(child, "bipolar");
-> > +
-> > +               cfg->bipolar = of_property_read_bool(child, "bipolar");
-> >
-> >                 ret = of_property_read_u32(child, "adi,reference-select",
-> > &tmp);
-> >                 if (ret)
-> > -                       st->channel_config[channel].refsel =
-> > AD7124_INT_REF;
-> > +                       cfg->refsel = AD7124_INT_REF;
-> >                 else
-> > -                       st->channel_config[channel].refsel = tmp;
-> > +                       cfg->refsel = tmp;
-> >
-> > -               st->channel_config[channel].buf_positive =
-> > -                       of_property_read_bool(child,
-> > "adi,buffered-positive");
-> > -               st->channel_config[channel].buf_negative =
-> > -                       of_property_read_bool(child,
-> > "adi,buffered-negative");
-> > +               cfg->buf_positive = of_property_read_bool(child,
-> > "adi,buffered-positive");
-> > +               cfg->buf_negative = of_property_read_bool(child,
-> > "adi,buffered-negative");
-> >
-> >                 chan[channel] = ad7124_channel_template;
-> >                 chan[channel].address = channel;
-> > @@ -654,7 +820,7 @@ static int ad7124_of_parse_channel_config(struct
-> > iio_dev *indio_dev,
-> >  static int ad7124_setup(struct ad7124_state *st)
-> >  {
-> >         unsigned int val, fclk, power_mode;
-> > -       int i, ret, tmp;
-> > +       int i, ret;
-> >
-> >         fclk = clk_get_rate(st->mclk);
-> >         if (!fclk)
-> > @@ -677,31 +843,21 @@ static int ad7124_setup(struct ad7124_state *st)
-> >         if (ret < 0)
-> >                 return ret;
-> >
-> > +       mutex_init(&st->cfgs_lock);
-> > +       INIT_KFIFO(st->live_cfgs_fifo);
-> >         for (i = 0; i < st->num_channels; i++) {
-> > -               val = st->channel_config[i].ain | AD7124_CHANNEL_SETUP(i);
-> > -               ret = ad_sd_write_reg(&st->sd, AD7124_CHANNEL(i), 2, val);
-> > -               if (ret < 0)
-> > -                       return ret;
-> > +               val = st->channels[i].ain;
-> >
-> > -               ret = ad7124_init_channel_vref(st, i);
-> > +               ret = ad7124_init_config_vref(st, &st->channels[i].cfg);
-> >                 if (ret < 0)
-> >                         return ret;
-> >
-> > -               tmp = (st->channel_config[i].buf_positive << 1)  +
-> > -                       st->channel_config[i].buf_negative;
-> > -
-> > -               val = AD7124_CONFIG_BIPOLAR(st->channel_config[i].bipolar)
-> > |
-> > -                     AD7124_CONFIG_REF_SEL(st->channel_config[i].refsel)
-> > |
-> > -                     AD7124_CONFIG_IN_BUFF(tmp);
-> > -               ret = ad_sd_write_reg(&st->sd, AD7124_CONFIG(i), 2, val);
-> > -               if (ret < 0)
-> > -                       return ret;
-> >                 /*
-> >                  * 9.38 SPS is the minimum output data rate supported
-> >                  * regardless of the selected power mode. Round it up to
-> > 10 and
-> > -                * set all the enabled channels to this default value.
-> > +                * set all channels to this default value.
-> >                  */
-> > -               ret = ad7124_set_channel_odr(st, i, 10);
-> > +               ad7124_set_channel_odr(st, i, 10);
-> >         }
-> >
-> >         return ret;
-> > --
-> > 2.20.1
-> >
-> >  
+> > Overall looks good, love the ascii art!
+> > 
+> > On 2/17/21 10:40 PM, Lizhi Hou wrote:
+> > > Describe XRT driver architecture and provide basic overview of Xilinx
+> > > Alveo platform.
+> > >
+> > > Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> > > Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> > > Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
+> > > ---
+> > >  Documentation/fpga/index.rst |   1 +
+> > >  Documentation/fpga/xrt.rst   | 842
+> > +++++++++++++++++++++++++++++++++++
+> > >  2 files changed, 843 insertions(+)
+> > >  create mode 100644 Documentation/fpga/xrt.rst
+> > >
+> > > diff --git a/Documentation/fpga/index.rst
+> > > b/Documentation/fpga/index.rst index f80f95667ca2..30134357b70d 100644
+> > > --- a/Documentation/fpga/index.rst
+> > > +++ b/Documentation/fpga/index.rst
+> > > @@ -8,6 +8,7 @@ fpga
+> > >      :maxdepth: 1
+> > >
+> > >      dfl
+> > > +    xrt
+> > >
+> > >  .. only::  subproject and html
+> > >
+> > > diff --git a/Documentation/fpga/xrt.rst b/Documentation/fpga/xrt.rst
+> > > new file mode 100644 index 000000000000..9bc2d2785cb9
+> > > --- /dev/null
+> > > +++ b/Documentation/fpga/xrt.rst
+> > > @@ -0,0 +1,842 @@
+> > > +.. SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +==================================
+> > > +XRTV2 Linux Kernel Driver Overview
+> > > +==================================
+> > > +
+> > > +Authors:
+> > > +
+> > > +* Sonal Santan <sonal.santan@xilinx.com>
+> > > +* Max Zhen <max.zhen@xilinx.com>
+> > > +* Lizhi Hou <lizhi.hou@xilinx.com>
+> > > +
+> > > +XRTV2 drivers are second generation `XRT
+> > > +<https://github.com/Xilinx/XRT>`_ drivers which support `Alveo
+> > > +<https://www.xilinx.com/products/boards-and-kits/alveo.html>`_
+> > > +PCIe platforms from Xilinx.
+> > > +
+> > > +XRTV2 drivers support *subsystem* style data driven platforms where
+> > > +driver's
+> > where the driver's
+> > > +configuration and behavior is determined by meta data provided by the
+> > > +platform (in *device tree* format). Primary management physical
+> > > +function (MPF) driver is called **xmgmt**. Primary user physical
+> > > +function (UPF) driver is called
+> > > +**xuser** and is under development. xrt driver framework and HW
+> > > +subsystem drivers are packaged into a library module called
+> > > +**xrt-lib**, which is shared by **xmgmt** and **xuser** (under
+> > > +development). The xrt driver framework
+> > xuser still under development ?
+> > > +implements a pseudo-bus which is used to discover HW subsystems and
+> > > +facilitate
+> > 
+> > A pseudo-bus.
+> > 
+> > It would be good if this was close to what was done for dfl here
+> > 
+> > https://lore.kernel.org/linux-fpga/1605159759-3439-1-git-send-email-
+> > yilun.xu@intel.com/
+> > 
 > 
+> I am wondering if we can phase in the migration to formal bus architecture 
+> based on struct bus_type as a follow on set of patches?
 
+I'd rather have it done early on. If we know there's a better way of
+doing something and we don't the code should go into staging.
+
+This gives us an out if it doesn't happen, otherwise the kernel
+community would depend on corporate goodwill to appropriately staff it.
+
+Note, I'm not trying to say there's any ill will anywhere, Xilinx has
+been traditionally good about this :)
+> 
+> > > +inter HW subsystem interaction.
+> > > +
+> > > +Driver Modules
+> > > +==============
+> > > +
+> > > +xrt-lib.ko
+> > > +----------
+> > > +
+> > > +Repository of all subsystem drivers and pure software modules that
+> > > +can potentially
+> > 
+> > subsystem drivers
+> > 
+> > drivers in fpga/ should be for managing just the fpganess of the fpga.
+> > 
+> > soft devices ex/ a soft tty should go to their respective subsystem location
+> > 
+> > Are there any in this patchset you think might move ?
+> 
+> We have already shrunk the patch to only include FPGA centric pieces 
+> necessary to get the bitstream download implemented. Should we explore
+> the question of subsystem drivers when we add support for more features of 
+> the Alveo shell?
+> 
+> > 
+> > Maybe we can defer reviewing those now.
+> > 
+> > > +be shared between xmgmt and xuser. All these drivers are structured
+> > > +as Linux *platform driver* and are instantiated by xmgmt (or xuser
+> > > +under development) based on meta data associated with hardware. The
+> > > +metadata is in the form of device tree
+> > 
+> > with the hardware
+> > 
+> > form of a device tree
+> > 
+> 
+> Will change
+> 
+> > > +as mentioned before. Each platform driver statically defines a
+> > > +subsystem node array by using node name or a string in its
+> > > +``compatible`` property. And this array is eventually translated to IOMEM
+> > resources of the platform device.
+> > > +
+> > > +The xrt-lib core infrastructure provides hooks to platform drivers
+> > > +for device node management, user file operations and ioctl callbacks.
+> > > +The core also provides pseudo-bus functionality for platform driver
+> > > +registration, discovery and inter platform driver ioctl calls.
+> > 
+> > core infrastructure.
+> > 
+> 
+> Will update.
+> 
+> > The interfaces to the infrastructure are not in include/linux/fpga/
+> > 
+> > Maybe this needs to change.
+> > 
+> 
+> Were you thinking of moving XRT infrastructure header files from 
+> drivers/fpga/xrt/include to include/linux/fpga?
+> 
+> > > +
+> > > +.. note::
+> > > +   See code in ``include/xleaf.h``
+> > > +
+> > > +
+> > > +xmgmt.ko
+> > > +--------
+> > > +
+> > > +The xmgmt driver is a PCIe device driver driving MPF found on
+> > > +Xilinx's Alveo PCIE device. It consists of one *root* driver, one or
+> > > +more *group* drivers and one or more *xleaf* drivers. The root and
+> > > +MPF specific xleaf drivers are in xmgmt.ko. The group driver and other xleaf
+> > drivers are in xrt-lib.ko.
+> > I am not sure if *.ko is correct, these will also be intree.
+> > > +
+> > > +The instantiation of specific group driver or xleaf driver is
+> > > +completely data
+> > of a specific
+> > > +driven based on meta data (mostly in device tree format) found
+> > > +through VSEC
+> > mostly ? what is the deviation from device tree ?
+> > > +capability and inside firmware files, such as platform xsabin or user xclbin
+> > file.
+> > > +The root driver manages life cycle of multiple group drivers, which,
+> > > +in turn,
+> > the life cycle
+> > > +manages multiple xleaf drivers. This allows a single set of driver
+> > > +code to support
+> > 
+> > set of drivers
+> > 
+> > drop 'code'
+> > 
+> 
+> Will update
+> 
+> > > +all kinds of subsystems exposed by different shells. The difference
+> > > +among all these subsystems will be handled in xleaf drivers with root
+> > > +and group drivers being part of the infrastructure and provide common
+> > > +services for all leaves found on all platforms.
+> > > +
+> > > +The driver object model looks like the following::
+> > > +
+> > > +                    +-----------+
+> > > +                    |   xroot   |
+> > > +                    +-----+-----+
+> > > +                          |
+> > > +              +-----------+-----------+
+> > > +              |                       |
+> > > +              v                       v
+> > > +        +-----------+          +-----------+
+> > > +        |   group   |    ...   |   group   |
+> > > +        +-----+-----+          +------+----+
+> > > +              |                       |
+> > > +              |                       |
+> > > +        +-----+----+            +-----+----+
+> > > +        |          |            |          |
+> > > +        v          v            v          v
+> > > +    +-------+  +-------+    +-------+  +-------+
+> > > +    | xleaf |..| xleaf |    | xleaf |..| xleaf |
+> > > +    +-------+  +-------+    +-------+  +-------+
+> > > +
+> > > +As an example for Xilinx Alveo U50 before user xclbin download, the
+> > > +tree looks like the following::
+> > > +
+> > > +                                +-----------+
+> > > +                                |   xmgmt   |
+> > > +                                +-----+-----+
+> > > +                                      |
+> > > +            +-------------------------+--------------------+
+> > > +            |                         |                    |
+> > > +            v                         v                    v
+> > > +       +--------+                +--------+            +--------+
+> > > +       | group0 |                | group1 |            | group2 |
+> > > +       +----+---+                +----+---+            +---+----+
+> > > +            |                         |                    |
+> > > +            |                         |                    |
+> > > +      +-----+-----+        +----+-----+---+    +-----+-----+----+--------+
+> > > +      |           |        |    |         |    |     |          |        |
+> > > +      v           v        |    v         v    |     v          v        |
+> > > + +------------+  +------+  | +------+ +------+ |  +------+
+> > > + +------------+ +-----------+ |
+> > > + | xmgmt_main |  | VSEC |  | | GPIO | | QSPI | |  |  CMC | |
+> > > + | AXI-GATE0 | |
+> > > + +------------+  +------+  | +------+ +------+ |  +------+
+> > > + +------------+ +-----------+ |
+> > > +                           | +---------+       |  +------+ +-----------+ |
+> > > +                           +>| MAILBOX |       +->| ICAP | | AXI-GATE1 |<+
+> > > +                             +---------+       |  +------+ +-----------+
+> > > +                                               |  +-------+
+> > > +                                               +->| CALIB |
+> > > +                                                  +-------+
+> > > +
+> > Nice ascii art!
+> > > +After an xclbin is download, group3 will be added and the tree looks
+> > > +like the
+> > > +following::
+> > > +
+> > > +                                +-----------+
+> > > +                                |   xmgmt   |
+> > > +                                +-----+-----+
+> > > +                                      |
+> > > +            +-------------------------+--------------------+-----------------+
+> > > +            |                         |                    |                 |
+> > > +            v                         v                    v                 |
+> > > +       +--------+                +--------+            +--------+            |
+> > > +       | group0 |                | group1 |            | group2 |            |
+> > > +       +----+---+                +----+---+            +---+----+            |
+> > > +            |                         |                    |                 |
+> > > +            |                         |                    |                 |
+> > > +      +-----+-----+       +-----+-----+---+    +-----+-----+----+--------+   |
+> > > +      |           |       |     |         |    |     |          |        |   |
+> > > +      v           v       |     v         v    |     v          v        |   |
+> > > + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> > > + | xmgmt_main |  | VSEC | | | GPIO | | QSPI |  |  |  CMC | | AXI-GATE0 | |
+> > |
+> > > + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> > > +                          | +---------+        |  +------+ +-----------+ |   |
+> > > +                          +>| MAILBOX |        +->| ICAP | | AXI-GATE1 |<+   |
+> > > +                            +---------+        |  +------+ +-----------+     |
+> > > +                                               |  +-------+                  |
+> > > +                                               +->| CALIB |                  |
+> > > +                                                  +-------+                  |
+> > > +                      +---+----+                                             |
+> > > +                      | group3 |<--------------------------------------------+
+> > > +                      +--------+
+> > > +                          |
+> > > +                          |
+> > > +     +-------+--------+---+--+--------+------+-------+
+> > > +     |       |        |      |        |      |       |
+> > > +     v       |        v      |        v      |       v
+> > > + +--------+  |   +--------+  |   +--------+  |    +-----+
+> > > + | CLOCK0 |  |   | CLOCK1 |  |   | CLOCK2 |  |    | UCS |
+> > > + +--------+  v   +--------+  v   +--------+  v    +-----+
+> > > + +-------------+ +-------------+ +-------------+
+> > > + | CLOCK-FREQ0 | | CLOCK-FREQ1 | | CLOCK-FREQ2 |
+> > > + +-------------+ +-------------+ +-------------+
+> > > +
+> > > +
+> > > +xmgmt-root
+> > > +^^^^^^^^^^
+> > > +
+> > > +The xmgmt-root driver is a PCIe device driver attached to MPF. It's
+> > > +part of the infrastructure of the MPF driver and resides in xmgmt.ko.
+> > > +This driver
+> > > +
+> > > +* manages one or more group drivers
+> > > +* provides access to functionalities that requires pci_dev, such as
+> > > +PCIE config
+> > > +  space access, to other xleaf drivers through root calls
+> > > +* together with group driver, facilities event callbacks for other
+> > > +xleaf drivers
+> > > +* together with group driver, facilities inter-leaf driver calls for
+> > > +other xleaf
+> > Maybe drop 'together with group driver'
+> 
+> Will update
+> 
+> > > +  drivers
+> > > +
+> > > +When root driver starts, it will explicitly create an initial group
+> > > +instance, which contains xleaf drivers that will trigger the creation
+> > > +of other group instances. The root driver will wait for all group and
+> > > +leaves to be created before it returns from it's probe routine and
+> > > +claim success of the initialization of the entire xmgmt driver.
+> > What happens if there a failure in one leaf ? Does the whole board go down ?
+> > > +
+> > > +.. note::
+> > > +   See code in ``lib/xroot.c`` and ``mgmt/root.c``
+> > > +
+> > > +
+> > > +group
+> > > +^^^^^
+> > > +
+> > > +The group driver is a platform device driver whose life cycle is
+> > > +managed by
+> > Maybe call this a 'pseudo device'
+> 
+> Will update
+> 
+> > > +root and does not have real IO mem or IRQ resources. It's part of the
+> > > +infrastructure of the MPF driver and resides in xrt-lib.ko. This
+> > > +driver
+> > > +
+> > > +* manages one or more xleaf drivers so that multiple leaves can be
+> > > +managed as a
+> > > +  group
+> > can drop 'so that multiple leaves can be managed as a group' to me, this is the
+> > same as 'one or more'
+> 
+> Will do
+> 
+> > > +* provides access to root from leaves, so that root calls, event
+> > > +notifications
+> > > +  and inter-leaf calls can happen
+> > > +
+> > > +In xmgmt, an initial group driver instance will be created by root,
+> > > +which
+> > by the root
+> > > +contains leaves that will trigger group instances to be created to
+> > > +manage groups of leaves found on different partitions on hardware,
+> > > +such as VSEC, Shell, and User.
+> > > +
+> > > +Every *fpga_region* has a group object associated with it. The group
+> > > +is created when xclbin image is loaded on the fpga_region. The
+> > > +existing group is destroyed when a new xclbin image is loaded. The
+> > > +fpga_region persists across xclbin downloads.
+> > The connection of a 'group' node to a fpga region region is fairly important,
+> > maybe move this section earlier. 'group' as an fpganess thing would be kept in
+> > fpga/ subsystem.
+> 
+> Will update
+> 
+> > > +
+> > > +.. note::
+> > > +   See code in ``lib/group.c``
+> > > +
+> > > +
+> > > +xleaf
+> > > +^^^^^
+> > > +
+> > > +The xleaf driver is a platform device driver whose life cycle is
+> > > +managed by a group driver and may or may not have real IO mem or IRQ
+> > > +resources. They are the real meat of xmgmt and contains platform
+> > > +specific code to Shell and User found on a MPF.
+> > > +
+> > 
+> > Maybe a split is pseudo device leaves, those without real IO mem, stay in
+> > fpga/  others go ?
+> > 
+> 
+> This goes back to the earlier question of what minimal set of platform drivers
+> should stay in fpga subsystem. There are some like bridge or configuration 
+> engine (also called icap) which have their own IO mem but do not have a life 
+> outside of fpga subsystem.
+> 
+> > > +A xleaf driver may not have real hardware resources when it merely
+> > > +acts as a driver that manages certain in-memory states for xmgmt.
+> > > +These in-memory states could be shared by multiple other leaves.
+> > > +
+> > This implies locking and some message passing.
+> > > +Leaf drivers assigned to specific hardware resources drive specific
+> > > +subsystem in
+> > drive a specific
+> > > +the device. To manipulate the subsystem or carry out a task, a xleaf
+> > > +driver may ask help from root via root calls and/or from other leaves via
+> > inter-leaf calls.
+> > > +
+> > > +A xleaf can also broadcast events through infrastructure code for
+> > > +other leaves to process. It can also receive event notification from
+> > > +infrastructure about certain events, such as post-creation or pre-exit of a
+> > particular xleaf.
+> > I would like to see some examples of how the inter node communications work.
+> 
+> Would update to show an example.
+> 
+> > > +
+> > > +.. note::
+> > > +   See code in ``lib/xleaf/*.c``
+> > > +
+> > > +
+> > > +FPGA Manager Interaction
+> > > +========================
+> > > +
+> > > +fpga_manager
+> > > +------------
+> > > +
+> > > +An instance of fpga_manager is created by xmgmt_main and is used for
+> > > +xclbin
+> > for the xclbin
+> > > +image download. fpga_manager requires the full xclbin image before it
+> > > +can start programming the FPGA configuration engine via ICAP platform
+> > driver.
+> > 
+> > via the ICAP
+> > 
+> > what is ICAP ?
+> 
+> Will update. ICAP stands for Internal Configuration Access Port used for configuring
+> the fpga.
+> 
+> > 
+> > > +
+> > > +fpga_region
+> > > +-----------
+> > > +
+> > > +For every interface exposed by currently loaded xclbin/xsabin in the
+> > > +*parent*
+> > by the currently
+> > > +fpga_region a new instance of fpga_region is created like a *child* region.
+> > fpga_region,
+> > > +The device tree of the *parent* fpga_region defines the resources for
+> > > +a new instance of fpga_bridge which isolates the parent from
+> > and isolates
+> > > +child fpga_region. This new instance of fpga_bridge will be used when
+> > > +a xclbin image is loaded on the child fpga_region. After the xclbin
+> > > +image is downloaded to the fpga_region, an instance of group is
+> > > +created for the fpga_region using the device tree obtained as part of
+> > > +xclbin. If this device
+> > of the xclbin
+> > > +tree defines any child interfaces then it can trigger the creation of
+> > interfaces, then
+> > > +fpga_bridge and fpga_region for the next region in the chain.
+> > a fpga_bridge and a fpga_region
+> > > +
+> > > +fpga_bridge
+> > > +-----------
+> > > +
+> > > +Like fpga_region, matching fpga_bridge is also created by walking the
+> > > +device
+> > Like the fpga_region, a matchin
+> > > +tree of the parent group.
+> > > +
+> > > +Driver Interfaces
+> > > +=================
+> > > +
+> > > +xmgmt Driver Ioctls
+> > > +-------------------
+> > > +
+> > > +Ioctls exposed by xmgmt driver to user space are enumerated in the
+> > > +following
+> > > +table:
+> > > +
+> > > +== ===================== ============================
+> > ==========================
+> > > +#  Functionality         ioctl request code            data format
+> > > +== ===================== ============================
+> > ==========================
+> > > +1  FPGA image download   XMGMT_IOCICAPDOWNLOAD_AXLF
+> > xmgmt_ioc_bitstream_axlf
+> > > +== ===================== ============================
+> > > +==========================
+> > 
+> > This data format is described below, maybe swap this section with that so
+> > 
+> > folks will know what xmgmnt_ioc_bitstream_axlf is before this section.
+> > 
+> 
+> Will update.
+> 
+> > > +
+> > > +User xclbin can be downloaded by using xbmgmt tool from XRT open
+> > > +source suite. See
+> > 
+> > A user xclbin
+> > 
+> > using the xbmgmt
+> > 
+> > from the XRT
+> > 
+> 
+> Will update
+> 
+> > > +example usage below::
+> > > +
+> > > +  xbmgmt partition --program --path
+> > > + /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/test/verify.xc
+> > > + lbin --force
+> > > +
+> > > +xmgmt Driver Sysfs
+> > > +------------------
+> > > +
+> > > +xmgmt driver exposes a rich set of sysfs interfaces. Subsystem
+> > > +platform drivers export sysfs node for every platform instance.
+> > > +
+> > > +Every partition also exports its UUIDs. See below for examples::
+> > > +
+> > > +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/interface_uuids
+> > > +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/logic_uuids
+> > > +
+> > > +
+> > > +hwmon
+> > > +-----
+> > > +
+> > > +xmgmt driver exposes standard hwmon interface to report voltage,
+> > > +current, temperature, power, etc. These can easily be viewed using
+> > > +*sensors* command line utility.
+> > > +
+> > > +Alveo Platform Overview
+> > > +=======================
+> > > +
+> > > +Alveo platforms are architected as two physical FPGA partitions:
+> > > +*Shell* and *User*. The Shell provides basic infrastructure for the
+> > > +Alveo platform like PCIe connectivity, board management, Dynamic
+> > > +Function Exchange (DFX), sensors, clocking, reset, and security. User
+> > > +partition contains user compiled FPGA
+> > the user compiled
+> > > +binary which is loaded by a process called DFX also known as partial
+> > > +reconfiguration.
+> > > +
+> > > +Physical partitions require strict HW compatibility with each other
+> > > +for DFX to work properly.
+> > 
+> > swap order
+> > 
+> > For DFX to work properly physical partitions ..
+> > 
+> > 
+> 
+> Will update
+> 
+> > > Every physical partition has two interface UUIDs: *parent* UUID
+> > > +and *child* UUID. For simple single stage platforms, Shell → User
+> > > +forms parent child relationship. For complex two stage platforms,
+> > > +Base → Shell → User forms the parent child relationship chain.
+> > this bit is confusing. is this related to uuid?
+> > > +
+> > > +.. note::
+> > > +   Partition compatibility matching is key design component of Alveo
+> > platforms
+> > > +   and XRT. Partitions have child and parent relationship. A loaded
+> > > +partition
+> > have a child
+> > > +   exposes child partition UUID to advertise its compatibility
+> > > + requirement for
+> > 
+> > the child's
+> > 
+> > can drop 'for child partition'
+> 
+> Will update
+> 
+> > 
+> > > +   child partition. When loading a child partition the xmgmt
+> > > + management driver
+> > When loading a child partition,
+> > > +   matches parent UUID of the child partition against child UUID exported by
+> > > +   the parent. Parent and child partition UUIDs are stored in the *xclbin*
+> > > +   (for user) or *xsabin* (for base and shell).
+> > 
+> > this is confusing, is this part of the file image format ?
+> > 
+> > Maybe save/move till the image layout.
+> 
+> Yes these IDs are stored in xclbin image format. Will move the sections around 
+> as suggested.
+> 
+> > 
+> > >  Except for root UUID, VSEC,
+> > > +   hardware itself does not know about UUIDs. UUIDs are stored in xsabin
+> > and
+> > > +   xclbin.
+> > This is confusing too, not sure how to untangle.
+> 
+> Will reword.
+> 
+> > > +
+> > > +
+> > > +The physical partitions and their loading is illustrated below::
+> > > +
+> > > +           SHELL                               USER
+> > > +        +-----------+                  +-------------------+
+> > > +        |           |                  |                   |
+> > > +        | VSEC UUID | CHILD     PARENT |    LOGIC UUID     |
+> > > +        |           o------->|<--------o                   |
+> > > +        |           | UUID       UUID  |                   |
+> > > +        +-----+-----+                  +--------+----------+
+> > > +              |                                 |
+> > > +              .                                 .
+> > > +              |                                 |
+> > > +          +---+---+                      +------+--------+
+> > > +          |  POR  |                      | USER COMPILED |
+> > > +          | FLASH |                      |    XCLBIN     |
+> > > +          +-------+                      +---------------+
+> > > +
+> > > +
+> > > +Loading Sequence
+> > > +----------------
+> > > +
+> > > +The Shell partition is loaded from flash at system boot time. It
+> > > +establishes the PCIe link and exposes two physical functions to the
+> > > +BIOS. After OS boot, xmgmt
+> > the OS boots, the xmgmt
+> > > +driver attaches to PCIe physical function 0 exposed by the Shell and
+> > > +then looks for VSEC in PCIe extended configuration space. Using VSEC
+> > > +it determines the logic
+> > 
+> > the PCIe
+> > 
+> > The driver uses VSEC to determine the UUID of Shell.  The UUID is also used to
+> > load a matching ...
+> > 
+> 
+> Will update
+> 
+> > > +UUID of Shell and uses the UUID to load matching *xsabin* file from
+> > > +Linux firmware directory. The xsabin file contains metadata to
+> > > +discover peripherals that are part of Shell and firmware(s) for any
+> > embedded soft processors in Shell.
+> > the firmware needed for any ...
+> 
+> Will update
+> 
+> > > +
+> > > +The Shell exports child interface UUID which is used for
+> > > +compatibility check when
+> > 
+> > export a child
+> > 
+> > for a compatibility check
+> > 
+> 
+> Will update
+> 
+> > > +loading user compiled xclbin over the User partition as part of DFX.
+> > > +When a user requests loading of a specific xclbin the xmgmt
+> > > +management driver reads the parent
+> > xclbin, the
+> > > +interface UUID specified in the xclbin and matches it with child
+> > > +interface UUID exported by Shell to determine if xclbin is compatible
+> > > +with the Shell. If match fails loading of xclbin is denied.
+> > > +
+> > > +xclbin loading is requested using ICAP_DOWNLOAD_AXLF ioctl command.
+> > > +When loading xclbin, xmgmt driver performs the following *logical*
+> > operations:
+> > > +
+> > > +1. Copy xclbin from user to kernel memory 2. Sanity check the xclbin
+> > > +contents 3. Isolate the User partition 4. Download the bitstream
+> > > +using the FPGA config engine (ICAP) 5. De-isolate the User partition
+> > > +6. Program the clocks (ClockWiz) driving the User partition
+> > maybe drop '(ClockWiz)'
+> > > +7. Wait for memory controller (MIG) calibration
+> > for the
+> > > +8. Return the loading status back to the caller
+> > > +
+> > > +`Platform Loading Overview
+> > > +<https://xilinx.github.io/XRT/master/html/platforms_partitions.html>`
+> > > +_ provides more detailed information on platform loading.
+> > > +
+> > the link works.
+> > > +
+> > > +xsabin
+> > > +------
+> > > +
+> > > +Each Alveo platform comes packaged with its own xsabin. The xsabin is
+> > > +trusted
+> > is a trusted
+> > > +component of the platform. For format details refer to
+> > > +:ref:`xsabin_xclbin_container_format`
+> > > +below. xsabin contains basic information like UUIDs, platform name
+> > > +and metadata in the form of device tree. See :ref:`device_tree_usage`
+> > below for details and example.
+> > of a device
+> > > +
+> > > +xclbin
+> > > +------
+> > > +
+> > > +xclbin is compiled by end user using
+> > > +`Vitis
+> > > +<https://www.xilinx.com/products/design-tools/vitis/vitis-platform.ht
+> > > +ml>`_
+> > this link works, seems reasonable landing
+> > > +tool set from Xilinx. The xclbin contains sections describing user
+> > > +compiled acceleration engines/kernels, memory subsystems, clocking
+> > > +information etc. It also contains bitstream for the user partition,
+> > > +UUIDs, platform name, etc. xclbin uses
+> > bitstreams
+> > > +the same container format as xsabin which is described below.
+> > > +
+> > > +
+> > > +.. _xsabin_xclbin_container_format:
+> > > +
+> > > +xsabin/xclbin Container Format
+> > > +------------------------------
+> > > +
+> > > +xclbin/xsabin is ELF-like binary container format. It is structured
+> > > +as series of sections. There is a file header followed by several
+> > > +section headers which is followed by sections. A section header
+> > > +points to an actual section. There is an optional signature at the end. The
+> > format is defined by header file ``xclbin.h``.
+> > > +The following figure illustrates a typical xclbin::
+> > > +
+> > > +
+> > > +           +---------------------+
+> > > +           |                     |
+> > > +           |       HEADER        |
+> > > +           +---------------------+
+> > > +           |   SECTION  HEADER   |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |         ...         |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |   SECTION  HEADER   |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |       SECTION       |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |         ...         |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |       SECTION       |
+> > > +           |                     |
+> > > +           +---------------------+
+> > > +           |      SIGNATURE      |
+> > > +           |      (OPTIONAL)     |
+> > > +           +---------------------+
+> > > +
+> > > +
+> > > +xclbin/xsabin files can be packaged, un-packaged and inspected using
+> > > +XRT utility called **xclbinutil**. xclbinutil is part of XRT open
+> > > +source software stack. The source code for xclbinutil can be found at
+> > > +https://github.com/Xilinx/XRT/tree/master/src/runtime_src/tools/xclbi
+> > > +nutil
+> > > +
+> > Works, but maybe the location of a manpage or doc would be better.
+> > > +For example to enumerate the contents of a xclbin/xsabin use the
+> > > +*--info* switch as shown below::
+> > > +
+> > > +
+> > > +  xclbinutil --info --input
+> > > + /opt/xilinx/firmware/u50/gen3x16-xdma/blp/test/bandwidth.xclbin
+> > > +  xclbinutil --info --input
+> > > + /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/partition.xsab
+> > > + in
+> > > +
+> > > +
+> > > +.. _device_tree_usage:
+> > > +
+> > > +Device Tree Usage
+> > > +-----------------
+> > > +
+> > > +As mentioned previously xsabin stores metadata which advertise HW
+> > > +subsystems present in a partition. The metadata is stored in device tree
+> > format with well defined schema.
+> > > +XRT management driver uses this information to bind *platform
+> > > +drivers* to the subsystem instantiations. The platform drivers are
+> > > +found in **xrt-lib.ko** kernel module defined later.
+> > > +
+> > > +Logic UUID
+> > > +^^^^^^^^^^
+> > > +A partition is identified uniquely through ``logic_uuid`` property::
+> > > +
+> > > +  /dts-v1/;
+> > > +  / {
+> > > +      logic_uuid = "0123456789abcdef0123456789abcdef";
+> > > +      ...
+> > > +    }
+> > > +
+> > > +Schema Version
+> > > +^^^^^^^^^^^^^^
+> > > +Schema version is defined through ``schema_version`` node. And it
+> > > +contains ``major`` and ``minor`` properties as below::
+> > > +
+> > > +  /dts-v1/;
+> > > +  / {
+> > > +       schema_version {
+> > > +           major = <0x01>;
+> > > +           minor = <0x00>;
+> > > +       };
+> > > +       ...
+> > > +    }
+> > > +
+> > > +Partition UUIDs
+> > > +^^^^^^^^^^^^^^^
+> > > +As said earlier, each partition may have parent and child UUIDs.
+> > > +These UUIDs are defined by ``interfaces`` node and ``interface_uuid``
+> > property::
+> > > +
+> > > +  /dts-v1/;
+> > > +  / {
+> > > +       interfaces {
+> > > +           @0 {
+> > > +                  interface_uuid = "0123456789abcdef0123456789abcdef";
+> > > +           };
+> > > +           @1 {
+> > > +                  interface_uuid = "fedcba9876543210fedcba9876543210";
+> > > +           };
+> > > +           ...
+> > > +        };
+> > > +       ...
+> > > +    }
+> > > +
+> > > +
+> > > +Subsystem Instantiations
+> > > +^^^^^^^^^^^^^^^^^^^^^^^^
+> > > +Subsystem instantiations are captured as children of
+> > > +``addressable_endpoints``
+> > > +node::
+> > > +
+> > > +  /dts-v1/;
+> > > +  / {
+> > > +       addressable_endpoints {
+> > > +           abc {
+> > > +               ...
+> > > +           };
+> > > +           def {
+> > > +               ...
+> > > +           };
+> > > +           ...
+> > > +       }
+> > > +  }
+> > > +
+> > > +Subnode 'abc' and 'def' are the name of subsystem nodes
+> > > +
+> > > +Subsystem Node
+> > > +^^^^^^^^^^^^^^
+> > > +Each subsystem node and its properties define a hardware instance::
+> > > +
+> > > +
+> > > +  addressable_endpoints {
+> > > +      abc {
+> > > +          reg = <0xa 0xb>
+> > > +          pcie_physical_function = <0x0>;
+> > > +          pcie_bar_mapping = <0x2>;
+> > > +          compatible = "abc def";
+> > > +          firmware {
+> > > +              firmware_product_name = "abc"
+> > > +              firmware_branch_name = "def"
+> > > +              firmware_version_major = <1>
+> > > +              firmware_version_minor = <2>
+> > > +          };
+> > > +      }
+> > > +      ...
+> > > +  }
+> > > +
+> > > +:reg:
+> > > + Property defines address range. '<0xa 0xb>' is BAR offset and length
+> > > +pair, both  are 64-bit integer.
+> > > +:pcie_physical_function:
+> > > + Property specifies which PCIe physical function the subsystem node resides.
+> > > +:pcie_bar_mapping:
+> > > + Property specifies which PCIe BAR the subsystem node resides.
+> > > +'<0x2>' is BAR  index and it is 0 if this property is not defined.
+> > > +:compatible:
+> > > + Property is a list of strings. The first string in the list
+> > > +specifies the exact  subsystem node. The following strings represent
+> > > +other devices that the device  is compatible with.
+> > > +:firmware:
+> > > + Subnode defines the firmware required by this subsystem node.
+> > > +
+> > > +Alveo U50 Platform Example
+> > > +^^^^^^^^^^^^^^^^^^^^^^^^^^
+> > > +::
+> > > +
+> > > +  /dts-v1/;
+> > > +
+> > > +  /{
+> > > +        logic_uuid = "f465b0a3ae8c64f619bc150384ace69b";
+> > > +
+> > > +        schema_version {
+> > > +                major = <0x01>;
+> > > +                minor = <0x00>;
+> > > +        };
+> > > +
+> > > +        interfaces {
+> > > +
+> > > +                @0 {
+> > > +                        interface_uuid = "862c7020a250293e32036f19956669e5";
+> > > +                };
+> > > +        };
+> > > +
+> > > +        addressable_endpoints {
+> > > +
+> > > +                ep_blp_rom_00 {
+> > > +                        reg = <0x00 0x1f04000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-
+> > 1.0\0axi_bram_ctrl";
+> > > +                };
+> > > +
+> > > +                ep_card_flash_program_00 {
+> > > +                        reg = <0x00 0x1f06000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_quad_spi-
+> > 1.0\0axi_quad_spi";
+> > > +                        interrupts = <0x03 0x03>;
+> > > +                };
+> > > +
+> > > +                ep_cmc_firmware_mem_00 {
+> > > +                        reg = <0x00 0x1e20000 0x00 0x20000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible =
+> > > + "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> > > +
+> > > +                        firmware {
+> > > +                                firmware_product_name = "cmc";
+> > > +                                firmware_branch_name = "u50";
+> > > +                                firmware_version_major = <0x01>;
+> > > +                                firmware_version_minor = <0x00>;
+> > > +                        };
+> > > +                };
+> > > +
+> > > +                ep_cmc_intc_00 {
+> > > +                        reg = <0x00 0x1e03000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> > > +                        interrupts = <0x04 0x04>;
+> > > +                };
+> > > +
+> > > +                ep_cmc_mutex_00 {
+> > > +                        reg = <0x00 0x1e02000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_cmc_regmap_00 {
+> > > +                        reg = <0x00 0x1e08000 0x00 0x2000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible =
+> > > + "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> > > +
+> > > +                        firmware {
+> > > +                                firmware_product_name = "sc-fw";
+> > > +                                firmware_branch_name = "u50";
+> > > +                                firmware_version_major = <0x05>;
+> > > +                        };
+> > > +                };
+> > > +
+> > > +                ep_cmc_reset_00 {
+> > > +                        reg = <0x00 0x1e01000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_ddr_mem_calib_00 {
+> > > +                        reg = <0x00 0x63000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_debug_bscan_mgmt_00 {
+> > > +                        reg = <0x00 0x1e90000 0x00 0x10000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-debug_bridge-
+> > 1.0\0debug_bridge";
+> > > +                };
+> > > +
+> > > +                ep_ert_base_address_00 {
+> > > +                        reg = <0x00 0x21000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_ert_command_queue_mgmt_00 {
+> > > +                        reg = <0x00 0x40000 0x00 0x10000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-ert_command_queue-
+> > 1.0\0ert_command_queue";
+> > > +                };
+> > > +
+> > > +                ep_ert_command_queue_user_00 {
+> > > +                        reg = <0x00 0x40000 0x00 0x10000>;
+> > > +                        pcie_physical_function = <0x01>;
+> > > +                        compatible = "xilinx.com,reg_abs-ert_command_queue-
+> > 1.0\0ert_command_queue";
+> > > +                };
+> > > +
+> > > +                ep_ert_firmware_mem_00 {
+> > > +                        reg = <0x00 0x30000 0x00 0x8000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible =
+> > > + "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> > > +
+> > > +                        firmware {
+> > > +                                firmware_product_name = "ert";
+> > > +                                firmware_branch_name = "v20";
+> > > +                                firmware_version_major = <0x01>;
+> > > +                        };
+> > > +                };
+> > > +
+> > > +                ep_ert_intc_00 {
+> > > +                        reg = <0x00 0x23000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> > > +                        interrupts = <0x05 0x05>;
+> > > +                };
+> > > +
+> > > +                ep_ert_reset_00 {
+> > > +                        reg = <0x00 0x22000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_ert_sched_00 {
+> > > +                        reg = <0x00 0x50000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x01>;
+> > > +                        compatible = "xilinx.com,reg_abs-ert_sched-1.0\0ert_sched";
+> > > +                        interrupts = <0x09 0x0c>;
+> > > +                };
+> > > +
+> > > +                ep_fpga_configuration_00 {
+> > > +                        reg = <0x00 0x1e88000 0x00 0x8000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_hwicap-
+> > 1.0\0axi_hwicap";
+> > > +                        interrupts = <0x02 0x02>;
+> > > +                };
+> > > +
+> > > +                ep_icap_reset_00 {
+> > > +                        reg = <0x00 0x1f07000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_msix_00 {
+> > > +                        reg = <0x00 0x00 0x00 0x20000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-msix-1.0\0msix";
+> > > +                        pcie_bar_mapping = <0x02>;
+> > > +                };
+> > > +
+> > > +                ep_pcie_link_mon_00 {
+> > > +                        reg = <0x00 0x1f05000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_pr_isolate_plp_00 {
+> > > +                        reg = <0x00 0x1f01000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_pr_isolate_ulp_00 {
+> > > +                        reg = <0x00 0x1000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> > > +                };
+> > > +
+> > > +                ep_uuid_rom_00 {
+> > > +                        reg = <0x00 0x64000 0x00 0x1000>;
+> > > +                        pcie_physical_function = <0x00>;
+> > > +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-
+> > 1.0\0axi_bram_ctrl";
+> > > +                };
+> > > +
+> > > +                ep_xdma_00 {
+> > > +                        reg = <0x00 0x00 0x00 0x10000>;
+> > > +                        pcie_physical_function = <0x01>;
+> > > +                        compatible = "xilinx.com,reg_abs-xdma-1.0\0xdma";
+> > > +                        pcie_bar_mapping = <0x02>;
+> > > +                };
+> > > +        };
+> > > +
+> > > +  }
+> > > +
+> > > +
+> > > +
+> > > +Deployment Models
+> > > +=================
+> > > +
+> > > +Baremetal
+> > > +---------
+> > > +
+> > > +In bare-metal deployments both MPF and UPF are visible and
+> > > +accessible. xmgmt
+> > In bare-meta deployments,
+> > > +driver binds to MPF. xmgmt driver operations are privileged and
+> > > +available to system administrator. The full stack is illustrated below::
+> > > +
+> > > +                            HOST
+> > > +
+> > > +                 [XMGMT]            [XUSER]
+> > > +                    |                  |
+> > > +                    |                  |
+> > > +                 +-----+            +-----+
+> > > +                 | MPF |            | UPF |
+> > > +                 |     |            |     |
+> > > +                 | PF0 |            | PF1 |
+> > > +                 +--+--+            +--+--+
+> > > +          ......... ^................. ^..........
+> > > +                    |                  |
+> > > +                    |   PCIe DEVICE    |
+> > > +                    |                  |
+> > > +                 +--+------------------+--+
+> > > +                 |         SHELL          |
+> > > +                 |                        |
+> > > +                 +------------------------+
+> > > +                 |         USER           |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 +------------------------+
+> > > +
+> > > +
+> > > +
+> > > +Virtualized
+> > > +-----------
+> > > +
+> > > +In virtualized deployments privileged MPF is assigned to host but
+> > > +unprivileged
+> > In virtualized deployments, the
+> > > +UPF is assigned to guest VM via PCIe pass-through. xmgmt driver in
+> > > +host binds
+> > in the host
+> > > +to MPF. xmgmt driver operations are privileged and only accessible by
+> > > +hosting
+> > to the MPF
+> > > +service provider. The full stack is illustrated below::
+> > > +
+> > > +
+> > > +                                 .............
+> > > +                  HOST           .    VM     .
+> > > +                                 .           .
+> > > +                 [XMGMT]         .  [XUSER]  .
+> > > +                    |            .     |     .
+> > > +                    |            .     |     .
+> > > +                 +-----+         .  +-----+  .
+> > > +                 | MPF |         .  | UPF |  .
+> > > +                 |     |         .  |     |  .
+> > > +                 | PF0 |         .  | PF1 |  .
+> > > +                 +--+--+         .  +--+--+  .
+> > > +          ......... ^................. ^..........
+> > > +                    |                  |
+> > > +                    |   PCIe DEVICE    |
+> > > +                    |                  |
+> > > +                 +--+------------------+--+
+> > > +                 |         SHELL          |
+> > > +                 |                        |
+> > > +                 +------------------------+
+> > > +                 |         USER           |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 |                        |
+> > > +                 +------------------------+
+> > > +
+> > > +
+> > > +
+> > > +
+> > > +
+> > > +Platform Security Considerations
+> > > +================================
+> > > +
+> > > +`Security of Alveo Platform
+> > > +<https://xilinx.github.io/XRT/master/html/security.html>`_
+> > > +discusses the deployment options and security implications in great detail.
+> > 
+> > This link works and looks great.
+> > 
+> > Tom
+> 
+> Thanks for the detailed review of the document. I am working on incorporating the 
+> feedback. One outstanding question is about usage of formal bus in XRT and if we
+> should phase that in as a follow-on. It would also determine if IP drivers should
+> move to other subsystems.
+> 
+> -Sonal
+
+- Moritz
