@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 737C632FD28
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 21:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C58B632FD33
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 21:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230449AbhCFUg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 15:36:27 -0500
-Received: from mail-pj1-f49.google.com ([209.85.216.49]:36544 "EHLO
-        mail-pj1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231183AbhCFUgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 15:36:24 -0500
-Received: by mail-pj1-f49.google.com with SMTP id f2-20020a17090a4a82b02900c67bf8dc69so957583pjh.1;
-        Sat, 06 Mar 2021 12:36:23 -0800 (PST)
+        id S229704AbhCFUjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 15:39:42 -0500
+Received: from mail-pf1-f178.google.com ([209.85.210.178]:45226 "EHLO
+        mail-pf1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229697AbhCFUje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 15:39:34 -0500
+Received: by mail-pf1-f178.google.com with SMTP id j12so4468155pfj.12;
+        Sat, 06 Mar 2021 12:39:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kxst1hG7ALyCmuPlQ7JFD7SMZloRyR6/yTfXMK8W7T0=;
-        b=hF159ji8oR92LgUpHS4NKAf0lpQwhTmVLmn4LNokqwj9gXSjedaXnDxYuYlxPhdVEZ
-         GaBerzJYExH2Ad41sPwa1e+Hwi/mVuOPL8jC1zpTSbg7Ayd67+HUQtvzZSbPondtJOlF
-         NqiTWVJkfrJLnEcOAqEn/QCLBTnoPgwRA16YPgZbZFQpiEmLnXIreeIumzYGD99BU8yT
-         NUPIcUD1RoIabQSMnrZN+QLyFB+d8OpgKT8cDMEuopo2RKmIS9EazDh1YPOWAfu5T9ka
-         mGyXbcLc1FaX7EfSIhYjTn4S4cliTBVjD7Gj2kl2WAdfPGYbNfr4gsqUiyg/gyicYrPQ
-         pPKg==
-X-Gm-Message-State: AOAM531Y4BRjSUqPq+/oiWJcZPXKCnyVu9mfVQhYwTzoSNQKzGlXCr+H
-        7t+n06r5dyJ/kY4MgJV09A==
-X-Google-Smtp-Source: ABdhPJz0P+6rkvVUSXxTrcwxqhCKO6b8X5k2tVKedc0iXxGFF8nD+HcxsXL0EuR95YHQZyqlJKMczg==
-X-Received: by 2002:a17:90b:809:: with SMTP id bk9mr16677761pjb.83.1615062983602;
-        Sat, 06 Mar 2021 12:36:23 -0800 (PST)
+        bh=r/6QKpIukS6ktK9WNbuptfWDlWW8/Vp3FCb1Y6WR2wk=;
+        b=RKLIIPPDD5TIMAKeca7x4YY00buzVRKbRpLWbwOTHotyw7893LSQUYHI4Rxv/qWMY/
+         24Y9HDqCS7FCg7IbRy76niaa+W6ZM30e29viUuHXMqN14vEvpEcDlmek/KxZItZhfqk4
+         p2aOKNgpzzy/8wG1/wylODdC2t18n4gSK0Im/ME4Z1LctzQSNhF2uDWQErjOQ6yUJiV6
+         3/XcRb4DUq4DW5qnq3+UXkMI23mVAc+rLCbgRmK3jOSwhWmTts4cjKDNyUutyZiGGBoi
+         Z30Lhw4+YhRsOlbBdq1KAOE/ZTks3uWpfH1draLU6EI7tKm9X+8A6+IAcQmQnVdbHw55
+         Qc7g==
+X-Gm-Message-State: AOAM533unjBAxDNFVOToKEJrGqqqTa0PQs0lqFBl7vvZIy1BTywifZn6
+        xjtY5Ib3t//osf9fjTTOZE7jLJFPqzsp
+X-Google-Smtp-Source: ABdhPJwR2dVQ6xpmhobSkNq2Yb9+uacrgTy1PECJ2Jmowmx+sUQXSCnergs1grjW77czLv31u+31Rw==
+X-Received: by 2002:aa7:8292:0:b029:1ed:d6e5:1333 with SMTP id s18-20020aa782920000b02901edd6e51333mr14673406pfm.55.1615063173976;
+        Sat, 06 Mar 2021 12:39:33 -0800 (PST)
 Received: from robh.at.kernel.org ([172.58.27.98])
-        by smtp.gmail.com with ESMTPSA id t22sm6300886pjw.54.2021.03.06.12.36.19
+        by smtp.gmail.com with ESMTPSA id 21sm5945077pfo.167.2021.03.06.12.39.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Mar 2021 12:36:22 -0800 (PST)
-Received: (nullmailer pid 1172590 invoked by uid 1000);
-        Sat, 06 Mar 2021 20:36:17 -0000
-Date:   Sat, 6 Mar 2021 13:36:17 -0700
+        Sat, 06 Mar 2021 12:39:33 -0800 (PST)
+Received: (nullmailer pid 1176909 invoked by uid 1000);
+        Sat, 06 Mar 2021 20:39:27 -0000
+Date:   Sat, 6 Mar 2021 13:39:27 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, timur@kernel.org,
-        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] ASoC: dt-bindings: imx-rpmsg: Add binding doc for
- rpmsg machine driver
-Message-ID: <20210306203617.GA1164939@robh.at.kernel.org>
-References: <1614221563-26822-1-git-send-email-shengjiu.wang@nxp.com>
- <1614221563-26822-8-git-send-email-shengjiu.wang@nxp.com>
+To:     peng.fan@oss.nxp.com
+Cc:     Peng Fan <peng.fan@nxp.com>, s.hauer@pengutronix.de,
+        sboyd@kernel.org, festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        adrian.hunter@intel.com, kernel@pengutronix.de,
+        linux-clk@vger.kernel.org, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, shawnguo@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 2/5] dt-bindings: clock: imx8qxp-lpcg: correct the
+ example clock-names
+Message-ID: <20210306203927.GA1176875@robh.at.kernel.org>
+References: <1614222604-27066-1-git-send-email-peng.fan@oss.nxp.com>
+ <1614222604-27066-3-git-send-email-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1614221563-26822-8-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <1614222604-27066-3-git-send-email-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 10:52:43AM +0800, Shengjiu Wang wrote:
-> Imx-rpmsg is a new added machine driver for supporting audio on Cortex-M
-> core. The Cortex-M core will control the audio interface, DMA and audio
-> codec, setup the pipeline, the audio driver on Cortex-A core side is just
-> to communitcate with M core, it is a virtual sound card and don't touch
-> the hardware.
+On Thu, 25 Feb 2021 11:10:01 +0800, peng.fan@oss.nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Align with all other i.MX using the mmc controller, align
+> the clock-names.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
 
-This sounds like 1 h/w block (the interface to the cortex-M), your DT 
-should be 1 node. If you need 2 drivers to satisfy the needs of the OS, 
-then instantiate one device from the other device's driver.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
