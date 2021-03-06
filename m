@@ -2,654 +2,594 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E64A32FC4B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 18:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D6C32FC5D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 19:03:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhCFRar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 12:30:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59316 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229779AbhCFRaW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 6 Mar 2021 12:30:22 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1AC164FA7;
-        Sat,  6 Mar 2021 17:30:20 +0000 (UTC)
-Date:   Sat, 6 Mar 2021 17:30:17 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     <robh+dt@kernel.org>, <ludovic.desroches@microchip.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] iio: adc: at91-sama5d2: add support for sama7g5
- device
-Message-ID: <20210306173017.0d3144c9@archlinux>
-In-Reply-To: <20210301143256.16502-5-eugen.hristev@microchip.com>
-References: <20210301143256.16502-1-eugen.hristev@microchip.com>
-        <20210301143256.16502-5-eugen.hristev@microchip.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231208AbhCFSCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 13:02:14 -0500
+Received: from mail1.protonmail.ch ([185.70.40.18]:41752 "EHLO
+        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230346AbhCFSBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 13:01:43 -0500
+Date:   Sat, 06 Mar 2021 18:01:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1615053697;
+        bh=jOOAVdxNeyCst7vHKRUJH/wFr31ozZjBst3OnJv/6nU=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=hm9YFjBpahSBixovyc20W7Fm7lryER4jTUOzH0UsSdZgr559vagrKaXeEfV+5Ev/q
+         omKv1xmNbL32L4lgMFl4KKjx41y+Dszcn6MZOIPyZIOjtYneu1CqynX7z5lWWkoImu
+         RSRnlbYkFoUUF9k0MUbljQWIDx4aRj/r22m1Wc14=
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH] arm64: dts: add support for the Pixel 2 XL
+Message-ID: <e486c10b-025b-2c00-21b5-76029f9859d5@connolly.tech>
+In-Reply-To: <YEL5BuaivN5LgZyG@builder.lan>
+References: <20210305213235.398252-1-caleb@connolly.tech> <YEL5BuaivN5LgZyG@builder.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Mar 2021 16:32:56 +0200
-Eugen Hristev <eugen.hristev@microchip.com> wrote:
+Hi Bjorn,
 
-> Add support to sama7g5 ADC which is similar with sama5d2/sam9x60 device.
-> Differences are highlighted by compatible.
-> Main differences include 16 channels instead of 12 and missing
-> resistive touchscreen.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+On 06/03/2021 3:37 am, Bjorn Andersson wrote:
+> On Fri 05 Mar 15:35 CST 2021, Caleb Connolly wrote:
+>
+> Please add "qcom: " to $subject as well.
+>
+>> Add a minimal devicetree capable of booting on the Pixel 2 XL MSM8998
+>> device.
+>>
+>> It's currently possible to boot the device into postmarketOS with USB
+>> networking, however the display panel depends on Display Stream
+>> Compression which is not yet supported in the kernel.
+>>
+>> The bootloader also requires that the dtbo partition contains a device
+>> tree overlay with a particular id which has to be overlayed onto the
+>> existing dtb. It's possible to use a specially crafted dtbo partition to
+>> workaround this, more information is available here:
+>>
+>>      https://gitlab.com/calebccff/dtbo-google-wahoo-mainline
+>>
+> So it's not possible to just erase the dto, like on most other devices?
 
-Hi Eugen,
+That's correct, I initially tried that but the bootloader just hung when=20
+I tried to boot anything.
 
-What tends to end up cleaner than the many scattered places you have
-had to bolt in part support here, is to use a per device type constant
-structure.  That structure can contain register addresses where that
-is all the differs between parts, and callbacks for more complex cases.
+It seems to require a DTO matching some revision-specific IDs, the=20
+bootloader is very unhappy when it can't
 
-Along the lines of
+find them.
 
-static const struct sam5d2_chip_info sam5d2_inf {
-	.eoc_register = 0x33,
-	.max_chan_idx = bob,
-	.ccr = bob_function,
-...
-};
+>
+>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+>> ---
+>> It's possible to get wifi working by running Bjorns diag-router in the
+>> background, without this the wifi firmware crashes every 10 seconds or
+>> so. This is the same issue encountered on the OnePlus 5.
+>>
+>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>   .../boot/dts/qcom/msm8998-google-taimen.dts   |  14 +
+>>   .../boot/dts/qcom/msm8998-google-wahoo.dtsi   | 391 ++++++++++++++++++
+>>   3 files changed, 406 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/msm8998-google-taimen.dts
+>>   create mode 100644 arch/arm64/boot/dts/qcom/msm8998-google-wahoo.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qco=
+m/Makefile
+>> index 5113fac80b7a..d942d3ec3928 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -16,6 +16,7 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8994-msft-lumia-city=
+man.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8994-sony-xperia-kitakami-sumire.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-mtp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-asus-novago-tp370ql.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-google-taimen.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-hp-envy-x2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-lenovo-miix-630.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-mtp.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8998-google-taimen.dts b/arch/a=
+rm64/boot/dts/qcom/msm8998-google-taimen.dts
+>> new file mode 100644
+>> index 000000000000..ffaaafe14037
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/msm8998-google-taimen.dts
+>> @@ -0,0 +1,14 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+> Would you be willing to release these as BSD-3-Clause instead?
+Yeah I'd be happy to, is this a new practice? As the device I submitted=20
+previously is also GPL-2.0.
+>
+>> +/*
+>> + * Copyright (c) 2020, Caleb Connolly <caleb@connolly.tech>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "msm8998-google-wahoo.dtsi"
+>> +
+>> +/ {
+>> +=09model =3D "Google Pixel 2 XL";
+>> +=09compatible =3D "google,taimen", "google,wahoo", "qcom,msm8998", "qco=
+m,msm8998-mtp";
+>> +=09qcom,msm-id =3D <0x124 0x20001>;
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8998-google-wahoo.dtsi b/arch/a=
+rm64/boot/dts/qcom/msm8998-google-wahoo.dtsi
+>> new file mode 100644
+>> index 000000000000..0c221ead2df7
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/msm8998-google-wahoo.dtsi
+>> @@ -0,0 +1,391 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/* Copyright (c) 2020 Caleb Connolly <caleb@connolly.tech> */
+>> +
+>> +#include "msm8998.dtsi"
+>> +#include "pm8998.dtsi"
+>> +#include "pmi8998.dtsi"
+>> +#include "pm8005.dtsi"
+>> +
+>> +/delete-node/ &mpss_mem;
+>> +/delete-node/ &venus_mem;
+>> +/delete-node/ &mba_mem;
+>> +/delete-node/ &slpi_mem;
+>> +
+>> +/ {
+>> +=09aliases {
+>> +=09};
+>> +
+>> +=09chosen {
+>> +=09=09#address-cells =3D <2>;
+>> +=09=09#size-cells =3D <2>;
+>> +=09=09ranges;
+>> +
+>> +=09=09/* Add "earlycon" intended to be used in combination with UART se=
+rial console */
+>> +=09=09bootargs =3D "clk_ignore_unused earlycon console=3DttyGS0,115200"=
+;// loglevel=3D10 drm.debug=3D15 debug";
+> Please drop earlycon from this list (user should be able to add it if
+> they care later?) and use stdout-path to set the console, like we do on
+> other devices.
+>
+>> +=09};
+>> +
+>> +=09reserved-memory {
+>> +=09=09#address-cells =3D <2>;
+>> + =09=09#size-cells =3D <2>;
+>> + =09=09ranges;
+>> +
+>> +=09=09mpss_mem: memory@8cc00000 {
+>> +=09=09=09reg =3D <0 0x8cc00000 0 0x7800000>;
+>> +=09=09=09no-map;
+>> +=09=09};
+>> +
+>> +=09=09venus_mem: memory@94400000 {
+>> +=09=09=09reg =3D <0 0x94400000 0 0x500000>;
+>> +=09=09=09no-map;
+>> +=09=09};
+>> +
+>> +=09=09mba_mem: memory@94100000 {
+>> +=09=09=09reg =3D <0 0x94900000 0 0x200000>;
+>> +=09=09=09no-map;
+>> +=09=09};
+>> +
+>> +=09=09slpi_mem: memory@94b00000 {
+>> +=09=09=09reg =3D <0 0x94b00000 0 0x700000>;
+>> +=09=09=09no-map;
+>> +=09=09};
+>> +
+>> +=09=09ramoops: ramoops@a1810000 {
+>> +=09=09=09compatible =3D "ramoops";
+>> +=09=09=09reg =3D <0 0xa1810000 0 0x200000>;
+>> +=09=09=09record-size =3D <0x20000>;
+>> +=09=09=09console-size =3D <0x100000>;
+>> +=09=09=09pmsg-size =3D <0x80000>;
+>> +=09=09};
+>> +=09};
+>> +
+>> +=09vph_pwr: vph-pwr-regulator {
+>> +=09=09compatible =3D "regulator-fixed";
+>> +=09=09regulator-name =3D "vph_pwr";
+>> +=09=09regulator-always-on;
+>> +=09=09regulator-boot-on;
+>> +=09};
+>> +};
+>> +
+>> +&blsp1_uart3 {
+>> +=09status =3D "disabled";
+>> +
+>> +=09bluetooth {
+>> +=09=09compatible =3D "qcom,wcn3990-bt";
+>> +
+>> +=09=09vddio-supply =3D <&vreg_s4a_1p8>;
+>> +=09=09vddxo-supply =3D <&vreg_l7a_1p8>;
+>> +=09=09vddrf-supply =3D <&vreg_l17a_1p3>;
+>> +=09=09vddch0-supply =3D <&vreg_l25a_3p3>;
+>> +=09=09max-speed =3D <3200000>;
+>> +=09};
+>> +};
+>> +
+>> +&pcie0 {
+>> +=09status =3D "disabled";
+> Isn't &pcie0 already disabled, from msm8998.dtsi?
+>
+>> +};
+>> +
+>> +&pm8005_lsid1 {
+>> +=09pm8005-regulators {
+>> +=09=09compatible =3D "qcom,pm8005-regulators";
+>> +
+>> +=09=09vdd_s1-supply =3D <&vph_pwr>;
+>> +
+>> +=09=09pm8005_s1: s1 { /* VDD_GFX supply */
+>> +=09=09=09regulator-min-microvolt =3D <524000>;
+>> +=09=09=09regulator-max-microvolt =3D <1100000>;
+>> +=09=09=09regulator-enable-ramp-delay =3D <500>;
+>> +
+>> +=09=09=09/* hack until we rig up the gpu consumer */
+>> +=09=09=09regulator-always-on;
+>> +=09=09};
+>> +=09};
+>> +};
+>> +
+>> +&qusb2phy {
+>> +=09status =3D "okay";
+>> +
+>> +=09vdda-pll-supply =3D <&vreg_l12a_1p8>;
+>> +=09vdda-phy-dpdm-supply =3D <&vreg_l24a_3p075>;
+>> +};
+>> +
+>> +&remoteproc_adsp {
+>> +=09status =3D "okay";
+>> +
+>> +=09firmware-name =3D "qcom/pixel2/adsp.mdt";
+>> +};
+>> +
+>> +&remoteproc_mss {
+>> +=09firmware-name =3D "qcom/pixel2/mba.mbn",
+>> +=09                "qcom/pixel2/modem.mdt";
+>> +};
+>> +
+>> +&remoteproc_slpi {
+>> +=09status =3D "okay";
+>> +
+>> +=09firmware-name =3D "qcom/pixel2/slpi_v2.mdt";
+>> +};
+>> +
+>> +&rpm_requests {
+>> +=09pm8998-regulators {
+>> +=09=09compatible =3D "qcom,rpm-pm8998-regulators";
+>> +
+>> +=09=09vdd_s1-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s2-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s3-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s4-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s5-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s6-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s7-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s8-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s9-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s10-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s11-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s12-supply =3D <&vph_pwr>;
+>> +=09=09vdd_s13-supply =3D <&vph_pwr>;
+>> +=09=09vdd_l1_l27-supply =3D <&vreg_s7a_1p025>;
+>> +=09=09vdd_l2_l8_l17-supply =3D <&vreg_s3a_1p35>;
+>> +=09=09vdd_l3_l11-supply =3D <&vreg_s7a_1p025>;
+>> +=09=09vdd_l4_l5-supply =3D <&vreg_s7a_1p025>;
+>> +=09=09vdd_l6-supply =3D <&vreg_s5a_2p04>;
+>> +=09=09vdd_l7_l12_l14_l15-supply =3D <&vreg_s5a_2p04>;
+>> +=09=09vdd_l9-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l10_l23_l25-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l13_l19_l21-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l16_l28-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l18_l22-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l20_l24-supply =3D <&vreg_bob>;
+>> +=09=09vdd_l26-supply =3D <&vreg_s3a_1p35>;
+>> +=09=09vdd_lvs1_lvs2-supply =3D <&vreg_s4a_1p8>;
+>> +
+>> +=09=09vreg_s3a_1p35: s3 {
+>> +=09=09=09regulator-min-microvolt =3D <1352000>;
+>> +=09=09=09regulator-max-microvolt =3D <1352000>;
+>> +=09=09};
+>> +=09=09vreg_s4a_1p8: s4 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09=09regulator-allow-set-load;
+>> +=09=09};
+>> +=09=09vreg_s5a_2p04: s5 {
+>> +=09=09=09regulator-min-microvolt =3D <1904000>;
+>> +=09=09=09regulator-max-microvolt =3D <2040000>;
+>> +=09=09};
+>> +=09=09vreg_s7a_1p025: s7 {
+>> +=09=09=09regulator-min-microvolt =3D <900000>;
+>> +=09=09=09regulator-max-microvolt =3D <1028000>;
+>> +=09=09};
+>> +=09=09vreg_l1a_0p875: l1 {
+>> +=09=09=09regulator-min-microvolt =3D <880000>;
+>> +=09=09=09regulator-max-microvolt =3D <880000>;
+>> +=09=09};
+>> +=09=09vreg_l2a_1p2: l2 {
+>> +=09=09=09regulator-min-microvolt =3D <1200000>;
+>> +=09=09=09regulator-max-microvolt =3D <1200000>;
+>> +=09=09};
+>> +=09=09vreg_l3a_1p0: l3 {
+>> +=09=09=09regulator-min-microvolt =3D <1000000>;
+>> +=09=09=09regulator-max-microvolt =3D <1000000>;
+>> +=09=09};
+>> +=09=09vreg_l5a_0p8: l5 {
+>> +=09=09=09regulator-min-microvolt =3D <800000>;
+>> +=09=09=09regulator-max-microvolt =3D <800000>;
+>> +=09=09};
+>> +=09=09vreg_l6a_1p8: l6 {
+>> +=09=09=09regulator-min-microvolt =3D <1808000>;
+>> +=09=09=09regulator-max-microvolt =3D <1808000>;
+>> +=09=09};
+>> +=09=09vreg_l7a_1p8: l7 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09};
+>> +=09=09vreg_l8a_1p2: l8 {
+>> +=09=09=09regulator-min-microvolt =3D <1200000>;
+>> +=09=09=09regulator-max-microvolt =3D <1200000>;
+>> +=09=09};
+>> +=09=09vreg_l9a_1p8: l9 {
+>> +=09=09=09regulator-min-microvolt =3D <1808000>;
+>> +=09=09=09regulator-max-microvolt =3D <2960000>;
+>> +=09=09};
+>> +=09=09vreg_l10a_1p8: l10 {
+>> +=09=09=09regulator-min-microvolt =3D <1808000>;
+>> +=09=09=09regulator-max-microvolt =3D <2960000>;
+>> +=09=09};
+>> +=09=09vreg_l11a_1p0: l11 {
+>> +=09=09=09regulator-min-microvolt =3D <1000000>;
+>> +=09=09=09regulator-max-microvolt =3D <1000000>;
+>> +=09=09};
+>> +=09=09vreg_l12a_1p8: l12 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09};
+>> +=09=09vreg_l13a_2p95: l13 {
+>> +=09=09=09regulator-min-microvolt =3D <1808000>;
+>> +=09=09=09regulator-max-microvolt =3D <2960000>;
+>> +=09=09};
+>> +=09=09vreg_l14a_1p88: l14 {
+>> +=09=09=09regulator-min-microvolt =3D <1880000>;
+>> +=09=09=09regulator-max-microvolt =3D <1880000>;
+>> +=09=09};
+>> +=09=09vreg_15a_1p8: l15 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09};
+>> +=09=09vreg_l16a_2p7: l16 {
+>> +=09=09=09regulator-min-microvolt =3D <2704000>;
+>> +=09=09=09regulator-max-microvolt =3D <2704000>;
+>> +=09=09};
+>> +=09=09vreg_l17a_1p3: l17 {
+>> +=09=09=09regulator-min-microvolt =3D <1304000>;
+>> +=09=09=09regulator-max-microvolt =3D <1304000>;
+>> +=09=09};
+>> +=09=09vreg_l18a_2p7: l18 {
+>> +=09=09=09regulator-min-microvolt =3D <2704000>;
+>> +=09=09=09regulator-max-microvolt =3D <2704000>;
+>> +=09=09};
+>> +=09=09vreg_l19a_3p0: l19 {
+>> +=09=09=09regulator-min-microvolt =3D <3008000>;
+>> +=09=09=09regulator-max-microvolt =3D <3008000>;
+>> +=09=09};
+>> +=09=09vreg_l20a_2p95: l20 {
+>> +=09=09=09regulator-min-microvolt =3D <2960000>;
+>> +=09=09=09regulator-max-microvolt =3D <2960000>;
+>> +=09=09=09regulator-allow-set-load;
+>> +=09=09};
+>> +=09=09vreg_l21a_2p95: l21 {
+>> +=09=09=09regulator-min-microvolt =3D <2960000>;
+>> +=09=09=09regulator-max-microvolt =3D <2960000>;
+>> +=09=09=09regulator-allow-set-load;
+>> +=09=09=09regulator-system-load =3D <800000>;
+>> +=09=09};
+>> +=09=09vreg_l22a_2p85: l22 {
+>> +=09=09=09regulator-min-microvolt =3D <2864000>;
+>> +=09=09=09regulator-max-microvolt =3D <2864000>;
+>> +=09=09};
+>> +=09=09vreg_l23a_3p3: l23 {
+>> +=09=09=09regulator-min-microvolt =3D <3312000>;
+>> +=09=09=09regulator-max-microvolt =3D <3312000>;
+>> +=09=09};
+>> +=09=09vreg_l24a_3p075: l24 {
+>> +=09=09=09regulator-min-microvolt =3D <3088000>;
+>> +=09=09=09regulator-max-microvolt =3D <3088000>;
+>> +=09=09};
+>> +=09=09vreg_l25a_3p3: l25 {
+>> +=09=09=09regulator-min-microvolt =3D <3104000>;
+>> +=09=09=09regulator-max-microvolt =3D <3312000>;
+>> +=09=09};
+>> +=09=09vreg_l26a_1p2: l26 {
+>> +=09=09=09regulator-min-microvolt =3D <1200000>;
+>> +=09=09=09regulator-max-microvolt =3D <1200000>;
+>> +=09=09=09regulator-allow-set-load;
+>> +=09=09};
+>> +=09=09vreg_l28_3p0: l28 {
+>> +=09=09=09regulator-min-microvolt =3D <3008000>;
+>> +=09=09=09regulator-max-microvolt =3D <3008000>;
+>> +=09=09};
+>> +
+>> +=09=09vreg_lvs1a_1p8: lvs1 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09};
+>> +
+>> +=09=09vreg_lvs2a_1p8: lvs2 {
+>> +=09=09=09regulator-min-microvolt =3D <1800000>;
+>> +=09=09=09regulator-max-microvolt =3D <1800000>;
+>> +=09=09};
+>> +
+>> +=09};
+>> +
+>> +=09pmi8998-regulators {
+>> +=09=09compatible =3D "qcom,rpm-pmi8998-regulators";
+>> +
+>> +=09=09vdd_bob-supply =3D <&vph_pwr>;
+>> +
+>> +=09=09vreg_bob: bob {
+>> +=09=09=09regulator-min-microvolt =3D <3312000>;
+>> +=09=09=09regulator-max-microvolt =3D <3600000>;
+>> +=09=09};
+>> +=09};
+>> +};
+>> +
+>> +&spmi_bus {
+>> +=09pmic@0 {
+>> +=09=09compatible =3D "qcom,pm8994", "qcom,spmi-pmic";
+> qcom,pm8994?
+>
+> Per the include of pm8998.dtsi I think you already have pmic@0 defined,
+> with compatible of qcom,pm8998 here (which you override).
+>
+>> +=09=09reg =3D <0x0 SPMI_USID>;
+>> +=09=09#address-cells =3D <1>;
+>> +=09=09#size-cells =3D <0>;
+>> +=09=09pon@800 {
+> But pmic@0 already has pon@800 defined as &pm8998_pon, which seems to be
+> defined identically to yours.
+>
+> So I think you should be able to drop this entire &spmi_bus node and its
+> children, but perhaps I'm just missing something obvious here?
+>
+>> +=09=09=09compatible =3D "qcom,pm8916-pon";
+>> +
+>> +=09=09=09reg =3D <0x800>;
+>> +=09=09=09mode-bootloader =3D <0x2>;
+>> +=09=09=09mode-recovery =3D <0x1>;
+>> +
+>> +=09=09=09pwrkey {
+>> +=09=09=09=09compatible =3D "qcom,pm8941-pwrkey";
+>> +=09=09=09=09interrupts =3D <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
+>> +=09=09=09=09debounce =3D <15625>;
+>> +=09=09=09=09bias-pull-up;
+>> +=09=09=09=09linux,code =3D <KEY_POWER>;
+>> +=09=09=09};
+>> +=09=09};
+>> +=09};
+>> +};
+>> +
+>> +&tlmm {
+>> +=09gpio-reserved-ranges =3D <0 4>, <81 4>;
+>> +};
+>> +
+>> +/*
+>> + * The device does contain a USB3 capable type-c port,
+>> + * however it doesn't seem to work when superspeed mode is
+>> + * enabled.
+>> + */
+>> +&usb3 {
+>> +=09status =3D "okay";
+>> +
+>> +=09/* Operate "GCC_USB30_MASTER_CLK" in HS mode (>=3D60 MHz) */
+>> +=09assigned-clock-rates =3D <19200000>, <60000000>;
+>> +
+>> +=09/* Disable USB3 pipe_clk requirement */
+>> +=09qcom,select-utmi-as-pipe-clk;
+>> +};
+>> +
+>> +&usb3_dwc3 {
+>> +=09/* Drop USB 3 SuperSpeed PHY to bring up the "usb0" interface */
+>> +=09phys =3D <&qusb2phy>;
+>> +=09phy-names =3D "usb2-phy";
+>> +
+>> +=09/* We can only operate at USB 2.0 speeds */
+>> +=09maximum-speed =3D "high-speed";
+>> +
+>> +=09/* Force to peripheral until we have Type-C hooked up */
+>> +=09dr_mode =3D "peripheral";
+>> +};
+>> +
+>> +&ufshc {
+>> +=09vcc-supply =3D <&vreg_l20a_2p95>;
+>> +=09vccq-supply =3D <&vreg_l26a_1p2>;
+>> +=09vccq2-supply =3D <&vreg_s4a_1p8>;
+>> +=09vcc-max-microamp =3D <750000>;
+>> +=09vccq-max-microamp =3D <560000>;
+>> +=09vccq2-max-microamp =3D <750000>;
+>> +};
+>> +
+>> +&ufsphy {
+>> +=09vdda-phy-supply =3D <&vreg_l1a_0p875>;
+>> +=09vdda-pll-supply =3D <&vreg_l2a_1p2>;
+>> +=09vddp-ref-clk-supply =3D <&vreg_l26a_1p2>;
+>> +=09vdda-phy-max-microamp =3D <51400>;
+>> +=09vdda-pll-max-microamp =3D <14600>;
+>> +=09vddp-ref-clk-max-microamp =3D <100>;
+>> +=09vddp-ref-clk-always-on;
+>> +};
+>> +
+>> +&wifi {
+>> +=09status =3D "okay";
+>> +
+Thanks.
+> Can you please disable diag-router and try adding this here instead:
+>
+> =09clocks =3D <&rpmcc RPM_SMD_RF_CLK2_PIN>, <&rpmcc RPM_SMD_QDSS_CLK>;
+> =09clock-names =3D "cxo_ref_clk_pin", "qdss";
+>
+> What you describe in your comment above seems like what I saw on sm8150,
+> that launching diag-router would cause something on the modem side to
+> keep the debug subsystem clock on - which in turn caused WiFi not to
+> crash during loading.
 
-Then you can just put a pointer to this in the match_data and look that
-up in probe
+This unfortunately didn't prevent the following crash:
 
-> ---
->  drivers/iio/adc/at91-sama5d2_adc.c | 287 +++++++++++++++++++++++------
->  1 file changed, 234 insertions(+), 53 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/at91-sama5d2_adc.c b/drivers/iio/adc/at91-sama5d2_adc.c
-> index 066d0ad644ca..d61fa32ef294 100644
-> --- a/drivers/iio/adc/at91-sama5d2_adc.c
-> +++ b/drivers/iio/adc/at91-sama5d2_adc.c
-> @@ -1,9 +1,11 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Atmel ADC driver for SAMA5D2 devices and compatible.
-> + * Microchip ADC driver for SAMA5D2/SAMA7G5 devices and compatible.
->   *
->   * Copyright (C) 2015 Atmel,
-> - *               2015 Ludovic Desroches <ludovic.desroches@atmel.com>
-> + *               2015 Ludovic Desroches <ludovic.desroches@microchip.com>,
-> + *		 2021 Microchip Technology, Inc.,
-> + *		 2021 Eugen Hristev <eugen.hristev@microchip.com>
->   */
->  
->  #include <linux/bitops.h>
-> @@ -117,14 +119,26 @@
->  #define AT91_SAMA5D2_ISR	0x30
->  /* Interrupt Status Register - Pen touching sense status */
->  #define AT91_SAMA5D2_ISR_PENS   BIT(31)
-> +
-> +/* End of Conversion Interrupt Enable Register */
-> +#define AT91_SAMA7G5_EOC_IER	0x34
-> +/* End of Conversion Interrupt Disable Register */
-> +#define AT91_SAMA7G5_EOC_IDR	0x38
-> +/* End of Conversion Interrupt Mask Register */
-> +#define AT91_SAMA7G5_EOC_IMR	0x3c
-> +/* End of Conversion Interrupt Status Register */
-> +#define AT91_SAMA7G5_EOC_ISR	0x40
-> +
->  /* Last Channel Trigger Mode Register */
->  #define AT91_SAMA5D2_LCTMR	0x34
->  /* Last Channel Compare Window Register */
->  #define AT91_SAMA5D2_LCCWR	0x38
->  /* Overrun Status Register */
->  #define AT91_SAMA5D2_OVER	0x3c
-> +#define AT91_SAMA7G5_OVER	0x4c
->  /* Extended Mode Register */
->  #define AT91_SAMA5D2_EMR	0x40
-> +#define AT91_SAMA7G5_EMR	0x50
->  /* Extended Mode Register - Oversampling rate */
->  #define AT91_SAMA5D2_EMR_OSR(V)			((V) << 16)
->  #define AT91_SAMA5D2_EMR_OSR_MASK		GENMASK(17, 16)
-> @@ -142,6 +156,9 @@
->  /* Channel Offset Register */
->  #define AT91_SAMA5D2_COR	0x4c
->  #define AT91_SAMA5D2_COR_DIFF_OFFSET	16
-> +/* Channel Configuration Register */
-> +#define AT91_SAMA7G5_CCR	0x5c
-> +#define AT91_SAMA7G5_COR_DIFF_OFFSET	0
->  
->  /* Analog Control Register */
->  #define AT91_SAMA5D2_ACR	0x94
-> @@ -185,6 +202,7 @@
->  #define AT91_SAMA5D2_PRESSR	0xbc
->  /* Trigger Register */
->  #define AT91_SAMA5D2_TRGR	0xc0
-> +#define AT91_SAMA7G5_TRGR	0x100
->  /* Mask for TRGMOD field of TRGR register */
->  #define AT91_SAMA5D2_TRGR_TRGMOD_MASK GENMASK(2, 0)
->  /* No trigger, only software trigger can start conversions */
-> @@ -214,19 +232,26 @@
->  #define AT91_SAMA5D2_WPSR	0xe8
->  /* Version Register */
->  #define AT91_SAMA5D2_VERSION	0xfc
-> +#define AT91_SAMA7G5_VERSION	0x130
->  
->  #define AT91_SAMA5D2_HW_TRIG_CNT 3
->  #define AT91_SAMA5D2_SINGLE_CHAN_CNT 12
-> +#define AT91_SAMA7G5_SINGLE_CHAN_CNT 16
->  #define AT91_SAMA5D2_DIFF_CHAN_CNT 6
-> +#define AT91_SAMA7G5_DIFF_CHAN_CNT 8
->  
->  #define AT91_SAMA5D2_TIMESTAMP_CHAN_IDX (AT91_SAMA5D2_SINGLE_CHAN_CNT + \
->  					 AT91_SAMA5D2_DIFF_CHAN_CNT + 1)
->  
-> +#define AT91_SAMA7G5_TIMESTAMP_CHAN_IDX (AT91_SAMA7G5_SINGLE_CHAN_CNT + \
-> +					 AT91_SAMA7G5_DIFF_CHAN_CNT + 1)
-> +
->  #define AT91_SAMA5D2_TOUCH_X_CHAN_IDX (AT91_SAMA5D2_SINGLE_CHAN_CNT + \
->  					 AT91_SAMA5D2_DIFF_CHAN_CNT * 2)
->  #define AT91_SAMA5D2_TOUCH_Y_CHAN_IDX   (AT91_SAMA5D2_TOUCH_X_CHAN_IDX + 1)
->  #define AT91_SAMA5D2_TOUCH_P_CHAN_IDX   (AT91_SAMA5D2_TOUCH_Y_CHAN_IDX + 1)
->  #define AT91_SAMA5D2_MAX_CHAN_IDX	AT91_SAMA5D2_TOUCH_P_CHAN_IDX
-> +#define AT91_SAMA7G5_MAX_CHAN_IDX	AT91_SAMA7G5_TIMESTAMP_CHAN_IDX
->  
->  #define AT91_SAMA5D2_TOUCH_SAMPLE_PERIOD_US          2000    /* 2ms */
->  #define AT91_SAMA5D2_TOUCH_PEN_DETECT_DEBOUNCE_US    200
-> @@ -239,8 +264,19 @@
->   * Maximum number of bytes to hold conversion from all channels
->   * without the timestamp.
->   */
-> -#define AT91_BUFFER_MAX_CONVERSION_BYTES ((AT91_SAMA5D2_SINGLE_CHAN_CNT + \
-> -					 AT91_SAMA5D2_DIFF_CHAN_CNT) * 2)
-> +#define AT91_SAMA5D2_BUFFER_MAX_CONVERSION_BYTES ( \
-> +					(AT91_SAMA5D2_SINGLE_CHAN_CNT + \
-> +					AT91_SAMA5D2_DIFF_CHAN_CNT) * 2)
-> +
-> +#define AT91_SAMA7G5_BUFFER_MAX_CONVERSION_BYTES ( \
-> +					(AT91_SAMA7G5_SINGLE_CHAN_CNT + \
-> +					AT91_SAMA7G5_DIFF_CHAN_CNT) * 2)
-> +
-> +#define AT91_BUFFER_MAX_CONVERSION_BYTES ( \
-> +	(AT91_SAMA7G5_BUFFER_MAX_CONVERSION_BYTES > \
-> +	AT91_SAMA5D2_BUFFER_MAX_CONVERSION_BYTES) ? \
-> +	AT91_SAMA7G5_BUFFER_MAX_CONVERSION_BYTES : \
-> +	AT91_SAMA5D2_BUFFER_MAX_CONVERSION_BYTES)
->  
->  /* This total must also include the timestamp */
->  #define AT91_BUFFER_MAX_BYTES (AT91_BUFFER_MAX_CONVERSION_BYTES + 8)
-> @@ -295,6 +331,27 @@
->  		.indexed = 1,						\
->  	}
->  
-> +#define AT91_SAMA7G5_CHAN_DIFF(num, num2, addr)				\
-> +	{								\
-> +		.type = IIO_VOLTAGE,					\
-> +		.differential = 1,					\
-> +		.channel = num,						\
-> +		.channel2 = num2,					\
-> +		.address = addr,					\
-> +		.scan_index = num + AT91_SAMA7G5_SINGLE_CHAN_CNT,	\
-> +		.scan_type = {						\
-> +			.sign = 's',					\
-> +			.realbits = 14,					\
-> +			.storagebits = 16,				\
-> +		},							\
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ)|\
-> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +		.datasheet_name = "CH"#num"-CH"#num2,			\
-> +		.indexed = 1,						\
-> +	}
-> +
->  #define AT91_SAMA5D2_CHAN_TOUCH(num, name, mod)				\
->  	{								\
->  		.type = IIO_POSITIONRELATIVE,				\
-> @@ -335,6 +392,8 @@ struct at91_adc_soc_info {
->  	unsigned			startup_time;
->  	unsigned			min_sample_rate;
->  	unsigned			max_sample_rate;
-> +#define AT91_ADC_SAMA7G5(st)		((st)->soc_info.sama7g5)
-> +	bool				sama7g5;
->  };
->  
->  struct at91_adc_trigger {
-> @@ -436,7 +495,7 @@ static const struct at91_adc_trigger at91_adc_trigger_list[] = {
->  	},
->  };
->  
-> -static const struct iio_chan_spec at91_adc_channels[] = {
-> +static const struct iio_chan_spec at91_sama5d2_adc_channels[] = {
->  	AT91_SAMA5D2_CHAN_SINGLE(0, 0x50),
->  	AT91_SAMA5D2_CHAN_SINGLE(1, 0x54),
->  	AT91_SAMA5D2_CHAN_SINGLE(2, 0x58),
-> @@ -461,6 +520,42 @@ static const struct iio_chan_spec at91_adc_channels[] = {
->  	AT91_SAMA5D2_CHAN_PRESSURE(AT91_SAMA5D2_TOUCH_P_CHAN_IDX, "pressure"),
->  };
->  
-> +static const struct iio_chan_spec at91_sama7g5_adc_channels[] = {
-> +	AT91_SAMA5D2_CHAN_SINGLE(0, 0x60),
-> +	AT91_SAMA5D2_CHAN_SINGLE(1, 0x64),
-> +	AT91_SAMA5D2_CHAN_SINGLE(2, 0x68),
-> +	AT91_SAMA5D2_CHAN_SINGLE(3, 0x6c),
-> +	AT91_SAMA5D2_CHAN_SINGLE(4, 0x70),
-> +	AT91_SAMA5D2_CHAN_SINGLE(5, 0x74),
-> +	AT91_SAMA5D2_CHAN_SINGLE(6, 0x78),
-> +	AT91_SAMA5D2_CHAN_SINGLE(7, 0x7c),
-> +	AT91_SAMA5D2_CHAN_SINGLE(8, 0x80),
-> +	AT91_SAMA5D2_CHAN_SINGLE(9, 0x84),
-> +	AT91_SAMA5D2_CHAN_SINGLE(10, 0x88),
-> +	AT91_SAMA5D2_CHAN_SINGLE(11, 0x8c),
-> +	AT91_SAMA5D2_CHAN_SINGLE(12, 0x90),
-> +	AT91_SAMA5D2_CHAN_SINGLE(13, 0x94),
-> +	AT91_SAMA5D2_CHAN_SINGLE(14, 0x98),
-> +	AT91_SAMA5D2_CHAN_SINGLE(15, 0x9c),
-> +	AT91_SAMA7G5_CHAN_DIFF(0, 1, 0x60),
-> +	AT91_SAMA7G5_CHAN_DIFF(2, 3, 0x68),
-> +	AT91_SAMA7G5_CHAN_DIFF(4, 5, 0x70),
-> +	AT91_SAMA7G5_CHAN_DIFF(6, 7, 0x78),
-> +	AT91_SAMA7G5_CHAN_DIFF(8, 9, 0x80),
-> +	AT91_SAMA7G5_CHAN_DIFF(10, 11, 0x88),
-> +	AT91_SAMA7G5_CHAN_DIFF(12, 13, 0x90),
-> +	AT91_SAMA7G5_CHAN_DIFF(14, 15, 0x98),
-> +	IIO_CHAN_SOFT_TIMESTAMP(AT91_SAMA7G5_TIMESTAMP_CHAN_IDX),
-> +};
-> +
-> +static unsigned int at91_adc_max_chan_idx(struct at91_adc_state *st)
-> +{
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		return AT91_SAMA7G5_MAX_CHAN_IDX;
-> +	else
-> +		return AT91_SAMA5D2_MAX_CHAN_IDX;
-> +}
-> +
->  static int at91_adc_chan_xlate(struct iio_dev *indio_dev, int chan)
->  {
->  	int i;
-> @@ -492,6 +587,7 @@ static unsigned int at91_adc_active_scan_mask_to_reg(struct iio_dev *indio_dev)
->  {
->  	u32 mask = 0;
->  	u8 bit;
-> +	struct at91_adc_state *st = iio_priv(indio_dev);
->  
->  	for_each_set_bit(bit, indio_dev->active_scan_mask,
->  			 indio_dev->num_channels) {
-> @@ -500,13 +596,78 @@ static unsigned int at91_adc_active_scan_mask_to_reg(struct iio_dev *indio_dev)
->  		mask |= BIT(chan->channel);
->  	}
->  
-> -	return mask & GENMASK(11, 0);
-> +	return mask & GENMASK(at91_adc_max_chan_idx(st), 0);
-> +}
-> +
-> +static void at91_adc_ccr(struct at91_adc_state *st,
-> +			 struct iio_chan_spec const *chan)
-> +{
-> +	u32 ccr, cur_ccr;
-> +
-> +	ccr = (BIT(chan->channel) | BIT(chan->channel2));
-> +
-> +	if (AT91_ADC_SAMA7G5(st)) {
-> +		cur_ccr = at91_adc_readl(st, AT91_SAMA7G5_CCR);
-> +		ccr <<= AT91_SAMA7G5_COR_DIFF_OFFSET;
-> +		if (chan->differential)
-> +			at91_adc_writel(st, AT91_SAMA7G5_CCR, cur_ccr | ccr);
-> +		else
-> +			at91_adc_writel(st, AT91_SAMA7G5_CCR, cur_ccr & ~ccr);
-> +	} else {
-> +		cur_ccr = at91_adc_readl(st, AT91_SAMA5D2_COR);
-> +		ccr <<= AT91_SAMA5D2_COR_DIFF_OFFSET;
-> +		if (chan->differential)
-> +			at91_adc_writel(st, AT91_SAMA5D2_COR, cur_ccr | ccr);
-> +		else
-> +			at91_adc_writel(st, AT91_SAMA5D2_COR, cur_ccr & ~ccr);
-> +	}
-> +}
-> +
-> +static void at91_adc_irq_status(struct at91_adc_state *st, u32 *status,
-> +				u32 *eoc)
-> +{
-> +	if (AT91_ADC_SAMA7G5(st)) {
-> +		*status = at91_adc_readl(st, AT91_SAMA5D2_ISR);
-> +		*eoc = at91_adc_readl(st, AT91_SAMA7G5_EOC_ISR);
-> +	} else {
-> +		*status = *eoc = at91_adc_readl(st, AT91_SAMA5D2_ISR);
-> +	}
-> +}
-> +
-> +static void at91_adc_irq_mask(struct at91_adc_state *st, u32 *status, u32 *eoc)
-> +{
-> +	if (AT91_ADC_SAMA7G5(st)) {
-> +		*status = at91_adc_readl(st, AT91_SAMA5D2_IMR);
-> +		*eoc = at91_adc_readl(st, AT91_SAMA7G5_EOC_IMR);
-> +	} else {
-> +		*status = *eoc = at91_adc_readl(st, AT91_SAMA5D2_IMR);
-> +	}
-> +}
-> +
-> +static void at91_adc_eoc_dis(struct at91_adc_state *st, unsigned int channel)
-> +{
-> +	if (!AT91_ADC_SAMA7G5(st))
-> +		at91_adc_writel(st, AT91_SAMA5D2_IDR, BIT(channel));
-> +	/* for SAMA7G5, Errata recommends not writing to EOC_IDR register */
-> +}
-> +
-> +static void at91_adc_eoc_ena(struct at91_adc_state *st, unsigned int channel)
-> +{
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		at91_adc_writel(st, AT91_SAMA7G5_EOC_IER, BIT(channel));
-> +	else
-> +		at91_adc_writel(st, AT91_SAMA5D2_IER, BIT(channel));
->  }
->  
->  static void at91_adc_config_emr(struct at91_adc_state *st)
->  {
->  	/* configure the extended mode register */
-> -	unsigned int emr = at91_adc_readl(st, AT91_SAMA5D2_EMR);
-> +	unsigned int emr;
-> +
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		emr = at91_adc_readl(st, AT91_SAMA7G5_EMR);
-> +	else
-> +		emr = at91_adc_readl(st, AT91_SAMA5D2_EMR);
->  
->  	/* select oversampling per single trigger event */
->  	emr |= AT91_SAMA5D2_EMR_ASTE(1);
-> @@ -530,7 +691,10 @@ static void at91_adc_config_emr(struct at91_adc_state *st)
->  		break;
->  	}
->  
-> -	at91_adc_writel(st, AT91_SAMA5D2_EMR, emr);
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		at91_adc_writel(st, AT91_SAMA7G5_EMR, emr);
-> +	else
-> +		at91_adc_writel(st, AT91_SAMA5D2_EMR, emr);
->  }
->  
->  static int at91_adc_adjust_val_osr(struct at91_adc_state *st, int *val)
-> @@ -726,7 +890,12 @@ static int at91_adc_configure_trigger(struct iio_trigger *trig, bool state)
->  {
->  	struct iio_dev *indio = iio_trigger_get_drvdata(trig);
->  	struct at91_adc_state *st = iio_priv(indio);
-> -	u32 status = at91_adc_readl(st, AT91_SAMA5D2_TRGR);
-> +	u32 status;
-> +
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		status = at91_adc_readl(st, AT91_SAMA7G5_TRGR);
-> +	else
-> +		status = at91_adc_readl(st, AT91_SAMA5D2_TRGR);
->  
->  	/* clear TRGMOD */
->  	status &= ~AT91_SAMA5D2_TRGR_TRGMOD_MASK;
-> @@ -735,7 +904,10 @@ static int at91_adc_configure_trigger(struct iio_trigger *trig, bool state)
->  		status |= st->selected_trig->trgmod_value;
->  
->  	/* set/unset hw trigger */
-> -	at91_adc_writel(st, AT91_SAMA5D2_TRGR, status);
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		at91_adc_writel(st, AT91_SAMA7G5_TRGR, status);
-> +	else
-> +		at91_adc_writel(st, AT91_SAMA5D2_TRGR, status);
->  
->  	return 0;
->  }
-> @@ -877,7 +1049,7 @@ static bool at91_adc_current_chan_is_touch(struct iio_dev *indio_dev)
->  
->  	return !!bitmap_subset(indio_dev->active_scan_mask,
->  			       &st->touch_st.channels_bitmask,
-> -			       AT91_SAMA5D2_MAX_CHAN_IDX + 1);
-> +			       at91_adc_max_chan_idx(st) + 1);
->  }
->  
->  static int at91_adc_buffer_prepare(struct iio_dev *indio_dev)
-> @@ -905,7 +1077,6 @@ static int at91_adc_buffer_prepare(struct iio_dev *indio_dev)
->  			 indio_dev->num_channels) {
->  		struct iio_chan_spec const *chan =
->  					at91_adc_chan_get(indio_dev, bit);
-> -		u32 cor;
->  
->  		if (!chan)
->  			continue;
-> @@ -914,16 +1085,7 @@ static int at91_adc_buffer_prepare(struct iio_dev *indio_dev)
->  		    chan->type == IIO_PRESSURE)
->  			continue;
->  
-> -		cor = at91_adc_readl(st, AT91_SAMA5D2_COR);
-> -
-> -		if (chan->differential)
-> -			cor |= (BIT(chan->channel) | BIT(chan->channel2)) <<
-> -				AT91_SAMA5D2_COR_DIFF_OFFSET;
-> -		else
-> -			cor &= ~(BIT(chan->channel) <<
-> -			       AT91_SAMA5D2_COR_DIFF_OFFSET);
-> -
-> -		at91_adc_writel(st, AT91_SAMA5D2_COR, cor);
-> +		at91_adc_ccr(st, chan);
->  
->  		at91_adc_writel(st, AT91_SAMA5D2_CHER, BIT(chan->channel));
->  	}
-> @@ -975,7 +1137,10 @@ static int at91_adc_buffer_postdisable(struct iio_dev *indio_dev)
->  		at91_adc_writel(st, AT91_SAMA5D2_IDR, AT91_SAMA5D2_IER_DRDY);
->  
->  	/* read overflow register to clear possible overflow status */
-> -	at91_adc_readl(st, AT91_SAMA5D2_OVER);
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		at91_adc_readl(st, AT91_SAMA7G5_OVER);
-> +	else
-> +		at91_adc_readl(st, AT91_SAMA5D2_OVER);
->  
->  	/* if we are using DMA we must clear registers and end DMA */
->  	if (st->dma_st.dma_chan)
-> @@ -1018,13 +1183,15 @@ static void at91_adc_trigger_handler_nodma(struct iio_dev *indio_dev,
->  	u8 bit;
->  	u32 mask = at91_adc_active_scan_mask_to_reg(indio_dev);
->  	unsigned int timeout = 50;
-> +	u32 status, imr, eoc = 0, eoc_imr;
->  
->  	/*
->  	 * Check if the conversion is ready. If not, wait a little bit, and
->  	 * in case of timeout exit with an error.
->  	 */
-> -	while ((at91_adc_readl(st, AT91_SAMA5D2_ISR) & mask) != mask &&
-> -	       timeout) {
-> +	while (((eoc & mask) != mask) && timeout) {
-> +		at91_adc_irq_status(st, &status, &eoc);
-> +		at91_adc_irq_mask(st, &imr, &eoc_imr);
->  		usleep_range(50, 100);
->  		timeout--;
->  	}
-> @@ -1195,7 +1362,7 @@ static void at91_adc_touch_data_handler(struct iio_dev *indio_dev)
->  	int i = 0;
->  
->  	for_each_set_bit(bit, indio_dev->active_scan_mask,
-> -			 AT91_SAMA5D2_MAX_CHAN_IDX + 1) {
-> +			 at91_adc_max_chan_idx(st) + 1) {
->  		struct iio_chan_spec const *chan =
->  					 at91_adc_chan_get(indio_dev, bit);
->  
-> @@ -1262,12 +1429,14 @@ static irqreturn_t at91_adc_interrupt(int irq, void *private)
->  {
->  	struct iio_dev *indio = private;
->  	struct at91_adc_state *st = iio_priv(indio);
-> -	u32 status = at91_adc_readl(st, AT91_SAMA5D2_ISR);
-> -	u32 imr = at91_adc_readl(st, AT91_SAMA5D2_IMR);
-> +	u32 status, eoc, imr, eoc_imr;
->  	u32 rdy_mask = AT91_SAMA5D2_IER_XRDY | AT91_SAMA5D2_IER_YRDY |
->  			AT91_SAMA5D2_IER_PRDY;
->  
-> -	if (!(status & imr))
-> +	at91_adc_irq_status(st, &status, &eoc);
-> +	at91_adc_irq_mask(st, &imr, &eoc_imr);
-> +
-> +	if (!(status & imr) && !(eoc & eoc_imr))
->  		return IRQ_NONE;
->  	if (status & AT91_SAMA5D2_IER_PEN) {
->  		/* pen detected IRQ */
-> @@ -1309,7 +1478,6 @@ static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
->  				  struct iio_chan_spec const *chan, int *val)
->  {
->  	struct at91_adc_state *st = iio_priv(indio_dev);
-> -	u32 cor = 0;
->  	u16 tmp_val;
->  	int ret;
->  
-> @@ -1355,13 +1523,9 @@ static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
->  
->  	st->chan = chan;
->  
-> -	if (chan->differential)
-> -		cor = (BIT(chan->channel) | BIT(chan->channel2)) <<
-> -		      AT91_SAMA5D2_COR_DIFF_OFFSET;
-> -
-> -	at91_adc_writel(st, AT91_SAMA5D2_COR, cor);
-> +	at91_adc_ccr(st, chan);
->  	at91_adc_writel(st, AT91_SAMA5D2_CHER, BIT(chan->channel));
-> -	at91_adc_writel(st, AT91_SAMA5D2_IER, BIT(chan->channel));
-> +	at91_adc_eoc_ena(st, chan->channel);
->  	at91_adc_writel(st, AT91_SAMA5D2_CR, AT91_SAMA5D2_CR_START);
->  
->  	ret = wait_event_interruptible_timeout(st->wq_data_available,
-> @@ -1378,7 +1542,7 @@ static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
->  		st->conversion_done = false;
->  	}
->  
-> -	at91_adc_writel(st, AT91_SAMA5D2_IDR, BIT(chan->channel));
-> +	at91_adc_eoc_dis(st, st->chan->channel);
->  	at91_adc_writel(st, AT91_SAMA5D2_CHDR, BIT(chan->channel));
->  
->  	/* Needed to ACK the DRDY interruption */
-> @@ -1577,14 +1741,14 @@ static int at91_adc_update_scan_mode(struct iio_dev *indio_dev,
->  	struct at91_adc_state *st = iio_priv(indio_dev);
->  
->  	if (bitmap_subset(scan_mask, &st->touch_st.channels_bitmask,
-> -			  AT91_SAMA5D2_MAX_CHAN_IDX + 1))
-> +			  at91_adc_max_chan_idx(st) + 1))
->  		return 0;
->  	/*
->  	 * if the new bitmap is a combination of touchscreen and regular
->  	 * channels, then we are not fine
->  	 */
->  	if (bitmap_intersects(&st->touch_st.channels_bitmask, scan_mask,
-> -			      AT91_SAMA5D2_MAX_CHAN_IDX + 1))
-> +			      at91_adc_max_chan_idx(st) + 1))
->  		return -EINVAL;
->  	return 0;
->  }
-> @@ -1594,6 +1758,8 @@ static void at91_adc_hw_init(struct iio_dev *indio_dev)
->  	struct at91_adc_state *st = iio_priv(indio_dev);
->  
->  	at91_adc_writel(st, AT91_SAMA5D2_CR, AT91_SAMA5D2_CR_SWRST);
-> +	if (AT91_ADC_SAMA7G5(st))
-> +		at91_adc_writel(st, AT91_SAMA7G5_EOC_IDR, 0xffffffff);
->  	at91_adc_writel(st, AT91_SAMA5D2_IDR, 0xffffffff);
->  	/*
->  	 * Transfer field must be set to 2 according to the datasheet and
-> @@ -1718,18 +1884,27 @@ static int at91_adc_probe(struct platform_device *pdev)
->  	indio_dev->name = dev_name(&pdev->dev);
->  	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
->  	indio_dev->info = &at91_adc_info;
-> -	indio_dev->channels = at91_adc_channels;
-> -	indio_dev->num_channels = ARRAY_SIZE(at91_adc_channels);
->  
->  	st = iio_priv(indio_dev);
->  	st->indio_dev = indio_dev;
->  
-> -	bitmap_set(&st->touch_st.channels_bitmask,
-> -		   AT91_SAMA5D2_TOUCH_X_CHAN_IDX, 1);
-> -	bitmap_set(&st->touch_st.channels_bitmask,
-> -		   AT91_SAMA5D2_TOUCH_Y_CHAN_IDX, 1);
-> -	bitmap_set(&st->touch_st.channels_bitmask,
-> -		   AT91_SAMA5D2_TOUCH_P_CHAN_IDX, 1);
-> +	st->soc_info.sama7g5 = of_device_is_compatible(pdev->dev.of_node,
-> +						       "microchip,sama7g5-adc");
+[=C2=A0=C2=A0 15.553831] qcom-q6v5-mss 4080000.remoteproc: fatal error rece=
+ived:=20
+err_qdi.c:450:[]:EF:wlan_process:1:halphy_caldb.c:2822:Assertion 0 failed
 
-Better to use match_data to get an enum value which is used to index
-into a table of support part description structures.  Each of those
-structures has all the registers etc + channel specs and callbacks
-where needed for more complex handling.
+Incidentally, I've been trying to bring up an SM8150 device and am=20
+encountering wlan firmware crashes even with diag-router, adding the=20
+above clocks there doesn't help either on my device:
 
-Other advantage is you can introduce the structures in a precursor patch with
-just one entry for existing behaviour.  The new device support is then added
-in a second patch.  All we need to do then is check first patch is a noop
-and that second much shorter patch makes sense.
+[=C2=A0=C2=A0 44.367766] qcom_q6v5_pas 4080000.remoteproc: fatal error rece=
+ived:=20
+err_qdi.c:1024:EX:wlan_process:0x1:WLAN RT:0x1076:PC=3D0xb0008e20
 
-> +
-> +	if (AT91_ADC_SAMA7G5(st)) {
-> +		indio_dev->channels = at91_sama7g5_adc_channels;
-> +		indio_dev->num_channels = ARRAY_SIZE(at91_sama7g5_adc_channels);
-> +	} else {
-> +		indio_dev->channels = at91_sama5d2_adc_channels;
-> +		indio_dev->num_channels = ARRAY_SIZE(at91_sama5d2_adc_channels);
-> +
-> +		bitmap_set(&st->touch_st.channels_bitmask,
-> +			   AT91_SAMA5D2_TOUCH_X_CHAN_IDX, 1);
-> +		bitmap_set(&st->touch_st.channels_bitmask,
-> +			   AT91_SAMA5D2_TOUCH_Y_CHAN_IDX, 1);
-> +		bitmap_set(&st->touch_st.channels_bitmask,
-> +			   AT91_SAMA5D2_TOUCH_P_CHAN_IDX, 1);
-> +	}
->  
->  	st->oversampling_ratio = AT91_OSR_1SAMPLES;
->  
-> @@ -1853,9 +2028,12 @@ static int at91_adc_probe(struct platform_device *pdev)
->  		dev_info(&pdev->dev, "setting up trigger as %s\n",
->  			 st->selected_trig->name);
->  
-> -	dev_info(&pdev->dev, "version: %x\n",
-> -		 readl_relaxed(st->base + AT91_SAMA5D2_VERSION));
-> -
-> +	if (AT91_ADC_SAMA7G5(st))
+Thanks for the review.
 
-We may be better off with a look up table of all the registers
-(+ if needed some callback functions) rather than a whole bunch of
-if statements.
+Regards,
 
-You then just assign the right 'part number specific' structure
-once in probe.
+Caleb
 
-> +		dev_info(&pdev->dev, "version: %x\n",
-> +			 at91_adc_readl(st, AT91_SAMA7G5_VERSION));
-> +	else
-> +		dev_info(&pdev->dev, "version: %x\n",
-> +			 at91_adc_readl(st, AT91_SAMA5D2_VERSION));
->  	return 0;
->  
->  dma_disable:
-> @@ -1957,6 +2135,8 @@ static SIMPLE_DEV_PM_OPS(at91_adc_pm_ops, at91_adc_suspend, at91_adc_resume);
->  static const struct of_device_id at91_adc_dt_match[] = {
->  	{
->  		.compatible = "atmel,sama5d2-adc",
-> +	}, {
-> +		.compatible = "microchip,sama7g5-adc",
->  	}, {
->  		/* sentinel */
->  	}
-> @@ -1967,13 +2147,14 @@ static struct platform_driver at91_adc_driver = {
->  	.probe = at91_adc_probe,
->  	.remove = at91_adc_remove,
->  	.driver = {
-> -		.name = "at91-sama5d2_adc",
-> +		.name = "at91-sama5d2-sama7g5_adc",
+>
+>
+> I don't know why this was required, or if it's just working around
+> some other issue we're having.
+>
+> Regards,
+> Bjorn
+>
+>> +=09vdd-0.8-cx-mx-supply =3D <&vreg_l5a_0p8>;
+>> +=09vdd-1.8-xo-supply =3D <&vreg_l7a_1p8>;
+>> +=09vdd-1.3-rfa-supply =3D <&vreg_l17a_1p3>;
+>> +=09vdd-3.3-ch0-supply =3D <&vreg_l25a_3p3>;
+>> +};
+>> --
+>> 2.29.2
+>>
+>>
 
-Please keep the driver name the same. It's common to have a name of one
-random part a driver supports used even if there are lots of others.
-This (or wild cards) never scales as more parts are added to a driver.
-
->  		.of_match_table = at91_adc_dt_match,
->  		.pm = &at91_adc_pm_ops,
->  	},
->  };
->  module_platform_driver(at91_adc_driver)
->  
-> -MODULE_AUTHOR("Ludovic Desroches <ludovic.desroches@atmel.com>");
-> -MODULE_DESCRIPTION("Atmel AT91 SAMA5D2 ADC");
-> +MODULE_AUTHOR("Ludovic Desroches <ludovic.desroches@microchip.com>");
-> +MODULE_AUTHOR("Eugen Hristev <eugen.hristev@microchip.com>");
-> +MODULE_DESCRIPTION("Microchip AT91 SAMA5D2/SAMA7G5 ADC");
->  MODULE_LICENSE("GPL v2");
 
