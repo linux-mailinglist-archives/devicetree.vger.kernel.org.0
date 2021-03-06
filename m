@@ -2,90 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 433E532FCF8
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 21:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 063C532FCFD
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 21:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbhCFUA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 15:00:26 -0500
-Received: from mail-pg1-f181.google.com ([209.85.215.181]:46523 "EHLO
-        mail-pg1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbhCFT77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 14:59:59 -0500
-Received: by mail-pg1-f181.google.com with SMTP id h4so3709432pgf.13;
-        Sat, 06 Mar 2021 11:59:59 -0800 (PST)
+        id S231177AbhCFUDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 15:03:06 -0500
+Received: from mail-pj1-f47.google.com ([209.85.216.47]:54885 "EHLO
+        mail-pj1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230390AbhCFUCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 15:02:35 -0500
+Received: by mail-pj1-f47.google.com with SMTP id i14so1011925pjz.4;
+        Sat, 06 Mar 2021 12:02:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=erxLaPpHTstlUNHepYANnRLE/oN1GTdnKJPQlCNXi4o=;
-        b=H00oDUlbNL2Kip5Yz9LPHrqqv/fhbr+3GNLrd3uL2ilIeVt1WNJbiuaNYrSAqPdduH
-         ZVvu+JDPuMPuB287VU7MAww9QUsIZrVcVy9tXUHdLItEXtkLo5u/QRBDJ1wiAly7kKse
-         iIWrJ9dvVuvQe1xNsD4EvZm/WFuAPaHpbOpTR9eVYVdgxoX44XWJukdneObD1oBgdcu5
-         ICENOO8ZX3NlChYol6wqq4BlKx3FOwFF52wk0UZC/eMrQBvZ8iah3upckSdfVAT4VA3T
-         ZPA2hHqkssnwpZZ/VBK/n49UW5VWAv+ovDDKb3nHo76blUD9ZrkSuWWC8hsBdz7eVGK0
-         gRXA==
-X-Gm-Message-State: AOAM530bqNjjhJCahiSv5D6zB1O0olYz/LS6jfJbUZUcccgv7r7OyLtT
-        ZnnJTkLHIXhQ3Wr4zM+3MA==
-X-Google-Smtp-Source: ABdhPJz3tgjVJfWmKgbca9UKRH91w/uITuWlBZmCUxlAapxTJ2vbbhF42rvUio4LeFbH5FQ87AzDoQ==
-X-Received: by 2002:a63:531e:: with SMTP id h30mr14203467pgb.158.1615060798907;
-        Sat, 06 Mar 2021 11:59:58 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=cbbHIxEsNw57fJN13JTZ3OV6pXh3aK0TMuJ9YIkxYTg=;
+        b=FQELXK/SjmTen/RkJvfk6BP3GKKmiCVyIR9Aslr/iTzL9SX9U1G8S13uqaDE9UN/td
+         waBQsITVriHFdagi+8lV2Ge3w2P5ByIzwyiAZPe8lm08FNgBN7wjMS6dWpfQL6K6MpQx
+         5hicOBrSi8ZkkU60VU5UN8OqV5pupuwQEJQiIId6i9nVn3FnHDSx2OEJidUO9oNC2WB+
+         mDk6s3smGOjBV+hOAKtbFwItXHPXHlkBMFPi3URiGPPr0/yXQ5mrnEHnZ/K9juH4IX/3
+         fl5g5fQQL9wkfYfEJD4QeR6PtXWVLPB7f/wZDlPnS8L+YNlUMqtAP6PKGuN/ZaRhr9YM
+         xgkw==
+X-Gm-Message-State: AOAM532u1yRDlZb98C6zC5WrcqqZmhxWYw8ozxOtJplzZYKkgMt5T51X
+        u06WecnPyi3vVsyJbpR29A==
+X-Google-Smtp-Source: ABdhPJzGIMsI/Q88OhPbDheIL7OjSGvCNegORha0U/xeVNFIQ56hnLttSULrFk+QHQex2UC1z3oyfQ==
+X-Received: by 2002:a17:90b:228c:: with SMTP id kx12mr14994095pjb.7.1615060954653;
+        Sat, 06 Mar 2021 12:02:34 -0800 (PST)
 Received: from robh.at.kernel.org ([172.58.27.98])
-        by smtp.gmail.com with ESMTPSA id c12sm5944246pjq.48.2021.03.06.11.59.55
+        by smtp.gmail.com with ESMTPSA id r2sm5789597pgv.50.2021.03.06.12.02.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Mar 2021 11:59:58 -0800 (PST)
-Received: (nullmailer pid 1124050 invoked by uid 1000);
-        Sat, 06 Mar 2021 19:59:53 -0000
-Date:   Sat, 6 Mar 2021 11:59:53 -0800
+        Sat, 06 Mar 2021 12:02:33 -0800 (PST)
+Received: (nullmailer pid 1127562 invoked by uid 1000);
+        Sat, 06 Mar 2021 20:02:27 -0000
+Date:   Sat, 6 Mar 2021 12:02:27 -0800
 From:   Rob Herring <robh@kernel.org>
-To:     Joe Sandom <joe.g.sandom@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Joe Sandom <joe.sandom@outlook.com>, jic23@kernel.org
-Subject: Re: [RESEND][PATCH v4 2/2] Added AMS tsl2591 device tree binding
-Message-ID: <20210306195953.GA1123991@robh.at.kernel.org>
-References: <20210222212313.29319-1-joe.g.sandom@gmail.com>
- <20210222212313.29319-2-joe.g.sandom@gmail.com>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jonas.gorski@gmail.com, f.fainelli@gmail.com,
+        linux-usb@vger.kernel.org, Alan Stern <stern@rowland.harvard.edu>,
+        Tony Prisk <linux@prisktech.co.nz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: usb: generic-ehci: document
+ spurious-oc flag
+Message-ID: <20210306200227.GA1127510@robh.at.kernel.org>
+References: <20210223155005.21712-1-noltari@gmail.com>
+ <20210223174455.1378-1-noltari@gmail.com>
+ <20210223174455.1378-3-noltari@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210222212313.29319-2-joe.g.sandom@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210223174455.1378-3-noltari@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Feb 2021 21:23:13 +0000, Joe Sandom wrote:
-> Device tree binding for AMS/TAOS tsl2591 ambient light sensor.
+On Tue, 23 Feb 2021 18:44:54 +0100, Álvaro Fernández Rojas wrote:
+> Over-current reporting isn't supported on some platforms such as bcm63xx.
+> These devices will incorrectly report over-current if this flag isn't properly
+> activated.
 > 
-> This driver supports configuration via device tree and sysfs.
-> Supported channels for raw infrared light intensity,
-> raw combined light intensity and illuminance in lux.
-> The driver additionally supports iio events on lower and
-> upper thresholds.
-> 
-> This is a very-high sensitivity light-to-digital converter that
-> transforms light intensity into a digital signal.
-> 
-> Datasheet Available at: https://ams.com/tsl25911
-> 
-> Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
+> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
 > ---
-> Changes in v4:
-> - Corrected id field to include vendor name in prefix
+>  v3: no changes.
+>  v2: change flag name and improve documentation as suggested by Alan Stern.
 > 
-> Notes:
-> - Previously incorrectly included binding in same patch as driver.
->   This was pointed out by the maintainer and has now been changed to
->   a patch series. Sorry for the confusion!
-> 
-> Reason for re-send;
-> - Maintainer email was outlook address, changed to gmail address as this
->   is the email the patch is being sent from.
-> 
->  .../bindings/iio/light/amstaos,tsl2591.yaml   | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+>  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
