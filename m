@@ -2,176 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C881032F936
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 10:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75C832F962
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 11:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhCFJyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 04:54:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbhCFJyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 04:54:24 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC636C06175F;
-        Sat,  6 Mar 2021 01:54:23 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id b8so4293769oti.7;
-        Sat, 06 Mar 2021 01:54:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=o3VJe+ZuS7Fy+8jhh+o3TzrnaFKjAbnnuNEMdGEuQ4E=;
-        b=QuJn9ttAkQRO7rHC8UcuVjfI3su2spVFllMTP309N67RH4n1ImxdQ9iveaaMtGX5qd
-         02bdzY929BsWffTrw8VuFhuY7uGMZZHubF4rBGfaiU+18Mdc7LGC+n2AQ91M2UqHw/4a
-         YWudRWPV9tVmocf6M8vJr9G3dNP4QuGJtJU4y7JFoc0fN4d8qQfXVYPXwBDlIiu2vfuy
-         KgDt55Ze+3Twr87NRaFinoFXHBwZL/PBKNDYcrgf3BvjhSSceF1PQCbai4f/DDeqzxWI
-         +HobtGisW7Kizuk5oJqoe6QPJLAaJrtBC0yMnMKsK8ibezGst8Gn5KfUlZsSvX+NhzFq
-         b2xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=o3VJe+ZuS7Fy+8jhh+o3TzrnaFKjAbnnuNEMdGEuQ4E=;
-        b=ex0Nj522jzKYa469SbSbpHvyaveTSh6eD4Je6RPtQgVkSD1mumzcT8s0CXec00nEcD
-         axpTA9dqBvWII/3hKmtAXVf/sdRmlUeIgu6IelcWni0Og0hh2+RwrUcQ7OVHKG9iISxs
-         cPPvcf615gDBxZNNxAFQXsTILS0105r2SYhfergTIlx5klkizPvutcnVEyDHNipT9Q5E
-         iu0ViV8EgRvXtS52d5dSsVlwW8/qIh9Xw/3vaFtsX9+evnUzPJ0pRbbY7jHB7Q7+y+AC
-         UqDUUPtuG29Hf5AV0qN6gSUJRwWGO0GvCceQ32eoJjf/Bp90y6ToTWB5zzQH/Aff5Pdc
-         2kdg==
-X-Gm-Message-State: AOAM531S8Gfo3fsXhTC6C1iPv31NPoJEy+D3odANcMbwWLgNRvECrA4+
-        gcLL7Su7BEsCg7KtUQe4FGXQrK91lRCjQj53hnu78fLlpQmWWA==
-X-Google-Smtp-Source: ABdhPJybzMi6Zw1D5o/q36FweHJTgQsEC4CUoErnRfmyhvEIJiB7hgtCgLLtx8z+JX/kKaXVdimIgJXII5x018M6qXQ=
-X-Received: by 2002:a9d:6e01:: with SMTP id e1mr11415112otr.74.1615024462779;
- Sat, 06 Mar 2021 01:54:22 -0800 (PST)
+        id S229672AbhCFKeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 05:34:46 -0500
+Received: from relay05.th.seeweb.it ([5.144.164.166]:34785 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229744AbhCFKeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 05:34:24 -0500
+Received: from [192.168.1.101] (abac94.neoplus.adsl.tpnet.pl [83.6.166.94])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id C2DFC3E9B6;
+        Sat,  6 Mar 2021 11:34:13 +0100 (CET)
+Subject: Re: [PATCH] arm64: dts: qcom: Introduce SM8350 HDK
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210306020905.1173790-1-bjorn.andersson@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <83273ce6-448d-a969-e9bf-97c11d57a38b@somainline.org>
+Date:   Sat, 6 Mar 2021 11:34:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-References: <20210218070709.11932-1-sergio.paracuellos@gmail.com>
- <20210218070709.11932-3-sergio.paracuellos@gmail.com> <20210305224756.GA777984@robh.at.kernel.org>
- <CAMhs-H_RoA-JvT9Q1K+8tEA1vqS6HWuE-D4=kWVsoOWTwjTGbw@mail.gmail.com>
-In-Reply-To: <CAMhs-H_RoA-JvT9Q1K+8tEA1vqS6HWuE-D4=kWVsoOWTwjTGbw@mail.gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sat, 6 Mar 2021 10:54:11 +0100
-Message-ID: <CAMhs-H9noK84G_PgLdL1kTS9YuEa=bKojrOojYTBtOeKy+L7RA@mail.gmail.com>
-Subject: Re: [PATCH v9 2/6] dt: bindings: add mt7621-clk device tree binding documentation
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, John Crispin <john@phrozen.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        NeilBrown <neil@brown.name>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210306020905.1173790-1-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi again,
+Hi!
 
-On Sat, Mar 6, 2021 at 8:12 AM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> Hi Rob,
->
-> On Fri, Mar 5, 2021 at 11:47 PM Rob Herring <robh@kernel.org> wrote:
-> [snip]
-> > > +
-> > > +  ralink,sysctl:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description:
-> > > +      phandle of syscon used to control system registers
-> > > +
-> > > +  ralink,memctl:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description:
-> > > +      phandle of syscon used to control memory registers
-> >
-> > I assume one of these phandles are the main registers for the clocks?
-> > Make this a child node and drop that phandle.
->
-> The 'ralink,sysctl' phandle is to read bootstrap register to be able
-> to derive xtal and a clk gate register for the peripherals.
-> The 'ralink,memctl' phandle is to read the cpu clock frequency from
-> the memory controller.
->
-> So there is not "main registers". I already put this as a child node
-> in v4 and I was told to get rid of child nodes. I need this as a
-> regmap to other DT node registers (sysctl, and memctl) to be able to
-> use the driver without specific architecture operations and properly
-> enable for COMPILE_TEST without dirty Makefile arch flags. Both sysctl
-> and memctl has no other child nodes, and I think that's why I was told
-> to avoid child nodes at the end. I explained here [0] current sysctl
-> and memctl in the mt7621 device tree and my view of the need for this
-> two syscons:
->
-> [0]: https://lkml.org/lkml/2021/1/2/9
->
-> So to avoid to send again "a previous version" on this patch, please
-> guide me in the correct thing to do. Stephen, Rob, I will be really
-> happy with your help :)
 
-Since there are no other child nodes for this sysc, should merge clock
-properties
-with this node in the following way a valid approach:
+> +		vreg_l5b_0p88: ldo5 {
+> +			regulator-name = "vreg_l5b_0p88";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <888000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
 
- sysc: sysc@0 {
-     compatible = "mediatek,mt7621-sysc", "syscon";
-     reg = <0x0 0x100>;
-     #clock-cells = <1>;
-     ralink,memctl = <&memc>;
-     clock-output-names = "xtal", "cpu", "bus",
-                                        "50m", "125m", "150m",
-                                        "250m", "270m";
-};
+This one needs `regulator-allow-set-load` since you specify current settings under UFS nodes, we've seen it not working at all without this property.
 
-Consumer clock:
 
-node: node@0 {
-  ...
-  clocks = <&sysc MT7621_CLK_WHATEVER>;
- ...
-};
+> +		vreg_l6b_1p2: ldo6 {
+> +			regulator-name = "vreg_l6b_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1208000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l7b_2p96: ldo7 {
+> +			regulator-name = "vreg_l7b_2p96";
+> +			regulator-min-microvolt = <2504000>;
+> +			regulator-max-microvolt = <2504000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l9b_1p2: ldo9 {
+> +			regulator-name = "vreg_l9b_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
 
-If that is the case... and since 'sysc' is used as system control
-registers for all the rest of the world, where should be the yaml file
-with bindings placed?
+Ditto for all three
 
-Thanks in advance again for your help.
 
-Best regards,
-    Sergio Paracuellos
+> +&usb_1_dwc3 {
+> +	/* TODO: Define USB-C connector properly */
 
->
-> Best regards,
->     Sergio Paracuellos
-> >
-> > > +
-> > > +  clock-output-names:
-> > > +    maxItems: 8
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - '#clock-cells'
-> > > +  - ralink,sysctl
-> > > +  - ralink,memctl
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/mt7621-clk.h>
-> > > +
-> > > +    pll {
-> > > +      compatible = "mediatek,mt7621-clk";
-> > > +      #clock-cells = <1>;
-> > > +      ralink,sysctl = <&sysc>;
-> > > +      ralink,memctl = <&memc>;
-> > > +      clock-output-names = "xtal", "cpu", "bus",
-> > > +                           "50m", "125m", "150m",
-> > > +                           "250m", "270m";
-> > > +    };
-> > > --
-> > > 2.25.1
-> > >
+Sidenote: doesn't the new pm8150x (I think?) USB-C driver work on pm8350x?
+
+
+> +/* PINCTRL - additions to nodes defined in sdm845.dtsi */
+
+sm8350
+
+
+Aside from these minor comments,
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+
+Konrad
+
