@@ -2,106 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E8E032F77F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 02:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9351132F795
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 02:54:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbhCFB26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Mar 2021 20:28:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
+        id S229616AbhCFBxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Mar 2021 20:53:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbhCFB2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 20:28:40 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4A8C061761
-        for <devicetree@vger.kernel.org>; Fri,  5 Mar 2021 17:28:39 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id t9so172852pjl.5
-        for <devicetree@vger.kernel.org>; Fri, 05 Mar 2021 17:28:39 -0800 (PST)
+        with ESMTP id S229493AbhCFBxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Mar 2021 20:53:00 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5015C06175F;
+        Fri,  5 Mar 2021 17:53:00 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id u20so4016318iot.9;
+        Fri, 05 Mar 2021 17:53:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=aZy+1fA0uSLl+EmuYI0FBIw1FF/OyCRyBw9pat+WqG4=;
-        b=UsioOl5UZABrZVp7ywcWHZJKSWUcTQZYCik30gFZ54bGA471Er1UdDaH20aXQVCGT7
-         lmpYt9HatKmDPs4/te1tXNY1fY1I1zb0uf3lB1q1qouxaVP3FJyHbdq2u2CVbOxLWypo
-         wvEuRRIr1Qm4LZ1VWuSNyuMdPYSfk+mur/EKAR8QogUrunm5V1lAVBOFHWtV+8M60Xpp
-         hRUzM7jJ9S1f5OsEszpn99MQrrCFT3fcU7miEqXj9LpLSP+vIY7oxOq6qpL6cAgyF4pt
-         6+SeIJIj0wmgJ1LrMAC+MbKhEr5M9qTH7yZ8TSzazJiUsVnN+JvpSQTQsBbFkK2jo5lL
-         Xdjw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DKCLycYpc3HKoJmuKPBdeHcQJ9gEh+09JrAX4tJjuOo=;
+        b=cHA5c3x+i5YpdF7NuMdeZOez2mxXfShWziiUFDPqrxH2zSdnXomtkyZWz5cthIvO22
+         s7s9mWe44nPB0jvEnJPAMuDjQENwQJocVHeHIL44ea35Kr/6KChALv9HMbGZrHYVJM3P
+         tJh4N6yQziZs+KFrQYAn7UUJNQoXCcgQu2qXKsiLHnepo6ZdkoAKdkPe0mlHLx9NE0o7
+         Ls2jWUArF/X1tsGCL23QKaDXAtbRQUGrpFKAmKVARI3vf+1/vPYM64F3nhVsAIqWybFv
+         s26KUHJmv4gG9/Khhgb+cOiMCO4F7GUEp5VgCYRthGKo4AdfJJ7aECMzveFsBwC5A8GE
+         XTew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aZy+1fA0uSLl+EmuYI0FBIw1FF/OyCRyBw9pat+WqG4=;
-        b=fdI1ISb5x2wAgNiJOAMSYDdufsNv1EVb7JpuaSTSgKLjZQ3dWeBWAnY7XzZaCOSL2l
-         d6OVvrT1iRo30hxbsP+IiayIONcpd47ZMFHDF8yCt/pWO7cNWaFkavExJ/VfvJnoIk/j
-         KwKComgSwC+qsEL9OcExI7TgsAc3DTK+dOT2BO/MeXq/S4L0v2kkswMFXgkpQRfjSBKY
-         nd3BRJr2qO6aa/53PwmRjGE1aDsJyefa6HsriOSAuxUIp7UGHfA4XaHu9FWfqK5QlGrJ
-         4NowHaPZp8A1yCJVes/CjhSdwA1mZ3rKqqm9IlW4iY6a+EHPWzYXn9gUVXFJAYHKN8Ur
-         0wFw==
-X-Gm-Message-State: AOAM53258Wayzl+Spc0uMRe41v3aLKw5qJEeIMEiZt4O0YftJspEYYhG
-        99qRlUBceC/Ocdr5jN2BtC+qBQ==
-X-Google-Smtp-Source: ABdhPJyZzSWt0feOqDeHGe6Lc2n07bDJWZ4pV+rRgAvmQsbMAx0YmqzNe5LAsowYtvF9MpxciyKI4g==
-X-Received: by 2002:a17:902:8f90:b029:e5:dd6d:f9b3 with SMTP id z16-20020a1709028f90b02900e5dd6df9b3mr8886130plo.43.1614994119098;
-        Fri, 05 Mar 2021 17:28:39 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id v2sm3158703pjg.34.2021.03.05.17.28.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 05 Mar 2021 17:28:38 -0800 (PST)
-Date:   Sat, 6 Mar 2021 09:28:33 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
- 'gpio-ranges'
-Message-ID: <20210306012829.GL17424@dragon>
-References: <20210303033106.549-1-shawn.guo@linaro.org>
- <20210303033106.549-2-shawn.guo@linaro.org>
- <YEKl7GbxBhui4eoT@builder.lan>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DKCLycYpc3HKoJmuKPBdeHcQJ9gEh+09JrAX4tJjuOo=;
+        b=M1ho9KDA4lW9Imfl2mqOCMusWtAqgUuBcxDrdnZdBkDVslvYFj8CUUi8TkGkAycInb
+         X/uf2Z1PVqbY79gtMIkVzLzQjIpPU9k2eVS8YWsuTbEoUZUWR/vxp9qLivyYsLqSyGHj
+         FQCd2UocuRQaNZtkXOWZV97m5bfPmMIOuGwpFcABptDuvXtTbXLdYy4cwh8pC6PZNBUf
+         FwR0Im4tGoQiTzLvN2tN31b3Q0jBLXZM6piU9NGcrDWDOaNDv6Rp5Xg6G9DtEzptDfi7
+         3r2ru0k0DC6rGvZv6nQMp6PwBqRoxIN4eHUTRuDO0khEKFaQimc3zgoS3BYxRji5uvJn
+         vmNw==
+X-Gm-Message-State: AOAM530zjI6zvXE8+ZFMeXqfVUvVQ3En/o6FgfE8IwOkVlA+XJLxHpKp
+        emFShekwyKQRo/lfkDfYJnzQ0eet3SdAlKNC+Ls=
+X-Google-Smtp-Source: ABdhPJz1LKvjkKpi0mhhWNpQ/jhaYsdcSFGnQIHJxnvPcCnrRZkUL3VDIXLbOq9IltszwFxvj536k9ZaQDcbQggHQWs=
+X-Received: by 2002:a5d:97c9:: with SMTP id k9mr10521371ios.45.1614995580001;
+ Fri, 05 Mar 2021 17:53:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YEKl7GbxBhui4eoT@builder.lan>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210218070709.11932-1-sergio.paracuellos@gmail.com>
+ <20210218070709.11932-3-sergio.paracuellos@gmail.com> <20210305224756.GA777984@robh.at.kernel.org>
+In-Reply-To: <20210305224756.GA777984@robh.at.kernel.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Sat, 6 Mar 2021 09:52:48 +0800
+Message-ID: <CAJsYDVLJy_F6HYbQUjFzB+YKnaNujBH_Fqo0rinvTfs-0o8xfA@mail.gmail.com>
+Subject: Re: [PATCH v9 2/6] dt: bindings: add mt7621-clk device tree binding documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 03:43:08PM -0600, Bjorn Andersson wrote:
-> On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
-> 
-> > The last cell of 'gpio-ranges' should be number of GPIO pins, and in
-> > case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
-> > than msm_pinctrl_soc_data.ngpio - 1.
-> > 
-> 
-> This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
-> this there's an output-only pin for UFS, which I exposed as an GPIO as
-> well - but it's only supposed to be used as a reset-gpio for the UFS
-> device.
-> 
-> Perhaps that still mandates that gpio-ranges should cover it?
+Hi Rob!
 
-I think the number in DT gpio-ranges should match msm_pinctrl_soc_data.ngpio.
-Otherwise, kernel will be confused and be running into the issue like
-below in some case.
+On Sat, Mar 6, 2021 at 6:48 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Feb 18, 2021 at 08:07:05AM +0100, Sergio Paracuellos wrote:
+> > Adds device tree binding documentation for clocks in the
+> > MT7621 SOC.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  .../bindings/clock/mediatek,mt7621-clk.yaml   | 66 +++++++++++++++++++
+> >  1 file changed, 66 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> > new file mode 100644
+> > index 000000000000..842a0f2c9d40
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/mediatek,mt7621-clk.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MT7621 Clock Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +description: |
+> > +  The MT7621 has a PLL controller from where the cpu clock is provided
+> > +  as well as derived clocks for the bus and the peripherals. It also
+> > +  can gate SoC device clocks.
+> > +
+> > +  Each clock is assigned an identifier and client nodes use this identifier
+> > +  to specify the clock which they consume.
+> > +
+> > +  All these identifiers could be found in:
+> > +  [1]: <include/dt-bindings/clock/mt7621-clk.h>.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt7621-clk
+> > +
+> > +  "#clock-cells":
+> > +    description:
+> > +      The first cell indicates the clock number, see [1] for available
+> > +      clocks.
+> > +    const: 1
+> > +
+> > +  ralink,sysctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle of syscon used to control system registers
+> > +
+> > +  ralink,memctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle of syscon used to control memory registers
+>
+> I assume one of these phandles are the main registers for the clocks?
+> Make this a child node and drop that phandle.
 
-> 
-> > This fixes the problem that when the last GPIO pin in the range is
-> > configured with the following call sequence, it always fails with
-> > -EPROBE_DEFER.
-> > 
-> >     pinctrl_gpio_set_config()
-> >         pinctrl_get_device_gpio_range()
-> >             pinctrl_match_gpio_range()
-> 
-> When do we hit this sequence? I didn't think operations on the UFS
-> GP(I)O would ever take this code path?
+On MT7621, CPU clock can be chosen from 3 sources: crystal clock,
+a fixed 500MHz clock or a clock created by the memory controller.
+sysctl contains a bootstrap register to determine crystal clock, a
+clock mux for choosing between the 3 sources for CPU clock, and
+a clock gate register for various peripherals. The ralink,memctl
+phandle here is to read the cpu clock frequency from the memory
+controller.
+The original implementation hides this hardware detail to avoid
+splitting the driver into three just for the CPU clock.
+Is this approach okay and we can put it under sysctl node,
+or this driver needs to be further splitted?
 
-It will, if we have UFS driver booting from ACPI and requesting reset
-GPIO.  And we are hit this sequence with my patch that adds .set_config
-for gpio_chip [1].
-
-Shawn
-
-[1] https://lore.kernel.org/linux-gpio/YEDVMpHyCGbZOrmF@smile.fi.intel.com/
+-- 
+Regards,
+Chuanhong Guo
