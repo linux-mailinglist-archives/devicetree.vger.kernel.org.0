@@ -2,240 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 712C332FCD6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 20:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CD8432FCD8
+	for <lists+devicetree@lfdr.de>; Sat,  6 Mar 2021 20:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230449AbhCFTnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 14:43:07 -0500
-Received: from mail-pl1-f169.google.com ([209.85.214.169]:45870 "EHLO
-        mail-pl1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbhCFTma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 14:42:30 -0500
-Received: by mail-pl1-f169.google.com with SMTP id u18so3019822plc.12;
-        Sat, 06 Mar 2021 11:42:30 -0800 (PST)
+        id S231292AbhCFToK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 14:44:10 -0500
+Received: from mail-pj1-f50.google.com ([209.85.216.50]:54052 "EHLO
+        mail-pj1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231302AbhCFTnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 14:43:53 -0500
+Received: by mail-pj1-f50.google.com with SMTP id kx1so1001806pjb.3;
+        Sat, 06 Mar 2021 11:43:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4R36E9EdT6ETKf8115BEW/u8iSuuWBguPooeE6zkOa0=;
-        b=eKl1o/l/0PgR/id9K0hbQLBV5ZAXWvuvJRixIqyuhc9g1AaWYj3m5NpUK3Eds3LpB6
-         1cz4qRYj48MWy8x6/jAbDQTrtygbKY6A4VNyEQq3KVom+zB6yUmQ4SMlZXbkGk++hyc1
-         SP6+22VRcFpIDcSXyu1Eq2wgn7HeYAgsj88SmnLN/s9B2MVEUdTOyeD1+1FJeCxG8fV3
-         +EYej2JzQZOjicQtjt3FblgIJlyUgnx7sTlJ/99pb/YhUySFq/68kOqKMqRJ5447IWda
-         p6Xl1rLw6aP3NSZOywrTTbT4IcnDP9h0NtJLYv2p3MuBoytrdnkHjBzIJRwBeTB+Fs5t
-         4vDA==
-X-Gm-Message-State: AOAM533Ey4UYQet36VhOLl5/ufxNHdf/hKZrZU1OYeLOzQS1e8dyTH5M
-        Y/s/0BFk6WX4RoEEbtKSOw==
-X-Google-Smtp-Source: ABdhPJwcv7WeclJXqsectBUh9xkZCoe2AlcgXv4w/qPpL9Fz17Zk8zWUctVTUKHK0sFEBZXf0Pydtw==
-X-Received: by 2002:a17:903:3093:b029:e4:7e03:d618 with SMTP id u19-20020a1709033093b02900e47e03d618mr14203055plc.54.1615059750302;
-        Sat, 06 Mar 2021 11:42:30 -0800 (PST)
+        bh=5a0YrJEh1d50dCvaOBmjSqOGqFRau91YasJJ1sqK3+g=;
+        b=TnQK8bwfhEbYW9mHCbSPWxsal8y7Gm96VK8AkyRN7CQsH8gFfCIitl37tsf9UxgIu4
+         tODpejbVz/IxL0FFz9JS6nosuGU3vIfx55fQRx/J2aeDxazGnCFybPEv5qY3Gg/xZjiU
+         VK0Ju2tKoY+4YkpARlUg0LuthBu237ifSfLQQIl2iexJKt91APKARH0NUv5qH8lyHmlT
+         Vve+t1URSSFUqFwbzfDgmoguLCqTa+D3wgwM82lfnbJqWr7+19nfIAaYxB0WOP+6VYBC
+         Wr0BQeQqbiVQ9VmAUuYu0lLKR/zwgPsfZFTXJ2+zmnQqUrCxkngnkGgN5O8jLm6iIYYq
+         3dYQ==
+X-Gm-Message-State: AOAM532zUCFyaQ28eiu+/QEZQwEW1PaBuwnpwRpXb6BneP5+Wc1IG0ZK
+        oEstIgsEQ4/5ajCP7LYQLXIiSq9TtRwV
+X-Google-Smtp-Source: ABdhPJxeupPgywgemhIZt1Ox3xG6NnSum38t5lezwu82m1cZb3YM7OsGntMwVLJhkQa3OJES4kPOzw==
+X-Received: by 2002:a17:90a:e2ca:: with SMTP id fr10mr17123192pjb.18.1615059832991;
+        Sat, 06 Mar 2021 11:43:52 -0800 (PST)
 Received: from robh.at.kernel.org ([172.58.27.98])
-        by smtp.gmail.com with ESMTPSA id e22sm6102693pgk.56.2021.03.06.11.42.27
+        by smtp.gmail.com with ESMTPSA id w27sm6095532pfq.105.2021.03.06.11.43.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Mar 2021 11:42:29 -0800 (PST)
-Received: (nullmailer pid 1095132 invoked by uid 1000);
-        Sat, 06 Mar 2021 19:41:20 -0000
-Date:   Sat, 6 Mar 2021 13:41:20 -0600
+        Sat, 06 Mar 2021 11:43:52 -0800 (PST)
+Received: (nullmailer pid 1098355 invoked by uid 1000);
+        Sat, 06 Mar 2021 19:43:47 -0000
+Date:   Sat, 6 Mar 2021 11:43:47 -0800
 From:   Rob Herring <robh@kernel.org>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Giulio Benetti <giulio.benetti@micronovasrl.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: touchscreen: Add HY46XX bindings
-Message-ID: <20210306194120.GA1075725@robh.at.kernel.org>
-References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
- <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        linux-usb@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings: usb: Add binding for Realtek RTS5411
+ hub controller
+Message-ID: <20210306194347.GA1095701@robh.at.kernel.org>
+References: <20210305193853.2040456-1-mka@chromium.org>
+ <20210305113832.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
+In-Reply-To: <20210305113832.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 05:38:33PM +0100, Giulio Benetti wrote:
-> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
+On Fri, Mar 05, 2021 at 11:38:49AM -0800, Matthias Kaehlcke wrote:
+> The Realtek RTS5411 is a USB 3.0 hub controller with 4 ports.
 > 
-> This adds device tree bindings for the Hycon HY46XX touchscreen series.
+> This initial version of the binding only describes USB related
+> aspects of the RTS5411, it does not cover the option of
+> connecting the controller as an i2c slave.
 > 
-> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../input/touchscreen/hycon,hy46xx.yaml       | 130 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 136 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> Changes in v6:
+> - Realtek binding instead of generic onboard_usb_hub
+> - added 'companion-hub' property
+> - added reference to 'usb-device.yaml'
+> - 'fixed' indentation of compatible entries to keep yamllint happy
+> - added 'additionalProperties' entry
+> - updated commit message
+> 
+> Changes in v5:
+> - updated 'title'
+> - only use standard USB compatible strings
+> - deleted 'usb_hub' node
+> - renamed 'usb_controller' node to 'usb-controller'
+> - removed labels from USB nodes
+> - added 'vdd-supply' to USB nodes
+> 
+> Changes in v4:
+> - none
+> 
+> Changes in v3:
+> - updated commit message
+> - removed recursive reference to $self
+> - adjusted 'compatible' definition to support multiple entries
+> - changed USB controller phandle to be a node
+> 
+> Changes in v2:
+> - removed 'wakeup-source' and 'power-off-in-suspend' properties
+> - consistently use spaces for indentation in example
+> 
+>  .../bindings/usb/realtek,rts5411.yaml         | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
 > new file mode 100644
-> index 000000000000..cddd5e5bae92
+> index 000000000000..00e9b3d44583
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/hycon-hy46xx.yaml#
+> +$id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: hyconon HY46XX series touchscreen controller Bindings
-> +
-> +description: |
-> +             There are 6 variants of the chip for various touch panel sizes and coverl len material
-> +              Glass: 0.3mm--4.0mm
-> +              PET/PMMA: 0.2mm--2.0mm
-> +               HY4613(B)-N048  < 6"
-> +               HY4614(B)-N068  7" .. 10.1"
-> +               HY4621-NS32  < 5"
-> +               HY4623-NS48  5.1" .. 7"
-> +              Glass: 0.3mm--8.0mm
-> +              PET/PMMA: 0.2mm--4.0mm
-> +               HY4633(B)-N048  < 6"
-> +               HY4635(B)-N048  < 7" .. 10.1"
+> +title: Binding for the Realtek RTS5411 USB 3.0 hub controller
 > +
 > +maintainers:
-> +  - Giulio Benetti <giulio.benetti@micronovasrl.com>
+> +  - Matthias Kaehlcke <mka@chromium.org>
 > +
 > +allOf:
-> +  - $ref: touchscreen.yaml#
+> +  - $ref: usb-device.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - hycon,hycon-hy4613
-> +      - hycon,hycon-hy4614
-> +      - hycon,hycon-hy4621
-> +      - hycon,hycon-hy4623
-> +      - hycon,hycon-hy4633
-> +      - hycon,hycon-hy4635
+> +    items:
+> +      - enum:
+> +          - usbbda,5411
+> +          - usbbda,411
 > +
-> +  reg:
-> +    maxItems: 1
+> +  vdd-supply:
+> +    description:
+> +      phandle to the regulator that provides power to the hub.
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vcc-supply: true
-> +
-> +  threshold:
+> +  companion-hub:
+> +    description:
+> +      phandle to the companion hub on the controller.
 
-Needs a vendor prefix here and all the custom properties.
+Needs a type ref.
 
-One of the touchscreen properties doesn't already address this?
-
-> +    description: Allows setting the sensitivity in the range from 0 to 255.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 255
-> +
-> +  proximity-sensor-switch:
-
-Why a switch rather than enable or disable?
-
-> +    description: Allows enabling or disabling the Proximity Sensor.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-
-Is this a hardware config or something a user would want to change at 
-runtime? The latter shouldn't be in DT.
-
-What does not present mean? Unless there is a need for keeping the 
-default setting, then this could be boolean instead.
-
-Same questions for the rest of the properties.
-
-> +
-> +  glove-enable:
-> +    description: Allows enabling or disabling glove setting.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +  report-speed:
-> +    description: Allows setting the report speed(i.e 0x64 => 100Hz).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 255
-> +
-> +  power-noise-enable:
-> +    description: Allows enabling or disabling power noise filter.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 1
-> +
-> +  filter-data:
-> +    description: Allows setting the filtering data before reporting touch
-> +                 in the range from 0 to 5.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 5
-> +
-> +  gain:
-> +    description: Allows setting the sensitivity distance in the range from 0 to 5.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 5
-> +
-> +  edge-offset:
-> +    description: Allows setting the edge compensation in the range from 0 to 16.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 16
-> +
-> +  touchscreen-size-x: true
-> +  touchscreen-size-y: true
-> +  touchscreen-fuzz-x: true
-> +  touchscreen-fuzz-y: true
-> +  touchscreen-inverted-x: true
-> +  touchscreen-inverted-y: true
-> +  touchscreen-swapped-x-y: true
-> +  interrupt-controller: true
-> +
-> +additionalProperties: false
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      hycon-hy4633@1c {
-> +        compatible = "hycon,hy4633";
-> +        reg = <0x1c>;
-> +        interrupt-parent = <&gpio2>;
-> +        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> +        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
-> +      };
+> +    usb-controller {
+> +        dr_mode = "host";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* 2.0 hub on port 1 */
+> +        hub_2_0: hub@1 {
+> +            compatible = "usbbda,5411";
+> +            reg = <1>;
+> +            vdd-supply = <&pp3300_hub>;
+> +            companion-hub = <&hub_3_0>;
+> +        };
+> +
+> +        /* 3.0 hub on port 2 */
+> +        hub_3_0: hub@2 {
+> +            compatible = "usbbda,411";
+> +            reg = <2>;
+> +            vdd-supply = <&pp3300_hub>;
+> +            companion-hub = <&hub_2_0>;
+> +        };
 > +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d92f85ca831d..3f83daf6b2bf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8245,6 +8245,12 @@ S:	Maintained
->  F:	mm/hwpoison-inject.c
->  F:	mm/memory-failure.c
->  
-> +HYCON HY46XX TOUCHSCREEN SUPPORT
-> +M:	Giulio Benetti <giulio.benetti@micronovasrl.com>
-> +L:	linux-input@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> +
->  HYGON PROCESSOR SUPPORT
->  M:	Pu Wen <puwen@hygon.cn>
->  L:	linux-kernel@vger.kernel.org
 > -- 
-> 2.25.1
+> 2.30.1.766.gb4fecdf3b7-goog
 > 
