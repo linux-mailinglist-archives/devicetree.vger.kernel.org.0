@@ -2,199 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D9633000C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 11:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A55330026
+	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 11:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231573AbhCGKNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 05:13:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231521AbhCGKM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Mar 2021 05:12:58 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F821C06174A;
-        Sun,  7 Mar 2021 02:12:58 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id r15-20020a05600c35cfb029010e639ca09eso2003665wmq.1;
-        Sun, 07 Mar 2021 02:12:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3TyMkmxOQJC06CnnXdLtP1kErcHt4cRYBk9nQQy+GeI=;
-        b=uxyeYM8AUgSlp920JR9NYDFKLPqhUH5yf9AsNbuMlXsJLnAr+ez8kZbh7dpd9E3b0L
-         yUCIs5vlLGCf6z+wNoJxf5ZxQaSNZDi1TCzmVVxzb0WlBTXa3WwEh2+qPcAwwKywgPPD
-         nBYnkKZ1vY+USShFP/OYIRGnVEuNhJw584SajEYHplJgL/G6GlZ5SpjYB/1CeNY19WJS
-         14wtWsu27Z579i33uS07F9Z1UyZp19xXqJCKn5hyV8KoueIkp4K44/+4MipR2NsUqI82
-         F9wlLuXGSPK4L0NhGPgVMIG0+jpLhRcQv578EKuIegRw2EBFV2es2DGBRls5qMjhH+03
-         YWrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3TyMkmxOQJC06CnnXdLtP1kErcHt4cRYBk9nQQy+GeI=;
-        b=NvTVftR9dWBcRqtT7DBFDTByByHSdNhUEb/kQEumoFlzKS5StIvCwn+M69up3s4uKT
-         OS3I20UIM0miLoe09dS+Gw3Hz5FYH9a9i8X0YAjAMiK7fjQNSn34MKMYiBliq93Mi6Dl
-         zch+lGLjje8FbVjn8Bv5kH7yfyXQCziBcysHfxpTAuVgCZVasg/KfFDdINQ2+MINyPNR
-         I0jUTb9ND+joAO9rcYn0NOKm/DHL3IE5RbCXw3Ri4KP8ZnAd2B8olcXawc3cOo5ubz5e
-         J8Ko3iNKD/jufwQMvAEZU1H0pcdZiLWvBfjS5a3vTUMk6/ANtIHAnUX9eYIjes7yL3XK
-         hLLw==
-X-Gm-Message-State: AOAM533gD/RggJFLClnDwSnmBQ2+YwE4WhgNy5wA7sE7wIh8N68O70on
-        Q7Q3giscXUfENCjuMobIZHXfh4puR8VbxA==
-X-Google-Smtp-Source: ABdhPJzf0o08F5ddr6PfN7/kVgikpHIOXR+G4FuQokr3vP6H99fCBlDIGqxxTBuStCrVj7wNJsKjmA==
-X-Received: by 2002:a1c:318b:: with SMTP id x133mr17274165wmx.154.1615111976756;
-        Sun, 07 Mar 2021 02:12:56 -0800 (PST)
-Received: from [192.168.1.10] (224.red-2-138-103.dynamicip.rima-tde.net. [2.138.103.224])
-        by smtp.gmail.com with ESMTPSA id f22sm12665506wmb.31.2021.03.07.02.12.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Mar 2021 02:12:56 -0800 (PST)
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: document
- BCM6345 external interrupt controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org
-References: <20210223204340.312-1-noltari@gmail.com>
- <20210224075640.20465-1-noltari@gmail.com>
- <20210224075640.20465-2-noltari@gmail.com>
- <20210306201404.GB1137882@robh.at.kernel.org>
-From:   =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>
-Message-ID: <889b9814-40d4-e012-ff7c-39b00f8c623a@gmail.com>
-Date:   Sun, 7 Mar 2021 11:12:55 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S231382AbhCGKnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 05:43:13 -0500
+Received: from mail-eopbgr70051.outbound.protection.outlook.com ([40.107.7.51]:39745
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230155AbhCGKm4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Mar 2021 05:42:56 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RExXKFyfT7Sg0teGspNW+a3UaSOrxo7JxMRpSs0YI7/fRJtF5OmF+j/keURyq1LmFrDkg5YWfYQ/SV/ZzfQSf9ahIQP+0YeKRA8e+K+ebcdjpIeC0IclGnPiqJl0vEzomco/1J9czr1koIynMmu/qCszU21ATvFnXPXgpy6WW5Fy65W9UT4h26yVwGWeEqIVehkkNzGf509nkoJxUD18TqH1KYE94L93+WiS61TTdDQvS3orDAQ+l/4Jb/tCpL3FkMxiqYAxkZLw7jM08vbHyTfID/S76Z9qvxmHPxeBWrSoiNvornQLVzLe2zJPT+91tvUIZR65AXbV78O2rzfTSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lgqKGvYNzTHFj7PF4eQeer3sW34Nog5sURb30AXuNMM=;
+ b=Ktmuv0Xhwr5zLXsg/d4PMqZjIjBEgOGPkBaqJObOHmGvNT6Wjwsu8bLNUuolGT286wH2f2XVtw2nyf6FzN5Dj+FwmxxdDHg3/Cv+T6O/kbT+8Far+r8sQmXIaLjb8oMY/oWG27Xe361RhhJSc3i9cW9h9ksT9dVAO2/rtUmdB/6xtYjOeW9lGTEx4Y/B9703d5pxSEw7L35uTR2d7QTCimsQStzS88JWdH6MOaHj7G15GMEN0+6iHkcUBTN70Axv45tCuK+2iq33yY3yImOosv7fQYG5LELFH7T4sx/BRXh037HAre3HVBp57crgNZ94fNlLMhMBUWjm6ajCVNbt+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lgqKGvYNzTHFj7PF4eQeer3sW34Nog5sURb30AXuNMM=;
+ b=ZDZv8sDvj3Yy+Wd06KPdbqXcsTPJV/f7INrZl2AjfTu2UoDvLz5t6TAhJxuxtUBIPMgP7s5eplbJc18KubZuCIqmkyV3hFC8lKcqmzm41YZNirUElMVWaBeF2XGBoGaBwY4VHFtELNNu0tvXzYnslJTgJSHND3ljslb1cItFbxU=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DBAPR04MB7285.eurprd04.prod.outlook.com (2603:10a6:10:1ac::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.26; Sun, 7 Mar
+ 2021 10:42:52 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0%9]) with mapi id 15.20.3846.054; Sun, 7 Mar 2021
+ 10:42:52 +0000
+From:   peng.fan@oss.nxp.com
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2] arm64: dts: imx8mp: add wdog2/3 nodes
+Date:   Sun,  7 Mar 2021 18:30:03 +0800
+Message-Id: <1615113003-24612-1-git-send-email-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: HK2PR0401CA0020.apcprd04.prod.outlook.com
+ (2603:1096:202:2::30) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-In-Reply-To: <20210306201404.GB1137882@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by HK2PR0401CA0020.apcprd04.prod.outlook.com (2603:1096:202:2::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3912.17 via Frontend Transport; Sun, 7 Mar 2021 10:42:48 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 8e4fd6d3-4abf-4e4d-092f-08d8e155c1f6
+X-MS-TrafficTypeDiagnostic: DBAPR04MB7285:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBAPR04MB72856AF8D2587341FB7E6178C9949@DBAPR04MB7285.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:110;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fKg5Cqy6qoD9V5Q2okjua/Z96kt/tQiW6EY89qbg4YHBsCBpveUS57s0hS5b3Z+wyePvzi6WxDAmifKAbhAbeL5ShEqb5qdoqZy4P2LZPF65UfgrhiGBzcH7nqV6nOgqDIb/MJET0ahrD8ikr+jg7m7X3xbxaDYNJb+7S2srFkPU8Wb4j+RRKDZNQpewDnvCAzFqtSlvulINHykR7YhTIKxsiYh7+oC79Vuc2uTWNk8OUhE2tqGpKzwsLLmJyB6Xr2DkLKJ72kxZY3j4aCG7FncadTgrSGPRIO1iMDPgYj2ij7mtNh/25gEE5XDdNwEWkYJIoeROLtAGp2gmCK5HQw/JMMm+tPtu33OYW7Y55vVUP5Xq7b00tdNrPNht2Er9YEhyo6mkjcROgNRcQHdywInhrFRmjyw3bsA1rD0ncvgA1aMriE6xSfZSYXFt1klZySiIFOkinOlpJ+dXpqkKuVps9psA0wo9lkRs+en5/mvA9/aJkynfjjmxC6hh+cTrHHQxcCuSznm2K57gnIILWJlU8D/083k2E4mix+8OVPlK1gjOm5Zi90i5tXbAigeNOHz1+sTcEtv1LaT7tkKpmxiH5cG65Zrrcc6DM10yPxw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(39860400002)(346002)(396003)(136003)(6666004)(66556008)(66946007)(9686003)(69590400012)(66476007)(8936002)(8676002)(5660300002)(6512007)(52116002)(6506007)(2906002)(86362001)(26005)(2616005)(186003)(16526019)(956004)(316002)(83380400001)(478600001)(6486002)(4326008)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?XWiTN8/kKJ7CpfKhk3+uxgmIn1YWeLD3lJm2+/sc5Qq+tNRt6JwHw825iiJm?=
+ =?us-ascii?Q?jlnUjSLz09ANj8rwuD1i4IX8yG0GEtLyqfsNkfrg++DXKGb10OBe3azr6eNa?=
+ =?us-ascii?Q?z6sIx0QaHMXsis0Ee8jQihqMFLGaYjmfCm3JCIthl5mui4036S/bKpraOoDq?=
+ =?us-ascii?Q?hniF6QMub0wITr4X6pVzjleu0gQdSVQTYWebcevelSrA3UkbGOtxhzbJkfMr?=
+ =?us-ascii?Q?PtNxL1VKsvnsg3H72Xl7aEYbXZH7XtDQGKya9kM1Gp9t8z76szSOJ/bJUIBL?=
+ =?us-ascii?Q?XdsQM9s91bgvtWSOX5wm7QDNH0WTKb+M0El7ke4GSRBlxn33UkSdOnqKtDDO?=
+ =?us-ascii?Q?QbKgehQRaeioRRV/7eFsAGF0RUyFgF1dXn5m5dQXIyeX/HnuyflRC+5PHRgu?=
+ =?us-ascii?Q?fupEGp4cL283RotvHqYQl98yCPBBn7ZZkvbP4oPIU4kYlynv1Vr6OlGO7Z4g?=
+ =?us-ascii?Q?JogsSxuMv+ZJEsrqc0dcDxPZ6JtiE0HL7ypPFhifsutA2fkSH6p3KIihwZLh?=
+ =?us-ascii?Q?V8mFX4vf8kMu0zaqWHEhvyNiBJLGxlykQTcFg0igk0NLNovPzUUamOpN/oEx?=
+ =?us-ascii?Q?/r5AFZGYgfE8z/EoXRbEDWM2HFCX1aWyjogsZt5aTuGTWbg9RTWk64kaTzlS?=
+ =?us-ascii?Q?OXPxzmNsxjLuj67fnJz0VRrRtVA8QyEYrc7ytOwCqIwitbKAsbeQMwB7csnJ?=
+ =?us-ascii?Q?SvQIqFCBH/te7aj7+uaYtpvJpxeB+1zB3OksodTA+1fM795/tJGhOIsFzQ17?=
+ =?us-ascii?Q?hGuBLeBDgo423xsNSIRl13oRMd02DMmlkLOnOa2gIxLOa1qcHIeOhSNcfc/Z?=
+ =?us-ascii?Q?eJF3/mtOPTZSnTCVHNjXCNbZqZ2Q60gA8Wxi+107VPqg7E2SHP8lCqEdFxfY?=
+ =?us-ascii?Q?xI7oCvP941kB0NLOicumVMsL6GsgK73CM24+UZdDqBDFkf2izKW8a3dxrqZW?=
+ =?us-ascii?Q?rneyZHIQnCWcC7A5YSGOAqIwk3N3arHvo4H86+LR+4PXf9yHOoVBCcpHmP/T?=
+ =?us-ascii?Q?BcqNNoDMKEyJAN+uPgRQZQL0bEADRcbOvajScymm72QmwLtcxF/B6i2QlYPT?=
+ =?us-ascii?Q?9XjJBXlMNbn6PU8P7coeaaKyTUyNyj3SWDCLsY+9eN7WC4Z3yAIfLAbH8N8y?=
+ =?us-ascii?Q?nOjmtMnT2/+kse6VDBIeaQ8rRAfdil8UWMgrhh6v7XZSfIqojefcihlLkDZu?=
+ =?us-ascii?Q?PvvrBA1Dft2EabFFt8YAp/+f0FiH+SrVkMrogRTHCAR3yH1adpljIsUHh4aj?=
+ =?us-ascii?Q?Rv36V7ZHq+FnElo9LuEkAz5G3uyt4IFhLI6wT07H0AEiFEOes7m/lD3wkyGm?=
+ =?us-ascii?Q?zQ6xTkb9NQ7YZ+7uRf5Gz4+0TifIwJoDP/GUoT6KTH4DUg=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e4fd6d3-4abf-4e4d-092f-08d8e155c1f6
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2021 10:42:52.1649
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1NO6g92Z69HPDHaA/gAzjY7KZBUgL7XByAsDcG3jeUqlRjBN5ZtwhcxLpSlKZQwQr1VBYshNGpsxNh8fIdRkjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7285
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Peng Fan <peng.fan@nxp.com>
 
-El 06/03/2021 a las 21:14, Rob Herring escribió:
-> On Wed, Feb 24, 2021 at 08:56:39AM +0100, Álvaro Fernández Rojas wrote:
->> Document the binding for the BCM6345 external interrupt controller.
->>
->> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
->> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
->> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->>   v3: pass dt_binding_check.
->>   v2: fix title typo.
->>
->>   .../brcm,bcm6345-ext-intc.yaml                | 78 +++++++++++++++++++
->>   1 file changed, 78 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6345-ext-intc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6345-ext-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6345-ext-intc.yaml
->> new file mode 100644
->> index 000000000000..a691510e78b7
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6345-ext-intc.yaml
->> @@ -0,0 +1,78 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm6345-ext-intc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom BCM6345 external interrupt controller
->> +
->> +maintainers:
->> +  - Álvaro Fernández Rojas <noltari@gmail.com>
->> +  - Jonas Gorski <jonas.gorski@gmail.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - brcm,bcm6318-ext-intc
->> +      - brcm,bcm6345-ext-intc
->> +
->> +  "#interrupt-cells":
->> +    const: 2
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 0
->> +
->> +  interrupt-controller: true
->> +
->> +  interrupts:
->> +    description: Specifies the interrupt line(s) in the interrupt-parent
->> +      controller node. Valid values depend on the type of parent interrupt
->> +      controller.
->> +    maxItems: 4
->> +
->> +  brcm,field-width:
->> +    description: Interrupt controller field width (the default is 4).
-> 
-> default: 4
-> 
->> +    maxItems: 1
-> 
-> All uint32's are 1 item.
+There is wdog[2,3] in i.MX8MP, so add them.
 
-Ok, so I should remove this :)
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
 
-> 
-> What's the set or range of values?
+V2:
+ Update commit log
 
-Only BCM6348 needs to set this value to 5, other BCM63xx use the default 
-value of 4 (BCM3368, BCM6318, BCM6328, BCM6338, BCM6345, BCM6358, 
-BCM6362, BCM6368, BCM63268).
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +required:
->> +  - "#address-cells"
->> +  - compatible
->> +  - reg
->> +  - "#interrupt-cells"
->> +  - interrupt-controller
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    interrupt-controller@10000018 {
->> +      #address-cells = <0>;
->> +      compatible = "brcm,bcm6345-ext-intc";
->> +      reg = <0x10000018 0x4>;
->> +
->> +      interrupt-parent = <&periph_intc>;
->> +      #interrupt-cells = <2>;
->> +
->> +      interrupt-controller;
->> +      interrupts = <24>, <25>, <26>, <27>;
->> +    };
->> +
->> +  - |
->> +    interrupt-controller@fffe0014 {
->> +      #address-cells = <0>;
->> +      compatible = "brcm,bcm6345-ext-intc";
->> +      reg = <0xfffe0014 0x4>;
->> +
->> +      interrupt-controller;
->> +      #interrupt-cells = <2>;
->> +
->> +      interrupt-parent = <&cpu_intc>;
->> +      interrupts = <3>, <4>, <5>, <6>;
->> +
->> +      brcm,field-width = <5>;
->> +    };
->> -- 
->> 2.20.1
->>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index c7523fd4eae9..05dd04116f2e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -312,6 +312,22 @@ wdog1: watchdog@30280000 {
+ 				status = "disabled";
+ 			};
+ 
++			wdog2: watchdog@30290000 {
++				compatible = "fsl,imx8mp-wdt", "fsl,imx21-wdt";
++				reg = <0x30290000 0x10000>;
++				interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MP_CLK_WDOG2_ROOT>;
++				status = "disabled";
++			};
++
++			wdog3: watchdog@302a0000 {
++				compatible = "fsl,imx8mp-wdt", "fsl,imx21-wdt";
++				reg = <0x302a0000 0x10000>;
++				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MP_CLK_WDOG3_ROOT>;
++				status = "disabled";
++			};
++
+ 			iomuxc: pinctrl@30330000 {
+ 				compatible = "fsl,imx8mp-iomuxc";
+ 				reg = <0x30330000 0x10000>;
+-- 
+2.30.0
 
-Best regards,
-Álvaro.
