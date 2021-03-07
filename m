@@ -2,267 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C03063304D3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 22:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7B3330526
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 00:06:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbhCGVVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 16:21:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233036AbhCGVUv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 16:20:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DCA9564F17;
-        Sun,  7 Mar 2021 21:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615152051;
-        bh=1V0b8OdNSYC8i5w1YGKrRetzGySCN1Duq26amPZ0llM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Uwk3Iq9FLeohINY03WKobvdhlymAKTvNSn3MtdVthbWNaapfid/P1ven6JArRVPxV
-         mxzsEc2k6lqcVskEN361zqsPWlkErbdei39+wm6IFJaBTo6TyfhSgUZQyh4kYpy3k1
-         LnFNJJ4fXwvwsGTGARBZPtcrJOKuSziSWNG+krAJt/iu3YEkA3uNlL9Ip0zPTeX/16
-         PirQ3jKUj7tAlVEgb7qXwRKLaIdjZf4TYFdiKnSL8oG92ntjdRF+YAz1hXq7GJKFIH
-         IlqCR2rC2tBEqOanfYLSFG/CTZldFr/39VVb2eJejaO3y7ZcZGG0qBnQgC+KcZ+xPJ
-         OYXe1xIXo92IQ==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     nbd@nbd.name
-Cc:     robh@kernel.org, linux-wireless@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
-        ryder.lee@mediatek.com, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings:net:wireless:mediatek,mt76: txt to yaml conversion
-Date:   Sun,  7 Mar 2021 22:20:44 +0100
-Message-Id: <b78122c8ddcbf4ac66adc2c0280665a84e7e9010.1615151665.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.29.2
+        id S232266AbhCGXGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 18:06:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233244AbhCGXFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Mar 2021 18:05:39 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE84C06175F;
+        Sun,  7 Mar 2021 15:05:36 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id l2so5229137pgb.1;
+        Sun, 07 Mar 2021 15:05:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XtRSM0w13Qb1yabD0yvOGJiUG6gT2e1c0aSLnOFytzc=;
+        b=qqpw7VXyGhTyjQDiNWQvy+fZqojgqjErZm6pCLbKaMo8BltCZW6n83L/4NHkQIyw1l
+         OG7wEU7XsaVivWPrzL6iXfy9zkcKDb1+0O+TLlwapo13/SWW/t5DgpIFrhNf7lHlL9gY
+         TG5rism1NvCMTSY8XFbDRtnbJMge7ptt+7CxawGKg83tKY94uZFnxAWYnSy4TQ2jORsS
+         k5jBXiFjEijqKa+VstXfHUP+VdQzUn7z3TzHpP75lyhJdYPSG0yNbRcZ3efCB9KkN7L5
+         qR0pM0qSQauu9u/WlgIoiJVlwAzexoZzczYVRGOJTCKIzPL+yQX8JTVuUQRjYo95a/mV
+         BlUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XtRSM0w13Qb1yabD0yvOGJiUG6gT2e1c0aSLnOFytzc=;
+        b=X9w1qUzNk7+zrIormjQmOrYc2RzmsCHMPwE2Iwxv2+uhSpPry7vCCGv/XO+zFCZ6sF
+         RuyH7qQRrqqZSb5IfUZuLHV/8XlJ63F+2fj9ImNBGcEOss4kMKnSOWrd25bC3HhLZl1J
+         7/caq/90dy0nmLQ7FPs1TvaBYahSMyQ2BeXXC2Vzw9zV415x2XDo3M5oIAXM3tlMVvwM
+         lpDiIBhVcGPbJ7KKjwQKvOIEqSDHQpo3QMMAzlgI/jgOdzax6iH584eJu8Vx2Evoxws9
+         1ddDf2TTkWkyAKbn7oeQnC04IaUxIIcK1HK7roTacJWRM9NDX+38oJ1wn6QwKRiO/+Ej
+         7N1Q==
+X-Gm-Message-State: AOAM531ZDoeWkLXKRGxIojOQlX6LWeuURJlWYrpJpEswWAiq+qCAWo7s
+        ZpYPwjyMC3PucGSE/3GiZLE=
+X-Google-Smtp-Source: ABdhPJynFdhgChyPxLEfnQ6VKIMDURJUnkeggRhI6GHFju/IlzJvlb/bAyyPTr80X2b7bq4l9ZresA==
+X-Received: by 2002:a63:ec50:: with SMTP id r16mr17631072pgj.451.1615158335573;
+        Sun, 07 Mar 2021 15:05:35 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:bc9b:5ab2:d763:15bc])
+        by smtp.gmail.com with ESMTPSA id x1sm8369251pje.40.2021.03.07.15.05.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Mar 2021 15:05:34 -0800 (PST)
+Date:   Sun, 7 Mar 2021 15:05:31 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Subject: Re: [PATCH v1 2/2] iio: adc: add ADC driver for the TI TSC2046
+ controller
+Message-ID: <YEVcO/NeKzBsFEdL@google.com>
+References: <20210305133813.27967-1-o.rempel@pengutronix.de>
+ <20210305133813.27967-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210305133813.27967-3-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert mt76 dts bindings from .txt to .yaml
+Hi Oleksij,
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- .../bindings/net/wireless/mediatek,mt76.txt   |  78 -----------
- .../bindings/net/wireless/mediatek,mt76.yaml  | 125 ++++++++++++++++++
- 2 files changed, 125 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
- create mode 100644 Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+On Fri, Mar 05, 2021 at 02:38:13PM +0100, Oleksij Rempel wrote:
+> +
+> +	/* TODO: remove IRQ_NOAUTOEN after needed patches are mainline */
+> +	irq_set_status_flags(spi->irq, IRQ_NOAUTOEN);
+> +	ret = devm_request_threaded_irq(dev, spi->irq,
+> +					NULL,
+> +					&tsc2046_adc_irq,
+> +					IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> +					name, indio_dev);
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
-deleted file mode 100644
-index ab7e7a00e534..000000000000
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--* MediaTek mt76xx devices
--
--This node provides properties for configuring the MediaTek mt76xx wireless
--device. The node is expected to be specified as a child node of the PCI
--controller to which the wireless chip is connected.
--
--Alternatively, it can specify the wireless part of the MT7628/MT7688 or
--MT7622 SoC. For SoC, use the following compatible strings:
--
--compatible:
--- "mediatek,mt7628-wmac" for MT7628/MT7688
--- "mediatek,mt7622-wmac" for MT7622
--
--properties:
--- reg: Address and length of the register set for the device.
--- interrupts: Main device interrupt
--
--MT7622 specific properties:
--- power-domains: phandle to the power domain that the WMAC is part of
--- mediatek,infracfg: phandle to the infrastructure bus fabric syscon node
--
--Optional properties:
--
--- ieee80211-freq-limit: See ieee80211.txt
--- mediatek,mtd-eeprom: Specify a MTD partition + offset containing EEPROM data
--- big-endian: if the radio eeprom partition is written in big-endian, specify
--  this property
--- mediatek,eeprom-merge-otp: Merge EEPROM data with OTP data. Can be used on
--  boards where the flash calibration data is generic and specific calibration
--  data should be pulled from the OTP ROM
--
--The MAC address can as well be set with corresponding optional properties
--defined in net/ethernet.txt.
--
--Optional nodes:
--- led: Properties for a connected LED
--  Optional properties:
--    - led-sources: See Documentation/devicetree/bindings/leds/common.txt
--
--&pcie {
--	pcie0 {
--		wifi@0,0 {
--			compatible = "mediatek,mt76";
--			reg = <0x0000 0 0 0 0>;
--			ieee80211-freq-limit = <5000000 6000000>;
--			mediatek,mtd-eeprom = <&factory 0x8000>;
--			big-endian;
--
--			led {
--				led-sources = <2>;
--			};
--		};
--	};
--};
--
--MT7628 example:
--
--wmac: wmac@10300000 {
--	compatible = "mediatek,mt7628-wmac";
--	reg = <0x10300000 0x100000>;
--
--	interrupt-parent = <&cpuintc>;
--	interrupts = <6>;
--
--	mediatek,mtd-eeprom = <&factory 0x0000>;
--};
--
--MT7622 example:
--
--wmac: wmac@18000000 {
--	compatible = "mediatek,mt7622-wmac";
--	reg = <0 0x18000000 0 0x100000>;
--	interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_LOW>;
--
--	mediatek,infracfg = <&infracfg>;
--
--	power-domains = <&scpsys MT7622_POWER_DOMAIN_WB>;
--};
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-new file mode 100644
-index 000000000000..1a6e3d36944f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -0,0 +1,125 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/mediatek,mt76.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek mt76 wireless devices Generic Binding
-+
-+maintainers:
-+  - Felix Fietkau <nbd@nbd.name>
-+  - Lorenzo Bianconi <lorenzo@kernel.org>
-+
-+description: |
-+  This node provides properties for configuring the MediaTek mt76xx
-+  wireless device. The node is expected to be specified as a child
-+  node of the PCI controller to which the wireless chip is connected.
-+  Alternatively, it can specify the wireless part of the MT7628/MT7688
-+  or MT7622 SoC.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt76
-+      - mediatek,mt7628-wmac
-+      - mediatek,mt7622-wmac
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      Address and length of the register set for the device
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Main device interrupt
-+
-+  power-domains:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle to the power domain that the WMAC is part of.
-+      This property is MT7622 specific
-+
-+  mediatek,infracfg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the infrastructure bus fabric syscon node.
-+      This property is MT7622 specific
-+
-+  ieee80211-freq-limit:
-+    maxItems: 1
-+    description:
-+      List of supported frequency ranges in KHz
-+
-+  mediatek,mtd-eeprom:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandle to a MTD partition + offset containing EEPROM data
-+
-+  big-endian:
-+    type: boolean
-+    description:
-+      Specify if the radio eeprom partition is written in big-endian
-+
-+  mediatek,eeprom-merge-otp:
-+    type: boolean
-+    description:
-+      Merge EEPROM data with OTP data. Can be used on boards where the flash
-+      calibration data is generic and specific calibration data should be
-+      pulled from the OTP ROM
-+
-+  led:
-+    type: object
-+    properties:
-+      led-sources:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description:
-+          List of device current outputs the LED is connected to
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pcie0 {
-+      #address-cells = <3>;
-+      #size-cells = <2>;
-+      wifi@0,0 {
-+        compatible = "mediatek,mt76";
-+        reg = <0x0000 0 0 0 0>;
-+        ieee80211-freq-limit = <5000000 6000000>;
-+        mediatek,mtd-eeprom = <&factory 0x8000>;
-+        big-endian;
-+
-+        led {
-+          led-sources = <2>;
-+        };
-+      };
-+    };
-+
-+  - |
-+    wmac: wmac@10300000 {
-+      compatible = "mediatek,mt7628-wmac";
-+      reg = <0x10300000 0x100000>;
-+
-+      interrupt-parent = <&cpuintc>;
-+      interrupts = <6>;
-+
-+      mediatek,mtd-eeprom = <&factory 0x0>;
-+    };
-+
-+  - |
-+    wlmac: wmac@18000000 {
-+      compatible = "mediatek,mt7622-wmac";
-+      reg = <0x10300000 0x100000>;
-+      interrupts = <0 211 8>;
-+
-+      mediatek,infracfg = <&infracfg>;
-+
-+      power-domains = <&scpsys 3>;
-+    };
+I'd recommend dropping IRQF_TRIGGER_LOW and only using IRQF_ONESHOT and
+rely on the platform (ACPI, DT) to specify trigger polarity according to
+how device is wired in a given system. In general I believe newer
+drivers should not specify interrupt triggers themselves.
+
+Thanks.
+
 -- 
-2.29.2
-
+Dmitry
