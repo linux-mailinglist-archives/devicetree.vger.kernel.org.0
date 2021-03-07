@@ -2,79 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C37E3302AE
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 16:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE723302D7
+	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 17:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231321AbhCGPY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 10:24:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60128 "EHLO mail.kernel.org"
+        id S232392AbhCGQCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 11:02:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39472 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230488AbhCGPYe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 10:24:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6801765004;
-        Sun,  7 Mar 2021 15:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1615130674;
-        bh=v6Hpp6iOc56BzTgKF0Lqlq7f36GA6UOn7qkPYeygLDs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o6t0vl1XcJjABVvkwrDtqIn65aMIJLWlZ+nmr8ab6DZR/FskYnSQHoMXgM8bYpvjx
-         aZzeCCIQLPLclXQ3vkrCVeCGbCdrBobrVFuIXY6mpG4qype9tqbCEHi/HhV8e0kUtz
-         Wb1TJoCLJL4EHeel7y0nywBZMkfJV7jxGcYYBULw=
-Date:   Sun, 7 Mar 2021 16:24:31 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Jing Xiangfeng <jingxiangfeng@huawei.com>, catalin.marinas@arm.com,
-        will@kernel.org, akpm@linux-foundation.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, rppt@kernel.org, lorenzo.pieralisi@arm.com,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, song.bao.hua@hisilicon.com, ardb@kernel.org,
-        anshuman.khandual@arm.com, bhelgaas@google.com, guro@fb.com,
-        robh+dt@kernel.org, stable@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-        wangkefeng.wang@huawei.com
-Subject: Re: [PATCH stable v5.10 0/7] arm64: Default to 32-bit wide ZONE_DMA
-Message-ID: <YETwL6QGWFyJTAzk@kroah.com>
-References: <20210303073319.2215839-1-jingxiangfeng@huawei.com>
- <YEDkmj6cchMPAq2h@kroah.com>
- <9bc396116372de5b538d71d8f9ae9c3259f1002e.camel@suse.de>
- <YEDr/lYZHew88/Ip@kroah.com>
- <827b317d7f5da6e048806922098291faacdb19f9.camel@suse.de>
+        id S232383AbhCGQCN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Mar 2021 11:02:13 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9B322650FA;
+        Sun,  7 Mar 2021 16:02:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615132932;
+        bh=W3DWtdKbzB/Ewq0JXP5uIPr5sVdrpUWScZRv+BpwOOQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uvTAugzrUQYpKuCcE5EB2V7uskUn7uQ1kw3Ti9BBAyqQTmqLgQKYlYnumatE5cRFc
+         TxVpaDX8t7wop24oROmlUS96NMdVeY7PBHDIW/T3WSmx/aCPFFh9v3xHu0e6GSI/Rx
+         ViYKo1BNlVsFC65pNKLgytdDsWIOhzT8pO1yqotAUcGPJGH0Nj83z5XIkuCh3gzRaP
+         RCvB3K4RyMw+BKYpyVQxCNekIzPX2+xiiY9/RoaX+oINmRapsa/7H7PofVuHzmkqdE
+         iMY49sccaS1j16kG5oQvyCvriltmludfQy+PNzABu+/0WPz+XC05tDuL+SaC1iYVBI
+         NrHiOR3ly/7qQ==
+Received: by mail-oi1-f176.google.com with SMTP id x78so8416232oix.1;
+        Sun, 07 Mar 2021 08:02:12 -0800 (PST)
+X-Gm-Message-State: AOAM530y6b8oPrrVJXGClw9xhwoqQGy/mg1Cjs168qlZpXpvZdilevcY
+        QxGhW2KOMGlKtNwmvWNCSSg2hvTE1tOXKtV04i4=
+X-Google-Smtp-Source: ABdhPJzpPsfCCAkRmVKn193+pHQBjk17f8dkofO2rKwjX7TbuYoBS5vX7tmjl8lFu8yM18ZXMOLeGO7Q06knumxhjeE=
+X-Received: by 2002:aca:5e85:: with SMTP id s127mr13583208oib.67.1615132931842;
+ Sun, 07 Mar 2021 08:02:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <827b317d7f5da6e048806922098291faacdb19f9.camel@suse.de>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-22-marcan@marcan.st>
+ <CAHp75Vc+t9_FNHZ0xYNaJ1+Ny+FFeZKA79abxV2NAsZvpBh3Bg@mail.gmail.com>
+ <535ff48e-160e-4ba4-23ac-54e478a2f3ee@marcan.st> <CAHp75Vd_kwdjbus3iq_39+p_xRk3rum2ek3nLLFbBDzMwggnKA@mail.gmail.com>
+ <05ccc09f-ffea-71cd-4288-beed3020bd45@marcan.st> <d33fffec-28bd-99b2-a8b1-cc83b628e4b3@canonical.com>
+In-Reply-To: <d33fffec-28bd-99b2-a8b1-cc83b628e4b3@canonical.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Sun, 7 Mar 2021 17:01:55 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0o4NHjXZ+ePj_Xpcw6ZmonoiR1dfkcsv=3i1JBEF4arA@mail.gmail.com>
+Message-ID: <CAK8P3a0o4NHjXZ+ePj_Xpcw6ZmonoiR1dfkcsv=3i1JBEF4arA@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 21/27] tty: serial: samsung_tty: IRQ rework
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 04, 2021 at 04:09:28PM +0100, Nicolas Saenz Julienne wrote:
-> On Thu, 2021-03-04 at 15:17 +0100, Greg KH wrote:
-> > On Thu, Mar 04, 2021 at 03:05:32PM +0100, Nicolas Saenz Julienne wrote:
-> > > Hi Greg.
-> > > 
-> > > On Thu, 2021-03-04 at 14:46 +0100, Greg KH wrote:
-> > > > On Wed, Mar 03, 2021 at 03:33:12PM +0800, Jing Xiangfeng wrote:
-> > > > > Using two distinct DMA zones turned out to be problematic. Here's an
-> > > > > attempt go back to a saner default.
-> > > > 
-> > > > What problem does this solve?  How does this fit into the stable kernel
-> > > > rules?
-> > > 
-> > > We changed the way we setup memory zones in arm64 in order to cater for
-> > > Raspberry Pi 4's weird DMA constraints: ZONE_DMA spans the lower 1GB of memory
-> > > and ZONE_DMA32 the rest of the 32bit address space. Since you can't allocate
-> > > memory that crosses zone boundaries, this broke crashkernel allocations on big
-> > > machines. This series fixes all this by parsing the HW description and checking
-> > > for DMA constrained buses. When not found, the unnecessary zone creation is
-> > > skipped.
-> > 
-> > What kernel/commit caused this "breakage"?
-> 
-> 1a8e1cef7603 arm64: use both ZONE_DMA and ZONE_DMA32
+On Sun, Mar 7, 2021 at 12:34 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+> On 05/03/2021 17:29, Hector Martin wrote:
+> > On 06/03/2021 01.20, Andy Shevchenko wrote:
+> >>> I am just splitting an
+> >>> existing function into two, where one takes the lock and the other does
+> >>> the work. Do you mean using a different locking function? I'm not
+> >>> entirely sure what you're suggesting.
+> >>
+> >> Yes, as a prerequisite
+> >>
+> >> spin_lock_irqsave -> spin_lock().
+> >
+> > Krzysztof, is this something you want in this series? I was trying to
+> > avoid logic changes to the non-Apple paths.
+>
+> I don't quite get the need for such change (the code will be still
+> called in interrupt handler, right?), but assuming the "why?" is
+> properly documented, it can be a separate patch here.
 
-Thanks for the info, all now queued up.
+This is only for readability: the common rule is to not disable
+interrupts when they are already disabled, so a reader might wonder
+if this instance of the handler is special in some case that it might
+be called with interrupts enabled.
 
-greg k-h
+There is also a small overhead in accessing the global irq mask
+register on some architectures, but for a uart that does not make
+any difference of course.
+
+While I'm generally in favor of that kind of cleanup, I'd also
+prefer to leave it out of this series -- once you get into details
+like this the series gets harder to review.
+
+        Arnd
