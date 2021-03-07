@@ -2,62 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FDF330334
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 18:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 532AA33033F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 18:21:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232608AbhCGRQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 12:16:34 -0500
-Received: from aposti.net ([89.234.176.197]:41002 "EHLO aposti.net"
+        id S232648AbhCGRU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 12:20:56 -0500
+Received: from aposti.net ([89.234.176.197]:41420 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232583AbhCGRQS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 12:16:18 -0500
+        id S232629AbhCGRUY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Mar 2021 12:20:24 -0500
 From:   Paul Cercueil <paul@crapouillou.net>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     od@zcrc.me, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH 3/3] clocksource: ingenic-ost: Add support for the JZ4760B
-Date:   Sun,  7 Mar 2021 17:15:53 +0000
-Message-Id: <20210307171553.72591-3-paul@crapouillou.net>
-In-Reply-To: <20210307171553.72591-1-paul@crapouillou.net>
-References: <20210307171553.72591-1-paul@crapouillou.net>
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 1/2] dt-bindings/irq: Add compatible string for the JZ4760B
+Date:   Sun,  7 Mar 2021 17:20:13 +0000
+Message-Id: <20210307172014.73481-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OST in the JZ4760B SoC works exactly the same as in the JZ4770. But
-since the JZ4760B is older, its Device Tree string does not fall back to
-the JZ4770 one; so add support for the JZ4760B compatible string here.
+Add the ingenic,jz4760b-intc compatible string with a fallback to the
+ingenic,jz4760-intc compatible string.
 
 Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 ---
- drivers/clocksource/ingenic-ost.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/interrupt-controller/ingenic,intc.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clocksource/ingenic-ost.c b/drivers/clocksource/ingenic-ost.c
-index 029efc2731b4..d2d664601441 100644
---- a/drivers/clocksource/ingenic-ost.c
-+++ b/drivers/clocksource/ingenic-ost.c
-@@ -167,13 +167,14 @@ static const struct ingenic_ost_soc_info jz4725b_ost_soc_info = {
- 	.is64bit = false,
- };
- 
--static const struct ingenic_ost_soc_info jz4770_ost_soc_info = {
-+static const struct ingenic_ost_soc_info jz4760b_ost_soc_info = {
- 	.is64bit = true,
- };
- 
- static const struct of_device_id ingenic_ost_of_match[] = {
- 	{ .compatible = "ingenic,jz4725b-ost", .data = &jz4725b_ost_soc_info, },
--	{ .compatible = "ingenic,jz4770-ost", .data = &jz4770_ost_soc_info, },
-+	{ .compatible = "ingenic,jz4760b-ost", .data = &jz4760b_ost_soc_info, },
-+	{ .compatible = "ingenic,jz4770-ost", .data = &jz4760b_ost_soc_info, },
- 	{ }
- };
- 
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.yaml
+index 0a046be8d1cd..0358a7739c8e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.yaml
+@@ -23,6 +23,7 @@ properties:
+           - enum:
+               - ingenic,jz4775-intc
+               - ingenic,jz4770-intc
++              - ingenic,jz4760b-intc
+           - const: ingenic,jz4760-intc
+       - items:
+           - const: ingenic,x1000-intc
 -- 
 2.30.1
 
