@@ -2,87 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B5232FE3E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 01:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4175F32FE82
+	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 04:16:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbhCGAnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Mar 2021 19:43:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57132 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229759AbhCGAm4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 6 Mar 2021 19:42:56 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0C56B650B1;
-        Sun,  7 Mar 2021 00:42:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615077776;
-        bh=KZD3vOv3vH2mC1Q0ZplTlNxWU5cUbcMTjSyFa0US+0U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MzO4xfRz/R75vm/uSgcq+ZU75rGZekKhPNHoAZ2UHiBjgiKU4O+Nn/bxwktFoLVFu
-         iTN9mENxTxEN7a6blOtoqs1OdTro3umc94005wwWt4g1o89NEZBO7xc2VAhCYb/4pd
-         ivy2UieMfb+QewR7D2UrUSjbHSMQXRIi0JYXpuzvzC5gTfeVbtby+k3pvu+Tj3tyit
-         WmUV4GJDijKzl9/3KkI7CzfoC7xSXgCUVWEKqP4WBWve/n44tfyDMohOMQfwpza0ai
-         QPubm5uVRC9tVQz6+nLXNYN8jYQVrfN+gOVZ88lT8wkAXWYjlMzb4t7zny5MvGYj+G
-         0pbjIisuLwCiw==
-Received: by mail-ed1-f54.google.com with SMTP id v13so9031636edw.9;
-        Sat, 06 Mar 2021 16:42:55 -0800 (PST)
-X-Gm-Message-State: AOAM5332tyIryXKrLaPYAVJzrJChb1FTn8LGDRQcI4uhfNjLUWuheeH/
-        TTe284CqG9hTs6+h4ixWIrzTQ2p5SBPz6CXHbA==
-X-Google-Smtp-Source: ABdhPJx7jtQ0W73hZycPPbjKIcZbMY0MyE9EPc5BZE00JeOhpRPAnSbt16/1gZRtb+fIlfnNDBOeoa0ac6GIa4Mpr3E=
-X-Received: by 2002:a50:ec07:: with SMTP id g7mr15611220edr.72.1615077774729;
- Sat, 06 Mar 2021 16:42:54 -0800 (PST)
-MIME-Version: 1.0
-References: <20210208014221.196584-1-jitao.shi@mediatek.com>
- <20210208014221.196584-4-jitao.shi@mediatek.com> <20210210201856.GA2690160@robh.at.kernel.org>
-In-Reply-To: <20210210201856.GA2690160@robh.at.kernel.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 7 Mar 2021 08:42:43 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9gQe1SvzyzeNSA+i5tQNGjuW-57vpuA=GusmtWX0+_1g@mail.gmail.com>
-Message-ID: <CAAOTY_9gQe1SvzyzeNSA+i5tQNGjuW-57vpuA=GusmtWX0+_1g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: mediatek,dpi: add mt8192 to mediatek,dpi
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jitao Shi <jitao.shi@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        DTML <devicetree@vger.kernel.org>, yingjoe.chen@mediatek.com,
-        stonea168@163.com, huijuan.xie@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        eddie.huang@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        shuijing.li@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S230134AbhCGDOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Mar 2021 22:14:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54830 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230140AbhCGDOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Mar 2021 22:14:21 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327EFC06175F
+        for <devicetree@vger.kernel.org>; Sat,  6 Mar 2021 19:14:10 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id v2so550981lft.9
+        for <devicetree@vger.kernel.org>; Sat, 06 Mar 2021 19:14:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wirenboard-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=6TB9PYEq3zeYLZKg5D+xCq8Y8gZgxb5+A3yPQ8nEc80=;
+        b=Oi0z0SklDqrXcqlHBRHFrkXflYidmA96ce3L8SnewtmlNvJg/wASaoAA9B+EagEKXS
+         5RlkBpc6HdUMSo5tB8SslAPx/Li9Q2LZFyAVHrSanS3nCqzbGkBes206RRB+px0VbD0e
+         2bWc9ZyZlPjWupQw8vCUjT+0IbbD9iG5Tm2egHzQlifVITQbeUGenUGXgqpoOU9yCbdK
+         3IiriSqrl/1Tc5GUDEX9EqQlp7sNKM6FGzbS5yCzxABnhOs+6YhKKGgzPEnZzyxXJKN3
+         gItKg3zhfDFbVoVbOd9r+4YyuLYl9h1g26hcVFmI8dajpFYPPNhu5vF50bx+Rye4dJ0N
+         pFWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6TB9PYEq3zeYLZKg5D+xCq8Y8gZgxb5+A3yPQ8nEc80=;
+        b=YF+wZvVPmWR9vNUrR1Z8GxicutoLZoWBRYvehz2KsWnehqx+4M8o4luWcmLK8kFqIq
+         yhnrqhHsQobSx4GRKKS6tF3DkWArJMTOozgZGrNZ5Ra9ojat3oGfiz6Fuvo/hYpKgZls
+         KZk9aVE2ccH8zfNIKbWvsraSlHXvziU/tGjtw0MwAyOYsyj2vaU51d4kZdRdnNxMUlv5
+         KVvRmfCvq959DTjmE4BWqjHs0Cf6ZJLI57/Y1YZMkMpUYZ4MJQz3iY0S62y6+JytHHpr
+         oyFJKCyeFm3i9KS0x1uwb3dvphXUTg3FrIb+8Z/ExcVxxuro0fl7oKFvSGQhySoDvnkw
+         83YA==
+X-Gm-Message-State: AOAM530wNOWvTMrAxQ/oe0jSFhySwCmZS4BPTTE8NMHeYc0zbKLY6JOh
+        oHe6UV9T3ruzhQd7qBY9o7C1pQ==
+X-Google-Smtp-Source: ABdhPJwshrSBMjXUj3KQqRSF3VJ1Pfnh6bzsJj1UEisjKErvLIovUsoRaMDy2gFLfKgxvg8y3fAGXg==
+X-Received: by 2002:a05:6512:a8b:: with SMTP id m11mr10074997lfu.112.1615086848587;
+        Sat, 06 Mar 2021 19:14:08 -0800 (PST)
+Received: from boger-laptop.lan (81.5.99.6.dhcp.mipt-telecom.ru. [81.5.99.6])
+        by smtp.gmail.com with ESMTPSA id u16sm847582lff.169.2021.03.06.19.14.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Mar 2021 19:14:07 -0800 (PST)
+From:   Evgeny Boger <boger@wirenboard.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/2] sun8i: r40: second ethernet support
+Date:   Sun,  7 Mar 2021 06:13:50 +0300
+Message-Id: <20210307031353.12643-1-boger@wirenboard.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B42=E6=9C=8811=E6=97=A5 =
-=E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=884:19=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Mon, 08 Feb 2021 09:42:21 +0800, Jitao Shi wrote:
-> > Add compatible "mediatek,mt8192-dpi" for the mt8192 dpi.
-> >
-> > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+This patch series adds support for two Ethernet ports on Allwinner R40.
+
+R40 (aka V40,A40i,T3) has two different Ethernet IPs called EMAC and GMAC.
+EMAC only support 10/100 Mbit in MII mode, while GMAC support both 10/100
+(MII) and 10/100/1000 (RGMII).
+
+In contrast to A10/A20 where GMAC and EMAC share the same pins making EMAC
+somewhat pointless, on R40 EMAC can be routed to port H.
+Both EMAC (on port H) and GMAC (on port A) can be then enabled at the same 
+time, allowing for two ethernet ports.
 
 
-Applied to mediatek-drm-next [1], thanks.
+Evgeny Boger (2):
+  net: allwinner: reset control support
+  dts: r40: add second ethernet support
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+ arch/arm/boot/dts/sun8i-r40.dtsi            | 53 +++++++++++++++++++++
+ drivers/net/ethernet/allwinner/sun4i-emac.c | 21 +++++++-
+ 2 files changed, 73 insertions(+), 1 deletion(-)
 
-Regards,
-Chun-Kuang.
+-- 
+2.17.1
+
