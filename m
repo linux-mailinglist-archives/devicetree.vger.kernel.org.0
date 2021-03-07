@@ -2,136 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA163304B9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 21:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C03063304D3
+	for <lists+devicetree@lfdr.de>; Sun,  7 Mar 2021 22:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232976AbhCGU5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 15:57:17 -0500
-Received: from mail-eopbgr00046.outbound.protection.outlook.com ([40.107.0.46]:3342
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232988AbhCGU4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 15:56:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PVbTmgv9hnZiTELwqbspDA+avfV8A6byJKBhgKJH99IYfKVJVkgNT76xY11taG3Bhp1mdpgL6xjGAH3V0nQKRnYUn0geuHE+FBvCXkmHepP45u6XSQ7xY+dZ+0JM6k46fob1yoM9fJsZrTl1udevAPnuL7umOPVfwNoVyVONGmy0nlzmlN7YB6u3bw+L+JvKD3esFzv8/tahB41Ocu6iXol3ps+Tl2Y0xtwSN4yGRHZh4imTZ7f9nDaZQ02aIVAh9gORauhWpImmr9L/0PcsbuwbOtquNi87mGOV2BBsLxtRRlvnowj4qEQt5yPnf72+0Q4NmbwST4tjjnyQD8zJ3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eZ3ITOq6LSJPYciqz0COifxTAUytMnFdY7fzjj37lmc=;
- b=AywtVb4vm312HeDx8lbKgO4nQqLnFo2JHbMyak217Xbt2r1Z+XDyrt9Zu/mtYWMIFiX/kjZXH41GwZtv0MLZoeA8QD95OcpptH5nr4clZ4uGgLEYDkU9ZvQGByNOezwP1kDuXnJ/EAbKtTeeyy4ig8M0kvRA2aNHt7NmwO9ZVePnqOUDV9R2W1z7NitNppAagr4MFpsRbYrjVOLjBCmfHLnTWVqOFsSk/2C/8y/NNUC77xGsGYb96NIfYAWPGUlrosGingQX3u+ZD7wZPs5jEVevmCDjTBRieDTeuudaF8TOBjD/GLHGqmWvj6Xc2ZsYBeLgrV7M4qIg0gVoCr8vcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eZ3ITOq6LSJPYciqz0COifxTAUytMnFdY7fzjj37lmc=;
- b=PqQ8o8jbS2vC8Ek+wUYagljwalT+bKgFPdCYxU0RVmkvNl3R+yGOdVWNCOd1u8m2Dw2bT9vCoYzDM7W5UOUTU0y8Z4c+IYjqW9/Nf4xN5C5cbWsPxcpFgO/tS6Hn5lvTZ0asaHNGlOiBHFMsg9rJBFFcbqCIoP2cZ1M7eKfXpDE=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB4046.eurprd04.prod.outlook.com (2603:10a6:803:4d::29)
- by VI1PR0402MB3792.eurprd04.prod.outlook.com (2603:10a6:803:20::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.23; Sun, 7 Mar
- 2021 20:56:48 +0000
-Received: from VI1PR04MB4046.eurprd04.prod.outlook.com
- ([fe80::29a6:a7ec:c1d:47ba]) by VI1PR04MB4046.eurprd04.prod.outlook.com
- ([fe80::29a6:a7ec:c1d:47ba%5]) with mapi id 15.20.3912.026; Sun, 7 Mar 2021
- 20:56:48 +0000
-From:   =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: ls1021a: mark crypto engine dma coherent
-Date:   Sun,  7 Mar 2021 22:56:29 +0200
-Message-Id: <20210307205629.12180-1-horia.geanta@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [83.217.231.2]
-X-ClientProxiedBy: AM4PR05CA0035.eurprd05.prod.outlook.com (2603:10a6:205::48)
- To VI1PR04MB4046.eurprd04.prod.outlook.com (2603:10a6:803:4d::29)
+        id S231397AbhCGVVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 16:21:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233036AbhCGVUv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Mar 2021 16:20:51 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DCA9564F17;
+        Sun,  7 Mar 2021 21:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615152051;
+        bh=1V0b8OdNSYC8i5w1YGKrRetzGySCN1Duq26amPZ0llM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Uwk3Iq9FLeohINY03WKobvdhlymAKTvNSn3MtdVthbWNaapfid/P1ven6JArRVPxV
+         mxzsEc2k6lqcVskEN361zqsPWlkErbdei39+wm6IFJaBTo6TyfhSgUZQyh4kYpy3k1
+         LnFNJJ4fXwvwsGTGARBZPtcrJOKuSziSWNG+krAJt/iu3YEkA3uNlL9Ip0zPTeX/16
+         PirQ3jKUj7tAlVEgb7qXwRKLaIdjZf4TYFdiKnSL8oG92ntjdRF+YAz1hXq7GJKFIH
+         IlqCR2rC2tBEqOanfYLSFG/CTZldFr/39VVb2eJejaO3y7ZcZGG0qBnQgC+KcZ+xPJ
+         OYXe1xIXo92IQ==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     nbd@nbd.name
+Cc:     robh@kernel.org, linux-wireless@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
+        ryder.lee@mediatek.com, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings:net:wireless:mediatek,mt76: txt to yaml conversion
+Date:   Sun,  7 Mar 2021 22:20:44 +0100
+Message-Id: <b78122c8ddcbf4ac66adc2c0280665a84e7e9010.1615151665.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lsv15138.swis.ro-buh01.nxp.com (83.217.231.2) by AM4PR05CA0035.eurprd05.prod.outlook.com (2603:10a6:205::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend Transport; Sun, 7 Mar 2021 20:56:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: dbfe1686-ec91-46ed-d8cf-08d8e1ab8657
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3792:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB379240CD1D2BC7D0086D948598949@VI1PR0402MB3792.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:119;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YQX7gJTbILpysuctH4naxpJ8s2T2g8EVWy3Q51L7u7CGwZRcPLjOTr0KSH+orsju5wIXSdpfZGwJCKKWfazoWcGiCy9ZvV4SW28gIDR3o7QEU/MoC2wI/Tt+++G6oNZegkr8OFh/WEkskmtp3NU/AQqpQP0uwYXkYTnbf++fPyUiQhL1ab0pdJ//DK7mZ6Jfbd2MZwNSRiW8iAQW7rtUKfYV1S+qb+d8gaSMteO9Pa1jiBwKYrnOc6q1gcKppKsfPelUOJUVp3upUYoajh3Ke+OIzoUcSL3hcSRQ1eru2JX+y7p9wNqiLrzAkboq60QyVOBf+XBwZ1a9mdob7Uxvg9S3l6T+Z9JaNib1YV/lxOe+Y9H4Ip1pnPCNrcBHsPMc9qv3Cy/3SDdfbO/ySXfOK1/WFaV55SW8xrMFzBZlaoKrMPvDym06EpcLprsFF4M5f0f+CIXTnONtUeMt/ZghfU1WA11/yQBauAOLw5eZmXfloRTiP89Wu2Zccccy1vYMBts8YQ8KIfxeXyBBS09zRg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(366004)(346002)(376002)(39860400002)(6666004)(66476007)(316002)(8936002)(186003)(7696005)(4326008)(6486002)(52116002)(478600001)(66556008)(956004)(5660300002)(8676002)(4744005)(2906002)(2616005)(16526019)(26005)(36756003)(86362001)(66946007)(1076003)(110136005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?V3NOU0E4VE5XeEtxbnlFZDA1TkkrVkVkVWpOUks5bWs3ancwL29lbDJSWXpM?=
- =?utf-8?B?YzlDV0NVNVFORHY1L0NWcW9vQWpCR1BwVSt3QlpPb1phZEpiRHVqeUNzVXVZ?=
- =?utf-8?B?RS9acGU3TGlGNHlhZEZDYW1SVUVuOWJrSWhsSUJQd0Q5UDR4cmtRcDB5UGRv?=
- =?utf-8?B?WGtpeC9EdnZ2QmVaL2ZuV0FGZVdnUjJJbW1xU1BBeENzRFI5VUZ0RC96K0lD?=
- =?utf-8?B?ci9pWVhxSDl1bmJGUDdLQUZmUFhLZ2s3QWhrT1cyRk51MUpLTnNZbmZTNkdp?=
- =?utf-8?B?dXRabjEza1NkTmRZUFFiQnVmWlAwa1pZdVEzd1N4Vm4vRGFtcmE5eVBJRDly?=
- =?utf-8?B?dXNqSVZTMG5DTnJ4b3hseC93NFlmaHpiMU5yRURPL2ttVFNSbVhrNUVqWjVp?=
- =?utf-8?B?a1ZTM1ZZclRJOG1SQm9sbVRpbjcwd2FhNkhJVTVtMzhtNXFBUFdVSlBuSGhU?=
- =?utf-8?B?dHJjcXlpSUIrSW5na3RmdHpVMzNuNVRoam9lbXBIN2ZpTThXWkwyNkVlUlRo?=
- =?utf-8?B?YjhIdlRCNkNIT0VVM3ZhSFN3WFZEUGVTQ0VXSGs3N1pQQ0ZwTldIdmZNTHJ4?=
- =?utf-8?B?ZzZQdUZSMTdZT0hpaEUxNUFGVmFocms4MzUxR3dMRTF3cXZzZXA0eGgwUjdT?=
- =?utf-8?B?UFZjZTR1cWlaSmhXR29PdGp5dU9qZUpYVVcxazg4Y09OSWpZS1VlbEVlTytP?=
- =?utf-8?B?ME53STloaXhjSy9PWHV5S3ZkbDlEK0RGZW5JZGxyVDE5WVlYcEJUL1piUUhG?=
- =?utf-8?B?UWkvWE5SVlJXaWN6RGs0VktCclRYelNSUis3Y05jaUFhem9oV1hvZ1o3ejhH?=
- =?utf-8?B?U0lSUFMzWlRNMXZEaGx6dVJYMTd4SWtOY1FXbzlZZzl6bXRyK291NHNzU1BH?=
- =?utf-8?B?eTU2U2kvd3M2TVZDOE5DOFhWRUtBYVNicVR2dkhhc3NQQVJGVnJNcnpFZk5X?=
- =?utf-8?B?OE80U0pFWXBYdEpkckJuU0I4ZzFScWh2aWdmM095TndWVVI4NnhxNk5QOXRK?=
- =?utf-8?B?REtzYWpRR3l6Tml0QW9DOTJHdFRtV2cvSDVVeFVYTHpUNzV4VnhZS1UzUE9q?=
- =?utf-8?B?eS9ucnJubitPcnFNbC9hVjErcVo1NmpaWk41a3BJRXBzdzM1SlJCa0VaVStY?=
- =?utf-8?B?Y202eUF6bzhRajJxdFhuY3A1cnpzOU9CZGpRSXpkS1lIcXhOOXlVWWJzZzFG?=
- =?utf-8?B?V0Vyd3M1eDRGaUhnRkJKNEJhQklzd3lpTk1MMWtQZysyQU5sY3ZVaDJuUG16?=
- =?utf-8?B?dG4zV1JLaGpnakgrOVZ4RSs1d3duUTZjQTFUak0xL0RSL1E5WUNiVEhvZjB2?=
- =?utf-8?B?N2ZhQ2doRTNBZTRBdG42d3NnYnRtN1EzcDA1bVlEZ0FnU3JrdUZwWjdLTSth?=
- =?utf-8?B?bDhHMCtrUnI0TW9rN3hRalBTUWNXeWFVQW11RjdtQXc0RWhYMkVYekxqckVn?=
- =?utf-8?B?azZzZmJpVXRYTWxPVTRaRUFDeEMwaUhSWlFnYjlJem52VVE2NE52Y0UrYjRl?=
- =?utf-8?B?ZTNjR2RjeGN2WEYwNFMvUWQ4OHE5eFc5Z0NWT3VyRnREbi9VbXFSSStVMGxS?=
- =?utf-8?B?MkVWYjltWmtWa2tZUnFYaG1mbG15R2RLTkRqVHoxalJjMzNpY3J6N2VmMlJi?=
- =?utf-8?B?UUdpYytDRUhna082TmNpdHRmVUUyVStzUk8yRHJGTi9RNnVmOTJ6Y1RGL2s0?=
- =?utf-8?B?OXFNbG9vdzJSOEhxUk1HcTRISnkrQzZqNk1EbVlOZVpLakdFUmVaUVY4dXJy?=
- =?utf-8?Q?zgt5Ije4ZaUCpD3nTjrf59KZ886F5zJv8pBRJ4r?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbfe1686-ec91-46ed-d8cf-08d8e1ab8657
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2021 20:56:48.5934
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SjD9dtAiekm5VbeMulH1vujJxnfba7CvcsvucYubiwL/l4ghFWGqm74NTbqtimOfeW8J3DpLpn6+6K4dttlWTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3792
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Crypto engine (CAAM) on LS1021A platform is configured HW-coherent,
-mark accordingly the DT node.
+Convert mt76 dts bindings from .txt to .yaml
 
-Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
+Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 ---
- arch/arm/boot/dts/ls1021a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/net/wireless/mediatek,mt76.txt   |  78 -----------
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 125 ++++++++++++++++++
+ 2 files changed, 125 insertions(+), 78 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 007dd2bd0595..62c6eb87cfb7 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -246,6 +246,7 @@
- 			reg		 = <0x0 0x1700000 0x0 0x100000>;
- 			ranges		 = <0x0 0x0 0x1700000 0x100000>;
- 			interrupts	 = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-coherent;
- 
- 			sec_jr0: jr@10000 {
- 				compatible = "fsl,sec-v5.0-job-ring",
-
-base-commit: 498f8aee6ec000392d918ecbcbeb1b5ee3132006
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
+deleted file mode 100644
+index ab7e7a00e534..000000000000
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-* MediaTek mt76xx devices
+-
+-This node provides properties for configuring the MediaTek mt76xx wireless
+-device. The node is expected to be specified as a child node of the PCI
+-controller to which the wireless chip is connected.
+-
+-Alternatively, it can specify the wireless part of the MT7628/MT7688 or
+-MT7622 SoC. For SoC, use the following compatible strings:
+-
+-compatible:
+-- "mediatek,mt7628-wmac" for MT7628/MT7688
+-- "mediatek,mt7622-wmac" for MT7622
+-
+-properties:
+-- reg: Address and length of the register set for the device.
+-- interrupts: Main device interrupt
+-
+-MT7622 specific properties:
+-- power-domains: phandle to the power domain that the WMAC is part of
+-- mediatek,infracfg: phandle to the infrastructure bus fabric syscon node
+-
+-Optional properties:
+-
+-- ieee80211-freq-limit: See ieee80211.txt
+-- mediatek,mtd-eeprom: Specify a MTD partition + offset containing EEPROM data
+-- big-endian: if the radio eeprom partition is written in big-endian, specify
+-  this property
+-- mediatek,eeprom-merge-otp: Merge EEPROM data with OTP data. Can be used on
+-  boards where the flash calibration data is generic and specific calibration
+-  data should be pulled from the OTP ROM
+-
+-The MAC address can as well be set with corresponding optional properties
+-defined in net/ethernet.txt.
+-
+-Optional nodes:
+-- led: Properties for a connected LED
+-  Optional properties:
+-    - led-sources: See Documentation/devicetree/bindings/leds/common.txt
+-
+-&pcie {
+-	pcie0 {
+-		wifi@0,0 {
+-			compatible = "mediatek,mt76";
+-			reg = <0x0000 0 0 0 0>;
+-			ieee80211-freq-limit = <5000000 6000000>;
+-			mediatek,mtd-eeprom = <&factory 0x8000>;
+-			big-endian;
+-
+-			led {
+-				led-sources = <2>;
+-			};
+-		};
+-	};
+-};
+-
+-MT7628 example:
+-
+-wmac: wmac@10300000 {
+-	compatible = "mediatek,mt7628-wmac";
+-	reg = <0x10300000 0x100000>;
+-
+-	interrupt-parent = <&cpuintc>;
+-	interrupts = <6>;
+-
+-	mediatek,mtd-eeprom = <&factory 0x0000>;
+-};
+-
+-MT7622 example:
+-
+-wmac: wmac@18000000 {
+-	compatible = "mediatek,mt7622-wmac";
+-	reg = <0 0x18000000 0 0x100000>;
+-	interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_LOW>;
+-
+-	mediatek,infracfg = <&infracfg>;
+-
+-	power-domains = <&scpsys MT7622_POWER_DOMAIN_WB>;
+-};
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+new file mode 100644
+index 000000000000..1a6e3d36944f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -0,0 +1,125 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/wireless/mediatek,mt76.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek mt76 wireless devices Generic Binding
++
++maintainers:
++  - Felix Fietkau <nbd@nbd.name>
++  - Lorenzo Bianconi <lorenzo@kernel.org>
++
++description: |
++  This node provides properties for configuring the MediaTek mt76xx
++  wireless device. The node is expected to be specified as a child
++  node of the PCI controller to which the wireless chip is connected.
++  Alternatively, it can specify the wireless part of the MT7628/MT7688
++  or MT7622 SoC.
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt76
++      - mediatek,mt7628-wmac
++      - mediatek,mt7622-wmac
++
++  reg:
++    maxItems: 1
++    description:
++      Address and length of the register set for the device
++
++  interrupts:
++    maxItems: 1
++    description:
++      Main device interrupt
++
++  power-domains:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Phandle to the power domain that the WMAC is part of.
++      This property is MT7622 specific
++
++  mediatek,infracfg:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the infrastructure bus fabric syscon node.
++      This property is MT7622 specific
++
++  ieee80211-freq-limit:
++    maxItems: 1
++    description:
++      List of supported frequency ranges in KHz
++
++  mediatek,mtd-eeprom:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Phandle to a MTD partition + offset containing EEPROM data
++
++  big-endian:
++    type: boolean
++    description:
++      Specify if the radio eeprom partition is written in big-endian
++
++  mediatek,eeprom-merge-otp:
++    type: boolean
++    description:
++      Merge EEPROM data with OTP data. Can be used on boards where the flash
++      calibration data is generic and specific calibration data should be
++      pulled from the OTP ROM
++
++  led:
++    type: object
++    properties:
++      led-sources:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description:
++          List of device current outputs the LED is connected to
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    pcie0 {
++      #address-cells = <3>;
++      #size-cells = <2>;
++      wifi@0,0 {
++        compatible = "mediatek,mt76";
++        reg = <0x0000 0 0 0 0>;
++        ieee80211-freq-limit = <5000000 6000000>;
++        mediatek,mtd-eeprom = <&factory 0x8000>;
++        big-endian;
++
++        led {
++          led-sources = <2>;
++        };
++      };
++    };
++
++  - |
++    wmac: wmac@10300000 {
++      compatible = "mediatek,mt7628-wmac";
++      reg = <0x10300000 0x100000>;
++
++      interrupt-parent = <&cpuintc>;
++      interrupts = <6>;
++
++      mediatek,mtd-eeprom = <&factory 0x0>;
++    };
++
++  - |
++    wlmac: wmac@18000000 {
++      compatible = "mediatek,mt7622-wmac";
++      reg = <0x10300000 0x100000>;
++      interrupts = <0 211 8>;
++
++      mediatek,infracfg = <&infracfg>;
++
++      power-domains = <&scpsys 3>;
++    };
 -- 
-2.17.1
+2.29.2
 
