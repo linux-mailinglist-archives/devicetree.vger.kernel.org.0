@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC80E330577
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 01:56:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF01F33059D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 02:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233430AbhCHAz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 19:55:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60418 "EHLO mail.kernel.org"
+        id S233517AbhCHB0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Mar 2021 20:26:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35888 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233429AbhCHAzr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 19:55:47 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5266564F29;
-        Mon,  8 Mar 2021 00:55:45 +0000 (UTC)
+        id S233538AbhCHB0Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Mar 2021 20:26:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 17EC965146;
+        Mon,  8 Mar 2021 01:26:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615164947;
-        bh=VXwKpdNyK5hS53TXuxq83aT8f8NgvBrnqunXhv8/Pl4=;
+        s=k20201202; t=1615166773;
+        bh=1tSm5R9ia8fPzF5IrSlL2/zWCFx5XqCJFr8Mnci+D5E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WU5WoDgyQHfowQ0JBDmh4aT+JmSazIt5xI9Q3/5hYdwdZ5YAyRXyfykUaAP0IrLFB
-         K4WoNmVPgf5QFFpbAxLmGh0AHrljm3CyZwwHn6mTKI7N7yZ/n22pzaNi6QknzjP7Ne
-         Wslm2qEx1esSEGdIMakpOShXRzCMjQnO46hfVn5mqQqnDKptAaytITaLrsnGYTgcO4
-         MlgP+QR/mlGHBZlrJFKApLkfbpOGmbr3aN3Xc2T6NhhHYpfTlUOv/DuwcbsDQO5VN1
-         jOYquHupQz00Yb8xjasyi+0PqZ3L+/eOEU4BAyE56kEgVQqCdbq2PzubVgG1KzJNPx
-         YOx8+GlOP7iwQ==
-Date:   Mon, 8 Mar 2021 08:55:41 +0800
+        b=cI7ea3i2gdTYLkwdYDvlPowei2d+RVAfftoBEsi12hsWyX1zZytSw8MmuYu7zYESG
+         yctrT9kNJ3EQLmwnQRH00J5yffqaFJgrhPmiKpnomKOr5T3AxSZhG7xl2vNrPY6Oai
+         k5iJKTlQY2LhMBcHbJKZkWIHhiGjd8SpzF1I7JHSAUWWA/hPhRHpa9ygyYMrucSDF3
+         44sGdog55AF8BFE5tpJd1mOsKZL3UYHUJSKS3mqCeCsIt8dvNtYSgakiVc6e4v6+zF
+         Er2SsVgiKbXEJ/PNl5foGKcaAgjJnwqkldEtLxJHjx7H2l0IkXdvglEMEfvYQ+xzsY
+         6wgLQ6JT7lD3A==
+Date:   Mon, 8 Mar 2021 09:26:07 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula@amarulasolutions.com,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v4 0/5] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini
-Message-ID: <20210308005541.GO543@dragon>
-References: <20210225192404.262453-1-jagan@amarulasolutions.com>
+        Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v4 0/2] add Kontron pITX-imx8m board
+Message-ID: <20210308012606.GS543@dragon>
+References: <20210303211002.17650-1-heiko.thiery@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210225192404.262453-1-jagan@amarulasolutions.com>
+In-Reply-To: <20210303211002.17650-1-heiko.thiery@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 26, 2021 at 12:53:59AM +0530, Jagan Teki wrote:
-> Jagan Teki (5):
->   dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
->   arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini SoM
->   arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
->   dt-bindings: arm: fsl: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
->   arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini EDIMM2.2 Starter Kit
+On Wed, Mar 03, 2021 at 10:10:01PM +0100, Heiko Thiery wrote:
+> This patch series adds support for the Kontron pITX-imx8m board:
+> 
+> https://www.kontron.com/products/boards-and-standard-form-factors/single-board-computer/pitx-imx8m.html
+> 
+> Heiko Thiery (2):
+>   dt-bindings: arm: fsl: add Kontron pITX-imx8m board
+>   arm64: dts: fsl: add support for Kontron pitx-imx8m board
 
-Applied all, thanks.
+Applied both, thanks.
