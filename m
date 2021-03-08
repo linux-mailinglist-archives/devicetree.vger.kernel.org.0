@@ -2,140 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78AF1330832
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 07:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26EDB330843
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 07:42:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234921AbhCHGgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 01:36:52 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55912 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234885AbhCHGgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 01:36:38 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1286aKYH110190;
-        Mon, 8 Mar 2021 00:36:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615185380;
-        bh=RuH1XyFPlD2/xUnAbgo3c6Sl0V2SC3r4WGxGh2uZNc8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Yosq7WEROYMiwO5WYdQCKxSPFbB5wBZOqj5aFd8uqPawsoc38DdGULVdseFS45BSG
-         Vvd4MrLkLcwK/QBHNDWnjdAFmgD8Fypi7iQnSA5K9EpECQzIwJW6nsMiWyuP1EyxCp
-         r82XbC4hq/rjyPGcYW4QCVX2T556YyqzPhp+MinI=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1286aKZ7017883
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 8 Mar 2021 00:36:20 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 8 Mar
- 2021 00:36:20 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 8 Mar 2021 00:36:20 -0600
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1286ZuTW117458;
-        Mon, 8 Mar 2021 00:36:16 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S234965AbhCHGlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 01:41:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234960AbhCHGlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 01:41:25 -0500
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F905C06174A
+        for <devicetree@vger.kernel.org>; Sun,  7 Mar 2021 22:41:25 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4Dv7z26xj5z1rx7v;
+        Mon,  8 Mar 2021 07:41:18 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4Dv7z26KM6z1qrxj;
+        Mon,  8 Mar 2021 07:41:18 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id xzpFu59U_JzL; Mon,  8 Mar 2021 07:41:18 +0100 (CET)
+X-Auth-Info: YfdqiWJfkkwyVfz6OHsBQxqGeEI/MXCEBhEYtroWxiI=
+Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon,  8 Mar 2021 07:41:18 +0100 (CET)
+Received: from pollux.denx.de (pollux [192.168.1.1])
+        by mail-internal.denx.de (Postfix) with ESMTP id AD411181B6F;
+        Mon,  8 Mar 2021 07:40:50 +0100 (CET)
+Received: by pollux.denx.de (Postfix, from userid 515)
+        id 851E71A0092; Mon,  8 Mar 2021 07:40:50 +0100 (CET)
+From:   Heiko Schocher <hs@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Heiko Schocher <hs@denx.de>, Alice Guo <alice.guo@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Nadeem Athani <nadeem@cadence.com>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v4 4/4] PCI: j721e: Add support to provide refclk to PCIe connector
-Date:   Mon, 8 Mar 2021 12:05:50 +0530
-Message-ID: <20210308063550.6227-5-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210308063550.6227-1-kishon@ti.com>
-References: <20210308063550.6227-1-kishon@ti.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] enable flexspi support on imx8mp
+Date:   Mon,  8 Mar 2021 07:40:44 +0100
+Message-Id: <20210308064046.1576267-1-hs@denx.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to provide refclk to PCIe connector.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- drivers/pci/controller/cadence/pci-j721e.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+This series enables support for the SPI NOR on the
+imx8mp based phyboard-pollux-rdk board.
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-index dac1ac8a7615..7f9dd34b98a9 100644
---- a/drivers/pci/controller/cadence/pci-j721e.c
-+++ b/drivers/pci/controller/cadence/pci-j721e.c
-@@ -6,6 +6,7 @@
-  * Author: Kishon Vijay Abraham I <kishon@ti.com>
-  */
- 
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/io.h>
-@@ -50,6 +51,7 @@ enum link_status {
- 
- struct j721e_pcie {
- 	struct device		*dev;
-+	struct clk		*refclk;
- 	u32			mode;
- 	u32			num_lanes;
- 	struct cdns_pcie	*cdns_pcie;
-@@ -310,6 +312,7 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 	struct cdns_pcie_ep *ep;
- 	struct gpio_desc *gpiod;
- 	void __iomem *base;
-+	struct clk *clk;
- 	u32 num_lanes;
- 	u32 mode;
- 	int ret;
-@@ -408,6 +411,20 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 			goto err_get_sync;
- 		}
- 
-+		clk = devm_clk_get_optional(dev, "pcie_refclk");
-+		if (IS_ERR(clk)) {
-+			ret = PTR_ERR(clk);
-+			dev_err(dev, "failed to get pcie_refclk\n");
-+			goto err_pcie_setup;
-+		}
-+
-+		ret = clk_prepare_enable(clk);
-+		if (ret) {
-+			dev_err(dev, "failed to enable pcie_refclk\n");
-+			goto err_get_sync;
-+		}
-+		pcie->refclk = clk;
-+
- 		/*
- 		 * "Power Sequencing and Reset Signal Timings" table in
- 		 * PCI EXPRESS CARD ELECTROMECHANICAL SPECIFICATION, REV. 3.0
-@@ -422,8 +439,10 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 		}
- 
- 		ret = cdns_pcie_host_setup(rc);
--		if (ret < 0)
-+		if (ret < 0) {
-+			clk_disable_unprepare(pcie->refclk);
- 			goto err_pcie_setup;
-+		}
- 
- 		break;
- 	case PCI_MODE_EP:
-@@ -476,6 +495,7 @@ static int j721e_pcie_remove(struct platform_device *pdev)
- 	struct cdns_pcie *cdns_pcie = pcie->cdns_pcie;
- 	struct device *dev = &pdev->dev;
- 
-+	clk_disable_unprepare(pcie->refclk);
- 	cdns_pcie_disable_phy(cdns_pcie);
- 	pm_runtime_put(dev);
- 	pm_runtime_disable(dev);
+
+
+Heiko Schocher (2):
+  arm64: dts: imx8mp: add flexspi node
+  arm64: imx8mp: imx8mp-phycore-som enable spi nor
+
+ .../dts/freescale/imx8mp-phycore-som.dtsi     | 27 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 16 +++++++++++
+ 2 files changed, 43 insertions(+)
+
 -- 
-2.17.1
+2.29.2
 
