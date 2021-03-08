@@ -2,79 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5A13315F1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 916DB331600
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:27:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbhCHSZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:25:11 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:3608 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbhCHSZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:25:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1615227900; x=1646763900;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=xwiUSnP6Ue3KFD8mVvG7vvodfW+fgM8ZOHSDbKV717g=;
-  b=sYhALPavfs+XosIFWtY3NX0rC2ucvg3LR1Odpmx3DQC6hItBpCMkq3GJ
-   U1NTmUblyLktuJVI3fxSPf7zPQeLd/WfCiRz2Xnly/VtQROO8Y2k/T3sd
-   KcNMf3ifUZtzKCpj2ktZNBZBT/iSUiVi6XhPqn2CxXCkmvog6PlBDZoV4
-   TM1a5lx+gFmsym93/Frdk+lOzy8sCn78IgQOkkL52A72xRBU+vyG+26RE
-   1CSWScpGVzQjx10YTc3oOqHWAxqSWTeZUF4pqjRCSlPZwR5TMOl1JyaTK
-   Oug3eOxnS9A9qHDHV/Fqwx4qfkDpuEdVZwv4flVMwLXSKgRF1aIelHLpF
-   A==;
-IronPort-SDR: 5d9GdlEZOsPA0KZxEnQbSeIFIoTjbdvyDA/iBxsFvV2qx19ymU3J+6+o+htQr4WT4SMLMRW/wP
- gYVfgRJRWQs3MXW3bxB/Q124HEtI8guy9MfqQOH2iAEUZQZpX+cXmeng/83Bm3i88kolbKzQDk
- YVJJCIrzJ41E9O4QQRsc8XzyWxIf5veB1EGs7IN7mmdxaV1Nvrx7M51A8Ycm1pwWntNSmsWtaW
- y0vxp40CpzSzSGs6nxcDD4kDRyvJ8rxRurKjSWqobff+rMMkdNcDZ7vhSPNt2rOyKP1colsdbe
- ncw=
-X-IronPort-AV: E=Sophos;i="5.81,233,1610434800"; 
-   d="scan'208";a="106384155"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Mar 2021 11:25:00 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 8 Mar 2021 11:25:00 -0700
-Received: from [10.171.246.58] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Mon, 8 Mar 2021 11:24:58 -0700
-Subject: Re: [PATCH 1/2] dt-bindings: mchp-eic: add bindings
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>, <maz@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <tglx@linutronix.de>, <linux-arm-kernel@lists.infradead.org>
-References: <20210302102846.619980-1-claudiu.beznea@microchip.com>
- <20210302102846.619980-2-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <c14db0e2-a3a1-51bc-2363-c96e329bb521@microchip.com>
-Date:   Mon, 8 Mar 2021 19:24:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S230320AbhCHS1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:27:19 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:39907 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230510AbhCHS04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:26:56 -0500
+Received: by mail-io1-f52.google.com with SMTP id o9so11006665iow.6;
+        Mon, 08 Mar 2021 10:26:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QuSkewPTpe0085TNG2W2Oa8CDkZlQPGzs8cqLJpUUBA=;
+        b=p00fVvD2anE+xbaLoOkeLi2dATY24Agoyly4vVf4ghi3HDamDjP4rpzaUkXbUW536X
+         t60Bsdji9Q9p2d8pgVUi2j011TPAvvWYdr2PTbGUkvoy2tMI9hp0MfHRu4fl5kSAFB3E
+         htXAMCoTKEVsFKGe7dLZUiwwiXzUX/Pf3JCL4hZFkxysExpCAK69qouEUAk1IaTF+Wq8
+         RdOG489mKRyesbXbLwdWqDlKeJOPA7xiv78T/eGXwbH+I9czGv+Zq09wfzoz8jBUswEa
+         pVmBF/xYjK7g9zKYOuuJQ/aVX+AZNYCGgQw4Rm9GiJlc1uq2p1zqTSFbtPnJRrPqOigO
+         FA2w==
+X-Gm-Message-State: AOAM533Chf5DoIG2VV78xb8eqP2Yv2oidhJl70Hcin4/5qJ6wDCo0LNo
+        Ky9mKaLl+BDRubU05ikS9+2GDn96/A==
+X-Google-Smtp-Source: ABdhPJzjTtDhSDB3XWXDb5ygvtpGkDlzRkFu6tzU5LP8yUrH3ZVysbAhFaWWZoDnzHDhQvS2pjs7Gw==
+X-Received: by 2002:a02:cad9:: with SMTP id f25mr24409763jap.26.1615228015582;
+        Mon, 08 Mar 2021 10:26:55 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h193sm6546637iof.9.2021.03.08.10.26.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 10:26:55 -0800 (PST)
+Received: (nullmailer pid 2744943 invoked by uid 1000);
+        Mon, 08 Mar 2021 18:26:51 -0000
+Date:   Mon, 8 Mar 2021 11:26:51 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, ezequiel@collabora.com,
+        mchehab@kernel.org, gregkh@linuxfoundation.org,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 0/5] Reset driver for IMX8MQ VPU hardware block
+Message-ID: <20210308182651.GA2741282@robh.at.kernel.org>
+References: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
+ <20210308182217.GA2735443@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210302102846.619980-2-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308182217.GA2735443@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2021 at 11:28, Claudiu Beznea wrote:
-> Add DT bindings for Microchip External Interrupt Controller.
+On Mon, Mar 08, 2021 at 11:22:17AM -0700, Rob Herring wrote:
+> On Mon, Mar 01, 2021 at 04:17:49PM +0100, Benjamin Gaignard wrote:
+> > The two VPUs inside IMX8MQ share the same control block which can be see
+> > as a reset hardware block.
+> > In order to be able to add the second VPU (for HECV decoding) it will be
+> > more handy if the both VPU drivers instance don't have to share the
+> > control block registers. This lead to implement it as an independ reset 
+> > driver and to change the VPU driver to use it.
+> > 
+> > Please note that this series break the compatibility between the DTB and
+> > kernel. This break is limited to IMX8MQ SoC and is done when the driver
+> > is still in staging directory.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->   .../interrupt-controller/mchp,eic.yaml        | 74 +++++++++++++++++++
+> As this information will be lost, please put in the binding and dts 
+> patch.
 
-Nitpicking: use full vendor name in binding file name: microchip,eic.yaml
+Actually, the adding the VPU reset binding doesn't break compatibility, 
+so just the dts file changes needs it.
 
->   1 file changed, 74 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mchp,eic.yaml
-  [..]
-
-Regards,
--- 
-Nicolas Ferre
+> 
+> > 
+> > version 3:
+> > - Fix error in VPU example node
+> > 
+> > version 2:
+> > - Document the change in VPU bindings
+> >  
+> > Benjamin Gaignard (5):
+> >   dt-bindings: reset: IMX8MQ VPU reset
+> >   dt-bindings: media: IMX8MQ VPU: document reset usage
+> >   reset: Add reset driver for IMX8MQ VPU block
+> >   media: hantro: Use reset driver
+> >   arm64: dts: imx8mq: Use reset driver for VPU hardware block
+> > 
+> >  .../bindings/media/nxp,imx8mq-vpu.yaml        |  14 +-
+> >  .../bindings/reset/fsl,imx8mq-vpu-reset.yaml  |  54 ++++++
+> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  31 +++-
+> >  drivers/reset/Kconfig                         |   8 +
+> >  drivers/reset/Makefile                        |   1 +
+> >  drivers/reset/reset-imx8mq-vpu.c              | 169 ++++++++++++++++++
+> >  drivers/staging/media/hantro/Kconfig          |   1 +
+> >  drivers/staging/media/hantro/imx8m_vpu_hw.c   |  61 ++-----
+> >  include/dt-bindings/reset/imx8mq-vpu-reset.h  |  16 ++
+> >  9 files changed, 294 insertions(+), 61 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx8mq-vpu-reset.yaml
+> >  create mode 100644 drivers/reset/reset-imx8mq-vpu.c
+> >  create mode 100644 include/dt-bindings/reset/imx8mq-vpu-reset.h
+> > 
+> > -- 
+> > 2.25.1
+> > 
