@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F504330857
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 07:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D87053308BA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 08:18:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235020AbhCHGmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 01:42:18 -0500
-Received: from mail-out.m-online.net ([212.18.0.9]:56007 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235000AbhCHGmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 01:42:13 -0500
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4Dv8043pD3z1qs3P;
-        Mon,  8 Mar 2021 07:42:12 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4Dv8043c46z1qsST;
-        Mon,  8 Mar 2021 07:42:12 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id syoc4EYSvi8C; Mon,  8 Mar 2021 07:42:11 +0100 (CET)
-X-Auth-Info: jXknmdq6CV/u5QgYrUCcYmX9Pc9Z/MtkFhkOAdPPoYg=
-Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Mon,  8 Mar 2021 07:42:11 +0100 (CET)
-Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id B7323181B9F;
-        Mon,  8 Mar 2021 07:40:52 +0100 (CET)
-Received: by pollux.denx.de (Postfix, from userid 515)
-        id AC8A31A0092; Mon,  8 Mar 2021 07:40:52 +0100 (CET)
-From:   Heiko Schocher <hs@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Heiko Schocher <hs@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: imx8mp: imx8mp-phycore-som enable spi nor
-Date:   Mon,  8 Mar 2021 07:40:46 +0100
-Message-Id: <20210308064046.1576267-3-hs@denx.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210308064046.1576267-1-hs@denx.de>
-References: <20210308064046.1576267-1-hs@denx.de>
+        id S232691AbhCHHRn convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Mar 2021 02:17:43 -0500
+Received: from twhmllg4.macronix.com ([211.75.127.132]:51985 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235180AbhCHHRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 02:17:23 -0500
+X-Greylist: delayed 1002 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Mar 2021 02:17:23 EST
+Received: from TWHMLLG4.macronix.com (localhost [127.0.0.2] (may be forged))
+        by TWHMLLG4.macronix.com with ESMTP id 12870ekE007405;
+        Mon, 8 Mar 2021 15:00:40 +0800 (GMT-8)
+        (envelope-from zhengxunli@mxic.com.tw)
+Received: from twhfm1p2.macronix.com (twhfmlp2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id 1286xkGD005918;
+        Mon, 8 Mar 2021 14:59:46 +0800 (GMT-8)
+        (envelope-from zhengxunli@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id 801AD206CE2A7AD5EB65;
+        Mon,  8 Mar 2021 14:59:47 +0800 (CST)
+To:     shubhrajyoti.datta@xilinx.com
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        git@xilinx.com, gregkh@linuxfoundation.org,
+        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        shubhrajyoti.datta@gmail.com, juliensu@mxic.com.tw,
+        slwu@mxic.com.tw
+Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic
+ reconfiguration
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-KeepSent: 146ABDBB:F4474CC3-48258692:000D1A0C;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP6 SHF907 April 26, 2018
+Message-ID: <OF146ABDBB.F4474CC3-ON48258692.000D1A0C-48258692.00266ED2@mxic.com.tw>
+From:   zhengxunli@mxic.com.tw
+Date:   Mon, 8 Mar 2021 14:59:47 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2021/03/08 PM 02:59:47,
+        Serialize complete at 2021/03/08 PM 02:59:47
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-MAIL: TWHMLLG4.macronix.com 1286xkGD005918
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-enable the mt25qu256aba spi nor on the imx8mp-phycore-som.
 
-Signed-off-by: Heiko Schocher <hs@denx.de>
----
+Hi Shubhrajyoti,
 
- .../dts/freescale/imx8mp-phycore-som.dtsi     | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+My name is Zhengxun and I am the engineer from Macronix. We are
+using the platform PicoZed 7015/7030 SOM (System On Module),
+which is based on Xilinx Zynq®-7000 All Programmable (AP) SoC to
+verify our Flash dirver. Of course, we are also using your clock
+wizard, our version seems to be v5.2, but something went wrong.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-index 44a8c2337cee4..0284e7a5c6bba 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-@@ -65,6 +65,22 @@ ethphy1: ethernet-phy@0 {
- 	};
- };
- 
-+&flexspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexspi0>;
-+	status = "okay";
++static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long 
+rate,
++ unsigned long parent_rate)
++{
++                int err;
++                u32 value;
++                unsigned long flags = 0;
++                struct clk_wzrd_divider *divider = 
+to_clk_wzrd_divider(hw);
++                void __iomem *div_addr = divider->base + divider->offset;
 +
-+	flash0: mt25qu256aba@0 {
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <80000000>;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+	};
-+};
++                if (divider->lock)
++                                spin_lock_irqsave(divider->lock, flags);
++                else
++                                __acquire(divider->lock);
 +
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -217,6 +233,17 @@ MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
- 		>;
- 	};
- 
-+	pinctrl_flexspi0: flexspi0grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK		0x1c2
-+			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B	0x82
-+			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00	0x82
-+			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01	0x82
-+			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02	0x82
-+			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03	0x82
-+		>;
-+	};
++                value = DIV_ROUND_CLOSEST(parent_rate, rate);
 +
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
--- 
-2.29.2
++                /* Cap the value to max */
++                min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
++
++                /* Set divisor and clear phase offset */
++                writel(value, div_addr);
++                writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
+
+Why phase always set to zero? We want to support DTR operation in
+Flash driver. Can you add a set_phase function to adjust the phase?
+
++                /* Check status register */
++                err = readl_poll_timeout(divider->base + 
+WZRD_DR_STATUS_REG_OFFSET,
++                                                                 value, 
+value & WZRD_DR_LOCK_BIT_MASK,
++ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
++                if (err)
++                                goto err_reconfig;
++
++                /* Initiate reconfiguration */
++                writel(WZRD_DR_BEGIN_DYNA_RECONF,
++                       divider->base + WZRD_DR_INIT_REG_OFFSET);
++
++                /* Check status register */
++                err = readl_poll_timeout(divider->base + 
+WZRD_DR_STATUS_REG_OFFSET,
++                                                                 value, 
+value & WZRD_DR_LOCK_BIT_MASK,
++ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+
+According to pg015-clk-wiz.pdf, Clocking Wizard v5.2 and later, need to 
+write
+0x00000007 followed by 0x00000002 into Clock Configuration Register 23, to
+consolidate the redundant bits that the IP has upgraded, right?
+
+Can you compatible to v5.2?
+
++err_reconfig:
++                if (divider->lock)
++                                spin_unlock_irqrestore(divider->lock, 
+flags);
++                else
++                                __release(divider->lock);
++                return err;
++}
+
+Thanks,
+Zhengxun
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
