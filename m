@@ -2,80 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52124330A02
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0DAC330A4A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:29:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbhCHJLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 04:11:33 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44016 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbhCHJLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:11:04 -0500
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id BE6CB1F44CCF;
-        Mon,  8 Mar 2021 09:11:02 +0000 (GMT)
-Date:   Mon, 8 Mar 2021 10:10:59 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Daniele.Palmas@telit.com, bjorn.andersson@linaro.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: Add a property to declare
- secure regions in NAND chips
-Message-ID: <20210308101059.08658fbe@collabora.com>
-In-Reply-To: <20210308054447.28418-3-manivannan.sadhasivam@linaro.org>
-References: <20210308054447.28418-1-manivannan.sadhasivam@linaro.org>
-        <20210308054447.28418-3-manivannan.sadhasivam@linaro.org>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S230056AbhCHJ27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 04:28:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229754AbhCHJ22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:28:28 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7BAC06174A
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 01:28:27 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lJCBc-0007iB-Qq; Mon, 08 Mar 2021 10:28:24 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lJCBc-0008VO-0m; Mon, 08 Mar 2021 10:28:24 +0100
+Date:   Mon, 8 Mar 2021 10:28:23 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Teresa Remmet <T.Remmet@phytec.de>
+Cc:     "hs@denx.de" <hs@denx.de>, "krzk@kernel.org" <krzk@kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] arm64: imx8mp: imx8mp-phycore-som enable spi nor
+Message-ID: <20210308092823.a3ffj4auysnoti6o@pengutronix.de>
+References: <20210308064046.1576267-1-hs@denx.de>
+ <20210308064046.1576267-3-hs@denx.de>
+ <20210308084047.numy4o2jvsiz5d3v@pengutronix.de>
+ <196131b90400b434931992ba5a9078828d1eaf2a.camel@phytec.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <196131b90400b434931992ba5a9078828d1eaf2a.camel@phytec.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:25:47 up 95 days, 23:32, 42 users,  load average: 0.23, 0.24,
+ 0.15
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  8 Mar 2021 11:14:46 +0530
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-
-> On a typical end product, a vendor may choose to secure some regions in
-> the NAND memory which are supposed to stay intact between FW upgrades.
-> The access to those regions will be blocked by a secure element like
-> Trustzone. So the normal world software like Linux kernel should not
-> touch these regions (including reading).
+On 21-03-08 08:52, Teresa Remmet wrote:
+> Hello Marco,
 > 
-> So let's add a property for declaring such secure regions so that the
-> drivers can skip touching them.
+> Am Montag, den 08.03.2021, 09:40 +0100 schrieb Marco Felsch:
+> > On 21-03-08 07:40, Heiko Schocher wrote:
+> > > enable the mt25qu256aba spi nor on the imx8mp-phycore-som.
+> > > 
+> > > Signed-off-by: Heiko Schocher <hs@denx.de>
+> > > ---
+> > > 
+> > >  .../dts/freescale/imx8mp-phycore-som.dtsi     | 27
+> > > +++++++++++++++++++
+> > >  1 file changed, 27 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> > > b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> > > index 44a8c2337cee4..0284e7a5c6bba 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+> > > @@ -65,6 +65,22 @@ ethphy1: ethernet-phy@0 {
+> > >  	};
+> > >  };
+> > >  
+> > > +&flexspi {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_flexspi0>;
+> > > +	status = "okay";
+> > > +
+> > > +	flash0: mt25qu256aba@0 {
+> > > +		reg = <0>;
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <1>;
+> > > +		compatible = "jedec,spi-nor";
+> > 
+> > Please make the compatible the first property followed by the reg
+> > property. Also you don't need to add the #size-cells and #address-
+> > cells
+> > now since you don't add a child node.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> but is this not similar to the label here? If you add partitions in the
+> bootloader you need the cells properties?
+
+If the bootloader will add partitions the bootloader can add the
+size/address-cells too using the phandle. But this is more a nit.
+
+Regards,
+  Marco
+
+> Teresa
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> index d0e422f4b3e0..15a674bedca3 100644
-> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> @@ -143,6 +143,13 @@ patternProperties:
->            Ready/Busy pins. Active state refers to the NAND ready state and
->            should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
->  
-> +      secure-regions:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +        description:
-> +          Regions in the NAND chip which are protected using a secure element
-> +          like Trustzone. This property contains the start address and size of
-> +          the secure regions present.
-> +
+> > 
+> > Regards,
+> >   Marco
+> > 
+> > > +		spi-max-frequency = <80000000>;
+> > > +		spi-tx-bus-width = <4>;
+> > > +		spi-rx-bus-width = <4>;
+> > > +	};
+> > > +};
+> > > +
+> > >  &i2c1 {
+> > >  	clock-frequency = <400000>;
+> > >  	pinctrl-names = "default";
+> > > @@ -217,6 +233,17 @@ MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		
+> > > 0x11
+> > >  		>;
+> > >  	};
+> > >  
+> > > +	pinctrl_flexspi0: flexspi0grp {
+> > > +		fsl,pins = <
+> > > +			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK		
+> > > 0x1c2
+> > > +			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B	0x8
+> > > 2
+> > > +			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00	0x8
+> > > 2
+> > > +			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01	0x8
+> > > 2
+> > > +			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02	0x8
+> > > 2
+> > > +			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03	0x8
+> > > 2
+> > > +		>;
+> > > +	};
+> > > +
+> > >  	pinctrl_i2c1: i2c1grp {
+> > >  		fsl,pins = <
+> > >  			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x4
+> > > 00001c3
+> > > -- 
+> > > 2.29.2
+> > > 
+> > > 
+> > > 
 
-Since you declare this as a generic property, I think it'd be simpler
-to do the check at the core level.
-
->      required:
->        - reg
->  
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
