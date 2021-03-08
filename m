@@ -2,100 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95CFB330701
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 05:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96931330713
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 06:08:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234265AbhCHE5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Mar 2021 23:57:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52766 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234258AbhCHE4m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Mar 2021 23:56:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1F4E2650FD;
-        Mon,  8 Mar 2021 04:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615179401;
-        bh=/2NI+xWgqlYPKrf2Svu56F53Zb/dbnfUmmgIHBd9jXI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pm3DxdFaKBmo8pTIMLRRCu3BpYA776ndT/g+gl9T2cvAxhnfnFUGoqrs3PZoV/KnS
-         pzJoZedzWImwnqnohNxi6Zia4BFyILvyifsSXh1z8oW41RLlTfFDeoJ0ulFzCptef4
-         xHBPlpXL6jA1c5JLbTK5U4omKQnk8jhxN1iuiQaD7McNbSCDOHhAAd6JM3OhtX9Nwk
-         A4dmS93CeALvV9gKaTQw2hGREv3NjT+BGiDH4ck70Z7qFbvBZOuyugbDEnyq7nbtHG
-         dGW+k0J6DCVe1tolkEIkhSgVGrzKbubW7JzZv95qLjImEENjVs+N481TbxXJ18p4j3
-         uz4QSI0bXHY3g==
-Date:   Mon, 8 Mar 2021 10:26:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Document SM8350
- CPUfreq compatible
-Message-ID: <YEWuhqbNJxmCeSER@vkoul-mobl>
-References: <20210216111251.1838149-1-vkoul@kernel.org>
- <20210217044955.qmbpd43wis7xtjoj@vireshk-i7>
- <20210218124457.GW2774@vkoul-mobl.Dlink>
- <20210218154820.lkcut7a657s6aqeg@vireshk-i7>
- <20210305215712.GA710574@robh.at.kernel.org>
+        id S232499AbhCHFIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 00:08:15 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37988 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229655AbhCHFHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 00:07:47 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12857f0E023545;
+        Sun, 7 Mar 2021 23:07:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615180061;
+        bh=uuk+mKOKfDMcU+03sdLfRzXV3zhietHxp0dvwIGRgYo=;
+        h=From:To:CC:Subject:Date;
+        b=mpnGOMHnAxVIfmCvBMR3ZlmB450rhngguL7JDR3eE9EuYNlMdqd4+EP8nzSVbLVTh
+         DX1PxKgUnZFCFpmyF4+QXTx3SSZq5l/wpwCnDIbXx5pPZpbwfvO2qs6mDtKInRxlrp
+         hH/oCPBm2DTFjED1shQAovJHIYO+CESg9znrbp0c=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12857fGm039365
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 7 Mar 2021 23:07:41 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sun, 7 Mar
+ 2021 23:07:40 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Sun, 7 Mar 2021 23:07:40 -0600
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12857aKw086547;
+        Sun, 7 Mar 2021 23:07:37 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Swapnil Jakhade <sjakhade@cadence.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v5 00/13] PHY: Add support in Sierra to use external clock
+Date:   Mon, 8 Mar 2021 10:37:19 +0530
+Message-ID: <20210308050732.7140-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210305215712.GA710574@robh.at.kernel.org>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-03-21, 15:57, Rob Herring wrote:
-> On Thu, Feb 18, 2021 at 09:18:20PM +0530, Viresh Kumar wrote:
-> > On 18-02-21, 18:14, Vinod Koul wrote:
-> > > On 17-02-21, 10:19, Viresh Kumar wrote:
-> > > > On 16-02-21, 16:42, Vinod Koul wrote:
-> > > > > Add the CPUfreq compatible for SM8350 SoC along with note for using the
-> > > > > specific compatible for SoCs
-> > > > > 
-> > > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 4 +++-
-> > > > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > > > index 9299028ee712..3eb3cee59d79 100644
-> > > > > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
-> > > > > @@ -8,7 +8,9 @@ Properties:
-> > > > >  - compatible
-> > > > >  	Usage:		required
-> > > > >  	Value type:	<string>
-> > > > > -	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss".
-> > > > > +	Definition:	must be "qcom,cpufreq-hw" or "qcom,cpufreq-epss"
-> > > > > +			along with SoC specific compatible:
-> > > > > +			  "qcom,sm8350-cpufreq-epss", "qcom,cpufreq-epss"
-> > > > 
-> > > > And why is SoC specific compatible required here ? Is the implementation on
-> > > > sm8350 any different than the ones using "qcom,cpufreq-epss" compatible ?
-> > > > 
-> > > > FWIW, the same compatible string must be reused until the time there is
-> > > > difference in the hardware. The compatible string must be considered as a marker
-> > > > for a particular version of the hardware.
-> > > 
-> > > Rob has indicated that we should use a SoC specific compatible and I
-> > > agree with that. We are using both soc and generic one here and driver
-> > > will be loaded for generic one.
-> > 
-> > I am not sure of the context, lets see what Rob has to say on this. I
-> > believe we only need 1 compatible string here (whatever it is), as
-> > this is just one version of the hardware we are talking about. We
-> > already have 2 somehow and you are trying to add one more and I don't
-> > fell good about it. :(
-> 
-> The h/w block is the same features and bugs in every single 
-> implementation? If not sure, better be safe.
-> 
-> I don't know that I'd go back and add SoC ones for everything though.
+Patch series adds support in Sierra driver to use external clock.
 
-I would prefer we have SoC ones to be future proof..
+v1 of the patch series can be found @ [1]
+v2 of the patch series can be found @ [2]
+v3 of the patch series can be found @ [3]
+v5 of the patch series can be found @ [5]
+
+Changes from v4:
+1) Fixed couple of error handling cases
+2) Added reviewed by from Philipp Zabel
+3) Fixed couple of patch commit subjects to be uniform with other
+patches.
+
+Changes from v3:
+1) Instead of adding separate subnodes for each clock, just add
+#clock-cells in Sierra SERDES nodes and model the clocks. This is
+in alignment with Rob's comment for a different series [4]
+2) Removed device tree changes from the series.
+
+Changes from v2:
+1) Add depends on COMMON_CLK in Sierra
+2) Add modelling PLL_CMNLC and PLL_CMNLC1 as clocks into a separate
+patch
+3) Disable clocks in Sierra driver remove
+
+Changes from v1:
+1) Remove the part that prevents configuration if the SERDES is already
+   configured and focus only on using external clock and the associated
+   cleanups
+2) Change patch ordering
+3) Use exclusive reset control APIs
+4) Fix error handling code
+5) Include DT patches in this series (I can send this separately to DT
+MAINTAINER once the driver patches are merged)
+
+[1] -> http://lore.kernel.org/r/20201103035556.21260-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201222070520.28132-1-kishon@ti.com
+[3] -> http://lore.kernel.org/r/20201224111627.32590-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20210108025943.GA1790601@robh.at.kernel.org
+[5] -> https://lore.kernel.org/r/20210304044122.15166-1-kishon@ti.com
+
+Kishon Vijay Abraham I (13):
+  phy: cadence: Sierra: Fix PHY power_on sequence
+  phy: ti: j721e-wiz: Invoke wiz_init() before
+    of_platform_device_create()
+  phy: cadence: cadence-sierra: Create PHY only for "phy" or "link"
+    sub-nodes
+  phy: ti: j721e-wiz: Get PHY properties only for "phy" or "link"
+    subnode
+  phy: cadence: cadence-sierra: Move all clk_get_*() to a separate
+    function
+  phy: cadence: cadence-sierra: Move all reset_control_get*() to a
+    separate function
+  phy: cadence: cadence-sierra: Explicitly request exclusive reset
+    control
+  phy: cadence-torrent: Use a common header file for Cadence SERDES
+  phy: cadence: cadence-sierra: Add array of input clocks in "struct
+    cdns_sierra_phy"
+  phy: cadence: cadence-sierra: Add missing clk_disable_unprepare() in
+    .remove callback
+  dt-bindings: phy: phy-cadence-sierra: Add binding to model Sierra as
+    clock provider
+  phy: cadence: phy-cadence-sierra: Model PLL_CMNLC and PLL_CMNLC1 as
+    clocks (mux clocks)
+  phy: cadence: sierra: Enable pll_cmnlc and pll_cmnlc1 clocks
+
+ .../bindings/phy/phy-cadence-sierra.yaml      |  17 +-
+ drivers/phy/cadence/Kconfig                   |   1 +
+ drivers/phy/cadence/phy-cadence-sierra.c      | 419 ++++++++++++++++--
+ drivers/phy/cadence/phy-cadence-torrent.c     |   2 +-
+ drivers/phy/ti/phy-j721e-wiz.c                |  21 +-
+ include/dt-bindings/phy/phy-cadence-torrent.h |  15 -
+ include/dt-bindings/phy/phy-cadence.h         |  20 +
+ 7 files changed, 428 insertions(+), 67 deletions(-)
+ delete mode 100644 include/dt-bindings/phy/phy-cadence-torrent.h
+ create mode 100644 include/dt-bindings/phy/phy-cadence.h
 
 -- 
-~Vinod
+2.17.1
+
