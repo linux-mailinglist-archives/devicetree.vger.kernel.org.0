@@ -2,70 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E186C330A5D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 940C5330A74
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbhCHJh5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Mar 2021 04:37:57 -0500
-Received: from coyote.holtmann.net ([212.227.132.17]:34353 "EHLO
-        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbhCHJhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:37:41 -0500
-X-Greylist: delayed 594 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Mar 2021 04:37:41 EST
-Received: from marcel-macbook.holtmann.net (p4fefc126.dip0.t-ipconnect.de [79.239.193.38])
-        by mail.holtmann.org (Postfix) with ESMTPSA id 3C692CED12;
-        Mon,  8 Mar 2021 10:35:20 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
-Subject: Re: [PATCH 1/2 v3] Bluetooth: btbcm: Rewrite bindings in YAML and add
- reset
-From:   Marcel Holtmann <marcel@holtmann.org>
-In-Reply-To: <20210305183736.2123083-1-linus.walleij@linaro.org>
-Date:   Mon, 8 Mar 2021 10:27:45 +0100
-Cc:     Johan Hedberg <johan.hedberg@gmail.com>,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org
-Content-Transfer-Encoding: 8BIT
-Message-Id: <F171CD75-ACD3-44BD-AAB5-6BE89FBBEC9E@holtmann.org>
-References: <20210305183736.2123083-1-linus.walleij@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: Apple Mail (2.3654.60.0.2.21)
+        id S229848AbhCHJqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 04:46:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229671AbhCHJpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:45:36 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53921C06174A;
+        Mon,  8 Mar 2021 01:45:36 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id d3so19949460lfg.10;
+        Mon, 08 Mar 2021 01:45:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PkMg8HyUAo2EgfDsqfPoEike2P+I5ZeqjTnpmKUfESg=;
+        b=ed8P7aci3K9782uqe3hPoxIbeFHdhSDx80uC8ROz+WNEc5VEuLW7sN9At4il2YKqfW
+         UBl8E2zBYghqkMrjjwBDj4ssNsQn0xnVSOmQGx5AHtpCN1Q+kKZO84aYlnd+yb5A6BTn
+         dAnI4wEGzvvP0R74NHGvaMtPqdLHW2fLGiQGh78ssM4ACVXtSgvw8x4Pba7p4LmpplyW
+         xS4yqQWSzEoSAm6J0o5nAE00KkGG57X/4zwlE9Bfb6YEqPFHwlKgEbXmC4UEwJqxA0q0
+         PRzoxz5Nu+FSSVzkFRrYylvqb1QrqS64ojpHm6mgQT5JPIq/W+cG1IE1JGwEX28dsW5B
+         JiVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PkMg8HyUAo2EgfDsqfPoEike2P+I5ZeqjTnpmKUfESg=;
+        b=NuSjzm5Fl93Jc8IuZqp0zW8G9L4mJnpAozXnNF5x5KQ7PAhiH5tAEa+x2XOscyxG8z
+         chmQOXnDd13KBzLEOw1KO5CCg6BC5JkH/yPzrzqN73uqw/LzJXQKQYsIlLUQq4VcZ5JU
+         ALqLgLN1g3YkrQfJDsF4bG9EmJZP8AcR9HptLaCWk8gF7kVmilcjid1t5HtkYxo4soym
+         qos64ODqLs9bJ3H+WTwwoanqYiJdtHD5mBFDu8DnIEzAHhv9wtA8L5nWsqmzgPcdETbj
+         rHgEVK2oWWqH/qGSYSa3VgrFXLv2hFT2nuyJ3hxNuWVKgF7kYX1DdZRtUWTQQlN7YM97
+         zrag==
+X-Gm-Message-State: AOAM5317A0H8jVMIpGYFYxu9wilIQampUL7zYUzMpO59VYpLt0iTsosu
+        iBIQxiV77Mf08WoN2dQ51J8=
+X-Google-Smtp-Source: ABdhPJxlxOjZeFM6CoJXTEgzmcD+UXez6J8LL5sVrVHswDB2SOc1p3MkeVgimlJiugQiZ6XPfyF7Vg==
+X-Received: by 2002:a05:6512:2356:: with SMTP id p22mr13368252lfu.3.1615196734896;
+        Mon, 08 Mar 2021 01:45:34 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id h17sm1297510lfc.289.2021.03.08.01.45.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Mar 2021 01:45:34 -0800 (PST)
+Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Document use of nvmem-partitions
+ compatible
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20210216212638.28382-1-ansuelsmth@gmail.com>
+ <20210216212638.28382-4-ansuelsmth@gmail.com>
+ <1cf374f1-09d5-9fa9-9b0d-d8079f2f6fbc@gmail.com>
+ <20210305222300.GA718014@robh.at.kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <9167d2be-067e-4ad3-9c8b-28bb549187aa@gmail.com>
+Date:   Mon, 8 Mar 2021 10:45:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <20210305222300.GA718014@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-> This rewrites the Broadcom bluetooth bindings in YAML and
-> adds a GPIO handle for the BT_RST_N line as used on some
-> platforms.
+On 05.03.2021 23:23, Rob Herring wrote:
+> On Wed, Mar 03, 2021 at 11:01:55AM +0100, Rafał Miłecki wrote:
+>> [Rob: please advise]
+>>
+>> On 16.02.2021 22:26, Ansuel Smith wrote:
+>>> Document nvmem-partitions compatible used to treat mtd partitions as a
+>>> nvmem provider.
+>>
+>> Until now we were using "compatible" string in partition node only for
+>> parsers (looking for subpartitions). We need to think if this change can
+>> break anything from DT / Linux perspective.
+>>
+>> Compatible strings should be unique, so there is no risk of conflict
+>> between NVMEM and parsers.
+>>
+>> Now: can we ever need mtd partition to:
+>> 1. Contain subpartitions
+>> 2. Provide NVMEM
+>> at the same time?
+>>
+>> Let's say:
+>>
+>> partition@0 {
+>> 	compatible = "vendor,dynamic-firmware-partitions", "nvmem-partitions";
 > 
-> The Ingenic UART binding was using this binding in its
-> example DTS fragment, however mistakenly using "vcc-supply"
-> for what is called "vbat-supply". The proper DTS files
-> and the code in the kernel all use "vbat-supply" so
-> fix up the example in this patch so we ge a clean
-> check.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v2->v3:
-> - Actually fold in the required fix.
-> ChangeLog v1->v2:
-> - Fix the error in the Ingenic UART binding example as
->  part of adding this patch.
-> ---
-> .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
-> .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
-> .../bindings/serial/ingenic,uart.yaml         |   2 +-
-> 3 files changed, 118 insertions(+), 57 deletions(-)
-> delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> I think you'd want the "vendor,dynamic-firmware-partitions" parser/code
+> to serve up any nvmem regions. Whether you have a fallback here depends
+> if an OS could make use of the regions knowing nothing about
+> "vendor,dynamic-firmware-partitions".
 
-patch has been applied to bluetooth-next tree.
+Perfect! I didn't think that driver handling
+"vendor,dynamic-firmware-partitions" may also take care of NVMEM.
 
-Regards
-
-Marcel
-
+Thank you.
