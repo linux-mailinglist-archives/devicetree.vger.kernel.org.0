@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66E63330EE2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56ED9330EFC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:17:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbhCHNJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
+        id S229446AbhCHNQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:16:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230002AbhCHNJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:09:00 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1D3C06174A;
-        Mon,  8 Mar 2021 05:09:00 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id c10so20220303ejx.9;
-        Mon, 08 Mar 2021 05:09:00 -0800 (PST)
+        with ESMTP id S229814AbhCHNQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:16:28 -0500
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF8FC06175F;
+        Mon,  8 Mar 2021 05:16:28 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id cw15so4503793qvb.11;
+        Mon, 08 Mar 2021 05:16:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=COQSx+BU5m3hRHXgEDr9pW1DvKqmkyBSspURkSZqzdo=;
-        b=SkRZUSy+Q+ZZJNP90Qf0zfiJEPy6Z1GxVFohwD8Jo95gY0KNjktEBZlSfd5w38WenP
-         9Hou8ZCGQ45HNXyzyGbCZg90OWu9Jg8gIOuUB5gKGVctiM8bLb7JK1dXaRjqGzetfdra
-         bs32OYys8L3ymP15WNcfESDAM7OuMENaHahxJd2k4Oh+3M9IjIlg+rT/YlBTU/WHZxPi
-         zS0okbJVsrVsP5BQ0cs+lGTZ0vqsKlp868sgvIX+Tk5eT0AzABC/7dv/++ZmpzDCy49A
-         ntCiVOl9WHz7HmLs2YwTBgpixyWvGgtnAEBTbJITYhRQyaGc0LqXyMiQjGhVSrW1/qIG
-         EMDQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mq/RjOi7oMvBkyqqQDEJlkZFAJdUsCm3Qg8+RS8/HSo=;
+        b=BdHyVo3yQuV3DV48f3bJjriWahibIKWTlkYMWIxyjaeMsJ0eLXR8/VVMc34NswrBkC
+         nKHr9BKZyu88I8ghJ6Kz0bzo/xOsVeSY5AW9j3eSukKNb6S9EoyrHqodb/q4uU8cCXcN
+         Po3Jw1pEtrFsNCNXsPE842EFlS8agYdjp/MUiN2RO/1OWj1wtXDqUBtThXJ0hMa3zYgz
+         L6BdI+D+n6aycm+pFueaaDTXSSZycUyibySGKH0sExDhkPr/eT4gnVnPNS+PyzZFXRuo
+         sK39l5TRhwHhFKTo/4rbSyBnSv80SmWhlhrQyai6FZws9G78Ok8rJi2z9Xe+Lv8QsLYJ
+         ECDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=COQSx+BU5m3hRHXgEDr9pW1DvKqmkyBSspURkSZqzdo=;
-        b=k3TCEweBLrNVVZhsnjo20R+boSYdPos3RGXHhhq1QDv0Yy2OACO0TbXnYhCbN59kFK
-         /Q/3kVp7zDxHs43FtzDbCrqus1lwPc9JHj2vdbUcIhtPHV14vENwVl+64CLj9w7qmj+o
-         LdZePWAoCAXGWT9hFFrVYsVqEfRRKAyJHIelfwcX1smvQ6AKpmwe64v/1ytIUJiB9/bM
-         r4KeKWz3GAS30R1IwnDX7CDIV3VUi/YRIu1rD2jxHkJfbFjHpIxz5pdWRhs2cuPdcRaq
-         qpI75qMYvtlYFb1QJSbPeHgpZPCEI5Rr9NN9468di26etSEwSBeVDYwuHF2cpACLNrsC
-         ZsPg==
-X-Gm-Message-State: AOAM531YG66JgmN/PtVq7dk6LwqvD/zr8CLhxmMRek3cW5J322pidi0A
-        PcEfPXNa0/PwGCWOdRrhwxQ=
-X-Google-Smtp-Source: ABdhPJy3vySAVrTjjiQgeBSEnREDCrTSbGTD/9AOrzK/k5Q1/va3eokyUO1aWkkFREtDsjtHe+Ht0Q==
-X-Received: by 2002:a17:906:2db2:: with SMTP id g18mr15307428eji.73.1615208938930;
-        Mon, 08 Mar 2021 05:08:58 -0800 (PST)
-Received: from localhost.localdomain ([188.25.219.167])
-        by smtp.gmail.com with ESMTPSA id s13sm7260961edr.86.2021.03.08.05.08.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 05:08:55 -0800 (PST)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     netdev@vger.kernel.org,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Michael Walle <michael@walle.cc>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: [PATCH devicetree] arm64: dts: ls1028a: set up the real link speed for ENETC port 2
-Date:   Mon,  8 Mar 2021 15:08:34 +0200
-Message-Id: <20210308130834.2994658-1-olteanv@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mq/RjOi7oMvBkyqqQDEJlkZFAJdUsCm3Qg8+RS8/HSo=;
+        b=TI6L3yG6x0/NQjC3Tlnc1g/IZhUrXF7H1pNloNiogKyDbYxlW1wPheSQPgb37aC4xf
+         ZrGcJbHbphjaAZY0Cm65qP40UtvmmMAsw+U2cwEblU0ixOeRA6AJnzFT1+ln0p/RVX5L
+         r/pSUH5cjUe5Qr1MvdWOdnGwUZAswC+9rwLa/uJThHVIJMS6TODD9UtujFKY0dMO3p2e
+         L+War/hDsokxma7567yz/NE21/y5zWouNJhte9vGLD3YhFGVuQPXTbNu4qwlnB58036D
+         fqDlZ2gfPoMQ/fkrrX3q/Rk60udfEWPiygOofISOWu2oojLcY63/hq1iCxOVr5soT1lD
+         04rw==
+X-Gm-Message-State: AOAM533UvVgUO9iMfX8yMe0xdyT8aPxY5RHJKGKFCtBqcGx95hRzPdoq
+        AYn8RhxGoe5NI1bYY0ESk3YpVAN2r7ohoU2TBwoWmE4LY6o=
+X-Google-Smtp-Source: ABdhPJygKdeW7eWlM9tZB3oGSyuFSBjt6ZqB3nTQwnEAkBjDRdfL3US7UMWjWXaXySP+UvXlKsBkA6VqexayPm1FufM=
+X-Received: by 2002:a05:6214:76f:: with SMTP id f15mr20582682qvz.56.1615209387754;
+ Mon, 08 Mar 2021 05:16:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1614221563-26822-1-git-send-email-shengjiu.wang@nxp.com>
+ <1614221563-26822-8-git-send-email-shengjiu.wang@nxp.com> <20210306203617.GA1164939@robh.at.kernel.org>
+In-Reply-To: <20210306203617.GA1164939@robh.at.kernel.org>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Mon, 8 Mar 2021 21:16:16 +0800
+Message-ID: <CAA+D8APUVqyRRPc4GDwJqQEcnEPLxQMcZ+VhkbbrOx7hQs1jSA@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] ASoC: dt-bindings: imx-rpmsg: Add binding doc for
+ rpmsg machine driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Sun, Mar 7, 2021 at 4:37 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Feb 25, 2021 at 10:52:43AM +0800, Shengjiu Wang wrote:
+> > Imx-rpmsg is a new added machine driver for supporting audio on Cortex-M
+> > core. The Cortex-M core will control the audio interface, DMA and audio
+> > codec, setup the pipeline, the audio driver on Cortex-A core side is just
+> > to communitcate with M core, it is a virtual sound card and don't touch
+> > the hardware.
+>
+> This sounds like 1 h/w block (the interface to the cortex-M), your DT
+> should be 1 node. If you need 2 drivers to satisfy the needs of the OS,
+> then instantiate one device from the other device's driver.
+>
 
-In NXP LS1028A there is a MAC-to-MAC internal link between enetc_port2
-and mscc_felix_port4. This link operates at 2.5Gbps and is described as
-such for the mscc_felix_port4 node.
+Ok, I will change it in v4.
 
-The reason for the discrepancy is a limitation in the PHY library
-support for fixed-link nodes. Due to the fact that the PHY library
-registers a software PHY which emulates the clause 22 register map, the
-drivers/net/phy/fixed_phy.c driver only supports speeds up to 1Gbps.
-
-The mscc_felix_port4 node is probed by DSA, which does not use the PHY
-library directly, but phylink, and phylink has a different representation
-for fixed-link nodes, one that does not have the limitation of not being
-able to represent speeds > 1Gbps.
-
-Since the enetc driver was converted to phylink too as of commit
-71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX"), the limitation
-has been practically lifted there too, and we can describe the real link
-speed in the device tree now.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 262fbad8f0ec..bf60f3858b0f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -1027,7 +1027,7 @@ enetc_port2: ethernet@0,2 {
- 				status = "disabled";
- 
- 				fixed-link {
--					speed = <1000>;
-+					speed = <2500>;
- 					full-duplex;
- 				};
- 			};
--- 
-2.25.1
-
+best regards
+wang shengjiu
