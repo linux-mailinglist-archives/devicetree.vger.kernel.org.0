@@ -2,57 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B47D23311D9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C86CC3311F4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:19:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbhCHPMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 10:12:31 -0500
-Received: from muru.com ([72.249.23.125]:41026 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231512AbhCHPMA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 10:12:00 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 255158117;
-        Mon,  8 Mar 2021 15:12:41 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 11/11] ARM: dts: Configure simple-pm-bus for omap5 l3
-Date:   Mon,  8 Mar 2021 17:11:43 +0200
-Message-Id: <20210308151143.27793-12-tony@atomide.com>
+        id S230502AbhCHPTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 10:19:01 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:47462 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229813AbhCHPSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 10:18:35 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 93F0D1F45126
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id D4ED24800C3; Mon,  8 Mar 2021 16:18:30 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: [PATCHv2 0/4] Bx50v3 DT improvements
+Date:   Mon,  8 Mar 2021 16:18:25 +0100
+Message-Id: <20210308151829.60056-1-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210308151143.27793-1-tony@atomide.com>
-References: <20210308151143.27793-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe interconnects with device tree only configuration using
-simple-pm-bus and genpd.
+Bx50v3 DT improvements
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/omap5.dtsi | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+These are a bunch of small unrelated improvements for the GE Bx50v3
+device tree (and BA16 system on module, which is currently only used
+by Bx50v3).
 
-diff --git a/arch/arm/boot/dts/omap5.dtsi b/arch/arm/boot/dts/omap5.dtsi
---- a/arch/arm/boot/dts/omap5.dtsi
-+++ b/arch/arm/boot/dts/omap5.dtsi
-@@ -142,7 +142,11 @@ wakeupgen: interrupt-controller@48281000 {
- 	 * hierarchy.
- 	 */
- 	ocp {
--		compatible = "simple-bus";
-+		compatible = "simple-pm-bus";
-+		power-domains = <&prm_core>;
-+		clocks = <&l3main1_clkctrl OMAP5_L3_MAIN_1_CLKCTRL 0>,
-+			 <&l3main2_clkctrl OMAP5_L3_MAIN_2_CLKCTRL 0>,
-+			 <&l3instr_clkctrl OMAP5_L3_MAIN_3_CLKCTRL 0>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges = <0 0 0 0xc0000000>;
+Changes since PATCHv1 [1]:
+ * change patch prefix for BA16 patches
+ * remove extra newline from PATCH 1/4
+ * keep 'status' at the end of FEC in PATCH 2/4
+
+[1] https://lore.kernel.org/lkml/20210223183346.138575-1-sebastian.reichel@collabora.com/
+
+Thanks for reviewing/merging them,
+
+-- Sebastian
+
+Ian Ray (1):
+  ARM: dts: imx: bx50v3: Define GPIO line names
+
+Sebastian Reichel (3):
+  ARM: dts: imx6q-ba16: add USB OTG VBUS enable GPIO
+  ARM: dts: imx6q-ba16: improve PHY information
+  ARM: dts: imx: bx50v3: i2c GPIOs are open drain
+
+ arch/arm/boot/dts/imx6q-b450v3.dts  |  5 +++++
+ arch/arm/boot/dts/imx6q-b650v3.dts  |  5 +++++
+ arch/arm/boot/dts/imx6q-b850v3.dts  |  5 +++++
+ arch/arm/boot/dts/imx6q-ba16.dtsi   | 21 +++++++++++++++++++++
+ arch/arm/boot/dts/imx6q-bx50v3.dtsi | 12 ++++++------
+ 5 files changed, 42 insertions(+), 6 deletions(-)
+
 -- 
 2.30.1
+
