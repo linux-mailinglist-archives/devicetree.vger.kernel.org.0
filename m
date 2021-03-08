@@ -2,151 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80EEE331143
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 15:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24EE33311A3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:07:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbhCHOwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 09:52:54 -0500
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:38158 "EHLO
-        mail-lj1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbhCHOwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 09:52:34 -0500
-Received: by mail-lj1-f170.google.com with SMTP id 2so16430696ljr.5;
-        Mon, 08 Mar 2021 06:52:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=WMzNMKgHpa+G4HfW7zckj8ZWhc6jqMkyy2g0cwRIC6c=;
-        b=fx8y8KPu2rvhOv5Rwkb54AOm6RQOqMegmJ0sMwK3T/xQ1dzZbE7bp76NJB8vNQrpAi
-         +GF8Pk1j0fHmzKXDatmOMKJ4oyOVXYtwfQfb1AL1Ibjb7EP4QsCxFAxqsBDyAhl90vCs
-         v+2YGtCGxm9bUHVgC+RmAKR1fOizoyQZwamxEH3EnVtCq5hRM1uFJhWB4zBQRWAF++Ai
-         7sZebmLB0CXlnyHHp6WGIgNkJIZmNuYJIK7QJTODOtVuocRPkM4Uo/JGw7JIo9f7sOjr
-         wa/BA0sRlGtMpA4sWI+jwuyUAO2sDQ84NcTqkECoCgb3wAJWJgyVtBxmzOwudj1IKhAZ
-         r2Wg==
-X-Gm-Message-State: AOAM532fw9a618d9DGgIFJKykHMUtVCg1CafL7zRjMkiGnih3M84QQR3
-        B8+QWOq2u3VH3HPJdAYl9MI=
-X-Google-Smtp-Source: ABdhPJz9K+inMO0/ELRvxkwbW9NLe79/FhnmG+R8exnZE/rZkEedkN2TdnmorwlqfccJWiMG2wd7ug==
-X-Received: by 2002:a2e:3206:: with SMTP id y6mr13673463ljy.208.1615215152340;
-        Mon, 08 Mar 2021 06:52:32 -0800 (PST)
-Received: from dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
-        by smtp.gmail.com with ESMTPSA id z11sm1376445lfd.98.2021.03.08.06.52.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 06:52:31 -0800 (PST)
-Message-ID: <29daa037a8097aeac032206480c0249bdd5d9e25.camel@fi.rohmeurope.com>
-Subject: Re: [PATCH v8 2/6] mfd: Support ROHM BD9576MUF and BD9573MUF
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20210308133614.GD4931@dell>
-References: <cover.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
-         <560b9748094392493ebf7af11b6cc558776c4fd5.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
-         <20210308133614.GD4931@dell>
-Content-Type: text/plain; charset="UTF-8"
+        id S231148AbhCHPGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 10:06:36 -0500
+Received: from mail-dm6nam11on2070.outbound.protection.outlook.com ([40.107.223.70]:22208
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231308AbhCHPGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 10:06:09 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AgLQsZR3xS3x1JWGEKD0V3NggLy/p2WMDQBS7RwV/GEzDaEoyMc4ctXeN04Lo4ZPmL4SHIi4Jvi6bOZEZT2KPFqpPKespauFqGGQaI3hOehmvu4pgchQoHnR9T20w26b+13fkT35g9VVXC8gwKYm5CtWwEYMZGU6iFX0StJBklKA2+XiYPy6+MTMytSc3gSiRD6bog3FPCxxd6v1Qx1keohEzP0Hu49xJXqxxv/9CK/4rRVjima0L6X067YUQa1Bxjj8RtetZul05aiXqjauiAd9dF9e9cjbuQNEmjggWB71iBLJMBPQs+9yz6ZlAxH3HnzR8JkRY+leCEyyXrdLLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UKp2F394qI++yz2HkWbUDjxFBUcW4Y8PLIDPD9ZbOUY=;
+ b=Cj8q1KKHSFOP4mx1KCAH84GSP7AbiZrp3yvHfYJKM+md1nU48iNurjQaM1eLg6LTiZWWdsQi9mcnW9p2p8lvNP9G71m/SZRJtDPmPEt/h8XaycuaDPGPVWZ+A3zscveuo59rLgcX9vOOvDOzs3wPRHENs6aApNXGPivJP49pH55c+0Rq8QVtdSe1Frq8ySQ6tbsTBDchJdkFLPiJ4hCnxHirUMVUi9xRmm/bprAPMEPizcloM5dXdXJez+6KGmL2dTLjb8uGz4+DdUBbf6oSduvTX3rQoXH0nCkBJ/Wd9XNCGlZTaPSp6z4CbdTCSuNW4AmV52Gzk0FBFmOuRgEWUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UKp2F394qI++yz2HkWbUDjxFBUcW4Y8PLIDPD9ZbOUY=;
+ b=J8HBtBeC9K7tP59zl0Vnzux1hrKexz6KbrFURdcpuHcnYIen8SqI1Vf7WVwaljm/FrDIfINoGQ5UzxCw2tvUp7KFroS2Eud6wkgZGJdR+sPXTO2ZDbxwR2A90e/Kfn8xxSqIUaTnxJ6R9iE3lZue0JH5CP3ZA1W+qBBxERmVzco=
+Received: from SA0PR13CA0002.namprd13.prod.outlook.com (2603:10b6:806:130::7)
+ by BYAPR02MB4728.namprd02.prod.outlook.com (2603:10b6:a03:49::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Mon, 8 Mar
+ 2021 15:06:07 +0000
+Received: from SN1NAM02FT008.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:130:cafe::ca) by SA0PR13CA0002.outlook.office365.com
+ (2603:10b6:806:130::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.23 via Frontend
+ Transport; Mon, 8 Mar 2021 15:06:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT008.mail.protection.outlook.com (10.152.72.119) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3912.25 via Frontend Transport; Mon, 8 Mar 2021 15:06:07 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 8 Mar 2021 07:06:06 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Mon, 8 Mar 2021 07:06:06 -0800
+Envelope-to: devicetree@vger.kernel.org,
+ shubhrajyoti.datta@gmail.com,
+ linux-i2c@vger.kernel.org
+Received: from [10.140.6.59] (port=49108 helo=xhdshubhraj40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1lJHSQ-0000LX-KL; Mon, 08 Mar 2021 07:06:06 -0800
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <shubhrajyoti.datta@gmail.com>, <linux-i2c@vger.kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH] dt-bindings: i2c: xiic: Fix a typo
+Date:   Mon, 8 Mar 2021 20:36:03 +0530
+Message-ID: <1615215963-1042-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-Date:   Mon, 08 Mar 2021 16:52:22 +0200
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cf4faee8-9fed-4aa8-b586-08d8e243b367
+X-MS-TrafficTypeDiagnostic: BYAPR02MB4728:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB4728549FCAF902141B5FB59EAA939@BYAPR02MB4728.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:361;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Og6nKXMzUdhUEFEEke5UXZA1x7UjZ9nF+ulXMas0rCgjmx40tGYSGol4uwx/TEd+m7fEyFtkUQbuAEKIYc0sRVkPN/XljDYWLYIg/X4PMaRT1N6cCm09XCrbmKTZ7GVlOxHs0pAojGESzS9wkhK75EK97ExWYBbr0+ocDE+wS10406ZXVF4wsXMrRP9OioOrnuQR+Oz350IiwKD9EM3pkEq8Scq09I5IMYdxf9GzBQh6muAS7ZV+9i9VuJSzlu8viNtc0vxLmIDGuQkWw5ELC5YutFsHZWde4vqQHBqrHupNZMezlpFVzIi4icNfjb0vTtRXCwP0tsI3ZHZj4pYz2EfSqlt9yFLH5e12v4XVL8EVfOHdmaj8MFdnLk1S4C3IRwPYXeEKx/zuDVP1WcfFB75uIx73qpMJrZja79mQDnvR0MwRTokMlnMn6BoxOnf10T/fTGCDTWXm5vNrw+w91rVOhjHjHhWOnrGnn9Hq6nSkguL1TvMi0x3PZ1TwRdLSMvE59daA1QbOQXoBhDLJJEq1Jwn0JvqNA4q8/qrnq0KuJ0T4XhuJ+GopX7LUmuOH+QNeiR1wOjpgGlu6HcTUVq6sjFxZB+et0F+8cFNtQ0xKQRH8xL9eaCTWRObWWMsuxCRo2G0xVOstxd/Yr3C8sA8lIRI/iJoitNSr6b7VmRPj1SwpiOWmzRmrNN0zsUzqGhBXeUDjWVWI/rERoUcsd6kWXah4/Q5/269V2KcUQ997lTCb5muu4R8FJKI9knd2V7t+4IDoRyRwJTMMW56Y8Q==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(46966006)(36840700001)(4744005)(107886003)(9786002)(6666004)(36860700001)(7696005)(7636003)(356005)(6916009)(8936002)(5660300002)(8676002)(82740400003)(186003)(26005)(82310400003)(70206006)(36756003)(44832011)(83380400001)(70586007)(478600001)(2616005)(4326008)(336012)(426003)(47076005)(54906003)(2906002)(316002)(36906005)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2021 15:06:07.2691
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf4faee8-9fed-4aa8-b586-08d8e243b367
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT008.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4728
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Lee,
+Trivial fix. Correct a typo.
+Fixes: f86ca4147976 ("dt-bindings: i2c: xiic: Migrate i2c-xiic documentation to YAML")
 
-On Mon, 2021-03-08 at 13:36 +0000, Lee Jones wrote:
-> On Thu, 11 Feb 2021, Matti Vaittinen wrote:
-> 
-> > Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
-> > mainly used to power the R-Car series processors.
-> > 
-> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > ---
-> > Changes:
-> >  - Comments fixed based on suggestions from Lee
-> >  - Name of regulator cell changed as suggested by Lee
-> >  - Renamed MFD cell variables for better readability
-> >  - Aligned header definitions for better readability
-> > 
-> >  drivers/mfd/Kconfig              |  11 ++++
-> >  drivers/mfd/Makefile             |   1 +
-> >  drivers/mfd/rohm-bd9576.c        | 109
-> > +++++++++++++++++++++++++++++++
-> >  include/linux/mfd/rohm-bd957x.h  |  59 +++++++++++++++++
-> >  include/linux/mfd/rohm-generic.h |   2 +
-> >  5 files changed, 182 insertions(+)
-> >  create mode 100644 drivers/mfd/rohm-bd9576.c
-> >  create mode 100644 include/linux/mfd/rohm-bd957x.h
-> > 
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index bdfce7b15621..53c7c96283bd 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1998,6 +1998,17 @@ config MFD_ROHM_BD71828
-> >  	  Also included is a Coulomb counter, a real-time clock (RTC),
-> > and
-> >  	  a 32.768 kHz clock gate.
-> >  
-> > +config MFD_ROHM_BD957XMUF
-> > +	tristate "ROHM BD9576MUF and BD9573MUF Power Management ICs"
-> > +	depends on I2C=y
-> > +	depends on OF
-> > +	select REGMAP_I2C
-> > +	select MFD_CORE
-> > +	help
-> > +	  Select this option to get support for the ROHM BD9576MUF and
-> > +	  BD9573MUF Power Management ICs. BD9576 and BD9573 are
-> > primarily
-> > +	  designed to be used to power R-Car series processors.
-> > +
-> >  config MFD_STM32_LPTIMER
-> >  	tristate "Support for STM32 Low-Power Timer"
-> >  	depends on (ARCH_STM32 && OF) || COMPILE_TEST
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 14fdb188af02..e58fae024bb2 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -262,6 +262,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
-> >  obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
-> >  obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
-> >  obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
-> > +obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
-> >  obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
-> >  obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
-> >  
-> > diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
-> > new file mode 100644
-> > index 000000000000..efd439677c9e
-> > --- /dev/null
-> > +++ b/drivers/mfd/rohm-bd9576.c
-> > @@ -0,0 +1,109 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Copyright (C) 2020 ROHM Semiconductors
-> 
-> If you get a chance, could you please update these?
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+---
+ Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I'll respin the series as I'll add designated initializers for MFD
-regulator array cell as you suggested. So I'll update this at the same
-time.
-
-> 
-> > + * ROHM BD9576MUF and BD9573MUF PMIC driver
-> > + */
-> 
-> For my own reference (apply this as-is to your sign-off block):
-> 
->   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> 
-
+diff --git a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+index ffb2ed0..715dcfa5 100644
+--- a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
++++ b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+@@ -4,7 +4,7 @@
+ $id: "http://devicetree.org/schemas/i2c/xlnx,xps-iic-2.00.a.yaml#"
+ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ 
+-title: ilinx IIC controller Device Tree Bindings
++title: Xilinx IIC controller Device Tree Bindings
+ 
+ maintainers:
+   - info@mocean-labs.com
+-- 
+2.1.1
 
