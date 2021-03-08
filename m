@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD96C33196B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C51AF33196E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbhCHVh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 16:37:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbhCHVhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:37:47 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D134C06174A;
-        Mon,  8 Mar 2021 13:37:47 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id q25so23432043lfc.8;
-        Mon, 08 Mar 2021 13:37:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=abCnK8oP7nGAZ35KUotLl907eUfcfc7ef69hK2Ao3gI=;
-        b=q7tUPr1VQ7bVdJbvdxenDQb/xwGyHwhmoA9P9W/590dIwEAVL2HC22XxfMRNOUnmQo
-         5oNUbY529XkX92H7DFl80j+kTyXfNPL5pTasuzVCTPG5JU+QbaAPCfUQrrTIMVrP+EdV
-         rOgyEGO0T6TKGQ52OuoPb/cF7EdIkkcwMyQ0VUZaYIhk1NhBnnu/5uyqvWmIlJBzcTqC
-         iuqYLCnYh/4Uv1xMPgAHnjewntJ/NHAfXnT223A4X4JWN+4ZZc5FshT4HiW4DqkNTQVO
-         y/l7URIhXa1MhN+GajR7VBPoe2yDh/KOP3t0FXrWydZCN7kzYzfZ3P12klTu2djxTNkR
-         butw==
+        id S229978AbhCHVjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 16:39:02 -0500
+Received: from mail-io1-f54.google.com ([209.85.166.54]:46797 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230039AbhCHVih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:38:37 -0500
+Received: by mail-io1-f54.google.com with SMTP id u8so11579759ior.13;
+        Mon, 08 Mar 2021 13:38:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=abCnK8oP7nGAZ35KUotLl907eUfcfc7ef69hK2Ao3gI=;
-        b=NzE3zysZWrHxZJsgBV9UyOVeoYkTlNnk+M+MJWI/8falLQD8A0enDmXR0V47DRdYJo
-         VLOfnrT1lj5jsHVMkea/pa6hQ6qCjQHqQzSxzFym2iRh0JhUvKul0CipoMZ4Garlro4r
-         WnSDvMi6r4k66BoFZ/R3UPz+4Hd5e8dR8oEGKoVvb8B1aFSYiu24yfYHTHPXR75QHkgD
-         nXneV2/F0tCzslPEXKqT7n0r5PEtUz5G3URVJU9CihLHenZ0wPwSJStOsqhN9k9EbcIS
-         nLBTYP/qdg38RqJ+Ezvxl/yH8LcWJ0QWa72/giEuf4RsU+oTqqQI10pdGh2/hddlraEy
-         YrQg==
-X-Gm-Message-State: AOAM532GtDhcX9gYjX82URW+s2C7OOB5F9MvFF1CNYkQo/5XmcxBl3Uk
-        y6MyuGo0mjs8TsCYJIZopUzm+U6+5d4=
-X-Google-Smtp-Source: ABdhPJxDX9YRLuxfX9/RB9OZeqE/YER1VnjejatoSNNHGwuYIfvOLQDBLTXgcweEq12GUsavC1EUAA==
-X-Received: by 2002:a19:4108:: with SMTP id o8mr15805486lfa.180.1615239465466;
-        Mon, 08 Mar 2021 13:37:45 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id f10sm1491470lfm.194.2021.03.08.13.37.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Mar 2021 13:37:44 -0800 (PST)
-Subject: Re: [PATCH stblinux.git 1/2] dt-bindings: firmware: add Broadcom's
- NVRAM memory mapping
-To:     Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210302074405.18998-1-zajec5@gmail.com>
- <20210308184308.GA2762703@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <93f1d985-54ae-9cbe-ef42-9e62b86d2633@gmail.com>
-Date:   Mon, 8 Mar 2021 22:37:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Wu8ygw+DLkA/IZAWrdk6TaRb1zQwZe4XwnS40aehw3k=;
+        b=laEuazBARK4NQ+18ZPWnAfqAAKjSG7w2NsUn8mFUEgKF2tRh/JM/aFtFQL8dbRR48o
+         pxbdkrzFs55xeo/bABvch3qZXYfB9zl9p3Oc96lOcwtjNPDTZlNoIIbQLCTt2bb32xrh
+         Tc9tGzfXrPKXf+pKtNPrrLiUY0h6qvU3B9WYria2NrdTR+Swx87eBdwcvfbJ7F2NO+4k
+         GUsnw4JLUQWrWm+W1cBhC2kPZpoU8n0zG3dNzzI66bwB4qfGMxx+4tSkCsvIgQWeYLsR
+         hUpSJ36F5lFJXEJS7SU04wAAfad/EA5AaWeLg+VtuoRg+hJNkGpvXlUQIbWTWZRECHoZ
+         QEmw==
+X-Gm-Message-State: AOAM531p9VTmSxTkHcUoFbHb0TP73n6nwsCS09A5WYng0BbKMOYb/ahC
+        2LScdf5c4GAD0U89YX6fRQO5Ou20sQ==
+X-Google-Smtp-Source: ABdhPJzHQtVzOuYxFh4XozV1PFZ2C9+1/yYdPuIGWskBfSzRjszK9pn6TUPXZl+8u85DAeAq15IZ+w==
+X-Received: by 2002:a02:53:: with SMTP id 80mr597992jaa.96.1615239516846;
+        Mon, 08 Mar 2021 13:38:36 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id s7sm6458068ioj.16.2021.03.08.13.38.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 13:38:36 -0800 (PST)
+Received: (nullmailer pid 2999323 invoked by uid 1000);
+        Mon, 08 Mar 2021 21:38:34 -0000
+Date:   Mon, 8 Mar 2021 14:38:34 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, linux-clk@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 1/2] dt-bindings: misc: add binding for generic ripple
+ counter
+Message-ID: <20210308213834.GA2973251@robh.at.kernel.org>
+References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+ <20210226141411.2517368-2-linux@rasmusvillemoes.dk>
+ <20210308172153.GA2505339@robh.at.kernel.org>
+ <12be138b-631a-4f82-aae9-6bbdc7bc2bcf@rasmusvillemoes.dk>
 MIME-Version: 1.0
-In-Reply-To: <20210308184308.GA2762703@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <12be138b-631a-4f82-aae9-6bbdc7bc2bcf@rasmusvillemoes.dk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.03.2021 19:43, Rob Herring wrote:
-> On Tue, Mar 02, 2021 at 08:44:04AM +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> NVRAM structure contains device data and can be accessed using MMIO.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   .../bindings/firmware/brcm,nvram.yaml         | 41 +++++++++++++++++++
->>   1 file changed, 41 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->> new file mode 100644
->> index 000000000000..12af8e2e7c9c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/firmware/brcm,nvram.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Broadcom's NVRAM
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
->> +description: |
->> +  NVRAM is a structure containing device specific environment variables.
->> +  It is used for storing device configuration, booting parameters and
->> +  calibration data.
+On Mon, Mar 08, 2021 at 09:02:29PM +0100, Rasmus Villemoes wrote:
+> On 08/03/2021 18.21, Rob Herring wrote:
+> > On Fri, Feb 26, 2021 at 03:14:10PM +0100, Rasmus Villemoes wrote:
+> >> While a ripple counter can not usually be interfaced with (directly)
+> >> from software, it may still be a crucial component in a board
+> >> layout. To prevent its input clock from being disabled by the clock
+> >> core because it apparently has no consumer, one needs to be able to
+> >> represent that consumer in DT.
+> > 
+> > I'm okay with this as it is describing h/w, but we already 
+> > 'protected-clocks' property which should work.
 > 
-> The structure of the data is fully discoverable just from a genericish
-> 'brcm,nvram'?
+> Hm. Unless
+> https://lore.kernel.org/lkml/20200903040015.5627-2-samuel@sholland.org/
+> gets merged, I don't see how this would work out-of-the-box.
 
-Yes, NVRAM structure is a header (with magic and length) and a list of
-key-value pairs separated by \0. If you map memory at given address you
-should verify magic and start reading key-value pairs.
+Hum, no really clear what the hold up is there given it seems it was 
+asked for. Letting it sit for 5 months is certainly not the way 
+to get it merged. Anyways, that's the kernel's problem, not mine as far 
+as DT bindings are concerned.
 
-Content example: foo=bar\0baz=qux\0quux(...)
+> 
+> Note that I sent a completely different v2, which made the gpio-wdt the
+> clock consumer based on feedback from Guenter and Arnd, but that v2
+> isn't suitable for our case because it post-poned handling of the
+> watchdog till after i2c is ready, which is too late. Somewhat similar to
+> https://lore.kernel.org/lkml/20210222171247.97609-2-sebastian.reichel@collabora.com/
+> it seems.
 
-There is no predefined order of pairs, set of keys or anything similar I
-could think of. I can't think of anything more worth describing in DT.
+Now at that one in my queue... I think 'protected-clocks' is the best 
+way to avoid any driver probe ordering issues. It's the only thing that 
+really captures don't turn off this clock. The ripple counter binding 
+doesn't really capture that or what it is related to. Also, the 
+ripple-counter driver could be a module and you'd still have the same 
+issue as v2.
 
+> >> +
+> >> +Required properties:
+> >> +- compatible: Must be "linux,ripple-ctr".
+> > 
+> > Nothing linux specific about this.
+> 
+> True, but I was following the lead of the existing gpio-wdt binding. Is
+> there some other "vendor" name one can and should use for completely
+> generic and simple components like these? "generic"?
 
-> And it's a dedicated memory outside of regular RAM?
+Most 'generic' and GPIO based interfaces have no vendor prefix.
 
-Yes
+Rob
