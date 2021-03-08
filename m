@@ -2,129 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACB1C330FE2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCD5331004
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:52:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhCHNr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:47:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
+        id S230453AbhCHNvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:51:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbhCHNrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:47:20 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E225C061760
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 05:47:20 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id a18so11471337wrc.13
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 05:47:20 -0800 (PST)
+        with ESMTP id S230525AbhCHNvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:51:18 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EBC3C06175F
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 05:51:17 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id x4so14389543lfu.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 05:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Rg2+rPZvlt5JyvNmoGA7EhEgv5dkqqZkXqI61WU9+Ic=;
-        b=yTMBTA0pQoVui8SpbPRTy7dTvVPWwVpnLxF1yj8WHnTcaJZo27BJPVpQX9bkjM8cWF
-         8s1XboSaVQTEwwXvMqR2wSBUUcGnYtWaFzA5Lc0uRJNvJbv0rqjE6ySx7r3U1lPTMwQy
-         bdCY/5TdSLzRDDFSiOzEqxC9HjM61GIRUEFZSk37h6OdfMG8xrfaBr2rUcctM/dsWssY
-         0oaGbT88BSISyNdJFBoUVoG0FoyBsHu2JqCFZhNAlRXJ9b7T8XJVh0iTRkVDRZc+X7Qj
-         3zXQAxWvCEblQ2dShp157xiZU/Fsf8/xlEz9dFf/Lc9Bue84AR+xL5C4sgwXb9cxLgRn
-         Ys3g==
+        d=wirenboard-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=fEBYHOeJmoDLedRNLK+730twQNE9o6QKDts6T+ggwUw=;
+        b=U7Ld9nLPBKwukUC77T14sY8bn8YJmrYJkDuAxzufzP1MWYAPo/qFOJRWmwFoKUh6pj
+         02f7CdaTuiCEwmqmK3Cdh4NGu77Ea1DkAvl/+9Jzr6YLGwZaS1CtwQyY+5CECTFsLiC3
+         DAINuJKS+utvShMiBvpnQqYLAtwotk+E5ZnCs9Lh5iNieWsrmbT/Y5mw3wUqAVexZAjX
+         KhhVyavppversuKgdIfBGQSz6ujqEmAHU5rOawfrGO9yQ5NSyJClKyF2n8LYl8Tqef/7
+         g/bIUgSSXSpKVOA3mLSnrPMjR0AdzalodY9MfR4NqcTUd2WsrE5IzZTlhFDtVxXLpmgy
+         W3ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Rg2+rPZvlt5JyvNmoGA7EhEgv5dkqqZkXqI61WU9+Ic=;
-        b=Q0HgtGE/eQngFEOx710ECeb/8GYtEJ72f3coRIkE6G5nLMX5E3OE01j8CByrWtuE4f
-         UOaKhCx7nOBwgyEB9gYmc/9Ay7Wog8F6UEu/qkguJxFdEEk/Gpi147uVgeBgusGIVxvW
-         v9JuJPWKQ9+0Dmqk2EHN35XB+IpcatxeSQkouIQXdhBhS/CvaHFgcINJzo54JfCCeIz2
-         wOpsKje7Ff7BUO/MLjJyXseuuruxIcCC8C8MURlF1wO11hKL0p1F+VHeAuQ6lvNFoF4U
-         U9qMeRMnrHuYX42IN9VX/qFv3i3eahIITLF9plsMPFq6fr6iWc0d2XdWyLOg9itLdfaH
-         f4Hg==
-X-Gm-Message-State: AOAM533gB40OWrJIXt6I8J/Vxul4sSR+yUrhEipGC/v9mhq2zJ84DR3k
-        TFSnP26GrsnX7l0R7A6qIRYJSw==
-X-Google-Smtp-Source: ABdhPJyBn+F09b90dQGkhPL9NVNBc+re31j0vc4zDAnflmf+zfD/zg8cgpFzHCmgam7RaWq9T1mrSA==
-X-Received: by 2002:adf:f351:: with SMTP id e17mr22837409wrp.416.1615211238844;
-        Mon, 08 Mar 2021 05:47:18 -0800 (PST)
-Received: from dell ([91.110.221.130])
-        by smtp.gmail.com with ESMTPSA id p11sm18516435wrs.80.2021.03.08.05.47.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 05:47:18 -0800 (PST)
-Date:   Mon, 8 Mar 2021 13:47:16 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=fEBYHOeJmoDLedRNLK+730twQNE9o6QKDts6T+ggwUw=;
+        b=Swh2N9v4X/XpwD3fHPTVrRBG3yEk0UtlGa5ZYmNfZ2IAhXjtztQzJu3Mmzqnk9vTwh
+         ais6hOdUh0POc7/34/3sKfqk25b/eDcWJicA9bggUmAjYbXKz/XXYQvhIPsKrs/j/1h9
+         ixBCRo2pWZZkE8/srZbOTzHuAgLJbenxTGVYCIPVzU/2f5xPy4FWM8vIAjIox11MBrRf
+         W/6FW7zPI3Zj10aNd53f3eofD2x/OEOZaoPyK5ofcQtfTSfNQBP7s1ny519+/twYhNyA
+         ePyJhREEqHdI9FoFxePp1YiGflZtVtipzS6mSE3EzyBWnrjgErcgywieX3C3aUHlwJPT
+         NVxQ==
+X-Gm-Message-State: AOAM5314+V2esWLG3kdSfZqnHcW5FWReoCk6UrdjcpdH07o5slq0tMKA
+        D/zyE5vK+VWLEumBI5WqNqfNgQ==
+X-Google-Smtp-Source: ABdhPJy/hOdrWSRUbyZnMofoPUYrs3dZ2/pz7ECHvekYUG3v0TEAjrR46Nkp3/aqnXEODSQHPCkgCw==
+X-Received: by 2002:ac2:482b:: with SMTP id 11mr13949371lft.642.1615211475673;
+        Mon, 08 Mar 2021 05:51:15 -0800 (PST)
+Received: from [192.168.1.213] (81.5.99.6.dhcp.mipt-telecom.ru. [81.5.99.6])
+        by smtp.googlemail.com with ESMTPSA id s7sm1407317lfi.140.2021.03.08.05.51.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Mar 2021 05:51:15 -0800 (PST)
+Subject: Re: [PATCH 1/2] net: allwinner: reset control support
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v8 6/6] mfd: bd9576: Add safety limit/monitoring registers
-Message-ID: <20210308134716.GF4931@dell>
-References: <cover.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
- <f9d76bed70a440036b56be8a0928925d12db8463.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
+        Rob Herring <robh+dt@kernel.org>
+References: <20210307031353.12643-1-boger@wirenboard.com>
+ <20210307031353.12643-2-boger@wirenboard.com>
+ <20210308133617.xqbjv7jybxbbqa27@gilmour>
+From:   Evgeny Boger <boger@wirenboard.com>
+Message-ID: <f4463df0-6669-fc20-ab8e-c82457e441fb@wirenboard.com>
+Date:   Mon, 8 Mar 2021 16:51:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <20210308133617.xqbjv7jybxbbqa27@gilmour>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f9d76bed70a440036b56be8a0928925d12db8463.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Feb 2021, Matti Vaittinen wrote:
+Hi, thank you for your review!
 
-> ROHM BD9576 contains safety features like over/under voltage detection,
-> over curren detection and over temperature detection. Add the
-> configuration register information.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
-> 
-> Changes since v7:
-> 	New patch
-> 
->  include/linux/mfd/rohm-bd957x.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/include/linux/mfd/rohm-bd957x.h b/include/linux/mfd/rohm-bd957x.h
-> index 3f351a1ae4ab..2bd35260ee8e 100644
-> --- a/include/linux/mfd/rohm-bd957x.h
-> +++ b/include/linux/mfd/rohm-bd957x.h
-> @@ -116,6 +116,25 @@ enum {
->  #define BD957X_REG_VOUT4_TUNE		0x59
->  #define BD957X_REG_VOUTL1_TUNE		0x5c
->  
-> +#define BD9576_REG_VOUT1_OVD		0x51
-> +#define BD9576_REG_VOUT1_UVD		0x52
-> +#define BD9576_REG_VOUT2_OVD		0x54
-> +#define BD9576_REG_VOUT2_UVD		0x55
-> +#define BD9576_REG_VOUT3_OVD		0x57
-> +#define BD9576_REG_VOUT3_UVD		0x58
-> +#define BD9576_REG_VOUT4_OVD		0x5a
-> +#define BD9576_REG_VOUT4_UVD		0x5b
-> +#define BD9576_REG_VOUTL1_OVD		0x5d
-> +#define BD9576_REG_VOUTL1_UVD		0x5e
-> +
-> +#define BD9576_MASK_XVD			0x7f
-> +
-> +#define BD9576_REG_VOUT1S_OCW		0x5f
-> +#define BD9576_REG_VOUT1S_OCP		0x60
-> +
-> +#define BD9576_MASK_VOUT1S_OCW		0x3f
-> +#define BD9576_MASK_VOUT1S_OCP		0x3f
 
-Just a quick check, are these meant to be the same value?
+3/8/21 4:36 PM, Maxime Ripard пишет:
+> Hi,
+>
+> On Sun, Mar 07, 2021 at 06:13:51AM +0300, Evgeny Boger wrote:
+>> R40 (aka V40/A40i/T3) and A10/A20 share the same EMAC IP.
+>> However, on R40 the EMAC is gated by default.
+>>
+>> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+> On which device was it tested?
+It's custom-made Allwinner A40i device with two IP101GRI PHYs in MII mode.
+>> ---
+>>   drivers/net/ethernet/allwinner/sun4i-emac.c | 21 ++++++++++++++++++++-
+>>   1 file changed, 20 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/net/ethernet/allwinner/sun4i-emac.c b/drivers/net/ethernet/allwinner/sun4i-emac.c
+>> index 5ed80d9a6b9f..c0ae06dd922c 100644
+>> --- a/drivers/net/ethernet/allwinner/sun4i-emac.c
+>> +++ b/drivers/net/ethernet/allwinner/sun4i-emac.c
+>> @@ -28,6 +28,7 @@
+>>   #include <linux/of_platform.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/phy.h>
+>> +#include <linux/reset.h>
+>>   #include <linux/soc/sunxi/sunxi_sram.h>
+>>   
+>>   #include "sun4i-emac.h"
+>> @@ -85,6 +86,7 @@ struct emac_board_info {
+>>   	unsigned int		link;
+>>   	unsigned int		speed;
+>>   	unsigned int		duplex;
+>> +	struct reset_control *reset;
+> You should align this with the rest of the other fields
 
-If so:
-
-For my own reference (apply this as-is to your sign-off block):
-
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>
+>>   
+>>   	phy_interface_t		phy_interface;
+>>   };
+>> @@ -791,6 +793,7 @@ static int emac_probe(struct platform_device *pdev)
+>>   	struct net_device *ndev;
+>>   	int ret = 0;
+>>   	const char *mac_addr;
+>> +	struct reset_control *reset;
+>>   
+>>   	ndev = alloc_etherdev(sizeof(struct emac_board_info));
+>>   	if (!ndev) {
+>> @@ -852,6 +855,19 @@ static int emac_probe(struct platform_device *pdev)
+>>   		goto out_release_sram;
+>>   	}
+>>   
+>> +	reset = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
+>> +	if (IS_ERR(reset)) {
+>> +		dev_err(&pdev->dev, "unable to request reset\n");
+>> +		ret = -ENODEV;
+>> +		goto out_release_sram;
+>> +	}
+> Judging from your commit log, it's not really optional for the R40. The
+> way we usually deal with this is to have a structure associated with a
+> new compatible and have a flag tell if that compatible requires a reset
+> line or not.
+>
+> The dt binding should also be amended to allow the reset property
+>
+got it
+>> +	db->reset = reset;
+>> +	ret = reset_control_deassert(db->reset);
+>> +	if (ret) {
+>> +		dev_err(&pdev->dev, "could not deassert EMAC reset\n");
+>> +		goto out_release_sram;
+>> +	}
+>> +
+> The programming guidelines in the datasheet ask that the reset line must
+> be deasserted before the clock in enabled.
+right, found it at section 3.3.2.6, thanks
+>
+> Maxime
