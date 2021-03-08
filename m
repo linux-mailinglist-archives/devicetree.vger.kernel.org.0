@@ -2,119 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76875330F36
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF048330F3B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbhCHNby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:31:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44416 "EHLO
+        id S229729AbhCHNc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:32:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbhCHNbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:31:47 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BBDC06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 05:31:46 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id q2-20020a17090a2e02b02900bee668844dso2979317pjd.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 05:31:46 -0800 (PST)
+        with ESMTP id S230250AbhCHNcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:32:18 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42895C06174A;
+        Mon,  8 Mar 2021 05:32:18 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 2so16088537ljr.5;
+        Mon, 08 Mar 2021 05:32:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XGoAGNYT6tXYgHeKhW2JDJs/r9xX8kr9hTTKfXjfp84=;
-        b=WigFhTulHneEufHF8nv8vUutVojLFmgJDTeNXtaWIU6BPb8zOYLtrlP6k9KxCz7upK
-         WM+rXJTkMx5jSH6Dnskkvn1o6moP8tLlEMZJCi7YrJ0k939ChwsqstpuQR7lnUAxzxBl
-         ucee8leMGI/ko/e3O64fAxTffuba/YrwHSJXqCHntP10EbeqbbbbliijiU1IoFBtmZXe
-         Q/J53WiSAsl9wqEppvQqc4ozTiJcKnSqkvrpPi20tb8KkqDmbyBVxlhsitw6Cw5Xwh/8
-         T3teg/0t8/tMtTV9Rf9vAtYZVx24Zr/hgmlvXknmO9/URPDL4zAr6pXjJ1caln+exoXS
-         /qMQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Eep1QcznjPuYsexkb4E/ZfaTf97lrmmqC3yW5OUegjs=;
+        b=B/1bmCGRRuXpC7NVzINvwDzAHg6sA1EMBkFPT7WvGyiqa+mVp833/AI2mt2mMVvE1r
+         +xHxG+jrJiBiJIgKz7XcYLlUEtql21p9EFVk3jI2ZBO9mJaZDTBsLGKQbzWa7Alpp5dx
+         QaeaQmKryyHF0JtOd2QTxfBUWFPlIxyH/1h4gnG6U8H3Mue/MrIFlB23ihn0TNZ/10lr
+         SUqPnTUgH3e/iE/pa3wBbISmNE9PpsqZ7X1EefLH9pOuOh06EePyOYevCnMbqTA0LsSL
+         avel9J8MwYfMLpzUWuuu4jVHRKnwDnD0KSzShHXsfF+LjNvvEKhub+Vo4x9owjsXcIPU
+         u8MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XGoAGNYT6tXYgHeKhW2JDJs/r9xX8kr9hTTKfXjfp84=;
-        b=OLKqMXsj5XCPcq20L/wcSVsB9D6r+ShGdfW0BfjF3nbby05aU5+sDuTmBhQhwgIxob
-         wI3DawsBZpSIkvT77viSx8voDx6Qgp8BPIWBnXl6hgrgmg7bJQiAVx6u9dcOt9lFg94n
-         To7LgpczV5ZsLpJBcOlWmy/4ooS3cjY1p40++bzHP/ebgtW/rjfLHJGnTqWuZiL1BpP4
-         X0ZT7eSU62XSMeLh8iHXqzJw4lQzETt8IGoOq19aUcpBPxJ/zrBfk2GQDSQ7ec1NDMeK
-         hEf0lGYhvcIrEkNrtd5A3SHLmJ3kZPK+8XcXdkuO3HKMCeeIzk0u6dViOVCQSjNr21yh
-         guzQ==
-X-Gm-Message-State: AOAM5327bsjcIJ/pZZdViEj1OxePAzfwsevKBoE3UweK0U9HHLc9SGM9
-        HQ9c+4QjDTtFqxfsOa71pQEl
-X-Google-Smtp-Source: ABdhPJwn8ZZ3Vko9jfDjEVdgsQIgjWmAgHZxLJB3qCJ/IroL6/2uU4WCwC0b9b9enVnZRNsno+6JbA==
-X-Received: by 2002:a17:90a:1485:: with SMTP id k5mr24582282pja.103.1615210306421;
-        Mon, 08 Mar 2021 05:31:46 -0800 (PST)
-Received: from thinkpad ([2409:4072:638a:aee8:50fe:f77:990e:395b])
-        by smtp.gmail.com with ESMTPSA id i1sm10449641pfo.160.2021.03.08.05.31.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 05:31:45 -0800 (PST)
-Date:   Mon, 8 Mar 2021 19:01:34 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Daniele.Palmas@telit.com, bjorn.andersson@linaro.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: Add a property to declare
- secure regions in NAND chips
-Message-ID: <20210308133134.GC5457@thinkpad>
-References: <20210308054447.28418-1-manivannan.sadhasivam@linaro.org>
- <20210308054447.28418-3-manivannan.sadhasivam@linaro.org>
- <20210308101059.08658fbe@collabora.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Eep1QcznjPuYsexkb4E/ZfaTf97lrmmqC3yW5OUegjs=;
+        b=uUCZkTfIqdXt/vO8Lth4v9SOHQ+jJaWwLqp3DOCFEHibEYz9f1KXu/dQB5oHhJvKse
+         QDLE8t3VERt7Dh9Fi5uh3LlyUnImUc20RVMAFNLdYr5Sf7Pk9Y2PNPMmsx+JY0fdHogy
+         FUUnBYPhaip5bQnE8wH1OFUXJbD1qHUPgKiSy+IRtrWD/8uIfRfaILFSrot8Xc/rXBCI
+         zp/fmcaPIX0lI62XDqutptd3VgsU+SEV1T586y0+rYErXnwrzTdo80lkqwSh7dUeDz+x
+         JhW3ieJYoa3nnPQpw1P6BFMyCOW0T9Zx+y2x+dNo+zJyJPSYPnEeDrm8of8/omx7A/vc
+         MVOQ==
+X-Gm-Message-State: AOAM533lHFaQGITV+Rc3tUCFCS9623lTlISiamjl0MuXjVGNfKSUskXs
+        J0n+BDeDQkkQsmW/xYJHgSE=
+X-Google-Smtp-Source: ABdhPJzScDlDq/qIK+QD1GR7aQMtVguQKejzQ1InCUAPUJ0aH0u6GnQJBEb0iN9THzJ0dmsdgfqZQg==
+X-Received: by 2002:a2e:8e78:: with SMTP id t24mr14312383ljk.161.1615210336796;
+        Mon, 08 Mar 2021 05:32:16 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id i22sm1499138ljg.37.2021.03.08.05.32.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Mar 2021 05:32:16 -0800 (PST)
+Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Document use of nvmem-partitions
+ compatible
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20210216212638.28382-1-ansuelsmth@gmail.com>
+ <20210216212638.28382-4-ansuelsmth@gmail.com>
+ <ee596471-db9b-43e4-c085-9bd938101587@gmail.com>
+ <YEUHsoC4V+H6PCHL@Ansuel-xps.localdomain>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <6e1ef2eb-adb4-4341-f671-0d21fadda3e9@gmail.com>
+Date:   Mon, 8 Mar 2021 14:32:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210308101059.08658fbe@collabora.com>
+In-Reply-To: <YEUHsoC4V+H6PCHL@Ansuel-xps.localdomain>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 10:10:59AM +0100, Boris Brezillon wrote:
-> On Mon,  8 Mar 2021 11:14:46 +0530
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+On 07.03.2021 18:04, Ansuel Smith wrote:
+> On Mon, Mar 08, 2021 at 10:48:32AM +0100, Rafał Miłecki wrote:
+>> On 16.02.2021 22:26, Ansuel Smith wrote:
+>>> Document nvmem-partitions compatible used to treat mtd partitions as a
+>>> nvmem provider.
+>>
+>> I'm just wondering if "nvmem-partitions" is accurate enough. Partitions
+>> bit sounds a bit ambiguous in the mtd context.
+>>
+>> What do you think about "mtd-nvmem-cells" or just "nvmem-cells"?
 > 
-> > On a typical end product, a vendor may choose to secure some regions in
-> > the NAND memory which are supposed to stay intact between FW upgrades.
-> > The access to those regions will be blocked by a secure element like
-> > Trustzone. So the normal world software like Linux kernel should not
-> > touch these regions (including reading).
-> > 
-> > So let's add a property for declaring such secure regions so that the
-> > drivers can skip touching them.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> > index d0e422f4b3e0..15a674bedca3 100644
-> > --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> > @@ -143,6 +143,13 @@ patternProperties:
-> >            Ready/Busy pins. Active state refers to the NAND ready state and
-> >            should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
-> >  
-> > +      secure-regions:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +        description:
-> > +          Regions in the NAND chip which are protected using a secure element
-> > +          like Trustzone. This property contains the start address and size of
-> > +          the secure regions present.
-> > +
-> 
-> Since you declare this as a generic property, I think it'd be simpler
-> to do the check at the core level.
-> 
+> I read somewhere that mtd is not so standard so "nvmem-cells" should be the
+> right compatible.
+> To sum up, with v2 I should change the compatible name and just push the
+> 2 and 3 patch. (waiting your fix to be accepted) Correct?
 
-Hmm, so have the parsing logic in qcom driver and check in core or both parsing
-and check in core?
+I'm also quite sure you're fine to send V2 now, if you just let
+maintainers know (e.g. in a comment below a --- tear line) that it
+depends on the:
+[PATCH] mtd: parsers: ofpart: limit parsing of deprecated DT syntax
 
-I don't think the first one makes sense.
-
-Thanks,
-Mani
-
-> >      required:
-> >        - reg
-> >  
-> 
+In other words: you don't need to wait for my patch to get accepted.
