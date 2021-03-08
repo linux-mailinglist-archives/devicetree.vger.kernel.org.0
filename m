@@ -2,76 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4758C33164E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FEED331656
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:40:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbhCHSjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:39:42 -0500
-Received: from mail-io1-f54.google.com ([209.85.166.54]:38403 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbhCHSj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:39:26 -0500
-Received: by mail-io1-f54.google.com with SMTP id k2so11055711ioh.5;
-        Mon, 08 Mar 2021 10:39:26 -0800 (PST)
+        id S230475AbhCHSkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:40:14 -0500
+Received: from mail-il1-f180.google.com ([209.85.166.180]:41763 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229818AbhCHSkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:40:00 -0500
+Received: by mail-il1-f180.google.com with SMTP id c10so9751454ilo.8;
+        Mon, 08 Mar 2021 10:39:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Y2vUMruKnMk/QUUYIf3u9nbHNj9rZrjwEcRZ9FnN9Gk=;
-        b=LCW9Bs7X2fKmhKUJ3QC2ljQkayk087C9cSv0D1xnz0ux/igSvbrV0SNXdPqYgaO8c8
-         hT58W7UxtuwBqmz6X5uCdo2Q3/MFS807Mg4kIJPNRKmZ2XYKea3V9229U814wu9KqYqQ
-         55PdELeZE+v2LQsaUrYx3Je0WE7BrQg0MlcSqvHgOGfuHShVZEOD4bTQswfUuaRFtJIo
-         4B0RYcVxPvJNUe0aY7UX6KGTYWDEaCvcv/G0aL8m86aJ66t4vQ+XfylEboyjJgUAnkRr
-         whHYixg+LjCQVHrfQZy2oAxmQmHPobCsmNXjPCCIYhWj0+yTHyPim1I/332Xp4gZqRCS
-         6v+Q==
-X-Gm-Message-State: AOAM530lshWbn1hhSI0xo9LCZTFShi2y0yBKRfCkgKFLZRDU8GVj5Zxk
-        cph2pwVAzEDDJykJu8iGDRWFzJmDtg==
-X-Google-Smtp-Source: ABdhPJwc1VDMrO5IdEEYLRMeq6VpCXS5H+Bk9gqa1BpRVtVuoo1TpIe5H5QvsiBlO3a6XDgvYOSo4w==
-X-Received: by 2002:a6b:5818:: with SMTP id m24mr19316588iob.144.1615228765710;
-        Mon, 08 Mar 2021 10:39:25 -0800 (PST)
+        bh=lw4l+rLMJMGEsx55Qbf/gHCYaiQyZEZqf2Nq/Dmr/RI=;
+        b=jYAgaZE37rb+FVIx+3J6v3DEorg+P4yjQFYgwVUUiOA9zldWwMyIzzk7m70oubQz0f
+         LYA06d44BjDMqeNOVFXD7CfOSAvHdxaZ6OhA/pvmV365kzt4UHILjkCuXr8SRbZNs+bO
+         yJpmQorkYc5dx3sJUek1ZuLf5qgQ09E5THfpnX+Gm6v2d3dvtCFPCjUk6PjugxpNb2El
+         CUoJQHEqdKnKyxztn8aIBT9mBG32AhRhLCmjX3jIbIEnT5J+UkDloPcRi247JZ3hdBEU
+         msERqBx/KyLvFCP0O2eRwHWKJQSrd9t1m4jrOcQJIQGAc7fEOPqKp1V9irWQtCh4yjLb
+         B5fg==
+X-Gm-Message-State: AOAM533t0ZAW/kZq/jIf0dF2oo6/g2X1Xn/rx0lMexOAFGPSfdHO+0hb
+        V2Cw15huXZfJBfI0OWT4fw==
+X-Google-Smtp-Source: ABdhPJwVW4PuFonwOSGbDEP0tHgzDPFplAp37YU80bhL64fPNFlSe5nALXb//3YnVCfNQUtdGAI/Cw==
+X-Received: by 2002:a92:dd82:: with SMTP id g2mr21509501iln.194.1615228799387;
+        Mon, 08 Mar 2021 10:39:59 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a14sm6728773ilm.68.2021.03.08.10.39.24
+        by smtp.gmail.com with ESMTPSA id p5sm6478739iod.31.2021.03.08.10.39.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 10:39:25 -0800 (PST)
-Received: (nullmailer pid 2761723 invoked by uid 1000);
-        Mon, 08 Mar 2021 18:39:23 -0000
-Date:   Mon, 8 Mar 2021 11:39:23 -0700
+        Mon, 08 Mar 2021 10:39:58 -0800 (PST)
+Received: (nullmailer pid 2762563 invoked by uid 1000);
+        Mon, 08 Mar 2021 18:39:56 -0000
+Date:   Mon, 8 Mar 2021 11:39:56 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Henry Chen <henryc.chen@mediatek.com>
-Cc:     linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-kernel@vger.kernel.org,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-mediatek@lists.infradead.org,
-        Ryan Case <ryandcase@chromium.org>, devicetree@vger.kernel.org,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V9 07/12] dt-bindings: interconnect: add MT6873
- interconnect dt-bindings
-Message-ID: <20210308183923.GA2761689@robh.at.kernel.org>
-References: <1614656863-8530-1-git-send-email-henryc.chen@mediatek.com>
- <1614656863-8530-8-git-send-email-henryc.chen@mediatek.com>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: Add sc7280 to rpmpd
+ binding
+Message-ID: <20210308183956.GA2762516@robh.at.kernel.org>
+References: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1614656863-8530-8-git-send-email-henryc.chen@mediatek.com>
+In-Reply-To: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Mar 2021 11:47:38 +0800, Henry Chen wrote:
-> Add interconnect provider dt-bindings for MT6873.
+On Tue, 02 Mar 2021 11:18:11 +0530, Rajendra Nayak wrote:
+> Add compatible and constants for the power domains exposed by the RPMH
+> in the Qualcomm Technologies Inc sc7280 platform.
 > 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 > ---
->  include/dt-bindings/interconnect/mtk,mt6873-emi.h | 41 +++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/mtk,mt6873-emi.h
+>  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+>  include/dt-bindings/power/qcom-rpmpd.h                  | 11 +++++++++++
+>  2 files changed, 12 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
