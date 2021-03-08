@@ -2,88 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E178A33185F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:23:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EABB8331877
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:27:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbhCHUW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 15:22:56 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:42521 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbhCHUW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:22:56 -0500
-Received: by mail-io1-f49.google.com with SMTP id u20so11377259iot.9;
-        Mon, 08 Mar 2021 12:22:56 -0800 (PST)
+        id S230212AbhCHU0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 15:26:42 -0500
+Received: from mail-io1-f45.google.com ([209.85.166.45]:44637 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhCHU0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:26:23 -0500
+Received: by mail-io1-f45.google.com with SMTP id 81so11377066iou.11;
+        Mon, 08 Mar 2021 12:26:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jfi2aPqw0ChJqx8vxxHvr5nY7+u1FCowOmUR1NpI1Xk=;
-        b=stmLfwruVP27ntFEKhod8eIDAYp5uZzO1aED+TyfJk87uNLd5BQN64acRovwhiYvXz
-         pq5AqSozm4BG/MSIWdQpZ6Al9mPgKzEhHR/YoLOKOH+/UorG1YpIcUeWMV6dB+AMopV9
-         FQfLUbUwmVflGN39IQPwIy/LUDybGC7Hb3M77umwgOz2Dt0piRLVzVC0YvLDmFNeRdzy
-         tyCdQnc81ir0bNzees4YL+3p+khc9RgtVa4U6yOZdHakyRx1kZQ8xIhZDPms5hA/OBhY
-         BoNM26gxLi2FjybZQmb17jNnuqBHPxiToyLlw+IABAyOJMYRq32dWLXY2RWj3237nHt4
-         Fuvg==
-X-Gm-Message-State: AOAM532Yor4zAegIGzXMGobruwnEgXCt1A73KpDMcWi/MzE4DpB9FpsY
-        feVEuuWFVCOnMOzdBA/Mug==
-X-Google-Smtp-Source: ABdhPJxQfWFWuxQMzuNGDXRT8YnjCNfgHq5hSq5MQJMX+6MHhJRomQb5K0FHQNafxooMET8AsrT7Xg==
-X-Received: by 2002:a05:6638:140e:: with SMTP id k14mr9938401jad.31.1615234975633;
-        Mon, 08 Mar 2021 12:22:55 -0800 (PST)
+        bh=6UTjJ3jOvKiCus9H3n1TcHEJKB0LVrltl+hAbPpXslY=;
+        b=r8tw7LXpdXG1ZJ9JOm72egImX4nXFEu1u+nYI5Bz+sSxrLMFjzkTyN+mEVxhGARD6v
+         GvLkKDrjd3FQPMdUpAiIQ/wyZtUFU6GR/mkHLRcgw/zEXuFmZCgiQQGMl+3nxSGSCYvn
+         9deTBWFE1vnmstVzyPwmXDpsLlnrhZk5EENBIEe7MOgZvmgdOGvfQ1PWwlbua0H06jza
+         Fh6EKEM4RDBJur1Ji/lYqZNdpNWtm1kQfwz79V0x2YSd+a4I8FbAVC3aLP6u2WOMb6/M
+         gF8Q5CGYJuuZaMXoDMCLEAB0rn/dOtop5fm+khrk2hEd1oDwhlAujJf4h1/eXdAYwAHJ
+         +fsA==
+X-Gm-Message-State: AOAM532e9O+1hUyFtALIiAuDePU1KnrUxCK0IBS787wIXjNFW7aaYaDB
+        cn+urJ20zw8TyLHo5YTZoQ==
+X-Google-Smtp-Source: ABdhPJwOBTaPE0xKY0k0bCLQdONZXa85agktHmthvLzU6KA0D/iYjgFAJ9bn940AtIEul0SRUWlLAw==
+X-Received: by 2002:a02:7086:: with SMTP id f128mr24916049jac.104.1615235182626;
+        Mon, 08 Mar 2021 12:26:22 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id i67sm6548510ioa.3.2021.03.08.12.22.54
+        by smtp.gmail.com with ESMTPSA id m4sm6704226ilc.53.2021.03.08.12.26.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 12:22:55 -0800 (PST)
-Received: (nullmailer pid 2899522 invoked by uid 1000);
-        Mon, 08 Mar 2021 20:22:53 -0000
-Date:   Mon, 8 Mar 2021 13:22:53 -0700
+        Mon, 08 Mar 2021 12:26:21 -0800 (PST)
+Received: (nullmailer pid 2904189 invoked by uid 1000);
+        Mon, 08 Mar 2021 20:26:19 -0000
+Date:   Mon, 8 Mar 2021 13:26:19 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Robert Foss <robert.foss@linaro.org>,
-        dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        devicetree@vger.kernel.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        linux-amarula@amarulasolutions.com,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: Add Chipone ICN6211
- bindings
-Message-ID: <20210308202253.GA2899425@robh.at.kernel.org>
-References: <20210304092133.21717-1-jagan@amarulasolutions.com>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Alexander Graf <graf@amazon.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-serial@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arch@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        devicetree@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
+        Olof Johansson <olof@lixom.net>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Arnd Bergmann <arnd@kernel.org>, Will Deacon <will@kernel.org>,
+        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>
+Subject: Re: [RFT PATCH v3 02/27] dt-bindings: vendor-prefixes: Add apple
+ prefix
+Message-ID: <20210308202619.GA2904129@robh.at.kernel.org>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-3-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210304092133.21717-1-jagan@amarulasolutions.com>
+In-Reply-To: <20210304213902.83903-3-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Mar 2021 14:51:32 +0530, Jagan Teki wrote:
-> ICN6211 is MIPI-DSI to RGB Converter bridge from Chipone.
+On Fri, 05 Mar 2021 06:38:37 +0900, Hector Martin wrote:
+> This is different from the legacy AAPL prefix used on PPC, but
+> consensus is that we prefer `apple` for these new platforms.
 > 
-> It has a flexible configuration of MIPI DSI signal input and
-> produces RGB565, RGB666, RGB888 output format.
-> 
-> Add dt-bingings for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> Changes for v4:
-> - fixed Laurent comments
-> - added regulators
-> - replace reset with EN
-> - fixed warnings pointed by Robert
-> Changes for v3:
-> - updated to new dt-bindings style
-> 
->  .../display/bridge/chipone,icn6211.yaml       | 99 +++++++++++++++++++
->  MAINTAINERS                                   |  5 +
->  2 files changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
