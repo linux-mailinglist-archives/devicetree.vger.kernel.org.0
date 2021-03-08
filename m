@@ -2,100 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DBC33151B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3484133152F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbhCHRnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 12:43:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230490AbhCHRnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:43:37 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609A8C06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 09:43:37 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id q204so7559141pfq.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 09:43:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=uwWUWLoMsALxcHxQsbHJKpnMdlF22xA3TzeHsMYUXPQ=;
-        b=kCNWT0lXqOkM4RmLLhPl+m10hb8F4CTfgIHCjkBN7f4qzsJj4UM/mUv/ubbV6nDFdq
-         29M+SVrALg9Le3ixTZySh1ZrGBUlOCRYz1P+Uy1YJEms06tMjsbanautiiH2sRv4C5wT
-         COCQpuyhUEnr/b+Qh0sT9oRhd0rIMYGmzgwljZR01ALVmFoJG8xTtBWqO2Tsylwa5/Za
-         uuKP/rtHaqIx6CPjz98lYY2NbG5D9PaKuQN7W3lFAuVk2YUBaSekeG8T5ZjNShVPzHJc
-         apZim89uS8F7ze+5DeNUvEj+UZCQRl9OWBbmLw6foIxcnXkhykazV1Px5fSInKpVkIMk
-         pgeA==
+        id S229469AbhCHRss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 12:48:48 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:34846 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231128AbhCHRsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:48:45 -0500
+Received: from mail-wm1-f70.google.com ([209.85.128.70])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lJJzo-0000RC-8I
+        for devicetree@vger.kernel.org; Mon, 08 Mar 2021 17:48:44 +0000
+Received: by mail-wm1-f70.google.com with SMTP id l16so143728wmc.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 09:48:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=uwWUWLoMsALxcHxQsbHJKpnMdlF22xA3TzeHsMYUXPQ=;
-        b=Q/i2dHIU5H9d74F++l1cW5WyNn7nxuKnpLJvAby7kFKR+ZxI+1s/HT974roVrf3NR0
-         Y0kQq5/izYEyXKyQ1Iqu8OYWy0OB/Tac7FySu0fZyY7bn81XVFI+WmWG+yMPh4vvsZ7/
-         xKPSchj/SUW8IsETecznN9WmFCif5Cd80M/STrLD/oS1il8js4Aw6jTMFJtV7y1ShsSr
-         r7NXaJzxIm8sypAQltcasWRKrnjNtwYT7APyWhATXuMmkkDK9DxRfPvn3wdZqS6wWbHe
-         y2yzZLSiDrqu8qdvTdIbzCCRFXj7IUbJUktTLt7pupoKo4IpWynh1JsiTyWI2nEORpE9
-         i+iQ==
-X-Gm-Message-State: AOAM5300kpgxnYIuSIBMb0IHGb8ynAwqQc6oXclqXG1KiUQydc+v923H
-        +hhFNINMHYxVz0MYvKGG9h46KA==
-X-Google-Smtp-Source: ABdhPJzhf+mB9PVB+1XesHxjolF45VmgaClOL9Eyd/EXSG6MWSeKXpBNT17taop2vTwR/Jd+OT5lBg==
-X-Received: by 2002:a63:5044:: with SMTP id q4mr21095579pgl.178.1615225416788;
-        Mon, 08 Mar 2021 09:43:36 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id 184sm11855802pfc.176.2021.03.08.09.43.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jnNh9ESdQq+5EcjLvckU0Dxe1tNhusY1hCWeqolcbKk=;
+        b=OpMCvvcmHXL42Mtbapk6/drxyv65r1TPLj5Zyb4kXFhIHr74l45R7LYVWYd7MhH5Kr
+         Klf+EKD7xe+wRrc3qrtPRkoe1thc/T0smYbsxT9OYBKmzibuFAkav6m3v7Kxym1PgpGh
+         lwBXF195LoHir4D/W+p3gb3qwNrOH0QHmspi0rioQQp2eDRbGaOiTyZpmZRdA7MIwm0m
+         ksJMxyiYk4ljkTIKTSSvT2QKmHene4ez4vX7wgLgqvcn07lneBFrcrdXcOcBkWOQmU8Y
+         neNs1GXjpJXH4LE/FEcVtg9lBXTkaJxhRqR0orAAhMF/A8DBoE0RcSmUhmGxsU9W0IlQ
+         ZQtQ==
+X-Gm-Message-State: AOAM532dlKu3n/L2G29ei02EyLt6Yso8c/Ez/GqBWITLaVUDj14kV0Ky
+        KWyO8RXh74dneagEZJP/UyqwHvU6LSsD2ajYdHXaxodx4CB8xB0Pv7cKUSldS3GgNd2nLCXMINv
+        GnQMmAti6VOQ2OrSncGK2pgW+LarL+OIBFq8PuOc=
+X-Received: by 2002:a7b:cc0c:: with SMTP id f12mr23605179wmh.111.1615225723888;
+        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwUaRuyx4RAtpOe0d5//r1TyywE48mqQx+LxCJ9l9WcQNO5Z2DIZ1cd0UL5cpHe6W7MSrd2mQ==
+X-Received: by 2002:a7b:cc0c:: with SMTP id f12mr23605174wmh.111.1615225723756;
+        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
+Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.gmail.com with ESMTPSA id r11sm20977867wrm.26.2021.03.08.09.48.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 09:43:36 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Alexander Stein <alexander.stein@mailbox.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc
- devices
-In-Reply-To: <2921197.CJbAp5Dgou@natsu>
-References: <20210127230852.66686-1-alexander.stein@mailbox.org>
- <20210203192824.854491-1-alexander.stein@mailbox.org>
- <2921197.CJbAp5Dgou@natsu>
-Date:   Mon, 08 Mar 2021 09:43:35 -0800
-Message-ID: <7him6135iw.fsf@baylibre.com>
+        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, arm@kernel.org, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2] arm64: defconfig: enable Intel's eASIC N5X SoCFPGA and Keem Bay SoC
+Date:   Mon,  8 Mar 2021 18:48:24 +0100
+Message-Id: <20210308174824.278372-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Alexander Stein <alexander.stein@mailbox.org> writes:
+From: Krzysztof Kozlowski <krzk@kernel.org>
 
-> Am Mittwoch, 3. Februar 2021, 20:28:24 CET schrieb Alexander Stein:
->> Recently introduced async probe on mmc devices can shuffle block IDs.
->> Pin them to fixed values to ease booting in environments where UUIDs
->> are not practical. Use newly introduced aliases for mmcblk devices from [1].
->> [1]
->> https://patchwork.kernel.org/patch/11747669/
->> 
->> Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign
->> a fixed index to mmc devices on rk3399 boards.")
->> 
->> The unconventional order (B, C, A) is due to the fact that sd_emmc_a is
->> (according to the comments) only used for SDIO.
->> 
->> AFAICS all boards either have both sd_emmc_b and sd_emmc_c or only one of
->> them enabled. So the alias order should match the previous non-async order
->> for all of them.
->> 
->> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
->
-> Any feedback on this?
+Enable in defconfig two Intel ARM64 architectures: the eASIC N5X SoCFPGA
+and Keem Bay SoC.  This allows compile coverage when building default
+config.
 
-Sorry for the delay.
+For the N5X (and Agilex) enable also DesignWare SPI controller in MMIO.
 
-I somehow missed this v3 at the end of the v5.12 cycle, but I've queued
-it up for v5.13 now so it should get broader testing in linux-next now.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Kevin
+---
+
+Hi Arnd,
+
+You asked me to check if all drivers are enabled for these platforms.
+In general the answer is yes. In particular:
+1. Keem Bay is does not have much in upstream, but everything described
+   in DTS is there,
+2. N5X shares a lot with Agilex SoCFPGA which already (mostly) is
+   supported.
+
+Changes since v1:
+1. Enable also SPI_DW_MMIO
+---
+ arch/arm64/configs/defconfig | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index d612f633b771..9f9adcb8b0e9 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -29,6 +29,7 @@ CONFIG_KALLSYMS_ALL=y
+ CONFIG_PROFILING=y
+ CONFIG_ARCH_ACTIONS=y
+ CONFIG_ARCH_AGILEX=y
++CONFIG_ARCH_N5X=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_ARCH_ALPINE=y
+ CONFIG_ARCH_BCM2835=y
+@@ -41,6 +42,7 @@ CONFIG_ARCH_K3=y
+ CONFIG_ARCH_LAYERSCAPE=y
+ CONFIG_ARCH_LG1K=y
+ CONFIG_ARCH_HISI=y
++CONFIG_ARCH_KEEMBAY=y
+ CONFIG_ARCH_MEDIATEK=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_ARCH_MVEBU=y
+@@ -465,6 +467,9 @@ CONFIG_SPI=y
+ CONFIG_SPI_ARMADA_3700=y
+ CONFIG_SPI_BCM2835=m
+ CONFIG_SPI_BCM2835AUX=m
++CONFIG_SPI_DESIGNWARE=m
++CONFIG_SPI_DW_DMA=y
++CONFIG_SPI_DW_MMIO=m
+ CONFIG_SPI_FSL_LPSPI=y
+ CONFIG_SPI_FSL_QUADSPI=y
+ CONFIG_SPI_NXP_FLEXSPI=y
+-- 
+2.25.1
 
