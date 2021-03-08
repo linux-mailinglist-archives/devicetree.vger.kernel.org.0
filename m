@@ -2,110 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 940C5330A74
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8BF330A7D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhCHJqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 04:46:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        id S230359AbhCHJsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 04:48:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbhCHJpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:45:36 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53921C06174A;
-        Mon,  8 Mar 2021 01:45:36 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id d3so19949460lfg.10;
-        Mon, 08 Mar 2021 01:45:36 -0800 (PST)
+        with ESMTP id S230126AbhCHJsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:48:35 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87464C06174A;
+        Mon,  8 Mar 2021 01:48:35 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id p21so19960846lfu.11;
+        Mon, 08 Mar 2021 01:48:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PkMg8HyUAo2EgfDsqfPoEike2P+I5ZeqjTnpmKUfESg=;
-        b=ed8P7aci3K9782uqe3hPoxIbeFHdhSDx80uC8ROz+WNEc5VEuLW7sN9At4il2YKqfW
-         UBl8E2zBYghqkMrjjwBDj4ssNsQn0xnVSOmQGx5AHtpCN1Q+kKZO84aYlnd+yb5A6BTn
-         dAnI4wEGzvvP0R74NHGvaMtPqdLHW2fLGiQGh78ssM4ACVXtSgvw8x4Pba7p4LmpplyW
-         xS4yqQWSzEoSAm6J0o5nAE00KkGG57X/4zwlE9Bfb6YEqPFHwlKgEbXmC4UEwJqxA0q0
-         PRzoxz5Nu+FSSVzkFRrYylvqb1QrqS64ojpHm6mgQT5JPIq/W+cG1IE1JGwEX28dsW5B
-         JiVg==
+        bh=yMPvvaC1VpKQ+IQEg4AP1RTQAfaMhDgcAf2MjnMXhso=;
+        b=XKrsvsrYEOZlVjswIB+hcBruPgK5CRnwqeWBTzS5AXVZ8iFrdMP5ahzdhj6Lu54U6s
+         PF0d4b+fzSRL8xUVrvsyCkVvOqlPFp6UUdww9zA9g2PnnxsIZOmeVwaDPB8sYCBtbhSw
+         ns4O66xw/oNspASfX5f4jYLD4WVVjjrN2or2kbO6Z5s0X0ptW2yt/sEahtE+VHPrkAC8
+         Qjpr5cN9r2uWGI36QSJhTlta8Zs9IjrDLGBwE5jDmhyMP/ryNqURTXX5+pg1NVjRwwP3
+         3bcz+6pXUbVBKN9ij95vJ/WV/hIPd30pv23K+ILFlpDqdMx7Ee75TcUHkM9xTwfpDyJL
+         jFIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=PkMg8HyUAo2EgfDsqfPoEike2P+I5ZeqjTnpmKUfESg=;
-        b=NuSjzm5Fl93Jc8IuZqp0zW8G9L4mJnpAozXnNF5x5KQ7PAhiH5tAEa+x2XOscyxG8z
-         chmQOXnDd13KBzLEOw1KO5CCg6BC5JkH/yPzrzqN73uqw/LzJXQKQYsIlLUQq4VcZ5JU
-         ALqLgLN1g3YkrQfJDsF4bG9EmJZP8AcR9HptLaCWk8gF7kVmilcjid1t5HtkYxo4soym
-         qos64ODqLs9bJ3H+WTwwoanqYiJdtHD5mBFDu8DnIEzAHhv9wtA8L5nWsqmzgPcdETbj
-         rHgEVK2oWWqH/qGSYSa3VgrFXLv2hFT2nuyJ3hxNuWVKgF7kYX1DdZRtUWTQQlN7YM97
-         zrag==
-X-Gm-Message-State: AOAM5317A0H8jVMIpGYFYxu9wilIQampUL7zYUzMpO59VYpLt0iTsosu
-        iBIQxiV77Mf08WoN2dQ51J8=
-X-Google-Smtp-Source: ABdhPJxlxOjZeFM6CoJXTEgzmcD+UXez6J8LL5sVrVHswDB2SOc1p3MkeVgimlJiugQiZ6XPfyF7Vg==
-X-Received: by 2002:a05:6512:2356:: with SMTP id p22mr13368252lfu.3.1615196734896;
-        Mon, 08 Mar 2021 01:45:34 -0800 (PST)
+        bh=yMPvvaC1VpKQ+IQEg4AP1RTQAfaMhDgcAf2MjnMXhso=;
+        b=nm0P3YPehI3mrnsnQ3G94TNthlFbDwIi9wCt6DiXD0zgxMzf4QShWYRev3LAcFTWIh
+         ZMsa6ACSXFcInDmrfj384f2GDmQHEj5Mn2jmjZJv7ou6NfSRidas+gYgju/j6WlYtB+V
+         5KGmPilbIJrBESilf3qN1VqwrLY5/iAlY/daLofTkE2MAt8gVv02cs7I8nDoZSzypfmn
+         0QZjxCiBBuIiyhi7ORqTqcnUF2ZuFUFh+usjbXVhDf8TYLgEvLt8gYtYAVkfZJzQ1V90
+         s4uonRd2UPKAj3lb/FuUNsQ/eFqITfO0PhyogAreqT4sbU1mf7h4ZI+eQAKA6BIBBvoN
+         Hwfw==
+X-Gm-Message-State: AOAM533cDxxv9vT74dkjJUdna36yGPjAo1mJ1tIj3Bm5EnxR9G47zA3k
+        0924I7zI5j2cq0HT6Tp3jeQ=
+X-Google-Smtp-Source: ABdhPJxzpWbGWi4U0nZEVpAIZqLD56P7BXiW9bEVNlH8CrOYd48qYmJL+wwls6N6OqVRNzfDSyR4TQ==
+X-Received: by 2002:a19:6109:: with SMTP id v9mr14344228lfb.546.1615196914072;
+        Mon, 08 Mar 2021 01:48:34 -0800 (PST)
 Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id h17sm1297510lfc.289.2021.03.08.01.45.33
+        by smtp.googlemail.com with ESMTPSA id m3sm1331901lfo.190.2021.03.08.01.48.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Mar 2021 01:45:34 -0800 (PST)
+        Mon, 08 Mar 2021 01:48:33 -0800 (PST)
 Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Document use of nvmem-partitions
  compatible
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Richard Weinberger <richard@nod.at>
+Cc:     devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
         Boris Brezillon <bbrezillon@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org,
         Miquel Raynal <miquel.raynal@bootlin.com>
 References: <20210216212638.28382-1-ansuelsmth@gmail.com>
  <20210216212638.28382-4-ansuelsmth@gmail.com>
- <1cf374f1-09d5-9fa9-9b0d-d8079f2f6fbc@gmail.com>
- <20210305222300.GA718014@robh.at.kernel.org>
 From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <9167d2be-067e-4ad3-9c8b-28bb549187aa@gmail.com>
-Date:   Mon, 8 Mar 2021 10:45:32 +0100
+Message-ID: <ee596471-db9b-43e4-c085-9bd938101587@gmail.com>
+Date:   Mon, 8 Mar 2021 10:48:32 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210305222300.GA718014@robh.at.kernel.org>
+In-Reply-To: <20210216212638.28382-4-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05.03.2021 23:23, Rob Herring wrote:
-> On Wed, Mar 03, 2021 at 11:01:55AM +0100, Rafał Miłecki wrote:
->> [Rob: please advise]
->>
->> On 16.02.2021 22:26, Ansuel Smith wrote:
->>> Document nvmem-partitions compatible used to treat mtd partitions as a
->>> nvmem provider.
->>
->> Until now we were using "compatible" string in partition node only for
->> parsers (looking for subpartitions). We need to think if this change can
->> break anything from DT / Linux perspective.
->>
->> Compatible strings should be unique, so there is no risk of conflict
->> between NVMEM and parsers.
->>
->> Now: can we ever need mtd partition to:
->> 1. Contain subpartitions
->> 2. Provide NVMEM
->> at the same time?
->>
->> Let's say:
->>
->> partition@0 {
->> 	compatible = "vendor,dynamic-firmware-partitions", "nvmem-partitions";
-> 
-> I think you'd want the "vendor,dynamic-firmware-partitions" parser/code
-> to serve up any nvmem regions. Whether you have a fallback here depends
-> if an OS could make use of the regions knowing nothing about
-> "vendor,dynamic-firmware-partitions".
+On 16.02.2021 22:26, Ansuel Smith wrote:
+> Document nvmem-partitions compatible used to treat mtd partitions as a
+> nvmem provider.
 
-Perfect! I didn't think that driver handling
-"vendor,dynamic-firmware-partitions" may also take care of NVMEM.
+I'm just wondering if "nvmem-partitions" is accurate enough. Partitions
+bit sounds a bit ambiguous in the mtd context.
 
-Thank you.
+What do you think about "mtd-nvmem-cells" or just "nvmem-cells"?
