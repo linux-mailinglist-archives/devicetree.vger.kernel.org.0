@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6743319BB
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC993319C6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:56:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbhCHVxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 16:53:36 -0500
-Received: from mail-il1-f182.google.com ([209.85.166.182]:41148 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbhCHVxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:53:25 -0500
-Received: by mail-il1-f182.google.com with SMTP id c10so10266044ilo.8;
-        Mon, 08 Mar 2021 13:53:24 -0800 (PST)
+        id S230342AbhCHV4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 16:56:20 -0500
+Received: from mail-io1-f53.google.com ([209.85.166.53]:43368 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230242AbhCHVzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:55:46 -0500
+Received: by mail-io1-f53.google.com with SMTP id f20so11647951ioo.10;
+        Mon, 08 Mar 2021 13:55:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LX5PpicIOZawGnwZFfoDpkcC/MADa83hSMM3P3xoxmo=;
-        b=dzCm9T5PtHkGXEvDTDcc3nmTv8pqEKwYiMVB5WLzQ/4yWKCAApgqYLy/SnQUTzTfpC
-         izYADNWNgEQDbPe6G6NDLtaefP65WlO9vSB+cBZHAz45zUn2r/J1+qP4aGvzVPHY63jx
-         iUPvPTvot+TlHHd5O9unTRq8LsIOu3dL+MbnSgOfJInd3TK0XdqQUx2OMqyTuQhAItvv
-         7g3f1Tw8rghSG0rXyiGS5eMaz/H5LPyxOKhiMQyvLMDo1r20gjkf9Q3XwEo/QuWLlBFb
-         /BYl5WSMcvbbfPd/TZmEoE51SbJwDzKeQC0fxnnTuONuZRRHMMdWHdqK3WPjqiHSUY/o
-         hB0g==
-X-Gm-Message-State: AOAM530Oi/+1cR56dCVoeQGfRSrmkkShCxGQuGbaTa+u1OVz/SbaQIv8
-        o6cQoPi2lTuP/IIywbNDYA==
-X-Google-Smtp-Source: ABdhPJyN7vXM8TddFG1CDCKGglHi9zZzgm+iG3VF4UQDAI4HFs6mqLB3lobOg7yIiXWp5nsUuZjtLw==
-X-Received: by 2002:a05:6e02:1c2a:: with SMTP id m10mr21383555ilh.17.1615240404507;
-        Mon, 08 Mar 2021 13:53:24 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=8ybSs0Ob1LnKKtK1l56OcRUxFWnlW7UjT4LMddyAcCg=;
+        b=ON5EmnNH2z/PtndfSwlAW3uRzVWUWqN6rqdTu1PMDnfR+dWnmWT19H74qORLyarxza
+         ACH5jeDPvjXr+5mpFdWDGdP3VJqMZr6cWB3+87wUbKlz1eINyEV0O6GiHZiYJYlpdFVm
+         MeEQlsm+6yLAyqMN4BBAghEXBMo9F2artR5VNDWMkqp4FmI8dAcmkb3R//RyxFGIHXrt
+         wcick+1DHN2ig+bV+pvNUCvTLOwq7ZnLEQkWKNzM1EUDMhiVbcWECZY+qsZsvveUwpyX
+         sW9C25vjcjzy/E2QucRno/PpBCx9FH8ujtaO5FMSNpOMwkeRNY4TvtST0UvfIhnoSDq9
+         5Clg==
+X-Gm-Message-State: AOAM530cqUAk+4GEr6TheFvxC2wS/ECPXhq3D/WZwmDTJDVlKC3WFffG
+        3YyZAMhb0nXDrlnum7VGb5PxB3yiuA==
+X-Google-Smtp-Source: ABdhPJw+jYeeh0yZbRALgdv7Gt8iRqqYLmuyeQTqZhBuwAR0PKY+7idLLPnkGXg1qCg1b3ucyVLr+g==
+X-Received: by 2002:a5e:9612:: with SMTP id a18mr20092046ioq.209.1615240545783;
+        Mon, 08 Mar 2021 13:55:45 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u15sm6845506iln.84.2021.03.08.13.53.23
+        by smtp.gmail.com with ESMTPSA id k14sm6509122iob.34.2021.03.08.13.55.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 13:53:24 -0800 (PST)
-Received: (nullmailer pid 3019369 invoked by uid 1000);
-        Mon, 08 Mar 2021 21:53:22 -0000
-Date:   Mon, 8 Mar 2021 14:53:22 -0700
+        Mon, 08 Mar 2021 13:55:45 -0800 (PST)
+Received: (nullmailer pid 3022527 invoked by uid 1000);
+        Mon, 08 Mar 2021 21:55:43 -0000
+Date:   Mon, 8 Mar 2021 14:55:43 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Tian Tao <tiantao6@hisilicon.com>, Ray Jui <rjui@broadcom.com>,
-        Matt Mackall <mpm@selenic.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: rng: bcm2835: document reset support
-Message-ID: <20210308215322.GA3019335@robh.at.kernel.org>
-References: <20210305070132.2986-1-noltari@gmail.com>
- <20210305070132.2986-3-noltari@gmail.com>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     jic23@kernel.org, lars@metafoo.de, pmeerw@pmeerw.net,
+        denis.ciocca@st.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        grygorii.tertychnyi@leica-geosystems.com,
+        andrey.zhizhikin@leica-geosystems.com
+Subject: Re: [PATCH 1/2] dt-bindings: iio: st,st-sensors.yaml New iis2mdc
+ bindings
+Message-ID: <20210308215543.GA3019487@robh.at.kernel.org>
+References: <20210305070536.2880-1-Qing-wu.Li@leica-geosystems.com.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210305070132.2986-3-noltari@gmail.com>
+In-Reply-To: <20210305070536.2880-1-Qing-wu.Li@leica-geosystems.com.cn>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Mar 2021 08:01:31 +0100, Álvaro Fernández Rojas wrote:
-> brcm,bcm6368-rng controllers require resetting the IPSEC clock in order to get
-> a functional RNG.
+On Fri, Mar 05, 2021 at 07:05:35AM +0000, LI Qingwu wrote:
+> Add support for ST magnetometer lsm303ah,sm303dac and iis2mdc.
+> The patch tested with IIS2MDC instrument.
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
 > ---
->  v6: fix dt-bindings warnings.
->  v5: no changes.
->  v4: pass dt_binding_check.
->  v3: make resets required if brcm,bcm6368-rng.
->  v2: document reset support.
+>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
->  .../devicetree/bindings/rng/brcm,bcm2835.yaml         | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> index db291a9390b7..6fd61ffde72b 100644
+> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> @@ -66,6 +66,11 @@ properties:
+>        - st,lis3mdl-magn
+>        - st,lis2mdl
+>        - st,lsm9ds1-magn
+> +      - st,lsm303ah_magn
+> +      - st,ism303dac_magn
+> +      - st,iis2mdc_magn
+> +      - st,lsm303agr_magn
+> +      - st,lis2mdl_magn
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+s/_/-/
+
+Though if magnetometer is the only function of these devices, then the 
+part number only should be enough and '_magn' is redundant.
+
+>          # Pressure sensors
+>        - st,lps001wp-press
+>        - st,lps25h-press
+> -- 
+> 2.17.1
+> 
