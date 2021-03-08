@@ -2,82 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17519331848
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1358331853
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:20:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbhCHUNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 15:13:44 -0500
-Received: from mail-io1-f52.google.com ([209.85.166.52]:34671 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbhCHUNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:13:33 -0500
-Received: by mail-io1-f52.google.com with SMTP id o11so11400474iob.1;
-        Mon, 08 Mar 2021 12:13:32 -0800 (PST)
+        id S229787AbhCHUUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 15:20:12 -0500
+Received: from mail-io1-f43.google.com ([209.85.166.43]:45923 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229471AbhCHUTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:19:48 -0500
+Received: by mail-io1-f43.google.com with SMTP id a7so11347980iok.12;
+        Mon, 08 Mar 2021 12:19:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0xy+8GBNFB8v7Q8o1J++zwVaGoqF/2Cs1YxTIRsnqpE=;
-        b=PkDoao9WdDuhuIsswjw1LaAaBwX+MgHn8uIi43iGdRPSaG68DctlJHk4NI8Ayn1JZ/
-         V8rq90ojcDLii1Rr+YmTNosXP4rmhXrmiDwDFTExhwuLyJ/y/B4NhwbYvZTO2xTN19re
-         KwSMjlUoR1r3If+vhev7Z+eKk6i2rZA17naCSTlVSSJQABV6479E6gDIL7qf6ePWX1N9
-         tTvRrgp/HGAt5MVoXEupssWlloGZS+xJqzpWZhf9otkyQk/s4MSTYs5g08Fn6juFhdXu
-         wj7YWrzLUUSQakAZMTVudLMzx6/MA7J4nKLbT9n4fYCv6mV8K6sswlXfuO/ZUTK1KXub
-         NIaQ==
-X-Gm-Message-State: AOAM533sLDyY38c7pY0DXSMC1ieBdUWWZuI+02DO3D79G+5IXvS1i92Y
-        0ge2YkbxRhs8ndGJz/VZ+Zbx/4oZFA==
-X-Google-Smtp-Source: ABdhPJyiOddfKIeGSGT+sVeLmUwwQTuWI+YLPWY9AolpDGnovi1vt1grPdEW5EGXXztSu1u+m9kAiA==
-X-Received: by 2002:a5e:840a:: with SMTP id h10mr20400527ioj.206.1615234412440;
-        Mon, 08 Mar 2021 12:13:32 -0800 (PST)
+        bh=NcG6ZqO4p6QZgXbPCgWzjprzED+TuNKHh2ID9qjkO6M=;
+        b=OvIL3qEgxQkY3ssNAIbuxwEH+rvOStk9zugf1TjHF2in0Tu+HSZhtLXZIjdyeoMxft
+         snyxmUuJ1fWEE1U6GXAUImHlocTAAiR7lh6z8KQCRJNdwG1sjEXpLYWVfBsYl77mvGf9
+         fynPykHiCqEXfuW1xpFSCMVRRM++zTSbRhpk8OUS+ro/pQ3XL6MSBGUyBMeupcOMAywI
+         4FwwXteHpCYsXHHeKjyKZzljrsQmREYwppInj5uOGxKdERhExpNttZB3A3IYo3T4Nv2E
+         0MMreDqLVMa+uZ9rY3U+ve4l6xwCmh/a01rmOfkw5Q9BIPz2OGsQeyPHa+Rmzzu+cdTq
+         o8Vw==
+X-Gm-Message-State: AOAM5337sSwIXBHFlpA9Ga6m+LQv2fdwEyKqS/VMyQeSphb9wGb4ulkp
+        4PrutO1XVzTlX+rElXvtvA==
+X-Google-Smtp-Source: ABdhPJy/ZGuyoAd9MktEIjw1VXRRagJzg7rGusa9KJa5EvGqsBJyUHx7q4jtGsbflpahG8+vLwaFjA==
+X-Received: by 2002:a05:6602:82:: with SMTP id h2mr20489812iob.20.1615234787570;
+        Mon, 08 Mar 2021 12:19:47 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 5sm6646410ill.20.2021.03.08.12.13.30
+        by smtp.gmail.com with ESMTPSA id a14sm6394626ilj.39.2021.03.08.12.19.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 12:13:31 -0800 (PST)
-Received: (nullmailer pid 2886558 invoked by uid 1000);
-        Mon, 08 Mar 2021 20:13:29 -0000
-Date:   Mon, 8 Mar 2021 13:13:29 -0700
+        Mon, 08 Mar 2021 12:19:46 -0800 (PST)
+Received: (nullmailer pid 2894804 invoked by uid 1000);
+        Mon, 08 Mar 2021 20:19:44 -0000
+Date:   Mon, 8 Mar 2021 13:19:44 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Joe Hung <joe_hung@ilitek.com>
-Cc:     luca_hsu@ilitek.com, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c:
- Add bindings
-Message-ID: <20210308201329.GA2886497@robh.at.kernel.org>
-References: <20210304055724.63695-1-joe_hung@ilitek.com>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     mdf@kernel.org, trix@redhat.com, michal.simek@xilinx.com,
+        gregkh@linuxfoundation.org, jolly.shah@xilinx.com,
+        rajan.vaja@xilinx.com, arnd@arndb.de, manish.narani@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        chinnikishore369@gmail.com,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: fpga: Add binding doc for versal
+ fpga manager
+Message-ID: <20210308201944.GA2886704@robh.at.kernel.org>
+References: <20210304070224.22346-1-nava.manne@xilinx.com>
+ <20210304070224.22346-3-nava.manne@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210304055724.63695-1-joe_hung@ilitek.com>
+In-Reply-To: <20210304070224.22346-3-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Mar 2021 13:57:23 +0800, Joe Hung wrote:
-> Add binding documentation for ILITEK touch devices.
+On Thu, Mar 04, 2021 at 12:32:23PM +0530, Nava kishore Manne wrote:
+> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 > 
-> Signed-off-by: Joe Hung <joe_hung@ilitek.com>
-> ---
-> Changes in v5:
->   - Remove tab in yaml
-> 
-> Changes in v4:
->   - Change IRQ flag to level interrupt
->   - Add support for common touchscreen-related properties
->   - Modify reset gpio to active low
->   - Modify irq type to LEVEL_LOW
->   - Add compatible for Lego series ICs
-> 
-> Changes in v3:
->   - Add include header in examples, and pass the dt binding check
-> 
-> Changes in v2:
->   - Convert to DT schema format
->   - Using interrupts instead of irq-gpios
-> 
->  .../input/touchscreen/ilitek_ts_i2c.yaml      | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-> 
+> This patch adds binding doc for versal fpga manager driver.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Why do you need a DT entry for this? Can't the Versal firmware driver 
+instantiate the fpga-mgr device?
+
+> 
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> ---
+> Changes for v2:
+>                 -Fixed file format and syntax issues.
+> Changes for v3:
+>                 -Removed unwated extra spaces.
+> 
+>  .../bindings/fpga/xlnx,versal-fpga.yaml       | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+> new file mode 100644
+> index 000000000000..fec6144766fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/xlnx,versal-fpga.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Versal FPGA driver.
+> +
+> +maintainers:
+> +  - Nava kishore Manne <nava.manne@xilinx.com>
+> +
+> +description: |
+> +  Device Tree Versal FPGA bindings for the Versal SoC, controlled
+> +  using firmware interface.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - xlnx,versal-fpga
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    versal_fpga: fpga {
+> +         compatible = "xlnx,versal-fpga";
+> +    };
+> +
+> +...
+> -- 
+> 2.18.0
+> 
