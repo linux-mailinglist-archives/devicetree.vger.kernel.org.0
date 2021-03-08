@@ -2,124 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC9F9330EAD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 13:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB71330EBC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 13:56:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbhCHMvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 07:51:33 -0500
-Received: from muru.com ([72.249.23.125]:40832 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229754AbhCHMvZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 07:51:25 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 93F7A80D4;
-        Mon,  8 Mar 2021 12:52:05 +0000 (UTC)
-Date:   Mon, 8 Mar 2021 14:51:20 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH 09/15] ARM: dts: Configure interconnect target module for
- dra7 dmm
-Message-ID: <YEYdyFShtqq1uXes@atomide.com>
-References: <20210126124004.52550-1-tony@atomide.com>
- <20210126124004.52550-10-tony@atomide.com>
+        id S229730AbhCHMzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 07:55:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229459AbhCHMzW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 07:55:22 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B41C06174A;
+        Mon,  8 Mar 2021 04:55:21 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id l22so5997082wme.1;
+        Mon, 08 Mar 2021 04:55:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CKCqIHLFrC+gGGSZFvuGc8nO4BJSPqxwsfJgVhqQEVA=;
+        b=sEdSuTzxZMuoDBSySrmZFkcpl9WPpHrNTw14EbrDa++gIbt5iFrHxQo8QuWmF0G9W2
+         KBD94Ly5hBd6gb7OcZG+BFWe4hN1qUp91CBf3qMMDyB/F/DWzjVdLFgXFhGERhEbxIcY
+         rRf28dxcfvHhG8OQyGMkQFsj0facdMDQ1e/dz0I7Y83H6aKkd/88lGV3e+mm2/vhDqT5
+         BnZvJLLa3MzRTYfPnwW9uudqKgXm2IxM9sGw+MBX8ZQ+/pzZf/pQwq2BDvYqUt8oPQh3
+         UsbJJ74h9ACVM0hK7QWkuj6VlTTqfqBgM70K0Jlalts74WyBSaozdYDN3ZEujfYPGPSj
+         CPlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CKCqIHLFrC+gGGSZFvuGc8nO4BJSPqxwsfJgVhqQEVA=;
+        b=GlnJCHQeegmbwySeJ3NeFOXVFfnkt3GUILII1vpjAJ0X/qvjVCtAEOdkQMl9Mj3YRG
+         Bh3GbeUCUxbD7Y3iEMbFIrSuLw0lREpxAw/Sj6+G1GypAldYxfns0a3FChoStypseSe7
+         9karoYvhXr9APiSnoTnQfn76Stcfp8CGc5DAkEzMnAgdzUCo9iOT8Syhsj2EwF0/WaH2
+         H+d8Ma4u99DF8Ktwu0nO4EAcePSm36pJrODUuRUswrdUyz3nBQwCvNhUb9yx7eyMlTJW
+         0qj4nMvGx3qGIOkc9I0u88DRHGhvCarS0fQPaCx6p0Wy+PQjWrL/T8pozS153k/u93Tt
+         uHmA==
+X-Gm-Message-State: AOAM5315nPy1nwPiITli7JWnTmotFlMblxJwLQ1FxfM31SDQ5Xhjgv4f
+        PnfklPvptKU3L/g3ZUB2QCo=
+X-Google-Smtp-Source: ABdhPJzaTdxtz2RFMwCNu/INZp2/tBDs+RPtnXxQoj2O43vvEu3dBT28376D3al47L++EjgMXHsBEQ==
+X-Received: by 2002:a7b:c4d1:: with SMTP id g17mr22069553wmk.101.1615208120646;
+        Mon, 08 Mar 2021 04:55:20 -0800 (PST)
+Received: from adgra-XPS-15-9570.home (2a01cb0008bd270095bc7625808eade0.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:95bc:7625:808e:ade0])
+        by smtp.gmail.com with ESMTPSA id o20sm18922033wmq.5.2021.03.08.04.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 04:55:20 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     m.felsch@pengutronix.de, devicetree@vger.kernel.org,
+        will@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-kernel@vger.kernel.org, krzk@kernel.org, robh+dt@kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, catalin.marinas@arm.com,
+        festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v2 0/1] arm64: dts: imx8mm-nitrogen-r2: add ecspi2 support
+Date:   Mon,  8 Mar 2021 13:55:17 +0100
+Message-Id: <20210308125518.255216-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210126124004.52550-10-tony@atomide.com>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [210126 12:43]:
-> --- a/arch/arm/boot/dts/dra7.dtsi
-> +++ b/arch/arm/boot/dts/dra7.dtsi
-...
+Hi,
 
-> +		target-module@4e000000 {
-> +			compatible = "ti,sysc-omap2", "ti,sysc";
->  			ti,hwmods = "dmm";
-> +			reg = <0x4e000000 0x4>,
-> +			      <0x4e000010 0x4>;
-> +			reg-names = "rev", "sysc";
-> +			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-> +					<SYSC_IDLE_NO>,
-> +					<SYSC_IDLE_SMART>;
-> +			ranges = <0x0 0x4e000000 0x2000000>;
-> +			#size-cells = <1>;
-> +			#address-cells = <1>;
-> +
-> +			dmm@0 {
-> +				compatible = "ti,omap5-dmm";
-> +				reg = <0x4e000000 0x800>;
-> +				interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
->  		};
+This is a repost of a missing patch on a previous patch set [1].
+This patch adds the support of the ecspi2 on the imx8mm-nitrogen-r2
+board.
 
+Thanks,
 
-The dmm@0 reg property above should be zero instead of 0x4e000000 now that
-we're using ranges. Looks like I did not test with omapdrm loaded earlier,
-updated patch below.
+Adrien Grassein (1):
+  arm64: dts: imx8mm-nitrogen-r2: add ecspi2 support
 
-Regards,
+ .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Tony
-
-8< ---------------------------
-From tony Mon Sep 17 00:00:00 2001
-From: Tony Lindgren <tony@atomide.com>
-Date: Mon, 8 Mar 2021 14:22:49 +0200
-Subject: [PATCH] ARM: dts: Configure interconnect target module for dra7
- dmm
-
-We can now probe devices with device tree only configuration using
-ti-sysc interconnect target module driver. Let's configure the
-module, but keep the legacy "ti,hwmods" peroperty to avoid new boot
-time warnings. The legacy property will be removed in later patches
-together with the legacy platform data.
-
-Tested-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/dra7.dtsi | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/dra7.dtsi b/arch/arm/boot/dts/dra7.dtsi
---- a/arch/arm/boot/dts/dra7.dtsi
-+++ b/arch/arm/boot/dts/dra7.dtsi
-@@ -464,11 +464,24 @@ edma_tptc1: dma@0 {
- 			};
- 		};
- 
--		dmm@4e000000 {
--			compatible = "ti,omap5-dmm";
--			reg = <0x4e000000 0x800>;
--			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-+		target-module@4e000000 {
-+			compatible = "ti,sysc-omap2", "ti,sysc";
- 			ti,hwmods = "dmm";
-+			reg = <0x4e000000 0x4>,
-+			      <0x4e000010 0x4>;
-+			reg-names = "rev", "sysc";
-+			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+					<SYSC_IDLE_NO>,
-+					<SYSC_IDLE_SMART>;
-+			ranges = <0x0 0x4e000000 0x2000000>;
-+			#size-cells = <1>;
-+			#address-cells = <1>;
-+
-+			dmm@0 {
-+				compatible = "ti,omap5-dmm";
-+				reg = <0 0x800>;
-+				interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-+			};
- 		};
- 
- 		ipu1: ipu@58820000 {
 -- 
-2.30.1
+2.25.1
+
