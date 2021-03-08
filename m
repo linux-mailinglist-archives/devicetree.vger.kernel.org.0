@@ -2,126 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 146AD331975
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2E5331979
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbhCHVlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 16:41:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbhCHVlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:41:05 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8588C06174A;
-        Mon,  8 Mar 2021 13:41:04 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 18so23448093lff.6;
-        Mon, 08 Mar 2021 13:41:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vPvKVk+SS2hHuikOj+SudvAPMev+b1p1j/4m7ZYGhKo=;
-        b=j7dl59YCxIjbaePmGicyH0IL8wSIFehvsnSu4VHf3oD+LlDTfRUOC+ntyycels9eMw
-         uBJ/G/k5tXorEv7e0OMMevKbWJTZ4CUd+Ihawwgpdple4k1s9QifXT2Y5ZWidEYNY+Ei
-         W6n+K2tsjEVwavZxy3coJIPEJj+T1FUkk9jzym47vybslfZxu6A7VapFWABYaNNT4ygg
-         p6qNw5tAFEFj5V6kXlNGpIC/1a+zdk9IiMVBOB2nS02xFeWirIG6tLWWfkmqIqc90CR6
-         AST4eYG4lOc8UwzD3oKAxPFUPhH8vYP7rt4AHsIcUs9jYf/o8RgfUT7Z4wg0mhS0geCH
-         q3Fw==
+        id S229704AbhCHVnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 16:43:21 -0500
+Received: from mail-io1-f42.google.com ([209.85.166.42]:41043 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229471AbhCHVmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:42:49 -0500
+Received: by mail-io1-f42.google.com with SMTP id z13so11636773iox.8;
+        Mon, 08 Mar 2021 13:42:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=vPvKVk+SS2hHuikOj+SudvAPMev+b1p1j/4m7ZYGhKo=;
-        b=E9HrElKFp/6tOpWgsEWcZoB2x6xYQFVMNWTW+Ih8hVzN1Gngn+Vp941DdOqPnbfZWW
-         Lz71h9iib7MN3r4PMRyTHliiqHSQ/o2BZPLKRZmHuvFlZ7s0SdH7KZxLOGcQDnnryQ0k
-         an6IhS8ZLsGAjE6XG6iHMTDq2uQ6OzGesKQo/ARQZjwW7v1PCgU5rlq0I3+SyhYZTie+
-         wDng4Dgt62sxWY/0Sop3JlSpTAbL/cOtFUmjDggvAb/FAEC1tel9O4pFD2vaTfUHS3em
-         ei4Ho1r8VXhOOrdh5lJrtoNMDAc3tpfgXDm+LdoNX3K2Egz51AhRiZQzC6C+l8OZObzP
-         JUQQ==
-X-Gm-Message-State: AOAM531NKYCgkAUPpYiAZu+uor/9DadOMx9ieK+15SV5ToGoR5nCcBp1
-        r7Lyi1/u6wQkky93SElOfsI=
-X-Google-Smtp-Source: ABdhPJzqR/lVxZgOYKYvYpxs6vuK+sR67/oi0vpH2NvowriJbllLHXyn6JVlIjpfC1DDRcLJ1Ke3eQ==
-X-Received: by 2002:ac2:57c6:: with SMTP id k6mr15631546lfo.264.1615239663311;
-        Mon, 08 Mar 2021 13:41:03 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id w1sm519860ljw.14.2021.03.08.13.41.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Mar 2021 13:41:02 -0800 (PST)
-Subject: Re: [PATCH stblinux.git 1/2] dt-bindings: firmware: add Broadcom's
- NVRAM memory mapping
-To:     Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210302074405.18998-1-zajec5@gmail.com>
- <20210308184308.GA2762703@robh.at.kernel.org>
- <93f1d985-54ae-9cbe-ef42-9e62b86d2633@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <5f4a50dc-0981-45b4-bb89-d6152689fe2a@gmail.com>
-Date:   Mon, 8 Mar 2021 22:41:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wHaDCIFSJ/WaA+1UndQODdn6YA7l7EOGWs12tpJYWwc=;
+        b=aKTR1SwFX/R1dpQ/Og56vAJKlXsFp8j/j9HwMNgmZ8DdfqrA0eB9MRWMQ+7ktDJ+lQ
+         uAqSwiVWYR11zXyPuOxIvmcvPptygAcfRYxcOjWQ04GyUOtALYQdgg34+nItKdZgCt3C
+         BY5LZf99I8qzGLR6lTjCrKqjZzKVE9ryQh5j3BGVGHAxYFx4jBXyuzMfPyWV1gBBia66
+         Xn1KrDfF2m3AquIsQI2VuaZTllZRY9frCErmzcLIoW2eM5P/IQTkcrj1kuDsA/g/H8tu
+         tZ5GY7NI+1mtjaR+egnSbmtnsuEZUMdMINc0GR359GVRHM2mvlG00uKT01RudjX0hIMQ
+         Q4Yg==
+X-Gm-Message-State: AOAM5310uV+FG9P/dydTOWHqbTupD13HvVTQV8+rYxg7ZCrhcdu4B5VK
+        urXaTFoUOxlGII+mFD0zSPN3IOxUBA==
+X-Google-Smtp-Source: ABdhPJxM035frlT4oHWfpTCS3AKMyqbXOwdLygiLPvLj+LFEYJyvL6l/HOkEc2Ks/pXPGvbugX4PBQ==
+X-Received: by 2002:a5d:81c8:: with SMTP id t8mr20788383iol.38.1615239768523;
+        Mon, 08 Mar 2021 13:42:48 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id u14sm6528028ilv.0.2021.03.08.13.42.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 13:42:47 -0800 (PST)
+Received: (nullmailer pid 3004894 invoked by uid 1000);
+        Mon, 08 Mar 2021 21:42:45 -0000
+Date:   Mon, 8 Mar 2021 14:42:45 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Shawn Lin <shawn.lin@rock-chips.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Convert to
+ yaml file
+Message-ID: <20210308214245.GA2999684@robh.at.kernel.org>
+References: <1614909262-205658-1-git-send-email-shawn.lin@rock-chips.com>
 MIME-Version: 1.0
-In-Reply-To: <93f1d985-54ae-9cbe-ef42-9e62b86d2633@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1614909262-205658-1-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.03.2021 22:37, Rafał Miłecki wrote:
-> On 08.03.2021 19:43, Rob Herring wrote:
->> On Tue, Mar 02, 2021 at 08:44:04AM +0100, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> NVRAM structure contains device data and can be accessed using MMIO.
->>>
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>>   .../bindings/firmware/brcm,nvram.yaml         | 41 +++++++++++++++++++
->>>   1 file changed, 41 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->>> new file mode 100644
->>> index 000000000000..12af8e2e7c9c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/firmware/brcm,nvram.yaml
->>> @@ -0,0 +1,41 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/firmware/brcm,nvram.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>> +
->>> +title: Broadcom's NVRAM
->>> +
->>> +maintainers:
->>> +  - Rafał Miłecki <rafal@milecki.pl>
->>> +
->>> +description: |
->>> +  NVRAM is a structure containing device specific environment variables.
->>> +  It is used for storing device configuration, booting parameters and
->>> +  calibration data.
->>
->> The structure of the data is fully discoverable just from a genericish
->> 'brcm,nvram'?
+On Fri, Mar 05, 2021 at 09:54:20AM +0800, Shawn Lin wrote:
+> This patch converts sdhci-of-dwcmshc.txt to sdhci-of-dwcmshc.yaml
 > 
-> Yes, NVRAM structure is a header (with magic and length) and a list of
-> key-value pairs separated by \0. If you map memory at given address you
-> should verify magic and start reading key-value pairs.
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> ---
 > 
-> Content example: foo=bar\0baz=qux\0quux(...)
-> 
-> There is no predefined order of pairs, set of keys or anything similar I
-> could think of. I can't think of anything more worth describing in DT.
+>  .../devicetree/bindings/mmc/sdhci-of-dwcmshc.txt   | 20 -------
+>  .../devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml  | 63 ++++++++++++++++++++++
 
-Ah, I've just realized, I'm replying to the "firmware" binding patch.
+Use the compatible string for filename.
 
-Florian suggested to look at NVMEM subsystem instead. Please kindly check
-[PATCH V2 1/2] dt-bindings: nvmem: add Broadcom's NVRAM
+>  2 files changed, 63 insertions(+), 20 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+>  create mode 100755 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+> deleted file mode 100644
+> index ee4253b..0000000
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+> +++ /dev/null
+> @@ -1,20 +0,0 @@
+> -* Synopsys DesignWare Cores Mobile Storage Host Controller
+> -
+> -Required properties:
+> -- compatible: should be one of the following:
+> -    "snps,dwcmshc-sdhci"
+> -- reg: offset and length of the register set for the device.
+> -- interrupts: a single interrupt specifier.
+> -- clocks: Array of clocks required for SDHCI; requires at least one for
+> -    core clock.
+> -- clock-names: Array of names corresponding to clocks property; shall be
+> -    "core" for core clock and "bus" for optional bus clock.
+> -
+> -Example:
+> -	sdhci2: sdhci@aa0000 {
+> -		compatible = "snps,dwcmshc-sdhci";
+> -		reg = <0xaa0000 0x1000>;
+> -		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&emmcclk>;
+> -		bus-width = <8>;
+> -	}
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
+> new file mode 100755
+> index 0000000..9d717a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/sdhci-of-dwcmshc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys Designware Mobile Storage Host Controller Binding
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +  - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - snps,dwcmshc-sdhci
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 3
+
+You need to define what each entry is.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description:
+> +      Handle to "core" for core clock and "bus" for optional bus clock.
+
+minItems: 1
+items:
+  - description: core clock
+  - description: bus clock
+
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+
+Don't need maxItems here (implied by 'items' length).
+
+> +    items:
+> +      - const: core
+> +      - const: bus
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@aa0000 {
+> +      compatible = "snps,dwcmshc-sdhci";
+> +      reg = <0xaa000 0x1000>;
+> +      interrupts = <0 25 0x4>;
+> +      clocks = <&cru 17>, <&cru 18>;
+> +      clock-names = "core", "bus";
+> +      bus-width = <8>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +    };
+> +
+> +...
+> -- 
+> 2.7.4
+> 
+> 
+> 
