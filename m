@@ -2,146 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E29D3312AD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:57:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DF683312ED
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 17:09:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbhCHP5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 10:57:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37848 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229790AbhCHP4r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 10:56:47 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9B7906523A;
-        Mon,  8 Mar 2021 15:56:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615219006;
-        bh=AMnX0SygVGdsOpsu02CyTU1ONKxzUU3oyic44NgULgI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hDVw4MdENfuLbuKeqvtBWjNwSH2rGzMMF/UVPMnMptRWwixmLjWouenUjUaZVGD/2
-         VDMzOioc+4g7dqsc/yvW88uPL+29CGqQCCcpQzmxLxhV7KMxKvQtgk6ST1Kjl8y1q2
-         duBbBAIERhBaUMUImlm/GCfe1/7FPwjyV+UM9oTNfa1Q/kDnW7sUHWtWfot6bOFk3y
-         1mqTkQCxIg0qqeUjcAZYP5AIzpA3NpprexEMQKdpGNeQYrMHp22XkRRVLOa26628X/
-         y1UFObeUQDmDtkDsdbhoJ2hHWCISQWABVWk7BJg3tO6uwI9Am6lX8TVOpfl/KC4tf3
-         GoDVG1lJDWslw==
-Received: by mail-ed1-f51.google.com with SMTP id d13so15511359edp.4;
-        Mon, 08 Mar 2021 07:56:46 -0800 (PST)
-X-Gm-Message-State: AOAM532tV9yA+5I+6LKx8BpO+aC5xGnjjW7VmpqucMgr5UpNmm19fadp
-        1YCMJyacjIeBcqsG6poivuYRn+lcyBN3HwMcKg==
-X-Google-Smtp-Source: ABdhPJwH/b4ZAsQVcZUHxUxeVuQH7gPalQFtNSoosBJOJIGZEktZbjD5b3DoKZKlUThK2W/ME6qwN0vqO1cuyxhhGEI=
-X-Received: by 2002:a05:6402:c0f:: with SMTP id co15mr22380286edb.373.1615219004932;
- Mon, 08 Mar 2021 07:56:44 -0800 (PST)
+        id S230440AbhCHQId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 11:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229469AbhCHQIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 11:08:19 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E60EC06174A
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 08:08:19 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id x7so4027230pfi.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 08:08:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lobtpJCpR9+X4zgUOnSRpUZhfHE1c0u3syRtwhM3EVQ=;
+        b=ImYHvTKi3PHy2BgVft3aje9oZSfDXGjYp0D+XteiFcjnsHN+2x4otZclz2toE9yohQ
+         GoDlhDTe4hCetTzuunEEX7j1t1pQwEbuQOkSzhZm0E0G65DsZ1KQpSpapHpCJ7Cv1YO7
+         yRcdjlV7DnGVonKC0kL6IoM2jBaqRjJYlm9AYX0BibicWEsyJ3XbxT107qzeJ9TcdoXd
+         AV4Dit6sLOTRp2LDDo2HB5htuAoyd2gBZ9hNeIQGAt39mWfbW38F89iLK+PGjj8PNVhw
+         cHGibRWRzlohe5agPfADi4MkdwDICoOaN2TVgzSzriatQUqkn1c07iugkCuPgM/MMHcp
+         1dHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lobtpJCpR9+X4zgUOnSRpUZhfHE1c0u3syRtwhM3EVQ=;
+        b=fXQcsnV7QFfH+JRoDWeLkvcL6juAV2qAR05YY650zsQGcb8PYBTxWMHrpY3K5d/GQe
+         ahHUSJ1rt+wOI2CZ4gGUDsBmp1+1D3kkfN66XfD4PPPJzZTvTPINbl44u0b5YYZfbSA4
+         rBq6n2umrfJqPRleif/uD5JzRZa+4z3J6gn3+yj/cjfTDhxYwgs0tC0itWrLqLgC4Lso
+         MvbnY55lStORC7/W/2kfLtZ4xRwycbFViTUqGbHdXyGdWmjUPK+pGFCoFpjtppqXRAm1
+         a2tnt4qqhhP70Vv239l9l7WWkK2q1cR1JzLMHzUETCBLfZaIYfzfzqVPARFO20XQRPFJ
+         Uomg==
+X-Gm-Message-State: AOAM530ln9Bj02G7A+SCumE0yHYH1H+1x3M3QkyL003y8CZQSadoqBmt
+        LR1J3i332xOasq7kLZfn2tFyBg==
+X-Google-Smtp-Source: ABdhPJyIK0+MeeLoCL/a77iQoCc0XuYCgkv7q5q2xO16I6AxBYiH/ujFOfyJWHujcLxV4HhtuQ3iIA==
+X-Received: by 2002:a63:f415:: with SMTP id g21mr2748127pgi.227.1615219698439;
+        Mon, 08 Mar 2021 08:08:18 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id k5sm11622622pjl.50.2021.03.08.08.08.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 08:08:17 -0800 (PST)
+Date:   Mon, 8 Mar 2021 09:08:15 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     peng.fan@oss.nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        o.rempel@pengutronix.de, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
+        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
+Message-ID: <20210308160815.GB3977653@xps15>
+References: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
- <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
- <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 8 Mar 2021 08:56:32 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
-Message-ID: <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 5, 2021 at 2:17 PM Arnd Bergmann <arnd@kernel.org> wrote:
->
-> On Fri, Mar 5, 2021 at 7:18 PM Hector Martin <marcan@marcan.st> wrote:
-> >
-> > On 06/03/2021 02.39, Rob Herring wrote:
-> > >> -       return ioremap(res.start, resource_size(&res));
-> > >> +       if (res.flags & IORESOURCE_MEM_NONPOSTED)
-> > >> +               return ioremap_np(res.start, resource_size(&res));
-> > >> +       else
-> > >> +               return ioremap(res.start, resource_size(&res));
-> > >
-> > > This and the devm variants all scream for a ioremap_extended()
-> > > function. IOW, it would be better if the ioremap flavor was a
-> > > parameter. Unless we could implement that just for arm64 first, that's
-> > > a lot of refactoring...
-> >
-> > I agree, but yeah... that's one big refactor to try to do now...
->
-> FWIW, there is ioremap_prot() that Christoph introduced in 2019
-> for a few architectures.  I suppose it would be nice to lift
-> that out architecture specific code and completely replace the
-> unusual variants, leaving only ioremap(), ioremap_prot() and
-> memremap() but dropping the _nc, _cached, _wc, _wt and _np
-> versions in favor of an extensible set of flags.
->
-> Then again, I would not make that a prerequisite for the merge
-> of the M1 support.
->
-> > > What's the code path using these functions on the M1 where we need to
-> > > return 'posted'? It's just downstream PCI mappings (PCI memory space),
-> > > right? Those would never hit these paths because they don't have a DT
-> > > node or if they do the memory space is not part of it. So can't the
-> > > check just be:
-> > >
-> > > bool of_mmio_is_nonposted(struct device_node *np)
-> > > {
-> > >      return np && of_machine_is_compatible("apple,arm-platform");
-> > > }
-> >
-> > Yes; the implementation was trying to be generic, but AIUI we don't need
-> > this on M1 because the PCI mappings don't go through this codepath, and
-> > nothing else needs posted mode. My first hack was something not too
-> > unlike this, then I was going to get rid of apple,arm-platform and just
-> > have this be a generic mechanism with the properties, but then we added
-> > the optimization to not do the lookups on other platforms, and now we're
-> > coming full circle... :-)
->
-> I never liked the idea of having a list of platforms that need a
-> special hack, please let's not go back to that.
+On Sat, Mar 06, 2021 at 07:24:15PM +0800, peng.fan@oss.nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> V13:
+>  Add R-b tag from Rob for patch 1.
+>  Drop the reserved memory node from patch 2 per Rob's comment.
+>  Mathieu, Bjorn
+>   Only patch 2 not have R-b/A-b tag, but since Rob's only has a minor comment, and
+>   addressed in this version, is it ok for you take into remoteproc next branch?
+>   Thanks.
 
-I'm a fan of generic solutions as much as anyone, but not when there's
-a single user. Yes, there could be more, but we haven't seen any yet
-and Apple seems to have a knack for doing special things. I'm pretty
-sure posted vs. non-posted has been a possibility with AXI buses from
-the start, so it's not like this is a new thing we're going to see
-frequently on new platforms.
+As much as I want to, there is no way to move forward without an acknowledgement
+from Rob.
 
-A generic property we have to support forever because there's zero
-visibility if someone uses them. At least with something platform
-specific, we know if it's in use or can be removed. That's something I
-just checked recently with some of the PPC irq work-arounds (spoiler:
-yes, those 'old world Mac' are). I'm a bit less worried about this
-aspect given we can probably assume someone will still be using M1
-Macs in 20+ years.
-
-The other situation I worry about here is another arch has implicitly
-defaulted to non-posted instead of posted. It could just be non-posted
-was what worked everywhere and Linux couldn't distinguish. Now someone
-sees we have this new posted vs. non-posted handling and can optimize
-some mappings on their platform and we have to have per arch defaults
-(like 'dma-coherent' now).
-
-Rob
+> 
+> V12:
+>  Add maxItems to avoid dt_bindings_check fail
+>  Rebased on top of linux-next
+> 
+> V11:
+>  Per Rob's comments, fix memory-region in patch 1/10
+>  Rebased on top of Linux-next
+> 
+> V10:
+>  Per Rob's comments, fix patch 1/10
+> 
+> V9:
+>  Per Mathieu's comments,
+>    update the tile of yaml in patch 2/10
+>    update the Kconfig and MODULE_DESCRIPTION, I merge this change in patch 8/10,
+>    since this is a minor change, I still keep Mathieu's R-b tag. If any objection, I could remove.
+>    Add R-b tag in Patch 10/10
+> 
+>  Rob, please help review patch 1/10 and 2/10
+> 
+> V8:
+>  Address sparse warning in patch 4/10 reported by kernel test robot
+> 
+> V7:
+>  Add R-b tag from Mathieu
+>  vdevbuffer->vdev0buffer in patch 1/10, 7/10
+>  correct err msg and shutdown seq per Mathieu's comments in patch 10/10
+>  Hope this version is ok to be merged.
+>  
+> V6:
+>  Add R-b tag from Mathieu
+>  Convert imx-rproc.txt to yaml and add dt-bindings support for i.MX8MQ/M, patch 1/10 2/10
+>  No other changes.
+> 
+> V5:
+>  Apply on Linux next
+>  Add V5 subject prefix
+>  Add R-b tag from Bjorn for 1/8, 2/8, 3/8
+>  https://patchwork.kernel.org/project/linux-remoteproc/cover/20201229033019.25899-1-peng.fan@nxp.com/
+> 
+> V4:
+>  According to Bjorn's comments, add is_iomem for da to va usage
+>  1/8, 2/8 is new patch
+>  3/8, follow Bjorn's comments to correct/update the err msg.
+>  6/8, new patch
+>  8/8, use dev_err_probe to simplify code, use queue_work instead schedule_delayed_work
+> 
+> V3:
+>  Since I was quite busy in the past days, V3 is late
+>  Rebased on Linux-next
+>  Add R-b tags
+>  1/7: Add R-b tag of Mathieu, add comments
+>  4/7: Typo fix
+>  5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
+>  6/7: Add R-b tag of Mathieu
+>  7/7: Add comment for vqid << 16, drop unneeded timeout settings of mailbox
+>       Use queue_work instead of schedule_delayed_work
+>       free mbox channels when remove
+>  https://lkml.org/lkml/2020/12/4/82
+> 
+> V2:
+>  Rebased on linux-next
+>  Dropped early boot feature to make patchset simple.
+>  Drop rsc-da
+>  https://patchwork.kernel.org/project/linux-remoteproc/cover/20200927064131.24101-1-peng.fan@nxp.com/
+> 
+> V1:
+>  https://patchwork.kernel.org/cover/11682461/
+> 
+> This patchset is to support i.MX8MQ/M coproc.
+> The early boot feature was dropped to make the patchset small in V2.
+> 
+> Since i.MX specific TCM memory requirement, add elf platform hook.
+> Several patches have got reviewed by Oleksij and Mathieu in v1.
+> 
+> 
+> Peng Fan (10):
+>   dt-bindings: remoteproc: convert imx rproc bindings to json-schema
+>   dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
+>   remoteproc: introduce is_iomem to rproc_mem_entry
+>   remoteproc: add is_iomem to da_to_va
+>   remoteproc: imx_rproc: correct err message
+>   remoteproc: imx_rproc: use devm_ioremap
+>   remoteproc: imx_rproc: add i.MX specific parse fw hook
+>   remoteproc: imx_rproc: support i.MX8MQ/M
+>   remoteproc: imx_rproc: ignore mapping vdev regions
+>   remoteproc: imx_proc: enable virtio/mailbox
+> 
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  90 ++++++
+>  .../bindings/remoteproc/imx-rproc.txt         |  33 ---
+>  drivers/remoteproc/Kconfig                    |   6 +-
+>  drivers/remoteproc/imx_rproc.c                | 262 +++++++++++++++++-
+>  drivers/remoteproc/ingenic_rproc.c            |   2 +-
+>  drivers/remoteproc/keystone_remoteproc.c      |   2 +-
+>  drivers/remoteproc/mtk_scp.c                  |   6 +-
+>  drivers/remoteproc/omap_remoteproc.c          |   2 +-
+>  drivers/remoteproc/pru_rproc.c                |   2 +-
+>  drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
+>  drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
+>  drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
+>  drivers/remoteproc/qcom_wcnss.c               |   2 +-
+>  drivers/remoteproc/remoteproc_core.c          |   7 +-
+>  drivers/remoteproc/remoteproc_coredump.c      |   8 +-
+>  drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
+>  drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
+>  drivers/remoteproc/remoteproc_internal.h      |   2 +-
+>  drivers/remoteproc/st_slim_rproc.c            |   2 +-
+>  drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
+>  drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
+>  include/linux/remoteproc.h                    |   4 +-
+>  23 files changed, 393 insertions(+), 72 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> 
+> -- 
+> 2.30.0
+> 
