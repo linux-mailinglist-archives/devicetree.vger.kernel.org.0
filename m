@@ -2,111 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00696330F57
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB912330F72
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:37:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhCHNfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:35:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
+        id S230070AbhCHNgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:36:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbhCHNfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:35:00 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3731C061760
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 05:35:00 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id p21so6419219pgl.12
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 05:35:00 -0800 (PST)
+        with ESMTP id S231231AbhCHNgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:36:18 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793AAC061761
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 05:36:18 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id j2so11471045wrx.9
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 05:36:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nFq9IUrqTM3+0MdXot9pV1py85hqvVYW3bJyV6Rfqho=;
-        b=PsJDgGkOaOjHNBPvMCcrJCuIHARyjccomzLz5rJzj36YbJgFBR8LX90ZU1gQcAZULC
-         dUmPf9UDI2ZR0T1BxQy2aHqKHXA+2gJoG5FXg9tKYKYCFkP9506fAt6NYMuXiCdBNPaY
-         Awu0WtBMNXhtNEmK+hq7XqZ3ij09532rixoxCtYvGrHe5vgASah7WAK5hBhntYauHiUN
-         vMiIia1+xdW+/IDDi9XSUfTZATNcSd9HwxaFbRVBt+Uu6aM7/FhrDLx/UmFevrZ2IoOu
-         +IDlYvr3dd0FIsZuc57YgWb/UFwNQ3h+bVBN+BDZnRrpD11x7DF38AX0UktkfeRei5RB
-         jlxQ==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=9jhP2MF4epK90ovxYiOQdRlAiGBdV0/S9BUUrdARNSE=;
+        b=E1yEDdVmw5aSBQQKCtejKlo+wBD8nkvu5BMM+mFiyCrbuMP2h4pFJ2DYB22ggU2MjO
+         eEmp5bFokkJkXj94JvpTdDCIOc7/aGGkzEJiI6gNVRgNRvOzMZfJjVpgGaxvWoe8Uz2w
+         j2QBpEjkE8V8OcnJxncEI+E/0mEDzbB8Xtep28pY4HJqB/0n5ZsF1jC39jrTZRSxZEvn
+         4NtP8H5W5mh2AlM7k09oxJKwBTZtd6GrfWkBAIQM0ELWlWzAlHxAdF2RjJSNwYpl05+R
+         dTwPtCuf+Trq3097nrGO/Ru3XTqGJfJ73pJQtZqrYYMm10q1+sAJWtUdxDwiIH0oEJ72
+         EODQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nFq9IUrqTM3+0MdXot9pV1py85hqvVYW3bJyV6Rfqho=;
-        b=L+8jd+hX+194zXVoXVHywKb16Q99TaS0gq5V76vajxumpQyRPCp4jVDKQGkAHZU8Wb
-         3Z0EwxnEETI4BlWSkw6CvDyCKVhnsVILVon1/9CyRm+ndTyaliiYNH4JkPNdBH50V0k/
-         2pZaiq3oyMCNBNnC78RMA6PMEuhIrGq3YhDe4aiG6xaxejFKXxqqWvhIMio/s7wLWJOJ
-         PzGdxGMufZWJ3eteLY8ziRkiwdsm2cxcKt0t7MHK3tWE5QMnozm94NaX2CV6ly5KYCGq
-         hpW5LjVxcMGj/WxlZD4sjDL53AYBYXPUPCY3No4ZCxyW248rWGoH4YLMC7mVVAUzmgs7
-         m91w==
-X-Gm-Message-State: AOAM530jWfZjboJQ494WshhGSs/AavTytSPhH0+KxnZCVGs5IYvT7+Gx
-        Msy/RchNH6gcwmJTP2v1GZUfGiYUPwcg
-X-Google-Smtp-Source: ABdhPJzDVMzIThcvYLdQZZIGll9N0HceTj2bSkrfitIpzskFrFoRjjO+2S0+FEbJyMrq1KLFBMe7Zw==
-X-Received: by 2002:a65:46cd:: with SMTP id n13mr20197023pgr.414.1615210500202;
-        Mon, 08 Mar 2021 05:35:00 -0800 (PST)
-Received: from thinkpad ([2409:4072:638a:aee8:50fe:f77:990e:395b])
-        by smtp.gmail.com with ESMTPSA id c24sm7238618pfi.193.2021.03.08.05.34.55
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9jhP2MF4epK90ovxYiOQdRlAiGBdV0/S9BUUrdARNSE=;
+        b=TS3CZc6/vLcF6d9zopgWh7rIiBdOFJnLVZ7HEh0WQKWysDhdIrdwj8KFwvEyT4BFRm
+         TEecXS6aoJ++DdlbiYqpq3w4USTSYlqaXArTrL3lBQFJjfbKnMJeUCgWrbd18fpG7dOC
+         K63vgADedXKbeZB7Z2rPJMS4JGpfw+AhLn1sDZvA4YDP0Pq4medSo4tD5Fbl1PvqgI1k
+         sTZgsmbEFmu+Uwna909Rqb5h253AaaX7yR6SM1cbKL1gP2O34CaJHpeHwscnUqSNDHJq
+         /Q/h3E8qBsJBR59eYvWFzCutAddKJGF+UGqxE0gcipv+mce0dGnJqsWgX0n2093ZrZCB
+         nWBQ==
+X-Gm-Message-State: AOAM531EAyTZzEcQVZmPgTQgOt6z/pfk7CaPnjjQXubhDWVOT/OP5zhS
+        qiCL5TQXHJBWqOGzT88YACEHSA==
+X-Google-Smtp-Source: ABdhPJxDZEGPdML/0EtnGOoFUeADw1E9Nh2DkXp4dTrBbXxKGVdDRaBVQZzzoLuOkxxmo0NC0DR0cA==
+X-Received: by 2002:a5d:42d2:: with SMTP id t18mr22833703wrr.258.1615210577120;
+        Mon, 08 Mar 2021 05:36:17 -0800 (PST)
+Received: from dell ([91.110.221.130])
+        by smtp.gmail.com with ESMTPSA id d16sm18502133wrx.79.2021.03.08.05.36.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 05:34:59 -0800 (PST)
-Date:   Mon, 8 Mar 2021 19:04:52 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v4 3/3] mtd: rawnand: qcom: Add support for secure
- regions in NAND memory
-Message-ID: <20210308133452.GE5457@thinkpad>
-References: <20210308054447.28418-1-manivannan.sadhasivam@linaro.org>
- <20210308054447.28418-4-manivannan.sadhasivam@linaro.org>
- <20210308100247.4aba657c@collabora.com>
- <20210308133410.GD5457@thinkpad>
+        Mon, 08 Mar 2021 05:36:16 -0800 (PST)
+Date:   Mon, 8 Mar 2021 13:36:14 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v8 2/6] mfd: Support ROHM BD9576MUF and BD9573MUF
+Message-ID: <20210308133614.GD4931@dell>
+References: <cover.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
+ <560b9748094392493ebf7af11b6cc558776c4fd5.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210308133410.GD5457@thinkpad>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <560b9748094392493ebf7af11b6cc558776c4fd5.1613031055.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 07:04:17PM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Mar 08, 2021 at 10:02:47AM +0100, Boris Brezillon wrote:
-> > On Mon,  8 Mar 2021 11:14:47 +0530
-> > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-> > 
-> 
-> [...]
-> 
-> > >  /* helper to configure address register values */
-> > > -static void set_address(struct qcom_nand_host *host, u16 column, int page)
-> > > +static int set_address(struct qcom_nand_host *host, u16 column, int page)
-> > >  {
-> > >  	struct nand_chip *chip = &host->chip;
-> > >  	struct qcom_nand_controller *nandc = get_qcom_nand_controller(chip);
-> > > +	u32 offs = page << chip->page_shift;
-> > > +	int i, j;
-> > > +
-> > > +	/* Skip touching the secure regions if present */
-> > > +	for (i = 0, j = 0; i < host->nr_sec_regions; i++, j += 2) {
-> > > +		if (offs >= host->sec_regions[j] &&
-> > > +		    (offs <= host->sec_regions[j] + host->sec_regions[j + 1]))
-> > > +			return -EIO;
-> > > +	}
-> > 
-> > Hm, not sure that's a good idea to make this check part of
-> > set_address(). Looks like set_address() can be used for ONFI page
-> > access too, and you definitely don't want to block those
-> > requests. I'd recommend having a separate helper that you can call from
-> > qcom_nandc_{read,write}_{oob,page,page_raw}().
-> > 
-> 
-> Right but I went for the code simplicity :/ Anyway, since you're favoring
-> towards moving this check into code, I'll incorporate your suggestion
+On Thu, 11 Feb 2021, Matti Vaittinen wrote:
 
-s/code/core
-
-> accordingly.
+> Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
+> mainly used to power the R-Car series processors.
 > 
-> Thanks,
-> Mani
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> ---
+> Changes:
+>  - Comments fixed based on suggestions from Lee
+>  - Name of regulator cell changed as suggested by Lee
+>  - Renamed MFD cell variables for better readability
+>  - Aligned header definitions for better readability
+> 
+>  drivers/mfd/Kconfig              |  11 ++++
+>  drivers/mfd/Makefile             |   1 +
+>  drivers/mfd/rohm-bd9576.c        | 109 +++++++++++++++++++++++++++++++
+>  include/linux/mfd/rohm-bd957x.h  |  59 +++++++++++++++++
+>  include/linux/mfd/rohm-generic.h |   2 +
+>  5 files changed, 182 insertions(+)
+>  create mode 100644 drivers/mfd/rohm-bd9576.c
+>  create mode 100644 include/linux/mfd/rohm-bd957x.h
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index bdfce7b15621..53c7c96283bd 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1998,6 +1998,17 @@ config MFD_ROHM_BD71828
+>  	  Also included is a Coulomb counter, a real-time clock (RTC), and
+>  	  a 32.768 kHz clock gate.
+>  
+> +config MFD_ROHM_BD957XMUF
+> +	tristate "ROHM BD9576MUF and BD9573MUF Power Management ICs"
+> +	depends on I2C=y
+> +	depends on OF
+> +	select REGMAP_I2C
+> +	select MFD_CORE
+> +	help
+> +	  Select this option to get support for the ROHM BD9576MUF and
+> +	  BD9573MUF Power Management ICs. BD9576 and BD9573 are primarily
+> +	  designed to be used to power R-Car series processors.
+> +
+>  config MFD_STM32_LPTIMER
+>  	tristate "Support for STM32 Low-Power Timer"
+>  	depends on (ARCH_STM32 && OF) || COMPILE_TEST
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 14fdb188af02..e58fae024bb2 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -262,6 +262,7 @@ obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+>  obj-$(CONFIG_MFD_ROHM_BD70528)	+= rohm-bd70528.o
+>  obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+>  obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+> +obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
+>  obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+>  obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+>  
+> diff --git a/drivers/mfd/rohm-bd9576.c b/drivers/mfd/rohm-bd9576.c
+> new file mode 100644
+> index 000000000000..efd439677c9e
+> --- /dev/null
+> +++ b/drivers/mfd/rohm-bd9576.c
+> @@ -0,0 +1,109 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2020 ROHM Semiconductors
+
+If you get a chance, could you please update these?
+
+> + * ROHM BD9576MUF and BD9573MUF PMIC driver
+> + */
+
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
