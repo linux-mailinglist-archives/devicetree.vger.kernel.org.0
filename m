@@ -2,155 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D87053308BA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 08:18:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97E1E330897
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 08:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232691AbhCHHRn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Mar 2021 02:17:43 -0500
-Received: from twhmllg4.macronix.com ([211.75.127.132]:51985 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235180AbhCHHRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 02:17:23 -0500
-X-Greylist: delayed 1002 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Mar 2021 02:17:23 EST
-Received: from TWHMLLG4.macronix.com (localhost [127.0.0.2] (may be forged))
-        by TWHMLLG4.macronix.com with ESMTP id 12870ekE007405;
-        Mon, 8 Mar 2021 15:00:40 +0800 (GMT-8)
-        (envelope-from zhengxunli@mxic.com.tw)
-Received: from twhfm1p2.macronix.com (twhfmlp2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id 1286xkGD005918;
-        Mon, 8 Mar 2021 14:59:46 +0800 (GMT-8)
-        (envelope-from zhengxunli@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id 801AD206CE2A7AD5EB65;
-        Mon,  8 Mar 2021 14:59:47 +0800 (CST)
-To:     shubhrajyoti.datta@xilinx.com
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        git@xilinx.com, gregkh@linuxfoundation.org,
-        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
-        shubhrajyoti.datta@gmail.com, juliensu@mxic.com.tw,
-        slwu@mxic.com.tw
-Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic
- reconfiguration
+        id S235111AbhCHHGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 02:06:05 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59803 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235135AbhCHHFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 02:05:44 -0500
+X-UUID: 7d22cd7318954b258a8c358406638bdb-20210308
+X-UUID: 7d22cd7318954b258a8c358406638bdb-20210308
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1322121811; Mon, 08 Mar 2021 15:05:41 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 8 Mar 2021 15:05:37 +0800
+Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 8 Mar 2021 15:05:37 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Cawa Cheng <cawa.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        stable <stable@vger.kernel.org>
+Subject: [PATCH] arm64: dts: mt8173: fix property typo of 'phys' in dsi node
+Date:   Mon, 8 Mar 2021 15:05:20 +0800
+Message-ID: <20210308070520.40429-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-KeepSent: 146ABDBB:F4474CC3-48258692:000D1A0C;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP6 SHF907 April 26, 2018
-Message-ID: <OF146ABDBB.F4474CC3-ON48258692.000D1A0C-48258692.00266ED2@mxic.com.tw>
-From:   zhengxunli@mxic.com.tw
-Date:   Mon, 8 Mar 2021 14:59:47 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2021/03/08 PM 02:59:47,
-        Serialize complete at 2021/03/08 PM 02:59:47
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-MAIL: TWHMLLG4.macronix.com 1286xkGD005918
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Use 'phys' instead of 'phy'.
 
-Hi Shubhrajyoti,
+Fixes: 81ad4dbaf7af ("arm64: dts: mt8173: Add display subsystem related nodes")
+Cc: stable <stable@vger.kernel.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-My name is Zhengxun and I am the engineer from Macronix. We are
-using the platform PicoZed 7015/7030 SOM (System On Module),
-which is based on Xilinx Zynq®-7000 All Programmable (AP) SoC to
-verify our Flash dirver. Of course, we are also using your clock
-wizard, our version seems to be v5.2, but something went wrong.
-
-+static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long 
-rate,
-+ unsigned long parent_rate)
-+{
-+                int err;
-+                u32 value;
-+                unsigned long flags = 0;
-+                struct clk_wzrd_divider *divider = 
-to_clk_wzrd_divider(hw);
-+                void __iomem *div_addr = divider->base + divider->offset;
-+
-+                if (divider->lock)
-+                                spin_lock_irqsave(divider->lock, flags);
-+                else
-+                                __acquire(divider->lock);
-+
-+                value = DIV_ROUND_CLOSEST(parent_rate, rate);
-+
-+                /* Cap the value to max */
-+                min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-+
-+                /* Set divisor and clear phase offset */
-+                writel(value, div_addr);
-+                writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
-
-Why phase always set to zero? We want to support DTR operation in
-Flash driver. Can you add a set_phase function to adjust the phase?
-
-+                /* Check status register */
-+                err = readl_poll_timeout(divider->base + 
-WZRD_DR_STATUS_REG_OFFSET,
-+                                                                 value, 
-value & WZRD_DR_LOCK_BIT_MASK,
-+ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-+                if (err)
-+                                goto err_reconfig;
-+
-+                /* Initiate reconfiguration */
-+                writel(WZRD_DR_BEGIN_DYNA_RECONF,
-+                       divider->base + WZRD_DR_INIT_REG_OFFSET);
-+
-+                /* Check status register */
-+                err = readl_poll_timeout(divider->base + 
-WZRD_DR_STATUS_REG_OFFSET,
-+                                                                 value, 
-value & WZRD_DR_LOCK_BIT_MASK,
-+ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-
-According to pg015-clk-wiz.pdf, Clocking Wizard v5.2 and later, need to 
-write
-0x00000007 followed by 0x00000002 into Clock Configuration Register 23, to
-consolidate the redundant bits that the IP has upgraded, right?
-
-Can you compatible to v5.2?
-
-+err_reconfig:
-+                if (divider->lock)
-+                                spin_unlock_irqrestore(divider->lock, 
-flags);
-+                else
-+                                __release(divider->lock);
-+                return err;
-+}
-
-Thanks,
-Zhengxun
-
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index 75040a820f0d..003a5653c505 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -1236,7 +1236,7 @@
+ 				 <&mmsys CLK_MM_DSI1_DIGITAL>,
+ 				 <&mipi_tx1>;
+ 			clock-names = "engine", "digital", "hs";
+-			phy = <&mipi_tx1>;
++			phys = <&mipi_tx1>;
+ 			phy-names = "dphy";
+ 			status = "disabled";
+ 		};
+-- 
+2.18.0
 
