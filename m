@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A089331B23
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 00:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43419331B2A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 00:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231802AbhCHXx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 18:53:27 -0500
-Received: from alln-iport-5.cisco.com ([173.37.142.92]:51240 "EHLO
-        alln-iport-5.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbhCHXxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 18:53:25 -0500
+        id S231969AbhCHXx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 18:53:59 -0500
+Received: from alln-iport-7.cisco.com ([173.37.142.94]:57461 "EHLO
+        alln-iport-7.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231965AbhCHXxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 18:53:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3040; q=dns/txt; s=iport;
-  t=1615247605; x=1616457205;
+  d=cisco.com; i=@cisco.com; l=1606; q=dns/txt; s=iport;
+  t=1615247630; x=1616457230;
   h=from:to:cc:subject:date:message-id:mime-version:
    content-transfer-encoding;
-  bh=qOW1VpsX4fbS7pi7TUvKz3uyZUc7qjDe5+CAjX227XY=;
-  b=Gy5fSSHwajF4SHnUEIbR+yC0jXQ2b3tjCij/i1x56aH1J4NZ1eQTrzPK
-   JlQPgWoWgJU31YqkoqN59tbZvwVxYg3egwt6GbqqyYYHnBlbjJDl4yWyM
-   nX5Pe9vwNgfG6qWVKYVbY5TPsBoWDT+kB0dtVYHgPJlTKHiKmOs4CkHJT
-   o=;
-X-IPAS-Result: =?us-ascii?q?A0CAAQCat0ZgkIoNJK1iHAEBAQEBAQcBARIBAQQEAQGCD?=
- =?us-ascii?q?4N3ATmzHQsBAQEPNAQBAYRNgXwCJTgTAgMBAQEDAgMBAQEBBQEBAQIBBgQUA?=
- =?us-ascii?q?QEBAQEBhkWGfQFGgT4BgwKDCKwogiiJCYFFgTmIXHSEGByBSUKPHASCR2klA?=
- =?us-ascii?q?YEIZz+eQJwCgwiBH48qi04PIqNslF2iVYFrIYFZMxoIGxWDJU8ZDY44jXMBX?=
- =?us-ascii?q?CADZwIGCgEBAwmPJgEB?=
+  bh=5nfrAdR24COgZBWF2wEri9D+5QFCKExgHngLXOOCcpM=;
+  b=O3Jj71qFtg+D5lF6N9bkhGjBkGFLEeICqiau4Ky3ebxXAJhwq451+MaB
+   UDh8vvuobkB7jiftqEjd96DBIMC3Vhm17X2XwB+/rNpQ5uHovQ43l4qWI
+   6hbh8noCQUypGiaYFpM7oR05RtxtYXfkg1yURDEeo1Jdb3APq18XmYTMx
+   4=;
+X-IPAS-Result: =?us-ascii?q?A0AvAgDZuEZgkIoNJK1iHQEBAQEJARIBBQUBgg+DdwE5M?=
+ =?us-ascii?q?bJsCwEBAQ80BAEBhE2BfAIlOBMCAwEBAQMCAwEBAQEFAQEBAgEGBBQBAQEBA?=
+ =?us-ascii?q?QGGRYZ9AUaBPgESgnCDCKwigiiJCYFFFIEliFx0hBgcgUlCgRGDWIozBIJAB?=
+ =?us-ascii?q?4EOgigSnjWcAoMIgR+aeA8io2yUXaJVgWshgVkzGggbFYMkUBkNjjiNcwFcI?=
+ =?us-ascii?q?AMvOAIGCgEBAwmPJgEB?=
 X-IronPort-Anti-Spam-Filtered: true
 X-IronPort-AV: E=Sophos;i="5.81,233,1610409600"; 
-   d="scan'208";a="676271451"
+   d="scan'208";a="657753751"
 Received: from alln-core-5.cisco.com ([173.36.13.138])
-  by alln-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 08 Mar 2021 23:53:21 +0000
+  by alln-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 08 Mar 2021 23:53:24 +0000
 Received: from zorba.cisco.com ([10.24.7.91])
-        by alln-core-5.cisco.com (8.15.2/8.15.2) with ESMTP id 128NrKRh007218;
-        Mon, 8 Mar 2021 23:53:20 GMT
+        by alln-core-5.cisco.com (8.15.2/8.15.2) with ESMTP id 128NrKRj007218;
+        Mon, 8 Mar 2021 23:53:23 GMT
 From:   Daniel Walker <danielwa@cisco.com>
 To:     Will Deacon <will@kernel.org>,
         Christophe Leroy <christophe.leroy@csgroup.eu>,
@@ -41,82 +41,73 @@ To:     Will Deacon <will@kernel.org>,
         Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
         Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
         linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-efi@vger.kernel.org
-Subject: [PATCH v2 0/7] Generic Command Line changes
-Date:   Mon,  8 Mar 2021 15:53:08 -0800
-Message-Id: <20210308235319.2988609-1-danielwa@cisco.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     xe-linux-external@cisco.com,
+        Ruslan Ruslichenko <rruslich@cisco.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/7] CMDLINE: drivers: of: ifdef out cmdline section
+Date:   Mon,  8 Mar 2021 15:53:10 -0800
+Message-Id: <20210308235319.2988609-3-danielwa@cisco.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-Outbound-SMTP-Client: 10.24.7.91, [10.24.7.91]
 X-Outbound-Node: alln-core-5.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixed some problem identified in my last release. I made updates
-based on comments from Christophe Leroy.
+It looks like there's some seepage of cmdline stuff into
+the generic device tree code. This conflicts with the
+generic cmdline implementation so I remove it in the case
+when that's enabled.
 
-I added scripted updates to the defconfig file for mips and powerpc.
-This is required in order to maintain the status quo for those platforms
-which used the prior builtin command line system.
+Cc: xe-linux-external@cisco.com
+Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
+Signed-off-by: Daniel Walker <danielwa@cisco.com>
+---
+ drivers/of/fdt.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-These were tested on all effected architectures.
-
-Daniel Walker (7):
-  CMDLINE: add generic builtin command line
-  CMDLINE: drivers: of: ifdef out cmdline section
-  powerpc: convert config files to generic cmdline
-  CMDLINE: powerpc: convert to generic builtin command line
-  mips: convert config files to generic cmdline
-  CMDLINE: mips: convert to generic builtin command line
-  CMDLINE: x86: convert to generic builtin command line
-
- arch/mips/Kconfig                             |  4 +-
- arch/mips/Kconfig.debug                       | 44 ---------
- arch/mips/configs/ar7_defconfig               |  9 +-
- arch/mips/configs/bcm47xx_defconfig           |  8 +-
- arch/mips/configs/bcm63xx_defconfig           | 15 ++--
- arch/mips/configs/bmips_be_defconfig          | 11 +--
- arch/mips/configs/bmips_stb_defconfig         | 11 +--
- arch/mips/configs/capcella_defconfig          | 11 +--
- arch/mips/configs/ci20_defconfig              | 10 +--
- arch/mips/configs/cu1000-neo_defconfig        | 10 +--
- arch/mips/configs/cu1830-neo_defconfig        | 10 +--
- arch/mips/configs/e55_defconfig               |  4 +-
- arch/mips/configs/generic_defconfig           |  6 +-
- arch/mips/configs/gpr_defconfig               | 18 +---
- arch/mips/configs/loongson3_defconfig         | 13 +--
- arch/mips/configs/mpc30x_defconfig            |  7 +-
- arch/mips/configs/tb0219_defconfig            |  7 +-
- arch/mips/configs/tb0226_defconfig            |  7 +-
- arch/mips/configs/tb0287_defconfig            |  7 +-
- arch/mips/configs/workpad_defconfig           | 11 +--
- arch/mips/kernel/setup.c                      | 36 +-------
- arch/powerpc/Kconfig                          | 37 +-------
- arch/powerpc/configs/44x/fsp2_defconfig       | 33 ++++---
- arch/powerpc/configs/44x/iss476-smp_defconfig | 25 +++---
- arch/powerpc/configs/44x/warp_defconfig       | 17 ++--
- arch/powerpc/configs/holly_defconfig          | 13 +--
- arch/powerpc/configs/mvme5100_defconfig       | 23 ++---
- arch/powerpc/configs/skiroot_defconfig        | 12 ++-
- arch/powerpc/configs/storcenter_defconfig     | 18 ++--
- arch/powerpc/kernel/prom.c                    |  1 +
- arch/powerpc/kernel/prom_init.c               | 35 +++++---
- arch/x86/Kconfig                              | 44 +--------
- arch/x86/kernel/setup.c                       | 18 +---
- drivers/firmware/efi/libstub/x86-stub.c       |  2 +-
- drivers/of/fdt.c                              | 12 +++
- include/linux/cmdline.h                       | 89 +++++++++++++++++++
- init/Kconfig                                  | 68 ++++++++++++++
- 37 files changed, 321 insertions(+), 385 deletions(-)
- create mode 100644 include/linux/cmdline.h
-
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index feb0f2d67fc5..e25240d84632 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -25,6 +25,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
++#include <linux/cmdline.h>
+ 
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -1050,6 +1051,16 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 
+ 	/* Retrieve command line */
+ 	p = of_get_flat_dt_prop(node, "bootargs", &l);
++
++#ifdef CONFIG_GENERIC_CMDLINE
++	/*
++	 * The builtin command line will be added here, or it can override
++	 * with the DT bootargs.
++	 */
++	cmdline_add_builtin(data,
++			    (l > 0 ? p : NULL), /* This is sanity checking */
++			    COMMAND_LINE_SIZE);
++#else
+ 	if (p != NULL && l > 0)
+ 		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+ 
+@@ -1070,6 +1081,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 		strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+ #endif
+ #endif /* CONFIG_CMDLINE */
++#endif /* CONFIG_GENERIC_CMDLINE */
+ 
+ 	pr_debug("Command line is: %s\n", (char *)data);
+ 
 -- 
 2.25.1
 
