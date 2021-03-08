@@ -2,71 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA2D331988
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57AE73319AD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:51:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbhCHVrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 16:47:12 -0500
-Received: from mail-io1-f46.google.com ([209.85.166.46]:36715 "EHLO
-        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbhCHVqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:46:44 -0500
-Received: by mail-io1-f46.google.com with SMTP id n14so11678366iog.3;
-        Mon, 08 Mar 2021 13:46:43 -0800 (PST)
+        id S232115AbhCHVuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 16:50:24 -0500
+Received: from mail-io1-f44.google.com ([209.85.166.44]:36104 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230169AbhCHVty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:49:54 -0500
+Received: by mail-io1-f44.google.com with SMTP id n14so11687154iog.3;
+        Mon, 08 Mar 2021 13:49:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DXrmivq0GIkj5yRSyvc/DDkb3SdD9/pbmd3EobTM7gA=;
-        b=sYLNowb50YKfNFWHa4hTMIqcaCAQMDyOwU1JyLA7Vxkdj63c4LEvkpR4gyin8ryA9D
-         OWf9FUTj1wCjb25W7Wq7MX1mkOqwSEBHr73c8NKCEjFi6rd91cCJK6SmQcFhB1xSa2FV
-         UzncOuUrZrDdtZWMV6VX01r2+9Py08h8MNKex5iIg+fTocC786UaHV0r/tYgDv0rZ8a7
-         UfnaXR/DIB5nBJGTK6c2678YcEFIn1GceOW3iVYgeOYka6RCTTb7krudN7JbX/Z50r+X
-         ksqx6ko0sRC7qqIDRTknLCMmVRNd26GS0+3RoLAhLUp+TqWxn0o8BDojP/XALSjJQqpT
-         KQ3Q==
-X-Gm-Message-State: AOAM532Y6JaGKL+0GAM9xYhJzxxdLYfZOOfrCt6l3xmIgPDvfbfklI/j
-        q5e89XquV5GblByCgLJj/QYWWSGU8Q==
-X-Google-Smtp-Source: ABdhPJxnm15RBP8/mjkZVd5PRGzUOpyOzYQWZd7V0ySuxkIQlG9Hzkq97UhYeePktJU0RyaAfMr8xQ==
-X-Received: by 2002:a5d:8c8f:: with SMTP id g15mr19865373ion.162.1615240003455;
-        Mon, 08 Mar 2021 13:46:43 -0800 (PST)
+        bh=Aopk2xA4zD/bXMuGz7qZQmTI9QDAmCg2/YOh8hW5b/0=;
+        b=UtwLhXfV2cse5r8/G6vm2VCOSGyUPJULNDJXbSg0vvd+yt0zwroAt7SSsiU66gD0QT
+         IgdKoWuMlTTTHWwB01AfCZWRtyuDjFGGMV7SdAogDu8NViSsFheXiX4RNLd80I05uaPU
+         2od1XgmVAoZO/FvMEsvlo3R8OCeJcxhuGakaGN+kgyp0AW2vakAWQb7jliOa5A32uIZq
+         4M2Ur7lIvNyk0V0c3YF6wufGsfHuMSwKKLC1tEo4K3OGgYn6ZqIpFOaiFB0KZNqO/Uwg
+         pxJg9Xs3FnQNOFoxnhn7B0r9vez6LrdaTHOEbthgpnYQ94iRlhykI8H0MRwBk0KCE5qp
+         kgoQ==
+X-Gm-Message-State: AOAM532jdhWv80QwLGAjLfE9qtTdtn5mlGPKNQKhDETjBizyGT7RPJDP
+        X/CvM9HU4EXOjJldvFUVGg==
+X-Google-Smtp-Source: ABdhPJz4X8nedqPUFZXhmT/nr+nyG6cyHJpqU/AUG5gmHwFE1jAgJvvym0gu44LweRh8c7GRY2E0Ig==
+X-Received: by 2002:a05:6602:2497:: with SMTP id g23mr20165160ioe.22.1615240193189;
+        Mon, 08 Mar 2021 13:49:53 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m5sm6760241ilq.65.2021.03.08.13.46.42
+        by smtp.gmail.com with ESMTPSA id k8sm6514522ilu.4.2021.03.08.13.49.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 13:46:42 -0800 (PST)
-Received: (nullmailer pid 3010139 invoked by uid 1000);
-        Mon, 08 Mar 2021 21:46:41 -0000
-Date:   Mon, 8 Mar 2021 14:46:41 -0700
+        Mon, 08 Mar 2021 13:49:52 -0800 (PST)
+Received: (nullmailer pid 3014339 invoked by uid 1000);
+        Mon, 08 Mar 2021 21:49:50 -0000
+Date:   Mon, 8 Mar 2021 14:49:50 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 9/9] dt-bindings: input: iqs5xx: Convert to YAML
-Message-ID: <20210308214641.GA3007007@robh.at.kernel.org>
-References: <20210305041236.3489-1-jeff@labundy.com>
- <20210305041236.3489-10-jeff@labundy.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Nadeem Athani <nadeem@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: PCI: pci-ep: Add binding to specify
+ virtual function
+Message-ID: <20210308214950.GA3010566@robh.at.kernel.org>
+References: <20210305050410.9201-1-kishon@ti.com>
+ <20210305050410.9201-2-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210305041236.3489-10-jeff@labundy.com>
+In-Reply-To: <20210305050410.9201-2-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 04, 2021 at 10:12:36PM -0600, Jeff LaBundy wrote:
-> This patch converts the legacy text-based binding document to YAML
-> format. Extraneous details and touchscreen properties that weren't
-> actually supported have been dropped.
+On Fri, Mar 05, 2021 at 10:34:04AM +0530, Kishon Vijay Abraham I wrote:
+> Add binding to specify virtual function (associated with each physical
+> function) in endpoint mode.
 > 
-> The reset GPIO has since been made optional in the driver; this is
-> now reflected here as well.
-> 
-> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  .../bindings/input/touchscreen/iqs5xx.txt     | 80 -------------------
->  .../bindings/input/touchscreen/iqs5xx.yaml    | 75 +++++++++++++++++
+>  Documentation/devicetree/bindings/pci/pci-ep.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/pci-ep.yaml b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> index 7847bbcd4a03..b8d5406f94ce 100644
+> --- a/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/pci-ep.yaml
+> @@ -23,6 +23,15 @@ properties:
+>      default: 1
+>      maximum: 255
+>  
+> +  max-virtual-functions:
+> +    description: Array representing the number of virtual functions corresponding to each physical
+> +      function
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 1
+> +    maxItems: 255
+> +    items:
+> +      maximum: 255
 
-azoteq,iqs5xx.yaml for the filename (and $id).
+No need for maximum, as that is already the case for uint8.
 
-With that,
+With that dropped,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
