@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3853933182E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6415833183A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:12:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231856AbhCHUKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 15:10:32 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:36397 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbhCHUKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:10:18 -0500
-Received: by mail-io1-f49.google.com with SMTP id n14so11386334iog.3;
-        Mon, 08 Mar 2021 12:10:18 -0800 (PST)
+        id S231321AbhCHUMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 15:12:07 -0500
+Received: from mail-il1-f174.google.com ([209.85.166.174]:38460 "EHLO
+        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231905AbhCHULq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:11:46 -0500
+Received: by mail-il1-f174.google.com with SMTP id f10so10018836ilq.5;
+        Mon, 08 Mar 2021 12:11:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=W3mjVIFWEpH5SFjcD5c/+mtJcjLBlX/O/nyh0NeCyfs=;
-        b=SZu81O1WPrEYb9iIoNZqrLS0GwWVLfh2lbK09TRgdxPR0KrRXL92S1jsdUKLV0AVDy
-         WIckq8O4kdiEQqDzQ0Lo72S8DfSnnvfLjLNgiLd4LHO6bnv6EE+DYtRyoWDhSkNBoaBa
-         Y7ijZWYKr8aIEzaS7LPYvwOM5AKQ1cw8Scsg6wZ9tGr/D9/1WbdOCgboO7VkqNNOtlHI
-         8YjspqX0Cb9v1jGQnTEcBIuthSlM/PiaI+ced0Fd7i1xS+wQeSN2UnvyqcnZn3OaI7vr
-         TC8akHg8JS/1YiOA2cPZuaD73RbpKqYMZPwWPPXhdkjPMfdhew/sIXWcD9erknTTWpu1
-         U/ow==
-X-Gm-Message-State: AOAM530FxRGPEbYL1jJ4cW2E5sQHppJBSzO9eimPQYOtcQRQnlAs/0C/
-        cFh7DN7ftr/YS+rPoEQPX98RBvEg7Q==
-X-Google-Smtp-Source: ABdhPJwhlcKy6MqNv0Xw0yC95WDFroIoz7Q6Q2h6oSct3VRfS3JShNjX0GjY4xiwwtsNyfsumtekZQ==
-X-Received: by 2002:a02:605d:: with SMTP id d29mr25002861jaf.81.1615234217755;
-        Mon, 08 Mar 2021 12:10:17 -0800 (PST)
+        bh=QpbDs8aiZXfIsuQ/5DPkHrIH9XnSKt6WGe3vBO4wbZk=;
+        b=akGotcVAdui+wwXN21O9zHYGuH5Xpgd6zoYhCxRoBX/hq7RjsHgB78FVjZ9Oma9rHW
+         FpnwSI3/IX20aAovjhWPq+/SXEn29dOKxAgdRwNB0PROcGZLHjiW4ZeM2gfAgRv43NFA
+         4KQSClTzs8gJH/dZX3s1HJwn9/rAWTJUXuYrCJEp//QHcwE1IfqSrqXZqEvMRrw2l+FY
+         bJwsiSHMNCvsmiLe/jnBLNjsqiImE1nJC353Bx4RRC9ZG5zmynOjn6eE1qs6RJzc4WOS
+         WieGl9jvLTW7B+YDmVjLYA3VDrHChKUhxJ2EAF3T5f+6ElBlQDMmV/iyyhIBwWmH5zSU
+         i4+A==
+X-Gm-Message-State: AOAM531g7C9RKow0/iQcMQsDaqnjLxaM6AbqcGb/dzg3Ka1q2LWPP7DN
+        vBe4I+zPCn0wuflpc/X68w==
+X-Google-Smtp-Source: ABdhPJy1v1gp365lFTBHUVGJNK4dZ9aUhoTBhe/Jx60UxTgiblBfbdL8fUjqlBldQdF55LQH3hKPUw==
+X-Received: by 2002:a92:4a07:: with SMTP id m7mr20291705ilf.51.1615234305373;
+        Mon, 08 Mar 2021 12:11:45 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id b20sm6424389iod.22.2021.03.08.12.10.15
+        by smtp.gmail.com with ESMTPSA id g3sm6429469ile.10.2021.03.08.12.11.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 12:10:17 -0800 (PST)
-Received: (nullmailer pid 2881882 invoked by uid 1000);
-        Mon, 08 Mar 2021 20:10:14 -0000
-Date:   Mon, 8 Mar 2021 13:10:14 -0700
+        Mon, 08 Mar 2021 12:11:44 -0800 (PST)
+Received: (nullmailer pid 2883952 invoked by uid 1000);
+        Mon, 08 Mar 2021 20:11:42 -0000
+Date:   Mon, 8 Mar 2021 13:11:42 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     swboyd@chromium.org, linux-kernel@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 10/14] dt-bindings: watchdog: Add compatible for
- SC7280 SoC
-Message-ID: <20210308201014.GA2881836@robh.at.kernel.org>
-References: <1614773878-8058-1-git-send-email-rnayak@codeaurora.org>
- <1614773878-8058-11-git-send-email-rnayak@codeaurora.org>
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     Ivan.Griffin@microchip.com, Anup Patel <anup.patel@wdc.com>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        linux-riscv@lists.infradead.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        devicetree@vger.kernel.org,
+        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@kernel.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Conor.Dooley@microchip.com, linux-kernel@vger.kernel.org,
+        Lewis.Hanly@microchip.com, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: riscv: microchip: Add YAML
+ documentation for the PolarFire SoC
+Message-ID: <20210308201142.GA2883896@robh.at.kernel.org>
+References: <20210303200253.1827553-1-atish.patra@wdc.com>
+ <20210303200253.1827553-3-atish.patra@wdc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1614773878-8058-11-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <20210303200253.1827553-3-atish.patra@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 03 Mar 2021 17:47:54 +0530, Rajendra Nayak wrote:
-> From: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+On Wed, 03 Mar 2021 12:02:50 -0800, Atish Patra wrote:
+> Add YAML DT binding documentation for the Microchip PolarFire SoC.
+> It is documented at:
 > 
-> Add compatible for watchdog timer on SC7280 SoC.
+> https://www.microsemi.com/products/fpga-soc/polarfire-soc-icicle-quick-start-guide
 > 
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/riscv/microchip.yaml  | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
