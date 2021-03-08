@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A328331AA7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 00:02:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE9E9331AAD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 00:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbhCHXCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 18:02:11 -0500
-Received: from mail-io1-f51.google.com ([209.85.166.51]:32788 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbhCHXBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 18:01:41 -0500
-Received: by mail-io1-f51.google.com with SMTP id n132so11883744iod.0;
-        Mon, 08 Mar 2021 15:01:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WJmddZ2DEjDqbbvXamr8sfWrsbudlvy5mUoyE/Urbwk=;
-        b=baHdhBD46c4xUOWftBqezOPOhsFLy2yqJU/82xkQwZJARXVfuxcJj5z+KOnzluumqM
-         xbfzD7Xygsyzavs+Tcij40MwHusk0KFoX9MjjVOZQ17B7dKR5kyIQqYafcxVIWcAPaU8
-         Q43bl/O1XmA39o1dcMizFvt7BaEkYneHAlpRXUA+HYm3/r6ju1lfy9CRwKTPG0lrhsK3
-         oD6zdZOM4vwpmJPOixXhpXkW2y48xOiYLaL2/cTscivVLim34C1THDdgzVgC4iyOXKau
-         qiS8JFhNffDzuy/PJk+iQ+RqVp+oDbeai/bCUT/Gkasx9CagSkG7qoj5m0WpY2uDqfGT
-         NXYQ==
-X-Gm-Message-State: AOAM533frYJf3QTxZNjBatXOd7bOlJCwIXr7kqBLm4v8dk9lwzdHb5pR
-        7fYtTmLdcST9B4B7lfNzBg==
-X-Google-Smtp-Source: ABdhPJxbA5Y8PpW0JsHWc7hK5dTHQqjaS/Lx+XPBoIg39S8RsNSu5u3TV1aD/g4RD+YXN3T4n1rbxg==
-X-Received: by 2002:a02:c894:: with SMTP id m20mr26434884jao.80.1615244500974;
-        Mon, 08 Mar 2021 15:01:40 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c9sm6838929ilr.78.2021.03.08.15.01.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 15:01:40 -0800 (PST)
-Received: (nullmailer pid 3110832 invoked by uid 1000);
-        Mon, 08 Mar 2021 23:01:38 -0000
-Date:   Mon, 8 Mar 2021 16:01:38 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, od@zcrc.me,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: panel/kingdisplay, kd035g6-54nt: Remove
- spi-cs-high
-Message-ID: <20210308230138.GA3110798@robh.at.kernel.org>
-References: <20210307192830.208245-1-paul@crapouillou.net>
+        id S231639AbhCHXCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 18:02:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33818 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231408AbhCHXCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 18:02:21 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0CF5E6529E;
+        Mon,  8 Mar 2021 23:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615244541;
+        bh=baOfkGpu04qh/09ctPJ2h4EovLtbYGc6HVKRrEA1EC8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IsjfBJEeCqmzkLIIjbMDZ6tar87u3mo3hAujfL4D6TBwUl4LpoMf+eKOdTqk8yVP5
+         h1dlnSx4opy/Bt5ebV5y14X2gG9nGZ5dbGA6Ceyc6od5tACUzvYmz8iKMVWEu5CpWr
+         mUeoaJRki8SKo7Rp14vp+9vhTS7GJJmZdQ5bds7sfZaVgquv3/qvaj+JUFJmo/Rvk6
+         rmYEIKs5xflov9S7o05TA5mJtZJbCyEuE8dtd95O9boclphVtjMdXBJLOkk3qJ96dU
+         rumSibJ+l6kxlQ6aELYmkvUfgGqjEp6/tJWJyQdXTpR7rsPz/ZdOXwIbKPno5+yLjX
+         o8NyOLq4D6W5A==
+Date:   Mon, 8 Mar 2021 15:02:19 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Peng Zhou <peng.zhou@mediatek.com>
+Cc:     linux-mmc@vger.kernel.org,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Satya Tangirala <satyat@google.com>,
+        devicetree@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Wulin Li <wulin.li@mediatek.com>,
+        Mason Zhang <mason.zhang@mediatek.com>
+Subject: Re: [PATCH v2 0/4] MediaTek eMMC inline encryption support
+Message-ID: <YEas+9mY5zdJh6mX@gmail.com>
+References: <20210308080855.30459-1-peng.zhou@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210307192830.208245-1-paul@crapouillou.net>
+In-Reply-To: <20210308080855.30459-1-peng.zhou@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 07 Mar 2021 19:28:29 +0000, Paul Cercueil wrote:
-> The NT39016 panel is a fun beast, even though the documentation states
-> that the CS line is active-low, it will work just fine if the CS line is
-> configured as active-high, but it won't work if the CS line is forced
-> low or forced high.
+On Mon, Mar 08, 2021 at 04:08:56PM +0800, Peng Zhou wrote:
+> Hello,
 > 
-> Since it did actually work with the spi-cs-high property, this is not a
-> bugfix, but we should nonetheless remove that property from the example
-> to match the documentation.
+> Mediatek eMMC hardware IP has Inline Crypto Engine (ICE),
+> we support inline encryption now.
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  .../bindings/display/panel/kingdisplay,kd035g6-54nt.yaml         | 1 -
->  1 file changed, 1 deletion(-)
+> For Inline Crypto Engine (ICE), see:
+> - https://lore.kernel.org/linux-arm-msm/20210126001456.382989-2-ebiggers@kernel.org/T/
 > 
+> Changed in v2:
+> - fix email format
+> - change some description
+> 
+> Peng Zhou (4):
+>   mmc: Mediatek: add Inline Crypto Engine support
+>   mmc: Mediatek: enable crypto hardware engine
+>   arm64: dts: Mediatek: MT6779: add mmc node with ICE setting
+>   dt-bingdings: mmc: Mediatek: add ICE clock
+> 
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       |  6 ++-
+>  arch/arm64/boot/dts/mediatek/mt6779.dtsi      | 14 +++++++
+>  drivers/mmc/host/mtk-sd.c                     | 42 ++++++++++++++++++-
+>  3 files changed, 59 insertions(+), 3 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Now I received this cover letter 5 more times, but none of the other patches.
+How are you sending this out?
+
+- Eric
