@@ -2,65 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D622B331453
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:15:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF9733146E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbhCHROr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 12:14:47 -0500
-Received: from muru.com ([72.249.23.125]:41138 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229580AbhCHRO2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 12:14:28 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 7368280D4;
-        Mon,  8 Mar 2021 17:15:06 +0000 (UTC)
-Date:   Mon, 8 Mar 2021 19:14:21 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFT PATCH v3 06/27] dt-bindings: timer: arm,arch_timer: Add
- interrupt-names support
-Message-ID: <YEZbbe7dFIuPja3u@atomide.com>
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-7-marcan@marcan.st>
+        id S229690AbhCHRTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 12:19:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229469AbhCHRSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:18:35 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A173C06174A;
+        Mon,  8 Mar 2021 09:18:35 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id v13so15836201edw.9;
+        Mon, 08 Mar 2021 09:18:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QpRX9dp3uicxVv487h+YjKRAB2MLML02Fr523RHwB5s=;
+        b=mHa/jW+vlyasWldZBY6HZM513XUl/gya5pGtS+wXqYOpOxqp7uAihBmTeVdjXGiIKO
+         b36Ncucl/Q8dEgXFGvPwsjS0sIjGXGblBiE27wnryuI/cg+N82dP8U/eMwKPHl1k9zwc
+         mWZIKBkHRaQLp0tq/OfSIMNRKX3MOSW6DVo/ae4U88h7iE1nSoWaywWkqVgFkSGx9P7U
+         OU98Sb6+tw+NZLk/PuX8YflzyeTcyViT7Azjlqyd8+sh9b2m+yxdxvTeS715/sfX/JjO
+         zMrByMSKf/F5SPNOYeDW48ri7LElmh9qGLuabSu9XuvGGPmblCpJBp5TrsPy4Dp2Spqk
+         6ekg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QpRX9dp3uicxVv487h+YjKRAB2MLML02Fr523RHwB5s=;
+        b=JfNRHhDIaP43aZ78jDq9i1isHVjBonx+0MCuR2poI/dV6xOUo6hZTH5xtDBIWeZ5B+
+         TOs8nV/aEns48e/4DXuCueE6kne2ywIeTu8BHs2vfCgmy2h+HzGBtVAlA55nN0A86AoB
+         WQ82D/lZVIt+NZOIqPo+xdcOfZ45y18gtiEYhJQN3aRMhrMP1Oc0VLNr/SQHR/x9Sm1X
+         Eh8EGLJ9kE2Juu2ZgQjkblL31NtH6GmEu64zGyDS9XkYSL3ryxbIZNuJ9siGfD33gF+x
+         iNaw4ERdkAgpK0eQdQTFGkxLqn5VjA+XJ/wvIHT0P/20qI4nE5oGTiULDRbwVmwHuzwD
+         FI3Q==
+X-Gm-Message-State: AOAM532VqzZkhm0aFIdIPMVPQukF6S05LxG+2M/kYbf/eCaqRqWQEi95
+        BT693NvwwBpmtupfEc7cyPU=
+X-Google-Smtp-Source: ABdhPJwkvSPZSwD1j5sECQgHvEdWtfLEdfmXXdY2vdntniG6pn8yWoVCqpYkNaSqUnHUswEE9/Pv1g==
+X-Received: by 2002:aa7:cd6a:: with SMTP id ca10mr23422692edb.7.1615223913709;
+        Mon, 08 Mar 2021 09:18:33 -0800 (PST)
+Received: from localhost.localdomain ([81.18.95.223])
+        by smtp.gmail.com with ESMTPSA id r5sm7457714eds.49.2021.03.08.09.18.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 09:18:33 -0800 (PST)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/6] Improve clock support for Actions S500 SoC
+Date:   Mon,  8 Mar 2021 19:18:25 +0200
+Message-Id: <cover.1615221459.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210304213902.83903-7-marcan@marcan.st>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Hector Martin <marcan@marcan.st> [210304 21:40]:
-> Not all platforms provide the same set of timers/interrupts, and Linux
-> only needs one (plus kvm/guest ones); some platforms are working around
-> this by using dummy fake interrupts. Implementing interrupt-names allows
-> the devicetree to specify an arbitrary set of available interrupts, so
-> the timer code can pick the right one.
-> 
-> This also adds the hyp-virt timer/interrupt, which was previously not
-> expressed in the fixed 4-interrupt form.
+While working on a driver to support the Actions Semi Owl Ethernet MAC,
+I found and fixed some issues on the existing implementation of the S500
+SoC clock subsystem and, additionally, I added two missing clocks.
 
-I like this one too:
+Thanks,
+Cristi
 
-Reviewed-by: Tony Lindgren <tony@atomide.com>
+Cristian Ciocaltea (6):
+  clk: actions: Fix UART clock dividers on Owl S500 SoC
+  clk: actions: Fix SD clocks factor table on Owl S500 SoC
+  clk: actions: Fix bisp_factor_table based clocks on Owl S500 SoC
+  clk: actions: Fix AHPPREDIV-H-AHB clock chain on Owl S500 SoC
+  dt-bindings: clock: Add NIC and ETHERNET bindings for Actions S500 SoC
+  clk: actions: Add NIC and ETHERNET clock support for Actions S500 SoC
+
+ drivers/clk/actions/owl-s500.c               | 99 +++++++++++++-------
+ include/dt-bindings/clock/actions,s500-cmu.h |  6 +-
+ 2 files changed, 70 insertions(+), 35 deletions(-)
+
+-- 
+2.30.1
+
