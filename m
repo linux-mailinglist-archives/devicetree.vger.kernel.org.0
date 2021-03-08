@@ -2,67 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EF233166E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 463FB331677
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbhCHSoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:44:00 -0500
-Received: from mail-il1-f171.google.com ([209.85.166.171]:42957 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230116AbhCHSnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:43:53 -0500
-Received: by mail-il1-f171.google.com with SMTP id p10so9767459ils.9;
-        Mon, 08 Mar 2021 10:43:53 -0800 (PST)
+        id S231127AbhCHSqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:46:08 -0500
+Received: from mail-io1-f47.google.com ([209.85.166.47]:40552 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230320AbhCHSqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:46:00 -0500
+Received: by mail-io1-f47.google.com with SMTP id i8so11063296iog.7;
+        Mon, 08 Mar 2021 10:46:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=04A7qljy+K+sfiSB0qKOdBkqP1yaL7Hp5xr+2U1W7O8=;
-        b=nPuNWsSyYEMYYQl1+zTslA0FaNTRNGYe9eN9P/x69GNAjJNA1nhLRzcWKUXOQQR+lX
-         EgNMi/MQkmcL2kUb/KwJ6uZDR0X0cd9s4XZ0zdQuvsIG+MwmSe/GLrX/mh8I6vp6/iLX
-         T3MnW0P5PPesBsM2HLaXoe37qMAEDDLWxkZwAnPBHpi5LVwlyYLdGBQGUqLiv+Tq/3rt
-         NxiTh4yZhuZwWcnSNrPpXDA6wrLRf4VA0u8AoTFLT0zDqZlCn4AVyi2GcD4KsFfCE2ey
-         lZyNMsMSB5tUcSNxI9swcvSOEZRiOtleYBnb5YI1ov+tRDjDYsdlfikZ/miGfjbYZTQ6
-         rt0Q==
-X-Gm-Message-State: AOAM533cpeEDUKZo8J9ohvJQzS4MIobF2Rz9Xai282ozhSx8iVcf+Gnj
-        FLp06ZU4kJopq0sk8u9UbQ==
-X-Google-Smtp-Source: ABdhPJyNC7RQ8wNadbDPLnxmemmcFWKiN9fJxUEgnu31U4bbeZ678QJ03h8DOsb5XydgZp4sMBPpwA==
-X-Received: by 2002:a92:194a:: with SMTP id e10mr22028649ilm.213.1615229033152;
-        Mon, 08 Mar 2021 10:43:53 -0800 (PST)
+        bh=cfN5Nej69V/evaH4omPvCJozqJ9O6z93Ztcf2j8ULsI=;
+        b=PPVV1i1ozxeHPC4GhaHw5N7vq54JxcY6DdBxneSh4KazRqm0ip9r3Re4fJdWe7V0e7
+         FyRMZS8mlvN3FLNp8fjvElBPqxNcYielW96FP2y1DFYorckb0a/OqiZ/UJBqUdaulYE6
+         IipdDGk7B3jlPZ/ht+b5dBirV9/41sdsqr9z0pFtYxuv0+FJeb04UrdUA/CDSRvNf8gG
+         9GmBzIXri/xJ69XP4Xcj5cV0f/p4rSWli440AjhN5q+kVNJZOQP2BEOHRBNspnIEP56/
+         jA22VlUzTSpwKd+xHdbkQ8A4NsOiCYBgDbTJjdQ1Ft0tuXjYCRcZZitYqaSBaxpCZlyU
+         mu/w==
+X-Gm-Message-State: AOAM532NcguSwlZsLMPAYzRTdt00pCgTDuCvsbxQoADixHgkCFaX/hP+
+        YI1Afh25pDUM89nvB9W+eQ==
+X-Google-Smtp-Source: ABdhPJyNM4ptLtRG6sZBwmYG4Kd5v3RNbnKIqIvBMtZLDZ7DZtcfjwttUS2uXhxKILLlZEV5+4uJAA==
+X-Received: by 2002:a02:817:: with SMTP id 23mr24482608jac.23.1615229159689;
+        Mon, 08 Mar 2021 10:45:59 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 74sm6379073iob.43.2021.03.08.10.43.51
+        by smtp.gmail.com with ESMTPSA id y11sm6330111ilv.64.2021.03.08.10.45.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 10:43:52 -0800 (PST)
-Received: (nullmailer pid 2767878 invoked by uid 1000);
-        Mon, 08 Mar 2021 18:43:50 -0000
-Date:   Mon, 8 Mar 2021 11:43:50 -0700
+        Mon, 08 Mar 2021 10:45:59 -0800 (PST)
+Received: (nullmailer pid 2770740 invoked by uid 1000);
+        Mon, 08 Mar 2021 18:45:57 -0000
+Date:   Mon, 8 Mar 2021 11:45:57 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Yang Li <yang.lee@linux.alibaba.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, frowand.list@gmail.com
-Subject: Re: [PATCH] of: property: Remove unneeded return variable
-Message-ID: <20210308184350.GA2767821@robh.at.kernel.org>
-References: <1614676598-105267-1-git-send-email-yang.lee@linux.alibaba.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     tglx@linutronix.de, maz@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        nicolas.ferre@microchip.com
+Subject: Re: [PATCH 1/2] dt-bindings: mchp-eic: add bindings
+Message-ID: <20210308184557.GA2768020@robh.at.kernel.org>
+References: <20210302102846.619980-1-claudiu.beznea@microchip.com>
+ <20210302102846.619980-2-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1614676598-105267-1-git-send-email-yang.lee@linux.alibaba.com>
+In-Reply-To: <20210302102846.619980-2-claudiu.beznea@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Mar 2021 17:16:38 +0800, Yang Li wrote:
-> This patch removes unneeded return variables, using only
-> '0' instead.
-> It fixes the following warning detected by coccinelle:
-> ./drivers/of/property.c:1371:5-8: Unneeded variable: "ret". Return "0"
-> on line 1388
+On Tue, Mar 02, 2021 at 12:28:45PM +0200, Claudiu Beznea wrote:
+> Add DT bindings for Microchip External Interrupt Controller.
 > 
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
->  drivers/of/property.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+>  .../interrupt-controller/mchp,eic.yaml        | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mchp,eic.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/mchp,eic.yaml b/Documentation/devicetree/bindings/interrupt-controller/mchp,eic.yaml
+> new file mode 100644
+> index 000000000000..5a927817aa7d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/mchp,eic.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/mchp,eic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip External Interrupt Controller
+> +
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +
+> +description:
+> +  This interrupt controller is found in Microchip SoCs (SAMA7G5) and provides
+> +  support for handling up to 2 external interrupt lines.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,sama7g5-eic
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 3
+> +    description:
+> +      The first cell is the input IRQ number (between 0 and 1), the second cell
+> +      is the trigger type as defined in interrupt.txt present in this directory
+> +      and the third cell is the glitch filter (1, 2, 4, 8) in clock cycles
+> +
+> +  'interrupts':
 
-Applied, thanks!
+Don't need quotes here.
+
+> +    description: |
+> +      Contains the GIC SPI IRQs mapped to the external interrupt lines. They
+> +      should be specified sequentially from output 0 to output 1.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: pclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - 'interrupts'
+
+Or here.
+
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/at91.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    eic: eic@e1628000 {
+
+interrupt-controller@...
+
+> +      compatible = "microchip,sama7g5-eic";
+> +      reg = <0xe1628000 0x100>;
+> +      interrupt-parent = <&gic>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <3>;
+> +      interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+> +      clocks = <&pmc PMC_TYPE_PERIPHERAL 37>;
+> +      clock-names = "pclk";
+> +    };
+> +
+> +...
+> -- 
+> 2.25.1
+> 
