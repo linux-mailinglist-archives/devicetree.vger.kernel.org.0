@@ -2,69 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC0C3307F8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 07:10:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92427330827
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 07:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234848AbhCHGJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 01:09:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45080 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234768AbhCHGJc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 01:09:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0216564FBA;
-        Mon,  8 Mar 2021 06:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615183772;
-        bh=fp+9b5wserWc5MQbPnYHMfgQKjCT0MkFgK2BFn8shGw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n4FmGUAiVJIdi8c7/WKqUDKigZhoRbNu5+S1DCvYml61K3BqjDU/cy9Zfdwb8bRLM
-         22X5yuo0QUW65XmexFHZKxTiNMFUAFps55trM6Jg2d0PlwOVDvcreTSNcYJUBw5BJw
-         SQ9QKFCePyc+w5Fj8idi7dxs4hvOGCDlOFb20bVmABVoFr+ujQy7MkPOzyKbe05yl2
-         qksaMEk0oKefIGYjZkAhfV4mMAsjKodcUz3Zb1l8gw6SX3o/M1nSjP7pSCDwTZY9ZT
-         hB0kL1G6YZ5r0GaqernP3sB/mQshoH9odAeng3NibHPIEVTg98LS9ErxBjglyTZp2W
-         uEzA/a2qK199g==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 18/18] arm64: qcom: ipq6018: drop '0x' from unit address
-Date:   Mon,  8 Mar 2021 11:38:26 +0530
-Message-Id: <20210308060826.3074234-19-vkoul@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210308060826.3074234-1-vkoul@kernel.org>
-References: <20210308060826.3074234-1-vkoul@kernel.org>
+        id S234902AbhCHGgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 01:36:50 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55844 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233961AbhCHGgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 01:36:19 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1286a3SY110124;
+        Mon, 8 Mar 2021 00:36:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615185363;
+        bh=Oqgiy062oERwqX+R9eU5hIC/GSFaSqKW8euiNn4SusI=;
+        h=From:To:CC:Subject:Date;
+        b=xBySieFtiwuutlFMCE90M5Ay3VODEH0SSqL8eAXcrB8DKCLZJKGiPxnS9Xi7oa17X
+         pGZSi1Rw0woGZzLFeGYbvYHjvp4Oa9tY/Rn+jDRCRBOqy0rv8vbmOozTrU3YhZjhoE
+         y5yVGGBjIMQiMunVOTEqNMVE6IbAmRrT0L/M7h74=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1286a2OQ016646
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 Mar 2021 00:36:02 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 8 Mar
+ 2021 00:36:01 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 8 Mar 2021 00:36:01 -0600
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1286ZuTS117458;
+        Mon, 8 Mar 2021 00:35:57 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Nadeem Athani <nadeem@cadence.com>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v4 0/4] AM64: Add PCIe bindings and driver support
+Date:   Mon, 8 Mar 2021 12:05:46 +0530
+Message-ID: <20210308063550.6227-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nodes need not contain '0x' for the unit address. Drop it to fix the
-below warning:
+AM64 uses the same PCIe controller as in J7200, however AM642 EVM
+doesn't have a clock generator (unlike J7200 base board). Here
+the clock from the SERDES has to be routed to the PCIE connector.
+This series provides an option for the pci-j721e.c driver to
+drive reference clock output to the connector.
 
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml: reserved-memory:
-'memory@0x60000' does not match any of the regexes
+v1 of the patch series can be found @ [1]
+v2 of the patch series can be found @ [2]
+v3 of the patch series can be found @ [3]
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes from v3:
+*) Added Reviewed by from Rob
+*) Incorporated Krzysztof Wilczyński comment on DT binding documentation
+*) Fixed "warn: missing error code 'ret'"
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 9fa5b028e4f3..23ee1bfa4318 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -151,7 +151,7 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
--		rpm_msg_ram: memory@0x60000 {
-+		rpm_msg_ram: memory@60000 {
- 			reg = <0x0 0x60000 0x0 0x6000>;
- 			no-map;
- 		};
+Changes from v2:
+*) Fix DT binding documentation suggested by Rob
+
+Changes from v1:
+*) Fixed missing initialization of "ret" variable in the error path.
+
+[1] -> http://lore.kernel.org/r/20201224115658.2795-1-kishon@ti.com
+[2] -> https://lore.kernel.org/r/20210104124103.30930-1-kishon@ti.com
+[3] -> https://lore.kernel.org/r/20210222114030.26445-1-kishon@ti.com
+
+Kishon Vijay Abraham I (4):
+  dt-bindings: PCI: ti,j721e: Add binding to represent refclk to the
+    connector
+  dt-bindings: PCI: ti,j721e: Add host mode dt-bindings for TI's AM64
+    SoC
+  dt-bindings: PCI: ti,j721e: Add endpoint mode dt-bindings for TI's
+    AM64 SoC
+  PCI: j721e: Add support to provide refclk to PCIe connector
+
+ .../bindings/pci/ti,j721e-pci-ep.yaml         |  9 ++++----
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 20 ++++++++++++-----
+ drivers/pci/controller/cadence/pci-j721e.c    | 22 ++++++++++++++++++-
+ 3 files changed, 40 insertions(+), 11 deletions(-)
+
 -- 
-2.26.2
+2.17.1
 
