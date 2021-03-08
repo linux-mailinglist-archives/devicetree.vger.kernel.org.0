@@ -2,121 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3484133152F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A2B331536
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:50:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbhCHRss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 12:48:48 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:34846 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbhCHRsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:48:45 -0500
-Received: from mail-wm1-f70.google.com ([209.85.128.70])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lJJzo-0000RC-8I
-        for devicetree@vger.kernel.org; Mon, 08 Mar 2021 17:48:44 +0000
-Received: by mail-wm1-f70.google.com with SMTP id l16so143728wmc.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 09:48:44 -0800 (PST)
+        id S229650AbhCHRuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 12:50:25 -0500
+Received: from mail-io1-f54.google.com ([209.85.166.54]:46682 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230116AbhCHRuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:50:03 -0500
+Received: by mail-io1-f54.google.com with SMTP id u8so10820216ior.13;
+        Mon, 08 Mar 2021 09:50:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jnNh9ESdQq+5EcjLvckU0Dxe1tNhusY1hCWeqolcbKk=;
-        b=OpMCvvcmHXL42Mtbapk6/drxyv65r1TPLj5Zyb4kXFhIHr74l45R7LYVWYd7MhH5Kr
-         Klf+EKD7xe+wRrc3qrtPRkoe1thc/T0smYbsxT9OYBKmzibuFAkav6m3v7Kxym1PgpGh
-         lwBXF195LoHir4D/W+p3gb3qwNrOH0QHmspi0rioQQp2eDRbGaOiTyZpmZRdA7MIwm0m
-         ksJMxyiYk4ljkTIKTSSvT2QKmHene4ez4vX7wgLgqvcn07lneBFrcrdXcOcBkWOQmU8Y
-         neNs1GXjpJXH4LE/FEcVtg9lBXTkaJxhRqR0orAAhMF/A8DBoE0RcSmUhmGxsU9W0IlQ
-         ZQtQ==
-X-Gm-Message-State: AOAM532dlKu3n/L2G29ei02EyLt6Yso8c/Ez/GqBWITLaVUDj14kV0Ky
-        KWyO8RXh74dneagEZJP/UyqwHvU6LSsD2ajYdHXaxodx4CB8xB0Pv7cKUSldS3GgNd2nLCXMINv
-        GnQMmAti6VOQ2OrSncGK2pgW+LarL+OIBFq8PuOc=
-X-Received: by 2002:a7b:cc0c:: with SMTP id f12mr23605179wmh.111.1615225723888;
-        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwUaRuyx4RAtpOe0d5//r1TyywE48mqQx+LxCJ9l9WcQNO5Z2DIZ1cd0UL5cpHe6W7MSrd2mQ==
-X-Received: by 2002:a7b:cc0c:: with SMTP id f12mr23605174wmh.111.1615225723756;
-        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
-Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id r11sm20977867wrm.26.2021.03.08.09.48.43
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cqG62A6ECHx1ErMIyW9dOku1I1WJGyJu3tFPOBlLGpU=;
+        b=ErIMYsJlxtO6/Q+EQlJMycfXACdZ3mKiDXVXjuCMzJpdYIHfw45mDfjome8+vKWhHm
+         brqS0yDH1ppfdpNCiU8kjqm8D0LTTMk3hGQP3Prm9bnTS/TdVaeBuXZREqa84q3dzXZ4
+         ktUxjaiMkScrbaz6FMk8FcNOkllKfQHI+KoWjHMXRyK7tGdyVq0ker7/2Cyz/7VCfVRr
+         bA2Wp2URD51lU31Q6IZGLdOnGHtPOZwLhwJDoIuEInN3ET+PNUK6XNl63M+vy9DYeuYi
+         x2wCRKs2bzYho2G/Or7N9sPvF9YicXBLvbyn1T0jEBhVLzx0SprZi68M1Z+7U5O+DEKb
+         j43g==
+X-Gm-Message-State: AOAM533GUT/soun83SxVTv5ivtpoCUvyVJ3+rknQT/13h9pbjUtdv2YE
+        RYtSF42aKCPfNqyhS2IAGQ==
+X-Google-Smtp-Source: ABdhPJyQIlPVRS8gcc3++0/v5MEklYTA8j+4auW1vDU3cm7oYcIBlZs7P0coPzx2Ij5DU1gi2Cy+5Q==
+X-Received: by 2002:a05:6638:329e:: with SMTP id f30mr7582086jav.121.1615225803214;
+        Mon, 08 Mar 2021 09:50:03 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id c18sm6681876ild.37.2021.03.08.09.50.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 09:48:43 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, arm@kernel.org, soc@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2] arm64: defconfig: enable Intel's eASIC N5X SoCFPGA and Keem Bay SoC
-Date:   Mon,  8 Mar 2021 18:48:24 +0100
-Message-Id: <20210308174824.278372-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.25.1
+        Mon, 08 Mar 2021 09:50:02 -0800 (PST)
+Received: (nullmailer pid 2696494 invoked by uid 1000);
+        Mon, 08 Mar 2021 17:50:00 -0000
+Date:   Mon, 8 Mar 2021 10:50:00 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: phy: ti,phy-j721e-wiz: Add bindings
+ for AM64 SERDES Wrapper
+Message-ID: <20210308175000.GA2693969@robh.at.kernel.org>
+References: <20210222112314.10772-1-kishon@ti.com>
+ <20210222112314.10772-2-kishon@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210222112314.10772-2-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzk@kernel.org>
+On Mon, Feb 22, 2021 at 04:53:06PM +0530, Kishon Vijay Abraham I wrote:
+> Add bindings for AM64 SERDES Wrapper.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../bindings/phy/ti,phy-j721e-wiz.yaml        | 10 ++++++---
+>  include/dt-bindings/phy/phy-ti.h              | 21 +++++++++++++++++++
+>  2 files changed, 28 insertions(+), 3 deletions(-)
+>  create mode 100644 include/dt-bindings/phy/phy-ti.h
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> index c33e9bc79521..bf431f98e6ea 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> @@ -12,9 +12,10 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - ti,j721e-wiz-16g
+> -      - ti,j721e-wiz-10g
+> +    oneOf:
+> +      - const: ti,j721e-wiz-16g
+> +      - const: ti,j721e-wiz-10g
+> +      - const: ti,am64-wiz-10g
 
-Enable in defconfig two Intel ARM64 architectures: the eASIC N5X SoCFPGA
-and Keem Bay SoC.  This allows compile coverage when building default
-config.
+Why do you need to change this from an enum?
 
-For the N5X (and Agilex) enable also DesignWare SPI controller in MMIO.
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
----
-
-Hi Arnd,
-
-You asked me to check if all drivers are enabled for these platforms.
-In general the answer is yes. In particular:
-1. Keem Bay is does not have much in upstream, but everything described
-   in DTS is there,
-2. N5X shares a lot with Agilex SoCFPGA which already (mostly) is
-   supported.
-
-Changes since v1:
-1. Enable also SPI_DW_MMIO
----
- arch/arm64/configs/defconfig | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d612f633b771..9f9adcb8b0e9 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -29,6 +29,7 @@ CONFIG_KALLSYMS_ALL=y
- CONFIG_PROFILING=y
- CONFIG_ARCH_ACTIONS=y
- CONFIG_ARCH_AGILEX=y
-+CONFIG_ARCH_N5X=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_BCM2835=y
-@@ -41,6 +42,7 @@ CONFIG_ARCH_K3=y
- CONFIG_ARCH_LAYERSCAPE=y
- CONFIG_ARCH_LG1K=y
- CONFIG_ARCH_HISI=y
-+CONFIG_ARCH_KEEMBAY=y
- CONFIG_ARCH_MEDIATEK=y
- CONFIG_ARCH_MESON=y
- CONFIG_ARCH_MVEBU=y
-@@ -465,6 +467,9 @@ CONFIG_SPI=y
- CONFIG_SPI_ARMADA_3700=y
- CONFIG_SPI_BCM2835=m
- CONFIG_SPI_BCM2835AUX=m
-+CONFIG_SPI_DESIGNWARE=m
-+CONFIG_SPI_DW_DMA=y
-+CONFIG_SPI_DW_MMIO=m
- CONFIG_SPI_FSL_LPSPI=y
- CONFIG_SPI_FSL_QUADSPI=y
- CONFIG_SPI_NXP_FLEXSPI=y
--- 
-2.25.1
-
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -42,6 +43,9 @@ properties:
+>    "#reset-cells":
+>      const: 1
+>  
+> +  "#clock-cells":
+> +    const: 1
+> +
+>    ranges: true
+>  
+>    assigned-clocks:
+> diff --git a/include/dt-bindings/phy/phy-ti.h b/include/dt-bindings/phy/phy-ti.h
+> new file mode 100644
+> index 000000000000..ad955d3a56b4
+> --- /dev/null
+> +++ b/include/dt-bindings/phy/phy-ti.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * This header provides constants for TI SERDES.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_TI_SERDES
+> +#define _DT_BINDINGS_TI_SERDES
+> +
+> +/* Clock index for output clocks from WIZ */
+> +
+> +/* MUX Clocks */
+> +#define TI_WIZ_PLL0_REFCLK	0
+> +#define TI_WIZ_PLL1_REFCLK	1
+> +#define TI_WIZ_REFCLK_DIG	2
+> +
+> +/* Reserve index here for future additions */
+> +
+> +/* MISC Clocks */
+> +#define TI_WIZ_PHY_EN_REFCLK	16
+> +
+> +#endif /* _DT_BINDINGS_TI_SERDES */
+> -- 
+> 2.17.1
+> 
