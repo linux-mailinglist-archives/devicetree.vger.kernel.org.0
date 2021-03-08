@@ -2,141 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A47331852
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E178A33185F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 21:23:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbhCHUUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 15:20:12 -0500
-Received: from mga04.intel.com ([192.55.52.120]:27580 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229575AbhCHUUJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 15:20:09 -0500
-IronPort-SDR: SrujMP6x7kuOTwTvpAKuAt9rOAip9kmz/kCqc5MLd5wLamLSVn9fej00oJ7zX8thPX9ivPnwL3
- lgCa8WEgWdzQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="185713798"
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; 
-   d="scan'208";a="185713798"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2021 12:20:09 -0800
-IronPort-SDR: Jx4SpPoXYyH0UBNvH9d/29Q1bE9+Tc5qZqB8UtL+uAwKeyu3P0gYs9q0f3x5hiqylNuAnHXiY7
- nm3NC7Jg3sig==
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; 
-   d="scan'208";a="430496246"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2021 12:20:08 -0800
-Received: from localhost (mtg-dev.jf.intel.com [10.54.74.10])
-        by smtp.ostc.intel.com (Postfix) with ESMTP id AC8E86365;
-        Mon,  8 Mar 2021 12:20:08 -0800 (PST)
-Date:   Mon, 8 Mar 2021 12:20:08 -0800
-From:   mark gross <mgross@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mgross@linux.intel.com, markgross@kernel.org, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, shawnguo@kernel.org, jassisinghbrar@gmail.com,
+        id S229650AbhCHUW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 15:22:56 -0500
+Received: from mail-io1-f49.google.com ([209.85.166.49]:42521 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229965AbhCHUW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 15:22:56 -0500
+Received: by mail-io1-f49.google.com with SMTP id u20so11377259iot.9;
+        Mon, 08 Mar 2021 12:22:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jfi2aPqw0ChJqx8vxxHvr5nY7+u1FCowOmUR1NpI1Xk=;
+        b=stmLfwruVP27ntFEKhod8eIDAYp5uZzO1aED+TyfJk87uNLd5BQN64acRovwhiYvXz
+         pq5AqSozm4BG/MSIWdQpZ6Al9mPgKzEhHR/YoLOKOH+/UorG1YpIcUeWMV6dB+AMopV9
+         FQfLUbUwmVflGN39IQPwIy/LUDybGC7Hb3M77umwgOz2Dt0piRLVzVC0YvLDmFNeRdzy
+         tyCdQnc81ir0bNzees4YL+3p+khc9RgtVa4U6yOZdHakyRx1kZQ8xIhZDPms5hA/OBhY
+         BoNM26gxLi2FjybZQmb17jNnuqBHPxiToyLlw+IABAyOJMYRq32dWLXY2RWj3237nHt4
+         Fuvg==
+X-Gm-Message-State: AOAM532Yor4zAegIGzXMGobruwnEgXCt1A73KpDMcWi/MzE4DpB9FpsY
+        feVEuuWFVCOnMOzdBA/Mug==
+X-Google-Smtp-Source: ABdhPJxQfWFWuxQMzuNGDXRT8YnjCNfgHq5hSq5MQJMX+6MHhJRomQb5K0FHQNafxooMET8AsrT7Xg==
+X-Received: by 2002:a05:6638:140e:: with SMTP id k14mr9938401jad.31.1615234975633;
+        Mon, 08 Mar 2021 12:22:55 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id i67sm6548510ioa.3.2021.03.08.12.22.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 12:22:55 -0800 (PST)
+Received: (nullmailer pid 2899522 invoked by uid 1000);
+        Mon, 08 Mar 2021 20:22:53 -0000
+Date:   Mon, 8 Mar 2021 13:22:53 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         linux-kernel@vger.kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 04/34] dt-bindings: Add bindings for Keem Bay IPC
- driver
-Message-ID: <20210308202008.GA138795@linux.intel.com>
-Reply-To: mgross@linux.intel.com
-References: <20210212222304.110194-1-mgross@linux.intel.com>
- <20210212222304.110194-5-mgross@linux.intel.com>
- <20210305210140.GA622142@robh.at.kernel.org>
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Robert Foss <robert.foss@linaro.org>,
+        dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        devicetree@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        linux-amarula@amarulasolutions.com,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: Add Chipone ICN6211
+ bindings
+Message-ID: <20210308202253.GA2899425@robh.at.kernel.org>
+References: <20210304092133.21717-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210305210140.GA622142@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210304092133.21717-1-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 03:01:40PM -0600, Rob Herring wrote:
-> On Fri, Feb 12, 2021 at 02:22:34PM -0800, mgross@linux.intel.com wrote:
-> > From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > 
-> > Add DT binding documentation for the Intel Keem Bay IPC driver, which
+On Thu, 04 Mar 2021 14:51:32 +0530, Jagan Teki wrote:
+> ICN6211 is MIPI-DSI to RGB Converter bridge from Chipone.
 > 
-> Bindings are for h/w blocks, not drivers. From a binding perspective, I 
-> don't really care what the driver architecture for some OS looks like. I 
-> continue to not understand what this h/w looks like. A block diagram 
-> would help as would understanding what blocks have multiple clients 
-> (mailboxes and xlink in particular).
-I'm working to gather this info.
-
-thanks!
-
---mark
-
+> It has a flexible configuration of MIPI DSI signal input and
+> produces RGB565, RGB666, RGB888 output format.
 > 
-> > enables communication between the Computing Sub-System (CSS) and the
-> > Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
-> > Bay.
-> > 
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > Signed-off-by: Mark Gross <mgross@linux.intel.com>
-> > ---
-> >  .../bindings/soc/intel/intel,keembay-ipc.yaml | 45 +++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > new file mode 100644
-> > index 000000000000..586fe73f4cd4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
-> > @@ -0,0 +1,45 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) 2020 Intel Corporation
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Keem Bay IPC
-> > +
-> > +maintainers:
-> > +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > +
-> > +description:
-> > +  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
-> > +  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
-> > +  Keem Bay.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: intel,keembay-ipc
-> > +
-> > +  memory-region:
-> > +    items:
-> > +      - description:
-> > +          Reserved memory region used by the CPU to allocate IPC packets.
-> > +      - description:
-> > +          Reserved memory region used by the VPU to allocate IPC packets.
-> > +
-> > +  mboxes:
-> > +    description: VPU IPC Mailbox.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - memory-region
-> > +  - mboxes
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    ipc {
-> > +          compatible = "intel,keembay-ipc";
-> > +          memory-region = <&ipc_cpu_reserved>, <&ipc_vpu_reserved>;
-> > +          mboxes = <&vpu_ipc_mbox 0>;
-> > +    };
-> > -- 
-> > 2.17.1
-> > 
+> Add dt-bingings for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v4:
+> - fixed Laurent comments
+> - added regulators
+> - replace reset with EN
+> - fixed warnings pointed by Robert
+> Changes for v3:
+> - updated to new dt-bindings style
+> 
+>  .../display/bridge/chipone,icn6211.yaml       | 99 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 +
+>  2 files changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
