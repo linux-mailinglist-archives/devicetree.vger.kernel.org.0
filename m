@@ -2,227 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50EAE330F67
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:36:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3618E330F2F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:31:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbhCHNgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:36:11 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:35096 "EHLO inva020.nxp.com"
+        id S229818AbhCHNbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:31:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57666 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230522AbhCHNfo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 08:35:44 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F19AA1A0146;
-        Mon,  8 Mar 2021 14:35:42 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 217461A0BB0;
-        Mon,  8 Mar 2021 14:35:36 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C579440313;
-        Mon,  8 Mar 2021 14:35:27 +0100 (CET)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, timur@kernel.org,
-        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        linuxppc-dev@lists.ozlabs.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 6/6] ASoC: imx-rpmsg: Add machine driver for audio base on rpmsg
-Date:   Mon,  8 Mar 2021 21:22:30 +0800
-Message-Id: <1615209750-2357-7-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1615209750-2357-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1615209750-2357-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S229591AbhCHNbE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 08:31:04 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B7206651C2;
+        Mon,  8 Mar 2021 13:31:03 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lJFyP-000L8E-P9; Mon, 08 Mar 2021 13:31:01 +0000
+Date:   Mon, 08 Mar 2021 13:31:00 +0000
+Message-ID: <874khlzsa3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH v3 16/27] irqchip/apple-aic: Add support for the Apple Interrupt Controller
+In-Reply-To: <20210304213902.83903-17-marcan@marcan.st>
+References: <20210304213902.83903-1-marcan@marcan.st>
+        <20210304213902.83903-17-marcan@marcan.st>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: marcan@marcan.st, linux-arm-kernel@lists.infradead.org, robh@kernel.org, arnd@kernel.org, olof@lixom.net, krzk@kernel.org, mark.kettenis@xs4all.nl, tony@atomide.com, mohamed.mediouni@caramail.com, stan@corellium.com, graf@amazon.com, will@kernel.org, linus.walleij@linaro.org, mark.rutland@arm.com, andy.shevchenko@gmail.com, gregkh@linuxfoundation.org, corbet@lwn.net, catalin.marinas@arm.com, hch@infradead.org, davem@davemloft.net, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The platform device is not registered by device tree or
-cpu dai driver, it is registered by the rpmsg channel,
-So add a dedicated machine driver to handle this case.
+On Thu, 04 Mar 2021 21:38:51 +0000,
+Hector Martin <marcan@marcan.st> wrote:
+> 
+> This is the root interrupt controller used on Apple ARM SoCs such as the
+> M1. This irqchip driver performs multiple functions:
+> 
+> * Handles both IRQs and FIQs
+> 
+> * Drives the AIC peripheral itself (which handles IRQs)
+> 
+> * Dispatches FIQs to downstream hard-wired clients (currently the ARM
+>   timer).
+> 
+> * Implements a virtual IPI multiplexer to funnel multiple Linux IPIs
+>   into a single hardware IPI
+>
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- sound/soc/fsl/Kconfig     |  12 ++++
- sound/soc/fsl/Makefile    |   2 +
- sound/soc/fsl/imx-rpmsg.c | 127 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 141 insertions(+)
- create mode 100644 sound/soc/fsl/imx-rpmsg.c
+[...]
 
-diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
-index 3b94882aee99..ad69026a7fd1 100644
---- a/sound/soc/fsl/Kconfig
-+++ b/sound/soc/fsl/Kconfig
-@@ -334,6 +334,18 @@ config SND_SOC_IMX_HDMI
- 	  Say Y if you want to add support for SoC audio on an i.MX board with
- 	  IMX HDMI.
- 
-+config SND_SOC_IMX_RPMSG
-+	tristate "SoC Audio support for i.MX boards with rpmsg"
-+	depends on RPMSG
-+	select SND_SOC_IMX_PCM_RPMSG
-+	select SND_SOC_IMX_AUDIO_RPMSG
-+	select SND_SOC_FSL_RPMSG
-+	help
-+	  SoC Audio support for i.MX boards with rpmsg.
-+	  There should be rpmsg devices defined in other core (M core)
-+	  Say Y if you want to add support for SoC audio on an i.MX board with
-+	  a rpmsg devices.
-+
- endif # SND_IMX_SOC
- 
- endmenu
-diff --git a/sound/soc/fsl/Makefile b/sound/soc/fsl/Makefile
-index ce4f4324c3a2..f146ce464acd 100644
---- a/sound/soc/fsl/Makefile
-+++ b/sound/soc/fsl/Makefile
-@@ -70,6 +70,7 @@ snd-soc-imx-sgtl5000-objs := imx-sgtl5000.o
- snd-soc-imx-spdif-objs := imx-spdif.o
- snd-soc-imx-audmix-objs := imx-audmix.o
- snd-soc-imx-hdmi-objs := imx-hdmi.o
-+snd-soc-imx-rpmsg-objs := imx-rpmsg.o
- 
- obj-$(CONFIG_SND_SOC_EUKREA_TLV320) += snd-soc-eukrea-tlv320.o
- obj-$(CONFIG_SND_SOC_IMX_ES8328) += snd-soc-imx-es8328.o
-@@ -77,3 +78,4 @@ obj-$(CONFIG_SND_SOC_IMX_SGTL5000) += snd-soc-imx-sgtl5000.o
- obj-$(CONFIG_SND_SOC_IMX_SPDIF) += snd-soc-imx-spdif.o
- obj-$(CONFIG_SND_SOC_IMX_AUDMIX) += snd-soc-imx-audmix.o
- obj-$(CONFIG_SND_SOC_IMX_HDMI) += snd-soc-imx-hdmi.o
-+obj-$(CONFIG_SND_SOC_IMX_RPMSG) += snd-soc-imx-rpmsg.o
-diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
-new file mode 100644
-index 000000000000..c26531525a7b
---- /dev/null
-+++ b/sound/soc/fsl/imx-rpmsg.c
-@@ -0,0 +1,127 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright 2017-2020 NXP
-+
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/i2c.h>
-+#include <linux/of_gpio.h>
-+#include <linux/slab.h>
-+#include <linux/gpio.h>
-+#include <linux/clk.h>
-+#include <sound/soc.h>
-+#include <sound/jack.h>
-+#include <sound/control.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc-dapm.h>
-+#include "imx-pcm-rpmsg.h"
-+
-+struct imx_rpmsg {
-+	struct snd_soc_dai_link dai;
-+	struct snd_soc_card card;
-+};
-+
-+static int imx_rpmsg_probe(struct platform_device *pdev)
-+{
-+	struct snd_soc_dai_link_component *dlc;
-+	struct device *dev = pdev->dev.parent;
-+	/* rpmsg_pdev is the platform device for the rpmsg node that probed us */
-+	struct platform_device *rpmsg_pdev = to_platform_device(dev);
-+	struct device_node *np = rpmsg_pdev->dev.of_node;
-+	struct of_phandle_args args;
-+	struct imx_rpmsg *data;
-+	int ret = 0;
-+
-+	dlc = devm_kzalloc(&pdev->dev, 3 * sizeof(*dlc), GFP_KERNEL);
-+	if (!dlc)
-+		return -ENOMEM;
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data) {
-+		ret = -ENOMEM;
-+		goto fail;
-+	}
-+
-+	ret = of_reserved_mem_device_init_by_idx(&pdev->dev, np, 0);
-+	if (ret)
-+		dev_warn(&pdev->dev, "no reserved DMA memory\n");
-+
-+	data->dai.cpus = &dlc[0];
-+	data->dai.num_cpus = 1;
-+	data->dai.platforms = &dlc[1];
-+	data->dai.num_platforms = 1;
-+	data->dai.codecs = &dlc[2];
-+	data->dai.num_codecs = 1;
-+
-+	data->dai.name = "rpmsg hifi";
-+	data->dai.stream_name = "rpmsg hifi";
-+	data->dai.dai_fmt = SND_SOC_DAIFMT_I2S |
-+			    SND_SOC_DAIFMT_NB_NF |
-+			    SND_SOC_DAIFMT_CBS_CFS;
-+
-+	/* Optional codec node */
-+	ret = of_parse_phandle_with_fixed_args(np, "audio-codec", 0, 0, &args);
-+	if (ret) {
-+		data->dai.codecs->dai_name = "snd-soc-dummy-dai";
-+		data->dai.codecs->name = "snd-soc-dummy";
-+	} else {
-+		data->dai.codecs->of_node = args.np;
-+		ret = snd_soc_get_dai_name(&args, &data->dai.codecs->dai_name);
-+		if (ret) {
-+			dev_err(&pdev->dev, "Unable to get codec_dai_name\n");
-+			goto fail;
-+		}
-+	}
-+
-+	data->dai.cpus->dai_name = dev_name(&rpmsg_pdev->dev);
-+	data->dai.platforms->name = IMX_PCM_DRV_NAME;
-+	data->dai.playback_only = true;
-+	data->dai.capture_only = true;
-+	data->card.num_links = 1;
-+	data->card.dai_link = &data->dai;
-+
-+	if (of_property_read_bool(np, "fsl,rpmsg-out"))
-+		data->dai.capture_only = false;
-+
-+	if (of_property_read_bool(np, "fsl,rpmsg-in"))
-+		data->dai.playback_only = false;
-+
-+	if (data->dai.playback_only && data->dai.capture_only) {
-+		dev_err(&pdev->dev, "no enabled rpmsg DAI link\n");
-+		ret = -EINVAL;
-+		goto fail;
-+	}
-+
-+	data->card.dev = &pdev->dev;
-+	data->card.owner = THIS_MODULE;
-+
-+	ret = of_property_read_string_index(np, "model", 0, &data->card.name);
-+	if (ret)
-+		goto fail;
-+
-+	platform_set_drvdata(pdev, &data->card);
-+	snd_soc_card_set_drvdata(&data->card, data);
-+	ret = devm_snd_soc_register_card(&pdev->dev, &data->card);
-+	if (ret) {
-+		dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
-+		goto fail;
-+	}
-+
-+fail:
-+	return ret;
-+}
-+
-+static struct platform_driver imx_rpmsg_driver = {
-+	.driver = {
-+		.name = "imx-audio-rpmsg",
-+		.owner = THIS_MODULE,
-+		.pm = &snd_soc_pm_ops,
-+	},
-+	.probe = imx_rpmsg_probe,
-+};
-+module_platform_driver(imx_rpmsg_driver);
-+
-+MODULE_DESCRIPTION("Freescale SoC Audio RPMSG Machine Driver");
-+MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
-+MODULE_ALIAS("platform:imx-audio-rpmsg");
-+MODULE_LICENSE("GPL v2");
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> +static void __exception_irq_entry aic_handle_irq(struct pt_regs *regs)
+> +{
+> +	struct aic_irq_chip *ic = aic_irqc;
+> +	u32 event, type, irq;
+> +
+> +	do {
+> +		/*
+> +		 * We cannot use a relaxed read here, as DMA needs to be
+> +		 * ordered with respect to the IRQ firing.
+> +		 */
+> +		event = readl(ic->base + AIC_EVENT);
+> +		type = FIELD_GET(AIC_EVENT_TYPE, event);
+> +		irq = FIELD_GET(AIC_EVENT_NUM, event);
+> +
+> +		if (type == AIC_EVENT_TYPE_HW)
+> +			handle_domain_irq(aic_irqc->hw_domain, irq, regs);
+> +		else if (type == AIC_EVENT_TYPE_IPI && irq == 1)
+> +			aic_handle_ipi(regs);
+> +		else if (event != 0)
+> +			pr_err("Unknown IRQ event %d, %d\n", type, irq);
+> +	} while (event);
+> +
+> +	/*
+> +	 * vGIC maintenance interrupts end up here too, so we need to check
+> +	 * for them separately. Just report and disable vGIC for now, until
+> +	 * we implement this properly.
+> +	 */
+> +	if ((read_sysreg_s(SYS_ICH_HCR_EL2) & ICH_HCR_EN) &&
+> +		read_sysreg_s(SYS_ICH_MISR_EL2) != 0) {
+> +		pr_err("vGIC IRQ fired, disabling.\n");
+
+Please add a _ratelimited here. Whilst debugging KVM on this machine,
+I ended up with this firing at such a rate that it was impossible to
+do anything useful. Ratelimiting it allowed me to pinpoint the
+problem.
+
+[...]
+
+> +/*
+> + * FIQ irqchip
+> + */
+> +
+> +static void aic_fiq_mask(struct irq_data *d)
+> +{
+> +	/* Only the guest timers have real mask bits, unfortunately. */
+> +	switch (d->hwirq) {
+> +	case AIC_TMR_GUEST_PHYS:
+> +		sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, VM_TMR_FIQ_ENABLE_P, 0);
+> +		break;
+> +	case AIC_TMR_GUEST_VIRT:
+> +		sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, VM_TMR_FIQ_ENABLE_V, 0);
+> +		break;
+> +	}
+> +}
+> +
+> +static void aic_fiq_unmask(struct irq_data *d)
+> +{
+> +	switch (d->hwirq) {
+> +	case AIC_TMR_GUEST_PHYS:
+> +		sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, 0, VM_TMR_FIQ_ENABLE_P);
+> +		break;
+> +	case AIC_TMR_GUEST_VIRT:
+> +		sysreg_clear_set_s(SYS_APL_VM_TMR_FIQ_ENA_EL1, 0, VM_TMR_FIQ_ENABLE_V);
+> +		break;
+> +	}
+> +}
+> +
+> +static void aic_fiq_eoi(struct irq_data *d)
+> +{
+> +	/* We mask to ack (where we can), so we need to unmask at EOI. */
+> +	if (!irqd_irq_disabled(d) && !irqd_irq_masked(d))
+
+Ah, be careful here: irqd_irq_masked() doesn't do what you think it
+does for per-CPU interrupts. It's been on my list to fix for the rVIC
+implementation, but I never got around to doing it, and all decent ICs
+hide this from SW by having a HW-managed mask, similar to what is on
+the IRQ side.
+
+I can see two possibilities:
+
+- you can track the masked state directly and use that instead of
+  these predicates
+
+- you can just drop the masking altogether as this is only useful to a
+  hosted hypervisor (KVM), which will have to do its own masking
+  behind the scenes anyway
+
+> +		aic_fiq_unmask(d);
+> +}
+> +
+
+The rest looks good to me.
+
+Thanks,
+
+	M.
+
 -- 
-2.27.0
-
+Without deviation from the norm, progress is not possible.
