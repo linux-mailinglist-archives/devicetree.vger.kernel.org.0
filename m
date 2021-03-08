@@ -2,223 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29141330B08
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 11:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2D9330B62
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 11:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbhCHKZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 05:25:05 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:52107 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230169AbhCHKYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 05:24:32 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 118D9203A;
-        Mon,  8 Mar 2021 05:24:24 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 08 Mar 2021 05:24:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=vXNiMiHE83uglnwOB1FRjg6v8DO
-        Wfur24VpYwPInWak=; b=gcYdcfabqpaD8hgdMKMbrwFE2gcdBE3otE/25o3VUxH
-        I0JLCVcxQ/Xm+KQhktjUgGyb0CeDrTe0sdjHguDWYOGfLAFTp0MhbDX0+yM46p3A
-        vumWxmwCPkJTrg8HECvFlH9CERGaNvMmtKnOvWusP13hrDovJfAUsvQqvfK1xnyE
-        3GxainzOtBRKghACzpLA27nGmvqU5LUWRfnzVjRI/OBnFizbAne3ZrboQOKWwdle
-        dA3JrEGKTgnSXmLRdXXvM6atBIaa3pxpJ/r6zZbBK3K3qM7b3bE2fTuh+PmhIEr8
-        Atkxq+BvdT8gnuoPoWGeG7x9tlVsHI5+87XUgTMtZvA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=vXNiMi
-        HE83uglnwOB1FRjg6v8DOWfur24VpYwPInWak=; b=uDlDeG+3mDpH7hkWXCzUbY
-        mC4xTrxBAeKrbxssI3SSS9wWT276Wouh4FuNUu+MX9cD9bqqJSe8Lu94Afarow/Z
-        Zm3v0MZtj5RkMUn0ZNS2SDOG9izdgsLyLkvtULg80jVITEzgGX7MwxAGr0RChg8M
-        X5VNdZlzEphKgtLY2hTiCCRpS2xFZ4K6rIGzowDuTddRbfpjNmYltD/VU/9qqekU
-        74Cp/6fNcDGrqx3Cs2oCVmMkkxxijNy67KnJQOAjUV0S9L82bnZieNrdcbVSx5kd
-        Wcqe6ofXc7vPNhRnO3g+elgDhKZv9F37HK0L6XnPymeMKPfD/KQ9G4PYyWAOha5A
-        ==
-X-ME-Sender: <xms:VvtFYCarPysf1Op1hVrLW4XZhXPh5hetExE3UlkLP3Kz0HdhxOOFQA>
-    <xme:VvtFYFYf3qAWI1vhqs6A78taRmZRTmkMGa284W_DKFq50cQumSIlMsWV2Wh_syUI3
-    RnSNnCMpg1pZA7iMNs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudduvddguddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
-    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:VvtFYM_zYn2t05QjbvpBqQp979ceggvjdAJK7UlsIqaiewyxHn-2Pw>
-    <xmx:VvtFYEo15dN-upln4t03_PEQeaMVFFK3STiBLlvS9riU3OcI8meR8w>
-    <xmx:VvtFYNrw865F7JbrIIG4VhF3AUOSnZkDC8b3BK0M3HslzWapJY54nQ>
-    <xmx:V_tFYODfrXG7Sbhju_hOxbxQoaaWwi_xe23-7FqkwTXXAN6dbKzWfw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 5205124005C;
-        Mon,  8 Mar 2021 05:24:22 -0500 (EST)
-Date:   Mon, 8 Mar 2021 11:24:19 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Pavel =?utf-8?B?TMO2Ymw=?= <pavel@loebl.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: sun8i: h2+: add support for Banana Pi P2
- Zero board
-Message-ID: <20210308102419.y6gbkwqv6sdtluvn@gilmour>
-References: <20210106153915.er5fpqwquksdaaql@gilmour>
- <20210305084053.3514231-1-pavel@loebl.cz>
+        id S230200AbhCHKji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 05:39:38 -0500
+Received: from mail-lj1-f179.google.com ([209.85.208.179]:44863 "EHLO
+        mail-lj1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230125AbhCHKjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 05:39:16 -0500
+Received: by mail-lj1-f179.google.com with SMTP id r25so15390315ljk.11;
+        Mon, 08 Mar 2021 02:39:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=2ix2Opgr3c569Pm2cWE4kGR7oYQ1dcLNUE+xhanB+/Y=;
+        b=S/lMnSGWbIa3sXOf5tU+v5ycpSXlh3xuQMhquXxO1awmWSykXVonxVbRQZysi8FWqn
+         jHlFQ9JntfxNs7EuTFYwB6OGSAG5aban8pvKpLjtDIb37EaJn0gm5CoqvShGbr4pcUU3
+         kpb1Wt9wgOQgYjZLcRqg+mOpUmrpwstTraFYcugYXSfCrNxAKrg2KPV8T2QpLRv04QGI
+         j2X8vnChwFXweQjAWwlS2ym7oOh/qU9LNL567tel16hZMOs+n6VuSnY40YEZL8PeTelq
+         CQ/zz8XREnYVS/LFO/ZhW47Hsj9/+SeGhnX6UP/C9mVQiW47+PFyXkiBAyJ6rzU7Vnra
+         m6VA==
+X-Gm-Message-State: AOAM532CeU6k/FAdPBIbNL9jXKs6e1ewYY1zciBae0illkmOyZKtQLTB
+        cYYkaRIWRlrcsxI8ySY2lKo=
+X-Google-Smtp-Source: ABdhPJyxDZK+J/TI4Sd7AOsQgW4DIy4exeiSY5pvwI8sPJty57hh/Uuni4jiAEA8cM/nXjbAytiS/A==
+X-Received: by 2002:a2e:9857:: with SMTP id e23mr13640811ljj.78.1615199954536;
+        Mon, 08 Mar 2021 02:39:14 -0800 (PST)
+Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
+        by smtp.gmail.com with ESMTPSA id h18sm1315801lft.4.2021.03.08.02.39.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 02:39:13 -0800 (PST)
+Date:   Mon, 8 Mar 2021 12:39:07 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: [PATCH v3 00/15] Support ROHM BD71815 PMIC
+Message-ID: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3cftzldy5vudb35o"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210305084053.3514231-1-pavel@loebl.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Patch series introducing support for ROHM BD71815 PMIC
 
---3cftzldy5vudb35o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+ROHM BD71815 is a power management IC used in some battery powered
+systems. It contains regulators, GPO(s), charger + coulomb counter, RTC
+and a clock gate.
 
-Hi
+All regulators can be controlled via I2C. LDO4 can additionally be set to
+be enabled/disabled by a GPIO. LDO3 voltage could be selected from two
+voltages written into separate VSEL reisters using GPIO but this mode is
+not supported by driver. On top of that the PMIC has the typical HW
+state machine which is present also on many other ROHM PMICs.
 
-On Fri, Mar 05, 2021 at 09:40:53AM +0100, Pavel L=F6bl wrote:
-> Banana Pi P2 Zero is H2+-based board by Sinovoip internally
-> similar to Banana Pi M2 Zero.
->=20
-> It features:
-> - Allwinner H2+, Quad-core Cortex-A7
-> - 512MB DDR3 SDRAM
-> - 8G eMMC flash
-> - MicroSD card slot
-> - 100M LAN
-> - WiFi (AP6212) & Bluetooth onboard (SDIO + UART)
-> - Micro USB OTG port
-> - Micro USB connector (power only)
-> - Mini HDMI
-> - 40 PIN GPIO includes UART, SPI, I2C, IO etc.
-> - GPIO-connected key and LED
-> - CSI connector
-> - IEEE 802.3af PoE standard PoE module support (optional)
->=20
-> This adds support for v1.1 revision. There was also v1.0 available
-> which has different SDcard CD polarity and Ethernet port LEDs
-> disconnected in layout.
->=20
-> Signed-off-by: Pavel L=F6bl <pavel@loebl.cz>
-> ---
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../sun8i-h2-plus-bananapi-p2-zero-v1.1.dts   | 197 ++++++++++++++++++
->  3 files changed, 203 insertions(+)
->  create mode 100644 arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1=
-=2Edts
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
-tion/devicetree/bindings/arm/sunxi.yaml
-> index 6db32fbf813f..3accfa23cbad 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -136,6 +136,11 @@ properties:
->            - const: sinovoip,bananapi-m64
->            - const: allwinner,sun50i-a64
-> =20
-> +      - description: Banana Pi P2 Zero
+IC contains two GPOs - but one of the GPOs is marked as GND in
+data-sheet. Thus the driver by default only exposes one GPO. The second
+GPO can be enabled by special DT property.
 
-We should mention the version in the description, and BananaPi is
-written without the space in all the other boards
+RTC is almost similar to what is on BD71828. For currently used features
+only the register address offset to RTC block differs.
 
-> +        items:
-> +          - const: sinovoip,bpi-p2-zero-v1.1
+The charger driver is not included in this series. ROHM has a charger
+driver with some fuel-gauging logig written in but this is not included
+here. I am working on separating the logic from HW specific driver and
+supporting both BD71815 and BD71828 chargers in separate patch series.
 
-The boards are fairly inconsistent here, but we should rather use
-bananapi instead of an abbreviation.
+Changelog v3:
+  - GPIO clean-up as suggested by Bartosz
+  - MFD clean-up as suggested by Lee
+  - clk-mode dt-binding handling in MFD driver corrected to reflect new
+    property values.
+  - Dropped already applied patches
+  - Rebased on v5.12-rc2
+Changelog v2:
+  - Rebased on top of v5.11-rc3
+  - Added another "preliminary patch" which fixes HW-dvs voltage
+    handling (patch 1)
+  - split regulator patch to two.
+  - changed dt-binding patch ordering.
+  regulators:
+    - staticized probe
+    - removed some unnecessary defines
+    - updated comments
+    - split rohm-regulator patch adding SNVS and supporting simple
+      linear mapping into two - one adding support for mapping, other
+      adding SNVS.
+  GPIO:
+    - removed unnecessary headers
+    - clarified dev/parent->dev usage
+    - removed forgotten #define DEBUG
+  dt-bindings:
+    - changed patch order to meet ref-dependencies
+    - added missing regulator nodes
+    - changed string property for clk mode to tristated
+  MFD:
+    - header cleanups.
+  CLK:
+    - fixed commit message
 
-And I guess we should also have a compatible without the version if the
-two boards are similar?
 
-> +          - const: allwinner,sun8i-h2-plus
-> +
->        - description: BananaPro
->          items:
->            - const: lemaker,bananapro
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 3d1ea0b25168..26c1fd13375a 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1190,6 +1190,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
->  	sun8i-a83t-cubietruck-plus.dtb \
->  	sun8i-a83t-tbs-a711.dtb \
->  	sun8i-h2-plus-bananapi-m2-zero.dtb \
-> +	sun8i-h2-plus-bananapi-p2-zero-v1.1.dtb \
->  	sun8i-h2-plus-libretech-all-h3-cc.dtb \
->  	sun8i-h2-plus-orangepi-r1.dtb \
->  	sun8i-h2-plus-orangepi-zero.dtb \
-> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts b/=
-arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
-> new file mode 100644
-> index 000000000000..7297183af3af
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-p2-zero-v1.1.dts
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2021 Pavel L=F6bl <pavel@xxxxxxxx>
-> + *
-> + * Based on sun8i-h2-plus-bananapi-m2-zero.dts, which is:
-> + *   Copyright (C) 2017 Icenowy Zheng <icenowy@xxxxxxx>
-> + */
-> +
-> +/dts-v1/;
-> +#include "sun8i-h3.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model =3D "Banana Pi BPI-P2-Zero v1.1";
-> +	compatible =3D "sinovoip,bpi-p2-zero-v1.1", "allwinner,sun8i-h2-plus";
-> +
-> +	aliases {
-> +		serial0 =3D &uart0;
-> +		serial1 =3D &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +
-> +		led {
-> +			function =3D LED_FUNCTION_POWER;
-> +			color =3D <LED_COLOR_ID_RED>;
-> +			gpios =3D <&r_pio 0 10 GPIO_ACTIVE_LOW>; /* PL10 */
-> +			default-state =3D "on";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible =3D "gpio-keys";
-> +
-> +		power {
-> +			label =3D "power";
+Matti Vaittinen (15):
+  rtc: bd70528: Do not require parent data
+  mfd: bd718x7: simplify by cleaning unnecessary device data
+  dt_bindings: bd71828: Add clock output mode
+  dt_bindings: regulator: Add ROHM BD71815 PMIC regulators
+  dt_bindings: mfd: Add ROHM BD71815 PMIC
+  mfd: Add ROHM BD71815 ID
+  mfd: Support for ROHM BD71815 PMIC core
+  gpio: support ROHM BD71815 GPOs
+  regulator: helpers: Export helper voltage listing
+  regulator: rohm-regulator: linear voltage support
+  regulator: rohm-regulator: Support SNVS HW state.
+  regulator: Support ROHM BD71815 regulators
+  clk: bd718x7: Add support for clk gate on ROHM BD71815 PMIC
+  rtc: bd70528: Support RTC on ROHM BD71815
+  MAINTAINERS: Add ROHM BD71815AGW
 
-iirc if there's no label it will use the node name (which is the same
-here).
+ .../bindings/mfd/rohm,bd71815-pmic.yaml       | 201 ++++++
+ .../bindings/mfd/rohm,bd71828-pmic.yaml       |   6 +
+ .../regulator/rohm,bd71815-regulator.yaml     | 116 +++
+ MAINTAINERS                                   |   3 +
+ drivers/clk/clk-bd718x7.c                     |   9 +-
+ drivers/gpio/Kconfig                          |  10 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-bd71815.c                   | 176 +++++
+ drivers/mfd/Kconfig                           |  15 +-
+ drivers/mfd/rohm-bd71828.c                    | 486 +++++++++----
+ drivers/mfd/rohm-bd718x7.c                    |  43 +-
+ drivers/regulator/Kconfig                     |  11 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/bd71815-regulator.c         | 682 ++++++++++++++++++
+ drivers/regulator/helpers.c                   |  36 +-
+ drivers/regulator/rohm-regulator.c            |  23 +-
+ drivers/rtc/Kconfig                           |   6 +-
+ drivers/rtc/rtc-bd70528.c                     | 104 ++-
+ include/linux/mfd/rohm-bd71815.h              | 563 +++++++++++++++
+ include/linux/mfd/rohm-bd71828.h              |   3 +
+ include/linux/mfd/rohm-bd718x7.h              |  13 -
+ include/linux/mfd/rohm-generic.h              |   7 +-
+ include/linux/regulator/driver.h              |   2 +
+ 23 files changed, 2289 insertions(+), 228 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71815-regulator.yaml
+ create mode 100644 drivers/gpio/gpio-bd71815.c
+ create mode 100644 drivers/regulator/bd71815-regulator.c
+ create mode 100644 include/linux/mfd/rohm-bd71815.h
 
-Maxime
 
---3cftzldy5vudb35o
-Content-Type: application/pgp-signature; name="signature.asc"
+base-commit: a38fd8748464831584a19438cbb3082b5a2dab15
+-- 
+2.25.4
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYEX7UwAKCRDj7w1vZxhR
-xYHqAP9BnEtE9+H1iuP+obVqFmAAHl0RHU5iO3AWRQURedyvqQEAvoKTNtyvBVFK
-o1S7sH5ixxQo03TeFLxIAVYgAINZcgY=
-=Qi54
------END PGP SIGNATURE-----
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
 
---3cftzldy5vudb35o--
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
