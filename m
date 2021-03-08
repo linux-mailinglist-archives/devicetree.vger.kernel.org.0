@@ -2,125 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94F40330ED6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:06:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E63330EE2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:09:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbhCHNFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 08:05:37 -0500
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:55127 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229457AbhCHNFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:05:16 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id BC3B75C00CB;
-        Mon,  8 Mar 2021 08:05:10 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 08 Mar 2021 08:05:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=n5uQ4ynIjf1uUT0X74WfFRWLHAy
-        PO/7KSH6K1r71T10=; b=E2/dDH6+BD0Kyx0lP+hL27nleZ+bUBr8CBx1iWHt9Xs
-        fupSBsMIWT6h/NCH2HX5Chc0RNucqsq/tSnXwwEgobp2YGRA47XLwcxQ5UF3Iljr
-        chUavwLqKnKSEx5T2mc+nEWMj3OXp5ppXH6aiBsVrS1PiJyECbdLeL7WLKp98PK2
-        xeag4bKHujB8OiMB1NnEnECHVy7LtosEb6jF3OwEs/HlAN3oe3QCIkNb16BqEuW4
-        3juQN1g2cKZpXcpRkfyKeVAy65XQWEJrh0wQLBsbWPuupPeh1ny9X0fonzMCGuWN
-        iW2dr+J48XavdOZse5VQI4BkTn14iCy8uhJy4o1HOFA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=n5uQ4y
-        nIjf1uUT0X74WfFRWLHAyPO/7KSH6K1r71T10=; b=DmSIWxxaZ+hA4FssTh8zW4
-        qRE/uGt0yvslwh+Joocm1Kq8UWV2N87/OX44CNReIIdZKYJ30gNOzPlfjfTivUFo
-        4slKvYFDGee4hQogGe9xyGx/LrqDtwDN+a9JwQJZqFZo4beo9yT/A6qX9CYPMSYz
-        zABC8ycfp2laf6Mk8kw8ebRNOLdQBX65FqVf8SmYJfAL62vSknkr9tXWteB78cmm
-        aNdkS0VBXrfFNmJvTFWej8FDTySm2qBxLWKJxMVCAYFVAKy7D944mxHig56GNo3o
-        myCLlPUiYYIm36frMlIuFeZnMq/OXs8hYSsOMTQgjQcxbtCVwkULJTMkjkuE+b0w
-        ==
-X-ME-Sender: <xms:BSFGYFSWoq9KliHsIQi1nfu0z8aOT-LY_Zm47qxsFX2jCpd4Dk11sg>
-    <xme:BSFGYIYsTiTZed8kgRvVUuo7hfjaU-HuTDEs6nTm4iFf2zGhliuEMwO7GtYsflylo
-    R7B5TXGlkW-dOJcD5w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudduvddgfeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:BSFGYK1Qo6LK2XEqCxZGj6NKnTL33Qk-UMJcqrE_vJlcjReKuRXYtQ>
-    <xmx:BSFGYAXQ_pNVGRPxIPAvpr1lz8eK5oNkTL3YPS-dJY95GFLXUkuULA>
-    <xmx:BSFGYMWTyfX5By7Gpyn0KEosaqvieBhqvDStwGT8YP_3ytGJ3Tp6QA>
-    <xmx:BiFGYFvUUOJ2p5eJEBBwBDyBU2iDb18EmublEiswCuuw1rt8PXl-CA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id DC4AF1080067;
-        Mon,  8 Mar 2021 08:05:08 -0500 (EST)
-Date:   Mon, 8 Mar 2021 14:05:06 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Add power button
-Message-ID: <20210308130506.v35gjviwknr5hat5@gilmour>
-References: <20210306203611.15534-1-jernej.skrabec@siol.net>
+        id S229505AbhCHNJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230002AbhCHNJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:09:00 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1D3C06174A;
+        Mon,  8 Mar 2021 05:09:00 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id c10so20220303ejx.9;
+        Mon, 08 Mar 2021 05:09:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=COQSx+BU5m3hRHXgEDr9pW1DvKqmkyBSspURkSZqzdo=;
+        b=SkRZUSy+Q+ZZJNP90Qf0zfiJEPy6Z1GxVFohwD8Jo95gY0KNjktEBZlSfd5w38WenP
+         9Hou8ZCGQ45HNXyzyGbCZg90OWu9Jg8gIOuUB5gKGVctiM8bLb7JK1dXaRjqGzetfdra
+         bs32OYys8L3ymP15WNcfESDAM7OuMENaHahxJd2k4Oh+3M9IjIlg+rT/YlBTU/WHZxPi
+         zS0okbJVsrVsP5BQ0cs+lGTZ0vqsKlp868sgvIX+Tk5eT0AzABC/7dv/++ZmpzDCy49A
+         ntCiVOl9WHz7HmLs2YwTBgpixyWvGgtnAEBTbJITYhRQyaGc0LqXyMiQjGhVSrW1/qIG
+         EMDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=COQSx+BU5m3hRHXgEDr9pW1DvKqmkyBSspURkSZqzdo=;
+        b=k3TCEweBLrNVVZhsnjo20R+boSYdPos3RGXHhhq1QDv0Yy2OACO0TbXnYhCbN59kFK
+         /Q/3kVp7zDxHs43FtzDbCrqus1lwPc9JHj2vdbUcIhtPHV14vENwVl+64CLj9w7qmj+o
+         LdZePWAoCAXGWT9hFFrVYsVqEfRRKAyJHIelfwcX1smvQ6AKpmwe64v/1ytIUJiB9/bM
+         r4KeKWz3GAS30R1IwnDX7CDIV3VUi/YRIu1rD2jxHkJfbFjHpIxz5pdWRhs2cuPdcRaq
+         qpI75qMYvtlYFb1QJSbPeHgpZPCEI5Rr9NN9468di26etSEwSBeVDYwuHF2cpACLNrsC
+         ZsPg==
+X-Gm-Message-State: AOAM531YG66JgmN/PtVq7dk6LwqvD/zr8CLhxmMRek3cW5J322pidi0A
+        PcEfPXNa0/PwGCWOdRrhwxQ=
+X-Google-Smtp-Source: ABdhPJy3vySAVrTjjiQgeBSEnREDCrTSbGTD/9AOrzK/k5Q1/va3eokyUO1aWkkFREtDsjtHe+Ht0Q==
+X-Received: by 2002:a17:906:2db2:: with SMTP id g18mr15307428eji.73.1615208938930;
+        Mon, 08 Mar 2021 05:08:58 -0800 (PST)
+Received: from localhost.localdomain ([188.25.219.167])
+        by smtp.gmail.com with ESMTPSA id s13sm7260961edr.86.2021.03.08.05.08.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 05:08:55 -0800 (PST)
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     netdev@vger.kernel.org,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Michael Walle <michael@walle.cc>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: [PATCH devicetree] arm64: dts: ls1028a: set up the real link speed for ENETC port 2
+Date:   Mon,  8 Mar 2021 15:08:34 +0200
+Message-Id: <20210308130834.2994658-1-olteanv@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4szwrawfeqkmi5l3"
-Content-Disposition: inline
-In-Reply-To: <20210306203611.15534-1-jernej.skrabec@siol.net>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
---4szwrawfeqkmi5l3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In NXP LS1028A there is a MAC-to-MAC internal link between enetc_port2
+and mscc_felix_port4. This link operates at 2.5Gbps and is described as
+such for the mscc_felix_port4 node.
 
-Hi
+The reason for the discrepancy is a limitation in the PHY library
+support for fixed-link nodes. Due to the fact that the PHY library
+registers a software PHY which emulates the clause 22 register map, the
+drivers/net/phy/fixed_phy.c driver only supports speeds up to 1Gbps.
 
-On Sat, Mar 06, 2021 at 09:36:11PM +0100, Jernej Skrabec wrote:
-> Beelink X2 has power button. Add node for it.
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> ---
->  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dt=
-s/sun8i-h3-beelink-x2.dts
-> index 62b5280ec093..4a2cb072ecf6 100644
-> --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> @@ -111,6 +111,17 @@ spdif_out: spdif-out {
->  		#sound-dai-cells =3D <0>;
->  		compatible =3D "linux,spdif-dit";
->  	};
-> +
-> +	r_gpio_keys {
+The mscc_felix_port4 node is probed by DSA, which does not use the PHY
+library directly, but phylink, and phylink has a different representation
+for fixed-link nodes, one that does not have the limitation of not being
+able to represent speeds > 1Gbps.
 
-Underscores are not valid for node names (and will trigger a dtc warning
-when running with W=3D1).
+Since the enetc driver was converted to phylink too as of commit
+71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX"), the limitation
+has been practically lifted there too, and we can describe the real link
+speed in the device tree now.
 
-> +		compatible =3D "gpio-keys";
-> +
-> +		power {
-> +			label =3D "power";
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-IIRC the node name is used as a fallback when the label isn't there?
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 262fbad8f0ec..bf60f3858b0f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -1027,7 +1027,7 @@ enetc_port2: ethernet@0,2 {
+ 				status = "disabled";
+ 
+ 				fixed-link {
+-					speed = <1000>;
++					speed = <2500>;
+ 					full-duplex;
+ 				};
+ 			};
+-- 
+2.25.1
 
-Maxime
-
---4szwrawfeqkmi5l3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYEYhAgAKCRDj7w1vZxhR
-xTDgAQDRXvOBl1TYBDH8zSGl5dcrPsYrG4gZr4LBHSTglKCp1AD9GK+sb8Plz5EL
-6SkPwWPA+t5A9mv2WlDUOH4PAAEaNgI=
-=09LB
------END PGP SIGNATURE-----
-
---4szwrawfeqkmi5l3--
