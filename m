@@ -2,66 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FEED331656
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:40:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D35FA33165C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:41:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbhCHSkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:40:14 -0500
-Received: from mail-il1-f180.google.com ([209.85.166.180]:41763 "EHLO
-        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbhCHSkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:40:00 -0500
-Received: by mail-il1-f180.google.com with SMTP id c10so9751454ilo.8;
-        Mon, 08 Mar 2021 10:39:59 -0800 (PST)
+        id S231189AbhCHSlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:41:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231231AbhCHSlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:41:06 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B464C06174A;
+        Mon,  8 Mar 2021 10:41:05 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id i9so127057wml.0;
+        Mon, 08 Mar 2021 10:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nVknNWflkzFrv6u3Fb8LeIHP8SA8f3wyZXnbrEUiYMw=;
+        b=m2KjvfjW9xHmWOlyc5cD7SAMIRcxj59+aoZrk1/ew3oKg7EqdQFNnIilWbbThY6gXU
+         PIUElQAHLTvTq5qj7Z9wfNDLXfuQhjnn2StZqHh7he6u32mkV0kUj5d74dTX9JzZtYym
+         pNQoZY1PNgcGFIjFCzRK3DAsMKpOrqTkw/1WZ7/qUkur2HlHEY0hxkEZjnmSkd0mZhd1
+         9LddztJVIjZ8JyglFIa4JElB+nBlDRzKKnnCnrWWXQjFw71uY32IAKGNTtWk0835lLXz
+         CFdbNj5+r5TLvqPJKbkmoX6bu74qg/oN153FneUjqCyRYUCZBLXq7OVoKgXbHSq4S+/w
+         0FEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lw4l+rLMJMGEsx55Qbf/gHCYaiQyZEZqf2Nq/Dmr/RI=;
-        b=jYAgaZE37rb+FVIx+3J6v3DEorg+P4yjQFYgwVUUiOA9zldWwMyIzzk7m70oubQz0f
-         LYA06d44BjDMqeNOVFXD7CfOSAvHdxaZ6OhA/pvmV365kzt4UHILjkCuXr8SRbZNs+bO
-         yJpmQorkYc5dx3sJUek1ZuLf5qgQ09E5THfpnX+Gm6v2d3dvtCFPCjUk6PjugxpNb2El
-         CUoJQHEqdKnKyxztn8aIBT9mBG32AhRhLCmjX3jIbIEnT5J+UkDloPcRi247JZ3hdBEU
-         msERqBx/KyLvFCP0O2eRwHWKJQSrd9t1m4jrOcQJIQGAc7fEOPqKp1V9irWQtCh4yjLb
-         B5fg==
-X-Gm-Message-State: AOAM533t0ZAW/kZq/jIf0dF2oo6/g2X1Xn/rx0lMexOAFGPSfdHO+0hb
-        V2Cw15huXZfJBfI0OWT4fw==
-X-Google-Smtp-Source: ABdhPJwVW4PuFonwOSGbDEP0tHgzDPFplAp37YU80bhL64fPNFlSe5nALXb//3YnVCfNQUtdGAI/Cw==
-X-Received: by 2002:a92:dd82:: with SMTP id g2mr21509501iln.194.1615228799387;
-        Mon, 08 Mar 2021 10:39:59 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id p5sm6478739iod.31.2021.03.08.10.39.58
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nVknNWflkzFrv6u3Fb8LeIHP8SA8f3wyZXnbrEUiYMw=;
+        b=SJTNxqWf4AFV1zD25CEBrCmwrU6lJjSTl7PjdGhZ2ZUhvwkuWwIovyZGu2lqOsfzFn
+         jD4FpaMiJ+NHUMFQQ3vUwGpG7C6KDO+XcFtUmwzTixrJlNKlFzTANTbjBBClQL4MG8XQ
+         y8SEeA2B7/PLewi3lN4u9i67MSCuoKVdG4PQb6GJkN+9KqPYI2g41M3HBHvy9/Ja6UX3
+         lSQj8CD8SVu6t9jyBF6VICIptPmJLaKzTel/o+5LpXghhWBs96c4d+p8sqA7fQp98YIV
+         yn86bv8RhOPATj2eLj2mj2XUU1Jv8P3fd8PWC2EicPYipp2K949qWCAJ//BSTOL27ZRj
+         h9UQ==
+X-Gm-Message-State: AOAM532QY6KQWUJ3EWLHsK3XmZHruuT+zBxYDm1oOxBj5oPd5MiLGCIH
+        rUADm1M8IybPNMZywqPAJaY=
+X-Google-Smtp-Source: ABdhPJz8wG3NvGeYQdC1DGCv89uxNNs5EnZL/JhCzY+oM5zFnP4PBknx3YxHh6EhvQPUT4TSnZ1glQ==
+X-Received: by 2002:a1c:a98a:: with SMTP id s132mr193574wme.12.1615228864061;
+        Mon, 08 Mar 2021 10:41:04 -0800 (PST)
+Received: from skynet.lan (224.red-2-138-103.dynamicip.rima-tde.net. [2.138.103.224])
+        by smtp.gmail.com with ESMTPSA id d29sm20146067wra.51.2021.03.08.10.41.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 10:39:58 -0800 (PST)
-Received: (nullmailer pid 2762563 invoked by uid 1000);
-        Mon, 08 Mar 2021 18:39:56 -0000
-Date:   Mon, 8 Mar 2021 11:39:56 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: Add sc7280 to rpmpd
- binding
-Message-ID: <20210308183956.GA2762516@robh.at.kernel.org>
-References: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
+        Mon, 08 Mar 2021 10:41:03 -0800 (PST)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     jonas.gorski@gmail.com, "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] net: mdio: Add BCM6368 MDIO mux bus controller
+Date:   Mon,  8 Mar 2021 19:41:00 +0100
+Message-Id: <20210308184102.3921-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1614664092-9394-1-git-send-email-rnayak@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Mar 2021 11:18:11 +0530, Rajendra Nayak wrote:
-> Add compatible and constants for the power domains exposed by the RPMH
-> in the Qualcomm Technologies Inc sc7280 platform.
-> 
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
->  include/dt-bindings/power/qcom-rpmpd.h                  | 11 +++++++++++
->  2 files changed, 12 insertions(+)
-> 
+This controller is present on BCM6318, BCM6328, BCM6362, BCM6368 and BCM63268
+SoCs.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Álvaro Fernández Rojas (2):
+  dt-bindings: net: Add bcm6368-mdio-mux bindings
+  net: mdio: Add BCM6368 MDIO mux bus controller
+
+ .../bindings/net/brcm,bcm6368-mdio-mux.yaml   |  79 ++++++++
+ drivers/net/mdio/Kconfig                      |  11 ++
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-mux-bcm6368.c           | 179 ++++++++++++++++++
+ 4 files changed, 270 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml
+ create mode 100644 drivers/net/mdio/mdio-mux-bcm6368.c
+
+-- 
+2.20.1
+
