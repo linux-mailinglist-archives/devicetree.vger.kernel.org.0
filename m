@@ -2,173 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F48330AAA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:56:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA46330AB4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 10:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231377AbhCHJzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 04:55:52 -0500
-Received: from mail-out.m-online.net ([212.18.0.10]:53741 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbhCHJzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 04:55:36 -0500
-X-Greylist: delayed 11655 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Mar 2021 04:55:36 EST
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DvDHB2p5Wz1rync;
-        Mon,  8 Mar 2021 10:55:34 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DvDHB1R7yz1r1M2;
-        Mon,  8 Mar 2021 10:55:34 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id fvrJ_QkQVZtS; Mon,  8 Mar 2021 10:55:31 +0100 (CET)
-X-Auth-Info: QtOASf/huVzoEk9V0QF1IiUIsbVKip7CTKjNghctd6Q=
-Received: from [192.168.1.107] (92-52-238-184.pool.digikabel.hu [92.52.238.184])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Mon,  8 Mar 2021 10:55:31 +0100 (CET)
-Reply-To: hs@denx.de
-Subject: Re: [PATCH 2/2] arm64: imx8mp: imx8mp-phycore-som enable spi nor
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Teresa Remmet <T.Remmet@phytec.de>
-Cc:     "krzk@kernel.org" <krzk@kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20210308064046.1576267-1-hs@denx.de>
- <20210308064046.1576267-3-hs@denx.de>
- <20210308084047.numy4o2jvsiz5d3v@pengutronix.de>
- <196131b90400b434931992ba5a9078828d1eaf2a.camel@phytec.de>
- <20210308092823.a3ffj4auysnoti6o@pengutronix.de>
-From:   Heiko Schocher <hs@denx.de>
-Message-ID: <d750280b-8852-7237-7f73-a399f7b4e3b1@denx.de>
-Date:   Mon, 8 Mar 2021 10:55:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        id S231359AbhCHJ6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 04:58:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55146 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231393AbhCHJ6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 04:58:20 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E6AD64FB8;
+        Mon,  8 Mar 2021 09:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1615197500;
+        bh=9mMrQWCC4a/Rkk+3e/lTR2AobCXN/BgEIQxiR+ziyRs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K3c25/mmwJ/W84DEwAUDZ324r/A09CehB7e+yOPs0lidf2x1Ni0IUIiwLymaxfft+
+         ZNFO6sv6so/zfQid8v/8/EvpMaqPBZRyvg/PPzzvtwtv7fwTl2GUG6A+DhMIB9rE2o
+         5yD2m6xhdpeCv5UeZ3x1xbT6v2ZoXZXNnuPJdvCs=
+Date:   Mon, 8 Mar 2021 10:58:17 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Jing Xiangfeng <jingxiangfeng@huawei.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        catalin.marinas@arm.com, will@kernel.org,
+        akpm@linux-foundation.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, rppt@kernel.org,
+        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
+        song.bao.hua@hisilicon.com, ardb@kernel.org,
+        anshuman.khandual@arm.com, bhelgaas@google.com, guro@fb.com,
+        robh+dt@kernel.org, stable@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+        wangkefeng.wang@huawei.com
+Subject: Re: [PATCH stable v5.10 0/7] arm64: Default to 32-bit wide ZONE_DMA
+Message-ID: <YEX1OcbVNSqwwusF@kroah.com>
+References: <20210303073319.2215839-1-jingxiangfeng@huawei.com>
+ <YEDkmj6cchMPAq2h@kroah.com>
+ <9bc396116372de5b538d71d8f9ae9c3259f1002e.camel@suse.de>
+ <YEDr/lYZHew88/Ip@kroah.com>
+ <827b317d7f5da6e048806922098291faacdb19f9.camel@suse.de>
+ <YETwL6QGWFyJTAzk@kroah.com>
+ <604597E3.5000605@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <20210308092823.a3ffj4auysnoti6o@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <604597E3.5000605@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marco,
-
-On 08.03.21 10:28, Marco Felsch wrote:
-> On 21-03-08 08:52, Teresa Remmet wrote:
->> Hello Marco,
->>
->> Am Montag, den 08.03.2021, 09:40 +0100 schrieb Marco Felsch:
->>> On 21-03-08 07:40, Heiko Schocher wrote:
->>>> enable the mt25qu256aba spi nor on the imx8mp-phycore-som.
->>>>
->>>> Signed-off-by: Heiko Schocher <hs@denx.de>
->>>> ---
->>>>
->>>>  .../dts/freescale/imx8mp-phycore-som.dtsi     | 27
->>>> +++++++++++++++++++
->>>>  1 file changed, 27 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
->>>> b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
->>>> index 44a8c2337cee4..0284e7a5c6bba 100644
->>>> --- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
->>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
->>>> @@ -65,6 +65,22 @@ ethphy1: ethernet-phy@0 {
->>>>  	};
->>>>  };
->>>>  
->>>> +&flexspi {
->>>> +	pinctrl-names = "default";
->>>> +	pinctrl-0 = <&pinctrl_flexspi0>;
->>>> +	status = "okay";
->>>> +
->>>> +	flash0: mt25qu256aba@0 {
->>>> +		reg = <0>;
->>>> +		#address-cells = <1>;
->>>> +		#size-cells = <1>;
->>>> +		compatible = "jedec,spi-nor";
->>>
->>> Please make the compatible the first property followed by the reg
->>> property. Also you don't need to add the #size-cells and #address-
->>> cells
->>> now since you don't add a child node.
->>
->> but is this not similar to the label here? If you add partitions in the
->> bootloader you need the cells properties?
+On Mon, Mar 08, 2021 at 11:20:03AM +0800, Jing Xiangfeng wrote:
 > 
-> If the bootloader will add partitions the bootloader can add the
-> size/address-cells too using the phandle. But this is more a nit.
-
-Yes. I personally prefer to pass mtd partitions through kernel commandline.
-
-I will work in your and Teresas comment, thanks!
-
-bye,
-Heiko
 > 
-> Regards,
->   Marco
+> On 2021/3/7 23:24, Greg KH wrote:
+> > On Thu, Mar 04, 2021 at 04:09:28PM +0100, Nicolas Saenz Julienne wrote:
+> > > On Thu, 2021-03-04 at 15:17 +0100, Greg KH wrote:
+> > > > On Thu, Mar 04, 2021 at 03:05:32PM +0100, Nicolas Saenz Julienne wrote:
+> > > > > Hi Greg.
+> > > > > 
+> > > > > On Thu, 2021-03-04 at 14:46 +0100, Greg KH wrote:
+> > > > > > On Wed, Mar 03, 2021 at 03:33:12PM +0800, Jing Xiangfeng wrote:
+> > > > > > > Using two distinct DMA zones turned out to be problematic. Here's an
+> > > > > > > attempt go back to a saner default.
+> > > > > > What problem does this solve?  How does this fit into the stable kernel
+> > > > > > rules?
+> > > > > We changed the way we setup memory zones in arm64 in order to cater for
+> > > > > Raspberry Pi 4's weird DMA constraints: ZONE_DMA spans the lower 1GB of memory
+> > > > > and ZONE_DMA32 the rest of the 32bit address space. Since you can't allocate
+> > > > > memory that crosses zone boundaries, this broke crashkernel allocations on big
+> > > > > machines. This series fixes all this by parsing the HW description and checking
+> > > > > for DMA constrained buses. When not found, the unnecessary zone creation is
+> > > > > skipped.
+> > > > What kernel/commit caused this "breakage"?
+> > > 1a8e1cef7603 arm64: use both ZONE_DMA and ZONE_DMA32
+> > Thanks for the info, all now queued up.
+> There is a fix in 5.11. Please consider applying the following commit to
+> 5.10.y:
 > 
->> Teresa
->>
->>>
->>> Regards,
->>>   Marco
->>>
->>>> +		spi-max-frequency = <80000000>;
->>>> +		spi-tx-bus-width = <4>;
->>>> +		spi-rx-bus-width = <4>;
->>>> +	};
->>>> +};
->>>> +
->>>>  &i2c1 {
->>>>  	clock-frequency = <400000>;
->>>>  	pinctrl-names = "default";
->>>> @@ -217,6 +233,17 @@ MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		
->>>> 0x11
->>>>  		>;
->>>>  	};
->>>>  
->>>> +	pinctrl_flexspi0: flexspi0grp {
->>>> +		fsl,pins = <
->>>> +			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK		
->>>> 0x1c2
->>>> +			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B	0x8
->>>> 2
->>>> +			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00	0x8
->>>> 2
->>>> +			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01	0x8
->>>> 2
->>>> +			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02	0x8
->>>> 2
->>>> +			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03	0x8
->>>> 2
->>>> +		>;
->>>> +	};
->>>> +
->>>>  	pinctrl_i2c1: i2c1grp {
->>>>  		fsl,pins = <
->>>>  			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x4
->>>> 00001c3
->>>> -- 
->>>> 2.29.2
->>>>
->>>>
->>>>
-> 
+> aed5041ef9a3 of: unittest: Fix build on architectures without
+> CONFIG_OF_ADDRES
 
--- 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+Thanks, now queued up.
+
+greg k-h
