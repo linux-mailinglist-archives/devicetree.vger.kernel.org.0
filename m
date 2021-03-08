@@ -2,132 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7FA8331628
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AB8033163C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbhCHScl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:32:41 -0500
-Received: from mail-bn8nam12on2049.outbound.protection.outlook.com ([40.107.237.49]:58144
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230173AbhCHScV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Mar 2021 13:32:21 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oE6JV2EOoZM9nG43jCQmrXd282kzN7KBmjlm2DcaJbxq9eMEATAZfeSi/LeBcZ/Z42Zrg/mkwJTvizHQnquJvbYs14VWnGWGa0znjSASRXbiGRnC6eMV7hQlF87beZi+zsNEHRoaLcAaFkPhmkvIT46zkg2xa8toU3HL/456/2s+TdVxydc+aTuH2kUTNK3ezPVEvtBH7PUoiLAGggH4S5gjpfHIfos3McYjiOfz+HFXIeT1AuEZhWyXo9v+6HeVGpY8kUsbmNsRx8PmDzBTzPTK90Vc/hrlgv8iphIEgKeDll1lTesc0UsUlhVBY74WGfTWmGJ8Uo5lh+/9YHc70w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=58Hfx1fmBmQjldn69eDS4/4aivr59O+WczkW92z9Ayw=;
- b=MmzLZY+M426XUnwiiH7vPof3Z4KXSG/KMruyvTfCqhSXTjZzXYOhwC99jhPV8p7XyXV1ow7+FXklWeMEk+Cs60UWgRjio2dzt+SwuXeKiDHIm8biTRrBwOD3B6wOHZ5+ioDTLAXwq/5iJvG6TX4b9kmmI1oAKcl9ckPsttxXNnG3KM32BpqHvRJ62EFbo5NOE5ZntvuUxZY4r/YXmVBN7AiHYEWXeSLh+XwWWMKu3pT8oRt54kS93CPH1+B3kxru14ez493o8ymt+1XTPvWEIY0apaEwPLFgs2Wix7LtOE0fzQMeJIjUS0hox2a3Kl+VCEorZZOTE4xOrGPnAuOFHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=58Hfx1fmBmQjldn69eDS4/4aivr59O+WczkW92z9Ayw=;
- b=skrpZE/vYBJXRkMgTlmyIDDi3Ai4envTdYq2c9T8Aqq0KgLAhGulM8ijolYz1uINmbSaWf+E1jGopsL1iLknug4uuHuqAWOVlc/8vqevI0DtbONHZSSfIxm92PWQSKgCVaq3mXicW1on1YD5MIXmd3GaTQeTafSIVEWG86AF/Ws=
-Received: from DM5PR05CA0017.namprd05.prod.outlook.com (2603:10b6:3:d4::27) by
- DM6PR12MB3435.namprd12.prod.outlook.com (2603:10b6:5:39::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3890.23; Mon, 8 Mar 2021 18:32:19 +0000
-Received: from DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:d4:cafe::86) by DM5PR05CA0017.outlook.office365.com
- (2603:10b6:3:d4::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.13 via Frontend
- Transport; Mon, 8 Mar 2021 18:32:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- DM6NAM11FT030.mail.protection.outlook.com (10.13.172.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3912.17 via Frontend Transport; Mon, 8 Mar 2021 18:32:18 +0000
-Received: from [10.2.163.31] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 8 Mar
- 2021 18:32:17 +0000
-Subject: Re: [PATCH v1 3/5] dt-bindings: arm: Add cpu-idle-states to Tegra194
- CPU nodes
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>,
-        <ksitaraman@nvidia.com>, <sanjayc@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <1614838092-30398-1-git-send-email-skomatineni@nvidia.com>
- <1614838092-30398-4-git-send-email-skomatineni@nvidia.com>
- <20210308043755.llvdsuz2jwvweovb@bogus>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <4cebf482-a2f8-5a79-a2f6-4ccd7d31c6ad@nvidia.com>
-Date:   Mon, 8 Mar 2021 10:32:17 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231445AbhCHShd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:37:33 -0500
+Received: from mail-io1-f48.google.com ([209.85.166.48]:38028 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229972AbhCHShH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:37:07 -0500
+Received: by mail-io1-f48.google.com with SMTP id k2so11047439ioh.5;
+        Mon, 08 Mar 2021 10:37:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GZuaYRcTQYr29WcRo++hbhX56RPiFxHTN4yTc4AVz3w=;
+        b=ueNg0eXozQn4GeZW4yb/OAzU/nlETfHF/8IooElZdh57U4/kRZgSa+u5kwvBfoCP9i
+         +39/KKkK2/2IUNSkQr7tRZf4Oal2Ha34IQZC8Uv6Ok4+g9Sc2d3ytiG2akiCWpY1wT0F
+         qIAOCLrlLnWBunHj5svVdxrtX0J0Ijgx9FlISC66DqB/SO3z5q11uhyl+7LYJ93HH4ni
+         rMwLFSqNRpqKkqwfLoE4c1Rvc2+vDH+tw8MsDlOjuWXPNQM1/ukN0ggup6+M4cFP2AOp
+         GtBF1RDu2wLdwGlflRTQ8k3whWOM8S9HuMdhAfTU5wkYaxb54OWWokcqYLr7YYnuhQMH
+         a2NQ==
+X-Gm-Message-State: AOAM531QyGRMqdNbfXJGQXtHe0P+bBWGXtmPqxrxiWmuv99d2qdRSMh3
+        9E2xaoLtCdQD5QYQZ6UhW0lG+NutKg==
+X-Google-Smtp-Source: ABdhPJzJvIobBSjcBQqRLygEjVIi4wqh95GdW3xy8229pOCjpvroGq1otlgfjqRkUCIo0gL3y4TMig==
+X-Received: by 2002:a5d:80d5:: with SMTP id h21mr7273322ior.11.1615228626850;
+        Mon, 08 Mar 2021 10:37:06 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h13sm6224496ioe.40.2021.03.08.10.37.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 10:37:05 -0800 (PST)
+Received: (nullmailer pid 2758433 invoked by uid 1000);
+        Mon, 08 Mar 2021 18:37:04 -0000
+Date:   Mon, 8 Mar 2021 11:37:04 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] gpio: omap: Honor "aliases" node
+Message-ID: <20210308183704.GA2747088@robh.at.kernel.org>
+References: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
+ <CACRpkdYErJH5RUjL+jPC5vnaqGiOqBwHsr0E42wOWrpBGrpS3w@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210308043755.llvdsuz2jwvweovb@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4f0cf7d4-9397-4f87-99bb-08d8e2608182
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3435:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3435AAC9166C0F93FE81F88CC2939@DM6PR12MB3435.namprd12.prod.outlook.com>
-X-MS-Exchange-Transport-Forked: True
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hRIhupvFmo/cEyFBhYKdfgggdQo4n4r1w6tIutFfuBK6aKK8uiX1NcdCNZU2arChtdLAb4Q5XbSw1NduDR1AvR6gM4HPNfGp878yoRRNA+5Zgvqv342zFJqNddUaS596K7HQFzn7fNubQtJzwNvt809i/lxUh5Gbqm5fFK+3a1uLioqb1wFxsPAD51k4i78XXTRXUFfxmMHXOBnQmX8tE9dT1D+2qS41btf3tUKhA/gQOwUdizQr1ZVa6fe0bLkmyQw9b5gYO5eysrSE53AcrmDIWWRT9gaZ2yLq6qWrBq+je1LzwfubLbBTYcL573c9CeAjdOFf2dO6iiHFyfRxFzh77MTfo68NmC8eizzyITtHZxsY/Po5/f8BL212+xvCNL2Z8wZYZQOSzDhI+2nDbsvsmMYLJJtyDvTyKKbkbJxd/HyzYnCHmgJH4XgFpRaqYbES2w8z4wROJR63vxYMlHmx2vxnOz3bYmHad+Gr/jHmnoi/E60Cz/0TkeMBWz7lRNnMoSNWq3eWtlBR0xmwez2etTLKdP/79KJOfkKpto/Ig7jyhirtFoTAlP9C22GZqEb+Ih34Azm3W9ovLtzTAxUKpjJz2sAZ/+i71uUJRDya2o0cbftBX55KF2kjlQQykPHnUvULLYS9RiiYnzofVDnH74GArTAbqLAnfu452AW9BIuDaFSHuUaym+mHpUrdaXiImWyvdUDBpiMOmwo6YY2yppsaHR9PncB4AG8FK/Y=
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(46966006)(36840700001)(83380400001)(6916009)(34020700004)(2616005)(2906002)(478600001)(36906005)(316002)(36860700001)(70206006)(8936002)(16526019)(426003)(4326008)(26005)(36756003)(82310400003)(8676002)(53546011)(70586007)(54906003)(336012)(16576012)(82740400003)(5660300002)(7636003)(186003)(47076005)(31696002)(31686004)(356005)(86362001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2021 18:32:18.9403
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f0cf7d4-9397-4f87-99bb-08d8e2608182
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3435
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYErJH5RUjL+jPC5vnaqGiOqBwHsr0E42wOWrpBGrpS3w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 02, 2021 at 05:21:23PM +0100, Linus Walleij wrote:
+> On Tue, Mar 2, 2021 at 2:18 AM Alexander Sverdlin
+> <alexander.sverdlin@gmail.com> wrote:
+> 
+> > Currently the naming of the GPIO chips depends on their order in the DT,
+> > but also on the kernel version (I've noticed the change from v5.10.x to
+> > v5.11). Honor the persistent enumeration in the "aliases" node like other
+> > GPIO drivers do.
+> >
+> > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> > ---
+> > Yes, I noticed checkpatch "WARNING: DT binding docs and includes should be
+> > a separate patch."
+> > However, the parts below are tiny and barely make sense separately.
+> 
+> I've shut it down in the past because the instance ordering is a
+> linuxism and the needs are in the Linux userspace somehow.
+> It is different from a UART for example, which always need to
+> be at the same place on any operating system, hence it has an
+> alias.
+> 
+> For kernelspace the instance order should not matter, since
+> all resources are obtained from the device tree anyway
+> by phandle.
 
-On 3/7/21 8:37 PM, Sudeep Holla wrote:
-> On Wed, Mar 03, 2021 at 10:08:10PM -0800, Sowjanya Komatineni wrote:
->> This patch adds cpu-idle-states and corresponding state nodes to
->> Tegra194 CPU in dt-binding document
->>
-> I see that this platform has PSCI support. Can you care to explain why
-> you need additional DT bindings and driver for PSCI based CPU suspend.
-> Until the reasons are convincing, consider NACK from my side for this
-> driver and DT bindings. You should be really using those bindings and
-> the driver may be with minor changes there.
->
-MCE firmware is in charge of state transition for Tegra194 carmel CPUs.
+Thank you!
 
-For run-time state transitions, need to provide state request along with 
-its residency time to MCE firmware which is running in the background.
+Can we remove the ones we have already for GPIO? 
 
-State min residency is updated into power_state value along with state 
-id that is passed to psci_cpu_suspend_enter
+BTW, It's been on my todo list for a while to start requiring 
+documentation of alias names so we can reject new ones and get rid of 
+some of the unused existing ones. Some platforms have numbered 
+everything...
 
-Also states cross-over idle times need to be provided to MCE firmware.
-
-MCE firmware decides on state transition based on these inputs along 
-with its background work load.
-
-So, Tegra specific CPU idle driver is required mainly to provide 
-cross-over thresholds from DT and run time idle state information to MCE 
-firmware through Tegra MCE communication APIs.
-
-Allowing cross-over threshold through DT allows users to vary idle time 
-thresholds for state transitions based on different use-cases.
-
+Rob
