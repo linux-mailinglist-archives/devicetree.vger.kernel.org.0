@@ -2,110 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 303E6330B9F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 11:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08CF7330BCA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 11:53:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbhCHKqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 05:46:04 -0500
-Received: from mail-lf1-f45.google.com ([209.85.167.45]:41136 "EHLO
-        mail-lf1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbhCHKpw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 05:45:52 -0500
-Received: by mail-lf1-f45.google.com with SMTP id q25so20240671lfc.8;
-        Mon, 08 Mar 2021 02:45:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=scj6590os1eA48Uwmp8IjLfDALuVaAXiJhdeu5i0Feo=;
-        b=hnTbztR3tzFrBMdaWYfEcmGcK9XMPK4/tNZ3yxGWXy5M+KhbzgObxQkdWKXgrEJNsp
-         fb63CRIekSqPDDfcCLx4e5nw2BLtGhaaSriW3CUFHVvYI5q/p9nJE0fCtmmHMc3afmqk
-         VYR4HUBAqpIBp2XQW1sjQP6wLtUENO4yUV9zdU/RGWYbSxywQMV74K6KoFEqek1Vki9y
-         bA1xiM5xjGoaGSzjyVlqk2BHEBgqLtcz/RmTV/grxLtL6BsUkC4nkYZkME94y6RLpWi+
-         QhLjb39b0w65FkFPuqlQB3yH051xbLzvOoGVqTtvrqUk2/Dy457oM6zD+xuOiqapfxuF
-         yyBg==
-X-Gm-Message-State: AOAM5314T+xDwu1D2M3IivHs9bqa+ZG1z7LNocxJiY8PhNGmKvkJEpN+
-        p+QfClfvDx3IyCtejUsAUdc=
-X-Google-Smtp-Source: ABdhPJx3O+o2xGGkev21iCH55Gk+EjK/5NDUKlb0GrPN9ZlLNYR3hNjQmvCkrauFPWbVHOAFbEtkCQ==
-X-Received: by 2002:a19:6109:: with SMTP id v9mr14466171lfb.546.1615200350696;
-        Mon, 08 Mar 2021 02:45:50 -0800 (PST)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
-        by smtp.gmail.com with ESMTPSA id r7sm1349227lfr.230.2021.03.08.02.45.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 02:45:50 -0800 (PST)
-Date:   Mon, 8 Mar 2021 12:45:44 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: [PATCH v3 15/15] MAINTAINERS: Add ROHM BD71815AGW
-Message-ID: <c73fdf1ef1da3538d93035a75029103fdb87b8c8.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+        id S230495AbhCHKwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 05:52:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41662 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231531AbhCHKw1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 05:52:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B1AF3651A5;
+        Mon,  8 Mar 2021 10:52:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615200747;
+        bh=pMZw1TDBbUwEEUX1lkSoLFf+kqIBxMbLfKVSPQF9aaQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Cq/00uHwzgIWa2KhCcr2lkUukJ6RAb7W8ZHe5c0F53BJVsTwVQfIh7wW0MgtqdSrP
+         2Fhdzs40UVdWveB9g+5MsYy3Q7JxWL1qORCs/1qonr8lKj/v1zZ99uwvh6VNZSgbIf
+         KBuPyT6XPnWIu3pF+z64xNcEeyMBUG0pfZ839f3yxPUdNWVhDU3YBG9TihxLQfmJx3
+         wBcMQaAkYeOY9yyebMeZGiLX9hwZdQoIMlLNMokOpbBpOgIRB7Xa9G/S4Rsa/kNg9m
+         I22JRNGXbXB4Ki/nFerZAqxsFTRZ3pQOkv5i4BV0//HiJ3CCcdijtN0rVWMXJmiTlI
+         aU4x6/1455Ujg==
+Received: by mail-ed1-f47.google.com with SMTP id dm26so13918784edb.12;
+        Mon, 08 Mar 2021 02:52:26 -0800 (PST)
+X-Gm-Message-State: AOAM530uJXgA8VZAVtPC7w5+zMZ4WLsJPwaDLMXHcNFmlBwQAoclvB7m
+        3xojD4LK7xymrb/1/tQ1gzWfyBUvd5LvYxHazg==
+X-Google-Smtp-Source: ABdhPJwqrES4G6zQVHpgFQQXFeYCzz2BE4zfV+Kku+1yeWjOOp6BnRWpxzqG37t7y9Uurj0BLHKxt6C58JJCGy7Z2A4=
+X-Received: by 2002:aa7:cf14:: with SMTP id a20mr21354191edy.49.1615200745215;
+ Mon, 08 Mar 2021 02:52:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+References: <20210308070520.40429-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210308070520.40429-1-chunfeng.yun@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 8 Mar 2021 18:52:13 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__rno0A_8WCWHiNv6tLyqDOVe+dVmbJbv7_pDse+BTpSQ@mail.gmail.com>
+Message-ID: <CAAOTY__rno0A_8WCWHiNv6tLyqDOVe+dVmbJbv7_pDse+BTpSQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8173: fix property typo of 'phys' in dsi node
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Cawa Cheng <cawa.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD71815AGW drivers.
-New regulator and GPIO drivers were introduced for these PMICs.
+Hi, Chunfeng:
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B43=E6=9C=888=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:05=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Use 'phys' instead of 'phy'.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d92f85ca831d..ac6eb095ab0c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15452,18 +15452,21 @@ F:	Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
- F:	Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
- F:	drivers/clk/clk-bd718x7.c
- F:	drivers/gpio/gpio-bd70528.c
-+F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
-+F:	drivers/regulator/bd71815-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
-+F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
- F:	include/linux/mfd/rohm-generic.h
--- 
-2.25.4
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+>
+> Fixes: 81ad4dbaf7af ("arm64: dts: mt8173: Add display subsystem related n=
+odes")
+> Cc: stable <stable@vger.kernel.org>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8173.dtsi
+> index 75040a820f0d..003a5653c505 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> @@ -1236,7 +1236,7 @@
+>                                  <&mmsys CLK_MM_DSI1_DIGITAL>,
+>                                  <&mipi_tx1>;
+>                         clock-names =3D "engine", "digital", "hs";
+> -                       phy =3D <&mipi_tx1>;
+> +                       phys =3D <&mipi_tx1>;
+>                         phy-names =3D "dphy";
+>                         status =3D "disabled";
+>                 };
+> --
+> 2.18.0
+>
