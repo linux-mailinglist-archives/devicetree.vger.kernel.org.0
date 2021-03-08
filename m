@@ -2,62 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C9E330981
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 09:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B54233096C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 09:34:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbhCHIjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 03:39:53 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:5459 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231134AbhCHIj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 03:39:26 -0500
-X-UUID: 882cf3f5c8514f5bb7d087b06f9c4651-20210308
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=3NJa3uzGgW7t/Ol4eqhtI3kLpt3c4V8uffCuNuRsK6U=;
-        b=RhEdGgOsTcKpfUqVF4d/bTsT8/kdk/PiI+CCbAlkmhaBh6u2+vEMuTksLkCDiVCet/r7naRfY+Y6jY/WB7NbZJfkmpwZj5bCMxdo7Kdj2YYKiqhT6e5YqbESDOfNx7zXHWvbXmAmi2uBc7Qu+AH7UMQT7OuhT0AtybDg4ntPR9M=;
-X-UUID: 882cf3f5c8514f5bb7d087b06f9c4651-20210308
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 293103222; Mon, 08 Mar 2021 16:39:22 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS32N1.mediatek.inc (172.27.4.71) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 8 Mar 2021 16:39:18 +0800
-Received: from localhost.localdomain (10.15.20.246) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 8 Mar 2021 16:39:17 +0800
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     peng zhou <Peng.Zhou@mediatek.com>,
-        wulin li <Wulin.Li@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
-        Mason Zhang <Mason.Zhang@mediatek.com>,
-        Peng Zhou <peng.zhou@mediatek.com>
-Subject: [PATCH v2 0/4] MediaTek eMMC inline encryption support 
-Date:   Mon, 8 Mar 2021 16:33:27 +0800
-Message-ID: <20210308083327.19184-1-mason.zhang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S229753AbhCHIeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 03:34:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36186 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229955AbhCHIdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 03:33:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93373C06174A
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 00:33:50 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lJBKg-00019l-4L; Mon, 08 Mar 2021 09:33:42 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lJBKf-0005o3-Hx; Mon, 08 Mar 2021 09:33:41 +0100
+Date:   Mon, 8 Mar 2021 09:33:41 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Heiko Schocher <hs@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: add flexspi node
+Message-ID: <20210308083341.6mublqva6lm777gn@pengutronix.de>
+References: <20210308064046.1576267-1-hs@denx.de>
+ <20210308064046.1576267-2-hs@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 4CD92FF2C887C111FC1B3CD72AAAAD8F46F2D17F7BBC465BED3687D2D61F6B332000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308064046.1576267-2-hs@denx.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:09:54 up 95 days, 22:16, 39 users,  load average: 0.02, 0.05,
+ 0.08
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogUGVuZyBaaG91IDxwZW5nLnpob3VAbWVkaWF0ZWsuY29tPg0KDQpIZWxsbywNCg0KTWVk
-aWF0ZWsgZU1NQyBoYXJkd2FyZSBJUCBoYXMgSW5saW5lIENyeXB0byBFbmdpbmUgKElDRSksDQp3
-ZSBzdXBwb3J0IGlubGluZSBlbmNyeXB0aW9uIG5vdy4NCg0KRm9yIElubGluZSBDcnlwdG8gRW5n
-aW5lIChJQ0UpLCBzZWU6DQotIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWFybS1tc20v
-MjAyMTAxMjYwMDE0NTYuMzgyOTg5LTItZWJpZ2dlcnNAa2VybmVsLm9yZy9ULw0KDQpDaGFuZ2Vk
-IGluIHYyOg0KLSBmaXggZW1haWwgZm9ybWF0DQotIGNoYW5nZSBzb21lIGRlc2NyaXB0aW9uDQoN
-ClBlbmcgWmhvdSAoNCk6DQogIG1tYzogTWVkaWF0ZWs6IGFkZCBJbmxpbmUgQ3J5cHRvIEVuZ2lu
-ZSBzdXBwb3J0DQogIG1tYzogTWVkaWF0ZWs6IGVuYWJsZSBjcnlwdG8gaGFyZHdhcmUgZW5naW5l
-DQogIGFybTY0OiBkdHM6IE1lZGlhdGVrOiBNVDY3Nzk6IGFkZCBtbWMgbm9kZSB3aXRoIElDRSBz
-ZXR0aW5nDQogIGR0LWJpbmdkaW5nczogbW1jOiBNZWRpYXRlazogYWRkIElDRSBjbG9jaw0KDQog
-Li4uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL210ay1zZC55YW1sICAgICAgIHwgIDYgKystDQog
-YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSAgICAgIHwgMTQgKysrKysr
-Kw0KIGRyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMgICAgICAgICAgICAgICAgICAgICB8IDQyICsr
-KysrKysrKysrKysrKysrKy0NCiAzIGZpbGVzIGNoYW5nZWQsIDU5IGluc2VydGlvbnMoKyksIDMg
-ZGVsZXRpb25zKC0pDQoNCi0tIA0KMi4xOC4wDQo=
+Hi Heiko,
 
+On 21-03-08 07:40, Heiko Schocher wrote:
+> add node for the flexspi modul on imx8mp.
+> 
+> Signed-off-by: Heiko Schocher <hs@denx.de>
+> 
+> ---
+> 
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index c7523fd4eae9b..086cfbbef43d7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -36,6 +36,7 @@ aliases {
+>  		serial1 = &uart2;
+>  		serial2 = &uart3;
+>  		serial3 = &uart4;
+> +		spi0 = &flexspi;
+>  	};
+>  
+>  	cpus {
+> @@ -744,6 +745,21 @@ usdhc3: mmc@30b60000 {
+>  				status = "disabled";
+>  			};
+>  
+> +			flexspi: spi@30bb0000 {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+
+This properties can moved to end just in front of the status property
+which should be the last one.
+
+> +				compatible = "nxp,imx8mm-fspi";
+
+Please add a own compatible "nxp,imx8mp-fspi" to the driver which should
+be the first patch in your series.
+
+Also the compatible is always the first property.
+
+Regards,
+  Marco
+
+> +				reg = <0x30bb0000 0x10000>, <0x8000000 0x10000000>;
+> +				reg-names = "fspi_base", "fspi_mmap";
+> +				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MP_CLK_QSPI_ROOT>,
+> +					 <&clk IMX8MP_CLK_QSPI_ROOT>;
+> +				clock-names = "fspi", "fspi_en";
+> +				assigned-clock-rates = <80000000>;
+> +				assigned-clocks = <&clk IMX8MP_CLK_QSPI>;
+> +				status = "disabled";
+> +			};
+> +
+>  			sdma1: dma-controller@30bd0000 {
+>  				compatible = "fsl,imx8mp-sdma", "fsl,imx8mq-sdma";
+>  				reg = <0x30bd0000 0x10000>;
+> -- 
+> 2.29.2
+> 
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
