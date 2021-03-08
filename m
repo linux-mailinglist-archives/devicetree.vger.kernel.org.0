@@ -2,203 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF683312ED
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 17:09:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CED7F331362
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 17:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230440AbhCHQId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 11:08:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhCHQIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 11:08:19 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E60EC06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 08:08:19 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id x7so4027230pfi.7
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 08:08:19 -0800 (PST)
+        id S229818AbhCHQ23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 11:28:29 -0500
+Received: from mail-bn8nam12on2081.outbound.protection.outlook.com ([40.107.237.81]:48736
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230373AbhCHQ2F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 11:28:05 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SuPfG89nEwN8JRoMeNI3xGrx1f5qhKwooSoFUKs7IvVMNWGjX/Naw/aj/W+NhFRUDhZOvFr/b3Kop0AXsTyOIzwN3OPcG4S09e+ZOUNIkwbn+l9AyT53ptqqU7StVF0nryzmuBhSBTpX9ZQPM/m8leNQhysnvweolcBpeEh7MzR2wV1KJlfJfDNlkuAH00pLeutRfO2DUUKSZSjFjvR2A+HZrLD0Na92adRkaeNRPIV3603NX652PV3wXWdkIHaUEagqWpYbhz6HSmCoUprUNImPBZUdTK6krdaGH8haqu66l9At66O6rnjc13lY2wdkuNmKzXq0ECESCdVUMu6ZUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XqcvAPchPYsGPID8AAYJAxpKIKMhTPMzOKpej+SKHaM=;
+ b=EWV25bQIyACrLPy2VF2ph4t/DJIzCZdiDVXy3VFvTc7Y8It2JiHdXllvIVtk3BaJg5Ghcj+reert7kMuwzGIrTuRZCNBDmkT3Z6nAQnJyQYIkPT6F5D+7Hp51WS2/klfKMF03RwHECw1nDGHgt4AiruDovz9EtAUXi+N01vex8+54AMuDVs1uMWKRGLtsA3w0TTsJHUqODPEFuzv0A/9vPKfPBN8eiBkkYp4cLck/WQCrDdTgZ5+nYeIIrxzpHU7GK8ntxRIMsSka7A0j2N9Efsam4uY7k+292pgm/BqMnJWfQYHCuPVqCEO46NOHnOFX8w3/oZzrcjy1hGRxG5u+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lobtpJCpR9+X4zgUOnSRpUZhfHE1c0u3syRtwhM3EVQ=;
-        b=ImYHvTKi3PHy2BgVft3aje9oZSfDXGjYp0D+XteiFcjnsHN+2x4otZclz2toE9yohQ
-         GoDlhDTe4hCetTzuunEEX7j1t1pQwEbuQOkSzhZm0E0G65DsZ1KQpSpapHpCJ7Cv1YO7
-         yRcdjlV7DnGVonKC0kL6IoM2jBaqRjJYlm9AYX0BibicWEsyJ3XbxT107qzeJ9TcdoXd
-         AV4Dit6sLOTRp2LDDo2HB5htuAoyd2gBZ9hNeIQGAt39mWfbW38F89iLK+PGjj8PNVhw
-         cHGibRWRzlohe5agPfADi4MkdwDICoOaN2TVgzSzriatQUqkn1c07iugkCuPgM/MMHcp
-         1dHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lobtpJCpR9+X4zgUOnSRpUZhfHE1c0u3syRtwhM3EVQ=;
-        b=fXQcsnV7QFfH+JRoDWeLkvcL6juAV2qAR05YY650zsQGcb8PYBTxWMHrpY3K5d/GQe
-         ahHUSJ1rt+wOI2CZ4gGUDsBmp1+1D3kkfN66XfD4PPPJzZTvTPINbl44u0b5YYZfbSA4
-         rBq6n2umrfJqPRleif/uD5JzRZa+4z3J6gn3+yj/cjfTDhxYwgs0tC0itWrLqLgC4Lso
-         MvbnY55lStORC7/W/2kfLtZ4xRwycbFViTUqGbHdXyGdWmjUPK+pGFCoFpjtppqXRAm1
-         a2tnt4qqhhP70Vv239l9l7WWkK2q1cR1JzLMHzUETCBLfZaIYfzfzqVPARFO20XQRPFJ
-         Uomg==
-X-Gm-Message-State: AOAM530ln9Bj02G7A+SCumE0yHYH1H+1x3M3QkyL003y8CZQSadoqBmt
-        LR1J3i332xOasq7kLZfn2tFyBg==
-X-Google-Smtp-Source: ABdhPJyIK0+MeeLoCL/a77iQoCc0XuYCgkv7q5q2xO16I6AxBYiH/ujFOfyJWHujcLxV4HhtuQ3iIA==
-X-Received: by 2002:a63:f415:: with SMTP id g21mr2748127pgi.227.1615219698439;
-        Mon, 08 Mar 2021 08:08:18 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id k5sm11622622pjl.50.2021.03.08.08.08.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 08:08:17 -0800 (PST)
-Date:   Mon, 8 Mar 2021 09:08:15 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     peng.fan@oss.nxp.com
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        o.rempel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
-        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
-Message-ID: <20210308160815.GB3977653@xps15>
-References: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XqcvAPchPYsGPID8AAYJAxpKIKMhTPMzOKpej+SKHaM=;
+ b=aCPdsiLCq3mbeG6/UJLX5usNemaA3ahQfxykYbW3EbW5f9QxUnIFYZD9Tjfm9nKKQKDBjL4sBWfsZBaET8TAuP3vfHuwWC8qh+brIDDHWSqq7l6DukWfxPcJLBZyQuVOTcApc3BlAMNCyDJnrM4DTQu7lrOhZBeZZvsJZpt95ro=
+Received: from SA0PR13CA0014.namprd13.prod.outlook.com (2603:10b6:806:130::19)
+ by MWHPR02MB2895.namprd02.prod.outlook.com (2603:10b6:300:108::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.18; Mon, 8 Mar
+ 2021 16:28:01 +0000
+Received: from SN1NAM02FT032.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:130:cafe::8c) by SA0PR13CA0014.outlook.office365.com
+ (2603:10b6:806:130::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.16 via Frontend
+ Transport; Mon, 8 Mar 2021 16:28:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT032.mail.protection.outlook.com (10.152.72.126) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3912.25 via Frontend Transport; Mon, 8 Mar 2021 16:28:01 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 8 Mar 2021 08:27:57 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Mon, 8 Mar 2021 08:27:57 -0800
+Envelope-to: linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ krzk@kernel.org,
+ laurent.pinchart@ideasonboard.com,
+ robh+dt@kernel.org,
+ quanyang.wang@windriver.com
+Received: from [172.30.17.109] (port=38344)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1lJIjd-0002mu-BE; Mon, 08 Mar 2021 08:27:57 -0800
+Subject: Re: [PATCH] arm64: dts: zynqmp: Remove si5328 device nodes
+To:     <quanyang.wang@windriver.com>, Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Krzysztof Kozlowski <krzk@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210308115437.2232847-1-quanyang.wang@windriver.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <66e639c2-a1da-8ca5-2031-fe37eb14d740@xilinx.com>
+Date:   Mon, 8 Mar 2021 17:27:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <20210308115437.2232847-1-quanyang.wang@windriver.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6b761914-eec4-4d02-2d9e-08d8e24f244a
+X-MS-TrafficTypeDiagnostic: MWHPR02MB2895:
+X-Microsoft-Antispam-PRVS: <MWHPR02MB289525E384C75F605060B685C6939@MWHPR02MB2895.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mKdrqRFhz6tz/n94AkCtYU69uzoOPJh4OWJJKW5UevcH5di0tqRPcX3I3Q17F/TDoN4KcGP6le/OM//igGdFlEDHbGGrBwqxNfX9WhIma9urcg0xmcULfPSVItIjPmqaXJT0QBXXB3MoOlTG/yZEHTzYnDO8Gm0c7Uu0W3Vr/zxSKhSViPMM9KY2PPhYOoFWoHcsi56y9k65kv/9Kg077+LJsymVEcC0xT3KSUxBBq1kDh/d8jHbrsC+h2At3rmbqLwlp16RoWonsjJ9VnL8V8WCQqei+2fFcKCdlgIILliTY2K/XrdqpECi3Q8ivd0yT+sfkb95H/Okm192QOC2sj5aPvJLzmX0ov1MOoqYHLFFCS2SKzLbYkFZWXm6WuZmbJkVPbPf9dIfJYPgg2HF2isaXXqmEiYO6uXV0X8k/YoKotk7TAwxbHMBOle+RUK363pGGUNsmgdZwwMI+2MyOP4rn/y3cUAnmh4ABJQ+zDT4vCtnipJXjdhPZAFf/V1fEkroQfEkifyeYVj+9tVPPbLUU3jFhEuydv2tZWMDCU4ylVHFiGUGpQduWiyCgHe2/UIi9u8uJLJLx61ScqozFHJa9oglTRmCwXR9AKeSnPG+o45+8uhYjvBUu4tVdHErc0g1hiN1TnTKv/r10nlFdp/qwWlYxBCImU2tEtLD8gJFfv98531tK5jWxZ8ptMjneAtSVGgvjkncrYeTIQ2wvQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(396003)(376002)(36840700001)(46966006)(2906002)(26005)(478600001)(186003)(31686004)(9786002)(426003)(70206006)(5660300002)(31696002)(36906005)(8936002)(44832011)(316002)(36756003)(53546011)(82740400003)(356005)(70586007)(7636003)(6666004)(83380400001)(336012)(4326008)(47076005)(8676002)(54906003)(110136005)(82310400003)(36860700001)(2616005)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2021 16:28:01.1250
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b761914-eec4-4d02-2d9e-08d8e24f244a
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT032.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2895
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 06, 2021 at 07:24:15PM +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> V13:
->  Add R-b tag from Rob for patch 1.
->  Drop the reserved memory node from patch 2 per Rob's comment.
->  Mathieu, Bjorn
->   Only patch 2 not have R-b/A-b tag, but since Rob's only has a minor comment, and
->   addressed in this version, is it ok for you take into remoteproc next branch?
->   Thanks.
 
-As much as I want to, there is no way to move forward without an acknowledgement
-from Rob.
 
+On 3/8/21 12:54 PM, quanyang.wang@windriver.com wrote:
+> From: Quanyang Wang <quanyang.wang@windriver.com>
 > 
-> V12:
->  Add maxItems to avoid dt_bindings_check fail
->  Rebased on top of linux-next
+> The function of_i2c_get_board_info will call of_modalias_node to check
+> if a device_node contains "compatible" string. But for the device si5328
+> at zcu102/zcu106 boards, there is no proper DT bindings for them. So remove
+> si5328 device nodes from dts files to eliminate the error info in the boot
+> message:
 > 
-> V11:
->  Per Rob's comments, fix memory-region in patch 1/10
->  Rebased on top of Linux-next
+> i2c i2c-10: of_i2c: modalias failure on /axi/i2c@ff030000/i2c-mux@74/i2c@4/clock-generator@69
+> i2c i2c-10: Failed to create I2C device for /axi/i2c@ff030000/i2c-mux@74/i2c@4/clock-generator@69
 > 
-> V10:
->  Per Rob's comments, fix patch 1/10
+> Signed-off-by: Quanyang Wang <quanyang.wang@windriver.com>
+> ---
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 20 +------------------
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 20 +------------------
+>  2 files changed, 2 insertions(+), 38 deletions(-)
 > 
-> V9:
->  Per Mathieu's comments,
->    update the tile of yaml in patch 2/10
->    update the Kconfig and MODULE_DESCRIPTION, I merge this change in patch 8/10,
->    since this is a minor change, I still keep Mathieu's R-b tag. If any objection, I could remove.
->    Add R-b tag in Patch 10/10
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> index 12e8bd48dc8c..eca6c2de84a7 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> @@ -580,25 +580,7 @@ i2c@4 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			reg = <4>;
+> -			si5328: clock-generator@69 {/* SI5328 - u20 */
+> -				reg = <0x69>;
+> -				/*
+> -				 * Chip has interrupt present connected to PL
+> -				 * interrupt-parent = <&>;
+> -				 * interrupts = <>;
+> -				 */
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -				#clock-cells = <1>;
+> -				clocks = <&refhdmi>;
+> -				clock-names = "xtal";
+> -				clock-output-names = "si5328";
+> -
+> -				si5328_clk: clk0@0 {
+> -					reg = <0>;
+> -					clock-frequency = <27000000>;
+> -				};
+> -			};
+> +			/* SI5328 - u20 */
+>  		};
+>  		/* 5 - 7 unconnected */
+>  	};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> index 18771e868399..eff7c6447087 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> @@ -581,25 +581,7 @@ i2c@4 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			reg = <4>;
+> -			si5328: clock-generator@69 {/* SI5328 - u20 */
+> -				reg = <0x69>;
+> -				/*
+> -				 * Chip has interrupt present connected to PL
+> -				 * interrupt-parent = <&>;
+> -				 * interrupts = <>;
+> -				 */
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -				#clock-cells = <1>;
+> -				clocks = <&refhdmi>;
+> -				clock-names = "xtal";
+> -				clock-output-names = "si5328";
+> -
+> -				si5328_clk: clk0@0 {
+> -					reg = <0>;
+> -					clock-frequency = <27000000>;
+> -				};
+> -			};
+> +			/* SI5328 - u20 */
+>  		};
+>  		i2c@5 {
+>  			#address-cells = <1>;
 > 
->  Rob, please help review patch 1/10 and 2/10
-> 
-> V8:
->  Address sparse warning in patch 4/10 reported by kernel test robot
-> 
-> V7:
->  Add R-b tag from Mathieu
->  vdevbuffer->vdev0buffer in patch 1/10, 7/10
->  correct err msg and shutdown seq per Mathieu's comments in patch 10/10
->  Hope this version is ok to be merged.
->  
-> V6:
->  Add R-b tag from Mathieu
->  Convert imx-rproc.txt to yaml and add dt-bindings support for i.MX8MQ/M, patch 1/10 2/10
->  No other changes.
-> 
-> V5:
->  Apply on Linux next
->  Add V5 subject prefix
->  Add R-b tag from Bjorn for 1/8, 2/8, 3/8
->  https://patchwork.kernel.org/project/linux-remoteproc/cover/20201229033019.25899-1-peng.fan@nxp.com/
-> 
-> V4:
->  According to Bjorn's comments, add is_iomem for da to va usage
->  1/8, 2/8 is new patch
->  3/8, follow Bjorn's comments to correct/update the err msg.
->  6/8, new patch
->  8/8, use dev_err_probe to simplify code, use queue_work instead schedule_delayed_work
-> 
-> V3:
->  Since I was quite busy in the past days, V3 is late
->  Rebased on Linux-next
->  Add R-b tags
->  1/7: Add R-b tag of Mathieu, add comments
->  4/7: Typo fix
->  5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
->  6/7: Add R-b tag of Mathieu
->  7/7: Add comment for vqid << 16, drop unneeded timeout settings of mailbox
->       Use queue_work instead of schedule_delayed_work
->       free mbox channels when remove
->  https://lkml.org/lkml/2020/12/4/82
-> 
-> V2:
->  Rebased on linux-next
->  Dropped early boot feature to make patchset simple.
->  Drop rsc-da
->  https://patchwork.kernel.org/project/linux-remoteproc/cover/20200927064131.24101-1-peng.fan@nxp.com/
-> 
-> V1:
->  https://patchwork.kernel.org/cover/11682461/
-> 
-> This patchset is to support i.MX8MQ/M coproc.
-> The early boot feature was dropped to make the patchset small in V2.
-> 
-> Since i.MX specific TCM memory requirement, add elf platform hook.
-> Several patches have got reviewed by Oleksij and Mathieu in v1.
-> 
-> 
-> Peng Fan (10):
->   dt-bindings: remoteproc: convert imx rproc bindings to json-schema
->   dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
->   remoteproc: introduce is_iomem to rproc_mem_entry
->   remoteproc: add is_iomem to da_to_va
->   remoteproc: imx_rproc: correct err message
->   remoteproc: imx_rproc: use devm_ioremap
->   remoteproc: imx_rproc: add i.MX specific parse fw hook
->   remoteproc: imx_rproc: support i.MX8MQ/M
->   remoteproc: imx_rproc: ignore mapping vdev regions
->   remoteproc: imx_proc: enable virtio/mailbox
-> 
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  90 ++++++
->  .../bindings/remoteproc/imx-rproc.txt         |  33 ---
->  drivers/remoteproc/Kconfig                    |   6 +-
->  drivers/remoteproc/imx_rproc.c                | 262 +++++++++++++++++-
->  drivers/remoteproc/ingenic_rproc.c            |   2 +-
->  drivers/remoteproc/keystone_remoteproc.c      |   2 +-
->  drivers/remoteproc/mtk_scp.c                  |   6 +-
->  drivers/remoteproc/omap_remoteproc.c          |   2 +-
->  drivers/remoteproc/pru_rproc.c                |   2 +-
->  drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
->  drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
->  drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
->  drivers/remoteproc/qcom_wcnss.c               |   2 +-
->  drivers/remoteproc/remoteproc_core.c          |   7 +-
->  drivers/remoteproc/remoteproc_coredump.c      |   8 +-
->  drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
->  drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
->  drivers/remoteproc/remoteproc_internal.h      |   2 +-
->  drivers/remoteproc/st_slim_rproc.c            |   2 +-
->  drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
->  drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
->  drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
->  include/linux/remoteproc.h                    |   4 +-
->  23 files changed, 393 insertions(+), 72 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> 
-> -- 
-> 2.30.0
-> 
+
+Applied.
+M
