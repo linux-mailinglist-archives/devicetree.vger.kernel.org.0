@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2593331503
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C660331504
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:40:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbhCHRjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 12:39:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
+        id S229469AbhCHRjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 12:39:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhCHRjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:39:05 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA68C06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 09:39:04 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id o10so6856373pgg.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 09:39:04 -0800 (PST)
+        with ESMTP id S229813AbhCHRjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:39:06 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD74C06174A
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 09:39:05 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id q6-20020a17090a4306b02900c42a012202so3549849pjg.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 09:39:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VhL8CwHew6ht4lQQGN+2YnQ680r63GWwQpYWdHTYd2c=;
-        b=u92iHKJa65nDaVT+BIljBfu5cjEKF4fVI6awg03P/nB1+f4OLV+Yb9DpGlUilQnXuB
-         YD55kOVk81Eqn0cHHypYAujwfj5Ig6HKnASMDUp1DiRGXimqGN1S/uEwORlyUHkeHRL6
-         NMZpZromHwzSszWr4sHLB/h2Di/QVPKLZ+DH6+5Wg8NVTovkJvD3F/YruePD7T0ZtIwD
-         h69wupT3i9suTfchMV5Lv6iYxC/DCVpW5ZCq6KsIEMZ7Uvok3qwEXXjAB5eF593aVoKS
-         2mls0KmHuu01Fz/dQWEU0sRDv0cX7u+44d8Z7c8bdYYBOCE65IiFk0CRNsMcR4Cokif+
-         ZOAA==
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=hUCvK/I+zgUewNk8E2scyHBkcJ9RAyOMA/sKBoxnDw4=;
+        b=fHXmGRBN1mCiws4dt5VljccU5Kx8Q2GwWwzjmlREjQv9f31rgqothtHBT2MZCaAGP8
+         x+m4Ra8lvqyZIXh57Ku8/zGff/aucTCiELnx6RmIqQaEqUDeZ2eqd1mdOSbPxKtZUt7L
+         hGgUS0n2KQ16nEwyVGaGuyx/FwFbla8rIHJX/SCMge2wntOR+40FI691JTb7MqdFC0XG
+         6PmH0sz1zzWZJ5tvnUT2vWsiYmKArqehM2VwzWnNXRxpRTSMeVLiJXZYYz6EqhwdcwQ5
+         5y86NSDN9kGCc8wMghxt2gGaD4vvK1sCAktXgmjHACGgARLMPKtvoosmSnA5Nqg86Vcs
+         SHdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VhL8CwHew6ht4lQQGN+2YnQ680r63GWwQpYWdHTYd2c=;
-        b=Uar+AM1nL8cSVEM0wKFyhMhuWfKoJ7Zqv0cts+d6yKRl+U8mLCkdtOCKb9HAUwTSw7
-         dQ923JnJA3vKWyeQnCeNTbnv/ei3HM9waac9ZibLeaTNvO4KcuDq5BlgEj7k76iewao5
-         5qVcfxXWxX3xxktJRx/IGPY8Mc4xWvt/xnIacNDLByorD7eZcYZGkxkPpQ9wg0FNfMLy
-         jtoSZe6ohZHzBQsfm0HXyHAC7mJKzFi9wnyFmiyNKRbtXgAFvFqZpgO8PRL/veqWlD/m
-         LQel7fxEKYMMqK2TcY3ZPuJBYSoL3tbBrROw5Pln3Iua5lYJubn4pOVljmoFQD5P8rb0
-         wxKA==
-X-Gm-Message-State: AOAM533v2pe81qH4clgaCoi1CXxCW7T9IaIZV91PkvebxFVictHPz/6h
-        4m69iCKbgf3Hl93sPEGou9LbHpV7OKNT1w==
-X-Google-Smtp-Source: ABdhPJxT6E1f5pLo03A35kx0a+5+z9qTd7Bljn2q+ElBTRr2tBVQ/12crRdOdo8HY3JjXKbCia6N2A==
-X-Received: by 2002:aa7:86d9:0:b029:1ef:4f40:4bba with SMTP id h25-20020aa786d90000b02901ef4f404bbamr18884738pfo.54.1615225144333;
-        Mon, 08 Mar 2021 09:39:04 -0800 (PST)
+        bh=hUCvK/I+zgUewNk8E2scyHBkcJ9RAyOMA/sKBoxnDw4=;
+        b=mlIawlGixHN+h1VAQMzgv5DwERW4t8ZW0FHjMOTec7QYdOMeqcf865hiZPSqtKPkB3
+         dqfyigrsjDxOeV44RnOqHT/OGa0iKZPWNI5gxWuC91We1owz+Y/XFytqPtiZ1jTnoEVY
+         17N5ncxx9leh8UzE2iEGK8AqZMgagx2GJ9xJBg05nwCvzBKnRWpc+VRcc92AnIDcwKjl
+         schtheGLHr/NMraFq9HCilK4rDZsPTcz6O3KlqpOp5AWp4UXMEjgtZ1L5wfxZSmSyeRw
+         KUrMTZhBokqVcVbEGDcS6fnL4/S73lVmVGEn9h46glhI+2rhG6fiknciCshrr25G1e5l
+         11Mw==
+X-Gm-Message-State: AOAM531EVPJYozdZsi+qbuin5ceYRQMZtCaHX9RQtDFw+6+E5bVu3i1K
+        YQr7y7Se1HO5hszga9322+LPC2ayHze0hw==
+X-Google-Smtp-Source: ABdhPJzC2/eu6E4CQbyADDmbk/3ijOnoW08IMivrr8a2H9j48dNkZ2wVa6e6b3tyZbILc7r8PR300w==
+X-Received: by 2002:a17:90a:658b:: with SMTP id k11mr16781689pjj.92.1615225145512;
+        Mon, 08 Mar 2021 09:39:05 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id k3sm10120911pgq.21.2021.03.08.09.39.03
+        by smtp.gmail.com with ESMTPSA id t18sm5226942pfq.147.2021.03.08.09.39.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 09:39:03 -0800 (PST)
+        Mon, 08 Mar 2021 09:39:05 -0800 (PST)
 From:   Kevin Hilman <khilman@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Stein <alexander.stein@mailbox.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] arm64: dts: amlogic: Assign a fixed index to mmc devices
-Date:   Mon,  8 Mar 2021 09:39:02 -0800
-Message-Id: <161522513396.14471.9490936640361776258.b4-ty@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for the Minix NEO U9-H
+Date:   Mon,  8 Mar 2021 09:39:03 -0800
+Message-Id: <161522513396.14471.6052884995015954642.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210203192824.854491-1-alexander.stein@mailbox.org>
-References: <20210127230852.66686-1-alexander.stein@mailbox.org> <20210203192824.854491-1-alexander.stein@mailbox.org>
+In-Reply-To: <20210201210508.1528-1-christianshewitt@gmail.com>
+References: <20210201210508.1528-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -68,21 +66,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Feb 2021 20:28:24 +0100, Alexander Stein wrote:
-> Recently introduced async probe on mmc devices can shuffle block IDs.
-> Pin them to fixed values to ease booting in environments where UUIDs
-> are not practical. Use newly introduced aliases for mmcblk devices from [1].
-> [1]
-> https://patchwork.kernel.org/patch/11747669/
-> 
-> Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.")
-> 
-> [...]
+On Mon, 1 Feb 2021 21:05:07 +0000, Christian Hewitt wrote:
+> The Minix NEO U9-H is a small form-factor Android STB based on the
+> Amlogic Q200 reference board with an S912-H chip.
 
 Applied, thanks!
 
-[1/1] arm64: dts: amlogic: Assign a fixed index to mmc devices
-      commit: 7827db7f6141fda9af4b07864cab0c10398affff
+[1/2] dt-bindings: arm: amlogic: add support for the Minix NEO U9-H
+      commit: 15c4dd131ce576f0150fadf7a3264c865b051eba
+[2/2] arm64: dts: meson: add initial device-tree for Minix NEO U9-H
+      commit: 0e9fed92c67cb886b3308df4890126d75db2ad67
 
 Best regards,
 -- 
