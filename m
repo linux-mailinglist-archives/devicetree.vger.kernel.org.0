@@ -2,135 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B54233096C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 09:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F941330975
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 09:36:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbhCHIeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 03:34:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36186 "EHLO
+        id S230179AbhCHIgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 03:36:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbhCHIdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 03:33:51 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93373C06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 00:33:50 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lJBKg-00019l-4L; Mon, 08 Mar 2021 09:33:42 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lJBKf-0005o3-Hx; Mon, 08 Mar 2021 09:33:41 +0100
-Date:   Mon, 8 Mar 2021 09:33:41 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Heiko Schocher <hs@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Teresa Remmet <t.remmet@phytec.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: add flexspi node
-Message-ID: <20210308083341.6mublqva6lm777gn@pengutronix.de>
-References: <20210308064046.1576267-1-hs@denx.de>
- <20210308064046.1576267-2-hs@denx.de>
+        with ESMTP id S230125AbhCHIfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 03:35:40 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00CEC06174A;
+        Mon,  8 Mar 2021 00:35:39 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5E2648A3;
+        Mon,  8 Mar 2021 09:35:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1615192536;
+        bh=WDZupoFFnNhIFYFmfE1Z4g7GUN7Xt55IBvQe7FlXbQ4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uj0J9hgv2jAXrd8A7CnIhzAF38nCavZwtt2m5BUXoZ1XPuFFcxHRtY8EDaXFcQaVp
+         nsyDn4imRpsTHZjiePZaTS9RwncNCgAX/1lm7/snYa5gFIKnAF0q6YaZLv7TYvbfpi
+         FX/sInY8OgUHTsldIxTos9dXmL98SZk9f3KLKJ0U=
+Date:   Mon, 8 Mar 2021 10:35:04 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     quanyang.wang@windriver.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: zynqmp: Add compatible strings for si5328
+Message-ID: <YEXhuGeMoXbfWI6I@pendragon.ideasonboard.com>
+References: <20210308070843.2096992-1-quanyang.wang@windriver.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210308064046.1576267-2-hs@denx.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:09:54 up 95 days, 22:16, 39 users,  load average: 0.02, 0.05,
- 0.08
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210308070843.2096992-1-quanyang.wang@windriver.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Hi Quanyang,
 
-On 21-03-08 07:40, Heiko Schocher wrote:
-> add node for the flexspi modul on imx8mp.
+Thank you for the patch.
+
+On Mon, Mar 08, 2021 at 03:08:43PM +0800, quanyang.wang@windriver.com wrote:
+> From: Quanyang Wang <quanyang.wang@windriver.com>
 > 
-> Signed-off-by: Heiko Schocher <hs@denx.de>
+> The function of_i2c_get_board_info will call of_modalias_node to check
+> if a device_node contains "compatible" string. So let's assign the
+> proper string "silabs,si5328" to clock-generator@69's compatible
+> property to eliminate the error info as below:
+
+As far as I can tell, "silabs,si5328" isn't documented in
+Documentation/devicetree/bindings/. We need DT bindings before making
+use of the compatible string.
+
+> i2c i2c-10: of_i2c: modalias failure on /axi/i2c@ff030000/i2c-mux@74/i2c@4/clock-generator@69
+> i2c i2c-10: Failed to create I2C device for /axi/i2c@ff030000/i2c-mux@74/i2c@4/clock-generator@69
 > 
+> Fixes: 82a7ebf00224 ("arm64: dts: zynqmp: Add DT description for si5328 for zcu102/zcu106")
+> Signed-off-by: Quanyang Wang <quanyang.wang@windriver.com>
 > ---
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts | 1 +
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts | 1 +
+>  2 files changed, 2 insertions(+)
 > 
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index c7523fd4eae9b..086cfbbef43d7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -36,6 +36,7 @@ aliases {
->  		serial1 = &uart2;
->  		serial2 = &uart3;
->  		serial3 = &uart4;
-> +		spi0 = &flexspi;
->  	};
->  
->  	cpus {
-> @@ -744,6 +745,21 @@ usdhc3: mmc@30b60000 {
->  				status = "disabled";
->  			};
->  
-> +			flexspi: spi@30bb0000 {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-
-This properties can moved to end just in front of the status property
-which should be the last one.
-
-> +				compatible = "nxp,imx8mm-fspi";
-
-Please add a own compatible "nxp,imx8mp-fspi" to the driver which should
-be the first patch in your series.
-
-Also the compatible is always the first property.
-
-Regards,
-  Marco
-
-> +				reg = <0x30bb0000 0x10000>, <0x8000000 0x10000000>;
-> +				reg-names = "fspi_base", "fspi_mmap";
-> +				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MP_CLK_QSPI_ROOT>,
-> +					 <&clk IMX8MP_CLK_QSPI_ROOT>;
-> +				clock-names = "fspi", "fspi_en";
-> +				assigned-clock-rates = <80000000>;
-> +				assigned-clocks = <&clk IMX8MP_CLK_QSPI>;
-> +				status = "disabled";
-> +			};
-> +
->  			sdma1: dma-controller@30bd0000 {
->  				compatible = "fsl,imx8mp-sdma", "fsl,imx8mq-sdma";
->  				reg = <0x30bd0000 0x10000>;
-> -- 
-> 2.29.2
-> 
-> 
-> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> index 12e8bd48dc8c..a73841ad24ce 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> @@ -590,6 +590,7 @@ si5328: clock-generator@69 {/* SI5328 - u20 */
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+>  				#clock-cells = <1>;
+> +				compatible = "silabs,si5328";
+>  				clocks = <&refhdmi>;
+>  				clock-names = "xtal";
+>  				clock-output-names = "si5328";
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> index 18771e868399..24ce64364d63 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> @@ -591,6 +591,7 @@ si5328: clock-generator@69 {/* SI5328 - u20 */
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+>  				#clock-cells = <1>;
+> +				compatible = "silabs,si5328";
+>  				clocks = <&refhdmi>;
+>  				clock-names = "xtal";
+>  				clock-output-names = "si5328";
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Regards,
+
+Laurent Pinchart
