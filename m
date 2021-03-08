@@ -2,105 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E81613311F7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73747331257
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 16:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbhCHPTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 10:19:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231376AbhCHPSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 10:18:36 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E08C061760;
-        Mon,  8 Mar 2021 07:18:35 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 9B8A91F4512F
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id DDB624800D9; Mon,  8 Mar 2021 16:18:30 +0100 (CET)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Ian Ray <ian.ray@ge.com>
-Subject: [PATCHv2 4/4] ARM: dts: imx: bx50v3: Define GPIO line names
-Date:   Mon,  8 Mar 2021 16:18:29 +0100
-Message-Id: <20210308151829.60056-5-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210308151829.60056-1-sebastian.reichel@collabora.com>
-References: <20210308151829.60056-1-sebastian.reichel@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229775AbhCHPfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 10:35:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33018 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229821AbhCHPfY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 10:35:24 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7747565208;
+        Mon,  8 Mar 2021 15:35:23 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lJHuj-000MeL-Ec; Mon, 08 Mar 2021 15:35:21 +0000
+Date:   Mon, 08 Mar 2021 15:35:20 +0000
+Message-ID: <871rcpzmiv.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH v3 17/27] arm64: Kconfig: Introduce CONFIG_ARCH_APPLE
+In-Reply-To: <20210304213902.83903-18-marcan@marcan.st>
+References: <20210304213902.83903-1-marcan@marcan.st>
+        <20210304213902.83903-18-marcan@marcan.st>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: marcan@marcan.st, linux-arm-kernel@lists.infradead.org, robh@kernel.org, arnd@kernel.org, olof@lixom.net, krzk@kernel.org, mark.kettenis@xs4all.nl, tony@atomide.com, mohamed.mediouni@caramail.com, stan@corellium.com, graf@amazon.com, will@kernel.org, linus.walleij@linaro.org, mark.rutland@arm.com, andy.shevchenko@gmail.com, gregkh@linuxfoundation.org, corbet@lwn.net, catalin.marinas@arm.com, hch@infradead.org, davem@davemloft.net, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ian Ray <ian.ray@ge.com>
+On Thu, 04 Mar 2021 21:38:52 +0000,
+Hector Martin <marcan@marcan.st> wrote:
+> 
+> This adds a Kconfig option to toggle support for Apple ARM SoCs.
+> At this time this targets the M1 and later "Apple Silicon" Mac SoCs.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  arch/arm64/Kconfig.platforms | 8 ++++++++
+>  arch/arm64/configs/defconfig | 1 +
+>  2 files changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index cdfd5fed457f..c2b5791e3d69 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -36,6 +36,14 @@ config ARCH_ALPINE
+>  	  This enables support for the Annapurna Labs Alpine
+>  	  Soc family.
+>  
+> +config ARCH_APPLE
+> +	bool "Apple Silicon SoC family"
+> +	select APPLE_AIC
+> +	select ARM64_FIQ_SUPPORT
 
-Define GPIO line names for b450v3, b650v3, and b850v3.
+Do we still need this FIQ symbol? I though it was now gone...
 
-Signed-off-by: Ian Ray <ian.ray@ge.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm/boot/dts/imx6q-b450v3.dts | 5 +++++
- arch/arm/boot/dts/imx6q-b650v3.dts | 5 +++++
- arch/arm/boot/dts/imx6q-b850v3.dts | 5 +++++
- 3 files changed, 15 insertions(+)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/imx6q-b450v3.dts b/arch/arm/boot/dts/imx6q-b450v3.dts
-index 604f2420370f..d994b32ad825 100644
---- a/arch/arm/boot/dts/imx6q-b450v3.dts
-+++ b/arch/arm/boot/dts/imx6q-b450v3.dts
-@@ -84,6 +84,11 @@ lvds0_out: endpoint {
- };
- 
- &pca9539 {
-+	gpio-line-names = "AMB_P_INT1#", "AMB_P_INT2#", "BT_EN", "WLAN_EN",
-+			  "", "SM_D_ACT", "DP1_RST#", "",
-+			  "WD15S_EN", "WD15S_DIS#", "", "",
-+			  "", "", "", "";
-+
- 	P04-hog {
- 		gpio-hog;
- 		gpios = <4 0>;
-diff --git a/arch/arm/boot/dts/imx6q-b650v3.dts b/arch/arm/boot/dts/imx6q-b650v3.dts
-index 56d2aeb1900c..fa1a1df37cde 100644
---- a/arch/arm/boot/dts/imx6q-b650v3.dts
-+++ b/arch/arm/boot/dts/imx6q-b650v3.dts
-@@ -84,6 +84,11 @@ lvds0_out: endpoint {
- };
- 
- &pca9539 {
-+	gpio-line-names = "AMB_P_INT1#", "AMB_P_INT2#", "BT_EN", "WLAN_EN",
-+			  "", "SM_D_ACT", "DP1_RST#", "",
-+			  "WD15S_EN", "WD15S_DIS#", "", "",
-+			  "", "", "", "";
-+
- 	P07-hog {
- 		gpio-hog;
- 		gpios = <7 0>;
-diff --git a/arch/arm/boot/dts/imx6q-b850v3.dts b/arch/arm/boot/dts/imx6q-b850v3.dts
-index 3d6b757bf325..db8c332df6a1 100644
---- a/arch/arm/boot/dts/imx6q-b850v3.dts
-+++ b/arch/arm/boot/dts/imx6q-b850v3.dts
-@@ -199,6 +199,11 @@ stdp4028_out: endpoint {
- };
- 
- &pca9539 {
-+	gpio-line-names = "AMB_P_INT1#", "AMB_P_INT2#", "BT_EN", "WLAN_EN",
-+			  "REMOTE_ON_PML#", "SM_D_ACT", "DP1_RST#", "DP2_RST#",
-+			  "", "", "", "",
-+			  "", "", "", "";
-+
- 	P10-hog {
- 		gpio-hog;
- 		gpios = <8 0>;
+	M.
+
 -- 
-2.30.1
-
+Without deviation from the norm, progress is not possible.
