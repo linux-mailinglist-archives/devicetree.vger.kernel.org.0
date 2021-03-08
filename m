@@ -2,169 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30AE4330BA0
+	by mail.lfdr.de (Postfix) with ESMTP id 303E6330B9F
 	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 11:46:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbhCHKqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 05:46:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbhCHKpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 05:45:34 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDAAC06175F
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 02:45:34 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id u11so4645802plg.13
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 02:45:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=K1QgQjNHtN761sdXJlMXANZwX7Jh8JMy1gwv4GNPG4g=;
-        b=LqDwByIeuwQYzR2bhJQ2URfoiZZf6kiHEGdH6iisqNOeBLthDw3rATLZ3IWNMdwjw+
-         mDMf2ot0HywnTy+ZFgDwSe0LNDlMgz60w+o1O7HrMZNN2G7FoCLfZg+pHBS960nxMZJy
-         uAVZssBZ6lhXevjFVP4dW4k0FfteIvSYnGRYFOcvUtb7Y8Pwc70ms6j5RWtegvnsTEtu
-         ybGIuiTjgh8oZ6BFLSVRitpg+oQNuE3Gy7pHg/9441jkcmepiin2sBYNIM7m1oEml+WP
-         E/TyBgOGBFhO5piDxzz5y9rjGmBlFt7Gpr5DAa/+tivZmoAR3FDDUgKOg9I0VXRs/SsE
-         HMjA==
+        id S231572AbhCHKqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 05:46:04 -0500
+Received: from mail-lf1-f45.google.com ([209.85.167.45]:41136 "EHLO
+        mail-lf1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231128AbhCHKpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 05:45:52 -0500
+Received: by mail-lf1-f45.google.com with SMTP id q25so20240671lfc.8;
+        Mon, 08 Mar 2021 02:45:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=K1QgQjNHtN761sdXJlMXANZwX7Jh8JMy1gwv4GNPG4g=;
-        b=sP5B1suc075a/qEtjOKujdlFgqttb4GodL3bWpbDM8BZVjqRyCxZ5+LJGSN6UmOoEz
-         WpltZfGPpy24sc9pVOELhqD/xreDjXzXJsxL41sws++LxpEDwP/kfy52El0mzEZtQf9H
-         3UGmqeSVFqdau7xhC8MjN1HFRqZX3qTiWR1RW2GDup4QoMn5AdIB2eW59zgzzXbRyZRR
-         Iw+Q/QqHgWymYYYMzkRmzH18udmP4/Aq7k/mvJXNieRAmJkTjDOVfp6MqdGtgMex+Hmf
-         RrEFJzMkda1oA1VV2xM/FB86t06v7f7jtApZW5lSBFmTKQ74aLTgW9gvLrNy1DxYmTJX
-         AKSw==
-X-Gm-Message-State: AOAM532U+oVnuTt6LURXf4xHn5CbjiEMIPHCYFnFaFrbU4DO3/DaJ0+i
-        igHGz/dHx1+jsmIjIEvBdK0AzA==
-X-Google-Smtp-Source: ABdhPJz1crqSMNF+5kJLPLKuP68mXmE6MVedKm/BZ/DlWc5ugAbMIRuCYGemGA6xJFkolN6dQDgVCA==
-X-Received: by 2002:a17:90a:5510:: with SMTP id b16mr24325005pji.87.1615200334259;
-        Mon, 08 Mar 2021 02:45:34 -0800 (PST)
-Received: from localhost ([122.171.124.15])
-        by smtp.gmail.com with ESMTPSA id x190sm10045278pfx.60.2021.03.08.02.45.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Mar 2021 02:45:33 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH V10 5/5] of: unittest: Statically apply overlays using fdtoverlay
-Date:   Mon,  8 Mar 2021 16:15:10 +0530
-Message-Id: <72cb0c45cb61e0fa739249dbc0aacb1c97d1a8e8.1615199908.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1615199908.git.viresh.kumar@linaro.org>
-References: <cover.1615199908.git.viresh.kumar@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=scj6590os1eA48Uwmp8IjLfDALuVaAXiJhdeu5i0Feo=;
+        b=hnTbztR3tzFrBMdaWYfEcmGcK9XMPK4/tNZ3yxGWXy5M+KhbzgObxQkdWKXgrEJNsp
+         fb63CRIekSqPDDfcCLx4e5nw2BLtGhaaSriW3CUFHVvYI5q/p9nJE0fCtmmHMc3afmqk
+         VYR4HUBAqpIBp2XQW1sjQP6wLtUENO4yUV9zdU/RGWYbSxywQMV74K6KoFEqek1Vki9y
+         bA1xiM5xjGoaGSzjyVlqk2BHEBgqLtcz/RmTV/grxLtL6BsUkC4nkYZkME94y6RLpWi+
+         QhLjb39b0w65FkFPuqlQB3yH051xbLzvOoGVqTtvrqUk2/Dy457oM6zD+xuOiqapfxuF
+         yyBg==
+X-Gm-Message-State: AOAM5314T+xDwu1D2M3IivHs9bqa+ZG1z7LNocxJiY8PhNGmKvkJEpN+
+        p+QfClfvDx3IyCtejUsAUdc=
+X-Google-Smtp-Source: ABdhPJx3O+o2xGGkev21iCH55Gk+EjK/5NDUKlb0GrPN9ZlLNYR3hNjQmvCkrauFPWbVHOAFbEtkCQ==
+X-Received: by 2002:a19:6109:: with SMTP id v9mr14466171lfb.546.1615200350696;
+        Mon, 08 Mar 2021 02:45:50 -0800 (PST)
+Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
+        by smtp.gmail.com with ESMTPSA id r7sm1349227lfr.230.2021.03.08.02.45.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Mar 2021 02:45:50 -0800 (PST)
+Date:   Mon, 8 Mar 2021 12:45:44 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: [PATCH v3 15/15] MAINTAINERS: Add ROHM BD71815AGW
+Message-ID: <c73fdf1ef1da3538d93035a75029103fdb87b8c8.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that fdtoverlay is part of the kernel build, start using it to test
-the unitest overlays we have by applying them statically. Create two new
-base files static_base_1.dts and static_base_2.dts which includes other
-.dtsi files.
+Add maintainer entries for ROHM BD71815AGW drivers.
+New regulator and GPIO drivers were introduced for these PMICs.
 
-Some unittest overlays deliberately contain errors that unittest checks
-for. These overlays will cause fdtoverlay to fail, and are thus not
-included for static builds.
-
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 ---
- drivers/of/unittest-data/Makefile          | 48 ++++++++++++++++++++++
- drivers/of/unittest-data/static_base_1.dts |  4 ++
- drivers/of/unittest-data/static_base_2.dts |  4 ++
- 3 files changed, 56 insertions(+)
- create mode 100644 drivers/of/unittest-data/static_base_1.dts
- create mode 100644 drivers/of/unittest-data/static_base_2.dts
+ MAINTAINERS | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 009f4045c8e4..a5d2d9254b2c 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -38,3 +38,51 @@ DTC_FLAGS_testcases += -@
- 
- # suppress warnings about intentional errors
- DTC_FLAGS_testcases += -Wno-interrupts_property
-+
-+# Apply overlays statically with fdtoverlay.  This is a build time test that
-+# the overlays can be applied successfully by fdtoverlay.  This does not
-+# guarantee that the overlays can be applied successfully at run time by
-+# unittest, but it provides a bit of build time test coverage for those
-+# who do not execute unittest.
-+#
-+# The overlays are applied on top of static_base_1.dtb and static_base_2.dtb to
-+# create static_test_1.dtb and static_test_2.dtb.  If fdtoverlay detects an
-+# error than the kernel build will fail.  static_test_1.dtb and
-+# static_test_2.dtb are not consumed by unittest.
-+#
-+# Some unittest overlays deliberately contain errors that unittest checks for.
-+# These overlays will cause fdtoverlay to fail, and are thus not included
-+# in the static test:
-+#			  overlay_bad_add_dup_node.dtbo \
-+#			  overlay_bad_add_dup_prop.dtbo \
-+#			  overlay_bad_phandle.dtbo \
-+#			  overlay_bad_symbol.dtbo \
-+
-+apply_static_overlay_1 := overlay_0.dtbo \
-+			  overlay_1.dtbo \
-+			  overlay_2.dtbo \
-+			  overlay_3.dtbo \
-+			  overlay_4.dtbo \
-+			  overlay_5.dtbo \
-+			  overlay_6.dtbo \
-+			  overlay_7.dtbo \
-+			  overlay_8.dtbo \
-+			  overlay_9.dtbo \
-+			  overlay_10.dtbo \
-+			  overlay_11.dtbo \
-+			  overlay_12.dtbo \
-+			  overlay_13.dtbo \
-+			  overlay_15.dtbo \
-+			  overlay_gpio_01.dtbo \
-+			  overlay_gpio_02a.dtbo \
-+			  overlay_gpio_02b.dtbo \
-+			  overlay_gpio_03.dtbo \
-+			  overlay_gpio_04a.dtbo \
-+			  overlay_gpio_04b.dtbo
-+
-+apply_static_overlay_2 := overlay.dtbo
-+
-+static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
-+static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
-+
-+dtb-$(CONFIG_OF_OVERLAY) += static_test_1.dtb static_test_2.dtb
-diff --git a/drivers/of/unittest-data/static_base_1.dts b/drivers/of/unittest-data/static_base_1.dts
-new file mode 100644
-index 000000000000..10556cb3f01f
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_1.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "testcases_common.dtsi"
-diff --git a/drivers/of/unittest-data/static_base_2.dts b/drivers/of/unittest-data/static_base_2.dts
-new file mode 100644
-index 000000000000..b0ea9504d6f3
---- /dev/null
-+++ b/drivers/of/unittest-data/static_base_2.dts
-@@ -0,0 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "overlay_common.dtsi"
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d92f85ca831d..ac6eb095ab0c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15452,18 +15452,21 @@ F:	Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
+ F:	Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
+ F:	drivers/clk/clk-bd718x7.c
+ F:	drivers/gpio/gpio-bd70528.c
++F:	drivers/gpio/gpio-bd71815.c
+ F:	drivers/gpio/gpio-bd71828.c
+ F:	drivers/mfd/rohm-bd70528.c
+ F:	drivers/mfd/rohm-bd71828.c
+ F:	drivers/mfd/rohm-bd718x7.c
+ F:	drivers/power/supply/bd70528-charger.c
+ F:	drivers/regulator/bd70528-regulator.c
++F:	drivers/regulator/bd71815-regulator.c
+ F:	drivers/regulator/bd71828-regulator.c
+ F:	drivers/regulator/bd718x7-regulator.c
+ F:	drivers/regulator/rohm-regulator.c
+ F:	drivers/rtc/rtc-bd70528.c
+ F:	drivers/watchdog/bd70528_wdt.c
+ F:	include/linux/mfd/rohm-bd70528.h
++F:	include/linux/mfd/rohm-bd71815.h
+ F:	include/linux/mfd/rohm-bd71828.h
+ F:	include/linux/mfd/rohm-bd718x7.h
+ F:	include/linux/mfd/rohm-generic.h
 -- 
-2.25.0.rc1.19.g042ed3e048af
+2.25.4
 
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
