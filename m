@@ -2,90 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC993319C6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 759303319D3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 22:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230342AbhCHV4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 16:56:20 -0500
-Received: from mail-io1-f53.google.com ([209.85.166.53]:43368 "EHLO
-        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbhCHVzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 16:55:46 -0500
-Received: by mail-io1-f53.google.com with SMTP id f20so11647951ioo.10;
-        Mon, 08 Mar 2021 13:55:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8ybSs0Ob1LnKKtK1l56OcRUxFWnlW7UjT4LMddyAcCg=;
-        b=ON5EmnNH2z/PtndfSwlAW3uRzVWUWqN6rqdTu1PMDnfR+dWnmWT19H74qORLyarxza
-         ACH5jeDPvjXr+5mpFdWDGdP3VJqMZr6cWB3+87wUbKlz1eINyEV0O6GiHZiYJYlpdFVm
-         MeEQlsm+6yLAyqMN4BBAghEXBMo9F2artR5VNDWMkqp4FmI8dAcmkb3R//RyxFGIHXrt
-         wcick+1DHN2ig+bV+pvNUCvTLOwq7ZnLEQkWKNzM1EUDMhiVbcWECZY+qsZsvveUwpyX
-         sW9C25vjcjzy/E2QucRno/PpBCx9FH8ujtaO5FMSNpOMwkeRNY4TvtST0UvfIhnoSDq9
-         5Clg==
-X-Gm-Message-State: AOAM530cqUAk+4GEr6TheFvxC2wS/ECPXhq3D/WZwmDTJDVlKC3WFffG
-        3YyZAMhb0nXDrlnum7VGb5PxB3yiuA==
-X-Google-Smtp-Source: ABdhPJw+jYeeh0yZbRALgdv7Gt8iRqqYLmuyeQTqZhBuwAR0PKY+7idLLPnkGXg1qCg1b3ucyVLr+g==
-X-Received: by 2002:a5e:9612:: with SMTP id a18mr20092046ioq.209.1615240545783;
-        Mon, 08 Mar 2021 13:55:45 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k14sm6509122iob.34.2021.03.08.13.55.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 13:55:45 -0800 (PST)
-Received: (nullmailer pid 3022527 invoked by uid 1000);
-        Mon, 08 Mar 2021 21:55:43 -0000
-Date:   Mon, 8 Mar 2021 14:55:43 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     jic23@kernel.org, lars@metafoo.de, pmeerw@pmeerw.net,
-        denis.ciocca@st.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        grygorii.tertychnyi@leica-geosystems.com,
-        andrey.zhizhikin@leica-geosystems.com
-Subject: Re: [PATCH 1/2] dt-bindings: iio: st,st-sensors.yaml New iis2mdc
- bindings
-Message-ID: <20210308215543.GA3019487@robh.at.kernel.org>
-References: <20210305070536.2880-1-Qing-wu.Li@leica-geosystems.com.cn>
+        id S231651AbhCHV4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 16:56:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52656 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231162AbhCHV4c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 16:56:32 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6EFF46523D;
+        Mon,  8 Mar 2021 21:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615240591;
+        bh=KMmCb7U2ujabFxkud2d3urqwhs41+pBgCpeNG3URuos=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=shvsBQVFvq7E6xYk01gjriusngocJaMunvCLQ1nZ2LiXr6HqZOsptcBgfuD3VnmGQ
+         lpR36R70KqunemCgUFKzSpM8nXZG9o+7SnvsH3etABbswOk8zvD1Jo6+NlENDYyuDv
+         WHUkA/e27cC4Op9IiestvSkydSylG6nR3t3ydutKz9Ra7HIfaNpRpEAarKULQCPz0y
+         HwGY0uGH/E0gNZpl4WoKEcHc+b5uG9TBZyx5/VUfepz2hYvce+XbA8NwqEme724qfI
+         nkZLjsPL3MRnRThwG4OyccapQkYCwO+hCZcs6cyHrBsPIInBcJZ5luwlt5QNA1ebUN
+         2vTINTUt18Etw==
+Received: by mail-ot1-f47.google.com with SMTP id a17so10813292oto.5;
+        Mon, 08 Mar 2021 13:56:31 -0800 (PST)
+X-Gm-Message-State: AOAM5330bCAV2lyNzY7YYDF5EzM0OxV1ZYawXJBJ0eLLM8Fcarqas2zd
+        q5IGPKvb/lqZg+Uh4zOKvUp8hiOtB4F6U3saUW0=
+X-Google-Smtp-Source: ABdhPJxa7+3TXf8xLA/E0HpUEZafsO9uyBdTJcygHPn2QO83SDsdS9V8PUzozL+D9A/4nZHqTIXj7Xx+nWGOPifP+7w=
+X-Received: by 2002:a9d:6341:: with SMTP id y1mr6301932otk.210.1615240590795;
+ Mon, 08 Mar 2021 13:56:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210305070536.2880-1-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com> <20210308211306.GA2920998@robh.at.kernel.org>
+In-Reply-To: <20210308211306.GA2920998@robh.at.kernel.org>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 8 Mar 2021 22:56:14 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+Message-ID: <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 07:05:35AM +0000, LI Qingwu wrote:
-> Add support for ST magnetometer lsm303ah,sm303dac and iis2mdc.
-> The patch tested with IIS2MDC instrument.
-> 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index db291a9390b7..6fd61ffde72b 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -66,6 +66,11 @@ properties:
->        - st,lis3mdl-magn
->        - st,lis2mdl
->        - st,lsm9ds1-magn
-> +      - st,lsm303ah_magn
-> +      - st,ism303dac_magn
-> +      - st,iis2mdc_magn
-> +      - st,lsm303agr_magn
-> +      - st,lis2mdl_magn
+On Mon, Mar 8, 2021 at 10:14 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Mar 08, 2021 at 09:29:54PM +0100, Arnd Bergmann wrote:
+> > On Mon, Mar 8, 2021 at 4:56 PM Rob Herring <robh@kernel.org> wrote:
+>
+> Let's just stick with 'nonposted-mmio', but drop 'posted-mmio'. I'd
+> rather know if and when we need 'posted-mmio'. It does need to be added
+> to the DT spec[1] and schema[2] though (GH PRs are fine for both).
 
-s/_/-/
+I think the reason for having "posted-mmio" is that you cannot properly
+define the PCI host controller nodes on the M1 without that: Since
+nonposted-mmio applies to all child nodes, this would mean the PCI
+memory space gets declared as nonposted by the DT, but the hardware
+requires it to be mapped as posted.
 
-Though if magnetometer is the only function of these devices, then the 
-part number only should be enough and '_magn' is redundant.
-
->          # Pressure sensors
->        - st,lps001wp-press
->        - st,lps25h-press
-> -- 
-> 2.17.1
-> 
+       Arnd
