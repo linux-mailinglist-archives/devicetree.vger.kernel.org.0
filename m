@@ -2,88 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFEB330D28
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 13:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5F8330D08
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 13:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbhCHMOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 07:14:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55372 "EHLO
+        id S230176AbhCHMC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 07:02:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhCHMOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 07:14:10 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CE5C06174A;
-        Mon,  8 Mar 2021 04:14:09 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id mj10so19894131ejb.5;
-        Mon, 08 Mar 2021 04:14:09 -0800 (PST)
+        with ESMTP id S229627AbhCHMCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 07:02:47 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 124C1C06174A;
+        Mon,  8 Mar 2021 04:02:47 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id y67so7073083pfb.2;
+        Mon, 08 Mar 2021 04:02:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=6WsXzkZKIYmpOl1DOZ8e9KcUHnOCDuB8xzdtvk/6Xdo=;
-        b=tY67xB9c8hqIQkvjIng0PppegIpOpcGXasj6a9/dnB5oZi7Ot/Xx00Gehas46AW7fR
-         EkaW2sabLLQMC5l++v1yktxVbbb4i0jbQYWLDJNcGDD6kdRLjLFv+mFiAkjftQt6k96E
-         fqRtvb/LpnBstc18gjbfyL/c0Yb/Vauj6vPQ8SOIOiHhYZkG2AWgmkWN1Ob3mdgkWZbA
-         Yqvvr3/rVNgR96LVaPrLZRLM29P+SzxxOvinZvYXlaYVyYpNnVV0o8U9TKp4Gvm0Mj4G
-         +xzEDPDJmBNoklaYh4+Mymv+ap84mK1GpeaJMmVMGAiJ77BYz4hnVPRyREeX4H1pVFgx
-         0JHQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jlusgLjbLKUTAaP82nwfxxVRLneDG0S3dn7MKQ5uqQM=;
+        b=AC/7yM68lti9c3ma6GRYkZHCqxY18TVJx6TlAzforETOsZcAandJdLTzfFeIB6R0Rh
+         SxAm7dXNu3QrnjZrpk+AWTZ7GbZ33D6VxUDP+yDUTrBy9Nk16ZlYp+rpb8eAi4+eELQF
+         1etohEM3QB5MVgkpxQUh6HRyZTF6XbpOXmz/8HuhF/vJMYsJVQ+L6yeA+er1fMzMph34
+         ncdkbKHGZIhvxyhLuTth5LyqOZswcZbXFl8J7asTlFnPh9x+SoxUTnCWEaLiXpeZL3lS
+         q4YoZgTM5g7iv8y8FdU/VMjzze3TFl2Ic9Vrbj02f515mzYjHNTqxNn58hC8apYYJ8FF
+         Iy6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=6WsXzkZKIYmpOl1DOZ8e9KcUHnOCDuB8xzdtvk/6Xdo=;
-        b=exCijcCzli59XFsx/ABWE9hpqAIh17b7t/JFtU44cMJ0kFavI809A6AZQ8Vq6bbxVy
-         6C0Vt+nzNb4iVDDSQZbZB55IYkhPpnOV+IjecniAaZMjou3d1mnrNfHnN9PGa8u4FE5L
-         MAog9Xr4Eab5h8VXqPJliQEeSfjOZsNLW1qp3UeIsYKW/ULSwhGK9rBsCb0gHypXI5+q
-         b46bf8iWEFPt4orTEIdjUVSc+39zyigTQWomzFJyr3X10qKFns8VDeFKQEu7f3eA7xSU
-         PWCuoBLUZWeKdXPoSGbQlD0KpIJnMlxMpIx1OvPYwWs7sq600QfUqmcbwVxDbiPYdiPQ
-         FzwA==
-X-Gm-Message-State: AOAM530eHTJ35EiySzVOTDyMmnC+7HdhGHOZHdwTwgcYDQwJ7r/Or25P
-        PJoi1s9iNlet4oSNIKZPjLY=
-X-Google-Smtp-Source: ABdhPJySpce7SOXohqD5qYMyCqCZyhKpRu5rz4gqkNl/Cr51BXCwbGbx1NgeJLOYzTl6Ma10oQsxBg==
-X-Received: by 2002:a17:907:1b1c:: with SMTP id mp28mr14355219ejc.243.1615205648310;
-        Mon, 08 Mar 2021 04:14:08 -0800 (PST)
-Received: from Ansuel-xps.localdomain (host-82-61-23-35.retail.telecomitalia.it. [82.61.23.35])
-        by smtp.gmail.com with ESMTPSA id kj3sm6545922ejc.117.2021.03.08.04.14.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 04:14:07 -0800 (PST)
-Date:   Sun, 7 Mar 2021 18:04:50 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: Document use of
- nvmem-partitions compatible
-Message-ID: <YEUHsoC4V+H6PCHL@Ansuel-xps.localdomain>
-References: <20210216212638.28382-1-ansuelsmth@gmail.com>
- <20210216212638.28382-4-ansuelsmth@gmail.com>
- <ee596471-db9b-43e4-c085-9bd938101587@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jlusgLjbLKUTAaP82nwfxxVRLneDG0S3dn7MKQ5uqQM=;
+        b=rDHntY2Mev8f+5fm2CAqtUh1EnYcmDJpUpeqzYBLjrEGav6tQlfPz4El8rTUXy49w9
+         SFi1cC1imTosCDSEDAOgCe0rhSO0h68n0Q4ww+yQhddF1jTL9gvoEqdtdLmu0H147tK6
+         CQafEJPM/a/UE/GPKva3qwwA8qNLIVQD7nCy8xjOVBgPqKVxx1F8FMze8GUVMFWW9GIo
+         fdHhY16zyY4I4WbLMFKUcFBtrZqwvJv2fptcILBAFS0Uxgq4GQ0vwuLe1zFhYuFSYSPR
+         xr0s6L8fubTlqrcXgEPnLSLE97yBgUfRmVjLnNMrvoT5/n3QCAX9RTw2OFstWfpo3chY
+         PK4w==
+X-Gm-Message-State: AOAM531kvEjGhxDpN8ACbpb15LZTUpdm9FhNtojTtCN9VrX4g9sF/DhI
+        78tsm7k/xZ/x2w7FGHUaFpW/BvXVoNwlLxVq8lc=
+X-Google-Smtp-Source: ABdhPJykVLNhDhqQhXCcqXCmdA5Au+rowhNnrtIiQx35C+rH8rgT4Wo9r/DwSPnYYy9FT7AFGX87SD/h3Lz7e6itYyY=
+X-Received: by 2002:a62:7c43:0:b029:1ef:20ce:ba36 with SMTP id
+ x64-20020a627c430000b02901ef20ceba36mr19910116pfc.40.1615204966584; Mon, 08
+ Mar 2021 04:02:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ee596471-db9b-43e4-c085-9bd938101587@gmail.com>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-17-marcan@marcan.st>
+ <CAHp75Vco_rcjHJ4THLZ8CJP=yX2fesfAo_tOY8zohfSmTLEVgw@mail.gmail.com> <875z21zwy2.wl-maz@kernel.org>
+In-Reply-To: <875z21zwy2.wl-maz@kernel.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 8 Mar 2021 14:02:29 +0200
+Message-ID: <CAHp75Vcgy1rB0LHHb+=mruAc-M-rGdfS0UnMh4xU1xkLxOycFA@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 16/27] irqchip/apple-aic: Add support for the Apple
+ Interrupt Controller
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 10:48:32AM +0100, Rafał Miłecki wrote:
-> On 16.02.2021 22:26, Ansuel Smith wrote:
-> > Document nvmem-partitions compatible used to treat mtd partitions as a
-> > nvmem provider.
-> 
-> I'm just wondering if "nvmem-partitions" is accurate enough. Partitions
-> bit sounds a bit ambiguous in the mtd context.
-> 
-> What do you think about "mtd-nvmem-cells" or just "nvmem-cells"?
+On Mon, Mar 8, 2021 at 1:50 PM Marc Zyngier <maz@kernel.org> wrote:
+> On Fri, 05 Mar 2021 15:05:08 +0000,
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-I read somewhere that mtd is not so standard so "nvmem-cells" should be the
-right compatible.
-To sum up, with v2 I should change the compatible name and just push the
-2 and 3 patch. (waiting your fix to be accepted) Correct?
+...
 
+> > > +#define TIMER_FIRING(x)                                                        \
+> > > +       (((x) & (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_MASK |            \
+> > > +                ARCH_TIMER_CTRL_IT_STAT)) ==                                  \
+> > > +        (ARCH_TIMER_CTRL_ENABLE | ARCH_TIMER_CTRL_IT_STAT))
+> >
+> > It's a bit hard to read. Perhaps
+> >
+> > #define FOO_MASK  (_ENABLE | _STAT)
+> > #define _FIRING ... (FOO_MASK | _MASK == FOO_MASK)
+>
+> The expression above is a direct translation of the architecture
+> reference manual, and I'd rather not have that hidden behind a bunch
+> of obscure macros.
+
+OK!
+
+...
+
+> > > +       irqc->hw_domain = irq_domain_create_linear(of_node_to_fwnode(node),
+> > > +                                                  irqc->nr_hw + AIC_NR_FIQ,
+> > > +                                                  &aic_irq_domain_ops, irqc);
+> >
+> > If you are sure it will be always OF-only, why not to use
+> > irq_domain_add_linear()?
+>
+> The OF-only API is deprecated, and there is no point in using it for
+> *new* code, specially when things like IPI allocation require the use
+> of the modern API. For arm64 root controllers, that's the way to go.
+
+Good to know, thanks!
+
+-- 
+With Best Regards,
+Andy Shevchenko
