@@ -2,86 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1504D331A1C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 23:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4285B331A3E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 23:33:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbhCHWTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 17:19:01 -0500
-Received: from mail-io1-f52.google.com ([209.85.166.52]:37851 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhCHWTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 17:19:01 -0500
-Received: by mail-io1-f52.google.com with SMTP id p16so11767217ioj.4;
-        Mon, 08 Mar 2021 14:19:00 -0800 (PST)
+        id S231822AbhCHWdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 17:33:10 -0500
+Received: from mail-io1-f49.google.com ([209.85.166.49]:34199 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229528AbhCHWcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 17:32:55 -0500
+Received: by mail-io1-f49.google.com with SMTP id o11so11811681iob.1;
+        Mon, 08 Mar 2021 14:32:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qHQgmbkDSDDiTfT1yKEjfyTu70sGJ/CC8y8c/laS3OA=;
-        b=fYlxrL7C78t9DpGgQeJ1j1T2fTYyEVvJV2h+oaTwsjtgSjalSM6mQs646PcTP/LGhp
-         jaJ2nrVbvt++yKKEdkRsWYbmXk2xFzLAAr8+saOnov0B3SHnjhUJHu2OR5tY9wyYR97r
-         ZqTkS2Yb1dk+QCSA+3E+OLOzhM3wFkLaVw+u7cPChhsL/hbJefagXlmVLRtVdWK6W3Mq
-         w8cTvxme0qpecVOcA5X39w/UxVCzlWrkMg9Y9IowaEjnzD44r4PvZvZsnoIaUk/sFXoc
-         SZ8Q8qnUzaxQMjfgKVwbm+eFVQgHOz2GKjJ8NQRGU7YBTECFTFh61Ilf1lBqembI8p65
-         90Rg==
-X-Gm-Message-State: AOAM533pZvuaK4BcCAXs+7/4bXvnjqcj6s+JsQcUqoA1JM9mipg9ss0W
-        VFr9mt3mlMvMrmEtJVfTAliQKIuNTg==
-X-Google-Smtp-Source: ABdhPJyM5IoP7Vk3u1eUoLTcIXjzHXxloDJ+hkBtL+K7NrawTvImnquE6lkD56P0RQI4/iTwE2V8kA==
-X-Received: by 2002:a02:2412:: with SMTP id f18mr25820196jaa.142.1615241940654;
-        Mon, 08 Mar 2021 14:19:00 -0800 (PST)
+        bh=zMpKwqq7yFBnF4iE9g3YrHJF3RPeBFvOFzDyEl6CFUQ=;
+        b=S0FHmy270z9yh8pfFBUre8qx6Wb3U4HvwM7Ym7LqCx+b0u/D4VUNr3NpSGp/zm1vTl
+         1TWrmS3B6eRGc5K+/oj+E1z6ABDIGbsmydT+/qB57qY06uupiA1vIQDJq2hmICQ2fIVw
+         tvP9ys7U+eKt9lio0tqQycyKTJjz4ktcO8KbHcd1zJZxhbjNbNSyzqDeBAIFLsYYepEN
+         peFebu86n9uaxPcOAvsEJzcxIxPT+XsojH1mxHcb1XZGlJT63DLnBZZnETX6an01b3u9
+         04sWWbruVkhVY7uHHzwKWSyYG5yY7l02z/v8M/aYwWW7SLrZvYG5FybQj96xgZ5j2QQ7
+         dNLw==
+X-Gm-Message-State: AOAM5317hd6YNwnspLtvL9+NagnVRbigEtldCHYYl0x6lHqzoHATFKiF
+        XjsxT1EOGfzKPQPp68Cz+Q==
+X-Google-Smtp-Source: ABdhPJxbV+jsVNMMeyQvNqlwzT5npZHMsQW/CNyz9wtp4S1VgLEkFCtQ3k3DBERRS6Kq4JlrrIRtNg==
+X-Received: by 2002:a02:7691:: with SMTP id z139mr25831234jab.130.1615242775271;
+        Mon, 08 Mar 2021 14:32:55 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 23sm7028534iog.45.2021.03.08.14.18.59
+        by smtp.gmail.com with ESMTPSA id s18sm6877160ilt.9.2021.03.08.14.32.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 14:18:59 -0800 (PST)
-Received: (nullmailer pid 3053387 invoked by uid 1000);
-        Mon, 08 Mar 2021 22:18:58 -0000
-Date:   Mon, 8 Mar 2021 15:18:58 -0700
+        Mon, 08 Mar 2021 14:32:54 -0800 (PST)
+Received: (nullmailer pid 3071678 invoked by uid 1000);
+        Mon, 08 Mar 2021 22:32:51 -0000
+Date:   Mon, 8 Mar 2021 15:32:51 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-input@vger.kernel.org, Michael Srba <Michael.Srba@seznam.cz>,
-        Henrik Rydberg <rydberg@bitmath.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: input/touchscreen: add bindings for
- msg2638
-Message-ID: <20210308221858.GA3053334@robh.at.kernel.org>
-References: <20210305153815.126937-1-vincent.knecht@mailoo.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        linux-usb@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v6 3/5] of/platform: Add stubs for
+ of_platform_device_create/destroy()
+Message-ID: <20210308223251.GA3067045@robh.at.kernel.org>
+References: <20210305193853.2040456-1-mka@chromium.org>
+ <20210305113832.v6.3.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210305153815.126937-1-vincent.knecht@mailoo.org>
+In-Reply-To: <20210305113832.v6.3.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Mar 2021 16:38:04 +0100, Vincent Knecht wrote:
-> This adds dts bindings for the mstar msg2638 touchscreen.
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> ---
-> Changed in v6:
-> - change touchscreen-size-x/y values in example section to reflect
->   scaling removal in driver (Dmitry)
-> - add Linus W. Reviewed-by
-> Changed in v5: nothing
-> Changed in v4:
-> - don't use wildcards in compatible strings (Rob H)
-> - rename from msg26xx to msg2638
-> - rename example pinctrl-0 to &ts_int_reset_default for consistency
-> Changed in v3:
-> - added `touchscreen-size-x: true` and `touchscreen-size-y: true` properties
-> Changed in v2:
-> - changed M-Star to MStar in title line
-> - changed reset gpio to active-low in example section
-> ---
->  .../input/touchscreen/mstar,msg2638.yaml      | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg2638.yaml
-> 
+On Fri, Mar 05, 2021 at 11:38:51AM -0800, Matthias Kaehlcke wrote:
+> Code for platform_device_create() and of_platform_device_create() is
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You mean of_platform_device_create and of_platform_device_destroy?
+
+Does of_platform_populate not work in your usecase?
+
+> only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
+> symbols when CONFIG_OF_ADDRESS is not set.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> 
+> Changes in v6:
+> - patch added to the series
+> 
+>  include/linux/of_platform.h | 22 ++++++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
+> index 84a966623e78..d15b6cd5e1c3 100644
+> --- a/include/linux/of_platform.h
+> +++ b/include/linux/of_platform.h
+> @@ -61,16 +61,18 @@ static inline struct platform_device *of_find_device_by_node(struct device_node
+>  }
+>  #endif
+>  
+> +extern int of_platform_bus_probe(struct device_node *root,
+> +				 const struct of_device_id *matches,
+> +				 struct device *parent);
+> +
+> +#ifdef CONFIG_OF_ADDRESS
+>  /* Platform devices and busses creation */
+>  extern struct platform_device *of_platform_device_create(struct device_node *np,
+>  						   const char *bus_id,
+>  						   struct device *parent);
+>  
+>  extern int of_platform_device_destroy(struct device *dev, void *data);
+> -extern int of_platform_bus_probe(struct device_node *root,
+> -				 const struct of_device_id *matches,
+> -				 struct device *parent);
+> -#ifdef CONFIG_OF_ADDRESS
+> +
+>  extern int of_platform_populate(struct device_node *root,
+>  				const struct of_device_id *matches,
+>  				const struct of_dev_auxdata *lookup,
+> @@ -84,6 +86,18 @@ extern int devm_of_platform_populate(struct device *dev);
+>  
+>  extern void devm_of_platform_depopulate(struct device *dev);
+>  #else
+> +/* Platform devices and busses creation */
+> +static inline struct platform_device *of_platform_device_create(struct device_node *np,
+> +								const char *bus_id,
+> +								struct device *parent)
+> +{
+> +	return NULL;
+> +}
+> +static inline int of_platform_device_destroy(struct device *dev, void *data)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+>  static inline int of_platform_populate(struct device_node *root,
+>  					const struct of_device_id *matches,
+>  					const struct of_dev_auxdata *lookup,
+> -- 
+> 2.30.1.766.gb4fecdf3b7-goog
+> 
