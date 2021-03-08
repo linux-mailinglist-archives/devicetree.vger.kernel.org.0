@@ -2,420 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7508F3315C3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 753F33315D4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 19:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbhCHSUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 13:20:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbhCHSUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:20:06 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EDCC06174A
-        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 10:20:06 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id w195so5318492oif.11
-        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 10:20:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VoplltavvQvjqO2pQUpgJwxuAAm+xc+f9ES5iF441f0=;
-        b=K2mFi1suPaX7ZXrcKjQAMIFHnP1xvkz7utO/L3oKYnnIMjCaDrCeXGkyAhmzBwvtMp
-         ams39Bzi3ATW32eMI+R9h1igk7rXnnrzonck5nx7+7lzGHahXNc8wIEd2LwL3NuUOrkR
-         tRjYqg1WiOV7KDrAw8zfgTXkIv0WAM8ybHyxU53eZ5fOBvWyhVqe8Nt2eqYmpieEouLd
-         MOttetx0w9akI5S62yZKOSAvzEev+ukY/W4mdkk05VoEAhUDTy+sj1VrqD0hjHAxVbFJ
-         M0rhwbB8lvXXu/eIOMsJsYnsOo+M3oREc5bkcujXsC51f1CSQrAt8oKKZRDLKBWcznZ6
-         0yzg==
+        id S231171AbhCHSWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 13:22:30 -0500
+Received: from mail-io1-f54.google.com ([209.85.166.54]:43305 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230126AbhCHSWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 13:22:21 -0500
+Received: by mail-io1-f54.google.com with SMTP id f20so10960653ioo.10;
+        Mon, 08 Mar 2021 10:22:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VoplltavvQvjqO2pQUpgJwxuAAm+xc+f9ES5iF441f0=;
-        b=XPT/QF1LXRRrndc36B6TVUBgLMM6eWqN0UXRp8EfosCgqLxPH96A+qdoNLHw1GgX/L
-         hVnhsvNGb2wEDP9HreGKYDXMThv6aYUdQdPqZULWkUOoEpbH3SclBW1wCgT2tjASzTjD
-         6xrQG7I536JCb2F6skME2qWXAmPI8UctMDL8eoE+5gwcfCrBP9qFznxyk36FT7mpEqyQ
-         tnync7BKmaO2Rl4zsLmmxHynYdM5eO/nF9n0CImHPcy3aCoKWXypACzE8C9jqLeZo/lL
-         odvVSRx/DCXA/+AQWABb1Hr5rrdIYzO8++htv4B7oAtguP0Ag1BmHPey3c9d3do/rXAp
-         rp5Q==
-X-Gm-Message-State: AOAM5329cxgYiMdsvSZXhyIuDQDgTuRteRdMLX3Cnk0IOSkZt+peKcJB
-        Pt+kSUjQ/5ZTJzBTOXxXMoW4VQ==
-X-Google-Smtp-Source: ABdhPJzl3RGlcRqjLZOB3gnherYm/PGLkjTuylDtvEkNTCsOP6YPr5wUxBVAK5LQA9K7o3UWOa2WxQ==
-X-Received: by 2002:a54:4196:: with SMTP id 22mr67007oiy.137.1615227605780;
-        Mon, 08 Mar 2021 10:20:05 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r16sm598295oic.29.2021.03.08.10.20.05
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Pq15jcwTEBECLbFVPJ1zaHWvf20RZ6s1s9fGsnrhjPg=;
+        b=lLRwUpL1ExD8n0NtZKqqzP1hyst/+ssa2UDnY5eRbn9JOG6NKuPSH6WhTefr2R1Qtb
+         3o7ZTStUKJT/QMsXnNM4FaDjHBnZnWppHqsQxUzUYD27mMiW9E0tU/hOl0e+a1AVnn1b
+         E0nj9Hs3yOjrkLlA2W6Cv9GZrJjsHc5hQBHT0ejUHgx3MhqS1OeBCUYMYgTtJ/6UDfIZ
+         q4AjN7Y72XhciwdvXYSQOGs5YRHGnK1WqWo3XxdDYEidY2dcTRx+YrQV7bxMF8a5Tm+M
+         bI9ER9T0Qah6lX6+Ko/9ujAd02suLRssv7HWUci0jE/MmQ5sQTjkfOdlOGJP2gOl9LKP
+         TTnw==
+X-Gm-Message-State: AOAM531dWoKB8FiGPnho4uzK2xKPpABl6NfnMREz10Wsfkz3CAWAUABj
+        GtsyvZlWo5rkd3pg8JrG4f4KiBbGjg==
+X-Google-Smtp-Source: ABdhPJyUGYEl6elYvRaF78SgykrT1EbiNGGNHSkzsW41shl8b7neRG3JF3Scv/qM1s2j+IT1Cg/MZw==
+X-Received: by 2002:a05:6602:2018:: with SMTP id y24mr12056432iod.74.1615227740322;
+        Mon, 08 Mar 2021 10:22:20 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id r12sm6521797ile.59.2021.03.08.10.22.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 10:20:05 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH v2] arm64: dts: qcom: Introduce SM8350 HDK
-Date:   Mon,  8 Mar 2021 10:21:13 -0800
-Message-Id: <20210308182113.1284966-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        Mon, 08 Mar 2021 10:22:19 -0800 (PST)
+Received: (nullmailer pid 2738951 invoked by uid 1000);
+        Mon, 08 Mar 2021 18:22:17 -0000
+Date:   Mon, 8 Mar 2021 11:22:17 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, ezequiel@collabora.com,
+        mchehab@kernel.org, gregkh@linuxfoundation.org,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 0/5] Reset driver for IMX8MQ VPU hardware block
+Message-ID: <20210308182217.GA2735443@robh.at.kernel.org>
+References: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210301151754.104749-1-benjamin.gaignard@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial DTS for the Snapdragon 888 Mobile Hardware Development Kit,
-aka SM8350 HDK. This initial version describes debug UART, UFS storage,
-the three USB connectors and remoteprocs.
+On Mon, Mar 01, 2021 at 04:17:49PM +0100, Benjamin Gaignard wrote:
+> The two VPUs inside IMX8MQ share the same control block which can be see
+> as a reset hardware block.
+> In order to be able to add the second VPU (for HECV decoding) it will be
+> more handy if the both VPU drivers instance don't have to share the
+> control block registers. This lead to implement it as an independ reset 
+> driver and to change the VPU driver to use it.
+> 
+> Please note that this series break the compatibility between the DTB and
+> kernel. This break is limited to IMX8MQ SoC and is done when the driver
+> is still in staging directory.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+As this information will be lost, please put in the binding and dts 
+patch.
 
-Changes since v1:
-- Added 'regulator-allow-set-load' to UFS regulators
-- Fixed copy-paste error in comment about PINCTRL overrides
-
- arch/arm64/boot/dts/qcom/Makefile       |   1 +
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 319 ++++++++++++++++++++++++
- 2 files changed, 320 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 549a7a2151d4..aa40ff8bf025 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -59,4 +59,5 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-new file mode 100644
-index 000000000000..f23a0cf3f7b7
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -0,0 +1,319 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020-2021, Linaro Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "sm8350.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. SM8350 HDK";
-+	compatible = "qcom,sm8350-hdk", "qcom,sm8350";
-+
-+	aliases {
-+		serial0 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&adsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8350/adsp.mbn";
-+};
-+
-+&apps_rsc {
-+	pm8350-rpmh-regulators {
-+		compatible = "qcom,pm8350-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-s11-supply = <&vph_pwr>;
-+		vdd-s12-supply = <&vph_pwr>;
-+
-+		vdd-l1-l4-supply = <&vreg_s11b_0p95>;
-+		vdd-l2-l7-supply = <&vreg_bob>;
-+		vdd-l3-l5-supply = <&vreg_bob>;
-+		vdd-l6-l9-l10-supply = <&vreg_s11b_0p95>;
-+
-+		vreg_s10b_1p8: smps10 {
-+			regulator-name = "vreg_s10b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s11b_0p95: smps11 {
-+			regulator-name = "vreg_s11b_0p95";
-+			regulator-min-microvolt = <952000>;
-+			regulator-max-microvolt = <952000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s12b_1p25: smps12 {
-+			regulator-name = "vreg_s12b_1p25";
-+			regulator-min-microvolt = <1256000>;
-+			regulator-max-microvolt = <1256000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l1b_0p88: ldo1 {
-+			regulator-name = "vreg_l1b_0p88";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2b_3p07: ldo2 {
-+			regulator-name = "vreg_l2b_3p07";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3b_0p9: ldo3 {
-+			regulator-name = "vreg_l3b_0p9";
-+			regulator-min-microvolt = <904000>;
-+			regulator-max-microvolt = <904000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5b_0p88: ldo5 {
-+			regulator-name = "vreg_l5b_0p88";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <888000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l6b_1p2: ldo6 {
-+			regulator-name = "vreg_l6b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l7b_2p96: ldo7 {
-+			regulator-name = "vreg_l7b_2p96";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l9b_1p2: ldo9 {
-+			regulator-name = "vreg_l9b_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+
-+	pm8350c-rpmh-regulators {
-+		compatible = "qcom,pm8350c-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+
-+		vdd-l1-l12-supply = <&vreg_s1c_1p86>;
-+		vdd-l2-l8-supply = <&vreg_s1c_1p86>;
-+		vdd-l3-l4-l5-l7-l13-supply = <&vreg_bob>;
-+		vdd-l6-l9-l11-supply = <&vreg_bob>;
-+		vdd-l10-supply = <&vreg_s12b_1p25>;
-+
-+		vdd-bob-supply = <&vph_pwr>;
-+
-+		vreg_s1c_1p86: smps1 {
-+			regulator-name = "vreg_s1c_1p86";
-+			regulator-min-microvolt = <1856000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_bob: bob {
-+			regulator-name = "vreg_bob";
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+		};
-+
-+		vreg_l1c_1p8: ldo1 {
-+			regulator-name = "vreg_l1c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c_1p8: ldo2 {
-+			regulator-name = "vreg_l2c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c_1p8: ldo6 {
-+			regulator-name = "vreg_l6c_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c_2p96: ldo9 {
-+			regulator-name = "vreg_l9c_2p96";
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10c_1p2: ldo10 {
-+			regulator-name = "vreg_l10c_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&cdsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8350/cdsp.mbn";
-+};
-+
-+&mpss {
-+	status = "okay";
-+	firmware-name = "qcom/sm8350/modem.mbn";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&slpi {
-+	status = "okay";
-+	firmware-name = "qcom/sm8350/slpi.mbn";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <52 8>;
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	reset-gpios = <&tlmm 203 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l7b_2p96>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l9b_1p2>;
-+	vccq-max-microamp = <900000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l5b_0p88>;
-+	vdda-max-microamp = <91600>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+	vdda-pll-max-microamp = <19000>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	/* TODO: Define USB-C connector properly */
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5b_0p88>;
-+	vdda18-supply = <&vreg_l1c_1p8>;
-+	vdda33-supply = <&vreg_l2b_3p07>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l6b_1p2>;
-+	vdda-pll-supply = <&vreg_l1b_0p88>;
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb_hub_enabled_state>;
-+};
-+
-+&usb_2_hsphy {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5b_0p88>;
-+	vdda18-supply = <&vreg_l1c_1p8>;
-+	vdda33-supply = <&vreg_l2b_3p07>;
-+};
-+
-+&usb_2_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l6b_1p2>;
-+	vdda-pll-supply = <&vreg_l5b_0p88>;
-+};
-+
-+/* PINCTRL - additions to nodes defined in sm8350.dtsi */
-+
-+&tlmm {
-+	usb_hub_enabled_state: usb-hub-enabled-state {
-+		pins = "gpio42";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		output-low;
-+	};
-+};
--- 
-2.29.2
-
+> 
+> version 3:
+> - Fix error in VPU example node
+> 
+> version 2:
+> - Document the change in VPU bindings
+>  
+> Benjamin Gaignard (5):
+>   dt-bindings: reset: IMX8MQ VPU reset
+>   dt-bindings: media: IMX8MQ VPU: document reset usage
+>   reset: Add reset driver for IMX8MQ VPU block
+>   media: hantro: Use reset driver
+>   arm64: dts: imx8mq: Use reset driver for VPU hardware block
+> 
+>  .../bindings/media/nxp,imx8mq-vpu.yaml        |  14 +-
+>  .../bindings/reset/fsl,imx8mq-vpu-reset.yaml  |  54 ++++++
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  31 +++-
+>  drivers/reset/Kconfig                         |   8 +
+>  drivers/reset/Makefile                        |   1 +
+>  drivers/reset/reset-imx8mq-vpu.c              | 169 ++++++++++++++++++
+>  drivers/staging/media/hantro/Kconfig          |   1 +
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c   |  61 ++-----
+>  include/dt-bindings/reset/imx8mq-vpu-reset.h  |  16 ++
+>  9 files changed, 294 insertions(+), 61 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/reset/fsl,imx8mq-vpu-reset.yaml
+>  create mode 100644 drivers/reset/reset-imx8mq-vpu.c
+>  create mode 100644 include/dt-bindings/reset/imx8mq-vpu-reset.h
+> 
+> -- 
+> 2.25.1
+> 
