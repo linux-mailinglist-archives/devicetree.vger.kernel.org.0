@@ -2,118 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A13330EBA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 13:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F40330ED6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 14:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbhCHMzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 07:55:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbhCHMzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 07:55:22 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E989C06175F;
-        Mon,  8 Mar 2021 04:55:22 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id c76-20020a1c9a4f0000b029010c94499aedso3737160wme.0;
-        Mon, 08 Mar 2021 04:55:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KVQCxPBtXK0auJ43xEYQjSL/Z4nheSdWg2LvF6F1wJI=;
-        b=pARiNyw1YcUOMJvaXJ1g6eSY/Mv/Ky1KJDheYsAaWws0u492/eWdpk5mnZcsYSht4s
-         /rpIi7/cRunjHvGrydCblnZyuKVSWTOl6wTbz33FSdd2jsB8lAbFE0GZUIt1Hu3AN8BT
-         oZzDpLuteWAc8Nmu3GMfJfXm0296MOZsesbAUyVjjhYAKOnxj4VFqopcSt2ZiDrXWn20
-         39njPGXVP+/1MW41tLrypBgrCJQxs7s6uCLKL+lx07f5RWPLJHrHbq0+y8oJFMIXE4cq
-         BuvsSB5c4gSwTRR/pyeLpc4FM1n9JyJlzy+odqcsn4QlKA8Lf6jF8iSTRNSF0t9xoO9g
-         WUGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KVQCxPBtXK0auJ43xEYQjSL/Z4nheSdWg2LvF6F1wJI=;
-        b=nLzayUrA6R2D86qJJH5lzYLhHGhTejvBVn1uZvF/jKvWnlGjlJ4lLfGD7sLdObalkV
-         7sVv8CcbiBrW1pcXZQoWZzE7S9vEQjT5zap2Q9jTrcGI3dA807a9gHhFUD8N/ul+zo3L
-         BjwLlHJ7Trmd0/G6yB84AbROYZqPZTOC8DpTM5AdL4D2/VwDK4LqfPSWvLNldn8FSlIg
-         ERmssiCKKDZCmhowgHALbaFGsAV8b2VhvpkOkJjoCSCmEpnF7cJTiICcz6wwwlCGyriR
-         GX6BrobVXcZAq1+M/PVoFRY7hTB75oCt4xhMUsoK/iQlUTSL+42IDY0EupDW4dNd6ut5
-         adHg==
-X-Gm-Message-State: AOAM5302DhriRxYFx5wIHtrQKNB52ZYMzKQZxOY0c8m/2y6XXtS3XXfB
-        BWrSU/xIodkWK+IKSDb8sJE=
-X-Google-Smtp-Source: ABdhPJyo3EkJKVSzQUBHJvbbU+XmRoQoLzMt5AyOTw9iRYuUk17IetN9mP7JCkTVorwzkbPVxhFutA==
-X-Received: by 2002:a7b:c38d:: with SMTP id s13mr21898744wmj.44.1615208121206;
-        Mon, 08 Mar 2021 04:55:21 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (2a01cb0008bd270095bc7625808eade0.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:95bc:7625:808e:ade0])
-        by smtp.gmail.com with ESMTPSA id o20sm18922033wmq.5.2021.03.08.04.55.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 04:55:21 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     m.felsch@pengutronix.de, devicetree@vger.kernel.org,
-        will@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-kernel@vger.kernel.org, krzk@kernel.org, robh+dt@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, catalin.marinas@arm.com,
-        festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH v2 1/1] arm64: dts: imx8mm-nitrogen-r2: add ecspi2 support
-Date:   Mon,  8 Mar 2021 13:55:18 +0100
-Message-Id: <20210308125518.255216-2-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210308125518.255216-1-adrien.grassein@gmail.com>
-References: <20210308125518.255216-1-adrien.grassein@gmail.com>
+        id S229459AbhCHNFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 08:05:37 -0500
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:55127 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229457AbhCHNFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 08:05:16 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.nyi.internal (Postfix) with ESMTP id BC3B75C00CB;
+        Mon,  8 Mar 2021 08:05:10 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 08 Mar 2021 08:05:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=n5uQ4ynIjf1uUT0X74WfFRWLHAy
+        PO/7KSH6K1r71T10=; b=E2/dDH6+BD0Kyx0lP+hL27nleZ+bUBr8CBx1iWHt9Xs
+        fupSBsMIWT6h/NCH2HX5Chc0RNucqsq/tSnXwwEgobp2YGRA47XLwcxQ5UF3Iljr
+        chUavwLqKnKSEx5T2mc+nEWMj3OXp5ppXH6aiBsVrS1PiJyECbdLeL7WLKp98PK2
+        xeag4bKHujB8OiMB1NnEnECHVy7LtosEb6jF3OwEs/HlAN3oe3QCIkNb16BqEuW4
+        3juQN1g2cKZpXcpRkfyKeVAy65XQWEJrh0wQLBsbWPuupPeh1ny9X0fonzMCGuWN
+        iW2dr+J48XavdOZse5VQI4BkTn14iCy8uhJy4o1HOFA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=n5uQ4y
+        nIjf1uUT0X74WfFRWLHAyPO/7KSH6K1r71T10=; b=DmSIWxxaZ+hA4FssTh8zW4
+        qRE/uGt0yvslwh+Joocm1Kq8UWV2N87/OX44CNReIIdZKYJ30gNOzPlfjfTivUFo
+        4slKvYFDGee4hQogGe9xyGx/LrqDtwDN+a9JwQJZqFZo4beo9yT/A6qX9CYPMSYz
+        zABC8ycfp2laf6Mk8kw8ebRNOLdQBX65FqVf8SmYJfAL62vSknkr9tXWteB78cmm
+        aNdkS0VBXrfFNmJvTFWej8FDTySm2qBxLWKJxMVCAYFVAKy7D944mxHig56GNo3o
+        myCLlPUiYYIm36frMlIuFeZnMq/OXs8hYSsOMTQgjQcxbtCVwkULJTMkjkuE+b0w
+        ==
+X-ME-Sender: <xms:BSFGYFSWoq9KliHsIQi1nfu0z8aOT-LY_Zm47qxsFX2jCpd4Dk11sg>
+    <xme:BSFGYIYsTiTZed8kgRvVUuo7hfjaU-HuTDEs6nTm4iFf2zGhliuEMwO7GtYsflylo
+    R7B5TXGlkW-dOJcD5w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudduvddgfeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:BSFGYK1Qo6LK2XEqCxZGj6NKnTL33Qk-UMJcqrE_vJlcjReKuRXYtQ>
+    <xmx:BSFGYAXQ_pNVGRPxIPAvpr1lz8eK5oNkTL3YPS-dJY95GFLXUkuULA>
+    <xmx:BSFGYMWTyfX5By7Gpyn0KEosaqvieBhqvDStwGT8YP_3ytGJ3Tp6QA>
+    <xmx:BiFGYFvUUOJ2p5eJEBBwBDyBU2iDb18EmublEiswCuuw1rt8PXl-CA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id DC4AF1080067;
+        Mon,  8 Mar 2021 08:05:08 -0500 (EST)
+Date:   Mon, 8 Mar 2021 14:05:06 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Add power button
+Message-ID: <20210308130506.v35gjviwknr5hat5@gilmour>
+References: <20210306203611.15534-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4szwrawfeqkmi5l3"
+Content-Disposition: inline
+In-Reply-To: <20210306203611.15534-1-jernej.skrabec@siol.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the description for ecspi2 support.
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
----
- .../boot/dts/freescale/imx8mm-nitrogen-r2.dts | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+--4szwrawfeqkmi5l3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-index 4f4cf7df5a5a..50c2ed0470da 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dts
-@@ -52,6 +52,17 @@ &A53_3 {
- 	cpu-supply = <&reg_buck3>;
- };
- 
-+/* J15 */
-+&ecspi2 {
-+	assigned-clocks = <&clk IMX8MM_CLK_ECSPI2>;
-+	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_40M>;
-+	assigned-clock-rates = <40000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
-@@ -286,6 +297,15 @@ &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_hog>;
- 
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0x140
-+			MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x19
-+			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x19
-+			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x19
-+		>;
-+	};
-+
- 	pinctrl_fec1: fec1grp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC			0x3
--- 
-2.25.1
+Hi
 
+On Sat, Mar 06, 2021 at 09:36:11PM +0100, Jernej Skrabec wrote:
+> Beelink X2 has power button. Add node for it.
+>=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> ---
+>  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dt=
+s/sun8i-h3-beelink-x2.dts
+> index 62b5280ec093..4a2cb072ecf6 100644
+> --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> @@ -111,6 +111,17 @@ spdif_out: spdif-out {
+>  		#sound-dai-cells =3D <0>;
+>  		compatible =3D "linux,spdif-dit";
+>  	};
+> +
+> +	r_gpio_keys {
+
+Underscores are not valid for node names (and will trigger a dtc warning
+when running with W=3D1).
+
+> +		compatible =3D "gpio-keys";
+> +
+> +		power {
+> +			label =3D "power";
+
+IIRC the node name is used as a fallback when the label isn't there?
+
+Maxime
+
+--4szwrawfeqkmi5l3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYEYhAgAKCRDj7w1vZxhR
+xTDgAQDRXvOBl1TYBDH8zSGl5dcrPsYrG4gZr4LBHSTglKCp1AD9GK+sb8Plz5EL
+6SkPwWPA+t5A9mv2WlDUOH4PAAEaNgI=
+=09LB
+-----END PGP SIGNATURE-----
+
+--4szwrawfeqkmi5l3--
