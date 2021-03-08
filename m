@@ -2,73 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97E1E330897
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 08:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CC233089C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 08:08:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235111AbhCHHGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 02:06:05 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59803 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235135AbhCHHFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 02:05:44 -0500
-X-UUID: 7d22cd7318954b258a8c358406638bdb-20210308
-X-UUID: 7d22cd7318954b258a8c358406638bdb-20210308
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1322121811; Mon, 08 Mar 2021 15:05:41 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 8 Mar 2021 15:05:37 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 8 Mar 2021 15:05:37 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Cawa Cheng <cawa.cheng@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        stable <stable@vger.kernel.org>
-Subject: [PATCH] arm64: dts: mt8173: fix property typo of 'phys' in dsi node
-Date:   Mon, 8 Mar 2021 15:05:20 +0800
-Message-ID: <20210308070520.40429-1-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S230525AbhCHHHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 02:07:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37308 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230250AbhCHHHX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Mar 2021 02:07:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 83F2364F96;
+        Mon,  8 Mar 2021 07:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1615187243;
+        bh=yRnC0M27VDXEb/P8FlGZ1DbXP6RghAiU5oL4zwk+HmE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GM9EjTEmA90TrS1y0HMy/FKvQSapah9JMcrVB6aQTHMM59jIfR+qWKS3gVR8egOEp
+         d3VsSyKam1FJzpR3CgIB7LrPbqBfzrb25X0v/CxtH2qR/NhLHkiCBgwHPHyPQ+j2Ds
+         HleW2E4BkqpB9qWh5FrPPB6LYgX3tYgvaZN31xXM=
+Date:   Mon, 8 Mar 2021 08:07:20 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     zhengxunli@mxic.com.tw
+Cc:     shubhrajyoti.datta@xilinx.com, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, git@xilinx.com,
+        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        shubhrajyoti.datta@gmail.com, juliensu@mxic.com.tw,
+        slwu@mxic.com.tw
+Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for
+ dynamic reconfiguration
+Message-ID: <YEXNKFQ0/rxit/Re@kroah.com>
+References: <OF146ABDBB.F4474CC3-ON48258692.000D1A0C-48258692.00266ED2@mxic.com.tw>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <OF146ABDBB.F4474CC3-ON48258692.000D1A0C-48258692.00266ED2@mxic.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use 'phys' instead of 'phy'.
+On Mon, Mar 08, 2021 at 02:59:47PM +0800, zhengxunli@mxic.com.tw wrote:
+> CONFIDENTIALITY NOTE:
+> 
+> This e-mail and any attachments may contain confidential information 
+> and/or personal data, which is protected by applicable laws. Please be 
+> reminded that duplication, disclosure, distribution, or use of this e-mail 
+> (and/or its attachments) or any part thereof is prohibited. If you receive 
+> this e-mail in error, please notify us immediately and delete this mail as 
+> well as its attachment(s) from your system. In addition, please be 
+> informed that collection, processing, and/or use of personal data is 
+> prohibited unless expressly permitted by personal data protection laws. 
+> Thank you for your attention and cooperation.
 
-Fixes: 81ad4dbaf7af ("arm64: dts: mt8173: Add display subsystem related nodes")
-Cc: stable <stable@vger.kernel.org>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This footer is not compatible with Linux kernel development, sorry.
+Message is now deleted.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 75040a820f0d..003a5653c505 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -1236,7 +1236,7 @@
- 				 <&mmsys CLK_MM_DSI1_DIGITAL>,
- 				 <&mipi_tx1>;
- 			clock-names = "engine", "digital", "hs";
--			phy = <&mipi_tx1>;
-+			phys = <&mipi_tx1>;
- 			phy-names = "dphy";
- 			status = "disabled";
- 		};
--- 
-2.18.0
-
+greg k-h
