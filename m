@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 557993314BE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5109F3314C6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Mar 2021 18:26:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbhCHRZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 12:25:33 -0500
-Received: from mail-il1-f181.google.com ([209.85.166.181]:32910 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbhCHRZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:25:20 -0500
-Received: by mail-il1-f181.google.com with SMTP id e2so9576476ilu.0;
-        Mon, 08 Mar 2021 09:25:20 -0800 (PST)
+        id S230327AbhCHR0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 12:26:04 -0500
+Received: from mail-il1-f175.google.com ([209.85.166.175]:32964 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231187AbhCHRZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 12:25:47 -0500
+Received: by mail-il1-f175.google.com with SMTP id e2so9577921ilu.0;
+        Mon, 08 Mar 2021 09:25:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vIVJn0dfzyuEu1fc1pG9IIEiq5Z5cVODUyeYv5JKrec=;
-        b=MmsJWvi+ptaq1R2l8wLC95oNNHPH9VkHZN5dKdBabt6NotEd3FUV4B9ktFxIdrpeOk
-         P+Kxj45W71ADQCRPRfYt1u4A+6WNEkAGqy9nnKJyLT9kDA7Pn9HsKXV1yuNZxvHxHyi/
-         QLb6JCmhJQhmjauxeMKH+ySiY6WY9BL0WKcHyFMXasOfT7MZO9bcirKlD1AH6Y1HDM2i
-         ewwakNIPtQENEYX0w0dNfVMhnAGMSM/q++5m9IiTbvTN27X+N41BUMNpHBLjwVFBpT58
-         lNrFHNF+4+CfvfypFBZzExrPtDDSOr9NdH5e7h/JhiDEWShtLaovCDUOlwRKgNXnWk1f
-         LiyQ==
-X-Gm-Message-State: AOAM531JoCCVRBjC8f6Afh5AhHrki9pJB+/QMu9pRxc49SExpJAAABXA
-        12DUBu/iUcthMZIVNvPNIg==
-X-Google-Smtp-Source: ABdhPJx7pdAdChDvnGroL7a9Jyeo6qMHW8ZnqjNuqGEkpdo4TBM/DOewoxvAoegPEztBQOdvd9G93Q==
-X-Received: by 2002:a92:c052:: with SMTP id o18mr21120330ilf.84.1615224320209;
-        Mon, 08 Mar 2021 09:25:20 -0800 (PST)
+        bh=Yx+PQVScsIGkwKCNWq831zfr2nU5g1aEQH/FRbp+2eo=;
+        b=kFXicHgWWapI08+G5oGDizk6xgRchx9FZFb49o0OnzFFtz9HloLaJszrdZXhmRRrSb
+         8qxbfEd5sYnntKUrGLxflsCIXoWQEPq2bHSSD4yRIeeJoMeFuutxHWTkg/oOuCjgUUrR
+         7MycBiT6NroCPkYGjCa/oaW0JmLdCVyfbzMNW8OjkpVZDLcI8+vrj3nvSdF9vsx/jo79
+         Fx3NQypZz+ysxIY8NN0ZpMeRgqyXC6W8eUldkmuGqV8BeRJt2h/gbwGcKzZ+CRh7fzeN
+         ipKmDd5yPzMgX7WMdtS3UttoBGqtYp+aZjs7PBljqqJuLQU+sjqfa8jm/HSf53eSogke
+         Ii7Q==
+X-Gm-Message-State: AOAM533FsOe7yldwiGDoBBSzAcxeTYEjWd7nfbfuRGyJtgBxhJVQISQl
+        8ad3k8XtD8RxcBcnGlU1yw==
+X-Google-Smtp-Source: ABdhPJzzebSLlyB1KvnxCnKMS5WtyQfuusgxeFMojohDlmql8ZD1Mw9P3Dgavl14XuEy1pp8KcDSDw==
+X-Received: by 2002:a05:6e02:1a0f:: with SMTP id s15mr21965899ild.244.1615224344976;
+        Mon, 08 Mar 2021 09:25:44 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id o23sm6488114ioo.24.2021.03.08.09.25.18
+        by smtp.gmail.com with ESMTPSA id e4sm6385124ilc.47.2021.03.08.09.25.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Mar 2021 09:25:19 -0800 (PST)
-Received: (nullmailer pid 2660270 invoked by uid 1000);
-        Mon, 08 Mar 2021 17:25:17 -0000
-Date:   Mon, 8 Mar 2021 10:25:17 -0700
+        Mon, 08 Mar 2021 09:25:44 -0800 (PST)
+Received: (nullmailer pid 2660915 invoked by uid 1000);
+        Mon, 08 Mar 2021 17:25:41 -0000
+Date:   Mon, 8 Mar 2021 10:25:41 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-amarula@amarulasolutions.com,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Subject: Re: [PATCH v3 09/10] dt-bindings: arm: stm32: Add Engicam i.Core
- STM32MP1 EDIMM2.2 Starter Kit
-Message-ID: <20210308172517.GA2660220@robh.at.kernel.org>
-References: <20210228154323.76911-1-jagan@amarulasolutions.com>
- <20210228154323.76911-10-jagan@amarulasolutions.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
+        Jiri Kosina <trivial@kernel.org>, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Add infineon,ir36021
+Message-ID: <20210308172541.GA2660862@robh.at.kernel.org>
+References: <20210301035954.16713-1-chris.packham@alliedtelesis.co.nz>
+ <20210301035954.16713-2-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210228154323.76911-10-jagan@amarulasolutions.com>
+In-Reply-To: <20210301035954.16713-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Feb 2021 21:13:22 +0530, Jagan Teki wrote:
-> i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+On Mon, 01 Mar 2021 16:59:53 +1300, Chris Packham wrote:
+> Add infineon,ir36021 to trivial-devices.yaml.
 > 
-> EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive Evaluation
-> Board from Engicam.
-> 
-> i.Core STM32MP1 needs to mount on top of this Evaluation board for
-> creating complete i.Core STM32MP1 EDIMM2.2 Starter Kit.
-> 
-> Add bindings for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
-> Changes for v3:
-> - none
-> 
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
