@@ -2,180 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA4E331EC7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 06:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDFA331EE5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 06:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbhCIFwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 00:52:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59430 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbhCIFvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 00:51:55 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08897C06174A;
-        Mon,  8 Mar 2021 21:51:55 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id f8so6694621otp.8;
-        Mon, 08 Mar 2021 21:51:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=P8use5HznHVSTRQHEMf/PO2GeUcJ6pS+jo8eH21EzzA=;
-        b=MFhEXsN/NqptaShWoDt2CvQgZ+3DpRXwRezMOCNCfjB31lf9RDZkGmT+WEoyr9jiD1
-         ROVQ1GdVvfOL7M7ULXPlUkqhSKdo+dJ8T/NZbApQquzaL590C3yNkOHPccu088QBBeMp
-         pOB3rJD4e4yWsIgYPyKq8sJe36+tXOhyU5Hr2NosKvPyFgh5lwBM4HsfR6x4Ax1bGdGp
-         8uDzT2mO7D7zMDdsAjESAR/ZJcRjsrYe0o5jWPqqpX/wACiEj1vmeIapbfAOnT+svJ2j
-         8isQJhUhBg8enKvkiCbJoMxGHCeQwMvsCMktD1iU5DmpHXe1YQbBaQfGS/2+ALnSOU6y
-         VWfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=P8use5HznHVSTRQHEMf/PO2GeUcJ6pS+jo8eH21EzzA=;
-        b=VyS+tt9clC00ypZdHLG8xNhVuzggSheqRQpVge42j4imFYT9rn2Iiifetm9AQ/VCse
-         nyCq96xkE7IAYkX8cOuIhY1xdT2nOBuOpO+iToySRoabPvfmOSBf1dWW1PF+++lPWuwJ
-         QOejexWx/Xa/lbtx6485g9JqLOyW2M/MSwzTyLtdd6exPymABDz6TTbba5kfKGneBdGj
-         9x+hcyYzJ3NmfLIyEOjRI81k+d2OuruVWf+Flq3rzI4y5U6HihuhaYS26YQiEVw6+BYx
-         YiCbuC0/IcokkFmIiEIII5ul4HuQAESKRyexwaap3aigsiAHU0ggXFbqIFyjdTj9gHKU
-         dT9w==
-X-Gm-Message-State: AOAM533NuOkxyy7k0wcvJIHVoZJMm+LCyWMNUPMS5xBOZupC+UhmP8FZ
-        +picvHltLUBgXt3dRYzQVfTIjRXkCJI=
-X-Google-Smtp-Source: ABdhPJz5oVFutlAYPZ5icpEM+7jpjpJ2D0jxP5kqu3uMFieSPbIMKHk4E255CqqIe4ofHvzErsW5mQ==
-X-Received: by 2002:a9d:6545:: with SMTP id q5mr22902859otl.179.1615269114081;
-        Mon, 08 Mar 2021 21:51:54 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 53sm1126323oti.77.2021.03.08.21.51.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Mar 2021 21:51:53 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 0/3] add "delay" clock support to gpio_wdt
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
- <20210304221247.488173-1-linux@rasmusvillemoes.dk>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <1c0cd771-6067-69be-9838-9d3ab24a2503@roeck-us.net>
-Date:   Mon, 8 Mar 2021 21:51:51 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210304221247.488173-1-linux@rasmusvillemoes.dk>
-Content-Type: text/plain; charset=utf-8
+        id S229524AbhCIF40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 00:56:26 -0500
+Received: from mail-db8eur05on2049.outbound.protection.outlook.com ([40.107.20.49]:45513
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229480AbhCIF4J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 00:56:09 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nX34Ry5FKJRHj5yGE+RFQxR1qx2e4ZYkH2v5XJPe8XoqGomJg8j06z8kKCTukoHRM7SfPCfK/pTTJr2fYvh+ZlvATH8HSAIyiBFILuAdY6DqCPygurIpUXM0i17unIxk5bxKDqnYQ+jv1+0uO+FaI356rQlZLg08rbRZKrwu2H1N4yTULxvtf4vvd+Ap1j47AY72xbRuI9jNXVOyWzmEMEK96bWRgENapNIF7d8QdThTIg2c3ElS/dB7Lu9MOke8utdNCVnNjP+A/poKeFA1sOg8AZmxXYKs9uy4DrUci3OYckotAqeEwaLnXW+sAObAP1ov5Njnd8tSxVR/T0kDdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HszoRDM0OCgWJSp4gUBpGvTnM8pFGlhZJ4dMTca+7tg=;
+ b=DyUsXTXUXCyTkHdOZ9sw4W9bI3hDfVJE0M9ePBozZtCOyn6Bn6jDanYCTSlG/yXrkKSQ8yCb9nOQXq10Qds1M3qe8DNg/EYSDB+uhYChIYQCriLPzZfE0o3ORg/ytaT2kLm80+JjsQlpan9ooMYGK0exBeWgm3PuQO6iIs0+8jcNOp9+59kzV1b/lR0Cy0C9OKTBXtZrBXQ67HrUHWgT+qpojCo9+sc9l5EIj3rVBWgKZuCtYGjh416BEBh8FGXtwRPAmQL0P6G1+wIBiD4crDJX4Xn/VYt/9dH7eZVZkzzwOZBFU4T6/+JbL7/bw/Vauc1ytw04wAIaHWwSuEUxQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HszoRDM0OCgWJSp4gUBpGvTnM8pFGlhZJ4dMTca+7tg=;
+ b=nu2Q/YaXA76O71MJlyddRGnt/BkG04mGoBcxjuOOcHMxD5No0PeWv3BKBDn6Rtm9QHzb5QAKahOc/B/VaIpDR9PsbNV0c23qbncp1JARRYiaHwn+KwM24wOPuUQ59hUdrAOzXhFCeeUoKAxAqJ9/VklCr0uiSfvz2QtEQxJ6WUQ=
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com (2603:10a6:4:96::7)
+ by DBAPR04MB7285.eurprd04.prod.outlook.com (2603:10a6:10:1ac::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.26; Tue, 9 Mar
+ 2021 05:56:06 +0000
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8]) by DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8%5]) with mapi id 15.20.3890.037; Tue, 9 Mar 2021
+ 05:56:06 +0000
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Heiko Schocher <hs@denx.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Ashish Kumar <ashish.kumar@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+Subject: RE: [EXT] [PATCH v2 2/4] dt-bindings: spi: add compatible entry for
+ imx8mp in FlexSPI controller
+Thread-Topic: [EXT] [PATCH v2 2/4] dt-bindings: spi: add compatible entry for
+ imx8mp in FlexSPI controller
+Thread-Index: AQHXFKW4s58kNKH0jECKpV1fGZtOvap7J56Q
+Date:   Tue, 9 Mar 2021 05:56:06 +0000
+Message-ID: <DB6PR0402MB275838BF727B891FD6E2A62AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+References: <20210309053116.1486347-1-hs@denx.de>
+ <20210309053116.1486347-3-hs@denx.de>
+In-Reply-To: <20210309053116.1486347-3-hs@denx.de>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: denx.de; dkim=none (message not signed)
+ header.d=none;denx.de; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [27.58.231.233]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7b037b13-8a5d-4d4a-8ec6-08d8e2c00801
+x-ms-traffictypediagnostic: DBAPR04MB7285:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DBAPR04MB7285D56A7DC34A3B97362801E0929@DBAPR04MB7285.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2201;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1q3wDfJXnBFnRu3/Nrx1MyxVsfB1AFNgOLWMGGo17oNaRdAh/453nlenIkKa6n4rlo8QhnoWIP7rSv5izMvL58Pz9AS1ofzFqy9QpiW8Ifd2P+PGmiuOL63WWkI2Skk+pApFjhu+84oL1U2g1X4aTM/cTmU/xhX/FQa+/ZtzYVVSqsa7hlyJ14psjMU8GzTcd0DBkybsjG0LYgYengmM8gEz3ZKp78UJNwEEtwub2c39jtGTyJ2kABUu5eJE2b78ReYbqZYMppHSN00gayXBe56a15klco8kmCmaeYvLz334/SPAxRmpPyV5p/pI/QaDpTqWbWvq4NL81MlgEzFgYA4/AHycs4up1OxFzHDWJdrWHdJeBOZpaqZ9FRKRaudm6zmiQqo5mmvOdwoyMGcDthBPDc8TJMjUl+i40b1X3w6xmPPHC1FKqAlBD8dHsqdg11nLQEPd/re1vO6kTHUNFF8hexzBB1JM5HEDkNCKa6hAx7vNqWbFiJkkv3MO/i0yO4k3kyZ16lF4CjlPUr7qxwKRTTSGajERUdGrvR3T5N6auIfnK2I4krrFaVbtOtpgGgCnn06C/k/ExTZ1DDboBYDjnyXjWK0hysWCN35lMDV4vaVjnynw45IClS+c4rbaBiyYJiY7eopqpBXAaiQ2Og==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2758.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(39860400002)(396003)(376002)(26005)(66446008)(316002)(186003)(83380400001)(33656002)(8936002)(2906002)(64756008)(5660300002)(76116006)(7696005)(9686003)(53546011)(6506007)(4326008)(86362001)(52536014)(8676002)(54906003)(966005)(55016002)(71200400001)(478600001)(66556008)(44832011)(66946007)(110136005)(66476007)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?1hSFG270sRAQrEPNrQxWLen3UznUgecPGglT/Put6h/sI7abf3q0sfcHaF4A?=
+ =?us-ascii?Q?wy8wBroMhV+LrcZPxW4iYdBr3x583LSMwR5DZ5ITwEzWIK2uUml5LRI0VETK?=
+ =?us-ascii?Q?WcD5CdaPk1/Q38BLWvqmUS3kacw1xfxdPz+zHcxQD9vJBMrHHQdd4vX96ekr?=
+ =?us-ascii?Q?lvtIEwkyBn5xdH6sGijZ+iK7s2FT9F9xOwImOOt5Np9luyTBbk0DRUmNmRFX?=
+ =?us-ascii?Q?gCUAIRIDKndw3mC8eKsw309NHgGTQrBKC6L0tMB2937BL3gPVen9U56T1YHl?=
+ =?us-ascii?Q?lktI3IYDg8cR4Z7DZDUQiFT8O6oc4HO1lm7utxDVUWkzbLb0z4F6MhgnBQ+5?=
+ =?us-ascii?Q?bvikNh8jyiQNvyGyZjgCrnpugrLF4Ih9Xyv0YMJMoeD0Rm9fYb2l4YBdQ7LT?=
+ =?us-ascii?Q?KL0moeyAao8wB1dLigKRmNYswD8aN2UtwgH7cs9TjjSvlZG5/sP25PPSOmb6?=
+ =?us-ascii?Q?117H7n5Rwuehb7VFPZeqGC/VbSXv2DMl1fHKjB5GzWTjq8KkF+8gVshdqwyY?=
+ =?us-ascii?Q?L/7Ev09oH82+Q2HqoucT/79TixKLoB4LJD5xbTXfquB9nbZ/5ue2rbSuyHti?=
+ =?us-ascii?Q?pasLGXs7mjqkaDm1+2Q918goAPPoHyefHYIH12QIZCTaVlsVR+NpYmddFHLx?=
+ =?us-ascii?Q?9ZlELKCuk3Jybn5fgZxfsn4e+zl6JXVsC4U9kZ4K7CDFhFgMcFwHmtEcbbn8?=
+ =?us-ascii?Q?/oEHSiJ31YIdibK6Uefgqug4Vm2plHzCwx/AhOhncApdfTydQ+qNX/ztauMP?=
+ =?us-ascii?Q?PN5HqiclXbiF0mG8h3igcs/+mpAQVt/66bmcDb2hEQ4+mToKdZBm/19pFsQQ?=
+ =?us-ascii?Q?EJoWuRv+VafK78TpMkZJXKIi9nV6XC6nG6I0G0w7be78O+0HZVuHIRIdF3/f?=
+ =?us-ascii?Q?rqE8pNMAWXGEdxTzV9EP5ykcvHu2zRgUHyaCh5+e0dZjPTVwx2OFwGtgTYhi?=
+ =?us-ascii?Q?aP7zm7gWLGwX4HrPGfEQQvtQfoGH5KC8BN6Ivvv2xie+9kHiKWmQQY9SVH7F?=
+ =?us-ascii?Q?L6ySoSHkInu8t31ehqoyQVavUJRe0e5fa3iiFD9DBLDXlpDKj+z7dQ0GW7ba?=
+ =?us-ascii?Q?8xRO1De6K0KyD1krWim6FU2iYIC/9OO6Fsnd4ASPiT8eu01BZP3bBv53pzm4?=
+ =?us-ascii?Q?OkpONDyOwrZXyR9HqA+S17QMjEpFyYqjaB5jwyaSp51ZmwgHSMOzy3JOSf50?=
+ =?us-ascii?Q?auTvAut0LkwleScEyKXzXJl/oNkSJ2NseluRlK5+y3Y67l7OVznfHVfDJsZH?=
+ =?us-ascii?Q?uk0REX4IGpBQUFJOB/bk1uMlqTi3linQ0zP+a1ljmKaoYk/2FQCvwvyhVEzE?=
+ =?us-ascii?Q?hh8=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2758.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b037b13-8a5d-4d4a-8ec6-08d8e2c00801
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2021 05:56:06.7683
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 18PWVtG+keAbPC1N1QG+GWJ8eSY6dy4HLyYKWCEce0UfHEFQuUYtYhDxshyglkVkb0xUCoCDadnsx9woIqe2BQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7285
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/4/21 2:12 PM, Rasmus Villemoes wrote:
-> As Arnd and Guenther suggested, this adds support to the gpio_wdt
-> driver for being a consumer of the clock driving the ripple
-> counter. However, I don't think it should be merged as-is, see below.
-> 
-> The first patch makes sense on its own, quick grepping suggests plenty
-> of places that could benefit from this, and I thought it would be odd
-> to have to re-introduce a .remove callback in the gpio_wdt driver.
-> 
+Hi Heiko,
 
-This has zero chance to be accepted. As suggested in the patch,
-just use devm_add_action(), like many other watchdog drivers.
+> -----Original Message-----
+> From: Heiko Schocher <hs@denx.de>
+> Sent: Tuesday, March 9, 2021 11:01 AM
+> To: linux-arm-kernel@lists.infradead.org
+> Cc: Heiko Schocher <hs@denx.de>; Ashish Kumar <ashish.kumar@nxp.com>;
+> Mark Brown <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>; Yogesh
+> Gaur <yogeshgaur.83@gmail.com>; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-spi@vger.kernel.org
+> Subject: [EXT] [PATCH v2 2/4] dt-bindings: spi: add compatible entry for =
+imx8mp in
+> FlexSPI controller
+>=20
+> Caution: EXT Email
+>=20
+> add compatible entry "nxp,imx8mp-fspi" in NXP FlexSPI controller
+>=20
+> Signed-off-by: Heiko Schocher <hs@denx.de>
+> ---
+>=20
+> (no changes since v1)
+>=20
+>  Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+> b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+> index 7ac60d9fe3571..fd5f081f6d91b 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+> +++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+> @@ -4,6 +4,7 @@ Required properties:
+>    - compatible : Should be "nxp,lx2160a-fspi"
+>                             "nxp,imx8qxp-fspi"
+>                             "nxp,imx8mm-fspi"
+> +                           "nxp,imx8mp-fspi"
 
-> Unfortunately, this turns out to be a bit of an "operation succeeded,
-> patient (almost) died": We use CONFIG_GPIO_WATCHDOG_ARCH_INITCALL
-> because the watchdog has a rather short timeout (1.0-2.25s, 1.6s
-> typical according to data sheet). At first, I put the new code right
-> after the devm_gpiod_get(), but the problem is that this early, we get
-> -EPROBE_DEFER since the clock provider (the RTC which sits off i2c)
-> isn't probed yet. But then the board would reset because it takes way
-> too long for the rest of the machine to initialize. [The bootloader
-> makes sure to turn on the RTC's clock output so the watchdog is
-> actually functional, the task here is to figure out the proper way to
-> prevent clk_disable_unused() from disabling it.]
-> 
+It seems the changes are not on top of tree. Please see[1] for latest chang=
+es including imx8dxl entry.
+Snippet below:
 
-Is there a property indicating always-on for clocks, similar to
-regulator-always-on ? The idea seems to exist, but it looks like
-it is always explict (ie mentioned somewhere in the code that a clock
-is always on, or "safe"). It would help if the clock in question
-can be marked as always-on without explicit consumer.
+Required properties:
+  - compatible : Should be "nxp,lx2160a-fspi"
+			    "nxp,imx8qxp-fspi"
+			    "nxp,imx8mm-fspi"
+			    "nxp,imx8dxl-fspi"
 
-Thanks,
-Guenter
-
-> Moving the logic to after the first "is it always-running and if so
-> give it an initial ping" made the board survive, but unfortunately the
-> second, and succesful, probe happens a little more than a second
-> later, which happens to work on this particular board, but is
-> obviously not suitable for production given that it's already above
-> what the spec says, and other random changes in the future might make
-> the gap even wider.
-> 
-> So I don't know. The hardware is obviously misdesigned, and I don't
-> know how far the mainline kernel should stretch to support this; OTOH
-> the kernel does contain lots of workarounds for quirks and hardware
-> bugs. 
-> 
-> 
-> 
-> 
-> Rasmus Villemoes (3):
->   clk: add devm_clk_prepare_enable() helper
->   dt-bindings: watchdog: add optional "delay" clock to gpio-wdt binding
->   watchdog: gpio_wdt: implement support for optional "delay" clock
-> 
->  .../devicetree/bindings/watchdog/gpio-wdt.txt |  6 ++++
->  .../driver-api/driver-model/devres.rst        |  1 +
->  drivers/clk/clk-devres.c                      | 29 +++++++++++++++++++
->  drivers/watchdog/gpio_wdt.c                   |  9 ++++++
->  include/linux/clk.h                           | 13 +++++++++
->  5 files changed, 58 insertions(+)
-> 
-
+Thanks
+Kuldeep
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/tree/Do=
+cumentation/devicetree/bindings/spi/spi-nxp-fspi.txt
