@@ -2,105 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78DA5331D12
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 03:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2218331D17
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 03:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhCICoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 21:44:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbhCICoU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 21:44:20 -0500
-X-Greylist: delayed 5142 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 08 Mar 2021 18:44:20 PST
-Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919EFC06174A;
-        Mon,  8 Mar 2021 18:44:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:
-        Sender:Reply-To:Content-ID:Content-Description;
-        bh=ohLrrpvgSOL6BKQCrL7o+OT4R83iMQsPDgorCsdAWDI=; b=e/Vhb0McTCu32iTJOX2aHwNhnx
-        mkM/r6R1D2APpncqHb5aKXIE/Z5coG/f4Dnzz5ttWiJ1WrBWeLZG8eJqjnxD76At1FBdx34+hudfX
-        PnuNiqwrnZ6ZKSfsrdU931eUQnH7V/T03xmpawNUwVi+49p6gpZBSIs8g39ia+lGjkGzLASE83Ueu
-        Wwlk6VFJAlu05os7FC7AfFolN02mV9FeQIKYFcCP+pLb56W0XAdy6COnLjeEiHpIZ7RaTv33L4sZI
-        IZ2nBO5KnejtTj6qge7mLvkscXf636sblrt4j5fuUy5VcvKjxp5iXckAvHeHc4udeTTSCDWp8WPB7
-        8d+4q2Qw==;
-Received: from merlin.infradead.org ([2001:8b0:10b:1234::107])
-        by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
-        id 1lJR1A-003ZHV-Fx; Tue, 09 Mar 2021 01:18:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=ohLrrpvgSOL6BKQCrL7o+OT4R83iMQsPDgorCsdAWDI=; b=GGzNqkY17R95JMgHzQ8YlZW//3
-        LyyBEPAcY2QLM82TNsLs2vnsyt5XDwvovMlX+p5k6oKiQqBuEHAIfyKGa8vzlm9T0rOJnWJ3BqqMI
-        FYs8mqG5h1xXomVANRjU6/eR5YTHbpayQA13J4i1mdG9PHJVQm+LtWaY2eX8mXmiXIFPHvmedi+FU
-        WbedogkIODy4xLavthTAfrJZLBmVqQSC3XtQkbarjYOv2XyOOYBgu92wARi3/gD7B8YaxS7dLsznI
-        s5ygDZXoGZplV9IWXT5v0h8CJfxSpvqPWZkGtYzqTwVM1R9KZZVSQgDWYyCsjNBoSWow6BYs9z0w8
-        Zh6ErVCw==;
-Received: from [2601:1c0:6280:3f0::3ba4]
-        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lJR0J-000bIi-4d; Tue, 09 Mar 2021 01:17:43 +0000
-Subject: Re: [PATCH v2 0/7] Generic Command Line changes
-To:     Daniel Walker <danielwa@cisco.com>, Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-efi@vger.kernel.org
-References: <20210308235319.2988609-1-danielwa@cisco.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <e5685605-adc7-e05d-31ce-d743afd79c9b@infradead.org>
-Date:   Mon, 8 Mar 2021 17:17:37 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-MIME-Version: 1.0
-In-Reply-To: <20210308235319.2988609-1-danielwa@cisco.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S229793AbhCICpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 21:45:40 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:38713 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229599AbhCICpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 21:45:15 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C9CE5580795;
+        Mon,  8 Mar 2021 21:45:14 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Mon, 08 Mar 2021 21:45:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=qRybQhRN/O0nr4FGzlsF5grYQeYZu8u
+        crJLcVTZ+qd0=; b=QOXTD5AO8JgTi78Gox3qd+o0cQCodeaVASzuajwdav5Y2hC
+        4avnt+mIqAteWzqQDJl9a+QBx+HWM83Gk8XIX3u3/8IoOxIpfAhVm0FteiFTDHU8
+        UwnYHebv1bSlVT/QLDChvmP7j9MwiX+8RFkMT4zCiclkKaUOimes4zpaPZa94zB7
+        BAu4JaRJB3JUe2FFr1s9ti6JN1lAbNCqTKBqSjZjKFnT5CkATt6/FEDBe1Fbe4gJ
+        D0U2yfwxYdj1M8DA7OVJ8w0HqvbaDOcrNGrDuwksoN/ZhLutauiUsz50QyJjeiYI
+        pceRzncgFai4/nRAJK/s+SQqGIgjF/NUaPhONoA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=qRybQh
+        RN/O0nr4FGzlsF5grYQeYZu8ucrJLcVTZ+qd0=; b=aDdpVZRzVu/fS0qCUO6nOt
+        oEgpCu/QYslFEzpsvzX7ndTe8eRiqTfW1+F4Fv5rSljjXczfv7nrbqAWr3zapAW0
+        OjefFWXSx9RK3x20MIrnZcNoti7tW/oJNtSA/IV7IGOQHDvleipPI09EiprnhU9o
+        kt5scxewJhaB6Qq51S97vCJklRMPZ9wqdCDkJp6r7hTpTZ25zNabBWCCaBJG9QKb
+        9u6RelhaplCmdQf+JB8koj+J5GNSUsr4cXpmXqevWGEjrvMfmV3DRpgqVTIImVfo
+        ECd+27HzMXYje4l4PuXUIUPvFoestcAbxKMjRp5oAEw7dxy3qsvV9LfT+/Sh16IA
+        ==
+X-ME-Sender: <xms:OeFGYDnuPNqO225nJFIOksYE4N-W8_TT57d--pKiJK5IItujip51ng>
+    <xme:OeFGYG3AevxgNkp6GBMoCi17lsCIk0UfPd4Zb0S2-1acVmFRKmVe3pjedveEy_gHz
+    CwHMO254a3PIWOkOA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudduhedggeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:OeFGYJo0AqsS8xJQPVQeyVcw51jBuDXitZCYSpimI6GuXdKxDCpt9g>
+    <xmx:OeFGYLktDhp7hqaYr6namfV8BupM_mzss-zlC4J7CcD3HGisilXfhg>
+    <xmx:OeFGYB1y7aWjmsX_j2hoYnrsWZ1vIeNG-hTGQDkdrPZnB18ZfhWOxQ>
+    <xmx:OuFGYLM4Nh9o6VssFPquDGq2opK0-qo-dL8LHWiAIMvmBVsXSXAgUg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 45659A00064; Mon,  8 Mar 2021 21:45:13 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-206-g078a48fda5-fm-20210226.001-g078a48fd
+Mime-Version: 1.0
+Message-Id: <331c242b-cf22-4d0e-a08c-b9dbb06f2f32@www.fastmail.com>
+In-Reply-To: <20210305230940.GA809870@robh.at.kernel.org>
+References: <20210219142523.3464540-1-andrew@aj.id.au>
+ <20210219142523.3464540-18-andrew@aj.id.au>
+ <20210305230940.GA809870@robh.at.kernel.org>
+Date:   Tue, 09 Mar 2021 13:14:52 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Corey Minyard" <minyard@acm.org>, linux-gpio@vger.kernel.org,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, "Tali Perry" <tali.perry1@gmail.com>,
+        linux-aspeed@lists.ozlabs.org,
+        openipmi-developer@lists.sourceforge.net,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "Benjamin Fair" <benjaminfair@google.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_17/19]_dt-bindings:_ipmi:_Add_optional_SerIRQ_prope?=
+ =?UTF-8?Q?rty_to_ASPEED_KCS_devices?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/8/21 3:53 PM, Daniel Walker wrote:
-> This fixed some problem identified in my last release. I made updates
-> based on comments from Christophe Leroy.
+
+
+On Sat, 6 Mar 2021, at 09:39, Rob Herring wrote:
+> On Sat, Feb 20, 2021 at 12:55:21AM +1030, Andrew Jeffery wrote:
+> > Allocating IO and IRQ resources to LPC devices is in-theory an operation
+> > for the host, however ASPEED don't appear to expose this capability
+> > outside the BMC (e.g. SuperIO). Instead, we are left with BMC-internal
+> > registers for managing these resources, so introduce a devicetree
+> > property for KCS devices to describe SerIRQ properties.
+> > 
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > ---
+> >  .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml      | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > index 1c1cc4265948..808475a2c2ca 100644
+> > --- a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > +++ b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+> > @@ -47,6 +47,18 @@ properties:
+> >        channels the status address is derived from the data address, but the
+> >        status address may be optionally provided.
+> >  
+> > +  aspeed,lpc-interrupts:
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
+> > +    minItems: 1
+> > +    maxItems: 1
+> > +    description: |
+> > +      A 2-cell property expressing the LPC SerIRQ number and the interrupt
+> > +      level/sense encoding (specified in the standard fashion).
 > 
-> I added scripted updates to the defconfig file for mips and powerpc.
-> This is required in order to maintain the status quo for those platforms
-> which used the prior builtin command line system.
-> 
-> These were tested on all effected architectures.
-> 
-> Daniel Walker (7):
->   CMDLINE: add generic builtin command line
->   CMDLINE: drivers: of: ifdef out cmdline section
->   powerpc: convert config files to generic cmdline
->   CMDLINE: powerpc: convert to generic builtin command line
->   mips: convert config files to generic cmdline
->   CMDLINE: mips: convert to generic builtin command line
->   CMDLINE: x86: convert to generic builtin command line
+> That would be uint32-array with 'maxItems: 2'.
 > 
 
-
-Hi Daniel,
-
-These patches (1 - 7) should be sent as a Reply-to patch #0.
-
-In .gitconfig, could you use
-	thread = true
-
-or use --thread on the command line?
-
-HTH.
-thanks.
--- 
-~Randy
-
+Ah, thanks.
