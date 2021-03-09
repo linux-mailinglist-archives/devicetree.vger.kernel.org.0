@@ -2,189 +2,378 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D1633266D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:18:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50AA43326C0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:22:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbhCINSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 08:18:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35340 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230445AbhCINRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 08:17:54 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129DHljc009506;
-        Tue, 9 Mar 2021 07:17:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615295867;
-        bh=smtatFk4X24dbVUr8RE9Upqig6n15jPncVKOFCUoLtQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=M4IiOHalSUx+KD4enPIDAx+ZK+tAfvNEDxoCe5mj56gs+x2kCK3KacT8hAtM8EwEC
-         /XzPdwwxbpLDindHPKBoj0F04w/g/jwza9d7n80rent9Xo7drt5KrBXKzDCGvIQRTc
-         0lGTS9c/ivJrDgpRiiZPEUC2eh6GJRsXPW3NAWQI=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129DHlG8047846
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Mar 2021 07:17:47 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
- 2021 07:17:47 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 9 Mar 2021 07:17:47 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129DHknu117546;
-        Tue, 9 Mar 2021 07:17:46 -0600
-Date:   Tue, 9 Mar 2021 18:47:45 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am64-evm/sk: Add OSPI flash DT
- node
-Message-ID: <20210309131745.mgxee5735fae4gte@ti.com>
-References: <20210309130514.11740-1-vigneshr@ti.com>
- <20210309130514.11740-2-vigneshr@ti.com>
+        id S231674AbhCINV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 08:21:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231393AbhCINVd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 08:21:33 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4168C06174A;
+        Tue,  9 Mar 2021 05:21:32 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id e2so1288180pld.9;
+        Tue, 09 Mar 2021 05:21:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=943qSIAAGbzfZ1Mli8l1IMkssOCUKnzaCo1jCEsYE1Q=;
+        b=Ep2pKTBjeC4vo44sneiCLLWX9Z4z0Op9qhMq4HidRZnQnOlwLCbj4NRBCTnNfUqMr0
+         MGbXIrrMgTys/HwIBn/i8szntUuDbmxcA12LlBgubBt8jOkHkKSGLozVcXKBQrfQSL+9
+         HO1T4wT49O/5EVJleJCDi2NObZEYN2XoUTaBMt/Iux9eKTGlzPKieezfRmuUYVVbxt4E
+         q0IhAaz4RPvS6UIOCJZL1QVS6mocmGXDUIIbAbfA7SQco42UAv4eh68x1XphVM9KJOGQ
+         729TaBWuj9gdoD5gYz4/CrVyF4nMnax6b/By4gvDiPT0HKM92pch5lhkosi7GKgVI5Nr
+         KUlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=943qSIAAGbzfZ1Mli8l1IMkssOCUKnzaCo1jCEsYE1Q=;
+        b=rpAKODoW0HMJgJYOR+vbT5bXIam5808tdj6ZBsinDOdFtG7v11fLckDRpP2on9mFgP
+         WpMEyF4UK2HMe6JFCE50ZwEdD+QQTEGMFLBdWMCwNsUkd1ItGL3/HvLsXXt+0Z9A7xIq
+         t6jpJgxKLJlbQldZzeRlHWviuQGlADtRq4GRCLq9FbwXkSb1NBYlukrLA6VBQSbaeyuC
+         hDfeHoFb0SJyN1TT2uVQLUTDWWK5ZZt0nHtcdiiqbF7WriQZZEW3KQ1ZJXMNUp0OYc6s
+         a0TSx4BlwPUadU+6IV3IjlLBpcq2vHkLCb5c9vPhzAfPc/mgmAJGkmtYNmy+nNFS2jdq
+         PSeQ==
+X-Gm-Message-State: AOAM532StBcqRgldJy98eLydWA0Mv3+vEVwyKIZ9WIuK3op/BgxddLUz
+        HPKnJcpdi4EcyFYtUB0BMCxo0t4t+J1B3DMFyVA=
+X-Google-Smtp-Source: ABdhPJxXNJoXrfaJKa/Io08GgjAWjAFK3EP4VnL0bJf0fm5BvCuPuusd0kfYfzAnWr0P1yEE+0S1qW2bebnrh/TwEeg=
+X-Received: by 2002:a17:90a:e454:: with SMTP id jp20mr1348560pjb.129.1615296092301;
+ Tue, 09 Mar 2021 05:21:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210309130514.11740-2-vigneshr@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210305133813.27967-1-o.rempel@pengutronix.de> <20210305133813.27967-3-o.rempel@pengutronix.de>
+In-Reply-To: <20210305133813.27967-3-o.rempel@pengutronix.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 9 Mar 2021 15:21:15 +0200
+Message-ID: <CAHp75VepMJKuePOgqhgfJzpvLXAizoKsPyJ99wtzHod_xxYLYA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: add ADC driver for the TI TSC2046 controller
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/21 06:35PM, Vignesh Raghavendra wrote:
-> Both AM64 EVM and SK have a 512Mb S28HS512T Octal SPI NOR flash.
-> Add DT node for the same.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+On Fri, Mar 5, 2021 at 3:40 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
+I have heard it will be a new version, so below a lot of nit-picks.
 
-> ---
-> 
-> Bootlog:
-> 
-> SK: https://pastebin.ubuntu.com/p/gvxg7cFrXH/
-> EVM: https://pastebin.ubuntu.com/p/jb39GqkB78/
-> 
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 36 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 36 +++++++++++++++++++++++++
->  2 files changed, 72 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> index 1f1787750fef..7dd8e94b108d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> @@ -133,6 +133,22 @@ AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
->  			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
->  		>;
->  	};
+> Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
+> the touchscreen use case. By implementing it as IIO ADC device, we can
+
+an IIO
+
+> make use of resistive-adc-touch and iio-hwmon drivers.
+>
+> So far, this driver was tested with custom version of resistive-adc-touch driver,
+> since it need to be extended to make use of Z1 and Z2 channels. The X/Y
+
+needs
+
+> are working without additional changes.
+
+...
+
+> +#include <asm/unaligned.h>
+
+Usually asm/* goes after linux/*
+
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +#include <linux/iio/trigger.h>
+
+Can we move this group separately after all other includes?
+
+> +#include <linux/module.h>
+> +#include <linux/spi/spi.h>
+
+...
+
+> +/* this driver doesn't aim at the peak continuous sample rate */
+
+This
+
+> +/*
+> + * Default settling time. This time depends on the:
+> + * - PCB design
+> + * - touch plates size, temperature, etc
+> + * - initial power state of the ADC
+> + *
+> + * Since most values higher than 100us seems to be good, it make sense to
+
+seem
+makes
+
+> + * have some default value. These values were measuring get by testing on a
+
+were measured on a
+
+> + * PLYM2M board at 2MHz SPI CLK rate.
+> + *
+> + * Sometimes there are extra signal filter capacitors on the touchscreen
+> + * signals, which make it 10 or 100 times worse.
+> + */
+
+...
+
+> +#define TI_TSC2046_TIMESTAMP_SIZE              (sizeof(int64_t) / sizeof(int16_t))
+
+Hmm... shouldn't we use a struct approach below?
+
+...
+
+> +/* represents a HW sample */
+
+Represents
+
+Kernel doc with explanation on the fields?
+
+...
+
+> +/* layout of atomic buffers within big buffer */
+
+Ditto.
+
+...
+
+> +       u16 scan_buf[TI_TSC2046_MAX_CHAN + 2 + TI_TSC2046_TIMESTAMP_SIZE];
+
+Shouldn't we use a struct approach here?
+
+...
+
+> +       /*
+> +        * Lock to protect the layout and the spi transfer buffer.
+
+SPI
+
+> +        * tsc2046_adc_group_layout can be changed within update_scan_mode(),
+> +        * in this case the l[] and tx/rx buffer will be out of sync to each
+> +        * other.
+> +        */
+
+...
+
+> +       dev_dbg(&priv->spi->dev, "%s effective speed %u, time per bit: %u, count bits: %u, count samples: %u\n",
+> +               __func__, priv->effective_speed_hz, priv->time_per_bit_ns,
+> +               bit_count, sample_count);
+
+Drop all these __func__ from everywhere. For debug they may be enabled
+via Dynamic Debug interface.
+
+...
+
+> +       switch (ch_idx) {
+> +       case TI_TSC2046_ADDR_X:
+> +       case TI_TSC2046_ADDR_Y:
+> +       case TI_TSC2046_ADDR_Z1:
+> +       case TI_TSC2046_ADDR_Z2:
+> +               settle_time = TI_TSC2046_SETTLING_TIME_XYZ_DEF_US;
+> +               break;
+> +       default:
+> +               settle_time = 0;
+
+break;
+
+> +       }
+
+...
+
+> +static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
+> +                             bool keep_power)
+> +{
+> +       u32 pd = 0; /* power down (pd) bits */
 > +
-> +	ospi0_pins_default: ospi0-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM64X_IOPAD(0x0000, PIN_OUTPUT, 0) /* (N20) OSPI0_CLK */
-> +			AM64X_IOPAD(0x002c, PIN_OUTPUT, 0) /* (L19) OSPI0_CSn0 */
-> +			AM64X_IOPAD(0x000c, PIN_INPUT, 0) /* (M19) OSPI0_D0 */
-> +			AM64X_IOPAD(0x0010, PIN_INPUT, 0) /* (M18) OSPI0_D1 */
-> +			AM64X_IOPAD(0x0014, PIN_INPUT, 0) /* (M20) OSPI0_D2 */
-> +			AM64X_IOPAD(0x0018, PIN_INPUT, 0) /* (M21) OSPI0_D3 */
-> +			AM64X_IOPAD(0x001c, PIN_INPUT, 0) /* (P21) OSPI0_D4 */
-> +			AM64X_IOPAD(0x0020, PIN_INPUT, 0) /* (P20) OSPI0_D5 */
-> +			AM64X_IOPAD(0x0024, PIN_INPUT, 0) /* (N18) OSPI0_D6 */
-> +			AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
-> +			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
-> +		>;
-> +	};
->  };
->  
->  &main_uart0 {
-> @@ -244,3 +260,23 @@ &sdhci1 {
->  	ti,driver-strength-ohm = <50>;
->  	disable-wp;
->  };
+> +       /*
+> +        * if PD bits are 0, controller will automatically disable ADC, VREF and
+> +        * enable IRQ.
+> +        */
+
+> +       if (keep_power)
+> +               pd = TI_TSC2046_PD0_ADC_ON;
+
+else
+  pd = 0;
+
+?
+
+Otherwise comments are kinda not fully clear.
+
+> +       return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
+> +}
+
+...
+
+> +       /* last 3 bits on the wire are empty */
+
+Last
+
+> +       return get_unaligned_be16(&buf->data) >> 3;
+
+Doesn't mean we will lose precision when the driver will be used as AD/C?
+
+...
+
+> +static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
+> +                                          unsigned int group,
+> +                                          unsigned int ch_idx)
+> +{
+> +       struct tsc2046_adc_group_layout *l = &priv->l[group];
+
+Hmm...
+
+> +       unsigned int max_count, count_skip;
+> +       unsigned int offset = 0;
 > +
-> +&ospi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&ospi0_pins_default>;
+> +       count_skip = tsc2046_adc_get_settle_count(priv, ch_idx);
+
+> +       if (group != 0) {
+> +               l = &priv->l[group - 1];
+> +               offset = l->offset + l->count;
+> +       }
 > +
-> +	flash@0{
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <8>;
-> +		spi-rx-bus-width = <8>;
-> +		spi-max-frequency = <25000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <4>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
+> +       l = &priv->l[group];
+
+Why do you need to reassign this?
+
+Wouldn't be simpler to rewrite it as
+
+if (group)
+  offset = ...;
+
+?
+
+> +       max_count = count_skip + TI_TSC2046_SAMPLES_XYZ_DEF;
+> +
+> +       l->offset = offset;
+> +       l->count = max_count;
+> +       l->skip = count_skip;
+> +
+> +       return sizeof(*priv->tx) * max_count;
+> +}
+
+...
+
+> +               switch (ch_idx) {
+> +               case TI_TSC2046_ADDR_Y:
+> +                       if (val == 0xfff)
+> +                               return -EAGAIN;
+> +                       break;
+> +               case TI_TSC2046_ADDR_X:
+> +                       if (!val)
+> +                               return -EAGAIN;
+> +                       break;
+
+default?
+
+> +               }
+
+...
+
+> +               if (valid) {
+> +                       /*
+> +                        * Validate data to stop sampling and reduce power
+> +                        * consumption.
+> +                        */
+> +                       ret = tsc2046_adc_get_valide_val(priv, group);
+> +                       if (ret < 0) {
+> +                               /* go back and invalidate all channels */
+> +                               group = 0;
+> +                               valid = false;
+> +                       }
+> +               } else {
+
+> +                       ret = 0xffff;
+
+GENMASK() if it's a bitfield or U16_MAX if it's plain number?
+
+> +               }
+> +
+> +               priv->scan_buf[group] = ret;
+> +       }
+
+...
+
+> +       unsigned int retry = 3;
+
+Why this number? Comment?
+
+...
+
+> +               /*
+> +                * We can sample it as fast as we can, but usually we do not
+> +                * need so many samples. Reduce the sample rate for default
+> +                * (touchscreen) use case.
+> +                * Currently we do not need highly precise sample rate. It
+
+a highly
+
+> +                * is enough to have calculated numbers.
+> +                */
+
+...
+
+> +       priv->time_per_scan_us = size * 8 *
+> +               priv->time_per_bit_ns / NSEC_PER_USEC;
+
+One line?
+
+...
+
+> +       /*
+> +        * calculate and allocate maximal size buffer if all channels are
+> +        * enabled
+
+Calculate
+enabled.
+
+> +        */
+
+...
+
+> +       name = devm_kasprintf(dev, GFP_KERNEL, "%s-%s",
+> +                             TI_TSC2046_NAME, dev_name(dev));
+
+NULL check?
+
+...
+
+> +       trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> +                                     indio_dev->name, indio_dev->id);
+
+One line?
+
+> +       if (!trig)
+> +               return -ENOMEM;
+
+...
+
+> +static const struct of_device_id ads7950_of_table[] = {
+> +       { .compatible = "ti,tsc2046e-adc", .data = &tsc2046_adc_dcfg_tsc2046e },
+
+> +       { },
+
+No comma needed for a terminator line.
+
 > +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> index aa6ca4c49153..fc27470fc083 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> @@ -90,6 +90,22 @@ AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
->  			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
->  		>;
->  	};
-> +
-> +	ospi0_pins_default: ospi0-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM64X_IOPAD(0x0000, PIN_OUTPUT, 0) /* (N20) OSPI0_CLK */
-> +			AM64X_IOPAD(0x002c, PIN_OUTPUT, 0) /* (L19) OSPI0_CSn0 */
-> +			AM64X_IOPAD(0x000c, PIN_INPUT, 0) /* (M19) OSPI0_D0 */
-> +			AM64X_IOPAD(0x0010, PIN_INPUT, 0) /* (M18) OSPI0_D1 */
-> +			AM64X_IOPAD(0x0014, PIN_INPUT, 0) /* (M20) OSPI0_D2 */
-> +			AM64X_IOPAD(0x0018, PIN_INPUT, 0) /* (M21) OSPI0_D3 */
-> +			AM64X_IOPAD(0x001c, PIN_INPUT, 0) /* (P21) OSPI0_D4 */
-> +			AM64X_IOPAD(0x0020, PIN_INPUT, 0) /* (P20) OSPI0_D5 */
-> +			AM64X_IOPAD(0x0024, PIN_INPUT, 0) /* (N18) OSPI0_D6 */
-> +			AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
-> +			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
-> +		>;
-> +	};
->  };
->  
->  &mcu_uart0 {
-> @@ -171,3 +187,23 @@ &sdhci1 {
->  	ti,driver-strength-ohm = <50>;
->  	disable-wp;
->  };
-> +
-> +&ospi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&ospi0_pins_default>;
-> +
-> +	flash@0{
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <8>;
-> +		spi-rx-bus-width = <8>;
-> +		spi-max-frequency = <25000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <4>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +};
-> -- 
-> 2.30.1
-> 
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+With Best Regards,
+Andy Shevchenko
