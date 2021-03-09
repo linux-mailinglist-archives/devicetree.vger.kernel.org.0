@@ -2,181 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D64D33247A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 12:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2310133249E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:02:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbhCILwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 06:52:14 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:25830 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230183AbhCILvw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 06:51:52 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615290712; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=V5L3WVB1qXI2HbP+qKoMQF6jfFpfX1gMX6BTozK6W1k=; b=lrvMlAvxaeEQzwlWROHwH5DBSr3H6CMKCUsYmeOjeB6vGB5U+62081ZZF6e0o65ibLtC7Ilq
- 8ugUnQSelDLVRN9WnfmLAKHsCnhePNW4AH0MyGzUdzjFo8DMtMH32q/aAU3jXORpf31939ov
- cWXl2eYcvTyob86ryZARp6NlboU=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60476158106ec1d906c1d8f6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 11:51:52
- GMT
-Sender: okukatla=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7EE69C43461; Tue,  9 Mar 2021 11:51:51 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7FFBEC433C6;
-        Tue,  9 Mar 2021 11:51:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7FFBEC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=okukatla@codeaurora.org
-From:   Odelu Kukatla <okukatla@codeaurora.org>
-To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
-        evgreen@google.com, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
-        elder@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm-owner@vger.kernel.org,
-        Odelu Kukatla <okukatla@codeaurora.org>
-Subject: [3/3] arm64: dts: sc7280: Add interconnect provider DT nodes
-Date:   Tue,  9 Mar 2021 17:20:09 +0530
-Message-Id: <1615290609-21009-4-git-send-email-okukatla@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1615290609-21009-1-git-send-email-okukatla@codeaurora.org>
-References: <1615290609-21009-1-git-send-email-okukatla@codeaurora.org>
+        id S229900AbhCIMB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:01:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230183AbhCIMBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:01:54 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB71C06174A;
+        Tue,  9 Mar 2021 04:01:53 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id u4so26663201lfs.0;
+        Tue, 09 Mar 2021 04:01:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tNgJ/13OtvwF9T9vbyUBrplwIfPpk37A2INU8/7rV6k=;
+        b=qlMi95vQwcItgwgFEnUyvqFWG1fYZ1SviJ++bBW5EimlJei48ImOA/y7Ahp5y3OOHW
+         FQQaRs4wYjP+oV8hHPayS7IJn8bLn1BIII6z9++3ERMykw2dzLEqUlJsfno6tFnyWVKh
+         ai4hdFbNgVqQxHYM3yVKbyjuB/V/TPgTeMKRr0yGycpOojA5E/E9WDXfba/NFgfTOAGp
+         6Dtqlzg/BRWs/GMfus/Ovw46N2z434QPZMsGaFxkPUIK7QxqQmjF2nzD+zGGqaM78h+C
+         02zahWd56DZDjZXZdqppPayuoXdh0Be/c8EcYrKC79Vvuhox1AjOSysa1K43aR0Vy2W6
+         YkyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tNgJ/13OtvwF9T9vbyUBrplwIfPpk37A2INU8/7rV6k=;
+        b=BYWn0N97YSnWEU1vuGHlJnnAuCtDdic/oYwRFCOUJyTvfQG7NIWjmKfb/tUHJa9Ips
+         K8sGyYx1lBHmFD/z6FG+wzjEHocbvOgKaigicdH85l+7jLksDVh75ncxuhrfSSC3/O9f
+         SB8hOACwz5zuJ3U/QBxQE36KH/NvAfaZBqOH03pWBAPukXE2UQq1+kKWfspfvPjsBtTr
+         iJzYEeKQKy4V+JnKI3RAankAs86ONwTuqzhDceUrSOYkjTOat1MXAMQbFeOMrDzThwPr
+         rZzxKINLq++XLeSflbAhw+zA2Av20fb1r0mYk1dwvhf6WXUGdoMu8QcM7go4WuZvtOSY
+         +B4w==
+X-Gm-Message-State: AOAM5339SDz7hSPNiNtL0mi2785kEtjAzX3xogDxHoNMBP01wWY4l/59
+        qeh8ZFbRV5Lb9QBDOSah0ZmfJCHbu9cjgp8+YD8=
+X-Google-Smtp-Source: ABdhPJzb/XFcufOkuakq7r1+apy6JsOG33ywNv/IFeHphXrlWgDJX8xgaT2YLBA6NYp5oibxMN5tjKOwcasypuZK4PE=
+X-Received: by 2002:ac2:520f:: with SMTP id a15mr16719769lfl.223.1615291312274;
+ Tue, 09 Mar 2021 04:01:52 -0800 (PST)
+MIME-Version: 1.0
+References: <1615270520-16951-1-git-send-email-dillon.minfei@gmail.com> <1615270520-16951-2-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1615270520-16951-2-git-send-email-dillon.minfei@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 9 Mar 2021 09:01:40 -0300
+Message-ID: <CAOMZO5CUekq_NSCag=fhGrNuxvt_E335Z+qYWCHi8sP8zKJgXg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6ull: fix ubi filesystem mount failed
+To:     dillon.minfei@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Parthiban Nallathambi <parthiban@linumiz.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for the network-on-chip interconnect buses found
-on sc7280-based platforms.
+Hi Dillon,
 
-Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 88 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+On Tue, Mar 9, 2021 at 3:15 AM <dillon.minfei@gmail.com> wrote:
+>
+> From: dillon min <dillon.minfei@gmail.com>
+>
+> since Micron MT29F2G08ABAEAWP's ecc error management:
+>
+> |Description                            | Requirement
+> |Minimum required ECC                   | 4-bit ECC per 528 bytes
+> |Minimum ECC with internal ECC enabled  | 4-bit ECC per 516 bytes (user data) +
+>                                          8bytes (parity data)
+>
+> to avoid unnecessary overheads related to bigger ecc calculations.
+> need choose to use fsl,use-minimum-ecc, else will run into ecc error.
+>
+> [    9.449265] ubi0: scanning is finished
+> [    9.463968] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
+> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
+> [    9.486940] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
+> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
+> [    9.509906] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
+> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
+> [    9.532845] ubi0 error: ubi_io_read: error -74 (ECC error) while reading
+> 22528 bytes from PEB 513:4096, read 22528 bytes
+>
+> Fixes: f9ecf10cb88c ("ARM: dts: imx6ull: add MYiR MYS-6ULX SBC")
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8af6d77..ecb2a77 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/clock/qcom,gcc-sc7280.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/interconnect/qcom,sc7280.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -596,6 +597,93 @@
- 				clock-names = "xo";
- 				#clock-cells = <1>;
- 			};
-+
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,bcm-voter";
-+			};
-+		};
-+
-+		clk_virt: interconnect {
-+			compatible = "qcom,sc7280-clk-virt";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		cnoc2: interconnect@1500000 {
-+			reg = <0 0x1500000 0 0x1000>;
-+			compatible = "qcom,sc7280-cnoc2";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		cnoc3: interconnect@1502000 {
-+			reg = <0 0x1502000 0 0x1000>;
-+			compatible = "qcom,sc7280-cnoc3";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mc_virt: interconnect@1580000 {
-+			reg = <0 0x1580000 0 0x4>;
-+			compatible = "qcom,sc7280-mc-virt";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1680000 {
-+			reg = <0 0x1680000 0 0x15480>;
-+			compatible = "qcom,sc7280-system-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre1_noc: interconnect@16e0000 {
-+			compatible = "qcom,sc7280-aggre1-noc";
-+			reg = <0 0x016e0000 0 0x1c080>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1700000 {
-+			reg = <0 0x1700000 0 0x2b080>;
-+			compatible = "qcom,sc7280-aggre2-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			reg = <0 0x1740000 0 0x1e080>;
-+			compatible = "qcom,sc7280-mmss-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		lpass_ag_noc: interconnect@3c40000 {
-+			reg = <0 0x03c40000 0 0xf080>;
-+			compatible = "qcom,sc7280-lpass-ag-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		dc_noc: interconnect@90e0000 {
-+			reg = <0 0x90e0000 0 0x5080>;
-+			compatible = "qcom,sc7280-dc-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		gem_noc: interconnect@9100000 {
-+			reg = <0 0x9100000 0 0xe2200>;
-+			compatible = "qcom,sc7280-gem-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		nsp_noc: interconnect@a0c0000 {
-+			reg = <0 0x0a0c0000 0 0x10000>;
-+			compatible = "qcom,sc7280-nsp-noc";
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 	};
- 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
