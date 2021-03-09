@@ -2,77 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4544331CC5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 03:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78DA5331D12
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 03:45:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbhCICNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 21:13:15 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:2073 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229589AbhCICNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 21:13:15 -0500
-X-UUID: d55bf50da1714c48b98a191f0886a46e-20210309
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=HzSZXHmvNwYWi91TrlbB7npR6sCw+tpyWz5uepOikxY=;
-        b=FMVq/xKtTjAst6TW9SzdBg1+JYETzqHfj4dkkTWnLTpi3nyCVf16WTr2u190jJY2PoXiLPpS8u5g7lJPks1UWyqnc3wKIoKeaBlZXX+dxsPfMKa/m48Fo/3s2wb4UCCD+GDmzngOkqCtQItlUc+1dJAReTh9TRKmhsRdkWKp15M=;
-X-UUID: d55bf50da1714c48b98a191f0886a46e-20210309
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <peng.zhou@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2056281069; Tue, 09 Mar 2021 10:13:12 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS32N1.mediatek.inc (172.27.4.71) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 9 Mar 2021 10:13:09 +0800
-Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 9 Mar 2021 10:13:02 +0800
-From:   Peng Zhou <peng.zhou@mediatek.com>
-To:     Eric Biggers <ebiggers@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        <linux-mmc@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>,
-        Peng Zhou <peng.zhou@mediatek.com>
-Subject: [PATCH v2 4/4] dt-bingdings: mmc: Mediatek: add ICE clock
-Date:   Tue, 9 Mar 2021 10:06:50 +0800
-Message-ID: <20210309020649.582-1-peng.zhou@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S229904AbhCICoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 21:44:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229599AbhCICoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 21:44:20 -0500
+X-Greylist: delayed 5142 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 08 Mar 2021 18:44:20 PST
+Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919EFC06174A;
+        Mon,  8 Mar 2021 18:44:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+        :In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:
+        Sender:Reply-To:Content-ID:Content-Description;
+        bh=ohLrrpvgSOL6BKQCrL7o+OT4R83iMQsPDgorCsdAWDI=; b=e/Vhb0McTCu32iTJOX2aHwNhnx
+        mkM/r6R1D2APpncqHb5aKXIE/Z5coG/f4Dnzz5ttWiJ1WrBWeLZG8eJqjnxD76At1FBdx34+hudfX
+        PnuNiqwrnZ6ZKSfsrdU931eUQnH7V/T03xmpawNUwVi+49p6gpZBSIs8g39ia+lGjkGzLASE83Ueu
+        Wwlk6VFJAlu05os7FC7AfFolN02mV9FeQIKYFcCP+pLb56W0XAdy6COnLjeEiHpIZ7RaTv33L4sZI
+        IZ2nBO5KnejtTj6qge7mLvkscXf636sblrt4j5fuUy5VcvKjxp5iXckAvHeHc4udeTTSCDWp8WPB7
+        8d+4q2Qw==;
+Received: from merlin.infradead.org ([2001:8b0:10b:1234::107])
+        by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
+        id 1lJR1A-003ZHV-Fx; Tue, 09 Mar 2021 01:18:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=ohLrrpvgSOL6BKQCrL7o+OT4R83iMQsPDgorCsdAWDI=; b=GGzNqkY17R95JMgHzQ8YlZW//3
+        LyyBEPAcY2QLM82TNsLs2vnsyt5XDwvovMlX+p5k6oKiQqBuEHAIfyKGa8vzlm9T0rOJnWJ3BqqMI
+        FYs8mqG5h1xXomVANRjU6/eR5YTHbpayQA13J4i1mdG9PHJVQm+LtWaY2eX8mXmiXIFPHvmedi+FU
+        WbedogkIODy4xLavthTAfrJZLBmVqQSC3XtQkbarjYOv2XyOOYBgu92wARi3/gD7B8YaxS7dLsznI
+        s5ygDZXoGZplV9IWXT5v0h8CJfxSpvqPWZkGtYzqTwVM1R9KZZVSQgDWYyCsjNBoSWow6BYs9z0w8
+        Zh6ErVCw==;
+Received: from [2601:1c0:6280:3f0::3ba4]
+        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1lJR0J-000bIi-4d; Tue, 09 Mar 2021 01:17:43 +0000
+Subject: Re: [PATCH v2 0/7] Generic Command Line changes
+To:     Daniel Walker <danielwa@cisco.com>, Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Rob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-efi@vger.kernel.org
+References: <20210308235319.2988609-1-danielwa@cisco.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <e5685605-adc7-e05d-31ce-d743afd79c9b@infradead.org>
+Date:   Mon, 8 Mar 2021 17:17:37 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: C7B9C1C986416529397245BF9289F010393F971BF14FF786B312334AFAD522B82000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210308235319.2988609-1-danielwa@cisco.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RG9jdW1lbnQgdGhlIGJpbmRpbmcgZm9yIGNyeXB0byBjbG9jayBvZiB0aGUgSW5saW5lIENyeXB0
-byBFbmdpbmUgKElDRSkNCm9uIE1lZGlhdGVrIFNvQ3MuDQoNClNpZ25lZC1vZmYtYnk6IFBlbmcg
-WmhvdSA8cGVuZy56aG91QG1lZGlhdGVrLmNvbT4NCi0tLQ0KIERvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9tbWMvbXRrLXNkLnlhbWwgfCA2ICsrKystLQ0KIDEgZmlsZSBjaGFuZ2Vk
-LCA0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL210ay1zZC55YW1sIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tdGstc2QueWFtbA0KaW5kZXggMDE2MzBiMGVjZWE3
-Li5hODFjMTRjODg5MDYgMTAwNjQ0DQotLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbW1jL210ay1zZC55YW1sDQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbW1jL210ay1zZC55YW1sDQpAQCAtMzcsNyArMzcsNyBAQCBwcm9wZXJ0aWVzOg0KICAg
-ICBkZXNjcmlwdGlvbjoNCiAgICAgICBTaG91bGQgY29udGFpbiBwaGFuZGxlIGZvciB0aGUgY2xv
-Y2sgZmVlZGluZyB0aGUgTU1DIGNvbnRyb2xsZXIuDQogICAgIG1pbkl0ZW1zOiAyDQotICAgIG1h
-eEl0ZW1zOiA4DQorICAgIG1heEl0ZW1zOiA5DQogICAgIGl0ZW1zOg0KICAgICAgIC0gZGVzY3Jp
-cHRpb246IHNvdXJjZSBjbG9jayAocmVxdWlyZWQpLg0KICAgICAgIC0gZGVzY3JpcHRpb246IEhD
-TEsgd2hpY2ggdXNlZCBmb3IgaG9zdCAocmVxdWlyZWQpLg0KQEAgLTQ3LDEwICs0NywxMSBAQCBw
-cm9wZXJ0aWVzOg0KICAgICAgIC0gZGVzY3JpcHRpb246IHBlcmlwaGVyYWwgYnVzIGNsb2NrIGdh
-dGUgKHJlcXVpcmVkIGZvciBNVDgxOTIpLg0KICAgICAgIC0gZGVzY3JpcHRpb246IEFYSSBidXMg
-Y2xvY2sgZ2F0ZSAocmVxdWlyZWQgZm9yIE1UODE5MikuDQogICAgICAgLSBkZXNjcmlwdGlvbjog
-QUhCIGJ1cyBjbG9jayBnYXRlIChyZXF1aXJlZCBmb3IgTVQ4MTkyKS4NCisgICAgICAtIGRlc2Ny
-aXB0aW9uOiBjcnlwdG8gY2xvY2sgdXNlZCBmb3IgZGF0YSBlbmNyeXB0L2RlY3J5cHQgKG9wdGlv
-bmFsKS4NCiANCiAgIGNsb2NrLW5hbWVzOg0KICAgICBtaW5JdGVtczogMg0KLSAgICBtYXhJdGVt
-czogOA0KKyAgICBtYXhJdGVtczogOQ0KICAgICBpdGVtczoNCiAgICAgICAtIGNvbnN0OiBzb3Vy
-Y2UNCiAgICAgICAtIGNvbnN0OiBoY2xrDQpAQCAtNjAsNiArNjEsNyBAQCBwcm9wZXJ0aWVzOg0K
-ICAgICAgIC0gY29uc3Q6IHBjbGtfY2cNCiAgICAgICAtIGNvbnN0OiBheGlfY2cNCiAgICAgICAt
-IGNvbnN0OiBhaGJfY2cNCisgICAgICAtIGNvbnN0OiBjcnlwdG8NCiANCiAgIHBpbmN0cmwtbmFt
-ZXM6DQogICAgIGl0ZW1zOg0KLS0gDQoyLjE4LjANCg==
+On 3/8/21 3:53 PM, Daniel Walker wrote:
+> This fixed some problem identified in my last release. I made updates
+> based on comments from Christophe Leroy.
+> 
+> I added scripted updates to the defconfig file for mips and powerpc.
+> This is required in order to maintain the status quo for those platforms
+> which used the prior builtin command line system.
+> 
+> These were tested on all effected architectures.
+> 
+> Daniel Walker (7):
+>   CMDLINE: add generic builtin command line
+>   CMDLINE: drivers: of: ifdef out cmdline section
+>   powerpc: convert config files to generic cmdline
+>   CMDLINE: powerpc: convert to generic builtin command line
+>   mips: convert config files to generic cmdline
+>   CMDLINE: mips: convert to generic builtin command line
+>   CMDLINE: x86: convert to generic builtin command line
+> 
+
+
+Hi Daniel,
+
+These patches (1 - 7) should be sent as a Reply-to patch #0.
+
+In .gitconfig, could you use
+	thread = true
+
+or use --thread on the command line?
+
+HTH.
+thanks.
+-- 
+~Randy
 
