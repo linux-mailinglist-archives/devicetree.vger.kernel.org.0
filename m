@@ -2,75 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E77332D14
+	by mail.lfdr.de (Postfix) with ESMTP id 04F2E332D13
 	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:20:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbhCIRT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 12:19:26 -0500
-Received: from mail-il1-f177.google.com ([209.85.166.177]:41867 "EHLO
-        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbhCIRTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:19:19 -0500
-Received: by mail-il1-f177.google.com with SMTP id c10so12856193ilo.8;
-        Tue, 09 Mar 2021 09:19:18 -0800 (PST)
+        id S230527AbhCIRT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 12:19:27 -0500
+Received: from mail-io1-f41.google.com ([209.85.166.41]:42450 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230449AbhCIRTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:19:22 -0500
+Received: by mail-io1-f41.google.com with SMTP id u20so14728524iot.9;
+        Tue, 09 Mar 2021 09:19:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=JsaLqg+Y+wZKqqo4vFt6KIoJc4yVnjqgApdeWlQB3eg=;
-        b=X9hL/Z035Ab6q0as15S4FW9/ssLwHLff6MVDNqRAPUFqYOkvbCXyKMQFY/OZMJ+wvw
-         nodiq8UoxYwJkZEddLS+lG+WmfO0AEwYeWL2K92NyUJgSZdT9c2ECZYebJJWtRfiPRG1
-         //i8XLZqk8rbHxj/Iy/Xd8AB7F12WJPZ39LN89fMJH0MzvGpaz34R2oEB3jbKhqQoBCS
-         mG8ngAqHwGE3bauaoho4Q3msftLsA7pb5ihhu+oM5FJWvI5NOsZbUzODXsVV7hJYuR9s
-         ooPIcMZr3B/Mz06ICrfFf/sh1WMwAiArZJMzOsYElkG9HdwuG3DN2BjcKbCtNgLJ4G8K
-         a2gA==
-X-Gm-Message-State: AOAM533S7PfNcifsr5wdfF9/2tb43sbcus3Nyz1PJ94ZhLJDLexA2Lq8
-        iqe6guuD7cc1Z5PisipqKw==
-X-Google-Smtp-Source: ABdhPJwn+5EIhFQnFbb9g58ohLGO2gRFJG9Jfjgso1gkrRdgI1TduaMeMt6PrbW35OnRaWGFUaYw4A==
-X-Received: by 2002:a05:6e02:12a1:: with SMTP id f1mr24653652ilr.124.1615310358499;
-        Tue, 09 Mar 2021 09:19:18 -0800 (PST)
+        bh=3v0eMTH8433dvD8WyTqDlgb7DpNe8skVjkraZ8DYNdA=;
+        b=sX/8GxQ8g9E6jq0trIeIJlSzsfaaqeVtAjXZokOq47jT7Xcx72Ix+u/WMTZYHjuHAJ
+         ERn8z8igzhANG081F4jz3bx5+uQmBLBv3n+oMMDHhLbgCH+PCrHP2FsZHdq7SLHdhVUC
+         Dhl1AqUSoYsehsfz4DCep0cEJVNCnKudF2Rg4sIWGRyIGRhLQo53zGyTjJ01k2RAEjQm
+         2khvWK1qanJSh+AyMGJWyXRec7hytWzbkO36NS4BWQVSM2zyWk9Q/ix4Vd5UErXA5/cO
+         KRUrs8oamQyUX8pTPvBVN/yOwM7GDr23iS1AeefJfbYreJ61IP9aCXKDizcAtZ8D5y4P
+         D2Gg==
+X-Gm-Message-State: AOAM533u4zty9fkPEp6veTQeSq/n0dy9zOqSjFuQ/4cq2Pzgb1i11qYt
+        K7xX2I7FAyDk7xtXLFDYBw==
+X-Google-Smtp-Source: ABdhPJxJwhk6pjOGdqvwXLnsQwFs7VE5qlF3nsYlT9QSxepYs8eSWVZLKzNlXgQY/gr5GmVy/xNkdA==
+X-Received: by 2002:a5e:8c16:: with SMTP id n22mr23765483ioj.156.1615310361748;
+        Tue, 09 Mar 2021 09:19:21 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e4sm7917359ilc.47.2021.03.09.09.19.16
+        by smtp.gmail.com with ESMTPSA id k3sm7828786ioj.35.2021.03.09.09.19.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 09:19:17 -0800 (PST)
-Received: (nullmailer pid 485086 invoked by uid 1000);
+        Tue, 09 Mar 2021 09:19:20 -0800 (PST)
+Received: (nullmailer pid 485084 invoked by uid 1000);
         Tue, 09 Mar 2021 17:19:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     sanyog.r.kale@intel.com, vkoul@kernel.org, broonie@kernel.org,
-        linux-kernel@vger.kernel.org, yung-chuan.liao@linux.intel.com,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        pierre-louis.bossart@linux.intel.com
-In-Reply-To: <20210309141514.24744-5-srinivas.kandagatla@linaro.org>
-References: <20210309141514.24744-1-srinivas.kandagatla@linaro.org> <20210309141514.24744-5-srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v2 4/5] ASoC: dt-bindings: wsa881x: add bindings for port mapping
+To:     Nadeem Athani <nadeem@cadence.com>
+Cc:     mparab@cadence.com, devicetree@vger.kernel.org,
+        tjoseph@cadence.com, sjakhade@cadence.com, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        kishon@ti.com, pthombar@cadence.com
+In-Reply-To: <20210309073142.13219-2-nadeem@cadence.com>
+References: <20210309073142.13219-1-nadeem@cadence.com> <20210309073142.13219-2-nadeem@cadence.com>
+Subject: Re: [PATCH 1/2] dt-bindings:pci: Set LTSSM Detect.Quiet state delay.
 Date:   Tue, 09 Mar 2021 10:19:11 -0700
-Message-Id: <1615310351.627443.485085.nullmailer@robh.at.kernel.org>
+Message-Id: <1615310351.616908.485083.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Mar 2021 14:15:13 +0000, Srinivas Kandagatla wrote:
-> WSA881x SoundWire device ports are statically assigned to master ports
-> at design time. So add bindings required to specify these mappings!
+On Tue, 09 Mar 2021 08:31:41 +0100, Nadeem Athani wrote:
+> The parameter detect-quiet-min-delay can be used to program the minimum
+> time that LTSSM waits on entering Detect.Quiet state.
+> 00 : 0us minimum wait time in Detect.Quiet state.
+> 01 : 100us minimum wait time in Detect.Quiet state.
+> 10 : 1000us minimum wait time in Detect.Quiet state.
+> 11 : 2000us minimum wait time in Detect.Quiet state.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Nadeem Athani <nadeem@cadence.com>
 > ---
->  .../devicetree/bindings/sound/qcom,wsa881x.yaml          | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../devicetree/bindings/pci/cdns,cdns-pcie-host.yaml        | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml:33:10: [error] syntax error: mapping values are not allowed here (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,wsa881x.example.dt.yaml: speaker@0,1: 'qcom-port-mapping' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,wsa881x.example.dt.yaml: speaker@0,2: 'qcom-port-mapping' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+./Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml:  mapping values are not allowed in this context
+  in "<unicode string>", line 33, column 10
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
+  in "<unicode string>", line 33, column 10
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.example.dts'
+make: *** [Makefile:1380: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1449860
+See https://patchwork.ozlabs.org/patch/1449563
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
