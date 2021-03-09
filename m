@@ -2,138 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22716332509
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E26933254C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:19:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbhCIMN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:13:57 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50100 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230421AbhCIMNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:13:44 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129CDavd119205;
-        Tue, 9 Mar 2021 06:13:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615292016;
-        bh=NT3U539wn8PIxN0x0E+OPu7W5tyhAjByxTd2uPdsmVw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=sDaPthwxPrCaV3ndAcZ+krDWkIaLiuJsxPVO7BSWCkpe8ZrVONq48dhJW9k5iSWtj
-         /7whnlmBBnuKndnhQY2oHx7sxTko3xdDhKkSRkefOLmBM8/Oza7VrLI5Tg+uj6Pwqk
-         6P+1Hx4cFWtsmEU+FP4QxubhAko/P0xPKhBqeRoA=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129CDaq3044823
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Mar 2021 06:13:36 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
- 2021 06:13:35 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Mar 2021 06:13:35 -0600
-Received: from [10.250.234.4] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129CDWxG005388;
-        Tue, 9 Mar 2021 06:13:33 -0600
-Subject: Re: [PATCH 3/9] phy: ti: j721e-wiz: Don't configure wiz if its
- already configured
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Milind Parab <mparab@cadence.com>,
-        Yuti Suresh Amonkar <yamonkar@cadence.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20201103035556.21260-1-kishon@ti.com>
- <20201103035556.21260-4-kishon@ti.com> <20201116073029.GI7499@vkoul-mobl>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <91c9433f-02c0-b440-3fc4-a9d757cc1b91@ti.com>
-Date:   Tue, 9 Mar 2021 17:43:30 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230486AbhCIMSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:18:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230435AbhCIMS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:18:28 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE45C06174A
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 04:18:28 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lJbJd-0005bo-DE; Tue, 09 Mar 2021 13:18:21 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lJbJb-000860-AO; Tue, 09 Mar 2021 13:18:19 +0100
+Date:   Tue, 9 Mar 2021 13:18:19 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Robin van der Gracht <robin@protonic.nl>,
+        David Jander <david@protonic.nl>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v1 2/2] iio: adc: add ADC driver for the TI TSC2046
+ controller
+Message-ID: <20210309121819.yzvta7tyrslnepts@pengutronix.de>
+References: <20210305133813.27967-1-o.rempel@pengutronix.de>
+ <20210305133813.27967-3-o.rempel@pengutronix.de>
+ <20210305190239.000075fe@Huawei.com>
+ <CAHp75Veu-G41mDUZubCgHD_V+_znd0HJoO03ZL7JpgwtjMYLCQ@mail.gmail.com>
+ <20210309114150.lubvvtqblw2y5zlk@pengutronix.de>
+ <CAHp75VfR2_N=krD8Rady77ST19o5vL7zChLnJ32wmx-+M1N3pg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201116073029.GI7499@vkoul-mobl>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAHp75VfR2_N=krD8Rady77ST19o5vL7zChLnJ32wmx-+M1N3pg@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 13:03:28 up 97 days,  2:09, 44 users,  load average: 0.04, 0.08,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On Tue, Mar 09, 2021 at 01:46:55PM +0200, Andy Shevchenko wrote:
+> On Tue, Mar 9, 2021 at 1:42 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> > On Tue, Mar 09, 2021 at 01:05:27PM +0200, Andy Shevchenko wrote:
+> > > On Fri, Mar 5, 2021 at 9:05 PM Jonathan Cameron
+> > > <Jonathan.Cameron@huawei.com> wrote:
+> > > >
+> > > > On Fri, 5 Mar 2021 14:38:13 +0100
+> > > > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> > > >
+> > > > > Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
+> > > > > the touchscreen use case. By implementing it as IIO ADC device, we can
+> > > > > make use of resistive-adc-touch and iio-hwmon drivers.
+> > > > >
+> > > > > So far, this driver was tested with custom version of resistive-adc-touch driver,
+> > > > > since it need to be extended to make use of Z1 and Z2 channels. The X/Y
+> > > > > are working without additional changes.
+> > > > >
+> > > > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > >
+> > > > Hi Oleksij,
+> > > >
+> > > > To consider this as a possible long term route instead of just making this
+> > > > a touchscreen driver, we'll want to see those mods to the resistive-adc-touch.
+> > > > Of course that doesn't stop review of this in the meantime.
+> > > >
+> > > > There are quite a few things in here that feel pretty specific to the touchscreen
+> > > > usecase. That makes me wonder if this is a sensible approach or not.
+> > >
+> > > I'm wondering if this has any similarities with existing drivers under
+> > > drivers/input/touchscreen.
+> >
+> > Yes, for example: drivers/input/touchscreen/ads7846.c
+> 
+> Then I have a few questions here:
+> 1/ why the above mentioned driver can't be extended to cover this?
 
-On 16/11/20 1:00 pm, Vinod Koul wrote:
-> On 03-11-20, 09:25, Kishon Vijay Abraham I wrote:
->> From: Faiz Abbas <faiz_abbas@ti.com>
->>
->> Serdes lanes might be shared between multiple cores in some usecases
->> and its not possible to lock PLLs for both the lanes independently
->> by the two cores. This requires a bootloader to configure both the
->> lanes at early boot time.
->>
->> To handle this case, skip all configuration if any of the lanes has
->> already been enabled.
->>
->> While we are here, also fix the wiz_init() to be called before the
->> of_platform_device_create() call.
-> 
-> Let's do two patches for these two issues :-)
-> 
-> Other than that, change lgtm, with exception of minor nit
-> 
->> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  drivers/phy/ti/phy-j721e-wiz.c | 36 +++++++++++++++++++++-------------
->>  1 file changed, 22 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
->> index d57d29382ce4..9786e8aec252 100644
->> --- a/drivers/phy/ti/phy-j721e-wiz.c
->> +++ b/drivers/phy/ti/phy-j721e-wiz.c
->> @@ -816,13 +816,14 @@ static int wiz_probe(struct platform_device *pdev)
->>  	struct device *dev = &pdev->dev;
->>  	struct device_node *node = dev->of_node;
->>  	struct platform_device *serdes_pdev;
->> +	bool already_configured = false;
->>  	struct device_node *child_node;
->>  	struct regmap *regmap;
->>  	struct resource res;
->>  	void __iomem *base;
->>  	struct wiz *wiz;
->>  	u32 num_lanes;
->> -	int ret;
->> +	int ret, val, i;
->>  
->>  	wiz = devm_kzalloc(dev, sizeof(*wiz), GFP_KERNEL);
->>  	if (!wiz)
->> @@ -944,10 +945,26 @@ static int wiz_probe(struct platform_device *pdev)
->>  		goto err_get_sync;
->>  	}
->>  
->> -	ret = wiz_clock_init(wiz, node);
->> -	if (ret < 0) {
->> -		dev_warn(dev, "Failed to initialize clocks\n");
->> -		goto err_get_sync;
->> +	for (i = 0; i < wiz->num_lanes; i++) {
->> +		regmap_field_read(wiz->p_enable[i], &val);
->> +		if (val & (P_ENABLE | P_ENABLE_FORCE)) {
->> +			already_configured = true;
->> +			break;
->> +		}
->> +	}
->> +
->> +	if (!already_configured) {
-> 
-> do you really need this variable and check, why not move the below into
-> precceding block and do wiz_clock_init() and wiz_init() inside the
-> if condition and drop the variable
+It is not possible to keep old device tree binding compatible with the
+new driver at least not for currently existing abstraction: ADC +
+touchscreen node.
 
-Don't see a clean way to do it in the preceding block. So we have "N"
-lanes and even if any one of the lanes is already configured, the
-following block has to be executed once.
+It is too expensive to overwrite the old driver, we do not have enough time and
+resource to do it. I lardy spend some weeks to do it and I would need a
+many more weeks to make it by tiny slices without solving actual
+problem. Many resistive touchscreen driver should share a lot of code.
 
-Thanks
-Kishon
+Since there is already existing IIO based components, it seems to me
+better to spend available resource and making it properly in a way,
+which reflect modern best practices.
+
+> 2/ or why is the proposed driver named after the touchscreen instead
+> of the real AD/C chip behind it?
+
+I do not understand this question. The proposed driver is named after
+the chip which provides ADC functionality, In this case, it is TSC2046.
+The touchscreen is a separate physical module.
+
+The idea of this proposition is to keep physically separate components
+separately on the kernel side.
+
+> 3/ maybe we can introduce a simple AD/C driver under IIO for that?
+
+There are already simple ADC drivers for that:
+iio-hwmon: drivers/hwmon/iio_hwmon.c
+resistive-adc-touch: drivers/input/touchscreen/resistive-adc-touch.c
+
+This two driver + the proposed one, will replace functionality of ads7846.c
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
