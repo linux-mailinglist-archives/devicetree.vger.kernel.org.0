@@ -2,113 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D45D33245F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 12:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE119332476
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 12:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbhCILrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 06:47:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbhCILrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 06:47:12 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82A27C06174A;
-        Tue,  9 Mar 2021 03:47:12 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id q22so610450pjd.0;
-        Tue, 09 Mar 2021 03:47:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gRjR7StjqFpOsF/tq48F+0Q6hHwDEC10FqFA0jTl/wQ=;
-        b=T9/BSR12qrFXLPwR8BD2jam0bWigKWj3UNdJqUuWJdW1sy9T8JzHNOlqxfiK/gIOMF
-         7WvDnxrR9cB4no3PGlAggyardqdXXFuyASABnoDbsENdFmz7mqoK/AX54RBLruoANp3I
-         LO4ys9wHdlE2OycQeaj8TuxhiFViLwIUAk6+OGm6bAA59oNCorljvB4hHnh5vcwYXN6e
-         neHhz1rIKPTUHS5HFtaZW/FobkK79tBi4DM1Dh4cvksmOnRG4LSoJKboDB9nydU8I7KS
-         7cOGGIrPO/UTiPqbHqnqGKcdiaD4IdhJIok1uRQykk72xQa4H9X4T8FgmQNPz/s91Mu4
-         bIWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gRjR7StjqFpOsF/tq48F+0Q6hHwDEC10FqFA0jTl/wQ=;
-        b=psUJlirqWc2wdOaAPF3zZ3rUlVGtfrBHj3n3k48SeaIg6IPzITtgj3kbc33XkHru4n
-         4dNzV3bnkgNrJcBf3N+KAI4Gekfh8hJAN67dO04dCaErd7iTF0OvlpvzZQiInDt1tfK5
-         70S11tA/RMvpKBqA1nJDJqOBDEwQScyH69GBvDzs5wUnhHcxD3D3vpkU4O5xBJ6CVCqr
-         cxOahOcFB8wqCzNpbH7uc1OjzCMK0a4iAwGQH8WtdOZYZbwBSRXVW1LnbJNGvCGRUtY2
-         YjEz4CCdPo6LgPiqDnYNN52DJ3Y48FmUdKErXKjbAeT5sFO1/ye5jwH4cj1pW8HvlkYF
-         T4wg==
-X-Gm-Message-State: AOAM532mw2KTEl3dgffqbgZlY58boAvc824wzcauCZzOnHUKGhHItTMV
-        YHco+WaeXNA1PvrdQWZjKaCi3sGbJyoHHgsoCQ0=
-X-Google-Smtp-Source: ABdhPJy9hEv69dyAPIb0MqVm0L5yUcMDcsc/vAKjhq9wr5eb5ACaE/MLHExQ1Zywg1b+JdNt50J7IDcHqAPMBMfL+1Q=
-X-Received: by 2002:a17:90a:e454:: with SMTP id jp20mr946902pjb.129.1615290431961;
- Tue, 09 Mar 2021 03:47:11 -0800 (PST)
-MIME-Version: 1.0
-References: <20210305133813.27967-1-o.rempel@pengutronix.de>
- <20210305133813.27967-3-o.rempel@pengutronix.de> <20210305190239.000075fe@Huawei.com>
- <CAHp75Veu-G41mDUZubCgHD_V+_znd0HJoO03ZL7JpgwtjMYLCQ@mail.gmail.com> <20210309114150.lubvvtqblw2y5zlk@pengutronix.de>
-In-Reply-To: <20210309114150.lubvvtqblw2y5zlk@pengutronix.de>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 9 Mar 2021 13:46:55 +0200
-Message-ID: <CAHp75VfR2_N=krD8Rady77ST19o5vL7zChLnJ32wmx-+M1N3pg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] iio: adc: add ADC driver for the TI TSC2046 controller
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        id S229688AbhCILwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 06:52:13 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:25830 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229837AbhCILvr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 06:51:47 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615290707; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=qQ0gA/E3ESA0upcPgUVjKrdQhp8R9hMxeHO6aAt2tD4=; b=EeDDxP9q1b2Kj7H+KGrEVfrtZsLTRxYjGB4xxEkelr+VxCGXd99JYjzir7gm58kzjqoXaqFi
+ YTwB9SlSQ7Z9mhcWCKMGATrYvX/NPfwgApZPSb62GnOUUbfC4v7WyacuchB+TbiIXW6cEPkl
+ j6iOf41EpWriz9OWhhV79hvKtGY=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 6047614b60050cf4d0927d45 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 11:51:39
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 22180C433C6; Tue,  9 Mar 2021 11:51:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0F17EC433CA;
+        Tue,  9 Mar 2021 11:51:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0F17EC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=okukatla@codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
+        elder@linaro.org, linux-arm-msm-owner@vger.kernel.org
+Subject: [1/3] dt-bindings: interconnect: Add Qualcomm SC7280 DT bindings
+Date:   Tue,  9 Mar 2021 17:20:07 +0530
+Message-Id: <1615290609-21009-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1615290609-21009-1-git-send-email-okukatla@codeaurora.org>
+References: <1615290609-21009-1-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 9, 2021 at 1:42 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> On Tue, Mar 09, 2021 at 01:05:27PM +0200, Andy Shevchenko wrote:
-> > On Fri, Mar 5, 2021 at 9:05 PM Jonathan Cameron
-> > <Jonathan.Cameron@huawei.com> wrote:
-> > >
-> > > On Fri, 5 Mar 2021 14:38:13 +0100
-> > > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> > >
-> > > > Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
-> > > > the touchscreen use case. By implementing it as IIO ADC device, we can
-> > > > make use of resistive-adc-touch and iio-hwmon drivers.
-> > > >
-> > > > So far, this driver was tested with custom version of resistive-adc-touch driver,
-> > > > since it need to be extended to make use of Z1 and Z2 channels. The X/Y
-> > > > are working without additional changes.
-> > > >
-> > > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > >
-> > > Hi Oleksij,
-> > >
-> > > To consider this as a possible long term route instead of just making this
-> > > a touchscreen driver, we'll want to see those mods to the resistive-adc-touch.
-> > > Of course that doesn't stop review of this in the meantime.
-> > >
-> > > There are quite a few things in here that feel pretty specific to the touchscreen
-> > > usecase. That makes me wonder if this is a sensible approach or not.
-> >
-> > I'm wondering if this has any similarities with existing drivers under
-> > drivers/input/touchscreen.
->
-> Yes, for example: drivers/input/touchscreen/ads7846.c
+The Qualcomm SC7280 platform has several bus fabrics that could be
+controlled and tuned dynamically according to the bandwidth demand.
 
-Then I have a few questions here:
-1/ why the above mentioned driver can't be extended to cover this?
-2/ or why is the proposed driver named after the touchscreen instead
-of the real AD/C chip behind it?
-3/ maybe we can introduce a simple AD/C driver under IIO for that?
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+---
+ .../bindings/interconnect/qcom,rpmh.yaml           |  12 ++
+ include/dt-bindings/interconnect/qcom,sc7280.h     | 163 +++++++++++++++++++++
+ 2 files changed, 175 insertions(+)
+ create mode 100644 include/dt-bindings/interconnect/qcom,sc7280.h
 
-
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index 799e73cdb90..e65da19 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -37,6 +37,18 @@ properties:
+       - qcom,sc7180-npu-noc
+       - qcom,sc7180-qup-virt
+       - qcom,sc7180-system-noc
++      - qcom,sc7280-aggre1-noc
++      - qcom,sc7280-aggre2-noc
++      - qcom,sc7280-clk-virt
++      - qcom,sc7280-cnoc2
++      - qcom,sc7280-cnoc3
++      - qcom,sc7280-dc-noc
++      - qcom,sc7280-gem-noc
++      - qcom,sc7280-lpass-ag-noc
++      - qcom,sc7280-mc-virt
++      - qcom,sc7280-mmss-noc
++      - qcom,sc7280-nsp-noc
++      - qcom,sc7280-system-noc
+       - qcom,sdm845-aggre1-noc
+       - qcom,sdm845-aggre2-noc
+       - qcom,sdm845-config-noc
+diff --git a/include/dt-bindings/interconnect/qcom,sc7280.h b/include/dt-bindings/interconnect/qcom,sc7280.h
+new file mode 100644
+index 0000000..75a243d
+--- /dev/null
++++ b/include/dt-bindings/interconnect/qcom,sc7280.h
+@@ -0,0 +1,163 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Qualcomm SC7280 interconnect IDs
++ *
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_SC7280_H
++#define __DT_BINDINGS_INTERCONNECT_QCOM_SC7280_H
++
++#define MASTER_QSPI_0			0
++#define MASTER_QUP_0			1
++#define MASTER_QUP_1			2
++#define MASTER_A1NOC_CFG			3
++#define MASTER_PCIE_0			4
++#define MASTER_PCIE_1			5
++#define MASTER_SDCC_1			6
++#define MASTER_SDCC_2			7
++#define MASTER_SDCC_4			8
++#define MASTER_UFS_MEM			9
++#define MASTER_USB3_0			10
++#define SLAVE_A1NOC_SNOC			11
++#define SLAVE_ANOC_PCIE_GEM_NOC			12
++#define SLAVE_SERVICE_A1NOC			13
++
++#define MASTER_QDSS_BAM			0
++#define MASTER_A2NOC_CFG			1
++#define MASTER_CNOC_A2NOC			2
++#define MASTER_CRYPTO			3
++#define MASTER_IPA			4
++#define MASTER_QDSS_ETR			5
++#define SLAVE_A2NOC_SNOC			6
++#define SLAVE_SERVICE_A2NOC			7
++
++#define MASTER_QUP_CORE_0			0
++#define MASTER_QUP_CORE_1		1
++#define SLAVE_QUP_CORE_0			2
++#define SLAVE_QUP_CORE_1			3
++
++#define MASTER_CNOC3_CNOC2			0
++#define MASTER_QDSS_DAP			1
++#define SLAVE_AHB2PHY_SOUTH			2
++#define SLAVE_AHB2PHY_NORTH			3
++#define SLAVE_CAMERA_CFG			4
++#define SLAVE_CLK_CTL			5
++#define SLAVE_CDSP_CFG			6
++#define SLAVE_RBCPR_CX_CFG			7
++#define SLAVE_RBCPR_MX_CFG			8
++#define SLAVE_CRYPTO_0_CFG			9
++#define SLAVE_CX_RDPM			10
++#define SLAVE_DCC_CFG			11
++#define SLAVE_DISPLAY_CFG			12
++#define SLAVE_GFX3D_CFG			13
++#define SLAVE_HWKM			14
++#define SLAVE_IMEM_CFG			15
++#define SLAVE_IPA_CFG			16
++#define SLAVE_IPC_ROUTER_CFG			17
++#define SLAVE_LPASS			18
++#define SLAVE_CNOC_MSS			19
++#define SLAVE_MX_RDPM			20
++#define SLAVE_PCIE_0_CFG			21
++#define SLAVE_PCIE_1_CFG			22
++#define SLAVE_PDM			23
++#define SLAVE_PIMEM_CFG			24
++#define SLAVE_PKA_WRAPPER_CFG			25
++#define SLAVE_PMU_WRAPPER_CFG			26
++#define SLAVE_QDSS_CFG			27
++#define SLAVE_QSPI_0			28
++#define SLAVE_QUP_0			29
++#define SLAVE_QUP_1			30
++#define SLAVE_SDCC_1			31
++#define SLAVE_SDCC_2			32
++#define SLAVE_SDCC_4			33
++#define SLAVE_SECURITY			34
++#define SLAVE_TCSR			35
++#define SLAVE_TLMM			36
++#define SLAVE_UFS_MEM_CFG			37
++#define SLAVE_USB3_0			38
++#define SLAVE_VENUS_CFG			39
++#define SLAVE_VSENSE_CTRL_CFG			40
++#define SLAVE_A1NOC_CFG			41
++#define SLAVE_A2NOC_CFG			42
++#define SLAVE_CNOC2_CNOC3			43
++#define SLAVE_CNOC_MNOC_CFG			44
++#define SLAVE_SNOC_CFG			45
++
++#define MASTER_CNOC2_CNOC3			0
++#define MASTER_GEM_NOC_CNOC			1
++#define MASTER_GEM_NOC_PCIE_SNOC			2
++#define SLAVE_AOSS			3
++#define SLAVE_APPSS			4
++#define SLAVE_CNOC3_CNOC2			5
++#define SLAVE_CNOC_A2NOC			6
++#define SLAVE_DDRSS_CFG			7
++#define SLAVE_BOOT_IMEM			8
++#define SLAVE_IMEM			9
++#define SLAVE_PIMEM			10
++#define SLAVE_PCIE_0			11
++#define SLAVE_PCIE_1			12
++#define SLAVE_QDSS_STM			13
++#define SLAVE_TCU			14
++
++#define MASTER_CNOC_DC_NOC			0
++#define SLAVE_LLCC_CFG			1
++#define SLAVE_GEM_NOC_CFG			2
++
++#define MASTER_GPU_TCU			0
++#define MASTER_SYS_TCU			1
++#define MASTER_APPSS_PROC			2
++#define MASTER_COMPUTE_NOC			3
++#define MASTER_GEM_NOC_CFG			4
++#define MASTER_GFX3D			5
++#define MASTER_MNOC_HF_MEM_NOC			6
++#define MASTER_MNOC_SF_MEM_NOC			7
++#define MASTER_ANOC_PCIE_GEM_NOC			8
++#define MASTER_SNOC_GC_MEM_NOC			9
++#define MASTER_SNOC_SF_MEM_NOC			10
++#define SLAVE_MSS_PROC_MS_MPU_CFG			11
++#define SLAVE_MCDMA_MS_MPU_CFG			12
++#define SLAVE_GEM_NOC_CNOC			13
++#define SLAVE_LLCC			14
++#define SLAVE_MEM_NOC_PCIE_SNOC			15
++#define SLAVE_SERVICE_GEM_NOC_1			16
++#define SLAVE_SERVICE_GEM_NOC_2			17
++#define SLAVE_SERVICE_GEM_NOC			18
++
++#define MASTER_CNOC_LPASS_AG_NOC			0
++#define SLAVE_LPASS_CORE_CFG			1
++#define SLAVE_LPASS_LPI_CFG			2
++#define SLAVE_LPASS_MPU_CFG			3
++#define SLAVE_LPASS_TOP_CFG			4
++#define SLAVE_SERVICES_LPASS_AML_NOC			5
++#define SLAVE_SERVICE_LPASS_AG_NOC			6
++
++#define MASTER_LLCC			0
++#define SLAVE_EBI1			1
++
++#define MASTER_CNOC_MNOC_CFG			0
++#define MASTER_VIDEO_P0			1
++#define MASTER_VIDEO_PROC			2
++#define MASTER_CAMNOC_HF			3
++#define MASTER_CAMNOC_ICP			4
++#define MASTER_CAMNOC_SF			5
++#define MASTER_MDP0			6
++#define SLAVE_MNOC_HF_MEM_NOC			7
++#define SLAVE_MNOC_SF_MEM_NOC			8
++#define SLAVE_SERVICE_MNOC			9
++
++#define MASTER_CDSP_NOC_CFG			0
++#define MASTER_CDSP_PROC			1
++#define SLAVE_CDSP_MEM_NOC			2
++#define SLAVE_SERVICE_NSP_NOC			3
++
++#define MASTER_A1NOC_SNOC			0
++#define MASTER_A2NOC_SNOC			1
++#define MASTER_SNOC_CFG			2
++#define MASTER_PIMEM			3
++#define MASTER_GIC			4
++#define SLAVE_SNOC_GEM_NOC_GC			5
++#define SLAVE_SNOC_GEM_NOC_SF			6
++#define SLAVE_SERVICE_SNOC			7
++
++#endif
 -- 
-With Best Regards,
-Andy Shevchenko
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
