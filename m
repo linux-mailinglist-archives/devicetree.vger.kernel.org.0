@@ -2,179 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E0633260C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18F29332620
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:07:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230503AbhCINFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 08:05:43 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34784 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhCINFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 08:05:32 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129D5PAI083779;
-        Tue, 9 Mar 2021 07:05:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615295125;
-        bh=0l+zHYos4lzrG1+DYj78zQ0HfZRU4gyc8kUAOuiWgns=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=k+qmuLoyoK8M6leqybnn3+fZlX4SkAVLltIOU2SBP1Fm9Rewy854q38zofglYpeeU
-         zLpDAaMK31bQI4ZRwvuZ5gEKRUF7oQAY3frfUgglFsUxdpiAa0gf/c34vIgmoQ9tkM
-         m864L+7sXQdDDkhWgSpaXd6uczWaS93nNK7jjwzg=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129D5PdP122499
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Mar 2021 07:05:25 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
- 2021 07:05:25 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Mar 2021 07:05:25 -0600
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129D5I5x094746;
-        Tue, 9 Mar 2021 07:05:22 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am64-evm/sk: Add OSPI flash DT node
-Date:   Tue, 9 Mar 2021 18:35:14 +0530
-Message-ID: <20210309130514.11740-2-vigneshr@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210309130514.11740-1-vigneshr@ti.com>
-References: <20210309130514.11740-1-vigneshr@ti.com>
+        id S230122AbhCINHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 08:07:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231319AbhCINGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 08:06:54 -0500
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C378C06175F
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 05:06:54 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:cc57:dd66:c63b:c8e4])
+        by andre.telenet-ops.be with bizsmtp
+        id eD6r2400h1C546401D6rLT; Tue, 09 Mar 2021 14:06:52 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lJc4Z-006IN8-Hb; Tue, 09 Mar 2021 14:06:51 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lJc4Z-009j8c-35; Tue, 09 Mar 2021 14:06:51 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] docs: dt: submitting-patches: Fix grammar in subsystem section
+Date:   Tue,  9 Mar 2021 14:06:50 +0100
+Message-Id: <20210309130650.2318419-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both AM64 EVM and SK have a 512Mb S28HS512T Octal SPI NOR flash.
-Add DT node for the same.
+Reword the subsystem bindings section to make sense, from a grammatical
+point of view.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
+ Documentation/devicetree/bindings/submitting-patches.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Bootlog:
-
-SK: https://pastebin.ubuntu.com/p/gvxg7cFrXH/
-EVM: https://pastebin.ubuntu.com/p/jb39GqkB78/
-
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 36 +++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 36 +++++++++++++++++++++++++
- 2 files changed, 72 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 1f1787750fef..7dd8e94b108d 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -133,6 +133,22 @@ AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
- 			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
- 		>;
- 	};
-+
-+	ospi0_pins_default: ospi0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0000, PIN_OUTPUT, 0) /* (N20) OSPI0_CLK */
-+			AM64X_IOPAD(0x002c, PIN_OUTPUT, 0) /* (L19) OSPI0_CSn0 */
-+			AM64X_IOPAD(0x000c, PIN_INPUT, 0) /* (M19) OSPI0_D0 */
-+			AM64X_IOPAD(0x0010, PIN_INPUT, 0) /* (M18) OSPI0_D1 */
-+			AM64X_IOPAD(0x0014, PIN_INPUT, 0) /* (M20) OSPI0_D2 */
-+			AM64X_IOPAD(0x0018, PIN_INPUT, 0) /* (M21) OSPI0_D3 */
-+			AM64X_IOPAD(0x001c, PIN_INPUT, 0) /* (P21) OSPI0_D4 */
-+			AM64X_IOPAD(0x0020, PIN_INPUT, 0) /* (P20) OSPI0_D5 */
-+			AM64X_IOPAD(0x0024, PIN_INPUT, 0) /* (N18) OSPI0_D6 */
-+			AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
-+			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
-+		>;
-+	};
- };
+diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+index 68129ff09967d5d7..1d11c25249ff5465 100644
+--- a/Documentation/devicetree/bindings/submitting-patches.rst
++++ b/Documentation/devicetree/bindings/submitting-patches.rst
+@@ -75,8 +75,8 @@ II. For kernel maintainers
+      binding, and it hasn't received an Acked-by from the devicetree
+      maintainers after a few weeks, go ahead and take it.
  
- &main_uart0 {
-@@ -244,3 +260,23 @@ &sdhci1 {
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
-+
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ospi0_pins_default>;
-+
-+	flash@0{
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index aa6ca4c49153..fc27470fc083 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -90,6 +90,22 @@ AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
- 			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
- 		>;
- 	};
-+
-+	ospi0_pins_default: ospi0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0000, PIN_OUTPUT, 0) /* (N20) OSPI0_CLK */
-+			AM64X_IOPAD(0x002c, PIN_OUTPUT, 0) /* (L19) OSPI0_CSn0 */
-+			AM64X_IOPAD(0x000c, PIN_INPUT, 0) /* (M19) OSPI0_D0 */
-+			AM64X_IOPAD(0x0010, PIN_INPUT, 0) /* (M18) OSPI0_D1 */
-+			AM64X_IOPAD(0x0014, PIN_INPUT, 0) /* (M20) OSPI0_D2 */
-+			AM64X_IOPAD(0x0018, PIN_INPUT, 0) /* (M21) OSPI0_D3 */
-+			AM64X_IOPAD(0x001c, PIN_INPUT, 0) /* (P21) OSPI0_D4 */
-+			AM64X_IOPAD(0x0020, PIN_INPUT, 0) /* (P20) OSPI0_D5 */
-+			AM64X_IOPAD(0x0024, PIN_INPUT, 0) /* (N18) OSPI0_D6 */
-+			AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
-+			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
-+		>;
-+	};
- };
+-     Subsystem bindings (anything affecting more than a single device)
+-     then getting a devicetree maintainer to review it is required.
++     For subsystem bindings (anything affecting more than a single device),
++     getting a devicetree maintainer to review it is required.
  
- &mcu_uart0 {
-@@ -171,3 +187,23 @@ &sdhci1 {
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
-+
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ospi0_pins_default>;
-+
-+	flash@0{
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
+   3) For a series going though multiple trees, the binding patch should be
+      kept with the driver using the binding.
 -- 
-2.30.1
+2.25.1
 
