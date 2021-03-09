@@ -2,79 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E0F7332593
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F05133259B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230468AbhCIMh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:37:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36694 "EHLO mail.kernel.org"
+        id S230122AbhCIMlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:41:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37536 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230140AbhCIMhM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 07:37:12 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A627165272;
-        Tue,  9 Mar 2021 12:37:11 +0000 (UTC)
+        id S229688AbhCIMlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 07:41:36 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5B0B36529E;
+        Tue,  9 Mar 2021 12:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615293432;
-        bh=mruvFKZBvCYrEJiGtVUC6A1pI2TNU9dGDRBfJmF933E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YA95Mav+ou0vbpC5EDZqdK4j8osZOAeEFLNJvirHsPEiblzGYGamJPf+AwUWyyPzt
-         vZfzspanjCKktSOAsyVpm0FYuJGSpLXZ0Pe0RqBPyb2lG1Vadn3okPwLMhynotcjau
-         WL5Gf8gF3Qk2SJ9qUTv+tEL1oc95BRoonZXgpxSz//bRdIXt/nyBplUW783pihE+tv
-         jEvy0xpolH0gBcLh3eel/zNThxH+ZnR3cdnO+R2au2i4d/VB1lGDfr1FyXasCZeIm4
-         DqvUqmzDr+vuw3SXHA4A+uwIQo+kTOxBttz8TlYrxOOFTnZHJ2QZI9GxPBanNDp2Q1
-         Oe8IoVLo/1FVg==
-Date:   Tue, 9 Mar 2021 12:36:01 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [PATCH] dt-bindings: spi: Convert NXP flexspi to json schema
-Message-ID: <20210309123601.GA4878@sirena.org.uk>
-References: <20210309103528.3538910-1-kuldeep.singh@nxp.com>
- <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+        s=k20201202; t=1615293696;
+        bh=54A2A0Kb1ZFFWRRdx3zNsT+EhwC/DJL9erZDIQNN0Tc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=f5aSC4o+8v3PrI4iPCVnAWgNaDDZGLK9h4Bzg7X/GabHGW4e1KC9vwMc4XJjnbjpz
+         10APnc66VtVVqBKuhZD0l45AjY5/Amgeyb9EVjU3GuYvzrKdRAbui8CFkiOlmlXcTq
+         Hwd/rAArocNDoY8MTTTyVLTSKEYdbZgTSBnJhIawwXoFxP22IEOfD9jiHVOmAoXizI
+         mH/cUOKNXyeXuTqirGA5U/o13O/xTZ7MLZiehSwFLD4LOEsDcgKmxKnEX3Th7l4Lag
+         Nofue4Gm+YIbMEpcGWDYnPOhxBjVs4KoB2CEbu/ttjT4NEa/GqK81zZ3KsvJ1oP7gk
+         aL4o0jzyws89g==
+Received: by mail-oi1-f169.google.com with SMTP id f3so14719832oiw.13;
+        Tue, 09 Mar 2021 04:41:36 -0800 (PST)
+X-Gm-Message-State: AOAM532ZJggCknAe8xDN/05dshkh5/PaXRDerObcFqKqg3y2O4JPP/px
+        4nWXbrMoRTuMb3iCEOUIX/ulMk3bJ97qYGiD/ME=
+X-Google-Smtp-Source: ABdhPJy6VatYtJ/swndVE4EQRIBHgRqbTjvCoS5T8FjJaiD4ljz4scReuWAj47J+nxN5H5qwFFajcOJ21lkxpBHFnHE=
+X-Received: by 2002:aca:5e85:: with SMTP id s127mr2704125oib.67.1615293695537;
+ Tue, 09 Mar 2021 04:41:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="k1lZvvs/B4yU6o8G"
-Content-Disposition: inline
-In-Reply-To: <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
-X-Cookie: Immanuel doesn't pun, he Kant.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
+ <20210308211306.GA2920998@robh.at.kernel.org> <CACRpkdZd_PU-W37szfGL7J2RYWhZzXdX342vt93H7mWXdh5iHA@mail.gmail.com>
+In-Reply-To: <CACRpkdZd_PU-W37szfGL7J2RYWhZzXdX342vt93H7mWXdh5iHA@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Tue, 9 Mar 2021 13:41:19 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
+Message-ID: <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 9, 2021 at 12:14 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Mon, Mar 8, 2021 at 10:13 PM Rob Herring <robh@kernel.org> wrote:
+> > On Mon, Mar 08, 2021 at 09:29:54PM +0100, Arnd Bergmann wrote:
+>
+> > > This is obviously more work for the drivers, but at least it keeps
+> > > the common code free of the hack while also allowing drivers to
+> > > use ioremap_np() intentionally on other platforms.
+> >
+> > I don't agree. The problem is within the interconnect. The device and
+> > its driver are unaware of this.
+>
+> If it is possible that a driver needs to use posted access on one
+> SoC and nonposted on another SoC then clearly the nature
+> of the access need to be part of the memory access abstraction,
+> obviously ioremap() one way or another.
 
---k1lZvvs/B4yU6o8G
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+There are two possible scenarios:
 
-On Tue, Mar 09, 2021 at 11:41:50AM +0000, Kuldeep Singh wrote:
-> + Mark (Forgot to add him previously)
+- drivers that we already know are shared between apple and
+  other vendors (s3c-serial, pasemi i2c) would need to use
+  nonposted mmio on Apple but can use either one on other
+  platforms. On non-ARM CPUs, the ioremap_np() function
+  might fail when the hardware only supports posted writes.
 
-...
+- A driver writer may want to choose between posted and
+  nonposted mmio based on performance considerations:
+  if writes are never serialized, posted writes should always
+  be faster. However, if the driver uses a spinlock to serialize
+  writes, then a nonposted write is likely faster than a posted
+  write followed by a read that serializes the spin_unlock.
+  In this case we want the driver to explicitly pick one over
+  the other, and not have rely on bus specific magic.
 
-> I was not sure with which tree this patch will go through.
-> Currently, I have rebased this on top of tree(git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git, branch: for-next)
+> Having the driver conditionally use different ioremap_*
+> functions depending on SoC seems awkward. We had different
+> execution paths for OF and ACPI drivers and have been working
+> hard to create fwnode to abstract this away for drivers used with
+> both abstractions for example. If we can hide it from drivers
+> from day 1 I think we can save maintenance costs in the long
+> run.
+>
+> Given that the Apple silicon through it's heritage from Samsung
+> S3C (the genealogy is unclear to me) already share drivers with
+> this platform, this seems to already be the case so it's not a
+> theoretical use case.
 
-Binding patches generally go through the subsystem tree so please send
-the patch to me.
+As far as I can tell, there are only a handful of soc specific drivers
+that are actually shared with other platforms. Aside from serial
+and i2c, these are the ones that I can see being shared:
 
---k1lZvvs/B4yU6o8G
-Content-Type: application/pgp-signature; name="signature.asc"
+- there is an on-chip nvme host controller that is not PCI. So far,
+  nobody else does this, but it can clearly happen in the future
 
------BEGIN PGP SIGNATURE-----
+- I think one of the USB controllers is a standard designware
+  part, while the others are PCI devices.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBHa7AACgkQJNaLcl1U
-h9AmRQf+I75/5nY3XFdUzjldnH/ak4vuJJDxyK5n1OjfodnIYXZRnofrZrv+1WNC
-OWmuqB7SvWXFd6zus811PcggxS29YXXF0Xei0Yze8ST7tYegZ0t49klXg1gzSxmt
-IBjy0EBAJfOY2s5rH4FWoeW2x/ttRBNRfu4rZQKNr/QblPAe3N7CNdhZhPcXQ3c7
-vGWcgpmJUg5q0whA8tPOx85Wp5mAmJLTMQxtfN/7VAnmvzz7qFZXyZVx8PDsMGnt
-9w3psbRDKP7kEp8tAJcZAYWXUzbHarpquIAXyj644yJf41LPF2D52vQhga8joIv9
-C/SazhUd5xl+BnXII94ixbDq7WnnbQ==
-=8uCH
------END PGP SIGNATURE-----
+- The PCI host bridge may be close enough to the standard
+   that we can use the generic driver for config space access.
 
---k1lZvvs/B4yU6o8G--
+        Arnd
