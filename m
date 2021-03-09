@@ -2,105 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA2B332AC5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5835332AD9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:45:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbhCIPk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 10:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbhCIPkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 10:40:22 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FD8C061761
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 07:40:21 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id a17so21244691ljq.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 07:40:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lu+kK3nSAEUTNwnDM4pW2WC6uWJJmrapOL1I+PVvtnU=;
-        b=RGZPUNMxbSls/6ut21Ur6KbghdWogF4sL+NXMIA9cKyeKwNKL0Hz0mhyFsSXv/OBtb
-         jnTPF5TJwRfP2h3ns1CWqPwbvZ4FlR8eSaemHeyxekynGvXftNVUqM65k0VzJehBmDiy
-         owGLAG6He59RMMoToMWvTXpswEBmJpDEWhPBCvrtWjGEFW10PpYT6vEhruku3/ccszps
-         RiZ0KG+sggU/vWnMvLxnqun6CIJ+9PI9QkRuasLDeWjdRis4tG9zoBRBzMgZyJc7uNlS
-         tDF2cw3jmG11uhRjhoVDbmrssDArdZ/i28IYjqFlv8rJaqbzR0I9MClkeGzwb4zyqUyh
-         kn4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lu+kK3nSAEUTNwnDM4pW2WC6uWJJmrapOL1I+PVvtnU=;
-        b=FN5h2Yx0kp6il7lPP7N5YnNaBvueV6LEEAvwBtc9HbKldz17xjsbfH5/+1qJT1J0Xn
-         XLEeIiaTyrmmEDSzI5ORgkINw1VUkwSnLTugLOsiCnUQWYiYE9UYWu8dEuMOcQDiVApM
-         UTgc5+i4qgMvl93AKN74L2cWuFUs3d5ZhKqKi4Bw5AYJpbw/JZkOqYVDly5QZ/Q/UCp/
-         69YCYPRlAXbmpIfM6y9rogYwyZ9qdHBfKZcSwD/LUtBMMUgJYV+D5UU39MPT7n83BXeu
-         2inn1GTM849e6GxhAaDcw+dqssCJbmgE8hbLl6lYVUmcXxnYLF9Tu4zwi+8Su5d2Csy7
-         Tcag==
-X-Gm-Message-State: AOAM53241CbcdSayc3qWNLeDmso6vjd4FB3wO02jGa+/BUbtjXdKUp9c
-        2Fs/NPiKeKAL2SQ3Q2vmgL8BZSv0aFwPPwwZol7wjg==
-X-Google-Smtp-Source: ABdhPJwEI7sL2ZOe/ozOi+pJFvTfLuJFts7EVCGgPZapWZODVntgxp5IN5ZQc/HGdbEc0f45tW7JoT/HzKQUQHQUuLQ=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr16814623ljj.467.1615304420049;
- Tue, 09 Mar 2021 07:40:20 -0800 (PST)
+        id S231324AbhCIPow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 10:44:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49878 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229815AbhCIPon (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 10:44:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C9EC365279;
+        Tue,  9 Mar 2021 15:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615304683;
+        bh=F6sLrQc6A133M6TKwbXu0Bde8uGEs5tBN2d2E39D7h0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PxzD6yqe+HlDZzX8dZdj3WMjEiStNwR9PKXMEGPKRRGTZwiIzELfDb/OAZKsmmwxS
+         kVM162ViBvNxfydpoqp+XVAnJQWRHQDECiH2DKQtccGeF1I9zYuEByhaJEtGtIv2Ro
+         wL2Psi9DqMn8c0bokF5HBjvOaqhX3/p+o0uY8XOkmwnycNqHCDZmWOWHvgCoCIQXjh
+         v+FhBMQoo+bLqO4qGQqIevcv404ba4SlrErZ6sDF3qYISKI14k898VtGSF1onGZrDk
+         /Vw0soApdpXxmEwoiCnq8+QGXs5t2ldoFCXD6Ub8vKG/nBenCDD5dPy/6ou4/lKm3a
+         qX2hZOGhTEE0w==
+Received: by mail-ej1-f46.google.com with SMTP id mm21so28873486ejb.12;
+        Tue, 09 Mar 2021 07:44:42 -0800 (PST)
+X-Gm-Message-State: AOAM530AeXHa37+wKkHMplUw6NlM5B4pn/f+V0d1UP2haTE/zR/fYrND
+        H1scpXuN1E6PPdiRlKGtoqHwZoTz0bRoACYlAg==
+X-Google-Smtp-Source: ABdhPJw2iDp9uMT9RSu865E9aEUm8iR3HOOYNsjo4uwY6hOq2aYgQTezI0+ACByEzPk2X5WtrEFNpkY6PIaUKNItCxM=
+X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr21099636ejb.359.1615304681326;
+ Tue, 09 Mar 2021 07:44:41 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
- <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
- <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
- <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
- <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
- <20210308211306.GA2920998@robh.at.kernel.org> <CACRpkdZd_PU-W37szfGL7J2RYWhZzXdX342vt93H7mWXdh5iHA@mail.gmail.com>
- <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 9 Mar 2021 16:40:09 +0100
-Message-ID: <CACRpkdYSFGF1crqDnwB_UbEXV8q5xqx7n8VHCyKYjCpy1PMK8A@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
+ <20210226141411.2517368-2-linux@rasmusvillemoes.dk> <20210308172153.GA2505339@robh.at.kernel.org>
+ <12be138b-631a-4f82-aae9-6bbdc7bc2bcf@rasmusvillemoes.dk> <20210308213834.GA2973251@robh.at.kernel.org>
+ <11a604cc-6f81-7d26-06a4-3e338b051c5a@prevas.dk>
+In-Reply-To: <11a604cc-6f81-7d26-06a4-3e338b051c5a@prevas.dk>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Mar 2021 08:44:29 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqKEGaFpiFV_oAtE+S_bnHkg4qry+bhx2EDs=NSbVf_giA@mail.gmail.com>
+Message-ID: <CAL_JsqKEGaFpiFV_oAtE+S_bnHkg4qry+bhx2EDs=NSbVf_giA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: misc: add binding for generic ripple counter
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 9, 2021 at 1:41 PM Arnd Bergmann <arnd@kernel.org> wrote:
+On Tue, Mar 9, 2021 at 12:39 AM Rasmus Villemoes
+<rasmus.villemoes@prevas.dk> wrote:
+>
+> On 08/03/2021 22.38, Rob Herring wrote:
+> > On Mon, Mar 08, 2021 at 09:02:29PM +0100, Rasmus Villemoes wrote:
+> >> On 08/03/2021 18.21, Rob Herring wrote:
+> >>> On Fri, Feb 26, 2021 at 03:14:10PM +0100, Rasmus Villemoes wrote:
+> >>>> While a ripple counter can not usually be interfaced with (directly)
+> >>>> from software, it may still be a crucial component in a board
+> >>>> layout. To prevent its input clock from being disabled by the clock
+> >>>> core because it apparently has no consumer, one needs to be able to
+> >>>> represent that consumer in DT.
+> >>>
+> >>> I'm okay with this as it is describing h/w, but we already
+> >>> 'protected-clocks' property which should work.
+> >>
+> >> Hm. Unless
+> >> https://lore.kernel.org/lkml/20200903040015.5627-2-samuel@sholland.org/
+> >> gets merged, I don't see how this would work out-of-the-box.
+> >
+> > Hum, no really clear what the hold up is there given it seems it was
+> > asked for. Letting it sit for 5 months is certainly not the way
+> > to get it merged. Anyways, that's the kernel's problem, not mine as far
+> > as DT bindings are concerned.
+> >
+> >>
+> >> Note that I sent a completely different v2, which made the gpio-wdt the
+> >> clock consumer based on feedback from Guenter and Arnd, but that v2
+> >> isn't suitable for our case because it post-poned handling of the
+> >> watchdog till after i2c is ready, which is too late. Somewhat similar to
+> >> https://lore.kernel.org/lkml/20210222171247.97609-2-sebastian.reichel@collabora.com/
+> >> it seems.
+> >
+> > Now at that one in my queue... I think 'protected-clocks' is the best
+> > way to avoid any driver probe ordering issues. It's the only thing that
+> > really captures don't turn off this clock.
+>
+> Agreed, and I did start by looking for a generic way to mark the clock
+> as either "hands off, kernel" (relying on the bootloader to enable it),
+> or better "make sure it's enabled". The closest I found was
+> of_clk_detect_critical(), but the comment above that one says not to use
+> it, so adding a call to some random RTC driver to support the
+> clock-critical property just for my use case didn't seem like the right
+> way to go.
+>
+> I didn't know about protected-clocks until you mentioned it, and it does
+> seem to be the right way to handle these situations (which are
+> apparently more common than I thought).
+>
+> The ripple counter binding
+> > doesn't really capture that or what it is related to.
+>
+> Agreed, it was a "hail mary" and why I explained what I was really
+> trying to achieve in the cover letter.
+>
+> Also, the
+> > ripple-counter driver could be a module and you'd still have the same
+> > issue as v2.
+>
+> Well, not quite. First of all, for a board like this, one always uses a
+> tailor-made .config, where one would never set that to be a module (and
+> even more obviously one wouldn't make the gpio-wdt driver a module).
 
-> - A driver writer may want to choose between posted and
->   nonposted mmio based on performance considerations:
->   if writes are never serialized, posted writes should always
->   be faster. However, if the driver uses a spinlock to serialize
->   writes, then a nonposted write is likely faster than a posted
->   write followed by a read that serializes the spin_unlock.
->   In this case we want the driver to explicitly pick one over
->   the other, and not have rely on bus specific magic.
+Yes, I'd expect so in this case, but in general we really should try
+to avoid things dependent on being built-in (and ordering of
+initcalls).
 
-OK then I am all for having drivers explicitly choose access
-method. Openness to speed optimization is a well established
-Linux kernel design principle.
+The whole notion of disabling resources in late_initcall is also kind
+of broken IMO and doesn't account for modules.
 
-Yours,
-Linus Walleij
+> Second, it wouldn't be the same issue as v2. Rather, if the clock only
+> gets enabled later when the ripple counter module would get loaded,
+> there would be a period of time where the watchdog was rendered useless
+> - the problem with v2 was that the watchdog wouldn't be petted in time,
+> so the board would be reset before it booted completely.
+>
+> >>>> +Required properties:
+> >>>> +- compatible: Must be "linux,ripple-ctr".
+> >>>
+> >>> Nothing linux specific about this.
+> >>
+> >> True, but I was following the lead of the existing gpio-wdt binding. Is
+> >> there some other "vendor" name one can and should use for completely
+> >> generic and simple components like these? "generic"?
+> >
+> > Most 'generic' and GPIO based interfaces have no vendor prefix.
+>
+> Ah, I see. Can we add just plain "wdt-gpio" to the gpio-wdt binding, and
+> deprecate the "linux,wdt-gpio"? It's a little awkward to handle a
+> "linux,wdt-gpio" compatible in a U-Boot driver.
+
+No, just leave it. We have a few of these, but let's just not add new
+ones. In the end, it's just a string identifier.
+
+Rob
