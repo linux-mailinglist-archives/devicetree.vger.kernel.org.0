@@ -2,86 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9B833254B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B4D332558
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230499AbhCIMSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:18:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbhCIMSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:18:48 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80050C06174A
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 04:18:48 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1lJbJt-0005ex-71; Tue, 09 Mar 2021 13:18:37 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1lJbJs-0007ZH-1M; Tue, 09 Mar 2021 13:18:36 +0100
-Date:   Tue, 9 Mar 2021 13:18:36 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dillon.minfei@gmail.com
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, parthiban@linumiz.com,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6ull: fix ubi mount failed on MYS-6ULX-IOT
- board
-Message-ID: <20210309121836.GU4207@pengutronix.de>
-References: <1615270520-16951-1-git-send-email-dillon.minfei@gmail.com>
+        id S229900AbhCIMVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:21:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229546AbhCIMUv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 07:20:51 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3AD4765268;
+        Tue,  9 Mar 2021 12:20:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615292450;
+        bh=6CKbaU16lYxYAdKwx8raAJYFk3RT75IbkduD7MuH2eQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RM+xs/wst3b8yCTd/b1sm27bTDW1+dxlsLb1xHhXKA8UeNgu4drBu1bwswo4D0RGl
+         4pi795xEmAyx2bg0xb8jsC5GmRu+lmm/XVzw+tyJakKFbX9Qeq82KB79dtse+N9G9l
+         Jq0zqUd6ijGuFUGyEuaBNB1CAFTlVTCltPnTzCsSxBXbOfsF00/m4QghB22FiN+RCT
+         3ICld4gxVZJ/lHOSMCidnEUKjXeYVzILthq3Z/6osi19cxtsrELoCZAYeBPIfp8ACP
+         qHqpvMypwzJ4Cz7xOADDcu8uZe4C/eviJG2R+bBnwdDHhdMQ3eKIdAuO6UmnsFt87V
+         cntpRduhkALzA==
+Date:   Tue, 9 Mar 2021 13:20:45 +0100
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     nbd@nbd.name, linux-wireless@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
+        ryder.lee@mediatek.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings:net:wireless:mediatek,mt76: txt to yaml
+ conversion
+Message-ID: <YEdoHTn7DktII2XN@lore-desk>
+References: <b78122c8ddcbf4ac66adc2c0280665a84e7e9010.1615151665.git.lorenzo@kernel.org>
+ <20210308230810.GA3111033@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fH0x3Q43UYus4Dt/"
 Content-Disposition: inline
-In-Reply-To: <1615270520-16951-1-git-send-email-dillon.minfei@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 13:14:07 up 19 days, 15:38, 88 users,  load average: 0.34, 0.43,
- 0.30
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210308230810.GA3111033@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 09, 2021 at 02:15:19PM +0800, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
-> 
-> This patch intend to fix ubi filesystem mount failed on MYS-6ULX-IOT board,
-> from Micron MT29F2G08ABAEAWP's datasheets, we need to choose 4-bit ECC.
-> 
-> Table 18: Error Management Details
-> 
-> Description					Requirement
-> 
-> Minimum number of valid blocks (NVB) per LUN	2008
-> Total available blocks per LUN			2048
-> First spare area location			x8: byte 2048 x16: word 1024
-> Bad-block mark					x8: 00h x16: 0000h
-> Minimum required ECC				4-bit ECC per 528 bytes
-> Minimum ECC with internal ECC enabled		4-bit ECC per 516 bytes (user data) + 8
-> 						bytes (parity data)
-> Minimum required ECC for block 0 if PROGRAM/
-> ERASE cycles are less than 1000			1-bit ECC per 528 bytes
 
-4-bit ECC is the minimum this chip requires. There's nothing wrong with
-choosing a better ECC like the GPMI driver does by default.
+--fH0x3Q43UYus4Dt/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It looks like you are papering over some other problem.
+> On Sun, Mar 07, 2021 at 10:20:44PM +0100, Lorenzo Bianconi wrote:
+> > Convert mt76 dts bindings from .txt to .yaml
 
-Sascha
+[...]
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Hi Rob,
+
+thx for the review.
+
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      Address and length of the register set for the device
+>=20
+> That's every reg, drop.
+
+ack, I will fix it in v2
+
+>=20
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description:
+> > +      Main device interrupt
+>=20
+> Are there others besides 'main'? If not, drop description.
+
+right. I will fix it in v2
+
+>=20
+> > +
+> > +  power-domains:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>=20
+> Don't need a type for common properties.
+
+ack,  I will fix it in v2
+
+>=20
+> > +    description:
+> > +      Phandle to the power domain that the WMAC is part of.
+>=20
+> That's every 'power-domains'. Just need to define how many: 'maxItems: 1'
+
+ack,  I will fix it in v2
+
+>=20
+> > +      This property is MT7622 specific
+>=20
+> This can be a schema.
+
+Can you please specify what you mean here?
+
+>=20
+> > +
+> > +  mediatek,infracfg:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to the infrastructure bus fabric syscon node.
+> > +      This property is MT7622 specific
+> > +
+> > +  ieee80211-freq-limit:
+> > +    maxItems: 1
+>=20
+> Just make sure, only 1 freq supported?
+
+here we can convert ieee80211.txt in ieee80211.yaml and just refer to it,
+right?
+
+>=20
+> > +    description:
+> > +      List of supported frequency ranges in KHz
+> > +
+> > +  mediatek,mtd-eeprom:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Phandle to a MTD partition + offset containing EEPROM data
+> > +
+> > +  big-endian:
+> > +    type: boolean
+> > +    description:
+> > +      Specify if the radio eeprom partition is written in big-endian
+> > +
+> > +  mediatek,eeprom-merge-otp:
+> > +    type: boolean
+> > +    description:
+> > +      Merge EEPROM data with OTP data. Can be used on boards where the=
+ flash
+> > +      calibration data is generic and specific calibration data should=
+ be
+> > +      pulled from the OTP ROM
+> > +
+> > +  led:
+> > +    type: object
+> > +    properties:
+> > +      led-sources:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>=20
+> No constraints for how many array entries?
+
+ack, I will fix in v2.
+
+Regards,
+Lorenzo
+
+>=20
+> > +        description:
+> > +          List of device current outputs the LED is connected to
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pcie0 {
+> > +      #address-cells =3D <3>;
+> > +      #size-cells =3D <2>;
+> > +      wifi@0,0 {
+> > +        compatible =3D "mediatek,mt76";
+> > +        reg =3D <0x0000 0 0 0 0>;
+> > +        ieee80211-freq-limit =3D <5000000 6000000>;
+> > +        mediatek,mtd-eeprom =3D <&factory 0x8000>;
+> > +        big-endian;
+> > +
+> > +        led {
+> > +          led-sources =3D <2>;
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +  - |
+> > +    wmac: wmac@10300000 {
+> > +      compatible =3D "mediatek,mt7628-wmac";
+> > +      reg =3D <0x10300000 0x100000>;
+> > +
+> > +      interrupt-parent =3D <&cpuintc>;
+> > +      interrupts =3D <6>;
+> > +
+> > +      mediatek,mtd-eeprom =3D <&factory 0x0>;
+> > +    };
+> > +
+> > +  - |
+> > +    wlmac: wmac@18000000 {
+> > +      compatible =3D "mediatek,mt7622-wmac";
+> > +      reg =3D <0x10300000 0x100000>;
+> > +      interrupts =3D <0 211 8>;
+> > +
+> > +      mediatek,infracfg =3D <&infracfg>;
+> > +
+> > +      power-domains =3D <&scpsys 3>;
+> > +    };
+> > --=20
+> > 2.29.2
+> >=20
+
+--fH0x3Q43UYus4Dt/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYEdoGwAKCRA6cBh0uS2t
+rApBAP4gyKFIt6ugl7qbZFasfnRVzxi7t0hzIaJZj0U7rVNFfAD/T3KpHRH+QLXH
+3H8obr2Uwy83FLJPS0qVCCYx8+rk3wU=
+=9Lav
+-----END PGP SIGNATURE-----
+
+--fH0x3Q43UYus4Dt/--
