@@ -2,93 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27006332A4C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9080332A60
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:26:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbhCIPXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 10:23:11 -0500
-Received: from gecko.sbs.de ([194.138.37.40]:53011 "EHLO gecko.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231962AbhCIPXE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 10:23:04 -0500
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 129FMtWk014950
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 9 Mar 2021 16:22:55 +0100
-Received: from [139.22.125.36] ([139.22.125.36])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 129FMsQp020098;
-        Tue, 9 Mar 2021 16:22:55 +0100
-Subject: Re: [PATCH v3 3/4] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        id S231673AbhCIP0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 10:26:25 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42498 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231959AbhCIP0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 10:26:03 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129FPqPo010686;
+        Tue, 9 Mar 2021 09:25:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615303552;
+        bh=NYLOclSzkzCtpSynCghJLlkHYe/TU1BtDuQ/hHQ4Pnc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Eyc8IdFfzweyNb/A+4pAnZGv2shINl3JmcJANuUSYtCL1sXsLa5Ver6Cz+2NAEukp
+         sT4zEXPzYXciskFm8WhfIQ/MvTOo2+jvxgJ30VxS184bodoqZSvPXVtiECWhUZIiTZ
+         svv/0pFgUMbsm/j2ShnU8ziJv/geSyuCMF9QsVN4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129FPp1s012742
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 9 Mar 2021 09:25:51 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
+ 2021 09:25:51 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 9 Mar 2021 09:25:51 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129FPmLF114290;
+        Tue, 9 Mar 2021 09:25:48 -0600
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-evm: Add support for SPI EEPROM
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Le Jin <le.jin@siemens.com>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
- <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
- <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
- <0561ad0d-7297-35ad-a3a9-49dc9a6bacd3@siemens.com>
- <aecad46d-bce6-5caf-254e-e6385ce8f44b@siemens.com>
- <20210309151019.kbay4ragt6ctyhmx@remote>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <58952252-1770-a226-828b-dd58fd466ae8@siemens.com>
-Date:   Tue, 9 Mar 2021 16:22:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210301060518.19550-1-a-govindraju@ti.com>
+ <c06a39c5-88eb-1e6d-4ae2-796981db1e71@ti.com>
+ <20210309145426.tgt7ltlh22slygfm@santa>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <a256e792-1d1f-5df4-bca0-4add18ac83b4@ti.com>
+Date:   Tue, 9 Mar 2021 20:55:47 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210309151019.kbay4ragt6ctyhmx@remote>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210309145426.tgt7ltlh22slygfm@santa>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09.03.21 16:10, Nishanth Menon wrote:
-> On 09:38-20210309, Jan Kiszka wrote:
->> From: Jan Kiszka <jan.kiszka@siemens.com>
+Hi Nishanth,
+
+On 09/03/21 8:24 pm, Nishanth Menon wrote:
+> On 20:18-20210309, Vignesh Raghavendra wrote:
 >>
->> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
->> Advanced. They are based on the TI AM6528 GP and AM6548 SOCs HS, thus
->> differ in their number of cores and availability of security features.
->> Furthermore the Advanced version comes with more RAM, an eMMC and a few
->> internal differences.
 >>
->> Based on original version by Le Jin.
+>> On 3/1/21 11:35 AM, Aswath Govindraju wrote:
+>>> Add pinmux details and device tree node for the EEPROM attached to SPI0
+>>> module in main domain.
+>>>
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> ---
 >>
->> Link: https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
->> Link: https://github.com/siemens/meta-iot2050
->> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 >> Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
->> ---
+>>
+>> Regards
+>> Vignesh
+>>
+>>>
+>>> This patch depends on,
+>>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210301055109.17626-3-a-govindraju@ti.com/
 > 
-> Jan,
 > 
-> I am not sure if
-> https://lore.kernel.org/linux-arm-kernel/20210304160712.8452-2-s-anna@ti.com/
-> is going to impact your platform. I am planning on picking that series up today.
-> might be good to test against tomorrow's next - running through my basic
-> tests right now before committing to the ICSS-G nodes being picked up.
+> Can you drop this dependency and rebase on top of my -next branch or
+> linux-next ? I am not able to apply the patch directly and would like to
+> avoid hand modifying the patch.
 > 
-> If you could repost after testing against tomorrow's next, it will
-> probably be better.
 
-Thanks, I was already on CC. That series does not affect the board
-features as configured in this patch. However, we are eagerly awaiting
-ISCCG and then PRU Ethernet support in upstream as this is used on our
-boards, with both SR1.0 and (upcoming) SR2.0.
+ok, I'll post a respin after dropping this dependency and picking up the
+reviewed by.
 
-However, I can update [1] with that series and retest our staging
-integration. But as you can see from the topmost commit, it is
-constantly shaking as upstreaming goes on.
+Thanks,
+Aswath
 
-Jan
+>>>
+>>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 22 ++++++++++++++++++++++
+>>>  1 file changed, 22 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> index bfd849a29655..bc5bd7f896ab 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> @@ -139,6 +139,15 @@
+>>>  			AM64X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (E19) USB0_DRVVBUS */
+>>>  		>;
+>>>  	};
+>>> +
+>>> +	main_spi0_pins_default: main-spi0-pins-default {
+>>> +		pinctrl-single,pins = <
+>>> +			AM64X_IOPAD(0x0210, PIN_INPUT, 0) /* (D13) SPI0_CLK */
+>>> +			AM64X_IOPAD(0x0208, PIN_OUTPUT, 0) /* (D12) SPI0_CS0 */
+>>> +			AM64X_IOPAD(0x0214, PIN_OUTPUT, 0) /* (A13) SPI0_D0 */
+>>> +			AM64X_IOPAD(0x0218, PIN_INPUT, 0) /* (A14) SPI0_D1 */
+>>> +		>;
+>>> +	};
+>>>  };
+>>>  
+>>>  &main_uart0 {
+>>> @@ -245,6 +254,19 @@
+>>>  	pinctrl-0 = <&main_usb0_pins_default>;
+>>>  };
+>>>  
+>>> +&main_spi0 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&main_spi0_pins_default>;
+>>> +	ti,pindir-d0-out-d1-in = <1>;
+>>> +	eeprom@0 {
+>>> +		compatible = "microchip,93lc46b";
+>>> +		reg = <0>;
+>>> +		spi-max-frequency = <1000000>;
+>>> +		spi-cs-high;
+>>> +		data-size = <16>;
+>>> +	};
+>>> +};
+>>> +
+>>>  &sdhci0 {
+>>>  	/* emmc */
+>>>  	bus-width = <8>;
+>>>
+> 
 
-[1] https://github.com/siemens/linux/commits/jan/iot2050
-
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
