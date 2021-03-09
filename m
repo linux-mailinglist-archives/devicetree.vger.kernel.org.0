@@ -2,83 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14EDA332CBD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C41C332CC2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:03:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbhCIRCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 12:02:17 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39040 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230173AbhCIRBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:01:51 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129H1jiu104065;
-        Tue, 9 Mar 2021 11:01:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615309305;
-        bh=pQhUgC9EUvu8RJisEr9//vmNVfCP4iQIQ+24urk1vZI=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=psNww5x8Pl1c4kydAqINc1dHT2zC8d1mz3jYJas0o7JdQUQaYKzx3s251KPQ/m9E7
-         hlsgbsO7VQtOSaE7ad6GhiXOEORxOFvrFUUoaxxoTzlu0lKCARGqjsXYqO3l9uNc01
-         GMrbekh1t3AeTcVfjkTLBDEJ8A3LxIpUZnhNlAUI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129H1jPL063481
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Mar 2021 11:01:45 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
- 2021 11:01:45 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 9 Mar 2021 11:01:45 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129H1jrW113144;
-        Tue, 9 Mar 2021 11:01:45 -0600
-Date:   Tue, 9 Mar 2021 11:01:45 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Pratyush Yadav <p.yadav@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-som-p0: Add nodes for
- OSPI0
-Message-ID: <20210309170145.chq55fsynvq73p4i@unmovable>
-References: <20210305153926.3479-1-p.yadav@ti.com>
- <20210305153926.3479-4-p.yadav@ti.com>
+        id S230086AbhCIRDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 12:03:22 -0500
+Received: from mga09.intel.com ([134.134.136.24]:26118 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230075AbhCIRCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 12:02:52 -0500
+IronPort-SDR: GYf8Sd/k2bJZrNRQ9XcTrt75WEzoRlhwYwrNXgKyliHoudWl4OzT24+bornY7QIcE7HU3sZTM4
+ IiwhLAVFCG2Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="188381114"
+X-IronPort-AV: E=Sophos;i="5.81,236,1610438400"; 
+   d="scan'208";a="188381114"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2021 09:02:52 -0800
+IronPort-SDR: oWcoa8Y/WiZv6p/AyfcMdgE44YAoMStz78ikxsMY68hnO1KLYe+pgGwYLsDYsxnrmh1/KyMsrd
+ 7uJEw9YVuVng==
+X-IronPort-AV: E=Sophos;i="5.81,236,1610438400"; 
+   d="scan'208";a="409814455"
+Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.251.3.100]) ([10.251.3.100])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2021 09:02:51 -0800
+Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: aspeed: add transfer mode
+ support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org
+References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
+ <20210224191720.7724-2-jae.hyun.yoo@linux.intel.com>
+ <20210306203011.GA1152769@robh.at.kernel.org>
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Message-ID: <f6732348-d6c8-f49b-6123-afe542bb1f8c@linux.intel.com>
+Date:   Tue, 9 Mar 2021 09:02:51 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210305153926.3479-4-p.yadav@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210306203011.GA1152769@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21:09-20210305, Pratyush Yadav wrote:
-> TI J7200 has the Cadence OSPI controller for interfacing with OSPI
-> flashes. Add its node to allow using SPI flashes.
-> 
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> ---
-> 
-> Notes:
->     Changes in v2:
->     - Do not force a pulldown on the DQS line because it already has a
->       pulldown resistor.
-> 
->  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 17 +++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 36 +++++++++++++++++++
->  2 files changed, 53 insertions(+)
+Hi Rob,
 
-I see this with dtbs_check on v5.12-rc2:
+On 3/6/2021 12:30 PM, Rob Herring wrote:
+> On Wed, Feb 24, 2021 at 11:17:17AM -0800, Jae Hyun Yoo wrote:
+>> Append bindings to support transfer mode.
+>>
+>> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+>> Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
+>> ---
+>> Changes since v3:
+>> - None
+>>
+>> Changes since v2:
+>> - Moved SRAM resources back to default dtsi and added mode selection
+>>    property.
+>>
+>> Changes since v1:
+>> - Removed buffer reg settings from default device tree and added the settings
+>>    into here to show the predefined buffer range per each bus.
+>>
+>>   .../devicetree/bindings/i2c/i2c-aspeed.txt    | 37 +++++++++++++++----
+>>   1 file changed, 30 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>> index b47f6ccb196a..242343177324 100644
+>> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>> @@ -17,6 +17,20 @@ Optional Properties:
+>>   - bus-frequency	: frequency of the bus clock in Hz defaults to 100 kHz when not
+>>   		  specified
+>>   - multi-master	: states that there is another master active on this bus.
+>> +- aspeed,i2c-xfer-mode	: should be "byte", "buf" or "dma" to select transfer
+>> +			  mode defaults to "byte" mode when not specified.
+>> +
+>> +			  I2C DMA mode on AST2500 has these restrictions:
+>> +			    - If one of these controllers is enabled
+>> +				* UHCI host controller
+>> +				* MCTP controller
+>> +			      I2C has to use buffer mode or byte mode instead
+>> +			      since these controllers run only in DMA mode and
+>> +			      I2C is sharing the same DMA H/W with them.
+>> +			    - If one of these controllers uses DMA mode, I2C
+>> +			      can't use DMA mode
+>> +				* SD/eMMC
+>> +				* Port80 snoop
+> 
+> How does one decide between byte or buf mode?
 
-/workdir/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dt.yaml: flash@0: 'cdns,read-delay', 'cdns,tchsh-ns', 'cdns,tsd2d-ns', 'cdns,tshsl-ns', 'cdns,tslch-ns' do not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+If a given system makes just one byte r/w transactions most of the time
+then byte mode will be a right setting. Otherwise, buf mode is more
+efficient because it doesn't generate a bunch of interrupts on every
+byte handling.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>>   
+>>   Example:
+>>   
+>> @@ -26,20 +40,29 @@ i2c {
+>>   	#size-cells = <1>;
+>>   	ranges = <0 0x1e78a000 0x1000>;
+>>   
+>> -	i2c_ic: interrupt-controller@0 {
+>> -		#interrupt-cells = <1>;
+>> -		compatible = "aspeed,ast2400-i2c-ic";
+>> +	i2c_gr: i2c-global-regs@0 {
+>> +		compatible = "aspeed,ast2500-i2c-gr", "syscon";
+>>   		reg = <0x0 0x40>;
+>> -		interrupts = <12>;
+>> -		interrupt-controller;
+>> +
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		ranges = <0x0 0x0 0x40>;
+>> +
+>> +		i2c_ic: interrupt-controller@0 {
+>> +			#interrupt-cells = <1>;
+>> +			compatible = "aspeed,ast2500-i2c-ic";
+>> +			reg = <0x0 0x4>;
+>> +			interrupts = <12>;
+>> +			interrupt-controller;
+>> +		};
+>>   	};
+>>   
+>>   	i2c0: i2c-bus@40 {
+>>   		#address-cells = <1>;
+>>   		#size-cells = <0>;
+>>   		#interrupt-cells = <1>;
+>> -		reg = <0x40 0x40>;
+>> -		compatible = "aspeed,ast2400-i2c-bus";
+>> +		reg = <0x40 0x40>, <0x200 0x10>;
+>> +		compatible = "aspeed,ast2500-i2c-bus";
+> 
+> The example changes are all unrelated to adding the new property. Should
+> be a separate patch or just dropped.
+
+The example changes are not directly related to the new property but
+related to the transfer mode support in this patch set. 'i2c_gr' node is
+added to provide a way for accessing I2C global registers to enable
+I2C SRAM, and 'reg' is modified to add the SRAM resource range.
+
+Thanks,
+Jae
+
+>>   		clocks = <&syscon ASPEED_CLK_APB>;
+>>   		resets = <&syscon ASPEED_RESET_I2C>;
+>>   		bus-frequency = <100000>;
+>> -- 
+>> 2.17.1
+>>
