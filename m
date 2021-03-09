@@ -2,129 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DDBB331EEB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 06:59:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23236331EF6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 07:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbhCIF7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 00:59:16 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:55845 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229475AbhCIF6m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 00:58:42 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615269522; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ZDHdQUH+34cU9rMw7gN8SAsOk5mQYKwTN0PH1vJ4DCE=;
- b=MFSkfq19BWb0yw/wF+mZ03Rh3aGLToP/Tov3POdQNpCbCAkV6hFuFgsa9bL4SamPjkzgRL0g
- ocz1flLrqczJck9Vwwx3H5mfloi+3ZZdaWBV1IF7xH87nH5mnN44d0gt05i4gzhx6x67wX66
- FwKns5jpvrAn+lZhSr4M4Xxdynw=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60470e7e64e0747df9545492 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 05:58:22
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1679CC43462; Tue,  9 Mar 2021 05:58:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S229495AbhCIGGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 01:06:50 -0500
+Received: from mail-out.m-online.net ([212.18.0.9]:56094 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229520AbhCIGG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 01:06:27 -0500
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4Dvl8K1N5jz1qs49;
+        Tue,  9 Mar 2021 07:06:25 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4Dvl8K0H5Nz1qqkj;
+        Tue,  9 Mar 2021 07:06:25 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id z7RsuVO_N5Bt; Tue,  9 Mar 2021 07:06:22 +0100 (CET)
+X-Auth-Info: EqBJ4vaOt1kmSNyU5jbSBDc1dVSIvvbVLPsrRxBaEhg=
+Received: from [192.168.1.107] (92-52-238-184.pool.digikabel.hu [92.52.238.184])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4C78BC433CA;
-        Tue,  9 Mar 2021 05:58:21 +0000 (UTC)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Tue,  9 Mar 2021 07:06:22 +0100 (CET)
+Reply-To: hs@denx.de
+Subject: Re: [EXT] [PATCH v2 2/4] dt-bindings: spi: add compatible entry for
+ imx8mp in FlexSPI controller
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     Ashish Kumar <ashish.kumar@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+References: <20210309053116.1486347-1-hs@denx.de>
+ <20210309053116.1486347-3-hs@denx.de>
+ <DB6PR0402MB275838BF727B891FD6E2A62AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+From:   Heiko Schocher <hs@denx.de>
+Message-ID: <290d37d7-7362-e00d-0e19-5fb5b78a4bf2@denx.de>
+Date:   Tue, 9 Mar 2021 07:06:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <DB6PR0402MB275838BF727B891FD6E2A62AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Tue, 09 Mar 2021 11:28:21 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/9] arm64: dts: qcom: sc7280: Add AOSS QMP node
-In-Reply-To: <5cf5692ef7d348ec361081d0341f1254@codeaurora.org>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <463a45f2c3e4a91430c006fa1637c7f4f124185e.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <161428210272.1254594.16034240343090747878@swboyd.mtv.corp.google.com>
- <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org>
- <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com>
- <5cf5692ef7d348ec361081d0341f1254@codeaurora.org>
-Message-ID: <d19fbcc91b4ef045014b225e7fdf9780@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-02-27 19:26, Sai Prakash Ranjan wrote:
-> On 2021-02-27 00:16, Stephen Boyd wrote:
->> Quoting Sai Prakash Ranjan (2021-02-25 23:51:00)
->>> On 2021-02-26 01:11, Stephen Boyd wrote:
->>> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:24)
->>> >> Add a DT node for the AOSS QMP on SC7280 SoC.
->>> >>
->>> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->>> >> ---
->>> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++++++++++++++
->>> >>  1 file changed, 14 insertions(+)
->>> >>
->>> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> >> index 65c1e0f2fb56..cbd567ccc04e 100644
->>> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> >> @@ -9,6 +9,7 @@
->>> >>  #include <dt-bindings/clock/qcom,rpmh.h>
->>> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> >>  #include <dt-bindings/mailbox/qcom-ipcc.h>
->>> >> +#include <dt-bindings/power/qcom-aoss-qmp.h>
->>> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>> >>
->>> >>  / {
->>> >> @@ -368,6 +369,19 @@ pdc: interrupt-controller@b220000 {
->>> >>                         interrupt-controller;
->>> >>                 };
->>> >>
->>> >> +               aoss_qmp: qmp@c300000 {
->>> >
->>> > power-domain-controller@c300000? power-controller@c300000?
->>> >
->>> 
->>> Its an AOSS message RAM and all other SM* SoCs have as qmp@
->>> and the dt binding as well, I see only SM8150 with power-controller,
->>> that should probably be fixed?
->> 
->> Node name should be generic while still being meaningful. Nobody knows
->> what qmp is, but power-controller makes sense. Can you fix this and 
->> the
->> others to be power-controller?
->> 
+Hi!
 
-we probably would be changing them back
-to qmp or something more generic soon
-since the consensus was qmp wasn't a
-power-controller. So not sure if its
-worth the effort here.
+On 09.03.21 06:56, Kuldeep Singh wrote:
+> Hi Heiko,
+> 
+>> -----Original Message-----
+>> From: Heiko Schocher <hs@denx.de>
+>> Sent: Tuesday, March 9, 2021 11:01 AM
+>> To: linux-arm-kernel@lists.infradead.org
+>> Cc: Heiko Schocher <hs@denx.de>; Ashish Kumar <ashish.kumar@nxp.com>;
+>> Mark Brown <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>; Yogesh
+>> Gaur <yogeshgaur.83@gmail.com>; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-spi@vger.kernel.org
+>> Subject: [EXT] [PATCH v2 2/4] dt-bindings: spi: add compatible entry for imx8mp in
+>> FlexSPI controller
+>>
+>> Caution: EXT Email
+>>
+>> add compatible entry "nxp,imx8mp-fspi" in NXP FlexSPI controller
+>>
+>> Signed-off-by: Heiko Schocher <hs@denx.de>
+>> ---
+>>
+>> (no changes since v1)
+>>
+>>  Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+>> b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+>> index 7ac60d9fe3571..fd5f081f6d91b 100644
+>> --- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+>> +++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+>> @@ -4,6 +4,7 @@ Required properties:
+>>    - compatible : Should be "nxp,lx2160a-fspi"
+>>                             "nxp,imx8qxp-fspi"
+>>                             "nxp,imx8mm-fspi"
+>> +                           "nxp,imx8mp-fspi"
+> 
+> It seems the changes are not on top of tree. Please see[1] for latest changes including imx8dxl entry.
+> Snippet below:
+> 
+> Required properties:
+>   - compatible : Should be "nxp,lx2160a-fspi"
+> 			    "nxp,imx8qxp-fspi"
+> 			    "nxp,imx8mm-fspi"
+> 			    "nxp,imx8dxl-fspi"
 
+My patches are based on mainline..
+*   144c79ef33536 - (origin/master, origin/HEAD) Merge tag 'perf-tools-fixes-for-v5.12-2020-03-07'
+of git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux (vor 32 Stunden) <Linus Torvalds>
+
+Should I post this patch rebased on [1] or may all patches
+rebased on [1] ?
+
+Thanks!
+
+bye,
+Heiko
 > 
-> Ok makes sense, I will post changing others as well and see if we get
-> any comments there.
+> Thanks
+> Kuldeep
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/tree/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
 > 
-> Thanks,
-> Sai
 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
