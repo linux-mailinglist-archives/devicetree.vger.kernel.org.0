@@ -2,83 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00463332D53
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B67332D7C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbhCIRdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 12:33:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42426 "EHLO mail.kernel.org"
+        id S231376AbhCIRmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 12:42:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46318 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231684AbhCIRcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 12:32:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1D16065243;
-        Tue,  9 Mar 2021 17:32:48 +0000 (UTC)
+        id S229691AbhCIRmr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 12:42:47 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5A5946523A;
+        Tue,  9 Mar 2021 17:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615311169;
-        bh=VFbScGeAoDdj2Sh9Zvk1ZnWvGSEooiTDYdh4v3EdTWo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NszFLNeF/pDGY+H5QiGM0FO7BfyH4eZpunjoFN1PcjVWvCbG9H0Bd5acI5xK+cO3v
-         u/N5y0zyoXYiUOjU//S10K6VUMOjKabaWptQPOoAgzQJDMpUIefP4d5BexFgvi4qNW
-         ZMo9zLVnRLV1RnJygGt8ZKmkTxSPAy7bTkfW4xFI6/bWLV6Ix6GoA0h7Kw+su1X0Gj
-         MPCyqZZVr3nTUPQ3F5lxXP7Q2IIz1DzyCNjVvTDKFbYSOMJ6jsiOq042O3Sx484Ll0
-         HApciLxYmyuzk/YdnKdyLmrO6kl1zz/yaeE+/OexJEXrC1XAmSsiO+jWD+pSRDl3Cg
-         ibHCIUGal4iow==
-Date:   Tue, 9 Mar 2021 17:31:38 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [EXT] Re: [PATCH] dt-bindings: spi: Convert NXP flexspi to json
- schema
-Message-ID: <20210309173138.GC4878@sirena.org.uk>
-References: <20210309103528.3538910-1-kuldeep.singh@nxp.com>
- <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
- <20210309123601.GA4878@sirena.org.uk>
- <DB6PR0402MB275840529A4F50EBFC723E1AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+        s=k20201202; t=1615311767;
+        bh=9GvvHE/FUuaHjAoFl5s/o4xB1kKuNNQZsvQhUv5aVSw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AkerNW1oXISUkhOs9q8Jhfqw8K6nO2FO9SkqY0nCKXn7/vXfFHJHiy9iqoUMd+9ZE
+         BGSMCWNa0Q5DkCHvLrkodbWG6CKOYkcID70/4l9H7dqqR4cP7Yhw0qUuZNb5GRnayw
+         11CXrB8M4F71zldK3V7rY3jHLHeBwQ5NkpGPOBS9QWWR4xgdyMy/Cnke3AJekfYmEA
+         3eZ8bYp8B4xfZINvd8+H1iLJvxhETW3xhUEsOMUnZYHIzYgDwsSAQNOlPupri4u8Fq
+         xvjAXjHLerB5NP9kuqsm+fSXNW+PYc8XBl6PQeTRTEoQxP+MAQ3OTL/PR2qJS59tB2
+         6MSPRbACsQ37A==
+Received: by mail-ed1-f51.google.com with SMTP id b7so21940370edz.8;
+        Tue, 09 Mar 2021 09:42:47 -0800 (PST)
+X-Gm-Message-State: AOAM533P0lhS/Iqi5hiGLqQY+vSPBlkjyTgcBRrhyuWx/0yh8zY5Kpt5
+        l1OhLEVTkZVz8SPC9Tym8rveEsdRMxQLd+bqyg==
+X-Google-Smtp-Source: ABdhPJwA8ze9bW79kEZbbGheWQdv1hjU1cMbhf/mMIkz0VfVcK8mWozBwRu5cE7382PmePafSrdW35bQG7aPk/ZcNzA=
+X-Received: by 2002:a05:6402:c88:: with SMTP id cm8mr5497065edb.62.1615311765955;
+ Tue, 09 Mar 2021 09:42:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yVhtmJPUSI46BTXb"
-Content-Disposition: inline
-In-Reply-To: <DB6PR0402MB275840529A4F50EBFC723E1AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
-X-Cookie: Immanuel doesn't pun, he Kant.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210309112148.2309116-1-geert+renesas@glider.be>
+In-Reply-To: <20210309112148.2309116-1-geert+renesas@glider.be>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 9 Mar 2021 10:42:34 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqJzfoSubkKQ+aGYGbuH2=vLG2Sf_nQShxJ8DLirALff5g@mail.gmail.com>
+Message-ID: <CAL_JsqJzfoSubkKQ+aGYGbuH2=vLG2Sf_nQShxJ8DLirALff5g@mail.gmail.com>
+Subject: Re: [PATCH] [RFC] dt-bindings: Consider DT_SCHEMA_FILES when finding
+ all json-schema
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 9, 2021 at 4:21 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Setting DT_SCHEMA_FILES allows the user to restrict the
+> "dt_binding_check" make target to a specified set of DT binding files.
+> However, yamllint is still run on all available files, which can take
+> quite some time.
+>
+> Fix this by changing "find_cmd" to only return the specified files.
+> Note that this also affects the "cmd_chk_bindings" and "cmd_mk_schema"
+> rules.
+>
+> This reduces the execution time of
+>
+>     make dt_binding_check DT_SCHEMA_FILES=/path/to/json/schema/file
+>
+> from ca. 22 to less than 2 seconds on an i7-8700K.
 
---yVhtmJPUSI46BTXb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+We could use xargs sharding like 'chk_bindings' does. That goes from
+18s to 5s for me (i7-7700HQ). Good enough? Not sure why I didn't other
+than thinking 20sec was fast enough.
 
-On Tue, Mar 09, 2021 at 05:30:00PM +0000, Kuldeep Singh wrote:
+Another option would be doing yamllint as part of cmd_extract_ex or we
+could have a command line variable to disable yamllint.
 
-> > Binding patches generally go through the subsystem tree so please send the patch
-> > to me.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Should this be restricted to cmd_yamllint?
+> I'm not sure which users of find_cmd do and do not need all files.
 
-> Thanks for letting me know.
-> I have developed the patch on top of your tree and also sent to spi-devel mailing list.
-> Please see [1] for more details. Kindly let me know if I need to resubmit the patch.
+cmd_chk_bindings always does. cmd_mk_schema needs both. So I think
+this doesn't work for all cases.
 
-Like I said in the mail you're replying to please send me a copy of the
-patch.
-
---yVhtmJPUSI46BTXb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBHsPkACgkQJNaLcl1U
-h9Az/wf/eRSnvQaBrTQNzpUWfZ+Vn/6SldK3FKgsQfqXA2i4wUMLQd0Uap2kfDR0
-Gk1BzIwBrKlPcE05W+IJqOrGc/SGWsyT/PHzSCWAa2N8TmC8DKRl4AeeyWr4Uary
-2kJhRfLsdjkcLPAHqF+GqNRldk5GbzhlELh19P+ZeS9cnzWEm0gkTXa10rLNJ9vb
-fH6yQB3EVjR+wT/TsEt3vaCnx6on8zB4892+8IbL0b5RtWIP7G4wcsBacWloMPR8
-KR/a8aIOPiFmTZuwvJkeV2QLmGYoVIKzsT4yKD0gTvd2MrLu7WJrwMme5lIEWlMI
-1HpkA+46Lo+8ctoeiw+DIv7OCmxntQ==
-=vQjl
------END PGP SIGNATURE-----
-
---yVhtmJPUSI46BTXb--
+> ---
+>  Documentation/devicetree/bindings/Makefile | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> index 780e5618ec0ae2fc..60ac03bade2da0ad 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -22,10 +22,18 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
+>  # Use full schemas when checking %.example.dts
+>  DT_TMP_SCHEMA := $(obj)/processed-schema-examples.json
+>
+> +ifeq ($(DT_SCHEMA_FILES),)
+> +
+>  find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+>                 -name 'processed-schema*' ! \
+>                 -name '*.example.dt.yaml' \)
+>
+> +else
+> +
+> +find_cmd = echo $(addprefix $(srctree)/, $(DT_SCHEMA_FILES))
+> +
+> +endif
+> +
+>  quiet_cmd_yamllint = LINT    $(src)
+>        cmd_yamllint = ($(find_cmd) | \
+>                       xargs $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint) || true
+> --
+> 2.25.1
+>
