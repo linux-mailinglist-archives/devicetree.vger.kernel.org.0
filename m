@@ -2,85 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2972F332D0D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE29F332D15
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:20:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbhCIRQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 12:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbhCIRQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:16:17 -0500
-X-Greylist: delayed 57509 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 09 Mar 2021 09:16:17 PST
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24D02C06174A;
-        Tue,  9 Mar 2021 09:16:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=yZ/aNKIfBBiurPsOI51o3dQGeWvqW69W+SaIV+4rEMc=; b=oLhHgQzujRwECvMkXmDXZCh0y/
-        PTz9x4yPrbDrpOwiJca2APXL5UJWYFdCBfxM1cXY5wlWhEsSnZ6/MbjKjS7l12NZtjnAgmABfzQy7
-        mu0g1kO2Ye0wp01GwME7CxM5FOXqz+LhV0uI2tCGqhv2nOGxQQDuUla+/+sXx58nkrTZDZVlMWKwW
-        JrEY9f57VsfVYm7SJ7pOAp/FlOBEeI3OA4n2+hcWal2zOgEeG0wnjGA3o2Er4VHmgqebWDX3Bao8M
-        1g3KlOw9HRtZ/kTV5xVz2AF4b/R7ExN5+QURrZCNKZlwrG/cCGTgHQzvgZzGKBMEoVceaf+Z0iynV
-        GxsPbbWQ==;
-Received: from [2601:1c0:6280:3f0::3ba4]
-        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lJfxu-000h5F-CA; Tue, 09 Mar 2021 17:16:14 +0000
-Subject: Re: [PATCH] docs: dt: submitting-patches: Fix grammar in subsystem
- section
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210309130650.2318419-1-geert+renesas@glider.be>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <77c82f6c-033e-9757-0b88-4e2e5f5626a2@infradead.org>
-Date:   Tue, 9 Mar 2021 09:16:09 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-MIME-Version: 1.0
-In-Reply-To: <20210309130650.2318419-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230386AbhCIRT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 12:19:26 -0500
+Received: from mail-io1-f45.google.com ([209.85.166.45]:41622 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230359AbhCIRTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:19:15 -0500
+Received: by mail-io1-f45.google.com with SMTP id z13so14743467iox.8;
+        Tue, 09 Mar 2021 09:19:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=YIX7Dnu6ZOI6uthXHSEBFQ73R3SsclPsMOaJ6CWylc0=;
+        b=ldDG6qekJEk2ZSrg40F9cWWXxb4haSJBbdfJkhyrrg7aCG6bn8JVXxI4dNZ0m2kcLC
+         eCPLq9KzkAf7boM8VzhRPWnJ769KEDQBDFlgeIVBUj28eDg3ABeJGks44hI1ItwmKRNT
+         oUQUw5K4if+EO4mqw9QS7ONPEYhcgzEKik+ZxUHEj5b3FUNW3P2usurnIt+BbBcrHz7C
+         c6SLt+FdP8dNM+DUjsDF9R+mYUuMInidSPrusT+MEEefIFATWCZ34av7p+b6wM6ySTVf
+         GqKCH8V6ETXrVVEHAh6FtIu/sltUSadyWvmPlAvHa5EKOyTUK+M22eTdGzOUQQDMD9m5
+         M4wg==
+X-Gm-Message-State: AOAM5335u22Gb78NVg34YX9SvHnnGd/XlAv+cDzpXbUCbfXL/TKBY9Qj
+        S9GREjU2f5HrZ0khG5hROg==
+X-Google-Smtp-Source: ABdhPJzRmdE6z7NC5psRK7MCOEbg7ry4MfLOkKInzkAshEv4vN+lwplyS4guxlm/5dl9K2AhBR6UvQ==
+X-Received: by 2002:a05:6638:3884:: with SMTP id b4mr14252658jav.18.1615310355241;
+        Tue, 09 Mar 2021 09:19:15 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id r3sm8040263ilq.42.2021.03.09.09.19.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 09:19:14 -0800 (PST)
+Received: (nullmailer pid 485081 invoked by uid 1000);
+        Tue, 09 Mar 2021 17:19:11 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Evgeny Boger <boger@wirenboard.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20210309012116.2944-2-boger@wirenboard.com>
+References: <20210309012116.2944-1-boger@wirenboard.com> <20210309012116.2944-2-boger@wirenboard.com>
+Subject: Re: [PATCH v2 1/2] net: allwinner: reset control support
+Date:   Tue, 09 Mar 2021 10:19:11 -0700
+Message-Id: <1615310351.605196.485080.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/9/21 5:06 AM, Geert Uytterhoeven wrote:
-> Reword the subsystem bindings section to make sense, from a grammatical
-> point of view.
+On Tue, 09 Mar 2021 04:21:15 +0300, Evgeny Boger wrote:
+> R40 (aka V40/A40i/T3) and A10/A20 share the same EMAC IP.
+> However, on R40 the EMAC is gated by default.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
+> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
 > ---
->  Documentation/devicetree/bindings/submitting-patches.rst | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
-> index 68129ff09967d5d7..1d11c25249ff5465 100644
-> --- a/Documentation/devicetree/bindings/submitting-patches.rst
-> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
-> @@ -75,8 +75,8 @@ II. For kernel maintainers
->       binding, and it hasn't received an Acked-by from the devicetree
->       maintainers after a few weeks, go ahead and take it.
->  
-> -     Subsystem bindings (anything affecting more than a single device)
-> -     then getting a devicetree maintainer to review it is required.
-> +     For subsystem bindings (anything affecting more than a single device),
-> +     getting a devicetree maintainer to review it is required.
->  
->    3) For a series going though multiple trees, the binding patch should be
->       kept with the driver using the binding.
+>  .../net/allwinner,sun4i-a10-emac.yaml         | 11 +++-
+>  drivers/net/ethernet/allwinner/sun4i-emac.c   | 65 +++++++++++++++++--
+>  2 files changed, 70 insertions(+), 6 deletions(-)
 > 
 
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-~Randy
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.example.dts:24.28-29 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.example.dt.yaml] Error 1
+make: *** [Makefile:1380: dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1449498
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
