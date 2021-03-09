@@ -2,136 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F05133259B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E6463325CD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:52:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230122AbhCIMlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:41:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37536 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229688AbhCIMlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 07:41:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5B0B36529E;
-        Tue,  9 Mar 2021 12:41:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615293696;
-        bh=54A2A0Kb1ZFFWRRdx3zNsT+EhwC/DJL9erZDIQNN0Tc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=f5aSC4o+8v3PrI4iPCVnAWgNaDDZGLK9h4Bzg7X/GabHGW4e1KC9vwMc4XJjnbjpz
-         10APnc66VtVVqBKuhZD0l45AjY5/Amgeyb9EVjU3GuYvzrKdRAbui8CFkiOlmlXcTq
-         Hwd/rAArocNDoY8MTTTyVLTSKEYdbZgTSBnJhIawwXoFxP22IEOfD9jiHVOmAoXizI
-         mH/cUOKNXyeXuTqirGA5U/o13O/xTZ7MLZiehSwFLD4LOEsDcgKmxKnEX3Th7l4Lag
-         Nofue4Gm+YIbMEpcGWDYnPOhxBjVs4KoB2CEbu/ttjT4NEa/GqK81zZ3KsvJ1oP7gk
-         aL4o0jzyws89g==
-Received: by mail-oi1-f169.google.com with SMTP id f3so14719832oiw.13;
-        Tue, 09 Mar 2021 04:41:36 -0800 (PST)
-X-Gm-Message-State: AOAM532ZJggCknAe8xDN/05dshkh5/PaXRDerObcFqKqg3y2O4JPP/px
-        4nWXbrMoRTuMb3iCEOUIX/ulMk3bJ97qYGiD/ME=
-X-Google-Smtp-Source: ABdhPJy6VatYtJ/swndVE4EQRIBHgRqbTjvCoS5T8FjJaiD4ljz4scReuWAj47J+nxN5H5qwFFajcOJ21lkxpBHFnHE=
-X-Received: by 2002:aca:5e85:: with SMTP id s127mr2704125oib.67.1615293695537;
- Tue, 09 Mar 2021 04:41:35 -0800 (PST)
-MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
- <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
- <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
- <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
- <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
- <20210308211306.GA2920998@robh.at.kernel.org> <CACRpkdZd_PU-W37szfGL7J2RYWhZzXdX342vt93H7mWXdh5iHA@mail.gmail.com>
-In-Reply-To: <CACRpkdZd_PU-W37szfGL7J2RYWhZzXdX342vt93H7mWXdh5iHA@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 9 Mar 2021 13:41:19 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
-Message-ID: <CAK8P3a104VXhPHuWaJVEw3uMEp3rSEHsFJ6w2sW4FhNjiQ2VQQ@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        id S230518AbhCIMvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:51:38 -0500
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:40622 "EHLO
+        mail-lf1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231243AbhCIMvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:51:16 -0500
+Received: by mail-lf1-f48.google.com with SMTP id x4so20155580lfu.7;
+        Tue, 09 Mar 2021 04:51:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
+         :in-reply-to:references:mime-version:date:user-agent
+         :content-transfer-encoding;
+        bh=4zPrx2tQtH5tgiawG5odTs7tWqGcK7t2C/1aTX2Fyxo=;
+        b=JsBCDyrZMMDm/BCKYI8td1s9DADAIh1LDGzYUs3HOia6+1pbnAKx74cwXA8EAbpRJw
+         xeeFvcNO5UiuEdHseO906F4iTYo5u4eTnIEObSTRLbL3QpgQWHlmTuv6lLoMpMQbjHSy
+         8cj0EJutKofUqrM9x6frTcW2YPDEXAz2+CydzmCaVjvqeZnjvz/epirT7VJbsn+BZZ3R
+         rVTLwDUCpS3/xNFSnGyNzh85ECHLl1DhV1W34QgF5YsqFgxnxcSUhyWsp9qMe6aZ4YRd
+         iyhwfKQwpKxFrBT/uCO2+KwIj5B1ZJ1uLBq/czEDJaVkPKf8qLrEAKK7f/btniN3EkRe
+         kgkw==
+X-Gm-Message-State: AOAM531maqexZJXVCQNNvnmiUvz7vRJhzHKtCq9+KNoUHcS8YvNo1int
+        wDmTaD6AOIiy4pzaMRCZLX4=
+X-Google-Smtp-Source: ABdhPJz/4wjiqnuKB5OeDYokY4ebh24pt1Y2TMwXbkd9lcI3fmCkkXWqqy73R/FMZhzHf0Z1af0Cqg==
+X-Received: by 2002:ac2:51dc:: with SMTP id u28mr1698983lfm.322.1615294274819;
+        Tue, 09 Mar 2021 04:51:14 -0800 (PST)
+Received: from dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
+        by smtp.gmail.com with ESMTPSA id k5sm1914222ljh.130.2021.03.09.04.51.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 04:51:14 -0800 (PST)
+Message-ID: <06c8e7339ebc3e1802aa1e9c213de9392671a8a5.camel@fi.rohmeurope.com>
+Subject: Re: [PATCH v3 05/15] dt_bindings: mfd: Add ROHM BD71815 PMIC
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Reply-To: matti.vaittinen@fi.rohmeurope.com
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+In-Reply-To: <20210308173938.GA2679675@robh.at.kernel.org>
+References: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+         <790da5fe60eb3bcd190830770866147bbb5f8143.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+         <20210308173938.GA2679675@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Date:   Tue, 09 Mar 2021 14:51:07 +0200
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 9, 2021 at 12:14 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Mon, Mar 8, 2021 at 10:13 PM Rob Herring <robh@kernel.org> wrote:
-> > On Mon, Mar 08, 2021 at 09:29:54PM +0100, Arnd Bergmann wrote:
->
-> > > This is obviously more work for the drivers, but at least it keeps
-> > > the common code free of the hack while also allowing drivers to
-> > > use ioremap_np() intentionally on other platforms.
-> >
-> > I don't agree. The problem is within the interconnect. The device and
-> > its driver are unaware of this.
->
-> If it is possible that a driver needs to use posted access on one
-> SoC and nonposted on another SoC then clearly the nature
-> of the access need to be part of the memory access abstraction,
-> obviously ioremap() one way or another.
+Hello Rob,
 
-There are two possible scenarios:
+On Mon, 2021-03-08 at 10:39 -0700, Rob Herring wrote:
+> On Mon, 08 Mar 2021 12:40:50 +0200, Matti Vaittinen wrote:
+> > Document DT bindings for ROHM BD71815.
+> > 
+> > BD71815 is a single-chip power management IC mainly for battery-
+> > powered
+> > portable devices. The IC integrates 5 bucks, 7 LDOs, a boost driver
+> > for
+> > LED, a battery charger with a Coulomb counter, a real-time clock, a
+> > 32kHz
+> > clock and two general-purpose outputs although only one is
+> > documented by
+> > the data-sheet.
+> > 
+> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../bindings/mfd/rohm,bd71815-pmic.yaml       | 201
+> > ++++++++++++++++++
+> >  1 file changed, 201 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
 
-- drivers that we already know are shared between apple and
-  other vendors (s3c-serial, pasemi i2c) would need to use
-  nonposted mmio on Apple but can use either one on other
-  platforms. On non-ARM CPUs, the ioremap_np() function
-  might fail when the hardware only supports posted writes.
+I am sorry to bother but I've spent a while trying to reproduce this.
+For some reason I can't trigger the error from
 
-- A driver writer may want to choose between posted and
-  nonposted mmio based on performance considerations:
-  if writes are never serialized, posted writes should always
-  be faster. However, if the driver uses a spinlock to serialize
-  writes, then a nonposted write is likely faster than a posted
-  write followed by a read that serializes the spin_unlock.
-  In this case we want the driver to explicitly pick one over
-  the other, and not have rely on bus specific magic.
+'make dt_binding_check' or
+'make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/rohm,bd71815-
+pmic.yaml'
 
-> Having the driver conditionally use different ioremap_*
-> functions depending on SoC seems awkward. We had different
-> execution paths for OF and ACPI drivers and have been working
-> hard to create fwnode to abstract this away for drivers used with
-> both abstractions for example. If we can hide it from drivers
-> from day 1 I think we can save maintenance costs in the long
-> run.
->
-> Given that the Apple silicon through it's heritage from Samsung
-> S3C (the genealogy is unclear to me) already share drivers with
-> this platform, this seems to already be the case so it's not a
-> theoretical use case.
+even after I ran
 
-As far as I can tell, there are only a handful of soc specific drivers
-that are actually shared with other platforms. Aside from serial
-and i2c, these are the ones that I can see being shared:
+'pip3 install dtschema --upgrade --user'.
 
-- there is an on-chip nvme host controller that is not PCI. So far,
-  nobody else does this, but it can clearly happen in the future
+I should also have yamllint installed.
 
-- I think one of the USB controllers is a standard designware
-  part, while the others are PCI devices.
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Unknown file referenced: [Errno 2] No such file or directory:
+> '/usr/local/lib/python3.8/dist-
+> packages/dtschema/schemas/regulator/rohm,bd71815-regulator.yaml'
 
-- The PCI host bridge may be close enough to the standard
-   that we can use the generic driver for config space access.
+This bothers me slightly. The patch 04/15 should bring-in the
+rohm,bd71815-regulator.yaml. Does this error indicate that file is
+missing or is my $ref somehow invalid?
 
-        Arnd
+*** opinion follows - not sure if it just me but... ***
+
+I know I should probably keep my mouth shut but... I am more and more
+thinking that the yaml bindings are yet another 'excessive unit-test'
+type solution. Tooling which should "force doing things correctly" is
+eventually hindering development and causing the end result being sub-
+optimal.
+
+I mean that creating binding docs takes way too much time from someone
+like me who is "yaml-illiterate". And when I eventually get yaml done -
+the end result is far less descriptive for human eyes than the "good
+old" free-text format would've been. I know one can add comments - but
+I don't see much of them in the binding docs...
+
+
+Best Regards
+ -- Matti Vaittinen
+
+
