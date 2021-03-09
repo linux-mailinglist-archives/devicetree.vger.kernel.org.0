@@ -2,97 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2310133249E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:02:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD703324B5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:08:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbhCIMB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:01:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbhCIMBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:01:54 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB71C06174A;
-        Tue,  9 Mar 2021 04:01:53 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id u4so26663201lfs.0;
-        Tue, 09 Mar 2021 04:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tNgJ/13OtvwF9T9vbyUBrplwIfPpk37A2INU8/7rV6k=;
-        b=qlMi95vQwcItgwgFEnUyvqFWG1fYZ1SviJ++bBW5EimlJei48ImOA/y7Ahp5y3OOHW
-         FQQaRs4wYjP+oV8hHPayS7IJn8bLn1BIII6z9++3ERMykw2dzLEqUlJsfno6tFnyWVKh
-         ai4hdFbNgVqQxHYM3yVKbyjuB/V/TPgTeMKRr0yGycpOojA5E/E9WDXfba/NFgfTOAGp
-         6Dtqlzg/BRWs/GMfus/Ovw46N2z434QPZMsGaFxkPUIK7QxqQmjF2nzD+zGGqaM78h+C
-         02zahWd56DZDjZXZdqppPayuoXdh0Be/c8EcYrKC79Vvuhox1AjOSysa1K43aR0Vy2W6
-         YkyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tNgJ/13OtvwF9T9vbyUBrplwIfPpk37A2INU8/7rV6k=;
-        b=BYWn0N97YSnWEU1vuGHlJnnAuCtDdic/oYwRFCOUJyTvfQG7NIWjmKfb/tUHJa9Ips
-         K8sGyYx1lBHmFD/z6FG+wzjEHocbvOgKaigicdH85l+7jLksDVh75ncxuhrfSSC3/O9f
-         SB8hOACwz5zuJ3U/QBxQE36KH/NvAfaZBqOH03pWBAPukXE2UQq1+kKWfspfvPjsBtTr
-         iJzYEeKQKy4V+JnKI3RAankAs86ONwTuqzhDceUrSOYkjTOat1MXAMQbFeOMrDzThwPr
-         rZzxKINLq++XLeSflbAhw+zA2Av20fb1r0mYk1dwvhf6WXUGdoMu8QcM7go4WuZvtOSY
-         +B4w==
-X-Gm-Message-State: AOAM5339SDz7hSPNiNtL0mi2785kEtjAzX3xogDxHoNMBP01wWY4l/59
-        qeh8ZFbRV5Lb9QBDOSah0ZmfJCHbu9cjgp8+YD8=
-X-Google-Smtp-Source: ABdhPJzb/XFcufOkuakq7r1+apy6JsOG33ywNv/IFeHphXrlWgDJX8xgaT2YLBA6NYp5oibxMN5tjKOwcasypuZK4PE=
-X-Received: by 2002:ac2:520f:: with SMTP id a15mr16719769lfl.223.1615291312274;
- Tue, 09 Mar 2021 04:01:52 -0800 (PST)
-MIME-Version: 1.0
-References: <1615270520-16951-1-git-send-email-dillon.minfei@gmail.com> <1615270520-16951-2-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1615270520-16951-2-git-send-email-dillon.minfei@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 9 Mar 2021 09:01:40 -0300
-Message-ID: <CAOMZO5CUekq_NSCag=fhGrNuxvt_E335Z+qYWCHi8sP8zKJgXg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6ull: fix ubi filesystem mount failed
-To:     dillon.minfei@gmail.com
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Parthiban Nallathambi <parthiban@linumiz.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S230394AbhCIMHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:07:33 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35859 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230156AbhCIMHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:07:19 -0500
+X-UUID: 7b328a5f42d14e19b29c629789e5c6ac-20210309
+X-UUID: 7b328a5f42d14e19b29c629789e5c6ac-20210309
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1833598757; Tue, 09 Mar 2021 20:07:16 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 9 Mar 2021 20:07:14 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 9 Mar 2021 20:07:14 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Wendell Lin <Wendell.Lin@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Mars Cheng <mars.cheng@mediatek.com>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        Macpaul Lin <Macpaul.Lin@mediatek.com>,
+        Owen Chen <owen.chen@mediatek.com>,
+        Evan Green <evgreen@chromium.org>, <Yong.Wu@mediatek.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Ryder Lee <Ryder.Lee@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
+CC:     Ainge Hsu <ainge.hsu@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>
+Subject: [PATCH v9 0/4] Add basic SoC support for mt6765
+Date:   Tue, 9 Mar 2021 20:05:34 +0800
+Message-ID: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1582279929-11535-1-git-send-email-macpaul.lin@mediatek.com>
+References: <1582279929-11535-1-git-send-email-macpaul.lin@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 39137A29FDBB1265CB4CEC99945BA23088741D7A29E572B09F27580A7F34DD562000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dillon,
+This patch adds basic SoC support for Mediatek's new 8-core SoC,
+MT6765, which is mainly for smartphone application.
 
-On Tue, Mar 9, 2021 at 3:15 AM <dillon.minfei@gmail.com> wrote:
->
-> From: dillon min <dillon.minfei@gmail.com>
->
-> since Micron MT29F2G08ABAEAWP's ecc error management:
->
-> |Description                            | Requirement
-> |Minimum required ECC                   | 4-bit ECC per 528 bytes
-> |Minimum ECC with internal ECC enabled  | 4-bit ECC per 516 bytes (user data) +
->                                          8bytes (parity data)
->
-> to avoid unnecessary overheads related to bigger ecc calculations.
-> need choose to use fsl,use-minimum-ecc, else will run into ecc error.
->
-> [    9.449265] ubi0: scanning is finished
-> [    9.463968] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.486940] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.509906] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.532845] ubi0 error: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read 22528 bytes
->
-> Fixes: f9ecf10cb88c ("ARM: dts: imx6ull: add MYiR MYS-6ULX SBC")
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+Changes in V9:
+1. Origin V8 patchset:
+   https://patchwork.kernel.org/cover/11396015/
+   [v9,1/4] dt-bindings: mediatek: Add smi dts binding for Mediatek
+            MT6765 SoC
+     - No Change.
+   [v9,2/4] soc: mediatek: add MT6765 scpsys and subdomain support
+     - Fix build error based on 5.11-rc1 because
+       - bp_table has been deprecated.
+       - basic_clk_id has been renamed to clk_id.
+       - correct the number order in marco GENMASK().
+   Note: mediatek is working on porting mt6765's scpsys to driver
+         "mtk-pm-domains", however we think supporting for "mtk-scpsys" is
+         required before new glue is available.
+   [v9,3/4] arm64: dts: mediatek: add mt6765 support
+     - No Change.
+   [v9,4/4] arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
+     - No Change.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Changes in V8:
+1. Origin V7 patchset:
+   https://patchwork.kernel.org/cover/11370105/
+   Split origin V7 patchset into 2 patchset,
+   keep remain patches #2, #5, #6, and #7 in the same order as this
+   V8 patchset.
+   [v7,2/7] dt-bindings: mediatek: Add smi dts binding for Mediatek
+            MT6765 SoC
+   [v7,5/7] soc: mediatek: add MT6765 scpsys and subdomain support
+   [v7,6/7] arm64: dts: mediatek: add mt6765 support
+   [v7,7/7] arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
+
+Changes in V7:
+1. Adapt V6's patchset to latest kernel tree 5.5-rc1.
+   Origin V6 patchset:
+   https://patchwork.kernel.org/cover/11041963/
+2. Correct 2 clock-controller type in documentation:
+   mipi0 and venc_gcon.
+   [v7 1/7] dt-bindings: clock: mediatek: document clk bindings
+3. Remove V6's patch 03 because it has been taken into 5.5-next-soc
+   [v6, 03/08] dt-bindings: mediatek: add MT6765 power dt-bindings
+3. Update Reviewed-by: Rob Herring <robh@kernel.org> for
+   [v6, 04/08] clk: mediatek: add mt6765 clock IDs
+   --> [v7, 03/07] clk: mediatek: add mt6765 clock IDs
+4. Update SPDX tag for
+   [v6, 05/08] clk: mediatek: Add MT6765 clock support
+   --> [v7, 04/07] clk: mediatek: Add MT6765 clock support
+
+Changes in V6:
+1. Adapt V5's patchset to latest kernel tree.
+   Origin V5 patchset.
+   https://lore.kernel.org/patchwork/cover/963612/
+2. Due to clk's common code has been submit by other platform,
+   this patch set will have dependencies with the following patchsets
+   as the following orders.
+   2.a. [v8,00/21] MT8183 IOMMU SUPPORT
+        https://patchwork.kernel.org/cover/11023585/
+   2.b. [v11,0/6] Add basic node support for Mediatek MT8183 SoC
+        https://patchwork.kernel.org/cover/10962385/
+   2.c. [v6,00/14] Mediatek MT8183 scpsys support
+        https://patchwork.kernel.org/cover/11005751/
+3. Correct power related patches into dt-binding patches.
+4. Re-order V5's 4/11, 6/11, and 7/11 due clk common code change
+   and make dependencies in order.
+5. Update some commit message in clk related patches.
+
+Changes in V5:
+1. add clk support
+
+Changes in V4:
+1. add gic's settings in reg properties
+2. remove some patches about dt-bindings since GKH already took them
+
+Changes in V3:
+1. split dt-binding document patchs
+2. fix mt6765.dtsi warnings with W=12
+3. remove uncessary PPI affinity for timer
+4. add gicc base for gic dt node
+
+Changes in V2:
+1. fix clk properties in uart dts node
+2. fix typo in submit title
+3. add simple-bus in mt6765.dtsi
+4. use correct SPDX license format
+
+Mars Cheng (3):
+  dt-bindings: mediatek: Add smi dts binding for Mediatek MT6765 SoC
+  soc: mediatek: add MT6765 scpsys and subdomain support
+  arm64: dts: mediatek: add mt6765 support
+
+Owen Chen (1):
+  arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
+
+ .../memory-controllers/mediatek,smi-common.txt     |    1 +
+ arch/arm64/boot/dts/mediatek/Makefile              |    1 +
+ arch/arm64/boot/dts/mediatek/mt6765-evb.dts        |   33 +++
+ arch/arm64/boot/dts/mediatek/mt6765.dtsi           |  253 ++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |    6 +
+ drivers/soc/mediatek/mtk-scpsys.c                  |  130 ++++++++++
+ 6 files changed, 424 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6765-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6765.dtsi
+
+-- 
+1.7.9.5
+
