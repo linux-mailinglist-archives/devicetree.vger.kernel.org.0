@@ -2,96 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C993329DE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E67333329E2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 16:12:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbhCIPLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 10:11:23 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38668 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbhCIPLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 10:11:06 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129FAJ6S004410;
-        Tue, 9 Mar 2021 09:10:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615302619;
-        bh=pARYfzVWJ+R5NmwtmFJMmgifXA+woU8wgY6HMNSiu7U=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Y0SzlcILL+rYnwxpUCWryWtGDRjaZYnD2m4/3ghuBkKLOVrLc3tAOBGZM82v70+NG
-         Ws8UcU9bNFzu+WdAtMYNowYfb1fmiRzN2UTkTo/AMF6Q8xHsf6eQhyALhIg4oXP5Tt
-         3kIz4XIVjC0f6zkUCIZ9ruVrYBEXoeF0IBPokILs=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129FAJuh078771
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Mar 2021 09:10:19 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
- 2021 09:10:19 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 9 Mar 2021 09:10:19 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129FAJKX002768;
-        Tue, 9 Mar 2021 09:10:19 -0600
-Date:   Tue, 9 Mar 2021 09:10:19 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Le Jin <le.jin@siemens.com>
-Subject: Re: [PATCH v3 3/4] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-Message-ID: <20210309151019.kbay4ragt6ctyhmx@remote>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
- <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
- <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
- <0561ad0d-7297-35ad-a3a9-49dc9a6bacd3@siemens.com>
- <aecad46d-bce6-5caf-254e-e6385ce8f44b@siemens.com>
+        id S231320AbhCIPL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 10:11:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36814 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231920AbhCIPLq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 10:11:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6358464D90;
+        Tue,  9 Mar 2021 15:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615302705;
+        bh=bQ7R0KgAevaht1DIc/P0+9IJtAAWdN476QMRBmZwqaY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=F0tB8vFrfIwDQ+b/UgZmcDbMT3A8ti5wFxXBlFEsZhAhhvO4kmmJPDNxiUpmM90xZ
+         dsTV/SzKoyKUq1M5yAx5tO83e+pPXBJMCbLILxLLQKxLkyjUel0UYBkEvFzn/Sup6m
+         FBe6bkuxwFn+F1j5QB6RBEge3ySCD6nImrp6L9qkqhmQZA3GEZpf3k3CrmjbkrAqv9
+         GHIhA3dqUsc2w0NOwft35Ernz1AatFIc1Ls9W4qx6/5LoWz4ugKBI+ytCUPpqfPOB8
+         JRQNBSXjDvuytMVNxHLWDbJvwXvMZpNLrasHljXT3aK7HjJbBjuAhN+3M8gkmWegtd
+         0C3jhiSgYqUZQ==
+Received: by mail-ed1-f44.google.com with SMTP id v13so20796092edw.9;
+        Tue, 09 Mar 2021 07:11:45 -0800 (PST)
+X-Gm-Message-State: AOAM531J8DXSpsmOUaIbGL9yts+LnvoNuMPTP+ywap1e8OokonpRvOSR
+        NxlBYIn6XJ9LC/rlPukb8hTDJcqrxBgEK79HYw==
+X-Google-Smtp-Source: ABdhPJwx62SctgK+We8Ag14Qp+OBBXRQmMMi6+TK3C2JW8RKhdSeyrCCtwe3rh8IiQMYEZw3Jid3jxb8TMz/9lVhl8k=
+X-Received: by 2002:a05:6402:c88:: with SMTP id cm8mr4680424edb.62.1615302703886;
+ Tue, 09 Mar 2021 07:11:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aecad46d-bce6-5caf-254e-e6385ce8f44b@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+ <790da5fe60eb3bcd190830770866147bbb5f8143.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+ <20210308173938.GA2679675@robh.at.kernel.org> <06c8e7339ebc3e1802aa1e9c213de9392671a8a5.camel@fi.rohmeurope.com>
+In-Reply-To: <06c8e7339ebc3e1802aa1e9c213de9392671a8a5.camel@fi.rohmeurope.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Mar 2021 08:11:31 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqKbZzXBMPH_aus7=xZWn-EY0BBVnVbu0W_EO_US7vbJNA@mail.gmail.com>
+Message-ID: <CAL_JsqKbZzXBMPH_aus7=xZWn-EY0BBVnVbu0W_EO_US7vbJNA@mail.gmail.com>
+Subject: Re: [PATCH v3 05/15] dt_bindings: mfd: Add ROHM BD71815 PMIC
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09:38-20210309, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
-> Advanced. They are based on the TI AM6528 GP and AM6548 SOCs HS, thus
-> differ in their number of cores and availability of security features.
-> Furthermore the Advanced version comes with more RAM, an eMMC and a few
-> internal differences.
-> 
-> Based on original version by Le Jin.
-> 
-> Link: https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-> Link: https://github.com/siemens/meta-iot2050
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
+On Tue, Mar 9, 2021 at 5:51 AM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
+>
+> Hello Rob,
+>
+> On Mon, 2021-03-08 at 10:39 -0700, Rob Herring wrote:
+> > On Mon, 08 Mar 2021 12:40:50 +0200, Matti Vaittinen wrote:
+> > > Document DT bindings for ROHM BD71815.
+> > >
+> > > BD71815 is a single-chip power management IC mainly for battery-
+> > > powered
+> > > portable devices. The IC integrates 5 bucks, 7 LDOs, a boost driver
+> > > for
+> > > LED, a battery charger with a Coulomb counter, a real-time clock, a
+> > > 32kHz
+> > > clock and two general-purpose outputs although only one is
+> > > documented by
+> > > the data-sheet.
+> > >
+> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/mfd/rohm,bd71815-pmic.yaml       | 201
+> > > ++++++++++++++++++
+> > >  1 file changed, 201 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+>
+> I am sorry to bother but I've spent a while trying to reproduce this.
+> For some reason I can't trigger the error from
+>
+> 'make dt_binding_check' or
+> 'make dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/rohm,bd71815-
+> pmic.yaml'
+>
+> even after I ran
+>
+> 'pip3 install dtschema --upgrade --user'.
+>
+> I should also have yamllint installed.
+>
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Unknown file referenced: [Errno 2] No such file or directory:
+> > '/usr/local/lib/python3.8/dist-
+> > packages/dtschema/schemas/regulator/rohm,bd71815-regulator.yaml'
+>
+> This bothers me slightly. The patch 04/15 should bring-in the
+> rohm,bd71815-regulator.yaml. Does this error indicate that file is
+> missing or is my $ref somehow invalid?
 
-Jan,
+Then it's simply a false positive. I usually check these and try to
+only send the email if the dependency is not in the series so the
+dependency is clear. It's a balance of replying quickly and my time
+reviewing the errors.
 
-I am not sure if
-https://lore.kernel.org/linux-arm-kernel/20210304160712.8452-2-s-anna@ti.com/
-is going to impact your platform. I am planning on picking that series up today.
-might be good to test against tomorrow's next - running through my basic
-tests right now before committing to the ICSS-G nodes being picked up.
+> *** opinion follows - not sure if it just me but... ***
+>
+> I know I should probably keep my mouth shut but... I am more and more
+> thinking that the yaml bindings are yet another 'excessive unit-test'
+> type solution. Tooling which should "force doing things correctly" is
+> eventually hindering development and causing the end result being sub-
+> optimal.
 
-If you could repost after testing against tomorrow's next, it will
-probably be better.
+It's about validating DTS files actually do what the bindings say.
+It's pretty clear that the free form text bindings left a lot of
+things ambiguous.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+How would you propose we can check every property in a DTS file has a
+definition (minimally of it's type)? Freeform text can simply never do
+that.
+
+> I mean that creating binding docs takes way too much time from someone
+> like me who is "yaml-illiterate". And when I eventually get yaml done -
+> the end result is far less descriptive for human eyes than the "good
+> old" free-text format would've been. I know one can add comments - but
+> I don't see much of them in the binding docs...
+
+Because people do the minimum? The only comments/description I object
+to are duplicating generic descriptions of common properties.
+
+There's certainly lots of things we could do. There are tools which
+generate pretty docs out of json-schema. Not sure how useful they
+would be OOTB. But I simply don't have the bandwidth to look into
+them. I can barely keep up with reviews...
+
+Rob
