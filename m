@@ -2,195 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA85332BA6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 17:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA750332BCC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 17:21:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230466AbhCIQLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 11:11:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231919AbhCIQL3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 11:11:29 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D2F4C64FBD;
-        Tue,  9 Mar 2021 16:11:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615306289;
-        bh=jP4SlGRYL9z9+eyGPwRsaTLzvGEXcjhnvO8W76wpgNg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZVrTVRlsTUZ6UvAFSqnFRXzFTuQ+RTH+KKVz80hwNJhcVb8oPDqu3VUXPxU08MljE
-         KwQn8X4P+k3aO/P71x48UcI3mUXon9e0sO13vmZTlYMgq5vLgEnwqAFq9sKDfMkxTd
-         mDT80HetJ45/BY6gIZetj74YgC344aL8/8eHU48l2pI2a5a9g64isjQpFurdbGLNpM
-         1ycmOuKDCP2N2pkLoFejOEAw0aDIBrZeyVy/G/6GwYn4rhVAfdqB5arhHGktPsqT5V
-         PeMh/vzPynAhkBZcSvYJte7w9F2ZVQNfDAeX5D1G++lMklup3F8WUxdNtaqCcjZCBh
-         DYVpOQRq4uP0g==
-Received: by mail-ej1-f51.google.com with SMTP id mm21so29127530ejb.12;
-        Tue, 09 Mar 2021 08:11:28 -0800 (PST)
-X-Gm-Message-State: AOAM532T7NmkX/hNtCfMVF5q3eEgNw8crSJFhcaNx+IFZWOk9iNMQg71
-        ErdB+TjmR+QOtRKIININtW9Sa+63bED9c4aPjg==
-X-Google-Smtp-Source: ABdhPJyUkLV5udpIPwopun4y9FIyMOM7Kb/GLOh2/MhA1kzOLho0N807A6srQjeEqqxkaM/xpiP2WAOCDXgqauEOczc=
-X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr21228200ejb.359.1615306287477;
- Tue, 09 Mar 2021 08:11:27 -0800 (PST)
+        id S230075AbhCIQVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 11:21:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231853AbhCIQU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 11:20:58 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DCAC06175F
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 08:20:58 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id i26so9773085ljn.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 08:20:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NdXOG6ljmNbXTOPX+64Dn7agKNrrC7wRclWk4pldd2Y=;
+        b=bft3qeAE0HV4abBfBNN7i/Jlucff/PRs0/gz+DAi0q8jM9HDngjw5PTq70PFqJO2cU
+         9COJjgpOU+cnTXssQT5aRrCnYcqOWzh4SFsKHgo0tFhj2AfNuro3Rbfe6sZywa6CJ54i
+         3ol4XrTE0EXS/Ole3GKZnLAbaroDSmYj93ArmU/QxnW5Ga4KskiA2PX95g61DiRKAUcR
+         fcsWvxApQyJhjLeaWVxd38KtRHMPxA9Cku6ZV7BLG19R6fP2TbCPTJHwxKcyQq0JmU5a
+         oWj5up5CIec5oV6hKdbmNsC9S/A+RLYwZcCVM+OhIaVuTgYY0etUiqpo68y793Lj2oko
+         FBoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NdXOG6ljmNbXTOPX+64Dn7agKNrrC7wRclWk4pldd2Y=;
+        b=uTIq679n7O3oJfUSz4w4LjNLkURA77WbJp/QDBCiD72lIRvC2Z4OrxkELVSNhHdr8C
+         0sFrZTWsZVCatcdHAp4OptdKtDX4GrbhkvJZq0j30pdxsrtzHtrhP4u/pSjoEnF6mL16
+         YmysMhdjj4dQUUPPBxXatGmJ1KpC228Q8E4XBZlSnYb/3/I/BnmJFY4XCMe2dY38IptJ
+         cpkOGlD5cHYnHINYNbHcWXeBCj5K6sxKi4+VD/XGhbPEP3S7uOeyaFUgskFc1MZ2UgAr
+         BGJ9/i0mnswKCSzMac/Sb3I0s3zDsSFWCzu5eZ0wDSyDEb7wFfn3J790OneS/LGx2ndu
+         6wrw==
+X-Gm-Message-State: AOAM530dmoeejezHvfMQC1OiuSAppHqKeMUOH0glv3CdO4kXhrPSE6sX
+        6BUE6cbyrf4Jy0tONI0JJlxWrP8OjS9VdaBjsJVWGQ==
+X-Google-Smtp-Source: ABdhPJyLt9jyso+VXasOTjFab8SOjODUUCl5Vd/Ei53FhkTvbc2ysPMRM+bDSgOsBF0fSf5wY0kI0Sj0kqsOhtoXu3w=
+X-Received: by 2002:a2e:700a:: with SMTP id l10mr17590963ljc.368.1615306856856;
+ Tue, 09 Mar 2021 08:20:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-7-marcan@marcan.st>
- <20210308203841.GA2906683@robh.at.kernel.org> <87zgzdqnbs.wl-maz@kernel.org>
-In-Reply-To: <87zgzdqnbs.wl-maz@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 9 Mar 2021 09:11:15 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJVmr+23HDN-7Wjbrkh5jt=4dbU9y1iUqDu1nPOV2+38Q@mail.gmail.com>
-Message-ID: <CAL_JsqJVmr+23HDN-7Wjbrkh5jt=4dbU9y1iUqDu1nPOV2+38Q@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 06/27] dt-bindings: timer: arm,arch_timer: Add
- interrupt-names support
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+References: <20210304085710.7128-1-noltari@gmail.com> <20210304085710.7128-2-noltari@gmail.com>
+In-Reply-To: <20210304085710.7128-2-noltari@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 9 Mar 2021 17:20:45 +0100
+Message-ID: <CACRpkdZEuorg-uVS6JZwTzM0Q-gC=BXiyvkk4bV8P_GCEdgB1A@mail.gmail.com>
+Subject: Re: [PATCH v4 01/15] gpio: guard gpiochip_irqchip_add_domain() with GPIOLIB_IRQCHIP
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 3:42 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Mon, 08 Mar 2021 20:38:41 +0000,
-> Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Mar 05, 2021 at 06:38:41AM +0900, Hector Martin wrote:
-> > > Not all platforms provide the same set of timers/interrupts, and Linux
-> > > only needs one (plus kvm/guest ones); some platforms are working around
-> > > this by using dummy fake interrupts. Implementing interrupt-names allows
-> > > the devicetree to specify an arbitrary set of available interrupts, so
-> > > the timer code can pick the right one.
-> > >
-> > > This also adds the hyp-virt timer/interrupt, which was previously not
-> > > expressed in the fixed 4-interrupt form.
-> > >
-> > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > ---
-> > >  .../devicetree/bindings/timer/arm,arch_timer.yaml  | 14 ++++++++++++++
-> > >  1 file changed, 14 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > > index 2c75105c1398..ebe9b0bebe41 100644
-> > > --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > > +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > > @@ -34,11 +34,25 @@ properties:
-> > >                - arm,armv8-timer
-> > >
-> > >    interrupts:
-> > > +    minItems: 1
-> > > +    maxItems: 5
-> > >      items:
-> > >        - description: secure timer irq
-> > >        - description: non-secure timer irq
-> > >        - description: virtual timer irq
-> > >        - description: hypervisor timer irq
-> > > +      - description: hypervisor virtual timer irq
-> > > +
-> > > +  interrupt-names:
-> > > +    minItems: 1
-> > > +    maxItems: 5
-> > > +    items:
-> > > +      enum:
-> > > +        - phys-secure
-> > > +        - phys
-> > > +        - virt
-> > > +        - hyp-phys
-> > > +        - hyp-virt
-> >
-> > phys-secure and hyp-phys is not very consistent. secure-phys or sec-phys
-> > instead?
-> >
-> > This allows any order which is not ideal (unfortunately json-schema
-> > doesn't have a way to define order with optional entries in the middle).
-> > How many possible combinations are there which make sense? If that's a
-> > reasonable number, I'd rather see them listed out.
->
-> The available of interrupts are a function of the number of security
-> states, privileged exception levels and architecture revisions, as
-> described in D11.1.1:
->
-> <quote>
-> - An EL1 physical timer.
-> - A Non-secure EL2 physical timer.
-> - An EL3 physical timer.
-> - An EL1 virtual timer.
-> - A Non-secure EL2 virtual timer.
-> - A Secure EL2 virtual timer.
-> - A Secure EL2 physical timer.
-> </quote>
->
-> * Single security state, EL1 only, ARMv7 & ARMv8.0+ (assumed NS):
->   - physical, virtual
->
-> * Single security state, EL1 + EL2, ARMv7 & ARMv8.0 (assumed NS)
->   - physical, virtual, hyp physical
->
-> * Single security state, EL1 + EL2, ARMv8.1+ (assumed NS)
->   - physical, virtual, hyp physical, hyp virtual
->
-> * Two security states, EL1 + EL3, ARMv7 & ARMv8.0+:
->   - secure physical, physical, virtual
->
-> * Two security states, EL1 + EL2 + EL3, ARMv7 & ARMv8.0
->   - secure physical, physical, virtual, hyp physical
->
-> * Two security states, EL1 + EL2 + EL3, ARMv8.1+
->   - secure physical, physical, virtual, hyp physical, hyp virtual
->
-> * Two security states, EL1 + EL2 + S-EL2 + EL3, ARMv8.4+
->   - secure physical, physical, virtual, hyp physical, hyp virtual,
->     secure hyp physical, secure hyp virtual
->
-> Nobody has seen the last combination in the wild (that is, outside of
-> a SW model).
->
-> I'm really not convinced we want to express this kind of complexity in
-> the binding (each of the 7 cases), specially given that we don't
-> encode the underlying HW architecture level or number of exception
-> levels anywhere, and have ho way to validate such information.
+On Thu, Mar 4, 2021 at 9:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
+ail.com> wrote:
 
-Actually, we can simplify this down to 2 cases:
+> The current code doesn't check if GPIOLIB_IRQCHIP is enabled, which resul=
+ts in
+> a compilation error when trying to build gpio-regmap if CONFIG_GPIOLIB_IR=
+QCHIP
+> isn't enabled.
+>
+> Fixes: 6a45b0e2589f ("gpiolib: Introduce gpiochip_irqchip_add_domain()")
+> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
 
-oneOf:
-  - minItems: 2
-    items:
-      - const: phys
-      - const: virt
-      - const: hyp-phys
-      - const: hyp-virt
-  - minItems: 3
-    items:
-      - const: sec-phys
-      - const: phys
-      - const: virt
-      - const: hyp-phys
-      - const: hyp-virt
-      - const: sec-hyp-phy
-      - const: sec-hyp-virt
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-And that's below my threshold for not worth the complexity.
-
-Rob
+Yours,
+Linus Walleij
