@@ -2,101 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8093332764
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:41:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E621332770
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 14:44:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbhCINlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 08:41:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbhCINk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 08:40:57 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B74C061760
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 05:40:56 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id u18so20685333ljd.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 05:40:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M2PVFTJad13/HHdNzwN8/vmlKlKOh1dKDhYFEC+sxbs=;
-        b=oCa2SWgwfdjgNjhmNjTTUyxncE1srgWbgq4n1tk+YicLak1fz2d0Ocha/HJoao7WS4
-         ijbw64tDUrTAHzwHknKJW5AWPQKLFKb9IYDL4Qsofhy5Zym6TQryG8BBvl1YlDiaM1Wx
-         PzK6QjxGbq6GglgWkaZRgJwFDjNDCYoFLs7xqyx5sZav6TvYbzLRsIbSF6k5iYuOBTmk
-         MuGvUGklfu2vmHSLGHJKvH0szrB7f5LB0aK8Bd9d4LWpxQXqhcHjW0+clsfA6zcFiXPZ
-         QJEOtQF+8u7WccHrdPD389iZjrOIP+sR/aSMvqPTn8OA/LFDOkOn1URA6ZDzGTykGwjc
-         d1Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M2PVFTJad13/HHdNzwN8/vmlKlKOh1dKDhYFEC+sxbs=;
-        b=OdkGcNg18ExF0QJc991WakOMziu2N4MBsWKdtkpqDwFsQoC/YiA5hlCOVEz/uo7AK2
-         +0cgeQ6VZNEfyy+CqApMyV0WRa+vXNMoP0mvQHtvV2cFrYXm68aF63Xck0dO3HAj/H+x
-         VzSjlQ4L1YStnUmD/vtw9ImD9xLJoT1AE1zMeSb5oZ5YNjAEGRYGMZUNYsLNcITUjQAe
-         N3jDbwMAzkTOKngk9coRr2bZZM5nARNo1k6Eyc5RWB01sF//LNyLdoohK7cCpajsvaqz
-         BNbiF6qUHRWOh/G/QJDzctOyyvtKVTjtEuWV5UgeEWsI/GKVzluv7/cCwygJa5wkeP4n
-         YAdw==
-X-Gm-Message-State: AOAM533gcVe6q4O46Qrj1e5+amH56Ss/VmGpGyz1n/WYYLJ+12jOsX+/
-        fBMCetFaySjnwtvP47GKp3t8ijrYT7SEQn9B6t/jIg==
-X-Google-Smtp-Source: ABdhPJybzyO6ZNZPaRk+OvWdcYfIHCWIpj+B9KZrup6oxp1HHl3PlLebHYEChGoROoICQaGOC6ZyrFwRYceCJuRDs0w=
-X-Received: by 2002:a05:651c:103a:: with SMTP id w26mr14436853ljm.273.1615297255364;
- Tue, 09 Mar 2021 05:40:55 -0800 (PST)
-MIME-Version: 1.0
-References: <20210302011813.2331879-1-alexander.sverdlin@gmail.com>
- <CACRpkdYErJH5RUjL+jPC5vnaqGiOqBwHsr0E42wOWrpBGrpS3w@mail.gmail.com> <20210308183704.GA2747088@robh.at.kernel.org>
-In-Reply-To: <20210308183704.GA2747088@robh.at.kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 9 Mar 2021 14:40:44 +0100
-Message-ID: <CACRpkda8+Lvz+c=ohXsEDkNSQ63hPo613P4p_90fvKyC_kQ_GA@mail.gmail.com>
-Subject: Re: [PATCH] gpio: omap: Honor "aliases" node
-To:     Rob Herring <robh@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S231135AbhCINoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 08:44:01 -0500
+Received: from comms.puri.sm ([159.203.221.185]:60048 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231140AbhCINno (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 08:43:44 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 98A2DE0173;
+        Tue,  9 Mar 2021 05:43:12 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 868Bg6DGNy5m; Tue,  9 Mar 2021 05:43:11 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     alice.guo@oss.nxp.com
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, robh@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH] arm64: dts: imx8mq: remove SoC ID compatible
+Date:   Tue,  9 Mar 2021 14:42:51 +0100
+Message-Id: <20210309134251.2583679-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20210104091544.13972-4-alice.guo@oss.nxp.com>
+References: <20210104091544.13972-4-alice.guo@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 7:37 PM Rob Herring <robh@kernel.org> wrote:
+this reverts commit ce58459d8c7f4174e7b8a8ea903dd949631334a3 for imx8mq.
 
-> Can we remove the ones we have already for GPIO?
+this is most likely not the real fix but works around the problem I have
+(with v5.12-rc2) I want to report:
 
-I think we would get pretty hard pushback if we attempt that.
-We have all these drivers that utilize it:
+[    0.766925] SoC revision 0x21
+[    0.770286] imx8_soc_info soc@0: SoC revision via nvmem read failed: -517
 
-gpio-clps711x.c:        id = of_alias_get_id(np, "gpio");
-gpio-mvebu.c:   id = of_alias_get_id(pdev->dev.of_node, "gpio");
-gpio-mxc.c:     port->gc.base = (pdev->id < 0) ? of_alias_get_id(np,
-"gpio") * 32 :
-gpio-mxs.c:     port->id = of_alias_get_id(np, "gpio");
-gpio-vf610.c:   gc->base = of_alias_get_id(np, "gpio") * VF610_GPIO_PER_PORT;
-gpio-zynq.c:    chip->base = of_alias_get_id(pdev->dev.of_node, "gpio");
-pinctrl-at91.c: int alias_idx = of_alias_get_id(np, "gpio");
-pinctrl-st.c:   int bank_num = of_alias_get_id(np, "gpio");
-samsung/pinctrl-samsung.c:      id = of_alias_get_id(node, "pinctrl");
+This leads to the system not booting up.
 
-Predictably it is so many bad examples that new driver authors will claim
-something along the line of
-"why can't I have a lollipop when all other kids got one".
+This change makes use of the old way of reading soc_revision and thus
+works around the problem.
 
-Several of those have this by a claim one way or another that
-the DT boot need to look like the boardfile boot. Some of these
-have been migrated from board files so could possible drop
-this id/base coding.
+What could be missing for the nvmem way to work here? Should it work
+in any case? I assume so if you add the compatible to imx8mq.dtsi. But
+if it would work, why keep the ocotp reads?
 
-I don't know what the maintainers would say, should we send
-attack patches? :D At least some kind of motivation would come
-out of it.
+thanks a lot,
+                             martin
 
-Yours,
-Linus Walleij
+
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index e1ca17fc1fa1..b40f7081e825 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -287,7 +287,7 @@ timer {
+ 	};
+ 
+ 	soc@0 {
+-		compatible = "fsl,imx8mq-soc", "simple-bus";
++		compatible = "simple-bus";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		ranges = <0x0 0x0 0x0 0x3e000000>;
+-- 
+2.30.1
+
