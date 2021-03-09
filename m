@@ -2,100 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C1A3324AE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D41613324ED
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:11:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbhCIMHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:07:32 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35859 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230173AbhCIMHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 07:07:20 -0500
-X-UUID: a0feffcbd81f44ce95b09b34c67b5c84-20210309
-X-UUID: a0feffcbd81f44ce95b09b34c67b5c84-20210309
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1280078577; Tue, 09 Mar 2021 20:07:17 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 9 Mar 2021 20:07:15 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 9 Mar 2021 20:07:15 +0800
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wendell Lin <Wendell.Lin@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Mars Cheng <mars.cheng@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Macpaul Lin <Macpaul.Lin@mediatek.com>,
-        Owen Chen <owen.chen@mediatek.com>,
-        Evan Green <evgreen@chromium.org>, <Yong.Wu@mediatek.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Ryder Lee <Ryder.Lee@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC:     Ainge Hsu <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-Subject: [PATCH v9 4/4] arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
-Date:   Tue, 9 Mar 2021 20:05:38 +0800
-Message-ID: <1615291538-9799-5-git-send-email-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
-References: <1582279929-11535-1-git-send-email-macpaul.lin@mediatek.com>
- <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
+        id S231342AbhCIMKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:10:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59492 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230140AbhCIMKY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 07:10:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BDB0C65259;
+        Tue,  9 Mar 2021 12:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615291823;
+        bh=Mo6aBMyEs8piPIcIRdhjTmk5dd1sBIQGmUnkUaQ/imo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Tt7ITlXzAWyPB3w8fQQUrutwZg7yPg6k8xFV0f84PAIrc+fhF0Cg4dun1WD0v6bIH
+         kWFF0lrzM0EJhqds51z/9TshQx7DsSpOkuuFYvmoi8SMWjIm7gZymzXLZQEQ/VP7jl
+         H8v0+GnO+mVUoKAhLRvwmBc+0IoBqm017j9QrrARFSrgLe00uxx4CMl1V+t5jWsx0L
+         dbbZdbxe0AzGBlZWa2BvHZZIuFmAefI82QERtMSE/zRLGOJTbGpf4MAn7OS/jzyBsl
+         OjdyBbdTdvCByUYTe1ZaQgK8Hc4Wy4JEcZVHMqpFzAiptPajVFIiKwZTnWUaTkOfFt
+         9Nfyxsm9+Ivzg==
+Date:   Tue, 9 Mar 2021 17:40:18 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: Introduce SM8350 HDK
+Message-ID: <YEdlquVoe/8t3hUS@vkoul-mobl>
+References: <20210308182113.1284966-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: FDAF47F11F74DEFFB31581AA99BF3EADAD476DBDEB9F270F6DFD6775057A74402000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308182113.1284966-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Owen Chen <owen.chen@mediatek.com>
+On 08-03-21, 10:21, Bjorn Andersson wrote:
 
-Enable MT6765 clock configs, include topckgen, apmixedsys,
-infracfg, and subsystem clocks.
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include "sm8350.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. SM8350 HDK";
+> +	compatible = "qcom,sm8350-hdk", "qcom,sm8350";
 
-Signed-off-by: Owen Chen <owen.chen@mediatek.com>
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/configs/defconfig | 6 ++++++
- 1 file changed, 6 insertions(+)
+qcom,sm8350-hdk needs to be documented
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d612f633b771..553137e81b8e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -622,6 +622,12 @@ CONFIG_REGULATOR_RK808=y
- CONFIG_REGULATOR_S2MPS11=y
- CONFIG_REGULATOR_TPS65132=m
- CONFIG_REGULATOR_VCTRL=m
-+CONFIG_COMMON_CLK_MT6765_AUDIOSYS=y
-+CONFIG_COMMON_CLK_MT6765_CAMSYS=y
-+CONFIG_COMMON_CLK_MT6765_MMSYS=y
-+CONFIG_COMMON_CLK_MT6765_IMGSYS=y
-+CONFIG_COMMON_CLK_MT6765_VCODECSYS=y
-+CONFIG_COMMON_CLK_MT6765_MIPI0ASYS=y
- CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
- CONFIG_RC_DEVICES=y
+With that:
+
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+
 -- 
-2.18.0
-
+~Vinod
