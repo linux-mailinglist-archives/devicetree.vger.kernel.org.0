@@ -2,127 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB5E33200A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 08:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3820D33201C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 08:58:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbhCIHrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 02:47:33 -0500
-Received: from mail1.protonmail.ch ([185.70.40.18]:23964 "EHLO
-        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhCIHrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 02:47:19 -0500
-Date:   Tue, 09 Mar 2021 07:47:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1615276032;
-        bh=+ZlcTZnrhrZ8o7M1JrptlxBInGQYHsPbgf1Nr0uMsQ0=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=TxKn1Jcnp1F8jZez32EQsOrCPDgvTGtkRoJCDS1vmcYP8iX4xUP5r12Mf323ZS9re
-         uZQS704MUiB1voO6Gn4s/ELYUmkOa5o5uXmSkQ+Q/Omc8gy0yb6MB800FMdSa3dSBv
-         Za0jyyJxQK/td48v87cqCAZOUCd7oqnV49DUDD7w=
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: Re: [PATCH 3/3] power: supply: max8997_charger: Switch to new binding
-Message-ID: <20210309084658.4a140b92@focal-fossa>
-In-Reply-To: <20210201180335.rrsqfvbcmxvx64gf@kozik-lap>
-References: <20210130172747.2022977-1-timon.baetz@protonmail.com> <20210130172747.2022977-4-timon.baetz@protonmail.com> <20210131172840.fxaadhhsafa4aeex@kozik-lap> <20210201083128.18499ffd.timon.baetz@protonmail.com> <20210201180335.rrsqfvbcmxvx64gf@kozik-lap>
+        id S229691AbhCIH5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 02:57:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58164 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229689AbhCIH5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 02:57:12 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B21C06174A;
+        Mon,  8 Mar 2021 23:57:11 -0800 (PST)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 85B731F44A74;
+        Tue,  9 Mar 2021 07:57:09 +0000 (GMT)
+Date:   Tue, 9 Mar 2021 08:57:06 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Daniele.Palmas@telit.com, bjorn.andersson@linaro.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: Add a property to declare
+ secure regions in NAND chips
+Message-ID: <20210309085706.2d6bd0f0@collabora.com>
+In-Reply-To: <20210308133134.GC5457@thinkpad>
+References: <20210308054447.28418-1-manivannan.sadhasivam@linaro.org>
+        <20210308054447.28418-3-manivannan.sadhasivam@linaro.org>
+        <20210308101059.08658fbe@collabora.com>
+        <20210308133134.GC5457@thinkpad>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Feb 2021 19:03:35 +0100, Krzysztof Kozlowski wrote:
-> On Mon, Feb 01, 2021 at 09:26:42AM +0000, Timon Baetz wrote:
-> > On Sun, 31 Jan 2021 18:28:40 +0100, Krzysztof Kozlowski wrote:
-> > > On Sat, Jan 30, 2021 at 05:30:14PM +0000, Timon Baetz wrote:
-> > > > Get regulator from parent device's node and extcon by name.
-> > > >
-> > > > Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> > > > ---
-> > > >  drivers/power/supply/max8997_charger.c | 12 ++++++++----
-> > > >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > > >
-> > > > diff --git a/drivers/power/supply/max8997_charger.c b/drivers/power=
-/supply/max8997_charger.c
-> > > > index 321bd6b8ee41..625d8cc4312a 100644
-> > > > --- a/drivers/power/supply/max8997_charger.c
-> > > > +++ b/drivers/power/supply/max8997_charger.c
-> > > > @@ -168,6 +168,7 @@ static int max8997_battery_probe(struct platfor=
-m_device *pdev)
-> > > >  =09int ret =3D 0;
-> > > >  =09struct charger_data *charger;
-> > > >  =09struct max8997_dev *iodev =3D dev_get_drvdata(pdev->dev.parent)=
-;
-> > > > +=09struct device_node *np =3D pdev->dev.of_node;
-> > > >  =09struct i2c_client *i2c =3D iodev->i2c;
-> > > >  =09struct max8997_platform_data *pdata =3D iodev->pdata;
-> > > >  =09struct power_supply_config psy_cfg =3D {};
-> > > > @@ -237,20 +238,23 @@ static int max8997_battery_probe(struct platf=
-orm_device *pdev)
-> > > >  =09=09return PTR_ERR(charger->battery);
-> > > >  =09}
-> > > >
-> > > > +=09// grab regulator from parent device's node
-> > > > +=09pdev->dev.of_node =3D iodev->dev->of_node;
-> > > >  =09charger->reg =3D devm_regulator_get_optional(&pdev->dev, "charg=
-er");
-> > > > +=09pdev->dev.of_node =3D np;
-> > >
-> > > I think the device does not have its own node anymore. Or did I miss
-> > > something?
-> >
-> > The idea is to reset of_node to whatever it was before (NULL) and basic=
-ally
-> > leave the device unchanged. Probe might run again because of deferral.
->
-> Good point.
->
-> >
-> > > >  =09if (IS_ERR(charger->reg)) {
-> > > >  =09=09if (PTR_ERR(charger->reg) =3D=3D -EPROBE_DEFER)
-> > > >  =09=09=09return -EPROBE_DEFER;
-> > > >  =09=09dev_info(&pdev->dev, "couldn't get charger regulator\n");
-> > > >  =09}
-> > > > -=09charger->edev =3D extcon_get_edev_by_phandle(&pdev->dev, 0);
-> > > > -=09if (IS_ERR(charger->edev)) {
-> > > > -=09=09if (PTR_ERR(charger->edev) =3D=3D -EPROBE_DEFER)
-> > > > +=09charger->edev =3D extcon_get_extcon_dev("max8997-muic");
-> > > > +=09if (IS_ERR_OR_NULL(charger->edev)) {
-> > > > +=09=09if (!charger->edev)
-> > >
-> > > Isn't NULL returned when there is simply no extcon? It's different th=
-an
-> > > deferred probe. Returning here EPROBE_DEFER might lead to infinite pr=
-obe
-> > > tries (on every new device probe) instead of just failing it.
-> >
-> > extcon_get_extcon_dev() just loops through all registered extcon device=
-s
-> > and compared names. It will return NULL when "max8997-muic" isn't
-> > registered yet. extcon_get_extcon_dev() never returns EPROBE_DEFER so
-> > checking for NULL seems to be the only way. Other drivers using that
-> > function also do NULL check and return EPROBE_DEFER.
->
-> Indeed, thanks for clarification. Looks good:
->
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Mon, 8 Mar 2021 19:01:34 +0530
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
 
-Is something blocking this from being accepted?
+> On Mon, Mar 08, 2021 at 10:10:59AM +0100, Boris Brezillon wrote:
+> > On Mon,  8 Mar 2021 11:14:46 +0530
+> > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+> >   
+> > > On a typical end product, a vendor may choose to secure some regions in
+> > > the NAND memory which are supposed to stay intact between FW upgrades.
+> > > The access to those regions will be blocked by a secure element like
+> > > Trustzone. So the normal world software like Linux kernel should not
+> > > touch these regions (including reading).
+> > > 
+> > > So let's add a property for declaring such secure regions so that the
+> > > drivers can skip touching them.
+> > > 
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> > > index d0e422f4b3e0..15a674bedca3 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> > > @@ -143,6 +143,13 @@ patternProperties:
+> > >            Ready/Busy pins. Active state refers to the NAND ready state and
+> > >            should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
+> > >  
+> > > +      secure-regions:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +        description:
+> > > +          Regions in the NAND chip which are protected using a secure element
+> > > +          like Trustzone. This property contains the start address and size of
+> > > +          the secure regions present.
+> > > +  
+> > 
+> > Since you declare this as a generic property, I think it'd be simpler
+> > to do the check at the core level.
+> >   
+> 
+> Hmm, so have the parsing logic in qcom driver and check in core or both parsing
+> and check in core?
 
-Timon
-
-
+Both in the core.
