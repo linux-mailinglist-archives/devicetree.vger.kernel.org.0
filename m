@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA4133205F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 09:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ECA7332067
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 09:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbhCIIUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 03:20:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbhCIITo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 03:19:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B32FC06174A
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 00:19:43 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lJXaR-0003CY-C9; Tue, 09 Mar 2021 09:19:27 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lJXaQ-0007kf-1q; Tue, 09 Mar 2021 09:19:26 +0100
-Date:   Tue, 9 Mar 2021 09:19:26 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Heiko Schocher <hs@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Alice Guo <alice.guo@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Ashish Kumar <ashish.kumar@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Teresa Remmet <t.remmet@phytec.de>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] enable flexspi support on imx8mp
-Message-ID: <20210309081926.aer6dgum7nljoc57@pengutronix.de>
-References: <20210309053116.1486347-1-hs@denx.de>
+        id S229689AbhCIIVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 03:21:54 -0500
+Received: from mail.ilitek.com ([211.72.159.213]:34971 "EHLO cello.ilitek.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229515AbhCIIVq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 03:21:46 -0500
+X-UUID: 0490fee1abe34da9a67f3318c0c7acd1-20210309
+X-UUID: 0490fee1abe34da9a67f3318c0c7acd1-20210309
+Received: from ex2.ili.com.tw [(192.168.1.132)] by cello.ilitek.com
+        (envelope-from <joe_hung@ilitek.com>)
+        (Cellopoint E-mail Firewall v4.1.12 Build 0701 with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+        with ESMTP id 2046096492; Tue, 09 Mar 2021 16:21:31 +0800
+Received: from EX2.ili.com.tw (192.168.1.132) by EX2.ili.com.tw
+ (192.168.1.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 9 Mar 2021
+ 16:21:30 +0800
+Received: from EX2.ili.com.tw ([fe80::89a8:5a29:1f3a:8b1f]) by EX2.ili.com.tw
+ ([fe80::89a8:5a29:1f3a:8b1f%4]) with mapi id 15.01.2176.002; Tue, 9 Mar 2021
+ 16:21:30 +0800
+From:   =?big5?B?Sm9lIEh1bmcgKKx4u8q2pyk=?= <joe_hung@ilitek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     =?big5?B?THVjYSBIc3UgKK59ucXB5Sk=?= <luca_hsu@ilitek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: RE: [PATCH v5 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c:
+ Add bindings
+Thread-Topic: [PATCH v5 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c:
+ Add bindings
+Thread-Index: AQHXELs9PgS+TEFot0ejaiTtLG+k7qp6B2+AgAFQ7UA=
+Date:   Tue, 9 Mar 2021 08:21:30 +0000
+Message-ID: <8f8577d7aed143fda0e9f940b1bc48ba@ilitek.com>
+References: <20210304055724.63695-1-joe_hung@ilitek.com>
+ <20210308201329.GA2886497@robh.at.kernel.org>
+In-Reply-To: <20210308201329.GA2886497@robh.at.kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.30.44]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210309053116.1486347-1-hs@denx.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:17:09 up 96 days, 22:23, 40 users,  load average: 0.04, 0.12,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+SGVsbG8gUm9iLA0KDQpUaGFua3MgZm9yIHlvdXIgdGltZSBhbmQgcmV2aWV3Lg0KU2hvdWxkIHVw
+ZGF0ZSBpbiB2NiBzaG9ydGx5Lg0KDQo+IE9uIFRodSwgMDQgTWFyIDIwMjEgMTM6NTc6MjMgKzA4
+MDAsIEpvZSBIdW5nIHdyb3RlOg0KPiA+IEFkZCBiaW5kaW5nIGRvY3VtZW50YXRpb24gZm9yIElM
+SVRFSyB0b3VjaCBkZXZpY2VzLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvZSBIdW5nIDxq
+b2VfaHVuZ0BpbGl0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgaW4gdjU6DQo+ID4gICAt
+IFJlbW92ZSB0YWIgaW4geWFtbA0KPiA+IA0KPiA+IENoYW5nZXMgaW4gdjQ6DQo+ID4gICAtIENo
+YW5nZSBJUlEgZmxhZyB0byBsZXZlbCBpbnRlcnJ1cHQNCj4gPiAgIC0gQWRkIHN1cHBvcnQgZm9y
+IGNvbW1vbiB0b3VjaHNjcmVlbi1yZWxhdGVkIHByb3BlcnRpZXMNCj4gPiAgIC0gTW9kaWZ5IHJl
+c2V0IGdwaW8gdG8gYWN0aXZlIGxvdw0KPiA+ICAgLSBNb2RpZnkgaXJxIHR5cGUgdG8gTEVWRUxf
+TE9XDQo+ID4gICAtIEFkZCBjb21wYXRpYmxlIGZvciBMZWdvIHNlcmllcyBJQ3MNCj4gPiANCj4g
+PiBDaGFuZ2VzIGluIHYzOg0KPiA+ICAgLSBBZGQgaW5jbHVkZSBoZWFkZXIgaW4gZXhhbXBsZXMs
+IGFuZCBwYXNzIHRoZSBkdCBiaW5kaW5nIGNoZWNrDQo+ID4gDQo+ID4gQ2hhbmdlcyBpbiB2MjoN
+Cj4gPiAgIC0gQ29udmVydCB0byBEVCBzY2hlbWEgZm9ybWF0DQo+ID4gICAtIFVzaW5nIGludGVy
+cnVwdHMgaW5zdGVhZCBvZiBpcnEtZ3Bpb3MNCj4gPiANCj4gPiAgLi4uL2lucHV0L3RvdWNoc2Ny
+ZWVuL2lsaXRla190c19pMmMueWFtbCAgICAgIHwgNzMgKysrKysrKysrKysrKysrKysrKw0KPiA+
+ICAxIGZpbGUgY2hhbmdlZCwgNzMgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2
+NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lucHV0L3RvdWNoc2NyZWVuL2ls
+aXRla190c19pMmMueWFtbA0KPiA+IA0KPiANCj4gUmV2aWV3ZWQtYnk6IFJvYiBIZXJyaW5nIDxy
+b2JoQGtlcm5lbC5vcmc+DQoNCkpvZSBIb25nDQo=
 
-On 21-03-09 06:31, Heiko Schocher wrote:
-> 
-> This series enables support for the SPI NOR on the
-> imx8mp based phyboard-pollux-rdk board.
-> 
-> Patches new in v2:
-> "spi: fspi: enable fspi driver for on imx8mp"
-> which adds own compatible entry for imx8mp
-> 
-> and seperate in own patch the documentation entry in
-> patch "dt-bindings: spi: add compatible entry for imx8mp in FlexSPI controller"
-> as checkpatch says:
-> 
-> warning: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
-
-Thanks for picking up the comments :) Did you missed to send them or did
-you used an other Cc: and To: for the new patches?
-
-Regards,
-  Marco
