@@ -2,95 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E13633284A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 15:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C40332867
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 15:20:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbhCIOQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 09:16:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        id S230081AbhCIOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 09:20:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhCIOPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 09:15:39 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31FAC06174A
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 06:15:38 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id w11so15889977wrr.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 06:15:38 -0800 (PST)
+        with ESMTP id S230325AbhCIOUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 09:20:06 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5319C06174A
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 06:20:05 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id x4so20617967lfu.7
+        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 06:20:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5k92QxyrxRTJi0W/7xlk/UVOaJACzUsOHFwPLvqgR18=;
-        b=RiA6ZyC1Ou9XpUVI0ItDLdRO6zud+MChTC+o6ira9EZ0LBKCxLcd8dACvfFCXex9xG
-         p9fGwmwAdu/qM0fLG5hU2OZBg4MfZbWN73bTzYkYRS30+4biIrxv4hCR8cCmxo8lzhrb
-         bYVcrdHfDEwi/XU/nMoe5UUQwgnui//jQX5bUPQ8Etcwz7hjAFy1mA1E/nlEy7PUm+39
-         qLyqPwaB+iPP8IqhopbnW5deD1QMEGHEKPxbMKDL1EkHzi+ILkcE7r1xx71+MucFMxKl
-         EQQnAL4Ef0A3fFDmI5bLlCm8mcKv7KhFev83MLpVMYV0BYT42XI+CD5MhUKDwNUX5qph
-         5BDA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AJyZdrYMJo+scwkiupHH0j/771HxMLWlOWm0nrPtSXk=;
+        b=Qf5TOSf+bwAE3pDY6aNa1r0d+rcL6PPADVoY+Kq3ENDNoUJDBr2oLd4H336hpJsf5s
+         m59+mNbmEFUU7AMq5+VXNC/YmjDz94QkcoEGjGfuoH13YXMS4QLFh3s+wOIjmu51RdsP
+         Gne85erp2BuVB5VaF+yGm1jqBHfRVoA23Q5GTZe1lNWodHTKTHFLNIF6J+L2exsGEvZ3
+         EPt19oMXU9lX7yxw1aumG2PRhmGInOvLB6K5oYdMskAj8RUBrRbFXD+jFOwKruqDzoZh
+         ePfRjhcr0f7+JHc9KfzOFpgNYwW++JWV1gUUP1c4tjylLOzL1VnxpBC5yEMfSbYYywWJ
+         pqBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5k92QxyrxRTJi0W/7xlk/UVOaJACzUsOHFwPLvqgR18=;
-        b=BH0/uOD0Aht1uSX5P+56PlO5iE2FpiBUiyAIcsl3KZz9i2FY2E6KMBSsdEV5qVF/Md
-         U+c+N9zzxlRneN9ScOtrJG+2N10tJ2s8lPZhyXaMLFE99g4QYiJLvkEUgAveSzSo8jiN
-         dqg1dxu17pdr2bJC5BKHPMciNIR2UANWAhY8JHbe4fJPMfQn+qx6z7f2ZrI5dvWO8RF9
-         C7vXajwmBEEsiGoo2FIyhmxpnAx1WwbMY3BDkyb+9qlE3C3GulyyYRZOcip8nOy2CX18
-         bX8dE/+A6Tp4iPns3EHKAbW0bAIRSvH2oK/f89CYKcrlngZWHbMte6ZFWwUcJgEAkyAs
-         E4Lg==
-X-Gm-Message-State: AOAM533Cd5DDxeptYvOIhRpokrBulH7/qTIWp/IHj7O7Cl1onJFiilYz
-        EwXWtT0MPfWhitpl5AIQDl44lg==
-X-Google-Smtp-Source: ABdhPJwGF/B0sdM18GQqLgu4EoQINoJ2w3HS1vWklHTY5soJkWA4Wynb1oR2mypHaFivw90hQvPoJw==
-X-Received: by 2002:a5d:43cc:: with SMTP id v12mr28316085wrr.287.1615299337598;
-        Tue, 09 Mar 2021 06:15:37 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id u20sm28007579wru.6.2021.03.09.06.15.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AJyZdrYMJo+scwkiupHH0j/771HxMLWlOWm0nrPtSXk=;
+        b=as1UPdQq/KYLTk9BB78pEuWh9YyFe6rL3Ktdh96MODY9Ea2mXzT8/DK+0e7q2RtFXi
+         43b8ts2ZOYtDVk9Ex4oarNCvCCNTKb8PD3btiPzSAd5pyX8UxlqKRL1Y6BeEuZrA8La9
+         WzhXHIOpjk2OwRcGOlpezszKehOD8FVt/KrE8sw/S0YaPnCX3MxAPWvd0Bn9Z5Diygje
+         fB0tinu8kCd4jsIWuxJWZ72RvHQSj7Fsf/53G2qBHaW637bDocAXS077ivCz2tBBP940
+         NkNI7QCOF5+nLN8UQCPfh4hXFdywpL2nNMPjn9qUXqRJ9rUb3Q9+NKs5Ke3qdhWxkVaD
+         fCtw==
+X-Gm-Message-State: AOAM532AKkHoSlxvIlIEQ81p70DoDIoxZot4oKfi1tD5zn+1nc/HQxbZ
+        S4YOnBapkrAS01zK+tUtf+c+3w==
+X-Google-Smtp-Source: ABdhPJz9A5PXmLiyuKuFuOw4BLhC2Ub3AtA/WR0hZ3WqO5LiLxNknClL+S7DqD8ECgZwsV4IEu4l5A==
+X-Received: by 2002:a05:6512:348c:: with SMTP id v12mr17350197lfr.271.1615299604042;
+        Tue, 09 Mar 2021 06:20:04 -0800 (PST)
+Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
+        by smtp.gmail.com with ESMTPSA id e11sm1272457ljj.59.2021.03.09.06.20.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 06:15:37 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org, vkoul@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 5/5] ASoC: codecs: wsa881x: add static port map support
-Date:   Tue,  9 Mar 2021 14:15:14 +0000
-Message-Id: <20210309141514.24744-6-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210309141514.24744-1-srinivas.kandagatla@linaro.org>
-References: <20210309141514.24744-1-srinivas.kandagatla@linaro.org>
+        Tue, 09 Mar 2021 06:20:03 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Alexander Shiyan <shc_work@mail.ru>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH] ARM/gpio/dt-bindings: Clean out gpio alias from CLPS711X
+Date:   Tue,  9 Mar 2021 15:20:00 +0100
+Message-Id: <20210309142000.3034451-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two instances of WSA881x(Speaker Right, Speaker Left) ports
-are statically mapped to master ports. Allow the driver to parse
-those mappings from device tree.
+This removes the use of GPIO alias from the CLPS711X GPIO
+driver.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+This driver only use it to add quirks to two GPIO blocks
+for which we can reuse the standard property "ngpios" and
+define a new Cirrus quirk to do it properly and get rid
+of the alias.
+
+The patch changes the driver, the one DTS file and the
+bindings in one go: my apologies but this is a lockstep
+solution to avoid any unclarities or inbetween states.
+
+Old device trees with aliases are supported but will
+produce a warning in dmesg and new properties will take
+precedence.
+
+Cc: devicetree@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>
+Link: https://lore.kernel.org/linux-gpio/CACRpkda8+Lvz+c=ohXsEDkNSQ63hPo613P4p_90fvKyC_kQ_GA@mail.gmail.com/T/#t
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- sound/soc/codecs/wsa881x.c | 5 +++++
- 1 file changed, 5 insertions(+)
+This is a result of a discussion with Rob about whether
+we can get rid of GPIO aliases. I think we can at least
+get rid of this one.
+---
+ .../bindings/gpio/gpio-clps711x.txt           | 10 +++---
+ arch/arm/boot/dts/ep7209.dtsi                 |  8 ++---
+ drivers/gpio/gpio-clps711x.c                  | 36 +++++++++----------
+ 3 files changed, 26 insertions(+), 28 deletions(-)
 
-diff --git a/sound/soc/codecs/wsa881x.c b/sound/soc/codecs/wsa881x.c
-index db87e07b11c9..f7b6bbd62728 100644
---- a/sound/soc/codecs/wsa881x.c
-+++ b/sound/soc/codecs/wsa881x.c
-@@ -1105,6 +1105,11 @@ static int wsa881x_probe(struct sdw_slave *pdev,
- 		return PTR_ERR(wsa881x->sd_n);
- 	}
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-clps711x.txt b/Documentation/devicetree/bindings/gpio/gpio-clps711x.txt
+index 0a304ad29d81..c1ff20107607 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-clps711x.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio-clps711x.txt
+@@ -11,15 +11,13 @@ Required properties:
+     0 = active high
+     1 = active low
  
-+	if (of_property_read_u32_array(dev->of_node, "qcom,port-mapping",
-+				       pdev->m_port_map,
-+				       WSA881X_MAX_SWR_PORTS))
-+		dev_info(dev, "Static Port mapping not specified\n");
+-Note: Each GPIO port should have an alias correctly numbered in "aliases"
+-node.
++Optional properties:
++- cirrus,inverted-polarity: The polarity of the GPIO lines is
++  inverted in hardware.
++- ngpios: Number of available GPIO lines 0..n-1, see gpio.txt
+ 
+ Example:
+ 
+-aliases {
+-	gpio0 = &porta;
+-};
+-
+ porta: gpio@80000000 {
+ 	compatible = "cirrus,ep7312-gpio","cirrus,ep7209-gpio";
+ 	reg = <0x80000000 0x1>, <0x80000040 0x1>;
+diff --git a/arch/arm/boot/dts/ep7209.dtsi b/arch/arm/boot/dts/ep7209.dtsi
+index 365931f8b48d..7d0f04959fdd 100644
+--- a/arch/arm/boot/dts/ep7209.dtsi
++++ b/arch/arm/boot/dts/ep7209.dtsi
+@@ -11,10 +11,6 @@ / {
+ 	compatible = "cirrus,ep7209";
+ 
+ 	aliases {
+-		gpio0 = &porta;
+-		gpio1 = &portb;
+-		gpio3 = &portd;
+-		gpio4 = &porte;
+ 		serial0 = &uart1;
+ 		serial1 = &uart2;
+ 		spi0 = &spi;
+@@ -72,6 +68,8 @@ portd: gpio@80000003 {
+ 			reg = <0x80000003 0x1 0x80000043 0x1>;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
++			/* This bank have all lines polarity inverted */
++			cirrus,inverted-polarity;
+ 		};
+ 
+ 		porte: gpio@80000083 {
+@@ -79,6 +77,8 @@ porte: gpio@80000083 {
+ 			reg = <0x80000083 0x1 0x800000c3 0x1>;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
++			/* Only 3 GPIOs available on this bank */
++			ngpios = <3>;
+ 		};
+ 
+ 		syscon1: syscon@80000100 {
+diff --git a/drivers/gpio/gpio-clps711x.c b/drivers/gpio/gpio-clps711x.c
+index 75f6f8d4323e..d2a20dc8f5d9 100644
+--- a/drivers/gpio/gpio-clps711x.c
++++ b/drivers/gpio/gpio-clps711x.c
+@@ -16,14 +16,11 @@ static int clps711x_gpio_probe(struct platform_device *pdev)
+ 	void __iomem *dat, *dir;
+ 	struct gpio_chip *gc;
+ 	int err, id;
++	u32 ngpios;
+ 
+ 	if (!np)
+ 		return -ENODEV;
+ 
+-	id = of_alias_get_id(np, "gpio");
+-	if ((id < 0) || (id > 4))
+-		return -ENODEV;
+-
+ 	gc = devm_kzalloc(&pdev->dev, sizeof(*gc), GFP_KERNEL);
+ 	if (!gc)
+ 		return -ENOMEM;
+@@ -36,29 +33,32 @@ static int clps711x_gpio_probe(struct platform_device *pdev)
+ 	if (IS_ERR(dir))
+ 		return PTR_ERR(dir);
+ 
+-	switch (id) {
+-	case 3:
++	/* This ID will be negative if there is no alias node */
++	id = of_alias_get_id(np, "gpio");
 +
- 	dev_set_drvdata(&pdev->dev, wsa881x);
- 	wsa881x->slave = pdev;
- 	wsa881x->dev = &pdev->dev;
++	if (id >= 0)
++		dev_info(&pdev->dev,
++			 "DT is using deprecated alias, please remove this and "
++			 "replace with proper node attributes\n");
++
++	if (of_property_read_bool(np, "cirrus,inverted-polarity") ||
++	    id == 3)
+ 		/* PORTD is inverted logic for direction register */
+ 		err = bgpio_init(gc, &pdev->dev, 1, dat, NULL, NULL,
+ 				 NULL, dir, 0);
+-		break;
+-	default:
++	else
+ 		err = bgpio_init(gc, &pdev->dev, 1, dat, NULL, NULL,
+ 				 dir, NULL, 0);
+-		break;
+-	}
+-
+ 	if (err)
+ 		return err;
+ 
+-	switch (id) {
+-	case 4:
+-		/* PORTE is 3 lines only */
++	if (id == 4)
++		/* This is just for compatibility with older device trees */
+ 		gc->ngpio = 3;
+-		break;
+-	default:
+-		break;
+-	}
++
++	if (!of_property_read_u32(np, "ngpios", &ngpios))
++		/* PORTE is 3 lines only */
++		gc->ngpio = ngpios;
+ 
+ 	gc->base = -1;
+ 	gc->owner = THIS_MODULE;
 -- 
-2.21.0
+2.29.2
 
