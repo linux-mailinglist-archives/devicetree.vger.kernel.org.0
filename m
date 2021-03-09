@@ -2,162 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C41C332CC2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C677A332CD8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 18:08:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbhCIRDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 12:03:22 -0500
-Received: from mga09.intel.com ([134.134.136.24]:26118 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230075AbhCIRCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 12:02:52 -0500
-IronPort-SDR: GYf8Sd/k2bJZrNRQ9XcTrt75WEzoRlhwYwrNXgKyliHoudWl4OzT24+bornY7QIcE7HU3sZTM4
- IiwhLAVFCG2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="188381114"
-X-IronPort-AV: E=Sophos;i="5.81,236,1610438400"; 
-   d="scan'208";a="188381114"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2021 09:02:52 -0800
-IronPort-SDR: oWcoa8Y/WiZv6p/AyfcMdgE44YAoMStz78ikxsMY68hnO1KLYe+pgGwYLsDYsxnrmh1/KyMsrd
- 7uJEw9YVuVng==
-X-IronPort-AV: E=Sophos;i="5.81,236,1610438400"; 
-   d="scan'208";a="409814455"
-Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.251.3.100]) ([10.251.3.100])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2021 09:02:51 -0800
-Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: aspeed: add transfer mode
- support
-To:     Rob Herring <robh@kernel.org>
-Cc:     Brendan Higgins <brendanhiggins@google.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org
-References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
- <20210224191720.7724-2-jae.hyun.yoo@linux.intel.com>
- <20210306203011.GA1152769@robh.at.kernel.org>
-From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Message-ID: <f6732348-d6c8-f49b-6123-afe542bb1f8c@linux.intel.com>
-Date:   Tue, 9 Mar 2021 09:02:51 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S230449AbhCIRIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 12:08:11 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40484 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231422AbhCIRHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 12:07:45 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129H7ZMb106230;
+        Tue, 9 Mar 2021 11:07:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615309655;
+        bh=sDFRupBvkMYD6qzYlcabpylb3qsQg4cCosFu+HC3zNQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=taFzPPZbKhyixwAAzrqCvAroRFdAEkLnkfe6kM4FGTH0HzinhNSjKyBahbLQ3Vmie
+         ZHQjqYy6u6B43lOZ5+utMOhm0sH7JY2vg7XUX/mvUeOQ0W3p+HA7AXHVB5kSkNSPTt
+         lNRuCSQqrKLO9b+w0x2Ce8SuTVg9SzOPz2e2eXBU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129H7ZIL046560
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 9 Mar 2021 11:07:35 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
+ 2021 11:07:35 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 9 Mar 2021 11:07:35 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129H7Zew037541;
+        Tue, 9 Mar 2021 11:07:35 -0600
+Date:   Tue, 9 Mar 2021 11:07:35 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] Add ICSSG nodes on AM65x & J721E SoCs
+Message-ID: <20210309170735.y7bh3mpsn3p6eaql@skipping>
+References: <20210304160712.8452-1-s-anna@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210306203011.GA1152769@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210304160712.8452-1-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 3/6/2021 12:30 PM, Rob Herring wrote:
-> On Wed, Feb 24, 2021 at 11:17:17AM -0800, Jae Hyun Yoo wrote:
->> Append bindings to support transfer mode.
->>
->> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->> Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
->> ---
->> Changes since v3:
->> - None
->>
->> Changes since v2:
->> - Moved SRAM resources back to default dtsi and added mode selection
->>    property.
->>
->> Changes since v1:
->> - Removed buffer reg settings from default device tree and added the settings
->>    into here to show the predefined buffer range per each bus.
->>
->>   .../devicetree/bindings/i2c/i2c-aspeed.txt    | 37 +++++++++++++++----
->>   1 file changed, 30 insertions(+), 7 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
->> index b47f6ccb196a..242343177324 100644
->> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
->> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
->> @@ -17,6 +17,20 @@ Optional Properties:
->>   - bus-frequency	: frequency of the bus clock in Hz defaults to 100 kHz when not
->>   		  specified
->>   - multi-master	: states that there is another master active on this bus.
->> +- aspeed,i2c-xfer-mode	: should be "byte", "buf" or "dma" to select transfer
->> +			  mode defaults to "byte" mode when not specified.
->> +
->> +			  I2C DMA mode on AST2500 has these restrictions:
->> +			    - If one of these controllers is enabled
->> +				* UHCI host controller
->> +				* MCTP controller
->> +			      I2C has to use buffer mode or byte mode instead
->> +			      since these controllers run only in DMA mode and
->> +			      I2C is sharing the same DMA H/W with them.
->> +			    - If one of these controllers uses DMA mode, I2C
->> +			      can't use DMA mode
->> +				* SD/eMMC
->> +				* Port80 snoop
+On 10:07-20210304, Suman Anna wrote:
+> Hi Nishanth,
 > 
-> How does one decide between byte or buf mode?
-
-If a given system makes just one byte r/w transactions most of the time
-then byte mode will be a right setting. Otherwise, buf mode is more
-efficient because it doesn't generate a bunch of interrupts on every
-byte handling.
-
->>   
->>   Example:
->>   
->> @@ -26,20 +40,29 @@ i2c {
->>   	#size-cells = <1>;
->>   	ranges = <0 0x1e78a000 0x1000>;
->>   
->> -	i2c_ic: interrupt-controller@0 {
->> -		#interrupt-cells = <1>;
->> -		compatible = "aspeed,ast2400-i2c-ic";
->> +	i2c_gr: i2c-global-regs@0 {
->> +		compatible = "aspeed,ast2500-i2c-gr", "syscon";
->>   		reg = <0x0 0x40>;
->> -		interrupts = <12>;
->> -		interrupt-controller;
->> +
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0x0 0x0 0x40>;
->> +
->> +		i2c_ic: interrupt-controller@0 {
->> +			#interrupt-cells = <1>;
->> +			compatible = "aspeed,ast2500-i2c-ic";
->> +			reg = <0x0 0x4>;
->> +			interrupts = <12>;
->> +			interrupt-controller;
->> +		};
->>   	};
->>   
->>   	i2c0: i2c-bus@40 {
->>   		#address-cells = <1>;
->>   		#size-cells = <0>;
->>   		#interrupt-cells = <1>;
->> -		reg = <0x40 0x40>;
->> -		compatible = "aspeed,ast2400-i2c-bus";
->> +		reg = <0x40 0x40>, <0x200 0x10>;
->> +		compatible = "aspeed,ast2500-i2c-bus";
+> The following series is a resend of the ICSSG DT nodes [1] for the 5.13
+> merge window. Patches are just rebased on top of 5.12-rc1 + your latest
+> ti-k3-dts-next branch HEAD commit 0d7571c36331 ("arm64: dts: ti: k3-am65-main:
+> Add device_type to pcie*_rc nodes"). There are no code changes w.r.t v1, I
+> have picked up Vignesh's Reviewed-by tags. 
 > 
-> The example changes are all unrelated to adding the new property. Should
-> be a separate patch or just dropped.
+> Note that the interrupt nodes continue to generate a warning about missing
+> '#address-cells' when compiled using W=2, and this was concluded to be not
+> an issue [2]. The nodename for PRUSS INTC is now enforced as per the
+> discussion in [2] and added in commit 5ab931402a17 ("dt-bindings: irqchip:
+> Add node name to PRUSS INTC") in v5.12-rc1.
+> 
+> Boot logs:
+> AM65x: https://pastebin.ubuntu.com/p/dVgBWB3xCv/
+> J721E: https://pastebin.ubuntu.com/p/YpmRPyCkRn/
+> 
+> Please see the v1 cover-letter [1] for all the original details.
+> 
+> regards
+> Suman
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
+> [2] https://patchwork.kernel.org/comment/23926133/
+> 
+> Suman Anna (2):
+>   arm64: dts: ti: k3-am65-main: Add ICSSG nodes
+>   arm64: dts: ti: k3-j721e-main: Add ICSSG nodes
 
-The example changes are not directly related to the new property but
-related to the transfer mode support in this patch set. 'i2c_gr' node is
-added to provide a way for accessing I2C global registers to enable
-I2C SRAM, and 'reg' is modified to add the SRAM resource range.
+Thanks, applied to ti-k3-dts-next.
 
-Thanks,
-Jae
 
->>   		clocks = <&syscon ASPEED_CLK_APB>;
->>   		resets = <&syscon ASPEED_RESET_I2C>;
->>   		bus-frequency = <100000>;
->> -- 
->> 2.17.1
->>
+PS: my -next branches are being rebased to 5.12-rc2 to keep a future bisect
+clean.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
