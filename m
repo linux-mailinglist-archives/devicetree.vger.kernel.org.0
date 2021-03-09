@@ -2,119 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFCFE331EB6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 06:33:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BD4331ECD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 06:53:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbhCIFdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 00:33:23 -0500
-Received: from mail-out.m-online.net ([212.18.0.10]:58612 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhCIFdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 00:33:14 -0500
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DvkQ12d6Fz1ryWv;
-        Tue,  9 Mar 2021 06:33:13 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DvkQ12HNRz1qqkj;
-        Tue,  9 Mar 2021 06:33:13 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id qYN8OXK6qdqp; Tue,  9 Mar 2021 06:33:12 +0100 (CET)
-X-Auth-Info: 7H9ZuzYOlgckhbZe3cQsAhymwIhMvDJcyDnlSXlJm7E=
-Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S229872AbhCIFwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 00:52:39 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:58028 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229851AbhCIFwQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 00:52:16 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615269136; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=GnXT3CMbghQtyRJZBgCfodavscSOdiLXWyQmtmjzkks=; b=Tko7x++ENGSpffCUEKycxx75XFPCx3eq7cDL/au1Z5ju0fm5OJMXUbuKCOVv4BorrGyoxFkM
+ IdVLUIZitLr1gculZuyJINJmL1JJCv8aI4bPsao+FViFVMzlqiX/NP8wvpPMUBRIhMjBXSjm
+ Hah2aZKFr13QS/9QLPfP7DQTQu8=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60470d07c862e1b9fdd5806e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 05:52:07
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AC30DC43462; Tue,  9 Mar 2021 05:52:07 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Tue,  9 Mar 2021 06:33:12 +0100 (CET)
-Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id 269BF18510F;
-        Tue,  9 Mar 2021 06:31:22 +0100 (CET)
-Received: by pollux.denx.de (Postfix, from userid 515)
-        id 1B7351A0092; Tue,  9 Mar 2021 06:31:22 +0100 (CET)
-From:   Heiko Schocher <hs@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Heiko Schocher <hs@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: imx8mp: imx8mp-phycore-som enable spi nor
-Date:   Tue,  9 Mar 2021 06:31:16 +0100
-Message-Id: <20210309053116.1486347-5-hs@denx.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210309053116.1486347-1-hs@denx.de>
-References: <20210309053116.1486347-1-hs@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 38D3FC433CA;
+        Tue,  9 Mar 2021 05:52:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 38D3FC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, mani@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sboyd@kernel.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH 0/6] Enable miscellaneous hardware blocks to boot WPSS
+Date:   Tue,  9 Mar 2021 11:21:45 +0530
+Message-Id: <1615269111-25559-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-enable the mt25qu256aba spi nor on the imx8mp-phycore-som.
+This series enables miscellaneous hardware blocks to boot Wireless
+Processor Subsystem (WPSS) on SC7280 SoC.
 
-Signed-off-by: Heiko Schocher <hs@denx.de>
+[1] https://lore.kernel.org/patchwork/cover/1389010/
+The series depends on ^^
 
----
+Sibi Sankar (6):
+  soc: qcom: smem: Update max processor count
+  dt-bindings: mailbox: Add WPSS client index to IPCC
+  dt-bindings: reset: aoss: Add AOSS reset controller binding
+  dt-bindings: reset: pdc: Add PDC Global bindings
+  reset: qcom: Add PDC Global reset signals for WPSS
+  arm64: dts: qcom: sc7280: Add nodes to boot WPSS
 
-Changes in v2:
-- work in comments from Marco and Teresa
-  - rename node into "'som_flash: flash@0 { }"
-  - compatible is now first entry
-  - removed #size-cells and #address-cells
-    as no child node. If bootloader adds them bootloader
-    can add them too.
+ .../devicetree/bindings/reset/qcom,aoss-reset.yaml |   5 +
+ .../devicetree/bindings/reset/qcom,pdc-global.yaml |   4 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 143 +++++++++++++++++++++
+ drivers/reset/reset-qcom-pdc.c                     |  62 +++++++--
+ drivers/soc/qcom/smem.c                            |   2 +-
+ include/dt-bindings/mailbox/qcom-ipcc.h            |   1 +
+ include/dt-bindings/reset/qcom,sdm845-pdc.h        |   2 +
+ 7 files changed, 207 insertions(+), 12 deletions(-)
 
- .../dts/freescale/imx8mp-phycore-som.dtsi     | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-index 44a8c2337cee4..e648b1b6acdaa 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
-@@ -65,6 +65,20 @@ ethphy1: ethernet-phy@0 {
- 	};
- };
- 
-+&flexspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexspi0>;
-+	status = "okay";
-+
-+	som_flash: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <80000000>;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+	};
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -217,6 +231,17 @@ MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x11
- 		>;
- 	};
- 
-+	pinctrl_flexspi0: flexspi0grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK		0x1c2
-+			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B	0x82
-+			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00	0x82
-+			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01	0x82
-+			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02	0x82
-+			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03	0x82
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
 -- 
-2.29.2
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
