@@ -2,278 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FA6331FBC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 08:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF7B331FB9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 08:24:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbhCIHYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 02:24:35 -0500
-Received: from lizzard.sbs.de ([194.138.37.39]:55850 "EHLO lizzard.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230033AbhCIHYH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 02:24:07 -0500
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 1297Nr9S007196
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 9 Mar 2021 08:23:53 +0100
-Received: from [139.22.125.36] ([139.22.125.36])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 1297IqCA000726;
-        Tue, 9 Mar 2021 08:18:52 +0100
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Le Jin <le.jin@siemens.com>
-References: <cover.1613071976.git.jan.kiszka@siemens.com>
- <0c64b6ad43e7a691c1547524da4a9fd33e61c70c.1613071976.git.jan.kiszka@siemens.com>
- <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <0561ad0d-7297-35ad-a3a9-49dc9a6bacd3@siemens.com>
-Date:   Tue, 9 Mar 2021 08:18:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S229904AbhCIHXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 02:23:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhCIHX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 02:23:27 -0500
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C3CC06174A
+        for <devicetree@vger.kernel.org>; Mon,  8 Mar 2021 23:23:27 -0800 (PST)
+Received: by mail-qk1-x72e.google.com with SMTP id b130so12051596qkc.10
+        for <devicetree@vger.kernel.org>; Mon, 08 Mar 2021 23:23:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=oqO7RxhDDe9vwKp/BB6AgPJShCvp9ZtWoA6Sh+EENcs=;
+        b=Ud3PEmS7F/HL1ClBM5fvcc71dFxIGph/JiVvIxFtoAACgUhUdwd3d1JDpZAWyryI4/
+         H00WQUh6kjUPafd2ThBYw9ZtS34nshFF5tWtZGNZ1EgBfQTdUN3XYkl7kzREpnyavn71
+         TK+awh0xLrq0MfmLyTt1/Y13AGmNR3ZBJ15axGl3gd82rU/QKEwN/OMs+2mvmBscgDVy
+         BZeZLu7f0meD98GsZFypmTNkG5/8iycndvsukzJpMwALx2+3+j4rat0gZlbufwYXVt82
+         vFlOJutYcZmd4oW9S7VQwWQPDoXikWAturt0OVgGLzb5SQ+c5k0WpbbIHyWni6dbwUGq
+         Kaow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=oqO7RxhDDe9vwKp/BB6AgPJShCvp9ZtWoA6Sh+EENcs=;
+        b=uB4PayZuNFuWIb3OkdIuvb4AujZkjmGIWY0DOi/YeMhLViaDlfb/5tB9BCcejtSq4K
+         Jfbu0R13doUoSsYBNTxpEV2Bv0OuqfbCh6U+ACnIBWM43sR6/oMTZezS6UjijAPko2Yw
+         gO6Q8FkNhl7+kr3XFyDolbBQhIkKJL/x8h3pNL16QT5GOapFuXZR5jN453qakxNKwHzw
+         i0hF/BsdenKX3Ptfs+vF5ISTvyxN2S+QNnCUWxo/3PzH6bTDT9q8NgvdKgEYN3s6LFUj
+         XKFoy8plbzh+ZcwXBAEv2IV6WNt34RxiHAZEJEwwoMzmrjKh2/FtDPn1IdiW4QddmFVR
+         1krQ==
+X-Gm-Message-State: AOAM532YX3yVys/s2ZSZ9MnOCsr7MnP6sU3SNv3/LH69KBmUIwESGV3Z
+        NHRER4BFgLyY1XT2Avr384zBg4udkGx2VTP/Fq817g==
+X-Google-Smtp-Source: ABdhPJwtYPYtApR4EueplUtwNsjPnC8GSeKATOROKTHuWvVYiLX1g7t/b1oVki8yJ8MfrVSGPDDRQGIb0ZVn6cn5YHw=
+X-Received: by 2002:a37:66cd:: with SMTP id a196mr16664749qkc.374.1615274606652;
+ Mon, 08 Mar 2021 23:23:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <95e4231c-6bee-ba64-412f-87d257df61c4@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <cover.1614681831.git.greentime.hu@sifive.com> <e2bd7db9db3c196b9b0399f0655a56939a0f3d62.1614681831.git.greentime.hu@sifive.com>
+ <81c45bf40b397b57343f159baae896528fa32d89.camel@pengutronix.de>
+In-Reply-To: <81c45bf40b397b57343f159baae896528fa32d89.camel@pengutronix.de>
+From:   Greentime Hu <greentime.hu@sifive.com>
+Date:   Tue, 9 Mar 2021 15:23:14 +0800
+Message-ID: <CAHCEehK3P7jXq-v_xVm-0+BQsugG21VgjU0teyuUgANyR5ErKA@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/6] clk: sifive: Use reset-simple in prci driver for
+ PCIe driver
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
+        Erik Danie <erik.danie@sifive.com>,
+        Zong Li <zong.li@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.03.21 07:58, Vignesh Raghavendra wrote:
-> Hi,
-> 
-> On 2/12/21 1:02 AM, Jan Kiszka wrote:
->> From: Jan Kiszka <jan.kiszka@siemens.com>
->>
->> Add support for two Siemens SIMATIC IOT2050 variants, Basic and
->> Advanced. They are based on the TI AM6528 GP and AM6548 SOCs HS, thus
->> differ in their number of cores and availability of security features.
->> Furthermore the Advanced version comes with more RAM, an eMMC and a few
->> internal differences.
->>
->> Based on original version by Le Jin.
->>
->> Link: https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
->> Link: https://github.com/siemens/meta-iot2050
->> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
-> 
+Philipp Zabel <p.zabel@pengutronix.de> =E6=96=BC 2021=E5=B9=B43=E6=9C=884=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:58=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On Tue, 2021-03-02 at 18:59 +0800, Greentime Hu wrote:
+> > We use reset-simple in this patch so that pcie driver can use
+> > devm_reset_control_get() to get this reset data structure and use
+> > reset_control_deassert() to deassert pcie_power_up_rst_n.
+> >
+> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> > ---
+> >  drivers/clk/sifive/Kconfig       |  2 ++
+> >  drivers/clk/sifive/sifive-prci.c | 14 ++++++++++++++
+> >  drivers/clk/sifive/sifive-prci.h |  4 ++++
+> >  drivers/reset/Kconfig            |  3 ++-
+> >  4 files changed, 22 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/sifive/Kconfig b/drivers/clk/sifive/Kconfig
+> > index 1c14eb20c066..9132c3c4aa86 100644
+> > --- a/drivers/clk/sifive/Kconfig
+> > +++ b/drivers/clk/sifive/Kconfig
+> > @@ -10,6 +10,8 @@ if CLK_SIFIVE
+> >
+> >  config CLK_SIFIVE_PRCI
+> >       bool "PRCI driver for SiFive SoCs"
+> > +     select RESET_CONTROLLER
+> > +     select RESET_SIMPLE
+> >       select CLK_ANALOGBITS_WRPLL_CLN28HPC
+> >       help
+> >         Supports the Power Reset Clock interface (PRCI) IP block found =
+in
+> > diff --git a/drivers/clk/sifive/sifive-prci.c b/drivers/clk/sifive/sifi=
+ve-prci.c
+> > index baf7313dac92..925affc6de55 100644
+> > --- a/drivers/clk/sifive/sifive-prci.c
+> > +++ b/drivers/clk/sifive/sifive-prci.c
+> > @@ -583,7 +583,21 @@ static int sifive_prci_probe(struct platform_devic=
+e *pdev)
+> >       if (IS_ERR(pd->va))
+> >               return PTR_ERR(pd->va);
+> >
+> > +     pd->reset.rcdev.owner =3D THIS_MODULE;
+> > +     pd->reset.rcdev.nr_resets =3D PRCI_RST_NR;
+> > +     pd->reset.rcdev.ops =3D &reset_simple_ops;
+> > +     pd->reset.rcdev.of_node =3D pdev->dev.of_node;
+> > +     pd->reset.active_low =3D true;
+> > +     pd->reset.membase =3D pd->va + PRCI_DEVICESRESETREG_OFFSET;
+> > +     spin_lock_init(&pd->reset.lock);
+> > +
+> > +     r =3D devm_reset_controller_register(&pdev->dev, &pd->reset.rcdev=
+);
+> > +     if (r) {
+> > +             dev_err(dev, "could not register reset controller: %d\n",=
+ r);
+> > +             return r;
+> > +     }
+> >       r =3D __prci_register_clocks(dev, pd, desc);
+> > +
+>
+> Accidental whitespace?
+>
+> Otherwise,
+>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Thanks!
-
-> Few minor comments below:
-> 
-> [...]
-> 
->> +
->> +&mcu_i2c0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
->> +	clock-frequency = <400000>;
->> +
->> +	psu: tps62363@60 {
-> 
-> Please use generic node names:
-> 
-> 	psu: regulator@60 { ... };
-> 
-
-Done.
-
->> +		compatible = "ti,tps62363";
->> +		reg =  <0x60>;
->> +		regulator-name = "tps62363-vout";
->> +		regulator-min-microvolt = <500000>;
->> +		regulator-max-microvolt = <1500000>;
->> +		regulator-boot-on;
->> +		ti,vsel0-state-high;
->> +		ti,vsel1-state-high;
->> +		ti,enable-vout-discharge;
->> +	};
->> +
->> +	/* D4200 */
->> +	pcal9535_1: gpio@20 {
->> +		compatible = "nxp,pcal9535";
->> +		reg = <0x20>;
->> +		#gpio-cells = <2>;
->> +		gpio-controller;
->> +		gpio-line-names =
->> +			"A0-pull", "A1-pull", "A2-pull", "A3-pull", "A4-pull",
->> +			"A5-pull", "", "",
->> +			"IO14-enable", "IO15-enable", "IO16-enable",
->> +			"IO17-enable", "IO18-enable", "IO19-enable";
->> +	};
->> +
->> +	/* D4201 */
->> +	pcal9535_2: gpio@21 {
->> +		compatible = "nxp,pcal9535";
->> +		reg = <0x21>;
->> +		#gpio-cells = <2>;
->> +		gpio-controller;
->> +		gpio-line-names =
->> +			"IO0-direction", "IO1-direction", "IO2-direction",
->> +			"IO3-direction", "IO4-direction", "IO5-direction",
->> +			"IO6-direction", "IO7-direction",
->> +			"IO8-direction", "IO9-direction", "IO10-direction",
->> +			"IO11-direction", "IO12-direction", "IO13-direction",
->> +			"IO19-direction";
->> +	};
->> +
->> +	/* D4202 */
->> +	pcal9535_3: gpio@25 {
->> +		compatible = "nxp,pcal9535";
->> +		reg = <0x25>;
->> +		#gpio-cells = <2>;
->> +		gpio-controller;
->> +		gpio-line-names =
->> +			"IO0-pull", "IO1-pull", "IO2-pull", "IO3-pull",
->> +			"IO4-pull", "IO5-pull", "IO6-pull", "IO7-pull",
->> +			"IO8-pull", "IO9-pull", "IO10-pull", "IO11-pull",
->> +			"IO12-pull", "IO13-pull";
->> +	};
->> +};
-> 
-> [...]
-> 
->> +&dwc3_0 {
->> +	status = "okay";
->> +};
->> +
->> +&usb0_phy {
->> +	status = "okay";
->> +};
->> +
-> 
-> These nodes are enabled by default right? Above is redundant.
-
-Seems like historic left-overs here - fixed.
-
-> 
->> +&usb0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&usb0_pins_default>;
->> +	dr_mode = "host";
->> +};
->> +
->> +&dwc3_1 {
->> +	status = "okay";
->> +};
->> +
->> +&usb1_phy {
->> +	status = "okay";
->> +};
->> +
-> 
-> Same here...
-
-Also fixed.
-
-> 
->> +&usb1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&usb1_pins_default>;
->> +	dr_mode = "host";
->> +};
->> +
-> 
-> [...]
-> 
->> +&mcu_spi0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&mcu_spi0_pins_default>;
->> +
->> +	#address-cells = <1>;
->> +	#size-cells= <0>;
->> +	ti,pindir-d0-out-d1-in = <1>;
->> +
->> +	spidev@0 {
->> +		compatible = "rohm,dh2228fv";
->> +		spi-max-frequency = <20000000>;
->> +		reg = <0>;
->> +	};
-> 
-> Is the device really dh2228fv?
-
-At least to my understanding, "rohm,dh2228fv" is commonly used for
-declaring spidev, and this is what we need for userland here.
-
-> 
->> +};
->> +
->> +&tscadc0 {
->> +	status = "disabled";
->> +};
->> +
->> +&tscadc1 {
->> +	adc {
->> +		ti,adc-channels = <0 1 2 3 4 5>;
->> +	};
->> +};
->> +
->> +&ospi0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
->> +
->> +	flash@0 {
->> +		compatible = "jedec,spi-nor";
->> +		reg = <0x0>;
->> +		spi-tx-bus-width = <1>;
->> +		spi-rx-bus-width = <1>;
->> +		spi-max-frequency = <50000000>;
->> +		cdns,tshsl-ns = <60>;
->> +		cdns,tsd2d-ns = <60>;
->> +		cdns,tchsh-ns = <60>;
->> +		cdns,tslch-ns = <60>;
->> +		cdns,read-delay = <2>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +	};
->> +};
->> +
->> +&dss {
->> +	status = "okay";
->> +
-> 
-> Node is enabled by default. Please drop above line for consistency.
-
-Done.
-
-> 
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&dss_vout1_pins_default>;
->> +
->> +	assigned-clocks = <&k3_clks 67 2>;
->> +	assigned-clock-parents = <&k3_clks 67 5>;
->> +};
->> +
->> +&dss_ports {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	port@1 {
->> +		reg = <1>;
->> +
->> +		dpi_out: endpoint {
->> +			remote-endpoint = <&bridge_in>;
->> +		};
->> +	};
->> +};
->> +
-> 
-> [...]
-> 
-> Regards
-> Vignesh
-> 
-
-Thanks again, v3 will come after some testing.
-
-Jan
-
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+Thank you, Philipp.
+Yes, it is an accidental whitespace. I'll remove it in my next version patc=
+h.
