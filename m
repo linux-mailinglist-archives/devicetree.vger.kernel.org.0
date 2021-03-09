@@ -2,40 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7284331C96
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 02:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C00EC331CB1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 03:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229951AbhCIBtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Mar 2021 20:49:19 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:19363 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229992AbhCIBtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 20:49:05 -0500
-X-UUID: 16388bee5638478c8a0277f549734229-20210309
+        id S230217AbhCICAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Mar 2021 21:00:17 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:20675 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230127AbhCIB7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Mar 2021 20:59:49 -0500
+X-UUID: 98a9888fc1eb44a68a4d1795eebdce54-20210309
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
         h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=voKB3JTtp23roJcLmppifE/2eVEe8ZJYpXa+eKJCcHU=;
-        b=EiuCNotkfF6WhHSV6SgJ64NXbvs5wWWumSAi72+Zvdf7FWxw0R7i7T5LANoY73UNTKpRQlHf3cMNuoLxDcKEkLkKpAfR08hrTDvtMKMMqolr4wTOtsUsr1Fs/KFOYvui29J1WHgKwq5i7cfmdfIRq7pOwBGCrukr2qldDo+A3rY=;
-X-UUID: 16388bee5638478c8a0277f549734229-20210309
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        b=VG/wgq5rGW9ON/VQkr5ELeGw7quJEyKXAkFTGOMZdE4Zpkjftk0qIZTgdUEs3mzk8MzYxvFRPckrGsaxGfXX4Sb2ZCQvXTBWZls9NGOiYVBHXKmkR2FBeHnO1fetu9z3F1tIJI9UvXU9do6KcVZQmHurdoHEZwm7SV6w5jKrDTE=;
+X-UUID: 98a9888fc1eb44a68a4d1795eebdce54-20210309
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
         (envelope-from <peng.zhou@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 704263753; Tue, 09 Mar 2021 09:48:58 +0800
+        with ESMTP id 1874155827; Tue, 09 Mar 2021 09:59:44 +0800
 Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS32N1.mediatek.inc (172.27.4.71) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 9 Mar 2021 09:48:52 +0800
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 9 Mar 2021 09:59:39 +0800
 Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 9 Mar 2021 09:48:51 +0800
+ Transport; Tue, 9 Mar 2021 09:59:39 +0800
 From:   Peng Zhou <peng.zhou@mediatek.com>
-To:     Wulin Li <wulin.li@mediatek.com>
-CC:     <devicetree@vger.kernel.org>, Peng Zhou <Peng.Zhou@mediatek.com>
+To:     Eric Biggers <ebiggers@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        <linux-mmc@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wulin Li <wulin.li@mediatek.com>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Peng Zhou <Peng.Zhou@mediatek.com>
 Subject: [PATCH v2 0/4] MediaTek eMMC inline encryption support 
-Date:   Tue, 9 Mar 2021 09:42:49 +0800
-Message-ID: <20210309014248.12395-1-peng.zhou@mediatek.com>
+Date:   Tue, 9 Mar 2021 09:53:32 +0800
+Message-ID: <20210309015331.10457-1-peng.zhou@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: 612D24C022E8E6BCD8DFA9DEACD1300AF84742850E82D3430BE953B60C2C4ED72000:8
+X-TM-SNTS-SMTP: D2C565463BD08AAB9A21D43E5F22A286DBA322E6FB1527A90110E54108D30B7E2000:8
 X-MTK:  N
 Content-Transfer-Encoding: base64
 Precedence: bulk
