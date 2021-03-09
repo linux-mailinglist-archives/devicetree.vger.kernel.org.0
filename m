@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A30903328CB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 15:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D38213328D6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 15:44:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbhCIOmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 09:42:24 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:45197 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbhCIOmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 09:42:03 -0500
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 3F2AB2223A;
-        Tue,  9 Mar 2021 15:42:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615300922;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=G77sUYs1EAeHVxP/hlKiAiqXQYIKCpapQrEwbpPNVXg=;
-        b=s6iNLsfrWa87KzmdWW3KpGsdd9SzT0AD36yQr0f8FQy9+zO1LtxAk2bg0nRM12wqfp99L6
-        YJ9gFMvAv7v/0lwzsukNxRLWOVQX100QsgNbePJ/M2etAOD0/nbTMSAOxXILihMwG31xwt
-        mjhup/PqHo5iS4Gd6O1Dfk9XKtUddec=
-From:   Michael Walle <michael@walle.cc>
-To:     spujar@nvidia.com
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-Date:   Tue,  9 Mar 2021 15:41:56 +0100
-Message-Id: <20210309144156.18887-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+        id S230081AbhCIOoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 09:44:00 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57144 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231400AbhCIOnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 09:43:42 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 129EhYsx045575;
+        Tue, 9 Mar 2021 08:43:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615301014;
+        bh=CTd2REh9L0W+AwdHF+ep0OT8wzWXQqQZ6x+KnJtKvpM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=tFH3UjytJqlKU5PQvmE3xffU/w3QgtsZG56XNSSEuoQzL8qDT+3bxOiocv2Y4bhdk
+         py09o3RZ3Gx3dACKz8GbI7IIzEV9O0zUo3nW3+OVHve/sNTG21jg5bGneRMFL/skgV
+         wtyr3X9shnyL1fGFohm1k2i1aLdaDEGgi5tUypss=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 129EhYVA030197
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 9 Mar 2021 08:43:34 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 9 Mar
+ 2021 08:43:33 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 9 Mar 2021 08:43:33 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 129EhXJh029236;
+        Tue, 9 Mar 2021 08:43:33 -0600
+Date:   Tue, 9 Mar 2021 08:43:33 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] AM64: Add support for GPIO
+Message-ID: <20210309144333.6ko6olztldslj3fo@paralegal>
+References: <20210304112924.12470-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210304112924.12470-1-a-govindraju@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-> If "clocks = <&xxx>" is specified from the CPU or Codec component
-> device node, the clock is not getting enabled. Thus audio playback
-> or capture fails.
+On 16:59-20210304, Aswath Govindraju wrote:
+> The following series of patches adds support for gpio on AM642 evm/sk.
 > 
-> Fix this by populating "simple_dai->clk" field when clocks property
-> is specified from device node as well. Also tidy up by re-organising
-> conditional statements of parsing logic.
+> Changes since v1:
+> - Added DT for gpio subsystem present in MCU domain
+> - reserved the mcu gpio for firmware usage
 > 
-> Fixes: bb6fc620c2ed ("ASoC: simple-card-utils: add asoc_simple_card_parse_clk()")
-> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-
-This actually breaks sound on my board
-(arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts).
-The codec on this board (wm8904) has a fixed clock input (only distinct
-frequencies are supported) and uses the FLL of the codec to generate the
-desired sample rate.
-
-It seems that after this patch the clock rate of the codecs clock (rather
-than the FLL) is tried to be changed. Which fails, because it doesn't
-support arbitrary frequencies.
-
--michael
-
-> ---
->  sound/soc/generic/simple-card-utils.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
+> This series of patches depend on,
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439153
 > 
-> diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
-> index bc0b62e..0754d70 100644
-> --- a/sound/soc/generic/simple-card-utils.c
-> +++ b/sound/soc/generic/simple-card-utils.c
-> @@ -173,16 +173,15 @@ int asoc_simple_parse_clk(struct device *dev,
->  	 *  or device's module clock.
->  	 */
->  	clk = devm_get_clk_from_child(dev, node, NULL);
-> -	if (!IS_ERR(clk)) {
-> -		simple_dai->sysclk = clk_get_rate(clk);
-> +	if (IS_ERR(clk))
-> +		clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
->  
-> +	if (!IS_ERR(clk)) {
->  		simple_dai->clk = clk;
-> -	} else if (!of_property_read_u32(node, "system-clock-frequency", &val)) {
-> +		simple_dai->sysclk = clk_get_rate(clk);
-> +	} else if (!of_property_read_u32(node, "system-clock-frequency",
-> +					 &val)) {
->  		simple_dai->sysclk = val;
-> -	} else {
-> -		clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
-> -		if (!IS_ERR(clk))
-> -			simple_dai->sysclk = clk_get_rate(clk);
->  	}
->  
->  	if (of_property_read_bool(node, "system-clock-direction-out"))
+> 
+> Aswath Govindraju (2):
+>   arm64: dts: ti: k3-am64: Add GPIO DT nodes
+>   arm64: dts: ti: k3-am642: reserve gpio in mcu domain for firmware
+>     usage
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 45 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  | 27 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  5 +++
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  5 +++
+>  4 files changed, 82 insertions(+)
+> 
 > -- 
-> 2.7.4
+> 2.17.1
 > 
-> 
+
+
+Based on your offline comment:
+-----
+
+On going through the bootlogs before posting for I found the following
+errors,
+
+[    1.091117] davinci_gpio 601000.gpio: IRQ index 2 not found
+[    1.101522] davinci_gpio 601000.gpio: error -ENXIO: IRQ not populated
+
+Some issues in allocating interrupts in case of main_gpio1. I
+accumulated the gpio with interrupt numbers. I'll try to debug the
+reason behind it and update you with its status. (bootlogs of ti-sdk,
+also have this error).
+
+-----
+
+I am going to drop this off my queue, please update if the fixup is some
+system configuration error or repost with fix.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
