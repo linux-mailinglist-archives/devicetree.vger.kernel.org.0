@@ -2,220 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B4D332558
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0F7332593
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 13:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbhCIMVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 07:21:00 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34180 "EHLO mail.kernel.org"
+        id S230468AbhCIMh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 07:37:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36694 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229546AbhCIMUv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 07:20:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3AD4765268;
-        Tue,  9 Mar 2021 12:20:50 +0000 (UTC)
+        id S230140AbhCIMhM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 07:37:12 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A627165272;
+        Tue,  9 Mar 2021 12:37:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615292450;
-        bh=6CKbaU16lYxYAdKwx8raAJYFk3RT75IbkduD7MuH2eQ=;
+        s=k20201202; t=1615293432;
+        bh=mruvFKZBvCYrEJiGtVUC6A1pI2TNU9dGDRBfJmF933E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RM+xs/wst3b8yCTd/b1sm27bTDW1+dxlsLb1xHhXKA8UeNgu4drBu1bwswo4D0RGl
-         4pi795xEmAyx2bg0xb8jsC5GmRu+lmm/XVzw+tyJakKFbX9Qeq82KB79dtse+N9G9l
-         Jq0zqUd6ijGuFUGyEuaBNB1CAFTlVTCltPnTzCsSxBXbOfsF00/m4QghB22FiN+RCT
-         3ICld4gxVZJ/lHOSMCidnEUKjXeYVzILthq3Z/6osi19cxtsrELoCZAYeBPIfp8ACP
-         qHqpvMypwzJ4Cz7xOADDcu8uZe4C/eviJG2R+bBnwdDHhdMQ3eKIdAuO6UmnsFt87V
-         cntpRduhkALzA==
-Date:   Tue, 9 Mar 2021 13:20:45 +0100
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     nbd@nbd.name, linux-wireless@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
-        ryder.lee@mediatek.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings:net:wireless:mediatek,mt76: txt to yaml
- conversion
-Message-ID: <YEdoHTn7DktII2XN@lore-desk>
-References: <b78122c8ddcbf4ac66adc2c0280665a84e7e9010.1615151665.git.lorenzo@kernel.org>
- <20210308230810.GA3111033@robh.at.kernel.org>
+        b=YA95Mav+ou0vbpC5EDZqdK4j8osZOAeEFLNJvirHsPEiblzGYGamJPf+AwUWyyPzt
+         vZfzspanjCKktSOAsyVpm0FYuJGSpLXZ0Pe0RqBPyb2lG1Vadn3okPwLMhynotcjau
+         WL5Gf8gF3Qk2SJ9qUTv+tEL1oc95BRoonZXgpxSz//bRdIXt/nyBplUW783pihE+tv
+         jEvy0xpolH0gBcLh3eel/zNThxH+ZnR3cdnO+R2au2i4d/VB1lGDfr1FyXasCZeIm4
+         DqvUqmzDr+vuw3SXHA4A+uwIQo+kTOxBttz8TlYrxOOFTnZHJ2QZI9GxPBanNDp2Q1
+         Oe8IoVLo/1FVg==
+Date:   Tue, 9 Mar 2021 12:36:01 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>
+Subject: Re: [PATCH] dt-bindings: spi: Convert NXP flexspi to json schema
+Message-ID: <20210309123601.GA4878@sirena.org.uk>
+References: <20210309103528.3538910-1-kuldeep.singh@nxp.com>
+ <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fH0x3Q43UYus4Dt/"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k1lZvvs/B4yU6o8G"
 Content-Disposition: inline
-In-Reply-To: <20210308230810.GA3111033@robh.at.kernel.org>
+In-Reply-To: <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+X-Cookie: Immanuel doesn't pun, he Kant.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fH0x3Q43UYus4Dt/
+--k1lZvvs/B4yU6o8G
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-> On Sun, Mar 07, 2021 at 10:20:44PM +0100, Lorenzo Bianconi wrote:
-> > Convert mt76 dts bindings from .txt to .yaml
+On Tue, Mar 09, 2021 at 11:41:50AM +0000, Kuldeep Singh wrote:
+> + Mark (Forgot to add him previously)
 
-[...]
+...
 
-Hi Rob,
+> I was not sure with which tree this patch will go through.
+> Currently, I have rebased this on top of tree(git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git, branch: for-next)
 
-thx for the review.
+Binding patches generally go through the subsystem tree so please send
+the patch to me.
 
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      Address and length of the register set for the device
->=20
-> That's every reg, drop.
-
-ack, I will fix it in v2
-
->=20
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description:
-> > +      Main device interrupt
->=20
-> Are there others besides 'main'? If not, drop description.
-
-right. I will fix it in v2
-
->=20
-> > +
-> > +  power-domains:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
->=20
-> Don't need a type for common properties.
-
-ack,  I will fix it in v2
-
->=20
-> > +    description:
-> > +      Phandle to the power domain that the WMAC is part of.
->=20
-> That's every 'power-domains'. Just need to define how many: 'maxItems: 1'
-
-ack,  I will fix it in v2
-
->=20
-> > +      This property is MT7622 specific
->=20
-> This can be a schema.
-
-Can you please specify what you mean here?
-
->=20
-> > +
-> > +  mediatek,infracfg:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the infrastructure bus fabric syscon node.
-> > +      This property is MT7622 specific
-> > +
-> > +  ieee80211-freq-limit:
-> > +    maxItems: 1
->=20
-> Just make sure, only 1 freq supported?
-
-here we can convert ieee80211.txt in ieee80211.yaml and just refer to it,
-right?
-
->=20
-> > +    description:
-> > +      List of supported frequency ranges in KHz
-> > +
-> > +  mediatek,mtd-eeprom:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description:
-> > +      Phandle to a MTD partition + offset containing EEPROM data
-> > +
-> > +  big-endian:
-> > +    type: boolean
-> > +    description:
-> > +      Specify if the radio eeprom partition is written in big-endian
-> > +
-> > +  mediatek,eeprom-merge-otp:
-> > +    type: boolean
-> > +    description:
-> > +      Merge EEPROM data with OTP data. Can be used on boards where the=
- flash
-> > +      calibration data is generic and specific calibration data should=
- be
-> > +      pulled from the OTP ROM
-> > +
-> > +  led:
-> > +    type: object
-> > +    properties:
-> > +      led-sources:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
->=20
-> No constraints for how many array entries?
-
-ack, I will fix in v2.
-
-Regards,
-Lorenzo
-
->=20
-> > +        description:
-> > +          List of device current outputs the LED is connected to
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pcie0 {
-> > +      #address-cells =3D <3>;
-> > +      #size-cells =3D <2>;
-> > +      wifi@0,0 {
-> > +        compatible =3D "mediatek,mt76";
-> > +        reg =3D <0x0000 0 0 0 0>;
-> > +        ieee80211-freq-limit =3D <5000000 6000000>;
-> > +        mediatek,mtd-eeprom =3D <&factory 0x8000>;
-> > +        big-endian;
-> > +
-> > +        led {
-> > +          led-sources =3D <2>;
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +  - |
-> > +    wmac: wmac@10300000 {
-> > +      compatible =3D "mediatek,mt7628-wmac";
-> > +      reg =3D <0x10300000 0x100000>;
-> > +
-> > +      interrupt-parent =3D <&cpuintc>;
-> > +      interrupts =3D <6>;
-> > +
-> > +      mediatek,mtd-eeprom =3D <&factory 0x0>;
-> > +    };
-> > +
-> > +  - |
-> > +    wlmac: wmac@18000000 {
-> > +      compatible =3D "mediatek,mt7622-wmac";
-> > +      reg =3D <0x10300000 0x100000>;
-> > +      interrupts =3D <0 211 8>;
-> > +
-> > +      mediatek,infracfg =3D <&infracfg>;
-> > +
-> > +      power-domains =3D <&scpsys 3>;
-> > +    };
-> > --=20
-> > 2.29.2
-> >=20
-
---fH0x3Q43UYus4Dt/
+--k1lZvvs/B4yU6o8G
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYEdoGwAKCRA6cBh0uS2t
-rApBAP4gyKFIt6ugl7qbZFasfnRVzxi7t0hzIaJZj0U7rVNFfAD/T3KpHRH+QLXH
-3H8obr2Uwy83FLJPS0qVCCYx8+rk3wU=
-=9Lav
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBHa7AACgkQJNaLcl1U
+h9AmRQf+I75/5nY3XFdUzjldnH/ak4vuJJDxyK5n1OjfodnIYXZRnofrZrv+1WNC
+OWmuqB7SvWXFd6zus811PcggxS29YXXF0Xei0Yze8ST7tYegZ0t49klXg1gzSxmt
+IBjy0EBAJfOY2s5rH4FWoeW2x/ttRBNRfu4rZQKNr/QblPAe3N7CNdhZhPcXQ3c7
+vGWcgpmJUg5q0whA8tPOx85Wp5mAmJLTMQxtfN/7VAnmvzz7qFZXyZVx8PDsMGnt
+9w3psbRDKP7kEp8tAJcZAYWXUzbHarpquIAXyj644yJf41LPF2D52vQhga8joIv9
+C/SazhUd5xl+BnXII94ixbDq7WnnbQ==
+=8uCH
 -----END PGP SIGNATURE-----
 
---fH0x3Q43UYus4Dt/--
+--k1lZvvs/B4yU6o8G--
