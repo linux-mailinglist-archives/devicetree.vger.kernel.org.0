@@ -2,295 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A71B6332EE1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 20:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE00332EEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Mar 2021 20:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231313AbhCITTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 14:19:17 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:17772 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbhCITS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 14:18:59 -0500
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 09 Mar 2021 11:18:59 -0800
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 09 Mar 2021 11:18:56 -0800
-X-QCInternal: smtphost
-Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 10 Mar 2021 00:48:03 +0530
-Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
-        id 6F78446DF; Wed, 10 Mar 2021 00:48:03 +0530 (IST)
-From:   Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, sartgarg@codeaurora.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
-        cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Subject: [PATCH V1] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-Date:   Wed, 10 Mar 2021 00:48:03 +0530
-Message-Id: <1615317483-23780-1-git-send-email-sbhanu@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S231358AbhCITWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 14:22:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56914 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230173AbhCITWE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 14:22:04 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 108DA65237;
+        Tue,  9 Mar 2021 19:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615317724;
+        bh=AaO+UbGAEZUo3o9QYbxnPDFnaxXOUUGrUBCbEaRrUqw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=m/dBrQ1+uo1RqzGpHsIWLJzqjcWhuOoEE+iuSSc0rR/xOug/QrPbbotHfKKqcbjM5
+         RIHFVUQWrZyKqyyASEB1jntulVnFyl9pzmNYIIe305SZw4SwbHBjITgWQlzyrd/rnR
+         aCgXnVHLmLwASYzuNuOvsJFrqfCBbYLWOjP1GEESnuPQxZEpxEHRUEGfB9hGfhvJsJ
+         ebJpuhVzZvKwQTsjQIyV/r7jken4639UrWYTKVJ0PvyBqcCEPuPr+U+q42XvEcPTV2
+         oz68rihY5v8t1st/NWKI3vMgOF9Tlo7UV5503VAiqn3dzCWmjEQWqytPKEV3bKRrLh
+         VAbujl3ZqVhiQ==
+Received: by mail-ej1-f46.google.com with SMTP id jt13so30968284ejb.0;
+        Tue, 09 Mar 2021 11:22:03 -0800 (PST)
+X-Gm-Message-State: AOAM532fW5fUcFqBnb4qvjG8aWy3PxLa0cYsfSYbHdrKnhBplXPgliZC
+        olvBCwn+AMLfwW++b1QheCmz4DOoUB/dqnKavQ==
+X-Google-Smtp-Source: ABdhPJx9xoFco5obxQqg/gaAD5xU1Y8MOt0uO1HqmPol3JnaNkH/1zNviaIH/UHGYG9X+yHYVwGlwdD9FZ8o5qG5wjQ=
+X-Received: by 2002:a17:906:7f84:: with SMTP id f4mr21383291ejr.525.1615317722613;
+ Tue, 09 Mar 2021 11:22:02 -0800 (PST)
+MIME-Version: 1.0
+References: <20210225194201.17001-1-noltari@gmail.com> <20210225194201.17001-3-noltari@gmail.com>
+ <20210306211731.GA1217377@robh.at.kernel.org> <f60cc3a8-9629-3659-c3e5-4a42a588b63e@gmail.com>
+In-Reply-To: <f60cc3a8-9629-3659-c3e5-4a42a588b63e@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Mar 2021 12:21:50 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqLk5LWKarMxfnXhJ5VJZMvWEYnCnhP2qQ+LgOfUZALiyA@mail.gmail.com>
+Message-ID: <CAL_JsqLk5LWKarMxfnXhJ5VJZMvWEYnCnhP2qQ+LgOfUZALiyA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] mips: bmips: add BCM63268 timer reset definitions
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Jonas Gorski <jonas.gorski@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for eMMC and SD card on sc7280.
+On Sun, Mar 7, 2021 at 3:08 AM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
+ail.com> wrote:
+>
+> Hi Rob,
+>
+> El 06/03/2021 a las 22:17, Rob Herring escribi=C3=B3:
+> > On Thu, Feb 25, 2021 at 08:41:59PM +0100, =C3=81lvaro Fern=C3=A1ndez Ro=
+jas wrote:
+> >> Add missing timer reset definitions for BCM63268.
+> >>
+> >> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> >> ---
+> >>   include/dt-bindings/reset/bcm63268-reset.h | 4 ++++
+> >>   1 file changed, 4 insertions(+)
+> >>
+> >> diff --git a/include/dt-bindings/reset/bcm63268-reset.h b/include/dt-b=
+indings/reset/bcm63268-reset.h
+> >> index 6a6403a4c2d5..d87a7882782a 100644
+> >> --- a/include/dt-bindings/reset/bcm63268-reset.h
+> >> +++ b/include/dt-bindings/reset/bcm63268-reset.h
+> >> @@ -23,4 +23,8 @@
+> >>   #define BCM63268_RST_PCIE_HARD     17
+> >>   #define BCM63268_RST_GPHY  18
+> >>
+> >> +#define BCM63268_TRST_SW    29
+> >> +#define BCM63268_TRST_HW    30
+> >> +#define BCM63268_TRST_POR   31
+> >
+> > Numbering should be local to the provider, so shouldn't this be 0-2?
+> > Unless these numbers correspond to something in the h/w (bit positions
+> > for example).
+>
+> Numbering corresponds to bit positions in the HW:
 
-Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Okay, good.
 
----
-This change is depends on the below patch series:
-https://lore.kernel.org/lkml/1613114930-1661-1-git-send-email-rnayak@codeaurora.org/
-https://lore.kernel.org/patchwork/project/lkml/list/?series=&submitter=28035&state=&q=&archive=&delegate=
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts |  26 +++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    | 170 ++++++++++++++++++++++++++++++++
- 2 files changed, 196 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index ac79420..6abb2aa 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include "sc7280.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
- 
- / {
- 	model = "Qualcomm Technologies, Inc. SC7280 IDP platform";
-@@ -256,3 +257,28 @@
- 		bias-pull-up;
- 	};
- };
-+
-+&sdhc_1 {
-+	status = "okay";
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc1_on>;
-+	pinctrl-1 = <&sdc1_off>;
-+
-+	vmmc-supply = <&vreg_l7b_2p9>;
-+	vqmmc-supply = <&vreg_l19b_1p8>;
-+
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default","sleep";
-+	pinctrl-0 = <&sdc2_on>;
-+	pinctrl-1 = <&sdc2_off>;
-+
-+	vmmc-supply = <&vreg_l9c_2p9>;
-+	vqmmc-supply = <&vreg_l6c_2p9>;
-+
-+	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 3b86052..91fb18a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -18,6 +18,11 @@
- 
- 	chosen { };
- 
-+	aliases {
-+		mmc1 = &sdhc_1;
-+		mmc2 = &sdhc_2;
-+	};
-+
- 	clocks {
- 		xo_board: xo-board {
- 			compatible = "fixed-clock";
-@@ -315,6 +320,69 @@
- 			#power-domain-cells = <1>;
- 		};
- 
-+		sdhc_1: sdhci@7c4000 {
-+			compatible = "qcom,sdhci-msm-v5";
-+			reg = <0 0x7c4000 0 0x1000>,
-+					<0 0x7c5000 0 0x1000>;
-+			reg-names = "hc", "cqhci";
-+
-+			iommus = <&apps_smmu 0xC0 0x0>;
-+			interrupts = <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hc_irq", "pwr_irq";
-+
-+			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-+					<&gcc GCC_SDCC1_AHB_CLK>,
-+					<&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "core", "iface", "xo";
-+
-+			bus-width = <8>;
-+			non-removable;
-+			supports-cqe;
-+			no-sd;
-+			no-sdio;
-+
-+			max-frequency = <192000000>;
-+
-+			qcom,dll-config = <0x0007642c>;
-+			qcom,ddr-config = <0x80040868>;
-+
-+			mmc-ddr-1_8v;
-+			mmc-hs200-1_8v;
-+			mmc-hs400-1_8v;
-+			mmc-hs400-enhanced-strobe;
-+
-+			status = "disabled";
-+
-+		};
-+
-+		sdhc_2: sdhci@8804000 {
-+			compatible = "qcom,sdhci-msm-v5";
-+			reg = <0 0x08804000 0 0x1000>;
-+
-+			iommus = <&apps_smmu 0x100 0x0>;
-+			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hc_irq", "pwr_irq";
-+
-+			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-+					<&gcc GCC_SDCC2_AHB_CLK>,
-+					<&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "core", "iface", "xo";
-+
-+			bus-width = <4>;
-+
-+			no-mmc;
-+			no-sdio;
-+
-+			max-frequency = <202000000>;
-+
-+			qcom,dll-config = <0x0007642c>;
-+
-+			status = "disabled";
-+
-+		};
-+
- 		qupv3_id_0: geniqup@9c0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0 0x009c0000 0 0x2000>;
-@@ -385,6 +453,108 @@
- 				pins = "gpio46", "gpio47";
- 				function = "qup13";
- 			};
-+
-+			sdc1_on: sdc1-on {
-+				pinconf-clk {
-+					pins = "sdc1_clk";
-+					bias-disable;
-+					drive-strength = <16>;
-+				};
-+
-+				pinconf-cmd {
-+					pins = "sdc1_cmd";
-+					bias-pull-up;
-+					drive-strength = <10>;
-+				};
-+
-+				pinconf-data {
-+					pins = "sdc1_data";
-+					bias-pull-up;
-+					drive-strength = <10>;
-+				};
-+
-+				pinconf-rclk {
-+					pins = "sdc1_rclk";
-+					bias-pull-down;
-+				};
-+			};
-+
-+			sdc1_off: sdc1-off {
-+				pinconf-clk {
-+					pins = "sdc1_clk";
-+					bias-disable;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-cmd {
-+					pins = "sdc1_cmd";
-+					bias-pull-up;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-data {
-+					pins = "sdc1_data";
-+					bias-pull-up;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-rclk {
-+					pins = "sdc1_rclk";
-+					bias-pull-down;
-+				};
-+			};
-+
-+			sdc2_on: sdc2-on {
-+				pinconf-clk {
-+					pins = "sdc2_clk";
-+					bias-disable;
-+					drive-strength = <16>;
-+				};
-+
-+				pinconf-cmd {
-+					pins = "sdc2_cmd";
-+					bias-pull-up;
-+					drive-strength = <10>;
-+				};
-+
-+				pinconf-data {
-+					pins = "sdc2_data";
-+					bias-pull-up;
-+					drive-strength = <10>;
-+				};
-+
-+				pinconf-sd-cd {
-+					pins = "gpio91";
-+					bias-pull-up;
-+					drive-strength = <2>;
-+				};
-+			};
-+
-+			sdc2_off: sdc2-off {
-+				pinconf-clk {
-+					pins = "sdc2_clk";
-+					bias-disable;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-cmd {
-+					pins = "sdc2_cmd";
-+					bias-pull-up;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-data {
-+					pins = "sdc2_data";
-+					bias-pull-up;
-+					drive-strength = <2>;
-+				};
-+
-+				pinconf-sd-cd {
-+					pins = "gpio91";
-+					bias-disable;
-+					drive-strength = <2>;
-+				};
-+			};
- 		};
- 
- 		apps_smmu: iommu@15000000 {
--- 
-2.7.4
-
+Acked-by: Rob Herring <robh@kernel.org>
