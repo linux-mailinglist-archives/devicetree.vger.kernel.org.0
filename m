@@ -2,147 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E499B333AC0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 11:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E800D333AD2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 11:57:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232049AbhCJKzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 05:55:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbhCJKzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 05:55:13 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0CEC061761
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 02:55:12 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id i26so13366032ljn.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 02:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=PUVtKUPoduvs7l6B3SzeJOq8YvhYmZWRJ9L2/UTDBME=;
-        b=YfQD7GLPIUgmhkGoLSgl3sEOlNDEuAF+HVsFENuK65Wd4qjJmP2tESgaqGHa4wRBId
-         6azc5Sc29D8vD7VcRyPPgCwU231GW8uUQTUFvO3vIwgP7pnthpV9vIDS7SUbGAEcWuLR
-         FU4ni9ewhBCekj9qYXaJtwAtcSzHfUx7+FZfVpGsPDULdAh/iInpjCyxHea2KE3STUkT
-         u1FaoJopFfYDrsHmXDCZLCt9XbMU3odXR1PR9c5shiNME5TlCTEJMCHulg8ic3vnhVEr
-         C3+QWfAh+S6RGOAsQY/IJAqnc0SIoBGjV34a8nHA7NVh8gREQP5rzD8RncWGGvObXDvu
-         Zgug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=PUVtKUPoduvs7l6B3SzeJOq8YvhYmZWRJ9L2/UTDBME=;
-        b=PdmVY2FvCyH2UfAl6IQt7N0DEWR1FBk/T6B4iO6LzpFP7XbwOtEeUB4nbWnlMzTxbY
-         aeJZlDXywYJf8XRar87afsluDbZPZ8UTlbOSj7iczjIiAk93qMkdAq+EB+mPZlxCnN+o
-         J2+cq4Tmbg7vZ13VGW8X064gGYlkYPkJ5mrKzCIep3Pqd8rtxgHap0pY2IuqCIWwaGaw
-         d9Q5X+kMP+SX159OJP7vGjHY8q6bksmjNXIuWmQEVYg/dc+fs1tx9uIgizDw/fD4P6Ub
-         jTuhEWMSuA7HwQ4w4wVsBBlZmRFc1TMvWzRBSdgq56ppqhoCShN4GjXWEXieZS+xYQnv
-         6pQQ==
-X-Gm-Message-State: AOAM5336xmiu6aEuMkgX/4p/5SpdM8yxKCHybiaLCg/At3r4Ny1n7KsA
-        5U9A0mmq3qxlWkoMhz0qJM+7dg==
-X-Google-Smtp-Source: ABdhPJyxnT9NynGS7lLoOcce3sPI7mfxZJs4bOy4oMiIOU+1zy+sb9kfiqJs/i6VqsK73U7NZP0GWw==
-X-Received: by 2002:a2e:9a04:: with SMTP id o4mr1483604lji.123.1615373710862;
-        Wed, 10 Mar 2021 02:55:10 -0800 (PST)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id p1sm2767352lfg.29.2021.03.10.02.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 02:55:10 -0800 (PST)
-Date:   Wed, 10 Mar 2021 11:55:09 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S232425AbhCJK5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 05:57:22 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:55310 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232615AbhCJK5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 05:57:05 -0500
+X-UUID: 5ce7b8ced89c41289baaf91f95a374a9-20210310
+X-UUID: 5ce7b8ced89c41289baaf91f95a374a9-20210310
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 457692326; Wed, 10 Mar 2021 18:57:00 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 10 Mar 2021 18:56:59 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 10 Mar 2021 18:56:58 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: thermal: rcar-gen3-thermal: Support five
- TSC nodes on r8a779a0
-Message-ID: <YEiljX2ULug2yOFa@oden.dyn.berto.se>
-References: <20210309162205.2619943-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdX_s3Hsj2C7C2SEhRxySsj589W3Htn3d3=7Fnqk9RuJ-A@mail.gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [RESEND PATCH v1 0/2] Revert "mailbox: mediatek: remove implementation related to atomic_exec"
+Date:   Wed, 10 Mar 2021 18:56:50 +0800
+Message-ID: <1615373812-16204-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdX_s3Hsj2C7C2SEhRxySsj589W3Htn3d3=7Fnqk9RuJ-A@mail.gmail.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+This series base linux 5.12-rc1
+these two patches will cause home ui flick when cursor moved,
+there is no fix solution yet, revert these patches first.
 
-Thanks for your feedback.
+change since v1:
+fix build error
 
-On 2021-03-10 11:06:16 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Tue, Mar 9, 2021 at 5:24 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > When adding support for V3U (r8a779a0) it was incorrectly recorded it
-> > supports four nodes, while in fact it supports five. The fifth node is
-> > named TSC0 and breaks the existing naming schema starting at 1. Work
-> > around this by separately defining the reg property for V3U and others.
-> >
-> > Restore the maximum number of nodes to three for other compatibles as
-> > it was before erroneously increasing it for V3U.
-> >
-> > Fixes: d7fdfb6541f3be88 ("dt-bindings: thermal: rcar-gen3-thermal: Add r8a779a0 support")
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch!
-> 
-> > --- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-> > +++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-> 
-> > @@ -111,3 +121,20 @@ examples:
-> >                      };
-> >              };
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/power/r8a779a0-sysc.h>
-> > +
-> > +    tsc_r8a779a0: thermal@e6190000 {
-> > +            compatible = "renesas,r8a779a0-thermal";
-> > +            reg = <0xe6190000 0x100>,
-> 
-> 0x200, for all register blocks?
+Yongqiang Niu (2):
+  Revert "drm/mediatek: Make sure previous message done or be aborted
+    before send"
+  Revert "mailbox: mediatek: remove implementation related to
+    atomic_exec"
 
-You are correct the V3U has more registers then previous SoCs but are 
-not used (yet) by the driver, thanks for spotting this! Will respin this 
-and the DTS.
-
-> 
-> > +                  <0xe6198000 0x100>,
-> > +                  <0xe61a0000 0x100>,
-> > +                  <0xe61a8000 0x100>,
-> > +                  <0xe61b8000 0x100>;
-> 
-> 0xe61b0000
-> 
-> > +            clocks = <&cpg CPG_MOD 919>;
-> > +            power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> > +            resets = <&cpg 919>;
-> > +            #thermal-sensor-cells = <1>;
-> > +    };
-> 
-> The rest looks good to me.
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c |  1 -
+ drivers/mailbox/mtk-cmdq-mailbox.c      | 80 +++++++++++++++++++++++++++++----
+ 2 files changed, 71 insertions(+), 10 deletions(-)
 
 -- 
-Regards,
-Niklas Söderlund
+1.8.1.1.dirty
+
