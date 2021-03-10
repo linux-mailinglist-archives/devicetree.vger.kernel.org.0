@@ -2,163 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8CB3338F5
+	by mail.lfdr.de (Postfix) with ESMTP id D5ED73338F7
 	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbhCJJin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 04:38:43 -0500
-Received: from regular1.263xmail.com ([211.150.70.200]:44760 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231492AbhCJJiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:38:16 -0500
-Received: from localhost (unknown [192.168.167.235])
-        by regular1.263xmail.com (Postfix) with ESMTP id 34BED1C5D;
-        Wed, 10 Mar 2021 17:37:34 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.64] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P24304T139685251299072S1615369053264450_;
-        Wed, 10 Mar 2021 17:37:34 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <6df6f007d349241a15ee878e4b443baf>
-X-RL-SENDER: shawn.lin@rock-chips.com
-X-SENDER: lintao@rock-chips.com
-X-LOGIN-NAME: shawn.lin@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Message-ID: <7573e8c1-3f55-9925-bc14-534455f1ffa3@rock-chips.com>
-Date:   Wed, 10 Mar 2021 17:37:33 +0800
+        id S231822AbhCJJio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 04:38:44 -0500
+Received: from lizzard.sbs.de ([194.138.37.39]:57328 "EHLO lizzard.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232544AbhCJJiV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 04:38:21 -0500
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 12A9bnfF025632
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 10 Mar 2021 10:37:49 +0100
+Received: from md1f2u6c.ad001.siemens.net ([167.87.35.81])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12A9bmN4017567;
+        Wed, 10 Mar 2021 10:37:49 +0100
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Le Jin <le.jin@siemens.com>,
+        Bao Cheng Su <baocheng.su@siemens.com>
+Subject: [PATCH v4 0/3] arm64: Add TI AM65x-based IOT2050 boards
+Date:   Wed, 10 Mar 2021 10:37:45 +0100
+Message-Id: <cover.1615369068.git.jan.kiszka@siemens.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101
- Thunderbird/86.0
-Cc:     shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add rockchip
- support
-To:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh@kernel.org>
-References: <1615254990-192784-1-git-send-email-shawn.lin@rock-chips.com>
- <1615254990-192784-2-git-send-email-shawn.lin@rock-chips.com>
- <20210310030122.GA1664258@robh.at.kernel.org>
- <9f8b3be6-d87e-d944-d5db-67f3bcf0fad0@gmail.com>
-From:   Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <9f8b3be6-d87e-d944-d5db-67f3bcf0fad0@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v4:
+ - rebased over ti-k3-dts-next and resent completely (no changes)
+ - added ack and review tags
 
-On 2021/3/10 15:00, Johan Jonker wrote:
-> On 3/10/21 4:01 AM, Rob Herring wrote:
->> On Tue, Mar 09, 2021 at 09:56:29AM +0800, Shawn Lin wrote:
->>> This patch adds rockchip support in sdhci-of-dwcmhsc.yaml
->>>
->>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
->>> ---
->>>
->>> Changes in v3: None
->>>
->>>   .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 24 ++++++++++++++++++++++
->>>   1 file changed, 24 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> index f99fb9f..43989f2 100644
->>> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
->>> @@ -16,6 +16,7 @@ allOf:
->>>   properties:
->>>     compatible:
->>>       enum:
-> 
->>> +      - rockchip,dwcmshc-sdhci
-> 
-> Compatible strings are supposed to be SoC orientated.
-> What SoC was this change for? rk3568 ?
-> Could Shawn confirm that?
+Jan
 
-Yes. We are inclined to use this controller from now on for a
-long time for up-coming SoCs. Should we tag compatible for rk3568
-specified? One of the negative things I could come up with is that we
-do this for dwmmc-rockchip, but we end up doing nothing else,
-except for adding new compatible string again and again in Document.
+Jan Kiszka (3):
+  dt-bindings: Add Siemens vendor prefix
+  dt-bindings: arm: ti: Add bindings for Siemens IOT2050 boards
+  arm64: dts: ti: Add support for Siemens IOT2050 boards
 
-> 
->           - rockchip,rk3568-dwcmshc-sdhci ??
-> 
-> Could Rob advise here?
-> 
->>>         - snps,dwcmshc-sdhci
->>>   
->>>     reg:
->>> @@ -31,12 +32,24 @@ properties:
->>>       items:
->>>         - description: core clock
->>>         - description: bus clock for optional
->>> +      - description: axi clock for rockchip specified
->>> +      - description: block clock for rockchip specified
->>> +      - description: timer clock for rockchip specified
->>> +
->>>   
->>>     clock-names:
->>>       minItems: 1
->>>       items:
->>>         - const: core
->>>         - const: bus
->>> +      - const: axi
->>> +      - const: block
->>> +      - const: timer
->>> +
->>> +  rockchip,txclk-tapnum:
->>> +    description: Specify the number of delay for tx sampling.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>
->> Constraints for this? 0 - 2^32 is okay?
->>
->>> +
->>>   
->>>   required:
->>>     - compatible
->>> @@ -49,6 +62,17 @@ unevaluatedProperties: false
->>>   
->>>   examples:
->>>     - |
->>> +    mmc@fe310000 {
-> 
->>> +      compatible = "rockchip,dwcmshc-sdhci";
-> 
->        compatible = "rockchip,rk3568-dwcmshc-sdhci"; ??
-> 
->>> +      reg = <0xfe310000 0x10000>;
->>> +      interrupts = <0 25 0x4>;
->>> +      clocks = <&cru 17>, <&cru 18>, <&cru 19>, <&cru 20>, <&cru 21>;
->>> +      clock-names = "core", "bus", "axi", "block", "timer";
->>> +      bus-width = <8>;
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +    };
->>> +  - |
->>>       mmc@aa0000 {
->>>         compatible = "snps,dwcmshc-sdhci";
->>>         reg = <0xaa000 0x1000>;
->>> -- 
->>> 2.7.4
->>>
->>>
->>>
->>
-> 
-> 
-> 
-> 
-> 
+ .../devicetree/bindings/arm/ti/k3.yaml        |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 661 ++++++++++++++++++
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |  61 ++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     |  60 ++
+ 6 files changed, 788 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
 
+-- 
+2.26.2
 
