@@ -2,155 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ADE9334387
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E883343A2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbhCJQry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 11:47:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbhCJQrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:47:47 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5122BC061761
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 08:47:47 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id x135so15292527oia.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 08:47:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cgRubcZ8gr18dJhcvKQdRz6M5SF9Mz8KCxOcwqh5JmQ=;
-        b=cqnjaqFB0OmWcdCXsjguLAYjjyYyP82rMBcE4lKkkX/QiviAZO8XzI4j9luqkOiBIP
-         mhoGQ0yM6NIoNOrNsSnBEKfMbH/b0QUQYPtpvJD1IBKbMPqcMZ0Bu+58bi0PQr/b5z6/
-         3mOga/X6KVAKsz7Qn55+ALzzXgbds2yV0aMITdx11vPYqpHJXNb56rNxgZ3cH0MlQqKg
-         uqKPuPK4nOza1aPJU9HqyXGCTC6kj+6FUxweBnnoVFzn9/A+s3a1TbJJi3FtrL0oClmg
-         /CMsvabp8KaRDfnePh6mRkWQkazFC61OjThNEskGPBsL7ndR211vkPcK92FimrfqDDx+
-         UmNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cgRubcZ8gr18dJhcvKQdRz6M5SF9Mz8KCxOcwqh5JmQ=;
-        b=jKiZGv8+f1oSKSyJfg055VWhg2fD+6InGQ4vLXs3kfQ5uzJnD2yOTkpks2a0lIOBT4
-         qpz2VnnZhRaO+OxEoGyqjsa89SFIAlRs2yObLsY5G53U8bM+F6kk6E0nlvR9u1gZ1DpW
-         84HhX0yz3P4FMXpCuDkLFD5D5fjTZ/ECOjRvzixfU4MCSbxQuufrf+2OMuH7wq00Txyp
-         UdA9C5FrQQHFrxphWnj7X3EvMNgzthVA5IZCIS+7KTD5nAMv1CU5yHNue4IRIijCMywf
-         V+oNyChJOy0A4GqKP6nkO5DWESkj7uGU9UQEJ+ViGkbJYKB9C+vQ4qUX+qpesG8NF7QL
-         vfNQ==
-X-Gm-Message-State: AOAM530J15wPuLZcZfb5NwPcn/kCvPDFfVH9KETxJxARKPe8v/Ctoo9x
-        LQIb+SbRKvtvHip8fakF9Eh6QjTqievBKQ==
-X-Google-Smtp-Source: ABdhPJztaVdC+W5hHxektR9FJRuokTIP9WnnTNOujKJ5N09MgSgrQaMoN1U+uNB3eubmcsr7K0n9UA==
-X-Received: by 2002:aca:bf8a:: with SMTP id p132mr2935725oif.9.1615394866584;
-        Wed, 10 Mar 2021 08:47:46 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b21sm3588101oot.34.2021.03.10.08.47.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 08:47:46 -0800 (PST)
-Date:   Wed, 10 Mar 2021 10:47:44 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     agross@kernel.org, ohad@wizery.com, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, p.zabel@pengutronix.de, sibis@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
- support
-Message-ID: <YEj4MKMervDzUO6k@builder.lan>
-References: <1615361290-19238-1-git-send-email-pillair@codeaurora.org>
- <1615361290-19238-2-git-send-email-pillair@codeaurora.org>
+        id S233134AbhCJQt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 11:49:29 -0500
+Received: from mout.kundenserver.de ([217.72.192.75]:41249 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233403AbhCJQtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:49:18 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]) by
+ mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MZkxd-1lHRcJ1fzL-00Wn2Y; Wed, 10 Mar 2021 17:49:16 +0100
+Received: by mail-ot1-f44.google.com with SMTP id f8so11962703otp.8;
+        Wed, 10 Mar 2021 08:49:15 -0800 (PST)
+X-Gm-Message-State: AOAM533hQ+xG6dX7imtpVcnOSbp0W3hWw6zAzLLsZI8NK7GV1NugFXuy
+        /3LH8CPE+Kj77hCIr01N9ARXTFDiXytnxeBrR3k=
+X-Google-Smtp-Source: ABdhPJw1kIhr8ttdGXD5g+DpuAzvAToYG1aFxOSVPDl56eSY4x70c4eQdWZH4tiH2ZUpEN9KrRB/9/YZCrDgnKY8YZU=
+X-Received: by 2002:a05:6830:14c1:: with SMTP id t1mr3227502otq.305.1615394954588;
+ Wed, 10 Mar 2021 08:49:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615361290-19238-2-git-send-email-pillair@codeaurora.org>
+References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
+ <20210310083840.481615-1-krzysztof.kozlowski@canonical.com> <20210310083840.481615-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210310083840.481615-3-krzysztof.kozlowski@canonical.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 10 Mar 2021 17:48:58 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a27hAExCKtsO7k1HQwLKk-5Q8uxYYt_G2v-Osq8RZv2tg@mail.gmail.com>
+Message-ID: <CAK8P3a27hAExCKtsO7k1HQwLKk-5Q8uxYYt_G2v-Osq8RZv2tg@mail.gmail.com>
+Subject: Re: [RFC v2 5/5] clk: socfpga: allow compile testing of Stratix 10 /
+ Agilex clocks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
+        Networking <netdev@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com, arm-soc <arm@kernel.org>,
+        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:UpF+IKYWh1Pc1r65f61MWWUzwAfDePicEmQd6YhxfkvjnX8dOr+
+ ICz2/kJDiaAWWb6Lsh6CxGoVmPSVZWfzh2g960mHqUaQRxQ/RBkQbakZt0W8y5R+LtLAYUV
+ vDnT39U36yusfTCTbtRHUlR/GtjyIEC5opA8/1Pyy4mqX6sdhMkCJp/HswNg3LYUnpb4Clx
+ 6x8zW0wO2ujskcBfKsMAg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:BECPo1lR3ZY=:w74Ff2HwUIYjwaEBMZUU4F
+ GlYvFmvUchmTeBU1459yu4h4+FmwtrHuouAHEHhyJYn1h2DOqx6yaeJh4/xx/IPdTRyFgjqJW
+ Wpo1c02oOks0npEfpemuj+2+gM+six/cN2BzVrDOMOdP4zGa2wzMM1vVfGPztg7A9ZPcce6wO
+ o30XlDj9oL4BxqDXVVhqPrYRUx8SS/mLUeSrZzatAP/oL9DRmqYB4WD1vCLbmYeXY6QzXQjlp
+ 79hdmOd06JxkTxCWu2G+p5sStoHnqQ64yHro31voae7jiLSumWgPBXq8ofGDiZXbzWUSvJg6n
+ /4pXOEvFrITGjVrcIl/eea8d2EXvb3nntxATRuyn9dgbSDbnJM1NX2KEpKhAHGTiqbce3QO+r
+ xwTtLiyw7fC8GQXOX2GgbsKqy1wQVMEI9GXFiakfYicvXQDAEdhIt+PERyekQWaaowRFgoSYq
+ BnedSwNlIDjy4fbohX+u1Kolx+8UKQHBlb9ieD7egcfpuBz/sbHY5j8HVl+OC+qMyU9nyqWqZ
+ v73/pY77FU1caY0ED4QY28X0PqJnAwVmUigamsLmCirCfpUpatEd1LY7TGUrfazrw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Mar 01:28 CST 2021, Rakesh Pillai wrote:
+On Wed, Mar 10, 2021 at 9:38 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+> --- a/drivers/clk/socfpga/Kconfig
+> +++ b/drivers/clk/socfpga/Kconfig
+> @@ -1,6 +1,17 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +config COMMON_CLK_SOCFPGA
+> +       bool "Intel SoCFPGA family clock support" if COMPILE_TEST && !ARCH_SOCFPGA && !ARCH_SOCFPGA64
+> +       depends on ARCH_SOCFPGA || ARCH_SOCFPGA64 || COMPILE_TEST
+> +       default y if ARCH_SOCFPGA || ARCH_SOCFPGA64
 
-> Add WPSS PIL loading support for SC7280 SoCs.
-> 
+I think the 'depends on' line here is redundant if you also have the
+'if' line and the default.
 
-Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-But can you please follow up with a patch that converts this to yaml?
-
-Regards,
-Bjorn
-
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
->  .../bindings/remoteproc/qcom,hexagon-v56.txt       | 35 ++++++++++++----------
->  1 file changed, 20 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
-> index 1337a3d..edad5e8 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
-> @@ -9,6 +9,7 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
->  	Definition: must be one of:
->  		    "qcom,qcs404-cdsp-pil",
->  		    "qcom,sdm845-adsp-pil"
-> +		    "qcom,sc7280-wpss-pil"
->  
->  - reg:
->  	Usage: required
-> @@ -24,7 +25,13 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
->  - interrupt-names:
->  	Usage: required
->  	Value type: <stringlist>
-> -	Definition: must be "wdog", "fatal", "ready", "handover", "stop-ack"
-> +	Definition: The interrupts needed depends on the compatible string
-> +	qcom,sdm845-adsp-pil:
-> +	qcom,qcs404-cdsp-pil:
-> +		must be "wdog", "fatal", "ready", "handover", "stop-ack"
-> +	qcom,sc7280-wpss-pil:
-> +		must be "wdog", "fatal", "ready", "handover", "stop-ack"
-> +		"shutdown-ack"
->  
->  - clocks:
->  	Usage: required
-> @@ -35,19 +42,17 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
->  - clock-names:
->  	Usage: required for SDM845 ADSP
->  	Value type: <stringlist>
-> -	Definition: List of clock input name strings sorted in the same
-> -		    order as the clocks property. Definition must have
-> -		    "xo", "sway_cbcr", "lpass_ahbs_aon_cbcr",
-> -		    "lpass_ahbm_aon_cbcr", "qdsp6ss_xo", "qdsp6ss_sleep"
-> -		    and "qdsp6ss_core".
-> -
-> -- clock-names:
-> -	Usage: required for QCS404 CDSP
-> -	Value type: <stringlist>
-> -	Definition: List of clock input name strings sorted in the same
-> -		    order as the clocks property. Definition must have
-> -		    "xo", "sway", "tbu", "bimc", "ahb_aon", "q6ss_slave",
-> -		    "q6ss_master", "q6_axim".
-> +	Definition: The clocks needed depends on the compatible string
-> +	qcom,sdm845-adsp-pil:
-> +		must be "xo", "sway_cbcr", "lpass_ahbs_aon_cbcr",
-> +		"lpass_ahbm_aon_cbcr", "qdsp6ss_xo", "qdsp6ss_sleep",
-> +		"qdsp6ss_core"
-> +	qcom,qcs404-cdsp-pil:
-> +		must be "xo", "sway", "tbu", "bimc", "ahb_aon", "q6ss_slave",
-> +		"q6ss_master", "q6_axim"
-> +	qcom,sc7280-wpss-pil:
-> +		must be "gcc_wpss_ahb_bdg_mst_clk", "gcc_wpss_ahb_clk",
-> +		"gcc_wpss_rscp_clk"
->  
->  - power-domains:
->  	Usage: required
-> @@ -65,7 +70,7 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
->          Definition: must be "pdc_sync" and "cc_lpass"
->  
->  - reset-names:
-> -        Usage: required for QCS404 CDSP
-> +        Usage: required for QCS404 CDSP, SC7280 WPSS
->          Value type: <stringlist>
->          Definition: must be "restart"
->  
-> -- 
-> 2.7.4
-> 
+        Arnd
