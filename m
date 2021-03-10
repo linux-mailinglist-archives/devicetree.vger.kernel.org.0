@@ -2,114 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A567E33453A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:35:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 413C3334560
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:47:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232650AbhCJRfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 12:35:08 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45368 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbhCJRen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 12:34:43 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AHYYgw031257;
-        Wed, 10 Mar 2021 11:34:34 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615397674;
-        bh=+p/u5nK7EFO7bfVybM8fCJ8w2Wt1hcRrMflilr6AVio=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=wFUSYIKCVYBr5Py1sIWj8f78LeXi1A3J1CpR/jcgdhvrSVy/hSEIcCKbuPLK6LRFd
-         eKNA+SKSd+NtIvBDgIKfSyM+pCXnx/dYlxqPRJdpjWNqz7AElfLkjHYLbUAzqDDBzO
-         mOXdXKlZJxsEcFcnMUsDdBAwJmy0YL7ialPV1/3Y=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AHYY1m021998
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 11:34:34 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 11:34:33 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 11:34:33 -0600
-Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AHYU6K009051;
-        Wed, 10 Mar 2021 11:34:31 -0600
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am64-main: Add OSPI node
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210309130514.11740-1-vigneshr@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <4a41ecf2-2203-f3db-f728-fc0d1b0426c6@ti.com>
-Date:   Wed, 10 Mar 2021 23:04:30 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229503AbhCJRq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 12:46:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51140 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231359AbhCJRp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 12:45:57 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8CAF464F48;
+        Wed, 10 Mar 2021 17:45:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615398356;
+        bh=U6ytBYeBdD/aDMKjPInZo1ngnvAJ2clewIczyr53hII=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ef/5KVEx3LQWCSTPR8v5neJRPWW6VTuYaluLiz7ZHXiAGKCium7wIA4OXuCDE8x/d
+         HRlC4LmVN8XgiZzZ+GK/iGt/sm+orLuXJklKG2iimojcviH1d6oqTqu46KmFRdqJrN
+         LGLYUrxClfbnfzrevnOdZss7UxbAdxf6IDX7w3hUmqgR3J3QiYNBrbExUnZLHA3K04
+         D47OSC5tVcDt0EXOHGxRM9PNMAsQOTHzO7IkfIZ9056XgG8pgFpjrt7IS4dbvde3Rp
+         L163gKgFFKP6lM2mKlMZ6wVcW0Kaa5KDnNS07LSn8YozML00I9GVGY0tiPaoohpvaT
+         FoEmX4ow28JUg==
+Received: by mail-ej1-f50.google.com with SMTP id p8so40387977ejb.10;
+        Wed, 10 Mar 2021 09:45:56 -0800 (PST)
+X-Gm-Message-State: AOAM533M0Ui/IlQW9u00uZnZhWyL1EuKH/XKQbuJU/D6QfKjHl5RN2jJ
+        niQwV8kUV6TfF+mAIHRDVjF25dThVZQi3mWpRQ==
+X-Google-Smtp-Source: ABdhPJzhn9gyePa9pqaI1P5IPJEuu0+8OodWzXS1eP0nJjTFn5KQIDk7+vF34ai0qyk/n4U0G+vmCytDzNCpy+CfnXk=
+X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr4886767ejb.359.1615398355126;
+ Wed, 10 Mar 2021 09:45:55 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210309130514.11740-1-vigneshr@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-5-noltari@gmail.com>
+In-Reply-To: <20210310125504.31886-5-noltari@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 10 Mar 2021 10:45:43 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqK4b+U7cVb04+moB4biGVFC4mr3VGx70KdQKitiCGdtnQ@mail.gmail.com>
+Message-ID: <CAL_JsqK4b+U7cVb04+moB4biGVFC4mr3VGx70KdQKitiCGdtnQ@mail.gmail.com>
+Subject: Re: [PATCH v6 04/15] dt-bindings: add BCM6328 pincontroller binding documentation
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth
-
-On 3/9/21 6:35 PM, Vignesh Raghavendra wrote:
-> AM64 SoC has a single Octal SPI (OSPI) instance under Flash SubSystem
-> (FSS).  Add DT entry for the same.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+On Wed, Mar 10, 2021 at 5:55 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+<noltari@gmail.com> wrote:
+>
+> Add binding documentation for the pincontrol core found in BCM6328 SoCs.
+>
+> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+> Co-developed-by: Jonas Gorski <jonas.gorski@gmail.com>
+> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
 > ---
-
-Please ignore the series. I see some instabilities in my testing... Will
-repost once I have addressed them. Sorry for the noise.
-
-
-Regards
-Vignesh
-
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 25 ++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index 5f85950daef7..bcec4fa444b5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -402,4 +402,29 @@ sdhci1: mmc@fa00000 {
->  		ti,otap-del-sel-ddr50 = <0x9>;
->  		ti,clkbuf-sel = <0x7>;
->  	};
+>  v6: add changes suggested by Rob Herring
+>  v5: change Documentation to dt-bindings in commit title
+>  v4: no changes
+>  v3: add new gpio node
+>  v2: remove interrupts
+>
+>  .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm632=
+8-pinctrl.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinct=
+rl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.ya=
+ml
+> new file mode 100644
+> index 000000000000..471f6efa1754
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/brcm,bcm6328-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	fss: bus@fc00000 {
-> +		compatible = "simple-bus";
-> +		reg = <0x00 0x0fc00000 0x00 0x70000>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+> +title: Broadcom BCM6328 pin controller
 > +
-> +		ospi0: spi@fc40000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x0fc40000 0x00 0x100>,
-> +			      <0x05 0x00000000 0x01 0x00000000>;
-> +			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +			clocks = <&k3_clks 75 6>;
-> +			assigned-clocks = <&k3_clks 75 6>;
-> +			assigned-clock-parents = <&k3_clks 75 7>;
-> +			assigned-clock-rates = <166666666>;
-> +			power-domains = <&k3_pds 75 TI_SCI_PD_EXCLUSIVE>;
-> +		};
-> +	};
->  };
-> 
+> +maintainers:
+> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> +  - Jonas Gorski <jonas.gorski@gmail.com>
+> +
+> +description: |+
+> +  The pin controller node should be the child of a syscon node.
+> +
+> +  Refer to the the bindings described in
+> +  Documentation/devicetree/bindings/mfd/syscon.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm6328-pinctrl
+> +
+> +  gpio:
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        const: brcm,bcm6328-gpio
+> +
+> +      data:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          Offset in the register map for the data register (in bytes).
+> +
+> +      dirout:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          Offset in the register map for the dirout register (in bytes).
+> +
+> +      gpio-controller: true
+> +
+> +      "#gpio-cells":
+> +        const: 2
+> +
+> +      gpio-ranges:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - gpio-controller
+> +      - gpio-ranges
+> +      - '#gpio-cells'
+> +
+> +    additionalProperties: false
+> +
+> +patternProperties:
+> +  '^.*-pins$':
+> +    if:
+> +      type: object
+> +    then:
+> +      properties:
+> +        function:
+> +          $ref: "pinmux-node.yaml#/properties/function"
+> +          enum: [ serial_led_data, serial_led_clk, inet_act_led, pcie_cl=
+kreq,
+> +                  led, ephy0_act_led, ephy1_act_led, ephy2_act_led,
+> +                  ephy3_act_led, hsspi_cs1, usb_device_port, usb_host_po=
+rt ]
+> +
+> +        pins:
+> +          $ref: "pinmux-node.yaml#/properties/pins"
+> +          enum: [ gpio6, gpio7, gpio11, gpio16, gpio17, gpio18, gpio19,
+> +                  gpio20, gpio25, gpio26, gpio27, gpio28, hsspi_cs1,
+> +                  usb_port1 ]
+> +
+> +required:
+> +  - compatible
+> +  - gpio
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio_cntl@10000080 {
+> +      compatible =3D "brcm,bcm6328-gpio-controller", "syscon", "simple-m=
+fd";
+
+You just added "brcm,bcm6328-gpio-controller", it would need to be document=
+ed.
+
+> +      reg =3D <0x10000080 0x80>;
+> +
+> +      pinctrl: pinctrl {
+> +        compatible =3D "brcm,bcm6328-pinctrl";
+> +
+> +        gpio {
+> +          compatible =3D "brcm,bcm6328-gpio";
+
+I'm still trying to understand why you need 3 levels of nodes here?
+The gpio controller contains a pin controller plus other undefined
+functions (because of 'syscon') and the pin controller contains a gpio
+controller?
+
+I think "brcm,bcm6328-gpio-controller" and "brcm,bcm6328-pinctrl"
+should be a single node.
+
+> +          data =3D <0xc>;
+> +          dirout =3D <0x4>;
+
+This looks similar to the brcm,bcm6345-gpio.txt binding which then
+uses the gpio-mmio driver. Defining addresses with 'reg' is much
+preferred over custom properties. That binding also captures the bank
+size.
+
+Rob
