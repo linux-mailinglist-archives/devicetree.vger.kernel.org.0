@@ -2,92 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E733341B7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 16:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A14E83341E0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 16:47:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232470AbhCJPkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 10:40:14 -0500
-Received: from mout.kundenserver.de ([212.227.126.133]:41737 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbhCJPj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 10:39:58 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MD5fd-1lT3Ur2NWL-0096PB; Wed, 10 Mar 2021 16:39:56 +0100
-Received: by mail-ot1-f41.google.com with SMTP id a17so16786190oto.5;
-        Wed, 10 Mar 2021 07:39:55 -0800 (PST)
-X-Gm-Message-State: AOAM530bizGt1XwmpPpxiZZ/xaGxr585XYhDYH8XY0JzMYFDEJwMPjDc
-        BnmT2xqlS9ZNEKhsfaO6RjjOVwSpazXZgc1Mr28=
-X-Google-Smtp-Source: ABdhPJyz+OU7gvgIrSIrSop4e8azU44xAIwSKa5HpTc5C9P44C7QC3z/u5GcCJR7jvFrP3vF9cowRntGlUhuRjPALp4=
-X-Received: by 2002:a05:6830:14c1:: with SMTP id t1mr2985547otq.305.1615390794792;
- Wed, 10 Mar 2021 07:39:54 -0800 (PST)
-MIME-Version: 1.0
-References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
- <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
- <20210310094527.GA701493@dell> <35c39c81-08e4-24c8-f683-2fa7a7ea71de@redhat.com>
- <1c06cb74-f0b0-66e5-a594-ed1ee9bc876e@canonical.com>
-In-Reply-To: <1c06cb74-f0b0-66e5-a594-ed1ee9bc876e@canonical.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 10 Mar 2021 16:39:37 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1CCQwbeH4KiUgif+-HdubVjjZBkMXimEjYkgeh4eJ7cg@mail.gmail.com>
-Message-ID: <CAK8P3a1CCQwbeH4KiUgif+-HdubVjjZBkMXimEjYkgeh4eJ7cg@mail.gmail.com>
-Subject: Re: [RFC v2 3/5] arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Tom Rix <trix@redhat.com>, Lee Jones <lee.jones@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
+        id S233233AbhCJPql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 10:46:41 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47654 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232818AbhCJPqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 10:46:13 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AFk6CN067600;
+        Wed, 10 Mar 2021 09:46:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615391166;
+        bh=AUn7XpCLIngAp4n26qKR/3PFFYMJbQoYcvX98ciR6gI=;
+        h=From:To:CC:Subject:Date;
+        b=rqtHkgX5OhrDx6BZ2cqWuHo6NV5PQoMaemvR3lck9KwOi7esikm2d3C7QiYlI/qYT
+         X/zSETkHjSi67TeNUJFOkj201yx37st8uEAfuGV9x1AujESuuxRwzDuYFNHM7wfMG7
+         xfoR5oVCkGMoR/PcmycL/Gl5/Kly0roWaYvHnvlE=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AFk6WN087462
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 Mar 2021 09:46:06 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
+ Mar 2021 09:46:05 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 10 Mar 2021 09:46:05 -0600
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AFk2KO066370;
+        Wed, 10 Mar 2021 09:46:02 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Networking <netdev@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com, arm-soc <arm@kernel.org>,
-        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:QuxxoViFqMbIcHIb8w99YreoXmfBiRqTKjDeRQuZ1EIzQbW48uR
- XURGz5Z6bEHJF80Qq2RuH+k6iYym+jvmHAIeZz0dEs+iCs3ej/vSMIL0xqMEqoVyHObfzJV
- RY8PF/3byan60umtzRs7qQbCONk1+ki2GAEoscvoUmQ3MqiDfAedEDmPeCOrlpYSkdyoZBQ
- 3rHa4qCq8M1Ke4bWsjj4w==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:cKEqFz4Ztjg=:l2G4YYzG6B1M6ffbG3dvjl
- GdhjcCZD5IyxBesKT1VCIVbdSN4L9nEKpInyckrxnasm4CFwrcwRWlBNXJRemh9SMElZ1jZDs
- 1dViagxvR0p0I1T2tM8NsFToRrhInuStbkq2kn6ztCtAnxS+0QPRHJTelJ5x31SgoxEx/DuvS
- o/0ppoi8iwHMeMoTAFq9wHZGbGh9Ukv1B9v+thOa6LROh6jKmaIhW3HScvcOtNVl1Vm2Ws1CH
- ip9u6Eu0rjH5jRpXVdKAEwoIYErH66LvKlNvb4eC8StFeIXyI5Lon763ic/p1wDm8KemGPoia
- sDGFLZt8XWgpF+XIXOTmLElQwhjsUFNASQ1iZrVioHcZhq+qs7ErI54yAxOHcEFgpeZXgIk/l
- 3UsEYXgo+5CyE2NCpKcI5XA+se+Q8DANdZnQhLKLDf3F/3orgLKpxNMXpaaHb
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Swapnil Jakhade <sjakhade@cadence.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v6 00/13] PHY: Add support in Sierra to use external clock
+Date:   Wed, 10 Mar 2021 21:15:45 +0530
+Message-ID: <20210310154558.32078-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 4:06 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
-> On 10/03/2021 15:45, Tom Rix wrote:
-> > On 3/10/21 1:45 AM, Lee Jones wrote:
->
-> Many other architectures do not have vendor prefix (TEGRA, EXYNOS,
-> ZYNQMP etc). I would call it the same as in ARMv7 - ARCH_SOCFPGA - but
-> the Altera EDAC driver depends on these symbols to be different.
-> Anyway, I don't mind using something else for the name.
+Patch series adds support in Sierra driver to use external clock.
 
-I agree the name SOCFPGA is confusing, since it is really a class of
-device that is made by multiple manufacturers rather than a brand name,
-but renaming that now would be equally confusing. If the Intel folks
-could suggest a better name that describes all products in the platform
-and is less ambiguous, we could rename it to that. I think ARCH_ALTERA
-would make sense, but I don't know if that is a name that is getting
-phased out. (We once renamed the Marvell Orion platform to ARCH_MVEBU,
-but shortly afterwards, Marvell renamed their embedded business unit (EBU)
-and the name has no longer made sense since).
+v1 of the patch series can be found @ [1]
+v2 of the patch series can be found @ [2]
+v3 of the patch series can be found @ [3]
+v5 of the patch series can be found @ [5]
+v6 of the patch series can be found @ [6]
 
-Regardless of what name we end up with, I do think we should have the
-same name for 32-bit and 64-bit and instead fix the edac driver to do
-runtime detection based on the compatible string.
+Changes from v5:
+1) Added Rob's Reviewed-by for the DT binding
+2) Fixed another error handling case pointed out by Swapnil
+3) Fixed few checkpatch errors.
 
-        Arnd
+Changes from v4:
+1) Fixed couple of error handling cases
+2) Added reviewed by from Philipp Zabel
+3) Fixed couple of patch commit subjects to be uniform with other
+patches.
+
+Changes from v3:
+1) Instead of adding separate subnodes for each clock, just add
+#clock-cells in Sierra SERDES nodes and model the clocks. This is
+in alignment with Rob's comment for a different series [4]
+2) Removed device tree changes from the series.
+
+Changes from v2:
+1) Add depends on COMMON_CLK in Sierra
+2) Add modelling PLL_CMNLC and PLL_CMNLC1 as clocks into a separate
+patch
+3) Disable clocks in Sierra driver remove
+
+Changes from v1:
+1) Remove the part that prevents configuration if the SERDES is already
+   configured and focus only on using external clock and the associated
+   cleanups
+2) Change patch ordering
+3) Use exclusive reset control APIs
+4) Fix error handling code
+5) Include DT patches in this series (I can send this separately to DT
+MAINTAINER once the driver patches are merged)
+
+[1] -> http://lore.kernel.org/r/20201103035556.21260-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201222070520.28132-1-kishon@ti.com
+[3] -> http://lore.kernel.org/r/20201224111627.32590-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20210108025943.GA1790601@robh.at.kernel.org
+[5] -> https://lore.kernel.org/r/20210304044122.15166-1-kishon@ti.com
+[6] -> https://lore.kernel.org/r/20210308050732.7140-1-kishon@ti.com
+
+Kishon Vijay Abraham I (13):
+  phy: cadence: Sierra: Fix PHY power_on sequence
+  phy: ti: j721e-wiz: Invoke wiz_init() before
+    of_platform_device_create()
+  phy: cadence: cadence-sierra: Create PHY only for "phy" or "link"
+    sub-nodes
+  phy: ti: j721e-wiz: Get PHY properties only for "phy" or "link"
+    subnode
+  phy: cadence: cadence-sierra: Move all clk_get_*() to a separate
+    function
+  phy: cadence: cadence-sierra: Move all reset_control_get*() to a
+    separate function
+  phy: cadence: cadence-sierra: Explicitly request exclusive reset
+    control
+  phy: cadence-torrent: Use a common header file for Cadence SERDES
+  phy: cadence: cadence-sierra: Add array of input clocks in "struct
+    cdns_sierra_phy"
+  phy: cadence: cadence-sierra: Add missing clk_disable_unprepare() in
+    .remove callback
+  dt-bindings: phy: phy-cadence-sierra: Add binding to model Sierra as
+    clock provider
+  phy: cadence: phy-cadence-sierra: Model PLL_CMNLC and PLL_CMNLC1 as
+    clocks (mux clocks)
+  phy: cadence: sierra: Enable pll_cmnlc and pll_cmnlc1 clocks
+
+ .../bindings/phy/phy-cadence-sierra.yaml      |  17 +-
+ drivers/phy/cadence/Kconfig                   |   1 +
+ drivers/phy/cadence/phy-cadence-sierra.c      | 419 ++++++++++++++++--
+ drivers/phy/cadence/phy-cadence-torrent.c     |   2 +-
+ drivers/phy/ti/phy-j721e-wiz.c                |  21 +-
+ include/dt-bindings/phy/phy-cadence-torrent.h |  15 -
+ include/dt-bindings/phy/phy-cadence.h         |  20 +
+ 7 files changed, 428 insertions(+), 67 deletions(-)
+ delete mode 100644 include/dt-bindings/phy/phy-cadence-torrent.h
+ create mode 100644 include/dt-bindings/phy/phy-cadence.h
+
+-- 
+2.17.1
+
