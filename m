@@ -2,162 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA3063347A5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 20:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA4843347CD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 20:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233342AbhCJTMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 14:12:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233182AbhCJTMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 14:12:31 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882C3C061760;
-        Wed, 10 Mar 2021 11:12:30 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id u14so24574167wri.3;
-        Wed, 10 Mar 2021 11:12:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=INYKDm2dkWL3HE2MRCJAw093pEqyLHWbGAiMdHovjhk=;
-        b=mAmxOdjfbEfZnSsdD1Ad2PsBOumA9wyfB8ymlbOx8psLBmdUdXGj4WMYr5pGdhp7Pn
-         GY1C80JK55Q5Cxf0XQom9oJw55P5RRNsN3/rgjSPNFHQpuLu4M+q9Kdd4uwsI+G/2++8
-         c+ZvlreERo8wdkgmWUulChN1+wuLi2IKQ+sxUUnDCOZIqJyFrR0rI5NpQcQtpDYWF4e0
-         8t1611ZFg/SS/kD3K7XL0T65gA9nNbg94RY5r07mmt8TmuOOgVK3fXwRotr48nh/rNDY
-         LDaNiAV5ogHWjY99yqGUGZQel3RngNE9A0rQe+5e/LhBfhAtix5cHBQM3rutBv98Pug3
-         DmZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=INYKDm2dkWL3HE2MRCJAw093pEqyLHWbGAiMdHovjhk=;
-        b=eJ52QtZ5pe8B/fkvcZ0F/xCG86UdDpPUrfZPJmPXuN2njbe0/PU/x4VLDc6foRpqkI
-         yy0giwwsWLjZrVbVBrbmjiKHabjkDjUsK2Kz/5z4EF6h5piHE3b2sVebaOrkVxEmPUnE
-         Tmrv9tUOgu5q0A33VnpBFlzXxqwSmqbQhNOftQx/vqTzY0ORUtKAOw6ndc8AYJ+LF1qR
-         UKvuYZKV0rNX3UAzaAXz2tJQpeewf++hYFT5nJfa8ncRhLojI94u2m66Jj/KljpLYihL
-         ZCvytYBn1TH1SH0UZgLZXuUsFjNPySCvXk/TtKw2d0MvbdhFH7+0tZLvoUw5CDhGl1xY
-         NX4A==
-X-Gm-Message-State: AOAM530fGTxwm0pUvsRx1cWz/LWmzKHC9Qy4qgYltSx+6KMtQIToWYi1
-        abQ04OLwoKuhTgACdY4h7wY=
-X-Google-Smtp-Source: ABdhPJz8zw5oOPXHDEHY8HB8sSVKZh2Cq9JbL7/EDaG3+sn7QeLQZCxJVErWjwxWfXyryqbhJAD/YA==
-X-Received: by 2002:adf:d1ce:: with SMTP id b14mr4996560wrd.126.1615403549157;
-        Wed, 10 Mar 2021 11:12:29 -0800 (PST)
-Received: from macbook-pro-alvaro.lan ([80.31.204.166])
-        by smtp.gmail.com with ESMTPSA id h25sm452790wml.32.2021.03.10.11.12.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Mar 2021 11:12:28 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
-Subject: Re: [PATCH v6 02/15] gpio: regmap: set gpio_chip of_node
-From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-In-Reply-To: <7e35bfd395f3ae40029b0f3cb2bc8f70@walle.cc>
-Date:   Wed, 10 Mar 2021 20:12:27 +0100
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DC6BACCE-C76F-41C5-8CB9-BEF3257B3B57@gmail.com>
-References: <20210310125504.31886-1-noltari@gmail.com>
- <20210310125504.31886-3-noltari@gmail.com>
- <7e35bfd395f3ae40029b0f3cb2bc8f70@walle.cc>
-To:     Michael Walle <michael@walle.cc>
-X-Mailer: Apple Mail (2.3654.60.0.2.21)
+        id S230173AbhCJTTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 14:19:49 -0500
+Received: from mail-dm6nam10on2061.outbound.protection.outlook.com ([40.107.93.61]:26336
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232824AbhCJTTY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 14:19:24 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I7j0ZLNZkU8Q5bOCBfiRQLUROcV32POjbVemz/Q6ClhdbZHj8Hn2ofEhU3YIlisd+2mQaCxzu/OQG8lY1n5mP/eUV7iJ59dAhnu2obPwo7gx6zCmA2ATA4tRb9lzbwSiJgzYgTAY+ppEFRVNnX99ulnBnrjiJEyXOno2e6Pp9uKV5ql+A21AKENO60lkdYYFqNsJkf40Rqy/EBxfMo1xSNjS6mpv2JM9yQtK2w5seyBACQUOlNCGzRKtnuY5DxvbE+UV/1xVdfFj796XxecInqI5NmrpcaqATL+CpZ2y4/UNlrQ8QQPAaknnKDwEScXya9sD3hYiKEfubNiJK6uhiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UQ+CQyliHKMEHOtCGTQatjdSVUv3xVaIFcJKRbQJy2s=;
+ b=iS10iMH7LhGV8mQlejj0Pfn3blZDucs9ip6hfIL324vbvfApFdJFuHSt/dxJmVk7ha35M/e7XCq3bOdFzjRVNJnHqgC/nU2vIihG3wH5TzMdk2WFtrnmDHFQQKxrXIqNlsUNnQbHJnPIUZgDlNTjAdK0swS7mfKPv/5/eLxFxWDWwnxEXj1tOKZZbQ6L+7Zg0W/Aig0jfbNWsYTgf34RrgiaklvVS1sGncOiHBD5x2Uxl0MTJPtNyDA8XWP4Uq9iY+WQVyVAA2+FNzsDFqrmSVaUamlLryQM57bC1YT2L3wJ5FKTiQUoK4oIGo8e0ieLCNydZB0Ekss8cNAk9J/4kQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=alsa-project.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UQ+CQyliHKMEHOtCGTQatjdSVUv3xVaIFcJKRbQJy2s=;
+ b=m6tKKLoTA91jnSVNpd8u3YKP8lyVdHDHShYFYxpP9KQpWigP75ei2EkZU7N2WdzTO4vanFTaEf6dptKdmeFcng7HxxD0riLYur4Hh3Gv25H5/ipi8OtirRoyCtzTrojuZDOPtjpKsvRPH+6METPav9gDI0vxNz2aCxOu/lPzsNLp8xNlm8QOo8Li0zDKI6CL9iVkn6G8Yof4eB4ftdE8s6vSS7B8m86wwfsuplaaJLTh72ze4vXFwSmNKO1Fij9vnpbWDD3guB7Aw5iCi8x3ihzXEjVKIZd07HwyUIyCZ27qUydh8+BDL3Q7nHsu8JrFUNg5aU43Fq8zUfKPnMM/Lg==
+Received: from DM5PR17CA0062.namprd17.prod.outlook.com (2603:10b6:3:13f::24)
+ by DM6PR12MB4186.namprd12.prod.outlook.com (2603:10b6:5:21b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Wed, 10 Mar
+ 2021 19:19:22 +0000
+Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:13f:cafe::dd) by DM5PR17CA0062.outlook.office365.com
+ (2603:10b6:3:13f::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
+ Transport; Wed, 10 Mar 2021 19:19:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; alsa-project.org; dkim=none (message not signed)
+ header.d=none;alsa-project.org; dmarc=pass action=none
+ header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3912.17 via Frontend Transport; Wed, 10 Mar 2021 19:19:20 +0000
+Received: from [10.25.96.88] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Mar
+ 2021 19:19:13 +0000
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+To:     Michael Walle <michael@walle.cc>, <broonie@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <jonathanh@nvidia.com>, <kuninori.morimoto.gx@renesas.com>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <robh@kernel.org>, <sharadg@nvidia.com>, <thierry.reding@gmail.com>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
+ <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
+ <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+ <6e6b312eb91b8b86ceaa8a52311ea437@walle.cc>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <a201acf4-ac96-35c3-1703-1b53a304361b@nvidia.com>
+Date:   Thu, 11 Mar 2021 00:49:07 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <6e6b312eb91b8b86ceaa8a52311ea437@walle.cc>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8f6103b7-5b02-4e2c-e700-08d8e3f96856
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4186:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB418671677BDB13AFA49983A9A7919@DM6PR12MB4186.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: duO5IU/ofW2okBUAVk8g5p7Pn1KlPUWuIND6P61DKQTvHVOjLQO+HKBdgPjcoobAOrCrN61I9qXzWqc9RQJldwnzlHUfDugPBByVp6NVJEpnoupi1dVyUTi8T5FF7ciy4PXMP5MJAoO7at8/AJruJNCdP/w6SWbn3lOWfb2Moa2QoUN09wJT39feQvD006TykQ2icGmDWqoK9GLoQ/sxSBMMYNmgDDDroPkAngORKexLynkpyuHEvYM0KlLs18YbDf8vYo4mLOt4tEbhswOqPav8IG3ZbWg925sqbG7EiIPsy/VG7AfnOdi535LhJMj2f0JIu0TCxAwvKS76jwkWdSaHVpzLcoSET7ZGB8fWn14SjmhSHwgE7He523RGJXW81D1s5QBQC5ZeggBKgOE1qQ0KTRo+DzCX6iFZNKcB3Bq/88sK6uzh1UB8OBHEn0m2FPIRdMBq8c9fUtdmRL+cYO2RhSD0OPrl/mIsbo/wzfBKyW/NRnx2yLJgssINtNnrPW+Cyzm6oybYHc8us/I1xJb0gl1QaMa2bCkl0FRVNkRrjX7kv708h4F4QihQUFiIR0+uQTWOuZnRqwzYAljXQFeejIr8EKWCt1OZ9gHFhJNZXOPrGGkRYIYODa43eD768ZM6ycIj1M5LImp9AIsEEVdTjLIwh++KCtLSdt+A9Vu+xVkqLXUHDhhkOGL4cHlFHDss/33xdlSD0iQNK9cM5w==
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(36840700001)(46966006)(6666004)(426003)(356005)(5660300002)(34070700002)(31696002)(36756003)(8936002)(31686004)(7636003)(36860700001)(4744005)(336012)(316002)(82740400003)(36906005)(86362001)(4326008)(70586007)(8676002)(47076005)(16526019)(70206006)(83380400001)(2616005)(54906003)(186003)(82310400003)(26005)(2906002)(53546011)(478600001)(16576012)(110136005)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 19:19:20.8773
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f6103b7-5b02-4e2c-e700-08d8e3f96856
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4186
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
 
-> El 10 mar 2021, a las 19:27, Michael Walle <michael@walle.cc> =
-escribi=C3=B3:
->=20
-> Am 2021-03-10 13:54, schrieb =C3=81lvaro Fern=C3=A1ndez Rojas:
->> This is needed for properly registering GPIO regmap as a child of a =
-regmap
->> pin controller.
->> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
->> Reviewed-by: Michael Walle <michael@walle.cc>
->> ---
->> v6: add comment and simplify of_node assignment
->=20
-> Ah, I see you add the comment for the documentation. Nice. But I'd
-> like to see it in the code, too. See below.
 
-Ah, sorry for that, I thought you wanted it on the header.
-Excuse me for that...
+On 3/10/2021 11:44 PM, Michael Walle wrote:
 
->=20
->> v5: switch to fwnode
->> v4: fix documentation
->> v3: introduce patch needed for properly parsing gpio-range
->> drivers/gpio/gpio-regmap.c  | 1 +
->> include/linux/gpio/regmap.h | 4 ++++
->> 2 files changed, 5 insertions(+)
->> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
->> index 5412cb3b0b2a..d4fc656e70b0 100644
->> --- a/drivers/gpio/gpio-regmap.c
->> +++ b/drivers/gpio/gpio-regmap.c
->> @@ -249,6 +249,7 @@ struct gpio_regmap *gpio_regmap_register(const
->> struct gpio_regmap_config *config
->> 	chip =3D &gpio->gpio_chip;
->> 	chip->parent =3D config->parent;
->=20
-> If there will be a new version, please add the following comment:
+> Btw I'm pretty sure, the MCLK was enabled and disabled depending on
+> whether there was an audio stream, the last time I've measured the
+> clock.
 
-Right now I don=E2=80=99t know that either, because I=E2=80=99m honestly =
-getting tired of this=E2=80=A6
-
->=20
-> /* gpiolib will use of_node of the parent if chip->of_node is NULL */
->=20
->>> +       chip->of_node =3D to_of_node(config->fwnode);
->=20
-> Otherwise, it is not obvious that config->fwnode is optional.
-
-Yes, you=E2=80=99re right.
-
->=20
-> -michael
->=20
->> +	chip->of_node =3D to_of_node(config->fwnode);
->> 	chip->base =3D -1;
->> 	chip->ngpio =3D config->ngpio;
->> 	chip->names =3D config->names;
->> diff --git a/include/linux/gpio/regmap.h =
-b/include/linux/gpio/regmap.h
->> index ad76f3d0a6ba..334dd928042b 100644
->> --- a/include/linux/gpio/regmap.h
->> +++ b/include/linux/gpio/regmap.h
->> @@ -4,6 +4,7 @@
->> #define _LINUX_GPIO_REGMAP_H
->> struct device;
->> +struct fwnode_handle;
->> struct gpio_regmap;
->> struct irq_domain;
->> struct regmap;
->> @@ -16,6 +17,8 @@ struct regmap;
->>  * @parent:		The parent device
->>  * @regmap:		The regmap used to access the registers
->>  *			given, the name of the device is used
->> + * @fwnode:		(Optional) The firmware node.
->> + *			If not given, the fwnode of the parent is used.
->>  * @label:		(Optional) Descriptive name for GPIO controller.
->>  *			If not given, the name of the device is used.
->>  * @ngpio:		Number of GPIOs
->> @@ -57,6 +60,7 @@ struct regmap;
->> struct gpio_regmap_config {
->> 	struct device *parent;
->> 	struct regmap *regmap;
->> +	struct fwnode_handle *fwnode;
->> 	const char *label;
->> 	int ngpio;
-
+This may be true in your case because wm8904 driver does an explicit 
+clock enable/disable and does not rely on simple-card-utils for this. In 
+my case it depends on simple-card-utils.
