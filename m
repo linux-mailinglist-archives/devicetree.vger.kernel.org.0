@@ -2,128 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0637F333B11
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 12:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A33E2333B14
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 12:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbhCJLIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 06:08:44 -0500
-Received: from bin-mail-out-06.binero.net ([195.74.38.229]:4182 "EHLO
-        bin-mail-out-06.binero.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232425AbhCJLIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 06:08:16 -0500
-X-Halon-ID: e06a4c7c-8190-11eb-b73f-0050569116f7
-Authorized-sender: niklas.soderlund@fsdn.se
-Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de [84.172.85.33])
-        by bin-vsp-out-03.atm.binero.net (Halon) with ESMTPA
-        id e06a4c7c-8190-11eb-b73f-0050569116f7;
-        Wed, 10 Mar 2021 12:08:15 +0100 (CET)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH v2] dt-bindings: thermal: rcar-gen3-thermal: Support five TSC nodes on r8a779a0
-Date:   Wed, 10 Mar 2021 12:07:16 +0100
-Message-Id: <20210310110716.3297544-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.30.1
+        id S232408AbhCJLJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 06:09:15 -0500
+Received: from conuserg-10.nifty.com ([210.131.2.77]:32316 "EHLO
+        conuserg-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232598AbhCJLJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 06:09:08 -0500
+Received: from localhost.localdomain (133-32-232-101.west.xps.vectant.ne.jp [133.32.232.101]) (authenticated)
+        by conuserg-10.nifty.com with ESMTP id 12AB8SlE011639;
+        Wed, 10 Mar 2021 20:08:29 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com 12AB8SlE011639
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1615374509;
+        bh=4BsdiKU/ZW/GV8GfbmBOPEz95+oAT8ixjLQ3sW7ASGk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ORwzzFgdYWmnoYhXdHaJg7vfA1KyjqBHzD/YHPwbYA0bqHYonp7xWm666iTqn6jix
+         qox2sGT6/7qfyQOJeQMJVHVF67ojpH/Gs48GSUwKWjAH8wtYP5dKO82JARDpUoRjfR
+         ifLWWBi1ztGFMaQ4IzSOQOMQZK63Jc+Ze127doG2DaJDHaXEdwCjLqP1iuk+6fGCOT
+         /omTFF2pHQYQqLkGXt6pQekUiN/EIjdgF9euxlyit879b24Qbz8XFwVygO68Kk3QHS
+         kd3m1+jYX1hXofbvuqUYAItdk7jfBE0WnsoIjc1pcBDUklUCDbvOCIYjhC0ZUTeEFG
+         bH3dl6ExJMFHg==
+X-Nifty-SrcIP: [133.32.232.101]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] kbuild: remove unneeded -O option to dtc
+Date:   Wed, 10 Mar 2021 20:08:24 +0900
+Message-Id: <20210310110824.782209-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When adding support for V3U (r8a779a0) it was incorrectly recorded it
-supports four nodes, while in fact it supports five. The fifth node is
-named TSC0 and breaks the existing naming schema starting at 1. Work
-around this by separately defining the reg property for V3U and others.
+This piece of code converts the target suffix to the dtc -O option:
 
-Restore the maximum number of nodes to three for other compatibles as
-it was before erroneously increasing it for V3U.
+    *.dtb      ->  -O dtb
+    *.dt.yaml  ->  -O yaml
 
-Fixes: d7fdfb6541f3be88 ("dt-bindings: thermal: rcar-gen3-thermal: Add r8a779a0 support")
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Commit ce88c9c79455 ("kbuild: Add support to build overlays (%.dtbo)")
+added the third case:
+
+    *.dtbo     ->  -O dtbo
+
+This works thanks to commit 163f0469bf2e ("dtc: Allow overlays to have
+.dtbo extension") in the upstream DTC, which has already been pulled in
+the kernel.
+
+However, I think it is a bit odd because "dtbo" is not a format name.
+At least, it does not show up in the help message of dtc.
+
+$ scripts/dtc/dtc --help
+  [ snip ]
+  -O, --out-format <arg>
+        Output formats are:
+                dts - device tree source text
+                dtb - device tree blob
+                yaml - device tree encoded as YAML
+                asm - assembler source
+
+So, I am not a big fan of the second hunk of that change:
+
+        } else if (streq(outform, "dtbo")) {
+                dt_to_blob(outf, dti, outversion);
+
+Anyway, we did not need to do this in Makefile in the first place.
+
+guess_type_by_name() had already understood ".yaml" before commit
+4f0e3a57d6eb ("kbuild: Add support for DT binding schema checks"),
+and now does ".dtbo" as well.
+
+Makefile does not need to duplicate the same logic. Let's leave it
+to dtc.
+
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 ---
-* Changes since v1
-- The register layout for V3U is larger then for other SoCs, fix the
-  example to reflect this. Thanks Geert for spotting this!
-- Fix a bad copy-past in the register list in the example.
----
- .../bindings/thermal/rcar-gen3-thermal.yaml   | 43 +++++++++++++++----
- 1 file changed, 35 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-index b33a76eeac4e4fed..f963204e0b162746 100644
---- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-@@ -28,14 +28,7 @@ properties:
-       - renesas,r8a77980-thermal # R-Car V3H
-       - renesas,r8a779a0-thermal # R-Car V3U
+ scripts/Makefile.lib | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index eee59184de64..90a4e04cd8f5 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -327,7 +327,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
  
--  reg:
--    minItems: 2
--    maxItems: 4
--    items:
--      - description: TSC1 registers
--      - description: TSC2 registers
--      - description: TSC3 registers
--      - description: TSC4 registers
-+  reg: true
- 
-   interrupts:
-     items:
-@@ -71,8 +64,25 @@ if:
-           enum:
-             - renesas,r8a779a0-thermal
- then:
-+  properties:
-+    reg:
-+      minItems: 2
-+      maxItems: 3
-+      items:
-+        - description: TSC1 registers
-+        - description: TSC2 registers
-+        - description: TSC3 registers
-   required:
-     - interrupts
-+else:
-+  properties:
-+    reg:
-+      items:
-+        - description: TSC0 registers
-+        - description: TSC1 registers
-+        - description: TSC2 registers
-+        - description: TSC3 registers
-+        - description: TSC4 registers
- 
- additionalProperties: false
- 
-@@ -111,3 +121,20 @@ examples:
-                     };
-             };
-     };
-+  - |
-+    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a779a0-sysc.h>
-+
-+    tsc_r8a779a0: thermal@e6190000 {
-+            compatible = "renesas,r8a779a0-thermal";
-+            reg = <0xe6190000 0x200>,
-+                  <0xe6198000 0x200>,
-+                  <0xe61a0000 0x200>,
-+                  <0xe61a8000 0x200>,
-+                  <0xe61b0000 0x200>;
-+            clocks = <&cpg CPG_MOD 919>;
-+            power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-+            resets = <&cpg 919>;
-+            #thermal-sensor-cells = <1>;
-+    };
+ quiet_cmd_dtc = DTC     $@
+ cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
+-	$(DTC) -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
++	$(DTC) -o $@ -b 0 \
+ 		$(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
+ 	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
 -- 
-2.30.1
+2.27.0
 
