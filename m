@@ -2,162 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A46AD3340BF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 15:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3978334120
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 16:06:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbhCJOvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 09:51:08 -0500
-Received: from mail-dm6nam12on2080.outbound.protection.outlook.com ([40.107.243.80]:19168
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229602AbhCJOui (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 09:50:38 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Et07DDwtd9XPyKhUqmD83W692MC1utvR/AlQnmdiv8Gdt2Ypglmh6QxACPZS88kXs7WhktcpCoOujfXjahSGYHkwvVX3yNY5YzG/64wHLKxaaTaDtRwnj6enO4/XeUvzTtZLg1gQNHtZaCLt/jfWnXl6Vji5HNl136r4KXLDM+qSJDbXDLn5bTQ4+hBeZ5yW6mknBiW+4mDsqHrmWkN7Picsjc0Xnc2/sHXE/nlHQB8M4sw4jMRLT4n83ltYHQwuMPC+fEGE7qAA71U+b3htJXdEnB7q0k4tQmFFAJExB7MxUIvQpo/6k48czQQXhkCJTORk5F3uUMjEd9CIyeTk0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MXiwr7l4iFiRma4AefIehobNe8qxW+GZjKiCROxJ5dM=;
- b=hm9M7sha3O0N6H++2LIgZ+PxeST1dAl1ymO2CXu2ny0hJ1NWvPIRejT6sVrOtkgyJg9uiC/JqUo60yZ3n/y+4l6SsLjn8mDfuzFiQopRY1PNmPMBaTdZhH4FVOwM/gjBoiX50+Q9oL5KAgmZ2PgZKkei8xmJbWV0oChQCcdXOcUmyZtY+4m3/zF80xF18Oy6Tbsa5El6g7X4XnvB0zoE6eM49UqBF19RxLdccNhuOWoMlMqcswqc/FyOIfFjrmE3hNNNLKABUaG+QN7OGQeL6sMeW7E3L+5oHfg9399rfUDUcOCsQU4Q9JSco8ygN4mBembLXfrBfTTSfrcG03Rsjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MXiwr7l4iFiRma4AefIehobNe8qxW+GZjKiCROxJ5dM=;
- b=BBAwa28dRzKKkDnBEFRuWOCo7Ch1hXUkX/t/OCyutxBJM7rPO5b0M9QpYdrGnSNhvOQnvCrZIaDWpawx99S9g8CBwos6A5cK/WQ5GtcTB56KuTtbjiPDaMFwRjwFPwr9nFvgzz3WJYadK+eL1SZ7IYkXBQo93R6QFWV+w0Q+GxWbOQHXwgHmjgmVvB58wzhznVVQKjK6oQR6PGiTCN5iMfMW7iyT23/XjD0YD+HJGbG6JFPxrHgx0c+49VBROuV+0Qg52KLYyTbtEKr8a90BXuCAB1ToHIiVeCqHlo5cYueJO1h3m/1hk5Tzyt+LaqgnvxekF4HKCVTDNwk72aXwcg==
-Received: from MWHPR13CA0039.namprd13.prod.outlook.com (2603:10b6:300:95::25)
- by SN6PR12MB2768.namprd12.prod.outlook.com (2603:10b6:805:72::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.27; Wed, 10 Mar
- 2021 14:50:35 +0000
-Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:95:cafe::4f) by MWHPR13CA0039.outlook.office365.com
- (2603:10b6:300:95::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.16 via Frontend
- Transport; Wed, 10 Mar 2021 14:50:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT047.mail.protection.outlook.com (10.13.174.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3933.31 via Frontend Transport; Wed, 10 Mar 2021 14:50:35 +0000
-Received: from [10.25.96.88] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Mar
- 2021 14:50:31 +0000
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-To:     Michael Walle <michael@walle.cc>
-CC:     <alsa-devel@alsa-project.org>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <jonathanh@nvidia.com>,
-        <kuninori.morimoto.gx@renesas.com>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <robh@kernel.org>,
-        <sharadg@nvidia.com>, <thierry.reding@gmail.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
-Date:   Wed, 10 Mar 2021 20:20:28 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S232357AbhCJPFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 10:05:38 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:51912 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233216AbhCJPFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 10:05:25 -0500
+Received: from mail-wm1-f71.google.com ([209.85.128.71])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lK0Oq-0000Ko-PG
+        for devicetree@vger.kernel.org; Wed, 10 Mar 2021 15:05:24 +0000
+Received: by mail-wm1-f71.google.com with SMTP id a65so1169190wmh.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 07:05:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=6O6+tOduwR48d8zZ29bwhvehUqmwn5KZAJpghN9/ZFw=;
+        b=BS2kWtvMMtoBqdoHeLiIpHIvRz5YIjkg9UKo6RnA50e9QmCFm6uiuFF4AtmtGydQZ7
+         faX8nkHkW9TY0jHi/OdO42qrGYh/V/EWu31N/ZV/8D/MftPYuCeVIuKcMRicgjiOwd2d
+         DRATea26d7AisZWsY+Kh0sIYThTs8JoiuFTwMJM02bTadSZlq5JfdVW7nXy2hbvFcg0K
+         j3bz/14wpkp/O2DC/lhIBzVa5qqucKD4NdJ2lScKAixRf8NSxfWFtm0jiRSpOpRhpAQe
+         T/HuE5i6LBGZx3DjKJTffj3pHpIqz44kcsoKdS3Kfgon5Yi5JOVWyDkUYJoXtLOyEUTI
+         bt5w==
+X-Gm-Message-State: AOAM531KIuGPMTigv+eRhRIyeoefTw4SFXfx5fsuum1NXcIyv2gPl70z
+        OXbHIyB6+BrphCj0IK1I7frbrbIyDy1Y23+pW+42eCV519hr6qg4E06xmW6SmZKXrFGL3WPLdgw
+        8GZYIRpVhd4CoPNkrdTaPAT4zXVBCkU5spFFR+h4=
+X-Received: by 2002:adf:f303:: with SMTP id i3mr3936440wro.67.1615388724451;
+        Wed, 10 Mar 2021 07:05:24 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzGJJurjVb7EYp0bgYqxrECEX4ZhpKbOThOV2/LSr/fZ3VGeNkWRh86xSztb8QWNx4T9B9Jfg==
+X-Received: by 2002:adf:f303:: with SMTP id i3mr3936156wro.67.1615388721715;
+        Wed, 10 Mar 2021 07:05:21 -0800 (PST)
+Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.gmail.com with ESMTPSA id c26sm32188982wrb.87.2021.03.10.07.05.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Mar 2021 07:05:21 -0800 (PST)
+Subject: Re: [RFC v2 3/5] arm64: socfpga: rename ARCH_STRATIX10 to
+ ARCH_SOCFPGA64
+To:     Tom Rix <trix@redhat.com>, Lee Jones <lee.jones@linaro.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
+ <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
+ <20210310094527.GA701493@dell>
+ <35c39c81-08e4-24c8-f683-2fa7a7ea71de@redhat.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <1c06cb74-f0b0-66e5-a594-ed1ee9bc876e@canonical.com>
+Date:   Wed, 10 Mar 2021 16:05:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <35c39c81-08e4-24c8-f683-2fa7a7ea71de@redhat.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c5372d8f-6484-4c31-e810-08d8e3d3dcb0
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2768:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB2768E151A3A7A4A25683A759A7919@SN6PR12MB2768.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:935;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NlectuRSbAp9Ow14l4/izqo+qI7lSV2wCnOGcdfZvMwwRlC3gL7sQT/hY70ozxHJp10bPhru5z6OzbQbUrMNUqs7Hh56buHWzo9bcU5cgFfArOkbJyIbJGINtlF4MfSOzRKzUwwDMWgz7dNxiuuQ0GqjTc+fltYqxhlQLzMurau05KDqdmtL52Ndqi1muJcT9U7jyErU6jMO1TpNghMLofHmAytSpuT2L7e+wxpWAXOq6a3ebmismgTWc1G6/R+tpLULLWw5ERagQnNJTkgmozWPpCjMEkTsoE7ZzQ+tlVfe7GSpenDwTu1iWcwIfRMdZMMcrQ3wgiTD9XWZSVxf2gTc6YhnbALe1WbitdW2+kb8zEanlP681iXfpAyBuIGea0J3yYdtdcW7JyZtzm4sfGKV4dd/Cnp/yX8UPU1/wvzh4YFzwn3fzkaSA41vda0vO0w2VeYoNcudp04HMPO9Nw42Q7UM2wqXRFgNlHfyj+cCd0TS6JkdFwoVJLnghDRiU1lX17En6tIUkhNlHBUTKo0zzw7BVd4nv65pT8OD9b13K6FJJckFQZRkH5xbynrfaKmske0lB7Ax+E5CydtjYzfhnel42r/kX45pmcn6AU+wVtXZD8bAJUsUhHyt340rzjMBzhxNSo+CV0rQpip2Gf/1sU18e0kQ9YOncG7GzxR959n47q0SqZ0+lto5MDJkHvphJTvjRxJU40wFRgpJotNkA4qHZowBo9cWWM8Y6QmA1/y8y/sEJOL9fj1M5Av1
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966006)(36840700001)(36860700001)(4326008)(70586007)(70206006)(53546011)(2616005)(2906002)(86362001)(478600001)(5660300002)(6916009)(6666004)(316002)(8676002)(26005)(186003)(8936002)(16526019)(36756003)(82310400003)(34020700004)(16576012)(356005)(31696002)(36906005)(7636003)(47076005)(82740400003)(83380400001)(426003)(54906003)(336012)(31686004)(21314003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 14:50:35.1951
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5372d8f-6484-4c31-e810-08d8e3d3dcb0
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2768
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/10/2021 4:00 AM, Michael Walle wrote:
-> Am 2021-03-09 17:27, schrieb Sameer Pujar:
->> On 3/9/2021 8:11 PM, Michael Walle wrote:
->>>> If "clocks = <&xxx>" is specified from the CPU or Codec component
->>>> device node, the clock is not getting enabled. Thus audio playback
->>>> or capture fails.
->>>>
->>>> Fix this by populating "simple_dai->clk" field when clocks property
->>>> is specified from device node as well. Also tidy up by re-organising
->>>> conditional statements of parsing logic.
->>>>
->>>> Fixes: bb6fc620c2ed ("ASoC: simple-card-utils: add
->>>> asoc_simple_card_parse_clk()")
->>>> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->>>
->>> This actually breaks sound on my board
->>> (arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts).
->>> The codec on this board (wm8904) has a fixed clock input (only
->>> distinct
->>> frequencies are supported) and uses the FLL of the codec to generate
->>> the
->>> desired sample rate.
->>>
->>> It seems that after this patch the clock rate of the codecs clock
->>> (rather
->>> than the FLL) is tried to be changed. Which fails, because it doesn't
->>> support arbitrary frequencies.
+On 10/03/2021 15:45, Tom Rix wrote:
+> 
+> On 3/10/21 1:45 AM, Lee Jones wrote:
+>> On Wed, 10 Mar 2021, Krzysztof Kozlowski wrote:
 >>
->> Yes, after the given change the clock will be updated if "*mclk-fs"
->> property is specified.
+>>> Prepare for merging Stratix 10, Agilex and N5X into one arm64
+>>> architecture by first renaming the ARCH_STRATIX10 into ARCH_SOCFPGA64.
+>>>
+>>> The existing ARCH_SOCFPGA (in ARMv7) Kconfig symbol cannot be used
+>>> because altera_edac driver builds differently between them (with
+>>> ifdefs).
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>> ---
+>>>  arch/arm64/Kconfig.platforms                |  7 ++++---
+>>>  arch/arm64/boot/dts/altera/Makefile         |  2 +-
+>>>  arch/arm64/configs/defconfig                |  2 +-
+>>>  drivers/clk/Makefile                        |  2 +-
+>>>  drivers/clk/socfpga/Kconfig                 |  4 ++--
+>>>  drivers/edac/Kconfig                        |  2 +-
+>>>  drivers/edac/altera_edac.c                  | 10 +++++-----
+>>>  drivers/firmware/Kconfig                    |  2 +-
+>>>  drivers/fpga/Kconfig                        |  2 +-
+>>>  drivers/mfd/Kconfig                         |  2 +-
+>> If it's okay with everyone else, it'll be okay with me:
 >>
->> DT you mentioned has property "simple-audio-card,mclk-fs = <256>",
->> which means you need a clock that is a function of sample rate. But as
->> per above you want a fixed clock for MCLK. I think if you drop this
->> property, the clock updates won't happen. Earlier for your case, this
->> property was not used at all because the clock handle was not
->> populated.
->
-> You mean to drop the mclk-fs property? I can't do that because I
-> actually need a frequency of 256 * sample rate. But that doesn't
-> necessarily need to be the MCLK, because the codec itself has a
-> FLL/PLL which can be used to generate any frequency for a given
-> MCLK. So that is a valid scenario. See also commit 13409d27cb39
-> ("ASoC: wm8904: configure sysclk/FLL automatically").
->
+>> Acked-by: Lee Jones <lee.jones@linaro.org>
+> 
+> I think the name is too broad, from the description in the config
+> 
+> +	bool "Intel's SoCFPGA ARMv8 Families"
+> 
+> A better name would be ARCH_INTEL_SOCFPGA64
+> 
+> So other vendors like Xilinx could do their own thing.
 
-If I read this correctly below is the configuration you need,
-SoC -> MCLK(fixed rate) -> PLL(wm8904) -> PLL output (256 * fs) -> sysclk
+Many other architectures do not have vendor prefix (TEGRA, EXYNOS,
+ZYNQMP etc). I would call it the same as in ARMv7 - ARCH_SOCFPGA - but
+the Altera EDAC driver depends on these symbols to be different.
+Anyway, I don't mind using something else for the name.
 
- From the doc simple-card.txt, "simple-audio-card,mclk-fs" is a scaling 
-factor for MCLK and hence I am not sure if it is correct to have 
-"*mclk-fs" property when MCLK is fixed. In simple cases, codec sysclk 
-direclty depends on MCLK and set_sysclk() callback helps. Your case 
-requires PLL configuration and set_pll() may be a better alternative. 
-However simple-card does not offer this yet. But even if this is added, 
-there should be a way to suggest PLL output requirement as a function of 
-sample rate.
-
-
+Best regards,
+Krzysztof
