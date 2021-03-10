@@ -2,80 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F3353333C9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:22:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322603333EE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbhCJDVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 22:21:46 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:53287 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231335AbhCJDVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:21:22 -0500
-X-UUID: eab3b4bbb0a846868e39fa1681109134-20210310
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Qm4ADIUSz0BkSqAidhclsvS24ql8ww8Akt6F39qDx7Y=;
-        b=dQNMnUK5Rgi5d0+JFSbgWfXkESLIQPVG+2CPB8ps5/Mt+5PfBP8hoYACMS0kprBTw6yk0UbhGPfd9oa20HnF5deEXi1hQws3rO53Deu8WSu0Q8ofKzsu1K4CXBZcdGagvcUynYa7LtiQUQypmNOLZghTDOx3c00cIJeN6TyqRzU=;
-X-UUID: eab3b4bbb0a846868e39fa1681109134-20210310
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 711981258; Wed, 10 Mar 2021 11:21:19 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32N1.mediatek.inc
- (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Mar
- 2021 11:21:15 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 10 Mar 2021 11:21:11 +0800
-Message-ID: <1615346469.26498.1.camel@mhfsdcap03>
-Subject: Re: [PATCH v4 01/12] dt-bindings: usb: fix yamllint check warning
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+        id S232111AbhCJDpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 22:45:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232191AbhCJDpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:45:21 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A231DC061760
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 19:45:20 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id j6so7796266plx.6
+        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 19:45:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=DhWQQNXXhBl9V6m34E/2PgUYDDDOUR9yglVAy9KAsHY=;
+        b=wZtFlrFINw2Eair2VU4xp47Y+Zi2XmPCnVs7/PeQQ+qZL4KJz7TIbM4fSs7rkGdkWR
+         Tl0SPi8DxbMK8n35d2WfRZLLZq4vPNMNMHbSFMmDEzlJFbNrHYjyFJSXibqvB6mvIPuD
+         rujaYePPrZWDrQl7ZM7yyKgguW+gm+ZdWMmhJdy5CCVN12yHflTVRMooqqaZjBXgX9Kt
+         cAmLiJrc1A1N7FR0ipezYhyPkO0X/Y7qlZyQlyR8kFhaSqV47S6YisodCt2dGdZPBJfi
+         7LkD7ptdMN+fdaTf4amIBaL5YBjSVwYLMZjIj0Yz5VYlgXYqGz9aqnewwYhzjiUJKmF8
+         xJZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DhWQQNXXhBl9V6m34E/2PgUYDDDOUR9yglVAy9KAsHY=;
+        b=DLzCVH3WQAtt79yvKk+TORWuh+q5NoaF2yD82NirXPfj4v2XiKhOX0MkphQRR0b/TH
+         R4ad7zEhK4mixNqJNHCItMbz6qF/5qIm+JGjeRsoNRJjlE3yYC7Jm3Ke5zqoeYcTZEev
+         mVeTHdTdKIWhnD43TFW63lNDljoyTY8Gm8QjDeDNPWRZW/agyKacOaSikun6688KDyGx
+         T+Km52TPIjAHyfEs6Mdk4/BliiIiZLZVQ0w0d5D6XBBcoY367+kpS32I+xPNdjmlgzTQ
+         TD62sFv1KTojWZnn3QFGl5JORn/sFh6WHTSt5kGOfLSkRDQId1/a2PVMJJzYf1r58Mas
+         nbJQ==
+X-Gm-Message-State: AOAM532GfWhH7dfdWMINzmonSGQWUolXJCPk50NKF4QJ5SDu+8HaSI8d
+        xcXPnDx5lvbBUpYrSVqtEb53
+X-Google-Smtp-Source: ABdhPJww3LXcQIsgNxaSJHDT5/xWPeMIY19nocTKUL5cDKhnuEj6JBzU0U6CZYxIYaCnJ0FAoncP0w==
+X-Received: by 2002:a17:902:d114:b029:e4:87c7:39f5 with SMTP id w20-20020a170902d114b02900e487c739f5mr988931plw.72.1615347919127;
+        Tue, 09 Mar 2021 19:45:19 -0800 (PST)
+Received: from work ([103.66.79.59])
+        by smtp.gmail.com with ESMTPSA id l2sm2149788pji.45.2021.03.09.19.45.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 09 Mar 2021 19:45:18 -0800 (PST)
+Date:   Wed, 10 Mar 2021 09:15:14 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Rob Herring <robh@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-Date:   Wed, 10 Mar 2021 11:21:09 +0800
-In-Reply-To: <20210310022811.GA1612587@robh.at.kernel.org>
-References: <20210308053745.25697-1-chunfeng.yun@mediatek.com>
-         <20210310022811.GA1612587@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+Cc:     =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh R <vigneshr@ti.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
+ regions in Qcom NANDc
+Message-ID: <20210310034514.GA11114@work>
+References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
+ <20210222120259.94465-3-manivannan.sadhasivam@linaro.org>
+ <20210305233657.GA839767@robh.at.kernel.org>
+ <20210308053140.GA5457@thinkpad>
+ <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 03113CCC20566CE8672CF41E43EC90724E1ED108A9BDF8A6453CB766C18F9BDB2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTAzLTA5IGF0IDE5OjI4IC0wNzAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gTW9uLCBNYXIgMDgsIDIwMjEgYXQgMDE6Mzc6MzRQTSArMDgwMCwgQ2h1bmZlbmcgWXVuIHdy
-b3RlOg0KPiA+IEZpeCB3YXJuaW5nOiAibWlzc2luZyBzdGFydGluZyBzcGFjZSBpbiBjb21tZW50
-Ig0KPiANCj4gV2hhdCB0cmVlIGlzIHRoaXMgaW4gYmVjYXVzZSBJIGRvbid0IHNlZSBpdC4NClRo
-ZSBwYXRjaCBpcyBiYXNlZCBrZXJuZWwgNS4xMi1yYzEsIGFsc28gaGFwcGVucyBvbg0KZ2l0Oi8v
-Z2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2dyZWdraC91c2IuZ2l0IHVz
-Yi1uZXh0DQoNCg0KPiANCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNo
-dW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gdjJ+djQ6IG5vIGNoYW5nZXMN
-Cj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2It
-ZGV2aWNlLnlhbWwgfCA2ICsrKy0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25z
-KCspLCAzIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi1kZXZpY2UueWFtbCBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLWRldmljZS55YW1sDQo+ID4gaW5kZXggZDRjOTk4
-MDllZTlhLi5iNzc5NjBhN2EzN2IgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItZGV2aWNlLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi1kZXZpY2UueWFtbA0KPiA+IEBAIC04Miw5
-ICs4Miw5IEBAIHJlcXVpcmVkOg0KPiA+ICBhZGRpdGlvbmFsUHJvcGVydGllczogdHJ1ZQ0KPiA+
-ICANCj4gPiAgZXhhbXBsZXM6DQo+ID4gLSAgI2h1YiBjb25uZWN0ZWQgdG8gcG9ydCAxDQo+ID4g
-LSAgI2RldmljZSBjb25uZWN0ZWQgdG8gcG9ydCAyDQo+ID4gLSAgI2RldmljZSBjb25uZWN0ZWQg
-dG8gcG9ydCAzDQo+ID4gKyAgIyBodWIgY29ubmVjdGVkIHRvIHBvcnQgMQ0KPiA+ICsgICMgZGV2
-aWNlIGNvbm5lY3RlZCB0byBwb3J0IDINCj4gPiArICAjIGRldmljZSBjb25uZWN0ZWQgdG8gcG9y
-dCAzDQo+ID4gICAgIyAgICBpbnRlcmZhY2UgMCBvZiBjb25maWd1cmF0aW9uIDENCj4gPiAgICAj
-ICAgIGludGVyZmFjZSAwIG9mIGNvbmZpZ3VyYXRpb24gMg0KPiA+ICAgIC0gfA0KPiA+IC0tIA0K
-PiA+IDIuMTguMA0KDQo=
+On Tue, Mar 09, 2021 at 07:32:28PM -0700, Rob Herring wrote:
+> On Sun, Mar 7, 2021 at 10:31 PM Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
+> >
+> > On Fri, Mar 05, 2021 at 05:36:57PM -0600, Rob Herring wrote:
+> > > On Mon, Feb 22, 2021 at 05:32:58PM +0530, Manivannan Sadhasivam wrote:
+> > > > On a typical end product, a vendor may choose to secure some regions in
+> > > > the NAND memory which are supposed to stay intact between FW upgrades.
+> > > > The access to those regions will be blocked by a secure element like
+> > > > Trustzone. So the normal world software like Linux kernel should not
+> > > > touch these regions (including reading).
+> > > >
+> > > > So let's add a property for declaring such secure regions so that the
+> > > > driver can skip touching them.
+> > > >
+> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
+> > > >  1 file changed, 7 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > > index 84ad7ff30121..7500e20da9c1 100644
+> > > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > > @@ -48,6 +48,13 @@ patternProperties:
+> > > >          enum:
+> > > >            - 512
+> > > >
+> > > > +      qcom,secure-regions:
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > >
+> > > Don't you need 64-bit regions potentially? Though 4GB should be enough
+> > > for anyone.
+> > >
+> >
+> > Yes, given the size of current NAND based systems around, I thought 32 bit is
+> > enough.
+> 
+> Huh!? I was joking. 4GB is small nowadays. Make this 64-bit.
+> 
 
+Well I was speaking in the context of Qcom chipsets making use of NAND. Mostly
+the Qcom modem chipsets have <4GB of memory. But since this property is now not
+specific to Qcom, I agree with you and will make it 64 bit.
+
+Thanks,
+Mani
+
+> Rob
