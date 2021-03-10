@@ -2,96 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E9A333325
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEFDA33332C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:34:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232068AbhCJCdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 21:33:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231235AbhCJCcm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Mar 2021 21:32:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7BFF364F84;
-        Wed, 10 Mar 2021 02:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615343561;
-        bh=69DUFNK2JB2JKzdkRdZ/XlWLEjG3ef1b4VxLgCOxoqw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=f8gpp9VdmwuPyoTT2fK7F+6mxLEzG+ejIftSJP3u2iiOdZhqnv8BsLbw6mvVTySiQ
-         v82H9IFxBO06JOWtZwGPAQhXGmOFVszRwG8/3uCMNhie0bfuRfrjhuYGpXpQRJ5hR+
-         Ay0ZeVv0/neMnICME4IC0vcWL9w9fdaGw8PGYCEupzWSepPFUjQ1do6ySHq/0S10Bh
-         4h2L6PpngO7nw98bmzThF3id5nwvfyCKNT81qEwhOfqUI3bU3X/5g3bN2x7C5jnTLR
-         EL+eljAwZ0NqjJcBWJu0z/YNVej/jEgpVR1XtlTX9+H5AC+jkSFCthAHtKhXqsnAQO
-         EhMwHzTEgpUxA==
-Received: by mail-ed1-f48.google.com with SMTP id m9so24949298edd.5;
-        Tue, 09 Mar 2021 18:32:41 -0800 (PST)
-X-Gm-Message-State: AOAM530VXa8s3FdBzPDQNHk1yc/9DLWibKa+T9jdPtQ1WJaLZ8iykRUF
-        CAzqztTov9qTwRSgn5msC0GlIPlZeXAQPFSA9Q==
-X-Google-Smtp-Source: ABdhPJwHjeFbPXpi7Hx1kJl/4EAmKe+MyBlw8ijIqRC+kYtRQvVW/TFyZN4qAshKdQQHueTyJWZ6Stlr1V0uk9El3Ag=
-X-Received: by 2002:a05:6402:c88:: with SMTP id cm8mr699106edb.62.1615343560077;
- Tue, 09 Mar 2021 18:32:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
- <20210222120259.94465-3-manivannan.sadhasivam@linaro.org> <20210305233657.GA839767@robh.at.kernel.org>
- <20210308053140.GA5457@thinkpad>
-In-Reply-To: <20210308053140.GA5457@thinkpad>
+        id S232046AbhCJCeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 21:34:12 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:32799 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231228AbhCJCeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 21:34:06 -0500
+Received: by mail-io1-f52.google.com with SMTP id n132so16315789iod.0;
+        Tue, 09 Mar 2021 18:34:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jVJuHwNtFnhiIpdvi4iXC7hbsxDw7lapoWRXaBtbaCY=;
+        b=WBo9aLGdQo6Wv9ir34Vyd3IeO76B8ZBAx2IR85L65/LPciYZmUaBx4g3dyXCD3kDnN
+         RsKmfMP703Nv5Zl+UXcr3LeJYJVdDLalk44cI/+DGUBFwVs1TDPkgJ2YFkfMKrVR/OB9
+         95uprE2OxNiopkPSSe5D9DpnGabzUEF4Um+G5es7hKWMwscRD5eZDe2Ri0IUlAN4zYGl
+         reHALZs+XgBbxnwE5E/s+AKqlxtNIHO9N//tqYvtFBT3l/eIfs5u21b/1Vc/YOV/3JOs
+         +S/UcB4VyFY2DJ29/4FUuy+ccqU2wBs+81BNG19HeW3AEzPF/63e6PfuoyIfitiu29DP
+         kSJw==
+X-Gm-Message-State: AOAM530DF1K/hRb52bVykFd6bHeyEQHYm2cPrYWIhFG83Idkrt+DSVZF
+        7qWIlPtGfVezWqtCZcWH7Q==
+X-Google-Smtp-Source: ABdhPJzn5+OnaQcbq9py83N+I+20k5N0ExASimPvcyzCWj4ldTkE5CXKuj+Y0I7vEhmibFklnXgpEQ==
+X-Received: by 2002:a6b:e20a:: with SMTP id z10mr908695ioc.99.1615343646327;
+        Tue, 09 Mar 2021 18:34:06 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id t7sm8632404ilj.62.2021.03.09.18.34.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 18:34:05 -0800 (PST)
+Received: (nullmailer pid 1622948 invoked by uid 1000);
+        Wed, 10 Mar 2021 02:34:03 -0000
+Date:   Tue, 9 Mar 2021 19:34:03 -0700
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 9 Mar 2021 19:32:28 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
-Message-ID: <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
- regions in Qcom NANDc
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh R <vigneshr@ti.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
+        Nadeem Athani <nadeem@cadence.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: ti, j721e: Add binding to
+ represent refclk to the connector
+Message-ID: <20210310023403.GA1622887@robh.at.kernel.org>
+References: <20210308063550.6227-1-kishon@ti.com>
+ <20210308063550.6227-2-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308063550.6227-2-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 7, 2021 at 10:31 PM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> On Fri, Mar 05, 2021 at 05:36:57PM -0600, Rob Herring wrote:
-> > On Mon, Feb 22, 2021 at 05:32:58PM +0530, Manivannan Sadhasivam wrote:
-> > > On a typical end product, a vendor may choose to secure some regions in
-> > > the NAND memory which are supposed to stay intact between FW upgrades.
-> > > The access to those regions will be blocked by a secure element like
-> > > Trustzone. So the normal world software like Linux kernel should not
-> > > touch these regions (including reading).
-> > >
-> > > So let's add a property for declaring such secure regions so that the
-> > > driver can skip touching them.
-> > >
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > index 84ad7ff30121..7500e20da9c1 100644
-> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > @@ -48,6 +48,13 @@ patternProperties:
-> > >          enum:
-> > >            - 512
-> > >
-> > > +      qcom,secure-regions:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> >
-> > Don't you need 64-bit regions potentially? Though 4GB should be enough
-> > for anyone.
-> >
->
-> Yes, given the size of current NAND based systems around, I thought 32 bit is
-> enough.
+On Mon, 08 Mar 2021 12:05:47 +0530, Kishon Vijay Abraham I wrote:
+> Add binding to represent refclk to the PCIe connector.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml       | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
 
-Huh!? I was joking. 4GB is small nowadays. Make this 64-bit.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
