@@ -2,271 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C231B3339E8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 11:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D9CB333A37
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 11:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbhCJKZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 05:25:02 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52310 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232049AbhCJKYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 05:24:45 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AAOVmB127513;
-        Wed, 10 Mar 2021 04:24:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615371871;
-        bh=i09rXQy/RppMIEWjXFpnoKgIX92U98VUciWg+IgQCcY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Dow2EYJaRA2Rl8750jd7BObGVy3xIjKkJ6szsmnmPRlHSXguG6kjUkduGa+Vks4jm
-         Mw66qzJjIs/L76LJhnZhKsaZPy4397ICBMeyf2ZUKpHAteyKVqOQIZkYtxRFT/O+WJ
-         582jgrIkOJtV2Oi3Y3a5fW51Udfd8L7gehMDANG4=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AAOV07013901
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 04:24:31 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 04:24:30 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 04:24:30 -0600
-Received: from [10.250.234.4] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AAOR52115402;
-        Wed, 10 Mar 2021 04:24:28 -0600
-Subject: Re: [PATCH v2 9/9] phy: cadence-torrent: Add support to drive refclk
- out
-To:     Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-References: <20210222112314.10772-1-kishon@ti.com>
- <20210222112314.10772-10-kishon@ti.com>
- <MN2PR07MB616036AE3164A0BB929BE0D8C5929@MN2PR07MB6160.namprd07.prod.outlook.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <a04dcf6a-1152-8ef4-7ea4-00e67172c4b2@ti.com>
-Date:   Wed, 10 Mar 2021 15:54:27 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229706AbhCJKlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 05:41:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231492AbhCJKlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 05:41:03 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C66C061760
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 02:41:03 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id v15so22756147wrx.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 02:41:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=WkEYLNZKWBGlnhJh5/km8rZ3DoQwSCNLt1pwHkgN/WY=;
+        b=mHQYTozuc0TTEvwola4UDXnujaWX5hjYQa9oyx2Km6taceH5yU6itTe3PHtZRoodFk
+         PcpDyrzEdhly/3+4FAgeUEG40pSos2nmuPn1KTn0DaKzmxXkOLlhaSMgX3xY0TP5yGho
+         XUAGxYyDak/7+4NtvRj+ZYLT5U1J2/9BlGZ3cDktu+mUvRsohm8uzz6kt2LvcNFTcmIJ
+         iLoeMXyTF9AvGdP4MtkZmWxddvxG8KX8rGFLE97/3fMt941pJ/GCNgLhf3sq73X85KMT
+         ZvEMyGQ06vuK16Gnxi7/pPa0ZujXMlI26tTXN4iq9PCwUotcEIAVxQcOPv9rOzFR0PW4
+         Q9ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=WkEYLNZKWBGlnhJh5/km8rZ3DoQwSCNLt1pwHkgN/WY=;
+        b=IyGzRwYXaPIWR9e/As5UB70EEhr+hPtwx4SzZJJRnDgIpFazH1RcjV6GQJ951u4O7p
+         jqHjuwMJPxXHO0DIUiqdBiZ9RTkpS5leBJVPVTYsno8btUHPvmyoq9HhvHp4mm9/mS/z
+         0uzrWVLoyO8kpTqNRH+FllBW6rjO8REt2/Wz7DGHfMxsBdVJEUBHyqY4wHLHKSo/JoUT
+         X7HLTgLqtJEWKNRysr6BNiXRPRy+2rIz9l31gv9UT785lUsFiwhYccc51g4FODJwiacn
+         fgB4Ga77lrXsjqv1pEp83RpF9E6NEqQrei9doF5y3lgCPRVPC1o0HTNOrDOVicIWRgc6
+         6aDg==
+X-Gm-Message-State: AOAM532ZvPdLfHKYL4oqTaF789mhaU4j1KckWP1lG1TcsyxdpdVC1xzc
+        hkcuor1RGQ0cEnWfLlTclRt7KQ==
+X-Google-Smtp-Source: ABdhPJxwjavMwOHE+n1ODwYYFNhz44dTAKmAcPmhdGkziT2QVK5lAqeefbljMchSOuIx6t1sYrSA2w==
+X-Received: by 2002:adf:fecc:: with SMTP id q12mr2761099wrs.317.1615372862210;
+        Wed, 10 Mar 2021 02:41:02 -0800 (PST)
+Received: from dell ([91.110.221.204])
+        by smtp.gmail.com with ESMTPSA id x11sm8453405wmi.3.2021.03.10.02.41.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 02:41:01 -0800 (PST)
+Date:   Wed, 10 Mar 2021 10:40:58 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 07/15] mfd: Support for ROHM BD71815 PMIC core
+Message-ID: <20210310104058.GH701493@dell>
+References: <cover.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
+ <aaec00c776c83d301cfe66685ca9c8e01cccc9d8.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <MN2PR07MB616036AE3164A0BB929BE0D8C5929@MN2PR07MB6160.namprd07.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aaec00c776c83d301cfe66685ca9c8e01cccc9d8.1615198094.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Swapnil,
+On Mon, 08 Mar 2021, Matti Vaittinen wrote:
 
-On 09/03/21 7:51 pm, Swapnil Kashinath Jakhade wrote:
-> Hi Kishon,
+> Add core support for ROHM BD71815 Power Management IC.
 > 
->> -----Original Message-----
->> From: Kishon Vijay Abraham I <kishon@ti.com>
->> Sent: Monday, February 22, 2021 4:53 PM
->> To: Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul
->> <vkoul@kernel.org>; Rob Herring <robh+dt@kernel.org>; Peter Rosin
->> <peda@axentia.se>; Swapnil Kashinath Jakhade <sjakhade@cadence.com>
->> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> phy@lists.infradead.org
->> Subject: [PATCH v2 9/9] phy: cadence-torrent: Add support to drive refclk out
->>
->> EXTERNAL MAIL
->>
->>
->> cmn_refclk_<p/m> lines in Torrent SERDES is used for connecting external
->> reference clock. cmn_refclk_<p/m> can also be configured to output the
->> reference clock. Model this derived reference clock as a "clock" so that
->> platforms like AM642 EVM can enable it.
->>
->> This is used by PCIe to use the same refclk both in local SERDES
->> and remote device. Add support here to drive refclk out.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  drivers/phy/cadence/phy-cadence-torrent.c | 202 +++++++++++++++++++++-
->>  1 file changed, 199 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/phy/cadence/phy-cadence-torrent.c
->> b/drivers/phy/cadence/phy-cadence-torrent.c
->> index f310e15d94cb..07eebdd90d4b 100644
->> --- a/drivers/phy/cadence/phy-cadence-torrent.c
->> +++ b/drivers/phy/cadence/phy-cadence-torrent.c
->> @@ -7,7 +7,9 @@
->>   */
->>
->>  #include <dt-bindings/phy/phy.h>
->> +#include <dt-bindings/phy/phy-cadence-torrent.h>
->>  #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>  #include <linux/delay.h>
->>  #include <linux/err.h>
->>  #include <linux/io.h>
->> @@ -76,6 +78,8 @@
->>   * register offsets from SD0801 PHY register block base (i.e MHDP
->>   * register base + 0x500000)
->>   */
->> +#define CMN_CDIAG_REFCLK_OVRD		0x004CU
->> +#define CMN_CDIAG_REFCLK_DRV0_CTRL	0x0050U
+> The IC integrates regulators, a battery charger with a coulomb counter,
+> a real-time clock (RTC), clock gate and general-purpose outputs (GPO).
 > 
-> Nitpick, this can be added sequentially.
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> ---
+> Changes since v2:
+>   - styling / clean-ups suggested by Lee
+>   - corrected clk-mode dt property values to match changed bindings
 > 
->>  #define CMN_SSM_BANDGAP_TMR		0x0021U
->>  #define CMN_SSM_BIAS_TMR		0x0022U
->>  #define CMN_PLLSM0_PLLPRE_TMR		0x002AU
->> @@ -206,6 +210,8 @@
->>  #define RX_DIAG_ACYA			0x01FFU
->>
->>  /* PHY PCS common registers */
->> +#define PHY_PIPE_CMN_CTRL1		0x0000U
->> +#define PHY_ISO_CMN_CTRL		0x0008U
->>  #define PHY_PLL_CFG			0x000EU
->>  #define PHY_PIPE_USB3_GEN2_PRE_CFG0	0x0020U
->>  #define PHY_PIPE_USB3_GEN2_POST_CFG0	0x0022U
->> @@ -216,6 +222,10 @@
->>  #define PHY_PMA_CMN_CTRL2		0x0001U
->>  #define PHY_PMA_PLL_RAW_CTRL		0x0003U
->>
->> +static const char * const clk_names[] = {
->> +	[CDNS_TORRENT_REFCLK_DRIVER] = "refclk-driver",
->> +};
->> +
->>  static const struct reg_field phy_pll_cfg =
->>  				REG_FIELD(PHY_PLL_CFG, 0, 1);
->>
->> @@ -231,6 +241,36 @@ static const struct reg_field phy_pma_pll_raw_ctrl =
->>  static const struct reg_field phy_reset_ctrl =
->>  				REG_FIELD(PHY_RESET, 8, 8);
->>
->> +#define REFCLK_OUT_NUM_CONFIGURATIONS_PCS_CONFIG	2
-> 
-> This could be reduced just to REFCLK_OUT_NUM_PCS_CONFIG, but up to you.
-> Same below.
-> 
->> +
->> +enum cdns_torrent_refclk_out_pcs {
->> +	PHY_ISO_CMN_CTRL_8,
->> +	PHY_PIPE_CMN_CTRL1_0,
->> +};
->> +
->> +#define REFCLK_OUT_NUM_CONFIGURATIONS_CMN_CONFIG	5
->> +
->> +enum cdns_torrent_refclk_out_cmn {
->> +	CMN_CDIAG_REFCLK_OVRD_4,
->> +	CMN_CDIAG_REFCLK_DRV0_CTRL_1,
->> +	CMN_CDIAG_REFCLK_DRV0_CTRL_4,
->> +	CMN_CDIAG_REFCLK_DRV0_CTRL_5,
->> +	CMN_CDIAG_REFCLK_DRV0_CTRL_6,
->> +};
->> +
->> +static const struct reg_field refclk_out_pcs_cfg[] = {
->> +	[PHY_ISO_CMN_CTRL_8]	= REG_FIELD(PHY_ISO_CMN_CTRL, 8,
->> 8),
->> +	[PHY_PIPE_CMN_CTRL1_0]	= REG_FIELD(PHY_PIPE_CMN_CTRL1,
->> 0, 0),
->> +};
->> +
->> +static const struct reg_field refclk_out_cmn_cfg[] = {
->> +	[CMN_CDIAG_REFCLK_OVRD_4]	=
->> REG_FIELD(CMN_CDIAG_REFCLK_OVRD, 4, 4),
->> +	[CMN_CDIAG_REFCLK_DRV0_CTRL_1]	=
->> REG_FIELD(CMN_CDIAG_REFCLK_DRV0_CTRL, 1, 1),
->> +	[CMN_CDIAG_REFCLK_DRV0_CTRL_4]	=
->> REG_FIELD(CMN_CDIAG_REFCLK_DRV0_CTRL, 4, 4),
->> +	[CMN_CDIAG_REFCLK_DRV0_CTRL_5]  =
->> REG_FIELD(CMN_CDIAG_REFCLK_DRV0_CTRL, 5, 5),
->> +	[CMN_CDIAG_REFCLK_DRV0_CTRL_6]	=
->> REG_FIELD(CMN_CDIAG_REFCLK_DRV0_CTRL, 6, 6),
->> +};
->> +
->>  enum cdns_torrent_phy_type {
->>  	TYPE_NONE,
->>  	TYPE_DP,
->> @@ -279,6 +319,8 @@ struct cdns_torrent_phy {
->>  	struct regmap_field *phy_pma_cmn_ctrl_2;
->>  	struct regmap_field *phy_pma_pll_raw_ctrl;
->>  	struct regmap_field *phy_reset_ctrl;
->> +	struct clk *clks[CDNS_TORRENT_REFCLK_DRIVER + 1];
->> +	struct clk_onecell_data clk_data;
->>  };
->>
->>  enum phy_powerstate {
->> @@ -288,6 +330,16 @@ enum phy_powerstate {
->>  	POWERSTATE_A3 = 3,
->>  };
->>
->> +struct cdns_torrent_derived_refclk {
->> +	struct clk_hw		hw;
->> +	struct regmap_field
->> 	*pcs_fields[REFCLK_OUT_NUM_CONFIGURATIONS_PCS_CONFIG];
->> +	struct regmap_field
->> 	*cmn_fields[REFCLK_OUT_NUM_CONFIGURATIONS_CMN_CONFIG];
->> +	struct clk_init_data	clk_data;
->> +};
->> +
->> +#define to_cdns_torrent_derived_refclk(_hw)	\
->> +			container_of(_hw, struct
->> cdns_torrent_derived_refclk, hw)
->> +
->>  static int cdns_torrent_phy_init(struct phy *phy);
->>  static int cdns_torrent_dp_init(struct phy *phy);
->>  static int cdns_torrent_dp_run(struct cdns_torrent_phy *cdns_phy,
->> @@ -1604,6 +1656,111 @@ static int cdns_torrent_dp_run(struct
->> cdns_torrent_phy *cdns_phy, u32 num_lanes)
->>  	return ret;
->>  }
->>
->> +static int cdns_torrent_derived_refclk_enable(struct clk_hw *hw)
->> +{
->> +	struct cdns_torrent_derived_refclk *derived_refclk =
->> to_cdns_torrent_derived_refclk(hw);
->> +
->> +	regmap_field_write(derived_refclk-
->>> cmn_fields[CMN_CDIAG_REFCLK_DRV0_CTRL_6], 0);
->> +	regmap_field_write(derived_refclk-
->>> cmn_fields[CMN_CDIAG_REFCLK_DRV0_CTRL_4], 1);
->> +	regmap_field_write(derived_refclk-
->>> cmn_fields[CMN_CDIAG_REFCLK_DRV0_CTRL_5], 1);
->> +	regmap_field_write(derived_refclk-
->>> cmn_fields[CMN_CDIAG_REFCLK_DRV0_CTRL_1], 0);
->> +	regmap_field_write(derived_refclk-
->>> cmn_fields[CMN_CDIAG_REFCLK_OVRD_4], 1);
->> +	regmap_field_write(derived_refclk-
->>> pcs_fields[PHY_PIPE_CMN_CTRL1_0], 1);
->> +	regmap_field_write(derived_refclk-
->>> pcs_fields[PHY_ISO_CMN_CTRL_8], 1);
->> +
->> +	return 0;
->> +}
->> +
->> +static void cdns_torrent_derived_refclk_disable(struct clk_hw *hw)
->> +{
->> +	struct cdns_torrent_derived_refclk *derived_refclk =
->> to_cdns_torrent_derived_refclk(hw);
->> +
->> +	regmap_field_write(derived_refclk-
->>> pcs_fields[PHY_ISO_CMN_CTRL_8], 0);
->> +}
->> +
-> 
-> PHY_ISO_CMN_CTRL is a PHY isolation register. Not sure, but is this correct
-> to control phy_en_refclk to enable/disable refclk output from here?
+>  drivers/mfd/Kconfig              |  15 +-
+>  drivers/mfd/rohm-bd71828.c       | 486 +++++++++++++++++++-------
+>  include/linux/mfd/rohm-bd71815.h | 563 +++++++++++++++++++++++++++++++
+>  include/linux/mfd/rohm-bd71828.h |   3 +
+>  4 files changed, 934 insertions(+), 133 deletions(-)
+>  create mode 100644 include/linux/mfd/rohm-bd71815.h
 
-hmm.. I see this is used to drive phy_en_refclk when in ISOLATION mode.
-Given that we are not selecting to operate in isolation mode, this
-shouldn't be required.
+[...]
 
-This was present in the sequence given by HW team but maybe it's enabled
-for some debugging.
+> diff --git a/include/linux/mfd/rohm-bd71815.h b/include/linux/mfd/rohm-bd71815.h
+> new file mode 100644
+> index 000000000000..9927aadac234
+> --- /dev/null
+> +++ b/include/linux/mfd/rohm-bd71815.h
+> @@ -0,0 +1,563 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + *
 
-I've also verified PCIe works without this configuration. I'll repost
-without this configuration and also check with HW team on why it was added.
+Nit: If you rework this for any reason, please remove this line.
 
-Thanks
-Kishon
+For my own reference (apply this as-is to your sign-off block):
+
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
