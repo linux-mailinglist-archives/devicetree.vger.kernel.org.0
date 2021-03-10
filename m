@@ -2,140 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A841D3333FA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C22EE333404
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbhCJDx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 22:53:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34862 "EHLO
+        id S232218AbhCJD4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 22:56:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231955AbhCJDxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:53:07 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00968C061762
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 19:53:06 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id w9so25312108edc.11
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 19:53:06 -0800 (PST)
+        with ESMTP id S232204AbhCJD4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:56:04 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E164C06174A
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 19:56:04 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id 75so11836428otn.4
+        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 19:56:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=V85TNfWqFZ1YWa4+0GmlbK4ntqljyBS3Rdg24ykQOq8=;
-        b=T8WNl3ye+lgMOr3Hf7sVPy7jQOGqPpwD9/Jt8gsoFhzRrcvWM62VXcGTl47x2GnQkF
-         CFwacwingV3+q1IbKsKuyuNfcEGRf0Ty3T14iZATP6JfeNfPlVlYa7CuuimjxHHfsSIi
-         opLIGbAKyuXFTAmfxA41bk3cXk/xy1w2rk4+3SqRFMx/Ngj003h4ewfssX3ZHmw9lnde
-         Znk/TrU4AuthDorMF34LO58IV18yCB+OuLOEd+WQgbnmZrUZp6MiyLTf8dL1D67Vl69g
-         eW24XhNgo9w39ZjUqGYpyVmfu3C1r7XCYS213qniCd7nzkoGWu9CUs1l77guT1o83qOA
-         z1NQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aj082LGyMZQ2YsFd832Lo5lJGIXrMT5Ar9DshQA3/sk=;
+        b=Dj+0sOU+MbYoauDvAP07KkIx6pmGSWkLXPRzUcrQjximqSfd+n+7zXqCY3qBtauSnd
+         dfRfqS/BIDqGiDsPCNHwhzmNG09wiMKeut2wUiW4jGy2HOlysH64wyms9tI1yiiw8LNb
+         MxG6vB4FrMe2zIjADrpqY4gRO6JjGAzyceh8j1QiTUxQ0F3bDdkYcXBbm8Qq2tiqohqY
+         wjdbVs6JSIM57TJM5f4nBAvVQxjGtBsijshFpWxMdX9I3dh6w2OKbdMSMI84Pyj6Aq4D
+         7k9mgd9qCw1OGjGs0Z6k8gdycBnYf9Ra1EjFeaD42fmCkgvmTTtrOyZjdFZGbjn7Owf6
+         V3iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V85TNfWqFZ1YWa4+0GmlbK4ntqljyBS3Rdg24ykQOq8=;
-        b=pXXpH0LyMuIOXmk0dcgwOLkGjT35cPkY2enEiLqPm9Sc2zVEOWxkkRmVQ+f2dEuqCr
-         545ccn6QKYCFB2dgn2hpf4EZeytDgTvOiMhBYvGYLfLmn8xWuRatrKdyiac7eqjwRMfx
-         gO4QDW3MaGIPwObGtNR8dxqonEfGdntOeZLWdTSyOVr8IZBiqjPiyuA155ffxRfIucJC
-         9MTP8OY1cqz0cp0pth5aj5/aBPVAFZwSwDdKpivRfssP5gnfT92D28wz6Vf7m56Nm0k4
-         wZPQ3Su6QrGpLGSqM8lQrDXThBVLb9+1cqU1EFHBxpYLBtmpriCLypbA1X9uahCKaErq
-         4qGQ==
-X-Gm-Message-State: AOAM531pBnGdEvLf2oWF2PHfeCFIdq+rm16VwsFw1EO9A7twmoMqTOQW
-        jHpkPOmKHXBr9HWpioSZjL1evy7j8VsPy73Hi5E6UQ==
-X-Google-Smtp-Source: ABdhPJzB8cRnMmkiPZTcmJvX4c2OtzugP+mbvj2rl8DsysINHwrol+RNZBcMO6TXO06YDz3jiaOXzCAzsTSfru8WhXM=
-X-Received: by 2002:aa7:c496:: with SMTP id m22mr935303edq.292.1615348385484;
- Tue, 09 Mar 2021 19:53:05 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aj082LGyMZQ2YsFd832Lo5lJGIXrMT5Ar9DshQA3/sk=;
+        b=SVodF1WRzjkMufPJEU6MITUbOLAR4NAJz2ElF9cU0ocwe33w8DHFcmCb9gD5itCd8D
+         ibtbg4KfGRIz47P9VJ4E9Cdb6PZ8Ju4xbD7GoV+8oKdPdljnLOTfd78UZQRu7zzPByf3
+         dTXNREAuoMbmfXmN3rrVl5dNaWMSZXqm8/gH+9tO42Y5JQG9ttGT81veRWi0qvY7vAnk
+         Dg7tlz8gMSnW3rlnC5Xj3g+sEp5a4FECdMMt0FBwMeaVZrSShWpG7QhVfKi1gZNOmMQ0
+         C43m1J1tevW7ZFx42KEDIeULSX9ENtSOolBab3OHmPdaUjKVPxJM5/RNjs+2vXLsV2y8
+         4J3w==
+X-Gm-Message-State: AOAM531swzyWoeeXSrQdAqTy9Dsn5jO6i2y6IIMIHF1mxqA4gM4J/IQg
+        h/0x5Z5ewrXu3rl0yLrZWZ5ANw==
+X-Google-Smtp-Source: ABdhPJzQxsC9ytUE5OK5+wQiR0umi1d24NiVdAVQ72mHUzWKWceak8ugpN5CWA2DMB51CZ9qs5grJQ==
+X-Received: by 2002:a9d:404b:: with SMTP id o11mr1114244oti.342.1615348563866;
+        Tue, 09 Mar 2021 19:56:03 -0800 (PST)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t22sm2658012otl.49.2021.03.09.19.56.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 19:56:03 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH] dt-bindings: arm: qcom: Add SM8350 HDK
+Date:   Tue,  9 Mar 2021 19:57:10 -0800
+Message-Id: <20210310035710.2816699-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-4-brad@pensando.io>
- <CACRpkdbqkmUXTPyX8OFxBRJahEL-vdxR0wP=rMAWud34bq7tcQ@mail.gmail.com>
-In-Reply-To: <CACRpkdbqkmUXTPyX8OFxBRJahEL-vdxR0wP=rMAWud34bq7tcQ@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Tue, 9 Mar 2021 19:52:54 -0800
-Message-ID: <CAK9rFnyqkPSvSAJP12ORkSC4J0OGuYeQPNFSgbokor9HpbUh+A@mail.gmail.com>
-Subject: Re: [PATCH 3/8] spi: dw: Add support for Pensando Elba SoC SPI
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 12:48 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+Document the SM8350 Hardware Development Kit (HDK).
 
-> On Thu, Mar 4, 2021 at 4:42 AM Brad Larson <brad@pensando.io> wrote:
->
-> > The Pensando Elba SoC uses a GPIO based chip select
-> > for two DW SPI busses with each bus having two
-> > chip selects.
-> >
-> > Signed-off-by: Brad Larson <brad@pensando.io>
->
-> I agree with Serge's comments here: the existing cs callback should
-> work for your SoC, you should only need the new compatible string.
->
-> I see why you need the special GPIO driver for this now, as that
-> is obviously driven by totally different hardware.
->
-> Yours,
-> Linus Walleij
+Reported-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks Serge and Linus for the review.
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 174134f920e1..9d8acf6f6152 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -187,6 +187,7 @@ properties:
+ 
+       - items:
+           - enum:
++              - qcom,sm8350-hdk
+               - qcom,sm8350-mtp
+           - const: qcom,sm8350
+ 
+-- 
+2.29.2
 
-In the SPI driver, the reason we need our own set_cs function is that
-our DW SPI controller only supports intrinsic 2 chip-select pins.
-
-This is the standard DW set_cs function:
-
-void dw_spi_set_cs(struct spi_device *spi, bool enable)
-{
-        struct dw_spi *dws = spi_controller_get_devdata(spi->controller);
-        bool cs_high = !!(spi->mode & SPI_CS_HIGH);
-
-        /*
-         * DW SPI controller demands any native CS being set in order to
-         * proceed with data transfer. So in order to activate the SPI
-         * communications we must set a corresponding bit in the Slave
-         * Enable register no matter whether the SPI core is configured to
-         * support active-high or active-low CS level.
-         */
-        if (cs_high == enable)
-                dw_writel(dws, DW_SPI_SER, BIT(spi->chip_select));
-        else
-                dw_writel(dws, DW_SPI_SER, 0);
-}
-
-The dw_writel function argument DW_SPI_SER, BIT(spi->chip_select)
-works for chip-select 0 & 1, but not for 2 & 3, as the IP only
-implements bits [1:0] in the DW_SPI_SER register.  In the Elba SoC we
-require GPIO-style chip-selects, our own set_cs function, and we
-always use bit 0 of DW_SPI_SER to start the serial machine, not as a
-chip-select control.  In the dw_spi_set_cs() function the below else
-clause is never taken and leads to confusion.
-
-             } else {
-                        /*
-                         * Using the intrinsic DW chip-select; set the
-                         * appropriate CS.
-                         */
-                        dw_writel(dws, DW_SPI_SER, BIT(spi->chip_select));
-                }
-
-This else clause will be removed in patch set V2.  I tried the generic
-dw_spi_set_cs() thinking it would just start the serial machine while
-the Elba spics drives the gpio chip select, that didn't work.  I will
-take another look at it as I work on V2 of the patchset to see exactly
-what breaks during spi init.
-
-Best,
-Brad
