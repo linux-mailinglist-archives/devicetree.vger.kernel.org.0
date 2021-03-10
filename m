@@ -2,99 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAF843335E8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 07:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5638A33360C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 07:55:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231717AbhCJGhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 01:37:12 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:33496 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232176AbhCJGhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 01:37:05 -0500
-X-UUID: abd6666e211341a59c39f9a847107feb-20210310
-X-UUID: abd6666e211341a59c39f9a847107feb-20210310
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1135323291; Wed, 10 Mar 2021 14:37:02 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 10 Mar 2021 14:37:01 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 10 Mar 2021 14:37:01 +0800
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wendell Lin <Wendell.Lin@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Mars Cheng <mars.cheng@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Macpaul Lin <Macpaul.Lin@mediatek.com>,
-        Owen Chen <owen.chen@mediatek.com>,
-        Evan Green <evgreen@chromium.org>, <Yong.Wu@mediatek.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Ryder Lee <Ryder.Lee@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC:     Ainge Hsu <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-Subject: [PATCH v10 4/4] arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
-Date:   Wed, 10 Mar 2021 14:36:58 +0800
-Message-ID: <1615358218-6540-5-git-send-email-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1615358218-6540-1-git-send-email-macpaul.lin@mediatek.com>
-References: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
- <1615358218-6540-1-git-send-email-macpaul.lin@mediatek.com>
+        id S231539AbhCJGyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 01:54:35 -0500
+Received: from regular1.263xmail.com ([211.150.70.206]:50360 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229920AbhCJGyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 01:54:03 -0500
+X-Greylist: delayed 532 seconds by postgrey-1.27 at vger.kernel.org; Wed, 10 Mar 2021 01:54:02 EST
+Received: from localhost (unknown [192.168.167.13])
+        by regular1.263xmail.com (Postfix) with ESMTP id AE8001B0A;
+        Wed, 10 Mar 2021 14:44:27 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.64] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13096T140547786254080S1615358667251887_;
+        Wed, 10 Mar 2021 14:44:27 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <922dcb4a27086f313d7c2f0d168d7104>
+X-RL-SENDER: shawn.lin@rock-chips.com
+X-SENDER: lintao@rock-chips.com
+X-LOGIN-NAME: shawn.lin@rock-chips.com
+X-FST-TO: linux-rockchip@lists.infradead.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Message-ID: <fab85a6a-5db3-a5c1-f6e1-16f55641ecb5@rock-chips.com>
+Date:   Wed, 10 Mar 2021 14:44:26 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101
+ Thunderbird/86.0
+Cc:     shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v3_2/3=5d_dt-bindings=3a_mmc=3a_sdhci-of-d?=
+ =?UTF-8?B?d2NtaHNjOiBBZGQgcm9ja2NoaXAgc3VwcG9ydOOAkOivt+azqOaEj++8jOmCrg==?=
+ =?UTF-8?B?5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R44CR?=
+To:     Rob Herring <robh@kernel.org>
+References: <1615254990-192784-1-git-send-email-shawn.lin@rock-chips.com>
+ <1615254990-192784-2-git-send-email-shawn.lin@rock-chips.com>
+ <20210310030122.GA1664258@robh.at.kernel.org>
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20210310030122.GA1664258@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Owen Chen <owen.chen@mediatek.com>
+Hi Rob
 
-Enable MT6765 clock configs, include topckgen, apmixedsys,
-infracfg, and subsystem clocks.
+On 2021/3/10 11:01, Rob Herring wrote:
+> On Tue, Mar 09, 2021 at 09:56:29AM +0800, Shawn Lin wrote:
+>> This patch adds rockchip support in sdhci-of-dwcmhsc.yaml
+>>
+>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-Signed-off-by: Owen Chen <owen.chen@mediatek.com>
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/configs/defconfig | 6 ++++++
- 1 file changed, 6 insertions(+)
+.....
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d612f633b771..553137e81b8e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -622,6 +622,12 @@ CONFIG_REGULATOR_RK808=y
- CONFIG_REGULATOR_S2MPS11=y
- CONFIG_REGULATOR_TPS65132=m
- CONFIG_REGULATOR_VCTRL=m
-+CONFIG_COMMON_CLK_MT6765_AUDIOSYS=y
-+CONFIG_COMMON_CLK_MT6765_CAMSYS=y
-+CONFIG_COMMON_CLK_MT6765_MMSYS=y
-+CONFIG_COMMON_CLK_MT6765_IMGSYS=y
-+CONFIG_COMMON_CLK_MT6765_VCODECSYS=y
-+CONFIG_COMMON_CLK_MT6765_MIPI0ASYS=y
- CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
- CONFIG_RC_DEVICES=y
--- 
-2.18.0
+>> +
+>> +  rockchip,txclk-tapnum:
+>> +    description: Specify the number of delay for tx sampling.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Constraints for this? 0 - 2^32 is okay?
+
+Oh, actually this is a 4-bit value, and the reg map looks like:
+
+7:5 RO reserved
+--------------------
+4:0 RW tapnum
+
+So I think it should constraints for u8?
+
+
+> 
+>> +
+>>   
+>>   required:
+>>     - compatible
+>> @@ -49,6 +62,17 @@ unevaluatedProperties: false
+>>   
+>>   examples:
+>>     - |
+>> +    mmc@fe310000 {
+>> +      compatible = "rockchip,dwcmshc-sdhci";
+>> +      reg = <0xfe310000 0x10000>;
+>> +      interrupts = <0 25 0x4>;
+>> +      clocks = <&cru 17>, <&cru 18>, <&cru 19>, <&cru 20>, <&cru 21>;
+>> +      clock-names = "core", "bus", "axi", "block", "timer";
+>> +      bus-width = <8>;
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +    };
+>> +  - |
+>>       mmc@aa0000 {
+>>         compatible = "snps,dwcmshc-sdhci";
+>>         reg = <0xaa000 0x1000>;
+>> -- 
+>> 2.7.4
+>>
+>>
+>>
+> 
+> 
+> 
+
 
