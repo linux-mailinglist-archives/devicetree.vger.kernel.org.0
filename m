@@ -2,171 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 397AB3343AA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 104903343B6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232489AbhCJQuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 11:50:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230488AbhCJQuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:50:00 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A01C6C061760
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 08:49:52 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id d16so10493918oic.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 08:49:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Z/DYckm5AO4Of80/fuBtgsikptSb+jDkP3yKf0ms0iQ=;
-        b=DaWTxt5/3qdNzADPXYLnqtnX2amtuyxvMDgnMiVGFcyPjEKNJfbD4N+8e8hpVLjwJM
-         UGv9riw8E9WNz9pQWbFz5dl0cF8dSaWn16k93wUpigsQrGAqaMNTi4JfK7OJ6Bv2xhTN
-         Odh458hzvhoxZgMcCUmu/HtZBrq7XpsVzPSPdazHMZ+rLVQeuIqFN8pyWg+opd1EnQTD
-         VbqBjeMl0QM7ovU73hsa9gp3VW0r3ehqkT1fgh7ecjd3EUpd7KT5DJ4M4tplrnTQcD5q
-         8ZqX0+5J67MhSGX5opmnXMsx8dssiPCkcJYSCCLhE+BmePPyIf1xgf5gVsvYgMn1KB2L
-         NVrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Z/DYckm5AO4Of80/fuBtgsikptSb+jDkP3yKf0ms0iQ=;
-        b=cnoGmFF5KOZKccW6AchA66+3emLhqHaLKxlivLKMF+DB4MHra9hSUgcG9vaeNOaniC
-         oqE/5CouC6bGkzs6q/DzAUE594kGcsoj7MKwWUNchT3D1o4kHZShyCQVknlBPrJrcdbF
-         2VeO4n/t1gpYmWpZk4k2UvnAPFETOPWaY42z17bB6MF4FU9dnPwRvq5M4aW1H/ea8mV0
-         pp4H8/RS3DHzghyaxnIpfK3tQRJO58Rhogbg6EFe5XMN3Qhg+O9+Tv2ttl2Cct1ZKQX6
-         Zt3365+tQ3ZgYHPf2H08rgrfHmFs0oDB4x2A3rI0QF9e0yPIp5Qjxw4+9GoAXXotk8Zh
-         v7DQ==
-X-Gm-Message-State: AOAM530T/fLk7bD+2yuZc1cSFnUzw6AlABjEtfYiz++NArdOfPcGtoUI
-        Q2XT8u0U04VCcfKUaKHloU8erg==
-X-Google-Smtp-Source: ABdhPJx44wtpcXY49u+vSpj+s3jxO6CX63sa6iUMPfMt3faya84cR50IshGuCFEzc5DOsx9EndMHow==
-X-Received: by 2002:aca:4e55:: with SMTP id c82mr2959809oib.43.1615394991194;
-        Wed, 10 Mar 2021 08:49:51 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j72sm2575320oih.46.2021.03.10.08.49.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 08:49:50 -0800 (PST)
-Date:   Wed, 10 Mar 2021 10:49:49 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, sibis@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Message-ID: <YEj4rZXGlaO+a4kg@builder.lan>
-References: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
+        id S232437AbhCJQxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 11:53:16 -0500
+Received: from mail-eopbgr50075.outbound.protection.outlook.com ([40.107.5.75]:34114
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231961AbhCJQwy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 11:52:54 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lNrrLhCCRacH3D6Q9Wdisw/J4aaNT+vj83moKDR1/wsVqAizi7VApVE6A3z2gIlOtCS/yprgAIbhBRg4jQVDbCXQEWGVOpC0u4l3xas/dw8yTIU5/ZkPJ4jnhji13xAOZuMv/TQU3s2flglNepJ9p7GGYxga+K1zMCQgcCnUBXYPNGuMUa7r2xE+6Q1oXLc/djtYJlNUPORlSGIZJ6L/VO3rIniDYAChbxDdUHwuuhx5MJbfMowVkkqA9OVSjrzYLEqkuaV7Jl0+wVHWetTRAuW7q6rUGbFOwYcxNnCw4w341iou8dmO4PAjSQTnz+tqH9oFBKULnd7fHhRAUCptkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tgdImo7raeJf9HrCKuQ+i0aYH06nQjpDY7Jqc4JgBuw=;
+ b=l2FZaSe6Hfq6iEhf8QdS2XPPznbRDNvFhZ9Vjty6KlC8i8Yj5Jac0ya6ZV7DnPEqKHQtGZBmVOJB3OYjNpmNgpeNNIBHjPCAeuCQA/LwoqXlEgWUqZzeRYsuvGnx6EZ2isM/HNYCkaqX6zOctpJsuwuGOFM1yZvHg75LJa5JoYLzOi/d7rxuH/4LbBs1rGEvKJqVCYtxvxUaLGsZof7VTd28gv1bNn7QuJKbLcIa7kkpg1130hI5l8ThMWMvmW6N/DmG/4Lk35vRWPJyEgF7HYBKFQ5hgGt5+vI17d37zZRnjrb5EUwFWF60gMsaKY3RcuUPC/jtrd8XCGm4qhX6XQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tgdImo7raeJf9HrCKuQ+i0aYH06nQjpDY7Jqc4JgBuw=;
+ b=Kv5pq2CA17AJugIfLnDZWCfwM4v/VnEghT7hov7kuj5sVTsHuAsZ++93Z62ne36YtjgtYjbU6VgT1J0K7bGuUD4C+AKlJJueBFNkIcza+wkgyTvl8Iyptp6ej9aMJ0cZMH64uuD9/je3obh+8duBhGAQo6H4aRdR2TIfUlN2O28=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com (2603:10a6:4:96::7)
+ by DBBPR04MB7595.eurprd04.prod.outlook.com (2603:10a6:10:20d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.27; Wed, 10 Mar
+ 2021 16:52:48 +0000
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8]) by DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8%5]) with mapi id 15.20.3890.040; Wed, 10 Mar 2021
+ 16:52:47 +0000
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: [RESEND] dt-bindings: spi: Convert NXP flexspi to json schema
+Date:   Wed, 10 Mar 2021 22:22:00 +0530
+Message-Id: <20210310165200.3560970-1-kuldeep.singh@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [14.142.151.118]
+X-ClientProxiedBy: HK2PR02CA0148.apcprd02.prod.outlook.com
+ (2603:1096:202:16::32) To DB6PR0402MB2758.eurprd04.prod.outlook.com
+ (2603:10a6:4:96::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from lsv03378.swis.in-blr01.nxp.com (14.142.151.118) by HK2PR02CA0148.apcprd02.prod.outlook.com (2603:1096:202:16::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend Transport; Wed, 10 Mar 2021 16:52:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: fcb1cdaf-03b5-4d41-f424-08d8e3e4eef6
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7595:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB75954E5A5447D7DE30A15C7CE0919@DBBPR04MB7595.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fMgy2WOe8QcA1vES0Jcgjoc2kdAFKm6rhZvzcBobzqOuFNxsLh3fj/NMcDODjJiYXt45BKsHvaEAjsGZIs+jInNpv7obARXb4toYT2ewj/mSez8kd6ATUTi9BKkEmMWhB7p/59SN3iDz5BH+8yYGGCA9GClNgO/HLPufhlpyAugXVwveoOo8+030BADgLLP4Q9Vk8QCVyZsbq5cKZUrtCBvPzYh0D7u0D23jRSsgIaWzXsEvkX0ghD6hMPwClDNyMA+iJOyNnBzG6zCNZa4mKGD+EXDu6dkKmkI8/ZhIKcBeDYISY9bCDgX1nxDfI47RyGlLIVgW/GH1CdTbDqsGA+ISWK68Sa3Mt8LZ491w/G5KlTAfJyJUDolbPPnaN9op3vJIhrespNn0jGKutnohvJccRHykLiKWGE2hnvE8tcWVi71NEHa8kj640ba5ziLwwr2li9O/9ysiguAleLxueGMA+yAEBgZGu2Ge+ZnKe9xbfC3dhrpL0eZKRdSOSqDMS3tss6R49gBWROFq2Cp8C/MlXL/g3pTETrhMqr9WXwvejMoLqlxU2gvTqx7cXKvh49yS90jp2bwWQPQvipjchgAjhmQy8T0rq8zh7vjQmVpKbonsd/Oo8mG3GRElveSAnBuGKnIvJghDX1h/DvdF7w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2758.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(366004)(136003)(396003)(376002)(1006002)(1076003)(5660300002)(966005)(36756003)(186003)(478600001)(956004)(26005)(16526019)(8676002)(44832011)(4326008)(52116002)(54906003)(6666004)(2616005)(316002)(6486002)(83380400001)(2906002)(86362001)(66556008)(66946007)(66476007)(8936002)(55236004)(7696005)(110426009);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?w8f85/HD3EDBgiHnUR+mho8KwCbrYa9pcIz6y6oTlM9wprzffnTaMXqqot5C?=
+ =?us-ascii?Q?8SennEuAam0FJjLunty/j/wTZsXOf4IIH75S3sdi0B0/AdnNedMPcHeKMM89?=
+ =?us-ascii?Q?7MW25em9fDm0qnyxZ83D2XBxVVk9GYo6IXGGnIGXIuPzihZ5FngJRT8hJSKG?=
+ =?us-ascii?Q?gs+bShLrohU/YSpMupq7Yd1jOVbcw8uqqhND6YMfWTOSYRA2OoK2kdhyrPEr?=
+ =?us-ascii?Q?F05LEpnOr7jm4ByP1dZRrCESTeKB0AJvsRxU4KuKG23T9H0kRnGnueEzWvmi?=
+ =?us-ascii?Q?wxfXJYJuVaJcajmoTpgCxZioKUs4bJ2v+OdO6R4JlkBZtBvELeDntoVLfP1/?=
+ =?us-ascii?Q?xuY5PSfy0wHso5uJzPMpd56+kLq2v2FOtWKWoOIfnREwj0IEwQ4Fvw6wSa74?=
+ =?us-ascii?Q?cah0F9CbXjhzEpWBhTg9myi98qwl8nyesnFERMtEbQb6aqBu6qPv8O/N7ERQ?=
+ =?us-ascii?Q?Z4XSsvdQT4W8jGJ+DyvJbTdB6/LWnmZV3WaV5lVvd9uGTc1SeknRRcpbVM4F?=
+ =?us-ascii?Q?9xv2+PimJKv60YX7IBC9/eumY1Gah32QTB3qJJudjmIFoUUig6bxbmAp3Je/?=
+ =?us-ascii?Q?UKi3d50DSYZhzC2hcI5ujmBmnIZY7ov37LLrBbGQGGGv0olXxlAUq/gQxAl4?=
+ =?us-ascii?Q?z65OGn7yQLYlV6l2HfsZM5ysG/rVq47ZQ4OL+XrABvQmTl+qlYfdNkErY0Lv?=
+ =?us-ascii?Q?fjSogSFHsvmsM/xH2gfz1KbJO1t3+mqEXhT1o12h36B4q6PxqKkHrnz12cp5?=
+ =?us-ascii?Q?V/XJzO0XKMKr/4ALEcDXcI6T6TItVnDaadHdUkZ8kT6t4htwq5IZ7ZGR5GQq?=
+ =?us-ascii?Q?ZcNFDqo/Qxoy2OgADZKwtrDmt+a4Ux9asHQvumqAzjED9ozegSJPpCEhf6xA?=
+ =?us-ascii?Q?qvemNWqoAuOaYuqbXUIAoosHwmQKPdq6knHPGBXRBHlMYVhdzjoT75C1X3cf?=
+ =?us-ascii?Q?1YIQBc0/ckZK9EF1xoLAcZvwAkVFd3bWc7YV8eFIbw1qqFDI8sIT+6KfB/ZW?=
+ =?us-ascii?Q?KxXcH9bZ3fWUJtjEy3n1i0RImo/JwKWrC/7Uxyu9NW7aoga9XK8j2j5jrROO?=
+ =?us-ascii?Q?rxvgm19z/xHd1GCKbUkTITEvga/qJWFPBrog/A0At1KVjPJ3Rlpojnf8sJOO?=
+ =?us-ascii?Q?BHjp7NlBFrmYolo0LKvSOImq4nT0/kkTydBo2s/BFmzMIcIY4SZmcXFiHfse?=
+ =?us-ascii?Q?MeQwMA3AWl5qXPe+sN2Nyr0wZg5IFM/Pnhw8bqtuBY+DRwDTBVqJeuW/WyNo?=
+ =?us-ascii?Q?t9WHMJsH3WBIZMekqO1WlOdggiMQf1PqKpf8mf2tR35mQF7aomZD0SQkeV1g?=
+ =?us-ascii?Q?9ldTD13nKAUCcwn4NQv9IKtk?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcb1cdaf-03b5-4d41-f424-08d8e3e4eef6
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2758.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 16:52:47.6884
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x6knUZOFaMhJi8NtmxmezBVF6J8CkvqmdDEBzo2Q0bZJRS0QcIPhwIOH4y/st6dF1vyiBZGaimdgmvswksA7YQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7595
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Mar 01:37 CST 2021, Rakesh Pillai wrote:
+Convert the NXP FlexSPI binding to DT schema format using json-schema.
 
-> Add the WPSS remoteproc node in dts for
-> PIL loading.
-> 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
-> - This change is dependent on the below patch series
-> 1) https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
-> 2) https://lore.kernel.org/patchwork/project/lkml/list/?series=488365
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 47 +++++++++++++++++++++++++++++++++
->  2 files changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 950ecb2..603f56b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -26,6 +26,10 @@
->  	status = "okay";
->  };
->  
-> +&remoteproc_wpss {
-> +	status = "okay";
-> +};
-> +
->  &uart5 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 8af6d77..26dd466 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -53,6 +53,16 @@
->  			no-map;
->  			reg = <0x0 0x80b00000 0x0 0x100000>;
->  		};
-> +
-> +		wlan_fw_mem: memory@80c00000 {
-> +			no-map;
-> +			reg = <0x0 0x80c00000 0x0 0xc00000>;
-> +		};
-> +
-> +		wpss_mem: memory@9ae00000 {
-> +			no-map;
-> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
-> +		};
->  	};
->  
->  	cpus {
-> @@ -305,6 +315,43 @@
->  			};
->  		};
->  
-> +		remoteproc_wpss: remoteproc@8a00000 {
-> +			compatible = "qcom,sc7280-wpss-pil";
-> +			reg = <0 0x08a00000 0 0x10000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-> +					      <&wpss_smp2p_in 0 0>,
+Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+---
+ .../bindings/spi/nxp,spi-nxp-fspi.yaml        | 85 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi-nxp-fspi.txt  | 43 ----------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 86 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/nxp,spi-nxp-fspi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
 
-IRQ_TYPE_NONE?
+diff --git a/Documentation/devicetree/bindings/spi/nxp,spi-nxp-fspi.yaml b/Documentation/devicetree/bindings/spi/nxp,spi-nxp-fspi.yaml
+new file mode 100644
+index 000000000000..e3f2c5aae847
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/nxp,spi-nxp-fspi.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/nxp,spi-nxp-fspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP Flex Serial Peripheral Interface (FSPI)
++
++maintainers:
++  - Ashish Kumar <ashish.kumar@nxp.com>
++
++allOf:
++  - $ref: "spi-controller.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - nxp,lx2160a-fspi
++      - nxp,imx8qxp-fspi
++      - nxp,imx8mm-fspi
++      - nxp,imx8dxl-fspi
++
++  reg:
++    items:
++      - description: registers
++      - description: memory mapping
++
++  reg-names:
++    items:
++      - const: fspi_base
++      - const: fspi_mmap
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: SoC SPI fspi_en clock
++      - description: SoC SPI fspi clock
++
++  clock-names:
++    items:
++      - const: fspi_en
++      - const: fspi
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        spi@20c0000 {
++            compatible = "nxp,lx2160a-fspi";
++            reg = <0x0 0x20c0000 0x0 0x100000>,
++                  <0x0 0x20000000 0x0 0x10000000>;
++            reg-names = "fspi_base", "fspi_mmap";
++            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL QORIQ_CLK_PLL_DIV(4)>,
++                     <&clockgen QORIQ_CLK_PLATFORM_PLL QORIQ_CLK_PLL_DIV(4)>;
++            clock-names = "fspi_en", "fspi";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            flash@0 {
++                compatible = "jedec,spi-nor";
++                spi-max-frequency = <50000000>;
++                reg = <0>;
++                spi-rx-bus-width = <8>;
++                spi-tx-bus-width = <8>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+deleted file mode 100644
+index df178d1b62e6..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-* NXP Flex Serial Peripheral Interface (FSPI)
+-
+-Required properties:
+-  - compatible : Should be "nxp,lx2160a-fspi"
+-			    "nxp,imx8qxp-fspi"
+-			    "nxp,imx8mm-fspi"
+-			    "nxp,imx8dxl-fspi"
+-
+-  - reg :        First contains the register location and length,
+-                 Second contains the memory mapping address and length
+-  - reg-names :  Should contain the resource reg names:
+-	         - fspi_base: configuration register address space
+-                 - fspi_mmap: memory mapped address space
+-  - interrupts : Should contain the interrupt for the device
+-
+-Required SPI slave node properties:
+-  - reg :        There are two buses (A and B) with two chip selects each.
+-                 This encodes to which bus and CS the flash is connected:
+-                 - <0>: Bus A, CS 0
+-                 - <1>: Bus A, CS 1
+-                 - <2>: Bus B, CS 0
+-                 - <3>: Bus B, CS 1
+-
+-Example showing the usage of two SPI NOR slave devices on bus A:
+-
+-fspi0: spi@20c0000 {
+-	compatible = "nxp,lx2160a-fspi";
+-	reg = <0x0 0x20c0000 0x0 0x10000>, <0x0 0x20000000 0x0 0x10000000>;
+-	reg-names = "fspi_base", "fspi_mmap";
+-	interrupts = <0 25 0x4>; /* Level high type */
+-	clocks = <&clockgen 4 3>, <&clockgen 4 3>;
+-	clock-names = "fspi_en", "fspi";
+-
+-	mt35xu512aba0: flash@0 {
+-		reg = <0>;
+-		....
+-	};
+-
+-	mt35xu512aba1: flash@1 {
+-		reg = <1>;
+-		....
+-	};
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d92f85ca831d..8729f7b50945 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12832,7 +12832,7 @@ M:	Ashish Kumar <ashish.kumar@nxp.com>
+ R:	Yogesh Gaur <yogeshgaur.83@gmail.com>
+ L:	linux-spi@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
++F:	Documentation/devicetree/bindings/spi/nxp,spi-nxp-fspi.yaml
+ F:	drivers/spi/spi-nxp-fspi.c
+ 
+ NXP FXAS21002C DRIVER
+-- 
+2.25.1
 
-Apart from that this looks good.
-
-Regards,
-Bjorn
-
-> +					      <&wpss_smp2p_in 1 0>,
-> +					      <&wpss_smp2p_in 2 0>,
-> +					      <&wpss_smp2p_in 3 0>,
-> +					      <&wpss_smp2p_in 7 0>;
-> +			interrupt-names = "wdog", "fatal", "ready", "handover",
-> +					  "stop-ack", "shutdown-ack";
-> +
-> +			memory-region = <&wpss_mem>;
-> +
-> +			qcom,smem-states = <&wpss_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>;
-> +			reset-names = "restart";
-> +
-> +			qcom,halt-regs = <&tcsr_mutex_regs 0x37000>;
-> +
-> +			status = "disabled";
-> +
-> +			glink-edge {
-> +				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
-> +							     IRQ_TYPE_EDGE_RISING>;
-> +				mboxes = <&ipcc IPCC_CLIENT_WPSS
-> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +				label = "wpss";
-> +				qcom,remote-pid = <13>;
-> +			};
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,sc7280-pdc", "qcom,pdc";
->  			reg = <0 0x0b220000 0 0x30000>;
-> -- 
-> 2.7.4
-> 
