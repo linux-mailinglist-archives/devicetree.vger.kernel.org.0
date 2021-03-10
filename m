@@ -2,106 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9243344FF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8287B33450A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:23:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232994AbhCJRU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 12:20:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47580 "EHLO mail.kernel.org"
+        id S231319AbhCJRWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 12:22:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48078 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232925AbhCJRT5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 12:19:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 892D864FCA;
-        Wed, 10 Mar 2021 17:19:56 +0000 (UTC)
+        id S233146AbhCJRWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 12:22:08 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E5E9264FCB;
+        Wed, 10 Mar 2021 17:22:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615396796;
-        bh=WdJcFgO9Ab4EwkwCGapjsq0NBHCfwsTezuqlatGj9W0=;
+        s=k20201202; t=1615396928;
+        bh=SK+6Zfd8qFN5HrEWQ1Qexu/sh62jiznyOdEEtUWkUUY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ewZT5AU2KxemL7xN1JnFvBkfiwHC4K35mYGZ0hZGYCP60VqGIEgP1/R0K55yEf5qV
-         ing4qozOCFdAjrdV8NRKzn+qy0Lup29tWaI6WOGVaAdxAZ0wJkpvMI/poPVxmebpUZ
-         EGowty58SmmBJqoSPG9aK1doEtusJSZI59XFz9huo0cbNvOExf147jReFm+Ddo2gnV
-         o5r/FIZDP3/94zWqm65erfdgbSt7BrgX2Kt72cgmiCIijTZbV9UpM2nKZ0mFxPKHSH
-         PwoJ4Y5wc0oK2w6D+nrzCjGDD999vvxUaSizZ/PoNnlM4XGKp7rda0HvzrbJb2gQtj
-         RMPSnfS/z8ZGQ==
-Received: by mail-qk1-f175.google.com with SMTP id a9so17577010qkn.13;
-        Wed, 10 Mar 2021 09:19:56 -0800 (PST)
-X-Gm-Message-State: AOAM533LswDUlct2mEyotFERjxElzzK8faux1nlGi50s9ldT0nUxMrtF
-        rmiZ0ZRm/CSgWVooqEMLp1Z+GqdXsqd7SNqmhA==
-X-Google-Smtp-Source: ABdhPJxHCUeEM1sl0CP7oLSOGr4ElsXStXMW1BKNcfVgP+4t9wFxrHd80qsCzG9xhSGiPXRgrhqPH64MxqoMe0+aVDA=
-X-Received: by 2002:a05:620a:b02:: with SMTP id t2mr3811728qkg.128.1615396795357;
- Wed, 10 Mar 2021 09:19:55 -0800 (PST)
+        b=giCFhb5jS/L5dNA9p3aqvol1FdK8R28L26bYoL7uSQ9C13PN+eZn4tHjyo6Cisx/i
+         XSGnsWchcmB7ndb+aZuvUGjy7i62Yim5gYt+YoCYybjN4aHHcQiEFt27UCivB2RM70
+         WFleWF122tfECk2R2pave7DgNclBcUOmeeX0AdyxymGAsI7VnNPuxxGtFjHVSdF7KD
+         sVA+mrRzQ7MiY17oHe8ERHLLL8tPYhpzZZ/P2wZ/2E9a1QzDQ+7tzRwia/3IEQ+1qE
+         sdAiwxnkxiss6WJMiNzf59KwbSO3RtEM59wioRKswSPo+L1G7meCnNeQVxJOybWN+V
+         hNuoUKO3QinAQ==
+Received: by mail-qk1-f174.google.com with SMTP id m186so985433qke.12;
+        Wed, 10 Mar 2021 09:22:07 -0800 (PST)
+X-Gm-Message-State: AOAM53158945bEbV3cIjpDuf9DgxHj/TeQm2zJmfpkPsgbKPBlyYCEGV
+        ctCU95GeGbE88fwCPwgYWk9vio5aR6WFwz0w+Q==
+X-Google-Smtp-Source: ABdhPJx8ZortjSvtESnDKmJbd7shsjiK7JG0zR24gC3xumihDFvY1IhcQ5GWdem+N4oMsJv19bHuG9wUbdLlpAmjB5g=
+X-Received: by 2002:a05:620a:b02:: with SMTP id t2mr3822126qkg.128.1615396927087;
+ Wed, 10 Mar 2021 09:22:07 -0800 (PST)
 MIME-Version: 1.0
-References: <20210304070224.22346-1-nava.manne@xilinx.com> <20210304070224.22346-3-nava.manne@xilinx.com>
- <20210308201944.GA2886704@robh.at.kernel.org> <MWHPR02MB26231DD759D8C9D1CB26EC1EC2919@MWHPR02MB2623.namprd02.prod.outlook.com>
- <CAL_JsqLDK5pNprA5RJq8VfTbQX=hP-8NUyY6Xsesz3TE6=YYeg@mail.gmail.com>
-In-Reply-To: <CAL_JsqLDK5pNprA5RJq8VfTbQX=hP-8NUyY6Xsesz3TE6=YYeg@mail.gmail.com>
+References: <20210223204340.312-1-noltari@gmail.com> <20210224075640.20465-1-noltari@gmail.com>
+ <20210224075640.20465-2-noltari@gmail.com> <20210306201404.GB1137882@robh.at.kernel.org>
+ <889b9814-40d4-e012-ff7c-39b00f8c623a@gmail.com>
+In-Reply-To: <889b9814-40d4-e012-ff7c-39b00f8c623a@gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 10 Mar 2021 10:19:44 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKAP5Up7=qJEM6E0HuV2-faaVqTg+S=pdD8RpWyJ3KVcQ@mail.gmail.com>
-Message-ID: <CAL_JsqKAP5Up7=qJEM6E0HuV2-faaVqTg+S=pdD8RpWyJ3KVcQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: fpga: Add binding doc for versal fpga manager
-To:     Nava kishore Manne <navam@xilinx.com>
-Cc:     "mdf@kernel.org" <mdf@kernel.org>,
-        "trix@redhat.com" <trix@redhat.com>,
-        Michal Simek <michals@xilinx.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Jolly Shah <JOLLYS@xilinx.com>, Rajan Vaja <RAJANV@xilinx.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        Manish Narani <MNARANI@xilinx.com>,
-        Amit Sunil Dhamne <amitsuni@xilinx.com>,
-        Tejas Patel <tejasp@xlnx.xilinx.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+Date:   Wed, 10 Mar 2021 10:21:56 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqJzFJvwTEk3u+g3Fjv_K2Te9F3hyZnEPWurWjxgs2dShg@mail.gmail.com>
+Message-ID: <CAL_JsqJzFJvwTEk3u+g3Fjv_K2Te9F3hyZnEPWurWjxgs2dShg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: document
+ BCM6345 external interrupt controller
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
-        Appana Durga Kedareswara Rao <appanad@xilinx.com>
+        devicetree@vger.kernel.org,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 10:12 AM Rob Herring <robh@kernel.org> wrote:
+On Sun, Mar 7, 2021 at 3:12 AM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
+ail.com> wrote:
 >
-> On Wed, Mar 10, 2021 at 3:50 AM Nava kishore Manne <navam@xilinx.com> wrote:
-> >
-> > Hi Rob,
-> >
-> >         Thanks for providing the review comments.
-> > Please find my response inline.
-> >
-> > > -----Original Message-----
-> > > From: Rob Herring <robh@kernel.org>
-> > > Sent: Tuesday, March 9, 2021 1:50 AM
-> > > To: Nava kishore Manne <navam@xilinx.com>
-> > > Cc: mdf@kernel.org; trix@redhat.com; Michal Simek <michals@xilinx.com>;
-> > > gregkh@linuxfoundation.org; Jolly Shah <JOLLYS@xilinx.com>; Rajan Vaja
-> > > <RAJANV@xilinx.com>; arnd@arndb.de; Manish Narani
-> > > <MNARANI@xilinx.com>; Amit Sunil Dhamne <amitsuni@xilinx.com>; Tejas
-> > > Patel <tejasp@xlnx.xilinx.com>; linux-fpga@vger.kernel.org;
-> > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> > > kernel@lists.infradead.org; chinnikishore369@gmail.com; Appana Durga
-> > > Kedareswara Rao <appanad@xilinx.com>
-> > > Subject: Re: [PATCH v3 2/3] dt-bindings: fpga: Add binding doc for versal fpga
-> > > manager
-> > >
-> > > On Thu, Mar 04, 2021 at 12:32:23PM +0530, Nava kishore Manne wrote:
-> > > > From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> > > >
-> > > > This patch adds binding doc for versal fpga manager driver.
-> > >
-> > > Why do you need a DT entry for this? Can't the Versal firmware driver
-> > > instantiate the fpga-mgr device?
-> > >
-> > This dt entry is need to handle the fpga regions properly for both full and Partial bitstream loading use cases and it cannot be done by Versal firmware driver instantiate.
+> Hi Rob,
 >
-> Ah yes, I forgot about that.
+> El 06/03/2021 a las 21:14, Rob Herring escribi=C3=B3:
+> > On Wed, Feb 24, 2021 at 08:56:39AM +0100, =C3=81lvaro Fern=C3=A1ndez Ro=
+jas wrote:
+> >> Document the binding for the BCM6345 external interrupt controller.
+> >>
+> >> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> >> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+> >> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> >> ---
+> >>   v3: pass dt_binding_check.
+> >>   v2: fix title typo.
+> >>
+> >>   .../brcm,bcm6345-ext-intc.yaml                | 78 +++++++++++++++++=
+++
+> >>   1 file changed, 78 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
+oller/brcm,bcm6345-ext-intc.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/interrupt-controller/br=
+cm,bcm6345-ext-intc.yaml b/Documentation/devicetree/bindings/interrupt-cont=
+roller/brcm,bcm6345-ext-intc.yaml
+> >> new file mode 100644
+> >> index 000000000000..a691510e78b7
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6=
+345-ext-intc.yaml
+> >> @@ -0,0 +1,78 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm6345-=
+ext-intc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Broadcom BCM6345 external interrupt controller
+> >> +
+> >> +maintainers:
+> >> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> >> +  - Jonas Gorski <jonas.gorski@gmail.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - brcm,bcm6318-ext-intc
+> >> +      - brcm,bcm6345-ext-intc
+> >> +
+> >> +  "#interrupt-cells":
+> >> +    const: 2
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  "#address-cells":
+> >> +    const: 0
+> >> +
+> >> +  interrupt-controller: true
+> >> +
+> >> +  interrupts:
+> >> +    description: Specifies the interrupt line(s) in the interrupt-par=
+ent
+> >> +      controller node. Valid values depend on the type of parent inte=
+rrupt
+> >> +      controller.
+> >> +    maxItems: 4
+> >> +
+> >> +  brcm,field-width:
+> >> +    description: Interrupt controller field width (the default is 4).
+> >
+> > default: 4
+> >
+> >> +    maxItems: 1
+> >
+> > All uint32's are 1 item.
+>
+> Ok, so I should remove this :)
+>
+> >
+> > What's the set or range of values?
+>
+> Only BCM6348 needs to set this value to 5, other BCM63xx use the default
+> value of 4 (BCM3368, BCM6318, BCM6328, BCM6338, BCM6345, BCM6358,
+> BCM6362, BCM6368, BCM63268).
 
-Looking at this some more, please convert xlnx,zynqmp-firmware.txt to
-schema and add the node for this there. We don't need a whole other
-schema file just for a node and compatible. Also, looks like
-xlnx,zynqmp-pcap-fpga.txt is the prior version of the same thing, so
-it should be handled in the schema too.
+So:
 
-Rob
+enum: [ 4, 5 ]
