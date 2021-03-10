@@ -2,129 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E56C333378
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCC9F33337E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbhCJDBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 22:01:49 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:46645 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232013AbhCJDBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:01:25 -0500
-Received: by mail-io1-f49.google.com with SMTP id u8so16288385ior.13;
-        Tue, 09 Mar 2021 19:01:25 -0800 (PST)
+        id S231464AbhCJDCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 22:02:53 -0500
+Received: from mail-io1-f45.google.com ([209.85.166.45]:46732 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232185AbhCJDCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:02:25 -0500
+Received: by mail-io1-f45.google.com with SMTP id u8so16290629ior.13;
+        Tue, 09 Mar 2021 19:02:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=344tVBROrcGfG7Le5DlzQjIDt0SKG8pa76TGE6syYKo=;
-        b=HkqC+Nx31C7nObd87mBzZUzC8qkMhMf5ZSErcb8rGcUnx7s44/i9T8B5nLSH9agftY
-         3kQqcZghGdBu4XriphcBKH6NAcRh9VJzbzumSW+7crMtHGFqXw1LQlvviqzmw4w7RDE4
-         ocOLmYtDgijQhQjYgBjrHo0JCd1aWRwXwIJwiXOT/5o08DEmA18jM6XbRC3JS7UK5k/k
-         0e1LCmfM0iN/l6IobaFYtYzW14OV1YczTlx4/OdnnWM2tfjoejldtk7Hx845l65oWJ8j
-         hdKNZkVHLRpVX6B89fMXn4cgIMBv8/x6JUFUAGK6Hn5IpxaWaH2aL683vp0Jt+6JK+iT
-         sNeQ==
-X-Gm-Message-State: AOAM5337hy2Sh3XNnpE36Bg5Omt6ZtWR5uIl71B+Cso3vvM1+2zLB4bN
-        xUwY5TR4VENQU4IeLLitwk0J34d4fA==
-X-Google-Smtp-Source: ABdhPJylE3SN4ifqoY3q9XY3cnPA0IAuGy62a5W/RzBRG2WNspkLT5vtScelB/9Khap1fxrZ0GXl9w==
-X-Received: by 2002:a5e:a508:: with SMTP id 8mr993226iog.135.1615345284888;
-        Tue, 09 Mar 2021 19:01:24 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=hGBShF2dfnfyYNYUdbSqHz+Ul56AzJJpSOrcDsvhos0=;
+        b=ayxpkpYSwygYqmdEQo30GKOnS7nT/f4pryp/rXJKisw+A/sV0z1SWVn9UkVjs4zhuZ
+         5SVGOjj4ecZ7NCOBmngG1HaZvppTq9357fsGm++0/hXbKjNyQBmVozcoho296QSWXcno
+         lzsl4+C5jB198sEaV37LeGvb3BvQxl3fDggby3JIp5y+mECIr0JvrxtpwnkCkQW33AR8
+         ae5Z47IL4tngWTIh1wdC083tGIZYioeUsrfNcyM6yVMe9kmPUjao0y572u/ZnST/n8e8
+         gni40wA5wxU43iYa4An9Rd2yQ/Gys1OJKwwsqZl1vPXcn2GMEPtnXRMos2veyWZHlGr6
+         EaDQ==
+X-Gm-Message-State: AOAM5323Wrb5X2CEFHKZNmKCps+PyJPKeZqWXu1xmcHvnODGkJ0rF109
+        CdBFnX8FxDt3CwfFF+4PSQ==
+X-Google-Smtp-Source: ABdhPJwIBF1PdJ7juV05kemajB8MnDI6COn/iESFqbfdNIax9Y+gPMS9xwDkAldhREvP+ZCf9Sb8vQ==
+X-Received: by 2002:a02:6a0b:: with SMTP id l11mr1230358jac.82.1615345345188;
+        Tue, 09 Mar 2021 19:02:25 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id o7sm8628180ilj.67.2021.03.09.19.01.23
+        by smtp.gmail.com with ESMTPSA id b5sm8560253ioq.7.2021.03.09.19.02.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 19:01:24 -0800 (PST)
-Received: (nullmailer pid 1665491 invoked by uid 1000);
-        Wed, 10 Mar 2021 03:01:22 -0000
-Date:   Tue, 9 Mar 2021 20:01:22 -0700
+        Tue, 09 Mar 2021 19:02:24 -0800 (PST)
+Received: (nullmailer pid 1667243 invoked by uid 1000);
+        Wed, 10 Mar 2021 03:02:22 -0000
+Date:   Tue, 9 Mar 2021 20:02:22 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Shawn Lin <shawn.lin@rock-chips.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add rockchip
- support
-Message-ID: <20210310030122.GA1664258@robh.at.kernel.org>
-References: <1615254990-192784-1-git-send-email-shawn.lin@rock-chips.com>
- <1615254990-192784-2-git-send-email-shawn.lin@rock-chips.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        linux-arm-kernel@lists.infradead.org,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: nvmem: add Broadcom's NVRAM
+Message-ID: <20210310030222.GA1667188@robh.at.kernel.org>
+References: <20210305183236.11784-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1615254990-192784-2-git-send-email-shawn.lin@rock-chips.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210305183236.11784-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 09, 2021 at 09:56:29AM +0800, Shawn Lin wrote:
-> This patch adds rockchip support in sdhci-of-dwcmhsc.yaml
+On Fri, 05 Mar 2021 19:32:35 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> Broadcom's NVRAM structure contains device data and can be accessed
+> using I/O mapping.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
+> V2: Use Broadcom's NVRAM specific binding. Generic "nvmem-iomap" binding
+>     didn't make much sense. Thanks Srinivas!
+> ---
+>  .../devicetree/bindings/nvmem/brcm,nvram.yaml | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
 > 
-> Changes in v3: None
-> 
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index f99fb9f..43989f2 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -16,6 +16,7 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - rockchip,dwcmshc-sdhci
->        - snps,dwcmshc-sdhci
->  
->    reg:
-> @@ -31,12 +32,24 @@ properties:
->      items:
->        - description: core clock
->        - description: bus clock for optional
-> +      - description: axi clock for rockchip specified
-> +      - description: block clock for rockchip specified
-> +      - description: timer clock for rockchip specified
-> +
->  
->    clock-names:
->      minItems: 1
->      items:
->        - const: core
->        - const: bus
-> +      - const: axi
-> +      - const: block
-> +      - const: timer
-> +
-> +  rockchip,txclk-tapnum:
-> +    description: Specify the number of delay for tx sampling.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Constraints for this? 0 - 2^32 is okay?
-
-> +
->  
->  required:
->    - compatible
-> @@ -49,6 +62,17 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    mmc@fe310000 {
-> +      compatible = "rockchip,dwcmshc-sdhci";
-> +      reg = <0xfe310000 0x10000>;
-> +      interrupts = <0 25 0x4>;
-> +      clocks = <&cru 17>, <&cru 18>, <&cru 19>, <&cru 20>, <&cru 21>;
-> +      clock-names = "core", "bus", "axi", "block", "timer";
-> +      bus-width = <8>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +    };
-> +  - |
->      mmc@aa0000 {
->        compatible = "snps,dwcmshc-sdhci";
->        reg = <0xaa000 0x1000>;
-> -- 
-> 2.7.4
-> 
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
