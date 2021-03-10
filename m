@@ -2,120 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF1B3343EB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58019334494
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233516AbhCJQzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 11:55:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41402 "EHLO mail.kernel.org"
+        id S229574AbhCJRCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 12:02:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233252AbhCJQyw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 11:54:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B316764FC9;
-        Wed, 10 Mar 2021 16:54:51 +0000 (UTC)
+        id S233655AbhCJRB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 12:01:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A5FA64FCA;
+        Wed, 10 Mar 2021 17:01:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615395292;
-        bh=cVqjY9NqqZ1mPldEDOjxgheuSN/hQpQw0j9ovv7HqR4=;
+        s=k20201202; t=1615395717;
+        bh=5LZ7c4U4IAUXXoygU0w5CR3jOKIDBj1RXMdFN86MevM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tp8Ry2pe/lKmqdxjdC5ni34kK74+DiCESgIYUX9YUbYFe4lxt9IWm6j/A3D7EM8hu
-         iJxu4sBb4ALFSCmG4DeOWI7+6nzxQHBBpK9l3XWCtPdTtdVIllT0rj1X1+5PRxYbY4
-         s8A96VhokpIGcd4jyrfTn2cPA/97xvHouKq5XnREJBjBJiRx1TvkCPeSICNuKk6PEo
-         xAZ8+XHC8XnOV5T9i22b2IAKUscsAkeLhU/dVsMbDA9D2IbJWrEIkoZNLrkNIi2lKY
-         ssCTm3Qlx83Ee3W0nkAZNi4pJiiwpwtOZH2ya/+rV31V0LuuYRPHEsqWpqtQjMHNzp
-         4u7ZKLqUqB20w==
-Received: by mail-ej1-f53.google.com with SMTP id r17so40049708ejy.13;
-        Wed, 10 Mar 2021 08:54:51 -0800 (PST)
-X-Gm-Message-State: AOAM533FdBpDuE8x0IFzR+I/uzRtfIf9Ks20Nhu2II8QVXW8tzFbHYpF
-        jg3lECRyF9olQZNyeerudNg1SGzn4fcZ40MulA==
-X-Google-Smtp-Source: ABdhPJwTmwPWc/VmOfuKDmxTHT+xQWyEPiP34nF6fYO3lFyka6rwhMMB91neuQO1rRgY2PCfjJy3w2N5d941G1TPNrw=
-X-Received: by 2002:a17:906:2312:: with SMTP id l18mr4756677eja.468.1615395290263;
- Wed, 10 Mar 2021 08:54:50 -0800 (PST)
+        b=b5q13A9vKkWPc/S2db+xOtVll5VS6u+2t6fCOQtiIUBFLLDdzVTyOI+P3UeGL+LqJ
+         7Elkm2kmhr5CpRnO2X65A+H6fhh08GnA/WZocXK+qekvB2TMURd3J8UgsqR1NfmFxy
+         fDonUJ45jhqpGSvmkgJUFSjgA6p0MSXOK2M6hq+6iVQgE7ghxEkPMetdhH7pMmlX+o
+         cOjW0m8/LKBPl6s3lctW6O2TtGutJaNWf1VaOiJ33Nq8iQxmlrU/PpR2RsOIZkmy0D
+         GyUobzwlzzFIqj7QIzHuu+VDiWYgi4SVCChUfIiVW79wRLAtbqMDYlXwptMkpZAMVn
+         lloGmQa4FN/LQ==
+Received: by mail-ed1-f48.google.com with SMTP id w9so29022145edt.13;
+        Wed, 10 Mar 2021 09:01:57 -0800 (PST)
+X-Gm-Message-State: AOAM530KCNGOc9UWduhTNmkxpbxEUUcZnZx2dKf1QRq8pCP7eaYalsLB
+        e8zsS1z9pKqpMVuOCDEDipti2ju9lBMiBqrhUQ==
+X-Google-Smtp-Source: ABdhPJyyjiOqDNU+GsRsusWQw6pd7IjZqC3Hzchz/EIeuYg4YBLw4UApJuUQRJ4ZYOdJ7x1nylPn+YQBn+IB+ohTiOE=
+X-Received: by 2002:aa7:d3d8:: with SMTP id o24mr4394042edr.165.1615395715853;
+ Wed, 10 Mar 2021 09:01:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20210310110824.782209-1-masahiroy@kernel.org>
-In-Reply-To: <20210310110824.782209-1-masahiroy@kernel.org>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
+ <20210308211306.GA2920998@robh.at.kernel.org> <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+ <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
+ <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st> <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
+ <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st>
+In-Reply-To: <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 10 Mar 2021 09:54:36 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJTpyb6ULWbDwrpxpUQxVxO4g2r6+WVWBM8sg0QOVfu7g@mail.gmail.com>
-Message-ID: <CAL_JsqJTpyb6ULWbDwrpxpUQxVxO4g2r6+WVWBM8sg0QOVfu7g@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: remove unneeded -O option to dtc
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        devicetree@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
+Date:   Wed, 10 Mar 2021 10:01:43 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
+Message-ID: <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 4:09 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Wed, Mar 10, 2021 at 1:27 AM Hector Martin <marcan@marcan.st> wrote:
 >
-> This piece of code converts the target suffix to the dtc -O option:
+> On 10/03/2021 07.06, Rob Herring wrote:
+> >> My main concern here is that this creates an inconsistency in the device
+> >> tree representation that only works because PCI drivers happen not to
+> >> use these code paths. Logically, having "nonposted-mmio" above the PCI
+> >> controller would imply that it applies to that bus too. Sure, it doesn't
+> >> matter for Linux since it is ignored, but this creates an implicit
+> >> exception that PCI buses always use posted modes.
+> >
+> > We could be stricter that "nonposted-mmio" must be in the immediate
+> > parent. That's kind of in line with how addressing already works.
+> > Every level has to have 'ranges' to be an MMIO address, and the
+> > address cell size is set by the immediate parent.
+> >
+> >> Then if a device comes along that due to some twisted fabric logic needs
+> >> nonposted nGnRnE mappings for PCIe (even though the actual PCIe ops will
+> >> end up posted at the bus anyway)... how do we represent that? Declare
+> >> that another "nonposted-mmio" on the PCIe bus means "no, really, use
+> >> nonposted mmio for this"?
+> >
+> > If we're strict, yes. The PCI host bridge would have to have "nonposted-mmio".
 >
->     *.dtb      ->  -O dtb
->     *.dt.yaml  ->  -O yaml
+> Works for me; then let's just make it non-recursive.
 >
-> Commit ce88c9c79455 ("kbuild: Add support to build overlays (%.dtbo)")
-> added the third case:
->
->     *.dtbo     ->  -O dtbo
->
-> This works thanks to commit 163f0469bf2e ("dtc: Allow overlays to have
-> .dtbo extension") in the upstream DTC, which has already been pulled in
-> the kernel.
->
-> However, I think it is a bit odd because "dtbo" is not a format name.
-> At least, it does not show up in the help message of dtc.
->
-> $ scripts/dtc/dtc --help
->   [ snip ]
->   -O, --out-format <arg>
->         Output formats are:
->                 dts - device tree source text
->                 dtb - device tree blob
->                 yaml - device tree encoded as YAML
->                 asm - assembler source
->
-> So, I am not a big fan of the second hunk of that change:
->
->         } else if (streq(outform, "dtbo")) {
->                 dt_to_blob(outf, dti, outversion);
->
-> Anyway, we did not need to do this in Makefile in the first place.
->
-> guess_type_by_name() had already understood ".yaml" before commit
-> 4f0e3a57d6eb ("kbuild: Add support for DT binding schema checks"),
-> and now does ".dtbo" as well.
->
-> Makefile does not need to duplicate the same logic. Let's leave it
-> to dtc.
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->
->  scripts/Makefile.lib | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index eee59184de64..90a4e04cd8f5 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -327,7 +327,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
->
->  quiet_cmd_dtc = DTC     $@
->  cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-> -       $(DTC) -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
-> +       $(DTC) -o $@ -b 0 \
->                 $(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
->                 -d $(depfile).dtc.tmp $(dtc-tmp) ; \
->         cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+> Do you think we can get rid of the Apple-only optimization if we do
+> this? It would mean only looking at the parent during address
+> resolution, not recursing all the way to the top, so presumably the
+> performance impact would be quite minimal.
 
-I think you should also drop 'yaml' from:
-
-$(call if_changed_rule,dtc,yaml)
-
-Though that's somewhat separate, so either way:
-
-Acked-by: Rob Herring <robh@kernel.org>
+Yeah, that should be fine. I'd keep an IS_ENABLED() config check
+though. Then I'll also know if anyone else needs this.
 
 Rob
