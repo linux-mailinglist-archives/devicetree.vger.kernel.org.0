@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B3C334BEA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 23:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2BA334C43
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 00:12:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbhCJWrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 17:47:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54928 "EHLO
+        id S233821AbhCJXMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 18:12:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233069AbhCJWrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 17:47:46 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B079BC061574;
-        Wed, 10 Mar 2021 14:47:45 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id g25so149563wmh.0;
-        Wed, 10 Mar 2021 14:47:45 -0800 (PST)
+        with ESMTP id S231478AbhCJXLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 18:11:35 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70BE6C061574
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:11:34 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id r25so27823812ljk.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:11:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Dp9DInsVMxgWeAboBahDiDPT111NcMpaXY2ilDA9Zo4=;
-        b=b31D9MRU1bFKXcV8L7Yf+L1dnbD+tOUfbPMCHx5mO+dPzZE8N7105P4EYquurdH3r/
-         nuz5XqMTFB27T9BnsxahsmlmlKLGXpT8ObuVunhx1Za/DguZuVMsp+4UZgCCqdBiUBjh
-         OaDbfrHTvCFHKPfRaKmUN/QKkHHCholELtncvq4nWpZnutVNKoCLMb91of7x3ofW2j4e
-         IwcJOcQa3buL7iXofPZSFkeYVWeJF9Gz+m+01GWVvQnOZTGkLUmu7+InS4raQglPSOgb
-         Wvq/5dbpNgWRkUbK6YlJiRl6RLd8MUp6CCefw+3mYTATjtsrWF1cyK+qQYNAHaxAvJV6
-         USPA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fsUvZGKYC5fgx4oei9Q5/ic2uEIxVNyjDNMh2AgyO6I=;
+        b=YFJ7SMDaL74sPgY4t2M2TveLoai2GpxFH7T+w02cY0yAPfz4d7STzMXwN2LMQ2iEoZ
+         AC3wFDsX/B+jYJXVNzs+y4D9tGf/wEA3njzRA4m7PPgqfVi486jFs5jC4rjhpItvLjMl
+         feX0SL4sSjFQxxMpaHtUG3m/yP5ZsWGY2bHZ1JzjeRWLuH3LgTM/weeATOW14t4za+lM
+         0oejehpKlmlwaemoSaXKHgvkv/wgRR/MCed4z76h2TRaPLDfBO1rpazJRuqEpn9HXUuZ
+         gZsRlyCIDNbKHWfuIFLOxVswPmSPuq2apnjiVRCSHJ7mbVzB2AtDRB2jPCfVazu7Yozu
+         i7/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Dp9DInsVMxgWeAboBahDiDPT111NcMpaXY2ilDA9Zo4=;
-        b=k7oncUkua6z9Io3GQpyrbePAkOI5Evjc9AJV3Q3iVteyuDvZjkUdJmDUum8Yir2JOE
-         9T0x+LBziLVbNA7hDU9Q0K3srLWqm5edgA3eRBr/WVXcVWNw3uzCxAvpA8ZEluLBHzhi
-         zTKx+3yC4smsHZ3fKRAN1DRHCxXYRPFjTVkZdeKxj7KCSCwIYoz8gmloMH4jbR9PLWqM
-         w92j3SogFwfwN1P4VFp1ba8gBgsMrAcDhRnGJ86TwLjnVRvQBg4Dw1zJkyAactsin/Gw
-         GSSxviB/+HZ9+0QmIy/HKE43itqShvvO5RlZOx/hCXkaQ6vU58Xi+5Xj6uu2Z5hfeOSg
-         Ux0Q==
-X-Gm-Message-State: AOAM531qXZed2+BslAb6iIRrn2QhWsaQXp+x0xIRPpzZs+ZEL4kUPjBz
-        APRaXF3Gwcy45VhmjkDSBeE=
-X-Google-Smtp-Source: ABdhPJyR/gLtCOZzQajU4mg+PApLftgolVO8nNF6Z7DmFi3vssrDLEZaY/scs1tGzbr93bGS/VhZtA==
-X-Received: by 2002:a05:600c:2cd8:: with SMTP id l24mr5317774wmc.88.1615416464250;
-        Wed, 10 Mar 2021 14:47:44 -0800 (PST)
-Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
-        by smtp.gmail.com with ESMTPSA id z25sm909099wmi.23.2021.03.10.14.47.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 14:47:43 -0800 (PST)
-Date:   Wed, 10 Mar 2021 23:47:42 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: Document use of nvmem-cells
- compatible
-Message-ID: <YElMjg/AspNSRe0A@Ansuel-xps.localdomain>
-References: <20210310210812.8880-1-ansuelsmth@gmail.com>
- <20210310210812.8880-2-ansuelsmth@gmail.com>
- <5d798266-3a18-d50d-9c3e-f91bc2460fe5@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fsUvZGKYC5fgx4oei9Q5/ic2uEIxVNyjDNMh2AgyO6I=;
+        b=jJVa6CjOo/ybURrINKfksDrzlI42sYECN9UwywGOiEpZC94CNdmGV61T457jBq3UUT
+         QeS5QWGaIGJR8YL0uEmUclJG53P2wYiPpqm0dhQAWZWgW5XN8HxL4T5LxkZH8Ilervh3
+         yjn/F2p+2hDaRr1RxPbnngJ6/AOp9hbxuoybSUP7rfZpqh3khnS/1hCB4jFgmeJezE3G
+         fxy8mXBh6A2ppCN5uTRDYzT1i0fLysLRvIqRhyp8KfVDyg3ealY3S1lYzKVe3bhQO8Mq
+         8oS9lR+GQqXX8LU8MKWbBLhkz/GttJLeywDoUuKkk6T9ax2XVYIJKAKJu+SDSlwVGtq8
+         /zDA==
+X-Gm-Message-State: AOAM533M4m7yKFCw5amICFZTcv3/mBltPvh7FWu/ljyPDnMcvS8wR993
+        QfvZj8NtXYmlmciI9/JseZ/cwC+TyuHVphUl5BzdVA==
+X-Google-Smtp-Source: ABdhPJzmo5G8NylnSmgEyDfdbat9eWDptGx3+8/H3Ywrq5Z5I67GtCUd0mY3fRoJZXOwQZI5bSexUvc4wSg5BOhWX4M=
+X-Received: by 2002:a2e:7001:: with SMTP id l1mr3125411ljc.200.1615417892988;
+ Wed, 10 Mar 2021 15:11:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5d798266-3a18-d50d-9c3e-f91bc2460fe5@gmail.com>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-26-marcan@marcan.st>
+In-Reply-To: <20210304213902.83903-26-marcan@marcan.st>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 11 Mar 2021 00:11:22 +0100
+Message-ID: <CACRpkdZrFfP3nx=eU-hKKVUfxHHX2J2-__6tjV8hTPgX3qtBDA@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 25/27] tty: serial: samsung_tty: Add earlycon
+ support for Apple UARTs
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 11:41:24PM +0100, Rafał Miłecki wrote:
-> See inline
-> 
-> On 10.03.2021 22:08, Ansuel Smith wrote:
-> > Document nvmem-cells compatible used to treat mtd partitions as a
-> > nvmem provider.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >   .../bindings/mtd/partitions/nvmem-cells.yaml  | 96 +++++++++++++++++++
-> >   1 file changed, 96 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
-> > new file mode 100644
-> > index 000000000000..f70d7597a6b0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
-> > @@ -0,0 +1,96 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/partitions/nvmem-cells.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nvmem cells
-> > +
-> > +description: |
-> > +  Any partition containing the compatible "nvmem-cells" will register as a
-> > +  nvmem provider.
-> > +  Each direct subnodes represents a nvmem cell following the nvmem binding.
-> > +  Nvmem binding to declare nvmem-cells can be found in:
-> > +  Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> > +
-> > +maintainers:
-> > +  - Ansuel Smith <ansuelsmth@gmail.com>
-> 
-> I think that when Rob wrote:
-> 
-> On 10.03.2021 03:58, Rob Herring wrote:
-> > I think this should reference nvmem.yaml.
-> 
-> he meant you using:
-> 
-> allOf:
->   - $ref: "nvmem.yaml#"
-> 
-> (you'll need to adjust binding path).
-> 
-> Please check how it's done in Documentation/devicetree/bindings/nvmem/*.yaml files
-> 
+On Thu, Mar 4, 2021 at 10:42 PM Hector Martin <marcan@marcan.st> wrote:
+
+> Earlycon support is identical to S3C2410, but Apple SoCs also need
+> MMIO mapped as nGnRnE. This is handled generically for normal drivers
+> including the normal UART path here, but earlycon uses fixmap and
+> runs before that scaffolding is ready.
 >
+> Since this is the only case where we need this fix, it makes more
+> sense to do it here in the UART driver instead of introducing a
+> whole fdt nonposted-mmio resolver just for earlycon/fixmap.
+>
+> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 
-Aside from that, should I readd the old properties or I can keep the
-compatible as the only one required?
+This is as elegant as it gets!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks for the suggestion.
-
-> > +properties:
-> > +  compatible:
-> > +    const: nvmem-cells
+Yours,
+Linus Walleij
