@@ -2,88 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB0533360F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 07:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F672333617
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbhCJG5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 01:57:16 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36386 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbhCJG5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 01:57:14 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12A6v5Cx127299;
-        Wed, 10 Mar 2021 00:57:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615359425;
-        bh=dF9ceGIvt34ZUESWe+LK4sFqbey7DgA8gj39dr7gbgM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Tj30gZZKLCzByzcwnTZYmqcj5N1ST/zKoTg3z15X1F8rgqhyfu+IpO4p29A6OlWof
-         Q4HpF5eaavULnGPO1/1EJd7Lnlm77NgyGcpFnBfkp8lQvEl9LQHt+xb8WrYKVic6cS
-         wf69HN4R7jcEiCNpZ0LlkDN/nMPx9WnlFhdtifbI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12A6v5O3066550
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 00:57:05 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 00:57:05 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 00:57:05 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12A6v1ET034724;
-        Wed, 10 Mar 2021 00:57:02 -0600
-Subject: Re: [PATCH 0/2] AM64: Add USB support
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210301055109.17626-1-a-govindraju@ti.com>
- <20210301152227.f6phla2m3rz457pj@passerby>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <85b1b60f-455c-51b8-9e28-019226413885@ti.com>
-Date:   Wed, 10 Mar 2021 12:27:00 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229574AbhCJHBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 02:01:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229544AbhCJHAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:00:42 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE4DC06174A;
+        Tue,  9 Mar 2021 23:00:42 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id u18so24185705ljd.3;
+        Tue, 09 Mar 2021 23:00:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v5ZZC/0Om+mEQFj9Ia0pAoMSzePO9tzxjFI9VQrdPvE=;
+        b=rj3VCr3DLaMQ9RH30wQni2sJRlzEw0FeVRnbqdj+a7lGmDcGhPxgu1Jnxd5tEueWGO
+         h97SLSbF+tkEcVP3D76rGGWnATxxzrTUYJccgWl37itPPw66A6aM458LTfEwi4soewX/
+         6MGR272phgQAvyftM/VS1OU3UdIKmAX7GuJKT8zl+2wF0mvfO5Zryi8wtSLAaWah/U/t
+         1avCBKTTr8/n0+qzJYssck4W+hHvjMoa4cCBrZJCYnVkZ0biLgEIjyXnDFvDTlTQalgJ
+         agih4mp1vUmzzGZrM3c58qW8Wc8wGaWk7x7Pq1jYupRXX/ow8ZMIljPuGc4wkfxo1/I7
+         H37g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v5ZZC/0Om+mEQFj9Ia0pAoMSzePO9tzxjFI9VQrdPvE=;
+        b=f+Fg3vqZG8WAVWUj/zhkNGvqbvFI5UmpD80YXMFL3P8ywQGVStKyjAj6qz+qevWRBt
+         Wwzp3bEE2wmL/f5YMOPNhU+VVocZXJ6JixJsC6R95c1qN48UCY9iUAo9/TokLrRA6Ga/
+         qyx6Kx7NxBx8flJW0dcF8n1yDRUpVTrUzcQ8Hx4kEUCAMfP5Cncz63Q9MWX5Fr6lGbws
+         FU/BbPz6VUXX2GW+oralGbg+U9e1yI9jNhS1FEhoWkQvbBoy5ROOfucy3udC6DLP8pb8
+         wKYN6RlytlyDUo03Daahbaje+HVklJrdkZOCsexxHfEa5K6GzyaeTx6Xx/uKHHDjkUfi
+         xfrA==
+X-Gm-Message-State: AOAM532CLJXchV+di99wm1qjgzXb61wCfVnnhnP/6b0Yh0EBPUgpJeSy
+        Xge+eOapx6WSi8QZgvjrpBc=
+X-Google-Smtp-Source: ABdhPJy6660A8QR/KZxGUr8B9lOyYeXFtZxBFusFwcc8BtdX2rvYOSD2raVjKBueCqs3lhoUHR5SHw==
+X-Received: by 2002:a2e:3913:: with SMTP id g19mr591736lja.294.1615359640830;
+        Tue, 09 Mar 2021 23:00:40 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id j15sm2575554lfm.138.2021.03.09.23.00.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 23:00:40 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
+Date:   Wed, 10 Mar 2021 08:00:25 +0100
+Message-Id: <20210310070025.9150-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20210301152227.f6phla2m3rz457pj@passerby>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 01/03/21 8:52 pm, Nishanth Menon wrote:
-> On 11:21-20210301, Aswath Govindraju wrote:
->> The following series of patches, add USB support for AM64.
->>
->> This series of patches depends on,
->> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
->>
->> Aswath Govindraju (2):
->>   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->>   arm64: dts: ti: k3-am642-evm: Add USB support
->>
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->>  2 files changed, 48 insertions(+)
-> 
-> Please update the series to include SK as well.
-> 
+The old regex allowed only 1 character to follow the "led-" prefix which
+was most likely just an overlook. Fix it and while at it allow dashes in
+node names. It allows more meaningful names and it helpful e.g. when
+having the same function name with 2 different colors. For example:
+1. led-power-white
+2. led-power-blue
 
-I was planning on posting patches that add support for USB in SK later
-because of phy dependencies.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/leds/leds-gpio.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
-Aswath
+diff --git a/Documentation/devicetree/bindings/leds/leds-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+index 7ad2baeda0b0..ae46a43e480f 100644
+--- a/Documentation/devicetree/bindings/leds/leds-gpio.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+@@ -21,7 +21,7 @@ properties:
+ patternProperties:
+   # The first form is preferred, but fall back to just 'led' anywhere in the
+   # node name to at least catch some child nodes.
+-  "(^led-[0-9a-f]$|led)":
++  "(^led-[0-9a-f][0-9a-f-]*$|led)":
+     type: object
+ 
+     $ref: common.yaml#
+-- 
+2.26.2
+
