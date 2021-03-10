@@ -2,169 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1786A3349E6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 22:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7CE334BB6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 23:42:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231301AbhCJVlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 16:41:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42890 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231778AbhCJVky (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 16:40:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 731E764FE8;
-        Wed, 10 Mar 2021 21:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615412454;
-        bh=lljbEm8y6jNcxvIMoB+J261BTyFdid0U0j/1mSpgrns=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eDXX9I0rBca4D2age7wm+DtVv6geacxhoDXnt5SysKVhym9aYBoOULiDV+ts4rOLP
-         jxqSr5B0vX0/o/NShM/j+kwlnb4hGRATSr0mEhy2fTgb4b/f9TFkN0sucrguP/wUnN
-         VpsdkpA2+bkS7oY10zU2zq+j59iH8lNhIYLI61shYJGWLghrHuyig30tcjLo3fTgbB
-         3DEVFLncbcg+C2B9HtVOo3SUvsmkNa+xgZXWZi3ZI5a2G3Gno+oUiLdB0wFYwj7D9V
-         li5Sma9VH3O9evfauK7N3UwWSXURG5BK+1LBH0BYK5Vbx589vAqinspwZjQAwTmkXH
-         mjJKT2LCYnF3Q==
-Received: by mail-qk1-f179.google.com with SMTP id m186so1917402qke.12;
-        Wed, 10 Mar 2021 13:40:54 -0800 (PST)
-X-Gm-Message-State: AOAM532bmvbOE5P49KZOS0cD2KWJvsod2ISvDBzPVJPC80auwWE+hToR
-        AA4UccCh9R29pvbb73fNZY1LaaCoz6jH/BN8fQ==
-X-Google-Smtp-Source: ABdhPJwvOHv4sjXRoS+j4qWhL9MVaGJgYMXKyxBDilpUrwUXgxjhTnULwJ7kIho0KdWOn0m+qzW6exxxNwLS3x7GxZU=
-X-Received: by 2002:a05:620a:1001:: with SMTP id z1mr4659415qkj.364.1615412453005;
- Wed, 10 Mar 2021 13:40:53 -0800 (PST)
+        id S232523AbhCJWl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 17:41:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229574AbhCJWla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 17:41:30 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD6CC061761;
+        Wed, 10 Mar 2021 14:41:30 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id r25so27739448ljk.11;
+        Wed, 10 Mar 2021 14:41:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=0QF4U1EjzeSFBBGGRg6Folsa6RnufGkB2larNXv6VrY=;
+        b=KCA16+3bpcWUZAppOub6HxaIT0x2+IXvTUVF6jPnkizPkHKk3p/PUqlhjGZ+2G8zxZ
+         7lTceSoHkk19ke+t03y2eVF2ufTcPeW4mwLle1nz6r6TJe5bua2BX7AFqZw4O2J3CQdw
+         Ek95LlsiON8VngfODwWDoo6byZPsEmDdeMCf89t8ArxPNHgJXoIqq3if8WxgQUgzfPzO
+         dZE8EXXkrHDLKVcRubxSGX7ji3bc7ORt6dGHBWYwR+9iMmlB9llBPsUsR0yBJF2Zez+2
+         humu29V3GVRUJoSq0A154RjH4MgTLOddG14cy9YR6cq7FISx41cxl6nEkEv9+q+wqx6y
+         Manw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0QF4U1EjzeSFBBGGRg6Folsa6RnufGkB2larNXv6VrY=;
+        b=Y23rO5WbJEZhkQ/1wW3LtqiUMaIV4xNNy3I82x+RSE71CoQ1dpKT66LH62Lu7ez8JP
+         1eRFdiBgtLtqpLdK++S7Se+vuhq0GpEWMIGyz5Ezc2VVPz7QeIZvVfBr8VWmpazzsYB1
+         DhKuDWuP6QPCb9b3umcBOCuGldCVzg45FuQ6jfn1+4kHyOvfMOa6YClGeY8pwP0ZYdJT
+         +a+9FhPsOWlWk2eTVJIfaWpwFdDv1d0/KoxaCzeKon7KLLTF4Ge4KTLNmqeA1xlDwaF8
+         oF2Dv4odePz5lX98MNKXco8cHO7Z4Zg0AR3f+CoC22KVbLOBg03HQMuFjRdZhd81OhLg
+         wMRA==
+X-Gm-Message-State: AOAM531jlqbxD1k2CWdErAIzmbhGPbmlqs/UoPvYpL++D7yycPPMecRh
+        IUZQfBw1GBtXIJJeZTcVrKBi9CDsB34=
+X-Google-Smtp-Source: ABdhPJyV8prnjfdr7O/N86GIUgpIE/sjZlwQYIl+xENvrLMV8gDcJHtRiJm3vQfxrH8uxZp+jI2nzg==
+X-Received: by 2002:a2e:a48b:: with SMTP id h11mr3002205lji.492.1615416088614;
+        Wed, 10 Mar 2021 14:41:28 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id v2sm296728ljg.89.2021.03.10.14.41.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Mar 2021 14:41:27 -0800 (PST)
+Subject: Re: [PATCH v4 2/3] dt-bindings: mtd: Document use of nvmem-cells
+ compatible
+To:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210310210812.8880-1-ansuelsmth@gmail.com>
+ <20210310210812.8880-2-ansuelsmth@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <5d798266-3a18-d50d-9c3e-f91bc2460fe5@gmail.com>
+Date:   Wed, 10 Mar 2021 23:41:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-References: <20210209062131.2300005-1-tientzu@chromium.org>
- <20210209062131.2300005-14-tientzu@chromium.org> <20210310160747.GA29834@willie-the-truck>
-In-Reply-To: <20210310160747.GA29834@willie-the-truck>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 10 Mar 2021 14:40:41 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJE6A4awYCvqzw3qk2uAJEKgkSOKbk9tPaMKup8zes8cA@mail.gmail.com>
-Message-ID: <CAL_JsqJE6A4awYCvqzw3qk2uAJEKgkSOKbk9tPaMKup8zes8cA@mail.gmail.com>
-Subject: Re: [PATCH v4 13/14] dt-bindings: of: Add restricted DMA pool
-To:     Will Deacon <will@kernel.org>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Juergen Gross <jgross@suse.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Grant Likely <grant.likely@arm.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Thierry Reding <treding@nvidia.com>,
-        Ingo Molnar <mingo@kernel.org>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        xen-devel <xen-devel@lists.xenproject.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210310210812.8880-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 9:08 AM Will Deacon <will@kernel.org> wrote:
->
-> Hi Claire,
->
-> On Tue, Feb 09, 2021 at 02:21:30PM +0800, Claire Chang wrote:
-> > Introduce the new compatible string, restricted-dma-pool, for restricted
-> > DMA. One can specify the address and length of the restricted DMA memory
-> > region by restricted-dma-pool in the reserved-memory node.
-> >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > ---
-> >  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > index e8d3096d922c..fc9a12c2f679 100644
-> > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > @@ -51,6 +51,20 @@ compatible (optional) - standard definition
-> >            used as a shared pool of DMA buffers for a set of devices. It can
-> >            be used by an operating system to instantiate the necessary pool
-> >            management subsystem if necessary.
-> > +        - restricted-dma-pool: This indicates a region of memory meant to be
-> > +          used as a pool of restricted DMA buffers for a set of devices. The
-> > +          memory region would be the only region accessible to those devices.
-> > +          When using this, the no-map and reusable properties must not be set,
-> > +          so the operating system can create a virtual mapping that will be used
-> > +          for synchronization. The main purpose for restricted DMA is to
-> > +          mitigate the lack of DMA access control on systems without an IOMMU,
-> > +          which could result in the DMA accessing the system memory at
-> > +          unexpected times and/or unexpected addresses, possibly leading to data
-> > +          leakage or corruption. The feature on its own provides a basic level
-> > +          of protection against the DMA overwriting buffer contents at
-> > +          unexpected times. However, to protect against general data leakage and
-> > +          system memory corruption, the system needs to provide way to lock down
-> > +          the memory access, e.g., MPU.
->
-> As far as I can tell, these pools work with both static allocations (which
-> seem to match your use-case where firmware has preconfigured the DMA ranges)
-> but also with dynamic allocations where a 'size' property is present instead
-> of the 'reg' property and the kernel is responsible for allocating the
-> reservation during boot. Am I right and, if so, is that deliberate?
+See inline
 
-I believe so. I'm not keen on having size only reservations in DT.
-Yes, we allowed that already, but that's back from the days of needing
-large CMA carveouts to be reserved early in boot. I've read that the
-kernel is much better now at contiguous allocations, so do we really
-need this in DT anymore?
+On 10.03.2021 22:08, Ansuel Smith wrote:
+> Document nvmem-cells compatible used to treat mtd partitions as a
+> nvmem provider.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>   .../bindings/mtd/partitions/nvmem-cells.yaml  | 96 +++++++++++++++++++
+>   1 file changed, 96 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
+> new file mode 100644
+> index 000000000000..f70d7597a6b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/nvmem-cells.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nvmem cells
+> +
+> +description: |
+> +  Any partition containing the compatible "nvmem-cells" will register as a
+> +  nvmem provider.
+> +  Each direct subnodes represents a nvmem cell following the nvmem binding.
+> +  Nvmem binding to declare nvmem-cells can be found in:
+> +  Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +
+> +maintainers:
+> +  - Ansuel Smith <ansuelsmth@gmail.com>
 
-> I ask because I think that would potentially be useful to us for the
-> Protected KVM work, where we need to bounce virtio memory accesses via
-> guest-determined windows because the guest memory is generally inaccessible
-> to the host. We've been hacking this using a combination of "swiotlb=force"
-> and set_memory_{decrypted,encrypted}() but it would be much better to
-> leverage the stuff you have here.
->
-> Also:
->
-> > +
-> > +             restricted_dma_mem_reserved: restricted_dma_mem_reserved {
-> > +                     compatible = "restricted-dma-pool";
-> > +                     reg = <0x50000000 0x400000>;
-> > +             };
-> >       };
-> >
-> >       /* ... */
-> > @@ -138,4 +157,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> >               memory-region = <&multimedia_reserved>;
-> >               /* ... */
-> >       };
-> > +
-> > +     pcie_device: pcie_device@0,0 {
-> > +             memory-region = <&restricted_dma_mem_reserved>;
-> > +             /* ... */
-> > +     };
->
-> I find this example a bit weird, as I didn't think we usually had DT nodes
-> for PCI devices; rather they are discovered as a result of probing config
-> space. Is the idea that you have one reserved memory region attached to the
-> RC and all the PCI devices below that share the region, or is there a need
-> for a mapping mechanism?
+I think that when Rob wrote:
 
-We can have DT nodes for PCI. AIUI, IBM power systems always do. For
-FDT, it's only if there are extra non-discoverable resources. It's
-particularly fun when it's resources which need to be enabled for the
-PCI device to be discovered. That seems to be a growing problem as PCI
-becomes more common on embedded systems.
+On 10.03.2021 03:58, Rob Herring wrote:
+ > I think this should reference nvmem.yaml.
 
-Rob
+he meant you using:
+
+allOf:
+   - $ref: "nvmem.yaml#"
+
+(you'll need to adjust binding path).
+
+Please check how it's done in Documentation/devicetree/bindings/nvmem/*.yaml files
+
+
+> +properties:
+> +  compatible:
+> +    const: nvmem-cells
