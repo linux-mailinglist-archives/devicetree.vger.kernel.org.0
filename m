@@ -2,84 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 178F2334233
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 16:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D5F033423B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 16:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233125AbhCJPzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 10:55:20 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50368 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232940AbhCJPzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 10:55:18 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AFtANJ071321;
-        Wed, 10 Mar 2021 09:55:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615391710;
-        bh=dm+U4X4EOZxEx+9CgGj+1LJA+tv3/55FfGG9lW8Ffdk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Zhb8WPS2KOTvRel1/RxPtFnx0IhqUkyODogfUFTVgvui80jLTCyKbqo6iHIP3PgC9
-         cSBElsGYwd1/5Hg6Gw+vdLjCFVoFfuD2xU1UncrCXtIlnZeu6yql+sQQixx3r+8tWb
-         Yn02EpzLR1aQIYR/48q6fjA+LR6QjZyVJKNWfIk4=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AFtAYH029708
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 09:55:10 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 09:55:10 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 09:55:10 -0600
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AFsq5l082613;
-        Wed, 10 Mar 2021 09:55:07 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Swapnil Jakhade <sjakhade@cadence.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-phy@lists.infradead.org>
-Subject: [PATCH 4/4] phy: cadence-torrent: Explicitly request exclusive reset control
-Date:   Wed, 10 Mar 2021 21:24:45 +0530
-Message-ID: <20210310155445.534-5-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210310155445.534-1-kishon@ti.com>
-References: <20210310155445.534-1-kishon@ti.com>
+        id S231282AbhCJPzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 10:55:49 -0500
+Received: from mga14.intel.com ([192.55.52.115]:62102 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229851AbhCJPzj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 10:55:39 -0500
+IronPort-SDR: rv/eOZ4QcnR4UnCQX7F/mKIJxgqCi6X+zttPqqhk0hxEtGK6A6LomQDP1GPILZn81W36yY2oCA
+ DFpg1mPjdJxw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="187858185"
+X-IronPort-AV: E=Sophos;i="5.81,237,1610438400"; 
+   d="scan'208";a="187858185"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2021 07:55:39 -0800
+IronPort-SDR: /6eKFr8ry0VtVGJOb9d9xQK0rmfnthDtnNFQFohYpPLs8T52s8cLX5JG5QSF0oavx6e+jiVGji
+ c5CtbcZkhVEg==
+X-IronPort-AV: E=Sophos;i="5.81,237,1610438400"; 
+   d="scan'208";a="447943096"
+Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.212.177.249]) ([10.212.177.249])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2021 07:55:38 -0800
+Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: aspeed: add transfer mode
+ support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>
+References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
+ <20210224191720.7724-2-jae.hyun.yoo@linux.intel.com>
+ <20210306203011.GA1152769@robh.at.kernel.org>
+ <f6732348-d6c8-f49b-6123-afe542bb1f8c@linux.intel.com>
+ <CAL_Jsq+H2wCyTKhGcQvgiuyMtGW0hytQgw=948q0JGLSLOo9KA@mail.gmail.com>
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Message-ID: <f1811747-3826-215a-d822-85170303a7c9@linux.intel.com>
+Date:   Wed, 10 Mar 2021 07:55:38 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAL_Jsq+H2wCyTKhGcQvgiuyMtGW0hytQgw=948q0JGLSLOo9KA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No functional change. Since the reset controls obtained in
-Torrent is exclusively used by the Torrent device, use
-exclusive reset control request API calls.
+On 3/9/2021 6:15 PM, Rob Herring wrote:
+> On Tue, Mar 9, 2021 at 10:02 AM Jae Hyun Yoo
+> <jae.hyun.yoo@linux.intel.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 3/6/2021 12:30 PM, Rob Herring wrote:
+>>> On Wed, Feb 24, 2021 at 11:17:17AM -0800, Jae Hyun Yoo wrote:
+>>>> Append bindings to support transfer mode.
+>>>>
+>>>> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+>>>> Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
+>>>> ---
+>>>> Changes since v3:
+>>>> - None
+>>>>
+>>>> Changes since v2:
+>>>> - Moved SRAM resources back to default dtsi and added mode selection
+>>>>     property.
+>>>>
+>>>> Changes since v1:
+>>>> - Removed buffer reg settings from default device tree and added the settings
+>>>>     into here to show the predefined buffer range per each bus.
+>>>>
+>>>>    .../devicetree/bindings/i2c/i2c-aspeed.txt    | 37 +++++++++++++++----
+>>>>    1 file changed, 30 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>>>> index b47f6ccb196a..242343177324 100644
+>>>> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>>>> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+>>>> @@ -17,6 +17,20 @@ Optional Properties:
+>>>>    - bus-frequency    : frequency of the bus clock in Hz defaults to 100 kHz when not
+>>>>                 specified
+>>>>    - multi-master     : states that there is another master active on this bus.
+>>>> +- aspeed,i2c-xfer-mode      : should be "byte", "buf" or "dma" to select transfer
+>>>> +                      mode defaults to "byte" mode when not specified.
+>>>> +
+>>>> +                      I2C DMA mode on AST2500 has these restrictions:
+>>>> +                        - If one of these controllers is enabled
+>>>> +                            * UHCI host controller
+>>>> +                            * MCTP controller
+>>>> +                          I2C has to use buffer mode or byte mode instead
+>>>> +                          since these controllers run only in DMA mode and
+>>>> +                          I2C is sharing the same DMA H/W with them.
+>>>> +                        - If one of these controllers uses DMA mode, I2C
+>>>> +                          can't use DMA mode
+>>>> +                            * SD/eMMC
+>>>> +                            * Port80 snoop
+>>>
+>>> How does one decide between byte or buf mode?
+>>
+>> If a given system makes just one byte r/w transactions most of the time
+>> then byte mode will be a right setting. Otherwise, buf mode is more
+>> efficient because it doesn't generate a bunch of interrupts on every
+>> byte handling.
+> 
+> Then why doesn't the driver do byte transactions when it gets small
+> 1-4? byte transactions and buffer transactions when it gets larger
+> sized transactions.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- drivers/phy/cadence/phy-cadence-torrent.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Good question and it could be an option of this implementation.
+Actually, each mode needs different register handling so we need to add
+additional conditional branches to make it dynamic mode change depends
+on the data size which can be a downside. Also, checked that small
+amount of data transfer efficiency in 'buf' transfer mode is almost same
+to 'byte' mode so there would be no big benefit from the dynamic mode
+change. Of course, we can remove the 'byte' transfer mode but we should
+also provide flexibility of configuration on what this hardware can
+support, IMO.
 
-diff --git a/drivers/phy/cadence/phy-cadence-torrent.c b/drivers/phy/cadence/phy-cadence-torrent.c
-index 5ee1657f5a1c..ff8bb4b724c0 100644
---- a/drivers/phy/cadence/phy-cadence-torrent.c
-+++ b/drivers/phy/cadence/phy-cadence-torrent.c
-@@ -2264,7 +2264,7 @@ static int cdns_torrent_reset(struct cdns_torrent_phy *cdns_phy)
- 		return PTR_ERR(cdns_phy->phy_rst);
- 	}
- 
--	cdns_phy->apb_rst = devm_reset_control_get_optional(dev, "torrent_apb");
-+	cdns_phy->apb_rst = devm_reset_control_get_optional_exclusive(dev, "torrent_apb");
- 	if (IS_ERR(cdns_phy->apb_rst)) {
- 		dev_err(dev, "%s: failed to get apb reset\n",
- 			dev->of_node->full_name);
--- 
-2.17.1
-
+Thanks,
+Jae
