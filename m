@@ -2,113 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4843347CD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 20:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 554303347DE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 20:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbhCJTTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 14:19:49 -0500
-Received: from mail-dm6nam10on2061.outbound.protection.outlook.com ([40.107.93.61]:26336
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232824AbhCJTTY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 14:19:24 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I7j0ZLNZkU8Q5bOCBfiRQLUROcV32POjbVemz/Q6ClhdbZHj8Hn2ofEhU3YIlisd+2mQaCxzu/OQG8lY1n5mP/eUV7iJ59dAhnu2obPwo7gx6zCmA2ATA4tRb9lzbwSiJgzYgTAY+ppEFRVNnX99ulnBnrjiJEyXOno2e6Pp9uKV5ql+A21AKENO60lkdYYFqNsJkf40Rqy/EBxfMo1xSNjS6mpv2JM9yQtK2w5seyBACQUOlNCGzRKtnuY5DxvbE+UV/1xVdfFj796XxecInqI5NmrpcaqATL+CpZ2y4/UNlrQ8QQPAaknnKDwEScXya9sD3hYiKEfubNiJK6uhiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UQ+CQyliHKMEHOtCGTQatjdSVUv3xVaIFcJKRbQJy2s=;
- b=iS10iMH7LhGV8mQlejj0Pfn3blZDucs9ip6hfIL324vbvfApFdJFuHSt/dxJmVk7ha35M/e7XCq3bOdFzjRVNJnHqgC/nU2vIihG3wH5TzMdk2WFtrnmDHFQQKxrXIqNlsUNnQbHJnPIUZgDlNTjAdK0swS7mfKPv/5/eLxFxWDWwnxEXj1tOKZZbQ6L+7Zg0W/Aig0jfbNWsYTgf34RrgiaklvVS1sGncOiHBD5x2Uxl0MTJPtNyDA8XWP4Uq9iY+WQVyVAA2+FNzsDFqrmSVaUamlLryQM57bC1YT2L3wJ5FKTiQUoK4oIGo8e0ieLCNydZB0Ekss8cNAk9J/4kQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=alsa-project.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UQ+CQyliHKMEHOtCGTQatjdSVUv3xVaIFcJKRbQJy2s=;
- b=m6tKKLoTA91jnSVNpd8u3YKP8lyVdHDHShYFYxpP9KQpWigP75ei2EkZU7N2WdzTO4vanFTaEf6dptKdmeFcng7HxxD0riLYur4Hh3Gv25H5/ipi8OtirRoyCtzTrojuZDOPtjpKsvRPH+6METPav9gDI0vxNz2aCxOu/lPzsNLp8xNlm8QOo8Li0zDKI6CL9iVkn6G8Yof4eB4ftdE8s6vSS7B8m86wwfsuplaaJLTh72ze4vXFwSmNKO1Fij9vnpbWDD3guB7Aw5iCi8x3ihzXEjVKIZd07HwyUIyCZ27qUydh8+BDL3Q7nHsu8JrFUNg5aU43Fq8zUfKPnMM/Lg==
-Received: from DM5PR17CA0062.namprd17.prod.outlook.com (2603:10b6:3:13f::24)
- by DM6PR12MB4186.namprd12.prod.outlook.com (2603:10b6:5:21b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Wed, 10 Mar
- 2021 19:19:22 +0000
-Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:13f:cafe::dd) by DM5PR17CA0062.outlook.office365.com
- (2603:10b6:3:13f::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
- Transport; Wed, 10 Mar 2021 19:19:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; alsa-project.org; dkim=none (message not signed)
- header.d=none;alsa-project.org; dmarc=pass action=none
- header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3912.17 via Frontend Transport; Wed, 10 Mar 2021 19:19:20 +0000
-Received: from [10.25.96.88] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 10 Mar
- 2021 19:19:13 +0000
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-To:     Michael Walle <michael@walle.cc>, <broonie@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <jonathanh@nvidia.com>, <kuninori.morimoto.gx@renesas.com>,
-        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <robh@kernel.org>, <sharadg@nvidia.com>, <thierry.reding@gmail.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
- <6e6b312eb91b8b86ceaa8a52311ea437@walle.cc>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <a201acf4-ac96-35c3-1703-1b53a304361b@nvidia.com>
-Date:   Thu, 11 Mar 2021 00:49:07 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S233446AbhCJTZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 14:25:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230512AbhCJTZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 14:25:22 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8BAC061760
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 11:25:21 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id 16so11276772pfn.5
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 11:25:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Dqb3saigoqeKC76uveS1H3HUV6ZlbzECQ2GU0+CC0sc=;
+        b=lWWKHOUQTcyZ+HdF5UvPC8NpTEd6IYA6LWYgKTkaRDZi9/SP/rkGEiK5trAyN0D/6k
+         gZLW3PEW7W+XYnyIGQfYeqoA7xxPk19Qg+cs2KQbcotrUOYpxhmdYfHYJ2SP9ZSRMzB3
+         SY1MInrr78ptpG9kRI2W3U1kgG9w23J59p/LgKB1cQ2nR9HZbpMLoinWwX7ToY9fl6dl
+         4tFfcPIQE781orKch1iXouvYhzeLr8C7vkIhQfHSkSBmN2vwaTBgEToyK6d7svm403Ug
+         JVQgzYL/Ctd8WzBK2PXWkx2NupJWtISrbYErQStpYhd7J9Smy6RG893c1wssmYBmtyyF
+         7TPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Dqb3saigoqeKC76uveS1H3HUV6ZlbzECQ2GU0+CC0sc=;
+        b=CabtEcmoTxxlBjNA1m2x9FRVbYx9Gs2X6qsJqQr0bNb40KycZRIjKlSYnGG8K2hB7C
+         gT/+TMAZIZ8gcoEprapb3B799HsJcLwp3qRUkKYU8bIPDM6RwjNDwqmDkVisD3cgTOnW
+         A4InjPyn4N3B1oQwxhmYkH3Q/8AVthSJoe+4tf46ZpL63ywoXmLIYJx5G0JqefsQGwyg
+         c8dW9DHLbCa/LeLqmukxm+ZQilqLHXgbyO55oem5/LyGLsQ9j5FBdky/4iSvXSifCK8Q
+         S2E2RsiPAg8WiiZuP3WT3m65TxKV2EPyLQp+L6RK526LED1oDKCGWeyMifHhjdOBc8cg
+         R7tw==
+X-Gm-Message-State: AOAM533+EOXs8qGTYETui9cajNwx5CNj3H8S+unSlrA7w0ge6tXXGOU5
+        w+R52MpjpmceUNxBqhTQquM=
+X-Google-Smtp-Source: ABdhPJyO/7nKqxrXFYu4jtly4S3s3zlc5Sl6ZkjsizOQ6fBFASSCtq6HNzq6A+tiMCHtpqSYKgX4gg==
+X-Received: by 2002:aa7:94ad:0:b029:1ef:2392:4ee8 with SMTP id a13-20020aa794ad0000b02901ef23924ee8mr4393251pfl.75.1615404321506;
+        Wed, 10 Mar 2021 11:25:21 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id mp1sm144665pjb.48.2021.03.10.11.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 11:25:21 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH stblinux] ARM: dts: BCM5301X: fix "reg" formatting in /memory node
+Date:   Wed, 10 Mar 2021 11:25:19 -0800
+Message-Id: <20210310192519.2686953-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210309125500.15224-1-zajec5@gmail.com>
+References: <20210309125500.15224-1-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <6e6b312eb91b8b86ceaa8a52311ea437@walle.cc>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8f6103b7-5b02-4e2c-e700-08d8e3f96856
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4186:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB418671677BDB13AFA49983A9A7919@DM6PR12MB4186.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: duO5IU/ofW2okBUAVk8g5p7Pn1KlPUWuIND6P61DKQTvHVOjLQO+HKBdgPjcoobAOrCrN61I9qXzWqc9RQJldwnzlHUfDugPBByVp6NVJEpnoupi1dVyUTi8T5FF7ciy4PXMP5MJAoO7at8/AJruJNCdP/w6SWbn3lOWfb2Moa2QoUN09wJT39feQvD006TykQ2icGmDWqoK9GLoQ/sxSBMMYNmgDDDroPkAngORKexLynkpyuHEvYM0KlLs18YbDf8vYo4mLOt4tEbhswOqPav8IG3ZbWg925sqbG7EiIPsy/VG7AfnOdi535LhJMj2f0JIu0TCxAwvKS76jwkWdSaHVpzLcoSET7ZGB8fWn14SjmhSHwgE7He523RGJXW81D1s5QBQC5ZeggBKgOE1qQ0KTRo+DzCX6iFZNKcB3Bq/88sK6uzh1UB8OBHEn0m2FPIRdMBq8c9fUtdmRL+cYO2RhSD0OPrl/mIsbo/wzfBKyW/NRnx2yLJgssINtNnrPW+Cyzm6oybYHc8us/I1xJb0gl1QaMa2bCkl0FRVNkRrjX7kv708h4F4QihQUFiIR0+uQTWOuZnRqwzYAljXQFeejIr8EKWCt1OZ9gHFhJNZXOPrGGkRYIYODa43eD768ZM6ycIj1M5LImp9AIsEEVdTjLIwh++KCtLSdt+A9Vu+xVkqLXUHDhhkOGL4cHlFHDss/33xdlSD0iQNK9cM5w==
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(36840700001)(46966006)(6666004)(426003)(356005)(5660300002)(34070700002)(31696002)(36756003)(8936002)(31686004)(7636003)(36860700001)(4744005)(336012)(316002)(82740400003)(36906005)(86362001)(4326008)(70586007)(8676002)(47076005)(16526019)(70206006)(83380400001)(2616005)(54906003)(186003)(82310400003)(26005)(2906002)(53546011)(478600001)(16576012)(110136005)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 19:19:20.8773
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f6103b7-5b02-4e2c-e700-08d8e3f96856
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4186
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue,  9 Mar 2021 13:55:00 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This fixes warnings/errors like:
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dt.yaml: /: memory@0:reg:0: [0, 134217728, 2281701376, 402653184] is too long
+>         From schema: /lib/python3.6/site-packages/dtschema/schemas/reg.yaml
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-
-On 3/10/2021 11:44 PM, Michael Walle wrote:
-
-> Btw I'm pretty sure, the MCLK was enabled and disabled depending on
-> whether there was an audio stream, the last time I've measured the
-> clock.
-
-This may be true in your case because wm8904 driver does an explicit 
-clock enable/disable and does not rely on simple-card-utils for this. In 
-my case it depends on simple-card-utils.
+Applied to devicetree/next, thanks!
+--
+Florian
