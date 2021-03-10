@@ -2,434 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F2E23348DE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 21:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD8A334926
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 21:53:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbhCJUY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 15:24:56 -0500
-Received: from mail-mw2nam12on2043.outbound.protection.outlook.com ([40.107.244.43]:61001
-        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231246AbhCJUYz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 15:24:55 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fvTMxtk7ikltI5DS7lPsnTDenAKvOfz9k0NEbOgRsYM7ejW1q03U6HYV+iAR/LPWsqU/nwJwzYB/7PRKvV/9y6kiKGkMX9Va7A8r5GdtkmbCRXQs8kaCb2D2fsLB6WhKBcuwa4Y8vGnszN/dLoPfwknL1obiKxKDJTUUFITyqYE4+U2R7G5+iyFxKw7CQvGSrEm+VfVLIMtC83YLFD/blMsttoD6SXIFxZpYHqpX52fyG8KHSIBsYY37VQoflDYhRsmdjUdk0A10jzRYqcY5glDZzwiwnzDLN4u+bFXzlC5WN4NVKFIsNtCL0EF10hbR++UY78CwP4VOVEMEBt2Czg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oZ8AgI8PAJp8NqIU0x8gfkjO6R0kpULhuLaeHtpBqIk=;
- b=BFEXe50kESK+eDmf/3Cp4+QZqRsr3xHgITimTYSdtZSwy1FuYFam0JrMaVvoodKMKSEuyRE/ogHQy4nP7XhbUgCLdm1rAJPusB/FzhFM31A9NHeEetHLZfTyrz5AHLp4R4YCOdVoM2ObWSPJCZJzHQgtUtp3+nURbz4yhmQGan4UavhSSXQdyRU/wz3ZW+9EDZNt3xEXlBkKclL3N8bpcccOOnwnJPkpNyGUUpZA1Ib81oDiVun0gYBrg83AM/BFnzL9gQc22vgDa8fJPjDpVsujcXP1hVYhuhAG7zTHuKe+wp3Zw9ittTeCzyh6+qY1xFuPcZQf3FMd65Cyb99r7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oZ8AgI8PAJp8NqIU0x8gfkjO6R0kpULhuLaeHtpBqIk=;
- b=VbZpQLBsv+tbpYSGRhoMSdYnsBgsJ2bpoo6eBaH7pjnCjizimL6ZcdVJ08rqr33tfDu17WrJEXO46hQxY1Slx7cc4jH3Iv9Us+dRgzEtXU1SjIZOMVefgtD60RAlTWtw4UGaYWlz+kEuINeAElB7RBPFaHaoXc4rXeEcnjDkRA8=
-Received: from DM5PR1101CA0012.namprd11.prod.outlook.com (2603:10b6:4:4c::22)
- by CH2PR02MB6789.namprd02.prod.outlook.com (2603:10b6:610:7c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.18; Wed, 10 Mar
- 2021 20:24:53 +0000
-Received: from DM3NAM02FT055.eop-nam02.prod.protection.outlook.com
- (2603:10b6:4:4c:cafe::4f) by DM5PR1101CA0012.outlook.office365.com
- (2603:10b6:4:4c::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
- Transport; Wed, 10 Mar 2021 20:24:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT055.mail.protection.outlook.com (10.13.5.136) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3912.25 via Frontend Transport; Wed, 10 Mar 2021 20:24:52 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 10 Mar 2021 12:24:52 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2106.2 via Frontend Transport; Wed, 10 Mar 2021 12:24:52 -0800
-Envelope-to: robh@kernel.org,
- mdf@kernel.org,
- devicetree@vger.kernel.org,
- linux-fpga@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- trix@redhat.com
-Received: from [10.17.2.60] (port=40648)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1lK5O0-0004PV-2e; Wed, 10 Mar 2021 12:24:52 -0800
-Subject: Re: [PATCH V3 XRT Alveo 11/18] fpga: xrt: UCS platform driver
-To:     Tom Rix <trix@redhat.com>, Lizhi Hou <lizhi.hou@xilinx.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     <linux-fpga@vger.kernel.org>, <maxz@xilinx.com>,
-        <sonal.santan@xilinx.com>, <michal.simek@xilinx.com>,
-        <stefanos@xilinx.com>, <devicetree@vger.kernel.org>,
-        <mdf@kernel.org>, <robh@kernel.org>, Max Zhen <max.zhen@xilinx.com>
-References: <20210218064019.29189-1-lizhih@xilinx.com>
- <20210218064019.29189-12-lizhih@xilinx.com>
- <3e4edfaa-e90d-1889-cd05-41107e730c18@redhat.com>
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-Message-ID: <5013bcb9-2216-0c39-c557-51958fa5d0d4@xilinx.com>
-Date:   Wed, 10 Mar 2021 12:24:51 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.0
+        id S229574AbhCJUwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 15:52:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231221AbhCJUw1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 15:52:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 21D1564FD3;
+        Wed, 10 Mar 2021 20:52:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615409546;
+        bh=Y4IMzhmR/i1bJAbgSwEeGG96iVso6yxIJraC9k8LMGc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cozP1j/I8aoiMuv2YDdfZMwfvQnR9fOloGYNzB1dOTWXhtvRovQu7ysheAQ+YlWPN
+         7neeYzxAhbhteWzGT0Zht986ZNKck2IXicsJ5UFndHYjByTvmIK+vhBNrL0vT79Qgt
+         4ZyeWG8M89UhsXBZ+ESnNm7YXuIjLVFj11k/519dDevNyEKTvkFLszcGDwKXA+63/2
+         tUOls9+v9yAFQOShfksjPsePPlARzMy111x0QGFgn6/oIW+ex3KktF6OStGH5SAVOJ
+         IRbEfIEb2icqkhDopx+wSwTBToSh6ONuNcYuPOeKZKNJMhfjKc2gDHavc4CE1I+iS3
+         I6MLsR4B78HPA==
+Received: by mail-ed1-f44.google.com with SMTP id x9so30134857edd.0;
+        Wed, 10 Mar 2021 12:52:26 -0800 (PST)
+X-Gm-Message-State: AOAM53323ShBKjmFcrlK6EcCRKRUKBv6SgCJw9qFDmQhTYl3cOytpofe
+        H/cqEbqwCgX/ejSNL2ApO+ltAUdp6qoCOnuMqA==
+X-Google-Smtp-Source: ABdhPJyqvdBSso9F9AtZeY6JBcCbY7CEai8YQatiruukELq+qfsHLH5PwrvEch/SixqjKv/wR0J3ksZ0hNrx+x537j4=
+X-Received: by 2002:a05:6402:c88:: with SMTP id cm8mr5316532edb.62.1615409544408;
+ Wed, 10 Mar 2021 12:52:24 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <3e4edfaa-e90d-1889-cd05-41107e730c18@redhat.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b1f8941f-17b1-440c-3e95-08d8e402900c
-X-MS-TrafficTypeDiagnostic: CH2PR02MB6789:
-X-Microsoft-Antispam-PRVS: <CH2PR02MB6789B5FBBB85EE534C727FF4A1919@CH2PR02MB6789.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qgUin5wG9QR5Rip3KGV8FOg/VsavbGNcjK+4+IFMi0mCVyoSe8Ysq/TRFfNDTastH8ggXZkANp5EYMp2GNBnzok//tLaVOZ5NQgKWYjx/haOvzrsZRoAoRe59ht/aXArk3QF5RUQ166+WJ6Utq2+iG8eoOVDRccukVLUPwEbbVcSgrQsV5CDA9Mu4rrZ6LJOiBb9wFMZxsb5HQMF8xYmJVTtTShqf7ZIWA6CkyAsYHzb9yIPNKDG4AShqymmCxG/X+yAey3FgCPqV5RUdJDFSqzCmyrefKtMjoc2UhNT9xMnC73LLAKUjSGiHgeBWcvVFmz9FqgfoDb8z1puR6ou3NbH+69w6VlrhaGCAaw1CSPohrgt1AZB0v+3X9338zhyfDh1emx3EL3/o+iSN4v6bFwav7VjaQU6quFQJejCVuTbr+pEo2BPsxcA1TB2AwolyxM82Ixv28li7MoWioDsFNRPViyWDQWBiuvg3/57OfWGmGsV/ZBsh7tIVWqmBuLIq+4ZfJx/VPE3EtGQBSrH3ggOsUDjRTqYccspIPAy5WFQNmve2iYuvwB0PmQ45BOSzYJWvfUJ1V28R/j/jFi3b8RSGzFe2o0CTQA/kFq+HV+7rzC0f31O1uMVZiGSy8jcX7tqQZz2l85mO9Ti+31PeZRrTsXNBO4cY0eDH+0A7RpfglgQGBaHjot9aInIFVMVDoQD2fNxLPMF6whGLA9HYz6MAEEhWW4D5QfcKJp6E1s=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(36840700001)(46966006)(8676002)(44832011)(82310400003)(478600001)(54906003)(9786002)(8936002)(47076005)(31686004)(36860700001)(5660300002)(26005)(70206006)(70586007)(186003)(36906005)(2906002)(4326008)(7636003)(2616005)(82740400003)(53546011)(31696002)(426003)(83380400001)(356005)(36756003)(316002)(107886003)(336012)(110136005)(50156003)(2101003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 20:24:52.9814
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1f8941f-17b1-440c-3e95-08d8e402900c
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT055.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6789
+References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-5-noltari@gmail.com>
+ <CAL_JsqK4b+U7cVb04+moB4biGVFC4mr3VGx70KdQKitiCGdtnQ@mail.gmail.com>
+ <A2B4813E-4177-4969-9119-A40B39A36948@gmail.com> <CAL_JsqL+CwnhKY4bijnp7eGfYLwRpDUK+iFharVW=DWipsvZbg@mail.gmail.com>
+ <693A763C-14D1-47A2-A87E-2358E69DC993@gmail.com>
+In-Reply-To: <693A763C-14D1-47A2-A87E-2358E69DC993@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 10 Mar 2021 13:52:12 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqJzDj6bKwEfWzoa_m8HjP2VbZH21wYXXEUUEmLwHjrY_A@mail.gmail.com>
+Message-ID: <CAL_JsqJzDj6bKwEfWzoa_m8HjP2VbZH21wYXXEUUEmLwHjrY_A@mail.gmail.com>
+Subject: Re: [PATCH v6 04/15] dt-bindings: add BCM6328 pincontroller binding documentation
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tom,
+On Wed, Mar 10, 2021 at 12:10 PM =C3=81lvaro Fern=C3=A1ndez Rojas
+<noltari@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> > El 10 mar 2021, a las 19:45, Rob Herring <robh+dt@kernel.org> escribi=
+=C3=B3:
+> >
+> > On Wed, Mar 10, 2021 at 11:03 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+> > <noltari@gmail.com> wrote:
+> >>
+> >> Hi Rob,
+> >>
+> >>> El 10 mar 2021, a las 18:45, Rob Herring <robh+dt@kernel.org> escribi=
+=C3=B3:
+> >>>
+> >>> On Wed, Mar 10, 2021 at 5:55 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+> >>> <noltari@gmail.com> wrote:
+> >>>>
+> >>>> Add binding documentation for the pincontrol core found in BCM6328 S=
+oCs.
+> >>>>
+> >>>> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+> >>>> Co-developed-by: Jonas Gorski <jonas.gorski@gmail.com>
+> >>>> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> >>>> ---
+> >>>> v6: add changes suggested by Rob Herring
+> >>>> v5: change Documentation to dt-bindings in commit title
+> >>>> v4: no changes
+> >>>> v3: add new gpio node
+> >>>> v2: remove interrupts
+> >>>>
+> >>>> .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 174 ++++++++++++++++=
+++
+> >>>> 1 file changed, 174 insertions(+)
+> >>>> create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bc=
+m6328-pinctrl.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-=
+pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinct=
+rl.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..471f6efa1754
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl=
+.yaml
+> >>>> @@ -0,0 +1,174 @@
+> >>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/pinctrl/brcm,bcm6328-pinctrl.yam=
+l#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Broadcom BCM6328 pin controller
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> >>>> +  - Jonas Gorski <jonas.gorski@gmail.com>
+> >>>> +
+> >>>> +description: |+
+> >>>> +  The pin controller node should be the child of a syscon node.
+> >>>> +
+> >>>> +  Refer to the the bindings described in
+> >>>> +  Documentation/devicetree/bindings/mfd/syscon.yaml
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    const: brcm,bcm6328-pinctrl
+> >>>> +
+> >>>> +  gpio:
+> >>>> +    type: object
+> >>>> +    properties:
+> >>>> +      compatible:
+> >>>> +        const: brcm,bcm6328-gpio
+> >>>> +
+> >>>> +      data:
+> >>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +        description: |
+> >>>> +          Offset in the register map for the data register (in byte=
+s).
+> >>>> +
+> >>>> +      dirout:
+> >>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >>>> +        description: |
+> >>>> +          Offset in the register map for the dirout register (in by=
+tes).
+> >>>> +
+> >>>> +      gpio-controller: true
+> >>>> +
+> >>>> +      "#gpio-cells":
+> >>>> +        const: 2
+> >>>> +
+> >>>> +      gpio-ranges:
+> >>>> +        maxItems: 1
+> >>>> +
+> >>>> +    required:
+> >>>> +      - gpio-controller
+> >>>> +      - gpio-ranges
+> >>>> +      - '#gpio-cells'
+> >>>> +
+> >>>> +    additionalProperties: false
+> >>>> +
+> >>>> +patternProperties:
+> >>>> +  '^.*-pins$':
+> >>>> +    if:
+> >>>> +      type: object
+> >>>> +    then:
+> >>>> +      properties:
+> >>>> +        function:
+> >>>> +          $ref: "pinmux-node.yaml#/properties/function"
+> >>>> +          enum: [ serial_led_data, serial_led_clk, inet_act_led, pc=
+ie_clkreq,
+> >>>> +                  led, ephy0_act_led, ephy1_act_led, ephy2_act_led,
+> >>>> +                  ephy3_act_led, hsspi_cs1, usb_device_port, usb_ho=
+st_port ]
+> >>>> +
+> >>>> +        pins:
+> >>>> +          $ref: "pinmux-node.yaml#/properties/pins"
+> >>>> +          enum: [ gpio6, gpio7, gpio11, gpio16, gpio17, gpio18, gpi=
+o19,
+> >>>> +                  gpio20, gpio25, gpio26, gpio27, gpio28, hsspi_cs1=
+,
+> >>>> +                  usb_port1 ]
+> >>>> +
+> >>>> +required:
+> >>>> +  - compatible
+> >>>> +  - gpio
+> >>>> +
+> >>>> +additionalProperties: false
+> >>>> +
+> >>>> +examples:
+> >>>> +  - |
+> >>>> +    gpio_cntl@10000080 {
+> >>>> +      compatible =3D "brcm,bcm6328-gpio-controller", "syscon", "sim=
+ple-mfd";
+> >>>
+> >>> You just added "brcm,bcm6328-gpio-controller", it would need to be do=
+cumented.
+> >>
+> >> I just added that because you requested me to do it =C2=AF\_(=E3=83=84=
+)_/=C2=AF
+> >
+> > I said 'syscon' by itself was not allowed, then asked about the multipl=
+e levels.
+>
+> Why not?
 
+Because 'syscon' alone doesn't mean anything and doesn't describe what
+registers it contains. You need something that says this is the XYZ
+block in the ABC SoC.
 
-On 03/02/2021 08:09 AM, Tom Rix wrote:
-> On 2/17/21 10:40 PM, Lizhi Hou wrote:
->> Add UCS driver. UCS is a hardware function discovered by walking xclbin
-> What does UCS stand for ? add to commit log
-UCS stands for User Clock Subsystem. I will add it to log.
->> metadata. A platform device node will be created for it.
->> UCS enables/disables the dynamic region clocks.
->>
->> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
->> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
->> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
->> ---
->>   drivers/fpga/xrt/include/xleaf/ucs.h |  24 +++
->>   drivers/fpga/xrt/lib/xleaf/ucs.c     | 235 +++++++++++++++++++++++++++
->>   2 files changed, 259 insertions(+)
->>   create mode 100644 drivers/fpga/xrt/include/xleaf/ucs.h
->>   create mode 100644 drivers/fpga/xrt/lib/xleaf/ucs.c
->>
->> diff --git a/drivers/fpga/xrt/include/xleaf/ucs.h b/drivers/fpga/xrt/include/xleaf/ucs.h
->> new file mode 100644
->> index 000000000000..a5ef0e100e12
->> --- /dev/null
->> +++ b/drivers/fpga/xrt/include/xleaf/ucs.h
-> This header is only used by ucs.c, so is it needed ?
->
-> could the enum be defined in ucs.c ?
-It will be used in the future. I will remove it.
->
->> @@ -0,0 +1,24 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Header file for XRT UCS Leaf Driver
->> + *
->> + * Copyright (C) 2020-2021 Xilinx, Inc.
->> + *
->> + * Authors:
->> + *   Lizhi Hou <Lizhi.Hou@xilinx.com>
->> + */
->> +
->> +#ifndef _XRT_UCS_H_
->> +#define _XRT_UCS_H_
->> +
->> +#include "xleaf.h"
->> +
->> +/*
->> + * UCS driver IOCTL calls.
->> + */
->> +enum xrt_ucs_ioctl_cmd {
->> +     XRT_UCS_CHECK = XRT_XLEAF_CUSTOM_BASE, /* See comments in xleaf.h */
->> +     XRT_UCS_ENABLE,
-> no disable ?
-It does not need to disable because reset the fpga bridge will disable 
-it. I will remove ucs.h because it is not used in this patchset.
->> +};
->> +
->> +#endif       /* _XRT_UCS_H_ */
->> diff --git a/drivers/fpga/xrt/lib/xleaf/ucs.c b/drivers/fpga/xrt/lib/xleaf/ucs.c
->> new file mode 100644
->> index 000000000000..ae762c8fddbb
->> --- /dev/null
->> +++ b/drivers/fpga/xrt/lib/xleaf/ucs.c
->> @@ -0,0 +1,235 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Xilinx Alveo FPGA UCS Driver
->> + *
->> + * Copyright (C) 2020-2021 Xilinx, Inc.
->> + *
->> + * Authors:
->> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
->> + */
->> +
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/delay.h>
->> +#include <linux/device.h>
->> +#include <linux/io.h>
->> +#include "metadata.h"
->> +#include "xleaf.h"
->> +#include "xleaf/ucs.h"
->> +#include "xleaf/clock.h"
->> +
->> +#define UCS_ERR(ucs, fmt, arg...)   \
->> +     xrt_err((ucs)->pdev, fmt "\n", ##arg)
->> +#define UCS_WARN(ucs, fmt, arg...)  \
->> +     xrt_warn((ucs)->pdev, fmt "\n", ##arg)
->> +#define UCS_INFO(ucs, fmt, arg...)  \
->> +     xrt_info((ucs)->pdev, fmt "\n", ##arg)
->> +#define UCS_DBG(ucs, fmt, arg...)   \
->> +     xrt_dbg((ucs)->pdev, fmt "\n", ##arg)
->> +
->> +#define XRT_UCS              "xrt_ucs"
->> +
->> +#define CHANNEL1_OFFSET                      0
->> +#define CHANNEL2_OFFSET                      8
->> +
->> +#define CLK_MAX_VALUE                        6400
->> +
->> +struct ucs_control_status_ch1 {
->> +     unsigned int shutdown_clocks_latched:1;
->> +     unsigned int reserved1:15;
->> +     unsigned int clock_throttling_average:14;
->> +     unsigned int reserved2:2;
->> +};
-> Likely needs to be packed and/or the unsigned int changed to u32
-Will remove this structure because it is not used in this patch set.
->> +
->> +struct xrt_ucs {
->> +     struct platform_device  *pdev;
->> +     void __iomem            *ucs_base;
->> +     struct mutex            ucs_lock; /* ucs dev lock */
->> +};
->> +
->> +static inline u32 reg_rd(struct xrt_ucs *ucs, u32 offset)
->> +{
->> +     return ioread32(ucs->ucs_base + offset);
->> +}
->> +
->> +static inline void reg_wr(struct xrt_ucs *ucs, u32 val, u32 offset)
->> +{
->> +     iowrite32(val, ucs->ucs_base + offset);
->> +}
->> +
->> +static void xrt_ucs_event_cb(struct platform_device *pdev, void *arg)
->> +{
->> +     struct platform_device  *leaf;
->> +     struct xrt_event *evt = (struct xrt_event *)arg;
->> +     enum xrt_events e = evt->xe_evt;
->> +     enum xrt_subdev_id id = evt->xe_subdev.xevt_subdev_id;
->> +     int instance = evt->xe_subdev.xevt_subdev_instance;
->> +
->> +     switch (e) {
->> +     case XRT_EVENT_POST_CREATION:
->> +             break;
->> +     default:
->> +             xrt_dbg(pdev, "ignored event %d", e);
->> +             return;
->> +     }
-> this switch is a noop, remove
-Will change to if (e != XRT_EVENT_POST_CREATION) return -EINVAL
->> +
->> +     if (id != XRT_SUBDEV_CLOCK)
->> +             return;
->> +
->> +     leaf = xleaf_get_leaf_by_id(pdev, XRT_SUBDEV_CLOCK, instance);
->> +     if (!leaf) {
->> +             xrt_err(pdev, "does not get clock subdev");
->> +             return;
->> +     }
->> +
->> +     xleaf_ioctl(leaf, XRT_CLOCK_VERIFY, NULL);
->> +     xleaf_put_leaf(pdev, leaf);
->> +}
->> +
->> +static void ucs_check(struct xrt_ucs *ucs, bool *latched)
->> +{
-> checking but not returning status, change to returning int.
->
-> this function is called but xrt_ucs_leaf_ioctl which does return status.
-Will remove ucs_check() because it is not used in this patch set.
->
->> +     struct ucs_control_status_ch1 *ucs_status_ch1;
->> +     u32 status;
->> +
->> +     mutex_lock(&ucs->ucs_lock);
->> +     status = reg_rd(ucs, CHANNEL1_OFFSET);
->> +     ucs_status_ch1 = (struct ucs_control_status_ch1 *)&status;
->> +     if (ucs_status_ch1->shutdown_clocks_latched) {
->> +             UCS_ERR(ucs,
->> +                     "Critical temperature or power event, kernel clocks have been stopped.");
->> +             UCS_ERR(ucs,
->> +                     "run 'xbutil valiate -q' to continue. See AR 73398 for more details.");
-> This error message does not seem like it would be useful, please review.
->> +             /* explicitly indicate reset should be latched */
->> +             *latched = true;
->> +     } else if (ucs_status_ch1->clock_throttling_average >
->> +         CLK_MAX_VALUE) {
->> +             UCS_ERR(ucs, "kernel clocks %d exceeds expected maximum value %d.",
->> +                     ucs_status_ch1->clock_throttling_average,
->> +                     CLK_MAX_VALUE);
->> +     } else if (ucs_status_ch1->clock_throttling_average) {
->> +             UCS_ERR(ucs, "kernel clocks throttled at %d%%.",
->> +                     (ucs_status_ch1->clock_throttling_average /
->> +                      (CLK_MAX_VALUE / 100)));
->> +     }
->> +     mutex_unlock(&ucs->ucs_lock);
->> +}
->> +
->> +static void ucs_enable(struct xrt_ucs *ucs)
->> +{
->> +     reg_wr(ucs, 1, CHANNEL2_OFFSET);
-> lock ?
-Yes. will add it.
->> +}
->> +
->> +static int
->> +xrt_ucs_leaf_ioctl(struct platform_device *pdev, u32 cmd, void *arg)
->> +{
->> +     struct xrt_ucs          *ucs;
->> +     int                     ret = 0;
->> +
->> +     ucs = platform_get_drvdata(pdev);
->> +
->> +     switch (cmd) {
->> +     case XRT_XLEAF_EVENT:
->> +             xrt_ucs_event_cb(pdev, arg);
->> +             break;
->> +     case XRT_UCS_CHECK: {
-> brace not needed here
-will remove.
->> +             ucs_check(ucs, (bool *)arg);
->> +             break;
->> +     }
->> +     case XRT_UCS_ENABLE:
->> +             ucs_enable(ucs);
->> +             break;
->> +     default:
->> +             xrt_err(pdev, "unsupported cmd %d", cmd);
->> +             return -EINVAL;
->> +     }
->> +
->> +     return ret;
->> +}
->> +
->> +static int ucs_remove(struct platform_device *pdev)
->> +{
->> +     struct xrt_ucs *ucs;
->> +
->> +     ucs = platform_get_drvdata(pdev);
->> +     if (!ucs) {
-> is this possible ?
-Will remove.
+> What if you have several controllers inside a syscon?
 
-Thanks,
-Lizhi
->
-> Tom
->
->> +             xrt_err(pdev, "driver data is NULL");
->> +             return -EINVAL;
->> +     }
->> +
->> +     if (ucs->ucs_base)
->> +             iounmap(ucs->ucs_base);
->> +
->> +     platform_set_drvdata(pdev, NULL);
->> +     devm_kfree(&pdev->dev, ucs);
->> +
->> +     return 0;
->> +}
->> +
->> +static int ucs_probe(struct platform_device *pdev)
->> +{
->> +     struct xrt_ucs *ucs = NULL;
->> +     struct resource *res;
->> +     int ret;
->> +
->> +     ucs = devm_kzalloc(&pdev->dev, sizeof(*ucs), GFP_KERNEL);
->> +     if (!ucs)
->> +             return -ENOMEM;
->> +
->> +     platform_set_drvdata(pdev, ucs);
->> +     ucs->pdev = pdev;
->> +     mutex_init(&ucs->ucs_lock);
->> +
->> +     res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +     ucs->ucs_base = ioremap(res->start, res->end - res->start + 1);
->> +     if (!ucs->ucs_base) {
->> +             UCS_ERR(ucs, "map base %pR failed", res);
->> +             ret = -EFAULT;
->> +             goto failed;
->> +     }
->> +     ucs_enable(ucs);
->> +
->> +     return 0;
->> +
->> +failed:
->> +     ucs_remove(pdev);
->> +     return ret;
->> +}
->> +
->> +static struct xrt_subdev_endpoints xrt_ucs_endpoints[] = {
->> +     {
->> +             .xse_names = (struct xrt_subdev_ep_names[]) {
->> +                     { .ep_name = XRT_MD_NODE_UCS_CONTROL_STATUS },
->> +                     { NULL },
->> +             },
->> +             .xse_min_ep = 1,
->> +     },
->> +     { 0 },
->> +};
->> +
->> +static struct xrt_subdev_drvdata xrt_ucs_data = {
->> +     .xsd_dev_ops = {
->> +             .xsd_ioctl = xrt_ucs_leaf_ioctl,
->> +     },
->> +};
->> +
->> +static const struct platform_device_id xrt_ucs_table[] = {
->> +     { XRT_UCS, (kernel_ulong_t)&xrt_ucs_data },
->> +     { },
->> +};
->> +
->> +static struct platform_driver xrt_ucs_driver = {
->> +     .driver = {
->> +             .name = XRT_UCS,
->> +     },
->> +     .probe = ucs_probe,
->> +     .remove = ucs_remove,
->> +     .id_table = xrt_ucs_table,
->> +};
->> +
->> +void ucs_leaf_init_fini(bool init)
->> +{
->> +     if (init)
->> +             xleaf_register_driver(XRT_SUBDEV_UCS, &xrt_ucs_driver, xrt_ucs_endpoints);
->> +     else
->> +             xleaf_unregister_driver(XRT_SUBDEV_UCS);
->> +}
+You either just add properties (e.g. just add #clock-cells and it's a
+clock provider) or you have child nodes. Which one you do generally
+depends on if the providers have DT resources themselves.
 
+> The root should also have =E2=80=9Csomething" in it?
+>
+> >
+> >> What should I do to document it?
+> >> I still don=E2=80=99t get most of this .yaml stuff...
+> >>
+> >>>
+> >>>> +      reg =3D <0x10000080 0x80>;
+> >>>> +
+> >>>> +      pinctrl: pinctrl {
+> >>>> +        compatible =3D "brcm,bcm6328-pinctrl";
+> >>>> +
+> >>>> +        gpio {
+> >>>> +          compatible =3D "brcm,bcm6328-gpio";
+> >>>
+> >>> I'm still trying to understand why you need 3 levels of nodes here?
+> >>> The gpio controller contains a pin controller plus other undefined
+> >>> functions (because of 'syscon') and the pin controller contains a gpi=
+o
+> >>> controller?
+> >>
+> >> In previous versions the gpio controller was registered along with the=
+ pin controller, but @Linus requested me to register the gpio pin controlle=
+r ranges through device tree by using gpio-ranges and I decided to use this=
+ approach, which was already used by other pin controllers.
+> >> However, there aren=E2=80=99t any pinctrl drivers using gpio-regmap, s=
+o this is kind of new=E2=80=A6
+> >>
+> >>>
+> >>> I think "brcm,bcm6328-gpio-controller" and "brcm,bcm6328-pinctrl"
+> >>> should be a single node.
+> >>
+> >> I agree, but does it make sense to add gpio-ranges to a pinctrl node r=
+eferencing itself?
+> >
+> > It wouldn't be. I wasn't saying the pinctrl and gpio controller are
+> > the same node. My suggestion was combining syscon and pinctrl.
+>
+> But that wouldn=E2=80=99t be correct if there were more =E2=80=9Cthings=
+=E2=80=9D inside the syscon, right?
+
+Right.
+
+> >> Something like:
+> >> syscon {
+> >
+> > Again with the syscon. If pinctrl and GPIO are the only functions
+> > within this h/w block, then this is not a syscon. You are just abusing
+> > that having 'syscon' compatible means you get a regmap created
+> > automagically for you. Nothing here looks like a 'system controller'
+> > to me. A 'system controller' is a random collection of register bits
+> > with functions that don't fit anywhere else.
+>
+> pinctrl and GPIO aren=E2=80=99t the only functions within this HW block.
+> Maybe I didn=E2=80=99t document/code it properly, but I=E2=80=99m sure I=
+=E2=80=99m not abusing what a system controller is.
+
+Okay, that's the detail missing from this patch.
+
+> Please, take a look at http://www.datashed.science/misc/bcm/gpl/broadcom-=
+sdk-416L05/shared/opensource/include/bcm963xx/6328_map_part.h:
+> typedef struct GpioControl {
+>     uint32      GPIODirHi;                  /* 0 */
+>     uint32      GPIODir;                    /* 4 */
+>     uint32      GPIOioHi;                   /* 8 */
+>     uint32      GPIOio;                     /* C */
+>     uint32      unused0;                    /* 10 */
+>     uint32      SpiSlaveCfg;                /* 14 */
+>     uint32      GPIOMode;                   /* 18 */
+>     uint64      PinMuxSel;                  /* 1C */
+>     uint32      PinMuxSelOther;             /* 24 */
+>     uint32      TestControl;                /* 28 */
+>     uint32      unused2;                    /* 2C */
+>     uint32      RoboSWLEDControl;           /* 30 */
+>     uint32      RoboSWLEDLSR;               /* 34 */
+>     uint32      unused3;                    /* 38 */
+>     uint32      RoboswEphyCtrl;             /* 3C */
+>     uint32      RoboswSwitchCtrl;           /* 40 */
+>     uint32      RegFileTmCtl;               /* 44 */
+>     uint32      RingOscCtrl0;               /* 48 */
+>     uint32      RingOscCtrl1;               /* 4C */
+>     uint32      unused4[6];                 /* 50 - 64 */
+>     uint32      DieRevID;                   /* 68 */
+>     uint32      unused5;                    /* 6c */
+>     uint32      DiagSelControl;             /* 70 */
+>     uint32      DiagReadBack;               /* 74 */
+>     uint32      DiagReadBackHi;             /* 78 */
+>     uint32      DiagMiscControl;            /* 7c */
+> } GpioControl;
+>
+> So we=E2=80=99re using GPIODirHi, GPIODir, GPIOioHi and GPIOio registers =
+for GPIO regmap driver.
+> And we=E2=80=99re using GPIOMode, PinMuxSel (u64 -> x2 u32), PinMuxSelOth=
+er for pinctrl driver.
+> And this is for BCM6328, but some of the other SoCs are even more scatter=
+ed.
+
+So based on this I'd do something like this:
+
+syscon {
+  reg =3D <base 0x80>;
+  ranges =3D <0 base 0x80>;
+  pinctrl@18 {
+    reg =3D <0x18 0x10>;
+    foo-pins {};
+  gpio@0 {
+    reg =3D <0x0 0x10>;
+  };
+};
+
+If things are more scattered within gpio or pinctrl, then maybe you
+need multiple reg entries. Whether the OS uses 'reg' and mmio or a
+regmap from the syscon is up to you. That's independent of the
+binding.
+
+> >>        pinctrl: pinctrl {
+> >>                compatible =E2=80=A6
+> >>
+> >>                gpio-controller;
+> >>                gpio-ranges =3D <&pinctrl 0 0 32>;
+> >>                #gpio-cells =3D <2>;
+> >
+> > I was assuming you have multiple GPIO controllers within 1 pinctlr?
+> > The pinctrl and gpio could be a single node like above if there's only
+> > 1 GPIO controller. But I'm still somewhat guessing what the h/w looks
+> > like because I have to go searching thru the driver to decipher.
+> > Please describe the h/w in the binding.
+>
+> GPIO dirout and data rely on 2x u32 registers or a single u64 register.
+> This is can be either be implemented as a single GPIO controller, or as 2=
+ separate GPIO controllers.
+> However, since I=E2=80=99m overriding reg_mask_xlate with bcm63xx_reg_mas=
+k_xlate I can register it as a single GPIO controller, which makes more sen=
+se to me.
+
+I think 1 makes more sense.
+
+Rob
