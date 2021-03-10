@@ -2,129 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3072333BC3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 12:49:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77576333BCD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 12:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbhCJLsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 06:48:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        id S231790AbhCJLvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 06:51:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229948AbhCJLsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 06:48:23 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1ECC06174A;
-        Wed, 10 Mar 2021 03:48:23 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id n14so17572059iog.3;
-        Wed, 10 Mar 2021 03:48:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=MgumKQ8A8vujpcGidnQ3C//AKqkYksiK7PMribHV3ho=;
-        b=DYUnOI1xkybUKmjxUsxK/1caGOqEuExlhcOTDQXGlBsUyZc6CRZGuKVBBBULTOVD+P
-         aXQM/f5OrhNjI1N8kqj4OVJJq6VRKWOacQ4wnVSC+WconVS3D06jcWFpgMWd4+fcGj7U
-         YO3bCVtF/4IFiLXzdDU3KrFSxjQKz/uzYD+eOaA026la9A0q7zn7jCjnAgeeiS3eZDYr
-         hTs3eD6uVyZLbk7pptQgtEJZhXd+shP7DyW466TFg7u5B8JREcn8RDDaIAuPUIm7urRj
-         s+VBoOhVPPyNtvpqe+NQaeUCeZWUBFWtU18BF37s8A1fwwKdwCy+oP1jgFypQMNy6IYw
-         Zr4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=MgumKQ8A8vujpcGidnQ3C//AKqkYksiK7PMribHV3ho=;
-        b=g/JnMepo0ksPEkPwQFJsETeQpw31Mv6rffgMBEmEHPxrI39/kf8b/OKvWNr679Se/o
-         D+qJ+2ww2Y88k0BAaQQMUzfTjX4gM5AT2d6kQpeVeqQ3qdLYIdu5lUpbhqMlYoDt2OiF
-         DcAOoAyfmPCOgwdNxULCDFArjoxLYruBudWqfUFT/93NjBVP2VuzxCmnNZ6Rws/VfNEm
-         GxjTOyI2jsdENGcEnFoGZXN43GtiSJVY/gIyPMyQJRiLP+QW5TgH9KQpgRdSQ0g7dSF6
-         A2ja5MdVB0mUzAx1YHxGDLAxI1FBMgVMziPva2fhOQrZxq9QFCQhPPvrM/W5hZjPajSV
-         UbiQ==
-X-Gm-Message-State: AOAM532pFWqdOpGEA5BS3qZLuchiuhoH3p9y5FuBZU6wfMnLaCtP8rBk
-        lp3d7h0gAcXvfw9ZzjMYzwZ2Y2A6/OMdWq1SIz8=
-X-Google-Smtp-Source: ABdhPJyhYfR48luq7gEmplvCktrRBwsQTYvkmG1J4Fb6rJ6HGeOYQGGfk9FH8kWfX+Trko7XOFcRrXtMUeiW4aFdkd8=
-X-Received: by 2002:a5e:cb4d:: with SMTP id h13mr2073997iok.68.1615376902761;
- Wed, 10 Mar 2021 03:48:22 -0800 (PST)
+        with ESMTP id S231150AbhCJLuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 06:50:50 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B3FC06174A
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 03:50:50 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lJxMS-0000dy-H8; Wed, 10 Mar 2021 12:50:44 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lJxMQ-0001h5-O7; Wed, 10 Mar 2021 12:50:42 +0100
+Date:   Wed, 10 Mar 2021 12:50:41 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com
+Subject: Re: [PATCH v7 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
+Message-ID: <20210310115041.s7tzvgdpksws6yss@pengutronix.de>
+References: <20210118123244.13669-1-nsaenzjulienne@suse.de>
+ <20210118123244.13669-12-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Wed, 10 Mar 2021 19:47:46 +0800
-Message-ID: <CAL9mu0LwT7GqWQY1Dpw3zLnS+oX8KFq=Lrp6NSBJvSgcsxEQVQ@mail.gmail.com>
-Subject: Re: [PATCH 0/8] ARM: STM32: add art-pi(stm32h750xbh6) board support
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux@armlinux.org.uk, Vladimir Murzin <vladimir.murzin@arm.com>,
-        afzal.mohd.ma@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ul6qbztvwf7nowqu"
+Content-Disposition: inline
+In-Reply-To: <20210118123244.13669-12-nsaenzjulienne@suse.de>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-for the device tree part , still waiting review. just a gentle ping.
-if Mr Alexandre torgue can take a look, would be great.
 
-thanks,
+--ul6qbztvwf7nowqu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 3, 2021 at 4:05 PM <dillon.minfei@gmail.com> wrote:
->
-> From: dillon min <dillon.minfei@gmail.com>
->
-> This patchset intend to add art-pi board support, this board developed
-> by rt-thread(https://www.rt-thread.org/).
->
-> Board resources:
->
-> 8MiB QSPI flash
-> 16MiB SPI flash
-> 32MiB SDRAM
-> AP6212 wifi,bt,fm comb
->
-> sw context:
-> - as stm32h750 just has 128k bytes internal flash, so running a fw on
->   internal flash to download u-boot/kernel to qspi flash, boot
->   u-boot/kernel from qspi flash. this fw is based on rt-thread.
-> - kernel can be xip on qspi flash or load to sdram
-> - root filesystem is jffs2(created by buildroot), stored on spi flash
->
-> to support the boad, add following changes.
-> - fix r0-r3, r12 register restore failed after svc call,
-> - add dts binding
-> - update yaml doc
->
-> dillon min (8):
->   ARM: ARMv7-M: Fix register restore corrupt after svc call
->   Documentation: arm: stm32: Add stm32h750 value line
->   dt-bindings: arm: stm32: Add compatible strings for ART-PI board
->   dt-bindings: pinctrl: stm32: Add stm32h750 pinctrl
->   ARM: dts: stm32: introduce stm32h7-pinctrl.dtsi to support stm32h75x
->   ARM: dts: stm32: add stm32h750-pinctrl.dtsi
->   ARM: dts: stm32: add support for art-pi board based on stm32h750xbh6
->   ARM: stm32: add initial support for stm32h750
->
->  Documentation/arm/index.rst                        |   1 +
->  Documentation/arm/stm32/stm32h750-overview.rst     |  33 ++
->  .../devicetree/bindings/arm/stm32/stm32.yaml       |   4 +
->  .../bindings/pinctrl/st,stm32-pinctrl.yaml         |   1 +
->  arch/arm/boot/dts/Makefile                         |   1 +
->  arch/arm/boot/dts/stm32h7-pinctrl.dtsi             | 392 +++++++++++++++++++++
->  arch/arm/boot/dts/stm32h743-pinctrl.dtsi           | 307 +---------------
->  arch/arm/boot/dts/stm32h743.dtsi                   |  30 ++
->  arch/arm/boot/dts/stm32h750-pinctrl.dtsi           |  11 +
->  arch/arm/boot/dts/stm32h750.dtsi                   |   5 +
->  arch/arm/boot/dts/stm32h750i-art-pi.dts            | 227 ++++++++++++
->  arch/arm/mach-stm32/board-dt.c                     |   1 +
->  arch/arm/mm/proc-v7m.S                             |   5 +-
->  13 files changed, 716 insertions(+), 302 deletions(-)
->  create mode 100644 Documentation/arm/stm32/stm32h750-overview.rst
->  create mode 100644 arch/arm/boot/dts/stm32h7-pinctrl.dtsi
->  create mode 100644 arch/arm/boot/dts/stm32h750-pinctrl.dtsi
->  create mode 100644 arch/arm/boot/dts/stm32h750.dtsi
->  create mode 100644 arch/arm/boot/dts/stm32h750i-art-pi.dts
->
-> --
-> 2.7.4
->
+Hello Nicolas,
+
+On Mon, Jan 18, 2021 at 01:32:44PM +0100, Nicolas Saenz Julienne wrote:
+> diff --git a/drivers/pwm/pwm-raspberrypi-poe.c b/drivers/pwm/pwm-raspberr=
+ypi-poe.c
+> new file mode 100644
+> index 000000000000..ca845e8fabe6
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-raspberrypi-poe.c
+> @@ -0,0 +1,220 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2020 Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> + * For more information on Raspberry Pi's PoE hat see:
+> + * https://www.raspberrypi.org/products/poe-hat/
+> + *
+> + * Limitations:
+> + *  - No disable bit, so a disabled PWM is simulated by duty_cycle 0
+> + *  - Only normal polarity
+> + *  - Fixed 12.5 kHz period
+> + *
+> + * The current period is completed when HW is reconfigured.
+
+nice.
+
+> + */
+> +
+> [...]
+> +static int raspberrypi_pwm_apply(struct pwm_chip *chip, struct pwm_devic=
+e *pwm,
+> +				 const struct pwm_state *state)
+> +{
+> +	struct raspberrypi_pwm *rpipwm =3D raspberrypi_pwm_from_chip(chip);
+> +	unsigned int duty_cycle;
+> +	int ret;
+> +
+> +	if (state->period < RPI_PWM_PERIOD_NS ||
+> +	    state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -EINVAL;
+> +
+> +	if (!state->enabled)
+> +		duty_cycle =3D 0;
+> +	else if (state->duty_cycle < RPI_PWM_PERIOD_NS)
+> +		duty_cycle =3D DIV_ROUND_DOWN_ULL(state->duty_cycle * RPI_PWM_MAX_DUTY,
+> +						RPI_PWM_PERIOD_NS);
+> +	else
+> +		duty_cycle =3D RPI_PWM_MAX_DUTY;
+> +
+> +	if (duty_cycle =3D=3D rpipwm->duty_cycle)
+> +		return 0;
+> +
+> +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_CUR_DUTY=
+_REG,
+> +					   duty_cycle);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to set duty cycle: %pe\n",
+> +			ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * This sets the default duty cycle after resetting the board, we
+> +	 * updated it every time to mimic Raspberry Pi's downstream's driver
+> +	 * behaviour.
+> +	 */
+> +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_DEF_DUTY=
+_REG,
+> +					   duty_cycle);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to set default duty cycle: %pe\n",
+> +			ERR_PTR(ret));
+> +		return ret;
+
+This only has an effect for the next reboot, right? If so I wonder if it
+is a good idea in general. (Think: The current PWM setting enables a
+motor that makes a self-driving car move at 100 km/h. Consider the rpi
+crashes, do I want to car to pick up driving 100 km/h at power up even
+before Linux is up again?) And if we agree it's a good idea: Should
+raspberrypi_pwm_apply return 0 if setting the duty cycle succeeded and
+only setting the default didn't?
+
+Other than that the patch looks fine.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ul6qbztvwf7nowqu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBIso0ACgkQwfwUeK3K
+7An3RQgAk7LiLPojRn3qgp/eEHGcY24aQQQnYHXFzwvNNsqfY9q1T6NOjwiJlIBj
+owBPtq8IteT+V4qhiiQuB4MLMbNeaBZ+iR4l7OVDwzwuPrHtZuGFxz7vZumxdIET
+Eqq1G++2nk48ZFJOUnKeWM733IgWZQwaM0XEr04i58ZjnoJ9mZo7g4nC2c8O6F6A
+HQshnIGC2hEIZbpmpQrBOMI92Uh0pt03ScuCXM4o/YUuKxb8oeygwt963lrJwhXp
+Vb1/aPD/lELD/kAAeOa3cje1nAdfEJPzH0kjIMfXNTkX8TeEEA0klNEEOXkVxrTP
+0c+bK2SaxSe/2i1555OooX7x1H2VCg==
+=540n
+-----END PGP SIGNATURE-----
+
+--ul6qbztvwf7nowqu--
