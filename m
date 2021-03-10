@@ -2,129 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD653342B9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 053133342E7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:20:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233425AbhCJQLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 11:11:33 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56020 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233404AbhCJQLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:11:14 -0500
+        id S231496AbhCJQUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 11:20:13 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:53874 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232095AbhCJQTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:19:38 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AGAlIo078920;
-        Wed, 10 Mar 2021 10:10:47 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AGJUGt000996;
+        Wed, 10 Mar 2021 10:19:30 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615392647;
-        bh=PswJzuVJEpo2V7rLJvAKEapfrXwbPZ/ywMR3JM+8zp4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KDAlkGOAstSuJcAiMHjA66obcuo850UcsdlmDC3LGNPBYvYtza05Z6fkjfeYZ1B0Q
-         hDW/aNCdzzXYqoF43HqBYbDIAbbCNph+/9cBVbzcfWDQTYxzU2vN1oSSVAzCZURuvc
-         aYKZHlaoW25j5WdOS3zrliC85FmCXQcEEN2Ibr4k=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AGAlux063711
+        s=ti-com-17Q1; t=1615393170;
+        bh=P3eM0t6MhUE/H4fUlyfPBBus5lwTyjhJ8ycW5BbeCpY=;
+        h=From:To:CC:Subject:Date;
+        b=VKC7PTnTr9+9tlUiDY6nMk8NI4YnIoINjlx189jvwSBX8oWku18dDIXge+brKTaba
+         7IoTH4vzs9dO7an8Ts3TVK8SnrFrbpS/8dmwcbHy3vFc+Amp36Xid3uyh0/OPY0snc
+         3Y1hIzYyAaxGZk+XOgjYKeBprr3xT+m1zytdlrbg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AGJUbv081823
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 10:10:47 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 10 Mar 2021 10:19:30 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 10:10:47 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2021 10:19:30 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 10:10:47 -0600
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AG9ql0100440;
-        Wed, 10 Mar 2021 10:10:40 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Corbet <corbet@lwn.net>,
+ Frontend Transport; Wed, 10 Mar 2021 10:19:30 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AGJPxr058353;
+        Wed, 10 Mar 2021 10:19:26 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <a-govindraju@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Nadeem Athani <nadeem@cadence.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v4 7/7] Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
-Date:   Wed, 10 Mar 2021 21:39:43 +0530
-Message-ID: <20210310160943.7606-8-kishon@ti.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/3] J7200: Add support for GPIO and higher speed modes in MMCSD subsystems
+Date:   Wed, 10 Mar 2021 21:49:20 +0530
+Message-ID: <20210310161924.22256-1-a-govindraju@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210310160943.7606-1-kishon@ti.com>
-References: <20210310160943.7606-1-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Documentation to help users use PCI endpoint to create virtual
-functions using configfs. An endpoint function is designated as a
-virtual endpoint function device when it is linked to a physical
-endpoint function device (instead of a endpoint controller).
+The following series of patches
+- Add support for GPIO subsystem in main and wakeup domains.
+- Add voltage regulator device tree nodes and their corresponding pinmux
+  to support power cycle and voltage switch required for UHS-I modes
+- sets respective tags in sdhci0 node to support higher speeds
+- remove no-1-8-v tag from sdhci1 node to support UHS-I modes
+- Update delay values for various speed modes supported.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- Documentation/PCI/endpoint/pci-endpoint-cfs.rst | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-index 696f8eeb4738..56fb33c5e8fd 100644
---- a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-+++ b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-@@ -43,6 +43,7 @@ entries corresponding to EPF driver will be created by the EPF core.
- 		.. <EPF Driver1>/
- 			... <EPF Device 11>/
- 			... <EPF Device 21>/
-+			... <EPF Device 31>/
- 		.. <EPF Driver2>/
- 			... <EPF Device 12>/
- 			... <EPF Device 22>/
-@@ -68,6 +69,7 @@ created)
- 				... subsys_vendor_id
- 				... subsys_id
- 				... interrupt_pin
-+			        ... <Symlink EPF Device 31>/
-                                 ... primary/
- 			                ... <Symlink EPC Device1>/
-                                 ... secondary/
-@@ -79,6 +81,13 @@ interface should be added in 'primary' directory and symlink of endpoint
- controller connected to secondary interface should be added in 'secondary'
- directory.
- 
-+The <EPF Device> directory can have a list of symbolic links
-+(<Symlink EPF Device 31>) to other <EPF Device>. These symbolic links should
-+be created by the user to represent the virtual functions that are bound to
-+the physical function. In the above directory structure <EPF Device 11> is a
-+physical function and <EPF Device 31> is a virtual function. An EPF device once
-+it's linked to another EPF device, cannot be linked to a EPC device.
-+
- EPC Device
- ==========
- 
-@@ -98,7 +107,8 @@ entries corresponding to EPC device will be created by the EPC core.
- 
- The <EPC Device> directory will have a list of symbolic links to
- <EPF Device>. These symbolic links should be created by the user to
--represent the functions present in the endpoint device.
-+represent the functions present in the endpoint device. Only <EPF Device>
-+that represents a physical function can be linked to a EPC device.
- 
- The <EPC Device> directory will also have a *start* field. Once
- "1" is written to this field, the endpoint device will be ready to
+test logs
+- eMMC HS400 speed mode
+https://pastebin.ubuntu.com/p/xqZt34mRWf/
+
+- SD SDR104 speed mode
+https://pastebin.ubuntu.com/p/qM2H85SQvX/
+
+- GPIO logs
+https://pastebin.ubuntu.com/p/7WXdRxxdWz/
+
+
+Changes since v4:
+- Added main_i2c0 pinmux required for doing power cycles to MMCSD1
+  subsystem
+- Updated delay values for various speed modes supported
+- Corrected the ti,ngpio property to indicate highest gpio lines that
+  can be accessed.
+- Reran the performace tests
+
+Changes since v3:
+- Removed patch (1 in v3).
+- Rebased and included patches that add support for GPIO from series [1].
+- Re-ran the performace tests for SD and eMMC.
+
+Changes since v2:
+- Added main_gpio0 DT node
+- Added voltage regulator device tree nodes required to support UHS-I modes
+
+Changes since v1:
+- squashed the two patches into one
+- added performance logs for the above mentioned speed modes
+
+Aswath Govindraju (1):
+  arm64: dts: ti: k3-j7200: Add support for higher speed modes and
+    update delay select values for MMCSD subsystems
+
+Faiz Abbas (2):
+  arm64: dts: ti: k3-j7200: Add gpio nodes
+  arm64: dts: ti: k3-j7200-common-proc-board: Disable unused gpio
+    modules
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 58 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 86 ++++++++++++++++++-
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 34 ++++++++
+ 3 files changed, 176 insertions(+), 2 deletions(-)
+
 -- 
 2.17.1
 
