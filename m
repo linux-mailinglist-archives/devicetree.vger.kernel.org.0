@@ -2,120 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 678E13337A6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 09:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22C7F3337D0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 09:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232145AbhCJIo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 03:44:28 -0500
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:34266 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232349AbhCJIn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 03:43:57 -0500
-Received: by mail-vs1-f54.google.com with SMTP id m18so8341912vsa.1;
-        Wed, 10 Mar 2021 00:43:53 -0800 (PST)
+        id S230147AbhCJIuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 03:50:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230453AbhCJIuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 03:50:32 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76E64C06174A;
+        Wed, 10 Mar 2021 00:50:32 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id 18so32115967lff.6;
+        Wed, 10 Mar 2021 00:50:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cXAwMKtrLhlTAKUm2JyzSR52zFEvTMF+n/fM4EEcXZQ=;
+        b=T2jCzDOwOsOEX5EXpPC0yhOaXyo1+YjI/JSOIKQno+1XWayLhBq/5zb3bZ7jGiTWfM
+         uMOdZUkqLNE74RY/+2Ge7iiQe/2z6+bVULEGHr6185ThcKjRY5YOzQ1gLPPentIvtOjY
+         pwi1/DMr1CBWCWBkF2qL8lFcHHw3LpWWAN0AhtW8DxsnlkQxHNBItzTMSICkcnj4KqVT
+         +MQWgllGArl0+S8xKUuQ2tN438CTTJ886Wb91ehPse8sYCLB8GIKzFU3DNjaHDVH8LWd
+         IOh4KHjnLoHFIw7TIz5yluxCBrZkbvWJ4AYMwjoCxnDoi2Sx5qf6peWZmYFLh3yv7qxm
+         w50g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YPUEK0LT27EUaM0kP8V6EnWzkWmYVmHulltUbBErJa4=;
-        b=hhSudM/gerKRZxYxQ/O/zzf7fcAlxzLEhauzC0NGa7agVA3LHmulFQMsF0mPXWYOHk
-         6CVz9IBklALGTpP8CYHCltjIcuAujjBPQ3kfQSb49BMHdFi6H2E+t18FPs/x6oGujlvw
-         ifslAWUQWjeDc862+wYWpY4aniZZ046aqddrKNbSJcDVlHs4jopdHpwlLzlD5aq2QrqS
-         jB8d0cHqsuP6rON2wTRVxXFP0mREn7Tc8Y/5dS/eTAwL9Uk8FwApNq7e2zbWaWtllEWC
-         JEaCP0zmYNd6KCWCS2sqLabYdgy/2IIS5WzkfkinJHV9frI/iJdvS0Z6GVRAqEjmHoxJ
-         mSsA==
-X-Gm-Message-State: AOAM533agH3L9vbpbur7xiffgFh6pLGSx0GBD8AS5oOR15+shjbC/I+L
-        ZirhIlt4HHb2/C1i2Odipftte3bPgTCjIRxRWzY4wERzkN0=
-X-Google-Smtp-Source: ABdhPJyHLp6EkBycxStPS2VJaKsOjrCm388ciPMWhHyHuOIeXFLLi2yGoUtOcvHYaJ/sm+g8EJheaUUBrPGh9QvYV5s=
-X-Received: by 2002:a67:fe90:: with SMTP id b16mr1066469vsr.40.1615365833430;
- Wed, 10 Mar 2021 00:43:53 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=cXAwMKtrLhlTAKUm2JyzSR52zFEvTMF+n/fM4EEcXZQ=;
+        b=JMgxdtd6lO3E+eRzQl6lbxlQQkEE4yqn51ObfTHrtEEsgoFKKAZJedJEe+4OuuvFw1
+         QBC6iaxc1NPokk9a1KT2ctG1y/ByIO1nfWpucmArrNXReyV/gkWAvdm+rs6FiVKqGdX2
+         JNNR3lY02H+KCfirEcJAsAiQX1z9I/UxhoZxMy9B7NU/nqqlbU1ud/9hlRCCosII1YFZ
+         UFk0b5EUvcDOofH1T4JykdCg4lXJUEGtkj/iFWdb34khw1mjthaWzrw9RZTReCh3E0MY
+         agWrQe34Lcq1ioXNDR+iQwM8eCvk0AJW1d3V5/k7Fyk7jqKt04jwfhAqXQcg0WM04T66
+         a2XA==
+X-Gm-Message-State: AOAM531TZuXecaWNo45Ff2i/MmkWJkglrYvtOxedccGxXswEznshCpNQ
+        evjT+51Y4Wgf6cm9xERBgpo=
+X-Google-Smtp-Source: ABdhPJzsFIEKJlb4GU7aZlayDwJj3SBRl3sio62s2wScFkSnGweomCVVKSqggJcQc02nYk8rWJBa6Q==
+X-Received: by 2002:a05:6512:31d3:: with SMTP id j19mr1438210lfe.495.1615366230885;
+        Wed, 10 Mar 2021 00:50:30 -0800 (PST)
+Received: from [192.168.1.100] ([178.176.74.161])
+        by smtp.gmail.com with ESMTPSA id k6sm2672986lfg.28.2021.03.10.00.50.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Mar 2021 00:50:30 -0800 (PST)
+Subject: Re: [PATCH v4 3/7] MIPS: Loongson64: Add support for the
+ Loongson-2K1000 to get cpu_clock_freq
+To:     Qing Zhang <zhangqing@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ming Wang <wangming01@loongson.cn>
+References: <20210310075639.20372-1-zhangqing@loongson.cn>
+ <20210310075639.20372-4-zhangqing@loongson.cn>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <cb549804-4ee1-79ab-d872-3e95bf0cbe55@gmail.com>
+Date:   Wed, 10 Mar 2021 11:50:20 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-References: <20210309112148.2309116-1-geert+renesas@glider.be> <CAL_JsqJzfoSubkKQ+aGYGbuH2=vLG2Sf_nQShxJ8DLirALff5g@mail.gmail.com>
-In-Reply-To: <CAL_JsqJzfoSubkKQ+aGYGbuH2=vLG2Sf_nQShxJ8DLirALff5g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 10 Mar 2021 09:43:42 +0100
-Message-ID: <CAMuHMdWqo7WVsiNk2xyTM=cqi883v0_-jh1Ry9R7yLBaoOYxoA@mail.gmail.com>
-Subject: Re: [PATCH] [RFC] dt-bindings: Consider DT_SCHEMA_FILES when finding
- all json-schema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210310075639.20372-4-zhangqing@loongson.cn>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hello!
 
-On Tue, Mar 9, 2021 at 6:42 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Tue, Mar 9, 2021 at 4:21 AM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > Setting DT_SCHEMA_FILES allows the user to restrict the
-> > "dt_binding_check" make target to a specified set of DT binding files.
-> > However, yamllint is still run on all available files, which can take
-> > quite some time.
-> >
-> > Fix this by changing "find_cmd" to only return the specified files.
-> > Note that this also affects the "cmd_chk_bindings" and "cmd_mk_schema"
-> > rules.
-> >
-> > This reduces the execution time of
-> >
-> >     make dt_binding_check DT_SCHEMA_FILES=/path/to/json/schema/file
-> >
-> > from ca. 22 to less than 2 seconds on an i7-8700K.
->
-> We could use xargs sharding like 'chk_bindings' does. That goes from
-> 18s to 5s for me (i7-7700HQ). Good enough? Not sure why I didn't other
-> than thinking 20sec was fast enough.
+On 10.03.2021 10:56, Qing Zhang wrote:
 
-Sounds better, but yamllint (on all files) would still take 80% of the
-time for a single binding check, assuming a reasonably fast multi-core
-machine.  My main objection is that while working on a new binding, and
-using DT_SCHEMA_FILES, I don't want to waste time on checking other
-bindings, and being bothered with warnings about them.
+> Get the fixed-clock from the CPU0 node of the device tree.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> Tested-by: Ming Wang <wangming01@loongson.cn>
+> ---
+> 
+> v3-v4: Standard submission of information
+>         Add return after error
+> 
+>   arch/mips/loongson64/time.c | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/mips/loongson64/time.c b/arch/mips/loongson64/time.c
+> index 91e842b58365..2d84f9b20a9b 100644
+> --- a/arch/mips/loongson64/time.c
+> +++ b/arch/mips/loongson64/time.c
+> @@ -11,9 +11,33 @@
+>   #include <asm/hpet.h>
+>   
+>   #include <loongson.h>
+> +#include <linux/clk.h>
+> +#include <linux/of_clk.h>
+>   
+>   void __init plat_time_init(void)
+>   {
+> +	struct clk *clk = NULL;
 
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > Should this be restricted to cmd_yamllint?
-> > I'm not sure which users of find_cmd do and do not need all files.
->
-> cmd_chk_bindings always does. cmd_mk_schema needs both. So I think
-> this doesn't work for all cases.
+    You don't seem to need this initializer.
 
-Thanks, will respin to restrict to yamllint.
+> +	struct device_node *np;
+> +
+> +	if (loongson_sysconf.fw_interface == LOONGSON_DTB) {
+> +		of_clk_init(NULL);
+> +
+> +		np = of_get_cpu_node(0, NULL);
+> +		if (!np) {
+> +			pr_err("Failed to get CPU node\n");
+> +			return;
+> +		}
+> +
+> +		clk = of_clk_get(np, 0);
+> +		if (IS_ERR(clk)) {
+> +			pr_err("Failed to get CPU clock: %ld\n", PTR_ERR(clk));
+> +			return;
+> +		}
+> +
+> +		cpu_clock_freq = clk_get_rate(clk);
+> +		clk_put(clk);
+> +	}
+> +
+>   	/* setup mips r4k timer */
+>   	mips_hpt_frequency = cpu_clock_freq / 2;
+>   
+> 
 
-> > --- a/Documentation/devicetree/bindings/Makefile
-> > +++ b/Documentation/devicetree/bindings/Makefile
-> > @@ -22,10 +22,18 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
-> >  # Use full schemas when checking %.example.dts
-> >  DT_TMP_SCHEMA := $(obj)/processed-schema-examples.json
-> >
-> > +ifeq ($(DT_SCHEMA_FILES),)
-> > +
-> >  find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
-> >                 -name 'processed-schema*' ! \
-> >                 -name '*.example.dt.yaml' \)
-> >
-> > +else
-> > +
-> > +find_cmd = echo $(addprefix $(srctree)/, $(DT_SCHEMA_FILES))
-> > +
-> > +endif
-> > +
-> >  quiet_cmd_yamllint = LINT    $(src)
-> >        cmd_yamllint = ($(find_cmd) | \
-> >                       xargs $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint) || true
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
