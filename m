@@ -2,115 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1CD033391F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD0FD333977
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 11:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbhCJJpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 04:45:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232550AbhCJJpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:45:32 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98430C061762
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:45:31 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id v15so22562553wrx.4
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:45:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0Erx94zt8ljBM/yS3nXtNjrWvctYWuUVNAQLWpYJJRo=;
-        b=gmhG//67uUiQkJT3GRUTS9z+Tq+SpQbswnEQR3XBOpiU7cuv9y1ZxqWW5di7WTiU0z
-         5IGBqN7qnmOOotjHLYfwHb3ymzghFWrRTY1lWccM1Jx+OctRRl2HrazL+Ie3zn+oOLg4
-         +Cr93FaZA5kDLdCQdfSnM2ocPGfjV/4QFyjlmLL+A/yeCntkZRxL1Y6VHE3Ix0XGWvt0
-         6g/f18dGAHNtTske/QJGnxe1q9MAz0KsF1R4s87be2nrW/bOkzR56VrkiKlK8Lct6oeX
-         n8ruIEf/G85aTXWUgm6d5CINJa9ul6yAnrKIqzkWyNT+48PSH1UtSBhOAi5f8ntwPNJr
-         7JyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0Erx94zt8ljBM/yS3nXtNjrWvctYWuUVNAQLWpYJJRo=;
-        b=QL/wU7vjWxuiEaht96QeQ0IR4BvjP0L5teYm1fTvmCSIbeItpmLR2IZLw7VMFy75F0
-         +HrMlmKBRdhagnXI/V1jMxU/ZBm/pn/rAzBjgJ0Ne+yU46NEzX+hb84ZFC0PgsECUwzX
-         1W5Cq8t5wORl86O4ECAIOFTtUb+kVZmX01ALU2YdGf1XXvEGPLVm//yOWhAIpRYrtiNg
-         E0lY94JRb/qjSj1wVh+F2EhXKk2Co9bwXcY8aoAuiwD3xbVG69sDZe7cMG1cs6kpt4F+
-         DVGwcoL0I9LwcAXj1ZoInvfZ6rUIXCOT7xmnDfvs8qfClAsaaLT7jhEHUmkNB70bKVCf
-         ozRA==
-X-Gm-Message-State: AOAM5308NAEZ/KwGgEdmfgoVjTSfIPPcK26nVMkYBpnxShYuNBmGsA7L
-        NJWwQS3jNjaxW6jkvxpohphtJg==
-X-Google-Smtp-Source: ABdhPJxcv9V5lAz+sEJ4HCtbzjFqfXkdmpxw/ngT7vdSlUljH3RkiAsQdLLVCP49qFAMYuC+GEIjxg==
-X-Received: by 2002:a5d:6381:: with SMTP id p1mr2649040wru.266.1615369530343;
-        Wed, 10 Mar 2021 01:45:30 -0800 (PST)
-Received: from dell ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id c9sm11764201wrr.78.2021.03.10.01.45.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 01:45:29 -0800 (PST)
-Date:   Wed, 10 Mar 2021 09:45:27 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
+        id S231790AbhCJKJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 05:09:07 -0500
+Received: from mail-eopbgr130078.outbound.protection.outlook.com ([40.107.13.78]:19622
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229609AbhCJKJC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 05:09:02 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iUb9W/LOzmEjidXweTqypkoi/Nq+Ns7JZ3Sm/QiH1HK44JuGDaJHYNYJz43A+T8TpOgvtNicSThWH2dujfkSwCevKcb9Pg58dgpyUIIyBWaEEC1iddhjM3ZF7DMTKs64+n0VOMusYUtHuuDp4gG9ZHiypb3SUeewXO1JlqK+ThoXYhuGnFclkFNaftHIQz6rJ7uN4A5Li1Q+l38AmiwYTLhIlaA4ylOdcmtj7fRv68UIDPXAQAZ1KuZCOpr/5KrdbUnqbUCM7SRBj+4kEWTZgpJYLAzeSzTC/LI1HeB4y52WhbHh+qZwWkO+7uAAv/86GRJC5rTJlCvzNrTNi5N9Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vwwtrOIhnNZ1OcZd69TbVCOxPkqpkcuWcJr8omph3Sc=;
+ b=Ra6/Hm+OK0IXDRRWAoiYiQHU/ARvgayAZv5wU4NYh2XEwSWQ6AFZbfSguIQBV80t/ROmf7TRtTc+OqBTnwc+Qvfma8QVoeAmHiISCh5I18iUOxCDld33tCSCs0lwpQ5kDc4eL4l7fbolNb7kMufvDHRP+S1nAW6nd0UEXx2goRRjRFtyW1gli7nErCdpaoRplLeQpqBDCTjMv5EYneSLD2xf0HqC3ZZvqn2Z8ATV4N9YR+qE/6LXMMBIHPVUBqgOzHvTXpE2ra6ejnIb0fdHjceYs8oXDhl63bXsWmokz9el5d1H/Q7FsNaqtEU8787EPowlRscor2NzdZ6H/8vK2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vwwtrOIhnNZ1OcZd69TbVCOxPkqpkcuWcJr8omph3Sc=;
+ b=DndL7iuuH0zcS61D+hV0h6u/vqrJWsIFCxOkKfQF3Uj9jvw8dV1Ra2de1PXeg/0QjY5c8S8Dx6SZR0n3+lX7ysm/4waPtAG5pCLU6/r98uKf+tDd7xL9peQrV+m5Y0yd93+klo6bDEpzuI89N7CH1Y4/3ESjzel4OCPnfGl+/nU=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR0401MB2318.eurprd04.prod.outlook.com (2603:10a6:800:27::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Wed, 10 Mar
+ 2021 10:08:57 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3912.028; Wed, 10 Mar 2021
+ 10:08:57 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
-Subject: Re: [RFC v2 3/5] arm64: socfpga: rename ARCH_STRATIX10 to
- ARCH_SOCFPGA64
-Message-ID: <20210310094527.GA701493@dell>
-References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
- <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
+        linux-media@vger.kernel.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org,
+        robert.foss@linaro.org, lee.jones@linaro.org
+Subject: [PATCH v5 00/14] Add some DRM bridge drivers support for i.MX8qm/qxp SoCs
+Date:   Wed, 10 Mar 2021 17:55:24 +0800
+Message-Id: <1615370138-5673-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: HK2PR06CA0010.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::22) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by HK2PR06CA0010.apcprd06.prod.outlook.com (2603:1096:202:2e::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3912.17 via Frontend Transport; Wed, 10 Mar 2021 10:08:51 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d3612e21-d246-4bbc-bc66-08d8e3ac84a7
+X-MS-TrafficTypeDiagnostic: VI1PR0401MB2318:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0401MB2318B15E9ABC97B1FD57048998919@VI1PR0401MB2318.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hGB78jFM+9XHjZJgtVjxvbHM9HQZCuNLah1C4V4QrRWhDOO6DnauvEfHb0yBujPhUfjQZ88cWS2KGBpspsv9ZOCbVHVjnvI0g1rREdm43NxM8jYGKIQ59+so5HnElanGdgtG4eokahz3qroXnYk5U5I7LtVWJD4buYGcOl8Vd8h2sQxGImsm1LTYGb8mziL8lteuiFyJTn5vbczYDkiOT+QdpJTVzrBweZQIcX/Nf4U1vEOwlushxnINMjfHtctIi4Ek/q8hVaPk+apdMa5PeHGPYAI1XiHWFRJilkqQwSK9N8fAh8bO1X7AZ5A816JhidGvlfT1SHOxPZ7R4nD4s/hB98baeGUcdAa8rj2JtNWuYPL1VZzcFzOnCffUvlfz7T496RxB/LrXzpsqnkL7OF9TZ7yfFoGNLRd9S4yXyII/V/D1+mPg84/be54Bsx8fG58YeyW4377Q8ndQFXMM80JLxY64kqjJ/0CNBTx+P4I7Fh3+l0wSKOrzIJZWfFNpEBH9bZjsXeHtWG+kIjhdpQA/lZUu0bwpbec5QBZ0whYLZyPFiQ0OvVcFWis0e5zKbxNX2XWRSr8JX+HV9ah4sGz1r9HOGW5by1z12JquAlkNXfBIltPI606eN7r9qL7lDn+h1DaJ/an3iLIogoIrqVorg2+CLqo/IFEnZVaHkjw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(39860400002)(136003)(396003)(366004)(376002)(346002)(6666004)(66476007)(83380400001)(66556008)(8936002)(6512007)(966005)(2616005)(36756003)(6506007)(316002)(66946007)(69590400012)(956004)(4326008)(86362001)(16526019)(5660300002)(478600001)(8676002)(2906002)(52116002)(6486002)(186003)(7416002)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?qq+Q0PIe+0rzE55E1k67N2TOo0biPYIW4AJXZBPjV1HqH/Y8GcKVxN9YqP6E?=
+ =?us-ascii?Q?fK8PmNmlzI3A6H5gaHFuFTii1XQ7PCNsy91xECgMYa4zylGmI5YVSn4Ce2Hy?=
+ =?us-ascii?Q?M1Piyc6o3Ppxq6UvENOYahuXboeYCN2N07GTp1RkI8TGlyQtvsqqgblohnqn?=
+ =?us-ascii?Q?f4XiplaZq5lM9M9Ed6GBVr/CsRBSqwvYKPNhM0lls9ikKD3R/pTLGfv8Nguh?=
+ =?us-ascii?Q?q7u4/9p+c3ABCtmBIjQ3vLC4OW4W8ttO71ZvpClidttatM/juvli0/6+iCb8?=
+ =?us-ascii?Q?Uo/xSGiRE5Jgs/7LSwqDKOVZWUTstv0d73dTiKHu3OLiQrHI6oxtkXFX7ydT?=
+ =?us-ascii?Q?OSNpcFkukKsO9MdPmYim2QmRzKtDeuBedEOsLLexlhWVpqhXTNNZpQf8ViYR?=
+ =?us-ascii?Q?KVZ+ssed6ZThB4SIfTxUcolGYn0ajbHf+tPd3vkjHvyuC9tPH5Dtz/bKNljI?=
+ =?us-ascii?Q?qoXNixlTIBBkRwrowOGM/MaDCDv4InDE5SwKFfT6VM8z36GPDweWGk8xaZxu?=
+ =?us-ascii?Q?un+nX0JG4mJisGX4gqXPihiLPBvfHsSslL4nGrBt6KJ+ZY+DP8A00tkI32Ut?=
+ =?us-ascii?Q?lz1ngIsi/kN9jqDkpe7aZSoGnEB0tiE36TEs5b1tjF83WcMzwBlUCSvv5o5s?=
+ =?us-ascii?Q?1i3vBuOOr+xhw7hSDt9GMPyHhOEZkjb71yiQbHnS1oKLOmff/VzYH5OHTKSn?=
+ =?us-ascii?Q?aLOnDZNO0oUJvXuj/eLDG7WC2lgiLhsSUXixqhJ2wSYBEBJBNZ7a3kmjQMjW?=
+ =?us-ascii?Q?IjucdGavOVzk2cwr72/n/4RST4DIGbpgDV65GIcx+Rtw/PZ9Ah4PlEVr+BuJ?=
+ =?us-ascii?Q?GtYKuNN35yVM8v/byAfDCEN/YQXsnyELYfmniNxzZ9gMyPeVmQ+IGBoHzDT2?=
+ =?us-ascii?Q?4Q5AgvEDpERuT/Q48jPKwt0OiGqQ2zlFh/RX5GxcjybgKgqCtCEPoFZQC/uV?=
+ =?us-ascii?Q?vdM/SThZPTW/GA7sTXwCuBUx04BH7o6UDROCIwX+SUSic8rk16TM0tQEO4NV?=
+ =?us-ascii?Q?BnAdxPisSjv2xm7YpsisOhQ/iegT96IbmoXc7zlEmYZGDsyX1x6u/mRzfuFY?=
+ =?us-ascii?Q?W/dKdVuHzLiqsVGnJ4ojy5GgCz1+Gb0KQ4qhJQoczwKUGF+HIRxMYiVXtA04?=
+ =?us-ascii?Q?CNf52yrPbWFwWfATZZ3v1gWPEXgBB2X7YUkU+YUfR64QpOoOqpPSchYUuLUJ?=
+ =?us-ascii?Q?mc3NcNXvDWdjxqU69utLHLCYt1dNTw4VI5md2hcEjd6ckquwDWbPI/bSQsGd?=
+ =?us-ascii?Q?ECzOLM7i3Z12bC1uAABnKK6MwwGvfxl/jiws62AobVA/MSht9M9SlAZvxPYr?=
+ =?us-ascii?Q?U963V86aRjTfZSFcmR65PkdW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3612e21-d246-4bbc-bc66-08d8e3ac84a7
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2021 10:08:57.6718
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rJBF+DGVAAhGD64QJECgnXz9qDX9JybgAMc7dPonJJR3dVdCINtxdfjWFRMg3CUENKSW8L6OEuZseRAnGFLQKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2318
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Mar 2021, Krzysztof Kozlowski wrote:
+Hi,
 
-> Prepare for merging Stratix 10, Agilex and N5X into one arm64
-> architecture by first renaming the ARCH_STRATIX10 into ARCH_SOCFPGA64.
-> 
-> The existing ARCH_SOCFPGA (in ARMv7) Kconfig symbol cannot be used
-> because altera_edac driver builds differently between them (with
-> ifdefs).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/arm64/Kconfig.platforms                |  7 ++++---
->  arch/arm64/boot/dts/altera/Makefile         |  2 +-
->  arch/arm64/configs/defconfig                |  2 +-
->  drivers/clk/Makefile                        |  2 +-
->  drivers/clk/socfpga/Kconfig                 |  4 ++--
->  drivers/edac/Kconfig                        |  2 +-
->  drivers/edac/altera_edac.c                  | 10 +++++-----
->  drivers/firmware/Kconfig                    |  2 +-
->  drivers/fpga/Kconfig                        |  2 +-
+This is the v5 series to add some DRM bridge drivers support
+for i.MX8qm/qxp SoCs.
 
->  drivers/mfd/Kconfig                         |  2 +-
+The bridges may chain one by one to form display pipes to support
+LVDS displays.  The relevant display controller is DPU embedded in
+i.MX8qm/qxp SoCs.
 
-If it's okay with everyone else, it'll be okay with me:
+The DPU KMS driver can be found at:
+https://www.spinics.net/lists/arm-kernel/msg878542.html
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+This series supports the following display pipes:
+1) i.MX8qxp:
+prefetch eng -> DPU -> pixel combiner -> pixel link ->
+pixel link to DPI(PXL2DPI) -> LVDS display bridge(LDB)
 
->  drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
->  drivers/reset/Kconfig                       |  2 +-
->  12 files changed, 21 insertions(+), 20 deletions(-)
+2) i.MX8qm:
+prefetch eng -> DPU -> pixel combiner -> pixel link -> LVDS display bridge(LDB)
+
+
+This series drops the patch 'phy: Add LVDS configuration options', as suggested
+by Robert Foss, because it has already been sent with the following series to
+add Mixel combo PHY found in i.MX8qxp:
+https://www.spinics.net/lists/arm-kernel/msg879957.html
+
+So, this version depends on that series.
+
+
+Patch 1/14 and 2/14 add bus formats used by PXL2DPI.
+
+Patch 7/14 adds dt-binding for Control and Status Registers module(a syscon
+used by PXL2DPI and LDB), which references the PXL2DPI and LDB schemas.
+
+Patch 10/14 adds a helper for LDB bridge drivers.
+
+Patch 3/14 ~ 6/14, 8/14, 9/14 and 11/14 ~ 13/14 add drm bridge drivers and
+dt-bindings support for the bridges.
+
+Patch 14/14 updates MAINTAINERS.
+
+
+I've tested this series with a koe,tx26d202vm0bwa dual link LVDS panel and
+a LVDS to HDMI bridge(with a downstream drm bridge driver).
+
+
+Welcome comments, thanks.
+
+v4->v5:
+* Drop the patch 'phy: Add LVDS configuration options'. (Robert)
+* Add Robert's R-b tags on patch 1/14, 2/14, 4/14 and 6/14.
+* Drop the 'PC_BUF_PARA_REG' register definition from the pixel combiner bridge
+  driver(patch 4/14). (Robert)
+* Make a comment occupy a line in the pixel link bridge driver(patch 6/14).
+  (Robert)
+* Introduce a new patch(patch 7/14) to add dt-binding for Control and Status
+  Registers module. (Rob)
+* Make imx-ldb-helper be a pure object to be linked with i.MX8qxp LDB bridge
+  driver and i.MX8qm LDB bridge driver, instead of a module.  Correspondingly,
+  rename 'imx8{qm, qxp}-ldb.c' to 'imx8{qm, qxp}-ldb-drv.c'. (Robert)
+* Move 'imx_ldb_helper.h' to 'drivers/gpu/drm/bridge/imx/imx-ldb-helper.h'.
+  (Robert)
+* s/__FSL_IMX_LDB__/__IMX_LDB_HELPER__/  for 'imx-ldb-helper.h'.
+
+v3->v4:
+* Use 'fsl,sc-resource' DT property to get the SCU resource ID associated with
+  the PXL2DPI instance instead of using alias ID. (Rob)
+* Add Rob's R-b tag on patch 11/14.
+
+v2->v3:
+* Drop 'fsl,syscon' DT properties from fsl,imx8qxp-ldb.yaml and
+  fsl,imx8qxp-pxl2dpi.yaml. (Rob)
+* Mention the CSR module controls LDB and PXL2DPI in fsl,imx8qxp-ldb.yaml and
+  fsl,imx8qxp-pxl2dpi.yaml.
+* Call syscon_node_to_regmap() to get regmaps from LDB bridge helper driver
+  and PXL2DPI bridger driver instead of syscon_regmap_lookup_by_phandle().
+* Drop two macros from pixel link bridge driver which help define functions
+  and define them directly.
+* Properly disable all pixel link controls to POR value by calling
+  imx8qxp_pixel_link_disable_all_controls() from
+  imx8qxp_pixel_link_bridge_probe().
+* Add Rob's R-b tags on patch 4/14 and 6/14.
+
+v1->v2:
+* Rebase the series upon the latest drm-misc-next branch(5.11-rc2 based).
+* Use graph schema in the dt-bindings of the bridges. (Laurent)
+* Require all four pixel link output ports in fsl,imx8qxp-pixel-link.yaml.
+  (Laurent)
+* Side note i.MX8qm/qxp LDB official name 'pixel mapper' in fsl,imx8qxp-ldb.yaml.
+  (Laurent)
+* Mention pixel link is accessed via SCU firmware in fsl,imx8qxp-pixel-link.yaml.
+  (Rob)
+* Use enum instead of oneOf + const for the reg property of pixel combiner
+  channels in fsl,imx8qxp-pixel-combiner.yaml. (Rob)
+* Rewrite the function to find the next bridge in pixel link bridge driver
+  by properly using OF APIs and dropping unnecessary DT validation. (Rob)
+* Drop unnecessary port availability check in i.MX8qxp pixel link to DPI
+  bridge driver.
+* Drop unnecessary DT validation from i.MX8qxp LDB bridge driver.
+* Use of_graph_get_endpoint_by_regs() and of_graph_get_remote_endpoint() to
+  get the input remote endpoint in imx8qxp_ldb_set_di_id() of i.MX8qxp LDB
+  bridge driver.
+* Avoid using companion_port OF node after putting it in
+  imx8qxp_ldb_parse_dt_companion() of i.MX8qxp LDB bridge driver.
+* Drop unnecessary check for maximum available LDB channels from
+  i.MX8qm LDB bridge driver.
+* Mention i.MX8qm/qxp LDB official name 'pixel mapper' in i.MX8qm/qxp LDB
+  bridge drivers and Kconfig help messages.
+
+Liu Ying (14):
+  media: uapi: Add some RGB bus formats for i.MX8qm/qxp pixel combiner
+  media: docs: Add some RGB bus formats for i.MX8qm/qxp pixel combiner
+  dt-bindings: display: bridge: Add i.MX8qm/qxp pixel combiner binding
+  drm/bridge: imx: Add i.MX8qm/qxp pixel combiner support
+  dt-bindings: display: bridge: Add i.MX8qm/qxp display pixel link
+    binding
+  drm/bridge: imx: Add i.MX8qm/qxp display pixel link support
+  dt-bindings: mfd: Add i.MX8qm/qxp Control and Status Registers module
+    binding
+  dt-bindings: display: bridge: Add i.MX8qxp pixel link to DPI binding
+  drm/bridge: imx: Add i.MX8qxp pixel link to DPI support
+  drm/bridge: imx: Add LDB driver helper support
+  dt-bindings: display: bridge: Add i.MX8qm/qxp LVDS display bridge
+    binding
+  drm/bridge: imx: Add LDB support for i.MX8qxp
+  drm/bridge: imx: Add LDB support for i.MX8qm
+  MAINTAINERS: add maintainer for DRM bridge drivers for i.MX SoCs
+
+ .../bindings/display/bridge/fsl,imx8qxp-ldb.yaml   | 173 +++++
+ .../display/bridge/fsl,imx8qxp-pixel-combiner.yaml | 144 +++++
+ .../display/bridge/fsl,imx8qxp-pixel-link.yaml     | 106 +++
+ .../display/bridge/fsl,imx8qxp-pxl2dpi.yaml        | 108 ++++
+ .../devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml   | 202 ++++++
+ .../userspace-api/media/v4l/subdev-formats.rst     | 156 +++++
+ MAINTAINERS                                        |  10 +
+ drivers/gpu/drm/bridge/Kconfig                     |   2 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/imx/Kconfig                 |  42 ++
+ drivers/gpu/drm/bridge/imx/Makefile                |   9 +
+ drivers/gpu/drm/bridge/imx/imx-ldb-helper.c        | 232 +++++++
+ drivers/gpu/drm/bridge/imx/imx-ldb-helper.h        |  98 +++
+ drivers/gpu/drm/bridge/imx/imx8qm-ldb-drv.c        | 586 +++++++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-ldb-drv.c       | 720 +++++++++++++++++++++
+ .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    | 448 +++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c    | 427 ++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c       | 485 ++++++++++++++
+ include/uapi/linux/media-bus-format.h              |   6 +-
+ 19 files changed, 3954 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/Kconfig
+ create mode 100644 drivers/gpu/drm/bridge/imx/Makefile
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qm-ldb-drv.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-ldb-drv.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.7.4
+
