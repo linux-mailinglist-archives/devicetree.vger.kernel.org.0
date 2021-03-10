@@ -2,91 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF1233389A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8CB3338F5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232496AbhCJJVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 04:21:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbhCJJVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:21:46 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A95C061763
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:21:45 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id j2so22439919wrx.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:21:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=1dMDsRJi6X7RFDQQQ96QgnONRBTG+sEDdR1IWXfZlxI=;
-        b=W+DJoNj9bBYATgZUAqeGOcJC+D6Hm0fUTfpOX/nfrQorUYX0n4GMgTKiGPm9maOEGo
-         jJEbPk9YxrksTMIUWEKLTMMPZUE3K3JD1uzy2/YgERbc+DtReqEclprcHzcXbUZkCtgK
-         dofcYGgRLjspqQ02wswCtKFFlcgHYCG7pI64jxsoFj6wjEdDKRS1gt8ucvtPMr1+wiXH
-         V/ZWINFeo54CPqxA/rG5FASsH7SuIr/xMoPbF+VsDdIRqKv/UxlwLwcteDBdVTSJWc0O
-         mMDifDG6brOm+PToPYN85FgTl6AZyRU9xfUh9opj8fWJz2+IRQ0JWOsQc08QN5F0mrcp
-         5KcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1dMDsRJi6X7RFDQQQ96QgnONRBTG+sEDdR1IWXfZlxI=;
-        b=RC9egkCu44Ewlcy7avR+mPszPH6W188YTD3w8bMUNfM3XEU6WimY0ZobYTQewvVZoz
-         FGDTxu91jdQDUBv2cLyY8h+RLfk14DE2xOK9IWp4QRtkQ2wPk/iiQ4tlsPSzv8deA5lv
-         9vBC1fcxgo94P51+Xv3ffC3qWaLeturmobPr3B/nmumdoIut/zneD6vdOWEmGFFYkc8L
-         u9uk0ejE1VGY6/KGWtlf6JkNYfuGlpa/KTaDNS+yIOejNZBc3klF0Cm5O6Y+Jy85i0xn
-         z/e0yv/fUJN0YwR/IIda4WYxZrl6Qhs9s5P9w9sCydCrwF+/TJ9p+FNOzpbkUsknR+VR
-         i2TQ==
-X-Gm-Message-State: AOAM531SEz9ILI0gmr0QFLsswGxqxwU6V2JzWCTo5ytO7u9uqNcV4utL
-        UCUxLBsElrBwSUZ6NU85bS5fgA==
-X-Google-Smtp-Source: ABdhPJxuPtNe3ElR6uJROL0vscwDtpq5CtKpwKbdJ63dZObdhgzH/OA+daBodljwBXleRgt+pFfpUg==
-X-Received: by 2002:a5d:4485:: with SMTP id j5mr2393819wrq.339.1615368104145;
-        Wed, 10 Mar 2021 01:21:44 -0800 (PST)
-Received: from dell ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id a131sm8233043wmc.48.2021.03.10.01.21.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 01:21:43 -0800 (PST)
-Date:   Wed, 10 Mar 2021 09:21:41 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: backlight: qcom-wled: Add PMI8994
- compatible
-Message-ID: <20210310092141.GO4931@dell>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
+        id S231738AbhCJJin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 04:38:43 -0500
+Received: from regular1.263xmail.com ([211.150.70.200]:44760 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231492AbhCJJiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:38:16 -0500
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id 34BED1C5D;
+        Wed, 10 Mar 2021 17:37:34 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.64] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P24304T139685251299072S1615369053264450_;
+        Wed, 10 Mar 2021 17:37:34 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <6df6f007d349241a15ee878e4b443baf>
+X-RL-SENDER: shawn.lin@rock-chips.com
+X-SENDER: lintao@rock-chips.com
+X-LOGIN-NAME: shawn.lin@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Message-ID: <7573e8c1-3f55-9925-bc14-534455f1ffa3@rock-chips.com>
+Date:   Wed, 10 Mar 2021 17:37:33 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210228124106.135812-1-konrad.dybcio@somainline.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101
+ Thunderbird/86.0
+Cc:     shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add rockchip
+ support
+To:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh@kernel.org>
+References: <1615254990-192784-1-git-send-email-shawn.lin@rock-chips.com>
+ <1615254990-192784-2-git-send-email-shawn.lin@rock-chips.com>
+ <20210310030122.GA1664258@robh.at.kernel.org>
+ <9f8b3be6-d87e-d944-d5db-67f3bcf0fad0@gmail.com>
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <9f8b3be6-d87e-d944-d5db-67f3bcf0fad0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Feb 2021, Konrad Dybcio wrote:
 
-> Document the newly added PMI8994 compatible.
+On 2021/3/10 15:00, Johan Jonker wrote:
+> On 3/10/21 4:01 AM, Rob Herring wrote:
+>> On Tue, Mar 09, 2021 at 09:56:29AM +0800, Shawn Lin wrote:
+>>> This patch adds rockchip support in sdhci-of-dwcmhsc.yaml
+>>>
+>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>>> ---
+>>>
+>>> Changes in v3: None
+>>>
+>>>   .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 24 ++++++++++++++++++++++
+>>>   1 file changed, 24 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>> index f99fb9f..43989f2 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>>> @@ -16,6 +16,7 @@ allOf:
+>>>   properties:
+>>>     compatible:
+>>>       enum:
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> +      - rockchip,dwcmshc-sdhci
+> 
+> Compatible strings are supposed to be SoC orientated.
+> What SoC was this change for? rk3568 ?
+> Could Shawn confirm that?
 
-Applied, thanks.
+Yes. We are inclined to use this controller from now on for a
+long time for up-coming SoCs. Should we tag compatible for rk3568
+specified? One of the negative things I could come up with is that we
+do this for dwmmc-rockchip, but we end up doing nothing else,
+except for adding new compatible string again and again in Document.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> 
+>           - rockchip,rk3568-dwcmshc-sdhci ??
+> 
+> Could Rob advise here?
+> 
+>>>         - snps,dwcmshc-sdhci
+>>>   
+>>>     reg:
+>>> @@ -31,12 +32,24 @@ properties:
+>>>       items:
+>>>         - description: core clock
+>>>         - description: bus clock for optional
+>>> +      - description: axi clock for rockchip specified
+>>> +      - description: block clock for rockchip specified
+>>> +      - description: timer clock for rockchip specified
+>>> +
+>>>   
+>>>     clock-names:
+>>>       minItems: 1
+>>>       items:
+>>>         - const: core
+>>>         - const: bus
+>>> +      - const: axi
+>>> +      - const: block
+>>> +      - const: timer
+>>> +
+>>> +  rockchip,txclk-tapnum:
+>>> +    description: Specify the number of delay for tx sampling.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Constraints for this? 0 - 2^32 is okay?
+>>
+>>> +
+>>>   
+>>>   required:
+>>>     - compatible
+>>> @@ -49,6 +62,17 @@ unevaluatedProperties: false
+>>>   
+>>>   examples:
+>>>     - |
+>>> +    mmc@fe310000 {
+> 
+>>> +      compatible = "rockchip,dwcmshc-sdhci";
+> 
+>        compatible = "rockchip,rk3568-dwcmshc-sdhci"; ??
+> 
+>>> +      reg = <0xfe310000 0x10000>;
+>>> +      interrupts = <0 25 0x4>;
+>>> +      clocks = <&cru 17>, <&cru 18>, <&cru 19>, <&cru 20>, <&cru 21>;
+>>> +      clock-names = "core", "bus", "axi", "block", "timer";
+>>> +      bus-width = <8>;
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +    };
+>>> +  - |
+>>>       mmc@aa0000 {
+>>>         compatible = "snps,dwcmshc-sdhci";
+>>>         reg = <0xaa000 0x1000>;
+>>> -- 
+>>> 2.7.4
+>>>
+>>>
+>>>
+>>
+> 
+> 
+> 
+> 
+> 
+
+
