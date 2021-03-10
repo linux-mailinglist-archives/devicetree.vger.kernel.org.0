@@ -2,115 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEEFE33368C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:45:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D785F333690
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbhCJHon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 02:44:43 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48604 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbhCJHod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:44:33 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12A7iR8t016821;
-        Wed, 10 Mar 2021 01:44:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615362267;
-        bh=TfQQgTKeBCY4xuMtmfDUQm+/YrcItfzYj5J9OoTYvQY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Ik4N/5Oumj4RnQagRniaq7Oc3tsK7T43gBQfl6u8RRV/2ZTWb8X+mN0H+C96qVR+z
-         EPXgCO/JNPqAV0FLyEVc3qdRTEPgpdB2CnI15f7C7r6zyC9kCoyDQwZwH73BT9RLTW
-         u9lcBpA1mqZbVAROboGSIhF8kmFABLw1n22D/OkY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12A7iRlf025991
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Mar 2021 01:44:27 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
- Mar 2021 01:44:27 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 10 Mar 2021 01:44:27 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12A7iNjp074705;
-        Wed, 10 Mar 2021 01:44:24 -0600
-Subject: Re: [PATCH 0/2] AM64: Add USB support
-To:     Kishon Vijay Abraham I <kishon@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-References: <20210301055109.17626-1-a-govindraju@ti.com>
- <20210301152227.f6phla2m3rz457pj@passerby>
- <85b1b60f-455c-51b8-9e28-019226413885@ti.com>
- <e8d53390-7a70-fda1-2b6c-ab252947e41b@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <44a86048-3356-0e8b-513e-1efb36f2987b@ti.com>
-Date:   Wed, 10 Mar 2021 13:14:22 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229643AbhCJHqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 02:46:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229900AbhCJHqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:46:15 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C37AC06174A
+        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 23:46:15 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id x4so25169366lfu.7
+        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 23:46:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SzXivdTOCvIZS4rAkfG4jXFG92ohPQe7A3aF14ZFuDo=;
+        b=UfgHXhWd2jOmyTPwbE75lahl3D0cNQoA0JA4bd82WUrFTPjbDbzRv32RXEup9v8jPQ
+         nFI0F20OIosZRHEF6ShmkbrIwNZGfY+Bk9nQpsJjLAmjBn1pf5pzaFmvdCPZ4/3xvUWR
+         T4B4kwOfM27EVPm+T8NOWn1jurPw7DqXO8rqXw668fDmuZ6Drj2lElHpOC/fgjWgNe8d
+         If5DlrmYTtvCC5yUfuCscjCDj3NM9hmtrfpz3uvyU/p0Wg64KZCb/EmmikX3uT3RO0vH
+         rIL9IcOg/F9JYkyzm2Y8m3E52VZVSoB9+7t0W307RROQb+gBeVF+IG1RPHUAiGNLu7gW
+         alXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SzXivdTOCvIZS4rAkfG4jXFG92ohPQe7A3aF14ZFuDo=;
+        b=Y3iCHryvjx+16/Vvom8DoW0NyQT+uM6GBHsSsx9sR8AGWg88WpOCL94DbjqaRynOB+
+         i97EfZJKApMHbj8LdGl5aYIBxSBqhBSRGhgQYddTTbweM06s+vpxgN9jnKXQuFzzd2K0
+         Cspkv6JZL3o36JAygl8PKo/zosbyBRXIZYV4cugr/xN1LsOhX9NpIohWB/2j+0CVPU+y
+         e+C+DYw7lPr8MO+cLynSDjwnqW6Koe1bFeb+OZao08p7hZhu2xf7IuipvMjFkju6gcdf
+         8VURCv6Xm5/PyWL55Wp8IxrtveIPZ1/2DJ4ug2czaG20ZnF2eqLgD5JY6FV+WvZf5lGH
+         LtcA==
+X-Gm-Message-State: AOAM533kl4hBOwPm79mPDFPSfMAQdwjc9l3IE18TipZLLnJPJCbdrL0M
+        UImEjbyJXZMijpwgtYMZ0+M=
+X-Google-Smtp-Source: ABdhPJwtIy6SseFDPRQoTTUgwmEaXmyD2L7DL3XXSfhlcyao5rFb/pzs7DGJpthsdGB3QLGfytHEVA==
+X-Received: by 2002:ac2:47ef:: with SMTP id b15mr1205794lfp.615.1615362373493;
+        Tue, 09 Mar 2021 23:46:13 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id t16sm2858133ljj.137.2021.03.09.23.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Mar 2021 23:46:12 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH V3 1/2] dt-bindings: arm: bcm: document TP-Link Archer C2300 binding
+Date:   Wed, 10 Mar 2021 08:46:02 +0100
+Message-Id: <20210310074603.17715-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210308131850.22576-1-zajec5@gmail.com>
+References: <20210308131850.22576-1-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <e8d53390-7a70-fda1-2b6c-ab252947e41b@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kishon,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 10/03/21 12:33 pm, Kishon Vijay Abraham I wrote:
-> +Vinod
-> 
-> Hi Aswath,
-> 
-> On 10/03/21 12:27 pm, Aswath Govindraju wrote:
->> Hi Nishanth,
->>
->> On 01/03/21 8:52 pm, Nishanth Menon wrote:
->>> On 11:21-20210301, Aswath Govindraju wrote:
->>>> The following series of patches, add USB support for AM64.
->>>>
->>>> This series of patches depends on,
->>>> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
->>>>
->>>> Aswath Govindraju (2):
->>>>   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->>>>   arm64: dts: ti: k3-am642-evm: Add USB support
->>>>
->>>>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->>>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->>>>  2 files changed, 48 insertions(+)
->>>
->>> Please update the series to include SK as well.
->>>
->>
->> I was planning on posting patches that add support for USB in SK later
->> because of phy dependencies.
-> 
-> The dependency is only on [1] right? I've got all the required ACKs so
-> it should be okay to include it in this series. (That patch will be
-> required only when PCIe DT is merged for me.)
-> 
-> Nishant, would you be okay to merge [1] along with other patches from
-> Aswath? There is no dependency as such on my other PHY patches, so don't
-> think there is a need for a stable tag here.
-> 
-> 
-> [1] ->
-> https://lore.kernel.org/linux-devicetree/20210222112314.10772-4-kishon@ti.com/
->>
+One more BCM4906 based device.
 
-There is also a dependency on,
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-https://lore.kernel.org/linux-devicetree/20210222112314.10772-2-kishon@ti.com/
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+index e55731f43c84..2cd4e4a32278 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+@@ -21,6 +21,7 @@ properties:
+         items:
+           - enum:
+               - netgear,r8000p
++              - tplink,archer-c2300-v1
+           - const: brcm,bcm4906
+           - const: brcm,bcm4908
+ 
+-- 
+2.26.2
 
-Thanks,
-Aswath
