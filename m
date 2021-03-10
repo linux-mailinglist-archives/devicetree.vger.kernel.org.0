@@ -2,151 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B12C2333678
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5268D333686
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbhCJHh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 02:37:58 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:27324 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231152AbhCJHhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 02:37:43 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615361863; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=xuYPSMdgz8Yi0oiFGDEAJkTZb66LQ7xiQZRdBDqgi1w=; b=pr895WsYfFTnSdufwhapNKnJ84sTECNWrKYfcqatAWBwEDZPRunrfXdBDGkIlw/6/uu17pxN
- Alu+Pa9YYJY71KnX8znekSMpY5DI1lVD924bi2mPGoMK88FtCGRlxZ2fvfHPefCxwYiQo1eU
- iIfGInU+V7sqgt1LGjnqGkobxZI=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 60487730e90f410d8813d95d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Mar 2021 07:37:20
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id ECF2EC43462; Wed, 10 Mar 2021 07:37:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C375FC433C6;
-        Wed, 10 Mar 2021 07:37:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C375FC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pillair@codeaurora.org
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     sibis@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Date:   Wed, 10 Mar 2021 13:07:09 +0530
-Message-Id: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S230269AbhCJHnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 02:43:08 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:36959 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232204AbhCJHmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:42:33 -0500
+X-UUID: 815a1e554c3e4de5874394ecb9f3ac63-20210310
+X-UUID: 815a1e554c3e4de5874394ecb9f3ac63-20210310
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 98255046; Wed, 10 Mar 2021 15:42:19 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 10 Mar 2021 15:42:17 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 10 Mar 2021 15:42:16 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1 0/2] Revert "mailbox: mediatek: remove implementation related to atomic_exec"
+Date:   Wed, 10 Mar 2021 15:42:10 +0800
+Message-ID: <1615362132-30603-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the WPSS remoteproc node in dts for
-PIL loading.
+This series base linux 5.12-rc1
+these two patches will cause home ui flick when cursor moved,
+there is no fix solution yet, revert these patches first.
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
-- This change is dependent on the below patch series
-1) https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
-2) https://lore.kernel.org/patchwork/project/lkml/list/?series=488365
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    | 47 +++++++++++++++++++++++++++++++++
- 2 files changed, 51 insertions(+)
+Yongqiang Niu (2):
+  Revert "drm/mediatek: Make sure previous message done or be aborted
+    before send"
+  Revert "mailbox: mediatek: remove implementation related to
+    atomic_exec"
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index 950ecb2..603f56b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -26,6 +26,10 @@
- 	status = "okay";
- };
- 
-+&remoteproc_wpss {
-+	status = "okay";
-+};
-+
- &uart5 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8af6d77..26dd466 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -53,6 +53,16 @@
- 			no-map;
- 			reg = <0x0 0x80b00000 0x0 0x100000>;
- 		};
-+
-+		wlan_fw_mem: memory@80c00000 {
-+			no-map;
-+			reg = <0x0 0x80c00000 0x0 0xc00000>;
-+		};
-+
-+		wpss_mem: memory@9ae00000 {
-+			no-map;
-+			reg = <0x0 0x9ae00000 0x0 0x1900000>;
-+		};
- 	};
- 
- 	cpus {
-@@ -305,6 +315,43 @@
- 			};
- 		};
- 
-+		remoteproc_wpss: remoteproc@8a00000 {
-+			compatible = "qcom,sc7280-wpss-pil";
-+			reg = <0 0x08a00000 0 0x10000>;
-+
-+			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 0 0>,
-+					      <&wpss_smp2p_in 1 0>,
-+					      <&wpss_smp2p_in 2 0>,
-+					      <&wpss_smp2p_in 3 0>,
-+					      <&wpss_smp2p_in 7 0>;
-+			interrupt-names = "wdog", "fatal", "ready", "handover",
-+					  "stop-ack", "shutdown-ack";
-+
-+			memory-region = <&wpss_mem>;
-+
-+			qcom,smem-states = <&wpss_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>;
-+			reset-names = "restart";
-+
-+			qcom,halt-regs = <&tcsr_mutex_regs 0x37000>;
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-+							     IPCC_MPROC_SIGNAL_GLINK_QMP
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_CLIENT_WPSS
-+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+
-+				label = "wpss";
-+				qcom,remote-pid = <13>;
-+			};
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sc7280-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>;
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c |  1 -
+ drivers/mailbox/mtk-cmdq-mailbox.c      | 80 +++++++++++++++++++++++++++++----
+ 2 files changed, 71 insertions(+), 10 deletions(-)
+
 -- 
-2.7.4
+1.8.1.1.dirty
 
