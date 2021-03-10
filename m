@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A28133427C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3426C334295
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 17:11:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbhCJQIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 11:08:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232569AbhCJQH6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 11:07:58 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E45D564F4C;
-        Wed, 10 Mar 2021 16:07:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615392478;
-        bh=7sTMvplzl4qRhmylBff3JMaWNZ6VDs7GHryb8IWMb8E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PIIVIbrunaUx2mEUOz6ZJxHRH1se7E+5o1HDWFnKHf8eRzIiylHjOZmg5NZShqUGW
-         hjBa9elVXNdk4eDdsGhTeXYuzv3/BXbX9p/KFb7ybT6VG90bTEx1lnCRZOw2RFaiFz
-         xUEZGv0mJM9hDLsvPxYJiJZDiqjW49MgbOGmc1zY8E3cbyvNj4DU6HwresgdU5wkaD
-         /6Nzn59UjeidTCW1K7nx7/asBj1lP/sYdEKM7aFPidqM8CVyvFTnzvC3yn1XacZioJ
-         H8pxELt905xod7Mk5tdYLPuc5q0SIB1frKl7tHHxsimgV+p7eYBm76eNyVHMHiOgX+
-         s9X5laJqNqC3Q==
-Date:   Wed, 10 Mar 2021 16:07:48 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>
-Subject: Re: [PATCH v4 13/14] dt-bindings: of: Add restricted DMA pool
-Message-ID: <20210310160747.GA29834@willie-the-truck>
-References: <20210209062131.2300005-1-tientzu@chromium.org>
- <20210209062131.2300005-14-tientzu@chromium.org>
+        id S233224AbhCJQK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 11:10:59 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51386 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233214AbhCJQKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 11:10:34 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AG9x4b127769;
+        Wed, 10 Mar 2021 10:09:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615392599;
+        bh=Uaw2AhSFxM9oBV3jzN5LoozupiwUAtWEp62rFJomdbs=;
+        h=From:To:CC:Subject:Date;
+        b=edKji/Ypjl6R/GH86U7ToJnG27nz5QAOc8ejtMGf6CqAdPPGuMUEemeGoBPiXDJFN
+         Iryf70ViYg3/+pQ/R+lEpZgd5IWLGoGnxfZNTKpWgWI/hesV4MqwWcuW2ZLJo0CvzU
+         0ItSAh9rZOHGCoQG6YpQUYDocrSSeF36asJLCuY4=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AG9x0F003935
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 Mar 2021 10:09:59 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
+ Mar 2021 10:09:59 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 10 Mar 2021 10:09:59 -0600
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AG9qkr100440;
+        Wed, 10 Mar 2021 10:09:52 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Nadeem Athani <nadeem@cadence.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v4 0/7] Add SR-IOV support in PCIe Endpoint Core
+Date:   Wed, 10 Mar 2021 21:39:36 +0530
+Message-ID: <20210310160943.7606-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210209062131.2300005-14-tientzu@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Claire,
+Patch series
+*) Adds support to add virtual functions to enable endpoint controller
+   which supports SR-IOV capability
+*) Add support in Cadence endpoint driver to configure virtual functions
+*) Enable pci_endpoint_test driver to create pci_device for virtual
+   functions
 
-On Tue, Feb 09, 2021 at 02:21:30PM +0800, Claire Chang wrote:
-> Introduce the new compatible string, restricted-dma-pool, for restricted
-> DMA. One can specify the address and length of the restricted DMA memory
-> region by restricted-dma-pool in the reserved-memory node.
-> 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> index e8d3096d922c..fc9a12c2f679 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
->            used as a shared pool of DMA buffers for a set of devices. It can
->            be used by an operating system to instantiate the necessary pool
->            management subsystem if necessary.
-> +        - restricted-dma-pool: This indicates a region of memory meant to be
-> +          used as a pool of restricted DMA buffers for a set of devices. The
-> +          memory region would be the only region accessible to those devices.
-> +          When using this, the no-map and reusable properties must not be set,
-> +          so the operating system can create a virtual mapping that will be used
-> +          for synchronization. The main purpose for restricted DMA is to
-> +          mitigate the lack of DMA access control on systems without an IOMMU,
-> +          which could result in the DMA accessing the system memory at
-> +          unexpected times and/or unexpected addresses, possibly leading to data
-> +          leakage or corruption. The feature on its own provides a basic level
-> +          of protection against the DMA overwriting buffer contents at
-> +          unexpected times. However, to protect against general data leakage and
-> +          system memory corruption, the system needs to provide way to lock down
-> +          the memory access, e.g., MPU.
+v1 of the patch series can be found at [1]
+v2 of the patch series can be found at [2]
+v3 of the patch series can be found at [3]
 
-As far as I can tell, these pools work with both static allocations (which
-seem to match your use-case where firmware has preconfigured the DMA ranges)
-but also with dynamic allocations where a 'size' property is present instead
-of the 'reg' property and the kernel is responsible for allocating the
-reservation during boot. Am I right and, if so, is that deliberate?
+Here both physical functions and virtual functions use the same
+pci_endpoint_test driver and existing pcitest utility can be used
+to test virtual functions as well.
 
-I ask because I think that would potentially be useful to us for the
-Protected KVM work, where we need to bounce virtio memory accesses via
-guest-determined windows because the guest memory is generally inaccessible
-to the host. We've been hacking this using a combination of "swiotlb=force"
-and set_memory_{decrypted,encrypted}() but it would be much better to
-leverage the stuff you have here.
+Changes from v3:
+*) Fixed Rob's comment and added his Reviewed-by as suggested by him.
 
-Also:
+Changes from v2:
+*) Fixed DT binding documentation comment by Rob
+*) Fixed the error check in pci-epc-core.c
 
-> +
-> +		restricted_dma_mem_reserved: restricted_dma_mem_reserved {
-> +			compatible = "restricted-dma-pool";
-> +			reg = <0x50000000 0x400000>;
-> +		};
->  	};
->  
->  	/* ... */
-> @@ -138,4 +157,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
->  		memory-region = <&multimedia_reserved>;
->  		/* ... */
->  	};
-> +
-> +	pcie_device: pcie_device@0,0 {
-> +		memory-region = <&restricted_dma_mem_reserved>;
-> +		/* ... */
-> +	};
+Changes from v1:
+*) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
+   binding for EP)
 
-I find this example a bit weird, as I didn't think we usually had DT nodes
-for PCI devices; rather they are discovered as a result of probing config
-space. Is the idea that you have one reserved memory region attached to the
-RC and all the PCI devices below that share the region, or is there a need
-for a mapping mechanism?
+[1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
+[3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
 
-Will
+Kishon Vijay Abraham I (7):
+  dt-bindings: PCI: pci-ep: Add binding to specify virtual function
+  PCI: endpoint: Add support to add virtual function in endpoint core
+  PCI: endpoint: Add support to link a physical function to a virtual
+    function
+  PCI: endpoint: Add virtual function number in pci_epc ops
+  PCI: cadence: Add support to configure virtual functions
+  misc: pci_endpoint_test: Populate sriov_configure ops to configure
+    SR-IOV device
+  Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
+
+ .../PCI/endpoint/pci-endpoint-cfs.rst         |  12 +-
+ .../devicetree/bindings/pci/pci-ep.yaml       |   7 +
+ drivers/misc/pci_endpoint_test.c              |   1 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 251 +++++++++++++++---
+ drivers/pci/controller/cadence/pcie-cadence.h |   7 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  36 +--
+ drivers/pci/controller/pcie-rcar-ep.c         |  19 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |  18 +-
+ drivers/pci/endpoint/functions/pci-epf-ntb.c  |  79 +++---
+ drivers/pci/endpoint/functions/pci-epf-test.c |  66 +++--
+ drivers/pci/endpoint/pci-ep-cfs.c             |  24 ++
+ drivers/pci/endpoint/pci-epc-core.c           | 130 ++++++---
+ drivers/pci/endpoint/pci-epf-core.c           | 144 +++++++++-
+ include/linux/pci-epc.h                       |  57 ++--
+ include/linux/pci-epf.h                       |  16 +-
+ 15 files changed, 664 insertions(+), 203 deletions(-)
+
+-- 
+2.17.1
+
