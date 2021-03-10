@@ -2,95 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FE233497B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 22:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC5A3349AC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 22:13:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbhCJVIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 16:08:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbhCJVI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 16:08:29 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00B2C061574;
-        Wed, 10 Mar 2021 13:08:28 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id p8so41572179ejb.10;
-        Wed, 10 Mar 2021 13:08:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0SX53bYeJpoRn/Rj8EJYnn/yWlrMIeX4TZ6gWcrZofc=;
-        b=bmC+GZuRpPw22iaH2nG9joxOZVNCyQ1ZEe+2lEU2JOh9Ei2AeeP+twZLnzoNb+/5lh
-         L7hfz8o+uo0vLTKt6cNNlMNcKCgiRDRjxe/4VpEzHbT3iE8UvfKfbaFHwfF8PGSe1weY
-         GE5UKQPgrg2Rf1VmwyWeMutLitQET78oyCiG36084I0rZSY9/upOTWWo/jSQKBrYQL0e
-         CdtbQrHk2m/Yl3Wlqb877oxESdLiFMo9aVGaARam8/XrsmirLW4vRakHHcmbHOAFJVGi
-         KQ+uioCVj1UhAjc8UofeeIUP+7ZNTmfNmfPsayy8d5azv0LUg96EQbb31mL0sxcNXj8T
-         tiIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0SX53bYeJpoRn/Rj8EJYnn/yWlrMIeX4TZ6gWcrZofc=;
-        b=PsTY3JJaJtrNzsiqAvE6LOIz4CTIRMWbiI0sUYJbdw82C6JV5O9MuhvSqNU74TPgbn
-         DxcgULEueOBnrBhdc6RyJSxig6+a9Wb0YbznqLNaFQJVdnLI/wetwyFIUoLwAMY8szOD
-         t369D9KwOazxvOHvYsrq4Q6R0m6+BKSzbnfcvf7x/sktX3dhCkV7qUpoCfrc4mRLkvEc
-         0aSX0/ho6McxmhF4dtATePzdfO802vC28wxbSI99COqsLG7OU0otgEBpMUSdGCifHokr
-         unLfPPY3dLEHo2gGKr6hPaD4ZrGtS1zF0EWk75xZEvTSAESCV2XpGxW9o4e/lchVSxmz
-         N4SQ==
-X-Gm-Message-State: AOAM533x3DoqVOD9K6GPujUOhujWzKqZutXpG+3LcocQKj3vIYPmpYge
-        eLzlcim+l2I34pWCxuP7ywE=
-X-Google-Smtp-Source: ABdhPJzKCqWitK4itgJF5gOPWZ9BHxznB01QDhOfG6tEDyip2Frv/S1yKF7GrTdEgH6a7nWKme2yTA==
-X-Received: by 2002:a17:906:f1c8:: with SMTP id gx8mr334710ejb.385.1615410506866;
-        Wed, 10 Mar 2021 13:08:26 -0800 (PST)
-Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
-        by smtp.googlemail.com with ESMTPSA id f19sm252947edu.12.2021.03.10.13.08.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 13:08:26 -0800 (PST)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] devicetree: nvmem: nvmem: drop $nodename restriction
-Date:   Wed, 10 Mar 2021 22:08:03 +0100
-Message-Id: <20210310210812.8880-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210310210812.8880-1-ansuelsmth@gmail.com>
-References: <20210310210812.8880-1-ansuelsmth@gmail.com>
+        id S230215AbhCJVND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 16:13:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36710 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230491AbhCJVMi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 16:12:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D1C4464FCA;
+        Wed, 10 Mar 2021 21:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615410758;
+        bh=O1zowkont3PqGMU4upFP7F2G1PaTifGVq/IuLfl8LfI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WYZBjRLaPFCYgPZH3zGjEHgk1sT+uabs8U7gSRR4/RrrkjocOzHHDeeRo22vEhFOr
+         1Z+8Cs/SSteHRHcceIJHgTBb773fkYJpS+odrrBiWxkHBqeRTKDpCPTs6Ns4n7x560
+         KCngergwPWIlvlN4vgQGiUDSH2zAUQM9riQUbpEEOAFP0keaF+DpLATbPa5WjLithE
+         EGRRQT2692Fo0r+bp41Zb9lcCt/tddKpx5RzQ7u2WkYY3/gwdeLMWkNz7f/S1ffQ9T
+         s4rDAZmArtQFMg4rgZH4mI92nGGI4mcmQznVOqAxoPNk7T7cTGiFCcFLZV0Fk/S8qm
+         xarOwPb3Gahwg==
+Received: by mail-ej1-f52.google.com with SMTP id mj10so41615211ejb.5;
+        Wed, 10 Mar 2021 13:12:37 -0800 (PST)
+X-Gm-Message-State: AOAM533W1u8qYrLRSx525iv6yhDzlsk8DMJFQxYzlgeKle1VaYZbXKbO
+        DHamXmYm4WIKOWqOSfpBe6+xIHaAT1li7RqG9A==
+X-Google-Smtp-Source: ABdhPJzumylkbMTmY9AuyDkEfZXR+DTQ+UCDbYWG5q865YkCmk0XtY8s3w1z5tNQTkiFCzwujTIp5t8p8tKAUDabvtY=
+X-Received: by 2002:a17:906:2312:: with SMTP id l18mr368275eja.468.1615410756158;
+ Wed, 10 Mar 2021 13:12:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1615209750-2357-1-git-send-email-shengjiu.wang@nxp.com>
+ <1615209750-2357-4-git-send-email-shengjiu.wang@nxp.com> <20210310024834.GA1623179@robh.at.kernel.org>
+ <CAA+D8AM5nH+gwfas_=9gkzaegq4=4q2AfVybBnxM4xU3gOiF4w@mail.gmail.com>
+In-Reply-To: <CAA+D8AM5nH+gwfas_=9gkzaegq4=4q2AfVybBnxM4xU3gOiF4w@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 10 Mar 2021 14:12:24 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+NcXHtDo+HEFVOEcGqYTx9Heo8dc_R5Nfz1Rr-sAu6YA@mail.gmail.com>
+Message-ID: <CAL_Jsq+NcXHtDo+HEFVOEcGqYTx9Heo8dc_R5Nfz1Rr-sAu6YA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/6] ASoC: dt-bindings: fsl_rpmsg: Add binding doc for
+ rpmsg cpu dai driver
+To:     Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop $nodename restriction as now mtd partition can also be used as
-nvmem provider.
+On Wed, Mar 10, 2021 at 6:33 AM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
+>
+> Hi Rob
+>
+> On Wed, Mar 10, 2021 at 10:49 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Mar 08, 2021 at 09:22:27PM +0800, Shengjiu Wang wrote:
+> > > fsl_rpmsg cpu dai driver is driver for rpmsg audio, which is mainly used
+> >
+> > Bindings describe h/w blocks, not drivers.
+>
+> I will modify the descriptions. but here it is a virtual device.  the
+> mapping in real h/w is cortex M core, Cortex M core controls the SAI,
+> DMA interface. What we see from Linux side is a audio service
+> through rpmsg channel.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+It's describing the h/w from the view of the OS. It's not important
+that it's a Cortex-M, but how you interface to it whether that's
+shared registers, mailbox, etc. And it's what resources the block uses
+that the OS controls.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-index 7481a9e48f19..b8dc3d2b6e92 100644
---- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-@@ -20,9 +20,6 @@ description: |
-   storage device.
- 
- properties:
--  $nodename:
--    pattern: "^(eeprom|efuse|nvram)(@.*|-[0-9a-f])*$"
--
-   "#address-cells":
-     const: 1
- 
--- 
-2.30.0
+> > > for getting the user's configuration from device tree and configure the
+> > > clocks which is used by Cortex-M core. So in this document define the
+> > > needed property.
+> > >
+> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 118 ++++++++++++++++++
+> > >  1 file changed, 118 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > > new file mode 100644
+> > > index 000000000000..5731c1fbc0a6
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > > @@ -0,0 +1,118 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/sound/fsl,rpmsg.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: NXP Audio RPMSG CPU DAI Controller
+> > > +
+> > > +maintainers:
+> > > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > +
+> > > +description: |
+> > > +  fsl_rpmsg cpu dai driver is virtual driver for rpmsg audio, which doesn't
+> > > +  touch hardware. It is mainly used for getting the user's configuration
+> > > +  from device tree and configure the clocks which is used by Cortex-M core.
+> > > +  So in this document define the needed property.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx7ulp-rpmsg
+> > > +      - fsl,imx8mn-rpmsg
+> > > +      - fsl,imx8mm-rpmsg
+> > > +      - fsl,imx8mp-rpmsg
+> > > +
+> > > +  model:
+> > > +    $ref: /schemas/types.yaml#/definitions/string
+> > > +    description: User specified audio sound card name
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Peripheral clock for register access
+> > > +      - description: Master clock
+> > > +      - description: DMA clock for DMA register access
+> > > +      - description: Parent clock for multiple of 8kHz sample rates
+> > > +      - description: Parent clock for multiple of 11kHz sample rates
+> > > +    minItems: 5
+> >
+> > If this doesn't touch hardware, what are these clocks for?
+>
+> When the cortex-M core support audio service, these clock
+> needed prepared & enabled by ALSA driver.
+>
+> >
+> > You don't need 'minItems' unless it's less than the number of 'items'.
+>
+> Ok, I will remove this minItems.
+>
+> >
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: ipg
+> > > +      - const: mclk
+> > > +      - const: dma
+> > > +      - const: pll8k
+> > > +      - const: pll11k
+> > > +    minItems: 5
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  fsl,audioindex:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1]
+> > > +    default: 0
+> > > +    description: Instance index for sound card in
+> > > +                 M core side, which share one rpmsg
+> > > +                 channel.
+> >
+> > We don't do indexes in DT. What's this numbering tied to?
+>
+> I will remove it. it is not necessary
+>
+> >
+> > > +
+> > > +  fsl,version:
+> >
+> > version of what?
+> >
+> > This seems odd at best.
+> >
+>
+> I will remove it.  it is not necessary
+>
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [1, 2]
+> >
+> > You're going to update this with every new firmware version?
+> >
+> > > +    default: 2
+> > > +    description: The version of M core image, which is
+> > > +                 to make driver compatible with different image.
+> > > +
+> > > +  fsl,buffer-size:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: pre allocate dma buffer size
+> >
+> > How can you have DMA, this doesn't touch h/w?
+>
+> The DMA is handled by M core image for sound playback
+> and capture. we need to allocated buffer in Linux side.
+> here just make the buffer size to be configurable.
 
+Do we set audio buffer sizes for other audio devices in DT? If not,
+why is this special? If so, why is it not common.
+
+> > > +  fsl,enable-lpa:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description: enable low power audio path.
+> > > +
+> > > +  fsl,rpmsg-out:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description: |
+> > > +      This is a boolean property. If present, the transmitting function
+> > > +      will be enabled.
+> > > +
+> > > +  fsl,rpmsg-in:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description: |
+> > > +      This is a boolean property. If present, the receiving function
+> > > +      will be enabled.
+> > > +
+> > > +  fsl,codec-type:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1, 2]
+> > > +    default: 0
+> > > +    description: Sometimes the codec is registered by
+> > > +                 driver not by the device tree, this items
+> > > +                 can be used to distinguish codecs.
+> >
+> > How does one decide what value to use?
+>
+> I will add more description:
+> 0: dummy codec
+> 1: WM8960 codec
+> 2: AK4497 codec
+
+I assume the last 2 cases have nodes in DT (pointed to by
+'audio-codec'), so this is redundant.
+
+> > > +
+> > > +  audio-codec:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description: The phandle of the audio codec
+> >
+> > The codec is controlled from the Linux side?
+>
+> yes.
+>
+> >
+> > > +
+> > > +  memory-region:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description: phandle to the reserved memory nodes
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - fsl,audioindex
+> > > +  - fsl,version
+> > > +  - fsl,buffer-size
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    rpmsg_audio: rpmsg_audio {
+> > > +        compatible = "fsl,imx8mn-rpmsg";
+> > > +        fsl,audioindex = <0> ;
+> > > +        fsl,version = <2>;
+> > > +        fsl,buffer-size = <0x6000000>;
+> > > +        fsl,enable-lpa;
+> >
+> > How does this work? Don't you need somewhere to put the 'rpmsg' data?
+>
+> The rpmsg data is not handled in this "rpmsg_audio" device, it is just to
+> prepare the resource for rpmsg audio function, the clock, the memory
+> the power...
+>
+> The rpmsg data is handled in imx-pcm-rpmsg.c and imx-audio-rpmsg.c
+> These devices is registered by imx remoteproc driver.
+
+Then what is 'memory-region' for? You need that, a mailbox, or ???
+somewhere in DT.
+
+Rob
