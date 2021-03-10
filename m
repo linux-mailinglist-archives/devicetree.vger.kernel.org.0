@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A712B33373B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 09:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 346AD33375B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 09:34:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231152AbhCJI1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 03:27:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbhCJI1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 03:27:05 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FCC2C06174A;
-        Wed, 10 Mar 2021 00:27:05 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 1091B3FA1B;
-        Wed, 10 Mar 2021 08:26:56 +0000 (UTC)
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Rob Herring <robh@kernel.org>
-Cc:     Arnd Bergmann <arnd@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
+        id S232170AbhCJIeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 03:34:03 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:41006 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231207AbhCJIdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 03:33:33 -0500
+Received: from mail-wr1-f72.google.com ([209.85.221.72])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lJuHb-0003GU-Eu
+        for devicetree@vger.kernel.org; Wed, 10 Mar 2021 08:33:31 +0000
+Received: by mail-wr1-f72.google.com with SMTP id n16so6576371wro.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 00:33:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RZxvgYZhRwx3vtBKrExOY7yB1Rao/D3y6ddDmt53T8k=;
+        b=Ra/JAU97iUlwC/1jhvuUg+USMJMY6jSyEH5NLts1VO1UkE7LbL8qAWZFgyCUXud87T
+         E9eJNYmOKM3OE8QSFYmN5yc48+/LtLy4WI1Q3y44EYDf+yRs2wScFQ6x64HGAGgBeYbl
+         0xfg5oaQ2e9PMS09n9uP5/bTYmnc0J85CbYhgfwR+V6H8JXghtA10YNgzDG+Chi3quw5
+         rbIm22KSf4I4x0VEL3TizlhCqx7iIifqUe3YzJGX3+KnQATAx3XKXFfUKrVJWq9tL2XP
+         OqQEfUGmu5Z1Lh4Kfby6iwjBcMI43WU9tZoZY0R3wAEITPviKMQysf00BTieOcCAKgJz
+         5CeQ==
+X-Gm-Message-State: AOAM533yObSoQqME5lm6X1y2/TmgbK0wERN5XpXnuNEl7DwT+Xi19JnR
+        B+g6sK5WCn9DeKSK4MI/3ItJrzY7zaxEapaY1z2eQqKWbverfA2D4XHI6CdWgwv8pLD4ha2Iebt
+        rj9fjzFbsj2P7X1c4rqgNIb7kPDiPyRIhegS4EBo=
+X-Received: by 2002:a1c:f406:: with SMTP id z6mr2225366wma.24.1615365211048;
+        Wed, 10 Mar 2021 00:33:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx+uPRMBgFfoVCHx5kur24yVECBMZDDtyDQfyluEn8gAohH3gku3X1wAI4MIWrYIO0FNDk1jQ==
+X-Received: by 2002:a1c:f406:: with SMTP id z6mr2225348wma.24.1615365210807;
+        Wed, 10 Mar 2021 00:33:30 -0800 (PST)
+Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.gmail.com with ESMTPSA id m17sm28675495wrx.92.2021.03.10.00.33.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 00:33:30 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-13-marcan@marcan.st>
- <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
- <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st>
- <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
- <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
- <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
- <20210308211306.GA2920998@robh.at.kernel.org>
- <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
- <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
- <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st>
- <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st>
-Date:   Wed, 10 Mar 2021 17:26:54 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [RFC v2 0/5] arm64 / clk: socfpga: simplifying, cleanups and compile testing
+Date:   Wed, 10 Mar 2021 09:33:22 +0100
+Message-Id: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2021 07.06, Rob Herring wrote:
->> My main concern here is that this creates an inconsistency in the device
->> tree representation that only works because PCI drivers happen not to
->> use these code paths. Logically, having "nonposted-mmio" above the PCI
->> controller would imply that it applies to that bus too. Sure, it doesn't
->> matter for Linux since it is ignored, but this creates an implicit
->> exception that PCI buses always use posted modes.
-> 
-> We could be stricter that "nonposted-mmio" must be in the immediate
-> parent. That's kind of in line with how addressing already works.
-> Every level has to have 'ranges' to be an MMIO address, and the
-> address cell size is set by the immediate parent.
-> 
->> Then if a device comes along that due to some twisted fabric logic needs
->> nonposted nGnRnE mappings for PCIe (even though the actual PCIe ops will
->> end up posted at the bus anyway)... how do we represent that? Declare
->> that another "nonposted-mmio" on the PCIe bus means "no, really, use
->> nonposted mmio for this"?
-> 
-> If we're strict, yes. The PCI host bridge would have to have "nonposted-mmio".
+Hi,
 
-Works for me; then let's just make it non-recursive.
+All three Intel arm64 SoCFPGA architectures (Agilex, N5X and Stratix 10)
+are basically flavors/platforms of the same architecture.  At least from
+the Linux point of view.  Up to a point that N5X and Agilex share DTSI.
+Having three top-level architectures for the same one barely makes
+sense and complicates driver selection.
 
-Do you think we can get rid of the Apple-only optimization if we do 
-this? It would mean only looking at the parent during address 
-resolution, not recursing all the way to the top, so presumably the 
-performance impact would be quite minimal.
+Try to unify them.
+
+Changes since v1:
+=================
+1. New patch 3/5: arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64
+2. New patch 4/5: arm64: intel: merge Agilex and N5X into ARCH_SOCFPGA64
+3. Fix build issue reported by kernel test robot (with ARCH_STRATIX10
+   and COMPILE_TEST but without selecting some of the clocks).
+
+I tested compile builds on few configurations, so I hope kbuild 0-day
+will check more options (please give it few days on the lists).
+
+Best regards,
+Krzysztof
+
+
+Krzysztof Kozlowski (5):
+  clk: socfpga: allow building N5X clocks with ARCH_N5X
+  clk: socfpga: build together Stratix 10, Agilex and N5X clock drivers
+  arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64
+  arm64: intel: merge Agilex and N5X into ARCH_SOCFPGA64
+  clk: socfpga: allow compile testing of Stratix 10 / Agilex clocks
+
+ arch/arm64/Kconfig.platforms                | 17 ++++-------------
+ arch/arm64/boot/dts/altera/Makefile         |  2 +-
+ arch/arm64/boot/dts/intel/Makefile          |  6 +++---
+ arch/arm64/configs/defconfig                |  3 +--
+ drivers/clk/Kconfig                         |  1 +
+ drivers/clk/Makefile                        |  4 +---
+ drivers/clk/socfpga/Kconfig                 | 17 +++++++++++++++++
+ drivers/clk/socfpga/Makefile                |  7 +++----
+ drivers/edac/Kconfig                        |  2 +-
+ drivers/edac/altera_edac.c                  | 10 +++++-----
+ drivers/firmware/Kconfig                    |  2 +-
+ drivers/fpga/Kconfig                        |  2 +-
+ drivers/mfd/Kconfig                         |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
+ drivers/reset/Kconfig                       |  2 +-
+ 15 files changed, 43 insertions(+), 38 deletions(-)
+ create mode 100644 drivers/clk/socfpga/Kconfig
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.25.1
+
