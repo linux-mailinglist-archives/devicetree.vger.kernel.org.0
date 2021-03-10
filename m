@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 409F633337C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00AFF333386
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 04:04:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbhCJDCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 22:02:54 -0500
-Received: from mail-io1-f50.google.com ([209.85.166.50]:40452 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232226AbhCJDCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:02:52 -0500
-Received: by mail-io1-f50.google.com with SMTP id i8so16327385iog.7
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 19:02:45 -0800 (PST)
+        id S229691AbhCJDD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 22:03:57 -0500
+Received: from mail-il1-f172.google.com ([209.85.166.172]:37943 "EHLO
+        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232255AbhCJDDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 22:03:31 -0500
+Received: by mail-il1-f172.google.com with SMTP id f10so14171364ilq.5;
+        Tue, 09 Mar 2021 19:03:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ci0qzWx10GArjExH6R6ZRHBQs2Jzt4Kukiql5/h/dDk=;
-        b=VgAZQiZrX00ryNFGid8hwbjH2H47GshRQGxLdU0n4yKy5MqJFWEHR0Jm3dMor7vrQd
-         HhGThovnsKVQgxMBEwmBVpmbSCjHySJOvmOwAq7+2HynVUikvkiirFNpWhfDfs3ExumA
-         oBcs7wLxuOuuD4ZHO9n/l06lHZkpi/WSJaFQoXgNeZLujpTJLHNFnE3Xh86EdkqxCid9
-         FrGJU9z+1TtQgvEvV9cfep7mjEESBbcO1gyinnsR6QR8WTw0vl0Vxpke4Gwfk/Ng0uw8
-         0+j5a18ZK8+Sa17CzJ4chBduR4Id0eTDwibpNbEGzJabhzXMXb2bSHNnfZkbhxBOqQbQ
-         vAsw==
-X-Gm-Message-State: AOAM532gEk94aYusgZSjWlZWB5ZrJyNeOYT9lBFVNQIIGSY5crilEVyj
-        3z2/8S6eKq+xLzXdB/95yw==
-X-Google-Smtp-Source: ABdhPJy7GbysAVAO+Ulh+TRPnis7CzyVhv2yARJY2Cl3olgFFPtvYxBB+20gaAeNQVPAg1X/cbpiuA==
-X-Received: by 2002:a6b:d318:: with SMTP id s24mr1010733iob.89.1615345365192;
-        Tue, 09 Mar 2021 19:02:45 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=LksHYlIfEzV9pnoP+0yGzfGcP3EXHPwjjnl8Sebgu9s=;
+        b=Po59giS4dBXCvaSGx5+xdAo9ESNp0RXmuztbsfdHGjey0VcdtXcDg/UrUacEjUgLFl
+         6Qxs3A1hCkKxEsKDckkMtav37EV07fuuP93x4t3QZGvy5YzQ4BClIoF9mI10Odtm1eZx
+         O+jbAGTMC8Xwtr1ejrU1weEMPMdAJGsqvmjaZkY2lF6JndWaOeHswhQt7H7HAhMrnSRA
+         mhv7173SfVDKf1a5GzFgO5BohLqLo6I6XCZ1miWp7awksZpvmUW/D7QQPDGg0MROYfwq
+         oJ0NbR+YPbD3wFN3Or5k0NLf58cqpzAzHU+uwYW71SNnKMkna82Lwig2NYqIiYUCUvfg
+         V3CA==
+X-Gm-Message-State: AOAM533cBBAUQesbf3m/gurRREzCpuop6ImHif5mY8VvRyR8WyONsPFz
+        1F+44Lrb2Ww4aRBsXLguOA==
+X-Google-Smtp-Source: ABdhPJwHlovanhm09rYK9MxOUzAafoA8UlPvo2TveZpStF8GsdLMIMzL1DG2MZz5qTREXlxlKO/lBA==
+X-Received: by 2002:a92:940b:: with SMTP id c11mr1068894ili.132.1615345410835;
+        Tue, 09 Mar 2021 19:03:30 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r9sm8522843ill.72.2021.03.09.19.02.43
+        by smtp.gmail.com with ESMTPSA id b5sm8561376ioq.7.2021.03.09.19.03.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 19:02:44 -0800 (PST)
-Received: (nullmailer pid 1667874 invoked by uid 1000);
-        Wed, 10 Mar 2021 03:02:42 -0000
-Date:   Tue, 9 Mar 2021 20:02:42 -0700
+        Tue, 09 Mar 2021 19:03:30 -0800 (PST)
+Received: (nullmailer pid 1669195 invoked by uid 1000);
+        Wed, 10 Mar 2021 03:03:28 -0000
+Date:   Tue, 9 Mar 2021 20:03:28 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH V2 1/2] dt-bindings: arm: bcm: document TP-Link Archer
- C2300 binding
-Message-ID: <20210310030242.GA1667816@robh.at.kernel.org>
-References: <20210305125907.21943-1-zajec5@gmail.com>
- <20210308131850.22576-1-zajec5@gmail.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-kernel@vger.kernel.org, od@zcrc.me,
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings/timer: ingenic: Add compatible
+ strings for JZ4760(B)
+Message-ID: <20210310030328.GA1669134@robh.at.kernel.org>
+References: <20210308212302.10288-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210308131850.22576-1-zajec5@gmail.com>
+In-Reply-To: <20210308212302.10288-1-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Mar 2021 14:18:49 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, 08 Mar 2021 21:23:00 +0000, Paul Cercueil wrote:
+> Add compatible strings to support the system timer, clocksource, OST,
+> watchdog and PWM blocks of the JZ4760 and JZ4760B SoCs.
 > 
-> One more BCM4906 based device.
+> Newer SoCs which behave like the JZ4760 or JZ4760B now see their
+> compatible string require a fallback compatible string that corresponds
+> to one of these two SoCs.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
->  Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> 
+> Notes:
+>     v2: - Fix indentation
+>         - Fix example not using correct compatible strings
+> 
+>  .../bindings/timer/ingenic,tcu.yaml           | 30 ++++++++++++++-----
+>  1 file changed, 22 insertions(+), 8 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
