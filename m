@@ -2,193 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5D2334C82
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 00:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BBB334CA9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 00:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231880AbhCJX2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 18:28:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232571AbhCJX2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 18:28:49 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7EFC061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:28:49 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id 75so14943156otn.4
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:28:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CcpjnFhs+hD8NIsHxenerG7IM+48zY0/1AwqAoJFhWQ=;
-        b=bKne5DjbZE9XY5B/uBertZFJs2UrcfISuG2Z5FAP3+P4BEi8k0hijfCeLcQT4EOmM3
-         hD0sukxdht/nOTSaCOmDUJ3aYZElo+UBaqA5JmmA76TDHs2O4fXRP5XaHNzYO2pocp8K
-         cS2e4pHyf9tHqtF1OSQQTgBHvp/8UovsFmwXnK0Ob8+bO65/QhaII/fTFMK8e+SgeQPr
-         hROoy/oKmFS/J6oFxe+Gu1CN8MaQdiKokHTgcw02pKhWGE4OK3hmvaVVPwhxBmQFodS9
-         uoYu0OOKh4XiHQPMXAOgbrGaK7hfd6ybeVDXmOkuQE+fjIUyfZnz9ArTIUtilhjl+BFJ
-         j/Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CcpjnFhs+hD8NIsHxenerG7IM+48zY0/1AwqAoJFhWQ=;
-        b=jiBLKVYnt0pw+WHHsYe6XyTNS0A0LrvZdyFKUPPRI8iZ7snbCDQLpIvfX1L1WXGa4W
-         mBlN6fOfZgcYeHQxZE2RMkURZ6BqBFHP9TuFHBVK9B2riwuN0lB/tkg/+gvSzNpf+gO2
-         AOIVDyks22e1VnkLQXUGdHZe4qIcTjIP6QWsK2VpFS3aktX7tVgHzpAgtAXy7ydkX/oS
-         hYqrkC/x6IaN+pl0U2stJpSmkJITr6XT/4/vn52xYpuPsuXolRQwTYRAVKA/h0xnAFI7
-         e1/2GzcXgO/qbTRdt0+x5BvL/7qWw40TI5RG7ii1/MlD8MGvmDvDLZrqz9bR27XJUxoS
-         9ukA==
-X-Gm-Message-State: AOAM531hSbxU3By+OZyfJ0TRSwr1JV/NQ5NYlP+lLLuPq1aYB5D2o8rD
-        /VIhxWw3L/5V+1R4dnmQTzGTdP8411un6A==
-X-Google-Smtp-Source: ABdhPJz52c30YvfDi3Kw8yjoSTmqG5ij8W6ebHqwnKKKCm0AFJvEKyzkQvQrGgaK4stz861b2WS8KA==
-X-Received: by 2002:a9d:6a50:: with SMTP id h16mr4504158otn.67.1615418929055;
-        Wed, 10 Mar 2021 15:28:49 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g21sm183373ooa.15.2021.03.10.15.28.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 15:28:48 -0800 (PST)
-Date:   Wed, 10 Mar 2021 17:28:46 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Souradeep Chowdhury <schowdhu@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        sibis@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V1 4/6] DCC: Added the sysfs entries for DCC(Data Capture
- and Compare) driver
-Message-ID: <YElWLqemavtXGlPd@builder.lan>
-References: <cover.1615393454.git.schowdhu@codeaurora.org>
- <332477ea39088fca5879af1a5278c289e1602f6d.1615393454.git.schowdhu@codeaurora.org>
+        id S232571AbhCJXgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 18:36:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40196 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231478AbhCJXfx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 18:35:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ADEDB64FC3;
+        Wed, 10 Mar 2021 23:35:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615419353;
+        bh=DwM3rH6AjLTUq5Tg8FAIDbBoM73Bq7C9XBbJ6XvjWxY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VKTPqsrdQZkUZDkpfwG/MgplUaGFVZWU5F8VZ7tCN+Ao0RwDcICDLJ08VMYPCPh2S
+         1F4rqDEKHddeSg0wPkp9xEkY0zozeb+4rjwhCtZP6ValSwdbHxcAsxKyxhom3k4Oxs
+         a6bfOHa1kQs/ogWq/th5I8HDpnP8mheO8gFSxAN1RgMzRFXn4sScH5JFDvGJUovb1m
+         j8qrU+E1j6dJ/31TFL00Nd4yKj40QjzRSsb2l4eEhD0fl/kvwELAJrzA4US2F0oTUb
+         187k+XNLNTWQ/ezrA9skfyIQ4S9XaMrjMr90SwmjdFtTcTkxgxXH0BSqtKuWdQMdmA
+         v3V6cOvI803vg==
+Received: by mail-ej1-f45.google.com with SMTP id p8so42296679ejb.10;
+        Wed, 10 Mar 2021 15:35:52 -0800 (PST)
+X-Gm-Message-State: AOAM5321+SvCB3r4C85OlCyX2MdMGiNa+bg8Y5BcQpNWY4t+uUfDpArz
+        t4ERaPQJoV+E2P0hzWkV17xWc5eLIr9YZUMt/w==
+X-Google-Smtp-Source: ABdhPJyyDif+L5a43V6gNiRG6kb8yDCVOo0IMCgDsfizW5sw67eRKFFjTESXqKCVEuUZv3BQIsOsOjm/MSiwvulHBg4=
+X-Received: by 2002:a17:906:3750:: with SMTP id e16mr321756ejc.75.1615419351300;
+ Wed, 10 Mar 2021 15:35:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <332477ea39088fca5879af1a5278c289e1602f6d.1615393454.git.schowdhu@codeaurora.org>
+References: <1615373812-16204-1-git-send-email-yongqiang.niu@mediatek.com> <1615373812-16204-3-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1615373812-16204-3-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 11 Mar 2021 07:35:39 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-WYGEBjfisMBxSMuvCY_5Ty1naeZ0NEN0YkR5sVSbFOA@mail.gmail.com>
+Message-ID: <CAAOTY_-WYGEBjfisMBxSMuvCY_5Ty1naeZ0NEN0YkR5sVSbFOA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v1 2/2] Revert "mailbox: mediatek: remove
+ implementation related to atomic_exec"
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Mar 10:46 CST 2021, Souradeep Chowdhury wrote:
+Hi, Yongqiang:
 
-> The DCC is a DMA engine designed to store register values either in
-> case of a system crash or in case of software triggers manually done
-> by the user. Using DCC hardware and the sysfs interface of the driver
-> the user can exploit various functionalities of DCC. The user can specify
-> the register addresses, the values of which is stored by DCC in it's
-> dedicated SRAM. The register addresses can be used either to read from,
-> write to, first read and store value and then write or to loop. All these
-> options can be exploited using the sysfs interface given to the user.
-> Following are the sysfs interfaces exposed in DCC driver which are
-> documented
-> 1)trigger
-> 2)config
-> 3)config_write
-> 4)config_reset
-> 5)enable
-> 6)rd_mod_wr
-> 7)loop
-> 
-> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B43=E6=9C=
+=8810=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:58=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> This reverts commit c9ea564f3d9dd20d88bd34f40a6ff6d31a0d7e8c.
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  Documentation/ABI/testing/sysfs-driver-dcc | 74 ++++++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-dcc b/Documentation/ABI/testing/sysfs-driver-dcc
-> new file mode 100644
-> index 0000000..7a855ca
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-dcc
-> @@ -0,0 +1,74 @@
-> +What:           /sys/bus/platform/devices/.../trigger
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file allows the software trigger to be enabled
-> +		by the user through the sysfs interface.Through this
-> +		interface the user can manually start a software trigger
-> +		in dcc where by the dcc driver stores the current status
-> +		of the specified registers in dcc sram.
+>  drivers/mailbox/mtk-cmdq-mailbox.c | 80 ++++++++++++++++++++++++++++++++=
++-----
+>  1 file changed, 71 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
+q-mailbox.c
+> index 5665b6e..e0d9a86 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -56,6 +56,7 @@ struct cmdq_thread {
+>         void __iomem            *base;
+>         struct list_head        task_busy_list;
+>         u32                     priority;
+> +       bool                    atomic_exec;
+>  };
+>
+>  struct cmdq_task {
+> @@ -168,18 +169,56 @@ static void cmdq_task_insert_into_thread(struct cmd=
+q_task *task)
+>         dma_sync_single_for_cpu(dev, prev_task->pa_base,
+>                                 prev_task->pkt->cmd_buf_size, DMA_TO_DEVI=
+CE);
+>         prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =3D
+> -               (u64)CMDQ_JUMP_BY_PA << 32 | task->pa_base;
+> +               (u64)CMDQ_JUMP_BY_PA << 32 |
+> +               (task->pa_base >> task->cmdq->shift_pa);
+>         dma_sync_single_for_device(dev, prev_task->pa_base,
+>                                    prev_task->pkt->cmd_buf_size, DMA_TO_D=
+EVICE);
+>
+>         cmdq_thread_invalidate_fetched_data(thread);
+>  }
+>
+> +static bool cmdq_command_is_wfe(u64 cmd)
+> +{
+> +       u64 wfe_option =3D CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | CMDQ_WFE_WAI=
+T_VALUE;
+> +       u64 wfe_op =3D (u64)(CMDQ_CODE_WFE << CMDQ_OP_CODE_SHIFT) << 32;
+> +       u64 wfe_mask =3D (u64)CMDQ_OP_CODE_MASK << 32 | 0xffffffff;
 > +
-> +What:           /sys/bus/platform/devices/.../enable
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file allows the user to manually enable or
-> +		disable dcc driver.The dcc hardware needs to be
-> +		enabled before use.
+> +       return ((cmd & wfe_mask) =3D=3D (wfe_op | wfe_option));
+> +}
 > +
-> +What:           /sys/bus/platform/devices/.../config
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file allows user to configure the register values
-> +		along with addresses to the dcc driver.This register
-> +		addresses are used to read from,write or loop through.
-> +		To enable all these options separate sysfs files have
-> +		are created.
+> +/* we assume tasks in the same display GCE thread are waiting the same e=
+vent. */
+> +static void cmdq_task_remove_wfe(struct cmdq_task *task)
+> +{
+> +       struct device *dev =3D task->cmdq->mbox.dev;
+> +       u64 *base =3D task->pkt->va_base;
+> +       int i;
+> +
+> +       dma_sync_single_for_cpu(dev, task->pa_base, task->pkt->cmd_buf_si=
+ze,
+> +                               DMA_TO_DEVICE);
+> +       for (i =3D 0; i < CMDQ_NUM_CMD(task->pkt); i++)
+> +               if (cmdq_command_is_wfe(base[i]))
+> +                       base[i] =3D (u64)CMDQ_JUMP_BY_OFFSET << 32 |
+> +                                 (CMDQ_JUMP_PASS >> task->cmdq->shift_pa=
+);
+> +       dma_sync_single_for_device(dev, task->pa_base, task->pkt->cmd_buf=
+_size,
+> +                                  DMA_TO_DEVICE);
+> +}
+> +
+>  static bool cmdq_thread_is_in_wfe(struct cmdq_thread *thread)
+>  {
+>         return readl(thread->base + CMDQ_THR_WAIT_TOKEN) & CMDQ_THR_IS_WA=
+ITING;
+>  }
+>
+> +static void cmdq_thread_wait_end(struct cmdq_thread *thread,
+> +                                unsigned long end_pa)
+> +{
+> +       struct device *dev =3D thread->chan->mbox->dev;
+> +       unsigned long curr_pa;
+> +
+> +       if (readl_poll_timeout_atomic(thread->base + CMDQ_THR_CURR_ADDR,
+> +                       curr_pa, curr_pa =3D=3D end_pa, 1, 20))
+> +               dev_err(dev, "GCE thread cannot run to end.\n");
+> +}
+> +
+>  static void cmdq_task_exec_done(struct cmdq_task *task, enum cmdq_cb_sta=
+tus sta)
+>  {
+>         struct cmdq_task_cb *cb =3D &task->pkt->async_cb;
+> @@ -371,15 +410,37 @@ static int cmdq_mbox_send_data(struct mbox_chan *ch=
+an, void *data)
+>                         cmdq->shift_pa;
+>                 end_pa =3D readl(thread->base + CMDQ_THR_END_ADDR) <<
+>                         cmdq->shift_pa;
+> -               /* check boundary */
+> -               if (curr_pa =3D=3D end_pa - CMDQ_INST_SIZE ||
+> -                   curr_pa =3D=3D end_pa) {
+> -                       /* set to this task directly */
+> -                       writel(task->pa_base >> cmdq->shift_pa,
+> -                              thread->base + CMDQ_THR_CURR_ADDR);
+> +
+> +               /*
+> +                * Atomic execution should remove the following wfe, i.e.=
+ only
+> +                * wait event at first task, and prevent to pause when ru=
+nning.
+> +                */
+> +               if (thread->atomic_exec) {
+> +                       /* GCE is executing if command is not WFE */
+> +                       if (!cmdq_thread_is_in_wfe(thread)) {
+> +                               cmdq_thread_resume(thread);
+> +                               cmdq_thread_wait_end(thread,
+> +                                                    end_pa >> cmdq->shif=
+t_pa);
+> +                               WARN_ON(cmdq_thread_suspend(cmdq, thread)=
+ < 0);
+> +                               /* set to this task directly */
+> +                               writel(task->pa_base >> cmdq->shift_pa,
+> +                                      thread->base + CMDQ_THR_CURR_ADDR)=
+;
+> +                       } else {
+> +                               cmdq_task_insert_into_thread(task);
+> +                               cmdq_task_remove_wfe(task);
+> +                               smp_mb(); /* modify jump before enable th=
+read */
+> +                       }
+>                 } else {
+> -                       cmdq_task_insert_into_thread(task);
+> -                       smp_mb(); /* modify jump before enable thread */
+> +                       /* check boundary */
+> +                       if (curr_pa =3D=3D end_pa - CMDQ_INST_SIZE ||
+> +                           curr_pa =3D=3D end_pa) {
+> +                               /* set to this task directly */
+> +                               writel(task->pa_base >> cmdq->shift_pa,
+> +                                      thread->base + CMDQ_THR_CURR_ADDR)=
+;
+> +                       } else {
+> +                               cmdq_task_insert_into_thread(task);
+> +                               smp_mb(); /* modify jump before enable th=
+read */
+> +                       }
+>                 }
+>                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift=
+_pa,
+>                        thread->base + CMDQ_THR_END_ADDR);
+> @@ -500,6 +561,7 @@ static struct mbox_chan *cmdq_xlate(struct mbox_contr=
+oller *mbox,
+>
+>         thread =3D (struct cmdq_thread *)mbox->chans[ind].con_priv;
+>         thread->priority =3D sp->args[1];
+> +       thread->atomic_exec =3D (sp->args[2] !=3D 0);
 
-Please describe the expected content of this file.
+This does not match the binding [1].
+Why not just fix the bug rather than revert this patch?
 
-> +
-> +What:           /sys/bus/platform/devices/.../config_write
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file allows user to write a value to the register
-> +		address given as argument.The values are entered in the
-> +		form of <register_address> <value>.
-
-So it's just a generic 'write some user defined data to some user
-defined register'? This doesn't sound like the typical way things are
-exposed in sysfs.
-
-> +
-> +What:           /sys/bus/platform/devices/.../config_reset
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file is used to reset the configuration of
-> +		a dcc driver to the default configuration.
-> +
-> +What:           /sys/bus/platform/devices/.../loop
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file is used to enter the loop count as dcc
-> +		driver gives the option to loop multiple times on
-> +		the same register and store the values for each
-> +		loop.
-> +
-> +What:           /sys/bus/platform/devices/.../rd_mod_wr
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file is used to read the value of the register
-> +		and then write the value given as an argument to the
-> +		register address in config.The address argument should
-> +		be given of the form <mask> <value>.
-> +
-> +What:           /sys/bus/platform/devices/.../ready
-> +Date:           February 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file is used to check the status of the dcc
-> +		hardware if it's ready to take the inputs.
-> +
-> +What:		/sys/bus/platform/devices/.../curr_list
-> +Date:		February 2021
-> +Contact:	Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +		This file is used to configure the linkedlist data
-> +		to be used while configuring addresses.
-
-Please describe the format of this attr. Is it read/write?
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/Documentation/devicetree/bindings/mailbox/mtk-gce.txt?h=3Dv5.12-rc2
 
 Regards,
-Bjorn
+Chun-Kuang.
 
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+>         thread->chan =3D &mbox->chans[ind];
+>
+>         return &mbox->chans[ind];
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
