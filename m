@@ -2,227 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 034F2333344
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDE8333351
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:51:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbhCJCtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 21:49:00 -0500
-Received: from mail-il1-f173.google.com ([209.85.166.173]:45992 "EHLO
-        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbhCJCsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 21:48:38 -0500
-Received: by mail-il1-f173.google.com with SMTP id s1so14130522ilh.12;
-        Tue, 09 Mar 2021 18:48:38 -0800 (PST)
+        id S232193AbhCJCug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 21:50:36 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:35963 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231703AbhCJCue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 21:50:34 -0500
+Received: by mail-io1-f52.google.com with SMTP id n14so16334709iog.3;
+        Tue, 09 Mar 2021 18:50:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tEOOZPHDEcY0BRs13eDY3wS0u+L4s5FzuNZ5kGdjLNs=;
-        b=eV2gPCQedLWrmNOQrzbtioYRmvDkw6ex/rTGk406xvRhyFhNbgs6EtoQkArujWt8h1
-         /6BAHAcKmdo10ax9+ow4COsHaFMXquCsWtv64eHeRv9B5JzuY7slA4X9Pt8l1jMLfklr
-         r8UsDkhyqdbEvbzpXST1prBr48PwZDR3vhRb5aK/9UPeW2UXSV2F/ZxbikyuOXJFzoTH
-         1lCVg8tBGKiSY46vDHaeKglidGzo7c8Ym5YGMDJUDINxKs9/6+0kzZ1jUzDIlSKGCSI8
-         zH2PatyaTSM5HASMBITf1VLJeY67ia4znP9G3wqFJS8ceu/yh1uYu462dI6oYzLEUPg5
-         RY2g==
-X-Gm-Message-State: AOAM532M4yzsMLJwcDAq6ZfK1fW5AjZhY4p8sK0weA0pZBe3gqEHbjjZ
-        EsHr3kOiX9jJuzYgnojZ7w==
-X-Google-Smtp-Source: ABdhPJxlxbdsnOqUBKBvn9roAYNjrX2t5RPeImFkLklYb3N4N/Nb+GkhzCBE7xUxdgoLpquCONAlmw==
-X-Received: by 2002:a05:6e02:685:: with SMTP id o5mr998162ils.39.1615344518240;
-        Tue, 09 Mar 2021 18:48:38 -0800 (PST)
+        bh=qGkhmyvB04/++GcI6nNGGGhJTLlh0dJy/BDKFiCIA44=;
+        b=skuOGICKHk9aWyOUoE+fveG1LE7gVP5Q0SF78bTgXylS4Ft6U947Qn+QK7DF4+oa/O
+         KyAKrJ0l0UKS1xaLIZdei2z/D1ueAPkOncphSl2OryPvzIYqRsvCALdBcm9II28JbCLY
+         UkVudliu/0hAcVRAqy8UnS+Qxu8o3S+Io1iwe0ynwUM9re+Q3bXH9VKw3XCQpz3IegrN
+         DdQst39WSSNQLcknrQY52pr7DtqNlsBroGz8HAl/qqF6fjsyOQKYgEklXcB14GJzuTBD
+         g2tPJ00vru+75M+xLacCaZBZVyb1aJepW5iFFsIYb4u8ydsTSfwdBIkDGEhSGvAX+oFL
+         +6ZQ==
+X-Gm-Message-State: AOAM530f+HC9/t+LTJM9J1vR+sl3Qoh/HKIFFSItvNsMDlOM+kQ3wOdL
+        C05DfRvC/oVsB7TZNSNJ/g==
+X-Google-Smtp-Source: ABdhPJwmlsy2Cjw0y3wmn+ItEQ3eGdZ0VIhmu+UkmB+AUjgJsc1KgVxKNoaMvsyuyx2Kk5n+k7eTew==
+X-Received: by 2002:a02:6c8d:: with SMTP id w135mr1144154jab.125.1615344633132;
+        Tue, 09 Mar 2021 18:50:33 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id x6sm8397734ioh.19.2021.03.09.18.48.35
+        by smtp.gmail.com with ESMTPSA id g5sm8128792ild.25.2021.03.09.18.50.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 18:48:37 -0800 (PST)
-Received: (nullmailer pid 1645357 invoked by uid 1000);
-        Wed, 10 Mar 2021 02:48:34 -0000
-Date:   Tue, 9 Mar 2021 19:48:34 -0700
+        Tue, 09 Mar 2021 18:50:32 -0800 (PST)
+Received: (nullmailer pid 1648376 invoked by uid 1000);
+        Wed, 10 Mar 2021 02:50:30 -0000
+Date:   Tue, 9 Mar 2021 19:50:30 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, timur@kernel.org,
-        nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/6] ASoC: dt-bindings: fsl_rpmsg: Add binding doc for
- rpmsg cpu dai driver
-Message-ID: <20210310024834.GA1623179@robh.at.kernel.org>
-References: <1615209750-2357-1-git-send-email-shengjiu.wang@nxp.com>
- <1615209750-2357-4-git-send-email-shengjiu.wang@nxp.com>
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: Add support for the Broadcom UART
+ driver
+Message-ID: <20210310025030.GA1645614@robh.at.kernel.org>
+References: <20210308170522.4272-1-alcooperx@gmail.com>
+ <20210308170522.4272-2-alcooperx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1615209750-2357-4-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20210308170522.4272-2-alcooperx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 09:22:27PM +0800, Shengjiu Wang wrote:
-> fsl_rpmsg cpu dai driver is driver for rpmsg audio, which is mainly used
+On Mon, Mar 08, 2021 at 12:05:21PM -0500, Al Cooper wrote:
+> Add DT bindings for the Broadcom 8250 based UART driver. This
+> UART is based on an 8250 but adds additional functionality. The
+> additional features include the ability to use DMA for transfers and
+> a baud rate clock system that is more accurate at high baud rates.
+> This UART is backward compatible with the standard 8250 UART.
 
-Bindings describe h/w blocks, not drivers.
+My comments on the previous v4 still apply.
 
-> for getting the user's configuration from device tree and configure the
-> clocks which is used by Cortex-M core. So in this document define the
-> needed property.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
 > ---
->  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+>  .../bindings/serial/brcm,bcm7271-uart.yaml    | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
 > new file mode 100644
-> index 000000000000..5731c1fbc0a6
+> index 000000000000..f3d58e613480
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> @@ -0,0 +1,118 @@
+> +++ b/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
+> @@ -0,0 +1,96 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/fsl,rpmsg.yaml#
+> +$id: http://devicetree.org/schemas/serial/brcm,bcm7271-uart.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NXP Audio RPMSG CPU DAI Controller
+> +title: Broadcom 8250 based serial port devicetree bindings
 > +
 > +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +  - Al Cooper <alcooperx@gmail.com>
 > +
-> +description: |
-> +  fsl_rpmsg cpu dai driver is virtual driver for rpmsg audio, which doesn't
-> +  touch hardware. It is mainly used for getting the user's configuration
-> +  from device tree and configure the clocks which is used by Cortex-M core.
-> +  So in this document define the needed property.
+> +description: |+
+> +  The Broadcom UART is based on the basic 8250 UART but with
+> +  enhancements for more accurate high speed baud rates and support
+> +  for DMA.
 > +
 > +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx7ulp-rpmsg
-> +      - fsl,imx8mn-rpmsg
-> +      - fsl,imx8mm-rpmsg
-> +      - fsl,imx8mp-rpmsg
+> +  $nodename:
+> +    pattern: "^serial@[0-9a-f]+$"
 > +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User specified audio sound card name
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - brcm,bcm7271-uart
+> +          - brcm,bcm7278-uart
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  reg-names:
+> +    description: The UART register block and optionally the DMA register blocks.
+> +    oneOf:
+> +      - items:
+> +          - const: uart
+> +      - items:
+> +          - const: uart
+> +          - const: dma_arb
+> +          - const: dma_rx
+> +          - const: dma_tx
+> +          - const: dma_intr2
 > +
 > +  clocks:
-> +    items:
-> +      - description: Peripheral clock for register access
-> +      - description: Master clock
-> +      - description: DMA clock for DMA register access
-> +      - description: Parent clock for multiple of 8kHz sample rates
-> +      - description: Parent clock for multiple of 11kHz sample rates
-> +    minItems: 5
-
-If this doesn't touch hardware, what are these clocks for?
-
-You don't need 'minItems' unless it's less than the number of 'items'.
-
+> +    minItems: 1
 > +
 > +  clock-names:
-> +    items:
-> +      - const: ipg
-> +      - const: mclk
-> +      - const: dma
-> +      - const: pll8k
-> +      - const: pll11k
-> +    minItems: 5
+> +    const: sw_baud
 > +
-> +  power-domains:
-> +    maxItems: 1
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
 > +
-> +  fsl,audioindex:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +    description: Instance index for sound card in
-> +                 M core side, which share one rpmsg
-> +                 channel.
-
-We don't do indexes in DT. What's this numbering tied to?
-
-> +
-> +  fsl,version:
-
-version of what?
-
-This seems odd at best.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2]
-
-You're going to update this with every new firmware version?
-
-> +    default: 2
-> +    description: The version of M core image, which is
-> +                 to make driver compatible with different image.
-> +
-> +  fsl,buffer-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: pre allocate dma buffer size
-
-How can you have DMA, this doesn't touch h/w?
-
-> +
-> +  fsl,enable-lpa:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: enable low power audio path.
-> +
-> +  fsl,rpmsg-out:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present, the transmitting function
-> +      will be enabled.
-> +
-> +  fsl,rpmsg-in:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present, the receiving function
-> +      will be enabled.
-> +
-> +  fsl,codec-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2]
-> +    default: 0
-> +    description: Sometimes the codec is registered by
-> +                 driver not by the device tree, this items
-> +                 can be used to distinguish codecs.
-
-How does one decide what value to use?
-
-> +
-> +  audio-codec:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the audio codec
-
-The codec is controlled from the Linux side?
-
-> +
-> +  memory-region:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the reserved memory nodes
+> +  interrupt-names:
+> +    description: The UART interrupt and optionally the DMA interrupt.
+> +    oneOf:
+> +      - items:
+> +          - const: uart
+> +      - items:
+> +          - const: uart
+> +          - const: dma
 > +
 > +required:
 > +  - compatible
-> +  - fsl,audioindex
-> +  - fsl,version
-> +  - fsl,buffer-size
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    rpmsg_audio: rpmsg_audio {
-> +        compatible = "fsl,imx8mn-rpmsg";
-> +        fsl,audioindex = <0> ;
-> +        fsl,version = <2>;
-> +        fsl,buffer-size = <0x6000000>;
-> +        fsl,enable-lpa;
-
-How does this work? Don't you need somewhere to put the 'rpmsg' data?
-
+> +    serial@840d000 {
+> +        compatible = "brcm,bcm7271-uart";
+> +        reg = <0x840d000 0x20>;
+> +        reg-names = "uart";
+> +        interrupts = <0x0 0x62 0x4>;
+> +        interrupt-names = "uart";
+> +        clocks = <&scmi_clk 190>;
+> +        clock-names = "sw_baud";
+> +    };
+> +
+> +    serial@840e000 {
+> +        compatible = "brcm,bcm7271-uart";
+> +        reg = <0x840e000 0x20>,
+> +              <0x840e080 0x8>,
+> +              <0x840e100 0xa8>,
+> +              <0x840e200 0x4c>,
+> +              <0x840e300 0x30>;
+> +        reg-names = "uart", "dma_arb", "dma_rx", "dma_tx", "dma_intr2";
+> +        interrupts = <0x0 0x62 0x4>, <0x0 0x75 0x4>;
+> +        interrupt-names = "uart", "dma";
+> +        clocks = <&scmi_clk 190>;
+> +        clock-names = "sw_baud";
 > +    };
 > -- 
-> 2.27.0
+> 2.17.1
 > 
