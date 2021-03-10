@@ -2,111 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A46333CB5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 13:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D6E333CBE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 13:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231916AbhCJMg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 07:36:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230512AbhCJMgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 07:36:18 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF00AC061760
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 04:36:17 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id m22so33149705lfg.5
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 04:36:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=wvY76eg99jBTqNYFmy4gDh1iQNs6zhJ5b0p9932USQw=;
-        b=QRpTJn8ThdXUV39lDd8cnveIRC8086K9/qIj9AwNHSWl65IyxP9tIScbPeLKO+3E1J
-         y1XQ+pqMn2MCz0OCRk0p1Cqey8Lb54d+tVIV+7nsEVy8Lx/Cnvx605uodP/QM9THH4m7
-         hZwba0y+ue+6LRuqyI0C3B+D5XbyFNGcDj7sBRh8Ybj26mQCLklhmV94mQPUqgpnxFnq
-         FaZhKGksWphzJxNScyTGW9LIat3TTkRtSwFpRJ1VIANyheVHjbhBrAP0hWkgsd4htuQJ
-         gXOLFbpz8EX8D/GYxQa+ofz/YN4dyZ0uKl7dDFvEoeeUmgDuAmeKHgjmYMZo8YY/y60r
-         ZdhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=wvY76eg99jBTqNYFmy4gDh1iQNs6zhJ5b0p9932USQw=;
-        b=WZG5kBn1o+Paz4Q8sEIquyv5a08zAiZNBCHEwfgeMQZcFwrP7TA34/RPSYJEITqbby
-         w8LBF5wL5ek4AUalaw8/Nw6Vb17uohkSqBms/aLKuhQQ9k62bNE/vOhqOC9uVGVDkTsL
-         tWZqkwCjauDxgJuE7Dwo4D7bIzumsQYUxbxZQYJ0EMjXfIWzoZIJkMMj3wq6/TQXoaUB
-         QMxKM56MWAfys5HTJ9Ssg41WsiahorEAljWbwr8LvQDMR3vMiKbmHKo92ziEUiAyQKYe
-         UgFLnRxbbBwl4a6jOaPUzANgeZ2T7EZlrKU0f6DhyGKwjq/H5VRhDQPrs/QeYURWPHVH
-         /PJA==
-X-Gm-Message-State: AOAM533QXdNQ84+WiOFcigk6Qyye2fxpC4OuX0IJcFpyrxuRRF6omytc
-        fKuyBVvdM5EHbEh2RUFnuv5XHw==
-X-Google-Smtp-Source: ABdhPJyF1X1wi9PasHv+1Zwkn73qFo8J6v+WdbE+N5nUdQLBatPlXXALEpSTIirwd8JIZCrmyt//sw==
-X-Received: by 2002:a05:6512:1054:: with SMTP id c20mr1884999lfb.170.1615379776478;
-        Wed, 10 Mar 2021 04:36:16 -0800 (PST)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id d21sm3145211ljo.55.2021.03.10.04.36.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 04:36:15 -0800 (PST)
-Date:   Wed, 10 Mar 2021 13:36:15 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Document missing
- Gen3 SoCs
-Message-ID: <YEi9P8Hr6O48nsR3@oden.dyn.berto.se>
-References: <20210211143102.350719-1-niklas.soderlund+renesas@ragnatech.se>
+        id S231847AbhCJMku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 07:40:50 -0500
+Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:37979 "EHLO
+        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229660AbhCJMkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 07:40:23 -0500
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id Jy8PlGJjXOruFJy8SlX6Ml; Wed, 10 Mar 2021 13:40:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1615380022; bh=ML0PTd5yfAjDle9rkop5cak2Psdw0crTmncab3+tesM=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=cQRUWvpgQ9HE6dDX/4olQd54qTWnDyv7zgsAkXb/qAxM1tac3j2266gZlG6vDkQqQ
+         6kTH0jqMQDOIxCNloJIb3dWVbVzFIPoP5euV4FoLK4I7w8vJ4MHe+sHbCgJf7uolxG
+         C5b45EOuthutUH2cDATyDR8hcQE09iAeP8EeXInaslnk9fQbqmeJl3H5Pcxx5o+dIu
+         k/jJ2ECmwCY9WikR2ap8alzSkzdhkb6cXMzt8JJz/ynJeQKDwnofmIJcfYOnSntEXN
+         LbYWhKFK0Y75JOMiWvmOQjW1C68hq307je7sH0b4GmxTTWn+/b+QaedSXgeYOdnLJK
+         NPPvlcmqn7HKA==
+Subject: Re: [EXT] Re: [PATCH v7 3/9] media: imx-jpeg: Add V4L2 driver for
+ i.MX8 JPEG Encoder/Decoder
+To:     Mirela Rabulea <mirela.rabulea@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "niklas.soderlund+renesas@ragnatech.se" 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+References: <20210111192822.12178-1-mirela.rabulea@oss.nxp.com>
+ <20210111192822.12178-4-mirela.rabulea@oss.nxp.com>
+ <bec844f0-692f-de1e-a52d-a836ff792ef6@xs4all.nl>
+ <3518c6c773b2bbd2cf818c1cf3109a9fa06720f7.camel@nxp.com>
+ <4f03ecbf-2997-6c56-92c9-16f9e1f0f574@xs4all.nl>
+ <72006a57d2501cf85da181d67ed4727f12528eb9.camel@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <193d220b-8086-d968-9038-e4c435df0549@xs4all.nl>
+Date:   Wed, 10 Mar 2021 13:40:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210211143102.350719-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <72006a57d2501cf85da181d67ed4727f12528eb9.camel@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfHVKcypLfNlFXE+CU6IxdbLTXl52x/AA3SIyGjunlg5MKLBULVdzdf7QQKVTgYewjJaX95befGcHMiwaySDJzRxEbTZJXil/4V3JywmH6yejKSZyhNzs
+ j0A9bFYihIPFbQjxk2flplFYzsvA3YYb8SPdJXNfsuL8cDi/gM7OI5+/Cj1ZMbtMTQA+H8yj8zCLpRxGkATr16u75qcyAOFMt8sj6HzujaG79rqtGEpqyV4a
+ a/OFb/6i7XmasDKx9lvy8EvcSP6hiiU5kZ1sV/BTdbKFC3l4k9wSNEmHG6M5Owy+eL5V4LxQudCjC1knOsYaClihyopO8a3n3WuXGa8ZJTONAlgUVi5bZSSd
+ SzHiMU8o/Ow/eFlfpHigDP9gpmy+zPupYBO1+qGXUKYfLvd15XL9h+jbA8uPQCDSiOOoml71K6zqREx1MvtSQeJs4DKIjwYcaTLoqF5yUXZ/qD3rCDikIbGw
+ 296MNfTUPKDtr7TypeVRzM8um923Lz08z0FH0AEbUvMveItsLxUj/QdxKPZiGBjwLWh1L5uYVcf5g76v9suwqrWEZyaBS/QPBSfwS32JM5Vi7jZCBnjiEABw
+ zBl+ri/g7d/LsgXe7wh3Cs67VF03eZePO7K7DgROegleU9er30NYJlz3cgrre2ioLzydKz5IzaFpmCp0SbHS+peSbqLY0yIWyGBFdZyZIpQpS4HxuXUTCCwR
+ GB4Gl47S60iTyhg19L/wSXdE92lK8eHlAe8Oh7YTifqhGZZxZ4HRmgimLX8gVTqFmmbUC385WnAMenTcJX02p3mGFH3Ft9KZ6SOiC8WQSuEWLJnLf89yN8MR
+ JjrsqF/TPbJkdWAaXo2bqAAHmyT/g1uN+AyG3fZWS4KttTvr+KdSIU6shNE5eTxbWHF5rCk33PdfXSolAPk=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Deniel,
-
-Gentle ping on this and "[PATCH v2] dt-bindings: timer: renesas,cmt: 
-Document R8A77961" both are reviewed by both Rob and Geert ready to be 
-picked up.
-
-On 2021-02-11 15:31:02 +0100, Niklas Söderlund wrote:
-> Add missing bindings for Gen3 SoCs.
+On 10/03/2021 13:33, Mirela Rabulea wrote:
+> Hi Hans,
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> On Thu, 2021-03-04 at 14:03 +0100, Hans Verkuil wrote:
+>> Caution: EXT Email
+>>
+>> On 22/02/2021 20:09, Mirela Rabulea wrote:
+>>> Hi Hans,
+>>> appologies for my late response, please see below 2 comments.
+>>
+>> Replies below:
+>>
+>>>
+>>> On Tue, 2021-01-19 at 11:31 +0100, Hans Verkuil wrote:
+>>>> Caution: EXT Email
+>>>>
+>>>> On 11/01/2021 20:28, Mirela Rabulea wrote:
+>>>>> From: Mirela Rabulea <mirela.rabulea@nxp.com>
+>>>>>
+>>>>> V4L2 driver for the JPEG encoder/decoder from i.MX8QXP/i.MX8QM
+>>>>> application
+>>>>> processors.
+>>>>> The multi-planar buffers API is used.
+>>>>>
+>>>>> Baseline and extended sequential jpeg decoding is supported.
+>>>>> Progressive jpeg decoding is not supported by the IP.
+>>>>> Supports encode and decode of various formats:
+>>>>>      YUV444, YUV422, YUV420, RGB, ARGB, Gray
+>>>>> YUV420 is the only multi-planar format supported.
+>>>>> Minimum resolution is 64 x 64, maximum 8192 x 8192.
+>>>>> The alignment requirements for the resolution depend on the
+>>>>> format,
+>>>>> multiple of 16 resolutions should work for all formats.
+>>>>>
+>>>>> v4l2-compliance tests are passing, including the
+>>>>> streaming tests, "v4l2-compliance -s"
+>>>>>
+>>>>> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+>>>>> ---
+>>>>> Changes in v7:
+>>>>>   Add print_mxc_buf() to replace print_buf_preview() and
+>>>>> print_nbuf_to_eoi(),
+>>>>>   and inside, use the print_hex_dump() from printk.h, also,
+>>>>> print
+>>>>> all the planes.
+>>>>>
+>>>>>  drivers/media/platform/Kconfig                |    2 +
+>>>>>  drivers/media/platform/Makefile               |    1 +
+>>>>>  drivers/media/platform/imx-jpeg/Kconfig       |   10 +
+>>>>>  drivers/media/platform/imx-jpeg/Makefile      |    3 +
+>>>>>  drivers/media/platform/imx-jpeg/mxc-jpeg-hw.c |  168 ++
+>>>>>  drivers/media/platform/imx-jpeg/mxc-jpeg-hw.h |  140 +
+>>>>>  drivers/media/platform/imx-jpeg/mxc-jpeg.c    | 2289
+>>>>> +++++++++++++++++
+>>>>>  drivers/media/platform/imx-jpeg/mxc-jpeg.h    |  184 ++
+>>>>>  8 files changed, 2797 insertions(+)
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/Kconfig
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/Makefile
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-
+>>>>> hw.c
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-
+>>>>> hw.h
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.c
+>>>>>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.h
+>>>>
+>>>> One high-level comment: why introduce the driver in patch 3/9 and
+>>>> then
+>>>> change it again in 9/9? I would very much prefer to have just a
+>>>> single
+>>>> patch that adds this driver, i.e. merge patch 3 and 9 into a
+>>>> single
+>>>> patch.
+>>>
+>>> I can squash patch 9 into patch 3, but please note that patch 9
+>>> depends
+>>> on jpeg helper patches 6,7,8, so these patches will also have to
+>>> move
+>>> before patch 3. Let me know yout thought and I'll do this in v9, in
+>>> v8
+>>> version I only addressed the rest of your feedback and some more
+>>> from
+>>> Philipp.
+>>
+>> Yes, just move the jpeg helper to earlier in the patch series.
+>>
+>>>
+>>>>
+>>
+>> <snip>
+>>
+>>>>> +     /* fix colorspace information to sRGB for both output &
+>>>>> capture */
+>>>>> +     pix_mp->colorspace = V4L2_COLORSPACE_SRGB;
+>>>>> +     pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_601;
+>>>>> +     pix_mp->xfer_func = V4L2_XFER_FUNC_SRGB;
+>>>>> +     pix_mp->quantization = V4L2_QUANTIZATION_FULL_RANGE;
+>>>>
+>>>> So YUV formats are expected to be full range as well? Both when
+>>>> encoding
+>>>> and decoding?
+>>>
+>>> I set the colorspace information like that based on this comment:
+>>>       /*
+>>>        * Effectively shorthand for V4L2_COLORSPACE_SRGB,
+>>> V4L2_YCBCR_ENC_601
+>>>        * and V4L2_QUANTIZATION_FULL_RANGE. To be used for (Motion-
+>>> )JPEG.
+>>>        */
+>>>       V4L2_COLORSPACE_JPEG          = 7,
+>>>
+>>
+>> Inside a JPEG the YUV quantization is using full range. But when you
+>> *decode* a JPEG the YUV quantization in the raw decoded image is
+>> normally limited range again (the default for YUV).
+>>
+>> It depends on what this decoder does: most will decode to limited
+>> range YUV, some decode to full range YUV (in which case this code
+>> would be
+>> correct), and some support both.
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> index c54188731a1bd7c1..f0f0f121c355b159 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> @@ -28,8 +28,14 @@ properties:
->            - renesas,tmu-r8a774e1 # RZ/G2H
->            - renesas,tmu-r8a7778  # R-Car M1A
->            - renesas,tmu-r8a7779  # R-Car H1
-> +          - renesas,tmu-r8a7795  # R-Car H3
-> +          - renesas,tmu-r8a7796  # R-Car M3-W
-> +          - renesas,tmu-r8a77961 # R-Car M3-W+
-> +          - renesas,tmu-r8a77965 # R-Car M3-N
->            - renesas,tmu-r8a77970 # R-Car V3M
->            - renesas,tmu-r8a77980 # R-Car V3H
-> +          - renesas,tmu-r8a77990 # R-Car E3
-> +          - renesas,tmu-r8a77995 # R-Car D3
->        - const: renesas,tmu
->  
->    reg:
-> -- 
-> 2.30.0
+> Experimentally, I saw the decoder outputs full-range values, but I was
+> not sure about limited-range support, so I asked our IP owner, and I
+> got this answer:
+> "The decoder does not alter the range of the data in any way. 
+> It outputs the same full or limited range data that was given to the
+> encoder."
 > 
+> So, surely our encoder/decoder cannot change the range of the samples,
+> but it could process both full or half range.
+> I was thinking about a possibility to allow a half-range streams
+> scenario (half range raw format -> encoder -> jpeg with half range???
+> -> decoder -> half range raw format).
+> That could be achieved by allowing user to choose (specify) the
+> quantization for the output stream, and the driver would set the same
+> for the capture stream, but this would result in a JPEG with half range
+> for the capture stream.
+> So, you mentioned inside JPEG the YUV quantization is using full range,
+> experience confirms it (I decoded a jpeg produced with gimp and one
+> with ms-paint, and I saw full range values), and v4l2-compliance fails
+> if the pixel format is JPEG and quantization is not full.
+> I'm not sure if the standard allows half-range JPEG (it would be a
+> subset of full-range, so theoretically possible).
+> 
+> So, I will just add a comment to clarify the mxc-jpeg driver will
+> always use full-range.
+> 
+> The mxc-jpeg driver will not support CSC, therefor it is not setting
+> V4L2_FMT_FLAG_CSC_COLORSPACE in v4l2_fmtdesc during enumeration.
+> So, the application cannot request a specific colorspace for the
+> capture stream. No change needed here.
+> 
+> Let me know if this sounds ok, and I'll send v9 with the added coment
+> and the squash.
 
--- 
+Yes, just add a comment that the JPEG codec always uses full range YUV
+for the uncompressed frames.
+
 Regards,
-Niklas Söderlund
+
+	Hans
+
+> 
+> Thanks,
+> Mirela
+> 
+>>
+>> In the latter case you want to support the V4L2_PIX_FMT_FLAG_SET_CSC
+>> flag:
+>>
+>>
+> 
+
