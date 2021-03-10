@@ -2,87 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E362F33328A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 01:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAA53332A3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 02:07:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhCJAmk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 Mar 2021 19:42:40 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:39085 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbhCJAmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 19:42:12 -0500
-Received: by mail-ot1-f45.google.com with SMTP id w32so866926ott.6;
-        Tue, 09 Mar 2021 16:42:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=B9kfS99u0SUZVlH5di3LiWPuAPpB4r2eN/dscB/4GLU=;
-        b=pghLSR+TS6kGlpSIUfDedzHoTKr9kP6/r17m5XeQ0bAWy0MNf3Sy36H+VTR7sGQe0N
-         OjoyLZZlYJ7cAjNxqweWZAMVWT7aF3uEumCbl45BdSqeYxLtD20XjNx4xzrv/Hfpxsbm
-         8jynBEV9d/024fsqDQUIoWWiT4+HEFZtsLPPAW21HT6AuEdQydANO16MDIQd3xESK/3+
-         dKMRo1p4gSZ0QJM0ti2Cp+BJ/0nSmt9pA1vJXo3wLM3/4HqWJ/BhHNOQvgWjMv3Bad9Z
-         8fyOcsKazseLPfPPIlXRxkvGGJI0KyHxA0UlIOctKAojP2EH50H9LqkC+2eYHq52K1ed
-         HVBQ==
-X-Gm-Message-State: AOAM533hkfTK3Ho2z6TO4LD03WUsE+7Ony9tWGN2MedSJaetB6TY4XOy
-        W/mYLafuyBuGiSnK1lIg7SWW4WCAE/g=
-X-Google-Smtp-Source: ABdhPJw9TXqKU4gqcQcIXB6pwu/2Jtg5BkCANF4bsU5dUyARGZ/Bsb+wjcwX2ijLcY3zjCVQI9uspg==
-X-Received: by 2002:a9d:2062:: with SMTP id n89mr609451ota.297.1615336931403;
-        Tue, 09 Mar 2021 16:42:11 -0800 (PST)
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com. [209.85.161.45])
-        by smtp.gmail.com with ESMTPSA id t3sm3716836otb.36.2021.03.09.16.42.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Mar 2021 16:42:11 -0800 (PST)
-Received: by mail-oo1-f45.google.com with SMTP id n19so3504124ooj.11;
-        Tue, 09 Mar 2021 16:42:11 -0800 (PST)
-X-Received: by 2002:a05:6820:60c:: with SMTP id e12mr337980oow.67.1615336930987;
- Tue, 09 Mar 2021 16:42:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20210307204737.12063-1-horia.geanta@nxp.com>
-In-Reply-To: <20210307204737.12063-1-horia.geanta@nxp.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Tue, 9 Mar 2021 18:41:59 -0600
-X-Gmail-Original-Message-ID: <CADRPPNQ7JAx9N_VqoG3q9w_0DQbgia6z1Jgxrw0hh7+a8WXcNQ@mail.gmail.com>
-Message-ID: <CADRPPNQ7JAx9N_VqoG3q9w_0DQbgia6z1Jgxrw0hh7+a8WXcNQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: ls: mark crypto engine dma coherent
-To:     =?UTF-8?Q?Horia_Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Greg Ungerer <gerg@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        id S229775AbhCJBGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 20:06:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56970 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231294AbhCJBGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 20:06:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 013D6650ED;
+        Wed, 10 Mar 2021 01:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615338377;
+        bh=doMwAKvc65hJgV0hGY24kZEfV+65wCntr/zwMUzueIQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=dyaO8KTX+anVrEkoN9VagAZvK0lUdHW2mPB7jY9f2ztrLks9+/bwMpYCWe+yFFLKW
+         WIu2nMpurS05zyuK822hE+itjjcyrhku61u5SiNFZvEYVw0xalJ4Iwu2MmskIos8eu
+         wfVju7ZrrYFHA+uacTYRkVPMXNq04h/2+Zpjxf6YiF+Aea7AyhpSACIBEtl8TN3kNV
+         scKlOQOWNilZF6fEg35zQ/Cf4CVb/fGZCYzUgnAQSUmzorrppqEWE0HGaWtMH5W5dB
+         nSKU+oU/qhyqNd+1leQrs8S6QlirF3RGzqmg+X47QCHzHE5KIeh87xWhFqn0tvLXrj
+         hPy40hePw1QAg==
+Subject: Re: [PATCH 1/3] arm64: dts: ls1046a: mark crypto engine dma coherent
+To:     =?UTF-8?Q?Horia_Geant=c4=83?= <horia.geanta@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
         Robin Murphy <robin.murphy@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210307204737.12063-1-horia.geanta@nxp.com>
+ <20210307204737.12063-2-horia.geanta@nxp.com>
+From:   Greg Ungerer <gerg@kernel.org>
+Message-ID: <fb608f39-a6ce-3ab5-328e-29a80d2d6b8a@kernel.org>
+Date:   Wed, 10 Mar 2021 11:06:12 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <20210307204737.12063-2-horia.geanta@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 2:26 AM Horia Geantă <horia.geanta@nxp.com> wrote:
->
-> This patch set adds "dma-coherent" property to the crypto node
-> for NXP Layerscape platforms where the IP (CAAM) is configured
-> HW-coherent.
->
-> Horia Geantă (3):
->   arm64: dts: ls1046a: mark crypto engine dma coherent
->   arm64: dts: ls1043a: mark crypto engine dma coherent
->   arm64: dts: ls1012a: mark crypto engine dma coherent
 
-For the series
+On 8/3/21 6:47 am, Horia Geantă wrote:
+> Crypto engine (CAAM) on LS1046A platform is configured HW-coherent,
+> mark accordingly the DT node.
+> 
+> As reported by Greg and Sascha, and explained by Robin, lack of
+> "dma-coherent" property for an IP that is configured HW-coherent
+> can lead to problems, e.g. on v5.11:
+> 
+>> kernel BUG at drivers/crypto/caam/jr.c:247!
+>> Internal error: Oops - BUG: 0 [#1] PREEMPT SMP
+>> Modules linked in:
+>> CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.11.0-20210225-3-00039-g434215968816-dirty #12
+>> Hardware name: TQ TQMLS1046A SoM on Arkona AT1130 (C300) board (DT)
+>> pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+>> pc : caam_jr_dequeue+0x98/0x57c
+>> lr : caam_jr_dequeue+0x98/0x57c
+>> sp : ffff800010003d50
+>> x29: ffff800010003d50 x28: ffff8000118d4000
+>> x27: ffff8000118d4328 x26: 00000000000001f0
+>> x25: ffff0008022be480 x24: ffff0008022c6410
+>> x23: 00000000000001f1 x22: ffff8000118d4329
+>> x21: 0000000000004d80 x20: 00000000000001f1
+>> x19: 0000000000000001 x18: 0000000000000020
+>> x17: 0000000000000000 x16: 0000000000000015
+>> x15: ffff800011690230 x14: 2e2e2e2e2e2e2e2e
+>> x13: 2e2e2e2e2e2e2020 x12: 3030303030303030
+>> x11: ffff800011700a38 x10: 00000000fffff000
+>> x9 : ffff8000100ada30 x8 : ffff8000116a8a38
+>> x7 : 0000000000000001 x6 : 0000000000000000
+>> x5 : 0000000000000000 x4 : 0000000000000000
+>> x3 : 00000000ffffffff x2 : 0000000000000000
+>> x1 : 0000000000000000 x0 : 0000000000001800
+>> Call trace:
+>>   caam_jr_dequeue+0x98/0x57c
+>>   tasklet_action_common.constprop.0+0x164/0x18c
+>>   tasklet_action+0x44/0x54
+>>   __do_softirq+0x160/0x454
+>>   __irq_exit_rcu+0x164/0x16c
+>>   irq_exit+0x1c/0x30
+>>   __handle_domain_irq+0xc0/0x13c
+>>   gic_handle_irq+0x5c/0xf0
+>>   el1_irq+0xb4/0x180
+>>   arch_cpu_idle+0x18/0x30
+>>   default_idle_call+0x3c/0x1c0
+>>   do_idle+0x23c/0x274
+>>   cpu_startup_entry+0x34/0x70
+>>   rest_init+0xdc/0xec
+>>   arch_call_rest_init+0x1c/0x28
+>>   start_kernel+0x4ac/0x4e4
+>> Code: 91392021 912c2000 d377d8c6 97f24d96 (d4210000)
+> 
+> Cc: <stable@vger.kernel.org> # v4.10+
+> Fixes: 8126d88162a5 ("arm64: dts: add QorIQ LS1046A SoC support")
+> Link: https://lore.kernel.org/linux-crypto/fe6faa24-d8f7-d18f-adfa-44fa0caa1598@arm.com
+> Reported-by: Greg Ungerer <gerg@kernel.org>
+> Reported-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Tested-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
+Acked-by: Greg Ungerer <gerg@kernel.org>
 
->
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 1 +
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 1 +
->  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
->  3 files changed, 3 insertions(+)
->
->
-> base-commit: da1a6b8bec881b67f0e234ed19e8b7e2fb1e7812
-> --
-> 2.17.1
->
+
+> ---
+>   arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> index f581a6d1f881..37fec474673a 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> @@ -354,6 +354,7 @@
+>   			ranges = <0x0 0x00 0x1700000 0x100000>;
+>   			reg = <0x00 0x1700000 0x0 0x100000>;
+>   			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-coherent;
+>   
+>   			sec_jr0: jr@10000 {
+>   				compatible = "fsl,sec-v5.4-job-ring",
+> 
