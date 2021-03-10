@@ -2,184 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3902D333685
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEEFE33368C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:45:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbhCJHnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 02:43:08 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37394 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231158AbhCJHnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:43:01 -0500
-X-UUID: 2b2abc6e186c4eee9fca332dc5e43101-20210310
-X-UUID: 2b2abc6e186c4eee9fca332dc5e43101-20210310
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 11075022; Wed, 10 Mar 2021 15:42:49 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 10 Mar 2021 15:42:47 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 10 Mar 2021 15:42:47 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
+        id S229531AbhCJHon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 02:44:43 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48604 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229875AbhCJHod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:44:33 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12A7iR8t016821;
+        Wed, 10 Mar 2021 01:44:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615362267;
+        bh=TfQQgTKeBCY4xuMtmfDUQm+/YrcItfzYj5J9OoTYvQY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Ik4N/5Oumj4RnQagRniaq7Oc3tsK7T43gBQfl6u8RRV/2ZTWb8X+mN0H+C96qVR+z
+         EPXgCO/JNPqAV0FLyEVc3qdRTEPgpdB2CnI15f7C7r6zyC9kCoyDQwZwH73BT9RLTW
+         u9lcBpA1mqZbVAROboGSIhF8kmFABLw1n22D/OkY=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12A7iRlf025991
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 Mar 2021 01:44:27 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
+ Mar 2021 01:44:27 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 10 Mar 2021 01:44:27 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12A7iNjp074705;
+        Wed, 10 Mar 2021 01:44:24 -0600
+Subject: Re: [PATCH 0/2] AM64: Add USB support
+To:     Kishon Vijay Abraham I <kishon@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v1 2/2] Revert "mailbox: mediatek: remove implementation related to atomic_exec"
-Date:   Wed, 10 Mar 2021 15:42:12 +0800
-Message-ID: <1615362132-30603-3-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1615362132-30603-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1615362132-30603-1-git-send-email-yongqiang.niu@mediatek.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>
+References: <20210301055109.17626-1-a-govindraju@ti.com>
+ <20210301152227.f6phla2m3rz457pj@passerby>
+ <85b1b60f-455c-51b8-9e28-019226413885@ti.com>
+ <e8d53390-7a70-fda1-2b6c-ab252947e41b@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <44a86048-3356-0e8b-513e-1efb36f2987b@ti.com>
+Date:   Wed, 10 Mar 2021 13:14:22 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <e8d53390-7a70-fda1-2b6c-ab252947e41b@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit c9ea564f3d9dd20d88bd34f40a6ff6d31a0d7e8c.
+Hi Kishon,
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 80 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 71 insertions(+), 9 deletions(-)
+On 10/03/21 12:33 pm, Kishon Vijay Abraham I wrote:
+> +Vinod
+> 
+> Hi Aswath,
+> 
+> On 10/03/21 12:27 pm, Aswath Govindraju wrote:
+>> Hi Nishanth,
+>>
+>> On 01/03/21 8:52 pm, Nishanth Menon wrote:
+>>> On 11:21-20210301, Aswath Govindraju wrote:
+>>>> The following series of patches, add USB support for AM64.
+>>>>
+>>>> This series of patches depends on,
+>>>> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=439039
+>>>>
+>>>> Aswath Govindraju (2):
+>>>>   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
+>>>>   arm64: dts: ti: k3-am642-evm: Add USB support
+>>>>
+>>>>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
+>>>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
+>>>>  2 files changed, 48 insertions(+)
+>>>
+>>> Please update the series to include SK as well.
+>>>
+>>
+>> I was planning on posting patches that add support for USB in SK later
+>> because of phy dependencies.
+> 
+> The dependency is only on [1] right? I've got all the required ACKs so
+> it should be okay to include it in this series. (That patch will be
+> required only when PCIe DT is merged for me.)
+> 
+> Nishant, would you be okay to merge [1] along with other patches from
+> Aswath? There is no dependency as such on my other PHY patches, so don't
+> think there is a need for a stable tag here.
+> 
+> 
+> [1] ->
+> https://lore.kernel.org/linux-devicetree/20210222112314.10772-4-kishon@ti.com/
+>>
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 5665b6e..1eac05f 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -56,6 +56,7 @@ struct cmdq_thread {
- 	void __iomem		*base;
- 	struct list_head	task_busy_list;
- 	u32			priority;
-+	bool			atomic_exec;
- };
- 
- struct cmdq_task {
-@@ -168,18 +169,56 @@ static void cmdq_task_insert_into_thread(struct cmdq_task *task)
- 	dma_sync_single_for_cpu(dev, prev_task->pa_base,
- 				prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
- 	prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =
--		(u64)CMDQ_JUMP_BY_PA << 32 | task->pa_base;
-+		(u64)CMDQ_JUMP_BY_PA << 32 |
-+		(task->pa_base >> cmdq->shift_pa);
- 	dma_sync_single_for_device(dev, prev_task->pa_base,
- 				   prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
- 
- 	cmdq_thread_invalidate_fetched_data(thread);
- }
- 
-+static bool cmdq_command_is_wfe(u64 cmd)
-+{
-+	u64 wfe_option = CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | CMDQ_WFE_WAIT_VALUE;
-+	u64 wfe_op = (u64)(CMDQ_CODE_WFE << CMDQ_OP_CODE_SHIFT) << 32;
-+	u64 wfe_mask = (u64)CMDQ_OP_CODE_MASK << 32 | 0xffffffff;
-+
-+	return ((cmd & wfe_mask) == (wfe_op | wfe_option));
-+}
-+
-+/* we assume tasks in the same display GCE thread are waiting the same event. */
-+static void cmdq_task_remove_wfe(struct cmdq_task *task)
-+{
-+	struct device *dev = task->cmdq->mbox.dev;
-+	u64 *base = task->pkt->va_base;
-+	int i;
-+
-+	dma_sync_single_for_cpu(dev, task->pa_base, task->pkt->cmd_buf_size,
-+				DMA_TO_DEVICE);
-+	for (i = 0; i < CMDQ_NUM_CMD(task->pkt); i++)
-+		if (cmdq_command_is_wfe(base[i]))
-+			base[i] = (u64)CMDQ_JUMP_BY_OFFSET << 32 |
-+				  (CMDQ_JUMP_PASS >> task->cmdq->shift_pa);
-+	dma_sync_single_for_device(dev, task->pa_base, task->pkt->cmd_buf_size,
-+				   DMA_TO_DEVICE);
-+}
-+
- static bool cmdq_thread_is_in_wfe(struct cmdq_thread *thread)
- {
- 	return readl(thread->base + CMDQ_THR_WAIT_TOKEN) & CMDQ_THR_IS_WAITING;
- }
- 
-+static void cmdq_thread_wait_end(struct cmdq_thread *thread,
-+				 unsigned long end_pa)
-+{
-+	struct device *dev = thread->chan->mbox->dev;
-+	unsigned long curr_pa;
-+
-+	if (readl_poll_timeout_atomic(thread->base + CMDQ_THR_CURR_ADDR,
-+			curr_pa, curr_pa == end_pa, 1, 20))
-+		dev_err(dev, "GCE thread cannot run to end.\n");
-+}
-+
- static void cmdq_task_exec_done(struct cmdq_task *task, enum cmdq_cb_status sta)
- {
- 	struct cmdq_task_cb *cb = &task->pkt->async_cb;
-@@ -371,15 +410,37 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
- 			cmdq->shift_pa;
- 		end_pa = readl(thread->base + CMDQ_THR_END_ADDR) <<
- 			cmdq->shift_pa;
--		/* check boundary */
--		if (curr_pa == end_pa - CMDQ_INST_SIZE ||
--		    curr_pa == end_pa) {
--			/* set to this task directly */
--			writel(task->pa_base >> cmdq->shift_pa,
--			       thread->base + CMDQ_THR_CURR_ADDR);
-+
-+		/*
-+		 * Atomic execution should remove the following wfe, i.e. only
-+		 * wait event at first task, and prevent to pause when running.
-+		 */
-+		if (thread->atomic_exec) {
-+			/* GCE is executing if command is not WFE */
-+			if (!cmdq_thread_is_in_wfe(thread)) {
-+				cmdq_thread_resume(thread);
-+				cmdq_thread_wait_end(thread,
-+						     end_pa >> cmdq->shift_pa);
-+				WARN_ON(cmdq_thread_suspend(cmdq, thread) < 0);
-+				/* set to this task directly */
-+				writel(task->pa_base >> cmdq->shift_pa,
-+				       thread->base + CMDQ_THR_CURR_ADDR);
-+			} else {
-+				cmdq_task_insert_into_thread(task);
-+				cmdq_task_remove_wfe(task);
-+				smp_mb(); /* modify jump before enable thread */
-+			}
- 		} else {
--			cmdq_task_insert_into_thread(task);
--			smp_mb(); /* modify jump before enable thread */
-+			/* check boundary */
-+			if (curr_pa == end_pa - CMDQ_INST_SIZE ||
-+			    curr_pa == end_pa) {
-+				/* set to this task directly */
-+				writel(task->pa_base >> cmdq->shift_pa,
-+				       thread->base + CMDQ_THR_CURR_ADDR);
-+			} else {
-+				cmdq_task_insert_into_thread(task);
-+				smp_mb(); /* modify jump before enable thread */
-+			}
- 		}
- 		writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift_pa,
- 		       thread->base + CMDQ_THR_END_ADDR);
-@@ -500,6 +561,7 @@ static struct mbox_chan *cmdq_xlate(struct mbox_controller *mbox,
- 
- 	thread = (struct cmdq_thread *)mbox->chans[ind].con_priv;
- 	thread->priority = sp->args[1];
-+	thread->atomic_exec = (sp->args[2] != 0);
- 	thread->chan = &mbox->chans[ind];
- 
- 	return &mbox->chans[ind];
--- 
-1.8.1.1.dirty
+There is also a dependency on,
 
+https://lore.kernel.org/linux-devicetree/20210222112314.10772-2-kishon@ti.com/
+
+Thanks,
+Aswath
