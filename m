@@ -2,132 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B24D3346B1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 19:28:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC17334705
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 19:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233622AbhCJS2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 13:28:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233514AbhCJS1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 13:27:47 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58455C061760;
-        Wed, 10 Mar 2021 10:27:47 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S229602AbhCJSoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 13:44:24 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:37691 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232875AbhCJSoS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 13:44:18 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615401858; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=h3hAZU0I4gFbWFD/bqpGuh3QFw2gtv9/q8EKmXg0xLM=; b=PcwbEjyEAXfKSJ4Z3PMqtWQTb3w0zPNlMkgWwJ0xPCGsNOTclGy1N5RfRb1vqFF91EuuL07z
+ EDFtdS8SQVYZ4fWpfiRi4sicLWNqurizzaEQHbZUVnQomuCQLeUEoPGIrpa7XZmvVAJ/VxjB
+ FhMrN8BavyMYkvWWWpYC/+ni7kA=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6049137a155a7cd234c11889 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Mar 2021 18:44:10
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9B23CC43463; Wed, 10 Mar 2021 18:44:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DCB7022173;
-        Wed, 10 Mar 2021 19:27:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615400865;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=F8vDNH8421RXKDc4eht9KA1gFC2SxxBRRDukiV+MMMM=;
-        b=CxkAO/k0r91N18hLq9c3RkDcy0oyNTMGFDRDx5ThQEr1MkpWhN6rpju8l7at0IUwvQKiUV
-        wuXhMJjctMculrdUrAqkPCuh8ropI+x19oA8SXNRFjMruo0Lu1Pn2VU5eBWpOCMuZuLpcU
-        Wmv3COHMuaGqqDdfkKrL411UEoS/H1M=
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8FA7BC433ED;
+        Wed, 10 Mar 2021 18:44:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8FA7BC433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v3 0/2] Qualcomm's lpass device tree changes for I2s dai
+Date:   Thu, 11 Mar 2021 00:13:43 +0530
+Message-Id: <20210310184345.19016-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Wed, 10 Mar 2021 19:27:44 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     =?UTF-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 02/15] gpio: regmap: set gpio_chip of_node
-In-Reply-To: <20210310125504.31886-3-noltari@gmail.com>
-References: <20210310125504.31886-1-noltari@gmail.com>
- <20210310125504.31886-3-noltari@gmail.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <7e35bfd395f3ae40029b0f3cb2bc8f70@walle.cc>
-X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-10 13:54, schrieb Álvaro Fernández Rojas:
-> This is needed for properly registering GPIO regmap as a child of a 
-> regmap
-> pin controller.
-> 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> Reviewed-by: Michael Walle <michael@walle.cc>
-> ---
->  v6: add comment and simplify of_node assignment
+These patches are device tree changes to support audio over I2S.
 
-Ah, I see you add the comment for the documentation. Nice. But I'd
-like to see it in the code, too. See below.
+Changes Since v1:
+  -- Ajith's Certification is added.
+  -- Alias name added for sound dai link node
+Changes Since v2:
+  -- sound node variable is added in sc7180-trogdor-coachz.dtsi.
+  -- Audio-jack property is removed, as it may create conflicts with the boards 
+     having different codecs.
+Ajit Pandey (1):
+  arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for I2S driver
 
->  v5: switch to fwnode
->  v4: fix documentation
->  v3: introduce patch needed for properly parsing gpio-range
-> 
->  drivers/gpio/gpio-regmap.c  | 1 +
->  include/linux/gpio/regmap.h | 4 ++++
->  2 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
-> index 5412cb3b0b2a..d4fc656e70b0 100644
-> --- a/drivers/gpio/gpio-regmap.c
-> +++ b/drivers/gpio/gpio-regmap.c
-> @@ -249,6 +249,7 @@ struct gpio_regmap *gpio_regmap_register(const
-> struct gpio_regmap_config *config
-> 
->  	chip = &gpio->gpio_chip;
->  	chip->parent = config->parent;
+Srinivasa Rao Mandadapu (1):
+  arm64: dts: qcom: Add sound node for sc7180-trogdor-coachz
 
-If there will be a new version, please add the following comment:
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 18 ++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 58 +++++++++++++++++++
+ 2 files changed, 76 insertions(+)
 
-/* gpiolib will use of_node of the parent if chip->of_node is NULL */
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
->> +       chip->of_node = to_of_node(config->fwnode);
-
-Otherwise, it is not obvious that config->fwnode is optional.
-
--michael
-
-> +	chip->of_node = to_of_node(config->fwnode);
->  	chip->base = -1;
->  	chip->ngpio = config->ngpio;
->  	chip->names = config->names;
-> diff --git a/include/linux/gpio/regmap.h b/include/linux/gpio/regmap.h
-> index ad76f3d0a6ba..334dd928042b 100644
-> --- a/include/linux/gpio/regmap.h
-> +++ b/include/linux/gpio/regmap.h
-> @@ -4,6 +4,7 @@
->  #define _LINUX_GPIO_REGMAP_H
-> 
->  struct device;
-> +struct fwnode_handle;
->  struct gpio_regmap;
->  struct irq_domain;
->  struct regmap;
-> @@ -16,6 +17,8 @@ struct regmap;
->   * @parent:		The parent device
->   * @regmap:		The regmap used to access the registers
->   *			given, the name of the device is used
-> + * @fwnode:		(Optional) The firmware node.
-> + *			If not given, the fwnode of the parent is used.
->   * @label:		(Optional) Descriptive name for GPIO controller.
->   *			If not given, the name of the device is used.
->   * @ngpio:		Number of GPIOs
-> @@ -57,6 +60,7 @@ struct regmap;
->  struct gpio_regmap_config {
->  	struct device *parent;
->  	struct regmap *regmap;
-> +	struct fwnode_handle *fwnode;
-> 
->  	const char *label;
->  	int ngpio;
