@@ -2,61 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 082CC3337EA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 09:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0256D33386E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:15:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232493AbhCJIym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 03:54:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57708 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229544AbhCJIyi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 03:54:38 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A1AF64FE2;
-        Wed, 10 Mar 2021 08:54:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1615366478;
-        bh=/Pb3Pqj6xPlhaw9BQdMhiUyimBZOyzlbK5I639vLzAQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bvggVSiT/dNDyvL3kRyqa64L7i2oAjrj9x1bkCQf1cRXrLUp2DbT2SFgntQYjtTyk
-         imB9pRQgKuPPOBPGguh4c0WEMkKwVe5s/bexNtBdEMU1klw/LVjsbjhCu8wNQuXZMX
-         fGnp8WAImU6LcaF52WkpGo5r2HYLk93EQBcF8SAY=
-Date:   Wed, 10 Mar 2021 09:54:35 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v4 01/12] dt-bindings: usb: fix yamllint check warning
-Message-ID: <YEiJS0fPCOPOdlIq@kroah.com>
-References: <20210308053745.25697-1-chunfeng.yun@mediatek.com>
- <20210310022811.GA1612587@robh.at.kernel.org>
- <1615346469.26498.1.camel@mhfsdcap03>
+        id S232176AbhCJJOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 04:14:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231572AbhCJJOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:14:25 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58196C06174A;
+        Wed, 10 Mar 2021 01:14:25 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id m22so32230821lfg.5;
+        Wed, 10 Mar 2021 01:14:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lkb4fhMWbYfgcrHFjrq5Zx1jnIW2z6RnyfRiSQSgbwM=;
+        b=ISD5+TIKgaWzeqmLlE2nsUOK7lcfqYFJKJSPe6V2gh63ZOeh2+POe3RQzHN6jVcxgV
+         eHxUgIH9AUFR8H63Tpdq9YzBpmG3T1YrlE/hcEjdsmSKO7JeQkfcVqauvrkElnf8QKl3
+         Epel1jkgYJMC/DmyLXGpU/vUGZRmifEeiIj+2/cpr/pXjO/F7PeufNlccPGijWCMb9Ur
+         EPvMGNWG2TgsJhOpaSr1dEqhaEA1bKbdgoQusKrxOcDaaoywaZdLPWJjURRkY/qVtbFI
+         ZBl34DWgRunWf0I2/yt8wTKClUV52i73dJT5FzM2Zh89Vcs9r5kJ9iO//PIPqe2zPzEf
+         aZ6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lkb4fhMWbYfgcrHFjrq5Zx1jnIW2z6RnyfRiSQSgbwM=;
+        b=uoZpHpdZgoyVsKt3Bo5kVdgphTQWKV95IsMMA7WA9QxtaV05E4WN+MiBRbkWOdCzMF
+         xlpulvn6gEUBN+lJDVTMhLXSqUI48ICwSFyjDihXegtOmTFOiudBEPYo5Gv63A/vC9h2
+         IoDZWtvBdEMfZVqWjPm6SCe8SfTZAO0D8oOWIe3XNW/Xvd3FWJJ/+Xn9Xm1tlNdk/d3v
+         8hyfoBGrvDbEpK5A3t/bb/uRY01FlYUASIy9WpQsy8xcsVdz9QwF8vlp9IgCNA8jqdnX
+         +m5IxfpQptorwSGk4jHSa4njG1mGI0mndLd/2o2kp3XLpZyKJO+I2mM9NM2lbW5x/SM5
+         1FgA==
+X-Gm-Message-State: AOAM533JAWSEYne0zpzLysrd8Z00LC4Gb1A3a1Fm1p0iUCleeJeebG3f
+        1vp9NWrRDqjalH+wmAp2WVU=
+X-Google-Smtp-Source: ABdhPJy6OLHy6cMZLclL+VF7U+Y4sY9wmA4Vi0wsjyRzsTn0/6MGqh7NxrcYmm0xo40HjgfAId+ECg==
+X-Received: by 2002:a05:6512:398d:: with SMTP id j13mr1430412lfu.41.1615367663754;
+        Wed, 10 Mar 2021 01:14:23 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id u25sm2951123ljo.98.2021.03.10.01.14.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 01:14:23 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH net-next 1/2] dt-bindings: net: bcm4908-enet: add optional TX interrupt
+Date:   Wed, 10 Mar 2021 10:14:09 +0100
+Message-Id: <20210310091410.10164-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615346469.26498.1.camel@mhfsdcap03>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 11:21:09AM +0800, Chunfeng Yun wrote:
-> On Tue, 2021-03-09 at 19:28 -0700, Rob Herring wrote:
-> > On Mon, Mar 08, 2021 at 01:37:34PM +0800, Chunfeng Yun wrote:
-> > > Fix warning: "missing starting space in comment"
-> > 
-> > What tree is this in because I don't see it.
-> The patch is based kernel 5.12-rc1, also happens on
-> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-next
+From: Rafał Miłecki <rafal@milecki.pl>
 
-My branches are now rebased to not be on 5.12-rc1 because of the
-problems with it, so please refresh and provide a "Fixes: " tag in your
-updated patch.
+I discovered that hardware actually supports two interrupts, one per DMA
+channel (RX and TX).
 
-thanks,
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/net/brcm,bcm4908-enet.yaml         | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
+index 79c38ea14237..2a3be0f9a1a1 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
+@@ -22,10 +22,18 @@ properties:
+     maxItems: 1
+ 
+   interrupts:
+-    description: RX interrupt
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: RX interrupt
++      - description: TX interrupt
+ 
+   interrupt-names:
+-    const: rx
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: rx
++      - const: tx
+ 
+ required:
+   - reg
+@@ -43,6 +51,7 @@ examples:
+         compatible = "brcm,bcm4908-enet";
+         reg = <0x80002000 0x1000>;
+ 
+-        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+-        interrupt-names = "rx";
++        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "rx", "tx";
+     };
+-- 
+2.26.2
+
