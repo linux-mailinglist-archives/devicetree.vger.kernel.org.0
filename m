@@ -2,307 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0406333368
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:57:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09E9A333325
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 03:33:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231299AbhCJC5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Mar 2021 21:57:01 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40277 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232215AbhCJC4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Mar 2021 21:56:53 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id DAE1D58040E;
-        Tue,  9 Mar 2021 21:56:52 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 09 Mar 2021 21:56:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=vthBqcjxoGRZVKdqjJdc8swtDM
-        /rZi7LmBxD2JuDq40=; b=UF/w+rfVtNdV/dDIzWTA0ptdBFoCv3bWNNAl1BNCaz
-        BNzzWb0w87xxd1c5BpGgrL0C4xVJdU7/T6rAsD0iW62h02i0mFslOE59k7BOFNpx
-        tbn6W69cqBolOYwA7mnJ4BUqDHNQz54qxtjbWneHuAnJZIJWvxZlB4UVmL1qTpYB
-        Cw99CLD14gWDF+m8eLCIzXx5ZCODiI2WI+HXpKTC4pArUqhu37M+oKX2ZEJ2MtSt
-        wZe9I15Ow+hsmnUSJ2kWfAmuH1qztu0gy8rdqwIIqLyW4AXWByU82WQoREk9yQ/9
-        AzonugxjDTKUGAUqIWdKnzzI/5VPVXX2OPRmapnjNiAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=vthBqcjxoGRZVKdqj
-        Jdc8swtDM/rZi7LmBxD2JuDq40=; b=AV9HqKj2kW02Se16l533BwgceRi1EaLJ8
-        6TXN0iQ+vgb70NckdcH7r6B8L6xckG+qkXWVe6k6ybzIsITe9sb7V3Jtk7XYH/Iy
-        AmBoR6jACaBNjogKDBHhWigY5Usao9iwLBEpMoPQxcnooMKPVUy/Am//CQGpJay+
-        EUMsX+nnzAYVbJsVkZfOu/yMoNV3lxbPCN0vdKNEloF54EugcCuaKhQeSWXnqvpY
-        yxjDWbeuftbDqbpNUEiQYwEDae38nuUGrdtN/dxLPFcF3xGrNxIKxehAZZshAjiP
-        5c6H2ppOg3s+aIQMnBWl2enWR/yvm5XxlYDw2wsjGs5YFo0uDD+OQ==
-X-ME-Sender: <xms:czVIYM1kkJ1p0ygK8hxJjUzLFBFV_yMGhgFYTp9jrKcpXiz4mqYzqA>
-    <xme:czVIYHE1_cudcxJZWYD1nRJbVRahsjVexTLWq0XebhEDnvH4YlrjhXpGXv1IVaqCr
-    ojBaWUFUY5mehExFeQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddujedggedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhr
-    segrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeekudevfffffefffe
-    evhfdujeeffeeiudfgledtgeeuhefhjeekvdduledtieehtdenucffohhmrghinheprhgv
-    mhgrrhhkrggslhgvrdgtohhmnecukfhppeduleekrdehgedrudefgedrudduieenucevlh
-    hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:czVIYE6fX5KNJKJevl6u3eY_x2KqkiczWWFgyTTIsncKaGHDTyHe5w>
-    <xmx:czVIYF1UogDkYT_qYyUshNOv4CvXex9ulIE7iRyatXn0lUHz8sAKIw>
-    <xmx:czVIYPE96cQG1yXOQ6Pn_4615vCAuXw8j5VyGGSzqJ3WV8x1d60Pqg>
-    <xmx:dDVIYGBGGaWvWBnN1DEREE1hbbUT3UE28cTqEwvYFLzQdGzmrmFbzQ>
-Received: from ThinkpadX1Yoga3.localdomain (static-198-54-134-116.cust.tzulo.com [198.54.134.116])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BF2AF1080059;
-        Tue,  9 Mar 2021 21:56:48 -0500 (EST)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v4] ARM: imx7d-remarkable2.dts: Initial device tree for reMarkable2
-Date:   Mon,  8 Mar 2021 03:22:27 -0500
-Message-Id: <20210308082227.18663-1-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
+        id S232068AbhCJCdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Mar 2021 21:33:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36936 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231235AbhCJCcm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Mar 2021 21:32:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7BFF364F84;
+        Wed, 10 Mar 2021 02:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615343561;
+        bh=69DUFNK2JB2JKzdkRdZ/XlWLEjG3ef1b4VxLgCOxoqw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=f8gpp9VdmwuPyoTT2fK7F+6mxLEzG+ejIftSJP3u2iiOdZhqnv8BsLbw6mvVTySiQ
+         v82H9IFxBO06JOWtZwGPAQhXGmOFVszRwG8/3uCMNhie0bfuRfrjhuYGpXpQRJ5hR+
+         Ay0ZeVv0/neMnICME4IC0vcWL9w9fdaGw8PGYCEupzWSepPFUjQ1do6ySHq/0S10Bh
+         4h2L6PpngO7nw98bmzThF3id5nwvfyCKNT81qEwhOfqUI3bU3X/5g3bN2x7C5jnTLR
+         EL+eljAwZ0NqjJcBWJu0z/YNVej/jEgpVR1XtlTX9+H5AC+jkSFCthAHtKhXqsnAQO
+         EhMwHzTEgpUxA==
+Received: by mail-ed1-f48.google.com with SMTP id m9so24949298edd.5;
+        Tue, 09 Mar 2021 18:32:41 -0800 (PST)
+X-Gm-Message-State: AOAM530VXa8s3FdBzPDQNHk1yc/9DLWibKa+T9jdPtQ1WJaLZ8iykRUF
+        CAzqztTov9qTwRSgn5msC0GlIPlZeXAQPFSA9Q==
+X-Google-Smtp-Source: ABdhPJwHjeFbPXpi7Hx1kJl/4EAmKe+MyBlw8ijIqRC+kYtRQvVW/TFyZN4qAshKdQQHueTyJWZ6Stlr1V0uk9El3Ag=
+X-Received: by 2002:a05:6402:c88:: with SMTP id cm8mr699106edb.62.1615343560077;
+ Tue, 09 Mar 2021 18:32:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210222120259.94465-1-manivannan.sadhasivam@linaro.org>
+ <20210222120259.94465-3-manivannan.sadhasivam@linaro.org> <20210305233657.GA839767@robh.at.kernel.org>
+ <20210308053140.GA5457@thinkpad>
+In-Reply-To: <20210308053140.GA5457@thinkpad>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Mar 2021 19:32:28 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
+Message-ID: <CAL_JsqKOfQ8v=Adp_3k64-WW-YXan_1kCG9mab6rE62VkSwmhQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add a property to declare secure
+ regions in Qcom NANDc
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh R <vigneshr@ti.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reMarkable2 (https://remarkable.com) is an e-ink tablet based on
-the imx7d SoC.
+On Sun, Mar 7, 2021 at 10:31 PM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> On Fri, Mar 05, 2021 at 05:36:57PM -0600, Rob Herring wrote:
+> > On Mon, Feb 22, 2021 at 05:32:58PM +0530, Manivannan Sadhasivam wrote:
+> > > On a typical end product, a vendor may choose to secure some regions in
+> > > the NAND memory which are supposed to stay intact between FW upgrades.
+> > > The access to those regions will be blocked by a secure element like
+> > > Trustzone. So the normal world software like Linux kernel should not
+> > > touch these regions (including reading).
+> > >
+> > > So let's add a property for declaring such secure regions so that the
+> > > driver can skip touching them.
+> > >
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/mtd/qcom,nandc.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > index 84ad7ff30121..7500e20da9c1 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > @@ -48,6 +48,13 @@ patternProperties:
+> > >          enum:
+> > >            - 512
+> > >
+> > > +      qcom,secure-regions:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> >
+> > Don't you need 64-bit regions potentially? Though 4GB should be enough
+> > for anyone.
+> >
+>
+> Yes, given the size of current NAND based systems around, I thought 32 bit is
+> enough.
 
-This commit is based on the DTS provide by reMarkable but ported to the
-latest kernel (instead of 4.14). I have removed references to
-non-upstream devices and have changed the UART so that the console can
-be accessed without having to open up the device via the OTG pogo pins.
+Huh!? I was joking. 4GB is small nowadays. Make this 64-bit.
 
-Currently the kernel boots, but there is no support for the display.
-
-WiFi is untested (no dispaly or UART RX makes it hard to test), but
-should work with the current upstream driver. As it's untested it's not
-included in this commit.
-
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/imx7d-remarkable2.dts       | 166 ++++++++++++++++++
- 4 files changed, 170 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx7d-remarkable2.dts
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 297c87f45db8..d139440c86b6 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -617,6 +617,7 @@ properties:
-               - kam,imx7d-flex-concentrator       # Kamstrup OMNIA Flex Concentrator
-               - kam,imx7d-flex-concentrator-mfg   # Kamstrup OMNIA Flex Concentrator in manufacturing mode
-               - novtech,imx7d-meerkat96   # i.MX7 Meerkat96 Board
-+              - remarkable,imx7d-remarkable2  # i.MX7D ReMarkable 2 E-Ink Tablet
-               - technexion,imx7d-pico-dwarf   # TechNexion i.MX7D Pico-Dwarf
-               - technexion,imx7d-pico-hobbit  # TechNexion i.MX7D Pico-Hobbit
-               - technexion,imx7d-pico-nymph   # TechNexion i.MX7D Pico-Nymph
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index f6064d84a424..a8e1e8d2ef20 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -932,6 +932,8 @@ patternProperties:
-     description: Unisoc Communications, Inc.
-   "^realtek,.*":
-     description: Realtek Semiconductor Corp.
-+  "^remarkable,.*":
-+    description: reMarkable AS
-   "^renesas,.*":
-     description: Renesas Electronics Corporation
-   "^rex,.*":
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8e5d4ab4e75e..dc8e378689af 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -660,6 +660,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
- 	imx7d-pico-hobbit.dtb \
- 	imx7d-pico-nymph.dtb \
- 	imx7d-pico-pi.dtb \
-+	imx7d-remarkable2.dtb \
- 	imx7d-sbc-imx7.dtb \
- 	imx7d-sdb.dtb \
- 	imx7d-sdb-reva.dtb \
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-new file mode 100644
-index 000000000000..86d555bd33c2
---- /dev/null
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2015 Freescale Semiconductor, Inc.
-+ * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx7d.dtsi"
-+
-+/ {
-+	model = "reMarkable 2.0";
-+	compatible = "remarkable,imx7d-remarkable2", "fsl,imx7d";
-+
-+	chosen {
-+		stdout-path = &uart6;
-+	};
-+
-+	memory {
-+		reg = <0x80000000 0x40000000>;
-+	};
-+};
-+
-+&clks {
-+	assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
-+			  <&clks IMX7D_CLKO2_ROOT_DIV>;
-+	assigned-clock-parents = <&clks IMX7D_CKIL>;
-+	assigned-clock-rates = <0>, <32768>;
-+};
-+
-+&crypto {
-+	status = "disabled";
-+};
-+
-+&dma_apbh {
-+	status = "disabled";
-+};
-+
-+&sdma {
-+	status = "okay";
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	assigned-clocks = <&clks IMX7D_UART1_ROOT_SRC>;
-+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
-+	status = "okay";
-+};
-+
-+&uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart6>;
-+	assigned-clocks = <&clks IMX7D_UART6_ROOT_SRC>;
-+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	srp-disable;
-+	hnp-disable;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	pinctrl-3 = <&pinctrl_usdhc3>;
-+	assigned-clocks = <&clks IMX7D_USDHC3_ROOT_CLK>;
-+	assigned-clock-rates = <400000000>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+};
-+
-+&iomuxc_lpsr {
-+	pinctrl_digitizer_reg: digitizerreggrp {
-+		fsl,pins = <
-+			/* DIGITIZER_PWR_EN */
-+			MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x14
-+		>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
-+			MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x79
-+		>;
-+	};
-+
-+	pinctrl_uart6: uart6grp {
-+		fsl,pins = <
-+			MX7D_PAD_EPDC_DATA09__UART6_DCE_TX		0x79
-+			MX7D_PAD_EPDC_DATA08__UART6_DCE_RX		0x79
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x19
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x19
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1a
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3grp_200mhz {
-+		fsl,pins = <
-+			MX7D_PAD_SD3_CMD__SD3_CMD		0x5b
-+			MX7D_PAD_SD3_CLK__SD3_CLK		0x1b
-+			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5b
-+			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5b
-+			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5b
-+			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5b
-+			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5b
-+			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5b
-+			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5b
-+			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5b
-+			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1b
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX7D_PAD_ENET1_COL__WDOG1_WDOG_ANY	0x74
-+		>;
-+	};
-+};
--- 
-2.30.1
-
+Rob
