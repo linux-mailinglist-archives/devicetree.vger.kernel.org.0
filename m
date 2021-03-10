@@ -2,76 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB06336811
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 00:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09519336840
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 01:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233862AbhCJXsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 18:48:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39638 "EHLO
+        id S229595AbhCJX7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 18:59:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234062AbhCJXsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 18:48:00 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79873C061760
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:48:00 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id x4so29901641lfu.7
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:48:00 -0800 (PST)
+        with ESMTP id S229593AbhCJX7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 18:59:24 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DE5C061574
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:59:23 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id f1so36663982lfu.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:59:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kRvHS9o5dMLT6f5yfgrvrgY38oLudE/U5A4iFNm6Au8=;
-        b=iNrRn08C6u6wm9/NWOjycwj9HSvpAmM5+og002MFmZagOZwJW/7mrsRDnTGETT1tW6
-         ofpe9swHZzRRGPwfWFG/pgGOlBDYcFDnyxi9fHhJ3SS6ghK+w/ham9nZWPqLc18RH4lD
-         tRWZSiEut1qDfamOLDJam2Rn2B+gIUwvVOtq1zGIPnSpYgTYNYlN6e6Yxz7eMGVqRnro
-         Ox2Sof2CKCiSwyXXXiEWIzRseCm6nB/7WoEi4mIGNqG1w8Wi2/HBAPf5Ym7+GCX5VY+n
-         aIL7DuV6/sbDWbA4uUhog1FBJXkWHaVbpursDstZGbIUdX1ov+MH3m4vmrXgmTYqJqD3
-         O1Nw==
+         :cc:content-transfer-encoding;
+        bh=dagZdlJSDk9BSW0IHSKAmSKBHhrpoDiQ1DO3svAoSVA=;
+        b=XBeLryR4FhDUUNs0NTaX5cqE4HV9BM84aNyHPkcZP1lriZYH6OvwYjiHWkWo0NU3y+
+         R6uoOjkPACcqUKIJOhrlyQs/yW5cggb3TVOGRzZqe5tU94KwZ6P3mI2YZp/0yDQbEcB8
+         MBHRQ3dyvp6eTR9W83FVpLkeCZJjkHEfdAnd4mlSOpgHAqhV/yUReYk3XNnAoL9MIZSp
+         59trtMWtRzivg6GNH+dVgz6WSuCFbGiR4qeyD8KjgbRkZBS3Hh9Ny8tGbxchuqGVTVNS
+         p+e0QSwn1YM7BnoEXASxUy0qV8C/lYPO8qoyTnfQ5KErs/bKdkIw9kWKkYdi1nMbDeo8
+         gGqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kRvHS9o5dMLT6f5yfgrvrgY38oLudE/U5A4iFNm6Au8=;
-        b=mAMPyU/6UuwEYSQ7vCmquwMuaZxBgdQ3l/MkvQsToRF58bqGsSxC+H66BwxATQNF3m
-         6jK4Dai5SUrMq+ARgZW/aOm4R+pR4Z9xtcCFT6SXBKmvqL/v+nBN1M5iswY8ncKn1Avf
-         D/QInGIGEYlSZlTafGDzfnhUu0/54osWWwkJVSFU47dB1JD0KiqkfSyaIxPwo87Bdz2a
-         IH3dIcuo8ZZbvt5b0GGo7g8YshXrRzVOTXCjSTqHn3UkzNZDhm/SLQa5YfvgueHWUMTk
-         v5Nb8Xkbc6cWDhPUUvwLGjkj7e3tFXub38LdZoPGoRXTIdI6NLDdja0YEhAZLHsjtxRQ
-         agZw==
-X-Gm-Message-State: AOAM530OlAa8jMcB3C6FzzCC/RTt4byr61SKzWGNQ3HrxyuXfTboLBR3
-        Z9R10Qmt6/S2SSaGRJfSnvPSbrJtbp74kjKKI+waWg==
-X-Google-Smtp-Source: ABdhPJz0squ0Ye3e/PiQIDYAcOJXAgc8W4xsitrsSru2AMgkDx47v8y6PLZPozsGXf40w2FsskuwPuAGjhSxg9qCrgc=
-X-Received: by 2002:a05:6512:74a:: with SMTP id c10mr571356lfs.586.1615420079060;
- Wed, 10 Mar 2021 15:47:59 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dagZdlJSDk9BSW0IHSKAmSKBHhrpoDiQ1DO3svAoSVA=;
+        b=ufb4ZmPXGNxPXYIIb3zjE7b6Ei8ZHDFE133vntgK4A89zY6dZu5TYD1lCabwmlX+1J
+         FiPQhzk2aId4P5cwNhlDqh4mvVLdYSxuYYjmFw45D/ju+OtPMnVRwY1/ayFgg3LB+8Py
+         Y0w618esmgLN439iewv5fC2qL3KalwEYmkNRmt1txNMATJeu5aIh/rqL5kc6kSpmiV2L
+         3/j5FlYHzi+VL4IPXezCrp7v5Sp8C/CkIkcbWo7cJNLrWKufUFnbLiRF6hhfFfKiwLlj
+         f4q0B7uHRZHKp6dNF16pIvlKoIVmoiPCi6Y2AXoELqIWlB9SShq2tqWrkaRFmiMCfDFQ
+         krJw==
+X-Gm-Message-State: AOAM533yY71UbJoz184zFW7KAPGT6sSgd3CVyDgWdboFj6PNLB7jSTGR
+        s+jEzm/Sdy2CrjEymtZTlgICbAGKxgG4ld7P7uSaPg==
+X-Google-Smtp-Source: ABdhPJzdEdBi2sdOnSDjlS1DfmctL5wDJBhET4DfhoDIhrBBeoOES5ahoxRNyDKR7g42nmU2eovUzpQkaobRoucA/Ss=
+X-Received: by 2002:ac2:4d95:: with SMTP id g21mr612424lfe.29.1615420762141;
+ Wed, 10 Mar 2021 15:59:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20210308164845.3210393-1-vkoul@kernel.org>
-In-Reply-To: <20210308164845.3210393-1-vkoul@kernel.org>
+References: <20210306155712.4298-1-noltari@gmail.com> <20210306155712.4298-4-noltari@gmail.com>
+ <CAHp75VdwqpL0UScR5s+Tf4z7RZQfyo+625uXZtfWV3=xQr6Z2Q@mail.gmail.com> <EC7F8938-63CB-43D9-AE75-644B2E647360@gmail.com>
+In-Reply-To: <EC7F8938-63CB-43D9-AE75-644B2E647360@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 00:47:48 +0100
-Message-ID: <CACRpkdbOY_ZuL4YwkQy1dCDn_USEDy1+F1EUooNTtkXDU0zBDw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm8350 and friends
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+Date:   Thu, 11 Mar 2021 00:59:11 +0100
+Message-ID: <CACRpkdbP7kAVR9ORQuj7W9iT3EDE1S3iZ-1q+kBoQ8R0TUVMJA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/15] pinctrl: bcm: add bcm63xx base code
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 5:48 PM Vinod Koul <vkoul@kernel.org> wrote:
+On Wed, Mar 10, 2021 at 8:25 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+<noltari@gmail.com> wrote:
 
-> Add support for the PM8350, PM8350B, PM8350C, PMK8350, PMR735A and
-> PMR735B GPIO support to the Qualcomm PMIC GPIO binding.
+> > // for now, since we have not an analogue (yet)
+
+> > node =3D=3D> to_of_node(fwnode)
 >
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> So you want me to convert everything to fwnode, but then I would need to =
+use of_node here=E2=80=A6
+> It makes more sense to me to use of_node for now and convert it to fwnode=
+ in the future=E2=80=A6
+> @Linus, what do you think?
 
-Both patches applied!
+I am aware of the ambition to use fwnode more to more things.
 
-Thanks Vinod,
+To me it is most important on things that will potentially run with
+both OF and ACPI.
+Typical example: ARM Qualcomm SoCs. New drivers for Aarch64 platforms.
+
+This is a legacy MIPS platform, and we have tons of legacy platforms for AR=
+M
+etc which will never get converted to fwnode, sadly.
+
+Is it realistic that these MIPS platforms will run ACPI in addition to
+OF? Is ACPI even available on MIPS? Isn't OF the preferred HW description
+language for anything MIPS?
+
+Yours,
 Linus Walleij
