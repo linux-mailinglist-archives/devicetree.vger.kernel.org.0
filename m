@@ -2,147 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5ED333670
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:33:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B12C2333678
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 08:38:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbhCJHcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 02:32:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231899AbhCJHcS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 02:32:18 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7777C06174A
-        for <devicetree@vger.kernel.org>; Tue,  9 Mar 2021 23:32:17 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id u18so24280651ljd.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Mar 2021 23:32:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iLUTM3h4wSubLrUrhtIKNok1om252JMNpkTX/0jR0gU=;
-        b=rFdDYXd9kzffvpmkwWevcEhc+IL/F54oXnuXoXlFA4uFZSoRb6Ule4sLehqod/fklp
-         UweJ6dtZd86f7YTNiZZzw4cgImsj1bAt/bphCRuTH3mij0VScm1qovK7ZnEQEyzI3FXn
-         c4G9Pw4dzwB5pyZLGfQKiDbXB4LRHggaJGYPuKcpUVfe9UjhXuZiq/EfivCrRCBd+oa9
-         LOiLQ5aCE3j/uERoQzF1Cwv1J6ReejvCMWe0el1C2fUkuwPkHohKd4kJWnlFNfBu/uSa
-         8WyznoNqY5/Ms6AHHwJnvdmQIDklpHFJsZ0CRcTWMjN0/+QaE1y2lcXJoemLh4L5qbF6
-         6qsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iLUTM3h4wSubLrUrhtIKNok1om252JMNpkTX/0jR0gU=;
-        b=KCjLFl7emqZj5gQRvfHsRLSgs3m8hV+U1cz75hUJ8tVlOwKTqKrqW7y3mTm46B2JPe
-         Ws3yri7Cp4aBili4+XT0FgWO6WKbmhG03cUY7BmRmSog8I/1TzQglyizmIWqmrhxbBeN
-         efMjKZGSxwdbYOHjy4CnRc1zR/g2esuANghYsHBD8x32hI/YmFbzHQ+RFWWJS/beAHN1
-         upTmFYw6IR0eqdCw+qscv6vqJH66Oe5T1vNHgNN46Gvx3kufOgJLleazmX1QYXVSLtlC
-         4JBJYrHlLl0hxtBR+LLaIMbCLfEMXjhINHBKYzy85huU7VcAqutIH2CIeD/ukLSy5Exn
-         YdnA==
-X-Gm-Message-State: AOAM531FPHdp+RcJWnSYcKYTO+LShIHVytCgdIf0yhxOPGjzQ2+eNvo8
-        0uieoCLYbUvu5r7oD/8J8lY=
-X-Google-Smtp-Source: ABdhPJz585elpWi6Af/yPhoCzCnQtWrkrZ2heZW2lnyLF58Od7kbIIFxZ9EQ8Z/EPEwQPmbFXZql3A==
-X-Received: by 2002:a2e:5315:: with SMTP id h21mr983939ljb.299.1615361536227;
-        Tue, 09 Mar 2021 23:32:16 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id a1sm2615350lfd.31.2021.03.09.23.32.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Mar 2021 23:32:15 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: fix Netgear R8000P LEDs nodes
-Date:   Wed, 10 Mar 2021 08:32:03 +0100
-Message-Id: <20210310073203.14463-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S229725AbhCJHh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 02:37:58 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:27324 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231152AbhCJHhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 02:37:43 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615361863; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=xuYPSMdgz8Yi0oiFGDEAJkTZb66LQ7xiQZRdBDqgi1w=; b=pr895WsYfFTnSdufwhapNKnJ84sTECNWrKYfcqatAWBwEDZPRunrfXdBDGkIlw/6/uu17pxN
+ Alu+Pa9YYJY71KnX8znekSMpY5DI1lVD924bi2mPGoMK88FtCGRlxZ2fvfHPefCxwYiQo1eU
+ iIfGInU+V7sqgt1LGjnqGkobxZI=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 60487730e90f410d8813d95d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Mar 2021 07:37:20
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id ECF2EC43462; Wed, 10 Mar 2021 07:37:19 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C375FC433C6;
+        Wed, 10 Mar 2021 07:37:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C375FC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pillair@codeaurora.org
+From:   Rakesh Pillai <pillair@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     sibis@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rakesh Pillai <pillair@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+Date:   Wed, 10 Mar 2021 13:07:09 +0530
+Message-Id: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Add the WPSS remoteproc node in dts for
+PIL loading.
 
-Update nodes names to match leds-gpio.yaml requirements.
-
-Fixes: 29b08ead247a ("arm64: dts: broadcom: bcm4908: add remaining Netgear R8000P LEDs")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
 ---
- .../bcm4908/bcm4906-netgear-r8000p.dts         | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+- This change is dependent on the below patch series
+1) https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+2) https://lore.kernel.org/patchwork/project/lkml/list/?series=488365
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    | 47 +++++++++++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-index 7b24ad365a3c..41e8fbf095c6 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
-@@ -18,55 +18,55 @@ memory@0 {
- 	leds {
- 		compatible = "gpio-leds";
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 950ecb2..603f56b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -26,6 +26,10 @@
+ 	status = "okay";
+ };
  
--		power-white {
-+		led-power-white {
- 			function = LED_FUNCTION_POWER;
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
++&remoteproc_wpss {
++	status = "okay";
++};
++
+ &uart5 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 8af6d77..26dd466 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -53,6 +53,16 @@
+ 			no-map;
+ 			reg = <0x0 0x80b00000 0x0 0x100000>;
+ 		};
++
++		wlan_fw_mem: memory@80c00000 {
++			no-map;
++			reg = <0x0 0x80c00000 0x0 0xc00000>;
++		};
++
++		wpss_mem: memory@9ae00000 {
++			no-map;
++			reg = <0x0 0x9ae00000 0x0 0x1900000>;
++		};
+ 	};
+ 
+ 	cpus {
+@@ -305,6 +315,43 @@
+ 			};
  		};
  
--		power-amber {
-+		led-power-amber {
- 			function = LED_FUNCTION_POWER;
- 			color = <LED_COLOR_ID_AMBER>;
- 			gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
- 		};
- 
--		wps {
-+		led-wps {
- 			function = LED_FUNCTION_WPS;
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
- 		};
- 
--		2ghz {
-+		led-2ghz {
- 			function = "2ghz";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
- 		};
- 
--		5ghz-1 {
-+		led-5ghz-1 {
- 			function = "5ghz-1";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
- 		};
- 
--		5ghz-2 {
-+		led-5ghz-2 {
- 			function = "5ghz-2";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
- 		};
- 
--		usb2 {
-+		led-usb2 {
- 			function = "usb2";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
- 		};
- 
--		usb3 {
-+		led-usb3 {
- 			function = "usb3";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
- 		};
- 
--		wifi {
-+		led-wifi {
- 			function = "wifi";
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&gpio0 56 GPIO_ACTIVE_LOW>;
++		remoteproc_wpss: remoteproc@8a00000 {
++			compatible = "qcom,sc7280-wpss-pil";
++			reg = <0 0x08a00000 0 0x10000>;
++
++			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 0 0>,
++					      <&wpss_smp2p_in 1 0>,
++					      <&wpss_smp2p_in 2 0>,
++					      <&wpss_smp2p_in 3 0>,
++					      <&wpss_smp2p_in 7 0>;
++			interrupt-names = "wdog", "fatal", "ready", "handover",
++					  "stop-ack", "shutdown-ack";
++
++			memory-region = <&wpss_mem>;
++
++			qcom,smem-states = <&wpss_smp2p_out 0>;
++			qcom,smem-state-names = "stop";
++
++			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>;
++			reset-names = "restart";
++
++			qcom,halt-regs = <&tcsr_mutex_regs 0x37000>;
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_WPSS
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++
++				label = "wpss";
++				qcom,remote-pid = <13>;
++			};
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sc7280-pdc", "qcom,pdc";
+ 			reg = <0 0x0b220000 0 0x30000>;
 -- 
-2.26.2
+2.7.4
 
