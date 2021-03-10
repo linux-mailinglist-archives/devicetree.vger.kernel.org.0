@@ -2,149 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8287B33450A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A567E33453A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 18:35:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbhCJRWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 12:22:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48078 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233146AbhCJRWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 12:22:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E5E9264FCB;
-        Wed, 10 Mar 2021 17:22:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615396928;
-        bh=SK+6Zfd8qFN5HrEWQ1Qexu/sh62jiznyOdEEtUWkUUY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=giCFhb5jS/L5dNA9p3aqvol1FdK8R28L26bYoL7uSQ9C13PN+eZn4tHjyo6Cisx/i
-         XSGnsWchcmB7ndb+aZuvUGjy7i62Yim5gYt+YoCYybjN4aHHcQiEFt27UCivB2RM70
-         WFleWF122tfECk2R2pave7DgNclBcUOmeeX0AdyxymGAsI7VnNPuxxGtFjHVSdF7KD
-         sVA+mrRzQ7MiY17oHe8ERHLLL8tPYhpzZZ/P2wZ/2E9a1QzDQ+7tzRwia/3IEQ+1qE
-         sdAiwxnkxiss6WJMiNzf59KwbSO3RtEM59wioRKswSPo+L1G7meCnNeQVxJOybWN+V
-         hNuoUKO3QinAQ==
-Received: by mail-qk1-f174.google.com with SMTP id m186so985433qke.12;
-        Wed, 10 Mar 2021 09:22:07 -0800 (PST)
-X-Gm-Message-State: AOAM53158945bEbV3cIjpDuf9DgxHj/TeQm2zJmfpkPsgbKPBlyYCEGV
-        ctCU95GeGbE88fwCPwgYWk9vio5aR6WFwz0w+Q==
-X-Google-Smtp-Source: ABdhPJx8ZortjSvtESnDKmJbd7shsjiK7JG0zR24gC3xumihDFvY1IhcQ5GWdem+N4oMsJv19bHuG9wUbdLlpAmjB5g=
-X-Received: by 2002:a05:620a:b02:: with SMTP id t2mr3822126qkg.128.1615396927087;
- Wed, 10 Mar 2021 09:22:07 -0800 (PST)
+        id S232650AbhCJRfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 12:35:08 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45368 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229828AbhCJRen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 12:34:43 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12AHYYgw031257;
+        Wed, 10 Mar 2021 11:34:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615397674;
+        bh=+p/u5nK7EFO7bfVybM8fCJ8w2Wt1hcRrMflilr6AVio=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=wFUSYIKCVYBr5Py1sIWj8f78LeXi1A3J1CpR/jcgdhvrSVy/hSEIcCKbuPLK6LRFd
+         eKNA+SKSd+NtIvBDgIKfSyM+pCXnx/dYlxqPRJdpjWNqz7AElfLkjHYLbUAzqDDBzO
+         mOXdXKlZJxsEcFcnMUsDdBAwJmy0YL7ialPV1/3Y=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12AHYY1m021998
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 Mar 2021 11:34:34 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 10
+ Mar 2021 11:34:33 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 10 Mar 2021 11:34:33 -0600
+Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12AHYU6K009051;
+        Wed, 10 Mar 2021 11:34:31 -0600
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am64-main: Add OSPI node
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210309130514.11740-1-vigneshr@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <4a41ecf2-2203-f3db-f728-fc0d1b0426c6@ti.com>
+Date:   Wed, 10 Mar 2021 23:04:30 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210223204340.312-1-noltari@gmail.com> <20210224075640.20465-1-noltari@gmail.com>
- <20210224075640.20465-2-noltari@gmail.com> <20210306201404.GB1137882@robh.at.kernel.org>
- <889b9814-40d4-e012-ff7c-39b00f8c623a@gmail.com>
-In-Reply-To: <889b9814-40d4-e012-ff7c-39b00f8c623a@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 10 Mar 2021 10:21:56 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJzFJvwTEk3u+g3Fjv_K2Te9F3hyZnEPWurWjxgs2dShg@mail.gmail.com>
-Message-ID: <CAL_JsqJzFJvwTEk3u+g3Fjv_K2Te9F3hyZnEPWurWjxgs2dShg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: document
- BCM6345 external interrupt controller
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210309130514.11740-1-vigneshr@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 7, 2021 at 3:12 AM =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gm=
-ail.com> wrote:
->
-> Hi Rob,
->
-> El 06/03/2021 a las 21:14, Rob Herring escribi=C3=B3:
-> > On Wed, Feb 24, 2021 at 08:56:39AM +0100, =C3=81lvaro Fern=C3=A1ndez Ro=
-jas wrote:
-> >> Document the binding for the BCM6345 external interrupt controller.
-> >>
-> >> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> >> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
-> >> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-> >> ---
-> >>   v3: pass dt_binding_check.
-> >>   v2: fix title typo.
-> >>
-> >>   .../brcm,bcm6345-ext-intc.yaml                | 78 +++++++++++++++++=
-++
-> >>   1 file changed, 78 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
-oller/brcm,bcm6345-ext-intc.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/interrupt-controller/br=
-cm,bcm6345-ext-intc.yaml b/Documentation/devicetree/bindings/interrupt-cont=
-roller/brcm,bcm6345-ext-intc.yaml
-> >> new file mode 100644
-> >> index 000000000000..a691510e78b7
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm6=
-345-ext-intc.yaml
-> >> @@ -0,0 +1,78 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm6345-=
-ext-intc.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Broadcom BCM6345 external interrupt controller
-> >> +
-> >> +maintainers:
-> >> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> >> +  - Jonas Gorski <jonas.gorski@gmail.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - brcm,bcm6318-ext-intc
-> >> +      - brcm,bcm6345-ext-intc
-> >> +
-> >> +  "#interrupt-cells":
-> >> +    const: 2
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  "#address-cells":
-> >> +    const: 0
-> >> +
-> >> +  interrupt-controller: true
-> >> +
-> >> +  interrupts:
-> >> +    description: Specifies the interrupt line(s) in the interrupt-par=
-ent
-> >> +      controller node. Valid values depend on the type of parent inte=
-rrupt
-> >> +      controller.
-> >> +    maxItems: 4
-> >> +
-> >> +  brcm,field-width:
-> >> +    description: Interrupt controller field width (the default is 4).
-> >
-> > default: 4
-> >
-> >> +    maxItems: 1
-> >
-> > All uint32's are 1 item.
->
-> Ok, so I should remove this :)
->
-> >
-> > What's the set or range of values?
->
-> Only BCM6348 needs to set this value to 5, other BCM63xx use the default
-> value of 4 (BCM3368, BCM6318, BCM6328, BCM6338, BCM6345, BCM6358,
-> BCM6362, BCM6368, BCM63268).
+Hi Nishanth
 
-So:
+On 3/9/21 6:35 PM, Vignesh Raghavendra wrote:
+> AM64 SoC has a single Octal SPI (OSPI) instance under Flash SubSystem
+> (FSS).  Add DT entry for the same.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
 
-enum: [ 4, 5 ]
+Please ignore the series. I see some instabilities in my testing... Will
+repost once I have addressed them. Sorry for the noise.
+
+
+Regards
+Vignesh
+
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 25 ++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index 5f85950daef7..bcec4fa444b5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -402,4 +402,29 @@ sdhci1: mmc@fa00000 {
+>  		ti,otap-del-sel-ddr50 = <0x9>;
+>  		ti,clkbuf-sel = <0x7>;
+>  	};
+> +
+> +	fss: bus@fc00000 {
+> +		compatible = "simple-bus";
+> +		reg = <0x00 0x0fc00000 0x00 0x70000>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ospi0: spi@fc40000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x0fc40000 0x00 0x100>,
+> +			      <0x05 0x00000000 0x01 0x00000000>;
+> +			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +			clocks = <&k3_clks 75 6>;
+> +			assigned-clocks = <&k3_clks 75 6>;
+> +			assigned-clock-parents = <&k3_clks 75 7>;
+> +			assigned-clock-rates = <166666666>;
+> +			power-domains = <&k3_pds 75 TI_SCI_PD_EXCLUSIVE>;
+> +		};
+> +	};
+>  };
+> 
