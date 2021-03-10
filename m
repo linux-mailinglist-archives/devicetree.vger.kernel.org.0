@@ -2,142 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE9C334090
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 15:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A852334096
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 15:43:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231438AbhCJOl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 09:41:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbhCJOl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 09:41:27 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14B3C061761
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 06:41:25 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id s21so1260485pfm.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 06:41:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=MpYPf5URi+XzdCPoi7Hk/RdtfT35iqZ3pIAtWBbl0ZM=;
-        b=QcDExb6/hnzi+IPoqek/bGQ0szY+Qmndh5owKY+RX+djFLzP5dcUcZ/nax7kdNGCSg
-         bJFEAAMlXi9fCq9iHBYaD0Yimz/lOhOwerbnk3s2vYCzFU93bDcOCJ8z/raJ5VqF3/W0
-         /2U/uYxjDlMko4NHB5YaXibiWs9/7KiuEhK1Xj2cH6EATOu5RDSi8Jax5NrZY4QUcKqt
-         IgdS0MUPfgVYLNydMouP1+Su1dzuOQqKncTM14bvNbpD2d0uhqlvteReUrehX/aOtTLA
-         x5+ryjHOloG9i5oaatDdysYG/3/z9e3rGG+DKXU0mLXDjtWGUAWzKBani6tkDdp7LQtP
-         6r/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MpYPf5URi+XzdCPoi7Hk/RdtfT35iqZ3pIAtWBbl0ZM=;
-        b=jTGpHnj8KHR87bLvvcc8rrS2f+GpjhRezg+rlTCi2zQ7S81MdNqDmYDkhhzSkmMCRh
-         ddmt3arCwSUUnzIU4McwGy9n4tpf6Ed9SY34xSu3dbY7ZvuaNNFz0wBd25gUtXL66rSf
-         izNeiCQIFN8mYaFBT039UEJf/CAQjtyigGZ2iLJ8auCN2a5CypGC0xugdoHF+ClTGhdR
-         I3muKl7otK1l+D3zd2VCbSPDagJ/16dQqAvnDroJWjF4lPA6XxSaQDjUNY1pTdBtjdeq
-         RAe54EIkChsuufvQ+g2umQj5iJg0c5n/s1QAWAWn16wTggGn8ArFClgM18fxoQcPBjVN
-         CDAQ==
-X-Gm-Message-State: AOAM533NLZFmvfjQqaQmYzSZn5YFsAVV9MSlYIKb3iqNCgDIDYBk7Gae
-        sCG4MNfYyDaNCN26UtiYyUbSbQ==
-X-Google-Smtp-Source: ABdhPJzZtOzSs1iQ8tl8JfRkmt3EnobTlhFe5KUsIfekTx9eENenEYIa5oIzqS/ActzM8HKyR+wRIw==
-X-Received: by 2002:a63:e5d:: with SMTP id 29mr3040673pgo.450.1615387285094;
-        Wed, 10 Mar 2021 06:41:25 -0800 (PST)
-Received: from localhost ([122.171.124.15])
-        by smtp.gmail.com with ESMTPSA id a204sm5576854pfd.106.2021.03.10.06.41.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Mar 2021 06:41:24 -0800 (PST)
-Date:   Wed, 10 Mar 2021 20:11:21 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>, robh+dt@kernel.org
-Cc:     linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] kbuild: remove unneeded -O option to dtc
-Message-ID: <20210310144121.74mawocx2ydgabx2@vireshk-i7>
-References: <20210310110824.782209-1-masahiroy@kernel.org>
+        id S230504AbhCJOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 09:43:01 -0500
+Received: from out28-147.mail.aliyun.com ([115.124.28.147]:51366 "EHLO
+        out28-147.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232975AbhCJOmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 09:42:47 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436317|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.193297-0.00363244-0.80307;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=9;RT=9;SR=0;TI=SMTPD_---.Jj1IsSD_1615387362;
+Received: from 192.168.10.152(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Jj1IsSD_1615387362)
+          by smtp.aliyun-inc.com(10.147.42.22);
+          Wed, 10 Mar 2021 22:42:43 +0800
+Subject: Re: [PATCH 5/6] clk: ingenic: Support overriding PLLs M/N/OD calc
+ algorithm
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     od@zcrc.me, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20210307141759.30426-1-paul@crapouillou.net>
+ <20210307141759.30426-6-paul@crapouillou.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <14fe0eed-5657-c555-f8eb-6e6b8b367b44@wanyeetech.com>
+Date:   Wed, 10 Mar 2021 22:42:42 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210310110824.782209-1-masahiroy@kernel.org>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210307141759.30426-6-paul@crapouillou.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-03-21, 20:08, Masahiro Yamada wrote:
-> This piece of code converts the target suffix to the dtc -O option:
-> 
->     *.dtb      ->  -O dtb
->     *.dt.yaml  ->  -O yaml
-> 
-> Commit ce88c9c79455 ("kbuild: Add support to build overlays (%.dtbo)")
-> added the third case:
-> 
->     *.dtbo     ->  -O dtbo
-> 
-> This works thanks to commit 163f0469bf2e ("dtc: Allow overlays to have
-> .dtbo extension") in the upstream DTC, which has already been pulled in
-> the kernel.
-> 
-> However, I think it is a bit odd because "dtbo" is not a format name.
-> At least, it does not show up in the help message of dtc.
-> 
-> $ scripts/dtc/dtc --help
->   [ snip ]
->   -O, --out-format <arg>
->         Output formats are:
->                 dts - device tree source text
->                 dtb - device tree blob
->                 yaml - device tree encoded as YAML
->                 asm - assembler source
-> 
-> So, I am not a big fan of the second hunk of that change:
-> 
->         } else if (streq(outform, "dtbo")) {
->                 dt_to_blob(outf, dti, outversion);
+Hi Paul,
 
-Looking at the very first version of the patch I sent,
-
-https://lore.kernel.org/lkml/7aa70809eff3f32d821761d2a763e4fb72ecc8fb.1609844956.git.viresh.kumar@linaro.org/
-
-this change was the only thing that was required to make it work.
-
-I think the reason was that "outform != NULL" as -O option was passed
-by the kernel.
-
-> Anyway, we did not need to do this in Makefile in the first place.
-> 
-> guess_type_by_name() had already understood ".yaml" before commit
-> 4f0e3a57d6eb ("kbuild: Add support for DT binding schema checks"),
-> and now does ".dtbo" as well.
-> 
-> Makefile does not need to duplicate the same logic. Let's leave it
-> to dtc.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+On 2021/3/7 下午10:17, Paul Cercueil wrote:
+> SoC-specific code can now provide a callback if they need to compute the
+> M/N/OD values in a specific way.
+>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
-> 
->  scripts/Makefile.lib | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index eee59184de64..90a4e04cd8f5 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -327,7 +327,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
->  
->  quiet_cmd_dtc = DTC     $@
->  cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-> -	$(DTC) -O $(patsubst .%,%,$(suffix $@)) -o $@ -b 0 \
-> +	$(DTC) -o $@ -b 0 \
->  		$(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
->  		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
->  	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+>   drivers/clk/ingenic/cgu.c | 40 ++++++++++++++++++++++++++-------------
+>   drivers/clk/ingenic/cgu.h |  3 +++
+>   2 files changed, 30 insertions(+), 13 deletions(-)
 
-LGTM.
 
-Reviewed-by: Viresh Kumar <viresh.kumar@linaro.org>
+Tested-by: 周琰杰 (Zhou Yanjie)<zhouyanjie@wanyeetech.com>   # on CU1000-neo/X1000E
 
--- 
-viresh
+
+> diff --git a/drivers/clk/ingenic/cgu.c b/drivers/clk/ingenic/cgu.c
+> index 58f7ab5cf0fe..266c7595d330 100644
+> --- a/drivers/clk/ingenic/cgu.c
+> +++ b/drivers/clk/ingenic/cgu.c
+> @@ -119,28 +119,42 @@ ingenic_pll_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+>   		n * od);
+>   }
+>   
+> -static unsigned long
+> -ingenic_pll_calc(const struct ingenic_cgu_clk_info *clk_info,
+> -		 unsigned long rate, unsigned long parent_rate,
+> -		 unsigned *pm, unsigned *pn, unsigned *pod)
+> +static void
+> +ingenic_pll_calc_m_n_od(const struct ingenic_cgu_pll_info *pll_info,
+> +			unsigned long rate, unsigned long parent_rate,
+> +			unsigned int *pm, unsigned int *pn, unsigned int *pod)
+>   {
+> -	const struct ingenic_cgu_pll_info *pll_info;
+> -	unsigned m, n, od;
+> -
+> -	pll_info = &clk_info->pll;
+> -	od = 1;
+> +	unsigned int m, n, od = 1;
+>   
+>   	/*
+>   	 * The frequency after the input divider must be between 10 and 50 MHz.
+>   	 * The highest divider yields the best resolution.
+>   	 */
+>   	n = parent_rate / (10 * MHZ);
+> -	n = min_t(unsigned, n, 1 << clk_info->pll.n_bits);
+> -	n = max_t(unsigned, n, pll_info->n_offset);
+> +	n = min_t(unsigned int, n, 1 << pll_info->n_bits);
+> +	n = max_t(unsigned int, n, pll_info->n_offset);
+>   
+>   	m = (rate / MHZ) * od * n / (parent_rate / MHZ);
+> -	m = min_t(unsigned, m, 1 << clk_info->pll.m_bits);
+> -	m = max_t(unsigned, m, pll_info->m_offset);
+> +	m = min_t(unsigned int, m, 1 << pll_info->m_bits);
+> +	m = max_t(unsigned int, m, pll_info->m_offset);
+> +
+> +	*pm = m;
+> +	*pn = n;
+> +	*pod = od;
+> +}
+> +
+> +static unsigned long
+> +ingenic_pll_calc(const struct ingenic_cgu_clk_info *clk_info,
+> +		 unsigned long rate, unsigned long parent_rate,
+> +		 unsigned int *pm, unsigned int *pn, unsigned int *pod)
+> +{
+> +	const struct ingenic_cgu_pll_info *pll_info = &clk_info->pll;
+> +	unsigned int m, n, od;
+> +
+> +	if (pll_info->calc_m_n_od)
+> +		(*pll_info->calc_m_n_od)(pll_info, rate, parent_rate, &m, &n, &od);
+> +	else
+> +		ingenic_pll_calc_m_n_od(pll_info, rate, parent_rate, &m, &n, &od);
+>   
+>   	if (pm)
+>   		*pm = m;
+> diff --git a/drivers/clk/ingenic/cgu.h b/drivers/clk/ingenic/cgu.h
+> index 10521d1b7b12..bfc2b9c38a41 100644
+> --- a/drivers/clk/ingenic/cgu.h
+> +++ b/drivers/clk/ingenic/cgu.h
+> @@ -55,6 +55,9 @@ struct ingenic_cgu_pll_info {
+>   	s8 bypass_bit;
+>   	u8 enable_bit;
+>   	u8 stable_bit;
+> +	void (*calc_m_n_od)(const struct ingenic_cgu_pll_info *pll_info,
+> +			    unsigned long rate, unsigned long parent_rate,
+> +			    unsigned int *m, unsigned int *n, unsigned int *od);
+>   };
+>   
+>   /**
