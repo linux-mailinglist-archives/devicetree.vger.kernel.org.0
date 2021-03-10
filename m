@@ -2,75 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C873338EE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1CD033391F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 10:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbhCJJiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 04:38:11 -0500
-Received: from mail.loongson.cn ([114.242.206.163]:56262 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232244AbhCJJiH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 04:38:07 -0500
-Received: from [10.130.0.65] (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dx__Jyk0hgzrEXAA--.29585S3;
-        Wed, 10 Mar 2021 17:37:55 +0800 (CST)
-Subject: Re: [PATCH v4 3/7] MIPS: Loongson64: Add support for the
- Loongson-2K1000 to get cpu_clock_freq
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-References: <20210310075639.20372-1-zhangqing@loongson.cn>
- <20210310075639.20372-4-zhangqing@loongson.cn>
- <cb549804-4ee1-79ab-d872-3e95bf0cbe55@gmail.com>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ming Wang <wangming01@loongson.cn>
-From:   zhangqing <zhangqing@loongson.cn>
-Message-ID: <80471671-0e48-c4e7-5a99-f2fffff31a77@loongson.cn>
-Date:   Wed, 10 Mar 2021 17:37:54 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+        id S230525AbhCJJpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 04:45:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232550AbhCJJpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 04:45:32 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98430C061762
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:45:31 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id v15so22562553wrx.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 01:45:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0Erx94zt8ljBM/yS3nXtNjrWvctYWuUVNAQLWpYJJRo=;
+        b=gmhG//67uUiQkJT3GRUTS9z+Tq+SpQbswnEQR3XBOpiU7cuv9y1ZxqWW5di7WTiU0z
+         5IGBqN7qnmOOotjHLYfwHb3ymzghFWrRTY1lWccM1Jx+OctRRl2HrazL+Ie3zn+oOLg4
+         +Cr93FaZA5kDLdCQdfSnM2ocPGfjV/4QFyjlmLL+A/yeCntkZRxL1Y6VHE3Ix0XGWvt0
+         6g/f18dGAHNtTske/QJGnxe1q9MAz0KsF1R4s87be2nrW/bOkzR56VrkiKlK8Lct6oeX
+         n8ruIEf/G85aTXWUgm6d5CINJa9ul6yAnrKIqzkWyNT+48PSH1UtSBhOAi5f8ntwPNJr
+         7JyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0Erx94zt8ljBM/yS3nXtNjrWvctYWuUVNAQLWpYJJRo=;
+        b=QL/wU7vjWxuiEaht96QeQ0IR4BvjP0L5teYm1fTvmCSIbeItpmLR2IZLw7VMFy75F0
+         +HrMlmKBRdhagnXI/V1jMxU/ZBm/pn/rAzBjgJ0Ne+yU46NEzX+hb84ZFC0PgsECUwzX
+         1W5Cq8t5wORl86O4ECAIOFTtUb+kVZmX01ALU2YdGf1XXvEGPLVm//yOWhAIpRYrtiNg
+         E0lY94JRb/qjSj1wVh+F2EhXKk2Co9bwXcY8aoAuiwD3xbVG69sDZe7cMG1cs6kpt4F+
+         DVGwcoL0I9LwcAXj1ZoInvfZ6rUIXCOT7xmnDfvs8qfClAsaaLT7jhEHUmkNB70bKVCf
+         ozRA==
+X-Gm-Message-State: AOAM5308NAEZ/KwGgEdmfgoVjTSfIPPcK26nVMkYBpnxShYuNBmGsA7L
+        NJWwQS3jNjaxW6jkvxpohphtJg==
+X-Google-Smtp-Source: ABdhPJxcv9V5lAz+sEJ4HCtbzjFqfXkdmpxw/ngT7vdSlUljH3RkiAsQdLLVCP49qFAMYuC+GEIjxg==
+X-Received: by 2002:a5d:6381:: with SMTP id p1mr2649040wru.266.1615369530343;
+        Wed, 10 Mar 2021 01:45:30 -0800 (PST)
+Received: from dell ([91.110.221.204])
+        by smtp.gmail.com with ESMTPSA id c9sm11764201wrr.78.2021.03.10.01.45.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 01:45:29 -0800 (PST)
+Date:   Wed, 10 Mar 2021 09:45:27 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Subject: Re: [RFC v2 3/5] arm64: socfpga: rename ARCH_STRATIX10 to
+ ARCH_SOCFPGA64
+Message-ID: <20210310094527.GA701493@dell>
+References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
+ <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <cb549804-4ee1-79ab-d872-3e95bf0cbe55@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf9Dx__Jyk0hgzrEXAA--.29585S3
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-        VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYL7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E
-        6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
-        kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8I
-        cVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2js
-        IEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE
-        5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeV
-        CFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxG
-        xcIEc7CjxVA2Y2ka0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE14v_GFWl42
-        xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
-        GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI4
-        8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
-        MIIF0xvE42xK8VAvwI8IcIk0rVW3JVWrJr1lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcV
-        C2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUjaLvtUUUUU==
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 10 Mar 2021, Krzysztof Kozlowski wrote:
 
+> Prepare for merging Stratix 10, Agilex and N5X into one arm64
+> architecture by first renaming the ARCH_STRATIX10 into ARCH_SOCFPGA64.
+> 
+> The existing ARCH_SOCFPGA (in ARMv7) Kconfig symbol cannot be used
+> because altera_edac driver builds differently between them (with
+> ifdefs).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  arch/arm64/Kconfig.platforms                |  7 ++++---
+>  arch/arm64/boot/dts/altera/Makefile         |  2 +-
+>  arch/arm64/configs/defconfig                |  2 +-
+>  drivers/clk/Makefile                        |  2 +-
+>  drivers/clk/socfpga/Kconfig                 |  4 ++--
+>  drivers/edac/Kconfig                        |  2 +-
+>  drivers/edac/altera_edac.c                  | 10 +++++-----
+>  drivers/firmware/Kconfig                    |  2 +-
+>  drivers/fpga/Kconfig                        |  2 +-
 
-On 03/10/2021 04:50 PM, Sergei Shtylyov wrote:
-> Hello!
->
->    You don't seem to need this initializer.
-Hi,Sergei
+>  drivers/mfd/Kconfig                         |  2 +-
 
-Thanks for your suggestion,
-clk will not be affected by others when it is defined until the value is 
-obtained,
-=NULL can be deleted, but I think it seems to have no effect.
+If it's okay with everyone else, it'll be okay with me:
 
-Thanks,
-Qing
->
->
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
+>  drivers/reset/Kconfig                       |  2 +-
+>  12 files changed, 21 insertions(+), 20 deletions(-)
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
