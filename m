@@ -2,131 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9602334662
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 19:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 102FC33469A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 19:23:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbhCJSOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 13:14:52 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:52307 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233679AbhCJSOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 13:14:39 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9317522173;
-        Wed, 10 Mar 2021 19:14:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615400078;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=raaT8hRIbeIkMsfmgVYBm7wNKoVMABIhHxKLm28T03s=;
-        b=tAwIfuHQ1UIEuWmKANx46QXvrhsMsjpXyVkGLtwNTP9g8WVpCMp5mWUEl8E4vRPOUuGyxE
-        TmKC4VGVy2+RcPD116dB0ZQRCT050viuhioJA1P7mJ0uLYGwYp+WAsBEFBtEguybdf2GJT
-        wnA4WYCP+dBI/SQFOBLog3Oi+jE1IN4=
+        id S232809AbhCJSWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 13:22:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhCJSWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 13:22:35 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED1CC061761
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 10:22:35 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id v192so12570501oia.5
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 10:22:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dRPa+MKHXJoax045qmF2GLp0jz/mQE6D5ZmN+LMnrsE=;
+        b=jZrmuBed1foFlgTtPJmKyc7a+CFQse/0jl6E9oSCWFO+UfkNKjcHYohUtuM3a+rVFY
+         bjikQkD9fWxl1iTPlaipplcN7xgj7ltC12aKYqPnxzWR5bO2xAp8/DoKpaeL9/Euge/A
+         WUEQddkfjuTnKHDIUa8JB2BMbvsb0/D4IxaSGPluAKy5M3e5AoWOGBY/c7pbPAZA9qR/
+         GtVFZP6sXUEANKKju6bApguIVDFR9wlunhMPwUFAuVZmuNVAhbfis+fL+aLI81lGTUb5
+         9G2GyCmhuiGFHWA6w/3GR5tsRd6YNpFPAiYXJkUMFzj//Wt3qR3E6TtYAv+kR25gxRni
+         fwiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dRPa+MKHXJoax045qmF2GLp0jz/mQE6D5ZmN+LMnrsE=;
+        b=SjYJ/7nUb710l01aYyzOK5HTaS3UwgGnZUqlniUm+7b6L3Ka7a1cTf1K4wejogu8jg
+         jNs7BeQKHc6wJlzN3tXr/ySEdCj8Il4fROU+VPf5V+dk96jtxMK47UnVy1PStXqGo/K2
+         orUWqBRLw9ThWMI+DggklOk1zB7HNssQgbkOMER46WIk7UEhpWohEH3W3+YDNGvisB1x
+         5rQlTkmD9pJ0JCZ1dxCh4qackBUg1y4yqo2ggoVN3YF0RWoKi8T6PUV+0ng+2e8dzzob
+         BKeaoZXv9iqdpngvza1GvQDt9F3y8F7Il1NzNsy52EQxfFw5GAdp3fdnk/8VCiIry3YS
+         594A==
+X-Gm-Message-State: AOAM531N7FzPn2v1al6Mbdv9If+Dr3mwp0owY3LlReX0e2mr1DHCWsaO
+        YjpOTia7CZDje27FnguFDhmazQ==
+X-Google-Smtp-Source: ABdhPJzDEwDnms71wcqZ06xpRz9wfUTSjnV7Au3tEFDwobcG35rKOseyZwlWZCyaZqXxlpmCeOq62A==
+X-Received: by 2002:a05:6808:d46:: with SMTP id w6mr3339345oik.47.1615400554532;
+        Wed, 10 Mar 2021 10:22:34 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n1sm29739oig.47.2021.03.10.10.22.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 10:22:33 -0800 (PST)
+Date:   Wed, 10 Mar 2021 12:22:32 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
+ 'gpio-ranges'
+Message-ID: <YEkOaK+UiLy8kSDu@builder.lan>
+References: <20210303033106.549-1-shawn.guo@linaro.org>
+ <20210303033106.549-2-shawn.guo@linaro.org>
+ <YEKl7GbxBhui4eoT@builder.lan>
+ <20210306012829.GL17424@dragon>
+ <YELhMmDndOTSSJJO@builder.lan>
+ <20210306080049.GM17424@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 10 Mar 2021 19:14:37 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        jonathanh@nvidia.com, kuninori.morimoto.gx@renesas.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        robh@kernel.org, sharadg@nvidia.com, thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-In-Reply-To: <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <6e6b312eb91b8b86ceaa8a52311ea437@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210306080049.GM17424@dragon>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sameer, Hi Mark,
+On Sat 06 Mar 02:00 CST 2021, Shawn Guo wrote:
 
-Am 2021-03-10 15:50, schrieb Sameer Pujar:
-> On 3/10/2021 4:00 AM, Michael Walle wrote:
->> Am 2021-03-09 17:27, schrieb Sameer Pujar:
->>> On 3/9/2021 8:11 PM, Michael Walle wrote:
->>>>> If "clocks = <&xxx>" is specified from the CPU or Codec component
->>>>> device node, the clock is not getting enabled. Thus audio playback
->>>>> or capture fails.
->>>>> 
->>>>> Fix this by populating "simple_dai->clk" field when clocks property
->>>>> is specified from device node as well. Also tidy up by 
->>>>> re-organising
->>>>> conditional statements of parsing logic.
->>>>> 
->>>>> Fixes: bb6fc620c2ed ("ASoC: simple-card-utils: add
->>>>> asoc_simple_card_parse_clk()")
->>>>> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->>>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->>>> 
->>>> This actually breaks sound on my board
->>>> (arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts).
->>>> The codec on this board (wm8904) has a fixed clock input (only
->>>> distinct
->>>> frequencies are supported) and uses the FLL of the codec to generate
->>>> the
->>>> desired sample rate.
->>>> 
->>>> It seems that after this patch the clock rate of the codecs clock
->>>> (rather
->>>> than the FLL) is tried to be changed. Which fails, because it 
->>>> doesn't
->>>> support arbitrary frequencies.
->>> 
->>> Yes, after the given change the clock will be updated if "*mclk-fs"
->>> property is specified.
->>> 
->>> DT you mentioned has property "simple-audio-card,mclk-fs = <256>",
->>> which means you need a clock that is a function of sample rate. But 
->>> as
->>> per above you want a fixed clock for MCLK. I think if you drop this
->>> property, the clock updates won't happen. Earlier for your case, this
->>> property was not used at all because the clock handle was not
->>> populated.
->> 
->> You mean to drop the mclk-fs property? I can't do that because I
->> actually need a frequency of 256 * sample rate. But that doesn't
->> necessarily need to be the MCLK, because the codec itself has a
->> FLL/PLL which can be used to generate any frequency for a given
->> MCLK. So that is a valid scenario. See also commit 13409d27cb39
->> ("ASoC: wm8904: configure sysclk/FLL automatically").
->> 
+> On Fri, Mar 05, 2021 at 07:56:02PM -0600, Bjorn Andersson wrote:
+> > On Fri 05 Mar 19:28 CST 2021, Shawn Guo wrote:
+> > 
+> > > On Fri, Mar 05, 2021 at 03:43:08PM -0600, Bjorn Andersson wrote:
+> > > > On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
+> > > > 
+> > > > > The last cell of 'gpio-ranges' should be number of GPIO pins, and in
+> > > > > case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
+> > > > > than msm_pinctrl_soc_data.ngpio - 1.
+> > > > > 
+> > > > 
+> > > > This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
+> > > > this there's an output-only pin for UFS, which I exposed as an GPIO as
+> > > > well - but it's only supposed to be used as a reset-gpio for the UFS
+> > > > device.
+> > > > 
+> > > > Perhaps that still mandates that gpio-ranges should cover it?
+> > > 
+> > > I think the number in DT gpio-ranges should match msm_pinctrl_soc_data.ngpio.
+> > > Otherwise, kernel will be confused and be running into the issue like
+> > > below in some case.
+> > > 
+> > > > 
+> > > > > This fixes the problem that when the last GPIO pin in the range is
+> > > > > configured with the following call sequence, it always fails with
+> > > > > -EPROBE_DEFER.
+> > > > > 
+> > > > >     pinctrl_gpio_set_config()
+> > > > >         pinctrl_get_device_gpio_range()
+> > > > >             pinctrl_match_gpio_range()
+> > > > 
+> > > > When do we hit this sequence? I didn't think operations on the UFS
+> > > > GP(I)O would ever take this code path?
+> > > 
+> > > It will, if we have UFS driver booting from ACPI and requesting reset
+> > > GPIO.
+> > 
+> > But does the UFS driver somehow request GPIO 190 on SC8180x?
+> > 
+> > I made up the idea that this is a GPIO, there really only is 190 (0-189)
+> > GPIOs on thie SoC.
+> > 
+> > Downstream they use a pinconf node with "output-high"/"output-low" to
+> > toggle the reset pin and I don't find any references in the Flex 5G
+> > DSDT.
 > 
-> If I read this correctly below is the configuration you need,
-> SoC -> MCLK(fixed rate) -> PLL(wm8904) -> PLL output (256 * fs) -> 
-> sysclk
+> Right now, I do not have to request and configure this UFS GPIO for
+> getting UFS work with ACPI kernel.  And the immediate problem we have is
+> that with gpio_chip .set_config patch, devm_gpiod_get_optional() call
+> from UFS driver always gets -EPROBE_DEFER.
 > 
-> From the doc simple-card.txt, "simple-audio-card,mclk-fs" is a scaling
-> factor for MCLK and hence I am not sure if it is correct to have
-> "*mclk-fs" property when MCLK is fixed. In simple cases, codec sysclk
-> direclty depends on MCLK and set_sysclk() callback helps. Your case
-> requires PLL configuration and set_pll() may be a better alternative.
-> However simple-card does not offer this yet. But even if this is
-> added, there should be a way to suggest PLL output requirement as a
-> function of sample rate.
 
-But its also a scaling factor for the sysclk, then maybe the property
-has a wrong name. And you might be right with your suggestion, but
-as I said, this breaks sound on my board and whats even worse, it
-breaks it for older kernel too, because of the Fixes tag.
+But we don't have a "reset" GPIO specified in the ACPI node, or you mean
+with the introduction of .set_config DT no longer works?
 
-Btw I'm pretty sure, the MCLK was enabled and disabled depending on
-whether there was an audio stream, the last time I've measured the
-clock.
+Regards,
+Bjorn
 
-Mark, can this patch please be reverted (with a Fixes tag) until
-a proper fix is found which satisfies both needs?
-
--michael
+> > 
+> > > And we are hit this sequence with my patch that adds .set_config
+> > > for gpio_chip [1].
+> > > 
+> > 
+> > What's calling pinctrl_gpio_set_config() in this case?
+> 
+>   ufs_qcom_probe
+>     ufshcd_pltfrm_init
+>       ufshcd_init
+>         ufs_qcom_init
+>           devm_gpiod_get_optional
+>             devm_gpiod_get_index
+>               gpiod_get_index
+>                 gpiod_configure_flags
+>                   gpiod_direction_output
+>                     gpiochip_generic_config
+> 
+> Shawn
