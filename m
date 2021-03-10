@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CFA5333C36
-	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 13:08:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F43333C4B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Mar 2021 13:11:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbhCJMHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 07:07:30 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:50857 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232752AbhCJMHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 07:07:04 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 3113E173F;
-        Wed, 10 Mar 2021 07:07:03 -0500 (EST)
-Received: from imap1 ([10.202.2.51])
-  by compute6.internal (MEProxy); Wed, 10 Mar 2021 07:07:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=Y6oI0uI0nWMx9MNRUrMEOrpOEzJTy6L
-        P7lbYWOZ1nlU=; b=HWc2bfgseyo5tlVzcbVXzj12x6srQ5CjgurDOKU6AvYDfuQ
-        hE/GQRm7wfEN9Sz/cttUwG9iq9inF9R+d9UQTP4B3QRxr0byzSWxO28JpYo76CG9
-        vnX7/D2pugsK8ekboeFV6VLqnaSM15XBIjh7u1dOOFDmsVvP7tsnEM40C82/G7Lo
-        +D+fl74e/Xxe3l169Hagxwzc32Kgz8OuAkdlS819ZtcHh6eRmWpb7DvVe5/GzG9v
-        naKB+F5wla0lWFrnkgXq+sdJ6dGOg2RXcNnbeFdu/EsQBZ6Bj/S72UigROpwbjC6
-        HBSxi/MphwlaXRZaMzWTFEYITucHxLOCdh39AqQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Y6oI0u
-        I0nWMx9MNRUrMEOrpOEzJTy6LP7lbYWOZ1nlU=; b=fy+Tq8DEWqgA+HLgSqy+PY
-        Qns/IgB55uMn3OGo/HYJP6O08Vk7f5sWKJHapriRT7IdA57YNNHONMdRSwXTLNkm
-        a9xdA/qkXCTnIuSQVmStgeb+nzkQrVTP7h+sJh2lG16VDbwjNHQQPkrEPcvwDeuS
-        HQiOXb8PEdKv/Zmq82fCuzsvtFoGPyADn9ocnGu+GVSgyNnX0Tv2lsUK3RUBz2zq
-        uq1EDNYKveS+cfh120nrJ14B1Zoslea/Xv1MuWVlv1kylX/mskQxoeM+9eso1Fxf
-        N5SxRevELkk305ZrNaFGL+kV61Q7fGyZOC/BP4equSZ80aVn3NaDWlXD1vWSeCjA
-        ==
-X-ME-Sender: <xms:ZbZIYHoaXyVmA4jJza80PebSPgVdExtOLACtzUtpAkhNNKPrY3Js8w>
-    <xme:ZbZIYBr-tddyeGzldtx3-id8oLRhSWHz4zjL0d_EeQO2fGSF0s66ljcaMrPAuUdNX
-    0joX_87nuIWqWLiZXQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddukedgfeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdflihgr
-    gihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqe
-    enucggtffrrghtthgvrhhnpeevtdehveetkedvvdehhfeuueeffeduffduveevudeiveeu
-    tedvheekteeujeegueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:ZbZIYEPlIB6maS5t_FvDqtDFxstvtwOzQNwK80ko-H4d9LyYdxOvHA>
-    <xmx:ZbZIYK47oxrf8DPWk3mz8GH4qR19urseAvP7xCpmUXnlN3w9_ehpQA>
-    <xmx:ZbZIYG6ByiP0_JZMgk2Ro3oY4KPuBaS9jxSd_Hxk3fYyo4f_pu5GMA>
-    <xmx:ZrZIYNZCYweyndllhSqASAotumxIPfzff_7gJodKp9h-KBFNVap8ew>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 23680130005D; Wed, 10 Mar 2021 07:07:01 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-206-g078a48fda5-fm-20210226.001-g078a48fd
-Mime-Version: 1.0
-Message-Id: <8e445b26-db5c-48b8-8a16-f206cefae78b@www.fastmail.com>
-In-Reply-To: <80471671-0e48-c4e7-5a99-f2fffff31a77@loongson.cn>
-References: <20210310075639.20372-1-zhangqing@loongson.cn>
- <20210310075639.20372-4-zhangqing@loongson.cn>
- <cb549804-4ee1-79ab-d872-3e95bf0cbe55@gmail.com>
- <80471671-0e48-c4e7-5a99-f2fffff31a77@loongson.cn>
-Date:   Wed, 10 Mar 2021 20:06:39 +0800
-From:   "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To:     "Qing Zhang" <zhangqing@loongson.cn>,
-        "Sergei Shtylyov" <sergei.shtylyov@gmail.com>,
-        "Huacai Chen" <chenhuacai@kernel.org>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>
-Cc:     "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        "Ming Wang" <wangming01@loongson.cn>
-Subject: =?UTF-8?Q?Re:_[PATCH_v4_3/7]_MIPS:_Loongson64:_Add_support_for_the_Loong?=
- =?UTF-8?Q?son-2K1000_to_get_cpu=5Fclock=5Ffreq?=
-Content-Type: text/plain
+        id S232814AbhCJMKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 07:10:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233003AbhCJMKC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 07:10:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B5BB564FC8;
+        Wed, 10 Mar 2021 12:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615378202;
+        bh=4UsdUZcgfn3U5kBos3d325ZWU5xFGI9Uw9n3S63rJIA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ttietl6wH0OObTD/pHjfmq6oRGbMjyyqT1eBtykkrMIO1n2dsGWII8jzKqwTVsnnf
+         86muKxyQnRD3EQlS4tOK3h30H2wB0ZssbVCEiY756MGS1bybFPmaywlz/gIGSwZH2e
+         bWH0Z21av6xUN7W1iv1n1o1rUS2wx1bFYl2esMjgsJ5dYNs4omyS7d3IbA+K7HTxLG
+         AsX/7HG+heEo0a0XRMeHjdu0s4CsCMsB4INekcuyrAxHS6UsLFm3Ry5u/BrUdyuwhW
+         7APxVOc8kGBIKxrLWry3O3ZOjI2Onea54TzsK49N2NaLYqM/rOvszGYLZLdtQ9PhHg
+         xyA0hvqwkTYlQ==
+Date:   Wed, 10 Mar 2021 12:08:50 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>
+Subject: Re: [EXT] Re: [PATCH] dt-bindings: spi: Convert NXP flexspi to json
+ schema
+Message-ID: <20210310120850.GA4746@sirena.org.uk>
+References: <20210309103528.3538910-1-kuldeep.singh@nxp.com>
+ <DB6PR0402MB275834FAF7CEF44AB7F342B2E0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+ <20210309123601.GA4878@sirena.org.uk>
+ <DB6PR0402MB275840529A4F50EBFC723E1AE0929@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+ <20210309173138.GC4878@sirena.org.uk>
+ <DB6PR0402MB27582479DBE5A2011ABB049FE0919@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Q68bSM7Ycu6FN28Q"
+Content-Disposition: inline
+In-Reply-To: <DB6PR0402MB27582479DBE5A2011ABB049FE0919@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+X-Cookie: no maintenance:
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--Q68bSM7Ycu6FN28Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Wed, Mar 10, 2021, at 5:37 PM, zhangqing wrote:
-> 
-> 
-> On 03/10/2021 04:50 PM, Sergei Shtylyov wrote:
-> > Hello!
-> >
-> >    You don't seem to need this initializer.
-> Hi,Sergei
-> 
-> Thanks for your suggestion,
-> clk will not be affected by others when it is defined until the value is 
-> obtained,
-> =NULL can be deleted, but I think it seems to have no effect.
+On Wed, Mar 10, 2021 at 10:24:21AM +0000, Kuldeep Singh wrote:
 
-Please do reasonable change only.
+> > Like I said in the mail you're replying to please send me a copy of the patch.
 
-Thanks.
+> I hope this will suffice. Please let me know in case of any other requirement.
 
-- Jiaxun
+Please submit the patch following the process documented in
+submitting-patches.rst.
 
-> 
-> Thanks,
-> Qing
-> >
-> >
-> 
->
+--Q68bSM7Ycu6FN28Q
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-- Jiaxun
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBIttEACgkQJNaLcl1U
+h9C+nwf/V0tpHeRcWrrr0mFyI9HT+MWYHUlMdejOUVaU9o4Ro+RzU2gBObwRjrx0
+bqZDgpxiLz4I7bMPi84ZboTSwfVZYPoUC+Itl9Lr0akw5Cw1HCLvfIbO5a/lpwAe
+xsqQV6XZQpZCQVpzWUGWSfn8SAIUiHNI3811oiOXRbWWKIiZJPmJRrnX45zB6nc7
+eRi5OqWEaBW0Ho95kbIILp9JfSEh7PzU3GnhtumjRYuEyXGH4dQq1kaig2lrpPuZ
+OkuAFAkzBTKtgWLm4RcSDX+GNRH7hW6CtcR+zb48iIJVBqtNjQPlxnwjORonGeZM
+oE6IQNiz3G8MFbww3m/Wfd+1FwwQ5A==
+=MUZe
+-----END PGP SIGNATURE-----
+
+--Q68bSM7Ycu6FN28Q--
