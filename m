@@ -2,212 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 092C6337065
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7BA337099
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:56:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbhCKKpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 05:45:53 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:50038 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232495AbhCKKpu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 05:45:50 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615459550; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=AGtwfdMWnfuGN8UFZDfbkL93iyFVGww40mvtGM+zXQo=;
- b=tCysCOhzB2AwRrBwshDWyF1bdH/uPjnty3YyvEADW1qUWvNJpNejZeWRAZOEWrwbn0N3ssVh
- Cyx/6dLOUu7chFeT7H5CYzOjH731usbojHAGU9H1PNqyui1ZrICOuWPwz0KYD1k+KQyp46+P
- EOzfHwmGxo5uQ4/Wtz5D1MdyB58=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 6049f4dcfa6ebd85e8c012d4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 10:45:48
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E57C5C43464; Thu, 11 Mar 2021 10:45:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BBA70C433C6;
-        Thu, 11 Mar 2021 10:45:47 +0000 (UTC)
+        id S232408AbhCKKza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 05:55:30 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:45210 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232326AbhCKKzO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 05:55:14 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12BAkMPm012678;
+        Thu, 11 Mar 2021 11:55:06 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=mW8V1YE0tgkTyDkUVctY/4mgkq8WcINvrVzVfkpMieI=;
+ b=BRbi55kLrgzuUpEiGJEIllDyTwJ8KtS01zIRgW5BJaCCjpa+7lpRBtfn2DAYH0kkA4mN
+ ziDd7jNHN0jGTGWkMFmr6NtvJ2gaYxBSKibrbD68H5UDH4OAkKhniDo49hooDGlHDV6c
+ w5aV9zzvaYISOv4GjVPFsjnEixfqiarrUuT2DF35NX+Pn9Q/KCzoAtira25V4BokSFQE
+ VbWZfY28Bf3R0PVvBlSDsNbHz7mWy7+89hsR/67AtFgLEWIuz5SNtePjUxn2Qs9xO5kW
+ +e6GSnBnpxnHa0BSBQWd5mZe/RdVKPbRcSJaf47vsCebSBeAKiMPwNT1JFYOB/qLpqAT 0g== 
+Received: from eur03-db5-obe.outbound.protection.outlook.com (mail-db5eur03lp2055.outbound.protection.outlook.com [104.47.10.55])
+        by mx07-00178001.pphosted.com with ESMTP id 3741y75n62-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 Mar 2021 11:55:05 +0100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fE5ZPoYDLdI7Qs7UYNs+/147xNv6UiDGZiIGx5FXE6qwclNNR8UxyqBg7jepr+j1aYdHnwygnvSorBbCJNm6FI61sqwlyPxuix/TjEEVwnUeberoUS8LMvLW7+s+Z+Vb6eAGZWXjBrNnDVPWSNJY3j1moGHvkXVEPQNir0QynBS4/0AB2pT4ACGhaU1mRAlOxKkXcSZRZvXSvc9PNnbLf6deZfn/WMIGMq8j8mhp4SsJpgcce0ikcsgs9C9LDb+Ri4GAv0K815Ai3Fwo8rbD8j6XzmyzZDOvMz6Pmjoy86Dh7odHwzJ2aJdOIWD7cvPX4IwTp4vLfR5do1ilEkh7eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mW8V1YE0tgkTyDkUVctY/4mgkq8WcINvrVzVfkpMieI=;
+ b=QGKdoR1YGtLsL6TWMCubIbDD5gMGL/okL3TxX3glr9PejJ1REVTf8qNcno5KxQptGsy82iPe57UOmGggQwIkU/SEfv+vLMU6tx7uBZNC6eSR0kQ9AEgYqhqf+f9GXRCjATOd8T+7wBd8LV8PhUaQqzyyI7+f1Jgf75YA/6qzmnWCJ1QDm9pdK/fEb25sM/YE5pgrkM9uRgnetJ0fdvIc3sS4+aSyXgeX3KWY52WLTbnHmSxJbhqL/uRVNcFCI59MxdK4RTfjCTgb83mQgJvgBPLOO+PVU4/IYqjb44SExupIKbfD8d+qa+o5wUVRmVlfTLc/SBoNAbJkWpzN7Pcl+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=st.com; dmarc=pass action=none header.from=st.com; dkim=pass
+ header.d=st.com; arc=none
+Received: from AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:31d::16)
+ by AM6PR10MB3365.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:ec::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Thu, 11 Mar
+ 2021 10:55:04 +0000
+Received: from AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::e96b:5d97:d0a0:4aac]) by AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::e96b:5d97:d0a0:4aac%4]) with mapi id 15.20.3912.031; Thu, 11 Mar 2021
+ 10:55:04 +0000
+From:   Alexandre TORGUE <alexandre.torgue@st.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-amarula@amarulasolutions.com" 
+        <linux-amarula@amarulasolutions.com>
+Subject: RE: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
+Thread-Topic: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
+Thread-Index: AQHXDeiB/jNnr1iex0S//SVX9K6UV6p+re0w
+Date:   Thu, 11 Mar 2021 10:55:04 +0000
+Message-ID: <AS8PR10MB4712FA30DFDD31C536A519E8EE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
+References: <20210228154323.76911-1-jagan@amarulasolutions.com>
+In-Reply-To: <20210228154323.76911-1-jagan@amarulasolutions.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: amarulasolutions.com; dkim=none (message not signed)
+ header.d=none;amarulasolutions.com; dmarc=none action=none
+ header.from=st.com;
+x-originating-ip: [165.225.76.169]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: dddf5866-db5d-447a-fb36-08d8e47c205e
+x-ms-traffictypediagnostic: AM6PR10MB3365:
+x-ld-processed: 75e027c9-20d5-47d5-b82f-77d7cd041e8f,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR10MB336540EA605B0523323FB042EE909@AM6PR10MB3365.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:241;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AuWxbsW/726TvITy0jttou0qTLCIKmxnHLFtLhk9zRC/Mtmrm4kGYuXN2RpbSUyTWzFg/XS2C07YS0vAfNQ0Hx6Z0LNNoq0qHV8AaBu/tllSvg1VwhZ/co+LAcABU70UB3ZB8YNMt9eCdjxxAyP4aX0qh1HCowfEKTESkljJylhaTFNPeuBXmTvjii1OYRI4k5mWuxvrJzaURogbw296dkh3WC/AKDhrtVuHSSA65K+lwk+dXfyc58Z99njqXLGm/txxAnM+Dc5iWDk/VRYAuEO4i8dg9hDTP75mMhoy0difO+Ah2RKhiAOljylAjFN4TYfWJl6tTZJZiFVPsoBwBquYkKKhVdu2ZTgzJJalXmyVqiErkLOH6MgA+lAuPWtXmmPIkVvJzeg3x3ML2Q3kOf7JbPY37/w7bjkEmKVCVTUKozHQWyojxPzkSDt4aMtLh/OPM4aCX85tBJUIsKMeHIU2YrRrgiYCWP50xcxMM5SVx679Rhspjn+IiU6T0Uw50mHn92E6MU3Oh6+gKwQFDw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(39860400002)(376002)(366004)(66556008)(55016002)(66476007)(64756008)(186003)(33656002)(7696005)(66574015)(66446008)(66946007)(55236004)(52536014)(316002)(83380400001)(6506007)(5660300002)(8676002)(9686003)(110136005)(53546011)(54906003)(8936002)(2906002)(86362001)(71200400001)(4326008)(478600001)(26005)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?AQz7j+N48vWEv6y2ZXMg3O9+vBwhDFZ41Okn8bjdNf3xLF82jh5TmosXKi?=
+ =?iso-8859-1?Q?WCI2M+L5ziK+1mo6PRDKwgvokr+1BfxAwxOnBJ5qhDKfOQsVtRaPQLuE4a?=
+ =?iso-8859-1?Q?MgrLLL4/kYdR1J21KLSFKrao4i2xBOlesZjDHpwY5wOomboW7EeXvEN9U5?=
+ =?iso-8859-1?Q?Wrgjh4+DxjTo24eUiaoaXOWResOLCJoBE36lcv3BzmuinR2F+HEtAGrT/E?=
+ =?iso-8859-1?Q?XwDEgKHAr3pz7koLaJgDRDZj2N28xV3xRv0ohYXESnOwbwelGQ/N1iHvoM?=
+ =?iso-8859-1?Q?Vs/tIisksom3reVWwQNakzbqKtAOSjvdC7tVZ6vmHlRanE/IaDsEAmnX0c?=
+ =?iso-8859-1?Q?40K++HRX6PS2ZlzBd27vfRvP/U/94+5N6s02sAWu/0kAwsL4Ba0rmFO3zC?=
+ =?iso-8859-1?Q?PJHwCCxiEdioT7r3Xfezj2dTDFHaWxWfEwPNx+UWs/iud01d59C1nCxd3a?=
+ =?iso-8859-1?Q?7GBFnM5jnojYMKL5fA0pOnAqawwhTOvX61pC5Vr701jx8aD0vb2y9+iusU?=
+ =?iso-8859-1?Q?YeTRjy3in3SulMa8Cq1Yxi1T2xt93zlsFgbINryX6MlRws44ANGFv+vI6g?=
+ =?iso-8859-1?Q?bsBDFr4au5zLzljog7Vi6ZclNnWWTFofL5F4LZw+zGbL9FvHbpJoszpavr?=
+ =?iso-8859-1?Q?D7TUfJzn9SfvUlwCbwkcEnlNCPoOde0FASkTlR1cKsrdO1gqMp9/pPEzrY?=
+ =?iso-8859-1?Q?aDkszF8F13KFi+X4v6pjgNrjW/62KIHPxf0YvQerhjsuJ/IHENRSpzu0IY?=
+ =?iso-8859-1?Q?EGKBWtKTvGVxNV4cazmnN4o1XF73sADbriSc/2Lz4rTeE3KxvzWDfVPG6V?=
+ =?iso-8859-1?Q?9BSnoMKJpK5kcGq8PqwIJ7uV3Vrq3TiiB99bL6v2AOoAYELneou5wEmRpT?=
+ =?iso-8859-1?Q?mfmD7ayG30NXVA8pUrAEdpbEbh95xwDPvf19Q0JO2c69B9FVFXDHEbR2dp?=
+ =?iso-8859-1?Q?qb4iSvZj2mNEiQjREpjApO7xodfQod/oQ/JGXL3jbIh7ChZvUwK73YmXrn?=
+ =?iso-8859-1?Q?2pwEg7LCnaSR/9CmuOwtIDbpRCTf6+QNDbDYw1QCV3Z1vu/1XEe/IAB8mJ?=
+ =?iso-8859-1?Q?yOQN5fFSkU4AfvrSB+Btd9dzKtC7EebcmUVEUoOTw98J+tsDYUu61iZw48?=
+ =?iso-8859-1?Q?Qdy8ptCnNPvOzhIR++XIPuWvPnQCe35wU5qT1d3rNNhh5L555qqDxO8MAH?=
+ =?iso-8859-1?Q?1hQinGReWvup3XEcmNwQDOf1wTXzCY6xwXXDPoMIAO36nej3oEHAOJ5/R+?=
+ =?iso-8859-1?Q?00dgASxUvP6Ke2s36ercO78s9i9iNMKrlpT9cZyCxck+iPxzFS0EEwdzJb?=
+ =?iso-8859-1?Q?XlGmdgdHosZBvHfvnlUBYAJAh4l/v480FUU/VsBslxyKNsTtu3IF2gNOwy?=
+ =?iso-8859-1?Q?z0Az8Wii7t?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 11 Mar 2021 16:15:47 +0530
-From:   schowdhu@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        sibis@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V1 4/6] DCC: Added the sysfs entries for DCC(Data Capture
- and Compare) driver
-In-Reply-To: <YElWLqemavtXGlPd@builder.lan>
-References: <cover.1615393454.git.schowdhu@codeaurora.org>
- <332477ea39088fca5879af1a5278c289e1602f6d.1615393454.git.schowdhu@codeaurora.org>
- <YElWLqemavtXGlPd@builder.lan>
-Message-ID: <25fa62cd3726c2389144c3b0f35cff7d@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: ST.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: dddf5866-db5d-447a-fb36-08d8e47c205e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2021 10:55:04.1774
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NNbTGBLSbnYRAOg6Rg2UzyLW2dXrLz1mo4J16S0+DSU+N0I32xqzGxevg+82yr+MfKAjcntEQmIyM1yTKiAsbg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR10MB3365
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-11_04:2021-03-10,2021-03-11 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=852 malwarescore=0 priorityscore=1501 adultscore=0 bulkscore=0
+ phishscore=0 spamscore=0 clxscore=1011 impostorscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2103110058
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-11 04:58, Bjorn Andersson wrote:
-> On Wed 10 Mar 10:46 CST 2021, Souradeep Chowdhury wrote:
-> 
->> The DCC is a DMA engine designed to store register values either in
->> case of a system crash or in case of software triggers manually done
->> by the user. Using DCC hardware and the sysfs interface of the driver
->> the user can exploit various functionalities of DCC. The user can 
->> specify
->> the register addresses, the values of which is stored by DCC in it's
->> dedicated SRAM. The register addresses can be used either to read 
->> from,
->> write to, first read and store value and then write or to loop. All 
->> these
->> options can be exploited using the sysfs interface given to the user.
->> Following are the sysfs interfaces exposed in DCC driver which are
->> documented
->> 1)trigger
->> 2)config
->> 3)config_write
->> 4)config_reset
->> 5)enable
->> 6)rd_mod_wr
->> 7)loop
->> 
->> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
->> ---
->>  Documentation/ABI/testing/sysfs-driver-dcc | 74 
->> ++++++++++++++++++++++++++++++
->>  1 file changed, 74 insertions(+)
->>  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
->> 
->> diff --git a/Documentation/ABI/testing/sysfs-driver-dcc 
->> b/Documentation/ABI/testing/sysfs-driver-dcc
->> new file mode 100644
->> index 0000000..7a855ca
->> --- /dev/null
->> +++ b/Documentation/ABI/testing/sysfs-driver-dcc
->> @@ -0,0 +1,74 @@
->> +What:           /sys/bus/platform/devices/.../trigger
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file allows the software trigger to be enabled
->> +		by the user through the sysfs interface.Through this
->> +		interface the user can manually start a software trigger
->> +		in dcc where by the dcc driver stores the current status
->> +		of the specified registers in dcc sram.
->> +
->> +What:           /sys/bus/platform/devices/.../enable
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file allows the user to manually enable or
->> +		disable dcc driver. The dcc hardware needs to be
->> +		enabled before use.
->> +
->> +What:           /sys/bus/platform/devices/.../config
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file allows user to configure the register values
->> +		along with addresses to the dcc driver.This register
->> +		addresses are used to read from,write or loop through.
->> +		To enable all these options separate sysfs files have
->> +		are created.
-> 
-> Please describe the expected content of this file.
+Hi Jagan
 
-Ack
+> -----Original Message-----
+> From: Jagan Teki <jagan@amarulasolutions.com>
+> Sent: dimanche 28 f=E9vrier 2021 16:43
+> To: Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre TORGUE
+> <alexandre.torgue@st.com>; Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org; linux-stm32@st-md-
+> mailman.stormreply.com; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; linux-amarula@amarulasolutions.com; Jagan Teki
+> <jagan@amarulasolutions.com>
+> Subject: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
+>=20
+> This is the initial series to support Engicam MicroGEA STM32MP1 and i.Cor=
+e
+> STM32MP1 SoM and it's associated carrier board dts(i) support.
+>=20
 
->> +
->> +What:           /sys/bus/platform/devices/.../config_write
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file allows user to write a value to the register
->> +		address given as argument.The values are entered in the
->> +		form of <register_address> <value>.
-> 
-> So it's just a generic 'write some user defined data to some user
-> defined register'? This doesn't sound like the typical way things are
-> exposed in sysfs.
+Series applied on stm32-next.
 
-In certain cases we need to write some values to a register to access
-the rest of the values from some other registers. To handle such cases
-DCC can also write to registers on system crash or software triggers if
-necessary. The same is achieved through this sysfs interface in user 
-space.
+Thanks
+Alex
 
+> Changes for v3:
+> - fixed v2 comments
+> - updated commit messages
+> Changes for v2:
+> - fixed v1 comments
+> - add i.Core STM32MP1 SoM
+>=20
+> Any inputs?
+> Jagan.
+>=20
+> Jagan Teki (10):
+>   dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0
+>   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 SoM
+>   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 board
+>   dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7"
+> OF
+>   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7" OF
+>   dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
+>   ARM: dts: stm32: Add Engicam i.Core STM32MP1 SoM
+>   ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
+>   dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter
+> Kit
+>   ARM: dts: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter Kit
+>=20
+>  .../devicetree/bindings/arm/stm32/stm32.yaml  |  17 ++
+>  arch/arm/boot/dts/Makefile                    |   4 +
+>  .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  47 +++++
+>  .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  47 +++++
+>  .../boot/dts/stm32mp157a-icore-stm32mp1.dtsi  | 196
+> ++++++++++++++++++  ...157a-microgea-stm32mp1-microdev2.0-of7.dts |
+> 154 ++++++++++++++  ...32mp157a-microgea-stm32mp1-microdev2.0.dts |
+> 55 +++++
+>  .../dts/stm32mp157a-microgea-stm32mp1.dtsi    | 148 +++++++++++++
+>  8 files changed, 668 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-
+> ctouch2.dts
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-
+> edimm2.2.dts
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
+> stm32mp1-microdev2.0-of7.dts
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
+> stm32mp1-microdev2.0.dts
+>  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
+> stm32mp1.dtsi
+>=20
+> --
+> 2.25.1
 
-> 
->> +
->> +What:           /sys/bus/platform/devices/.../config_reset
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file is used to reset the configuration of
->> +		a dcc driver to the default configuration.
->> +
->> +What:           /sys/bus/platform/devices/.../loop
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file is used to enter the loop count as dcc
->> +		driver gives the option to loop multiple times on
->> +		the same register and store the values for each
->> +		loop.
->> +
->> +What:           /sys/bus/platform/devices/.../rd_mod_wr
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file is used to read the value of the register
->> +		and then write the value given as an argument to the
->> +		register address in config.The address argument should
->> +		be given of the form <mask> <value>.
->> +
->> +What:           /sys/bus/platform/devices/.../ready
->> +Date:           February 2021
->> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file is used to check the status of the dcc
->> +		hardware if it's ready to take the inputs.
->> +
->> +What:		/sys/bus/platform/devices/.../curr_list
->> +Date:		February 2021
->> +Contact:	Souradeep Chowdhury <schowdhu@codeaurora.org>
->> +Description:
->> +		This file is used to configure the linkedlist data
->> +		to be used while configuring addresses.
-> 
-> Please describe the format of this attr. Is it read/write?
-
-Ack. This attr is used to select the linked list to be used to configure 
-the addresses.
-The options given to the user is from 0-3.
-
-> 
-> Regards,
-> Bjorn
-> 
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
