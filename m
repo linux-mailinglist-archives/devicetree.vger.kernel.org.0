@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC784337D37
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 20:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 367EC337D64
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 20:13:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbhCKTIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 14:08:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39536 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229721AbhCKTIE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 14:08:04 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 77EF664FE0;
-        Thu, 11 Mar 2021 19:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615489682;
-        bh=+MqxPqLxS0fmcZSkxqaGS/7xnCYlQhr8+DK+/ePJsDE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V5MNT4BHOqod0O8XEiHiDDZBzJM7BDrJFZjL0FvTnGjdV85TOijRaR9AQvrOnhQVV
-         ulfWeO2Q785ENXGd2iGmhcoNfHLkxx2Bqc08uWVvOnOubM6nPIb0RQsSvdDDieSMQp
-         KppyVCtJpMEDvovtpatEtA4lyZkdu3Xj28dkoQmEbWotinPIbdSq69fhHZqd+5XoOc
-         dWbaROFQm2qh/8YRFEwDfHNd49yvkAMK2B3kTwPRFD1mfJ93HRE0Noih6TRvCZ90hV
-         AF+nW/B5JSeAfFgAf+u0Rld8GnK/9c9HWhHUrV1gMUzjZCMNEk+hNUpJ30iF/+g1CN
-         3Fv1Efm/4Cegg==
-Date:   Thu, 11 Mar 2021 11:08:00 -0800
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Peng Zhou <peng.zhou@mediatek.com>,
-        linux-block <linux-block@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-Message-ID: <YEpqkAq6wOZ+TpR9@gmail.com>
-References: <20210309015750.6283-1-peng.zhou@mediatek.com>
- <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
+        id S230047AbhCKTMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 14:12:51 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42272 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhCKTMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 14:12:35 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BJCMBG123822;
+        Thu, 11 Mar 2021 13:12:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615489942;
+        bh=K10iL76Rgk2W/O4gIBcHwJ90W5MxbdgPMg2+TPXlU58=;
+        h=From:To:CC:Subject:Date;
+        b=U0Gg9VpIDlC5XhTwNU5ZcXVGc0e4yE6p72o3dGXDfKhIEpPaOrzft/ZrAYp0Ce7tF
+         WYtqiP0mHXUJa3hg1kZWSHKB8ctox+3fwEkjSXaEEVg+RIUWEOxyv8uAkcOZiFkhl7
+         8ajsTiqpSAgfgrWluhKM5zMPqFDWxjDWFuDab7Dg=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BJCM8t112956
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 Mar 2021 13:12:22 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
+ Mar 2021 13:12:22 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 11 Mar 2021 13:12:22 -0600
+Received: from pratyush-OptiPlex-790.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BJCHvR080816;
+        Thu, 11 Mar 2021 13:12:17 -0600
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>
+CC:     Pratyush Yadav <p.yadav@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for spi-cadence-quadspi
+Date:   Fri, 12 Mar 2021 00:42:10 +0530
+Message-ID: <20210311191216.7363-1-p.yadav@ti.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 02:48:23PM +0100, Linus Walleij wrote:
-> Hi Peng,
-> 
-> thanks for your patch!
-> 
-> On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
-> 
-> > Use SMC call enable hardware crypto engine
-> > due to it only be changed in ATF(EL3).
-> >
-> > Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
-> 
-> Unfortunately this commit message is way to short to
-> understand what is going on, and has a lot of assumed
-> previous knowledge.
-> 
-> Can you expand the commit message so that anyone
-> who just know MMC and some SoC basics can understand
-> what an SMC call and and what ATF(EL3) means?
-> 
-> I assume this some kind of inline encryption?
-> 
-> I think maybe linux-block mailing list need to be involved
-> because there is certain a Linux standard way of setting
-> up inline encryption for the block layer.
-> 
-> For example: how is the key to be used derived?
-> How is the device unlocked in the first place?
-> 
-> If I insert a LUKS encrypted harddrive in a Linux machine
-> the whole system is pretty much aware of how this should
-> be handled and everything "just works", I enter a pass
-> phrase and off it goes. I can use symmetric keys as well.
-> How is this stuff done for this hardware?
-> 
-> > +       /*
-> > +        * 1: MSDC_AES_CTL_INIT
-> > +        * 4: cap_id, no-meaning now
-> > +        * 1: cfg_id, we choose the second cfg group
-> > +        */
-> > +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> > +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> > +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
-> 
-> The same as above: these comments assume that everyone
-> already knows what is going on.
-> 
-> AES encryption requires a key and I don't see the driver
-> setting up any key. How is the code in this file:
-> drivers/mmc/core/crypto.c
-> interacting with your driver?
-> drivers/mmc/host/cqhci-crypto.c
-> is used by SDHCI and is quite readable and I see what is going on.
-> For example it contains functions like:
-> cqhci_crypto_program_key()
-> cqhci_crypto_keyslot_program()
-> cqhci_crypto_clear_keyslot()
-> cqhci_crypto_keyslot_evict()
-> cqhci_find_blk_crypto_mode()
-> 
-> MMC_CAP2_CRYPTO is used as a sign that the driver
-> can do inline encryption, then devm_blk_ksm_init() is called
-> to initialize a block encryption abstraction with the block layer.
-> Ops are registered using
-> struct blk_ksm_ll_ops cqhci_ksm_ops.
-> 
-> This is very straight forward.
-> 
-> But where does all the above happen for this driver?
-> 
+Hi,
 
-It happens in the same place, cqhci-crypto.c.  Mediatek's eMMC inline encryption
-hardware follows the eMMC standard fairly closely, so Peng's patch series just
-sets MMC_CAP2_CRYPTO to make it use the standard cqhci crypto code, and does a
-couple extra things to actually enable the hardware's crypto support on Mediatek
-platforms since it isn't enabled by default.  (*Why* it requires an SMC call to
-enable instead of just working as expected, I don't know though.)
+This series adds support for OSPI PHY calibration on the Cadence OSPI
+controller. This calibration procedure is needed to allow high clock
+speeds in 8D-8D-8D mode. The procedure reads some pre-determined pattern
+data from the flash and runs a sequence of test reads to find out the
+optimal delays for high speed transfer. More details on the calibration
+procedure in patch 5/6.
 
-The way all this gets used is via the blk-crypto framework
-(Documentation/block/inline-encryption.rst), which is used by fscrypt
-(ext4 and f2fs encryption).
+The main problem here is telling the controller where to find the
+pattern and how to read it. This RFC uses nvmem cells which point to a
+fixed partition containing the data to do the reads. It depends on [0]
+and [1].
 
-Peng, if you could explain all this properly in the cover letter, commit
-messages, and code comments (where it makes sense), that would be really helpful
-for people.  Also please make sure your patch series is in a thread so that
-people see it together.
+The obvious problem with this is it won't work when the partitions are
+defined via command line. I don't see any good way to add nvmem cells to
+command line partitions. I would like some help or ideas here. We don't
+necessarily have to use nvmem either. Any way that can cleanly and
+consistently let the controller find out where the pattern is stored is
+good.
 
-- Eric
+The dts patch depends on [2].
+
+Tested on TI's J721E EVM.
+
+[0] https://patchwork.ozlabs.org/project/linux-mtd/patch/20210302190012.1255-1-zajec5@gmail.com/
+[1] https://patchwork.ozlabs.org/project/linux-mtd/patch/20210308011853.19360-1-ansuelsmth@gmail.com/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210305153926.3479-2-p.yadav@ti.com/
+
+Pratyush Yadav (6):
+  spi: spi-mem: Tell controller when device is ready for calibration
+  mtd: spi-nor: core: consolidate read op creation
+  mtd: spi-nor: core: run calibration when initialization is done
+  spi: cadence-qspi: Use PHY for DAC reads if possible
+  spi: cadence-qspi: Tune PHY to allow running at higher frequencies
+  arm64: dts: ti: k3-j721e-som-p0: Enable PHY calibration
+
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi |  55 ++
+ drivers/mtd/spi-nor/core.c                  |  74 +-
+ drivers/spi/spi-cadence-quadspi.c           | 820 +++++++++++++++++++-
+ drivers/spi/spi-mem.c                       |  12 +
+ include/linux/spi/spi-mem.h                 |   8 +
+ 5 files changed, 916 insertions(+), 53 deletions(-)
+
+--
+2.30.0
+
