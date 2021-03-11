@@ -2,147 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 322563378EC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:14:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AB59337900
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:16:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234144AbhCKQNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:13:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53614 "EHLO
+        id S234061AbhCKQQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234465AbhCKQNV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:13:21 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78AEC061761
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:13:20 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 15so2854878ljj.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:13:20 -0800 (PST)
+        with ESMTP id S234455AbhCKQQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:16:05 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C251C061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:16:05 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u4so2873060ljo.6
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:16:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=VQqJbfAYtz5Jhxh+kW0jsH0W6pnu5XQBNj3WuYw2Xtc=;
-        b=cosIYzxp+AQBWf4DjdHUHtwN1fxUlfumsi7VjMoDLhQ+83JP/MK0vudESRREjie/UR
-         iMFQ2WhYk0gYumKFgFwcJ+soUMaNAUNC/iwGkkuzK7MQjdtdV2GONF2nIoNBC/6JU1hA
-         f/Vt+q5/77cnv4RXTnDYNck5pmNL0pbqtcZY8YDoWeDk2cPDKa1ZBaDTjUuUUnQ6yKAm
-         M4RHw//gbUbOfpCchlPFPlp+v9xN/xMzXnih2fprdBgo67IorYJDhWu88pp68rzE+Rnq
-         Nru/8aaNPUUyT3pU3FikSeGRWEicSYMnvWWUVf0iOOMusjQRxe4mbpoQavpt/Xm0IeA6
-         HeJg==
+        bh=lfYyTSB6sN53w9Rpv4MYqNBv1FPOEZ0SmWjIhTyeJxs=;
+        b=w7gbpWGeeJ+LlzySG7BIYUktxr5ZW6HHVY4+kDsfrOjR8+uCX7UfS12tge1fIba7bN
+         siJe30TAnw+/h3qtte6NL8++/XN56VXtXOlGG2vrWXs32XJku7afWUNsnk0tLSZgaoRP
+         qIZ/4GmtZ1i9oNXcd8zXNQVIY3z/cXgu/HYe6RiK/HznG1JHC1RnGEO26o+3Kc7Gu24t
+         mDKnOJnUQbaI2aW18KnCx1bzYgbMjT0hOd0+44R+gc8vZc2nH65LvMln58GGsQgDMGjl
+         svz66W78wmfOTwVlEZMQmHrfQk2qoRs3WoDHpHpgjVjwpj29LtQx6vil16mwBYI1Xq9f
+         qtxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=VQqJbfAYtz5Jhxh+kW0jsH0W6pnu5XQBNj3WuYw2Xtc=;
-        b=lkPd6vCrw8wpmQAtV13CZX68JDXhRLRhqUqQpPJE8MpLT1c6Yhgsd87T1LJN5RmZnN
-         QOvhfV6zPg36qjLVUh9YWSz8cPL2EWJHDf3ksDtKT2Yd8YzO8+KPD8hhLxvJCJ1WjBM2
-         KSxZDo9KqyyPraL32BtlPEL1hLMxrdE3pp5oEZbH90EYiWXSFu1smZ2eg/+3sCMJ1O4F
-         kXNIeOlMUYmIBsV+QcLAB4/a/92316ggRx69y3QRH9sG9Veww9aZRRjl6zgrGm9UPHTx
-         rhi2hi1NG8CymWeV0vVabZXASVs0f6jZzQc34WBHiMe7ACJ3cuRZeHcaGQCnPDvK3Sbl
-         NTWw==
-X-Gm-Message-State: AOAM531dFhfIH6M9esXm44p1NaUfenw1zV/FGpwHXQcOmn7y0BmN3ToS
-        +yWlcCDQRO2wEVzG0lYYVkGa9p1RYSbnXT+A/5TqfA==
-X-Google-Smtp-Source: ABdhPJyCRD3HazyOgncwD1yTs3xl5dw5MMFa1OC940N21HVZaWtg/1LKhzgfIrBGJvld4DMc2wg3oEgkkD5l5WOCsYc=
-X-Received: by 2002:a2e:7001:: with SMTP id l1mr5244023ljc.200.1615479199200;
- Thu, 11 Mar 2021 08:13:19 -0800 (PST)
+        bh=lfYyTSB6sN53w9Rpv4MYqNBv1FPOEZ0SmWjIhTyeJxs=;
+        b=n9Sj/kVTrB0Ycg9uZ7uOC0wElVv5iRdYf3rWyAjcIbebCXAsSAfU9d4hheaUagDQIG
+         8lZKhX33PVdQ4VUbB0ExP2EPK0fufi2CG0re6RivZcnD9gVywCLXP7LSrGhnDqGb9GwN
+         lVoct2+I2yRP3WhZLg3B5u+ulJ4yOedMkuPwzAVHDHPXO99yNMHeHkJaKVpyhpRAlGtJ
+         SqhQdbVfBmNA6ponbUR8Hx/nYqgttwfEsIGYdhO4YQ+A05J4Xl9iNYAf9XmpnUFVSo3J
+         5Ju6fSmcixddHjHnjmKaLa6G81Iqz9Ait7qfV25g2rXyG9xmr7IVt54B5D01XpDSMPES
+         He/w==
+X-Gm-Message-State: AOAM530pHNS46eRk1+sdVQ9lBGvdGwS4+9TpGisWJZHhCfoilxVM6koJ
+        6WHR4H5O31wQrH0kOvJX4wafV08tDKbJB5XJnDrLcw==
+X-Google-Smtp-Source: ABdhPJxjSHy1zm8V6vPLxd2/BZt39BMm+ldl/7gvjdw+kLTDN0YCYgFmd4U2bedbP56ygtsRdV6mIHbZc0eUiDGxSiE=
+X-Received: by 2002:a2e:700a:: with SMTP id l10mr5292190ljc.368.1615479363631;
+ Thu, 11 Mar 2021 08:16:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-4-noltari@gmail.com>
- <CAL_JsqKZA-j2iXvVTXWtiuyKPOWeOUP0r+x-bV6QP6=_moy2VA@mail.gmail.com>
- <CACRpkda=isBSW8BwYJ2pCaPcByRoo2GFNVoZCxhaCbEKk9iNsg@mail.gmail.com> <CAL_Jsq+FfYE2SrzwB_A=d-LMut-JrqdivKz6x8EQhkc3Zh5NAA@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+FfYE2SrzwB_A=d-LMut-JrqdivKz6x8EQhkc3Zh5NAA@mail.gmail.com>
+References: <20210115224420.1635017-1-dianders@chromium.org>
+In-Reply-To: <20210115224420.1635017-1-dianders@chromium.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 17:13:07 +0100
-Message-ID: <CACRpkdaMYy_Z34i+0uRgciC=xBtoeNsWViHU9ZysvxqrFXB5+w@mail.gmail.com>
-Subject: Re: [PATCH v6 03/15] pinctrl: bcm: add bcm63xx base code
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+Date:   Thu, 11 Mar 2021 17:15:52 +0100
+Message-ID: <CACRpkdY0h0kEE_63y7wyc=0etTe0Bfn+EmWpfQSe7g2KcfTvhw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] drm/panel-simple: Patches for N116BCA-EA1
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 3:58 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Wed, Mar 10, 2021 at 6:09 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Wed, Mar 10, 2021 at 6:51 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > > > +static const struct of_device_id bcm63xx_gpio_of_match[] = {
-> > > > +       { .compatible = "brcm,bcm6318-gpio", },
-> > > > +       { .compatible = "brcm,bcm6328-gpio", },
-> > > > +       { .compatible = "brcm,bcm6358-gpio", },
-> > > > +       { .compatible = "brcm,bcm6362-gpio", },
-> > > > +       { .compatible = "brcm,bcm6368-gpio", },
-> > > > +       { .compatible = "brcm,bcm63268-gpio", },
-> > >
-> > > All these would be moved to gpio-mmio.c (or maybe that can have a
-> > > fallback compatible?).
-> >
-> > This is gpio-regmap.c and it can only be used as a library
-> > by a certain driver. gpio-mmio.c can be used stand-alone
-> > for certain really simple hardware (though most use that
-> > as a library as well).
+On Fri, Jan 15, 2021 at 11:44 PM Douglas Anderson <dianders@chromium.org> wrote:
+
+> This series is to get the N116BCA-EA1 panel working. Most of the
+> patches are simple, but on hardware I have in front of me the panel
+> sometimes doesn't come up. I'm still working with the hardware
+> manufacturer to get to the bottom of it, but I've got it working with
+> retries. Adding the retries doesn't seem like an insane thing to do
+> and makes some of the error handling more robust, so I've gone ahead
+> and included those patches here. Hopefully they look OK.
 >
-> I don't really care which one is used, but the problem is that this
-> choice is leaking into the binding design.
+> Changes in v2:
 
-Aha I guess I misunderstood your comment.
-
->The primary problem here is
-> once someone uses regmap, then they think they must have a syscon and
-> can abandon using 'reg' and normal address properties as Linux happens
-> to not use them (currently). I think we really need some better regmap
-> vs. mmio handling to eliminate this duplication of foo-mmio and
-> foo-regmap drivers and difference in binding design. Not sure exactly
-> what that looks like, but basically some sort of 'reg' property to
-> regmap creation.
-
-I see the problem. Yeah we should try to be more strict around
-these things. To me there are syscons and "other regmaps",
-where syscon is a real hurdle of registers while "other regmaps"
-are just regmaps by convenience.
-
-Documentation/devicetree/bindings/mfd/syscon.yaml
-describes what a syscon really is so if everyone could
-just read the documentation that would be great ...
-
-> Given we already have a Broadcom GPIO binding for what looks to be
-> similar to this one, I'm left wondering what's the real difference
-> here?
-
-Which one is similar? I can take a look.
-
-We currently have four Broadcom GPIO bindings,
-which are stand alone GPIO blocks and eight Broadcom
-pin controllers that all do GPIO as well.
-
-This family of pin controllers are (as per subject) is
-the bcm63xx series which is a MIPS-based family of SoCs
-found in routers, top bindings in
-Documentation/devicetree/bindings/mips/brcm/soc.txt
-These all have a GPIO block as part of the pin controller
-and the GPIO block is a distinct sub-function of the
-pin controller, and it has up to 32 GPIOs per block,
-hence it has its own subnode inside the pin controller.
-
-This driver follows the pattern of the Ingenic
-pin controller, another MIPS SoC:
-Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
-
-Another SoC with several GPIO blocks inside the pin
-controller is SparX5 and that also follows this pattern:
-Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
-(This has an example with more than one GPIO block
-inside the pin controller.)
+This v2 version applied to drm-misc-next.
 
 Yours,
 Linus Walleij
