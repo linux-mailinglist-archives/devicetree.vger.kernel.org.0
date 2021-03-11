@@ -2,310 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA7BD337BB8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B41E3337BCD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:11:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbhCKSGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 13:06:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
+        id S230107AbhCKSKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 13:10:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230212AbhCKSGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 13:06:34 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B9FC061760
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:06:34 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so49926otn.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:06:34 -0800 (PST)
+        with ESMTP id S229711AbhCKSJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 13:09:59 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F6BC061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:09:58 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id e19so48232589ejt.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BAkVYaDZXDvqzd+93q6mQyCc1QCzmHmhvWDJslwlLVQ=;
-        b=ZpwaJSeDKiTDoplyS5R3U3C6LU/TzxwkihHTdD24J5F3Gy7cHA4cHcaBGn76kCWLIK
-         TFlFe/Jntcph5ybgEWjuxnSa3IdxAsUB7bh3FqO/C3nXDyDhapRBXtBdASbpLFSBWxT5
-         G0/+aodlizUHZehcYgPJDXIc/sDXnIhxzFBaRsK2dCYnSrcXYEr4kgDZd3qIyOBTM32h
-         bYdj7+z26r6eLv+xcbYFOqLc6vsg/ZT+Kt9qagkR5QfNvsr8WPb5PhkHrhUZ7DwdfhiT
-         MwCr36Tk2tfVTuN1Yz4H0HZQYLpCzEm9OXaZXdaci7gUzlcekzX+cY9c0+QZTZcRDFqv
-         HKXw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0qKhuCXlv+n43C9eJnPgAqlso12udJgOMMoLZ3TdETg=;
+        b=VOos7MdQJ0/OjM1Bw4U2t1S8tj5Tr6vuTmLbpszGwMOXrdrtyQ1fjzTx8WGtBl0v5v
+         4kq2aISMzwVYGCPubvv96J3VcSfQcMqgJg6IUCaNcVgsJnyQs2OOk7zfCvDCbkI/7PCH
+         yevE63TPzbL7rHHfS+ClULhGV210oEDMSkKbdaVKEzLDykUkyg8/2zliwOgPfNbKVB6q
+         mq765kgrgmBkoo4aq8PbGZovt0egAkX/A5DR2l8UIpUm58GOO2xSerSnlaXItEsP9eI5
+         lDPTwYnKDeEPgXawVAC5+D2kW2i4oECQX4FAW2HYb9lOkpy4AG5nOissNnU5ee/9CHaq
+         NieA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BAkVYaDZXDvqzd+93q6mQyCc1QCzmHmhvWDJslwlLVQ=;
-        b=ARujW4VFPH39tKoFU6z5E9oEAcs7skVZ6x8oy43lAjquu6WbICSGZ186UCkOMSMuRu
-         l+ko/YPQTrbwulFpHJtF7nBTCi/m6Nik6fumguHGFsIvifulBpIZgWm5HbdgR9tZYh0r
-         XdyVkKsQaa5xSv/guC8AWADtMvRPnLASxvVbhMTOMqbddx59YEY0prBmyLyRIndarbm7
-         8t9t7Y62uhtf9GsSMUNR9WBxWVj/dN/ZXvMsx0B/8O/UE7IL8NOtr6QY5Et7kPxzELD1
-         ZuiCdM/KgsDXS6WarODlf07pX2QMr9wkdOKXo6bmlalPV0QwBP91XwLAD8j1/t4NdM7p
-         749A==
-X-Gm-Message-State: AOAM533HR7SK13urgALYWIgzAzID3zm43PeaJioQ1zoGbBdwthcY0kUC
-        wcXn9D8nKbTdPB++uQ+JkNnMKw==
-X-Google-Smtp-Source: ABdhPJyVctZCnnNhBZKJiX69sS4mTpIVTOhqV1IBzdi6XWJosQqPD25nL134rQEZMjq4nsgeTq9Z6Q==
-X-Received: by 2002:a9d:86c:: with SMTP id 99mr91856oty.71.1615485993381;
-        Thu, 11 Mar 2021 10:06:33 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f8sm774478otp.71.2021.03.11.10.06.32
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0qKhuCXlv+n43C9eJnPgAqlso12udJgOMMoLZ3TdETg=;
+        b=sgNT65uKTJbX9JfiBDpeRpjtKDDjonaSmaAXQlq1U2LMsrNPikBfQJzZSlvVIOZu1X
+         hFpQv7UUXLAOrPu2EZv5spspb42R3UXUONk+U14MoX0jM5wjgVWnpn1B1YeHxyBFBBOP
+         FBTRIZIcKbZGWnm0JMPWzZbNR3RszuD+bdT+NMoe1hhx+h4oH/qsxdI8MHYt7A/UNrfy
+         mk2W5QWyXybW3jmLQc2lbmZLDfIg0iB4LW4WpoLozMDaL7JOJhLwcOE41hbxWAqT0vfS
+         82A+5lJqBAuCHnoVqClrG9bXMptq3b4mzMwY0vxFEA1sJwaN+Lz3ntvV52rs/DpAe5fT
+         1kPw==
+X-Gm-Message-State: AOAM532CXKBoI3RP73mye+geK7IM/YODwdy74H5UCGPLCyBAP7ioRGXw
+        y+cMtd1fehBxNHTFKddmGx2MdA==
+X-Google-Smtp-Source: ABdhPJy/XzXekq7i/7PdqZJdNE46U60xpyVtTUYE8GtTVhViRD2rLzs7Jg2ddrzQpRqdKN8ZW/r4fg==
+X-Received: by 2002:a17:906:bd2:: with SMTP id y18mr4330751ejg.482.1615486197383;
+        Thu, 11 Mar 2021 10:09:57 -0800 (PST)
+Received: from localhost.localdomain ([2a02:2454:3e3:5f00:8e01:34c:da50:eb7e])
+        by smtp.gmail.com with ESMTPSA id a22sm1741290ejr.89.2021.03.11.10.09.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 10:06:32 -0800 (PST)
-Date:   Thu, 11 Mar 2021 12:06:30 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "ohad@wizery.com" <ohad@wizery.com>,
-        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "paul@crapouillou.net" <paul@crapouillou.net>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "patrice.chotard@st.com" <patrice.chotard@st.com>
-Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
-Message-ID: <YEpcJqMToL8YvaRP@builder.lan>
-References: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
- <20210308160815.GB3977653@xps15>
- <DB6PR0402MB276009028DF766731BB2C06888909@DB6PR0402MB2760.eurprd04.prod.outlook.com>
- <20210311173818.GB1113417@xps15>
+        Thu, 11 Mar 2021 10:09:56 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
+        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: [PATCH v7 00/22] Add support for the SDM845 Camera Subsystem
+Date:   Thu, 11 Mar 2021 19:09:26 +0100
+Message-Id: <20210311180948.268343-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311173818.GB1113417@xps15>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 11 Mar 11:38 CST 2021, Mathieu Poirier wrote:
+This series implements support for the camera subsystem found in
+the SDM845 SOCs and the Titan 170 ISP. The support is partial
+in that it implements CSIPHY, CSID, and partial VFE support.
 
-> On Thu, Mar 11, 2021 at 01:26:25AM +0000, Peng Fan (OSS) wrote:
-> > Mathieu,
-> > 
-> > > Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
-> > > 
-> > > On Sat, Mar 06, 2021 at 07:24:15PM +0800, peng.fan@oss.nxp.com wrote:
-> > > > From: Peng Fan <peng.fan@nxp.com>
-> > > >
-> > > > V13:
-> > > >  Add R-b tag from Rob for patch 1.
-> > > >  Drop the reserved memory node from patch 2 per Rob's comment.
-> > > >  Mathieu, Bjorn
-> > > >   Only patch 2 not have R-b/A-b tag, but since Rob's only has a minor
-> > > comment, and
-> > > >   addressed in this version, is it ok for you take into remoteproc next
-> > > branch?
-> > > >   Thanks.
-> > > 
-> > > As much as I want to, there is no way to move forward without an
-> > > acknowledgement from Rob.
-> > 
-> > Rob has gave his R-b tag for patch 2/13, please help pick up this patchset.
-> > I really wanna this feature in which has been for a long time. Then
-> > I will move on to add new stuff.
-> >
-> 
-> This set looks good to me - Bjorn will likely pick it up shortly.
->  
+The Titan generation of the ISP diverges a fair amount from the
+design of the previous architecture generation, CAMSS. As a result
+some pretty invasive refactoring is done in this series. It also
+means that at this time we're unable to implement support for all
+of the IP blocks contained. This is due to a combination of legal
+considerations with respect to the IP and its owner Qualcomm and
+time & man hour constrains on the Linaro side.
 
-Certainly, I'm just waiting for tuxbuild to get back with some build
-results before I'm pushing the new branch(es).
+The CSIPHY (CSI Physical Layer) & CSID (CSI Decoder) support is
+complete, but the VFE (Video Front End, which is referred to as IFE
+(Image Front End) in the Titan generation of ISPs) only has support
+for the RDI (Raw Dump Interface) which allows the raw output of
+the CSID to be written to memory.
 
-Regards,
-Bjorn
+The 2nd interface implemented in the VFE silicon is the PIX
+interface, and camss does not support it for this generation of ISPs.
+The reason for this is that the PIX interface is used for sending
+image data to the BPS (Bayer Processing Section) & IPE (Image
+Processing Engine), but both of these units are beyond the scope
+of enabling basic ISP functionality for the SDM845.
 
-> > Thanks,
-> > Peng.
-> > 
-> > 
-> > > 
-> > > >
-> > > > V12:
-> > > >  Add maxItems to avoid dt_bindings_check fail  Rebased on top of
-> > > > linux-next
-> > > >
-> > > > V11:
-> > > >  Per Rob's comments, fix memory-region in patch 1/10  Rebased on top
-> > > > of Linux-next
-> > > >
-> > > > V10:
-> > > >  Per Rob's comments, fix patch 1/10
-> > > >
-> > > > V9:
-> > > >  Per Mathieu's comments,
-> > > >    update the tile of yaml in patch 2/10
-> > > >    update the Kconfig and MODULE_DESCRIPTION, I merge this change in
-> > > patch 8/10,
-> > > >    since this is a minor change, I still keep Mathieu's R-b tag. If any
-> > > objection, I could remove.
-> > > >    Add R-b tag in Patch 10/10
-> > > >
-> > > >  Rob, please help review patch 1/10 and 2/10
-> > > >
-> > > > V8:
-> > > >  Address sparse warning in patch 4/10 reported by kernel test robot
-> > > >
-> > > > V7:
-> > > >  Add R-b tag from Mathieu
-> > > >  vdevbuffer->vdev0buffer in patch 1/10, 7/10  correct err msg and
-> > > > shutdown seq per Mathieu's comments in patch 10/10  Hope this version
-> > > > is ok to be merged.
-> > > >
-> > > > V6:
-> > > >  Add R-b tag from Mathieu
-> > > >  Convert imx-rproc.txt to yaml and add dt-bindings support for
-> > > > i.MX8MQ/M, patch 1/10 2/10  No other changes.
-> > > >
-> > > > V5:
-> > > >  Apply on Linux next
-> > > >  Add V5 subject prefix
-> > > >  Add R-b tag from Bjorn for 1/8, 2/8, 3/8
-> > > >
-> > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > > >
-> > > hwork.kernel.org%2Fproject%2Flinux-remoteproc%2Fcover%2F20201229033
-> > > 019
-> > > > .25899-1-peng.fan%40nxp.com%2F&amp;data=04%7C01%7Cpeng.fan%40n
-> > > xp.com%7
-> > > >
-> > > C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd99c5c3
-> > > 01635%7
-> > > >
-> > > C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> > > MC4wLjAwMD
-> > > >
-> > > AiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata
-> > > =bwlT
-> > > > uTk6iRuZke6SMhuyB2gxniStfxnX%2BKlVgm7MZuk%3D&amp;reserved=0
-> > > >
-> > > > V4:
-> > > >  According to Bjorn's comments, add is_iomem for da to va usage  1/8,
-> > > > 2/8 is new patch  3/8, follow Bjorn's comments to correct/update the
-> > > > err msg.
-> > > >  6/8, new patch
-> > > >  8/8, use dev_err_probe to simplify code, use queue_work instead
-> > > > schedule_delayed_work
-> > > >
-> > > > V3:
-> > > >  Since I was quite busy in the past days, V3 is late  Rebased on
-> > > > Linux-next  Add R-b tags
-> > > >  1/7: Add R-b tag of Mathieu, add comments
-> > > >  4/7: Typo fix
-> > > >  5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
-> > > >  6/7: Add R-b tag of Mathieu
-> > > >  7/7: Add comment for vqid << 16, drop unneeded timeout settings of
-> > > mailbox
-> > > >       Use queue_work instead of schedule_delayed_work
-> > > >       free mbox channels when remove
-> > > >
-> > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flkml
-> > > > .org%2Flkml%2F2020%2F12%2F4%2F82&amp;data=04%7C01%7Cpeng.fan
-> > > %40nxp.com
-> > > > %7C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd9
-> > > 9c5c301635
-> > > > %7C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJ
-> > > WIjoiMC4wLjAw
-> > > >
-> > > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sd
-> > > ata=xQ
-> > > >
-> > > ReFFdUT2ZLhWyT2Vt2v0frG0xKq2psP1ExnLx%2BLXw%3D&amp;reserved=0
-> > > >
-> > > > V2:
-> > > >  Rebased on linux-next
-> > > >  Dropped early boot feature to make patchset simple.
-> > > >  Drop rsc-da
-> > > >
-> > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > > >
-> > > hwork.kernel.org%2Fproject%2Flinux-remoteproc%2Fcover%2F20200927064
-> > > 131
-> > > > .24101-1-peng.fan%40nxp.com%2F&amp;data=04%7C01%7Cpeng.fan%40n
-> > > xp.com%7
-> > > >
-> > > C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd99c5c3
-> > > 01635%7
-> > > >
-> > > C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> > > MC4wLjAwMD
-> > > >
-> > > AiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata
-> > > =BWGP
-> > > >
-> > > gbVtOjOa%2BriGryGp9sh2CSY%2BhMESdGD%2F7LvPJ6w%3D&amp;reserved
-> > > =0
-> > > >
-> > > > V1:
-> > > >
-> > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > > >
-> > > hwork.kernel.org%2Fcover%2F11682461%2F&amp;data=04%7C01%7Cpeng.f
-> > > an%40n
-> > > >
-> > > xp.com%7C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa9
-> > > 2cd99c5c
-> > > >
-> > > 301635%7C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3
-> > > d8eyJWIjoiMC
-> > > >
-> > > 4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&
-> > > amp;sd
-> > > >
-> > > ata=XkGYIxBgrHLwV7R3bro87N6fL7777Wa5rOAZdVjCoZs%3D&amp;reserved
-> > > =0
-> > > >
-> > > > This patchset is to support i.MX8MQ/M coproc.
-> > > > The early boot feature was dropped to make the patchset small in V2.
-> > > >
-> > > > Since i.MX specific TCM memory requirement, add elf platform hook.
-> > > > Several patches have got reviewed by Oleksij and Mathieu in v1.
-> > > >
-> > > >
-> > > > Peng Fan (10):
-> > > >   dt-bindings: remoteproc: convert imx rproc bindings to json-schema
-> > > >   dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
-> > > >   remoteproc: introduce is_iomem to rproc_mem_entry
-> > > >   remoteproc: add is_iomem to da_to_va
-> > > >   remoteproc: imx_rproc: correct err message
-> > > >   remoteproc: imx_rproc: use devm_ioremap
-> > > >   remoteproc: imx_rproc: add i.MX specific parse fw hook
-> > > >   remoteproc: imx_rproc: support i.MX8MQ/M
-> > > >   remoteproc: imx_rproc: ignore mapping vdev regions
-> > > >   remoteproc: imx_proc: enable virtio/mailbox
-> > > >
-> > > >  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  90 ++++++
-> > > >  .../bindings/remoteproc/imx-rproc.txt         |  33 ---
-> > > >  drivers/remoteproc/Kconfig                    |   6 +-
-> > > >  drivers/remoteproc/imx_rproc.c                | 262
-> > > +++++++++++++++++-
-> > > >  drivers/remoteproc/ingenic_rproc.c            |   2 +-
-> > > >  drivers/remoteproc/keystone_remoteproc.c      |   2 +-
-> > > >  drivers/remoteproc/mtk_scp.c                  |   6 +-
-> > > >  drivers/remoteproc/omap_remoteproc.c          |   2 +-
-> > > >  drivers/remoteproc/pru_rproc.c                |   2 +-
-> > > >  drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
-> > > >  drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
-> > > >  drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
-> > > >  drivers/remoteproc/qcom_wcnss.c               |   2 +-
-> > > >  drivers/remoteproc/remoteproc_core.c          |   7 +-
-> > > >  drivers/remoteproc/remoteproc_coredump.c      |   8 +-
-> > > >  drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
-> > > >  drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
-> > > >  drivers/remoteproc/remoteproc_internal.h      |   2 +-
-> > > >  drivers/remoteproc/st_slim_rproc.c            |   2 +-
-> > > >  drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
-> > > >  drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
-> > > >  drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
-> > > >  include/linux/remoteproc.h                    |   4 +-
-> > > >  23 files changed, 393 insertions(+), 72 deletions(-)  create mode
-> > > > 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > > >  delete mode 100644
-> > > > Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> > > >
-> > > > --
-> > > > 2.30.0
-> > > >
+Since the Titan architecture generation diverges quite a bit from
+the CAMSS generation, a lot of pretty major refactoring is carried
+out in this series. Both the CSID & VFE core paths are made more
+general and hardware version specific parts are broken out.
+The CSIPHY didn't require quite as radical changes and therefore
+keeps its current form.
+
+Tested on:
+ - Qcom RB3 / db845c + camera mezzanine, which is SDM845 based
+ - db410c + D3 Camera mezzanine, which is APQ8016 based
+ 
+Branch:
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v1
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v2
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v3
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v4
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v5
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v6
+ - https://git.linaro.org/people/robert.foss/linux.git/log/?h=camss_sdm845_v7
+
+
+Robert Foss (22):
+  media: camss: Fix vfe_isr_comp_done() documentation
+  media: camss: Fix vfe_isr comment typo
+  media: camss: Replace trace_printk() with dev_dbg()
+  media: camss: Add CAMSS_845 camss version
+  media: camss: Make ISPIF subdevice optional
+  media: camss: Refactor VFE HW version support
+  media: camss: Add support for VFE hardware version Titan 170
+  media: camss: Add missing format identifiers
+  media: camss: Refactor CSID HW version support
+  media: camss: Add support for CSID hardware version Titan 170
+  media: camss: Add support for CSIPHY hardware version Titan 170
+  media: camss: Refactor VFE power domain toggling
+  media: camss: Enable SDM845
+  dt-bindings: media: camss: Add qcom,msm8916-camss binding
+  dt-bindings: media: camss: Add qcom,msm8996-camss binding
+  dt-bindings: media: camss: Add qcom,sdm660-camss binding
+  dt-bindings: media: camss: Add qcom,sdm845-camss binding
+  MAINTAINERS: Change CAMSS documentation to use dtschema bindings
+  media: dt-bindings: media: Remove qcom,camss documentation
+  arm64: dts: sdm845: Add CAMSS ISP node
+  arm64: dts: sdm845-db845c: Configure regulators for camss node
+  arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
+
+ .../devicetree/bindings/media/qcom,camss.txt  |  236 ----
+ .../bindings/media/qcom,msm8916-camss.yaml    |  256 ++++
+ .../bindings/media/qcom,msm8996-camss.yaml    |  387 ++++++
+ .../bindings/media/qcom,sdm660-camss.yaml     |  398 ++++++
+ .../bindings/media/qcom,sdm845-camss.yaml     |  371 +++++
+ MAINTAINERS                                   |    2 +-
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |   23 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  135 ++
+ drivers/media/platform/qcom/camss/Makefile    |    6 +
+ .../platform/qcom/camss/camss-csid-170.c      |  601 +++++++++
+ .../platform/qcom/camss/camss-csid-4-1.c      |  329 +++++
+ .../platform/qcom/camss/camss-csid-4-7.c      |  405 ++++++
+ .../platform/qcom/camss/camss-csid-gen1.h     |   27 +
+ .../platform/qcom/camss/camss-csid-gen2.h     |   39 +
+ .../media/platform/qcom/camss/camss-csid.c    |  621 +--------
+ .../media/platform/qcom/camss/camss-csid.h    |  164 ++-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |  179 ++-
+ .../media/platform/qcom/camss/camss-csiphy.c  |   66 +-
+ .../media/platform/qcom/camss/camss-ispif.c   |  119 +-
+ .../media/platform/qcom/camss/camss-ispif.h   |    3 +-
+ .../media/platform/qcom/camss/camss-vfe-170.c |  806 +++++++++++
+ .../media/platform/qcom/camss/camss-vfe-4-1.c |  144 +-
+ .../media/platform/qcom/camss/camss-vfe-4-7.c |  277 ++--
+ .../media/platform/qcom/camss/camss-vfe-4-8.c | 1200 +++++++++++++++++
+ .../platform/qcom/camss/camss-vfe-gen1.c      |  763 +++++++++++
+ .../platform/qcom/camss/camss-vfe-gen1.h      |  110 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c |  847 +-----------
+ drivers/media/platform/qcom/camss/camss-vfe.h |  129 +-
+ .../media/platform/qcom/camss/camss-video.c   |   52 +
+ drivers/media/platform/qcom/camss/camss.c     |  407 +++++-
+ drivers/media/platform/qcom/camss/camss.h     |   15 +-
+ 31 files changed, 7069 insertions(+), 2048 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/qcom,camss.txt
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-170.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-1.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-7.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-gen1.h
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-gen2.h
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-170.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-4-8.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-gen1.h
+
+-- 
+2.27.0
+
