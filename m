@@ -2,95 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D2233764F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 15:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D28493376A7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:16:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233956AbhCKO6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 09:58:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34154 "EHLO mail.kernel.org"
+        id S233745AbhCKPPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 10:15:45 -0500
+Received: from mout.gmx.net ([212.227.15.15]:46329 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233892AbhCKO6K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 09:58:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A5BF365004;
-        Thu, 11 Mar 2021 14:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615474689;
-        bh=aR7DpbxtFxIv6MnyvAR0dkFIyBYC2zBruNgZfrrgUNA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TgEMAJIlEbN2J5HLzWhN9/87u5D4Q0nZ6RZbTEg/JMV78EZ6Q1dGV+t0Ku8GqGKgU
-         YqvyR4Gv3ESqThUbYirxvMipBX6NVoJwelDws2D0Udx6zPLVo14kcR8np1mTjEgZ7U
-         5Ot/ttH5KBt1pofDogLL926DQ+gCFxl4D6t4ysZuecfcTxsIGgPmBHLtBG+CFN/SZ7
-         ZdR/9mOR7wjOLUoSZsjSwzOgceYilLKBp8uE9etyQztpnk1JV9DJSc/eVxD7wEwivk
-         sVYQ4wAXwIKWE82G8X/rmsC35TSRhUzTLNpxiWOxGfP/X803VSB4EUmjychQdZbBjC
-         GNA6CGoEXEqvA==
-Received: by mail-ej1-f54.google.com with SMTP id lr13so46827837ejb.8;
-        Thu, 11 Mar 2021 06:58:09 -0800 (PST)
-X-Gm-Message-State: AOAM531TgpRiwRyGEs8L+PTkuadOVNWfQo3rclC7KAtTRPFV884rq6zj
-        kFgFEXZUJUcAQlh6qq4d0CUwXCteqCnZqW5Xrg==
-X-Google-Smtp-Source: ABdhPJwmSElZbRkcCnb9ZIBKPYqZtpmKLVr22hQeCKoWIRKJZm1MtHyWE2xBEn1f56xsjbunT+wQbtX3GPFTYkhU+us=
-X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr3463796ejb.359.1615474687893;
- Thu, 11 Mar 2021 06:58:07 -0800 (PST)
+        id S233964AbhCKPPb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 10:15:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1615475724;
+        bh=3MuCYAd6N7yB81hhbCXNSkIdDWEBq396zeTdmwrQ8MI=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=LMcl0z4JNhv9EIUVD8fSbPuP+FBV8lMdcztkZvi0R4qqx5nUZtL2L/jrFNF3LvzXD
+         aLUidRdD+MJLlm8QhAIaHB116jNRvLQY8OiSShcVDUJDNyqCN0Oh3PGfnMpSYtnx0H
+         oEHML4JPwtIGPhasC5C4G4uyWDBti5QaF/cf7NZo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1McYCl-1lst291umL-00d2eu; Thu, 11
+ Mar 2021 16:15:24 +0100
+Date:   Thu, 11 Mar 2021 16:15:23 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 RESEND 2/2] ARM: dts: Add board-specific compatible
+ string to npcm750-evb devicetree
+Message-ID: <YEo0CynZ5X8tMylL@latitude>
+References: <20210303154622.3018839-1-j.neuschaefer@gmx.net>
+ <20210303154622.3018839-2-j.neuschaefer@gmx.net>
+ <CAP6Zq1hwp+wJpbN496096q8izRRoU2Jg+OKugcSk+BcXWfME9A@mail.gmail.com>
+ <YED/zzV5kb35k2vb@latitude>
+ <CAP6Zq1h5QK0_3gBek3QNN_cb6tGFJJXU_D8UPJOqnaDbsQAkxw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-4-noltari@gmail.com>
- <CAL_JsqKZA-j2iXvVTXWtiuyKPOWeOUP0r+x-bV6QP6=_moy2VA@mail.gmail.com> <CACRpkda=isBSW8BwYJ2pCaPcByRoo2GFNVoZCxhaCbEKk9iNsg@mail.gmail.com>
-In-Reply-To: <CACRpkda=isBSW8BwYJ2pCaPcByRoo2GFNVoZCxhaCbEKk9iNsg@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Mar 2021 07:57:55 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+FfYE2SrzwB_A=d-LMut-JrqdivKz6x8EQhkc3Zh5NAA@mail.gmail.com>
-Message-ID: <CAL_Jsq+FfYE2SrzwB_A=d-LMut-JrqdivKz6x8EQhkc3Zh5NAA@mail.gmail.com>
-Subject: Re: [PATCH v6 03/15] pinctrl: bcm: add bcm63xx base code
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="boiCNNVZ39FMb+0t"
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1h5QK0_3gBek3QNN_cb6tGFJJXU_D8UPJOqnaDbsQAkxw@mail.gmail.com>
+X-Provags-ID: V03:K1:6vLihh2S+F7saU2HwNrs8j1CfmrBwnxVRD2NCYnR4RMVesOzzqp
+ jneuthTPUBItLgGUbQA/3AT6ygHEYpjD24QotjOsmc7ZMHDxEVTUnWLV9GZHyl7iSkwSK16
+ 38zmm9d3cD4x/L/uxADjuUWF/oUcSHtJnRh6ghEsXoIXTltIM4gje7CtvFfS6xGN3vtJ5U/
+ qWHMgsBPph6pKOKXEWdaA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dIuN6dI2zjE=:xHgIUqVDXzGExR5n9tVOgs
+ Uq/+WNuJIZmsBsFV7CDfCXqJ36ufjsXmOST0CmrJ32qcAZnCqPM4Fkj31nmiOj8asW5sl3afX
+ jyZMxD0x50jFeDY/NV1iQxPSZfYPe6qU5bdr4kHWxs7XCFPalvHGsB2ElAJKMtu8R1anx6ufu
+ OwvwFIox1lXL3/yTYl6M/9ZceV1Az7vse/JI8N0K5wTUrVPAcusqaEGdydJgSwSNzjGOMu7uV
+ R5UmiWZxn8gYR2Zun/tjGQj712HO/ylUbffOF71TFSrXdRaN/g1Ai3SsNVK2iTlDNYrWzgMdO
+ QlNCuMXjQsihT2LPI+ZmGjImDdEgRNwTDfGAV2Tu8u/vxc4/mvc6KFioZaIRT1tJlDyLVrx2/
+ hbMJHukLTpuVfJLj/DuJjbHDP7+YuOlpyF5F8mO1cjOJpsFGoeOe8V7HUUZnaMf+gFvLf41Fo
+ 5yLs9X/cFlWXSsb/lIdgy4ygaQa7Y+/jocsXKhj+VFduEBiR+DPsu3AZVKiMatMMxdFUvjkpJ
+ 4Ofz2dDPtHqsykzAycAe5i5pZBIqZ7CscNbW6MloIuhY23KrEkDsd7EU8BD9fl80GkT6zrhL0
+ njXkPsuwzus/xaLKixp8RSeyGS+/ykC0ViCFcnZKJf5hO2tVkiIZPBFSY3I9M01k5LnZpSyNy
+ mY4CHVVuPNIoMgCIScG4hoU9DXG6txp8gA+kaoZ5U5e8uAAur9+j3zSTVFQWAdOeCru16BHO8
+ /9nUNytOifgVysPKmRkTqD0OV/jFm886sI3PSLa8zlwedgI82xwwB7/4vN68xQusm4CgivKhF
+ JOXsGpIbMXHrutubyccdczvt8YdQr9czrcrCBvArUOuA5MqIige7LNO3l3jxrQQD65n8dMKSp
+ XZbm2He3HanazFsR4Vvw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 6:09 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Wed, Mar 10, 2021 at 6:51 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> > > +static const struct of_device_id bcm63xx_gpio_of_match[] = {
-> > > +       { .compatible = "brcm,bcm6318-gpio", },
-> > > +       { .compatible = "brcm,bcm6328-gpio", },
-> > > +       { .compatible = "brcm,bcm6358-gpio", },
-> > > +       { .compatible = "brcm,bcm6362-gpio", },
-> > > +       { .compatible = "brcm,bcm6368-gpio", },
-> > > +       { .compatible = "brcm,bcm63268-gpio", },
+
+--boiCNNVZ39FMb+0t
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tomer,
+
+your in-line reply got lost in the "> " lines, but I found it anyway.
+
+On Thu, Mar 11, 2021 at 04:11:59PM +0200, Tomer Maimon wrote:
+> Hi Jonathan,
+>=20
+> Thanks a lot for your effort!
+>=20
+> On Thu, 4 Mar 2021 at 17:42, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.=
+net>
+> wrote:
+>=20
+> > On Thu, Mar 04, 2021 at 05:21:36PM +0200, Tomer Maimon wrote:
+> > > Hi Jonathan,
+> > >
+> > > Thanks a lot for sending the patch,
+> > >
+> > > I think that when it related to the SoC EVB it can stay with the
+> > > genral compatible name nuvoton,npcm750
+> > >
+> > > you can see it also in,
+> > > https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspee=
+d-ast2500-evb.dts#L8
 > >
-> > All these would be moved to gpio-mmio.c (or maybe that can have a
-> > fallback compatible?).
+> > To make the single compatible string match the DT binding, I'll have to
+> > write the binding a little differently. I wrote it like this:
+> >
+> >   compatible:
+> >     oneOf:
+> >       - description: NPCM750 based boards
+> >         items:
+> >           - enum:
+> >               - nuvoton,npcm750-evb         # NPCM750 evaluation board
+> >           - const: nuvoton,npcm750
+> >
 >
-> This is gpio-regmap.c and it can only be used as a library
-> by a certain driver. gpio-mmio.c can be used stand-alone
-> for certain really simple hardware (though most use that
-> as a library as well).
+> I think it should be like the exemple above
 
-I don't really care which one is used, but the problem is that this
-choice is leaking into the binding design. The primary problem here is
-once someone uses regmap, then they think they must have a syscon and
-can abandon using 'reg' and normal address properties as Linux happens
-to not use them (currently). I think we really need some better regmap
-vs. mmio handling to eliminate this duplication of foo-mmio and
-foo-regmap drivers and difference in binding design. Not sure exactly
-what that looks like, but basically some sort of 'reg' property to
-regmap creation.
+If I specify the devicetree binding like above (which I initially did),
+it implies that the compatible line in nuvoton-npcm750-evb.dts should be
 
-Given we already have a Broadcom GPIO binding for what looks to be
-similar to this one, I'm left wondering what's the real difference
-here?
+	compatible =3D "nuvoton,npcm750-evb", "nuvoton,npcm750";
 
-Rob
+not
+
+	compatible =3D "nuvoton,npcm750";
+
+
+This is why I suggested rewriting it like below:
+
+> >   compatible:
+> >     oneOf:
+> >       - description: NPCM750 development board
+> >         const: nuvoton,npcm750
+> >
+> >       - description: NPCM750 based boards
+> >         items:
+> >           - enum:
+> >               - vendor,foo-bar-bmc
+> >           - const: nuvoton,npcm750
+
+
+I will send this new approach as a patch in a few days.
+
+
+Thanks,
+Jonathan Neusch=C3=A4fer
+
+--boiCNNVZ39FMb+0t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBKNAMACgkQCDBEmo7z
+X9tVqw//d78aQEHzqrMmTFjpknPfzV0jICAFnC3gHY5Fz+YK4Ff47meK8UDdxmrv
+SHZbL4OoQfqxKRWICSMklYLNp1igbJ7wtr5r5c5yog7Vc80ToGQRyG4d06wdYl5Z
+cjj8kQcNiKiqiCdAJXrzDdZHXePfmd4CjZok1zHC6rrYrBMjrMYEdAnUU+9JTfU8
+gB0/Gt4cPyurybY62bgTF1s4WWHqdmFuBt4ZNL2H983jDdgEgI7vZOtoneBTarpM
+XIUkCXv1jdxuRqs+G8Ln4liO/C2xyn7VrnVzdhdMohIaZ+CeE8z2iUoa+pktBwHM
++jIEg5EjZ9CjrQGa2t4DvL8PcSUSLVmwPetjiRJ0b76KQhVsUP6HvRyKOlGKF4Q3
+V7rrjCSW70m7mZl5pokQRU2AcpGSWtkoJ7XxfMLFJE7Bdzsn278nRUo5IGr38M/r
+9yCpVtc+E9DlpUPDavyJIEMn1R7q+fPM7Y/Sdks1hGTO+EiqzuUReH6ilzF2TIQo
+pPBkoNdvDwfwA4DzCcZiz3vjPpG90T0hLqaZv00J7HBvcvnGz54jvFyJqqagAfbB
+ZWRtBra4l5XtW84+FGo0nOVwRik45F0pwsui0tFzsqLPDvLhX0XW2upsFXZnUOBz
+Vzy8RZw3uhbIEDogQx1vUof2AyAUUWjdE/1LA2aw7ZTyNxF3Jq4=
+=7rtB
+-----END PGP SIGNATURE-----
+
+--boiCNNVZ39FMb+0t--
