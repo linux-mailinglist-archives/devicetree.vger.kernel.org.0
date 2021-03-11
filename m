@@ -2,77 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71AB4336BAD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 06:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47B4E336BF8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 07:20:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbhCKFcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 00:32:20 -0500
-Received: from mail-lj1-f170.google.com ([209.85.208.170]:36607 "EHLO
-        mail-lj1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbhCKFcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 00:32:10 -0500
-Received: by mail-lj1-f170.google.com with SMTP id z25so552648lja.3;
-        Wed, 10 Mar 2021 21:32:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=RiROpEyznFr1DscZ4+yFU5uNuzzwZqDw1ral9tCx3AM=;
-        b=AGgNhD0HVaUGaKZnxorP5nv7FP9CAwlrCnqHCJUg6L0JHr2Njf8dyUV/+PFL5J3HdO
-         44w7f1ItUOgaMZoOEH45BVLWcB+ixrG5QQmQmSwqNOKEzwuYUXZLt/+BAEEXkb/PL/H/
-         9g3jno2gzn/DvOzFQKw2GTW+mrZsnXSDIojdsJ5aiOW5PYWjH3g72oZN3kk2gUC1Jo1P
-         RzhNjA3PXupoWH/yAySmUtlDaGdX36Gd8cr32EW5JsaBtBnYgGrZJfjmCV/hzgaOBBq1
-         zpK9/W3feMpF2AjA4xoYngJNs79Mq7iPyabwbBj0OOKc9JgEp0L53BhTIdknZSYPcwt5
-         a2Fw==
-X-Gm-Message-State: AOAM5308TvGqm5E2mV/W1kg7YRTi8vb5xzfuzMPqwX+jZIdrJm9Gi31m
-        fryxvbkWkGlu8n3JTfhtKN8=
-X-Google-Smtp-Source: ABdhPJxWZc6rVmvoCwZEhYe1iDvpr8ysupf8L4jWJuKSQaFpNnubov7T8AoorZsQ3FdZGXOBGGtxTw==
-X-Received: by 2002:a2e:3913:: with SMTP id g19mr3459509lja.294.1615440728958;
-        Wed, 10 Mar 2021 21:32:08 -0800 (PST)
-Received: from dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::4])
-        by smtp.gmail.com with ESMTPSA id g26sm604523lja.10.2021.03.10.21.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 21:32:08 -0800 (PST)
-Message-ID: <763406f888de18df462fc5533230345ac3d8a4e5.camel@fi.rohmeurope.com>
-Subject: Re: [RFC PATCH v2 0/7] Extend regulator notification support
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S229793AbhCKGT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 01:19:57 -0500
+Received: from z11.mailgun.us ([104.130.96.11]:24151 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229910AbhCKGTs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 01:19:48 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615443587; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=ga3DsNa4ubV/OCXuniJ9QllbjgFwaAs6FxP/8OgRzaA=;
+ b=EoosnRlsipIMDKMFSC5o1FEnRu7PfJbkQcMZSiFwkKbdUdRuszDDSQa2Vhv3wF5dXIt+JYdg
+ p9NvAd0AU8ZG+EYZFkZs5nShVQ9A80Umdl5LImCVWP9ZbqIZQ8P5IZWWgVIb0JTyvHvBCpAt
+ 4IoPzzzn5MKd0RopnjgTaiBRvg4=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6049b6790c7cf0f56c3f2a52 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 06:19:37
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5E1C7C43461; Thu, 11 Mar 2021 06:19:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62892C433C6;
+        Thu, 11 Mar 2021 06:19:36 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 11 Mar 2021 11:49:36 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Souradeep Chowdhury <schowdhu@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org
-In-Reply-To: <cover.1615367099.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1615367099.git.matti.vaittinen@fi.rohmeurope.com>
-Content-Type: text/plain; charset="UTF-8"
-MIME-Version: 1.0
-Date:   Thu, 11 Mar 2021 07:32:02 +0200
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        sibis@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        vkoul@kernel.org
+Subject: Re: [PATCH V1 2/6] soc: qcom: dcc: Add driver support for Data
+ Capture and Compare unit(DCC)
+In-Reply-To: <YElUCaBUOx7hEuIh@builder.lan>
+References: <cover.1615393454.git.schowdhu@codeaurora.org>
+ <48556129a02c9f7cd0b31b2e8ee0f168e6d211b7.1615393454.git.schowdhu@codeaurora.org>
+ <YElUCaBUOx7hEuIh@builder.lan>
+Message-ID: <ab30490c016f906fd9bc5d789198530b@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Peeps,
+Hi Bjorn,
 
-On Wed, 2021-03-10 at 15:07 +0200, Matti Vaittinen wrote:
-> Extend regulator notification support
+On 2021-03-11 04:49, Bjorn Andersson wrote:
+> On Wed 10 Mar 10:46 CST 2021, Souradeep Chowdhury wrote:
 > 
-> This is an RFC series for getting feedback on extending the regulator
-> notification and error flag support.
+>> The DCC is a DMA Engine designed to capture and store data
+>> during system crash or software triggers. The DCC operates
+>> based on link list entries which provides it with data and
+>> addresses and the function it needs to perform. These
+>> functions are read, write and loop. Added the basic driver
+>> in this patch which contains a probe method which instantiates
+>> the resources needed by the driver. DCC has it's own SRAM which
+>> needs to be instantiated at probe time as well.
+>> 
+> 
+> So to summarize, the DCC will upon a crash copy the configured region
+> into the dcc-ram, where it can be retrieved either by dumping the 
+> memory
+> over USB or from sysfs on the next boot?
+> 
 
-I am sorry. It seems I've sent bad version of the series. This series
-contains some untested changes squashed in. Please skip the review for
-the v2. I will try to fix the mess and send v3 when I got my git
-branches sorted.
+Not just the next boot, but also for the current boot via /dev/dcc_sram,
+more below.
 
-...This is what happens when you suddenly pause work for over a week
-because it starts to rain in the kitchen >.<;
+>> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> ---
+>>  drivers/soc/qcom/Kconfig  |   8 +
+>>  drivers/soc/qcom/Makefile |   1 +
+>>  drivers/soc/qcom/dcc.c    | 388 
+>> ++++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 397 insertions(+)
+>>  create mode 100644 drivers/soc/qcom/dcc.c
+>> 
 
-Best Regards
-	Matti Vaittinen
+<snip>...
 
+> 
+> How about implementing this using pstore instead of exposing it through
+> a custom /dev/dcc_sram (if I read the code correclty)
+> 
+
+Using pstore is definitely a good suggestion, we have been thinking of
+adding it as a separate change once the basic support for DCC gets in.
+But pstore ram backend again depends on warm reboot which is present 
+only
+in chrome compute platforms but android platforms do not officially 
+support
+warm reboot. Pstore with block devices as a backend would be ideal but 
+it
+is still a work in progress to use mmc as the backend [1].
+
+Now the other reason as to why we need this dev interface in addition to
+pstore,
+
+  * Pstore contents are retrieved on the next boot, but DCC SRAM contents
+    can be collected via dev interface for the current boot via SW 
+trigger.
+    Lets say we have some non-fatal errors in one of the subsystems and 
+we
+    want to analyze the register values, it becomes as simple as 
+configuring
+    that region, trigger dcc and collect the sram contents and parse it.
+
+    echo "addr" > /sys/bus/platform/devices/***.dcc/config
+    echo  1 > /sys/bus/platform/devices/***.dcc/trigger
+    cat /dev/dcc_sram > dcc_sram.bin
+    python dcc_parser.py -s dcc_sram.bin --v2 -o output/
+
+We don't have to reboot at all for SW triggers. This is very useful and
+widely used internally.
+
+Is the custom /dev/dcc_sram not recommended because of the dependency on
+the userspace component being not available openly? If so, we already 
+have
+the dcc parser upstream which we use to extract the sram contents [2].
+
+[1] 
+https://lore.kernel.org/lkml/20210120121047.2601-1-bbudiredla@marvell.com/
+[2] 
+https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+
+Thanks,
+Sai
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
