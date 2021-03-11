@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8A33336986
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF13A336999
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbhCKBUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 20:20:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59550 "EHLO
+        id S229490AbhCKBWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 20:22:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbhCKBUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:20:22 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76FCC061574;
-        Wed, 10 Mar 2021 17:20:21 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id c76-20020a1c9a4f0000b029010c94499aedso12200813wme.0;
-        Wed, 10 Mar 2021 17:20:21 -0800 (PST)
+        with ESMTP id S230087AbhCKBWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:22:42 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123C7C061761
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:22:42 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id f1so36957036lfu.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:22:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZOFX3Z+Nh1qGoQBD8/kOpxjm8rGJnIajKjvGxPffQVU=;
-        b=tiHVeYDJLsTTaxGjUEeKhXB4TZi93pOY0n1egph0QHJ0skAQKwVCL8/5UcxVU1O9pE
-         0DI34vCZgRKfxhuGjRmlysaBxjy4vuXNMd9CJiXLmwudzV2n+Yasno7p1CjlG18iE/Fk
-         Z8hGtJkBkj6LaRCYKkHW/z5+rMIdLJFvTBm/VAdotOaQeDo8r2h55eBLvEucGX4JdQ5w
-         O1izMfV5+y7hmD8/m+Q2zHZXizU19HVZftfpFvogxFMrQwizJ+I9MtXSRdg7VAv4229R
-         tvETpf5wm+pfIl2BV/czmt7JvIO3Ofz50NUMgLaW3Sk9AY2OD+jiPpuVwiGbolnKMcyO
-         tzFw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7yueRKf7NTloS21McCcBQmqTDQypapEcd+sak21ArKU=;
+        b=uohEnWHsg2DVXLLmEZDnJShk3Lpaj+XRXUVv5r9VczfY9UX95z9wHyIZKse31Pmjr0
+         E8+Mv0kjlMfXkrCfhRtEBavplgbS4QGZiA59/obV0IUquoczYumA1LNrxWca+dL87PmD
+         MbCIyD71DO66VtXpZkIrU3GmsHuuIh/Md4WUu7nU004yjpggzISIJndYoIJ5KKPR7L7G
+         QwL8UazybQszCFqD9S6m3/G2DCfeYTfiLPsyDbMieUgXXtbnSgbaUBHSplwZm7qYsJUW
+         Dd5LUus+wc3fg6B/lTE24PEcV6bZUzxxZF2WeWx5yXQR/n0/7e+InUaeftJUQKL2rufn
+         8SEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZOFX3Z+Nh1qGoQBD8/kOpxjm8rGJnIajKjvGxPffQVU=;
-        b=kks0LL9wQJSX59W6LtNQLaqTaUdE4Bu+1l3M6JVyy8F3lMgZcE7V/sDu8iSljSYMfn
-         zciGhjuA6qAFh9yeEUi7UvmD+XNJv6AQ3MCkJIMPA6Gxm+r++fifBlX1WbiQAHLB+uNc
-         gSQmxBA2Qp8LsstJuejaytxBoIU1SYIMVj9HZp3xtY5laIoyrK7Jnop4nX33/HQH0smK
-         +Dds9ajLkVSZsl3LL+cXsJANfxzqKRhbpqOvAB3L364AP1sLVmir8ca+JOfiYuYNJy4z
-         lF9WfTAAHNKaBtQhJi6MwvOfUopZenHb/UGlKHVbYNNSEdyb2/yqztAFG+UNwFJcahvf
-         txSg==
-X-Gm-Message-State: AOAM533q3DWBXdcYVCG+bnLoPR0l0mpaIvsFM2sMBxdCoavuCce+4GhY
-        NEiogxuYhWkBX6jbo+spTWs=
-X-Google-Smtp-Source: ABdhPJzyjYjhesQwlSuQw6NMILKlt0zGlivLRJUCZMQWHSoKuQTNmeAt5TSvumQcvLsss7XjHGuBow==
-X-Received: by 2002:a1c:7210:: with SMTP id n16mr5601345wmc.13.1615425620689;
-        Wed, 10 Mar 2021 17:20:20 -0800 (PST)
-Received: from localhost.localdomain ([81.18.95.223])
-        by smtp.gmail.com with ESMTPSA id d85sm1199127wmd.15.2021.03.10.17.20.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 17:20:20 -0800 (PST)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
-Date:   Thu, 11 Mar 2021 03:20:14 +0200
-Message-Id: <45c3e736093d362629ad895ab75df06b70d94b2a.1615423279.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
-References: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7yueRKf7NTloS21McCcBQmqTDQypapEcd+sak21ArKU=;
+        b=BGB2aO4EubUTtdmppYLcuF6/z2GVY3FsoBMqPHXUXY20EDNAL+Kwg6k0mByzPlVp8x
+         ar3osI6rJHSspMedCKWjOSZIqy089zXMxRCVk+jOANwMVtv3eho8gfwSSGl6qVE/tOj9
+         E47QV18eK/he4uwALFZSME5fjkLdGGoTaRujeGaJY7u4BhZG2ikq4V6thIWvumk+NDf5
+         9uVVfjAYLsl2tXmPv/RfdGNObJfhK20AmEWMP0fBXjSWbqtfcf2h/Y0kkFN7fvYj+Eru
+         itEIEkMwhMb++AWJH1YShi/mHNu+uarbmGxpHWBI8tcRacPOlp/TmbAOSfhgG8KKxMV6
+         m8dg==
+X-Gm-Message-State: AOAM532mjM87q196MsVynWrp0mFI9RCneryS3oEfIiXvVgokraZhlFjH
+        JL1U8kxuczcJFqEVdnO5+54sCgfCuenI8XorBWzI0w==
+X-Google-Smtp-Source: ABdhPJx/BkUrEWBn3EpUI4WDL90u3zHiaFEheDbujel4KL04+8DIyQYEkc9huFNfzgtcr/ZBnmWTojh55Tjw+M1XjB4=
+X-Received: by 2002:a19:4c08:: with SMTP id z8mr732830lfa.157.1615425760563;
+ Wed, 10 Mar 2021 17:22:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-5-noltari@gmail.com>
+ <CAL_JsqK4b+U7cVb04+moB4biGVFC4mr3VGx70KdQKitiCGdtnQ@mail.gmail.com> <A2B4813E-4177-4969-9119-A40B39A36948@gmail.com>
+In-Reply-To: <A2B4813E-4177-4969-9119-A40B39A36948@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 11 Mar 2021 02:22:29 +0100
+Message-ID: <CACRpkdanTJqB1dC+Ax99Xt+sFjES1B-hBW01vhrXA0Prnc4_HA@mail.gmail.com>
+Subject: Re: [PATCH v6 04/15] dt-bindings: add BCM6328 pincontroller binding documentation
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Actions Semi Owl Ethernet MAC binding and driver.
+On Wed, Mar 10, 2021 at 7:03 PM =C3=81lvaro Fern=C3=A1ndez Rojas
+<noltari@gmail.com> wrote:
+> > El 10 mar 2021, a las 18:45, Rob Herring <robh+dt@kernel.org> escribi=
+=C3=B3:
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+> >> +      reg =3D <0x10000080 0x80>;
+> >> +
+> >> +      pinctrl: pinctrl {
+> >> +        compatible =3D "brcm,bcm6328-pinctrl";
+> >> +
+> >> +        gpio {
+> >> +          compatible =3D "brcm,bcm6328-gpio";
+> >
+> > I'm still trying to understand why you need 3 levels of nodes here?
+> > The gpio controller contains a pin controller plus other undefined
+> > functions (because of 'syscon') and the pin controller contains a gpio
+> > controller?
+>
+> In previous versions the gpio controller was registered along with the pi=
+n controller, but @Linus requested me to register the gpio pin controller r=
+anges through device tree by using gpio-ranges and I decided to use this ap=
+proach, which was already used by other pin controllers.
+> However, there aren=E2=80=99t any pinctrl drivers using gpio-regmap, so t=
+his is kind of new=E2=80=A6
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5e372d606c5c..b6cd438083e4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1530,6 +1530,7 @@ F:	Documentation/devicetree/bindings/dma/owl-dma.yaml
- F:	Documentation/devicetree/bindings/i2c/i2c-owl.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
- F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
-+F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
- F:	Documentation/devicetree/bindings/pinctrl/actions,*
- F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
- F:	Documentation/devicetree/bindings/timer/actions,owl-timer.txt
-@@ -1542,6 +1543,7 @@ F:	drivers/dma/owl-dma.c
- F:	drivers/i2c/busses/i2c-owl.c
- F:	drivers/irqchip/irq-owl-sirq.c
- F:	drivers/mmc/host/owl-mmc.c
-+F:	drivers/net/ethernet/actions/
- F:	drivers/pinctrl/actions/*
- F:	drivers/soc/actions/
- F:	include/dt-bindings/power/owl-*
--- 
-2.30.2
+I think the crucial point is that these hardwares (all patches in the serie=
+s)
+is very similar and some contain several GPIO blocks rather than just
+one.
 
+The structure needs to be seen as a common pattern. We are doing this
+because it gives a common structure to all BCM SoCs in this
+family, which is nice.
+
+Yours,
+Linus Walleij
