@@ -2,138 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7DB337C15
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:11:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15881337C0E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbhCKSLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 13:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231152AbhCKSKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 13:10:43 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C537C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:10:42 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id dx17so48197299ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:10:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=v9ovWZgFAlWGGQ1sxyZ9+Em1R2VKteToFFiptWzU7k4=;
-        b=gcDGTvBujfFZRgC/WdDFBpjH9uaBhx31fYT2zDELYY74u7Iarug+JmeDQDr9StlIZv
-         /Vwqy5WWpWD9Mz2z8S1uw78VCaBOk4J9BiJtSwwCRt/DBg8mLdtRa5MNNYNflYwUCY53
-         iCPaTrdFnNti+4yV5obwLmOpVMQyjDtzVV3jS0DoTVcJceV7X2hfno5jKccoUGLVgA4Z
-         My8iJ9UZXUFaa5QNKvDsWfpg3JdZXPOraGFQ004U0AvzOXZxXgntIjbjLpJPrgcOGGcT
-         RjhCjmINOEqzOsvDWWU/SgxOWgGvdQOkaPoqwGtqLDvCgFEQ3Fpc9VspyZ5CL+ymnyDe
-         bp3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=v9ovWZgFAlWGGQ1sxyZ9+Em1R2VKteToFFiptWzU7k4=;
-        b=VBtUSEdMWrMQhVM1qo1mPFHqJfpR5tRE9wDzIogw9PbxhGKxFebao1rOFtgswiWtna
-         XovNsRT9Ehm8d1m+Q2LlhWmLuEwd5urnhckzb5rHs1IpEFowtOhcp1VxCmGuYk3x48xh
-         0hTfSRpxh1sVqDfyH68sGejqWkrmbdBV/ZDn2ComYek2objbjUPIMgcwiViwt0QrlEMP
-         eqNCmamh8JgVeJ+AhiBqsMvT7iGwZs2HmvnZXlX7r90+fW2SZ+qJaY0vEIoULUK9iTzS
-         b5cZ8wGcq1Bb6Or+fmeEfpQv41Ufx3Kd/BBrdOZ/o7ZdwE3jsm1JSYpO5JgupVVNx96s
-         8hFg==
-X-Gm-Message-State: AOAM532Zp12FGyeNybIOFxWKLBafPyIQQAei79D5zseSBeiCSmuU1A3G
-        lgBQz8Wi2HWcE1oKlmOmIPLvCg==
-X-Google-Smtp-Source: ABdhPJxpnyNz+lZqsEVQ8JyNg53Lql0Z7S1212PUFiT/HK26y1BgNFm2X07rGryMW9f9V3UHpjaDAA==
-X-Received: by 2002:a17:907:2054:: with SMTP id pg20mr4285492ejb.213.1615486241362;
-        Thu, 11 Mar 2021 10:10:41 -0800 (PST)
-Received: from localhost.localdomain ([2a02:2454:3e3:5f00:8e01:34c:da50:eb7e])
-        by smtp.gmail.com with ESMTPSA id a22sm1741290ejr.89.2021.03.11.10.10.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 10:10:40 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v7 22/22] arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
-Date:   Thu, 11 Mar 2021 19:09:48 +0100
-Message-Id: <20210311180948.268343-23-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210311180948.268343-1-robert.foss@linaro.org>
-References: <20210311180948.268343-1-robert.foss@linaro.org>
+        id S230196AbhCKSLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 13:11:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55496 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230300AbhCKSKf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 13:10:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 773FA65018;
+        Thu, 11 Mar 2021 18:10:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615486234;
+        bh=tmt8DXL/NkkK3fqsKzp1sa5x/enHlRdNBSlE6sT3Ol4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ew/NIGH8ca6hopkG3U8b9r6qb4RL4623K9fly5yItiT+8ubil19Ek3W1I9uzZkXaV
+         SS/wUSc4qF2N/+CEdEEjiosqyXdPlQDV6gmsZyGoYiofROwQuELtuvpXLsg41ZUl+I
+         zTxb4YH7gGW2lP+bk0UmqouHE1A4Ct9j5CBAZIb/EyFukR+wc5+426TEG3xvSqlTNs
+         zrISTJo7Bcn1PT6Tt7VvH6wBUv/FOVlzZjPhhFRyf24OBWtBR8UkBxZNOxnGayUlL3
+         qdG/KlD2b/NUv3xynLWzvL7xQCfBHPzi0d+rEqHmljXgXkL98TRQxiPn6hmAPOYpfu
+         pO74we79VATfg==
+Received: by mail-ej1-f43.google.com with SMTP id e19so48236776ejt.3;
+        Thu, 11 Mar 2021 10:10:34 -0800 (PST)
+X-Gm-Message-State: AOAM532gIRH9bm3Fo+i0EbsHlRjhxiPQWK5SP7fJE/Yz0D30C1g5zyPH
+        LQhMi4sqcRq0QAngd7NwMBkwIHB/s3Zjf6bAFg==
+X-Google-Smtp-Source: ABdhPJyUsXPtzO/H83nHUMgfPs1p3wnAlKlkTmdKFFzieSp9RKRftdZy73PPYTvjnRjgXVDraWLRvsEKaxzbwKml2jg=
+X-Received: by 2002:a17:906:c405:: with SMTP id u5mr4327186ejz.341.1615486232876;
+ Thu, 11 Mar 2021 10:10:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
+ <20210308211306.GA2920998@robh.at.kernel.org> <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+ <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
+ <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st> <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
+ <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st> <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
+ <CAK8P3a2HWbHc-aGHk792TVh6ea2j+aKswYrB6EBsjPA6fH1=xA@mail.gmail.com>
+ <CAL_JsqKYpsXKvcw7xbbYx6z7Cg3P9DxcpLUnOG+m0xeSRO7v_g@mail.gmail.com> <CAK8P3a2iASEZf-YRh2SHYhNdUtpo8sdkuoxfk_MonXpXBk1kbg@mail.gmail.com>
+In-Reply-To: <CAK8P3a2iASEZf-YRh2SHYhNdUtpo8sdkuoxfk_MonXpXBk1kbg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 11 Mar 2021 11:10:20 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqK200WcxD3PP1FToc5w2dyF3b6TYnf2oNd9Mpz77g68og@mail.gmail.com>
+Message-ID: <CAL_JsqK200WcxD3PP1FToc5w2dyF3b6TYnf2oNd9Mpz77g68og@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable camss & ov8856 DT nodes.
+On Thu, Mar 11, 2021 at 9:48 AM Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> On Thu, Mar 11, 2021 at 5:10 PM Rob Herring <robh@kernel.org> wrote:
+> > On Thu, Mar 11, 2021 at 2:12 AM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > On Wed, Mar 10, 2021 at 6:01 PM Rob Herring <robh@kernel.org> wrote:
+> > > Ok, makes sense.
+> > >
+> > > Conceptually, I'd like to then see a check that verifies that the
+> > > property is only set for nodes whose parent also has it set, since
+> > > that is how AXI defines it: A bus can wait for the ack from its
+> > > child node, or it can acknowledge the write to its parent early.
+> > > However, this breaks down as soon as a bus does the early ack:
+> > > all its children by definition use posted writes (as seen by the
+> > > CPU), even if they wait for stores that come from other masters.
+> > >
+> > > Does this make sense to you?
+> >
+> > BTW, I don't think it's clear in this thread, but the current
+> > definition proposed for the spec[1] and schema is 'nonposted-mmio' is
+> > specific to 'simple-bus'. I like this restriction and we can expand
+> > where 'nonposted-mmio' is allowed later if needed.
+>
+> That sounds ok, as long as we can express everything for the mac
+> at the moment. Do we need to explicitly add a description to allow
+> the property in the root node in addition to simple-bus to be able
+> to enforce the rule about parent buses also having it?
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
----
+IMO it should not be allowed in the root node. That's a failure to
+define a bus node. Also, would that mean your memory has to be
+non-posted!?
 
-
-Changes since v5
- - Andrey: Add r-b
- - Change CSI clock & data pins
-
-
-
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 7e3c9fe4955d..e5a693c8dc42 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1110,6 +1110,21 @@ &cci {
- 
- &camss {
- 	vdda-supply = <&vreg_l1a_0p875>;
-+
-+	status = "ok";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			csiphy0_ep: endpoint {
-+				clock-lanes = <7>;
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&ov8856_ep>;
-+			};
-+		};
-+	};
- };
- 
- &cci_i2c0 {
-@@ -1141,7 +1156,7 @@ camera@10 {
- 		avdd-supply = <&cam0_avdd_2v8>;
- 		dvdd-supply = <&cam0_dvdd_1v2>;
- 
--		status = "disable";
-+		status = "ok";
- 
- 		port {
- 			ov8856_ep: endpoint {
-@@ -1149,7 +1164,7 @@ ov8856_ep: endpoint {
- 				link-frequencies = /bits/ 64
- 					<360000000 180000000>;
- 				data-lanes = <1 2 3 4>;
--//				remote-endpoint = <&csiphy0_ep>;
-+				remote-endpoint = <&csiphy0_ep>;
- 			};
- 		};
- 	};
--- 
-2.27.0
-
+Rob
