@@ -2,126 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D23463379DE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 521F83379EC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbhCKQrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:47:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbhCKQrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:47:16 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE70C061574;
-        Thu, 11 Mar 2021 08:47:16 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id e7so3789213edu.10;
-        Thu, 11 Mar 2021 08:47:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SX756dXupgS3itIHiEP07yjhdJyqc8DqtHCMzdh6MRo=;
-        b=R9wg2pKVwClt4BFKX1kiHQ7mq/v3644NmsFSa2zgKZ+Kb6OrNqbR1V1dZy4zL9R4vu
-         vLMpqQSxTBlMZ0t/6N8aPfWVUXykG8YcWk0cWKX5MjKRhlS5NRIPvZXyMMDi4jscxqz/
-         Ev7aGxqArVCDT9/XzGEjphh8HcBIwqNdVQiYor0aMMM6FsRRoVyxr7przjyqcmb/yZZ5
-         bAF5A6qjeby9EVZlPG8s93Tn0GDu0gFPp5KYkw/Y2sfLbuADksNLa5FtZtHW6Q2vU+hF
-         dK4aXpg8pk/WBiV8F8x3swUMS0Y9HNodZkXwttw7rBQElyG32sI+RbnGR4qBoYUBGMcb
-         LRSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SX756dXupgS3itIHiEP07yjhdJyqc8DqtHCMzdh6MRo=;
-        b=umKiWjJpHPSOeE9gFN8oLZqGbMKg8dT1J+H5zgtXB2T2NF5MH2TcZskUc5J7THSKmK
-         5E2qmhRpldFefMlChABbjdQ1/n/1z/oNJHWwyZSTYzRy3MRxrtUlFvlHxh9gfePb3Q/U
-         7Vt5rXiblHQRp0F6wP4kngJIlLTq7Qd0GEb+ndiLetE8/wQfZsKrA5RlgnF52T8X79BK
-         JZGWykkagiVbo9DHudrYe0JGZ43NB8jEsmMa/oQeUN2PHKhhc1q4F4vVuhGdALNwFq+5
-         BU1+PyWBfFar9jg99RBFn8sKKl/0W1k/+aF6PBqAhkIwtadmDAX/0F5GAkm+0xKH9r+A
-         X/0Q==
-X-Gm-Message-State: AOAM532I1mh+m5ZYI30mIoJKaIlmbVoPpyncq7m6FHNO1azZhFOloFMo
-        uOTcWA/tLozL+92uE2h9XnI=
-X-Google-Smtp-Source: ABdhPJzbvJBnHK734cKDjR2nu98P9RPcWwwdIsl6VSvtR5afUwQr00mWWgTTX1afwARu8pPC3xNBhQ==
-X-Received: by 2002:aa7:d656:: with SMTP id v22mr9302062edr.119.1615481234980;
-        Thu, 11 Mar 2021 08:47:14 -0800 (PST)
-Received: from BV030612LT ([81.18.95.223])
-        by smtp.gmail.com with ESMTPSA id da17sm1578584edb.83.2021.03.11.08.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 08:47:14 -0800 (PST)
-Date:   Thu, 11 Mar 2021 18:47:11 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Philipp Zabel <pza@pengutronix.de>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: ethernet: actions: Add Actions Semi Owl
- Ethernet MAC driver
-Message-ID: <20210311164711.GA892053@BV030612LT>
-References: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
- <158d63db7d17d87b01f723433e0ddc1fa24377a8.1615423279.git.cristian.ciocaltea@gmail.com>
- <20210311064336.GA6206@pengutronix.de>
+        id S229675AbhCKQsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:48:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59662 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229632AbhCKQs0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 11:48:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5ED2864FFB;
+        Thu, 11 Mar 2021 16:48:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615481305;
+        bh=FgHbw5HS/VjP7/VZBF5aykDpmElBQPo7RYwq/98R/y0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Xjm2VLWQbRLzLjMb3wGyLY/D8Qc6zsY+gHm5tR9VhAap9AW7Ethi7WR+IkUl/0Ven
+         86SK1RQXK0WdIlpmesgdJltCy4fWuo7zvsnG84lBdRk/0N5nLcpvF/hUG2KEB5pLoz
+         tWo9qSkUf4/NaR5c1K87+wc/ZFqufD/AI9+3vQKwbJ0F6MTGOe0EjpzFbfmJFgp1By
+         6it0kiNaV/p+q+R5Epwa6oFu3B96Y6qWUqC8c+bS1k1kY7FIeO2gDXVNEjQ/8GKwYd
+         rhLOSyDPImswIt6JrFSqzVhWrt1RA+zyTvkjXNeUBHAjiZOmku848V1UN6kGJtsqcW
+         bxfRyUcYFwIww==
+Received: by mail-oo1-f46.google.com with SMTP id e19-20020a4a73530000b02901b62c0e1bb6so831805oof.11;
+        Thu, 11 Mar 2021 08:48:25 -0800 (PST)
+X-Gm-Message-State: AOAM532BIdwPeQXtk+8rcA4oFQkV2ikl5155G19Ek+co8I95IqiPvwaY
+        og6VIqYmRUq73oCM8eEBS4Qx5qLkT3pj6c58zYw=
+X-Google-Smtp-Source: ABdhPJwIgrbXVP3PRPUXHopliI3qsXWZiXkZVPwqkBfIWll0HvAMT6p5npMnLVv5OxG3dnsn4P6GmJ7wCO0i3CmSEgk=
+X-Received: by 2002:a4a:304a:: with SMTP id z10mr7486554ooz.26.1615481304355;
+ Thu, 11 Mar 2021 08:48:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311064336.GA6206@pengutronix.de>
+References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
+ <20210308211306.GA2920998@robh.at.kernel.org> <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+ <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
+ <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st> <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
+ <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st> <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
+ <CAK8P3a2HWbHc-aGHk792TVh6ea2j+aKswYrB6EBsjPA6fH1=xA@mail.gmail.com> <CAL_JsqKYpsXKvcw7xbbYx6z7Cg3P9DxcpLUnOG+m0xeSRO7v_g@mail.gmail.com>
+In-Reply-To: <CAL_JsqKYpsXKvcw7xbbYx6z7Cg3P9DxcpLUnOG+m0xeSRO7v_g@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Thu, 11 Mar 2021 17:48:07 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2iASEZf-YRh2SHYhNdUtpo8sdkuoxfk_MonXpXBk1kbg@mail.gmail.com>
+Message-ID: <CAK8P3a2iASEZf-YRh2SHYhNdUtpo8sdkuoxfk_MonXpXBk1kbg@mail.gmail.com>
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+On Thu, Mar 11, 2021 at 5:10 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, Mar 11, 2021 at 2:12 AM Arnd Bergmann <arnd@kernel.org> wrote:
+> > On Wed, Mar 10, 2021 at 6:01 PM Rob Herring <robh@kernel.org> wrote:
+> > Ok, makes sense.
+> >
+> > Conceptually, I'd like to then see a check that verifies that the
+> > property is only set for nodes whose parent also has it set, since
+> > that is how AXI defines it: A bus can wait for the ack from its
+> > child node, or it can acknowledge the write to its parent early.
+> > However, this breaks down as soon as a bus does the early ack:
+> > all its children by definition use posted writes (as seen by the
+> > CPU), even if they wait for stores that come from other masters.
+> >
+> > Does this make sense to you?
+>
+> BTW, I don't think it's clear in this thread, but the current
+> definition proposed for the spec[1] and schema is 'nonposted-mmio' is
+> specific to 'simple-bus'. I like this restriction and we can expand
+> where 'nonposted-mmio' is allowed later if needed.
 
-Thanks for your quick review!
+That sounds ok, as long as we can express everything for the mac
+at the moment. Do we need to explicitly add a description to allow
+the property in the root node in addition to simple-bus to be able
+to enforce the rule about parent buses also having it?
 
-I will incorporate the indicated changes in the next patch revision.
-
-Kind regards,
-Cristi
-
-On Thu, Mar 11, 2021 at 07:43:36AM +0100, Philipp Zabel wrote:
-> Hi Cristian,
-> 
-> On Thu, Mar 11, 2021 at 03:20:13AM +0200, Cristian Ciocaltea wrote:
-> > Add new driver for the Ethernet MAC used on the Actions Semi Owl
-> > family of SoCs.
-> > 
-> > Currently this has been tested only on the Actions Semi S500 SoC
-> > variant.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> [...]
-> > diff --git a/drivers/net/ethernet/actions/owl-emac.c b/drivers/net/ethernet/actions/owl-emac.c
-> > new file mode 100644
-> > index 000000000000..ebd8ea88bca4
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/actions/owl-emac.c
-> > @@ -0,0 +1,1660 @@
-> [...]
-> > +static int owl_emac_probe(struct platform_device *pdev)
-> > +{
-> [...]
-> > +	priv->reset = devm_reset_control_get(dev, NULL);
-> 
-> Please use
-> 
-> 	priv->reset = devm_reset_control_get_exclusive(dev, NULL);
-> 
-> instead, to explicitly state that the driver requires exclusive
-> control over the reset line.
-> 
-> > +	if (IS_ERR(priv->reset)) {
-> > +		ret = PTR_ERR(priv->reset);
-> > +		dev_err(dev, "failed to get reset control: %d\n", ret);
-> > +		return ret;
-> 
-> You could use:
-> 
-> 		return dev_err_probe(dev, PTR_ERR(priv->reset),
-> 				     "failed to get reset control");
-> 
-> regards
-> Philipp
+       Arnd
