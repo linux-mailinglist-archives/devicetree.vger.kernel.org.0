@@ -2,119 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 320E73374A0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD1F33747F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233759AbhCKNti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 08:49:38 -0500
-Received: from gecko.sbs.de ([194.138.37.40]:40052 "EHLO gecko.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233756AbhCKNt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 08:49:27 -0500
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 12BDnIsa002139
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 11 Mar 2021 14:49:18 +0100
-Received: from [167.87.35.81] ([167.87.35.81])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12BDiHqf005503;
-        Thu, 11 Mar 2021 14:44:17 +0100
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Le Jin <le.jin@siemens.com>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <cover.1615369068.git.jan.kiszka@siemens.com>
- <9bff40f434e5298890e5d139cc36cc46a0ca2d76.1615369068.git.jan.kiszka@siemens.com>
- <20210311131754.i5ewls6hgeitcgre@astonish>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <8d076ff1-cdac-941f-e796-a2e6dba792ab@siemens.com>
-Date:   Thu, 11 Mar 2021 14:44:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S233726AbhCKNtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 08:49:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233565AbhCKNsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:48:36 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5BBC061761
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 05:48:36 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id s17so2219368ljc.5
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 05:48:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rEk/4ipeOtDShwpMiaY0Jz75T1hvoWxqNerJf3TNtsY=;
+        b=h7sRUR7UJvx8pzoyO9YqyyaJDVXtOKxCVBSGohK6BN9dMEg0jSslERxAiTdrJERkNb
+         n9kWMjX3VnxLcZdhOSLPa4qa0q9cm4RZie85nThsVbLcqlobnRxYhi/heasGzDxz9klB
+         duV5ql6q8G1CkgCIkgmvhtm5zcP7qrkoVSXDev8ksc8RPPuoPxvFC3u8Rg/4ORNRT9HS
+         iAXmae/T0NxeM78M6HdrQvUXASeGmALHROR33V+gaKWbBBRgDKX6qIEdDAkVmr3eOH8l
+         iVCIMkpWp33gwzKiWZ3eiTU3gN2BMXTfFNg/dMwXO13KISS9NEDkKy/61qW09X4UozkG
+         QweQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rEk/4ipeOtDShwpMiaY0Jz75T1hvoWxqNerJf3TNtsY=;
+        b=kpkykhGuSVhgSK1smLHH8+qeaWp8VxJc5FEiHJ+yMml190v1UI8XTv6a7gDYzAG+K8
+         41q3ZMtu/2bYIO4MKOIlo20cs5uSG/qfS4zgk8HnesdQT38oOKaGmI1JudEaZ1deFksn
+         iThRC33K7wvmQvXAMdm3HxojwBxxU1htYILBZwhFVH/pZY7fRY6DNxiwLaol7l4cyQKX
+         pPBLkoCX0eRu7L7PLvSmdCrwzYiouweVBeszOWSBWse2Ngc2YAOcM8wvF0UjGxZ0YlNS
+         EIp0TcOeDKXkFptK6t9xKOTUXQHooUk6NwLMcPB7O6hVwenfzedMVoQ4iO2xnpUWgPlB
+         yXDg==
+X-Gm-Message-State: AOAM532IJbzZbYJZO1O3uNg5yn5pO0IPTLfOR2d5W+BZm0HvErGUStSX
+        ITgu9R/MNzyaWrqIqw/RiSWO8k+d9Rja/YIlJEalyg==
+X-Google-Smtp-Source: ABdhPJyjBoMobf99RmUaXcBwKmWGeJ8EGILuW2y02hvc6McYOP2Ijymqky6V0r5VlBrzBaNwTLixfX39I/7NSFBgssI=
+X-Received: by 2002:a2e:9cb:: with SMTP id 194mr4881771ljj.438.1615470514567;
+ Thu, 11 Mar 2021 05:48:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210311131754.i5ewls6hgeitcgre@astonish>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210309015750.6283-1-peng.zhou@mediatek.com>
+In-Reply-To: <20210309015750.6283-1-peng.zhou@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 11 Mar 2021 14:48:23 +0100
+Message-ID: <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
+To:     Peng Zhou <peng.zhou@mediatek.com>,
+        linux-block <linux-block@vger.kernel.org>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wulin Li <wulin.li@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.03.21 14:17, Nishanth Menon wrote:
-> On 10:37-20210310, Jan Kiszka wrote:
->> From: Jan Kiszka <jan.kiszka@siemens.com>
->> +	spidev@0 {
->> +		compatible = "rohm,dh2228fv";
->> +		spi-max-frequency = <20000000>;
->> +		reg = <0>;
-> 
-> Jan,
-> 
-> As part of my final sanity checks, I noticed that we missed this: is a checkpatch warning
-> 
-> WARNING: DT compatible string "rohm,dh2228fv" appears un-documented -- check ./Documentation/devicetree/bindings/
-> #629: FILE: arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi:581:
-> 		compatible = "rohm,dh2228fv";
-> 
-> I cannot pick up nodes that are'nt documented as yaml in
-> 	Documentation/devicetree
-> 
-> I know this is irritating to find such nodes that already have previous
-> users and the person coming last gets to deal with "new rules".. but
-> sorry for catching this so late.
-> 
-> Here are the options that come to mind:
-> 
-> option 1) - drop the node and resubmit.
-> 
-> option 2) - get the documentation into linux master tree and then submit
-> the patches.
-> 
+Hi Peng,
 
-As you said, I'm not setting a precedence here:
+thanks for your patch!
 
-arch/arm/boot/dts/imx28-cfa10049.dts:                   compatible = "rohm,dh2228fv";
-arch/arm/boot/dts/rv1108-elgin-r1.dts:          compatible = "rohm,dh2228fv";
-arch/arm/boot/dts/socfpga_cyclone5_socdk.dts:           compatible = "rohm,dh2228fv";
-drivers/spi/spidev.c:   { .compatible = "rohm,dh2228fv" },
+On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
 
-Was just just never documented as binding? Or why is no one allowed to 
-use this anymore? What is to be used instead for spidev?
+> Use SMC call enable hardware crypto engine
+> due to it only be changed in ATF(EL3).
+>
+> Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
 
-> 
-> I think we should just drop the node and resubmit - since this is a more
-> intrusive change and I don't have your platform handy, I am going to
-> suggest you make a call :(
+Unfortunately this commit message is way to short to
+understand what is going on, and has a lot of assumed
+previous knowledge.
 
-This breaks userspace here, and we would need to carry that node on top.
+Can you expand the commit message so that anyone
+who just know MMC and some SoC basics can understand
+what an SMC call and and what ATF(EL3) means?
 
-BTW, I already brought up the topic internally to get you some boards 
-for testing.
+I assume this some kind of inline encryption?
 
-> 
-> Additionally please install yamlint and dtbs_schema -> run dtbs_check. I
-> see more than a few warnings there which may need some closer look.
-> 
+I think maybe linux-block mailing list need to be involved
+because there is certain a Linux standard way of setting
+up inline encryption for the block layer.
 
-I've done that and addressed all that I could (former patch 4). We 
-import those from k3, and I don't feel confident how to resolve them.
-See also v1 of this patch.
+For example: how is the key to be used derived?
+How is the device unlocked in the first place?
 
-Jan
+If I insert a LUKS encrypted harddrive in a Linux machine
+the whole system is pretty much aware of how this should
+be handled and everything "just works", I enter a pass
+phrase and off it goes. I can use symmetric keys as well.
+How is this stuff done for this hardware?
 
-> 
-> A full log against linux-next is here: https://pastebin.ubuntu.com/p/qR69h28c5f/
-> 
-> 
-> PS: https://github.com/nmenon/kernel_patch_verify/blob/master/kpv
-> 
-> I have been using my script to verify with kpv -C -V -n num_patches and
-> then digging through the logs.
-> 
+> +       /*
+> +        * 1: MSDC_AES_CTL_INIT
+> +        * 4: cap_id, no-meaning now
+> +        * 1: cfg_id, we choose the second cfg group
+> +        */
+> +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
+> +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
+> +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
 
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+The same as above: these comments assume that everyone
+already knows what is going on.
+
+AES encryption requires a key and I don't see the driver
+setting up any key. How is the code in this file:
+drivers/mmc/core/crypto.c
+interacting with your driver?
+drivers/mmc/host/cqhci-crypto.c
+is used by SDHCI and is quite readable and I see what is going on.
+For example it contains functions like:
+cqhci_crypto_program_key()
+cqhci_crypto_keyslot_program()
+cqhci_crypto_clear_keyslot()
+cqhci_crypto_keyslot_evict()
+cqhci_find_blk_crypto_mode()
+
+MMC_CAP2_CRYPTO is used as a sign that the driver
+can do inline encryption, then devm_blk_ksm_init() is called
+to initialize a block encryption abstraction with the block layer.
+Ops are registered using
+struct blk_ksm_ll_ops cqhci_ksm_ops.
+
+This is very straight forward.
+
+But where does all the above happen for this driver?
+
+I get the feeling that some magic is happening in outoftree
+patches or in the secure world, and that is not how we do
+these things, you have to use the frameworks.
+
+Yours,
+Linus Walleij
