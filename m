@@ -2,147 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE02337E92
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 20:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0D0337EBE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 21:10:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbhCKT5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 14:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbhCKT5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 14:57:06 -0500
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F9E6C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 11:57:06 -0800 (PST)
-Received: by mail-qv1-xf2d.google.com with SMTP id h13so3146351qvu.6
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 11:57:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i0RGEdH4qXmWUyxNfL/0Qo4+5Mh265qbBkTRMR+tqRI=;
-        b=OAERhww90Ydo9cxJC3XtIm6VlKfEfVD/B1Wrc3Lo7PDMjqvJ0MDVxP7v5PlekaTETo
-         /0cCyd9BnnjRsw1GVjAR3R4ocwjMs95l6AaJOmhskigSHLLgyX4XAHjopgVsX3K9Vsyu
-         ewDcNw0kzpX6SuEtmoml2wkkWBwDFevbJKolE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i0RGEdH4qXmWUyxNfL/0Qo4+5Mh265qbBkTRMR+tqRI=;
-        b=rj+EbyFHQN/s1/1OnHmKkQPxXu1h5lJOun3f9xntkZTQ6OYgPk5foHQuBf5k7IkLNo
-         vcsoCOZoc6GxA83cl7mFgR9NEwuoiQjkB5qcWZ2MRb4lsrAo71tnglJQP8waIohkf918
-         kn/pKaRrWJ/9kteTUzz7bhBWeYSN1DP9TT5436dwOD9+pfBjM/t7ekXejgk2PUtwwm0H
-         UUBvPwps9mVrDFKPLMVBGuLmhzGrEKaeTAUlRc8dxkgy+pn7MkF3YN5972CSJAoY022E
-         QxMD/8Am0Y4l2puMKPp2YcdVyOiBL1QagLWOAcT/XF4Gutj4dau0qqKwF4E8yAlGQzjD
-         tMMg==
-X-Gm-Message-State: AOAM531DGH5LYHVaVfwUUxdxc2pDP3o04o8vsWKDPSQPPdrlz9Iez1tH
-        xybUu5e2W4fDTQzKVOpciJJ5lhtPycJ/3g==
-X-Google-Smtp-Source: ABdhPJwp4lj1UMJSspcl6FbTD40otsd388bQRFEFzIm3yMIxutM9DRcyvkjOF53rwg027vxR3xyT0g==
-X-Received: by 2002:a0c:a99a:: with SMTP id a26mr9145323qvb.2.1615492624992;
-        Thu, 11 Mar 2021 11:57:04 -0800 (PST)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id d10sm2340368qtq.78.2021.03.11.11.57.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 11:57:04 -0800 (PST)
-Received: by mail-yb1-f173.google.com with SMTP id l8so22920074ybe.12
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 11:57:04 -0800 (PST)
-X-Received: by 2002:a25:aa43:: with SMTP id s61mr14771793ybi.32.1615492624004;
- Thu, 11 Mar 2021 11:57:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20210311164815.14113-1-srivasam@codeaurora.org> <20210311164815.14113-2-srivasam@codeaurora.org>
-In-Reply-To: <20210311164815.14113-2-srivasam@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 11 Mar 2021 11:56:52 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VSnhOSFtLX==DYF1WFszaJwgnbZY-EycP4=SNs6rqajw@mail.gmail.com>
-Message-ID: <CAD=FV=VSnhOSFtLX==DYF1WFszaJwgnbZY-EycP4=SNs6rqajw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
- link for I2S driver
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     gross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S229970AbhCKUJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 15:09:48 -0500
+Received: from mail-out.m-online.net ([212.18.0.9]:41985 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhCKUJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 15:09:46 -0500
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DxKmR5bXsz1qs38;
+        Thu, 11 Mar 2021 21:09:43 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4DxKmR3gKNz1qr4s;
+        Thu, 11 Mar 2021 21:09:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id xdvMXdWRZ0pI; Thu, 11 Mar 2021 21:09:41 +0100 (CET)
+X-Auth-Info: 4h4LNEsJBJd7/MPZriIKyOYb+MfyZ+tSGG76SXiY4q8=
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Thu, 11 Mar 2021 21:09:41 +0100 (CET)
+Subject: Re: [Linux-stm32] [PATCH v2 00/14] Introduce STM32MP1 RCC in secured
+ mode
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "Alex G." <mr.nuke.me@gmail.com>,
+        Gabriel FERNANDEZ - foss <gabriel.fernandez@foss.st.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Ajit Pandey <ajitp@codeaurora.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Etienne CARRIERE <etienne.carriere@st.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
+ <2e04f814-b694-119d-fe8a-13e6df129536@gmail.com>
+ <AS8PR10MB4712C27260707345FA99ED5AEE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
+ <c57775fe-41ef-07f5-56a2-04b8f70797c1@denx.de>
+ <463dafed-ec60-cd9a-33d2-ba118a6af629@foss.st.com>
+ <c1c9c89b-8794-9b91-b626-d743cd8ff31e@pengutronix.de>
+ <b87a2b24-678a-724d-e5df-1eabf5969ad2@denx.de>
+ <a23933fa-0c94-1e22-6100-d5b1a50826dd@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <58d107c4-eb3d-e49a-8377-007b6f21baf4@denx.de>
+Date:   Thu, 11 Mar 2021 21:09:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
+MIME-Version: 1.0
+In-Reply-To: <a23933fa-0c94-1e22-6100-d5b1a50826dd@foss.st.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 3/11/21 7:10 PM, Alexandre TORGUE wrote:
+> Hi Guys
+> 
+> On 3/11/21 5:11 PM, Marek Vasut wrote:
+>> On 3/11/21 3:41 PM, Ahmad Fatoum wrote:
+>>> Hello,
+>>
+>> Hi,
+>>
+>>> On 11.03.21 15:02, Alexandre TORGUE wrote:
+>>>> On 3/11/21 12:43 PM, Marek Vasut wrote:
+>>>>> On 3/11/21 9:08 AM, Alexandre TORGUE wrote:
+>>>>>> 1- Break the current ABI: as soon as those patches are merged, 
+>>>>>> stm32mp157c-dk2.dtb will impose to use
+>>>>>> A tf-a for scmi clocks. For people using u-boot spl, the will have 
+>>>>>> to create their own "no-secure" devicetree.
+>>>>>
+>>>>> NAK, this breaks existing boards and existing setups, e.g. DK2 that 
+>>>>> does not use ATF.
+>>>>>
+>>>>>> 2-As you suggest, create a new "secure" dtb per boards (Not my 
+>>>>>> wish for maintenance perspectives).
+>>>>>
+>>>>> I agree with Alex (G) that the "secure" option should be opt-in.
+>>>>> That way existing setups remain working and no extra requirements 
+>>>>> are imposed on MP1 users. Esp. since as far as I understand this, 
+>>>>> the "secure" part isn't really about security, but rather about 
+>>>>> moving clock configuration from Linux to some firmware blob.
+>>>>>
+>>>>>> 3- Keep kernel device tree as they are and applied this secure 
+>>>>>> layer (scmi clocks phandle) thanks to dtbo in
+>>>>>> U-boot.
+>>>>>
+>>>>> Is this really better than
+>>>>> #include "stm32mp15xx-enable-secure-stuff.dtsi"
+>>>>> in a board DT ? Because that is how I imagine the opt-in "secure" 
+>>>>> option could work.
+>>>>>
+>>>>
+>>>> Discussing with Patrick about u-boot, we could use dtbo application 
+>>>> thanks to extlinux.conf. BUT it it will not prevent other case (i.e. 
+>>>> TF-A which jump directly in kernel@). So the "least worst" solution 
+>>>> is to create a new "stm32mp1257c-scmi-dk2 board which will overload 
+>>>> clock entries with a scmi phandle (as proposed by Alex).
+>>>
+>>> I raised this issue before with your colleagues. I still believe the 
+>>> correct way
+>>> would be for the TF-A to pass down either a device tree or an overlay 
+>>> with the
+>>> actual settings in use, e.g.:
+>>>
+>>>    - Clocks/Resets done via SCMI
+>>>    - Reserved memory regions
+>>>
+>>> If TF-A directly boots Linux, it can apply the overlay itself, 
+>>> otherwise it's
+>>> passed down to SSBL that applies it before booting Linux.
+>>
+>> That sounds good and it is something e.g. R-Car already does, it 
+>> merges DT fragment from prior stages at U-Boot level and then passes 
+>> the result to Linux.
+>>
+>> So on ST hardware, the same could very well happen and it would work 
+>> for both non-ATF / ATF / ATF+TEE options.
+> 
+> Even this solution sounds good but we are currently not able to do it in 
+> our TF-A/u-boot so not feasible for the moment.
 
-On Thu, Mar 11, 2021 at 8:49 AM Srinivasa Rao Mandadapu
-<srivasam@codeaurora.org> wrote:
->
-> From: Ajit Pandey <ajitp@codeaurora.org>
->
-> Add dai link for supporting lpass I2S driver, which is used
-> for audio capture and playback.
-> Add lpass-cpu node with  pin controls and i2s primary
-> and secondary dai-links
->
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 58 ++++++++++++++++++++
->  1 file changed, 58 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 436582279dad..501e3d4c9097 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/input/gpio-keys.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/sound/qcom,lpass.h>
+Why not ? U-Boot is perfectly capable of merging prior stage DT and DT 
+loaded from elsewhere. See R-Car3 for example.
 
-It seems marginally better to include "sc7180-lpass.h" to get this? I
-don't really know the difference between the two but since unless
-we're planning to delete the sc7180 version it seems like you might as
-well include that one?
+> So we have to find a 
+> solution for now. Create a new dtb can be this solution. Our internal 
+> strategy is to use scmi on our official ST board. It will be a really 
+> drawback to include a "no-scmi.dtsi" in DH boards (for example) and to 
+> create a stm32mp157c-noscmi-dk2.dts ?
 
+I would highly prefer the SCMI to be opt-in, not opt-out.
 
->  /* PMICs depend on spmi_bus label and so must come after SoC */
->  #include "pm6150.dtsi"
-> @@ -283,6 +284,42 @@ keyboard_backlight: keyboard-backlight {
->                         max-brightness = <1023>;
->                 };
->         };
-> +
-> +       sound: sound {
-> +               compatible = "google,sc7180-trogdor";
-> +               model = "sc7180-rt5682-max98357a-1mic";
-> +
-> +               audio-routing =
-> +                       "Headphone Jack", "HPOL",
-> +                       "Headphone Jack", "HPOR";
-> +
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               dai-link@0 {
-> +                       link-name = "MultiMedia0";
-> +                       reg = <MI2S_PRIMARY>;
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu MI2S_PRIMARY>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&alc5682 MI2S_PRIMARY>;
-
-I'm an audio noob but isn't "MI2S_PRIMARY" something to be used with
-"lpass_cpu", not with "alc5682" ?
-
-I have no idea what the IDs correspond to on "alc5682". Are you sure
-we even need an extra ID there? The "alc5682" bindings upstream don't
-talk anything about dai-cells, but maybe they're just wrong...
-
--Doug
+But still, isn't it possible to auto-detect the board configuration in 
+Linux and pick the clock enumeration based on that automatically ?
