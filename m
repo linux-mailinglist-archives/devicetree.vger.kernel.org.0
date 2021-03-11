@@ -2,194 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BDFE338164
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42914338170
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:27:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbhCKXYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 18:24:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
+        id S231388AbhCKX1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 18:27:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbhCKXYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:24:35 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9285C061761
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:24:34 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so484472otk.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:24:34 -0800 (PST)
+        with ESMTP id S229587AbhCKX1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:27:03 -0500
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB55C061574;
+        Thu, 11 Mar 2021 15:27:02 -0800 (PST)
+Received: by mail-qk1-x72c.google.com with SMTP id s7so22559682qkg.4;
+        Thu, 11 Mar 2021 15:27:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KOImosFVDKe6eni3/E1z+f4eza54wkEaxNnDYMA1BkY=;
-        b=U6fz3qasj6Npqu11+ansN2N4q6/htLsUcNuxeHHOE0kW/Zk3uPhCn5BA72b6J5VKeq
-         VYxIVlEg7dzdnwx6U1XOOdyc0VwwPgepTvZ+1O/2nA4a5n7gJi+L7z7biZoaEyU1tbm4
-         t7GR7uUH/Z3LSUsxHM6NgEUrcFzkEFojrzYEY01arZgk0FJF6BjIoxcnDgaF8wBGd6o+
-         xo2Fb3QTBVNPMn7TxAPdBUbiQj5fVNFs+ALqx36KWRHIrrFpf5j9JuG0+tBBEvkZ9AVd
-         Tk3GCqUfnlM3CXuleRehOFPqK7bH3H2IU4bFWwF9axl4scW8JFQTNscdTmEchz4yKuUL
-         MfHw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eGur/YOoRlDCdFA68I/JbkJXl6oe8JCfqTE/jfegHn0=;
+        b=XlLu2LltlpJC+8bv4gWABDlveadGiiMv5cDxaU0X+3GeqYANkLZYT3JjR3SNgN6v88
+         yp8n0QefMDCikY0M1sZBxftbTN3dPUMhkPHDVI42TS5ZYgpr2k3oCko5pwKzIAAsvQ+a
+         jpINiV8bSDFRNQVUpg2GfWtmVCvGXY9MweOUbek01vdW5Bf71aak/UVucTp4MdyglYb0
+         0aAuyVYT1iXmBY8Vm1sLAFGtYH4tHeGOhO8oc1ly8A7PqKFGIFzGe0lAsbD38v87ga8N
+         fyka8S1kGJhttD3JNfJt45iwmQ1kSjWtRyRMHqsFjZhV3BdUZrcDyCTKR+LP6i2XmimT
+         2mHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KOImosFVDKe6eni3/E1z+f4eza54wkEaxNnDYMA1BkY=;
-        b=HGJzp/UmvWS73V80likue2LQkIKhxc0uqdlAeyBl4GnPsmyLsAY83Ecx8XVsPfUDbY
-         8PICFHS9cWlc8Y1mXJE75W8cvZFsDrLj+qLXsLGc7MvDzu5LaQ5HO+6W+RSzAMZKAGMx
-         BRwsVOf38SUC5Q6I4J0s9uv46zb5+CLV8lO+ZXDrc25kMaO5KEWdazL6YMNQc1+p9IlA
-         tGd2fcbtVSn/VsIdaoaXvNLHxmCHI1pHUVC1wCgjhZbfHlIslClhut4/S+GkMvh92JtD
-         qSySvr/Sur8QyL68O4AWYqv6fuQnGotm1qh+tYDGXIhUl4xrrbIkkNyZegmb+0z0s0P1
-         DkSA==
-X-Gm-Message-State: AOAM531U7pQOeLu0VbJokgfi65f26nLpr/qT5I0aCjviSO4QYjKf6zcO
-        8UiW94btxwI4KhoetKkEgTRxGQ==
-X-Google-Smtp-Source: ABdhPJxDU5xLYUJyWILcQngDIdjMhNw8UY1bDIjZNGQckzP86zmEJoPMITj8dp1yZLMsB+rXvhTYoQ==
-X-Received: by 2002:a9d:7103:: with SMTP id n3mr1034451otj.223.1615505074094;
-        Thu, 11 Mar 2021 15:24:34 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w23sm841497oow.25.2021.03.11.15.24.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 15:24:33 -0800 (PST)
-Date:   Thu, 11 Mar 2021 17:24:31 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: sc7280: Add qspi, qupv3_0 and qupv3_1 nodes
-Message-ID: <YEqmr1eUJoKp3ufO@builder.lan>
-References: <20210311033957.8978-1-rojay@codeaurora.org>
- <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eGur/YOoRlDCdFA68I/JbkJXl6oe8JCfqTE/jfegHn0=;
+        b=F7H7lcyvpTthjEbaVNswGfrQdZi6c49KtuT5xk/afWwfuY6kdj4Tmj+hOx80kIp5lS
+         KLCMX7mCJGBTPrWDiIhKz6GRIzsaLowjMepWe4ca4T51b8Yw/wlhpUb7KcxqS7tHADQ3
+         QbGVwe+CqmSaTm2LprYX98JUm4+qc7P/+SHgNzjCWgsDJxy/ZsNsZNVzNAL3SxnAg1tD
+         7WAnJMmZH4xoU4UdKJ6z3C9Z8GCTzoA5IQGr4Y1ZnqkvMiN1YiuFc1APjoKMTY+5+kw/
+         d2JIknxQoEJzjbqVr+gF26CnYoRUL1XftgC1gurQzYxj7NoAfQakoTB5ojaJGHkUzgor
+         xQZA==
+X-Gm-Message-State: AOAM530E7LByVym4YgUQACpWirbkUyWSe5VljlcOqU0ZDQ8RUcXfEf1N
+        AVqMewhx4fKmVzdtmcwhm2E=
+X-Google-Smtp-Source: ABdhPJxYMdzRnLYFj2Rmb5YjVxaJstDM3jcH8qHrZhzVfOFDJZtaeWFriaFJYchomaCqcwApQF+BKg==
+X-Received: by 2002:a37:96c4:: with SMTP id y187mr10780849qkd.231.1615505222183;
+        Thu, 11 Mar 2021 15:27:02 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id g11sm3155527qkk.5.2021.03.11.15.27.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Mar 2021 15:27:01 -0800 (PST)
+Subject: Re: [PATCH V11 0/5] dt: Add fdtoverlay rule and statically build
+ unittest
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <cover.1615354376.git.viresh.kumar@linaro.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <7211f09e-092b-d928-0c69-e2dcd1fc7c1e@gmail.com>
+Date:   Thu, 11 Mar 2021 17:27:00 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
+In-Reply-To: <cover.1615354376.git.viresh.kumar@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 11 Mar 15:54 CST 2021, Doug Anderson wrote:
-
+On 3/9/21 11:35 PM, Viresh Kumar wrote:
 > Hi,
 > 
-> On Wed, Mar 10, 2021 at 7:41 PM Roja Rani Yarubandi
-> <rojay@codeaurora.org> wrote:
-> >
-> > +&qspi_cs0 {
-> > +       pinconf {
-> > +               pins = "gpio15";
-> > +               bias-disable;
-> > +       };
+> This patchset adds a generic rule for applying overlays using fdtoverlay
+> tool and then updates unittests to get built statically using the same.
 > 
-> The "pinconf" / "pinmux" subnode shouldn't be used for new SoCs. See:
+> V10->V11:
+> - Update patch 4/5 to fix checkpatch warning on spaces and tabs.
+> - Added Acked-by from Masahiro for patch 2/5.
 > 
-> http://lore.kernel.org/r/CAD=FV=UY_AFRrAY0tef5jP698LEng6oN652LcX3B4nG=aWh0gA@mail.gmail.com
+> V9->V10:
+> - Add a new patch to allow .dtso files.
+> - Update 2/5 to be more efficient and also generate symbols for base
+>   files automatically.
+> - No need to add lines like DTC_FLAGS_foo_base += -@ in patch 5/5.
+> - Add Ack by Masahiro for 1/5.
 > 
-> ...same feedback for this whole patch.
+> V8->V9:
+> - Added some comment in patch 3/4 based on Frank's suggestions.
 > 
-> > +                       qup_spi0_default: qup-spi0-default {
-> > +                               pinmux {
-> > +                                       pins = "gpio0", "gpio1",
-> > +                                              "gpio2", "gpio3";
-> > +                                       function = "qup00";
-> > +                               };
-> > +                       };
+> V7->V8:
+> - Patch 1 is new.
+> - Platforms need to use dtb-y += foo.dtb instead of overlay-y +=
+>   foo.dtb.
+> - Use multi_depend instead of .SECONDEXPANSION.
+> - Use dtb-y for unittest instead of overlay-y.
+> - Rename the commented dtb filess in unittest Makefile as .dtbo.
+> - Improved Makefile code (I am learning a lot every day :)
 > 
-> Please split these SPI nodes as per the thread above, like:
+> V6->V7:
+> - Dropped the first 4 patches, already merged.
+> - Patch 1/3 is new, suggested by Rob and slightly modified by me.
+> - Adapt Patch 3/3 to the new rule and name the overlay dtbs as .dtbo.
 > 
-> tlmm: pinctrl@... {
->   qup_spi0_data_clk: qup-spi0-data-clk {
->     pins = "gpio0", "gpio1", "gpio2";
->     function = "qup0";
->   };
+> --
+> Viresh
 > 
->   qup_spi0_cs: qup-spi0-cs {
->     pins = "gpio3";
->     function = "qup0";
->   };
+> Rob Herring (1):
+>   kbuild: Add generic rule to apply fdtoverlay
 > 
->   qup_spi0_cs_gpio: qup-spi0-cs-gpio {
->     pins = "gpio3";
->     function = "gpio";
->   };
-> };
+> Viresh Kumar (4):
+>   kbuild: Simplify builds with CONFIG_OF_ALL_DTBS
+>   kbuild: Allow .dtso format for overlay source files
+>   of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
+>   of: unittest: Statically apply overlays using fdtoverlay
+> 
+>  drivers/of/unittest-data/Makefile             | 48 ++++++++++
+>  drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
+>  drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
+>  drivers/of/unittest-data/static_base_1.dts    |  4 +
+>  drivers/of/unittest-data/static_base_2.dts    |  4 +
+>  drivers/of/unittest-data/testcases.dts        | 23 ++---
+>  .../of/unittest-data/testcases_common.dtsi    | 19 ++++
+>  .../of/unittest-data/tests-interrupts.dtsi    | 11 +--
+>  scripts/Makefile.lib                          | 40 ++++++--
+>  9 files changed, 218 insertions(+), 112 deletions(-)
+>  create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+>  create mode 100644 drivers/of/unittest-data/static_base_1.dts
+>  create mode 100644 drivers/of/unittest-data/static_base_2.dts
+>  create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
 > 
 > 
-> > +                       qup_uart0_default: qup-uart0-default {
-> > +                               pinmux {
-> > +                                       pins = "gpio0", "gpio1",
-> > +                                              "gpio2", "gpio3";
-> > +                                       function = "qup00";
-> > +                               };
-> > +                       };
-> 
-> I suspect things would actually be cleaner if we broke the uart lines
-> up since the boards tend to have to adjust pulls differently for each
-> line. With the new "no pinconf / pinmux" world it's pretty clean. It's
-> obviously up to Bjorn, but if it were me I'd request this in the SoC
-> file:
+> base-commit: a38fd8748464831584a19438cbb3082b5a2dab15
 > 
 
-I'd like that.
+Does not apply to 5.12-rc2 because of a dependency on a patch to
+scripts/Makefile.lib.  That patch has been merged by Linus
+somewhere between -rc2 and -rc3.  I had a working version
+between -rc2 and -rc3 at commit e6f197677b2e that does have
+the required patch, so that is the version I used to test
+this series.
 
-> qup_uart0_cts: qup-uart0-cts {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_rts: qup-uart0-rts {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_rx: qup-uart0-rx {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_tx: qup-uart0-tx {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> ...and now when the board file wants to adjust the pulls they can just
-> reference each one:
-> 
-> /*
->  * Comments about why the UART0 pulls make sense.
->  * Blah blah blah.
->  */
-> 
-> &qup_uart0_cts {
->   bias-pull-down;
-> };
-> 
-> &qup_uart0_rts {
->   drive-strength = <2>;
->   bias-disable;
-> };
-> 
-> &qup_uart0_rx {
->   bias-pull-up;
-> };
-> 
-> &qup_uart0_tx {
->   drive-strength = <2>;
->   bias-disable;
-> };
-> 
-> 
-> > +               qspi: spi@88dc000 {
-> 
-> I believe the qspi node is sorted incorrectly. When I apply this to
-> the top of the Qualcomm tree it shows up after the "apps_smmu:
-> iommu@15000000" node. However:
-> 
-> 0x088dc000 < 0x15000000
-> 
-> ...which means it should be _before_.
-> 
-> -Doug
+There is still confusion caused by the contortions that unittest
+goes through to mis-use base DTBs vs overlay DTBs, so _after_
+this series is merged by Rob, I will poke around and see if
+I can change unittest so that it does not look like it is
+mis-using DTBs and overlay DTBs.
+
+
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+Tested-by: Frank Rowand <frank.rowand@sony.com>
+
+
