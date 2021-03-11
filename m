@@ -2,177 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C83336B05
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 05:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A167336B4F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 06:05:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231226AbhCKEP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 23:15:59 -0500
-Received: from m42-2.mailgun.net ([69.72.42.2]:14526 "EHLO m42-2.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231219AbhCKEPo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 23:15:44 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615436144; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ckToac+nYpU2SRWc/YbILpWrF7hNy2frv5ba7iztXeQ=;
- b=UMfyaM9nSUQmmMSwOzs3yO7s+be0txsixUKT4KmqpruKZYrQ618Bkrqj4T+2t3775YBWIwrA
- IwjVS1PoOxMIF8XTEVSQ6G8WLXIlBe/1KUr/K1usdBd/VhYf5P10FO+1dACwsVcbi6GVV3GU
- K2CfHEuR9o6WOfJ5zEoSHz+ZhhQ=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6049996ea6850484a6700786 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 04:15:42
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 25D48C433C6; Thu, 11 Mar 2021 04:15:42 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 37750C433ED;
-        Thu, 11 Mar 2021 04:15:41 +0000 (UTC)
+        id S229540AbhCKFFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 00:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229519AbhCKFEs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 00:04:48 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60497C061574;
+        Wed, 10 Mar 2021 21:04:48 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id gb6so2863860pjb.0;
+        Wed, 10 Mar 2021 21:04:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eayOjb0KZ31qj1N8PdToC+xRVUBfCHUPI3Znks8WR0k=;
+        b=IL1N7vM7p9PzFcfpvhgRRMuOzhmjBlfibWkIcOQbYlGbPOJMnLhIzjCy8LxBaJ8EGU
+         KJjjEgkbLtjbaD4sqhZ1ochG6cVFghEOlubEd7dsbfPijX8lC9eVqiLaeiTO3VXqhE5j
+         YprOjLc8isTrNz1yxLNXa7sz1Bhn0z1t0w+HJ0pPJUXLLao5DKoPWk0aWURYin4FB6OE
+         oTFCyRJLtkVFf3JLLGhSJTXk7wLVT433snzVLTFp5sM2sqXb87myqAsWS9pqaTfVDExL
+         f+ojkMFllNvYboAo4xsrXYacF/clYDZcJc779Ph0MFvl0b3brsNawqyYAhHoxSZKsU/v
+         mTBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eayOjb0KZ31qj1N8PdToC+xRVUBfCHUPI3Znks8WR0k=;
+        b=I4ncpXqV/XpjiiQX8IYi4CdCJYg6u+UUQki2biO5+yUXOx5pSccehVOvYteAU7kgvO
+         aEz0lt88Vk4KIKxJ5zDKqpLIciJi5uPu5GR3buuyhQV8zIcRdgijb2GEWieTTtSs3Zub
+         rypbB6ssKgGZzIZsFCgmlsYU62nWJtiK+IGBetFjhq89XC7uXm75dqM0xz37Mm1d69m9
+         YhWJOpbRZ84zKZRIbM8pOyFf7da7xZtOt81fRhpqtJZxiGyu4sVty/PHWBTrtPY7Ruk+
+         bdp39KdOqWlf/t7YipSwzanbBPt42sAHCDjktRdJVFJ4vWGlU3Y0pD/1/rApYYwARwG/
+         mJtA==
+X-Gm-Message-State: AOAM5305GSU6tBYodjwZeMnZCExazBP9c0XsWNtgHEJRXqCF5MOwOHIa
+        lP5XWPIYl0T89/k8YGw6x90=
+X-Google-Smtp-Source: ABdhPJzomvd6XDgwv/fL+vlX+FLEQgGyCWkzPbL90UL/BQndPGhzKH0Q4L/hjqK/fMjpcf3zxKU3vg==
+X-Received: by 2002:a17:90a:a403:: with SMTP id y3mr7078020pjp.227.1615439087609;
+        Wed, 10 Mar 2021 21:04:47 -0800 (PST)
+Received: from [10.230.29.30] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y2sm979638pgf.7.2021.03.10.21.04.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Mar 2021 21:04:47 -0800 (PST)
+Subject: Re: [PATCH v4 13/14] dt-bindings: of: Add restricted DMA pool
+To:     Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Joerg Roedel <joro@8bytes.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Juergen Gross <jgross@suse.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Grant Likely <grant.likely@arm.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Thierry Reding <treding@nvidia.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        xen-devel <xen-devel@lists.xenproject.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>
+References: <20210209062131.2300005-1-tientzu@chromium.org>
+ <20210209062131.2300005-14-tientzu@chromium.org>
+ <20210310160747.GA29834@willie-the-truck>
+ <CAL_JsqJE6A4awYCvqzw3qk2uAJEKgkSOKbk9tPaMKup8zes8cA@mail.gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a5a684fe-5ed0-a12f-22ca-a8ba46124341@gmail.com>
+Date:   Wed, 10 Mar 2021 21:04:42 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Thu, 11 Mar 2021 09:45:41 +0530
-From:   skakit@codeaurora.org
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kgunda@codeaurora.org
-Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515
- buck
-In-Reply-To: <CAA8EJprc24gTfLaffsrKeJ9MOv2m8B1L168VV4uNm=xsjnF5ZQ@mail.gmail.com>
-References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
- <1614155592-14060-4-git-send-email-skakit@codeaurora.org>
- <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
- <51390b828a5d534e308460098f1b9af0@codeaurora.org>
- <CAA8EJpqN-jb3b3yHTHwrQQj_h3M-yxAvX7Hz7bNSV3_NBCJEwQ@mail.gmail.com>
- <da15c05877c345f2aeb51649c075a95c@codeaurora.org>
- <CAA8EJprc24gTfLaffsrKeJ9MOv2m8B1L168VV4uNm=xsjnF5ZQ@mail.gmail.com>
-Message-ID: <189b9f1cac1b52241c199e541f0d14ba@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <CAL_JsqJE6A4awYCvqzw3qk2uAJEKgkSOKbk9tPaMKup8zes8cA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-02 19:51, Dmitry Baryshkov wrote:
-> Hello,
-> 
-> On Mon, 1 Mar 2021 at 13:37, <skakit@codeaurora.org> wrote:
->> 
->> On 2021-02-26 15:57, Dmitry Baryshkov wrote:
->> > On Fri, 26 Feb 2021 at 09:59, <skakit@codeaurora.org> wrote:
->> >>
->> >> Hi,
->> >>
->> >> On 2021-02-25 16:39, Dmitry Baryshkov wrote:
->> >> > On 24/02/2021 11:33, satya priya wrote:
->> >> >> Correct the REGULATOR_LINEAR_RANGE and n_voltges for
->> >> >> pmic5_hfsmps515 buck.
->> >> >>
->> >> >> Signed-off-by: satya priya <skakit@codeaurora.org>
->> >> >> ---
->> >> >>   drivers/regulator/qcom-rpmh-regulator.c | 4 ++--
->> >> >>   1 file changed, 2 insertions(+), 2 deletions(-)
->> >> >>
->> >> >> diff --git a/drivers/regulator/qcom-rpmh-regulator.c
->> >> >> b/drivers/regulator/qcom-rpmh-regulator.c
->> >> >> index 79a554f..36542c3 100644
->> >> >> --- a/drivers/regulator/qcom-rpmh-regulator.c
->> >> >> +++ b/drivers/regulator/qcom-rpmh-regulator.c
->> >> >> @@ -726,8 +726,8 @@ static const struct rpmh_vreg_hw_data
->> >> >> pmic5_ftsmps510 = {
->> >> >>   static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
->> >> >>      .regulator_type = VRM,
->> >> >>      .ops = &rpmh_regulator_vrm_ops,
->> >> >> -    .voltage_range = REGULATOR_LINEAR_RANGE(2800000, 0, 4, 16000),
->> >> >> -    .n_voltages = 5,
->> >> >> +    .voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 235, 16000),
->> >> >> +    .n_voltages = 236,
->> >> >
->> >> > I've checked the docs for pm8009, the chip which also uses hfsmps515
->> >> > regulators. The pdf clearly states that the 'Output voltage operating
->> >> > range' is from 2.8 V to 2.85 V.
->> >> >
->> >> > So we'd probably need to define different versions of HFS515 regulator
->> >> > data (like I had to create for pm8009-1).
->> >> >
->> >> >
->> >>
->> >> The min-max voltages for S1C (PM8350c) regulator are 2190000-2210000uV
->> >> for sc7280(kodiak), so we had to modify this buck to support this
->> >> regulator.
->> >>
->> >> AFAIK, this struct defines the HW constraints of a regulator, but the
->> >> platform specific min-max values can be controlled from DT files. So,
->> >> can't we modify it like above instead of adding a new definition? the
->> >> new min_uV value (32000) is anyway not exceeding the old value
->> >> (2800000)
->> >> right? please correct me if wrong.
->> >
->> > As far as I understand for other regulators we put 'output voltage
->> > limitations' from the docs into the regulator definition and further
->> > constrain it by the platform device tree. Please correct me if I'm
->> > wrong.
->> 
->> I see that for most of the regulators, these specifications are 
->> specific
->> to regulator buck (like HFS515) but not chipset specific, we set the
->> chipset specific(like pm8009/pm8350c) requirements from DT files.
->> 
->> For example:
->> pmic5_nldo regulator spec mentions LLIMIT= 0.32V and ULIMIT =1.304V 
->> with
->> step 8mV
->> 
->> .voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 123, 8000),
->> max output voltage supported by this regulator is 123*8000 + 320000 =
->> 1304000mV which is same as mentioned in the regulator spec.
->> 
->> > For pm8009 the data from the datasheet matches the regulators defined
->> > in the source file. Unfortunately I don't have kodiak specs at hand.
->> 
->>  From the HFS515 spec I got below info
->> "HFS510 and lower max output voltage is limited to 2.04V max, and
->> Yoda(pm8009) requirement was 2.4V for IOT PA and 2.85V for camera
->> application.  Hence, HFS515 added a new register and corresponding HW
->> changes to support the higher voltage.  Table 5‑24 shows the new
->> FB_RANGE bit.  When configured to 0 the buck works as earlier where 
->> Vout
->> max = 2.04V in 8mV steps, but when configured to 1 the buck range
->> doubles and can now support a Vout max = 4.08V in 16mV steps."
->> 
->> As per above, the max output voltage supported by HFS515 buck is 4.08V
->> (which is kodiak pm8350c pmic's requirement).
->> So, we have modified the buck data to support pm8350c(palani) along 
->> with
->> pm8009(yoda).
-> 
-> I'd still prefer to have two different regulator types (as we did for
-> pm8009 P=0 and P=1 variants). However it's probably up to the
-> maintainers to decide.
 
-As Mark already picked this, I think we can leave it this way.
 
-Thanks,
-Satya Priya
+On 3/10/2021 1:40 PM, Rob Herring wrote:
+> On Wed, Mar 10, 2021 at 9:08 AM Will Deacon <will@kernel.org> wrote:
+>>
+>> Hi Claire,
+>>
+>> On Tue, Feb 09, 2021 at 02:21:30PM +0800, Claire Chang wrote:
+>>> Introduce the new compatible string, restricted-dma-pool, for restricted
+>>> DMA. One can specify the address and length of the restricted DMA memory
+>>> region by restricted-dma-pool in the reserved-memory node.
+>>>
+>>> Signed-off-by: Claire Chang <tientzu@chromium.org>
+>>> ---
+>>>  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
+>>>  1 file changed, 24 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>> index e8d3096d922c..fc9a12c2f679 100644
+>>> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
+>>>            used as a shared pool of DMA buffers for a set of devices. It can
+>>>            be used by an operating system to instantiate the necessary pool
+>>>            management subsystem if necessary.
+>>> +        - restricted-dma-pool: This indicates a region of memory meant to be
+>>> +          used as a pool of restricted DMA buffers for a set of devices. The
+>>> +          memory region would be the only region accessible to those devices.
+>>> +          When using this, the no-map and reusable properties must not be set,
+>>> +          so the operating system can create a virtual mapping that will be used
+>>> +          for synchronization. The main purpose for restricted DMA is to
+>>> +          mitigate the lack of DMA access control on systems without an IOMMU,
+>>> +          which could result in the DMA accessing the system memory at
+>>> +          unexpected times and/or unexpected addresses, possibly leading to data
+>>> +          leakage or corruption. The feature on its own provides a basic level
+>>> +          of protection against the DMA overwriting buffer contents at
+>>> +          unexpected times. However, to protect against general data leakage and
+>>> +          system memory corruption, the system needs to provide way to lock down
+>>> +          the memory access, e.g., MPU.
+>>
+>> As far as I can tell, these pools work with both static allocations (which
+>> seem to match your use-case where firmware has preconfigured the DMA ranges)
+>> but also with dynamic allocations where a 'size' property is present instead
+>> of the 'reg' property and the kernel is responsible for allocating the
+>> reservation during boot. Am I right and, if so, is that deliberate?
+> 
+> I believe so. I'm not keen on having size only reservations in DT.
+> Yes, we allowed that already, but that's back from the days of needing
+> large CMA carveouts to be reserved early in boot. I've read that the
+> kernel is much better now at contiguous allocations, so do we really
+> need this in DT anymore?
+
+I would say yes, there can be a number of times where you want to semi
+statically partition your physical memory and their reserved regions. Be
+it to pack everything together under the same protection rules or
+because you need to allocate memory from a particular address range in
+say a non-uniform memory controller architecture where address windows
+have different scheduling algorithms.
+-- 
+Florian
