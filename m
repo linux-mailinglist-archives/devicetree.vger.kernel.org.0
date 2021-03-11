@@ -2,300 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0900337B0E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 18:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34DD8337B35
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 18:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbhCKRio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 12:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
+        id S229470AbhCKRnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 12:43:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbhCKRiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 12:38:23 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9595CC061761
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 09:38:22 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id t18so3813337pjs.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 09:38:22 -0800 (PST)
+        with ESMTP id S229705AbhCKRnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 12:43:14 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94533C061574;
+        Thu, 11 Mar 2021 09:43:13 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id f1so41175389lfu.3;
+        Thu, 11 Mar 2021 09:43:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZyO2J6W4yzOswPxtbRFYy2YD4AnMc1XnpR1PaDWSVoc=;
-        b=FUr+2SPbP5A2lq2k9KMreqBCmNH1o8sLQqYoxPbF9TEjaLeEtwG3keJx4dJe0F4NrO
-         H0Bkl4M+4dH2ZI6JsQoo1vcSrJYQh516c72QHjIud4bvedTyjLAc8pIKf8tjXu7YM/Dt
-         E9gPwEJDfFXfhuU5lkKhzITYlE0QrPWQ17XCwt4jpfF/1x/cYjkaXY1oWlLxgiCleE3q
-         fqopIjvyW8uZdUO9yxlPeGwWSOXEcJkNibY855xSieNAJRo3QG6YMeVc4EbBXNNrLor7
-         /5Rl4vS1ROoycsfNK771xaL3Fx1f10zewx1TouIF/TNTQorOhUxv0njBRQsVWQBftAeP
-         d5WQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tV08/S8AYkOlggjIBuODj7Why8Z1+LlJ+V4vGmOX1RE=;
+        b=ECDG4MRiMe5CStYYvkaKYV/dG6cxvGotcx4pATfKF5+buUVugq1PUOLDnIhnG8292C
+         Bk8WZFFoHtcXvw0fBRsh3zQNR1ddjKewwsm7uHNtXPh9nMAMSKhjXEbJ53QUrUC5GvIf
+         gVvZTMmfQjki/ucGrhTIVSFcCGuI+ux35MV3lBcpvl74jtHS8eYR0meRsdF7Xxbnwij0
+         u4yjsAT5O2yBzcJe6STgyR+Jv37tRfcvmXragfxRP8pU/VtHw2YoU4oi/bmLAbGJlB+u
+         +qCFDehB11KbuxefFr7zrSFjUkL9XpU2lxPZ1cGe9CN/SBEFBwZs0x5CAQ04j2cI8+/a
+         5AUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZyO2J6W4yzOswPxtbRFYy2YD4AnMc1XnpR1PaDWSVoc=;
-        b=QtzGdrOlUDSmmW8HXVqMeWn6hGQV2GgTSTzqMIMfCNpPqeyFzgVlOg4nqaMKh2k8D0
-         wO17l/NieHn2ICAPhipvOxhMFarptrRWR2Nq4xis0HiGNFjqhdFkyjn0RJRJcDWSI1dD
-         BDUWdiHemCp8pO07eKCdq4nQiQkawXIpRUL8hOXiiMvdW1sosXm8p/1rA1LzqtoERn/c
-         kOqTTLAIun3jVVbjhYUNHaTpyo9zCpyR99YriECDbsdiGhDxQchiYQ8dvqXr7eVUrE7f
-         2KjfSEPiYC7EWB85ZruXmuzWXwngwdsVmVx/xSXShTDLx8Psl0/yKLR6g7bFtUdh0LuA
-         BfcA==
-X-Gm-Message-State: AOAM530qgbVZjNp4qJa/+tHlOgoSX+WE1bsXX6g1H7L8LIzMhRTCfw5Z
-        PznOEpDnGUOvNgGZd2lHZH2I/w==
-X-Google-Smtp-Source: ABdhPJxwgv322z4GtiGEYMD9Ebnf6NDqF7umKc6h1guwT6ka8rA03h7ugFkRLhQXYv2tzwYU1PGWjw==
-X-Received: by 2002:a17:90a:d184:: with SMTP id fu4mr7673300pjb.236.1615484301895;
-        Thu, 11 Mar 2021 09:38:21 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id mz11sm2901827pjb.6.2021.03.11.09.38.20
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tV08/S8AYkOlggjIBuODj7Why8Z1+LlJ+V4vGmOX1RE=;
+        b=fYCkmUpKDKBH+69hnyAldzxrmG6cRj69WqV96XKMRWJ39Pr/C9GNr/iOIp8kkX+Iu6
+         WrkGu7WHAHY4ZjiKSVh4sNQW3UYDU2T1ahiUkV7NGvCIEmfyb3fX6B2CNeeRbkWj3Q6v
+         iakCrnX+Dq5lTDwNQsmivuiROqWgFqe12/zo0OkH+pLUvI+SHj/2sfPeuqOc7RbeeMKt
+         QiGGxN9/np0oDnCqZ9qzluNlI9C1tgHIBSG9KC2RL0gYwW3eFEJiXfJAK1DZXq8IDVA6
+         nJFLqGqw8p2hF3ZqRzN2WT20Gbk+o3DZeMgebwFQaZ3ebnZjVlfOZVa1fwtz2JJklASb
+         J5dg==
+X-Gm-Message-State: AOAM530HkhEd/8axCYwqWd9hFLdUh6Km2YFdjqQrUbAO2pSmz2lvbceA
+        dN6Y8Zi2oRy+zC/uRqz+AFI=
+X-Google-Smtp-Source: ABdhPJzZoVdzNWaBBpv/V2H46jX+HJmoeEWU1giXzXKNrzi0/bcW1oUOQs8EzXjuFa1ZQ7NacFM8vQ==
+X-Received: by 2002:a19:520b:: with SMTP id m11mr2863398lfb.42.1615484592025;
+        Thu, 11 Mar 2021 09:43:12 -0800 (PST)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id g10sm1021245lfe.90.2021.03.11.09.43.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 09:38:21 -0800 (PST)
-Date:   Thu, 11 Mar 2021 10:38:18 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "paul@crapouillou.net" <paul@crapouillou.net>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "patrice.chotard@st.com" <patrice.chotard@st.com>
-Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
-Message-ID: <20210311173818.GB1113417@xps15>
-References: <1615029865-23312-1-git-send-email-peng.fan@oss.nxp.com>
- <20210308160815.GB3977653@xps15>
- <DB6PR0402MB276009028DF766731BB2C06888909@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+        Thu, 11 Mar 2021 09:43:11 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] Add missing reset controls to NVIDIA Tegra ASoC drivers
+Date:   Thu, 11 Mar 2021 20:42:57 +0300
+Message-Id: <20210311174302.15430-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB6PR0402MB276009028DF766731BB2C06888909@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 01:26:25AM +0000, Peng Fan (OSS) wrote:
-> Mathieu,
-> 
-> > Subject: Re: [PATCH V13 00/10] remoteproc: imx_rproc: support iMX8MQ/M
-> > 
-> > On Sat, Mar 06, 2021 at 07:24:15PM +0800, peng.fan@oss.nxp.com wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > V13:
-> > >  Add R-b tag from Rob for patch 1.
-> > >  Drop the reserved memory node from patch 2 per Rob's comment.
-> > >  Mathieu, Bjorn
-> > >   Only patch 2 not have R-b/A-b tag, but since Rob's only has a minor
-> > comment, and
-> > >   addressed in this version, is it ok for you take into remoteproc next
-> > branch?
-> > >   Thanks.
-> > 
-> > As much as I want to, there is no way to move forward without an
-> > acknowledgement from Rob.
-> 
-> Rob has gave his R-b tag for patch 2/13, please help pick up this patchset.
-> I really wanna this feature in which has been for a long time. Then
-> I will move on to add new stuff.
->
+Hi,
 
-This set looks good to me - Bjorn will likely pick it up shortly.
- 
-> Thanks,
-> Peng.
-> 
-> 
-> > 
-> > >
-> > > V12:
-> > >  Add maxItems to avoid dt_bindings_check fail  Rebased on top of
-> > > linux-next
-> > >
-> > > V11:
-> > >  Per Rob's comments, fix memory-region in patch 1/10  Rebased on top
-> > > of Linux-next
-> > >
-> > > V10:
-> > >  Per Rob's comments, fix patch 1/10
-> > >
-> > > V9:
-> > >  Per Mathieu's comments,
-> > >    update the tile of yaml in patch 2/10
-> > >    update the Kconfig and MODULE_DESCRIPTION, I merge this change in
-> > patch 8/10,
-> > >    since this is a minor change, I still keep Mathieu's R-b tag. If any
-> > objection, I could remove.
-> > >    Add R-b tag in Patch 10/10
-> > >
-> > >  Rob, please help review patch 1/10 and 2/10
-> > >
-> > > V8:
-> > >  Address sparse warning in patch 4/10 reported by kernel test robot
-> > >
-> > > V7:
-> > >  Add R-b tag from Mathieu
-> > >  vdevbuffer->vdev0buffer in patch 1/10, 7/10  correct err msg and
-> > > shutdown seq per Mathieu's comments in patch 10/10  Hope this version
-> > > is ok to be merged.
-> > >
-> > > V6:
-> > >  Add R-b tag from Mathieu
-> > >  Convert imx-rproc.txt to yaml and add dt-bindings support for
-> > > i.MX8MQ/M, patch 1/10 2/10  No other changes.
-> > >
-> > > V5:
-> > >  Apply on Linux next
-> > >  Add V5 subject prefix
-> > >  Add R-b tag from Bjorn for 1/8, 2/8, 3/8
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > >
-> > hwork.kernel.org%2Fproject%2Flinux-remoteproc%2Fcover%2F20201229033
-> > 019
-> > > .25899-1-peng.fan%40nxp.com%2F&amp;data=04%7C01%7Cpeng.fan%40n
-> > xp.com%7
-> > >
-> > C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd99c5c3
-> > 01635%7
-> > >
-> > C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> > MC4wLjAwMD
-> > >
-> > AiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata
-> > =bwlT
-> > > uTk6iRuZke6SMhuyB2gxniStfxnX%2BKlVgm7MZuk%3D&amp;reserved=0
-> > >
-> > > V4:
-> > >  According to Bjorn's comments, add is_iomem for da to va usage  1/8,
-> > > 2/8 is new patch  3/8, follow Bjorn's comments to correct/update the
-> > > err msg.
-> > >  6/8, new patch
-> > >  8/8, use dev_err_probe to simplify code, use queue_work instead
-> > > schedule_delayed_work
-> > >
-> > > V3:
-> > >  Since I was quite busy in the past days, V3 is late  Rebased on
-> > > Linux-next  Add R-b tags
-> > >  1/7: Add R-b tag of Mathieu, add comments
-> > >  4/7: Typo fix
-> > >  5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
-> > >  6/7: Add R-b tag of Mathieu
-> > >  7/7: Add comment for vqid << 16, drop unneeded timeout settings of
-> > mailbox
-> > >       Use queue_work instead of schedule_delayed_work
-> > >       free mbox channels when remove
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flkml
-> > > .org%2Flkml%2F2020%2F12%2F4%2F82&amp;data=04%7C01%7Cpeng.fan
-> > %40nxp.com
-> > > %7C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd9
-> > 9c5c301635
-> > > %7C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJ
-> > WIjoiMC4wLjAw
-> > >
-> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sd
-> > ata=xQ
-> > >
-> > ReFFdUT2ZLhWyT2Vt2v0frG0xKq2psP1ExnLx%2BLXw%3D&amp;reserved=0
-> > >
-> > > V2:
-> > >  Rebased on linux-next
-> > >  Dropped early boot feature to make patchset simple.
-> > >  Drop rsc-da
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > >
-> > hwork.kernel.org%2Fproject%2Flinux-remoteproc%2Fcover%2F20200927064
-> > 131
-> > > .24101-1-peng.fan%40nxp.com%2F&amp;data=04%7C01%7Cpeng.fan%40n
-> > xp.com%7
-> > >
-> > C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa92cd99c5c3
-> > 01635%7
-> > >
-> > C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> > MC4wLjAwMD
-> > >
-> > AiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata
-> > =BWGP
-> > >
-> > gbVtOjOa%2BriGryGp9sh2CSY%2BhMESdGD%2F7LvPJ6w%3D&amp;reserved
-> > =0
-> > >
-> > > V1:
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > >
-> > hwork.kernel.org%2Fcover%2F11682461%2F&amp;data=04%7C01%7Cpeng.f
-> > an%40n
-> > >
-> > xp.com%7C18c2709725e14cbab54408d8e24c6492%7C686ea1d3bc2b4c6fa9
-> > 2cd99c5c
-> > >
-> > 301635%7C0%7C0%7C637508165016988280%7CUnknown%7CTWFpbGZsb3
-> > d8eyJWIjoiMC
-> > >
-> > 4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&
-> > amp;sd
-> > >
-> > ata=XkGYIxBgrHLwV7R3bro87N6fL7777Wa5rOAZdVjCoZs%3D&amp;reserved
-> > =0
-> > >
-> > > This patchset is to support i.MX8MQ/M coproc.
-> > > The early boot feature was dropped to make the patchset small in V2.
-> > >
-> > > Since i.MX specific TCM memory requirement, add elf platform hook.
-> > > Several patches have got reviewed by Oleksij and Mathieu in v1.
-> > >
-> > >
-> > > Peng Fan (10):
-> > >   dt-bindings: remoteproc: convert imx rproc bindings to json-schema
-> > >   dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
-> > >   remoteproc: introduce is_iomem to rproc_mem_entry
-> > >   remoteproc: add is_iomem to da_to_va
-> > >   remoteproc: imx_rproc: correct err message
-> > >   remoteproc: imx_rproc: use devm_ioremap
-> > >   remoteproc: imx_rproc: add i.MX specific parse fw hook
-> > >   remoteproc: imx_rproc: support i.MX8MQ/M
-> > >   remoteproc: imx_rproc: ignore mapping vdev regions
-> > >   remoteproc: imx_proc: enable virtio/mailbox
-> > >
-> > >  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  90 ++++++
-> > >  .../bindings/remoteproc/imx-rproc.txt         |  33 ---
-> > >  drivers/remoteproc/Kconfig                    |   6 +-
-> > >  drivers/remoteproc/imx_rproc.c                | 262
-> > +++++++++++++++++-
-> > >  drivers/remoteproc/ingenic_rproc.c            |   2 +-
-> > >  drivers/remoteproc/keystone_remoteproc.c      |   2 +-
-> > >  drivers/remoteproc/mtk_scp.c                  |   6 +-
-> > >  drivers/remoteproc/omap_remoteproc.c          |   2 +-
-> > >  drivers/remoteproc/pru_rproc.c                |   2 +-
-> > >  drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
-> > >  drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
-> > >  drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
-> > >  drivers/remoteproc/qcom_wcnss.c               |   2 +-
-> > >  drivers/remoteproc/remoteproc_core.c          |   7 +-
-> > >  drivers/remoteproc/remoteproc_coredump.c      |   8 +-
-> > >  drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
-> > >  drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
-> > >  drivers/remoteproc/remoteproc_internal.h      |   2 +-
-> > >  drivers/remoteproc/st_slim_rproc.c            |   2 +-
-> > >  drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
-> > >  drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
-> > >  drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
-> > >  include/linux/remoteproc.h                    |   4 +-
-> > >  23 files changed, 393 insertions(+), 72 deletions(-)  create mode
-> > > 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > >  delete mode 100644
-> > > Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> > >
-> > > --
-> > > 2.30.0
-> > >
+This series adds missing hardware reset controls to I2S and AC97 drivers.
+Currently drivers happen to work properly because reset is implicitly
+deasserted by tegra-clk driver, but clk driver shouldn't touch the resets
+and we need to fix it because this breaks other Tegra drivers. Previously
+we fixed the resets of the AHUB and HDMI codec drivers, but turned out
+that we missed the I2C and AC97 drivers.
+
+Thanks to Paul Fertser for testing the pending clk patches and finding
+that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+reset.
+
+Changelog:
+
+v3: - Fixed reset stubs for !CONFIG_RESET_CONTROLLER.
+
+v2: - After some more testing I found that I2S control logic doesn't require
+      I2S clock to be enabled for resetting. Hence it's fine to have I2S to
+      be reset by parent AHUB driver, so I dropped "tegra30: i2s: Add reset
+      control" patch.
+
+    - While I was double-checking resets on Tegra30, I found that that
+      Tegra30 I2S driver has a broken runtime PM which doesn't restore
+      hardware state on resume and it's lost after AHUB RPM-resume.
+      Thus, added this new patch "tegra30: i2s: Restore hardware state
+      on runtime PM resume".
+
+    - Added new patches which switch AHUB driver to use reset-bulk API.
+      I took the RFC patch from Philipp Zabel, fixed it and added
+      devm_reset_control_bulk_optional_get_exclusive_released() that
+      will be useful for further Tegra GPU patches. This is a minor
+      improvement which makes code cleaner.
+
+Dmitry Osipenko (4):
+  ASoC: tegra20: ac97: Add reset control
+  ASoC: tegra20: i2s: Add reset control
+  ASoC: tegra30: i2s: Restore hardware state on runtime PM resume
+  ASoC: tegra: ahub: Switch to use reset-bulk API
+
+Philipp Zabel (1):
+  reset: Add reset_control_bulk API
+
+ drivers/reset/core.c           | 215 +++++++++++++++++++++++
+ include/linux/reset.h          | 308 +++++++++++++++++++++++++++++++++
+ sound/soc/tegra/tegra20_ac97.c |  21 +++
+ sound/soc/tegra/tegra20_ac97.h |   1 +
+ sound/soc/tegra/tegra20_i2s.c  |  31 ++++
+ sound/soc/tegra/tegra20_i2s.h  |   1 +
+ sound/soc/tegra/tegra30_ahub.c | 104 ++++-------
+ sound/soc/tegra/tegra30_ahub.h |   5 +-
+ sound/soc/tegra/tegra30_i2s.c  |  41 ++---
+ 9 files changed, 629 insertions(+), 98 deletions(-)
+
+-- 
+2.29.2
+
