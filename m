@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5823F337FF9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D60BC338000
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:02:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbhCKV7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 16:59:51 -0500
-Received: from mailoutvs32.siol.net ([185.57.226.223]:58678 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229679AbhCKV7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 16:59:44 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 7D6D0524AD8;
-        Thu, 11 Mar 2021 22:59:36 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id doooZCoLUepj; Thu, 11 Mar 2021 22:59:36 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 34F9D524D14;
-        Thu, 11 Mar 2021 22:59:36 +0100 (CET)
-Received: from kista.localnet (cpe-86-58-17-133.cable.triera.net [86.58.17.133])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 7C948524AD8;
-        Thu, 11 Mar 2021 22:59:35 +0100 (CET)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: Re: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Add power button
-Date:   Thu, 11 Mar 2021 22:59:35 +0100
-Message-ID: <2517400.0zBCEEo8qi@kista>
-In-Reply-To: <20210308130506.v35gjviwknr5hat5@gilmour>
-References: <20210306203611.15534-1-jernej.skrabec@siol.net> <20210308130506.v35gjviwknr5hat5@gilmour>
+        id S231303AbhCKWCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 17:02:02 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33700 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230386AbhCKWBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 17:01:55 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BM1hNR059014;
+        Thu, 11 Mar 2021 16:01:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615500103;
+        bh=iqbjIDn5aoYZVoETPq9RaOxNijO0u9nemjY4dLhYicU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qK1Ao0ijpNI7irJRx4xNGzff20F6MFZVoaxqcAttYJxoSHJ0ywaFZ7fw5rrEbrCzE
+         3fqn6cRS56UpiigpvkliaRECcc0kvuTpkcEOXfFea5SxyLh4okkmwq+KnEE7VlSnvc
+         TC+4vi5xo1jQUIttuBiq2ICpE9CVfUjNCAAASnF8=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BM1hJW010586
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 Mar 2021 16:01:43 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
+ Mar 2021 16:01:09 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 11 Mar 2021 16:01:09 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BM19rE087587;
+        Thu, 11 Mar 2021 16:01:09 -0600
+Date:   Thu, 11 Mar 2021 16:01:09 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Andre Przywara <andre.przywara@arm.com>, Rob H <robh@kernel.org>
+CC:     Michal Simek <michal.simek@xilinx.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
+ #address-cells for interrupt-controller
+Message-ID: <20210311215914.pgpz2yymmfqlainl@episode>
+References: <20201117161942.38754-1-nsekhar@ti.com>
+ <20201117161942.38754-3-nsekhar@ti.com>
+ <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
+ <20201118151259.kpag44djji4ssiup@eldest>
+ <18e41dba-a3dd-308a-605e-63b76ca638e5@ti.com>
+ <20210126000108.GA1267192@robh.at.kernel.org>
+ <20210126163839.57491132@slackpad.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210126163839.57491132@slackpad.fritz.box>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-Dne ponedeljek, 08. marec 2021 ob 14:05:06 CET je Maxime Ripard napisal(a):
-> Hi
+Andre, Rob,
+On 16:38-20210126, Andre Przywara wrote:
+> > Now that I look back at the dtc change, I'm now confused why this 
+> > check got applied. Both David and I wanted changes in regards to 
+> > #address-cells. Either a separate check or part of interrupt-map checks. 
+> > And the interrupt-map check never got applied. Andre?
 > 
-> On Sat, Mar 06, 2021 at 09:36:11PM +0100, Jernej Skrabec wrote:
-> > Beelink X2 has power button. Add node for it.
-> > 
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > ---
-> >  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dts/
-sun8i-h3-beelink-x2.dts
-> > index 62b5280ec093..4a2cb072ecf6 100644
-> > --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > @@ -111,6 +111,17 @@ spdif_out: spdif-out {
-> >  		#sound-dai-cells = <0>;
-> >  		compatible = "linux,spdif-dit";
-> >  	};
-> > +
-> > +	r_gpio_keys {
-> 
-> Underscores are not valid for node names (and will trigger a dtc warning
-> when running with W=1).
-
-Unless I'm doing something wrong, I didn't get any warning with "make dtbs 
-W=1". In fact many H3 boards have a node with this name and not a single 
-warning is produced with this command for underscores (there are other 
-warnings though).
-
-Actually, several H3 DT files have nodes like "sound_spdif" or "wifi_pwrseq". It 
-seems like warnings are triggered only for children of soc node.
-
-> 
-> > +		compatible = "gpio-keys";
-> > +
-> > +		power {
-> > +			label = "power";
-> 
-> IIRC the node name is used as a fallback when the label isn't there?
-
-Binding doesn't say anything about what happens if label is missing. Driver 
-sets generic description "gpio_keys" in such case, which is not something that 
-we want.
-
-Best regards,
-Jernej
-
-> 
-> Maxime
-> 
+> Yeah, I somewhat dropped the ball on this, after some iterations and a
+> partial merge. Will put it on my list to revive this.
 
 
+I was hoping we made some steps, but I did see [1] as well and it is
+possible that I am missing some discussion, but it is starting to get
+W=2 builds warnings noisy enough to start interfering with discovering
+real problems as we keep adding new stuff in.. Just wondering...
+
+
+[1] https://lore.kernel.org/linux-devicetree/CAL_Jsq++DyiKG9smQGx9FAPDJnVrezcXNb0Y5uh-5_2GBzTQpQ@mail.gmail.com/
+[2] https://pastebin.ubuntu.com/p/ns6hPCBxVM/
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
