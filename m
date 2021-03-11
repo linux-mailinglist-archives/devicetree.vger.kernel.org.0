@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB59337900
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA0F337907
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:17:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234061AbhCKQQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234455AbhCKQQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:16:05 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C251C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:16:05 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u4so2873060ljo.6
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:16:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lfYyTSB6sN53w9Rpv4MYqNBv1FPOEZ0SmWjIhTyeJxs=;
-        b=w7gbpWGeeJ+LlzySG7BIYUktxr5ZW6HHVY4+kDsfrOjR8+uCX7UfS12tge1fIba7bN
-         siJe30TAnw+/h3qtte6NL8++/XN56VXtXOlGG2vrWXs32XJku7afWUNsnk0tLSZgaoRP
-         qIZ/4GmtZ1i9oNXcd8zXNQVIY3z/cXgu/HYe6RiK/HznG1JHC1RnGEO26o+3Kc7Gu24t
-         mDKnOJnUQbaI2aW18KnCx1bzYgbMjT0hOd0+44R+gc8vZc2nH65LvMln58GGsQgDMGjl
-         svz66W78wmfOTwVlEZMQmHrfQk2qoRs3WoDHpHpgjVjwpj29LtQx6vil16mwBYI1Xq9f
-         qtxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lfYyTSB6sN53w9Rpv4MYqNBv1FPOEZ0SmWjIhTyeJxs=;
-        b=n9Sj/kVTrB0Ycg9uZ7uOC0wElVv5iRdYf3rWyAjcIbebCXAsSAfU9d4hheaUagDQIG
-         8lZKhX33PVdQ4VUbB0ExP2EPK0fufi2CG0re6RivZcnD9gVywCLXP7LSrGhnDqGb9GwN
-         lVoct2+I2yRP3WhZLg3B5u+ulJ4yOedMkuPwzAVHDHPXO99yNMHeHkJaKVpyhpRAlGtJ
-         SqhQdbVfBmNA6ponbUR8Hx/nYqgttwfEsIGYdhO4YQ+A05J4Xl9iNYAf9XmpnUFVSo3J
-         5Ju6fSmcixddHjHnjmKaLa6G81Iqz9Ait7qfV25g2rXyG9xmr7IVt54B5D01XpDSMPES
-         He/w==
-X-Gm-Message-State: AOAM530pHNS46eRk1+sdVQ9lBGvdGwS4+9TpGisWJZHhCfoilxVM6koJ
-        6WHR4H5O31wQrH0kOvJX4wafV08tDKbJB5XJnDrLcw==
-X-Google-Smtp-Source: ABdhPJxjSHy1zm8V6vPLxd2/BZt39BMm+ldl/7gvjdw+kLTDN0YCYgFmd4U2bedbP56ygtsRdV6mIHbZc0eUiDGxSiE=
-X-Received: by 2002:a2e:700a:: with SMTP id l10mr5292190ljc.368.1615479363631;
- Thu, 11 Mar 2021 08:16:03 -0800 (PST)
+        id S234371AbhCKQRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:17:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51800 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234527AbhCKQRN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 11:17:13 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DCD8464F88;
+        Thu, 11 Mar 2021 16:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615479432;
+        bh=tC8xQLvl0ED5iaAOUU3NWeADhke0KZJuMgdD9l7TFWA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RyuJ62MV0j1/0koV3tq8MZh+/x1RDJHUX5qSrZ3paxvAockMHvG17rC8qJac4MdSf
+         sHjsYIzxL9OLh0PxPjAaWR59N2TlKSdwzPDYcFN/PIrCOxPJ1Kg4hn4kpogdt23424
+         7fYazPCBxabTn60iy1PugT4Y81/xcWpa8tySmBCpMPyACfFXtg8I9dYITP4zcgVR1v
+         xCS5xx73GHuHAf8z11KTd1NiFz5+tksiIeZTJ5ce74kJntcxiJJu8LL87Jd7wMuOYK
+         E1XQe3JZQXwXi6u0TyBhVZzfePlBs7lF2b2B8LZhOh43QTbgnL1VbK4fi3FFU2ApBA
+         DycL7AFAZDTxQ==
+Date:   Thu, 11 Mar 2021 16:15:58 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     Michael Walle <michael@walle.cc>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+Message-ID: <20210311161558.GG4962@sirena.org.uk>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
+ <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
+ <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
 MIME-Version: 1.0
-References: <20210115224420.1635017-1-dianders@chromium.org>
-In-Reply-To: <20210115224420.1635017-1-dianders@chromium.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 17:15:52 +0100
-Message-ID: <CACRpkdY0h0kEE_63y7wyc=0etTe0Bfn+EmWpfQSe7g2KcfTvhw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] drm/panel-simple: Patches for N116BCA-EA1
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eMnpOGXCMazMAbfp"
+Content-Disposition: inline
+In-Reply-To: <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+X-Cookie: I'm rated PG-34!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 11:44 PM Douglas Anderson <dianders@chromium.org> wrote:
 
-> This series is to get the N116BCA-EA1 panel working. Most of the
-> patches are simple, but on hardware I have in front of me the panel
-> sometimes doesn't come up. I'm still working with the hardware
-> manufacturer to get to the bottom of it, but I've got it working with
-> retries. Adding the retries doesn't seem like an insane thing to do
-> and makes some of the error handling more robust, so I've gone ahead
-> and included those patches here. Hopefully they look OK.
->
-> Changes in v2:
+--eMnpOGXCMazMAbfp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This v2 version applied to drm-misc-next.
+On Wed, Mar 10, 2021 at 08:20:28PM +0530, Sameer Pujar wrote:
 
-Yours,
-Linus Walleij
+> If I read this correctly below is the configuration you need,
+> SoC -> MCLK(fixed rate) -> PLL(wm8904) -> PLL output (256 * fs) -> sysclk
+
+For this device for integration with something like simple-audio-card
+since there's limited flexibility within the device the simplest thing
+would be to not make the internal clocking of the device visible and
+just have it figure out how to use the input clock, using the MCLK
+directly if possible otherwise using the FLL to generate a suitable
+clock.  The trick is figuring out if it's best to vary the input clock
+or to use the FLL to adapt a fixed input clock, and of course adapting
+any existing users if things get changed.
+
+--eMnpOGXCMazMAbfp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBKQj4ACgkQJNaLcl1U
+h9Bm7Qf/VJ91STTM9RrXZ6oXyjy90lybK+uguct6tIBOH/cCBlf2qGxlWOIaKw2w
+ybRwqTEJm5fKKRDMqvUBk7y7O3VF9onjg5x8N/+FcbPgrK2hEuzBJQlzEn47GEpK
+wangKZc80y5Sz7jPi5yK2dRyMfClSIyv78y5rFHcetDHH2+xLFz7com+SEczQeyx
+gBNaIJ7xyQb6/KUQQLPO21wTy4rzFpurRatmPJTVlUM1qREmptX8SB5lRFXIb8yJ
+gYp353sgoWIwm71bhZl2xtBuNyZJg7w4TnvPIaEBPi/cjaQvSUohaDJXui1tFITq
+JF2ZCpVivFlMaIgQNfKfH+lSv5Feag==
+=OLq0
+-----END PGP SIGNATURE-----
+
+--eMnpOGXCMazMAbfp--
