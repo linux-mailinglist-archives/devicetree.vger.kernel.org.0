@@ -2,292 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC44C337FDE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 22:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA5D337FF1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 22:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230523AbhCKVsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 16:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41386 "EHLO
+        id S229796AbhCKVzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 16:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230512AbhCKVsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 16:48:40 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7603C061574;
-        Thu, 11 Mar 2021 13:48:40 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id x28so2574034otr.6;
-        Thu, 11 Mar 2021 13:48:40 -0800 (PST)
+        with ESMTP id S229674AbhCKVyw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 16:54:52 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6CE0C061761
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 13:54:51 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id by2so3319361qvb.11
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 13:54:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=FLFJ/cfbWjjDQmovjePYB1SvwwbHlMBXgTEQGX1t96s=;
-        b=XesCgyqdJdWS4444WrdJNNuPovODkvXZd1O3rmtyGOY9sqcSCpJmkAylz73TJ+5jvC
-         evV/lSTnWN6E9a01Q3QwVa4HtsJrkAOk2Vyk1f0pandhimTLgpM1G4fyukLstZq+TD2n
-         LqIwGV260kyLBDfBm6mjVXBePTier8G/GMdHDeQiQEzcsGtbDevKk+qzZdiZUXszZZWK
-         g5T9sR4ZnYup2K4W6wrMRdEaiqo75OF1xvl4qz5YbUBx/6Ei1sD7UiNOVJPVyfaOniFv
-         R5EU90ml9xQCCjyhi1PVQEClLYW2uL/eMJtuNB1MYqTcb6cwvNSA6WwpHO4XDmgQxpMA
-         Vkig==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=E3NToVMb7SyOcWd/eqRyCe7U4wiYDLs06rM6zg487v4=;
+        b=Tw9Mm5ufk7p20s+L3uY8+zldTGCWGuQ5SIj+9jnt2SEBW4xfZEXuh0LutMljZFvcFr
+         SWCo+l6lbEvuANlvJebP3XvWPa+bidF0dXQcTWNPmOGWznQBcfcbA7HZk0J7lQHXsKPk
+         drHNU+8qTah0QZPvPkeO6jKoxRr5gougXcu1k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to:user-agent;
-        bh=FLFJ/cfbWjjDQmovjePYB1SvwwbHlMBXgTEQGX1t96s=;
-        b=jWeR07x/bVwRPOPaNSLLqbuF+8LW5BJPVaj6bPK2gb8o4LxlXmNj+TAMrqu3n7eaps
-         eHAlDkjBf6a/7bfs7qL21WFYlLaQZsJH0pDibFsgtcfvScH5NyCt1p3PMSuSVklW8hRN
-         TO8MTplbhFlbvrR4rA0HR8YhSbNhLlH660PeyZwbeEtIWtrpOGK/DUKdzLK6ezGPnzd6
-         vQSdlTZ9eNX0eMDVKqlHyMmXq6OK3laVLxKqZj/nrR+RB6HczOojslDeTw50JI8Ce/zL
-         RKLnG0hPxKms1mUsM/3IHZ9gqgFfW4r4yrodJ7rcCi95qH3HAsKN7v0YhYIoYwuocOd1
-         U9Rg==
-X-Gm-Message-State: AOAM533wyFiiMLG4Rq2/aWFV5pvN3NJFtaL6nSGqRBzLZt1opkuJQIHe
-        DFHup5W1jglFEab0o/lwBf0=
-X-Google-Smtp-Source: ABdhPJx6wGN2tYknfFIvovrmwvQBFQdQ5WYTj+7z/OaDlFqSGacer0gQWK/b+F7VlkvVZSz0qf2UNQ==
-X-Received: by 2002:a9d:7512:: with SMTP id r18mr863295otk.90.1615499320227;
-        Thu, 11 Mar 2021 13:48:40 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o9sm873506otl.39.2021.03.11.13.48.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 11 Mar 2021 13:48:39 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 11 Mar 2021 13:48:38 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     robh+dt@kernel.org, jdelvare@suse.com, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] hwmon: (pmbus): Add driver for Infineon IR36021
-Message-ID: <20210311214838.GA36413@roeck-us.net>
-References: <20210301035954.16713-1-chris.packham@alliedtelesis.co.nz>
- <20210301035954.16713-3-chris.packham@alliedtelesis.co.nz>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E3NToVMb7SyOcWd/eqRyCe7U4wiYDLs06rM6zg487v4=;
+        b=TgwqSIAKD0cVxwwf89uJSdUoD+E5GJ8gm3F3KJZBbFrv4iAcbpnburFWuN8BsWRaWZ
+         V0rqjXjQn3mtUec2BKJnr7LbZ6YDXuBgYFKluNEZ/53/TblRRFJ+HXHAPVhb3nrZKcdG
+         NmM5qfRL+3nt3EUL7Mzo2GFgD7EL9Y+RWV6nOVNn0h/ZALtvLEPS1hj0avG2X659+p9X
+         OknWzsxXwpQuZuY1L4eLLFv5zFo1E/N1yMFIYXrsSXigT5HA2gJP+KeLP34E5+GOiv76
+         92AJTnKIN/TUrgjt3sic9eoiEg01N2US046kbDVmoWAka6UODqkVTXRb1+/lvN4aNDe1
+         4Hng==
+X-Gm-Message-State: AOAM532VM3Biakinfn0CfXHGU15YV9WkRwVVpTHvegLQDzvRQs/9cadO
+        H/slglZcEZlyj0aWenJfzl6xcljcT2GR4A==
+X-Google-Smtp-Source: ABdhPJzBuvAkThh8/i2Hl3NsYWsshBVrs0ryxkO4fu1bQHtPpxBa+JnCRgD45/LcPUEY83CrLofZmg==
+X-Received: by 2002:a0c:ed2c:: with SMTP id u12mr1916033qvq.30.1615499690516;
+        Thu, 11 Mar 2021 13:54:50 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id n136sm2941348qke.123.2021.03.11.13.54.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Mar 2021 13:54:49 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id p193so23277300yba.4
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 13:54:49 -0800 (PST)
+X-Received: by 2002:a25:9348:: with SMTP id g8mr11415895ybo.343.1615499689441;
+ Thu, 11 Mar 2021 13:54:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210301035954.16713-3-chris.packham@alliedtelesis.co.nz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210311033957.8978-1-rojay@codeaurora.org>
+In-Reply-To: <20210311033957.8978-1-rojay@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 11 Mar 2021 13:54:38 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
+Message-ID: <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: sc7280: Add qspi, qupv3_0 and qupv3_1 nodes
+To:     Roja Rani Yarubandi <rojay@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 01, 2021 at 04:59:54PM +1300, Chris Packham wrote:
-> The IR36021 is a dual‐loop digital multi‐phase buck controller.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Hi,
 
-Applied.
+On Wed, Mar 10, 2021 at 7:41 PM Roja Rani Yarubandi
+<rojay@codeaurora.org> wrote:
+>
+> +&qspi_cs0 {
+> +       pinconf {
+> +               pins = "gpio15";
+> +               bias-disable;
+> +       };
 
-Thanks,
-Guenter
+The "pinconf" / "pinmux" subnode shouldn't be used for new SoCs. See:
 
-> ---
-> Changes in v2:
-> - update against latest kernel for pmbus API changes
-> - avoid double negation
-> 
->  Documentation/hwmon/index.rst   |  1 +
->  Documentation/hwmon/ir36021.rst | 62 ++++++++++++++++++++++++++
->  drivers/hwmon/pmbus/Kconfig     |  9 ++++
->  drivers/hwmon/pmbus/Makefile    |  1 +
->  drivers/hwmon/pmbus/ir36021.c   | 79 +++++++++++++++++++++++++++++++++
->  5 files changed, 152 insertions(+)
->  create mode 100644 Documentation/hwmon/ir36021.rst
->  create mode 100644 drivers/hwmon/pmbus/ir36021.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 8d5a2df1ecb6..b34894403c2b 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -77,6 +77,7 @@ Hardware Monitoring Kernel Drivers
->     intel-m10-bmc-hwmon
->     ir35221
->     ir38064
-> +   ir36021
->     isl68137
->     it87
->     jc42
-> diff --git a/Documentation/hwmon/ir36021.rst b/Documentation/hwmon/ir36021.rst
-> new file mode 100644
-> index 000000000000..36ef8d518b81
-> --- /dev/null
-> +++ b/Documentation/hwmon/ir36021.rst
-> @@ -0,0 +1,62 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver ir36021
-> +=====================
-> +
-> +Supported chips:
-> +
-> +  * Infineon IR36021
-> +
-> +    Prefix: ir36021
-> +    Addresses scanned: -
-> +
-> +    Datasheet: Publicly available at the Infineon website
-> +      https://www.infineon.com/dgdl/ir36021.pdf?fileId=5546d462533600a4015355d0aa2d1775
-> +
-> +Authors:
-> +      - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +Description
-> +-----------
-> +
-> +The IR36021 is a dual‐loop digital multi‐phase buck controller designed for
-> +point of load applications.
-> +
-> +Usage Notes
-> +-----------
-> +
-> +This driver does not probe for PMBus devices. You will have to instantiate
-> +devices explicitly.
-> +
-> +Sysfs attributes
-> +----------------
-> +
-> +======================= ===========================
-> +curr1_label             "iin"
-> +curr1_input             Measured input current
-> +curr1_alarm             Input fault alarm
-> +
-> +curr2_label             "iout1"
-> +curr2_input             Measured output current
-> +curr2_alarm             Output over-current alarm
-> +
-> +in1_label               "vin"
-> +in1_input               Measured input voltage
-> +in1_alarm               Input under-voltage alarm
-> +
-> +in2_label               "vout1"
-> +in2_input               Measured output voltage
-> +in2_alarm               Output over-voltage alarm
-> +
-> +power1_label            "pin"
-> +power1_input            Measured input power
-> +power1_alarm            Input under-voltage alarm
-> +
-> +power2_label            "pout1"
-> +power2_input            Measured output power
-> +
-> +temp1_input             Measured temperature
-> +temp1_alarm             Temperature alarm
-> +
-> +temp2_input             Measured other loop temperature
-> +temp2_alarm             Temperature alarm
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 32d2fc850621..ee8c27b3b83d 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -84,6 +84,15 @@ config SENSORS_IR35221
->  	  This driver can also be built as a module. If so, the module will
->  	  be called ir35221.
->  
-> +config SENSORS_IR36021
-> +	tristate "Infineon IR36021"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Infineon
-> +	  IR36021.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called ir36021.
-> +
->  config SENSORS_IR38064
->  	tristate "Infineon IR38064"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 6a4ba0fdc1db..685a6bc2b15f 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
->  obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
->  obj-$(CONFIG_SENSORS_INSPUR_IPSPS) += inspur-ipsps.o
->  obj-$(CONFIG_SENSORS_IR35221)	+= ir35221.o
-> +obj-$(CONFIG_SENSORS_IR36021)	+= ir36021.o
->  obj-$(CONFIG_SENSORS_IR38064)	+= ir38064.o
->  obj-$(CONFIG_SENSORS_IRPS5401)	+= irps5401.o
->  obj-$(CONFIG_SENSORS_ISL68137)	+= isl68137.o
-> diff --git a/drivers/hwmon/pmbus/ir36021.c b/drivers/hwmon/pmbus/ir36021.c
-> new file mode 100644
-> index 000000000000..4767e39cc965
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/ir36021.c
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Hardware monitoring driver for Infineon IR36021
-> + *
-> + * Copyright (c) 2021 Allied Telesis
-> + */
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include "pmbus.h"
-> +
-> +static struct pmbus_driver_info ir36021_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_POWER] = linear,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT
-> +		| PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT
-> +		| PMBUS_HAVE_PIN | PMBUS_HAVE_POUT
-> +		| PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2
-> +		| PMBUS_HAVE_STATUS_TEMP,
-> +};
-> +
-> +static int ir36021_probe(struct i2c_client *client)
-> +{
-> +	u8 buf[I2C_SMBUS_BLOCK_MAX];
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_READ_BYTE_DATA
-> +				     | I2C_FUNC_SMBUS_READ_WORD_DATA
-> +				     | I2C_FUNC_SMBUS_READ_BLOCK_DATA))
-> +		return -ENODEV;
-> +
-> +	ret = i2c_smbus_read_i2c_block_data(client, PMBUS_MFR_MODEL, 2, buf);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev, "Failed to read PMBUS_MFR_MODEL\n");
-> +		return ret;
-> +	}
-> +	if (ret != 2 || buf[0] != 0x01 || buf[1] != 0x2d) {
-> +		dev_err(&client->dev, "MFR_MODEL unrecognised\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return pmbus_do_probe(client, &ir36021_info);
-> +}
-> +
-> +static const struct i2c_device_id ir36021_id[] = {
-> +	{ "ir36021", 0 },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ir36021_id);
-> +
-> +static const struct of_device_id __maybe_unused ir36021_of_id[] = {
-> +	{ .compatible = "infineon,ir36021" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, ir36021_of_id);
-> +
-> +static struct i2c_driver ir36021_driver = {
-> +	.class = I2C_CLASS_HWMON,
-> +	.driver = {
-> +		.name = "ir36021",
-> +		.of_match_table = of_match_ptr(ir36021_of_id),
-> +	},
-> +	.probe_new = ir36021_probe,
-> +	.id_table = ir36021_id,
-> +};
-> +
-> +module_i2c_driver(ir36021_driver);
-> +
-> +MODULE_AUTHOR("Chris Packham <chris.packham@alliedtelesis.co.nz>");
-> +MODULE_DESCRIPTION("PMBus driver for Infineon IR36021");
-> +MODULE_LICENSE("GPL");
+http://lore.kernel.org/r/CAD=FV=UY_AFRrAY0tef5jP698LEng6oN652LcX3B4nG=aWh0gA@mail.gmail.com
+
+...same feedback for this whole patch.
+
+> +                       qup_spi0_default: qup-spi0-default {
+> +                               pinmux {
+> +                                       pins = "gpio0", "gpio1",
+> +                                              "gpio2", "gpio3";
+> +                                       function = "qup00";
+> +                               };
+> +                       };
+
+Please split these SPI nodes as per the thread above, like:
+
+tlmm: pinctrl@... {
+  qup_spi0_data_clk: qup-spi0-data-clk {
+    pins = "gpio0", "gpio1", "gpio2";
+    function = "qup0";
+  };
+
+  qup_spi0_cs: qup-spi0-cs {
+    pins = "gpio3";
+    function = "qup0";
+  };
+
+  qup_spi0_cs_gpio: qup-spi0-cs-gpio {
+    pins = "gpio3";
+    function = "gpio";
+  };
+};
+
+
+> +                       qup_uart0_default: qup-uart0-default {
+> +                               pinmux {
+> +                                       pins = "gpio0", "gpio1",
+> +                                              "gpio2", "gpio3";
+> +                                       function = "qup00";
+> +                               };
+> +                       };
+
+I suspect things would actually be cleaner if we broke the uart lines
+up since the boards tend to have to adjust pulls differently for each
+line. With the new "no pinconf / pinmux" world it's pretty clean. It's
+obviously up to Bjorn, but if it were me I'd request this in the SoC
+file:
+
+qup_uart0_cts: qup-uart0-cts {
+  pins = "...";
+  function = "qup00";
+};
+
+qup_uart0_rts: qup-uart0-rts {
+  pins = "...";
+  function = "qup00";
+};
+
+qup_uart0_rx: qup-uart0-rx {
+  pins = "...";
+  function = "qup00";
+};
+
+qup_uart0_tx: qup-uart0-tx {
+  pins = "...";
+  function = "qup00";
+};
+
+...and now when the board file wants to adjust the pulls they can just
+reference each one:
+
+/*
+ * Comments about why the UART0 pulls make sense.
+ * Blah blah blah.
+ */
+
+&qup_uart0_cts {
+  bias-pull-down;
+};
+
+&qup_uart0_rts {
+  drive-strength = <2>;
+  bias-disable;
+};
+
+&qup_uart0_rx {
+  bias-pull-up;
+};
+
+&qup_uart0_tx {
+  drive-strength = <2>;
+  bias-disable;
+};
+
+
+> +               qspi: spi@88dc000 {
+
+I believe the qspi node is sorted incorrectly. When I apply this to
+the top of the Qualcomm tree it shows up after the "apps_smmu:
+iommu@15000000" node. However:
+
+0x088dc000 < 0x15000000
+
+...which means it should be _before_.
+
+-Doug
