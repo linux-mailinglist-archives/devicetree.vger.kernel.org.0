@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99EB7337A1D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:54:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EDAF337A29
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:58:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbhCKQyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:54:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbhCKQxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:53:52 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F1E6C061761
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:53:52 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id a17so2101627oto.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XSmqDyqk6mwQknjVMDCtXIq5BqYGoCAKmXrLczbo/Z0=;
-        b=oLTCFnpiKHmOXrrJ1Nf8wzVX9GKpnaWvKdn2KUbi1E/8IHkoORaUmKlDmyVREm3ll9
-         f34UuLYGsKwoXYIDjwO07xxUltoTmwAIFu8L6ZlIB6s/GrvLYRy5OwKXcpy47PftEcpF
-         KQ9lmzhDLnebS7pgFoDlwdgbhCJVCy4roVO1r34g1i9hI4qlOi1zwBQfiRA87yLGKxC7
-         bM3zAIjgbLHjKTNvCwtOGwjs03CF05GDc4m+WF3VBiD+1Q+8fYU2QynutynPP9DIKXwZ
-         1sisNPZLH5PRzon/LfUbl1y+tKLk2D4X138Wmx18ZICkRhsx3JrEwTWtcrAhu40SMiYs
-         Om/Q==
+        id S229553AbhCKQ5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:57:52 -0500
+Received: from mail-io1-f43.google.com ([209.85.166.43]:33914 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhCKQ5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:57:35 -0500
+Received: by mail-io1-f43.google.com with SMTP id o11so22706775iob.1;
+        Thu, 11 Mar 2021 08:57:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XSmqDyqk6mwQknjVMDCtXIq5BqYGoCAKmXrLczbo/Z0=;
-        b=TUTYFzBoDKKOQalBqE8PCq/cnRto17Il8Ppzz9mSGCWRo2TNgPo0mpPtbRSTlfP5+2
-         LtuOD7sZuew/+LlMeY0yTF/mh5qq0dx4Wb4b0zB7RJHKh27aplLzmiytd7Y5U/3f1nwo
-         WrT1z1h+SNi4zMR12xYqMT/EIEAFrwPJysgCBtXOVUi/3B1Hiff2CBbO+WN7c7j7lbBQ
-         TJYDfZm8lPyY8woJW0KFiuRJ77vJTKpApPjqhFppZ5pT2OLxv8moKt2JC3MrQkxxCoB/
-         elXx2mvGAJX0O+haP94yRPAdQ1yzqr4E4pgcdysFY2i+kx9zNTljR6MsnZSHsYCUIqpr
-         ZbHg==
-X-Gm-Message-State: AOAM530LANhCilKO7AZQOK32UmxZzXTsFmZeiCDo1KklRZzAPH+NeQyh
-        u1Fj3PfhEmslpagjGXPOqKlsnpDIqk0ARQ==
-X-Google-Smtp-Source: ABdhPJywd1cpirDSLzKY6QGbJqG6i3tKZTk10GED3Z89ge2/jZ73vXVbQqZW52lCbEPmgbIYOe4VaQ==
-X-Received: by 2002:a05:6830:11a:: with SMTP id i26mr7823001otp.91.1615481631654;
-        Thu, 11 Mar 2021 08:53:51 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r16sm604358oij.13.2021.03.11.08.53.50
+        bh=wsccf9tJR91KJ5EzGr3FBpTysn8pH+laeQstroeFNK0=;
+        b=mOcVWWIKoaHNQBZt+cr3JsRePwg/GW24bl4Yg2x7oCX+ivePi0RK5mv2cGnPfJaj2M
+         z/JMy2XfSR4H3U6cziXmXKccvcC4pK4afWMEPfGY9W1SCTRosjiZ9/fA7SNYN2DZ3UDl
+         Npp8KQf4uOOZMlLyYYd7IPU/esR4nrPQVTwHkV11ncKfiZI1PF0hDdClTAO89+qGy/mf
+         egHzqg6kMTWQlOKppbBqgTfaoNTWZPVvRKBTGQvcKRbZOuzmzroLzCS3Fbw7tutaGhoL
+         E1jMVnzKlIDqZ+ZtjAfQY+AF2ALSL9FusOaaq1S05usVHv27FuN3vw72ksx7iLKpK07l
+         x19g==
+X-Gm-Message-State: AOAM533mm5afkxrIGiF0PF6pdm5w3+b97jYPzMw4wqvCUXAIZkl1rVez
+        PcQTkgnWLKvtUwB6iX3smUGmp8GTBQ==
+X-Google-Smtp-Source: ABdhPJzWQc1MQR1xAgqw0T954BKg4oec2Mq0FvSn/lekGONRtwNBJiowKlSxunCHDr2yO6pxc/sCjg==
+X-Received: by 2002:a05:6638:144e:: with SMTP id l14mr4510651jad.76.1615481854566;
+        Thu, 11 Mar 2021 08:57:34 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v19sm1519350ilj.60.2021.03.11.08.57.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 08:53:50 -0800 (PST)
-Date:   Thu, 11 Mar 2021 10:53:49 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
- 'gpio-ranges'
-Message-ID: <YEpLHSRKt651B6FP@builder.lan>
-References: <20210303033106.549-1-shawn.guo@linaro.org>
- <20210303033106.549-2-shawn.guo@linaro.org>
- <YEKl7GbxBhui4eoT@builder.lan>
- <20210306012829.GL17424@dragon>
- <YELhMmDndOTSSJJO@builder.lan>
- <20210306080049.GM17424@dragon>
- <YEkOaK+UiLy8kSDu@builder.lan>
- <20210311011951.GT17424@dragon>
+        Thu, 11 Mar 2021 08:57:33 -0800 (PST)
+Received: (nullmailer pid 867948 invoked by uid 1000);
+        Thu, 11 Mar 2021 16:57:31 -0000
+Date:   Thu, 11 Mar 2021 09:57:31 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v5 2/3] dt-bindings: mtd: Document use of nvmem-cells
+ compatible
+Message-ID: <20210311165731.GA866234@robh.at.kernel.org>
+References: <20210311051309.16789-1-ansuelsmth@gmail.com>
+ <20210311051309.16789-2-ansuelsmth@gmail.com>
+ <1615480862.520618.841930.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210311011951.GT17424@dragon>
+In-Reply-To: <1615480862.520618.841930.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Mar 19:19 CST 2021, Shawn Guo wrote:
-
-> On Wed, Mar 10, 2021 at 12:22:32PM -0600, Bjorn Andersson wrote:
-> > On Sat 06 Mar 02:00 CST 2021, Shawn Guo wrote:
+On Thu, Mar 11, 2021 at 09:41:02AM -0700, Rob Herring wrote:
+> On Thu, 11 Mar 2021 06:12:48 +0100, Ansuel Smith wrote:
+> > Document nvmem-cells compatible used to treat mtd partitions as a
+> > nvmem provider.
 > > 
-> > > On Fri, Mar 05, 2021 at 07:56:02PM -0600, Bjorn Andersson wrote:
-> > > > On Fri 05 Mar 19:28 CST 2021, Shawn Guo wrote:
-> > > > 
-> > > > > On Fri, Mar 05, 2021 at 03:43:08PM -0600, Bjorn Andersson wrote:
-> > > > > > On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
-> > > > > > 
-> > > > > > > The last cell of 'gpio-ranges' should be number of GPIO pins, and in
-> > > > > > > case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
-> > > > > > > than msm_pinctrl_soc_data.ngpio - 1.
-> > > > > > > 
-> > > > > > 
-> > > > > > This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
-> > > > > > this there's an output-only pin for UFS, which I exposed as an GPIO as
-> > > > > > well - but it's only supposed to be used as a reset-gpio for the UFS
-> > > > > > device.
-> > > > > > 
-> > > > > > Perhaps that still mandates that gpio-ranges should cover it?
-> > > > > 
-> > > > > I think the number in DT gpio-ranges should match msm_pinctrl_soc_data.ngpio.
-> > > > > Otherwise, kernel will be confused and be running into the issue like
-> > > > > below in some case.
-> > > > > 
-> > > > > > 
-> > > > > > > This fixes the problem that when the last GPIO pin in the range is
-> > > > > > > configured with the following call sequence, it always fails with
-> > > > > > > -EPROBE_DEFER.
-> > > > > > > 
-> > > > > > >     pinctrl_gpio_set_config()
-> > > > > > >         pinctrl_get_device_gpio_range()
-> > > > > > >             pinctrl_match_gpio_range()
-> > > > > > 
-> > > > > > When do we hit this sequence? I didn't think operations on the UFS
-> > > > > > GP(I)O would ever take this code path?
-> > > > > 
-> > > > > It will, if we have UFS driver booting from ACPI and requesting reset
-> > > > > GPIO.
-> > > > 
-> > > > But does the UFS driver somehow request GPIO 190 on SC8180x?
-> > > > 
-> > > > I made up the idea that this is a GPIO, there really only is 190 (0-189)
-> > > > GPIOs on thie SoC.
-> > > > 
-> > > > Downstream they use a pinconf node with "output-high"/"output-low" to
-> > > > toggle the reset pin and I don't find any references in the Flex 5G
-> > > > DSDT.
-> > > 
-> > > Right now, I do not have to request and configure this UFS GPIO for
-> > > getting UFS work with ACPI kernel.  And the immediate problem we have is
-> > > that with gpio_chip .set_config patch, devm_gpiod_get_optional() call
-> > > from UFS driver always gets -EPROBE_DEFER.
-> > > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  .../bindings/mtd/partitions/nvmem-cells.yaml  | 99 +++++++++++++++++++
+> >  1 file changed, 99 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
 > > 
-> > But we don't have a "reset" GPIO specified in the ACPI node, or you mean
-> > with the introduction of .set_config DT no longer works?
 > 
-> Yes, DT stops working because of the mismatch between
-> msm_pinctrl_soc_data.ngpio and gpio-ranges.
+> My bot found errors running 'make dt_binding_check' on your patch:
 > 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.example.dt.yaml: art@1200000: $nodename:0: 'art@1200000' does not match '^(eeprom|efuse|nvram)(@.*|-[0-9a-f])*$'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.example.dt.yaml: calibration@f00000: $nodename:0: 'calibration@f00000' does not match '^(eeprom|efuse|nvram)(@.*|-[0-9a-f])*$'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
 
-So what you're saying is that when Linus merged the .set_config patch
-yesterday he broke storage on every single Qualcomm device?
+Looks like you need to reorder patches.
 
-Regards,
-Bjorn
+> 
+> See https://patchwork.ozlabs.org/patch/1451109
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
