@@ -2,140 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE01337B76
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 18:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB29337B81
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbhCKR5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 12:57:37 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50336 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbhCKR5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 12:57:22 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BHuxlk042621;
-        Thu, 11 Mar 2021 11:56:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615485419;
-        bh=q08sJDe3heSV4QnUx6HBERqRFXasPw62PnUGroZLHvQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=EZ2htw8QV3Zy0M40FE+VW7TS8Ir0UPukIu0zvt8R36esfrQiA8LsmEk8SMdvSseOW
-         s4ng9ZYR+Zo7Iq8tT+epEjwiEb2G3F//7E6jmcnGkI/wOmrf5FNGVCuUiIixUva+3c
-         QWZrmNwtrLNVDGBUBwWYD2ZXG2oW8n7RM7TFOV5E=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BHuxsx110234
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 Mar 2021 11:56:59 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
- Mar 2021 11:56:58 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 11 Mar 2021 11:56:58 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BHuw1U018537;
-        Thu, 11 Mar 2021 11:56:58 -0600
-Date:   Thu, 11 Mar 2021 11:56:58 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Le Jin <le.jin@siemens.com>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-Message-ID: <20210311175658.agmnphz2pjydwnc5@annex>
-References: <cover.1615369068.git.jan.kiszka@siemens.com>
- <9bff40f434e5298890e5d139cc36cc46a0ca2d76.1615369068.git.jan.kiszka@siemens.com>
- <20210311131754.i5ewls6hgeitcgre@astonish>
- <8d076ff1-cdac-941f-e796-a2e6dba792ab@siemens.com>
- <20210311140056.fzvke3rrg6c2uuoa@uncouth>
- <519ae6b7-35db-1fdd-de1e-e0155e0ca82a@siemens.com>
- <20210311142151.5o54k7kmrnatufcw@target>
- <f8c6f598-cb9c-ecd5-0b01-09f171ce7c26@siemens.com>
+        id S229843AbhCKSAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 13:00:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229657AbhCKSAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 13:00:10 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A08A9C061574;
+        Thu, 11 Mar 2021 10:00:09 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u4so3307742ljo.6;
+        Thu, 11 Mar 2021 10:00:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d2kCpNgpV1Us1sS5Z/bRyvGx/S38Rce/udBRavO6Lf4=;
+        b=pAiaQi/DOe5VI37J1WZL8wdDYnobnmoDkbM/rJIB6Ztvfpztzu5u+on735OxALpm74
+         lWt92dxNoOmnMea7WIS36NrWzLz6dDBkAb7NPAL/Mzojw5e5iiQ8yC9u+DNzQtiCRfg4
+         byXy7d/tQQ/M9iUFzLOE/DAevb9rfZyS5VkqQEUSAyIXYIXZIaOzvAxp6Jl8K/p8rKCS
+         +LKFJlYZjgQ/JDY5oKYUiyaE6ocYouhSfEdA3bHQn/W8DlSpgfJPsM6lTaKKB6OGv4SV
+         kzsejXu2xbtRRP90QJlOsA9yf8QK8x7ltDxKvH6JBo7bUqJcpng2xfdJENmV/NDy86Cj
+         fxsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d2kCpNgpV1Us1sS5Z/bRyvGx/S38Rce/udBRavO6Lf4=;
+        b=aqtzNM4c8GuprrPuPyYFH3YE2u/rGPlzNolp1qdTo9flubKMDTa5f4uL7fgdiuslGS
+         nrBr8MzuBjQvTmwDFyfa9SEHza8TS5LftjsOxor8VQKgkaWOnPPbGp5bB0VW+00h+mMq
+         /HUemtC1WKrENtJCFrO8mhACcv+IcISslQdzHvcb5+Mw5b704mCDzrOc1njGBEF+7yJC
+         QLq7LTRI0gcgwWF0JJ4CPLmqUpD/gWT2uhH0k044vyrdOxv+pCReBD3Eblnay5DYPXdc
+         eCNoSx3ikoXWxQVXW8+5cwNhmz4NFr3yJqUgYqMBry5/r56ZdgF0qTViW7zqJFGq1XW9
+         1KuA==
+X-Gm-Message-State: AOAM532nScYTFxpLgcLypGxkJroccBdfzZUy3igc774SxCQikYn0K9yD
+        nY5ZaWpRWEo1c3tttN6FSB4=
+X-Google-Smtp-Source: ABdhPJzLaLYi8RU+Z9F3erPnTXSDwtmFGzk4dCQ3Rl1O/rGe/M9z0Ik7AAb0jXqDVL29+sci+i6S0A==
+X-Received: by 2002:a2e:3818:: with SMTP id f24mr51543lja.466.1615485607955;
+        Thu, 11 Mar 2021 10:00:07 -0800 (PST)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id k18sm1014075lfm.88.2021.03.11.10.00.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Mar 2021 10:00:07 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] Add missing reset controls to NVIDIA Tegra ASoC drivers
+Date:   Thu, 11 Mar 2021 20:59:53 +0300
+Message-Id: <20210311175958.7433-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <f8c6f598-cb9c-ecd5-0b01-09f171ce7c26@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:36-20210311, Jan Kiszka wrote:
-> On 11.03.21 15:21, Nishanth Menon wrote:
-> > On 15:14-20210311, Jan Kiszka wrote:
-> > 
-> > [...]
-> > 
-> >>>
-> >>> See [1] compare the compatibles against
-> >>> Documentation/devicetree/bindings -> I think you should describe what
-> >>> your hardware really is though.
-> >>
-> >> This SPI bus is routed to an Arduino connector. By default, userspace
-> >> (e.g. mraa) takes ownership and adds the desired logic for what is being
-> >> connected. We have no idea what shield or other extension the user adds,
-> >> though.
-> > 
-> > overlays look like the right approach for variable systems like these.
-> > It is not exactly plug and play.. but it does provide a level of
-> > flexibility that is helpful.
-> 
-> Yes, that's for extensions which have kernel drivers. The default model
-> here is userspace, though. Will add as a separate patch to our queue for
-> now.
+Hi,
 
-My colleagues did some checkups and pulled up a few thread on spidev
-of potential interests..
+This series adds missing hardware reset controls to I2S and AC97 drivers.
+Currently drivers happen to work properly because reset is implicitly
+deasserted by tegra-clk driver, but clk driver shouldn't touch the resets
+and we need to fix it because this breaks other Tegra drivers. Previously
+we fixed the resets of the AHUB and HDMI codec drivers, but turned out
+that we missed the I2C and AC97 drivers.
 
-See:
-https://patchwork.kernel.org/project/spi-devel-general/patch/1427499742-26916-1-git-send-email-broonie@kernel.org/
-https://yurovsky.github.io/2016/10/07/spidev-linux-devices.html
-etc...
+Thanks to Paul Fertser for testing the pending clk patches and finding
+that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+reset.
 
-I'd split the spidev node alone as an addendum indicate the checkpatch
-warning, describe the details and loop in spidev list, Mark, et.al. to
-discuss the direction. I am hoping we can get this resolved or get a
-direction for .13-rc1
+Changelog:
 
-But that said, I see some examples such as 
-for i in `git grep ".compatible" drivers/spi/spidev.c|grep =|cut -d '=' -f2|cut -d ' ' -f2`; do git grep $i Documentation/devicetree/bindings/; done
+v4: - Added missing prototype for reset_control_bulk_put().
 
-Documentation/devicetree/bindings/spi/spi-mux.yaml:                compatible = "lineartechnology,ltc2488";
-Documentation/devicetree/bindings/misc/ge-achc.txt:- compatible : Should be "ge,achc"
-Documentation/devicetree/bindings/misc/ge-achc.txt:     compatible = "ge,achc";
-Documentation/devicetree/bindings/misc/lwn-bk4.txt:- compatible : Should be "lwn,bk4"
-Documentation/devicetree/bindings/misc/lwn-bk4.txt:     compatible = "lwn,bk4";
+v3: - Fixed reset stubs for !CONFIG_RESET_CONTROLLER.
 
-So, the shield could be hosting one of those say
- ge,achc or maybe lwn,bk4 ?- will probably be good to document the
-dts is for such a configuration, though it is possible that such a
-configuration might work for others?
+v2: - After some more testing I found that I2S control logic doesn't require
+      I2S clock to be enabled for resetting. Hence it's fine to have I2S to
+      be reset by parent AHUB driver, so I dropped "tegra30: i2s: Add reset
+      control" patch.
 
-I agree with Mark that "dt should indicate specific hardware" and we
-should constraint the definition in such a scope?
+    - While I was double-checking resets on Tegra30, I found that that
+      Tegra30 I2S driver has a broken runtime PM which doesn't restore
+      hardware state on resume and it's lost after AHUB RPM-resume.
+      Thus, added this new patch "tegra30: i2s: Restore hardware state
+      on runtime PM resume".
 
-[...]
+    - Added new patches which switch AHUB driver to use reset-bulk API.
+      I took the RFC patch from Philipp Zabel, fixed it and added
+      devm_reset_control_bulk_optional_get_exclusive_released() that
+      will be useful for further Tegra GPU patches. This is a minor
+      improvement which makes code cleaner.
 
-> > 
-> >> Are we talking about spidev here? Then let's drop that node, but I do
-> >> need to know how to describe spidev properly
-> > 
-> > yes - the spidev is my problem. can you drop the node and repost? i cant
-> > locally modify and hope it works.
-> > 
-> 
-> Done.
+Dmitry Osipenko (4):
+  ASoC: tegra20: ac97: Add reset control
+  ASoC: tegra20: i2s: Add reset control
+  ASoC: tegra30: i2s: Restore hardware state on runtime PM resume
+  ASoC: tegra: ahub: Switch to use reset-bulk API
 
-Thanks, I will try and pick up the v5 later today - need to redo my
-sanity checkups.
+Philipp Zabel (1):
+  reset: Add reset_control_bulk API
+
+ drivers/reset/core.c           | 215 ++++++++++++++++++++++
+ include/linux/reset.h          | 315 +++++++++++++++++++++++++++++++++
+ sound/soc/tegra/tegra20_ac97.c |  21 +++
+ sound/soc/tegra/tegra20_ac97.h |   1 +
+ sound/soc/tegra/tegra20_i2s.c  |  31 ++++
+ sound/soc/tegra/tegra20_i2s.h  |   1 +
+ sound/soc/tegra/tegra30_ahub.c | 104 ++++-------
+ sound/soc/tegra/tegra30_ahub.h |   5 +-
+ sound/soc/tegra/tegra30_i2s.c  |  41 ++---
+ 9 files changed, 636 insertions(+), 98 deletions(-)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.29.2
+
