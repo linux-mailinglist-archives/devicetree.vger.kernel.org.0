@@ -2,104 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E79C338152
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BDFE338164
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:25:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbhCKXRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 18:17:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60432 "EHLO
+        id S229524AbhCKXYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 18:24:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbhCKXRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:17:23 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FA2C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:17:23 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so474335ota.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:17:22 -0800 (PST)
+        with ESMTP id S230119AbhCKXYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:24:35 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9285C061761
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:24:34 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so484472otk.5
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:24:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=O/1BasX53ustb+YwoFg9cotua8g8c2ln7CwN1aiIWak=;
-        b=TpTmshjru2pTMb8mis7NfOAQYLh14cnY0apwhaLXvUwKbISlNm0PBstBOX33WO8DbH
-         HHeistEMVz07cyObhNaHEXYHssuuazks5S9hW3RJRCXORjHPHqKrkmziPZzxN1gZLUAk
-         NN1Y9i/zMOChSC0Z9ULiYHqaVmytsS09th/E3ZNNwWgKThGvWrRTCuvny0VBhYmzWzvb
-         qT5DVVvGyI+VDO7bbqxygnZXh7VhNlNFWXNxzml5cndHvq6Af3shf+sbcBkrFX/UKpCZ
-         SrxVy2Me7ekhz+aX3OIYAoyZ4/6Hg3qkM4uKo0pnU0/+N3GNgeQ2R0rx0PixtBFctOxg
-         55EA==
+        bh=KOImosFVDKe6eni3/E1z+f4eza54wkEaxNnDYMA1BkY=;
+        b=U6fz3qasj6Npqu11+ansN2N4q6/htLsUcNuxeHHOE0kW/Zk3uPhCn5BA72b6J5VKeq
+         VYxIVlEg7dzdnwx6U1XOOdyc0VwwPgepTvZ+1O/2nA4a5n7gJi+L7z7biZoaEyU1tbm4
+         t7GR7uUH/Z3LSUsxHM6NgEUrcFzkEFojrzYEY01arZgk0FJF6BjIoxcnDgaF8wBGd6o+
+         xo2Fb3QTBVNPMn7TxAPdBUbiQj5fVNFs+ALqx36KWRHIrrFpf5j9JuG0+tBBEvkZ9AVd
+         Tk3GCqUfnlM3CXuleRehOFPqK7bH3H2IU4bFWwF9axl4scW8JFQTNscdTmEchz4yKuUL
+         MfHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=O/1BasX53ustb+YwoFg9cotua8g8c2ln7CwN1aiIWak=;
-        b=M9ydyA4AXEwc6Yq7fZWigWg+IJyzWnbG89H7l+Wjmi46xSHret99G2atS0AyMms/T9
-         D/FRU7FRLqzDiM1MM6l+PM7+DFlDqr7o8DIbS5b5KBxrAtqG5dXlROn6JGTOoF7EyQHP
-         cNiIt3/0v1nfmX/jc6HY9K2RK20WmDbwygr3lAwLCa8Kh2zwQUPy6pAT7r9ofTjyICVt
-         gXTHSwY6GnaCGwws+gdOhthfaY5GDFJ9t6xlqLj3Dd99zdTYmTqZkp4sqiNpJRL+rAef
-         gLnMiNmRygQSXNUBvYIMgESCfZE4a+djWEU9eOetYr3Q4SDvNKG3emiellG+6ov/U8f1
-         Cd4Q==
-X-Gm-Message-State: AOAM532z3zfVZ9u1nsbBjmPF9NKPWrrPjWlradaOJyK8d90GnOzMV9rA
-        D3HRdNwHxHRbAyL0nLA8JAJvbQ==
-X-Google-Smtp-Source: ABdhPJwLGVT09tJ98beiEHxWiFw5lQdBGU01XCFQ73puFX1unASYPnc7E9xq57IjUy4WPenUTsDKOQ==
-X-Received: by 2002:a05:6830:15cb:: with SMTP id j11mr1058492otr.126.1615504642482;
-        Thu, 11 Mar 2021 15:17:22 -0800 (PST)
+        bh=KOImosFVDKe6eni3/E1z+f4eza54wkEaxNnDYMA1BkY=;
+        b=HGJzp/UmvWS73V80likue2LQkIKhxc0uqdlAeyBl4GnPsmyLsAY83Ecx8XVsPfUDbY
+         8PICFHS9cWlc8Y1mXJE75W8cvZFsDrLj+qLXsLGc7MvDzu5LaQ5HO+6W+RSzAMZKAGMx
+         BRwsVOf38SUC5Q6I4J0s9uv46zb5+CLV8lO+ZXDrc25kMaO5KEWdazL6YMNQc1+p9IlA
+         tGd2fcbtVSn/VsIdaoaXvNLHxmCHI1pHUVC1wCgjhZbfHlIslClhut4/S+GkMvh92JtD
+         qSySvr/Sur8QyL68O4AWYqv6fuQnGotm1qh+tYDGXIhUl4xrrbIkkNyZegmb+0z0s0P1
+         DkSA==
+X-Gm-Message-State: AOAM531U7pQOeLu0VbJokgfi65f26nLpr/qT5I0aCjviSO4QYjKf6zcO
+        8UiW94btxwI4KhoetKkEgTRxGQ==
+X-Google-Smtp-Source: ABdhPJxDU5xLYUJyWILcQngDIdjMhNw8UY1bDIjZNGQckzP86zmEJoPMITj8dp1yZLMsB+rXvhTYoQ==
+X-Received: by 2002:a9d:7103:: with SMTP id n3mr1034451otj.223.1615505074094;
+        Thu, 11 Mar 2021 15:24:34 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m34sm959436otc.25.2021.03.11.15.17.21
+        by smtp.gmail.com with ESMTPSA id w23sm841497oow.25.2021.03.11.15.24.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 15:17:22 -0800 (PST)
-Date:   Thu, 11 Mar 2021 17:17:20 -0600
+        Thu, 11 Mar 2021 15:24:33 -0800 (PST)
+Date:   Thu, 11 Mar 2021 17:24:31 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
- 'gpio-ranges'
-Message-ID: <YEqlANAhGJWZdLVA@builder.lan>
-References: <20210303033106.549-1-shawn.guo@linaro.org>
- <20210303033106.549-2-shawn.guo@linaro.org>
- <YEKl7GbxBhui4eoT@builder.lan>
- <20210306012829.GL17424@dragon>
- <YELhMmDndOTSSJJO@builder.lan>
- <20210306080049.GM17424@dragon>
- <YEkOaK+UiLy8kSDu@builder.lan>
- <20210311011951.GT17424@dragon>
- <YEpLHSRKt651B6FP@builder.lan>
- <20210311230924.GX17424@dragon>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH] arm64: dts: sc7280: Add qspi, qupv3_0 and qupv3_1 nodes
+Message-ID: <YEqmr1eUJoKp3ufO@builder.lan>
+References: <20210311033957.8978-1-rojay@codeaurora.org>
+ <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210311230924.GX17424@dragon>
+In-Reply-To: <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 11 Mar 17:09 CST 2021, Shawn Guo wrote:
+On Thu 11 Mar 15:54 CST 2021, Doug Anderson wrote:
 
-> On Thu, Mar 11, 2021 at 10:53:49AM -0600, Bjorn Andersson wrote:
-> > On Wed 10 Mar 19:19 CST 2021, Shawn Guo wrote:
-> > > Yes, DT stops working because of the mismatch between
-> > > msm_pinctrl_soc_data.ngpio and gpio-ranges.
-> > > 
-> > 
-> > So what you're saying is that when Linus merged the .set_config patch
-> > yesterday he broke storage on every single Qualcomm device?
+> Hi,
 > 
-> Better than that.  Only the ones that have mismatching between
-> msm_pinctrl_soc_data.ngpio and gpio-ranges.  More specifically, the ones
-> that the series are fixing.
+> On Wed, Mar 10, 2021 at 7:41 PM Roja Rani Yarubandi
+> <rojay@codeaurora.org> wrote:
+> >
+> > +&qspi_cs0 {
+> > +       pinconf {
+> > +               pins = "gpio15";
+> > +               bias-disable;
+> > +       };
 > 
-> I didn't realize this break when I was working on the .set_config change
-> for ACPI.  It was a surprise when I tested DT later.  You can ask Linus
-> to drop .set_config patch, if you do not like this break.  But I think
-> the mismatch issue still needs to be resolved in some way.
+> The "pinconf" / "pinmux" subnode shouldn't be used for new SoCs. See:
+> 
+> http://lore.kernel.org/r/CAD=FV=UY_AFRrAY0tef5jP698LEng6oN652LcX3B4nG=aWh0gA@mail.gmail.com
+> 
+> ...same feedback for this whole patch.
+> 
+> > +                       qup_spi0_default: qup-spi0-default {
+> > +                               pinmux {
+> > +                                       pins = "gpio0", "gpio1",
+> > +                                              "gpio2", "gpio3";
+> > +                                       function = "qup00";
+> > +                               };
+> > +                       };
+> 
+> Please split these SPI nodes as per the thread above, like:
+> 
+> tlmm: pinctrl@... {
+>   qup_spi0_data_clk: qup-spi0-data-clk {
+>     pins = "gpio0", "gpio1", "gpio2";
+>     function = "qup0";
+>   };
+> 
+>   qup_spi0_cs: qup-spi0-cs {
+>     pins = "gpio3";
+>     function = "qup0";
+>   };
+> 
+>   qup_spi0_cs_gpio: qup-spi0-cs-gpio {
+>     pins = "gpio3";
+>     function = "gpio";
+>   };
+> };
+> 
+> 
+> > +                       qup_uart0_default: qup-uart0-default {
+> > +                               pinmux {
+> > +                                       pins = "gpio0", "gpio1",
+> > +                                              "gpio2", "gpio3";
+> > +                                       function = "qup00";
+> > +                               };
+> > +                       };
+> 
+> I suspect things would actually be cleaner if we broke the uart lines
+> up since the boards tend to have to adjust pulls differently for each
+> line. With the new "no pinconf / pinmux" world it's pretty clean. It's
+> obviously up to Bjorn, but if it were me I'd request this in the SoC
+> file:
 > 
 
-We're exposing the UFS as a gpio and I think that these patches
-therefore are correct, so I've picked them up.
+I'd like that.
 
-But I don't think we should break backwards compatibility will all
-existing DTBs...
-
-Regards,
-Bjorn
+> qup_uart0_cts: qup-uart0-cts {
+>   pins = "...";
+>   function = "qup00";
+> };
+> 
+> qup_uart0_rts: qup-uart0-rts {
+>   pins = "...";
+>   function = "qup00";
+> };
+> 
+> qup_uart0_rx: qup-uart0-rx {
+>   pins = "...";
+>   function = "qup00";
+> };
+> 
+> qup_uart0_tx: qup-uart0-tx {
+>   pins = "...";
+>   function = "qup00";
+> };
+> 
+> ...and now when the board file wants to adjust the pulls they can just
+> reference each one:
+> 
+> /*
+>  * Comments about why the UART0 pulls make sense.
+>  * Blah blah blah.
+>  */
+> 
+> &qup_uart0_cts {
+>   bias-pull-down;
+> };
+> 
+> &qup_uart0_rts {
+>   drive-strength = <2>;
+>   bias-disable;
+> };
+> 
+> &qup_uart0_rx {
+>   bias-pull-up;
+> };
+> 
+> &qup_uart0_tx {
+>   drive-strength = <2>;
+>   bias-disable;
+> };
+> 
+> 
+> > +               qspi: spi@88dc000 {
+> 
+> I believe the qspi node is sorted incorrectly. When I apply this to
+> the top of the Qualcomm tree it shows up after the "apps_smmu:
+> iommu@15000000" node. However:
+> 
+> 0x088dc000 < 0x15000000
+> 
+> ...which means it should be _before_.
+> 
+> -Doug
