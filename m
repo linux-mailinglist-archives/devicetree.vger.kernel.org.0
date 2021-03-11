@@ -2,140 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB9D33735A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4E63373F4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233120AbhCKNEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 08:04:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233014AbhCKNDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:03:40 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88DD7C061574;
-        Thu, 11 Mar 2021 05:03:40 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id m7so2744396iow.7;
-        Thu, 11 Mar 2021 05:03:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=3Z2pPn/+mgSna0fy0QdjgPCa/QMt444fJT7SataGADQ=;
-        b=UHPfISDhXEU6YsOqntLTiQ5sCDD8bmgPFwUp7CSZkbXNhBUh6B5flbCCxHfEFVBRiy
-         pQRhPCDQkVXV3kSgz1bFK2Vy4vnYpDe9zmruW23Qj7WoPE8zfgA7RsPE9P/S4xamdvia
-         aPq/M1NKdjcbgIe7VIzCW0KUJvGw+Zvb8noaP29KJV/DE7PHM0GkXA2I3QxTZ2fdEqRL
-         avp0EM9ykZ0iJHnd9aC3oXj4ZiygjP6QJANBgLCzEoqz1v0QFS26J3yTmVhw5Q8MnKVU
-         NK7/f7hLB94oPZy+dXYYhtKvY1MzEQY+ntj6bxw0yMvuueuFGkRsJ7n9okaYTxULOPMV
-         nSwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3Z2pPn/+mgSna0fy0QdjgPCa/QMt444fJT7SataGADQ=;
-        b=J1fIvySMFF0fFljOMD5s2goWgje3hrMCs2RpP2Kpi6BR+3+gUs0y1cRfE5wAh/lzU/
-         seDzJ/0PgY31d4gjqRghHTgBgiRxHHWVdPa2u8fvv29FTokHNqGe16YwrGuErO4A7iEd
-         JxLKWd7p6EIDtSmjzbmpfxKTvJ76D2pU9+rcOBqw25Owni2VDO3TWbz1f9ev8OSfwnTP
-         Rs9EtZkL9YEBun38QUzAcFtSP7U9PMtfLV2fUGLBATB+cGHl8JqW30smChDbC+cSyyb7
-         l7jTMxFokZK0nTE1bfPW/EGDHc4+00ee12T41Cbl4tCM0mgreNRGzVwIGcc9NOdcqCGc
-         GdFw==
-X-Gm-Message-State: AOAM533ONYeQ58bD1B7dpKf8OIPC9wLY29/pjkHHGfwEVM8on12LiiAi
-        gMwDnaPCiG+/7YCAEJDw+ukZYf1YynQgG+PYNTI=
-X-Google-Smtp-Source: ABdhPJwRAzuev2BWWFHijQ533wgwWUA060o1bf6cK1DacKsHHNmB8SrdLgXvW2BAJ9HnwSAQZo3ilh337tUjCLwwg1M=
-X-Received: by 2002:a05:6638:e93:: with SMTP id p19mr3477812jas.10.1615467819949;
- Thu, 11 Mar 2021 05:03:39 -0800 (PST)
+        id S233430AbhCKNa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 08:30:26 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:37811 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233725AbhCKNaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:30:20 -0500
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id C5A143E554D;
+        Thu, 11 Mar 2021 13:10:28 +0000 (UTC)
+X-Originating-IP: 90.55.106.192
+Received: from bootlin.com (atoulouse-258-1-35-192.w90-55.abo.wanadoo.fr [90.55.106.192])
+        (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id AD6DEC0004;
+        Thu, 11 Mar 2021 13:10:03 +0000 (UTC)
+Date:   Thu, 11 Mar 2021 14:09:59 +0100
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v4 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
+Message-ID: <20210311140959.5a7b27e7@bootlin.com>
+In-Reply-To: <abe4486e-9d32-226e-36ab-162f7d882bdd@xs4all.nl>
+References: <20210219081514.1592033-1-maxime.chevallier@bootlin.com>
+        <20210219081514.1592033-4-maxime.chevallier@bootlin.com>
+        <abe4486e-9d32-226e-36ab-162f7d882bdd@xs4all.nl>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
- <1614758717-18223-6-git-send-email-dillon.minfei@gmail.com>
- <b5f96460-dcdf-f40a-89d7-89def5669d7b@foss.st.com> <CAL9mu0+YFC97OBNLH-gip+MFKfdX4rAaxsFB4rMNrgjmhc5=Rw@mail.gmail.com>
- <d2549995-2b46-3f9a-e3d5-0e2bc21465d7@pengutronix.de>
-In-Reply-To: <d2549995-2b46-3f9a-e3d5-0e2bc21465d7@pengutronix.de>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Thu, 11 Mar 2021 21:03:04 +0800
-Message-ID: <CAL9mu0LgE9nfs-e6J5Yuzd+kCJLyhovUz94vc6qQATa9Br42xg@mail.gmail.com>
-Subject: Re: [Linux-stm32] [PATCH 5/8] ARM: dts: stm32: introduce
- stm32h7-pinctrl.dtsi to support stm32h75x
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Vladimir Murzin <vladimir.murzin@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux@armlinux.org.uk, Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        afzal.mohd.ma@gmail.com, linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ahmad,
+Hi Hans, and thanks for the review.
 
-Thanks for discussing.
+On Thu, 4 Mar 2021 16:37:53 +0100
+Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
 
-On Thu, Mar 11, 2021 at 8:55 PM Ahmad Fatoum <a.fatoum@pengutronix.de> wrot=
-e:
+>Hi Maxime,
 >
-> Hello Dillon,
+>Some more code review comments:
 >
-> On 11.03.21 13:23, dillon min wrote:
-> > For stm32h7's new board support , I guess following the stm32f7/stm32f4=
-'s style
-> > is a reasonable way to do it, but add a little optimization=E3=80=82
-> > which means :
-> > old structure
-> > stm32h7-pinctrl.dtsi --> stm32h743-pinctrl.dtsi  (referenced by
-> > stm32h743i-disco, -eval)
-> >                                 |--> stm32h750-pinctrl.dtsi
-> > (referenced by stm32h750i-art-pi, etc)
-> > add art-pi other board's pin definition in stm32h750-pinctrl.dtsi with
-> > xxx_pins_a, xxx_pins_b
-> > xxx_pins_a used for art-pi, xxx_pins_b used for other boards.
-> >
-> > after more boards add in support, there will be more xxx_pin_c, .... de=
-fined
-> >
-> > as the pin map is according to the hardware schematic diagram io connec=
-tion.
-> > so, why not move xxx_pin_x to a board specific place. such as
-> > stm32h750i-art-pi.dts
-> >
-> > new structure:
-> > 1, rename stm32h743-pinctrl.dtsi to stm32h7-pinctrl.dtsi (only
-> > preserve gpioa...k,)
-> > 2, move xxx_pins_x from stm32h7-pinctrl.dtsi to
-> > stm32h7xx-disco/eval/art-pi/etc.dts (as they depends on hardware
-> > schematic)
-> >
-> > stm32h7-pinctrl.dtsi --> stm32h743i-discon.dts
-> >                                 |--> stm32h743i-eval.dts
-> >                                 |--> stm32h750i-art-pi.dts
-> >                                 |--> stm32h7xxx.dts
-> > would you agree this ?
+
+>> +static int tw9900_set_fmt(struct v4l2_subdev *sd,
+>> +			  struct v4l2_subdev_pad_config *cfg,
+>> +			  struct v4l2_subdev_format *fmt)
+>> +{
+>> +	struct tw9900 *tw9900 = to_tw9900(sd);
+>> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+>> +
+>> +	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
+>> +
+>> +	mbus_fmt->width = tw9900->cur_mode->width;
+>> +	mbus_fmt->height = tw9900->cur_mode->height;  
 >
-> If the optimization you intend is reducing DTB size, you can flag
-> all pinctrl groups with /omit-if-no-ref/ to have dtc throw them
-> away if they are unused.
-Thanks for your advice, actually, DTB size is not my first consideration.
-different board pin configuration place to one dtsi files, it's a little ha=
-rd
-to maintain when a lot of boards add in.
+>These two lines are already done in tw9900_fill_fmt.
+
+Yes right, I'll remove that
+
+[...]
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tw9900_get_fmt(struct v4l2_subdev *sd,
+>> +			  struct v4l2_subdev_pad_config *cfg,
+>> +			  struct v4l2_subdev_format *fmt)
+>> +{
+>> +	struct tw9900 *tw9900 = to_tw9900(sd);
+>> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+>> +
+>> +	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
+>> +
+>> +	return 0;
+>> +}  
+>
+>In fact, tw9900_set_fmt is identical to tw9900_get_fmt. I would just drop
+>tw9900_set_fmt and point both .get_fmt and .set_fmt to the same function.
+
+OK, that will be cleaner indeed
+
+[...]
+
+>> +
+>> +static int tw9900_enum_mbus_code(struct v4l2_subdev *sd,
+>> +				 struct v4l2_subdev_pad_config *cfg,
+>> +				 struct v4l2_subdev_mbus_code_enum *code)
+>> +{
+>> +	if (code->index >= 1)
+>> +		return -EINVAL;
+>> +
+>> +	code->code = MEDIA_BUS_FMT_UYVY8_2X8;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tw9900_enum_frame_sizes(struct v4l2_subdev *sd,
+>> +				   struct v4l2_subdev_pad_config *cfg,
+>> +				   struct v4l2_subdev_frame_size_enum *fse)
+>> +{
+>> +	u32 index = fse->index;
+>> +
+>> +	if (index >= 1)
+>> +		return -EINVAL;
+>> +
+>> +	fse->code = MEDIA_BUS_FMT_UYVY8_2X8;
+>> +
+>> +	fse->min_width  = supported_modes[index].width;
+>> +	fse->max_width  = supported_modes[index].width;
+>> +	fse->max_height = supported_modes[index].height;
+>> +	fse->min_height = supported_modes[index].height;
+>> +
+>> +	return 0;
+>> +}  
+>
+>This function is not typically used by video receivers since the framesize is
+>fixed depending on the standard. So there is nothing to enumerate.
+>
+>It is wrong in any case since it reports just supported_modes[0] (i.e. PAL)
+>even if the current mode is NTSC. But it can just be dropped for video receivers.
+
+Ok thanks, I'll drop that then.
+
+[...]
+
+>> +		/* Wait for VSync lock */
+>> +		for (i = 0; i < VSYNC_WAIT_MAX_POLLS; i++) {
+>> +			u8 status = tw9900_read_reg(tw9900->client,
+>> +						    TW9900_REG_CHIP_STATUS);
+>> +			if (!(status & TW9900_REG_CHIP_STATUS_VDLOSS) &&
+>> +			    (status & TW9900_REG_CHIP_STATUS_VLOCK))
+>> +				break;
+>> +
+>> +			msleep(VSYNC_POLL_INTERVAL_MS);
+>> +		}  
+>
+>Why do you have to wait for a vsync lock?
+>
+>Most drivers just start regardless of lock. If there is no lock, then there
+>is either no data being streamed (so the DMA of the video bridge will be idle
+>as well) or it is just transmitting noise (typical for SDTV receivers). At least
+>until a valid signal appears eventually.
+
+In this case, it will transmit noise.
+
+As stated a bit below, this was implemented because this decoder
+actually supports automatic standard detection, but the reported
+standard can only be read once the vsync lock is acquired.
+
+So this is a remainder of what I implemented to try to get the standard
+detection work, but I can drop that for now.
+
+[...]
+
+>> +static int tw9900_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+>> +{
+>> +	struct tw9900 *tw9900 = to_tw9900(sd);
+>> +	struct v4l2_mbus_framefmt *try_fmt;
+>> +
+>> +	try_fmt = v4l2_subdev_get_try_format(sd, fh->pad, 0);
+>> +
+>> +	/* Initialize try_fmt */
+>> +	tw9900_fill_fmt(tw9900->cur_mode, try_fmt);
+>> +
+>> +	return 0;
+>> +}  
+>
+>Since the format is fixed based on the current standard, there is no point
+>in initializing try_fmt as it won't be used. So just drop tw9900_open altogether.
+
+Ok I'll drop that :)
+
+[...]
+
+>> +static const struct v4l2_subdev_video_ops tw9900_video_ops = {
+>> +	.s_std		= tw9900_s_std,
+>> +	.g_std		= tw9900_g_std,  
+>
+>Can the tw9900 detect the standard? (I.e. PAL, SECAM, NTSC)
+>
+>If so, you should implement querystd. I see that none of the other tw*.c drivers
+>support this, so I suspect there is no hardware support for this.
+
+So, there's hardware support for this, and I've been trying to get this
+to work for a while. I've come to a point where the standard detection
+"almost" works, but detects the wrong standard about once every 10
+occurences. I don't know if this is due to the hardware I'm testing
+this on, my setup, or the decoder itself.
+
+This is in a setup where the standard can change on the fly (I have 2
+cameras, one that streams PAL, one that streams NTSC, that are connected
+to the TW9900 through a switch, and I have to make so that we can
+detect a standard change (due to switching a camera) on the fly while
+the stream is started.
+
+The standard detection is also a process that is quite long and that
+has to be manually started, and then checked regularly to see if the
+decoder successfully identified a standard.
+
+I do have a followup question, which is when querystd() would be called
+in a "normal" scenarion (I feel that my usecase seems a bit off-track
+compared to classic usecases). Is it when the stream is started, or
+stopped ?
+
+>You also must implement g_tvnorms to report the TV standards that the hardware
+>can understand.
+
+Ok I didn't know about that, I'll implement that then.
+
+[...]
+
+>> +
+>> +	tw9900->subdev.internal_ops = &tw9900_internal_ops;
+>> +	tw9900->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;  
+>
+>This is a duplicate of a similar '|=' above.
+
+My bad, I'll remove that line.
+
 
 >
-> (But in general, I am in favor of having board-specific configuration
->  in the board dts)
-Yes, same to me.
+>Regards,
 >
-> Cheers,
-> Ahmad
->
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  =
-|
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
+>	Hans
+
+Thanks,
+
+Maxime
