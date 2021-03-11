@@ -2,384 +2,406 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA5A633703D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA9833704F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:43:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbhCKKlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 05:41:04 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:43033 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232366AbhCKKkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 05:40:55 -0500
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 11 Mar 2021 02:40:54 -0800
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Mar 2021 02:40:52 -0800
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 11 Mar 2021 16:10:32 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id 1EB5648CD; Thu, 11 Mar 2021 16:10:31 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org,
-        satya priya <skakit@codeaurora.org>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
-Date:   Thu, 11 Mar 2021 16:10:29 +0530
-Message-Id: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S232374AbhCKKnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 05:43:13 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:26460 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232213AbhCKKml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 05:42:41 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12BAavrp005475;
+        Thu, 11 Mar 2021 11:42:24 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=1qdphD4rMJGSr1maeruLAYcgz5KVK4Tm+Y31ZA95hls=;
+ b=Zsjg+0naNjYaEnkaq67NQreyNwemY/Xsr6Hi7mSTwlO3Hmh3Tb2l0qJrOzSLh+ryq71o
+ uaV4FAZrPZwrqAe3oo5zxDly3R1PIjZa98U5jMhjL6HvVojZbL9Q+twIoyJeOCy7wRgy
+ Vixx/DLX1xpuQiIvPkw9aWpKgqJcP+84xmxd1ZtR7bzAXKv3B8nvSN6ln2kWzAkhTlZD
+ P/FXTxzoVxFcTHIkraWPMdXn2DtCBc/gKGexc0omu13LeCCxHNq0vfpNXA20f4M8awpM
+ qWSTch/83UCNIS0gVZrd4vvokmVo1Ipz0qdBQdVP35cQ7GEWdRPvXbVKn9TmCbYpTmHK xg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 373yrexxyj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 Mar 2021 11:42:24 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4ACCA10002A;
+        Thu, 11 Mar 2021 11:42:24 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 33C3722D61F;
+        Thu, 11 Mar 2021 11:42:24 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 11 Mar
+ 2021 11:42:23 +0100
+Subject: Re: [PATCH 7/8] ARM: dts: stm32: add support for art-pi board based
+ on stm32h750xbh6
+To:     <dillon.minfei@gmail.com>, <robh+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
+        <vladimir.murzin@arm.com>, <afzal.mohd.ma@gmail.com>
+References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
+ <1614758717-18223-8-git-send-email-dillon.minfei@gmail.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <c6bd6a3f-b53d-71d0-d9b4-69d29eb27395@foss.st.com>
+Date:   Thu, 11 Mar 2021 11:42:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <1614758717-18223-8-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-11_04:2021-03-10,2021-03-11 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
-GPIOs, RTC and other PMIC infra modules for SC7280.
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
----
-This patch depends on base DT and board files for SC7280 to merge first
-https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
 
- arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
- arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
- arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104 ++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
- 5 files changed, 292 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+On 3/3/21 9:05 AM, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
+> 
+> This patchset has following changes:
+> 
+> - add stm32h750i-art-pi.dtb
+> - add dts binding usart3 for bt, uart4 for console
+> - add dts binding sdmmc2 for wifi
+> - add stm32h750-art-pi.dts to support art-pi board
+> 
+> board component:
+> - 8MiB qspi flash
+> - 16MiB spi flash
+> - 32MiB sdram
+> - ap6212 wifi&bt&fm
+> 
+> the detail board information can be found at:
+> https://art-pi.gitee.io/website/
+> 
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> ---
+>   arch/arm/boot/dts/Makefile              |   1 +
+>   arch/arm/boot/dts/stm32h743.dtsi        |  30 +++++
+>   arch/arm/boot/dts/stm32h750.dtsi        |   5 +
+>   arch/arm/boot/dts/stm32h750i-art-pi.dts | 224 ++++++++++++++++++++++++++++++++
+>   4 files changed, 260 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32h750.dtsi
+>   create mode 100644 arch/arm/boot/dts/stm32h750i-art-pi.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 8e5d4ab4e75e..a19c5ab9df84 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1071,6 +1071,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>   	stm32746g-eval.dtb \
+>   	stm32h743i-eval.dtb \
+>   	stm32h743i-disco.dtb \
+> +	stm32h750i-art-pi.dtb \
+>   	stm32mp153c-dhcom-drc02.dtb \
+>   	stm32mp157a-avenger96.dtb \
+>   	stm32mp157a-dhcor-avenger96.dtb \
+> diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
+> index 4ebffb0a45a3..981d44051007 100644
+> --- a/arch/arm/boot/dts/stm32h743.dtsi
+> +++ b/arch/arm/boot/dts/stm32h743.dtsi
+> @@ -135,6 +135,22 @@
+>   			clocks = <&rcc USART2_CK>;
+>   		};
+>   
+> +		usart3: serial@40004800 {
+> +			compatible = "st,stm32h7-uart";
+> +			reg = <0x40004800 0x400>;
+> +			interrupts = <39>;
+> +			status = "disabled";
+> +			clocks = <&rcc USART3_CK>;
+> +		};
+> +
+> +		uart4: serial@40004c00 {
+> +			compatible = "st,stm32h7-uart";
+> +			reg = <0x40004c00 0x400>;
+> +			interrupts = <52>;
+> +			status = "disabled";
+> +			clocks = <&rcc UART4_CK>;
+> +		};
+> +
 
-diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-new file mode 100644
-index 0000000..393b256
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-@@ -0,0 +1,60 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus {
-+	pm7325: pmic@1 {
-+		compatible = "qcom,pm7325", "qcom,spmi-pmic";
-+		reg = <0x1 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm7325_tz: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pm7325_gpios: gpios@8800 {
-+			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pm7325_gpios 0 0 10>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-+
-+&thermal_zones {
-+	pm7325_temp_alarm: pm7325_tz {
-+		polling-delay-passive = <100>;
-+		polling-delay = <0>;
-+		thermal-governor = "step_wise";
-+		thermal-sensors = <&pm7325_tz>;
-+
-+		trips {
-+			pm7325_trip0: trip0 {
-+				temperature = <95000>;
-+				hysteresis = <0>;
-+				type = "passive";
-+			};
-+
-+			pm7325_trip1: trip1 {
-+				temperature = <115000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+
-+			pm7325_trip2: trip2 {
-+				temperature = <145000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-new file mode 100644
-index 0000000..dffa79d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-@@ -0,0 +1,60 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus {
-+	pm8350: pmic@2 {
-+		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
-+		reg = <0x2 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8350c_tz: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pm8350c_gpios: gpios@8800 {
-+			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pm8350c_gpios 0 0 9>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-+
-+&thermal_zones {
-+	pm8350c_temp_alarm: pm8350c_tz {
-+		polling-delay-passive = <100>;
-+		polling-delay = <0>;
-+		thermal-governor = "step_wise";
-+		thermal-sensors = <&pm8350c_tz>;
-+
-+		trips {
-+			pm8350c_trip0: trip0 {
-+				temperature = <95000>;
-+				hysteresis = <0>;
-+				type = "passive";
-+			};
-+
-+			pm8350c_trip1: trip1 {
-+				temperature = <115000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+
-+			pm8350c_trip2: trip2 {
-+				temperature = <145000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-new file mode 100644
-index 0000000..9749484
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-@@ -0,0 +1,104 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
-+
-+&spmi_bus {
-+	pmk8350: pmic@0 {
-+		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmk8350_pon: pon_hlos@1300 {
-+			compatible = "qcom,pm8998-pon";
-+			reg = <0x1300>;
-+
-+			pwrkey {
-+				compatible = "qcom,pmk8350-pwrkey";
-+				interrupts = <0x0 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-+				linux,code = <KEY_POWER>;
-+			};
-+
-+			resin {
-+				compatible = "qcom,pmk8350-resin";
-+				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-+				linux,code = <KEY_VOLUMEDOWN>;
-+			};
-+		};
-+
-+		pmk8350_vadc: adc@3100 {
-+			compatible = "qcom,spmi-adc7";
-+			reg = <0x3100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "eoc-int-en-set";
-+			#io-channel-cells = <1>;
-+			io-channel-ranges;
-+
-+			/* PMK8350 Channel nodes */
-+			pmk8350_die_temp {
-+				reg = <PMK8350_ADC7_DIE_TEMP>;
-+				label = "pmk8350_die_temp";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+
-+			/* PM8350 Channel nodes */
-+			pm8350_die_temp {
-+				reg = <PM8350_ADC7_DIE_TEMP>;
-+				label = "pm8350_die_temp";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+
-+			/* PMR735a Channel nodes */
-+			pmr735a_die_temp {
-+				reg = <PMR735A_ADC7_DIE_TEMP>;
-+				label = "pmr735a_die_temp";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+
-+			/* PMR735b Channel nodes */
-+			pmr735b_die_temp {
-+				reg = <PMR735B_ADC7_DIE_TEMP>;
-+				label = "pmr735b_die_temp";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+		};
-+
-+		pmk8350_adc_tm: adc_tm@3400 {
-+			compatible = "qcom,adc-tm7";
-+			reg = <0x3400>;
-+			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "threshold";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#thermal-sensor-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		pmk8350_gpios: gpios@b000 {
-+			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
-+			reg = <0xb000>;
-+			gpio-controller;
-+			gpio-ranges = <&pmk8350_gpios 0 0 4>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		pmk8350_rtc: rtc@6100 {
-+			compatible = "qcom,pmk8350-rtc";
-+			reg = <0x6100>, <0x6200>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
-new file mode 100644
-index 0000000..e1d2356
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
-@@ -0,0 +1,60 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus {
-+	pmr735a: pmic@4 {
-+		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
-+		reg = <0x4 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmr735a_tz: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pmr735a_gpios: gpios@8800 {
-+			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmr735a_gpios 0 0 4>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-+
-+&thermal_zones {
-+	pmr735a_temp_alarm: pmr735a_tz {
-+		polling-delay-passive = <100>;
-+		polling-delay = <0>;
-+		thermal-governor = "step_wise";
-+		thermal-sensors = <&pmr735a_tz>;
-+
-+		trips {
-+			pmr735a_trip0: trip0 {
-+				temperature = <95000>;
-+				hysteresis = <0>;
-+				type = "passive";
-+			};
-+
-+			pmr735a_trip1: trip1 {
-+				temperature = <115000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+
-+			pmr735a_trip2: trip2 {
-+				temperature = <145000>;
-+				hysteresis = <0>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8af6d77..25402d4 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -606,4 +606,12 @@
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
- 	};
-+
-+	thermal_zones: thermal-zones {
-+	};
- };
-+
-+#include "pm7325.dtsi"
-+#include "pm8350c.dtsi"
-+#include "pmk8350.dtsi"
-+#include "pmr735a.dtsi"
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+Those peripherals are available on h743 ?
 
+>   		i2c1: i2c@40005400 {
+>   			compatible = "st,stm32f7-i2c";
+>   			#address-cells = <1>;
+> @@ -368,6 +384,20 @@
+>   			max-frequency = <120000000>;
+>   		};
+>   
+> +		sdmmc2: mmc@48022400 {
+> +			compatible = "arm,pl18x", "arm,primecell";
+> +			arm,primecell-periphid = <0x10153180>;
+> +			reg = <0x48022400 0x400>;
+> +			interrupts = <124>;
+> +			interrupt-names	= "cmd_irq";
+> +			clocks = <&rcc SDMMC2_CK>;
+> +			clock-names = "apb_pclk";
+> +			resets = <&rcc STM32H7_AHB2_RESET(SDMMC2)>;
+> +			cap-sd-highspeed;
+> +			cap-mmc-highspeed;
+> +			max-frequency = <120000000>;
+> +		};
+> +
+>   		exti: interrupt-controller@58000000 {
+>   			compatible = "st,stm32h7-exti";
+>   			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/stm32h750.dtsi b/arch/arm/boot/dts/stm32h750.dtsi
+> new file mode 100644
+> index 000000000000..dd9166223c2f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32h750.dtsi
+> @@ -0,0 +1,5 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+> +/* Copyright (C) STMicroelectronics 2021 - All Rights Reserved */
+> +
+> +#include "stm32h743.dtsi"
+> +
+> diff --git a/arch/arm/boot/dts/stm32h750i-art-pi.dts b/arch/arm/boot/dts/stm32h750i-art-pi.dts
+> new file mode 100644
+> index 000000000000..84cf70d7800c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32h750i-art-pi.dts
+> @@ -0,0 +1,224 @@
+> +/*
+> + * Copyright 2021 - Dillon Min <dillon.minfei@gmail.com>
+> + *
+> + * This file is dual-licensed: you can use it either under the terms
+> + * of the GPL or the X11 license, at your option. Note that this dual
+> + * licensing only applies to this file, and not this project as a
+> + * whole.
+> + *
+> + *  a) This file is free software; you can redistribute it and/or
+> + *     modify it under the terms of the GNU General Public License as
+> + *     published by the Free Software Foundation; either version 2 of the
+> + *     License, or (at your option) any later version.
+> + *
+> + *     This file is distributed in the hope that it will be useful,
+> + *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + *     GNU General Public License for more details.
+> + *
+> + * Or, alternatively,
+> + *
+> + *  b) Permission is hereby granted, free of charge, to any person
+> + *     obtaining a copy of this software and associated documentation
+> + *     files (the "Software"), to deal in the Software without
+> + *     restriction, including without limitation the rights to use,
+> + *     copy, modify, merge, publish, distribute, sublicense, and/or
+> + *     sell copies of the Software, and to permit persons to whom the
+> + *     Software is furnished to do so, subject to the following
+> + *     conditions:
+> + *
+> + *     The above copyright notice and this permission notice shall be
+> + *     included in all copies or substantial portions of the Software.
+> + *
+> + *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> + *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> + *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> + *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> + *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> + *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> + *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + *     OTHER DEALINGS IN THE SOFTWARE.
+> + */
+> +
+> +/dts-v1/;
+> +#include "stm32h750.dtsi"
+> +#include "stm32h750-pinctrl.dtsi"
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "RT-Thread STM32H750i-ART-PI board";
+> +	compatible = "st,stm32h750i-art-pi", "st,stm32h750";
+> +
+> +	chosen {
+> +		bootargs = "root=/dev/ram";
+> +		stdout-path = "serial0:2000000n8";
+> +	};
+> +
+> +	memory@c0000000 {
+> +		device_type = "memory";
+> +		reg = <0xc0000000 0x2000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			no-map;
+> +			size = <0x100000>;
+> +			linux,dma-default;
+> +		};
+> +	};
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +		serial1 = &usart3;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		led-red {
+> +			gpios = <&gpioi 8 0>;
+> +		};
+> +		led-green {
+> +			gpios = <&gpioc 15 0>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	v3v3: regulator-v3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "v3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	wlan_pwr: regulator-wlan {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "wl-reg";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpios = <&gpioc 13 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +};
+> +
+> +&clk_hse {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&mac {
+> +	status = "disabled";
+> +	pinctrl-0	= <&ethernet_rmii>;
+> +	pinctrl-names	= "default";
+> +	phy-mode	= "rmii";
+> +	phy-handle	= <&phy0>;
+> +
+> +	mdio0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +		phy0: ethernet-phy@0 {
+> +			reg = <0>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc1 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> +	broken-cd;
+> +	st,neg-edge;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&v3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&usart2 {
+> +	pinctrl-0 = <&usart2_pins>;
+> +	pinctrl-names = "default";
+> +	status = "disabled";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-0 = <&uart4_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&dma1 {
+> +	status = "okay";
+> +};
+> +
+
+Would be better to order by name, but it is your board :)
+
+> +&dma2 {
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	pinctrl-0 = <&spi1_pins>;
+> +	pinctrl-names = "default";
+> +	cs-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;
+> +	dmas = <&dmamux1 37 0x400 0x05>,
+> +	       <&dmamux1 38 0x400 0x05>;
+> +	dma-names = "rx", "tx";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "winbond,w25q128", "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <80000000>;
+> +
+> +		partition@0 {
+> +			label = "root filesystem";
+> +			reg = <0 0x1000000>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc2 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc2_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a>;
+> +	broken-cd;
+> +	non-removable;
+> +	st,neg-edge;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&wlan_pwr>;
+> +	status = "okay";
+> +
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	brcmf: bcrmf@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
+> +};
+> +
+> +&usart3 {
+> +	/delete-property/st,hw-flow-ctrl;
+> +	cts-gpios = <&gpiod 11 GPIO_ACTIVE_LOW>;
+> +	rts-gpios = <&gpiod 12 GPIO_ACTIVE_LOW>;
+> +	dmas = <&dmamux1 45 0x400 0x05>,
+> +	       <&dmamux1 46 0x400 0x05>;
+> +	dma-names = "rx", "tx";
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		host-wakeup-gpios = <&gpioc 0 GPIO_ACTIVE_HIGH>;
+> +		device-wakeup-gpios = <&gpioi 10 GPIO_ACTIVE_HIGH>;
+> +		shutdown-gpios = <&gpioi 11 GPIO_ACTIVE_HIGH>;
+> +		compatible = "brcm,bcm43438-bt";
+> +		max-speed = <115200>;
+> +	};
+> +};
+> 
