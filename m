@@ -2,153 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6926A337851
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E05337867
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:47:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234187AbhCKPna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 10:43:30 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:44403 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234164AbhCKPnX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 10:43:23 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S234076AbhCKPqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 10:46:43 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:51886 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234118AbhCKPqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 10:46:36 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615477596; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=1VBjwvHlfoWkZSq2NKmHy22HPNe4Qn92KKp2+bBnXqE=; b=RXADuIrYg4fK1s/wT4aUPZ+AC3DbdAghRMUYVx9SEsXz4dLrpyph6NVHh59sNxpBNIDSx2WN
+ H7F7MFLw1ARue6USe2ENUftExOOjHr0caLuIJzdNHiTNgp4BwWMM0FjxHCoZ5hk3FOwJIj8I
+ dq5G9RdPgYt8BCOOgWDa393X6mo=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 604a3b46b2591bd5684c7650 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 15:46:14
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0AB62C43464; Thu, 11 Mar 2021 15:46:14 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 087662224F;
-        Thu, 11 Mar 2021 16:43:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615477401;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4E0kyLx6eQ/C8Z24BR6u+cUJgT5ViA0Q6ynIRgxXQaI=;
-        b=nnoOY3nXiQJXY8eEdfWGXbBl1vxhlLuSRABQDNnG6ui/zHZ4x4l5ZNOTqAsqXIPw9r71Gp
-        HbfoE5F8JnPsuuxQRRXUbfiJqKYeyD/8mvAsN/8U5LkacOYrb7DYnXDuPOPk9cqqRaceKw
-        go9v4YCh+yPGVVecKnUprx6wNaRkI7k=
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 587C2C433CA;
+        Thu, 11 Mar 2021 15:46:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 587C2C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2] ASoC: qcom: lpass-cpu: Fix lpass dai ids parse
+Date:   Thu, 11 Mar 2021 21:15:57 +0530
+Message-Id: <20210311154557.24978-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Thu, 11 Mar 2021 16:43:20 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-In-Reply-To: <36c37df5-dffb-9168-d92f-4b3e482602fa@nvidia.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
- <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
- <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
- <cadc59f29bbb2e0d02235d4c10cb7f4d@walle.cc>
- <36c37df5-dffb-9168-d92f-4b3e482602fa@nvidia.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <d4947632a8b3ebefff7fb6751d05a9bd@walle.cc>
-X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-11 15:29, schrieb Sameer Pujar:
-> On 3/11/2021 4:46 PM, Michael Walle wrote:
->> Am 2021-03-11 12:05, schrieb Sameer Pujar:
->> 
->>> It would work and initially I had similar patch, see [0] and related
->>> series. Suggestion is to always use "clocks" property with devices
->>> only.
->> 
->> I see. But again, I don't think it is correct to change the clock of
->> the codec by default. What happens if this is for example a
->> compatible = "fixed-clock"?
-> 
-> The codec rate won't be changed unless a corresponding "*mclk-fs" is 
-> provided.
-> 
->> 
->> As you pointed out in the referred thread [0]. simple-audio-card has
->> that clock and judging from the code it is exactly for this reason:
->> to either change/enable it or not.
->> 
-> 
-> 
->> With this patch you'll switch that to "always change it". Therefore,
->> shouldn't there be a dt flag to indicate wheter 
->> simple-audio-card/graph
->> should be in charge of the codecs clock input?
-> 
-> As mentioned above, it does not change always. Requires "*mclk-fs" to 
-> do so.
+The max boundary check while parsing dai ids makes
+sound card registration fail after common up dai ids.
 
-As mentioned earlier, this is changing the sysclk, too. And I'd guess
-most codecs need a fixed factor for the sysclk, thus if the codec 
-supports
-generating its own sysclk by a PLL it will need this factor, too.
+Fixes: cd3484f7f138 ("ASoC: qcom: Fix broken support to MI2S TERTIARY and QUATERNARY")
 
-Which is also defined in the binding:
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+Changes since v1:
+  -- Fixes commit message chnaged.
 
-   system-clock-frequency:
-     description: |
-       If a clock is specified and a multiplication factor is given with
-       mclk-fs, the clock will be set to the calculated mclk frequency
-       when the stream starts.
+ sound/soc/qcom/lpass-cpu.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index 4762286b33fe..c62d2612e8f5 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -739,7 +739,7 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+ 
+ 	for_each_child_of_node(dev->of_node, node) {
+ 		ret = of_property_read_u32(node, "reg", &id);
+-		if (ret || id < 0 || id >= data->variant->num_dai) {
++		if (ret || id < 0) {
+ 			dev_err(dev, "valid dai id not found: %d\n", ret);
+ 			continue;
+ 		}
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-> May be below could be a possible alternative?
-> - Re-order if-else of clock parsing.
-> 
->    if (!of_property_read_u32(node, "system-clock-frequency", &val)) {
->        // Since you are fixing rate already via "assigned-clocks" this
-> may be a duplication. OR
-
-exactly. and also need a device tree change (also for older kernels)
-on my side.
-
-This could be a last resort, yes. But I'd rather see a flag which
-indicates whether the simple-audio-card should control the (first)
-clock of the codec or not. Because until now, this wasn't the case.
-And I don't know if this was an oversight or on purpose. Kuninori would
-need to comment on that. And with the "we change mclk by default", we
-break codecs with automatic sysclk generation.
-
->        // "assigned-clocks" can be parsed to understand if a fixed
-> rate is expected.
-
-Sounds like a hack to me. Esp. its doing the same as its already
-doing right now. That is a "sysfreq = clk_get_rate(codec)".
-
->        simple_dai->sysclk = val;
->    } else {
->        // fetch MCLK clock from device and setup sysclk
->        // a. If "*mclk-fs" is given and "clocks" is found, the rate
-> would be updated.
->        // b. If "*mclk-fs" is not mentioned and "clocks" is found,
-> then simple-card utils won't touch rate. It will just do clock
-> enable/disable.
-
-mclk-fs is also a factor for the sysclk, thus it is also needed
-if there is no mclk (or a fixed mclk).
-
-I don't think you can deduce whether you can change the codecs
-first clock with the current information :(
-
->    }
-> 
->> 
->> And its fetching just the first clock, doesn't it? What happens if a
->> codec has two clock inputs?
-> 
-> Yes, it would have been more descriptive if it were specifically
-> looking for clock "mclk". I think the original assumption was codec
-> takes one input clock (MCLK) and uses it for sysclk.
-
-Yeah, I've just noticed that the clk_get_rate() also only works
-for the first clock of the codec.
-
--michael
