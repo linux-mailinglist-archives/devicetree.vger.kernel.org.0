@@ -2,99 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF506336D10
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 08:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D636336D18
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 08:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231504AbhCKHaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 02:30:15 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:48736 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbhCKHaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 02:30:14 -0500
-Received: from mail-wr1-f70.google.com ([209.85.221.70])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lKFlP-00030Q-N9
-        for devicetree@vger.kernel.org; Thu, 11 Mar 2021 07:29:43 +0000
-Received: by mail-wr1-f70.google.com with SMTP id n16so8040081wro.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 23:29:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UM3RKX0XCDpJCuubU4GyjNFkIs45HL7bg2XqkxuxPoo=;
-        b=bUBXayqap1Lv4Kd8Xj0lqfU6ROXzhGlPd8Z5nzzQDdIjTLUFaXzdSepn+8tf+WkECZ
-         NiVk+9oNGMAaKpJEx1uG7NgOry2VNssKQgjj6fdersQpgMTRBAd6TrA8irCFYeNUhZ6e
-         YOO0dJ1JIoS9L8lPGsN3vWObsW6D3A6FIm20iNIIHqS6stvCrdsjZh9oVF4WJ7CQXOlL
-         YycwZJsm1K9kS6OQlirrBKDdSfA4mbH/TSNmQxbduNFYqRAbHwFRt2/6lPjIQFRL8h82
-         rp9E72zcu+3fGW9dILMRTM8LHr+jQQwjDK+71j5YItlkLyeikz1M8sPrXTcrdM5AujHr
-         UaTg==
-X-Gm-Message-State: AOAM532xe38XreptaArtT44q8A6Un12eMhxeoEAUf1fakOa+t1nmuxzr
-        K8k4Jwq4b2PuMz6wv5ck95R4g+nUwO5BZDjfcYFujg1eMMYHayGHzbFGYkTaiO0omge3m+WGYBW
-        hev4tvZzQ55n+epHsEg0C0ccxYDC2tTFTuypkgMQ=
-X-Received: by 2002:a5d:4708:: with SMTP id y8mr7473164wrq.382.1615447783444;
-        Wed, 10 Mar 2021 23:29:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwntEUdVEQpqMsRTDpIua5kEKJ6BAuZNIC5Far5vVjfExGBGIXOrXsOxt/q5mJ8+gEXtFcFdw==
-X-Received: by 2002:a5d:4708:: with SMTP id y8mr7473131wrq.382.1615447783295;
-        Wed, 10 Mar 2021 23:29:43 -0800 (PST)
-Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id z3sm2323807wrw.96.2021.03.10.23.29.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Mar 2021 23:29:42 -0800 (PST)
-Subject: Re: [RFC v2 5/5] clk: socfpga: allow compile testing of Stratix 10 /
- Agilex clocks
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
+        id S231822AbhCKHax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 02:30:53 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:60375 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231579AbhCKHaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 02:30:35 -0500
+Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 10 Mar 2021 23:30:35 -0800
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 10 Mar 2021 23:30:32 -0800
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Mar 2021 13:00:03 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 28B284107; Thu, 11 Mar 2021 13:00:02 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-edac@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Networking <netdev@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com, arm-soc <arm@kernel.org>,
-        SoC Team <soc@kernel.org>, Olof Johansson <olof@lixom.net>
-References: <20210310083327.480837-1-krzysztof.kozlowski@canonical.com>
- <20210310083840.481615-1-krzysztof.kozlowski@canonical.com>
- <20210310083840.481615-3-krzysztof.kozlowski@canonical.com>
- <CAK8P3a27hAExCKtsO7k1HQwLKk-5Q8uxYYt_G2v-Osq8RZv2tg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <a1f296ad-19db-824e-5d33-c93c6af87e70@canonical.com>
-Date:   Thu, 11 Mar 2021 08:29:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <CAK8P3a27hAExCKtsO7k1HQwLKk-5Q8uxYYt_G2v-Osq8RZv2tg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-rtc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH 0/3] Add RTC support for PMIC PMK8350
+Date:   Thu, 11 Mar 2021 12:59:55 +0530
+Message-Id: <1615447798-6959-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2021 17:48, Arnd Bergmann wrote:
-> On Wed, Mar 10, 2021 at 9:38 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->> --- a/drivers/clk/socfpga/Kconfig
->> +++ b/drivers/clk/socfpga/Kconfig
->> @@ -1,6 +1,17 @@
->>  # SPDX-License-Identifier: GPL-2.0
->> +config COMMON_CLK_SOCFPGA
->> +       bool "Intel SoCFPGA family clock support" if COMPILE_TEST && !ARCH_SOCFPGA && !ARCH_SOCFPGA64
->> +       depends on ARCH_SOCFPGA || ARCH_SOCFPGA64 || COMPILE_TEST
->> +       default y if ARCH_SOCFPGA || ARCH_SOCFPGA64
-> 
-> I think the 'depends on' line here is redundant if you also have the
-> 'if' line and the default.
+Convert pm8xxx bindings to yaml and add pmk8350 rtc binding.
 
-Yes, you're right.
-Best regards,
-Krzysztof
+satya priya (3):
+  rtc: pm8xxx: Add RTC support for PMIC PMK8350
+  dt-bindings: mfd: Convert pm8xxx bindings to yaml
+  dt-bindings: mfd: Add compatible for pmk8350 rtc
+
+ .../devicetree/bindings/mfd/qcom-pm8xxx.txt        |  99 -------------------
+ .../devicetree/bindings/mfd/qcom-pm8xxx.yaml       | 109 +++++++++++++++++++++
+ drivers/rtc/rtc-pm8xxx.c                           |  11 +++
+ 3 files changed, 120 insertions(+), 99 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
