@@ -2,128 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F91C33741B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA6FE337433
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233590AbhCKNfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 08:35:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43020 "EHLO mail.kernel.org"
+        id S233429AbhCKNlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 08:41:37 -0500
+Received: from mx2.suse.de ([195.135.220.15]:60324 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233603AbhCKNfX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 08:35:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C174464FF5;
-        Thu, 11 Mar 2021 13:35:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615469722;
-        bh=6q4IiXUJWgYscOCHecS9Mt3djdFy8TY6aKd4onYASzw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UqYI40kpdj9pTyDaevY8Rj3aeYiZ42jbr3bj19Mi76nRVXy04kZ924TdIsyUPe5nI
-         kVHCtANhj9MAOhAsi4EcR9R2xtU4MvIMQr7ZTEzzjdilqv+4kCNlORUhtjd8pMR2TR
-         a5HSjhZpsqZyxNzVFKbM1y69DNNfFHM24NsdO67YBiYrU14vwxDLEm6ecS2AiOzBc9
-         4SaZgpwGtDHuQC9aKCe8UCl1mVfahUsXDBZvkbTfyKbiCpAGeKylgMr9UdZ6gr8xb+
-         GjGi8i8c01jNVRFO8iKW48+xTZ+NV+BcVcnm/aJ83vcD+4RmlPuxgYInkS79eYQnk7
-         IxUX0bVdkDD8A==
-Received: by mail-oi1-f174.google.com with SMTP id u198so18155082oia.4;
-        Thu, 11 Mar 2021 05:35:22 -0800 (PST)
-X-Gm-Message-State: AOAM532+Ces9QDIaU/LU6w45qWc3ktC+O6h9xmA/qhDkN8dL6z/uTpDG
-        dr3KBk9UwQU3d5GwGf+egq8FbHrimebEd9Ewrps=
-X-Google-Smtp-Source: ABdhPJxVF0HenIu8QBC6I7NhfOa4G3V0f41d1dKsWotCdWeJNJpyBNdwAHcVht7bLnu5j10LoEjZUejMgModqVzmgxA=
-X-Received: by 2002:aca:5e85:: with SMTP id s127mr6048962oib.67.1615469721794;
- Thu, 11 Mar 2021 05:35:21 -0800 (PST)
+        id S233630AbhCKNlO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 08:41:14 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 51724AC23;
+        Thu, 11 Mar 2021 13:41:12 +0000 (UTC)
+Message-ID: <865b4bb56cb9b0a9041c61f1ae7c9c76e807ebd3.camel@suse.de>
+Subject: Re: [PATCH v7 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com
+Date:   Thu, 11 Mar 2021 14:41:10 +0100
+In-Reply-To: <20210311131845.x3zybis3x2liu2uk@pengutronix.de>
+References: <20210118123244.13669-1-nsaenzjulienne@suse.de>
+         <20210118123244.13669-12-nsaenzjulienne@suse.de>
+         <20210310115041.s7tzvgdpksws6yss@pengutronix.de>
+         <fc60ac5ab9760d791aa5e184258accf53e07ce1e.camel@suse.de>
+         <20210311131845.x3zybis3x2liu2uk@pengutronix.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-DIhE4Ec/fO1HMXckfvC/"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-References: <20210304213902.83903-1-marcan@marcan.st> <20210304213902.83903-13-marcan@marcan.st>
- <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
- <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st> <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
- <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
- <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
- <20210308211306.GA2920998@robh.at.kernel.org> <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
- <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
- <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st> <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
- <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st> <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
- <CAK8P3a2HWbHc-aGHk792TVh6ea2j+aKswYrB6EBsjPA6fH1=xA@mail.gmail.com> <7ee4a1ac-9fd4-3eca-853d-d12a16ddbb60@marcan.st>
-In-Reply-To: <7ee4a1ac-9fd4-3eca-853d-d12a16ddbb60@marcan.st>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Thu, 11 Mar 2021 14:35:05 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1-7nybm5kRVN6WP-+0vy+TWzqHJsMXwz8QtH2jhW+1gQ@mail.gmail.com>
-Message-ID: <CAK8P3a1-7nybm5kRVN6WP-+0vy+TWzqHJsMXwz8QtH2jhW+1gQ@mail.gmail.com>
-Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
- MMIO as non-posted
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Rob Herring <robh@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 1:11 PM Hector Martin <marcan@marcan.st> wrote:
-> On 11/03/2021 18.12, Arnd Bergmann wrote:
-> > On Wed, Mar 10, 2021 at 6:01 PM Rob Herring <robh@kernel.org> wrote:
-> >> On Wed, Mar 10, 2021 at 1:27 AM Hector Martin <marcan@marcan.st> wrote:
-> >>> Works for me; then let's just make it non-recursive.
-> >>>
-> >>> Do you think we can get rid of the Apple-only optimization if we do
-> >>> this? It would mean only looking at the parent during address
-> >>> resolution, not recursing all the way to the top, so presumably the
-> >>> performance impact would be quite minimal.
-> >
-> > Works for me.
->
-> Incidentally, even though it would now be unused, I'd like to keep the
-> apple,arm-platform compatible at this point; we've already been pretty
-> close to a use case for it, and I don't want to have to fall back to a
-> list of SoC compatibles if we ever need another quirk for all Apple ARM
-> SoCs (or break backwards compat). It doesn't really hurt to have it in
-> the binding and devicetrees, right?
 
-Yes, keeping the compatible string is a good idea regardless.
+--=-DIhE4Ec/fO1HMXckfvC/
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> >> Yeah, that should be fine. I'd keep an IS_ENABLED() config check
-> >> though. Then I'll also know if anyone else needs this.
-> >
-> > Ok, makes sense.
-> >
-> > Conceptually, I'd like to then see a check that verifies that the
-> > property is only set for nodes whose parent also has it set, since
-> > that is how AXI defines it: A bus can wait for the ack from its
-> > child node, or it can acknowledge the write to its parent early.
-> > However, this breaks down as soon as a bus does the early ack:
-> > all its children by definition use posted writes (as seen by the
-> > CPU), even if they wait for stores that come from other masters.
-> >
-> > Does this make sense to you?
->
-> Makes sense. This shouldn't really be something the kernel concerns
-> itself with at runtime, just something for the dts linting, right?
->
-> I assume this isn't representable in json-schema, so it would presumably
-> need some ad-hoc validation code.
+On Thu, 2021-03-11 at 14:18 +0100, Uwe Kleine-K=C3=B6nig wrote:
+> Hello Nicolas,
+>=20
+> On Thu, Mar 11, 2021 at 02:01:00PM +0100, Nicolas Saenz Julienne wrote:
+> > On Wed, 2021-03-10 at 12:50 +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > > On Mon, Jan 18, 2021 at 01:32:44PM +0100, Nicolas Saenz Julienne wrot=
+e:
+> >=20
+> > [...]
+> >=20
+> > > > +	/*
+> > > > +	 * This sets the default duty cycle after resetting the board, we
+> > > > +	 * updated it every time to mimic Raspberry Pi's downstream's dri=
+ver
+> > > > +	 * behaviour.
+> > > > +	 */
+> > > > +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_DE=
+F_DUTY_REG,
+> > > > +					   duty_cycle);
+> > > > +	if (ret) {
+> > > > +		dev_err(chip->dev, "Failed to set default duty cycle: %pe\n",
+> > > > +			ERR_PTR(ret));
+> > > > +		return ret;
+> > >=20
+> > > This only has an effect for the next reboot, right?
+> >=20
+> > It effects all reboots until it's further changed.
+> >=20
+> > > If so I wonder if it is a good idea in general. (Think: The current P=
+WM
+> > > setting enables a motor that makes a self-driving car move at 100 km/=
+h.
+> > > Consider the rpi crashes, do I want to car to pick up driving 100 km/=
+h at
+> > > power up even before Linux is up again?)
+> >=20
+> > I get your point. But this isn't used as a general purpose PWM. For now=
+ the
+> > interface is solely there to drive a PWM fan that's arguably harmless. =
+This
+> > doesn't mean that the RPi foundation will not reuse the firmware interf=
+ace for
+> > other means in the future. In such case we can always use a new DT comp=
+atible
+> > and bypass this feature (the current DT string is
+> > 'raspberrypi,firmware-poe-pwm', which is specific to this use-case).
+> >=20
+> > My aim here is to be on par feature wise with RPi's downstream implemen=
+tation.
+>=20
+> Just because the downstream kernel does it should not be the (single)
+> reason to do that. My gut feeling is: For a motor restoring the PWM
+> config on reboot is bad and for a fan it doesn't really hurt if it
+> doesn't restart automatically. So I'd prefer to to drop this feature.
 
-Agreed, having a check in either dtc or expressed in the json scheme
-is better than a runtime check. I assume Rob would know how to best
-add such a check.
+Fair enough, I'll remove it then.
 
-     Arnd
+Regards,
+Nicolas
+
+
+--=-DIhE4Ec/fO1HMXckfvC/
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBKHfYACgkQlfZmHno8
+x/7bvgf/VG7JeLwSwJu4LqZq0TnHZ6NiWfAfSZT+RMslpHsQjbaEQd9S0FehwN2a
+fvtdylnnGHKlJadP2QvfRGX7KYw4sGy8dsZZJn3LLVcIjO7cUCunmBkBZcaoy3mI
+edfLymaeNEnzuzaURI37lQTxNMVXQyXz3uzbHQG913kpi9Nex8ywwNFqAKoDGzyx
+k+NAYQHAh6wxkn8Ni7+6EpVpKZ7TIToIltlzd/Gn/ooycT1nO9OkSJKZkiIs4a0J
+uvuX9rLysjzr42l3hRpn7l+WZGfegorm7a/QzRFTjSKKlKYJVgzShiVR3XXpUYkk
+72pRuu76vC0ImQlL6Xa5qzbrQsRxNg==
+=k+NC
+-----END PGP SIGNATURE-----
+
+--=-DIhE4Ec/fO1HMXckfvC/--
+
