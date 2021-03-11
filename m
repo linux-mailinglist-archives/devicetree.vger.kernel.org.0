@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49B7733753C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 15:16:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E39337546
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 15:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233382AbhCKOQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 09:16:26 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:32830 "EHLO
+        id S233395AbhCKOR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 09:17:29 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33124 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233300AbhCKOQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 09:16:13 -0500
+        with ESMTP id S233811AbhCKORS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 09:17:18 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BEG8fU122858;
-        Thu, 11 Mar 2021 08:16:08 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BEHDTf123219;
+        Thu, 11 Mar 2021 08:17:13 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615472168;
-        bh=otsioTu5qCUse4Zaap7lDZdr6bDLm7MeSEmVeWJ8PVk=;
+        s=ti-com-17Q1; t=1615472233;
+        bh=RJ+Hl65kVO9Nq2o/JK00f0BDvO0IoP/VbHeYgicOfv8=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=dAeozZWqFTSw2O6hPImspbfN2I51ihS3M7KLua5IO05zMFcABKVqIdC8l5fND4Iu0
-         Ol46Dhf9S7rbUt+eTLUauI58r0WhJGC8u/XpF0DyfgepvJ7eA/mcrPO25iHPNLxqdf
-         XosQoNmsA6acOWWFbQoT+Pqyj0dwiY39tIjKwhEM=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BEG7xe103343
+        b=GGUVCt/SsQg8ea3wJAvqR6s2BkH9EDjA5B4em8LZopFqRnZcJXe8VVBINljKECflY
+         Sb++/cvFuMEhUvzw45piwEFTVbtqriHGLLiJe4CcX9gJJWIODGAJjPnfoYH/xrxPjP
+         2YcZg1oqjDpQUZwCeUKAvxeQbWnDapT4zw3eAacY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BEHDu1105182
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 Mar 2021 08:16:08 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 11 Mar 2021 08:17:13 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
- Mar 2021 08:16:07 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2021 08:17:13 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 11 Mar 2021 08:16:07 -0600
+ Frontend Transport; Thu, 11 Mar 2021 08:17:13 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BEG7NF075903;
-        Thu, 11 Mar 2021 08:16:07 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BEHD0g077781;
+        Thu, 11 Mar 2021 08:17:13 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+To:     Pratyush Yadav <p.yadav@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Faiz Abbas <faiz_abbas@ti.com>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
-Date:   Thu, 11 Mar 2021 08:16:06 -0600
-Message-ID: <161547214086.15807.8150332275762636624.b4-ty@ti.com>
+        Tero Kristo <kristo@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 0/3] Enable 8D-8D-8D mode on J721E, J7200, AM654
+Date:   Thu, 11 Mar 2021 08:17:12 -0600
+Message-ID: <161547217307.16039.18227037879327861726.b4-ty@ti.com>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210305054104.10153-1-a-govindraju@ti.com>
-References: <20210305054104.10153-1-a-govindraju@ti.com>
+In-Reply-To: <20210305153926.3479-1-p.yadav@ti.com>
+References: <20210305153926.3479-1-p.yadav@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -60,24 +56,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 5 Mar 2021 11:11:04 +0530, Aswath Govindraju wrote:
-> According to latest errata of J721e [1], HS400 mode is not supported
-> in MMCSD0 subsystem (i2024) and SDR104 mode is not supported in MMCSD1/2
-> subsystems (i2090). Therefore, replace mmc-hs400-1_8v with mmc-hs200-1_8v
-> in MMCSD0 subsystem and add a sdhci mask to disable SDR104 speed mode.
+On Fri, 5 Mar 2021 21:09:23 +0530, Pratyush Yadav wrote:
+> Now that the OSPI controller driver and the SPI NOR core have support
+> for 8D-8D-8D mode, the device tree can be updated to allow Octal DTR
+> transactions.
 > 
-> Also, update the itap delay values for all the MMCSD subsystems according
-> the latest J721e data sheet[2]
+> Pratyush Yadav (3):
+>   arm64: dts: ti: k3-j721e-som-p0: Enable 8D-8D-8D mode on OSPI
+>   arm64: dts: ti: am654-base-board: Enable 8D-8D-8D mode on OSPI
+>   arm64: dts: ti: k3-j7200-som-p0: Add nodes for OSPI0
 > 
 > [...]
 
-Hi Aswath Govindraju,
+Hi Pratyush Yadav,
+
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems
-      commit: eb8f6194e8074d7b00642dd75cf04d13e1b218e4
+[1/3] arm64: dts: ti: k3-j721e-som-p0: Enable 8D-8D-8D mode on OSPI
+      commit: 4c20ee99dd1a36ab89c6a8c51ed25e9328d8a8cc
+[2/3] arm64: dts: ti: am654-base-board: Enable 8D-8D-8D mode on OSPI
+      commit: 7c172b30a540644fa53051e947d6712be5d6d6ce
+[3/3] arm64: dts: ti: k3-j7200-som-p0: Add nodes for OSPI0
+      commit: efbdf2e9183bd5e75c64d251c6b673ca61ea01b3
 
 
 All being well this means that it will be integrated into the linux-next
