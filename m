@@ -2,142 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD1F33747F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F9533749F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233726AbhCKNtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 08:49:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233565AbhCKNsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:48:36 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5BBC061761
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 05:48:36 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id s17so2219368ljc.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 05:48:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rEk/4ipeOtDShwpMiaY0Jz75T1hvoWxqNerJf3TNtsY=;
-        b=h7sRUR7UJvx8pzoyO9YqyyaJDVXtOKxCVBSGohK6BN9dMEg0jSslERxAiTdrJERkNb
-         n9kWMjX3VnxLcZdhOSLPa4qa0q9cm4RZie85nThsVbLcqlobnRxYhi/heasGzDxz9klB
-         duV5ql6q8G1CkgCIkgmvhtm5zcP7qrkoVSXDev8ksc8RPPuoPxvFC3u8Rg/4ORNRT9HS
-         iAXmae/T0NxeM78M6HdrQvUXASeGmALHROR33V+gaKWbBBRgDKX6qIEdDAkVmr3eOH8l
-         iVCIMkpWp33gwzKiWZ3eiTU3gN2BMXTfFNg/dMwXO13KISS9NEDkKy/61qW09X4UozkG
-         QweQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rEk/4ipeOtDShwpMiaY0Jz75T1hvoWxqNerJf3TNtsY=;
-        b=kpkykhGuSVhgSK1smLHH8+qeaWp8VxJc5FEiHJ+yMml190v1UI8XTv6a7gDYzAG+K8
-         41q3ZMtu/2bYIO4MKOIlo20cs5uSG/qfS4zgk8HnesdQT38oOKaGmI1JudEaZ1deFksn
-         iThRC33K7wvmQvXAMdm3HxojwBxxU1htYILBZwhFVH/pZY7fRY6DNxiwLaol7l4cyQKX
-         pPBLkoCX0eRu7L7PLvSmdCrwzYiouweVBeszOWSBWse2Ngc2YAOcM8wvF0UjGxZ0YlNS
-         EIp0TcOeDKXkFptK6t9xKOTUXQHooUk6NwLMcPB7O6hVwenfzedMVoQ4iO2xnpUWgPlB
-         yXDg==
-X-Gm-Message-State: AOAM532IJbzZbYJZO1O3uNg5yn5pO0IPTLfOR2d5W+BZm0HvErGUStSX
-        ITgu9R/MNzyaWrqIqw/RiSWO8k+d9Rja/YIlJEalyg==
-X-Google-Smtp-Source: ABdhPJyjBoMobf99RmUaXcBwKmWGeJ8EGILuW2y02hvc6McYOP2Ijymqky6V0r5VlBrzBaNwTLixfX39I/7NSFBgssI=
-X-Received: by 2002:a2e:9cb:: with SMTP id 194mr4881771ljj.438.1615470514567;
- Thu, 11 Mar 2021 05:48:34 -0800 (PST)
+        id S233609AbhCKNth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 08:49:37 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52904 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233664AbhCKNtO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:49:14 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BDn9jw111388;
+        Thu, 11 Mar 2021 07:49:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615470549;
+        bh=grd2oCLmaTvLeuSLi6pSR0CslwxZa/zJyeZL4sdHKIc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=dZvUayL7NEVFGP/4BVmxCuHkA87/ZzM3EZIyMCshw1w39ND4BkH4knlBObG+oE/OT
+         hy3sEH1NvdeamVPA3in96aR4c/K37iuYG8tLNZwvwhBPlaW8aQ8Hs1kRScih0WD4dK
+         LqBV0t9b7q9v7Mq1WruFNdyUJQwYybtZ+O2ggZGQ=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BDn9b7052046
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 Mar 2021 07:49:09 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
+ Mar 2021 07:49:08 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 11 Mar 2021 07:49:08 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BDn8qu080233;
+        Thu, 11 Mar 2021 07:49:08 -0600
+Date:   Thu, 11 Mar 2021 07:49:08 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-som-p0: Add nodes for
+ OSPI0
+Message-ID: <20210311134908.jsh2lywtwzvlyvbc@finally>
+References: <20210305153926.3479-1-p.yadav@ti.com>
+ <20210305153926.3479-4-p.yadav@ti.com>
+ <cbc23906-68cd-d885-2a81-c6088c402caf@ti.com>
+ <20210311132250.6kwrgo75emyoglzo@pauper>
+ <20210311134109.pbqsq3l5v2h5ivlx@ti.com>
 MIME-Version: 1.0
-References: <20210309015750.6283-1-peng.zhou@mediatek.com>
-In-Reply-To: <20210309015750.6283-1-peng.zhou@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 14:48:23 +0100
-Message-ID: <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-To:     Peng Zhou <peng.zhou@mediatek.com>,
-        linux-block <linux-block@vger.kernel.org>,
-        Eric Biggers <ebiggers@kernel.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210311134109.pbqsq3l5v2h5ivlx@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+On 19:11-20210311, Pratyush Yadav wrote:
+> On 11/03/21 07:22AM, Nishanth Menon wrote:
+> > On 21:43-20210305, Vignesh Raghavendra wrote:
+> > > 
+> > > 
+> > > On 3/5/21 9:09 PM, Pratyush Yadav wrote:
+> > > > TI J7200 has the Cadence OSPI controller for interfacing with OSPI
+> > > > flashes. Add its node to allow using SPI flashes.
+> > > > 
+> > > > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > > > ---
+> > > 
+> > > Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > > 
+> > > 
+> > > 
+> > > > 
+> > > > Notes:
+> > > >     Changes in v2:
+> > > >     - Do not force a pulldown on the DQS line because it already has a
+> > > >       pulldown resistor.
+> > > > 
+> > > >  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 17 +++++++++
+> > > >  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 36 +++++++++++++++++++
+> > > >  2 files changed, 53 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > > > index 359e3e8a8cd0..5408ec815d58 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > > > @@ -269,6 +269,23 @@ hbmc: hyperbus@47034000 {
+> > > >  			#size-cells = <1>;
+> > > >  			mux-controls = <&hbmc_mux 0>;
+> > > >  		};
+> > > > +
+> > > > +		ospi0: spi@47040000 {
+> > > > +			compatible = "ti,am654-ospi";
+> > > > +			reg = <0x0 0x47040000 0x0 0x100>,
+> > > > +			      <0x5 0x00000000 0x1 0x0000000>;
+> > > > +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			cdns,fifo-depth = <256>;
+> > > > +			cdns,fifo-width = <4>;
+> > > > +			cdns,trigger-address = <0x0>;
+> > > > +			clocks = <&k3_clks 103 0>;
+> > > > +			assigned-clocks = <&k3_clks 103 0>;
+> > > > +			assigned-clock-parents = <&k3_clks 103 2>;
+> > > > +			assigned-clock-rates = <166666666>;
+> > > > +			power-domains = <&k3_pds 103 TI_SCI_PD_EXCLUSIVE>;
+> > > > +			#address-cells = <1>;
+> > > > +			#size-cells = <0>;
+> > > > +		};
+> > > >  	};
+> > > >  
+> > > >  	tscadc0: tscadc@40200000 {
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> > > > index a988e2ab2ba1..34724440171a 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> > > > @@ -100,6 +100,22 @@ J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
+> > > >  			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
+> > > >  		>;
+> > > >  	};
+> > > > +
+> > > > +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
+> > > > +		pinctrl-single,pins = <
+> > > > +			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_OSPI0_CLK */
+> > > > +			J721E_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* MCU_OSPI0_CSn0 */
+> > > > +			J721E_WKUP_IOPAD(0x000c, PIN_INPUT, 0)  /* MCU_OSPI0_D0 */
+> > > > +			J721E_WKUP_IOPAD(0x0010, PIN_INPUT, 0)  /* MCU_OSPI0_D1 */
+> > > > +			J721E_WKUP_IOPAD(0x0014, PIN_INPUT, 0)  /* MCU_OSPI0_D2 */
+> > > > +			J721E_WKUP_IOPAD(0x0018, PIN_INPUT, 0)  /* MCU_OSPI0_D3 */
+> > > > +			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0)  /* MCU_OSPI0_D4 */
+> > > > +			J721E_WKUP_IOPAD(0x0020, PIN_INPUT, 0)  /* MCU_OSPI0_D5 */
+> > > > +			J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
+> > > > +			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
+> > > > +			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
+> > > > +		>;
+> > > > +	};
+> > > >  };
+> > > >  
+> > > >  &main_pmx0 {
+> > > > @@ -235,3 +251,23 @@ exp_som: gpio@21 {
+> > > >  				  "GPIO_LIN_EN", "CAN_STB";
+> > > >  	};
+> > > >  };
+> > > > +
+> > > > +&ospi0 {
+> > > > +	pinctrl-names = "default";
+> > > > +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+> > > > +
+> > > > +	flash@0{
+> > > > +		compatible = "jedec,spi-nor";
+> > > > +		reg = <0x0>;
+> > > > +		spi-tx-bus-width = <8>;
+> > > > +		spi-rx-bus-width = <8>;
+> > > > +		spi-max-frequency = <25000000>;
+> > > > +		cdns,tshsl-ns = <60>;
+> > > > +		cdns,tsd2d-ns = <60>;
+> > > > +		cdns,tchsh-ns = <60>;
+> > > > +		cdns,tslch-ns = <60>;
+> > > > +		cdns,read-delay = <4>;
+> > > > +		#address-cells = <1>;
+> > > > +		#size-cells = <1>;
+> > > > +	};
+> > I see this:
+> > +/workdir/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dt.yaml: flash@0: 'cdns,read-delay', 'cdns,tchsh-ns', 'cdns,tsd2d-ns', 'cdns,tshsl-ns', 'cdns,tslch-ns' do not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+> > 
+> > 
+> > And that is because
+> > Documentation/devicetree/bindings/spi/cadence-quadspi.txt is not
+> > converted to yaml. Following the new stringent rules, yaml please?
+> 
+> Ok. I am working on the conversion. Will send it soon.
 
-thanks for your patch!
 
-On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
+OK I am keeping to our old rule that as long as binding is pre-existing
+and they are in Documentation/devicetree/ we are picking the node up..
+new bindings absolutely must be in yaml.
 
-> Use SMC call enable hardware crypto engine
-> due to it only be changed in ATF(EL3).
->
-> Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
+But really, it is high time these txt files get converted to yaml..
+Lets use this current collection for 5.13-rc1 cycle as the last window
+where we permit this.
 
-Unfortunately this commit message is way to short to
-understand what is going on, and has a lot of assumed
-previous knowledge.
+* 5.14-rc1 cycle patches, lets make sure: no txt file bindings, yaml at
+ least in next
+* 5.15-rc1 cycle patches, yaml binding must be in master OR a immutable
+  tag from subsystem maintainer.
 
-Can you expand the commit message so that anyone
-who just know MMC and some SoC basics can understand
-what an SMC call and and what ATF(EL3) means?
+new bindings already need to be yaml.
 
-I assume this some kind of inline encryption?
-
-I think maybe linux-block mailing list need to be involved
-because there is certain a Linux standard way of setting
-up inline encryption for the block layer.
-
-For example: how is the key to be used derived?
-How is the device unlocked in the first place?
-
-If I insert a LUKS encrypted harddrive in a Linux machine
-the whole system is pretty much aware of how this should
-be handled and everything "just works", I enter a pass
-phrase and off it goes. I can use symmetric keys as well.
-How is this stuff done for this hardware?
-
-> +       /*
-> +        * 1: MSDC_AES_CTL_INIT
-> +        * 4: cap_id, no-meaning now
-> +        * 1: cfg_id, we choose the second cfg group
-> +        */
-> +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
-
-The same as above: these comments assume that everyone
-already knows what is going on.
-
-AES encryption requires a key and I don't see the driver
-setting up any key. How is the code in this file:
-drivers/mmc/core/crypto.c
-interacting with your driver?
-drivers/mmc/host/cqhci-crypto.c
-is used by SDHCI and is quite readable and I see what is going on.
-For example it contains functions like:
-cqhci_crypto_program_key()
-cqhci_crypto_keyslot_program()
-cqhci_crypto_clear_keyslot()
-cqhci_crypto_keyslot_evict()
-cqhci_find_blk_crypto_mode()
-
-MMC_CAP2_CRYPTO is used as a sign that the driver
-can do inline encryption, then devm_blk_ksm_init() is called
-to initialize a block encryption abstraction with the block layer.
-Ops are registered using
-struct blk_ksm_ll_ops cqhci_ksm_ops.
-
-This is very straight forward.
-
-But where does all the above happen for this driver?
-
-I get the feeling that some magic is happening in outoftree
-patches or in the secure world, and that is not how we do
-these things, you have to use the frameworks.
-
-Yours,
-Linus Walleij
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
