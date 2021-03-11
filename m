@@ -2,221 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41723337CE8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC784337D37
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 20:09:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbhCKSrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 13:47:45 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:40834 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbhCKSre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 13:47:34 -0500
-Received: from mail-wr1-f71.google.com ([209.85.221.71])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lKQLM-0003UE-BR
-        for devicetree@vger.kernel.org; Thu, 11 Mar 2021 18:47:32 +0000
-Received: by mail-wr1-f71.google.com with SMTP id l10so9939286wry.16
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:47:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AGhsYhdCQ1elD24yTKdnrXd5i7xOjzN52nW5SEJ7/Fo=;
-        b=PnGxjJWhYDkQvN/mdtqVF27P4XYRUQjk4L/432w732FePG0ejczPLfEv9tuULGbfLc
-         xLomy/oDeuSstEdxg4aBOW0QNXws2vJe77v+LpHZHVUa0tLhD5e+v/neNTKQSBDEJZ3+
-         UZ7tl157eseupcaNCgfd3K4gdYgbQJkZzyoUST0QDDt4wKBzRu++uhjMlfSZDhf+200q
-         NaFyLiuHbp0sBboqFlz8Yu4h3fVDfkrv6qHc65mGMtx9RKFcnp6xJicl7CQ+cocI2gkS
-         QjLNUpuSIzWpIUR2KGRPv6OYJOxGzmIRnvLdgScDfrEqzCNskibyA43T206g8d1xQc3m
-         nBwg==
-X-Gm-Message-State: AOAM530cJ6ToevVFmZSgQn/BLGx8MD8UzWk2b31tFsV+GpgOK1aWMwfx
-        A0u8RhdafajEqKlAX7dzvK4ZeilC4I5fGwEIWN/16CNEyA7WVhqXAOM7x2rlRyvayTV4Ff/numn
-        uINlN14eM5abPiQLAl8G1skikQtH1qLCsGJfQ6+g=
-X-Received: by 2002:a5d:5141:: with SMTP id u1mr10282903wrt.31.1615488451952;
-        Thu, 11 Mar 2021 10:47:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzEiONe/luicUkBQrryf9RIkvIG+x8+UJPcdgITbiuaICznSQKmKVThfd4wAkfQtdO2oa9H6A==
-X-Received: by 2002:a5d:5141:: with SMTP id u1mr10282871wrt.31.1615488451652;
-        Thu, 11 Mar 2021 10:47:31 -0800 (PST)
-Received: from [192.168.1.116] (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id h6sm4972118wmi.6.2021.03.11.10.47.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 10:47:31 -0800 (PST)
-Subject: Re: [PATCH v3 00/15] arm64 / clk: socfpga: simplifying, cleanups and
- compile testing
-To:     Tom Rix <trix@redhat.com>, Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-edac@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-i2c@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
- <f0b90916-9047-d5da-5cde-75d4330cf041@redhat.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <f581f103-270f-90ed-6946-de63b6712e82@canonical.com>
-Date:   Thu, 11 Mar 2021 19:47:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S229883AbhCKTIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 14:08:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39536 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229721AbhCKTIE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 14:08:04 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 77EF664FE0;
+        Thu, 11 Mar 2021 19:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615489682;
+        bh=+MqxPqLxS0fmcZSkxqaGS/7xnCYlQhr8+DK+/ePJsDE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V5MNT4BHOqod0O8XEiHiDDZBzJM7BDrJFZjL0FvTnGjdV85TOijRaR9AQvrOnhQVV
+         ulfWeO2Q785ENXGd2iGmhcoNfHLkxx2Bqc08uWVvOnOubM6nPIb0RQsSvdDDieSMQp
+         KppyVCtJpMEDvovtpatEtA4lyZkdu3Xj28dkoQmEbWotinPIbdSq69fhHZqd+5XoOc
+         dWbaROFQm2qh/8YRFEwDfHNd49yvkAMK2B3kTwPRFD1mfJ93HRE0Noih6TRvCZ90hV
+         AF+nW/B5JSeAfFgAf+u0Rld8GnK/9c9HWhHUrV1gMUzjZCMNEk+hNUpJ30iF/+g1CN
+         3Fv1Efm/4Cegg==
+Date:   Thu, 11 Mar 2021 11:08:00 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Peng Zhou <peng.zhou@mediatek.com>,
+        linux-block <linux-block@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wulin Li <wulin.li@mediatek.com>
+Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
+Message-ID: <YEpqkAq6wOZ+TpR9@gmail.com>
+References: <20210309015750.6283-1-peng.zhou@mediatek.com>
+ <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <f0b90916-9047-d5da-5cde-75d4330cf041@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2021 19:26, Tom Rix wrote:
+On Thu, Mar 11, 2021 at 02:48:23PM +0100, Linus Walleij wrote:
+> Hi Peng,
 > 
-> On 3/11/21 7:25 AM, Krzysztof Kozlowski wrote:
->> Hi,
->>
->> All three Intel arm64 SoCFPGA architectures (Agilex, N5X and Stratix 10)
->> are basically flavors/platforms of the same architecture.  At least from
->> the Linux point of view.  Up to a point that N5X and Agilex share DTSI.
->> Having three top-level architectures for the same one barely makes
->> sense and complicates driver selection.
->>
->> Additionally it was pointed out that ARCH_SOCFPGA name is too generic.
->> There are other vendors making SoC+FPGA designs, so the name should be
->> changed to have real vendor (currently: Intel).
->>
->>
->> Dependencies / merging
->> ======================
->> 1. Patch 1 is used as base, so other changes depend on its hunks.
->>    I put it at beginning as it is something close to a fix, so candidate
->>    for stable (even though I did not mark it like that).
->> 2. Patch 2: everything depends on it.
->>
->> 3. 64-bit path:
->> 3a. Patches 3-7: depend on patch 2, from 64-bit point of view.
->> 3b. Patch 8: depends on 2-7 as it finally removes 64-bit ARCH_XXX
->>     symbols.
->>
->> 4. 32-bit path:
->> 4a. Patches 9-14: depend on 2, from 32-bit point of view.
->> 4b. Patch 15: depends on 9-14 as it finally removes 32-bit ARCH_SOCFPGA
->>     symbol.
->>
->> If the patches look good, proposed merging is via SoC tree (after
->> getting acks from everyone). Sharing immutable branches is also a way.
->>
->>
->> Changes since v2
->> ================
->> 1. Several new patches and changes.
->> 2. Rename ARCH_SOCFPGA to ARCH_INTEL_SOCFPGA on 32-bit and 64-bit.
->> 3. Enable compile testing of 32-bit socfpga clock drivers.
->> 4. Split changes per subsystems for easier review.
->> 5. I already received an ack from Lee Jones, but I did not add it as
->>    there was big refactoring.  Please kindly ack one more time if it
->>    looks good.
->>
->> Changes since v1
->> ================
->> 1. New patch 3: arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64.
->> 2. New patch 4: arm64: intel: merge Agilex and N5X into ARCH_SOCFPGA64.
->> 3. Fix build is.sue reported by kernel test robot (with ARCH_STRATIX10
->>    and COMPILE_TEST but without selecting some of the clocks).
->>
->>
->> RFT
->> ===
->> I tested compile builds on few configurations, so I hope kbuild 0-day
->> will check more options (please give it few days on the lists).
->> I compare the generated autoconf.h and found no issues.  Testing on real
->> hardware would be appreciated.
->>
->> Best regards,
->> Krzysztof
->>
->> Krzysztof Kozlowski (15):
->>   clk: socfpga: allow building N5X clocks with ARCH_N5X
->>   ARM: socfpga: introduce common ARCH_INTEL_SOCFPGA
->>   mfd: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
->>   net: stmmac: merge ARCH_SOCFPGA and ARCH_STRATIX10
->>   clk: socfpga: build together Stratix 10, Agilex and N5X clock drivers
->>   clk: socfpga: merge ARCH_SOCFPGA and ARCH_STRATIX10
->>   EDAC: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
->>   arm64: socfpga: merge Agilex and N5X into ARCH_INTEL_SOCFPGA
->>   clk: socfpga: allow compile testing of Stratix 10 / Agilex clocks
->>   clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and
->>     compile test)
->>   dmaengine: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->>   fpga: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->>   i2c: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->>   reset: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->>   ARM: socfpga: drop ARCH_SOCFPGA
->>
->>  arch/arm/Kconfig                            |  2 +-
->>  arch/arm/Kconfig.debug                      |  6 +++---
->>  arch/arm/Makefile                           |  2 +-
->>  arch/arm/boot/dts/Makefile                  |  2 +-
->>  arch/arm/configs/multi_v7_defconfig         |  2 +-
->>  arch/arm/configs/socfpga_defconfig          |  2 +-
->>  arch/arm/mach-socfpga/Kconfig               |  4 ++--
->>  arch/arm64/Kconfig.platforms                | 17 ++++-------------
->>  arch/arm64/boot/dts/altera/Makefile         |  2 +-
->>  arch/arm64/boot/dts/intel/Makefile          |  6 +++---
->>  arch/arm64/configs/defconfig                |  3 +--
->>  drivers/clk/Kconfig                         |  1 +
->>  drivers/clk/Makefile                        |  4 +---
->>  drivers/clk/socfpga/Kconfig                 | 19 +++++++++++++++++++
->>  drivers/clk/socfpga/Makefile                | 11 +++++------
->>  drivers/dma/Kconfig                         |  2 +-
->>  drivers/edac/Kconfig                        |  2 +-
->>  drivers/edac/altera_edac.c                  | 17 +++++++++++------
->>  drivers/firmware/Kconfig                    |  2 +-
->>  drivers/fpga/Kconfig                        |  8 ++++----
->>  drivers/i2c/busses/Kconfig                  |  2 +-
->>  drivers/mfd/Kconfig                         |  4 ++--
->>  drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
->>  drivers/reset/Kconfig                       |  6 +++---
->>  24 files changed, 71 insertions(+), 59 deletions(-)
->>  create mode 100644 drivers/clk/socfpga/Kconfig
->>
-> Thanks for changing the config name.
+> thanks for your patch!
 > 
-> Please review checkpatch --strict on this set, the typical complaint is
+> On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
 > 
-> clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and compile test)    
-> WARNING: please write a paragraph that describes the config symbol fully
-> #35: FILE: drivers/clk/socfpg/Kconfig:11:                       
-> +config CLK_INTEL_SOCFPGA32
+> > Use SMC call enable hardware crypto engine
+> > due to it only be changed in ATF(EL3).
+> >
+> > Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
+> 
+> Unfortunately this commit message is way to short to
+> understand what is going on, and has a lot of assumed
+> previous knowledge.
+> 
+> Can you expand the commit message so that anyone
+> who just know MMC and some SoC basics can understand
+> what an SMC call and and what ATF(EL3) means?
+> 
+> I assume this some kind of inline encryption?
+> 
+> I think maybe linux-block mailing list need to be involved
+> because there is certain a Linux standard way of setting
+> up inline encryption for the block layer.
+> 
+> For example: how is the key to be used derived?
+> How is the device unlocked in the first place?
+> 
+> If I insert a LUKS encrypted harddrive in a Linux machine
+> the whole system is pretty much aware of how this should
+> be handled and everything "just works", I enter a pass
+> phrase and off it goes. I can use symmetric keys as well.
+> How is this stuff done for this hardware?
+> 
+> > +       /*
+> > +        * 1: MSDC_AES_CTL_INIT
+> > +        * 4: cap_id, no-meaning now
+> > +        * 1: cfg_id, we choose the second cfg group
+> > +        */
+> > +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
+> > +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
+> > +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
+> 
+> The same as above: these comments assume that everyone
+> already knows what is going on.
+> 
+> AES encryption requires a key and I don't see the driver
+> setting up any key. How is the code in this file:
+> drivers/mmc/core/crypto.c
+> interacting with your driver?
+> drivers/mmc/host/cqhci-crypto.c
+> is used by SDHCI and is quite readable and I see what is going on.
+> For example it contains functions like:
+> cqhci_crypto_program_key()
+> cqhci_crypto_keyslot_program()
+> cqhci_crypto_clear_keyslot()
+> cqhci_crypto_keyslot_evict()
+> cqhci_find_blk_crypto_mode()
+> 
+> MMC_CAP2_CRYPTO is used as a sign that the driver
+> can do inline encryption, then devm_blk_ksm_init() is called
+> to initialize a block encryption abstraction with the block layer.
+> Ops are registered using
+> struct blk_ksm_ll_ops cqhci_ksm_ops.
+> 
+> This is very straight forward.
+> 
+> But where does all the above happen for this driver?
+> 
 
-This symbol is not visible to the user, not selectable, so documenting
-it more than what is already written in option title (the one going
-after "bool") makes little sense. We don't do it for such drivers.
-Mostly because it would be duplication of the option title or include
-useless information (it's like documenting "int i" with "counter used
-for loop"). The checkpatch complains if this is less than three lines,
-but it is not possible to write here anything meaningful for more than
-one line.
+It happens in the same place, cqhci-crypto.c.  Mediatek's eMMC inline encryption
+hardware follows the eMMC standard fairly closely, so Peng's patch series just
+sets MMC_CAP2_CRYPTO to make it use the standard cqhci crypto code, and does a
+couple extra things to actually enable the hardware's crypto support on Mediatek
+platforms since it isn't enabled by default.  (*Why* it requires an SMC call to
+enable instead of just working as expected, I don't know though.)
 
-Really, it does not make sense. If you think otherwise, please suggest
-the text which is not duplicating option title and does not include
-common stuff from clocks.
+The way all this gets used is via the blk-crypto framework
+(Documentation/block/inline-encryption.rst), which is used by fscrypt
+(ext4 and f2fs encryption).
 
-Best regards,
-Krzysztof
+Peng, if you could explain all this properly in the cover letter, commit
+messages, and code comments (where it makes sense), that would be really helpful
+for people.  Also please make sure your patch series is in a thread so that
+people see it together.
+
+- Eric
