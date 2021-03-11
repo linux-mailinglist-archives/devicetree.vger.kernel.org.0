@@ -2,139 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5C233719C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E8213371E4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbhCKLng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:43:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
+        id S232739AbhCKL7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:59:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232757AbhCKLnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:43:14 -0500
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26513C061574;
-        Thu, 11 Mar 2021 03:43:14 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4Dx6Wv6wKFz1ry9k;
-        Thu, 11 Mar 2021 12:43:07 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4Dx6Wv4vCTz1qr4m;
-        Thu, 11 Mar 2021 12:43:07 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id bwhSiK_6OLsr; Thu, 11 Mar 2021 12:43:05 +0100 (CET)
-X-Auth-Info: PWDLWpU/RF1mQ0vyUrR2TmlPpbT0QFk+u0aQwwhF6ik=
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 11 Mar 2021 12:43:05 +0100 (CET)
-Subject: Re: [PATCH v2 00/14] Introduce STM32MP1 RCC in secured mode
-To:     Alexandre TORGUE <alexandre.torgue@st.com>,
-        "Alex G." <mr.nuke.me@gmail.com>,
-        Gabriel FERNANDEZ - foss <gabriel.fernandez@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232871AbhCKL7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:59:02 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDECAC061760
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 03:59:01 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id a18so1519580wrc.13
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 03:59:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sZHKANcfp4HNPSh4JPMPf2bq7tkkwGzMZt04c3NuqNM=;
+        b=slLbTWW+VCiQjXJ0yTY3dZELEMPbF3D/++3Ly5kWq1OvjC25KtW+/hnON08Z7DLU0E
+         f6ZRIJhgOPVk49Bl8C2BxCqXG79ROzFy3CnS7RjxVD61hr/tk+uRrSe/eZ2Up5hg6G+F
+         EEmkshnsttUouBqiWmrehhJl3E8fFoSh1VMviSypCHWTown2HoXUfxJLttdwklR8FkyF
+         w/4qs0fxAI2tEITnk19lYd9EKZ1vqs6J+1oWwsZW0uKRNFBm6C5JOcfRG1eY0Ta6cSO1
+         XTYcB3WUISPfERpIlWT+sYSxeruvrA6vdrQHLy5c3jZkjD13ZSY2UybKVS4XMRG3Si4z
+         j0uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sZHKANcfp4HNPSh4JPMPf2bq7tkkwGzMZt04c3NuqNM=;
+        b=VtC1pHeOeTlFbhwHZHQ82fX3yIr7hQBBUZ8Uf7ap2S5wAE+5FjlKj8dEc56IPWMGhr
+         cVF0QMhwovl09IG4wvccseWr1WfsY9nPlK0AWlpK2iCemxLRikPGvUH3IxX1E9H+eaIs
+         0MUdS+Z/ouz67I8EXM0td8hZ7WPIAqWAjCLXtct0VAI2WU46qW7inYPfGebY3Xp5qpBe
+         QBsgJlsJobBdbgeVnRw+hXYA18XeFsnQmQrnwklUASaj3yGh2tVaIhOvbatTxZLZvbnc
+         zziyqhywOpOAqdARWPR5gw+FJKtI6iL9sgjQfj51h5f0YI62Cvs8OyDnqoOmuAhJVS2x
+         bAng==
+X-Gm-Message-State: AOAM531NhcCLNfT0snq5SQ9H0eC9lHZ3dluk6lR2gxVMnoHV3q0KlMGe
+        BMo2GQLO4uQqws0KBYzqA3Creg==
+X-Google-Smtp-Source: ABdhPJyGW237VA0pOXRhgzw1B/QCI5NH543/K3au6kCa1Mi5BCUfrAiNV+sDspN6mup1sB4o/iEoIw==
+X-Received: by 2002:adf:a406:: with SMTP id d6mr8435048wra.141.1615463940408;
+        Thu, 11 Mar 2021 03:59:00 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:84cf:7f4d:d470:dfd4? ([2a01:e34:ed2f:f020:84cf:7f4d:d470:dfd4])
+        by smtp.googlemail.com with ESMTPSA id m10sm3455006wmh.13.2021.03.11.03.58.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Mar 2021 03:59:00 -0800 (PST)
+Subject: Re: [RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        =?UTF-8?Q?Ga=c3=abl_PORTAY?= <gael.portay@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Etienne CARRIERE <etienne.carriere@st.com>,
-        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
- <2e04f814-b694-119d-fe8a-13e6df129536@gmail.com>
- <AS8PR10MB4712C27260707345FA99ED5AEE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <c57775fe-41ef-07f5-56a2-04b8f70797c1@denx.de>
-Date:   Thu, 11 Mar 2021 12:43:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        Helen Koike <helen.koike@collabora.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jacob Chen <jacob2.chen@rock-chips.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210308233858.24741-1-daniel.lezcano@linaro.org>
+ <20210308233858.24741-2-daniel.lezcano@linaro.org>
+ <9c36893a-6ca8-dade-e203-890a4071bf50@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <5f66f43e-8b50-39f2-f326-07a9378c0909@linaro.org>
+Date:   Thu, 11 Mar 2021 12:58:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <AS8PR10MB4712C27260707345FA99ED5AEE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <9c36893a-6ca8-dade-e203-890a4071bf50@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/11/21 9:08 AM, Alexandre TORGUE wrote:
-> Hi ALex
-
-Hello everyone,
-
-[...]
-
->> Subject: Re: [PATCH v2 00/14] Introduce STM32MP1 RCC in secured mode
->>
->> On 1/26/21 3:01 AM, gabriel.fernandez@foss.st.com wrote:
->>> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->>>
->>> Platform STM32MP1 can be used in configuration where some clocks and
->>> IP resets can relate as secure resources.
->>> These resources are moved from a RCC clock/reset handle to a SCMI
->>> clock/reset_domain handle.
->>>
->>> The RCC clock driver is now dependent of the SCMI driver, then we have
->>> to manage now the probe defering.
->>>
->>> v1 -> v2:
->>>     - fix yamllint warnings.
->>
->> Hi Gabriel,
->>
->> I don't have much clout with the maintainers, but I have to NAK this series
->> after finding major breakage.
->>
->> The problem with series is that it breaks pretty much every board it touches.
->> I have a DK2 here that I'm using for development, which no longer boots with
->> this series applied.
->>
->> The crux of the matter is that this series assumes all boards will boot with an
->> FSBL that implements a very specific SCMI clock tree. This is major ABI
->> breakage for anyone not using TF-A as the first stage bootloader. Anyone
->> using u-boot SPL is screwed.
->>
->> This series imposes a SOC-wide change via the dtsi files. So even boards that
->> you don't intend to convert to SCMI will get broken this way.
->> Adding a -no-scmi file that isn't used anywhere doesn't help things.
+On 09/03/2021 12:42, Johan Jonker wrote:
+> Hi Daniel,
 > 
-> You are right. We mainly take care about NO ST (DH/...) boards, but  not really about current usage
-> Of our stm32 boards. Several options exist:
+> Some comments. Have a look if it's useful or that you disagree with.
+> 
+> New nodes should be verifiable if possible.
+> Especially with so many properties.
+> Could you convert rockchip-dfi.txt and rk3399_dmc.txt to yaml instead of
+> changing old txt documents?
+> Add rockchip-dfi.yaml and rk3399_dmc.yaml before this patch in version 6.
 
-Since a lot of people benefit from the good upstream support for the MP1 
-_and_ keep updating their machines to get the latest fixes, it is very 
-important to keep the current usage working.
+I don't have a lot of bandwidth to do it but I will give a try.
 
-> 1- Break the current ABI: as soon as those patches are merged, stm32mp157c-dk2.dtb will impose to use
-> A tf-a for scmi clocks. For people using u-boot spl, the will have to create their own "no-secure" devicetree.
+Thanks for reviewing
 
-NAK, this breaks existing boards and existing setups, e.g. DK2 that does 
-not use ATF.
+  -- Daniel
 
-> 2-As you suggest, create a new "secure" dtb per boards (Not my wish for maintenance perspectives).
+> Nodes and properties have a sort order. Please fix.
+> Some goes for [RESEND PATCH v5 3/4].
+> 
+> (This is a generic dtsi. How about cooling and dmc ??)
+> 
+> ----
+> Heiko rules:
+> 
+> compatible
+> reg
+> interrupts
+> [alphabetical]
+> status [if needed]
+> 
+> ----
+> My incomplete list:
+> 
+> For nodes:
+> If exists on top: model, compatible and chosen.
+> Sort things without reg alphabetical first,
+> then sort the rest by reg address.
+> 
+> Inside nodes:
+> If exists on top: compatible, reg and interrupts.
+> In alphabetical order the required properties.
+> Then in alphabetical order the other properties.
+> And as last things that start with '#' in alphabetical order.
+> Add status below all other properties for soc internal components with
+> any board-specifics.
+> Keep an empty line between properties and nodes.
+> 
+> Exceptions:
+> Sort pinctrl-0 above pinctrl-names, so it stays in line with clock-names
+> and dma-names.
+> Sort simple-audio-card,name above other simple-audio-card properties.
+> Sort regulator-name above other regulator properties.
+> Sort regulator-min-microvolt above regulator-max-microvolt.
+> 
+> On 3/9/21 12:38 AM, Daniel Lezcano wrote:
+>> From: Lin Huang <hl@rock-chips.com>
+>>
+>> These are required to support DDR DVFS on rk3399 platform.
+>>
+>> Signed-off-by: Lin Huang <hl@rock-chips.com>
+>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>> Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>
+>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 19 +++++++++++++++++++
+>>  1 file changed, 19 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> index edbbf35fe19e..6f23d99236fe 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> @@ -1937,6 +1937,25 @@
+>>  		status = "disabled";
+>>  	};
+>>  
+>> +	dfi: dfi@ff630000 {
+>> +		reg = <0x00 0xff630000 0x00 0x4000>;
+>> +		compatible = "rockchip,rk3399-dfi";
+>> +		rockchip,pmu = <&pmugrf>;
+>> +		interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +		clocks = <&cru PCLK_DDR_MON>;
+>> +		clock-names = "pclk_ddr_mon";
+>> +		status = "disabled";
+>> +	};
+>> +
+>> +	dmc: dmc {
+>> +		compatible = "rockchip,rk3399-dmc";
+>> +		rockchip,pmu = <&pmugrf>;
+>> +		devfreq-events = <&dfi>;
+>> +		clocks = <&cru SCLK_DDRC>;
+>> +		clock-names = "dmc_clk";
+>> +		status = "disabled";
+>> +	};
+>> +
+>>  	pinctrl: pinctrl {
+>>  		compatible = "rockchip,rk3399-pinctrl";
+>>  		rockchip,grf = <&grf>;
+>>
+> 
 
-I agree with Alex (G) that the "secure" option should be opt-in.
-That way existing setups remain working and no extra requirements are 
-imposed on MP1 users. Esp. since as far as I understand this, the 
-"secure" part isn't really about security, but rather about moving clock 
-configuration from Linux to some firmware blob.
 
-> 3- Keep kernel device tree as they are and applied this secure layer (scmi clocks phandle) thanks to dtbo in
-> U-boot.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Is this really better than
-#include "stm32mp15xx-enable-secure-stuff.dtsi"
-in a board DT ? Because that is how I imagine the opt-in "secure" option 
-could work.
-
-> The third could be the less costly.
-
-[...]
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
