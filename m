@@ -2,82 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1380E337926
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:21:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C073033796A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:32:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234538AbhCKQVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:21:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
+        id S229674AbhCKQbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:31:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234544AbhCKQUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:20:42 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68249C061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:20:42 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id f26so2888922ljp.8
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:20:42 -0800 (PST)
+        with ESMTP id S229690AbhCKQbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:31:19 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99659C061760
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:31:19 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id u62so7928081oib.6
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:31:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4mfW5335h/WRWI9dVCvKJHe+RapkHx/nphEJf+JLEfY=;
-        b=oj/xGKhwPlYIKGs7xGNB09v6HFRF++lyyRmlXCz0eDkY5xcQ3u8RrezpbRkdy11V9C
-         +uhCGn6P/rPEbM965aoKuppk2Gvsz3XB7dmtWBEj3Emdg4PGblZQXIghdjISOtxHhdAD
-         aY6hAoFGFd5oUpC/2iLC3lzxRzBo3LWLHI52K7qiGdsN4tHYQ8AaUxh9m7mzXK0nXhV7
-         0TL4XbcYXCFYcfdH80iGpegLieJLpUbb16RFrglCRznxrD6QDUbtMYsNFXi/jR2aoDek
-         tGQmVPJ4JxDfABjrXQPMXsTqvbWSOpjf20XOFkdOJqd+b5SE51BGdaLoFVP2lAZB4aB2
-         wBwg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dxCOzqw4OU5tNnGsb0G/mX+YTbwJwLies3DsLPBifnM=;
+        b=YTc1qrhxjsnX9+9VweICdIymergn23QKmhuRY3DiCjo8y5jB/7SeamD5tYP0HCTAtP
+         VKeFHLfTynEAgFT7EF+MGGhmXdSFJmyAN+ZwfWmdeKKofBwFT7o9duX2Nkt1SRdsS3YV
+         YpSLGHo0DxX6/hRelFakKkU5BLbiBpx+xjiV5Ae634VWo2hVBWYm1WVtSBBa1rzb4cW2
+         Fyylx8ycQyIsCgjCgIE7n5EWdFvV0RzoT07McHPiX9wcV50MxBDyKgmGZd0EXmLkPR/Q
+         8JjTZR0eccWaE3y4aA5ZCoUypcRkHuFplhfZo9TZ3E6xIqczVYyXfGohGbjdUrimmwNh
+         1A9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4mfW5335h/WRWI9dVCvKJHe+RapkHx/nphEJf+JLEfY=;
-        b=mfBpcyHHM+AihRKygZTixkHDGUySTbUVXUuOpNIx2KzqVRWQcV+yVDLtVq518QyUHj
-         2FGXVmPPQJV/e80h03H2WW8uV3CUAAFoLxsoz8/aOl7cWFcr/9BZ0dSX7vcooa2x7/p5
-         yYQKkx6CPJjTRZzUxZYP7Zt8caOXP+VXrAnk2OOv7DsGBqKtngI7+msf7RUVXGKmIINi
-         xjG/jZ8f4hmuWlAi9h3h1ijhEYKK5eJKyNA63T+YCRZ3tDglQXrpO/g2mDbGlcQ9aE8E
-         tVP6WbU/63L7vXHaM6wPDdqT0RRQmEd5N3i5HjSGga2x+TXGQKnwDYVGcSYSW7igbqsO
-         8hBQ==
-X-Gm-Message-State: AOAM533U1q0edhBYtc3VqlR74E1SJ5CrFmE8B2+Oq82UYwdI7aiZ3co3
-        mCW72O18oMLbWkRndZTunJ7VOZAuZr1xgXmNoLNl8Q==
-X-Google-Smtp-Source: ABdhPJxUPh5qHPBDejHPkQZGXI7Wr8UqPIjSZ7fl43pyrVqj46hUhhEA5svMYWySIqUU/pYnrGqKZGpg5zRKasOSBwk=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr5068722ljj.467.1615479640987;
- Thu, 11 Mar 2021 08:20:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20210115224420.1635017-1-dianders@chromium.org>
- <CACRpkdYUs2W3b_u8YrmYwq_kcUCf0DhZ-o2o6O2EmU5rdtv=BA@mail.gmail.com>
- <CAD=FV=WDVAj+OcVXaTJRUu8tvdDzySW0KOfiGqZHi5YvP42BTA@mail.gmail.com>
- <CACRpkda1Ast1cqNfVJ_u6zs8610DWSQGykPt4yBw+mFZFrUPSg@mail.gmail.com> <CAD=FV=Vj-6Y0X667o5vH0EL7hXi6sU4ZWs_a41B6h0D1s05_Hw@mail.gmail.com>
-In-Reply-To: <CAD=FV=Vj-6Y0X667o5vH0EL7hXi6sU4ZWs_a41B6h0D1s05_Hw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 17:20:30 +0100
-Message-ID: <CACRpkdZpy9yvp+bzHUGiZVyFBDpJHJcYSZQnBQreCfTQLOj1-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] drm/panel-simple: Patches for N116BCA-EA1
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dxCOzqw4OU5tNnGsb0G/mX+YTbwJwLies3DsLPBifnM=;
+        b=fCeE1OJVdqoj7SJaxY7zD1WTOuuYiRl1ir9bL8f9T3yv5MMN0zTnsD/wzAk8vXwx3C
+         /EgnrbvT5UiCiJoSR4ZZnxW+BOXEXNW63kyeDV5z8yHDxD8ebaybCwzQGmU9CDkpwjST
+         iGtDDixuQV1HnEX0LSomTaqH3pxWUb3ocmzzNPH+3/WsmPlXrwLxRcWTuJBBJx4XnlJw
+         Wi0RshJbhyx5tMsvXRjd85uwVbjeJMgb17ztI1QED4v6gmZ8wfFgYCLOj7gYIjrEIMw3
+         A2XvcahhwKJUt1iHkiZcES8nmHKJ0T43slknxNBglhrc3lHvhUl5FELOBFEbv5i+F7EZ
+         tZgg==
+X-Gm-Message-State: AOAM531tkUmDiqtIsbTh8LuErZSKC5+aQj2smg6rmTXqNw3V0gH8Uv3y
+        VsuRqECJcrvKxLvnjyguPdXyPA==
+X-Google-Smtp-Source: ABdhPJy8g+TsPd2NUk3K/DbblvGVMt7+KSupjIq5Fp3bjoYNBvD/mp6WLJf/7RBLg4CdHqxr5X8eCg==
+X-Received: by 2002:aca:c2d7:: with SMTP id s206mr6544020oif.95.1615480278918;
+        Thu, 11 Mar 2021 08:31:18 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s193sm625571oih.52.2021.03.11.08.31.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Mar 2021 08:31:18 -0800 (PST)
+Date:   Thu, 11 Mar 2021 10:31:16 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Souradeep Chowdhury <schowdhu@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        sibis@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        vkoul@kernel.org
+Subject: Re: [PATCH V1 2/6] soc: qcom: dcc: Add driver support for Data
+ Capture and Compare unit(DCC)
+Message-ID: <YEpF1JO4CAd2pb0m@builder.lan>
+References: <cover.1615393454.git.schowdhu@codeaurora.org>
+ <48556129a02c9f7cd0b31b2e8ee0f168e6d211b7.1615393454.git.schowdhu@codeaurora.org>
+ <YElUCaBUOx7hEuIh@builder.lan>
+ <ab30490c016f906fd9bc5d789198530b@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab30490c016f906fd9bc5d789198530b@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 2:01 AM Doug Anderson <dianders@chromium.org> wrote:
+On Thu 11 Mar 00:19 CST 2021, Sai Prakash Ranjan wrote:
 
-> If you happen to feel in an applying mood one other patch to
-> simple-panel I think is OK to land is at:
->
-> https://lore.kernel.org/r/20210222081716.1.I1a45aece5d2ac6a2e73bbec50da2086e43e0862b@changeid
+> Hi Bjorn,
+> 
+> On 2021-03-11 04:49, Bjorn Andersson wrote:
+> > On Wed 10 Mar 10:46 CST 2021, Souradeep Chowdhury wrote:
+> > 
+> > > The DCC is a DMA Engine designed to capture and store data
+> > > during system crash or software triggers. The DCC operates
+> > > based on link list entries which provides it with data and
+> > > addresses and the function it needs to perform. These
+> > > functions are read, write and loop. Added the basic driver
+> > > in this patch which contains a probe method which instantiates
+> > > the resources needed by the driver. DCC has it's own SRAM which
+> > > needs to be instantiated at probe time as well.
+> > > 
+> > 
+> > So to summarize, the DCC will upon a crash copy the configured region
+> > into the dcc-ram, where it can be retrieved either by dumping the memory
+> > over USB or from sysfs on the next boot?
+> > 
+> 
+> Not just the next boot, but also for the current boot via /dev/dcc_sram,
+> more below.
+> 
 
-I applied and pushed this as well.
+Interesting!
 
-Yours,
-Linus Walleij
+> > > Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> > > ---
+> > >  drivers/soc/qcom/Kconfig  |   8 +
+> > >  drivers/soc/qcom/Makefile |   1 +
+> > >  drivers/soc/qcom/dcc.c    | 388
+> > > ++++++++++++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 397 insertions(+)
+> > >  create mode 100644 drivers/soc/qcom/dcc.c
+> > > 
+> 
+> <snip>...
+> 
+> > 
+> > How about implementing this using pstore instead of exposing it through
+> > a custom /dev/dcc_sram (if I read the code correclty)
+> > 
+> 
+> Using pstore is definitely a good suggestion, we have been thinking of
+> adding it as a separate change once the basic support for DCC gets in.
+> But pstore ram backend again depends on warm reboot which is present only
+> in chrome compute platforms but android platforms do not officially support
+> warm reboot. Pstore with block devices as a backend would be ideal but it
+> is still a work in progress to use mmc as the backend [1].
+> 
+
+I was under the impression that we can have multiple pstore
+implementations active, so we would have ramoops and dcc presented
+side by side after such restart. Perhaps that's a misunderstanding on my
+part?
+
+> Now the other reason as to why we need this dev interface in addition to
+> pstore,
+> 
+>  * Pstore contents are retrieved on the next boot, but DCC SRAM contents
+>    can be collected via dev interface for the current boot via SW trigger.
+>    Lets say we have some non-fatal errors in one of the subsystems and we
+>    want to analyze the register values, it becomes as simple as configuring
+>    that region, trigger dcc and collect the sram contents and parse it.
+> 
+>    echo "addr" > /sys/bus/platform/devices/***.dcc/config
+>    echo  1 > /sys/bus/platform/devices/***.dcc/trigger
+>    cat /dev/dcc_sram > dcc_sram.bin
+>    python dcc_parser.py -s dcc_sram.bin --v2 -o output/
+> 
+> We don't have to reboot at all for SW triggers. This is very useful and
+> widely used internally.
+> 
+> Is the custom /dev/dcc_sram not recommended because of the dependency on
+> the userspace component being not available openly? If so, we already have
+> the dcc parser upstream which we use to extract the sram contents [2].
+> 
+
+My concern is that we come up with a custom chardev implementation for
+something that already exists or should exist in a more generic form.
+
+
+In the runtime sequence above, why don't you have trigger just generate
+a devcoredump? But perhaps the answer is that we want a unified
+interface between the restart and runtime use cases?
+
+
+It would be nice to have some more details of how I can use this and how
+to operate the sysfs interface to achieve that, would you be able to
+elaborate on this?
+
+Regards,
+Bjorn
+
+> [1]
+> https://lore.kernel.org/lkml/20210120121047.2601-1-bbudiredla@marvell.com/
+> [2] https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+> 
+> Thanks,
+> Sai
+> 
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
