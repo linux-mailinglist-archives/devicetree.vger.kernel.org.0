@@ -2,91 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D3333697B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:18:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA35533697E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbhCKBR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 20:17:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
+        id S229538AbhCKBUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 20:20:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbhCKBRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:17:06 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79146C061761
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:17:06 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id e2so211904ljo.7
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:17:06 -0800 (PST)
+        with ESMTP id S229601AbhCKBT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:19:58 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE01C061574
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:19:58 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id j6-20020a17090adc86b02900cbfe6f2c96so8511163pjv.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:19:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=B7suaILMqkwRadnzQQxPfSqPrJ+7maZjfwE653KBZsY=;
-        b=I5asAXLdzh8hgadBtI0ePVcXHJrnN3OmbnuSEAkDUiL0l06QmaBO6SEvt38EGF78gw
-         4pYxRtg/ieeD8DN8YCl4k7jqQ279+qebcaI5JCfgzkfCSUTDbm7oPeSyDia1K4POiRcE
-         svhAa93OB6ht1jgc3bJptcPsnmUNrx+ASd5wg5GFTiwyrv9eb0tv+225S/E5ieGTSimn
-         5kaUwzH+jvzR/B17DSTBMtW2JtMPFpZ3JDJC+8VHAqlwo6oDf9KG9TJXxFi/MO0d6Eb8
-         wCtp3I0jIoQ9Uh2F3fPVO4HUrle8NDDBjTb/VBolSr75a8Aw4LtePcfXea5S3CwR7ZVw
-         l2lw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wlN97WTPrtLsBMydHFkQsvjRJ9vlEhU6c/gLEPBoS/A=;
+        b=mIqAAym+Xg6mJErREVlFYuS6s2zdwJYKfCB6PrR+E9u37nYmA59fE0ou+xsNOVPqST
+         odbnN0Yj36QFtxVHX17iSOtdyHVxBudZN0rlFKkAl/f7PODPnnJNEyBeDCEeWS2qsvqC
+         0oD7mVLtYAe068rVCbnNZ4RDAV8mqGpkbOCy8rly8dO06QKapWEADhozXNeANdy93dQD
+         J0NlTsLoZcqIVS5JgugP7cD9QzdxCF8MO9DiGSAIZA/QzQJ/WgTaKyYicvZdE+2k9WiA
+         dvZQVBt62UODQMI+Z3qXNCKaUT5MvlHDzd4F2NJeQW/hWv1GhqP9e4pZEbUiwdRHpud3
+         Dj4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=B7suaILMqkwRadnzQQxPfSqPrJ+7maZjfwE653KBZsY=;
-        b=NoKf2sK/GVQmHGCYpf6zjC+fgdgNodzPgefOju/N0n0mqaDo1MdsA/8Rt1wVCqdK9f
-         U2/wIpJp+lc0Rv5TtpdIWyUP9rzM7y81XGQ02BVCyg+i+HRjNXJudaNrKy+exT05rmPr
-         073Z2/7A5qZE7HddYcJ+5gRNtxcV+uDP0gYg0VRF0ZKjGI/ZeZe6/rKoVL+bkMgaDYAB
-         89dVGnQeu/0fLedHWvMAygriFXpzOG6XrpKNwmbYC46aROUPnU1gYApcpszU1Ssajn96
-         wC7Rb6sUfw5raZz3E1Q+U7A/UPGR6B/YhcqIhJ8CIIa0o62+ASENeOyXb1PKUgoMwfEI
-         nGFw==
-X-Gm-Message-State: AOAM532nJD3UDpwrFHMEAJpIynZ4f4L1pPOwRYRdBmDFhWd+QQn1OZO9
-        ompSg0sMHzh32qH91NKBWNR8wayCk6iofV0wY3dsBA==
-X-Google-Smtp-Source: ABdhPJw4+/D839Q6QR+cLunMDw8nqYj+e0QUG0rP80PVTMnqGi4QCWr0d3t0u6bTJ/26oZMuJfs1lIwcmmW3VWl7mIQ=
-X-Received: by 2002:a2e:9004:: with SMTP id h4mr3415908ljg.326.1615425424782;
- Wed, 10 Mar 2021 17:17:04 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wlN97WTPrtLsBMydHFkQsvjRJ9vlEhU6c/gLEPBoS/A=;
+        b=CTS05le6k23msP4E0XeDyQfzcPBu28Ns/4gTvYBW54V4WIUxq+oIJGg81zZH8lKmXi
+         ZT8QMrZL2NEWHNlYNqqbCbdtIUkLUrXOYEZdGOz4JzYRN+Ya7DhMD5+CNE9JkW+FY/x/
+         7Ghh88K1mud2XTlAUQM7XnUXDUAOgsAywbU78Jlr7/Fe6ErJ/9DnA3Oa//ptHDs17v4C
+         Pw1vvz9kUA9hknvIS6gSJ1Z1Y3DlLkG00cIUtepit05Xc1vY5CWy/XjAfaWRf9SlTHQ0
+         KUhlTyWXn/eKSs4+Oy2jqXBTKIUw9dXD/nmmmxudRGDOdB3T8Qww3muBhbASeKtJwnuA
+         v+yg==
+X-Gm-Message-State: AOAM532MJrADEPAo1mDkR+X9VOF2Y1qmEaZN+Zhb78lN3J3/ue4G2sgH
+        U7PO4WUOoYmX4GkGbj/QH0FgXA==
+X-Google-Smtp-Source: ABdhPJww2k5cDJG/j8WM1Ep0hSY2YrmTfc6AL4DHohUX/ZZK92r9Jec+v63JzCoVwkh0UxYcr8nNNA==
+X-Received: by 2002:a17:902:ec84:b029:e5:bd05:4a98 with SMTP id x4-20020a170902ec84b02900e5bd054a98mr5654982plg.76.1615425598371;
+        Wed, 10 Mar 2021 17:19:58 -0800 (PST)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id u2sm529839pjy.14.2021.03.10.17.19.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 10 Mar 2021 17:19:58 -0800 (PST)
+Date:   Thu, 11 Mar 2021 09:19:52 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
+ 'gpio-ranges'
+Message-ID: <20210311011951.GT17424@dragon>
+References: <20210303033106.549-1-shawn.guo@linaro.org>
+ <20210303033106.549-2-shawn.guo@linaro.org>
+ <YEKl7GbxBhui4eoT@builder.lan>
+ <20210306012829.GL17424@dragon>
+ <YELhMmDndOTSSJJO@builder.lan>
+ <20210306080049.GM17424@dragon>
+ <YEkOaK+UiLy8kSDu@builder.lan>
 MIME-Version: 1.0
-References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-3-noltari@gmail.com>
- <7e35bfd395f3ae40029b0f3cb2bc8f70@walle.cc> <DC6BACCE-C76F-41C5-8CB9-BEF3257B3B57@gmail.com>
-In-Reply-To: <DC6BACCE-C76F-41C5-8CB9-BEF3257B3B57@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 02:16:54 +0100
-Message-ID: <CACRpkdam6kbGNywdaoxMJ4gCisyne_PNmXQfVczwi8ToABGgUw@mail.gmail.com>
-Subject: Re: [PATCH v6 02/15] gpio: regmap: set gpio_chip of_node
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YEkOaK+UiLy8kSDu@builder.lan>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 8:12 PM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
+On Wed, Mar 10, 2021 at 12:22:32PM -0600, Bjorn Andersson wrote:
+> On Sat 06 Mar 02:00 CST 2021, Shawn Guo wrote:
+> 
+> > On Fri, Mar 05, 2021 at 07:56:02PM -0600, Bjorn Andersson wrote:
+> > > On Fri 05 Mar 19:28 CST 2021, Shawn Guo wrote:
+> > > 
+> > > > On Fri, Mar 05, 2021 at 03:43:08PM -0600, Bjorn Andersson wrote:
+> > > > > On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
+> > > > > 
+> > > > > > The last cell of 'gpio-ranges' should be number of GPIO pins, and in
+> > > > > > case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
+> > > > > > than msm_pinctrl_soc_data.ngpio - 1.
+> > > > > > 
+> > > > > 
+> > > > > This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
+> > > > > this there's an output-only pin for UFS, which I exposed as an GPIO as
+> > > > > well - but it's only supposed to be used as a reset-gpio for the UFS
+> > > > > device.
+> > > > > 
+> > > > > Perhaps that still mandates that gpio-ranges should cover it?
+> > > > 
+> > > > I think the number in DT gpio-ranges should match msm_pinctrl_soc_data.ngpio.
+> > > > Otherwise, kernel will be confused and be running into the issue like
+> > > > below in some case.
+> > > > 
+> > > > > 
+> > > > > > This fixes the problem that when the last GPIO pin in the range is
+> > > > > > configured with the following call sequence, it always fails with
+> > > > > > -EPROBE_DEFER.
+> > > > > > 
+> > > > > >     pinctrl_gpio_set_config()
+> > > > > >         pinctrl_get_device_gpio_range()
+> > > > > >             pinctrl_match_gpio_range()
+> > > > > 
+> > > > > When do we hit this sequence? I didn't think operations on the UFS
+> > > > > GP(I)O would ever take this code path?
+> > > > 
+> > > > It will, if we have UFS driver booting from ACPI and requesting reset
+> > > > GPIO.
+> > > 
+> > > But does the UFS driver somehow request GPIO 190 on SC8180x?
+> > > 
+> > > I made up the idea that this is a GPIO, there really only is 190 (0-189)
+> > > GPIOs on thie SoC.
+> > > 
+> > > Downstream they use a pinconf node with "output-high"/"output-low" to
+> > > toggle the reset pin and I don't find any references in the Flex 5G
+> > > DSDT.
+> > 
+> > Right now, I do not have to request and configure this UFS GPIO for
+> > getting UFS work with ACPI kernel.  And the immediate problem we have is
+> > that with gpio_chip .set_config patch, devm_gpiod_get_optional() call
+> > from UFS driver always gets -EPROBE_DEFER.
+> > 
+> 
+> But we don't have a "reset" GPIO specified in the ACPI node, or you mean
+> with the introduction of .set_config DT no longer works?
 
-> > If there will be a new version, please add the following comment:
->
-> Right now I don=E2=80=99t know that either, because I=E2=80=99m honestly =
-getting tired of this=E2=80=A6
+Yes, DT stops working because of the mismatch between
+msm_pinctrl_soc_data.ngpio and gpio-ranges.
 
-IMO there is indeed such a thing as over-review when it comes
-to migrating legacy platforms: as subsystem maintainer I ask the bigger
-question: does the kernel look better after than before this patch? If the
-author is stressed by too much review I tend to just apply it and say that
-comments can be addressed by additional patches.
-
-DT bindings are different because they are written in stone. We just need
-to settle the DT bindings. Give the patch set some rest and come back and
-poke me to apply it when the chatter stops.
-
-Yours,
-Linus Walleij
+Shawn
