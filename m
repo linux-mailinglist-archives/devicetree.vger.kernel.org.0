@@ -2,143 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C79C337F7C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 22:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 451CC337FA5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 22:35:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbhCKVPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 16:15:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40144 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231241AbhCKVOv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 16:14:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 69E0A600CC;
-        Thu, 11 Mar 2021 21:14:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615497256;
-        bh=1Gq9ClTTzgzgBZrG50VQRaLjdSNMezZBgYskj+ev9t4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KjAKhaFqiLiecSpTo5ZepN/OtyJd8I3xqccgVeu2ykHABm0CrX9FiBiaAxtOZARzX
-         EPAkAJ6R2TfC4+bEJnS8FLuxcgYBfFhYAn+yd3IiJIXRRkaK9SovrOzHeF+Am6sLEv
-         jOgIsPmMjw63ZGnXdQFy3DYnyC2ZgWtykHEnucOPDmbBTlVVnTSKb9FLD5/kyzcKdc
-         c8uSaCbtu4FT7NWw0o+TyHr0blY7tttNmOxf7zsvZk2AVISUx7cGhj+tc3YIeVRTzg
-         MYfAvkaEhKd4MjNEep56EzahPsYD8Uc/psVkLNnWCq2x0i2y031Hh3mWT8TmmVTDVq
-         eRfd78i9W9blA==
-Received: by mail-ed1-f54.google.com with SMTP id j3so4945230edp.11;
-        Thu, 11 Mar 2021 13:14:16 -0800 (PST)
-X-Gm-Message-State: AOAM5308UxFV19CwB+YWhABXbcWIWaLAvPSDE4KZ4hDYFqvykCIr3h1J
-        QKuQ9GzJpxTuG/LzUGTHXUtDHZb31C/mQqEuBg==
-X-Google-Smtp-Source: ABdhPJwFGvXWlsCMvQVrIbfRFd9CXv7s7D8vCbthspQTNwPv26dQf5jf0GKdzQ2+oyoD0yzw8TW3mdFVhV5l6ZRj0yM=
-X-Received: by 2002:aa7:c403:: with SMTP id j3mr10559731edq.137.1615497254841;
- Thu, 11 Mar 2021 13:14:14 -0800 (PST)
+        id S229796AbhCKVe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 16:34:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229809AbhCKVeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 16:34:22 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EDCDC061574;
+        Thu, 11 Mar 2021 13:34:22 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id BE3632224F;
+        Thu, 11 Mar 2021 22:34:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1615498460;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=C4zSLxlmqKWF8rF0E50MCvu5Ykg7ipqxtjl4CTHHmzA=;
+        b=ZpGo7Mvg7andqY/6j3wcUlI/ZZ36ZFpZxlFQ7qjY7AyvhSjy4Lu5xwF4lK/BQqWYb35nT0
+        bFAmPDCx5s/W5oWNNnIYXpJPMm5HbpgX+6vfndyd6XUT4FxjqkjqV7bjgSkhPt/tfDE7XU
+        a1Acu4TpejE05Ov5HorT10yEPvOH+64=
 MIME-Version: 1.0
-References: <20210309112148.2309116-1-geert+renesas@glider.be>
- <CAL_JsqJzfoSubkKQ+aGYGbuH2=vLG2Sf_nQShxJ8DLirALff5g@mail.gmail.com> <CAMuHMdWqo7WVsiNk2xyTM=cqi883v0_-jh1Ry9R7yLBaoOYxoA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWqo7WVsiNk2xyTM=cqi883v0_-jh1Ry9R7yLBaoOYxoA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Mar 2021 14:14:02 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+n6DVpoSkym3E4yG7BcUu6jS8O51tCpFD4-CeCtPesqA@mail.gmail.com>
-Message-ID: <CAL_Jsq+n6DVpoSkym3E4yG7BcUu6jS8O51tCpFD4-CeCtPesqA@mail.gmail.com>
-Subject: Re: [PATCH] [RFC] dt-bindings: Consider DT_SCHEMA_FILES when finding
- all json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 11 Mar 2021 22:34:19 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     spujar@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+In-Reply-To: <20210311160052.GF4962@sirena.org.uk>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <20210311160052.GF4962@sirena.org.uk>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <9575973104ff11d4a864a510b5c0a350@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 1:43 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Tue, Mar 9, 2021 at 6:42 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > On Tue, Mar 9, 2021 at 4:21 AM Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> > > Setting DT_SCHEMA_FILES allows the user to restrict the
-> > > "dt_binding_check" make target to a specified set of DT binding files.
-> > > However, yamllint is still run on all available files, which can take
-> > > quite some time.
-> > >
-> > > Fix this by changing "find_cmd" to only return the specified files.
-> > > Note that this also affects the "cmd_chk_bindings" and "cmd_mk_schema"
-> > > rules.
-> > >
-> > > This reduces the execution time of
-> > >
-> > >     make dt_binding_check DT_SCHEMA_FILES=/path/to/json/schema/file
-> > >
-> > > from ca. 22 to less than 2 seconds on an i7-8700K.
-> >
-> > We could use xargs sharding like 'chk_bindings' does. That goes from
-> > 18s to 5s for me (i7-7700HQ). Good enough? Not sure why I didn't other
-> > than thinking 20sec was fast enough.
->
-> Sounds better, but yamllint (on all files) would still take 80% of the
-> time for a single binding check, assuming a reasonably fast multi-core
-> machine.  My main objection is that while working on a new binding, and
-> using DT_SCHEMA_FILES, I don't want to waste time on checking other
-> bindings, and being bothered with warnings about them.
+Am 2021-03-11 17:00, schrieb Mark Brown:
+> On Tue, Mar 09, 2021 at 03:41:56PM +0100, Michael Walle wrote:
+>> Hi,
+>> 
+>> > If "clocks = <&xxx>" is specified from the CPU or Codec component
+>> > device node, the clock is not getting enabled. Thus audio playback
+>> > or capture fails.
+> 
+>> This actually breaks sound on my board
+>> (arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts).
+> 
+> Please, when sending replies format the subject line like normal 
+> replies
+> with a "Re: " at the start so people can tell it's a reply to an
+> existing discussion and not a new patch.
 
-We could move yamllint to when we extract the example. Then it only
-runs on modified schema files. The problem with that is we have to
-watch out for slow python start-up times. I get about 25sec for the
-whole tree 1 by 1 with a quick test:
+Whoops, must have missed that. I need to figure out a new mail setup,
+rather than saving the mbox from lore.kernel.org, editing it and
+sending it with git-send-email.
 
-$ time find Documentation/devicetree/bindings/ -name '*.yaml' | xargs
--P8 -n1 yamllint -f parsable -c
-Documentation/devicetree/bindings/.yamllint
-
-real    0m24.939s
-user    2m55.846s
-sys     0m12.738s
-
-Of course, that's a parallel build compared to 18sec single threaded.
-I'm seeing about 8 min for full dt_binding_check without yamllint.
-
-Here's what the kbuild changes would look like(whitespace damaged):
-
-diff --git a/Documentation/devicetree/bindings/Makefile
-b/Documentation/devicetree/bindings/Makefile
-index 780e5618ec0a..3a213343d587 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -16,8 +16,13 @@ check_dtschema_version:
- quiet_cmd_extract_ex = DTEX    $@
-       cmd_extract_ex = $(DT_EXTRACT_EX) $< > $@
-
-+define rule_extract_ex
-+       $(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
-+       $(call cmd,extract_ex)
-+endef
-+
- $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
--       $(call if_changed,extract_ex)
-+       $(call if_changed_rule,extract_ex)
-
- # Use full schemas when checking %.example.dts
- DT_TMP_SCHEMA := $(obj)/processed-schema-examples.json
-@@ -26,9 +31,8 @@ find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
-                -name 'processed-schema*' ! \
-                -name '*.example.dt.yaml' \)
-
--quiet_cmd_yamllint = LINT    $(src)
--      cmd_yamllint = ($(find_cmd) | \
--                     xargs $(DT_SCHEMA_LINT) -f parsable -c
-$(srctree)/$(src)/.yamllint) || true
-+quiet_cmd_yamllint = LINT    $(patsubst $(srctree)/%,%,$<)
-+      cmd_yamllint = $(DT_SCHEMA_LINT) -f parsable -c
-$(srctree)/$(src)/.yamllint $(real-prereqs) || true
-
- quiet_cmd_chk_bindings = CHKDT   $@
-       cmd_chk_bindings = ($(find_cmd) | \
-@@ -43,7 +47,6 @@ quiet_cmd_mk_schema = SCHEMA  $@
-                      rm -f $$f
-
- define rule_chkdt
--       $(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
-        $(call cmd,chk_bindings)
-        $(call cmd,mk_schema)
- endef
+-michael
