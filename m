@@ -2,208 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F7BA337099
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB063370B1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232408AbhCKKza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 05:55:30 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:45210 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232326AbhCKKzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 05:55:14 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12BAkMPm012678;
-        Thu, 11 Mar 2021 11:55:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=mW8V1YE0tgkTyDkUVctY/4mgkq8WcINvrVzVfkpMieI=;
- b=BRbi55kLrgzuUpEiGJEIllDyTwJ8KtS01zIRgW5BJaCCjpa+7lpRBtfn2DAYH0kkA4mN
- ziDd7jNHN0jGTGWkMFmr6NtvJ2gaYxBSKibrbD68H5UDH4OAkKhniDo49hooDGlHDV6c
- w5aV9zzvaYISOv4GjVPFsjnEixfqiarrUuT2DF35NX+Pn9Q/KCzoAtira25V4BokSFQE
- VbWZfY28Bf3R0PVvBlSDsNbHz7mWy7+89hsR/67AtFgLEWIuz5SNtePjUxn2Qs9xO5kW
- +e6GSnBnpxnHa0BSBQWd5mZe/RdVKPbRcSJaf47vsCebSBeAKiMPwNT1JFYOB/qLpqAT 0g== 
-Received: from eur03-db5-obe.outbound.protection.outlook.com (mail-db5eur03lp2055.outbound.protection.outlook.com [104.47.10.55])
-        by mx07-00178001.pphosted.com with ESMTP id 3741y75n62-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 11 Mar 2021 11:55:05 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fE5ZPoYDLdI7Qs7UYNs+/147xNv6UiDGZiIGx5FXE6qwclNNR8UxyqBg7jepr+j1aYdHnwygnvSorBbCJNm6FI61sqwlyPxuix/TjEEVwnUeberoUS8LMvLW7+s+Z+Vb6eAGZWXjBrNnDVPWSNJY3j1moGHvkXVEPQNir0QynBS4/0AB2pT4ACGhaU1mRAlOxKkXcSZRZvXSvc9PNnbLf6deZfn/WMIGMq8j8mhp4SsJpgcce0ikcsgs9C9LDb+Ri4GAv0K815Ai3Fwo8rbD8j6XzmyzZDOvMz6Pmjoy86Dh7odHwzJ2aJdOIWD7cvPX4IwTp4vLfR5do1ilEkh7eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mW8V1YE0tgkTyDkUVctY/4mgkq8WcINvrVzVfkpMieI=;
- b=QGKdoR1YGtLsL6TWMCubIbDD5gMGL/okL3TxX3glr9PejJ1REVTf8qNcno5KxQptGsy82iPe57UOmGggQwIkU/SEfv+vLMU6tx7uBZNC6eSR0kQ9AEgYqhqf+f9GXRCjATOd8T+7wBd8LV8PhUaQqzyyI7+f1Jgf75YA/6qzmnWCJ1QDm9pdK/fEb25sM/YE5pgrkM9uRgnetJ0fdvIc3sS4+aSyXgeX3KWY52WLTbnHmSxJbhqL/uRVNcFCI59MxdK4RTfjCTgb83mQgJvgBPLOO+PVU4/IYqjb44SExupIKbfD8d+qa+o5wUVRmVlfTLc/SBoNAbJkWpzN7Pcl+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=st.com; dmarc=pass action=none header.from=st.com; dkim=pass
- header.d=st.com; arc=none
-Received: from AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:31d::16)
- by AM6PR10MB3365.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:ec::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Thu, 11 Mar
- 2021 10:55:04 +0000
-Received: from AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e96b:5d97:d0a0:4aac]) by AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e96b:5d97:d0a0:4aac%4]) with mapi id 15.20.3912.031; Thu, 11 Mar 2021
- 10:55:04 +0000
-From:   Alexandre TORGUE <alexandre.torgue@st.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-amarula@amarulasolutions.com" 
-        <linux-amarula@amarulasolutions.com>
-Subject: RE: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
-Thread-Topic: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
-Thread-Index: AQHXDeiB/jNnr1iex0S//SVX9K6UV6p+re0w
-Date:   Thu, 11 Mar 2021 10:55:04 +0000
-Message-ID: <AS8PR10MB4712FA30DFDD31C536A519E8EE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
-References: <20210228154323.76911-1-jagan@amarulasolutions.com>
-In-Reply-To: <20210228154323.76911-1-jagan@amarulasolutions.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: amarulasolutions.com; dkim=none (message not signed)
- header.d=none;amarulasolutions.com; dmarc=none action=none
- header.from=st.com;
-x-originating-ip: [165.225.76.169]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dddf5866-db5d-447a-fb36-08d8e47c205e
-x-ms-traffictypediagnostic: AM6PR10MB3365:
-x-ld-processed: 75e027c9-20d5-47d5-b82f-77d7cd041e8f,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR10MB336540EA605B0523323FB042EE909@AM6PR10MB3365.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:241;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AuWxbsW/726TvITy0jttou0qTLCIKmxnHLFtLhk9zRC/Mtmrm4kGYuXN2RpbSUyTWzFg/XS2C07YS0vAfNQ0Hx6Z0LNNoq0qHV8AaBu/tllSvg1VwhZ/co+LAcABU70UB3ZB8YNMt9eCdjxxAyP4aX0qh1HCowfEKTESkljJylhaTFNPeuBXmTvjii1OYRI4k5mWuxvrJzaURogbw296dkh3WC/AKDhrtVuHSSA65K+lwk+dXfyc58Z99njqXLGm/txxAnM+Dc5iWDk/VRYAuEO4i8dg9hDTP75mMhoy0difO+Ah2RKhiAOljylAjFN4TYfWJl6tTZJZiFVPsoBwBquYkKKhVdu2ZTgzJJalXmyVqiErkLOH6MgA+lAuPWtXmmPIkVvJzeg3x3ML2Q3kOf7JbPY37/w7bjkEmKVCVTUKozHQWyojxPzkSDt4aMtLh/OPM4aCX85tBJUIsKMeHIU2YrRrgiYCWP50xcxMM5SVx679Rhspjn+IiU6T0Uw50mHn92E6MU3Oh6+gKwQFDw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(39860400002)(376002)(366004)(66556008)(55016002)(66476007)(64756008)(186003)(33656002)(7696005)(66574015)(66446008)(66946007)(55236004)(52536014)(316002)(83380400001)(6506007)(5660300002)(8676002)(9686003)(110136005)(53546011)(54906003)(8936002)(2906002)(86362001)(71200400001)(4326008)(478600001)(26005)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?AQz7j+N48vWEv6y2ZXMg3O9+vBwhDFZ41Okn8bjdNf3xLF82jh5TmosXKi?=
- =?iso-8859-1?Q?WCI2M+L5ziK+1mo6PRDKwgvokr+1BfxAwxOnBJ5qhDKfOQsVtRaPQLuE4a?=
- =?iso-8859-1?Q?MgrLLL4/kYdR1J21KLSFKrao4i2xBOlesZjDHpwY5wOomboW7EeXvEN9U5?=
- =?iso-8859-1?Q?Wrgjh4+DxjTo24eUiaoaXOWResOLCJoBE36lcv3BzmuinR2F+HEtAGrT/E?=
- =?iso-8859-1?Q?XwDEgKHAr3pz7koLaJgDRDZj2N28xV3xRv0ohYXESnOwbwelGQ/N1iHvoM?=
- =?iso-8859-1?Q?Vs/tIisksom3reVWwQNakzbqKtAOSjvdC7tVZ6vmHlRanE/IaDsEAmnX0c?=
- =?iso-8859-1?Q?40K++HRX6PS2ZlzBd27vfRvP/U/94+5N6s02sAWu/0kAwsL4Ba0rmFO3zC?=
- =?iso-8859-1?Q?PJHwCCxiEdioT7r3Xfezj2dTDFHaWxWfEwPNx+UWs/iud01d59C1nCxd3a?=
- =?iso-8859-1?Q?7GBFnM5jnojYMKL5fA0pOnAqawwhTOvX61pC5Vr701jx8aD0vb2y9+iusU?=
- =?iso-8859-1?Q?YeTRjy3in3SulMa8Cq1Yxi1T2xt93zlsFgbINryX6MlRws44ANGFv+vI6g?=
- =?iso-8859-1?Q?bsBDFr4au5zLzljog7Vi6ZclNnWWTFofL5F4LZw+zGbL9FvHbpJoszpavr?=
- =?iso-8859-1?Q?D7TUfJzn9SfvUlwCbwkcEnlNCPoOde0FASkTlR1cKsrdO1gqMp9/pPEzrY?=
- =?iso-8859-1?Q?aDkszF8F13KFi+X4v6pjgNrjW/62KIHPxf0YvQerhjsuJ/IHENRSpzu0IY?=
- =?iso-8859-1?Q?EGKBWtKTvGVxNV4cazmnN4o1XF73sADbriSc/2Lz4rTeE3KxvzWDfVPG6V?=
- =?iso-8859-1?Q?9BSnoMKJpK5kcGq8PqwIJ7uV3Vrq3TiiB99bL6v2AOoAYELneou5wEmRpT?=
- =?iso-8859-1?Q?mfmD7ayG30NXVA8pUrAEdpbEbh95xwDPvf19Q0JO2c69B9FVFXDHEbR2dp?=
- =?iso-8859-1?Q?qb4iSvZj2mNEiQjREpjApO7xodfQod/oQ/JGXL3jbIh7ChZvUwK73YmXrn?=
- =?iso-8859-1?Q?2pwEg7LCnaSR/9CmuOwtIDbpRCTf6+QNDbDYw1QCV3Z1vu/1XEe/IAB8mJ?=
- =?iso-8859-1?Q?yOQN5fFSkU4AfvrSB+Btd9dzKtC7EebcmUVEUoOTw98J+tsDYUu61iZw48?=
- =?iso-8859-1?Q?Qdy8ptCnNPvOzhIR++XIPuWvPnQCe35wU5qT1d3rNNhh5L555qqDxO8MAH?=
- =?iso-8859-1?Q?1hQinGReWvup3XEcmNwQDOf1wTXzCY6xwXXDPoMIAO36nej3oEHAOJ5/R+?=
- =?iso-8859-1?Q?00dgASxUvP6Ke2s36ercO78s9i9iNMKrlpT9cZyCxck+iPxzFS0EEwdzJb?=
- =?iso-8859-1?Q?XlGmdgdHosZBvHfvnlUBYAJAh4l/v480FUU/VsBslxyKNsTtu3IF2gNOwy?=
- =?iso-8859-1?Q?z0Az8Wii7t?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S232302AbhCKK7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 05:59:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232471AbhCKK6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 05:58:54 -0500
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7AAC061574;
+        Thu, 11 Mar 2021 02:58:54 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id f124so20088410qkj.5;
+        Thu, 11 Mar 2021 02:58:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3UiH+kUE+AB5h+QM3HtJZhWpgi2YQCcTnzrYrkv0thQ=;
+        b=CNiSwaWS5Le1oZOW3/IlTMc86hDM8oGd/z9Mu8/Y7NzcHshvFyki/EPYDtukE9mMwk
+         2nJP4YLekvXzZOyjYiiwD7sRtWIoWiUQqJo9Ma5/6uLftQXQzn25Tv8DsR+7siFdjozF
+         44D84jlB0d9hF9F53+DHHOsVqBJskxr6ZGXCZqmCWHPbjPd876ymHd8CcjX3kldN3LAK
+         d6bP5fvaHztHMR37LDG5MAZ/At4tz+QFJNOCWRR8oHlJ0pe3XlZE5wE5PjeZuFVAMA8S
+         MoU1XZcAMi8YUKX5zMgkzsIGq5vmS3A/paXvynY0mobidIf+axslWfRimcaA/eQelLGy
+         um7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3UiH+kUE+AB5h+QM3HtJZhWpgi2YQCcTnzrYrkv0thQ=;
+        b=AGGxvlQn4HunftJvZxKNfEVXvHXeKwUaza7aUPRfLW3xFhSXQOUBbqBvN3ryXM3RPB
+         iQCzbuK8bDR3QqNx1qaS9qO59MtySQ2qnFNcxuuxrE4bplALnjkTkuhUuGM7WQOR6EFu
+         6JKCEwVr/iAoPykvmvbECN4S6wJGlGLOG7njEZDaUA/ZnLzdCmB22ICr/uuTbS9xeJQm
+         X40LFynOlojcQB+Jz11Td9qdVQkKEK9v2Q4Vqcr5eVoqmi+8M3JmIAkgUWP0yY7W5sm3
+         gfAsEfbh5/egJSjy6v/+lJse25mkI1uWjCA+Qchxwsxh3YrtsIKi4mv84/1J4qZ6MjhR
+         Pqpg==
+X-Gm-Message-State: AOAM533E/eAPNHNZdUT7MEMByg52joaVx/NMfeN+h9csNrltArh/uoRz
+        SCNlN+YjbfsEm634Jam1u7+VJH28F5i9qvQwBTQ=
+X-Google-Smtp-Source: ABdhPJyZ4u6nofR+JIYN9svyff7NaaVy50y13tHZKajwjGXKpJ+Yq1BGxZ4ry9Z5DaYVyjV58HY7A1+TajTQE80FhTM=
+X-Received: by 2002:a05:620a:718:: with SMTP id 24mr6897580qkc.121.1615460333507;
+ Thu, 11 Mar 2021 02:58:53 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: ST.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: dddf5866-db5d-447a-fb36-08d8e47c205e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2021 10:55:04.1774
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NNbTGBLSbnYRAOg6Rg2UzyLW2dXrLz1mo4J16S0+DSU+N0I32xqzGxevg+82yr+MfKAjcntEQmIyM1yTKiAsbg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR10MB3365
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-11_04:2021-03-10,2021-03-11 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=852 malwarescore=0 priorityscore=1501 adultscore=0 bulkscore=0
- phishscore=0 spamscore=0 clxscore=1011 impostorscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2103110058
+References: <1615209750-2357-1-git-send-email-shengjiu.wang@nxp.com>
+ <1615209750-2357-4-git-send-email-shengjiu.wang@nxp.com> <20210310024834.GA1623179@robh.at.kernel.org>
+ <CAA+D8AM5nH+gwfas_=9gkzaegq4=4q2AfVybBnxM4xU3gOiF4w@mail.gmail.com> <CAL_Jsq+NcXHtDo+HEFVOEcGqYTx9Heo8dc_R5Nfz1Rr-sAu6YA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+NcXHtDo+HEFVOEcGqYTx9Heo8dc_R5Nfz1Rr-sAu6YA@mail.gmail.com>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Thu, 11 Mar 2021 18:58:42 +0800
+Message-ID: <CAA+D8APXS=oCxFaNzaqhC=UFe6c92h-d4rom7p-WCrwWJFSK-g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/6] ASoC: dt-bindings: fsl_rpmsg: Add binding doc for
+ rpmsg cpu dai driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Timur Tabi <timur@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan
+Hi Rob
 
-> -----Original Message-----
-> From: Jagan Teki <jagan@amarulasolutions.com>
-> Sent: dimanche 28 f=E9vrier 2021 16:43
-> To: Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre TORGUE
-> <alexandre.torgue@st.com>; Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org; linux-stm32@st-md-
-> mailman.stormreply.com; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; linux-amarula@amarulasolutions.com; Jagan Teki
-> <jagan@amarulasolutions.com>
-> Subject: [PATCH v3 00/10] ARM: dts: stm32: Add Engicam STM32MP1 SoM
->=20
-> This is the initial series to support Engicam MicroGEA STM32MP1 and i.Cor=
-e
-> STM32MP1 SoM and it's associated carrier board dts(i) support.
->=20
+On Thu, Mar 11, 2021 at 5:12 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Mar 10, 2021 at 6:33 AM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
+> >
+> > Hi Rob
+> >
+> > On Wed, Mar 10, 2021 at 10:49 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Mar 08, 2021 at 09:22:27PM +0800, Shengjiu Wang wrote:
+> > > > fsl_rpmsg cpu dai driver is driver for rpmsg audio, which is mainly used
+> > >
+> > > Bindings describe h/w blocks, not drivers.
+> >
+> > I will modify the descriptions. but here it is a virtual device.  the
+> > mapping in real h/w is cortex M core, Cortex M core controls the SAI,
+> > DMA interface. What we see from Linux side is a audio service
+> > through rpmsg channel.
+>
+> It's describing the h/w from the view of the OS. It's not important
+> that it's a Cortex-M, but how you interface to it whether that's
+> shared registers, mailbox, etc. And it's what resources the block uses
+> that the OS controls.
 
-Series applied on stm32-next.
+ok.
 
-Thanks
-Alex
+>
+> > > > for getting the user's configuration from device tree and configure the
+> > > > clocks which is used by Cortex-M core. So in this document define the
+> > > > needed property.
+> > > >
+> > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > > ---
+> > > >  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 118 ++++++++++++++++++
+> > > >  1 file changed, 118 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..5731c1fbc0a6
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+> > > > @@ -0,0 +1,118 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/sound/fsl,rpmsg.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: NXP Audio RPMSG CPU DAI Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > > +
+> > > > +description: |
+> > > > +  fsl_rpmsg cpu dai driver is virtual driver for rpmsg audio, which doesn't
+> > > > +  touch hardware. It is mainly used for getting the user's configuration
+> > > > +  from device tree and configure the clocks which is used by Cortex-M core.
+> > > > +  So in this document define the needed property.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - fsl,imx7ulp-rpmsg
+> > > > +      - fsl,imx8mn-rpmsg
+> > > > +      - fsl,imx8mm-rpmsg
+> > > > +      - fsl,imx8mp-rpmsg
+> > > > +
+> > > > +  model:
+> > > > +    $ref: /schemas/types.yaml#/definitions/string
+> > > > +    description: User specified audio sound card name
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description: Peripheral clock for register access
+> > > > +      - description: Master clock
+> > > > +      - description: DMA clock for DMA register access
+> > > > +      - description: Parent clock for multiple of 8kHz sample rates
+> > > > +      - description: Parent clock for multiple of 11kHz sample rates
+> > > > +    minItems: 5
+> > >
+> > > If this doesn't touch hardware, what are these clocks for?
+> >
+> > When the cortex-M core support audio service, these clock
+> > needed prepared & enabled by ALSA driver.
+> >
+> > >
+> > > You don't need 'minItems' unless it's less than the number of 'items'.
+> >
+> > Ok, I will remove this minItems.
+> >
+> > >
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: ipg
+> > > > +      - const: mclk
+> > > > +      - const: dma
+> > > > +      - const: pll8k
+> > > > +      - const: pll11k
+> > > > +    minItems: 5
+> > > > +
+> > > > +  power-domains:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  fsl,audioindex:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [0, 1]
+> > > > +    default: 0
+> > > > +    description: Instance index for sound card in
+> > > > +                 M core side, which share one rpmsg
+> > > > +                 channel.
+> > >
+> > > We don't do indexes in DT. What's this numbering tied to?
+> >
+> > I will remove it. it is not necessary
+> >
+> > >
+> > > > +
+> > > > +  fsl,version:
+> > >
+> > > version of what?
+> > >
+> > > This seems odd at best.
+> > >
+> >
+> > I will remove it.  it is not necessary
+> >
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [1, 2]
+> > >
+> > > You're going to update this with every new firmware version?
+> > >
+> > > > +    default: 2
+> > > > +    description: The version of M core image, which is
+> > > > +                 to make driver compatible with different image.
+> > > > +
+> > > > +  fsl,buffer-size:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: pre allocate dma buffer size
+> > >
+> > > How can you have DMA, this doesn't touch h/w?
+> >
+> > The DMA is handled by M core image for sound playback
+> > and capture. we need to allocated buffer in Linux side.
+> > here just make the buffer size to be configurable.
+>
+> Do we set audio buffer sizes for other audio devices in DT? If not,
+> why is this special? If so, why is it not common.
 
-> Changes for v3:
-> - fixed v2 comments
-> - updated commit messages
-> Changes for v2:
-> - fixed v1 comments
-> - add i.Core STM32MP1 SoM
->=20
-> Any inputs?
-> Jagan.
->=20
-> Jagan Teki (10):
->   dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0
->   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 SoM
->   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 board
->   dt-bindings: arm: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7"
-> OF
->   ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 MicroDev 2.0 7" OF
->   dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
->   ARM: dts: stm32: Add Engicam i.Core STM32MP1 SoM
->   ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
->   dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter
-> Kit
->   ARM: dts: stm32: Add Engicam i.Core STM32MP1 EDIMM2.2 Starter Kit
->=20
->  .../devicetree/bindings/arm/stm32/stm32.yaml  |  17 ++
->  arch/arm/boot/dts/Makefile                    |   4 +
->  .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  47 +++++
->  .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  47 +++++
->  .../boot/dts/stm32mp157a-icore-stm32mp1.dtsi  | 196
-> ++++++++++++++++++  ...157a-microgea-stm32mp1-microdev2.0-of7.dts |
-> 154 ++++++++++++++  ...32mp157a-microgea-stm32mp1-microdev2.0.dts |
-> 55 +++++
->  .../dts/stm32mp157a-microgea-stm32mp1.dtsi    | 148 +++++++++++++
->  8 files changed, 668 insertions(+)
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-
-> ctouch2.dts
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-
-> edimm2.2.dts
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
-> stm32mp1-microdev2.0-of7.dts
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
-> stm32mp1-microdev2.0.dts
->  create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-
-> stm32mp1.dtsi
->=20
-> --
-> 2.25.1
+No. I will move it to driver.
 
+>
+> > > > +  fsl,enable-lpa:
+> > > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > > +    description: enable low power audio path.
+> > > > +
+> > > > +  fsl,rpmsg-out:
+> > > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > > +    description: |
+> > > > +      This is a boolean property. If present, the transmitting function
+> > > > +      will be enabled.
+> > > > +
+> > > > +  fsl,rpmsg-in:
+> > > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > > +    description: |
+> > > > +      This is a boolean property. If present, the receiving function
+> > > > +      will be enabled.
+> > > > +
+> > > > +  fsl,codec-type:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [0, 1, 2]
+> > > > +    default: 0
+> > > > +    description: Sometimes the codec is registered by
+> > > > +                 driver not by the device tree, this items
+> > > > +                 can be used to distinguish codecs.
+> > >
+> > > How does one decide what value to use?
+> >
+> > I will add more description:
+> > 0: dummy codec
+> > 1: WM8960 codec
+> > 2: AK4497 codec
+>
+> I assume the last 2 cases have nodes in DT (pointed to by
+> 'audio-codec'), so this is redundant.
+
+Ok, will remove it.
+
+>
+> > > > +
+> > > > +  audio-codec:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +    description: The phandle of the audio codec
+> > >
+> > > The codec is controlled from the Linux side?
+> >
+> > yes.
+> >
+> > >
+> > > > +
+> > > > +  memory-region:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +    description: phandle to the reserved memory nodes
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - fsl,audioindex
+> > > > +  - fsl,version
+> > > > +  - fsl,buffer-size
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    rpmsg_audio: rpmsg_audio {
+> > > > +        compatible = "fsl,imx8mn-rpmsg";
+> > > > +        fsl,audioindex = <0> ;
+> > > > +        fsl,version = <2>;
+> > > > +        fsl,buffer-size = <0x6000000>;
+> > > > +        fsl,enable-lpa;
+> > >
+> > > How does this work? Don't you need somewhere to put the 'rpmsg' data?
+> >
+> > The rpmsg data is not handled in this "rpmsg_audio" device, it is just to
+> > prepare the resource for rpmsg audio function, the clock, the memory
+> > the power...
+> >
+> > The rpmsg data is handled in imx-pcm-rpmsg.c and imx-audio-rpmsg.c
+> > These devices is registered by imx remoteproc driver.
+>
+> Then what is 'memory-region' for? You need that, a mailbox, or ???
+> somewhere in DT.
+>
+The M core can't access all the DDR memory space on some platform,
+so use 'memory-region' reserve a specific memory for dma buffer
+which M core can access.
+
+best regards
+wang shengjiu
