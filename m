@@ -2,96 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E57A0336F39
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 10:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91218336F83
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:04:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232094AbhCKJur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 04:50:47 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:23322 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232120AbhCKJuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 04:50:25 -0500
-X-UUID: e5328eea42a34bd78e6899844d53d5dc-20210311
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=a9ej59heEilQzTKWC4HbE25Ht5GD9Ct0059vCNX/I/s=;
-        b=b/fiesXnCh7ySSCfvoHnSxpK/D4VYjfKySMm1KzuavvUqrRLcZl0zuryJ9ZuWVp0dbATFvwLXEC1/GFGdB7hg5cijeMlJ38lux1g+R/ZkJgyHWNftPczFTIyhV4czctrYw9SvggcuJEMSXuoCIhSlnMBZiGNIhg9W1/aXCLoFV4=;
-X-UUID: e5328eea42a34bd78e6899844d53d5dc-20210311
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1471753253; Thu, 11 Mar 2021 17:50:17 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 11 Mar
- 2021 17:50:15 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 11 Mar 2021 17:50:14 +0800
-Message-ID: <1615456214.25662.62.camel@mhfsdcap03>
-Subject: Re: [v8,5/7] PCI: mediatek-gen3: Add MSI support
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Marc Zyngier <maz@kernel.org>,
-        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Sj Huang" <sj.huang@mediatek.com>, <youlin.pei@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <sin_jieyang@mediatek.com>, <drinkcat@chromium.org>,
-        <Rex-BC.Chen@mediatek.com>, <anson.chuang@mediatek.com>
-Date:   Thu, 11 Mar 2021 17:50:14 +0800
-In-Reply-To: <e6c53aa3863c3f5b0560ed65282fc5e2@kernel.org>
-References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
-         <20210224061132.26526-6-jianjun.wang@mediatek.com>
-         <20210311000555.epypouwxdbql2aqx@pali>
-         <e6c53aa3863c3f5b0560ed65282fc5e2@kernel.org>
+        id S232191AbhCKKDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 05:03:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232201AbhCKKDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 05:03:20 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCFFC061760
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 02:03:20 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id b127so24939421ybc.13
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 02:03:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=CRNU10dE7NxeMKiM3/VubFTm8e+uK3lL18S+85iKjKQ=;
+        b=cafRhH+x5rWf2c1lFP7ECa+O9orzzMObUYfuqhXIXmH/8sFQniXUbst9qKGfCtmEWf
+         a9HNw1JscmQ7zirvQHuy7/A5M/a+rLhr07xMt9dmJDG4OK0TLgR5HmRA7qBh0HjY07Mh
+         q03Fwg+iXTz69Mf6m41BA+jhYp8iwfdFtTyA+q1/7qiG9Sl+swDTU/XVbIz4Dvognkfc
+         rzt7za27zMn5qPrM1MOH/XnXChWw/uZixXNV00YsupuR9FLiucwlPXcZjYwWbf+wC+A2
+         VXVfct/++arONw8a01nW1ZovtwIKf855RZXOs5D0q5kh52MzzTpevn7fLLikbo/H/Mc2
+         8+dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=CRNU10dE7NxeMKiM3/VubFTm8e+uK3lL18S+85iKjKQ=;
+        b=iU2r+8M7zRTb4VDsaSHLj7AWyeGhC6BsMekLazw9ru97wbmvLAqWXuvk+omGs8qsFC
+         L8U3AF6qGK9YHgv8EORtP2TsNRwzEmhi4BCkiFutIVm/ttj9jOGDZ+EvydinAC0H7Tcs
+         WyGol08EHptuIiIvPS7QkamnGchGFi0QBTmsEWxkD2V1o22w2QOwyMqug1o4MADKCzXQ
+         qseyv2JxQ5khRCmfO6ihjaIvd5kD8FmHKOY5A8c2qT7DN+DjV01NrbwrKzQXR0Vvf3LE
+         TMHJHwgo6VUbCuPtMVS8sy2xtm9TFpjFTsu3lK8fc3De6cw1z0G8GOOoxwuSJAi0bYhP
+         NpLQ==
+X-Gm-Message-State: AOAM532rXpBahwMH/WQIBDhtc8prU5xvOP/rVAJHCfivZWOXKPjooO1s
+        WdCLjZfe7jw0qZbMx1fNJR3PX9slz+8=
+X-Google-Smtp-Source: ABdhPJwGroWnEcfRIYk/XLlG3oXkauoNAbxeMmveVpOyyWibs3L0OWadMvmEoy35hkvGkUbumZvPAc/9EI4=
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:39e6:8b30:8665:4bec])
+ (user=badhri job=sendgmr) by 2002:a5b:690:: with SMTP id j16mr10696794ybq.251.1615456999256;
+ Thu, 11 Mar 2021 02:03:19 -0800 (PST)
+Date:   Thu, 11 Mar 2021 02:03:10 -0800
+Message-Id: <20210311100313.3591254-1-badhri@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
+Subject: [PATCH 1/4] usb: typec: tcpm: Add callback to notify pd_capable partner
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kyle Tso <kyletso@google.com>, devicetree@vger.kernel.org,
+        Badhri Jagan Sridharan <badhri@google.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: F9A112B6DED8DAAFAF6E68A112F27E84405F5EF3E9F86C2A91FF46CE880EBB382000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAzLTExIGF0IDA4OjE5ICswMDAwLCBNYXJjIFp5bmdpZXIgd3JvdGU6DQo+
-IE9uIDIwMjEtMDMtMTEgMDA6MDUsIFBhbGkgUm9ow6FyIHdyb3RlOg0KPiA+IE9uIFdlZG5lc2Rh
-eSAyNCBGZWJydWFyeSAyMDIxIDE0OjExOjMwIEppYW5qdW4gV2FuZyB3cm90ZToNCj4gPj4gK3N0
-YXRpYyBpbnQgbXRrX21zaV9ib3R0b21fZG9tYWluX2FsbG9jKHN0cnVjdCBpcnFfZG9tYWluICpk
-b21haW4sDQo+ID4+ICsJCQkJICAgICAgIHVuc2lnbmVkIGludCB2aXJxLCB1bnNpZ25lZCBpbnQg
-bnJfaXJxcywNCj4gPj4gKwkJCQkgICAgICAgdm9pZCAqYXJnKQ0KPiA+PiArew0KPiA+PiArCXN0
-cnVjdCBtdGtfcGNpZV9wb3J0ICpwb3J0ID0gZG9tYWluLT5ob3N0X2RhdGE7DQo+ID4+ICsJc3Ry
-dWN0IG10a19tc2lfc2V0ICptc2lfc2V0Ow0KPiA+PiArCWludCBpLCBod2lycSwgc2V0X2lkeDsN
-Cj4gPj4gKw0KPiA+PiArCW11dGV4X2xvY2soJnBvcnQtPmxvY2spOw0KPiA+PiArDQo+ID4+ICsJ
-aHdpcnEgPSBiaXRtYXBfZmluZF9mcmVlX3JlZ2lvbihwb3J0LT5tc2lfaXJxX2luX3VzZSwgDQo+
-ID4+IFBDSUVfTVNJX0lSUVNfTlVNLA0KPiA+PiArCQkJCQlvcmRlcl9iYXNlXzIobnJfaXJxcykp
-Ow0KPiA+PiArDQo+ID4+ICsJbXV0ZXhfdW5sb2NrKCZwb3J0LT5sb2NrKTsNCj4gPj4gKw0KPiA+
-PiArCWlmIChod2lycSA8IDApDQo+ID4+ICsJCXJldHVybiAtRU5PU1BDOw0KPiA+PiArDQo+ID4+
-ICsJc2V0X2lkeCA9IGh3aXJxIC8gUENJRV9NU0lfSVJRU19QRVJfU0VUOw0KPiA+PiArCW1zaV9z
-ZXQgPSAmcG9ydC0+bXNpX3NldHNbc2V0X2lkeF07DQo+ID4+ICsNCj4gPj4gKwlmb3IgKGkgPSAw
-OyBpIDwgbnJfaXJxczsgaSsrKQ0KPiA+PiArCQlpcnFfZG9tYWluX3NldF9pbmZvKGRvbWFpbiwg
-dmlycSArIGksIGh3aXJxICsgaSwNCj4gPj4gKwkJCQkgICAgJm10a19tc2lfYm90dG9tX2lycV9j
-aGlwLCBtc2lfc2V0LA0KPiA+PiArCQkJCSAgICBoYW5kbGVfZWRnZV9pcnEsIE5VTEwsIE5VTEwp
-Ow0KPiA+PiArDQo+ID4+ICsJcmV0dXJuIDA7DQo+ID4+ICt9DQo+ID4+ICsNCj4gPj4gK3N0YXRp
-YyB2b2lkIG10a19tc2lfYm90dG9tX2RvbWFpbl9mcmVlKHN0cnVjdCBpcnFfZG9tYWluICpkb21h
-aW4sDQo+ID4+ICsJCQkJICAgICAgIHVuc2lnbmVkIGludCB2aXJxLCB1bnNpZ25lZCBpbnQgbnJf
-aXJxcykNCj4gPj4gK3sNCj4gPj4gKwlzdHJ1Y3QgbXRrX3BjaWVfcG9ydCAqcG9ydCA9IGRvbWFp
-bi0+aG9zdF9kYXRhOw0KPiA+PiArCXN0cnVjdCBpcnFfZGF0YSAqZGF0YSA9IGlycV9kb21haW5f
-Z2V0X2lycV9kYXRhKGRvbWFpbiwgdmlycSk7DQo+ID4+ICsNCj4gPj4gKwltdXRleF9sb2NrKCZw
-b3J0LT5sb2NrKTsNCj4gPj4gKw0KPiA+PiArCWJpdG1hcF9jbGVhcihwb3J0LT5tc2lfaXJxX2lu
-X3VzZSwgZGF0YS0+aHdpcnEsIG5yX2lycXMpOw0KPiA+IA0KPiA+IE1hcmMsIHNob3VsZCBub3Qg
-YmUgdGhlcmUgYml0bWFwX3JlbGVhc2VfcmVnaW9uKCkgd2l0aCBvcmRlcl9iYXNlXzIoKT8NCj4g
-PiANCj4gPiBiaXRtYXBfcmVsZWFzZV9yZWdpb24ocG9ydC0+bXNpX2lycV9pbl91c2UsIGRhdGEt
-Pmh3aXJxLCANCj4gPiBvcmRlcl9iYXNlXzIobnJfaXJxcykpOw0KPiA+IA0KPiA+IEJlY2F1c2Ug
-bXRrX21zaV9ib3R0b21fZG9tYWluX2FsbG9jKCkgaXMgYWxsb2NhdGluZw0KPiA+IG9yZGVyX2Jh
-c2VfMihucl9pcnFzKSBpbnRlcnJ1cHRzLCBub3Qgb25seSBucl9pcnFzLg0KPiANCj4gSW5kZWVk
-LCBnb29kIGNhdGNoLg0KDQpJIHdpbGwgZml4IGl0IGluIHRoZSBuZXh0IHZlcnNpb24sIHRoYW5r
-cyBmb3IgeW91ciByZXZpZXcuDQoNCj4gDQo+IFRoYW5rcywNCj4gDQo+ICAgICAgICAgIE0uDQoN
-Cg==
+This change informs lower level tcpc drivers of pd_capable
+partner. This is useful while setting current limit for the
+charging path.
+
+Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+---
+ drivers/usb/typec/tcpm/tcpm.c | 20 +++++++++++++++-----
+ include/linux/usb/tcpm.h      |  3 +++
+ 2 files changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+index 11d0c40bc47d..e9886e850b84 100644
+--- a/drivers/usb/typec/tcpm/tcpm.c
++++ b/drivers/usb/typec/tcpm/tcpm.c
+@@ -952,6 +952,16 @@ static int tcpm_set_current_limit(struct tcpm_port *port, u32 max_ma, u32 mv)
+ 	return ret;
+ }
+ 
++static void tcpm_set_pd_capable(struct tcpm_port *port, bool capable)
++{
++	tcpm_log(port, "Partner pd capable %s", capable ? "true" : "false");
++
++	if (port->tcpc->set_pd_capable)
++		port->tcpc->set_pd_capable(port->tcpc, capable);
++
++	port->pd_capable = capable;
++}
++
+ static int tcpm_set_attached_state(struct tcpm_port *port, bool attached)
+ {
+ 	return port->tcpc->set_roles(port->tcpc, attached, port->pwr_role,
+@@ -3444,7 +3454,7 @@ static int tcpm_src_attach(struct tcpm_port *port)
+ 	if (ret < 0)
+ 		goto out_disable_vconn;
+ 
+-	port->pd_capable = false;
++	tcpm_set_pd_capable(port, false);
+ 
+ 	port->partner = NULL;
+ 
+@@ -3509,7 +3519,7 @@ static void tcpm_reset_port(struct tcpm_port *port)
+ 	tcpm_unregister_altmodes(port);
+ 	tcpm_typec_disconnect(port);
+ 	port->attached = false;
+-	port->pd_capable = false;
++	tcpm_set_pd_capable(port, false);
+ 	port->pps_data.supported = false;
+ 	tcpm_set_partner_usb_comm_capable(port, false);
+ 
+@@ -3583,7 +3593,7 @@ static int tcpm_snk_attach(struct tcpm_port *port)
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	port->pd_capable = false;
++	tcpm_set_pd_capable(port, false);
+ 
+ 	port->partner = NULL;
+ 
+@@ -3813,7 +3823,7 @@ static void run_state_machine(struct tcpm_port *port)
+ 			 */
+ 			/* port->hard_reset_count = 0; */
+ 			port->caps_count = 0;
+-			port->pd_capable = true;
++			tcpm_set_pd_capable(port, true);
+ 			tcpm_set_state_cond(port, SRC_SEND_CAPABILITIES_TIMEOUT,
+ 					    PD_T_SEND_SOURCE_CAP);
+ 		}
+@@ -4074,7 +4084,7 @@ static void run_state_machine(struct tcpm_port *port)
+ 		}
+ 		break;
+ 	case SNK_NEGOTIATE_CAPABILITIES:
+-		port->pd_capable = true;
++		tcpm_set_pd_capable(port, true);
+ 		tcpm_set_partner_usb_comm_capable(port,
+ 						  !!(port->source_caps[0] & PDO_FIXED_USB_COMM));
+ 		port->hard_reset_count = 0;
+diff --git a/include/linux/usb/tcpm.h b/include/linux/usb/tcpm.h
+index 42fcfbe10590..d5d7293bc34d 100644
+--- a/include/linux/usb/tcpm.h
++++ b/include/linux/usb/tcpm.h
+@@ -112,6 +112,8 @@ enum tcpm_transmit_type {
+  *              Optional; The USB Communications Capable bit indicates if port
+  *              partner is capable of communication over the USB data lines
+  *              (e.g. D+/- or SS Tx/Rx). Called to notify the status of the bit.
++ * @set_pd_capable:
++ *		Optional; Called to notify if the partner is pd capable.
+  */
+ struct tcpc_dev {
+ 	struct fwnode_handle *fwnode;
+@@ -144,6 +146,7 @@ struct tcpc_dev {
+ 						 bool pps_active, u32 requested_vbus_voltage);
+ 	bool (*is_vbus_vsafe0v)(struct tcpc_dev *dev);
+ 	void (*set_partner_usb_comm_capable)(struct tcpc_dev *dev, bool enable);
++	void (*set_pd_capable)(struct tcpc_dev *dev, bool enable);
+ };
+ 
+ struct tcpm_port;
+-- 
+2.31.0.rc2.261.g7f71774620-goog
 
