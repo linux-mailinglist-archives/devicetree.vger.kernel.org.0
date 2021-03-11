@@ -2,83 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7963370FE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BBE33712E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232553AbhCKLQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:16:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232633AbhCKLQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:16:24 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E3CC061574;
-        Thu, 11 Mar 2021 03:16:24 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S232685AbhCKL07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:26:59 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:14103 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232699AbhCKL0t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 06:26:49 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615462009; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=q4A4EzEInOAdT/q5xfDuatuUJwu6Ujt2hTejX66DL/U=; b=b+86va/iS+NV+ENmQkqE5g02Uj5ETaXUnM6/4eHcHp5Y0AW3OR+/OKoKn4Nj4GeI25tZwTrD
+ 0WlIq/zCXcc6xinbFCK8b/FW4rFf750cj3EEdrfBVPhJpEYc7QMMAMPHXb2xG3Gi1PZ/CtBi
+ T+v1yAhO0iqJz5Mur1sj+qSsAsw=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 6049fe6abb6300df755351fb (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 11:26:34
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 026F3C4346D; Thu, 11 Mar 2021 11:26:33 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 6029C221E7;
-        Thu, 11 Mar 2021 12:16:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615461382;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Rcfxj52DqopNjOhZUxoHuR9lkTIwGeoSy4LzOhaFOmY=;
-        b=ARvYEuyu+pMa0B2ZS3+5vKtk+3BXirjUsv561Kr7NZSIjFUZfdWAmkzGdMH7vrO1G2t/ky
-        ft1QoO12xA8cE2RVR2ZAG57GEjnWCQD+lrWBurP/tmGmay8SsljWestVMOTkLNQ34EQNE8
-        GnYF0LKkTL1vagKu6fjp74SaiDozVz0=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 11 Mar 2021 12:16:22 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-In-Reply-To: <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
- <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
- <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <cadc59f29bbb2e0d02235d4c10cb7f4d@walle.cc>
-X-Sender: michael@walle.cc
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C80B2C43462;
+        Thu, 11 Mar 2021 11:26:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C80B2C43462
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v3 00/14] Add binding updates and DT files for SC7280 SoC
+Date:   Thu, 11 Mar 2021 16:55:47 +0530
+Message-Id: <1615461961-17716-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-11 12:05, schrieb Sameer Pujar:
+This series includes a few minor binding updates and base device tree
+files (to boot to shell) for SC7280 SoC and the IDP board using this SoC.
 
-> It would work and initially I had similar patch, see [0] and related
-> series. Suggestion is to always use "clocks" property with devices
-> only.
+Maulik Shah (3):
+  arm64: dts: qcom: sc7280: Add RSC and PDC devices
+  arm64: dts: qcom: Add reserved memory for fw
+  arm64: dts: qcom: sc7280: Add cpuidle states
 
-I see. But again, I don't think it is correct to change the clock of
-the codec by default. What happens if this is for example a
-compatible = "fixed-clock"?
+Rajendra Nayak (6):
+  dt-bindings: arm: qcom: Document sc7280 SoC and board
+  dt-bindings: firmware: scm: Add sc7280 support
+  arm64: dts: sc7280: Add basic dts/dtsi files for sc7280 soc
+  dt-bindings: qcom,pdc: Add compatible for sc7280
+  arm64: dts: qcom: SC7280: Add rpmhcc clock controller node
+  arm64: dts: qcom: sc7280: Add rpmh power-domain node
 
-As you pointed out in the referred thread [0]. simple-audio-card has
-that clock and judging from the code it is exactly for this reason:
-to either change/enable it or not.
+Sai Prakash Ranjan (4):
+  dt-bindings: arm-smmu: Add compatible for SC7280 SoC
+  arm64: dts: qcom: sc7280: Add device node for APPS SMMU
+  dt-bindings: watchdog: Add compatible for SC7280 SoC
+  arm64: dts: qcom: sc7280: Add APSS watchdog node
 
-With this patch you'll switch that to "always change it". Therefore,
-shouldn't there be a dt flag to indicate wheter simple-audio-card/graph
-should be in charge of the codecs clock input?
+satya priya (1):
+  arm64: dts: qcom: sc7280: Add SPMI PMIC arbiter device for SC7280
 
-And its fetching just the first clock, doesn't it? What happens if a
-codec has two clock inputs?
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ .../devicetree/bindings/firmware/qcom,scm.txt      |   1 +
+ .../bindings/interrupt-controller/qcom,pdc.txt     |   1 +
+ .../devicetree/bindings/iommu/arm,smmu.yaml        |   1 +
+ .../devicetree/bindings/watchdog/qcom-wdt.yaml     |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  47 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 608 +++++++++++++++++++++
+ 8 files changed, 666 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280.dtsi
 
--michael
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-[0] 
-https://patchwork.kernel.org/project/alsa-devel/patch/1611944866-29373-4-git-send-email-spujar@nvidia.com/
