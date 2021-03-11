@@ -2,85 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15EA7337173
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D254F337177
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:36:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232675AbhCKLfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:35:31 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:4365 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232565AbhCKLf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:35:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1615462526; x=1646998526;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=0SiAXxZU9xTZalFZ8LLDzB+0PPRiu5p6gIrxTDHRm1M=;
-  b=yaJu4TZshNJeRhYjwxP8ffzr6X37vCMMaYrlqcJOhsyyP/HUrNFRGSLD
-   gQzwrpKDUPOfymI9PA1L0K3+XlezjVlN2s2gFJvI77vVxGanDeflB9OA7
-   w85whRu68V2mjbbN3G4enL+V2wilH6JpaamSbwxlCXD1omo478Tq1T+wB
-   lDopkrBzcdF1WZXVFOfzmCLm5zEfxX5RFiZTF4+I77F9b1algC6paquJ9
-   KFEcYfEqFCKQha1eE4r/+UMZNS5i4hHdIFHiVT838qTWcmELG5Ew4BaFU
-   F1m5OWi5lr9neqlcdLJtbQ5lPKjuqkfveRgEzx9nUerWdqMha40JW+VQM
-   A==;
-IronPort-SDR: bZV3bhP16BqEqeySiF0SRfMpRSH9/C260M5QPO1Ov2ytY6MZNVM6HOpR9vaNUr72m64oXzggua
- BMGqgy23VsiaumpmWjfuketMhWwMlngz/ljJuDTSMrxPNrz4qRILPlfWqTIIBj/lYcEF2VFMnp
- tEObe/cM/KI67STDcV84PjoOu4R8fDUeRDWhkr02sL71/NhUeIYqK6li2hVJV+V246jM+QIUhW
- 1IzxVA1SCF6mhXSc5wOUut8s60zfp2jGyjrgqgY0UtXp/4qsdVJdKXwH/2nEpsN6xts7lI/grz
- ir8=
-X-IronPort-AV: E=Sophos;i="5.81,240,1610434800"; 
-   d="scan'208";a="112819487"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Mar 2021 04:35:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 11 Mar 2021 04:35:04 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Thu, 11 Mar 2021 04:35:02 -0700
-From:   <conor.dooley@microchip.com>
-To:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
-        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <j.neuschaefer@gmx.net>
-CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
-        <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
-        <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 5/5] MAINTAINERS: add entry for polarfire soc mailbox driver
-Date:   Thu, 11 Mar 2021 11:35:01 +0000
-Message-ID: <20210311113501.15745-1-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.17.1
+        id S232624AbhCKLgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:36:03 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:18169 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232643AbhCKLfc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 06:35:32 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615462532; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: References: Cc: To: From:
+ Subject: Sender; bh=QODNHOfLwoeEdJtH0IFGWKlwoFEyDP+cVEY9ZeEaz18=; b=tJoeoZEewi/zCKUnJI1NRHUjoFnNyH2skSlF1VlgYd+JpFdNxRam5efFHDuZGudew8vur5K3
+ PR/RREP8P4RdQ+eV/11Irx7QL0KCNeDMZAv/zHH0kvAPGX7fbD7JcLmvXhTSpS3xEPEB/NDt
+ 2E0edrBkz7f1pF0fNhHT9w8ECt8=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 604a006ffa6ebd85e8d93573 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 11:35:11
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6B33BC433ED; Thu, 11 Mar 2021 11:35:11 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.1.102] (unknown [49.207.203.158])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 20418C433C6;
+        Thu, 11 Mar 2021 11:35:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 20418C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH 00/13] Add binding updates and DT files for SC7280 SoC
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1613114930-1661-1-git-send-email-rnayak@codeaurora.org>
+ <YElgnuH6ZEoMOgdj@builder.lan>
+ <a4f03a1c-880b-ebf5-ad7e-387e1b5c61e4@codeaurora.org>
+Message-ID: <7179f4aa-f01e-da9a-a48d-d07d90e625d4@codeaurora.org>
+Date:   Thu, 11 Mar 2021 17:05:06 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <a4f03a1c-880b-ebf5-ad7e-387e1b5c61e4@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-Add the mailbox driver to the existing MAINTAINERS entry for the polarfire
- soc
+On 3/11/2021 2:45 PM, Rajendra Nayak wrote:
+> 
+> On 3/11/2021 5:43 AM, Bjorn Andersson wrote:
+>> On Fri 12 Feb 01:28 CST 2021, Rajendra Nayak wrote:
+>>
+>>> This series includes a few minor binding updates and base device tree
+>>> files (to boot to shell) for SC7280 SoC and the IDP board using this SoC.
+>>>
+>>> The series is dependent on a few driver patches to merge first, for
+>>> gcc, rpmhcc and pinctrl
+>>> https://lore.kernel.org/patchwork/project/lkml/list/?series=484517
+>>> https://lore.kernel.org/patchwork/project/lkml/list/?series=484489
+>>> https://lore.kernel.org/patchwork/patch/1379831/
+>>>
+>>
+>> I'm not able to find v2 of this series, but plenty of patches that
+>> depends on its content. Do I somehow miss it, or is it coming?
+> 
+> I did post v2 [1], and will post v3 shortly addressing some of
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Posted a v3 now [1], also re-based on msm/for-next
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 04590ba30340..a7d9e6f720ad 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15363,6 +15363,7 @@ M:	Lewis Hanly <lewis.hanly at microchip.com>
- M:	Cyril Jean <cyril.jean at microchip.com>
- L:	linux-riscv at lists.infradead.org
- S:	Supported
-+F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/soc/microchip/
- F:	include/soc/microchip/mpfs.h
- 
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
+
+> the feedback from Stephen on v2. I was waiting on the rpmh clock
+> fix to come out [2], which addresses the question about the XO clock
+> frequency [3] in DT
+> 
+> [1] https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+> [2] https://lore.kernel.org/patchwork/patch/1393159/
+> [3] https://lore.kernel.org/patchwork/patch/1389019/
+> 
+>> Regards,
+>> Bjorn
+>>
+>>> Maulik Shah (3):
+>>>    arm64: dts: qcom: sc7280: Add RSC and PDC devices
+>>>    arm64: dts: qcom: Add reserved memory for fw
+>>>    arm64: dts: qcom: sc7280: Add cpuidle states
+>>>
+>>> Rajendra Nayak (5):
+>>>    dt-bindings: arm: qcom: Document SC7280 SoC and board
+>>>    dt-bindings: firmware: scm: Add SC7280 support
+>>>    arm64: dts: sc7280: Add basic dts/dtsi files for SC7280 soc
+>>>    dt-bindings: qcom,pdc: Add compatible for sc7280
+>>>    arm64: dts: qcom: SC7280: Add rpmhcc clock controller node
+>>>
+>>> Sai Prakash Ranjan (4):
+>>>    dt-bindings: arm-smmu: Add compatible for SC7280 SoC
+>>>    arm64: dts: qcom: sc7280: Add device node for APPS SMMU
+>>>    dt-bindings: watchdog: Add compatible for SC7280 SoC
+>>>    arm64: dts: qcom: sc7280: Add APSS watchdog node
+>>>
+>>> satya priya (1):
+>>>    arm64: dts: qcom: sc7280: Add SPMI PMIC arbiter device for SC7280
+>>>
+>>>   Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+>>>   .../devicetree/bindings/firmware/qcom,scm.txt      |   1 +
+>>>   .../bindings/interrupt-controller/qcom,pdc.txt     |   1 +
+>>>   .../devicetree/bindings/iommu/arm,smmu.yaml        |   1 +
+>>>   .../devicetree/bindings/watchdog/qcom-wdt.yaml     |   1 +
+>>>   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>>>   arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  47 ++
+>>>   arch/arm64/boot/dts/qcom/sc7280.dtsi               | 596 +++++++++++++++++++++
+>>>   8 files changed, 654 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>
+>>> -- 
+>>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+>>> of Code Aurora Forum, hosted by The Linux Foundation
+>>>
+> 
+
 -- 
-2.17.1
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
