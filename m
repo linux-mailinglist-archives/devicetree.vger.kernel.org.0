@@ -2,87 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A989337053
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:43:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B124F337058
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 11:44:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232334AbhCKKnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 05:43:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbhCKKml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 05:42:41 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE623C061574;
-        Thu, 11 Mar 2021 02:42:40 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id d23so6793267plq.2;
-        Thu, 11 Mar 2021 02:42:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gIYOMYOKVo+mGI0uXGsSplZ/o4gRCgxMr3FfOW9mCVo=;
-        b=tFGfT19FBFVyyK3VQA4Wq7SpOr38r2IGnV+qwMcK4MsVW4cU7+StpniuRufqxRD4lt
-         FlHYF6oNxGEmCPZ33aEbzkOgGsL6UVmvvQSDNB+utQ60/RUrWSePFy5+tVzPgWrQNN8x
-         euwzsttAPS6k0b7vebnjOCwpC2ffNox5S8TEyyJWpTHwQurDCZsey3QvCUD7bM70RM0B
-         8xYgtwE3b7VBEpGMD/32n0gKK0dw+lSvJ0qPxlibrMnuruBg8cZXgziweSPtkefDHsC1
-         gOu70GU7hzLtqtMBCk/zB6J8J1HQr82JeJelXPCc7AzNC6SwyhVRqUm9LLvKhSGNzwMB
-         r8wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gIYOMYOKVo+mGI0uXGsSplZ/o4gRCgxMr3FfOW9mCVo=;
-        b=ONAv1r+uNvliR66LKk/R92XReP+xicU4y0Xb8iaPcSRFK3DSqR4x76BmZcFeHiFh6j
-         lRcKgZZAQ9WmIUtwuNrL2U4JfrrrUMsBMQ3c00WHUGS6VTbwAKWxIANitSZwh9N7yomV
-         Qkgf45YvizVXpyjM+sIt0p7Lo8AgzMJi7+0Kw7zYHl4W6upghB40T1m1Qc6lnKRZ2u+y
-         LJ2lVD2XakWHaESCx8x0z+KTsZiA/mK/Q+xOdujFZv86rfpyP6y1Yb+uaF1a8Nw3dp2q
-         JaVvhP6/O6WxAX1Ah7SiyUnZTT551WqkmYXNFxNrIBNemXyvNT1vrjtnXfWsJssDrkoP
-         +bGg==
-X-Gm-Message-State: AOAM531sNJ8UMvIpgqX+Tz1Et9Q1SLUFzclszvxcbT88CHAbFS6P/6aj
-        oI9Xp3VJaB2JCiMLcG75xO2K5PjIcv9ZRvBy+Wg=
-X-Google-Smtp-Source: ABdhPJzWoP6XUS/TeIQwbRQ3c0qtQADY6wEUfpkbZ9HBzQWiD0PdI2WY+R/Tq2+whLln3VZBvC8NB6PQb3ClOlNb/X0=
-X-Received: by 2002:a17:90a:b311:: with SMTP id d17mr1271593pjr.228.1615459360370;
- Thu, 11 Mar 2021 02:42:40 -0800 (PST)
+        id S232459AbhCKKnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 05:43:45 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:28714 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232357AbhCKKnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 05:43:24 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12BAb1YP012246;
+        Thu, 11 Mar 2021 11:43:12 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=reVD2nFbVEp8gb4z7l9Lsc03zMkyrWzjlZogLvrIq8g=;
+ b=CcxY2U0ZH0Ze2pjopc2xYv8LVNwhXqq5LIcIQ7ca2HjtCsz7114dmPZ+fj1B55+Xw8D2
+ Qu8oclX35DsVjWohNW4+T2p61GRiAWcntzOcGYzhtvW6qr7aT+Ux1omvcQRWJqu8c23H
+ O5LbsLU1v3EtlDg5vvY6/Ka/P6qpnZIpHrY0hEFTdnO8JdbQev4bfQsgvSDRJ7kcnjgW
+ tTbvY/L8y1sUPDPsqDhy110SRxg/J2ekoa1Y8/m/WPAzrMV+U/GsC6MGOQRY/IuobH9Q
+ 6HPnWsqZdD0qA5ygpBZwAU+K0yVa6LmZBSoxeHPNl58ypG2+n5aHXNt5sZp51t5ei7Lo mA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37403766k1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 11 Mar 2021 11:43:12 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 655DC100034;
+        Thu, 11 Mar 2021 11:43:12 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4EA8322D624;
+        Thu, 11 Mar 2021 11:43:12 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 11 Mar
+ 2021 11:43:11 +0100
+Subject: Re: [PATCH 8/8] ARM: stm32: add initial support for stm32h750
+To:     <dillon.minfei@gmail.com>, <robh+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
+        <vladimir.murzin@arm.com>, <afzal.mohd.ma@gmail.com>
+References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
+ <1614758717-18223-9-git-send-email-dillon.minfei@gmail.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <a5b4a06c-60c4-ba56-5f5b-dd7a8c5a0d6d@foss.st.com>
+Date:   Thu, 11 Mar 2021 11:43:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210208222203.22335-1-info@metux.net> <20210208222203.22335-8-info@metux.net>
- <CACRpkdb5R+VQrv0QuKa+EYmAMkodRpyv4fV1QCWQ+vcEyd0sZQ@mail.gmail.com> <acae5f9a-1cc8-46e1-2b3b-c806679ef062@metux.net>
-In-Reply-To: <acae5f9a-1cc8-46e1-2b3b-c806679ef062@metux.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 11 Mar 2021 12:42:24 +0200
-Message-ID: <CAHp75VeWW__18hwK+-uEibpzLpehD4h=QCnTbKOc-2GbkMB0TA@mail.gmail.com>
-Subject: Re: [RFC PATCH 07/12] gpio: amd-fch: add oftree probing support
-To:     "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1614758717-18223-9-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-11_04:2021-03-10,2021-03-11 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 12:20 PM Enrico Weigelt, metux IT consult
-<info@metux.net> wrote:
-> On 01.03.21 15:51, Linus Walleij wrote:
+Hi Dillon
 
-> > I don't know what the idea is with this but register are not normally defined
-> > in the DTS files. The registers are determined from the compatible value.
->
-> The idea is basically replacing the pdata struct by oftree node.
-> (subsequent patches in this queue use this by doing the board setup via
-> compiled-in dtb, instead of the currently hardcoded tables).
+On 3/3/21 9:05 AM, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
+> 
 
-You are a bit late. We have built-in device properties (and
-corresponding API, which recently becomes swnode) which aims exactly
-this.
+No empty commit message please
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> ---
+>   arch/arm/mach-stm32/board-dt.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/mach-stm32/board-dt.c b/arch/arm/mach-stm32/board-dt.c
+> index 011d57b488c2..a766310d8dca 100644
+> --- a/arch/arm/mach-stm32/board-dt.c
+> +++ b/arch/arm/mach-stm32/board-dt.c
+> @@ -17,6 +17,7 @@ static const char *const stm32_compat[] __initconst = {
+>   	"st,stm32f746",
+>   	"st,stm32f769",
+>   	"st,stm32h743",
+> +	"st,stm32h750",
+>   	"st,stm32mp157",
+>   	NULL
+>   };
+> 
