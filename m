@@ -2,166 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A495337C8A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 633DB337C9D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:27:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbhCKSZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 13:25:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59406 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230214AbhCKSYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 13:24:43 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 78CC964FBA;
-        Thu, 11 Mar 2021 18:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615487082;
-        bh=LLqLzhWdnxok5DUvrrOQtdyJlbSSW+8QR1bbI8CYBlM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kumijSRoty+JtAfLxQacL/8rhAVOjwq0WCiYvVvuI1QeEj6Sw5GXcsbZucl8FmGfs
-         Q3HgLb3Z7tTXOfBb+XF/1EUXhvRbUrZEqjAfsx1FXXdOKs0sdB6y66InNGhK3lavqo
-         UCh9cqimjmaKyR17Sb/Awhd8EOx9Hv5EjYM4dA1/Hy/WQhZrQnklUT5pYZlm6/uRrc
-         sY2kFQEG63JHcL+LH/4fBNlojvxhTZoQT0XfJg6cGZNkdPS0+rLoBJe4FJB+knAFUY
-         J9aWmxbYbmoLdsfwoqQNSf1jdDhbzItnbvqwsz+aDndPRvx4g8ifJzaHVPcb+3/sTL
-         3hiblbN2pdfbg==
-Received: by mail-ed1-f41.google.com with SMTP id i61so4267636edd.7;
-        Thu, 11 Mar 2021 10:24:42 -0800 (PST)
-X-Gm-Message-State: AOAM531ZYA62oBM6D/qSOi8smCw9si2AegC11dzMA0HDA+DxvshP+VTd
-        8AZFju1ntssc0E+IVfau1yI4Tujmj+4X1ScLOw==
-X-Google-Smtp-Source: ABdhPJw5ikUwneb4H6p8ZB8IoPDrdXlBIWUwvYgPRmdS0rgdwxxMrII3gdPBLn/6UQTl79dMIvdOpebnCsEZAJgfa0I=
-X-Received: by 2002:aa7:c403:: with SMTP id j3mr9879781edq.137.1615487080829;
- Thu, 11 Mar 2021 10:24:40 -0800 (PST)
+        id S229811AbhCKS0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 13:26:48 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:45627 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230027AbhCKS0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 13:26:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1615487199;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7/wSGYLh9BUQ/m4VK2E3Iu8L1K7AWw+HwFDDXH/P7x4=;
+        b=Dt56iO4QJuJA+k3BrHjVi7X4akcMO+fRI3Op/0Vlc4YS1d0fSliXBiTt5M6YPh81npUeAo
+        DONzHVH3vUzM3i7Q/rhj6Wb86BvX9R713O30qm86eYnTVWaw712H2o2v2ckbvL/zzFODWg
+        NXs61CYptcr97lCFNI+HveKAq/RCz64=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-523-tI7do3StOW-_Q-v_szdHNg-1; Thu, 11 Mar 2021 13:26:37 -0500
+X-MC-Unique: tI7do3StOW-_Q-v_szdHNg-1
+Received: by mail-qk1-f199.google.com with SMTP id x11so13042170qki.22
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:26:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=7/wSGYLh9BUQ/m4VK2E3Iu8L1K7AWw+HwFDDXH/P7x4=;
+        b=ne7h0RswYMtLB1ytAGGs0rTM1KaY8AfobvEuDYVjpnM+4eZyzizpN23bbqN2CQLcmu
+         UXctqaI2ePfbHO2qR34pCkMBORmLMJWJau5MTtrx2VAVuKItbMPVqzYi7mpiBniFyOyg
+         3n4iCQjAsdiDPf388TVBogcjwSwds11y8WPeKnhhZDstyCHhkw53HsXu99ExxwX3AuXo
+         EwiHdgz2HMg8EWMFBI812/WQQDmEbuKZnOOPGHbkA8ZeKSP4rFu3W48FVfBEWc+FLep8
+         zM5UXFvXRQwDjl+Vc0LV/u148f5Jkx6PY66wrcomZsTMFNBIFXH1ka9ne81Nc9J/YzNK
+         ZwYw==
+X-Gm-Message-State: AOAM532hrFKyMYZxRUDne3mTrsLHxTzaULyOpgNoyQjAQjRQ++OSVL/a
+        shGmEtTVXsfY3dsQlM+V94rRPM6mopOy0M8ijwcfX2fYndLLDkeSkwMazvrO0uCIzWjb+w4hrFb
+        tFSM8nM6BkK/hTzwe7yHq1g==
+X-Received: by 2002:ac8:68d:: with SMTP id f13mr8512346qth.300.1615487197326;
+        Thu, 11 Mar 2021 10:26:37 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJykrRpLf1VdnWeXfJOmyNvXTcgKB/EbD8MxyP146EU0lCHJTfc5M6K1GGvBKnS5gI4cz7i4ig==
+X-Received: by 2002:ac8:68d:: with SMTP id f13mr8512326qth.300.1615487197076;
+        Thu, 11 Mar 2021 10:26:37 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id 77sm2571571qko.48.2021.03.11.10.26.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Mar 2021 10:26:36 -0800 (PST)
+Subject: Re: [PATCH v3 00/15] arm64 / clk: socfpga: simplifying, cleanups and
+ compile testing
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-edac@vger.kernel.org,
+        linux-fpga@vger.kernel.org, linux-i2c@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <f0b90916-9047-d5da-5cde-75d4330cf041@redhat.com>
+Date:   Thu, 11 Mar 2021 10:26:32 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-References: <20210310125504.31886-1-noltari@gmail.com> <20210310125504.31886-4-noltari@gmail.com>
- <CAL_JsqKZA-j2iXvVTXWtiuyKPOWeOUP0r+x-bV6QP6=_moy2VA@mail.gmail.com>
- <CACRpkda=isBSW8BwYJ2pCaPcByRoo2GFNVoZCxhaCbEKk9iNsg@mail.gmail.com>
- <CAL_Jsq+FfYE2SrzwB_A=d-LMut-JrqdivKz6x8EQhkc3Zh5NAA@mail.gmail.com>
- <CACRpkdaMYy_Z34i+0uRgciC=xBtoeNsWViHU9ZysvxqrFXB5+w@mail.gmail.com> <edb31609-e138-9844-7168-004c882cae97@gmail.com>
-In-Reply-To: <edb31609-e138-9844-7168-004c882cae97@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 11 Mar 2021 11:24:28 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKSqQLUJB9OArwjtSgo5g4nPYLJFt+x54MwS+EHq0+Jww@mail.gmail.com>
-Message-ID: <CAL_JsqKSqQLUJB9OArwjtSgo5g4nPYLJFt+x54MwS+EHq0+Jww@mail.gmail.com>
-Subject: Re: [PATCH v6 03/15] pinctrl: bcm: add bcm63xx base code
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 10:00 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
->
-> Hi Rob and Linus,
->
-> El 11/03/2021 a las 17:13, Linus Walleij escribi=C3=B3:
-> > On Thu, Mar 11, 2021 at 3:58 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >> On Wed, Mar 10, 2021 at 6:09 PM Linus Walleij <linus.walleij@linaro.or=
-g> wrote:
-> >>> On Wed, Mar 10, 2021 at 6:51 PM Rob Herring <robh+dt@kernel.org> wrot=
-e:
-> >>>
-> >>>>> +static const struct of_device_id bcm63xx_gpio_of_match[] =3D {
-> >>>>> +       { .compatible =3D "brcm,bcm6318-gpio", },
-> >>>>> +       { .compatible =3D "brcm,bcm6328-gpio", },
-> >>>>> +       { .compatible =3D "brcm,bcm6358-gpio", },
-> >>>>> +       { .compatible =3D "brcm,bcm6362-gpio", },
-> >>>>> +       { .compatible =3D "brcm,bcm6368-gpio", },
-> >>>>> +       { .compatible =3D "brcm,bcm63268-gpio", },
-> >>>>
-> >>>> All these would be moved to gpio-mmio.c (or maybe that can have a
-> >>>> fallback compatible?).
-> >>>
-> >>> This is gpio-regmap.c and it can only be used as a library
-> >>> by a certain driver. gpio-mmio.c can be used stand-alone
-> >>> for certain really simple hardware (though most use that
-> >>> as a library as well).
-> >>
-> >> I don't really care which one is used, but the problem is that this
-> >> choice is leaking into the binding design.
-> >
-> > Aha I guess I misunderstood your comment.
-> >
-> >> The primary problem here is
-> >> once someone uses regmap, then they think they must have a syscon and
-> >> can abandon using 'reg' and normal address properties as Linux happens
-> >> to not use them (currently). I think we really need some better regmap
-> >> vs. mmio handling to eliminate this duplication of foo-mmio and
-> >> foo-regmap drivers and difference in binding design. Not sure exactly
-> >> what that looks like, but basically some sort of 'reg' property to
-> >> regmap creation.
-> >
-> > I see the problem. Yeah we should try to be more strict around
-> > these things. To me there are syscons and "other regmaps",
-> > where syscon is a real hurdle of registers while "other regmaps"
-> > are just regmaps by convenience.
-> >
-> > Documentation/devicetree/bindings/mfd/syscon.yaml
-> > describes what a syscon really is so if everyone could
-> > just read the documentation that would be great ...
-> >
-> >> Given we already have a Broadcom GPIO binding for what looks to be
-> >> similar to this one, I'm left wondering what's the real difference
-> >> here?
-> >
-> > Which one is similar? I can take a look.
->
-> @Linus I think @Rob is referring to brcm,bcm6345-gpio:
-> https://github.com/torvalds/linux/blob/a74e6a014c9d4d4161061f770c9b4f9837=
-2ac778/drivers/gpio/gpio-mmio.c#L686
 
-Well, since it's the bindings we're talking about:
-Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.txt
+On 3/11/21 7:25 AM, Krzysztof Kozlowski wrote:
+> Hi,
+>
+> All three Intel arm64 SoCFPGA architectures (Agilex, N5X and Stratix 10)
+> are basically flavors/platforms of the same architecture.  At least from
+> the Linux point of view.  Up to a point that N5X and Agilex share DTSI.
+> Having three top-level architectures for the same one barely makes
+> sense and complicates driver selection.
+>
+> Additionally it was pointed out that ARCH_SOCFPGA name is too generic.
+> There are other vendors making SoC+FPGA designs, so the name should be
+> changed to have real vendor (currently: Intel).
+>
+>
+> Dependencies / merging
+> ======================
+> 1. Patch 1 is used as base, so other changes depend on its hunks.
+>    I put it at beginning as it is something close to a fix, so candidate
+>    for stable (even though I did not mark it like that).
+> 2. Patch 2: everything depends on it.
+>
+> 3. 64-bit path:
+> 3a. Patches 3-7: depend on patch 2, from 64-bit point of view.
+> 3b. Patch 8: depends on 2-7 as it finally removes 64-bit ARCH_XXX
+>     symbols.
+>
+> 4. 32-bit path:
+> 4a. Patches 9-14: depend on 2, from 32-bit point of view.
+> 4b. Patch 15: depends on 9-14 as it finally removes 32-bit ARCH_SOCFPGA
+>     symbol.
+>
+> If the patches look good, proposed merging is via SoC tree (after
+> getting acks from everyone). Sharing immutable branches is also a way.
+>
+>
+> Changes since v2
+> ================
+> 1. Several new patches and changes.
+> 2. Rename ARCH_SOCFPGA to ARCH_INTEL_SOCFPGA on 32-bit and 64-bit.
+> 3. Enable compile testing of 32-bit socfpga clock drivers.
+> 4. Split changes per subsystems for easier review.
+> 5. I already received an ack from Lee Jones, but I did not add it as
+>    there was big refactoring.  Please kindly ack one more time if it
+>    looks good.
+>
+> Changes since v1
+> ================
+> 1. New patch 3: arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64.
+> 2. New patch 4: arm64: intel: merge Agilex and N5X into ARCH_SOCFPGA64.
+> 3. Fix build is.sue reported by kernel test robot (with ARCH_STRATIX10
+>    and COMPILE_TEST but without selecting some of the clocks).
+>
+>
+> RFT
+> ===
+> I tested compile builds on few configurations, so I hope kbuild 0-day
+> will check more options (please give it few days on the lists).
+> I compare the generated autoconf.h and found no issues.  Testing on real
+> hardware would be appreciated.
+>
+> Best regards,
+> Krzysztof
+>
+> Krzysztof Kozlowski (15):
+>   clk: socfpga: allow building N5X clocks with ARCH_N5X
+>   ARM: socfpga: introduce common ARCH_INTEL_SOCFPGA
+>   mfd: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
+>   net: stmmac: merge ARCH_SOCFPGA and ARCH_STRATIX10
+>   clk: socfpga: build together Stratix 10, Agilex and N5X clock drivers
+>   clk: socfpga: merge ARCH_SOCFPGA and ARCH_STRATIX10
+>   EDAC: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
+>   arm64: socfpga: merge Agilex and N5X into ARCH_INTEL_SOCFPGA
+>   clk: socfpga: allow compile testing of Stratix 10 / Agilex clocks
+>   clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and
+>     compile test)
+>   dmaengine: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
+>   fpga: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
+>   i2c: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
+>   reset: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
+>   ARM: socfpga: drop ARCH_SOCFPGA
+>
+>  arch/arm/Kconfig                            |  2 +-
+>  arch/arm/Kconfig.debug                      |  6 +++---
+>  arch/arm/Makefile                           |  2 +-
+>  arch/arm/boot/dts/Makefile                  |  2 +-
+>  arch/arm/configs/multi_v7_defconfig         |  2 +-
+>  arch/arm/configs/socfpga_defconfig          |  2 +-
+>  arch/arm/mach-socfpga/Kconfig               |  4 ++--
+>  arch/arm64/Kconfig.platforms                | 17 ++++-------------
+>  arch/arm64/boot/dts/altera/Makefile         |  2 +-
+>  arch/arm64/boot/dts/intel/Makefile          |  6 +++---
+>  arch/arm64/configs/defconfig                |  3 +--
+>  drivers/clk/Kconfig                         |  1 +
+>  drivers/clk/Makefile                        |  4 +---
+>  drivers/clk/socfpga/Kconfig                 | 19 +++++++++++++++++++
+>  drivers/clk/socfpga/Makefile                | 11 +++++------
+>  drivers/dma/Kconfig                         |  2 +-
+>  drivers/edac/Kconfig                        |  2 +-
+>  drivers/edac/altera_edac.c                  | 17 +++++++++++------
+>  drivers/firmware/Kconfig                    |  2 +-
+>  drivers/fpga/Kconfig                        |  8 ++++----
+>  drivers/i2c/busses/Kconfig                  |  2 +-
+>  drivers/mfd/Kconfig                         |  4 ++--
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
+>  drivers/reset/Kconfig                       |  6 +++---
+>  24 files changed, 71 insertions(+), 59 deletions(-)
+>  create mode 100644 drivers/clk/socfpga/Kconfig
+>
+Thanks for changing the config name.
 
-Which says this:
-"These bindings can be used on any BCM63xx SoC. However, BCM6338 and
-BCM6345 are the only ones which don't need a pinctrl driver."
+Please review checkpatch --strict on this set, the typical complaint is
 
-Not that the 1 in tree user of this is perfect. Seems like it too
-should be a child of a system controller if there's other registers.
+clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and compile test)    
+WARNING: please write a paragraph that describes the config symbol fully
+#35: FILE: drivers/clk/socfpg/Kconfig:11:                       
++config CLK_INTEL_SOCFPGA32
 
->
-> However, the real difference between BCM6345 (and BCM6338) is that these
-> SoCs have no pin controller at all, only a GPIO controller:
->
-> BCM6345:
-> typedef struct GpioControl {
->    uint16        unused0;
->    byte          unused1;
->    byte          TBusSel;
->    uint16        unused2;
->    uint16        GPIODir;
->    byte          unused3;
->    byte          Leds;
->    uint16        GPIOio;
->    uint32        UartCtl;
-> } GpioControl;
->
-> BCM6338:
-> typedef struct GpioControl {
->    uint32        unused0;
->    uint32        GPIODir;      /* bits 7:0 */
->    uint32        unused1;
->    uint32        GPIOio;       /* bits 7:0 */
->    uint32        LEDCtrl;
->    uint32        SpiSlaveCfg;
->    uint32        vRegConfig;
-> } GpioControl;
->
-> BCM6348 and newer also have pinctrl.
-> That's the main difference between that driver @Rob's referring to and
-> the ones in this patch series.
+Tom
+
