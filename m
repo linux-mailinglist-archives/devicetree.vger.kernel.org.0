@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 744B13369E9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2AB336A41
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 03:53:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbhCKBxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 20:53:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbhCKBwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:52:53 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87031C061760
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:52:51 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id lr13so42947448ejb.8
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:52:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QB223bp1Em333GDTsTwQxut+5emCQUk41ySuZ8lYHAE=;
-        b=0OYveGf86C+r/sdX0HC+/3/RiOVvrtXNqI+AmOQQ1OK5Upm360KO8UBgkuDumsmE9r
-         qa5zv21/Vj/ZJRbDbvWLRwjxW4KG+81UKLHeQAtQt/K4KBbC1sNvrV0r222i1Nrs5jFb
-         XE2D05GWJ1l0kppMlHgH5KHNFYW15GmSQ8uMNURDFwwkzYKsPQIIKEXPrxBD82Q+cSxC
-         nvgbcf6rGICIe4hGw3DU4I7xwhTqX7HZIRS06uZjK7m5kOkanyyO+S+eZHWbDm8hxNyE
-         u4rVL1geDQdDXlDEfpuv7TU2fBpN47+56frbhNulAxn4hBs7qnIZCjB0te+d0/N0bTtw
-         Lt+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QB223bp1Em333GDTsTwQxut+5emCQUk41ySuZ8lYHAE=;
-        b=lELL55TjJ6zgb5wOzInBpQRGVnzJ7j/dQO7V+1lvjh8V6YhWt1zTHMMYJaMAziY22x
-         aP9OPe8TTjJgfqIp3MXJLA33kyCNEdTikuUvyQfGF812Nopjp7q+3gmD24mNtiqjWf+9
-         9fd0aZTzQmmhY7yu7rjsObxr+cfBED87xrI8jVbmnyVf6+8QcSIkejydi1I6V4juHeJe
-         Q3vrXXAOz5FMBzAtfo38vxb31oi8z6JVNf6BqQSq4S8o24hJgYA31MtRisHERa8V3BSO
-         D+8c5azFpv5v4zpLdpFhf/3+x/BwAeZ8a05dqXOQHfUoPp55CwF15BD9KvwYace3VBZE
-         SYtg==
-X-Gm-Message-State: AOAM532JXpIBdtNLStzCv6334JklIHINcbvO4vfLtYvg0g4V7JrczgZv
-        Izul/ub+kl7/xntchgC82i1AjB2qvTKHn0wpQF4e5Q==
-X-Google-Smtp-Source: ABdhPJwM9E9CqbfvXxPoIKdz6VLrM5ta6QNyhypWzaZANcUDgeMODn401RQk09cF1Hv4rRhXjiVJoF+GhaPv/kkrIMI=
-X-Received: by 2002:a17:906:789:: with SMTP id l9mr709774ejc.161.1615427570161;
- Wed, 10 Mar 2021 17:52:50 -0800 (PST)
+        id S229766AbhCKCwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 21:52:49 -0500
+Received: from foss.arm.com ([217.140.110.172]:56834 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229624AbhCKCwa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 21:52:30 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 985A31FB;
+        Wed, 10 Mar 2021 18:52:24 -0800 (PST)
+Received: from bogus (unknown [10.163.66.77])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3DC383F793;
+        Wed, 10 Mar 2021 18:52:21 -0800 (PST)
+Date:   Thu, 11 Mar 2021 02:52:13 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        Sudeep Holla <sudeep.holla@arm.com>, daniel.lezcano@linaro.org,
+        robh+dt@kernel.org, ksitaraman@nvidia.com, sanjayc@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 3/5] dt-bindings: arm: Add cpu-idle-states to Tegra194
+ CPU nodes
+Message-ID: <20210311025138.o4ub4j2ss725zpv4@bogus>
+References: <1614838092-30398-1-git-send-email-skomatineni@nvidia.com>
+ <1614838092-30398-4-git-send-email-skomatineni@nvidia.com>
+ <20210308043755.llvdsuz2jwvweovb@bogus>
+ <4cebf482-a2f8-5a79-a2f6-4ccd7d31c6ad@nvidia.com>
 MIME-Version: 1.0
-References: <20210309220014.22205-1-tharvey@gateworks.com> <8ca5c54140d69307f3c08ca85a09f0b5@walle.cc>
-In-Reply-To: <8ca5c54140d69307f3c08ca85a09f0b5@walle.cc>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 10 Mar 2021 17:52:38 -0800
-Message-ID: <CAJ+vNU3_q_kmZKrr0V5_1zgDSWrSneL0nBJhch33Ku0xRqC5Ug@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: at25: add Fujitsu MB85RS4MT
-To:     Michael Walle <michael@walle.cc>
-Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        linux-mtd@lists.infradead.org,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4cebf482-a2f8-5a79-a2f6-4ccd7d31c6ad@nvidia.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 9, 2021 at 2:59 PM Michael Walle <michael@walle.cc> wrote:
+On Mon, Mar 08, 2021 at 10:32:17AM -0800, Sowjanya Komatineni wrote:
 >
-> Hi Tim,
->
-> Am 2021-03-09 23:00, schrieb Tim Harvey:
-> > Document the compatible value for the Fujitsu MB85RS4MT SPI
-> > FRAM EEPROM device so that it can be used in DTS files.
+> On 3/7/21 8:37 PM, Sudeep Holla wrote:
+> > On Wed, Mar 03, 2021 at 10:08:10PM -0800, Sowjanya Komatineni wrote:
+> > > This patch adds cpu-idle-states and corresponding state nodes to
+> > > Tegra194 CPU in dt-binding document
+> > >
+> > I see that this platform has PSCI support. Can you care to explain why
+> > you need additional DT bindings and driver for PSCI based CPU suspend.
+> > Until the reasons are convincing, consider NACK from my side for this
+> > driver and DT bindings. You should be really using those bindings and
+> > the driver may be with minor changes there.
 > >
-> > This is a 512KiB FRAM EEPROM.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml
-> > b/Documentation/devicetree/bindings/eeprom/at25.yaml
-> > index 6a2dc8b3ed14..f594db72b711 100644
-> > --- a/Documentation/devicetree/bindings/eeprom/at25.yaml
-> > +++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
-> > @@ -26,6 +26,7 @@ properties:
-> >                - anvo,anv32e61w
-> >                - atmel,at25256B
-> >                - fujitsu,mb85rs1mt
-> > +              - fujitsu,mb85rs4mt
-> >                - fujitsu,mb85rs64
-> >                - microchip,at25160bn
-> >                - microchip,25lc040
->
-> Hm, the driver is spi-nor but this is for the at25 driver. Is
-> this correct? Doesn't it work if you just add the ID to
-> spi-nor/fujitsu.c and use 'compatible = "jedec,spi-nor' ?
+> MCE firmware is in charge of state transition for Tegra194 carmel CPUs.
 >
 
-Michael,
+Sure, but I assume only TF-A talks to MCE and not any OSPM/Linux kernel.
 
-Yes it works just fine as 'compatible = "jedec,spi-nor"' and that
-makes sense. I'll drop this patch and update my device-tree
-accordingly.
+> For run-time state transitions, need to provide state request along with its
+> residency time to MCE firmware which is running in the background.
+>
 
-Thanks,
+Sounds similar to x86 mwait, perhaps we need to extend PSCI if we need
+to make this firmware PSCI compliant or just say it is not and implement
+completely independent implementation. I am not saying that is acceptable
+ATM but I prefer not to mix some implementation to make it look like
+PSCI compliant.
 
-Tim
+> State min residency is updated into power_state value along with state id
+> that is passed to psci_cpu_suspend_enter
+>
+
+Sounds like a hack/workaround. I would prefer to standardise that. IIUC
+the power_state is more static and derived from DT. I don't like to
+overload that TBH. Need to check with authors of that binding.
+
+> Also states cross-over idle times need to be provided to MCE firmware.
+>
+
+New requirements if this has to be PSCI compliant.
+
+> MCE firmware decides on state transition based on these inputs along with
+> its background work load.
+>
+> So, Tegra specific CPU idle driver is required mainly to provide cross-over
+> thresholds from DT and run time idle state information to MCE firmware
+> through Tegra MCE communication APIs.
+>
+
+I am worried if different vendors will come up with different custom
+solution for this. We need to either standardise this is Linux/DT or
+in PSCI.
+
+> Allowing cross-over threshold through DT allows users to vary idle time
+> thresholds for state transitions based on different use-cases.
+>
+
+Sounds like policy and not platform specific to be in DT, but I will leave
+that to DT maintainers.
+
+--
+Regards,
+Sudeep
