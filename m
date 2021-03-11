@@ -2,179 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 421B233742F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 320E73374A0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 14:50:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbhCKNli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 08:41:38 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50898 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233635AbhCKNlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 08:41:21 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BDfCaq108524;
-        Thu, 11 Mar 2021 07:41:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615470072;
-        bh=vYLdQbvqwMSqb9Nc4Kl09M1XlI2NhnGkj2qZH+9v8j8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=OBbm3t30O4VZAsUnIreBTI/XsavIqsW+FaJrebHc7IpZmU121Z5j6SYtfghbclZxZ
-         zfSBj0o9zFchOkAq5sdFxNod8LmZzUWdHPOFjHK8zeuwDiIth2yRId2jsbce7Ghsl6
-         XHIvKbL6Ah6v9RtcBbGI3GQxKkiPid/UwlDDHv7w=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BDfCPk032166
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 Mar 2021 07:41:12 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
- Mar 2021 07:41:12 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 11 Mar 2021 07:41:12 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BDfBiK001084;
-        Thu, 11 Mar 2021 07:41:12 -0600
-Date:   Thu, 11 Mar 2021 19:11:11 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
+        id S233759AbhCKNti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 08:49:38 -0500
+Received: from gecko.sbs.de ([194.138.37.40]:40052 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233756AbhCKNt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 08:49:27 -0500
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 12BDnIsa002139
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 11 Mar 2021 14:49:18 +0100
+Received: from [167.87.35.81] ([167.87.35.81])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12BDiHqf005503;
+        Thu, 11 Mar 2021 14:44:17 +0100
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: Add support for Siemens IOT2050
+ boards
 To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-som-p0: Add nodes for
- OSPI0
-Message-ID: <20210311134109.pbqsq3l5v2h5ivlx@ti.com>
-References: <20210305153926.3479-1-p.yadav@ti.com>
- <20210305153926.3479-4-p.yadav@ti.com>
- <cbc23906-68cd-d885-2a81-c6088c402caf@ti.com>
- <20210311132250.6kwrgo75emyoglzo@pauper>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Le Jin <le.jin@siemens.com>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <cover.1615369068.git.jan.kiszka@siemens.com>
+ <9bff40f434e5298890e5d139cc36cc46a0ca2d76.1615369068.git.jan.kiszka@siemens.com>
+ <20210311131754.i5ewls6hgeitcgre@astonish>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <8d076ff1-cdac-941f-e796-a2e6dba792ab@siemens.com>
+Date:   Thu, 11 Mar 2021 14:44:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210311132250.6kwrgo75emyoglzo@pauper>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210311131754.i5ewls6hgeitcgre@astonish>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/21 07:22AM, Nishanth Menon wrote:
-> On 21:43-20210305, Vignesh Raghavendra wrote:
-> > 
-> > 
-> > On 3/5/21 9:09 PM, Pratyush Yadav wrote:
-> > > TI J7200 has the Cadence OSPI controller for interfacing with OSPI
-> > > flashes. Add its node to allow using SPI flashes.
-> > > 
-> > > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > > ---
-> > 
-> > Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
-> > 
-> > 
-> > 
-> > > 
-> > > Notes:
-> > >     Changes in v2:
-> > >     - Do not force a pulldown on the DQS line because it already has a
-> > >       pulldown resistor.
-> > > 
-> > >  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 17 +++++++++
-> > >  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 36 +++++++++++++++++++
-> > >  2 files changed, 53 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > > index 359e3e8a8cd0..5408ec815d58 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > > @@ -269,6 +269,23 @@ hbmc: hyperbus@47034000 {
-> > >  			#size-cells = <1>;
-> > >  			mux-controls = <&hbmc_mux 0>;
-> > >  		};
-> > > +
-> > > +		ospi0: spi@47040000 {
-> > > +			compatible = "ti,am654-ospi";
-> > > +			reg = <0x0 0x47040000 0x0 0x100>,
-> > > +			      <0x5 0x00000000 0x1 0x0000000>;
-> > > +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			cdns,fifo-depth = <256>;
-> > > +			cdns,fifo-width = <4>;
-> > > +			cdns,trigger-address = <0x0>;
-> > > +			clocks = <&k3_clks 103 0>;
-> > > +			assigned-clocks = <&k3_clks 103 0>;
-> > > +			assigned-clock-parents = <&k3_clks 103 2>;
-> > > +			assigned-clock-rates = <166666666>;
-> > > +			power-domains = <&k3_pds 103 TI_SCI_PD_EXCLUSIVE>;
-> > > +			#address-cells = <1>;
-> > > +			#size-cells = <0>;
-> > > +		};
-> > >  	};
-> > >  
-> > >  	tscadc0: tscadc@40200000 {
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > > index a988e2ab2ba1..34724440171a 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > > @@ -100,6 +100,22 @@ J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
-> > >  			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
-> > >  		>;
-> > >  	};
-> > > +
-> > > +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-> > > +		pinctrl-single,pins = <
-> > > +			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_OSPI0_CLK */
-> > > +			J721E_WKUP_IOPAD(0x002c, PIN_OUTPUT, 0) /* MCU_OSPI0_CSn0 */
-> > > +			J721E_WKUP_IOPAD(0x000c, PIN_INPUT, 0)  /* MCU_OSPI0_D0 */
-> > > +			J721E_WKUP_IOPAD(0x0010, PIN_INPUT, 0)  /* MCU_OSPI0_D1 */
-> > > +			J721E_WKUP_IOPAD(0x0014, PIN_INPUT, 0)  /* MCU_OSPI0_D2 */
-> > > +			J721E_WKUP_IOPAD(0x0018, PIN_INPUT, 0)  /* MCU_OSPI0_D3 */
-> > > +			J721E_WKUP_IOPAD(0x001c, PIN_INPUT, 0)  /* MCU_OSPI0_D4 */
-> > > +			J721E_WKUP_IOPAD(0x0020, PIN_INPUT, 0)  /* MCU_OSPI0_D5 */
-> > > +			J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
-> > > +			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
-> > > +			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
-> > > +		>;
-> > > +	};
-> > >  };
-> > >  
-> > >  &main_pmx0 {
-> > > @@ -235,3 +251,23 @@ exp_som: gpio@21 {
-> > >  				  "GPIO_LIN_EN", "CAN_STB";
-> > >  	};
-> > >  };
-> > > +
-> > > +&ospi0 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> > > +
-> > > +	flash@0{
-> > > +		compatible = "jedec,spi-nor";
-> > > +		reg = <0x0>;
-> > > +		spi-tx-bus-width = <8>;
-> > > +		spi-rx-bus-width = <8>;
-> > > +		spi-max-frequency = <25000000>;
-> > > +		cdns,tshsl-ns = <60>;
-> > > +		cdns,tsd2d-ns = <60>;
-> > > +		cdns,tchsh-ns = <60>;
-> > > +		cdns,tslch-ns = <60>;
-> > > +		cdns,read-delay = <4>;
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <1>;
-> > > +	};
-> I see this:
-> +/workdir/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dt.yaml: flash@0: 'cdns,read-delay', 'cdns,tchsh-ns', 'cdns,tsd2d-ns', 'cdns,tshsl-ns', 'cdns,tslch-ns' do not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+On 11.03.21 14:17, Nishanth Menon wrote:
+> On 10:37-20210310, Jan Kiszka wrote:
+>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>> +	spidev@0 {
+>> +		compatible = "rohm,dh2228fv";
+>> +		spi-max-frequency = <20000000>;
+>> +		reg = <0>;
 > 
+> Jan,
 > 
-> And that is because
-> Documentation/devicetree/bindings/spi/cadence-quadspi.txt is not
-> converted to yaml. Following the new stringent rules, yaml please?
+> As part of my final sanity checks, I noticed that we missed this: is a checkpatch warning
+> 
+> WARNING: DT compatible string "rohm,dh2228fv" appears un-documented -- check ./Documentation/devicetree/bindings/
+> #629: FILE: arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi:581:
+> 		compatible = "rohm,dh2228fv";
+> 
+> I cannot pick up nodes that are'nt documented as yaml in
+> 	Documentation/devicetree
+> 
+> I know this is irritating to find such nodes that already have previous
+> users and the person coming last gets to deal with "new rules".. but
+> sorry for catching this so late.
+> 
+> Here are the options that come to mind:
+> 
+> option 1) - drop the node and resubmit.
+> 
+> option 2) - get the documentation into linux master tree and then submit
+> the patches.
+> 
 
-Ok. I am working on the conversion. Will send it soon.
+As you said, I'm not setting a precedence here:
+
+arch/arm/boot/dts/imx28-cfa10049.dts:                   compatible = "rohm,dh2228fv";
+arch/arm/boot/dts/rv1108-elgin-r1.dts:          compatible = "rohm,dh2228fv";
+arch/arm/boot/dts/socfpga_cyclone5_socdk.dts:           compatible = "rohm,dh2228fv";
+drivers/spi/spidev.c:   { .compatible = "rohm,dh2228fv" },
+
+Was just just never documented as binding? Or why is no one allowed to 
+use this anymore? What is to be used instead for spidev?
+
+> 
+> I think we should just drop the node and resubmit - since this is a more
+> intrusive change and I don't have your platform handy, I am going to
+> suggest you make a call :(
+
+This breaks userspace here, and we would need to carry that node on top.
+
+BTW, I already brought up the topic internally to get you some boards 
+for testing.
+
+> 
+> Additionally please install yamlint and dtbs_schema -> run dtbs_check. I
+> see more than a few warnings there which may need some closer look.
+> 
+
+I've done that and addressed all that I could (former patch 4). We 
+import those from k3, and I don't feel confident how to resolve them.
+See also v1 of this patch.
+
+Jan
+
+> 
+> A full log against linux-next is here: https://pastebin.ubuntu.com/p/qR69h28c5f/
+> 
+> 
+> PS: https://github.com/nmenon/kernel_patch_verify/blob/master/kpv
+> 
+> I have been using my script to verify with kpv -C -V -n num_patches and
+> then digging through the logs.
+> 
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
