@@ -2,100 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09519336840
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 01:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19F9A33684E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 01:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbhCJX7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 18:59:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
+        id S229696AbhCKADr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 19:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbhCJX7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 18:59:24 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DE5C061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:59:23 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id f1so36663982lfu.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 15:59:23 -0800 (PST)
+        with ESMTP id S229645AbhCKADd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 19:03:33 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C70C061762
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 16:03:32 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id x78so21222927oix.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 16:03:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=dagZdlJSDk9BSW0IHSKAmSKBHhrpoDiQ1DO3svAoSVA=;
-        b=XBeLryR4FhDUUNs0NTaX5cqE4HV9BM84aNyHPkcZP1lriZYH6OvwYjiHWkWo0NU3y+
-         R6uoOjkPACcqUKIJOhrlyQs/yW5cggb3TVOGRzZqe5tU94KwZ6P3mI2YZp/0yDQbEcB8
-         MBHRQ3dyvp6eTR9W83FVpLkeCZJjkHEfdAnd4mlSOpgHAqhV/yUReYk3XNnAoL9MIZSp
-         59trtMWtRzivg6GNH+dVgz6WSuCFbGiR4qeyD8KjgbRkZBS3Hh9Ny8tGbxchuqGVTVNS
-         p+e0QSwn1YM7BnoEXASxUy0qV8C/lYPO8qoyTnfQ5KErs/bKdkIw9kWKkYdi1nMbDeo8
-         gGqw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MqQxCHeDZzA0xjKB6t0uijMIqsuaZ0QygKTZF6eoP3M=;
+        b=NXamsKAQUqB79kgFV5ijJNzR+eiRCX8NhZsktIT/wau3F0JuKgr90bLIgl3oZeZc70
+         HmTs3WOPVNlbIYyHHt2uxSWe/iWrSkfVcyH757KsxZXbRO+si9DWRTmwueiPQKan5Bzx
+         iGw9KZt3sKrHgA8HEeL+iousAW6DmXv1AnegwLTlOGBtqeBlFwcFutdjE6eJ0bbYgxvD
+         8uMfy3yFiSuhMzs7V/Thm3zYByfirgztVGHQeJmIbDUUURXqoL10YyT/AD0fHNTRw4uQ
+         1Ox4mYmfiY1yEob1pC+94NRwFIv49Op4BZV8lnujHAP/BHoU+mK5ffGbd3pAojAp/mc9
+         6I6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dagZdlJSDk9BSW0IHSKAmSKBHhrpoDiQ1DO3svAoSVA=;
-        b=ufb4ZmPXGNxPXYIIb3zjE7b6Ei8ZHDFE133vntgK4A89zY6dZu5TYD1lCabwmlX+1J
-         FiPQhzk2aId4P5cwNhlDqh4mvVLdYSxuYYjmFw45D/ju+OtPMnVRwY1/ayFgg3LB+8Py
-         Y0w618esmgLN439iewv5fC2qL3KalwEYmkNRmt1txNMATJeu5aIh/rqL5kc6kSpmiV2L
-         3/j5FlYHzi+VL4IPXezCrp7v5Sp8C/CkIkcbWo7cJNLrWKufUFnbLiRF6hhfFfKiwLlj
-         f4q0B7uHRZHKp6dNF16pIvlKoIVmoiPCi6Y2AXoELqIWlB9SShq2tqWrkaRFmiMCfDFQ
-         krJw==
-X-Gm-Message-State: AOAM533yY71UbJoz184zFW7KAPGT6sSgd3CVyDgWdboFj6PNLB7jSTGR
-        s+jEzm/Sdy2CrjEymtZTlgICbAGKxgG4ld7P7uSaPg==
-X-Google-Smtp-Source: ABdhPJzdEdBi2sdOnSDjlS1DfmctL5wDJBhET4DfhoDIhrBBeoOES5ahoxRNyDKR7g42nmU2eovUzpQkaobRoucA/Ss=
-X-Received: by 2002:ac2:4d95:: with SMTP id g21mr612424lfe.29.1615420762141;
- Wed, 10 Mar 2021 15:59:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20210306155712.4298-1-noltari@gmail.com> <20210306155712.4298-4-noltari@gmail.com>
- <CAHp75VdwqpL0UScR5s+Tf4z7RZQfyo+625uXZtfWV3=xQr6Z2Q@mail.gmail.com> <EC7F8938-63CB-43D9-AE75-644B2E647360@gmail.com>
-In-Reply-To: <EC7F8938-63CB-43D9-AE75-644B2E647360@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Mar 2021 00:59:11 +0100
-Message-ID: <CACRpkdbP7kAVR9ORQuj7W9iT3EDE1S3iZ-1q+kBoQ8R0TUVMJA@mail.gmail.com>
-Subject: Re: [PATCH v5 03/15] pinctrl: bcm: add bcm63xx base code
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MqQxCHeDZzA0xjKB6t0uijMIqsuaZ0QygKTZF6eoP3M=;
+        b=mWAxDkH17HI+Awpza9pJipiI4mjD34XCvELbnzsN540XojLxkPHFw05OPtxfYNH1+4
+         WQKw32GomD7b+BgM+JXYcYSaifjxIZJWlNWT4g8icp2i5H70XF4HUevTery8hoV4TBRA
+         raUrC1HsJMHVBqlyaQXQ8GAIdSRzm6iRD0dRCEoWFXuTqc3EnZ4lzvGUdbk9t5gjzYIN
+         eY1hg9kL3EipApCsH6hOCobp4+r2m5Nu+rMTWUA2J1drqGUSQFh+lpLMQ2hb0gH54A3U
+         27JqW+N7tChSjfKjAToS/aCYXW2HVwcvkpRpzOyFLUroGoYagwgZDJ1hUfnqyHqHZ6MB
+         xELA==
+X-Gm-Message-State: AOAM531+0OZJPVsQPQ8oQksErgKhRvBxuQYE+F7b6nHz0BAYEbaLbejP
+        1iegDCJEJgQXXk/5t5S4EBZqDQ==
+X-Google-Smtp-Source: ABdhPJyapkzWhfDKQ2HIArCWRyoK3W8H5vkuTbKNebfIJUsVO1F5uteJQ4Qt3NlrDZ0mZ92M24b8rA==
+X-Received: by 2002:aca:f50f:: with SMTP id t15mr4275634oih.53.1615421011975;
+        Wed, 10 Mar 2021 16:03:31 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n1sm209854oog.31.2021.03.10.16.03.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 16:03:31 -0800 (PST)
+Date:   Wed, 10 Mar 2021 18:03:29 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] pinctrl: pmic-mpp: Add missing dt-bindings mpp
+ function defs
+Message-ID: <YEleUVnFmrBYrAe2@builder.lan>
+References: <20210225213605.117201-1-konrad.dybcio@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210225213605.117201-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 8:25 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
+On Thu 25 Feb 15:36 CST 2021, Konrad Dybcio wrote:
 
-> > // for now, since we have not an analogue (yet)
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> 
+> The pinctrl-spmi-mpp driver supports setting more mpp functions
+> than the ones defined in the dt-bindings header, specifically,
+> digital, analog and sink.
+> 
+> To follow the current way of specifying the function config
+> in Device-Tree, add the missing three definitions in the
+> appropriate dt-bindings header as:
+> GPIO_MPP_FUNC_{DIGITAL,ANALOG,SINK}.
+> 
 
-> > node =3D=3D> to_of_node(fwnode)
->
-> So you want me to convert everything to fwnode, but then I would need to =
-use of_node here=E2=80=A6
-> It makes more sense to me to use of_node for now and convert it to fwnode=
- in the future=E2=80=A6
-> @Linus, what do you think?
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-I am aware of the ambition to use fwnode more to more things.
-
-To me it is most important on things that will potentially run with
-both OF and ACPI.
-Typical example: ARM Qualcomm SoCs. New drivers for Aarch64 platforms.
-
-This is a legacy MIPS platform, and we have tons of legacy platforms for AR=
-M
-etc which will never get converted to fwnode, sadly.
-
-Is it realistic that these MIPS platforms will run ACPI in addition to
-OF? Is ACPI even available on MIPS? Isn't OF the preferred HW description
-language for anything MIPS?
-
-Yours,
-Linus Walleij
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  include/dt-bindings/pinctrl/qcom,pmic-mpp.h | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/include/dt-bindings/pinctrl/qcom,pmic-mpp.h b/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
+> index 32e66ee7e830..3cdca7ee1b3f 100644
+> --- a/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
+> +++ b/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
+> @@ -98,6 +98,9 @@
+>  /* To be used with "function" */
+>  #define PMIC_MPP_FUNC_NORMAL		"normal"
+>  #define PMIC_MPP_FUNC_PAIRED		"paired"
+> +#define PMIC_MPP_FUNC_DIGITAL		"digital"
+> +#define PMIC_MPP_FUNC_ANALOG		"analog"
+> +#define PMIC_MPP_FUNC_SINK		"sink"
+>  #define PMIC_MPP_FUNC_DTEST1		"dtest1"
+>  #define PMIC_MPP_FUNC_DTEST2		"dtest2"
+>  #define PMIC_MPP_FUNC_DTEST3		"dtest3"
+> -- 
+> 2.30.1
+> 
