@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D219337782
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5EC2337788
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234011AbhCKP2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 10:28:02 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:34197 "EHLO
+        id S234354AbhCKP2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 10:28:03 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:34225 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234226AbhCKP1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 10:27:31 -0500
+        with ESMTP id S234398AbhCKP1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 10:27:35 -0500
 Received: from mail-ej1-f71.google.com ([209.85.218.71])
         by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
         (Exim 4.86_2)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lKNDm-0005Yv-Ff
-        for devicetree@vger.kernel.org; Thu, 11 Mar 2021 15:27:30 +0000
-Received: by mail-ej1-f71.google.com with SMTP id di5so8820411ejc.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 07:27:30 -0800 (PST)
+        id 1lKNDp-0005aY-PI
+        for devicetree@vger.kernel.org; Thu, 11 Mar 2021 15:27:33 +0000
+Received: by mail-ej1-f71.google.com with SMTP id si4so8872272ejb.23
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 07:27:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/3UhGLxhWacdcsSpVsIOhi7iq++tfBdPJwQmfZFh1zw=;
-        b=rYDPCq2eI1zLuXtKpZaErsmJ720XAATsvuOnc42zh65vYH/uLlc+1lVFQFchJQmXdC
-         zTjTdCrxKbmJxhB4q4EwswXBnGHVDKu/7qT/qxOSP0eH6L4xBQVjqxFzj/s+lXbfTiF/
-         //u3XhE1Nj+h7GnZ4Ue07MGt/hTpE0XWy6hKhMmrSlEsqA0+HhqxxTGaoIhcgvfv4otV
-         o8UDLyvg+7AGRjpRfWlj5rUWypFsgtWWuYwbsSyRSQ6ozVCXgQNb25RGKPpL/wO3hcnU
-         kKrHa2VefgHV1OOyNS1xeTCp6Zpl4dLQieJdvTlqBbARsNDuznK3ifyWEM3RI89bQ07D
-         vepg==
-X-Gm-Message-State: AOAM532L/Vce9vWienwL2k2cij+DEvS9ad++VyTk8CRqmS0cNwIJ3FMj
-        zD60HeC2+qXBviIPGJ8g0F9I0EftQ0wui0e652jDBTsO87rGsGqK3Gm6rnWoIrxYKUBgxsIulMC
-        i1iEDY1ebHJILio6fnBe+9zFWfR57hmZ9ukdvxC4=
-X-Received: by 2002:a05:6402:1103:: with SMTP id u3mr8916760edv.205.1615476439292;
-        Thu, 11 Mar 2021 07:27:19 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJykFYMegR7g3sofzBC+1YkJVaDapoNS+bRGUtFV8/I7aVJB5VDHjlbA8PWaxRhm9KLVG244sg==
-X-Received: by 2002:a05:6402:1103:: with SMTP id u3mr8916710edv.205.1615476439104;
-        Thu, 11 Mar 2021 07:27:19 -0800 (PST)
+        bh=UjkBHzEIXy3Qt0KfyB8W+UTqTimKf+/Z4F2P3MBYO1k=;
+        b=q1uaUR8DQmeN8UU9obfYVH1+eI73mRXrAA+WE5bdpqjYRaA9r73Y1cf9INcWR44N0c
+         qcKJiMBH2KHCYLY2DHz6p8nb8J39lQkc164miagwhxXXNTSXvV3PDv82kCXyvAIh1qXJ
+         +4evLfSoNshJVNVIg8SY1TdUCqcfAo95gg1HoRChMqZRVl0EnR6Cl0+Bl78/RiSl46ys
+         Z7e0jQ6udhN/CyyUxWM+WzrCIaVRNJJt8xTAsCCjl6qwMhGtjmMtLhVrh1aUjuYSEgYt
+         27QQ7EPv4EpE/UFXbk5uFU290UjBwOJaXu6U+p2xcmccqbRUucOtStMHxzAb/iwsGzdJ
+         Bnkg==
+X-Gm-Message-State: AOAM532tQ2BKEcSeSyncI6HihM34Z9DmzdVNSPq6wyhRCqc3rVz3mq1U
+        ZynXuG7WCAthvYk4k/TYtTkMc4t858q35s+RPgY2ni6BY2/6PGpVCuyOd0GF1A3cTu9/jhhT6L1
+        elCt28bmbjwa4YJiCjrO1rlGsQ4OM3KPY+iQR9Wk=
+X-Received: by 2002:a05:6402:149:: with SMTP id s9mr9105096edu.247.1615476453451;
+        Thu, 11 Mar 2021 07:27:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy9JEFJOCs9xlVCDjG2l3JIb1sIqxzKP3KekIDHOJltUt18JZjWfClKITi/qC3i9sP0ViNxqQ==
+X-Received: by 2002:a05:6402:149:: with SMTP id s9mr9105059edu.247.1615476453282;
+        Thu, 11 Mar 2021 07:27:33 -0800 (PST)
 Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.gmail.com with ESMTPSA id yk8sm1445697ejb.123.2021.03.11.07.27.18
+        by smtp.gmail.com with ESMTPSA id t15sm1552389edw.84.2021.03.11.07.27.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 07:27:18 -0800 (PST)
+        Thu, 11 Mar 2021 07:27:32 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Russell King <linux@armlinux.org.uk>,
         Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
@@ -69,9 +69,9 @@ To:     Russell King <linux@armlinux.org.uk>,
         linux-fpga@vger.kernel.org, linux-i2c@vger.kernel.org,
         netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH v3 10/15] clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and compile test)
-Date:   Thu, 11 Mar 2021 16:27:15 +0100
-Message-Id: <20210311152715.1317848-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v3 11/15] dmaengine: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
+Date:   Thu, 11 Mar 2021 16:27:31 +0100
+Message-Id: <20210311152731.1318428-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
 References: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
@@ -84,51 +84,24 @@ X-Mailing-List: devicetree@vger.kernel.org
 ARCH_SOCFPGA is being renamed to ARCH_INTEL_SOCFPGA so adjust the
 32-bit ARM drivers to rely on new symbol.
 
-There is little point to share clock controller drivers between 32-bit
-and 64-bit platforms because there will not be a generic image for both
-of them.  Therefore add a new Kconfig entry for building 32-bit clock
-driverss, similar to one for 64-bit.  This allows enabling compile
-testing.
-
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- drivers/clk/socfpga/Kconfig  | 6 +++++-
- drivers/clk/socfpga/Makefile | 4 ++--
- 2 files changed, 7 insertions(+), 3 deletions(-)
+ drivers/dma/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/socfpga/Kconfig b/drivers/clk/socfpga/Kconfig
-index b62ede8cad01..0cf16b894efb 100644
---- a/drivers/clk/socfpga/Kconfig
-+++ b/drivers/clk/socfpga/Kconfig
-@@ -4,10 +4,14 @@ config CLK_INTEL_SOCFPGA
- 	default ARCH_INTEL_SOCFPGA
- 	help
- 	  Support for the clock controllers present on Intel SoCFPGA and eASIC
--	  devices like Stratix 10, Agilex and N5X eASIC.
-+	  devices like Aria, Cyclone, Stratix 10, Agilex and N5X eASIC.
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index 0c2827fd8c19..a0836ffc22e0 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -100,7 +100,7 @@ config AT_XDMAC
  
- if CLK_INTEL_SOCFPGA
- 
-+config CLK_INTEL_SOCFPGA32
-+	bool "Intel Aria / Cyclone clock controller support" if COMPILE_TEST && (!ARM || !ARCH_INTEL_SOCFPGA)
-+	default ARM && ARCH_INTEL_SOCFPGA
-+
- config CLK_INTEL_SOCFPGA64
- 	bool "Intel Stratix / Agilex / N5X clock controller support" if COMPILE_TEST && (!ARM64 || !ARCH_INTEL_SOCFPGA)
- 	default ARM64 && ARCH_INTEL_SOCFPGA
-diff --git a/drivers/clk/socfpga/Makefile b/drivers/clk/socfpga/Makefile
-index ebd3538d12de..e8dfce339c91 100644
---- a/drivers/clk/socfpga/Makefile
-+++ b/drivers/clk/socfpga/Makefile
-@@ -1,6 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
--obj-$(CONFIG_ARCH_SOCFPGA) += clk.o clk-gate.o clk-pll.o clk-periph.o
--obj-$(CONFIG_ARCH_SOCFPGA) += clk-pll-a10.o clk-periph-a10.o clk-gate-a10.o
-+obj-$(CONFIG_CLK_INTEL_SOCFPGA32) += clk.o clk-gate.o clk-pll.o clk-periph.o \
-+				     clk-pll-a10.o clk-periph-a10.o clk-gate-a10.o
- obj-$(CONFIG_CLK_INTEL_SOCFPGA64) += clk-s10.o \
- 				     clk-pll-s10.o clk-periph-s10.o clk-gate-s10.o \
- 				     clk-agilex.o
+ config AXI_DMAC
+ 	tristate "Analog Devices AXI-DMAC DMA support"
+-	depends on MICROBLAZE || NIOS2 || ARCH_ZYNQ || ARCH_ZYNQMP || ARCH_SOCFPGA || COMPILE_TEST
++	depends on MICROBLAZE || NIOS2 || ARCH_ZYNQ || ARCH_ZYNQMP || ARCH_INTEL_SOCFPGA || COMPILE_TEST
+ 	select DMA_ENGINE
+ 	select DMA_VIRTUAL_CHANNELS
+ 	select REGMAP_MMIO
 -- 
 2.25.1
 
