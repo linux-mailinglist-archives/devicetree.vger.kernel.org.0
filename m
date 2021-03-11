@@ -2,115 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65314338190
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5890533819E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231149AbhCKXhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 18:37:06 -0500
-Received: from mail-io1-f42.google.com ([209.85.166.42]:35213 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbhCKXgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:36:47 -0500
-Received: by mail-io1-f42.google.com with SMTP id g27so23852542iox.2;
-        Thu, 11 Mar 2021 15:36:47 -0800 (PST)
+        id S230386AbhCKXlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 18:41:18 -0500
+Received: from mail-il1-f175.google.com ([209.85.166.175]:35161 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231157AbhCKXkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:40:46 -0500
+Received: by mail-il1-f175.google.com with SMTP id h18so982102ils.2;
+        Thu, 11 Mar 2021 15:40:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TEluSVU381Ra21RcLCeHjZXwMsuJenQrl8kmmWg+LmQ=;
-        b=sSMZVSd7afeAxF56YtJIfZopwXw7mWE/1w4oUwe5hwqkrnVAh0vfOhrBVoJCuOll8F
-         ueKU7wfgxpCWxKHME2eHIsdu8X/gJS5jHU/nJ1ee9NCKVl5mOBsU1KtdWu7VZ5AgCW57
-         dAGFChhLDYUXyVXmujeHDRgvhBE8ShDd/Y0e1MeQAmgFx5B2Nh04JOj2+acEkqpNpJap
-         92CkzA2QBuH6LXWPglw5noQMtuBz1G+REmc8F0aYL+jI6MgGQK7FYiJWAv+hdDUqO+zU
-         T3xvdcnMR0cAamGx9XLfcyue0IYKEYuE5s6RVIwR7v9C028JgsErzuZTIwRf39PESjk8
-         FEew==
-X-Gm-Message-State: AOAM530jat5R6rtQzqZxBNeaDx0QYUrKfC2JgjnS95kjBqKh1YGvWjmr
-        AlIyrE2amLZRUwQJB+fYYL3FuT6rzA==
-X-Google-Smtp-Source: ABdhPJzasXx8vKNyWMagUD52OxJAx/dM4ycm90OSE7oYTr57NDHJc3J9OFsX+/v1Olh2uy99iXqUGg==
-X-Received: by 2002:a5d:8416:: with SMTP id i22mr7909377ion.32.1615505806554;
-        Thu, 11 Mar 2021 15:36:46 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n2sTZeIKn/ut99wwHC5Vg6UPseHZk+tqoKh8lUL2TvQ=;
+        b=GXSc0Eo+cmgaTISPlnyP7qyFghNCZNt4pbgbnNziZb8Iv2qW7DfWrm+iNflEESVBqv
+         djHFMsGD3wtJRbtGjGZSCRionh1UIr4wTg3GFsN5EdZmH9g1tCxWRtgYW6YenLrO90wW
+         ++tcnumdWGBUNoUJ3IKsQUVk1PSalZguXgSbpXpQorFKlC1L5D45HmAUW6KR2y9CbzTY
+         SvKgvzF0mjw4TFkqXIyfJ1FkSOo6JOMKOcZyAuGgemLpIpgaGxu0wYCatTHn1yXIWmnR
+         x22sf6gVRTzP8xZowEsQLjWK8X3xn6FbHgZq1bOkVTViCHdJoe31XO8PddUxkOejJ66F
+         eJCg==
+X-Gm-Message-State: AOAM531ybGf4SZ+2+WhpS+brkbaDxfAOR6nGmebv03RDdrp1qkJjWm7s
+        7gJoZO8iX7taBSmwECKAx0rbKCp5gQ==
+X-Google-Smtp-Source: ABdhPJzOJCcn0MxQ/FQUm4OPUFAamQ9LTRYrDIL12ik9Q7r+rHgRS52Z5CmXjBUN5YXhnE9C+QrFUA==
+X-Received: by 2002:a92:1e12:: with SMTP id e18mr717987ile.270.1615506045159;
+        Thu, 11 Mar 2021 15:40:45 -0800 (PST)
 Received: from xps15.herring.priv ([64.188.179.253])
-        by smtp.googlemail.com with ESMTPSA id y9sm1901016ill.15.2021.03.11.15.36.44
+        by smtp.googlemail.com with ESMTPSA id p13sm2097921ilp.1.2021.03.11.15.40.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 15:36:45 -0800 (PST)
+        Thu, 11 Mar 2021 15:40:44 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
 To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>
-Subject: [PATCH 2/2] kbuild: Enable DT undocumented compatible checks
-Date:   Thu, 11 Mar 2021 16:36:40 -0700
-Message-Id: <20210311233640.1581526-2-robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org
+Subject: [PATCH] dt-bindings: media: Convert video-mux to DT schema
+Date:   Thu, 11 Mar 2021 16:40:42 -0700
+Message-Id: <20210311234042.1588310-1-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210311233640.1581526-1-robh@kernel.org>
-References: <20210311233640.1581526-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dt-validate has an option to warn on any compatible strings which don't
-match any schema. The option has recently been improved to fix false
-positives, so let's enable the option. This is useful for tracking
-compatibles which are undocumented or not yet converted to DT schema.
-Previously, the only check of undocumented compatible strings has been
-an imperfect checkpatch.pl check.
+Now that we have the graph schema, convert the video-mux binding to DT
+schema.
 
-The option is enabled by default for 'dtbs_check'. This will add more
-warnings, but some platforms are down to only a handful of these
-warnings (good job!).
-
-There's about 100 cases in the binding examples, so the option is
-disabled until these are fixed. In the meantime, they can be checked
-with:
-
-make DT_CHECKER_FLAGS=-m dt_binding_check
-
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Michal Marek <michal.lkml@markovi.net>
-Cc: linux-kbuild@vger.kernel.org
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-media@vger.kernel.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/Makefile | 3 +++
- scripts/Makefile.lib                       | 3 ++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/media/video-mux.txt   | 60 ------------
+ .../devicetree/bindings/media/video-mux.yaml  | 93 +++++++++++++++++++
+ 2 files changed, 93 insertions(+), 60 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/video-mux.txt
+ create mode 100644 Documentation/devicetree/bindings/media/video-mux.yaml
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 81f0b3294c64..bc24ee316726 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -55,6 +55,9 @@ override DTC_FLAGS := \
- 	-Wno-graph_child_address \
- 	-Wno-interrupt_provider
- 
-+# Disable undocumented compatible checks until warning free
-+override DT_CHECKER_FLAGS ?=
+diff --git a/Documentation/devicetree/bindings/media/video-mux.txt b/Documentation/devicetree/bindings/media/video-mux.txt
+deleted file mode 100644
+index 63b9dc913e45..000000000000
+--- a/Documentation/devicetree/bindings/media/video-mux.txt
++++ /dev/null
+@@ -1,60 +0,0 @@
+-Video Multiplexer
+-=================
+-
+-Video multiplexers allow to select between multiple input ports. Video received
+-on the active input port is passed through to the output port. Muxes described
+-by this binding are controlled by a multiplexer controller that is described by
+-the bindings in Documentation/devicetree/bindings/mux/mux-controller.txt
+-
+-Required properties:
+-- compatible : should be "video-mux"
+-- mux-controls : mux controller node to use for operating the mux
+-- #address-cells: should be <1>
+-- #size-cells: should be <0>
+-- port@*: at least three port nodes containing endpoints connecting to the
+-  source and sink devices according to of_graph bindings. The last port is
+-  the output port, all others are inputs.
+-
+-Optionally, #address-cells, #size-cells, and port nodes can be grouped under a
+-ports node as described in Documentation/devicetree/bindings/graph.txt.
+-
+-Example:
+-
+-	mux: mux-controller {
+-		compatible = "gpio-mux";
+-		#mux-control-cells = <0>;
+-
+-		mux-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+-	};
+-
+-	video-mux {
+-		compatible = "video-mux";
+-		mux-controls = <&mux>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@0 {
+-			reg = <0>;
+-
+-			mux_in0: endpoint {
+-				remote-endpoint = <&video_source0_out>;
+-			};
+-		};
+-
+-		port@1 {
+-			reg = <1>;
+-
+-			mux_in1: endpoint {
+-				remote-endpoint = <&video_source1_out>;
+-			};
+-		};
+-
+-		port@2 {
+-			reg = <2>;
+-
+-			mux_out: endpoint {
+-				remote-endpoint = <&capture_interface_in>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/media/video-mux.yaml b/Documentation/devicetree/bindings/media/video-mux.yaml
+new file mode 100644
+index 000000000000..780fbbd46a38
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/video-mux.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/video-mux.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- $(obj)/processed-schema-examples.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
- 	$(call if_changed_rule,chkdt)
- 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index eee59184de64..f11fac1a8e9b 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -339,12 +339,13 @@ $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
- 	$(call if_changed_dep,dtc)
- 
- DT_CHECKER ?= dt-validate
-+DT_CHECKER_FLAGS ?= -m
- DT_BINDING_DIR := Documentation/devicetree/bindings
- # DT_TMP_SCHEMA may be overridden from Documentation/devicetree/bindings/Makefile
- DT_TMP_SCHEMA ?= $(objtree)/$(DT_BINDING_DIR)/processed-schema.json
- 
- quiet_cmd_dtb_check =	CHECK   $@
--      cmd_dtb_check =	$(DT_CHECKER) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@
-+      cmd_dtb_check =	$(DT_CHECKER) $(DT_CHECKER_FLAGS) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@
- 
- define rule_dtc
- 	$(call cmd_and_fixdep,dtc)
++title: Video Multiplexer
++
++maintainers:
++  - Sakari Ailus <sakari.ailus@linux.intel.com>
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++
++description:
++  Video multiplexers allow to select between multiple input ports. Video
++  received on the active input port is passed through to the output port. Muxes
++  described by this binding are controlled by a multiplexer controller.
++
++properties:
++  compatible:
++    const: video-mux
++
++  mux-controls:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    patternProperties:
++      '^port@':
++        $ref: /schemas/graph.yaml#/properties/port
++
++patternProperties:
++  '^port@':
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      At least three port nodes containing endpoints connecting to the source
++      and sink devices according to of_graph bindings. The last port is the
++      output port, all others are inputs.
++
++required:
++  - compatible
++  - mux-controls
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    mux: mux-controller {
++        compatible = "gpio-mux";
++        #mux-control-cells = <0>;
++
++        mux-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
++    };
++
++    video-mux {
++        compatible = "video-mux";
++        mux-controls = <&mux>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port@0 {
++            reg = <0>;
++
++            mux_in0: endpoint {
++                remote-endpoint = <&video_source0_out>;
++            };
++        };
++
++        port@1 {
++            reg = <1>;
++
++            mux_in1: endpoint {
++                remote-endpoint = <&video_source1_out>;
++            };
++        };
++
++        port@2 {
++            reg = <2>;
++
++            mux_out: endpoint {
++                remote-endpoint = <&capture_interface_in>;
++            };
++        };
++    };
++...
 -- 
 2.27.0
 
