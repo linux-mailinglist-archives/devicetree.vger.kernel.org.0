@@ -2,128 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF0033813D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:16:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C656233811C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 00:13:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbhCKXPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 18:15:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60020 "EHLO
+        id S229574AbhCKXMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 18:12:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231234AbhCKXPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:15:33 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A986C061574;
-        Thu, 11 Mar 2021 15:15:32 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id n11-20020a05600c4f8bb029010e5cf86347so3757200wmq.1;
-        Thu, 11 Mar 2021 15:15:31 -0800 (PST)
+        with ESMTP id S229488AbhCKXMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 18:12:24 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 877DEC061760
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:12:24 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id d16so15660998oic.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 15:12:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=71fxTItf1AgeFQSKsbzR7kraZTpHLUDyfFhnrJaGwrw=;
-        b=uu6E6nC4/zN4upjsUSqJiiaqAa7h7mCnViSwz/8iM729ShQLcS8Vx2o/6NVAqAQuZ0
-         d+b/6iSxl7VikLNWT06+IS59xNF3uTyOfFL4NC+a7BkmaW07ei4eGnDc9GBn99vzsUyU
-         /iiVKRk6m9XDeqJxQZpeo1UTU2pePj4HDoEX0YCpDnjg5eF8lTlLg+dUzEyv9l5tQic4
-         wbTuxK/ztAH29YEQGBs6FcPZKJqsgFTJXtEsobac+3e+CaYupjY7fnUOgOCghjmuupqI
-         y+DP3bulX704gnYL8OmLSZ1HsIyjGVlN2RH+oFa7huc5d3edy/u9PyJq7BB9FN9P7CZh
-         613A==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GdiULIB6ebT4Vr8C+yaWN+9MOsEzs8BW5c8rV4RqHcM=;
+        b=M/UWLvP/T1EjzdQSQA7JcJTe4xNPDL3AvFy/vBfJKMoex1jqYqGQO7X9IQ+Y+9xuBb
+         YPZTffUb5Ua9TKqQ6BKJPK921+dK8LyZLsCmup0aVByX48GSfJ7j/HfnVDUz9qGF+NAQ
+         wbpp7LgkeF3RHVbxqGwxLGMKi5MESlRCygL81d+F8GPnB2QAFbbcivei0sqEP0ROwUFX
+         XAsjmd5lMCORwgx5rKF6+bQ+vOiIqT+n3OSl96U/7NsdFKjEHKMeSWAel3N5SrFQWd/y
+         mvQTO5pGq6ecjDFc8HXRAnC6Wb2bbciF+5GNReQcarfqP/EEpAq1TP9sPt6WsEgYQzT1
+         tOeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=71fxTItf1AgeFQSKsbzR7kraZTpHLUDyfFhnrJaGwrw=;
-        b=dfPtJYzyOhnC0kMgr4E0j3wBuAswZ29F4Hf2zVIfby4Yhv04T+v5M1uWMXhGN27fCR
-         YUD5MqfcbnXML6HVG+INpCaLVmGStwvbJ5yzaPx7tD3Dj4bbchJBojfExfPOCbzk0GZL
-         Iupyc1KWxphAH5Z8hIblxXre25u5kjnddIUSH5TogHU9Dbt5xdCKOo4S5AC5aOuIRpZF
-         g+Y3Kky7ClynR9ArgF8ZzWba8hx/OWoKRfJMXJFp5z82S6JuGWA6+pDe+JlpmYwE/1Jb
-         L1AkNjOu3fQE7PfZB29GMQzsDYyfimprPyFuxu/J5MKXmN6tEoW0H5evNeGhUdfOirVz
-         wxiA==
-X-Gm-Message-State: AOAM532Y0N8TStAebraqJ2p61UqUw/flsaCLj5k3+ReJRNzqpfrp9C1R
-        L3feiz7Lprz3vi6KYaUo3CY=
-X-Google-Smtp-Source: ABdhPJwE95EGQstZlkbfzbOnaIDxZzbh7wAuT5AJWDSf9qYPFZA4csf0zLMGekB4DJSl4V+V1/6WMw==
-X-Received: by 2002:a7b:c195:: with SMTP id y21mr10255440wmi.178.1615504530799;
-        Thu, 11 Mar 2021 15:15:30 -0800 (PST)
-Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.gmail.com with ESMTPSA id j203sm263918wmj.40.2021.03.11.15.15.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GdiULIB6ebT4Vr8C+yaWN+9MOsEzs8BW5c8rV4RqHcM=;
+        b=VKapEhkJLYd9NkYxM8zqF+1dh+3cELU6JVTHkH88vn8Fm4QCBNUHhb594+TlvkWcmw
+         KUDn54lXbmNJb6SJ7He/7lsUWIXKpQ/+qt9kVwEUTd94ay/BTC6T+Lj/VfB0UxCfwbCW
+         vNUm6Ish9ZODItfLy37eui3L2N2FsDTPc46RpqZctjc9VQc+8cuxdldJIj5DYQoXmtjM
+         NxER3K+XmLtV8TJrmcqln9PvA/6fA3CaSl6WcijqepE5iuOthuMp5HMDCY8C0z2Ie+/z
+         DHJk6/CukHOWEVuwWffNU/bewdwgHElxy3QfPYQvcCq5qwLZYHp8pHbvK0kCF8Rkv11R
+         /YRw==
+X-Gm-Message-State: AOAM531DXwlL5BWoVchG254Wl3AL3U1l6fcGd+Utz/Y4JzDgjeRms2x0
+        LH88GgXD0v4rU8MkhR1ho20lha7w1P+/7Q==
+X-Google-Smtp-Source: ABdhPJzBISRNdzGariH5EcLX6sCGLNea21uuGPiUbMbukx09Urom88NH7SF95VfStC3GDAwf0zgcDw==
+X-Received: by 2002:aca:b156:: with SMTP id a83mr8061611oif.8.1615504343804;
+        Thu, 11 Mar 2021 15:12:23 -0800 (PST)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r16sm854193oic.29.2021.03.11.15.12.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 15:15:30 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] soc/tegra: pmc: Link children power domains to the parent domain
-Date:   Fri, 12 Mar 2021 02:12:08 +0300
-Message-Id: <20210311231208.18180-7-digetx@gmail.com>
+        Thu, 11 Mar 2021 15:12:23 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jassi Brar <jaswinder.singh@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] MAINTAINERS: Add DT bindings directory to mailbox
+Date:   Thu, 11 Mar 2021 15:13:28 -0800
+Message-Id: <20210311231328.3248833-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210311231208.18180-1-digetx@gmail.com>
-References: <20210311231208.18180-1-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Core domain is a parent of PMC power domains, hence PMC domains
-should be set up as a sub-domains of the parent (Core) domain if
-"power-domains" phandle presents in a device-tree node of PMC domain.
+DT bindings related to mailbox drivers are typically picked by the
+mailbox maintainer, so add the binding folder to the maintainers entry
+to make sure get_maintainer finds it.
 
-This allows to propagate GENPD performance changes to the parent Core
-domain if performance change is applied to a PMC domain.
-
-Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- drivers/soc/tegra/pmc.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-index 84ab27d85d92..ba8407819397 100644
---- a/drivers/soc/tegra/pmc.c
-+++ b/drivers/soc/tegra/pmc.c
-@@ -1283,6 +1283,7 @@ static int tegra_powergate_add(struct tegra_pmc *pmc, struct device_node *np)
- static int tegra_powergate_init(struct tegra_pmc *pmc,
- 				struct device_node *parent)
- {
-+	struct of_phandle_args child_args, parent_args;
- 	struct device_node *np, *child;
- 	int err = 0;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9095d182deaf..670f1461b65c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10608,6 +10608,7 @@ S:	Maintained
+ F:	drivers/mailbox/
+ F:	include/linux/mailbox_client.h
+ F:	include/linux/mailbox_controller.h
++F:	Documentation/devicetree/bindings/mailbox/
  
-@@ -1296,6 +1297,21 @@ static int tegra_powergate_init(struct tegra_pmc *pmc,
- 			of_node_put(child);
- 			break;
- 		}
-+
-+		if (of_parse_phandle_with_args(child, "power-domains",
-+					       "#power-domain-cells",
-+					       0, &parent_args))
-+			continue;
-+
-+		child_args.np = child;
-+		child_args.args_count = 0;
-+
-+		err = of_genpd_add_subdomain(&parent_args, &child_args);
-+		of_node_put(parent_args.np);
-+		if (err) {
-+			of_node_put(child);
-+			break;
-+		}
- 	}
- 
- 	of_node_put(np);
+ MAILBOX ARM MHUv2
+ M:	Viresh Kumar <viresh.kumar@linaro.org>
 -- 
 2.29.2
 
