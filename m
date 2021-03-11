@@ -2,134 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA35533697E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F3C336985
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:21:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbhCKBUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 20:20:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59458 "EHLO
+        id S229660AbhCKBUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 20:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbhCKBT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:19:58 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE01C061574
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:19:58 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id j6-20020a17090adc86b02900cbfe6f2c96so8511163pjv.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 17:19:58 -0800 (PST)
+        with ESMTP id S229614AbhCKBUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:20:18 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12F8C061574;
+        Wed, 10 Mar 2021 17:20:17 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id b2-20020a7bc2420000b029010be1081172so11818436wmj.1;
+        Wed, 10 Mar 2021 17:20:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wlN97WTPrtLsBMydHFkQsvjRJ9vlEhU6c/gLEPBoS/A=;
-        b=mIqAAym+Xg6mJErREVlFYuS6s2zdwJYKfCB6PrR+E9u37nYmA59fE0ou+xsNOVPqST
-         odbnN0Yj36QFtxVHX17iSOtdyHVxBudZN0rlFKkAl/f7PODPnnJNEyBeDCEeWS2qsvqC
-         0oD7mVLtYAe068rVCbnNZ4RDAV8mqGpkbOCy8rly8dO06QKapWEADhozXNeANdy93dQD
-         J0NlTsLoZcqIVS5JgugP7cD9QzdxCF8MO9DiGSAIZA/QzQJ/WgTaKyYicvZdE+2k9WiA
-         dvZQVBt62UODQMI+Z3qXNCKaUT5MvlHDzd4F2NJeQW/hWv1GhqP9e4pZEbUiwdRHpud3
-         Dj4A==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7uMncpPAE4jWoflI5coLB5nSFQY4/AWNCX9VZjYJxzI=;
+        b=Nc8MYQYGmJoLdEd5ZZcCH+7s+60s9bd/sJLF8qjzYXn6l7+txx7hTxtnP5Sw6c0YEL
+         bAcOivsyT3iQ7BNoJ5lscEOXY1jkjKc1p8fzQB0IDMsROHUt/Sr53iUVQT6Ltx57eEBf
+         vrn6YVe8AGS8B8nmLJrPnhuwAAXEadzk/ATK8DN88N1nUPy+ni4d3wDO5XdSq1F9np9e
+         94CUx7XFusbAZWXY27KYS038loBRa6l3QtLTrmtmZWbDRBL9rPQDnKx55Ohh92pf2Rpp
+         03GJmKh7lSg4yd+6d220RMg91o3FNxJ2b52JgKKThg8RtrQi7hE4l3XxzVYEudf3I+O4
+         gY4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wlN97WTPrtLsBMydHFkQsvjRJ9vlEhU6c/gLEPBoS/A=;
-        b=CTS05le6k23msP4E0XeDyQfzcPBu28Ns/4gTvYBW54V4WIUxq+oIJGg81zZH8lKmXi
-         ZT8QMrZL2NEWHNlYNqqbCbdtIUkLUrXOYEZdGOz4JzYRN+Ya7DhMD5+CNE9JkW+FY/x/
-         7Ghh88K1mud2XTlAUQM7XnUXDUAOgsAywbU78Jlr7/Fe6ErJ/9DnA3Oa//ptHDs17v4C
-         Pw1vvz9kUA9hknvIS6gSJ1Z1Y3DlLkG00cIUtepit05Xc1vY5CWy/XjAfaWRf9SlTHQ0
-         KUhlTyWXn/eKSs4+Oy2jqXBTKIUw9dXD/nmmmxudRGDOdB3T8Qww3muBhbASeKtJwnuA
-         v+yg==
-X-Gm-Message-State: AOAM532MJrADEPAo1mDkR+X9VOF2Y1qmEaZN+Zhb78lN3J3/ue4G2sgH
-        U7PO4WUOoYmX4GkGbj/QH0FgXA==
-X-Google-Smtp-Source: ABdhPJww2k5cDJG/j8WM1Ep0hSY2YrmTfc6AL4DHohUX/ZZK92r9Jec+v63JzCoVwkh0UxYcr8nNNA==
-X-Received: by 2002:a17:902:ec84:b029:e5:bd05:4a98 with SMTP id x4-20020a170902ec84b02900e5bd054a98mr5654982plg.76.1615425598371;
-        Wed, 10 Mar 2021 17:19:58 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id u2sm529839pjy.14.2021.03.10.17.19.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 10 Mar 2021 17:19:58 -0800 (PST)
-Date:   Thu, 11 Mar 2021 09:19:52 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in
- 'gpio-ranges'
-Message-ID: <20210311011951.GT17424@dragon>
-References: <20210303033106.549-1-shawn.guo@linaro.org>
- <20210303033106.549-2-shawn.guo@linaro.org>
- <YEKl7GbxBhui4eoT@builder.lan>
- <20210306012829.GL17424@dragon>
- <YELhMmDndOTSSJJO@builder.lan>
- <20210306080049.GM17424@dragon>
- <YEkOaK+UiLy8kSDu@builder.lan>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7uMncpPAE4jWoflI5coLB5nSFQY4/AWNCX9VZjYJxzI=;
+        b=keLk1ZFPIfZEvuSXAyWO6ivV94g5jHHO9blok0Id6wDX5OpyHnPhLw2S7HD2HAjeX0
+         oIvSwHphnHxq+51PFy7E/qWREmKLGIqaoyEKfXhusNWoFXiDwkWUJRusPCZtnRg7ll2A
+         3/FpqwWNhjgkkb4nWPMriheXXt8AsaZTzkQ0PCBR5mKrbg0V+xUUhygNKjZ684yDBP0S
+         dka1hNcGto20duakUkiaWPk4gmK/LSVOxHy7f6oFU4aAklzxhDNeGbwGWLruS3QV1z9Z
+         ZCSiGkSRSc+4SE4Ff4O9OFDxyIhUKlaZtx+X5q4LA2vLtPr5ERn8MCpfg83r99WnDv3/
+         y7xw==
+X-Gm-Message-State: AOAM531ePzMtLy9+9tYdq+8TIUPJfRydmnPkuBkWz53QFbQyRL1OkTzC
+        AScmpeSnjKfAXgU6smSudst/2XpB0/w=
+X-Google-Smtp-Source: ABdhPJwkA4xwc4RDlD/r9Gu6ew3RAMijLC75fiSCNAWFfjnKG95xxAfGFd47g2ZGBxvGN9qANG/Plw==
+X-Received: by 2002:a1c:541a:: with SMTP id i26mr5562580wmb.75.1615425616652;
+        Wed, 10 Mar 2021 17:20:16 -0800 (PST)
+Received: from localhost.localdomain ([81.18.95.223])
+        by smtp.gmail.com with ESMTPSA id d85sm1199127wmd.15.2021.03.10.17.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Mar 2021 17:20:15 -0800 (PST)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Add support for Actions Semi Owl Ethernet MAC
+Date:   Thu, 11 Mar 2021 03:20:11 +0200
+Message-Id: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YEkOaK+UiLy8kSDu@builder.lan>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 12:22:32PM -0600, Bjorn Andersson wrote:
-> On Sat 06 Mar 02:00 CST 2021, Shawn Guo wrote:
-> 
-> > On Fri, Mar 05, 2021 at 07:56:02PM -0600, Bjorn Andersson wrote:
-> > > On Fri 05 Mar 19:28 CST 2021, Shawn Guo wrote:
-> > > 
-> > > > On Fri, Mar 05, 2021 at 03:43:08PM -0600, Bjorn Andersson wrote:
-> > > > > On Tue 02 Mar 21:31 CST 2021, Shawn Guo wrote:
-> > > > > 
-> > > > > > The last cell of 'gpio-ranges' should be number of GPIO pins, and in
-> > > > > > case of qcom platform it should match msm_pinctrl_soc_data.ngpio rather
-> > > > > > than msm_pinctrl_soc_data.ngpio - 1.
-> > > > > > 
-> > > > > 
-> > > > > This is a historical artifact, SDM845 has 150 GPIO pins. In addition to
-> > > > > this there's an output-only pin for UFS, which I exposed as an GPIO as
-> > > > > well - but it's only supposed to be used as a reset-gpio for the UFS
-> > > > > device.
-> > > > > 
-> > > > > Perhaps that still mandates that gpio-ranges should cover it?
-> > > > 
-> > > > I think the number in DT gpio-ranges should match msm_pinctrl_soc_data.ngpio.
-> > > > Otherwise, kernel will be confused and be running into the issue like
-> > > > below in some case.
-> > > > 
-> > > > > 
-> > > > > > This fixes the problem that when the last GPIO pin in the range is
-> > > > > > configured with the following call sequence, it always fails with
-> > > > > > -EPROBE_DEFER.
-> > > > > > 
-> > > > > >     pinctrl_gpio_set_config()
-> > > > > >         pinctrl_get_device_gpio_range()
-> > > > > >             pinctrl_match_gpio_range()
-> > > > > 
-> > > > > When do we hit this sequence? I didn't think operations on the UFS
-> > > > > GP(I)O would ever take this code path?
-> > > > 
-> > > > It will, if we have UFS driver booting from ACPI and requesting reset
-> > > > GPIO.
-> > > 
-> > > But does the UFS driver somehow request GPIO 190 on SC8180x?
-> > > 
-> > > I made up the idea that this is a GPIO, there really only is 190 (0-189)
-> > > GPIOs on thie SoC.
-> > > 
-> > > Downstream they use a pinconf node with "output-high"/"output-low" to
-> > > toggle the reset pin and I don't find any references in the Flex 5G
-> > > DSDT.
-> > 
-> > Right now, I do not have to request and configure this UFS GPIO for
-> > getting UFS work with ACPI kernel.  And the immediate problem we have is
-> > that with gpio_chip .set_config patch, devm_gpiod_get_optional() call
-> > from UFS driver always gets -EPROBE_DEFER.
-> > 
-> 
-> But we don't have a "reset" GPIO specified in the ACPI node, or you mean
-> with the introduction of .set_config DT no longer works?
+This patch series adds support for the Ethernet MAC found on the Actions
+Semi Owl family of SoCs.
 
-Yes, DT stops working because of the mismatch between
-msm_pinctrl_soc_data.ngpio and gpio-ranges.
+For the moment I have only tested the driver on RoseapplePi SBC, which is
+based on the S500 SoC variant. It might work on S900 as well, but I cannot
+tell for sure since the S900 datasheet I currently have doesn't provide
+any information regarding the MAC registers - so I couldn't check the
+compatibility with S500.
 
-Shawn
+Similar story for S700: the datasheet I own is incomplete, but it seems
+the MAC is advertised with Gigabit capabilities. For that reason most
+probably we need to extend the current implementation in order to support
+this SoC variant as well.
+
+Please note that for testing the driver it is also necessary to update the
+S500 clock subsystem:
+
+https://lore.kernel.org/lkml/cover.1615221459.git.cristian.ciocaltea@gmail.com/
+
+The DTS changes for the S500 SBCs will be provided separately.
+
+Thanks,
+Cristi
+
+Cristian Ciocaltea (3):
+  dt-bindings: net: Add Actions Semi Owl Ethernet MAC binding
+  net: ethernet: actions: Add Actions Semi Owl Ethernet MAC driver
+  MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
+
+ .../bindings/net/actions,owl-emac.yaml        |   91 +
+ MAINTAINERS                                   |    2 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/actions/Kconfig          |   39 +
+ drivers/net/ethernet/actions/Makefile         |    6 +
+ drivers/net/ethernet/actions/owl-emac.c       | 1660 +++++++++++++++++
+ drivers/net/ethernet/actions/owl-emac.h       |  278 +++
+ 8 files changed, 2078 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+ create mode 100644 drivers/net/ethernet/actions/Kconfig
+ create mode 100644 drivers/net/ethernet/actions/Makefile
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.c
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.h
+
+-- 
+2.30.2
+
