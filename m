@@ -2,168 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D28493376A7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93A763376B2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 16:17:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233745AbhCKPPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 10:15:45 -0500
-Received: from mout.gmx.net ([212.227.15.15]:46329 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233964AbhCKPPb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 10:15:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1615475724;
-        bh=3MuCYAd6N7yB81hhbCXNSkIdDWEBq396zeTdmwrQ8MI=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=LMcl0z4JNhv9EIUVD8fSbPuP+FBV8lMdcztkZvi0R4qqx5nUZtL2L/jrFNF3LvzXD
-         aLUidRdD+MJLlm8QhAIaHB116jNRvLQY8OiSShcVDUJDNyqCN0Oh3PGfnMpSYtnx0H
-         oEHML4JPwtIGPhasC5C4G4uyWDBti5QaF/cf7NZo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1McYCl-1lst291umL-00d2eu; Thu, 11
- Mar 2021 16:15:24 +0100
-Date:   Thu, 11 Mar 2021 16:15:23 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 RESEND 2/2] ARM: dts: Add board-specific compatible
- string to npcm750-evb devicetree
-Message-ID: <YEo0CynZ5X8tMylL@latitude>
-References: <20210303154622.3018839-1-j.neuschaefer@gmx.net>
- <20210303154622.3018839-2-j.neuschaefer@gmx.net>
- <CAP6Zq1hwp+wJpbN496096q8izRRoU2Jg+OKugcSk+BcXWfME9A@mail.gmail.com>
- <YED/zzV5kb35k2vb@latitude>
- <CAP6Zq1h5QK0_3gBek3QNN_cb6tGFJJXU_D8UPJOqnaDbsQAkxw@mail.gmail.com>
+        id S233986AbhCKPRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 10:17:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41406 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234042AbhCKPRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 10:17:00 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BE3C061574;
+        Thu, 11 Mar 2021 07:16:59 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id r3so32170938lfc.13;
+        Thu, 11 Mar 2021 07:16:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n+CWL2eeNTaEvB0jQuPhLTAbsCLd3NsiBreGGzW2cpY=;
+        b=uFfeVaXxKPI9mw9nMGWki7PhnUs62kQ+YxvX/xZCj2dbVar9p8vsGMdubO4u5mo7/4
+         PfOf2ABVcmPPS579y0y04F/+wm98/+H4D3BErvV/XKqzJJtrZQ5CWBE2MoSBOeEayhlP
+         In/ZGkV2cvvEP13xLNC1n5Ofs5PWh9mxR1r2qzUWuzP5iqo8qZUNpYQkm+o+CLMYhzLU
+         AoOKaTncy/x42DyLS7rKnWhDwb7VZ+814LQ1B8scCe9y0nLEdk5uBPSKjgUf88wt1TpO
+         KV11g9CzUyf9ngaqMlaSm1VAgTLS41LUTvDBSNczf9Z593jByI7sAXWS6hP8Zj7BzwbM
+         4M7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n+CWL2eeNTaEvB0jQuPhLTAbsCLd3NsiBreGGzW2cpY=;
+        b=KLMuB4n1MNwb5oBXYrYORECp+Q0e+CAi1P1hPdXbwjwPJzNYv2I+utTAFe84Lk9i7u
+         lQyNiglpuV16MQQ3fbWQr86DwZ+RjaCgGkwwpaSxMXXJYm3RrBBw8e8EaXoPFjtTngut
+         YZvaGcY8MwEyJCeQVux2EmGupXce3ejosHT2SXOVSVmqBo/Br8QLBU4FbtemT7r3DRSh
+         qTzAlCkmlIMT3doZoW1fgQfNBAR/hEkOOwN8+vrRTcK+lHLferyRJORmGKyCRiN1SBjm
+         6k3zfwpFuppTO9b+W8Fd1G7DWiCapHl8ITYdxvH1+RWwWjqDts0gNt+0bmGZrm/EtLNl
+         dWMw==
+X-Gm-Message-State: AOAM531ZxzKgv1FPg2Hq4qpmt6DpWcu29N9L3Bs7T9+Myul7SClz4PnO
+        wSeHDHg6fZu1Bmq+EPiqaatzd1SUfOU=
+X-Google-Smtp-Source: ABdhPJxSFPmw78X8rhBkudz4LZD992grPPJ+eluRXMRkArcbOBDeZxExkTV0P8S1FLdgnfKZo3LOaA==
+X-Received: by 2002:a19:e08:: with SMTP id 8mr2476210lfo.199.1615475818193;
+        Thu, 11 Mar 2021 07:16:58 -0800 (PST)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id m24sm923138lfq.184.2021.03.11.07.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Mar 2021 07:16:57 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Add missing reset controls to NVIDIA Tegra ASoC drivers
+Date:   Thu, 11 Mar 2021 18:15:49 +0300
+Message-Id: <20210311151554.23982-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="boiCNNVZ39FMb+0t"
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1h5QK0_3gBek3QNN_cb6tGFJJXU_D8UPJOqnaDbsQAkxw@mail.gmail.com>
-X-Provags-ID: V03:K1:6vLihh2S+F7saU2HwNrs8j1CfmrBwnxVRD2NCYnR4RMVesOzzqp
- jneuthTPUBItLgGUbQA/3AT6ygHEYpjD24QotjOsmc7ZMHDxEVTUnWLV9GZHyl7iSkwSK16
- 38zmm9d3cD4x/L/uxADjuUWF/oUcSHtJnRh6ghEsXoIXTltIM4gje7CtvFfS6xGN3vtJ5U/
- qWHMgsBPph6pKOKXEWdaA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dIuN6dI2zjE=:xHgIUqVDXzGExR5n9tVOgs
- Uq/+WNuJIZmsBsFV7CDfCXqJ36ufjsXmOST0CmrJ32qcAZnCqPM4Fkj31nmiOj8asW5sl3afX
- jyZMxD0x50jFeDY/NV1iQxPSZfYPe6qU5bdr4kHWxs7XCFPalvHGsB2ElAJKMtu8R1anx6ufu
- OwvwFIox1lXL3/yTYl6M/9ZceV1Az7vse/JI8N0K5wTUrVPAcusqaEGdydJgSwSNzjGOMu7uV
- R5UmiWZxn8gYR2Zun/tjGQj712HO/ylUbffOF71TFSrXdRaN/g1Ai3SsNVK2iTlDNYrWzgMdO
- QlNCuMXjQsihT2LPI+ZmGjImDdEgRNwTDfGAV2Tu8u/vxc4/mvc6KFioZaIRT1tJlDyLVrx2/
- hbMJHukLTpuVfJLj/DuJjbHDP7+YuOlpyF5F8mO1cjOJpsFGoeOe8V7HUUZnaMf+gFvLf41Fo
- 5yLs9X/cFlWXSsb/lIdgy4ygaQa7Y+/jocsXKhj+VFduEBiR+DPsu3AZVKiMatMMxdFUvjkpJ
- 4Ofz2dDPtHqsykzAycAe5i5pZBIqZ7CscNbW6MloIuhY23KrEkDsd7EU8BD9fl80GkT6zrhL0
- njXkPsuwzus/xaLKixp8RSeyGS+/ykC0ViCFcnZKJf5hO2tVkiIZPBFSY3I9M01k5LnZpSyNy
- mY4CHVVuPNIoMgCIScG4hoU9DXG6txp8gA+kaoZ5U5e8uAAur9+j3zSTVFQWAdOeCru16BHO8
- /9nUNytOifgVysPKmRkTqD0OV/jFm886sI3PSLa8zlwedgI82xwwB7/4vN68xQusm4CgivKhF
- JOXsGpIbMXHrutubyccdczvt8YdQr9czrcrCBvArUOuA5MqIige7LNO3l3jxrQQD65n8dMKSp
- XZbm2He3HanazFsR4Vvw==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---boiCNNVZ39FMb+0t
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds missing hardware reset controls to I2S and AC97 drivers.
+Currently drivers happen to work properly because reset is implicitly
+deasserted by tegra-clk driver, but clk driver shouldn't touch the resets
+and we need to fix it because this breaks other Tegra drivers. Previously
+we fixed the resets of the AHUB and HDMI codec drivers, but turned out
+that we missed the I2C and AC97 drivers.
 
-Hi Tomer,
+Thanks to Paul Fertser for testing the pending clk patches and finding
+that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+reset.
 
-your in-line reply got lost in the "> " lines, but I found it anyway.
+Changelog:
 
-On Thu, Mar 11, 2021 at 04:11:59PM +0200, Tomer Maimon wrote:
-> Hi Jonathan,
->=20
-> Thanks a lot for your effort!
->=20
-> On Thu, 4 Mar 2021 at 17:42, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.=
-net>
-> wrote:
->=20
-> > On Thu, Mar 04, 2021 at 05:21:36PM +0200, Tomer Maimon wrote:
-> > > Hi Jonathan,
-> > >
-> > > Thanks a lot for sending the patch,
-> > >
-> > > I think that when it related to the SoC EVB it can stay with the
-> > > genral compatible name nuvoton,npcm750
-> > >
-> > > you can see it also in,
-> > > https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspee=
-d-ast2500-evb.dts#L8
-> >
-> > To make the single compatible string match the DT binding, I'll have to
-> > write the binding a little differently. I wrote it like this:
-> >
-> >   compatible:
-> >     oneOf:
-> >       - description: NPCM750 based boards
-> >         items:
-> >           - enum:
-> >               - nuvoton,npcm750-evb         # NPCM750 evaluation board
-> >           - const: nuvoton,npcm750
-> >
->
-> I think it should be like the exemple above
+v2: - After some more testing I found that I2S control logic doesn't require
+      I2S clock to be enabled for resetting. Hence it's fine to have I2S to
+      be reset by parent AHUB driver, so I dropped "tegra30: i2s: Add reset
+      control" patch.
 
-If I specify the devicetree binding like above (which I initially did),
-it implies that the compatible line in nuvoton-npcm750-evb.dts should be
+    - While I was double-checking resets on Tegra30, I found that that
+      Tegra30 I2S driver has a broken runtime PM which doesn't restore
+      hardware state on resume and it's lost after AHUB RPM-resume.
+      Thus, added this new patch "tegra30: i2s: Restore hardware state
+      on runtime PM resume".
 
-	compatible =3D "nuvoton,npcm750-evb", "nuvoton,npcm750";
+    - Added new patches which switch AHUB driver to use reset-bulk API.
+      I took the RFC patch from Philipp Zabel, fixed it and added
+      devm_reset_control_bulk_optional_get_exclusive_released() that
+      will be useful for further Tegra GPU patches. This is a minor
+      improvement which makes code cleaner.
 
-not
+Dmitry Osipenko (4):
+  ASoC: tegra20: ac97: Add reset control
+  ASoC: tegra20: i2s: Add reset control
+  ASoC: tegra30: i2s: Restore hardware state on runtime PM resume
+  ASoC: tegra: ahub: Switch to use reset-bulk API
 
-	compatible =3D "nuvoton,npcm750";
+Philipp Zabel (1):
+  reset: Add reset_control_bulk API
 
+ drivers/reset/core.c           | 215 +++++++++++++++++++++++++
+ include/linux/reset.h          | 279 +++++++++++++++++++++++++++++++++
+ sound/soc/tegra/tegra20_ac97.c |  21 +++
+ sound/soc/tegra/tegra20_ac97.h |   1 +
+ sound/soc/tegra/tegra20_i2s.c  |  31 ++++
+ sound/soc/tegra/tegra20_i2s.h  |   1 +
+ sound/soc/tegra/tegra30_ahub.c | 104 +++++-------
+ sound/soc/tegra/tegra30_ahub.h |   5 +-
+ sound/soc/tegra/tegra30_i2s.c  |  41 ++---
+ 9 files changed, 600 insertions(+), 98 deletions(-)
 
-This is why I suggested rewriting it like below:
+-- 
+2.29.2
 
-> >   compatible:
-> >     oneOf:
-> >       - description: NPCM750 development board
-> >         const: nuvoton,npcm750
-> >
-> >       - description: NPCM750 based boards
-> >         items:
-> >           - enum:
-> >               - vendor,foo-bar-bmc
-> >           - const: nuvoton,npcm750
-
-
-I will send this new approach as a patch in a few days.
-
-
-Thanks,
-Jonathan Neusch=C3=A4fer
-
---boiCNNVZ39FMb+0t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBKNAMACgkQCDBEmo7z
-X9tVqw//d78aQEHzqrMmTFjpknPfzV0jICAFnC3gHY5Fz+YK4Ff47meK8UDdxmrv
-SHZbL4OoQfqxKRWICSMklYLNp1igbJ7wtr5r5c5yog7Vc80ToGQRyG4d06wdYl5Z
-cjj8kQcNiKiqiCdAJXrzDdZHXePfmd4CjZok1zHC6rrYrBMjrMYEdAnUU+9JTfU8
-gB0/Gt4cPyurybY62bgTF1s4WWHqdmFuBt4ZNL2H983jDdgEgI7vZOtoneBTarpM
-XIUkCXv1jdxuRqs+G8Ln4liO/C2xyn7VrnVzdhdMohIaZ+CeE8z2iUoa+pktBwHM
-+jIEg5EjZ9CjrQGa2t4DvL8PcSUSLVmwPetjiRJ0b76KQhVsUP6HvRyKOlGKF4Q3
-V7rrjCSW70m7mZl5pokQRU2AcpGSWtkoJ7XxfMLFJE7Bdzsn278nRUo5IGr38M/r
-9yCpVtc+E9DlpUPDavyJIEMn1R7q+fPM7Y/Sdks1hGTO+EiqzuUReH6ilzF2TIQo
-pPBkoNdvDwfwA4DzCcZiz3vjPpG90T0hLqaZv00J7HBvcvnGz54jvFyJqqagAfbB
-ZWRtBra4l5XtW84+FGo0nOVwRik45F0pwsui0tFzsqLPDvLhX0XW2upsFXZnUOBz
-Vzy8RZw3uhbIEDogQx1vUof2AyAUUWjdE/1LA2aw7ZTyNxF3Jq4=
-=7rtB
------END PGP SIGNATURE-----
-
---boiCNNVZ39FMb+0t--
