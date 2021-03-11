@@ -2,85 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA0F337907
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0FE337917
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbhCKQRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:17:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51800 "EHLO mail.kernel.org"
+        id S234491AbhCKQT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:19:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52382 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234527AbhCKQRN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 11:17:13 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DCD8464F88;
-        Thu, 11 Mar 2021 16:17:11 +0000 (UTC)
+        id S234517AbhCKQTn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 11:19:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B93764F9C;
+        Thu, 11 Mar 2021 16:19:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615479432;
-        bh=tC8xQLvl0ED5iaAOUU3NWeADhke0KZJuMgdD9l7TFWA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RyuJ62MV0j1/0koV3tq8MZh+/x1RDJHUX5qSrZ3paxvAockMHvG17rC8qJac4MdSf
-         sHjsYIzxL9OLh0PxPjAaWR59N2TlKSdwzPDYcFN/PIrCOxPJ1Kg4hn4kpogdt23424
-         7fYazPCBxabTn60iy1PugT4Y81/xcWpa8tySmBCpMPyACfFXtg8I9dYITP4zcgVR1v
-         xCS5xx73GHuHAf8z11KTd1NiFz5+tksiIeZTJ5ce74kJntcxiJJu8LL87Jd7wMuOYK
-         E1XQe3JZQXwXi6u0TyBhVZzfePlBs7lF2b2B8LZhOh43QTbgnL1VbK4fi3FFU2ApBA
-         DycL7AFAZDTxQ==
-Date:   Thu, 11 Mar 2021 16:15:58 +0000
+        s=k20201202; t=1615479583;
+        bh=s403Yj9fATOFnZaMBCJI/Gp0tkjtHDvFjlBDnVVKLIQ=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=pMb1uWdkQilPnlnTKD8vClV6Ejqh4VX9NCpY804+8xPyybgu6WKTVYhJOVurPBsR2
+         o/SvZOiw3lgt5TmMuxWyjIvMsZWSM1lhmbFRJBeFxPlUXmlHXvaj6wbb4AxTiP5nRD
+         a8yTcv2oEnMl136qS+JvuXJlkGNNAu9fLeNFBeflBA75+d3U4HuHvDZBYIl5PUWSsO
+         BdPU1ZL2j/c3NP30C2GrGJ2l5hbQS8ADd60P+d2Upx5z2LwTISpJZt+iKh99649LzA
+         mXupEKYlruOe0JJx4Ir+VLAmKMg/MsGI1zXBLNB21hageiGwY14AzhnjSKkxC2kkhL
+         xKz+rNRXjGlHA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     Michael Walle <michael@walle.cc>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-Message-ID: <20210311161558.GG4962@sirena.org.uk>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+To:     robh+dt@kernel.org, Tzung-Bi Shih <tzungbi@google.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20210311033151.1818603-1-tzungbi@google.com>
+References: <20210311033151.1818603-1-tzungbi@google.com>
+Subject: Re: [PATCH 0/2] ASoC: mediatek: mt8183-mt6358: support machine driver for rt1015p
+Message-Id: <161547949200.51229.17809460239850176672.b4-ty@kernel.org>
+Date:   Thu, 11 Mar 2021 16:18:12 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eMnpOGXCMazMAbfp"
-Content-Disposition: inline
-In-Reply-To: <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
-X-Cookie: I'm rated PG-34!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 11 Mar 2021 11:31:49 +0800, Tzung-Bi Shih wrote:
+> The series reuses mt8183-mt6358-ts3a227-max98357.c for supporting
+> machine driver with rt1015p speaker amplifier.
+> 
+> The 1st patch adds document for the new proposed compatible string.
+> 
+> The 2nd patch changes the machine driver to support "RT1015P" codec.
+> 
+> [...]
 
---eMnpOGXCMazMAbfp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied to
 
-On Wed, Mar 10, 2021 at 08:20:28PM +0530, Sameer Pujar wrote:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> If I read this correctly below is the configuration you need,
-> SoC -> MCLK(fixed rate) -> PLL(wm8904) -> PLL output (256 * fs) -> sysclk
+Thanks!
 
-For this device for integration with something like simple-audio-card
-since there's limited flexibility within the device the simplest thing
-would be to not make the internal clocking of the device visible and
-just have it figure out how to use the input clock, using the MCLK
-directly if possible otherwise using the FLL to generate a suitable
-clock.  The trick is figuring out if it's best to vary the input clock
-or to use the FLL to adapt a fixed input clock, and of course adapting
-any existing users if things get changed.
+[1/2] ASoC: dt-bindings: mt8183: add compatible string for using rt1015p
+      commit: 5fd6b9b8b1c477fb695e3ae313ffb70b3cc88dc9
+[2/2] ASoC: mediatek: mt8183: support machine driver with rt1015p
+      commit: 9dc21a066bb6bff55d889f22460f1bf236a9a4a3
 
---eMnpOGXCMazMAbfp
-Content-Type: application/pgp-signature; name="signature.asc"
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
------BEGIN PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBKQj4ACgkQJNaLcl1U
-h9Bm7Qf/VJ91STTM9RrXZ6oXyjy90lybK+uguct6tIBOH/cCBlf2qGxlWOIaKw2w
-ybRwqTEJm5fKKRDMqvUBk7y7O3VF9onjg5x8N/+FcbPgrK2hEuzBJQlzEn47GEpK
-wangKZc80y5Sz7jPi5yK2dRyMfClSIyv78y5rFHcetDHH2+xLFz7com+SEczQeyx
-gBNaIJ7xyQb6/KUQQLPO21wTy4rzFpurRatmPJTVlUM1qREmptX8SB5lRFXIb8yJ
-gYp353sgoWIwm71bhZl2xtBuNyZJg7w4TnvPIaEBPi/cjaQvSUohaDJXui1tFITq
-JF2ZCpVivFlMaIgQNfKfH+lSv5Feag==
-=OLq0
------END PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
---eMnpOGXCMazMAbfp--
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
