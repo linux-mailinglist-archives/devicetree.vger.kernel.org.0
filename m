@@ -2,135 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84D14337143
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:28:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA1D337165
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232803AbhCKL1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:27:35 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:33414 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232713AbhCKL1T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 06:27:19 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615462039; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=P9p//XpMor6RqfJL4W2d7J7iORa5aTcOhgUx0ZMICIA=; b=xlnlYfX2qwku2BieCQoaCj8/17//Zg5BVbRQvHVaRQvm3oTyhnk+dTvSinyVp/CXk3nU5EOW
- Q3CJXbfa6k1/HlYuN0zncyB0mG3qw69rGRbwzeeVHm6bW+Miy68en/e5PPtANvpb0Dn7KUKi
- 3+m3pLP4dngr5y4O0kFbAnFddI4=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 6049fe96b2591bd56886ff02 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 11 Mar 2021 11:27:18
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C42FBC433ED; Thu, 11 Mar 2021 11:27:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B5847C433C6;
-        Thu, 11 Mar 2021 11:27:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B5847C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH v3 14/14] arm64: dts: qcom: sc7280: Add rpmh power-domain node
-Date:   Thu, 11 Mar 2021 16:56:01 +0530
-Message-Id: <1615461961-17716-15-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1615461961-17716-1-git-send-email-rnayak@codeaurora.org>
-References: <1615461961-17716-1-git-send-email-rnayak@codeaurora.org>
+        id S232580AbhCKLbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:31:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232519AbhCKLao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:30:44 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F8AC061574;
+        Thu, 11 Mar 2021 03:30:44 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id f20so21464531ioo.10;
+        Thu, 11 Mar 2021 03:30:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f3gZoSD9XMt2F+FjYcYEcTAHARCmwRCAu6NWB4KbPUE=;
+        b=PUY5Pqimw/LtaQS015tDeEsb0Na1mCtDp83x5RGTdUv3LPLgMI0AS1uPnsWjW3RtL4
+         E3lmr9npg1f/OhjGISD7SW+x/US8XNtv2uAi3aE9c9nwAA1LgOqMZK0RnUYqSV5H8m5N
+         3t7ZNkkRdX4VfodDBiHIgA8LzBFnji403cpsyiMCX6jmm1pAded7oBSHIranPa3UJOzs
+         DsmR+5/O1UWJoz9DhzF9BkWhHSVUtEDokhRe4PxBYH+cC8Gg3QuklgkC3jJdFHGonWOg
+         xT87mWU0eiUgrN0sk1XQ4IZjmcNgtKMJUqu779INoY8UXdPawwQ5kNvSVfh/BsjOmWVo
+         Ok2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f3gZoSD9XMt2F+FjYcYEcTAHARCmwRCAu6NWB4KbPUE=;
+        b=pJI8qaE3S0yd2tsrKdgTLOkKqlbw3YcY36xMtZG4Beyg2lHzHTdN+naACjZ1Ns4IEK
+         3xdbIMz+di6irjj2pMeb8gvAYZjyetvUXpykg9WMYrpE8Kj7lK/hNez8IzEwpATFRKWc
+         cF5wusmSol+uDK8JPGK2Er+8yn7NnPjghefHtjX02x6mvajKFAURAszzoal+dQSVl9S6
+         AThNs2aBptF/a2Xcqr5PuvIobENjKLCM3I5dv4QFeL9StYqsC8a5Xpr01vPXgiXIbkup
+         4ncM4wCDHq/Qu07cp61f9TaojxCjhPgqEomDx6j+ZN5qquM+TuFS5BKY0jUHtfc8NLnm
+         /Pwg==
+X-Gm-Message-State: AOAM532oXu8K9NJpfIWEMUUJyq98z3934ssAFI7cSsqDnu68QeRMq5VK
+        pUl9EYwp1/6QMhUtohhtvY77ayJPMAUNXS5ZD8KQs3XZ9oM=
+X-Google-Smtp-Source: ABdhPJx75yQq9Oic5WhR5n+pmSd8IkVz6UYuv4TvW8OiGFfJTLOtXs7bupKajR21pW+rwaCgPveGvcy7/KWFeTD88rs=
+X-Received: by 2002:a05:6638:388e:: with SMTP id b14mr3156986jav.62.1615462244043;
+ Thu, 11 Mar 2021 03:30:44 -0800 (PST)
+MIME-Version: 1.0
+References: <1614758717-18223-1-git-send-email-dillon.minfei@gmail.com>
+ <CAL9mu0LwT7GqWQY1Dpw3zLnS+oX8KFq=Lrp6NSBJvSgcsxEQVQ@mail.gmail.com> <AS8PR10MB47127FD40F6782B279B5998BEE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: <AS8PR10MB47127FD40F6782B279B5998BEE909@AS8PR10MB4712.EURPRD10.PROD.OUTLOOK.COM>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Thu, 11 Mar 2021 19:30:07 +0800
+Message-ID: <CAL9mu0LMrtJ+cSdhyTNx-_rsTxZ1jq5Wk7P2R5rOH0OnCHneDA@mail.gmail.com>
+Subject: Re: [PATCH 0/8] ARM: STM32: add art-pi(stm32h750xbh6) board support
+To:     Alexandre TORGUE <alexandre.torgue@st.com>,
+        Alexandre.torgue@foss.st.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        Vladimir Murzin <vladimir.murzin@arm.com>,
+        "afzal.mohd.ma@gmail.com" <afzal.mohd.ma@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT node for the rpmhpd power controller on SC7280 SoCs.
+Hi Alexandre,
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 47 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Thanks for quickly responding.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 64d4ba1..39cf0be 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,gcc-sc7280.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- 
- / {
-@@ -542,6 +543,52 @@
- 					  <WAKE_TCS    3>,
- 					  <CONTROL_TCS 1>;
- 
-+			rpmhpd: power-controller {
-+				compatible = "qcom,sc7280-rpmhpd";
-+				#power-domain-cells = <1>;
-+				operating-points-v2 = <&rpmhpd_opp_table>;
-+
-+				rpmhpd_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					rpmhpd_opp_ret: opp1 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
-+					};
-+
-+					rpmhpd_opp_low_svs: opp2 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs: opp3 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs_l1: opp4 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					};
-+
-+					rpmhpd_opp_svs_l2: opp5 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					};
-+
-+					rpmhpd_opp_nom: opp6 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+					};
-+
-+					rpmhpd_opp_nom_l1: opp7 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+					};
-+
-+					rpmhpd_opp_turbo: opp8 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+					};
-+
-+					rpmhpd_opp_turbo_l1: opp9 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					};
-+				};
-+			};
-+
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sc7280-rpmh-clk";
- 				clocks = <&xo_board>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+On Thu, Mar 11, 2021 at 6:26 PM Alexandre TORGUE
+<alexandre.torgue@st.com> wrote:
+>
+> Hi Dillon
+>
+> > -----Original Message-----
+> > From: dillon min <dillon.minfei@gmail.com>
+> > Sent: mercredi 10 mars 2021 12:48
+> > To: Rob Herring <robh+dt@kernel.org>; Maxime Coquelin
+> > <mcoquelin.stm32@gmail.com>; Alexandre TORGUE
+> > <alexandre.torgue@st.com>; open list:OPEN FIRMWARE AND FLATTENED
+> > DEVICE TREE BINDINGS <devicetree@vger.kernel.org>; linux-stm32@st-md-
+> > mailman.stormreply.com; Linux ARM <linux-arm-
+> > kernel@lists.infradead.org>; Linux Kernel Mailing List <linux-
+> > kernel@vger.kernel.org>; linux@armlinux.org.uk; Vladimir Murzin
+> > <vladimir.murzin@arm.com>; afzal.mohd.ma@gmail.com
+> > Subject: Re: [PATCH 0/8] ARM: STM32: add art-pi(stm32h750xbh6) board
+> > support
+> >
+> > for the device tree part , still waiting review. just a gentle ping.
+> > if Mr Alexandre torgue can take a look, would be great.
+> >
+>
+> Sorry for the delay. For next versions can you send it to
+> Alexandre.torgue@foss.st.com please
+Okay, I will add your new e-mail address to next review mailing list.
+>
+> Thanks
+> Alex
+>
+> > thanks,
+> >
+> > On Wed, Mar 3, 2021 at 4:05 PM <dillon.minfei@gmail.com> wrote:
+> > >
+> > > From: dillon min <dillon.minfei@gmail.com>
+> > >
+> > > This patchset intend to add art-pi board support, this board developed
+> > > by rt-thread(https://www.rt-thread.org/).
+> > >
+> > > Board resources:
+> > >
+> > > 8MiB QSPI flash
+> > > 16MiB SPI flash
+> > > 32MiB SDRAM
+> > > AP6212 wifi,bt,fm comb
+> > >
+> > > sw context:
+> > > - as stm32h750 just has 128k bytes internal flash, so running a fw on
+> > >   internal flash to download u-boot/kernel to qspi flash, boot
+> > >   u-boot/kernel from qspi flash. this fw is based on rt-thread.
+> > > - kernel can be xip on qspi flash or load to sdram
+> > > - root filesystem is jffs2(created by buildroot), stored on spi flash
+> > >
+> > > to support the boad, add following changes.
+> > > - fix r0-r3, r12 register restore failed after svc call,
+> > > - add dts binding
+> > > - update yaml doc
+> > >
+> > > dillon min (8):
+> > >   ARM: ARMv7-M: Fix register restore corrupt after svc call
+> > >   Documentation: arm: stm32: Add stm32h750 value line
+> > >   dt-bindings: arm: stm32: Add compatible strings for ART-PI board
+> > >   dt-bindings: pinctrl: stm32: Add stm32h750 pinctrl
+> > >   ARM: dts: stm32: introduce stm32h7-pinctrl.dtsi to support stm32h75x
+> > >   ARM: dts: stm32: add stm32h750-pinctrl.dtsi
+> > >   ARM: dts: stm32: add support for art-pi board based on stm32h750xbh6
+> > >   ARM: stm32: add initial support for stm32h750
+> > >
+> > >  Documentation/arm/index.rst                        |   1 +
+> > >  Documentation/arm/stm32/stm32h750-overview.rst     |  33 ++
+> > >  .../devicetree/bindings/arm/stm32/stm32.yaml       |   4 +
+> > >  .../bindings/pinctrl/st,stm32-pinctrl.yaml         |   1 +
+> > >  arch/arm/boot/dts/Makefile                         |   1 +
+> > >  arch/arm/boot/dts/stm32h7-pinctrl.dtsi             | 392
+> > +++++++++++++++++++++
+> > >  arch/arm/boot/dts/stm32h743-pinctrl.dtsi           | 307 +---------------
+> > >  arch/arm/boot/dts/stm32h743.dtsi                   |  30 ++
+> > >  arch/arm/boot/dts/stm32h750-pinctrl.dtsi           |  11 +
+> > >  arch/arm/boot/dts/stm32h750.dtsi                   |   5 +
+> > >  arch/arm/boot/dts/stm32h750i-art-pi.dts            | 227 ++++++++++++
+> > >  arch/arm/mach-stm32/board-dt.c                     |   1 +
+> > >  arch/arm/mm/proc-v7m.S                             |   5 +-
+> > >  13 files changed, 716 insertions(+), 302 deletions(-)  create mode
+> > > 100644 Documentation/arm/stm32/stm32h750-overview.rst
+> > >  create mode 100644 arch/arm/boot/dts/stm32h7-pinctrl.dtsi
+> > >  create mode 100644 arch/arm/boot/dts/stm32h750-pinctrl.dtsi
+> > >  create mode 100644 arch/arm/boot/dts/stm32h750.dtsi  create mode
+> > > 100644 arch/arm/boot/dts/stm32h750i-art-pi.dts
+> > >
+> > > --
+> > > 2.7.4
+> > >
