@@ -2,136 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F04EE3370BD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0CF33370CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:06:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232530AbhCKLBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:01:53 -0500
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:44233 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232402AbhCKLBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 06:01:37 -0500
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id KJ4NlPmBxC40pKJ4QlL29n; Thu, 11 Mar 2021 12:01:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1615460495; bh=XZfVWBtfwrsC30R13V20cTW43bqM10QXTplpPo1ZOM0=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=RFZ6+34TrfE6cjkoWQAFsQ8XWJOEJuOJ47ctQilnfyqZxNKTOH6PuczLtfNkXlOVK
-         6LhtG3eawC5xyDRVYbDMJ0BijaTjqCd2n7QouXik5ts0bzcHwUOKk2s3evOpo7YYoU
-         cMV0jnrbqtI9kN4peGThiW4wM5Uhs+Nt0+ozNL/PXvmGOYOwVB+5UKQvTvBxxfHvQ7
-         lSCfg5AzNlxPVQlPpDCA/qoXAAMTa+TAtZzUGY4vY9ipe1jBzwR46Tx7ceqDZWEH9y
-         RwTm62DLnJkrk24p1z46ETlGKURrD8V3sX9ctNhYwZa+Aqs+0wjMnazXfgSwNsN9Lb
-         86DUy/jo0+N6Q==
-Subject: Re: [PATCH v9 7/8] arm64: dts: imx8qxp: Add jpeg encoder/decoder
- nodes
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
-        daniel.baluta@nxp.com, robert.chiras@nxp.com,
-        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, ezequiel@collabora.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se,
-        dafna.hirschfeld@collabora.com,
-        Mirela Rabulea <mirela.rabulea@nxp.com>
-References: <20210311002854.13687-1-mirela.rabulea@oss.nxp.com>
- <20210311002854.13687-8-mirela.rabulea@oss.nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <a0f7d919-46bb-5c5d-1fef-39a90e9969ea@xs4all.nl>
-Date:   Thu, 11 Mar 2021 12:01:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.1
+        id S232527AbhCKLFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:05:40 -0500
+Received: from mail-co1nam11on2086.outbound.protection.outlook.com ([40.107.220.86]:56033
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232471AbhCKLFT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 06:05:19 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GEogXTsCAqJ5INCYKtiAopLennCZuDI6ylA/8WfhUdw9n/f99UoDXXCmDffhscXjufKo6DqJA9RVzzc513NMLdr4k18kBasaeJYhdfPZmkxwgSr3+G3P4i6M9G9QfHEuA6lpnKPZ5rJHUQlsIGdQzv94b2zen7RjTPTDQgmVE+J8EHhDaFXe0m2AlwhZDI+FIsi27rqNpN8dyqTJBHFJl8XU98w0d4FZSp0lZV9zIOLx0THfCyil18GFzcfqNinNPdE8UeKpRMSGmOwANIU9TC2u+UGzKllQOAaarK2naHr3xgqW4eNDFf295ilru+PpaF2sRAzinzXC8hQtqN56gA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+QRj6y21FlOiEhwFfTKCngF0acahnG/suqsGsziZZ+4=;
+ b=F5pzJ146n5VEs4aIw436nm8+nZXSW+yO4uQxt8t2YnkrA16Uh/HaVAILq7o5AN4hawWGm8M6JGfQZ7Mc1RA+YIpDlsQ8k69ZwAU4SqPyxpE9l3AJoVjTIYy8ESckkr2T/VDtfodDRV7opZnxUlSxe1maUO4n4x6z4nc5M9IwrG1+DKxQcyfq9k7cdkV512qSYljE7nXAoGFPNMhVT8zCI9EKOSmWqk5OVWQ3oQPN3gOhHBf5bSWSAtEBMzpu5WscELoYPuFnY+2+WfhDx/e2AJKdT+rS/WGtliQ4ja/UFhSgXweKhgc0IMNgUHvPlIJ5pmFbq8pEhWMzvWh6KNN/7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+QRj6y21FlOiEhwFfTKCngF0acahnG/suqsGsziZZ+4=;
+ b=OGgU/0Sb7XzkOViqAbUKGgtKEoxZ+15DaOfGipieUG0v7OpfY3Lou9X//OMnW9kqhyXSxTAhOgGQ1pcZ2D45Q3hsLmg3LJzWlhkpcSKflWGL5cBRND0s8IH1abFLkFc0IBrPw6JcgfbxRLN+b1WzG2NlXNfeyYoHwfeoi7mF1FxPfTyQq/hKz69clGF+57GREUly/6AKpQULaGTp9/JaEZgtzNT84W6vQMy0zxMu8N9is/giVr9Ab9X8mbGa9A2hRCn9Nfk02h/jMY7AeSeEqNi1DhAE9I2DMCoS/OcELGvM5+rM+EwhUaI11qNwn4j7MBhG0X8+HfOt6PrBiivt2w==
+Received: from DM5PR15CA0066.namprd15.prod.outlook.com (2603:10b6:3:ae::28) by
+ DM6PR12MB4499.namprd12.prod.outlook.com (2603:10b6:5:2ab::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3912.28; Thu, 11 Mar 2021 11:05:16 +0000
+Received: from DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ae:cafe::c9) by DM5PR15CA0066.outlook.office365.com
+ (2603:10b6:3:ae::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
+ Transport; Thu, 11 Mar 2021 11:05:16 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ DM6NAM11FT016.mail.protection.outlook.com (10.13.173.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3933.31 via Frontend Transport; Thu, 11 Mar 2021 11:05:16 +0000
+Received: from [10.25.96.88] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 11 Mar
+ 2021 11:05:07 +0000
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+To:     Michael Walle <michael@walle.cc>
+CC:     <alsa-devel@alsa-project.org>, <broonie@kernel.org>,
+        <devicetree@vger.kernel.org>, <jonathanh@nvidia.com>,
+        <kuninori.morimoto.gx@renesas.com>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <robh@kernel.org>,
+        <sharadg@nvidia.com>, <thierry.reding@gmail.com>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
+ <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
+ <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+ <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
+Date:   Thu, 11 Mar 2021 16:35:03 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20210311002854.13687-8-mirela.rabulea@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfCd+BzbXB9V38+V/GrmFz757XXp4BJdTgMi/vynIWutrFjdRyQD+1VFn0h4EVeAzSfKMx0HHIBPGIQrI+Kxp/CbARX5tNp0TeVyVQ7HEb5fZY+Z5DSkG
- VrvS1H6Oc0P54TNl5benkg75MzZ/iIhbQbBtcpVjVS8ZSSl0rzqh3nVbSQ8uvu9nzsHd132TLkn/8XP9skghuL+f237T5ifliK7NZ9jsp07PdY1f0t37mEvy
- 4l0NeGpz7MBsca8KdNzIIXsO3rOMHT7295ChsqVoD0sURHZ31l7JBRK+m15v53eDt3Krhk0dlFSuv2MLSJzy8wiXCQamAZqomTfp9e5TI9U7Z/r2S4osYjRV
- kT3XS9j7RZDnZsOM+emeorF4TT338TQ86FdVdDnG/dn6zsG0tTQIRWCaVPYYz36WNpMfHfcLfFH3qt3M0uqg2T3RWVvvVdeC70jH9jwZ7CDEvJ7ykDqL7D5A
- YIRkrsF9fXxuwy+TzXwXTDnJCLcE98jhIA8USVWw6mcUgjSPwGziTKiDJcMRrJgwOr+AnE8yQDqzELKMesxWOSqwZhOWm7WoycaYMoFTJcctwx0oUjdW2FIb
- Mx/epztYpTsv7f4YugzdfRXaUWuBv4HpdfMC2qPt2KFvBBA9n7Pu7BylF+UZ+7cNk7tImEWwBCTg4H+DfHYcnxQSjkPERxrCvf/8Oc4NiVzY/aisbR/HKcwY
- s2z3pPfI3JPTbDx3yC+qtPo72aA3VtDPCQGDVjhQctjWbBXNmcJHOYtPHAb67umtggN7zsD4AF0ySveSXSTA0459S7eEus5+GLH5xYuIsA+MUEIgBT/5/F+c
- SaEzaBACJ803/uYaIONn+MqG3aWNB0dCWKGG2p/C9FTHt+G16gMbTCEH581dykSyS8656Zxe9QvuWrBvcN58HXdcP1tRaEjqbEa8ZTjJvc+zSx3BwNIvSqZ2
- +KFFog==
+In-Reply-To: <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7ad0165d-ccce-4a56-752e-08d8e47d8d69
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4499:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4499200C9C64C136AF3A5845A7909@DM6PR12MB4499.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0hNjpcwtnlR4D5F88ybt5x7uNGyLV6tcmiUbti/IMH5lPVCKacFf9iypdL6lsyX9LReLpNP7lXw7K963M9H831fc/hh6RHbGR53OW1bOCStVBRQqFcrkgeWOyUWAh6Xq5vUbpFM/38/AIejh/rUF9Sb9VBpD+q7TsIFPl9+rzsnBw9DEbywFMkc8G+hiW0+7kzuMppn3PJpvOby1WT7fgLVcYwITwyBexIEa1XthmPVG9Bw8vOH2sesXMxk73LmWayCoMzrNyFR8PKLWDfRrgQWTr4AegXq8GWo6Xp15m5qcM05ysNomotX7ib1o0Zn0rnaA2sJd2CwJclbhMZKg61Ivi3v4uADXvv8Q7Cuq53xTo9cqOMzAJJcFEdZWWOTMBCdk4jvb0CRjAmHDL06qANWJw3FiLVAen8kMImBgugRAH8gBDAYsUAWFdKaUYKBTUXReSiy9ZxaBaKc9bHbCnkhWNIsdsYifi7zIvOs0NGONMQs5x9Wxm4kd/7hN5wKQDDG5LkUNfBDvJ09NQX+I5bTiF9HUdIes8+X52qRQiJLp7v03hHyJ5VkPaOfN5u4ZsuAqxvXLvJo+qYo1xoTD134do2mIUKgAPt20gP22sbRFsmmo3UoRgDaHkh6mbI58Vj2aVDWGuCBYt8amgOI5/nRjyBSAuDNmDjOXmuFmxRqObxHOr/joJwP07bVB4Y/M/ozc0nqMySNF8j/hoOy6F6LFaDGXRNyfJUuHB5zWVbvhRuu9Y1+ATWSYqa0s+Vq3jhGBAij5es+uuLHYc7N6NdEJu6kbqecThKJcjNDK9so=
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(346002)(39860400002)(46966006)(36840700001)(47076005)(82740400003)(4326008)(53546011)(7636003)(356005)(316002)(31686004)(6666004)(966005)(478600001)(8936002)(26005)(70586007)(16526019)(36756003)(34070700002)(31696002)(186003)(70206006)(36860700001)(8676002)(426003)(86362001)(16576012)(54906003)(2906002)(82310400003)(83380400001)(2616005)(36906005)(336012)(6916009)(5660300002)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2021 11:05:16.6379
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ad0165d-ccce-4a56-752e-08d8e47d8d69
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4499
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mirela,
 
-On 11/03/2021 01:28, Mirela Rabulea (OSS) wrote:
-> From: Mirela Rabulea <mirela.rabulea@nxp.com>
-> 
-> Add jpeg decoder/encoder nodes, for now on imx8qxp only.
-> The same should work on imx8qm, but it was not tested.
 
-FYI: I've posted a pull request for this driver, and once it is merged
-in our media tree this patch can be merged for 5.13 by whoever handles
-these dts patches.
+On 3/11/2021 3:57 PM, Michael Walle wrote:
+> I've had a closer look at this and it seems you're messing around
+> with the clock of the codec's node (which is _not_ a subnode of
+> the simple-audio-card). I don't think this is correct.
+>
+> I guess you should rather set the clock property in the codec
+> subnode of the simple-audio-card, which is then picked up by the
+> simple-audio-card driver and changed accordingly.
+>
+> For example:
+>                simple-audio-card,dai-link@0 {
+>                        reg = <0>;
+>                        bitclock-master = <&dailink0_master>;
+>                        frame-master = <&dailink0_master>;
+>                        format = "i2s";
+>
+>                        cpu {
+>                                sound-dai = <&sai6>;
+>                        };
+>
+>                        dailink0_master: codec {
+>                                sound-dai = <&wm8904>;
+>                                clocks = <&mclk>;
+>                        };
+>                };
+>
+> In this case mclk will be enabled and disabled accordingly.
+>
+> Could you test this?
+>
 
-Thank you for all your work on this!
+It would work and initially I had similar patch, see [0] and related 
+series. Suggestion is to always use "clocks" property with devices only.
 
-Regards,
 
-	Hans
-
-> 
-> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> index 1d522de7b017..4f2b3edd7850 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> @@ -629,4 +629,39 @@
->  			};
->  		};
->  	};
-> +
-> +	img_subsys: bus@58000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x58000000 0x0 0x58000000 0x1000000>;
-> +
-> +		jpegdec: jpegdec@58400000 {
-> +			compatible = "nxp,imx8qxp-jpgdec";
-> +			reg = <0x58400000 0x00050000 >;
-> +			interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
-> +			power-domains = <&pd IMX_SC_R_MJPEG_DEC_MP>,
-> +					<&pd IMX_SC_R_MJPEG_DEC_S0>,
-> +					<&pd IMX_SC_R_MJPEG_DEC_S1>,
-> +					<&pd IMX_SC_R_MJPEG_DEC_S2>,
-> +					<&pd IMX_SC_R_MJPEG_DEC_S3>;
-> +		};
-> +
-> +		jpegenc: jpegenc@58450000 {
-> +			compatible = "nxp,imx8qxp-jpgenc";
-> +			reg = <0x58450000 0x00050000 >;
-> +			interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>;
-> +			power-domains = <&pd IMX_SC_R_MJPEG_ENC_MP>,
-> +					<&pd IMX_SC_R_MJPEG_ENC_S0>,
-> +					<&pd IMX_SC_R_MJPEG_ENC_S1>,
-> +					<&pd IMX_SC_R_MJPEG_ENC_S2>,
-> +					<&pd IMX_SC_R_MJPEG_ENC_S3>;
-> +		};
-> +	};
->  };
-> 
-
+[0] 
+https://patchwork.kernel.org/project/alsa-devel/patch/1611944866-29373-4-git-send-email-spujar@nvidia.com/
