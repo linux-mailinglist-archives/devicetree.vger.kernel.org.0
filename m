@@ -2,103 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAA73379C1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46CA93379CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:45:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbhCKQmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:42:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57940 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229601AbhCKQme (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 11:42:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4193864F9C;
-        Thu, 11 Mar 2021 16:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615480953;
-        bh=/6vQFL+YC53+oP6/fdeoiyO4ZhYeLe3QT/YKKRdQyYY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eR71nWvdnbgmZqCoFZFfpumRGVzmdJTDmB64hingCLqVQQRXFhTLfcutl2Bfsxy01
-         28MHy50cfVkV4BQeNI1j4muoeiVmyUbFZmmFI5HyicrY7tSRG15MqLD1xwvt704x9O
-         8Zm5HWkhWFUI07wObuNbzQHeYgxuARESL4yTNGHOjX5bOumTWAesVqQnk7K09G9O16
-         GZA3troXIT6iGqun/ydwipRCYdN1Y3PuuVmAWzdjsfC1snmJYfcw9rZdO5PD+GK70h
-         mRbXGC4DNt0VNFS5UWyRYTklKGLqSLWDYNwJhURI2IwTRw0+0nkuIbmhw54rVRWNGm
-         pjOXWwstfsySg==
-Date:   Thu, 11 Mar 2021 16:41:21 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Sameer Pujar <spujar@nvidia.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-Message-ID: <20210311164121.GH4962@sirena.org.uk>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
- <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
- <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
- <cadc59f29bbb2e0d02235d4c10cb7f4d@walle.cc>
- <36c37df5-dffb-9168-d92f-4b3e482602fa@nvidia.com>
- <d4947632a8b3ebefff7fb6751d05a9bd@walle.cc>
+        id S229867AbhCKQpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:45:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229818AbhCKQoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:44:38 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D20EC061761
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:44:38 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id x78so23812010oix.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:44:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=J+E1F/+CiA7MmEzXg0Znv2knht7eIpGyzsrriFW2HGk=;
+        b=cs2kVuytYqxJ9KakFv0ZZQAgoQOx4A52b8Zrxo8PGgjL80JKRkvoZ+9PABtYtSBojE
+         o++daOW2u7+jhc1V39aUNORA5OHxoMS3CGPHdo738R60ruInqTf4Uv6DZFO8sxeFPQPI
+         ym4uG7QKaWO2uEo+1buqQzmm5qNBNmnyaxgUftaUemwk648Up+D94Ghx84gtzR375G1O
+         Cf5qY6eq9OBu2OHYcQWZnU+ow3TdNJnm8Hb7XXwh3wgSq0zcWDHsISw/nWc3XZo/si2a
+         3VrW6OWD/bDXP6tiGGkNJFEjK8qaIlJP6vlx5V9JNbpb8dxdQFIKLjQH2HIWeT+jqZhS
+         EPcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=J+E1F/+CiA7MmEzXg0Znv2knht7eIpGyzsrriFW2HGk=;
+        b=Sm5auWvvk7tjDGx4YDSUts9yEE30hHdqNe5VDuD6ppuWdfBdNv6p2/4D9RmjTNj06P
+         PQvOjpqb5O0G3qKNnZauO5h20tKhZbK3LCXmYHYiIGO4Z/QdMGFkc7ETsvXT4i3Xby5Q
+         L659tuI9oRz2ZiCcDwp+I1l4GwH7O2ohRB978VL6bWH36JxuuqCJLQyzL+Z1lk3tVPXY
+         fP0iHPQfAf9GIOthSt5cSs3BJuXtW2hJJ6mPeYi2swx5Kjh6dvRsVYZkD4jsTlcpbK7F
+         oHPNlaFb292B1XamWemNy/NNk5ufFFd2h56NtogTlL+1tV8fdG4LmTftWn62dF+U5Ivs
+         qMPA==
+X-Gm-Message-State: AOAM531fipqXOHQggfMPOI4EZ3GGGFhRA6QZwulSzvPeKfLE+E5OImeY
+        ZyQddzQ5fRV/BYSyxBSA3t9gNQ==
+X-Google-Smtp-Source: ABdhPJzxpBo1bZwp9c8FuB1BjCg5KpytgCQLbbT248Rai4InOAwjPbVhSZYP2qm1ZvxKSVowvjeQOg==
+X-Received: by 2002:a05:6808:bd2:: with SMTP id o18mr6843514oik.7.1615481078054;
+        Thu, 11 Mar 2021 08:44:38 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n22sm644375oie.32.2021.03.11.08.44.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Mar 2021 08:44:37 -0800 (PST)
+Date:   Thu, 11 Mar 2021 10:44:36 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/13] Add binding updates and DT files for SC7280 SoC
+Message-ID: <YEpI9MSK74faK03R@builder.lan>
+References: <1613114930-1661-1-git-send-email-rnayak@codeaurora.org>
+ <YElgnuH6ZEoMOgdj@builder.lan>
+ <a4f03a1c-880b-ebf5-ad7e-387e1b5c61e4@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gKijDXBCEH69PxaN"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d4947632a8b3ebefff7fb6751d05a9bd@walle.cc>
-X-Cookie: I'm rated PG-34!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <a4f03a1c-880b-ebf5-ad7e-387e1b5c61e4@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu 11 Mar 03:15 CST 2021, Rajendra Nayak wrote:
 
---gKijDXBCEH69PxaN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> 
+> On 3/11/2021 5:43 AM, Bjorn Andersson wrote:
+> > On Fri 12 Feb 01:28 CST 2021, Rajendra Nayak wrote:
+> > 
+> > > This series includes a few minor binding updates and base device tree
+> > > files (to boot to shell) for SC7280 SoC and the IDP board using this SoC.
+> > > 
+> > > The series is dependent on a few driver patches to merge first, for
+> > > gcc, rpmhcc and pinctrl
+> > > https://lore.kernel.org/patchwork/project/lkml/list/?series=484517
+> > > https://lore.kernel.org/patchwork/project/lkml/list/?series=484489
+> > > https://lore.kernel.org/patchwork/patch/1379831/
+> > > 
+> > 
+> > I'm not able to find v2 of this series, but plenty of patches that
+> > depends on its content. Do I somehow miss it, or is it coming?
+> 
+> I did post v2 [1], and will post v3 shortly addressing some of
+> the feedback from Stephen on v2.
 
-On Thu, Mar 11, 2021 at 04:43:20PM +0100, Michael Walle wrote:
+Sorry, I had filtered my inbox view a little bit too hard and missed it.
 
-> This could be a last resort, yes. But I'd rather see a flag which
-> indicates whether the simple-audio-card should control the (first)
-> clock of the codec or not. Because until now, this wasn't the case.
-> And I don't know if this was an oversight or on purpose. Kuninori would
-> need to comment on that. And with the "we change mclk by default", we
-> break codecs with automatic sysclk generation.
+v3 looks good to me, so I'll pick it to allow me to land other pending
+patches on top.
 
-It shouldn't break anything so long as the clock ends up correct via
-some path.  Where there's multiple options we can also try going through
-them in some order, preferring the clock in the CODEC would probably
-make sense from both a compatibility and quality point of view.
+Thank you,
+Bjorn
 
-> > > And its fetching just the first clock, doesn't it? What happens if a
-> > > codec has two clock inputs?
-
-> > Yes, it would have been more descriptive if it were specifically
-> > looking for clock "mclk". I think the original assumption was codec
-> > takes one input clock (MCLK) and uses it for sysclk.
-
-> Yeah, I've just noticed that the clk_get_rate() also only works
-> for the first clock of the codec.
-
-simple-audio-card isn't really intended to work with complex devices,
-it's very much only for the simplest of use cases.
-
---gKijDXBCEH69PxaN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBKSDAACgkQJNaLcl1U
-h9BNawf9GPsQcYK9qmE3//5SNFERoM69/yBv84rbvNTtsS0rkB4/XlhUxFM/yrhI
-6PbCDI9RiR1smLwcBsrRv9z3/NPQ2sVeW8uOWvWQvXjPMWxSqNSU6XRVUBFBwuZv
-m4UZqd9ldjRxLGajUkhVCWKCAJ4cx0hx3TvwBjAbKYCfsfFpC6Xx+UcNxsOnMeXt
-FuzFO4NZ7zmnCBRpsa74nvjfoWdb+FCvh15SVz4anlEeD8fagk5Nf4QZT+KgE+nD
-xyqchbWdLgFDs4lLfHlxAt/Pu62fPs8gcNPbfVFO8m4Ge638UVbFipmEhoMaubt0
-TsIEC7GPWF9EMTk0JQs5kHnrAAAoQA==
-=EORL
------END PGP SIGNATURE-----
-
---gKijDXBCEH69PxaN--
+> I was waiting on the rpmh clock fix to come out [2], which addresses
+> the question about the XO clock frequency [3] in DT
+> 
+> [1] https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+> [2] https://lore.kernel.org/patchwork/patch/1393159/
+> [3] https://lore.kernel.org/patchwork/patch/1389019/
+> 
+> > Regards,
+> > Bjorn
+> > 
+> > > Maulik Shah (3):
+> > >    arm64: dts: qcom: sc7280: Add RSC and PDC devices
+> > >    arm64: dts: qcom: Add reserved memory for fw
+> > >    arm64: dts: qcom: sc7280: Add cpuidle states
+> > > 
+> > > Rajendra Nayak (5):
+> > >    dt-bindings: arm: qcom: Document SC7280 SoC and board
+> > >    dt-bindings: firmware: scm: Add SC7280 support
+> > >    arm64: dts: sc7280: Add basic dts/dtsi files for SC7280 soc
+> > >    dt-bindings: qcom,pdc: Add compatible for sc7280
+> > >    arm64: dts: qcom: SC7280: Add rpmhcc clock controller node
+> > > 
+> > > Sai Prakash Ranjan (4):
+> > >    dt-bindings: arm-smmu: Add compatible for SC7280 SoC
+> > >    arm64: dts: qcom: sc7280: Add device node for APPS SMMU
+> > >    dt-bindings: watchdog: Add compatible for SC7280 SoC
+> > >    arm64: dts: qcom: sc7280: Add APSS watchdog node
+> > > 
+> > > satya priya (1):
+> > >    arm64: dts: qcom: sc7280: Add SPMI PMIC arbiter device for SC7280
+> > > 
+> > >   Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+> > >   .../devicetree/bindings/firmware/qcom,scm.txt      |   1 +
+> > >   .../bindings/interrupt-controller/qcom,pdc.txt     |   1 +
+> > >   .../devicetree/bindings/iommu/arm,smmu.yaml        |   1 +
+> > >   .../devicetree/bindings/watchdog/qcom-wdt.yaml     |   1 +
+> > >   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+> > >   arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  47 ++
+> > >   arch/arm64/boot/dts/qcom/sc7280.dtsi               | 596 +++++++++++++++++++++
+> > >   8 files changed, 654 insertions(+)
+> > >   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> > >   create mode 100644 arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > 
+> > > -- 
+> > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> > > of Code Aurora Forum, hosted by The Linux Foundation
+> > > 
+> 
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
