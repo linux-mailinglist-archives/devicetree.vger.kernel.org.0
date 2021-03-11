@@ -2,117 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 221EF33755A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 15:22:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 267E33375B5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 15:30:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233219AbhCKOWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 09:22:18 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36602 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233487AbhCKOWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 09:22:05 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BELp5Q074228;
-        Thu, 11 Mar 2021 08:21:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615472511;
-        bh=3z1Nu74iqUPAeOp1bCv95Unhrik9umK0paiSalDT33U=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=c2/qcYoPlIkiii3uoVSjI7tF8B1E+sKg7ZgTMXDJSrGGl2+jutkz5R2HsWcc56ws2
-         FHpupxYUd+js+u/DvtcoYXL3cOq5iy5UavtL5V2AQvDXRH9xtFl2EXWVVJ29ieS77P
-         mBpOZglM8AU2shOj69IbLLwcONp/nBUge7L1uHHk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BELp8v112975
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 Mar 2021 08:21:51 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
- Mar 2021 08:21:51 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 11 Mar 2021 08:21:51 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BELpTT100444;
-        Thu, 11 Mar 2021 08:21:51 -0600
-Date:   Thu, 11 Mar 2021 08:21:51 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Le Jin <le.jin@siemens.com>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: Add support for Siemens IOT2050
- boards
-Message-ID: <20210311142151.5o54k7kmrnatufcw@target>
-References: <cover.1615369068.git.jan.kiszka@siemens.com>
- <9bff40f434e5298890e5d139cc36cc46a0ca2d76.1615369068.git.jan.kiszka@siemens.com>
- <20210311131754.i5ewls6hgeitcgre@astonish>
- <8d076ff1-cdac-941f-e796-a2e6dba792ab@siemens.com>
- <20210311140056.fzvke3rrg6c2uuoa@uncouth>
- <519ae6b7-35db-1fdd-de1e-e0155e0ca82a@siemens.com>
+        id S233264AbhCKO3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 09:29:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233858AbhCKO3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 09:29:18 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16763C061761
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 06:29:17 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id f12so2084394wrx.8
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 06:29:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Zz2dzqsYyuv4TG4XCyNaaaDqLyEogy9K3vM+/DJNeRQ=;
+        b=d7z3RFx3RJumtimxNkd0yjwUe21UkXeHpFlxmEyXTAGKRy8ycK2VCXbqQA+jrutbDR
+         b9My3exvIlqKO1M7XfqrxvZdzlTAOKAxP45TYmhKugVNSXIu7teyiLvNF4J/uTXsB4BG
+         ODBmTzmqv4b5xrlvpKFlyW7ebtsA0Ufz455EUTtP7D+cyoCX9SLWYkUET6zpB3NQJS6T
+         W2oucydzmeIzYj0DMRjc6gL/2cpDNrubM6XrmUlcGGE2BIubzxflDF/dthhJQqurHnjh
+         KWUApFL2tn7JBY7qYcuUZWD1270CDg3VMdmJvaQ3e0pKkKmvl+S5jdU5PTanMz5EIIat
+         Okhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Zz2dzqsYyuv4TG4XCyNaaaDqLyEogy9K3vM+/DJNeRQ=;
+        b=YBuoppY9AKJRhbDnj8UF4a3yjbukmKBmCgmbBjEDMhm5R6DF91agZGk3Mi0ZTFV9VK
+         rKI8wyyVJRHaHveaVbd1fkv7j4mSJ5/AmJXdasNcg66yErnUFjrYUFnNUaEkW+hPyWXL
+         c8qVbjEZ6ttVM1GR4R6QKiG+6lVaEutDZknO3rzFvxExUe2dcnd7teduKG9xaFSdVE1g
+         hB9FbEqjk1yGLp41E8uszY2PHbDMml+oZc4IrHW+bTn7AeguJVwfS0L0JIMTaA7Z614v
+         HJAG36WOj78yksEgerXquxQ5EiYMjozQ2AF9A/+yNTLNU8xU9G8KKqye/lKk+WtLdpLB
+         WQig==
+X-Gm-Message-State: AOAM5314DF1kIi7Eol/rUy457sc3awyBSnvxYc2SWGq4FrndWN8lnogD
+        FghxHCTK+tNGK9Ke/ctngcazng==
+X-Google-Smtp-Source: ABdhPJzzQG2F9CZpV0ycA0fwL9GxCT0yySRfeLze4eWRwL+TtvM0nFwZG2SdHshnogSGL/UvJfWsGQ==
+X-Received: by 2002:a5d:56d0:: with SMTP id m16mr8966893wrw.355.1615472955686;
+        Thu, 11 Mar 2021 06:29:15 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id h20sm3764829wmp.38.2021.03.11.06.29.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 11 Mar 2021 06:29:15 -0800 (PST)
+Subject: Re: [PATCH v2 3/5] soundwire: qcom: add static port map support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org, vkoul@kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20210309141514.24744-1-srinivas.kandagatla@linaro.org>
+ <20210309141514.24744-4-srinivas.kandagatla@linaro.org>
+ <cc812a5b-c3c3-bb46-f2fe-3e0a14cf0524@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <508f875f-6fed-9bfc-5f3e-297e4c21ec29@linaro.org>
+Date:   Thu, 11 Mar 2021 14:29:14 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <519ae6b7-35db-1fdd-de1e-e0155e0ca82a@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <cc812a5b-c3c3-bb46-f2fe-3e0a14cf0524@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:14-20210311, Jan Kiszka wrote:
 
-[...]
 
-> > 
-> > See [1] compare the compatibles against
-> > Documentation/devicetree/bindings -> I think you should describe what
-> > your hardware really is though.
+On 09/03/2021 16:10, Pierre-Louis Bossart wrote:
 > 
-> This SPI bus is routed to an Arduino connector. By default, userspace
-> (e.g. mraa) takes ownership and adds the desired logic for what is being
-> connected. We have no idea what shield or other extension the user adds,
-> though.
-
-overlays look like the right approach for variable systems like these.
-It is not exactly plug and play.. but it does provide a level of
-flexibility that is helpful.
-
-[..]
-> The problem here is not simple txt->yml conversion: There is no official
-> binding for spidev yet, just existing users and the driver waiting for them.
 > 
-
-I think we should discuss in the spidev list to get it resolved.
-
-> > Thanks.. While it might help me personally to get some on my internal
-> > farm, it might be good to get them on kernelci as well on the longer
-> > run.
-> > 
 > 
-> Will keep that on the radar. I definitely want to get it into the CIP
-> LAVA lab which is testing LTS as well.
+>>       list_for_each_entry(m_rt, &bus->m_rt_list, bus_node) {
+>> @@ -473,8 +475,13 @@ static int qcom_swrm_compute_params(struct 
+>> sdw_bus *bus)
+>>           }
+>>           list_for_each_entry(s_rt, &m_rt->slave_rt_list, m_rt_node) {
+>> +            slave = s_rt->slave;
+>>               list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
+>> -                pcfg = &ctrl->pconfig[i];
+>> +                m_port = slave->m_port_map[_rtp->num - 1];
+>> +                if (m_port)
+>> +                    pcfg = &ctrl->pconfig[m_port - 1];
+>> +                else
+>> +                    pcfg = &ctrl->pconfig[i];
+> 
+> Maybe add a short comment on port allocation, I had to think a bit to 
+> figure out why the -1 was required on both peripheral and manager but it 
+> is not below [1]
 
-Cool.
+I agree, will add some comment here to explain the offsets correctly!
 
-> Are we talking about spidev here? Then let's drop that node, but I do
-> need to know how to describe spidev properly
-
-yes - the spidev is my problem. can you drop the node and repost? i cant
-locally modify and hope it works.
+--srini
 
 > 
-> Or is it about those other warnings coming from your dtsi files, now
-> being surfaced? If you can tell me how to resolve them, I can write patches.
-
-I will look at the warnings later today.. I dont think they are
-triggered by the board dts.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>>                   p_rt->transport_params.port_num = p_rt->num;
+>>                   p_rt->transport_params.sample_interval =
+>>                       pcfg->si + 1;
+>> @@ -535,8 +542,10 @@ static int qcom_swrm_stream_alloc_ports(struct 
+>> qcom_swrm_ctrl *ctrl,
+>>       struct sdw_master_runtime *m_rt;
+>>       struct sdw_slave_runtime *s_rt;
+>>       struct sdw_port_runtime *p_rt;
+>> +    struct sdw_slave *slave;
+>>       unsigned long *port_mask;
+>>       int i, maxport, pn, nports = 0, ret = 0;
+>> +    unsigned int m_port;
+>>       mutex_lock(&ctrl->port_lock);
+>>       list_for_each_entry(m_rt, &stream->master_list, stream_node) {
+>> @@ -549,9 +558,15 @@ static int qcom_swrm_stream_alloc_ports(struct 
+>> qcom_swrm_ctrl *ctrl,
+>>           }
+>>           list_for_each_entry(s_rt, &m_rt->slave_rt_list, m_rt_node) {
+>> +            slave = s_rt->slave;
+>>               list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
+>> +                m_port = slave->m_port_map[p_rt->num - 1];
+>>                   /* Port numbers start from 1 - 14*/
+>> -                pn = find_first_zero_bit(port_mask, maxport);
+>> +                if (m_port)
+>> +                    pn = m_port;
+>> +                else
+>> +                    pn = find_first_zero_bit(port_mask, maxport);
+> 
+> [1]
+> 
+>> +
+>>                   if (pn > (maxport)) {
+>>                       dev_err(ctrl->dev, "All ports busy\n");
+>>                       ret = -EBUSY;
+>>
