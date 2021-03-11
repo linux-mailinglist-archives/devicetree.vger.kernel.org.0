@@ -2,216 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633DB337C9D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0183C337CB9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 19:36:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbhCKS0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 13:26:48 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:45627 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230027AbhCKS0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 13:26:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1615487199;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7/wSGYLh9BUQ/m4VK2E3Iu8L1K7AWw+HwFDDXH/P7x4=;
-        b=Dt56iO4QJuJA+k3BrHjVi7X4akcMO+fRI3Op/0Vlc4YS1d0fSliXBiTt5M6YPh81npUeAo
-        DONzHVH3vUzM3i7Q/rhj6Wb86BvX9R713O30qm86eYnTVWaw712H2o2v2ckbvL/zzFODWg
-        NXs61CYptcr97lCFNI+HveKAq/RCz64=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-523-tI7do3StOW-_Q-v_szdHNg-1; Thu, 11 Mar 2021 13:26:37 -0500
-X-MC-Unique: tI7do3StOW-_Q-v_szdHNg-1
-Received: by mail-qk1-f199.google.com with SMTP id x11so13042170qki.22
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 10:26:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=7/wSGYLh9BUQ/m4VK2E3Iu8L1K7AWw+HwFDDXH/P7x4=;
-        b=ne7h0RswYMtLB1ytAGGs0rTM1KaY8AfobvEuDYVjpnM+4eZyzizpN23bbqN2CQLcmu
-         UXctqaI2ePfbHO2qR34pCkMBORmLMJWJau5MTtrx2VAVuKItbMPVqzYi7mpiBniFyOyg
-         3n4iCQjAsdiDPf388TVBogcjwSwds11y8WPeKnhhZDstyCHhkw53HsXu99ExxwX3AuXo
-         EwiHdgz2HMg8EWMFBI812/WQQDmEbuKZnOOPGHbkA8ZeKSP4rFu3W48FVfBEWc+FLep8
-         zM5UXFvXRQwDjl+Vc0LV/u148f5Jkx6PY66wrcomZsTMFNBIFXH1ka9ne81Nc9J/YzNK
-         ZwYw==
-X-Gm-Message-State: AOAM532hrFKyMYZxRUDne3mTrsLHxTzaULyOpgNoyQjAQjRQ++OSVL/a
-        shGmEtTVXsfY3dsQlM+V94rRPM6mopOy0M8ijwcfX2fYndLLDkeSkwMazvrO0uCIzWjb+w4hrFb
-        tFSM8nM6BkK/hTzwe7yHq1g==
-X-Received: by 2002:ac8:68d:: with SMTP id f13mr8512346qth.300.1615487197326;
-        Thu, 11 Mar 2021 10:26:37 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJykrRpLf1VdnWeXfJOmyNvXTcgKB/EbD8MxyP146EU0lCHJTfc5M6K1GGvBKnS5gI4cz7i4ig==
-X-Received: by 2002:ac8:68d:: with SMTP id f13mr8512326qth.300.1615487197076;
-        Thu, 11 Mar 2021 10:26:37 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id 77sm2571571qko.48.2021.03.11.10.26.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 10:26:36 -0800 (PST)
-Subject: Re: [PATCH v3 00/15] arm64 / clk: socfpga: simplifying, cleanups and
- compile testing
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-edac@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-i2c@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <f0b90916-9047-d5da-5cde-75d4330cf041@redhat.com>
-Date:   Thu, 11 Mar 2021 10:26:32 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S229970AbhCKSeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 13:34:20 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33860 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229883AbhCKSdq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 13:33:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 128D064FBA;
+        Thu, 11 Mar 2021 18:33:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615487625;
+        bh=UuAGM0Gt3Xfbl0gOtHDiItqylElW5b4tuS7aBiHOlMA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EBF4ybHteUqHU+SkWpUIO4Jrz4NGI53Kao8vuFthSr/m++IElbjxPhfSeab+kFI/q
+         dINts6q4cDCSPIv8xltU7hY2ZTkBJKlbDnl6kAtHVZ+iy8Hu7uytQ7VhJzewBomZf5
+         LBMk2IPdEKhIYwvSw3n9fWoD5v4+tpXx/hHhwTOOGWhTHW4p+WfDBED3OrlebTV/0u
+         kd96i1z19rZO4xX/oULiSPNzL/mZpRBgTUCZ3sDNOSry2pNuMun3e/dc2LeCxh9emM
+         fcNiqEn8TEFu94FQjhzP5Dekvp944iuv2Au8ZO06D8AJ5SXcxqXbiZ9BAcQ+63Zh8f
+         iacuToYkDxQFg==
+Date:   Thu, 11 Mar 2021 18:32:31 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     skakit@codeaurora.org
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kgunda@codeaurora.org
+Subject: Re: [PATCH 3/7] regulator: qcom-rpmh: Correct the pmic5_hfsmps515
+ buck
+Message-ID: <20210311183231.GI4962@sirena.org.uk>
+References: <1614155592-14060-1-git-send-email-skakit@codeaurora.org>
+ <1614155592-14060-4-git-send-email-skakit@codeaurora.org>
+ <50151f4b-298c-f0ee-a88f-7bdd945ad249@linaro.org>
+ <51390b828a5d534e308460098f1b9af0@codeaurora.org>
+ <CAA8EJpqN-jb3b3yHTHwrQQj_h3M-yxAvX7Hz7bNSV3_NBCJEwQ@mail.gmail.com>
+ <da15c05877c345f2aeb51649c075a95c@codeaurora.org>
+ <CAA8EJprc24gTfLaffsrKeJ9MOv2m8B1L168VV4uNm=xsjnF5ZQ@mail.gmail.com>
+ <189b9f1cac1b52241c199e541f0d14ba@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210311152545.1317581-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Li7ckgedzMh1NgdW"
+Content-Disposition: inline
+In-Reply-To: <189b9f1cac1b52241c199e541f0d14ba@codeaurora.org>
+X-Cookie: I'm rated PG-34!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 3/11/21 7:25 AM, Krzysztof Kozlowski wrote:
-> Hi,
->
-> All three Intel arm64 SoCFPGA architectures (Agilex, N5X and Stratix 10)
-> are basically flavors/platforms of the same architecture.  At least from
-> the Linux point of view.  Up to a point that N5X and Agilex share DTSI.
-> Having three top-level architectures for the same one barely makes
-> sense and complicates driver selection.
->
-> Additionally it was pointed out that ARCH_SOCFPGA name is too generic.
-> There are other vendors making SoC+FPGA designs, so the name should be
-> changed to have real vendor (currently: Intel).
->
->
-> Dependencies / merging
-> ======================
-> 1. Patch 1 is used as base, so other changes depend on its hunks.
->    I put it at beginning as it is something close to a fix, so candidate
->    for stable (even though I did not mark it like that).
-> 2. Patch 2: everything depends on it.
->
-> 3. 64-bit path:
-> 3a. Patches 3-7: depend on patch 2, from 64-bit point of view.
-> 3b. Patch 8: depends on 2-7 as it finally removes 64-bit ARCH_XXX
->     symbols.
->
-> 4. 32-bit path:
-> 4a. Patches 9-14: depend on 2, from 32-bit point of view.
-> 4b. Patch 15: depends on 9-14 as it finally removes 32-bit ARCH_SOCFPGA
->     symbol.
->
-> If the patches look good, proposed merging is via SoC tree (after
-> getting acks from everyone). Sharing immutable branches is also a way.
->
->
-> Changes since v2
-> ================
-> 1. Several new patches and changes.
-> 2. Rename ARCH_SOCFPGA to ARCH_INTEL_SOCFPGA on 32-bit and 64-bit.
-> 3. Enable compile testing of 32-bit socfpga clock drivers.
-> 4. Split changes per subsystems for easier review.
-> 5. I already received an ack from Lee Jones, but I did not add it as
->    there was big refactoring.  Please kindly ack one more time if it
->    looks good.
->
-> Changes since v1
-> ================
-> 1. New patch 3: arm64: socfpga: rename ARCH_STRATIX10 to ARCH_SOCFPGA64.
-> 2. New patch 4: arm64: intel: merge Agilex and N5X into ARCH_SOCFPGA64.
-> 3. Fix build is.sue reported by kernel test robot (with ARCH_STRATIX10
->    and COMPILE_TEST but without selecting some of the clocks).
->
->
-> RFT
-> ===
-> I tested compile builds on few configurations, so I hope kbuild 0-day
-> will check more options (please give it few days on the lists).
-> I compare the generated autoconf.h and found no issues.  Testing on real
-> hardware would be appreciated.
->
-> Best regards,
-> Krzysztof
->
-> Krzysztof Kozlowski (15):
->   clk: socfpga: allow building N5X clocks with ARCH_N5X
->   ARM: socfpga: introduce common ARCH_INTEL_SOCFPGA
->   mfd: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
->   net: stmmac: merge ARCH_SOCFPGA and ARCH_STRATIX10
->   clk: socfpga: build together Stratix 10, Agilex and N5X clock drivers
->   clk: socfpga: merge ARCH_SOCFPGA and ARCH_STRATIX10
->   EDAC: altera: merge ARCH_SOCFPGA and ARCH_STRATIX10
->   arm64: socfpga: merge Agilex and N5X into ARCH_INTEL_SOCFPGA
->   clk: socfpga: allow compile testing of Stratix 10 / Agilex clocks
->   clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and
->     compile test)
->   dmaengine: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->   fpga: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->   i2c: altera: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->   reset: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs
->   ARM: socfpga: drop ARCH_SOCFPGA
->
->  arch/arm/Kconfig                            |  2 +-
->  arch/arm/Kconfig.debug                      |  6 +++---
->  arch/arm/Makefile                           |  2 +-
->  arch/arm/boot/dts/Makefile                  |  2 +-
->  arch/arm/configs/multi_v7_defconfig         |  2 +-
->  arch/arm/configs/socfpga_defconfig          |  2 +-
->  arch/arm/mach-socfpga/Kconfig               |  4 ++--
->  arch/arm64/Kconfig.platforms                | 17 ++++-------------
->  arch/arm64/boot/dts/altera/Makefile         |  2 +-
->  arch/arm64/boot/dts/intel/Makefile          |  6 +++---
->  arch/arm64/configs/defconfig                |  3 +--
->  drivers/clk/Kconfig                         |  1 +
->  drivers/clk/Makefile                        |  4 +---
->  drivers/clk/socfpga/Kconfig                 | 19 +++++++++++++++++++
->  drivers/clk/socfpga/Makefile                | 11 +++++------
->  drivers/dma/Kconfig                         |  2 +-
->  drivers/edac/Kconfig                        |  2 +-
->  drivers/edac/altera_edac.c                  | 17 +++++++++++------
->  drivers/firmware/Kconfig                    |  2 +-
->  drivers/fpga/Kconfig                        |  8 ++++----
->  drivers/i2c/busses/Kconfig                  |  2 +-
->  drivers/mfd/Kconfig                         |  4 ++--
->  drivers/net/ethernet/stmicro/stmmac/Kconfig |  4 ++--
->  drivers/reset/Kconfig                       |  6 +++---
->  24 files changed, 71 insertions(+), 59 deletions(-)
->  create mode 100644 drivers/clk/socfpga/Kconfig
->
-Thanks for changing the config name.
+--Li7ckgedzMh1NgdW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please review checkpatch --strict on this set, the typical complaint is
+On Thu, Mar 11, 2021 at 09:45:41AM +0530, skakit@codeaurora.org wrote:
+> On 2021-03-02 19:51, Dmitry Baryshkov wrote:
 
-clk: socfpga: use ARCH_INTEL_SOCFPGA also for 32-bit ARM SoCs (and compile test)    
-WARNING: please write a paragraph that describes the config symbol fully
-#35: FILE: drivers/clk/socfpg/Kconfig:11:                       
-+config CLK_INTEL_SOCFPGA32
+> > I'd still prefer to have two different regulator types (as we did for
+> > pm8009 P=0 and P=1 variants). However it's probably up to the
+> > maintainers to decide.
 
-Tom
+> As Mark already picked this, I think we can leave it this way.
 
+As far as I can tell this is a system configuration issue, the board
+constraints will ensure that we don't try to set a voltage that the
+system can't support so there should be no need for this to be handled
+as separate variants.  That assumes that this P register field just
+extends the values available, it doesn't have to be tied to some board
+setup or anything.  If it is a board configuration thing it probably
+makes more sense to add a boolean property for it, ideally something
+tied to whatever the board configuration is so that it's easier for
+people to discover.
+
+I had understood the pm8009 case as being two different parts with the
+same name rather than two different options for the same part.
+
+--Li7ckgedzMh1NgdW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBKYj4ACgkQJNaLcl1U
+h9COYQf/biFeYWkuTQsa6ND/FAhYd+og1KhsxXWai18EVpf99Za5KuiJ3ztC+fxE
+G0IGMZq8h0VDgaUFibJRg04ZsYf/qYHmB+k0+lqEUamSR/Kq+KkTztdM1LXI47KF
+fcxwq6+J/lWYBH9p2jqAtiv9hmOYTV2iDeiUAt0IUWwDcs0N5nH0OP4Tm7lqEOiX
+YsMv5gEtYoTeXSWkzHOlEMVEPVDbDweHetN0LjKSJFVAcNnn4IxMa98g8n5MG7tT
+nxq+PcmWIMDOn4v0ghM+qcPsz+8UGMmUqGxwwHobLHxwEaJ63q6xCE+j05X3A3q8
+4gTkVP7D+i2HF9BXvKU4Qf941LUY0Q==
+=cYYL
+-----END PGP SIGNATURE-----
+
+--Li7ckgedzMh1NgdW--
