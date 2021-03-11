@@ -2,109 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F9A33684E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 01:04:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D5AE336857
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 01:07:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbhCKADr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 19:03:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbhCKADd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 19:03:33 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C70C061762
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 16:03:32 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id x78so21222927oix.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Mar 2021 16:03:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MqQxCHeDZzA0xjKB6t0uijMIqsuaZ0QygKTZF6eoP3M=;
-        b=NXamsKAQUqB79kgFV5ijJNzR+eiRCX8NhZsktIT/wau3F0JuKgr90bLIgl3oZeZc70
-         HmTs3WOPVNlbIYyHHt2uxSWe/iWrSkfVcyH757KsxZXbRO+si9DWRTmwueiPQKan5Bzx
-         iGw9KZt3sKrHgA8HEeL+iousAW6DmXv1AnegwLTlOGBtqeBlFwcFutdjE6eJ0bbYgxvD
-         8uMfy3yFiSuhMzs7V/Thm3zYByfirgztVGHQeJmIbDUUURXqoL10YyT/AD0fHNTRw4uQ
-         1Ox4mYmfiY1yEob1pC+94NRwFIv49Op4BZV8lnujHAP/BHoU+mK5ffGbd3pAojAp/mc9
-         6I6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MqQxCHeDZzA0xjKB6t0uijMIqsuaZ0QygKTZF6eoP3M=;
-        b=mWAxDkH17HI+Awpza9pJipiI4mjD34XCvELbnzsN540XojLxkPHFw05OPtxfYNH1+4
-         WQKw32GomD7b+BgM+JXYcYSaifjxIZJWlNWT4g8icp2i5H70XF4HUevTery8hoV4TBRA
-         raUrC1HsJMHVBqlyaQXQ8GAIdSRzm6iRD0dRCEoWFXuTqc3EnZ4lzvGUdbk9t5gjzYIN
-         eY1hg9kL3EipApCsH6hOCobp4+r2m5Nu+rMTWUA2J1drqGUSQFh+lpLMQ2hb0gH54A3U
-         27JqW+N7tChSjfKjAToS/aCYXW2HVwcvkpRpzOyFLUroGoYagwgZDJ1hUfnqyHqHZ6MB
-         xELA==
-X-Gm-Message-State: AOAM531+0OZJPVsQPQ8oQksErgKhRvBxuQYE+F7b6nHz0BAYEbaLbejP
-        1iegDCJEJgQXXk/5t5S4EBZqDQ==
-X-Google-Smtp-Source: ABdhPJyapkzWhfDKQ2HIArCWRyoK3W8H5vkuTbKNebfIJUsVO1F5uteJQ4Qt3NlrDZ0mZ92M24b8rA==
-X-Received: by 2002:aca:f50f:: with SMTP id t15mr4275634oih.53.1615421011975;
-        Wed, 10 Mar 2021 16:03:31 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n1sm209854oog.31.2021.03.10.16.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Mar 2021 16:03:31 -0800 (PST)
-Date:   Wed, 10 Mar 2021 18:03:29 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
+        id S229531AbhCKAG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 19:06:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45570 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229441AbhCKAF6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Mar 2021 19:05:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2EC3064E33;
+        Thu, 11 Mar 2021 00:05:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615421158;
+        bh=iFxVJgMoDpJ44jsE4Fuo7YkLXTeRvt9qHwXirR8S6SQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pHbUatCvju/H17C/5K/sXqE3GC74q+fVaVWePgzCGPEelm8i6fAHWz7kps59DplLz
+         rl8g4mlo7ESlnxn/xVc/ow7B1sTyAa92MPRjY/MNPbjODF0ndY5jAMoWs9UhvruzzF
+         pbRgOgVPXwajI2R6qhkbtG469UMo5Vt3Conr7vGybjMfgOyMsHqGydidarB/nUqtte
+         x4bln9KOuq+PyFRDgZ1vH3TCOzJ92D9mEtph5qIxTfFsaDe9ZqyixECTwwRCaB0ise
+         0Vc2O5Xib/wPG/mDsEVfXTteHQGUWLD2sx6M0MVavI3kUxpsoSFPiecKAXA5hEMwgY
+         qOpr7+u2Ha48Q==
+Received: by pali.im (Postfix)
+        id 00BD9A83; Thu, 11 Mar 2021 01:05:55 +0100 (CET)
+Date:   Thu, 11 Mar 2021 01:05:55 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] pinctrl: pmic-mpp: Add missing dt-bindings mpp
- function defs
-Message-ID: <YEleUVnFmrBYrAe2@builder.lan>
-References: <20210225213605.117201-1-konrad.dybcio@somainline.org>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+Subject: Re: [v8,5/7] PCI: mediatek-gen3: Add MSI support
+Message-ID: <20210311000555.epypouwxdbql2aqx@pali>
+References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
+ <20210224061132.26526-6-jianjun.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210225213605.117201-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210224061132.26526-6-jianjun.wang@mediatek.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 25 Feb 15:36 CST 2021, Konrad Dybcio wrote:
+On Wednesday 24 February 2021 14:11:30 Jianjun Wang wrote:
+> +static int mtk_msi_bottom_domain_alloc(struct irq_domain *domain,
+> +				       unsigned int virq, unsigned int nr_irqs,
+> +				       void *arg)
+> +{
+> +	struct mtk_pcie_port *port = domain->host_data;
+> +	struct mtk_msi_set *msi_set;
+> +	int i, hwirq, set_idx;
+> +
+> +	mutex_lock(&port->lock);
+> +
+> +	hwirq = bitmap_find_free_region(port->msi_irq_in_use, PCIE_MSI_IRQS_NUM,
+> +					order_base_2(nr_irqs));
+> +
+> +	mutex_unlock(&port->lock);
+> +
+> +	if (hwirq < 0)
+> +		return -ENOSPC;
+> +
+> +	set_idx = hwirq / PCIE_MSI_IRQS_PER_SET;
+> +	msi_set = &port->msi_sets[set_idx];
+> +
+> +	for (i = 0; i < nr_irqs; i++)
+> +		irq_domain_set_info(domain, virq + i, hwirq + i,
+> +				    &mtk_msi_bottom_irq_chip, msi_set,
+> +				    handle_edge_irq, NULL, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_msi_bottom_domain_free(struct irq_domain *domain,
+> +				       unsigned int virq, unsigned int nr_irqs)
+> +{
+> +	struct mtk_pcie_port *port = domain->host_data;
+> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
+> +
+> +	mutex_lock(&port->lock);
+> +
+> +	bitmap_clear(port->msi_irq_in_use, data->hwirq, nr_irqs);
 
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> 
-> The pinctrl-spmi-mpp driver supports setting more mpp functions
-> than the ones defined in the dt-bindings header, specifically,
-> digital, analog and sink.
-> 
-> To follow the current way of specifying the function config
-> in Device-Tree, add the missing three definitions in the
-> appropriate dt-bindings header as:
-> GPIO_MPP_FUNC_{DIGITAL,ANALOG,SINK}.
-> 
+Marc, should not be there bitmap_release_region() with order_base_2()?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+bitmap_release_region(port->msi_irq_in_use, data->hwirq, order_base_2(nr_irqs));
 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  include/dt-bindings/pinctrl/qcom,pmic-mpp.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/include/dt-bindings/pinctrl/qcom,pmic-mpp.h b/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
-> index 32e66ee7e830..3cdca7ee1b3f 100644
-> --- a/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
-> +++ b/include/dt-bindings/pinctrl/qcom,pmic-mpp.h
-> @@ -98,6 +98,9 @@
->  /* To be used with "function" */
->  #define PMIC_MPP_FUNC_NORMAL		"normal"
->  #define PMIC_MPP_FUNC_PAIRED		"paired"
-> +#define PMIC_MPP_FUNC_DIGITAL		"digital"
-> +#define PMIC_MPP_FUNC_ANALOG		"analog"
-> +#define PMIC_MPP_FUNC_SINK		"sink"
->  #define PMIC_MPP_FUNC_DTEST1		"dtest1"
->  #define PMIC_MPP_FUNC_DTEST2		"dtest2"
->  #define PMIC_MPP_FUNC_DTEST3		"dtest3"
-> -- 
-> 2.30.1
-> 
+Because mtk_msi_bottom_domain_alloc() is allocating
+order_base_2(nr_irqs) interrupts, not only nr_irqs.
+
+> +
+> +	mutex_unlock(&port->lock);
+> +
+> +	irq_domain_free_irqs_common(domain, virq, nr_irqs);
+> +}
