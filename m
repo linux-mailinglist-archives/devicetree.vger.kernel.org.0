@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6944C3379A4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFD013379AE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 17:42:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbhCKQlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 11:41:20 -0500
-Received: from mail-io1-f45.google.com ([209.85.166.45]:36385 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbhCKQlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:41:17 -0500
-Received: by mail-io1-f45.google.com with SMTP id n14so22623223iog.3;
-        Thu, 11 Mar 2021 08:41:17 -0800 (PST)
+        id S229553AbhCKQlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 11:41:50 -0500
+Received: from mail-io1-f44.google.com ([209.85.166.44]:44370 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229811AbhCKQlX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 11:41:23 -0500
+Received: by mail-io1-f44.google.com with SMTP id 81so22570319iou.11
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 08:41:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=U7jzm/CFG4Ylm4v8voBfCMU+CxkY3bE8NKg4UeAuxbQ=;
-        b=CJuO0VNQHqSZfWQzgCHyrOHoPkj2utBJ2dA22/3cKyNU866g0/v3PqXAFxG4xH6LTh
-         /am0DTOgkfqpKFC+psKOIwzwp/cJsIIS7/ayJ1wqePdpHlLPQ0GokqFfYnsFafTH9mJn
-         sJ3UvNPpyJRE7oyHkSTgUJE66Fr0QIfiVcdfzUYkn4sb+nbPwCCg8jujOiR3jta2fImh
-         z6rWkmcbSVfoQQtkcpDrv3Jklntqh2L5+FozOIVazMeGV+ACQjS95M7thKkf76yl9K+B
-         i39NqR4OJRT3oUfEH4ptyhpjZRmPk82HdhGGBHb/n/Le+ENnJ7oyY3IHrO5zsUacZcAl
-         GJbA==
-X-Gm-Message-State: AOAM531o4Vseuk+ysRIkW6eLTbCtqYjOc0Di6rUhwkbTGQYVoRk3C51s
-        9/SatcmZZ39eTY8TZn3uPA==
-X-Google-Smtp-Source: ABdhPJxbaDM4XI8ZWhFC1q8ZH6bP9IzTuINR+19AO6I/yVBlCCKLU9oTvGO8Q+5z803ksGP47PsfAQ==
-X-Received: by 2002:a05:6602:228f:: with SMTP id d15mr6509757iod.141.1615480876875;
-        Thu, 11 Mar 2021 08:41:16 -0800 (PST)
+        bh=+3y5o+1oaKZuqMVhsS8ruopNhactPzUGBDXzkkE8/k8=;
+        b=p5/qNb/2fGH/NZGPXPJ1/Ki7ZlEOd+WfXdeqefYuI15SiBXAYnoXm71oa78Xfr36L0
+         UwD3yqU5fCfBDav6izza9v25kAUe3vttalasNEHkn9lZOKyhwwF+PgN/mBKZKiphaSGd
+         /8CTwUEiER8RjTWnB0PzGG6xuKCbSgUfGnZmIrgYn2g93TGpvyM1rQ8k6bn2DmqYZrGT
+         mcH1Q7XujflMAj7kmpHfigqDEhC2aI5slA4Owsrhox6DgAbV5grhRW7pMUwVwDeQMjEe
+         5kxbcHVHb6Wq+CF/fKfppQNaZ7CJjrB0w+Ep/EqTIkkOX0SB7k+V/5KwknhYH94P9X0U
+         YwuQ==
+X-Gm-Message-State: AOAM531Q3VxqW66SKbnDjaJZ1ylLACvXgIW8VUM2XpVOhg8wYyrV3Zc9
+        wdDHnRyTNTjm3xeg3vSmnw==
+X-Google-Smtp-Source: ABdhPJyLpyMvmT0QzCq9t02xwB8NsMjQ95MqYOykv4HfJ/6xg44iVvVnwoBMIgXafHcqcX15IST9bg==
+X-Received: by 2002:a6b:6016:: with SMTP id r22mr6842998iog.93.1615480881372;
+        Thu, 11 Mar 2021 08:41:21 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u14sm1471024ilv.0.2021.03.11.08.41.12
+        by smtp.gmail.com with ESMTPSA id a14sm1576741ilm.68.2021.03.11.08.41.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 08:41:14 -0800 (PST)
-Received: (nullmailer pid 841933 invoked by uid 1000);
+        Thu, 11 Mar 2021 08:41:20 -0800 (PST)
+Received: (nullmailer pid 841937 invoked by uid 1000);
         Thu, 11 Mar 2021 16:41:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, kgunda@codeaurora.org,
-        Alessandro Zummo <a.zummo@towertech.it>
-In-Reply-To: <1615447798-6959-3-git-send-email-skakit@codeaurora.org>
-References: <1615447798-6959-1-git-send-email-skakit@codeaurora.org> <1615447798-6959-3-git-send-email-skakit@codeaurora.org>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: Convert pm8xxx bindings to yaml
+To:     conor.dooley@microchip.com
+Cc:     atish.patra@wdc.com, devicetree@vger.kernel.org,
+        daire.mcnamara@microchip.com, aou@eecs.berkeley.edu,
+        anup.patel@wdc.com, lewis.hanly@microchip.com,
+        damien.lemoal@wdc.com, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, david.abdurachmanov@gmail.com,
+        linux-riscv@lists.infradead.org, cyril.jean@microchip.com,
+        j.neuschaefer@gmx.net, palmer@dabbelt.com, paul.walmsley@sifive.com
+In-Reply-To: <20210311113444.15520-1-conor.dooley@microchip.com>
+References: <20210311113444.15520-1-conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: add bindings for polarfire soc mailbox
 Date:   Thu, 11 Mar 2021 09:41:02 -0700
-Message-Id: <1615480862.528721.841932.nullmailer@robh.at.kernel.org>
+Message-Id: <1615480862.543621.841936.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Mar 2021 12:59:57 +0530, satya priya wrote:
-> Convert pm8xxx rtc bindings from .txt to .yaml format.
+On Thu, 11 Mar 2021 11:34:44 +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Add device tree bindings for the MSS system controller mailbox on
+> the Microchip PolarFire SoC.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../devicetree/bindings/mfd/qcom-pm8xxx.txt        |  99 -------------------
->  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml       | 108 +++++++++++++++++++++
->  2 files changed, 108 insertions(+), 99 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+>  .../microchip,polarfire-soc-mailbox.yaml      | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml:27:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
-./Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml:30:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
 
 dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/mailbox/microchip,polarfire-soc-mailbox.yaml#
 
-See https://patchwork.ozlabs.org/patch/1450975
+See https://patchwork.ozlabs.org/patch/1451081
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
