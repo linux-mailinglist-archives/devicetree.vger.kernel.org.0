@@ -2,124 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 784AD337B30
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 18:44:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE01337B76
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 18:58:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbhCKRnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 12:43:32 -0500
-Received: from mail-il1-f179.google.com ([209.85.166.179]:46300 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbhCKRnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 12:43:08 -0500
-Received: by mail-il1-f179.google.com with SMTP id i18so19182ilq.13
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 09:43:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yrYLvM9Tk00cK77S7tm4qU2hYr/Evchck4qsfs1uG0Q=;
-        b=jh96DgU56lCcgdKq8l8pRzFRLCj76g8uWlXgabc9GDbQZ3AtWRUHFcvTPjP4w6LfUL
-         v0EjLuqs8GBenA9t1JY9WpIjAFWHSduWQQ+otmZdfmFt/DjgWtveB5NQY/bCsDo3Tj0s
-         NzQqcdqS5ZmIElKdGVQ0XgLz/C0T+Y7WXfh+RUfiUB2vDl2Dx+7FZl80WtAmJkf+S9+g
-         PDvEBfOmG08rU3mCZLI2wu/bxryB4GoOKLkm9GxuMw1RmGxFDCY9gBU0YAlmqWY7m2tq
-         HkMWcVOF0NMIIwIjo6B5MQj+jmKPQ9f1H1KU8MUZUZ40UnniIvEJemLOaDTcP7NbHZZG
-         a9eQ==
-X-Gm-Message-State: AOAM532V4d/GPyzBBGs67yRi+RLI/w9CsnJcLasuwnWuYQyqGW3V8J9B
-        VMRGtNyeBwxcK524Nn38zQ==
-X-Google-Smtp-Source: ABdhPJwcdWOdRO6FAGc5GOVurtNLD92CTCrAhvDr8p59zjYYmNUBBir66nEeHVcZdl8bkA6WEyu+ZQ==
-X-Received: by 2002:a05:6e02:1b05:: with SMTP id i5mr5848513ilv.167.1615484587466;
-        Thu, 11 Mar 2021 09:43:07 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id j4sm1667885ioa.18.2021.03.11.09.43.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 09:43:06 -0800 (PST)
-Received: (nullmailer pid 936312 invoked by uid 1000);
-        Thu, 11 Mar 2021 17:43:05 -0000
-Date:   Thu, 11 Mar 2021 10:43:05 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     damien.lemoal@wdc.com, jassisinghbrar@gmail.com,
-        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, j.neuschaefer@gmx.net,
-        lewis.hanly@microchip.com, cyril.jean@microchip.com,
-        daire.mcnamara@microchip.com, atish.patra@wdc.com,
-        anup.patel@wdc.com, david.abdurachmanov@gmail.com
-Subject: Re: [PATCH v4 4/5] dt-bindings: add bindings for polarfire soc
- system controller
-Message-ID: <20210311174305.GA926017@robh.at.kernel.org>
-References: <20210311113456.15686-1-conor.dooley@microchip.com>
+        id S229490AbhCKR5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 12:57:37 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50336 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229520AbhCKR5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 12:57:22 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BHuxlk042621;
+        Thu, 11 Mar 2021 11:56:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615485419;
+        bh=q08sJDe3heSV4QnUx6HBERqRFXasPw62PnUGroZLHvQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=EZ2htw8QV3Zy0M40FE+VW7TS8Ir0UPukIu0zvt8R36esfrQiA8LsmEk8SMdvSseOW
+         s4ng9ZYR+Zo7Iq8tT+epEjwiEb2G3F//7E6jmcnGkI/wOmrf5FNGVCuUiIixUva+3c
+         QWZrmNwtrLNVDGBUBwWYD2ZXG2oW8n7RM7TFOV5E=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BHuxsx110234
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 11 Mar 2021 11:56:59 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
+ Mar 2021 11:56:58 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 11 Mar 2021 11:56:58 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BHuw1U018537;
+        Thu, 11 Mar 2021 11:56:58 -0600
+Date:   Thu, 11 Mar 2021 11:56:58 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Jan Kiszka <jan.kiszka@siemens.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Le Jin <le.jin@siemens.com>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: Add support for Siemens IOT2050
+ boards
+Message-ID: <20210311175658.agmnphz2pjydwnc5@annex>
+References: <cover.1615369068.git.jan.kiszka@siemens.com>
+ <9bff40f434e5298890e5d139cc36cc46a0ca2d76.1615369068.git.jan.kiszka@siemens.com>
+ <20210311131754.i5ewls6hgeitcgre@astonish>
+ <8d076ff1-cdac-941f-e796-a2e6dba792ab@siemens.com>
+ <20210311140056.fzvke3rrg6c2uuoa@uncouth>
+ <519ae6b7-35db-1fdd-de1e-e0155e0ca82a@siemens.com>
+ <20210311142151.5o54k7kmrnatufcw@target>
+ <f8c6f598-cb9c-ecd5-0b01-09f171ce7c26@siemens.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210311113456.15686-1-conor.dooley@microchip.com>
+In-Reply-To: <f8c6f598-cb9c-ecd5-0b01-09f171ce7c26@siemens.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 11:34:56AM +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 15:36-20210311, Jan Kiszka wrote:
+> On 11.03.21 15:21, Nishanth Menon wrote:
+> > On 15:14-20210311, Jan Kiszka wrote:
+> > 
+> > [...]
+> > 
+> >>>
+> >>> See [1] compare the compatibles against
+> >>> Documentation/devicetree/bindings -> I think you should describe what
+> >>> your hardware really is though.
+> >>
+> >> This SPI bus is routed to an Arduino connector. By default, userspace
+> >> (e.g. mraa) takes ownership and adds the desired logic for what is being
+> >> connected. We have no idea what shield or other extension the user adds,
+> >> though.
+> > 
+> > overlays look like the right approach for variable systems like these.
+> > It is not exactly plug and play.. but it does provide a level of
+> > flexibility that is helpful.
 > 
-> Add device tree bindings for the MSS system controller on
-> the Microchip PolarFire SoC.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  ...icrochip,polarfire-soc-sys-controller.yaml | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> new file mode 100644
-> index 000000000000..222557f96a13
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/microchip/microchip,polarfire-soc-sys-controller.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Microchip PolarFire SoC (MPFS) MSS (microprocessor subsystem) system controller
-> +
-> +maintainers:
-> +  - Conor Dooley <conor.dooley@microchip.com>
-> +
-> +description: |
-> +  The PolarFire SoC system controller can be accessed as a mailbox device.
-> +  This document describes the bindings for that device.
-> +
-> +
-> +properties:
-> +
-> +  allOf:
-> +    - $ref: /schemas/mbox/mbox-consumer.yaml#properties
+> Yes, that's for extensions which have kernel drivers. The default model
+> here is userspace, though. Will add as a separate patch to our queue for
+> now.
 
-This defines a DT property 'allOf'. This would need to be at the top 
-level with 'properties' dropped. However, you generally don't want to 
-include consumer schemas. You need to define 'mboxes' property here 
-because you need to define how many and what they are if more than 1.
+My colleagues did some checkups and pulled up a few thread on spidev
+of potential interests..
 
-What does 'can be accessed as a mailbox device' mean? Is there another 
-way? Is it a mailbox device (provider)?
+See:
+https://patchwork.kernel.org/project/spi-devel-general/patch/1427499742-26916-1-git-send-email-broonie@kernel.org/
+https://yurovsky.github.io/2016/10/07/spidev-linux-devices.html
+etc...
 
-> +
-> +  compatible:
-> +    const: microchip,polarfire-soc-sys-controller
-> +
-> +required:
-> +  - compatible
-> +  - mboxes
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscontroller: syscontroller {
-> +      compatible = "microchip,polarfire-soc-sys-controller";
-> +      mboxes = <&mbox 0>;
-> +    };
-> -- 
-> 2.17.1
+I'd split the spidev node alone as an addendum indicate the checkpatch
+warning, describe the details and loop in spidev list, Mark, et.al. to
+discuss the direction. I am hoping we can get this resolved or get a
+direction for .13-rc1
+
+But that said, I see some examples such as 
+for i in `git grep ".compatible" drivers/spi/spidev.c|grep =|cut -d '=' -f2|cut -d ' ' -f2`; do git grep $i Documentation/devicetree/bindings/; done
+
+Documentation/devicetree/bindings/spi/spi-mux.yaml:                compatible = "lineartechnology,ltc2488";
+Documentation/devicetree/bindings/misc/ge-achc.txt:- compatible : Should be "ge,achc"
+Documentation/devicetree/bindings/misc/ge-achc.txt:     compatible = "ge,achc";
+Documentation/devicetree/bindings/misc/lwn-bk4.txt:- compatible : Should be "lwn,bk4"
+Documentation/devicetree/bindings/misc/lwn-bk4.txt:     compatible = "lwn,bk4";
+
+So, the shield could be hosting one of those say
+ ge,achc or maybe lwn,bk4 ?- will probably be good to document the
+dts is for such a configuration, though it is possible that such a
+configuration might work for others?
+
+I agree with Mark that "dt should indicate specific hardware" and we
+should constraint the definition in such a scope?
+
+[...]
+
+> > 
+> >> Are we talking about spidev here? Then let's drop that node, but I do
+> >> need to know how to describe spidev properly
+> > 
+> > yes - the spidev is my problem. can you drop the node and repost? i cant
+> > locally modify and hope it works.
+> > 
 > 
+> Done.
+
+Thanks, I will try and pick up the v5 later today - need to redo my
+sanity checkups.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
