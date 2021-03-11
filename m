@@ -2,127 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 225B833805D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B79443380BA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:39:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbhCKWee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 17:34:34 -0500
-Received: from smtp.wifcom.cz ([85.207.3.150]:46947 "EHLO smtp.wifcom.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229803AbhCKWe2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Mar 2021 17:34:28 -0500
-X-Greylist: delayed 2413 seconds by postgrey-1.27 at vger.kernel.org; Thu, 11 Mar 2021 17:34:27 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=+eJYocYta1yRGzhhxPi392ziGWhQ3NokAmXjS+Zjhks=;
-        b=Xl3qJz66BkN8iWIvcxd2J69AwdaTimQY9pIxpGf2ADlbOjk8ZQueD4E7+mYAO8izsjWrw4b316tTgyFfGdlvRL85tGw4JRo/TDq6VuBFC3eXXQCBZYv86k1iSsXgj2XcpeOLaYhtw2K+DSThLHQLyy+6VIc/GgugsoOzMxp17A4=;
-From:   Martin Devera <devik@eaxlabs.cz>
-To:     linux-kernel@vger.kernel.org
-Cc:     Martin Devera <devik@eaxlabs.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S229667AbhCKWjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 17:39:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230084AbhCKWjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 17:39:22 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B10EC061574
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 14:39:21 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id bf3so5230492edb.6
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 14:39:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uoDXPuEltWUDmhb2tWhGvs+JKaUo3rAAVx8gEHgYL3A=;
+        b=wNJ3p351Wwf0EhnLLfleqU4QXb5i4DQy1bkaQS34GVpfwGYK9jDNRy6PLZXw8Ouzij
+         ffWdMFhQj46GRebK8TLdMvMF6e9BOFyHfZqZz+zij2D3EhmzudQKFK4De3t0Na/CLtye
+         OEeIgqrLDd8YGmpcMJf/kYB7fjsUtWMn7yutV7Zih07QEj9b8xk2PpMOny2L0kEXXkAY
+         otlpXQv8OT+EYrEGWOr+LuROUpAGaMO1fub6m+X0lcep+LgVhKlsxWa17RWV7D2HQyrx
+         X8Ra9FE9TN6sZB4I7rii6vy9Dvkyn6b9sh4NahQhZnpUE/BSCz1rYfy1VldK4EDFOu3J
+         a/uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uoDXPuEltWUDmhb2tWhGvs+JKaUo3rAAVx8gEHgYL3A=;
+        b=OV6zFwaiTDrnxKAVTuGFeBUq8UiWj20oYplf0z4gIrpZ599yJxeS/pI4BPy4EZ2a+P
+         1xFoCrvG//ZdF5dJO3+TW+tZ8F4bCRTSzCuExxRMJQXHj55rZGR96OwrPg4mQcvKEla9
+         f373s3tEpCNZZ/xw155tszxbnf5Z2LY2N0idTQv0fbsPdW/S9cCOwG7lxoKMJpBmrtQp
+         e+djcsBR/V8N49rn+oNXCEDyoCmBrnH3Rh84eFhcuiBvGRW53HO8hpp0TFQzoDt7kZ8R
+         1lPvnwXoWYMlVZlco5y/JQDTAzPhLQ0+7NCDdPhy3/MkUWDpdDLltXSs/LPm1CfICQLn
+         sxiQ==
+X-Gm-Message-State: AOAM531unfszOEeEdpImMmREzVEebGLPYVGygPjvh46wmKHTsfu2IHl2
+        cltUkqALVL2TOILynjje7qERoj5DrIFI85AEPFCHbw==
+X-Google-Smtp-Source: ABdhPJxFCHW41oZM+KJq47cRWr1Lwi4C6YnH9CA7LscoTteL7r9GHEnz1aWgVD1O7Qa/kZr+pCxb3iU8gTrmbuxUp8M=
+X-Received: by 2002:a05:6402:3486:: with SMTP id v6mr10850409edc.109.1615502360302;
+ Thu, 11 Mar 2021 14:39:20 -0800 (PST)
+MIME-Version: 1.0
+References: <20210309220014.22205-1-tharvey@gateworks.com> <8ca5c54140d69307f3c08ca85a09f0b5@walle.cc>
+ <3d497991-1470-e188-8be2-e5992dfa914c@microchip.com>
+In-Reply-To: <3d497991-1470-e188-8be2-e5992dfa914c@microchip.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Thu, 11 Mar 2021 14:39:07 -0800
+Message-ID: <CAJ+vNU1urqqDKrH5HNsUz=Wb-Rtr+dMzEnJ3=gMJv6+qz29n2g@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: at25: add Fujitsu MB85RS4MT
+To:     Tudor Ambarus <Tudor.Ambarus@microchip.com>
+Cc:     Michael Walle <michael@walle.cc>,
+        Richard Weinberger <richard@nod.at>, p.yadav@ti.com,
+        vigneshr@ti.com,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 2/2] tty/serial: Add rx-tx-swap OF option to stm32-usart
-Date:   Thu, 11 Mar 2021 22:51:53 +0100
-Message-Id: <20210311215153.676-2-devik@eaxlabs.cz>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210311215153.676-1-devik@eaxlabs.cz>
-References: <20210308192040.GA2807217@robh.at.kernel.org>
- <20210311215153.676-1-devik@eaxlabs.cz>
-X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
-X-Wif-ss:  ()
+        Shawn Guo <shawnguo@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32 F7/H7 usarts supports RX & TX pin swapping.
-Add option to turn it on.
-Tested on STM32MP157.
+'On Tue, Mar 9, 2021 at 9:34 PM <Tudor.Ambarus@microchip.com> wrote:
+>
+> On 3/10/21 12:59 AM, Michael Walle wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >
+> > Hi Tim,
+> >
+> > Am 2021-03-09 23:00, schrieb Tim Harvey:
+> >> Document the compatible value for the Fujitsu MB85RS4MT SPI
+> >> FRAM EEPROM device so that it can be used in DTS files.
+> >>
+> >> This is a 512KiB FRAM EEPROM.
+> >>
+> >> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml
+> >> b/Documentation/devicetree/bindings/eeprom/at25.yaml
+> >> index 6a2dc8b3ed14..f594db72b711 100644
+> >> --- a/Documentation/devicetree/bindings/eeprom/at25.yaml
+> >> +++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
+> >> @@ -26,6 +26,7 @@ properties:
+> >>                - anvo,anv32e61w
+> >>                - atmel,at25256B
+> >>                - fujitsu,mb85rs1mt
+> >> +              - fujitsu,mb85rs4mt
+> >>                - fujitsu,mb85rs64
+> >>                - microchip,at25160bn
+> >>                - microchip,25lc040
+> >
+> > Hm, the driver is spi-nor but this is for the at25 driver. Is
+> > this correct? Doesn't it work if you just add the ID to
+> > spi-nor/fujitsu.c and use 'compatible = "jedec,spi-nor' ?
+> >
+>
+> Tim,
+>
+> Can you try and see if you can work with this flash by setting "atmel,at25"
+> compatible?
 
-Signed-off-by: Martin Devera <devik@eaxlabs.cz>
-Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
- drivers/tty/serial/stm32-usart.h |  4 ++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
+It does not work with 'atmel,at25'. I was fooled into adding it to
+at25.yaml because that is where the mb85rs1mt compatible was. I
+suppose at some time the drivers were split as mb85rs1mt is clearly in
+the spi-nor driver now.
 
-diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-index b3675cf25a69..d390f7da1441 100644
---- a/drivers/tty/serial/stm32-usart.c
-+++ b/drivers/tty/serial/stm32-usart.c
-@@ -644,6 +644,12 @@ static int stm32_usart_startup(struct uart_port *port)
- 	if (ret)
- 		return ret;
- 
-+	if (stm32_port->swap) {
-+		val = readl_relaxed(port->membase + ofs->cr2);
-+		val |= USART_CR2_SWAP;
-+		writel_relaxed(val, port->membase + ofs->cr2);
-+	}
-+
- 	/* RX FIFO Flush */
- 	if (ofs->rqr != UNDEF_REG)
- 		stm32_usart_set_bits(port, ofs->rqr, USART_RQR_RXFRQ);
-@@ -758,7 +764,7 @@ static void stm32_usart_set_termios(struct uart_port *port,
- 	cr1 = USART_CR1_TE | USART_CR1_RE;
- 	if (stm32_port->fifoen)
- 		cr1 |= USART_CR1_FIFOEN;
--	cr2 = 0;
-+	cr2 = stm32_port->swap ? USART_CR2_SWAP : 0;
- 	cr3 = readl_relaxed(port->membase + ofs->cr3);
- 	cr3 &= USART_CR3_TXFTIE | USART_CR3_RXFTCFG_MASK | USART_CR3_RXFTIE
- 		| USART_CR3_TXFTCFG_MASK;
-@@ -1006,6 +1012,9 @@ static int stm32_usart_init_port(struct stm32_port *stm32port,
- 			return stm32port->wakeirq ? : -ENODEV;
- 	}
- 
-+	stm32port->swap = stm32port->info->cfg.has_swap &&
-+		of_property_read_bool(pdev->dev.of_node, "rx-tx-swap");
-+
- 	stm32port->fifoen = stm32port->info->cfg.has_fifo;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
-index cb4f327c46db..a85391e71e8e 100644
---- a/drivers/tty/serial/stm32-usart.h
-+++ b/drivers/tty/serial/stm32-usart.h
-@@ -25,6 +25,7 @@ struct stm32_usart_offsets {
- struct stm32_usart_config {
- 	u8 uart_enable_bit; /* USART_CR1_UE */
- 	bool has_7bits_data;
-+	bool has_swap;
- 	bool has_wakeup;
- 	bool has_fifo;
- 	int fifosize;
-@@ -76,6 +77,7 @@ struct stm32_usart_info stm32f7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.fifosize = 1,
- 	}
- };
-@@ -97,6 +99,7 @@ struct stm32_usart_info stm32h7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.has_wakeup = true,
- 		.has_fifo = true,
- 		.fifosize = 16,
-@@ -271,6 +274,7 @@ struct stm32_port {
- 	int last_res;
- 	bool tx_dma_busy;	 /* dma tx busy               */
- 	bool hw_flow_control;
-+	bool swap;		 /* swap RX & TX pins */
- 	bool fifoen;
- 	int wakeirq;
- 	int rdr_mask;		/* receive data register mask */
--- 
-2.11.0
+I will drop the patch to at25.yaml and now that I realize all I need
+is 'jedec,spi-nor' I won't need any bindings patch.
 
+>
+> There are some SPI NOR-like flashes MRAMs, FRAMs, even EEPROMs, that share
+> a part of opcodes of SPI NORs, but have slightly different characteristics
+> (ex. no erase, no wait times for writes on FRAMs).
+> See the patch series submitted by Richard, that I have stalled:
+> https://patchwork.ozlabs.org/project/linux-mtd/list/?series=208584&state=*
+>
+
+This series makes sense to me. I tested it and indeed it provides a
+vast performance improvement. Richards patch would collide with my
+patch that adds the mb85rs4mt detection. Let me know what you're going
+to do there and if you need me to rebase 'mtd: spi-nor: fujitsu: add
+support for MB85RS4MT' on top of it.
+
+Best regards,
+
+Tim
