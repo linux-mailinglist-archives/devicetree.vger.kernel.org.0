@@ -2,128 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32FE53369D9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9D33369E5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 02:51:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbhCKBnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Mar 2021 20:43:43 -0500
-Received: from mail.loongson.cn ([114.242.206.163]:33562 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229468AbhCKBnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Mar 2021 20:43:25 -0500
-Received: from [10.130.0.65] (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxD_KzdUlgUuoXAA--.13819S3;
-        Thu, 11 Mar 2021 09:43:15 +0800 (CST)
-Subject: Re: [PATCH v4 6/7] dt-bindings: interrupt-controller: Add
- Loongson-2K1000 LIOINTC
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-References: <20210310075639.20372-1-zhangqing@loongson.cn>
- <20210310075639.20372-7-zhangqing@loongson.cn>
- <da399bdd-9454-4d63-a549-546c049c1a29@www.fastmail.com>
-Cc:     "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Ming Wang <wangming01@loongson.cn>
-From:   zhangqing <zhangqing@loongson.cn>
-Message-ID: <8bd4f6c3-f2cf-4f36-879b-9755117cdac7@loongson.cn>
-Date:   Thu, 11 Mar 2021 09:43:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+        id S229470AbhCKBvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Mar 2021 20:51:25 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:59766 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229599AbhCKBvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Mar 2021 20:51:13 -0500
+X-UUID: 9403a0f406ca4eadbf09e32e5f0979e8-20210311
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=MyXaycwMY+zGNWOh2kpZh2m5IO5LDfniUPRstEyFC2o=;
+        b=nxQwklIMmZ14ITRW+pt5xNSsAI9r1soTlXxLzsJM6J+UdqatiBUVGzdz9M9vUhTy4DQ/thad6tuzVj1PxQrOYMDDvG7Ov70sJxbd7JvMM5MsUTk8UL6dDDLYjSeB0DsWLUDH2kL2/ZUn5NSbFmi6EAoF/2IfJ3z/4rTWfl2aJZc=;
+X-UUID: 9403a0f406ca4eadbf09e32e5f0979e8-20210311
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1116286509; Thu, 11 Mar 2021 09:51:10 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32N1.mediatek.inc
+ (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 11 Mar
+ 2021 09:51:08 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 11 Mar 2021 09:51:08 +0800
+Message-ID: <1615427467.26498.6.camel@mhfsdcap03>
+Subject: Re: [PATCH v4 01/12] dt-bindings: usb: fix yamllint check warning
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+Date:   Thu, 11 Mar 2021 09:51:07 +0800
+In-Reply-To: <YEiJS0fPCOPOdlIq@kroah.com>
+References: <20210308053745.25697-1-chunfeng.yun@mediatek.com>
+         <20210310022811.GA1612587@robh.at.kernel.org>
+         <1615346469.26498.1.camel@mhfsdcap03> <YEiJS0fPCOPOdlIq@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <da399bdd-9454-4d63-a549-546c049c1a29@www.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf9DxD_KzdUlgUuoXAA--.13819S3
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF4rXw47KF1UXr13tr45GFg_yoW8Zw15pr
-        ZrCanFgF48tr13Cayxta40ka15Zr98AwnrKrsFv3y7GFnrKw1UXr1a9F1rZFZ5uFWIqF4j
-        vF1F9a4UWasIyF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUvG14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-        JVWxJr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxV
-        WxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2Wl
-        Yx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbV
-        WUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lc7I2V7IY0VAS07Al
-        zVAYIcxG8wCY02Avz4vE14v_KwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
-        W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
-        1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
-        IIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1lIxAI
-        cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa
-        73UjIFyTuYvjfUFVyIUUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+X-TM-SNTS-SMTP: 70009717DE06A89F05E205A0054F956C3D78377B9B4219CCCC6C498156C87FC12000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2021 08:04 PM, Jiaxun Yang wrote:
->
-> On Wed, Mar 10, 2021, at 3:56 PM, Qing Zhang wrote:
->> Add liointc-2.0 properties support, so update the maxItems and description.
->>
->> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ^ I have nothing todo with this patch so please drop me for this one :-)
->
->> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
->> Tested-by: Ming Wang <wangming01@loongson.cn>
->> ---
->>
->> v3-v4: Standard submission of information
-> ^ It's called commit message.
->
->>   .../bindings/interrupt-controller/loongson,liointc.yaml    | 7 ++++---
->>   1 file changed, 4 insertions(+), 3 deletions(-)
->>
->> diff --git
->> a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
->> index f38e0113f360..5280cf60a9a7 100644
->> ---
->> a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
->> +++
->> b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
->> @@ -10,9 +10,9 @@ maintainers:
->>     - Jiaxun Yang <jiaxun.yang@flygoat.com>
->>   
->>   description: |
->> -  This interrupt controller is found in the Loongson-3 family of chips
->> as the primary
->> -  package interrupt controller which can route local I/O interrupt to
->> interrupt lines
->> -  of cores.
->> +  This interrupt controller is found in the Loongson-3 family of chips
->> and
->> +  Loongson-2K1000 chip, as the primary package interrupt controller
->> which
->> +  can route local I/O interrupt to interrupt lines of cores.
->>   
->>   allOf:
->>     - $ref: /schemas/interrupt-controller.yaml#
->> @@ -22,6 +22,7 @@ properties:
->>       oneOf:
->>         - const: loongson,liointc-1.0
->>         - const: loongson,liointc-1.0a
->> +      - const: loongson,liointc-2.0
->>   
->>     reg:
->>       maxItems: 1
-> ^ Please document multiple reg prop change as well.
-   Hi, Jiaxun
-
-   Thank you for your reply,
-
-   I will do it and send v5.
-
-   Thanks,
-   -Qing
->
-> Thanks.
->
-> - Jiaxun
->
->> -- 
->> 2.20.1
->>
->>
+T24gV2VkLCAyMDIxLTAzLTEwIGF0IDA5OjU0ICswMTAwLCBHcmVnIEtyb2FoLUhhcnRtYW4gd3Jv
+dGU6DQo+IE9uIFdlZCwgTWFyIDEwLCAyMDIxIGF0IDExOjIxOjA5QU0gKzA4MDAsIENodW5mZW5n
+IFl1biB3cm90ZToNCj4gPiBPbiBUdWUsIDIwMjEtMDMtMDkgYXQgMTk6MjggLTA3MDAsIFJvYiBI
+ZXJyaW5nIHdyb3RlOg0KPiA+ID4gT24gTW9uLCBNYXIgMDgsIDIwMjEgYXQgMDE6Mzc6MzRQTSAr
+MDgwMCwgQ2h1bmZlbmcgWXVuIHdyb3RlOg0KPiA+ID4gPiBGaXggd2FybmluZzogIm1pc3Npbmcg
+c3RhcnRpbmcgc3BhY2UgaW4gY29tbWVudCINCj4gPiA+IA0KPiA+ID4gV2hhdCB0cmVlIGlzIHRo
+aXMgaW4gYmVjYXVzZSBJIGRvbid0IHNlZSBpdC4NCj4gPiBUaGUgcGF0Y2ggaXMgYmFzZWQga2Vy
+bmVsIDUuMTItcmMxLCBhbHNvIGhhcHBlbnMgb24NCj4gPiBnaXQ6Ly9naXQua2VybmVsLm9yZy9w
+dWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvZ3JlZ2toL3VzYi5naXQgdXNiLW5leHQNCj4gDQo+IE15
+IGJyYW5jaGVzIGFyZSBub3cgcmViYXNlZCB0byBub3QgYmUgb24gNS4xMi1yYzEgYmVjYXVzZSBv
+ZiB0aGUNCj4gcHJvYmxlbXMgd2l0aCBpdCwgc28gcGxlYXNlIHJlZnJlc2ggYW5kIHByb3ZpZGUg
+YSAiRml4ZXM6ICIgdGFnIGluIHlvdXINCj4gdXBkYXRlZCBwYXRjaC4NClN0aWxsIHJlcHJvZHVj
+ZWQgb24gNS4xMi1yYzINCg0KPiANCj4gdGhhbmtzLA0KPiANCj4gZ3JlZyBrLWgNCg0K
 
