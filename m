@@ -2,164 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BBC337104
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7963370FE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 12:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232590AbhCKLRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 06:17:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46196 "EHLO
+        id S232553AbhCKLQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 06:16:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232629AbhCKLQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:16:52 -0500
-Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636CDC061760
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 03:16:52 -0800 (PST)
-Received: by mail-vk1-xa2c.google.com with SMTP id j15so393346vkc.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 03:16:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hZlTrXOnOwfkVp4IP+6nAkc4tSWReJL+ojzi0R++f14=;
-        b=xrOn/2AKy55jqABo10rEGgLvClD7szNkoniXPhLeXJUNxBz14KRCkhNuBuTK/n0m+J
-         YIi1Qciy9nId57iyQvOBmaRw8BWKGQpOgqDw6b247nCcQPDZ+0jUUqhBv2vor5owjxvg
-         KavAo8XUIPX4rxVNtrsJLpFvv03n33leykXMBTOyuGWFFEyWm2iTnWuo54IRHtAWPPhl
-         ERzfHqRVlmpaXy8pFDFI0LfE6d0+FMZfx+AMXwRkSLYw9nxdUO4rv8XMlgatcdXxtENs
-         702STHHQ5SHW0GUUe5+s16ifoQY5cMsjaP3EOmx29K3dEY/b6uQ0r60u7CQ9WgOwUmYI
-         16VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hZlTrXOnOwfkVp4IP+6nAkc4tSWReJL+ojzi0R++f14=;
-        b=GEMDJwo4eLFtJpBqQkd1Zp7vzvUp1peNV7iNDGAMdlWTLZFXOTUOdW5y8dcaOGcjcc
-         ghqw5E4vXAdpDCY3of1a03ucpwjOQb2qVwAm32A5NqbsvBrx1KQLFUHevpE1XXkFH9gC
-         ++oSIUbb9fI0CBOMn69AdKkImHx7PxXjD8mL6HetGjdV06AGfwswZc9oWLsBCqEBbZbS
-         E9lskOxI1Y3XRzvNFWXIRjTQ/o7j5BB9O2EfSyRBDyPHbHVUUhhTWin+oS8R0pnEGKmg
-         gszgeSw6zpiGE7JSYjDVMrJgzgEWUyU4IuxA7XJGfQZfsQ+jzmO9RSlNX+p1Oih2hCq3
-         RrhQ==
-X-Gm-Message-State: AOAM530pGRDy8TIrNkBM5AbwSrj9rkD9exdNTT/ZxRpwyFrygOx8Q+8h
-        Qvmk8OOh3WjeytHvh70gD8D5J2M0LrELJh5hIvX9JQ==
-X-Google-Smtp-Source: ABdhPJx5nD6+VY6q0OnqOl5s6XOx0kkRXFk6bupUgXJA2Srnp0YddIeGztSISa7PYxcs9vXwz90f3elk1mnLlhqIrg0=
-X-Received: by 2002:a1f:a68d:: with SMTP id p135mr4384673vke.6.1615461411571;
- Thu, 11 Mar 2021 03:16:51 -0800 (PST)
+        with ESMTP id S232633AbhCKLQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 06:16:24 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E3CC061574;
+        Thu, 11 Mar 2021 03:16:24 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 6029C221E7;
+        Thu, 11 Mar 2021 12:16:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1615461382;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Rcfxj52DqopNjOhZUxoHuR9lkTIwGeoSy4LzOhaFOmY=;
+        b=ARvYEuyu+pMa0B2ZS3+5vKtk+3BXirjUsv561Kr7NZSIjFUZfdWAmkzGdMH7vrO1G2t/ky
+        ft1QoO12xA8cE2RVR2ZAG57GEjnWCQD+lrWBurP/tmGmay8SsljWestVMOTkLNQ34EQNE8
+        GnYF0LKkTL1vagKu6fjp74SaiDozVz0=
 MIME-Version: 1.0
-References: <20210309015750.6283-1-peng.zhou@mediatek.com>
-In-Reply-To: <20210309015750.6283-1-peng.zhou@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 11 Mar 2021 12:16:15 +0100
-Message-ID: <CAPDyKFpsw+s7Bj0h-oOHP7VkiDoeuoN7e5e=rpQ+_yo2G=R-YQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-To:     Peng Zhou <peng.zhou@mediatek.com>
-Cc:     Eric Biggers <ebiggers@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 11 Mar 2021 12:16:22 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+In-Reply-To: <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
+ <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
+ <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+ <eb26f8e0a4c99d0c9de9d92612102718@walle.cc>
+ <fa654e7a-80cc-7ae8-15c6-780e7fa29bb1@nvidia.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <cadc59f29bbb2e0d02235d4c10cb7f4d@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 Mar 2021 at 03:05, Peng Zhou <peng.zhou@mediatek.com> wrote:
->
-> Use SMC call enable hardware crypto engine
-> due to it only be changed in ATF(EL3).
->
-> Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
-> ---
->  drivers/mmc/host/mtk-sd.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index 1c90360d6cf2..225ef5519161 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -4,6 +4,7 @@
->   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
->   */
->
-> +#include <linux/arm-smccc.h>
->  #include <linux/module.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> @@ -20,6 +21,7 @@
->  #include <linux/pm_runtime.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
-> +#include <linux/soc/mediatek/mtk_sip_svc.h>
->  #include <linux/spinlock.h>
->  #include <linux/interrupt.h>
->  #include <linux/reset.h>
-> @@ -319,6 +321,12 @@
->  #define DEFAULT_DEBOUNCE       (8)     /* 8 cycles CD debounce */
->
->  #define PAD_DELAY_MAX  32 /* PAD delay cells */
-> +
-> +/*--------------------------------------------------------------------------*/
-> +/* SiP commands which used for crypto                                       */
-> +/*--------------------------------------------------------------------------*/
-> +#define MTK_SIP_MMC_CONTROL               MTK_SIP_SMC_CMD(0x273)
-> +
->  /*--------------------------------------------------------------------------*/
->  /* Descriptor Structure                                                     */
->  /*--------------------------------------------------------------------------*/
-> @@ -2467,6 +2475,7 @@ static int msdc_of_clock_parse(struct platform_device *pdev,
->
->  static int msdc_drv_probe(struct platform_device *pdev)
->  {
-> +       struct arm_smccc_res smccc_res;
->         struct mmc_host *mmc;
->         struct msdc_host *host;
->         struct resource *res;
-> @@ -2616,6 +2625,15 @@ static int msdc_drv_probe(struct platform_device *pdev)
->                 mmc->max_seg_size = 64 * 1024;
->         }
->
-> +       /*
-> +        * 1: MSDC_AES_CTL_INIT
-> +        * 4: cap_id, no-meaning now
-> +        * 1: cfg_id, we choose the second cfg group
-> +        */
-> +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
-> +
+Am 2021-03-11 12:05, schrieb Sameer Pujar:
 
-No, I don't want generic arm_smccc_smc calls in generic drivers like
-this. Moreover, shouldn't we "probe" the firmware to find out if this
-is supported and ready to be used?
+> It would work and initially I had similar patch, see [0] and related
+> series. Suggestion is to always use "clocks" property with devices
+> only.
 
-Perhaps something along the lines of what Qcom does in
-drivers/mmc/host/sdhci-msm.c and drivers/firmware/qcom_scm.c?
+I see. But again, I don't think it is correct to change the clock of
+the codec by default. What happens if this is for example a
+compatible = "fixed-clock"?
 
->         host->timeout_clks = 3 * 1048576;
->         host->dma.gpd = dma_alloc_coherent(&pdev->dev,
->                                 2 * sizeof(struct mt_gpdma_desc),
-> @@ -2770,9 +2788,18 @@ static int __maybe_unused msdc_runtime_resume(struct device *dev)
->  {
->         struct mmc_host *mmc = dev_get_drvdata(dev);
->         struct msdc_host *host = mmc_priv(mmc);
-> +       struct arm_smccc_res smccc_res;
->
->         msdc_ungate_clock(host);
->         msdc_restore_reg(host);
-> +       /*
-> +        * 1: MSDC_AES_CTL_INIT
-> +        * 4: cap_id, no-meaning now
-> +        * 1: cfg_id, we choose the second cfg group
-> +        */
-> +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
+As you pointed out in the referred thread [0]. simple-audio-card has
+that clock and judging from the code it is exactly for this reason:
+to either change/enable it or not.
 
-Ditto.
+With this patch you'll switch that to "always change it". Therefore,
+shouldn't there be a dt flag to indicate wheter simple-audio-card/graph
+should be in charge of the codecs clock input?
 
->         return 0;
->  }
->
+And its fetching just the first clock, doesn't it? What happens if a
+codec has two clock inputs?
 
-Kind regards
-Uffe
+-michael
+
+[0] 
+https://patchwork.kernel.org/project/alsa-devel/patch/1611944866-29373-4-git-send-email-spujar@nvidia.com/
