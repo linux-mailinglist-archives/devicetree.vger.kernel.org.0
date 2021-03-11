@@ -2,107 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A8533721C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 13:11:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17B3E337226
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 13:12:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbhCKMKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 07:10:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
+        id S232881AbhCKMLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 07:11:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232999AbhCKMKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 07:10:41 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9558BC061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 04:10:40 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id m22so39343741lfg.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 04:10:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=6WQ2Uh7ZOAQINzgbxJVZJPF3m1HcFUAUJ1TDlBBkKGU=;
-        b=fnSJ5ej86s4V4r9U4SJ8ZESf0GGr65kdYnTpHxuPvMrZZM2a8V7V8kD2aUbI3WlWSE
-         reBjdpVpvYvbknHvJIFv8YxJrtq2wBbCPEGbE61oj9MnZMTYnH4DPRZ9mnDioh9apkLt
-         hohpS3IUsqUtQctDHBV2zGBWr+JRFRHABGIFSypEjaAzpjEcPwJxGTRmqlMOKCnYBbvY
-         2XqRn7UYfirpUEB31r/3YfejMEQrjxmkDbGAY8MTRzOdC+9fXQ3k6vExf31FhyTkXkrM
-         26t3E60ybFd1ZvpkAL975586gUuhFeSQykQvlMnTZecz7cCbTie0KWbYwHe+S9QS3bsq
-         mccg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=6WQ2Uh7ZOAQINzgbxJVZJPF3m1HcFUAUJ1TDlBBkKGU=;
-        b=cg9BZ+9jNQMpoCrOgci8aa0wH/BvgTqH5fcQRKSw/FSbXZM8vF/HZ6mOQGOfs09tXe
-         wjC1AsXh03JTltoNYKTguu/GgyvX8/QTdjfbGHAsbRmmix2twk68s0rxB9i+YOKpNaO3
-         TxCB7r5QENOFNnUD2hqTEoIpF2d+ZHkv1BJCnkZUme3N4JFfxSGUZoTOpd83qssYuVsL
-         jspa1mMjSUGV1VZyt7wxmdrxludtW0tyPbqvPCtYEfuI/aAtbjzQJ73HkqB+HvB1ex2I
-         eXJajyD3UK0zx7J9f3mSiexDsxVVWK24wGHa8FAIZL+hr2CHeYNFBMZXPuGCFJAu6GdC
-         uKwA==
-X-Gm-Message-State: AOAM530LVNMCGimJvljj0NzkkhrtQchEkY67EeYwSfKSvZPqv+Uv7wwk
-        S1kmqTjy/pwPAanxd7WEGXmX+w==
-X-Google-Smtp-Source: ABdhPJz6SebrF7Fq9Ak8nU8uXD4GLzklZ6aTnlCi+eN90s+eykOW6giy7THR+Lp1cpEjQOJB/9DgJQ==
-X-Received: by 2002:a19:8048:: with SMTP id b69mr2196729lfd.458.1615464639071;
-        Thu, 11 Mar 2021 04:10:39 -0800 (PST)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id j2sm782133lfe.47.2021.03.11.04.10.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 04:10:38 -0800 (PST)
-Date:   Thu, 11 Mar 2021 13:10:37 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas,cmt: Document R8A77961
-Message-ID: <YEoIvYLcPbzS6VMC@oden.dyn.berto.se>
-References: <20210211143344.352588-1-niklas.soderlund+renesas@ragnatech.se>
+        with ESMTP id S232781AbhCKMLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 07:11:23 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3780DC061574;
+        Thu, 11 Mar 2021 04:11:23 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id AAAD642508;
+        Thu, 11 Mar 2021 12:11:14 +0000 (UTC)
+Subject: Re: [RFT PATCH v3 12/27] of/address: Add infrastructure to declare
+ MMIO as non-posted
+To:     Arnd Bergmann <arnd@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-13-marcan@marcan.st>
+ <CAL_JsqJF2Hz=4U7FR_GOSjCxqt3dpf-CAWFNfsSrDjDLpHqgCA@mail.gmail.com>
+ <6e4880b3-1fb6-0cbf-c1a5-7a46fd9ccf62@marcan.st>
+ <CAK8P3a0Hmwt-ywzS-2eEmqyQ0v2SxLsLxFwfTUoWwbzCrBNhsQ@mail.gmail.com>
+ <CAL_JsqJHRM59GC3FjvaGLCELemy1uspnGvTEFH6q0OdyBPVSjA@mail.gmail.com>
+ <CAK8P3a0_GBB-VYFO5NaySyBJDN2Ra-WMH4WfFrnzgOejmJVG8g@mail.gmail.com>
+ <20210308211306.GA2920998@robh.at.kernel.org>
+ <CAK8P3a2GfzUevuQNZeQarJ4GNFsuDj0g7oFuN940Hdaw06YJbA@mail.gmail.com>
+ <CAL_JsqK8FagJyQVyG5DAocUjLGZT91b6NzDm_DNMW1hdCz51Xg@mail.gmail.com>
+ <c5693760-3b18-e8f1-18b6-bae42c05d329@marcan.st>
+ <CAL_Jsq+VLLPa98iaTvOkK-tjuBH4qY7FNEGtufYGv7rXAbwegQ@mail.gmail.com>
+ <332c0b9a-dcfd-4c3b-9038-47cbda90eb3f@marcan.st>
+ <CAL_Jsq+X7JPm-xrxmy5bGKSuLO59yk6S=EuXmdMn0FwhpZAD7A@mail.gmail.com>
+ <CAK8P3a2HWbHc-aGHk792TVh6ea2j+aKswYrB6EBsjPA6fH1=xA@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <7ee4a1ac-9fd4-3eca-853d-d12a16ddbb60@marcan.st>
+Date:   Thu, 11 Mar 2021 21:11:12 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210211143344.352588-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <CAK8P3a2HWbHc-aGHk792TVh6ea2j+aKswYrB6EBsjPA6fH1=xA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gentle ping.
+On 11/03/2021 18.12, Arnd Bergmann wrote:
+> On Wed, Mar 10, 2021 at 6:01 PM Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Wed, Mar 10, 2021 at 1:27 AM Hector Martin <marcan@marcan.st> wrote:
+>>>
+>>> On 10/03/2021 07.06, Rob Herring wrote:
+>>>>> My main concern here is that this creates an inconsistency in the device
+>>>>> tree representation that only works because PCI drivers happen not to
+>>>>> use these code paths. Logically, having "nonposted-mmio" above the PCI
+>>>>> controller would imply that it applies to that bus too. Sure, it doesn't
+>>>>> matter for Linux since it is ignored, but this creates an implicit
+>>>>> exception that PCI buses always use posted modes.
+>>>>
+>>>> We could be stricter that "nonposted-mmio" must be in the immediate
+>>>> parent. That's kind of in line with how addressing already works.
+>>>> Every level has to have 'ranges' to be an MMIO address, and the
+>>>> address cell size is set by the immediate parent.
+>>>>
+>>>>> Then if a device comes along that due to some twisted fabric logic needs
+>>>>> nonposted nGnRnE mappings for PCIe (even though the actual PCIe ops will
+>>>>> end up posted at the bus anyway)... how do we represent that? Declare
+>>>>> that another "nonposted-mmio" on the PCIe bus means "no, really, use
+>>>>> nonposted mmio for this"?
+>>>>
+>>>> If we're strict, yes. The PCI host bridge would have to have "nonposted-mmio".
+>>>
+>>> Works for me; then let's just make it non-recursive.
+>>>
+>>> Do you think we can get rid of the Apple-only optimization if we do
+>>> this? It would mean only looking at the parent during address
+>>> resolution, not recursing all the way to the top, so presumably the
+>>> performance impact would be quite minimal.
+> 
+> Works for me.
 
-On 2021-02-11 15:33:44 +0100, Niklas Söderlund wrote:
-> Add missing bindings for M3-W+.
+Incidentally, even though it would now be unused, I'd like to keep the 
+apple,arm-platform compatible at this point; we've already been pretty 
+close to a use case for it, and I don't want to have to fall back to a 
+list of SoC compatibles if we ever need another quirk for all Apple ARM 
+SoCs (or break backwards compat). It doesn't really hurt to have it in 
+the binding and devicetrees, right?
+
+>> Yeah, that should be fine. I'd keep an IS_ENABLED() config check
+>> though. Then I'll also know if anyone else needs this.
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,cmt.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Ok, makes sense.
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> index 428db3a21bb9c384..d16b5a243ed48eef 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> @@ -74,6 +74,7 @@ properties:
->                - renesas,r8a774e1-cmt0     # 32-bit CMT0 on RZ/G2H
->                - renesas,r8a7795-cmt0      # 32-bit CMT0 on R-Car H3
->                - renesas,r8a7796-cmt0      # 32-bit CMT0 on R-Car M3-W
-> +              - renesas,r8a77961-cmt0     # 32-bit CMT0 on R-Car M3-W+
->                - renesas,r8a77965-cmt0     # 32-bit CMT0 on R-Car M3-N
->                - renesas,r8a77970-cmt0     # 32-bit CMT0 on R-Car V3M
->                - renesas,r8a77980-cmt0     # 32-bit CMT0 on R-Car V3H
-> @@ -89,6 +90,7 @@ properties:
->                - renesas,r8a774e1-cmt1     # 48-bit CMT on RZ/G2H
->                - renesas,r8a7795-cmt1      # 48-bit CMT on R-Car H3
->                - renesas,r8a7796-cmt1      # 48-bit CMT on R-Car M3-W
-> +              - renesas,r8a77961-cmt1     # 48-bit CMT on R-Car M3-W+
->                - renesas,r8a77965-cmt1     # 48-bit CMT on R-Car M3-N
->                - renesas,r8a77970-cmt1     # 48-bit CMT on R-Car V3M
->                - renesas,r8a77980-cmt1     # 48-bit CMT on R-Car V3H
-> -- 
-> 2.30.0
+> Conceptually, I'd like to then see a check that verifies that the
+> property is only set for nodes whose parent also has it set, since
+> that is how AXI defines it: A bus can wait for the ack from its
+> child node, or it can acknowledge the write to its parent early.
+> However, this breaks down as soon as a bus does the early ack:
+> all its children by definition use posted writes (as seen by the
+> CPU), even if they wait for stores that come from other masters.
 > 
+> Does this make sense to you?
+
+Makes sense. This shouldn't really be something the kernel concerns 
+itself with at runtime, just something for the dts linting, right?
+
+I assume this isn't representable in json-schema, so it would presumably 
+need some ad-hoc validation code.
 
 -- 
-Regards,
-Niklas Söderlund
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
