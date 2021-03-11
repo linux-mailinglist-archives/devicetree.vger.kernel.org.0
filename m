@@ -2,92 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D60BC338000
-	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5CE33800E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Mar 2021 23:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231303AbhCKWCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 17:02:02 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33700 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230386AbhCKWBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 17:01:55 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12BM1hNR059014;
-        Thu, 11 Mar 2021 16:01:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615500103;
-        bh=iqbjIDn5aoYZVoETPq9RaOxNijO0u9nemjY4dLhYicU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=qK1Ao0ijpNI7irJRx4xNGzff20F6MFZVoaxqcAttYJxoSHJ0ywaFZ7fw5rrEbrCzE
-         3fqn6cRS56UpiigpvkliaRECcc0kvuTpkcEOXfFea5SxyLh4okkmwq+KnEE7VlSnvc
-         TC+4vi5xo1jQUIttuBiq2ICpE9CVfUjNCAAASnF8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12BM1hJW010586
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 11 Mar 2021 16:01:43 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 11
- Mar 2021 16:01:09 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 11 Mar 2021 16:01:09 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12BM19rE087587;
-        Thu, 11 Mar 2021 16:01:09 -0600
-Date:   Thu, 11 Mar 2021 16:01:09 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Andre Przywara <andre.przywara@arm.com>, Rob H <robh@kernel.org>
-CC:     Michal Simek <michal.simek@xilinx.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
- #address-cells for interrupt-controller
-Message-ID: <20210311215914.pgpz2yymmfqlainl@episode>
-References: <20201117161942.38754-1-nsekhar@ti.com>
- <20201117161942.38754-3-nsekhar@ti.com>
- <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
- <20201118151259.kpag44djji4ssiup@eldest>
- <18e41dba-a3dd-308a-605e-63b76ca638e5@ti.com>
- <20210126000108.GA1267192@robh.at.kernel.org>
- <20210126163839.57491132@slackpad.fritz.box>
+        id S230150AbhCKWLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 17:11:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46220 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229774AbhCKWLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 17:11:17 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E2FFC061574;
+        Thu, 11 Mar 2021 14:11:17 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 5B5A52224F;
+        Thu, 11 Mar 2021 23:11:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1615500675;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WsPITZ64nIWI+4FRusiGTBCLY0TRr7/LpaTTzy5rpfE=;
+        b=l/wtr47oZIFZkvukRdDqx0Yj4naCigu5BD9AeZS5626ItX0mk4ZONt6BKlZ3+YmjEIxmWW
+        Rjo/kOfBd78omPKmg0B+71lY71DJkeN8Va45ywiR/+rdXrvjMKjt06HRc4uPT/7+zavxCJ
+        +JyyrtHbiqzXJD4XpFEUtijKHJU5G0Q=
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210126163839.57491132@slackpad.fritz.box>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 11 Mar 2021 23:11:15 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Sameer Pujar <spujar@nvidia.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
+In-Reply-To: <20210311161558.GG4962@sirena.org.uk>
+References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
+ <20210309144156.18887-1-michael@walle.cc>
+ <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
+ <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
+ <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
+ <20210311161558.GG4962@sirena.org.uk>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <f21b87f1afb3eda54b5f00f2d1c146d3@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andre, Rob,
-On 16:38-20210126, Andre Przywara wrote:
-> > Now that I look back at the dtc change, I'm now confused why this 
-> > check got applied. Both David and I wanted changes in regards to 
-> > #address-cells. Either a separate check or part of interrupt-map checks. 
-> > And the interrupt-map check never got applied. Andre?
+Am 2021-03-11 17:15, schrieb Mark Brown:
+> On Wed, Mar 10, 2021 at 08:20:28PM +0530, Sameer Pujar wrote:
 > 
-> Yeah, I somewhat dropped the ball on this, after some iterations and a
-> partial merge. Will put it on my list to revive this.
+>> If I read this correctly below is the configuration you need,
+>> SoC -> MCLK(fixed rate) -> PLL(wm8904) -> PLL output (256 * fs) -> 
+>> sysclk
+> 
+> For this device for integration with something like simple-audio-card
+> since there's limited flexibility within the device the simplest thing
+> would be to not make the internal clocking of the device visible and
+> just have it figure out how to use the input clock, using the MCLK
+> directly if possible otherwise using the FLL to generate a suitable
+> clock.
 
+Before this patch, part of this was already happening. That is,
+simple-audio-card called set_sysclk(samplerate * mclk-fs), then
+the codec figured out that its mclk was different than the
+requested sample rate and enabled its FLL to generate the requested
+sample rate automatically.
 
-I was hoping we made some steps, but I did see [1] as well and it is
-possible that I am missing some discussion, but it is starting to get
-W=2 builds warnings noisy enough to start interfering with discovering
-real problems as we keep adding new stuff in.. Just wondering...
+With this patch applied, simple-audio-card already tries to change
+mclk, which isn't working in my case (the MCLK isn't generated by
+a PLL and just supports fixed frequencies) and thus breaks audio. And
+this patch also propagate to the stable kernels and breaks my
+board there, too.
 
+> The trick is figuring out if it's best to vary the input clock
+> or to use the FLL to adapt a fixed input clock,
 
-[1] https://lore.kernel.org/linux-devicetree/CAL_Jsq++DyiKG9smQGx9FAPDJnVrezcXNb0Y5uh-5_2GBzTQpQ@mail.gmail.com/
-[2] https://pastebin.ubuntu.com/p/ns6hPCBxVM/
+For simple-audio-card you can set the "clock" property if you want
+that clock to be changed/enabled/disabled. But that doesn't seem to
+be the way to go, at least it was NAKed by Rob for the audio-graph-card.
+I don't see a way to figure out if MCLK should be controlled by
+simple-*-card without adding further properties to the device tree.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> and of course adapting any existing users if things get changed.
+
+To be frank, I don't see that happening.
+
+-michael
