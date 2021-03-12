@@ -2,85 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04364338E47
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9489338E84
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229959AbhCLNFo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 12 Mar 2021 08:05:44 -0500
-Received: from aposti.net ([89.234.176.197]:42494 "EHLO aposti.net"
+        id S229909AbhCLNPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 08:15:25 -0500
+Received: from helcar.hmeau.com ([216.24.177.18]:54584 "EHLO fornost.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231613AbhCLNFX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 08:05:23 -0500
-Date:   Fri, 12 Mar 2021 13:05:05 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 1/6] pinctrl: Ingenic: Add missing pins to the JZ4770
- MAC MII group.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        hns@goldelico.com, paul@boddie.org.uk, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, sernia.zhou@foxmail.com
-Message-Id: <HOXUPQ.U0CJV6YXUOYX2@crapouillou.net>
-In-Reply-To: <1615476112-113101-2-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1615476112-113101-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1615476112-113101-2-git-send-email-zhouyanjie@wanyeetech.com>
+        id S230512AbhCLNOx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 08:14:53 -0500
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1lKhcM-0006Jj-Rw; Sat, 13 Mar 2021 00:14:16 +1100
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 13 Mar 2021 00:14:14 +1100
+Date:   Sat, 13 Mar 2021 00:14:14 +1100
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     Matt Mackall <mpm@selenic.com>, Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Tian Tao <tiantao6@hisilicon.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/3] hwrng: bcm2835: add reset support
+Message-ID: <20210312131414.GK31502@gondor.apana.org.au>
+References: <20210305070132.2986-1-noltari@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210305070132.2986-1-noltari@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Le jeu. 11 mars 2021 à 23:21, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> The MII group of JZ4770's MAC should have 7 pins, add missing
-> pins to the MII group.
+On Fri, Mar 05, 2021 at 08:01:29AM +0100, �lvaro Fern�ndez Rojas wrote:
+> Some devices may need to perform a reset before using the RNG, such as the
+> BCM6368.
 > 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-
-No Fixes: tag?
-And if the bug wasn't introduced in 5.12-rc1 you'll need to Cc 
-linux-stable as well.
-
-> ---
+> v6: fix dt-bindings documentation, add patch makings clocks mandatory for
+>  BCM6368.
+> v5: remove reset_control_rearm() and apply on latest herbert/cryptodev-2.6.git.
+> v4: fix documentation, add reset_control_rearm().
+> v3: make resets required if brcm,bcm6368-rng.
+> v2: document reset support.
 > 
-> Notes:
->     v2:
->     New patch.
+> �lvaro Fern�ndez Rojas (3):
+>   dt-bindings: rng: bcm2835: add clock constraints
+>   dt-bindings: rng: bcm2835: document reset support
+>   hwrng: bcm2835: add reset support
 > 
->  drivers/pinctrl/pinctrl-ingenic.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
-> b/drivers/pinctrl/pinctrl-ingenic.c
-> index f274612..05dfa0a 100644
-> --- a/drivers/pinctrl/pinctrl-ingenic.c
-> +++ b/drivers/pinctrl/pinctrl-ingenic.c
-> @@ -667,7 +667,9 @@ static int jz4770_pwm_pwm7_pins[] = { 0x6b, };
->  static int jz4770_mac_rmii_pins[] = {
->  	0xa9, 0xab, 0xaa, 0xac, 0xa5, 0xa4, 0xad, 0xae, 0xa6, 0xa8,
->  };
-> -static int jz4770_mac_mii_pins[] = { 0xa7, 0xaf, };
-> +static int jz4770_mac_mii_pins[] = {
-> +	0x7b, 0x7a, 0x7d, 0x7c, 0xa7, 0x24, 0xaf,
+>  .../devicetree/bindings/rng/brcm,bcm2835.yaml | 21 +++++++++++++++++++
+>  drivers/char/hw_random/bcm2835-rng.c          | 10 +++++++++
+>  2 files changed, 31 insertions(+)
 
-Maybe list them in order?
-
-And are you sure that's the whole list? The PM (section 12.2 in 
-jz4770_pm_part3.pdf) lists more pins.
-
-Cheers,
--Paul
-
-> +};
-> 
->  static const struct group_desc jz4770_groups[] = {
->  	INGENIC_PIN_GROUP("uart0-data", jz4770_uart0_data, 0),
-> --
-> 2.7.4
-> 
-
-
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
