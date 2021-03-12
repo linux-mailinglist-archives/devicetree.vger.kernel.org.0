@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D85338C9B
+	by mail.lfdr.de (Postfix) with ESMTP id BB28B338C9C
 	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 13:24:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbhCLMX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229909AbhCLMX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 12 Mar 2021 07:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbhCLMXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 07:23:03 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBF8C061761
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:03 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id e9so1665753wrw.10
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:03 -0800 (PST)
+        with ESMTP id S231352AbhCLMXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 07:23:04 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67924C061761
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:04 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id o16so1666126wrn.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Dw9cMYL3jtOlJaAZjl852OdyP+MrjSkhGMQF/GJ7398=;
-        b=MnZg8BckWCKVKqWXv2LXDVn0bGKFv/UO5w0PAdja6Vo5FYRJNZnEt42SJoQzgoS/BL
-         MMcs/kCElXSsbDwrcstRTWQfBR+SnPt7TA1xtCcKcJp3p/MmRp5t6KeG4SD9v7QV15qC
-         JgvuBbdJ9v7nGrfE6GqM7dNbPiGwKnX2ivGC5XPlpljxamylHW6DIhwxU8MiM/E+F343
-         TPLo/yzzUh31BRxcjodGt90M6el50sVwyGlHgLOC2wKdDpk/B7X0mUsLnNFj9LhnK5Vt
-         h0Ssv6yTUgHqFalRhDJeK1fUaQAvFEtyEu/dj6tSzdePaY5xz83zK800LrfwsYEKiOpO
-         ukhg==
+        bh=gA35ua4Yb5kX/gYxKzQIpMpiocNgTXC/pKSapK7rZJo=;
+        b=rFfAknAn5CJnRejX4QyXzIFMwYrLIm4HeDtYghHnkwcBjzWm4mw9uVi+8lsyFKmg6Q
+         Ur+iwXV2EnLl4daPvmsRLkD64G/qP0II7UX7EwwNBOV5zcwEhKxrRsYHRg4FxaTiZNDH
+         rOBUOk9yVSoXYcqSklkyDf5aTB14iYxsZvLz7qmkqI478nBi+Mx9+aUAeOuAaXPNwB1L
+         RDcWpIotREa04xviaPO5/0AJKENpkeYGESffgMNcxOyspnwLGj0+nxGkorXSZbc32mFZ
+         R1U0rKrd7I0Jyqgg8+iPsoZokxoniKhdZTn0SrfTnGl/wrcKW5JADRN5d33zmip5s9R/
+         Dn8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Dw9cMYL3jtOlJaAZjl852OdyP+MrjSkhGMQF/GJ7398=;
-        b=IggNy7AH5hYw4HgyPH+KcdkyvJFtNqIYidRYcenwiQmhQWYNd0H32BpM+2WQeMAK+v
-         DhB/EUTcqR6H8ICHIg3kwOmh3dm5Smg5KC2LH63gKy337PTYZZdDm/ADzhYmmzaPZOtL
-         QHsNlNFo6+QAsGyCkYoyBcWHhPb0RDOWADNpqwYd9YSY0JDO8Kl+dbDb4fg4rmv7InUd
-         JL0UzZ6tpRs/a4IP4GQVlivV5yBo+8vcAt+0rXlTqRU3QvF1PHjNX2DvJHeJslF612Jt
-         JsVws11fR++JY1mG/f679Y94N7LPF48opxL83K/Cdk6rPl1UVYtLXiBGcSDs6p/TaVg7
-         RQ6w==
-X-Gm-Message-State: AOAM530kE/CBSl0N3GI63G1xnDGUCw4JgLVeBE4/SD1dS8gkaPI8lRfu
-        C9/jhSSlgqW5PDWZynFvexUzpw==
-X-Google-Smtp-Source: ABdhPJxelaUCaKUQZmHL7HJb4caHsVTShiD872wjtSGytEdC3VatTRVvj0MTTd5faY2TOorhScvwAw==
-X-Received: by 2002:adf:a2d3:: with SMTP id t19mr13660099wra.299.1615551782223;
-        Fri, 12 Mar 2021 04:23:02 -0800 (PST)
+        bh=gA35ua4Yb5kX/gYxKzQIpMpiocNgTXC/pKSapK7rZJo=;
+        b=SOHvU8loX4sIijftSOjQ7hvXvmnaqbOKVrxBDVtPNB8u9OfcJ+SlHH+5O8BHLwGRFM
+         B5+IfdTczinoY7DWLOCO44da8Gm3M2FK/xLtkX9649jSN55MeTLWIYPX5sbrT1UNk8MK
+         ZeZNMBDLzmtirjUZXIXIf9XtMTHB/0AJuaqZrPJYinvgcWqmKx5ZRl5y5grkt6gxQQ59
+         7xGpwuxq4cxkkAahtPilCNKT/D1i73aP3THi8SGpJi0q72682eHC4Pu+6ElzEouVQdL5
+         IuYgk/K1dRiCdI7JEpHZoyHVTiS/suXXta///n75drAWqBLD070m0cjMsDq5a5CEkbgF
+         KapQ==
+X-Gm-Message-State: AOAM531vKAYH+AR2IF7prtuSXZGoowmYgYwJKf3oi1PYeU5NrBD0W+Fa
+        fOxMgrMvXv+sWOSbIwPGN6mJYA==
+X-Google-Smtp-Source: ABdhPJxde2aKuylrPArbfyabrQXXX1VMQFK2766pT0EBSLYkk5PaAgVgCylkPI5TKE5otNy07rnPqA==
+X-Received: by 2002:adf:9f54:: with SMTP id f20mr13793513wrg.362.1615551783189;
+        Fri, 12 Mar 2021 04:23:03 -0800 (PST)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id 3sm8804329wry.72.2021.03.12.04.23.01
+        by smtp.gmail.com with ESMTPSA id 3sm8804329wry.72.2021.03.12.04.23.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 04:23:01 -0800 (PST)
+        Fri, 12 Mar 2021 04:23:02 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, vkoul@kernel.org
 Cc:     robh@kernel.org, devicetree@vger.kernel.org,
@@ -54,9 +54,9 @@ Cc:     robh@kernel.org, devicetree@vger.kernel.org,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [RESEND PATCH v3 4/5] ASoC: dt-bindings: wsa881x: add bindings for port mapping
-Date:   Fri, 12 Mar 2021 12:22:54 +0000
-Message-Id: <20210312122255.3143-5-srinivas.kandagatla@linaro.org>
+Subject: [RESEND PATCH v3 5/5] ASoC: codecs: wsa881x: add static port map support
+Date:   Fri, 12 Mar 2021 12:22:55 +0000
+Message-Id: <20210312122255.3143-6-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210312122255.3143-1-srinivas.kandagatla@linaro.org>
 References: <20210312122255.3143-1-srinivas.kandagatla@linaro.org>
@@ -66,48 +66,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-WSA881x SoundWire device ports are statically assigned to master ports
-at design time. So add bindings required to specify these mappings!
+Two instances of WSA881x(Speaker Right, Speaker Left) ports
+are statically mapped to master ports. Allow the driver to parse
+those mappings from device tree.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../devicetree/bindings/sound/qcom,wsa881x.yaml          | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ sound/soc/codecs/wsa881x.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-index ea44d03e58ca..491ce1270cb5 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-@@ -26,6 +26,13 @@ properties:
-     description: GPIO spec for Powerdown/Shutdown line to use
-     maxItems: 1
+diff --git a/sound/soc/codecs/wsa881x.c b/sound/soc/codecs/wsa881x.c
+index db87e07b11c9..b3568aec0cd0 100644
+--- a/sound/soc/codecs/wsa881x.c
++++ b/sound/soc/codecs/wsa881x.c
+@@ -1093,6 +1093,7 @@ static int wsa881x_probe(struct sdw_slave *pdev,
+ 			 const struct sdw_device_id *id)
+ {
+ 	struct wsa881x_priv *wsa881x;
++	struct device *dev = &pdev->dev;
  
-+  qcom,port-mapping:
-+    description: |
-+      Specifies static port mapping between slave and master ports.
-+      In the order of slave port index.
-+    maxItems: 4
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
+ 	wsa881x = devm_kzalloc(&pdev->dev, sizeof(*wsa881x), GFP_KERNEL);
+ 	if (!wsa881x)
+@@ -1105,6 +1106,12 @@ static int wsa881x_probe(struct sdw_slave *pdev,
+ 		return PTR_ERR(wsa881x->sd_n);
+ 	}
+ 
++	/* valid port numbers on this codec starts from 1, so skip 0th index */
++	if (of_property_read_u32_array(dev->of_node, "qcom,port-mapping",
++				       &pdev->m_port_map[1],
++				       WSA881X_MAX_SWR_PORTS))
++		dev_info(dev, "Static Port mapping not specified\n");
 +
-   '#thermal-sensor-cells':
-     const: 0
- 
-@@ -54,6 +61,7 @@ examples:
-             powerdown-gpios = <&wcdpinctrl 2 0>;
-             #thermal-sensor-cells = <0>;
-             #sound-dai-cells = <0>;
-+            qcom,port-mapping = <1 2 3 7>;
-         };
- 
-         speaker@0,2 {
-@@ -62,6 +70,7 @@ examples:
-             powerdown-gpios = <&wcdpinctrl 2 0>;
-             #thermal-sensor-cells = <0>;
-             #sound-dai-cells = <0>;
-+            qcom,port-mapping = <4 5 6 8>;
-         };
-     };
- 
+ 	dev_set_drvdata(&pdev->dev, wsa881x);
+ 	wsa881x->slave = pdev;
+ 	wsa881x->dev = &pdev->dev;
 -- 
 2.21.0
 
