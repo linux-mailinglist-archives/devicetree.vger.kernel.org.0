@@ -2,123 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D1B338B01
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 12:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB60F338B11
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 12:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233892AbhCLLIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233897AbhCLLIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 12 Mar 2021 06:08:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233468AbhCLLID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:08:03 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7A2C061574
+        with ESMTP id S233761AbhCLLIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:08:04 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051CFC061761
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:04 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id k8so1538598wrc.3
         for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:03 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id b9so1546443wrt.8
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ekg9MII0TI+MyhMFP0/nYouVodRISvmcgxRIutfa8gw=;
-        b=S26w6Y4XpmuO40c4iok/jm2VChmskuFX3ft8KufVzSVv10/YjjF320m1BW8GcV8+5s
-         HbcLf88pC7E9X8msvz4FLiEhP94H51DlJEufiR+xcyEU/qCitfHPGZ9tz0uYSL6SWg04
-         mI+ftjS6jzy+Q2OZNt0EVe+b+9zNapbkQ+lDOk3rUBANGv10JPKmpio0bl8HtzpVqaCV
-         gWn6ja3/fItJTrpZiQKr/zbJj6rwmxGtXw4EEt+Bp3vCrI4yZOrWyhgx8rWMGo3K3/He
-         DwZ8Ffezw3xexsrKz+3oSuLj1+TMR+shiUTx6OSuAmCxPGjV7t7YxrsRtxwr+GCiQGNx
-         VqNw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=h5iCVi3kGcdP7GfFug+7AAOmAXys2cxySqnBTCX8/Wo=;
+        b=MiZ/wksgjgzrYq05xxSVqsr6IYVhuJu6Ohdsuz+m4EwHwmcD8iTbvBFUhbGR1MJDpd
+         rCOvFEoVBZNa8258gbc16/z8Ol1lcno9gqt6HkgXSE9wVlZbwWJgV17ZGIaJD5RLLoxP
+         8O4QdSH8bMzq6LyiF9Fu2q9zFeZt45BWnu1kzkq6U2luPrTVN3s0U228i+uxOjkUEMqf
+         M1PQ7YcNY93XjjJM7a+FLbZshl2JBoZcKp9QwfaU/4zlHyIj/fZNsway0u43AoncVEKW
+         N2DGEiJh1hBznIIbsbtWUz234sT6sHlWsCAzAZilKG6hBkRt/HESoBkDMlwURgst+dF0
+         RqOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ekg9MII0TI+MyhMFP0/nYouVodRISvmcgxRIutfa8gw=;
-        b=r3GcKGt389CPy09pHvfOQqK4ITt7W/c+9HtsHZMCAGASG85t7MDWrxrPUJ6bkSbvYT
-         R5tG3wIDqbErN4C+IwE3N5CKeqeFj9Q42RijjCof2aU8LErZ2R7i9kThmiYnlTedb6eE
-         cZ58Bb+pS6pkPfdNowi85fqDRHDwcizs+TZVgCmzDK3pX09XaVZf42sWP5VhZklfvdIs
-         K1IUr1mN5Cow3EaovTZSwrRx2TkO/ekeSvYoN1GZmUpS2XIoj3HTMOCRXzmKUACdbX3J
-         ttIZb1DEvqPTcDKCoznw0uXKBYUhczhqOvimsJ6MYserrVWna7FeIJzhZPWYBHR2OACK
-         cmEQ==
-X-Gm-Message-State: AOAM531Vx0FUj5VYFoDyUwt4UUXOhrk8d/Mbf9CCgAboFpigdhsjk1It
-        TPFlO0yKa9HnYgDN7OnGU6IPEA==
-X-Google-Smtp-Source: ABdhPJwO81VJNHlk5GNRAl6TkevpvhpdmshUt1Yx3S23LsdLEGUh7fucIUOJyYvtle51OUjy5HDxYw==
-X-Received: by 2002:adf:8562:: with SMTP id 89mr13493979wrh.101.1615547281770;
-        Fri, 12 Mar 2021 03:08:01 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=h5iCVi3kGcdP7GfFug+7AAOmAXys2cxySqnBTCX8/Wo=;
+        b=kY/fqH8FjgRjQwT1guAIP/t8loLx84jeJ0Q5AnR/13T4w4IFB4nL5vt5xgZrPKLtRH
+         NUSkut5zB24h+QNTmjBH+MV+OlnM7HpKMVAN/uDEuoL8IOQH9auE8Z71djTSvHL+1wRA
+         MqcH6S4Y21eWGrZcOsqx/4pTa7gwQK74mHUnrWMcavi+ygv0Z0iJb1+mWGUBp9+aZxLo
+         sLNcckUTZyg1B1eGrp0V7sj5WnocgwYh/emHlsy1441aMm7AsmoS/0BvOW9Qb+HIFKbv
+         OAXpcpbgwq/TYmPyCRRY9OmCd1Heevz3bpzaEoeDCVKdzO+CmDxCNpR5lABJyOU1aYT9
+         xqCQ==
+X-Gm-Message-State: AOAM5311Lpidd9FdFt1C2owtGpE7V5fnXDRuq7SwQIZSricrZlJLOALr
+        3NJan1ZYoCCZPw68sDLB++uTWg==
+X-Google-Smtp-Source: ABdhPJyLrT0yt2V3kPdOO37ujSRBFuKzmwGxle82fAsDNMKaDO4t8bLD5P0bwCRJ4Mhz2jFCkpgCBQ==
+X-Received: by 2002:adf:ef4a:: with SMTP id c10mr13109500wrp.427.1615547282654;
+        Fri, 12 Mar 2021 03:08:02 -0800 (PST)
 Received: from dell.default ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id f126sm1813003wmf.17.2021.03.12.03.08.00
+        by smtp.gmail.com with ESMTPSA id f126sm1813003wmf.17.2021.03.12.03.08.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 03:08:01 -0800 (PST)
+        Fri, 12 Mar 2021 03:08:02 -0800 (PST)
 From:   Lee Jones <lee.jones@linaro.org>
 To:     lee.jones@linaro.org
-Cc:     linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Anton Vorontsov <anton@enomsg.org>, benh@kernel.crashing.org,
-        Colin Cross <ccross@android.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Josh Cartwright <joshc@codeaurora.org>,
-        Kees Cook <keescook@chromium.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        netdev@vger.kernel.org,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Tony Luck <tony.luck@intel.com>
-Subject: [PATCH 00/10] Rid W=1 warnings from OF
-Date:   Fri, 12 Mar 2021 11:07:48 +0000
-Message-Id: <20210312110758.2220959-1-lee.jones@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 01/10] of: device: Fix function name in header and demote kernel-doc abuse
+Date:   Fri, 12 Mar 2021 11:07:49 +0000
+Message-Id: <20210312110758.2220959-2-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210312110758.2220959-1-lee.jones@linaro.org>
+References: <20210312110758.2220959-1-lee.jones@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This set is part of a larger effort attempting to clean-up W=1
-kernel builds, which are currently overwhelmingly riddled with
-niggly little warnings.
+Fixes the following W=1 kernel build warning(s):
 
-Lee Jones (10):
-  of: device: Fix function name in header and demote kernel-doc abuse
-  of: dynamic: Fix incorrect parameter name and demote kernel-doc abuse
-  of: platform: Demote kernel-doc abuse
-  of: base: Fix some formatting issues and demote non-conformant
-    kernel-doc headers
-  of: property: Provide missing member description and remove excess
-    param
-  of: address: Demote non-conformant kernel-doc header
-  of: fdt: Demote kernel-doc abuses
-  of: of_net: Demote non-conforming kernel-doc header
-  of: overlay: Fix function name disparity
-  of: of_reserved_mem: Demote kernel-doc abuses
+ drivers/of/device.c:72: warning: expecting prototype for of_dma_configure(). Prototype was for of_dma_configure_id() instead
+ drivers/of/device.c:263: warning: Function parameter or member 'dev' not described in 'of_device_modalias'
+ drivers/of/device.c:263: warning: Function parameter or member 'str' not described in 'of_device_modalias'
+ drivers/of/device.c:263: warning: Function parameter or member 'len' not described in 'of_device_modalias'
+ drivers/of/device.c:280: warning: Function parameter or member 'dev' not described in 'of_device_uevent'
+ drivers/of/device.c:280: warning: Function parameter or member 'env' not described in 'of_device_uevent'
 
- drivers/of/address.c         |  2 +-
- drivers/of/base.c            | 16 ++++++++--------
- drivers/of/device.c          |  6 +++---
- drivers/of/dynamic.c         |  6 +++---
- drivers/of/fdt.c             | 19 ++++++++++---------
- drivers/of/of_net.c          |  2 +-
- drivers/of/of_reserved_mem.c |  6 +++---
- drivers/of/overlay.c         |  2 +-
- drivers/of/platform.c        |  2 +-
- drivers/of/property.c        |  2 +-
- 10 files changed, 32 insertions(+), 31 deletions(-)
-
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Anton Vorontsov <anton@enomsg.org>
-Cc: benh@kernel.crashing.org
-Cc: Colin Cross <ccross@android.com>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: devicetree@vger.kernel.org
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Josh Cartwright <joshc@codeaurora.org>
-Cc: Kees Cook <keescook@chromium.org>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: netdev@vger.kernel.org
-Cc: Pantelis Antoniou <pantelis.antoniou@konsulko.com>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Tony Luck <tony.luck@intel.com>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+ drivers/of/device.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 6cb86de404f1c..64ee363abde24 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -53,7 +53,7 @@ int of_device_add(struct platform_device *ofdev)
+ }
+ 
+ /**
+- * of_dma_configure - Setup DMA configuration
++ * of_dma_configure_id - Setup DMA configuration
+  * @dev:	Device to apply DMA configuration
+  * @np:		Pointer to OF node having DMA configuration
+  * @force_dma:  Whether device is to be set up by of_dma_configure() even if
+@@ -256,7 +256,7 @@ int of_device_request_module(struct device *dev)
+ }
+ EXPORT_SYMBOL_GPL(of_device_request_module);
+ 
+-/**
++/*
+  * of_device_modalias - Fill buffer with newline terminated modalias string
+  */
+ ssize_t of_device_modalias(struct device *dev, char *str, ssize_t len)
+@@ -273,7 +273,7 @@ ssize_t of_device_modalias(struct device *dev, char *str, ssize_t len)
+ }
+ EXPORT_SYMBOL_GPL(of_device_modalias);
+ 
+-/**
++/*
+  * of_device_uevent - Display OF related uevent information
+  */
+ void of_device_uevent(struct device *dev, struct kobj_uevent_env *env)
 -- 
 2.27.0
 
