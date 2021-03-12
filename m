@@ -2,189 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D87E339097
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C384A3390B1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbhCLPBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 10:01:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43036 "EHLO mail.kernel.org"
+        id S231788AbhCLPFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 10:05:41 -0500
+Received: from smtp.wifcom.cz ([85.207.3.150]:42468 "EHLO smtp.wifcom.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231987AbhCLPBk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 10:01:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6090E64F77;
-        Fri, 12 Mar 2021 15:01:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615561299;
-        bh=FQwZloht0+ruYEryIkhQEHQ6+uhE53hpAv+xsqayBFQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LFdioRgmTO9qVgjFqbCNNrkkStBhmmeLg/OFhdKshsQ2GU9doWYYy7+3IJQpRZoWk
-         92zpnwJcEM7T3kxRg8Kxb0UxvtW/FZvXWDNTteFcskq9hDA0HbEEa9cO1h/ulkT+ob
-         ayk9NUP1zwK8pN4vVIf8Bf6hnD+Y+gmq1p5aIxXDBGVP7KAAmAwI/tpojuFHV9euSw
-         5z03XZ8lD22OxJ4wg9BwupPzSJxipRhuztwtizykC82Kij9DDQ6hMTiGHyOLL7TG29
-         xcYTwPu1F15YY7fh4KnN+IgarI0ZUq+cqeWq+XA9lrDuSlnOzVx0MyCTE8G+ciPp3o
-         2sZ5PFFW5aMXg==
-Received: by mail-ej1-f41.google.com with SMTP id ox4so38310190ejb.11;
-        Fri, 12 Mar 2021 07:01:39 -0800 (PST)
-X-Gm-Message-State: AOAM530NKkdWcVM5dmP1pdztEIaPN7PRwC0AudswYzc3ugM7RXiSUN7B
-        I/2QHrSoZo3N6rAmhMgb4T747OxGFiCI00aHMQ==
-X-Google-Smtp-Source: ABdhPJyCrrRjXOwpT02oqyIwBGteZX8PFKCe9E8iH1nsZcJzwRDtXUUJXN9qMXSw2O+AceZDmIZlb8Qe1f+bP0MmGRY=
-X-Received: by 2002:a17:906:d153:: with SMTP id br19mr8774824ejb.360.1615561297840;
- Fri, 12 Mar 2021 07:01:37 -0800 (PST)
+        id S232131AbhCLPFh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 10:05:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:References:Cc:To:From:Subject; bh=UwtzL4pDkwTQcSrJ+2meBQW1w8X0nrXrsAaZqyjKa0A=;
+        b=c0+fb+RWYoBtShUccUrvuuwXJIkZbe8H4zynmm4WiYTT2OrDz69F37RSVs2ybenTn8pacujGhlyGxSBK+BgQwMfQl6Qks72QXBUuwD9L9mtQD46DJXx0wOW2Ty9ud2ydBrxsNgZLINLkREhbjC7/YAqRhzyz/z1pgBbyK7yPN8w=;
+Subject: Re: [PATCH v6 1/2] dt-bindings: serial: Add rx-tx-swap to stm32-usart
+From:   Martin DEVERA <devik@eaxlabs.cz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Le Ray <erwan.leray@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        fabrice.gasnier@foss.st.com, linux-arm-kernel@lists.infradead.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+References: <YEsjMJae3cGOdyjG@kroah.com>
+ <20210312102713.27776-1-devik@eaxlabs.cz>
+ <1615559009.788146.2976052.nullmailer@robh.at.kernel.org>
+ <e1cee5c4-8802-bf6b-be06-e453af559e62@eaxlabs.cz>
+Message-ID: <f1762dc1-d359-e499-ace7-f957bca519b8@eaxlabs.cz>
+Date:   Fri, 12 Mar 2021 16:03:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20210312110758.2220959-1-lee.jones@linaro.org> <20210312110758.2220959-8-lee.jones@linaro.org>
-In-Reply-To: <20210312110758.2220959-8-lee.jones@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 12 Mar 2021 08:01:26 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqJe7rp-FyXmPmf8RfBWrP0EmW7etML13HKLqEobtR2=Kg@mail.gmail.com>
-Message-ID: <CAL_JsqJe7rp-FyXmPmf8RfBWrP0EmW7etML13HKLqEobtR2=Kg@mail.gmail.com>
-Subject: Re: [PATCH 07/10] of: fdt: Demote kernel-doc abuses
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <e1cee5c4-8802-bf6b-be06-e453af559e62@eaxlabs.cz>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
+X-Wif-ss: -2.9 (--)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 4:08 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> Fixes the following W=1 kernel build warning(s):
->
->  drivers/of/fdt.c:478: warning: Function parameter or member 'node' not described in '__reserved_mem_reserve_reg'
->  drivers/of/fdt.c:478: warning: Function parameter or member 'uname' not described in '__reserved_mem_reserve_reg'
->  drivers/of/fdt.c:525: warning: Function parameter or member 'node' not described in '__reserved_mem_check_root'
->  drivers/of/fdt.c:547: warning: Function parameter or member 'node' not described in '__fdt_scan_reserved_mem'
->  drivers/of/fdt.c:547: warning: Function parameter or member 'uname' not described in '__fdt_scan_reserved_mem'
->  drivers/of/fdt.c:547: warning: Function parameter or member 'depth' not described in '__fdt_scan_reserved_mem'
->  drivers/of/fdt.c:547: warning: Function parameter or member 'data' not described in '__fdt_scan_reserved_mem'
->  drivers/of/fdt.c:547: warning: expecting prototype for fdt_scan_reserved_mem(). Prototype was for __fdt_scan_reserved_mem() instead
->  drivers/of/fdt.c:663: warning: Function parameter or member 'parent' not described in 'of_scan_flat_dt_subnodes'
->  drivers/of/fdt.c:708: warning: Function parameter or member 'node' not described in 'of_get_flat_dt_prop'
->  drivers/of/fdt.c:708: warning: Function parameter or member 'name' not described in 'of_get_flat_dt_prop'
->  drivers/of/fdt.c:708: warning: Function parameter or member 'size' not described in 'of_get_flat_dt_prop'
->  drivers/of/fdt.c:758: warning: Function parameter or member 'node' not described in 'of_flat_dt_match'
->  drivers/of/fdt.c:758: warning: Function parameter or member 'compat' not described in 'of_flat_dt_match'
->  drivers/of/fdt.c:778: warning: Function parameter or member 'node' not described in 'of_get_flat_dt_phandle'
->  drivers/of/fdt.c:778: warning: expecting prototype for of_get_flat_dt_prop(). Prototype was for of_get_flat_dt_phandle() instead
->  drivers/of/fdt.c:955: warning: Function parameter or member 'node' not described in 'early_init_dt_scan_root'
->  drivers/of/fdt.c:955: warning: Function parameter or member 'uname' not described in 'early_init_dt_scan_root'
->  drivers/of/fdt.c:955: warning: Function parameter or member 'depth' not described in 'early_init_dt_scan_root'
->  drivers/of/fdt.c:955: warning: Function parameter or member 'data' not described in 'early_init_dt_scan_root'
->  drivers/of/fdt.c:991: warning: Function parameter or member 'node' not described in 'early_init_dt_scan_memory'
->  drivers/of/fdt.c:991: warning: Function parameter or member 'uname' not described in 'early_init_dt_scan_memory'
->  drivers/of/fdt.c:991: warning: Function parameter or member 'depth' not described in 'early_init_dt_scan_memory'
->  drivers/of/fdt.c:991: warning: Function parameter or member 'data' not described in 'early_init_dt_scan_memory'
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: benh@kernel.crashing.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  drivers/of/fdt.c | 19 ++++++++++---------
->  1 file changed, 10 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index dcc1dd96911a9..1fb3348eb9516 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -470,7 +470,7 @@ void *initial_boot_params __ro_after_init;
->
->  static u32 of_fdt_crc32;
->
-> -/**
-> +/*
->   * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
->   */
->  static int __init __reserved_mem_reserve_reg(unsigned long node,
-> @@ -516,7 +516,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->         return 0;
->  }
->
-> -/**
-> +/*
->   * __reserved_mem_check_root() - check if #size-cells, #address-cells provided
->   * in /reserved-memory matches the values supported by the current implementation,
->   * also check if ranges property has been provided
-> @@ -539,7 +539,7 @@ static int __init __reserved_mem_check_root(unsigned long node)
->         return 0;
->  }
->
-> -/**
-> +/*
->   * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
-
-This is still wrong. Should be __fdt_scan_reserved_mem.
-
->   */
->  static int __init __fdt_scan_reserved_mem(unsigned long node, const char *uname,
-> @@ -650,6 +650,7 @@ int __init of_scan_flat_dt(int (*it)(unsigned long node,
->
->  /**
->   * of_scan_flat_dt_subnodes - scan sub-nodes of a node call callback on each.
-> + * @parent: parent node
->   * @it: callback function
->   * @data: context data pointer
->   *
-> @@ -689,7 +690,7 @@ int __init of_get_flat_dt_subnode_by_name(unsigned long node, const char *uname)
->         return fdt_subnode_offset(initial_boot_params, node, uname);
->  }
->
-> -/**
-> +/*
->   * of_get_flat_dt_root - find the root node in the flat blob
->   */
->  unsigned long __init of_get_flat_dt_root(void)
-> @@ -697,7 +698,7 @@ unsigned long __init of_get_flat_dt_root(void)
->         return 0;
->  }
->
-> -/**
-> +/*
->   * of_get_flat_dt_prop - Given a node in the flat blob, return the property ptr
->   *
->   * This function can be used within scan_flattened_dt callback to get
-> @@ -751,7 +752,7 @@ int __init of_flat_dt_is_compatible(unsigned long node, const char *compat)
->         return of_fdt_is_compatible(initial_boot_params, node, compat);
->  }
->
-> -/**
-> +/*
->   * of_flat_dt_match - Return true if node matches a list of compatible values
->   */
->  static int __init of_flat_dt_match(unsigned long node, const char *const *compat)
-> @@ -771,7 +772,7 @@ static int __init of_flat_dt_match(unsigned long node, const char *const *compat
->         return score;
->  }
->
-> -/**
-> +/*
->   * of_get_flat_dt_prop - Given a node in the flat blob, return the phandle
-
-This one too.
-
->   */
->  uint32_t __init of_get_flat_dt_phandle(unsigned long node)
-> @@ -947,7 +948,7 @@ int __init early_init_dt_scan_chosen_stdout(void)
->  }
->  #endif
->
-> -/**
-> +/*
->   * early_init_dt_scan_root - fetch the top level address and size cells
->   */
->  int __init early_init_dt_scan_root(unsigned long node, const char *uname,
-> @@ -983,7 +984,7 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
->         return of_read_number(p, s);
->  }
->
-> -/**
-> +/*
->   * early_init_dt_scan_memory - Look for and parse memory nodes
->   */
->  int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
-> --
-> 2.27.0
->
+On 3/12/21 3:56 PM, Martin DEVERA wrote:
+> On 3/12/21 3:23 PM, Rob Herring wrote:
+>> On Fri, 12 Mar 2021 11:27:12 +0100, Martin Devera wrote:
+>>> Add new rx-tx-swap property to allow for RX & TX pin swapping.
+>>>
+>>> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+>>> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+>>> ---
+>>> v6:
+>>>    - add version changelog
+>>> v5:
+>>>    - yaml fixes based on Rob Herring comments
+>>>      - add serial.yaml reference
+>>>      - move compatible from 'then' to 'if'
+>>> v3:
+>>>    - don't allow rx-tx-swap for st,stm32-uart (suggested
+>>>      by Fabrice Gasnier)
+>>> v2:
+>>>    - change st,swap to rx-tx-swap (suggested by Rob Herring)
+>>> ---
+>>>   .../devicetree/bindings/serial/st,stm32-uart.yaml  | 29 
+>>> ++++++++++++++--------
+>>>   1 file changed, 19 insertions(+), 10 deletions(-)
+>>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>> ./Documentation/devicetree/bindings/serial/st,stm32-uart.yaml:81:12: 
+>> [warning] wrong indentation: expected 10 but found 11 (indentation)
+>>
+>> dtschema/dtc warnings/errors:
+>>
+>> See https://patchwork.ozlabs.org/patch/1451861
+>>
+>> This check can fail if there are any dependencies. The base for a patch
+>> series is generally the most recent rc1.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+> Yoy are right, there is one extra space. But for some reason the check 
+> doesn't
+> find it: 
+Argh... sorry, ignore it please. It seems I removed yamllint.
+I see the error now.
