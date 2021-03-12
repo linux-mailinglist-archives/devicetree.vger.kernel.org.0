@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E47493392F9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF5C3392B7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:07:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbhCLQUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 11:20:12 -0500
-Received: from vern.gendns.com ([98.142.107.122]:50542 "EHLO vern.gendns.com"
+        id S231636AbhCLQHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 11:07:15 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:58369 "EHLO m42-2.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232248AbhCLQUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 11:20:00 -0500
-X-Greylist: delayed 930 seconds by postgrey-1.27 at vger.kernel.org; Fri, 12 Mar 2021 11:19:59 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=+qNUJ0kNliQ789clm1cti7szUu79mPPfW2uq8eLN8g4=; b=KiuKcLURPJar5XVuxAn2j0n+qR
-        PtSxnE64RkZap1tbc98NBQhAzpb4NtkqdvU1+r2zl8X45ULW+bYDCJ2MPK7Q2mpxRY8uQSSfVkarU
-        SaYNjVIGKg9IN3CJcsfhLZhQC/M1tbW4PxHyO/79LBHporfGthZFX8lV2geiTCx9LbZWei+XVVpRj
-        /EyXt5kXNLV9w4L4dwJOPO60/N/TX8Guv1dCYQzT7bZK5f89weIwji9MX/krwDf8KldR/1tyy0VDi
-        QOyDfKTHtCsK4R429AM8YocuHHC22GwcbPmnUFoFbrQitrTcj2YyMb0p238/GO9jYnXGDGYp5MaXe
-        sG8SybDQ==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:43996 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <david@lechnology.com>)
-        id 1lKkH4-00047A-TX; Fri, 12 Mar 2021 11:04:26 -0500
-Subject: Re: [PATCH 19/38] dt-bindings: power: supply: lego-ev3-battery:
- Convert to DT schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
- <20210312154357.1561730-20-sebastian.reichel@collabora.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <62652945-b4b0-29e8-f8ea-343bb848652d@lechnology.com>
-Date:   Fri, 12 Mar 2021 10:04:26 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S231786AbhCLQG5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 11:06:57 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615565217; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=BH6B8KmXRClG5XqlYlKJPsJAX6aTW3vi01e7CcqF8no=; b=ZzfbNcDvOm74SiMKITPkv5FbDX90YSBYfzWjLl7o/p27dDwc8FdCDrbPH3+oXk8LYDI45tjL
+ KMx5f2XoIY3M/9IPMyEog68WYQgtDcl8Ae92NaiNxrCjLGK7+mKd8uJbBOTgYgU3XsV7dI7f
+ 1nLnXhHMyzONlMi6xYtsBbo7Uvw=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 604b91916dc1045b7d227b73 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Mar 2021 16:06:41
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 77CF9C43463; Fri, 12 Mar 2021 16:06:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7F6BFC433CA;
+        Fri, 12 Mar 2021 16:06:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7F6BFC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, dianders@chromium.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v5 0/2] Qualcomm's lpass device tree changes for I2s dai
+Date:   Fri, 12 Mar 2021 21:36:20 +0530
+Message-Id: <20210312160622.24165-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <20210312154357.1561730-20-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/12/21 9:43 AM, Sebastian Reichel wrote:
-> Convert the binding to DT schema format.
-> 
-> Cc: David Lechner <david@lechnology.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
+These patches are device tree changes to support audio over I2S.
 
-Reviewed-by: David Lechner <david@lechnology.com>
+Changes Since v4:
+  -- Removed duplication of dai-link in sound node.
+  -- Replaced reg values with common dt-bindings macros in coachz dtsi
+  -- Included sc7180-lpass.h instead of qcom,lpass.h
+  -- Sound node placement change in coachz dtsi.
+Changes Since v3:
+  -- Compatible name changed as per trogdor 
+Changes Since v2:
+  -- sound node variable is added in sc7180-trogdor-coachz.dtsi.
+  -- Audio-jack property is removed, as it may create conflicts with the boards 
+     having different codecs.
+  -- Replaced reg values with common dt-bindings macros
+Changes Since v1:
+  -- Ajith's Certification is added.
+  -- Alias name added for sound dai link node
+
+Ajit Pandey (1):
+  arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for I2S driver
+
+Srinivasa Rao Mandadapu (1):
+  arm64: dts: qcom: Add sound node for sc7180-trogdor-coachz
+
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 10 ++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 58 +++++++++++++++++++
+ 2 files changed, 68 insertions(+)
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
