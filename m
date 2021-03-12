@@ -2,167 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CA5F338E37
+	by mail.lfdr.de (Postfix) with ESMTP id BE9F8338E39
 	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:04:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbhCLNEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 08:04:10 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:13310 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231827AbhCLNDr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 08:03:47 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615554227; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=2DQdQ4OuyMLLVtN9I86/vm9sES/GqmJNArWanvnHFiI=; b=hIX44C7WCSvNTyiS2uNXcfrLgprxkVuqxwb9k/R63yGj0K8eUp88IoObBoiaHdnNuwJhKrZU
- EpggV3jdnMqPlUMabgc5jL6Nisv7/7M3TnpN9Ch4X0qo5aANbfsk+Iqo9c55gvLthrG8HVek
- WfF+y7lHpT+WQUNZBfY9GXVys/w=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 604b66646dc1045b7d8aebd4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Mar 2021 13:02:28
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 48B0BC433ED; Fri, 12 Mar 2021 13:02:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.29.24] (unknown [49.37.156.9])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BA744C433C6;
-        Fri, 12 Mar 2021 13:02:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BA744C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
- link for I2S driver
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     gross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Ajit Pandey <ajitp@codeaurora.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <20210311164815.14113-1-srivasam@codeaurora.org>
- <20210311164815.14113-2-srivasam@codeaurora.org>
- <CAD=FV=VSnhOSFtLX==DYF1WFszaJwgnbZY-EycP4=SNs6rqajw@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <7825f825-8b84-fda8-5884-e4f0ea4edf12@codeaurora.org>
-Date:   Fri, 12 Mar 2021 18:32:20 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S231808AbhCLNEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 08:04:08 -0500
+Received: from bin-mail-out-06.binero.net ([195.74.38.229]:51002 "EHLO
+        bin-mail-out-06.binero.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231786AbhCLNDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 08:03:41 -0500
+X-Halon-ID: 596dffc3-8333-11eb-a542-005056917a89
+Authorized-sender: niklas.soderlund@fsdn.se
+Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de [84.172.85.33])
+        by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
+        id 596dffc3-8333-11eb-a542-005056917a89;
+        Fri, 12 Mar 2021 14:03:36 +0100 (CET)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: media: renesas,vin: Add r8a77961 support
+Date:   Fri, 12 Mar 2021 14:03:30 +0100
+Message-Id: <20210312130330.1742445-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=VSnhOSFtLX==DYF1WFszaJwgnbZY-EycP4=SNs6rqajw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
+Add the compatible string for M3-W+ (r8a77961) to the list of supported
+SoCs.
 
-Thanks for your time!!!
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 3/12/2021 1:26 AM, Doug Anderson wrote:
-> Hi,
->
-> On Thu, Mar 11, 2021 at 8:49 AM Srinivasa Rao Mandadapu
-> <srivasam@codeaurora.org> wrote:
->> From: Ajit Pandey <ajitp@codeaurora.org>
->>
->> Add dai link for supporting lpass I2S driver, which is used
->> for audio capture and playback.
->> Add lpass-cpu node with  pin controls and i2s primary
->> and secondary dai-links
->>
->> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
->> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 58 ++++++++++++++++++++
->>   1 file changed, 58 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
->> index 436582279dad..501e3d4c9097 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
->> @@ -9,6 +9,7 @@
->>   #include <dt-bindings/input/gpio-keys.h>
->>   #include <dt-bindings/input/input.h>
->>   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +#include <dt-bindings/sound/qcom,lpass.h>
-> It seems marginally better to include "sc7180-lpass.h" to get this? I
-> don't really know the difference between the two but since unless
-> we're planning to delete the sc7180 version it seems like you might as
-> well include that one?
-
-Yes, I agree.
-
-Recently, all Quallcomm variant headers are combined and created 
-"qcom,lpass.h".
-
-"sc7180-lpass.h" still includes "qcom,lpass.h". So I will change and 
-repost the patch.
-
-
-Here is the reference commit:
-
->
->
->>   /* PMICs depend on spmi_bus label and so must come after SoC */
->>   #include "pm6150.dtsi"
->> @@ -283,6 +284,42 @@ keyboard_backlight: keyboard-backlight {
->>                          max-brightness = <1023>;
->>                  };
->>          };
->> +
->> +       sound: sound {
->> +               compatible = "google,sc7180-trogdor";
->> +               model = "sc7180-rt5682-max98357a-1mic";
->> +
->> +               audio-routing =
->> +                       "Headphone Jack", "HPOL",
->> +                       "Headphone Jack", "HPOR";
->> +
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +
->> +               dai-link@0 {
->> +                       link-name = "MultiMedia0";
->> +                       reg = <MI2S_PRIMARY>;
->> +                       cpu {
->> +                               sound-dai = <&lpass_cpu MI2S_PRIMARY>;
->> +                       };
->> +
->> +                       codec {
->> +                               sound-dai = <&alc5682 MI2S_PRIMARY>;
-> I'm an audio noob but isn't "MI2S_PRIMARY" something to be used with
-> "lpass_cpu", not with "alc5682" ?
->
-> I have no idea what the IDs correspond to on "alc5682". Are you sure
-> we even need an extra ID there? The "alc5682" bindings upstream don't
-> talk anything about dai-cells, but maybe they're just wrong...
-Yes. I will change and re-post.
->
-> -Doug
-
+diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+index fe7c4cbfe4ba960c..48e061a9ca4e5ee8 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+@@ -46,6 +46,7 @@ properties:
+               - renesas,vin-r8a7779  # R-Car H1
+               - renesas,vin-r8a7795  # R-Car H3
+               - renesas,vin-r8a7796  # R-Car M3-W
++              - renesas,vin-r8a77961 # R-Car M3-W+
+               - renesas,vin-r8a77965 # R-Car M3-N
+               - renesas,vin-r8a77970 # R-Car V3M
+               - renesas,vin-r8a77980 # R-Car V3H
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.30.1
 
