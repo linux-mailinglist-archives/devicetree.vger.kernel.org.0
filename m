@@ -2,100 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2BD43394AE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC137339519
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:37:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231597AbhCLR2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 12:28:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41478 "EHLO
+        id S232362AbhCLRgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 12:36:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbhCLR2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:28:17 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52703C061574
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:28:17 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id y131so24722731oia.8
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:28:17 -0800 (PST)
+        with ESMTP id S232501AbhCLRgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:36:48 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B30EC061762
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:36:48 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id w195so20988719oif.11
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:36:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ZTq3YjvMCHu+pe/PF/X4oZj4DMDAfauh/757RvN40NY=;
-        b=B40LAkjI7eK5CUvcFzT9uak0yUmvROiXpFtyIFUItIUKuHvshhHfNTpDz8T5Z+DTww
-         HZypnR7cD7GFqYbkKBw+IxaYXHQqN4fDz8lGa4O+DEswivqAXLmpuk+jCKYxF5v2wKre
-         zZDKo0FRpctJ4Kgi2cXRUSlJbWIyww2NWVoyEHpiflrU8YOhuH1VJjgrtziu7iTFpq+B
-         WSBOG4Qx0bJKtAFiMf3lH76+7XXWZXD4kGhMyGPHRGL36HNZpq6vUZF7weeMpCdBnaKw
-         172PG4zY3aHy3Pvfzll9349+wg2/UHf4qMFWpj7LNBkJXpVMahv9CdYjCHYE+oKTNbMX
-         nn4A==
+        bh=PlLmskPyjy9P85aN3TChCWZ2X95aJr2nN4YxhPO7zSY=;
+        b=N+yTbPDdF2d7xD3C5ns6YPZ9aN8B6x0KUBg0e7dg9kgsbg8CYSYmojVLLqqprM6WXg
+         Kd4E3NGHewuM1fXhGPlkQcynPn7KsHoA4SJekIuSMsu/shUU1qTSKYDtuEoZg8Oi2Etv
+         iJ4fqCJFBulshemAmIA0rZkgzSbsLrwz24sES5R9aiWuWgYJVq7w9E3xn3z4AkU3t+Uc
+         88LSJ3YWwDGVf5kggDlH7jTffgsykN5ygudDLLMhk6n7K4VEu01dr+CQSyTJaQ/pKw3A
+         mkdcXlGYcQ8rVb4gzo4EyiuPD1kM3tIVVTOlSAsS2BTAoBNwjrLA2L71k9JtXEfmU+iS
+         VbcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZTq3YjvMCHu+pe/PF/X4oZj4DMDAfauh/757RvN40NY=;
-        b=kyZRxfBl9uKpX1RCV6Sd0Mb24G9gB6iiT+CIcTfAbsWPRk3VJZcuyxZNoUyadYAyZH
-         uOQ8qN72FrvAmzZQgwEPMIP7o/t71pLAvoMqJJCYl5TrNaN34sp9RAb0bUIuFDIlpRNL
-         ARD6izG/ZX5rSlO05kTi4MsB5dyjaZ6aZnMIhGf0mmodgpcth6l3xuu8M8H3ILrkjIdf
-         tu704lfC1Xze7Jy2Wiw/Pw7hf8qxpYeEnqucO2ZmEksFb8TeOHvLpmVwRW/hz8XpScwF
-         kAg91F3BquLT3fBkVH3FEAb3oZwtCDc+9GOxsnPZpyBfwQ0iuTKV22NNHGRcH1uKzWyB
-         ohrQ==
-X-Gm-Message-State: AOAM532I/XU60zhfImDg9o2T1SroQ1xHhzrNITcvOci9/PNnvCyZ90RH
-        yvathlh8tRaq+vpRAJTHYNVlkQ==
-X-Google-Smtp-Source: ABdhPJxag8I5N9nM/nLr36jeB9NWNHxpQ9QklYbeGOmw/Ly85vSsEJ1TGdsa7PJle4NW9h78QqopzQ==
-X-Received: by 2002:a05:6808:216:: with SMTP id l22mr3313269oie.125.1615570096786;
-        Fri, 12 Mar 2021 09:28:16 -0800 (PST)
+        bh=PlLmskPyjy9P85aN3TChCWZ2X95aJr2nN4YxhPO7zSY=;
+        b=TTRnTBwn9ZXV7w45QF2PjvlVi70o+xkjQgreKE+a6aatRePhdz1GqVxWPe5OtnJ/6a
+         XGxCe0pbLuK6R2VrfzNkeL2Kmjdkfa5Fe5MqYDtQBHAbS0CVxA5BDTrEgR74Si0wRdax
+         b+LzyPhzzAaoyH7EDNuTChl3uo22EHpORbx2Q3PhcdeYvotxIr0S9Fc0NuawxTWhK+Hz
+         zimMHOHXgFGM1LPJW6/UpanCHlnm54DoyfXjnK+m3MdJ0fXANFUyKFd9PNm0HKvP7/+o
+         sNWHzLi+2/cBoTk8DJd74kM0jbQYr5KedkrLBL2zGVr75cw9Kjkkwb9sE2WOqpu7FxEr
+         TjAQ==
+X-Gm-Message-State: AOAM530jRCnDmm+fBFV3NThcTLeZtC6HFpEaPt8X9j/2uw3BtNuaVaHk
+        ecjXzNsfZPx/YVxndciUcVrmiw==
+X-Google-Smtp-Source: ABdhPJwmX6nL4RGdrLNt/XYs8+aKXuTCyAZQdiJgTljGF8P6R1B1SYAT1dd/vS8qCPToUKYTwE8ghg==
+X-Received: by 2002:aca:1c14:: with SMTP id c20mr6108079oic.146.1615570607262;
+        Fri, 12 Mar 2021 09:36:47 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u194sm1452340oia.27.2021.03.12.09.28.16
+        by smtp.gmail.com with ESMTPSA id 7sm1564385otd.46.2021.03.12.09.36.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 09:28:16 -0800 (PST)
-Date:   Fri, 12 Mar 2021 11:28:14 -0600
+        Fri, 12 Mar 2021 09:36:46 -0800 (PST)
+Date:   Fri, 12 Mar 2021 11:36:45 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mailbox: Add compatible for SM8350 IPCC
-Message-ID: <YEukrpG06PBdgGAF@builder.lan>
-References: <20210312051203.3555751-1-vkoul@kernel.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
+Message-ID: <YEumre0+KKxZ0p6Z@builder.lan>
+References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210312051203.3555751-1-vkoul@kernel.org>
+In-Reply-To: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 11 Mar 23:12 CST 2021, Vinod Koul wrote:
+On Thu 11 Mar 04:40 CST 2021, satya priya wrote:
 
-Adding Jassi as recipient. Please let Vinod know if you want him to
-resend this patch to you. (I send a patch for MAINTAINERS yesterday)
-
-> Add the compatible string for SM8350 IPCC block on this SoC
+> Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
+> GPIOs, RTC and other PMIC infra modules for SC7280.
 > 
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Overall this looks good, just two small things below.
+
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> This patch depends on base DT and board files for SC7280 to merge first
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+> 
+>  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104 ++++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
+>  5 files changed, 292 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> new file mode 100644
+> index 0000000..393b256
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pm7325: pmic@1 {
+> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+> +		reg = <0x1 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm7325_tz: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pm7325_gpios: gpios@8800 {
+> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pm7325_temp_alarm: pm7325_tz {
+
+'_' is not allowed to be used in node names, there's a few of these
+sprinkled through the patch. Please replace them with '-'.
+
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
+> +		thermal-governor = "step_wise";
+> +		thermal-sensors = <&pm7325_tz>;
+> +
+> +		trips {
+> +			pm7325_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pm7325_trip1: trip1 {
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +
+> +			pm7325_trip2: trip2 {
+> +				temperature = <145000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +		};
+> +	};
+> +};
+[..]
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 8af6d77..25402d4 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -606,4 +606,12 @@
+>  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+>  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+>  	};
+> +
+> +	thermal_zones: thermal-zones {
+> +	};
+>  };
+> +
+> +#include "pm7325.dtsi"
+> +#include "pm8350c.dtsi"
+> +#include "pmk8350.dtsi"
+> +#include "pmr735a.dtsi"
+
+Is there any particular reason for you including these at the end of
+sc7270.dtsi, rather than the top like we do in other platforms?
+
+Also, are all SC7280 devices always coming with this quartet? We've seen
+variations of this in the past and therefor typically include them from
+the board dts instead.
 
 Regards,
 Bjorn
-
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> index 168beeb7e9f7..fe17ba9b84f2 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> @@ -25,6 +25,7 @@ properties:
->      items:
->        - enum:
->            - qcom,sm8250-ipcc
-> +          - qcom,sm8350-ipcc
->        - const: qcom,ipcc
->  
->    reg:
-> -- 
-> 2.26.2
-> 
