@@ -2,137 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A03B1339600
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 19:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF5FA33960A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 19:18:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231557AbhCLSRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 13:17:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52162 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232602AbhCLSRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 13:17:01 -0500
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973C0C061762
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 10:17:01 -0800 (PST)
-Received: by mail-qk1-x734.google.com with SMTP id d20so25285201qkc.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 10:17:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I8+SU4e34v0WKNNpDsOi6zN4VnSSZLxw9g2HQ8m1f48=;
-        b=UOrZhXD8ut6rcskJ+ygzG7tJl/4Y7ULuSR5QIUP4W3m3EoAx/dSZ+ovQQmxBrng7JB
-         oxzS9DU84JxTdTQtAGTaloKuA54jJEmS1ElqCte+Up6KgtNd2ZA64Kdg9xVbkTMKD0XV
-         +EQa8GTJoo6/ta1zmhrF29VLYtMK0hqHu0pwslrY3cr6/6vrQbQZNekZJcA1av8FfaQZ
-         KP/Fiilqk9eSplS5lfC3GPR4+rruAfzPaunF1cjjHjt1KOgb3UJSthDFumt95l0OyxF2
-         M9DuY27JuL/NKQxtYRDZFBr6kC7ODBXvhrbkg51mfVt0Qxma8bZSyKtYk4Yg/HJmUaSJ
-         Zyzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I8+SU4e34v0WKNNpDsOi6zN4VnSSZLxw9g2HQ8m1f48=;
-        b=EZ3BnD8Sxo8KOJFP8qQR+NFN0M/uR/KiQLopLOWUHsztPIZP7kM1y+A48YlDaKKr0I
-         drfa9PDpfu3jYI2pmkE3h7eSeKXJzTCuXWcNsZ/M6VV3ho41KGuTEF42RBqxSh9Djbm4
-         m9P8sM5ukEX+kJDYj4NGsIpiLefy7PhALtXhwXY/QGsCSOhoHhzgygvJxRT53Hmqlg9S
-         MbQhYDfF2yGlFZ+ZCq+aAJuXpyfnN6XGexwyesde06pZ+n/lbfv04+zTJxFuL4Rf2Uc7
-         LjR3W/vfB5Wq2NtdUZQ8Ug8UJoRZVsQIoLlMBmZEtgU4DVTBGyLFG18xTJHadopaW2NY
-         WW3Q==
-X-Gm-Message-State: AOAM531N7bGS8Do5R+7Lx1SR96f1E0VAMCdTc/qOd+BXBK0Ygz3YUJSP
-        jCBO4buUyp69SMUmOJ7tYhBHUBXik9smLKVZaC6qLQ==
-X-Google-Smtp-Source: ABdhPJxG7asGZMx5owa1JLvEvc2zXcsFvMxhEvdneVdKr1SIV75Z+40bR3jOcVjcOB1mXTQ0ph30ZMwEa63n3xd28ZY=
-X-Received: by 2002:a37:8cd:: with SMTP id 196mr13348732qki.434.1615573020716;
- Fri, 12 Mar 2021 10:17:00 -0800 (PST)
+        id S232892AbhCLSR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 13:17:58 -0500
+Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:62270 "EHLO
+        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232583AbhCLSRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 13:17:49 -0500
+Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
+        by mx0c-0054df01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12CIEgPP026793;
+        Fri, 12 Mar 2021 13:17:41 -0500
+Received: from can01-to1-obe.outbound.protection.outlook.com (mail-to1can01lp2051.outbound.protection.outlook.com [104.47.61.51])
+        by mx0c-0054df01.pphosted.com with ESMTP id 375yymhk0x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 Mar 2021 13:17:41 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nyFkujc3ddahA5vWpDdXnBijpw2QcUkHmDVhWoyFmxSgJip8SHdSJkPMEkNmCiUcfSe5wSGDcXys/r8Esv0nQsd19l4ehsUFu0jhBs8iZQzTWAffZ0UCQzf/+Ph1FiLe6RTkpB56s7cGhaWenMNkkDiNMuUIpsGenXXthsjeLjgWuYdjHjr5DiZ9AZSEOI9jACoFRKLZwtxKDyHOx4JDMbfWYQZo0uk9/Q9Zdl5i8WFwOy8Qk6B844P1XdDa1g3K4tZyDOT9fi6tfuYclIAu/u7s4DDp1ik817AoyKLoXZjm67AGyky2+5gxUVyiprRz3T4HMptD27Pzid2lWedUzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uuS7sVRCIR5tqnza2FVYEyQGT7Pl7u2dhzx5bcXOhNM=;
+ b=frqYUsAFdfIEV3+jjElO0v+5UP4PhDkDmrfMpwq1hoCTXYIkU3/yoAitE/c4JjgtnmZKf72mrYvOBI7NqWTxPNZRXEuosqZ1ibXtaB1p3dg5C/uChvmUKB/ay+KEsfC90LkHsJyUgEVzn5WUCYElOMZu+dHBxBFxC0Ng6jP4Buc1+ZpUu+BU1W+ZRsnd7olVMElOz6iimRGNxZv4WcZEZJwjNKiE+CGcXhV1mtKexHHe6WFl8063N8N9k2lbjyfsep4t68aLKBlkp01FaJ2ogp0tXX5ad3HOJqhOrQvxidahdLb84nfFnOy9imWEhrvzWCs22sRdaBCqPAMLwEuIXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=calian.com; dmarc=pass action=none header.from=calian.com;
+ dkim=pass header.d=calian.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uuS7sVRCIR5tqnza2FVYEyQGT7Pl7u2dhzx5bcXOhNM=;
+ b=JUZk1VvhE7CDKFh1Sp0Fez6CEukFxNVwv5p4sjgj5mXMmYcF6xRSIFLuN9XG1YDgyqNeh1qEoWwNlkSTN8qhXeNlc/q/mQdgrZgV7BNUeG+vCK+/ush+tSOQwZdS1X5BFLhIM+GWQjTaWfuQ0I9PzsOaWZGY8rimzPvDJK45XOw=
+Authentication-Results: baylibre.com; dkim=none (message not signed)
+ header.d=none;baylibre.com; dmarc=none action=none header.from=calian.com;
+Received: from YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:f::20)
+ by YT1PR01MB4439.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:42::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.2; Fri, 12 Mar
+ 2021 18:17:39 +0000
+Received: from YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::90d4:4d5b:b4c2:fdeb]) by YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::90d4:4d5b:b4c2:fdeb%7]) with mapi id 15.20.3912.031; Fri, 12 Mar 2021
+ 18:17:39 +0000
+From:   Robert Hancock <robert.hancock@calian.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org
+Cc:     mike.looijmans@topic.nl, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Robert Hancock <robert.hancock@calian.com>
+Subject: [PATCH v2 0/9] Si5341 driver updates
+Date:   Fri, 12 Mar 2021 12:17:01 -0600
+Message-Id: <20210312181710.3998978-1-robert.hancock@calian.com>
+X-Mailer: git-send-email 2.27.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [204.83.154.189]
+X-ClientProxiedBy: MW3PR05CA0012.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::17) To YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:f::20)
 MIME-Version: 1.0
-References: <20210106001004.4081508-1-bjorn.andersson@linaro.org>
-In-Reply-To: <20210106001004.4081508-1-bjorn.andersson@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 12 Mar 2021 21:16:48 +0300
-Message-ID: <CAA8EJpq4FW_k0NzVrA9qpmNc_8tfVrSh2kNNLc1VdniHb2A-Hg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: pm8150: Enable RTC
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (204.83.154.189) by MW3PR05CA0012.namprd05.prod.outlook.com (2603:10b6:303:2b::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.10 via Frontend Transport; Fri, 12 Mar 2021 18:17:38 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: aa70f18c-6d8a-41bd-16f1-08d8e5831eb1
+X-MS-TrafficTypeDiagnostic: YT1PR01MB4439:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <YT1PR01MB44391DEA5829C5B08DA5B960EC6F9@YT1PR01MB4439.CANPRD01.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 65RPfCDp2ZY/ES3oFKocxJv1MjRCHM8goHVuNkzDLcid2rLkTCZtZlyXN2vMADsxDcncsSRAC55UrCbM9G4Q/aucbHXuWTovZPJD5vm4RyXESyonUIbx3/URzD5TU/1x27XVtRPlB8bMC6lAVhnxH7H8opHnHLlvh7UDou7PnV6/ex4sOhkNnegN2v42SAP93Rqh9YTHmhNgIl7RKjviz8miotdiQUa4Cc6MyEEwMrVyDxbb4zNvUvzfQdtbsxgXfhbiL3nILgbCOSa0iLEbVKg5UtkDzlT9i1tHx3tQk5setn8mDnGQC6o2FLakFX3TMPhJQkGZeb0MsDAymWCks+1pTzZEhuNIChDomnoVVCvVnnDZJk2pq6YTGgzJ2T/exrhyR/Wt2Uf2AFK0dQcks2wnd21TGWd1fKtGTnrA2d/vUfavErRcFflRFPY1pgNPf47zZ55durbjDgPeB49aSU13sevIc005uwQHVqi/rqPVgnMOE6RbGPYWoFQ9hqz2n0OBk+s60IttW1XMmk9ayOCzbiVV92JB6eX69VpgHpI3QiM+Al4wDBct93tUBDwgOUcIzfbb7HMsm93il8dqzA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(346002)(39850400004)(396003)(366004)(2616005)(8936002)(44832011)(8676002)(69590400012)(4744005)(956004)(26005)(107886003)(16526019)(4326008)(36756003)(186003)(6486002)(2906002)(6666004)(83380400001)(86362001)(316002)(5660300002)(6506007)(478600001)(15650500001)(6512007)(66946007)(66556008)(66476007)(52116002)(1076003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ROnF19Jm4Zd0NTNUWS1B0nTzXj2Lvcm5RvTr7dzO0DEqtXSMOu6acyrL1Xxs?=
+ =?us-ascii?Q?u30CR0o8InY5CMg9q9h1YSx1idqFbAz7zddZrY94B0s8FpY7kTEjdpwDje05?=
+ =?us-ascii?Q?H+01xsms7KmT02aZnplUFzPWvkGUPwL7NvNwzeFSnpOC0haYrJWEB0AtlhfK?=
+ =?us-ascii?Q?l32IpAp6EN0lUBuXb6trkPzbWB6SiAK0owkErp/ycYK1tJ4iDTLqqEjIQnXM?=
+ =?us-ascii?Q?6odnIdn6c7DIr+F5wZg/ZtMlrZac1g0MfLc23UUZpFZ5f43mD6mqL1kgMGwg?=
+ =?us-ascii?Q?WTOtc0Hq7cv+mMvpzkqe5MlUNu4gX9V62W4D6FJ8tinoFVLwzJkUri4CxO2j?=
+ =?us-ascii?Q?BA7pF9dZGsKegzz06z4IYL9OtNHbH8uG5yXEYxJjjWQjfbzCe5XlPEaRE4GV?=
+ =?us-ascii?Q?qfmjkZn49HGheE8RwnCwQhRrX75giDFqbskQQaI1+ekV79A8ywVHoKIs+Ejp?=
+ =?us-ascii?Q?f1Ofb24fo2UcD1/sZREa7b+BjbweC8tU8Ie9/HU4KLBd5RN+xA5jfTmk/jbs?=
+ =?us-ascii?Q?OozSamV/bBneiboK3aR1bg3jQINYVjDPXl29UA48qJeVdzBZX/BqteX1Boqg?=
+ =?us-ascii?Q?OXSWb24xZvTYjs0sXEuO993POvHWTX2/7kvoHZ+fPNWLZ5l2RMbjmM/mAjwj?=
+ =?us-ascii?Q?4cGCbcd807M8msUa6Aw/x1Sx3rat/t3nQnjittwELeDw2ehVpGGuBVVx642Y?=
+ =?us-ascii?Q?N1CLRUxqMlA2otVc0N5ElNae+vmhe6q9s9NkF3dYHmyL2sBy89Jx4aL5zrdt?=
+ =?us-ascii?Q?LXbSbhf7DGBBAm8V5TgDOaiS3s6WF2Ij0gkxjDv667M9Y+vEGCMn26biisHh?=
+ =?us-ascii?Q?aORg1HL7wyTlALFHqoKtxbBOmZzHNfzrokD89D2EwWORNM4LOAQ7NON+i8/V?=
+ =?us-ascii?Q?fgw36gYYSbPBuXckcWZOl9x6ETAM53j+2D9SxjC1+ZdOncbLQbc95PgolprX?=
+ =?us-ascii?Q?KL3YdJnKUUehpq3UCn0qy8ua6uctDECP9hWhYi9tlPjMabN0m+kh32oBeqP4?=
+ =?us-ascii?Q?LCwumOvbO5kYo5QZEDtiNDXF8b52CMPe18PLcAL68cesiD+8z8dh7H75fXQv?=
+ =?us-ascii?Q?2IFSFA3/BMVv26aYVYMb6ZHeY/Xm5bOA7byzJHVTevV5YV7c+64VXZ+0yFXM?=
+ =?us-ascii?Q?c4o/fk5YZaijgqy6PjxcMLICU41W7fQKUvhe4fUZTvRrpzhzW6a3MybS8v+t?=
+ =?us-ascii?Q?YeXG48mBJ8KBD56L38bsoyKjATJBVulvKHahB890KW9ayRg/99B/wwu4zub/?=
+ =?us-ascii?Q?oqo363AwQxs22A9wK+kQyaH8wUgRlGFPXGinliJbL7spQv6uUenXY11r8TSU?=
+ =?us-ascii?Q?UE+NQzo2Byj/fi9YC7bzuqpP?=
+X-OriginatorOrg: calian.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa70f18c-6d8a-41bd-16f1-08d8e5831eb1
+X-MS-Exchange-CrossTenant-AuthSource: YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2021 18:17:39.3522
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ntw/uXTNMfdyckiOMREAfHGjReytejfrYsgJAKSwvf19uVg8B7Fch6m66gearj8hqE9BjPMz91mvYimOwoZShZLYBpup+YwmzsVmzFXdSNk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT1PR01MB4439
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-12_09:2021-03-12,2021-03-12 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 phishscore=0 adultscore=0 lowpriorityscore=0
+ bulkscore=0 mlxlogscore=951 impostorscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2103120134
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Jan 2021 at 03:09, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> The PM8150 comes with everything the RTC needs, so let's just leave it
-> enabled instead of having to explicitly enable it for all boards.
-> In effect this patch enables the RTC on the SM8150 MTP and the SM8250
-> HDK.
+Various fixes and enhancements to the Si5341 driver.
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Changed since v1:
+-wait up to 300ms for DEVICE_READY
+-use regmap_read_poll_timeout rather than fixed wait when waiting for PLL
+lock and input presence
+-make si5341_remove static
 
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/pm8150.dtsi     | 4 +---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 4 ----
->  arch/arm64/boot/dts/qcom/sm8250-mtp.dts  | 4 ----
->  3 files changed, 1 insertion(+), 11 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> index a53eccf2b695..027f55d53584 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> @@ -97,13 +97,11 @@ die-temp@6 {
->                         };
->                 };
->
-> -               pm8150_rtc: rtc@6000 {
-> +               rtc@6000 {
->                         compatible = "qcom,pm8941-rtc";
->                         reg = <0x6000>;
->                         reg-names = "rtc", "alarm";
->                         interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-> -
-> -                       status = "disabled";
->                 };
->
->                 pm8150_gpios: gpio@c000 {
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index d7799a6fb489..546b7fb9cf55 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -609,10 +609,6 @@ lt9611_rst_pin: lt9611-rst-pin {
->         };
->  };
->
-> -&pm8150_rtc {
-> -       status = "okay";
-> -};
-> -
->  &qupv3_id_0 {
->         status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> index 767a2e446248..c291422fa096 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> @@ -392,10 +392,6 @@ &i2c15 {
->         /* rtc6226 @ 64 */
->  };
->
-> -&pm8150_rtc {
-> -       status = "okay";
-> -};
-> -
->  &qupv3_id_0 {
->         status = "okay";
->  };
-> --
-> 2.29.2
->
+Robert Hancock (9):
+  dt-bindings: clock: clk-si5341: Add new attributes
+  clk: si5341: Wait for DEVICE_READY on startup
+  clk: si5341: Avoid divide errors due to bogus register contents
+  clk: si5341: Check for input clock presence and PLL lock on startup
+  clk: si5341: Update initialization magic
+  clk: si5341: Allow different output VDD_SEL values
+  clk: si5341: Add silabs,xaxb-ext-clk property
+  clk: si5341: Add silabs,iovdd-33 property
+  clk: si5341: Add sysfs properties to allow checking/resetting device
+    faults
 
+ .../bindings/clock/silabs,si5341.txt          |  16 +-
+ drivers/clk/clk-si5341.c                      | 324 ++++++++++++++++--
+ 2 files changed, 304 insertions(+), 36 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.27.0
+
