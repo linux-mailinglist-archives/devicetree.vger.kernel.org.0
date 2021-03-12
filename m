@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AADF13386D4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 08:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 101DD3386E0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 08:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbhCLHwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 02:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231423AbhCLHwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 02:52:21 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E327BC061574;
-        Thu, 11 Mar 2021 23:52:20 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id z8so5567758ljm.12;
-        Thu, 11 Mar 2021 23:52:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bzfyFJDEDyF/FsL//TnuNcqJ2azu4kGF6viCThrfoGc=;
-        b=P3nEU4TFH49uU7L5Jpq8JojkmZ4YwYi3p8gBEmtiUWUpF4fkh72r/sul7j2Y1nPu5e
-         qGhrzNyu6eXeX43gjADBEaanESg5yyS/NSPBeeLfGsCyTOs64tekEFBQba/QtyLlFpi5
-         +YmK+TlbImJcNRZ9J+JGiUQaGYkkM6qEW3WkW+wDqAzxLPxIFmAGMbBjSly6fAHM+Z2a
-         C3Z+oH4TBHuRWZAVsy9chMZcCZ0A0NnSWoOsiLy7WjLlMaQo36aZryLXkXfHjT2u7Yf1
-         X9ocwaIY1Uxmg4VpWG+KMp9DQtVsT9A/vghxH3As/h3mgrPpDck1lcpFitk5CGqlO1gv
-         Hi0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bzfyFJDEDyF/FsL//TnuNcqJ2azu4kGF6viCThrfoGc=;
-        b=f7l3DzWK7v23KxAnqNA2m25TY3RpJRJvzUe5MGUsJ+MdIapsqmp0ymLPESEZJCTiUD
-         2XwHXL6YHLZK3v3kmU39FdUGGxXgEikOeFKTcXlBdBQZKqntCP20/OGT5LPJG4RyFuj2
-         fJP9eD6LevcknLGLeYMCQb70BZlcvYsyzIQo467MIhcq0EU4GiGgdO+EimLWEPuhjHgw
-         YOgCPwrWoQJCBUKlECsGcmbdfNO2LrvI+n7FteReGn+27NFrRKgTiiesyb6uyJncklUQ
-         BFuqdJO8ejutLyx8LwdGNyDznZPUHKAzXr/+NwaAbLXPd/nHcGdZIWLCV6sF2TntOkx8
-         QaMw==
-X-Gm-Message-State: AOAM530KjZjybrBmPXTagh+P6jGdbZcYKc7THdoRRsjHRQLve+Z0PmKS
-        jbkkIZ2G5avRmbuwgdsOD9Q=
-X-Google-Smtp-Source: ABdhPJys6MpLohdk+ccRufyaIodMxP1POirIRI5cektNmprzgzcB6oAs5kB0y3M5CrHfypfynkVWqQ==
-X-Received: by 2002:a2e:924b:: with SMTP id v11mr1610652ljg.254.1615535539473;
-        Thu, 11 Mar 2021 23:52:19 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id h10sm1794290ljb.101.2021.03.11.23.52.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 23:52:18 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
-To:     Marek Behun <marek.behun@nic.cz>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        id S231790AbhCLH40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 02:56:26 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:47083 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229756AbhCLHzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 02:55:53 -0500
+X-UUID: dbd2f40b251f441fab9b716ca598f128-20210312
+X-UUID: dbd2f40b251f441fab9b716ca598f128-20210312
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 833152154; Fri, 12 Mar 2021 15:55:47 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 12 Mar 2021 15:55:46 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 12 Mar 2021 15:55:45 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210310070025.9150-1-zajec5@gmail.com>
- <20210312084414.7e4822bb@nic.cz>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <62b556d5-0ebd-0923-69c6-a2fa3ede73b2@gmail.com>
-Date:   Fri, 12 Mar 2021 08:52:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>, <yong.wu@mediatek.com>
+CC:     Irui Wang <irui.wang@mediatek.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v2,0/5] Support H264 4K on MT8192
+Date:   Fri, 12 Mar 2021 15:55:37 +0800
+Message-ID: <20210312075542.5503-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210312084414.7e4822bb@nic.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.03.2021 08:44, Marek Behun wrote:
-> On Wed, 10 Mar 2021 08:00:25 +0100
-> Rafał Miłecki <zajec5@gmail.com> wrote:
-> 
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> The old regex allowed only 1 character to follow the "led-" prefix which
->> was most likely just an overlook. Fix it and while at it allow dashes in
->> node names. It allows more meaningful names and it helpful e.g. when
->> having the same function name with 2 different colors. For example:
->> 1. led-power-white
->> 2. led-power-blue
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   Documentation/devicetree/bindings/leds/leds-gpio.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
->> index 7ad2baeda0b0..ae46a43e480f 100644
->> --- a/Documentation/devicetree/bindings/leds/leds-gpio.yaml
->> +++ b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
->> @@ -21,7 +21,7 @@ properties:
->>   patternProperties:
->>     # The first form is preferred, but fall back to just 'led' anywhere in the
->>     # node name to at least catch some child nodes.
->> -  "(^led-[0-9a-f]$|led)":
->> +  "(^led-[0-9a-f][0-9a-f-]*$|led)":
-> 
-> Why not use +, like everywhere else?
->    "(^led-[0-9a-f]+$|led)"
+Add MT8192 H264 venc driver and support H264 4K encoding on MT8192.
 
-1. Your regex doesn't allow dashes. I described that in commit message.
-2. If I use one range and +, that will allow unwanted names like "led--power"
+Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+---
+This patch dependents on
+"dt-bindings: media: mtk-vcodec: Separating mtk vcodec encoder node" [1]
+
+We need "core_id" variable in device private data to indicate
+current encoder driver.
+Please also accept this patch together with [1].
+
+http://lists.infradead.org/pipermail/linux-mediatek/2021-March/022432.html
+---
+Change since v1:
+- remove encoder device tree example in dt-bindings
+---
+Irui Wang (5):
+  dt-bindings: media: mtk-vcodec: Add dma-ranges property
+  media: mtk-vcodec: Support 4GB~8GB range iova space for venc
+  dt-bindings: media: mtk-vcodec: Add binding for MT8192 VENC
+  media: mtk-vcodec: Add MT8192 H264 venc driver
+  media: mtk-vcodec: Support H264 4K encoding on MT8192
+
+ .../bindings/media/mediatek-vcodec.txt        |  3 +
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  1 +
+ .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 58 ++++++++++++++-----
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 18 ++++++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |  4 ++
+ 5 files changed, 69 insertions(+), 15 deletions(-)
+
+-- 
+2.18.0
+
