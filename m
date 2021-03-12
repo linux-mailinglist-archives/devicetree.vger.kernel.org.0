@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 949FC338C60
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 13:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F214D338C8E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 13:21:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbhCLMGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 07:06:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55206 "EHLO mail.kernel.org"
+        id S229667AbhCLMUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 07:20:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57104 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229568AbhCLMGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 07:06:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 470F764FD6;
-        Fri, 12 Mar 2021 12:06:09 +0000 (UTC)
+        id S229487AbhCLMUa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 07:20:30 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D0C9C64FDC;
+        Fri, 12 Mar 2021 12:20:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615550769;
-        bh=DHmyk8GUReblYUlhSMgM0JiPJvuHbVNLZgcQ4Uqew+8=;
+        s=k20201202; t=1615551630;
+        bh=ZVgs1kmNVjnQsqEDVCuzfF7dYpaysi5rGISlw4yyvbo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZMnlJOK4+abTr5z6UYLOMd63xUlgezqJXvqxpjbY9ta+qtcZwgxxfDbPmXKjn9G/x
-         fJH3pXeWHvA3lHlndJknsq+TlkHWBGctbcZ81JOI6QsX3ZMv0nto7+QDcim7ArHJOj
-         9I2mVhq9wW7bbwMSGLddZUQCee/FnVMFe3vTv7qt+FXXGGY2F6rtrcv+V9DZqtm7t+
-         WU6H07eYP7vHhX0lFQfBr6wobUMro6CUc76cwUfvvD82C5sTLKLO/AJOmNRIeBK1fe
-         6c/mh7emCx1217+ygNXUp4FTLCvL4uNCNfu0hgYTLvLGOVAiG7NWTlatoHNVIMKJGt
-         DeotHYNFPoIhQ==
-Date:   Fri, 12 Mar 2021 12:04:56 +0000
+        b=GstXbHtnkALqftowLoX9rsUeLfuhMMuJgJ1THSWVR3zUDNziK3b+QFcdqMw9olhlW
+         LDakxbc/RVg1jzA7/4X2WHRtnx+nLZnPnFezfiF80iVJWm63uP5xQbJg8scLAjgT5i
+         YzTyZm8KbHCcIm6JImUjEPgBbkLeOadvI19Ko3FBFVGTxX5l/5GU1ylJ+R59vhjL4B
+         zCifhQUF1ludl7k8tBAddcAwNHJOrIn5za4wFIIHB1b/1JUalNEHXSwHAnIvavlK5u
+         2TNdfA4sQXa1e1wU8K0z6bn1ksq/oGL3W/lkDf4t8IuEYh5rdI2IiylLVBBlu9SCzu
+         DkCcvxk5h0mFg==
+Date:   Fri, 12 Mar 2021 12:19:16 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Sameer Pujar <spujar@nvidia.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, robh@kernel.org, sharadg@nvidia.com,
-        thierry.reding@gmail.com
-Subject: Re: [PATCH 1/3] ASoC: simple-card-utils: Fix device module clock
-Message-ID: <20210312120456.GD5348@sirena.org.uk>
-References: <1612939421-19900-2-git-send-email-spujar@nvidia.com>
- <20210309144156.18887-1-michael@walle.cc>
- <e8b80188-978c-29fa-b5d4-9788a9f2282f@nvidia.com>
- <611ed3362dee3b3b7c7a80edfe763fd0@walle.cc>
- <ca540fb6-2ea7-90b0-66ad-097e99b6e585@nvidia.com>
- <20210311161558.GG4962@sirena.org.uk>
- <f21b87f1afb3eda54b5f00f2d1c146d3@walle.cc>
- <20210312113544.GB5348@sirena.org.uk>
- <6ed28bb5330879b1919aced5174f319f@walle.cc>
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     Markus Elfring <Markus.Elfring@web.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joe Perches <joe@perches.com>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Anirudh Ghayal <aghayal@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH v3 2/3] regmap-irq: Add support for POLARITY_HI and
+ POLARITY_LO config regs
+Message-ID: <20210312121916.GE5348@sirena.org.uk>
+References: <cover.1615423027.git.gurus@codeaurora.org>
+ <4b77a308ccdabbe96ed68623bd6eead9510e1fc9.1615423027.git.gurus@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2Z2K0IlrPCVsbNpk"
+        protocol="application/pgp-signature"; boundary="FEz7ebHBGB6b2e8X"
 Content-Disposition: inline
-In-Reply-To: <6ed28bb5330879b1919aced5174f319f@walle.cc>
+In-Reply-To: <4b77a308ccdabbe96ed68623bd6eead9510e1fc9.1615423027.git.gurus@codeaurora.org>
 X-Cookie: Lake Erie died for your sins.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -54,40 +55,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2Z2K0IlrPCVsbNpk
+--FEz7ebHBGB6b2e8X
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Mar 12, 2021 at 01:01:41PM +0100, Michael Walle wrote:
-> Am 2021-03-12 12:35, schrieb Mark Brown:
+On Wed, Mar 10, 2021 at 04:39:53PM -0800, Guru Das Srinagesh wrote:
+> If an interrupt is already configured as either edge- or
+> level-triggered, setting the corresponding bit for it in the POLARITY_HI
+> register further configures it as rising-edge or level-high triggered
+> (as the case may be), while setting the same bit in POLARITY_LO further
+> configures it as falling-edge or level-low triggered.
 
-> > If the card has a clock API clock as sysclk then set_sysclk(() should
-> > be configuring that clock.
+I think you probably need to bring these three fields together into a
+single virtual field and then map the values within that field using
+the existing type stuff.
 
-> What do you mean by "the card". The simple-audio-card itself?
-
-> Take a look at:
-> https://elixir.bootlin.com/linux/v5.12-rc2/source/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts#L29
-
-> Does the card has a clock? IMHO the WM8904 codec has a clock, but not
-> the audio card.
-
-The clock on the CODEC, which the card configures.  The CODEC should be
-passing on the configuration to the clock API.
-
---2Z2K0IlrPCVsbNpk
+--FEz7ebHBGB6b2e8X
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBLWOcACgkQJNaLcl1U
-h9Dr4wf/RvhCgjsXMqQfCMBjIX58G+v9Cg2OPPplcaKKCYDjRg91mNXrL3E80qFQ
-HOfZJ33uxBY2xnzXmfnttbMlnRrQys2U0XPqbQXNnJTnHmJu4XqVU/j+c8QJeKJK
-DCYp/qmAvUqm3i4KDM/bbqIeNCiXHtVZ6FvLdrEL8smdJhXdMGFA24rOvNMlhCyw
-T2/y0+K/70cbhiWTrVFs4LyRnGdlIooLdErAfQ0ZoXnsid0QNObGiS0eOSjssjke
-gfwoUWcR5skL2eEzLBkWAOnJM1Am5S56kSpMaF/69BfwwINbfV7GpCZFOHbI+Zy1
-0ZPH0ScPMHaRdPcpq9ArImBAxwU+Fw==
-=mvjs
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBLXEMACgkQJNaLcl1U
+h9ArdAf/e8Qn2NUnswULmvDI6nNSEiPGDSCVIUYCGoEEmFNDAisrrF2kQt2dKYi/
+VqSE8DbFkQSzpokfLGMlrTXld2oH/866ZwoeuWu/tlepL6XqSVG/ca/WjyHOjhcu
+RwE4NT1+PuWJ0+dkEHc7hDJS9QltabZmZ8HyTEGrCPhWY4YrA7/neEi3cBNQcQFZ
+rWi5ZNk6WMNH1VmUT/pWYQV75q8pRmlzptZnvnffdIlBnOW5gzULCAsBOb3yPAb5
+J0JCG9gAGhxN3B1LBoC+HrrhM6qlbT0zM0FmWuM3eHFnUgRobP8I/fVx85Dokkp4
+Wtrugocig62XoEm1LJxkp52OLwYwSA==
+=qEWY
 -----END PGP SIGNATURE-----
 
---2Z2K0IlrPCVsbNpk--
+--FEz7ebHBGB6b2e8X--
