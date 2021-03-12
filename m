@@ -2,60 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8321338E3F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04364338E47
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231438AbhCLNEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 08:04:40 -0500
-Received: from bin-mail-out-06.binero.net ([195.74.38.229]:54436 "EHLO
-        bin-mail-out-06.binero.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231597AbhCLNE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 08:04:29 -0500
-X-Halon-ID: 775f6397-8333-11eb-a542-005056917a89
-Authorized-sender: niklas.soderlund@fsdn.se
-Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de [84.172.85.33])
-        by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
-        id 775f6397-8333-11eb-a542-005056917a89;
-        Fri, 12 Mar 2021 14:04:27 +0100 (CET)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] dt-bindings: media: renesas,csi2: Add r8a77961 support
-Date:   Fri, 12 Mar 2021 14:04:21 +0100
-Message-Id: <20210312130421.1743226-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.30.1
+        id S229959AbhCLNFo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 12 Mar 2021 08:05:44 -0500
+Received: from aposti.net ([89.234.176.197]:42494 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231613AbhCLNFX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 08:05:23 -0500
+Date:   Fri, 12 Mar 2021 13:05:05 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/6] pinctrl: Ingenic: Add missing pins to the JZ4770
+ MAC MII group.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        hns@goldelico.com, paul@boddie.org.uk, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, sernia.zhou@foxmail.com
+Message-Id: <HOXUPQ.U0CJV6YXUOYX2@crapouillou.net>
+In-Reply-To: <1615476112-113101-2-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1615476112-113101-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1615476112-113101-2-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the compatible string for M3-W+ (r8a77961) to the list of supported
-SoCs.
+Hi,
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Le jeu. 11 mars 2021 à 23:21, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> The MII group of JZ4770's MAC should have 7 pins, add missing
+> pins to the MII group.
+> 
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-index 20396f1be9993461..23703b767f5b66f4 100644
---- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-@@ -25,6 +25,7 @@ properties:
-           - renesas,r8a774e1-csi2 # RZ/G2H
-           - renesas,r8a7795-csi2  # R-Car H3
-           - renesas,r8a7796-csi2  # R-Car M3-W
-+          - renesas,r8a77961-csi2 # R-Car M3-W+
-           - renesas,r8a77965-csi2 # R-Car M3-N
-           - renesas,r8a77970-csi2 # R-Car V3M
-           - renesas,r8a77980-csi2 # R-Car V3H
--- 
-2.30.1
+No Fixes: tag?
+And if the bug wasn't introduced in 5.12-rc1 you'll need to Cc 
+linux-stable as well.
+
+> ---
+> 
+> Notes:
+>     v2:
+>     New patch.
+> 
+>  drivers/pinctrl/pinctrl-ingenic.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
+> b/drivers/pinctrl/pinctrl-ingenic.c
+> index f274612..05dfa0a 100644
+> --- a/drivers/pinctrl/pinctrl-ingenic.c
+> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+> @@ -667,7 +667,9 @@ static int jz4770_pwm_pwm7_pins[] = { 0x6b, };
+>  static int jz4770_mac_rmii_pins[] = {
+>  	0xa9, 0xab, 0xaa, 0xac, 0xa5, 0xa4, 0xad, 0xae, 0xa6, 0xa8,
+>  };
+> -static int jz4770_mac_mii_pins[] = { 0xa7, 0xaf, };
+> +static int jz4770_mac_mii_pins[] = {
+> +	0x7b, 0x7a, 0x7d, 0x7c, 0xa7, 0x24, 0xaf,
+
+Maybe list them in order?
+
+And are you sure that's the whole list? The PM (section 12.2 in 
+jz4770_pm_part3.pdf) lists more pins.
+
+Cheers,
+-Paul
+
+> +};
+> 
+>  static const struct group_desc jz4770_groups[] = {
+>  	INGENIC_PIN_GROUP("uart0-data", jz4770_uart0_data, 0),
+> --
+> 2.7.4
+> 
+
 
