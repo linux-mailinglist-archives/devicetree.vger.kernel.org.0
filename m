@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9489338E84
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 623F1338EBD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbhCLNPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 08:15:25 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:54584 "EHLO fornost.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230512AbhCLNOx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 08:14:53 -0500
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
-        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
-        id 1lKhcM-0006Jj-Rw; Sat, 13 Mar 2021 00:14:16 +1100
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Sat, 13 Mar 2021 00:14:14 +1100
-Date:   Sat, 13 Mar 2021 00:14:14 +1100
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     Matt Mackall <mpm@selenic.com>, Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Tian Tao <tiantao6@hisilicon.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] hwrng: bcm2835: add reset support
-Message-ID: <20210312131414.GK31502@gondor.apana.org.au>
-References: <20210305070132.2986-1-noltari@gmail.com>
+        id S230521AbhCLN1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 08:27:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229487AbhCLN0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 08:26:55 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B2CC061574;
+        Fri, 12 Mar 2021 05:26:55 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 3839422238;
+        Fri, 12 Mar 2021 14:26:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1615555611;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KcBTD7nfiYyHNct1X3UL2VExLlEbLzhpNivSjn0I+wk=;
+        b=svmemSWB+o+nVNl6REajtsf58ho2PMVwfIR7ipvPG5EzVj2hB2RF8EgQZ78GvhI1nqBuio
+        1hYjbb30eYza3JohGRszrmYEeG6vNO5Mn1sjlitt10HFidP4nvEOZA6P/tbY3WjEio45LF
+        O07ww65cJKaDHdnj/w4DBwtjYJPhmsA=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210305070132.2986-1-noltari@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Date:   Fri, 12 Mar 2021 14:26:50 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Tudor.Ambarus@microchip.com, nm@ti.com, kristo@kernel.org,
+        robh+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com, broonie@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, lokeshvutla@ti.com
+Subject: Re: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for
+ spi-cadence-quadspi
+In-Reply-To: <20210312110707.lrabch4ketqyyepn@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <9c551f56-4c00-b41a-f051-8b7e197fbcdc@microchip.com>
+ <20210312101036.jfz2733ssv4nhfey@ti.com>
+ <676386736df5e5b22e34b0b5af91c894@walle.cc>
+ <20210312110707.lrabch4ketqyyepn@ti.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <278f4417bad780ee610d86299e613990@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 08:01:29AM +0100, Álvaro Fernández Rojas wrote:
-> Some devices may need to perform a reset before using the RNG, such as the
-> BCM6368.
+Am 2021-03-12 12:07, schrieb Pratyush Yadav:
+> On 12/03/21 11:20AM, Michael Walle wrote:
+>> Am 2021-03-12 11:10, schrieb Pratyush Yadav:
+>> > There is usually a delay from when the flash drives the data line (IOW,
+>> > puts a data bit on it) and when the signal reaches the controller. This
+>> > delay can vary by the flash, board, silicon characteristics,
+>> > temperature, etc.
+>> 
+>> Temperature might change over time, but the calibration is only done
+>> once. I don't know how much influence the temperature actually has, 
+>> but
+>> our boards are usually operating from -40Â°C to +85Â°C. So there might 
+>> be
+>> a possible temperature difference of 125K between actual calibration 
+>> and
+>> when the flash is accessed.
 > 
-> v6: fix dt-bindings documentation, add patch makings clocks mandatory for
->  BCM6368.
-> v5: remove reset_control_rearm() and apply on latest herbert/cryptodev-2.6.git.
-> v4: fix documentation, add reset_control_rearm().
-> v3: make resets required if brcm,bcm6368-rng.
-> v2: document reset support.
-> 
-> Álvaro Fernández Rojas (3):
->   dt-bindings: rng: bcm2835: add clock constraints
->   dt-bindings: rng: bcm2835: document reset support
->   hwrng: bcm2835: add reset support
-> 
->  .../devicetree/bindings/rng/brcm,bcm2835.yaml | 21 +++++++++++++++++++
->  drivers/char/hw_random/bcm2835-rng.c          | 10 +++++++++
->  2 files changed, 31 insertions(+)
+> The algorithm supports a temperature range of -45 C to +130 C. The
+> temperature is checked at calibration time and adjustments are made to
+> make sure the reads work over the entire temperature range [0].
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Ah, nice. And you need the current temperature to correlate it to the
+meassured timings, right?
+
+-michael
