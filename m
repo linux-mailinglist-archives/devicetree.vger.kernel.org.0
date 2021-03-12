@@ -2,104 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB28B338C9C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 13:24:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2777F338CBB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 13:26:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbhCLMX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 07:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231352AbhCLMXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 07:23:04 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67924C061761
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:04 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id o16so1666126wrn.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 04:23:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gA35ua4Yb5kX/gYxKzQIpMpiocNgTXC/pKSapK7rZJo=;
-        b=rFfAknAn5CJnRejX4QyXzIFMwYrLIm4HeDtYghHnkwcBjzWm4mw9uVi+8lsyFKmg6Q
-         Ur+iwXV2EnLl4daPvmsRLkD64G/qP0II7UX7EwwNBOV5zcwEhKxrRsYHRg4FxaTiZNDH
-         rOBUOk9yVSoXYcqSklkyDf5aTB14iYxsZvLz7qmkqI478nBi+Mx9+aUAeOuAaXPNwB1L
-         RDcWpIotREa04xviaPO5/0AJKENpkeYGESffgMNcxOyspnwLGj0+nxGkorXSZbc32mFZ
-         R1U0rKrd7I0Jyqgg8+iPsoZokxoniKhdZTn0SrfTnGl/wrcKW5JADRN5d33zmip5s9R/
-         Dn8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gA35ua4Yb5kX/gYxKzQIpMpiocNgTXC/pKSapK7rZJo=;
-        b=SOHvU8loX4sIijftSOjQ7hvXvmnaqbOKVrxBDVtPNB8u9OfcJ+SlHH+5O8BHLwGRFM
-         B5+IfdTczinoY7DWLOCO44da8Gm3M2FK/xLtkX9649jSN55MeTLWIYPX5sbrT1UNk8MK
-         ZeZNMBDLzmtirjUZXIXIf9XtMTHB/0AJuaqZrPJYinvgcWqmKx5ZRl5y5grkt6gxQQ59
-         7xGpwuxq4cxkkAahtPilCNKT/D1i73aP3THi8SGpJi0q72682eHC4Pu+6ElzEouVQdL5
-         IuYgk/K1dRiCdI7JEpHZoyHVTiS/suXXta///n75drAWqBLD070m0cjMsDq5a5CEkbgF
-         KapQ==
-X-Gm-Message-State: AOAM531vKAYH+AR2IF7prtuSXZGoowmYgYwJKf3oi1PYeU5NrBD0W+Fa
-        fOxMgrMvXv+sWOSbIwPGN6mJYA==
-X-Google-Smtp-Source: ABdhPJxde2aKuylrPArbfyabrQXXX1VMQFK2766pT0EBSLYkk5PaAgVgCylkPI5TKE5otNy07rnPqA==
-X-Received: by 2002:adf:9f54:: with SMTP id f20mr13793513wrg.362.1615551783189;
-        Fri, 12 Mar 2021 04:23:03 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id 3sm8804329wry.72.2021.03.12.04.23.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 04:23:02 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org, vkoul@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [RESEND PATCH v3 5/5] ASoC: codecs: wsa881x: add static port map support
-Date:   Fri, 12 Mar 2021 12:22:55 +0000
-Message-Id: <20210312122255.3143-6-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210312122255.3143-1-srinivas.kandagatla@linaro.org>
-References: <20210312122255.3143-1-srinivas.kandagatla@linaro.org>
+        id S231480AbhCLMZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 07:25:37 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56958 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229907AbhCLMZS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 07:25:18 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id C8322B0AE;
+        Fri, 12 Mar 2021 12:25:16 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de
+Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v8 00/11] Raspberry Pi PoE HAT fan support
+Date:   Fri, 12 Mar 2021 13:24:43 +0100
+Message-Id: <20210312122454.24480-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two instances of WSA881x(Speaker Right, Speaker Left) ports
-are statically mapped to master ports. Allow the driver to parse
-those mappings from device tree.
+The aim of this series is to add support to the fan found on RPi's PoE
+HAT. Some commentary on the design can be found below. But the important
+part to the people CC'd here not involved with PWM is that, in order to
+achieve this properly, we also have to fix the firmware interface the
+driver uses to communicate with the PWM bus (and many other low level
+functions). Specifically, we have to make sure the firmware interface
+isn't unbound while consumers are still up. So, patch #1 & #2 introduce
+reference counting in the firmware interface driver and patches #3 to #8
+update all firmware users. Patches #9 to #11 introduce the new PWM
+driver.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+I sent everything as a single series as the final version of the PWM
+drivers depends on the firmware fixes, but I'll be happy to split this
+into two separate series if you think it's better.
+
+--- Original cover letter below ---
+
+This series aims at adding support to RPi's official PoE HAT fan[1].
+
+The HW setup is the following:
+
+| Raspberry Pi                               | PoE HAT                    |
+ arm core -> Mailbox -> RPi co-processor -> I2C -> Atmel MCU -> PWM -> FAN
+
+The arm cores have only access to the mailbox interface, as i2c0, even if
+physically accessible, is to be used solely by the co-processor
+(VideoCore 4/6).
+
+This series implements a PWM bus, and has pwm-fan sitting on top of it as per
+this discussion: https://lkml.org/lkml/2018/9/2/486. Although this design has a
+series of shortcomings:
+
+- It depends on a DT binding: it's not flexible if a new hat shows up with new
+  functionality, we're not 100% sure we'll be able to expand it without
+  breaking backwards compatibility. But without it we can't make use of DT
+  thermal-zones, which IMO is overkill.
+
+- We're using pwm-fan, writing a hwmon driver would, again, give us more
+  flexibility, but it's not really needed at the moment.
+
+I personally think that it's not worth the effort, it's unlikely we'll get
+things right in advance. And ultimately, if the RPi people come up with
+something new, we can always write a new driver/bindings from scratch (as in
+not reusing previous code).
+
+That said, I'm more than happy to change things if there is a consensus that
+another design will do the trick.
+
+[1] https://www.raspberrypi.org/blog/introducing-power-over-ethernet-poe-hat/
+
 ---
- sound/soc/codecs/wsa881x.c | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/sound/soc/codecs/wsa881x.c b/sound/soc/codecs/wsa881x.c
-index db87e07b11c9..b3568aec0cd0 100644
---- a/sound/soc/codecs/wsa881x.c
-+++ b/sound/soc/codecs/wsa881x.c
-@@ -1093,6 +1093,7 @@ static int wsa881x_probe(struct sdw_slave *pdev,
- 			 const struct sdw_device_id *id)
- {
- 	struct wsa881x_priv *wsa881x;
-+	struct device *dev = &pdev->dev;
- 
- 	wsa881x = devm_kzalloc(&pdev->dev, sizeof(*wsa881x), GFP_KERNEL);
- 	if (!wsa881x)
-@@ -1105,6 +1106,12 @@ static int wsa881x_probe(struct sdw_slave *pdev,
- 		return PTR_ERR(wsa881x->sd_n);
- 	}
- 
-+	/* valid port numbers on this codec starts from 1, so skip 0th index */
-+	if (of_property_read_u32_array(dev->of_node, "qcom,port-mapping",
-+				       &pdev->m_port_map[1],
-+				       WSA881X_MAX_SWR_PORTS))
-+		dev_info(dev, "Static Port mapping not specified\n");
-+
- 	dev_set_drvdata(&pdev->dev, wsa881x);
- 	wsa881x->slave = pdev;
- 	wsa881x->dev = &pdev->dev;
+Changes since v7:
+ - Remove unwarranted RPI_PWM_DEF_DUTY_REG usage
+
+Changes since v6:
+ - Address PWM driver comments
+
+Changes since v5:
+ - Small cleanups
+ - Add extra code comments
+
+Changes since v4:
+ - Cleanup devm calls
+ - Rename compatible string so it's unique to the PoE HAT
+
+Changes since v3:
+ - Split first patch, #1 introduces refcount, then #2 the devm function
+ - Fix touchscreen function
+ - Use kref
+
+Changes since v2:
+ - Introduce devm_rpi_firmware_get()
+ - Small cleanups in PWM driver
+
+Changes since v1:
+ - Address PWM driver changes
+ - Fix binding, now with 2 cells
+
+Nicolas Saenz Julienne (11):
+  firmware: raspberrypi: Keep count of all consumers
+  firmware: raspberrypi: Introduce devm_rpi_firmware_get()
+  clk: bcm: rpi: Release firmware handle on unbind
+  gpio: raspberrypi-exp: Release firmware handle on unbind
+  reset: raspberrypi: Release firmware handle on unbind
+  soc: bcm: raspberrypi-power: Release firmware handle on unbind
+  staging: vchiq: Release firmware handle on unbind
+  input: raspberrypi-ts: Release firmware handle when not needed
+  dt-bindings: pwm: Add binding for RPi firmware PWM bus
+  DO NOT MERGE: ARM: dts: Add RPi's official PoE hat support
+  pwm: Add Raspberry Pi Firmware based PWM bus
+
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml |  20 ++
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  54 +++++
+ drivers/clk/bcm/clk-raspberrypi.c             |   2 +-
+ drivers/firmware/raspberrypi.c                |  69 +++++-
+ drivers/gpio/gpio-raspberrypi-exp.c           |   2 +-
+ drivers/input/touchscreen/raspberrypi-ts.c    |   2 +-
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-raspberrypi-poe.c             | 206 ++++++++++++++++++
+ drivers/reset/reset-raspberrypi.c             |   2 +-
+ drivers/soc/bcm/raspberrypi-power.c           |   2 +-
+ .../interface/vchiq_arm/vchiq_arm.c           |   2 +-
+ .../pwm/raspberrypi,firmware-poe-pwm.h        |  13 ++
+ include/soc/bcm2835/raspberrypi-firmware.h    |  10 +
+ 14 files changed, 385 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/pwm/pwm-raspberrypi-poe.c
+ create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-poe-pwm.h
+
 -- 
-2.21.0
+2.30.1
 
