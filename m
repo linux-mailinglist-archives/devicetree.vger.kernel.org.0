@@ -2,196 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD6293396BF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 19:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B08B3396CE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 19:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233633AbhCLSjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 13:39:49 -0500
-Received: from mail-dm6nam08on2069.outbound.protection.outlook.com ([40.107.102.69]:42848
-        "EHLO NAM04-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233663AbhCLSjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 13:39:36 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MT/NVOX6rGtIFNW37jnfwpZHnocABiLHG3q/302PmC/RQggCSw9lDV1QMS+If9jBAgR7zUaMYbAqsZwG6L/fN06I/IezKsZaC8fz/O9GfhU0/5g3tg/6PBUvKBNXb6PF4W5VNXP1sJspqURbzH23ilPFX6z5D4s/J4gqSd0av0/aJQpJ9FUre01A/bCO26argF6wu4PtGL5Nz5KV9dsFEJrjIHZpxXOUiMbbnxQZColURDRqKxxOEfbEe1fraenNsWD5Sq4q7oeH54hBvthH4ccYvYru/+8pgxTSHtfqKdtkRS5EpJZ3MnGtLiqXo0xIoSsHUuKuZym2I5/bocrPBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uLF4fSemtdYtRDyXJ1Kf4ZiuN8tBRD4sFe+7O709qYE=;
- b=XDTdSM4ykURdYrAiKC1TungOY07qGnfaMA1JXwlKR2g9IIPBP7/eIwajBWLu1kpJs+RQ3YmnOFDheuYj+gzrrtwJZct7xcEwb+3BkYZegMjU6tdHcppuuHJ/eEONNHKsr3QGv2LQ+xgWjb4q+850OS7tR/0fjVzGBz8BjdW/Iv8PfcrdfaHX0xd2IC62yZmebVoNUJe9xEcW84E6OD9U6WjUS7ZDg7JIJFqybsQJi/trcAaotBcqNZx5tnnDQQQxXyfWZpucnvXtJ9po6WYtv6mBfUdat22dZjpljV5QfuXn4heAcAnij2C7Bp0/LecjyzX6NV4Bs00cg7GHVi30pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uLF4fSemtdYtRDyXJ1Kf4ZiuN8tBRD4sFe+7O709qYE=;
- b=qRyy9IK0SDa14miC8QaWDJlIvxgUFyTiOimNnbViH0CN9hspLNBsT3hG7bASYod9Fk1nkFNcr+W9D1GAdeEa9M6WvHHBJQ1eFrvRlOAvqI12jrMwAva1VqeRhpbOnn7XiTBerOmBWD68+Fzgc1UK2Y56Zg52XMsDWDcoZvJuLk8=
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com (2603:10b6:a03:1d3::8)
- by BY5PR02MB6866.namprd02.prod.outlook.com (2603:10b6:a03:237::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Fri, 12 Mar
- 2021 18:39:34 +0000
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::3100:8a63:1f0d:8246]) by BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::3100:8a63:1f0d:8246%9]) with mapi id 15.20.3912.030; Fri, 12 Mar 2021
- 18:39:34 +0000
-From:   Radhey Shyam Pandey <radheys@xilinx.com>
-To:     Robert Hancock <robert.hancock@calian.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH net-next v2 1/2] dt-bindings: net: xilinx_axienet:
- Document additional clocks
-Thread-Topic: [PATCH net-next v2 1/2] dt-bindings: net: xilinx_axienet:
- Document additional clocks
-Thread-Index: AQHXF2dHizUJNgzh3ky57zPSYH/TUaqArgIA
-Date:   Fri, 12 Mar 2021 18:39:34 +0000
-Message-ID: <BY5PR02MB65203D654C8B9E991B8EFDC9C76F9@BY5PR02MB6520.namprd02.prod.outlook.com>
-References: <20210312174326.3885532-1-robert.hancock@calian.com>
- <20210312174326.3885532-2-robert.hancock@calian.com>
-In-Reply-To: <20210312174326.3885532-2-robert.hancock@calian.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: calian.com; dkim=none (message not signed)
- header.d=none;calian.com; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [47.9.68.86]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 721c438e-0950-4dd9-9a47-08d8e5862ed9
-x-ms-traffictypediagnostic: BY5PR02MB6866:
-x-microsoft-antispam-prvs: <BY5PR02MB6866C656A9F2F7BFF49EA42FC76F9@BY5PR02MB6866.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: X5cFo+n2I/KYhQ9SepVKebjiqbFCFNyyXi4Z26hMnRp/gyb6Xgs6OIEt62O87j42TnsBD4EdY+V4Q9t8OSQqMd4yfEYcKXFk4h5wRwMOs9zYLCzpEIhI5q7l5rGruy6OPdlLdH4/AYiv12MvGXMOS2cEs2r2lfU3CRQ1rFwrhGsyhxz+IR4tAw6/D4oQYsu4Ow0JecKUaLhXLd2M4MP5xp9iRyBJaEIQm1zxkDFgGY1BIuZK1cEb2Qd0GHjfD+QMtEFwaBcTBzgRyQ0I+0qyvxdEXNeieAKUrl8GM+FzGVjiC0KFuTkm12u2/cGGaKalzL55cHhPWsJEhKJWpS8+Xh6RQP8Dz3q2eUgJIu1AmgwklJ9ybiMtWwFshctF4YuryzB93vCQ26VLhEr9HXPGW11XcY8HEl4HFUiThqqJXU4pYITQ4OkIs7gjPehjP67XzcNGo+TJFYANRmmrv2JbA7JfU1UJjYbtViYxSTayh0/CXEp4zH8QewYqDWOE9/eT273D8WQtUtPaqaBnTd8zOPfLAcR5eooG9ohUSTJFYxA3fN8dilteNt7BjzRLPbs0
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6520.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(136003)(376002)(366004)(39860400002)(55016002)(9686003)(86362001)(4326008)(33656002)(83380400001)(66946007)(478600001)(76116006)(2906002)(7696005)(64756008)(8936002)(54906003)(52536014)(66556008)(6506007)(8676002)(53546011)(186003)(71200400001)(110136005)(66476007)(26005)(5660300002)(66446008)(316002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?i4FuziNPaHLfXeWiV+W4X7unw0PVPizZ1Hr8VwRTxI7oC/YLzOeqNdfPgobx?=
- =?us-ascii?Q?JoNthBpGrbOWhY09WYYdn1b/gnZpm6NrsvlIPcm8sQhkykyEEIX2sjNa7JOP?=
- =?us-ascii?Q?dhKAblfnE1e73Qz3fRe3p10ep3CkN9LvlSk/CgQnPjy7ns9HWGLZkmKxoCVp?=
- =?us-ascii?Q?IGjReQRpYPcMb2tv2QAMlOBGvkA3Dg5omaMtGCKmdHISYHa8wvpdn/XBVDzJ?=
- =?us-ascii?Q?lVoruNYA9ivgrjvn/Ff5OMCKX6vcJppnjRuWxx+SMviCxEY8BFNOu1/GeR4p?=
- =?us-ascii?Q?eAsXni48OlVMloUEK4Uc00m0B4PWw3P8xwuRXFwIVa0wnKibwI0b9PovlPO9?=
- =?us-ascii?Q?RaV24VagJSWkcPSpYNdeBdKcD/NsKZivXRQxAMrGfJqWX52sg4QJPWNc8G5T?=
- =?us-ascii?Q?WIjECcjfXzmFMJyh3oBTMXXQxugbEgXX/lqZCzQxSwg4qeNZw+9k6QUOU4AG?=
- =?us-ascii?Q?aZXzlOR2FrLwZBYgV+cyAzxEwegkL7K2CaEdefGZJQZGun146IhKZ7gFIJ/3?=
- =?us-ascii?Q?auMQYr9/jk/WXEpmKkyxHJ4lPC638DOJ+0hxTB+XpYFuyVzq2DYXbK37IE+V?=
- =?us-ascii?Q?a/cQu15ZihnIwMWMY9hoELNuf4KFXWmitjn3zvO80iiIq4nTZD2sdpAN23I/?=
- =?us-ascii?Q?mNDEjtCGcPncqE3oOxPqAehqeiIeQlFaiY3PXOa7dKlE/zxj5/0WoVhzDgH4?=
- =?us-ascii?Q?hK0fIfaEz+DTGux5jHuvCXmwhE/eqQ2XDMZmlUYB5GmmflN2dmLcBwpXnSkK?=
- =?us-ascii?Q?T7cX3E9SzXSyGcyz/r9vLxRdvmGp/Wg0J/MucEIpWKlUOhkGchLlkzWvHk8S?=
- =?us-ascii?Q?v85yX87wDlDdbTpFFv0CY7nY7J+/JHwkFssC0r5Y655akT/1Y6Tlqz17GzhG?=
- =?us-ascii?Q?VJ1ZckmGHdY2wRPhJVUpsWZyfjAk8Ek72Er8p0PHiWAJwV3FEv9R1KMX6AaX?=
- =?us-ascii?Q?yg9vsUURAACVaAMXCmvMCGEHdGm3tRiYuPe7j/s4ryuJ/tWQJm2zBtaajJUQ?=
- =?us-ascii?Q?t2GdeSjW/pQ6FjymcANDBxqqWBynbFhpaYrCqjnwBM4GVSw6WBBcR6ZMs6TX?=
- =?us-ascii?Q?6w48k7TK+2On+1NK3LcFrDFm308f1rbrOwALGlnLKjGjF/ovTUcS074drvW3?=
- =?us-ascii?Q?OVf6Ef08o8k2pIkZVuz+tVOMQWe7aOFplHoZw14llzPvQM/vfMr3w3AbymRw?=
- =?us-ascii?Q?7sEWDNMPK0CNt2J9wG6NY/SJpoJqiKHXnjO4vAYaZMD67eSvDekuFhbUu4qB?=
- =?us-ascii?Q?p/aB+IzITZn39rb6rZyWOtwNthuVJ1yYZW3bjzHDLCIP2645VZR2Umsauh8d?=
- =?us-ascii?Q?VMA=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S233823AbhCLSne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 13:43:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233832AbhCLSnc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 13:43:32 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5E3C164DEF;
+        Fri, 12 Mar 2021 18:43:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615574611;
+        bh=sKX2rrb6XkiYk5GQI8k4S0Xcn1WhEhpPzkJYF4w5HQY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WGa+OIImtBLT6B9fBhRu9whkob+oyS22VSvs/u9Hl+jTC06bBuhomU1HA92pU+7qP
+         V44Py2/oLpwuvLVslyFSAmiQpPhUViqyPypv1+1luj2tmFp6mHHF1+LdrbbkgtX6MC
+         A0Hkek/kJvJHWBF5rOosCmIDbpmLNmz+w078KgNWiZiDkTObqd+IneILAMFj5sg87o
+         I+ynB0YhhFoPyTzO/naeUawbmx7KINbkX+4LnCvkg6dhZg6EwoQzzqFPGFwb0e4siB
+         UK9w9UmnnxtwxGMPlC1fQhr478bXztBwBXb4VC+dO95r2mbwgU2zZge2x3LnKMak5n
+         GcJTCFp0+Lwcg==
+Date:   Fri, 12 Mar 2021 18:42:18 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, linux-rtc@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        allen <allen.chen@ite.com.tw>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        linux-arm-kernel@lists.infradead.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [GIT PULL] Immutable branch between MFD, PWM and RTC due for the
+ v5.13 merge window
+Message-ID: <20210312184218.GL5348@sirena.org.uk>
+References: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
+ <20210301102826.GK641347@dell>
+ <20210309200520.GA4931@dell>
+ <20210310113959.dnokjrt7dos43fx6@pengutronix.de>
+ <YEizYHPnzyLad6Yi@piout.net>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6520.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 721c438e-0950-4dd9-9a47-08d8e5862ed9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2021 18:39:34.5942
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /khXp8s/hZ1yGsmjcr7+1brWsbpXZwyG+BAeZa2y41OnQCrjK+eHlPqvKyvz+fddbnKL5CrFxUToPjcl4fF+ig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6866
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sMZCuqyhuhd4ycTi"
+Content-Disposition: inline
+In-Reply-To: <YEizYHPnzyLad6Yi@piout.net>
+X-Cookie: Lake Erie died for your sins.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Robert Hancock <robert.hancock@calian.com>
-> Sent: Friday, March 12, 2021 11:13 PM
-> To: Radhey Shyam Pandey <radheys@xilinx.com>; davem@davemloft.net;
-> kuba@kernel.org
-> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; Robert Hancock
-> <robert.hancock@calian.com>
-> Subject: [PATCH net-next v2 1/2] dt-bindings: net: xilinx_axienet: Docume=
-nt
-> additional clocks
->=20
-> Update DT bindings to describe all of the clocks that the axienet driver =
-will
-> now be able to make use of.
->=20
-> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
-> ---
->  .../bindings/net/xilinx_axienet.txt           | 25 ++++++++++++++-----
->  1 file changed, 19 insertions(+), 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> index 2cd452419ed0..5df5ba449b8f 100644
-> --- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> +++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> @@ -42,11 +42,23 @@ Optional properties:
->  		  support both 1000BaseX and SGMII modes. If set, the phy-
-> mode
->  		  should be set to match the mode selected on core reset
-> (i.e.
->  		  by the basex_or_sgmii core input line).
-> -- clocks	: AXI bus clock for the device. Refer to common clock
-> bindings.
-> -		  Used to calculate MDIO clock divisor. If not specified, it is
-> -		  auto-detected from the CPU clock (but only on platforms
-> where
-> -		  this is possible). New device trees should specify this - the
-> -		  auto detection is only for backward compatibility.
-> +- clock-names: 	  Tuple listing input clock names. Possible clocks:
-> +		  s_axi_lite_clk: Clock for AXI register slave interface
-> +		  axis_clk: AXI stream clock for DMA block
 
-Description for axis_clk should be-
-axis_clk: AXI4-Stream clock for TXD RXD TXC and RXS interfaces.
-In this patch I assume we are only adding additional clocks for=20
-1G ethernet subsystem. For dma clocking support we need to add=20
-more clocks and better to add them in a separate patch. Please refer to
-xilinx tree.
-> +		  ref_clk: Ethernet reference clock, used by signal delay
-> +			   primitives and transceivers
-> +		  mgt_clk: MGT reference clock (used by optional internal
-> +			   PCS/PMA PHY)
-> +
-> +		  Note that if s_axi_lite_clk is not specified by name, the
-> +		  first clock of any name is used for this. If that is also not
-> +		  specified, the clock rate is auto-detected from the CPU
-> clock
-> +		  (but only on platforms where this is possible). New device
-> +		  trees should specify all applicable clocks by name - the
-> +		  fallbacks to an unnamed clock or to CPU clock are only for
-> +		  backward compatibility.
-> +- clocks: 	  Phandles to input clocks matching clock-names. Refer to
-> common
-> +		  clock bindings.
->  - axistream-connected: Reference to another node which contains the
-> resources
->  		       for the AXI DMA controller used by this device.
->  		       If this is specified, the DMA-related resources from that
-> @@ -62,7 +74,8 @@ Example:
->  		device_type =3D "network";
->  		interrupt-parent =3D <&microblaze_0_axi_intc>;
->  		interrupts =3D <2 0 1>;
-> -		clocks =3D <&axi_clk>;
-> +		clock-names =3D "s_axi_lite_clk", "axis_clk", "ref_clk",
-> "mgt_clk";
-> +		clocks =3D <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>,
-> <&mgt_clk>;
->  		phy-mode =3D "mii";
->  		reg =3D <0x40c00000 0x40000 0x50c00000 0x40000>;
->  		xlnx,rxcsum =3D <0x2>;
-> --
-> 2.27.0
+--sMZCuqyhuhd4ycTi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Mar 10, 2021 at 12:54:08PM +0100, Alexandre Belloni wrote:
+> On 10/03/2021 12:39:59+0100, Uwe Kleine-K=F6nig wrote:
+
+> > IMHO there are two ways forward: Either someone (Lee again?) creates a
+> > new pull request for this series rebased on -rc2; or we accept that
+> > these few patches are based on -rc1. For the latter it would be
+> > beneficial to merge the tag into a tree that is already based on -rc2.
+
+> The solution is simply for the maintainers merging the immutable branch
+> to do that in a branch based on -rc2. Eg. I've rebased rtc-next on -rc2
+> (fast forward, I didn't have any patch). I can now merge this branch if
+> necessary, problem solved. If you can't rebased, nothing prevents you
+> from merging -rc2 in any branch.
+
+That doesn't exactly address the issue - the goal was to reduce the
+number of commits that a bisect could hit which have the swapfile bug
+but lack the fix.  How serious a few extra commits on a shared branch
+really are is of course an open question though.
+
+--sMZCuqyhuhd4ycTi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBLtgkACgkQJNaLcl1U
+h9CB+wf/ZO7mIUoi7YJ5RncEf1EitAjvU8hcKZiAZOlXiI1OS8PQOpWUQ5K+RbDD
+NJIy7txxdvWxHDxl1pG7f/3iZ0j1S/3VWPDj8U6L04HcMCivzVFsfGME8coY6V8P
+GnJDXv/7OCbnDvmUz8TYpcKRI+OSbOVadnQH2eUoGz1BZ9AAyJ1LL1qHKx7vOp2Z
+rwoSkqkJwBVyuR+bjHFR4vHeBLfcxyBJ0DJG0Cb7INwK1D6t1qbnk90+mSFx3myS
+3ji8G1NRtqfZH5cG76rCoWnXiaDRCPhnanQeI3p3qCEF5PDJQG7ODmWY95HJyZJh
+RNgn4Del1wOcCkNVuV+u5M9+dLu73g==
+=ckES
+-----END PGP SIGNATURE-----
+
+--sMZCuqyhuhd4ycTi--
