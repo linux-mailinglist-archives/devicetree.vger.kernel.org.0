@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4169D338238
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 01:24:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21063338257
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 01:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhCLAXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 19:23:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S231396AbhCLAcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 19:32:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbhCLAXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 19:23:38 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6691EC061762
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 16:23:38 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id r24so2712435otq.13
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 16:23:38 -0800 (PST)
+        with ESMTP id S229740AbhCLAcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 19:32:15 -0500
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8B7C061760
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 16:32:15 -0800 (PST)
+Received: by mail-oo1-xc33.google.com with SMTP id h3-20020a4ae8c30000b02901b68b39e2d3so1132357ooe.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 16:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=y7aT/J1LFmtvLKFcXjPBW6z31sGa88GVVAsq4gij9cI=;
-        b=Dn5GJHIGdDBFWjBqycALa2+mx50GxHOB8uWp3ohF+lpu1lrM04eZO8HaUQORjTFXzF
-         iPinfDZIf4QhZEdJRlcwYJHOmytJ25wC5hxCK8f1Tsm9YyRm8idvLETOkQBjAOmp7ffO
-         0ViTC1hX8AlxyqTumScYmdexvO+2IEUL1YG6rzg3fM59ln5rZKNtqPGZHxby5PPpsWhB
-         vYRqnSl1cNC+R+XTjwNJlFeMBrTdZ1mlFIdmyTEq+00kMQ2lYM8XCn8sCKbGaj/+VTMh
-         FGn/T4+b2f3rkFYwiI9Q+220DwE9Ek1MMnvmcfWfKrgSa8M9cAIBkSoTe4/hBSgodidh
-         fYcA==
+        bh=XxSa1u7IyhhucY0ze3n3dBYIqxQ4tI9IFhWrRdx0ULk=;
+        b=zWgt1QAsksXwn37LZRT7NIO21xaLAynJ+w5PvmhbectrWotS+n50h0x+Uo5GlhZGiJ
+         V4ecIoUP/8fA+uao7odaE+Rhx5x+K7qQ1mGlL3Le3aP2dhIFEB1XDJG4UPW0pMIZKQ39
+         2H/RnWfSRrzxf3Shoi0y6i+x3yNXBKQUqLqbjMV/kU2qUb8HxdOVOjLnV50DHurc1fzb
+         504DbhhatvTwPWNfMb8OD0DQRcAsIBvigp9+7bLvl8FfzFX3AbpYyeICSfXiZc+2rYw6
+         ZePy/D6tmeber9lr/OekoFWDUkpLv+DPWDo21xUItVFCbqa778Zh9dnJ/5TQ/KM8rolB
+         K7mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=y7aT/J1LFmtvLKFcXjPBW6z31sGa88GVVAsq4gij9cI=;
-        b=g9u8E9xsEskR4LoEpG5dNUAVrAujSSSD3ZsjwOsltsP0CMmNfKCezxpfmwOLglsbXF
-         R6iNhpSQqKteAJ+9RlTJJhPMvaALRQiGvV9bwTF+8V6Zu4gsopxdVPGnhyh9AjBHnF1D
-         zqFSIceQpxNdkK5M0376TXFoR7tybc4XbSlxvZqnPRMIipnUmHXliiCcqfcHdPJAcF0a
-         b+cE7xL9379i/YFG6SEPRK+ZJSyfMPKV7suIcje39H4U2Fi9xQJjjLMM1aaG8Qec9DR7
-         HGBOjUlc5A81KylAIGKNnmdqHVCRsPR2iF+Ln5n3cKH8GGRaXzjFnYIymLogyumMiVyb
-         Q6Qw==
-X-Gm-Message-State: AOAM532JGY5mKIaTqJWgRB9poQCLxvmrJBHaFRu6Fd8vyLDJcMSfzb6w
-        bV1w0hwyMas8iI9cpjvSECOfPQ==
-X-Google-Smtp-Source: ABdhPJyKq/vY0N41x7OuC1EarDrRQ9SAJlH1Wyv2qeZEniJ4lH/ZVcEnUtNwvCEzNRKEsQVdfEDssQ==
-X-Received: by 2002:a9d:53c5:: with SMTP id i5mr1189218oth.159.1615508617666;
-        Thu, 11 Mar 2021 16:23:37 -0800 (PST)
+        bh=XxSa1u7IyhhucY0ze3n3dBYIqxQ4tI9IFhWrRdx0ULk=;
+        b=mZ1wzarqJQHtllfgik/1MwCNWdnrzDdMRF34KWitDpZ+cLK0teA68nNJtXmxio6967
+         yROfVygeya82bLpgK1nmaFDCb9zbR1NsdQIwEykEvdiQvleq6TtSM+AAV8pSiI7Va9u4
+         BNTFmAubyz3Jzw+Rgv4tZjT3jt+XpcC5AwHIZqNfrp5eDtWCEjIN3YauifoNLYSjq+/8
+         q/J2eNal6QFxzRuz5k5PVXWKJQDakVLVnnZ0lw1Foa4D08u7l8wGSR6NwSJWPjcGKr8g
+         TNJwTMR175vouw8r+v2jSirtEuRdxDigA/+vI2IusHzpZ1jjWYX4iHZe6dgyowsBN7E9
+         lrTQ==
+X-Gm-Message-State: AOAM531m9Btzhde5qHJD6z7N6vOb4Q84Tw2EBOn9qQj0H3UC/txsnuzb
+        KtFxFX3mNg6YZ1H3EcbC8MQBnw==
+X-Google-Smtp-Source: ABdhPJz6UIt7SjxfugwIFCAKdOTG8YHF2em4Ltec3Ma2jacxcarQZOOzmo/0z43hYlYZv20QAiPhkA==
+X-Received: by 2002:a4a:dc51:: with SMTP id q17mr1259347oov.76.1615509134671;
+        Thu, 11 Mar 2021 16:32:14 -0800 (PST)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h2sm994460otn.43.2021.03.11.16.23.36
+        by smtp.gmail.com with ESMTPSA id l190sm670835oig.39.2021.03.11.16.32.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 16:23:37 -0800 (PST)
+        Thu, 11 Mar 2021 16:32:14 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] remoteproc: qcom: wcnss: Allow specifying firmware-name
-Date:   Thu, 11 Mar 2021 16:24:41 -0800
-Message-Id: <20210312002441.3273183-1-bjorn.andersson@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wcn36xx@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH 0/5] qcom: wcnss: Allow overriding firmware form DT
+Date:   Thu, 11 Mar 2021 16:33:13 -0800
+Message-Id: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,66 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce a firmware-name property, in order to be able to support
-device/platform specific firmware for the wireless connectivity
-subsystem; in line with other Qualcomm remoteproc drivers.
+The wireless subsystem found in Qualcomm MSM8974 and MSM8916 among others needs
+platform-, and perhaps even board-, specific firmware. Add support for
+providing this in devicetree.
 
-Acked-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+Bjorn Andersson (5):
+  dt-bindings: soc: qcom: wcnss: Add firmware-name property
+  wcn36xx: Allow firmware name to be overridden by DT
+  soc: qcom: wcnss_ctrl: Introduce local variable "dev"
+  soc: qcom: wcnss_ctrl: Allow reading firmware-name from DT
+  arm64: dts: qcom: msm8916: Enable modem and WiFi
 
-Changes since v1:
-- Rebased patch
-- Added default filename to the definition
+ .../devicetree/bindings/soc/qcom/qcom,wcnss.txt   |  7 +++++++
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi         | 12 ++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi             |  2 +-
+ drivers/net/wireless/ath/wcn36xx/main.c           |  7 +++++++
+ drivers/net/wireless/ath/wcn36xx/smd.c            |  4 ++--
+ drivers/net/wireless/ath/wcn36xx/wcn36xx.h        |  1 +
+ drivers/soc/qcom/wcnss_ctrl.c                     | 15 ++++++++++-----
+ 7 files changed, 40 insertions(+), 8 deletions(-)
 
- .../devicetree/bindings/remoteproc/qcom,wcnss-pil.txt     | 6 ++++++
- drivers/remoteproc/qcom_wcnss.c                           | 8 +++++++-
- 2 files changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-index da09c0d79ac0..a83080b8905c 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
-@@ -34,6 +34,12 @@ on the Qualcomm WCNSS core.
- 	Definition: should be "wdog", "fatal", optionally followed by "ready",
- 		    "handover", "stop-ack"
- 
-+- firmware-name:
-+	Usage: optional
-+	Value type: <string>
-+	Definition: must list the relative firmware image path for the
-+		    WCNSS core. Defaults to "wcnss.mdt".
-+
- - vddmx-supply: (deprecated for qcom,pronto-v1/2-pil)
- - vddcx-supply: (deprecated for qcom,pronto-v1/2-pil)
- - vddpx-supply:
-diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
-index 2a6a23cb14ca..e8007cc01bfa 100644
---- a/drivers/remoteproc/qcom_wcnss.c
-+++ b/drivers/remoteproc/qcom_wcnss.c
-@@ -530,6 +530,7 @@ static int wcnss_alloc_memory_region(struct qcom_wcnss *wcnss)
- 
- static int wcnss_probe(struct platform_device *pdev)
- {
-+	const char *fw_name = WCNSS_FIRMWARE_NAME;
- 	const struct wcnss_data *data;
- 	struct qcom_wcnss *wcnss;
- 	struct resource *res;
-@@ -547,8 +548,13 @@ static int wcnss_probe(struct platform_device *pdev)
- 		return -ENXIO;
- 	}
- 
-+	ret = of_property_read_string(pdev->dev.of_node, "firmware-name",
-+				      &fw_name);
-+	if (ret < 0 && ret != -EINVAL)
-+		return ret;
-+
- 	rproc = rproc_alloc(&pdev->dev, pdev->name, &wcnss_ops,
--			    WCNSS_FIRMWARE_NAME, sizeof(*wcnss));
-+			    fw_name, sizeof(*wcnss));
- 	if (!rproc) {
- 		dev_err(&pdev->dev, "unable to allocate remoteproc\n");
- 		return -ENOMEM;
 -- 
 2.29.2
 
