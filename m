@@ -2,114 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 719FB3385D4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 07:26:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F8B3385FB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 07:35:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhCLGZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 01:25:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbhCLGZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 01:25:07 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10403C061574;
-        Thu, 11 Mar 2021 22:25:07 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id e26so1149941pfd.9;
-        Thu, 11 Mar 2021 22:25:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DbiM/HSzZZ4GI01XA3bmT/NtzjcaG6At7TJMeyRi268=;
-        b=kfnoYzxJyQsGQs930o9zjPIkVNdy8UqKB0m4fz/eL1sWabAQXHRCaevIb6Egk4HYWP
-         Y7G+sloPPvSWY50jOt036lGYJzLI0iTGffdFbNli6mAh5doJh1e5Dln/MpJfrY4Tu7lp
-         SBGiGMLwrQhlxFmbURWr3E0UzUvKhSU8cVhdQ8OjNfaVH4qpGcVhfmggdLsHLxkfRU69
-         SlQPyg0ah8dAseYuPHvGmJt+mF90Fe/PiirQEQT+BYk+xAq0s7JnFIALln6HdHYLETJ4
-         dPCmrSRkxP5BvHGk+JNt+096ocZXD9kTXCZ/lIY82TwhIOGrTmif09isqZ4zFJCuaLt1
-         vkmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=DbiM/HSzZZ4GI01XA3bmT/NtzjcaG6At7TJMeyRi268=;
-        b=Qr5UDrzG3Pse7/TkYp4bpRoCNV36BvJKO75UT3YX6+R4M+Xo0KsAZUdE93diLK7p/h
-         j/BuP75ltM8E7HbTvoxVJGHlBijpkQw151K9Wg63LfD8p01zUTxiDKJTEdYjxJwJrObT
-         rRnD9wJa6yaD8sG/AsF6ds0XoCXSTaE+gLpG5trsvQWgGw9tO/e1xW71Ibj7BNbMV5+4
-         nQFgc2GQrv0ilPqa9tV1O8BokQgUEjIqnLfuMtZSXr+AY8NhzMZD+MLujyOwL9vAMM2g
-         DJ6x86e0d0AePuG9i1ZxxPloGb9evKtVZlGnb4iPx0KVVSZVNdN1aiAe2BH6riIKUjDP
-         g+kw==
-X-Gm-Message-State: AOAM533OXcwKvFwVif7oxT0R0vTtNcDXhRBeiy+96l1y1BDh6BgLZ0UD
-        EXzfMN4yvp4bI7exmoQJeW0=
-X-Google-Smtp-Source: ABdhPJyevqSj5NqnClRsZ57pwxDoj08fTSg/6sAIzVoEMDnSjCaUc7k9Ay3ZVDGHcDGMXWlL5klGeQ==
-X-Received: by 2002:a63:a512:: with SMTP id n18mr10488698pgf.198.1615530306718;
-        Thu, 11 Mar 2021 22:25:06 -0800 (PST)
-Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
-        by smtp.gmail.com with ESMTPSA id h6sm4048406pfb.157.2021.03.11.22.25.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 11 Mar 2021 22:25:06 -0800 (PST)
-From:   dillon.minfei@gmail.com
-To:     robh+dt@kernel.org, alexandre.torgue@foss.st.com,
-        a.fatoum@pengutronix.de, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@st.com, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk, vladimir.murzin@arm.com,
-        afzal.mohd.ma@gmail.com
-Cc:     dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH v2 8/8] pinctrl: stm32: Add STM32H750 MCU pinctrl support
-Date:   Fri, 12 Mar 2021 14:24:34 +0800
-Message-Id: <1615530274-31422-9-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1615530274-31422-1-git-send-email-dillon.minfei@gmail.com>
-References: <1615530274-31422-1-git-send-email-dillon.minfei@gmail.com>
+        id S231849AbhCLGfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 01:35:25 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45062 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231925AbhCLGfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 01:35:10 -0500
+X-UUID: 7c50e6ce0ba54de4bd4d385f83d6ac61-20210312
+X-UUID: 7c50e6ce0ba54de4bd4d385f83d6ac61-20210312
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1539904409; Fri, 12 Mar 2021 14:35:06 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 12 Mar 2021 14:35:05 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 12 Mar 2021 14:35:04 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <sj.huang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH 0/1] Mediatek pinctrl patch 
+Date:   Fri, 12 Mar 2021 14:35:01 +0800
+Message-ID: <20210312063502.3685-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+This series includes 1 patches:
+1.add lock in mtk_rmw function.
 
-This patch adds STM32H750 pinctrl and GPIO support
-since stm32h750 has the same pin alternate functions
-with stm32h743, so just reuse the stm32h743's pinctrl
-driver
+Zhiyong Tao (1):
+  pinctrl: add lock in mtk_rmw function.
 
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
----
-v2:
-- add compatible string st,stm32h750-pinctrl to pinctl-stm32h743.c as they
-  have same pin alternate functions
-- add STM32H750 to Kconfig description
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 4 ++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h | 2 ++
+ drivers/pinctrl/mediatek/pinctrl-paris.c         | 2 ++
+ 3 files changed, 8 insertions(+)
 
- drivers/pinctrl/stm32/Kconfig             | 2 +-
- drivers/pinctrl/stm32/pinctrl-stm32h743.c | 3 +++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+--
+2.25.1
 
-diff --git a/drivers/pinctrl/stm32/Kconfig b/drivers/pinctrl/stm32/Kconfig
-index f36f29113370..fb1ffc94c57f 100644
---- a/drivers/pinctrl/stm32/Kconfig
-+++ b/drivers/pinctrl/stm32/Kconfig
-@@ -35,7 +35,7 @@ config PINCTRL_STM32F769
- 	select PINCTRL_STM32
- 
- config PINCTRL_STM32H743
--	bool "STMicroelectronics STM32H743 pin control" if COMPILE_TEST && !MACH_STM32H743
-+	bool "STMicroelectronics STM32H743/STM32H750 pin control" if COMPILE_TEST && !MACH_STM32H743
- 	depends on OF && HAS_IOMEM
- 	default MACH_STM32H743
- 	select PINCTRL_STM32
-diff --git a/drivers/pinctrl/stm32/pinctrl-stm32h743.c b/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-index ffe7b5271506..700206c7bc11 100644
---- a/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-+++ b/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-@@ -1966,6 +1966,9 @@ static const struct of_device_id stm32h743_pctrl_match[] = {
- 		.compatible = "st,stm32h743-pinctrl",
- 		.data = &stm32h743_match_data,
- 	},
-+	{	.compatible = "st,stm32h750-pinctrl",
-+		.data = &stm32h743_match_data,
-+	},
- 	{ }
- };
- 
--- 
-2.7.4
 
