@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B84338B9B
+	by mail.lfdr.de (Postfix) with ESMTP id 685B7338B9C
 	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 12:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbhCLLjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 06:39:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
+        id S230508AbhCLLjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 06:39:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbhCLLjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:39:35 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D232C061574
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:39:35 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id c76-20020a1c9a4f0000b029010c94499aedso15604324wme.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:39:35 -0800 (PST)
+        with ESMTP id S229909AbhCLLjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:39:36 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490BFC061761
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:39:36 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id g8so3615692wmd.4
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:39:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Evn/zUZLGvYBTlWu7fdQZVd0huhV0HPNs5LNi3oCJDE=;
-        b=IU5JejxRgCWP9izx2NuQNMXjFon/e1zPNBGN9b6gcsUixMjAhZCKhgiXRvLqqq21RB
-         nmV4BqsTIEpwGmZSIkOveN2+DyafiH//ykz+GrsRR4DDYbqQVF10LGFPXG3QEVM4J6lL
-         hk/y1BCPWQxjzUj/UdgctueDtHpCyy5NgtUZ3Ism/eG1b6A9ZVMe33qV5iL0+wtea9Pj
-         BeqdLPg4qu96Ldya2fZ7sMrEbrZDsgiFbOfTC/mg/oRNd7JYSXd6SJk1u88WEp6xDsaO
-         S9PsW1LpgLbiLkiI+H4MpLAgHIFGhReibpRQVes5D6Hv+yN1oOgy0iQrGexywRzgcqA/
-         1clQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=mGFYaFoZGjo5NxDZ1LQpVesb6DQQaa5iPWIxyqLl8X8=;
+        b=yYyuZSidKe3KaG+8fbP8QW5dSsKPv2q6xMm2NmDKR2Vc7bYpblOu6Don5G8cjIi/va
+         sZ7ghr2Ej0Z8wnYfXl4ZRK4xO5My77x+hOTL4c2s7QY/dOpjnQ8k4vOUOFVbPkEeeW8Y
+         xZz/YlZXiMRQ+Q2UGdo1HPWWqAG0rphv4XS2bt6Pr7VN8o6HXbBniS+/dI16KjNUPuWE
+         36TM6WnI3evkGuJOkTEilGYRz5DLg+fowkKRvxFAD0q/DEiM5dlz4QFVpn33FxApXZ2r
+         xM5UdG0nZeFXZZV8JcjulbriafVa3ueh2d7OP42qgYNzrHtraqqSm1GnU4tOuwtV2p4j
+         mZ0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Evn/zUZLGvYBTlWu7fdQZVd0huhV0HPNs5LNi3oCJDE=;
-        b=Idi/mRT6U7gJvSEg5sMF4Dx/8hRU1/21io+3TQQwh2QPcAjVlsA8b9B7oIk+ZjWCsV
-         xYTIdOq45OobCXZafb1WasPeMlk6QCtyjjvV4w1z27jWG9x0YvSvspvFLU/QRVaZHsaG
-         JZOzeHzwQWXHDlH+ovzarma0Z8oWTDLpcbLuej2utgvFnpZEqzB179+eg8yjSqQE8Bvo
-         ssBdJyFUuBqu1RXjTBdG+mi3G4v5hWJb2FvMD+ch46cnlGD38HPoQ/hG0+Q4kDrntXvm
-         yktt55Z9Wl9Zci3guPlO03DOaEbCA3IRk6+BGdjl0r3jIi11bUKMe7vfKQXL7Ka9S7eQ
-         tcaw==
-X-Gm-Message-State: AOAM531bBbH5mZMMDmZRsxOEtIWFQsfHcND2ATzGEuxtVzSDwbFjm4Qp
-        3pM2pu1pRoVxhNRl6Cy2O//Qng==
-X-Google-Smtp-Source: ABdhPJzV8wjTRuHIFcun07Ew5LkjH6JjzByKgvZiYHIGpZ3HeFPCjuZKjFKK4qcTtalJtn6n05n2FA==
-X-Received: by 2002:a7b:c186:: with SMTP id y6mr13038265wmi.84.1615549173996;
-        Fri, 12 Mar 2021 03:39:33 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=mGFYaFoZGjo5NxDZ1LQpVesb6DQQaa5iPWIxyqLl8X8=;
+        b=CHOhnO+1qUerszQRpkdci3hAk9xnIQPq2FYVT3i4xvPzxsayMQpD9M8HEzISoVxMdi
+         MjH1O3cYbuE13ZVmgGcjHyH9KszgcuVF3wrUAcYIIBESUYPc1490UC8IwQszihGbi3oK
+         Ml5xK7GquLBSlq0sY8G03Q/d+TnytRrKteaGwMDfRgHbHovOt7DiTZH4HwUJRbD3PM55
+         fBHZsiCX+OWM49gXKEKhkPs591JlWrL+2ziKXIL7M822AOyYLPeDVLLXpYJdbsaPyWyk
+         /t1ad2G8M3e1djc/6Niz0Fqc1etgoh6mexRHldpD706EpZp5I3Ya6iVF98SeaRvHnrDp
+         eOhw==
+X-Gm-Message-State: AOAM533TvFxKi/S7a+dCKqcPzo8VlpaLJFuvFwZvOfv+4rlrPond+D6J
+        DNyHNv93dUIF+yhyAHDDxl71pA==
+X-Google-Smtp-Source: ABdhPJygTa4sQibiODvvigQEBBrcoNsLhKiWnTj350U5MKmcO/BK5OxSKL0BUB2GqkcSzJa+5YndnQ==
+X-Received: by 2002:a1c:dd43:: with SMTP id u64mr12622483wmg.160.1615549174918;
+        Fri, 12 Mar 2021 03:39:34 -0800 (PST)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id z1sm7412458wru.95.2021.03.12.03.39.33
+        by smtp.gmail.com with ESMTPSA id z1sm7412458wru.95.2021.03.12.03.39.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 03:39:33 -0800 (PST)
+        Fri, 12 Mar 2021 03:39:34 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, vkoul@kernel.org
 Cc:     robh@kernel.org, devicetree@vger.kernel.org,
@@ -54,53 +54,52 @@ Cc:     robh@kernel.org, devicetree@vger.kernel.org,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 0/5] soundwire: add static port map support
-Date:   Fri, 12 Mar 2021 11:39:24 +0000
-Message-Id: <20210312113929.17512-1-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 1/5] soundwire: add static port mapping support
+Date:   Fri, 12 Mar 2021 11:39:25 +0000
+Message-Id: <20210312113929.17512-2-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20210312113929.17512-1-srinivas.kandagatla@linaro.org>
+References: <20210312113929.17512-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some cases, SoundWire device ports are statically mapped to Controller
+Some of the SoundWire device ports are statically mapped to Controller
 ports during design, however there is no way to expose this information
 to the controller. Controllers like Qualcomm ones use this info to setup
 static bandwidth parameters for those ports.
 
 A generic port allocation is not possible in this cases!
-This patch adds a new member m_port_map to SoundWire device so that
-it can populate the static master port map and share it with controller
-to be able to setup correct bandwidth parameters.
+So this patch adds a new member m_port_map to struct sdw_slave to expose
+this static map.
 
-As a user of this feature this patchset also adds new bindings for
-wsa881x smart speaker which has 4 ports which are statically mapped
-to the 3 output and 1 input port of the controller.
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ include/linux/soundwire/sdw.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Tested it on DB845c and SM8250 MTP.
-
-thanks,
-srini
-
-Changes since v2:
-	- fixed dt_binding_check error and kernel test robot reported errors
-	- updated comments as suggested by Pierre
-	- updated wsa881x to populate m_ports from valid index.
-
-Srinivas Kandagatla (5):
-  soundwire: add static port mapping support
-  soundwire: qcom: update port map allocation bit mask
-  soundwire: qcom: add static port map support
-  ASoC: dt-bindings: wsa881x: add bindings for port mapping
-  ASoC: codecs: wsa881x: add static port map support
-
- .../bindings/sound/qcom,wsa881x.yaml          |  9 ++++++
- drivers/soundwire/qcom.c                      | 31 +++++++++++++++----
- include/linux/soundwire/sdw.h                 |  2 ++
- sound/soc/codecs/wsa881x.c                    |  7 +++++
- 4 files changed, 43 insertions(+), 6 deletions(-)
-
+diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
+index d08039d65825..b032d6ac0b39 100644
+--- a/include/linux/soundwire/sdw.h
++++ b/include/linux/soundwire/sdw.h
+@@ -614,6 +614,7 @@ struct sdw_slave_ops {
+  * @debugfs: Slave debugfs
+  * @node: node for bus list
+  * @port_ready: Port ready completion flag for each Slave port
++ * @m_port_map: static Master port map for each Slave port0 to port14
+  * @dev_num: Current Device Number, values can be 0 or dev_num_sticky
+  * @dev_num_sticky: one-time static Device Number assigned by Bus
+  * @probed: boolean tracking driver state
+@@ -645,6 +646,7 @@ struct sdw_slave {
+ #endif
+ 	struct list_head node;
+ 	struct completion port_ready[SDW_MAX_PORTS];
++	unsigned int m_port_map[SDW_MAX_PORTS];
+ 	enum sdw_clk_stop_mode curr_clk_stop_mode;
+ 	u16 dev_num;
+ 	u16 dev_num_sticky;
 -- 
 2.21.0
 
