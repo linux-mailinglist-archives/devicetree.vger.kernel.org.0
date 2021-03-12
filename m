@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B08B3396CE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 19:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3FB339703
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 20:01:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233823AbhCLSne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 13:43:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46256 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233832AbhCLSnc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 13:43:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5E3C164DEF;
-        Fri, 12 Mar 2021 18:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615574611;
-        bh=sKX2rrb6XkiYk5GQI8k4S0Xcn1WhEhpPzkJYF4w5HQY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WGa+OIImtBLT6B9fBhRu9whkob+oyS22VSvs/u9Hl+jTC06bBuhomU1HA92pU+7qP
-         V44Py2/oLpwuvLVslyFSAmiQpPhUViqyPypv1+1luj2tmFp6mHHF1+LdrbbkgtX6MC
-         A0Hkek/kJvJHWBF5rOosCmIDbpmLNmz+w078KgNWiZiDkTObqd+IneILAMFj5sg87o
-         I+ynB0YhhFoPyTzO/naeUawbmx7KINbkX+4LnCvkg6dhZg6EwoQzzqFPGFwb0e4siB
-         UK9w9UmnnxtwxGMPlC1fQhr478bXztBwBXb4VC+dO95r2mbwgU2zZge2x3LnKMak5n
-         GcJTCFp0+Lwcg==
-Date:   Fri, 12 Mar 2021 18:42:18 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, linux-rtc@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        allen <allen.chen@ite.com.tw>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [GIT PULL] Immutable branch between MFD, PWM and RTC due for the
- v5.13 merge window
-Message-ID: <20210312184218.GL5348@sirena.org.uk>
-References: <20210124214127.3631530-1-j.neuschaefer@gmx.net>
- <20210301102826.GK641347@dell>
- <20210309200520.GA4931@dell>
- <20210310113959.dnokjrt7dos43fx6@pengutronix.de>
- <YEizYHPnzyLad6Yi@piout.net>
+        id S234051AbhCLTBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 14:01:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233517AbhCLTAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 14:00:52 -0500
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89420C061574
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 11:00:52 -0800 (PST)
+Received: by mail-qt1-x830.google.com with SMTP id g24so4611243qts.6
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 11:00:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kzGhrxmiJTrWBtL/l3WmBtmiZndy5MWWMYjOsxhm5KQ=;
+        b=NmKexQDRgj4EznwkNii3VNVSipAhI1yEVxv5Di4HgAmXLQONw8eh1pW7tl1dR7JLtb
+         Brut5GQWDXX99jtWsu0G2HCGjJkj7oioVGYF0FzU9c+2o5VVxbA2U15eSKou1kVS6rpo
+         nOrN093sMPeJHxNEXztNGeEmJ9+6iBeO+y208vhvmslIRV4+xFvsTR1eZK7p2O+BP7dn
+         WMaUilGn9xOhIBLgWlik24H/Afvh/vm4ayCfHNi/mhZARQz2JIZt+IIxJcMs2ikCs3TW
+         Krrn+ccAeyWsKZjteUATH9t2sohEYseyE87qWn+AxLzy88ev5Bx+sU9/uSicJpoKa7wr
+         kSmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kzGhrxmiJTrWBtL/l3WmBtmiZndy5MWWMYjOsxhm5KQ=;
+        b=cojWrxiU4M2CVd+QfrhklasX3c8gSGxLgOVEAcUftRSX8B605IzsOO3oY+QNfv+PbO
+         T8ouv69uR4dZMElJhNYjhKk11Rr0Ne3a0FhN/dOxtECoiweP2BB9scvIukCwu6A+WhuX
+         HgZraM9t/TAWUfCVHdogceXIX4Cj5A/WBn+O/O1/lfbr398yc7RYMHfu4V8lA3RxmA6e
+         rmlbwaiybh3xKYtQqXkTfl0e7tPH84IxcdITExk72rSFRSZYQWB09agZR6xjW5+664KQ
+         n79/mu9RmYXLPw4wvICGGesaHEm3JaMDHiKXKDfz9AZyIms3AG2E20uojxYz1Yvy6i04
+         X5pw==
+X-Gm-Message-State: AOAM5302vOwOd4Co/+AbQ0NAY7o+fwx7VokQur1K/Thwpqjq9dEUmPyL
+        nkSbJaAwAKMQdBq9yX7IMklXG6jw7AR/x7AWBjnMBg==
+X-Google-Smtp-Source: ABdhPJxYg5iTqvwta/uKIJP8aimqRge6tVRr84YyqgU7zzMsWNbFP6B1+lfmY0Ibhn0CUFWfCSGCujcMDH1XgZrA3VY=
+X-Received: by 2002:ac8:690e:: with SMTP id e14mr12931103qtr.273.1615575651683;
+ Fri, 12 Mar 2021 11:00:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sMZCuqyhuhd4ycTi"
-Content-Disposition: inline
-In-Reply-To: <YEizYHPnzyLad6Yi@piout.net>
-X-Cookie: Lake Erie died for your sins.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210312052737.3558801-1-vkoul@kernel.org>
+In-Reply-To: <20210312052737.3558801-1-vkoul@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 12 Mar 2021 22:00:40 +0300
+Message-ID: <CAA8EJpoMeUJj_UmLWX+XTapofkPSKC3QODZ-YUq+wF-sywA+ZA@mail.gmail.com>
+Subject: Re: [PATCH 0/8] arm64: dts: qcom: sm8350: Add PMICs
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Looks good to me.
 
---sMZCuqyhuhd4ycTi
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On Wed, Mar 10, 2021 at 12:54:08PM +0100, Alexandre Belloni wrote:
-> On 10/03/2021 12:39:59+0100, Uwe Kleine-K=F6nig wrote:
+On Fri, 12 Mar 2021 at 08:28, Vinod Koul <vkoul@kernel.org> wrote:
+>
+> This adds the SPMI nodes for SM8350 followed by PMIC base file containing
+> the GPIO nodes for these pmics (pmic compatibles have been picked by LinusW)
+>
+> SM8350-MTP includes PM8350, PM8350B, PM8350C, PMK8350, PMR735A AND PMR735B
+> pmics.
+>
+> Vinod Koul (8):
+>   arm64: dts: qcom: sm8350: Add spmi node
+>   arm64: dts: qcom: pmk8350: Add base dts file
+>   arm64: dts: qcom: pm8350: Add base dts file
+>   arm64: dts: qcom: pm8350b: Add base dts file
+>   arm64: dts: qcom: pm8350c: Add base dts file
+>   arm64: dts: qcom: pmr735a: Add base dts file
+>   arm64: dts: qcom: pmr735b: Add base dts file
+>   arm64: dts: qcom: sm8350-mtp: Add PMICs
+>
+>  arch/arm64/boot/dts/qcom/pm8350.dtsi    | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8350b.dtsi   | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi   | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmr735a.dtsi   | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmr735b.dtsi   | 25 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8350-mtp.dts |  6 ++++++
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi    | 18 ++++++++++++++++++
+>  8 files changed, 174 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350b.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735b.dtsi
+>
+> --
+> 2.26.2
+>
 
-> > IMHO there are two ways forward: Either someone (Lee again?) creates a
-> > new pull request for this series rebased on -rc2; or we accept that
-> > these few patches are based on -rc1. For the latter it would be
-> > beneficial to merge the tag into a tree that is already based on -rc2.
 
-> The solution is simply for the maintainers merging the immutable branch
-> to do that in a branch based on -rc2. Eg. I've rebased rtc-next on -rc2
-> (fast forward, I didn't have any patch). I can now merge this branch if
-> necessary, problem solved. If you can't rebased, nothing prevents you
-> from merging -rc2 in any branch.
-
-That doesn't exactly address the issue - the goal was to reduce the
-number of commits that a bisect could hit which have the swapfile bug
-but lack the fix.  How serious a few extra commits on a shared branch
-really are is of course an open question though.
-
---sMZCuqyhuhd4ycTi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBLtgkACgkQJNaLcl1U
-h9CB+wf/ZO7mIUoi7YJ5RncEf1EitAjvU8hcKZiAZOlXiI1OS8PQOpWUQ5K+RbDD
-NJIy7txxdvWxHDxl1pG7f/3iZ0j1S/3VWPDj8U6L04HcMCivzVFsfGME8coY6V8P
-GnJDXv/7OCbnDvmUz8TYpcKRI+OSbOVadnQH2eUoGz1BZ9AAyJ1LL1qHKx7vOp2Z
-rwoSkqkJwBVyuR+bjHFR4vHeBLfcxyBJ0DJG0Cb7INwK1D6t1qbnk90+mSFx3myS
-3ji8G1NRtqfZH5cG76rCoWnXiaDRCPhnanQeI3p3qCEF5PDJQG7ODmWY95HJyZJh
-RNgn4Del1wOcCkNVuV+u5M9+dLu73g==
-=ckES
------END PGP SIGNATURE-----
-
---sMZCuqyhuhd4ycTi--
+-- 
+With best wishes
+Dmitry
