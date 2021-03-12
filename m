@@ -2,69 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBD41338701
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 09:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0509E338724
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 09:16:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhCLIDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 03:03:39 -0500
-Received: from mail-vs1-f41.google.com ([209.85.217.41]:46751 "EHLO
-        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbhCLIDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 03:03:25 -0500
-Received: by mail-vs1-f41.google.com with SMTP id p24so12055088vsj.13;
-        Fri, 12 Mar 2021 00:03:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3JdMHmmTBvATHsFXKO/cGg+SfkEVzK4ElHSRtkISp+w=;
-        b=rcUgY/BfVh0+z0/LdjReCMQeoepvkMiqf39Pg5oXgupPLmT8o7/9/Zf8Vr8ZMWMxMS
-         mXkTOqm1et2rNDM5IFOPGlyCF1xPcWmHW37p2qP8PRM1R9zzX5ATUSRfCUIzUOO1v44v
-         BOUOeP3aeMh4C9VBEQQ5kPRYLQYfkKm8XrPaPs8gSPl/Fqi3inStRqTtLEDKHUKT836z
-         buJp08DLrq/UbhwRuh0oNVOWDXhcZbGP3jilpZBkx5WFFT26sZnx96pW1ORa4tD9py91
-         Cz3CZDGOFffK+siAYbk4odeBXgrGEQChORnnzyMPkT3lKYGMMEgI1pDXHjiGgHcOAXkm
-         SlPg==
-X-Gm-Message-State: AOAM532H9EYmHJxN3q8MbjRw7Yl4n7aoz9r0UNQnzgGGuyYuJEd5cJlJ
-        CW7YVLqUENI/QUJHda5TY7H6RL6OGX+Yp+GRTmM=
-X-Google-Smtp-Source: ABdhPJy+utvC3BIeFNSsBN27dRWblUEEqe90kHxRo1Acxvslc2MdW/KMU813nKAaMMY9vNqFids+uxI51HnpgxpfX1k=
-X-Received: by 2002:a67:efd0:: with SMTP id s16mr8147295vsp.3.1615536204791;
- Fri, 12 Mar 2021 00:03:24 -0800 (PST)
+        id S231823AbhCLIPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 03:15:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60814 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231466AbhCLIPq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 03:15:46 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E511964F24;
+        Fri, 12 Mar 2021 08:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1615536946;
+        bh=pGOkfq4PO14DvGqEJeNzFWg1lPYSGCHDiyFuwWF38ew=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1DHu3ktO5sP3m9DLEfAyTWhET34y3e8n1W+VXx0TEQiKvp2eb6QEeYIRseQTe/e6s
+         Z9DCjiOORTqwKkDubqHsgXIuOf9SkbQRZLmKWWA5VxqQGwMq8hHaeWqb+d3OhBEb+3
+         yeCG0npTLkYLSAEpDWee16MOo3X6tlishaqdE900=
+Date:   Fri, 12 Mar 2021 09:15:44 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Martin Devera <devik@eaxlabs.cz>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
+        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/2] tty/serial: Add rx-tx-swap OF option to
+ stm32-usart
+Message-ID: <YEsjMJae3cGOdyjG@kroah.com>
+References: <20210308192040.GA2807217@robh.at.kernel.org>
+ <20210311215153.676-1-devik@eaxlabs.cz>
+ <20210311215153.676-2-devik@eaxlabs.cz>
 MIME-Version: 1.0
-References: <20210312025420.529339-1-yoshihiro.shimoda.uh@renesas.com> <20210312025420.529339-3-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20210312025420.529339-3-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Mar 2021 09:03:13 +0100
-Message-ID: <CAMuHMdXje7OrzbbGtxA+wB3=p-eY4s5LANEN5=MmzUTEU1yLpw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77961: Add CAN nodes
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Yusuke Goda <yusuke.goda.sx@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210311215153.676-2-devik@eaxlabs.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 3:54 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add the device nodes for all CAN nodes on R-Car M3-W+.
->
-> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Thu, Mar 11, 2021 at 10:51:53PM +0100, Martin Devera wrote:
+> STM32 F7/H7 usarts supports RX & TX pin swapping.
+> Add option to turn it on.
+> Tested on STM32MP157.
+> 
+> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+>  drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
+>  drivers/tty/serial/stm32-usart.h |  4 ++++
+>  2 files changed, 14 insertions(+), 1 deletion(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.13.
+What changed from v4-v1 on this patch series?  That needs to go below
+the --- line as documented.
 
-Gr{oetje,eeting}s,
+Please fix up and send v6.
 
-                        Geert
+thanks,
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+greg k-h
