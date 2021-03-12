@@ -2,125 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A639339477
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F55A339480
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232613AbhCLROX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 12:14:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38388 "EHLO
+        id S232295AbhCLRQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 12:16:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231679AbhCLROM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:14:12 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD27CC061761
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:14:11 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id d20so27531911oiw.10
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:14:11 -0800 (PST)
+        with ESMTP id S232493AbhCLRPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:15:53 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B103C061762
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:15:53 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id y131so24683600oia.8
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:15:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=lfE3Tva2EoQ6qXyouptwS/JNUmC9k+8pBSYHmEHX/4E=;
-        b=SPbSVI8otiDLbohvEOc1Iwd7Z9bWZ5EfV8yNdqeLw2Ko9dc68L0O7/XOy+ZQGjcrgm
-         KeZr8V/zRo5/PaBF1w3DLqLBF6Khj0OZjGMRkL3LjKCkZDsgfoYtEIrRSQie8rce2b1S
-         /ewv7h6qUod6oaWEyw84bmpZoqglt5VWdUeCOVskk23CQm60h8g14coAtTZlaBQ0uIIH
-         kWxfACfdVnOg9XaBu4DT7RYLLTaEYPGvTH84Fn67phe8gwbOqNcXTdyUGX5JUpIy0iqZ
-         Cn2bqLK4gr4V0ZL42Qf7Sk1UxhnYhePNb5Q+kF1uTumsVzdOW4p680xz6A4afiHY9lZt
-         3tQA==
+        bh=pvchLbk+2G4U5j0PwGj7xyuqRcTZH67zQqFO94yNuvU=;
+        b=tKPk2xZTceJXS43oKJamnXnPMIzm8bcpytkotTjSNMyZBeFF3g1e/pIVWTqdmw4pLs
+         GMWIJ6X3ldMYNvr68gKAvHobIGCEENGgWKZStnRA6ZEcQUrWL4nM6PSWVDi2SalIQ1bo
+         suSFYuEyMvA6CBlnC0kYzVCjUu8rvtlaPARl6EHVpfbfsjWVxOt3XQqZuPBO3UXBKc6O
+         wyAAbEekysmXntj9LYfBCyKEh2z/AU4MZsYpCftb3iWdzmrnuHyqtXFnFOFshjCTxLf9
+         HnWfkw5OoVRV0hkzionwmFu7qEHZ1ovnkvB5x2ywiM1pBWg6JJ86DS5nv/PV2bYBQrHW
+         LTFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=lfE3Tva2EoQ6qXyouptwS/JNUmC9k+8pBSYHmEHX/4E=;
-        b=i67wHqi69jbF2GNRyFmCb9J0PAKrtk9KfELzRZ3EmrH2Z1Iy+5wMd7Y8abtX+I07uC
-         B6EZqXsyhQekRYtxkKotB/emmdm6cR8HE/2j2zB6BnyhQJeG+zGhGSW3mmDLoWyJVMAu
-         8BEyLD9eYmV6SlV4XNnCuEhCrV03x3Ej5Ok4PgdQ19wbWY2dMQ0UwnrQSixl++QAZn3A
-         eEIIlk5qEW6594wVAU7OK6Sww3DPQJAPv2a7KkdsahiJEqIex5PDYTWmsKKjaDmMR470
-         fJKbdG6pvBqitUCJdPiR8yxJ9WMn6JWCtCtve/PoCCnxXo0pKoC5aW72teQLnBIGalto
-         81Nw==
-X-Gm-Message-State: AOAM532MllDnAhe2rq8+4GTR21z+Yx4exFvWfzToeNI3PLnfHeARJFRu
-        yiF3P24i7UnoPbI1u0cHqwteDw==
-X-Google-Smtp-Source: ABdhPJwFn76xWftUWS0EeIEao0boAwPNQUmViHSD4s5LTOSf9w1iWNRs/r2NycrT49OQh3Ep0ojsdg==
-X-Received: by 2002:aca:3307:: with SMTP id z7mr10154124oiz.34.1615569251272;
-        Fri, 12 Mar 2021 09:14:11 -0800 (PST)
+        bh=pvchLbk+2G4U5j0PwGj7xyuqRcTZH67zQqFO94yNuvU=;
+        b=WXQk6XWghfM/45hReAVxNCJ10gud/eDLxxDV+c5y1XX3MIIULLxBb9oZlbJYqQ2icB
+         V55n+u9PLCvsnAHMYaElqTItl/rMB4kEJaMe5zPjezI+1KJJxyCebhGVJAlg4+RR7ll8
+         F9thX6Z5G9XuoWsYcC/uGeVE6JPPp30bAhZbWuR7ObwQMjMdOYlEQdIW0uujFVW6b3hh
+         XYiWLIgCaJVfO42+WNuMQefQkB3uYfBi9aJ8iikhbahjMxJZTAJ9TCUv7gVPCCcQuPqb
+         E9U50NoSFmabi+eRDJQbjRTl/KzjwnmltE58hixLCHeMCz1Vo6TmLxd40p7BIUAVfwnM
+         ZM2w==
+X-Gm-Message-State: AOAM530lvos7thVs/n0tks+aB12G3MR6iACQPmYy/Nk23klhAudnaIJH
+        ddAIJ35TGC+lps3fBptE4a03YQ==
+X-Google-Smtp-Source: ABdhPJxBOPsChzmgafvAwq2jsLAkkq45RsjjQECvcqN/UlDhfQwtBR3gqVC35NBzSFbpxGR2ss4cjw==
+X-Received: by 2002:a05:6808:a90:: with SMTP id q16mr10254447oij.77.1615569353000;
+        Fri, 12 Mar 2021 09:15:53 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n1sm1459174oig.47.2021.03.12.09.14.10
+        by smtp.gmail.com with ESMTPSA id g34sm1597034otg.51.2021.03.12.09.15.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 09:14:10 -0800 (PST)
-Date:   Fri, 12 Mar 2021 11:14:09 -0600
+        Fri, 12 Mar 2021 09:15:52 -0800 (PST)
+Date:   Fri, 12 Mar 2021 11:15:50 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Maulik Shah <mkshah@codeaurora.org>, evgreen@chromium.org,
-        mka@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org,
-        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org,
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
         Mahesh Sivasubramanian <msivasub@codeaurora.org>,
         devicetree@vger.kernel.org
 Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
-Message-ID: <YEuhYd0M0L16kCbX@builder.lan>
+Message-ID: <YEuhxqDRly658D9S@builder.lan>
 References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
  <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
- <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
+In-Reply-To: <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 08 Feb 18:23 CST 2021, Stephen Boyd wrote:
+On Thu 04 Feb 08:21 CST 2021, Maulik Shah wrote:
 
-> Quoting Maulik Shah (2021-02-04 06:21:45)
-> > +
-> > +description:
-> > +  Always On Processor/Resource Power Manager maintains statistics of the SoC
-> > +  sleep modes involving powering down of the rails and oscillator clock.
-> > +
-> > +  Statistics includes SoC sleep mode type, number of times low power mode were
-> > +  entered, time of last entry, time of last exit and accumulated sleep duration.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,rpmh-sleep-stats
-> > +      - qcom,rpm-sleep-stats
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +examples:
-> > +  # Example of rpmh sleep stats
-> > +  - |
-> > +    rpmh-sleep-stats@c3f0000 {
-> > +      compatible = "qcom,rpmh-sleep-stats";
-> > +      reg = <0 0x0c3f0000 0 0x400>;
-> > +    };
+> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 > 
-> Maybe it should just be another reg property of the rpmh or rpm node?
-> Then the rpmh driver can create the stats "device" at driver probe time,
-> or just roll it into the same thing. It looks pretty weird to have a
-> device in DT for this given that it's not really hardware, more like a
-> place that the processor writes some stuff about what's going on in the
-> SoC related to power management. 
+> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> SoC sleep stats driver. The driver is used for displaying SoC sleep
+> statistic maintained by Always On Processor or Resource Power Manager.
 > 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/soc/qcom/soc-sleep-stats.yaml         | 46 ++++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> new file mode 100644
+> index 0000000..1e012ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
+> +
+> +maintainers:
+> +  - Maulik Shah <mkshah@codeaurora.org>
+> +  - Lina Iyer <ilina@codeaurora.org>
+> +
+> +description:
+> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> +  sleep modes involving powering down of the rails and oscillator clock.
+> +
+> +  Statistics includes SoC sleep mode type, number of times low power mode were
+> +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpmh-sleep-stats
+> +      - qcom,rpm-sleep-stats
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    rpmh-sleep-stats@c3f0000 {
+> +      compatible = "qcom,rpmh-sleep-stats";
+> +      reg = <0 0x0c3f0000 0 0x400>;
 
-Given that there is some hardware (although just a chunk of sram) and
-that the same driver is used for RPM, which we don't represent on the
-mmio bus I think the proposed design makes sense.
+The example is built with #address-cells = <1> and #size-cells = <1>, so
+this needs to be reg = <0x0c3f0000 0x400>.
 
 Regards,
 Bjorn
 
-> > +  # Example of rpm sleep stats
-> > +  - |
-> > +    rpm-sleep-stats@4690000 {
-> > +      compatible = "qcom,rpm-sleep-stats";
-> > +      reg = <0 0x04690000 0 0x400>;
-> > +    };
-> > +...
+> +    };
+> +  # Example of rpm sleep stats
+> +  - |
+> +    rpm-sleep-stats@4690000 {
+> +      compatible = "qcom,rpm-sleep-stats";
+> +      reg = <0 0x04690000 0 0x400>;
+> +    };
+> +...
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
