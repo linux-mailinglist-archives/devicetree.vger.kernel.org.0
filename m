@@ -2,137 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 477523385AB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 07:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 697B13385C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 07:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbhCLGPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 01:15:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37150 "EHLO
+        id S229564AbhCLGYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 01:24:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhCLGP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 01:15:27 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52648C061574;
-        Thu, 11 Mar 2021 22:15:26 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id r3so35716117lfc.13;
-        Thu, 11 Mar 2021 22:15:26 -0800 (PST)
+        with ESMTP id S231131AbhCLGYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 01:24:40 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17AC4C061574;
+        Thu, 11 Mar 2021 22:24:40 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id f2-20020a17090a4a82b02900c67bf8dc69so10271931pjh.1;
+        Thu, 11 Mar 2021 22:24:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EZVWmwhX2pG+tDiCjTNSv6TN+QB8CeRqfB+asPGPHpI=;
-        b=FS1kweP/WxtwR2yRIB6sIRz98PuNHYJzq8betUFzi2IJhZLgiA34Vc3I19Pl2xlSR0
-         NRglMIRmu9r1XIZ1httHY881Lz63AvFB43yBaC6P3f9lrNUozSD6AZw7s00fAnkIQL5g
-         ZKzYJf2oQF5JRDk60Seoovgp8YLkyiMo7ty/5mc+bNZrfjwTFQdKL5iwKNz7aZPf56Ht
-         Fdz8XTwNcGT1p263hmPR7yy/oZVyRGJZ4hKxsDFE3FbT/Pfhv8Ak7hZRq84x8q1nPMjT
-         2L+hz5EeQ0gxGKosRrYAkb4PcKFn5VqjHPSvqSFze0aRZoGo6GaDgxaHXoRupDOY71fh
-         pm8Q==
+        h=from:to:cc:subject:date:message-id;
+        bh=9W91lxMjmS6duxJfVFbpN9OrD/qgQmXljbVxuKRaByg=;
+        b=sZvn3dlRhwvxJZo9kABsq7xJGUX3cJwgnX/tbpaERYKuHlQilkL5Zgwv9IEZ3mWGWz
+         4Z/dyota91Aw12qxr2Dnns+kQQQs82MBNxmcqVS1/6bSpZpxfEAO15ewaCptQQhrpk5c
+         +bQeNPFmKaS3jkfdNl/M1mnW7n+RkpjLZvh+++HoaVCQtXG+xqucQgqzaBreXam/Sb8f
+         50am4t2xy8X7NQozoJ4PuVe8LRW4xHxQvwCcbiZVx3NfD2faZQG8hC03vCdhCwDA3DZy
+         HJZFSqNGFx9ifx13L/skpBz7BGHhD/8yCtB+BowywmI5c+EPjUQccOz5om4zp+/G7kBp
+         gqkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EZVWmwhX2pG+tDiCjTNSv6TN+QB8CeRqfB+asPGPHpI=;
-        b=tUCUsiDc7d3NjWPonnL7znCRQBGXXOsItuGGEcpMW2rHrEoaoLhk0YXIh8BHzwMxJc
-         2dbyIRXO7Y8IPHi9p+X2/Gc4JsUKSzJNNqVqeecJ23UwYo//mK6rK0y0oqrMtSWkeWjC
-         gBWjz/CsRSDcUmzNuA6zG0EvehHHXui28Cq0bL+3g9VljpxMtwjU5VzDE0xXhGc48UYr
-         F17AFY7gnyUcAGEWcoQ+8Nrfp0hYL3knFCPIfUgpGxAdE6RA6hDH/2LGimEEoZKHMylt
-         4caP2c4X1XEMSr6xSW/UtzXAFNJH+f2rcNucUSVQKmqqpVqCbyNHlcuQ9R4l69CnbSTK
-         wmBg==
-X-Gm-Message-State: AOAM533g/wATbBGTyoOALYMS98r8iIJR3HsytG8WdscLxqs5mZGWHLUa
-        nKs8iG5FVf5AvJH6omTEpKCKJ0FBWfo=
-X-Google-Smtp-Source: ABdhPJyLShGezzluEkyC5PoAcMfkzzEGVbIGxtXQ8xZ079G3DlAHzbk5sjy6bmxfbR7MVeaOUjkTUQ==
-X-Received: by 2002:a19:c217:: with SMTP id l23mr4401836lfc.506.1615529724892;
-        Thu, 11 Mar 2021 22:15:24 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id m24sm1545384lfq.184.2021.03.11.22.15.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Mar 2021 22:15:24 -0800 (PST)
-Subject: Re: [PATCH v5 2/3] dt-bindings: mtd: Document use of nvmem-cells
- compatible
-To:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210311051309.16789-1-ansuelsmth@gmail.com>
- <20210311051309.16789-2-ansuelsmth@gmail.com>
- <20210311173221.GB866234@robh.at.kernel.org>
- <YEn18b9m5mHX8eO7@Ansuel-xps.localdomain>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <734a5493-5d79-1b51-1f17-ad9f35cc50ca@gmail.com>
-Date:   Fri, 12 Mar 2021 07:15:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-MIME-Version: 1.0
-In-Reply-To: <YEn18b9m5mHX8eO7@Ansuel-xps.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9W91lxMjmS6duxJfVFbpN9OrD/qgQmXljbVxuKRaByg=;
+        b=VUTu39r5Tb2Ppd9o4dPMvlOkYLRdo6HF7ppkUNDaoyfO+ePW3QC4Ezqn76lZZBXzeZ
+         CEZdbRUvciIvs3OTI40E3662UY33bZKWOFhoxh2V2rafvXTa0O4Lz9AYPw5DhJOGURtn
+         krNM3/45K5jemtzX5mC7kn2ONeaXNMsoJgzCb6eUmsBpPkqvMh7S8eZHSoW1S8a44Sh7
+         CcF9GbcJ24m2LGR5bQlukohkbO/Rq7K+OtRP9Kw2lM3g94DHwSnEyI4CDYXq+g2kEtjX
+         s97d/3I/IHWbXMJpeBttL8L6EJL8hAgSt4E8lMHRpeM13eRWwjmO0gMxvMA9UnWQf9e2
+         ww6Q==
+X-Gm-Message-State: AOAM533PAQMdGodelg8ZZ4MYHTuTyFOqjaFVK+0wn5hsWmTNiWswPnuH
+        dUEucDi7iNjw0GZN+ConfNQ=
+X-Google-Smtp-Source: ABdhPJw3ig/kHvwglXds1+7Jh0zNQfsxEoFGGunCQggwqPlTWRTNSOykTswFi7lN2H166PzmXGZEhg==
+X-Received: by 2002:a17:90b:100a:: with SMTP id gm10mr12595731pjb.0.1615530279658;
+        Thu, 11 Mar 2021 22:24:39 -0800 (PST)
+Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
+        by smtp.gmail.com with ESMTPSA id h6sm4048406pfb.157.2021.03.11.22.24.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 11 Mar 2021 22:24:39 -0800 (PST)
+From:   dillon.minfei@gmail.com
+To:     robh+dt@kernel.org, alexandre.torgue@foss.st.com,
+        a.fatoum@pengutronix.de, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, vladimir.murzin@arm.com,
+        afzal.mohd.ma@gmail.com
+Cc:     dillon min <dillon.minfei@gmail.com>
+Subject: [PATCH v2 0/8] ARM: STM32: add art-pi(stm32h750xbh6) board support
+Date:   Fri, 12 Mar 2021 14:24:26 +0800
+Message-Id: <1615530274-31422-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.03.2021 11:50, Ansuel Smith wrote:
-> On Thu, Mar 11, 2021 at 10:32:21AM -0700, Rob Herring wrote:
->> On Thu, Mar 11, 2021 at 06:12:48AM +0100, Ansuel Smith wrote:
->>> Document nvmem-cells compatible used to treat mtd partitions as a
->>> nvmem provider.
->>>
->>> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
->>> ---
->>>   .../bindings/mtd/partitions/nvmem-cells.yaml  | 99 +++++++++++++++++++
->>>   1 file changed, 99 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
->>> new file mode 100644
->>> index 000000000000..b53faf87d4e4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
->>> @@ -0,0 +1,99 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mtd/partitions/nvmem-cells.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Nvmem cells
->>> +
->>> +description: |
->>> +  Any partition containing the compatible "nvmem-cells" will register as a
->>> +  nvmem provider.
->>> +  Each direct subnodes represents a nvmem cell following the nvmem binding.
->>> +  Nvmem binding to declare nvmem-cells can be found in:
->>> +  Documentation/devicetree/bindings/nvmem/nvmem.yaml
->>> +
->>> +maintainers:
->>> +  - Ansuel Smith <ansuelsmth@gmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: "../../nvmem/nvmem.yaml#"
->>
->> I'd rather have the 'absolute' path:
->>
->> /schemas/nvmem/nvmem.yaml
->>
->> Otherwise,
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->>
-> 
-> Should I send a v7?
+From: dillon min <dillon.minfei@gmail.com>
 
-Yes, please, let's make it the right way :)
+This patchset intend to add art-pi board support, this board developed
+by rt-thread(https://www.rt-thread.org/).
+
+Board resources:
+
+8MiB QSPI flash
+16MiB SPI flash
+32MiB SDRAM
+AP6212 wifi,bt,fm comb
+
+sw context:
+- as stm32h750 just has 128k bytes internal flash, so running a fw on
+  internal flash to download u-boot/kernel to qspi flash, boot
+  u-boot/kernel from qspi flash. this fw is based on rt-thread.
+- kernel can be xip on qspi flash or load to sdram
+- root filesystem is jffs2(created by buildroot), stored on spi flash
+
+to support the boad, add following changes.
+- fix r0-r3, r12 register restore failed after svc call,
+- add dts binding
+- update yaml doc
+
+changes in v2:
+- reorganize the pinctrl device tree about stm32h7-pinctrl/stm32h743/750-pinctrl
+  stm32h7-pinctrl.dtsi --> stm32h743-pinctrl.dtsi --> stm32h743i-disco.dts
+                       |                          |-> stm32h743i-eval.dts
+                       |-> stm32h750-pinctrl.dtsi --> stm32h750i-art-pi.dts
+   same to the stm32f7/f4's pinctrl style
+- fix author name/copyright mistake
+- add compatible string st,stm32h750-pinctrl to pinctl-stm32h743.c as they
+  have same pin alternate functions, update Kconfig description
+- make item in stm32h750i-art-pi.dts sort by letter
 
 
-When sending V7 please:
+dillon min (8):
+  Documentation: arm: stm32: Add stm32h750 value line doc
+  dt-bindings: arm: stm32: Add compatible strings for ART-PI board
+  dt-bindings: pinctrl: stm32: Add stm32h750 pinctrl
+  ARM: dts: stm32: introduce stm32h7-pinctrl.dtsi to support stm32h750
+  ARM: dts: stm32: add stm32h750-pinctrl.dtsi
+  ARM: dts: stm32: add support for art-pi board based on stm32h750xbh6
+  ARM: stm32: Add a new SOC - STM32H750
+  pinctrl: stm32: Add STM32H750 MCU pinctrl support
 
-1. Include above "Reviewed-by" in the "dt-bindings: mtd: Document use of nvmem-cells compatible"
+ Documentation/arm/index.rst                        |   1 +
+ Documentation/arm/stm32/stm32h750-overview.rst     |  33 ++
+ .../devicetree/bindings/arm/stm32/stm32.yaml       |   4 +
+ .../bindings/pinctrl/st,stm32-pinctrl.yaml         |   1 +
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/stm32h7-pinctrl.dtsi             | 392 +++++++++++++++++++++
+ arch/arm/boot/dts/stm32h743-pinctrl.dtsi           | 307 +---------------
+ arch/arm/boot/dts/stm32h743.dtsi                   |  30 ++
+ arch/arm/boot/dts/stm32h750-pinctrl.dtsi           |  11 +
+ arch/arm/boot/dts/stm32h750.dtsi                   |   5 +
+ arch/arm/boot/dts/stm32h750i-art-pi.dts            | 228 ++++++++++++
+ arch/arm/mach-stm32/board-dt.c                     |   1 +
+ drivers/pinctrl/stm32/Kconfig                      |   2 +-
+ drivers/pinctrl/stm32/pinctrl-stm32h743.c          |   3 +
+ 14 files changed, 717 insertions(+), 302 deletions(-)
+ create mode 100644 Documentation/arm/stm32/stm32h750-overview.rst
+ create mode 100644 arch/arm/boot/dts/stm32h7-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750i-art-pi.dts
 
-2. Include my "Tested-by" in the "mtd: core: add nvmem-cells compatible to parse mtd as nvmem cells"
-Reference:
-[PATCH v2 2/3] mtd: core: add nvmem-partitions compatible to parse mtd as nvmem cells
-https://patchwork.ozlabs.org/project/linux-mtd/patch/20210216212638.28382-3-ansuelsmth@gmail.com/
+-- 
+2.7.4
+
