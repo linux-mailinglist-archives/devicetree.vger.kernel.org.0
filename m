@@ -2,141 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C928338A1F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 11:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AACF1338A36
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 11:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232988AbhCLK3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 05:29:48 -0500
-Received: from smtp.wifcom.cz ([85.207.3.150]:51725 "EHLO smtp.wifcom.cz"
+        id S233437AbhCLKep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 05:34:45 -0500
+Received: from elvis.franken.de ([193.175.24.41]:52584 "EHLO elvis.franken.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231929AbhCLK3p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 05:29:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=kSXHXTR/TeMt8/zrDo1WiK6sqLAP5dPJKbJ+mSkPfN4=;
-        b=LhXTPXw0awQSrl8BO5N8y1J/1Zvxc/HeVmmLkA/WuJn/dSgiF6hKEOn+JzyOmX2rn4Q2wASaQlplmReEL3rteGKKHInwO87jgrZj6g/c614/gXoxJIOMlJ9nXGoDMHc5psXqa2wLBIvsDpA9WxFUUlHgtt0Tevb55nFZgzo3Lgs=;
-From:   Martin Devera <devik@eaxlabs.cz>
-To:     linux-kernel@vger.kernel.org
-Cc:     Martin Devera <devik@eaxlabs.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S233407AbhCLKem (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 05:34:42 -0500
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1lKf7u-0007WV-05; Fri, 12 Mar 2021 11:34:38 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 29B11C1E4A; Fri, 12 Mar 2021 11:29:24 +0100 (CET)
+Date:   Fri, 12 Mar 2021 11:29:24 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     jonas.gorski@gmail.com, Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 2/2] tty/serial: Add rx-tx-swap OF option to stm32-usart
-Date:   Fri, 12 Mar 2021 11:27:13 +0100
-Message-Id: <20210312102713.27776-2-devik@eaxlabs.cz>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210312102713.27776-1-devik@eaxlabs.cz>
-References: <YEsjMJae3cGOdyjG@kroah.com>
- <20210312102713.27776-1-devik@eaxlabs.cz>
-X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
-X-Wif-ss: -2.9 (--)
+        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] mips: bmips: include dt-bindings headers
+Message-ID: <20210312102924.GF7027@alpha.franken.de>
+References: <20200812063129.361862-1-noltari@gmail.com>
+ <20210224093856.2021-1-noltari@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210224093856.2021-1-noltari@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32 F7/H7 usarts supports RX & TX pin swapping.
-Add option to turn it on.
-Tested on STM32MP157.
+On Wed, Feb 24, 2021 at 10:38:49AM +0100, Álvaro Fernández Rojas wrote:
+> Allow including dt-bindings header files for bcm63xx.
+> 
+>  v2: remove irqs header and add more bindings.
+> 
+> Álvaro Fernández Rojas (7):
+>   mips: dts: brcm: allow including header files
+>   mips: bmips: bcm3368: include dt-bindings
+>   mips: bmips: bcm6328: include dt-bindings
+>   mips: bmips: bcm6358: include dt-bindings
+>   mips: bmips: bcm6362: include dt-bindings
+>   mips: bmips: bcm6368: include dt-bindings
+>   mips: bmips: bcm63268: include dt-bindings
+> 
+>  arch/mips/boot/dts/brcm/bcm3368-netgear-cvg834g.dts    | 2 +-
+>  arch/mips/boot/dts/brcm/bcm3368.dtsi                   | 3 +++
+>  arch/mips/boot/dts/brcm/bcm63268-comtrend-vr-3032u.dts | 2 +-
+>  arch/mips/boot/dts/brcm/bcm63268.dtsi                  | 5 +++++
+>  arch/mips/boot/dts/brcm/bcm6328.dtsi                   | 5 +++++
+>  arch/mips/boot/dts/brcm/bcm6358-neufbox4-sercomm.dts   | 2 +-
+>  arch/mips/boot/dts/brcm/bcm6358.dtsi                   | 4 ++++
+>  arch/mips/boot/dts/brcm/bcm6362-neufbox6-sercomm.dts   | 2 +-
+>  arch/mips/boot/dts/brcm/bcm6362.dtsi                   | 5 +++++
+>  arch/mips/boot/dts/brcm/bcm6368.dtsi                   | 4 ++++
+>  arch/mips/boot/dts/brcm/bcm93384wvg.dts                | 2 +-
+>  arch/mips/boot/dts/brcm/bcm93384wvg_viper.dts          | 2 +-
+>  arch/mips/boot/dts/brcm/bcm96368mvwg.dts               | 2 +-
+>  arch/mips/boot/dts/brcm/bcm97125cbmb.dts               | 2 +-
+>  arch/mips/boot/dts/brcm/bcm97346dbsmb.dts              | 4 ++--
+>  arch/mips/boot/dts/brcm/bcm97358svmb.dts               | 4 ++--
+>  arch/mips/boot/dts/brcm/bcm97360svmb.dts               | 2 +-
+>  arch/mips/boot/dts/brcm/bcm97362svmb.dts               | 4 ++--
+>  arch/mips/boot/dts/brcm/bcm97420c.dts                  | 2 +-
+>  arch/mips/boot/dts/brcm/bcm97425svmb.dts               | 4 ++--
+>  arch/mips/boot/dts/brcm/bcm97435svmb.dts               | 4 ++--
+>  arch/mips/boot/dts/brcm/bcm9ejtagprb.dts               | 2 +-
+>  22 files changed, 47 insertions(+), 21 deletions(-)
 
-Signed-off-by: Martin Devera <devik@eaxlabs.cz>
-Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
-v6: 
-  - add version changelog
-v4:
-  - delete superfluous has_swap=false
-v3:
-  - add has_swap to stm32_usart_info (because F4 line
-    doesn't support swapping)
-  - move swap variable init from stm32_usart_of_get_port
-    to stm32_usart_init_port because info struct is not
-    initialized in stm32_usart_of_get_port yet
-  - set USART_CR2_SWAP in stm32_usart_startup too
-v2:
-  - change st,swap to rx-tx-swap (pointed out by Rob Herring)
-  - rebase patches as suggested by Greg Kroah-Hartman
----
- drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
- drivers/tty/serial/stm32-usart.h |  4 ++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
+series applied to mips-next.
 
-diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-index b3675cf25a69..d390f7da1441 100644
---- a/drivers/tty/serial/stm32-usart.c
-+++ b/drivers/tty/serial/stm32-usart.c
-@@ -644,6 +644,12 @@ static int stm32_usart_startup(struct uart_port *port)
- 	if (ret)
- 		return ret;
- 
-+	if (stm32_port->swap) {
-+		val = readl_relaxed(port->membase + ofs->cr2);
-+		val |= USART_CR2_SWAP;
-+		writel_relaxed(val, port->membase + ofs->cr2);
-+	}
-+
- 	/* RX FIFO Flush */
- 	if (ofs->rqr != UNDEF_REG)
- 		stm32_usart_set_bits(port, ofs->rqr, USART_RQR_RXFRQ);
-@@ -758,7 +764,7 @@ static void stm32_usart_set_termios(struct uart_port *port,
- 	cr1 = USART_CR1_TE | USART_CR1_RE;
- 	if (stm32_port->fifoen)
- 		cr1 |= USART_CR1_FIFOEN;
--	cr2 = 0;
-+	cr2 = stm32_port->swap ? USART_CR2_SWAP : 0;
- 	cr3 = readl_relaxed(port->membase + ofs->cr3);
- 	cr3 &= USART_CR3_TXFTIE | USART_CR3_RXFTCFG_MASK | USART_CR3_RXFTIE
- 		| USART_CR3_TXFTCFG_MASK;
-@@ -1006,6 +1012,9 @@ static int stm32_usart_init_port(struct stm32_port *stm32port,
- 			return stm32port->wakeirq ? : -ENODEV;
- 	}
- 
-+	stm32port->swap = stm32port->info->cfg.has_swap &&
-+		of_property_read_bool(pdev->dev.of_node, "rx-tx-swap");
-+
- 	stm32port->fifoen = stm32port->info->cfg.has_fifo;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
-index cb4f327c46db..a85391e71e8e 100644
---- a/drivers/tty/serial/stm32-usart.h
-+++ b/drivers/tty/serial/stm32-usart.h
-@@ -25,6 +25,7 @@ struct stm32_usart_offsets {
- struct stm32_usart_config {
- 	u8 uart_enable_bit; /* USART_CR1_UE */
- 	bool has_7bits_data;
-+	bool has_swap;
- 	bool has_wakeup;
- 	bool has_fifo;
- 	int fifosize;
-@@ -76,6 +77,7 @@ struct stm32_usart_info stm32f7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.fifosize = 1,
- 	}
- };
-@@ -97,6 +99,7 @@ struct stm32_usart_info stm32h7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.has_wakeup = true,
- 		.has_fifo = true,
- 		.fifosize = 16,
-@@ -271,6 +274,7 @@ struct stm32_port {
- 	int last_res;
- 	bool tx_dma_busy;	 /* dma tx busy               */
- 	bool hw_flow_control;
-+	bool swap;		 /* swap RX & TX pins */
- 	bool fifoen;
- 	int wakeirq;
- 	int rdr_mask;		/* receive data register mask */
+Thomas.
+
 -- 
-2.11.0
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
