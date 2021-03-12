@@ -2,101 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C5B3393FD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4F333938A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:38:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231733AbhCLQ4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 11:56:40 -0500
-Received: from mga05.intel.com ([192.55.52.43]:41916 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232238AbhCLQ4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 11:56:34 -0500
-IronPort-SDR: kEmlWVVO53mUnbq2jyYItsuZTSabuZ+diJnR3GMhmARBQnjzk+jttV+CVGaMFhF5+IME/QhAR7
- RSX/z5+1Thfw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="273900510"
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
-   d="scan'208";a="273900510"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:34 -0800
-IronPort-SDR: m7PV7WkfAc93lqSIuY6CTzzWASguNbQtVIwM4ROE95HmqWyBGDjCzP7tQWliwQi4pEojYFkEZk
- gIQ0aA0uy8ag==
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
-   d="scan'208";a="411064612"
-Received: from akharche-mobl2.ccr.corp.intel.com (HELO [10.212.135.254]) ([10.212.135.254])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:33 -0800
-Subject: Re: [PATCH v4 0/9] soundwire: qcom: various improvements
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        vkoul@kernel.org
-Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanyog.r.kale@intel.com, yung-chuan.liao@linux.intel.com
-References: <20210312120009.22386-1-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <5afd877e-2213-85f5-cd3c-eca8d060d75c@linux.intel.com>
-Date:   Fri, 12 Mar 2021 10:33:40 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S232303AbhCLQhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 11:37:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231789AbhCLQhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 11:37:24 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EDEC061574;
+        Fri, 12 Mar 2021 08:37:23 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 15so7540936ljj.0;
+        Fri, 12 Mar 2021 08:37:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aMH/wfW4yjgJKNSy/oW2kbzV3PH21seubOZOK6KVyoQ=;
+        b=SPBs1ceelgHNGGJmIQF6zJcRAzWshU7HO5lrtyridGrbdF0p7qWPgBAPIB5SO4WBpo
+         2ZzyU5O0TD0wQIUpGwI9z0BUS0+COTAtJFd1QwrqrMpXSBsxMRdZeQhbqd84fvGB8q00
+         sr3Qc2ntPr5rrEijqC7/sfBKctNZzAFeqDpjMk/5BYoFM4dq7fjbSBFGJxVjdgNMNajq
+         q42YXd7GzxQwpVsv1oU21auTS6hjUvnm6v1g/UOw7PkEtbzsnNrcU/MPdH3CXuBjSM2p
+         GszgkuzwojkiXdLbFeBXBR6tdhToZI3Oh1fo33/lUlcCEIgdN6btBtQrn6cbX3GF2N9v
+         ZMFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aMH/wfW4yjgJKNSy/oW2kbzV3PH21seubOZOK6KVyoQ=;
+        b=jYLAfq4wfQYQWSIfsZOxUNroGLgRHKtvhqoO2gl6xTytCn+YhEMJRoLUhPCloHtH4r
+         zqEJmEsz1UKVD2rkWTsKnFAspJjT/I9I2wN6antfrPOCglguc4o+tIAV80SUQ/9R+3IJ
+         /KxGOBWsvo//KzljcewLu1zzKs209PN5Rr2HlJqvr8iz/H4j/Spm+UpBKb6nOXyR3Oz4
+         GFvFIGZIkuqke8Mk4HAVjUtxJR/KlroRTbu2xmgCX6d7h1KNoRH1MwFOPXYXCz6NNuLf
+         qLNsOv2DorwXTilAJpMz1cQD+qkVDDhKA9L1JR9kUpPv5LQrkPYyl8WkDfiW0Pd7sqt5
+         bHFQ==
+X-Gm-Message-State: AOAM5327HF9tNLbq3LbL3b7rYaU+6iVaGw4wi+Fs1vEBQltlpqL06hjD
+        i2OHNTdaDRLY8Fh0SzRmpzE=
+X-Google-Smtp-Source: ABdhPJyGzurPvbG3Wi2EbHBVL1dIM1EF6TZey71X8yBXxE1Cp6qL+b3x8KdndhVXqPXF/44C/T7vrg==
+X-Received: by 2002:a2e:6c06:: with SMTP id h6mr2996728ljc.154.1615567042296;
+        Fri, 12 Mar 2021 08:37:22 -0800 (PST)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id l21sm1771703lfg.300.2021.03.12.08.37.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Mar 2021 08:37:21 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/7] Couple improvements for Tegra clk driver
+Date:   Fri, 12 Mar 2021 19:36:25 +0300
+Message-Id: <20210312163632.8861-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210312120009.22386-1-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series fixes couple minor standalone problems of the Tegra clk
+driver.
 
+Changelog:
 
-On 3/12/21 6:00 AM, Srinivas Kandagatla wrote:
-> Thanks for reviewing v3 of this patchset!
-> 
-> During testing SoundWire controller on SM8250 MTP, we found
-> few issues like all the interrupts are not handled,
-> all transport parameters are not read from device tree.
-> Patch to add Auto Enumeration supported by the controller
-> is also part of this series.
-> 
-> Other major issue was register read/writes which was interrupt based
-> was an overhead and puts lot of limitation on context it can be used from.
-> 
-> With previous approach number of interrupts generated
-> after enumeration are around 130:
-> $ cat /proc/interrupts  | grep soundwire
-> 21: 130 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
->      
-> after this patch they are just 3 interrupts
-> $ cat /proc/interrupts  | grep soundwire
-> 21: 3 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
-> 
-> So this patchset add various improvements to the existing driver
-> to address above issues.
-> 
-> Tested it on SM8250 MTP with 2x WSA881x speakers, HeadPhones on
-> WCD938x via lpass-rx-macro and Analog MICs via lpass-tx-macro.
-> Also tested on DragonBoard DB845c with 2xWSA881x speakers.
+v4: - Added new patch that converts DT bindings to schema.
 
-LGTM, for the series
+v3: - Added acks from Thierry Reding that he gave to v2.
 
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+    - Added new patch "clk: tegra: Don't allow zero clock rate for PLLs".
 
-> 
-> Changes since v3:
-> 	- Fixed setting assigned bit during autoenumeration
-> 
-> Srinivas Kandagatla (9):
->    dt-bindings: soundwire: qcom: clarify data port bus parameters
->    soundwire: qcom: add support to missing transport params
->    soundwire: qcom: set continue execution flag for ignored commands
->    soundwire: qcom: start the clock during initialization
->    soundwire: qcom: update register read/write routine
->    soundwire: qcom: add support to new interrupts
->    soundwire: export sdw_compare_devid() and sdw_extract_slave_id()
->    soundwire: qcom: add auto enumeration support
->    soundwire: qcom: wait for enumeration to be complete in probe
-> 
->   .../bindings/soundwire/qcom,sdw.txt           |  20 +
->   drivers/soundwire/bus.c                       |   4 +-
->   drivers/soundwire/qcom.c                      | 529 ++++++++++++++----
->   include/linux/soundwire/sdw.h                 |   2 +
->   4 files changed, 442 insertions(+), 113 deletions(-)
-> 
+v2: - Added these new patches:
+
+      clk: tegra: Halve SCLK rate on Tegra20
+      MAINTAINERS: Hand Tegra clk driver to Jon and Thierry
+
+v1: - Collected clk patches into a single series.
+
+Dmitry Osipenko (7):
+  clk: tegra30: Use 300MHz for video decoder by default
+  clk: tegra: Fix refcounting of gate clocks
+  clk: tegra: Ensure that PLLU configuration is applied properly
+  clk: tegra: Halve SCLK rate on Tegra20
+  MAINTAINERS: Hand Tegra clk driver to Jon and Thierry
+  clk: tegra: Don't allow zero clock rate for PLLs
+  dt-bindings: clock: tegra: Convert to schema
+
+ CREDITS                                       |   6 +
+ .../bindings/clock/nvidia,tegra-car.yaml      | 118 ++++++++++++++++++
+ .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
+ .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
+ .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
+ .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
+ .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
+ MAINTAINERS                                   |   4 +-
+ drivers/clk/tegra/clk-periph-gate.c           |  72 +++++++----
+ drivers/clk/tegra/clk-periph.c                |  11 ++
+ drivers/clk/tegra/clk-pll.c                   |  12 +-
+ drivers/clk/tegra/clk-tegra20.c               |   6 +-
+ drivers/clk/tegra/clk-tegra30.c               |   2 +-
+ 13 files changed, 195 insertions(+), 388 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra-car.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
+
+-- 
+2.29.2
+
