@@ -2,91 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DD6A339402
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B4C6339427
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:01:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232253AbhCLQ4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 11:56:40 -0500
-Received: from mga05.intel.com ([192.55.52.43]:41916 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232506AbhCLQ4g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 11:56:36 -0500
-IronPort-SDR: rfAVXrSVINwqSjKApjr0Efo3hp+Fi3ZzJb+U3YGE3HPFalidJDAzJL9QBZNdHF0jQsNNnBSpup
- 4hbZOnDdOQkQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="273900514"
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
-   d="scan'208";a="273900514"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:35 -0800
-IronPort-SDR: cutKU5prVhwng0292vWVtBP8EBJJ+T4ZwcED7toVSBQeGb+2gIuX44RgbLOOWJZ4uVuG/rCSis
- nMlGnvaUkaeA==
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
-   d="scan'208";a="411064630"
-Received: from akharche-mobl2.ccr.corp.intel.com (HELO [10.212.135.254]) ([10.212.135.254])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:35 -0800
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Subject: Re: [PATCH v3 1/5] soundwire: add static port mapping support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, vkoul@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        linux-kernel@vger.kernel.org
-References: <20210312113929.17512-1-srinivas.kandagatla@linaro.org>
- <20210312113929.17512-2-srinivas.kandagatla@linaro.org>
-Message-ID: <5869594c-dfd6-c49d-0168-1993cdeb5a43@linux.intel.com>
-Date:   Fri, 12 Mar 2021 10:56:00 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S232295AbhCLRA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 12:00:56 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33758 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231557AbhCLRAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:00:32 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CH08kt121082;
+        Fri, 12 Mar 2021 11:00:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615568408;
+        bh=zaa/mRSUMAXzQt5H0aezjgMFIyojIQMSj0VLcmmYG0Q=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ZJYQk2vaku81q9JFcftwYrDwiWbZAGlKsxDCS7xolALzY4tOV4aVF0BWT02/gjsTp
+         wiE2GWxclQRfYGBLI08wpZYK4vWqCWAfNIIbz7pXQZkZ1gu8Y/UYMWawOwyep9KYhn
+         7OqlbC/XkucryFWnndJAdBy0aUZO5x7G+oqOfb3k=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CH07Vl049603
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 12 Mar 2021 11:00:08 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 12
+ Mar 2021 11:00:07 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 12 Mar 2021 11:00:07 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CH06Rj086882;
+        Fri, 12 Mar 2021 11:00:07 -0600
+Date:   Fri, 12 Mar 2021 22:30:02 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for
+ spi-cadence-quadspi
+Message-ID: <20210312170000.szh55346o7sm6ase@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <b9450a151cce89cde47b4d6a76c74b32@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <20210312113929.17512-2-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <b9450a151cce89cde47b4d6a76c74b32@walle.cc>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/12/21 5:39 AM, Srinivas Kandagatla wrote:
-> Some of the SoundWire device ports are statically mapped to Controller
-> ports during design, however there is no way to expose this information
-> to the controller. Controllers like Qualcomm ones use this info to setup
-> static bandwidth parameters for those ports.
+On 12/03/21 02:32PM, Michael Walle wrote:
+> Am 2021-03-11 20:12, schrieb Pratyush Yadav:
+> > The main problem here is telling the controller where to find the
+> > pattern and how to read it. This RFC uses nvmem cells which point to a
+> > fixed partition containing the data to do the reads. It depends on [0]
+> > and [1].
+> > 
+> > The obvious problem with this is it won't work when the partitions are
+> > defined via command line. I don't see any good way to add nvmem cells to
+> > command line partitions. I would like some help or ideas here. We don't
+> > necessarily have to use nvmem either. Any way that can cleanly and
+> > consistently let the controller find out where the pattern is stored is
+> > good.
 > 
-> A generic port allocation is not possible in this cases!
-> So this patch adds a new member m_port_map to struct sdw_slave to expose
-> this static map.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->   include/linux/soundwire/sdw.h | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
-> index d08039d65825..b032d6ac0b39 100644
-> --- a/include/linux/soundwire/sdw.h
-> +++ b/include/linux/soundwire/sdw.h
-> @@ -614,6 +614,7 @@ struct sdw_slave_ops {
->    * @debugfs: Slave debugfs
->    * @node: node for bus list
->    * @port_ready: Port ready completion flag for each Slave port
-> + * @m_port_map: static Master port map for each Slave port0 to port14
+> The NXP LS1028A SoC has a similar calibration (although there its done
+> in hardware it seems) and there the datasheet mentions there are flash
+> devices which supports a preamble before a read function. The preamble
+> is then some kind of learning pattern. Did you see a flash which actually
+> supports that in the wild? I can't find any publicly available datasheets
+> of 8bit I/O SPI NOR flashes.
 
-did you mean port1..port14?
+I haven't seen any such flash but it looks like Tudor has.
 
-DP0 is a special case that's not supposed to be used for audio transport 
-but rather extended control and command?
-
->    * @dev_num: Current Device Number, values can be 0 or dev_num_sticky
->    * @dev_num_sticky: one-time static Device Number assigned by Bus
->    * @probed: boolean tracking driver state
-> @@ -645,6 +646,7 @@ struct sdw_slave {
->   #endif
->   	struct list_head node;
->   	struct completion port_ready[SDW_MAX_PORTS];
-> +	unsigned int m_port_map[SDW_MAX_PORTS];
->   	enum sdw_clk_stop_mode curr_clk_stop_mode;
->   	u16 dev_num;
->   	u16 dev_num_sticky;
 > 
+> -michael
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
