@@ -2,90 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4397B338472
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 04:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A07293384AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 05:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231916AbhCLDle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 22:41:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        id S232187AbhCLEbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 23:31:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbhCLDlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 22:41:15 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 939E5C061762
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 19:41:15 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so732437otk.5
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 19:41:15 -0800 (PST)
+        with ESMTP id S232156AbhCLEbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 23:31:13 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D5EC061762
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 20:31:13 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id l7so1015395pfd.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 20:31:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MFFCpBkdUp9drXVA99cMePeD3CLCa9WqYT6b4rIx/GA=;
-        b=Y4gDstC/P8pWS5HglAA12pf8rJs8HdBrV0Cz87PPkOeq3NBr5a8hQ3K5PXE+aBgqG3
-         8aSn0emBd2roPFZnLU3sFPsH3D2+r7BvBsOdDLcLZWB0ko61P9WO6V85qcn8NuedxKjy
-         LokMenJn+0CAwq29WJ+8w8yRyT2OsFrm5hI53RtNhLG2bkdBBRIQE6tGJgAAF9isXCJW
-         haQr9HwqEJpSBW/Yhg0e5PvJGXfrJWHZNztbneNL5BTa4CA25zrwgJIt7nD05uIRUM0E
-         slrXFqXhR0CcFt/X1tA3TjKYBELgHsqnfKGxv7LWMQm1Qingk2RTG6HXWTP46kQ+PJtl
-         LXLQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+0fxl1GUBIYvkb1H9esSXGy99Oerip7BsfpprSNg5Qo=;
+        b=MbUF26Dyag1BvcEag2jaCWzL8pKPt8ngXMDgi+IdCeASiIYHEBFT/vKySRQaO8Fyre
+         n++8NIu3n9lI3kXM2IIPJNjpt5yjH/n09JQZF1JtP7WasB179CU+twTTmQsgPQROhJu8
+         Q72d6owsPbXYyRY2NaKkw0D1szhfHYsnsoo0f0USh2X720eV9+XYP4WVFa5NMEbrv78N
+         sTqVR2ZNXr31WIY8mHnfo22+X9fhtURFeKICZHtxTOD9isFAHkOuTE8hDCTs3nTNoqXW
+         RBrQo01NogXnwz63DeLtdoecb2H1sIHsSXec4EavczroxsjR+70AlIZwfhh47CoeVH3y
+         1PIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MFFCpBkdUp9drXVA99cMePeD3CLCa9WqYT6b4rIx/GA=;
-        b=mC04rsxVTqan/PfeBhFSvgteo+4rib9JfUUGiOSKlKXVmTSDjnXLBuWM0+VKZpjJOM
-         yxTd8/BeX6kwi1TapPyiIlWZbOqKjEkX9v4o0+AipXLBTs1+dL6UuwgjQ4Mz7AlWnXlV
-         nDue7qBtHjzzxgupc4J7vM3WN9LgHd4AZR8kzS9n1rcKLqdyhAyo0ij3+R7D8Ca/titn
-         YDRCMHsopDZOIi7kVv/qOQg10JlRVirrFQxKDkYp2FAS4QYWFwkVQkwjeQ+EeAQZeOY6
-         NrcR1fQ/lpmMFXlLNcuQKmlaVbpnKdXaA6JJRIznZpTmxLRI6+qKq0JrOrKkH48KAQO8
-         rUSw==
-X-Gm-Message-State: AOAM531svYEyOzUuupQy7O4EDoqYlyfmlcUd8szZF2PlzHAAjM0UnQ/0
-        5SRwu/uRocg91BtUkrsl/bCL+w==
-X-Google-Smtp-Source: ABdhPJwx65Fxthu2DAxAeaBNvCg1d17/35dnAH3BVfk3I0bk4CrrA7cAOqsQ/3HWYaHciTpxcC32Ag==
-X-Received: by 2002:a05:6830:149:: with SMTP id j9mr1862619otp.66.1615520475014;
-        Thu, 11 Mar 2021 19:41:15 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 18sm376829oir.4.2021.03.11.19.41.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 19:41:14 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Vinod Koul <vinod.koul@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8350: Add wakeup-parent to tlmm
-Date:   Thu, 11 Mar 2021 19:42:18 -0800
-Message-Id: <20210312034218.3324410-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210312034218.3324410-1-bjorn.andersson@linaro.org>
-References: <20210312034218.3324410-1-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+0fxl1GUBIYvkb1H9esSXGy99Oerip7BsfpprSNg5Qo=;
+        b=DZ9dCUZiJ8k2yNobuBL9NxT8m6uvr1iZFkYP8VoN3z7+awe7y8anlm7DQTZbcRZzUH
+         qEovjk4wroWqxn3qpleMjBoU+FS2Mhke71lbnbObC/GYRjCGwZn0D+Ma0sTUza2sERBr
+         XbJpy8ZCtC/ulVJFQO9BzCpR9EXhVfKGziaetYZnrkqV52sboUyY3oVjAOzTRV48r6Yn
+         rZUxHHgpgF/q9Vfp8NEsEkjx6RCgbWTEZfnT5C7xCIEEY6qtlyLITNZ32o7zlxLpeYBO
+         ljm00ZUSD9Nmta8rSZRkg94qOjyTnXJTM6dZf2LaKJZDluEzqFhhkpV3iurOVkyABnTQ
+         IxpQ==
+X-Gm-Message-State: AOAM5305bGF8UGbHc+dc0/DOCj3HW6BZhNjzMhdaPNcjhmJ1RWiqtmcV
+        DRdOhvVLj2tpQ8L15/TU+kVyUg==
+X-Google-Smtp-Source: ABdhPJycj2Yx3JFFGjbXofNl4coJ6nRKpFM7PXsBffwm8Dks/f6u+dhUobPD6Ps3jWi5gcxA9WiEQQ==
+X-Received: by 2002:a63:504f:: with SMTP id q15mr10280208pgl.290.1615523472771;
+        Thu, 11 Mar 2021 20:31:12 -0800 (PST)
+Received: from localhost ([122.171.124.15])
+        by smtp.gmail.com with ESMTPSA id w188sm3856245pfw.177.2021.03.11.20.31.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 11 Mar 2021 20:31:12 -0800 (PST)
+Date:   Fri, 12 Mar 2021 10:01:10 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        anmar.oueja@linaro.org, Bill Mills <bill.mills@linaro.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V11 0/5] dt: Add fdtoverlay rule and statically build
+ unittest
+Message-ID: <20210312043110.hirx52ibepfrvvij@vireshk-i7>
+References: <cover.1615354376.git.viresh.kumar@linaro.org>
+ <7211f09e-092b-d928-0c69-e2dcd1fc7c1e@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7211f09e-092b-d928-0c69-e2dcd1fc7c1e@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that TLMM has the wakeup table, specify the Power Domain Controller
-to be the wakeup-parent of TLMM.
+On 11-03-21, 17:27, Frank Rowand wrote:
+> On 3/9/21 11:35 PM, Viresh Kumar wrote:
+> > Viresh Kumar (4):
+> >   kbuild: Simplify builds with CONFIG_OF_ALL_DTBS
+> >   kbuild: Allow .dtso format for overlay source files
+> >   of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
+> >   of: unittest: Statically apply overlays using fdtoverlay
+> > 
+> >  drivers/of/unittest-data/Makefile             | 48 ++++++++++
+> >  drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
+> >  drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
+> >  drivers/of/unittest-data/static_base_1.dts    |  4 +
+> >  drivers/of/unittest-data/static_base_2.dts    |  4 +
+> >  drivers/of/unittest-data/testcases.dts        | 23 ++---
+> >  .../of/unittest-data/testcases_common.dtsi    | 19 ++++
+> >  .../of/unittest-data/tests-interrupts.dtsi    | 11 +--
+> >  scripts/Makefile.lib                          | 40 ++++++--
+> >  9 files changed, 218 insertions(+), 112 deletions(-)
+> >  create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+> >  create mode 100644 drivers/of/unittest-data/static_base_1.dts
+> >  create mode 100644 drivers/of/unittest-data/static_base_2.dts
+> >  create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+> > 
+> > 
+> > base-commit: a38fd8748464831584a19438cbb3082b5a2dab15
+> > 
+> 
+> Does not apply to 5.12-rc2
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+I was based right over the 5.12-rc2 tag.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 2c02f451379b..d6295212acf7 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -642,6 +642,7 @@ tlmm: pinctrl@f100000 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&tlmm 0 0 203>;
-+			wakeup-parent = <&pdc>;
- 
- 			qup_uart3_default_state: qup-uart3-default-state {
- 				rx {
+> because of a dependency on a patch to
+> scripts/Makefile.lib.  That patch has been merged by Linus
+> somewhere between -rc2 and -rc3.
+
+git log --oneline v5.12-rc2..origin/master -- scripts/Makefile.lib
+
+gives no results to me.
+
+> I had a working version
+> between -rc2 and -rc3 at commit e6f197677b2e
+
+I have tried both Linus' tree and linux-next, and I don't see this
+commit.
+
+> that does have
+> the required patch, so that is the version I used to test
+> this series.
+> 
+> There is still confusion caused by the contortions that unittest
+> goes through to mis-use base DTBs vs overlay DTBs, so _after_
+> this series is merged by Rob, I will poke around and see if
+> I can change unittest so that it does not look like it is
+> mis-using DTBs and overlay DTBs.
+> 
+> 
+> Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+> Tested-by: Frank Rowand <frank.rowand@sony.com>
+
+Thanks.
+
 -- 
-2.29.2
-
+viresh
