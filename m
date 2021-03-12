@@ -2,132 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34068339246
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:50:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C471339279
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbhCLPtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 10:49:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34072 "EHLO mail.kernel.org"
+        id S232195AbhCLPyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 10:54:11 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:48705 "EHLO m42-2.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232105AbhCLPtX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 10:49:23 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CBEED65006
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 15:49:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615564163;
-        bh=ITV8yYanRuLWRrhgdvQTLw9WWtU2HzzRTFEBHtl96RU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OAIFose9UQOl6WEjEMbhdYy1ZygespU3a3Ydisow9K3vTI8EpN6nNHdGDz/6EqvUE
-         QVu6kIRRIGKrxZDYYGmwETEH2PwXQYnRjU0iuYKGJG4EDePoCRDXrFsc/TBWAkjNQI
-         rz+wAfw4GaHxJ455g+O72PWpoRXSpNQJKoLZLPoT9Q6w8kpZF0hNY6nAK3/qWl4NpS
-         dDjcHH8t8HvP5kS1zZl0WYP7NrXqATPRvspfTD60GjoLXge1EqEA5ePd+K5QOSO0iv
-         u93zQ+mgvZVE0xy9qLCv5GnAgjGtxt2wHz8rTLKuJ3TM4M6DAfbboK4QklZ3OOU3mD
-         Er/o6EDGzBAgw==
-Received: by mail-ed1-f41.google.com with SMTP id j3so8622432edp.11
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 07:49:22 -0800 (PST)
-X-Gm-Message-State: AOAM532fMQJm4f4DJnLVIvpn8K3KjeHbrBV7Ll2MsZk6d1dMOcOCKQnM
-        gsRGJz7t32A7z9B3CtIocFBvd8NBYPaZpyKo5A==
-X-Google-Smtp-Source: ABdhPJzPIjJEtlxOXhtTlMLI3nkgUMRWP0jfax7yMCce0mbCSNvsKUU38PwuXvjxbXhN6s/tpmkN6rboRA256BRYC8k=
-X-Received: by 2002:aa7:c403:: with SMTP id j3mr14874186edq.137.1615564161374;
- Fri, 12 Mar 2021 07:49:21 -0800 (PST)
+        id S232439AbhCLPyC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 10:54:02 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615564442; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=SR9ztMG5APmU84GNnULI+R1jSiJa1lfXUSNJ0K8XiEc=; b=JWC3zqRLvhW88ZQuy+eZ1yS8nKLvBUoBYAQQsEoAbaZJoZ+lnJsOWgw5unIzLwwhPvyk86+V
+ EslUi1Om6zF3YerJ/qF8xewE3jOmfEj09vwrEzjKcD+HWW3jtE1wpTk3KxdXFzXbJnk4uEqv
+ zd8tRnI7sTwDC3uTEOcICeOWOb8=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 604b8e926dc1045b7d16b259 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Mar 2021 15:53:54
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DCC36C4346B; Fri, 12 Mar 2021 15:53:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.29.24] (unknown [49.37.156.9])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0CC35C4346B;
+        Fri, 12 Mar 2021 15:53:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0CC35C4346B
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add sound node for
+ sc7180-trogdor-coachz
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     gross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+References: <20210311164815.14113-1-srivasam@codeaurora.org>
+ <20210311164815.14113-3-srivasam@codeaurora.org>
+ <CAD=FV=VZrfgZHXBFKD2f8uygQC32mPt1CQqMpUzio+yq_Era0A@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <ac6695e0-0628-4b05-bb55-db5abb577158@codeaurora.org>
+Date:   Fri, 12 Mar 2021 21:23:45 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-References: <20210311113456.15686-1-conor.dooley@microchip.com>
- <20210311174305.GA926017@robh.at.kernel.org> <b4c99657-e28c-cf4f-31e5-67a83ecbb4d0@microchip.com>
-In-Reply-To: <b4c99657-e28c-cf4f-31e5-67a83ecbb4d0@microchip.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 12 Mar 2021 08:49:06 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqLxX3rJiwp-Ljg8gvavdaqrkg5q7bj5a23+TK2ZCMfXCA@mail.gmail.com>
-Message-ID: <CAL_JsqLxX3rJiwp-Ljg8gvavdaqrkg5q7bj5a23+TK2ZCMfXCA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: add bindings for polarfire soc system controller
-To:     Conor.Dooley@microchip.com
-Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Lewis.Hanly@microchip.com, Cyril.Jean@microchip.com,
-        Daire McNamara <Daire.McNamara@microchip.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>, david.abdurachmanov@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAD=FV=VZrfgZHXBFKD2f8uygQC32mPt1CQqMpUzio+yq_Era0A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 7:42 AM <Conor.Dooley@microchip.com> wrote:
+Hi Doug,
+
+Thanks for time and valuable inputs!!!
+
+On 3/12/2021 1:24 AM, Doug Anderson wrote:
+> Hi,
 >
-> On 11/03/2021 17:43, Rob Herring wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > On Thu, Mar 11, 2021 at 11:34:56AM +0000, conor.dooley@microchip.com wrote:
-> >> From: Conor Dooley <conor.dooley@microchip.com>
-> >>
-> >> Add device tree bindings for the MSS system controller on
-> >> the Microchip PolarFire SoC.
-> >>
-> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >> ---
-> >>  ...icrochip,polarfire-soc-sys-controller.yaml | 36 +++++++++++++++++++
-> >>  1 file changed, 36 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> >> new file mode 100644
-> >> index 000000000000..222557f96a13
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
-> >> @@ -0,0 +1,36 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: "http://devicetree.org/schemas/soc/microchip/microchip,polarfire-soc-sys-controller.yaml#"
-> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> >> +
-> >> +title: Microchip PolarFire SoC (MPFS) MSS (microprocessor subsystem) system controller
-> >> +
-> >> +maintainers:
-> >> +  - Conor Dooley <conor.dooley@microchip.com>
-> >> +
-> >> +description: |
-> >> +  The PolarFire SoC system controller can be accessed as a mailbox device.
-> >> +  This document describes the bindings for that device.
-> >> +
-> >> +
-> >> +properties:
-> >> +
-> >> +  allOf:
-> >> +    - $ref: /schemas/mbox/mbox-consumer.yaml#properties
-> > This defines a DT property 'allOf'. This would need to be at the top
-> > level with 'properties' dropped. However, you generally don't want to
-> > include consumer schemas. You need to define 'mboxes' property here
-> > because you need to define how many and what they are if more than 1.
+> On Thu, Mar 11, 2021 at 8:48 AM Srinivasa Rao Mandadapu
+> <srivasam@codeaurora.org> wrote:
+>> This is a trgodor variant, required to have sound node variable
+>> for coachz specific platform.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>>   .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi   | 18 ++++++++++++++++++
+>>   1 file changed, 18 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+>> index 4ad520f00485..7623a30a64c7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+>> @@ -238,3 +238,21 @@ &tlmm {
+>>                            "DP_HOT_PLUG_DET",
+>>                            "EC_IN_RW_ODL";
+>>   };
+>> +
+>> +&sound {
+>> +       compatible = "google,sc7180-coachz";
+> You're placing this in the wrong place. Pay attention to the section
+> headings. Your patch is putting this in the section "PINCTRL -
+> board-specific pinctrl". That's not right.
 >
-> In a previous version i was defining it like the below, but you didnt like the redefinition of the common property.
-> Is there something in between the two that you are looking for?
 >
->   mboxes:
->     maxItems: 1
->     description: |
->       phandle and index of the mailbox controller device node.
+>> +       model = "sc7180-adau7002-max98357a";
+>> +       audio-routing = "PDM_DAT", "DMIC";
+>> +
+>> +       dai-link@0 {
+>> +               link-name = "MultiMedia0";
+>> +               reg = <0>;
+>> +               cpu {
+>> +                       sound-dai = <&lpass_cpu 0>;
+> Shouldn't the 0 above be "MI2S_PRIMARY" ?  ...and the "reg" as well?
+Yes, It's required. Will change, and re-post.
+>
+>
+>> +               };
+>> +
+>> +               codec {
+>> +                       sound-dai = <&adau7002>;
+>> +               };
+>> +       };
+> Some overall notes, though:
+>
+> 1. You don't actually need to duplicate everything that you have
+> above. Whether you realize it or not the way devicetree works is that
+> it _merges_ the node in the "coachz" devicetree with the one from the
+> trogdor one (it doesn't replace it). So in trogdor you have:
+>
+> dai-link@0 {
+>    link-name = "MultiMedia0";
+>    reg = <MI2S_PRIMARY>;
+>    cpu {
+>      sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+>    };
+>
+>    codec {
+>      sound-dai = <&alc5682 MI2S_PRIMARY>;
+>    };
+> };
+>
+> ...and in coachz you have:
+>
+> dai-link@0 {
+>    link-name = "MultiMedia0";
+>    reg = <MI2S_PRIMARY>;
+>    cpu {
+>      sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+>    };
+>
+>    codec {
+>      sound-dai = <&adau7002>;
+>    };
+> };
+>
+> Almost all of that is duplication. It's best not to duplicate. Thus,
+> one step better than what you have would be to just have this in
+> coachz to override what you need:
+>
+> dai-link@0 {
+>    codec {
+>      sound-dai = <&adau7002>;
+>    };
+> };
+>
+>
+> 2. In general it's discouraged (and error prone) to try to replicate
+> hierarchies from your parent. So the best would be to change trogdor's
+> device tree to something like this:
+>
+> dai-link@0 {
+>    link-name = "MultiMedia0";
+>    reg = <MI2S_PRIMARY>;
+>    cpu {
+>      sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+>    };
+>
+>    multimedia0_codec: codec {
+>      sound-dai = <&alc5682 MI2S_PRIMARY>;
+>    };
+> };
+>
+> ...and then in coachz you override like:
+>
+> &multimedia0_codec {
+>     sound-dai = <&alc5682 MI2S_PRIMARY>;
+> };
+Okay. Will change accordingly and re-post.
 
-You don't need a description that applies to every 'mboxes' property.
-You need either for 1 entry:
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-mboxes:
-  maxItems: 1
-
-Or for multiple entries:
-
-mboxes:
-  items:
-    - description: What the 1st entry is for
-    - description: What the 2nd entry is for
-    ...
-
-Same thing applies to all common properties where the binding defines
-how many entries (reg, interrupts, clocks, power-domains, etc.).
-
-Rob
