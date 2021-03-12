@@ -2,83 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 623F1338EBD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC40338ED3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 14:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbhCLN1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 08:27:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbhCLN0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 08:26:55 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B2CC061574;
-        Fri, 12 Mar 2021 05:26:55 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 3839422238;
-        Fri, 12 Mar 2021 14:26:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615555611;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KcBTD7nfiYyHNct1X3UL2VExLlEbLzhpNivSjn0I+wk=;
-        b=svmemSWB+o+nVNl6REajtsf58ho2PMVwfIR7ipvPG5EzVj2hB2RF8EgQZ78GvhI1nqBuio
-        1hYjbb30eYza3JohGRszrmYEeG6vNO5Mn1sjlitt10HFidP4nvEOZA6P/tbY3WjEio45LF
-        O07ww65cJKaDHdnj/w4DBwtjYJPhmsA=
+        id S230077AbhCLNcR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 12 Mar 2021 08:32:17 -0500
+Received: from aposti.net ([89.234.176.197]:43472 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231201AbhCLNcB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 08:32:01 -0500
+Date:   Fri, 12 Mar 2021 13:31:45 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 2/6] pinctrl: Ingenic: Add support for read the pin
+ configuration of X1830.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        hns@goldelico.com, paul@boddie.org.uk, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, sernia.zhou@foxmail.com
+Message-Id: <XWYUPQ.9202CFTWWMJ6@crapouillou.net>
+In-Reply-To: <1615476112-113101-3-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1615476112-113101-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1615476112-113101-3-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Fri, 12 Mar 2021 14:26:50 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Tudor.Ambarus@microchip.com, nm@ti.com, kristo@kernel.org,
-        robh+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, broonie@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, lokeshvutla@ti.com
-Subject: Re: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for
- spi-cadence-quadspi
-In-Reply-To: <20210312110707.lrabch4ketqyyepn@ti.com>
-References: <20210311191216.7363-1-p.yadav@ti.com>
- <9c551f56-4c00-b41a-f051-8b7e197fbcdc@microchip.com>
- <20210312101036.jfz2733ssv4nhfey@ti.com>
- <676386736df5e5b22e34b0b5af91c894@walle.cc>
- <20210312110707.lrabch4ketqyyepn@ti.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <278f4417bad780ee610d86299e613990@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-12 12:07, schrieb Pratyush Yadav:
-> On 12/03/21 11:20AM, Michael Walle wrote:
->> Am 2021-03-12 11:10, schrieb Pratyush Yadav:
->> > There is usually a delay from when the flash drives the data line (IOW,
->> > puts a data bit on it) and when the signal reaches the controller. This
->> > delay can vary by the flash, board, silicon characteristics,
->> > temperature, etc.
->> 
->> Temperature might change over time, but the calibration is only done
->> once. I don't know how much influence the temperature actually has, 
->> but
->> our boards are usually operating from -40°C to +85°C. So there might 
->> be
->> a possible temperature difference of 125K between actual calibration 
->> and
->> when the flash is accessed.
+Hi Zhou,
+
+Le jeu. 11 mars 2021 à 23:21, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> Add X1830 support in "ingenic_pinconf_get()", so that it can read the
+> configuration of X1830 SoC correctly.
 > 
-> The algorithm supports a temperature range of -45 C to +130 C. The
-> temperature is checked at calibration time and adjustments are made to
-> make sure the reads work over the entire temperature range [0].
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-Ah, nice. And you need the current temperature to correlate it to the
-meassured timings, right?
+This is a fix, so it needs a Fixes: tag, and you need to Cc 
+linux-stable.
 
--michael
+> ---
+> 
+> Notes:
+>     v2:
+>     New patch.
+> 
+>  drivers/pinctrl/pinctrl-ingenic.c | 76 
+> +++++++++++++++++++++++++++++----------
+>  1 file changed, 57 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
+> b/drivers/pinctrl/pinctrl-ingenic.c
+> index 05dfa0a..0a88aab 100644
+> --- a/drivers/pinctrl/pinctrl-ingenic.c
+> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+> @@ -2109,31 +2109,69 @@ static int ingenic_pinconf_get(struct 
+> pinctrl_dev *pctldev,
+>  	enum pin_config_param param = pinconf_to_config_param(*config);
+>  	unsigned int idx = pin % PINS_PER_GPIO_CHIP;
+>  	unsigned int offt = pin / PINS_PER_GPIO_CHIP;
+> +	unsigned int bias;
+>  	bool pull;
+> 
+> -	if (jzpc->info->version >= ID_JZ4770)
+> -		pull = !ingenic_get_pin_config(jzpc, pin, JZ4770_GPIO_PEN);
+> -	else
+> -		pull = !ingenic_get_pin_config(jzpc, pin, JZ4740_GPIO_PULL_DIS);
+> +	if (jzpc->info->version >= ID_X1830) {
+> +		unsigned int half = PINS_PER_GPIO_CHIP / 2;
+> +		unsigned int idxh = pin % half * 2;
+> 
+> -	switch (param) {
+> -	case PIN_CONFIG_BIAS_DISABLE:
+> -		if (pull)
+> -			return -EINVAL;
+> -		break;
+> +		if (idx < half)
+> +			regmap_read(jzpc->map, offt * jzpc->info->reg_offset +
+> +					X1830_GPIO_PEL, &bias);
+> +		else
+> +			regmap_read(jzpc->map, offt * jzpc->info->reg_offset +
+> +					X1830_GPIO_PEH, &bias);
+> 
+> -	case PIN_CONFIG_BIAS_PULL_UP:
+> -		if (!pull || !(jzpc->info->pull_ups[offt] & BIT(idx)))
+> -			return -EINVAL;
+> -		break;
+> +		bias = (bias >> idxh) & 3;
+
+You can do:
+
+u32 mask = GENMASK(idxh + 1, idxh);
+
+bias = FIELD_GET(mask, bias);
+
+(macros in <linux/bitfield.h>)
+
+> 
+> -	case PIN_CONFIG_BIAS_PULL_DOWN:
+> -		if (!pull || !(jzpc->info->pull_downs[offt] & BIT(idx)))
+> -			return -EINVAL;
+> -		break;
+> +		switch (param) {
+> +		case PIN_CONFIG_BIAS_DISABLE:
+> +			if (bias)
+> +				return -EINVAL;
+> +			break;
+> 
+> -	default:
+> -		return -ENOTSUPP;
+> +		case PIN_CONFIG_BIAS_PULL_UP:
+> +			if ((bias != PIN_CONFIG_BIAS_PULL_UP) ||
+> +					!(jzpc->info->pull_ups[offt] & BIT(idx)))
+
+"bias" is a 2-bit value (because of the & 3 mask), and 
+PIN_CONFIG_BIAS_PULL_UP == 5.
+
+So this clearly won't work. You are comparing hardware values with 
+public API enums.
+
+> +				return -EINVAL;
+> +			break;
+> +
+> +		case PIN_CONFIG_BIAS_PULL_DOWN:
+> +			if ((bias != PIN_CONFIG_BIAS_PULL_DOWN) ||
+> +					!(jzpc->info->pull_downs[offt] & BIT(idx)))
+> +				return -EINVAL;
+> +			break;
+> +
+> +		default:
+> +			return -ENOTSUPP;
+> +		}
+> +
+> +	} else {
+> +		if (jzpc->info->version >= ID_JZ4770)
+> +			pull = !ingenic_get_pin_config(jzpc, pin, JZ4770_GPIO_PEN);
+> +		else
+> +			pull = !ingenic_get_pin_config(jzpc, pin, JZ4740_GPIO_PULL_DIS);
+
+I think you can keep the switch outside the if/else block, if you use 
+pullup/pulldown variables.
+
+These can be initialized (in the non-X1830 case) to:
+
+pullup = pull && (jzpc->info->pull_ups[offt] & BIT(idx));
+pulldown = pull && (jzpc->info->pull_downs[offt] & BIT(idx));
+
+In the X1830 case you'd initialize these variables from 'bias'.
+
+> +
+> +		switch (param) {
+> +		case PIN_CONFIG_BIAS_DISABLE:
+> +			if (pull)
+
+Here would change to if (pullup || pulldown)
+
+> +				return -EINVAL;
+> +			break;
+> +
+> +		case PIN_CONFIG_BIAS_PULL_UP:
+> +			if (!pull || !(jzpc->info->pull_ups[offt] & BIT(idx)))
+
+if (!pullup)
+
+> +				return -EINVAL;
+> +			break;
+> +
+> +		case PIN_CONFIG_BIAS_PULL_DOWN:
+> +			if (!pull || !(jzpc->info->pull_downs[offt] & BIT(idx)))
+
+if (!pulldown)
+
+Cheers,
+-Paul
+
+> +				return -EINVAL;
+> +			break;
+> +
+> +		default:
+> +			return -ENOTSUPP;
+> +		}
+>  	}
+> 
+>  	*config = pinconf_to_config_packed(param, 1);
+> --
+> 2.7.4
+> 
+
+
