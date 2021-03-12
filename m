@@ -2,252 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5160B3389A2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 11:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E3223389B8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 11:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232917AbhCLKGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 05:06:53 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:39702 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232877AbhCLKGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 05:06:22 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 342E88F9;
-        Fri, 12 Mar 2021 11:06:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1615543580;
-        bh=pp3+amsK8swh3Q3bfX4+s7S8jPDOfKNbe5UiT7gfVVg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DO6omztA98uSm0UVriVII0Jf5ThKBcCeBS+wUERCjZm3xBH9PbrpQAHdkz8BauskO
-         AYHWJnkzdPZL/Rdc4Kr9wD7tP7mTIP8NHNKQ3Spf2o5Ps/BAVfS6wDC1nTNAe8JXw2
-         scOCdgVY0opx8zfVVS4VfWzAfJdzJ6kwlQoYMbio=
-Date:   Fri, 12 Mar 2021 12:05:44 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: Convert video-mux to DT schema
-Message-ID: <YEs8+EOc/k7U2pGp@pendragon.ideasonboard.com>
-References: <20210311234042.1588310-1-robh@kernel.org>
- <YErC9/zxKKRXaj+m@pendragon.ideasonboard.com>
- <20210312072904.GA3@paasikivi.fi.intel.com>
+        id S232892AbhCLKLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 05:11:19 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45762 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232952AbhCLKK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 05:10:59 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CAAeIR047426;
+        Fri, 12 Mar 2021 04:10:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615543840;
+        bh=w9BhnOsEXmDnJr92k5Gv+KiRM15+qBMHanC1ChiW5y8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Q1y4mXRmZoDuNdAxSGTuidk/rBcl5zVhXbMMSrben/24a6sldTbhEvz/T84eVCUD9
+         Zb/9ylbktvKAocZiKm3aYcervRw2AWWppoMaADkwV+bKFYfb8Db/ZbJ+5WtAgtDIX1
+         nSwMa/4tHCDvMbE9QUm9Fh1ITR7/Ey7tThYBVmNU=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CAAeDF039353
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 12 Mar 2021 04:10:40 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 12
+ Mar 2021 04:10:40 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 12 Mar 2021 04:10:40 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CAAdIv038442;
+        Fri, 12 Mar 2021 04:10:39 -0600
+Date:   Fri, 12 Mar 2021 15:40:38 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     <Tudor.Ambarus@microchip.com>
+CC:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <michael@walle.cc>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
+        <vigneshr@ti.com>, <broonie@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <lokeshvutla@ti.com>
+Subject: Re: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for
+ spi-cadence-quadspi
+Message-ID: <20210312101036.jfz2733ssv4nhfey@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <9c551f56-4c00-b41a-f051-8b7e197fbcdc@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210312072904.GA3@paasikivi.fi.intel.com>
+In-Reply-To: <9c551f56-4c00-b41a-f051-8b7e197fbcdc@microchip.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
-
-On Fri, Mar 12, 2021 at 09:29:04AM +0200, Sakari Ailus wrote:
-> On Fri, Mar 12, 2021 at 03:25:11AM +0200, Laurent Pinchart wrote:
-> > On Thu, Mar 11, 2021 at 04:40:42PM -0700, Rob Herring wrote:
-> > > Now that we have the graph schema, convert the video-mux binding to DT
-> > > schema.
-> > > 
-> > > Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> > > Cc: linux-media@vger.kernel.org
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../devicetree/bindings/media/video-mux.txt   | 60 ------------
-> > >  .../devicetree/bindings/media/video-mux.yaml  | 93 +++++++++++++++++++
-> > >  2 files changed, 93 insertions(+), 60 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/media/video-mux.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/media/video-mux.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/video-mux.txt b/Documentation/devicetree/bindings/media/video-mux.txt
-> > > deleted file mode 100644
-> > > index 63b9dc913e45..000000000000
-> > > --- a/Documentation/devicetree/bindings/media/video-mux.txt
-> > > +++ /dev/null
-> > > @@ -1,60 +0,0 @@
-> > > -Video Multiplexer
-> > > -=================
-> > > -
-> > > -Video multiplexers allow to select between multiple input ports. Video received
-> > > -on the active input port is passed through to the output port. Muxes described
-> > > -by this binding are controlled by a multiplexer controller that is described by
-> > > -the bindings in Documentation/devicetree/bindings/mux/mux-controller.txt
-> > > -
-> > > -Required properties:
-> > > -- compatible : should be "video-mux"
-> > > -- mux-controls : mux controller node to use for operating the mux
-> > > -- #address-cells: should be <1>
-> > > -- #size-cells: should be <0>
-> > > -- port@*: at least three port nodes containing endpoints connecting to the
-> > > -  source and sink devices according to of_graph bindings. The last port is
-> > > -  the output port, all others are inputs.
-> > > -
-> > > -Optionally, #address-cells, #size-cells, and port nodes can be grouped under a
-> > > -ports node as described in Documentation/devicetree/bindings/graph.txt.
-> > > -
-> > > -Example:
-> > > -
-> > > -	mux: mux-controller {
-> > > -		compatible = "gpio-mux";
-> > > -		#mux-control-cells = <0>;
-> > > -
-> > > -		mux-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> > > -	};
-> > > -
-> > > -	video-mux {
-> > > -		compatible = "video-mux";
-> > > -		mux-controls = <&mux>;
-> > > -		#address-cells = <1>;
-> > > -		#size-cells = <0>;
-> > > -
-> > > -		port@0 {
-> > > -			reg = <0>;
-> > > -
-> > > -			mux_in0: endpoint {
-> > > -				remote-endpoint = <&video_source0_out>;
-> > > -			};
-> > > -		};
-> > > -
-> > > -		port@1 {
-> > > -			reg = <1>;
-> > > -
-> > > -			mux_in1: endpoint {
-> > > -				remote-endpoint = <&video_source1_out>;
-> > > -			};
-> > > -		};
-> > > -
-> > > -		port@2 {
-> > > -			reg = <2>;
-> > > -
-> > > -			mux_out: endpoint {
-> > > -				remote-endpoint = <&capture_interface_in>;
-> > > -			};
-> > > -		};
-> > > -	};
-> > > -};
-> > > diff --git a/Documentation/devicetree/bindings/media/video-mux.yaml b/Documentation/devicetree/bindings/media/video-mux.yaml
-> > > new file mode 100644
-> > > index 000000000000..780fbbd46a38
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/video-mux.yaml
-> > > @@ -0,0 +1,93 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/video-mux.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Video Multiplexer
-> > > +
-> > > +maintainers:
-> > > +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > +
-> > > +description:
-> > > +  Video multiplexers allow to select between multiple input ports. Video
-> > > +  received on the active input port is passed through to the output port. Muxes
-> > > +  described by this binding are controlled by a multiplexer controller.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: video-mux
-> > > +
-> > > +  mux-controls:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    patternProperties:
-> > > +      '^port@':
-> > > +        $ref: /schemas/graph.yaml#/properties/port
+On 12/03/21 09:09AM, Tudor.Ambarus@microchip.com wrote:
+> On 3/11/21 9:12 PM, Pratyush Yadav wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > > 
-> > Should we require at least port@0, port@1 and port@2 ?
+> > Hi,
 > > 
-> > > +
-> > > +patternProperties:
-> > > +  '^port@':
-> > > +    $ref: /schemas/graph.yaml#/properties/port
-> > > +    description:
-> > > +      At least three port nodes containing endpoints connecting to the source
-> > > +      and sink devices according to of_graph bindings. The last port is the
-> > > +      output port, all others are inputs.
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - mux-controls
-> > 
-> > Should a constraint be added to ensure that either a ports node or
-> > port@0, port@1 and port@2 nodes exists ?
+> > This series adds support for OSPI PHY calibration on the Cadence OSPI
+> > controller. This calibration procedure is needed to allow high clock
+> > speeds in 8D-8D-8D mode. The procedure reads some pre-determined pattern
+> > data from the flash and runs a sequence of test reads to find out the
+> > optimal delays for high speed transfer. More details on the calibration
+> > procedure in patch 5/6.
 > 
-> It's not meaningful to have this device without such nodes. But a mux with
-> more ports could be connected in a way that leaves one or both of ports 1
-> and 2 unconnected. It's still not a likely configuration but a possible
-> one.
+> Can the calibration sequence be avoided if the controller is informed
+> about the frequency on which the flash operates?
 
-Those ports wouldn't be connected, but they could still exist in DT.
+Maybe I don't understand this correctly, but there should not be any 
+frequency on which the flash operates. The controller drives the SPI 
+clock so the frequency is decided by the controller. Sure, there is a 
+max supported frequency for the flash but the controller can run it 
+slower than that if it wishes. The flash has no say in that.
 
-> Either way,
+Anyway, the exact frequency at which the flash is running is not it is 
+looking for. More details below.
+
 > 
-> Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Can you add more details about the optimal delays? Are we talking about
+> flash's AC characteristics? Is the calibration still needed if the upper
+> layer informs the QSPI controller about the needed delays?
+
+There is usually a delay from when the flash drives the data line (IOW, 
+puts a data bit on it) and when the signal reaches the controller. This 
+delay can vary by the flash, board, silicon characteristics, 
+temperature, etc.
+
+At lower speeds (25 MHz for example) this delay is not a problem because 
+the clock period is longer so there is much more time to sample the data 
+line. It is very likely the controller will sample at a time when the 
+data line is valid. At high speeds (166 MHz for example), especially in 
+DDR mode, this delay starts to play a larger role because the time to 
+sample the data line is much smaller. Now unless the delay is accounted 
+for, it is possible that the controller samples the data line too late 
+or too early and sees invalid data.
+
+These delays depend on physical characteristics so it is not possible 
+for any upper layer to inform the controller about it. How will they 
+even know what the required delay is?
+
+In summary, no, there is no way an upper layer can inform the controller 
+about this delay.
+
 > 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cheers,
+> ta
+> 
 > > 
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    mux: mux-controller {
-> > > +        compatible = "gpio-mux";
-> > > +        #mux-control-cells = <0>;
-> > > +
-> > > +        mux-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> > > +    };
-> > > +
-> > > +    video-mux {
-> > > +        compatible = "video-mux";
-> > > +        mux-controls = <&mux>;
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        port@0 {
-> > > +            reg = <0>;
-> > > +
-> > > +            mux_in0: endpoint {
-> > > +                remote-endpoint = <&video_source0_out>;
-> > > +            };
-> > > +        };
-> > > +
-> > > +        port@1 {
-> > > +            reg = <1>;
-> > > +
-> > > +            mux_in1: endpoint {
-> > > +                remote-endpoint = <&video_source1_out>;
-> > > +            };
-> > > +        };
-> > > +
-> > > +        port@2 {
-> > > +            reg = <2>;
-> > > +
-> > > +            mux_out: endpoint {
-> > > +                remote-endpoint = <&capture_interface_in>;
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +...
+> > The main problem here is telling the controller where to find the
+> > pattern and how to read it. This RFC uses nvmem cells which point to a
+> > fixed partition containing the data to do the reads. It depends on [0]
+> > and [1].
+> > 
+> > The obvious problem with this is it won't work when the partitions are
+> > defined via command line. I don't see any good way to add nvmem cells to
+> > command line partitions. I would like some help or ideas here. We don't
+> > necessarily have to use nvmem either. Any way that can cleanly and
+> > consistently let the controller find out where the pattern is stored is
+> > good.
+> > 
+> > The dts patch depends on [2].
+> > 
+> > Tested on TI's J721E EVM.
+> > 
+> > [0] https://patchwork.ozlabs.org/project/linux-mtd/patch/20210302190012.1255-1-zajec5@gmail.com/
+> > [1] https://patchwork.ozlabs.org/project/linux-mtd/patch/20210308011853.19360-1-ansuelsmth@gmail.com/
+> > [2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210305153926.3479-2-p.yadav@ti.com/
+> > 
+> > Pratyush Yadav (6):
+> >   spi: spi-mem: Tell controller when device is ready for calibration
+> >   mtd: spi-nor: core: consolidate read op creation
+> >   mtd: spi-nor: core: run calibration when initialization is done
+> >   spi: cadence-qspi: Use PHY for DAC reads if possible
+> >   spi: cadence-qspi: Tune PHY to allow running at higher frequencies
+> >   arm64: dts: ti: k3-j721e-som-p0: Enable PHY calibration
+> > 
+> >  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi |  55 ++
+> >  drivers/mtd/spi-nor/core.c                  |  74 +-
+> >  drivers/spi/spi-cadence-quadspi.c           | 820 +++++++++++++++++++-
+> >  drivers/spi/spi-mem.c                       |  12 +
+> >  include/linux/spi/spi-mem.h                 |   8 +
+> >  5 files changed, 916 insertions(+), 53 deletions(-)
+> > 
+> > --
+> > 2.30.0
+> > 
+> > 
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > 
+> 
 
 -- 
 Regards,
-
-Laurent Pinchart
+Pratyush Yadav
+Texas Instruments Inc.
