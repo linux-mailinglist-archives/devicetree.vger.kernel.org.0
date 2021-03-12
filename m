@@ -2,80 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F0E339302
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C5B3393FD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 17:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232005AbhCLQUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 11:20:44 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:52162 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230302AbhCLQUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 11:20:39 -0500
-X-UUID: 172eed7caacc41d69545d2aff34b1179-20210313
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=63lLgyhShcz7hBrpoA+jQ3pPfygS4j51tNuMwt/5+Hk=;
-        b=R/+d07dxKnfShHwEMfyGFND/Q4EzY2Kb+4zGeLRJ4BcrCrk5/gWTVp3uWnmjG1IZuFICN4obx14YNvZbtdqzv3qrQoFcAmgJnx8iwg4LiI91HSl07hzKyarhOvOm/e4rPZprGNQvxv8VQSorjQoPzEj9PsjwbdzgXK1a+3+OQh4=;
-X-UUID: 172eed7caacc41d69545d2aff34b1179-20210313
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2122130386; Sat, 13 Mar 2021 00:20:36 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 13 Mar 2021 00:20:34 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 13 Mar 2021 00:20:34 +0800
-Message-ID: <1615566034.27101.5.camel@mtksdaap41>
-Subject: Re: [PATCH RESEND v5 7/8] regulator: mt6359: Add support for
- MT6359P regulator
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Sat, 13 Mar 2021 00:20:34 +0800
-In-Reply-To: <20210301102156.GJ641347@dell>
-References: <1611913781-23460-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1611913781-23460-8-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <20210301102156.GJ641347@dell>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231733AbhCLQ4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 11:56:40 -0500
+Received: from mga05.intel.com ([192.55.52.43]:41916 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232238AbhCLQ4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 11:56:34 -0500
+IronPort-SDR: kEmlWVVO53mUnbq2jyYItsuZTSabuZ+diJnR3GMhmARBQnjzk+jttV+CVGaMFhF5+IME/QhAR7
+ RSX/z5+1Thfw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="273900510"
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
+   d="scan'208";a="273900510"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:34 -0800
+IronPort-SDR: m7PV7WkfAc93lqSIuY6CTzzWASguNbQtVIwM4ROE95HmqWyBGDjCzP7tQWliwQi4pEojYFkEZk
+ gIQ0aA0uy8ag==
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; 
+   d="scan'208";a="411064612"
+Received: from akharche-mobl2.ccr.corp.intel.com (HELO [10.212.135.254]) ([10.212.135.254])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2021 08:56:33 -0800
+Subject: Re: [PATCH v4 0/9] soundwire: qcom: various improvements
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        vkoul@kernel.org
+Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sanyog.r.kale@intel.com, yung-chuan.liao@linux.intel.com
+References: <20210312120009.22386-1-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <5afd877e-2213-85f5-cd3c-eca8d060d75c@linux.intel.com>
+Date:   Fri, 12 Mar 2021 10:33:40 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 720C1621FB1260E7C53FD91671EB4931ED0AA89ED611D0A41887A4B6E089299B2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210312120009.22386-1-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTAzLTAxIGF0IDEwOjIxICswMDAwLCBMZWUgSm9uZXMgd3JvdGU6DQo+IE9u
-IEZyaSwgMjkgSmFuIDIwMjEsIEhzaW4tSHNpdW5nIFdhbmcgd3JvdGU6DQo+IA0KPiA+IFRoZSBN
-VDYzNTlQIGlzIGEgZWNvIHZlcnNpb24gZm9yIE1UNjM1OSByZWd1bGF0b3IuDQo+ID4gV2UgYWRk
-IHN1cHBvcnQgYmFzZWQgb24gTVQ2MzU5IHJlZ3VsYXRvciBkcml2ZXIuDQo+ID4gDQo+ID4gU2ln
-bmVkLW9mZi1ieTogSHNpbi1Ic2l1bmcgV2FuZyA8aHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5j
-b20+DQo+ID4gLS0tDQo+ID4gY2hhbmdlcyBzaW5jZSB2NDoNCj4gPiAtIGFkZCB0aGUgcmVndWxh
-dG9yc19ub2RlIHN1cHBvcnQuDQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvcmVndWxhdG9yL210NjM1
-OS1yZWd1bGF0b3IuYyAgICAgICB8IDM3OSArKysrKysrKysrKysrKysrKysrKy0NCj4gDQo+ID4g
-IGluY2x1ZGUvbGludXgvbWZkL210NjM1OXAvcmVnaXN0ZXJzLmggICAgICB8IDI0OSArKysrKysr
-KysrKysrKw0KPiANCj4gQWx0aG91Z2ggdGhlIGNvZGUgaXMgZmluZSwganVzdCBiZSBhd2FyZSB0
-aGF0IExpbnVzIGNhbiBnZXQgZ3J1bXB5DQo+IGhhdmluZyAxMDBzIGFuZCAxMDBzIG9mIHVudXNl
-ZCByZWdpc3RlciBkZWZpbmVzIGluIHRoZSBrZXJuZWwuDQo+IA0KDQpUaGFua3MgZm9yIHRoZSBj
-b21tZW50LiBXZSB3aWxsIG11bGwgaXQgb3Zlci4NCg0KPiA+ICBpbmNsdWRlL2xpbnV4L3JlZ3Vs
-YXRvci9tdDYzNTktcmVndWxhdG9yLmggfCAgIDEgKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDYy
-MyBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
-aW5jbHVkZS9saW51eC9tZmQvbXQ2MzU5cC9yZWdpc3RlcnMuaA0KPiANCg0K
 
+
+On 3/12/21 6:00 AM, Srinivas Kandagatla wrote:
+> Thanks for reviewing v3 of this patchset!
+> 
+> During testing SoundWire controller on SM8250 MTP, we found
+> few issues like all the interrupts are not handled,
+> all transport parameters are not read from device tree.
+> Patch to add Auto Enumeration supported by the controller
+> is also part of this series.
+> 
+> Other major issue was register read/writes which was interrupt based
+> was an overhead and puts lot of limitation on context it can be used from.
+> 
+> With previous approach number of interrupts generated
+> after enumeration are around 130:
+> $ cat /proc/interrupts  | grep soundwire
+> 21: 130 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
+>      
+> after this patch they are just 3 interrupts
+> $ cat /proc/interrupts  | grep soundwire
+> 21: 3 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
+> 
+> So this patchset add various improvements to the existing driver
+> to address above issues.
+> 
+> Tested it on SM8250 MTP with 2x WSA881x speakers, HeadPhones on
+> WCD938x via lpass-rx-macro and Analog MICs via lpass-tx-macro.
+> Also tested on DragonBoard DB845c with 2xWSA881x speakers.
+
+LGTM, for the series
+
+Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+
+> 
+> Changes since v3:
+> 	- Fixed setting assigned bit during autoenumeration
+> 
+> Srinivas Kandagatla (9):
+>    dt-bindings: soundwire: qcom: clarify data port bus parameters
+>    soundwire: qcom: add support to missing transport params
+>    soundwire: qcom: set continue execution flag for ignored commands
+>    soundwire: qcom: start the clock during initialization
+>    soundwire: qcom: update register read/write routine
+>    soundwire: qcom: add support to new interrupts
+>    soundwire: export sdw_compare_devid() and sdw_extract_slave_id()
+>    soundwire: qcom: add auto enumeration support
+>    soundwire: qcom: wait for enumeration to be complete in probe
+> 
+>   .../bindings/soundwire/qcom,sdw.txt           |  20 +
+>   drivers/soundwire/bus.c                       |   4 +-
+>   drivers/soundwire/qcom.c                      | 529 ++++++++++++++----
+>   include/linux/soundwire/sdw.h                 |   2 +
+>   4 files changed, 442 insertions(+), 113 deletions(-)
+> 
