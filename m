@@ -2,96 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4C6339427
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:01:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A639339477
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 18:14:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232295AbhCLRA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 12:00:56 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33758 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231557AbhCLRAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:00:32 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CH08kt121082;
-        Fri, 12 Mar 2021 11:00:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615568408;
-        bh=zaa/mRSUMAXzQt5H0aezjgMFIyojIQMSj0VLcmmYG0Q=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ZJYQk2vaku81q9JFcftwYrDwiWbZAGlKsxDCS7xolALzY4tOV4aVF0BWT02/gjsTp
-         wiE2GWxclQRfYGBLI08wpZYK4vWqCWAfNIIbz7pXQZkZ1gu8Y/UYMWawOwyep9KYhn
-         7OqlbC/XkucryFWnndJAdBy0aUZO5x7G+oqOfb3k=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CH07Vl049603
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 12 Mar 2021 11:00:08 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 12
- Mar 2021 11:00:07 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 12 Mar 2021 11:00:07 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CH06Rj086882;
-        Fri, 12 Mar 2021 11:00:07 -0600
-Date:   Fri, 12 Mar 2021 22:30:02 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Michael Walle <michael@walle.cc>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [RFC PATCH 0/6] spi: Add OSPI PHY calibration support for
- spi-cadence-quadspi
-Message-ID: <20210312170000.szh55346o7sm6ase@ti.com>
-References: <20210311191216.7363-1-p.yadav@ti.com>
- <b9450a151cce89cde47b4d6a76c74b32@walle.cc>
+        id S232613AbhCLROX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 12:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231679AbhCLROM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 12:14:12 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD27CC061761
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:14:11 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id d20so27531911oiw.10
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 09:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lfE3Tva2EoQ6qXyouptwS/JNUmC9k+8pBSYHmEHX/4E=;
+        b=SPbSVI8otiDLbohvEOc1Iwd7Z9bWZ5EfV8yNdqeLw2Ko9dc68L0O7/XOy+ZQGjcrgm
+         KeZr8V/zRo5/PaBF1w3DLqLBF6Khj0OZjGMRkL3LjKCkZDsgfoYtEIrRSQie8rce2b1S
+         /ewv7h6qUod6oaWEyw84bmpZoqglt5VWdUeCOVskk23CQm60h8g14coAtTZlaBQ0uIIH
+         kWxfACfdVnOg9XaBu4DT7RYLLTaEYPGvTH84Fn67phe8gwbOqNcXTdyUGX5JUpIy0iqZ
+         Cn2bqLK4gr4V0ZL42Qf7Sk1UxhnYhePNb5Q+kF1uTumsVzdOW4p680xz6A4afiHY9lZt
+         3tQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lfE3Tva2EoQ6qXyouptwS/JNUmC9k+8pBSYHmEHX/4E=;
+        b=i67wHqi69jbF2GNRyFmCb9J0PAKrtk9KfELzRZ3EmrH2Z1Iy+5wMd7Y8abtX+I07uC
+         B6EZqXsyhQekRYtxkKotB/emmdm6cR8HE/2j2zB6BnyhQJeG+zGhGSW3mmDLoWyJVMAu
+         8BEyLD9eYmV6SlV4XNnCuEhCrV03x3Ej5Ok4PgdQ19wbWY2dMQ0UwnrQSixl++QAZn3A
+         eEIIlk5qEW6594wVAU7OK6Sww3DPQJAPv2a7KkdsahiJEqIex5PDYTWmsKKjaDmMR470
+         fJKbdG6pvBqitUCJdPiR8yxJ9WMn6JWCtCtve/PoCCnxXo0pKoC5aW72teQLnBIGalto
+         81Nw==
+X-Gm-Message-State: AOAM532MllDnAhe2rq8+4GTR21z+Yx4exFvWfzToeNI3PLnfHeARJFRu
+        yiF3P24i7UnoPbI1u0cHqwteDw==
+X-Google-Smtp-Source: ABdhPJwFn76xWftUWS0EeIEao0boAwPNQUmViHSD4s5LTOSf9w1iWNRs/r2NycrT49OQh3Ep0ojsdg==
+X-Received: by 2002:aca:3307:: with SMTP id z7mr10154124oiz.34.1615569251272;
+        Fri, 12 Mar 2021 09:14:11 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n1sm1459174oig.47.2021.03.12.09.14.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Mar 2021 09:14:10 -0800 (PST)
+Date:   Fri, 12 Mar 2021 11:14:09 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Maulik Shah <mkshah@codeaurora.org>, evgreen@chromium.org,
+        mka@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
+Message-ID: <YEuhYd0M0L16kCbX@builder.lan>
+References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
+ <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+ <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b9450a151cce89cde47b4d6a76c74b32@walle.cc>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <161283021256.76967.600110253862291436@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/21 02:32PM, Michael Walle wrote:
-> Am 2021-03-11 20:12, schrieb Pratyush Yadav:
-> > The main problem here is telling the controller where to find the
-> > pattern and how to read it. This RFC uses nvmem cells which point to a
-> > fixed partition containing the data to do the reads. It depends on [0]
-> > and [1].
-> > 
-> > The obvious problem with this is it won't work when the partitions are
-> > defined via command line. I don't see any good way to add nvmem cells to
-> > command line partitions. I would like some help or ideas here. We don't
-> > necessarily have to use nvmem either. Any way that can cleanly and
-> > consistently let the controller find out where the pattern is stored is
-> > good.
+On Mon 08 Feb 18:23 CST 2021, Stephen Boyd wrote:
+
+> Quoting Maulik Shah (2021-02-04 06:21:45)
+> > +
+> > +description:
+> > +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> > +  sleep modes involving powering down of the rails and oscillator clock.
+> > +
+> > +  Statistics includes SoC sleep mode type, number of times low power mode were
+> > +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,rpmh-sleep-stats
+> > +      - qcom,rpm-sleep-stats
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +examples:
+> > +  # Example of rpmh sleep stats
+> > +  - |
+> > +    rpmh-sleep-stats@c3f0000 {
+> > +      compatible = "qcom,rpmh-sleep-stats";
+> > +      reg = <0 0x0c3f0000 0 0x400>;
+> > +    };
 > 
-> The NXP LS1028A SoC has a similar calibration (although there its done
-> in hardware it seems) and there the datasheet mentions there are flash
-> devices which supports a preamble before a read function. The preamble
-> is then some kind of learning pattern. Did you see a flash which actually
-> supports that in the wild? I can't find any publicly available datasheets
-> of 8bit I/O SPI NOR flashes.
-
-I haven't seen any such flash but it looks like Tudor has.
-
+> Maybe it should just be another reg property of the rpmh or rpm node?
+> Then the rpmh driver can create the stats "device" at driver probe time,
+> or just roll it into the same thing. It looks pretty weird to have a
+> device in DT for this given that it's not really hardware, more like a
+> place that the processor writes some stuff about what's going on in the
+> SoC related to power management. 
 > 
-> -michael
 
--- 
+Given that there is some hardware (although just a chunk of sram) and
+that the same driver is used for RPM, which we don't represent on the
+mmio bus I think the proposed design makes sense.
+
 Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Bjorn
+
+> > +  # Example of rpm sleep stats
+> > +  - |
+> > +    rpm-sleep-stats@4690000 {
+> > +      compatible = "qcom,rpm-sleep-stats";
+> > +      reg = <0 0x04690000 0 0x400>;
+> > +    };
+> > +...
