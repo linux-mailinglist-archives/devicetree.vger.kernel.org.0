@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D76E5338B0C
+	by mail.lfdr.de (Postfix) with ESMTP id 17A96338B0A
 	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 12:08:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233919AbhCLLIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 06:08:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43738 "EHLO
+        id S233924AbhCLLIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 06:08:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233835AbhCLLIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:08:09 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755B2C061761
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:09 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id j7so1541433wrd.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:09 -0800 (PST)
+        with ESMTP id S233838AbhCLLIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 06:08:10 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612AAC061574
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:10 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id d139-20020a1c1d910000b029010b895cb6f2so14929421wmd.5
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 03:08:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=THhKmywjPm3PSEVsHRgJ9yFTX2Li2LH1I2Fys+RHMbE=;
-        b=aI9TlIjXysV5NO5te1tQfH8c+2PYDCD+Wy2lUjD3kFpYtm+upwffmJQd8DgW07vrbr
-         +BTTPocgGko+6YTXpPeBwfl5snKyLMHh2nzaNfAlNa3w0J5zzBlsnUc+14WDH/5t7ALA
-         P7LS2kOqbTapoK/3V9vkIt2tU5dosgbbtl5iiI2atOR4Cw2JE+6VHEYNY+hmFtR7bQ16
-         TKX/zrYPKiybQfjV8jE223NJVJSd6+D8NlCbnEVlRClDQ5p/zOwgasZSbzIsoUAsg53X
-         v9MPwpz1ECsSifRsUrWfUtml5EHjeYiW+cd1L6S0E//fscpnPXtkxVikp9CeAyZeIWau
-         N1Hg==
+        bh=uhFSV6Hqzt9zCZfztk/Zxp+QtBdpm5r07mTFNAPSF1U=;
+        b=pnyGgcuHAR6LtC2mCsQxH2xirFJ+yIbnNAkBIXgauwReKVyo8iVuN1BjI123xgGw52
+         Vaxnzti2nlyxKn/ao0jLzrRE/6fmKeSN123EXSi5zVgQV7P1faQVwYhCs9UKv8OAg461
+         sEmMWlJFpcFBFpD8JFq/5VPMz6wvRpTzFUvQc/JK9EXBTAW4VuyUs7iGOfciUS3AbYqg
+         qsVgljqtY5y/QCbDrTTFqU6IVNXLdb2R5bgVW+olqgj1/fNnr6CS4Y90awS/hQ03Ax6c
+         AwGVtHq3/9w1sTgXG2EwhGUrnv6X1AT+gmSO5eZikfISeQ7S7xK8AzXNkH7OS2OifI5P
+         4HCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=THhKmywjPm3PSEVsHRgJ9yFTX2Li2LH1I2Fys+RHMbE=;
-        b=sTXQLhrYgS125Cg7Zy7Tfm4QV0koFIWXv05VQG6BpmiIgj1UByljCs783U9ht7VBAb
-         254MsYiNIunl3btak2pIHB094UovzvKrA80gVa5TmPu1xJO+ihJopnpLLZ5ooc7N+a89
-         vFNcvXlEYd/CLPujIdKJG+EpgRnFud3j4Mlk8SNvfVSfbc7H3CyTNLeN+4P7hfhP0kLk
-         ELTSnF96uokbXgcPEKi8ODcwwHOtaKckiWpe9FpSWkhJVQGBgb/LXQZpGMreJ3myECEh
-         k3P7q+t4hsKmaVy/J6a33xy7WCGFWH5C6Xbo3qjrKir+z0VI4aL3oDbYXZ/Ja+amnh7l
-         Licg==
-X-Gm-Message-State: AOAM531iRkVKujLcG8TexDkbB5oMUVcBniBDXW/U8FsBOi9LOuhJeGpw
-        J4iACF0KPtw8vHA1/0iHEpZ0ag==
-X-Google-Smtp-Source: ABdhPJyu1LjK73d1lFpmrW/zYHV2RGU5mXu/RAKxrvrHgLjCcrx2q7lgAhts5b1L28Y1X7XoNMRcdQ==
-X-Received: by 2002:adf:a18a:: with SMTP id u10mr13500935wru.197.1615547288130;
-        Fri, 12 Mar 2021 03:08:08 -0800 (PST)
+        bh=uhFSV6Hqzt9zCZfztk/Zxp+QtBdpm5r07mTFNAPSF1U=;
+        b=fRU++X8jzgs3L4A+TOBm0jt4YXVYy7p5q8jh/ms0RRKgnPRe1XNr5o6xxrFef+fqOL
+         nKeW7tuBVzUARQbKzZQcGAEI7ISGOlMCzQahh9brK0qw7SZm8zKSDuc0BcH9TB5P4dwP
+         PZlf0YUSI81cFM7MiUtF6Z0hHsQBqU1Bl52nKbh+F1RwbmOpKpr/Iq7jRhdPqAf2TkkZ
+         4cUggosRvLJR4CiPvZTNVvvvvyG2yipFoZjAPDNhhQY3zVCYJdshM8HTgTNIbQuhqROH
+         vehS26RS5MgsUjp6zOEqSUx0QhVdLiLPkbvjiEdNb4XW7ltm5cmgK7LzvRGInNu+yVhq
+         Otlw==
+X-Gm-Message-State: AOAM532IR8KNlKTmvqFM+zzNg3G9LofmuXRtWusTxI4sIwizWdAu2tkL
+        REUBCm0rawKokNi3Iut8BC9x3g==
+X-Google-Smtp-Source: ABdhPJymQLUPe88ARxMqS3lNbvJKlMF+5InpRKJqPr8+V1noWl0rIrIx564WlJPSci0PPS+w5zd0VQ==
+X-Received: by 2002:a7b:c759:: with SMTP id w25mr12404907wmk.139.1615547289092;
+        Fri, 12 Mar 2021 03:08:09 -0800 (PST)
 Received: from dell.default ([91.110.221.204])
-        by smtp.gmail.com with ESMTPSA id f126sm1813003wmf.17.2021.03.12.03.08.07
+        by smtp.gmail.com with ESMTPSA id f126sm1813003wmf.17.2021.03.12.03.08.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Mar 2021 03:08:07 -0800 (PST)
+        Fri, 12 Mar 2021 03:08:08 -0800 (PST)
 From:   Lee Jones <lee.jones@linaro.org>
 To:     lee.jones@linaro.org
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        benh@kernel.crashing.org, devicetree@vger.kernel.org
-Subject: [PATCH 07/10] of: fdt: Demote kernel-doc abuses
-Date:   Fri, 12 Mar 2021 11:07:55 +0000
-Message-Id: <20210312110758.2220959-8-lee.jones@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 08/10] of: of_net: Demote non-conforming kernel-doc header
+Date:   Fri, 12 Mar 2021 11:07:56 +0000
+Message-Id: <20210312110758.2220959-9-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210312110758.2220959-1-lee.jones@linaro.org>
 References: <20210312110758.2220959-1-lee.jones@linaro.org>
@@ -66,133 +69,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/of/fdt.c:478: warning: Function parameter or member 'node' not described in '__reserved_mem_reserve_reg'
- drivers/of/fdt.c:478: warning: Function parameter or member 'uname' not described in '__reserved_mem_reserve_reg'
- drivers/of/fdt.c:525: warning: Function parameter or member 'node' not described in '__reserved_mem_check_root'
- drivers/of/fdt.c:547: warning: Function parameter or member 'node' not described in '__fdt_scan_reserved_mem'
- drivers/of/fdt.c:547: warning: Function parameter or member 'uname' not described in '__fdt_scan_reserved_mem'
- drivers/of/fdt.c:547: warning: Function parameter or member 'depth' not described in '__fdt_scan_reserved_mem'
- drivers/of/fdt.c:547: warning: Function parameter or member 'data' not described in '__fdt_scan_reserved_mem'
- drivers/of/fdt.c:547: warning: expecting prototype for fdt_scan_reserved_mem(). Prototype was for __fdt_scan_reserved_mem() instead
- drivers/of/fdt.c:663: warning: Function parameter or member 'parent' not described in 'of_scan_flat_dt_subnodes'
- drivers/of/fdt.c:708: warning: Function parameter or member 'node' not described in 'of_get_flat_dt_prop'
- drivers/of/fdt.c:708: warning: Function parameter or member 'name' not described in 'of_get_flat_dt_prop'
- drivers/of/fdt.c:708: warning: Function parameter or member 'size' not described in 'of_get_flat_dt_prop'
- drivers/of/fdt.c:758: warning: Function parameter or member 'node' not described in 'of_flat_dt_match'
- drivers/of/fdt.c:758: warning: Function parameter or member 'compat' not described in 'of_flat_dt_match'
- drivers/of/fdt.c:778: warning: Function parameter or member 'node' not described in 'of_get_flat_dt_phandle'
- drivers/of/fdt.c:778: warning: expecting prototype for of_get_flat_dt_prop(). Prototype was for of_get_flat_dt_phandle() instead
- drivers/of/fdt.c:955: warning: Function parameter or member 'node' not described in 'early_init_dt_scan_root'
- drivers/of/fdt.c:955: warning: Function parameter or member 'uname' not described in 'early_init_dt_scan_root'
- drivers/of/fdt.c:955: warning: Function parameter or member 'depth' not described in 'early_init_dt_scan_root'
- drivers/of/fdt.c:955: warning: Function parameter or member 'data' not described in 'early_init_dt_scan_root'
- drivers/of/fdt.c:991: warning: Function parameter or member 'node' not described in 'early_init_dt_scan_memory'
- drivers/of/fdt.c:991: warning: Function parameter or member 'uname' not described in 'early_init_dt_scan_memory'
- drivers/of/fdt.c:991: warning: Function parameter or member 'depth' not described in 'early_init_dt_scan_memory'
- drivers/of/fdt.c:991: warning: Function parameter or member 'data' not described in 'early_init_dt_scan_memory'
+ drivers/of/of_net.c:104: warning: Function parameter or member 'np' not described in 'of_get_mac_address'
+ drivers/of/of_net.c:104: warning: expecting prototype for mac(). Prototype was for of_get_mac_address() instead
 
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: benh@kernel.crashing.org
+Cc: netdev@vger.kernel.org
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Lee Jones <lee.jones@linaro.org>
 ---
- drivers/of/fdt.c | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+ drivers/of/of_net.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index dcc1dd96911a9..1fb3348eb9516 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -470,7 +470,7 @@ void *initial_boot_params __ro_after_init;
- 
- static u32 of_fdt_crc32;
- 
--/**
-+/*
-  * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
-  */
- static int __init __reserved_mem_reserve_reg(unsigned long node,
-@@ -516,7 +516,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 	return 0;
+diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+index 6e411821583e4..9b41a343e88ab 100644
+--- a/drivers/of/of_net.c
++++ b/drivers/of/of_net.c
+@@ -78,7 +78,7 @@ static const void *of_get_mac_addr_nvmem(struct device_node *np)
+ 	return mac;
  }
  
 -/**
 +/*
-  * __reserved_mem_check_root() - check if #size-cells, #address-cells provided
-  * in /reserved-memory matches the values supported by the current implementation,
-  * also check if ranges property has been provided
-@@ -539,7 +539,7 @@ static int __init __reserved_mem_check_root(unsigned long node)
- 	return 0;
- }
- 
--/**
-+/*
-  * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
-  */
- static int __init __fdt_scan_reserved_mem(unsigned long node, const char *uname,
-@@ -650,6 +650,7 @@ int __init of_scan_flat_dt(int (*it)(unsigned long node,
- 
- /**
-  * of_scan_flat_dt_subnodes - scan sub-nodes of a node call callback on each.
-+ * @parent: parent node
-  * @it: callback function
-  * @data: context data pointer
-  *
-@@ -689,7 +690,7 @@ int __init of_get_flat_dt_subnode_by_name(unsigned long node, const char *uname)
- 	return fdt_subnode_offset(initial_boot_params, node, uname);
- }
- 
--/**
-+/*
-  * of_get_flat_dt_root - find the root node in the flat blob
-  */
- unsigned long __init of_get_flat_dt_root(void)
-@@ -697,7 +698,7 @@ unsigned long __init of_get_flat_dt_root(void)
- 	return 0;
- }
- 
--/**
-+/*
-  * of_get_flat_dt_prop - Given a node in the flat blob, return the property ptr
-  *
-  * This function can be used within scan_flattened_dt callback to get
-@@ -751,7 +752,7 @@ int __init of_flat_dt_is_compatible(unsigned long node, const char *compat)
- 	return of_fdt_is_compatible(initial_boot_params, node, compat);
- }
- 
--/**
-+/*
-  * of_flat_dt_match - Return true if node matches a list of compatible values
-  */
- static int __init of_flat_dt_match(unsigned long node, const char *const *compat)
-@@ -771,7 +772,7 @@ static int __init of_flat_dt_match(unsigned long node, const char *const *compat
- 	return score;
- }
- 
--/**
-+/*
-  * of_get_flat_dt_prop - Given a node in the flat blob, return the phandle
-  */
- uint32_t __init of_get_flat_dt_phandle(unsigned long node)
-@@ -947,7 +948,7 @@ int __init early_init_dt_scan_chosen_stdout(void)
- }
- #endif
- 
--/**
-+/*
-  * early_init_dt_scan_root - fetch the top level address and size cells
-  */
- int __init early_init_dt_scan_root(unsigned long node, const char *uname,
-@@ -983,7 +984,7 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
- 	return of_read_number(p, s);
- }
- 
--/**
-+/*
-  * early_init_dt_scan_memory - Look for and parse memory nodes
-  */
- int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
+  * Search the device tree for the best MAC address to use.  'mac-address' is
+  * checked first, because that is supposed to contain to "most recent" MAC
+  * address. If that isn't set, then 'local-mac-address' is checked next,
 -- 
 2.27.0
 
