@@ -2,104 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1703383F0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 03:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE6E338426
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 03:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbhCLCsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Mar 2021 21:48:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49376 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231531AbhCLCsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Mar 2021 21:48:04 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E57DC061574
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 18:48:04 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id m21-20020a9d7ad50000b02901b83efc84a0so685372otn.10
-        for <devicetree@vger.kernel.org>; Thu, 11 Mar 2021 18:48:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+hasAsq2McuBGR+S/4KBE3gzEFOfYImR8i7ea2b9vwM=;
-        b=VU52bNHMOKp6UlfsCiXEnHxYVMdn5m5p9E2W+6zSKZPe+LF/bh5Jk/DMfeYcd+l21D
-         vkKjBCizyrXkkUfGZ/qdQh3p/oKINVMEl6y0FWkhYkAuV8gSKCJBloWjlusO1ahI4KfT
-         XUWiZmqH8v56W95M5LtWa6d/ex+rzFg9n+miCPJxt+WOQEHD1DCdu+ddcVjL1CBkFEPn
-         UPpx0hCqOCura2/7DE8/xNxwUa6+s+EpliLFSIWwrv91kDof/QhJG92z+RIXVq7i5agS
-         7OcuopM0BeIlHfrYCmEQSUiZNzHulT3bjByTSyZgS7fz8AhQoNgyXB15p6IJw43IuLNO
-         94tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+hasAsq2McuBGR+S/4KBE3gzEFOfYImR8i7ea2b9vwM=;
-        b=Hi1xJl2VZHyAween3yxmXNsCSV1v1qzm0KBq8sAV4pbLABG/j5gMriZ3ns26paReBv
-         fF3pOWQb4f+N7njLY5dElUtdYyMr2iuDYXvajvLwzhi55Caxad5eI0MAJtm9Ae3IG0vu
-         4IqLRI2RlbOXs5auznCsERJW3HOKiY2ilGrRJaGZbhSeEvOoyxUxe8OU2miUzqhAxiRK
-         ciM2sgQJrNvugEp+ISnwVSGrrFWRLlYJOrOUjmA1O6I3hhkyDFKRibGaH08xwmmPMHhC
-         2swUEN8jQtdDXSf/UTQUh4SeR3Lk6CfehO9Zx28JkpA2uPG3mspgQZvNwIUK52yVlAca
-         noLg==
-X-Gm-Message-State: AOAM530Lw4bG8FFnztFr2J056GnS/+RblwU8T3fy35i2kzTPclGNpUF/
-        dDTGLEBl/IqGvruBujavubKxZzp1MLbTCw==
-X-Google-Smtp-Source: ABdhPJzrC9vi8sKWHQ9oS7g93RVXspHSbUC71BZ52M9WtYziEHutB14dV1zErtoeEmORUy/Ay2jijg==
-X-Received: by 2002:a9d:12b3:: with SMTP id g48mr1632858otg.277.1615517284010;
-        Thu, 11 Mar 2021 18:48:04 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k24sm1003569oic.51.2021.03.11.18.48.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Mar 2021 18:48:03 -0800 (PST)
-Date:   Thu, 11 Mar 2021 20:48:01 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/3] pinctrl: qcom: spmi-gpio: Add support for four
- variants
-Message-ID: <YErWYQaT75MneNhf@builder.lan>
-References: <1614925799-3172-1-git-send-email-skakit@codeaurora.org>
- <1614925799-3172-2-git-send-email-skakit@codeaurora.org>
+        id S231826AbhCLCyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Mar 2021 21:54:40 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:28562 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231776AbhCLCyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Mar 2021 21:54:33 -0500
+X-IronPort-AV: E=Sophos;i="5.81,241,1610377200"; 
+   d="scan'208";a="74923381"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 12 Mar 2021 11:54:31 +0900
+Received: from localhost.localdomain (unknown [10.166.252.89])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id C44E64189CCF;
+        Fri, 12 Mar 2021 11:54:31 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org, yusuke.goda.sx@renesas.com,
+        devicetree@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH 0/2] treewide: Add CAN support for r8a77961
+Date:   Fri, 12 Mar 2021 11:54:18 +0900
+Message-Id: <20210312025420.529339-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1614925799-3172-2-git-send-email-skakit@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 05 Mar 00:29 CST 2021, satya priya wrote:
+This patch series is based on renesas-drivers-2021-02-16-v5.11 tag.
+And, Goda-san tested this patch series on R-Car M3-W+ StarterKit board
+with Kingfisher. (Thank you Goda-san!)
 
-> Add PM7325, PM8350c, PMK8350 and PMR735A compatibles for GPIO
-> support.
-> 
+Yoshihiro Shimoda (2):
+  dt-bindings: net: can: rcar_can: Document r8a77961 support
+  arm64: dts: renesas: r8a77961: Add CAN nodes
 
-Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+ .../devicetree/bindings/net/can/rcar_can.txt  |  1 +
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi     | 26 +++++++++++++++++--
+ 2 files changed, 25 insertions(+), 2 deletions(-)
 
-Regards,
-Bjorn
+-- 
+2.25.1
 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> index 9801c71..90f4f78 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> @@ -1131,6 +1131,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
->  	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
->  	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
->  	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
-> +	{ .compatible = "qcom,pm7325-gpio", .data = (void *) 10 },
-> +	{ .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
-> +	{ .compatible = "qcom,pmk8350-gpio", .data = (void *) 4 },
-> +	{ .compatible = "qcom,pmr735a-gpio", .data = (void *) 4 },
->  	{ },
->  };
->  
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
