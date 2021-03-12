@@ -2,83 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3601033916B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:36:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B5333918E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 16:40:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232333AbhCLPfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 10:35:30 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37147 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231990AbhCLPfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 10:35:07 -0500
-X-UUID: 06cdab59a8b5402886656e5b92d290f3-20210312
-X-UUID: 06cdab59a8b5402886656e5b92d290f3-20210312
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 519063387; Fri, 12 Mar 2021 23:34:54 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 12 Mar 2021 23:34:52 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 12 Mar 2021 23:34:52 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <drinkcat@chromium.org>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v6 5/5] arm64: dts: mt8192: add pwrap node
-Date:   Fri, 12 Mar 2021 23:34:46 +0800
-Message-ID: <1615563286-22126-6-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1615563286-22126-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1615563286-22126-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S232164AbhCLPjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 10:39:46 -0500
+Received: from smtp.wifcom.cz ([85.207.3.150]:47635 "EHLO smtp.wifcom.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232165AbhCLPjo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 10:39:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
+        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=LxZqyySCpkVm6WBH2H3h8XdkfiFZZjSDTwsoFd8R1oE=;
+        b=wuw60i32/m0uJ59OMHIiIK0yeo1QlIW0EsYrNmfLQz0QLCM6uuRufD8O/e/HZMFeJ1nissFR6vBgmqdAjpBoNk6Gyu0YfcuixFagXUfCrOwXVhPjjo5sX4zTtbakx5vtmYv6w3cCEaDVr2Z8mmoVKY3NrOnBMmiRwf7uFbIG23E=;
+From:   Martin Devera <devik@eaxlabs.cz>
+To:     linux-kernel@vger.kernel.org
+Cc:     Martin Devera <devik@eaxlabs.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
+        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v7 1/2] dt-bindings: serial: Add rx-tx-swap to stm32-usart
+Date:   Fri, 12 Mar 2021 16:37:01 +0100
+Message-Id: <20210312153702.12349-1-devik@eaxlabs.cz>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <1615559009.788146.2976052.nullmailer@robh.at.kernel.org>
+References: <1615559009.788146.2976052.nullmailer@robh.at.kernel.org>
+X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
+X-Wif-ss: -2.9 (--)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pwrap node to SOC MT8192.
+Add new rx-tx-swap property to allow for RX & TX pin swapping.
 
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 ---
-changes since v5:
-- no change.
+v7:
+  - fix yaml linter warning
+v6: 
+  - add version changelog
+v5: 
+  - yaml fixes based on Rob Herring comments
+    - add serial.yaml reference
+    - move compatible from 'then' to 'if'
+v3:
+  - don't allow rx-tx-swap for st,stm32-uart (suggested
+    by Fabrice Gasnier)
+v2:
+  - change st,swap to rx-tx-swap (suggested by Rob Herring)
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../devicetree/bindings/serial/st,stm32-uart.yaml  | 29 ++++++++++++++--------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 9757138a8bbd..fcd6b899d7f9 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -291,6 +291,18 @@
- 			clock-names = "clk13m";
- 		};
+diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+index 8631678283f9..68a0f3ce8328 100644
+--- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+@@ -9,9 +9,6 @@ maintainers:
  
-+		pwrap: pwrap@10026000 {
-+			compatible = "mediatek,mt6873-pwrap";
-+			reg = <0 0x10026000 0 0x1000>;
-+			reg-names = "pwrap";
-+			interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg CLK_INFRA_PMIC_AP>,
-+				 <&infracfg CLK_INFRA_PMIC_TMR>;
-+			clock-names = "spi", "wrap";
-+			assigned-clocks = <&topckgen CLK_TOP_PWRAP_ULPOSC_SEL>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_OSC_D10>;
-+		};
+ title: STMicroelectronics STM32 USART bindings
+ 
+-allOf:
+-  - $ref: rs485.yaml
+-
+ properties:
+   compatible:
+     enum:
+@@ -40,6 +37,8 @@ properties:
+ 
+   uart-has-rtscts: true
+ 
++  rx-tx-swap: true
 +
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8192-uart",
- 				     "mediatek,mt6577-uart";
+   dmas:
+     minItems: 1
+     maxItems: 2
+@@ -66,13 +65,23 @@ properties:
+   linux,rs485-enabled-at-boot-time: true
+   rs485-rx-during-tx: true
+ 
+-if:
+-  required:
+-    - st,hw-flow-ctrl
+-then:
+-  properties:
+-    cts-gpios: false
+-    rts-gpios: false
++allOf:
++  - $ref: rs485.yaml#
++  - $ref: serial.yaml#
++  - if:
++      required:
++        - st,hw-flow-ctrl
++    then:
++      properties:
++        cts-gpios: false
++        rts-gpios: false
++  - if:
++      properties:
++        compatible:
++          const: st,stm32-uart
++    then:
++      properties:
++        rx-tx-swap: false
+ 
+ required:
+   - compatible
 -- 
-2.18.0
+2.11.0
 
