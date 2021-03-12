@@ -2,192 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F9C2339809
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 21:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84373339887
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 21:42:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234662AbhCLUMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 15:12:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48784 "EHLO
+        id S234997AbhCLUlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 15:41:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234654AbhCLUMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 15:12:36 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF72C061574
-        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 12:12:35 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lKo8y-0004RE-Cj; Fri, 12 Mar 2021 21:12:20 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lKo8w-00089j-Gb; Fri, 12 Mar 2021 21:12:18 +0100
-Date:   Fri, 12 Mar 2021 21:12:17 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com
-Subject: Re: [PATCH v8 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
-Message-ID: <20210312201217.n2sav23swy7ii4uo@pengutronix.de>
-References: <20210312122454.24480-1-nsaenzjulienne@suse.de>
- <20210312122454.24480-12-nsaenzjulienne@suse.de>
+        with ESMTP id S235007AbhCLUk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 15:40:57 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4C8C061574
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 12:40:57 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id r16so1342185pfh.10
+        for <devicetree@vger.kernel.org>; Fri, 12 Mar 2021 12:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wg9KztPbwr23b5MaLH0ecVmFQeWIxPEdqJKVKosBsnA=;
+        b=MOTtavXTPx++S0jXh0cBBUt6w0WDms/a3+Kd3QSrah5lWj5ntFcMGT7hQV1VuCcVeb
+         1kPWTDG2XjZbAikGCJSQP89IMCzjs8SIjMFQpuhscptwkwGjp5svbvE5Xjzjk7mAkceM
+         gJbZpWbwNooZ2gYRjaZJZRoB4UmVhVWzx/sn0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wg9KztPbwr23b5MaLH0ecVmFQeWIxPEdqJKVKosBsnA=;
+        b=KMop9O1gmmDZTT0SDzdxO+oPVj4e0IuPn7sKOngI9rAf8Pz6xZXEqvE5/nbVgp2L3t
+         18LU69VCNX36tEowF9Fv3h5cBX2F/yj0/9NtG6vQXl18OunmjmYJwuUKpm/1PovSpIcK
+         w9un+5Absa/Wcjo2oz0sJYF5gyRn0pTyjbk1DSsA9HJSg/H7pP++lImHHWMgPOfziQ6V
+         UsgjN3Xp0RTFPDmenV2LpY449sILdSirSwRvDmLPkW+xLVD8S0Ij5mgY+bIjsAoDqBCf
+         XX8EMer3Ufd+LPyrCZprcZP2xP/wQaI97fK5ddGedHkOF73StcvOFvAzCnvFOvVx2tX/
+         +qtA==
+X-Gm-Message-State: AOAM5323zdil1lKrNZ0SEBREScYYIOFDp6hmiG5PMD20q1ivwUJJANfG
+        jMTFe+F7nQtdKKLIxSqz2yqcWw==
+X-Google-Smtp-Source: ABdhPJxDx1vXmzAvSeoPLU+Bc3ubV6wOOah7GUV8UJ8CK3FqtRCS8sP03sLuhiZKXkHdu812kf1PUA==
+X-Received: by 2002:a05:6a00:8d4:b029:1b7:7ad9:4864 with SMTP id s20-20020a056a0008d4b02901b77ad94864mr13647307pfu.34.1615581657010;
+        Fri, 12 Mar 2021 12:40:57 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:914f:6483:1dc:1bba])
+        by smtp.gmail.com with UTF8SMTPSA id w18sm2840217pjh.19.2021.03.12.12.40.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Mar 2021 12:40:56 -0800 (PST)
+Date:   Fri, 12 Mar 2021 12:40:54 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
+Message-ID: <YEvR1kDm32tE7mK3@google.com>
+References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="e6h2cu7dk3om4cg7"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210312122454.24480-12-nsaenzjulienne@suse.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Satya,
 
---e6h2cu7dk3om4cg7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Nicolas,
-
-On Fri, Mar 12, 2021 at 01:24:54PM +0100, Nicolas Saenz Julienne wrote:
-> Adds support to control the PWM bus available in official Raspberry Pi
-> PoE HAT. Only RPi's co-processor has access to it, so commands have to
-> be sent through RPi's firmware mailbox interface.
->=20
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->=20
+On Thu, Mar 11, 2021 at 04:10:29PM +0530, satya priya wrote:
+> Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
+> GPIOs, RTC and other PMIC infra modules for SC7280.
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 > ---
->=20
-> Changes since v7:
->  - Remove unwarranted RPI_PWM_DEF_DUTY_REG usage
->=20
->  Changes since v6:
-> - Use %pe
-> - Round divisions properly
-> - Use dev_err_probe()
-> - Pass check_patch
->=20
-> Changes since v3:
->  - Rename compatible string to be more explicit WRT to bus's limitations
->=20
-> Changes since v2:
->  - Use devm_rpi_firmware_get()
->  - Rename driver
->  - Small cleanups
->=20
-> Changes since v1:
->  - Use default pwm bindings and get rid of xlate() function
->  - Correct spelling errors
->  - Correct apply() function
->  - Round values
->  - Fix divisions in arm32 mode
->  - Small cleanups
->=20
->  drivers/pwm/Kconfig               |   9 ++
->  drivers/pwm/Makefile              |   1 +
->  drivers/pwm/pwm-raspberrypi-poe.c | 206 ++++++++++++++++++++++++++++++
->  3 files changed, 216 insertions(+)
->  create mode 100644 drivers/pwm/pwm-raspberrypi-poe.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index a7a7a9f26aef..d3371ac7b871 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -431,6 +431,15 @@ config PWM_PXA
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-pxa.
-> =20
-> +config PWM_RASPBERRYPI_POE
-> +	tristate "Raspberry Pi Firwmware PoE Hat PWM support"
-> +	# Make sure not 'y' when RASPBERRYPI_FIRMWARE is 'm'. This can only
-> +	# happen when COMPILE_TEST=3Dy, hence the added !RASPBERRYPI_FIRMWARE.
-> +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWA=
-RE)
-> +	help
-> +	  Enable Raspberry Pi firmware controller PWM bus used to control the
-> +	  official RPI PoE hat
-> +
->  config PWM_RCAR
->  	tristate "Renesas R-Car PWM support"
->  	depends on ARCH_RENESAS || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 4e35a55fa7b6..d3879619bd76 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -39,6 +39,7 @@ obj-$(CONFIG_PWM_NTXEC)		+=3D pwm-ntxec.o
->  obj-$(CONFIG_PWM_OMAP_DMTIMER)	+=3D pwm-omap-dmtimer.o
->  obj-$(CONFIG_PWM_PCA9685)	+=3D pwm-pca9685.o
->  obj-$(CONFIG_PWM_PXA)		+=3D pwm-pxa.o
-> +obj-$(CONFIG_PWM_RASPBERRYPI_POE)	+=3D pwm-raspberrypi-poe.o
->  obj-$(CONFIG_PWM_RCAR)		+=3D pwm-rcar.o
->  obj-$(CONFIG_PWM_RENESAS_TPU)	+=3D pwm-renesas-tpu.o
->  obj-$(CONFIG_PWM_ROCKCHIP)	+=3D pwm-rockchip.o
-> diff --git a/drivers/pwm/pwm-raspberrypi-poe.c b/drivers/pwm/pwm-raspberr=
-ypi-poe.c
+> This patch depends on base DT and board files for SC7280 to merge first
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+> 
+>  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104 ++++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
+>  5 files changed, 292 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
 > new file mode 100644
-> index 000000000000..71ade5e55069
+> index 0000000..393b256
 > --- /dev/null
-> +++ b/drivers/pwm/pwm-raspberrypi-poe.c
-> @@ -0,0 +1,206 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2020 Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pm7325: pmic@1 {
+> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+> +		reg = <0x1 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm7325_tz: temp-alarm@a00 {
 
-2021?
+The _tz suffix suggests this is a thermal zone, which isn't the case.
+Call it 'pm7325_temp_alarm' or similar.
 
-> + * For more information on Raspberry Pi's PoE hat see:
-> + * https://www.raspberrypi.org/products/poe-hat/
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pm7325_gpios: gpios@8800 {
+> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pm7325_temp_alarm: pm7325_tz {
 
-Out of personal interest: Is this hat also able to power a RPi CM4?
+The temperature corresponds to the PM7325 on-die temperature, the temp alarm
+is a feature to monitor it. Also many QCA SoCs name the thermal zones
+<whatever>-thermal, so it seems good to follow this convention. My suggestion
+is:
+	pm7325_thermal: pm7325-thermal {
 
-> + * Limitations:
-> + *  - No disable bit, so a disabled PWM is simulated by duty_cycle 0
-> + *  - Only normal polarity
-> + *  - Fixed 12.5 kHz period
-> + *
-> + * The current period is completed when HW is reconfigured.
-> + */
 
-Other than that as mentioned in the previous round: This looks good,
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
 
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+Are you sure that no polling delay is needed? How does the thermal framework
+detect that the temperatures is >= the passive trip point and that it should
+start polling at 'polling-delay-passive' rate?
 
-What is your thought about how to get this series merged? At least
-input, staging, armsoc, clk, reset anf firmware are touched. Do you
-prepare a branch for merging in the relevant trees (once you have all
-the necessary Acks)?
+> +		thermal-governor = "step_wise";
 
-Best regards
-Uwe
+This property is not supported upstream.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+In any case, this thermal zone doesn't have cooling devices, what is
+any thermal governor supposed to do with this thermal zone?
 
---e6h2cu7dk3om4cg7
-Content-Type: application/pgp-signature; name="signature.asc"
+I understand that the zone is generally useful to configure the
+over-temperature protection of the PMIC and to allow the kernel
+to shut down (or reboot) when a critical trip point is reached,
+but the specific governor is irrelevant as far as I understand.
 
------BEGIN PGP SIGNATURE-----
+> +		thermal-sensors = <&pm7325_tz>;
+> +
+> +		trips {
+> +			pm7325_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pm7325_trip1: trip1 {
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +
+> +			pm7325_trip2: trip2 {
+> +				temperature = <145000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBLyx0ACgkQwfwUeK3K
-7Ak+VQf+I16Pur4J8v1VK5J08zAGFG+/Lgxk4CBXKIV1Hs8zZ+Xj6Y7sobqkPmiG
-/75gKqcFB43BHDrOAwWVMNlE9OChTTrI9grjBHBTGl+46cJkuu5qus/xptp3mxQu
-zdTcmzfkrLYPdw3AQaofaLHg5IL0RZkvovBmiUa+JaN89EtjvuLRIFL8wtipt/0J
-rE8baVUKZd1ttRm+eotIk3iknzxFUe3xAVFJ8YRlNBwyGlEQQBsZFku3+rP2p47w
-6K30Tnft0JKiK+4fuMFhQ5xw3ugSSWThr6/kDYQnTk/BagTPeUyftRmh4/JNkc8X
-7OhSbf8srKbZC8859TEqJZ5M48RRxw==
-=bnOj
------END PGP SIGNATURE-----
+Why are there two critical trip points? The system should shut down
+when the first trip point is reached, the second one is irrelevant.
+As far as I recall from implementing f1599f9e4cd6 ("thermal:
+qcom-spmi: Use PMIC thermal stage 2 for critical trip points")
+earlier PMIC versions have 3 stages for the over-temperature
+protection. When the stage 3 threshold (trip2) is hit the PMIC
+performs and automated shutdown. Unless this has changed for the
+PM7325 the second critical trip point should not be needed. The
+second critical trip point could even lead to a misconfiguration
+of the PMIC threshold, since the driver interprets the temperature
+of a critical trip point as the stage3 temperature.
 
---e6h2cu7dk3om4cg7--
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> new file mode 100644
+> index 0000000..dffa79d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pm8350: pmic@2 {
+
+pm8350c ?
+
+> +		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
+> +		reg = <0x2 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm8350c_tz: temp-alarm@a00 {
+
+same as for pm7325
+
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pm8350c_gpios: gpios@8800 {
+> +			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm8350c_gpios 0 0 9>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pm8350c_temp_alarm: pm8350c_tz {
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
+> +		thermal-governor = "step_wise";
+> +		thermal-sensors = <&pm8350c_tz>;
+
+
+same as for pm7325
+
+> +
+> +		trips {
+> +			pm8350c_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pm8350c_trip1: trip1 {
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +
+> +			pm8350c_trip2: trip2 {
+> +				temperature = <145000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+
+same as for pm7325
+
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> new file mode 100644
+> index 0000000..9749484
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> @@ -0,0 +1,104 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
+> +
+> +&spmi_bus {
+> +	pmk8350: pmic@0 {
+> +		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
+> +		reg = <0x0 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmk8350_pon: pon_hlos@1300 {
+
+just pon@1300 for consistency? That's also the namingMK8350 Channel nodes */
+> +			pmk8350_die_temp {
+> +				reg = <PMK8350_ADC7_DIE_TEMP>;
+> +				label = "pmk8350_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +
+> +			/* PM8350 Channel nodes */
+
+This comment and the ones below don't seem particularly useful,
+the naming of the nodes should provide enough context.
+
+> +			pm8350_die_temp {
+> +				reg = <PM8350_ADC7_DIE_TEMP>;
+> +				label = "pm8350_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +
+> +			/* PMR735a Channel nodes */
+> +			pmr735a_die_temp {
+> +				reg = <PMR735A_ADC7_DIE_TEMP>;
+> +				label = "pmr735a_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +
+> +			/* PMR735b Channel nodes */
+> +			pmr735b_die_temp {
+> +				reg = <PMR735B_ADC7_DIE_TEMP>;
+> +				label = "pmr735b_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +		};
+> +
+> +		pmk8350_adc_tm: adc_tm@3400 {
+> +			compatible = "qcom,adc-tm7";
+> +			reg = <0x3400>;
+> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "threshold";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#thermal-sensor-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pmk8350_gpios: gpios@b000 {
+> +			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
+> +			reg = <0xb000>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmk8350_gpios 0 0 4>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		pmk8350_rtc: rtc@6100 {
+> +			compatible = "qcom,pmk8350-rtc";
+> +			reg = <0x6100>, <0x6200>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> new file mode 100644
+> index 0000000..e1d2356
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pmr735a: pmic@4 {
+> +		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
+> +		reg = <0x4 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmr735a_tz: temp-alarm@a00 {
+
+same as for pm7325
+
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmr735a_gpios: gpios@8800 {
+> +			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmr735a_gpios 0 0 4>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pmr735a_temp_alarm: pmr735a_tz {
+
+same as for pm7325
+
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
+> +		thermal-governor = "step_wise";
+> +		thermal-sensors = <&pmr735a_tz>;
+
+same as for pm7325
+
+> +
+> +		trips {
+> +			pmr735a_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pmr735a_trip1: trip1 {
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +
+> +			pmr735a_trip2: trip2 {
+> +				temperature = <145000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+
+same as for pm7325
+
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 8af6d77..25402d4 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -606,4 +606,12 @@
+>  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+>  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+>  	};
+> +
+> +	thermal_zones: thermal-zones {
+> +	};
+>  };
+> +
+> +#include "pm7325.dtsi"
+> +#include "pm8350c.dtsi"
+> +#include "pmk8350.dtsi"
+> +#include "pmr735a.dtsi"
