@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4443384ED
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 06:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E124233853B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 06:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbhCLFMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 00:12:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33186 "EHLO mail.kernel.org"
+        id S230515AbhCLF2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 00:28:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34586 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231348AbhCLFMM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 00:12:12 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DCADB64FA3;
-        Fri, 12 Mar 2021 05:12:08 +0000 (UTC)
+        id S231331AbhCLF1r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 00:27:47 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7112A64F84;
+        Fri, 12 Mar 2021 05:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615525931;
-        bh=HQ1tro5PCDW92A/sOIKcBwNFev1y/F2w1RT8q74jPPo=;
+        s=k20201202; t=1615526867;
+        bh=/77vYUZ7UpTZLZ/EC5B9NNsAAOngBKOHsaK4ikMjpIo=;
         h=From:To:Cc:Subject:Date:From;
-        b=bILnbjYehMnrHvM3OqUs5+Puei0+o/f054SvoOX/HbnS6pjaoE06eBaoUtKd+ELLJ
-         pGFf1Rn8kK/FplXLAxl3hwR5E9UaciyeyXlnml8KNG8nZAL4e8tzkhPxhJ2NvnIo2g
-         wzrPNNo4mnLNnyVhzzmBd1eLADVSFreQPgJwtM9RWvyqFRCBhgSmDf6P2bAc4MGntU
-         976WzG55MqcKay/V3ENskQFYJh4sEFDsRitv2FeZIg7hhV3t4v4oazw8vVd41JvTIi
-         +qJurRF6mnlkeBdFLEqqDkk9MhB8dC0EsbfYciUsWBXwE3E7WUUoVAVtt95+uVSgj9
-         VMzYbTyAZhixA==
+        b=p30EEwoKXEqajPzSimL3b8YyczWtyIV5Q8/DZ0h0oz00qETqHq91sacY9iJUTJyOH
+         CDPbLPJ0xdIqCHio7OJxRm/MHbS5tMMG3fqbTdSz+sM8D03chNKmgGMj10t0l18S0F
+         ZyxrKbaqhcUvvsYqf4HCXabgApb1fiQMgcMUlfF/uCb9Zl6Z3X3yQdyjhE8QiZyEkO
+         2YCvgEJUpzmTz6oGlkLvIti5g4r43N9Hsf7fHXeeV0gekKTuFYfHsnnFYAa/12byxb
+         RyXd0Fv+cxPWold83BgZppD/cODxofnWvwbNxD2LAjKzuwbjtJ7/6/nY0Yw59kEADt
+         tfccwLGqOgC/Q==
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mailbox: Add compatible for SM8350 IPCC
-Date:   Fri, 12 Mar 2021 10:42:03 +0530
-Message-Id: <20210312051203.3555751-1-vkoul@kernel.org>
+Subject: [PATCH 0/8] arm64: dts: qcom: sm8350: Add PMICs
+Date:   Fri, 12 Mar 2021 10:57:29 +0530
+Message-Id: <20210312052737.3558801-1-vkoul@kernel.org>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -40,25 +39,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the compatible string for SM8350 IPCC block on this SoC
+This adds the SPMI nodes for SM8350 followed by PMIC base file containing
+the GPIO nodes for these pmics (pmic compatibles have been picked by LinusW)
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+SM8350-MTP includes PM8350, PM8350B, PM8350C, PMK8350, PMR735A AND PMR735B
+pmics.
 
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-index 168beeb7e9f7..fe17ba9b84f2 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-@@ -25,6 +25,7 @@ properties:
-     items:
-       - enum:
-           - qcom,sm8250-ipcc
-+          - qcom,sm8350-ipcc
-       - const: qcom,ipcc
- 
-   reg:
+Vinod Koul (8):
+  arm64: dts: qcom: sm8350: Add spmi node
+  arm64: dts: qcom: pmk8350: Add base dts file
+  arm64: dts: qcom: pm8350: Add base dts file
+  arm64: dts: qcom: pm8350b: Add base dts file
+  arm64: dts: qcom: pm8350c: Add base dts file
+  arm64: dts: qcom: pmr735a: Add base dts file
+  arm64: dts: qcom: pmr735b: Add base dts file
+  arm64: dts: qcom: sm8350-mtp: Add PMICs
+
+ arch/arm64/boot/dts/qcom/pm8350.dtsi    | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8350b.dtsi   | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi   | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmr735a.dtsi   | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmr735b.dtsi   | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350-mtp.dts |  6 ++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi    | 18 ++++++++++++++++++
+ 8 files changed, 174 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8350.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8350b.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735b.dtsi
+
 -- 
 2.26.2
 
