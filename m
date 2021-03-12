@@ -2,66 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0509E338724
-	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 09:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB70C33873E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Mar 2021 09:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231823AbhCLIPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 03:15:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60814 "EHLO mail.kernel.org"
+        id S231764AbhCLIYF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 12 Mar 2021 03:24:05 -0500
+Received: from lists.nic.cz ([217.31.204.67]:34200 "EHLO mail.nic.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231466AbhCLIPq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Mar 2021 03:15:46 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E511964F24;
-        Fri, 12 Mar 2021 08:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1615536946;
-        bh=pGOkfq4PO14DvGqEJeNzFWg1lPYSGCHDiyFuwWF38ew=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1DHu3ktO5sP3m9DLEfAyTWhET34y3e8n1W+VXx0TEQiKvp2eb6QEeYIRseQTe/e6s
-         Z9DCjiOORTqwKkDubqHsgXIuOf9SkbQRZLmKWWA5VxqQGwMq8hHaeWqb+d3OhBEb+3
-         yeCG0npTLkYLSAEpDWee16MOo3X6tlishaqdE900=
-Date:   Fri, 12 Mar 2021 09:15:44 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Martin Devera <devik@eaxlabs.cz>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/2] tty/serial: Add rx-tx-swap OF option to
- stm32-usart
-Message-ID: <YEsjMJae3cGOdyjG@kroah.com>
-References: <20210308192040.GA2807217@robh.at.kernel.org>
- <20210311215153.676-1-devik@eaxlabs.cz>
- <20210311215153.676-2-devik@eaxlabs.cz>
+        id S229756AbhCLIXi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Mar 2021 03:23:38 -0500
+Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
+        by mail.nic.cz (Postfix) with ESMTPSA id 2002B140A71;
+        Fri, 12 Mar 2021 09:23:37 +0100 (CET)
+Date:   Fri, 12 Mar 2021 09:23:36 +0100
+From:   Marek Behun <marek.behun@nic.cz>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
+Message-ID: <20210312092336.5cbd10cb@nic.cz>
+In-Reply-To: <62b556d5-0ebd-0923-69c6-a2fa3ede73b2@gmail.com>
+References: <20210310070025.9150-1-zajec5@gmail.com>
+        <20210312084414.7e4822bb@nic.cz>
+        <62b556d5-0ebd-0923-69c6-a2fa3ede73b2@gmail.com>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311215153.676-2-devik@eaxlabs.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 10:51:53PM +0100, Martin Devera wrote:
-> STM32 F7/H7 usarts supports RX & TX pin swapping.
-> Add option to turn it on.
-> Tested on STM32MP157.
+On Fri, 12 Mar 2021 08:52:16 +0100
+Rafał Miłecki <zajec5@gmail.com> wrote:
+
+> On 12.03.2021 08:44, Marek Behun wrote:
+> > On Wed, 10 Mar 2021 08:00:25 +0100
+> > Rafał Miłecki <zajec5@gmail.com> wrote:
+> >   
+> >> From: Rafał Miłecki <rafal@milecki.pl>
+> >>
+> >> The old regex allowed only 1 character to follow the "led-" prefix which
+> >> was most likely just an overlook. Fix it and while at it allow dashes in
+> >> node names. It allows more meaningful names and it helpful e.g. when
+> >> having the same function name with 2 different colors. For example:
+> >> 1. led-power-white
+> >> 2. led-power-blue
+> >>
+> >> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> >> ---
+> >>   Documentation/devicetree/bindings/leds/leds-gpio.yaml | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/leds/leds-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> >> index 7ad2baeda0b0..ae46a43e480f 100644
+> >> --- a/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> >> +++ b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> >> @@ -21,7 +21,7 @@ properties:
+> >>   patternProperties:
+> >>     # The first form is preferred, but fall back to just 'led' anywhere in the
+> >>     # node name to at least catch some child nodes.
+> >> -  "(^led-[0-9a-f]$|led)":
+> >> +  "(^led-[0-9a-f][0-9a-f-]*$|led)":  
+> > 
+> > Why not use +, like everywhere else?
+> >    "(^led-[0-9a-f]+$|led)"  
 > 
-> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
-> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> ---
->  drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
->  drivers/tty/serial/stm32-usart.h |  4 ++++
->  2 files changed, 14 insertions(+), 1 deletion(-)
+> 1. Your regex doesn't allow dashes. I described that in commit message.
 
-What changed from v4-v1 on this patch series?  That needs to go below
-the --- line as documented.
+Ah, I confess I did not read the commit message. My fault.
 
-Please fix up and send v6.
+> 2. If I use one range and +, that will allow unwanted names like "led--power"
 
-thanks,
+But this can happen anyway. Your regex will match for example
+"led-deaf------beef".
 
-greg k-h
+Moreover you give as an example names
+  led-power-white
+  led-power-blue
+but the regex only allows hexadecimal characters, ie
+  led-dead-beef
+  led-1f-3
+
+The idea is that the string after "led-" is a hexadecimal address.
+Names like
+  led-power-white
+shouldn't be used, as far as I understand.
+
+Marek
