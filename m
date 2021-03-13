@@ -2,87 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8374433A1C0
-	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 23:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC97B33A1C4
+	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 23:55:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233570AbhCMWqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 17:46:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbhCMWpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 17:45:39 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B07C061574
-        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 14:45:39 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id t18so6913420pjs.3
-        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 14:45:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=hko1/HefpN8mg9CeMIxebUv1uopWkEbJjhdXwQ6WlPc=;
-        b=WJdznpqTZONj5XMgWUGe/GvsN4kupEdBkD30yTtzac3wXflzqACoY9qJgvShGyjTKQ
-         5FmB5FP2pTGxZIU+riW4lkoQU8qQGgO7YgIT6tHA4pLIxLAjSnDgF6nC6MlOHlzJOaB3
-         MZ4QQMhqjqERDuNCWfmxqCj9X+alHBPusQWAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=hko1/HefpN8mg9CeMIxebUv1uopWkEbJjhdXwQ6WlPc=;
-        b=LIEiJX5hx6l7AHyoFoiT5eCkhU03/VgEmAPtkF6Hf20O00pGLWhzF+TfTrPC/sX0It
-         BdZGp2hQlAx9p7jkSzqPdvSBbTWAH2cjbbHXH8I2ChXIuD7gTDFZCb9nbrXsn8eH0xpY
-         MA2cgZLIeM8Y5o5dP8u5uUmAlGFMTxiPs+aoyVJ3/jBjpXCe3kNDacdBnGVsZ/CJ3etO
-         lpgl+HS5vhPTy9BAA3jRMrMZSs2UO1YNWsshUMINZVMG8RDpKYHmfUcDxjvgvlCnmlUT
-         S5SdOJm0Xf78wZmDu8ZgK2BfgWfkMm26BZE37u/kYA7RDFE6TZdlsIkuvgLE1hiyNqpI
-         lE4A==
-X-Gm-Message-State: AOAM532wUyGtBqvjA5xqklrvtWAzyLWj6EFUcZJz0qhDKSTG/BUmNQu+
-        Vj29CJptpbwnbh808dmEdCmpXA==
-X-Google-Smtp-Source: ABdhPJy43803vYmJsWH8LRizBsr5Q90oDk+BDI1fXYXjItY/3dNaQDICmIGmOrgdtMYbQ6r84w/Q/Q==
-X-Received: by 2002:a17:90b:3615:: with SMTP id ml21mr5463528pjb.72.1615675539192;
-        Sat, 13 Mar 2021 14:45:39 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:e859:c7d5:7d7b:5ed8])
-        by smtp.gmail.com with ESMTPSA id k67sm8856478pgk.28.2021.03.13.14.45.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Mar 2021 14:45:38 -0800 (PST)
+        id S231329AbhCMWyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 17:54:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56674 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231205AbhCMWyQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Mar 2021 17:54:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ADF9164E87;
+        Sat, 13 Mar 2021 22:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615676055;
+        bh=drMYg0O/spcA145YsC2y40gm+EcWIarmoaXI8NzJ4A0=;
+        h=In-Reply-To:References:Subject:From:To:Date:From;
+        b=r4bc8AnGLFzQlg2wGI9djpUMk4T5MlaZKPglvCUq4OE9MKoCA0UIQJd5zJMoJ1Fmd
+         7jo1yo+IBSfMVn15yJLiZeLavv6SGdWEDBbMdef2EHx/f64wupsR5piGCL/MMw4zfE
+         mfNNLwTqj6pLHGiT1HBxerAEaylf7nD5FzjIZu5zYR7j2kjFvJoTlQmDSE3vvOQwf/
+         85Tx76MyMVQRVRZNVdVBWeFtgwLLx193tIHXbjL1pm3AE039DrGJTG/6GlfZya8vQ3
+         g0lycSWwHGCChiYHrfCfHU5W4fQo3KuMR4hEVFoFQwxdgOYf0d9/a/t1MwFxqIJ6z7
+         eixaDC1laWoCA==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210311131008.1.I85fc8146c0ee47e261faa0c54dd621467b81952d@changeid>
-References: <20210311131008.1.I85fc8146c0ee47e261faa0c54dd621467b81952d@changeid>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Drop duplicate dp_hot_plug_det node in trogdor
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     mka@chromium.org, Tanmay Shah <tanmay@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Date:   Sat, 13 Mar 2021 14:45:37 -0800
-Message-ID: <161567553733.1478170.10247703363575066889@swboyd.mtv.corp.google.com>
+In-Reply-To: <20210225194201.17001-5-noltari@gmail.com>
+References: <20210225194201.17001-1-noltari@gmail.com> <20210225194201.17001-5-noltari@gmail.com>
+Subject: Re: [PATCH 4/4] clk: bcm: Add BCM63268 timer clock and reset driver
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org, jonas.gorski@gmail.com,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Alvaro Fernandez Rojas <noltari@gmail.com>
+Date:   Sat, 13 Mar 2021 14:54:14 -0800
+Message-ID: <161567605436.1478170.6501285044585961586@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-03-11 13:12:41)
-> From: Stephen Boyd <swboyd@chromium.org>
->=20
-> This moved from being trogdor specific to being part of the general
-> sc7180.dtsi SoC file in commit 681a607ad21a ("arm64: dts: qcom:
-> sc7180: Add DisplayPort HPD pin dt node"). Then we dropped the pinconf
-> from the general sc7180.dtsi file in commit 8d079bf20410 ("arm64: dts:
-> qcom: sc7180: Drop pinconf on dp_hot_plug_det") and added it back to
-> the trogdor dts file in commit f772081f4883 ("arm64: dts: qcom:
-> sc7180: Add "dp_hot_plug_det" pinconf for trogdor").
->=20
-> As part of this we managed to forget to drop the old copy in the
-> trogdor dts. Let's do it now.
->=20
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> [dianders: updated desc]
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+Quoting Alvaro Fernandez Rojas (2021-02-25 11:42:01)
+> diff --git a/drivers/clk/bcm/clk-bcm63268-timer.c b/drivers/clk/bcm/clk-b=
+cm63268-timer.c
+> new file mode 100644
+> index 000000000000..5609c4ddb50c
+> --- /dev/null
+> +++ b/drivers/clk/bcm/clk-bcm63268-timer.c
+> @@ -0,0 +1,232 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * BCM63268 Timer Clock and Reset Controller Driver
+> + *
+> + * Copyright (C) 2021 =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.co=
+m>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/init.h>
 
-Thanks for the catch!
+Is this used?
+
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +
+> +#include <dt-bindings/clock/bcm63268-clock.h>
+> +
+> +#define BCM63268_TIMER_RESET_SLEEP_MIN_US      10000
+> +#define BCM63268_TIMER_RESET_SLEEP_MAX_US      20000
+> +
+> +struct bcm63268_tclkrst_hw {
+> +       void __iomem *regs;
+> +       spinlock_t lock;
+> +
+> +       struct reset_controller_dev rcdev;
+> +       struct clk_hw_onecell_data data;
+> +};
+> +
+> +struct bcm63268_tclk_table_entry {
+> +       const char * const name;
+> +       u8 bit;
+> +       unsigned long flags;
+
+This isn't used. Drop it?
+
+> +};
+> +
+> +static const struct bcm63268_tclk_table_entry bcm63268_timer_clocks[] =
+=3D {
+> +       {
+> +               .name =3D "ephy1",
+> +               .bit =3D BCM63268_TCLK_EPHY1,
+> +       }, {
+> +               .name =3D "ephy2",
+> +               .bit =3D BCM63268_TCLK_EPHY2,
+> +       }, {
+> +               .name =3D "ephy3",
+> +               .bit =3D BCM63268_TCLK_EPHY3,
+> +       }, {
+> +               .name =3D "gphy1",
+> +               .bit =3D BCM63268_TCLK_GPHY1,
+> +       }, {
+> +               .name =3D "dsl",
+> +               .bit =3D BCM63268_TCLK_DSL,
+> +       }, {
+> +               .name =3D "wakeon_ephy",
+> +               .bit =3D BCM63268_TCLK_WAKEON_EPHY,
+> +       }, {
+> +               .name =3D "wakeon_dsl",
+> +               .bit =3D BCM63268_TCLK_WAKEON_DSL,
+> +       }, {
+> +               .name =3D "fap1_pll",
+> +               .bit =3D BCM63268_TCLK_FAP1,
+> +       }, {
+> +               .name =3D "fap2_pll",
+> +               .bit =3D BCM63268_TCLK_FAP2,
+> +       }, {
+> +               .name =3D "uto_50",
+> +               .bit =3D BCM63268_TCLK_UTO_50,
+> +       }, {
+> +               .name =3D "uto_extin",
+> +               .bit =3D BCM63268_TCLK_UTO_EXTIN,
+> +       }, {
+> +               .name =3D "usb_ref",
+> +               .bit =3D BCM63268_TCLK_USB_REF,
+> +       }, {
+> +               /* sentinel */
+> +       }
+> +};
+> +
+> +static inline struct bcm63268_tclkrst_hw *
+> +to_bcm63268_timer_reset(struct reset_controller_dev *rcdev)
+> +{
+> +       return container_of(rcdev, struct bcm63268_tclkrst_hw, rcdev);
+> +}
+> +
+> +static int bcm63268_timer_reset_update(struct reset_controller_dev *rcde=
+v,
+> +                               unsigned long id, bool assert)
+> +{
+> +       struct bcm63268_tclkrst_hw *reset =3D to_bcm63268_timer_reset(rcd=
+ev);
+> +       unsigned long flags;
+> +       uint32_t val;
+> +
+> +       spin_lock_irqsave(&reset->lock, flags);
+> +       val =3D __raw_readl(reset->regs);
+> +       if (assert)
+> +               val &=3D ~BIT(id);
+> +       else
+> +               val |=3D BIT(id);
+> +       __raw_writel(val, reset->regs);
+> +       spin_unlock_irqrestore(&reset->lock, flags);
+> +
+> +       return 0;
+> +}
+> +
+> +static int bcm63268_timer_reset_assert(struct reset_controller_dev *rcde=
+v,
+> +                               unsigned long id)
+> +{
+> +       return bcm63268_timer_reset_update(rcdev, id, true);
+> +}
+> +
+> +static int bcm63268_timer_reset_deassert(struct reset_controller_dev *rc=
+dev,
+> +                                 unsigned long id)
+> +{
+> +       return bcm63268_timer_reset_update(rcdev, id, false);
+> +}
+> +
+> +static int bcm63268_timer_reset_reset(struct reset_controller_dev *rcdev,
+> +                              unsigned long id)
+> +{
+> +       bcm63268_timer_reset_update(rcdev, id, true);
+> +       usleep_range(BCM63268_TIMER_RESET_SLEEP_MIN_US,
+> +                    BCM63268_TIMER_RESET_SLEEP_MAX_US);
+> +
+> +       bcm63268_timer_reset_update(rcdev, id, false);
+> +       /*
+> +        * Ensure component is taken out reset state by sleeping also aft=
+er
+> +        * deasserting the reset. Otherwise, the component may not be rea=
+dy
+> +        * for operation.
+> +        */
+> +       usleep_range(BCM63268_TIMER_RESET_SLEEP_MIN_US,
+> +                    BCM63268_TIMER_RESET_SLEEP_MAX_US);
+> +
+> +       return 0;
+> +}
+> +
+> +static int bcm63268_timer_reset_status(struct reset_controller_dev *rcde=
+v,
+> +                               unsigned long id)
+> +{
+> +       struct bcm63268_tclkrst_hw *reset =3D to_bcm63268_timer_reset(rcd=
+ev);
+> +
+> +       return !(__raw_readl(reset->regs) & BIT(id));
+> +}
+> +
+> +static struct reset_control_ops bcm63268_timer_reset_ops =3D {
+> +       .assert =3D bcm63268_timer_reset_assert,
+> +       .deassert =3D bcm63268_timer_reset_deassert,
+> +       .reset =3D bcm63268_timer_reset_reset,
+> +       .status =3D bcm63268_timer_reset_status,
+> +};
+> +
+> +static int bcm63268_tclk_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       const struct bcm63268_tclk_table_entry *entry, *table;
+> +       struct bcm63268_tclkrst_hw *hw;
+> +       u8 maxbit =3D 0;
+> +       int i, ret;
+> +
+> +       table =3D of_device_get_match_data(dev);
+> +       if (!table)
+> +               return -EINVAL;
+> +
+> +       for (entry =3D table; entry->name; entry++)
+> +               maxbit =3D max_t(u8, maxbit, entry->bit);
+
+Is max_t() required? Hopefully just max() can be used.
+
+> +       maxbit++;
+> +
+> +       hw =3D devm_kzalloc(&pdev->dev, struct_size(hw, data.hws, maxbit),
+> +                         GFP_KERNEL);
+> +       if (!hw)
+> +               return -ENOMEM;
+> +
+> +       platform_set_drvdata(pdev, hw);
+> +
+> +       spin_lock_init(&hw->lock);
+> +
+> +       hw->data.num =3D maxbit;
+> +       for (i =3D 0; i < maxbit; i++)
+> +               hw->data.hws[i] =3D ERR_PTR(-ENODEV);
+> +
+> +       hw->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(hw->regs))
+> +               return PTR_ERR(hw->regs);
+> +
+> +       for (entry =3D table; entry->name; entry++) {
+> +               struct clk_hw *clk;
+
+Please move this declaration to start of the function instead of local
+to this loop.
+
+> +
+> +               clk =3D clk_hw_register_gate(dev, entry->name, NULL,
+> +                                          entry->flags, hw->regs, entry-=
+>bit,
+> +                                          CLK_GATE_BIG_ENDIAN, &hw->lock=
+);
+> +               if (IS_ERR(clk)) {
+> +                       ret =3D PTR_ERR(clk);
+> +                       goto out_err;
+> +               }
+> +
+> +               hw->data.hws[entry->bit] =3D clk;
+> +       }
+> +
+> +       ret =3D of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_ge=
+t,
+
+Please use devm or unregister this on failure.
+
+> +                                    &hw->data);
+> +       if (!ret)
+> +               return 0;
+> +
+> +       hw->rcdev.of_node =3D dev->of_node;
+> +       hw->rcdev.ops =3D &bcm63268_timer_reset_ops;
+> +
+> +       ret =3D devm_reset_controller_register(dev, &hw->rcdev);
+> +       if (ret)
+> +               dev_err(dev, "Failed to register reset controller\n");
+
+Why do we only register reset controller on failure to add the clk hw
+provider?
+
+> +
+> +out_err:
+> +       for (i =3D 0; i < hw->data.num; i++) {
+> +               if (!IS_ERR(hw->data.hws[i]))
+> +                       clk_hw_unregister_gate(hw->data.hws[i]);
+> +       }
+> +
