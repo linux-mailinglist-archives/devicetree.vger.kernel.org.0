@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 913AD33A19B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 23:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8374433A1C0
+	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 23:46:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234807AbhCMWZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 17:25:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50296 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234753AbhCMWZR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Mar 2021 17:25:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA0E64EC9;
-        Sat, 13 Mar 2021 22:25:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615674316;
-        bh=XNgqaZ2i3/Zjc4Q3m1D1qEEm/vTGTGwUoIYDh1YUMx4=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=VvS7SMUhIcP5DmSLkgLps5Ohia0lLPsz77zbFIk3XrvkVYiEPHBT1DqRACuwnF26y
-         RO9O8Mi9zGLMIDe2esJfAAlZMjUcwg8QsI8MGyexqtUNT6Vr/Yur5NNFO72lbkHckx
-         v2JRpwd4EHYq+CqcZAAYlpXUzj5Tbrr9k8Iq3HOczddpzgWOgGOczAeuFisWNbJfJI
-         9MSFU71NOWA+yIHk7Z7AksXNpmI8pDl7HumYSEJmI+zLmzkkSAbQ03apJVZ0U+0rFh
-         pc7+OBsOwNwUogvOR94nkUa53IchUwZc9vmBbqah78+ISFv10Qqmr9QXj5RQoy5JaU
-         pF9ZQ8ehXr/Zg==
+        id S233570AbhCMWqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 17:46:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231329AbhCMWpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 17:45:39 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B07C061574
+        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 14:45:39 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id t18so6913420pjs.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 14:45:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=hko1/HefpN8mg9CeMIxebUv1uopWkEbJjhdXwQ6WlPc=;
+        b=WJdznpqTZONj5XMgWUGe/GvsN4kupEdBkD30yTtzac3wXflzqACoY9qJgvShGyjTKQ
+         5FmB5FP2pTGxZIU+riW4lkoQU8qQGgO7YgIT6tHA4pLIxLAjSnDgF6nC6MlOHlzJOaB3
+         MZ4QQMhqjqERDuNCWfmxqCj9X+alHBPusQWAE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=hko1/HefpN8mg9CeMIxebUv1uopWkEbJjhdXwQ6WlPc=;
+        b=LIEiJX5hx6l7AHyoFoiT5eCkhU03/VgEmAPtkF6Hf20O00pGLWhzF+TfTrPC/sX0It
+         BdZGp2hQlAx9p7jkSzqPdvSBbTWAH2cjbbHXH8I2ChXIuD7gTDFZCb9nbrXsn8eH0xpY
+         MA2cgZLIeM8Y5o5dP8u5uUmAlGFMTxiPs+aoyVJ3/jBjpXCe3kNDacdBnGVsZ/CJ3etO
+         lpgl+HS5vhPTy9BAA3jRMrMZSs2UO1YNWsshUMINZVMG8RDpKYHmfUcDxjvgvlCnmlUT
+         S5SdOJm0Xf78wZmDu8ZgK2BfgWfkMm26BZE37u/kYA7RDFE6TZdlsIkuvgLE1hiyNqpI
+         lE4A==
+X-Gm-Message-State: AOAM532wUyGtBqvjA5xqklrvtWAzyLWj6EFUcZJz0qhDKSTG/BUmNQu+
+        Vj29CJptpbwnbh808dmEdCmpXA==
+X-Google-Smtp-Source: ABdhPJy43803vYmJsWH8LRizBsr5Q90oDk+BDI1fXYXjItY/3dNaQDICmIGmOrgdtMYbQ6r84w/Q/Q==
+X-Received: by 2002:a17:90b:3615:: with SMTP id ml21mr5463528pjb.72.1615675539192;
+        Sat, 13 Mar 2021 14:45:39 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:e859:c7d5:7d7b:5ed8])
+        by smtp.gmail.com with ESMTPSA id k67sm8856478pgk.28.2021.03.13.14.45.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Mar 2021 14:45:38 -0800 (PST)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210301064749.10392-5-zhangqing@rock-chips.com>
-References: <20210301064749.10392-1-zhangqing@rock-chips.com> <20210301064749.10392-5-zhangqing@rock-chips.com>
-Subject: Re: [PATCH v3 4/4] clk: rockchip: add clock controller for rk3568
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cl@rock-chips.com, huangtao@rock-chips.com,
-        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
-To:     Elaine Zhang <zhangqing@rock-chips.com>, heiko@sntech.de,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Date:   Sat, 13 Mar 2021 14:25:15 -0800
-Message-ID: <161567431517.1478170.18210364268176534887@swboyd.mtv.corp.google.com>
+In-Reply-To: <20210311131008.1.I85fc8146c0ee47e261faa0c54dd621467b81952d@changeid>
+References: <20210311131008.1.I85fc8146c0ee47e261faa0c54dd621467b81952d@changeid>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Drop duplicate dp_hot_plug_det node in trogdor
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     mka@chromium.org, Tanmay Shah <tanmay@codeaurora.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Date:   Sat, 13 Mar 2021 14:45:37 -0800
+Message-ID: <161567553733.1478170.10247703363575066889@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Elaine Zhang (2021-02-28 22:47:49)
-> Add the clock tree definition for the new rk3568 SoC.
+Quoting Douglas Anderson (2021-03-11 13:12:41)
+> From: Stephen Boyd <swboyd@chromium.org>
 >=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> This moved from being trogdor specific to being part of the general
+> sc7180.dtsi SoC file in commit 681a607ad21a ("arm64: dts: qcom:
+> sc7180: Add DisplayPort HPD pin dt node"). Then we dropped the pinconf
+> from the general sc7180.dtsi file in commit 8d079bf20410 ("arm64: dts:
+> qcom: sc7180: Drop pinconf on dp_hot_plug_det") and added it back to
+> the trogdor dts file in commit f772081f4883 ("arm64: dts: qcom:
+> sc7180: Add "dp_hot_plug_det" pinconf for trogdor").
+>=20
+> As part of this we managed to forget to drop the old copy in the
+> trogdor dts. Let's do it now.
+>=20
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> [dianders: updated desc]
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  drivers/clk/rockchip/Kconfig      |    7 +
->  drivers/clk/rockchip/Makefile     |    1 +
->  drivers/clk/rockchip/clk-rk3568.c | 1726 +++++++++++++++++++++++++++++
->  drivers/clk/rockchip/clk.h        |   30 +-
->  4 files changed, 1763 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/rockchip/clk-rk3568.c
->=20
-> diff --git a/drivers/clk/rockchip/Kconfig b/drivers/clk/rockchip/Kconfig
-> index effd05032e85..2e31901f4213 100644
-> --- a/drivers/clk/rockchip/Kconfig
-> +++ b/drivers/clk/rockchip/Kconfig
-> @@ -85,4 +85,11 @@ config CLK_RK3399
->         default y
->         help
->           Build the driver for RK3399 Clock Driver.
-> +
-> +config CLK_RK3568
-> +       tristate "Rockchip RK3568 clock controller support"
-> +       depends on (ARM64 || COMPILE_TEST)
 
-Drop parenthesis please.
-
-> +       default y
-> +       help
-> +         Build the driver for RK3568 Clock Driver.
->  endif
-> diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk=
--rk3568.c
-> new file mode 100644
-> index 000000000000..60913aa91897
-> --- /dev/null
-> +++ b/drivers/clk/rockchip/clk-rk3568.c
-> @@ -0,0 +1,1726 @@
-[...]
-> +};
-> +builtin_platform_driver_probe(clk_rk3568_driver, clk_rk3568_probe);
-> +
-> +MODULE_DESCRIPTION("Rockchip RK3568 Clock Driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:clk-rk3568");
-
-I think module alias does nothing?
+Thanks for the catch!
