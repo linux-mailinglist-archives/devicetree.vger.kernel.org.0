@@ -2,57 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2B0339B49
-	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 03:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35567339B84
+	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 04:26:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbhCMCfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Mar 2021 21:35:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46346 "EHLO
+        id S231789AbhCMDZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Mar 2021 22:25:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232949AbhCMCfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 21:35:38 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF18DC061574;
-        Fri, 12 Mar 2021 18:35:37 -0800 (PST)
-Received: from [192.168.1.101] (abac242.neoplus.adsl.tpnet.pl [83.6.166.242])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 9588E3EE58;
-        Sat, 13 Mar 2021 03:35:35 +0100 (CET)
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sdm845: Move reserved-memory to
- devices
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Doug Anderson <dianders@chromium.org>
-References: <20210312234310.3490809-1-bjorn.andersson@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <13234328-7251-407d-8870-d409708632e3@somainline.org>
-Date:   Sat, 13 Mar 2021 03:35:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229959AbhCMDZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Mar 2021 22:25:32 -0500
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B91C061574;
+        Fri, 12 Mar 2021 19:25:32 -0800 (PST)
+Received: by mail-il1-x12b.google.com with SMTP id v14so4407198ilj.11;
+        Fri, 12 Mar 2021 19:25:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EkbWvvawOZqv47KK5IQlHKelnnTkdOV4/2jDdv1VKWs=;
+        b=oChx00d/dOfZCF5MvE/GxN+89t/pUJ93l0w03dUe/bwP0ZTdzwHrihLPyACvgzziN+
+         kf4Mjz1hOceAhMpKoA8lAqW2DecYDIhFjbQqbCZZa+Xpfo2aPi+X9RNFclMtMIzHjJcn
+         jzP1jCEbYL+ymBVuz8vjdKxRg310xaiRK7X+IlEWHhTYcuIo8LLIQYKYP6g7Ix9Dx7pW
+         5Z3pIEJhjJlTZIfNovlYfKViGxxh3pCJczU8RDa1z0BcMjA5UU4XNM3Wt3ySMAoVK4Ps
+         Okv0rMjCVIZkdFC7ewkludCVVYUz7JLE3lckxfRm+UN4cWBRI71JR6asJnpTVtcNaN1m
+         Aqpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EkbWvvawOZqv47KK5IQlHKelnnTkdOV4/2jDdv1VKWs=;
+        b=c4BtBobk8ei0kOvWiJhdgzJvSQYSmfSEqU1ACR9+EPRuIQRnO8IvrVy00JNxZ0Cxjz
+         pZHIP+BLXQKKF/95FdS4UsSvMDAhwNHHh+iwev3hRmvWnrO/c9/bEs/qi1HnMI36p3AZ
+         J3bzVkWvb9bIRRWvxMtA1PXiP8DLryHv++d3B/swy0TJJbuapJG99uwi1sC7SJh03c8e
+         vRJRpnxxNo2MbFYYfynBGzIlchLiG4GVO6j3yIOM9ST0vWDCEZ4q20gxIILsqH+QON/3
+         EBcTgVZgq2zPjKa2mMWGKWyNFKZmXhAlK5JgHBkEO7o2X1/4BKAoMPOHJ9uKk4PEHPSW
+         cXRg==
+X-Gm-Message-State: AOAM531ixwCQz7Q15fS8/Mo7nwXfx4WPLQ+pw+FqnngBetXu2I6sEBm6
+        ZfuBrYGeEb2oIDtryN1UwAw=
+X-Google-Smtp-Source: ABdhPJyO3owciWGFItb+L6559F1y22YE84vWPYb/MCixtNov78PCLOv/0p7+zLN1cRAT+8RXNQVZoA==
+X-Received: by 2002:a92:c5cf:: with SMTP id s15mr5103376ilt.149.1615605931735;
+        Fri, 12 Mar 2021 19:25:31 -0800 (PST)
+Received: from localhost.localdomain (tunnel525895-pt.tunnel.tserv15.lax1.ipv6.he.net. [2001:470:c:1200::2])
+        by smtp.googlemail.com with ESMTPSA id a5sm3959013ilk.14.2021.03.12.19.25.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Mar 2021 19:25:31 -0800 (PST)
+From:   Tianling Shen <cnsztl@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Bauer <mail@david-bauer.net>,
+        Tianling Shen <cnsztl@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Marty Jones <mj8263788@gmail.com>,
+        Jensen Huang <jensenhuang@friendlyarm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
+Date:   Sat, 13 Mar 2021 11:25:14 +0800
+Message-Id: <20210313032515.12590-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210312234310.3490809-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add devicetree binding documentation for the FriendlyARM NanoPi R4S.
 
+Changes in v2:
+- Disable display for NanoPi R4S (reference commit: 74532de460ec)
+- Light "sys" LED on NanoPi R4S (reference commit: 833821eeab91)
 
-I'm not sure I can agree. Especially for regions like IPA and TZ-reserved, which seem the same on (almost?) all..
+Changes in v3:
+- Dropped non-existent node `display_subsystem`
 
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Sure, the configuration for various remoteprocs *can* differ based on what the vendor decided to go with, but more often than not (especially with phones) vendors just take a MTP or CDP design, add a screen, couple of cameras and call it their own (you can tell by how similar most of them to the original reference designs in DT). While this is usually the case with lower-end (so not exactly sdm845) devices, it also kinda applies here...
-
-
-I guess for this one, we should find the lowest common denominator and keep the nodes that are in the majority of devices in 845 DTSI and only alter them if need be.. For WoA devices that may stray further away, you can just add a label to reserved-memory and /delete-node/ it, so that you can rewrite it cleanly. The proposed approach just adds a lot - A LOT - of duplication. It will REALLY bite after more people submit 845-based phones, of which there are plenty (4 Xperias, a whole lot of Xiaomis, a couple of Samsungs, LGs... need I go on?).
-
-
-Konrad
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index c3036f95c7bc..4a6f772c1043 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -134,6 +134,7 @@ properties:
+               - friendlyarm,nanopi-m4
+               - friendlyarm,nanopi-m4b
+               - friendlyarm,nanopi-neo4
++              - friendlyarm,nanopi-r4s
+           - const: rockchip,rk3399
+ 
+       - description: GeekBuying GeekBox
+-- 
+2.17.1
 
