@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4EEF33A1EC
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 00:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDE033A1F4
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 00:44:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233570AbhCMXYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 18:24:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233369AbhCMXYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 18:24:05 -0500
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D443AC061574;
-        Sat, 13 Mar 2021 15:24:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
-        Reply-To:Cc:Content-ID:Content-Description;
-        bh=bjTkDYY2S47W+dOwH7RhQ+iYh/NtHasQ+4FwEjODBck=; b=TlzMrUWL1xPkqHMoahUKjApRlE
-        EBdmu/rXygCPYBfAHTuPJWjO1wvTnNj3hCZ7kqm4VosmLUOa5phIbrrjn77xe//uQDRPEtvPxDe8m
-        MmuwooLijFxhaG4JI1oudU4bC6Od9fgSUeutUtW44PxwVWA8u9dh/OSn44jYQQ4J875Ua5F7HycaG
-        6qUjXZ4epTwK4RuLZ5RcRcOnjoZkGojimzW0xyANw1WqfWNVHPSkHh832NnoeHARTyWMfgoPoOYsB
-        gWLyLiE1iE9MBbShGTyVDhKZkZgcAJlxr71pawmXDy5ZG8yJyjFTZ74z0qtBhGzjxvQxE2VviQKzl
-        MHxishjA==;
-Received: from [2601:1c0:6280:3f0::9757]
-        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lLDc2-001A31-0P; Sat, 13 Mar 2021 23:24:02 +0000
-Subject: Re: [PATCH] docs: devicetree: bindings: sound: Fix a typo in the file
- rt5682.txt
-To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, dt@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210313231850.17278-1-unixbhaskar@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <08789a65-5159-8658-5fc8-6f6e6efe3e27@infradead.org>
-Date:   Sat, 13 Mar 2021 15:23:57 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S231205AbhCMXoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 18:44:19 -0500
+Received: from eu-shark2.inbox.eu ([195.216.236.82]:37864 "EHLO
+        eu-shark2.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234788AbhCMXoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 18:44:17 -0500
+X-Greylist: delayed 394 seconds by postgrey-1.27 at vger.kernel.org; Sat, 13 Mar 2021 18:44:17 EST
+Received: from eu-shark2.inbox.eu (localhost [127.0.0.1])
+        by eu-shark2-out.inbox.eu (Postfix) with ESMTP id 82D3A4612BF;
+        Sun, 14 Mar 2021 01:37:40 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
+        t=1615678660; bh=pvIBmRAw8d1VUyi9V/SeXV0tyYF89ThqAif8y8U7n3A=;
+        h=Date:From:To:Cc:Subject;
+        b=zht9rfBCY5gNRpSipU3V0FSXLxWa2evvyzeFaQYGj20zBl8q126KGE8Vrv7CKigZA
+         KQJ8cJUGUlGFXFTiTPCzVYAOPk/nbvb/0ugBjUbINxD8ESdqNgS6cgmi+aTgv9Cvba
+         UvbfOsnhuz9mln05OJV4DRlSemsfPO4S2/oqpyzo=
+Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
+        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id 5E8614612B2;
+        Sun, 14 Mar 2021 01:37:40 +0200 (EET)
+Received: from pc (unknown [185.176.222.57])
+        (Authenticated sender: arzamas-16@mail.ee)
+        by mail.inbox.eu (Postfix) with ESMTPA id DF06F1BE0154;
+        Sun, 14 Mar 2021 01:37:39 +0200 (EET)
+Date:   Sun, 14 Mar 2021 02:37:35 +0300
+From:   Boris Lysov <arzamas-16@mail.ee>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm: mediatek: dts: activate SMP for mt6589
+Message-ID: <20210314023735.052d2d35@pc>
 MIME-Version: 1.0
-In-Reply-To: <20210313231850.17278-1-unixbhaskar@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: OK
+X-ESPOL: 6N1mkJY3ejOlglu/QnzYGwQ1rTRMW/GWher6j11F7wj3TUiYHDwAURW+m25+SXi8vSM=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/13/21 3:18 PM, Bhaskar Chowdhury wrote:
-> 
-> s/drving/driving/
-> 
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+This simple patch activates SMP for mt6589 by adding the missing
+"enable-method" property. After applying this patch kernel log
+indicates all cores are brought up:
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
+[    0.070122] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.071652] Setting up static identity map for 0x80100000 - 0x80100054
+[    0.072711] rcu: Hierarchical SRCU implementation.
+[    0.073853] smp: Bringing up secondary CPUs ...
+[    0.133675] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.193675] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.253675] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.253818] smp: Brought up 1 node, 4 CPUs
+[    0.256930] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
+[    0.257855] CPU: All CPU(s) started in SVC mode.
 
-> ---
->  Documentation/devicetree/bindings/sound/rt5682.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
-> index 9c5fadb6ac82..cd8c53d8497e 100644
-> --- a/Documentation/devicetree/bindings/sound/rt5682.txt
-> +++ b/Documentation/devicetree/bindings/sound/rt5682.txt
-> @@ -44,7 +44,7 @@ Optional properties:
->  - realtek,dmic-delay-ms : Set the delay time (ms) for the requirement of
->    the particular DMIC.
-> 
-> -- realtek,dmic-clk-driving-high : Set the high drving of the DMIC clock out.
-> +- realtek,dmic-clk-driving-high : Set the high driving of the DMIC clock out.
-> 
->  Pins on the device (for linking into audio routes) for RT5682:
-> 
-> --
+Before this change CPU cores 1-3 didn't start and the following lines
+were in kernel log:
 
+[    0.070126] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.071640] Setting up static identity map for 0x80100000 - 0x80100054
+[    0.072706] rcu: Hierarchical SRCU implementation.
+[    0.073850] smp: Bringing up secondary CPUs ...
+[    0.076052] smp: Brought up 1 node, 1 CPU
+[    0.076678] SMP: Total of 1 processors activated (2000.48 BogoMIPS).
+[    0.077603] CPU: All CPU(s) started in SVC mode.
 
+Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
+---
+ arch/arm/boot/dts/mt6589.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/mt6589.dtsi
+b/arch/arm/boot/dts/mt6589.dtsi index f3ccb70c0779..70df00a7bb26 100644
+--- a/arch/arm/boot/dts/mt6589.dtsi
++++ b/arch/arm/boot/dts/mt6589.dtsi
+@@ -17,6 +17,7 @@
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		enable-method = "mediatek,mt6589-smp";
+ 
+ 		cpu@0 {
+ 			device_type = "cpu";
 -- 
-~Randy
+2.20.1
 
