@@ -2,253 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E3533A181
-	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 22:54:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 913AD33A19B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Mar 2021 23:27:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234735AbhCMVxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 16:53:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234377AbhCMVxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 16:53:06 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03958C061762
-        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 13:53:05 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id u4so11771971ljo.6
-        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 13:53:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zeMrkglujiTzPE4Zy3XbR9wMePA6IveVBZZS1HWZ7Jk=;
-        b=I8llNvx42f7D2yt7Dl54YSWj/dQWZilBkqyva9Notkh8QB01o6HRAt07UWSuiKyD/i
-         Q4u2A3RlAw+A7VYEjGI3ErFaD+MtlfjuEwQM3CQSqpj+TvGGWlIwVg3JhSAJVcLmy/OI
-         KRRZig5UrSkH+ixqzUUOulo0ZHbouhn1ENMQb9rBTEWU29TdM3P2EbKMvt5w6Nkf78FN
-         4vQR1F1dtaI1QG3dfperyVDRfF4VpmYm/OXQFHlJC9e0ogxEVrhmZQsMwSJhrbROuooE
-         FirTqymUCp7KkhE4HjYmIsgAN/BEOq531mh95NltzCKob+K9cUlohEVA4dfBbo4loviX
-         Y8aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zeMrkglujiTzPE4Zy3XbR9wMePA6IveVBZZS1HWZ7Jk=;
-        b=Jq8DXD3W/0Uco1UbYaJULJzE/EyBufpDIKh/A0tlH9pHfcSncgnNRSk0/5UgxA3eNy
-         0G8HD5usbCvrn4p28mfHqurb2AdAVRSw3DltgQuND3zme3PoSsaTipdQjhxcca9ZKZtO
-         7lfgcN40vQi8QB6sVbLb/yM+hs2+LOdzIZjLoOjkiPB/In5rU/0lGfKetntqhjUNE2E3
-         SNXUv3oi8xLe/z7xClS9lSVNAjB01c2qBDi9uz+DlDMfUfhtqa90wn1F+ioOq/gwy934
-         K94/a6pkJzwj97BfihyV8beHBAmzvLZOokutLF+T/wYdtX9ubBKmNf+iIOOIm1IPEa73
-         MWuA==
-X-Gm-Message-State: AOAM530h+C/vdQUGo/MTva5dS5mvinuBo9cHjsstxNH285i7rc90Kyz1
-        YWY2ePsF1Mz+M/Q9CF4Cp/wVqg==
-X-Google-Smtp-Source: ABdhPJxxAn9QqdL1PA5RzazC1c1Qu/+dpClT2F8xC3pnTxnwkql2R6lP2I4ncLOcVLp+LyrQW9DKlA==
-X-Received: by 2002:a2e:a58d:: with SMTP id m13mr6241354ljp.347.1615672384296;
-        Sat, 13 Mar 2021 13:53:04 -0800 (PST)
-Received: from localhost.localdomain (c-d7cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.215])
-        by smtp.gmail.com with ESMTPSA id l7sm2442214lje.30.2021.03.13.13.53.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Mar 2021 13:53:03 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
-Cc:     linux-wireless@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: Convert the BCM4329 bindings to YAML and extend
-Date:   Sat, 13 Mar 2021 22:53:02 +0100
-Message-Id: <20210313215302.4076765-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        id S234807AbhCMWZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 17:25:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50296 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234753AbhCMWZR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Mar 2021 17:25:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA0E64EC9;
+        Sat, 13 Mar 2021 22:25:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615674316;
+        bh=XNgqaZ2i3/Zjc4Q3m1D1qEEm/vTGTGwUoIYDh1YUMx4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=VvS7SMUhIcP5DmSLkgLps5Ohia0lLPsz77zbFIk3XrvkVYiEPHBT1DqRACuwnF26y
+         RO9O8Mi9zGLMIDe2esJfAAlZMjUcwg8QsI8MGyexqtUNT6Vr/Yur5NNFO72lbkHckx
+         v2JRpwd4EHYq+CqcZAAYlpXUzj5Tbrr9k8Iq3HOczddpzgWOgGOczAeuFisWNbJfJI
+         9MSFU71NOWA+yIHk7Z7AksXNpmI8pDl7HumYSEJmI+zLmzkkSAbQ03apJVZ0U+0rFh
+         pc7+OBsOwNwUogvOR94nkUa53IchUwZc9vmBbqah78+ISFv10Qqmr9QXj5RQoy5JaU
+         pF9ZQ8ehXr/Zg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210301064749.10392-5-zhangqing@rock-chips.com>
+References: <20210301064749.10392-1-zhangqing@rock-chips.com> <20210301064749.10392-5-zhangqing@rock-chips.com>
+Subject: Re: [PATCH v3 4/4] clk: rockchip: add clock controller for rk3568
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+To:     Elaine Zhang <zhangqing@rock-chips.com>, heiko@sntech.de,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Date:   Sat, 13 Mar 2021 14:25:15 -0800
+Message-ID: <161567431517.1478170.18210364268176534887@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the BCM4329 family bindings to YAML schema, and
-extends and fixes the bindings like this:
+Quoting Elaine Zhang (2021-02-28 22:47:49)
+> Add the clock tree definition for the new rk3568 SoC.
+>=20
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> ---
+>  drivers/clk/rockchip/Kconfig      |    7 +
+>  drivers/clk/rockchip/Makefile     |    1 +
+>  drivers/clk/rockchip/clk-rk3568.c | 1726 +++++++++++++++++++++++++++++
+>  drivers/clk/rockchip/clk.h        |   30 +-
+>  4 files changed, 1763 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/rockchip/clk-rk3568.c
+>=20
+> diff --git a/drivers/clk/rockchip/Kconfig b/drivers/clk/rockchip/Kconfig
+> index effd05032e85..2e31901f4213 100644
+> --- a/drivers/clk/rockchip/Kconfig
+> +++ b/drivers/clk/rockchip/Kconfig
+> @@ -85,4 +85,11 @@ config CLK_RK3399
+>         default y
+>         help
+>           Build the driver for RK3399 Clock Driver.
+> +
+> +config CLK_RK3568
+> +       tristate "Rockchip RK3568 clock controller support"
+> +       depends on (ARM64 || COMPILE_TEST)
 
-- Name the bindings after the first chip (BCM4329) since
-  wildcards like 43xx are nowadays frowned upon by the DT
-  binding reviewers. We call this the "BCM4329 family"
-- Add compatible strings for all the variants that seem to
-  exist in the wild. (Derived from firmware listings.)
-- Add required reg property (SDIO function number)
-- Add reset-gpios property (some systems wire this to a GPIO
-  line).
-- I have only listed Arend as maintainer for now, volunteers
-  can be added.
+Drop parenthesis please.
 
-Cc: Arend van Spriel <aspriel@gmail.com>
-Cc: Franky Lin <franky.lin@broadcom.com>
-Cc: Hante Meuleman <hante.meuleman@broadcom.com>
-Cc: Chi-hsien Lin <chi-hsien.lin@infineon.com>
-Cc: Wright Feng <wright.feng@infineon.com>
-Cc: Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
-Cc: brcm80211-dev-list.pdl@broadcom.com
-Cc: SHA-cyfmac-dev-list@infineon.com
-Cc: linux-mmc@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../net/wireless/brcm,bcm4329-fmac.yaml       | 98 +++++++++++++++++++
- .../net/wireless/brcm,bcm43xx-fmac.txt        | 38 -------
- 2 files changed, 98 insertions(+), 38 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
+> +       default y
+> +       help
+> +         Build the driver for RK3568 Clock Driver.
+>  endif
+> diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk=
+-rk3568.c
+> new file mode 100644
+> index 000000000000..60913aa91897
+> --- /dev/null
+> +++ b/drivers/clk/rockchip/clk-rk3568.c
+> @@ -0,0 +1,1726 @@
+[...]
+> +};
+> +builtin_platform_driver_probe(clk_rk3568_driver, clk_rk3568_probe);
+> +
+> +MODULE_DESCRIPTION("Rockchip RK3568 Clock Driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:clk-rk3568");
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-new file mode 100644
-index 000000000000..d172ee486cf6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM4329 family fullmac wireless SDIO devices
-+
-+maintainers:
-+  - Arend van Spriel <arend@broadcom.com>
-+
-+description:
-+  The Broadcom Single chip MAC part for the BCM4329 family and
-+  later Cypress chips in the same family named CYW4373 and similar.
-+  These chips also have a Bluetooth portion described in a separate
-+  binding.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm43143-fmac
-+          - brcm,bcm4341b0-fmac
-+          - brcm,bcm4341b4-fmac
-+          - brcm,bcm4341b5-fmac
-+          - brcm,bcm4329-fmac
-+          - brcm,bcm4330-fmac
-+          - brcm,bcm4334-fmac
-+          - brcm,bcm43340-fmac
-+          - brcm,bcm4335-fmac
-+          - brcm,bcm43362-fmac
-+          - brcm,bcm4339-fmac
-+          - brcm,bcm43430a0-fmac
-+          - brcm,bcm43430a1-fmac
-+          - brcm,bcm43455-fmac
-+          - brcm,bcm43456-fmac
-+          - brcm,bcm4354-fmac
-+          - brcm,bcm4356-fmac
-+          - brcm,bcm4359-fmac
-+          - cypress,cyw4373-fmac
-+          - cypress,cyw43012-fmac
-+
-+  reg:
-+    description: SDIO function number for the device, for most cases
-+      this will be 1.
-+
-+  interrupts:
-+    maxItems: 1
-+    description: Out-of-band (OOB) IRQ line for waking up the host
-+      in response to WLAN activity. This corresponds to the HOST_WAKE
-+      line into the chip.
-+
-+  interrupt-names:
-+    description: Name for the OOB IRQ, this must be set to "host-wake".
-+    const: host-wake
-+
-+  brcm,drive-strength:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Drive strength used for the SDIO pins on the device in mA.
-+    minimum: 0
-+    maximum: 32
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: A GPIO line connected to the WL_RST line, if present
-+      this shall be flagged as active low.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    mmc@80118000 {
-+      compatible = "arm,pl18x", "arm,primecell";
-+      reg = <0x80118000 0x1000>;
-+      clocks = <&clk 0>, <&clk 1>;
-+      clock-names = "mclk", "apb_pclk";
-+      interrupts = <0 60 IRQ_TYPE_LEVEL_HIGH>;
-+      bus-width = <4>;
-+      non-removable;
-+      vmmc-supply = <&wl_bt_reg>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      wifi@1 {
-+        compatible = "brcm,bcm4329-fmac";
-+        reg = <1>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-+        interrupt-names = "host-wake";
-+        reset-gpios = <&gpio 23 GPIO_ACTIVE_LOW>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
-deleted file mode 100644
-index cffb2d6876e3..000000000000
---- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Broadcom BCM43xx Fullmac wireless SDIO devices
--
--This node provides properties for controlling the Broadcom wireless device. The
--node is expected to be specified as a child node to the SDIO controller that
--connects the device to the system.
--
--Required properties:
--
-- - compatible : Should be "brcm,bcm4329-fmac".
--
--Optional properties:
-- - brcm,drive-strength : drive strength used for SDIO pins on device in mA
--	(default = 6).
-- - interrupts : specifies attributes for the out-of-band interrupt (host-wake).
--	When not specified the device will use in-band SDIO interrupts.
-- - interrupt-names : name of the out-of-band interrupt, which must be set
--	to "host-wake".
--
--Example:
--
--mmc3: mmc@1c12000 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&mmc3_pins_a>;
--	vmmc-supply = <&reg_vmmc3>;
--	bus-width = <4>;
--	non-removable;
--
--	brcmf: wifi@1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--		interrupt-parent = <&pio>;
--		interrupts = <10 8>; /* PH10 / EINT10 */
--		interrupt-names = "host-wake";
--	};
--};
--- 
-2.29.2
-
+I think module alias does nothing?
