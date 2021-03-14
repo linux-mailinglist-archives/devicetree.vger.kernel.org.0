@@ -2,99 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC2533A797
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 20:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 869EB33A79A
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 20:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233988AbhCNTGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Mar 2021 15:06:05 -0400
-Received: from z11.mailgun.us ([104.130.96.11]:55238 "EHLO z11.mailgun.us"
+        id S233985AbhCNTIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 15:08:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53284 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233791AbhCNTF7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Mar 2021 15:05:59 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615748759; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Wlc/YV7N+922tpDRWcrdITI4w0GSyTPsIUMd6mujDIA=;
- b=CZfS9xFvutjFgUCuicCYX39ZUVMlbnHXHiCG30wuoZY5wxnce394VKYYrefYc5e3oIl22rGv
- G1fhABwn2tVnDVmyEgbEaBz2z6iQyCMdp2ofmQbbRTZhJ/OnyDK64hdbyGqCmoIvpSRvOAdW
- yK56i7dhVhxsTWr99IJ0r9Uhue4=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 604e5e935d70193f88bd736a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 14 Mar 2021 19:05:55
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4366DC433ED; Sun, 14 Mar 2021 19:05:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S231809AbhCNTH6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Mar 2021 15:07:58 -0400
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7668C433CA;
-        Sun, 14 Mar 2021 19:05:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8876564E5F;
+        Sun, 14 Mar 2021 19:07:57 +0000 (UTC)
+Date:   Sun, 14 Mar 2021 19:07:54 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH v2 16/29] dt-bindings:iio:dac:ti,dac082s085 yaml
+ conversion
+Message-ID: <20210314190754.2dd43dbf@archlinux>
+In-Reply-To: <20201108163451.7946b776@archlinux>
+References: <20201031134110.724233-1-jic23@kernel.org>
+        <20201031134110.724233-17-jic23@kernel.org>
+        <20201103022108.GA674527@bogus>
+        <20201108163451.7946b776@archlinux>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 15 Mar 2021 00:35:54 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: Re: [PATCH 0/9] qcom/sc7280: Enable various hardware blocks on SC7280
- SoC
-In-Reply-To: <YEqkOOuYztTUg1u3@builder.lan>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <YEqkOOuYztTUg1u3@builder.lan>
-Message-ID: <1a03621b612562bd8cfb675c5bbf34fc@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-12 04:44, Bjorn Andersson wrote:
-> On Thu 25 Feb 03:30 CST 2021, Sai Prakash Ranjan wrote:
+On Sun, 8 Nov 2020 16:34:51 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
+
+> On Mon, 2 Nov 2020 20:21:08 -0600
+> Rob Herring <robh@kernel.org> wrote:
 > 
->> This series enables various hardware blocks such as LLCC, IPCC, AOSS 
->> QMP
->> and Coresight on SC7280 SoC.
->> 
->> This series is dependent on the base support added for SC7280 in [1].
->> 
+> > On Sat, Oct 31, 2020 at 01:40:57PM +0000, Jonathan Cameron wrote:  
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > 
+> > > Fairly simple conversion with the exception of the XOR between
+> > > spi-cpha and spi-cpol.
+> > > 
+> > > Is there a better way to specify that?
+> > > 
+> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > Cc: Lukas Wunner <lukas@wunner.de>
+> > > ---
+> > > v2:
+> > > * Family typo
+> > > * Put back the reference regulator in example.
+> > > * Added checking of XOR of spi-cpha and spi-cpol
+> > >   (dropped Rob Herrings Reviewed-by due to this change)
+> > >   
+> > >  .../bindings/iio/dac/ti,dac082s085.yaml       | 79 +++++++++++++++++++
+> > >  .../bindings/iio/dac/ti-dac082s085.txt        | 34 --------
+> > >  2 files changed, 79 insertions(+), 34 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml
+> > > new file mode 100644
+> > > index 000000000000..192b314c99d1
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml
+> > > @@ -0,0 +1,79 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/dac/ti,dac082s085.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Texas Instruments DAC082s085 and similar DACs
+> > > +
+> > > +description:
+> > > +  A family of Texas Instruments 8/10/12-bit 2/4-channel DACs
+> > > +
+> > > +maintainers:
+> > > +  - Lukas Wunner <lukas@wunner.de>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - ti,dac082s085
+> > > +      - ti,dac102s085
+> > > +      - ti,dac122s085
+> > > +      - ti,dac084s085
+> > > +      - ti,dac104s085
+> > > +      - ti,dac124s085
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  spi-cpha: true
+> > > +  spi-cpol:
+> > > +    description:
+> > > +      Should be either spi-cpha, or spi-cpol but not both.
+> > > +
+> > > +  vref-supply:
+> > > +    description: Needed to provide output scaling.
+> > > +
+> > > +  spi-max-frequency: true
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - vref-supply
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +allOf:
+> > > +  - $ref: '#/definitions/cpolXORcpha'
+> > > +
+> > > +definitions:
+> > > +  cpolXORcpha:    
+> > 
+> > No need for a definition. Just put the below in the allOf entry.  
 > 
-> I've picked some of these patches...
+> I can't figure out the syntax to do that.
+> If I put it directly there I get, 
+> 
+> ... iio/dac/ti,dac082s085.yaml: allOf:0: 'not' is not one of ['$ref', 'if', 'then', 'else']
+> 
+> The use of $ref was the only way I could find to get around this.
+> What other option is there?  My Yaml is still largely cut and paste
+> based so not sure I fully understand the restrictions that are applied.
+
+Hi Rob,
+
+I've had another go at playing with the syntax but still can't find a way around the above
+issue if I try to get rid of the definitions block as you suggest.
+
+Any pointers on the syntax very much appreciated!
+
+Thanks
+
+Jonathan
+
+> 
+> Thanks,
+> 
+> Jonathan
 > 
 > 
-> It would be helpful if you split series like this based on how they 
-> will
-> be picked up my various maintainers. E.g. I think it's quite likely
-> Jassi won't find and pick up the mailbox binding patch.
 > 
-> 
-> PS. I sent a patch to Jassi adding the mailbox binding directory to
-> MAINTAINERS.
+> >   
+> > > +    not:
+> > > +      required: [spi-cpha, spi-cpol]
+> > > +    oneOf:
+> > > +      - required:
+> > > +          - spi-cpha
+> > > +      - required:
+> > > +          - spi-cpol
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    vref_2v5_reg: regulator-vref {
+> > > +        compatible = "regulator-fixed";
+> > > +        regulator-name = "2v5";
+> > > +        regulator-min-microvolt = <2500000>;
+> > > +        regulator-max-microvolt = <2500000>;
+> > > +        regulator-always-on;
+> > > +    };
+> > > +    spi {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        dac@0 {
+> > > +            compatible = "ti,dac082s085";
+> > > +            reg = <0>;
+> > > +            spi-max-frequency = <40000000>;
+> > > +            spi-cpol;
+> > > +            vref-supply = <&vref_2v5_reg>;
+> > > +        };
+> > > +    };
+> > > +...
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt b/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt
+> > > deleted file mode 100644
+> > > index 9cb0e10df704..000000000000
+> > > --- a/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt
+> > > +++ /dev/null
+> > > @@ -1,34 +0,0 @@
+> > > -Texas Instruments 8/10/12-bit 2/4-channel DAC driver
+> > > -
+> > > -Required properties:
+> > > - - compatible:		Must be one of:
+> > > -			"ti,dac082s085"
+> > > -			"ti,dac102s085"
+> > > -			"ti,dac122s085"
+> > > -			"ti,dac084s085"
+> > > -			"ti,dac104s085"
+> > > -			"ti,dac124s085"
+> > > - - reg: 		Chip select number.
+> > > - - spi-cpha, spi-cpol:	SPI mode (0,1) or (1,0) must be used, so specify
+> > > -			either spi-cpha or spi-cpol (but not both).
+> > > - - vref-supply: 	Phandle to the external reference voltage supply.
+> > > -
+> > > -For other required and optional properties of SPI slave nodes please refer to
+> > > -../../spi/spi-bus.txt.
+> > > -
+> > > -Example:
+> > > -	vref_2v5_reg: regulator-vref {
+> > > -		compatible = "regulator-fixed";
+> > > -		regulator-name = "2v5";
+> > > -		regulator-min-microvolt = <2500000>;
+> > > -		regulator-max-microvolt = <2500000>;
+> > > -		regulator-always-on;
+> > > -	};
+> > > -
+> > > -	dac@0 {
+> > > -		compatible = "ti,dac082s085";
+> > > -		reg = <0>;
+> > > -		spi-max-frequency = <40000000>;
+> > > -		spi-cpol;
+> > > -		vref-supply = <&vref_2v5_reg>;
+> > > -	};
+> > > -- 
+> > > 2.28.0
+> > >     
 > 
 
-Sure I will group patches(mainly dt-bindings for other subsystems)
-accordingly.
-
-Thanks,
-Sai
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
