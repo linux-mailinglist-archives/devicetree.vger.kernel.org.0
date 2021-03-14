@@ -2,187 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D396533A35A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 07:22:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F4333A432
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 11:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbhCNGVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Mar 2021 01:21:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34388 "EHLO
+        id S235029AbhCNKjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 06:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbhCNGVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Mar 2021 01:21:33 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E95C061574;
-        Sat, 13 Mar 2021 22:21:32 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id y67so4635294pfb.2;
-        Sat, 13 Mar 2021 22:21:32 -0800 (PST)
+        with ESMTP id S234924AbhCNKj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Mar 2021 06:39:28 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36576C061574;
+        Sun, 14 Mar 2021 03:39:28 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id p8so61435206ejb.10;
+        Sun, 14 Mar 2021 03:39:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=RrrkK57SVof7cCIoYVao3xYsn5VmfEw1vg0WaKG+fgs=;
-        b=JigH8S3oFOFS9eRz+PYOdbhCH5dA2y8MlLXwI3y6tGordxh0Yw8HK8bxQM7sXonwRf
-         XNPPdM2HQRsmnOhS3olFyGetmG7bHTVbZokNaxtLGvvN9zFEoItOLMkITVkwpf0hAIhc
-         hPR13i9vXEU+gd1OTjSp/EGEyfGGCzkPEJTTmYQ3kh9TaQVFbf/oLG2nlveQglOX3r+V
-         /eZv/kF4/Op/2WwH3JsawbgEMb9wR6E8/LLQnkVuu3x/XzUv23eoXGHLN8OBssCCFc7G
-         PkwXdn0ZG5kKUJR0aehE25T3vbbGtBnX80tvk4hPF80J6rgqBSkhR3lTPRsOzdX0JGzZ
-         IfOg==
+        bh=jjsmnr5FzYMoxt2sTlQ7jPd6uzhNAuqUavfnO0MllWI=;
+        b=C3Ps+AyEjo30X/ua5dUcFTMc2/1wzyGikyEVOYts0yq88Nvc97piiqc7rkqUAMHu1S
+         LMsVPcQSuwEnaZ+2S6uzQfrUlfRUH9HFoKUcAhsOkjvWnr81VMvvYlcXSNK1Xfo3KHGa
+         e4oL0YgYI5YAkCUYVdWv4ba2Ltm06Jrf4IC0mvTNEX0mN/i2UNB/d2LgqbOk8P3P3Nw1
+         chQOawVQiix8IkLgJPffD+UMfgzBjWxb4HrLjHqCTHZmgmWsEExuEqfCy6X5TLZKfvk7
+         JPpnolbvwWljKmTvMIVDWM1aFgzs5iU4S2SCu7NuHvIZYRLyFs8zHPXLi5vqhc9asM1k
+         +o7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RrrkK57SVof7cCIoYVao3xYsn5VmfEw1vg0WaKG+fgs=;
-        b=QlCnN/c6m5c/hNLzVIKjjIzG8R711YLJhIa44PrYIZ11G/jq0cz8P697W8D8kRsNqV
-         CHPWnyUJTlGExSxAORrtYOPcy9nbICCmFLCwTV0qTNtkNgPeGV1LSLDMqxogjUJ8Kjko
-         J/81vv+1r9NJZWdSNWZFGL08CUvdnkQGNmUemtbsyQSZ0g8bapYM+eJijHwDMYwKm801
-         ILF7KPwlFW0YeQmaOlfYSewdiUhq8JtCSKLrSASggdRC4FO2lIEABwEvpxmcVJN8MOru
-         lvT2W0mA83aEVJ1Die3MPP1yZmxQ0Ck08CsZjoyNc8h9leKIfx59ZAMoCwEL+JbkNLWB
-         peqg==
-X-Gm-Message-State: AOAM5321S8WeQDOM2FvFHSFm0QuW0v9OMS3BbH/SYRzFsU1FiIp98IxX
-        KcL+MyVK+JDx3ktiAGE1a7I=
-X-Google-Smtp-Source: ABdhPJz5jNw+irfrobMywTp0/W0q/aiCLTmPzWVirbSIRA2Td1RvwFTPLacl6Uer+fVNmueogfg+YA==
-X-Received: by 2002:aa7:850a:0:b029:1fc:ccaf:5d5c with SMTP id v10-20020aa7850a0000b02901fcccaf5d5cmr5446701pfn.80.1615702891667;
-        Sat, 13 Mar 2021 22:21:31 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:6c60:d3e8:43bd:2b3a])
-        by smtp.gmail.com with ESMTPSA id v26sm9546942pff.195.2021.03.13.22.21.30
+        bh=jjsmnr5FzYMoxt2sTlQ7jPd6uzhNAuqUavfnO0MllWI=;
+        b=AL7dl/AJhuFecJtN4GRx/tNcrKRHDdQfcnoorlhHkTT2TwEjHFuUbtKRedIRlC7xHp
+         14EToToQnlPF1aqIna3cps8pb3kEAfe7G6XBMJ6MmuTUj/AhvalHQ1jDfblQDGrdifYH
+         ItXKwcDhsY89hL1WBwl50an927G7oPOyojJrHor850Q7OM8+7Z835ZYSXZb+AUJHyur5
+         mg3JYsCwTnL9TTtNfICLP0L9CjbSQCp9lJFgchTc2s306upS4Dgh2XVOTsn5CJIp99ij
+         0KhtiHpFO5JAPMnRGszS1ymZr2mxwszT+sfciPiC3F7b5jZjQe+NtpN7CxxBGTAXQeH2
+         8ZCA==
+X-Gm-Message-State: AOAM531VG8aadt2EAsLde84OHiGLdlcm5ay0w7M+F0e/Qr85Nt4ss6aJ
+        A2fU4Jv0rXtWKiVl/ctLdQU=
+X-Google-Smtp-Source: ABdhPJxWgxN4PoB/cokJVbMonJFcjsPd6jis+Pn3rsvukjKRHYFSjOpz2IvaNc8qtfEJTj96MWWjhg==
+X-Received: by 2002:a17:906:110d:: with SMTP id h13mr18343476eja.357.1615718366915;
+        Sun, 14 Mar 2021 03:39:26 -0700 (PDT)
+Received: from ubuntu2004 ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id cw14sm6219111edb.8.2021.03.14.03.39.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Mar 2021 22:21:30 -0800 (PST)
-Date:   Sat, 13 Mar 2021 22:21:27 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] Input: iqs5xx - prevent interrupt storm during
- removal
-Message-ID: <YE2rZycxR6elopon@google.com>
-References: <20210313191236.4366-1-jeff@labundy.com>
- <20210313191236.4366-7-jeff@labundy.com>
+        Sun, 14 Mar 2021 03:39:25 -0700 (PDT)
+Date:   Sun, 14 Mar 2021 12:39:26 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] net: ethernet: actions: Add Actions Semi Owl
+ Ethernet MAC driver
+Message-ID: <20210314103926.GA418860@ubuntu2004>
+References: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
+ <158d63db7d17d87b01f723433e0ddc1fa24377a8.1615423279.git.cristian.ciocaltea@gmail.com>
+ <YEwO33TR7ENHuMaY@lunn.ch>
+ <20210314011324.GA991090@BV030612LT>
+ <YE2S0MW62lVF/psk@lunn.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210313191236.4366-7-jeff@labundy.com>
+In-Reply-To: <YE2S0MW62lVF/psk@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
-
-On Sat, Mar 13, 2021 at 01:12:33PM -0600, Jeff LaBundy wrote:
-> Unsolicited I2C communication causes the device to assert an interrupt; as
-> such the IRQ is disabled before any registers are written in iqs5xx_open()
-> and iqs5xx_close().
+On Sun, Mar 14, 2021 at 05:36:32AM +0100, Andrew Lunn wrote:
+> > > > +	if (phy->interface != PHY_INTERFACE_MODE_RMII) {
+> > > > +		netdev_err(netdev, "unsupported phy mode: %s\n",
+> > > > +			   phy_modes(phy->interface));
+> > > > +		phy_disconnect(phy);
+> > > > +		netdev->phydev = NULL;
+> > > > +		return -EINVAL;
+> > > > +	}
+> > > 
+> > > It looks like the MAC only supports symmetric pause. So you should
+> > > call phy_set_sym_pause() to let the PHY know this.
+> > 
+> > I did not find any reference related to the supported pause types,
+> > is this normally dependant on the PHY interface mode?
 > 
-> After the driver is unloaded, however, i2c_device_remove() sets the IRQ to
-> zero before any handlers may call input_close_device() while the device is
-> unregistered. This keeps iqs5xx_close() from disabling the IRQ, leading to
-> an interrupt storm during removal.
+> There is a MAC / PHY split there. The PHY is responsible for the
+> negotiation for what each end can do. But it is the MAC which actually
+> implements pause. The MAC needs to listen to pause frames and not send
+> out data frames when the link peer indicates pause. And the MAC needs
+> to send a pause frames when its receive buffers are full. The code you
+> have in this MAC driver seems to indicate the MAC only supports
+> symmetric pause. Hence you need to configure the PHY to only auto-neg
+> symmetric pause.
+
+Thanks for explaining this, I will implement the indicated PHY
+configuration and, additionally, also enable the SMII interface.
+
+> > > > +	ret = crypto_skcipher_encrypt(req);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "failed to encrypt S/N: %d\n", ret);
+> > > > +		goto err_free_tfm;
+> > > > +	}
+> > > > +
+> > > > +	netdev->dev_addr[0] = 0xF4;
+> > > > +	netdev->dev_addr[1] = 0x4E;
+> > > > +	netdev->dev_addr[2] = 0xFD;
+> > > 
+> > > 0xF4 has the locally administered bit 0. So this is a true OUI. Who
+> > > does it belong to? Ah!
+> > > 
+> > > F4:4E:FD Actions Semiconductor Co.,Ltd.(Cayman Islands)
+> > > 
+> > > Which makes sense. But is there any sort of agreement this is allowed?
+> > > It is going to cause problems if they are giving out these MAC
+> > > addresses in a controlled way.
+> > 
+> > Unfortunately this is another undocumented logic taken from the vendor
+> > code. I have already disabled it from being built by default, although,
+> > personally, I prefer to have it enabled in order to get a stable MAC
+> > address instead of using a randomly generated one or manually providing
+> > it via DT.
+> > 
+> > Just for clarification, I did not have any agreement or preliminary
+> > discussion with the vendor. This is just a personal initiative to
+> > improve the Owl SoC support in the mainline kernel.
+> > 
+> > > Maybe it would be better to set bit 1 of byte 0? And then you can use
+> > > 5 bytes from enc_sn, not just 4.
+> > 
+> > I included the MAC generation feature in the driver to be fully
+> > compatible with the original implementation, but I'm open for changes
+> > if it raises concerns and compatibility is less important.
 > 
-> Placing input_register_device() in front of devm_request_threaded_irq() to
-> free the IRQ before iqs5xx_close() is called does not cover the case where
-> firmware is updated at the factory and the input device is registered well
-> after the driver has already probed.
+> This is not a simple question to answer. If the vendor driver does
+> this, then the vendor can never assign MAC addresses in a controlled
+> way, unless they have a good idea how the algorithm turns serial
+> numbers into MAC addresses, and they can avoid MAC addresses for
+> serial numbers already issued.
 > 
-> The solution, therefore, is to remove the open and close callbacks as they
-> do not buy much in the first place. The device already starts in an active
-> state, then drops into a low-power mode based on activity.
+> But should the Linux kernel do the same? If all you want is a stable
+> MAC address, my personal preference would be to set the locally
+> administered bit, and fill the other 5 bytes from the hash
+> algorithm. You then have a stable MAC addresses, but you clearly
+> indicate it is not guaranteed to by globally unique, and you do not
+> need to worry about what the vendor is doing.
 
-No, this is not the proper solution. We should rather fix i2c bus (and
-really all the other buses with non-trivial probe and remove) so that it
-is compatible with devres/devm. I wanted to do this for a while and I
-guess we really need this. Could you please try the patch below and see
-if it fixes your issue?
+I fully agree, so I'm going to set byte 0 to value 0xF6 and replace
+bytes 1 & 2 with entries from the computed hash. I will also document
+this modification and the rationale behind.
 
-Thanks.
+> > > Otherwise, this look a new clean driver.
+> > 
+> > Well, I tried to do my best, given my limited experience as a self-taught
+> > kernel developer. Hopefully reviewing my code will not cause too many
+> > headaches! :)
+> 
+> This is actually above average for a self-taught kernel
+> developer. Well done.
 
--- 
-Dmitry
+Thank you, Andrew!
 
-
-i2c: ensure timely release of driver-allocated resources
-
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-More and more drivers rely on devres to manage their resources, however if
-bus' probe() and release() are not trivial and control some of resources as
-well (for example enable or disable clocks, or attach device to a power
-domain, we need to make sure that driver-allocated resources are released
-immediately after driver's remove() method returns, and not postponed until
-driver core gets around to releasing resources. To fix that we open a new
-devres group before calling driver's probe() and explicitly release it when
-we return from driver's remove().
-
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
- drivers/i2c/i2c-core-base.c |   19 ++++++++++++++++++-
- include/linux/i2c.h         |    3 +++
- 2 files changed, 21 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-index 63ebf722a424..b8a96db2c191 100644
---- a/drivers/i2c/i2c-core-base.c
-+++ b/drivers/i2c/i2c-core-base.c
-@@ -518,6 +518,11 @@ static int i2c_device_probe(struct device *dev)
- 	if (status)
- 		goto err_clear_wakeup_irq;
- 
-+	client->devres_group_id = devres_open_group(&client->dev, NULL,
-+						    GFP_KERNEL);
-+	if (!client->devres_group_id)
-+		goto err_detach_pm_domain;
-+
- 	/*
- 	 * When there are no more users of probe(),
- 	 * rename probe_new to probe.
-@@ -530,11 +535,21 @@ static int i2c_device_probe(struct device *dev)
- 	else
- 		status = -EINVAL;
- 
-+	/*
-+	 * Note that we are not closing the devres group opened above so
-+	 * even resources that were attached to the device after probe is
-+	 * run are released when i2c_device_remove() is executed. This is
-+	 * needed as some drivers would allocate additional resources,
-+	 * for example when updating firmware.
-+	 */
-+
- 	if (status)
--		goto err_detach_pm_domain;
-+		goto err_release_driver_resources;
- 
- 	return 0;
- 
-+err_release_driver_resources:
-+	devres_release_group(&client->dev, client->devres_group_id);
- err_detach_pm_domain:
- 	dev_pm_domain_detach(&client->dev, true);
- err_clear_wakeup_irq:
-@@ -563,6 +578,8 @@ static int i2c_device_remove(struct device *dev)
- 			dev_warn(dev, "remove failed (%pe), will be ignored\n", ERR_PTR(status));
- 	}
- 
-+	devres_release_group(&client->dev, client->devres_group_id);
-+
- 	dev_pm_domain_detach(&client->dev, true);
- 
- 	dev_pm_clear_wake_irq(&client->dev);
-diff --git a/include/linux/i2c.h b/include/linux/i2c.h
-index 56622658b215..5d1f11c0deaa 100644
---- a/include/linux/i2c.h
-+++ b/include/linux/i2c.h
-@@ -306,6 +306,8 @@ struct i2c_driver {
-  *	userspace_devices list
-  * @slave_cb: Callback when I2C slave mode of an adapter is used. The adapter
-  *	calls it to pass on slave events to the slave driver.
-+ * @devres_group_id: id of the devres group that will be created for resources
-+ *	acquired when probing this device.
-  *
-  * An i2c_client identifies a single device (i.e. chip) connected to an
-  * i2c bus. The behaviour exposed to Linux is defined by the driver
-@@ -334,6 +336,7 @@ struct i2c_client {
- #if IS_ENABLED(CONFIG_I2C_SLAVE)
- 	i2c_slave_cb_t slave_cb;	/* callback for slave mode	*/
- #endif
-+	void *devres_group_id;		/* ID of probe devres group	*/
- };
- #define to_i2c_client(d) container_of(d, struct i2c_client, dev)
- 
+> 	   Andrew
