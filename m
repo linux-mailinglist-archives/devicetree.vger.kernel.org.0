@@ -2,390 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24DDE33A223
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 02:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74A4033A29C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 05:17:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234133AbhCNBOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 20:14:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53650 "EHLO
+        id S233791AbhCNEQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 23:16:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231205AbhCNBN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 20:13:29 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FE43C061574;
-        Sat, 13 Mar 2021 17:13:29 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id j3so13227409edp.11;
-        Sat, 13 Mar 2021 17:13:29 -0800 (PST)
+        with ESMTP id S231756AbhCNEQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 23:16:43 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE51C061574
+        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 20:16:43 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id 75so5534807otn.4
+        for <devicetree@vger.kernel.org>; Sat, 13 Mar 2021 20:16:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=25n/2PNhVp9stMzk432q2p3t56Gx2STp/u0k2dquk5s=;
-        b=TZn+/tVPwCVrX5MzexTPRzdJ2LaXWZHShN/+Sb+D6O+6cdG3M25Lb32OuQOncgjZ08
-         mgj8G5FaOU9lDC07lZF1H6ZidHgmVV7KpshBw0JLs2TrHHumtMgPu9HzqsIDxcFy8Iz6
-         rnH3ypwXdXbEkkcKHgMissAMmj5wG3uUOZlvCuyt/c4dTisz0flvjsSzXXQgKoo//Ve+
-         UDZCZGHqYOz2dlXVP22/uoafCrOpIroysT61aHzzi5wJN/2Ix+YT7iOw5j2BY2RLEOKY
-         /eQwG9XNtsFhq7UVHJdZjF9bEwzmSNCaAzMMzkr5bEPC2mQRL+w8gpfVax6QnzoPP+nT
-         Bhzw==
+        bh=UVJggSuVQwIjnEYAiqMXk1oXh8toVv2eEkeULAIZFBk=;
+        b=OPrHhWMHN4CrOK1eZV3Y6VeTCOxxeWhIJTOHrJvPIyxdXSsXPB/NwE8vwlAe+eBIzK
+         pJkn/DrOqhvldlBuw+pDHcZjVOW3r9CYUTFJUzGm+uwVNuvgIHfXZEZKJ3VVeIwpQg0z
+         bjnt3PJRW1osw1KEW5dUqXZ2kaDg46fOe4hDpGp5o3mJ+RuynaAFhIsHALYBHwGcGUMJ
+         O7p2CmrJwyxDOrjJtWqIBy3AOFHfyxZbJR+JeycIJzaneYOOxwXamoOjMm+TN93NlkmB
+         qCvZYcGnmoLcjDDz3RvAXL9T665S+4M+abn+8JqmT4YJhGfA9rnJM1/9jP89qaU6PmE3
+         WElQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=25n/2PNhVp9stMzk432q2p3t56Gx2STp/u0k2dquk5s=;
-        b=LfZiY1NATl5ZPFQCJyPGinzj8xFE4qfQNwut8vDZJtS7ZzHmakHYm0dqzAz2DeEwM/
-         RLjPd2w9QksmsU18prOOQO4KZs8Y53ZrSs0l1vFGNdpk5kJIsTxxgTDfcpyklv/iaQDg
-         BnOPic97RrxJfRyQQ+bvz7bMg2x/xtsKXChz+UqvoG9n0lNa36OOaQnCaNh/n42kqXHz
-         SMIvTyKirPdc44PgVRmKtlOeXn0SJCYLntbzh9slv+qTZvLJzS+YLqc7YkQ4kaJ12a5A
-         97U2+M+O3a7FDosVdhawm6y3FnZMfrDpH0DjG/Kai8QVuUm5Yt86qrCCz/ZZjjMEhNXq
-         cFuQ==
-X-Gm-Message-State: AOAM531BjVT8zS5O0n7HqxcOt7gQSbpabkhtWWCUuO5PxYiwebTo6PxQ
-        H5rQXQXqYYhTK9F3/OLAk/pEsdzELRw=
-X-Google-Smtp-Source: ABdhPJw/dTunBqmQ5wkCs5/zCbX6ED/N1sDXhvUUQO2vIzX4OC0aIVhCVGyhpSS1DosaJMPkxDX8vg==
-X-Received: by 2002:a05:6402:2552:: with SMTP id l18mr22105955edb.71.1615684408042;
-        Sat, 13 Mar 2021 17:13:28 -0800 (PST)
-Received: from BV030612LT ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id v8sm3664207edc.30.2021.03.13.17.13.25
+        bh=UVJggSuVQwIjnEYAiqMXk1oXh8toVv2eEkeULAIZFBk=;
+        b=ZbuSPqdcHbIGf0WCpS/w2EQdr/tWc4ck0ibbmfm4uQ/RJwfNYTmuyiKveMZ7Dpmqjc
+         /6TOMuwNpNITiMDYXGD+a1JPHZUYntMU7yeHIA1mullvuPPpJ2tmgACokzk3YU/LLQVT
+         5C0U2DZHU5qFpOEagjBGkJHpzO7Z9FtcQDFJ2V91cWhTyTO45AdF44HAXPrzSszGxDm6
+         jksCQ3nP6kbXCOm4RUVRp7mB8wl8Gm1B66dmap5evzUWTQjbGPfW4n5gvXY6vIkcMW+o
+         KDkUQjBdKh5ued+wk84yWfNbgpL8lQqVVsXrGiXKBbMaV+wLKIIE1eFB6EEsDAaQmvxG
+         ZBNg==
+X-Gm-Message-State: AOAM530XMovjEWOaxcIkajKQQqKyyij7tUtasTSsld22pKgNOoTxbW+e
+        NGB9poB+qA4G5sw96RYei4vcbw==
+X-Google-Smtp-Source: ABdhPJzl6OAxMKKKHFAGhrwdF8uYjqyObOWNdP9tJqPNy2zF5TffI2unBLghZATf60ukU0YxcgOeCA==
+X-Received: by 2002:a9d:5191:: with SMTP id y17mr9327284otg.332.1615695401970;
+        Sat, 13 Mar 2021 20:16:41 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 3sm4775170ood.46.2021.03.13.20.16.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Mar 2021 17:13:26 -0800 (PST)
-Date:   Sun, 14 Mar 2021 03:13:24 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: ethernet: actions: Add Actions Semi Owl
- Ethernet MAC driver
-Message-ID: <20210314011324.GA991090@BV030612LT>
-References: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
- <158d63db7d17d87b01f723433e0ddc1fa24377a8.1615423279.git.cristian.ciocaltea@gmail.com>
- <YEwO33TR7ENHuMaY@lunn.ch>
+        Sat, 13 Mar 2021 20:16:41 -0800 (PST)
+Date:   Sat, 13 Mar 2021 22:16:39 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Sibi Sankar <sibis@codeaurora.org>, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, agross@kernel.org, mani@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sc7280: Add nodes to boot WPSS
+Message-ID: <YE2OJz1pI81Uj8DA@builder.lan>
+References: <1615269111-25559-1-git-send-email-sibis@codeaurora.org>
+ <1615269111-25559-7-git-send-email-sibis@codeaurora.org>
+ <161567197220.1478170.12600358804299446135@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YEwO33TR7ENHuMaY@lunn.ch>
+In-Reply-To: <161567197220.1478170.12600358804299446135@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Sat 13 Mar 15:46 CST 2021, Stephen Boyd wrote:
 
-Thank you for the detailed review!
-
-On Sat, Mar 13, 2021 at 02:01:19AM +0100, Andrew Lunn wrote:
-> On Thu, Mar 11, 2021 at 03:20:13AM +0200, Cristian Ciocaltea wrote:
-> > +static inline void owl_emac_reg_set(struct owl_emac_priv *priv,
-> > +				    u32 reg, u32 bits)
-> > +{
-> > +	owl_emac_reg_update(priv, reg, bits, bits);
-> > +}
+> Quoting Sibi Sankar (2021-03-08 21:51:51)
+> > Add miscellaneous nodes to boot the Wireless Processor Subsystem on
 > 
-> Hi Cristian
+> Maybe add (WPSS) after the name so we know they're related.
 > 
-> No inline functions in C files please. Let the compiler decide. Please
-> fix them all.
-
-Sure.
-
-> > +static struct sk_buff *owl_emac_alloc_skb(struct net_device *netdev)
-> > +{
-> > +	int offset;
-> > +	struct sk_buff *skb;
+> > SC7280 SoCs.
+> > 
+> > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> > ---
+> > 
+> > https://patchwork.kernel.org/project/linux-arm-msm/list/?series=438217
+> > Depends on ipcc dt node enablement from ^^ 
+> > 
+> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 143 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 143 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > index 18637c369c1d..4f03c468df51 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > @@ -244,12 +251,131 @@
+> >                 reg = <0 0x80000000 0 0>;
+> >         };
+> >  
+> > +       tcsr_mutex: hwlock {
+> > +               compatible = "qcom,tcsr-mutex";
+> > +               syscon = <&tcsr_mutex_regs 0 0x1000>;
+> > +               #hwlock-cells = <1>;
+> > +       };
 > 
-> Reverse Christmas tree please.
-
-Already fixed this and all the others I could find.
-
-> > +
-> > +	skb = netdev_alloc_skb(netdev, OWL_EMAC_RX_FRAME_MAX_LEN +
-> > +			       OWL_EMAC_SKB_RESERVE);
-> > +	if (unlikely(!skb))
-> > +		return NULL;
-> > +
-> > +	/* Ensure 4 bytes DMA alignment. */
-> > +	offset = ((uintptr_t)skb->data) & (OWL_EMAC_SKB_ALIGN - 1);
-> > +	if (unlikely(offset))
-> > +		skb_reserve(skb, OWL_EMAC_SKB_ALIGN - offset);
-> > +
-> > +	return skb;
-> > +}
-> > +
-> > +static void owl_emac_phy_config(struct owl_emac_priv *priv)
+> Is this node in the right place? I think the node above it is 'memory'?
+> In which case 'hwlock' comes before 'memory' alphabetically.
 > 
-> You are not really configuring the PHY here, but configuring the MAC
-> with what the PHY tells you has been negotiated. So maybe change this
-> name?
 
-Right, this was an uninspired choice on my side! I think something like
-'owl_emac_update_link_state' would be more appropriate..
+Thanks for spotting this, as it's no longer acceptable to have a
+standalone "syscon" node I was asked to rewrite the binding for this a
+few months ago. So the tcsr_mutex should now be represented with a reg
+under /soc.
 
-> > +{                                                                   
-> > +   u32 val, status;                                                 
-> > +                                                                    
-> > +   if (priv->pause) {                                               
-> > +       val = OWL_EMAC_BIT_MAC_CSR20_FCE | OWL_EMAC_BIT_MAC_CSR20_TUE;
-> > +       val |= OWL_EMAC_BIT_MAC_CSR20_TPE | OWL_EMAC_BIT_MAC_CSR20_RPE;
-> > +       val |= OWL_EMAC_BIT_MAC_CSR20_BPE;                           
-> > +   } else {                                                         
-> > +       val = 0;                                                     
-> > +   }                                                                
-> > +                                                                    
-> > +   /* Update flow control. */                                       
-> > +   owl_emac_reg_write(priv, OWL_EMAC_REG_MAC_CSR20, val);           
-
-[...]
-
-> > +static inline void owl_emac_ether_addr_push(u8 **dst, const u8 *src)
-> > +{
-> > +	u32 *a = (u32 *)(*dst);
+> > +
+> > +       smem {
+> > +               compatible = "qcom,smem";
+> > +               memory-region = <&smem_mem>;
+> > +               hwlocks = <&tcsr_mutex 3>;
+> > +       };
+> > +
+> >         firmware {
+> >                 scm {
+> >                         compatible = "qcom,scm-sc7280", "qcom,scm";
+> >                 };
+> >         };
+> >  
+> > +       smp2p-adsp {
+> > +               compatible = "qcom,smp2p";
+> > +               qcom,smem = <443>, <429>;
+> > +               interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+> > +                                            IPCC_MPROC_SIGNAL_SMP2P
+> > +                                            IRQ_TYPE_EDGE_RISING>;
+> > +               mboxes = <&ipcc IPCC_CLIENT_LPASS
+> > +                               IPCC_MPROC_SIGNAL_SMP2P>;
+> > +
+> > +               qcom,local-pid = <0>;
+> > +               qcom,remote-pid = <2>;
+> > +
+> > +               adsp_smp2p_out: master-kernel {
+> > +                       qcom,entry-name = "master-kernel";
+> > +                       #qcom,smem-state-cells = <1>;
+> > +               };
+> > +
+> > +               adsp_smp2p_in: slave-kernel {
+> > +                       qcom,entry-name = "slave-kernel";
+> > +                       interrupt-controller;
+> > +                       #interrupt-cells = <2>;
+> > +               };
+> > +       };
+> > +
+> > +       smp2p-cdsp {
+> > +               compatible = "qcom,smp2p";
+> > +               qcom,smem = <94>, <432>;
+> > +               interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
+> > +                                            IPCC_MPROC_SIGNAL_SMP2P
+> > +                                            IRQ_TYPE_EDGE_RISING>;
+> > +               mboxes = <&ipcc IPCC_CLIENT_CDSP
+> > +                               IPCC_MPROC_SIGNAL_SMP2P>;
+> > +
+> > +               qcom,local-pid = <0>;
+> > +               qcom,remote-pid = <5>;
+> > +
+> > +               cdsp_smp2p_out: master-kernel {
+> > +                       qcom,entry-name = "master-kernel";
+> > +                       #qcom,smem-state-cells = <1>;
+> > +               };
+> > +
+> > +               cdsp_smp2p_in: slave-kernel {
+> > +                       qcom,entry-name = "slave-kernel";
+> > +                       interrupt-controller;
+> > +                       #interrupt-cells = <2>;
+> > +               };
+> > +       };
+> > +
+> > +       smp2p-mpss {
+> > +               compatible = "qcom,smp2p";
+> > +               qcom,smem = <435>, <428>;
+> > +               interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
+> > +                                            IPCC_MPROC_SIGNAL_SMP2P
+> > +                                            IRQ_TYPE_EDGE_RISING>;
+> > +               mboxes = <&ipcc IPCC_CLIENT_MPSS
+> > +                               IPCC_MPROC_SIGNAL_SMP2P>;
+> > +
+> > +               qcom,local-pid = <0>;
+> > +               qcom,remote-pid = <1>;
+> > +
+> > +               modem_smp2p_out: master-kernel {
+> > +                       qcom,entry-name = "master-kernel";
+> > +                       #qcom,smem-state-cells = <1>;
+> > +               };
+> > +
+> > +               modem_smp2p_in: slave-kernel {
+> > +                       qcom,entry-name = "slave-kernel";
 > 
-> Is *dst guaranteed to by 32bit aligned? Given that it is skb->data, i
-> don't think it is.
+> Do these names need to have 'master' and 'slave' in them? We're trying
+> to avoid these terms. See Documentation/process/coding-style.rst Section
+> 4 naming.
 > 
-> > +	const u16 *b = (const u16 *)src;
-> > +
-> > +	a[0] = b[0];
-> > +	a[1] = b[1];
-> > +	a[2] = b[2];
-> 
-> So i don't know if this is safe. Some architectures don't like doing
-> miss aligned read/writes. You probably should be using one of the
-> put_unaligned_() macros.
 
-Actually skb->data is 32bit aligned, as required by the MAC hardware
-for DMA access - please see 'owl_emac_alloc_skb()'.
+They need to match the naming in the firmware, but I would welcome a
+future change to something in line with the coding style and simply more
+descriptive.
 
-> > +
-> > +	*dst += 12;
-> > +}
-> > +
-> > +static void
-> > +owl_emac_setup_frame_prepare(struct owl_emac_priv *priv, struct sk_buff *skb)
-> > +{
-> > +	const u8 bcast_addr[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-> > +	const u8 *mac_addr = priv->netdev->dev_addr;
-> > +	u8 *frame;
-> > +	int i;
-> > +
-> > +	skb_put(skb, OWL_EMAC_SETUP_FRAME_LEN);
-> > +
-> > +	frame = skb->data;
-> > +	memset(frame, 0, skb->len);
-> > +
-> > +	owl_emac_ether_addr_push(&frame, mac_addr);
-> > +	owl_emac_ether_addr_push(&frame, bcast_addr);
-> > +
-> > +	/* Fill multicast addresses. */
-> > +	WARN_ON(priv->mcaddr_list.count >= OWL_EMAC_MAX_MULTICAST_ADDRS);
-> > +	for (i = 0; i < priv->mcaddr_list.count; i++) {
-> > +		mac_addr = priv->mcaddr_list.addrs[i];
-> > +		owl_emac_ether_addr_push(&frame, mac_addr);
-> > +	}
-> 
-> Please could you add some comments to this. You are building a rather
-> odd frame here! What is it used form?
+Regards,
+Bjorn
 
-Yes, I actually planned to document this but eventually I missed it.
-The setup frames are special descriptors used to provide physical
-addresses to the MAC hardware for filtering purposes.
-
-[...]
-
-> > +static void owl_emac_mdio_clock_enable(struct owl_emac_priv *priv)
-> > +{
-> > +	u32 val;
+> > +                       interrupt-controller;
+> > +                       #interrupt-cells = <2>;
+> > +               };
 > > +
-> > +	/* Enable MDC clock generation by setting CLKDIV to at least 128. */
-> 
-> You should be aiming for 2.5MHz bus clock. Does this depend on the
-> speed of one of the two clocks you have? Maybe you can dynamically
-> calculate the divider?
-
-Unfortunately this is not properly documented in the datasheet, so I
-cannot tell which is the reference clock for the MDC clock divider.
-With the current approach (taken from the old vendor driver code), the
-divider is actually set to 1024 (obtained by OR-ing the HW default with
-this "magic" 128 correspondent).
-
-What I know for sure is that 'eth' clock has a fixed rate (25MHz), while
-'rmii' is set by the driver to 50MHz, both of them having a 500MHz PLL
-clock as parent. Hence if the information in the datasheet is correct
-regarding the MDC divider settings, I would assume none of those two
-clocks could be used as direct reference for MDC clock output, unless
-there is a more complex logic behind than a simple clock divider (e.g.
-maybe using a factor clock?!)
-
-For the moment, I'm going to provide an updated comment:
-
-	/* Enable MDC clock generation by adjusting CLKDIV according to
-	 * the implementation of the original (old) vendor driver code.
-
-> > +	val = owl_emac_reg_read(priv, OWL_EMAC_REG_MAC_CSR10);
-> > +	val &= OWL_EMAC_MSK_MAC_CSR10_CLKDIV;
-> > +	val |= OWL_EMAC_VAL_MAC_CSR10_CLKDIV_128 << OWL_EMAC_OFF_MAC_CSR10_CLKDIV;
+> > +               ipa_smp2p_out: ipa-ap-to-modem {
+> > +                       qcom,entry-name = "ipa";
+> > +                       #qcom,smem-state-cells = <1>;
+> > +               };
 > > +
-> > +	val |= OWL_EMAC_BIT_MAC_CSR10_SB;
-> > +	val |= OWL_EMAC_VAL_MAC_CSR10_OPCODE_CDS << OWL_EMAC_OFF_MAC_CSR10_OPCODE;
-> > +	owl_emac_reg_write(priv, OWL_EMAC_REG_MAC_CSR10, val);
-> > +}
-> 
-> > +static int owl_emac_phy_init(struct net_device *netdev)
-> > +{
-> > +	struct owl_emac_priv *priv = netdev_priv(netdev);
-> > +	struct device *dev = owl_emac_get_dev(priv);
-> > +	struct phy_device *phy;
+> > +               ipa_smp2p_in: ipa-modem-to-ap {
+> > +                       qcom,entry-name = "ipa";
+> > +                       interrupt-controller;
+> > +                       #interrupt-cells = <2>;
+> > +               };
+> > +       };
 > > +
-> > +	phy = of_phy_get_and_connect(netdev, dev->of_node,
-> > +				     owl_emac_adjust_link);
-> > +	if (!phy)
-> > +		return -ENODEV;
-> > +
-> > +	if (phy->interface != PHY_INTERFACE_MODE_RMII) {
-> > +		netdev_err(netdev, "unsupported phy mode: %s\n",
-> > +			   phy_modes(phy->interface));
-> > +		phy_disconnect(phy);
-> > +		netdev->phydev = NULL;
-> > +		return -EINVAL;
-> > +	}
-> 
-> It looks like the MAC only supports symmetric pause. So you should
-> call phy_set_sym_pause() to let the PHY know this.
-
-I did not find any reference related to the supported pause types,
-is this normally dependant on the PHY interface mode?
-
-The MAC hardware also supports SMII, but I haven't enabled it in the
-driver, yet, since I cannot validate this with my SBC.
-
-Can/should I still provide the SMII support in this context?
-
-> > +
-> > +	if (netif_msg_link(priv))
-> > +		phy_attached_info(phy);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/* Generate the MAC address based on the system serial number.
-> > + */
-> > +static int owl_emac_generate_mac_addr(struct net_device *netdev)
-> > +{
-> > +	int ret = -ENXIO;
-> > +
-> > +#ifdef CONFIG_OWL_EMAC_GEN_ADDR_SYS_SN
-> > +	struct device *dev = netdev->dev.parent;
-> > +	struct crypto_sync_skcipher *tfm;
-> > +	struct scatterlist sg;
-> > +	const u8 key[] = { 1, 4, 13, 21, 59, 67, 69, 127 };
-> > +	u64 sn;
-> > +	u8 enc_sn[sizeof(key)];
-> > +
-> > +	SYNC_SKCIPHER_REQUEST_ON_STACK(req, tfm);
-> > +
-> > +	sn = ((u64)system_serial_high << 32) | system_serial_low;
-> > +	if (!sn)
-> > +		return ret;
-> > +
-> > +	tfm = crypto_alloc_sync_skcipher("ecb(des)", 0, 0);
-> > +	if (IS_ERR(tfm)) {
-> > +		dev_err(dev, "failed to allocate cipher: %ld\n", PTR_ERR(tfm));
-> > +		return PTR_ERR(tfm);
-> > +	}
-> > +
-> > +	ret = crypto_sync_skcipher_setkey(tfm, key, sizeof(key));
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to set cipher key: %d\n", ret);
-> > +		goto err_free_tfm;
-> > +	}
-> > +
-> > +	memcpy(enc_sn, &sn, sizeof(enc_sn));
-> > +
-> > +	sg_init_one(&sg, enc_sn, sizeof(enc_sn));
-> > +	skcipher_request_set_sync_tfm(req, tfm);
-> > +	skcipher_request_set_callback(req, 0, NULL, NULL);
-> > +	skcipher_request_set_crypt(req, &sg, &sg, sizeof(enc_sn), NULL);
-> > +
-> > +	ret = crypto_skcipher_encrypt(req);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to encrypt S/N: %d\n", ret);
-> > +		goto err_free_tfm;
-> > +	}
-> > +
-> > +	netdev->dev_addr[0] = 0xF4;
-> > +	netdev->dev_addr[1] = 0x4E;
-> > +	netdev->dev_addr[2] = 0xFD;
-> 
-> 0xF4 has the locally administered bit 0. So this is a true OUI. Who
-> does it belong to? Ah!
-> 
-> F4:4E:FD Actions Semiconductor Co.,Ltd.(Cayman Islands)
-> 
-> Which makes sense. But is there any sort of agreement this is allowed?
-> It is going to cause problems if they are giving out these MAC
-> addresses in a controlled way.
-
-Unfortunately this is another undocumented logic taken from the vendor
-code. I have already disabled it from being built by default, although,
-personally, I prefer to have it enabled in order to get a stable MAC
-address instead of using a randomly generated one or manually providing
-it via DT.
-
-Just for clarification, I did not have any agreement or preliminary
-discussion with the vendor. This is just a personal initiative to
-improve the Owl SoC support in the mainline kernel.
-
-> Maybe it would be better to set bit 1 of byte 0? And then you can use
-> 5 bytes from enc_sn, not just 4.
-
-I included the MAC generation feature in the driver to be fully
-compatible with the original implementation, but I'm open for changes
-if it raises concerns and compatibility is less important.
-
-> > +	netdev->dev_addr[3] = enc_sn[0];
-> > +	netdev->dev_addr[4] = enc_sn[4];
-> > +	netdev->dev_addr[5] = enc_sn[7];
-> > +
-> > +err_free_tfm:
-> > +	crypto_free_sync_skcipher(tfm);
-> > +#endif /* CONFIG_OWL_EMAC_GEN_ADDR_SYS_SN */
-> > +
-> > +	return ret;
-> > +}
-> 
-> > +static int owl_emac_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct net_device *netdev;
-> > +	struct owl_emac_priv *priv;
-> > +	int ret, i;
-
-[...]
-
-> > +	ret = clk_set_rate(priv->clks[OWL_EMAC_CLK_RMII].clk, 50000000);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to set RMII clock rate: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = devm_add_action_or_reset(dev, owl_emac_clk_disable_unprepare, priv);
-> > +	if (ret)
-> > +		return ret;
-> 
-> Maybe this should go before the clk_set_rate(), just in case it fail?
-
-Indeed, I missed this, thanks for spotting it out!
-
-> Otherwise, this look a new clean driver.
-
-Well, I tried to do my best, given my limited experience as a self-taught
-kernel developer. Hopefully reviewing my code will not cause too many
-headaches! :)
-
-> 	   Andrew
-
-Kind regards,
-Cristi
