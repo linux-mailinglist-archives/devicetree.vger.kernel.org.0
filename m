@@ -2,96 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E09F433A34D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 07:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 941F533A354
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 07:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234846AbhCNGMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Mar 2021 01:12:17 -0500
-Received: from z11.mailgun.us ([104.130.96.11]:40782 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234916AbhCNGLw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Mar 2021 01:11:52 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615702312; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=3kHkulKe4fiZVE5bHS/x2T+d5lpzeZB7u0k2P/QRXQ4=; b=mOYj138r85PlIAk+MougmH5UXgJbrzMGDoCZgwBLmJDQFK0luwROuYJy33YJlBfq0b+FIhvs
- JzEY2xUM+Kt4sxNTTav7xnOzb9XE5XDGZG0AC5B6kHIgbcdgB/W50IxMJr8BVkDd1+sgQATI
- /yrEJ9PMHA9Qj5zeswlfNNwL4js=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 604da90ce3fca7d0a675280d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 14 Mar 2021 06:11:24
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6D4DBC433C6; Sun, 14 Mar 2021 06:11:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 85D09C433CA;
-        Sun, 14 Mar 2021 06:11:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 85D09C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v7 2/2] arm64: dts: qcom: Add sound node for sc7180-trogdor-coachz
-Date:   Sun, 14 Mar 2021 11:40:54 +0530
-Message-Id: <20210314061054.19451-3-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210314061054.19451-1-srivasam@codeaurora.org>
-References: <20210314061054.19451-1-srivasam@codeaurora.org>
+        id S233268AbhCNGQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 01:16:51 -0500
+Received: from conuserg-07.nifty.com ([210.131.2.74]:49004 "EHLO
+        conuserg-07.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234231AbhCNGQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Mar 2021 01:16:23 -0500
+Received: from localhost.localdomain (133-32-232-101.west.xps.vectant.ne.jp [133.32.232.101]) (authenticated)
+        by conuserg-07.nifty.com with ESMTP id 12E6Fqg8003265;
+        Sun, 14 Mar 2021 15:15:53 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-07.nifty.com 12E6Fqg8003265
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1615702553;
+        bh=utDJTVaXCeHTwLB1yYXftme23M7v9E/X8L8DxsEMQsI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tmOiWE2dx3Jql7hOGHc7woxKGvOnJfInpOKiDLSxVg0J9P3dSz2EJA9DNuudDXmCA
+         RARsuo+0XcnapClt74XP+DWoELK7KbNnj7khnKJZTWq5vDrmJYB2N5P8knZPmVJ2lR
+         lpGXUJn+/Cox2L4EcT/GLoAvGyjTC2tF0S46/XYAbyPXDtHgfQW8ynTlDlnePq5Vxm
+         F2cvjBmP2mKRdgzj6mPODekXZ6sk8ZpJDOyLGV95IEjeo3P2RN4I4cXG4lwEejkamC
+         XPsH5nul8+CAk216KkyirhhI0WgBnnmygAQgDtYQONAwse4tZeapqyBuUaD5Zpwoz4
+         yb3j+Fvd7JRvg==
+X-Nifty-SrcIP: [133.32.232.101]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] kbuild: replace sed with $(subst ) or $(patsubst )
+Date:   Sun, 14 Mar 2021 15:15:50 +0900
+Message-Id: <20210314061550.401458-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a trgodor variant, required to have sound node variable
-for coachz specific platform.
+For simple text replacement, it is better to use a built-in function
+instead of sed if possible. You can save one process forking.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+I do not mean to replace all sed invocations because GNU Make itself
+does not support regular expression (unless you use guile).
+
+I just replaced simple ones.
+
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 4ad520f00485..e2ffe71c2d52 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -89,6 +89,16 @@ &sn65dsi86_out {
- 	data-lanes = <0 1 2 3>;
- };
+ Documentation/devicetree/bindings/Makefile | 2 +-
+ Makefile                                   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 780e5618ec0a..ac446c62fbc3 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -48,7 +48,7 @@ define rule_chkdt
+ 	$(call cmd,mk_schema)
+ endef
  
-+&sound {
-+	compatible = "google,sc7180-coachz";
-+	model = "sc7180-adau7002-max98357a";
-+	audio-routing = "PDM_DAT", "DMIC";
-+};
-+
-+&sound_multimedia0_codec {
-+	sound-dai = <&adau7002>;
-+};
-+
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
+-DT_DOCS = $(shell $(find_cmd) | sed -e 's|^$(srctree)/||')
++DT_DOCS = $(patsubst $(srctree)/%,%,$(shell $(find_cmd)))
  
- &en_pp3300_dx_edp {
+ override DTC_FLAGS := \
+ 	-Wno-avoid_unnecessary_addr_size \
+diff --git a/Makefile b/Makefile
+index 70fc39e6b677..0be138adae74 100644
+--- a/Makefile
++++ b/Makefile
+@@ -574,7 +574,7 @@ endif
+ # Some architectures define CROSS_COMPILE in arch/$(SRCARCH)/Makefile.
+ # CC_VERSION_TEXT is referenced from Kconfig (so it needs export),
+ # and from include/config/auto.conf.cmd to detect the compiler upgrade.
+-CC_VERSION_TEXT = $(shell $(CC) --version 2>/dev/null | head -n 1 | sed 's/\#//g')
++CC_VERSION_TEXT = $(subst $(pound),,$(shell $(CC) --version 2>/dev/null | head -n 1))
+ 
+ ifneq ($(findstring clang,$(CC_VERSION_TEXT)),)
+ ifneq ($(CROSS_COMPILE),)
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.27.0
 
