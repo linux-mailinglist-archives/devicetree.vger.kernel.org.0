@@ -2,123 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6E5833A2A9
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 05:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D26D533A33B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 07:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbhCNEg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 23:36:58 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55596 "EHLO vps0.lunn.ch"
+        id S233268AbhCNFvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 00:51:18 -0500
+Received: from m42-2.mailgun.net ([69.72.42.2]:35479 "EHLO m42-2.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234142AbhCNEgs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Mar 2021 23:36:48 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lLIUS-00AngM-UY; Sun, 14 Mar 2021 05:36:32 +0100
-Date:   Sun, 14 Mar 2021 05:36:32 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: ethernet: actions: Add Actions Semi Owl
- Ethernet MAC driver
-Message-ID: <YE2S0MW62lVF/psk@lunn.ch>
-References: <cover.1615423279.git.cristian.ciocaltea@gmail.com>
- <158d63db7d17d87b01f723433e0ddc1fa24377a8.1615423279.git.cristian.ciocaltea@gmail.com>
- <YEwO33TR7ENHuMaY@lunn.ch>
- <20210314011324.GA991090@BV030612LT>
+        id S232854AbhCNFvC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Mar 2021 00:51:02 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615701062; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=wAThHURuQOx7nkPEUGK2dOThw52EswUwEWvEcNsQV88=; b=Ea0gdhlpivPoeQp1VEfqjWRip5OYldXS+MNTqye8YEGWM2MFqSkQxs/aWBcMayx78KBc2P6l
+ +BtzwQKZHieAWm5LtmnG9PrRRRFuosfjxa16tOWo4oOQsCmvexp2tA/RDpC3mdylaTqpJTL2
+ 3yh9FkwfnSMMzY+/jWTAjJpsSR4=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 604da43ee2200c0a0d6e3818 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 14 Mar 2021 05:50:53
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B7BE7C433CA; Sun, 14 Mar 2021 05:50:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.29.24] (unknown [49.37.152.39])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E882FC433CA;
+        Sun, 14 Mar 2021 05:50:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E882FC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
+ link for I2S driver
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        dianders@chromium.org, judyhsiao@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Cc:     Ajit Pandey <ajitp@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <20210313054654.11693-1-srivasam@codeaurora.org>
+ <20210313054654.11693-2-srivasam@codeaurora.org>
+ <161566899554.1478170.1265435102634351195@swboyd.mtv.corp.google.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <0f4bc153-edca-ca9d-a5ab-df765e992d7f@codeaurora.org>
+Date:   Sun, 14 Mar 2021 11:20:46 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210314011324.GA991090@BV030612LT>
+In-Reply-To: <161566899554.1478170.1265435102634351195@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +	if (phy->interface != PHY_INTERFACE_MODE_RMII) {
-> > > +		netdev_err(netdev, "unsupported phy mode: %s\n",
-> > > +			   phy_modes(phy->interface));
-> > > +		phy_disconnect(phy);
-> > > +		netdev->phydev = NULL;
-> > > +		return -EINVAL;
-> > > +	}
-> > 
-> > It looks like the MAC only supports symmetric pause. So you should
-> > call phy_set_sym_pause() to let the PHY know this.
-> 
-> I did not find any reference related to the supported pause types,
-> is this normally dependant on the PHY interface mode?
+Hi Stephen,
 
-There is a MAC / PHY split there. The PHY is responsible for the
-negotiation for what each end can do. But it is the MAC which actually
-implements pause. The MAC needs to listen to pause frames and not send
-out data frames when the link peer indicates pause. And the MAC needs
-to send a pause frames when its receive buffers are full. The code you
-have in this MAC driver seems to indicate the MAC only supports
-symmetric pause. Hence you need to configure the PHY to only auto-neg
-symmetric pause.
+Thanks for Your Time and Inputs!!!
 
-> > > +	ret = crypto_skcipher_encrypt(req);
-> > > +	if (ret) {
-> > > +		dev_err(dev, "failed to encrypt S/N: %d\n", ret);
-> > > +		goto err_free_tfm;
-> > > +	}
-> > > +
-> > > +	netdev->dev_addr[0] = 0xF4;
-> > > +	netdev->dev_addr[1] = 0x4E;
-> > > +	netdev->dev_addr[2] = 0xFD;
-> > 
-> > 0xF4 has the locally administered bit 0. So this is a true OUI. Who
-> > does it belong to? Ah!
-> > 
-> > F4:4E:FD Actions Semiconductor Co.,Ltd.(Cayman Islands)
-> > 
-> > Which makes sense. But is there any sort of agreement this is allowed?
-> > It is going to cause problems if they are giving out these MAC
-> > addresses in a controlled way.
-> 
-> Unfortunately this is another undocumented logic taken from the vendor
-> code. I have already disabled it from being built by default, although,
-> personally, I prefer to have it enabled in order to get a stable MAC
-> address instead of using a randomly generated one or manually providing
-> it via DT.
-> 
-> Just for clarification, I did not have any agreement or preliminary
-> discussion with the vendor. This is just a personal initiative to
-> improve the Owl SoC support in the mainline kernel.
-> 
-> > Maybe it would be better to set bit 1 of byte 0? And then you can use
-> > 5 bytes from enc_sn, not just 4.
-> 
-> I included the MAC generation feature in the driver to be fully
-> compatible with the original implementation, but I'm open for changes
-> if it raises concerns and compatibility is less important.
+On 3/14/2021 2:26 AM, Stephen Boyd wrote:
+> Quoting Srinivasa Rao Mandadapu (2021-03-12 21:46:53)
+>> From: Ajit Pandey <ajitp@codeaurora.org>
+>>
+>> Add dai link for supporting lpass I2S driver, which is used
+>> for audio capture and playback.
+>> Add lpass-cpu node with  pin controls and i2s primary
+> Why two spaces before 'pin'?
+>
+>> and secondary dai-links
+> Please end sentence with a period.
+>
+>> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
+>> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 58 ++++++++++++++++++++
+>>   1 file changed, 58 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> index 436582279dad..3a24383247db 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>> @@ -283,6 +284,42 @@ keyboard_backlight: keyboard-backlight {
+>>                          max-brightness = <1023>;
+>>                  };
+>>          };
+>> +
+>> +       sound: sound {
+>> +               compatible = "google,sc7180-trogdor";
+>> +               model = "sc7180-rt5682-max98357a-1mic";
+>> +
+>> +               audio-routing =
+>> +                       "Headphone Jack", "HPOL",
+>> +                       "Headphone Jack", "HPOR";
+>> +
+>> +               #address-cells = <1>;
+>> +               #size-cells = <0>;
+>> +
+>> +               dai-link@0 {
+>> +                       link-name = "MultiMedia0";
+>> +                       reg = <MI2S_PRIMARY>;
+>> +                       cpu {
+>> +                               sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+>> +                       };
+>> +
+>> +                       sound_multimedia0_codec: codec {
+>> +                               sound-dai = <&alc5682 0 /*aif1*/>;
+> Nitpick, add a space for comment
+>
+>                                 sound-dai = <&alc5682 0 /* aif1 */>;
+Okay. Will re post with Fix.
+>
+>> +                       };
+>> +               };
+>> +
+>> +               dai-link@1 {
+>> +                       link-name = "MultiMedia1";
+>> +                       reg = <MI2S_SECONDARY>;
+>> +                       cpu {
+>> +                               sound-dai = <&lpass_cpu MI2S_SECONDARY>;
+>> +                       };
+>> +
+>> +                       sound_multimedia1_codec: codec {
+>> +                               sound-dai = <&max98357a>;
+>> +                       };
+>> +               };
+>> +       };
+>>   };
+>>   
+>>   &qfprom {
+>> @@ -720,6 +757,27 @@ &ipa {
+>>          modem-init;
+>>   };
+>>   
+>> +&lpass_cpu {
+>> +       status = "okay";
+>> +
+>> +       pinctrl-names = "default";
+>> +       pinctrl-0 = <&sec_mi2s_active &pri_mi2s_active &pri_mi2s_mclk_active>;
+> Super nitpick: I prefer this style
+>
+> 	pinctrl-0 = <&sec_mi2s_active>, <&pri_mi2s_active>, <&pri_mi2s_mclk_active>;
+>
+> It's effectively the same but the brackets help us see that these are
+> the end of the phandle specifier instead of having to figure out that
+> the first phandle isn't specifying the second phandle as an argument.
+Okay. Will change accordingly.
+>
+>> +
+>> +       #address-cells = <1>;
+>> +       #size-cells = <0>;
+>> +
+>> +       mi2s-primary@0 {
+> Should the node name just be mi2s instead of mi2s-primary? We have reg
+> property so I think 'mi2s' should be sufficient to differentiate.
+Okay. I will change it as mi2s@0 instead of mi2s-primary@0
+>
+>> +               reg = <MI2S_PRIMARY>;
+>> +               qcom,playback-sd-lines = <1>;
+>> +               qcom,capture-sd-lines = <0>;
+>> +       };
+>> +
+>> +       mi2s-secondary@1 {
+>> +               reg = <MI2S_SECONDARY>;
+>> +               qcom,playback-sd-lines = <0>;
+>> +       };
+>> +};
+>> +
+>>   &mdp {
+>>          status = "okay";
+>>   };
 
-This is not a simple question to answer. If the vendor driver does
-this, then the vendor can never assign MAC addresses in a controlled
-way, unless they have a good idea how the algorithm turns serial
-numbers into MAC addresses, and they can avoid MAC addresses for
-serial numbers already issued.
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-But should the Linux kernel do the same? If all you want is a stable
-MAC address, my personal preference would be to set the locally
-administered bit, and fill the other 5 bytes from the hash
-algorithm. You then have a stable MAC addresses, but you clearly
-indicate it is not guaranteed to by globally unique, and you do not
-need to worry about what the vendor is doing.
-
-> > Otherwise, this look a new clean driver.
-> 
-> Well, I tried to do my best, given my limited experience as a self-taught
-> kernel developer. Hopefully reviewing my code will not cause too many
-> headaches! :)
-
-This is actually above average for a self-taught kernel
-developer. Well done.
-
-	   Andrew
