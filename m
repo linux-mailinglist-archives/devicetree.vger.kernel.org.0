@@ -2,102 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 103E033A56E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 16:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E2633A583
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 16:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233486AbhCNPZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Mar 2021 11:25:14 -0400
-Received: from smtp-17-i2.italiaonline.it ([213.209.12.17]:39229 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233739AbhCNPYp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Mar 2021 11:24:45 -0400
-X-Greylist: delayed 489 seconds by postgrey-1.27 at vger.kernel.org; Sun, 14 Mar 2021 11:24:45 EDT
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([87.20.116.197])
-        by smtp-17.iol.local with ESMTPA
-        id LSTmlDnzqtpGHLSTplAQtq; Sun, 14 Mar 2021 16:16:33 +0100
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1615734994; bh=wnjplnLdFDkHsfAUHmWTFQwLX0oNy1/Ru7raheFYmvw=;
-        h=From;
-        b=T5iYKy4Qdw1yFbqjt2iWO9y8qEAx/Ivi1TjhMj4g8oFErjLOs2uvZaBJGav5+37AE
-         X8FDB7hRPLWhIhz34wxxvS8wdpptvbjqbe13yxqPOb8c/98K9v++m7S363IOBWpNUH
-         RU5k97fQkQxmGFhqBERRAkNv25PxLvejBySEv+CLE7KCpwG31n9IrV1uZYUNq4FXtW
-         mKekY2HpG2HsR+aipOnFTfC/wZfSsFfqyoiG5bfFU/IqL8DVko6RxyH9cSsmNGBu8v
-         MSOuD+xMmCgx9D8k3y/fRzPFXU17V/1tf+yHdmGsBA46XB6kJlbaB9ITctYfrpaNi9
-         J/Y16YR6Jv6Ig==
-X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=604e28d2 cx=a_exe
- a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
- a=hN1Y6PlX_eMEyabRrE4A:9
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dariobin@libero.it>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [RESEND PATCH] ARM: dts: am33xx-l4: fix tscadc@0 node indentation
-Date:   Sun, 14 Mar 2021 16:16:28 +0100
-Message-Id: <20210314151629.23921-1-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-X-CMAE-Envelope: MS4xfPsAJ64dxFd6GoGwuXh/hzuC6FohTjpOmOEZznpnv2nVI8hiAFZNIWDQZ2vCYjxxONpwZrv6RnSFFDZ7FFcsit0MIBGaKfuZux0SJb80Fa4dNlPt05RN
- rvJXXaDKkoCkO40aZDbC+3SZTuHuUHPw76UcDlXOLSw6TsuubqjBRYbiHLh23Dq6evDcD1+ldL3fd3/iC75AozqRVmp7CUUy12jmrSGoBMgyxTuj4MLLqtrS
- aM/2wbbreAHk2WvlCp1tsSdNjNbAQaKz87AVy0E2wEsTnvLV2kPWG7Yg/KoBFOrZA0MYUgUJZa7B6V1F27cR6fFlzTw+aEPd7tnZHmQpYwom0ijTm8xa328Y
- 2vovDzklLkd9F9g7z1nkmp/PDviLO4PfSgC7YbtssaA6k8RPAvvU8Myhb7yPcogPbgywKJauNzUqhEi7+/lc2qLw7KTOfg==
+        id S234068AbhCNPp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 11:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233103AbhCNPpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Mar 2021 11:45:22 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB783C061574;
+        Sun, 14 Mar 2021 08:45:21 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id j18so4452819wra.2;
+        Sun, 14 Mar 2021 08:45:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PclIFcC2nS7Q4VorzCLkkkTGpzHU2Eq5kWVCvmuDhyI=;
+        b=qAuWjcuklA/Y8Y441HfQKMy13BZlI5RX7assgoGjGpvXvlph3m7P5heS9rbqB5KQ/1
+         pcjs6BAnCmJkatVXbT/DQ0liLAVUnBe0RfsvOeZI2iHG/HeOhuj852q1W+v3RNVYVBYW
+         DFs9CDGu8jmEMnDwhjvQNRgdizpir1MEtdIxdybciDkUECp0AcWzCWpcu6q5OmxAAd7Y
+         /lxCVi2MQKGF6YL5me0QlN1PSMMRB/QPOVXGHSxiT2bq/4p8mqbexgro0sFANTclYYMt
+         myrNB6vzAqnmujVSpLVAeQYmeRR15+Ex7Ru19rZ7ezd1lPHe1Vk1/A9KJ7kOQqjCmLRh
+         8IDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PclIFcC2nS7Q4VorzCLkkkTGpzHU2Eq5kWVCvmuDhyI=;
+        b=d5FaSeRodLr6hQdseJwibswYv79c6OyNaMWkqv+4HOotQMnlPhvGPx03CWYI3BSEKc
+         7errVYpieNtrYyAvkpHa5TRoYRPjzItnSFkqJYJYWYjMOjiZiH5VH6PsnhPEnhqOyKfN
+         FGnCRhfFEq1HMCz/JBEbRmylZbDLxp4lIJ77qSFpd8BFQ+cobNFvwxL/n9LqunIBIWno
+         09iXjidjG8hP7TVlmAo3ie9UrsPT8vGeGOfkuBDAqjAtGtgcwK+RPUH+15z4pXHIIW2Q
+         oJMzARDqYFHGHyJK3WFVfLailYlB9c0VbSE9S8Q+N1AosUrDGlXf2EAZHEVH+CH0Zp8R
+         ttPA==
+X-Gm-Message-State: AOAM533Y7jkdLMkbn3MZLuHtiNlKRD3h5/NF6BKr/O+g84tp9ULzS4hr
+        W/SsahTqOrtiuBC9S3e94WpGPiDdv6Q=
+X-Google-Smtp-Source: ABdhPJwO1WyF3LJh32pYsIZEBoThmnPXPXjd76LixRiKKFWmeUv7A9UyngwsIPvIbamr5I/6VCpOYA==
+X-Received: by 2002:adf:90c2:: with SMTP id i60mr23481723wri.75.1615736720372;
+        Sun, 14 Mar 2021 08:45:20 -0700 (PDT)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id f14sm9673507wmf.7.2021.03.14.08.45.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Mar 2021 08:45:19 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC drivers
+Date:   Sun, 14 Mar 2021 18:44:42 +0300
+Message-Id: <20210314154459.15375-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the broken indentation of tscadc@0 node.
+Hi,
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
+This series adds missing hardware reset controls to I2S and AC97 drivers,
+corrects runtime PM usage and drivers probe/remove order. Currently drivers
+happen to work properly because reset is implicitly deasserted by tegra-clk
+driver, but clk driver shouldn't touch the resets and we need to fix it
+because this breaks other Tegra drivers. Previously we fixed the resets of
+the AHUB and HDMI codec drivers, but turned out that we missed the I2C and
+AC97 drivers.
 
----
+Thanks to Paul Fertser for testing the pending clk patches and finding
+that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+reset.
 
- arch/arm/boot/dts/am33xx-l4.dtsi | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+Changelog:
 
-diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-index 1fb22088caeb..039a9ab4c7ea 100644
---- a/arch/arm/boot/dts/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-@@ -259,22 +259,22 @@
- 			ranges = <0x00000000 0x0000d000 0x00001000>,
- 				 <0x00001000 0x0000e000 0x00001000>;
- 
--				tscadc: tscadc@0 {
--					compatible = "ti,am3359-tscadc";
--					reg = <0x0 0x1000>;
--					interrupts = <16>;
--					status = "disabled";
--					dmas = <&edma 53 0>, <&edma 57 0>;
--					dma-names = "fifo0", "fifo1";
-+			tscadc: tscadc@0 {
-+				compatible = "ti,am3359-tscadc";
-+				reg = <0x0 0x1000>;
-+				interrupts = <16>;
-+				status = "disabled";
-+				dmas = <&edma 53 0>, <&edma 57 0>;
-+				dma-names = "fifo0", "fifo1";
- 
--					tsc {
--						compatible = "ti,am3359-tsc";
--					};
--					am335x_adc: adc {
--						#io-channel-cells = <1>;
--						compatible = "ti,am3359-adc";
--					};
-+				tsc {
-+					compatible = "ti,am3359-tsc";
-+				};
-+				am335x_adc: adc {
-+					#io-channel-cells = <1>;
-+					compatible = "ti,am3359-adc";
- 				};
-+			};
- 		};
- 
- 		target-module@10000 {			/* 0x44e10000, ap 22 0c.0 */
+v5: - After taking another look at the drivers I noticed couple more
+      things that could be improved. These new patches correct runtime PM
+      and probe/remove order of the drivers:
+
+        ASoC: tegra20: spdif: Correct driver removal order
+        ASoC: tegra20: spdif: Remove handing of disabled runtime PM
+        ASoC: tegra20: i2s: Add system level suspend-resume callbacks
+        ASoC: tegra20: i2s: Correct driver removal order
+        ASoC: tegra20: i2s: Use devm_clk_get()
+        ASoC: tegra20: i2s: Remove handing of disabled runtime PM
+        ASoC: tegra30: i2s: Correct driver removal order
+        ASoC: tegra30: i2s: Use devm_clk_get()
+        ASoC: tegra30: i2s: Remove handing of disabled runtime PM
+        ASoC: tegra30: ahub: Reset global variable
+        ASoC: tegra30: ahub: Correct suspend-resume callbacks
+        ASoC: tegra30: ahub: Remove handing of disabled runtime PM
+
+v4: - Added missing prototype for reset_control_bulk_put().
+
+v3: - Fixed reset stubs for !CONFIG_RESET_CONTROLLER.
+
+v2: - After some more testing I found that I2S control logic doesn't require
+      I2S clock to be enabled for resetting. Hence it's fine to have I2S to
+      be reset by parent AHUB driver, so I dropped "tegra30: i2s: Add reset
+      control" patch.
+
+    - While I was double-checking resets on Tegra30, I found that that
+      Tegra30 I2S driver has a broken runtime PM which doesn't restore
+      hardware state on resume and it's lost after AHUB RPM-resume.
+      Thus, added this new patch "tegra30: i2s: Restore hardware state
+      on runtime PM resume".
+
+    - Added new patches which switch AHUB driver to use reset-bulk API.
+      I took the RFC patch from Philipp Zabel, fixed it and added
+      devm_reset_control_bulk_optional_get_exclusive_released() that
+      will be useful for further Tegra GPU patches. This is a minor
+      improvement which makes code cleaner.
+
+Dmitry Osipenko (16):
+  ASoC: tegra20: ac97: Add reset control
+  ASoC: tegra20: i2s: Add reset control
+  ASoC: tegra30: i2s: Restore hardware state on runtime PM resume
+  ASoC: tegra30: ahub: Switch to use reset-bulk API
+  ASoC: tegra20: spdif: Correct driver removal order
+  ASoC: tegra20: spdif: Remove handing of disabled runtime PM
+  ASoC: tegra20: i2s: Add system level suspend-resume callbacks
+  ASoC: tegra20: i2s: Correct driver removal order
+  ASoC: tegra20: i2s: Use devm_clk_get()
+  ASoC: tegra20: i2s: Remove handing of disabled runtime PM
+  ASoC: tegra30: i2s: Correct driver removal order
+  ASoC: tegra30: i2s: Use devm_clk_get()
+  ASoC: tegra30: i2s: Remove handing of disabled runtime PM
+  ASoC: tegra30: ahub: Reset global variable
+  ASoC: tegra30: ahub: Correct suspend-resume callbacks
+  ASoC: tegra30: ahub: Remove handing of disabled runtime PM
+
+Philipp Zabel (1):
+  reset: Add reset_control_bulk API
+
+ drivers/reset/core.c            | 215 ++++++++++++++++++++++
+ include/linux/reset.h           | 315 ++++++++++++++++++++++++++++++++
+ sound/soc/tegra/tegra20_ac97.c  |  21 +++
+ sound/soc/tegra/tegra20_ac97.h  |   1 +
+ sound/soc/tegra/tegra20_i2s.c   |  60 +++---
+ sound/soc/tegra/tegra20_i2s.h   |   1 +
+ sound/soc/tegra/tegra20_spdif.c |  16 +-
+ sound/soc/tegra/tegra30_ahub.c  | 168 ++++++-----------
+ sound/soc/tegra/tegra30_ahub.h  |   5 +-
+ sound/soc/tegra/tegra30_i2s.c   |  65 ++-----
+ 10 files changed, 667 insertions(+), 200 deletions(-)
+
 -- 
-2.17.1
+2.30.2
 
