@@ -2,128 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0599B33A6E3
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 17:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C90ED33A708
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 17:56:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234442AbhCNQsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Mar 2021 12:48:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54914 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234298AbhCNQsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Mar 2021 12:48:24 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABECC061574;
-        Sun, 14 Mar 2021 09:48:23 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id z25so13415322lja.3;
-        Sun, 14 Mar 2021 09:48:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4uo5cQWIcO3eMQBwWai9I8Oi87phRnH0WT+/lmBuZjU=;
-        b=banWFytj4hsP9DOcC5HIgxVH0yRY89MkqHf3xi4f2KA7KTTJCH+2bNJ9CMPy4snXZX
-         KRw9spfKmYZeBWRL29nN44VEj8hZwJLwG4yMP+ZjM+/pfokUYPnA/r0vkfXXgtxCUlfg
-         XIyCp+1GjQwrulJJ7tWxiVnYkiqG2Um/eW6zz6uFI7raDAUk1zoF2UzhSuvVXf5u8ThT
-         Y7W2pHb/tvOsqWGUJ8JU/OJmU2EA/WfEdz39b64TBs/tpd8wc9AfvcATwqiDyKTGbjCS
-         ukTzdbECyEyRcO3PYTHRSPDYsiU0W+96j7qd6qBUeUImEpRBHFWMUxSl+EZhvN09NAsM
-         Jh9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4uo5cQWIcO3eMQBwWai9I8Oi87phRnH0WT+/lmBuZjU=;
-        b=hmCJo9o17oJN/5j4qmL630jW08MisNCSWPUpV698pS31xWDcekMtdffGWCZ5qqJMoG
-         re/zC8Cd+UBntCk72QFMBCxNt/vehCvjta0ubigHfjUVKFAjtI9fBoAPXVF/2nL85dSP
-         xc6ZPKiNW4E4jqffHt+Pphn4bPkkbsoLdOkwFKYbyPi3VKYlcIjB9PlhrxnvvBSAkViP
-         rznGHJ60i5eW7Ro8BdKC6E5eqsEyM8KiiNm4arGrBtZmMEIbdieXiRS1aB/EkrsLvz1m
-         QIALGB6w+TEAfODWLN+jLpSFjGJE7ejV4sEFpROuuIMo95uWZpeiqAoTMfzdc0jXDVIe
-         lPFQ==
-X-Gm-Message-State: AOAM532pcshYW4+f60n5qlDm1jFeou11kTMo+h2bl4RBryjn8OtuerA4
-        psuM/uqzBx6lJPotRIMO3K0=
-X-Google-Smtp-Source: ABdhPJwx96gsxPwuyaJJcabZ1kfwjYUuXmsECHj7VC8JOu6t0wyVc68y+290not+8oMG+GbTFthVCQ==
-X-Received: by 2002:a2e:9b10:: with SMTP id u16mr7903244lji.253.1615740502369;
-        Sun, 14 Mar 2021 09:48:22 -0700 (PDT)
-Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.gmail.com with ESMTPSA id a3sm2387993lfr.55.2021.03.14.09.48.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Mar 2021 09:48:22 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 6/6] soc/tegra: pmc: Link children power domains to the parent domain
-Date:   Sun, 14 Mar 2021 19:48:10 +0300
-Message-Id: <20210314164810.26317-7-digetx@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210314164810.26317-1-digetx@gmail.com>
-References: <20210314164810.26317-1-digetx@gmail.com>
+        id S234046AbhCNQzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 12:55:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229870AbhCNQzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Mar 2021 12:55:09 -0400
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4C9CA64DE1;
+        Sun, 14 Mar 2021 16:55:07 +0000 (UTC)
+Date:   Sun, 14 Mar 2021 16:55:04 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v8 0/2] add support for GPIO or IRQ based event counter
+Message-ID: <20210314165504.536d9ba6@archlinux>
+In-Reply-To: <20210301080401.22190-1-o.rempel@pengutronix.de>
+References: <20210301080401.22190-1-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Core domain is a parent of PMC power domains, hence PMC domains
-should be set up as a sub-domains of the parent (Core) domain if
-"power-domains" phandle presents in a device-tree node of PMC domain.
+On Mon,  1 Mar 2021 09:03:59 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-This allows to propagate GENPD performance changes to the parent Core
-domain if performance change is applied to a PMC domain.
+> changes v8:
+> - use use enum index instead of enum value for the counter function
+> - register signal unconditionally and return error is signal revel is
+>   read 
+> 
+> changes v7:
+> - make most of structs dynamically allocatable to assign IRQ based
+>   description to the signal
+> - assign dev name instead for driver name to the IRQ
+> 
+> changes v6:
+> - rename it to interrupt-counter
+> - driver fixes
+> - device tree fixes
+> 
+> changes v5:
+> - rename it to event counter, since it support different event sources
+> - make it work with gpio-only or irq-only configuration
+> - update yaml binding
+> 
+> changes v4:
+> - use IRQ_NOAUTOEN to not enable IRQ by default
+> - rename gpio_ from name pattern and make this driver work any IRQ
+>   source.
+> 
+> changes v3:
+> - convert counter to atomic_t
+> 
+> changes v2:
+> - add commas
+> - avoid possible unhandled interrupts in the enable path
+> - do not use of_ specific gpio functions
+> 
+> Add support for GPIO based pulse counter. For now it can only count
+> pulses. With counter char device support, we will be able to attach
+> timestamps and measure actual pulse frequency.
+> 
+> Never the less, it is better to mainline this driver now (before chardev
+> patches go mainline), to provide developers additional use case for the counter
+> framework with chardev support.
+> 
+> Oleksij Rempel (2):
+>   dt-bindings: counter: add interrupt-counter binding
+>   counter: add IRQ or GPIO based counter
 
-Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/soc/tegra/pmc.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Series applied to the togreg branch of iio.git and pushed out as testing.
 
-diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-index 84ab27d85d92..ba8407819397 100644
---- a/drivers/soc/tegra/pmc.c
-+++ b/drivers/soc/tegra/pmc.c
-@@ -1283,6 +1283,7 @@ static int tegra_powergate_add(struct tegra_pmc *pmc, struct device_node *np)
- static int tegra_powergate_init(struct tegra_pmc *pmc,
- 				struct device_node *parent)
- {
-+	struct of_phandle_args child_args, parent_args;
- 	struct device_node *np, *child;
- 	int err = 0;
- 
-@@ -1296,6 +1297,21 @@ static int tegra_powergate_init(struct tegra_pmc *pmc,
- 			of_node_put(child);
- 			break;
- 		}
-+
-+		if (of_parse_phandle_with_args(child, "power-domains",
-+					       "#power-domain-cells",
-+					       0, &parent_args))
-+			continue;
-+
-+		child_args.np = child;
-+		child_args.args_count = 0;
-+
-+		err = of_genpd_add_subdomain(&parent_args, &child_args);
-+		of_node_put(parent_args.np);
-+		if (err) {
-+			of_node_put(child);
-+			break;
-+		}
- 	}
- 
- 	of_node_put(np);
--- 
-2.30.2
+thanks,
+
+Jonathan
+
+> 
+>  .../bindings/counter/interrupt-counter.yaml   |  62 +++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/counter/Kconfig                       |  10 +
+>  drivers/counter/Makefile                      |   1 +
+>  drivers/counter/interrupt-cnt.c               | 244 ++++++++++++++++++
+>  5 files changed, 324 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/counter/interrupt-counter.yaml
+>  create mode 100644 drivers/counter/interrupt-cnt.c
+> 
 
