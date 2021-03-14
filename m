@@ -2,91 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADDE033A1F4
-	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 00:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F65933A200
+	for <lists+devicetree@lfdr.de>; Sun, 14 Mar 2021 01:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbhCMXoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Mar 2021 18:44:19 -0500
-Received: from eu-shark2.inbox.eu ([195.216.236.82]:37864 "EHLO
-        eu-shark2.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234788AbhCMXoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 18:44:17 -0500
-X-Greylist: delayed 394 seconds by postgrey-1.27 at vger.kernel.org; Sat, 13 Mar 2021 18:44:17 EST
-Received: from eu-shark2.inbox.eu (localhost [127.0.0.1])
-        by eu-shark2-out.inbox.eu (Postfix) with ESMTP id 82D3A4612BF;
-        Sun, 14 Mar 2021 01:37:40 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
-        t=1615678660; bh=pvIBmRAw8d1VUyi9V/SeXV0tyYF89ThqAif8y8U7n3A=;
-        h=Date:From:To:Cc:Subject;
-        b=zht9rfBCY5gNRpSipU3V0FSXLxWa2evvyzeFaQYGj20zBl8q126KGE8Vrv7CKigZA
-         KQJ8cJUGUlGFXFTiTPCzVYAOPk/nbvb/0ugBjUbINxD8ESdqNgS6cgmi+aTgv9Cvba
-         UvbfOsnhuz9mln05OJV4DRlSemsfPO4S2/oqpyzo=
-Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
-        by eu-shark2-in.inbox.eu (Postfix) with ESMTP id 5E8614612B2;
-        Sun, 14 Mar 2021 01:37:40 +0200 (EET)
-Received: from pc (unknown [185.176.222.57])
-        (Authenticated sender: arzamas-16@mail.ee)
-        by mail.inbox.eu (Postfix) with ESMTPA id DF06F1BE0154;
-        Sun, 14 Mar 2021 01:37:39 +0200 (EET)
-Date:   Sun, 14 Mar 2021 02:37:35 +0300
-From:   Boris Lysov <arzamas-16@mail.ee>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm: mediatek: dts: activate SMP for mt6589
-Message-ID: <20210314023735.052d2d35@pc>
+        id S231756AbhCNAFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Mar 2021 19:05:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233634AbhCNAFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Mar 2021 19:05:33 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA4A1C061574;
+        Sat, 13 Mar 2021 16:05:31 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id z1so13115230edb.8;
+        Sat, 13 Mar 2021 16:05:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SMX4PGAdnxUDz2rgcUrWaWmNPXTCnjfQBU+O2I1RQIU=;
+        b=aLNiuIPtXynQ0D7jmFlbZ6tKjJAoE/30t8wTpWRdDuzn3aE6NrywEvZ+fGWewoCPlh
+         Ok6il+rCWYs7LREk3Lxf2KJIqPodlwHh5qszl8vLgJtdmg05BxpxBtizy8i9nf38qJIa
+         o/VF+xOrX0SdY7x9dMt0S3E2mOOClYxDEWU7Wifh5GZMOnthl1y3oZwsvKccbhecQF+H
+         vvYCY/HdZcjDOtKl2cLZl3d7S5EBcSkZzjKVCdk5XXLF6K3wp8C0+G7JJzdloaT+ONTq
+         ZCnV6eXAwaBQA9Fc5ORTqC7G6XfJaiaBP/zzM8rGPkauWdABz6YtOEhBaB5JkqOn92ab
+         1lhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SMX4PGAdnxUDz2rgcUrWaWmNPXTCnjfQBU+O2I1RQIU=;
+        b=rxmwFPkE5WYwzAWCPsp6rbWzBHkGJgRKdqTAEg1283zmPjjO5yYA6KKDpR9kSNrgsO
+         /YgEZjWXjAq8KFXsRPgdLgbDTVrrCDV4CwW649zHySMYi61VGOQoRDKf5nv/ofIJVcoB
+         yzLowqQz816vcESPFUtvdYwV6WIEBBVlz83ys03P5LM9F/+P1e1YtM2kbHWT73IvDCWc
+         0q1ksZ98PLlv3BWBm/DNDe+eQanuIE0XSEfzZ8F76fz6sFjnI0aYJDNcoDebbi55fIQe
+         tr9FnlIIwLhF7bzhxH1U38oKxH9ppyqmehFrP4HwJtN9SraJO6iGgWgjyX1BtWti2CYG
+         9UcA==
+X-Gm-Message-State: AOAM530XfURIMAgsoghJfrr8BbfAA28gGJ2hJ3wRSitCcL3UhhKbMpqs
+        Uzya7io4QMiz43r4MbIfkcuv4La8nbwrMkPBAHA=
+X-Google-Smtp-Source: ABdhPJzWWail3s8JDkQtTD/knWUAbZVCF3iT+21h9hf5MS4ptYmJQ4e1E6dsBvUpW4Jxk97wbCBNthg71GKjXSvYFPs=
+X-Received: by 2002:a05:6402:30a2:: with SMTP id df2mr22139260edb.29.1615680330069;
+ Sat, 13 Mar 2021 16:05:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: OK
-X-ESPOL: 6N1mkJY3ejOlglu/QnzYGwQ1rTRMW/GWher6j11F7wj3TUiYHDwAURW+m25+SXi8vSM=
+References: <20210313215302.4076765-1-linus.walleij@linaro.org>
+In-Reply-To: <20210313215302.4076765-1-linus.walleij@linaro.org>
+From:   Julian Calaby <julian.calaby@gmail.com>
+Date:   Sun, 14 Mar 2021 11:05:17 +1100
+Message-ID: <CAGRGNgU_C6keHC_Ty3iruJc5cwsBGJRRBm8DWH91fHjygPv0fg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Convert the BCM4329 bindings to YAML and extend
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, linux-mmc@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This simple patch activates SMP for mt6589 by adding the missing
-"enable-method" property. After applying this patch kernel log
-indicates all cores are brought up:
+Hi Linus,
 
-[    0.070122] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
-[    0.071652] Setting up static identity map for 0x80100000 - 0x80100054
-[    0.072711] rcu: Hierarchical SRCU implementation.
-[    0.073853] smp: Bringing up secondary CPUs ...
-[    0.133675] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
-[    0.193675] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
-[    0.253675] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
-[    0.253818] smp: Brought up 1 node, 4 CPUs
-[    0.256930] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
-[    0.257855] CPU: All CPU(s) started in SVC mode.
+On Sun, Mar 14, 2021 at 9:00 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> This converts the BCM4329 family bindings to YAML schema, and
+> extends and fixes the bindings like this:
+>
+> - Name the bindings after the first chip (BCM4329) since
+>   wildcards like 43xx are nowadays frowned upon by the DT
+>   binding reviewers. We call this the "BCM4329 family"
+> - Add compatible strings for all the variants that seem to
+>   exist in the wild. (Derived from firmware listings.)
+> - Add required reg property (SDIO function number)
+> - Add reset-gpios property (some systems wire this to a GPIO
+>   line).
+> - I have only listed Arend as maintainer for now, volunteers
+>   can be added.
+>
+> Cc: Arend van Spriel <aspriel@gmail.com>
+> Cc: Franky Lin <franky.lin@broadcom.com>
+> Cc: Hante Meuleman <hante.meuleman@broadcom.com>
+> Cc: Chi-hsien Lin <chi-hsien.lin@infineon.com>
+> Cc: Wright Feng <wright.feng@infineon.com>
+> Cc: Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
+> Cc: brcm80211-dev-list.pdl@broadcom.com
+> Cc: SHA-cyfmac-dev-list@infineon.com
+> Cc: linux-mmc@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 98 +++++++++++++++++++
+>  .../net/wireless/brcm,bcm43xx-fmac.txt        | 38 -------
+>  2 files changed, 98 insertions(+), 38 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
+>
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> new file mode 100644
+> index 000000000000..d172ee486cf6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM4329 family fullmac wireless SDIO devices
+> +
+> +maintainers:
+> +  - Arend van Spriel <arend@broadcom.com>
+> +
+> +description:
+> +  The Broadcom Single chip MAC part for the BCM4329 family and
+> +  later Cypress chips in the same family named CYW4373 and similar.
+> +  These chips also have a Bluetooth portion described in a separate
+> +  binding.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - brcm,bcm43143-fmac
+> +          - brcm,bcm4341b0-fmac
+> +          - brcm,bcm4341b4-fmac
+> +          - brcm,bcm4341b5-fmac
+> +          - brcm,bcm4329-fmac
+> +          - brcm,bcm4330-fmac
+> +          - brcm,bcm4334-fmac
+> +          - brcm,bcm43340-fmac
+> +          - brcm,bcm4335-fmac
+> +          - brcm,bcm43362-fmac
+> +          - brcm,bcm4339-fmac
+> +          - brcm,bcm43430a0-fmac
+> +          - brcm,bcm43430a1-fmac
+> +          - brcm,bcm43455-fmac
+> +          - brcm,bcm43456-fmac
+> +          - brcm,bcm4354-fmac
+> +          - brcm,bcm4356-fmac
+> +          - brcm,bcm4359-fmac
+> +          - cypress,cyw4373-fmac
+> +          - cypress,cyw43012-fmac
 
-Before this change CPU cores 1-3 didn't start and the following lines
-were in kernel log:
+I don't know if this is necessary for SDIO, but should the non-4329
+compatibles have the 4329 compatible as an alternative?
 
-[    0.070126] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
-[    0.071640] Setting up static identity map for 0x80100000 - 0x80100054
-[    0.072706] rcu: Hierarchical SRCU implementation.
-[    0.073850] smp: Bringing up secondary CPUs ...
-[    0.076052] smp: Brought up 1 node, 1 CPU
-[    0.076678] SMP: Total of 1 processors activated (2000.48 BogoMIPS).
-[    0.077603] CPU: All CPU(s) started in SVC mode.
+Thanks,
 
-Signed-off-by: Boris Lysov <arzamas-16@mail.ee>
----
- arch/arm/boot/dts/mt6589.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/mt6589.dtsi
-b/arch/arm/boot/dts/mt6589.dtsi index f3ccb70c0779..70df00a7bb26 100644
---- a/arch/arm/boot/dts/mt6589.dtsi
-+++ b/arch/arm/boot/dts/mt6589.dtsi
-@@ -17,6 +17,7 @@
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		enable-method = "mediatek,mt6589-smp";
- 
- 		cpu@0 {
- 			device_type = "cpu";
 -- 
-2.20.1
+Julian Calaby
 
+Email: julian.calaby@gmail.com
+Profile: http://www.google.com/profiles/julian.calaby/
