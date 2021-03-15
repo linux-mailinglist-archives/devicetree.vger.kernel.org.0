@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27CF633B119
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 210DE33B157
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbhCOL3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 07:29:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S230118AbhCOLln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 07:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230166AbhCOL31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 07:29:27 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED357C06175F;
-        Mon, 15 Mar 2021 04:29:26 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id p8so65519541ejb.10;
-        Mon, 15 Mar 2021 04:29:26 -0700 (PDT)
+        with ESMTP id S229844AbhCOLlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 07:41:11 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F12C061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 04:41:11 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id n10so20293928pgl.10
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 04:41:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=T1+7Mrsw6CzyaM4FpYeuvBkBqhhzKEMHsKD84SMx5F0=;
-        b=P2AFujM1vM46WLp5SdanFbuNp3qS1gpbU/DCBWjpEdpgm7YDc0KKCfKJIls82mbwWd
-         Sf/4hR4lG6mS77k2JTH+CHaJ6Qb3W9ZJ9twrdbHc/HjaUDi6T0EYzt9ZjzcHfwfJwvkD
-         3yuEemzVkpDG4JxI6RNibR/jZsbQ++CQ1Mz3pZ3qZItDUiL/jXomQe9T92AxHoSq3jU1
-         or97TMFIC10kHGcJbXAf80PAD2OCK8rcV/fLrJHuXCtsBG6R0nawnWc0SJiXBFo/aPVz
-         UXl2GrGM1SMzpUg1Zij6ohFfEOjoQruBxyz/lDfZZZIa5fhviS9bY2yjljfpWw061On+
-         dX5A==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DhxSzlXHtGlfEeBFDHzLfSiaE4UuFtHOZg5BLqDfKGQ=;
+        b=li20L3BagNhJ0hbClmRmAWso+KjpQm0+6SWwVscsDqjd1IBhbyes1oh9L3WY0XqzCi
+         TwLuzXfXZ78sKf0neiGKXJfckB9jKS9eimN+pSdGuk8Qv0zOKeIgFIl65uOsJrADiUIT
+         StRZqdTmNCT46uadcyIZjPiMXf1daznABqjV4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T1+7Mrsw6CzyaM4FpYeuvBkBqhhzKEMHsKD84SMx5F0=;
-        b=PDAUVT/+JQrPF1sD59eMdprO7zYqKL4GJZxZOG56EgyWA6sIaFvWM/PkcKmZ9ICmwh
-         pXb32p/u1KcphpZ6tRIt5TzLIyaIH8eC/J6hcXeszbtkZqLrgW6f+42ODd6XYQOUOYNH
-         S5cOFsqcpLF4zEovnCDz1Zbi8b3bCAOJXMeV5DCaq6agC2qe2Lzwz/QKDLrYSPTyNQqh
-         OCNYhsoeO5+t/MLIUzndbs4mDv5YHLK2SQFMXGCRe5GYH0KI7Sn5Ox3Ea++Ct2R+HhRY
-         0/Y7C/jDQ9Qi/6AY0SA97oWceQp0bbZI54XJWlaYKkcRT3F92lfP/oYaD6LPlg6FibnT
-         BtBQ==
-X-Gm-Message-State: AOAM531iCvgwxsYpaiHoXx8i0G59dBtR3YzZMoRTG2JQ9/lJu6Jh96WV
-        tXwqCF2bgYOIJCQhdW15dzTyc57MIFU=
-X-Google-Smtp-Source: ABdhPJy8oChfZUA18N9ho+T33JmbHrpqseT6TuO8iski30y5N6MLku7Ixbi+fRBX4MJQQpOh77ELbg==
-X-Received: by 2002:a17:907:72d5:: with SMTP id du21mr23636149ejc.167.1615807765749;
-        Mon, 15 Mar 2021 04:29:25 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id q25sm3921423edt.51.2021.03.15.04.29.24
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DhxSzlXHtGlfEeBFDHzLfSiaE4UuFtHOZg5BLqDfKGQ=;
+        b=mOPrkrdZqMa4SFVNpVy8F2e2CggmcvmM3L+1lLuAzr9grzBwRLL6Dusc/KsNhR45m4
+         aPFcxIWex7pEQSKPegh6TAIjQlUTHZjEDAl7dt8vDODZSSYjs3Op+8B9grrRPAY4QBJJ
+         G1ZiPmTLw73PYGc7T8G81Y8lmVY/V9jXfvVCHA39p24ixFLTAkbQ8XJh+aeb5XQQYH/0
+         n5sIAX0A9dqPwGcoYUfVwMmXIIVbBfNu2uslEVJcRQrWIjWleGx1q8rTap3D2Ok1T0ER
+         3UxGYCGn5mNhOnS4PBoeubVBJx9/UGE2Rzv+Y0v1yIMnCbsKdRZK9ZZtNhAWR4V2cqBB
+         FDlw==
+X-Gm-Message-State: AOAM532FrK/GTaWOPCr90SkKm1Q1e2ELpt2COYBT6vKCRsdI0X78uw4P
+        wi7cYeSmKXo6S2sXgLF2gMrtTA==
+X-Google-Smtp-Source: ABdhPJz7AGpl1rifUGBo2AufTSWcYkSCUhsjpApraQYLxQUj2FrnggU00tSjLByDU+D514QI6cCCFw==
+X-Received: by 2002:a63:c702:: with SMTP id n2mr22349356pgg.382.1615808470067;
+        Mon, 15 Mar 2021 04:41:10 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:89b7:339b:c097:5ebb])
+        by smtp.gmail.com with ESMTPSA id u12sm13192621pfn.123.2021.03.15.04.41.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 04:29:25 -0700 (PDT)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Mon, 15 Mar 2021 04:41:09 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
-Date:   Mon, 15 Mar 2021 13:29:18 +0200
-Message-Id: <219b00100eba76c33693e51a07d6d36cacc9ab2f.1615807292.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1615807292.git.cristian.ciocaltea@gmail.com>
-References: <cover.1615807292.git.cristian.ciocaltea@gmail.com>
+        linux-mediatek@lists.infradead.org, Ben Ho <Ben.Ho@mediatek.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-damu
+Date:   Mon, 15 Mar 2021 19:41:03 +0800
+Message-Id: <20210315114104.1241622-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Actions Semi Owl Ethernet MAC binding and driver.
+mt8183-kukui-jacuzzi-damu board also known as ASUS Chromebook Flip CM3,
+using mediatek mt8183 SoC.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 411df197e4a1..20b8e37ea34c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1530,6 +1530,7 @@ F:	Documentation/devicetree/bindings/dma/owl-dma.yaml
- F:	Documentation/devicetree/bindings/i2c/i2c-owl.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
- F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
-+F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
- F:	Documentation/devicetree/bindings/pinctrl/actions,*
- F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
- F:	Documentation/devicetree/bindings/timer/actions,owl-timer.txt
-@@ -1542,6 +1543,7 @@ F:	drivers/dma/owl-dma.c
- F:	drivers/i2c/busses/i2c-owl.c
- F:	drivers/irqchip/irq-owl-sirq.c
- F:	drivers/mmc/host/owl-mmc.c
-+F:	drivers/net/ethernet/actions/
- F:	drivers/pinctrl/actions/*
- F:	drivers/soc/actions/
- F:	include/dt-bindings/power/owl-*
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 93b3bdf6eaeb..a86716cdd408 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -125,6 +125,10 @@ properties:
+               - google,krane-sku176
+           - const: google,krane
+           - const: mediatek,mt8183
++      - description: Google Damu (ASUS Chromebook Flip CM3)
++        items:
++          - const: google,damu
++          - const: mediatek,mt8183
+ 
+ additionalProperties: true
+ 
 -- 
-2.30.2
+2.31.0.rc2.261.g7f71774620-goog
 
