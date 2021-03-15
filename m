@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2154033B2F8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 13:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B251933B2F5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 13:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbhCOMns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229787AbhCOMns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 15 Mar 2021 08:43:48 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:33266 "EHLO
+Received: from youngberry.canonical.com ([91.189.89.112]:33274 "EHLO
         youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhCOMnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 08:43:21 -0400
-Received: from mail-wr1-f69.google.com ([209.85.221.69])
+        with ESMTP id S229802AbhCOMnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 08:43:22 -0400
+Received: from mail-wr1-f70.google.com ([209.85.221.70])
         by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
         (Exim 4.86_2)
         (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lLmZ6-0004hd-9y
-        for devicetree@vger.kernel.org; Mon, 15 Mar 2021 12:43:20 +0000
-Received: by mail-wr1-f69.google.com with SMTP id p15so14909103wre.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 05:43:20 -0700 (PDT)
+        id 1lLmZ7-0004i6-47
+        for devicetree@vger.kernel.org; Mon, 15 Mar 2021 12:43:21 +0000
+Received: by mail-wr1-f70.google.com with SMTP id s10so15047461wre.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 05:43:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=uEJ+dGSoJaOl9b6R9srU6s0ehbSLR30XvLByv0VyyrI=;
-        b=SneRV9rF41vFrDXRHTJVb4w62dIRk0Rzd4yktEsVpEbSjMjTh1+xpzpRHkOzpJ8V02
-         HKfCNUwdhIFnOuGMx+svpRnx1f7V8fU9PJEDu466/kpIAccj3N/Fq4bM++rfA1sKbWeg
-         EO57r7ZdrxECT2AhRg9mfFDI8Ibsu9p857Uw6rNPsugYrcBkQ2bZFvCrvYHA2tsqNp8T
-         7NGzaealM8PlWhqSVLHHNE3rP5vV33RKqwAT5PptPp/+CWi2UCh6r3+/ISAux4XNIziw
-         Ay2CiOWhftibRyzg3xjlCB6ndytjv9nnHyYYE79FHfkFcqEllmqAoxDjXNOU+vq0Ykpi
-         ecUg==
-X-Gm-Message-State: AOAM532AgTx/Z1znEy+HswW1OwwmE0/E38pcOLAL1Yq+kACLaSIKpatg
-        NLwyqhr2m8QgOJM6jDl1qtmgt/D0iFzIcwC5rZjt+qQD8xd0gUIsmmse63UWfJjrrCkT7QkQ1Ed
-        5I2UGwkieU1aRevKvhDRLIkfg73V1r0F37rxTR1w=
-X-Received: by 2002:a05:600c:1405:: with SMTP id g5mr25401439wmi.140.1615812199950;
-        Mon, 15 Mar 2021 05:43:19 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzWKQZx0GO/2hrw67COu0zD8W7FJdfl5S0esHLhy6NvwmcURPYJI8gyxRsk5tRJGfpgw7MVNQ==
-X-Received: by 2002:a05:600c:1405:: with SMTP id g5mr25401423wmi.140.1615812199808;
-        Mon, 15 Mar 2021 05:43:19 -0700 (PDT)
+        bh=rxaIjR1J//5PkyRZXm0+xJCkI6bQEZtH1ohc21euivs=;
+        b=sT54WtJ0nhGKiVXJcRPLUVBiQJLWIpgb8ccRnyhakcV/Cx4TQMIijhuA+H2zoIdGGP
+         zl9tUu7bXVYyIr5eDUwPFc+yNJaJDDd3A1nTK3gPhdkkpc4GbOhMjfq1Ks73lhzy/uit
+         7rgfdrRSRx1lgs4z3Qwt4jOv6FSHQvjB5IjZJrPeNThH9jdBnm3287MMDO9mk3cqgU5a
+         0XlbwOs7sP1WFSjT304zMxZJ3+vwuQ3SGZ6h1Cu1GtlsexlCj01LKNkm01gjhkhEzT4R
+         MJ+CFU73mr18ZSNS4/MM6SnWv0diOTC6XUp0nQCunYBNGzbLMJBpsJI1VyOB4J3S5MEL
+         1M1g==
+X-Gm-Message-State: AOAM533V483JxR7hS0PD0Q/qvVmd8FuARd4io5RxIdEK/eG6o+Cr1tjm
+        XEScoDn6V75SL0lE3uMSBeJ6jVxZ998lzrDde106BtVj8S2PhjjfbfNt9iYiRSQylGmBEmf37Kf
+        v/swaYlcZjQTUJoYWSQZtkfXX2QBoQWjjrmaXYb0=
+X-Received: by 2002:a05:6000:1546:: with SMTP id 6mr27051362wry.398.1615812200828;
+        Mon, 15 Mar 2021 05:43:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx19SoVoAAQrYf7moALON3Fv15zBfY8pJOsEEAAhFpyMpxvBF4bD3zbUHBRa65h38JIQJV97g==
+X-Received: by 2002:a05:6000:1546:: with SMTP id 6mr27051353wry.398.1615812200719;
+        Mon, 15 Mar 2021 05:43:20 -0700 (PDT)
 Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
         by smtp.gmail.com with ESMTPSA id r10sm14410094wmh.45.2021.03.15.05.43.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 05:43:19 -0700 (PDT)
+        Mon, 15 Mar 2021 05:43:20 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 2/3] ARM: dts: exynos: white-space cleanups
-Date:   Mon, 15 Mar 2021 13:43:12 +0100
-Message-Id: <20210315124313.114842-2-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 3/3] arm64: dts: exynos: white-space cleanups
+Date:   Mon, 15 Mar 2021 13:43:13 +0100
+Message-Id: <20210315124313.114842-3-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210315124313.114842-1-krzysztof.kozlowski@canonical.com>
 References: <20210315124313.114842-1-krzysztof.kozlowski@canonical.com>
@@ -60,163 +60,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixups some white-space issues.  Checkpatch reported:
+Fixup white-space issue:
 
-  WARNING: Block comments should align the * on each line
   WARNING: please, no spaces at the start of a line
-  ERROR: code indent should use tabs where possible
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../boot/dts/exynos4412-odroid-common.dtsi    |  2 +-
- arch/arm/boot/dts/exynos4412-odroidx.dts      |  3 +-
- arch/arm/boot/dts/exynos4412-ppmu-common.dtsi | 48 +++++++++----------
- arch/arm/boot/dts/exynos5410-pinctrl.dtsi     | 28 +++++------
- 4 files changed, 41 insertions(+), 40 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-index eebe6a3952ce..333f83e93880 100644
---- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-@@ -2,7 +2,7 @@
- /*
-  * Common definition for Hardkernel's Exynos4412 based ODROID-X/X2/U2/U3 boards
-  * device tree source
--*/
-+ */
- 
- #include <dt-bindings/sound/samsung-i2s.h>
- #include <dt-bindings/input/input.h>
-diff --git a/arch/arm/boot/dts/exynos4412-odroidx.dts b/arch/arm/boot/dts/exynos4412-odroidx.dts
-index 0e9d626e740a..440135d0ff2a 100644
---- a/arch/arm/boot/dts/exynos4412-odroidx.dts
-+++ b/arch/arm/boot/dts/exynos4412-odroidx.dts
-@@ -84,7 +84,8 @@ hub@1 {
- 			ethernet: usbether@1 {
- 				compatible = "usb0424,ec00";
- 				reg = <1>;
--				local-mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
-+				/* Filled in by a bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
- 			};
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi b/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi
-index 3a3b2fafefdd..7f187a3dedcc 100644
---- a/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi
-@@ -7,41 +7,41 @@
-  */
- 
- &ppmu_dmc0 {
--       status = "okay";
-+	status = "okay";
- 
--       events {
--	       ppmu_dmc0_3: ppmu-event3-dmc0 {
--		       event-name = "ppmu-event3-dmc0";
--	       };
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+index 413cac63a1cb..773d9abe3a44 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+@@ -1002,7 +1002,7 @@ events {
+ 		ppmu_event0_d1_general: ppmu-event0-d1-general {
+ 		       event-name = "ppmu-event0-d1-general";
+ 	       };
 -       };
-+	events {
-+		ppmu_dmc0_3: ppmu-event3-dmc0 {
-+			event-name = "ppmu-event3-dmc0";
-+		};
 +	};
  };
  
- &ppmu_dmc1 {
--       status = "okay";
-+	status = "okay";
- 
--       events {
--	       ppmu_dmc1_3: ppmu-event3-dmc1 {
--		       event-name = "ppmu-event3-dmc1";
--	       };
--       };
-+	events {
-+		ppmu_dmc1_3: ppmu-event3-dmc1 {
-+			event-name = "ppmu-event3-dmc1";
-+		};
-+	};
- };
- 
- &ppmu_leftbus {
--       status = "okay";
-+	status = "okay";
- 
--       events {
--	       ppmu_leftbus_3: ppmu-event3-leftbus {
--		       event-name = "ppmu-event3-leftbus";
--	       };
--       };
-+	events {
-+		ppmu_leftbus_3: ppmu-event3-leftbus {
-+			event-name = "ppmu-event3-leftbus";
-+		};
-+	};
- };
- 
- &ppmu_rightbus {
--       status = "okay";
-+	status = "okay";
- 
--       events {
--	       ppmu_rightbus_3: ppmu-event3-rightbus {
--		       event-name = "ppmu-event3-rightbus";
--	       };
--       };
-+	events {
-+		ppmu_rightbus_3: ppmu-event3-rightbus {
-+			event-name = "ppmu-event3-rightbus";
-+		};
-+	};
- };
-diff --git a/arch/arm/boot/dts/exynos5410-pinctrl.dtsi b/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
-index d0aa18443a69..9599ba8ba798 100644
---- a/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/exynos5410-pinctrl.dtsi
-@@ -235,13 +235,13 @@ gpx0: gpx0 {
- 		interrupt-parent = <&combiner>;
- 		#interrupt-cells = <2>;
- 		interrupts = <23 0>,
--		             <24 0>,
--		             <25 0>,
--		             <25 1>,
--		             <26 0>,
--		             <26 1>,
--		             <27 0>,
--		             <27 1>;
-+			     <24 0>,
-+			     <25 0>,
-+			     <25 1>,
-+			     <26 0>,
-+			     <26 1>,
-+			     <27 0>,
-+			     <27 1>;
- 	};
- 
- 	gpx1: gpx1 {
-@@ -252,13 +252,13 @@ gpx1: gpx1 {
- 		interrupt-parent = <&combiner>;
- 		#interrupt-cells = <2>;
- 		interrupts = <28 0>,
--		             <28 1>,
--		             <29 0>,
--		             <29 1>,
--		             <30 0>,
--		             <30 1>,
--		             <31 0>,
--		             <31 1>;
-+			     <28 1>,
-+			     <29 0>,
-+			     <29 1>,
-+			     <30 0>,
-+			     <30 1>,
-+			     <31 0>,
-+			     <31 1>;
- 	};
- 
- 	gpx2: gpx2 {
+ &pinctrl_alive {
 -- 
 2.25.1
 
