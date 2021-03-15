@@ -2,311 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE36133C043
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F90933C08A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231690AbhCOPpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 11:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39366 "EHLO
+        id S229729AbhCOPwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 11:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbhCOPpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 11:45:34 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C80C06174A;
-        Mon, 15 Mar 2021 08:45:33 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id g20so8405554wmk.3;
-        Mon, 15 Mar 2021 08:45:33 -0700 (PDT)
+        with ESMTP id S230266AbhCOPwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 11:52:11 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0B0C06175F
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:52:11 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so2153087pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:52:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=7zidAh8iuTF0Kc8fsEe5bDCb1/wU5HukfUwj/mszyQY=;
-        b=bZPynnspLZDb5z4QGVFC4oEZkSof1OEk5A4lmF/1dM+urAOTA4S50i73af6uhTQeoY
-         IRvK8KjZU+YFMAxT0ChpSqKTkDNFsmisLb9CbISrDTtaHk6iFMOfxMGj0MBwseUuCVwq
-         Ki3qSJsI/wWfvSqG/Lkaz3+aCHKuIZlBRagqIPb+tY1NAF+yrlG1XXslTCrpIMDuBP8B
-         W5lgvFAzwj2S+QkQ2PpC9DVL1kO2GvVCkMc5cRBs48V6pem2Q5ErrOwwzirlvcjzQvMP
-         chnh73lqedAlyj7g1t5dWI39GTA7r8StFyC8CXOj4I8owUYAm/YXdNgnn5H39TYW6R+2
-         3xcg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l5O8s/wBRTzluF+EQ18kfEQD+z0CSNx9wGIEFGPEHmg=;
+        b=N5lNJUt9jcIm74NZds5a8UYlvcZmXQT5aEGfcXpTlAbso+wSTn6RBT2JsVv39b9dWd
+         Nq2mMSljLvcDWTMvAurfqgJ1ymfMGAfOLSAlCgqhNHYzXiTLFhSpn68SZd822/6+KRAG
+         o46GZb3mIdRmLizFod8sjKveuavDko4jp6ek7knHQn0vBb20rtBJGH+iH07rpJO2soiO
+         IHtqDZwsu+jqi4QgUBOR35FSH7QPBoH1s4vlF45Y9BXiK0xnHbmU4uOipchP6AbzQwO6
+         hp0vdH8tXxR6My8yc1ujWWpvUFSVJ0q/Bzhw+My8VV/8BWT8UmblB4Cch7239voBznNS
+         EFZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7zidAh8iuTF0Kc8fsEe5bDCb1/wU5HukfUwj/mszyQY=;
-        b=dB7wwCSMxtHgsWhVu9sojuIbYlW1m/UObt113t60WwcptMrOmQH4918nMlDKb+JluA
-         RZOco4NCsRNkuFHtayUVWFklaF+/fAIic8BtVYvZh6MAuFcL54bp4R1LhqQtAJl9rjwo
-         oEfU+uEi+1alx7eqvVNBq9pLdKFTDJLoq9oorZfQ60ysaw7BJqTDp7mZ6gt6DvwRp3NJ
-         z0svNabmWhtBRf7fZZP0ZFOfHV5ad2FT077IkQZSOXpH1nqvMKNpY+C5HV1Y9IoOUoD6
-         ZLaum6NO8134MFGNuCIe390k5SJ6pbhLu9TN5JhmFsemo2vZaY3ECOcy4booTymymWH2
-         FgBw==
-X-Gm-Message-State: AOAM530j/VfltiRhj/MEnGuKBzN+zgoAVfWLxNXEkH+zqGAMEBDJ/fqb
-        Xg3l4mqIi/oVqBICSUe2+FQ=
-X-Google-Smtp-Source: ABdhPJxXACo8qVVdJB+S7MmREzRC9GqjIRZLDrCW6uzjYfrkfsTENRP4MHcoGrnYPQIGZbHIuJSjYQ==
-X-Received: by 2002:a05:600c:204f:: with SMTP id p15mr269886wmg.165.1615823132542;
-        Mon, 15 Mar 2021 08:45:32 -0700 (PDT)
-Received: from skynet.lan ([80.31.204.166])
-        by smtp.gmail.com with ESMTPSA id i10sm18043507wrs.11.2021.03.15.08.45.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 08:45:32 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     jonas.gorski@gmail.com, "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 2/2] net: mdio: Add BCM6368 MDIO mux bus controller
-Date:   Mon, 15 Mar 2021 16:45:28 +0100
-Message-Id: <20210315154528.30212-3-noltari@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210315154528.30212-1-noltari@gmail.com>
-References: <20210315154528.30212-1-noltari@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l5O8s/wBRTzluF+EQ18kfEQD+z0CSNx9wGIEFGPEHmg=;
+        b=K9c3IXJ9WDkGa0FytooH8+1nbL+PNBJbV61YYa0xHF9yoij1TafiWp9GpqzoUJzM5t
+         /eLlkA0qeM0nyFismpu/i9IBxN53KTttt/ij8LflKIsI8RAsbMTJ50HKjFHYkt/zF677
+         5f2rKEwdZTSIgdBS0D0A+EFfAZ+3Xc6A0ajNgKrspyVwsTr6Hev9UD9xzwzYLk9Y4fmx
+         dNU0R5z2G7LMEuHfU3P392NI/EQ6zVJgH/tBMyePKjfA++AuQ7X/gLgRWJlrPsps4/fM
+         XVo2G2R/TBl68nz6zmoKkfZ0F95f5OtGo48afqpDItw3XXmBsUeNlZY4A+5drflylFBk
+         5pvQ==
+X-Gm-Message-State: AOAM533Q6GXtQW6F3TOQZBo2DjG8WYW/KNkYRwWC8nCj8M+18kNRKmMS
+        dfkTkruIijnHi4FyhmPDV+n/ufZVZ6PC1PUS2iF2bg==
+X-Google-Smtp-Source: ABdhPJwLtHPMWbEgOuq8RvEEYc2YsUKVLt+jWBUG2xRdYfgi2jcTTjBDvqIjtTGn6oOLMuDW4RlfTcorUlFYFD3/+zc=
+X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
+ p18-20020a170902e752b02900e6822c355cmr12425529plf.69.1615823531085; Mon, 15
+ Mar 2021 08:52:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210311180948.268343-1-robert.foss@linaro.org> <9e914313-d849-5a0b-32d5-40e033893f9d@xs4all.nl>
+In-Reply-To: <9e914313-d849-5a0b-32d5-40e033893f9d@xs4all.nl>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 15 Mar 2021 16:51:59 +0100
+Message-ID: <CAG3jFyuu7MUny3n2MrYPa=vy8pmz0HBGYz=1WEWvHNzJvjsRWg@mail.gmail.com>
+Subject: Re: [PATCH v7 00/22] Add support for the SDM845 Camera Subsystem
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@somainline.org,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This controller is present on BCM6318, BCM6328, BCM6362, BCM6368 and BCM63268
-SoCs.
+Hey Hans,
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- v2: add missing module author, description and license.
 
- drivers/net/mdio/Kconfig            |  11 ++
- drivers/net/mdio/Makefile           |   1 +
- drivers/net/mdio/mdio-mux-bcm6368.c | 183 ++++++++++++++++++++++++++++
- 3 files changed, 195 insertions(+)
- create mode 100644 drivers/net/mdio/mdio-mux-bcm6368.c
+> >
+>
+> Please check the patches in this series with 'scripts/checkpatch.pl --strict'.
+> I got a bunch of warnings, most seemed trivial to fix.
 
-diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
-index a10cc460d7cf..d06e06f5e31a 100644
---- a/drivers/net/mdio/Kconfig
-+++ b/drivers/net/mdio/Kconfig
-@@ -200,6 +200,17 @@ config MDIO_BUS_MUX_MESON_G12A
- 	  the amlogic g12a SoC. The multiplexers connects either the external
- 	  or the internal MDIO bus to the parent bus.
- 
-+config MDIO_BUS_MUX_BCM6368
-+	tristate "Broadcom BCM6368 MDIO bus multiplexers"
-+	depends on OF && OF_MDIO && (BMIPS_GENERIC || COMPILE_TEST)
-+	select MDIO_BUS_MUX
-+	default BMIPS_GENERIC
-+	help
-+	  This module provides a driver for MDIO bus multiplexers found in
-+	  BCM6368 based Broadcom SoCs. This multiplexer connects one of several
-+	  child MDIO bus to a parent bus. Buses could be internal as well as
-+	  external and selection logic lies inside the same multiplexer.
-+
- config MDIO_BUS_MUX_BCM_IPROC
- 	tristate "Broadcom iProc based MDIO bus multiplexers"
- 	depends on OF && OF_MDIO && (ARCH_BCM_IPROC || COMPILE_TEST)
-diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
-index 5c498dde463f..c3ec0ef989df 100644
---- a/drivers/net/mdio/Makefile
-+++ b/drivers/net/mdio/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_MDIO_THUNDER)		+= mdio-thunder.o
- obj-$(CONFIG_MDIO_XGENE)		+= mdio-xgene.o
- 
- obj-$(CONFIG_MDIO_BUS_MUX)		+= mdio-mux.o
-+obj-$(CONFIG_MDIO_BUS_MUX_BCM6368)	+= mdio-mux-bcm6368.o
- obj-$(CONFIG_MDIO_BUS_MUX_BCM_IPROC)	+= mdio-mux-bcm-iproc.o
- obj-$(CONFIG_MDIO_BUS_MUX_GPIO)		+= mdio-mux-gpio.o
- obj-$(CONFIG_MDIO_BUS_MUX_MESON_G12A)	+= mdio-mux-meson-g12a.o
-diff --git a/drivers/net/mdio/mdio-mux-bcm6368.c b/drivers/net/mdio/mdio-mux-bcm6368.c
-new file mode 100644
-index 000000000000..0abd83a9124f
---- /dev/null
-+++ b/drivers/net/mdio/mdio-mux-bcm6368.c
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Broadcom BCM6368 mdiomux bus controller driver
-+ *
-+ * Copyright (C) 2021 Álvaro Fernández Rojas <noltari@gmail.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mdio-mux.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_mdio.h>
-+#include <linux/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/sched.h>
-+
-+#define MDIOC_REG		0x0
-+#define MDIOC_EXT_MASK		BIT(16)
-+#define MDIOC_REG_SHIFT		20
-+#define MDIOC_PHYID_SHIFT	25
-+#define MDIOC_RD_MASK		BIT(30)
-+#define MDIOC_WR_MASK		BIT(31)
-+
-+#define MDIOD_REG		0x4
-+
-+struct bcm6368_mdiomux_desc {
-+	void *mux_handle;
-+	void __iomem *base;
-+	struct device *dev;
-+	struct mii_bus *mii_bus;
-+	int ext_phy;
-+};
-+
-+static int bcm6368_mdiomux_read(struct mii_bus *bus, int phy_id, int loc)
-+{
-+	struct bcm6368_mdiomux_desc *md = bus->priv;
-+	uint32_t reg;
-+	int ret;
-+
-+	__raw_writel(0, md->base + MDIOC_REG);
-+
-+	reg = MDIOC_RD_MASK |
-+	      (phy_id << MDIOC_PHYID_SHIFT) |
-+	      (loc << MDIOC_REG_SHIFT);
-+	if (md->ext_phy)
-+		reg |= MDIOC_EXT_MASK;
-+
-+	__raw_writel(reg, md->base + MDIOC_REG);
-+	udelay(50);
-+	ret = __raw_readw(md->base + MDIOD_REG);
-+
-+	return ret;
-+}
-+
-+static int bcm6368_mdiomux_write(struct mii_bus *bus, int phy_id, int loc,
-+				 uint16_t val)
-+{
-+	struct bcm6368_mdiomux_desc *md = bus->priv;
-+	uint32_t reg;
-+
-+	__raw_writel(0, md->base + MDIOC_REG);
-+
-+	reg = MDIOC_WR_MASK |
-+	      (phy_id << MDIOC_PHYID_SHIFT) |
-+	      (loc << MDIOC_REG_SHIFT);
-+	if (md->ext_phy)
-+		reg |= MDIOC_EXT_MASK;
-+	reg |= val;
-+
-+	__raw_writel(reg, md->base + MDIOC_REG);
-+	udelay(50);
-+
-+	return 0;
-+}
-+
-+static int bcm6368_mdiomux_switch_fn(int current_child, int desired_child,
-+				     void *data)
-+{
-+	struct bcm6368_mdiomux_desc *md = data;
-+
-+	md->ext_phy = desired_child;
-+
-+	return 0;
-+}
-+
-+static int bcm6368_mdiomux_probe(struct platform_device *pdev)
-+{
-+	struct bcm6368_mdiomux_desc *md;
-+	struct mii_bus *bus;
-+	struct resource *res;
-+	int rc;
-+
-+	md = devm_kzalloc(&pdev->dev, sizeof(*md), GFP_KERNEL);
-+	if (!md)
-+		return -ENOMEM;
-+	md->dev = &pdev->dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return -EINVAL;
-+
-+	/*
-+	 * Just ioremap, as this MDIO block is usually integrated into an
-+	 * Ethernet MAC controller register range
-+	 */
-+	md->base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
-+	if (!md->base) {
-+		dev_err(&pdev->dev, "failed to ioremap register\n");
-+		return -ENOMEM;
-+	}
-+
-+	md->mii_bus = devm_mdiobus_alloc(&pdev->dev);
-+	if (!md->mii_bus) {
-+		dev_err(&pdev->dev, "mdiomux bus alloc failed\n");
-+		return ENOMEM;
-+	}
-+
-+	bus = md->mii_bus;
-+	bus->priv = md;
-+	bus->name = "BCM6368 MDIO mux bus";
-+	snprintf(bus->id, MII_BUS_ID_SIZE, "%s-%d", pdev->name, pdev->id);
-+	bus->parent = &pdev->dev;
-+	bus->read = bcm6368_mdiomux_read;
-+	bus->write = bcm6368_mdiomux_write;
-+	bus->phy_mask = 0x3f;
-+	bus->dev.of_node = pdev->dev.of_node;
-+
-+	rc = mdiobus_register(bus);
-+	if (rc) {
-+		dev_err(&pdev->dev, "mdiomux registration failed\n");
-+		return rc;
-+	}
-+
-+	platform_set_drvdata(pdev, md);
-+
-+	rc = mdio_mux_init(md->dev, md->dev->of_node,
-+			   bcm6368_mdiomux_switch_fn, &md->mux_handle, md,
-+			   md->mii_bus);
-+	if (rc) {
-+		dev_info(md->dev, "mdiomux initialization failed\n");
-+		goto out_register;
-+	}
-+
-+	dev_info(&pdev->dev, "Broadcom BCM6368 MDIO mux bus\n");
-+
-+	return 0;
-+
-+out_register:
-+	mdiobus_unregister(bus);
-+	return rc;
-+}
-+
-+static int bcm6368_mdiomux_remove(struct platform_device *pdev)
-+{
-+	struct bcm6368_mdiomux_desc *md = platform_get_drvdata(pdev);
-+
-+	mdio_mux_uninit(md->mux_handle);
-+	mdiobus_unregister(md->mii_bus);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id bcm6368_mdiomux_ids[] = {
-+	{ .compatible = "brcm,bcm6368-mdio-mux", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, bcm6368_mdiomux_ids);
-+
-+static struct platform_driver bcm6368_mdiomux_driver = {
-+	.driver = {
-+		.name = "bcm6368-mdio-mux",
-+		.of_match_table = bcm6368_mdiomux_ids,
-+	},
-+	.probe	= bcm6368_mdiomux_probe,
-+	.remove	= bcm6368_mdiomux_remove,
-+};
-+module_platform_driver(bcm6368_mdiomux_driver);
-+
-+MODULE_AUTHOR("Álvaro Fernández Rojas <noltari@gmail.com>");
-+MODULE_DESCRIPTION("BCM6368 mdiomux bus controller driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.20.1
+Ack, sending out v8 in a bit.
 
+>
+> When I compiled this series I also got these sparse warnings:
+>
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-4-1.c:959:30: warning: symbol
+> 'vfe_ops_gen1_4_1' was not declared. Should it be static?
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-4-1.c:959:30: warning: symbol
+> 'vfe_ops_gen1_4_1' was not declared. Should it be static?
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-1.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-7.c drivers/media/platform/qcom/camss/camss-vfe-4-7.c:1151:30: warning: symbol
+> 'vfe_ops_gen1_4_7' was not declared. Should it be static?
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-7.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-7.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-7.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-7.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-170.c drivers/media/platform/qcom/camss/camss-vfe-170.c:770:26: warning: symbol
+> 'vfe_isr_ops_170' was not declared. Should it be static?
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-8.c drivers/media/platform/qcom/camss/camss-vfe-4-8.c:1140:30: warning: symbol
+> 'vfe_ops_gen1_4_8' was not declared. Should it be static?
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-8.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-8.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-8.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> SPARSE:drivers/media/platform/qcom/camss/camss-vfe-4-8.c drivers/media/platform/qcom/camss/camss-vfe-gen1.h:69:31: error: marked inline, but
+> without a definition
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+>
+
+Ack, wasn't aware of sparse or smatch, I'm adding them to my workflow now.
+
+> And these smatch warnings (a lot of overlap with sparse):
+>
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-csid.h:66:27: warning: 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
+> drivers/media/platform/qcom/camss/camss-vfe-170.c:422 vfe_halt() warn: ignoring unreachable code.
+> drivers/media/platform/qcom/camss/camss-vfe-gen1.c:26 vfe_gen1_halt() warn: ignoring unreachable code.
+
+
+Ack, thanks for the testing!
