@@ -2,149 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0723433C5B5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C092233C5BC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:34:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232559AbhCOSc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 14:32:57 -0400
-Received: from mailoutvs3.siol.net ([185.57.226.194]:59049 "EHLO mail.siol.net"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230338AbhCOSc3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 14:32:29 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 90AE9523D7A;
-        Mon, 15 Mar 2021 19:32:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Ze0LKZRU4ttd; Mon, 15 Mar 2021 19:32:22 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 2F9C9523F53;
-        Mon, 15 Mar 2021 19:32:22 +0100 (CET)
-Received: from jernej-laptop.localnet (cpe-86-58-17-133.cable.triera.net [86.58.17.133])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id BD969523E6A;
-        Mon, 15 Mar 2021 19:32:20 +0100 (CET)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 4/5] arm64: dts: allwinner: Add sun4i MMIO timer nodes
-Date:   Mon, 15 Mar 2021 19:32:20 +0100
-Message-ID: <1897259.uecf0MpyRy@jernej-laptop>
-In-Reply-To: <20210315043250.45095-5-samuel@sholland.org>
-References: <20210315043250.45095-1-samuel@sholland.org> <20210315043250.45095-5-samuel@sholland.org>
+        id S232698AbhCOSeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 14:34:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53830 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231307AbhCOSdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 14:33:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B2D7B64F42;
+        Mon, 15 Mar 2021 18:33:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615833217;
+        bh=HVQWGqz8y8OqhhYyK2J1S+Va64nH3a8Cr9xCQdP2MqQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uAtWa8bOXn0C+MmuWGMXduycNNH402Y8ouR/4SD8TQmTPDv5iPINim3vk6cFbQqDb
+         Yz0dxH/oLIadSqaHmMXjc67Uh4+DsqS5uVnpj40/NXbrMKJq0zX758GPEb2FALADXQ
+         56MDIJpAILAP+bhCWL2l4L8hX/x6zq7Igg7W52b3oPCvt1NEkN/06klJ5UNFQxIyje
+         ch0f0DkgHwXTiuyV13Zedrp/XS0rlg8vDTs6+sUPnq1nj90K2cZxtZ90x6VcOagaxP
+         xuMyo5HPKT7Uknw1Q85xviKiJuCEADnB4bC6nkCJp4Rth/vst144aZwGI9A2wh3BXc
+         Vf/H3SReK8uBw==
+Received: by mail-ej1-f54.google.com with SMTP id jt13so68041394ejb.0;
+        Mon, 15 Mar 2021 11:33:36 -0700 (PDT)
+X-Gm-Message-State: AOAM532QJtI6jaszytuqaxnmPZQ1Ed0+dgKz/7Cu3+3OOEckGnwxuRGw
+        9SluR1Q/XDsH/h5ViMYSl8+E2O7HPbSWNh3NWA==
+X-Google-Smtp-Source: ABdhPJxI8/L+zDadqd2570zHOVYzPJl6UwW+Gh82WpewxDvgzPQMkPdZYN0C3TpR4gZ++HAnrYfx6sEr/K4R6Pbynbs=
+X-Received: by 2002:a17:906:2312:: with SMTP id l18mr25811201eja.468.1615833215265;
+ Mon, 15 Mar 2021 11:33:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-17-sebastian.reichel@collabora.com>
+In-Reply-To: <20210312154357.1561730-17-sebastian.reichel@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 15 Mar 2021 12:33:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLn9Mo_hTuCEPapNz3cFHbC8NKHH0npYrnV+dC85pBAsQ@mail.gmail.com>
+Message-ID: <CAL_JsqLn9Mo_hTuCEPapNz3cFHbC8NKHH0npYrnV+dC85pBAsQ@mail.gmail.com>
+Subject: Re: [PATCH 16/38] dt-bindings: power: supply: tps65217: Convert to DT
+ schema format
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-Dne ponedeljek, 15. marec 2021 ob 05:32:49 CET je Samuel Holland napisal(a):
-> For a CPU to enter an idle state, there must be some timer which can
-> trigger an IRQ to wake it back up. The local ARM architectural timer is
-> not sufficient, because that timer stops when the CPU is powered down.
-> Some other CPU's ARM architectural timer can be used, but this prevents
-> that other CPU from entering an idle state. So to allow all CPUs to
-> enter an idle state at the same time, some MMIO timer must be available
-> that is not tied to any CPU.
-> 
-> The basic "sun4i" timer seems most appropriate for this purpose due to
-> its moderate rate, balancing precision and power consumption.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Convert the binding to DT schema format.
+>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi  | 9 +++++++++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 9 +++++++++
->  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
->  3 files changed, 27 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi index
-> 33df866f6ea9..64e8b4a372cc 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -905,6 +905,15 @@ uart4_rts_cts_pins: uart4-rts-cts-pins {
->  			};
->  		};
-> 
-> +		timer@1c20c00 {
-> +			compatible = "allwinner,sun50i-a64-timer",
-> +				     "allwinner,sun8i-a23-timer";
-> +			reg = <0x01c20c00 0xa0>;
-> +			interrupts = <GIC_SPI 18 
-IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 19 
-IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&osc24M>;
-> +		};
+>  .../power/supply/tps65217-charger.yaml        | 43 +++++++++++++++++++
+>  .../power/supply/tps65217_charger.txt         | 17 --------
+>  2 files changed, 43 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
+>
+> diff --git a/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
+> new file mode 100644
+> index 000000000000..a33408c3a407
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/power/supply/tps65217-charger.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
->  		wdt0: watchdog@1c20ca0 {
->  			compatible = "allwinner,sun50i-a64-wdt",
->  				     "allwinner,sun6i-a31-wdt";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
-> 62334054c710..9ba3b30e11fa 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -332,6 +332,15 @@ cpu_speed_grade: cpu-speed-grade@1c {
->  			};
->  		};
-> 
-> +		timer@3009000 {
-> +			compatible = "allwinner,sun50i-h6-timer",
-> +				     "allwinner,sun8i-a23-timer";
-> +			reg = <0x03009000 0xa0>;
-> +			interrupts = <GIC_SPI 48 
-IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 49 
-IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&osc24M>;
-> +		};
+> +title: TPS65217 Charger
 > +
->  		watchdog: watchdog@30090a0 {
->  			compatible = "allwinner,sun50i-h6-wdt",
->  				     "allwinner,sun6i-a31-wdt";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi index
-> c277b53f94ea..ff55712ce96e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-
-This file does not exist yet upstream.
-
-Best regards,
-Jernej
-
-> @@ -128,6 +128,15 @@ ccu: clock@3001000 {
->  			#reset-cells = <1>;
->  		};
-> 
-> +		timer@3009000 {
-> +			compatible = "allwinner,sun50i-h616-timer",
-> +				     "allwinner,sun8i-a23-timer";
-> +			reg = <0x03009000 0xa0>;
-> +			interrupts = <GIC_SPI 48 
-IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 49 
-IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&osc24M>;
-> +		};
+> +maintainers:
+> +  - Sebastian Reichel <sre@kernel.org>
 > +
->  		watchdog: watchdog@30090a0 {
->  			compatible = "allwinner,sun50i-h616-wdt",
->  				     "allwinner,sun6i-a31-wdt";
+> +allOf:
+> +  - $ref: power-supply.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tps65217-charger
+> +
+> +  interrupts:
+> +    minItems: 2
+> +    maxItems: 2
 
+We've lost info that was in the original binding. You could do
+something like this:
 
+items:
+  - description: USB charger
+    const: 0
+  - description: AC charger
+    const: 1
 
+(Usually the interrupt values would be out of scope of the binding,
+but I guess here it makes some sense.)
 
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: USB
+> +      - const: AC
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pmic {
+> +      charger {
+> +        compatible = "ti,tps65217-charger";
+> +        interrupts = <0>, <1>;
+> +        interrupt-names = "USB", "AC";
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt b/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
+> deleted file mode 100644
+> index a11072c5a866..000000000000
+> --- a/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
+> +++ /dev/null
+> @@ -1,17 +0,0 @@
+> -TPS65217 Charger
+> -
+> -Required Properties:
+> --compatible: "ti,tps65217-charger"
+> --interrupts: TPS65217 interrupt numbers for the AC and USB charger input change.
+> -             Should be <0> for the USB charger and <1> for the AC adapter.
+> --interrupt-names: Should be "USB" and "AC"
+> -
+> -This node is a subnode of the tps65217 PMIC.
+> -
+> -Example:
+> -
+> -       tps65217-charger {
+> -               compatible = "ti,tps65217-charger";
+> -               interrupts = <0>, <1>;
+> -               interrupt-names = "USB", "AC";
+> -       };
+> --
+> 2.30.1
+>
