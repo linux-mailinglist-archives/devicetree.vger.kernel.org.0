@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C07A133AC2E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD9F33AC9B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbhCOH0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 03:26:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230091AbhCOHZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 03:25:37 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB2CC061574;
-        Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id i18so8380271ilq.13;
-        Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=El/Z4kuthdiADlQl60tq0sGwr4QoamUBccbw5uaJ4G0=;
-        b=jOTgMPq+tWjs17/lAC4W47Oqpm0t2FN+FfbmeAiWNsFVbVWBI5RXbR/orZe1qZW26M
-         zUlU7YkWlL3m0RAVJ8E3jp2CiI2tGTi1mzwf3HXTL/nVHGpqusztsymw68Z/VSEXRXST
-         vMzCmd8vDmQ7wRfiK7paur8gTJ28CcwBT0fkxznHLYNIjlHlk4GoBfLH6nGkFwwtxL6v
-         C4dzyg4lqAbftgYU8oBSI7eADsSsVgsEznwBHWLdqtlz2qNcN9sX9K33aOGOaJncwZqW
-         wRzAtYPBbVYNGf7RpR7KJ8y88yoLNpdV5G+UfWkV8Q6Uy5gRYMhHzbQ2Yb4qd18PPJmP
-         E+tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=El/Z4kuthdiADlQl60tq0sGwr4QoamUBccbw5uaJ4G0=;
-        b=VUts4c4TKUn52anZfhGZR3qZKAaPldxjITDo29BnTezcCsm+N52xuREOkRSCIfOZLV
-         gD0luqhRFwQ5v2WWDb37Wnyqz6g4aNjhRLDvmSr8GJpOmWoUz0p+LJSKbpcYNvwd8+4q
-         UMMpl9SXoR5b9eWPgoCL+GcOTErxRivP4b95bSypChJIMBZCWE4fd81iODiw0SxiL+7x
-         P9lTgDQ/TMyYyueAiwGDZ19fspDrvuvHDpheUW7PRLvfovbr+HoU4qjBKoaDIR61bJfn
-         FWBzpZDI0E70/eqtVBQdQdPLQe/VkeZjN5SPeNlE3dXGst6PZplT9P0khWj8BwYKdUhl
-         31Sg==
-X-Gm-Message-State: AOAM531NZoCV+h68yDRo2IJJmQmpbFuS2DDiPY4lt28SYmZOJEf8ts0+
-        WWzBZUdf6DDXN2l4a/d3nNeMks12+PElWyqWCp8=
-X-Google-Smtp-Source: ABdhPJz5F39VTH4DfBEwVHNGC65kxG1T9jL5ydnQB7l0HGRpq/+lB0JN68hx4tzBlgqpn6P3KDVs2Jxp2e81J5xTnEk=
-X-Received: by 2002:a92:ca07:: with SMTP id j7mr10636820ils.144.1615793137102;
- Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
+        id S230406AbhCOHuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 03:50:39 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:41278 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230280AbhCOHuU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 03:50:20 -0400
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9AxydSsEU9gcqMZAA--.1167S2;
+        Mon, 15 Mar 2021 15:50:05 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] Add basic support for Loongson-2K1000
+Date:   Mon, 15 Mar 2021 15:49:57 +0800
+Message-Id: <20210315075004.15465-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From:   Zhengxun Li <zhengxunli.mxic@gmail.com>
-Date:   Mon, 15 Mar 2021 15:25:26 +0800
-Message-ID: <CACY_kjQcJmQaDY2gDxG4TcztsYEmCETTWtLwZDfv9Q+JEsoe7g@mail.gmail.com>
-Subject: Re: [PATCH v10 6/9] staging: clocking-wizard: Add support for
- fractional support
-To:     shubhrajyoti.datta@xilinx.com
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        git@xilinx.com, gregkh@linuxfoundation.org,
-        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
-        shubhrajyoti.datta@gmail.com, juliensu@mxic.com.tw,
-        slwu@mxic.com.tw, zhengxunli@mxic.com.tw
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9AxydSsEU9gcqMZAA--.1167S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7urykAr1DAw4DKryfXFWDJwb_yoW8Ww13pw
+        43Cw13Krs8Cry7Crn3JFyUur15ZrWrJrZrWF43Xr15G3sIqa4Yvr1fJFs8Jw47Zry8ta4j
+        vryrGFW7GFnrC3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUk2b7Iv0xC_KF4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
+        8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+        64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJw
+        Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK67AK6r4xMxAIw28I
+        cxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
+        IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
+        42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
+        IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E
+        87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU4sXODUUUU
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shubhrajyoti,
+These patches support single-core DTS boot to the serial port login
+interface, which can be operated using conventional commands.
 
-+static int clk_wzrd_dynamic_reconfig_f(struct clk_hw *hw, unsigned long rate,
-+       unsigned long parent_rate)
-+{
-+ int err;
-+ u32 value, pre;
-+ unsigned long rate_div, f, clockout0_div;
-+ struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
-+ void __iomem *div_addr = divider->base + divider->offset;
-+
-+ rate_div = ((parent_rate * 1000) / rate);
+I have successfully tested it on the Loongson 2K1000 machine.
+pmon: http://cgit.loongnix.org/cgit/pmon-loongson3/
 
-In some cases, the variable seems to overflow.
+Note:
+After the basic support is merged,
+I will commit SMP and other driver support in the future.
 
-Thanks,
-Zhengxun
+Qing Zhang (7):
+  MIPS: Loongson64: DeviceTree for Loongson-2K1000
+  MIPS: Loongson64: Distinguish firmware dependencies DTB/LEFI
+  MIPS: Loongson64: Add support for the Loongson-2K1000 to get
+    cpu_clock_freq
+  MIPS: Loongson64: Add Loongson-2K1000 early_printk_port
+  irqchip/loongson-liointc: irqchip add 2.0 version
+  dt-bindings: interrupt-controller: Add Loongson-2K1000 LIOINTC
+  MIPS: Loongson64: Add a Loongson-2K1000 default config file
+
+ .../loongson,liointc.yaml                     |  36 +-
+ arch/mips/boot/dts/loongson/Makefile          |   1 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  | 243 ++++++++++++
+ .../dts/loongson/loongson64_2core_2k1000.dts  |  10 +
+ arch/mips/configs/loongson2k_defconfig        | 353 ++++++++++++++++++
+ .../asm/mach-loongson64/builtin_dtbs.h        |   1 +
+ .../include/asm/mach-loongson64/loongson.h    |   9 +-
+ arch/mips/loongson64/env.c                    |  13 +-
+ arch/mips/loongson64/init.c                   |  21 +-
+ arch/mips/loongson64/time.c                   |  24 ++
+ drivers/irqchip/irq-loongson-liointc.c        |  58 ++-
+ 11 files changed, 751 insertions(+), 18 deletions(-)
+ create mode 100644 arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+ create mode 100644 arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dts
+ create mode 100644 arch/mips/configs/loongson2k_defconfig
+
+-- 
+2.20.1
+
