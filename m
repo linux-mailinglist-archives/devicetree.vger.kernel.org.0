@@ -2,189 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BEDF33C59E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B87B733C5F3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:44:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231377AbhCOS2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 14:28:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52342 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229806AbhCOS1r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 14:27:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EEE3F64F42;
-        Mon, 15 Mar 2021 18:27:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615832866;
-        bh=qoYDstJDuKBPusQErDzsKJ7v8otxcmd+GoIi3yjBdvs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DbkMKoXKBITh8xp1IDTw5UlEpIGgV3TC9Xt3eDaxf9ytfDqJqotl2s7hcr/e9rSwG
-         O/PltwnQVJXFw3mjbY83DCoF1TtLzlc93Ivgk51slyXBzBuKJt7HT/kq8fdkXpCbMy
-         EgVZfCSGdfMvfF5WoUFMSizIOJ6Z3Ew58eH1ywnpXmYdw/5U7/oewvwId5G+4oW0Bq
-         I3avcRVRfRF75g77uZJRpGQnY0q4K0ENr9aLPIC3unksxUnnKZB4gr4Jrqsh6yeTfv
-         A/3MQd1NGXr7ygmsckhrOrZJGiXW8wim+e1OJKj2If3ZhbCNBR7tm9KF0fCwkuQ4Oy
-         j5DvAkYpAw+/w==
-Received: by mail-ej1-f41.google.com with SMTP id dx17so67996214ejb.2;
-        Mon, 15 Mar 2021 11:27:45 -0700 (PDT)
-X-Gm-Message-State: AOAM5310jR4im5n2Da3fx0qeYBy174KtJahtgaOlTNvCVhXwZ8NQ03hn
-        SLoFD/wIfI7jsD2bDXaWTXlCQEnyMaWuRypY+Q==
-X-Google-Smtp-Source: ABdhPJzJml081H6SIYahYqA8uEEgm/OD0od3fSnVnZVgt4FXBjqGqhAOSfDHPUGyU/lLLWSzdhf5vI72e94Y+2JcZVE=
-X-Received: by 2002:a17:906:7806:: with SMTP id u6mr4851146ejm.130.1615832864582;
- Mon, 15 Mar 2021 11:27:44 -0700 (PDT)
+        id S231789AbhCOSnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 14:43:37 -0400
+Received: from 5.mo173.mail-out.ovh.net ([46.105.40.148]:41697 "EHLO
+        5.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232156AbhCOSnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 14:43:24 -0400
+X-Greylist: delayed 4527 seconds by postgrey-1.27 at vger.kernel.org; Mon, 15 Mar 2021 14:43:24 EDT
+Received: from player771.ha.ovh.net (unknown [10.110.208.62])
+        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 5023E167CB0
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 18:27:55 +0100 (CET)
+Received: from RCM-web2.webmail.mail.ovh.net (klient.box3.pl [176.114.232.43])
+        (Authenticated sender: rafal@milecki.pl)
+        by player771.ha.ovh.net (Postfix) with ESMTPSA id 8F4371C256371;
+        Mon, 15 Mar 2021 17:27:46 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-12-sebastian.reichel@collabora.com>
-In-Reply-To: <20210312154357.1561730-12-sebastian.reichel@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 15 Mar 2021 12:27:33 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+TLt0ousbggKGF5wEdJYLqofxt9a-qDqLCkq0AE_y2Rg@mail.gmail.com>
-Message-ID: <CAL_Jsq+TLt0ousbggKGF5wEdJYLqofxt9a-qDqLCkq0AE_y2Rg@mail.gmail.com>
-Subject: Re: [PATCH 11/38] dt-bindings: power: supply: sbs-manager: Convert to
- DT schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Date:   Mon, 15 Mar 2021 18:27:46 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-phy@lists.infradead.org, Vivek Unune <npcomplete13@gmail.com>
+Subject: Re: [PATCH] dt-bindings: phy: bcm-ns-usb3-phy: convert to yaml
+In-Reply-To: <YE85xs+HX5UUXlXo@vkoul-mobl>
+References: <20201116074650.16070-1-zajec5@gmail.com>
+ <ed093ddb-da37-c3c4-cdd9-3b8e8db776bb@gmail.com>
+ <YE85xs+HX5UUXlXo@vkoul-mobl>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <97981a899fe74c534d29d11485a2dbd2@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 176.114.232.43
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 11032411713050807880
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddvledguddtvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvffujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejffeludekhfeiieetkeejhfegheegffetleehuedtueehteetudegheefteekteenucffohhmrghinheplhhkmhhlrdhorhhgpdhoiihlrggsshdrohhrghenucfkpheptddrtddrtddrtddpudejiedruddugedrvdefvddrgeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 8:45 AM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Convert the binding to DT schema format.
->
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../bindings/power/supply/sbs,sbs-manager.txt |  66 -----------
->  .../power/supply/sbs,sbs-manager.yaml         | 111 ++++++++++++++++++
->  2 files changed, 111 insertions(+), 66 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.txt
->  create mode 100644 Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
->
+On 2021-03-15 11:41, Vinod Koul wrote:
+> On 11-03-21, 21:31, Rafał Miłecki wrote:
+>> Hi,
+>> 
+>> On 16.11.2020 08:46, Rafał Miłecki wrote:
+>> > From: Rafał Miłecki <rafal@milecki.pl>
+>> >
+>> > 1. Change syntax from txt to yaml
+>> > 2. Drop "Driver for" from the title
+>> > 3. Drop "reg = <0x0>;" from example (noticed by dt_binding_check)
+>> > 4. Specify license
+>> >
+>> > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> > ---
+>> > I think this should go through linux-phy tree. Kishon, Vinod, can you
+>> > take this patch?
+>> >
+>> > This patch generates a false positive checkpatch.pl warning [0].
+>> > Please ignore:
+>> > WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+>> >
+>> > [0] https://lkml.org/lkml/2020/2/18/1084
+>> 
+>> Kishon, Vinod: I sent this patch back in December, it was Reviewed-by
+>> Rob, but never accepted.
+>> 
+>> Could you push this patch to the linux-phy.git?
+> 
+> Can you please rebase and resent me this patch. I am trying to
+> streamline patches now using phy ml and pw instance so that we dont 
+> miss
+> anything..
 
+Both patches apply cleanly. Maybe your mail client malformed them for 
+you?
 
-> diff --git a/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml b/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
-> new file mode 100644
-> index 000000000000..592c476d83e6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/sbs,sbs-manager.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/sbs,sbs-manager.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SBS compliant manger
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - lltc,ltc1760
-> +          - enum:
-> +              - sbs,sbs-manager
-> +      - items:
-> +          - const: sbs,sbs-manager
-> +
-> +  reg:
-> +    const: 0xa
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +dependencies:
-> +  '#gpio-cells': [gpio-controller]
-> +  gpio-controller: ['#gpio-cells']
+They are accessible in the devicetree-bindings patchwork:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201116074650.16070-1-zajec5@gmail.com/
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201116074650.16070-2-zajec5@gmail.com/
 
-The core schema should capture these dependencies.
-
-> +
-> +patternProperties:
-> +  "^i2c@[1-4]$":
-> +    type: object
-> +
-> +    allOf:
-> +      - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      batman: battery-manager@a {
-> +        compatible = "lltc,ltc1760", "sbs,sbs-manager";
-> +        reg = <0x0a>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +
-> +        i2c@1 {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          reg = <1>;
-> +
-> +          battery@b {
-> +            compatible = "ti,bq20z65", "sbs,sbs-battery";
-> +            reg = <0x0b>;
-> +            sbs,battery-detect-gpios = <&batman 1 1>;
-> +          };
-> +        };
-> +
-> +        i2c@2 {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          reg = <2>;
-> +
-> +          battery@b {
-> +            compatible = "ti,bq20z65", "sbs,sbs-battery";
-> +            reg = <0x0b>;
-> +            sbs,battery-detect-gpios = <&batman 2 1>;
-> +          };
-> +        };
-> +
-> +        i2c@3 {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          reg = <3>;
-> +
-> +          battery@b {
-> +            compatible = "ti,bq20z65", "sbs,sbs-battery";
-> +            reg = <0x0b>;
-> +            sbs,battery-detect-gpios = <&batman 3 1>;
-> +          };
-> +        };
-> +      };
-> +    };
-> --
-> 2.30.1
->
+You can apply both patches doing e.g.:
+curl 
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201116074650.16070-1-zajec5@gmail.com/mbox/ 
+| git am
+curl 
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201116074650.16070-2-zajec5@gmail.com/mbox/ 
+| git am
