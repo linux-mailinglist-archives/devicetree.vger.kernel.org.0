@@ -2,257 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDB433ADCF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70B5833ADF1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbhCOIo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 04:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhCOIn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:43:56 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF79C061574;
-        Mon, 15 Mar 2021 01:43:56 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id o11so32544653iob.1;
-        Mon, 15 Mar 2021 01:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2V/uwR+/jc8ZqqGwCEmkn70oENnu/vxhA/I84HfDnXg=;
-        b=rLxJy9jsSJBeC9OguC2viz0c0ck5QDiDMbNEhX1iCuTu03MIlmkJCuzFSIaTFzwla8
-         apU/4rHgMK86bObHR067V0tNqHFdcyazlf8uZYHsfMbouZlWpRZBy9SbVjVuC1LIIH45
-         PetjUlQ2fAGyEQrYsMQddWMELZg4fgclT311B/aqs8pRvA4n5BqtlpBkw8VHhBLS7MCU
-         rozLte89KU4xdPetc4PqaI+D7b9U97njrtwrxvTdERUob3Ms5Iy9BjmClIrCApYFtbyg
-         N7S5tW5g9KzYvb31K3zax8liMOqy713awaq7u+Xg2tBD9btnXHFgh02M+YhnS2Mn2MpX
-         wAvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2V/uwR+/jc8ZqqGwCEmkn70oENnu/vxhA/I84HfDnXg=;
-        b=Yz/OffNYV/QeL3Nx+kfWPJcuKxsDMqqjVQKPJZynHSWNQEVPekcbaqf91LW/gVPWYa
-         HkpnF/j3kcX7BSTnqNT+MELXgK0/1Mn+DEueBPn5JWdAVJ5CBGmHQ85zIGo60lhnk3gR
-         5OGsOSFVIs4jn/X+fDbyzQSGyGdZ+u1wdCpySg6wJ1tML0uIofGAP0RNtuV4anDTvNJL
-         fLDryMvJO+6vbfvxHdNBwVTtMwF4kHP3aHtldZaxfzgFVZY2G88haW86DEBig1Dag25q
-         X/un516Vta8GUv1613mz+BJRJm8rEKKJVV/dXENmu3J9lA8EudHIQA7Q+seMUmBJCK2n
-         78Tg==
-X-Gm-Message-State: AOAM533qWbRMx+VHde53qxuxr9oKP8DJsokA0vISa67SQHhUiZ7MYgp0
-        R41xl0nyMqh3iEloEtBft1E=
-X-Google-Smtp-Source: ABdhPJwvfUvNG3jWG3WhghjwDIUxG/WmBvdNK5uUAyXub64jrZABn6gaoWAfdI6hiBUi4mIVtwpn5Q==
-X-Received: by 2002:a02:6a0b:: with SMTP id l11mr8467363jac.82.1615797835904;
-        Mon, 15 Mar 2021 01:43:55 -0700 (PDT)
-Received: from localhost.localdomain (tunnel525895-pt.tunnel.tserv15.lax1.ipv6.he.net. [2001:470:c:1200::2])
-        by smtp.googlemail.com with ESMTPSA id w6sm7375110ilm.38.2021.03.15.01.43.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 01:43:55 -0700 (PDT)
-From:   Tianling Shen <cnsztl@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Tianling Shen <cnsztl@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Marty Jones <mj8263788@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] rockchip: rk3399: Add support for FriendlyARM NanoPi R4S
-Date:   Mon, 15 Mar 2021 16:42:41 +0800
-Message-Id: <20210315084241.22345-2-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210315084241.22345-1-cnsztl@gmail.com>
-References: <20210315084241.22345-1-cnsztl@gmail.com>
+        id S229536AbhCOIxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 04:53:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59835 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229607AbhCOIxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:53:08 -0400
+X-UUID: 875778eec4ff490fa22b8e6ed6d8d70a-20210315
+X-UUID: 875778eec4ff490fa22b8e6ed6d8d70a-20210315
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 766196605; Mon, 15 Mar 2021 16:53:04 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 15 Mar 2021 16:53:03 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 15 Mar 2021 16:52:57 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v12 0/7] soc: mediatek: SVS: introduce MTK SVS
+Date:   Mon, 15 Mar 2021 16:52:38 +0800
+Message-ID: <20210315085244.6365-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the NanoPi R4S from FriendlyArm.
+1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by
+get_cpu_device(). After retrieving subsys device, SVS driver does
+device_link_add() to make sure probe/suspend callback priority.
+3. SVS dts refers to reset controller [4] to help reset SVS HW.
 
-Rockchip RK3399 SoC
-1GB DDR3 or 4GB LPDDR4 RAM
-Gigabit Ethernet (WAN)
-Gigabit Ethernet (PCIe) (LAN)
-USB 3.0 Port x 2
-MicroSD slot
-Reset button
-WAN - LAN - SYS LED
+#mt8183 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201013102358.22588-2-michael.kao@mediatek.com/
+[3] https://patchwork.kernel.org/project/linux-mediatek/patch/20200306041345.259332-3-drinkcat@chromium.org/
 
-[initial DTS file]
-Co-developed-by: Jensen Huang <jensenhuang@friendlyarm.com>
-Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
-[minor adjustments]
-Co-developed-by: Marty Jones <mj8263788@gmail.com>
-Signed-off-by: Marty Jones <mj8263788@gmail.com>
-[minor adjustments, fixed format issues]
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   | 139 ++++++++++++++++++
- 2 files changed, 140 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+#mt8192 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201223074944.2061-1-michael.kao@mediatek.com/
+[3] https://lore.kernel.org/patchwork/patch/1360551/
+[4] https://patchwork.kernel.org/project/linux-mediatek/patch/20200817030324.5690-5-crystal.guo@mediatek.com/
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 62d3abc17a24..c3e00c0e2db7 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -36,6 +36,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-r4s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-new file mode 100644
-index 000000000000..2da1a5acf66d
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * FriendlyElec NanoPC-T4 board device tree source
-+ *
-+ * Copyright (c) 2020 FriendlyElec Computer Tech. Co., Ltd.
-+ * (http://www.friendlyarm.com)
-+ *
-+ * Copyright (c) 2018 Collabora Ltd.
-+ *
-+ * Copyright (c) 2020 Jensen Huang <jensenhuang@friendlyarm.com>
-+ * Copyright (c) 2020 Marty Jones <mj8263788@gmail.com>
-+ * Copyright (c) 2021 Tianling Shen <cnsztl@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "rk3399-nanopi4.dtsi"
-+
-+/ {
-+	model = "FriendlyElec NanoPi R4S";
-+	compatible = "friendlyarm,nanopi-r4s", "rockchip,rk3399";
-+
-+	/delete-node/ display-subsystem;
-+
-+	gpio-leds {
-+		/delete-property/ pinctrl-0;
-+		pinctrl-0 = <&lan_led_pin>, <&sys_led_pin>, <&wan_led_pin>;
-+
-+		/delete-node/ led-0;
-+		lan_led: led-0 {
-+			gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r4s:green:lan";
-+		};
-+
-+		sys_led: led-1 {
-+			gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r4s:red:sys";
-+			default-state = "on";
-+		};
-+
-+		wan_led: led-2 {
-+			gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r4s:green:wan";
-+		};
-+	};
-+
-+	gpio-keys {
-+		/delete-property/ pinctrl-0;
-+		pinctrl-0 = <&reset_button_pin>;
-+
-+		/delete-node/ power;
-+		reset {
-+			debounce-interval = <50>;
-+			gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+		};
-+	};
-+
-+	vdd_5v: vdd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_5v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&emmc_phy {
-+	status = "disabled";
-+};
-+
-+&i2c4 {
-+	status = "disabled";
-+};
-+
-+&pcie0 {
-+	max-link-speed = <1>;
-+	num-lanes = <1>;
-+	vpcie3v3-supply = <&vcc3v3_sys>;
-+
-+	pcie@0 {
-+		reg = <0x00000000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+	};
-+};
-+
-+&pinctrl {
-+	gpio-leds {
-+		/delete-node/ status-led-pin;
-+
-+		lan_led_pin: lan-led-pin {
-+			rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		sys_led_pin: sys-led-pin {
-+			rockchip,pins = <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		wan_led_pin: wan-led-pin {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	rockchip-key {
-+		/delete-node/ power-key;
-+
-+		reset_button_pin: reset-button-pin {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+};
-+
-+&sdhci {
-+	status = "disabled";
-+};
-+
-+&sdio0 {
-+	status = "disabled";
-+};
-+
-+&u2phy0_host {
-+	phy-supply = <&vdd_5v>;
-+};
-+
-+&u2phy1_host {
-+	status = "disabled";
-+};
-+
-+&uart0 {
-+	status = "disabled";
-+};
-+
-+&usbdrd_dwc3_0 {
-+	dr_mode = "host";
-+};
-+
-+&vcc3v3_sys {
-+	vin-supply = <&vcc5v0_sys>;
-+};
--- 
-2.17.1
+changes since v11:
+- update mtk svs dt-bindings only.
+
+Roger Lu (7):
+  [v12,1/7]: dt-bindings: soc: mediatek: add mtk svs dt-bindings
+  [v12,2/7]: arm64: dts: mt8183: add svs device information
+  [v12,3/7]: soc: mediatek: SVS: introduce MTK SVS engine
+  [v12,4/7]: soc: mediatek: SVS: add debug commands
+  [v12,5/7]: dt-bindings: soc: mediatek: add mt8192 svs dt-bindings
+  [v12,6/7]: arm64: dts: mt8192: add svs device information
+  [v12,7/7]: soc: mediatek: SVS: add mt8192 SVS GPU driver
+
+ .../bindings/soc/mediatek/mtk-svs.yaml        |   89 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   18 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |   34 +
+ drivers/soc/mediatek/Kconfig                  |   10 +
+ drivers/soc/mediatek/Makefile                 |    1 +
+ drivers/soc/mediatek/mtk-svs.c                | 2492 +++++++++++++++++
+ 6 files changed, 2644 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+ create mode 100644 drivers/soc/mediatek/mtk-svs.c
+
 
