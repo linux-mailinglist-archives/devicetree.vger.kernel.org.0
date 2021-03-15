@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9E433C2B4
+	by mail.lfdr.de (Postfix) with ESMTP id 40B0A33C2B3
 	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:57:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234285AbhCOQ5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55248 "EHLO
+        id S234338AbhCOQ5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234348AbhCOQ46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:56:58 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFC0C06174A
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:58 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id r10-20020a05600c35cab029010c946c95easo19868752wmq.4
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:58 -0700 (PDT)
+        with ESMTP id S234356AbhCOQ47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:56:59 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B3FC06175F
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:59 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id t5-20020a1c77050000b029010e62cea9deso19864515wmi.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=6S4oc3H/pGD3ohc32wC+7IuRuvb/2oR7Yf16M/iJXA4=;
-        b=KRguXn6v6qWoSKXlekTUoqzfznIkwnBZk388f10HNP0qDrHICvrjYs9zpA07T0bvJ6
-         89p0lDFhapxhLq1535ZPsd2sRtkAxs27G7nMs/FG6YuNWkgR0+VqnhrfySnK9UgW10RV
-         fzA+ELnQbNMT7oRP2BAxF28RzZvEW9GiV/zfv/HknWeAZIVLX+tFy9nDrtWp+P/xcZ74
-         ITZhRtK78sLj79myS0GaSIuMBHRpkGNs8c+986iaYdGRrrbx47xaW9AmypyaZj2E5yQH
-         nsXob37tOIjHrOj4r9z4JUg9BuI+1+WG9YAQcehdTgao+qff7BeQ2C1GjGUel2pbzgNb
-         o9vQ==
+        bh=Dw9cMYL3jtOlJaAZjl852OdyP+MrjSkhGMQF/GJ7398=;
+        b=hgOmJNEgjoKRZJFLsQvmXzKGK0x6KpA7ts+E75YZSi7QZn+qZOS507y4wZdiB+K3yg
+         qFF1KpqSP0gXwhKwQN8Bcd/gkNIkpaaRM92zi50lqMRsFVUxQTA0BgSZOapRo76i7GOe
+         vlF9+LLtakDwOMZdFtlrxrdwoBnGLV3zdCF6TTyth2SEfCJZa6/JpAnHBR0n02NhLbdd
+         MIBEXh5gV/lIxkZOdATeu8l2jsaZ0kTAFDaQyZCAF5LHrdvFkHMFo4DcsCNyCc0Dp5n7
+         kxlaFq9kX3YOzm2tjYEwdDfzPNKIs/8fYgLJRwUwXM9gyflouEMti7ucdkQrRVRKO1DO
+         NTNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=6S4oc3H/pGD3ohc32wC+7IuRuvb/2oR7Yf16M/iJXA4=;
-        b=EBK5NzWfZl9XMFebnkj7LgNo48fjyokeJYXGtwaSSrbpr0qWPvWFO5K7bC0CjXie9A
-         jLtxjm6deprk0NcA82eJ1OE7KKbE7v7ClOX+dwRXXnVQJonlfsEQHeO9AHiP+hNQ2C1V
-         +z3Yekz66RWeWoGERzq9/nH8iDBwS0O2yA5zcFCVH+VSO9y8fJme2Tt9PnyUFBQcRCtG
-         uA6FC611leudGQz8GslLFzEidGieqV2GbXU2iOF6Se1qX6sh33huaKAjZwDCBYWCCVz7
-         TTQO4Ty2ug4daPywMLPXAMpVhFqP1VMqXB+0Ot8WhEBjZ3QkTksI3dBiGtR5GnAMzNO8
-         Ld0g==
-X-Gm-Message-State: AOAM532/qE5tXRUhTwOqaAWrWzPHA9mS03ZreRJLA1tb3Zn8CLqntOmv
-        UmxF1arNuvARh5AS0Toj2Mgrn3/mfpfCYw==
-X-Google-Smtp-Source: ABdhPJwXtGhmGiGVxZL0Drm9x4U7zWV7DUR7M38RjkULKnSi/Ner2wIN08tGO2oYc6gp3Di4umW4iQ==
-X-Received: by 2002:a1c:c904:: with SMTP id f4mr647858wmb.14.1615827417008;
+        bh=Dw9cMYL3jtOlJaAZjl852OdyP+MrjSkhGMQF/GJ7398=;
+        b=Kdn6gFvJHJlTps7GaUUsY0JHZN7hBw67H4l+lrIOHP2c68DVa0y0uL+snU+HX7DioY
+         WanjSkgHojZqsuQGj889uD+bfL4xXo1E2TNTnLVZvyzDcw5O4s1dv+Fkl/uoIaQiRalx
+         w/r1XNcyWR1GSc7xyzPl30nwvwA6RC5cKles+FLW6qKNv4wS8l7h0RRIKrafxJORskHA
+         Vg/Vj01wuJDtIzTYkr5f+/9LU0m66As7mw4/xcDmairGFHrge7EXx/eSDsroxTSUUqKb
+         vGao9UZ30CLeYcaelu/550iGG6saF4A1plleHaQKfbSH3Y+Ja3ICTwCMgD9fwubicr2Z
+         PTQQ==
+X-Gm-Message-State: AOAM530kOEq8KHUlN3mU1jkjxtqTkmAHgHRcu7yTCuLUhEvF219+a2A4
+        fx2hUPEBYyP+ywSF0vwDo7wFNg==
+X-Google-Smtp-Source: ABdhPJzMBv0pTbvIZlo/UdYjOAw45gYOiv83AQPqWmAq4/LN3KCPnChY4V557WPxobTeEkMKedyQfQ==
+X-Received: by 2002:a1c:e389:: with SMTP id a131mr630946wmh.78.1615827417971;
         Mon, 15 Mar 2021 09:56:57 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id o2sm227656wmc.23.2021.03.15.09.56.56
+        by smtp.gmail.com with ESMTPSA id o2sm227656wmc.23.2021.03.15.09.56.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 09:56:56 -0700 (PDT)
+        Mon, 15 Mar 2021 09:56:57 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, vkoul@kernel.org
 Cc:     robh@kernel.org, devicetree@vger.kernel.org,
@@ -54,9 +54,9 @@ Cc:     robh@kernel.org, devicetree@vger.kernel.org,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v4 3/5] soundwire: qcom: add static port map support
-Date:   Mon, 15 Mar 2021 16:56:48 +0000
-Message-Id: <20210315165650.13392-4-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 4/5] ASoC: dt-bindings: wsa881x: add bindings for port mapping
+Date:   Mon, 15 Mar 2021 16:56:49 +0000
+Message-Id: <20210315165650.13392-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
 References: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
@@ -66,75 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SoundWire device ports are statically mapped to Controller ports during
-design. Add support to read these from SoundWire devices.
-This controller uses static port map info to setup bandwidth
-parameters for those ports.
-
-A generic port allocation is not possible in this cases!
+WSA881x SoundWire device ports are statically assigned to master ports
+at design time. So add bindings required to specify these mappings!
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/soundwire/qcom.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/sound/qcom,wsa881x.yaml          | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 9e70c53e2c7b..39222b04a2e0 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -460,6 +460,8 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
- 	struct sdw_slave_runtime *s_rt;
- 	struct sdw_port_runtime *p_rt;
- 	struct qcom_swrm_port_config *pcfg;
-+	struct sdw_slave *slave;
-+	unsigned int m_port;
- 	int i = 0;
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+index ea44d03e58ca..491ce1270cb5 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+@@ -26,6 +26,13 @@ properties:
+     description: GPIO spec for Powerdown/Shutdown line to use
+     maxItems: 1
  
- 	list_for_each_entry(m_rt, &bus->m_rt_list, bus_node) {
-@@ -473,8 +475,14 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
- 		}
- 
- 		list_for_each_entry(s_rt, &m_rt->slave_rt_list, m_rt_node) {
-+			slave = s_rt->slave;
- 			list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
--				pcfg = &ctrl->pconfig[i];
-+				m_port = slave->m_port_map[p_rt->num];
-+				/* port config starts at offset 0 so -1 from actual port number */
-+				if (m_port)
-+					pcfg = &ctrl->pconfig[m_port - 1];
-+				else
-+					pcfg = &ctrl->pconfig[i];
- 				p_rt->transport_params.port_num = p_rt->num;
- 				p_rt->transport_params.sample_interval =
- 					pcfg->si + 1;
-@@ -535,8 +543,10 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
- 	struct sdw_master_runtime *m_rt;
- 	struct sdw_slave_runtime *s_rt;
- 	struct sdw_port_runtime *p_rt;
-+	struct sdw_slave *slave;
- 	unsigned long *port_mask;
- 	int i, maxport, pn, nports = 0, ret = 0;
-+	unsigned int m_port;
- 
- 	mutex_lock(&ctrl->port_lock);
- 	list_for_each_entry(m_rt, &stream->master_list, stream_node) {
-@@ -549,9 +559,15 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
- 		}
- 
- 		list_for_each_entry(s_rt, &m_rt->slave_rt_list, m_rt_node) {
-+			slave = s_rt->slave;
- 			list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
-+				m_port = slave->m_port_map[p_rt->num];
- 				/* Port numbers start from 1 - 14*/
--				pn = find_first_zero_bit(port_mask, maxport);
-+				if (m_port)
-+					pn = m_port;
-+				else
-+					pn = find_first_zero_bit(port_mask, maxport);
++  qcom,port-mapping:
++    description: |
++      Specifies static port mapping between slave and master ports.
++      In the order of slave port index.
++    maxItems: 4
++    $ref: /schemas/types.yaml#/definitions/uint32-array
 +
- 				if (pn > maxport) {
- 					dev_err(ctrl->dev, "All ports busy\n");
- 					ret = -EBUSY;
+   '#thermal-sensor-cells':
+     const: 0
+ 
+@@ -54,6 +61,7 @@ examples:
+             powerdown-gpios = <&wcdpinctrl 2 0>;
+             #thermal-sensor-cells = <0>;
+             #sound-dai-cells = <0>;
++            qcom,port-mapping = <1 2 3 7>;
+         };
+ 
+         speaker@0,2 {
+@@ -62,6 +70,7 @@ examples:
+             powerdown-gpios = <&wcdpinctrl 2 0>;
+             #thermal-sensor-cells = <0>;
+             #sound-dai-cells = <0>;
++            qcom,port-mapping = <4 5 6 8>;
+         };
+     };
+ 
 -- 
 2.21.0
 
