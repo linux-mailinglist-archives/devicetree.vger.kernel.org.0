@@ -2,183 +2,445 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B835433ACC7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A890A33AD5E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:27:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbhCOHwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 03:52:41 -0400
-Received: from mail-eopbgr60105.outbound.protection.outlook.com ([40.107.6.105]:47776
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230113AbhCOHwU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 03:52:20 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B7FJrjzlntPvew0G9vxkDjaU2r8R55lm30FvIAErSVeZZcyf4WHVjEpgdfMNhOAi7HLSpOhej+tr6h/ssiNNJvXFSL9PBXhK55wFMwO9wglK79yyIpZILuBpUTQ1lxzCzagi/aajR88bv2K+RLEBdvVwi1lUP3AsXAwTFFw7Qri571tzBUZoqKRSbzRODhdgNHa5CDQWrYpNmWGmuBdsdMYwo4I1ATdGC43cEq7/mRUhy8dIGiHoaKaOGQstW8xNMhD0bQJp8txGpr6sp1xrQUe8so55ZL/tVzMb2bfNTWTtL6wXTXunlg5BQ5C0vuqImcXMW3NzkmkXbv1heDXOuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mXeEq/lVqIOwwcU6DjtqOEEc772xq46Qg71NWSeCUw0=;
- b=K+srvuGTTu3niEXBdb9tn30R46j4URYJ+sZ46IgDJDCgZ+M8HY+AxAZ/03B7M2AL/D83hWUfwfBPF8xpTpK+23cKuqdL4/qj/b+QGbSCFDLHDKtn8oU3/qtxYJdXd1a1+yXtajlZC7ctVUlaremxetLQBzoJSJDWVBjZduYMJobVEXk4lId/KGNgKjdFpujblk0JkPy1bxtu6lrMfO0YMYtVrw8N/Inv7+x35bVokKVjPqotOmHWmhtNNRbdUb8GJHRfjBKYu7rY3kOFz0UQGPvostRvn4jk/S50lsvfu+qJ0iAS6bMxx5vOPmwirEfZ/zROksAo2i+zlARoMS3dow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass action=none
- header.from=leica-geosystems.com.cn; dkim=pass
- header.d=leica-geosystems.com.cn; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=leica-geosystems.com.cn; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mXeEq/lVqIOwwcU6DjtqOEEc772xq46Qg71NWSeCUw0=;
- b=D8R1J79pPM4AUCoaMCdkbHoi698zRbPDGK+oESImX3RwJQN16gEhGoK3Tc2AyFTY6jZLcwX3UGwr9z8GydqOChX7R3yTgB1+cvMXtm5no5xmUPnJMTlmDih+j9cRJjMoTJdkTk8FYBYh5POOUy+ehaNqQIMbCDMaaeGBqnQPBP4=
-Received: from DB7PR06MB4571.eurprd06.prod.outlook.com (2603:10a6:10:70::20)
- by DB6PR0602MB3336.eurprd06.prod.outlook.com (2603:10a6:6:4::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Mon, 15 Mar
- 2021 07:52:18 +0000
-Received: from DB7PR06MB4571.eurprd06.prod.outlook.com
- ([fe80::dcab:24bb:617a:30ee]) by DB7PR06MB4571.eurprd06.prod.outlook.com
- ([fe80::dcab:24bb:617a:30ee%3]) with mapi id 15.20.3933.032; Mon, 15 Mar 2021
- 07:52:18 +0000
-From:   LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
-To:     Sebastian Reichel <sre@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "pali@kernel.org" <pali@kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>, "afd@ti.com" <afd@ti.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        TERTYCHNYI Grygorii <grygorii.tertychnyi@leica-geosystems.com>,
-        ZHIZHIKIN Andrey <andrey.zhizhikin@leica-geosystems.com>
-Subject: RE: [PATCH V5 0/2] power: bq27xxx: add bq78z100
-Thread-Topic: [PATCH V5 0/2] power: bq27xxx: add bq78z100
-Thread-Index: AQHXEYvBE1Tk4NaU40mHgN1zwl9D2aqENCwAgACIgIA=
-Date:   Mon, 15 Mar 2021 07:52:17 +0000
-Message-ID: <DB7PR06MB4571E4F1F919E51227C75639D76C9@DB7PR06MB4571.eurprd06.prod.outlook.com>
-References: <20210305064949.2680-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20210314234202.xijndjgltdcyuggh@earth.universe>
-In-Reply-To: <20210314234202.xijndjgltdcyuggh@earth.universe>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none
- header.from=leica-geosystems.com.cn;
-x-originating-ip: [140.207.15.106]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1d9fe314-dd9b-49db-1047-08d8e78741b3
-x-ms-traffictypediagnostic: DB6PR0602MB3336:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB6PR0602MB3336021FABEC86D0DEAA99D9D76C9@DB6PR0602MB3336.eurprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LkrGgmtw85gbMK69bFbP4+JzEyq4TPg1S+Q2R2bE1JknZo9qPo+qcFO8GcziR+dv81FaYkuy58h72pj5H2JZvRuwx6hzg8hYOAghel91ZwldB0C2j/eKoEzHzEEnUtERYyhe1kswUOX8/3q9dY0KIiDhbGRDXpTTZWqLIi8wX0Wl6tsijks6O6U1WdR2MCon8zQ3RHT0SmtvUt9QyquvB2RvZcPYM7mkbRYPMLadRc8YdX47nkTaL/bJrB+1n1ZgeKvrBSosUNap/+uJon/QAwvrlpfaKNVYP0SijMmXI/BqTgWKacFXRKYi1MSqrW9e7Lto3oyzyGVv4WkQv6aAkMidpYuIMaNViZWvtQMUiGjnUf12d3kfewHaaolDjbKzJrQsyS8474AlZu/G0MkgNfgaj6+UrGeihn+NYs+eNYSrKYavGbMaQSFu7vQlr536P2iuZX+hk1q+O/7TzLcSxPKX5y5jImigOhq8luH2WLhzV5coJGmD8nX5a3RFtTY6ibZmuPif1PRlNO49QuNU4VuH1NyampkWfdeZR7PSQbwd1vkQW5O7Z0ov2Svq4qoDT/+HlJVzWgZSjOt7bJpjwpZ0mPvQBBp2uTWR4qA0gu/k8iE4fYJ9yxTOW0CkuPQabYN9Wux5Z20NHCMreuRmIAkD3t0N+DGg3wacC078T1i14BDZ34OUTODYR1db1SOR
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR06MB4571.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(136003)(396003)(346002)(39860400002)(52536014)(33656002)(7696005)(83380400001)(15974865002)(4326008)(6916009)(76116006)(66446008)(8936002)(66556008)(64756008)(5660300002)(53546011)(71200400001)(6506007)(86362001)(107886003)(66476007)(54906003)(9686003)(316002)(2906002)(186003)(8676002)(26005)(55016002)(66946007)(478600001)(138113003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?tUhWRz0QZcuIzqoA1k6hqcNRYTgnng0am3mG2+vxIdJ2BmUXkImHcqtay0he?=
- =?us-ascii?Q?FVBOjH8nGI0eLuRmgpDG2TbOZwaje18U2AGHwb/yKdrYn6573dvRSPVS3rP1?=
- =?us-ascii?Q?SfDEMlvnqUgazqGaiGLBCVlFTA6vFVWXFbkac3/7DDqpGOgPSFsJ6gPTR3tz?=
- =?us-ascii?Q?SMpk3UfW1bcR/yljEFfygCHhg3PmWQbDrZ5MWNbtoYyIN9cdU1ieqR5iK1es?=
- =?us-ascii?Q?TIYSc5P8UTf779AuBFpmdYhKVBAeI5/DlthulfJLuJWhKHfleU+Ue52ATW1R?=
- =?us-ascii?Q?j02V+fSz49Td4im3GA0AhJu0ZWjjUQJVKx1RcbVJVq0F1UDqLfGRpgrw9V6U?=
- =?us-ascii?Q?zofHTddOd/gcdoGTz9YX+qAaWAzsAA5sf9I+wsvLm1mK99cvZtqgcz1JvS5V?=
- =?us-ascii?Q?MHLsXghF3RxBDyWiwFEnVZqsZ77DR9TH/LJNSeJLo7vXLhhj8WId+Ej2zf+u?=
- =?us-ascii?Q?IEveRJgrcIkwPB7gWUSd3wJXnV/pdH6oy4x4PnwBCOmweCEGIlXMjPCmK2Rk?=
- =?us-ascii?Q?UmqRXewlwqoYs09D2UpAAc8c+1+bmm+IPNb2sRo265679R9nkmQC0BGV/km8?=
- =?us-ascii?Q?+/KsMutn5kdSpVWh8doW1cEKo3edl24xgl9M8nr/JzyMeF78v9KvrYD0BwBS?=
- =?us-ascii?Q?tW0gRE9o+7159I5HEAnc04/TaLHRibLLGuXwkDrM0kYUVYAOCm6oseaUl6So?=
- =?us-ascii?Q?/hitGq2UJIYnswhAmaWUb7R0lMabXN6kkZYYeqpeNCKN2Ece7CsJC6gRm4/U?=
- =?us-ascii?Q?auZTZ3rLXbgo5B5o+D7a7qSFOae0UwXFVywuK+LXoul8mlIUea+ypoRHjkVH?=
- =?us-ascii?Q?BNN3rtz+slR1oePtYuJCJb0syyyU5f8y6aklG39q2lKCqXiKbtJ9XzEBEhIA?=
- =?us-ascii?Q?iwn5J6e4rjQpS47XcjfKKUaEmqxBn/IzRxAYCAWoOyqJLB04lppL6wVWVrKN?=
- =?us-ascii?Q?DM4QpCutlXUpx1Z2tJ3BrWP8xsRSVB4gC8+P05E/+e/r0bY9wzuWCqpqmoF/?=
- =?us-ascii?Q?QSFXfuJRB8Mc5KHDaGbqPH/CDTrZprv+ms0e/Id8mZYCrDIsSGdlzud96Aw0?=
- =?us-ascii?Q?zJtHJkbi64tT9t9pxB/5HNKQXd9ruecXQMudtY5fmtohd3HELnsmpQNy1Don?=
- =?us-ascii?Q?U8aON1lLVXuoTaR/Bi2lFzgW583VmgrP2Oby7BlLGg2DBDvulqT3JDCcPNOa?=
- =?us-ascii?Q?qt1kcC9Q5z5JpZhk9E43FpP2ZfhdAgNlcHYLoWAmyFSJV5BDV/Mam6f35uDe?=
- =?us-ascii?Q?62FBjEghW31ByT3Tgk7olQ3NmlNEmETXLaqE+HyD1jyxti+/TDryESzou3Ni?=
- =?us-ascii?Q?fOjixncri/m3mddYSeMaD5kp?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S230338AbhCOI0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 04:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57440 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230317AbhCOI0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:26:32 -0400
+X-Greylist: delayed 65 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 15 Mar 2021 01:26:31 PDT
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E6CC061574
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 01:26:31 -0700 (PDT)
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eaff:9701:b4db:50a7:6f83:328f])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 2D4221DDFED;
+        Mon, 15 Mar 2021 09:26:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1615796789;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yYz3MctYOx4C/yzcGmdSasNUSdDDesIXSSyXE/miHx0=;
+        b=Ds+/W99THAxCq5rBnBf5u9ZUCkS22sljtkR1DDDNoVoYaF0v1xOGeVTXuG7eSNS5AJ/VPA
+        wu2EM3vd3gqXMXOePDKENrqopJEBRs+i5rKsG1xU0wRqa3m3pXtl1Zw5CpA0oAt+BsnCzm
+        7m9w7pG9oVPfT79POHwOswyzwd6/iUn3w4oOOnQKO7QNV5eJ3pbDk0bko2J5LMK6hn6cEt
+        2GCBAxa29+6t2lapKwlZEuX3IJCIUo8YKPtCku+z3AWr2q6m6J9qjIuJF8LOwrregfM0k3
+        msJn7yf2YDlPIyKmdrC7PRtfOGSryT3j2+0Lz5Bcs1WVxeOgKhfEPYKxBc9c6A==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>,
+        Bert Vermeulen <bert@biot.com>
+Subject: [PATCH 2/2] gpio: Add Realtek Otto GPIO support
+Date:   Mon, 15 Mar 2021 09:23:42 +0100
+Message-Id: <20210315082339.9787-3-sander@svanheule.net>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210315082339.9787-1-sander@svanheule.net>
+References: <20210315082339.9787-1-sander@svanheule.net>
 MIME-Version: 1.0
-X-OriginatorOrg: leica-geosystems.com.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR06MB4571.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d9fe314-dd9b-49db-1047-08d8e78741b3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Mar 2021 07:52:17.9971
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5QP+nLK6mT9FsJMn5tWC93F/5QcJn9Hjlpja1BG59fuzWvI6CB02kdrFYPgOjVg+wwILbc551f6o97Lg745FBLiuDYdgb1Nln62C2FDQrF8CC3/bcGPRXuL7MeIgeHEg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0602MB3336
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Realtek MIPS SoCs (platform name Otto) have GPIO controllers with up to
+64 GPIOs, divided over two banks. Each bank has a set of registers for
+32 GPIOs, with support for edge-triggered interrupts.
 
-Hi Sebastian,
+Each GPIO bank consists of four 8-bit GPIO ports (ABCD and EFGH). Most
+registers pack one bit per GPIO, except for the IMR register, which
+packs two bits per GPIO (AB-CD).
 
-Thanks for your input, I will and dump message into next version patch.
+Although the byte order is currently assumed to have port A..D at offset
+0x0..0x3, this has been observed to be reversed on other, Lexra-based,
+SoCs (e.g. RTL8196E/97D/97F).
 
+Interrupt support is disabled for the fallback devicetree-compatible
+'realtek,otto-gpio'. This allows for quick support of GPIO banks in
+which the byte order would be unknown. In this case, the port ordering
+in the IMR registers may not match the reversed order in the other
+registers (DCBA, and BA-DC or DC-BA).
 
+Signed-off-by: Sander Vanheule <sander@svanheule.net>
+---
+ drivers/gpio/Kconfig             |  12 ++
+ drivers/gpio/Makefile            |   1 +
+ drivers/gpio/gpio-realtek-otto.c | 320 +++++++++++++++++++++++++++++++
+ 3 files changed, 333 insertions(+)
+ create mode 100644 drivers/gpio/gpio-realtek-otto.c
 
-Best Regards
+diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+index e3607ec4c2e8..fedf1e49469e 100644
+--- a/drivers/gpio/Kconfig
++++ b/drivers/gpio/Kconfig
+@@ -502,6 +502,18 @@ config GPIO_RDA
+ 	help
+ 	  Say Y here to support RDA Micro GPIO controller.
+ 
++config GPIO_REALTEK_OTTO
++	bool "Realtek Otto GPIO support"
++	depends on MACH_REALTEK_RTL
++	depends on OF_GPIO
++	default MACH_REALTEK_RTL
++	select GPIO_GENERIC
++	select GPIOLIB_IRQCHIP
++	help
++	  The GPIO controller on the Otto MIPS platform supports up to two
++	  banks of 32 GPIOs, with edge triggered interrupts. The 32 GPIOs
++	  are grouped in four 8-bit wide ports.
++
+ config GPIO_REG
+ 	bool
+ 	help
+diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+index c58a90a3c3b1..8ace5934e3c3 100644
+--- a/drivers/gpio/Makefile
++++ b/drivers/gpio/Makefile
+@@ -124,6 +124,7 @@ obj-$(CONFIG_GPIO_RC5T583)		+= gpio-rc5t583.o
+ obj-$(CONFIG_GPIO_RCAR)			+= gpio-rcar.o
+ obj-$(CONFIG_GPIO_RDA)			+= gpio-rda.o
+ obj-$(CONFIG_GPIO_RDC321X)		+= gpio-rdc321x.o
++obj-$(CONFIG_GPIO_REALTEK_OTTO)		+= gpio-realtek-otto.o
+ obj-$(CONFIG_GPIO_REG)			+= gpio-reg.o
+ obj-$(CONFIG_ARCH_SA1100)		+= gpio-sa1100.o
+ obj-$(CONFIG_GPIO_SAMA5D2_PIOBU)	+= gpio-sama5d2-piobu.o
+diff --git a/drivers/gpio/gpio-realtek-otto.c b/drivers/gpio/gpio-realtek-otto.c
+new file mode 100644
+index 000000000000..04c11b2085f8
+--- /dev/null
++++ b/drivers/gpio/gpio-realtek-otto.c
+@@ -0,0 +1,320 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/gpio/driver.h>
++#include <linux/irq.h>
++#include <linux/module.h>
++#include <linux/of_irq.h>
++#include <linux/platform_device.h>
++#include <linux/swab.h>
++
++/*
++ * Total register block size is 0x1C for four ports.
++ * On the RTL8380/RLT8390 platforms port A, B, and C are implemented.
++ * RTL8389 and RTL8328 implement a second bank with ports E, F, G, and H.
++ *
++ * Port information is stored with the first port at offset 0, followed by the
++ * second, etc. Most registers store one bit per GPIO and should be read out in
++ * reversed endian order. The two interrupt mask registers store two bits per
++ * GPIO, and should be manipulated with swahw32, if required.
++ */
++
++/*
++ * Pin select: (0) "normal", (1) "dedicate peripheral"
++ * Not used on RTL8380/RTL8390, peripheral selection is managed by control bits
++ * in the peripheral registers.
++ */
++#define REALTEK_GPIO_REG_CNR		0x00
++/* Clear bit (0) for input, set bit (1) for output */
++#define REALTEK_GPIO_REG_DIR		0x08
++#define REALTEK_GPIO_REG_DATA		0x0C
++/* Read bit for IRQ status, write 1 to clear IRQ */
++#define REALTEK_GPIO_REG_ISR		0x10
++/* Two bits per GPIO */
++#define REALTEK_GPIO_REG_IMR_AB		0x14
++#define REALTEK_GPIO_REG_IMR_CD		0x18
++#define REALTEK_GPIO_IRQ_EDGE_FALLING	1
++#define REALTEK_GPIO_IRQ_EDGE_RISING	2
++#define REALTEK_GPIO_IRQ_EDGE_BOTH	3
++
++#define REALTEK_GPIO_MAX		32
++
++/*
++ * Realtek GPIO driver data
++ * Because the interrupt mask register (IMR) combines the function of
++ * IRQ type selection and masking, two extra values are stored.
++ * intr_mask is used to mask/unmask the interrupts for certain GPIO,
++ * and intr_type is used to store the selected interrupt types. The
++ * logical AND of these values is written to IMR on changes.
++ *
++ * @dev Parent device
++ * @gc Associated gpio_chip instance
++ * @base Base address of the register block
++ * @lock Lock for accessing the IRQ registers and values
++ * @intr_mask Mask for GPIO interrupts
++ * @intr_type GPIO interrupt type selection
++ */
++struct realtek_gpio_ctrl {
++	struct device *dev;
++	struct gpio_chip gc;
++	void __iomem *base;
++	raw_spinlock_t lock;
++	u32 intr_mask[2];
++	u32 intr_type[2];
++};
++
++enum realtek_gpio_flags {
++	GPIO_INTERRUPTS = BIT(0),
++};
++
++static struct realtek_gpio_ctrl *irq_data_to_ctrl(struct irq_data *data)
++{
++	struct gpio_chip *gc = irq_data_get_irq_chip_data(data);
++
++	return container_of(gc, struct realtek_gpio_ctrl, gc);
++}
++
++static inline u32 realtek_gpio_isr_read(struct realtek_gpio_ctrl *ctrl)
++{
++	return swab32(readl(ctrl->base + REALTEK_GPIO_REG_ISR));
++}
++
++static inline void realtek_gpio_isr_clear(struct realtek_gpio_ctrl *ctrl,
++	unsigned int pin_mask)
++{
++	writel(swab32(pin_mask), ctrl->base + REALTEK_GPIO_REG_ISR);
++}
++
++static inline void realtek_update_imr(struct realtek_gpio_ctrl *ctrl,
++	unsigned int offset, u32 type, u32 mask)
++{
++	unsigned int reg;
++
++	if (offset == 0)
++		reg = REALTEK_GPIO_REG_IMR_AB;
++	else
++		reg = REALTEK_GPIO_REG_IMR_CD;
++	writel(swahw32(type & mask), ctrl->base + reg);
++}
++
++static inline u32 realtek_gpio_imr_bits(unsigned int pin, u32 value)
++{
++	return ((value & 0x3) << 2*(pin % 16));
++}
++
++static void realtek_gpio_irq_ack(struct irq_data *data)
++{
++	struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
++	u32 pin = irqd_to_hwirq(data);
++
++	realtek_gpio_isr_clear(ctrl, BIT(pin));
++}
++
++static void realtek_gpio_irq_unmask(struct irq_data *data)
++{
++	struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
++	unsigned int pin = irqd_to_hwirq(data);
++	unsigned int offset = pin/16;
++	unsigned long flags;
++	u32 m;
++
++	raw_spin_lock_irqsave(&ctrl->lock, flags);
++	m = ctrl->intr_mask[offset];
++	m |= realtek_gpio_imr_bits(pin, 3);
++	ctrl->intr_mask[offset] = m;
++	realtek_update_imr(ctrl, offset, ctrl->intr_type[offset], m);
++	raw_spin_unlock_irqrestore(&ctrl->lock, flags);
++}
++
++static void realtek_gpio_irq_mask(struct irq_data *data)
++{
++	struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
++	unsigned int pin = irqd_to_hwirq(data);
++	unsigned int offset = pin/16;
++	unsigned long flags;
++	u32 m;
++
++	raw_spin_lock_irqsave(&ctrl->lock, flags);
++	m = ctrl->intr_mask[offset];
++	m &= ~realtek_gpio_imr_bits(pin, 3);
++	ctrl->intr_mask[offset] = m;
++	realtek_update_imr(ctrl, offset, ctrl->intr_type[offset], m);
++	raw_spin_unlock_irqrestore(&ctrl->lock, flags);
++}
++
++static int realtek_gpio_irq_set_type(struct irq_data *data,
++	unsigned int flow_type)
++{
++	struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
++	irq_flow_handler_t handler;
++	unsigned int pin = irqd_to_hwirq(data);
++	unsigned int offset = pin/16;
++	unsigned long flags;
++	u32 type, t;
++
++	switch (flow_type & IRQ_TYPE_SENSE_MASK) {
++	case IRQ_TYPE_NONE:
++		type = 0;
++		handler = handle_bad_irq;
++		break;
++	case IRQ_TYPE_EDGE_FALLING:
++		type = REALTEK_GPIO_IRQ_EDGE_FALLING;
++		handler = handle_edge_irq;
++		break;
++	case IRQ_TYPE_EDGE_RISING:
++		type = REALTEK_GPIO_IRQ_EDGE_RISING;
++		handler = handle_edge_irq;
++		break;
++	case IRQ_TYPE_EDGE_BOTH:
++		type = REALTEK_GPIO_IRQ_EDGE_BOTH;
++		handler = handle_edge_irq;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	irq_set_handler_locked(data, handler);
++
++	raw_spin_lock_irqsave(&ctrl->lock, flags);
++	t = ctrl->intr_type[offset];
++	t &= ~realtek_gpio_imr_bits(pin, 3);
++	t |= realtek_gpio_imr_bits(pin, type);
++	ctrl->intr_type[offset] = t;
++	realtek_update_imr(ctrl, offset, t, ctrl->intr_mask[offset]);
++	raw_spin_unlock_irqrestore(&ctrl->lock, flags);
++
++	return 0;
++}
++
++static void realtek_gpio_irq_handler(struct irq_desc *desc)
++{
++	struct gpio_chip *gc = irq_desc_get_handler_data(desc);
++	struct realtek_gpio_ctrl *ctrl = gpiochip_get_data(gc);
++	struct irq_chip *irq_chip = irq_desc_get_chip(desc);
++	int offset;
++	unsigned long status;
++
++	chained_irq_enter(irq_chip, desc);
++
++	status = realtek_gpio_isr_read(ctrl);
++	for_each_set_bit(offset, &status, gc->ngpio) {
++		dev_dbg(ctrl->dev, "gpio irq %d\n", offset);
++		generic_handle_irq(irq_find_mapping(gc->irq.domain,
++						offset));
++		realtek_gpio_isr_clear(ctrl, BIT(offset));
++	}
++
++	chained_irq_exit(irq_chip, desc);
++}
++
++static struct irq_chip realtek_gpio_irq_chip = {
++	.name = "realtek-otto-gpio",
++	.irq_ack = realtek_gpio_irq_ack,
++	.irq_mask = realtek_gpio_irq_mask,
++	.irq_unmask = realtek_gpio_irq_unmask,
++	.irq_set_type = realtek_gpio_irq_set_type
++};
++
++static const struct of_device_id realtek_gpio_of_match[] = {
++	{ .compatible = "realtek,otto-gpio" },
++	{
++		.compatible = "realtek,rtl8380-gpio",
++		.data = (void *)GPIO_INTERRUPTS
++	},
++	{
++		.compatible = "realtek,rtl8390-gpio",
++		.data = (void *)GPIO_INTERRUPTS
++	},
++	{},
++};
++
++MODULE_DEVICE_TABLE(of, realtek_gpio_of_match);
++
++static int realtek_gpio_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *np = dev->of_node;
++	struct gpio_irq_chip *girq;
++	struct realtek_gpio_ctrl *ctrl;
++	const struct of_device_id *match;
++	unsigned int match_flags;
++	u32 ngpios;
++	int err, irq;
++
++	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
++	if (!ctrl)
++		return -ENOMEM;
++
++	ctrl->dev = dev;
++
++	if (!np) {
++		dev_err(&pdev->dev, "no DT node found\n");
++		return -EINVAL;
++	}
++
++	match = of_match_node(realtek_gpio_of_match, np);
++	match_flags = (unsigned int) match->data;
++
++	if (of_property_read_u32(np, "ngpios", &ngpios) != 0)
++		ngpios = REALTEK_GPIO_MAX;
++
++	if (ngpios > REALTEK_GPIO_MAX) {
++		dev_err(&pdev->dev, "invalid ngpios (max. %d)\n",
++			REALTEK_GPIO_MAX);
++		return -EINVAL;
++	}
++
++	ctrl->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(ctrl->base))
++		return PTR_ERR(ctrl->base);
++
++	raw_spin_lock_init(&ctrl->lock);
++
++	err = bgpio_init(&ctrl->gc, dev, 4,
++		ctrl->base + REALTEK_GPIO_REG_DATA, NULL, NULL,
++		ctrl->base + REALTEK_GPIO_REG_DIR, NULL,
++		BGPIOF_BIG_ENDIAN_BYTE_ORDER);
++	if (err) {
++		dev_err(dev, "unable to init generic GPIO");
++		return err;
++	}
++
++	ctrl->gc.ngpio = ngpios;
++	ctrl->gc.owner = THIS_MODULE;
++
++	irq = of_irq_get(np, 0);
++	if ((match_flags & GPIO_INTERRUPTS) && irq > 0) {
++		girq = &ctrl->gc.irq;
++		girq->chip = &realtek_gpio_irq_chip;
++		girq->parent_handler = realtek_gpio_irq_handler;
++		girq->num_parents = 1;
++		girq->parents = devm_kcalloc(dev, 1, sizeof(*girq->parents),
++					GFP_KERNEL);
++		if (!girq->parents)
++			return -ENOMEM;
++		girq->default_type = IRQ_TYPE_NONE;
++		girq->handler = handle_bad_irq;
++		girq->parents[0] = irq;
++
++		/* Disable and clear all interrupts */
++		realtek_update_imr(ctrl, 0, 0, 0);
++		realtek_update_imr(ctrl, 1, 0, 0);
++		realtek_gpio_isr_clear(ctrl, BIT(ngpios)-1);
++	}
++
++	err = gpiochip_add_data(&ctrl->gc, ctrl);
++	return err;
++}
++
++static struct platform_driver realtek_gpio_driver = {
++	.driver = {
++		.name = "realtek-otto-gpio",
++		.of_match_table	= realtek_gpio_of_match,
++	},
++	.probe = realtek_gpio_probe,
++};
++
++builtin_platform_driver(realtek_gpio_driver);
++
++MODULE_DESCRIPTION("Realtek Otto GPIO support");
++MODULE_AUTHOR("Sander Vanheule <sander@svanheule.net>");
++MODULE_LICENSE("GPL v2");
+-- 
+2.30.2
 
-**********************************************
-Li Qingwu (Terry)
-Senior Embedded Software Engineer=20
-Leica Geosystems(Shanghai)Co.,Limited
-(Tel): +86 21 61061036
-(FAX): +86 21 61061008
-(Mobile): +86 187 0185 9600
-E-mail: Qing-wu.Li@leica-geosystems.com.cn
-Http: www.leica-geosystems.com.cn
-**********************************************
-
------Original Message-----
-From: Sebastian Reichel <sre@kernel.org>=20
-Sent: Monday, March 15, 2021 7:42 AM
-To: LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
-Cc: robh+dt@kernel.org; pali@kernel.org; krzk@kernel.org; afd@ti.com; linux=
--pm@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.o=
-rg; TERTYCHNYI Grygorii <grygorii.tertychnyi@leica-geosystems.com>; ZHIZHIK=
-IN Andrey <andrey.zhizhikin@leica-geosystems.com>
-Subject: Re: [PATCH V5 0/2] power: bq27xxx: add bq78z100
-
-Hi,
-
-On Fri, Mar 05, 2021 at 06:49:47AM +0000, LI Qingwu wrote:
-> Changes in V5:
->=20
-> 1. Change [BQ27XXX_REG_TTES] from INVALID_REG_ADDR to 0x1c, the=20
-> StandbyTimeToEmpty command of bq78z100.
-> 2. Add [BQ27XXX_REG_RC] =3D 0x10. the RemainingCapacity command of=20
-> bq78z100.
-> 3. Set [BQ27XXX_REG_AE] to INVALID_REG_ADDR, support by bq78z100.
-> 4. Delete property POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG, not support by=20
-> bq78z100
-
-I also asked to check other exposed properties and to provide a dump of the=
- power-supply uevent in commit message or cover letter to verify chip works=
- as expected. I cannot see the dump and you are exposing at least one prope=
-rty that always reports -ENODATA. I intentionally will not point out the ex=
-act property, so that you have to properly test your patch before submittin=
-g.
-
-Thanks,
-
--- Sebastian
-
-> LI Qingwu (2):
->   dt-bindings: power: bq27xxx: add bq78z100
->   power: supply: bq27xxx: Add support for BQ78Z100
->=20
->  .../bindings/power/supply/bq27xxx.yaml        |  1 +
->  drivers/power/supply/bq27xxx_battery.c        | 44 +++++++++++++++++++
->  drivers/power/supply/bq27xxx_battery_i2c.c    |  2 +
->  include/linux/power/bq27xxx_battery.h         |  1 +
->  4 files changed, 48 insertions(+)
->=20
-> --
-> 2.17.1
->=20
