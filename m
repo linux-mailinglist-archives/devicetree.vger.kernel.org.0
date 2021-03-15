@@ -2,110 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E3A33B0A5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 286DD33B11A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbhCOLII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 07:08:08 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:38267 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229878AbhCOLHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 07:07:47 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id A834F580A1A;
-        Mon, 15 Mar 2021 07:07:46 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 15 Mar 2021 07:07:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=ThO60sGRyq30t0HLAOO1zf9vnva
-        YPWODtuOEx85W2No=; b=RRRuwzirG/7JjCsbczGkuq9bXkc+BAYvGcUzg+QTRaH
-        2kPr4lZIm+IWhQ/taPvpLg/POxx5OBZp67ca9caPfR8ALyaU5Jq4cVpwAbltptwX
-        RgHZh6RWjkFC1d4mvKaqR/9yzfQnVjKntQZyICqoWGBhEzeVNA7+I8xsqWsHM0gW
-        vcqH/rQYKT/gzdb/p2MjPPEVytjmfwweVA1kOxPLU53wRDblBTwIE+uVQn9VH3Zi
-        jdbx995QARiVwTqqUeBbXSiaQzgM7ov88T9+gKbQlmkksa6sxng9qDbZGpRy9Sim
-        ZehUn1+5lCcVln26JO4+I4upHTXYU1gm1mwNkBf92QA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ThO60s
-        GRyq30t0HLAOO1zf9vnvaYPWODtuOEx85W2No=; b=Yeyx6xQKIudZz5mC11ll38
-        CbQYPsCrBEeprui7Xg+9WyHrXrGCIzcJJSLIC3P0j4rfhl6LQ3POx4TtMDDwglZG
-        pdLfQKiIrZGAPpsZHvh6xTl3eG9JotGE7dJXY7xILkhFXP5cEPMD3e0w8o+yYCfy
-        5O/6FwtodRodf8iXkN5TwExjAJJydTHfhc86MTXzANKQgJsa2PvSo4Z2PicKDEFi
-        sZ7m3nBE0A4XOJpsD0VH6VSVvbJgkVjiIc8ewgxRGAvC5ozvCdwk0wjqB1uhszuR
-        j4qx6FBdLUNkqAGWpVtX/SCSnW6USxk+LQJ6Xxbv8MVIGiNalhIKPRmSz+Mw894g
-        ==
-X-ME-Sender: <xms:AUBPYJ7bG829zKIuWg-QA6ItsyPM3wbTBYlXdsZgcR-9grhVslqoxw>
-    <xme:AUBPYG6Syh3K_uBXu2gMMqLIDs2PLU_u2qbgb8ozHHVruVFVitcmoJOBj-pOr0GVA
-    -W9niBqgv2G6OcoUcA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddvledgvdefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:AUBPYAeFlwdBkwMtwFY8LXcXwXmVmpJ18zWNgU78LOSf_BdJp3Em6g>
-    <xmx:AUBPYCJaX1ahU_-obaU0okNHPnlDg5EwJeNR958P59RY0LJZzgtVWw>
-    <xmx:AUBPYNKwL0HWATfOSQUl4fAL_NaThiyp5YY6lZKrGAGwjrcC2S_x8Q>
-    <xmx:AkBPYE-9XTvEtetF8f2fcBDugkinKf4CclPSiPJF1qAuGTu9t-WQ9Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CDEFB1080067;
-        Mon, 15 Mar 2021 07:07:44 -0400 (EDT)
-Date:   Mon, 15 Mar 2021 12:07:42 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: timer: Add compatibles for sun50i timers
-Message-ID: <20210315110742.6ul47e72v6yl6ydj@gilmour>
-References: <20210315043250.45095-1-samuel@sholland.org>
- <20210315043250.45095-3-samuel@sholland.org>
+        id S229748AbhCOL3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 07:29:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229807AbhCOL3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 07:29:23 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB349C061574;
+        Mon, 15 Mar 2021 04:29:22 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id o19so16884717edc.3;
+        Mon, 15 Mar 2021 04:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rGW6cctDZoxABCsL4nhXCJwptF8+bYgkqPIEjnnUAYE=;
+        b=mR+um3ko28cgPbFRVeDD5k3WaH0Enn8IRarFjH9efZ8D4VpVOiPN1BSi7f9e0+tpYC
+         moBg5EQsiZBW5RMP1ia6sJOPQ/f/cTZdpI1cix8ALgyCVNs0kr1KBc0pCZXlh9ExfbiD
+         ATcFdDjWWNkkWEm6Z/meUUXZIOLgsZfMlZm0lcT/HKpsY8WkZgxowTrssM/nxtYP+hkf
+         yTXaFlGHxhV80FkReVab6tkXGAbE1TQMEHd0xZT5ruWHFLQkfDRYcIZoDumG8hvCjTaH
+         qH+pSQ2BkA2F1R3JNhpDUUproOSczjcjisISPRsl2IQpgmToXc823hxlOeSoMND6H9lU
+         Kmrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rGW6cctDZoxABCsL4nhXCJwptF8+bYgkqPIEjnnUAYE=;
+        b=l1a9/WI0+28l3TUrr3A098usa0Zu7MYve0iZEPOG6oNqPrCDPcsUK1g1joBkfajBYn
+         GR5J7+yR6S1IZXX7kh3QouwXEMwBPF/L41kyf+jFLd0itsQTGK671RWeosHaVAkT47op
+         Wyuz5eAR4r4W7O5DQT6rtSyrWmcv6QoxD8pXrEDfV+RpPHy9bx11hNbeZrXCoN/Q9QbH
+         tnzfqwRDL6oPLl5g05M7MhRQOiczu9mQIFyVEAsebiSgC1jCAwPs/HkjxCN0LFb9C29t
+         /pmrf6ApTL7TBtLvN9Elaf+M+fdGZM8XkWHVvOqq1TZeVapybKuVAt7fyBDPDxOJkQoA
+         24fA==
+X-Gm-Message-State: AOAM5312kbM1WscdEPMXhCvk3jyQxtff19GzmXb4ZV1L6xwM7wl5kULn
+        pO4JgeFUJeYTNgKsWSiykfs=
+X-Google-Smtp-Source: ABdhPJySTUuRdpTPNyo+Tq2X7aniRxhHUl89LTEuEgh+8jCpVdcnSjxEEWCugKU6hXJTdxpwyXV25w==
+X-Received: by 2002:aa7:c14a:: with SMTP id r10mr28301174edp.132.1615807761453;
+        Mon, 15 Mar 2021 04:29:21 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id q25sm3921423edt.51.2021.03.15.04.29.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Mar 2021 04:29:20 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Add support for Actions Semi Owl Ethernet MAC
+Date:   Mon, 15 Mar 2021 13:29:15 +0200
+Message-Id: <cover.1615807292.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pucgglng2x7rt7wq"
-Content-Disposition: inline
-In-Reply-To: <20210315043250.45095-3-samuel@sholland.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds support for the Ethernet MAC found on the Actions
+Semi Owl family of SoCs.
 
---pucgglng2x7rt7wq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+For the moment I have only tested the driver on RoseapplePi SBC, which is
+based on the S500 SoC variant. It might work on S900 as well, but I cannot
+tell for sure since the S900 datasheet I currently have doesn't provide
+any information regarding the MAC registers - so I couldn't check the
+compatibility with S500.
 
-On Sun, Mar 14, 2021 at 11:32:47PM -0500, Samuel Holland wrote:
-> The sun50i SoCs contain timer blocks which are useful as broadcast
-> clockevent sources. They each have 2 interrupts, matching the A23
-> variant, so add the new compatible strings with the A23 compatible
-> as a fallback.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Similar story for S700: the datasheet I own is incomplete, but it seems
+the MAC is advertised with Gigabit capabilities. For that reason most
+probably we need to extend the current implementation in order to support
+this SoC variant as well.
 
-Acked-by: Maxime Ripard <maxime@cerno.tech>
+Please note that for testing the driver it is also necessary to update the
+S500 clock subsystem:
 
-Thanks!
-Maxime
+https://lore.kernel.org/lkml/cover.1615221459.git.cristian.ciocaltea@gmail.com/
 
---pucgglng2x7rt7wq
-Content-Type: application/pgp-signature; name="signature.asc"
+The DTS changes for the S500 SBCs will be provided separately.
 
------BEGIN PGP SIGNATURE-----
+Thanks,
+Cristi
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYE8//QAKCRDj7w1vZxhR
-xW86AQCrK2MQndw/TUK6GbSqIPgqLwJsRk92qUz7tdL55sgumgD/ZLd8CWAgOgko
-ld6FZaCSIUwMuq5fh7Z1STGksQNP2wM=
-=OfmS
------END PGP SIGNATURE-----
+Changes in v2:
+* According to Philipp's review
+ - Requested exclusive control over serial line via
+   devm_reset_control_get_exclusive()
+ - Optimized error handling by using dev_err_probe()
 
---pucgglng2x7rt7wq--
+* According to Andrew's review
+ - Dropped the inline keywords
+ - Applied Reverse Christmas Tree format to local variable declarations
+ - Renamed owl_emac_phy_config() to owl_emac_update_link_state()
+ - Documented the purpose of the special descriptor used in the context of
+   owl_emac_setup_frame_xmit()
+ - Updated comment inside owl_emac_mdio_clock_enable() regarding the MDC
+   clock divider setup
+ - Indicated MAC support for symmetric pause via phy_set_sym_pause()
+   in owl_emac_phy_init()
+ - Changed the MAC addr generation algorithm in owl_emac_generate_mac_addr()
+   by setting the locally administered bit in byte 0 and replacing bytes 1 & 2
+   with additional entries from enc_sn
+ - Moved devm_add_action_or_reset() before clk_set_rate() in owl_emac_probe()
+
+* Other
+ - Added SMII interface support: updated owl_emac_core_sw_reset(), added
+   owl_emac_clk_set_rate(), updated description in the YAML binding
+ - Changed OWL_EMAC_TX_TIMEOUT from 0.05*HZ to 2*HZ
+ - Rebased patchset on v5.12-rc3
+
+Cristian Ciocaltea (3):
+  dt-bindings: net: Add Actions Semi Owl Ethernet MAC binding
+  net: ethernet: actions: Add Actions Semi Owl Ethernet MAC driver
+  MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
+
+ .../bindings/net/actions,owl-emac.yaml        |   92 +
+ MAINTAINERS                                   |    2 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/actions/Kconfig          |   39 +
+ drivers/net/ethernet/actions/Makefile         |    6 +
+ drivers/net/ethernet/actions/owl-emac.c       | 1703 +++++++++++++++++
+ drivers/net/ethernet/actions/owl-emac.h       |  280 +++
+ 8 files changed, 2124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+ create mode 100644 drivers/net/ethernet/actions/Kconfig
+ create mode 100644 drivers/net/ethernet/actions/Makefile
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.c
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.h
+
+-- 
+2.30.2
+
