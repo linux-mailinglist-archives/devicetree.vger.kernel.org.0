@@ -2,83 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD2033A90D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 01:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B09633AA12
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 04:39:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbhCOA0s convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 14 Mar 2021 20:26:48 -0400
-Received: from mga03.intel.com ([134.134.136.65]:64617 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229476AbhCOA0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Mar 2021 20:26:48 -0400
-IronPort-SDR: w+xhGnV6XvTsKN+kybJpaMtExD8ia8n19bjsVVm36CF04YXPllM8wq/dlmUxs85QZsw18E0klR
- cEta2MA806OQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9923"; a="189067394"
-X-IronPort-AV: E=Sophos;i="5.81,249,1610438400"; 
-   d="scan'208";a="189067394"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2021 17:26:45 -0700
-IronPort-SDR: 9DVmnjlN1p4IGm4ofi0a3TP0kElvhd3ur8V2MduTxMFjmCCMBVYbpXVs0luDz1oe/KeoFWB7px
- /JlTq9ra2a6A==
-X-IronPort-AV: E=Sophos;i="5.81,249,1610438400"; 
-   d="scan'208";a="405016735"
-Received: from shao2-debian.sh.intel.com (HELO localhost) ([10.239.13.11])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2021 17:26:42 -0700
-Date:   Mon, 15 Mar 2021 08:25:57 +0800
-From:   kernel test robot <rong.a.chen@intel.com>
-To:     dillon.minfei@gmail.com, robh+dt@kernel.org,
-        alexandre.torgue@foss.st.com, a.fatoum@pengutronix.de,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk
-Cc:     kbuild-all@lists.01.org
-Subject: Re: [PATCH v2 6/8] ARM: dts: stm32: add support for art-pi board
- based on stm32h750xbh6
-Message-ID: <20210315002557.GL219708@shao2-debian>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+        id S229879AbhCODjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Mar 2021 23:39:00 -0400
+Received: from mail-bn8nam12on2081.outbound.protection.outlook.com ([40.107.237.81]:60513
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229804AbhCODid (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Mar 2021 23:38:33 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zwdo+yYfWJcRY2O4cbYVKka5VK380sosLo16TuHQW40DsBk7UT8jVgOutIHhKmoH3yQK08f8HM8Gld0YsNmtIEsMUD1PP5NdEmYjgmAjcjGd+Dcf4rCjmpDye+14XhOY0LBOfizbAaleDq/xdHFLVTw6iuzbzLgLukhzMcyr6X5cHBYA+WJ7aA6CQ9vUjiR5h1ZKHqSvavR3BmDRwOA2vhU3iKAmktoLU591rCJrqt36lQZmHrKfG5S+oTiSmnwrpUR4w8RBvgk805Ic98U47jSMp1RAWmZg29fwJVCRbjEqR6YbIZvcLGuEefMNt+d8iwPiecdkTTWJ3MRQyX7fBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BVKNvY5npYHOL2yxouzHliIcw/26e+2RMXgaUnG1IIY=;
+ b=VYURUZIiriNLqMAjJR7LbwVhiuzrE1/bmIozIIifqNhy0Iz0rqhdv7E/Ec8myUwQ3rib1iU177I2pDWJpQHk+2wDBAqwm8T1Xoug7Sf0NZnxserwUqxUV86sqVjGge36UCQtqF7RR/6lJpW4DX6Hw4tlTs/IpmDlfOTrpvXb8QU8Ii2RpW/3o6tRoSkt7Hw6Mt4KuBnv24B4dq7dAARBedxmOFHujbEIlKI4rghmaMbe0nkSNZnJ66hEg1tOShbklN6Khylaf4wloJ3oTrf0UvPnD2nP0vvznlXY1eeCHFKtW4RoYwHaC6aKKuxgKHxP7zxNkAiAqUHC5H+QC0BRPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BVKNvY5npYHOL2yxouzHliIcw/26e+2RMXgaUnG1IIY=;
+ b=fjfMEjSgF3Zj3mBQVYcHJZrM7E81UGHXJUMVZVDuWbmxHdgOmUi8TmdoXG2/B68tS12wEVenZPJ1eMU6TtV5f/yeBS37xJKUklZj/k7K4EoaGueq/tP2F3sN1W4tPMHR2BipV6xloCb48eDG35PVhMrjZ8iPqh4OX+j6C/RATmw=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=labundy.com;
+Received: from BYAPR08MB5510.namprd08.prod.outlook.com (2603:10b6:a03:d1::19)
+ by BYAPR08MB5991.namprd08.prod.outlook.com (2603:10b6:a03:124::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Mon, 15 Mar
+ 2021 03:38:27 +0000
+Received: from BYAPR08MB5510.namprd08.prod.outlook.com
+ ([fe80::11c5:ce33:aa20:51c4]) by BYAPR08MB5510.namprd08.prod.outlook.com
+ ([fe80::11c5:ce33:aa20:51c4%7]) with mapi id 15.20.3933.032; Mon, 15 Mar 2021
+ 03:38:27 +0000
+Date:   Sun, 14 Mar 2021 22:38:22 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 6/9] Input: iqs5xx - prevent interrupt storm during
+ removal
+Message-ID: <20210315033822.GA4337@labundy.com>
+References: <20210313191236.4366-1-jeff@labundy.com>
+ <20210313191236.4366-7-jeff@labundy.com>
+ <YE2rZycxR6elopon@google.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <1615530274-31422-7-git-send-email-dillon.minfei@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <YE2rZycxR6elopon@google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [136.49.90.243]
+X-ClientProxiedBy: SN6PR08CA0027.namprd08.prod.outlook.com
+ (2603:10b6:805:66::40) To BYAPR08MB5510.namprd08.prod.outlook.com
+ (2603:10b6:a03:d1::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from labundy.com (136.49.90.243) by SN6PR08CA0027.namprd08.prod.outlook.com (2603:10b6:805:66::40) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32 via Frontend Transport; Mon, 15 Mar 2021 03:38:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6b7d8e76-80e0-4181-81b3-08d8e763cb7b
+X-MS-TrafficTypeDiagnostic: BYAPR08MB5991:
+X-Microsoft-Antispam-PRVS: <BYAPR08MB5991550BD347861AFFF84E49D36C9@BYAPR08MB5991.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wHlgfAg89GwC5KfGBBMMzrqDBZiMX5xEcdt24PhEP6+pZWLbBgsXEY1syQUt+3AxZJDA6eBnWHSDkLDcMwFGkBuaVjqxAGUMy/jn31kIpaWGdHKIZfB5w1AP1c6RaH+PrFgf079v59M3YP2m5cC6bB+0EHlClMop8mQ7a62QLXZz1QyjM2kcVW8v8cSWbS9G+9BUSijqXis+/e1gV8U2XTSSnhpQC2waNnxSmGxkELXiBFAbmWwTCmZbYs4MtfajJyVT+PER3E9g3NUqp0eZ6pWnLx5bjiZUVmxhN294zaiYmubrNrZnfbTjhIXwq8DOyxvtARaHnXrNtZqhXWt6DBabjRVlwCfRQOGnNeiFJh/YoJNXIWjU74jSvcgPT/hIJ8THNR+TR7ucF3dXPbQDc++VnDh1PIkPefoidvDZb/zHt7pU6ao3yJPWRfIeQnSbyXGyYEnteYTeYxj3Le3gxu9Rtzkv35MFTpoSsGM37MnfBxsPzfDEqAXa7eRGFtn1fKjNfIpFZvFwZpI15z113OcEG+lIwh69n5Gs+0sjFRsahQVkVYmy1s1HnLXtFdVznNz/M4+7b1c4bprQkyC7r80yOjqRxYIjsx27CHKlIYEFcbX/XA3++3YG8SZt/Wn7
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR08MB5510.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(366004)(346002)(136003)(396003)(39830400003)(83380400001)(66476007)(1076003)(66946007)(66556008)(52116002)(8676002)(36756003)(86362001)(7696005)(4326008)(6666004)(8936002)(8886007)(5660300002)(33656002)(55016002)(2906002)(2616005)(16526019)(956004)(478600001)(26005)(316002)(6916009)(186003)(42413003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?4lHPYp+3OeN6GNopb4v+PgwtIRyFrcKG85Ef1Wnd08wpRZpurOLdL+Su+AjH?=
+ =?us-ascii?Q?R67HQvuvRYwOnf/RXHz7DM7H+e7ENJmUt953ZFCQxTW+WM4ImKx+nNR7vbsN?=
+ =?us-ascii?Q?SlRFxp2GHisXqZAJqxynYIbLDIMi8mbny9FL3E+XQE6n72kLU1/qpuin+8/v?=
+ =?us-ascii?Q?YaU1tb3Zw8VjTGTrjZv5InbyYNUPq+NUdQl7fZCWKJN9M8jiYYaTQGTiZbr2?=
+ =?us-ascii?Q?65uBcyUPzgLyqvsPxnMGNeh1mWf+FpzzTST6I0xhizrqFEqxU0amELUbO8vH?=
+ =?us-ascii?Q?sNVFxwh5dDoNhFOPzx2vBtgazRROJNjoBH9oJOV7hHiGS+PXxWLwP2RJp+Sx?=
+ =?us-ascii?Q?aIkypt5lrMVbn+NrL75Nw3yQ/mMkHeV4hOgCaIvQDDC89n6rxwzfe/QlfRHl?=
+ =?us-ascii?Q?5DuBRzgoaZexYIrslcQlE804vw4GiBZxj7DsPiOVynkdiS6D1gvz62vRk9Mc?=
+ =?us-ascii?Q?6LwVwsos+jcWbOpX6iLBer3E4JUMPEiHj5lNsSEH0302SkUnqPNsNeeOiKwl?=
+ =?us-ascii?Q?DUDWWjgjMZFoMhBdZ4vy9aW3mGEDS6j60+IUhxcI72R/erZrwHikiHCCbAR8?=
+ =?us-ascii?Q?BmHoGfgVNc9ul7GNKoc6KsEDp7yO8NRq2NC/6xb9xaGJRzlGIvEapoWav+Qt?=
+ =?us-ascii?Q?DKtvTYiKRjgYm8yZuzVT4cgjuapO0l/PhkJY3oy1BqjBv9sOhWNYFEAWaiJN?=
+ =?us-ascii?Q?xr2gzTfgFDP6dfSroOHN1KQL0I+7hnfZKkD16t6YYVrtrgUVFh3DYpheKIJB?=
+ =?us-ascii?Q?R3Gy8vPhW07T/RqmFW0RiU93hutPK9e1iWA+NibuI1p0GZa9VkMCT8AuJa3s?=
+ =?us-ascii?Q?gC/uTutVITNrZue9L3Uc6M7ZVBvS5dFdOylIR1QjCpclgq5m7waXw+7aq8ga?=
+ =?us-ascii?Q?afSXVJAHb6nNLmrUwdoOOXp3MeK8f6qOd9Pjlso8TvYCa+a0QWiZYaFirDro?=
+ =?us-ascii?Q?xBAEA6jNEeW6ThytJDIlUuf+x2Llai1TN25K7QkLYeONW+kfqlx+wnelLABT?=
+ =?us-ascii?Q?ogdHFzpanfV7HWAAILr/ZXyCkMfNPXOfmuVsgepZ26EMPVHV/kiZBVr/mzl3?=
+ =?us-ascii?Q?DJ3YdEogyZA27pJvNXZcy9nuutlLZeXx0qk8bH2sBLJtVMLEr6zRgFh/XYLa?=
+ =?us-ascii?Q?IaNs/pNE8DFaquGY0COm3irotXEjDOEzkRAahUjRxDavwCi388Lnd25I62DD?=
+ =?us-ascii?Q?jbtTVZDuHjLTM9tibKPtkYcYSzx+Fy47hOita+3mTSttWDyOkiC/ZD5oXgy6?=
+ =?us-ascii?Q?6yh+/sucLp+XNW/sYZSIao03B1y5EF0VyMRjDt8zFqG16LIs3YyljhggkIuy?=
+ =?us-ascii?Q?JZKBVmYukXu/emNktdDiApSr?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7d8e76-80e0-4181-81b3-08d8e763cb7b
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR08MB5510.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2021 03:38:27.7191
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DB1mSK6X7rX86IKq6/SP98iM5+L7qymhK9TAPpri3OfbpTroBO4OiIlkO40lR23aZBTIW4uEWY5PY2bYCuulmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR08MB5991
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Dmitry,
 
-Thank you for the patch! Perhaps something to improve:
+On Sat, Mar 13, 2021 at 10:21:27PM -0800, Dmitry Torokhov wrote:
+> Hi Jeff,
+> 
+> On Sat, Mar 13, 2021 at 01:12:33PM -0600, Jeff LaBundy wrote:
+> > Unsolicited I2C communication causes the device to assert an interrupt; as
+> > such the IRQ is disabled before any registers are written in iqs5xx_open()
+> > and iqs5xx_close().
+> > 
+> > After the driver is unloaded, however, i2c_device_remove() sets the IRQ to
+> > zero before any handlers may call input_close_device() while the device is
+> > unregistered. This keeps iqs5xx_close() from disabling the IRQ, leading to
+> > an interrupt storm during removal.
+> > 
+> > Placing input_register_device() in front of devm_request_threaded_irq() to
+> > free the IRQ before iqs5xx_close() is called does not cover the case where
+> > firmware is updated at the factory and the input device is registered well
+> > after the driver has already probed.
+> > 
+> > The solution, therefore, is to remove the open and close callbacks as they
+> > do not buy much in the first place. The device already starts in an active
+> > state, then drops into a low-power mode based on activity.
+> 
+> No, this is not the proper solution. We should rather fix i2c bus (and
+> really all the other buses with non-trivial probe and remove) so that it
+> is compatible with devres/devm. I wanted to do this for a while and I
+> guess we really need this. Could you please try the patch below and see
+> if it fixes your issue?
 
-[auto build test WARNING on stm32/stm32-next]
-[also build test WARNING on robh/for-next soc/for-next v5.12-rc2 next-20210312]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Thank you for this suggestion; to be honest I had not considered how other
+drivers may suffer a similar fate and I agree with your approach. I tested
+your patch and it addresses my issue.
 
-url:    https://github.com/0day-ci/linux/commits/dillon-minfei-gmail-com/ARM-STM32-add-art-pi-stm32h750xbh6-board-support/20210312-142805
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
-compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
-reproduce: make ARCH=arm dtbs_check
+That being said, I would still advocate for this patch because of the other
+reasons mentioned: the open/close callbacks do not happen to buy much since
+the device effectively "opens" and (almost) "closes" automatically based on
+touch events, and getting rid of the callbacks lets probe finish faster and
+cleans up the code a bit.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Perhaps as a compromise, I can squash this and the next patch, and speak to
+these points in a consolidated commit message?
 
+> 
+> Thanks.
+> 
+> -- 
+> Dmitry
 
-"dtcheck warnings: (new ones prefixed by >>)"
->> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: soc: pin-controller: {'type': 'object'} is not allowed for {'#address-cells': [[1]], '#size-cells': [[1]], 'ranges': [[0, 1476526080, 12288]], 'interrupt-parent': [[22]], 'st,syscfg': [[28, 8]], 'pins-are-numbered': True, 'compatible': ['st,stm32h750-pinctrl'], 'gpio@58020000': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[0, 1024]], 'clocks': [[2, 86]], 'st,bank-name': ['GPIOA'], 'interrupt-controller': True, '#interrupt-cells': [[2]], 'phandle': [[10]]}, 'gpio@58020400': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[1024, 1024]], 'clocks': [[2, 85]], 'st,bank-name': ['GPIOB'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58020800': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[2048, 1024]], 'clocks': [[2, 84]], 'st,bank-name': ['GPIOC'], 'interrupt-controller': True, '#interrupt-cells': [[2]], 'phandle': [[6]]}, 'gpio@58020c00': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': 
- [[3072, 1024]], 'clocks': [[2, 83]], 'st,bank-name': ['GPIOD'], 'interrupt-controller': True, '#interrupt-cells': [[2]], 'phandle': [[4]]}, 'gpio@58021000': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[4096, 1024]], 'clocks': [[2, 82]], 'st,bank-name': ['GPIOE'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58021400': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[5120, 1024]], 'clocks': [[2, 81]], 'st,bank-name': ['GPIOF'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58021800': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[6144, 1024]], 'clocks': [[2, 80]], 'st,bank-name': ['GPIOG'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58021c00': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[7168, 1024]], 'clocks': [[2, 79]], 'st,bank-name': ['GPIOH'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58022000': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[8192, 1
- 024]], 'clocks': [[2, 78]], 'st,bank-name': ['GPIOI'], 'interrupt-controller': True, '#interrupt-cells': [[2]], 'phandle': [[7]]}, 'gpio@58022400': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[9216, 1024]], 'clocks': [[2, 77]], 'st,bank-name': ['GPIOJ'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'gpio@58022800': {'gpio-controller': True, '#gpio-cells': [[2]], 'reg': [[10240, 1024]], 'clocks': [[2, 76]], 'st,bank-name': ['GPIOK'], 'interrupt-controller': True, '#interrupt-cells': [[2]]}, 'i2c1-0': {'pins': {'pinmux': [[5637], [5893]], 'bias-disable': True, 'drive-open-drain': True, 'slew-rate': [[0]]}}, 'rmii-0': {'phandle': [[29]], 'pins': {'pinmux': [[27404], [27916], [27660], [9228], [9484], [1804], [8460], [524], [268]], 'slew-rate': [[2]]}}, 'sdmmc1-b4-0': {'phandle': [[14]], 'pins': {'pinmux': [[10253], [10509], [10765], [11021], [11277], [12813]], 'slew-rate': [[3]], 'drive-push-pull': True, 'bias-disable': True}}, 'sdmmc1-b4-od-0': {'phandle': [[15
- ]], 'pins1': {'pinmux': [[10253], [10509], [10765], [11021], [11277]], 'slew-rate': [[3]], 'drive-push-pull': True, 'bias-disable': True}, 'pins2': {'pinmux': [[12813]], 'slew-rate': [[3]], 'drive-open-drain': True, 'bias-disable': True}}, 'sdmmc1-b4-sleep-0': {'phandle': [[16]], 'pins': {'pinmux': [[10257], [10513], [10769], [11025], [11281], [12817]]}}, 'sdmmc2-b4-0': {'phandle': [[18]], 'pins': {'pinmux': [[7690], [7946], [4874], [5130], [13836], [14092]], 'slew-rate': [[3]], 'drive-push-pull': True, 'bias-disable': True}}, 'sdmmc2-b4-od-0': {'phandle': [[19]], 'pins1': {'pinmux': [[7690], [7946], [4874], [5130], [13836]], 'slew-rate': [[3]], 'drive-push-pull': True, 'bias-disable': True}, 'pins2': {'pinmux': [[14092]], 'slew-rate': [[3]], 'drive-open-drain': True, 'bias-disable': True}}, 'sdmmc2-b4-sleep-0': {'phandle': [[20]], 'pins': {'pinmux': [[7697], [7953], [4881], [5137], [13841], [14097]]}}, 'sdmmc1-dir-0': {'pins1': {'pinmux': [[9737], [9993], [6408]], 'slew-rate': [[3]
- ], 'drive-push-pull': True, 'bias-pull-up': True}, 'pins2': {'pinmux': [[6152]], 'bias-pull-up': True}}, 'sdmmc1-dir-sleep-0': {'pins': {'pinmux': [[9745], [10001], [6417], [6161]]}}, 'usart1-0': {'pins1': {'pinmux': [[7685]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[0]]}, 'pins2': {'pinmux': [[7941]], 'bias-disable': True}}, 'usart2-0': {'phandle': [[3]], 'pins1': {'pinmux': [[13576]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[0]]}, 'pins2': {'pinmux': [[13832]], 'bias-disable': True}}, 'usart3-0': {'pins1': {'pinmux': [[6664]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[0]]}, 'pins2': {'pinmux': [[6920]], 'bias-disable': True}}, 'uart4-0': {'phandle': [[8]], 'pins1': {'pinmux': [[9]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[0]]}, 'pins2': {'pinmux': [[35081]], 'bias-disable': True}}, 'usbotg-hs-0': {'pins': {'pinmux': [[29707], [35595], [8203], [1291], [779], [4107], [4363], [6667], [6923], [7179], [
- 7435], [5387]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[2]]}}, 'spi1-0': {'phandle': [[9]], 'pins1': {'pinmux': [[1286], [5382]], 'bias-disable': True, 'drive-push-pull': True, 'slew-rate': [[2]]}, 'pins2': {'pinmux': [[26886]], 'bias-disable': True}}}
-   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
->> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: soc: 'i2c@40005C00', 'i2c@58001C00' do not match any of the regexes: '@(0|[1-9a-f][0-9a-f]*)$', '^[^@]+$', 'pinctrl-[0-9]+'
-   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
->> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800: 'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	From schema: Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+Kind regards,
+Jeff LaBundy
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> 
+> 
+> i2c: ensure timely release of driver-allocated resources
+> 
+> From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
+> More and more drivers rely on devres to manage their resources, however if
+> bus' probe() and release() are not trivial and control some of resources as
+> well (for example enable or disable clocks, or attach device to a power
+> domain, we need to make sure that driver-allocated resources are released
+> immediately after driver's remove() method returns, and not postponed until
+> driver core gets around to releasing resources. To fix that we open a new
+> devres group before calling driver's probe() and explicitly release it when
+> we return from driver's remove().
+> 
+> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+
+Tested-by: Jeff LaBundy <jeff@labundy.com>
+
+> ---
+>  drivers/i2c/i2c-core-base.c |   19 ++++++++++++++++++-
+>  include/linux/i2c.h         |    3 +++
+>  2 files changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
+> index 63ebf722a424..b8a96db2c191 100644
+> --- a/drivers/i2c/i2c-core-base.c
+> +++ b/drivers/i2c/i2c-core-base.c
+> @@ -518,6 +518,11 @@ static int i2c_device_probe(struct device *dev)
+>  	if (status)
+>  		goto err_clear_wakeup_irq;
+>  
+> +	client->devres_group_id = devres_open_group(&client->dev, NULL,
+> +						    GFP_KERNEL);
+> +	if (!client->devres_group_id)
+> +		goto err_detach_pm_domain;
+> +
+>  	/*
+>  	 * When there are no more users of probe(),
+>  	 * rename probe_new to probe.
+> @@ -530,11 +535,21 @@ static int i2c_device_probe(struct device *dev)
+>  	else
+>  		status = -EINVAL;
+>  
+> +	/*
+> +	 * Note that we are not closing the devres group opened above so
+> +	 * even resources that were attached to the device after probe is
+> +	 * run are released when i2c_device_remove() is executed. This is
+> +	 * needed as some drivers would allocate additional resources,
+> +	 * for example when updating firmware.
+> +	 */
+> +
+>  	if (status)
+> -		goto err_detach_pm_domain;
+> +		goto err_release_driver_resources;
+>  
+>  	return 0;
+>  
+> +err_release_driver_resources:
+> +	devres_release_group(&client->dev, client->devres_group_id);
+>  err_detach_pm_domain:
+>  	dev_pm_domain_detach(&client->dev, true);
+>  err_clear_wakeup_irq:
+> @@ -563,6 +578,8 @@ static int i2c_device_remove(struct device *dev)
+>  			dev_warn(dev, "remove failed (%pe), will be ignored\n", ERR_PTR(status));
+>  	}
+>  
+> +	devres_release_group(&client->dev, client->devres_group_id);
+> +
+>  	dev_pm_domain_detach(&client->dev, true);
+>  
+>  	dev_pm_clear_wake_irq(&client->dev);
+> diff --git a/include/linux/i2c.h b/include/linux/i2c.h
+> index 56622658b215..5d1f11c0deaa 100644
+> --- a/include/linux/i2c.h
+> +++ b/include/linux/i2c.h
+> @@ -306,6 +306,8 @@ struct i2c_driver {
+>   *	userspace_devices list
+>   * @slave_cb: Callback when I2C slave mode of an adapter is used. The adapter
+>   *	calls it to pass on slave events to the slave driver.
+> + * @devres_group_id: id of the devres group that will be created for resources
+> + *	acquired when probing this device.
+>   *
+>   * An i2c_client identifies a single device (i.e. chip) connected to an
+>   * i2c bus. The behaviour exposed to Linux is defined by the driver
+> @@ -334,6 +336,7 @@ struct i2c_client {
+>  #if IS_ENABLED(CONFIG_I2C_SLAVE)
+>  	i2c_slave_cb_t slave_cb;	/* callback for slave mode	*/
+>  #endif
+> +	void *devres_group_id;		/* ID of probe devres group	*/
+>  };
+>  #define to_i2c_client(d) container_of(d, struct i2c_client, dev)
+>  
