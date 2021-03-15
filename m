@@ -2,95 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70B5833ADF1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641B333AE0D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbhCOIxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 04:53:18 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59835 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229607AbhCOIxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:53:08 -0400
-X-UUID: 875778eec4ff490fa22b8e6ed6d8d70a-20210315
-X-UUID: 875778eec4ff490fa22b8e6ed6d8d70a-20210315
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 766196605; Mon, 15 Mar 2021 16:53:04 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 15 Mar 2021 16:53:03 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 15 Mar 2021 16:52:57 +0800
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: [PATCH v12 0/7] soc: mediatek: SVS: introduce MTK SVS
-Date:   Mon, 15 Mar 2021 16:52:38 +0800
-Message-ID: <20210315085244.6365-1-roger.lu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S229704AbhCOI5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 04:57:08 -0400
+Received: from lucky1.263xmail.com ([211.157.147.130]:57778 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229614AbhCOI4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:56:36 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 73002D0F79;
+        Mon, 15 Mar 2021 16:56:11 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13109T139929564739328S1615798570035027_;
+        Mon, 15 Mar 2021 16:56:11 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <bb98c2b9af4f7bd12a95f263a5a8b7f1>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: mturquette@baylibre.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Elaine Zhang <zhangqing@rock-chips.com>
+To:     mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+Subject: [PATCH v5 0/4] clk: rockchip: add clock controller for rk3568
+Date:   Mon, 15 Mar 2021 16:56:04 +0800
+Message-Id: <20210315085608.16010-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
-2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by
-get_cpu_device(). After retrieving subsys device, SVS driver does
-device_link_add() to make sure probe/suspend callback priority.
-3. SVS dts refers to reset controller [4] to help reset SVS HW.
+Add the clock tree definition for the new rk3568 SoC.
 
-#mt8183 SVS related patches
-[1] https://patchwork.kernel.org/patch/11193513/
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201013102358.22588-2-michael.kao@mediatek.com/
-[3] https://patchwork.kernel.org/project/linux-mediatek/patch/20200306041345.259332-3-drinkcat@chromium.org/
+Change in V5:
+[PATCH v5 1/4]: No change.
+[PATCH v5 2/4]: No change.
+[PATCH v5 3/4]: fix up the warning:
+		>> drivers/clk/rockchip/clk-rk3188.c:187:67: warning:
+		>> missing braces around initializer [-Wmissing-braces]
+		187 | static const struct rockchip_cpuclk_reg_data
+		rk3188_cpuclk_data = {
+[PATCH v5 4/4]: No change.
 
-#mt8192 SVS related patches
-[1] https://patchwork.kernel.org/patch/11193513/
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201223074944.2061-1-michael.kao@mediatek.com/
-[3] https://lore.kernel.org/patchwork/patch/1360551/
-[4] https://patchwork.kernel.org/project/linux-mediatek/patch/20200817030324.5690-5-crystal.guo@mediatek.com/
+Change in V4:
+[PATCH v4 1/4]: No change.
+[PATCH v4 2/4]: No change.
+[PATCH v4 3/4]: No change.
+[PATCH v4 4/4]: Drop parenthesis and module alias.
 
-changes since v11:
-- update mtk svs dt-bindings only.
+Change in V3:
+[PATCH v3 1/4]: Fix some code styles.
+[PATCH v3 2/4]: No change.
+[PATCH v3 3/4]: No change.
+[PATCH v3 4/4]: No change.
 
-Roger Lu (7):
-  [v12,1/7]: dt-bindings: soc: mediatek: add mtk svs dt-bindings
-  [v12,2/7]: arm64: dts: mt8183: add svs device information
-  [v12,3/7]: soc: mediatek: SVS: introduce MTK SVS engine
-  [v12,4/7]: soc: mediatek: SVS: add debug commands
-  [v12,5/7]: dt-bindings: soc: mediatek: add mt8192 svs dt-bindings
-  [v12,6/7]: arm64: dts: mt8192: add svs device information
-  [v12,7/7]: soc: mediatek: SVS: add mt8192 SVS GPU driver
+Change in V2:
+[PATCH v2 1/4]: Convert rockchip,rk3568-cru.txt to YAML,
+                And update commit message.
+[PATCH v2 2/4]: No change.
+[PATCH v2 3/4]: Use arrays to support more core independent div
+settings.
+[PATCH v2 4/4]: Adapter [PATCH v2 3/4] changes.
 
- .../bindings/soc/mediatek/mtk-svs.yaml        |   89 +
- arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   18 +
- arch/arm64/boot/dts/mediatek/mt8192.dtsi      |   34 +
- drivers/soc/mediatek/Kconfig                  |   10 +
- drivers/soc/mediatek/Makefile                 |    1 +
- drivers/soc/mediatek/mtk-svs.c                | 2492 +++++++++++++++++
- 6 files changed, 2644 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
- create mode 100644 drivers/soc/mediatek/mtk-svs.c
+Elaine Zhang (4):
+  dt-binding: clock: Document rockchip,rk3568-cru bindings
+  clk: rockchip: add dt-binding header for rk3568
+  clk: rockchip: support more core div setting
+  clk: rockchip: add clock controller for rk3568
+
+ .../bindings/clock/rockchip,rk3568-cru.yaml   |   60 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-cpu.c                |   53 +-
+ drivers/clk/rockchip/clk-px30.c               |    7 +-
+ drivers/clk/rockchip/clk-rk3036.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3128.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3188.c             |   14 +-
+ drivers/clk/rockchip/clk-rk3228.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3288.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3308.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3328.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3368.c             |   14 +-
+ drivers/clk/rockchip/clk-rk3399.c             |   14 +-
+ drivers/clk/rockchip/clk-rk3568.c             | 1725 +++++++++++++++++
+ drivers/clk/rockchip/clk-rv1108.c             |    7 +-
+ drivers/clk/rockchip/clk.h                    |   54 +-
+ include/dt-bindings/clock/rk3568-cru.h        |  926 +++++++++
+ 18 files changed, 2846 insertions(+), 78 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3568.c
+ create mode 100644 include/dt-bindings/clock/rk3568-cru.h
+
+-- 
+2.17.1
+
 
 
