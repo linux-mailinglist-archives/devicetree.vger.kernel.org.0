@@ -2,157 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 080A333AD94
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:34:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05CBD33AD83
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 09:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbhCOIeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 04:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59040 "EHLO
+        id S229467AbhCOIc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 04:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhCOIdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:33:49 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A694C06175F
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 01:33:49 -0700 (PDT)
-Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eaff:9701:b4db:50a7:6f83:328f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id E02211DDFEA;
-        Mon, 15 Mar 2021 09:25:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1615796745;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=L5b8W1wvXvezpB7EzgV2HdjsVQ16QiHtehmNZ6HrL3s=;
-        b=xq2c5TIwxyA1J4rynIh2JX4do9qWTrOMOuRx58PHIsambxodkAq/PuXwzZsOOYutcgSzLu
-        fkRQ4lOHPqECu/51xH+PN0TuvUkrZJgZEV5IsHNiRRJEV364SAMxeTJYnIJPk4y8+My78C
-        +7bdctW+uzILBDhrs+2780HhyzF4cIUna7BBiVNcip3gfzbIgs86SVVO5a9VddK/g6GxXT
-        qb3rL24OG3ezDHVaQsE2FZDV0gEWUKVVI77QaDy3LYLCj3wbJ08vp6WPT7xT8RwWnPMiHd
-        6r/45hKkWZzJLhngLwR5hpSFa8p0PT69LBZhLhTMLYRpw/jJ+W7Bn/mJsw3Nuw==
-From:   Sander Vanheule <sander@svanheule.net>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        Sander Vanheule <sander@svanheule.net>,
-        Bert Vermeulen <bert@biot.com>
-Subject: [PATCH 1/2] dt-bindings: gpio: Binding for Realtek Otto GPIO
-Date:   Mon, 15 Mar 2021 09:23:40 +0100
-Message-Id: <20210315082339.9787-2-sander@svanheule.net>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210315082339.9787-1-sander@svanheule.net>
-References: <20210315082339.9787-1-sander@svanheule.net>
+        with ESMTP id S229778AbhCOIcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 04:32:20 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE90C061574;
+        Mon, 15 Mar 2021 01:32:20 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id d16so24410781oic.0;
+        Mon, 15 Mar 2021 01:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2Xc8iWp49pRCqQGzsIqMb2DIrVOIt3ZqYfU4w0wGIrU=;
+        b=GDWKOh+B5y5t4/3l3yPKFwEhAjqYs/TZjHkCVXlV0O5nKu59tfqDo5xBB2Mo9JOPvK
+         okH4VBOpblr2ZfjC7Eso7fMslf1YJ9yDz2q5FN0XMGtnyNtNTQN98ZygQST/4X/1HHFD
+         OEgrswE70/6NSHVAMIl/YxeAc/+ZRQOtSowZcC6wS16B+RSclD5BMLIHA8NZ0bsKcTPt
+         dt1VWC8o+b6y1h58MrVXiLrtF5tL9j1sMJNUjgFdLgcLA6k8gK43tiWPD3FM1fgKvMaa
+         AEfBLtL1/WT2GFVnKhZ6zKp1olK/EkpKBTD8DlScG4PrX56mPJ2+uye3tJAZVmBpkrUX
+         2aug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2Xc8iWp49pRCqQGzsIqMb2DIrVOIt3ZqYfU4w0wGIrU=;
+        b=fAjOWaXrBQJVHztMkUFO5Q2cUzW+zU1jkFN2daKLY10DhP8/hHFRtxchh3wHxsCDY+
+         K1SXCsI2rtjDPY53xqdkkxnykKOCvm08GZZ962ZdZpfQ2Iz5aOsftd1iALejyXuQ+i7y
+         nziiveVzdNqyXBGEGiUmhPQ+S1q/6Fit+R7yh0YRQCv8bbc5v8c4OZokchxIr30FUyUm
+         p/EetNFKe6I+jCoFutOkWW5sMe776RKePjGxIybgSSK+saOY6K3VMfYWWdYVTCBDta5d
+         Y9OgU2r3xhp00SunPwn5mZMcfjkBf0XnZ4oIMTcGluCYUd6qJxlYrqeuycZGkphqfQxd
+         PfwA==
+X-Gm-Message-State: AOAM533HoJ5mxFPNNODeVQtHCQIcnCLJmOgmVozwKV/Y+8uOfa8t2d+q
+        hudJ2DuNsbd3nazIw7HwG3KmUqplwT6nF9f0PGxJNBKk
+X-Google-Smtp-Source: ABdhPJyO+mOa+gxnocPi6HIzMptZHuWk+C0MkPWlu4+aCtCTlfpX0o6wYkmE2HSEcPfKNw6Y7EU2AW5e0P/FnPczdFU=
+X-Received: by 2002:aca:4188:: with SMTP id o130mr14815413oia.53.1615797139844;
+ Mon, 15 Mar 2021 01:32:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
+In-Reply-To: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
+Date:   Mon, 15 Mar 2021 14:02:08 +0530
+Message-ID: <CAKfKVtHu69b+boMXPOOca5xmA2D4fbQ+3WxDhYnD93SamB70xA@mail.gmail.com>
+Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic reconfiguration
+To:     Zhengxun Li <zhengxunli.mxic@gmail.com>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        devel@driverdev.osuosl.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, git@xilinx.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, zhengxunli@mxic.com.tw,
+        Julien Su <juliensu@mxic.com.tw>, slwu@mxic.com.tw
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding description for Realtek's GPIO controller found on several
-of their MIPS-based SoCs (codenamed Otto), such as the RTL838x and
-RTL839x series of switch SoCs.
+Hi Zhengxun,
+Thanks for the review.
 
-A fallback binding 'realtek,otto-gpio' is provided for cases where the
-actual port ordering is not known yet, and enabling the interrupt
-controller may result in uncaught interrupts.
+On Mon, Mar 15, 2021 at 12:37 PM Zhengxun Li <zhengxunli.mxic@gmail.com> wr=
+ote:
+>
+> Hi Shubhrajyoti,
+>
+> My name is Zhengxun and I am the engineer from Macronix. We are
+> using the platform PicoZed 7015/7030 SOM (System On Module),
+> which is based on Xilinx Zynq=C2=AE-7000 All Programmable (AP) SoC to
+> verify our Flash driver. Of course, we are also using your clock
+> wizard, our version seems to be v5.2, but something went wrong.
+>
+> +static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long ra=
+te,
+> + unsigned long parent_rate)
+> +{
+> + int err;
+> + u32 value;
+> + unsigned long flags =3D 0;
+> + struct clk_wzrd_divider *divider =3D to_clk_wzrd_divider(hw);
+> + void __iomem *div_addr =3D divider->base + divider->offset;
+> +
+> + if (divider->lock)
+> + spin_lock_irqsave(divider->lock, flags);
+> + else
+> + __acquire(divider->lock);
+> +
+> + value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
+> +
+> + /* Cap the value to max */
+> + min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
+> +
+> + /* Set divisor and clear phase offset */
+> + writel(value, div_addr);
+> + writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
+>
+> Why phase always set to zero? We want to support DTR operation in
+> Flash driver. Can you add a set_phase function to adjust the phase?
+>
+> + /* Check status register */
+> + err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
+> + value, value & WZRD_DR_LOCK_BIT_MASK,
+> + WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+> + if (err)
+> + goto err_reconfig;
+> +
+> + /* Initiate reconfiguration */
+> + writel(WZRD_DR_BEGIN_DYNA_RECONF,
+> + divider->base + WZRD_DR_INIT_REG_OFFSET);
+> +
+> + /* Check status register */
+> + err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
+> + value, value & WZRD_DR_LOCK_BIT_MASK,
+> + WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+>
+> According to pg015-clk-wiz.pdf, Clocking Wizard v5.2 and later, need to w=
+rite
+> 0x00000007 followed by 0x00000002 into Clock Configuration Register 23, t=
+o
+> consolidate the redundant bits that the IP has upgraded, right?
+>
+> Can you compatible to v5.2?
 
-Signed-off-by: Sander Vanheule <sander@svanheule.net>
----
- .../bindings/gpio/gpio-realtek-otto.yaml      | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
+Will fix in the next version.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml b/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
-new file mode 100644
-index 000000000000..3e8151e3a169
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-realtek-otto.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek Otto GPIO controller
-+
-+maintainers:
-+  - Sander Vanheule <sander@svanheule.net>
-+  - Bert Vermeulen <bert@biot.com>
-+
-+description: |
-+  Realtek's GPIO controller on their MIPS switch SoCs (Otto platform) consists
-+  of two banks of 32 GPIOs. These GPIOs can generate edge-triggered interrupts.
-+  Each bank's interrupts are cascased into one interrupt line on the parent
-+  interrupt controller, if provided.
-+  This binding allows defining a single bank in the devicetree. The interrupt
-+  controller is not supported on the fallback compatible name, which only
-+  allows for GPIO port use.
-+
-+properties:
-+  $nodename:
-+    pattern: "^gpio@[0-9a-f]+$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - realtek,rtl8380-gpio
-+              - realtek,rtl8390-gpio
-+          - const: realtek,otto-gpio
-+      - const: realtek,otto-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 32
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#gpio-cells"
-+  - gpio-controller
-+
-+additionalProperties: false
-+
-+dependencies:
-+  interrupt-controller: [ interrupts ]
-+
-+examples:
-+  - |
-+      gpio@3500 {
-+        compatible = "realtek,rtl8380-gpio", "realtek,otto-gpio";
-+        reg = <0x3500 0x1c>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        ngpios = <24>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        interrupt-parent = <&rtlintc>;
-+        interrupts = <23>;
-+      };
-+
-+...
--- 
-2.30.2
-
+>
+> Thanks,
+> Zhengxun
