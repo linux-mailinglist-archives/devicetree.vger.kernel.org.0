@@ -2,115 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F0833C983
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 23:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE0C33C9BE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 00:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231758AbhCOWum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 18:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
+        id S230134AbhCOXK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 19:10:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231370AbhCOWul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 18:50:41 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332CFC06175F
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 15:50:41 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id t18so9594113pjs.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 15:50:41 -0700 (PDT)
+        with ESMTP id S232455AbhCOXK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 19:10:56 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2650C06174A;
+        Mon, 15 Mar 2021 16:10:55 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id h18so11000819ils.2;
+        Mon, 15 Mar 2021 16:10:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=R2+ovV6L3in/MumK+lTJGLQ5/2i+MFlHYR2x0Kz43Uk=;
-        b=Kx+vExQNwcrCcz/1VobS6pnZvxjXg3JIuqQQh4w+D0sdgaaWHUWrYxM1EmMqJTZoez
-         I4w8XUY2s/aa6lYc/pfrSzcMBQORMijou/ifDRycyWarXqsLBxFYdHvVeWuvQEo5rrYf
-         g+0gBIibn5kjjFd/0YexcLsUVmF2/Ok0Ab6hQ=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1/8bjLHF9FtwMFaIrmHVFR/MayJhXwBukDib3cdY7GY=;
+        b=ArUXuTwfe8COX+YyUDzgYs7tL4IE2ubSbkRBYlCZOMSbT2GdqG1uj6sTeUJgdNdUJM
+         oGbVsgw2CClsa0ULMBnC31/ovkbf0KM+xsdXHXFbejIHVahNiTyBN2h/XyAAaFWJfsDQ
+         ZWtZ3yqz0G3PyIta1U77o9zaaz9DfA8P1maD8jBJWj5y/cRXJWKp87pj991BTyH+YeoD
+         H45xdxbpOWQPlX+pyL/RdQd0+R6gVLdtCCfn8JCJTHOgsXWhLlvzL1+r60dSiYh+0KLp
+         1wrIGnSRZgFFzTlkve80Ki7xdCVHajOvzs1RBurxDSQrTNP0LeInFHVRsghzj1WR8rVt
+         JQRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=R2+ovV6L3in/MumK+lTJGLQ5/2i+MFlHYR2x0Kz43Uk=;
-        b=UgvKhaRhusm+0HicmJCd4ED2b17L3qIPHwt9RXDJfXRDIst4FoTM7hhG84il2hkHvz
-         QLxW05bQiUauj7vuzJYocrU17pqkSCIw60s0ejdfSCmGndV5GaRAZTisBWJbCL5LVDIx
-         dtRQcY7ZbsqDbfTnR0Ward16no6kFzesVOrtFbboHXu9ftloDkEXiZlTg/oKkEthRgGT
-         uLj3mwupCUL4VLpQo9Tlw2u9Zo+WjX9VJJ1kl7LUJ5T659SD1zPVNaRRYoj6X+cpSOGp
-         aBVUXULZRsffkoFB7kCabhd/UwQMjnh+UOm7HjIFOsj39cXA80VPuQPrNBacUaZuRQCk
-         nvCw==
-X-Gm-Message-State: AOAM533PYFbwXriZNEFMinG/PpezQfy8O+mXB5nUS9HCcCGYXI2UcjcD
-        BmrcNmE6gQ8V9K9Ju5tm8NQLQA==
-X-Google-Smtp-Source: ABdhPJy+q49KIQaR8QnZDHxJ8pD9j0Svh6so5BA+3ZGasQchet21dplnLkDJwDQU4EEkdHLC4GQfmw==
-X-Received: by 2002:a17:90a:3cc6:: with SMTP id k6mr1447789pjd.212.1615848640724;
-        Mon, 15 Mar 2021 15:50:40 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:9867:b969:5d4f:e017])
-        by smtp.gmail.com with UTF8SMTPSA id c24sm13631741pfi.193.2021.03.15.15.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Mar 2021 15:50:40 -0700 (PDT)
-Date:   Mon, 15 Mar 2021 15:50:39 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7180: Add CoachZ rev3
-Message-ID: <YE/kv1CwPoEGs9O8@google.com>
-References: <20210312183228.550779-1-mka@chromium.org>
- <20210312103211.v2.3.I95b8a63103b77cab6a7cf9c150f0541db57fda98@changeid>
- <CAD=FV=Xq4bd8j3_to_9rJmyqWTi-78OWVCd0meaJ9e_pmOH+Rg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1/8bjLHF9FtwMFaIrmHVFR/MayJhXwBukDib3cdY7GY=;
+        b=UzIbyJDLL/wxIA9GeMmnI/xSxt9/SzdxyygTC3U0yGtWWhSo4GuQp5VE0JM5qCyqdw
+         RzyzxHPDpKulzeH9j/9sMvzSSOhbcaU/LDsnYqwDaD+BHgnef3Kd23RaluntQsvQnvMY
+         E8xmQt/nmezLGJl0dcDstZCCXOuxDc2QBAF8Mq8MfjD/om07Lzrj49lk8/BryIKI4zjF
+         Mi0xoCAO89c7EBUk+6TTF8mVj97RZgsjGKHAqxN+SrJErUcYmV3hrm6cKlwuUrdFxHSc
+         5Y2K6ltGbv88gzeXSjQ9S3zfQPlBs+h39xjUz/y5vzpB2rxgXuqmxJm6sigf566SpQzF
+         rHdQ==
+X-Gm-Message-State: AOAM530wSmBU7s79kf5XZv6y+DYegUyLsS2qML8KQulXRFDMbp66Y9wr
+        p2guPfCpnxTvxZpJShBDlh54cwpFHzgP47LmpoU=
+X-Google-Smtp-Source: ABdhPJyOYSFpXTa2hRSPkxFSDK+rvPWmRI8qKW6ZsEElM5ncKyvXcpmfHxslLd2IPthmEFnvRPuMpJPXT3yxupgu674=
+X-Received: by 2002:a92:1e12:: with SMTP id e18mr1567010ile.270.1615849855463;
+ Mon, 15 Mar 2021 16:10:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=Xq4bd8j3_to_9rJmyqWTi-78OWVCd0meaJ9e_pmOH+Rg@mail.gmail.com>
+References: <1615801436-3016-1-git-send-email-dillon.minfei@gmail.com>
+ <1615801436-3016-3-git-send-email-dillon.minfei@gmail.com> <20210315162645.GA981570@robh.at.kernel.org>
+In-Reply-To: <20210315162645.GA981570@robh.at.kernel.org>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Mon, 15 Mar 2021 23:10:19 +0800
+Message-ID: <CAL9mu0+19AVE7NidQcRukUhBkrMQZ0J_Tw15oz-4WiZq9RZdig@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] dt-bindings: arm: stm32: Add compatible strings
+ for ART-PI board
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        linux@armlinux.org.uk, Vladimir Murzin <vladimir.murzin@arm.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        erwan.leray@foss.st.com,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        gregkh@linuxfoundation.org, erwan.leray@st.com,
+        linux-serial@vger.kernel.org, afzal.mohd.ma@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 02:49:04PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Mar 12, 2021 at 10:32 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Tue, Mar 16, 2021 at 12:26 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, 15 Mar 2021 17:43:49 +0800, dillon.minfei@gmail.com wrote:
+> > From: dillon min <dillon.minfei@gmail.com>
 > >
-> > CoachZ rev3 uses a 100k NTC thermistor for the charger temperatures,
-> > instead of the 47k NTC that is stuffed in earlier revisions. Add .dts
-> > files for rev3.
+> > Art-pi based on stm32h750xbh6, with following resources:
 > >
-> > The 47k NTC currently isn't supported by the PM6150 ADC driver.
-> > Disable the charger thermal zone for rev1 and rev2 to avoid the use
-> > of bogus temperature values.
+> > -8MiB QSPI flash
+> > -16MiB SPI flash
+> > -32MiB SDRAM
+> > -AP6212 wifi, bt, fm
 > >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > detail information can be found at:
+> > https://art-pi.gitee.io/website/
+> >
+> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
 > > ---
+> >  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
 > >
-> > Changes in v2:
-> > - added CoachZ rev3
-> > - updated subject and commit message
-> >
-> >  arch/arm64/boot/dts/qcom/Makefile              |  2 ++
-> >  .../boot/dts/qcom/sc7180-trogdor-coachz-r1.dts |  9 +++++++++
-> >  .../dts/qcom/sc7180-trogdor-coachz-r2-lte.dts  |  4 ++--
-> >  .../boot/dts/qcom/sc7180-trogdor-coachz-r2.dts | 13 +++++++++++--
-> >  .../dts/qcom/sc7180-trogdor-coachz-r3-lte.dts  | 18 ++++++++++++++++++
-> >  .../boot/dts/qcom/sc7180-trogdor-coachz-r3.dts | 15 +++++++++++++++
-> >  6 files changed, 57 insertions(+), 4 deletions(-)
-> 
-> So what you have here is good and we could land it. Feel free to add
-> my Reviewed-by tag if you want.
-> 
-> ...but I want to propose an alternative. It turns out that these days
-> coachz-r1 and coachz-r2 are actually the same. The only reason both
-> exist is because <https://crrev.com/c/2733863> ("CHROMIUM: arm64: dts:
-> qcom: sc7180: add dmic_clk_en back") wasn't the proper inverse of
-> <https://crrev.com/c/2596726> ("CHROMIUM: arm64: dts: qcom: sc7180:
-> remove dmic_clk_en").
-> 
-> It sorta squashes two changes into one, but if you combined your
-> change with one that folded "-r1" into "-r2" it would actually make a
-> smaller / easier to understand change, essentially, it would be:
-> - just a rename of the "-r2" file to be "-r3"
-> - add "-rev2" into the list of compatibles in "-r1" file.
-> - add the "disable" into the "-r1" file.
+>
+>
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>
+> If a tag was not added on purpose, please state why and what changed.
+>
+Sorry for that, i forgot to remove patch 2 from v2/v3 theris, there
+are no changes in v2/v3. please just ignore it , thanks.
 
-I agree, if rev1 and rev2 are the same in terms of the DT they
-should use the same file(s).
+Dillon,
+Best Regards.
