@@ -2,139 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23FC933BF61
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC3933BF75
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:11:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233877AbhCOPDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 11:03:54 -0400
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:51795 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239019AbhCOPDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 11:03:49 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 373C02385;
-        Mon, 15 Mar 2021 11:03:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 15 Mar 2021 11:03:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=imv4IetqNlL67VMIjffr1KT6NlK
-        C85EkumX2HdaLpqQ=; b=iLddbCBnHq2pKqGeEzFQaj68uwOm2kDuuedkz6fwWrI
-        xlFIpqIOgF/E4HeeYiKmLuOYqW5rx22rHwX1kgRYKGZ3gXMTnopODCXuse6Jr+Sa
-        MnOYMwl9NkAdmOwl5j8NqDLqgbwhAnJJId+cEOxeJjGAZrjyMzQSYO/L+apAOLV9
-        OUnOEoTroWFxEBjY6fpYmcnucwM1tCNljN9ttUcZaGkes+32f5pO5C+VojfA66V4
-        98uebtcO20452m+kM3xcbpYIHlnzXLqA0d2LVsHpw43aKXIGyDwAfCqKKC548Fuj
-        1lVE4PQO3aLGpO7juduPMA0gwCq4WN8q6BuQGfMod+A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=imv4Ie
-        tqNlL67VMIjffr1KT6NlKC85EkumX2HdaLpqQ=; b=D7oG4rMpBZSgdfyypVnnrU
-        Um7i+BemRlI+fPRMioITdWTfqeBDICwVebIXIyswa0xRiA0KuVkdm+FMhq+5OFVJ
-        We//tLopWcv1IIq+DTKApUO9bAXiOMyh2CQgQKlsd0zjH1sDYSlLnKENGAK3OUP/
-        1gceNs4qel8JsQba72pO5/rhh+h3e62nCxqAz4crJymg5LgAQs1cqCkL25hlcfpz
-        I5jfpMFN5XAIgrsnz/RF/zbezkQZ7Vv7sh81a4iaL/Q+oN8dDQu1Hrtexve5TAn0
-        q2SEFGfBKyqeroJjx/QIX4V56jSS1W+Ln2i+Rkz2bN1unVpftrXeGQxAqNRe6bVg
-        ==
-X-ME-Sender: <xms:UXdPYJFS5MDvL6Q216fhJJttxPIYIu4YPMMcO8UEaF1BoR2KZkalDw>
-    <xme:UXdPYOTuhoed_Jf7kK9ARIyKT9ehBI43lJTbZv1QXK5tb10e-VwtWh4YOQQiPmjvf
-    MHKRDB2YAt5c5_GimQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddvledgjeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:UXdPYICEaYJjvJ5gCM4qYBhXUnJ5OOjwbo1gdWcj6om8fxQidyETOw>
-    <xmx:UXdPYG1Xozsliz2O950mfgjMC5XJdypsgMslTRysggOcEg205apSeg>
-    <xmx:UXdPYOUwk1JVsax-YkmKfZ5wAEeDEUPVUGNqi5SgqPT9Q44KrIO4aQ>
-    <xmx:UndPYI6QFFnThVOFKpXrASgXvIE5IlD9agnR0TY4V0Aag2TAeBIg4A>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 9F9EB1080063;
-        Mon, 15 Mar 2021 11:03:45 -0400 (EDT)
-Date:   Mon, 15 Mar 2021 16:03:43 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Add power button
-Message-ID: <20210315150343.uzq46th6eecdr4e2@gilmour>
-References: <20210306203611.15534-1-jernej.skrabec@siol.net>
- <20210308130506.v35gjviwknr5hat5@gilmour>
- <2517400.0zBCEEo8qi@kista>
+        id S231469AbhCOPKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 11:10:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231893AbhCOPKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 11:10:40 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AD9C061762
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:10:40 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id u20so16651591lja.13
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:10:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZKKaLOkrBz3/GtouDwoCOZ4KdSWppOkZ3d+IwHT4siU=;
+        b=c6eKxW5xWF2yHUtA3SSpLusB0wRtKknAR/Nh5Tr2gXXnW44RK0sLvd+3h6Pz93DHNY
+         w19hFNTgapAFNIKubbphTkJRAE6WEsngPV47qDO9cFouoUxk5Tvp9BGFJdOdZrmzON24
+         f3CoJSaBbg5BKn3HlofWSf/wJP5Q5X7y0oc9OVlbSrPzs+TZfazUn9F1N9s5lEpQ6Rk9
+         IxOin93qBmQgRxpjBvYq6CseUksefDrn58hpWGxrdLPXBrMLlb5BtCMtewlqhlgnNFld
+         77tzY1zS2wC0OoUy/or1jzRZzd0YBL+GYzvpbNGCH0VMuiivv3yqPkmII7SAsUDPaUdx
+         UGJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZKKaLOkrBz3/GtouDwoCOZ4KdSWppOkZ3d+IwHT4siU=;
+        b=bFlTsOFaciYKDMUdBaBp+puiujGtwjeTtIo2LBx4djbykZD9wMwjgWEdLMhjk9XO9p
+         vcddINW6kQbZHfmlg4VM9LZWQQzjM8XF0eS/6+dQTXAxErJV+3+OBjS2vsEDMpbf3igU
+         EVG+f8l77YOLZ5QSmpXMZnbYtfOKYzEkEI0JjHZ2W3KM9JVf/L9Gi5szRanJAL//SigU
+         gnAAYSKQ1TsaT1mUXWrAaq9WHn4U4YG1bzzKtY2sGyhe8H0F57Fb6IXBFyvgEU9gq+rK
+         NIwA5FQHVghOg0nQnyin/jeNO2Gj7frYEJW/oz3Fcu+PHNK9ZAjIrlsGAjfibiLktwOf
+         J6qw==
+X-Gm-Message-State: AOAM531e16h9SoipdF2OpdCwy1VJDxR/497EHA9bpu2yE2W7XzH7yA66
+        7B4xM4a8dxlh+Fag2fD5BWU2BvjROxzwRKJ9rBZbPg==
+X-Google-Smtp-Source: ABdhPJzFKvnw8E5Zqkbhku2Z16o1dIIxQeveiTHejHx5D5hme652oeKJbanFEjDTx3Ueaw0f3mDtMGe8gxtiixlajpU=
+X-Received: by 2002:a2e:864a:: with SMTP id i10mr10417943ljj.467.1615821038699;
+ Mon, 15 Mar 2021 08:10:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mfhruzbnsooaoye6"
-Content-Disposition: inline
-In-Reply-To: <2517400.0zBCEEo8qi@kista>
+References: <20210315082339.9787-1-sander@svanheule.net> <20210315082339.9787-3-sander@svanheule.net>
+In-Reply-To: <20210315082339.9787-3-sander@svanheule.net>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 15 Mar 2021 16:10:27 +0100
+Message-ID: <CACRpkdZ7zWQPBgQ+AjFM7up8x8HJES2EDfBKGmPU9LJwWzB8EA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: Add Realtek Otto GPIO support
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bert Vermeulen <bert@biot.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 15, 2021 at 9:26 AM Sander Vanheule <sander@svanheule.net> wrote:
 
---mfhruzbnsooaoye6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Realtek MIPS SoCs (platform name Otto) have GPIO controllers with up to
+> 64 GPIOs, divided over two banks. Each bank has a set of registers for
+> 32 GPIOs, with support for edge-triggered interrupts.
+>
+> Each GPIO bank consists of four 8-bit GPIO ports (ABCD and EFGH). Most
+> registers pack one bit per GPIO, except for the IMR register, which
+> packs two bits per GPIO (AB-CD).
+>
+> Although the byte order is currently assumed to have port A..D at offset
+> 0x0..0x3, this has been observed to be reversed on other, Lexra-based,
+> SoCs (e.g. RTL8196E/97D/97F).
+>
+> Interrupt support is disabled for the fallback devicetree-compatible
+> 'realtek,otto-gpio'. This allows for quick support of GPIO banks in
+> which the byte order would be unknown. In this case, the port ordering
+> in the IMR registers may not match the reversed order in the other
+> registers (DCBA, and BA-DC or DC-BA).
+>
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
 
-Hi,
+Overall this is a beautiful driver and it makes use of all the generic
+frameworks I can think of. I don't see any reason not to merge
+it so:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-On Thu, Mar 11, 2021 at 10:59:35PM +0100, Jernej =C5=A0krabec wrote:
-> Hi!
->=20
-> Dne ponedeljek, 08. marec 2021 ob 14:05:06 CET je Maxime Ripard napisal(a=
-):
-> > Hi
-> >=20
-> > On Sat, Mar 06, 2021 at 09:36:11PM +0100, Jernej Skrabec wrote:
-> > > Beelink X2 has power button. Add node for it.
-> > >=20
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > ---
-> > >  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 11 +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boo=
-t/dts/
-> sun8i-h3-beelink-x2.dts
-> > > index 62b5280ec093..4a2cb072ecf6 100644
-> > > --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > > +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > > @@ -111,6 +111,17 @@ spdif_out: spdif-out {
-> > >  		#sound-dai-cells =3D <0>;
-> > >  		compatible =3D "linux,spdif-dit";
-> > >  	};
-> > > +
-> > > +	r_gpio_keys {
-> >=20
-> > Underscores are not valid for node names (and will trigger a dtc warning
-> > when running with W=3D1).
->=20
-> Unless I'm doing something wrong, I didn't get any warning with "make dtb=
-s=20
-> W=3D1". In fact many H3 boards have a node with this name and not a singl=
-e=20
-> warning is produced with this command for underscores (there are other=20
-> warnings though).
+The following is some notes and nitpicks, nothing blocking any
+merge, more like discussion.
 
-It looks like I've been remembering it wrong, and it's actually W=3D2 that
-reports it, but it's here nonetheless :)
+> +enum realtek_gpio_flags {
+> +       GPIO_INTERRUPTS = BIT(0),
+> +};
 
-Maxime
+I suppose this looks like this because more flags will be introduced
+when you add more functionality to the driver. Otherwise it seems
+like overkill so a bool would suffice.
 
---mfhruzbnsooaoye6
-Content-Type: application/pgp-signature; name="signature.asc"
+I would add a comment /* TODO: this will be expanded */
 
------BEGIN PGP SIGNATURE-----
+> +static inline u32 realtek_gpio_imr_bits(unsigned int pin, u32 value)
+> +{
+> +       return ((value & 0x3) << 2*(pin % 16));
+> +}
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYE93TwAKCRDj7w1vZxhR
-xYexAQDb6dkfEktXz1olTmB8ij8tEMvdw1+q+P4jn663TrYYlAEAwOCcYZI9M/W4
-PYGJSL4AaL7FgNeesPXOs7AB7A0KygU=
-=znPS
------END PGP SIGNATURE-----
+I would explain a bit about this, obviouslt it is two bit per
+line, but it took me some time to parse, so a comment
+about the bit layout would be nice.
 
---mfhruzbnsooaoye6--
+> +       unsigned int offset = pin/16;
+
+Here that number appears again.
+
+The use of GPIO_GENERIC and GPIO irqchip is flawless
+and first class.
+
+Thanks!
+Linus Walleij
