@@ -2,152 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C092233C5BC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B8633C5CC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232698AbhCOSeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 14:34:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53830 "EHLO mail.kernel.org"
+        id S232011AbhCOSgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 14:36:41 -0400
+Received: from z11.mailgun.us ([104.130.96.11]:34970 "EHLO z11.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231307AbhCOSdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 14:33:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B2D7B64F42;
-        Mon, 15 Mar 2021 18:33:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615833217;
-        bh=HVQWGqz8y8OqhhYyK2J1S+Va64nH3a8Cr9xCQdP2MqQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uAtWa8bOXn0C+MmuWGMXduycNNH402Y8ouR/4SD8TQmTPDv5iPINim3vk6cFbQqDb
-         Yz0dxH/oLIadSqaHmMXjc67Uh4+DsqS5uVnpj40/NXbrMKJq0zX758GPEb2FALADXQ
-         56MDIJpAILAP+bhCWL2l4L8hX/x6zq7Igg7W52b3oPCvt1NEkN/06klJ5UNFQxIyje
-         ch0f0DkgHwXTiuyV13Zedrp/XS0rlg8vDTs6+sUPnq1nj90K2cZxtZ90x6VcOagaxP
-         xuMyo5HPKT7Uknw1Q85xviKiJuCEADnB4bC6nkCJp4Rth/vst144aZwGI9A2wh3BXc
-         Vf/H3SReK8uBw==
-Received: by mail-ej1-f54.google.com with SMTP id jt13so68041394ejb.0;
-        Mon, 15 Mar 2021 11:33:36 -0700 (PDT)
-X-Gm-Message-State: AOAM532QJtI6jaszytuqaxnmPZQ1Ed0+dgKz/7Cu3+3OOEckGnwxuRGw
-        9SluR1Q/XDsH/h5ViMYSl8+E2O7HPbSWNh3NWA==
-X-Google-Smtp-Source: ABdhPJxI8/L+zDadqd2570zHOVYzPJl6UwW+Gh82WpewxDvgzPQMkPdZYN0C3TpR4gZ++HAnrYfx6sEr/K4R6Pbynbs=
-X-Received: by 2002:a17:906:2312:: with SMTP id l18mr25811201eja.468.1615833215265;
- Mon, 15 Mar 2021 11:33:35 -0700 (PDT)
+        id S230247AbhCOSgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 14:36:14 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615833374; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=SOhMJvCUMxeCHuFeJOED/fJMEsvrE6qD1pHAxAfCeqI=; b=nVK5Ifc2d4eRK238XfP34QX3GvF+YVlmfR+XqDBcyH+9AM7XmHJRLgPuStsxjnNCeJobmGvZ
+ SUq6y6OT4MQMPulyYn7d6nF/SIDQ/l1bPFC+ygHoqLYVbA/9J6a19l/Iv/f9P3UbW4J2TwDj
+ gDS51EY1A3O5apW/+rP9h/TNEpQ=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 604fa9181de5dd7b99aa8ecc (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 18:36:08
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DA980C43464; Mon, 15 Mar 2021 18:36:07 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CF45BC433C6;
+        Mon, 15 Mar 2021 18:36:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CF45BC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: [PATCHv2 0/4] Enable various hardware blocks on SC7280 SoC
+Date:   Tue, 16 Mar 2021 00:05:45 +0530
+Message-Id: <cover.1615832893.git.saiprakash.ranjan@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-17-sebastian.reichel@collabora.com>
-In-Reply-To: <20210312154357.1561730-17-sebastian.reichel@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 15 Mar 2021 12:33:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLn9Mo_hTuCEPapNz3cFHbC8NKHH0npYrnV+dC85pBAsQ@mail.gmail.com>
-Message-ID: <CAL_JsqLn9Mo_hTuCEPapNz3cFHbC8NKHH0npYrnV+dC85pBAsQ@mail.gmail.com>
-Subject: Re: [PATCH 16/38] dt-bindings: power: supply: tps65217: Convert to DT
- schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Convert the binding to DT schema format.
->
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../power/supply/tps65217-charger.yaml        | 43 +++++++++++++++++++
->  .../power/supply/tps65217_charger.txt         | 17 --------
->  2 files changed, 43 insertions(+), 17 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
->  delete mode 100644 Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
->
-> diff --git a/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
-> new file mode 100644
-> index 000000000000..a33408c3a407
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/power/supply/tps65217-charger.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: TPS65217 Charger
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,tps65217-charger
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 2
+This series enables various hardware blocks such as LLCC, IPCC, AOSS QMP
+and Coresight on SC7280 SoC.
 
-We've lost info that was in the original binding. You could do
-something like this:
+Changes in v2:
+ * Rename qmp to power-controller (Stephen)
+ * Drop the ipcc mailbox dt-binding from this series and send it separately
+ * Collect review tags
 
-items:
-  - description: USB charger
-    const: 0
-  - description: AC charger
-    const: 1
+Sai Prakash Ranjan (4):
+  arm64: dts: qcom: sc7280: Add device tree node for LLCC
+  arm64: dts: qcom: sc7280: Add IPCC for SC7280 SoC
+  arm64: dts: qcom: sc7280: Add AOSS QMP node
+  arm64: dts: qcom: sc7280: Add Coresight support
 
-(Usually the interrupt values would be out of scope of the binding,
-but I guess here it makes some sense.)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 520 +++++++++++++++++++++++++++
+ 1 file changed, 520 insertions(+)
 
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: USB
-> +      - const: AC
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pmic {
-> +      charger {
-> +        compatible = "ti,tps65217-charger";
-> +        interrupts = <0>, <1>;
-> +        interrupt-names = "USB", "AC";
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt b/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
-> deleted file mode 100644
-> index a11072c5a866..000000000000
-> --- a/Documentation/devicetree/bindings/power/supply/tps65217_charger.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -TPS65217 Charger
-> -
-> -Required Properties:
-> --compatible: "ti,tps65217-charger"
-> --interrupts: TPS65217 interrupt numbers for the AC and USB charger input change.
-> -             Should be <0> for the USB charger and <1> for the AC adapter.
-> --interrupt-names: Should be "USB" and "AC"
-> -
-> -This node is a subnode of the tps65217 PMIC.
-> -
-> -Example:
-> -
-> -       tps65217-charger {
-> -               compatible = "ti,tps65217-charger";
-> -               interrupts = <0>, <1>;
-> -               interrupt-names = "USB", "AC";
-> -       };
-> --
-> 2.30.1
->
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
