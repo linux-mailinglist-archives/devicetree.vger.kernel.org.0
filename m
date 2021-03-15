@@ -2,108 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA23A33C4B6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2352033C4E5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:56:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbhCORl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 13:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233741AbhCORk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 13:40:57 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6A3C06174A
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:40:57 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id g14so8172917qvn.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:40:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mOb+Ef5KMaZtruDbTs1AgXiCk4ITTvmSiF0DYBBW3wg=;
-        b=Ufwx795stMYAiTib4EAh7trmxQj5/rNCEqzU91AFy+UTOVhYECw8KNZZJuk3ZRbNiZ
-         z3e02HQba2Ad3fyKBQ/K5QnKGm91r4+0mBbQ/M3/buzOt59CnYbWtnfPIjCJnvLRl4in
-         WgliiLxn+O9K62kOCJj9nHAJNZgFI1++wtCvw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mOb+Ef5KMaZtruDbTs1AgXiCk4ITTvmSiF0DYBBW3wg=;
-        b=P6zlnLI2dllggfMs1vUOA1Dv8uj8whof/BeMYD0/NBM1RMhqH1qpSrgWhs32EQXJYo
-         IODVPHvgH2AWHimGXIkllwvqkiCxpzfeYxbsxuOV4xNOFOJw51T35w8ue4Wdhxnv8EV8
-         AlCPklSUSY2IkXWLAdV+KyoirMVbhyvskgnLQ5ltBXqMOkE4ZWYgecisCVC+yKjZBDXs
-         jFUMyOAtk+BF04+fNt5XFj4G7yyrgFmv83q3a0k2JoW8AptKWMAxCjSddpUP9oRReqiw
-         2uaL9fTGp85bvv9EQM0YxAbOAejBojCac6e9PgovppCtmAx75tQDbMv1X1dx38QzPrR1
-         TVZA==
-X-Gm-Message-State: AOAM530RogXzBhsgD8LrUXiIOKcBiN5KLMKT172Ymy19vDa+9HTRcVWL
-        Fn3aHJkmmtmEtZaAozdsoNz5RFJa6ckefg==
-X-Google-Smtp-Source: ABdhPJwpeu3iZL5L5RLDM9GAiN33ymIMDY+mynAftdJKlOLYitkXU1zOWRATR9uF3MECr+rae3Fc6Q==
-X-Received: by 2002:a0c:e90d:: with SMTP id a13mr25907967qvo.36.1615830056778;
-        Mon, 15 Mar 2021 10:40:56 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id 66sm12999025qkk.18.2021.03.15.10.40.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Mar 2021 10:40:42 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id c131so34039065ybf.7
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:40:41 -0700 (PDT)
-X-Received: by 2002:a25:d3c5:: with SMTP id e188mr1132079ybf.345.1615830041273;
- Mon, 15 Mar 2021 10:40:41 -0700 (PDT)
+        id S231452AbhCOR4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 13:56:06 -0400
+Received: from mout.gmx.net ([212.227.17.22]:60269 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233932AbhCORsm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 13:48:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1615830427;
+        bh=Wu1d93KCJ6IyQLhxRr2vqIOFNnbH/Vo0DvKz84ETRYE=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=HgHBw/Fdkel0vjiVaxiIX7XF90iQnfZCEbaTk0uim5g5mMlYq6pkgGXLHj6M8FImA
+         lwqSUIfcAySCPCg4YLYNgs6y5EecWHD6u8aA4u0KDpmEoP1e322Ib7nBs3iJBleNvV
+         bPA3Mh/93bKeoGEF2wGllYLfP0l41kJtvhSlmiA4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MkHQX-1m1Gfi0fKj-00khDv; Mon, 15
+ Mar 2021 18:47:07 +0100
+Date:   Mon, 15 Mar 2021 18:47:05 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: arm: Convert nuvoton,npcm750 binding to
+ YAML
+Message-ID: <YE+dmdBBk0BZ7BIO@latitude>
+References: <20210313175321.2515675-1-j.neuschaefer@gmx.net>
+ <20210315162338.GA973222@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20210225221310.1939599-1-dianders@chromium.org>
- <20210225141022.1.Iad06142ceb8426ce5492737bf3d9162ed0dd2b55@changeid> <ee5695bb-a603-0dd5-7a7f-695e919b1af1@linaro.org>
-In-Reply-To: <ee5695bb-a603-0dd5-7a7f-695e919b1af1@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 15 Mar 2021 10:40:30 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V=pRSP4FkJciYkpHa=A8i_GjGTz64Kzz_h9eGFQeD1cA@mail.gmail.com>
-Message-ID: <CAD=FV=V=pRSP4FkJciYkpHa=A8i_GjGTz64Kzz_h9eGFQeD1cA@mail.gmail.com>
-Subject: Re: [PATCH 01/13] arm64: dts: qcom: sc7180: Update dts for DP phy
- inside QMP phy
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wJW7zCh7EAM97BVR"
+Content-Disposition: inline
+In-Reply-To: <20210315162338.GA973222@robh.at.kernel.org>
+X-Provags-ID: V03:K1:EFciw7A0hfwSHV60faKpptLnztVaI7IRnOFK+4pxzVJbcNXE3n0
+ gB3RYi3rWS0wabiuGgQn5DeljqgEA69dpTkJ/GY3pPsTWEyq6TFF5JgSckSr/7/tODcJbxe
+ b4mv5MUTbyEty1Zm0d+ggOGnABleyMGiZKjbLXGrWM3asaTpK2e7wqjsLDgEHMR/EFCZaqj
+ GKJAv7X8tGsEWjIRfYbpw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:AWMPOS+4Jfo=:vlwg8muDZXG2b7zp3jZ+8P
+ KUaSRCLzlislNDNsfCZFqElPlQe+TzbTedPDWWhRHvk9yUF4KahqHhNiCZZfcFEea96t8Tacm
+ 8KSsSR/yuLNElifRqihCslGy4984Je4cgnpW8h34/sIWujwkTRJ6fCJppbz1kqhU5iR4aTpnq
+ UfudejGoy4Yh9tN9sLJTg6BGCpePiUU7/0+bsrcjnTTyPyJv4Zsbnf5IFxfCQsQ26xDbSKiaM
+ ZGQUiIEIsibGzSML9RLxgTguWmA/wQnFHnxxNF1vzKHTwnfd4i2KDZOynork6i63od17mdVb7
+ 9xpWzZYWYlLLYWCMOXU2vVk9eCKy2hM6QptE4vNkj0K97ixPBwZQ7yw6Zn7FDQcElHQNpUTX6
+ Hx3w8O9JSubTaXJk4OmVhy4i/HEkrt5t7ByL5Dac1lVAH6I1hScuTrZltUaO2Ar/QCGwBK2RD
+ MSgZvv8YKVURWqdDAbmHLVAJyq1+YmyPSV4jVWgTuNvADUE5IZXavsxsHUlErdEeQptTQGynw
+ Vpvh26TzX4SEfeaHsnAjDM82j10W+75NztTUVSfaNUbqmpJsUnpCg/IEJSSt3fV+7fqdNFLQT
+ h4o4rmqEJm6jKg8oFNwXnH2ogGID289rmr01jWF6J8y3BSLg0tZT08nxUNcLXkGLbYlns9jSB
+ Qtc3J/05PaG2QYSPcrRdOdFC5n294wrwCDQ1eiEEy915zP/TvRlC2joiMt0EskhZ2jXwoVTRM
+ LSam75Q6TnlQoY8U0d2qOBzH6Tkl6pXKcPmcl0vU4+zzg/jOx/WGL2BboOWZQ0UyPXmFcrUEE
+ TqX9jnDQM2JLrLxR9e8FI4y8B3bHkKkCwUh/I+s8sUq983IWZxMEeazRFvWabCC72DkqFNUxN
+ GOfEpZLoiN4OZwRhN28w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Sat, Mar 13, 2021 at 4:28 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> >               usb_1_qmpphy: phy-wrapper@88e9000 {
-> > -                     compatible = "qcom,sc7180-qmp-usb3-phy";
-> > +                     compatible = "qcom,sc7180-qmp-usb3-dp-phy";
-> >                       reg = <0 0x088e9000 0 0x18c>,
-> > -                           <0 0x088e8000 0 0x38>;
-> > -                     reg-names = "reg-base", "dp_com";
-> > +                           <0 0x088e8000 0 0x38>,
->
-> Technically this should be 0x3c. Offset 0x38 is USB3_DP_COM_REVISION_ID3
-> (not used by the current driver though).
->
-> > +                           <0 0x088ea000 0 0x40>;
->
-> I think 0x40 is not enough here.
-> This is a serdes region and qmp_v3_dp_serdes_tbl contains registers
-> 0x148 and 0x154.
+--wJW7zCh7EAM97BVR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-OK!
+On Mon, Mar 15, 2021 at 10:23:38AM -0600, Rob Herring wrote:
+> On Sat, Mar 13, 2021 at 06:53:20PM +0100, Jonathan Neusch=C3=A4fer wrote:
+> > The general trend is to have devicetree bindings in YAML format, to
+> > allow automatic validation of bindings and devicetrees.
+> >=20
+> > Convert the NPCM SoC family's binding to YAML before it accumulates more
+> > entries.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+> >=20
+> > If someone else wants to be listed as the maintainer, please let me
+> > know.
+> >=20
+> >=20
+> > v3:
+> > - In this version, I removed the nuvoton,npcm750-evb compatible string
+> >   again. I had previously introduced it to simplify the binding a little
+> >   bit, but Tomer Maimon suggested to keep /compatible of
+> >   nuvoton-npcm750-evb.dts as-is (i.e. only use "nuvoton,npcm750", no
+> >   board-specific string).
+> >   Because of this change, I am not including Rob Herring's R-b tag.
+>=20
+> I think you should add nuvoton,npcm750-evb. Not so much for that board,=
+=20
+> but to ensure any additional boards get a board specific compatible.
 
-https://lore.kernel.org/r/20210315103836.1.I9a97120319d43b42353aeac4d348624d60687df7@changeid
+I'm inclined to agree and go back to v2, but I'd like to hear Tomer
+Maimon's opinion first.
 
--Doug
+> > v2:
+> > - https://lore.kernel.org/lkml/20210116010907.3475405-1-j.neuschaefer@g=
+mx.net/
+> >   https://lore.kernel.org/lkml/20210303154622.3018839-1-j.neuschaefer@g=
+mx.net/
+> > - Fix indentation to satisfy yamllint
+> > - Fix $schema line
+
+
+Thanks,
+Jonathan Neusch=C3=A4fer
+
+--wJW7zCh7EAM97BVR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBPnZEACgkQCDBEmo7z
+X9vAsA/8DydIOX3092DeZLSRBhpBXobXkng94K3NOlk7BOv5bSQH/PQfBGfwrkqo
+bDhN8p6nFJoSf3jkD3zEhhnq0A4clDq33f7CEMhU+H8jb1fLCRM+HaMthSJ5BtbW
+gxO9fZZ0Sk+PO1bRCdWRF7hWY2C1SPQh9eWZPiNRDr+qSu+Y/ofM5gEMN/ftsSSD
+p1gfhsFHbTrwapkZigDHuiDxEsKpflus2GX6H+e4nE3S2J9DQJqlG0e4c0pV/1SY
+I07cfIpqNCqO9uEePGKFyfBjYHOjHIhiKDHf9NVgJc1eCH4zoSWnEjJe8xq4Sk9G
+4rb37xQrKvrqtwUeKhxnKlWLj2DVjixO0RvKH/NPad/L1YBz9P0vbPeUtMG9XjfH
+iRnphcVkpivnlmDD3TN5xjjYwjXDLOf2nKHAjs5+cNhmJzooS9vB4zb9LnGTolXk
+DTII7K3O9yU1raGXU7dnXENB54FQRFo4NB4Z5U9lRuTy1CQSmSyC6uE6RELJKPpJ
+RDTFoHz3Lh2kmnO9Ayu/jD4vcrc6d4HKMhxJwO+J2Ka3ADWByNH+1VAUC74AoGqy
++borMy7d+zPbtYZhBHXIPSnFdPGpPk5fzdsQoWeeh8H7vdri0HFu3bnKBctJ3g65
+9I0PBhN45wKEVYXoD0rla09TGgRHVROtFIE+LjVHv+R6mEmegKM=
+=bzH7
+-----END PGP SIGNATURE-----
+
+--wJW7zCh7EAM97BVR--
