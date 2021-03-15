@@ -2,159 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 487BB33C12D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C6333C14D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233451AbhCOQFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43882 "EHLO
+        id S230358AbhCOQLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233482AbhCOQFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:05:15 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49577C06174A;
-        Mon, 15 Mar 2021 09:05:14 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id b16so5212699eds.7;
-        Mon, 15 Mar 2021 09:05:14 -0700 (PDT)
+        with ESMTP id S230483AbhCOQLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:11:40 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38740C06175F
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:11:40 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id v2so44692945lft.9
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:11:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=tpaD+sXA8R0kAGrrRfdmXvK9xIK7V2SVy6wfJ0s+afU=;
-        b=MVR1A9tk0mctbzckejGFDXyXxGu75970Gm539Fi89eGQlttPSYIQC5NGemsLFOeNye
-         cVS/sE8YtguGyOOPVlQVm5Wx+Nw48FN1HggmhpNXnBHrUP6NfmM/HNQ2FH+o4JtkbjKD
-         RxMjEyR9gVVDWv5TgmIe/E2zZpdD4R0+WEhlq/hc7xKuAaQ4MdiMrliwI7m9btccT54O
-         hHSKMuQmx4dWGVFAIEPTFWeeB5m3Rx8rFKY3ongecLTZpW/Wtf4/pPd+yqmLg6PJl5a6
-         fztGE8WF3IFfQ1ivDGUBta7wQxUk9pcxk5pG9cIKb3SFdTjSTnO0trOaP9Gr2zggJ+uP
-         rz+g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UgG45DnJN104mZ62fCUJfdTRKEZH2usLGZgxXrdhPOk=;
+        b=mUHiqeGQTBG3ZQjO21JCi06F5j/g81EQVWqMr0jkJFUuw2m8VNQYSIRrmXXJtvbL9s
+         ymWakSrLdOt+OEtPOTx8bevz3/9tjkNwkZXJZkyaF5iExDAt3WutqrcPFzmcyDNhUSYu
+         dD4LXIKry78u6jcezBwr+6gI8MHTm8Zvjc3F674jKislE2BFCEiQe6wwceID/aaBQPXA
+         Mb8g2UWfuPFniTI4KR0bq56FbE+hlnRCW7v6WR2YUNBjfEkffWza+dtYk/sKWTiphGvW
+         BaYYQrA0zVQpg8ZwMhzS7ZQ5AgoTmsqyxBMtkCn8ZmahzLXBWcTmkL0Anl69lQDC2uKl
+         pCkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=tpaD+sXA8R0kAGrrRfdmXvK9xIK7V2SVy6wfJ0s+afU=;
-        b=PPoDLkJEM0OugGBa4daYp/zO/TDqa5WMNs3uCgnA5tviZO6FL3BoR8GW7dm1/j2gPX
-         wh8Eb1z2g76zZ1PMaot++G/5us+aUEmd4N85jb5w32mWgmmsaaY6A58rSJK9rV+AN1zg
-         kJaJuzDj73Cl+KL98myOakDrO4eNgJzkE0m9Vhl7CB286/wvw5hXGDOEIaOQaJ8V5ePM
-         KfCmSHkNVx/kOLgVQCmHlNszncbo+6Fxfai5oOQO95JNZXQrkUrQxJx9d51P0ujg/Vra
-         W8H2w1urqZvoWqiNxwyijUBlKBcBGu9uyWSqI3j0UcavYHzTN30wHYv31j9KyhE6jBzD
-         +asQ==
-X-Gm-Message-State: AOAM531W/N9jsO9J762dV/T0E30GcwvFDHswp32VSg44XBCgxT4fHaQy
-        MrF37EbFdTHLm87SHNesCu0=
-X-Google-Smtp-Source: ABdhPJza26hhc1KZ/PQi8gU3jkKohJT/sKNRTqhviJRj6cexeHgoR8xzggQkUeEKPFVzaHS5v+gY7w==
-X-Received: by 2002:aa7:cb4d:: with SMTP id w13mr30922963edt.249.1615824312983;
-        Mon, 15 Mar 2021 09:05:12 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2d28:c000:5c39:c910:15c8:a935])
-        by smtp.gmail.com with ESMTPSA id z17sm7748510eju.27.2021.03.15.09.05.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 09:05:12 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yu Chen <chenyu56@huawei.com>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Joe Perches <joe@perches.com>,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH 5/5] MAINTAINERS: rectify entries for dt-bindings
-Date:   Mon, 15 Mar 2021 17:04:51 +0100
-Message-Id: <20210315160451.7469-6-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210315160451.7469-1-lukas.bulwahn@gmail.com>
-References: <20210315160451.7469-1-lukas.bulwahn@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UgG45DnJN104mZ62fCUJfdTRKEZH2usLGZgxXrdhPOk=;
+        b=RUc8/hVKVKgb+93Q7LLsDKDg2cXWEDJlyM6qflenoMEvwN0RUwQXun/fcY2HNgVCTE
+         TG4UnijOoQuQIOsOoDp+uvh9zyQW0ZDo5hbYJV7qHUNHGX45PdptklTI1u5oOnhQPxHG
+         rXCFIJw2EZE3xXevJQIAhcLSHOqp+g4taL5puO0S92ZY2OFprstPBgerQTOTuJW6N0G2
+         rtKh4I3HNFpAmhi4S1E2/FaJN++diuKSqudLJ+SrDaYC5fK8AkTyh3drTAiYsHmC/wWI
+         bGaoOBjGGBiDM0elwOHUfaaJZPYAqj5xAV5UYsEIJV4Zpd2YpvBvb6d6h+7ueLJy+IPS
+         zAag==
+X-Gm-Message-State: AOAM533O6Am2bTm6nV05X2KJAJVAlNMfC5nLCbwMWpsjFzad7bfb8AJ2
+        OVpXiK4kYMFd81wYGmhm7cVH8iF5G8iYMddOkNWJvg==
+X-Google-Smtp-Source: ABdhPJzSDII6RQrdm7IFyXHzh8DcTyH4MHf9A8Ug/h2fSz4PeMuCazMBlocNWblZcJ7uktAZ1fBY4YSWsRmi0FPulU4=
+X-Received: by 2002:a19:4c08:: with SMTP id z8mr8010084lfa.157.1615824698726;
+ Mon, 15 Mar 2021 09:11:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210303033106.549-1-shawn.guo@linaro.org> <20210303033106.549-2-shawn.guo@linaro.org>
+ <YEKl7GbxBhui4eoT@builder.lan> <20210306012829.GL17424@dragon>
+ <YELhMmDndOTSSJJO@builder.lan> <20210306080049.GM17424@dragon>
+ <YEkOaK+UiLy8kSDu@builder.lan> <20210311011951.GT17424@dragon> <YEpLHSRKt651B6FP@builder.lan>
+In-Reply-To: <YEpLHSRKt651B6FP@builder.lan>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 15 Mar 2021 17:11:27 +0100
+Message-ID: <CACRpkdYNmT6c+RTLQAO1UEwWWWXHarYqTG4xnq8iR4i=rDfYfQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845: fix number of pins in 'gpio-ranges'
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Shawn Guo <shawn.guo@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jonathan Cameron converted a number of dt-bindings from txt to yaml in
-./Documentation/devicetree/bindings/iio/:
+On Thu, Mar 11, 2021 at 5:53 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+> On Wed 10 Mar 19:19 CST 2021, Shawn Guo wrote:
 
-  Commit 58ff1b519753 ("dt-bindings:iio:adc:atmel,sama5d2-adc: txt to yaml conversion"):
-    adc/at91-sama5d2_adc.txt -> atmel,sama5d2-adc.yaml
+> > > But we don't have a "reset" GPIO specified in the ACPI node, or you mean
+> > > with the introduction of .set_config DT no longer works?
+> >
+> > Yes, DT stops working because of the mismatch between
+> > msm_pinctrl_soc_data.ngpio and gpio-ranges.
+> >
+>
+> So what you're saying is that when Linus merged the .set_config patch
+> yesterday he broke storage on every single Qualcomm device?
 
-  Commit 8c41245872e2 ("dt-bindings:iio:adc:renesas,rcar-gyroadc: txt to yaml conversion."):
-    adc/renesas,gyroadc.txt -> adc/renesas,rcar-gyroadc.yaml
+I took out that patch for now.
 
-  Commit 9a6ac3138258 ("dt-bindings:iio:humidity:st,hts221 yaml conversion."):
-    humidity/hts221.txt -> humidity/st,hts221.yaml
+Maybe we can keep all the stuff in one series if it has strict
+dependencies?
 
-  Commit 1e6536ee349b ("dt-bindings:iio:dac:adi,ad5758 yaml conversion"):
-    dac/ad5758.txt -> dac/adi,ad5758.yaml
-
-  Commit 7a2cf8e91390 ("dt-bindings:iio:imu:st,lsm6dsx: txt to yaml conversion"):
-    imu/st_lsm6dsx.txt -> imu/st,lsm6dsx.yaml
-
-  Commit b4be8bd1c6a2 ("dt-bindings:iio:proximity:st,vl53l0x yaml conversion"):
-    proximity/vl53l0x.txt -> proximity/st,vl53l0x.yaml
-
-All these txt files above are referenced in MAINTAINERS.
-
-Adjust the sections with references to converted dt-bindings yaml files.
-As .../dac/adi,ad5758.yaml is already covered by .../*/adi,*, simply
-drop the file entry for .../dac/ad5758.txt.
-
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
- MAINTAINERS | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a046e62b619d..7df1e7b37e68 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1142,7 +1142,6 @@ W:	http://ez.analog.com/community/linux-device-drivers
- F:	Documentation/ABI/testing/sysfs-bus-iio-frequency-ad9523
- F:	Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
- F:	Documentation/devicetree/bindings/iio/*/adi,*
--F:	Documentation/devicetree/bindings/iio/dac/ad5758.txt
- F:	drivers/iio/*/ad*
- F:	drivers/iio/adc/ltc249*
- F:	drivers/iio/amplifiers/hmc425a.c
-@@ -8224,7 +8223,7 @@ M:	Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- W:	http://www.st.com/
--F:	Documentation/devicetree/bindings/iio/humidity/hts221.txt
-+F:	Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml
- F:	drivers/iio/humidity/hts221*
- 
- HUAWEI ETHERNET DRIVER
-@@ -11824,7 +11823,7 @@ MICROCHIP SAMA5D2-COMPATIBLE ADC DRIVER
- M:	Eugen Hristev <eugen.hristev@microchip.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/iio/adc/at91-sama5d2_adc.txt
-+F:	Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
- F:	drivers/iio/adc/at91-sama5d2_adc.c
- F:	include/dt-bindings/iio/adc/at91-sama5d2_adc.h
- 
-@@ -15294,7 +15293,7 @@ RENESAS R-CAR GYROADC DRIVER
- M:	Marek Vasut <marek.vasut@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/iio/adc/renesas,gyroadc.txt
-+F:	Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
- F:	drivers/iio/adc/rcar-gyroadc.c
- 
- RENESAS R-CAR I2C DRIVERS
-@@ -16975,7 +16974,7 @@ M:	Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- W:	http://www.st.com/
--F:	Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-+F:	Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
- F:	drivers/iio/imu/st_lsm6dsx/
- 
- ST MIPID02 CSI-2 TO PARALLEL BRIDGE DRIVER
-@@ -17003,7 +17002,7 @@ ST VL53L0X ToF RANGER(I2C) IIO DRIVER
- M:	Song Qiang <songqiang1304521@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/iio/proximity/vl53l0x.txt
-+F:	Documentation/devicetree/bindings/iio/proximity/st,vl53l0x.yaml
- F:	drivers/iio/proximity/vl53l0x-i2c.c
- 
- STABLE BRANCH
--- 
-2.17.1
-
+Yours,
+Linus Walleij
