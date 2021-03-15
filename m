@@ -2,124 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC3933BF75
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:11:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA51E33BF7C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 16:13:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231469AbhCOPKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 11:10:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59914 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbhCOPKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 11:10:40 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AD9C061762
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:10:40 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id u20so16651591lja.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 08:10:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZKKaLOkrBz3/GtouDwoCOZ4KdSWppOkZ3d+IwHT4siU=;
-        b=c6eKxW5xWF2yHUtA3SSpLusB0wRtKknAR/Nh5Tr2gXXnW44RK0sLvd+3h6Pz93DHNY
-         w19hFNTgapAFNIKubbphTkJRAE6WEsngPV47qDO9cFouoUxk5Tvp9BGFJdOdZrmzON24
-         f3CoJSaBbg5BKn3HlofWSf/wJP5Q5X7y0oc9OVlbSrPzs+TZfazUn9F1N9s5lEpQ6Rk9
-         IxOin93qBmQgRxpjBvYq6CseUksefDrn58hpWGxrdLPXBrMLlb5BtCMtewlqhlgnNFld
-         77tzY1zS2wC0OoUy/or1jzRZzd0YBL+GYzvpbNGCH0VMuiivv3yqPkmII7SAsUDPaUdx
-         UGJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZKKaLOkrBz3/GtouDwoCOZ4KdSWppOkZ3d+IwHT4siU=;
-        b=bFlTsOFaciYKDMUdBaBp+puiujGtwjeTtIo2LBx4djbykZD9wMwjgWEdLMhjk9XO9p
-         vcddINW6kQbZHfmlg4VM9LZWQQzjM8XF0eS/6+dQTXAxErJV+3+OBjS2vsEDMpbf3igU
-         EVG+f8l77YOLZ5QSmpXMZnbYtfOKYzEkEI0JjHZ2W3KM9JVf/L9Gi5szRanJAL//SigU
-         gnAAYSKQ1TsaT1mUXWrAaq9WHn4U4YG1bzzKtY2sGyhe8H0F57Fb6IXBFyvgEU9gq+rK
-         NIwA5FQHVghOg0nQnyin/jeNO2Gj7frYEJW/oz3Fcu+PHNK9ZAjIrlsGAjfibiLktwOf
-         J6qw==
-X-Gm-Message-State: AOAM531e16h9SoipdF2OpdCwy1VJDxR/497EHA9bpu2yE2W7XzH7yA66
-        7B4xM4a8dxlh+Fag2fD5BWU2BvjROxzwRKJ9rBZbPg==
-X-Google-Smtp-Source: ABdhPJzFKvnw8E5Zqkbhku2Z16o1dIIxQeveiTHejHx5D5hme652oeKJbanFEjDTx3Ueaw0f3mDtMGe8gxtiixlajpU=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr10417943ljj.467.1615821038699;
- Mon, 15 Mar 2021 08:10:38 -0700 (PDT)
+        id S232746AbhCOPMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 11:12:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232168AbhCOPL4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 11:11:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AD03B64DF0;
+        Mon, 15 Mar 2021 15:11:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615821116;
+        bh=L7mnfgF+lb3L7iB9rSiuo2URmRNaFyzItGPOorf386w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QVtsZts/cibSxdjb/Jr3vi8PXgNlYqDm55wHi7LqMy+T8agsvjuRMA+tQDeN+jlyq
+         O6r7vWYrtQ/zQRIH2ECqR7bKeAmZD7zO+ftKuY9dEoNpOVX9t1ECuUc+uNzibBSQ6q
+         NwD45oywH1vZddYlES25P956rTE6lENmxejcS1csz0UuW1iMg3XLGQb2CGCexAk0HA
+         tvdzBh/9KlhbnGlIFm2pm8aSL5BO9/GVWw8VBlrGKWRUsGnfhOJOcAWOke17+PKwRk
+         /2YwNxDmaJdhIo0qwkIwI9aygAK/B9byS2SneQHGeV1yVTyuFSK58tARWt0esHEiE/
+         eOT1ucJaKb9NQ==
+Date:   Mon, 15 Mar 2021 17:11:52 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v5 03/24] wfx: add Makefile/Kconfig
+Message-ID: <YE95OCx5hWRedi+W@unreal>
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+ <20210315132501.441681-4-Jerome.Pouiller@silabs.com>
 MIME-Version: 1.0
-References: <20210315082339.9787-1-sander@svanheule.net> <20210315082339.9787-3-sander@svanheule.net>
-In-Reply-To: <20210315082339.9787-3-sander@svanheule.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 15 Mar 2021 16:10:27 +0100
-Message-ID: <CACRpkdZ7zWQPBgQ+AjFM7up8x8HJES2EDfBKGmPU9LJwWzB8EA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bert Vermeulen <bert@biot.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210315132501.441681-4-Jerome.Pouiller@silabs.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 9:26 AM Sander Vanheule <sander@svanheule.net> wrote:
-
-> Realtek MIPS SoCs (platform name Otto) have GPIO controllers with up to
-> 64 GPIOs, divided over two banks. Each bank has a set of registers for
-> 32 GPIOs, with support for edge-triggered interrupts.
+On Mon, Mar 15, 2021 at 02:24:40PM +0100, Jerome Pouiller wrote:
+> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
 >
-> Each GPIO bank consists of four 8-bit GPIO ports (ABCD and EFGH). Most
-> registers pack one bit per GPIO, except for the IMR register, which
-> packs two bits per GPIO (AB-CD).
+> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> ---
+>  drivers/net/wireless/silabs/wfx/Kconfig  | 12 +++++++++++
+>  drivers/net/wireless/silabs/wfx/Makefile | 26 ++++++++++++++++++++++++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 drivers/net/wireless/silabs/wfx/Kconfig
+>  create mode 100644 drivers/net/wireless/silabs/wfx/Makefile
 >
-> Although the byte order is currently assumed to have port A..D at offset
-> 0x0..0x3, this has been observed to be reversed on other, Lexra-based,
-> SoCs (e.g. RTL8196E/97D/97F).
->
-> Interrupt support is disabled for the fallback devicetree-compatible
-> 'realtek,otto-gpio'. This allows for quick support of GPIO banks in
-> which the byte order would be unknown. In this case, the port ordering
-> in the IMR registers may not match the reversed order in the other
-> registers (DCBA, and BA-DC or DC-BA).
->
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> diff --git a/drivers/net/wireless/silabs/wfx/Kconfig b/drivers/net/wireless/silabs/wfx/Kconfig
+> new file mode 100644
+> index 000000000000..3be4b1e735e1
+> --- /dev/null
+> +++ b/drivers/net/wireless/silabs/wfx/Kconfig
+> @@ -0,0 +1,12 @@
+> +config WFX
+> +	tristate "Silicon Labs wireless chips WF200 and further"
+> +	depends on MAC80211
+> +	depends on MMC || !MMC # do not allow WFX=y if MMC=m
+> +	depends on (SPI || MMC)
+> +	help
+> +	  This is a driver for Silicons Labs WFxxx series (WF200 and further)
+> +	  chipsets. This chip can be found on SPI or SDIO buses.
+> +
+> +	  Silabs does not use a reliable SDIO vendor ID. So, to avoid conflicts,
+> +	  the driver won't probe the device if it is not also declared in the
+> +	  Device Tree.
+> diff --git a/drivers/net/wireless/silabs/wfx/Makefile b/drivers/net/wireless/silabs/wfx/Makefile
+> new file mode 100644
+> index 000000000000..f399962c8619
+> --- /dev/null
+> +++ b/drivers/net/wireless/silabs/wfx/Makefile
+> @@ -0,0 +1,26 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# Necessary for CREATE_TRACE_POINTS
+> +CFLAGS_debug.o = -I$(src)
 
-Overall this is a beautiful driver and it makes use of all the generic
-frameworks I can think of. I don't see any reason not to merge
-it so:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I wonder if it is still relevant outside of the staging tree.
 
-The following is some notes and nitpicks, nothing blocking any
-merge, more like discussion.
-
-> +enum realtek_gpio_flags {
-> +       GPIO_INTERRUPTS = BIT(0),
-> +};
-
-I suppose this looks like this because more flags will be introduced
-when you add more functionality to the driver. Otherwise it seems
-like overkill so a bool would suffice.
-
-I would add a comment /* TODO: this will be expanded */
-
-> +static inline u32 realtek_gpio_imr_bits(unsigned int pin, u32 value)
-> +{
-> +       return ((value & 0x3) << 2*(pin % 16));
-> +}
-
-I would explain a bit about this, obviouslt it is two bit per
-line, but it took me some time to parse, so a comment
-about the bit layout would be nice.
-
-> +       unsigned int offset = pin/16;
-
-Here that number appears again.
-
-The use of GPIO_GENERIC and GPIO irqchip is flawless
-and first class.
-
-Thanks!
-Linus Walleij
+Thanks
