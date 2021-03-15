@@ -2,109 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB48833B4D0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07DAA33B4E8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:50:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbhCONmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 09:42:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbhCONmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 09:42:11 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4654C061762
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 06:42:10 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id f26so16272465ljp.8
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 06:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X5pbXwp0jQ2rf0gS7DhWdzLYC/FdH6bN4erEwcj2Y3w=;
-        b=eRplPfivqS4zqfEYdF7516756o43/GB69SM030Lbw5+KTM9ZUInXX/BsqvDJOCTrSJ
-         T7E3OChMVSid26+uM2F2wdfKttRfMWparxKTulKyxeUFZoyGmFZzXE3mIeX3HWMZHy8k
-         xuvNEXQv6GSE8rTrBlpxyZC8+AWImHRr0wx/Gp5aUttX1MjU15Ysl6yNHPbG9rdQoq7R
-         o1lPpIhZ+goNEheJUcJBvq4LczBIX7twM/7vGM791jYQm6tXSVC0Z1/S3hj4ENKIHEU4
-         I777yFwNAYg6JAe4kzRaSC50HptYWMybYuAynnqkEnNJUwuTHQpmCmh11JDhDcmlo/OF
-         /6Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X5pbXwp0jQ2rf0gS7DhWdzLYC/FdH6bN4erEwcj2Y3w=;
-        b=T+bZZrSYuX7ULenaIQs/C8wtFoxUI7x4wx5TaFk9wfBn5Ewr9p2vPQPax9I3emxezC
-         AL2noMUKYhJpSxm2Zpgn19hoNGlG3A+gmSgMqr+uOrHy/5nSG2E0Eys8ke5C4NmSxxds
-         6NL7ymIPJkS4HgMyqenl/3KBwleumwC2Q1sIXXVb+pGrQEflUNlw+Hrqapa2iMizlzP/
-         FycBYkRrLbmnlDG8Z0thuRkQK4yyr65oEpqprtLJuajDP6+mNzRMU4WoEP8xPtRA+U52
-         JImlIPXZzKdid8a5xhxVcIiIososLpWXF61UHInsQYCVcpDqjX8W4gNn4k3SJgQHCxnq
-         csCQ==
-X-Gm-Message-State: AOAM533FAYQO5yVGyksKPYrtryjxLXRfbjSP6O10KrWgqcVGDf2b4EIo
-        d7skFaJh/WG/1FcORuETRBFkYkAPpM9TBQ6qLY8IaA==
-X-Google-Smtp-Source: ABdhPJyUx7DcXAXEJVIgv4ihoNgOoMUF8D64squn8PsmV1cihZWhRtLWq6RORu3j6jnE9W9WyqQlmCiNzfnWCPRvJWk=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr10195795ljj.467.1615815729288;
- Mon, 15 Mar 2021 06:42:09 -0700 (PDT)
+        id S229549AbhCONtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 09:49:47 -0400
+Received: from m42-2.mailgun.net ([69.72.42.2]:41165 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229536AbhCONtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 09:49:25 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615816165; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=GMfs9w0IsBTgPFLX+ggDVVK+uUIRBZtheD2/pF9AuBc=;
+ b=Kj/RQndzTBZrWehyLgQVTe9/pypK/MFRiC4Je5cKUz6lEo1umrA1VYV4NYALgKCvnX3bDe0A
+ kjpTtLaOLjxry8mJ1Su2pmCVYQPa4WhrZNNg5V2Ye9H58XYJX3AtDz+kgWRS0Qz4HFUjha8q
+ kt8qrteBScjNKeJntZG2c6rJWc4=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 604f65ce5d70193f889c8427 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 13:49:02
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D8A8CC433ED; Mon, 15 Mar 2021 13:49:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFA4FC433C6;
+        Mon, 15 Mar 2021 13:49:01 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210309015750.6283-1-peng.zhou@mediatek.com> <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
- <YEpqkAq6wOZ+TpR9@gmail.com>
-In-Reply-To: <YEpqkAq6wOZ+TpR9@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 15 Mar 2021 14:41:58 +0100
-Message-ID: <CACRpkdb7vmFgH0XTG3Z6OzFv0CfPsBguKqVAZt=PZ+ms2-0WjA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     Peng Zhou <peng.zhou@mediatek.com>,
-        linux-block <linux-block@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 15 Mar 2021 19:19:01 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, ohad@wizery.com,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, pillair=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH 2/2] remoteproc: qcom: q6v5_wpss: Add support for sc7280
+ WPSS
+In-Reply-To: <1615361290-19238-3-git-send-email-pillair@codeaurora.org>
+References: <1615361290-19238-1-git-send-email-pillair@codeaurora.org>
+ <1615361290-19238-3-git-send-email-pillair@codeaurora.org>
+Message-ID: <2156398735b0172095695db6d4181069@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eric,
+On 2021-03-10 12:58, Rakesh Pillai wrote:
+> Add support for PIL loading of WPSS processor for SC7280
+> WPSS boot will be requested by the wifi driver and hence
+> disable auto-boot for WPSS. Also add a separate shutdown
+> sequence handler for WPSS.
+> 
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> ---
+>  drivers/remoteproc/qcom_q6v5_adsp.c | 77 
+> ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 76 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c
+> b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index e024502..dc6b91d 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -58,6 +58,8 @@ struct adsp_pil_data {
+>  	const char *ssr_name;
+>  	const char *sysmon_name;
+>  	int ssctl_id;
+> +	bool is_wpss;
+> +	bool auto_boot;
+> 
+>  	const char **clk_ids;
+>  	int num_clks;
+> @@ -96,8 +98,54 @@ struct qcom_adsp {
+>  	struct qcom_rproc_glink glink_subdev;
+>  	struct qcom_rproc_ssr ssr_subdev;
+>  	struct qcom_sysmon *sysmon;
+> +
+> +	int (*shutdown)(struct qcom_adsp *adsp);
+>  };
+> 
+> +static int qcom_wpss_shutdown(struct qcom_adsp *adsp)
+> +{
+> +	unsigned long timeout;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	regmap_write(adsp->halt_map, adsp->halt_lpass + LPASS_HALTREQ_REG, 
+> 1);
+> +
+> +	/* Wait for halt ACK from QDSP6 */
+> +	timeout = jiffies + msecs_to_jiffies(ACK_TIMEOUT);
+> +	for (;;) {
+> +		ret = regmap_read(adsp->halt_map,
+> +				  adsp->halt_lpass + LPASS_HALTACK_REG, &val);
+> +		if (ret || val || time_after(jiffies, timeout))
+> +			break;
+> +
+> +		usleep_range(1000, 1100);
+> +	}
 
-thanks for stepping in and clarifying! I get it better now, I though
-this was some other encryption scheme "on the side".
+please use regmap_read_poll_timeout
+instead.
 
-There is one worrying thing in the patch still:
+> +
+> +	/* Place the WPSS processor into reset */
+> +	reset_control_assert(adsp->restart);
+> +	/* wait after asserting subsystem restart from AOSS */
+> +	usleep_range(100, 105);
+> +	/* Remove the WPSS reset */
+> +	reset_control_deassert(adsp->restart);
+> +
+> +	usleep_range(100, 105);
 
-On Thu, Mar 11, 2021 at 8:08 PM Eric Biggers <ebiggers@kernel.org> wrote:
-> On Thu, Mar 11, 2021 at 02:48:23PM +0100, Linus Walleij wrote:
-> > On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
+usleep shouldn't be required since
+aoss-reset drivers put in a usleep
+of 200-300 on reset assert and de-assert.
 
-> > > +       /*
-> > > +        * 1: MSDC_AES_CTL_INIT
-> > > +        * 4: cap_id, no-meaning now
-> > > +        * 1: cfg_id, we choose the second cfg group
-> > > +        */
-> > > +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> > > +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> > > +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
+> +
+> +	regmap_write(adsp->halt_map, adsp->halt_lpass + LPASS_HALTREQ_REG, 
+> 0);
+> +
+> +	/* Wait for halt ACK from QDSP6 */
+> +	timeout = jiffies + msecs_to_jiffies(ACK_TIMEOUT);
+> +	for (;;) {
+> +		ret = regmap_read(adsp->halt_map,
+> +				  adsp->halt_lpass + LPASS_HALTACK_REG, &val);
+> +		if (ret || !val || time_after(jiffies, timeout))
+> +			break;
+> +
+> +		usleep_range(1000, 1100);
+> +	}
 
-So MSDC_AES_CTL_INIT. Assumes we are using AES and AES
-only I suppose?
+please use regmap_read_poll_timeout
+instead.
 
-> It happens in the same place, cqhci-crypto.c.  Mediatek's eMMC inline encryption
-> hardware follows the eMMC standard fairly closely, so Peng's patch series just
-> sets MMC_CAP2_CRYPTO to make it use the standard cqhci crypto code, and does a
-> couple extra things to actually enable the hardware's crypto support on Mediatek
-> platforms since it isn't enabled by default.  (*Why* it requires an SMC call to
-> enable instead of just working as expected, I don't know though.)
+> +
+> +	return 0;
+> +}
+> +
+>  static int qcom_adsp_shutdown(struct qcom_adsp *adsp)
+>  {
+>  	unsigned long timeout;
+> @@ -270,7 +318,7 @@ static int adsp_stop(struct rproc *rproc)
+>  	if (ret == -ETIMEDOUT)
+>  		dev_err(adsp->dev, "timed out on wait\n");
+> 
+> -	ret = qcom_adsp_shutdown(adsp);
+> +	ret = adsp->shutdown(adsp);
+>  	if (ret)
+>  		dev_err(adsp->dev, "failed to shutdown: %d\n", ret);
+> 
+> @@ -439,6 +487,8 @@ static int adsp_probe(struct platform_device *pdev)
+>  		dev_err(&pdev->dev, "unable to allocate remoteproc\n");
+>  		return -ENOMEM;
+>  	}
+> +
+> +	rproc->auto_boot = desc->auto_boot;
+>  	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
+> 
+>  	adsp = (struct qcom_adsp *)rproc->priv;
+> @@ -447,6 +497,11 @@ static int adsp_probe(struct platform_device 
+> *pdev)
+>  	adsp->info_name = desc->sysmon_name;
+>  	platform_set_drvdata(pdev, adsp);
+> 
+> +	if (desc->is_wpss)
+> +		adsp->shutdown = qcom_wpss_shutdown;
+> +	else
+> +		adsp->shutdown = qcom_adsp_shutdown;
+> +
+>  	ret = adsp_alloc_memory_region(adsp);
+>  	if (ret)
+>  		goto free_rproc;
+> @@ -515,6 +570,8 @@ static const struct adsp_pil_data 
+> adsp_resource_init = {
+>  	.ssr_name = "lpass",
+>  	.sysmon_name = "adsp",
+>  	.ssctl_id = 0x14,
+> +	.is_wpss = false,
+> +	.auto_boot = true;
+>  	.clk_ids = (const char*[]) {
+>  		"sway_cbcr", "lpass_ahbs_aon_cbcr", "lpass_ahbm_aon_cbcr",
+>  		"qdsp6ss_xo", "qdsp6ss_sleep", "qdsp6ss_core", NULL
+> @@ -528,6 +585,8 @@ static const struct adsp_pil_data 
+> cdsp_resource_init = {
+>  	.ssr_name = "cdsp",
+>  	.sysmon_name = "cdsp",
+>  	.ssctl_id = 0x17,
+> +	.is_wpss = false,
+> +	.auto_boot = true;
+>  	.clk_ids = (const char*[]) {
+>  		"sway", "tbu", "bimc", "ahb_aon", "q6ss_slave", "q6ss_master",
+>  		"q6_axim", NULL
+> @@ -535,7 +594,23 @@ static const struct adsp_pil_data 
+> cdsp_resource_init = {
+>  	.num_clks = 7,
+>  };
+> 
+> +static const struct adsp_pil_data wpss_resource_init = {
+> +	.crash_reason_smem = 626,
+> +	.firmware_name = "wpss.mdt",
+> +	.ssr_name = "wpss",
+> +	.sysmon_name = "wpss",
+> +	.ssctl_id = 0x19,
+> +	.is_wpss = true,
+> +	.auto_boot = false;
+> +	.clk_ids = (const char*[]) {
+> +		"gcc_wpss_ahb_bdg_mst_clk", "gcc_wpss_ahb_clk",
+> +		"gcc_wpss_rscp_clk", NULL
+> +	},
+> +	.num_clks = 3,
+> +};
+> +
+>  static const struct of_device_id adsp_of_match[] = {
+> +	{ .compatible = "qcom,sc7280-wpss-pil", .data = &wpss_resource_init 
+> },
 
-Now I don't know the limitations of cqhci crypto. Clearly it only supports
-AES today.
+should be in sort order.
 
-However would the cqhci crypto grow support for any other crypto
-like 2Fish or DES and the user request this, then I suppose there is
-no way for the MTK driver to announce "uh no I don't do that"?
+>  	{ .compatible = "qcom,qcs404-cdsp-pil", .data = &cdsp_resource_init 
+> },
+>  	{ .compatible = "qcom,sdm845-adsp-pil", .data = &adsp_resource_init 
+> },
+>  	{ },
 
-Or will this cqhci hardware only ever support AES?
-
-Yours,
-Linus Walleij
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
