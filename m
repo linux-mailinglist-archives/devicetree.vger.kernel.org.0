@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB2033C1B4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E341833C1CF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbhCOQ1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:27:15 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:40351 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231461AbhCOQ0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:26:53 -0400
-Received: by mail-il1-f172.google.com with SMTP id e7so9901463ile.7;
-        Mon, 15 Mar 2021 09:26:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uNo6vdAx+jzMNRzSxihSuYm26CfiZWtwAB/YSlTgofg=;
-        b=PvCsskFvMP9wvE+EB8y4IgPN/FP2Uy09S0u3hc8xaYG6c7dk45nERtE/MMTxXxCpl+
-         PuYrhfR+gsfEvfHQd9HysnKb+0iAgZ4mivy9xS6B2JJfKEyYmepR0bAfJuPGdjmHya/I
-         zjH1sfZT857HI2LsnOQzzAhgXVyk8ex9bnw+9n/W/eCJa4Pcn40Y7AkkIrh/M3ZTYNjf
-         WPgULmU1Kokn6nGFTdxUUA8Hl6PuKrn3lwtQfrKohcUbNONGwtD2i8Y8M68iIE4yAkkk
-         8wu3R+sF+gJXDi6JsIK3lkK1K8TJtuS0EDfx68XtUEntZkf8VE8jxj9RT1f78Gy8iCHM
-         ghtA==
-X-Gm-Message-State: AOAM5330NzdYvQhLZEdIsDciMGPzBHjW/j3e9IcxAf/42YUYknMJlRfg
-        ClnoXXeit4DdtTawsLrOJQ==
-X-Google-Smtp-Source: ABdhPJw+veskbFJEXXCKZ2E/BDJV2CNNfMgN0Pv1qQFI928Wh1rpDctvLR3CxE8mWqEyWroMro7orw==
-X-Received: by 2002:a92:d6cf:: with SMTP id z15mr355098ilp.40.1615825612758;
-        Mon, 15 Mar 2021 09:26:52 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s9sm7125949iob.33.2021.03.15.09.26.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 09:26:52 -0700 (PDT)
-Received: (nullmailer pid 982357 invoked by uid 1000);
-        Mon, 15 Mar 2021 16:26:48 -0000
-Date:   Mon, 15 Mar 2021 10:26:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     dillon.minfei@gmail.com
-Cc:     linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
-        gregkh@linuxfoundation.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux@armlinux.org.uk, erwan.leray@st.com,
-        linux-arm-kernel@lists.infradead.org, erwan.leray@foss.st.com,
-        alexandre.torgue@st.com, a.fatoum@pengutronix.de,
-        robh+dt@kernel.org, afzal.mohd.ma@gmail.com,
-        vladimir.murzin@arm.com, alexandre.torgue@foss.st.com
-Subject: Re: [PATCH v3 3/9] dt-bindings: pinctrl: stm32: Add stm32h750 pinctrl
-Message-ID: <20210315162648.GB981570@robh.at.kernel.org>
-References: <1615801436-3016-1-git-send-email-dillon.minfei@gmail.com>
- <1615801436-3016-4-git-send-email-dillon.minfei@gmail.com>
+        id S230028AbhCOQa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:30:58 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:6691 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231890AbhCOQap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:30:45 -0400
+X-Originating-IP: 79.22.58.175
+Received: from uno.homenet.telecomitalia.it (host-79-22-58-175.retail.telecomitalia.it [79.22.58.175])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1B3BF24000A;
+        Mon, 15 Mar 2021 16:30:40 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4]  arm64: dts: renesas: Enable GMSL on R8A77970 V3M Eagle
+Date:   Mon, 15 Mar 2021 17:30:24 +0100
+Message-Id: <20210315163028.173148-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615801436-3016-4-git-send-email-dillon.minfei@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 17:43:50 +0800, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
-> 
-> This patch intend to add pinctrl configuration support for
-> stm32h750 value line
-> 
-> The datasheet of stm32h750 value line can be found at:
-> https://www.st.com/resource/en/datasheet/stm32h750ib.pdf
-> 
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hello,
+   this series adds a .dtsi fragment that allow to describe and
+enable GMSL cameras on the V3M Eagle board.
 
+The .dtsi supports connecting the RDACM20 and RDACM21 cameras to the
+FAKRA connectors installed on the board.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Tested on V3M Eagle with RDACM20 and RDACM21
 
-If a tag was not added on purpose, please state why and what changed.
+v1->v2:
+- Use a pattern property to describe the gpio-hog
+
+Thanks
+   j
+
+Jacopo Mondi (1):
+  dt-bindings: media: max9286: Describe gpio-hog
+
+Kieran Bingham (3):
+  arm64: dts: renesas: eagle: Enable MAX9286
+  arm64: dts: renesas: eagle: Add GMSL .dtsi
+  arm64: dts: renesas: eagle: Include eagle-gmsl
+
+ .../bindings/media/i2c/maxim,max9286.yaml     |  16 ++
+ arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi   | 186 ++++++++++++++++++
+ .../arm64/boot/dts/renesas/r8a77970-eagle.dts | 135 +++++++++++++
+ 3 files changed, 337 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
+
+--
+2.30.0
 
