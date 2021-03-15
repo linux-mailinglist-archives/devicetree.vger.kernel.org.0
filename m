@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CADA333C169
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:16:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B975633C184
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbhCOQQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:16:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbhCOQPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:15:45 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AEF9C061763
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:15:45 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id z8so16921364ljm.12
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:15:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=whezGPX07b3sUPoOpaXH07SshdzQOy4tuu1n0282U3Y=;
-        b=IkUaPU2LsXGiZ9t3R2YxU0xvXyAIf4MJNET4D3qz0haaeS6DDR8//ZDuN23aw74Tod
-         C6ks7QK1cXE8kzlhgAH6AJ+aYqgUmcMJUmWd4fUA51YFa9gRHB0zGLsY2uPT/A2zmHfv
-         k6nZny1yCduUwtvvu3wpc599sGC7hxaA5Bb8uuU+Q/9PIreBdRhbV7g8kuw3Yf3ohovR
-         4Zm4eOOu6EYB8dIX7nQDzUusdTqIjnHwV3eLYsoBuVbXQC/Dk48rHHrWQivhYhRZfNJa
-         whFia53i3rwrQuP4WP9CdYpW17gmmkxX2TkancRpN1seQQa2X7wX29FoMCk7nqYJ5B/a
-         PFiQ==
+        id S229862AbhCOQUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:20:18 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:33924 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229705AbhCOQUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:20:11 -0400
+Received: by mail-il1-f182.google.com with SMTP id z9so9909635iln.1;
+        Mon, 15 Mar 2021 09:20:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=whezGPX07b3sUPoOpaXH07SshdzQOy4tuu1n0282U3Y=;
-        b=fdIzatm3ZP+HIc4mWF2+IhPA3QXx+0fwA7I8nJFPTNg6aBC26STrWhLAzEx0hPHSVn
-         Txo5V1i0NGaexrTJGbFZTNQWRkwB4+WqJ4cJQXM2AMTnXC/oK4zLKfzDqYJXqn3RAxdc
-         LO5s+spSLfiqeyWnCgxdbHeWH4XQeMXrXLfEKDI3V3lM4YQJxIaM0qCXCSp8z/Ni2xMA
-         xq6qLZeJ7HbkHYxTx1lso67UXcfUEPButoacFdvr7D2RT3u208tptHxTMYiCYFXaQwaV
-         Vsza2R3pM7imUeRCV2R5lql7bh23vdGSZOmi5ltGR9PoDXUcUxBfYFi1vbvNirvPbHgt
-         0YUg==
-X-Gm-Message-State: AOAM531HCd590rBogViSdiNxPEZzmhNnIsCxOsSrmfAX0K83gIiiNpwH
-        7IjH058otJ2ymQhSN+zg1pA+gXCuHsC+WhgWcX7jzQ==
-X-Google-Smtp-Source: ABdhPJwlxhBzJkkcvbojy4usCRwaY3bkBsWbXm6KSAwvyMDTAsyGhJSQGbZPJqu/Ax4MeK78p7DDeRHVotyxH9Jwr3k=
-X-Received: by 2002:a2e:9cb:: with SMTP id 194mr10965708ljj.438.1615824943587;
- Mon, 15 Mar 2021 09:15:43 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Kr4OMC1op1BT+aoSdNJWUJjIKZl6gd8/tZF3DArBYO8=;
+        b=U05RfH8EcOnW82vZwUsg4+KUEbtS3wuzv26VI+bx1j3ssbDHn4r04Sic5wTqB73xxG
+         y01gw/a0tR5Kl2J4J8aFRB5dGBJn68WEwjCoIVsB8qkwAnXi8sFBMmflrhmasonGzjxN
+         hc06GBO6IhcvjXpA90/Ks+Qb/LwfJN7z7Y65HxaF3LwWVpFcFt5TRaDxTsSEOTB7Ok7u
+         YvQfVav1dh9n7y/qtKs0LxFYyFNrKdeWAA7K7hlHZIflCPEqiiw+6JWN8L6IssJ7W/T4
+         a3UbEvRThh+r+8/axV5bBKb2E29NWn3sgarBbZGuDL1hAV6XpI8Tqkq+1bOjF+afKqV6
+         gTWg==
+X-Gm-Message-State: AOAM53246H5zecOODyoPBjQtY6j05E/oYT6UFlIfkxcXMSr+bcBfy9BQ
+        3cUHeGoZKYFsWwFONO7OqA==
+X-Google-Smtp-Source: ABdhPJwyJu/KGiP4wsae33e5rozsMMIRwiCYEhCbt63FG6Yf/6k0s/A3J6Q0q4Gxq1bALwSOPLuK0Q==
+X-Received: by 2002:a92:4a03:: with SMTP id m3mr281296ilf.185.1615825210549;
+        Mon, 15 Mar 2021 09:20:10 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h193sm7479901iof.9.2021.03.15.09.20.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Mar 2021 09:20:09 -0700 (PDT)
+Received: (nullmailer pid 972277 invoked by uid 1000);
+        Mon, 15 Mar 2021 16:20:07 -0000
+Date:   Mon, 15 Mar 2021 10:20:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v2 2/3] dt-bindings:iio:adc: add documentation for TI
+ TSC2046 controller
+Message-ID: <20210315162007.GA972089@robh.at.kernel.org>
+References: <20210312105515.32055-1-o.rempel@pengutronix.de>
+ <20210312105515.32055-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-References: <20210312034218.3324410-1-bjorn.andersson@linaro.org>
-In-Reply-To: <20210312034218.3324410-1-bjorn.andersson@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 15 Mar 2021 17:15:32 +0100
-Message-ID: <CACRpkdZOFGVnOY6wQtncKW8zdxqr1nicB9rRef+QffiFTOCaRQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: qcom: sm8350: add GPIO wakeup interrupt map
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Vinod Koul <vinod.koul@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210312105515.32055-3-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 4:41 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
+On Fri, 12 Mar 2021 11:55:14 +0100, Oleksij Rempel wrote:
+> Add a binding documentation for the TI TSC2046 touchscreen controllers
+> ADC functionality.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  .../bindings/iio/adc/ti,tsc2046.yaml          | 115 ++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+> 
 
-> From: Lina Iyer <ilina@codeaurora.org>
->
-> GPIOs that can be configured as wakeup sources, have their interrupt
-> lines routed to PDC interrupt controller. Provide the interrupt map of
-> the GPIO to its wakeup capable interrupt parent.
->
-> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-This patch 1/2 applied to the pin control tree.
-Please take the DTS patch into the qcom SoC tree!
-
-Yours,
-Linus Walleij
+Reviewed-by: Rob Herring <robh@kernel.org>
