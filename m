@@ -2,73 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87EB033AF7D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 11:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FADD33B020
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 11:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbhCOKCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 06:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
+        id S229792AbhCOKkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 06:40:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbhCOKCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 06:02:43 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079A6C061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 03:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=jGbix6t9YwK6+wYpe95g10PJb+7U2ab/66D50RfadB0=; b=ziRD3TZHXpQgpRsfNVGaGHrDh
-        9qol2OtwMGaiBq7T2Wyp96JldIdQXVmuj1t0tX8mria8FEN1KJRN/aXNB4M9Zn9q8wyX27MzRmaXX
-        pE+dshFBxquYmvfysqRwqA2QcUKqD1K6QZQ5SEDT5Zcfb3V+V1cdWrIPoYMGyAgOEFDHPQUvMBcRx
-        q/oslIXofeJ/B3oFSLiCr9O03SbTggIl7lqKkvQPPK7sa3Qw0tuco/app5geCXNNU3mftLzURZZ/u
-        svm5A5Q4ZLBxJLON4YFqjoy2Pu/sA1hkgeoi5/Ga56hP513SwPsOS+9EGPDqtMp9ZyUEx62Kp5UFI
-        gmsTq7bUA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51316)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lLk36-00005t-QP; Mon, 15 Mar 2021 10:02:08 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lLk35-0005GX-IF; Mon, 15 Mar 2021 10:02:07 +0000
-Date:   Mon, 15 Mar 2021 10:02:07 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jon Nettleton <jon@solid-run.com>
-Subject: Re: [PATCH] arm64: dts: lx2160a-clearfog-itx: add SFP support
- [*experimental*]
-Message-ID: <20210315100207.GL1463@shell.armlinux.org.uk>
-References: <E1lJfLu-0000Q2-Nl@rmk-PC.armlinux.org.uk>
- <20210315070314.GN11246@dragon>
+        with ESMTP id S229673AbhCOKkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 06:40:13 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE701C061574;
+        Mon, 15 Mar 2021 03:40:12 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id lr13so65338292ejb.8;
+        Mon, 15 Mar 2021 03:40:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DqzTiNwq7F43KRl7MeDTQAW5DfLX3HRrkcyj01ylqdg=;
+        b=OAHm4NsI295ATwtqDJ6uWfMyjCp1UrvV1Os5KFJTwp8mV0pF0TJxhe+NYcMIYNKKHX
+         xAxkXLUnteNgUGFYKjLHX7Owotbf98s3hFsrRFjlO4iK1exkBb7UL3QIsrDXWjTbIZi9
+         Sm2IflJgyHcnkuo9+cEtWy9YadMu7e840pufNuXSEym5LHB/unl/DnJU7SvW/9JpSYYK
+         S2p5mO9jR9BlJMcBRPgZuskkVEnGE0I3h582BELwrOemv1x/hW6hchxEG7nm1UBwDeES
+         c0oE+dj/5zgFkOtef9Hq9/Db1JvYQVWDrE1gU/N94ULNqTIUYRRx/KeVmwInA+sEax1b
+         Oldg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DqzTiNwq7F43KRl7MeDTQAW5DfLX3HRrkcyj01ylqdg=;
+        b=fBof9wcxbb8ReKcW4RRC9I9HlG+yJMab+UxHwovWW8gf6Iz0sFDihgKa5zWI6RGRAi
+         OanFz+2YyU6T2O6C0hkst1c0Q0rzCTuuNm0FEcHlqLULmFcxgK4PZyhyWeXjsTaHCSi8
+         XrYD4FTN0IOrxCZGfm5IFMt1IzCbBz8BuIAsfdSw1mMBTSbyZXURSPbA2Jc5SIS0nrTl
+         DFyrH+ZojIMu41fuQCOZRHL4vwM3uqoWlPLlzmMF3l8Zm++aVKKmuxN1CYAHdPS5oxmU
+         EQSz76pTOQMnj6MgwPUafzPa1bkk5LuB9ofd3qBxVvpyZXxPXn/5XsTrLbRG1bRXPXx9
+         mCyA==
+X-Gm-Message-State: AOAM532oLVS76YWtR2LvgWu7/52SeLpMOkjzbxNE8z23YVeckX26As8x
+        VRDSGWu4mVUNP9oaLL0Pi40AavZckVu384pCeA8=
+X-Google-Smtp-Source: ABdhPJyMTPKqLAPCgX5HECYtPHc584QK7Bo03u0+OSFE3M17en7cxnIzQqX+5hZ0KYbIC+jQn+YkMke4VpejGjHc66Y=
+X-Received: by 2002:a17:906:3849:: with SMTP id w9mr23036529ejc.7.1615804811719;
+ Mon, 15 Mar 2021 03:40:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210315070314.GN11246@dragon>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+References: <20210313215302.4076765-1-linus.walleij@linaro.org>
+ <CAGRGNgU_C6keHC_Ty3iruJc5cwsBGJRRBm8DWH91fHjygPv0fg@mail.gmail.com> <CACRpkdbHfH=+m3EJ9CBGkQ3rh6MGtKy4ixk3fgu15rxEzMg5dw@mail.gmail.com>
+In-Reply-To: <CACRpkdbHfH=+m3EJ9CBGkQ3rh6MGtKy4ixk3fgu15rxEzMg5dw@mail.gmail.com>
+From:   Julian Calaby <julian.calaby@gmail.com>
+Date:   Mon, 15 Mar 2021 21:40:00 +1100
+Message-ID: <CAGRGNgUNzzHTre1oOjvV7-c-4mvjDuOAAmYRc4Nd_D6m+tLdPg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Convert the BCM4329 bindings to YAML and extend
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 03:03:15PM +0800, Shawn Guo wrote:
-> On Tue, Mar 09, 2021 at 04:36:58PM +0000, Russell King wrote:
-> > Add 2x2 SFP+ cage support for clearfog-itx boards.
-> > 
-> > Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-> 
-> What is the implication of [*experimental*] in subject?
+Hi Linus,
 
-Oh, I should've dropped that, thanks for pointing it out.
+On Mon, Mar 15, 2021 at 10:43 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Sun, Mar 14, 2021 at 1:05 AM Julian Calaby <julian.calaby@gmail.com> wrote:
+>
+> > I don't know if this is necessary for SDIO, but should the non-4329
+> > compatibles have the 4329 compatible as an alternative?
+>
+> I can, and I guess I should add it, as I grep:ed and saw this:
+>
+> arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> compatible = "brcm,bcm4339-fmac", "brcm,bcm4329-fmac";
+>
+> So from more to less specific.
+>
+> Yours,
+> Linus Walleij
 
-It was experimental as we didn't know which direction NXP were heading
-with the PCS support on the LX2160A until it was finally merged into
-net-next.
+If it helps, the pattern I've seen before for this is:
+
+oneOf:
+  - const: vendor,specific-device-1234
+  - items:
+    - enum:
+      - vendor,compatible-device-2345
+      - vendor,compatible-device-3456
+    - const: vendor,specific-device-1234
+
+See https://elixir.bootlin.com/linux/v5.12-rc3/source/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+for an example.
+
+Thanks,
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Julian Calaby
+
+Email: julian.calaby@gmail.com
+Profile: http://www.google.com/profiles/julian.calaby/
