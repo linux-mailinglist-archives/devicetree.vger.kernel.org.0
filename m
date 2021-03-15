@@ -2,128 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F4C433C2B0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA5D33C2AC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:57:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234279AbhCOQ5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
+        id S233906AbhCOQ5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234338AbhCOQ45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:56:57 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F238C061764
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:57 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id j4-20020a05600c4104b029010c62bc1e20so19887427wmi.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:57 -0700 (PDT)
+        with ESMTP id S234279AbhCOQ4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:56:50 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F6EC061763
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:49 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id f26so17090416ljp.8
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 09:56:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZdZJGNP62lIlEnEmG/cCC95BLhByXorN62IvToLdpl4=;
-        b=WAQzO0mHPFAvj8xI6C+JLfJgBcnurW3P3e7LtcjfLvIf+WQJ9obNauAt0jq26jtK76
-         OyiyoEK6/MtbMXRt7XjRdOfJdHcAeqCq6igi58b20Juqge1uldi96B7qgd+Q+qFAzpDp
-         cv5NKQbh9xv73qG55vroWhwyxUzHUj+xzuSXUNcJDqHlssvr60Je4bnPaVeRebskFXGT
-         tU+CQee1BdIR8CdSHwrSxbFv98zZDq0mUWHSwA0QMsp5HXjxlzXpdqOIQ1q514Ee9jAq
-         2vbwOuX3taRNxDjolBiT71am2IVNcwP3DfTisGlPnMKTIoUrIk/KcyVIS2loXhcjnM2b
-         Qb6Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
+        b=EBuLzQXKFMUEHW+1lNwttvGa3MBy9lF/0rW5p6tFfgkbbvSijj0gelSVFmYcPYsOyl
+         7JV7QE/J74OIBrgdrE6r3u/pBlNK4VBJTuf9HXiTpXeyUQVLelNdRPntKDuE0cl2hhAv
+         HIn4QeVimzokIavcMqC4L4Fwqs1Z2IXu81pshv4/9kQE4cE1uZKCi9/Bz5o5aTCAj8PP
+         wxHgbfM0Ks6cgcnhuOzKXrgnhNz//QtxWlesxsXvqRpvuQEKbMNbFobAXPsGWjXHgpR+
+         sVDZMUrU12BM+UK5OVSPE5Sm4Ohv+Hf1Hsuo0Y3AsWaQ6Xv99vxpnuM4kUIh/kvHIZ5C
+         bHJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZdZJGNP62lIlEnEmG/cCC95BLhByXorN62IvToLdpl4=;
-        b=U2Hbf37Il8Pgia9HsY+WyhU9G+F82LhtFEw3JNGPuD6hNkyL9Kzsts1OTCebYUtY4i
-         qDUApq9kGLlBdb1q1BbSURtdXCO29lJoBpqv7m5IHbc8WsWCYUDLnHdjGuq+ajOKlmJv
-         /P6zR2H+sk+ExgczxQ4mmS2sExYTR9AESeJBAu3XGNDGb+iHi6m4eAbBacmDN8GZ5jtb
-         mRb9J6ChSNiRkhLbCWR9nfJO1dhcYWKdVS/zWy0nnx+uX/XyBKrh+AS/IzdRJLp5RFk8
-         vtF6Q5kEmgsJozkH6cEFzNBtw23ehTxVuHFY+BvjongYwP8gIWyG2QXPTwxyBYk1B7Ua
-         OtUQ==
-X-Gm-Message-State: AOAM531VhOiqqNHI/TiN/f+vkHndjVDc37Mp4QzemxV+EcMzSjRv2LZu
-        9yCEzIe798llcnkjgWTCeAp/YYl8kasE8g==
-X-Google-Smtp-Source: ABdhPJz+BWyXwz0jvNyXMbTMfZ43xKFg0RJhHtzf6kb7SKHhgc0lis02/+Wod6+ttRTzO1PhItkG9w==
-X-Received: by 2002:a7b:c195:: with SMTP id y21mr601189wmi.178.1615827415959;
-        Mon, 15 Mar 2021 09:56:55 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id o2sm227656wmc.23.2021.03.15.09.56.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 09:56:55 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org, vkoul@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v4 2/5] soundwire: qcom: update port map allocation bit mask
-Date:   Mon, 15 Mar 2021 16:56:47 +0000
-Message-Id: <20210315165650.13392-3-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
-References: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=nn1W9Wc+k1CJYE8WxkSJGXK0N+qf/mcCb4Whw81sCBc=;
+        b=rECitT3oyJivzJVx74INrPY7q5eXDge8QRmmnPtjddcWj6+19U8o87S1aO2bV0Mj8M
+         M3WtN+yhPfDhKeI+HWWXezv2yOW4/rw1ZOuSHXMEHTsj1vP3yqDAQ+g68zMUnmqBY6NL
+         U09sSwD4iLBRokYnqWQj9mxu4gSP1XtzT44HHT8mQIBfIiqby1TgrHS4DoHj274dMTI4
+         4TAZewHDL6rdAPIkU9eKQRWOei3YNVUm4L4nAzZzpRGn1FLm7WGCpcmSizlveGCN0X4Y
+         RLHOZKQ/ujhuaXhw/4fkCu3560dqVnWh8DonpL8WrTFhw+5ZMf3UtOpsV5TghEBj+l05
+         iX+w==
+X-Gm-Message-State: AOAM533LjmI7uN4EjB08L/YO3/IZlnvaoJSYgVLX6JLJLr2tuAbfTACb
+        OTAMuUxWpJgMNvH57y2GPL6NBRBheWt0MH8C9Ac=
+X-Google-Smtp-Source: ABdhPJykexIua6HZp98HD6UAPL7YfB6FGSx7A8zAjyvMQr16MUrsRq3gFWvq/Yb3+V08//YEY1bPAa06stZYp5H39x0=
+X-Received: by 2002:a2e:98d2:: with SMTP id s18mr3237ljj.412.1615827408052;
+ Mon, 15 Mar 2021 09:56:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:651c:1382:0:0:0:0 with HTTP; Mon, 15 Mar 2021 09:56:47
+ -0700 (PDT)
+Reply-To: ezbtg22@gmail.com
+From:   "Mrs.Glenn" <mrganuserge@gmail.com>
+Date:   Mon, 15 Mar 2021 09:56:47 -0700
+Message-ID: <CA+Wfa7Z3_JiLGKA=BHLEmmn85uCV7+VaoML7oMoh+4b-+VC3DQ@mail.gmail.com>
+Subject: From Mrs.Glenn
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-currently the internal bitmask used for allocating ports starts with offset 0.
-This is bit confusing as data port numbers on Qualcomm controller are valid
-from 1 to 14. So adjust this bit mask accordingly, this will also help while
-adding static port map support.
-
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 6d22df01f354..9e70c53e2c7b 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -519,7 +519,7 @@ static void qcom_swrm_stream_free_ports(struct qcom_swrm_ctrl *ctrl,
- 			port_mask = &ctrl->din_port_mask;
- 
- 		list_for_each_entry(p_rt, &m_rt->port_list, port_node)
--			clear_bit(p_rt->num - 1, port_mask);
-+			clear_bit(p_rt->num, port_mask);
- 	}
- 
- 	mutex_unlock(&ctrl->port_lock);
-@@ -552,13 +552,13 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
- 			list_for_each_entry(p_rt, &s_rt->port_list, port_node) {
- 				/* Port numbers start from 1 - 14*/
- 				pn = find_first_zero_bit(port_mask, maxport);
--				if (pn > (maxport - 1)) {
-+				if (pn > maxport) {
- 					dev_err(ctrl->dev, "All ports busy\n");
- 					ret = -EBUSY;
- 					goto err;
- 				}
- 				set_bit(pn, port_mask);
--				pconfig[nports].num = pn + 1;
-+				pconfig[nports].num = pn;
- 				pconfig[nports].ch_mask = p_rt->ch_mask;
- 				nports++;
- 			}
-@@ -580,7 +580,7 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
- err:
- 	if (ret) {
- 		for (i = 0; i < nports; i++)
--			clear_bit(pconfig[i].num - 1, port_mask);
-+			clear_bit(pconfig[i].num, port_mask);
- 	}
- 
- 	mutex_unlock(&ctrl->port_lock);
-@@ -754,6 +754,9 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
- 	ctrl->num_dout_ports = val;
- 
- 	nports = ctrl->num_dout_ports + ctrl->num_din_ports;
-+	/* Valid port numbers are from 1-14, so mask out port 0 explicitly */
-+	set_bit(0, &ctrl->dout_port_mask);
-+	set_bit(0, &ctrl->din_port_mask);
- 
- 	ret = of_property_read_u8_array(np, "qcom,ports-offset1",
- 					off1, nports);
 -- 
-2.21.0
+Dear Beloved,
 
+I am Mrs Elizabet Glenn from Israel. I am a missionary but right now
+in a hospital bed in Israel. I am 59 years and childless; my husband
+is dead. I was diagnosed with terminal cancer. And my doctor just
+predicted that I have but very limited time to live due to damages in
+my system and as a result of that I decided to dispose my 10.5 million
+US dollars to a God-fearing one for the continuation of charitable
+work. This is why I located you.My guess about you may not be accurate
+because I came across your contact at the humanitarian calendar event
+of the year but I believe in God who  divinely directed me to you for
+this solemn proposal of charitable work. I wholeheartedly wish to
+bequeath my fortune to you as a God-fearing person for the
+continuation of charitable work anywhere around the world.
+
+I shall be going in for a surgery operations soonest and desire this
+money to be transferred to you as I do not wish to leave this money in
+the bank because bankers might misuse it for their own interest after
+my death. As soon as I receive your quick reply assuring me that you
+will utilize the money as I instructed you for the benefit of the less
+privilege, I shall give you more details and also instruct my bank to
+release the money to you for the charity project. I hope you receive
+this mail in good health.
+
+Because I don t know what will be my situation in next minute,
+
+I am waiting for your reply.
+
+Yours sincerely,
+Mrs Elizabet Glenn.
