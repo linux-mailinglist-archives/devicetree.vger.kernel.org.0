@@ -2,175 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9983833B5DE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CFAC33B8A1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 15:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231726AbhCONzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 09:55:46 -0400
-Received: from z11.mailgun.us ([104.130.96.11]:48825 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231304AbhCONzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 09:55:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615816516; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=3zQTK7Qxhk/xx9/OqKu/wFfp4csF7+T5fJSZ6U+Vvj4=;
- b=cAfw3XuFCCYLxhuBCEjRYOcmyrR9GhjsRWR/7OiN4awbaFgyCl3X6ZEiFAMB7oS0d5QtEE7X
- WBwSG4k/6D7nOpXZMotNM+3gxAtgk/uk+kwufXfxOVeuiioMwtFy9mYVPyHBVI2zdZgz9/CQ
- 3tQGIfOQf6pxh8DEl5c+9eXYj0E=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 604f672e1de5dd7b99134a98 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 13:54:54
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 44B94C4346A; Mon, 15 Mar 2021 13:54:52 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95A5FC4316A;
-        Mon, 15 Mar 2021 13:54:50 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 15 Mar 2021 19:24:50 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-In-Reply-To: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
-References: <1615361829-22370-1-git-send-email-pillair@codeaurora.org>
-Message-ID: <c00116b0d570c3e739d3a7a6d10eb29a@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S233571AbhCOOEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 10:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233979AbhCOOCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 10:02:46 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C35C06174A;
+        Mon, 15 Mar 2021 07:02:44 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id 61so5753457wrm.12;
+        Mon, 15 Mar 2021 07:02:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=k0vn3g0iM9tzN5zs4VgW3rT5nVcEHeJKUw8PGKNq8mo=;
+        b=mtxAx5cWs61UGwBM7+LNzs509fgwmcXyFtwBhcyQOKx7rxl7Ym6jPE4w83BBHZHbAV
+         dzDpQwf5PYgEsmM1lunArSteDuIRyRT43+3RwcSEkDtTdXoa7iazy9PbnmY6q/7Xj+HT
+         NWN149YVOwQ0s285t18yUN5uL0jV8wdZZP/+6ICVKJnUjLfQJJMgeqt2S/1yK3UwDNjV
+         tYmg7NFWeX5ibxRGg4MWGSIVchnUfZaC+Zqn6Ymk8+nba/YAB6U02F1JqyaJwjl48P4r
+         G40UbXv1xNyTsv970hy5BHpagnp+2Mg5Mw6Atx/0QG+TSyIh7AD27kdx0QYS0LKfMXIc
+         gi7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=k0vn3g0iM9tzN5zs4VgW3rT5nVcEHeJKUw8PGKNq8mo=;
+        b=UeOVaCHTF/Xp2As0k1BVq1zrenw6puvf1h5V8CcjBagxkc1YvQh2jI6/URlob39A13
+         M0cnd29AHHgjO+5RZ85MT4xsxIWA89CyrMhjw75C+VlaEsTaatSeTzhwvIQ02Gy40hqB
+         oSsxwrtfyh1LIk2n2zJBJV/EiJ2F/xmXyAYt1z4BD41a6dx9LxUrAAvTZDxPpBFaeXBw
+         HWzLKjCRg2olkbODrzSa3pKSa2A5hzO3R43EPS5eZ3uwo53LARWDoD6rpohiWCB0fC+2
+         RStIkj8zBH9P0GDTeCAm3fxVZSvRP5vfTCzqQyuq2hy4l+hB5udOtcnsmBZN3SB9IeHB
+         xdXQ==
+X-Gm-Message-State: AOAM530yu4TMU1SEtp+AjgO2H1FShmrjtxHxexVLhvggmXaLhHubIk6l
+        dAl/iHqksqmOsNIbi0bRqJg=
+X-Google-Smtp-Source: ABdhPJx28lC8vTBtYr2kHoXQJipgXe7H1XrROX3f9kSupKxCshYAGQmCEA/JKVPb+O6qsghAFI/jNA==
+X-Received: by 2002:a5d:6a49:: with SMTP id t9mr28200782wrw.131.1615816961722;
+        Mon, 15 Mar 2021 07:02:41 -0700 (PDT)
+Received: from macbook-pro-alvaro.lan ([80.31.204.166])
+        by smtp.gmail.com with ESMTPSA id b131sm12689628wmb.34.2021.03.15.07.02.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 15 Mar 2021 07:02:41 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
+Subject: Re: [PATCH 2/2] net: mdio: Add BCM6368 MDIO mux bus controller
+From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+In-Reply-To: <YEaQdXwrmVekXp4G@lunn.ch>
+Date:   Mon, 15 Mar 2021 15:02:37 +0100
+Cc:     Jonas Gorski <jonas.gorski@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com>
+References: <20210308184102.3921-1-noltari@gmail.com>
+ <20210308184102.3921-3-noltari@gmail.com> <YEaQdXwrmVekXp4G@lunn.ch>
+To:     Andrew Lunn <andrew@lunn.ch>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-10 13:07, Rakesh Pillai wrote:
-> Add the WPSS remoteproc node in dts for
-> PIL loading.
-> 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
-> - This change is dependent on the below patch series
-> 1) https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
-> 2) https://lore.kernel.org/patchwork/project/lkml/list/?series=488365
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 47 
-> +++++++++++++++++++++++++++++++++
->  2 files changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 950ecb2..603f56b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -26,6 +26,10 @@
->  	status = "okay";
->  };
-> 
-> +&remoteproc_wpss {
-> +	status = "okay";
-> +};
-> +
->  &uart5 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 8af6d77..26dd466 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -53,6 +53,16 @@
->  			no-map;
->  			reg = <0x0 0x80b00000 0x0 0x100000>;
->  		};
-> +
-> +		wlan_fw_mem: memory@80c00000 {
-> +			no-map;
-> +			reg = <0x0 0x80c00000 0x0 0xc00000>;
-> +		};
-> +
-> +		wpss_mem: memory@9ae00000 {
-> +			no-map;
-> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
-> +		};
+Hi Andrew,
 
-The wpss mem shouldn't move into
-board specific dt.
+> El 8 mar 2021, a las 22:00, Andrew Lunn <andrew@lunn.ch> escribi=C3=B3:
+>=20
+>> +static int bcm6368_mdiomux_probe(struct platform_device *pdev)
+>> +{
+>> +	struct bcm6368_mdiomux_desc *md;
+>> +	struct mii_bus *bus;
+>> +	struct resource *res;
+>> +	int rc;
+>> +
+>> +	md =3D devm_kzalloc(&pdev->dev, sizeof(*md), GFP_KERNEL);
+>> +	if (!md)
+>> +		return -ENOMEM;
+>> +	md->dev =3D &pdev->dev;
+>> +
+>> +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +	if (!res)
+>> +		return -EINVAL;
+>> +
+>> +	/* Just ioremap, as this MDIO block is usually integrated into =
+an
+>> +	 * Ethernet MAC controller register range
+>> +	 */
+>> +	md->base =3D devm_ioremap(&pdev->dev, res->start, =
+resource_size(res));
+>> +	if (!md->base) {
+>> +		dev_err(&pdev->dev, "failed to ioremap register\n");
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	md->mii_bus =3D devm_mdiobus_alloc(&pdev->dev);
+>> +	if (!md->mii_bus) {
+>> +		dev_err(&pdev->dev, "mdiomux bus alloc failed\n");
+>> +		return ENOMEM;
+>> +	}
+>> +
+>> +	bus =3D md->mii_bus;
+>> +	bus->priv =3D md;
+>> +	bus->name =3D "BCM6368 MDIO mux bus";
+>> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s-%d", pdev->name, =
+pdev->id);
+>> +	bus->parent =3D &pdev->dev;
+>> +	bus->read =3D bcm6368_mdiomux_read;
+>> +	bus->write =3D bcm6368_mdiomux_write;
+>> +	bus->phy_mask =3D 0x3f;
+>> +	bus->dev.of_node =3D pdev->dev.of_node;
+>> +
+>> +	rc =3D mdiobus_register(bus);
+>> +	if (rc) {
+>> +		dev_err(&pdev->dev, "mdiomux registration failed\n");
+>> +		return rc;
+>> +	}
+>=20
+> So this is different to all the other mux drivers. Normally there is
+> an MDIO driver. And there is a mux driver. Two separate drivers. The
+> mux driver uses a phandle to reference the MDIO driver. Here we have
+> both in one driver.
+>=20
+> Does this MDIO bus device exist as a standalone device? Without the
+> mux? If silicon does exist like that, having two separate drivers
+> would be better.
 
->  	};
-> 
->  	cpus {
-> @@ -305,6 +315,43 @@
->  			};
->  		};
-> 
-> +		remoteproc_wpss: remoteproc@8a00000 {
-> +			compatible = "qcom,sc7280-wpss-pil";
+BCM6368 (and newer) SoCs have an integrated ethernet switch controller =
+with dedicated internal phys, but it also supports connecting to =
+external phys not integrated in the internal switch.
+Ports 0-3 are internal, ports 4-7 are external and can be connected to =
+external switches or phys and port 8 is the CPU.
+This MDIO bus device is integrated in the BCM63xx switch registers, =
+which corresponds to the same registers present in =
+drivers/net/dsa/b53/b53_regs.h.
+As you can see in the source code, registers are the same for the =
+internal and external bus. The only difference is that if MDIOC_EXT_MASK =
+(bit 16) is set, the MDIO bus accessed will be the external, and on the =
+contrary, if bit 16 isn=E2=80=99t set, the MDIO bus accessed will be the =
+internal one.
 
-please aim to add pas based
-support to boot wpss as well.
+I don=E2=80=99t know if this answers your question, but I think that =
+adding it as mdiomux is the way to go.
 
-> +			reg = <0 0x08a00000 0 0x10000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-> +					      <&wpss_smp2p_in 0 0>,
-> +					      <&wpss_smp2p_in 1 0>,
-> +					      <&wpss_smp2p_in 2 0>,
-> +					      <&wpss_smp2p_in 3 0>,
-> +					      <&wpss_smp2p_in 7 0>;
-> +			interrupt-names = "wdog", "fatal", "ready", "handover",
-> +					  "stop-ack", "shutdown-ack";
-> +
-> +			memory-region = <&wpss_mem>;
-> +
+>=20
+>     Andrew
 
-looks like you missed adding clocks
-and power-domains mentioned in the
-bindings.
-
-> +			qcom,smem-states = <&wpss_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>;
-> +			reset-names = "restart";
-> +
-> +			qcom,halt-regs = <&tcsr_mutex_regs 0x37000>;
-> +
-> +			status = "disabled";
-> +
-> +			glink-edge {
-> +				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
-> +							     IRQ_TYPE_EDGE_RISING>;
-> +				mboxes = <&ipcc IPCC_CLIENT_WPSS
-> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +				label = "wpss";
-> +				qcom,remote-pid = <13>;
-> +			};
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,sc7280-pdc", "qcom,pdc";
->  			reg = <0 0x0b220000 0 0x30000>;
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Best regards,
+=C3=81lvaro.=
