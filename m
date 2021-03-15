@@ -2,102 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 978BA33B097
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24E3A33B0A5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 12:08:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbhCOLFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 07:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbhCOLFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 07:05:10 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ECABC061574
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 04:05:10 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 18so56093260lff.6
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 04:05:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sgvr9igcXWBKUfY1IE4B67mheq905Em2jQKjOx4y1YE=;
-        b=HKhfeeknB7kfXg9qqI7wWyr88d6N6N0MnUy9HDIvwsgFr28rpFNDBeukf2x56mBXZj
-         7IlMrOSTUnj7+Vk9EhivUeiQ8sDpaVhccDqZR1tjkHXa2xLNGgg7ZCAwvsXHb3xGij6l
-         0gfIx7huASrtnFKcJxIdY/WZww0WvTf8WgknDunIM7IcpqEnJ+aROCHqsrcfZDvir0t9
-         hOgKn+wphPfw7jMHzivOFyB9L6174KZg3aYkaifYnqYxRyrGteoLhms1ppDCgZx+gK0p
-         RVfXT2Shj+bfkssrku57lF2Gk7O+Mq2REwSnmJFEShEDAG5PMQl/DF/iexdibaQhMMCz
-         NmoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sgvr9igcXWBKUfY1IE4B67mheq905Em2jQKjOx4y1YE=;
-        b=SaxDwXt9gb3W9m2NYZiEERSKPU3P/8NDfzCp48uPASGwXPOQjuhLG+TqUIhYNwEHzm
-         yo7yk6dkq4s3sEXmOl6VICpH9BJSS+e/MHkpFF6/5GEXcF6grK051rg55MXp2XOhIZi6
-         BqtB3YFQlKU+Ad9uEjpx8Ckg7MiEpMjruBqbM/lzdrtkyC1CJ624zn/CzKTHF4VzX2LG
-         mMESSgaWk0iD+0kXul7mVWty/kfHjzCzc45uSjaQCpIfKx2eL/B34dGzyX0jCBO810vI
-         nXrhYfn/jFPopi/cYjN0NFoVACAT+yOkTsdDMzebErjzJaGz1iLwIDudGYrdRhHLggR0
-         zvzg==
-X-Gm-Message-State: AOAM531QUWeAJDe83Cdk9QBGU3G2v2XRLOtr3q/63juZLAjmJcwAl7gj
-        p2AWdHovrbmWb482RdDimEivbmL8v07xZabtGZo/qw==
-X-Google-Smtp-Source: ABdhPJxgA++CWYgtrmM/Gv6XPeHInoxEYMwul217KfTlYslgm0DxKCREAH3B2IZa7VtwpBjIvONTWthCpwTuZd52zt8=
-X-Received: by 2002:a05:6512:243:: with SMTP id b3mr7794596lfo.529.1615806308540;
- Mon, 15 Mar 2021 04:05:08 -0700 (PDT)
+        id S229896AbhCOLII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 07:08:08 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:38267 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229878AbhCOLHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 07:07:47 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id A834F580A1A;
+        Mon, 15 Mar 2021 07:07:46 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 15 Mar 2021 07:07:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=ThO60sGRyq30t0HLAOO1zf9vnva
+        YPWODtuOEx85W2No=; b=RRRuwzirG/7JjCsbczGkuq9bXkc+BAYvGcUzg+QTRaH
+        2kPr4lZIm+IWhQ/taPvpLg/POxx5OBZp67ca9caPfR8ALyaU5Jq4cVpwAbltptwX
+        RgHZh6RWjkFC1d4mvKaqR/9yzfQnVjKntQZyICqoWGBhEzeVNA7+I8xsqWsHM0gW
+        vcqH/rQYKT/gzdb/p2MjPPEVytjmfwweVA1kOxPLU53wRDblBTwIE+uVQn9VH3Zi
+        jdbx995QARiVwTqqUeBbXSiaQzgM7ov88T9+gKbQlmkksa6sxng9qDbZGpRy9Sim
+        ZehUn1+5lCcVln26JO4+I4upHTXYU1gm1mwNkBf92QA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ThO60s
+        GRyq30t0HLAOO1zf9vnvaYPWODtuOEx85W2No=; b=Yeyx6xQKIudZz5mC11ll38
+        CbQYPsCrBEeprui7Xg+9WyHrXrGCIzcJJSLIC3P0j4rfhl6LQ3POx4TtMDDwglZG
+        pdLfQKiIrZGAPpsZHvh6xTl3eG9JotGE7dJXY7xILkhFXP5cEPMD3e0w8o+yYCfy
+        5O/6FwtodRodf8iXkN5TwExjAJJydTHfhc86MTXzANKQgJsa2PvSo4Z2PicKDEFi
+        sZ7m3nBE0A4XOJpsD0VH6VSVvbJgkVjiIc8ewgxRGAvC5ozvCdwk0wjqB1uhszuR
+        j4qx6FBdLUNkqAGWpVtX/SCSnW6USxk+LQJ6Xxbv8MVIGiNalhIKPRmSz+Mw894g
+        ==
+X-ME-Sender: <xms:AUBPYJ7bG829zKIuWg-QA6ItsyPM3wbTBYlXdsZgcR-9grhVslqoxw>
+    <xme:AUBPYG6Syh3K_uBXu2gMMqLIDs2PLU_u2qbgb8ozHHVruVFVitcmoJOBj-pOr0GVA
+    -W9niBqgv2G6OcoUcA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddvledgvdefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:AUBPYAeFlwdBkwMtwFY8LXcXwXmVmpJ18zWNgU78LOSf_BdJp3Em6g>
+    <xmx:AUBPYCJaX1ahU_-obaU0okNHPnlDg5EwJeNR958P59RY0LJZzgtVWw>
+    <xmx:AUBPYNKwL0HWATfOSQUl4fAL_NaThiyp5YY6lZKrGAGwjrcC2S_x8Q>
+    <xmx:AkBPYE-9XTvEtetF8f2fcBDugkinKf4CclPSiPJF1qAuGTu9t-WQ9Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id CDEFB1080067;
+        Mon, 15 Mar 2021 07:07:44 -0400 (EDT)
+Date:   Mon, 15 Mar 2021 12:07:42 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: timer: Add compatibles for sun50i timers
+Message-ID: <20210315110742.6ul47e72v6yl6ydj@gilmour>
+References: <20210315043250.45095-1-samuel@sholland.org>
+ <20210315043250.45095-3-samuel@sholland.org>
 MIME-Version: 1.0
-References: <20210313215302.4076765-1-linus.walleij@linaro.org>
-In-Reply-To: <20210313215302.4076765-1-linus.walleij@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 15 Mar 2021 12:04:57 +0100
-Message-ID: <CACRpkdZCoeb-uFgOrj5QETdiUPim9O=kXTXwqaFCZ-o76qzpuQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Convert the BCM4329 bindings to YAML and extend
-To:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pucgglng2x7rt7wq"
+Content-Disposition: inline
+In-Reply-To: <20210315043250.45095-3-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-By the way, here is a question to the broadcom folks:
 
-On Sat, Mar 13, 2021 at 10:53 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+--pucgglng2x7rt7wq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +          - brcm,bcm43143-fmac
-> +          - brcm,bcm4341b0-fmac
-> +          - brcm,bcm4341b4-fmac
-> +          - brcm,bcm4341b5-fmac
-> +          - brcm,bcm4329-fmac
-> +          - brcm,bcm4330-fmac
-> +          - brcm,bcm4334-fmac
-> +          - brcm,bcm43340-fmac
-> +          - brcm,bcm4335-fmac
-> +          - brcm,bcm43362-fmac
-> +          - brcm,bcm4339-fmac
-> +          - brcm,bcm43430a0-fmac
-> +          - brcm,bcm43430a1-fmac
-> +          - brcm,bcm43455-fmac
-> +          - brcm,bcm43456-fmac
-> +          - brcm,bcm4354-fmac
-> +          - brcm,bcm4356-fmac
-> +          - brcm,bcm4359-fmac
-> +          - cypress,cyw4373-fmac
-> +          - cypress,cyw43012-fmac
+On Sun, Mar 14, 2021 at 11:32:47PM -0500, Samuel Holland wrote:
+> The sun50i SoCs contain timer blocks which are useful as broadcast
+> clockevent sources. They each have 2 interrupts, matching the A23
+> variant, so add the new compatible strings with the A23 compatible
+> as a fallback.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Here the "-fmac" suffix is added to distinguish the function from
-other functions
-in a combochip, usually WLAN + Bluetooth.
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
-Are there some of these that are just WLAN and not combochips? In that case they
-shall not have the "-fmac" suffix.
+Thanks!
+Maxime
 
-Yours,
-Linus Walleij
+--pucgglng2x7rt7wq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYE8//QAKCRDj7w1vZxhR
+xW86AQCrK2MQndw/TUK6GbSqIPgqLwJsRk92qUz7tdL55sgumgD/ZLd8CWAgOgko
+ld6FZaCSIUwMuq5fh7Z1STGksQNP2wM=
+=OfmS
+-----END PGP SIGNATURE-----
+
+--pucgglng2x7rt7wq--
