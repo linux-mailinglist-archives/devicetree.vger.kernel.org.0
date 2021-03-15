@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CDBF33C5FA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:45:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0C233C661
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 20:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbhCOSol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 14:44:41 -0400
-Received: from z11.mailgun.us ([104.130.96.11]:44228 "EHLO z11.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231837AbhCOSoa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 14:44:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615833870; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=Dkqct+nc9FRffVLnbXfX+EGg6h4gk6baKMuUp85NTZ8=; b=Jo/D9BBxecFPM2XOioZGLFrEkxJst9okfLcTPOqxPvxrDYzPK1X44QyvuZSoKbbBqU3nS0Kc
- y9etVTl2rsghuc/PDhZQFKmYEVnKOYxxD0AojJHonpa6XjZ2zmk1OaPnQ8VS5GnSBSVAsISu
- 5g3uwUf36hRZ6faaVa2CBgVUJM8=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 604fab0c4db3bb6801bf1738 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 18:44:28
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BF51AC43464; Mon, 15 Mar 2021 18:44:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 91D3FC433ED;
-        Mon, 15 Mar 2021 18:44:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 91D3FC433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Jassi Brar <jaswinder.singh@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCHv2] dt-bindings: mailbox: qcom-ipcc: Add compatible for SC7280
-Date:   Tue, 16 Mar 2021 00:14:10 +0530
-Message-Id: <20210315184410.21063-1-saiprakash.ranjan@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S232938AbhCOTHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 15:07:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231683AbhCOTHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 15:07:14 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B7EC06174A;
+        Mon, 15 Mar 2021 12:07:13 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id x4so51889237lfu.7;
+        Mon, 15 Mar 2021 12:07:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xsFFCIyjjCBLlr6/kBgfTXRD6Bn3TD7vxXln3l8CVcQ=;
+        b=fDGwln/YTfSURcV/aXRx6x29A9JqqK05F3Vdgy7UrCF/YH8kZckPhBuHM7PdDK1lec
+         QmVgndOxSByzGW3elmk9BZu8ncispWco/9QtIu5Y99mqFU5nA0R8YnhAcxNiOx2mVelk
+         EFM9dsrplt9ByNEbNtQaKB9kRL9vs2RWr9wncXgl//yIN+nPSwu6jV58nz4jwIJIoqTy
+         4FDaZ0q586oCHZU1xnAqOrm9H9Bo85XiVFVazDQ2r2r1D/EKThNas0WjsQx4sljOiZQH
+         fT020bfhVGYC/LtmHNiqFmInW0KU8qMmazA7bTk7P/k8+M/EF9EmI2cuWqdcXTz5eFlr
+         b0+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xsFFCIyjjCBLlr6/kBgfTXRD6Bn3TD7vxXln3l8CVcQ=;
+        b=EQJUffj+VfWvc4hQPj76YPXU+ntOq0wRuZ8HokZ4rjiZeHoDTBPQz6u9xtI6h9n4QL
+         KO24L6X2HCy/rQbnNokeGN6k7iwwR6tTTnZ8WpOOZ02PYW4KNxj5V7CRpksmzFdkXzHV
+         +qPse3bkxsXXfwgvlzWWlYDtNGjSFpzXJQru1GsHjR4Vfqy84rBGpQXqunETeOULWgkK
+         HISNBSF3MhDEDSDmM8ffMHcNhSdw8lJ1F9n8SytEEDZIULIuHdNAQeHylWWHu1OHhRxW
+         1xxl66OdsXR5x7a8ddFCVzBkFyhkW233o6jwanMHOLG4QE1HaLjw3apWFrHnk02gu04N
+         G4/A==
+X-Gm-Message-State: AOAM533TKe8yzL44LMyoyUjdL1MiQOT3iieA+iDgfHYUpcvekuGUBN/D
+        y+MvfG+s8FQeq9MtTf2OELqz5/RrMMk=
+X-Google-Smtp-Source: ABdhPJzh8OG03R8LFHK+Dhi6+n3HkZmtUuPJOJvkb2HhD60gazlMLhqPnStaMxEQXKQBnW2PTE/Msw==
+X-Received: by 2002:a19:b47:: with SMTP id 68mr8368793lfl.343.1615835232287;
+        Mon, 15 Mar 2021 12:07:12 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id q14sm2984362ljj.132.2021.03.15.12.07.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Mar 2021 12:07:11 -0700 (PDT)
+Subject: Re: [PATCH v4 7/7] dt-bindings: clock: tegra: Convert to schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210312163632.8861-1-digetx@gmail.com>
+ <20210312163632.8861-8-digetx@gmail.com>
+ <20210315155310.GA926230@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <3aae4fb3-6b45-24ea-df2d-63746ec2afda@gmail.com>
+Date:   Mon, 15 Mar 2021 22:07:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210315155310.GA926230@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add IPCC compatible for SC7280 SoC.
+15.03.2021 18:53, Rob Herring пишет:
+> On Fri, Mar 12, 2021 at 07:36:32PM +0300, Dmitry Osipenko wrote:
+>> Convert NVIDIA Tegra clock bindings to schema.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../bindings/clock/nvidia,tegra-car.yaml      | 118 ++++++++++++++++++
+>>  .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
+>>  .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
+> 
+> Seems like this one is a bit different and should remain a separate 
+> binding?
 
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Jassi Brar <jaswinder.singh@linaro.org>
-Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
- Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-index 168beeb7e9f7..06419543d235 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-@@ -24,6 +24,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - qcom,sc7280-ipcc
-           - qcom,sm8250-ipcc
-       - const: qcom,ipcc
- 
-
-base-commit: d168e1ae4f96769140579cea6ad445d16addb8c1
-prerequisite-patch-id: dce6b5acef576029c0b22108fbc3c791cb9f7fe5
-prerequisite-patch-id: 28a7829ee036d2c16f6f37017f83a0f3a835ade1
-prerequisite-patch-id: 022546e1bde2817e85197ec89a6b9dfd17f7ac7d
-prerequisite-patch-id: dc0ce2258b0020e641057f1175f25a4db7b01b0c
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+The T124 binding has optional EMC (external memory controller) clocks
+that aren't used by other SoCs. The T124 also shouldn't need these
+clocks, but that's how the binding happened to be defined historically.
+Since the optional properties have no effect on a non-T124 SoCs, I
+thought that it should be better to unify all the bindings, rather than
+partially duplicate them with out any real benefit.
