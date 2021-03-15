@@ -2,581 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C645033C5D3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E19433C5DA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 19:38:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhCOShP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 14:37:15 -0400
-Received: from m42-2.mailgun.net ([69.72.42.2]:41778 "EHLO m42-2.mailgun.net"
+        id S229643AbhCOSiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 14:38:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54850 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231376AbhCOShJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 14:37:09 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615833428; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=YMXNstI74NOBT86lKLM6je3pqP/rcZpBSy0m7mXKDy0=; b=hvRjuxuPgb/I8bbuKNGxvBkLxX3xAmS1y8OD+JwsLyBfzktHCqjwFCRmeRNXa93tQMfuenod
- rExN2E4khlWStGjxdg93zVk9x5wFWtD4HP3KtvngcyB+pcKUN7GId4a+JTtbRHi8Hf7kf35C
- pel3LLF83WGcXlOyZAjY82CCjxM=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 604fa9395d70193f88183462 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 18:36:41
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CE83AC433CA; Mon, 15 Mar 2021 18:36:41 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 288A5C433C6;
-        Mon, 15 Mar 2021 18:36:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 288A5C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>
-Subject: [PATCHv2 4/4] arm64: dts: qcom: sc7280: Add Coresight support
-Date:   Tue, 16 Mar 2021 00:05:49 +0530
-Message-Id: <de07324628f88900b72357f4ef7f0c7db7e3409d.1615832893.git.saiprakash.ranjan@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <cover.1615832893.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1615832893.git.saiprakash.ranjan@codeaurora.org>
+        id S231801AbhCOSiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 14:38:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4544264F3F;
+        Mon, 15 Mar 2021 18:38:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615833483;
+        bh=uF298eM0LgGS85hwZQZdhr2Tvj40xbTDjSMSlStBdiE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WY3ykGyuf2z16E//2lN9Ht4BBF7x9q9KAlNOEsa3TVvelBahqe/tGWegrMKsNhzHX
+         phPZe+Wpi00XbfBRmrjKzI+ZbNVtUUKasaegNWyRoCqpJ5zcpR8sc/BJWhf6VV3a4f
+         c44sLRf8C8rsk+Ewhx12kvZRjEr2mHrGHZV8Q5R/6A3lC4V7P4d1oUyGZ5u6SLG+Cp
+         4fEq7VpyA51Ne70DgHNTg329XW/sbk2vjSC2xOSd3+scDieO4laW3OB+hLd/KE+Lm5
+         CBYVdz1nP28jV+SzNa8Ycv7XEUTq4+lCGtGmGgvNzqJ9swhmC8hjrNIKCuX0mfx1qF
+         nBMOyJl8QvUiQ==
+Received: by mail-ed1-f44.google.com with SMTP id bx7so18533511edb.12;
+        Mon, 15 Mar 2021 11:38:03 -0700 (PDT)
+X-Gm-Message-State: AOAM531WKOyqOjbM6nkTr3yUTxf3DgqhrQpu09EUM1Vvn6NrMip5/s90
+        urBz9vlJybvFQL09Cbyl8TWNDSj4Fz2rhfV+Xg==
+X-Google-Smtp-Source: ABdhPJwCS5XJGWYKh7bAlUpniPAputEA0i7ZybxpT5socnCxDSiPxZONyhD2Zf8cAJBagyAbp/RgXRg26/VkuqaO2w8=
+X-Received: by 2002:a05:6402:2d0:: with SMTP id b16mr31943444edx.194.1615833481821;
+ Mon, 15 Mar 2021 11:38:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-31-sebastian.reichel@collabora.com>
+In-Reply-To: <20210312154357.1561730-31-sebastian.reichel@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 15 Mar 2021 12:37:50 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL59Lq5=x-kxpjBwa3dactNVnhXbDPWTPe965DPOs-bWw@mail.gmail.com>
+Message-ID: <CAL_JsqL59Lq5=x-kxpjBwa3dactNVnhXbDPWTPe965DPOs-bWw@mail.gmail.com>
+Subject: Re: [PATCH 30/38] dt-bindings: power: supply: lp8727: Convert to DT
+ schema format
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add coresight components found on SC7280 SoC.
+On Fri, Mar 12, 2021 at 8:52 AM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Convert the binding to DT schema format.
+>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../bindings/power/supply/lp8727_charger.txt  |  43 -------
+>  .../bindings/power/supply/ti,lp8727.yaml      | 112 ++++++++++++++++++
+>  2 files changed, 112 insertions(+), 43 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/supply/lp8727_charger.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/ti,lp8727.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/power/supply/lp8727_charger.txt b/Documentation/devicetree/bindings/power/supply/lp8727_charger.txt
+> deleted file mode 100644
+> index 0355a4b68f79..000000000000
+> --- a/Documentation/devicetree/bindings/power/supply/lp8727_charger.txt
+> +++ /dev/null
+> @@ -1,43 +0,0 @@
+> -Binding for TI/National Semiconductor LP8727 Charger
+> -
+> -Required properties:
+> -- compatible: "ti,lp8727"
+> -- reg: I2C slave address 27h
+> -
+> -Optional properties:
+> -- interrupts: interrupt specifier (see interrupt binding[0])
+> -- debounce-ms: interrupt debounce time. (u32)
+> -
+> -AC and USB charging parameters
+> -- charger-type: "ac" or "usb" (string)
+> -- eoc-level: value of 'enum lp8727_eoc_level' (u8)
+> -- charging-current: value of 'enum lp8727_ichg' (u8)
+> -
+> -[0]: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> -
+> -Example)
+> -
+> -lp8727@27 {
+> -       compatible = "ti,lp8727";
+> -       reg = <0x27>;
+> -
+> -       /* GPIO 134 is used for LP8728 interrupt pin */
+> -       interrupt-parent = <&gpio5>;    /* base = 128 */
+> -       interrupts = <6 0x2>;           /* offset = 6, falling edge type */
+> -
+> -       debounce-ms = <300>;
+> -
+> -       /* AC charger: 5% EOC and 500mA charging current */
+> -       ac {
+> -               charger-type = "ac";
+> -               eoc-level = /bits/ 8 <0>;
+> -               charging-current = /bits/ 8 <4>;
+> -       };
+> -
+> -       /* USB charger: 10% EOC and 400mA charging current */
+> -       usb {
+> -               charger-type = "usb";
+> -               eoc-level = /bits/ 8 <1>;
+> -               charging-current = /bits/ 8 <2>;
+> -       };
+> -};
+> diff --git a/Documentation/devicetree/bindings/power/supply/ti,lp8727.yaml b/Documentation/devicetree/bindings/power/supply/ti,lp8727.yaml
+> new file mode 100644
+> index 000000000000..65894b36a69d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/ti,lp8727.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/ti,lp8727.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Binding for TI/National Semiconductor LP8727 Charger
+> +
+> +maintainers:
+> +  - Sebastian Reichel <sre@kernel.org>
+> +
+> +allOf:
+> +  - $ref: power-supply.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,lp8727
+> +
+> +  reg:
+> +    const: 0x27
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  debounce-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: interrupt debounce time in ms
+> +
+> +  ac:
+> +    type: object
+> +    description: AC charging parameters
+> +    properties:
+> +      charger-type:
+> +        const: ac
+> +
+> +      eoc-level:
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        minimum: 0
+> +        maximum: 6
+> +        description: |
+> +          End of Charge Percentage with the following mapping:
+> +          0 = 5%, 1 = 10%, 2 = 16%, 3 = 20%, 4 = 25%, 5 = 33%, 6 = 50%
+> +
+> +      charging-current:
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        minimum: 0
+> +        maximum: 9
+> +        description: |
+> +          Charging current with the following mapping:
+> +          0 = 90mA, 1 = 100mA, 2 = 400mA, 3 = 450mA, 4 = 500mA, 5 = 600mA,
+> +          6 = 700mA, 7 = 800mA, 8 = 900mA, 9 = 1000mA
+> +
+> +  usb:
+> +    type: object
+> +    description: USB charging parameters
+> +    properties:
+> +      charger-type:
+> +        const: usb
+> +
+> +      eoc-level:
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        minimum: 0
+> +        maximum: 6
+> +        description: |
+> +          End of Charge Percentage with the following mapping:
+> +          0 = 5%, 1 = 10%, 2 = 16%, 3 = 20%, 4 = 25%, 5 = 33%, 6 = 50%
+> +
+> +      charging-current:
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        minimum: 0
+> +        maximum: 9
+> +        description: |
+> +          Charging current with the following mapping:
+> +          0 = 90mA, 1 = 100mA, 2 = 400mA, 3 = 450mA, 4 = 500mA, 5 = 600mA,
+> +          6 = 700mA, 7 = 800mA, 8 = 900mA, 9 = 1000mA
 
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Mike Leach <mike.leach@linaro.org>
-Cc: Leo Yan <leo.yan@linaro.org>
-Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 489 +++++++++++++++++++++++++++
- 1 file changed, 489 insertions(+)
+You can avoid the duplication here with:
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index ae3d2b31364a..2cc478553935 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -316,6 +316,495 @@ uart5: serial@994000 {
- 			};
- 		};
- 
-+		stm@6002000 {
-+			compatible = "arm,coresight-stm", "arm,primecell";
-+			reg = <0 0x06002000 0 0x1000>,
-+			      <0 0x16280000 0 0x180000>;
-+			reg-names = "stm-base", "stm-stimulus-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					stm_out: endpoint {
-+						remote-endpoint = <&funnel0_in7>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6041000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x06041000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel0_out: endpoint {
-+						remote-endpoint = <&merge_funnel_in0>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@7 {
-+					reg = <7>;
-+					funnel0_in7: endpoint {
-+						remote-endpoint = <&stm_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6042000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x06042000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel1_out: endpoint {
-+						remote-endpoint = <&merge_funnel_in1>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@4 {
-+					reg = <4>;
-+					funnel1_in4: endpoint {
-+						remote-endpoint = <&apss_merge_funnel_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6045000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x06045000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					merge_funnel_out: endpoint {
-+						remote-endpoint = <&swao_funnel_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					merge_funnel_in0: endpoint {
-+						remote-endpoint = <&funnel0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					merge_funnel_in1: endpoint {
-+						remote-endpoint = <&funnel1_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		replicator@6046000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0 0x06046000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					replicator_out: endpoint {
-+						remote-endpoint = <&etr_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					replicator_in: endpoint {
-+						remote-endpoint = <&swao_replicator_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etr@6048000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0 0x06048000 0 0x1000>;
-+			iommus = <&apps_smmu 0x04c0 0>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,scatter-gather;
-+
-+			in-ports {
-+				port {
-+					etr_in: endpoint {
-+						remote-endpoint = <&replicator_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6b04000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x06b04000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					swao_funnel_out: endpoint {
-+						remote-endpoint = <&etf_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@7 {
-+					reg = <7>;
-+					swao_funnel_in: endpoint {
-+						remote-endpoint = <&merge_funnel_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etf@6b05000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0 0x06b05000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					etf_out: endpoint {
-+						remote-endpoint = <&swao_replicator_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					etf_in: endpoint {
-+						remote-endpoint = <&swao_funnel_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		replicator@6b06000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0 0x06b06000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			qcom,replicator-loses-context;
-+
-+			out-ports {
-+				port {
-+					swao_replicator_out: endpoint {
-+						remote-endpoint = <&replicator_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					swao_replicator_in: endpoint {
-+						remote-endpoint = <&etf_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7040000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07040000 0 0x1000>;
-+
-+			cpu = <&CPU0>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm0_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7140000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07140000 0 0x1000>;
-+
-+			cpu = <&CPU1>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm1_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7240000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07240000 0 0x1000>;
-+
-+			cpu = <&CPU2>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm2_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in2>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7340000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07340000 0 0x1000>;
-+
-+			cpu = <&CPU3>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm3_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in3>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7440000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07440000 0 0x1000>;
-+
-+			cpu = <&CPU4>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm4_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in4>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7540000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07540000 0 0x1000>;
-+
-+			cpu = <&CPU5>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm5_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in5>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7640000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07640000 0 0x1000>;
-+
-+			cpu = <&CPU6>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm6_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in6>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm@7740000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x07740000 0 0x1000>;
-+
-+			cpu = <&CPU7>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			arm,coresight-loses-context-with-cpu;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					etm7_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in7>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@7800000 { /* APSS Funnel */
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x07800000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					apss_funnel_out: endpoint {
-+						remote-endpoint = <&apss_merge_funnel_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					apss_funnel_in0: endpoint {
-+						remote-endpoint = <&etm0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					apss_funnel_in1: endpoint {
-+						remote-endpoint = <&etm1_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					apss_funnel_in2: endpoint {
-+						remote-endpoint = <&etm2_out>;
-+					};
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					apss_funnel_in3: endpoint {
-+						remote-endpoint = <&etm3_out>;
-+					};
-+				};
-+
-+				port@4 {
-+					reg = <4>;
-+					apss_funnel_in4: endpoint {
-+						remote-endpoint = <&etm4_out>;
-+					};
-+				};
-+
-+				port@5 {
-+					reg = <5>;
-+					apss_funnel_in5: endpoint {
-+						remote-endpoint = <&etm5_out>;
-+					};
-+				};
-+
-+				port@6 {
-+					reg = <6>;
-+					apss_funnel_in6: endpoint {
-+						remote-endpoint = <&etm6_out>;
-+					};
-+				};
-+
-+				port@7 {
-+					reg = <7>;
-+					apss_funnel_in7: endpoint {
-+						remote-endpoint = <&etm7_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@7810000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x07810000 0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					apss_merge_funnel_out: endpoint {
-+						remote-endpoint = <&funnel1_in4>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					apss_merge_funnel_in: endpoint {
-+						remote-endpoint = <&apss_funnel_out>;
-+					};
-+				};
-+			};
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sc7280-llcc";
- 			reg = <0 0x09200000 0 0xd0000>, <0 0x09600000 0 0x50000>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+patternProperties:
+  '^(ac|usb)$':
+     type: object
+     ...
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      lp8727: charger@27 {
+> +        compatible = "ti,lp8727";
+> +        reg = <0x27>;
+> +        interrupt-parent = <&gpio5>;
+> +        interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+> +        debounce-ms = <300>;
+> +
+> +        /* AC charger: 5% EOC and 500mA charging current */
+> +        ac {
+> +          charger-type = "ac";
+> +          eoc-level = /bits/ 8 <0>;
+> +          charging-current = /bits/ 8 <4>;
+> +        };
+> +
+> +        /* USB charger: 10% EOC and 400mA charging current */
+> +        usb {
+> +          charger-type = "usb";
+> +          eoc-level = /bits/ 8 <1>;
+> +          charging-current = /bits/ 8 <2>;
+> +        };
+> +      };
+> +    };
+> +
+> --
+> 2.30.1
+>
