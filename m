@@ -2,107 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AC1933C41C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C2A33C430
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:31:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235230AbhCOR2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 13:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33826 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234821AbhCOR1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 13:27:30 -0400
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72531C06174A
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:27:30 -0700 (PDT)
-Received: by mail-qv1-xf30.google.com with SMTP id q9so2692943qvm.6
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:27:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9RWsr2dPzW/uEOT8VZ8iZlXJJghlQaV6e0purSmrMZA=;
-        b=Oh+asBWgl0e+s4jNwID+FX550YAUPxSA3NyjhdQjlXvO16M284r3JkguajAnXlfQ3m
-         IJS2z9GAlA4iJexn6ICVLjwrMTchB71CIyOZiYqSkxaUdU4YNCXT3W8razfrkuozsAHI
-         MmUd7wOLscry0xBFdNpMRE+MLo5VA8sQRlg7E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9RWsr2dPzW/uEOT8VZ8iZlXJJghlQaV6e0purSmrMZA=;
-        b=riZT+XJx4i8VrZ6ixTQVHIuzGJuci21SouK7mKF78wS5VBL+5e3tdW6mwR3/Fi1LAl
-         dSbqfjuG7FZrPiRPtkZzBJi8O1U7/zvb0icCiplkcJnw/UK09Hy86KqsnKRQdrh6suma
-         iCKk62DAzzmD55WxeCx2J5N6Fuin26OcKxXW2znEthp4urKIVPR989YhS8u6V6UIUJqc
-         ivyBlcFtoadsYOpA4a5zeFbMlOT0ux65QDyj44vn6oL3vGJYUeoG6JS7Cxq4yKIME/el
-         s1Dmmyz9pv8Scn93vWQ5EY66K4+gSuaz9nSC5gbQflpEjV5/pdF2oSoqeQd4EowFY1CA
-         MYtA==
-X-Gm-Message-State: AOAM532Y5TFOfGBJ2czhjA/DsrwLAi2UoHM373cniFQYT2WbS12tyWUr
-        ulnPIvpQrwJdN7CqLJFOHPpkH86gZKCE3A==
-X-Google-Smtp-Source: ABdhPJyw5wPHhpjH3MB/IrKDi7jv8amMgPZszWb1xzehARrhOMMMWY3BuKhmKQVzjekPXTywAJvmag==
-X-Received: by 2002:a05:6214:20a7:: with SMTP id 7mr11835998qvd.24.1615829249484;
-        Mon, 15 Mar 2021 10:27:29 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id h12sm13180622qko.29.2021.03.15.10.27.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Mar 2021 10:27:26 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id c131so33995678ybf.7
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:27:25 -0700 (PDT)
-X-Received: by 2002:a25:2654:: with SMTP id m81mr1035747ybm.405.1615829245523;
- Mon, 15 Mar 2021 10:27:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210312234310.3490809-1-bjorn.andersson@linaro.org>
-In-Reply-To: <20210312234310.3490809-1-bjorn.andersson@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 15 Mar 2021 10:27:14 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Uvtdrb7N=UX2+XwNnYJd3_JWjrnjcMVnH=A3xq4oFQQw@mail.gmail.com>
-Message-ID: <CAD=FV=Uvtdrb7N=UX2+XwNnYJd3_JWjrnjcMVnH=A3xq4oFQQw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sdm845: Move reserved-memory to devices
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+        id S235619AbhCORam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 13:30:42 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44828 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232341AbhCORab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 13:30:31 -0400
+X-UUID: a0fdd4afc34a41ba9d67db60143e695c-20210316
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=r9FRBMB1nJgQB9Ktvs2Hm5ModFYF6hmKvuOFmqaVDZY=;
+        b=qRIIXsyi78HDLRPozDRbPgfNSeUL3FO10caPN1G3q7ZRRSdBrmajXULm+zMLDOge2CmtFyZhOzLyRK/rTCX9h4kkjOGhhI1ZWQmaxlmviyplZk+MNr8dvHWupuYKVUe6x6d/42JOUiXuCfEHQwUBgiK6SHXH57xtZCW2ejhQtWA=;
+X-UUID: a0fdd4afc34a41ba9d67db60143e695c-20210316
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1224446361; Tue, 16 Mar 2021 01:30:27 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 16 Mar 2021 01:30:25 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 16 Mar 2021 01:30:25 +0800
+Message-ID: <1615829425.2591.1.camel@mtksdaap41>
+Subject: Re: [PATCH v7 2/4] dt-bindings: spmi: document binding for the
+ Mediatek SPMI controller
+From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, "Rob Herring" <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, "Stephen Boyd" <sboyd@kernel.org>
+Date:   Tue, 16 Mar 2021 01:30:25 +0800
+In-Reply-To: <1615818177.192018.876373.nullmailer@robh.at.kernel.org>
+References: <1615658453-3989-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <1615658453-3989-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <1615818177.192018.876373.nullmailer@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+SGksIFNpcg0KDQpPbiBNb24sIDIwMjEtMDMtMTUgYXQgMDg6MjIgLTA2MDAsIFJvYiBIZXJyaW5n
+IHdyb3RlOg0KPiBPbiBTdW4sIDE0IE1hciAyMDIxIDAyOjAwOjUxICswODAwLCBIc2luLUhzaXVu
+ZyBXYW5nIHdyb3RlOg0KPiA+IFRoaXMgYWRkcyBkb2N1bWVudGF0aW9uIGZvciB0aGUgU1BNSSBj
+b250cm9sbGVyIGZvdW5kIG9uIE1lZGlhdGVrIFNvQ3MuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1i
+eTogSHNpbi1Ic2l1bmcgV2FuZyA8aHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20+DQo+ID4g
+UmV2aWV3ZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+ID4gLS0tDQo+ID4g
+Y2hhbmdlcyBzaW5jZSB2NjoNCj4gPiAtIG5vIGNoYW5nZXMuDQo+ID4gLS0tDQo+ID4gIC4uLi9i
+aW5kaW5ncy9zcG1pL210ayxzcG1pLW10ay1wbWlmLnlhbWwgICAgICB8IDc0ICsrKysrKysrKysr
+KysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDc0IGluc2VydGlvbnMoKykNCj4gPiAgY3Jl
+YXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zcG1pL210
+ayxzcG1pLW10ay1wbWlmLnlhbWwNCj4gPiANCj4gDQo+IE15IGJvdCBmb3VuZCBlcnJvcnMgcnVu
+bmluZyAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBvbiB5b3VyIHBhdGNoOg0KPiANCj4geWFtbGxp
+bnQgd2FybmluZ3MvZXJyb3JzOg0KPiANCj4gZHRzY2hlbWEvZHRjIHdhcm5pbmdzL2Vycm9yczoN
+Cj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwbWkvbXRrLHNwbWktbXRrLXBt
+aWYuZXhhbXBsZS5kdHM6MTk6MTg6IGZhdGFsIGVycm9yOiBkdC1iaW5kaW5ncy9jbG9jay9tdDgx
+OTItY2xrLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gICAgMTkgfCAgICAgICAgICNp
+bmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDgxOTItY2xrLmg+DQo+ICAgICAgIHwgICAgICAg
+ICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fg0KPiBjb21waWxhdGlv
+biB0ZXJtaW5hdGVkLg0KPiBtYWtlWzFdOiAqKiogW3NjcmlwdHMvTWFrZWZpbGUubGliOjM0OTog
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwbWkvbXRrLHNwbWktbXRrLXBtaWYu
+ZXhhbXBsZS5kdC55YW1sXSBFcnJvciAxDQo+IG1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1bmZp
+bmlzaGVkIGpvYnMuLi4uDQo+IG1ha2U6ICoqKiBbTWFrZWZpbGU6MTM4MDogZHRfYmluZGluZ19j
+aGVja10gRXJyb3IgMg0KPiANCj4gU2VlIGh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcGF0
+Y2gvMTQ1MjUyOQ0KPiANCj4gVGhpcyBjaGVjayBjYW4gZmFpbCBpZiB0aGVyZSBhcmUgYW55IGRl
+cGVuZGVuY2llcy4gVGhlIGJhc2UgZm9yIGEgcGF0Y2gNCj4gc2VyaWVzIGlzIGdlbmVyYWxseSB0
+aGUgbW9zdCByZWNlbnQgcmMxLg0KPiANCj4gSWYgeW91IGFscmVhZHkgcmFuICdtYWtlIGR0X2Jp
+bmRpbmdfY2hlY2snIGFuZCBkaWRuJ3Qgc2VlIHRoZSBhYm92ZQ0KPiBlcnJvcihzKSwgdGhlbiBt
+YWtlIHN1cmUgJ3lhbWxsaW50JyBpcyBpbnN0YWxsZWQgYW5kIGR0LXNjaGVtYSBpcyB1cCB0bw0K
+PiBkYXRlOg0KPiANCj4gcGlwMyBpbnN0YWxsIGR0c2NoZW1hIC0tdXBncmFkZQ0KPiANCj4gUGxl
+YXNlIGNoZWNrIGFuZCByZS1zdWJtaXQuDQo+IA0KVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KDQpU
+aGlzIHNlcmllcyBpcyBiYXNlZCBvbiBXZWl5aSdzIHBhdGNoZXMuDQpodHRwczovL3BhdGNod29y
+ay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMTYwODY0MjU4Ny0xNTYz
+NC03LWdpdC1zZW5kLWVtYWlsLXdlaXlpLmx1QG1lZGlhdGVrLmNvbS8NCg0KDQo=
 
-On Fri, Mar 12, 2021 at 3:42 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> The reserved-memory regions used for carrying firmware to be run on the
-> various cores and co-processors in a Qualcomm platform differs in size,
-> placement and presence based on each device's feature set and security
-> configuration.
->
-> Rather than providing some basic set that works on the MTP and then
-> piecemeal patch this up on the various devices, push the configuration
-> of these regions out to the individual device dts files.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->
-> Changes since v1:
-> - Added lost memory-region to the db845c wlan node, as spotted by Doug.
->
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    | 90 +++++++++++++------
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    | 87 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts       | 87 ++++++++++++++++++
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 78 +++++++++++++++-
->  .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 45 ++++++----
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 83 -----------------
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 86 ++++++++++++++++++
->  7 files changed, 431 insertions(+), 125 deletions(-)
-
-I will leave it up to you to evaluate Konrad's feedback that this will
-cause a bunch of duplication since I don't have enough experience w/
-Android phones to have an informed opinion. In case it matters, this
-addresses the feedback I had on v1 and thus:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-I'll also repeat the feedback that I had on v1 that I focused much
-more on cheza than on other boards and didn't check every last thing
-on every board to make sure no changes happened.
