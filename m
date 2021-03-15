@@ -2,177 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E5733ABF3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA9033AC02
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbhCOHD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 03:03:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57138 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229663AbhCOHDU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 03:03:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 364EE64E21;
-        Mon, 15 Mar 2021 07:03:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615791800;
-        bh=FqvtiBmaPgRyCbg789nS04VcPbAIilsWOT16ZGjk9i8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IOMbEGrnwOQ0Q9w9QPITOt2U0hjfdkeucHkDjJ+mup8CSu5Jji1XyB2/ih7pc/HNH
-         2P6+Qr8OgZSQNuYoBaVQvMoWRUkYwhBJ8Xm/olbzeW7B65RGlOqTZ7gvwjaR0KcjPj
-         zAZ/yMPGvFI8KrTu8ZMQ68QkC2+fJJ2bGQNge5L5N0jUiDcNotkXfSz9IODyjR7Xzj
-         REWUVQFYZ+LQ2niMO4R8V91Fh679IJg/9tFuPIHsRO8ah+yqZ7Gz6k1HSUWiELWXwW
-         xqcDz35oDUwBRGtJl9z8kz81QCjkfsiiA9pLCKgiOiVDw+BKeB61PELAtBYsq9p7yh
-         EZRYgTGaV6b7Q==
-Date:   Mon, 15 Mar 2021 15:03:15 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jon Nettleton <jon@solid-run.com>
-Subject: Re: [PATCH] arm64: dts: lx2160a-clearfog-itx: add SFP support
- [*experimental*]
-Message-ID: <20210315070314.GN11246@dragon>
-References: <E1lJfLu-0000Q2-Nl@rmk-PC.armlinux.org.uk>
+        id S229644AbhCOHH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 03:07:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230145AbhCOHHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 03:07:32 -0400
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C3BC061762;
+        Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
+Received: by mail-il1-x134.google.com with SMTP id d5so8396899iln.6;
+        Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=OMZlpxOALJ+FhkjgrI4Loi+DAr/PRLsQSLLeynmAtnM=;
+        b=iwZqH2Y77+XZlCK9uRpPzdW/6/4INrA0nwhaKooTX3cSMmWlydoYRrhRJI+RRjryH8
+         z+JhCoyNpi0c14VeHevwpMnA0RfX9Lk9ZzxYUMD3svLd5olt6SetcTpj5QBU7rTLstNn
+         +gj6goImNPGHKVahQxCF1Cac9J2vzfVS2pcl6YfwKpRSbLysOCSu/nssA2ba63Kiz22P
+         xJYVu5zVsBZaM+2SdeOrVypkyQCswM1q2dm343YXOrkM8kgtK5ZuVRBJdY1ORuHYi3aH
+         VtP8Onw9UPtlkX8uxkJO0ZwT0U8Q0K8ZyNkPXYUp2lK8VXuZk+4ptXZs1ilN2IwyWBmQ
+         RHfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=OMZlpxOALJ+FhkjgrI4Loi+DAr/PRLsQSLLeynmAtnM=;
+        b=Qt4iOCTpfC+Jzah6+6hcmv4p5w0zxF2cTbwUQCSycFtl0fpvhg6W18I7YgDnDekzGi
+         DFgbumZ7/BNeThpMR+8Lo6UtTY4d5nQcrP9tLAFvQ36FRXkkFa5hNd0L0GVnntqiY9Pf
+         Fmka/BFgXvusEqmXcGyryJuxrGyOU9Fkk3Se4mQ1Rh1/QkVlokEyiBppAW1RrE8kwAJj
+         93SPEW9xOgDuZiIUhJKdHqSIYgw1C5lTT9Q5E6uWCunbh0yb0QfZ7TZFnh12ulExx7RG
+         tFuINaPxShli2e7IUqKqPN+b2XIppxi6xu60FGznDlcvmQN45UfTI4dcVHJjsd3cy8ZO
+         yOWQ==
+X-Gm-Message-State: AOAM531GoeSvq42vlm/jgoA7uvkXByOGm0wGl1bV5J+8P6fZhTu8g1Yb
+        VFGvcGcAzrq7Cy0WPdQBCwq+sX4Q901n47Tc0Wgi4yoHsl4=
+X-Google-Smtp-Source: ABdhPJyr3bKTMG1gM6aPnfPIpFl9M1E+asL73SRqTWwsJY9y4+jxxTl1ypBmbtmMRmD2D4p4esMhEpaTBHIewaIcmn4=
+X-Received: by 2002:a92:d2c5:: with SMTP id w5mr11041765ilg.244.1615792051376;
+ Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1lJfLu-0000Q2-Nl@rmk-PC.armlinux.org.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+From:   Zhengxun Li <zhengxunli.mxic@gmail.com>
+Date:   Mon, 15 Mar 2021 15:07:20 +0800
+Message-ID: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
+Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic reconfiguration
+To:     shubhrajyoti.datta@xilinx.com
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        git@xilinx.com, gregkh@linuxfoundation.org,
+        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        shubhrajyoti.datta@gmail.com, zhengxunli@mxic.com.tw,
+        juliensu@mxic.com.tw, slwu@mxic.com.tw
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 09, 2021 at 04:36:58PM +0000, Russell King wrote:
-> Add 2x2 SFP+ cage support for clearfog-itx boards.
-> 
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+Hi Shubhrajyoti,
 
-What is the implication of [*experimental*] in subject?
+My name is Zhengxun and I am the engineer from Macronix. We are
+using the platform PicoZed 7015/7030 SOM (System On Module),
+which is based on Xilinx Zynq=C2=AE-7000 All Programmable (AP) SoC to
+verify our Flash driver. Of course, we are also using your clock
+wizard, our version seems to be v5.2, but something went wrong.
 
-Shawn
++static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long rate=
+,
++ unsigned long parent_rate)
++{
++ int err;
++ u32 value;
++ unsigned long flags =3D 0;
++ struct clk_wzrd_divider *divider =3D to_clk_wzrd_divider(hw);
++ void __iomem *div_addr =3D divider->base + divider->offset;
++
++ if (divider->lock)
++ spin_lock_irqsave(divider->lock, flags);
++ else
++ __acquire(divider->lock);
++
++ value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
++
++ /* Cap the value to max */
++ min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
++
++ /* Set divisor and clear phase offset */
++ writel(value, div_addr);
++ writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
 
-> ---
->  .../boot/dts/freescale/fsl-lx2160a-cex7.dtsi  | 24 +++++++
->  .../freescale/fsl-lx2160a-clearfog-itx.dtsi   | 64 +++++++++++++++++++
->  2 files changed, 88 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi
-> index 459dccad8326..afb455210bd0 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi
-> @@ -122,6 +122,30 @@
->  				vcc-supply = <&sb_3v3>;
->  			};
->  		};
-> +
-> +		sfp0_i2c: i2c@4 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <4>;
-> +		};
-> +
-> +		sfp1_i2c: i2c@5 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <5>;
-> +		};
-> +
-> +		sfp2_i2c: i2c@6 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <6>;
-> +		};
-> +
-> +		sfp3_i2c: i2c@7 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <7>;
-> +		};
->  	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-> index 2b63235ca627..17f8e733972a 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-> @@ -30,6 +30,54 @@
->  			gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
->  		};
->  	};
-> +
-> +	sfp0: sfp-0 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp0_i2c>;
-> +		mod-def0-gpio = <&gpio2 0 GPIO_ACTIVE_LOW>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp1: sfp-1 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp1_i2c>;
-> +		mod-def0-gpio = <&gpio2 9 GPIO_ACTIVE_LOW>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp2: sfp-2 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp2_i2c>;
-> +		mod-def0-gpio = <&gpio2 10 GPIO_ACTIVE_LOW>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp3: sfp-3 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp3_i2c>;
-> +		mod-def0-gpio = <&gpio2 11 GPIO_ACTIVE_LOW>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +};
-> +
-> +&dpmac7 {
-> +	sfp = <&sfp0>;
-> +	managed = "in-band-status";
-> +};
-> +
-> +&dpmac8 {
-> +	sfp = <&sfp1>;
-> +	managed = "in-band-status";
-> +};
-> +
-> +&dpmac9 {
-> +	sfp = <&sfp2>;
-> +	managed = "in-band-status";
-> +};
-> +
-> +&dpmac10 {
-> +	sfp = <&sfp3>;
-> +	managed = "in-band-status";
->  };
->  
->  &emdio2 {
-> @@ -44,6 +92,22 @@
->  	status = "okay";
->  };
->  
-> +&pcs_mdio7 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio8 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio9 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio10 {
-> +	status = "okay";
-> +};
-> +
->  &sata0 {
->  	status = "okay";
->  };
-> -- 
-> 2.20.1
-> 
+Why phase always set to zero? We want to support DTR operation in
+Flash driver. Can you add a set_phase function to adjust the phase?
+
++ /* Check status register */
++ err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
++ value, value & WZRD_DR_LOCK_BIT_MASK,
++ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
++ if (err)
++ goto err_reconfig;
++
++ /* Initiate reconfiguration */
++ writel(WZRD_DR_BEGIN_DYNA_RECONF,
++ divider->base + WZRD_DR_INIT_REG_OFFSET);
++
++ /* Check status register */
++ err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
++ value, value & WZRD_DR_LOCK_BIT_MASK,
++ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+
+According to pg015-clk-wiz.pdf, Clocking Wizard v5.2 and later, need to wri=
+te
+0x00000007 followed by 0x00000002 into Clock Configuration Register 23, to
+consolidate the redundant bits that the IP has upgraded, right?
+
+Can you compatible to v5.2?
+
+Thanks,
+Zhengxun
