@@ -2,95 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 328A033AB91
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 07:26:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C70CE33ABA6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 07:40:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbhCOGZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 02:25:36 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:39652 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbhCOGZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 02:25:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1615789518; x=1647325518;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=O+FmMMaqc9xAOeMmwyghT8YhOnNX8N7qYqYTwq/coSE=;
-  b=FjN/bTo8A0aDYS2p4MeQl424XguObctpd4mGG2xQCbM8e8bLWLFi+p9K
-   k2KOgoMoT7EEuiNYQJXu1zNXDypE+7JFLG4Ez+JnkOBRkrQmCZcXoaQ0P
-   d22LecKgV+yrcDYzhWPUeh2Voy4AGMnGxfOph+d7ga7xJ+AzkjPzTLzyz
-   hNMiDMAWZeF1AUTppi8aSY7C65TOMXivqc0A0REMwwktjLqnmcuArqfkY
-   FmwOcyVIQ7t+iwQwkpwB+7amXkzDlynrffA3AnnDuwYr2MJywkkbO4NZQ
-   vMUzwwDiAiwMu0BF0mvbE95vqd+ei7j6NgQ2D/lRLnDY6jtc8Vnu0vjP3
-   Q==;
-IronPort-SDR: Yr38vcY2kWvsYdFY91dEu1esAxnn2Xzpk2/yZHF90rQYBqtDAh6/YNKTVtvc1Uq5Vod11Ep/Q2
- m75YGgy1Bw1d9xcGCeot9+6KpM4/+suv8VagbeJojBPtVDcVdKmVVYzwfnqfJy4lPY3AG1eX61
- yTBxcJTbCgolGWh4+BqE5lAVFz2REcp9Z+l/XPP2S2WMPtVaztWnyztJFlbiXOFNeQQbWbNRL9
- uTyzT+kdXajcF0sFrEmz1hZyUyl5/iV5udEmK87OU9ufceBjKoBIji8iDy9S/SLMA2ganmJy2S
- rdU=
-X-IronPort-AV: E=Sophos;i="5.81,249,1610434800"; 
-   d="scan'208";a="113209632"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Mar 2021 23:25:18 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sun, 14 Mar 2021 23:25:17 -0700
-Received: from CHE-LT-I21427U.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Sun, 14 Mar 2021 23:25:13 -0700
-Message-ID: <a5ae36fda31281e0aa2f94e374158f46338ea1bb.camel@microchip.com>
-Subject: Re: [PATCH net-next 3/8] net: dsa: microchip: add DSA support for
- microchip lan937x
-From:   Prasanna Vengateshan Varadharajan 
-        <prasanna.vengateshan@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <olteanv@gmail.com>, <netdev@vger.kernel.org>,
-        <robh+dt@kernel.org>, <kuba@kernel.org>,
-        <vivien.didelot@gmail.com>, <f.fainelli@gmail.com>,
-        <davem@davemloft.net>, <UNGLinuxDriver@microchip.com>,
-        <Woojung.Huh@microchip.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Date:   Mon, 15 Mar 2021 11:55:11 +0530
-In-Reply-To: <YB1HrTfUvgXbcsTr@lunn.ch>
-References: <20210128064112.372883-1-prasanna.vengateshan@microchip.com>
-         <20210128064112.372883-4-prasanna.vengateshan@microchip.com>
-         <YBNf715MJ9OfaXfV@lunn.ch>
-         <b565944e72a0af12dec0430bd819eb6b755d84b4.camel@microchip.com>
-         <YB1HrTfUvgXbcsTr@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S229644AbhCOGjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 02:39:41 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:48700 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229742AbhCOGj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 02:39:26 -0400
+Received: from localhost (unknown [192.168.167.70])
+        by lucky1.263xmail.com (Postfix) with ESMTP id EA651B9639;
+        Mon, 15 Mar 2021 14:39:22 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P29406T140393971717888S1615790360484377_;
+        Mon, 15 Mar 2021 14:39:22 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <df0691ade47602fc9b47b08f22689e01>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: mturquette@baylibre.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Elaine Zhang <zhangqing@rock-chips.com>
+To:     mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+Subject: [PATCH v4 0/4] clk: rockchip: add clock controller for rk3568
+Date:   Mon, 15 Mar 2021 14:39:09 +0800
+Message-Id: <20210315063913.15184-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-02-05 at 14:27 +0100, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
-> 
-> > > > +bool lan937x_is_internal_tx_phy_port(struct ksz_device *dev,
-> > > > int
-> > > > port)
-> > > > +{
-> > > > +     /* Check if the port is internal tx phy port */
-> > > 
-> > > What is an internal TX phy port? Is it actually a conventional t2
-> > > Fast
-> > > Ethernet port, as opposed to a t1 port?
-> > This is 100 Base-Tx phy which is compliant with
-> > 802.3/802.3u standards. Two of the SKUs have both T1 and TX
-> > integrated
-> > Phys as mentioned in the patch intro mail.
-> 
-> I don't think we have a good name for a conventional fast Ethernet.
-> But since we call the other T1, since it has a single pair, maybe use
-> T2, since Fast Ethernet uses 2 pair. I would also suggest a comment
-> near this code explaining what T1 and T2 mean.
-This is compliant with 802.3u (100 Base-Tx) as i mentioned above. So
-naming it as "T2" would not match. Can we name it as "100BTX" instead
-of Tx? Thanks.
+Add the clock tree definition for the new rk3568 SoC.
+
+Change in V4:
+[PATCH v4 1/4]: No change.
+[PATCH v4 2/4]: No change.
+[PATCH v4 3/4]: No change.
+[PATCH v4 4/4]: Drop parenthesis and module alias.
+
+Change in V3:
+[PATCH v3 1/4]: Fix some code styles.
+[PATCH v3 2/4]: No change.
+[PATCH v3 3/4]: No change.
+[PATCH v3 4/4]: No change.
+
+Change in V2:
+[PATCH v2 1/4]: Convert rockchip,rk3568-cru.txt to YAML,
+                And update commit message.
+[PATCH v2 2/4]: No change.
+[PATCH v2 3/4]: Use arrays to support more core independent div
+settings.
+[PATCH v2 4/4]: Adapter [PATCH v2 3/4] changes.
+
+Elaine Zhang (4):
+  dt-binding: clock: Document rockchip,rk3568-cru bindings
+  clk: rockchip: add dt-binding header for rk3568
+  clk: rockchip: support more core div setting
+  clk: rockchip: add clock controller for rk3568
+
+ .../bindings/clock/rockchip,rk3568-cru.yaml   |   60 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-cpu.c                |   53 +-
+ drivers/clk/rockchip/clk-px30.c               |    7 +-
+ drivers/clk/rockchip/clk-rk3036.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3128.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3188.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3228.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3288.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3308.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3328.c             |    7 +-
+ drivers/clk/rockchip/clk-rk3368.c             |   14 +-
+ drivers/clk/rockchip/clk-rk3399.c             |   14 +-
+ drivers/clk/rockchip/clk-rk3568.c             | 1725 +++++++++++++++++
+ drivers/clk/rockchip/clk-rv1108.c             |    7 +-
+ drivers/clk/rockchip/clk.h                    |   54 +-
+ include/dt-bindings/clock/rk3568-cru.h        |  926 +++++++++
+ 18 files changed, 2842 insertions(+), 75 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3568.c
+ create mode 100644 include/dt-bindings/clock/rk3568-cru.h
+
+-- 
+2.17.1
+
 
 
