@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15F9133AB65
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 07:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C28433AB73
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 07:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbhCOGFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 02:05:50 -0400
-Received: from m42-2.mailgun.net ([69.72.42.2]:45340 "EHLO m42-2.mailgun.net"
+        id S229890AbhCOGKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 02:10:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38424 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229663AbhCOGFs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 02:05:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1615788348; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=ustfXj6p9xdIf4TDPKQcvzMkfG3TVFtmlj0S63M1Obk=; b=uGKJiWyLzRpTPz3zpi112nbQob6LBituR+g+mXZiLEUN4fPvDeaYNZVyyoQqeg7NtaDS1EZ8
- t9raLyVjGrhWPvhbj/SKYhu2R4GY6fTw/4UM/Sz+4sXBDcHAl9zA7jwab/OdgnDAz5fLbR/y
- 0TxuWFAspc2CVhWZPlGd+4msZoU=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 604ef93b6dc1045b7d82e481 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 06:05:47
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 30CF0C43462; Mon, 15 Mar 2021 06:05:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7C1BFC433CA;
-        Mon, 15 Mar 2021 06:05:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7C1BFC433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     wim@linux-watchdog.org, linux@roeck-us.net
-Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH] dt-bindings: watchdog: Add compatible for SC7280 SoC
-Date:   Mon, 15 Mar 2021 11:35:01 +0530
-Message-Id: <1615788301-29891-1-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S229607AbhCOGJw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 02:09:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 71FF164E37;
+        Mon, 15 Mar 2021 06:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615788592;
+        bh=T94j7sYi6GcxX3+JcqadeuddWMHwuXRw56OIQYndKdY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uKa3HNIzkBZvxlA+PIVYpRltRsuhQdRuCvBVWGKocoSSLfYd+sIAvRtK87MwnYkQi
+         vyWgS3HCWQodkJw7jhMu0Wefby5xpk1Ac5ooQQUP3iv5gWVA0oAdGaCVxO/3eWWI9I
+         eWz/aYTVF/0GwJgApxTxD47xDUPffLoib9VpZdC2kKmCF7VjqQplR/dDU2wfVpnxT/
+         MbV0SXIVLOwIlHHTAK1GTv9wwR0D+laeLlSLSSsIRbK6yOvl/0WKslheSi1DQfcafH
+         r3DNgEvRVJ3XNANouNdbFmkyIOy/MEzURNouCUTfxE4zq4SFO3kuRWmfvHLb09EDDE
+         ydMTF+Hf3yoIQ==
+Date:   Mon, 15 Mar 2021 14:09:46 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCHv2 0/4] Bx50v3 DT improvements
+Message-ID: <20210315060945.GI11246@dragon>
+References: <20210308151829.60056-1-sebastian.reichel@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308151829.60056-1-sebastian.reichel@collabora.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+On Mon, Mar 08, 2021 at 04:18:25PM +0100, Sebastian Reichel wrote:
+> Bx50v3 DT improvements
+> 
+> These are a bunch of small unrelated improvements for the GE Bx50v3
+> device tree (and BA16 system on module, which is currently only used
+> by Bx50v3).
+> 
+> Changes since PATCHv1 [1]:
+>  * change patch prefix for BA16 patches
+>  * remove extra newline from PATCH 1/4
+>  * keep 'status' at the end of FEC in PATCH 2/4
+> 
+> [1] https://lore.kernel.org/lkml/20210223183346.138575-1-sebastian.reichel@collabora.com/
+> 
+> Thanks for reviewing/merging them,
+> 
+> -- Sebastian
+> 
+> Ian Ray (1):
+>   ARM: dts: imx: bx50v3: Define GPIO line names
+> 
+> Sebastian Reichel (3):
+>   ARM: dts: imx6q-ba16: add USB OTG VBUS enable GPIO
+>   ARM: dts: imx6q-ba16: improve PHY information
+>   ARM: dts: imx: bx50v3: i2c GPIOs are open drain
 
-Add compatible for watchdog timer on SC7280 SoC.
-
-Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
-This was earlier posted as part of the entire DT series for sc7280 [1]
-Rest of the patches are now picked, posting this separately so it can
-be picked up via the WDT tree.
-
-[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
-
- Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index b8e4118..ba60bdf 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -17,6 +17,7 @@ properties:
-     enum:
-       - qcom,apss-wdt-qcs404
-       - qcom,apss-wdt-sc7180
-+      - qcom,apss-wdt-sc7280
-       - qcom,apss-wdt-sdm845
-       - qcom,apss-wdt-sdx55
-       - qcom,apss-wdt-sm8150
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Applied all, thanks.
