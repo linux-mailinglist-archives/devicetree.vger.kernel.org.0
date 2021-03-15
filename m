@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA9033AC02
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 711DC33AC0D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbhCOHH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 03:07:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbhCOHHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 03:07:32 -0400
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C3BC061762;
-        Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
-Received: by mail-il1-x134.google.com with SMTP id d5so8396899iln.6;
-        Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=OMZlpxOALJ+FhkjgrI4Loi+DAr/PRLsQSLLeynmAtnM=;
-        b=iwZqH2Y77+XZlCK9uRpPzdW/6/4INrA0nwhaKooTX3cSMmWlydoYRrhRJI+RRjryH8
-         z+JhCoyNpi0c14VeHevwpMnA0RfX9Lk9ZzxYUMD3svLd5olt6SetcTpj5QBU7rTLstNn
-         +gj6goImNPGHKVahQxCF1Cac9J2vzfVS2pcl6YfwKpRSbLysOCSu/nssA2ba63Kiz22P
-         xJYVu5zVsBZaM+2SdeOrVypkyQCswM1q2dm343YXOrkM8kgtK5ZuVRBJdY1ORuHYi3aH
-         VtP8Onw9UPtlkX8uxkJO0ZwT0U8Q0K8ZyNkPXYUp2lK8VXuZk+4ptXZs1ilN2IwyWBmQ
-         RHfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=OMZlpxOALJ+FhkjgrI4Loi+DAr/PRLsQSLLeynmAtnM=;
-        b=Qt4iOCTpfC+Jzah6+6hcmv4p5w0zxF2cTbwUQCSycFtl0fpvhg6W18I7YgDnDekzGi
-         DFgbumZ7/BNeThpMR+8Lo6UtTY4d5nQcrP9tLAFvQ36FRXkkFa5hNd0L0GVnntqiY9Pf
-         Fmka/BFgXvusEqmXcGyryJuxrGyOU9Fkk3Se4mQ1Rh1/QkVlokEyiBppAW1RrE8kwAJj
-         93SPEW9xOgDuZiIUhJKdHqSIYgw1C5lTT9Q5E6uWCunbh0yb0QfZ7TZFnh12ulExx7RG
-         tFuINaPxShli2e7IUqKqPN+b2XIppxi6xu60FGznDlcvmQN45UfTI4dcVHJjsd3cy8ZO
-         yOWQ==
-X-Gm-Message-State: AOAM531GoeSvq42vlm/jgoA7uvkXByOGm0wGl1bV5J+8P6fZhTu8g1Yb
-        VFGvcGcAzrq7Cy0WPdQBCwq+sX4Q901n47Tc0Wgi4yoHsl4=
-X-Google-Smtp-Source: ABdhPJyr3bKTMG1gM6aPnfPIpFl9M1E+asL73SRqTWwsJY9y4+jxxTl1ypBmbtmMRmD2D4p4esMhEpaTBHIewaIcmn4=
-X-Received: by 2002:a92:d2c5:: with SMTP id w5mr11041765ilg.244.1615792051376;
- Mon, 15 Mar 2021 00:07:31 -0700 (PDT)
+        id S229958AbhCOHLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 03:11:12 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:52287 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229828AbhCOHKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 03:10:54 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4DzSHw1tckz1qs3c;
+        Mon, 15 Mar 2021 08:10:52 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4DzSHv67yPz1qqkP;
+        Mon, 15 Mar 2021 08:10:51 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id Pda42FF0npmN; Mon, 15 Mar 2021 08:10:47 +0100 (CET)
+X-Auth-Info: OHnDdbf9d0DEjw0wRgXAhlgaJLFD8ApsXDJzxnwTNiE=
+Received: from [192.168.1.107] (82-131-155-123.pool.digikabel.hu [82.131.155.123])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon, 15 Mar 2021 08:10:47 +0100 (CET)
+Reply-To: hs@denx.de
+Subject: Re: [PATCH v2 0/4] enable flexspi support on imx8mp
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Alice Guo <alice.guo@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?Q?Horia_Geant=c4=83?= <horia.geanta@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, Li Jun <jun.li@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org
+References: <20210309053116.1486347-1-hs@denx.de>
+ <20210315064731.GL11246@dragon>
+From:   Heiko Schocher <hs@denx.de>
+Message-ID: <2c1e4c70-7616-85b3-bfa6-faf81dd72877@denx.de>
+Date:   Mon, 15 Mar 2021 08:10:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-From:   Zhengxun Li <zhengxunli.mxic@gmail.com>
-Date:   Mon, 15 Mar 2021 15:07:20 +0800
-Message-ID: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
-Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic reconfiguration
-To:     shubhrajyoti.datta@xilinx.com
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        git@xilinx.com, gregkh@linuxfoundation.org,
-        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
-        shubhrajyoti.datta@gmail.com, zhengxunli@mxic.com.tw,
-        juliensu@mxic.com.tw, slwu@mxic.com.tw
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210315064731.GL11246@dragon>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shubhrajyoti,
+Hello Shawn,
 
-My name is Zhengxun and I am the engineer from Macronix. We are
-using the platform PicoZed 7015/7030 SOM (System On Module),
-which is based on Xilinx Zynq=C2=AE-7000 All Programmable (AP) SoC to
-verify our Flash driver. Of course, we are also using your clock
-wizard, our version seems to be v5.2, but something went wrong.
+On 15.03.21 07:47, Shawn Guo wrote:
+> On Tue, Mar 09, 2021 at 06:31:12AM +0100, Heiko Schocher wrote:
+>>
+>> This series enables support for the SPI NOR on the
+>> imx8mp based phyboard-pollux-rdk board.
+>>
+>> Patches new in v2:
+>> "spi: fspi: enable fspi driver for on imx8mp"
+>> which adds own compatible entry for imx8mp
+>>
+>> and seperate in own patch the documentation entry in
+>> patch "dt-bindings: spi: add compatible entry for imx8mp in FlexSPI controller"
+>> as checkpatch says:
+>>
+>> warning: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+>>
+>>
+>> Changes in v2:
+>> - work in comments from Marco
+>>   add own compatible entry for imx8mp
+>> - work in comments from Marco
+>>   - add own compatible entry "nxp,imx8mp-fspi"
+>>   - reworked order of properties as Marco mentioned
+>> - work in comments from Marco and Teresa
+>>   - rename node into "'som_flash: flash@0 { }"
+>>   - compatible is now first entry
+>>   - removed #size-cells and #address-cells
+>>     as no child node. If bootloader adds them bootloader
+>>     can add them too.
+>>
+>> Heiko Schocher (4):
+>>   spi: fspi: enable fspi driver for on imx8mp
+>>   dt-bindings: spi: add compatible entry for imx8mp in FlexSPI
+>>     controller
+>>   arm64: dts: imx8mp: add flexspi node
+>>   arm64: imx8mp: imx8mp-phycore-som enable spi nor
+> 
+> Two DTS patch look good.  Ping me when driver and bindings changes are
+> accepted.
 
-+static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long rate=
-,
-+ unsigned long parent_rate)
-+{
-+ int err;
-+ u32 value;
-+ unsigned long flags =3D 0;
-+ struct clk_wzrd_divider *divider =3D to_clk_wzrd_divider(hw);
-+ void __iomem *div_addr =3D divider->base + divider->offset;
-+
-+ if (divider->lock)
-+ spin_lock_irqsave(divider->lock, flags);
-+ else
-+ __acquire(divider->lock);
-+
-+ value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
-+
-+ /* Cap the value to max */
-+ min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-+
-+ /* Set divisor and clear phase offset */
-+ writel(value, div_addr);
-+ writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
+Thanks!
 
-Why phase always set to zero? We want to support DTR operation in
-Flash driver. Can you add a set_phase function to adjust the phase?
+Hmm.. I have not splitted this series into 2 series... should I do
+this now?
 
-+ /* Check status register */
-+ err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
-+ value, value & WZRD_DR_LOCK_BIT_MASK,
-+ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-+ if (err)
-+ goto err_reconfig;
-+
-+ /* Initiate reconfiguration */
-+ writel(WZRD_DR_BEGIN_DYNA_RECONF,
-+ divider->base + WZRD_DR_INIT_REG_OFFSET);
-+
-+ /* Check status register */
-+ err =3D readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET,
-+ value, value & WZRD_DR_LOCK_BIT_MASK,
-+ WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
-
-According to pg015-clk-wiz.pdf, Clocking Wizard v5.2 and later, need to wri=
-te
-0x00000007 followed by 0x00000002 into Clock Configuration Register 23, to
-consolidate the redundant bits that the IP has upgraded, right?
-
-Can you compatible to v5.2?
-
-Thanks,
-Zhengxun
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
