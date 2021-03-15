@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8924D33AB49
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 06:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A88133AB59
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 07:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbhCOFyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 01:54:51 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47198 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbhCOFyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 01:54:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12F5sTrL045733;
-        Mon, 15 Mar 2021 00:54:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615787669;
-        bh=yxTzeyuJ1u64hRuS0S+cMJtTYAD67t7PxhEhg06Gyvk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cR76ZBixRK2EIqS93rWlL2mwXhnuKcgA3lDW4/mkVrm1qY4jVb9wKr70AWDe5+pj4
-         UihI0QUXT9rPPmw2VWzqBU+wUy/usjQN05pUa4COAL9MtBVoyBFiXIr2cPFmWkf6Wj
-         oUtE8GSRFQv+8v4zZq0Q457Cb2fSsIlyNwRD0dw8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12F5sTWb091893
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 Mar 2021 00:54:29 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 15
- Mar 2021 00:54:29 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 15 Mar 2021 00:54:29 -0500
-Received: from [10.250.235.121] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12F5sPZK079162;
-        Mon, 15 Mar 2021 00:54:26 -0500
-Subject: Re: [PATCH v2 0/2] AM64: Add USB support
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210310112758.1982-1-a-govindraju@ti.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <b6a4609e-3b62-fd92-bdb7-ce7c0db1a73c@ti.com>
-Date:   Mon, 15 Mar 2021 11:24:24 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210310112758.1982-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S229807AbhCOF7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 01:59:47 -0400
+Received: from m42-2.mailgun.net ([69.72.42.2]:33359 "EHLO m42-2.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229607AbhCOF7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 01:59:34 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615787974; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=6mKWtiT8Xm7bsvbPdtNDz3YFRcaJeasvJb5/inwKksg=; b=AFJWYn3eEqFgwj5tYLVaVN22QBUqvH+SRuRckjrVPOaFN/VFSSJLZvwJeHPvjBYeN2aIaV+B
+ BFR1Iu7cPjQI3OiTC/lsTnlarwC8rxDhZSEFgnCgkcyAej/U7RU5cPp4a2tbp2exO0UVPd65
+ GIChNGOGzk2wGxoZkF6BUwwd4tA=
+X-Mailgun-Sending-Ip: 69.72.42.2
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 604ef7bde3fca7d0a6364d16 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 05:59:25
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A30DBC43461; Mon, 15 Mar 2021 05:59:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AF3CFC433C6;
+        Mon, 15 Mar 2021 05:59:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AF3CFC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     maz@kernel.org
+Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH] dt-bindings: qcom,pdc: Add compatible for sc7280
+Date:   Mon, 15 Mar 2021 11:29:06 +0530
+Message-Id: <1615787946-26474-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the compatible string for sc7280 SoC from Qualcomm
 
+Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+This was earlier posted as part of the entire DT series for sc7280 [1]
+Rest of the patches are now picked, posting this separately so it can
+be picked up via the IRQ tree.
 
-On 10/03/21 4:57 pm, Aswath Govindraju wrote:
-> The following series of patches, add USB support for AM642 evm.
-> 
-> USB test logs,
-> https://pastebin.ubuntu.com/p/Qrbb7SGv8N/
-> 
-> Changes since v1:
-> - Rebased the patches on top of ti-k3-dts-next
-> - Added test logs
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
 
-Would prefer simple data transfer tests in the log but other than that
-for the patches itself
+ Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
-> 
-> Aswath Govindraju (2):
->   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->   arm64: dts: ti: k3-am642-evm: Add USB support
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->  2 files changed, 48 insertions(+)
-> 
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+index e9afb48..98d89e5 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+@@ -19,6 +19,7 @@ Properties:
+ 	Value type: <string>
+ 	Definition: Should contain "qcom,<soc>-pdc" and "qcom,pdc"
+ 		    - "qcom,sc7180-pdc": For SC7180
++		    - "qcom,sc7280-pdc": For SC7280
+ 		    - "qcom,sdm845-pdc": For SDM845
+ 		    - "qcom,sdm8250-pdc": For SM8250
+ 		    - "qcom,sdm8350-pdc": For SM8350
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
