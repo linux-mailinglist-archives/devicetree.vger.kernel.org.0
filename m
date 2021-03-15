@@ -2,671 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D15433B48B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FD3133B4BC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:39:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbhCONbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 09:31:01 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:35725 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230027AbhCONav (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 09:30:51 -0400
-X-UUID: d16ae261ae014fa5b7d64a309642e704-20210315
-X-UUID: d16ae261ae014fa5b7d64a309642e704-20210315
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 825509907; Mon, 15 Mar 2021 21:30:46 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 15 Mar 2021 21:30:44 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 15 Mar 2021 21:30:44 +0800
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v12 7/7] soc: mediatek: SVS: add mt8192 SVS GPU driver
-Date:   Mon, 15 Mar 2021 21:30:18 +0800
-Message-ID: <20210315133018.4976-8-roger.lu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210315133018.4976-1-roger.lu@mediatek.com>
-References: <20210315133018.4976-1-roger.lu@mediatek.com>
+        id S229712AbhCONi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 09:38:57 -0400
+Received: from z11.mailgun.us ([104.130.96.11]:64063 "EHLO z11.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229686AbhCONiy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Mar 2021 09:38:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1615815534; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=t2G4Y1dnZ78kKpozKsw/Dxs3XcY6dgOA3b8R4Tyiq2k=;
+ b=MA9Ea9UNzRhFqLm8H8KWiv15i060r966Fy4DEKTkS8a5T3M+S7+ZmPRMOy36YnzRhf1ldhNR
+ ArtNT74oURALt15p/RK7Tgh9gljMTP5TD8VYIgK3qVIZ1t0jeqZe+iKXIbW3ilb7qPvxStIw
+ FEZA72tWZ2EuXuIXWd+XXcuN+hY=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 604f63671de5dd7b99009a54 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Mar 2021 13:38:47
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 958FFC433ED; Mon, 15 Mar 2021 13:38:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B6170C433CA;
+        Mon, 15 Mar 2021 13:38:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 1FE8CB515664DE285BF18EC03CC055BDEA3EDDB880A1E843B72A5D53FDFC13F62000:8
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 15 Mar 2021 19:08:45 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, ohad@wizery.com,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
+ support
+In-Reply-To: <1615361290-19238-2-git-send-email-pillair@codeaurora.org>
+References: <1615361290-19238-1-git-send-email-pillair@codeaurora.org>
+ <1615361290-19238-2-git-send-email-pillair@codeaurora.org>
+Message-ID: <1cb4a183234f00c0077b5a95c475a4cc@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Roger Lu <roger.lu@mediatek.com>
----
- drivers/soc/mediatek/mtk-svs.c | 477 ++++++++++++++++++++++++++++++++-
- 1 file changed, 471 insertions(+), 6 deletions(-)
+On 2021-03-10 12:58, Rakesh Pillai wrote:
+> Add WPSS PIL loading support for SC7280 SoCs.
+> 
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> ---
+>  .../bindings/remoteproc/qcom,hexagon-v56.txt       | 35 
+> ++++++++++++----------
+>  1 file changed, 20 insertions(+), 15 deletions(-)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+> b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+> index 1337a3d..edad5e8 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+> @@ -9,6 +9,7 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
+>  	Definition: must be one of:
+>  		    "qcom,qcs404-cdsp-pil",
+>  		    "qcom,sdm845-adsp-pil"
+> +		    "qcom,sc7280-wpss-pil"
+> 
+>  - reg:
+>  	Usage: required
+> @@ -24,7 +25,13 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
+>  - interrupt-names:
+>  	Usage: required
+>  	Value type: <stringlist>
+> -	Definition: must be "wdog", "fatal", "ready", "handover", "stop-ack"
+> +	Definition: The interrupts needed depends on the compatible string
+> +	qcom,sdm845-adsp-pil:
+> +	qcom,qcs404-cdsp-pil:
+> +		must be "wdog", "fatal", "ready", "handover", "stop-ack"
+> +	qcom,sc7280-wpss-pil:
+> +		must be "wdog", "fatal", "ready", "handover", "stop-ack"
+> +		"shutdown-ack"
+> 
+>  - clocks:
+>  	Usage: required
+> @@ -35,19 +42,17 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
+>  - clock-names:
+>  	Usage: required for SDM845 ADSP
+>  	Value type: <stringlist>
+> -	Definition: List of clock input name strings sorted in the same
+> -		    order as the clocks property. Definition must have
+> -		    "xo", "sway_cbcr", "lpass_ahbs_aon_cbcr",
+> -		    "lpass_ahbm_aon_cbcr", "qdsp6ss_xo", "qdsp6ss_sleep"
+> -		    and "qdsp6ss_core".
+> -
+> -- clock-names:
+> -	Usage: required for QCS404 CDSP
+> -	Value type: <stringlist>
+> -	Definition: List of clock input name strings sorted in the same
+> -		    order as the clocks property. Definition must have
+> -		    "xo", "sway", "tbu", "bimc", "ahb_aon", "q6ss_slave",
+> -		    "q6ss_master", "q6_axim".
+> +	Definition: The clocks needed depends on the compatible string
+> +	qcom,sdm845-adsp-pil:
+> +		must be "xo", "sway_cbcr", "lpass_ahbs_aon_cbcr",
+> +		"lpass_ahbm_aon_cbcr", "qdsp6ss_xo", "qdsp6ss_sleep",
+> +		"qdsp6ss_core"
+> +	qcom,qcs404-cdsp-pil:
+> +		must be "xo", "sway", "tbu", "bimc", "ahb_aon", "q6ss_slave",
+> +		"q6ss_master", "q6_axim"
+> +	qcom,sc7280-wpss-pil:
+> +		must be "gcc_wpss_ahb_bdg_mst_clk", "gcc_wpss_ahb_clk",
+> +		"gcc_wpss_rscp_clk"
+> 
+>  - power-domains:
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 5c315467747d..17e61acce868 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -36,6 +36,10 @@
- #define SVSB_CCI			BIT(2)
- #define SVSB_GPU			BIT(3)
- 
-+/* svs bank 2-line type */
-+#define SVSB_LOW			BIT(4)
-+#define SVSB_HIGH			BIT(5)
-+
- /* svs bank mode support */
- #define SVSB_MODE_ALL_DISABLE		0
- #define SVSB_MODE_INIT01		BIT(1)
-@@ -279,6 +283,7 @@ struct thermal_parameter {
-  * @volts: bank voltages
-  * @reg_data: bank register data of each phase
-  * @freq_base: reference frequency for bank init
-+ * @turn_freq_base: refenrece frequency for turn point
-  * @vboot: voltage request for bank init01 stage only
-  * @volt_step: bank voltage step
-  * @volt_base: bank voltage base
-@@ -299,6 +304,8 @@ struct thermal_parameter {
-  * @hw_id: bank hardware identification
-  * @ctl0: bank thermal sensor selection
-  * @cpu_id: cpu core id for SVS CPU only
-+ * @turn_pt: turn point informs which opp_volt calculated by high/low bank.
-+ * @type: bank type to represent it is 2-line (high/low) bank or 1-line bank.
-  *
-  * Other structure members which are not listed above are svs platform
-  * efuse data for bank init
-@@ -324,6 +331,7 @@ struct svs_bank {
- 	u32 volts[16];
- 	u32 reg_data[3][SVS_REG_NUM];
- 	u32 freq_base;
-+	u32 turn_freq_base;
- 	u32 vboot;
- 	u32 volt_step;
- 	u32 volt_base;
-@@ -363,6 +371,8 @@ struct svs_bank {
- 	u32 hw_id;
- 	u32 ctl0;
- 	u32 cpu_id;
-+	u32 turn_pt;
-+	u32 type;
- };
- 
- /*
-@@ -440,6 +450,37 @@ static u32 svs_bank_volt_to_opp_volt(u32 svsb_volt, u32 svsb_volt_step,
- 	return (svsb_volt * svsb_volt_step) + svsb_volt_base;
- }
- 
-+static u32 svs_opp_volt_to_bank_volt(u32 opp_u_volt, u32 svsb_volt_step,
-+				     u32 svsb_volt_base)
-+{
-+	return (opp_u_volt - svsb_volt_base) / svsb_volt_step;
-+}
-+
-+static int svs_sync_bank_volts_from_opp(struct svs_bank *svsb)
-+{
-+	struct dev_pm_opp *opp;
-+	u32 i, opp_u_volt;
-+
-+	for (i = 0; i < svsb->opp_count; i++) {
-+		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
-+						 svsb->opp_freqs[i],
-+						 true);
-+		if (IS_ERR(opp)) {
-+			dev_err(svsb->dev, "cannot find freq = %u (%ld)\n",
-+				svsb->opp_freqs[i], PTR_ERR(opp));
-+			return PTR_ERR(opp);
-+		}
-+
-+		opp_u_volt = dev_pm_opp_get_voltage(opp);
-+		svsb->volts[i] = svs_opp_volt_to_bank_volt(opp_u_volt,
-+							   svsb->volt_step,
-+							   svsb->volt_base);
-+		dev_pm_opp_put(opp);
-+	}
-+
-+	return 0;
-+}
-+
- static int svs_get_bank_zone_temperature(const char *tzone_name,
- 					 int *tzone_temp)
- {
-@@ -455,7 +496,7 @@ static int svs_get_bank_zone_temperature(const char *tzone_name,
- static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- {
- 	int tzone_temp, ret = -EPERM;
--	u32 i, svsb_volt, opp_volt, temp_offset = 0;
-+	u32 i, svsb_volt, opp_volt, temp_offset = 0, opp_start, opp_stop;
- 
- 	mutex_lock(&svsb->lock);
- 
-@@ -469,6 +510,21 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- 		goto unlock_mutex;
- 	}
- 
-+	/*
-+	 * 2-line bank updates its corresponding opp volts.
-+	 * 1-line bank updates all opp volts.
-+	 */
-+	if (svsb->type == SVSB_HIGH) {
-+		opp_start = 0;
-+		opp_stop = svsb->turn_pt;
-+	} else if (svsb->type == SVSB_LOW) {
-+		opp_start = svsb->turn_pt;
-+		opp_stop = svsb->opp_count;
-+	} else {
-+		opp_start = 0;
-+		opp_stop = svsb->opp_count;
-+	}
-+
- 	/* Get thermal effect */
- 	if (svsb->phase == SVSB_PHASE_MON) {
- 		if (svsb->temp > svsb->temp_upper_bound &&
-@@ -490,10 +546,16 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- 			temp_offset += svsb->tzone_high_temp_offset;
- 		else if (tzone_temp <= svsb->tzone_low_temp)
- 			temp_offset += svsb->tzone_low_temp_offset;
-+
-+		/* 2-line bank takes thermal factor to update all opp volts */
-+		if (svsb->type == SVSB_HIGH || svsb->type == SVSB_LOW) {
-+			opp_start = 0;
-+			opp_stop = svsb->opp_count;
-+		}
- 	}
- 
- 	/* vmin <= svsb_volt (opp_volt) <= signed-off (default) voltage */
--	for (i = 0; i < svsb->opp_count; i++) {
-+	for (i = opp_start; i < opp_stop; i++) {
- 		if (svsb->phase == SVSB_PHASE_MON) {
- 			svsb_volt = max(svsb->volts[i] + svsb->volt_offset +
- 					temp_offset, svsb->vmin);
-@@ -544,6 +606,181 @@ static u32 interpolate(u32 f0, u32 f1, u32 v0, u32 v1, u32 fx)
- 	return DIV_ROUND_UP(vy, 100);
- }
- 
-+static void svs_get_vops_v3(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb = svsp->pbank;
-+	u32 i, vop_i, *vop, vop74, vop30, mask7_0 = GENMASK(7, 0);
-+	u32 b_sft, bits8 = 8, shift_byte = 0, reg_4bytes = 4;
-+	u32 middle_index = (svsb->opp_count / 2);
-+	u32 opp_start = 0, opp_stop = 0, turn_pt = svsb->turn_pt;
-+
-+	/* get vops v3 doesn't use mon mode voltages */
-+	if (svsb->phase == SVSB_PHASE_MON)
-+		return;
-+
-+	vop74 = svs_readl(svsp, VOP74);
-+	vop30 = svs_readl(svsp, VOP30);
-+
-+	if (turn_pt < middle_index) {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We attain volts[0 ~ (turn_pt - 1)] */
-+			for (i = 0; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/*
-+			 * We attain volts[turn_pt] +
-+			 * volts[vop_i ~ (opp_count - 1)]
-+			 */
-+			vop_i = svsb->opp_count - 7;
-+			svsb->volts[turn_pt] = vop30 & mask7_0;
-+			shift_byte++;
-+			for (i = vop_i; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+
-+			/*
-+			 * We attain volts[turn_pt + 1 ~ (vop_i - 1)]
-+			 * by interpolate
-+			 */
-+			for (i = turn_pt + 1; i < vop_i; i++)
-+				svsb->volts[i] =
-+					interpolate(svsb->freqs_pct[turn_pt],
-+						    svsb->freqs_pct[vop_i],
-+						    svsb->volts[turn_pt],
-+						    svsb->volts[vop_i],
-+						    svsb->freqs_pct[i]);
-+		}
-+	} else {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We attain volts[0] + volts[vop_i ~ (turn_pt - 1)] */
-+			vop_i = turn_pt - 7;
-+			svsb->volts[0] = vop30 & mask7_0;
-+			shift_byte++;
-+			for (i = vop_i; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+
-+			/* We attain volts[1 ~ (vop_i - 1)] by interpolate */
-+			for (i = 1; i < vop_i; i++)
-+				svsb->volts[i] =
-+					interpolate(svsb->freqs_pct[0],
-+						    svsb->freqs_pct[vop_i],
-+						    svsb->volts[0],
-+						    svsb->volts[vop_i],
-+						    svsb->freqs_pct[i]);
-+		} else if (svsb->type == SVSB_LOW) {
-+			/* We attain volts[turn_pt ~ (opp_count - 1)] */
-+			for (i = turn_pt; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+		}
-+	}
-+
-+	if (svsb->type == SVSB_HIGH) {
-+		opp_start = 0;
-+		opp_stop = svsb->turn_pt;
-+	} else if (svsb->type == SVSB_LOW) {
-+		opp_start = svsb->turn_pt;
-+		opp_stop = svsb->opp_count;
-+	}
-+
-+	for (i = opp_start; i < opp_stop; i++)
-+		svsb->volts[i] -= svsb->dvt_fixed;
-+}
-+
-+static void svs_set_freqs_pct_v3(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb = svsp->pbank;
-+	u32 i, freq_i, *freq_pct, freq_pct74 = 0, freq_pct30 = 0;
-+	u32 b_sft, bits8 = 8, shift_byte = 0, reg_4bytes = 4;
-+	u32 middle_index = (svsb->opp_count / 2), mask7_0 = GENMASK(7, 0);
-+	u32 turn_pt = middle_index;
-+
-+	for (i = 0; i < svsb->opp_count; i++) {
-+		if (svsb->opp_freqs[i] <= svsb->turn_freq_base) {
-+			svsb->turn_pt = i;
-+			break;
-+		}
-+	}
-+
-+	turn_pt = svsb->turn_pt;
-+
-+	/* Target is to fill out freq_pct74 / freq_pct30 */
-+	if (turn_pt < middle_index) {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We select freqs_pct[0 ~ (turn_pt - 1)] */
-+			for (i = 0; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/*
-+			 * We select freqs_pct[turn_pt] +
-+			 * freqs_pct[(opp_count - 7) ~ (opp_count -1)]
-+			 */
-+			freq_pct30 = svsb->freqs_pct[turn_pt] & mask7_0;
-+			shift_byte++;
-+			freq_i = svsb->opp_count - 7;
-+			for (i = freq_i; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		}
-+	} else {
-+		if (svsb->type == SVSB_HIGH) {
-+			/*
-+			 * We select freqs_pct[0] +
-+			 * freqs_pct[(turn_pt - 7) ~ (turn_pt - 1)]
-+			 */
-+			freq_pct30 = svsb->freqs_pct[0] & mask7_0;
-+			shift_byte++;
-+			freq_i = turn_pt - 7;
-+			for (i = freq_i; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/* We select freqs_pct[turn_pt ~ (opp_count - 1)] */
-+			for (i = turn_pt; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		}
-+	}
-+
-+	svs_writel(svsp, freq_pct74, FREQPCT74);
-+	svs_writel(svsp, freq_pct30, FREQPCT30);
-+}
-+
- static void svs_get_vops_v2(struct svs_platform *svsp)
- {
- 	struct svs_bank *svsb = svsp->pbank;
-@@ -855,6 +1092,25 @@ static int svs_init02(struct svs_platform *svsp)
- 		}
- 	}
- 
-+	/*
-+	 * 2-line high/low bank update its corresponding opp voltages only.
-+	 * Therefore, we sync voltages from opp for high/low bank voltages
-+	 * consistency.
-+	 */
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (!(svsb->mode_support & SVSB_MODE_INIT02))
-+			continue;
-+
-+		if (svsb->type == SVSB_HIGH || svsb->type == SVSB_LOW) {
-+			if (svs_sync_bank_volts_from_opp(svsb)) {
-+				dev_err(svsb->dev, "sync volt fail\n");
-+				return -EPERM;
-+			}
-+		}
-+	}
-+
- 	return 0;
- }
- 
-@@ -1098,7 +1354,12 @@ static int svs_resource_setup(struct svs_platform *svsp)
- 			svsb->name = "SVSB_CCI";
- 			break;
- 		case SVSB_GPU:
--			svsb->name = "SVSB_GPU";
-+			if (svsb->type == SVSB_HIGH)
-+				svsb->name = "SVSB_GPU_HIGH";
-+			else if (svsb->type == SVSB_LOW)
-+				svsb->name = "SVSB_GPU_LOW";
-+			else
-+				svsb->name = "SVSB_GPU";
- 			break;
- 		default:
- 			WARN_ON(1);
-@@ -1160,6 +1421,88 @@ static int svs_resource_setup(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb;
-+	struct nvmem_cell *cell;
-+	u32 idx, i, ft_pgm, vmin, golden_temp;
-+
-+	for (i = 0; i < svsp->efuse_num; i++)
-+		if (svsp->efuse[i])
-+			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
-+				 i, svsp->efuse[i]);
-+
-+	/* Svs efuse parsing */
-+	ft_pgm = svsp->efuse[0] & GENMASK(7, 0);
-+	vmin = (svsp->efuse[19] >> 4) & GENMASK(1, 0);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->sw_id != SVSB_GPU)
-+			return false;
-+
-+		if (vmin == 0x1)
-+			svsb->vmin = 0x1e;
-+
-+		if (ft_pgm == 0)
-+			svsb->init01_volt_flag = SVSB_INIT01_VOLT_IGNORE;
-+
-+		if (svsb->type == SVSB_LOW) {
-+			svsb->mtdes = svsp->efuse[10] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[10] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[10] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[17]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[17] >> 8) & GENMASK(7, 0);
-+			svsb->vmax += svsb->dvt_fixed;
-+		} else if (svsb->type == SVSB_HIGH) {
-+			svsb->mtdes = svsp->efuse[9] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[9] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[9] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[17] >> 16) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[17] >> 24) & GENMASK(7, 0);
-+			svsb->vmax += svsb->dvt_fixed;
-+		}
-+	}
-+
-+	/* Thermal efuse parsing */
-+	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
-+	if (IS_ERR_OR_NULL(cell)) {
-+		dev_err(svsp->dev, "no thermal cell, no mon mode\n");
-+		for (idx = 0; idx < svsp->bank_num; idx++) {
-+			svsb = &svsp->banks[idx];
-+			svsb->mode_support &= ~SVSB_MODE_MON;
-+		}
-+
-+		return true;
-+	}
-+
-+	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_num);
-+	svsp->tefuse_num /= sizeof(u32);
-+	nvmem_cell_put(cell);
-+
-+	for (i = 0; i < svsp->tefuse_num; i++)
-+		if (svsp->tefuse[i] != 0)
-+			break;
-+
-+	if (i == svsp->tefuse_num)
-+		golden_temp = 50; /* All thermal efuse data are 0 */
-+	else
-+		golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->sw_id != SVSB_GPU)
-+			return false;
-+
-+		svsb->mts = 500;
-+		svsb->bts = (((500 * golden_temp + 250460) / 1000) - 25) * 4;
-+	}
-+
-+	return true;
-+}
-+
- static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
- {
- 	struct thermal_parameter tp;
-@@ -1580,10 +1923,11 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
- 
- 	ret = svs_get_bank_zone_temperature(svsb->tzone_name, &tzone_temp);
- 	if (ret)
--		seq_printf(m, "%s: no \"%s\" zone?\n", svsb->name,
--			   svsb->tzone_name);
-+		seq_printf(m, "%s: no \"%s\" zone? turn_pt = %u\n",
-+			   svsb->name, svsb->tzone_name, svsb->turn_pt);
- 	else
--		seq_printf(m, "%s: temperature = %d\n", svsb->name, tzone_temp);
-+		seq_printf(m, "%s: temperature = %d, turn_pt = %u\n",
-+			   svsb->name, tzone_temp, svsb->turn_pt);
- 
- 	for (i = 0; i < svsb->opp_count; i++) {
- 		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
-@@ -1716,6 +2060,82 @@ static int svs_create_svs_debug_cmds(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static struct svs_bank svs_mt8192_banks[2] = {
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.hw_id			= 0,
-+		.tzone_name		= "gpu1",
-+		.buck_name		= "mali",
-+		.mode_support		= SVSB_MODE_INIT02,
-+		.opp_count		= 16,
-+		.freq_base		= 688000000,
-+		.turn_freq_base		= 688000000,
-+		.vboot			= 0x38,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.volt_offset		= 0,
-+		.vmax			= 0x60,
-+		.vmin			= 0x1a,
-+		.dthi			= 0x1,
-+		.dtlo			= 0xfe,
-+		.det_window		= 0xa28,
-+		.det_max		= 0xffff,
-+		.age_config		= 0x555555,
-+		.agem			= 0,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x1,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.temp_upper_bound	= 0x64,
-+		.temp_lower_bound	= 0xb2,
-+		.tzone_high_temp	= 85000,
-+		.tzone_high_temp_offset	= 0,
-+		.tzone_low_temp		= 25000,
-+		.tzone_low_temp_offset	= 7,
-+		.core_sel		= 0x0fff0100,
-+		.int_st			= BIT(0),
-+		.ctl0			= 0x00540003,
-+		.type			= SVSB_LOW,
-+	},
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.hw_id			= 1,
-+		.tzone_name		= "gpu1",
-+		.buck_name		= "mali",
-+		.pd_req			= false,
-+		.mode_support		= SVSB_MODE_INIT02 | SVSB_MODE_MON,
-+		.opp_count		= 16,
-+		.freq_base		= 902000000,
-+		.turn_freq_base		= 688000000,
-+		.vboot			= 0x38,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.volt_offset		= 0,
-+		.vmax			= 0x60,
-+		.vmin			= 0x1a,
-+		.dthi			= 0x1,
-+		.dtlo			= 0xfe,
-+		.det_window		= 0xa28,
-+		.det_max		= 0xffff,
-+		.age_config		= 0x555555,
-+		.agem			= 0,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x6,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.temp_upper_bound	= 0x64,
-+		.temp_lower_bound	= 0xb2,
-+		.tzone_high_temp	= 85000,
-+		.tzone_high_temp_offset	= 0,
-+		.tzone_low_temp		= 25000,
-+		.tzone_low_temp_offset	= 7,
-+		.core_sel		= 0x0fff0101,
-+		.int_st			= BIT(1),
-+		.ctl0			= 0x00540003,
-+		.type			= SVSB_HIGH,
-+	},
-+};
-+
- static struct svs_bank svs_mt8183_banks[4] = {
- 	{
- 		.sw_id			= SVSB_CPU_LITTLE,
-@@ -1862,6 +2282,48 @@ static struct svs_bank svs_mt8183_banks[4] = {
- 	},
- };
- 
-+static int svs_get_svs_mt8192_platform_data(struct svs_platform *svsp)
-+{
-+	struct device *dev;
-+	struct svs_bank *svsb;
-+	u32 idx;
-+
-+	svsp->name = "mt8192-svs",
-+	svsp->banks = svs_mt8192_banks,
-+	svsp->efuse_parsing = svs_mt8192_efuse_parsing,
-+	svsp->set_freqs_pct = svs_set_freqs_pct_v3,
-+	svsp->get_vops = svs_get_vops_v3,
-+	svsp->regs = svs_regs_v2,
-+	svsp->irqflags = IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-+	svsp->bank_num = 2,
-+	svsp->efuse_check = 9,
-+
-+	svsp->rst = devm_reset_control_get_optional(svsp->dev, "svs_rst");
-+	if (IS_ERR(svsp->rst)) {
-+		dev_err_probe(svsp->dev, PTR_ERR(svsp->rst),
-+			      "cannot get svs reset control\n");
-+		return PTR_ERR(svsp->rst);
-+	}
-+
-+	dev = svs_add_device_link(svsp, "lvts");
-+	if (IS_ERR(dev))
-+		return PTR_ERR(dev);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->type == SVSB_HIGH)
-+			svsb->opp_dev = svs_add_device_link(svsp, "mali");
-+		else if (svsb->type == SVSB_LOW)
-+			svsb->opp_dev = svs_get_subsys_device(svsp, "mali");
-+
-+		if (IS_ERR(svsb->opp_dev))
-+			return PTR_ERR(svsb->opp_dev);
-+	}
-+
-+	return 0;
-+}
-+
- static int svs_get_svs_mt8183_platform_data(struct svs_platform *svsp)
- {
- 	struct device *dev;
-@@ -1917,6 +2379,9 @@ static const struct of_device_id mtk_svs_of_match[] = {
- 	{
- 		.compatible = "mediatek,mt8183-svs",
- 		.data = &svs_get_svs_mt8183_platform_data,
-+	}, {
-+		.compatible = "mediatek,mt8192-svs",
-+		.data = &svs_get_svs_mt8192_platform_data,
- 	}, {
- 		/* Sentinel */
- 	},
+IIRC wpss requires both cx and mx. So you'll
+need to add driver code to support multiple
+power-domains.
+
+>  	Usage: required
+> @@ -65,7 +70,7 @@ on the Qualcomm Technology Inc. Hexagon v56 core.
+>          Definition: must be "pdc_sync" and "cc_lpass"
+> 
+>  - reset-names:
+> -        Usage: required for QCS404 CDSP
+> +        Usage: required for QCS404 CDSP, SC7280 WPSS
+>          Value type: <stringlist>
+>          Definition: must be "restart"
+
 -- 
-2.18.0
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
