@@ -2,132 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C262933C3D8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6AEE33C414
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 18:26:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235866AbhCOROL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 13:14:11 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:37314 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbhCOROB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 13:14:01 -0400
-Received: by mail-io1-f54.google.com with SMTP id y20so15854357iot.4;
-        Mon, 15 Mar 2021 10:14:01 -0700 (PDT)
+        id S233506AbhCOR00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 13:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235375AbhCOR0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 13:26:02 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1D02C06175F
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:26:01 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id x29so20858914pgk.6
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 10:26:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EjQXxrwttAbhEo1FLmtNHjZNLrmQoYzcEZU4PWLebII=;
+        b=iX5seyedwYJinOO631Rxb2t4ZY/yyn1e1AIu8SkT+QPdALHWgzUAcwvUMNysFjkkAm
+         3CmtEJ96HM+f+wVTAoGsSbQ51C6zWmiixBs+KE4DRsCjp9GhddSUHxbjzcpwJxK4vvie
+         bvU7pdlQh6ZPNsIbwHyuXKZFfygPQB5KRPg1w7K4D1JfqRIaDBfj1AyTxlV7jLWc1ux7
+         Hm0f08/S/JRMe/V3VEt/2Iz4Bjzd+YImYJqEZSRdymswCSsAOPsNDsYeFbExytN/+mLZ
+         rn42pTG5gp/qhBuyxDID45rtP2HPxvWGUrJoGuaWJvum2LWr4/d/hfMjC0m+xuHfU4fL
+         h9VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iFQlGUPMwfnpBCqbpSRGkYh/7C2oaLwfautQirfFp7M=;
-        b=pudu/QMZCjnInZnPiSyISnkrMhT7v6V9a2kUN6uiOu+fkblkomsisT3zUDkNZAnCH/
-         Tlu9b+/0Lvbz4KKues8sVhulhGg4BxNDrdmij32w9sfNxb11zKDEFopwI6nk1Tw66hKf
-         VHoED6ffQLj+kCAz8kVCN+1NlCCaPLXghwSMITM57vkREVE3Xs4cX0APBjsiSbrGdK8q
-         067mOB0nDEvNWKZbjsWektA750Pbv7Q0dGrER5/UlWHoEnHXhCeY6D2gEuyD4eh9zM0d
-         cEqWuviGNYp3dGYDNu9DrachtwaRoo9GXPfZ4leJkX9rnPo21+sPnRALMJ6xzb3W+vWw
-         ex6g==
-X-Gm-Message-State: AOAM531z1njY1J0gwqNBijAv2C23WFpgMcbJ4nDwXDY9JHEiwXe/swEX
-        gjikPLkNmDIbeGCnumTseSto9K8mUQ==
-X-Google-Smtp-Source: ABdhPJybHmYcrgjGA8sZJsjU3Vw+8gF5icFgDP64gDoqeaSzp6mjU+fJJj15xeY3CTGq96COYxgfIA==
-X-Received: by 2002:a02:cc1a:: with SMTP id n26mr10519485jap.21.1615828440953;
-        Mon, 15 Mar 2021 10:14:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h128sm7358623ioa.32.2021.03.15.10.13.59
+        bh=EjQXxrwttAbhEo1FLmtNHjZNLrmQoYzcEZU4PWLebII=;
+        b=gJssvROK+cSg830AyNm4xVRy8zsbFZNTwC1+EhyFgLQF7EEgDPDN4F+dbsRZjBhera
+         IypilvPAM9asrrJgF9p1uxMcYBVv7m439cXj9hulJnzKh5s2Hj8UAilF9wKnw2/V5Hxk
+         vs/8X5cLrZqXbgwSeJUZN/TpqfIytfqjBTVfuxNB0mBCGC2986kd4K0lYTXzfzGdiKaX
+         16J7kfdv4c6CWIRO7OvtiJFGiTMWP3XCaQfq3eqSorvlxRhEd2RLwjTaH3g+LiGPnT9Z
+         B5h4A1pOKOr6EuXW13cGVDYXSguLu8e3odYp3yj+pH4p9YZQ3rfoaAKsUcgcU3fmxAFh
+         5Cnw==
+X-Gm-Message-State: AOAM530sP7bDv0dx3LQ2CYl6me9vV8jXrBz9O1r3fZSLQbpKRlEVkgRU
+        g3dcVgmHssW/0lUHnRhANeZAcg==
+X-Google-Smtp-Source: ABdhPJwFjgHMTifCO2ACWcmaxXCGs1651K6ti25W4jfqOEuK6SQuvZFEWs3CpQl45DXQBM+MLbIRNw==
+X-Received: by 2002:a63:e651:: with SMTP id p17mr182436pgj.324.1615829161228;
+        Mon, 15 Mar 2021 10:26:01 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id v7sm14041519pfv.93.2021.03.15.10.25.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 10:14:00 -0700 (PDT)
-Received: (nullmailer pid 1063744 invoked by uid 1000);
-        Mon, 15 Mar 2021 17:13:57 -0000
-Date:   Mon, 15 Mar 2021 11:13:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Masahiro Yamada <masahiroy@kernel.org>, anmar.oueja@linaro.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>
-Subject: Re: [PATCH V11 0/5] dt: Add fdtoverlay rule and statically build
- unittest
-Message-ID: <20210315171357.GA1063052@robh.at.kernel.org>
-References: <cover.1615354376.git.viresh.kumar@linaro.org>
+        Mon, 15 Mar 2021 10:26:00 -0700 (PDT)
+Date:   Mon, 15 Mar 2021 11:25:58 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Ben Levinsky <BLEVINSK@xilinx.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Michal Simek <michals@xilinx.com>,
+        "Ed T. Mooring" <emooring@xilinx.com>
+Subject: Re: [PATCH v26 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Message-ID: <20210315172558.GA1342614@xps15>
+References: <20210223154447.13247-1-ben.levinsky@xilinx.com>
+ <20210223154447.13247-6-ben.levinsky@xilinx.com>
+ <20210308190046.GA3983426@xps15>
+ <FF6E631A-87E0-4194-844A-E6B58E5B2928@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1615354376.git.viresh.kumar@linaro.org>
+In-Reply-To: <FF6E631A-87E0-4194-844A-E6B58E5B2928@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Mar 2021 11:05:28 +0530, Viresh Kumar wrote:
-> Hi,
+>     > +
+>     > +static void zynqmp_r5_cleanup_mbox(struct zynqmp_r5_rproc *z_rproc)
+>     > +{
+>     > +	mbox_free_channel(z_rproc->tx_chan);
+>     > +	mbox_free_channel(z_rproc->rx_chan);
+>     > +}
+>     > +
+>     > +/**
+>     > + * zynqmp_r5_probe - Probes ZynqMP R5 processor device node
+>     > + *		       this is called for each individual R5 core to
+>     > + *		       set up mailbox, Xilinx platform manager unique ID,
+>     > + *		       add to rproc core
 > 
-> This patchset adds a generic rule for applying overlays using fdtoverlay
-> tool and then updates unittests to get built statically using the same.
+>     The above has changed since last time, which makes it harder for me to
+>     review your work.  From hereon please change only the things I point out so that
+>     we keep the same goal posts from one revision to the other.
 > 
-> V10->V11:
-> - Update patch 4/5 to fix checkpatch warning on spaces and tabs.
-> - Added Acked-by from Masahiro for patch 2/5.
+>     The tabulation needs to be fixed:  
 > 
-> V9->V10:
-> - Add a new patch to allow .dtso files.
-> - Update 2/5 to be more efficient and also generate symbols for base
->   files automatically.
-> - No need to add lines like DTC_FLAGS_foo_base += -@ in patch 5/5.
-> - Add Ack by Masahiro for 1/5.
+>             * zynqmp_r5_probe - Probes ZynqMP R5 processor device node
+>             *
+>             * This is called for each individual R5 core to set up mailbox, Xilinx
+>             * platform manager unique ID, add to rproc core.
 > 
-> V8->V9:
-> - Added some comment in patch 3/4 based on Frank's suggestions.
+>     The description is also broken.
 > 
-> V7->V8:
-> - Patch 1 is new.
-> - Platforms need to use dtb-y += foo.dtb instead of overlay-y +=
->   foo.dtb.
-> - Use multi_depend instead of .SECONDEXPANSION.
-> - Use dtb-y for unittest instead of overlay-y.
-> - Rename the commented dtb filess in unittest Makefile as .dtbo.
-> - Improved Makefile code (I am learning a lot every day :)
-> 
-> V6->V7:
-> - Dropped the first 4 patches, already merged.
-> - Patch 1/3 is new, suggested by Rob and slightly modified by me.
-> - Adapt Patch 3/3 to the new rule and name the overlay dtbs as .dtbo.
-> 
-> --
-> Viresh
-> 
-> Rob Herring (1):
->   kbuild: Add generic rule to apply fdtoverlay
-> 
-> Viresh Kumar (4):
->   kbuild: Simplify builds with CONFIG_OF_ALL_DTBS
->   kbuild: Allow .dtso format for overlay source files
->   of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
->   of: unittest: Statically apply overlays using fdtoverlay
-> 
->  drivers/of/unittest-data/Makefile             | 48 ++++++++++
->  drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
->  drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
->  drivers/of/unittest-data/static_base_1.dts    |  4 +
->  drivers/of/unittest-data/static_base_2.dts    |  4 +
->  drivers/of/unittest-data/testcases.dts        | 23 ++---
->  .../of/unittest-data/testcases_common.dtsi    | 19 ++++
->  .../of/unittest-data/tests-interrupts.dtsi    | 11 +--
->  scripts/Makefile.lib                          | 40 ++++++--
->  9 files changed, 218 insertions(+), 112 deletions(-)
->  create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
->  create mode 100644 drivers/of/unittest-data/static_base_1.dts
->  create mode 100644 drivers/of/unittest-data/static_base_2.dts
->  create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
-> 
-> 
-> base-commit: a38fd8748464831584a19438cbb3082b5a2dab15
-> --
-> 2.25.0.rc1.19.g042ed3e048af
-> 
-> 
-> 
+> [Ben] Ok. How is the following:
+> /**                                                                                
+>  * zynqmp_r5_probe - Probes ZynqMP R5 processor device node                        
+>  *                                                                                 
+>  * This is called for each individual R5 core to set up mailbox, Xilinx            
+>  * platform manager unique ID, collect SRAM information and wire in                
+>  * driver-specific data to to rproc core.                                          
+>  *                                                                                 
+>  * @pdev: domain platform device for current R5 core                               
+>  * @node: pointer of the device node for current R5 core                           
+>  * @rpu_mode: mode to configure RPU, split or lockstep                             
+>  *                                                                                 
+>  * Return: 0 for success, negative value for failure.                              
 
-Applied patches 1,2,4,5, thanks!
+Much better
+
+>  */                                                                                
+> static struct zynqmp_r5_rproc *zynqmp_r5_probe(struct platform_device *pdev,       
+>                                                struct device_node *node,           
+>                                                enum rpu_oper_mode rpu_mode) 
+> 
+> 
+>     > + *
+>     > + * @pdev: domain platform device for current R5 core
+>     > + * @node: pointer of the device node for current R5 core
+>     > + * @rpu_mode: mode to configure RPU, split or lockstep
+>     > + *
+>     > + * Return: 0 for success, negative value for failure.
+>     > + */
+>     > +static struct zynqmp_r5_rproc *zynqmp_r5_probe(struct platform_device *pdev,
+>     > +					       struct device_node *node,
+>     > +					       enum rpu_oper_mode rpu_mode)
+>     > +{
+>     > +	int ret, num_banks;
+>     > +	struct device *dev = &pdev->dev;
+>     > +	struct rproc *rproc_ptr;
+>     > +	struct zynqmp_r5_rproc *z_rproc;
+>     > +	struct device_node *r5_node;
+>     > +
+>     > +	/* Allocate remoteproc instance */
+>     > +	rproc_ptr = devm_rproc_alloc(dev, dev_name(dev), &zynqmp_r5_rproc_ops,
+>     > +				     NULL, sizeof(struct zynqmp_r5_rproc));
+>     > +	if (!rproc_ptr) {
+>     > +		ret = -ENOMEM;
+>     > +		goto error;
+>     > +	}
+>     > +
+>     > +	rproc_ptr->auto_boot = false;
+>     > +	z_rproc = rproc_ptr->priv;
+>     > +	z_rproc->rproc = rproc_ptr;
+>     > +	r5_node = z_rproc->rproc->dev.parent->of_node;
+>     > +
+>     > +	/* Set up DMA mask */
+>     > +	ret = dma_set_coherent_mask(dev, DMA_BIT_MASK(32));
+>     > +	if (ret)
+>     > +		goto error;
+>     > +
+>     > +	/* Get R5 power domain node */
+>     > +	ret = of_property_read_u32(node, "power-domain", &z_rproc->pnode_id);
+>     > +	if (ret)
+>     > +		goto error;
+>     > +
+>     > +	ret = r5_set_mode(z_rproc, rpu_mode);
+>     > +	if (ret)
+>     > +		goto error;
+>     > +
+>     > +	if (of_property_read_bool(node, "mboxes")) {
+>     > +		ret = zynqmp_r5_setup_mbox(z_rproc, node);
+>     > +		if (ret)
+>     > +			goto error;
+>     > +	}
+>     > +
+>     > +	/* go through TCM banks for r5 node */
+>     > +	num_banks = of_count_phandle_with_args(r5_node, BANK_LIST_PROP, NULL);
+> 
+>     Shouldn't this be @node instead of @r5_node?
+> 
+> [Ben]  Yes this should and will be node.
+> 
+>     > +	if (num_banks <= 0) {
+>     > +		dev_err(dev, "need to specify TCM banks\n");
+>     > +		ret = -EINVAL;
+>     > +		goto error;
+>     > +	}
+>     > +
+>     > +	if (num_banks > NUM_SRAMS) {
+>     > +		dev_err(dev, "max number of srams is %d. given: %d \r\n",
+>     > +			NUM_SRAMS, num_banks);
+>     > +		ret = -EINVAL;
+>     > +		goto error;
+>     > +	}
+>     > +
+>     > +	/* construct collection of srams used by the current R5 core */
+>     > +	for (; num_banks; num_banks--) {
+>     > +		struct resource rsc;
+>     > +		struct device_node *dt_node;
+>     > +		resource_size_t size;
+>     > +		int i;
+>     > +
+>     > +		dt_node = of_parse_phandle(r5_node, BANK_LIST_PROP, i);
+>     > +		if (!dt_node) {
+>     > +			ret = -EINVAL;
+>     > +			goto error;
+>     > +		}
+>     > +
+>     > +		ret = of_address_to_resource(dt_node, 0, &rsc);
+>     > +		if (ret < 0) {
+>     > +			of_node_put(dt_node);
+>     > +			goto error;
+>     > +		}
+>     > +
+>     > +		of_node_put(dt_node);
+>     > +		size = resource_size(&rsc);
+>     > +
+>     > +		/*
+>     > +		 * Find corresponding Xilinx platform management ID.
+>     > +		 * The bank information is used in prepare/unprepare and
+>     > +		 * parse_fw.
+>     > +		 */
+>     > +		for (i = 0; i < NUM_SRAMS; i++) {
+>     > +			if (rsc.start == zynqmp_banks[i].addr) {
+>     > +				z_rproc->srams[i].addr = rsc.start;
+>     > +				z_rproc->srams[i].size = size;
+>     > +				z_rproc->srams[i].id = zynqmp_banks[i].id;
+>     > +				break;
+>     > +			}
+>     > +		}
+>     > +
+>     > +		if (i == NUM_SRAMS) {
+>     > +			dev_err(dev, "sram %llx is not valid.\n", rsc.start);
+>     > +			ret = -EINVAL;
+>     > +			goto error;
+>     > +		}
+>     > +	}
+> 
+>     Everything that is related to the initialisation of srams above should be in a
+>     function on its own.  This too is new code that wasn't requested - the next
+>     revision needs to include *only* the changes I request.  Any improvement on the
+>     current implementation can be made in future patchsets. 
+> 
+> 
+> [Ben] Makes sense. I will do that going forward. For probe() I will put all the sram information collection functionality in 1 function.
+> 
+>     > +
+>     > +	/* Add R5 remoteproc */
+>     > +	ret = devm_rproc_add(dev, rproc_ptr);
+>     > +	if (ret) {
+>     > +		zynqmp_r5_cleanup_mbox(z_rproc);
+>     > +		goto error;
+>     > +	}
+>     > +
+>     > +	return z_rproc;
+>     > +error:
+>     > +	return ERR_PTR(ret);
+>     > +}
+>     > +
+>     > +/*
+>     > + * zynqmp_r5_remoteproc_probe
+>     > + *
+>     > + * @pdev: domain platform device for R5 cluster
+>     > + *
+>     > + * called when driver is probed, for each R5 core specified in DT,
+>     > + * setup as needed to do remoteproc-related operations
+>     > + *
+>     > + * Return: 0 for success, negative value for failure.
+>     > + */
+>     > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+>     > +{
+>     > +	int ret, core_count;
+>     > +	struct device *dev = &pdev->dev;
+>     > +	struct device_node *nc;
+>     > +	enum rpu_oper_mode rpu_mode = PM_RPU_MODE_LOCKSTEP;
+>     > +	struct list_head *cluster; /* list to track each core's rproc */
+>     > +	struct zynqmp_r5_rproc *z_rproc;
+>     > +	struct platform_device *child_pdev;
+>     > +	struct list_head *pos;
+>     > +
+>     > +	ret = of_property_read_u32(dev->of_node, "xlnx,cluster-mode", &rpu_mode);
+>     > +	if (ret < 0 || (rpu_mode != PM_RPU_MODE_LOCKSTEP &&
+>     > +			rpu_mode != PM_RPU_MODE_SPLIT)) {
+>     > +		dev_err(dev, "invalid cluster mode: ret %d mode %x\n",
+>     > +			ret, rpu_mode);
+>     > +		return ret;
+>     > +	}
+>     > +
+>     > +	dev_dbg(dev, "RPU configuration: %s\n",
+>     > +		rpu_mode == PM_RPU_MODE_LOCKSTEP ? "lockstep" : "split");
+>     > +
+>     > +	/*
+>     > +	 * if 2 RPUs provided but one is lockstep, then we have an
+>     > +	 * invalid configuration.
+>     > +	 */
+>     > +
+>     > +	core_count = of_get_available_child_count(dev->of_node);
+>     > +	if ((rpu_mode == PM_RPU_MODE_LOCKSTEP && core_count != 1) ||
+>     > +	    core_count > MAX_RPROCS)
+>     > +		return -EINVAL;
+>     > +
+>     > +	cluster = devm_kzalloc(dev, sizeof(*cluster), GFP_KERNEL);
+>     > +	if (!cluster)
+>     > +		return -ENOMEM;
+>     > +	INIT_LIST_HEAD(cluster);
+>     > +
+>     > +	ret = devm_of_platform_populate(dev);
+>     > +	if (ret) {
+>     > +		dev_err(dev, "devm_of_platform_populate failed, ret = %d\n", ret);
+>     > +		return ret;
+>     > +	}
+>     > +
+>     > +	/* probe each individual r5 core's remoteproc-related info */
+>     > +	for_each_available_child_of_node(dev->of_node, nc) {
+>     > +		child_pdev = of_find_device_by_node(nc);
+> 
+>     The device reference needs to be dropped after use, as described in the function
+>     documentation.
+> 
+>     I'm out of time - I will continue tomorrow.
+> 
+>     Mathieu
+> 
+> 
+> [Ben] By this do you mean that for each platform_device should have a call like
+> 	platform_set_drvdata(child_pdev, NULL); if it fails? or something else?
+
+Have another read at the documentation and look at how other people have used
+it.  You may already be aware but Bootlin's kernel cross-reference tool is
+really good for that.
+
+https://elixir.bootlin.com/linux/v5.12-rc3/source
+
