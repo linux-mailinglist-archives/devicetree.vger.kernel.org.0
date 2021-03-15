@@ -2,122 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D96A833C6B3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 20:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E360A33C6CF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 20:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232921AbhCOTTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 15:19:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58172 "EHLO
+        id S233528AbhCOT0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 15:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233416AbhCOTTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 15:19:47 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B0F4C061762
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 12:19:47 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id d20so32860142qkc.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 12:19:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KKrjR+1pYrczmPaO9FQh9Zsr6qSwWLm3vUCGHNN49NI=;
-        b=uTOML8o9qaiakVrN3KS50dFQ2ofWZ8ACM4fJbTYPq3KdEgHn6U0NCp1hT1IX5C0C2v
-         /MWH3pi+PF7P1Fgm/8cYo4l+WBqniEQpEDqGBEfqfXYqqm64W4Ykhtp2096wqWtukL1+
-         m3a+A0SeR2oCz21mPtr46oRosWNOL/SUqhc2TsIKU2yt3kcf0V3u7GjECSGN4FA2U7v7
-         A2RP2701s8sSr5q9fVp/HUYeQ8wZWTT1c1Z9GDQW2G7YI+ouoCqP3mtp2BqGhL/OKhXy
-         lxjNk40LIZwbbW2a38efWwPGG3+tq8rk0w+K0U/q3PRBfuEwcy5dE1zsBFesYm6vUpP3
-         ajWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KKrjR+1pYrczmPaO9FQh9Zsr6qSwWLm3vUCGHNN49NI=;
-        b=n1CJei161OUkFR9NsivQXIV1DgOxm3hrvTN81Un8ld4Y4SmsNcsTwjbI20VmfLd2kf
-         j7WLJjsNOg3eIS87fHQkANl6AaZPB4RHFLkkx5WH7fE0SdZDBGQ+qMIi/1alKgEODGY+
-         akZxm8vAmj60iot4AfwyeKN8GcJe/eVlGfs50SeFquln9mLI0K5o01nrTSVkrNRPq//o
-         x2Bj8na0ZLv9vWew8wh294irGiubND584F2W9I7l8WkhXstirCDJBIzCFYCqO+qKvaFN
-         4BXYIZiP1F4vcLSgl9ZIGZ6yfjkZCP73sGGfBCOcQT2R1WyOkVZ2Kyau3ji4y9uXMHH+
-         WLbA==
-X-Gm-Message-State: AOAM5322Rdv5q1uO8G1xZCnFBhcJ+2PoX4zV44DI3Q1Lq2fuloBbDOrg
-        EYcmuxXTjY1NoQND95uqHvXfiQi1QIHNmyigU+lINA==
-X-Google-Smtp-Source: ABdhPJwnq1X5LRG08bl6RXWR/OZcwCg/kklS/64tewBuZyv9NrC5inYj1d03jwjrtj1M02hZK6rIuI/1IaZf/72eFWk=
-X-Received: by 2002:a37:b6c4:: with SMTP id g187mr27563612qkf.162.1615835986271;
- Mon, 15 Mar 2021 12:19:46 -0700 (PDT)
+        with ESMTP id S233573AbhCOT0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 15:26:41 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A57C06174A
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 12:26:41 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:281:8300:104d::5f6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 304F0372;
+        Mon, 15 Mar 2021 19:26:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 304F0372
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+        t=1615836401; bh=4ypd7Vv0Hb8gXQNJjo/Dsc/ltQP9teVcsN2i1wqBic4=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=ScYBKD4OrYngeT+yCJEC2M1s2Tpbkch3tSGtB0ct9Qvn6ic1Wxzra6byhEpTQ1qaz
+         CStKUUSvltra73xasSEAjl3NfrWJ8ZvIL4WqUjvVp0eK3uuQk/5wkvrW1IceTxRc0S
+         AuIEgNc3Y9cWeFBQoqGZT6icMP8DEdMFYPTVZc3O2mPyz2ESmIk/z4rGJ9s7CNfL+l
+         +H4KV2i53G4Us3iJj4JA413SszYg/2jK2bLU2ZCZZGh478vZYDF4uBpLnZhZ/Laiyr
+         Eemb7om7AJ8BN7n6pYusExKNQsOaeDqGgPrw8PQp6/0tmhsUl85jA5xw3TdhvCSCSr
+         dWvTHmqgvCW+A==
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH] docs: dt: submitting-patches: Fix grammar in subsystem
+ section
+In-Reply-To: <20210309130650.2318419-1-geert+renesas@glider.be>
+References: <20210309130650.2318419-1-geert+renesas@glider.be>
+Date:   Mon, 15 Mar 2021 13:26:40 -0600
+Message-ID: <87wnu81amn.fsf@meer.lwn.net>
 MIME-Version: 1.0
-References: <20210315103836.1.I9a97120319d43b42353aeac4d348624d60687df7@changeid>
-In-Reply-To: <20210315103836.1.I9a97120319d43b42353aeac4d348624d60687df7@changeid>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 15 Mar 2021 22:19:35 +0300
-Message-ID: <CAA8EJpqsYR+uCmBH8i6H_YyBfcmziiCq9dAZkAqJUEEvHZ3AUg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Fix sc7180-qmp-usb3-dp-phy reg sizes
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 at 20:39, Douglas Anderson <dianders@chromium.org> wrote:
->
-> As per Dmitry Baryshkov [1]:
-> a) The 2nd "reg" should be 0x3c because "Offset 0x38 is
->    USB3_DP_COM_REVISION_ID3 (not used by the current driver though)."
-> b) The 3rd "reg" "is a serdes region and qmp_v3_dp_serdes_tbl contains
->    registers 0x148 and 0x154."
->
-> I think because the 3rd "reg" is a serdes region we should just use
-> the same size as the 1st "reg"?
+Geert Uytterhoeven <geert+renesas@glider.be> writes:
 
-Yes, this looks logical to me.
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
+> Reword the subsystem bindings section to make sense, from a grammatical
+> point of view.
 >
-> [1] https://lore.kernel.org/r/ee5695bb-a603-0dd5-7a7f-695e919b1af1@linaro.org
->
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
-> Cc: Chandan Uddaraju <chandanu@codeaurora.org>
-> Cc: Vara Reddy <varar@codeaurora.org>
-> Cc: Tanmay Shah <tanmay@codeaurora.org>
-> Cc: Rob Clark <robdclark@chromium.org>
-> Fixes: 58fd7ae621e7 ("arm64: dts: qcom: sc7180: Update dts for DP phy inside QMP phy")
-> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 4 ++--
+>  Documentation/devicetree/bindings/submitting-patches.rst | 4 ++--
 >  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 83fbb481cae5..61732e5efe62 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -2754,8 +2754,8 @@ usb_1_hsphy: phy@88e3000 {
->                 usb_1_qmpphy: phy-wrapper@88e9000 {
->                         compatible = "qcom,sc7180-qmp-usb3-dp-phy";
->                         reg = <0 0x088e9000 0 0x18c>,
-> -                             <0 0x088e8000 0 0x38>,
-> -                             <0 0x088ea000 0 0x40>;
-> +                             <0 0x088e8000 0 0x3c>,
-> +                             <0 0x088ea000 0 0x18c>;
->                         status = "disabled";
->                         #address-cells = <2>;
->                         #size-cells = <2>;
+> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+> index 68129ff09967d5d7..1d11c25249ff5465 100644
+> --- a/Documentation/devicetree/bindings/submitting-patches.rst
+> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
+> @@ -75,8 +75,8 @@ II. For kernel maintainers
+>       binding, and it hasn't received an Acked-by from the devicetree
+>       maintainers after a few weeks, go ahead and take it.
+>  
+> -     Subsystem bindings (anything affecting more than a single device)
+> -     then getting a devicetree maintainer to review it is required.
+> +     For subsystem bindings (anything affecting more than a single device),
+> +     getting a devicetree maintainer to review it is required.
 
--- 
-With best wishes
-Dmitry
+Applied, thanks.
+
+jon
