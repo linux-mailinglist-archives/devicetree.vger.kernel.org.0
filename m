@@ -2,186 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A59933C80A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 21:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1F4A33C815
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 22:00:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbhCOUyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 16:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbhCOUyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 16:54:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B4FC06174A;
-        Mon, 15 Mar 2021 13:54:43 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id y6so18930933eds.1;
-        Mon, 15 Mar 2021 13:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=38A15GNx1/N58gH7S4h5rE+apX8WICvL1/xV4PvZLew=;
-        b=niIt2v9c4KJnHtqwNwkkZsu83qsifivcP9ZNkBSO2UzJxuJGxpeMcanZq1VQzTgFBj
-         x3Gkde54nMtpP0okh+bUyVfTQm+suVZHP3oXZT0B8n3yeIbi/3Obq5HEU8HwvdpN4cu3
-         6cqNYdeZBo8/zPviclEI1o6cOcMgZ2/qtzE62ICHfyQGkX06HSEkcXmTPxS7Hpu4cIle
-         sbBYoIIMUzVEgJq7i1hE0cLhkkPeuNLWatrEputHd84JgfZsT+s6bOjJ1JpO1gcQPR1l
-         L+/yrUQyiS0yi4fsyPtZx9oEIZIFLaBvMQiCaUYT72mpdKcTOpX24pQyyXHID/PW5FKI
-         IcyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=38A15GNx1/N58gH7S4h5rE+apX8WICvL1/xV4PvZLew=;
-        b=F2oxQNemM6bTenFDtXkjg3TkQ0ybT4JciTx3vJPwUNoWZgJrFWeMqQGMZAEAdue8mw
-         Nl3iRcFYa4M6Q3ElRwj03KjvyV4dHdSc2a7xK4c77CNj9NcyGxKtslDlEXCsAtQom8DT
-         7Ml7fNkqDbk/koxNEOWnLNe61/AHzPb4Waq0CTpkB/kHmXfro/UxvH/PKForhJji9F78
-         tA1ixUP1JL9PznOhyInAxZ4eAp3FhXWSZW+KiAwIW4OzXv7NibhDDo/sh+0/beOitrYm
-         MhW/bx59DNPCqHBpTDhcEZUX5NbzJBtbCSmNrcUZJVL2ucGAodLElKD9BLVZG7MoIeOJ
-         Cf6Q==
-X-Gm-Message-State: AOAM530qsTrr6jzQ9tUZRQ2mOufXz8MyKXaZXy8oIZlwXOJxsQNHN0Ei
-        Cuy+Ne+KMYvibtvM4hiy0jU=
-X-Google-Smtp-Source: ABdhPJz22dzA3+6BANERbChcgx+w3bnMkCp3n1/WqmQflApE9CkK9VB5KhlJwBVzk7cg2aL9fyNKJA==
-X-Received: by 2002:a05:6402:34d5:: with SMTP id w21mr11187131edc.14.1615841682665;
-        Mon, 15 Mar 2021 13:54:42 -0700 (PDT)
-Received: from skbuf ([188.25.219.167])
-        by smtp.gmail.com with ESMTPSA id bm10sm8901947edb.2.2021.03.15.13.54.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 13:54:42 -0700 (PDT)
-Date:   Mon, 15 Mar 2021 22:54:40 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to json schema
-Message-ID: <20210315205440.lb6hcrvzxtqxdb5x@skbuf>
-References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
+        id S232240AbhCOVAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 17:00:15 -0400
+Received: from mo-csw1115.securemx.jp ([210.130.202.157]:59494 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233386AbhCOVAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 17:00:05 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1115) id 12FKxHia023041; Tue, 16 Mar 2021 05:59:17 +0900
+X-Iguazu-Qid: 2wHHiY2QgChMRL7HfM
+X-Iguazu-QSIG: v=2; s=0; t=1615841957; q=2wHHiY2QgChMRL7HfM; m=ZJjqvTXot3TPXpFIfGTyE+48HF6aYviO/T37tBsXdQI=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1111) id 12FKxECh029422
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 16 Mar 2021 05:59:14 +0900
+Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id 495521000BD;
+        Tue, 16 Mar 2021 05:59:14 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 12FKxDX8023702;
+        Tue, 16 Mar 2021 05:59:13 +0900
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LCGt0Ud0EHPMCu4n1NYH/cJDkByDssiGoutK4GECLT0tFktEaDbObpTXc3PRAelUkZ4ltvX8652UtNvRteSL5sNGBRkDiABDt77kNE/AFqkBD1IPfbKV1yNjrsz1jNTt6qFMRx+szbYUxtkXCAfW7Ase7wsHHxNCfuO8tMlb33kNjYM+zPUlFIP5Ym0GyHP3yznhd0r1f6vwrdR65xJU31TZNZNkIXoHN/nPQ64eGpYtV7lKbfYHPt34kLqTksCIpXTT0MSjlXng2JqAqquM3okn1TRNBVWACNCVGCX9r5mtm4HMnBm1/+WoRV3DJe4WBuh2BBLTtK0i80sA2NibWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xUwfLPNLGdppnK+LgI4ngUvKQEhAM1TFeKJvkfU4YnQ=;
+ b=ZU8ip8jif1H7DdOSfFzEdjZESxoSB5Cf4yV4qqUkNPnlTqluMyRBzjca8sbVW9y2VshNJayx6RefQ0XGmasF1tO0K84i6LeMPBKjecRmzttJ7855LnL3vKYEvefam6Mk7LHpXcAzfmWStWUnSuv5xbXuInO5z+jsXwd3X1j88K7p6jGVetTqjFCLX0l+pJV0QmYHzBKfQhZRS7fqxqmZMnQI7pch6C9TT/nGFmgLI+N7QF5z6a6hnDPDFDcwJLuOvrgnKwRKuyXo+g0bMA7hejPHVhjjx1/8hHcfTxf2cz+6VQ7LJ8oXZ/b4HscXSS+avBuo1Hl+g8qBSNTE3796VQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toshiba.co.jp; dmarc=pass action=none
+ header.from=toshiba.co.jp; dkim=pass header.d=toshiba.co.jp; arc=none
+From:   <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     <lukas.bulwahn@gmail.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <chenyu56@huawei.com>, <anitha.chrisanthus@intel.com>,
+        <Jonathan.Cameron@huawei.com>, <joe@perches.com>,
+        <ralf.ramsauer@oth-regensburg.de>,
+        <kernel-janitors@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/5] MAINTAINERS: rectify entry for ARM/TOSHIBA VISCONTI
+ ARCHITECTURE
+Thread-Topic: [PATCH 2/5] MAINTAINERS: rectify entry for ARM/TOSHIBA VISCONTI
+ ARCHITECTURE
+Thread-Index: AQHXGbUCeM82hwVXTkyp2kzcZ2/0oKqFh8eg
+Date:   Mon, 15 Mar 2021 20:59:11 +0000
+X-TSB-HOP: ON
+Message-ID: <OSBPR01MB298322B4D87B2BA2F24515AD926C9@OSBPR01MB2983.jpnprd01.prod.outlook.com>
+References: <20210315160451.7469-1-lukas.bulwahn@gmail.com>
+ <20210315160451.7469-3-lukas.bulwahn@gmail.com>
+In-Reply-To: <20210315160451.7469-3-lukas.bulwahn@gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=toshiba.co.jp;
+x-originating-ip: [103.91.184.1]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1e21e842-cf67-4e4d-df5e-08d8e7f52efd
+x-ms-traffictypediagnostic: OS0PR01MB5906:
+x-microsoft-antispam-prvs: <OS0PR01MB5906A16A93FB7FFEC5470EB4926C9@OS0PR01MB5906.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Z0hCp4kOup9j2f9aGK/Ydz5eqNjYa57njqyyirCqhKAmh2hjbdg8Ico/uyxC8X/1ahSgejQqcjf8x5ZcgXt/Wk9Pwoo8GuUVR6gmMWem/JBJJqeWO5QRIbPML/nS/otSgT5XgSQ6xUcdQM7XRVjypsQ+pOLZZLQD+LZqe1OfRY00vOSBx6bGJQbgbKiR+W1CGYP+Ze1s62NbhTsm+JRvFqEJ1IQQEMToDRRY6wz0r5BpFblv4sLEDHqZjx1KyLc+j9r2i1ihP37a92rqV4Co6Zq19MIMqB2AEYdQvacxI78j+oAjYVib4Pixko2yGquKTHO2Jj4ll8pMJ54vNAlBR/BBx8N1BRbprpokHV97x4/XZZUdXxU/ZTfuXk9UYac50XFds+MYgjj+76Kr7z2UeA9BUukOof9IpvBvQWQK/yLjTKpyZCcQtG4mg7yKhRnxPmiSxpxtm+IX07hef9IkMQkiFijD/AHOvYAKdyhFC8wGVuYT4t7/3cjhQK/XGt2CxgqfRG+t8fP4yIDZcyliOwzcTup4AEic2lSzb5ES88230su9nBTobqoqT4KrqwW8
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSBPR01MB2983.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(376002)(346002)(136003)(366004)(396003)(7416002)(52536014)(186003)(110136005)(26005)(316002)(5660300002)(54906003)(2906002)(478600001)(86362001)(66476007)(4326008)(53546011)(64756008)(6506007)(71200400001)(8676002)(7696005)(8936002)(76116006)(83380400001)(9686003)(55016002)(66946007)(66556008)(33656002)(66446008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?UUdiMjZkU2ZxV3pZMUxLcjZ3Wjg3bGxxUHhTcURXK2xCVFBUL3ozOEsrUEJ3?=
+ =?utf-8?B?T0VWcGJpd01icUtoK2JUMXc3TURwUnhxcFF1bnZ1V1N5Y0lGWEZkQ01OZXFK?=
+ =?utf-8?B?ZSt3RWIxcEhFK2M5YUM4TjluV2ZMVTVPZkpuSVpWK0QzV2RyVDgzcUNmMVlq?=
+ =?utf-8?B?U3JtNDZLdHBlM2J3U1lkWW1sWXRWVGZlUm5wVTF3R3VQN2EyR2hhSm1VVXFM?=
+ =?utf-8?B?SUdPd3A0OVliSytDREw2YXZ2dTF3UmtWcy9SUlJUUi9Ub25UU2E2Tjk5RENI?=
+ =?utf-8?B?MmY3UDdUc21JWkFQUnAvV29neUtUcUVTOWxNSEhZMndHV0ZRS2dETWJyMVNJ?=
+ =?utf-8?B?Y0pvaWpDZWxOWXU0cFErWE9YNUJFaVViUDAwV09iUVp3L2xsVGptQ3ZkS1h3?=
+ =?utf-8?B?VlJaSW83cW9vL2ZzSHEzR3RMMzE4TnBFNk9RUDFSc21tY1BxaEJBK0hWbURW?=
+ =?utf-8?B?Y3kzL2lFb2EvZUkxSmxlOTQ1SnZ0OUNSc3Q0enBaaGcvUTFVUDVDeXhXbll4?=
+ =?utf-8?B?aGpsMEVhaHpKWG5vUTNLSjVPWG91VDRmc3VxMTdGeEJkN0FubHNkN0N5dWRt?=
+ =?utf-8?B?cmRnaWNnbFNwelRKRFpIQjJCdnJLOS9lOHZKZ1FZVUl4c014aWswNlBldkl1?=
+ =?utf-8?B?SnpkejJxSUprcWdLWTJkNk9mRzZCQVQ5ODZuWUhQSlRiNExieWVzcnNibXFT?=
+ =?utf-8?B?THd5cFJNMnhia3J1cTNVSWo2emtUK0JSYmh0ZXVYV3V3VkpKNDR3UmVhenlE?=
+ =?utf-8?B?anNsVjlFL2ViOU1ONmJUVDZTTlZDZElCVTRvcG03WWRxaFgzZ05ETzBVUlpw?=
+ =?utf-8?B?cG05UjB6MkdHSFF5ZEhsWnZIbDFrOCtMQy80VW1kSWpjVkNjdVVRMEEvNjZv?=
+ =?utf-8?B?N1ZqeW9ESnNQVnNjUldCUllMOVFzYU9vSGx3RDhtMXUrc1poN0liWU9OUzZB?=
+ =?utf-8?B?dXlIZEJUaExPUkNPSGVwQ2tRNzlWU25Xa3Bxa2ZpdmpTRDF0cGxYblFkUENl?=
+ =?utf-8?B?cTVlQnZCOXR5RVhWWEtXVHVYYVg4RjBqOVhxWTdzaUdNZjNpdzROVUVVWEhF?=
+ =?utf-8?B?dFpENHpEa3JqclFibW44QnJsaVRCaGdINUFEY1I2SHcwUnFaTWFkaXY0MGtM?=
+ =?utf-8?B?bmZiMytvajhtR0l5azRFUnRSOEF6Z1ZEenh0bEVocEFEVHlRZzR2TE5ocGhZ?=
+ =?utf-8?B?aHZsQXBMeTcwRVdJOUd1V2NmM0FEUlZnZ0RFSmJNcjFtcUVWWUU5MmFqQk1E?=
+ =?utf-8?B?eFZpeVlXMWlKUFNqeWpnd3VmTGtEM2Z4em9tTUFFc213TGZKYmMvcGV2ZHY2?=
+ =?utf-8?B?TTNPRDVvbXNiVkEyUWEvMnp6QkhUOFYxT1YzYnJwZm9kSGRsZk5sZU85WHVH?=
+ =?utf-8?B?NmpaSmJ0Z1lGNS9MREpSaXRjSm8ySnNsR3h1bHZEeFdWdDFmdkdnZEY3cTBp?=
+ =?utf-8?B?V3dzZ2xDNk02azVEejg5dEVTR1FUS3dMZkpBN3J4WG84VXpXbW1EYUcyUHI1?=
+ =?utf-8?B?ZVZ6MWtOeUxqK3hpY1NFcTU0ZlA5QUV2S3d2RGhnOEFFQUJyWkI1SUlqZjVm?=
+ =?utf-8?B?K2MrZjU0cE9hNW13ZitnNEh3RGRzMDNYb1g0a1IvSnd3TzJRL2tWdXIzTzBF?=
+ =?utf-8?B?Rm5EVmFXa25mSGJEdkNacVdrUy9sdjJ4NmVBMCtaM3Ivd2JxdGVpMjJOZ3RT?=
+ =?utf-8?B?a1hmNHNnRml0ZGlGdWtycEJteFcvSm9IU2M3ZWt3V24xdlovY1F1TVEyYlF4?=
+ =?utf-8?Q?VlTcAYyjF4KFQAA6T5PL5puRxSbWFSuQVdhopCr?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSBPR01MB2983.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e21e842-cf67-4e4d-df5e-08d8e7f52efd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Mar 2021 20:59:11.3069
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QPZFN8mxBf7Dcmul9rSiGUONUgX+80/xYiALcspVj1foNTJOdOXIgnh9rH6L9dUoUVWFOMieNxTA+UKdg+QHTiT3v9LJVk5+FJch7RrkOgRk/DECT+gd6qv8x0iACNW8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5906
+MSSCP.TransferMailToMossAgent: 103
+X-OriginatorOrg: toshiba.co.jp
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kuldeep,
-
-On Mon, Mar 15, 2021 at 05:45:18PM +0530, Kuldeep Singh wrote:
-> Convert the Freescale DSPI binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-> ---
-> Hi Rob,
-> This patch is checked with following commands with no warnings observed.
-> make distclean; make allmodconfig;
-> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml;
-> make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
-> 
->  .../bindings/spi/fsl,spi-fsl-dspi.yaml        | 131 ++++++++++++++++++
->  .../devicetree/bindings/spi/spi-fsl-dspi.txt  |  65 ---------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 132 insertions(+), 66 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
-> new file mode 100644
-> index 000000000000..15ffc83bdba6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/fsl,spi-fsl-dspi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale DSPI Controller
-> +
-> +maintainers:
-> +  - Vladimir Oltean <olteanv@gmail.com>
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - fsl,vf610-dspi
-> +          - fsl,ls1021a-v1.0-dspi
-> +          - fsl,ls1028a-dspi
-> +          - fsl,ls2085a-dspi
-> +          - fsl,lx2160a-dspi
-> +      - items:
-> +          - enum:
-> +              - fsl,ls1012a-dspi
-> +              - fsl,ls1028a-dspi
-> +              - fsl,ls1043a-dspi
-> +              - fsl,ls1046a-dspi
-> +              - fsl,ls1088a-dspi
-> +          - const: fsl,ls1021a-v1.0-dspi
-> +      - items:
-> +          - enum:
-> +              - fsl,ls2080a-dspi
-> +              - fsl,lx2160a-dspi
-> +          - const: fsl,ls2085a-dspi
-
-Can this simply be:
-  compatible:
-    oneOf:
-      - enum:
-          - fsl,vf610-dspi
-          - fsl,ls1021a-v1.0-dspi
-          - fsl,ls1012a-dspi
-          - fsl,ls1028a-dspi
-          - fsl,ls1043a-dspi
-          - fsl,ls1046a-dspi
-          - fsl,ls1088a-dspi
-          - fsl,ls2080a-dspi
-          - fsl,ls2085a-dspi
-          - fsl,lx2160a-dspi
-?
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        spi@2100000 {
-> +            compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
-
-This doesn't need the "fsl,ls1021a-v1.0-dspi" compatible, can you please
-remove it?
-
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            reg = <0x0 0x2100000 0x0 0x10000>;
-> +            interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +            clock-names = "dspi";
-> +            clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL QORIQ_CLK_PLL_DIV(2)>;
-> +            dmas = <&edma0 0 62>, <&edma0 0 60>;
-> +            dma-names = "tx", "rx";
-> +            spi-num-chipselects = <4>;
-> +            little-endian;
-> +
-> +            flash@0 {
-> +                compatible = "jedec,spi-nor";
-> +                spi-max-frequency = <10000000>;
-> +                reg = <0>;
-> +            };
-> +        };
-> +    };
-
-(...)
-
-> -Optional property:
-> -- big-endian: If present the dspi device's registers are implemented
-> -  in big endian mode.
-
-I don't see "big-endian" being covered in any common yaml, could you
-please not delete it? The driver calls of_device_is_big_endian.
+SGkgTHVrYXMsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTHVrYXMg
+QnVsd2FobiBbbWFpbHRvOmx1a2FzLmJ1bHdhaG5AZ21haWwuY29tXQ0KPiBTZW50OiBUdWVzZGF5
+LCBNYXJjaCAxNiwgMjAyMSAxOjA1IEFNDQo+IFRvOiBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJu
+ZWwub3JnPjsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IGl3YW1hdHN1IG5vYnVo
+aXJvKOWyqeadviDkv6HmtIsg4pah77yz77y377yj4pev77yh77yj77y0KSA8bm9idWhpcm8xLml3
+YW1hdHN1QHRvc2hpYmEuY28uanA+OyBZdSBDaGVuIDxjaGVueXU1NkBodWF3ZWkuY29tPjsNCj4g
+QW5pdGhhIENocmlzYW50aHVzIDxhbml0aGEuY2hyaXNhbnRodXNAaW50ZWwuY29tPjsgSm9uYXRo
+YW4gQ2FtZXJvbiA8Sm9uYXRoYW4uQ2FtZXJvbkBodWF3ZWkuY29tPjsgSm9lIFBlcmNoZXMNCj4g
+PGpvZUBwZXJjaGVzLmNvbT47IFJhbGYgUmFtc2F1ZXIgPHJhbGYucmFtc2F1ZXJAb3RoLXJlZ2Vu
+c2J1cmcuZGU+OyBrZXJuZWwtamFuaXRvcnNAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1rZXJu
+ZWxAdmdlci5rZXJuZWwub3JnOyBMdWthcyBCdWx3YWhuIDxsdWthcy5idWx3YWhuQGdtYWlsLmNv
+bT4NCj4gU3ViamVjdDogW1BBVENIIDIvNV0gTUFJTlRBSU5FUlM6IHJlY3RpZnkgZW50cnkgZm9y
+IEFSTS9UT1NISUJBIFZJU0NPTlRJIEFSQ0hJVEVDVFVSRQ0KPiANCj4gQ29tbWl0IDgzNjg2M2Ew
+OGM5OSAoIk1BSU5UQUlORVJTOiBBZGQgaW5mb3JtYXRpb24gZm9yIFRvc2hpYmEgVmlzY29udGkg
+QVJNDQo+IFNvQ3MiKSByZWZlcnMgdG8gdGhlIG5vbi1leGlzdGluZyBmaWxlIHRvc2hpYmEsdG1w
+djc3MDAtcGluY3RybC55YW1sIGluDQo+IC4vRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3BpbmN0cmwvLiBDb21taXQgMTgyNWMxZmUwMDU3DQo+ICgicGluY3RybDogQWRkIERUIGJp
+bmRpbmdzIGZvciBUb3NoaWJhIFZpc2NvbnRpIFRNUFY3NzAwIFNvQyIpIG9yaWdpbmF0aW5nDQo+
+IGZyb20gdGhlIHNhbWUgcGF0Y2ggc2VyaWVzIGhvd2V2ZXIgYWRkcyB0aGUgZmlsZQ0KPiB0b3No
+aWJhLHZpc2NvbnRpLXBpbmN0cmwueWFtbCBpbiB0aGF0IGRpcmVjdG9yeSBpbnN0ZWFkLg0KPiAN
+Cj4gU28sIHJlZmVyIHRvIHRvc2hpYmEsdmlzY29udGktcGluY3RybC55YW1sIGluIHRoZSBBUk0v
+VE9TSElCQSBWSVNDT05USQ0KPiBBUkNISVRFQ1RVUkUgc2VjdGlvbiBpbnN0ZWFkLg0KPiANCj4g
+U2lnbmVkLW9mZi1ieTogTHVrYXMgQnVsd2FobiA8bHVrYXMuYnVsd2FobkBnbWFpbC5jb20+DQoN
+ClRoYW5rcyBmb3IgeW91ciBwYXRjaC4NCkFja2VkLWJ5OiBOb2J1aGlybyBJd2FtYXRzdSA8bm9i
+dWhpcm8xLml3YW1hdHN1QHRvc2hpYmEuY28uanA+DQoNCj4gLS0tDQo+ICBNQUlOVEFJTkVSUyB8
+IDIgKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0K
+PiANCj4gZGlmZiAtLWdpdCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMNCj4gaW5kZXggMjUx
+ZTIwNWI1NDQ0Li44OTQwNGNhNzYwYjkgMTAwNjQ0DQo+IC0tLSBhL01BSU5UQUlORVJTDQo+ICsr
+KyBiL01BSU5UQUlORVJTDQo+IEBAIC0yNjIxLDcgKzI2MjEsNyBAQCBUOglnaXQgZ2l0Oi8vZ2l0
+Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2l3YW1hdHN1L2xpbnV4LXZpc2Nv
+bnRpLmdpdA0KPiAgRjoJRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS90b3No
+aWJhLnlhbWwNCj4gIEY6CURvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvdG9z
+aGliYSx2aXNjb250aS1kd21hYy55YW1sDQo+ICBGOglEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvZ3Bpby90b3NoaWJhLGdwaW8tdmlzY29udGkueWFtbA0KPiAtRjoJRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BpbmN0cmwvdG9zaGliYSx0bXB2NzcwMC1waW5jdHJs
+LnlhbWwNCj4gK0Y6CURvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3Rv
+c2hpYmEsdmlzY29udGktcGluY3RybC55YW1sDQo+ICBGOglEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3Mvd2F0Y2hkb2cvdG9zaGliYSx2aXNjb250aS13ZHQueWFtbA0KPiAgRjoJYXJj
+aC9hcm02NC9ib290L2R0cy90b3NoaWJhLw0KPiAgRjoJZHJpdmVycy9uZXQvZXRoZXJuZXQvc3Rt
+aWNyby9zdG1tYWMvZHdtYWMtdmlzY29udGkuYw0KPiAtLQ0KPiAyLjE3LjENCg0KQmVzdCByZWdh
+cmRzLA0KICBOb2J1aGlybw0K
