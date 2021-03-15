@@ -2,86 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BE3633AC29
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C07A133AC2E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 08:27:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbhCOHYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 03:24:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33120 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229951AbhCOHYg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 03:24:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DD03E64E61;
-        Mon, 15 Mar 2021 07:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615793075;
-        bh=bPgb6yp7ZSbsjfmG0toGXsrGC81m0xd6Hwvf92I5lQ8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oUirYRY7evorBRjo6TqKpbhwLGoEgD8AgM9VtUN5wUaWR7TJf+qz/+UxXRYeGNMEf
-         nBTO6JPklIvqrqYIgHe1/3MPAP2EXvA5UMPMADzh3JDLHfc6quppRl0dpMA4QTcfMi
-         qWeaiW2J8snFkZJdqopW8WOltMmoBTp5qmdhLRvZ7zmKNE6N4Kt0FWDwmIc65AqmC/
-         fWPBSifh0I8XFbpfZYwGj1xEb6a0U+2e6MsJui0BIEMoKaofeGx8XtqcZmFFde0fTn
-         ugIO+3K3AKZF5o48nKW6y6EzYbZYcGdh6oM7ePmcYycifFzrxBxpC12DWA4A9OxJz3
-         y0N1BINnET0+w==
-Date:   Mon, 15 Mar 2021 15:24:30 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-        krzk@kernel.org, kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Subject: Re: [PATCH 2/3] arm64: dts: imx8mq-librem5-r3: Mark buck3 as always
- on
-Message-ID: <20210315072429.GQ11246@dragon>
-References: <20210311120259.3310499-1-martin.kepplinger@puri.sm>
- <20210311120259.3310499-3-martin.kepplinger@puri.sm>
+        id S229890AbhCOH0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 03:26:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230091AbhCOHZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 03:25:37 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB2CC061574;
+        Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id i18so8380271ilq.13;
+        Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=El/Z4kuthdiADlQl60tq0sGwr4QoamUBccbw5uaJ4G0=;
+        b=jOTgMPq+tWjs17/lAC4W47Oqpm0t2FN+FfbmeAiWNsFVbVWBI5RXbR/orZe1qZW26M
+         zUlU7YkWlL3m0RAVJ8E3jp2CiI2tGTi1mzwf3HXTL/nVHGpqusztsymw68Z/VSEXRXST
+         vMzCmd8vDmQ7wRfiK7paur8gTJ28CcwBT0fkxznHLYNIjlHlk4GoBfLH6nGkFwwtxL6v
+         C4dzyg4lqAbftgYU8oBSI7eADsSsVgsEznwBHWLdqtlz2qNcN9sX9K33aOGOaJncwZqW
+         wRzAtYPBbVYNGf7RpR7KJ8y88yoLNpdV5G+UfWkV8Q6Uy5gRYMhHzbQ2Yb4qd18PPJmP
+         E+tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=El/Z4kuthdiADlQl60tq0sGwr4QoamUBccbw5uaJ4G0=;
+        b=VUts4c4TKUn52anZfhGZR3qZKAaPldxjITDo29BnTezcCsm+N52xuREOkRSCIfOZLV
+         gD0luqhRFwQ5v2WWDb37Wnyqz6g4aNjhRLDvmSr8GJpOmWoUz0p+LJSKbpcYNvwd8+4q
+         UMMpl9SXoR5b9eWPgoCL+GcOTErxRivP4b95bSypChJIMBZCWE4fd81iODiw0SxiL+7x
+         P9lTgDQ/TMyYyueAiwGDZ19fspDrvuvHDpheUW7PRLvfovbr+HoU4qjBKoaDIR61bJfn
+         FWBzpZDI0E70/eqtVBQdQdPLQe/VkeZjN5SPeNlE3dXGst6PZplT9P0khWj8BwYKdUhl
+         31Sg==
+X-Gm-Message-State: AOAM531NZoCV+h68yDRo2IJJmQmpbFuS2DDiPY4lt28SYmZOJEf8ts0+
+        WWzBZUdf6DDXN2l4a/d3nNeMks12+PElWyqWCp8=
+X-Google-Smtp-Source: ABdhPJz5F39VTH4DfBEwVHNGC65kxG1T9jL5ydnQB7l0HGRpq/+lB0JN68hx4tzBlgqpn6P3KDVs2Jxp2e81J5xTnEk=
+X-Received: by 2002:a92:ca07:: with SMTP id j7mr10636820ils.144.1615793137102;
+ Mon, 15 Mar 2021 00:25:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311120259.3310499-3-martin.kepplinger@puri.sm>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+From:   Zhengxun Li <zhengxunli.mxic@gmail.com>
+Date:   Mon, 15 Mar 2021 15:25:26 +0800
+Message-ID: <CACY_kjQcJmQaDY2gDxG4TcztsYEmCETTWtLwZDfv9Q+JEsoe7g@mail.gmail.com>
+Subject: Re: [PATCH v10 6/9] staging: clocking-wizard: Add support for
+ fractional support
+To:     shubhrajyoti.datta@xilinx.com
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        git@xilinx.com, gregkh@linuxfoundation.org,
+        linux-clk@vger.kernel.org, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        shubhrajyoti.datta@gmail.com, juliensu@mxic.com.tw,
+        slwu@mxic.com.tw, zhengxunli@mxic.com.tw
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 01:02:58PM +0100, Martin Kepplinger wrote:
-> From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> 
-> Commit 66d3f246d79f ("arm64: dts: librem5: Don't mark buck3 as always on")
+Hi Shubhrajyoti,
 
-I cannot find this commit.
++static int clk_wzrd_dynamic_reconfig_f(struct clk_hw *hw, unsigned long rate,
++       unsigned long parent_rate)
++{
++ int err;
++ u32 value, pre;
++ unsigned long rate_div, f, clockout0_div;
++ struct clk_wzrd_divider *divider = to_clk_wzrd_divider(hw);
++ void __iomem *div_addr = divider->base + divider->offset;
++
++ rate_div = ((parent_rate * 1000) / rate);
 
-Shawn
+In some cases, the variable seems to overflow.
 
-> removed always-on marking from GPU regulator, which is great for power
-> saving - however it introduces additional i2c0 traffic which can be deadly
-> for devices from the Dogwood batch.
-> 
-> To workaround the i2c0 shutdown issue on Dogwood, this commit marks
-> buck3 as always-on again - but only for Dogwood (r3).
-> 
-> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-> index 0d38327043f8..cd3c3edd48fa 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-> @@ -28,6 +28,10 @@ &bq25895 {
->  	ti,termination-current = <144000>;  /* uA */
->  };
->  
-> +&buck3_reg {
-> +	regulator-always-on;
-> +};
-> +
->  &proximity {
->  	proximity-near-level = <25>;
->  };
-> -- 
-> 2.30.1
-> 
+Thanks,
+Zhengxun
