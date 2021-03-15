@@ -2,176 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2ECB33B32A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F114C33B361
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 14:12:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbhCONBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 09:01:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37186 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229588AbhCONA4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 09:00:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CCF3C64E38;
-        Mon, 15 Mar 2021 13:00:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615813255;
-        bh=uwWz6aWi1jhFKw28wj/LBxRRrhUwhNkyvusOnaoyIbc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ja+NES0ImoZkKrEO/YMBgBi8eb1pBtDIoBJ2SEiJI2DUpSjRyoErqeFixEEyp5HUN
-         0jo91BP1t8G80j45Q96DnSNvaST1I40GVJTxXinnCqjmu0ePLMuhzg+XxnwTa5+kQS
-         AbrWYNGoveE5GkaN6iis2ntFVg/LmyetJ5+4xvagV8kbW6ac+jFakwJVtsIXqhZs+m
-         L4idcgPQ+yXSY66VOzxNh/fotNezbImMjFN2wq6LWWsIxZ5QyF9UXTo5FRiCFCVCFE
-         C7/s3PN8c2oKdhEIoyMFZ5SX2KvWrO75HJrBZ0gWYyrp5d6bLci1+nxu+OJd+198ot
-         etRMtsEivXiUw==
-Date:   Mon, 15 Mar 2021 14:00:50 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     dillon min <dillon.minfei@gmail.com>, pierre-yves.mordret@st.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        p.zabel@pengutronix.de,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Alexandre TORGUE <Alexandre.torgue@foss.st.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-i2c@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] i2c: stm32f4: Fix stmpe811 get xyz data timeout
- issue
-Message-ID: <20210315130050.GD1182@ninjato>
-References: <1591709203-12106-1-git-send-email-dillon.minfei@gmail.com>
- <1591709203-12106-5-git-send-email-dillon.minfei@gmail.com>
- <CAL9mu0LJPnxA0JSmV3mogvPA5xRRYCO_4=P7pqpAO7R=YaJX5g@mail.gmail.com>
+        id S229780AbhCONMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 09:12:13 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56986 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230016AbhCONL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 09:11:58 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12FDBoJU076360;
+        Mon, 15 Mar 2021 08:11:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615813910;
+        bh=sIjsgm9ldBHvLkWncjvpoTX93sqqn0mFc2qqBMwO7G4=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=QLRu2Ye1YQdnsWaK8R2FypJcLiTzblaQv+arJsKeUailzDI0Smfv22ye4QXDgd5aY
+         SF/toPP69MMvS4C2cE9x4tHuQ12iJdnF3tdyHXTkywhZKxbBtJMmzJe1Hi+eILXgQq
+         mJtzpMjw15uj0KRZEfIqTpncgzD41etpHFenfWdE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12FDBoKH088022
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 15 Mar 2021 08:11:50 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 15
+ Mar 2021 08:11:50 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 15 Mar 2021 08:11:50 -0500
+Received: from [10.250.235.140] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12FDBjRO115051;
+        Mon, 15 Mar 2021 08:11:46 -0500
+Subject: Re: [PATCH 2/2] PCI: cadence: Set LTSSM Detect.Quiet state delay.
+To:     Nadeem Athani <nadeem@cadence.com>, <tjoseph@cadence.com>,
+        <bhelgaas@google.com>, <robh+dt@kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <lorenzo.pieralisi@arm.com>,
+        <robh@kernel.org>
+CC:     <mparab@cadence.com>, <sjakhade@cadence.com>,
+        <pthombar@cadence.com>
+References: <20210309073142.13219-1-nadeem@cadence.com>
+ <20210309073142.13219-3-nadeem@cadence.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <7be9dc0c-3161-f0d1-777c-1704ecb3853c@ti.com>
+Date:   Mon, 15 Mar 2021 18:41:44 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Km1U/tdNT/EmXiR1"
-Content-Disposition: inline
-In-Reply-To: <CAL9mu0LJPnxA0JSmV3mogvPA5xRRYCO_4=P7pqpAO7R=YaJX5g@mail.gmail.com>
+In-Reply-To: <20210309073142.13219-3-nadeem@cadence.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nadeem,
 
---Km1U/tdNT/EmXiR1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 09/03/21 1:01 pm, Nadeem Athani wrote:
+> The parameter detect_quiet_min_delay can be used to program the minimum
+> time that LTSSM waits on entering Detect.Quiet state.
+> 00 : 0us minimum wait time in Detect.Quiet state.
+> 01 : 100us minimum wait time in Detect.Quiet state.
+> 10 : 1000us minimum wait time in Detect.Quiet state.
+> 11 : 2000us minimum wait time in Detect.Quiet state.
+> 
+> As per PCIe specification, all Receivers must meet the Z-RX-DC
+> specification for 2.5 GT/s within 1000us of entering Detect.Quiet LTSSM
+> substate. The LTSSM must stay in this substate until the ZRXDC
+> specification for 2.5 GT/s is met.
+> 
+> Signed-off-by: Nadeem Athani <nadeem@cadence.com>
+> ---
+>  drivers/pci/controller/cadence/pcie-cadence-host.c | 22 ++++++++++++++++++++++
+>  drivers/pci/controller/cadence/pcie-cadence.h      | 10 ++++++++++
+>  2 files changed, 32 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index 73dcf8cf98fb..056161b3fe65 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -461,6 +461,20 @@ static int cdns_pcie_host_init(struct device *dev,
+>  	return cdns_pcie_host_init_address_translation(rc);
+>  }
+>  
+> +static void cdns_pcie_detect_quiet_min_delay_set(struct cdns_pcie_rc *rc)
+> +{
+> +	struct cdns_pcie *pcie = &rc->pcie;
+> +	u32 delay = rc->detect_quiet_min_delay;
+> +	u32 ltssm_control_cap;
+> +
+> +	ltssm_control_cap = cdns_pcie_readl(pcie, CDNS_PCIE_LTSSM_CONTROL_CAP);
+> +	ltssm_control_cap = ((ltssm_control_cap &
+> +			     ~CDNS_PCIE_DETECT_QUIET_MIN_DELAY_MASK) |
+> +			    CDNS_PCIE_DETECT_QUIET_MIN_DELAY(delay));
+> +
+> +	cdns_pcie_writel(pcie, CDNS_PCIE_LTSSM_CONTROL_CAP, ltssm_control_cap);
+> +}
+> +
 
-On Mon, Mar 15, 2021 at 08:43:54PM +0800, dillon min wrote:
-> Hi All,
->=20
-> Just a gentle ping.
+The issue is not specific to only host mode.
 
-Pierre-Yves?
-
->=20
-> Regards.
->=20
-> On Tue, Jun 9, 2020 at 9:27 PM <dillon.minfei@gmail.com> wrote:
-> >
-> > From: dillon min <dillon.minfei@gmail.com>
-> >
-> > as stm32f429's internal flash is 2Mbytes and compiled kernel
-> > image bigger than 2Mbytes, so we have to load kernel image
-> > to sdram on stm32f429-disco board which has 8Mbytes sdram space.
-> >
-> > based on above context, as you knows kernel running on external
-> > sdram is more slower than internal flash. besides, we need read 4
-> > bytes to get touch screen xyz(x, y, pressure) coordinate data in
-> > stmpe811 interrupt.
-> >
-> > so, in stm32f4_i2c_handle_rx_done, as i2c read slower than running
-> > in xip mode, have to adjust 'STOP/START bit set position' from last
-> > two bytes to last one bytes. else, will get i2c timeout in reading
-> > touch screen coordinate.
-> >
-> > to not take side effect, introduce IIC_LAST_BYTE_POS to support xip
-> > kernel or has mmu platform.
-> >
-> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> > ---
-> >
-> > V4: indroduce 'IIC_LAST_BYTE_POS' to compatible with xipkernel boot
-> >
-> >  drivers/i2c/busses/i2c-stm32f4.c | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/i2c/busses/i2c-stm32f4.c b/drivers/i2c/busses/i2c-=
-stm32f4.c
-> > index d6a69dfcac3f..97cf42ae7fa0 100644
-> > --- a/drivers/i2c/busses/i2c-stm32f4.c
-> > +++ b/drivers/i2c/busses/i2c-stm32f4.c
-> > @@ -93,6 +93,12 @@
-> >  #define STM32F4_I2C_MAX_FREQ           46U
-> >  #define HZ_TO_MHZ                      1000000
-> >
-> > +#if !defined(CONFIG_MMU) && !defined(CONFIG_XIP_KERNEL)
-> > +#define IIC_LAST_BYTE_POS 1
-> > +#else
-> > +#define IIC_LAST_BYTE_POS 2
-> > +#endif
-> > +
-> >  /**
-> >   * struct stm32f4_i2c_msg - client specific data
-> >   * @addr: 8-bit slave addr, including r/w bit
-> > @@ -439,7 +445,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32=
-f4_i2c_dev *i2c_dev)
-> >         int i;
-> >
-> >         switch (msg->count) {
-> > -       case 2:
-> > +       case IIC_LAST_BYTE_POS:
-> >                 /*
-> >                  * In order to correctly send the Stop or Repeated Start
-> >                  * condition on the I2C bus, the STOP/START bit has to =
-be set
-> > @@ -454,7 +460,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32=
-f4_i2c_dev *i2c_dev)
-> >                 else
-> >                         stm32f4_i2c_set_bits(reg, STM32F4_I2C_CR1_START=
-);
-> >
-> > -               for (i =3D 2; i > 0; i--)
-> > +               for (i =3D IIC_LAST_BYTE_POS; i > 0; i--)
-> >                         stm32f4_i2c_read_msg(i2c_dev);
-> >
-> >                 reg =3D i2c_dev->base + STM32F4_I2C_CR2;
-> > @@ -463,7 +469,7 @@ static void stm32f4_i2c_handle_rx_done(struct stm32=
-f4_i2c_dev *i2c_dev)
-> >
-> >                 complete(&i2c_dev->complete);
-> >                 break;
-> > -       case 3:
-> > +       case (IIC_LAST_BYTE_POS+1):
-> >                 /*
-> >                  * In order to correctly generate the NACK pulse after =
-the last
-> >                  * received data byte, we have to enable NACK before re=
-ading N-2
-> > --
-> > 2.7.4
-> >
-
---Km1U/tdNT/EmXiR1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBPWoIACgkQFA3kzBSg
-KbaufQ//Ys3IspQl5ZmHUiYQNXTgpssUevIjsxXi1RZF4eaFk+YV3swvOuYgsRgD
-VAws9zq1iBYtQ1UVJUSYYXOG+fE1hIES4FHHLfD0jvIgkNU7MQEsSlx/4So3ns4d
-DSSYhfam+Ido8zuePoP5QR3MQJRAqG6gg0JCyM/1aSmIOn72sDn57y84swvNSnWc
-0Ej5IFGvPH3CpHrpx3VeVk+TrapWiDaNCIoZbZFfE2br4OxBvRamSS0oNtyW13vQ
-Ui+AEnAsxtjU+I+xWDtLagSAQyiUSAvXdV49OAqXK9iJyQiXSbSCB8KEjzGOTHcn
-0sc0KAVl06ZdpdTQn/X7rgb0pJZ2FR1AqG9EfnDTc3bBOG/I7bwJCR/md7NegGWC
-RB0Xd8mSnkFZsZg5uzjsF88yU3pL/n85pOWz3Cc5cPm5kOQprgOQ/WNhh/49RtWi
-g1VAfPGTKtCY7MA0j/pacIkqCdyMDUCRnmPhW8KhavCiZyene2ROPIVvfQHt0dpl
-f+vZv9PF1nrubIEOLt6iB6T4qnuBOAEJW+YVUtht7HoaINjYQtUoc8IZRFU2az/R
-wU3n1GxN5TNb5u+aXIdt2dwvAwDq7jbu3WVvFMAUWD0Z8ofMefQMaLBw/wocLhMD
-/6wcjf8ViWZUWjPNAn8ahvsGhf649DemH95FBW5Y+S7YjxFnbFQ=
-=t5mo
------END PGP SIGNATURE-----
-
---Km1U/tdNT/EmXiR1--
+Thanks
+Kishon
+>  int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>  {
+>  	struct device *dev = rc->pcie.dev;
+> @@ -485,6 +499,10 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>  	rc->device_id = 0xffff;
+>  	of_property_read_u32(np, "device-id", &rc->device_id);
+>  
+> +	rc->detect_quiet_min_delay = 0;
+> +	of_property_read_u32(np, "detect-quiet-min-delay",
+> +			     &rc->detect_quiet_min_delay);
+> +
+>  	pcie->reg_base = devm_platform_ioremap_resource_byname(pdev, "reg");
+>  	if (IS_ERR(pcie->reg_base)) {
+>  		dev_err(dev, "missing \"reg\"\n");
+> @@ -497,6 +515,10 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>  		return PTR_ERR(rc->cfg_base);
+>  	rc->cfg_res = res;
+>  
+> +	/* Default Detect.Quiet state delay is 0 */
+> +	if (rc->detect_quiet_min_delay)
+> +		cdns_pcie_detect_quiet_min_delay_set(rc);
+> +
+>  	ret = cdns_pcie_start_link(pcie);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to start link\n");
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index 254d2570f8c9..f2d3cca2c707 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -189,6 +189,14 @@
+>  /* AXI link down register */
+>  #define CDNS_PCIE_AT_LINKDOWN (CDNS_PCIE_AT_BASE + 0x0824)
+>  
+> +/* LTSSM Capabilities register */
+> +#define CDNS_PCIE_LTSSM_CONTROL_CAP		 (CDNS_PCIE_LM_BASE + 0x0054)
+> +#define  CDNS_PCIE_DETECT_QUIET_MIN_DELAY_MASK	 GENMASK(2, 1)
+> +#define  CDNS_PCIE_DETECT_QUIET_MIN_DELAY_SHIFT 1
+> +#define  CDNS_PCIE_DETECT_QUIET_MIN_DELAY(delay) \
+> +	  (((delay) << CDNS_PCIE_DETECT_QUIET_MIN_DELAY_SHIFT) & \
+> +	  CDNS_PCIE_DETECT_QUIET_MIN_DELAY_MASK)
+> +
+>  enum cdns_pcie_rp_bar {
+>  	RP_BAR_UNDEFINED = -1,
+>  	RP_BAR0,
+> @@ -289,6 +297,7 @@ struct cdns_pcie {
+>   *            single function at a time
+>   * @vendor_id: PCI vendor ID
+>   * @device_id: PCI device ID
+> + * @detect_quiet_min_delay: LTSSM Detect Quite state min. delay
+>   * @avail_ib_bar: Satus of RP_BAR0, RP_BAR1 and	RP_NO_BAR if it's free or
+>   *                available
+>   * @quirk_retrain_flag: Retrain link as quirk for PCIe Gen2
+> @@ -299,6 +308,7 @@ struct cdns_pcie_rc {
+>  	void __iomem		*cfg_base;
+>  	u32			vendor_id;
+>  	u32			device_id;
+> +	u32			detect_quiet_min_delay;
+>  	bool			avail_ib_bar[CDNS_PCIE_RP_MAX_IB];
+>  	bool                    quirk_retrain_flag;
+>  };
+> 
