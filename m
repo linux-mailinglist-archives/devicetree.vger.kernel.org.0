@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF22A33C1AB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A723633C1B6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Mar 2021 17:27:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbhCOQZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 12:25:39 -0400
-Received: from mail-io1-f46.google.com ([209.85.166.46]:38338 "EHLO
-        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233171AbhCOQZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:25:21 -0400
-Received: by mail-io1-f46.google.com with SMTP id k2so34046630ioh.5;
-        Mon, 15 Mar 2021 09:25:20 -0700 (PDT)
+        id S230051AbhCOQ1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 12:27:14 -0400
+Received: from mail-io1-f41.google.com ([209.85.166.41]:33478 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231995AbhCOQ0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 12:26:49 -0400
+Received: by mail-io1-f41.google.com with SMTP id n132so34037282iod.0;
+        Mon, 15 Mar 2021 09:26:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=27vnsydVUa4ltua5W1oR+ou4V2KplNlbp+72QsF/VKc=;
-        b=HYmUR0yJEu8K7BbBjBTXfXx/8rZ9xFtZqE1DOL+t3Uxbgo6vJ15hcNppxL97z8GX0H
-         F1ll91EkcNiVO7/ML/jIMO5OgFPAdN81BjwQOj2nGX8aeJMTm8PDZzqSxl04Tcc8UJyi
-         WqG8BKWJHr06/4gpU3llL9EkZPCVSB4qkEK9xNpKPt926vmqoFwKnK8T5IcNDWnsogHg
-         IwRsMsrnOEM2aKuGgph4NKC53r2RN+3FNV6ep/GIxsNjVKycgEjpKrqKmXtvMCgfHKqO
-         K6/suI8IZqmVoAcrFoUTzcob4dQN1AtjLd3jUjS+gx+MMbm1HAnPS1K2qJAA/Kv8HT2o
-         lTeQ==
-X-Gm-Message-State: AOAM531b+B/XnWM1Jzo+CUriBqnxXN7/6SuEZ0k7YDFxSv155CxE77UR
-        3x5PB0Gfa6W6umQhPYG1LA==
-X-Google-Smtp-Source: ABdhPJxE9HKb1bqeMCiFcbCoEn58lMfaFkpCdrPrjNBrSCx1vHowTC3QNzQnIT1m/JGswSXQdzAlrw==
-X-Received: by 2002:a5d:8552:: with SMTP id b18mr301530ios.124.1615825520666;
-        Mon, 15 Mar 2021 09:25:20 -0700 (PDT)
+        bh=0ieBQNPwnDUff5E3dhDZ7DWgA7wwq4ZCQbYomZZouuY=;
+        b=KH2UVX7W/JOilvnwmU7392/EybNjN6qz/wQrniF+YfHIEPnmQTLcnlHDTV13ozG5NJ
+         zhEehHWlrujCEJVLztWqxMmGN2w9rPrLGMDStDwHE8Qv4d5Vwe4tQz0cZaXtnH/cHRJA
+         wllkRqYgdKU+FnBwCbgMfzQetZQGpKQZenPlcC/q8Z5DOxeCxtI8bgUobpZdbxxmWf2R
+         M8BHB6JlMhfdxnNpPQDlq6Agxl4s2IrS2AydnZnpQUmTl8Mb2RHTcAKvtrXGi5si9bw4
+         NOUhgYfeS+m98dLOJJx0SMY4DQBmtU1JSPuZ+To3yxN6fXPPLQ+ueMkKIHVwehhWTXd3
+         44sQ==
+X-Gm-Message-State: AOAM533CZbvtOsI29jW9hXVvljzBYwNMyfSmwc2dmewbeRVPNciIImlg
+        iLg2iXcjeNz4Ocjxt4RDow==
+X-Google-Smtp-Source: ABdhPJxLIWknlh7o/MSDV+7LZUrCDS1i2kWkQTRH9ONlNxCo83oQ5gys+66T7t4mkSC+AdTd1uBUxg==
+X-Received: by 2002:a05:6638:218f:: with SMTP id s15mr10351318jaj.58.1615825608370;
+        Mon, 15 Mar 2021 09:26:48 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h128sm7305247ioa.32.2021.03.15.09.25.17
+        by smtp.gmail.com with ESMTPSA id j5sm1410203ile.52.2021.03.15.09.26.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 09:25:19 -0700 (PDT)
-Received: (nullmailer pid 980057 invoked by uid 1000);
-        Mon, 15 Mar 2021 16:25:16 -0000
-Date:   Mon, 15 Mar 2021 10:25:16 -0600
+        Mon, 15 Mar 2021 09:26:47 -0700 (PDT)
+Received: (nullmailer pid 982241 invoked by uid 1000);
+        Mon, 15 Mar 2021 16:26:45 -0000
+Date:   Mon, 15 Mar 2021 10:26:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tianling Shen <cnsztl@gmail.com>
-Cc:     Jensen Huang <jensenhuang@friendlyarm.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Marty Jones <mj8263788@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
-Message-ID: <20210315162516.GA978743@robh.at.kernel.org>
-References: <20210315084241.22345-1-cnsztl@gmail.com>
+To:     dillon.minfei@gmail.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        alexandre.torgue@st.com, linux@armlinux.org.uk,
+        vladimir.murzin@arm.com, linux-stm32@st-md-mailman.stormreply.com,
+        a.fatoum@pengutronix.de, erwan.leray@foss.st.com,
+        linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
+        gregkh@linuxfoundation.org, erwan.leray@st.com,
+        linux-serial@vger.kernel.org, afzal.mohd.ma@gmail.com
+Subject: Re: [PATCH v3 2/9] dt-bindings: arm: stm32: Add compatible strings
+ for ART-PI board
+Message-ID: <20210315162645.GA981570@robh.at.kernel.org>
+References: <1615801436-3016-1-git-send-email-dillon.minfei@gmail.com>
+ <1615801436-3016-3-git-send-email-dillon.minfei@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210315084241.22345-1-cnsztl@gmail.com>
+In-Reply-To: <1615801436-3016-3-git-send-email-dillon.minfei@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 16:42:40 +0800, Tianling Shen wrote:
-> Add devicetree binding documentation for the FriendlyARM NanoPi R4S.
+On Mon, 15 Mar 2021 17:43:49 +0800, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
 > 
-> Changes in v2:
-> - Disable display for NanoPi R4S (reference commit: 74532de460ec)
-> - Light "sys" LED on NanoPi R4S (reference commit: 833821eeab91)
+> Art-pi based on stm32h750xbh6, with following resources:
 > 
-> Changes in v3:
-> - Dropped non-existent node `display_subsystem`
+> -8MiB QSPI flash
+> -16MiB SPI flash
+> -32MiB SDRAM
+> -AP6212 wifi, bt, fm
 > 
-> Changes in v4:
-> - Correctly dropped `display-subsystem` node
-> - Dropped meaningless `pwm-fan` node
-> - Dropped wrong `sdmmc` node
-> - Disabled `i2c4` and `uart0` as they don't exist in the design
-> - Format fixes
+> detail information can be found at:
+> https://art-pi.gitee.io/website/
 > 
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
