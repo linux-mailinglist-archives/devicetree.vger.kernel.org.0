@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3B5133DD5B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D919C33DD7E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:28:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240366AbhCPTXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 15:23:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
+        id S236876AbhCPT2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 15:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240363AbhCPTW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:22:59 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C99C06175F
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 12:22:58 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id ga23-20020a17090b0397b02900c0b81bbcd4so1914551pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 12:22:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0VC+p+Z8Uz6RVI2DpAr2wRVpa/92FQmj4xytfLON9UI=;
-        b=HS1C5XOvmd7BrynnHitq9flEQ41kZu/HfhVJrdM3Wag4PbJl62PxYlebxiLibkwUKR
-         pZFdNKA8aEYWSE0WSRB+4maz698wfg0hDEdbjwqF9dfuXA1ws+CxuULIX2yUaQU8HSSL
-         REPwHgG8frFMCQ/afNc57BYh41MpfZDvj+3i0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0VC+p+Z8Uz6RVI2DpAr2wRVpa/92FQmj4xytfLON9UI=;
-        b=UuFWumLB0xCw72qnAHbQl9RFUtI/JZLzpqBGMPaUIJlEOJwIx1Yix631WLydylraJw
-         9SqTq3C/pU4bOK4ptx21X8RV4DwD6pCuNvjtJjvZqVlrlniH05dRQ3nYjZlrBYd6eCYw
-         symkywbrQwr9I1FjgYsiKdN2FaZOQamaUowmMqvzjw52y1TEkcqAkatApzXs8ZMJnDZi
-         n0891eOIYyYf495ILAK/stsDamzta0tciIrvIW3zDQw+8FhQDHLY2IwIdyLwOgSdBNyH
-         IaGmd6lY9PzLl0fS3qK8bzS6MvVWgi2Lycq+uBY3KTU0F2UewSNElnHO0bHrtpecfTdJ
-         wklQ==
-X-Gm-Message-State: AOAM532g6reJQaGD5iwnr19b0ZWafsKObZqc6cG8QResOjZ5txhOsEDF
-        o8IQGG7L75W61NAnvYrda41h2Q==
-X-Google-Smtp-Source: ABdhPJwNZFJvq1N7CeA4f6y4eYd3t9RW1It3cXNIU2ootejNNuW75dc2bfD+qv1tMWCU9H6/P13mCw==
-X-Received: by 2002:a17:90a:5889:: with SMTP id j9mr584736pji.69.1615922578251;
-        Tue, 16 Mar 2021 12:22:58 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:b471:7d:bf21:d7dd])
-        by smtp.gmail.com with UTF8SMTPSA id y22sm17073992pfn.32.2021.03.16.12.22.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Mar 2021 12:22:57 -0700 (PDT)
-Date:   Tue, 16 Mar 2021 12:22:56 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org,
-        David Collins <collinsd@codeaurora.org>
-Subject: Re: [PATCH V2 1/5] regulator: qcom-rpmh: Add pmic5_ftsmps520 buck
-Message-ID: <YFEFkNi9JCr3lDlN@google.com>
-References: <1615816454-1733-1-git-send-email-skakit@codeaurora.org>
- <1615816454-1733-2-git-send-email-skakit@codeaurora.org>
+        with ESMTP id S240442AbhCPT15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:27:57 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F57C06174A;
+        Tue, 16 Mar 2021 12:27:56 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 9DC8522238;
+        Tue, 16 Mar 2021 20:27:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1615922871;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=t9oTzvmR9m08GcJX5x4Qj7U6037F+XpGCNpETFyhQBY=;
+        b=QeWpVQNkO+k1G5Jtvp/UlCGLokXMw8tBA4kcpE2dwkb/TWx9sClKBQQu0qlQXS8maK5cJ1
+        JQjses3PkZIxY/mmMs2kC4Vstz1MQsBv3TlB/opvR2HGfgJSgGHVAHE9JgHV8EVUEyzAMW
+        BYsWT+YEmbp1UOMmp2h07AGxkcAnp44=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1615816454-1733-2-git-send-email-skakit@codeaurora.org>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 16 Mar 2021 20:27:51 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Guillaume Tucker <guillaume.tucker@collabora.com>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, kernelci-results@groups.io,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: next/master bisection: baseline.login on kontron-kbox-a-230-ls
+In-Reply-To: <38c31f5c-4400-eed7-d561-8f45e261ab01@collabora.com>
+References: <6050bf47.1c69fb81.59c4d.85f2@mx.google.com>
+ <38c31f5c-4400-eed7-d561-8f45e261ab01@collabora.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <edcb6c52f754935341ee8711f30062c4@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 07:24:10PM +0530, satya priya wrote:
-> Add pmic5_ftsmps520 buck as this is required for PM7325
-> and PMR735A PMICs.
+Am 2021-03-16 19:33, schrieb Guillaume Tucker:
+> Hi Sahil,
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Please see the bisection report below about a boot failure on
+> kontron-kbox-a-230-ls on linux-next.
+> 
+> Reports aren't automatically sent to the public while we're
+> trialing new bisection features on kernelci.org but this one
+> looks valid.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+nice! Thanks.
+
+[..]
+
+>> commit 48787485f8de44915016d4583e898b62bb2d5753
+>> Author: Sahil Malhotra <sahil.malhotra@nxp.com>
+>> Date:   Fri Mar 5 14:03:51 2021 +0530
+>> 
+>>     arm64: dts: ls1028a: enable optee node
+>> 
+>>     optee node was disabled in ls1028a.dtsi, enabling it by default.
+
+Please enable this per board. As it is also indicated by my original
+commit f90931aeefe3 ("arm64: dts: ls1028a: add optee node") message:
+
+   Add the optee node which can either be enabled by a specific board or 
+by
+   the bootloader.
+
+-michael
