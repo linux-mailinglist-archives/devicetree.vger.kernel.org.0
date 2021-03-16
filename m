@@ -2,193 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B3933CC97
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:36:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 808D933CCC0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231867AbhCPEgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 00:36:00 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:33723 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229972AbhCPEf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 00:35:28 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 1A50D5807B3;
-        Tue, 16 Mar 2021 00:35:27 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 16 Mar 2021 00:35:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=s
-        ZyhAcTCkCrINPeM1EDpvNypDpkGEOBvU+a0UsEG4ng=; b=Jrp59v8o/gxPG60nv
-        oTnV5NzPUn/zL281biS8kg1u2tJUlSsKnD9XN8noIG7lWqrhEV+E7cF9RICYR+TL
-        B0CKEgkkhiXJhhlDpmMw3U/00SKLDDSbqZyfvnMGn56ZsYLcMfP4zadIejkXxFMf
-        8A3XTtz9y6D82boygMm0vJqm9OdpB+nk/4ujQlYtK10h8rnxGTQ6HrFDDXAsSMuv
-        T4T1kxGuU99FgUaugCzEwuzF8bbxy/YYlfrjx1esiRj+f+hXpx2Q/C2L0UFtIjck
-        lnq+PT4bnOIGbG2TAcJJPc4WrrO1u0UWjd0GJDrb9WRgdLk6I3H7w9izvb+ETyza
-        R+JRA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=sZyhAcTCkCrINPeM1EDpvNypDpkGEOBvU+a0UsEG4
-        ng=; b=iBWmB1eE6DsIEoJtZMSQdnDuk8dFjpYGx/SbcY09YVZ/OTbyTmCA9NuTl
-        dqAN+DVar+UcZvGpWZNsXgoBC5eF76ZkTA00tGhJkAgiTgrf4GoIObrb+7ZQ6sZO
-        I06C93jJvHrQo4fm+iufSGmkgitDlFRaSJINVzTLxeA6csGD1GBAAQ30RDA6Ziiq
-        0z/jApqhCqH8SOvKGyrAAzzE0MzYqwT2gmsz60aWExMYihs9BPwJr1tkhH0JDRcC
-        izZCa7aCPTXBadiu/1+ai2idq0KiZuZHyRktpduType5lEd+/8pL39aijYlKrzR7
-        uYjywJlJR8LEURrlyYEuVAEkBWAMA==
-X-ME-Sender: <xms:jTVQYPJ3HY9bPCti7mrJHndCOK1bixBS4gKpp0rFHlNaJxb4Hv8Gzg>
-    <xme:jTVQYDKaXSAl_py3cmYOLBQerdytVVNWvMTQxXrlKvuk9EEzMbxIsYT8zCP-5x3WC
-    EZRbgBG-5hTZriLRA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefuddgjedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
-    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:jTVQYHvr21nW1sbegQZ8IWDuL_nNrwqtTOYLrDfvbPjvcyPNtjXfEw>
-    <xmx:jTVQYIYxe9yIwLrK511j2BUlW1oezJ3HL3ueM7qaGSjNGSc7i3HcPQ>
-    <xmx:jTVQYGY-vqb5BNAvD70iHSrHAG9lhvXUowu8w-CR1bV63NjaRyOsJg>
-    <xmx:jzVQYMOoGJQLyn661zaV9zSXhGm0CqKmYCZFb1trdsInfpG0B3JYtw>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 4CC4324005B;
-        Tue, 16 Mar 2021 00:35:25 -0400 (EDT)
-Subject: Re: [PATCH 4/5] arm64: dts: allwinner: Add sun4i MMIO timer nodes
-To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@siol.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20210315043250.45095-1-samuel@sholland.org>
- <20210315043250.45095-5-samuel@sholland.org>
- <1897259.uecf0MpyRy@jernej-laptop>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <43b4d9e5-55c8-c844-069f-c8f8290c20e2@sholland.org>
-Date:   Mon, 15 Mar 2021 23:35:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S233193AbhCPEvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 00:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235076AbhCPEub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 00:50:31 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85A6C06174A;
+        Mon, 15 Mar 2021 21:50:30 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id w125so8315524oib.13;
+        Mon, 15 Mar 2021 21:50:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=F7aZXmupN+jRlLlTHvxpFyGrHuGdrFwnOVcxm2OfwVA=;
+        b=n+rqU6vkNR3A3aJXKCkyio8CRh8YS5Tc7WWeG3sGK9790kWhltZllXELGPW9GkGZLe
+         gW2L0q0wcg7NGc4mfB1ie9Jg+XwXaGT+64JM+UndwPo3XDB2PPuZti5wNhtkN7Bm9ZB/
+         cg9VMi41AKMb4/a1J/KowADfYrHPGDX0AsPsQAkGOOIQENNviwqYGakD1zxOaPCBMvj7
+         uBydBzWS6eJtSVP35Mi5ACRPc4Us7XdhiiUzqaME5uaW96HeraqFbjJt+g1aYPKazzbs
+         4oQX7HAus/b0AjA2YXGmrobvBt+ic1SQY7ru4oqMvBcANF9+C3WRNj9P6T7ukx0DQQQw
+         Anwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=F7aZXmupN+jRlLlTHvxpFyGrHuGdrFwnOVcxm2OfwVA=;
+        b=t5+heyDoonaS/6Q8PcOLv8a7AfwBMftWUY/R9DqIXXedb4/HPxqI/BZgh7Nkgwf78H
+         rFGmDTTfvxX4x+Y/rkQNUHjTI9tucjKi1OurpRBWA+jCaM29GT8kE0FXjGhaCBCnLYWT
+         dH3hRNF/bqauHlgcRQKTNjXPfRJTkpdrE6JdQM4gYgkMDPuF66hefGE+tacv2VF5IDSX
+         K/bBg0GRUrara+Phnzq9jQgiL0iiOYER33DBHx1VSPPEynHsdZMO9exkRz/rPo+dmUW7
+         89SxA2+2YQUnteeYRLGmk5hgh8flqrtM0tyv51k6YsUZSs51Q+w+61B3n6M4yR/DcLsd
+         MsbA==
+X-Gm-Message-State: AOAM530hFG13ZiSWnOF7TYhyPdVx3fpBdnQVHKq9xQiXULSe7BJIQ9ee
+        eroHTAmFKEFNWXWo6KNrrMDIOHFlTcg=
+X-Google-Smtp-Source: ABdhPJx1t7fxE/iVR4QlVQNarK0SefebiFe73cNS8hE/XH5hgxiUaZot8hY7U2QLBHjzYg+SwSVmjw==
+X-Received: by 2002:aca:fd13:: with SMTP id b19mr2019491oii.139.1615870230071;
+        Mon, 15 Mar 2021 21:50:30 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t2sm7405532ool.18.2021.03.15.21.50.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Mar 2021 21:50:29 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 2/2] hwmon: (pmbus): Add driver for BluTek BPA-RS600
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210316023524.12574-1-chris.packham@alliedtelesis.co.nz>
+ <20210316023524.12574-2-chris.packham@alliedtelesis.co.nz>
+ <46a69700-ae1f-a441-2399-0e8c8e2a588d@roeck-us.net>
+ <ea648b3d-f6ac-d7ec-fc5b-2b15c827c3dc@alliedtelesis.co.nz>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <dff0a92c-a888-2b96-a51c-c5efb3e977af@roeck-us.net>
+Date:   Mon, 15 Mar 2021 21:50:27 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1897259.uecf0MpyRy@jernej-laptop>
+In-Reply-To: <ea648b3d-f6ac-d7ec-fc5b-2b15c827c3dc@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/15/21 1:32 PM, Jernej Škrabec wrote:
-> Hi!
+On 3/15/21 9:21 PM, Chris Packham wrote:
 > 
-> Dne ponedeljek, 15. marec 2021 ob 05:32:49 CET je Samuel Holland napisal(a):
->> For a CPU to enter an idle state, there must be some timer which can
->> trigger an IRQ to wake it back up. The local ARM architectural timer is
->> not sufficient, because that timer stops when the CPU is powered down.
->> Some other CPU's ARM architectural timer can be used, but this prevents
->> that other CPU from entering an idle state. So to allow all CPUs to
->> enter an idle state at the same time, some MMIO timer must be available
->> that is not tied to any CPU.
->>
->> The basic "sun4i" timer seems most appropriate for this purpose due to
->> its moderate rate, balancing precision and power consumption.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi  | 9 +++++++++
->>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 9 +++++++++
->>  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
->>  3 files changed, 27 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi index
->> 33df866f6ea9..64e8b4a372cc 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> @@ -905,6 +905,15 @@ uart4_rts_cts_pins: uart4-rts-cts-pins {
->>  			};
->>  		};
->>
->> +		timer@1c20c00 {
->> +			compatible = "allwinner,sun50i-a64-timer",
->> +				     "allwinner,sun8i-a23-timer";
->> +			reg = <0x01c20c00 0xa0>;
->> +			interrupts = <GIC_SPI 18 
-> IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 19 
-> IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&osc24M>;
->> +		};
->> +
->>  		wdt0: watchdog@1c20ca0 {
->>  			compatible = "allwinner,sun50i-a64-wdt",
->>  				     "allwinner,sun6i-a31-wdt";
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
->> 62334054c710..9ba3b30e11fa 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> @@ -332,6 +332,15 @@ cpu_speed_grade: cpu-speed-grade@1c {
->>  			};
->>  		};
->>
->> +		timer@3009000 {
->> +			compatible = "allwinner,sun50i-h6-timer",
->> +				     "allwinner,sun8i-a23-timer";
->> +			reg = <0x03009000 0xa0>;
->> +			interrupts = <GIC_SPI 48 
-> IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 49 
-> IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&osc24M>;
->> +		};
->> +
->>  		watchdog: watchdog@30090a0 {
->>  			compatible = "allwinner,sun50i-h6-wdt",
->>  				     "allwinner,sun6i-a31-wdt";
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
->> b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi index
->> c277b53f94ea..ff55712ce96e 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> On 16/03/21 4:43 pm, Guenter Roeck wrote:
+>> On 3/15/21 7:35 PM, Chris Packham wrote:
+>>> The BPA-RS600 is a compact 600W AC to DC removable power supply module.
+>>>
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> ---
+> <snip>
+>>> +
+>>> +static int bpa_rs600_read_word_data(struct i2c_client *client, int page,
+>>> +		int phase, int reg)+{
+>>> +	int ret;
+>>> +
+>>> +	if (page > 0)
+>>> +		return -ENXIO;
+>>> +
+>>> +	switch (reg) {
+>>> +	case PMBUS_VIN_UV_FAULT_LIMIT:
+>>> +	case PMBUS_VIN_OV_FAULT_LIMIT:
+>>> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
+>>> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
+>>> +		ret = -ENXIO;
+>> Is that needed ? Why not -ENODATA ?
 > 
-> This file does not exist yet upstream.
+> Basically these commands get responses on the bus but they don't have 
+> valid data (nor are they documented in the datasheet). I'll add a 
+> comment to that effect.
+> 
+> If I'm reading things correctly -ENODATA is a signal to 
+> _pmbus_read_word_data use the "normal" read operation. So I need to 
 
-Right. I will remove this section for v2.
+Correct.
 
-Cheers,
-Samuel
+> return something other than that. I found another driver (mp2975.c) 
+> doing the same thing for what I assume are similar reasons so I went 
+> with -ENXIO.
+> 
+-ENXIO is ok, but please document it.
 
-> Best regards,
-> Jernej
-> 
->> @@ -128,6 +128,15 @@ ccu: clock@3001000 {
->>  			#reset-cells = <1>;
->>  		};
->>
->> +		timer@3009000 {
->> +			compatible = "allwinner,sun50i-h616-timer",
->> +				     "allwinner,sun8i-a23-timer";
->> +			reg = <0x03009000 0xa0>;
->> +			interrupts = <GIC_SPI 48 
-> IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 49 
-> IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&osc24M>;
->> +		};
->> +
->>  		watchdog: watchdog@30090a0 {
->>  			compatible = "allwinner,sun50i-h616-wdt",
->>  				     "allwinner,sun6i-a31-wdt";
-> 
-> 
-> 
-> 
-
+Thanks,
+Guenter
