@@ -2,94 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0570233CE77
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 08:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB52833CE80
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 08:19:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbhCPHSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 03:18:34 -0400
-Received: from foss.arm.com ([217.140.110.172]:50050 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231630AbhCPHSS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 03:18:18 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12BABD6E;
-        Tue, 16 Mar 2021 00:18:18 -0700 (PDT)
-Received: from bogus (unknown [10.163.66.225])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 443473F792;
-        Tue, 16 Mar 2021 00:18:14 -0700 (PDT)
-Date:   Tue, 16 Mar 2021 07:18:11 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        ksitaraman@nvidia.com, sanjayc@nvidia.com,
-        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
-        Sudeep Holla <Sudeep.Holla@arm.com>,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/5] dt-bindings: arm: Add cpu-idle-states to Tegra194
- CPU nodes
-Message-ID: <20210316071811.5mqcatmmbvrask2p@bogus>
-References: <1614838092-30398-1-git-send-email-skomatineni@nvidia.com>
- <1614838092-30398-4-git-send-email-skomatineni@nvidia.com>
- <20210308043755.llvdsuz2jwvweovb@bogus>
- <4cebf482-a2f8-5a79-a2f6-4ccd7d31c6ad@nvidia.com>
- <20210311025138.o4ub4j2ss725zpv4@bogus>
- <b31d14ef-81d8-0480-805b-a3cb64404b12@nvidia.com>
- <08ac26c1-8257-4c6d-d274-595fee28a00f@nvidia.com>
- <4b21f4c7-19cd-fcea-dd1b-9203be60a523@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4b21f4c7-19cd-fcea-dd1b-9203be60a523@nvidia.com>
-User-Agent: NeoMutt/20171215
+        id S232144AbhCPHTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 03:19:05 -0400
+Received: from lucky1.263xmail.com ([211.157.147.134]:45614 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232234AbhCPHSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 03:18:38 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 8A7C9C7CCA;
+        Tue, 16 Mar 2021 15:18:26 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P24306T139683780609792S1615879106208731_;
+        Tue, 16 Mar 2021 15:18:27 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <e6ec5605303d5218e74274bb758c9a9d>
+X-RL-SENDER: shawn.lin@rock-chips.com
+X-SENDER: lintao@rock-chips.com
+X-LOGIN-NAME: shawn.lin@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v6 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Convert to yaml file
+Date:   Tue, 16 Mar 2021 15:18:20 +0800
+Message-Id: <1615879102-45919-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 11:13:24AM -0700, Sowjanya Komatineni wrote:
-> Hi Sudeep,
->
-> I see you are one of the maintainer of PSCI driver. Please add any other
-> right persons if you think should also agree/comment.
->
-> Can you please comment on below 2 items based on your feedback?
->
-> 1. Can you please suggest on proper way of generalizing to pass state
-> residency time run-time along with state during state enter?
->
-> Not sure if any other drivers need this but for Tegra as MCE firmware is
-> in-charge of states enter and decisions, passing run-time state residency
-> from kernel to ATF is required and agree on not using power_state value for
-> this which is against PSCI spec.
->
+This patch converts sdhci-of-dwcmshc.txt to sdhci-of-dwcmshc.yaml
 
-Yes, I prefer you need to get this added in the PSCI specification.
-I have passed this thread to the author of the specification.
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-> 2. Regarding state thresholds, although state thresholds are policy related
-> in Tegra cpu idle perspective these thresholds are platform specific based
-> on use case and mainly for MCE firmware usage to decide on state transitions
-> for core and core clusters as well.
->
-From previous emails, I gather these can be moved to firmware and need not be
-there in DT ?
+Changes in v6: None
+Changes in v5: None
+Changes in v4:
+- add tag from Rob
+Series-changes: 3
+- fix filename and other improvments suggested by Rob
 
-> As these are Tegra platform specific, Please comment if any other concerns
-> in having this configured by Tegra CPU Idle kernel driver.
->
+ .../devicetree/bindings/mmc/sdhci-of-dwcmshc.txt   | 20 -------
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 63 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
 
-I prefer not to have Tegra specific idle driver if we can get the necessary
-changes in PSCI spec. We must then have just one PSCI idle driver in the
-kernel.
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+deleted file mode 100644
+index ee4253b..0000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Synopsys DesignWare Cores Mobile Storage Host Controller
+-
+-Required properties:
+-- compatible: should be one of the following:
+-    "snps,dwcmshc-sdhci"
+-- reg: offset and length of the register set for the device.
+-- interrupts: a single interrupt specifier.
+-- clocks: Array of clocks required for SDHCI; requires at least one for
+-    core clock.
+-- clock-names: Array of names corresponding to clocks property; shall be
+-    "core" for core clock and "bus" for optional bus clock.
+-
+-Example:
+-	sdhci2: sdhci@aa0000 {
+-		compatible = "snps,dwcmshc-sdhci";
+-		reg = <0xaa0000 0x1000>;
+-		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&emmcclk>;
+-		bus-width = <8>;
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+new file mode 100644
+index 0000000..f99fb9f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/snps,dwcmshc-sdhci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Synopsys Designware Mobile Storage Host Controller Binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++  - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - snps,dwcmshc-sdhci
++
++  reg:
++    minItems: 1
++    items:
++      - description: Offset and length of the register set for the device
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    items:
++      - description: core clock
++      - description: bus clock for optional
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: core
++      - const: bus
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mmc@aa0000 {
++      compatible = "snps,dwcmshc-sdhci";
++      reg = <0xaa000 0x1000>;
++      interrupts = <0 25 0x4>;
++      clocks = <&cru 17>, <&cru 18>;
++      clock-names = "core", "bus";
++      bus-width = <8>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++    };
++
++...
+-- 
+2.7.4
 
 
-> Based on my understanding only above issue-1 is PSCI compliant related.
-> Please confirm.
->
 
-Correct.
-
---
-Regards,
-Sudeep
