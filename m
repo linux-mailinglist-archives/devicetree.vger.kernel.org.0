@@ -2,177 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD70433DC9C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 19:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB30733DCAB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 19:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236993AbhCPSd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 14:33:58 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44182 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236941AbhCPSd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 14:33:28 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: gtucker)
-        with ESMTPSA id 884551F44E05
-Subject: Re: next/master bisection: baseline.login on kontron-kbox-a-230-ls
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>
-References: <6050bf47.1c69fb81.59c4d.85f2@mx.google.com>
-Cc:     "kernelci-results@groups.io" <kernelci-results@groups.io>,
-        Michael Walle <michael@walle.cc>, linux-kernel@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-From:   Guillaume Tucker <guillaume.tucker@collabora.com>
-Message-ID: <38c31f5c-4400-eed7-d561-8f45e261ab01@collabora.com>
-Date:   Tue, 16 Mar 2021 18:33:22 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S237152AbhCPSiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 14:38:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237121AbhCPSh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 14:37:58 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8FE6C06174A;
+        Tue, 16 Mar 2021 11:37:57 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id dx17so73915410ejb.2;
+        Tue, 16 Mar 2021 11:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YKhM0XlAMOLzACqYYkiuA73dVilEbBHwLHGpYjZZuLA=;
+        b=LMwP2wyE/NPvLsJ8SINLONbIhkEUHlaQEZLTZykYVn0JYGGzcjfHvWsuRGO4IMYKwj
+         NBW5x249A3uyCyf1PGfYId+o1cj5q+YVEY7K819nBVYgrY7NEBj4EI0Z64vw5f8A0Brb
+         kkHyXyjx+YCo3gdp1MpbYab1bH2uLnwUSSEKhu+hv//uoTPYfR6Akq2ZuTRNSXROfrZs
+         Glxouse4umV8swnd/4knJlh6g4XG9JrETLK1X81Ix8CusVuN1aUyGGRjWeQCwiUVPuAc
+         9x0+fNib/uHpqm4D67n1hTE2WnMK1YaxsnDXLPZVm1+7rDAz76BA8F8VSpB07DBxtzDX
+         aU+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YKhM0XlAMOLzACqYYkiuA73dVilEbBHwLHGpYjZZuLA=;
+        b=nj8jpW6ArGyZhZpyCBjypaniW1FgZJwrFlxrXpy1gCjhHDKV7OmU4Nwx5odUtpO7YH
+         EySTFFULaY+EotDg5kUNR9ZjiwLRCCJ6xa/vzCTPonsWMRtzBOaM1UkMeMM8kPzgjVKT
+         siNUaaU+wUNQFiEnFmoeFjN+JFigiE/jIUABED88SfOeLhd3u8gDs8hFc8asnNFxW5Oc
+         VmBqcuJNdBQSjar4mhhnhzTZfnn/wKx5WjKxqLKkla1bccsHqjdo0GiS+v+pf6FVzto7
+         tnb9L+RkP4JGYNeHCC5j7vwLhxyNeti/lvTznt1X16Zprn0oNqL2XDPsRTAxlgrwEZwF
+         KMGg==
+X-Gm-Message-State: AOAM5338usnsbypen40UqvhbOm4YHz2cPKi8lzdvTUEPvP6DQplNaNdr
+        nHcZkVLg0CGr+oigEsFW8Ln49pMZkhI=
+X-Google-Smtp-Source: ABdhPJxE3Bx8oGOnSfAhjX7BzEscKYYvdLAVXmnu+5BzLmusb25sZLXK+EijAXmBWgIBd3RdtLLQjQ==
+X-Received: by 2002:a17:906:ef2:: with SMTP id x18mr31817161eji.323.1615919876457;
+        Tue, 16 Mar 2021 11:37:56 -0700 (PDT)
+Received: from BV030612LT ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id g11sm7412527edw.37.2021.03.16.11.37.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 11:37:55 -0700 (PDT)
+Date:   Tue, 16 Mar 2021 20:37:53 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/6] clk: actions: Fix bisp_factor_table based clocks on
+ Owl S500 SoC
+Message-ID: <20210316183753.GC1111731@BV030612LT>
+References: <cover.1615221459.git.cristian.ciocaltea@gmail.com>
+ <13576ddb604a9097603d95cd2605275c20fb2f56.1615221459.git.cristian.ciocaltea@gmail.com>
+ <20210316041739.GC1798@thinkpad>
 MIME-Version: 1.0
-In-Reply-To: <6050bf47.1c69fb81.59c4d.85f2@mx.google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210316041739.GC1798@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sahil,
+On Tue, Mar 16, 2021 at 09:47:39AM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Mar 08, 2021 at 07:18:28PM +0200, Cristian Ciocaltea wrote:
+> > The following clocks of the Actions Semi Owl S500 SoC have been defined
+> > to use a shared clock factor table 'bisp_factor_table[]': DE[1-2], VCE,
+> > VDE, BISP, SENSOR[0-1]
+> > 
+> > There are several issues involved in this approach:
+> > 
+> > * 'bisp_factor_table[]' describes the configuration of a regular 8-rates
+> >   divider, so its usage is redundant. Additionally, judging by the BISP
+> >   clock context, it is incomplete since it maps only 8 out of 12
+> >   possible entries.
+> > 
+> > * The clocks mentioned above are not identical in terms of the available
+> >   rates, therefore cannot rely on the same factor table. Specifically,
+> >   BISP and SENSOR* are standard 12-rate dividers so their configuration
+> >   should rely on a proper clock div table, while VCE and VDE require a
+> >   factor table that is a actually a subset of the one needed for DE[1-2]
+> >   clocks.
+> > 
+> > Let's fix this by implementing the following:
+> > 
+> > * Add new factor tables 'de_factor_table' and 'hde_factor_table' to
+> >   properly handle DE[1-2], VCE and VDE clocks.
+> > 
+> > * Add a common div table 'std12rate_div_table' for BISP and SENSOR[0-1]
+> >   clocks converted to OWL_COMP_DIV.
+> > 
+> > * Drop the now unused 'bisp_factor_table[]'.
+> > 
+> 
+> Nice!
+> 
+> > Additionally, since SENSOR[0-1] are not gated, unset the OWL_GATE_HW
+> > configuration and drop the CLK_IGNORE_UNUSED flag in their definitions.
+> > 
+> 
+> No. You should not screen the functionality exposed by the hw, that's what the
+> purpose of these CLK_ flags.
 
-Please see the bisection report below about a boot failure on
-kontron-kbox-a-230-ls on linux-next.
+I'm not sure I get this, or maybe I wasn't clear enough with my
+explanation regarding the changes to SENSOR clocks: they are not gated
+in hardware, hence the statement 'OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0)' 
+was invalid and I replaced it with '{ 0 }'.
 
-Reports aren't automatically sent to the public while we're
-trialing new bisection features on kernelci.org but this one
-looks valid.
+Additionally, I assumed the 'CLK_IGNORE_UNUSED' flag makes sense only
+for the gated clocks. Do I miss something?
 
-The kernel is hitting this issue:
+> Other than that, this patch looks good to me.
 
-[    5.326403] kernel BUG at arch/arm64/kernel/traps.c:406!
+Thanks,
+Cristi
 
-Full log:
-
-  https://storage.kernelci.org/next/master/next-20210316/arm64/defconfig/gcc-8/lab-kontron/baseline-kontron-kbox-a-230-ls.html
-
-The issue can be reproduced with a plain arm64 defconfig, and
-doesn't seem to be impacting other platforms on kernelci.org.
-More details can be found here:
-
-  https://kernelci.org/test/case/id/605057a041fc669ff0addccc/
-
-Please let us know if you need any help debugging the issue on
-this platform or to try a fix.
-
-Best wishes,
-Guillaume
-
-
-On 16/03/2021 14:23, KernelCI bot wrote:
-> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-> * This automated bisection report was sent to you on the basis  *
-> * that you may be involved with the breaking commit it has      *
-> * found.  No manual investigation has been done to verify it,   *
-> * and the root cause of the problem may be somewhere else.      *
-> *                                                               *
-> * If you do send a fix, please include this trailer:            *
-> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
-> *                                                               *
-> * Hope this helps!                                              *
-> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-> 
-> next/master bisection: baseline.login on kontron-kbox-a-230-ls
-> 
-> Summary:
->   Start:      0f4b0bb396f6 Add linux-next specific files for 20210316
->   Plain log:  https://storage.kernelci.org/next/master/next-20210316/arm64/defconfig+CONFIG_ARM64_64K_PAGES=y/clang-11/lab-kontron/baseline-kontron-kbox-a-230-ls.txt
->   HTML log:   https://storage.kernelci.org/next/master/next-20210316/arm64/defconfig+CONFIG_ARM64_64K_PAGES=y/clang-11/lab-kontron/baseline-kontron-kbox-a-230-ls.html
->   Result:     48787485f8de arm64: dts: ls1028a: enable optee node
-> 
-> Checks:
->   revert:     PASS
->   verify:     PASS
-> 
-> Parameters:
->   Tree:       next
->   URL:        https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
->   Branch:     master
->   Target:     kontron-kbox-a-230-ls
->   CPU arch:   arm64
->   Lab:        lab-kontron
->   Compiler:   clang-11
->   Config:     defconfig+CONFIG_ARM64_64K_PAGES=y
->   Test case:  baseline.login
-> 
-> Breaking commit found:
-> 
-> -------------------------------------------------------------------------------
-> commit 48787485f8de44915016d4583e898b62bb2d5753
-> Author: Sahil Malhotra <sahil.malhotra@nxp.com>
-> Date:   Fri Mar 5 14:03:51 2021 +0530
-> 
->     arm64: dts: ls1028a: enable optee node
->     
->     optee node was disabled in ls1028a.dtsi, enabling it by default.
->     
->     Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
->     Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index c1f2f402ad53..3d96c6beb7e2 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -95,7 +95,6 @@
->  		optee {
->  			compatible = "linaro,optee-tz";
->  			method = "smc";
-> -			status = "disabled";
->  		};
->  	};
-> -------------------------------------------------------------------------------
-> 
-> 
-> Git bisection log:
-> 
-> -------------------------------------------------------------------------------
-> git bisect start
-> # good: [1e28eed17697bcf343c6743f0028cc3b5dd88bf0] Linux 5.12-rc3
-> git bisect good 1e28eed17697bcf343c6743f0028cc3b5dd88bf0
-> # bad: [0f4b0bb396f6f424a7b074d00cb71f5966edcb8a] Add linux-next specific files for 20210316
-> git bisect bad 0f4b0bb396f6f424a7b074d00cb71f5966edcb8a
-> # bad: [edd84c42baeffe66740143a04f24588fded94241] Merge remote-tracking branch 'drm-misc/for-linux-next'
-> git bisect bad edd84c42baeffe66740143a04f24588fded94241
-> # bad: [a76f62d56da82bee1a4c35dd6375a8fdd57eca4e] Merge remote-tracking branch 'cel/for-next'
-> git bisect bad a76f62d56da82bee1a4c35dd6375a8fdd57eca4e
-> # bad: [38872831aa5ec902b861d14e641cfeea97ca913a] Merge remote-tracking branch 'qcom/for-next'
-> git bisect bad 38872831aa5ec902b861d14e641cfeea97ca913a
-> # good: [287bccb5b7f13f88cae2e14f49b0572a3bd43a1c] Merge remote-tracking branch 'dma-mapping/for-next'
-> git bisect good 287bccb5b7f13f88cae2e14f49b0572a3bd43a1c
-> # bad: [b56586a8bfe0fb60a81b804cba49deb0d93e6623] Merge remote-tracking branch 'imx-mxs/for-next'
-> git bisect bad b56586a8bfe0fb60a81b804cba49deb0d93e6623
-> # bad: [8b5531915cf217d205ca813a10fc79987fb528fb] Merge branch 'imx/defconfig' into for-next
-> git bisect bad 8b5531915cf217d205ca813a10fc79987fb528fb
-> # bad: [3a28e405ca096d692df2dd4b61f179b6fbed0da3] arm64: dts: imx8mm: Reorder flexspi clock-names entry
-> git bisect bad 3a28e405ca096d692df2dd4b61f179b6fbed0da3
-> # good: [21480ffda0da794c26a206203c28620ecd5765bb] arm64: dts: imx8mm: Add Engicam i.Core MX8M Mini C.TOUCH 2.0
-> git bisect good 21480ffda0da794c26a206203c28620ecd5765bb
-> # good: [9c5d3663dc1a0f8bb7c14b0b694d63dad2e9b964] arm64: dts: imx8: add adma lpcg clocks
-> git bisect good 9c5d3663dc1a0f8bb7c14b0b694d63dad2e9b964
-> # good: [7add607242d1178b11d8d9a1e9207b73d9058224] arm64: dts: imx8qm: add dma ss support
-> git bisect good 7add607242d1178b11d8d9a1e9207b73d9058224
-> # bad: [48787485f8de44915016d4583e898b62bb2d5753] arm64: dts: ls1028a: enable optee node
-> git bisect bad 48787485f8de44915016d4583e898b62bb2d5753
-> # good: [fb054e1356c0943f70b9b6db542175cd728bd3f6] arm64: dts: imx: add imx8qm mek support
-> git bisect good fb054e1356c0943f70b9b6db542175cd728bd3f6
-> # first bad commit: [48787485f8de44915016d4583e898b62bb2d5753] arm64: dts: ls1028a: enable optee node
-> -------------------------------------------------------------------------------
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Groups.io Links: You receive all messages sent to this group.
-> View/Reply Online (#8517): https://groups.io/g/kernelci-results/message/8517
-> Mute This Topic: https://groups.io/mt/81377141/924702
-> Group Owner: kernelci-results+owner@groups.io
-> Unsubscribe: https://groups.io/g/kernelci-results/unsub [guillaume.tucker@collabora.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
-
+[...]
