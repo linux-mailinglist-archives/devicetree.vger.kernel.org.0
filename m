@@ -2,79 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B9033CF46
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:07:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0E033CFFD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:37:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbhCPIHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 04:07:11 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:40472 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234099AbhCPIHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:07:05 -0400
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1615882024;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=198ieZWxanXzo3MI5NPBYscFn1y4OHFktIS2kgql4S4=;
-        b=o/Z+3OWO8kg/LVbMlEGoDRyYI4UHYdH6oX/gUZq8/xRO6n/rMZ5rEiOCdq85/OZQnNlpEr
-        Kk4SjyHjn2Qk9A6mC37Tb+Byqw7Zjqh5Dx+RSnWdXrxe+B6J/CwyW5Q2Gos5jXFGptuxcK
-        VLPtMXDWhcx05GlSZlCIOVxfLRhdtge/Pr3oFoWy848jtD1aqFTwtN0Ncmjqgy+aqdCnPp
-        Rns6e56hH4WXBjFGXxohiPK6UWyJx6FZGTWzSfbNkfxfttmUJbWaMugyreTD0FSkvLVCxZ
-        9qirw2QnTfgehaNkqT7wp37a6wupPQkBoczpHJtWxMKI21TDeuvASeASx5pkCA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1615882024;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=198ieZWxanXzo3MI5NPBYscFn1y4OHFktIS2kgql4S4=;
-        b=ySLL3EPN3xVdgSM8NIirnqA5E8Yba7rtaOX1cKM4+gEMQfzwsc90/lYYqyP9ID9nUjP/hc
-        q4vELQeNVw+JwXBQ==
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Kurt Kanzenbach <kurt@linutronix.de>
-Subject: [PATCH] ARM: dts: stm32: Add PTP clock to Ethernet controller
-Date:   Tue, 16 Mar 2021 09:06:44 +0100
-Message-Id: <20210316080644.19809-1-kurt@linutronix.de>
+        id S235051AbhCPIgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 04:36:31 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:59075 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235105AbhCPIgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:36:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1615883772; x=1647419772;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ZAb2QZBNc9gZgwRbjqXLpn0mCs+bbSoKJvvznqLvH68=;
+  b=TrQitV+bDHalrRMAmaPikaODpsPjA7kYsGRTp+3PqKFeaLzUa94bYFEn
+   F5vqob7NkipJwcOXYYsRqrSpGZ7ojdZvv6xDEXsMzXkMjylMDdY2w4frt
+   KZ0+J8TfDyrSUPAHm5AEGh1fAdMuOevRL4h7Gdun9Sp2jgPYqf8CjdPE3
+   g1mvOr4Gs+rrRepCGHwYw7ULmfQWenxq7C7bRy2DlGP0mnjsx1HNV3FdJ
+   ZCGMkGQdvagODw0+9l8e4fOxOquerJ6+3ajq74Mm7hw3sBWOJ7yt8ZTlw
+   7z1lG/RU4JQig//3lWZSMRvjJgmoK6k8IeEr7XY7z5ErT0au2+GDA426Y
+   Q==;
+IronPort-SDR: 9mj46EXfq7cn3qxr9/Q7OUPQjgBDlYTLpGOwyleVBIZmz9ZCtv/XK7R3GV1Wk8mDbxhlXoxfRA
+ nzfQIv51J5aIyYxmQZykqkUXETLW7qTFeLo96XvaFd9OvFiz4VqGXo+mcX5scAwpZLnvuyrw2n
+ Ez3IUHH5fAwdHIb4BFvvfusD9eVa+O55LwPLGSYDvbFvP397sO00D1Kziz20PTjOna6KD/iMYX
+ ieL3srx17xKRF0H/pNzpFp/KdpuTI5oAyYqSzGrqfAXy88jb2yxSE4xArO7nOPZVB37fPruaNL
+ PEI=
+X-IronPort-AV: E=Sophos;i="5.81,251,1610434800"; 
+   d="scan'208";a="112895607"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Mar 2021 01:36:12 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 16 Mar 2021 01:36:10 -0700
+Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 16 Mar 2021 01:36:08 -0700
+Message-ID: <319ae8336916458f416f8ed973feafcbed701b48.camel@microchip.com>
+Subject: Re: [PATCH v7 3/3] arm64: dts: reset: add microchip sparx5 switch
+ reset driver
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Date:   Tue, 16 Mar 2021 09:36:07 +0100
+In-Reply-To: <20210308195934.GA2855503@robh.at.kernel.org>
+References: <20210303081158.684532-1-steen.hegelund@microchip.com>
+         <20210303081158.684532-4-steen.hegelund@microchip.com>
+         <20210308195934.GA2855503@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PTP clock to the Ethernet controller. Otherwise, the driver uses the
-main clock to derive the PTP frequency which is not necessarily the correct one.
+Hi Rob,
 
-Tested with linuxptp on Olimex STMP1-OLinuXino-LIME2.
+On Mon, 2021-03-08 at 12:59 -0700, Rob Herring wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you
+> know the content is safe
+> 
+> On Wed, Mar 03, 2021 at 09:11:58AM +0100, Steen Hegelund wrote:
+> > This provides reset driver support for the Microchip Sparx5 PCB134
+> > and
+> > PCB135 reference boards.
+> 
+> This still looks like an incompatible change with no explanation.
+> 
+> What happens on an old kernel that expects "microchip,sparx5-chip-
+> reset"
+> and doesn't understand "microchip,sparx5-switch-reset"?
 
-Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Sorry about forgetting that item.
+I will add a note to say that this is an incompatible change.
+In practice, I do not think the reset driver has really been taken into
+use yet.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 3c75abacb374..d1f596ea2fd5 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1421,11 +1421,13 @@
- 				      "mac-clk-tx",
- 				      "mac-clk-rx",
- 				      "eth-ck",
-+				      "ptp_ref",
- 				      "ethstp";
- 			clocks = <&rcc ETHMAC>,
- 				 <&rcc ETHTX>,
- 				 <&rcc ETHRX>,
- 				 <&rcc ETHCK_K>,
-+				 <&rcc ETHPTP_K>,
- 				 <&rcc ETHSTP>;
- 			st,syscon = <&syscfg 0x4>;
- 			snps,mixed-burst;
+> 
+> > 
+> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> > ---
+> >  arch/arm64/boot/dts/microchip/sparx5.dtsi | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > index 380281f312d8..dc3ada5cf9fc 100644
+> > --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > @@ -132,9 +132,12 @@ mux: mux-controller {
+> >                       };
+> >               };
+> > 
+> > -             reset@611010008 {
+> > -                     compatible = "microchip,sparx5-chip-reset";
+> > +             reset: reset-controller@611010008 {
+> > +                     compatible = "microchip,sparx5-switch-reset";
+> >                       reg = <0x6 0x11010008 0x4>;
+> > +                     reg-names = "gcb";
+> > +                     #reset-cells = <1>;
+> > +                     cpu-syscon = <&cpu_ctrl>;
+> >               };
+> > 
+> >               uart0: serial@600100000 {
+> > --
+> > 2.30.1
+> > 
+
+
 -- 
-2.20.1
+BR
+Steen
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+steen.hegelund@microchip.com
 
