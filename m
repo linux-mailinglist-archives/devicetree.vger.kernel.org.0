@@ -2,114 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9F9833DDAE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1252233DE15
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236406AbhCPTjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 15:39:02 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:32864 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234578AbhCPTim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:38:42 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id C00841C0B93; Tue, 16 Mar 2021 20:38:39 +0100 (CET)
-Date:   Tue, 16 Mar 2021 20:38:39 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Marty Jones <mj8263788@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM
- NanoPi R4S
-Message-ID: <20210316193839.GA28184@duo.ucw.cz>
-References: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
- <20210316150033.15987-1-cnsztl@gmail.com>
- <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
+        id S229646AbhCPTsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 15:48:38 -0400
+Received: from mail-il1-f178.google.com ([209.85.166.178]:38136 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231516AbhCPTs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:48:29 -0400
+Received: by mail-il1-f178.google.com with SMTP id f10so13842395ilq.5;
+        Tue, 16 Mar 2021 12:48:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RdNKGj3FobG6MH1X+dKs4+VSnyyid6fFPtQXmtZq7o4=;
+        b=FwK6JVUO0CXmaLEmwBYx/Vfr7zKgCSvrWXulcsG9FtfTOSMjV9IDF0W0aEEjbHQCYH
+         1XOLbkEh7LTLO+z8jzW9Fjd4q5JUJrquB0Iz9m90ydMR7wtPm0MKA/eKVKmOCWv8gKYw
+         Egg5Mtai88a8jhxCbhkMa+9Bkeej2gTnBSw0gxKiX1uFwHmU31ZQcV/PpvEgsBYOm6FR
+         misFArx9eS2lQ2V33U0rzSW0b4yA9+8qKE1p+dUpe7SmIb8HZmAO8lY6QUjduh70olvu
+         OuuCmR/N6cZ8ZRThVzY/cKP6zgL+G0mnJtAc6bKjaz92JinKLFOu7/Ao7qxOQnu2QI0y
+         Pnfg==
+X-Gm-Message-State: AOAM533jK0xD7lqWMRxzKGlyrpdtZNlgKoWESiaDyTglDNFOAAMHNR4u
+        VBI37/mISv3F5/9O/MWImqtkMguLQg==
+X-Google-Smtp-Source: ABdhPJxr6112TJfnRPR0/Pblh7yamHgST8Dcm9ZPXpcv09y4FtrrYXucVBlNyp/mi8G3zDBhHJPhww==
+X-Received: by 2002:a92:7d0d:: with SMTP id y13mr5263148ilc.269.1615924108645;
+        Tue, 16 Mar 2021 12:48:28 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.253])
+        by smtp.googlemail.com with ESMTPSA id a16sm9928962ild.82.2021.03.16.12.48.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 12:48:27 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kevin Tsai <ktsai@capellamicro.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH] dt-bindings: More cleanup of standard unit properties
+Date:   Tue, 16 Mar 2021 13:48:24 -0600
+Message-Id: <20210316194824.3526913-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="82I3+IH0IqGh5yIs"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Properties with standard unit suffixes already have a type and don't need
+type references. Fix a few more cases which have gotten added.
 
---82I3+IH0IqGh5yIs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cc: Luca Ceresoli <luca@lucaceresoli.net>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Zhang Rui <rui.zhang@intel.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Kevin Tsai <ktsai@capellamicro.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sebastian Reichel <sre@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml | 1 -
+ Documentation/devicetree/bindings/input/input.yaml              | 1 -
+ Documentation/devicetree/bindings/power/supply/bq256xx.yaml     | 1 -
+ Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml   | 2 --
+ .../devicetree/bindings/regulator/qcom-labibb-regulator.yaml    | 1 -
+ .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml          | 1 -
+ 6 files changed, 7 deletions(-)
 
-On Tue 2021-03-16 16:34:50, Geert Uytterhoeven wrote:
-> Hi Tianling,
->=20
-> CC Jacek, Pavel
->=20
-> On Tue, Mar 16, 2021 at 4:00 PM Tianling Shen <cnsztl@gmail.com> wrote:
-> > On 2021-03-16 02:23 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > Personally, I'm not so fond of the <foo>-%u node names, and prefer
-> > > <foo>-<function>.  With the former, it's way too easy to have a silent
-> > > override in your .dts(i) stack.
-> > > Cfr. commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak:
-> > > Fix backlight regulator name")
-> >
-> > How about using `lan-led`, `sys-led` and `wan-led` here?
->=20
-> Documentation/devicetree/bindings/leds/leds-gpio.yaml says "led-%u"
-> is the preferred form, but that anything containing "led" as a substring
-> is accepted.  So I'd go for "led-lan" etc.
->=20
-> BTW, you can validate your DTB against the leds-gpio DT bindings
-> by running:
->=20
->     make dtbs_check
-> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/leds/leds-gpio.yaml
->=20
-> Background info for CCed parties:
->
-https://lore.kernel.org/linux-arm-kernel/20210316150033.15987-1-cnsztl@gmai=
-l.com/
+diff --git a/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml b/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
+index 27972938b60d..c63b79c3351b 100644
+--- a/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
++++ b/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
+@@ -48,7 +48,6 @@ properties:
+   vdd-supply: true
+ 
+   capella,aset-resistance-ohms:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [50000, 100000, 300000, 600000]
+     description: >
+       Sensitivity calibration resistance. Note that calibration curves
+diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+index ab407f266bef..3fc37478c0c0 100644
+--- a/Documentation/devicetree/bindings/input/input.yaml
++++ b/Documentation/devicetree/bindings/input/input.yaml
+@@ -32,6 +32,5 @@ properties:
+       Duration in seconds which the key should be kept pressed for device to
+       power off automatically. Device with key pressed shutdown feature can
+       specify this property.
+-    $ref: /schemas/types.yaml#/definitions/uint32
+ 
+ additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+index 18b54783e11a..92ec7ed25668 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+@@ -39,7 +39,6 @@ properties:
+     maxItems: 1
+ 
+   ti,watchdog-timeout-ms:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     default: 0
+     description: |
+       Watchdog timer in ms. 0 (default) disables the watchdog
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+index 1f88c9e013f4..6d7aa97a6475 100644
+--- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -29,12 +29,10 @@ properties:
+     description: I2C address of the charger.
+ 
+   lltc,rsnsb-micro-ohms:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description: Battery sense resistor in microohm.
+     minimum: 1000
+ 
+   lltc,rsnsi-micro-ohms:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description: Input current sense resistor in microohm.
+     minimum: 1000
+ 
+diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+index cf784bd1f5e5..1ddc1efd19e2 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+@@ -23,7 +23,6 @@ properties:
+ 
+     properties:
+       qcom,soft-start-us:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         description: Regulator soft start time in microseconds.
+         enum: [200, 400, 600, 800]
+         default: 200
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+index 7cd364430573..95a728f4d333 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+@@ -78,7 +78,6 @@ patternProperties:
+           also known as absolute calibration.
+ 
+       qcom,hw-settle-time-us:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         description: Time between AMUX getting configured and the ADC starting conversion.
+         enum: [15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
+ 
+-- 
+2.27.0
 
-I don't care much either way, lan-0 is okay as is lan-led.
-
-but...
-
-+			label =3D "nanopi-r4s:green:lan";
-+			label =3D "nanopi-r4s:red:sys";
-+			label =3D "nanopi-r4s:green:wan";
-
-
-It would be good to have common labels, that means LED_FUNCTION_LAN,
-LED_FUNCTION_WAN, and figuring out something better than "sys",
-possibly LED_FUNCTION_FAULT?
-
-Thanks,
-								Pavel
-
---=20
-http://www.livejournal.com/~pavelmachek
-
---82I3+IH0IqGh5yIs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYFEJPwAKCRAw5/Bqldv6
-8oJXAKCPwj7rucsgGyf7XZK9sfEne3jGTQCgqNLsTvXmKfFgv9fd007fRTCH1mM=
-=HMgP
------END PGP SIGNATURE-----
-
---82I3+IH0IqGh5yIs--
