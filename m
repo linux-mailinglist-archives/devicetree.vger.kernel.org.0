@@ -2,176 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B526033D81B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9D433D853
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237476AbhCPPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 11:49:34 -0400
-Received: from mail.cognitivepilot.com ([91.218.251.140]:22543 "EHLO
-        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231390AbhCPPtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 11:49:02 -0400
-Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4F0HlJ1GwFzpCYQZ
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:49:00 +0300 (MSK)
-X-Virus-Scanned: amavisd-new at cognitivepilot.com
-X-Spam-Flag: NO
-X-Spam-Score: 5.346
-X-Spam-Level: *****
-X-Spam-Status: No, score=5.346 tagged_above=2 required=6.2
-        tests=[FSL_HELO_NON_FQDN_1=0.001, HELO_NO_DOMAIN=3.099,
-        RDNS_NONE=1.274, SPF_SOFTFAIL=0.972] autolearn=no autolearn_force=no
-Received: from mail.cognitivepilot.com ([127.0.0.1])
-        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id JymlHgCpyuil for <devicetree@vger.kernel.org>;
-        Tue, 16 Mar 2021 18:48:59 +0300 (MSK)
-Received: from NervousEnergy (unknown [185.68.147.27])
-        by mail.cognitivepilot.com (Postfix) with ESMTPS id 4F0HlG6QcqzpBSbB;
-        Tue, 16 Mar 2021 18:48:58 +0300 (MSK)
-Date:   Tue, 16 Mar 2021 18:48:58 +0300
-From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org\" <linux-arm-kernel@lists.infradead.org>, Andre Przywara <andre.przywara@arm.com>, Icenowy Zheng <icenowy@aosc.io>"@cognitivepilot.com
-Subject: Re: [PATCH v1] ARM: dts: sun8i: r40: add dts for Forlinx FETA40i-C
- & OKA40i-C
-Message-ID: <20210316184858.77c48315@NervousEnergy>
-In-Reply-To: <20210315152904.gqwie3xnmizvid3w@gilmour>
-References: <20210311153056.69337f0a@NervousEnergy>
-        <20210315152904.gqwie3xnmizvid3w@gilmour>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233330AbhCPPy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 11:54:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57630 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238165AbhCPPyR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 11:54:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B508650FB;
+        Tue, 16 Mar 2021 15:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615910055;
+        bh=X12PNJv2d0hJKm6jO5RnPyqX3jbiT5UMgSEL9vbW3EE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KzHoZOMhlpzYcn1CRIhtE4ooow1l63zN6VWakgCwpzv8oGLP3vR44t/KSQwRBV/z1
+         uv3bQQupAnCluDeqWhDIRKCvikHNnHogx83YaL7jz04YnZpnnXgwGJshuAHs+nSEs1
+         pZCV5ERjWHcvf5SBT5GQQMMW/q+qF1hZc4kWvztq+9YtQmaigZ4L6PQZrVTPgTv0UJ
+         bzVEOsCh1bEpdwpKQ/DDIFZpWlwUQfP1b96yG3wb09atbvzs6HN595LSlCwvAW9Wyz
+         JiMkLMlZyXOCg8eiO3NLKoh07EWMGLJ9UACNS2PAjIAnpBr5Bl2BQk0qYrIGFwstD3
+         neXZPDuMb8DjA==
+Received: by mail-ej1-f52.google.com with SMTP id r17so72974853ejy.13;
+        Tue, 16 Mar 2021 08:54:15 -0700 (PDT)
+X-Gm-Message-State: AOAM533+XEYihNf2Il7e7B+oEqv41LhJcuGLMBSqZN/2GXQ1cXUX/+cE
+        urkORKS9iZ3AuIUd+tDRMf1SzQd/gJhKzFQXpg==
+X-Google-Smtp-Source: ABdhPJycsWYz3fT3883XYO8HdWUAMWiioah7z7v/xLx8OUz48pmocraYngYGK/4bxrZQrDz7oItmcFSb3RpciZ/Tj9U=
+X-Received: by 2002:a17:906:2312:: with SMTP id l18mr31109055eja.468.1615910053805;
+ Tue, 16 Mar 2021 08:54:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210221093758.210981-1-anup.patel@wdc.com> <20210221093758.210981-8-anup.patel@wdc.com>
+ <20210305232245.GA820565@robh.at.kernel.org> <CAAhSdy0TwcE17-GJp664of4DV_R+6Q-S_h-N4Sbv9KL4Xofxvg@mail.gmail.com>
+In-Reply-To: <CAAhSdy0TwcE17-GJp664of4DV_R+6Q-S_h-N4Sbv9KL4Xofxvg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 16 Mar 2021 09:53:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKPwND6BGq3gEuMugEnv4TNvM2_DMdB-p-v7qh5NXyPiQ@mail.gmail.com>
+Message-ID: <CAL_JsqKPwND6BGq3gEuMugEnv4TNvM2_DMdB-p-v7qh5NXyPiQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 7/8] dt-bindings: Add bindings documentation for
+ RISC-V idle states
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Maxime,
+On Sun, Mar 7, 2021 at 8:18 PM Anup Patel <anup@brainfault.org> wrote:
+>
+> On Sat, Mar 6, 2021 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sun, Feb 21, 2021 at 03:07:57PM +0530, Anup Patel wrote:
+> > > The RISC-V CPU idle states will be described in DT under the
+> > > /cpus/riscv-idle-states DT node. This patch adds the bindings
+> > > documentation for riscv-idle-states DT nodes and idle state DT
+> > > nodes under it.
+> > >
+> > > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > > ---
+> > >  .../bindings/riscv/idle-states.yaml           | 250 ++++++++++++++++++
+> > >  1 file changed, 250 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/idle-states.yaml b/Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > > new file mode 100644
+> > > index 000000000000..3eff763fed23
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > > @@ -0,0 +1,250 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/riscv/idle-states.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: RISC-V idle states binding description
+> > > +
+> > > +maintainers:
+> > > +  - Anup Patel <anup.patel@wdc.com>
+> > > +
+> > > +description: |+
+> > > +  RISC-V systems can manage power consumption dynamically, where HARTs
+> > > +  (or CPUs) [1] can be put in different platform specific suspend (or
+> > > +  idle) states (ranging from simple WFI, power gating, etc). The RISC-V
+> > > +  SBI [2] hart state management extension provides a standard mechanism
+> > > +  for OSes to request HART state transitions.
+> > > +
+> > > +  The platform specific suspend (or idle) states of a hart can be either
+> > > +  retentive or non-rententive in nature. A retentive suspend state will
+> > > +  preserve hart register and CSR values for all privilege modes whereas
+> > > +  a non-retentive suspend state will not preserve hart register and CSR
+> > > +  values. The suspend (or idle) state entered by executing the WFI
+> > > +  instruction is considered standard on all RISC-V systems and therefore
+> > > +  must not be listed in device tree.
+> > > +
+> > > +  The device tree binding definition for RISC-V idle states described
+> > > +  in this document is quite similar to the ARM idle states [3].
+> > > +
+> > > +  References
+> > > +
+> > > +  [1] RISC-V Linux Kernel documentation - CPUs bindings
+> > > +      Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > +
+> > > +  [2] RISC-V Supervisor Binary Interface (SBI)
+> > > +      http://github.com/riscv/riscv-sbi-doc/riscv-sbi.adoc
+> > > +
+> > > +  [3] ARM idle states binding description - Idle states bindings
+> > > +      Documentation/devicetree/bindings/arm/idle-states.yaml
+> >
+> > I'd assume there's common parts we can share.
+>
+> Yes, except few properties most are the same.
+>
+> We can have a shared DT bindings for both ARM and RISC-V but
+> both architectures will always have some architecture specific details
+> (or properties) which need to be documented under arch specific
+> DT documentation. Is it okay if this is done as a separate series ?
 
-Thanks for your comments.
+No...
 
-On Mon, 15 Mar 2021 16:29:04 +0100
-Maxime Ripard <maxime@cerno.tech> wrote:
-> Hi,
-> 
-> You seem to have some issues with your mailer that mangles the mail,
-> you should try using git-send-email instead.
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    const: riscv-idle-states
+> >
+> > Just 'idle-states' like Arm.
+>
+> I had tried "idle-states" node name but DT bindings check complaints
+> conflict with ARM idle state bindings.
 
-Will do.
+...and this being one reason why.
 
-> There's also a bunch of checkpatch --strict issues you want to get rid
-> of.
+Actually, I think this can all be in 1 doc if you want. It's fine with
+me if a common doc has RiscV and Arm specific properties.
 
-Thanks for pointing this out.
-Besides the style warnings, which I've fixed, there are also warnings pertaining to
-documentation. Should I add the compatible strings to
-Documentation/devicetree/bindings/, and/or myself to the MAINTAINERS file?
-If so, would you suggest that I do so in a separate patch, or as part
-of another patch that adds the relevant files? 
+> > > +
+> > > +patternProperties:
+> > > +  "^(cpu|cluster)-":
+> > > +    type: object
+> > > +    description: |
+> > > +      Each state node represents an idle state description and must be
+> > > +      defined as follows.
+> > > +
+> >
+> >        additionalProperties: false
+>
+> okay, will update.
+>
+> >
+> > > +    properties:
+> > > +      compatible:
+> > > +        const: riscv,idle-state
+> > > +
+> > > +      local-timer-stop:
+> > > +        description:
+> > > +          If present the CPU local timer control logic is lost on state
+> > > +          entry, otherwise it is retained.
+> > > +        type: boolean
+> > > +
+> > > +      entry-latency-us:
+> > > +        description:
+> > > +          Worst case latency in microseconds required to enter the idle state.
+> > > +
+> > > +      exit-latency-us:
+> > > +        description:
+> > > +          Worst case latency in microseconds required to exit the idle state.
+> > > +          The exit-latency-us duration may be guaranteed only after
+> > > +          entry-latency-us has passed.
+> > > +
+> > > +      min-residency-us:
+> > > +        description:
+> > > +          Minimum residency duration in microseconds, inclusive of preparation
+> > > +          and entry, for this idle state to be considered worthwhile energy
+> > > +          wise (refer to section 2 of this document for a complete description).
+> > > +
+> > > +      wakeup-latency-us:
+> > > +        description: |
+> > > +          Maximum delay between the signaling of a wake-up event and the CPU
+> > > +          being able to execute normal code again. If omitted, this is assumed
+> > > +          to be equal to:
+> > > +
+> > > +            entry-latency-us + exit-latency-us
+> > > +
+> > > +          It is important to supply this value on systems where the duration
+> > > +          of PREP phase (see diagram 1, section 2) is non-neglibigle. In such
+> > > +          systems entry-latency-us + exit-latency-us will exceed
+> > > +          wakeup-latency-us by this duration.
+> > > +
+> > > +      idle-state-name:
+> > > +        $ref: /schemas/types.yaml#/definitions/string
+> > > +        description:
+> > > +          A string used as a descriptive name for the idle state.
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +      - entry-latency-us
+> > > +      - exit-latency-us
+> > > +      - min-residency-us
+> > > +
+> > > +additionalProperties: false
+>
+> I will move this up.
 
-> On Thu, Mar 11, 2021 at 03:30:56PM +0300, Ivan Uvarov wrote:
-> > Add support for the Forlinx FETA40i-C SoM and OKA40i-C devboard[1]
-> > based on it. The DT is split into a .dtsi, which (hopefully)
-> > corresponds to the functions of the SoM itself, and a .dts for the
-> > devboard.
-> > 
-> > [1]:https://linux-sunxi.org/Forlinx_OKA40i-C  
-> 
-> Instead of a URL that might be dead at some point, it would be better
-> to have a proper commit log explaining why you did your patch that way
+TBC, you need this at 2 levels. Both the idle-states node and child nodes.
 
-I'm not sure I understand. 
-
-By "that way" do you mean that I should explain why I've split up the
-devicetree, or something else?
-
-The linked page is just a collection of information about the device; 
-should I describe the SoM and/or devboard in my commit log instead?
-
-> > ...
-
-> > @@ -601,6 +603,14 @@ mmc2_pins: mmc2-pins {
-> >  				bias-pull-up;
-> >  			};
-> >  
-> > +			mmc3_pins: mmc3-pins {
-> > +				pins = "PI4", "PI5", "PI6",
-> > +				       "PI7", "PI8", "PI9";
-> > +				function = "mmc3";
-> > +				drive-strength = <30>;
-> > +				bias-pull-up;
-> > +			};
-> > +  
-> 
-> This should be in a separate patch
-> 
-> >  			/omit-if-no-ref/
-> >  			spi0_pc_pins: spi0-pc-pins {
-> >  				pins = "PC0", "PC1", "PC2";
-> > @@ -636,6 +646,16 @@ uart0_pb_pins: uart0-pb-pins {
-> >  				function = "uart0";
-> >  			};
-> >  
-> > +			uart2_pi_pins: uart2-pi-pins {
-> > +				pins = "PI18", "PI19";
-> > +				function = "uart2";
-> > +			};
-> > +
-> > +			uart2_rts_cts_pi_pins:
-> > uart2-rts-cts-pi-pins{
-> > +				pins = "PI16", "PI17";
-> > +				function = "uart2";
-> > +			};
-> > +  
-> 
-> Ditto, and it should have /omit-if-no-ref/
-
-Should the MMC pins be in the same patch as the UART pins?
-Also, would it be a good idea to add /omit-if-no-ref/ to the uart3 pins as well while I'm here?
-
-> >  			uart3_pg_pins: uart3-pg-pins {
-> >  				pins = "PG6", "PG7";
-> >  				function = "uart3";
-> > @@ -645,6 +665,21 @@ uart3_rts_cts_pg_pins: uart3-rts-cts-pg-pins {
-> >  				pins = "PG8", "PG9";
-> >  				function = "uart3";
-> >  			};
-> > +
-> > +			uart4_pg_pins: uart4-pg-pins {
-> > +				pins = "PG10", "PG11";
-> > +				function = "uart4";
-> > +			};
-> > +
-> > +			uart5_ph_pins: uart5-ph-pins {
-> > +				pins = "PH6", "PH7";
-> > +				function = "uart5";
-> > +			};
-> > +
-> > +			uart7_pi_pins: uart7-pi-pins {
-> > +				pins = "PI20", "PI21";
-> > +				function = "uart7";
-> > +			};  
-> 
-> Ditto
-> 
-> maxime
-
-Since this won't be a monolithic patch anymore, would it make more
-sense to make this a three+-patch series:
-
-1. add board+SOM DT without mmc3 or extra uarts; 
-2+. add pins to r40.dtsi; 
-3. add mmc3&uarts to the devboard DT,
-
-or to make only two(+) patches:
-
-1+. add pins to r40;
-2. add board+SOM DT?
-
---
-Regards,
-Ivan Uvarov
+Rob
