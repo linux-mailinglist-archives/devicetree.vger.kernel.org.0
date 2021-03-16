@@ -2,139 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE37C33E11B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEBC733E120
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbhCPWGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:06:22 -0400
-Received: from mail-il1-f180.google.com ([209.85.166.180]:34833 "EHLO
-        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbhCPWGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:06:02 -0400
-Received: by mail-il1-f180.google.com with SMTP id h18so14194031ils.2;
-        Tue, 16 Mar 2021 15:06:02 -0700 (PDT)
+        id S230436AbhCPWHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:07:32 -0400
+Received: from mail-il1-f178.google.com ([209.85.166.178]:39041 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230286AbhCPWHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:07:10 -0400
+Received: by mail-il1-f178.google.com with SMTP id d5so14196877iln.6;
+        Tue, 16 Mar 2021 15:06:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=X+25j3LtI83/Mlwrw+Su7Sg0G8Kk4KU5YFjDf73z7Tc=;
-        b=Sn7PgJaeMZd7MTUi9JeSg0KIOTkhE1yzzFCXrb2MTqxWEzr54CuCTEwTSqKtahkNpH
-         tlv6pdvFXcUKjKsp3sfX6AyACYnYpAaLuWw9NzVguTzY9LN6tX+smRmO6eA7Uq6f7Iqb
-         9Od5S0jgh+IJmAuNLpCo12ejZQRia0BwcyrdOCwJWskbHaee2q0V51XWxMJiZ92yNJXI
-         eEBN0VpJP1yFFBGJImYRzmXwO271UzTtgkHi4W17/L1JRLK1mPQfOTyUTTK66XsLzzRu
-         kXc12ayftq++3GiVfsPhvZtf5pjVKSmxnu30Kf/H2xtueugnTzgObEo3ZOEER2DT4lAU
-         +MWQ==
-X-Gm-Message-State: AOAM532yxHmGamJGzR/FVpt0dgQauyaMPIj34gvF0SIs3Ai4yknLkPDJ
-        gNJ6nfBYhPcXmhZyixdrGw==
-X-Google-Smtp-Source: ABdhPJw8gqo3WwzUPjdGontwxsD24GlSGV/KjNJ/XjEoHTx6WbbUHwUt3bW0rpGvbcl6dFfqE/09tA==
-X-Received: by 2002:a92:c24a:: with SMTP id k10mr5330643ilo.284.1615932362354;
-        Tue, 16 Mar 2021 15:06:02 -0700 (PDT)
+        bh=c7PiDBTH7M3rD94WrweiGEydSkQAgo6g3DUgMc8MiXo=;
+        b=AwU7+IaXhr0n6koUMzajuE2yQPpWWXOnnSI9ZJkXl5yRjV+BuQeqml2hXiDBsc6puD
+         UDWKxBhkwuARTdFFkAXKIklqiEQUDc9n4b57IITqtmZsYJCmM25S1iShbl6KWksm/Q85
+         RDm8LA3foZ0KKFot+eDMCKNhSwVlvNSwOTkO/VmGF2m7bx7AUgL6xK3KoJCluJyXfTXs
+         Y2ZE4E0m1MSnYViF9gCSl9+NDXp+4ZB3lk9b7O44ymLTRfAwEaMDtqk/vkXqFx2Q1dFN
+         MB+E8GsAP235jO+YC5h8gP2FQFtosuxU2+IS6dZ6LfnM+PZsp1fCtBGzkQkbtikOB/Ey
+         P14w==
+X-Gm-Message-State: AOAM531gIMUN+4jp76P6krCPXDyziL7yhOGq0lJhW6FtuVXCL/M4s7vh
+        zOuynX8Fu7RB635fhO8+fw==
+X-Google-Smtp-Source: ABdhPJzRxK/0AogAZXl7YXNMtbCnlmB6+Cie+xr/Yd5aXirMYSX+ma7l1UMS9sm3iwMWVypDrn70oQ==
+X-Received: by 2002:a05:6e02:ca1:: with SMTP id 1mr5192128ilg.242.1615932418900;
+        Tue, 16 Mar 2021 15:06:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a5sm10125189ilk.14.2021.03.16.15.05.59
+        by smtp.gmail.com with ESMTPSA id v7sm4526639ilu.72.2021.03.16.15.06.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:06:01 -0700 (PDT)
-Received: (nullmailer pid 3762495 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:05:58 -0000
-Date:   Tue, 16 Mar 2021 16:05:58 -0600
+        Tue, 16 Mar 2021 15:06:58 -0700 (PDT)
+Received: (nullmailer pid 3764195 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:06:56 -0000
+Date:   Tue, 16 Mar 2021 16:06:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Vaibhav Gupta <vaibhavgupta40@gmail.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Gowtham Tammana <g-tammana@ti.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Vaibhav Gupta <v_gupta@ti.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: crypto: ti,sa2ul: Add new compatible
- for AM64
-Message-ID: <20210316220558.GA3754419@robh.at.kernel.org>
-References: <20210308202005.243228-1-vaibhavgupta40@gmail.com>
- <20210308202005.243228-2-vaibhavgupta40@gmail.com>
+To:     Peng Zhou <peng.zhou@mediatek.com>
+Cc:     Chaotian Jing <chaotian.jing@mediatek.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, Satya Tangirala <satyat@google.com>,
+        devicetree@vger.kernel.org, Eric Biggers <ebiggers@kernel.org>,
+        Wulin Li <wulin.li@mediatek.com>
+Subject: Re: [PATCH v2 4/4] dt-bingdings: mmc: Mediatek: add ICE clock
+Message-ID: <20210316220656.GA3764131@robh.at.kernel.org>
+References: <20210309020649.582-1-peng.zhou@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210308202005.243228-2-vaibhavgupta40@gmail.com>
+In-Reply-To: <20210309020649.582-1-peng.zhou@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 09, 2021 at 01:50:03AM +0530, Vaibhav Gupta wrote:
-> From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+On Tue, 09 Mar 2021 10:06:50 +0800, Peng Zhou wrote:
+> Document the binding for crypto clock of the Inline Crypto Engine (ICE)
+> on Mediatek SoCs.
 > 
-> Add the AM64 version of sa2ul to the compatible list.
-> 
-> [v_gupta@ti.com: Conditional dma-coherent requirement, clocks]
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Signed-off-by: Vaibhav Gupta <v_gupta@ti.com>
+> Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
 > ---
->  .../devicetree/bindings/crypto/ti,sa2ul.yaml  | 40 +++++++++++++++----
->  1 file changed, 33 insertions(+), 7 deletions(-)
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> index 1d48ac712b23..6eb9acd564c2 100644
-> --- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> @@ -14,6 +14,7 @@ properties:
->      enum:
->        - ti,j721e-sa2ul
->        - ti,am654-sa2ul
-> +      - ti,am64-sa2ul
->  
->    reg:
->      maxItems: 1
-> @@ -45,19 +46,44 @@ properties:
->      description:
->        Address translation for the possible RNG child node for SA2UL
->  
-> +  clocks:
-> +    items:
-> +      - description: Clock used by PKA
-> +      - description: Main Input Clock
-> +      - description: Clock used by rng
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pka_in_clk
-> +      - const: x1_clk
-> +      - const: x2_clk
-> +
->  patternProperties:
->    "^rng@[a-f0-9]+$":
->      type: object
->      description:
->        Child RNG node for SA2UL
->  
-> -required:
-> -  - compatible
-> -  - reg
-> -  - power-domains
-> -  - dmas
-> -  - dma-names
-> -  - dma-coherent
-> +if:
-> +  properties:
-> +    compatible:
-> +      const: ti,am64-sa2ul
-> +then:
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - power-domains
-> +    - dmas
-> +    - dma-names
-> +
-> +else:
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - power-domains
-> +    - dmas
-> +    - dma-names
-> +    - dma-coherent
 
-The only difference is 'dma-coherent'. You can simplify the if/then to 
-just that.
+Reviewed-by: Rob Herring <robh@kernel.org>
