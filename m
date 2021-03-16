@@ -2,124 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E98533E112
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE37C33E11B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:07:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbhCPWDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:03:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbhCPWDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:03:36 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A19D6C061756
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 15:03:28 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id q18so93037uas.11
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 15:03:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=e+y2GZvFSKBpGV1H+YAFpahQBLRo9Mzv701zmyGn5iE=;
-        b=qU9q0D2BGDdSUDSpLtdOHtab70YyTSWyGBSOmmU+i4+f0bAgGFkzXv0k2fUUgb5IrV
-         F+GAcasGg4DVrS1pklHn8nnD5DJ+uCe4RT5TVUX6PJtaHyOgSYOrQ8xngceYyVvrXbqw
-         ac3gun/tqoWVC9I22kAFTc9TIwJWwtR6I8zLlBcSJDkJnHgf7nczsNT4DQ22DApTPj5t
-         PXXW6lvkX4DJOvVmw/1AJXDF930rIuoF2HpBPYM6S1bVa/zW9rcAWZ9vc71VMSiZ9k30
-         QVXRem1pvh2VYIOdI2dttk4/7b3qVH1JBnedeYqUgjLqI/4Zt+bn2JgjDW3EbOE+C+4F
-         y7RQ==
+        id S230139AbhCPWGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:06:22 -0400
+Received: from mail-il1-f180.google.com ([209.85.166.180]:34833 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230286AbhCPWGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:06:02 -0400
+Received: by mail-il1-f180.google.com with SMTP id h18so14194031ils.2;
+        Tue, 16 Mar 2021 15:06:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e+y2GZvFSKBpGV1H+YAFpahQBLRo9Mzv701zmyGn5iE=;
-        b=sy6EcbeZqgH0ke4O6Wk/PtWwaJ54q0ztSZJf1A/JQmRxmDFDS//nve1HL+EiHj8R+B
-         +AtgT019QbErXEDnlTfXvGpHhZe7FS+92TiuSfKGKFZ/iyQy7QGbJZRaLIhFSASg21iE
-         fvOV+Fw6ZXYThqgaiId1nmOsWexwBQXa7qXc6ihZJihJmaVQR05sM2OsOFbsXJgf2jJ1
-         aiygJ8rFAdYUgMGH5eqEjOBe1ysthmBiWrgS4yoDsPOSG19afFGf4gVBXhFEJOgJoHt/
-         dLQV96l5oE+M+jP9juspJhisw2yfOMcXKiZY92A/gwsi1lFwVryMez+RyNQsnRpybcVB
-         EjyA==
-X-Gm-Message-State: AOAM5322plfeeOA2rxnNr+UOpqt+Tgw1bUdu4K59YjJ7/k8nvzo0JXBW
-        93WWJ3CYd8SlmSiQR3SKmhomPU9x0945KToYIW7/IA==
-X-Google-Smtp-Source: ABdhPJynwQCJj+hoFsHtAhty8P+S/RUabRApf7UeJ/kAehUHZcBueBCPDPHWJJmylvqMeYvylIBnh0rrqOIIFLhWfII=
-X-Received: by 2002:a9f:3230:: with SMTP id x45mr946911uad.23.1615932207490;
- Tue, 16 Mar 2021 15:03:27 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=X+25j3LtI83/Mlwrw+Su7Sg0G8Kk4KU5YFjDf73z7Tc=;
+        b=Sn7PgJaeMZd7MTUi9JeSg0KIOTkhE1yzzFCXrb2MTqxWEzr54CuCTEwTSqKtahkNpH
+         tlv6pdvFXcUKjKsp3sfX6AyACYnYpAaLuWw9NzVguTzY9LN6tX+smRmO6eA7Uq6f7Iqb
+         9Od5S0jgh+IJmAuNLpCo12ejZQRia0BwcyrdOCwJWskbHaee2q0V51XWxMJiZ92yNJXI
+         eEBN0VpJP1yFFBGJImYRzmXwO271UzTtgkHi4W17/L1JRLK1mPQfOTyUTTK66XsLzzRu
+         kXc12ayftq++3GiVfsPhvZtf5pjVKSmxnu30Kf/H2xtueugnTzgObEo3ZOEER2DT4lAU
+         +MWQ==
+X-Gm-Message-State: AOAM532yxHmGamJGzR/FVpt0dgQauyaMPIj34gvF0SIs3Ai4yknLkPDJ
+        gNJ6nfBYhPcXmhZyixdrGw==
+X-Google-Smtp-Source: ABdhPJw8gqo3WwzUPjdGontwxsD24GlSGV/KjNJ/XjEoHTx6WbbUHwUt3bW0rpGvbcl6dFfqE/09tA==
+X-Received: by 2002:a92:c24a:: with SMTP id k10mr5330643ilo.284.1615932362354;
+        Tue, 16 Mar 2021 15:06:02 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id a5sm10125189ilk.14.2021.03.16.15.05.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 15:06:01 -0700 (PDT)
+Received: (nullmailer pid 3762495 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:05:58 -0000
+Date:   Tue, 16 Mar 2021 16:05:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vaibhav Gupta <vaibhavgupta40@gmail.com>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        Gowtham Tammana <g-tammana@ti.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Vaibhav Gupta <v_gupta@ti.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: crypto: ti,sa2ul: Add new compatible
+ for AM64
+Message-ID: <20210316220558.GA3754419@robh.at.kernel.org>
+References: <20210308202005.243228-1-vaibhavgupta40@gmail.com>
+ <20210308202005.243228-2-vaibhavgupta40@gmail.com>
 MIME-Version: 1.0
-References: <20210311100313.3591254-1-badhri@google.com> <20210311100313.3591254-3-badhri@google.com>
- <YEocMN1aSdDZ2dl/@kuha.fi.intel.com> <CAPTae5KNXK1M1L134RKj6QPr1NGv5uo-43NVZ+cM5otsxjvMOw@mail.gmail.com>
-In-Reply-To: <CAPTae5KNXK1M1L134RKj6QPr1NGv5uo-43NVZ+cM5otsxjvMOw@mail.gmail.com>
-From:   Badhri Jagan Sridharan <badhri@google.com>
-Date:   Tue, 16 Mar 2021 15:02:51 -0700
-Message-ID: <CAPTae5KBhVmgsKs-JgVB+Wy-ZWaNXUd9Jqn8UJbYNX2-AOSr1A@mail.gmail.com>
-Subject: Re: [PATCH 3/4] usb: typec: tcpci_maxim: configure charging & data paths
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Kyle Tso <kyletso@google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210308202005.243228-2-vaibhavgupta40@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 9:08 PM Badhri Jagan Sridharan
-<badhri@google.com> wrote:
->
-> On Thu, Mar 11, 2021 at 5:33 AM Heikki Krogerus
-> <heikki.krogerus@linux.intel.com> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Mar 11, 2021 at 02:03:12AM -0800, Badhri Jagan Sridharan wrote:
-> > > This change allows the driver to configure input current/voltage
-> > > limit for the charging path. The driver sets current_max and voltage_max
-> > > values of the power supply identified through chg-psy-name.
-> > >
-> > > The change also exposes the data_role and the orientation as a extcon
-> > > interface for configuring the USB data controller.
-> >
-> > This looks wrong to me. Why wouldn't you just register your device as
-> > a separate psy that supplies your charger (which is also a psy, right)?
->
-> Hi Heikki,
->
-> Looks like that would pretty much make it reflect the same values as
-> "tcpm-source-psy-" exposed
-> by tcpm. So experimenting with making the charger power supply a supplicant.
-> However, noticed that the "tcpm-source-psy-" does not have calls to
-> power_supply_changed().
-> So the notifiers are not getting invoked.
-> Trying to fix that to see if just "tcpm-source-psy-" helps the case
-> without me trying to create another
-> one which almost would reflect the same values. Let me know if you
-> think that might not work.
-Hi Heikki,
+On Tue, Mar 09, 2021 at 01:50:03AM +0530, Vaibhav Gupta wrote:
+> From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> 
+> Add the AM64 version of sa2ul to the compatible list.
+> 
+> [v_gupta@ti.com: Conditional dma-coherent requirement, clocks]
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Vaibhav Gupta <v_gupta@ti.com>
+> ---
+>  .../devicetree/bindings/crypto/ti,sa2ul.yaml  | 40 +++++++++++++++----
+>  1 file changed, 33 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> index 1d48ac712b23..6eb9acd564c2 100644
+> --- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> @@ -14,6 +14,7 @@ properties:
+>      enum:
+>        - ti,j721e-sa2ul
+>        - ti,am654-sa2ul
+> +      - ti,am64-sa2ul
+>  
+>    reg:
+>      maxItems: 1
+> @@ -45,19 +46,44 @@ properties:
+>      description:
+>        Address translation for the possible RNG child node for SA2UL
+>  
+> +  clocks:
+> +    items:
+> +      - description: Clock used by PKA
+> +      - description: Main Input Clock
+> +      - description: Clock used by rng
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pka_in_clk
+> +      - const: x1_clk
+> +      - const: x2_clk
+> +
+>  patternProperties:
+>    "^rng@[a-f0-9]+$":
+>      type: object
+>      description:
+>        Child RNG node for SA2UL
+>  
+> -required:
+> -  - compatible
+> -  - reg
+> -  - power-domains
+> -  - dmas
+> -  - dma-names
+> -  - dma-coherent
+> +if:
+> +  properties:
+> +    compatible:
+> +      const: ti,am64-sa2ul
+> +then:
+> +  required:
+> +    - compatible
+> +    - reg
+> +    - power-domains
+> +    - dmas
+> +    - dma-names
+> +
+> +else:
+> +  required:
+> +    - compatible
+> +    - reg
+> +    - power-domains
+> +    - dmas
+> +    - dma-names
+> +    - dma-coherent
 
-With "[PATCH] usb: typec: tcpm: Invoke power_supply_changed for
-tcpm-source-psy-"
-which I just sent, "tcpm-source-psy-" seems to do the job. So the
-set/get_current_limit
-and pd_capable callbacks are not needed. Please do review
-"[PATCH] usb: typec: tcpm: Invoke power_supply_changed for tcpm-source-psy-".
-
-Thanks,
-Badhri
-
->
-> For now, refactored the patches to only include changes related to
-> data path and sending
-> them in. Will follow up with patches for the charger path once I am
-> done with the above approach
-> and some validation.
->
-> Thanks,
-> Badhri
-> >
-> >
-> > thanks,
-> >
-> > --
-> > heikki
+The only difference is 'dma-coherent'. You can simplify the if/then to 
+just that.
