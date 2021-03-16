@@ -2,168 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A13733E0D6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 22:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FBF33E0F3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 22:59:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbhCPVwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 17:52:04 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:38380 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbhCPVv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 17:51:29 -0400
-Received: by mail-il1-f176.google.com with SMTP id f10so14144011ilq.5;
-        Tue, 16 Mar 2021 14:51:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6sggz0cW6S5oWFTZs2rV+TqaEbdoBcz8RBGBjA8S3b8=;
-        b=q/hvRV7EQqFAOt1PPDQe/bguRF9xOeTJAM5u1B0mXtkEgcbnQjLs0PUB3YuQdS6AON
-         jtjIRnn8sRrO5VfGHwZ1hvFLw84Fj8ytMo/KrTi1yR0JtBazAFMgTKCUD9MqkC9DGYIS
-         wRZhyVbt1Z9TcInkI9reIfPELSFRlL8NVshOEtas4IGpENADmFrsUHqjk/xUcxPFe2Ky
-         9hEEfcZn9RNrjZHhbG+UNiMNKU4fPFkYlExhuA3YSkW+WvzQCVzHMqM6W3gvnPtEvJoU
-         vlMaT9uUVxj9xvPVmJU7XHhUq5oNAbdZNyKZ/VLa/HyFnhVagt8qg0lhbf0IgOuq1snI
-         i3gQ==
-X-Gm-Message-State: AOAM53346t2iWdbEmx014B5uGaHQHDo4U2MWvmV3UwDUy/gvCUhxCnVK
-        wzpRHTG9P1/z9HQabtpW3w==
-X-Google-Smtp-Source: ABdhPJwsSv9g0C0LxRsIhgTNLhkUz3c9irY8ZHBA/9wlz76whYv3hXMw4HFmiG/1sHtqi21CBxGXRw==
-X-Received: by 2002:a05:6e02:dce:: with SMTP id l14mr5298695ilj.102.1615931488394;
-        Tue, 16 Mar 2021 14:51:28 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id b12sm10054845ilr.55.2021.03.16.14.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 14:51:27 -0700 (PDT)
-Received: (nullmailer pid 3739030 invoked by uid 1000);
-        Tue, 16 Mar 2021 21:51:23 -0000
-Date:   Tue, 16 Mar 2021 15:51:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mtd@lists.infradead.org, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Daniel Vetter <daniel@ffwll.ch>, kernel@collabora.com,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCHv1 1/6] rtc: m41t80: add support for protected clock
-Message-ID: <20210316215123.GA3712408@robh.at.kernel.org>
-References: <20210222171247.97609-1-sebastian.reichel@collabora.com>
- <20210222171247.97609-2-sebastian.reichel@collabora.com>
- <YDQgLTPE0E+/1Cwv@piout.net>
- <YDQhgkftoW4J9AtY@piout.net>
- <20210223012657.bbp5u65nw4tpcjgd@earth.universe>
- <20210306195645.GA1112592@robh.at.kernel.org>
- <20210308140358.diolcpbaq7gow3y4@earth.universe>
+        id S229545AbhCPV6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 17:58:42 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55640 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229948AbhCPV6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 17:58:39 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12GLw7iv026455;
+        Tue, 16 Mar 2021 16:58:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1615931887;
+        bh=g14RBVCz+oZ5nDNrh2H5hGoVgfnfSkgeyZtgxiVB1KU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=snth7o2c0zQpX6lz2y5Qp4OPb2aRkDAJxlVWRTWOOtGuzB/br/yfkTp0Nnt3WHO5Y
+         aB5jtiKBglU+WwiSJZDCq+jcR1jm9w9PhR4aA9blYS0KTKb2nAJSvCzkMXqhG8ORTK
+         JLUBMNHY089pbHWEfsGGpIgvpnB3hpd8G9MZ0/eQ=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12GLw7tp012156
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 Mar 2021 16:58:07 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 16
+ Mar 2021 16:58:06 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 16 Mar 2021 16:58:06 -0500
+Received: from [10.250.64.197] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12GLw5Ym083325;
+        Tue, 16 Mar 2021 16:58:05 -0500
+Subject: Re: [PATCH] dt-bindings: Drop type references on common properties
+To:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mark Brown <broonie@kernel.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Alex Elder <elder@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-usb@vger.kernel.org>
+References: <20210316194858.3527845-1-robh@kernel.org>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <91063147-88a9-4ee7-8f4a-d9d01aa4d33f@ti.com>
+Date:   Tue, 16 Mar 2021 16:58:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210308140358.diolcpbaq7gow3y4@earth.universe>
+In-Reply-To: <20210316194858.3527845-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 03:03:58PM +0100, Sebastian Reichel wrote:
-> Hi,
+On 3/16/21 2:48 PM, Rob Herring wrote:
+> Users of common properties shouldn't have a type definition as the
+> common schemas already have one. Drop all the unnecessary type
+> references in the tree.
 > 
-> On Sat, Mar 06, 2021 at 11:56:45AM -0800, Rob Herring wrote:
-> > On Tue, Feb 23, 2021 at 02:26:57AM +0100, Sebastian Reichel wrote:
-> > > On Mon, Feb 22, 2021 at 10:26:26PM +0100, Alexandre Belloni wrote:
-> > > > On 22/02/2021 22:20:47+0100, Alexandre Belloni wrote:
-> > > > > On 22/02/2021 18:12:42+0100, Sebastian Reichel wrote:
-> > > > > > Congatec's QMX6 system on module (SoM) uses a m41t62 as RTC. The
-> > > > > > modules SQW clock output defaults to 32768 Hz. This behaviour is
-> > > > > > used to provide the i.MX6 CKIL clock. Once the RTC driver is probed,
-> > > > > > the clock is disabled and all i.MX6 functionality depending on
-> > > > > > the 32 KHz clock has undefined behaviour. On systems using hardware
-> > > > > > watchdog it seems to likely trigger a lot earlier than configured.
-> > > > > > 
-> > > > > > The proper solution would be to describe this dependency in DT,
-> > > > > > but that will result in a deadlock. The kernel will see, that
-> > > > > > i.MX6 system clock needs the RTC clock and do probe deferral.
-> > > > > > But the i.MX6 I2C module never becomes usable without the i.MX6
-> > > > > > CKIL clock and thus the RTC's clock will not be probed. So from
-> > > > > > the kernel's perspective this is a chicken-and-egg problem.
-> > > > > > 
-> > > > > 
-> > > > > Reading the previous paragraph, I was going to suggest describing the
-> > > > > dependency and wondering whether this would cause a circular dependency.
-> > > > > I guess this will keep being an issue for clocks on an I2C or SPI bus...
-> > > 
-> > > Yes, it is a circular dependency on this particular system on
-> > > module. It only works because the RTC enables the clock by
-> > > default. The i.MX6 CKIL is expected to be always enabled.
-> > 
-> > I think you should describe the circular clocking and then provide a way 
-> > to break the dependency.
+> A meta-schema update to catch these is pending.
 > 
-> This is very much not trivial. The clock is required during early
-> initialization of the i.MX. At this point we are far from probing
-> I2C drivers and without the I2C driver the clock is not registered.
-> The current i.MX code expects the system clocks to be fixed clocks,
-> since they must be enabled before any code is executed (incl.
-> bootloader) and must never be disabled. From a HW design point of
-> view it does not make sense to have a SW controllable clock for it,
-> since it just adds extra cost. I believe for QMX6 it is only SW
-> controllable, because that avoids the need for an extra crystal.
-> 
-> So how is the clock framework supposed to know, that it can ignore
-> the clock during registration? I see the following options:
-> 
-> 1. My solution is the simplest one. Keep i.MX clock code the same
->    (it assumes a fixed-clock being used for CKIL) and avoid
->    registering RTC clock. This basically means the RTC is considered
->    to be a fixed-clock on this system, which is what the HW designers
->    seemed to have in mind (vendor kernel for the QMX6 is old enough
->    (4.9.x) to not to have CLK feature in the RTC driver. Vendor
->    U-Boot also does not touch the RTC. Booting mainline kernel once
->    bricks QMX6 boards until RTC battery is removed, so one could
->    actually argue addition of the CLK feature in 1373e77b4f10 (4.13)
->    is a regression). Currently Qualcomm device uses "protected-clocks"
->    for FW controlled clocks where Linux would crash the system by
->    trying to access them. IMHO the RTC is similar, since disabling
->    or modifying its frequency on QMX6 results in undefined behaviour
->    and possibly system crash.
-> 
-> 2. Make i.MX clock code use the RTC as CKIL clock provider, but
->    ignore it somehow. I see three sub-options:
-> 
-> 2.1. Add a property 'boot-enabled' to the RTC node, so that the
->      clock framework is aware of clock being enabled. This can
->      be used to satisfy clock dependencies somehow.
-> 
-> 2.2. The RTC device is not probed without I2C bus, but the driver
->      could also register a fake clock purely based on DT
->      information by adding some early init hook and take over
->      the clock once the I2C part is being probed. I think this
->      is a bad idea regarding maintainability of the driver.
->      Also for systems not using the RTC clock, the early clock
->      registration is basically wrong: If the kernel disables
->      the RTC it will stay disabled across boots if the RTC has
->      a backup battery. Basically we cannot imply anything from
->      the RTC compatible value alone.
-> 
-> 2.3 The i.MX core code could request CKIL with some flag, that
->     it's fine to have an unresolvable clock and just expect it
->     to be boot-enabled. The rationale would be, that CKIL must
->     be always-enabled.
+> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Marc Kleine-Budde <mkl@pengutronix.de>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Ohad Ben-Cohen <ohad@wizery.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Cheng-Yi Chiang <cychiang@chromium.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Zhang Rui <rui.zhang@intel.com>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Stefan Wahren <wahrenst@gmx.net>
+> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Cc: Odelu Kukatla <okukatla@codeaurora.org>
+> Cc: Alex Elder <elder@kernel.org>
+> Cc: Suman Anna <s-anna@ti.com>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-can@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml       | 5 +----
+>  Documentation/devicetree/bindings/arm/cpus.yaml              | 2 --
+>  .../bindings/display/allwinner,sun4i-a10-tcon.yaml           | 1 -
+>  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml    | 3 +--
+>  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml      | 1 -
+>  .../devicetree/bindings/interconnect/qcom,rpmh.yaml          | 1 -
+>  .../bindings/memory-controllers/nvidia,tegra210-emc.yaml     | 2 +-
+>  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml   | 1 -
+>  Documentation/devicetree/bindings/net/qcom,ipa.yaml          | 1 -
+>  Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml  | 2 --
+>  .../devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml   | 2 +-
 
-I think 2.1 or 2.3 is fine. It boils down to detecting a cycle and then 
-either you have a property or implicitly know to ignore a dependency.
+For OMAP remoteproc,
+Acked-by: Suman Anna <s-anna@ti.com>
 
-> > It's a somewhat common issue.
-> 
-> It is? This only works, because one can treat the RTC's clock
-> output like a fixed clock by not messing around with it.
-
-Well, it's not the first time I've heard of the issue. Audio clocks are 
-another example, but a bit different in that the clocks aren't needed 
-until later. It's also come up in context of fw_devlinks which I 
-think has some cycle breaking logic already.
-
-Rob
+regards
+Suman
