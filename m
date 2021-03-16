@@ -2,194 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9904133DF7F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 21:49:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4F233DF89
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 21:51:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbhCPUtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 16:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49664 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231452AbhCPUsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 16:48:45 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA51DC06174A;
-        Tue, 16 Mar 2021 13:48:44 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1F5EBD8B;
-        Tue, 16 Mar 2021 21:48:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1615927723;
-        bh=Nu3QpWpARKdoDyOtGlqlTdoM65vNIWcxcmfwJWgA3gM=;
+        id S231520AbhCPUvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 16:51:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231435AbhCPUu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 16:50:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 13BFE64F39;
+        Tue, 16 Mar 2021 20:50:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615927857;
+        bh=wG29cqpTFwh1U5z1wLV7rQaOMjdg76t/emDgukbgGPA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BSWf5lMLdj1PtVX1Ck91KLfgxci2D/q41wahPibk9vGCcFDnJLXt3Kvci1wa9SyFg
-         6CtShwk/DYohK2occAjN18+1TR4D5Iv6ZhEDO0a2hF9aQWZkq1ONOhziqVAWuD/U+X
-         XujOq+bUl7trZbTUY1ZBUXFNbWnpn532a1s+nrL0=
-Date:   Tue, 16 Mar 2021 22:48:07 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+        b=AlNQS3sIaueBa+aw2xmovMe1PfQpQm5qijVCOSGd8xp7M9iazzG1IUStwNGO5HeZC
+         Woi/Dph3BYZAmC56XBt3kJr3bwnkvQj2aDY7UFFx2ivsYFJiciyKe45BxGDwaT8ehe
+         M0RbWE1Y+H1S9cTONIecNzYWWaFu6v7xEZwQ5IfXL37A72SR2GKjPp8X/L5w1LVpxF
+         ZFE26OAbbS/bVvfHkrxmrxSLnzqy6F/HxXLzSm9He8VegAzfrTEaUHv0/VaoXBnSZ1
+         sovrSnWFj5M9cWzbaEB1C/kMkolcauJuX24Lxy1SVfPoCHZ39NRwxtVJ25aNatAnbG
+         n7tMgcmC+O2Hg==
+Date:   Tue, 16 Mar 2021 20:50:54 +0000
+From:   Mark Brown <broonie@kernel.org>
 To:     Rob Herring <robh@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: video-interfaces: Use documented
- bindings in example
-Message-ID: <YFEZhyZO+ePjS+fr@pendragon.ideasonboard.com>
-References: <20210316195100.3531414-1-robh@kernel.org>
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Alex Elder <elder@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Drop type references on common properties
+Message-ID: <20210316205054.GE4309@sirena.org.uk>
+References: <20210316194858.3527845-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hwvH6HDNit2nSK4j"
 Content-Disposition: inline
-In-Reply-To: <20210316195100.3531414-1-robh@kernel.org>
+In-Reply-To: <20210316194858.3527845-1-robh@kernel.org>
+X-Cookie: Results vary by individual.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Thank you for the patch.
+--hwvH6HDNit2nSK4j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, Mar 16, 2021 at 01:51:00PM -0600, Rob Herring wrote:
-> The example in video-interfaces.yaml managed to use a bunch of undocumented
-> bindings. Update the example to use real bindings (and ones with a schema).
-> 
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/media/video-interfaces.yaml      | 75 ++++++++-----------
->  1 file changed, 33 insertions(+), 42 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> index 0a7a73fd59f2..f30b9b91717b 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> @@ -227,17 +227,12 @@ examples:
->    # only one of the following data pipelines can be active:
->    # ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
->    - |
-> +    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a7796-sysc.h>
-> +
->      ceu@fe910000 {
-> -        compatible = "renesas,sh-mobile-ceu";
->          reg = <0xfe910000 0xa0>;
-> -        interrupts = <0x880>;
-> -
-> -        mclk: master_clock {
-> -            compatible = "renesas,ceu-clock";
-> -            #clock-cells = <1>;
-> -            clock-frequency = <50000000>;  /* Max clock frequency */
-> -            clock-output-names = "mclk";
-> -        };
->  
->          port {
->              #address-cells = <1>;
-> @@ -271,18 +266,14 @@ examples:
->          #size-cells = <0>;
->  
->          camera@21 {
-> -            compatible = "ovti,ov772x";
-> +            compatible = "ovti,ov7720";
->              reg = <0x21>;
-> -            vddio-supply = <&regulator1>;
-> -            vddcore-supply = <&regulator2>;
-> -
-> -            clock-frequency = <20000000>;
->              clocks = <&mclk 0>;
-> -            clock-names = "xclk";
->  
->              port {
->                  /* With 1 endpoint per port no need for addresses. */
->                  ov772x_1_1: endpoint {
-> +                    bus-type = <5>;
->                      bus-width = <8>;
->                      remote-endpoint = <&ceu0_1>;
->                      hsync-active = <1>;
-> @@ -295,48 +286,48 @@ examples:
->          };
->  
->          camera@1a {
-> -            compatible = "sony,imx074";
-> +            compatible = "sony,imx334";
->              reg = <0x1a>;
-> -            vddio-supply = <&regulator1>;
-> -            vddcore-supply = <&regulator2>;
->  
-> -            clock-frequency = <30000000>;  /* Shared clock with ov772x_1 */
->              clocks = <&mclk 0>;
-> -            clock-names = "sysclk";    /* Assuming this is the
-> -                       name in the datasheet */
-> +
->              port {
-> -                imx074_1: endpoint {
-> +                imx334_1: endpoint {
->                      clock-lanes = <0>;
->                      data-lanes = <1 2>;
-> +                    link-frequencies = /bits/ 64 <891000000>;
->                      remote-endpoint = <&csi2_1>;
->                  };
->              };
->          };
->      };
->  
-> -    csi2: csi2@ffc90000 {
-> -        compatible = "renesas,sh-mobile-csi2";
-> -        reg = <0xffc90000 0x1000>;
-> -        interrupts = <0x17a0>;
-> -        #address-cells = <1>;
-> -        #size-cells = <0>;
-> +    csi2@fea80000 {
-> +        compatible = "renesas,r8a7796-csi2";
+On Tue, Mar 16, 2021 at 01:48:58PM -0600, Rob Herring wrote:
+> Users of common properties shouldn't have a type definition as the
+> common schemas already have one. Drop all the unnecessary type
+> references in the tree.
 
-That's certainly better, but the r8a7796 doesn't have a CEU :-) It has a
-VIN. Maybe we could copy the last example from renesas,vin.yaml to
-replace the CEU ?
+Acked-by: Mark Brown <broonie@kernel.org>
 
-> +        reg = <0xfea80000 0x10000>;
-> +        interrupts = <0 184 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cpg CPG_MOD 714>;
-> +        power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
-> +        resets = <&cpg 714>;
->  
-> -        port@1 {
-> -            compatible = "renesas,csi2c";  /* One of CSI2I and CSI2C. */
-> -            reg = <1>;      /* CSI-2 PHY #1 of 2: PHY_S,
-> -                       PHY_M has port address 0,
-> -                       is unused. */
-> -            csi2_1: endpoint {
-> -                clock-lanes = <0>;
-> -                data-lanes = <2 1>;
-> -                remote-endpoint = <&imx074_1>;
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                csi2_1: endpoint {
-> +                    clock-lanes = <0>;
-> +                    data-lanes = <2 1>;
-> +                    remote-endpoint = <&imx334_1>;
-> +                };
->              };
-> -        };
-> -        port@2 {
-> -            reg = <2>;      /* port 2: link to the CEU */
-> +            port@1 {
-> +                reg = <1>;
->  
-> -            csi2_2: endpoint {
-> -                remote-endpoint = <&ceu0_0>;
-> +                csi2_2: endpoint {
-> +                    remote-endpoint = <&ceu0_0>;
-> +                };
->              };
->          };
->      };
+--hwvH6HDNit2nSK4j
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Regards,
+-----BEGIN PGP SIGNATURE-----
 
-Laurent Pinchart
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBRGi0ACgkQJNaLcl1U
+h9Bd6wf8CLasn7HPb9h3JBOHpH6rnzMDSD3qxnwn0mb6TNjjFgQqLvwZXfWTvJiz
+gkxGMMc+CwnV2uwRzJZLMaI25wo8z//d9xmFX/CVHiti3FZ45EooKQJ41a+CoHl7
+l2J+X1NiGe7EoOgJDvfrHK0+1OuZXN3hnBeNrx8gjqOoBtnbQbvsVhcjnUnN+i3s
+XMZwu0IJQ4MIFscfo3TlaXHt7MeWB4xg8uS/bU+6/OfuTIQmJ14midFU/YqJ6kSl
+QXBZ0oYXIheB+dwso+WQgBRJ3p2r8ob2yZfVwQLkZps30q6VurGqNeDSdRILHbz1
+IaOFXt46ttiq2cAG29TuJxNbVa8KzA==
+=BRod
+-----END PGP SIGNATURE-----
+
+--hwvH6HDNit2nSK4j--
