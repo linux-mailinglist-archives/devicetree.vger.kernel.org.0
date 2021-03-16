@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9AC33D572
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:06:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C8533D5B6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:29:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235957AbhCPOGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 10:06:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235961AbhCPOFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 10:05:43 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01F2C061756
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 07:05:42 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b1e0:9434:c5b6:aecd])
-        by laurent.telenet-ops.be with bizsmtp
-        id h25g2400C0UTkXy0125gqR; Tue, 16 Mar 2021 15:05:40 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lMAKJ-0088j8-L7; Tue, 16 Mar 2021 15:05:39 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lMAKJ-00A5Oi-72; Tue, 16 Mar 2021 15:05:39 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
-Date:   Tue, 16 Mar 2021 15:05:38 +0100
-Message-Id: <20210316140538.2403985-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S236356AbhCPO2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 10:28:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45560 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236329AbhCPO2W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 10:28:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D371265077;
+        Tue, 16 Mar 2021 14:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615904902;
+        bh=wkSrBKdNWAHtJxgJmqjHzbBlDY57aoKm8HHoVta4vNM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FX9kDJox7LuQN6Qu+9QOS66uRXa/8miZL6BlpcoUCjBBGsPLD58w4fGd/jInkzMk4
+         XnosimNbiMYzyR3NTcD/sD0pSBB0pw914noD2Y1+KVMWavN6Qrs/Fpa4RHXitkqH7B
+         hLdzgaspndb/gquy7joQSnH4+OmEIAvAxBdhvkQ3q4AVyR2kwzZ2ZcKHNBtekutbnQ
+         Faa5DcuITtg6bFUZhGJsJTOqYDtbxt7CWr1pJ8F1s7OjanHN0ZPaPXYRhN65QGiJwJ
+         /TEUjLf8KDWiwA1WGv052Tz1I/Yl8G4IGjwwa9+9nez4n6Sx1uL5B34Kssw1cNv1ty
+         y9CZ6RDcqnT5w==
+Received: by mail-ed1-f51.google.com with SMTP id z1so21767124edb.8;
+        Tue, 16 Mar 2021 07:28:21 -0700 (PDT)
+X-Gm-Message-State: AOAM533hgV90EU27SKvTezqwlgy1MRIV0o9TwBl7Nqww7uGogebJ6e8i
+        8hFuYLtK9FNsT6Yd9izi8g9gnRWxJoReysR9Yg==
+X-Google-Smtp-Source: ABdhPJwbS1s033mZJD7SdGWGIunKqJyUclrhFERdEYWiJfPCzFm23oAkrhWagF4fyPhISZ4GPVRzApF61Y9jCqphNSA=
+X-Received: by 2002:a05:6402:5252:: with SMTP id t18mr23129485edd.258.1615904900408;
+ Tue, 16 Mar 2021 07:28:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210311233640.1581526-1-robh@kernel.org> <20210311233640.1581526-2-robh@kernel.org>
+ <CAMuHMdV3hG4ddXo6jBu52+2=n3mBLfbmoCzb4VRUQ8YvanH9+Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdV3hG4ddXo6jBu52+2=n3mBLfbmoCzb4VRUQ8YvanH9+Q@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 16 Mar 2021 08:28:08 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKPgB+Zz4VHd9dn27bdiZgE=_QUem8BR76Vfc6Y3G8GVw@mail.gmail.com>
+Message-ID: <CAL_JsqKPgB+Zz4VHd9dn27bdiZgE=_QUem8BR76Vfc6Y3G8GVw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] kbuild: Enable DT undocumented compatible checks
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  - Remove unneeded reference for "idt,slew-percent", as vendor specific
-    properties having a standard unit suffix don't need a type,
-  - Add missing "additionalProperties: false" for subnodes, to catch
-    typos in properties,
-  - Fix property names in example.
+On Tue, Mar 16, 2021 at 7:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Rob,
+>
+> On Fri, Mar 12, 2021 at 12:38 AM Rob Herring <robh@kernel.org> wrote:
+> > dt-validate has an option to warn on any compatible strings which don't
+> > match any schema. The option has recently been improved to fix false
+> > positives, so let's enable the option. This is useful for tracking
+> > compatibles which are undocumented or not yet converted to DT schema.
+> > Previously, the only check of undocumented compatible strings has been
+> > an imperfect checkpatch.pl check.
+> >
+> > The option is enabled by default for 'dtbs_check'. This will add more
+> > warnings, but some platforms are down to only a handful of these
+> > warnings (good job!).
+> >
+> > There's about 100 cases in the binding examples, so the option is
+> > disabled until these are fixed. In the meantime, they can be checked
+> > with:
+> >
+> > make DT_CHECKER_FLAGS=-m dt_binding_check
+> >
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Masahiro Yamada <masahiroy@kernel.org>
+> > Cc: Michal Marek <michal.lkml@markovi.net>
+> > Cc: linux-kbuild@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Thanks for your patch!
+>
+> This causes lots of warning when using DT_SCHEMA_FILES, as all
+> compatible values in bindings not specified with DT_SCHEMA_FILES
+> become unknown.
+>
+> Perhaps this should be disabled automatically when DT_SCHEMA_FILES
+> is specified?
 
-Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Stephen Boyd <sboyd@kernel.org>
----
-This depends on "[PATCH dt-schema 0/2] dt-schema: Add percentage", which
-is part of dt-schema v2021.2.1.
+Indeed. I'll fix it up like this:
 
-v4:
-  - Add Reviewed-by, Acked-by,
+index 90b095c60f79..ad6938468c11 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -360,7 +360,7 @@ $(overlay-y): FORCE
+ $(call multi_depend, $(overlay-y), .dtb, -dtbs)
 
-v3:
-  - Drop references for "idt,voltage-microvolt" and "idt,slew-percent",
+ DT_CHECKER ?= dt-validate
+-DT_CHECKER_FLAGS ?= -m
++DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),,-m)
+ DT_BINDING_DIR := Documentation/devicetree/bindings
+ # DT_TMP_SCHEMA may be overridden from
+Documentation/devicetree/bindings/Makefile
+ DT_TMP_SCHEMA ?= $(objtree)/$(DT_BINDING_DIR)/processed-schema.json
 
-v2:
-  - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
-    ('clk: vc5: Use "idt,voltage-microvolt" instead of
-    "idt,voltage-microvolts"'),
-  - Drop reference to clock.yaml, which is already applied
-    unconditionally,
-  - Drop removal of allOf around if condition, as it is unnecessary
-    churn.
----
- .../devicetree/bindings/clock/idt,versaclock5.yaml       | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-index c268debe5b8d58cd..a7d00c552e3de161 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-@@ -84,9 +84,10 @@ patternProperties:
-         enum: [ 1800000, 2500000, 3300000 ]
-       idt,slew-percent:
-         description: The Slew rate control for CMOS single-ended.
--        $ref: /schemas/types.yaml#/definitions/uint32
-         enum: [ 80, 85, 90, 100 ]
- 
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -141,13 +142,13 @@ examples:
-             clock-names = "xin";
- 
-             OUT1 {
--                idt,drive-mode = <VC5_CMOSD>;
--                idt,voltage-microvolts = <1800000>;
-+                idt,mode = <VC5_CMOSD>;
-+                idt,voltage-microvolt = <1800000>;
-                 idt,slew-percent = <80>;
-             };
- 
-             OUT4 {
--                idt,drive-mode = <VC5_LVDS>;
-+                idt,mode = <VC5_LVDS>;
-             };
-         };
-     };
--- 
-2.25.1
-
+Rob
