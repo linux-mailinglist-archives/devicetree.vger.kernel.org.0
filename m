@@ -2,88 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46A3F33CF1F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0534133CF37
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:03:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233740AbhCPIAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 04:00:42 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:44643 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230492AbhCPIAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:00:31 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4F05Lk1BC1z1qtdW;
-        Tue, 16 Mar 2021 09:00:30 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4F05Lk0z4Tz1qqkj;
-        Tue, 16 Mar 2021 09:00:30 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id NZ81G0F-DoNA; Tue, 16 Mar 2021 09:00:29 +0100 (CET)
-X-Auth-Info: VSC6T+HGd4W0cL0VrfLuqY2DRsjBPhQPakW552+YR2E=
-Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Tue, 16 Mar 2021 09:00:29 +0100 (CET)
-Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id 4DB33185321;
-        Tue, 16 Mar 2021 08:59:32 +0100 (CET)
-Received: by pollux.denx.de (Postfix, from userid 515)
-        id 431AC1A0092; Tue, 16 Mar 2021 08:59:32 +0100 (CET)
-From:   Heiko Schocher <hs@denx.de>
-To:     linux-spi@vger.kernel.org
-Cc:     Heiko Schocher <hs@denx.de>, linux-arm-kernel@lists.infradead.org,
-        Ashish Kumar <ashish.kumar@nxp.com>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S233162AbhCPIDV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 16 Mar 2021 04:03:21 -0400
+Received: from mga09.intel.com ([134.134.136.24]:40127 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232577AbhCPIDF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 04:03:05 -0400
+IronPort-SDR: baPMBGcSlhUp+sNUWayTAZs6xnV2B4bTwrIepqye1q4pnbEPn2bYJz4Fc22REYeB2FWHRomBHb
+ 5mgeJXvSv8Ew==
+X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="189310814"
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; 
+   d="scan'208";a="189310814"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2021 01:03:04 -0700
+IronPort-SDR: 4Mlf+xJkj70RZ08Adl2iC52T/Xk6/ENFhy59/2Pj5tyn0kcKwhlsNQJ8+GIkjBJu+nLCvAGJVR
+ VpXWdqS3Y8HQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; 
+   d="scan'208";a="590576542"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+  by orsmga005.jf.intel.com with ESMTP; 16 Mar 2021 01:03:04 -0700
+Received: from shsmsx603.ccr.corp.intel.com (10.109.6.143) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 16 Mar 2021 01:03:03 -0700
+Received: from shsmsx601.ccr.corp.intel.com (10.109.6.141) by
+ SHSMSX603.ccr.corp.intel.com (10.109.6.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 16 Mar 2021 16:03:01 +0800
+Received: from shsmsx601.ccr.corp.intel.com ([10.109.6.141]) by
+ SHSMSX601.ccr.corp.intel.com ([10.109.6.141]) with mapi id 15.01.2106.013;
+ Tue, 16 Mar 2021 16:03:01 +0800
+From:   "Li, Philip" <philip.li@intel.com>
+To:     =?iso-8859-1?Q?J=E9r=F4me_Pouiller?= <jerome.pouiller@silabs.com>,
+        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        lkp <lkp@intel.com>
+CC:     "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+        "devel@driverdev.osuosl.org" <devel@driverdev.osuosl.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: spi: add compatible entry for imx8mp in FlexSPI controller
-Date:   Tue, 16 Mar 2021 08:59:28 +0100
-Message-Id: <20210316075928.1763460-3-hs@denx.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210316075928.1763460-1-hs@denx.de>
-References: <20210316075928.1763460-1-hs@denx.de>
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Subject: RE: [kbuild-all] Re: [PATCH] wfx: fix irqf_oneshot.cocci warnings
+Thread-Topic: [kbuild-all] Re: [PATCH] wfx: fix irqf_oneshot.cocci warnings
+Thread-Index: AQHXGjluGKy1l/wG8EupGMY1Pavj+qqGQOCw
+Date:   Tue, 16 Mar 2021 08:03:00 +0000
+Message-ID: <a8dba72b92a7407c9f2d531527137643@intel.com>
+References: <20210315132501.441681-25-Jerome.Pouiller@silabs.com>
+ <20210315210920.GA43634@d108da9836c5> <3096745.nmkoU2l6Xm@pc-42>
+In-Reply-To: <3096745.nmkoU2l6Xm@pc-42>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.239.127.36]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add compatible entry "nxp,imx8mp-fspi" in NXP FlexSPI controller
+> Subject: [kbuild-all] Re: [PATCH] wfx: fix irqf_oneshot.cocci warnings
+> 
+> Hello,
+> 
+> On Monday 15 March 2021 22:09:20 CET kernel test robot wrote:
+> >
+> > From: kernel test robot <lkp@intel.com>
+> >
+> > drivers/net/wireless/silabs/wfx/bus_sdio.c:134:8-33: ERROR: Threaded IRQ with no primary handler requested without
+> IRQF_ONESHOT
+> >
+> >  Since commit 1c6c69525b40 ("genirq: Reject bogus threaded irq requests")
+> >  threaded IRQs without a primary handler need to be requested with
+> >  IRQF_ONESHOT, otherwise the request will fail.
+> >
+> >  So pass the IRQF_ONESHOT flag in this case.
+> >
+> > Generated by: scripts/coccinelle/misc/irqf_oneshot.cocci
+> >
+> > CC: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > Signed-off-by: kernel test robot <lkp@intel.com>
+> > ---
+> >
+> > url:    https://github.com/0day-ci/linux/commits/Jerome-Pouiller/wfx-get-out-from-the-staging-area/20210315-212855
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git b828324bba8f575fde487a91fec07303789dda8a
+> >
+> >  bus_sdio.c |    3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > --- a/drivers/net/wireless/silabs/wfx/bus_sdio.c
+> > +++ b/drivers/net/wireless/silabs/wfx/bus_sdio.c
+> > @@ -132,7 +132,8 @@ static int wfx_sdio_irq_subscribe(void *
+> >                 flags = IRQF_TRIGGER_HIGH;
+> >         flags |= IRQF_ONESHOT;
+> >         return devm_request_threaded_irq(&bus->func->dev, bus->of_irq, NULL,
+> > -                                        wfx_sdio_irq_handler_ext, flags,
+> > +                                        wfx_sdio_irq_handler_ext,
+> > +                                        flags | IRQF_ONESHOT,
+> >                                          "wfx", bus);
+> >  }
+> >
+> >
+> 
+> Obviously, "flags" always contains IRQF_ONESHOT. So, it is a false positive.
+Thanks for the feedback. Sorry about this false positive, this had been disabled
+for auto report now.
 
-Signed-off-by: Heiko Schocher <hs@denx.de>
----
-
-Changes in v4:
-rebased against:
-git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-a43e89624baea ("Merge remote-tracking branch 'spi/for-5.13' into spi-next")
-
-Changes in v3:
-- no changes, rebased against
-  git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-  144c79ef33536 Merge tag 'perf-tools-fixes-for-v5.12-2020-03-07' of git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux
-
- Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
-index df178d1b62e67..8f34a7c7d8b84 100644
---- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
-@@ -4,6 +4,7 @@ Required properties:
-   - compatible : Should be "nxp,lx2160a-fspi"
- 			    "nxp,imx8qxp-fspi"
- 			    "nxp,imx8mm-fspi"
-+			    "nxp,imx8mp-fspi"
- 			    "nxp,imx8dxl-fspi"
- 
-   - reg :        First contains the register location and length,
--- 
-2.29.2
-
+> 
+> 
+> --
+> Jérôme Pouiller
+> 
+> _______________________________________________
+> kbuild-all mailing list -- kbuild-all@lists.01.org
+> To unsubscribe send an email to kbuild-all-leave@lists.01.org
