@@ -2,198 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD48C33D248
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 11:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8845F33D260
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 12:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236957AbhCPK7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 06:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
+        id S237017AbhCPLC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 07:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233142AbhCPK6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 06:58:46 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A436C0613DA
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 03:58:45 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id g20so9853126wmk.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 03:58:45 -0700 (PDT)
+        with ESMTP id S237001AbhCPLCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 07:02:33 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F21C06174A
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:02:32 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 205so5376360pgh.9
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/vUWvhAchaqpjbMn74HpIxb8CiMc71rLCGrcTJNmxv0=;
-        b=K3MKD6XXGXJ0yT+1v/UqRy2TXWDGhBzNxHRnOrIAVvwvDDoU6GAQxmwOE7mvD1tUE3
-         AKFSQiD4ypdPsEzPOAyt41Mxs/fig+i4h5xsf0syMKWMpZiC3GlTs6KcKMiP69gv7wkB
-         HlvjofddxDGpNOP4hdkKKwSjHWuGbWb3ycYlcNMHkXPQloKT8NREPY7z2rlP1ZpPqabc
-         kZkVxYf+CZdvHsYkeQwFedVize36XaJMu2u1tMkO7HkD9+TkUDX1FlQh0LnebNzLbXYN
-         5UvZjwPrdUsxq13WKrFcIQrRMkBXcoGkVfal8XsNL4lItMeu0DwKgEtFZCs/w26aQet7
-         ofEw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1LVjUoUKXm7FsxD4sNTz87mVaO1PBBHxa9gw0uYkS4k=;
+        b=IpHXM0oXiw4jjywx+X1sTYVH2tWV+/PlIcYbDKGyTm7jkZE7OMeuxf9ctrW60RcmL8
+         F6tZ+3RiJBgiEgcStQPnilJ9PrKbrfxlKbxTTiDrCbLbFDcNMQv7Hg2Ky+vwbyPB5BLE
+         JehzN3iXDRtsOzC/djFi8HL7RqjVlBvu+n4FEJSMSvTsFaXL/Wii63KsEt+4za9/ZiYq
+         6s+v9qRMe4/U8GwMcwTyEeWEi5weZrgQcDe8wUdRwP/UiAtwdAXk8/x0o5NxKXOLRyCz
+         63v2QMQ4FMEWto9dOuOIh+RkcO5j0bGT2eCf9sdKFNbXmNmGk7cIghIHx6fSnO5Lob1v
+         MYPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/vUWvhAchaqpjbMn74HpIxb8CiMc71rLCGrcTJNmxv0=;
-        b=R4pjvS4NHjvlqWu3gzw7UAKGB6e5qD/NLD3UG35lNCfuMT1ecRmeLCA9yPKoAnb99y
-         d3Z3xEAvkylt+LPzgQH/3EA44uMT4GmOC4npBmVNPFx72Um+0iTkTLM/Vpto9ve1Ymc7
-         M1UMBr09Gc8bWZzlotP/Bv5XQv4/VVAUzBURf9mtJJkrbLkBvk/Pje1Q8LbCUlM7PxK6
-         mr5mv3CC9JIn/5on6vxw8DTRTGsLp82vbGEhF+VMrALR5k3A9fZUJ7f95aOn8KhB3uIl
-         kNwcZGqbskohBAhWhfD/E4aMrep6oSWuxocRTdFRvCGrz5DvK8wQ61STRzUSVwpWqzaM
-         LN4g==
-X-Gm-Message-State: AOAM5313XNR1gvZKjfz1L+o1A1LPRmArrvcg2Aub3dgoZxpcBllVCZAG
-        Med9zQkFKKwrVM7AM5qbfkhofg==
-X-Google-Smtp-Source: ABdhPJyKTSKACAk+lp92kC+DHrswcSM1Gp1jpdsT1V/AY8PmVwMnsNRsazY7+k/1tFe9BOerX3Nszg==
-X-Received: by 2002:a1c:6a05:: with SMTP id f5mr4078106wmc.75.1615892324353;
-        Tue, 16 Mar 2021 03:58:44 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id t8sm21465956wrr.10.2021.03.16.03.58.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 03:58:43 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        perex@perex.cz, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 7/7] ASoC: codecs: wcd938x: add audio routing
-Date:   Tue, 16 Mar 2021 10:58:28 +0000
-Message-Id: <20210316105828.16436-8-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210316105828.16436-1-srinivas.kandagatla@linaro.org>
-References: <20210316105828.16436-1-srinivas.kandagatla@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1LVjUoUKXm7FsxD4sNTz87mVaO1PBBHxa9gw0uYkS4k=;
+        b=qpzqjlQM5FrXTRdyj8+PrmiI0SIlk+nc/XtxtqK+h39iS0nfkME7HNETOA7Y+SYU5U
+         IMgJnqwZItir5relCz9+C+mylHbq9ZEAPGLrg19NhSD/xqolVDxyZ4UQOkXjCWxsDZS1
+         GojS6zV9lLZN5SozBqqIlDNwvNkATpybqsWgmqbkNX0qopWrPVS9dR5LmdGk1re97seW
+         /QvjdLVGdOMXBu72OcR17sicuUr4aYupyvY6xLhrRIJPNcF1x4b15Ji2zKog0W9wQBSV
+         GRu8NT10i9Sr7LPuKueOtmMoH3hCJmxpqjVzFTWcR78IU91d9dpCkKl1yfqmqTWRxat5
+         e06A==
+X-Gm-Message-State: AOAM531qdqfpIL5xqRlpSJ2WQBRSSpoK4J1cWciNJzvIs3E9XH3i4sKL
+        Rs27TtEein9sCRBcHOSq09E+LAT6usu0jxoShecqQw==
+X-Google-Smtp-Source: ABdhPJytwDjMxe8LwG/BHqKor9Zn9/GEW6yMYHEIa7hnTHfy2FDsmrF8YFkhcn/uO9rVH3qYGC1nOyKBKgz94K+bSuU=
+X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
+ p20-20020a056a000b54b02902072a047b05mr9353340pfo.12.1615892552290; Tue, 16
+ Mar 2021 04:02:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210315155942.640889-1-robert.foss@linaro.org>
+ <20210315155942.640889-7-robert.foss@linaro.org> <d11ad801-e387-dcd8-1737-1cbc69dea046@xs4all.nl>
+In-Reply-To: <d11ad801-e387-dcd8-1737-1cbc69dea046@xs4all.nl>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Tue, 16 Mar 2021 12:02:21 +0100
+Message-ID: <CAG3jFyt6fu6VD8Svrupb7MPKeN7boYeOUcUycs4g2jsZLxdbOA@mail.gmail.com>
+Subject: Re: [PATCH v8 06/22] media: camss: Refactor VFE HW version support
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@somainline.org,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonathan Marek <jonathan@marek.ca>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds audio routing for both playback and capture.
+Hey Hans,
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/codecs/wcd938x.c | 97 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+Thanks for having a look!
 
-diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
-index 31e3cf729568..0f801920ebac 100644
---- a/sound/soc/codecs/wcd938x.c
-+++ b/sound/soc/codecs/wcd938x.c
-@@ -3153,6 +3153,99 @@ static const struct snd_soc_dapm_widget wcd938x_rx_dapm_widgets[] = {
- 
- };
- 
-+static const struct snd_soc_dapm_route wcd938x_rx_audio_map[] = {
-+	{"IN1_HPHL", NULL, "VDD_BUCK"},
-+	{"IN1_HPHL", NULL, "CLS_H_PORT"},
-+
-+	{"RX1", NULL, "IN1_HPHL"},
-+	{"RX1", NULL, "RXCLK"},
-+	{"RDAC1", NULL, "RX1"},
-+	{"HPHL_RDAC", "Switch", "RDAC1"},
-+	{"HPHL PGA", NULL, "HPHL_RDAC"},
-+	{"HPHL", NULL, "HPHL PGA"},
-+
-+	{"IN2_HPHR", NULL, "VDD_BUCK"},
-+	{"IN2_HPHR", NULL, "CLS_H_PORT"},
-+	{"RX2", NULL, "IN2_HPHR"},
-+	{"RDAC2", NULL, "RX2"},
-+	{"RX2", NULL, "RXCLK"},
-+	{"HPHR_RDAC", "Switch", "RDAC2"},
-+	{"HPHR PGA", NULL, "HPHR_RDAC"},
-+	{"HPHR", NULL, "HPHR PGA"},
-+
-+	{"IN3_AUX", NULL, "VDD_BUCK"},
-+	{"IN3_AUX", NULL, "CLS_H_PORT"},
-+	{"RX3", NULL, "IN3_AUX"},
-+	{"RDAC4", NULL, "RX3"},
-+	{"RX3", NULL, "RXCLK"},
-+	{"AUX_RDAC", "Switch", "RDAC4"},
-+	{"AUX PGA", NULL, "AUX_RDAC"},
-+	{"AUX", NULL, "AUX PGA"},
-+
-+	{"RDAC3_MUX", "RX3", "RX3"},
-+	{"RDAC3_MUX", "RX1", "RX1"},
-+	{"RDAC3", NULL, "RDAC3_MUX"},
-+	{"EAR_RDAC", "Switch", "RDAC3"},
-+	{"EAR PGA", NULL, "EAR_RDAC"},
-+	{"EAR", NULL, "EAR PGA"},
-+};
-+
-+static const struct snd_soc_dapm_route wcd938x_audio_map[] = {
-+	{"ADC1_OUTPUT", NULL, "ADC1_MIXER"},
-+	{"ADC1_MIXER", "Switch", "ADC1 REQ"},
-+	{"ADC1 REQ", NULL, "ADC1"},
-+	{"ADC1", NULL, "AMIC1"},
-+
-+	{"ADC2_OUTPUT", NULL, "ADC2_MIXER"},
-+	{"ADC2_MIXER", "Switch", "ADC2 REQ"},
-+	{"ADC2 REQ", NULL, "ADC2"},
-+	{"ADC2", NULL, "HDR12 MUX"},
-+	{"HDR12 MUX", "NO_HDR12", "ADC2 MUX"},
-+	{"HDR12 MUX", "HDR12", "AMIC1"},
-+	{"ADC2 MUX", "INP3", "AMIC3"},
-+	{"ADC2 MUX", "INP2", "AMIC2"},
-+
-+	{"ADC3_OUTPUT", NULL, "ADC3_MIXER"},
-+	{"ADC3_MIXER", "Switch", "ADC3 REQ"},
-+	{"ADC3 REQ", NULL, "ADC3"},
-+	{"ADC3", NULL, "HDR34 MUX"},
-+	{"HDR34 MUX", "NO_HDR34", "ADC3 MUX"},
-+	{"HDR34 MUX", "HDR34", "AMIC5"},
-+	{"ADC3 MUX", "INP4", "AMIC4"},
-+	{"ADC3 MUX", "INP6", "AMIC6"},
-+
-+	{"ADC4_OUTPUT", NULL, "ADC4_MIXER"},
-+	{"ADC4_MIXER", "Switch", "ADC4 REQ"},
-+	{"ADC4 REQ", NULL, "ADC4"},
-+	{"ADC4", NULL, "ADC4 MUX"},
-+	{"ADC4 MUX", "INP5", "AMIC5"},
-+	{"ADC4 MUX", "INP7", "AMIC7"},
-+
-+	{"DMIC1_OUTPUT", NULL, "DMIC1_MIXER"},
-+	{"DMIC1_MIXER", "Switch", "DMIC1"},
-+
-+	{"DMIC2_OUTPUT", NULL, "DMIC2_MIXER"},
-+	{"DMIC2_MIXER", "Switch", "DMIC2"},
-+
-+	{"DMIC3_OUTPUT", NULL, "DMIC3_MIXER"},
-+	{"DMIC3_MIXER", "Switch", "DMIC3"},
-+
-+	{"DMIC4_OUTPUT", NULL, "DMIC4_MIXER"},
-+	{"DMIC4_MIXER", "Switch", "DMIC4"},
-+
-+	{"DMIC5_OUTPUT", NULL, "DMIC5_MIXER"},
-+	{"DMIC5_MIXER", "Switch", "DMIC5"},
-+
-+	{"DMIC6_OUTPUT", NULL, "DMIC6_MIXER"},
-+	{"DMIC6_MIXER", "Switch", "DMIC6"},
-+
-+	{"DMIC7_OUTPUT", NULL, "DMIC7_MIXER"},
-+	{"DMIC7_MIXER", "Switch", "DMIC7"},
-+
-+	{"DMIC8_OUTPUT", NULL, "DMIC8_MIXER"},
-+	{"DMIC8_MIXER", "Switch", "DMIC8"},
-+};
-+
- static int wcd938x_get_micb_vout_ctl_val(u32 micb_mv)
- {
- 	/* min micbias voltage is 1V and maximum is 2.85V */
-@@ -3332,6 +3425,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_rx = {
- 	.num_controls = ARRAY_SIZE(wcd938x_rx_snd_controls),
- 	.dapm_widgets = wcd938x_rx_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd938x_rx_dapm_widgets),
-+	.dapm_routes = wcd938x_rx_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd938x_rx_audio_map),
- };
- 
- static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_tx = {
-@@ -3341,6 +3436,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_tx = {
- 	.num_controls = ARRAY_SIZE(wcd938x_snd_controls),
- 	.dapm_widgets = wcd938x_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd938x_dapm_widgets),
-+	.dapm_routes = wcd938x_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd938x_audio_map),
- };
- 
- static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_priv *wcd)
--- 
-2.21.0
+On Tue, 16 Mar 2021 at 10:41, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>
+> On 15/03/2021 16:59, Robert Foss wrote:
+> > In order to support Qualcomm ISP hardware architectures that diverge
+> > from older architectures, the VFE subdevice driver needs to be refactored
+> > to better abstract the different ISP architectures.
+> >
+> > Gen1 represents the CAMSS ISP architecture. The ISP architecture developed
+> > after CAMSS, Titan, will be referred to as Gen2.
+> >
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
+> > ---
+> >
+> >
+>
+> <snip>
+>
+> > diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
+> > index 5bce6736e4bb..ceff4985b1cc 100644
+> > --- a/drivers/media/platform/qcom/camss/camss-vfe.h
+> > +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
+> > @@ -17,15 +17,26 @@
+> >  #include <media/v4l2-subdev.h>
+> >
+> >  #include "camss-video.h"
+> > +#include "camss-vfe-gen1.h"
+> >
+> >  #define MSM_VFE_PAD_SINK 0
+> >  #define MSM_VFE_PAD_SRC 1
+> >  #define MSM_VFE_PADS_NUM 2
+> >
+> > -#define MSM_VFE_LINE_NUM 4
+> >  #define MSM_VFE_IMAGE_MASTERS_NUM 7
+> >  #define MSM_VFE_COMPOSITE_IRQ_NUM 4
+> >
+> > +/* VFE halt timeout */
+> > +#define VFE_HALT_TIMEOUT_MS 100
+> > +/* Frame drop value. VAL + UPDATES - 1 should not exceed 31 */
+> > +#define VFE_FRAME_DROP_VAL 30
+> > +
+> > +#define vfe_line_array(ptr_line)     \
+> > +     ((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
+>
+> I get a checkpatch warning on this:
+>
+> CHECK: Unnecessary parentheses around ptr_line[-(ptr_line->id)]
+> #3612: FILE: drivers/media/platform/qcom/camss/camss-vfe.h:35:
+> +       ((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
+>
+> This should be:
+>
+>         ((const struct vfe_line (*)[]) &(ptr_line)[-(ptr_line)->id])
+>
+> The checkpatch message is a bit odd, the real problem here is the missing
+> parenthesis around ptr_line: this would cause problems if ptr_line is an
+> expression like 'ptr + 5', which would lead to a bad expansion.
+>
 
+Ack
+
+> Regards,
+>
+>         Hans
+>
+> > +
+> > +#define to_vfe(ptr_line)     \
+> > +     container_of(vfe_line_array(ptr_line), struct vfe_device, line)
+> > +
+> >  enum vfe_output_state {
+> >       VFE_OUTPUT_OFF,
+> >       VFE_OUTPUT_RESERVED,
+> > @@ -40,23 +51,30 @@ enum vfe_line_id {
+> >       VFE_LINE_RDI0 = 0,
+> >       VFE_LINE_RDI1 = 1,
+> >       VFE_LINE_RDI2 = 2,
+> > -     VFE_LINE_PIX = 3
+> > +     VFE_LINE_PIX = 3,
+> > +     VFE_LINE_NUM_GEN1 = 4,
+> > +     VFE_LINE_NUM_MAX = 4
+> >  };
+> >
+> >  struct vfe_output {
+> >       u8 wm_num;
+> >       u8 wm_idx[3];
+> >
+> > -     int active_buf;
+> >       struct camss_buffer *buf[2];
+> >       struct camss_buffer *last_buffer;
+> >       struct list_head pending_bufs;
+> >
+> >       unsigned int drop_update_idx;
+> >
+> > +     union {
+> > +             struct {
+> > +                     int active_buf;
+> > +                     int wait_sof;
+> > +             } gen1;
+> > +     };
+> >       enum vfe_output_state state;
+> >       unsigned int sequence;
+> > -     int wait_sof;
+> > +
+> >       int wait_reg_update;
+> >       struct completion sof;
+> >       struct completion reg_update;
+> > @@ -78,59 +96,19 @@ struct vfe_line {
+> >  struct vfe_device;
+> >
+> >  struct vfe_hw_ops {
+> > -     void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
+> > -     u16 (*get_ub_size)(u8 vfe_id);
+> > +     void (*enable_irq_common)(struct vfe_device *vfe);
+> >       void (*global_reset)(struct vfe_device *vfe);
+> > -     void (*halt_request)(struct vfe_device *vfe);
+> > -     void (*halt_clear)(struct vfe_device *vfe);
+> > -     void (*wm_enable)(struct vfe_device *vfe, u8 wm, u8 enable);
+> > -     void (*wm_frame_based)(struct vfe_device *vfe, u8 wm, u8 enable);
+> > -     void (*wm_line_based)(struct vfe_device *vfe, u32 wm,
+> > -                           struct v4l2_pix_format_mplane *pix,
+> > -                           u8 plane, u32 enable);
+> > -     void (*wm_set_framedrop_period)(struct vfe_device *vfe, u8 wm, u8 per);
+> > -     void (*wm_set_framedrop_pattern)(struct vfe_device *vfe, u8 wm,
+> > -                                      u32 pattern);
+> > -     void (*wm_set_ub_cfg)(struct vfe_device *vfe, u8 wm, u16 offset,
+> > -                           u16 depth);
+> > -     void (*bus_reload_wm)(struct vfe_device *vfe, u8 wm);
+> > -     void (*wm_set_ping_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
+> > -     void (*wm_set_pong_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
+> > -     int (*wm_get_ping_pong_status)(struct vfe_device *vfe, u8 wm);
+> > -     void (*bus_enable_wr_if)(struct vfe_device *vfe, u8 enable);
+> > -     void (*bus_connect_wm_to_rdi)(struct vfe_device *vfe, u8 wm,
+> > -                                   enum vfe_line_id id);
+> > -     void (*wm_set_subsample)(struct vfe_device *vfe, u8 wm);
+> > -     void (*bus_disconnect_wm_from_rdi)(struct vfe_device *vfe, u8 wm,
+> > -                                        enum vfe_line_id id);
+> > -     void (*set_xbar_cfg)(struct vfe_device *vfe, struct vfe_output *output,
+> > -                          u8 enable);
+> > -     void (*set_rdi_cid)(struct vfe_device *vfe, enum vfe_line_id id,
+> > -                         u8 cid);
+> > -     void (*set_realign_cfg)(struct vfe_device *vfe, struct vfe_line *line,
+> > -                             u8 enable);
+> > +     void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
+> > +     irqreturn_t (*isr)(int irq, void *dev);
+> > +     void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
+> >       void (*reg_update)(struct vfe_device *vfe, enum vfe_line_id line_id);
+> >       void (*reg_update_clear)(struct vfe_device *vfe,
+> >                                enum vfe_line_id line_id);
+> > -     void (*enable_irq_wm_line)(struct vfe_device *vfe, u8 wm,
+> > -                                enum vfe_line_id line_id, u8 enable);
+> > -     void (*enable_irq_pix_line)(struct vfe_device *vfe, u8 comp,
+> > -                                 enum vfe_line_id line_id, u8 enable);
+> > -     void (*enable_irq_common)(struct vfe_device *vfe);
+> > -     void (*set_demux_cfg)(struct vfe_device *vfe, struct vfe_line *line);
+> > -     void (*set_scale_cfg)(struct vfe_device *vfe, struct vfe_line *line);
+> > -     void (*set_crop_cfg)(struct vfe_device *vfe, struct vfe_line *line);
+> > -     void (*set_clamp_cfg)(struct vfe_device *vfe);
+> > -     void (*set_qos)(struct vfe_device *vfe);
+> > -     void (*set_ds)(struct vfe_device *vfe);
+> > -     void (*set_cgc_override)(struct vfe_device *vfe, u8 wm, u8 enable);
+> > -     void (*set_camif_cfg)(struct vfe_device *vfe, struct vfe_line *line);
+> > -     void (*set_camif_cmd)(struct vfe_device *vfe, u8 enable);
+> > -     void (*set_module_cfg)(struct vfe_device *vfe, u8 enable);
+> > -     int (*camif_wait_for_stop)(struct vfe_device *vfe, struct device *dev);
+> > -     void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
+> > +     void (*subdev_init)(struct device *dev, struct vfe_device *vfe);
+> > +     int (*vfe_disable)(struct vfe_line *line);
+> > +     int (*vfe_enable)(struct vfe_line *line);
+> > +     int (*vfe_halt)(struct vfe_device *vfe);
+> >       void (*violation_read)(struct vfe_device *vfe);
+> > -     irqreturn_t (*isr)(int irq, void *dev);
+> >  };
+> >
+> >  struct vfe_isr_ops {
+> > @@ -158,11 +136,14 @@ struct vfe_device {
+> >       int stream_count;
+> >       spinlock_t output_lock;
+> >       enum vfe_line_id wm_output_map[MSM_VFE_IMAGE_MASTERS_NUM];
+> > -     struct vfe_line line[MSM_VFE_LINE_NUM];
+> > +     struct vfe_line line[VFE_LINE_NUM_MAX];
+> > +     u8 line_num;
+> >       u32 reg_update;
+> >       u8 was_streaming;
+> >       const struct vfe_hw_ops *ops;
+> > +     const struct vfe_hw_ops_gen1 *ops_gen1;
+> >       struct vfe_isr_ops isr_ops;
+> > +     struct camss_video_ops video_ops;
+> >  };
+> >
+> >  struct resources;
+> > @@ -178,6 +159,37 @@ void msm_vfe_unregister_entities(struct vfe_device *vfe);
+> >  void msm_vfe_get_vfe_id(struct media_entity *entity, u8 *id);
+> >  void msm_vfe_get_vfe_line_id(struct media_entity *entity, enum vfe_line_id *id);
+> >
+> > +/*
+> > + * vfe_buf_add_pending - Add output buffer to list of pending
+> > + * @output: VFE output
+> > + * @buffer: Video buffer
+> > + */
+> > +void vfe_buf_add_pending(struct vfe_output *output, struct camss_buffer *buffer);
+> > +
+> > +struct camss_buffer *vfe_buf_get_pending(struct vfe_output *output);
+> > +
+> > +/*
+> > + * vfe_disable - Disable streaming on VFE line
+> > + * @line: VFE line
+> > + *
+> > + * Return 0 on success or a negative error code otherwise
+> > + */
+> > +int vfe_disable(struct vfe_line *line);
+> > +
+> > +int vfe_flush_buffers(struct camss_video *vid, enum vb2_buffer_state state);
+> > +
+> > +/*
+> > + * vfe_isr_comp_done - Process composite image done interrupt
+> > + * @vfe: VFE Device
+> > + * @comp: Composite image id
+> > + */
+> > +void vfe_isr_comp_done(struct vfe_device *vfe, u8 comp);
+> > +
+> > +void vfe_isr_reset_ack(struct vfe_device *vfe);
+> > +int vfe_put_output(struct vfe_line *line);
+> > +int vfe_release_wm(struct vfe_device *vfe, u8 wm);
+> > +int vfe_reserve_wm(struct vfe_device *vfe, enum vfe_line_id line_id);
+> > +
+> >  extern const struct vfe_hw_ops vfe_ops_4_1;
+> >  extern const struct vfe_hw_ops vfe_ops_4_7;
+> >  extern const struct vfe_hw_ops vfe_ops_4_8;
+> > diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> > index 0c679c97da6d..49e25c837bdc 100644
+> > --- a/drivers/media/platform/qcom/camss/camss.c
+> > +++ b/drivers/media/platform/qcom/camss/camss.c
+> > @@ -881,7 +881,7 @@ static int camss_register_entities(struct camss *camss)
+> >
+> >               for (i = 0; i < camss->ispif->line_num; i++)
+> >                       for (k = 0; k < camss->vfe_num; k++)
+> > -                             for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
+> > +                             for (j = 0; j < camss->vfe[k].line_num; j++) {
+> >                                       struct v4l2_subdev *ispif = &camss->ispif->line[i].subdev;
+> >                                       struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
+> >
+> > @@ -902,7 +902,7 @@ static int camss_register_entities(struct camss *camss)
+> >       } else {
+> >               for (i = 0; i < camss->csid_num; i++)
+> >                       for (k = 0; k < camss->vfe_num; k++)
+> > -                             for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
+> > +                             for (j = 0; j < camss->vfe[k].line_num; j++) {
+> >                                       struct v4l2_subdev *csid = &camss->csid[i].subdev;
+> >                                       struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
+> >
+> >
+>
