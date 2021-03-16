@@ -2,83 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03C0633DB6E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F207E33DB72
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:53:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233590AbhCPRvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 13:51:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42424 "EHLO mail.kernel.org"
+        id S234543AbhCPRwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 13:52:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42826 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233139AbhCPRvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 13:51:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C46E65104;
-        Tue, 16 Mar 2021 17:51:10 +0000 (UTC)
+        id S239101AbhCPRwN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 13:52:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A420065104;
+        Tue, 16 Mar 2021 17:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615917070;
-        bh=pbJXtCdebP9sYUzCMuDBNQ/VmqE7MtiUhZT+utdKfOM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=t8FdK+fOB70tNbCjuQ/RgrRM2Wd0C3aelP/9AsTK0EhaEK2ioLvQGaB5Wd34h3aV4
-         KeOSzmmPQF7+xTxE2hyu6GKVXMv2IuBhrNvHu8whsMR4uXFvi+vZkx4Gj5NQd0L4OU
-         Bo1wJLI53BN2AHXTfnfvYtV7/pi/7gui09Pu5y7xZ1wlbCIP+xFYNNV27VUfy60xKB
-         PoaAhT12LIWET8j5TYN9IrR1V7fEhgRlTZqFGm5hZpr4Lk6oHG8mHq7HkRigVVQ3SW
-         fQw+RDruVgyKrhNte/jJ8d0vRTxVDuuwvVsgzqbPbKnIEB8G1xq2eQoSnh4Wd7w3Sm
-         usTNR5ULOqoPg==
-Received: by mail-qt1-f173.google.com with SMTP id l13so12300520qtu.9;
-        Tue, 16 Mar 2021 10:51:10 -0700 (PDT)
-X-Gm-Message-State: AOAM533QguOKsQ6ImKqCfxbnNLU8IR4Z58S2fSnIW8z8YiDXUCnu9i4z
-        QaojLrtFXaEjl528t5sjVRDflY8OY7kItYrpSQ==
-X-Google-Smtp-Source: ABdhPJyQ+kzNAOwqUQ5HTBukjAeFUdJ61x9F0CW9p3bMCtDLms1Vd2ObGy7uTjqxjypyXGTzjERW0l+ltG8kH1rSAC0=
-X-Received: by 2002:ac8:70d1:: with SMTP id g17mr75201qtp.306.1615917069540;
- Tue, 16 Mar 2021 10:51:09 -0700 (PDT)
+        s=k20201202; t=1615917132;
+        bh=LrCfL2n1Vbvh/ZZstKFwLeSaiNZmxKeObFOpeIxy6NA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ay4zejDKIBL1jPO1i2vCSej+X0bGBaXlnSVHQdEA/pq4MFRD9BOTTaNoSNAgufJEO
+         MHKz9tLyE3r06eBh90db7ZOhXpbg2teMoLPNHnINtsqO+QQPGpQmJCYo4AppfTdyOO
+         nmMkg36aMDNQRtfFO5DrHvrX8l/mAlvmO37eR3mhoImV8vEVDnaWmbuxbSZ2fKQtS1
+         58+EaRDrA4XLcPyj+S2myNfqyuTMSH2Qz0AGXanPh7B0TfM6oPMv0j0RTQa/f31QtU
+         MBPYzZ2Wqibsz5eiFF7BRO27HAhF4QRCYrTcl+Gd9ropMxwQBNcSyx403skwglRJaO
+         E47YZMOVojnRw==
+Date:   Tue, 16 Mar 2021 17:52:09 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Fei Shao <fshao@chromium.org>, Ran Bi <ran.bi@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Wen Su <wen.su@mediatek.com>
+Subject: Re: [PATCH v6 6/8] regulator: mt6359: Add support for MT6359
+ regulator
+Message-ID: <20210316175209.GC4309@sirena.org.uk>
+References: <1615829757-3223-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1615829757-3223-7-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
- <20210312154357.1561730-5-sebastian.reichel@collabora.com>
- <CAL_JsqKFJPSMyMbcrpnL1WgttHSP+3Q+U8bJ_m5hm=O0gEPe4g@mail.gmail.com> <20210316164602.hupmcy2hjflf4za2@earth.universe>
-In-Reply-To: <20210316164602.hupmcy2hjflf4za2@earth.universe>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 16 Mar 2021 11:50:58 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK5zBuRHHj523qtBodoJ30YKXFBvnmDBdf0oHtVriESeA@mail.gmail.com>
-Message-ID: <CAL_JsqK5zBuRHHj523qtBodoJ30YKXFBvnmDBdf0oHtVriESeA@mail.gmail.com>
-Subject: Re: [PATCH 04/38] dt-bindings: power: supply: bq25890: Convert to DT
- schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="TiqCXmo5T1hvSQQg"
+Content-Disposition: inline
+In-Reply-To: <1615829757-3223-7-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Cookie: Results vary by individual.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 10:46 AM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi,
->
-> On Mon, Mar 15, 2021 at 12:21:34PM -0600, Rob Herring wrote:
-> > On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > > +  ti,ibatcomp-clamp-microvolt:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: max. charging voltage adjustment due to expected voltage drop on in-series resistor
-> >
-> > You don't need a type $ref on properties with a standard unit suffix.
-> > Though it looks like there's some non-standard ones (-microvolts) in
-> > the series.
->
-> Ok. Unfortunately most properties in this series use non-standard
-> ones :(. Newer bindings using common properties have already been
-> written in YAML and/or make use of simple-battery.
->
-> Can we have a warning for this in the dt_binding_check? Maybe
-> something like
 
-Yeah, I'm working on that.
+--TiqCXmo5T1hvSQQg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> superfluous $ref for property with standard suffix
+On Tue, Mar 16, 2021 at 01:35:55AM +0800, Hsin-Hsiung Wang wrote:
+> From: Wen Su <wen.su@mediatek.com>
+>=20
+> The MT6359 is a regulator found on boards based on MediaTek MT6779 and
+> probably other SoCs. It is a so called pmic and connects as a slave to
+> SoC using SPI, wrapped inside the pmic-wrapper.
 
-And having more helpful error messages is on my todo, but not much BW
-to work on ATM.
+Acked-by: Mark Brown <broonie@kernel.org>
 
-Rob
+--TiqCXmo5T1hvSQQg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBQ8EkACgkQJNaLcl1U
+h9BDswf8D316wKmXhcYKPDi/YmkRhytOAgIc6953T88rWdO3gCUFY/SK/jYWCmMR
+KzzfbYbaNqqAfA/sr/MciroVnmjvxnCXxUT9Xjud5lJ0Jt+33OK3a7zg0zRx+Fot
+DV/I2r5LRwRoT7r1yRu0+nHD43UuFr+G0cHnIuCDnhTfsXrohLb7LSMBo2R7i49L
+hHZXlELlaCEjgJWXlc6nTkoRkfPGwTLwMXZhmnsJUwseBMbnaYNgd9T9/JFFfSWK
+nDz7U8odYibHz/AhbsZpaFwJcKBEmHVr+oL65l/UR8pz9Wd2omTkWrbPN5JgrHva
+lIvHg1XYtMnPuHyTJJE6hSoWNCfKIQ==
+=14Z0
+-----END PGP SIGNATURE-----
+
+--TiqCXmo5T1hvSQQg--
