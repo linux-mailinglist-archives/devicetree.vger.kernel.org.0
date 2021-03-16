@@ -2,60 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D6733D026
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E6C833D080
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:22:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235414AbhCPIyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 04:54:11 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:33636 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235797AbhCPIyI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 04:54:08 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4938B200328;
-        Tue, 16 Mar 2021 09:54:07 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D0B1A203E04;
-        Tue, 16 Mar 2021 09:54:03 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3F944402C1;
-        Tue, 16 Mar 2021 09:53:59 +0100 (CET)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: fsl_spdif: Add compatible string for new platforms
-Date:   Tue, 16 Mar 2021 16:40:53 +0800
-Message-Id: <1615884053-4264-1-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S232584AbhCPJVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 05:21:54 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:25818 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235996AbhCPJVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 05:21:44 -0400
+X-Greylist: delayed 1321 seconds by postgrey-1.27 at vger.kernel.org; Tue, 16 Mar 2021 05:21:43 EDT
+Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
+        by twspam01.aspeedtech.com with ESMTP id 12G8oxBF007525
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 16:50:59 +0800 (GMT-8)
+        (envelope-from troy_lee@aspeedtech.com)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 12G8oqqZ007507;
+        Tue, 16 Mar 2021 16:50:52 +0800 (GMT-8)
+        (envelope-from troy_lee@aspeedtech.com)
+Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Mar
+ 2021 16:59:37 +0800
+From:   Troy Lee <troy_lee@aspeedtech.com>
+To:     <wangzhiqiang.bj@bytedance.com>, <yulei.sh@bytedance.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>
+CC:     <leetroy@gmail.com>
+Subject: [PATCH v1] ARM: dts: Fix 64MiB OpenBMC flash layout and aspeed-ast2600-evb.dts
+Date:   Tue, 16 Mar 2021 08:59:32 +0000
+Message-ID: <20210316085932.2601-1-troy_lee@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 12G8oqqZ007507
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for new added platforms which support spdif module.
-They are i.MX8QXP, i.MX8MM, i.MX8MN, i.MX8MQ.
+Aspeed AST2600 u-boot requires 600KiB+ flash space. Sharing the same
+openbmc-flash-layout-64.dtsi requires to resize the flash partition.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+The updated flash layout as follows:
+- u-boot: 896 KiB
+- u-boot-env: 128 KiB
+- kernel: 9MiB
+- rofs: 32 MiB
+- rwfs: 22 MiB
+
+Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
 ---
- Documentation/devicetree/bindings/sound/fsl,spdif.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/boot/dts/aspeed-ast2600-evb.dts      | 32 +------------------
+ .../arm/boot/dts/openbmc-flash-layout-64.dtsi | 18 +++++------
+ 2 files changed, 10 insertions(+), 40 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-index 50449b6d1048..4454aca34d56 100644
---- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-@@ -21,6 +21,10 @@ properties:
-       - fsl,vf610-spdif
-       - fsl,imx6sx-spdif
-       - fsl,imx8qm-spdif
-+      - fsl,imx8qxp-spdif
-+      - fsl,imx8mq-spdif
-+      - fsl,imx8mm-spdif
-+      - fsl,imx8mn-spdif
+diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+index 89be13197780..2cfae9cfed3a 100644
+--- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
++++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+@@ -121,37 +121,7 @@ flash@0 {
+ 		m25p,fast-read;
+ 		label = "bmc";
+ 		spi-max-frequency = <50000000>;
+-
+-		partitions {
+-			compatible = "fixed-partitions";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			u-boot@0 {
+-				reg = <0x0 0xe0000>; // 896KB
+-				label = "u-boot";
+-			};
+-
+-			u-boot-env@e0000 {
+-				reg = <0xe0000 0x20000>; // 128KB
+-				label = "u-boot-env";
+-			};
+-
+-			kernel@100000 {
+-				reg = <0x100000 0x900000>; // 9MB
+-				label = "kernel";
+-			};
+-
+-			rofs@a00000 {
+-				reg = <0xa00000 0x2000000>; // 32MB
+-				label = "rofs";
+-			};
+-
+-			rwfs@6000000 {
+-				reg = <0x2a00000 0x1600000>; // 22MB
+-				label = "rwfs";
+-			};
+-		};
++#include "openbmc-flash-layout-64.dtsi"
+ 	};
+ };
  
-   reg:
-     maxItems: 1
+diff --git a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
+index 91163867be34..31f59de5190b 100644
+--- a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
++++ b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
+@@ -9,27 +9,27 @@ partitions {
+ 	#size-cells = <1>;
+ 
+ 	u-boot@0 {
+-		reg = <0x0 0x60000>; // 384KB
++		reg = <0x0 0xe0000>; // 896KB
+ 		label = "u-boot";
+ 	};
+ 
+-	u-boot-env@60000 {
+-		reg = <0x60000 0x20000>; // 128KB
++	u-boot-env@e0000 {
++		reg = <0xe0000 0x20000>; // 128KB
+ 		label = "u-boot-env";
+ 	};
+ 
+-	kernel@80000 {
+-		reg = <0x80000 0x500000>; // 5MB
++	kernel@100000 {
++		reg = <0x100000 0x900000>; // 9MB
+ 		label = "kernel";
+ 	};
+ 
+-	rofs@580000 {
+-		reg = <0x580000 0x2a80000>; // 42.5MB
++	rofs@a00000 {
++		reg = <0xa00000 0x2000000>; // 32MB
+ 		label = "rofs";
+ 	};
+ 
+-	rwfs@3000000 {
+-		reg = <0x3000000 0x1000000>; // 16MB
++	rwfs@6000000 {
++		reg = <0x2a00000 0x1600000>; // 22MB
+ 		label = "rwfs";
+ 	};
+ };
 -- 
-2.27.0
+2.25.1
 
