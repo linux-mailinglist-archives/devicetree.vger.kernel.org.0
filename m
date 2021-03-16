@@ -2,128 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0E033CFFD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D6733D026
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235051AbhCPIgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 04:36:31 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:59075 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235105AbhCPIgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:36:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1615883772; x=1647419772;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ZAb2QZBNc9gZgwRbjqXLpn0mCs+bbSoKJvvznqLvH68=;
-  b=TrQitV+bDHalrRMAmaPikaODpsPjA7kYsGRTp+3PqKFeaLzUa94bYFEn
-   F5vqob7NkipJwcOXYYsRqrSpGZ7ojdZvv6xDEXsMzXkMjylMDdY2w4frt
-   KZ0+J8TfDyrSUPAHm5AEGh1fAdMuOevRL4h7Gdun9Sp2jgPYqf8CjdPE3
-   g1mvOr4Gs+rrRepCGHwYw7ULmfQWenxq7C7bRy2DlGP0mnjsx1HNV3FdJ
-   ZCGMkGQdvagODw0+9l8e4fOxOquerJ6+3ajq74Mm7hw3sBWOJ7yt8ZTlw
-   7z1lG/RU4JQig//3lWZSMRvjJgmoK6k8IeEr7XY7z5ErT0au2+GDA426Y
-   Q==;
-IronPort-SDR: 9mj46EXfq7cn3qxr9/Q7OUPQjgBDlYTLpGOwyleVBIZmz9ZCtv/XK7R3GV1Wk8mDbxhlXoxfRA
- nzfQIv51J5aIyYxmQZykqkUXETLW7qTFeLo96XvaFd9OvFiz4VqGXo+mcX5scAwpZLnvuyrw2n
- Ez3IUHH5fAwdHIb4BFvvfusD9eVa+O55LwPLGSYDvbFvP397sO00D1Kziz20PTjOna6KD/iMYX
- ieL3srx17xKRF0H/pNzpFp/KdpuTI5oAyYqSzGrqfAXy88jb2yxSE4xArO7nOPZVB37fPruaNL
- PEI=
-X-IronPort-AV: E=Sophos;i="5.81,251,1610434800"; 
-   d="scan'208";a="112895607"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Mar 2021 01:36:12 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 16 Mar 2021 01:36:10 -0700
-Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 16 Mar 2021 01:36:08 -0700
-Message-ID: <319ae8336916458f416f8ed973feafcbed701b48.camel@microchip.com>
-Subject: Re: [PATCH v7 3/3] arm64: dts: reset: add microchip sparx5 switch
- reset driver
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Date:   Tue, 16 Mar 2021 09:36:07 +0100
-In-Reply-To: <20210308195934.GA2855503@robh.at.kernel.org>
-References: <20210303081158.684532-1-steen.hegelund@microchip.com>
-         <20210303081158.684532-4-steen.hegelund@microchip.com>
-         <20210308195934.GA2855503@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S235414AbhCPIyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 04:54:11 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:33636 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235797AbhCPIyI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 04:54:08 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4938B200328;
+        Tue, 16 Mar 2021 09:54:07 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D0B1A203E04;
+        Tue, 16 Mar 2021 09:54:03 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3F944402C1;
+        Tue, 16 Mar 2021 09:53:59 +0100 (CET)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: fsl_spdif: Add compatible string for new platforms
+Date:   Tue, 16 Mar 2021 16:40:53 +0800
+Message-Id: <1615884053-4264-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add compatible string for new added platforms which support spdif module.
+They are i.MX8QXP, i.MX8MM, i.MX8MN, i.MX8MQ.
 
-On Mon, 2021-03-08 at 12:59 -0700, Rob Herring wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
-> 
-> On Wed, Mar 03, 2021 at 09:11:58AM +0100, Steen Hegelund wrote:
-> > This provides reset driver support for the Microchip Sparx5 PCB134
-> > and
-> > PCB135 reference boards.
-> 
-> This still looks like an incompatible change with no explanation.
-> 
-> What happens on an old kernel that expects "microchip,sparx5-chip-
-> reset"
-> and doesn't understand "microchip,sparx5-switch-reset"?
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+ Documentation/devicetree/bindings/sound/fsl,spdif.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Sorry about forgetting that item.
-I will add a note to say that this is an incompatible change.
-In practice, I do not think the reset driver has really been taken into
-use yet.
-
-> 
-> > 
-> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> > ---
-> >  arch/arm64/boot/dts/microchip/sparx5.dtsi | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > index 380281f312d8..dc3ada5cf9fc 100644
-> > --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > @@ -132,9 +132,12 @@ mux: mux-controller {
-> >                       };
-> >               };
-> > 
-> > -             reset@611010008 {
-> > -                     compatible = "microchip,sparx5-chip-reset";
-> > +             reset: reset-controller@611010008 {
-> > +                     compatible = "microchip,sparx5-switch-reset";
-> >                       reg = <0x6 0x11010008 0x4>;
-> > +                     reg-names = "gcb";
-> > +                     #reset-cells = <1>;
-> > +                     cpu-syscon = <&cpu_ctrl>;
-> >               };
-> > 
-> >               uart0: serial@600100000 {
-> > --
-> > 2.30.1
-> > 
-
-
+diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+index 50449b6d1048..4454aca34d56 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+@@ -21,6 +21,10 @@ properties:
+       - fsl,vf610-spdif
+       - fsl,imx6sx-spdif
+       - fsl,imx8qm-spdif
++      - fsl,imx8qxp-spdif
++      - fsl,imx8mq-spdif
++      - fsl,imx8mm-spdif
++      - fsl,imx8mn-spdif
+ 
+   reg:
+     maxItems: 1
 -- 
-BR
-Steen
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-steen.hegelund@microchip.com
+2.27.0
 
