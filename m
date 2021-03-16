@@ -2,76 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E4C33D36F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 12:56:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8C633D37A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 13:03:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237554AbhCPL4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 07:56:18 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49978 "EHLO
+        id S237567AbhCPMDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 08:03:21 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52074 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237544AbhCPLzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 07:55:54 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12GBtmFS110749;
-        Tue, 16 Mar 2021 06:55:48 -0500
+        with ESMTP id S237557AbhCPMDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 08:03:16 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12GC38vE113760;
+        Tue, 16 Mar 2021 07:03:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615895748;
-        bh=nxPGONndDz3YgJY8MtdT6DmTfIWCyvueeBm4r1ERtaw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=gz3qrd/hRJ3l/LI2X6EIjjr6yB3qFW1HnPkTgeVwW9ZweRp9hywBgq90QDmcoGnL3
-         XhfO3afwyorLdgtgEciWMEXgLNisvC1m/CsLMSGpZ6UruNaN0Jq9U0Zr/K40DX53aC
-         TV3bA93MGPzlrVDvY8aBiG8B3YkgMHbU4Wg3lMcg=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12GBtm7f091534
+        s=ti-com-17Q1; t=1615896188;
+        bh=JUZxNgAAlZvvc/jMKRjU1b/5rgQyQZ9P6xe6l9jYb4Q=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=P9U4MgeFyjsgys3GcUbucDbseTujEUj1IlkGJX8qeBSulPU2URmWVcNa9zkceGcEc
+         aesueUX4FZk8WZjmIZrxegjzZYjIqv3cWosN8Y5IjVUsJNyGn4V1mTuJLDGCIlVcDb
+         rHMEo9k5jDyIh7JPcs9KsZt58UVRnQo/XELFxRJI=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12GC38tA084521
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 Mar 2021 06:55:48 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 16 Mar 2021 07:03:08 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 16
- Mar 2021 06:55:47 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2021 07:03:08 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 16 Mar 2021 06:55:47 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12GBtlea024493;
-        Tue, 16 Mar 2021 06:55:47 -0500
-Date:   Tue, 16 Mar 2021 06:55:47 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Frontend Transport; Tue, 16 Mar 2021 07:03:08 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12GC34xc084945;
+        Tue, 16 Mar 2021 07:03:05 -0500
+Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-j7200-common-proc-board:
+ Disable unused gpio modules
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-am64-main: Add OSPI node
-Message-ID: <20210316115547.7acr6sc5g242x5jh@acrobat>
-References: <20210315120149.10606-1-vigneshr@ti.com>
+References: <20210310161924.22256-1-a-govindraju@ti.com>
+ <20210310161924.22256-3-a-govindraju@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <28391514-7946-4db0-598e-b53b75fc30b5@ti.com>
+Date:   Tue, 16 Mar 2021 14:01:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210315120149.10606-1-vigneshr@ti.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20210310161924.22256-3-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:31-20210315, Vignesh Raghavendra wrote:
-> AM64 SoC has a single Octal SPI (OSPI) instance under Flash SubSystem
-> (FSS).  Add DT entry for the same.
+
+
+On 10/03/2021 18:19, Aswath Govindraju wrote:
+> From: Faiz Abbas <faiz_abbas@ti.com>
 > 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
+> There are 6 gpio instances inside SoC with 2 groups as show below:
+>      Group one: wkup_gpio0, wkup_gpio1
+>      Group two: main_gpio0, main_gpio2, main_gpio4, main_gpio6
+> 
+> Only one instance from each group can be used at a time. So use main_gpio0
+> and wkup_gpio0 in current linux context and disable the rest of the nodes.
+> 
+> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
-> Resend:
-> Rebase onto latest -next
-> 
-> v1: lore.kernel.org/r/20210309130514.11740-1-vigneshr@ti.com
+>   .../boot/dts/ti/k3-j7200-common-proc-board.dts   | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 
-
-Thanks, but we will need to rebase -> so lets sequence this right
-offline.
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+grygorii
