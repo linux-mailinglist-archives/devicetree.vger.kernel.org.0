@@ -2,202 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 911A333CABE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 02:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FEB033CB41
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 03:06:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234256AbhCPBPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 21:15:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234291AbhCPBPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 21:15:25 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF93C061756
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 18:15:25 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id n17so12610674plc.7
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 18:15:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FOfzDySgsacq8EWM3EuIBQkeQAY4lRnePxThhSToAH4=;
-        b=WB0ZUD7oyFwn3I79YOyAovO5zWgfXo3Mw/i+uQ07ehqECD27kKYRCc8albCaMBc4ud
-         E86bLNYBEh8hgxIPR/018CrHA3hSkiZ+Q9ZZGzCPX3Z9jhws4J/Ggoqo2idNt7lQYQbJ
-         9smQfYf+5Y+QKMh+sfhhD44/uNiAU+YkfwbwM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FOfzDySgsacq8EWM3EuIBQkeQAY4lRnePxThhSToAH4=;
-        b=BqxAn8+o1kX7bq19eW9cCvcHNLouG0gqJUnG/zGbGdkJgswIa1kVZ3HZHNjO8byYT5
-         PopMLK03JWIMZCC5b3yORscwzxKo/uEJLjK6RCnqUL+FTryIxwW3wXaRXlInR7bbbTEY
-         Fjn1FyDXW9v/0p9/6Jc99PofI7S6TsfRHMiuzJJdZa1aP46i7sPuedmSUF2JJoh/twJj
-         hZVrkCZ+8SN6bYxAYFzHPAB3VMa1hijrVag4KoUI4dIagHNwkYjxxyAVkQaKZA0rbp/8
-         8g7bNrSjcjnOKzCmaXNdc5Rw6nwRNGlw4dZriNJidOyjlOMSaB3L4+aZFQPn0izx+Udx
-         mZeg==
-X-Gm-Message-State: AOAM532kxgooyFniUeZ4HqNWlHmb74UNG4A83CFnG+JfbtTDtyfUUJvU
-        MLKSGgOl29OQygXN6b5JOu+7Pg==
-X-Google-Smtp-Source: ABdhPJxq7NnziG+PDvfNwy3oTY/vStLi6lcZzX5Vb1KA7JKMWZ8hlvyRjwY9PIwsfGVRhNEVpBciPQ==
-X-Received: by 2002:a17:90a:e454:: with SMTP id jp20mr2082588pjb.129.1615857324593;
-        Mon, 15 Mar 2021 18:15:24 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:9867:b969:5d4f:e017])
-        by smtp.gmail.com with UTF8SMTPSA id a24sm15019992pff.18.2021.03.15.18.15.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Mar 2021 18:15:24 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sc7180: Add CoachZ rev3
-Date:   Mon, 15 Mar 2021 18:15:15 -0700
-Message-Id: <20210315181509.v3.3.I95b8a63103b77cab6a7cf9c150f0541db57fda98@changeid>
-X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
-In-Reply-To: <20210316011516.1314686-1-mka@chromium.org>
-References: <20210316011516.1314686-1-mka@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S234292AbhCPCGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 22:06:16 -0400
+Received: from lucky1.263xmail.com ([211.157.147.135]:55772 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234123AbhCPCGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 22:06:13 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 84577A8355;
+        Tue, 16 Mar 2021 10:06:06 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13109T139929564739328S1615860366000463_;
+        Tue, 16 Mar 2021 10:06:06 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <8e28fbb17ab0b8f5799e16fa3a09dd86>
+X-RL-SENDER: shawn.lin@rock-chips.com
+X-SENDER: lintao@rock-chips.com
+X-LOGIN-NAME: shawn.lin@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v5 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Convert to yaml file
+Date:   Tue, 16 Mar 2021 10:06:00 +0800
+Message-Id: <1615860362-239208-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CoachZ rev3 uses a 100k NTC thermistor for the charger temperatures,
-instead of the 47k NTC that is stuffed in earlier revisions. Add .dts
-files for rev3.
+This patch converts sdhci-of-dwcmshc.txt to sdhci-of-dwcmshc.yaml
 
-The 47k NTC currently isn't supported by the PM6150 ADC driver.
-Disable the charger thermal zone for rev1 and rev2 to avoid the use
-of bogus temperature values.
-
-This also gets rid of the explicit DT files for rev2 and handles
-rev2 in the rev1 .dts instead. There was some back and forth
-downstream involving the 'dmic_clk_en' pin, after that was sorted
-out the DT for rev1 and rev2 is the same.
-
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
 
-Changes in v3:
-- get rid of separate .dts for rev2
+Changes in v5: None
+Changes in v4:
+- add tag from Rob
+Series-changes: 3
+- fix filename and other improvments suggested by Rob
 
-Changes in v2:
-- added CoachZ rev3
-- updated subject and commit message
+ .../devicetree/bindings/mmc/sdhci-of-dwcmshc.txt   | 20 -------
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 63 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
 
- arch/arm64/boot/dts/qcom/Makefile                   |  4 ++--
- .../boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts  |  4 ++--
- .../boot/dts/qcom/sc7180-trogdor-coachz-r1.dts      | 13 +++++++++++--
- ...-r2-lte.dts => sc7180-trogdor-coachz-r3-lte.dts} |  6 +++---
- ...r-coachz-r2.dts => sc7180-trogdor-coachz-r3.dts} |  4 ++--
- 5 files changed, 20 insertions(+), 11 deletions(-)
- rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2-lte.dts => sc7180-trogdor-coachz-r3-lte.dts} (69%)
- rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2.dts => sc7180-trogdor-coachz-r3.dts} (75%)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 11aa83ca798f..39db370cf1a4 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -33,8 +33,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-index 533c048903ea..82dc00cc7fb9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-@@ -9,8 +9,8 @@
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google CoachZ (rev1) with LTE";
--	compatible = "google,coachz-rev1-sku0", "qcom,sc7180";
-+	model = "Google CoachZ (rev1 - 2) with LTE";
-+	compatible = "google,coachz-rev1-sku0", "google,coachz-rev2-sku0", "qcom,sc7180";
- };
- 
- &cros_ec_proximity {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-index 86619f6c1134..b9c252df9fa1 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-@@ -10,8 +10,17 @@
- #include "sc7180-trogdor-coachz.dtsi"
- 
- / {
--	model = "Google CoachZ (rev1)";
--	compatible = "google,coachz-rev1", "qcom,sc7180";
-+	model = "Google CoachZ (rev1 - 2)";
-+	compatible = "google,coachz-rev1", "google,coachz-rev2", "qcom,sc7180";
-+};
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+deleted file mode 100644
+index ee4253b..0000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Synopsys DesignWare Cores Mobile Storage Host Controller
+-
+-Required properties:
+-- compatible: should be one of the following:
+-    "snps,dwcmshc-sdhci"
+-- reg: offset and length of the register set for the device.
+-- interrupts: a single interrupt specifier.
+-- clocks: Array of clocks required for SDHCI; requires at least one for
+-    core clock.
+-- clock-names: Array of names corresponding to clocks property; shall be
+-    "core" for core clock and "bus" for optional bus clock.
+-
+-Example:
+-	sdhci2: sdhci@aa0000 {
+-		compatible = "snps,dwcmshc-sdhci";
+-		reg = <0xaa0000 0x1000>;
+-		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&emmcclk>;
+-		bus-width = <8>;
+-	}
+diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+new file mode 100644
+index 0000000..f99fb9f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/snps,dwcmshc-sdhci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/*
-+ * CoachZ rev1 is stuffed with a 47k NTC as charger thermistor which currently
-+ * is not supported by the PM6150 ADC driver. Disable the charger thermal zone
-+ * to avoid using bogus temperature values.
-+ */
-+&charger_thermal {
-+	status = "disabled";
- };
- 
- &tlmm {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-similarity index 69%
-rename from arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-rename to arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-index 6e7745801fae..d23409034e8c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-@@ -2,14 +2,14 @@
- /*
-  * Google CoachZ board device tree source
-  *
-- * Copyright 2020 Google LLC.
-+ * Copyright 2021 Google LLC.
-  */
- 
--#include "sc7180-trogdor-coachz-r2.dts"
-+#include "sc7180-trogdor-coachz-r3.dts"
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google CoachZ (rev2+) with LTE";
-+	model = "Google CoachZ (rev3+) with LTE";
- 	compatible = "google,coachz-sku0", "qcom,sc7180";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-similarity index 75%
-rename from arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-rename to arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-index 4f69b6ba299f..a02d2d57c78c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-@@ -2,7 +2,7 @@
- /*
-  * Google CoachZ board device tree source
-  *
-- * Copyright 2020 Google LLC.
-+ * Copyright 2021 Google LLC.
-  */
- 
- /dts-v1/;
-@@ -10,6 +10,6 @@
- #include "sc7180-trogdor-coachz.dtsi"
- 
- / {
--	model = "Google CoachZ (rev2+)";
-+	model = "Google CoachZ (rev3+)";
- 	compatible = "google,coachz", "qcom,sc7180";
- };
++title: Synopsys Designware Mobile Storage Host Controller Binding
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++  - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - snps,dwcmshc-sdhci
++
++  reg:
++    minItems: 1
++    items:
++      - description: Offset and length of the register set for the device
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    items:
++      - description: core clock
++      - description: bus clock for optional
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: core
++      - const: bus
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mmc@aa0000 {
++      compatible = "snps,dwcmshc-sdhci";
++      reg = <0xaa000 0x1000>;
++      interrupts = <0 25 0x4>;
++      clocks = <&cru 17>, <&cru 18>;
++      clock-names = "core", "bus";
++      bus-width = <8>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++    };
++
++...
 -- 
-2.31.0.rc2.261.g7f71774620-goog
+2.7.4
+
+
 
