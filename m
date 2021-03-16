@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6535133E19D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4BD133E20E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 00:25:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbhCPWoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:44:16 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:43397 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbhCPWns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:43:48 -0400
-Received: by mail-io1-f47.google.com with SMTP id f20so38945043ioo.10;
-        Tue, 16 Mar 2021 15:43:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3AQHaxNTgps1UYSis5tdzaUweEo/y4yOoyxoMH6xdw0=;
-        b=tw+x6XOCAgSicAHsyGZAEmlAF0Vdb2aE5Be6G3hNkf5PFga+5xLfWkEInEjS4fbUW1
-         zHW8ol49h58ZDvWah+iPBGyXA3i7nu9ENn7UTBqrt18v00Wogf2jfRU9kjy+zW4yyt+g
-         0NBEq2QB08viskgLG+ymV+GJcH7xRHcIfqyUj27WuxriGmQJWm7qN5CKgAWiytsHnECz
-         XDLmcyX0oyPBS1/3NJtbt8vHykENoAPJn0PSnivRsnU1FPyMvplNhx/Tko8eTtJz60+m
-         d0vvhy9Nvg8kFEA5IyFy2CG3HtvbS1lK3j1HpixOPhD0W8puRWjCPJnXjhz/RTdbM9my
-         98fA==
-X-Gm-Message-State: AOAM531TiYn+044ukj5ISqOVDI0mtyeoDnSGOwfFjAbUwu840Ygei24H
-        B5Wt/haJvY1gN7W7ZoO0fw==
-X-Google-Smtp-Source: ABdhPJx7hy5YNHZ9YdWaP/Qmd/x7PZIbYcuO0BREm5pPQpv5v4qXdle2dM1a/H1nxKpNbXiVZWcvqQ==
-X-Received: by 2002:a02:662b:: with SMTP id k43mr653990jac.139.1615934628209;
-        Tue, 16 Mar 2021 15:43:48 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id b15sm6551871ilm.25.2021.03.16.15.43.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:43:47 -0700 (PDT)
-Received: (nullmailer pid 3823592 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:43:44 -0000
-Date:   Tue, 16 Mar 2021 16:43:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     grygorii.tertychnyi@leica-geosystems.com,
-        andrey.zhizhikin@leica-geosystems.com, robh+dt@kernel.org,
-        andriy.shevchenko@linux.intel.com, linux-kernel@vger.kernel.org,
-        denis.ciocca@st.com, jic23@kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, pmeerw@pmeerw.net, lars@metafoo.de
-Subject: Re: [PATCH V2 1/2] dt-bindings: iio: st,st-sensors add IIS2MDC.
-Message-ID: <20210316224344.GA3823538@robh.at.kernel.org>
-References: <20210311030554.6428-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20210311030554.6428-2-Qing-wu.Li@leica-geosystems.com.cn>
+        id S229492AbhCPXYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 19:24:32 -0400
+Received: from 3.mo3.mail-out.ovh.net ([46.105.44.175]:39253 "EHLO
+        3.mo3.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbhCPXYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 19:24:04 -0400
+X-Greylist: delayed 105640 seconds by postgrey-1.27 at vger.kernel.org; Tue, 16 Mar 2021 19:24:04 EDT
+Received: from player762.ha.ovh.net (unknown [10.110.103.202])
+        by mo3.mail-out.ovh.net (Postfix) with ESMTP id D23FD281483
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 23:44:52 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player762.ha.ovh.net (Postfix) with ESMTPSA id B5C461C1A0637;
+        Tue, 16 Mar 2021 22:44:44 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-104R00590ba227f-f0e6-4995-86e5-396bb2d1189f,
+                    A1A54852ADC5FECC858E3B1428EFF252DD499A2B) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <20210310070025.9150-1-zajec5@gmail.com>
+ <20210316223122.GA3800914@robh.at.kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <37f56e82-f60a-2375-e809-2b12fde5311b@milecki.pl>
+Date:   Tue, 16 Mar 2021 23:44:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311030554.6428-2-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <20210316223122.GA3800914@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 3811171185956523759
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrudefvddgudeiiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeekudehjeehffdufefhgffhgeejjeelteekveeuleevgeekhffhffeiheellefgveenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeeivddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Mar 2021 03:05:53 +0000, LI Qingwu wrote:
-> Add support for ST magnetometer IIS2MDC,
-> an I2C/SPI interface 3-axis magnetometer sensor.
-> The patch was tested on the instrument with IIS2MDC via I2C interface.
+On 16.03.2021 23:31, Rob Herring wrote:
+> On Wed, Mar 10, 2021 at 08:00:25AM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> The old regex allowed only 1 character to follow the "led-" prefix which
+>> was most likely just an overlook.
 > 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Indeed.
 > 
+>> Fix it and while at it allow dashes in
+>> node names. It allows more meaningful names and it helpful e.g. when
+>> having the same function name with 2 different colors. For example:
+>> 1. led-power-white
+>> 2. led-power-blue
+> 
+> No, node names are supposed to be generic and reflect the class of
+> device.
 
-Acked-by: Rob Herring <robh@kernel.org>
+There was some extra discussion on this patch that has ended up with a question about numbering nodes.
+
+Current binding assumes that nodes should be numbered with independent suffix numbers like:
+led-0 { };
+led-1 { };
+led-2 { };
+
+Do you think this could / should be improved somehow?
+
+One option I was thinking about was using:
+led@0 { };
+led@5 { };
+where numbers ("0", "5") should match GPIO numbers.
+
+Is that a valid solution and does it improve things to make it worth it?
