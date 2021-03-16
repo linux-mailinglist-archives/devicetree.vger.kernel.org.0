@@ -2,95 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB9733DB7B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E15333DB8F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:55:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237710AbhCPRxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 13:53:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43198 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239269AbhCPRxA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 13:53:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7EF196512F;
-        Tue, 16 Mar 2021 17:52:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615917179;
-        bh=W8rr8sTbWk/xigthIkTyoScmrkEHXz8tnd8LeK4Aq5U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L7Qe6r7cy4oo3a7QC4RU5ShnI1IfUIXGMymWJJL18hoP+qr4a8ZlmErgMfOoQWY2q
-         I+YaFe3FcrFsNCFjwfQA/NUkr5Vyl1hjheDf0cH1T2Fy9kleyC9GyZYS/nxm8JT8MX
-         Dbbhr5IoBUtl+Tfft2wdeXYupzQRO6HVWl8qefQFnqIcrOqRmMhpoS2oHxwfPHATek
-         0US5gr2za1lShVj87zBMfiYTUZv5ZGxPrspuMOfmjVGaTWndwj+YsoEHzjQOoosw41
-         glO5ohMoFTmZgAM4+mYn79CnD7j0IJ0tfFSfUx9sXQKBEawxfJaVtDkHz9jGNYUIB8
-         oewgcyTXbsouw==
-Received: by mail-qt1-f181.google.com with SMTP id l13so12304799qtu.9;
-        Tue, 16 Mar 2021 10:52:59 -0700 (PDT)
-X-Gm-Message-State: AOAM533VVjS1w60iIaXJTU5UsKxHo5+jbuRBGIGT5g5+ieE1mLA6CUas
-        QeIdhgq0SbQYY5h3ufpfo9MVArnB9qQksonKsQ==
-X-Google-Smtp-Source: ABdhPJxG0ZFRjKxTysjTNHhJwM08UgCXG6fkHthhoVafsNybBo0emZ8KLn06OpgaliodW8DNOmRhuSOZzuNZ9pzhXaU=
-X-Received: by 2002:ac8:4ccc:: with SMTP id l12mr58779qtv.137.1615917178617;
- Tue, 16 Mar 2021 10:52:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
- <20210312154357.1561730-17-sebastian.reichel@collabora.com>
- <CAL_JsqLn9Mo_hTuCEPapNz3cFHbC8NKHH0npYrnV+dC85pBAsQ@mail.gmail.com> <20210316162045.cvvb226rpzxbovdl@earth.universe>
-In-Reply-To: <20210316162045.cvvb226rpzxbovdl@earth.universe>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 16 Mar 2021 11:52:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+rynEXFCJDL-Xrar1hSam65qP6ZAiOQUKRtDbu26BYSw@mail.gmail.com>
-Message-ID: <CAL_Jsq+rynEXFCJDL-Xrar1hSam65qP6ZAiOQUKRtDbu26BYSw@mail.gmail.com>
-Subject: Re: [PATCH 16/38] dt-bindings: power: supply: tps65217: Convert to DT
- schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S239313AbhCPRys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 13:54:48 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:40318 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239355AbhCPRyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 13:54:16 -0400
+Received: by mail-io1-f48.google.com with SMTP id m7so19089735iow.7;
+        Tue, 16 Mar 2021 10:54:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dLqrm0/ef81kahZ3V++ylIOaNZ5Ioc1N/ut1Pv4L6zY=;
+        b=oXZpZxn0wgFAGsArqo1T4A09w/luI2rY9rchZ/UPweUccx+tIbemMMFi3l45E1aTf4
+         elD+rq4JhBsMvysbLbU2/JdDTp2GwTm575Qha+lsxvz1UQYMCSxmIg8BtjvFZ0Rdx/Sl
+         W1RYBkZwXjQB3tv2cp56QRme6ffTsKew2PBflVNa+t8TvyUxiQVYouOpLsbD78KqYlIM
+         oykRO5gNt0D9/dJ76rG3CHaD0dArwvCS1huuWZiwE2GT5BI/D9YAuuwsK5yCKBdZ3Er5
+         uNVoHjPIfLI1gm6RbSTiYfGtlr2XdMu8rA0E79BnNaoRXKD8BCJ03S//xfPsXBXbaa9s
+         4Ncg==
+X-Gm-Message-State: AOAM533KpYzv453hwWHlejRtGBO4OfvX8xGOdULQyCDrZFaRibKMaAjf
+        qo44AZJR8njuQ/xlDk4d/Vcl22JgLA==
+X-Google-Smtp-Source: ABdhPJz58cXYFwH0LvTilPm7qZ6a5slbFtu1/fj+K0w3XsAGD6iFn2JuuIuNrYcXaGUAcy56rJF8Dg==
+X-Received: by 2002:a6b:da0f:: with SMTP id x15mr4245698iob.181.1615917256171;
+        Tue, 16 Mar 2021 10:54:16 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id k4sm8804062ion.29.2021.03.16.10.54.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 10:54:15 -0700 (PDT)
+Received: (nullmailer pid 3326123 invoked by uid 1000);
+        Tue, 16 Mar 2021 17:54:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, Fei Shao <fshao@chromium.org>,
+        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, Ran Bi <ran.bi@mediatek.com>
+In-Reply-To: <1615829757-3223-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <1615829757-3223-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1615829757-3223-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+Subject: Re: [PATCH v6 4/8] dt-bindings: regulator: Add document for MT6359 regulator
+Date:   Tue, 16 Mar 2021 11:54:09 -0600
+Message-Id: <1615917249.235463.3326122.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 10:20 AM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi Rob,
->
-> On Mon, Mar 15, 2021 at 12:33:23PM -0600, Rob Herring wrote:
-> > On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > > +  interrupts:
-> > > +    minItems: 2
-> > > +    maxItems: 2
-> >
-> > We've lost info that was in the original binding. You could do
-> > something like this:
-> >
-> > items:
-> >   - description: USB charger
-> >     const: 0
-> >   - description: AC charger
-> >     const: 1
-> >
-> > (Usually the interrupt values would be out of scope of the binding,
-> > but I guess here it makes some sense.)
->
-> I initially did this, but it did not work. I see the following for
-> dt_binding_check (dtbs_check triggers the same):
->
-> Documentation/devicetree/bindings/power/supply/tps65217-charger.example.dt.yaml: charger: interrupts:0: [0] is too short
->         From schema: Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
-> Documentation/devicetree/bindings/power/supply/tps65217-charger.example.dt.yaml: charger: interrupts: [[0], [1]] is too long
->         From schema: Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
-> Documentation/devicetree/bindings/power/supply/tps65217-charger.example.dt.yaml: charger: interrupts: Additional items are not allowed ([1] was unexpected)
->         From schema: Documentation/devicetree/bindings/power/supply/tps65217-charger.yaml
->
-> Seemed to be a limitation in the validation tool, so I just dropped
-> the extra information. If we do not want to loose information I can
-> add it to the description, or should the validation tool be fixed?
-> I suppose it's kind of unusual, that the binding can provide the
-> interrupt line numbers.
+On Tue, 16 Mar 2021 01:35:53 +0800, Hsin-Hsiung Wang wrote:
+> add dt-binding document for MediaTek MT6359 PMIC
+> 
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+> changes since v5:
+> - no change.
+> ---
+>  .../bindings/regulator/mt6359-regulator.yaml  | 169 ++++++++++++++++++
+>  1 file changed, 169 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+> 
 
-It is, so let's just leave it as-is.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: pmic: 'adc', 'compatible' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.example.dt.yaml: pmic: '#address-cells', '#size-cells', 'adc' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.example.dt.yaml: pmic: '#address-cells', '#size-cells', 'adc@480' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/qcom,pm8018-adc.example.dt.yaml: pmic: '#address-cells', '#size-cells', 'adc@197' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
+
+See https://patchwork.ozlabs.org/patch/1453404
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
