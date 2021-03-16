@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDC9C33D963
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 700C333D97E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:34:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238779AbhCPQ12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 12:27:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49046 "EHLO
+        id S237720AbhCPQd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 12:33:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236656AbhCPQ0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:26:50 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E554C061756
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 09:26:49 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b1e0:9434:c5b6:aecd])
-        by laurent.telenet-ops.be with bizsmtp
-        id h4So240010UTkXy014SohF; Tue, 16 Mar 2021 17:26:48 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lMCWt-008ASu-Gk; Tue, 16 Mar 2021 17:26:47 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lMCWs-00AFW8-Kw; Tue, 16 Mar 2021 17:26:46 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
-Date:   Tue, 16 Mar 2021 17:26:43 +0100
-Message-Id: <20210316162643.2442885-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S238712AbhCPQcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:32:51 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091CAC06174A;
+        Tue, 16 Mar 2021 09:32:45 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id b16so9536839eds.7;
+        Tue, 16 Mar 2021 09:32:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DjTxZT8AqroYP99shdWO695KE0Qo/izOf7I5S4PGebY=;
+        b=eMHU0ZgB9iZLTIKhDQsi86LqQoF4n2XUMbJKievcKjSFjzL5haEqigr0DZHElui9cB
+         5JaBQP2aW1BvQL6g0yEV7mrfwR+Vp7rFSaGia5lBvayHQr7Zs3azVbbMhDEzUH9imeVI
+         svVLaHn8Rho/uRN/hE3RUXfJKLnCIDpcM+RsWJ7Mcb1rnoSmXDRESN1Qx93D2vyFFN98
+         iHw+/g5pMjm8PHSC6Yri7oG4q+Mg/SJLFWe5P+V8PFAAh1JUIgr2I3WMw8tmS/N1sdLK
+         aihwSsUuCs33DfjsEd7yyGVm7LLVF8qXDDHxs97MiAU/mGbzk/qVvtFmiKbO+XXmUXzX
+         7X0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DjTxZT8AqroYP99shdWO695KE0Qo/izOf7I5S4PGebY=;
+        b=XTfHH0V0X2l3+hRw/aPwe5eZKhrd2+TkX4fihr17YFb2y9vIYC0COTwpkKJquu4PRt
+         3/pxDgi9yFeXTQe1Qd7xxNNr1RKPnpK5xz4vKRREGvBy4PDW9xx/KnSjcW2IRzEtHbSe
+         ARxlKC0Rv6ClHg2CIXZjLGTgiLq3bgc7helCrlz1fNfbPez3vWI34kD9BFtobt1B2tih
+         z2SiCpv5hE0SUa/P/bGH4GFFc9aZ0CemLfjEuPoe6+mt2cJw1fCrGw9c6o9mreJmJefY
+         h768C0pwc1NZntZjQqqpcyGS1y8v7LgmQYRLlqE23AG6+fwbb4jaPtljm2YtIHZqs8Q3
+         qPZQ==
+X-Gm-Message-State: AOAM533ru0LdnTUdciog/bam1B8HdHGTBE6F/cXU6qYSoQF8Et//bTWD
+        vS1M/4E6XaFpXt1pvNjia8Y=
+X-Google-Smtp-Source: ABdhPJxtZ4WnHx3NTNAcSmsmTV5p7JCQe4MelLjCfJBcuTeGIGE21s7wKJhvqqqetIqjzZvaCHLdvQ==
+X-Received: by 2002:a05:6402:4309:: with SMTP id m9mr38266598edc.25.1615912363716;
+        Tue, 16 Mar 2021 09:32:43 -0700 (PDT)
+Received: from BV030612LT ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id d15sm10818511edx.62.2021.03.16.09.32.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Mar 2021 09:32:43 -0700 (PDT)
+Date:   Tue, 16 Mar 2021 18:32:40 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     David Miller <davem@redhat.com>
+Cc:     andrew@lunn.ch, kuba@kernel.org, robh+dt@kernel.org,
+        afaerber@suse.de, mani@kernel.org, p.zabel@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] net: ethernet: actions: Add Actions Semi Owl
+ Ethernet MAC driver
+Message-ID: <20210316163240.GA1111731@BV030612LT>
+References: <cover.1615807292.git.cristian.ciocaltea@gmail.com>
+ <a93430bc30d7e733184a2fa3ab5c66180a76d379.1615807292.git.cristian.ciocaltea@gmail.com>
+ <20210315.143933.939938434416308507.davem@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210315.143933.939938434416308507.davem@redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  - Remove unneeded references for "idt,xtal-load-femtofarads" and
-    "idt,slew-percent", as vendor specific properties having a standard
-    unit suffix don't need a type,
-  - Add missing "additionalProperties: false" for subnodes, to catch
-    typos in properties,
-  - Fix property names in example.
+On Mon, Mar 15, 2021 at 02:39:33PM -0700, David Miller wrote:
+> From: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> Date: Mon, 15 Mar 2021 13:29:17 +0200
+> 
+> > +
+> > +#define DEFAULT_MSG_ENABLE (NETIF_MSG_DRV | NETIF_MSG_PROBE | NETIF_MSG_LINK)
+> > +static int debug = -1;
+> > +module_param(debug, int, 0);
+> > +MODULE_PARM_DESC(debug, "Debug level (0=none,...,16=all)");
+> 
+> Module parameters are strongly discouraged in networking drivers, pplease delete this
+> ad just pass the default to netif_mdg_init(), thanks!
 
-Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Stephen Boyd <sboyd@kernel.org>
----
-This depends on dt-schema v2021.2.1.
+Ups, I was not aware of this since I've seen it in quite a lot of drivers.
 
-v4:
-  - Add Reviewed-by, Acked-by,
+Thanks for pointing this out, I will take care of it in the next
+revision.
 
-v3:
-  - Drop references for "idt,voltage-microvolt" and "idt,slew-percent",
-
-v2:
-  - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
-    ('clk: vc5: Use "idt,voltage-microvolt" instead of
-    "idt,voltage-microvolts"'),
-  - Drop reference to clock.yaml, which is already applied
-    unconditionally,
-  - Drop removal of allOf around if condition, as it is unnecessary
-    churn.
-
-squash! dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
-
-v5:
-  - Drop reference for "idt,xtal-load-femtofarads",
----
- .../devicetree/bindings/clock/idt,versaclock5.yaml     | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-index c268debe5b8d58cd..434212320c9aa7ab 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-@@ -60,7 +60,6 @@ properties:
-     maxItems: 2
- 
-   idt,xtal-load-femtofarads:
--    $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 9000
-     maximum: 22760
-     description: Optional load capacitor for XTAL1 and XTAL2
-@@ -84,9 +83,10 @@ patternProperties:
-         enum: [ 1800000, 2500000, 3300000 ]
-       idt,slew-percent:
-         description: The Slew rate control for CMOS single-ended.
--        $ref: /schemas/types.yaml#/definitions/uint32
-         enum: [ 80, 85, 90, 100 ]
- 
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -141,13 +141,13 @@ examples:
-             clock-names = "xin";
- 
-             OUT1 {
--                idt,drive-mode = <VC5_CMOSD>;
--                idt,voltage-microvolts = <1800000>;
-+                idt,mode = <VC5_CMOSD>;
-+                idt,voltage-microvolt = <1800000>;
-                 idt,slew-percent = <80>;
-             };
- 
-             OUT4 {
--                idt,drive-mode = <VC5_LVDS>;
-+                idt,mode = <VC5_LVDS>;
-             };
-         };
-     };
--- 
-2.25.1
-
+Kind regards,
+Cristi
