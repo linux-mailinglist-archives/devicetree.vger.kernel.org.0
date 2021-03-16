@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BB933D623
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED43133D62D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:53:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231465AbhCPOtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 10:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55626 "EHLO
+        id S230028AbhCPOwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 10:52:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237293AbhCPOtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 10:49:19 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440A0C06174A;
-        Tue, 16 Mar 2021 07:49:19 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id b5so12877743ilq.10;
-        Tue, 16 Mar 2021 07:49:19 -0700 (PDT)
+        with ESMTP id S229956AbhCPOwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 10:52:38 -0400
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578BEC06174A;
+        Tue, 16 Mar 2021 07:52:36 -0700 (PDT)
+Received: by mail-il1-x135.google.com with SMTP id h18so12927420ils.2;
+        Tue, 16 Mar 2021 07:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JVPpQW2mM7eMcXo/2OtBaimiBNrHKr/09oT1dgBiYKc=;
-        b=uEeuHXURZCqrNAroRmu67dj4ng1plskwJlZW8jjmcGlastdy6jatBLJ/fwlgGWn7Mh
-         PzzUcykEA0uOABI9ziXPvDKxPkQnz0IPV0W/2doeAZBqIEivUr7iwpMCqJ51/HEGAp04
-         VdnN4+H91N7VUMOYV8aVyxJ6B2BfsQX8IycWXrXzRrJ7NxPm0RFbNSjcZA0qhR1gBpGq
-         xPrH09LxDgcOSxqDiZQKsNJOlG5aqOMvd7r0UQ89T5U2SRMZJQeiSCVZEk07FPdYiCGK
-         8Jc0HJ8j5FVwOe2+2pQB4pUnm5O5hBnlosQVs9MTK6R8ouYKBQxwH4HB4o/TzyejDVg/
-         fmmw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=s7B5sPKI+AjLX7PGCYRuKSiugrc3JMFmTU6DfzQil74=;
+        b=Sy0dINrtg41GbsUCuYMIbq7NPUQA+P/jYCP278azudbZidFp0mA/MvIKqF/HW7Dz0z
+         OIJ2fabx+n43F9EATgDpNeYomDq5LGXeMIDFXxcUVSdhrkbhHBWulBqx8zFVGM9y19XW
+         BsUzVISTVci0lYcONVg1sV5H7fNj1FgSVRPTJfa5yuQg1UQ1G2OXhvJcPcYjx4aK7Ibf
+         9otpW3m4VwJ8jbI+pUh8CvD7twcyjp+hahwUuv7i/qCZkvNjFTTlf2kuFaDlErTvMmpv
+         Oznu/r6i9J7i+5Zp/Y7wNQo5BGrUgZWVl1b3KPQWs+8MIxDpRaJI/Xd+51dEP1fal++y
+         fZxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JVPpQW2mM7eMcXo/2OtBaimiBNrHKr/09oT1dgBiYKc=;
-        b=kME+FPr6tGVIBVRxz1xyak8D4nhOj0WRvolKfzI0bt4YRE00hp+NpMdtHwwSrpczpn
-         ZTz6rZEH9Hga1olvJ4i4EGxv/vDMVlwqPipAxUk4/oSs4JGBNdsFo9LQ3oogxtYscYRp
-         dm9HK+2+EUIXniMCLM8ZoaDX7LmCRJUm/XthDpq5B2ghqPu4ezGoWCFA0LgD2XqV7oLs
-         rIBh2DyDXE2JdxHxR/VCSv6Es3MLUh0tdg6GykkUiWVvRNacj5Q7vd+u6Shf3o+s/L/Q
-         uZqzQqmDxXPdIQI5jspN0/Jn4nzQBVTEdS2nvdQYwVq8ntWmiVdurYGH5A6NDo0dhVqk
-         B5sw==
-X-Gm-Message-State: AOAM532Yp4NmRrItVSOe1ZbIha8tW2jv5qIH5ql5MXsIcpW60VOYwU7E
-        O+fyL+0vjSkt9A3MumN8uNg=
-X-Google-Smtp-Source: ABdhPJxs3cwTuUwrRXS8JK/slrHmsvZk0FDcihO3TPF19AB2XU3UAcFsgxTVcX1IvQe6gghmQ4eTQg==
-X-Received: by 2002:a92:3652:: with SMTP id d18mr4091306ilf.100.1615906158583;
-        Tue, 16 Mar 2021 07:49:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=s7B5sPKI+AjLX7PGCYRuKSiugrc3JMFmTU6DfzQil74=;
+        b=QsTyZK9/CpUgvwOl4RbM7mfRypi+whAcNn798tBIzWC7tOC42xs7LXxw5mjlOMrwfQ
+         s4cWYzm92fmsj8eNEOSJ0r20yKUwlFp0mas5bO9ahj/V5J4ECZfEN5QxhkU7W+GVhFAC
+         aFYT5BUKETl8GEXa+pNAlGgfTDWoIqos0Bjq5x8xhPM0KcAF8hAWnO9PCbc2kDfN0DJB
+         3t3dtQIjxJcrHT2M/j1T4XBxeHBR5wwnEysbCrq+kS3rquJTEYRFOCNpVqFWYGXZTMnT
+         WR0OwETbFvzxyyV2v6RTPcOTgBe6MI8r3HaLJ6TXt6tpR6I2DQUd832cb/WmjhI0wb2U
+         rYUg==
+X-Gm-Message-State: AOAM531hIlPzj0o6Y6qntqrH/wQsIM0HoT5CrnEHqJjuNRHR+KwMkC+Y
+        ZM7+v9noOb4OKgHopckoW2I=
+X-Google-Smtp-Source: ABdhPJxB8mdSACEN0x+FYZkXsqFsx18BwLyiTgnKOx4F+mTIKW9DVh1lsWEZYMwOgpHnrAaC1v5Vlg==
+X-Received: by 2002:a92:c5cf:: with SMTP id s15mr3951545ilt.149.1615906355663;
+        Tue, 16 Mar 2021 07:52:35 -0700 (PDT)
 Received: from localhost.localdomain (tunnel525895-pt.tunnel.tserv15.lax1.ipv6.he.net. [2001:470:c:1200::2])
-        by smtp.googlemail.com with ESMTPSA id q15sm9525809ilt.30.2021.03.16.07.49.14
+        by smtp.googlemail.com with ESMTPSA id p5sm8773125iod.31.2021.03.16.07.52.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 07:49:17 -0700 (PDT)
+        Tue, 16 Mar 2021 07:52:35 -0700 (PDT)
 From:   Tianling Shen <cnsztl@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>,
@@ -62,9 +62,11 @@ Cc:     Heiko Stuebner <heiko@sntech.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM NanoPi R4S
-Date:   Tue, 16 Mar 2021 22:49:12 +0800
-Message-Id: <20210316144912.6057-1-cnsztl@gmail.com>
+Date:   Tue, 16 Mar 2021 22:52:29 +0800
+Message-Id: <20210316145229.8833-1-cnsztl@gmail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <67b314e7-92b9-8025-1a41-9b7da6ff2249@arm.com>
+References: <67b314e7-92b9-8025-1a41-9b7da6ff2249@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -72,7 +74,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-16 12:32, Robin Murphy <robin.murphy@arm.com> wrote:
+Robin Murphy <robin.murphy@arm.com> wrote:
 >
 > On 2021-03-13 13:22, CN_SZTL wrote:
 > > Robin Murphy <robin.murphy@arm.com> 于2021年3月13日周六 下午7:55写道：
