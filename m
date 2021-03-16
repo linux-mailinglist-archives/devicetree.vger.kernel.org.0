@@ -2,65 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A8033DBC5
+	by mail.lfdr.de (Postfix) with ESMTP id 3345C33DBC6
 	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 19:00:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239493AbhCPSAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S239501AbhCPSAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 16 Mar 2021 14:00:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46408 "EHLO mail.kernel.org"
+Received: from mail.kernel.org ([198.145.29.99]:46526 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239547AbhCPR7x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 13:59:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 68DBA6512B;
-        Tue, 16 Mar 2021 17:59:52 +0000 (UTC)
+        id S239554AbhCPSAB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 14:00:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B063F65130;
+        Tue, 16 Mar 2021 18:00:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615917592;
-        bh=nXlw2vfyIp1WV4usGhcoH7XilW2OrIy0e0d+yxJsh9E=;
+        s=k20201202; t=1615917601;
+        bh=Vtpwig98DoZbrSR0CuLqzxBGXELlkECOuNP5eItQs1I=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=e8pqAQMPjtlThMC66+kC/1hiYm64eWZ4wYu4wYB5j5y7/non75NV+4zzyXJ/+Whf9
-         LsklXdLpM/fJxJNyg7ccJ6WdDe7xFKiYpv2nB9fIQUiYIeLbzoGxzdIlAQxx5BJQtj
-         fg9JlGMFIYeHWV7iJ00Ct6qCS2rqxHtF0cOYWY8rsWRzYkdKqZb2UPFQnPsXQZSNGa
-         aupAREoPkP7+LV5Iv7X4CgE5SqmeIchFynOt+etteCZ7Ly3mq8mzFp5pkV8b56iEZf
-         mFvvw9TdSuroBaPuJqFasTU/ZmQQUSXe+4uRAi5ygoUtfFeyL5IdN6r0zaWBGh69I6
-         Z0WRHjPpDrV/g==
+        b=B5er0DI4ZmvZIRiX7qGda9dnCI3L7nNsR1o0jHOfuze8qNxaEklDyNkSe7Y5GJxSz
+         09PP8gZiwlSo6hjh25CM0x/YiC6auGmVMNffGEXnwebvDD5X2Y/ePISsGk9qo5DfND
+         K9ZUQ93tU3bpdlquwXTNOVCDamtDGi3APpz8kw47XGwQYmkthItjiVMBGJ5AmsqwJ+
+         vDAkUwWgLS2l0LBSreUtZ8/rruQGP3tp8iwmC2goFiIKf9TPXELiy8VRXHdTl5Gowu
+         2I57AaB9VHl96WbxgnsuMdIHzOZxgcV1NpDOJ5ORs/oRemiODBQlfpqese4fLjvW/B
+         shOeHe2y1XNjQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Seiya Wang <seiya.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, linux-iio@vger.kernel.org,
-        Bayi Cheng <bayi.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-serial@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-spi@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-mmc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org,
-        Stanley Chu <stanley.chu@mediatek.com>
-Subject: Re: (subset) [PATCH 00/10] Add basic node support for Mediatek MT8195 SoC
-Date:   Tue, 16 Mar 2021 17:59:39 +0000
-Message-Id: <161591750213.14124.1270039699331063876.b4-ty@kernel.org>
+To:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl_spdif: Add compatible string for new platforms
+Date:   Tue, 16 Mar 2021 17:59:42 +0000
+Message-Id: <161591744696.13544.14124776783754754865.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210316111443.3332-1-seiya.wang@mediatek.com>
-References: <20210316111443.3332-1-seiya.wang@mediatek.com>
+In-Reply-To: <1615884053-4264-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1615884053-4264-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -68,24 +41,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Mar 2021 19:14:33 +0800, Seiya Wang wrote:
-> MT8195 is a SoC based on 64bit ARMv8 architecture.
-> It contains 4 CA55 and 4 CA78 cores.
-> MT8195 share many HW IP with MT65xx series.
-> This patchset was tested on MT8195 evaluation board to shell.
-> 
-> Based on v5.12-rc2
-> 
-> [...]
+On Tue, 16 Mar 2021 16:40:53 +0800, Shengjiu Wang wrote:
+> Add compatible string for new added platforms which support spdif module.
+> They are i.MX8QXP, i.MX8MM, i.MX8MN, i.MX8MQ.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[05/10] dt-bindings: spi: Add compatible for Mediatek MT8195
-        commit: 5ac1b909e5b60cc2735bd9174f631dc2c7f44c5a
+[1/1] ASoC: dt-bindings: fsl_spdif: Add compatible string for new platforms
+      commit: 9deef665f5811a7ad22b5e6eb80fe2a14ba4494c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
