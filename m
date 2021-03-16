@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBC733E120
+	by mail.lfdr.de (Postfix) with ESMTP id 2828433E11D
 	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbhCPWHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:07:32 -0400
-Received: from mail-il1-f178.google.com ([209.85.166.178]:39041 "EHLO
-        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbhCPWHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:07:10 -0400
-Received: by mail-il1-f178.google.com with SMTP id d5so14196877iln.6;
-        Tue, 16 Mar 2021 15:06:59 -0700 (PDT)
+        id S229958AbhCPWHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:07:33 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:38164 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230434AbhCPWHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:07:19 -0400
+Received: by mail-io1-f52.google.com with SMTP id k2so38955544ioh.5;
+        Tue, 16 Mar 2021 15:07:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=c7PiDBTH7M3rD94WrweiGEydSkQAgo6g3DUgMc8MiXo=;
-        b=AwU7+IaXhr0n6koUMzajuE2yQPpWWXOnnSI9ZJkXl5yRjV+BuQeqml2hXiDBsc6puD
-         UDWKxBhkwuARTdFFkAXKIklqiEQUDc9n4b57IITqtmZsYJCmM25S1iShbl6KWksm/Q85
-         RDm8LA3foZ0KKFot+eDMCKNhSwVlvNSwOTkO/VmGF2m7bx7AUgL6xK3KoJCluJyXfTXs
-         Y2ZE4E0m1MSnYViF9gCSl9+NDXp+4ZB3lk9b7O44ymLTRfAwEaMDtqk/vkXqFx2Q1dFN
-         MB+E8GsAP235jO+YC5h8gP2FQFtosuxU2+IS6dZ6LfnM+PZsp1fCtBGzkQkbtikOB/Ey
-         P14w==
-X-Gm-Message-State: AOAM531gIMUN+4jp76P6krCPXDyziL7yhOGq0lJhW6FtuVXCL/M4s7vh
-        zOuynX8Fu7RB635fhO8+fw==
-X-Google-Smtp-Source: ABdhPJzRxK/0AogAZXl7YXNMtbCnlmB6+Cie+xr/Yd5aXirMYSX+ma7l1UMS9sm3iwMWVypDrn70oQ==
-X-Received: by 2002:a05:6e02:ca1:: with SMTP id 1mr5192128ilg.242.1615932418900;
-        Tue, 16 Mar 2021 15:06:58 -0700 (PDT)
+        bh=xudP/wtMn5ameXFOG9eCHeqe2x+KQ5fsOiLucUPt0ew=;
+        b=jcSRRlBVyYB6Xc+EK0amVidKpxqs0clvHAJ6TQtlRwHYT8jrEShykYhZEIkuAssO3j
+         VNnuv/PLVxdlmMjmvzAViEOjcZGDhJ5LzhO44n+LcdZuqfDOLgY2SwVKLnWBp9QPy21h
+         k2zrPZ88YouTyC/fXUsJnQd0JTl3JSBa4smGExYfujLWwIfAJ4/VpmdnPurMODz57dLi
+         Fd2i1GbfQDmuNG+yL1fKsnqOVC8b5H8rqIYfZcd1TXJ/MdfICSVUbwKFdoFUQQFw7Vm9
+         +qJRN27R9L67zGYEWe6heLICRsRNvySxdQDA+R2ZWGUSmTgHFJzN83g2frV6EhABHjoh
+         aUFg==
+X-Gm-Message-State: AOAM533Gmg3zdp7rGOW9Wj72Yr3sXHHxF33nHdUZBdZZsB8N8sG1SHRD
+        64SrmLQpyjpShpZQiAgiaA==
+X-Google-Smtp-Source: ABdhPJyutVx/ClPCwza7RSsNBjmSP5RGixTDmB/ju3r8yiC4eLWLKO93VURJRfBdjUUYqTouYsJ0Xw==
+X-Received: by 2002:a5e:dd09:: with SMTP id t9mr4799637iop.111.1615932438996;
+        Tue, 16 Mar 2021 15:07:18 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v7sm4526639ilu.72.2021.03.16.15.06.57
+        by smtp.gmail.com with ESMTPSA id 18sm9993938iln.19.2021.03.16.15.07.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:06:58 -0700 (PDT)
-Received: (nullmailer pid 3764195 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:06:56 -0000
-Date:   Tue, 16 Mar 2021 16:06:56 -0600
+        Tue, 16 Mar 2021 15:07:18 -0700 (PDT)
+Received: (nullmailer pid 3764810 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:07:16 -0000
+Date:   Tue, 16 Mar 2021 16:07:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peng Zhou <peng.zhou@mediatek.com>
-Cc:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        devicetree@vger.kernel.org, Eric Biggers <ebiggers@kernel.org>,
-        Wulin Li <wulin.li@mediatek.com>
-Subject: Re: [PATCH v2 4/4] dt-bingdings: mmc: Mediatek: add ICE clock
-Message-ID: <20210316220656.GA3764131@robh.at.kernel.org>
-References: <20210309020649.582-1-peng.zhou@mediatek.com>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     mani@kernel.org, linux-kernel@vger.kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sboyd@kernel.org, p.zabel@pengutronix.de
+Subject: Re: [PATCH 2/6] dt-bindings: mailbox: Add WPSS client index to IPCC
+Message-ID: <20210316220716.GA3764759@robh.at.kernel.org>
+References: <1615269111-25559-1-git-send-email-sibis@codeaurora.org>
+ <1615269111-25559-3-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210309020649.582-1-peng.zhou@mediatek.com>
+In-Reply-To: <1615269111-25559-3-git-send-email-sibis@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Mar 2021 10:06:50 +0800, Peng Zhou wrote:
-> Document the binding for crypto clock of the Inline Crypto Engine (ICE)
-> on Mediatek SoCs.
+On Tue, 09 Mar 2021 11:21:47 +0530, Sibi Sankar wrote:
+> Add WPSS remote processor client index to Inter-Processor Communication
+> Controller (IPCC) block.
 > 
-> Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  include/dt-bindings/mailbox/qcom-ipcc.h | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
