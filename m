@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 112BB33CF1B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:01:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A3F33CF1F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 09:01:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbhCPIAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 04:00:41 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:60488 "EHLO
+        id S233740AbhCPIAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 04:00:42 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:44643 "EHLO
         mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233495AbhCPIAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:00:13 -0400
+        with ESMTP id S230492AbhCPIAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 04:00:31 -0400
 Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4F05LM61DZz1qtdm;
-        Tue, 16 Mar 2021 09:00:11 +0100 (CET)
+        by mail-out.m-online.net (Postfix) with ESMTP id 4F05Lk1BC1z1qtdW;
+        Tue, 16 Mar 2021 09:00:30 +0100 (CET)
 Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4F05LM5rRKz1qqkj;
-        Tue, 16 Mar 2021 09:00:11 +0100 (CET)
+        by mail.m-online.net (Postfix) with ESMTP id 4F05Lk0z4Tz1qqkj;
+        Tue, 16 Mar 2021 09:00:30 +0100 (CET)
 X-Virus-Scanned: amavisd-new at mnet-online.de
 Received: from mail.mnet-online.de ([192.168.8.182])
         by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id l_tAFif4O1Xn; Tue, 16 Mar 2021 09:00:10 +0100 (CET)
-X-Auth-Info: UzuNVdki1GwRt4egzdkLnKtk45UhtazIQrBA7jClCkg=
+        with ESMTP id NZ81G0F-DoNA; Tue, 16 Mar 2021 09:00:29 +0100 (CET)
+X-Auth-Info: VSC6T+HGd4W0cL0VrfLuqY2DRsjBPhQPakW552+YR2E=
 Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Tue, 16 Mar 2021 09:00:10 +0100 (CET)
+        Tue, 16 Mar 2021 09:00:29 +0100 (CET)
 Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id 5F04918531D;
-        Tue, 16 Mar 2021 08:59:31 +0100 (CET)
+        by mail-internal.denx.de (Postfix) with ESMTP id 4DB33185321;
+        Tue, 16 Mar 2021 08:59:32 +0100 (CET)
 Received: by pollux.denx.de (Postfix, from userid 515)
-        id 546D61A0092; Tue, 16 Mar 2021 08:59:31 +0100 (CET)
+        id 431AC1A0092; Tue, 16 Mar 2021 08:59:32 +0100 (CET)
 From:   Heiko Schocher <hs@denx.de>
 To:     linux-spi@vger.kernel.org
 Cc:     Heiko Schocher <hs@denx.de>, linux-arm-kernel@lists.infradead.org,
         Ashish Kumar <ashish.kumar@nxp.com>,
         Kuldeep Singh <kuldeep.singh@nxp.com>,
         Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Yogesh Gaur <yogeshgaur.83@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] spi: fspi: enable fspi driver for on imx8mp
-Date:   Tue, 16 Mar 2021 08:59:27 +0100
-Message-Id: <20210316075928.1763460-2-hs@denx.de>
+Subject: [PATCH v2 2/2] dt-bindings: spi: add compatible entry for imx8mp in FlexSPI controller
+Date:   Tue, 16 Mar 2021 08:59:28 +0100
+Message-Id: <20210316075928.1763460-3-hs@denx.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210316075928.1763460-1-hs@denx.de>
 References: <20210316075928.1763460-1-hs@denx.de>
@@ -53,7 +54,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add compatible entry in nxp_fspi driver for imx8mp.
+add compatible entry "nxp,imx8mp-fspi" in NXP FlexSPI controller
 
 Signed-off-by: Heiko Schocher <hs@denx.de>
 ---
@@ -64,31 +65,25 @@ git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 a43e89624baea ("Merge remote-tracking branch 'spi/for-5.13' into spi-next")
 
 Changes in v3:
-- seperate spi changes from series:
-  http://lists.infradead.org/pipermail/linux-arm-kernel/2021-March/643289.html
-  into own series as Kuldeep suggested and rebased against
+- no changes, rebased against
   git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-  144c79ef33536 ("Merge tag 'perf-tools-fixes-for-v5.12-2020-03-07' of git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux")
+  144c79ef33536 Merge tag 'perf-tools-fixes-for-v5.12-2020-03-07' of git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux
 
-Changes in v2:
-- work in comments from Marco
-  add own compatible entry for imx8mp
-
- drivers/spi/spi-nxp-fspi.c | 1 +
+ Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/spi/spi-nxp-fspi.c b/drivers/spi/spi-nxp-fspi.c
-index ed1e888c7ece4..6e6c2403944dd 100644
---- a/drivers/spi/spi-nxp-fspi.c
-+++ b/drivers/spi/spi-nxp-fspi.c
-@@ -1242,6 +1242,7 @@ static int nxp_fspi_resume(struct device *dev)
- static const struct of_device_id nxp_fspi_dt_ids[] = {
- 	{ .compatible = "nxp,lx2160a-fspi", .data = (void *)&lx2160a_data, },
- 	{ .compatible = "nxp,imx8mm-fspi", .data = (void *)&imx8mm_data, },
-+	{ .compatible = "nxp,imx8mp-fspi", .data = (void *)&imx8mm_data, },
- 	{ .compatible = "nxp,imx8qxp-fspi", .data = (void *)&imx8qxp_data, },
- 	{ .compatible = "nxp,imx8dxl-fspi", .data = (void *)&imx8dxl_data, },
- 	{ /* sentinel */ }
+diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+index df178d1b62e67..8f34a7c7d8b84 100644
+--- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
++++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+@@ -4,6 +4,7 @@ Required properties:
+   - compatible : Should be "nxp,lx2160a-fspi"
+ 			    "nxp,imx8qxp-fspi"
+ 			    "nxp,imx8mm-fspi"
++			    "nxp,imx8mp-fspi"
+ 			    "nxp,imx8dxl-fspi"
+ 
+   - reg :        First contains the register location and length,
 -- 
 2.29.2
 
