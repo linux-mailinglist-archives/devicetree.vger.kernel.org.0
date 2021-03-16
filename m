@@ -2,97 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC1033D7B1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B526033D81B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:50:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230508AbhCPPf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 11:35:26 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:46711 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238125AbhCPPfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 11:35:02 -0400
-Received: by mail-vs1-f44.google.com with SMTP id p24so18401674vsj.13;
-        Tue, 16 Mar 2021 08:35:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bQXFQUK1Smo7zLwGGBtKvcaQNYzdWt9/qzFR9xYxQFU=;
-        b=rj/oSvQfMzDVW6Vrz5CKUkcNd86omR2EAPLRVX9fV+PNZOj9ZFvmZ6xQAZZ3kyBbtX
-         G3B26Z7xRUVsc8c6J+i0/2pvu+5A6Ls/VEAI80nG3S3kYAOFffOr8uSmFv1jDEh3E+lz
-         ZH+GcmWcuAv0cQtOeRoBU9DA0ugaxKCBwnJqrDKGovpAOCsZxv7vShMYTwhoA7RGocAs
-         YqwHo914Tl3yeRj8Aj4rPvO61iIPSKSjtrXE6W4Aaq+uaK2opSMp+XFOAkQuQ4/trEVQ
-         f7gngwRvaoa5md5Aal/FlQKfztPwo6CyXrvAwPFyFG0Eu2CXH7RP1cvVGRFy0i83VcVa
-         rgcw==
-X-Gm-Message-State: AOAM533DlDyFaAst/HZLv7h8zSM/E1+SMhY3cUV+Jy6paCH6UbysuhID
-        i3mIrf+Jwo7qQZuOXOFXJnls4CVpYO1+/TJiiZw=
-X-Google-Smtp-Source: ABdhPJyiREAov3bNX/VpoD0WiQljCXe/K/wAaktLKqeyeqzULAafFKKBHsJA0VsqBFIKp1TItrvPZJ2crVn4Y+MyLis=
-X-Received: by 2002:a67:8883:: with SMTP id k125mr9392973vsd.18.1615908901334;
- Tue, 16 Mar 2021 08:35:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
- <20210316150033.15987-1-cnsztl@gmail.com>
-In-Reply-To: <20210316150033.15987-1-cnsztl@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 16 Mar 2021 16:34:50 +0100
-Message-ID: <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM
- NanoPi R4S
-To:     Tianling Shen <cnsztl@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
+        id S237476AbhCPPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 11:49:34 -0400
+Received: from mail.cognitivepilot.com ([91.218.251.140]:22543 "EHLO
+        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231390AbhCPPtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 11:49:02 -0400
+Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4F0HlJ1GwFzpCYQZ
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:49:00 +0300 (MSK)
+X-Virus-Scanned: amavisd-new at cognitivepilot.com
+X-Spam-Flag: NO
+X-Spam-Score: 5.346
+X-Spam-Level: *****
+X-Spam-Status: No, score=5.346 tagged_above=2 required=6.2
+        tests=[FSL_HELO_NON_FQDN_1=0.001, HELO_NO_DOMAIN=3.099,
+        RDNS_NONE=1.274, SPF_SOFTFAIL=0.972] autolearn=no autolearn_force=no
+Received: from mail.cognitivepilot.com ([127.0.0.1])
+        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id JymlHgCpyuil for <devicetree@vger.kernel.org>;
+        Tue, 16 Mar 2021 18:48:59 +0300 (MSK)
+Received: from NervousEnergy (unknown [185.68.147.27])
+        by mail.cognitivepilot.com (Postfix) with ESMTPS id 4F0HlG6QcqzpBSbB;
+        Tue, 16 Mar 2021 18:48:58 +0300 (MSK)
+Date:   Tue, 16 Mar 2021 18:48:58 +0300
+From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Marty Jones <mj8263788@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Content-Type: text/plain; charset="UTF-8"
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org\" <linux-arm-kernel@lists.infradead.org>, Andre Przywara <andre.przywara@arm.com>, Icenowy Zheng <icenowy@aosc.io>"@cognitivepilot.com
+Subject: Re: [PATCH v1] ARM: dts: sun8i: r40: add dts for Forlinx FETA40i-C
+ & OKA40i-C
+Message-ID: <20210316184858.77c48315@NervousEnergy>
+In-Reply-To: <20210315152904.gqwie3xnmizvid3w@gilmour>
+References: <20210311153056.69337f0a@NervousEnergy>
+        <20210315152904.gqwie3xnmizvid3w@gilmour>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tianling,
+Hi, Maxime,
 
-CC Jacek, Pavel
+Thanks for your comments.
 
-On Tue, Mar 16, 2021 at 4:00 PM Tianling Shen <cnsztl@gmail.com> wrote:
-> On 2021-03-16 02:23 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > Personally, I'm not so fond of the <foo>-%u node names, and prefer
-> > <foo>-<function>.  With the former, it's way too easy to have a silent
-> > override in your .dts(i) stack.
-> > Cfr. commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak:
-> > Fix backlight regulator name")
->
-> How about using `lan-led`, `sys-led` and `wan-led` here?
+On Mon, 15 Mar 2021 16:29:04 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
+> Hi,
+> 
+> You seem to have some issues with your mailer that mangles the mail,
+> you should try using git-send-email instead.
 
-Documentation/devicetree/bindings/leds/leds-gpio.yaml says "led-%u"
-is the preferred form, but that anything containing "led" as a substring
-is accepted.  So I'd go for "led-lan" etc.
+Will do.
 
-BTW, you can validate your DTB against the leds-gpio DT bindings
-by running:
+> There's also a bunch of checkpatch --strict issues you want to get rid
+> of.
 
-    make dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/leds-gpio.yaml
+Thanks for pointing this out.
+Besides the style warnings, which I've fixed, there are also warnings pertaining to
+documentation. Should I add the compatible strings to
+Documentation/devicetree/bindings/, and/or myself to the MAINTAINERS file?
+If so, would you suggest that I do so in a separate patch, or as part
+of another patch that adds the relevant files? 
 
-Background info for CCed parties:
-https://lore.kernel.org/linux-arm-kernel/20210316150033.15987-1-cnsztl@gmail.com/
+> On Thu, Mar 11, 2021 at 03:30:56PM +0300, Ivan Uvarov wrote:
+> > Add support for the Forlinx FETA40i-C SoM and OKA40i-C devboard[1]
+> > based on it. The DT is split into a .dtsi, which (hopefully)
+> > corresponds to the functions of the SoM itself, and a .dts for the
+> > devboard.
+> > 
+> > [1]:https://linux-sunxi.org/Forlinx_OKA40i-C  
+> 
+> Instead of a URL that might be dead at some point, it would be better
+> to have a proper commit log explaining why you did your patch that way
 
-Gr{oetje,eeting}s,
+I'm not sure I understand. 
 
-                        Geert
+By "that way" do you mean that I should explain why I've split up the
+devicetree, or something else?
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The linked page is just a collection of information about the device; 
+should I describe the SoM and/or devboard in my commit log instead?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > ...
+
+> > @@ -601,6 +603,14 @@ mmc2_pins: mmc2-pins {
+> >  				bias-pull-up;
+> >  			};
+> >  
+> > +			mmc3_pins: mmc3-pins {
+> > +				pins = "PI4", "PI5", "PI6",
+> > +				       "PI7", "PI8", "PI9";
+> > +				function = "mmc3";
+> > +				drive-strength = <30>;
+> > +				bias-pull-up;
+> > +			};
+> > +  
+> 
+> This should be in a separate patch
+> 
+> >  			/omit-if-no-ref/
+> >  			spi0_pc_pins: spi0-pc-pins {
+> >  				pins = "PC0", "PC1", "PC2";
+> > @@ -636,6 +646,16 @@ uart0_pb_pins: uart0-pb-pins {
+> >  				function = "uart0";
+> >  			};
+> >  
+> > +			uart2_pi_pins: uart2-pi-pins {
+> > +				pins = "PI18", "PI19";
+> > +				function = "uart2";
+> > +			};
+> > +
+> > +			uart2_rts_cts_pi_pins:
+> > uart2-rts-cts-pi-pins{
+> > +				pins = "PI16", "PI17";
+> > +				function = "uart2";
+> > +			};
+> > +  
+> 
+> Ditto, and it should have /omit-if-no-ref/
+
+Should the MMC pins be in the same patch as the UART pins?
+Also, would it be a good idea to add /omit-if-no-ref/ to the uart3 pins as well while I'm here?
+
+> >  			uart3_pg_pins: uart3-pg-pins {
+> >  				pins = "PG6", "PG7";
+> >  				function = "uart3";
+> > @@ -645,6 +665,21 @@ uart3_rts_cts_pg_pins: uart3-rts-cts-pg-pins {
+> >  				pins = "PG8", "PG9";
+> >  				function = "uart3";
+> >  			};
+> > +
+> > +			uart4_pg_pins: uart4-pg-pins {
+> > +				pins = "PG10", "PG11";
+> > +				function = "uart4";
+> > +			};
+> > +
+> > +			uart5_ph_pins: uart5-ph-pins {
+> > +				pins = "PH6", "PH7";
+> > +				function = "uart5";
+> > +			};
+> > +
+> > +			uart7_pi_pins: uart7-pi-pins {
+> > +				pins = "PI20", "PI21";
+> > +				function = "uart7";
+> > +			};  
+> 
+> Ditto
+> 
+> maxime
+
+Since this won't be a monolithic patch anymore, would it make more
+sense to make this a three+-patch series:
+
+1. add board+SOM DT without mmc3 or extra uarts; 
+2+. add pins to r40.dtsi; 
+3. add mmc3&uarts to the devboard DT,
+
+or to make only two(+) patches:
+
+1+. add pins to r40;
+2. add board+SOM DT?
+
+--
+Regards,
+Ivan Uvarov
