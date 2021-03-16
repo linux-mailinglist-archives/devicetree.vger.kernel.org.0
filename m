@@ -2,121 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D4AC33E163
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF9733E16D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbhCPW2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:28:31 -0400
-Received: from mail-il1-f177.google.com ([209.85.166.177]:37976 "EHLO
-        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231219AbhCPW2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:28:30 -0400
-Received: by mail-il1-f177.google.com with SMTP id f10so14220731ilq.5;
-        Tue, 16 Mar 2021 15:28:30 -0700 (PDT)
+        id S231268AbhCPWbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:31:43 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:44850 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231312AbhCPWbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:31:36 -0400
+Received: by mail-io1-f50.google.com with SMTP id 81so38946169iou.11;
+        Tue, 16 Mar 2021 15:31:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KZF2IUAZVdcUGG23s3R2g6WJv4TZQM/Lti0qI3yptWc=;
-        b=LocLgHjLfH5OrNjgVJWTVT4z4gSaL3S8J/TC79XbgnWrx5i69gzABLe7+BQ9wa1PUs
-         KYSA1tYA4HekDtsIcxXXa0PfoPmUhXXRGm7frhAlod0EHBbCj0DWRk+jLYaJ7+2cYYcB
-         n2ZpAjOXOLefM3K72Hoz7KWBUl17AuN+bDNMorHtRexA8MXG8J8hASJDcJbN6X9OT2ad
-         MDGuCUL0PB3LgmiqGNYjOeOZWKfv0ZMxzrcMZzyLn6KCVW4iwdiurApWt33Yx2agSSJg
-         h/1RzsIWdFJfVfFQ2lfRn6F4gk4gXHeS/vlhG8Ig7eLBAgYip8eJlCZ1BS4p33s4Q/yu
-         26iQ==
-X-Gm-Message-State: AOAM533EBGwRiK2bUPZrZeFowY9p+8eT5NqBdwi+gd6vRIRDaDMUKHiG
-        et8iQiTviOtxHwTX/I2WoQ==
-X-Google-Smtp-Source: ABdhPJwh3xw/09JpuwcCGh+7MpZW+l36DoUCtfOz7o2ub5/Q7DpAbPKwpLRdckE8SGmnfOuRX2FMTA==
-X-Received: by 2002:a05:6e02:178e:: with SMTP id y14mr5303720ilu.175.1615933709855;
-        Tue, 16 Mar 2021 15:28:29 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=WJtR43SK9y60MrC+iBaP+BHM7QH0U5+Z7I60Fr5nGiY=;
+        b=lbrvb2fEj3y9S5SLhGV1O6UYsArV31TKRWOxRaHVxF8dhJExIfTQPbWXA9f5GdCc+y
+         kCBCr7Vim67UQvuD6tyzH6k9loXPFgDcV0ZadgrQBRp2iR8bpnAWkkIPGKbCnwBTyybC
+         lzZidAJRgFBJ8WhWw686zmDTviAQNEgtuv1Lc3QqEq6UJ3UE3aAQH5x2XhpCGZAyzHch
+         lQybt4VFBqSepCe0JL4dMdRQxMapwUns+9/Pu2ilt+1YLlFw3PzTQoNTi1qhETQndxtL
+         ssz7AYQLN45e4e1zirhG2AIcO3ujgdT4KOETR+v+h6WAzJqw41cUX4IJcEwcjFU9JaWD
+         SjOA==
+X-Gm-Message-State: AOAM530AyL8hTdB4cSJLIfHdlW+1Wk85FO7n1Lf0CRgBcDce02LNYWF5
+        wcKWblCPtpBA5b9oIaI9Tg==
+X-Google-Smtp-Source: ABdhPJwqr9lIBsQQqXGB/5M8cR/LbXNj5reci6RYP1hiUnw7QedPkqiHU4o1DmnBVFHru7RgPTsOVg==
+X-Received: by 2002:a02:c610:: with SMTP id i16mr711846jan.36.1615933885246;
+        Tue, 16 Mar 2021 15:31:25 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c18sm10296673ild.37.2021.03.16.15.28.27
+        by smtp.gmail.com with ESMTPSA id l14sm10091179ilc.33.2021.03.16.15.31.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:28:29 -0700 (PDT)
-Received: (nullmailer pid 3798476 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:28:25 -0000
-Date:   Tue, 16 Mar 2021 16:28:25 -0600
+        Tue, 16 Mar 2021 15:31:24 -0700 (PDT)
+Received: (nullmailer pid 3803467 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:31:22 -0000
+Date:   Tue, 16 Mar 2021 16:31:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 2/8] dt-bindings: crypto : Add new compatible strings for
- qcom-qce
-Message-ID: <20210316222825.GA3792517@robh.at.kernel.org>
-References: <20210310052503.3618486-1-bhupesh.sharma@linaro.org>
- <20210310052503.3618486-3-bhupesh.sharma@linaro.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
+Message-ID: <20210316223122.GA3800914@robh.at.kernel.org>
+References: <20210310070025.9150-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210310052503.3618486-3-bhupesh.sharma@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210310070025.9150-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 10:54:57AM +0530, Bhupesh Sharma wrote:
-> Newer qcom chips support newer versions of the qce IP, so add
-> new compatible strings for qcom-qce (in addition to the existing
-> "qcom,crypto-v5.1").
+On Wed, Mar 10, 2021 at 08:00:25AM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> With [1], Thara tried to add the support for new compatible strings,
-> but we couldn't conclude on the approach to be used. Since we have
-> a number of new qcom arm64 SoCs available now, several of which
-> support the same crypto IP version, so it makes more sense to use
-> the IP version for the compatible string, rather than using the soc
-> name as the compatible string.
+> The old regex allowed only 1 character to follow the "led-" prefix which
+> was most likely just an overlook. 
+
+Indeed.
+
+> Fix it and while at it allow dashes in
+> node names. It allows more meaningful names and it helpful e.g. when
+> having the same function name with 2 different colors. For example:
+> 1. led-power-white
+> 2. led-power-blue
+
+No, node names are supposed to be generic and reflect the class of 
+device.
+
 > 
-> [1]. https://lore.kernel.org/linux-arm-msm/20201119155233.3974286-7-thara.gopinath@linaro.org/
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  Documentation/devicetree/bindings/crypto/qcom-qce.txt | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/leds/leds-gpio.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> index 07ee1b12000b..217b37dbd58a 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-> @@ -2,7 +2,11 @@ Qualcomm crypto engine driver
+> diff --git a/Documentation/devicetree/bindings/leds/leds-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> index 7ad2baeda0b0..ae46a43e480f 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> @@ -21,7 +21,7 @@ properties:
+>  patternProperties:
+>    # The first form is preferred, but fall back to just 'led' anywhere in the
+>    # node name to at least catch some child nodes.
+> -  "(^led-[0-9a-f]$|led)":
+> +  "(^led-[0-9a-f][0-9a-f-]*$|led)":
+>      type: object
 >  
->  Required properties:
->  
-> -- compatible  : should be "qcom,crypto-v5.1"
-> +- compatible  : Supported versions are:
-> +		- "qcom,crypto-v5.1", for ipq6018
-> +		- "qcom,crypto-v5.4", for sdm845, sm8150
-
-2 SoCs sharing 1 version doesn't convince me on using version numbers. 
-Having 4 versions for 5 SoCs further convinces me you should stick with 
-SoC specific compatibles as *everyone* else does (including most QCom 
-bindings).
-
-> +		- "qcom,crypto-v5.5", for sm8250
-> +		- "qcom,crypto-v5.6", for sm8350
->  - reg         : specifies base physical address and size of the registers map
->  - clocks      : phandle to clock-controller plus clock-specifier pair
->  - clock-names : "iface" clocks register interface
+>      $ref: common.yaml#
 > -- 
-> 2.29.2
+> 2.26.2
 > 
