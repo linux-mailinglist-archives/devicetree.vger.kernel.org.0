@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD20733E105
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C4FE33E109
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbhCPWAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:00:21 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:39255 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhCPWAO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:00:14 -0400
-Received: by mail-io1-f49.google.com with SMTP id o9so38906003iow.6;
-        Tue, 16 Mar 2021 15:00:14 -0700 (PDT)
+        id S230035AbhCPWAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:00:53 -0400
+Received: from mail-il1-f176.google.com ([209.85.166.176]:36167 "EHLO
+        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230147AbhCPWAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:00:51 -0400
+Received: by mail-il1-f176.google.com with SMTP id g9so14199277ilc.3;
+        Tue, 16 Mar 2021 15:00:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hWQnLy+wlCYyKsfibvRnMmDe6TnPBpLcmFf0o5i5sXo=;
-        b=FoFtp4TVECI7zYuqZr/uv6pcGi+4NhsgyCDtlXjqPA8rP0+HoASBncaT45DB2dpNri
-         oVZKHu3xEkuyMZpzwaOy8PrmbQk7sp9/QNQIsj6JOEXxbRDPJCf7C9RXRmu6/mVY1u7i
-         6NWwNVoBE79Fd0oWkegEtGW7I4diKnHQsRTerHce+WRT4SrH7w5Sn+3G2igv//nSRjPx
-         2L00YUc9Wj63fFzVPf/LCqVoO2gITjVWDVqSBHzShcdZAa6rLJZWlUqWCTkZR5Kuq3ua
-         JBzJXeXTN8h2TKpbbQbVL5hZha7YqFz6DSLrCdJEKa8rjGtoeiZkwEGsjz8c/WfZEjHL
-         kBPw==
-X-Gm-Message-State: AOAM530liCvYkMfQLOk0vS604htL2s4J4ZR4AxVI5GtiuOPM81GCkyy8
-        8WOAq9sZ0KxStDWurYHCCg==
-X-Google-Smtp-Source: ABdhPJwCXPLXH5ryR9zjM8plYiRvPqgWPNS67eAHKVo6mFw4S0V6YZBXB8qtNjD3qRbtCquQg9ctNg==
-X-Received: by 2002:a05:6602:179c:: with SMTP id y28mr4758814iox.151.1615932013916;
-        Tue, 16 Mar 2021 15:00:13 -0700 (PDT)
+        bh=RqWjNc+e+7pVSRjuH47CWTburU+IekIrrOek0pTQW54=;
+        b=jek1B6ZTSuqNYLTwNfpdIOKdDz/hPIKnIE3LOxbgbKjFiYMi1q8V1sFoi8iRAKy0z5
+         6tEPKoexZAauiD9k8HooTwApmm7IPIMvjpX0k0MEHMJl0ut4gGzoZ61R/OJtaF1CpQkf
+         PjWbDdeWduzj5jBnOxKuLdR0PtX63PQ6BY29PLdJUh+lLNL6vqtvaRKtiYrWBsjkYtS7
+         DbxRo3Tt8CFzXG1dPOy1ygY0TzxZOzqjed/EW5KRMZuKtqRlzXrFiIDIR54aqS7BXMs+
+         /ax4hO2v2HRoXItW8jvV1vQxOvaO0i20dFpeavG60OnbCcG4e+u3VnG1sdmJpDdLLL28
+         podw==
+X-Gm-Message-State: AOAM533Dc79wdbHu7RDbsymVd6yYC7UBg/4aF9EdlDT45A3YX9PKCwFl
+        0oCbI7Qf1eG9ISLvNkINZw==
+X-Google-Smtp-Source: ABdhPJyoUgSOBxZENuGIi2GsE47RTs4+bxmWNYK0Sfu0ldDpJetkChasC98ONnGGouYSKTAk1P50Qw==
+X-Received: by 2002:a92:d6d2:: with SMTP id z18mr5568800ilp.30.1615932050820;
+        Tue, 16 Mar 2021 15:00:50 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id n16sm8806315ilq.71.2021.03.16.15.00.10
+        by smtp.gmail.com with ESMTPSA id f3sm10023386ilk.74.2021.03.16.15.00.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:00:12 -0700 (PDT)
-Received: (nullmailer pid 3753212 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:00:09 -0000
-Date:   Tue, 16 Mar 2021 16:00:09 -0600
+        Tue, 16 Mar 2021 15:00:49 -0700 (PDT)
+Received: (nullmailer pid 3754285 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:00:46 -0000
+Date:   Tue, 16 Mar 2021 16:00:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>, arm@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        soc@kernel.org
-Subject: Re: [RESEND 2nd PATCH 01/10] dt-bindings: arm: intel,keembay: limit
- the dtschema to root node
-Message-ID: <20210316220009.GA3753176@robh.at.kernel.org>
-References: <20210308170945.161468-1-krzysztof.kozlowski@canonical.com>
- <20210308170945.161468-2-krzysztof.kozlowski@canonical.com>
+        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] dt-bindings: clock: Add NIC and ETHERNET bindings
+ for Actions S500 SoC
+Message-ID: <20210316220046.GA3754207@robh.at.kernel.org>
+References: <cover.1615221459.git.cristian.ciocaltea@gmail.com>
+ <fa6bcb2dc4309ca1972340694aebbcc5f55bd61c.1615221459.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210308170945.161468-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <fa6bcb2dc4309ca1972340694aebbcc5f55bd61c.1615221459.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Mar 2021 18:09:36 +0100, Krzysztof Kozlowski wrote:
-> From: Krzysztof Kozlowski <krzk@kernel.org>
+On Mon, 08 Mar 2021 19:18:30 +0200, Cristian Ciocaltea wrote:
+> Add the missing NIC and ETHERNET clock bindings constants for Actions
+> Semi Owl S500 SoC.
 > 
-> The check for the board compatible should be limited only to the root
-> node.  Any other nodes with such compatible are not part of this schema
-> and should not match.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/intel,keembay.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  include/dt-bindings/clock/actions,s500-cmu.h | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
