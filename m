@@ -2,156 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E6C833D080
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6FE533D054
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:11:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232584AbhCPJVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 05:21:54 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:25818 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235996AbhCPJVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 05:21:44 -0400
-X-Greylist: delayed 1321 seconds by postgrey-1.27 at vger.kernel.org; Tue, 16 Mar 2021 05:21:43 EDT
-Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
-        by twspam01.aspeedtech.com with ESMTP id 12G8oxBF007525
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 16:50:59 +0800 (GMT-8)
-        (envelope-from troy_lee@aspeedtech.com)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 12G8oqqZ007507;
-        Tue, 16 Mar 2021 16:50:52 +0800 (GMT-8)
-        (envelope-from troy_lee@aspeedtech.com)
-Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Mar
- 2021 16:59:37 +0800
-From:   Troy Lee <troy_lee@aspeedtech.com>
-To:     <wangzhiqiang.bj@bytedance.com>, <yulei.sh@bytedance.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        id S232304AbhCPJKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 05:10:51 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:54484 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231753AbhCPJK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 05:10:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1615885827; x=1647421827;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=vooiXHRAN/ACdm/aZ2hlaMMqq5pvNY4gIzvnzSpHoY8=;
+  b=U3CM7rnehW4+tkFeFjwx8SFxiF+Gr7IiAyedb9sEyRrmUCeBQ+BNDfKT
+   A+3Wpp+k/yq2U7jUbgmFu9VmpuB8wk0AA3yZKkmWNa1pPObn2hntiQ9GZ
+   GSjEw0EG30TRKtXYqlPMJdgJUldChPVHB9Bh9rtfXUwnYOZxyMCaDa6qt
+   PQV5L2tqyryKDU+BCX3Cql7hpv8jyhdTtkSwYAdFL/IdVvwd3+AXJVVZz
+   l/EIdJR6k/f3czR8llqnlBok+DNMO8Rr9299QdtlROOJ5g3vN9HCz44ZM
+   I41sW44obXZl6tsemVm1M9yW9YiToPoalg8MQ2N4K4YeQMa/a2WWP6xbN
+   g==;
+IronPort-SDR: C1P9I08+0b/SQzgHmh8kodcfXW7jkqj6ktzbivIJp1NhT4DZzk1mRw8n69rYEMt8Qvy1C9K1e8
+ 9PS8CEK3xqVFtANpo7uoJAnjJJQHmvIdemUbQlLmMZR+CMGKAeBiAZ38KD1tcrU6TyVUwRg5za
+ 62eeOPEbKj+iYD8IXvDPTz/KjMph5+cQgROEIb/azwf6w2U3FuKZ1t5eeE8JIXSfdQXQv3swVB
+ EEkgUNTaxALqamlullf5KXRSc+7iW9V46s6HJ6dVlSRa83yk58Mob4p2d2plUIcSogGxbpWU/Z
+ 0/8=
+X-IronPort-AV: E=Sophos;i="5.81,251,1610434800"; 
+   d="scan'208";a="110146008"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Mar 2021 02:08:52 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 16 Mar 2021 02:08:51 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 16 Mar 2021 02:08:49 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>
-CC:     <leetroy@gmail.com>
-Subject: [PATCH v1] ARM: dts: Fix 64MiB OpenBMC flash layout and aspeed-ast2600-evb.dts
-Date:   Tue, 16 Mar 2021 08:59:32 +0000
-Message-ID: <20210316085932.2601-1-troy_lee@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v8 1/3] dt-bindings: reset: microchip sparx5 reset driver bindings
+Date:   Tue, 16 Mar 2021 10:08:37 +0100
+Message-ID: <20210316090839.3207930-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210316090839.3207930-1-steen.hegelund@microchip.com>
+References: <20210316090839.3207930-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 12G8oqqZ007507
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aspeed AST2600 u-boot requires 600KiB+ flash space. Sharing the same
-openbmc-flash-layout-64.dtsi requires to resize the flash partition.
+Document the Sparx5 reset device driver bindings
 
-The updated flash layout as follows:
-- u-boot: 896 KiB
-- u-boot-env: 128 KiB
-- kernel: 9MiB
-- rofs: 32 MiB
-- rwfs: 22 MiB
+The driver uses a syscon and an IO range on sparx5 for access to
+the reset control and the reset status.
 
-Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
+Sparx5 will no longer use the existing Ocelot chip reset driver, but use
+this new switch reset driver as it has the reset controller interface that
+allows the first client to perform the reset on behalf of all the Sparx5
+component drivers.
+
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
 ---
- arch/arm/boot/dts/aspeed-ast2600-evb.dts      | 32 +------------------
- .../arm/boot/dts/openbmc-flash-layout-64.dtsi | 18 +++++------
- 2 files changed, 10 insertions(+), 40 deletions(-)
+ .../bindings/reset/microchip,rst.yaml         | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
 
-diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-index 89be13197780..2cfae9cfed3a 100644
---- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-+++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-@@ -121,37 +121,7 @@ flash@0 {
- 		m25p,fast-read;
- 		label = "bmc";
- 		spi-max-frequency = <50000000>;
--
--		partitions {
--			compatible = "fixed-partitions";
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			u-boot@0 {
--				reg = <0x0 0xe0000>; // 896KB
--				label = "u-boot";
--			};
--
--			u-boot-env@e0000 {
--				reg = <0xe0000 0x20000>; // 128KB
--				label = "u-boot-env";
--			};
--
--			kernel@100000 {
--				reg = <0x100000 0x900000>; // 9MB
--				label = "kernel";
--			};
--
--			rofs@a00000 {
--				reg = <0xa00000 0x2000000>; // 32MB
--				label = "rofs";
--			};
--
--			rwfs@6000000 {
--				reg = <0x2a00000 0x1600000>; // 22MB
--				label = "rwfs";
--			};
--		};
-+#include "openbmc-flash-layout-64.dtsi"
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-index 91163867be34..31f59de5190b 100644
---- a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-+++ b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-@@ -9,27 +9,27 @@ partitions {
- 	#size-cells = <1>;
- 
- 	u-boot@0 {
--		reg = <0x0 0x60000>; // 384KB
-+		reg = <0x0 0xe0000>; // 896KB
- 		label = "u-boot";
- 	};
- 
--	u-boot-env@60000 {
--		reg = <0x60000 0x20000>; // 128KB
-+	u-boot-env@e0000 {
-+		reg = <0xe0000 0x20000>; // 128KB
- 		label = "u-boot-env";
- 	};
- 
--	kernel@80000 {
--		reg = <0x80000 0x500000>; // 5MB
-+	kernel@100000 {
-+		reg = <0x100000 0x900000>; // 9MB
- 		label = "kernel";
- 	};
- 
--	rofs@580000 {
--		reg = <0x580000 0x2a80000>; // 42.5MB
-+	rofs@a00000 {
-+		reg = <0xa00000 0x2000000>; // 32MB
- 		label = "rofs";
- 	};
- 
--	rwfs@3000000 {
--		reg = <0x3000000 0x1000000>; // 16MB
-+	rwfs@6000000 {
-+		reg = <0x2a00000 0x1600000>; // 22MB
- 		label = "rwfs";
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+new file mode 100644
+index 000000000000..370579aeeca1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Microchip Sparx5 Switch Reset Controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The Microchip Sparx5 Switch provides reset control and implements the following
++  functions
++    - One Time Switch Core Reset (Soft Reset)
++
++properties:
++  $nodename:
++    pattern: "^reset-controller@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch-reset
++
++  reg:
++    items:
++      - description: global control block registers
++
++  reg-names:
++    items:
++      - const: gcb
++
++  "#reset-cells":
++    const: 1
++
++  cpu-syscon:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: syscon used to access CPU reset
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - "#reset-cells"
++  - cpu-syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    reset: reset-controller@11010008 {
++        compatible = "microchip,sparx5-switch-reset";
++        reg = <0x11010008 0x4>;
++        reg-names = "gcb";
++        #reset-cells = <1>;
++        cpu-syscon = <&cpu_ctrl>;
++    };
++
 -- 
-2.25.1
+2.30.2
 
