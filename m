@@ -2,104 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6468C33D056
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E343F33D08A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:23:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231526AbhCPJK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 05:10:57 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:15506 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbhCPJK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 05:10:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1615885826; x=1647421826;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2Key+2iKL38M/BSOAh81U/K72xgggpmsGs3yXXt3WQE=;
-  b=gzRLJiqwpRewYCpANX2QivgnvO2Adlc0x33Z3+zopAvUwugGQn5x5kuO
-   OzifIOwTWN4VCNYIwKp8AFHELCxBI6j92vMa42J8RfSvmAyLzCGez1dgG
-   nkEH5rPYN9EBF7E/vnEe6PUti2CBBX0ccj8fDB1n5bkCmuFPfk/x9t7F6
-   cANKLFJsMbLrysxhdi6yO1e9/BL5PnKca5wkcwQS5uTWuM38gEc8o8kGa
-   Ciq1rAlpl5jShlejG3d8AtdPEkkEmgcFY1e5njodWIIM4OOeNZQPljNWr
-   J4diCk1pV9WCVIacOLfDJp0SCuH7bgGa1coI+jExO5Sm7KxgkCJeBBN7H
-   A==;
-IronPort-SDR: cPYFzHQH/xRbNznlMbvR00a9jgdOzuouB3dWYtHCEGiGh6Dhnj5/OIiOZuqokhrCvMGmEQNgsV
- M/QssLNFjsaNym+nfKMhuxToefhDNmpLFxDRjV0tEKckaWPYOujihiVTWq38ydm08OtNX/hWx6
- Px0FAlh7ytlQDoBMDSzek+1NOVTFuabUi5oqskz0Yp+c5+q5sRvo7AoCLpebJ0IuQ3h453zsWJ
- zqPz2H5GiB+PuBQWmvFUGZCUSj2IwUNLTEaXl5TEZC4H2j3EZ0JvLrAc9UGdVO6FcFaGuGIa4T
- xtA=
-X-IronPort-AV: E=Sophos;i="5.81,251,1610434800"; 
-   d="scan'208";a="47683728"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Mar 2021 02:08:56 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 16 Mar 2021 02:08:56 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 16 Mar 2021 02:08:54 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
+        id S236035AbhCPJW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 05:22:59 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:56908 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231919AbhCPJWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 05:22:39 -0400
+X-UUID: a7510e3f4e3e45f1b3c582d99761aae4-20210316
+X-UUID: a7510e3f4e3e45f1b3c582d99761aae4-20210316
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 102479812; Tue, 16 Mar 2021 17:22:34 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 16 Mar 2021 17:22:33 +0800
+Received: from mtkslt301.mediatek.inc (10.21.14.114) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 16 Mar 2021 17:22:33 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Cawa Cheng <cawa.cheng@mediatek.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v8 3/3] arm64: dts: reset: add microchip sparx5 switch reset driver
-Date:   Tue, 16 Mar 2021 10:08:39 +0100
-Message-ID: <20210316090839.3207930-4-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210316090839.3207930-1-steen.hegelund@microchip.com>
-References: <20210316090839.3207930-1-steen.hegelund@microchip.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+Subject: [PATCH v5 01/13] dt-bindings: usb: fix yamllint check warning
+Date:   Tue, 16 Mar 2021 17:22:20 +0800
+Message-ID: <20210316092232.9806-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This provides reset driver support for the Microchip Sparx5 PCB134 and
-PCB135 reference boards.
+Fix warning: "missing starting space in comment"
 
-The Sparx5 Switch will no longer use the Ocelot Chip Reset Driver (with the
-compatible string "microchip,sparx5-chip-reset"), but use a separate driver
-that exposes a reset controller interface and has the compatiple string
-"microchip,sparx5-switch-reset".
-
-Eventually the Sparx5 reset support will be removed from the Ocelot chip
-reset driver.
-
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Fixes: 23bf6fc7046c ("dt-bindings: usb: convert usb-device.txt to YAML schema")
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+v5: add Fixes tag suggested by Greg
+v2~v4: no changes
+---
+ Documentation/devicetree/bindings/usb/usb-device.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 380281f312d8..dc3ada5cf9fc 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -132,9 +132,12 @@ mux: mux-controller {
- 			};
- 		};
+diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+index d4c99809ee9a..b77960a7a37b 100644
+--- a/Documentation/devicetree/bindings/usb/usb-device.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+@@ -82,9 +82,9 @@ required:
+ additionalProperties: true
  
--		reset@611010008 {
--			compatible = "microchip,sparx5-chip-reset";
-+		reset: reset-controller@611010008 {
-+			compatible = "microchip,sparx5-switch-reset";
- 			reg = <0x6 0x11010008 0x4>;
-+			reg-names = "gcb";
-+			#reset-cells = <1>;
-+			cpu-syscon = <&cpu_ctrl>;
- 		};
- 
- 		uart0: serial@600100000 {
+ examples:
+-  #hub connected to port 1
+-  #device connected to port 2
+-  #device connected to port 3
++  # hub connected to port 1
++  # device connected to port 2
++  # device connected to port 3
+   #    interface 0 of configuration 1
+   #    interface 0 of configuration 2
+   - |
 -- 
-2.30.2
+2.18.0
 
