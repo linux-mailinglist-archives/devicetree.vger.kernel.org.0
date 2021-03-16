@@ -2,82 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67C4633D93B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDC9C33D963
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235801AbhCPQXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 12:23:33 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42918 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232266AbhCPQWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:22:31 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id E112A1F448E2
-Received: by earth.universe (Postfix, from userid 1000)
-        id 8F7163C0C96; Tue, 16 Mar 2021 17:22:27 +0100 (CET)
-Date:   Tue, 16 Mar 2021 17:22:27 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [PATCH 08/38] dt-bindings: power: supply: bq24735: Convert to DT
- schema format
-Message-ID: <20210316162227.jzueo7cowo6l6isv@earth.universe>
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
- <20210312154357.1561730-9-sebastian.reichel@collabora.com>
- <CAL_Jsq+i=sB7nDzBeF3nRa8FuM_8v=P2SMXQ5XNmuP3b615CKg@mail.gmail.com>
+        id S238779AbhCPQ12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 12:27:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49046 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236656AbhCPQ0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:26:50 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E554C061756
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 09:26:49 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b1e0:9434:c5b6:aecd])
+        by laurent.telenet-ops.be with bizsmtp
+        id h4So240010UTkXy014SohF; Tue, 16 Mar 2021 17:26:48 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lMCWt-008ASu-Gk; Tue, 16 Mar 2021 17:26:47 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lMCWs-00AFW8-Kw; Tue, 16 Mar 2021 17:26:46 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
+Date:   Tue, 16 Mar 2021 17:26:43 +0100
+Message-Id: <20210316162643.2442885-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="n7dmtxlqxosh2w67"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+i=sB7nDzBeF3nRa8FuM_8v=P2SMXQ5XNmuP3b615CKg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+  - Remove unneeded references for "idt,xtal-load-femtofarads" and
+    "idt,slew-percent", as vendor specific properties having a standard
+    unit suffix don't need a type,
+  - Add missing "additionalProperties: false" for subnodes, to catch
+    typos in properties,
+  - Fix property names in example.
 
---n7dmtxlqxosh2w67
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Stephen Boyd <sboyd@kernel.org>
+---
+This depends on dt-schema v2021.2.1.
 
-Hi,
+v4:
+  - Add Reviewed-by, Acked-by,
 
-On Mon, Mar 15, 2021 at 12:24:09PM -0600, Rob Herring wrote:
-> On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
-> > +  poll-interval:
-> > +    description: |
-> > +      If 'interrupts' is not specified, poll AC adapter presence with =
-this interval (milliseconds).
->=20
-> Needs a type.
+v3:
+  - Drop references for "idt,voltage-microvolt" and "idt,slew-percent",
 
-Ack. Just out of curiousity: Do you know why this was not pointed
-out by dt_binding_check?
+v2:
+  - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
+    ('clk: vc5: Use "idt,voltage-microvolt" instead of
+    "idt,voltage-microvolts"'),
+  - Drop reference to clock.yaml, which is already applied
+    unconditionally,
+  - Drop removal of allOf around if condition, as it is unnecessary
+    churn.
 
--- Sebastian
+squash! dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
 
---n7dmtxlqxosh2w67
-Content-Type: application/pgp-signature; name="signature.asc"
+v5:
+  - Drop reference for "idt,xtal-load-femtofarads",
+---
+ .../devicetree/bindings/clock/idt,versaclock5.yaml     | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index c268debe5b8d58cd..434212320c9aa7ab 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -60,7 +60,6 @@ properties:
+     maxItems: 2
+ 
+   idt,xtal-load-femtofarads:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 9000
+     maximum: 22760
+     description: Optional load capacitor for XTAL1 and XTAL2
+@@ -84,9 +83,10 @@ patternProperties:
+         enum: [ 1800000, 2500000, 3300000 ]
+       idt,slew-percent:
+         description: The Slew rate control for CMOS single-ended.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         enum: [ 80, 85, 90, 100 ]
+ 
++    additionalProperties: false
++
+ required:
+   - compatible
+   - reg
+@@ -141,13 +141,13 @@ examples:
+             clock-names = "xin";
+ 
+             OUT1 {
+-                idt,drive-mode = <VC5_CMOSD>;
+-                idt,voltage-microvolts = <1800000>;
++                idt,mode = <VC5_CMOSD>;
++                idt,voltage-microvolt = <1800000>;
+                 idt,slew-percent = <80>;
+             };
+ 
+             OUT4 {
+-                idt,drive-mode = <VC5_LVDS>;
++                idt,mode = <VC5_LVDS>;
+             };
+         };
+     };
+-- 
+2.25.1
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBQ20MACgkQ2O7X88g7
-+pp3oQ//ZweRKl1A3rsPG11nw4lfVHgUP/DsB2mF+4kJM/MVAf/4tiD2KPY0Hvk/
-d+VjK7KG3aKcEJ7rJIx/AI0cXlACCCz3/qhXhmaqWGZmI8zNlqKDLuTU7Pr8cDs7
-l6JcaJ7ieSPwfaQeCljZ/aB+NRVf6FvENPoH+uqCKqIV+w9XPsMAgHd34cMepoVO
-tCNzG2Y5BEJPY8kdPMX7nIsQ0xQRRrHXnnR3qB890KiZ+ym4sE3blyu9WVPbSKSI
-Mqbsg7zV4wpVzZ6bjinDFXj8YERlgeLjcLkudsFsjQ4AsVyUaSuf8x0THmXUmNJU
-F1pfRRpWMa+aDlUYXBCc9AEkJH6XUnELr2iv4UvbNI+1tAFZC/YJIPqvDx3V96bH
-NP2Ei40c2JnPEOPNm6Bfcyd7ncetmLN4ezaT39/MHrBIqu7W0NL8O0cx8jg3Omoo
-8o5D7U4ph94ZVGhkfNL5obps4IC40uXLSHiZtLgzdTvHZJOIaXPjENtsTixheKdY
-uDcDAz0HhTU2xI9XQS++4FRAirla8txtdiI2Y4sXVGETjR/gpZNLQZ5JueDMuhTF
-tY0TOrRqRsdekRKhas3PP0TIcFwof5yLYuVKSN5EMQEpgDsmABCzVrmwSk0UkESV
-pZUFOPBftPT9XZKDkaLGrbX4Lwwslh5IKgsiVxmKgy1+xPxvzpw=
-=ba+0
------END PGP SIGNATURE-----
-
---n7dmtxlqxosh2w67--
