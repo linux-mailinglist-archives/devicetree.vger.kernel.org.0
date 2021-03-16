@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B14B433C994
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 00:02:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 147CD33CA53
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 01:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbhCOXC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 19:02:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46310 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232528AbhCOXCZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Mar 2021 19:02:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3246D64E07;
-        Mon, 15 Mar 2021 23:02:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615849344;
-        bh=MvgmTF9JP1Pl0WIL7tXvPjN/6QezXqYVNnpCd3cjBLk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LuFHU+DtNHYVNvoF998/ITpQCiVyqtetr3Zm8/GkiQuV9RHDMyekwDh/mR1gLMOdJ
-         B/S6KrjQ8KOoSZokAIAJf1QaZY+L0btPXlb4ddDA5+kgL4Z/D7H3HBMPQzwHYJ7A2R
-         0ZLWY3ENYrulrsOnudlc883i7sAwIxpJ11S6b5EehAF2VGx7XZ3hWiQLv0GRCzUf6w
-         ZieSHwcqEgYkGfN0e/IhffK3AaJTCGFO/HWG0BuHuBZZEYU7KAsQRcl99Ru20DYVlM
-         I5DOn6oseslpOiVqGNjNR9m0wtgh9OFBmh/G5w+DdUMDDa8IDVdkaTCmR8tS8dF2Gg
-         HGWjP0E3KestQ==
-Date:   Mon, 15 Mar 2021 16:02:22 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Peng Zhou <peng.zhou@mediatek.com>,
-        linux-block <linux-block@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-Message-ID: <YE/nfu8vRETYN9dO@gmail.com>
-References: <20210309015750.6283-1-peng.zhou@mediatek.com>
- <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
- <YEpqkAq6wOZ+TpR9@gmail.com>
- <CACRpkdb7vmFgH0XTG3Z6OzFv0CfPsBguKqVAZt=PZ+ms2-0WjA@mail.gmail.com>
+        id S229868AbhCPA11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 20:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233420AbhCPA1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 20:27:00 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653D5C06175F
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 17:27:00 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id a8so9606693plp.13
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 17:27:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=rZUYFJv5Y/9QIzNACfb+ndYMjACnAQceRVQGoMosV8E=;
+        b=OBkNlRb6xN2ayKnNDcsEKLQ2gG31LmzeJ53uREMYQRPjArgckrti2329xjYJSuzwm6
+         EXBtiaCXIiqM7X8gBMEtZHXBEQsFC7TZ9hMY4hAvLArEqEFQcZWDKPV/OtFa/x6I8uGs
+         Wf2h74dXSXFFJ8Sz8u5Mnrdu/ZOdFEG6OVpbdQiNJ5edGJnJkuxycMFkN8FMINZzRRTU
+         fBYgnh1oE1DYRiQYC7ysJ2+Ik7SzxK0nsZEPDKofmyAOyVEAHY5qAi5gyUjUbwwY4Oci
+         LP0o81Lk1Rh6Tid+Ugt5JPPck2VD7iFJ4S7FgULsC9zKdZ9l+JoHYzPkyCpEcGl1M2Y7
+         IvMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=rZUYFJv5Y/9QIzNACfb+ndYMjACnAQceRVQGoMosV8E=;
+        b=BKCQEvXtLF+5mejHF+bemSjVTZ5fjxU9qCAQyY+EJcUenmEIT6KmiR+TQ94uAJ7EPb
+         qXZXC+64XO04Pq8HSry3U78nmSt2gy5KgCb3kjHUfndqZrnXz5Ftv852oO+C0HstTBOn
+         BxRmPzA7Y41Oc7OQiMRBPO2GqbcBdBS4RTMTPsOeRozjI0TlMJpANwVyqjaG1/SPdZlF
+         fa5Vr5NzW0C2qzreoIxIfu//SuyIalXWvf9Oy/5cYg8TeLLbRrJYDBwiNjHq6w7xW6Ma
+         T78RTew3a3xqeggVQgw8m1Dy7KQ3vQ35wRq+AdA2sZohu1JdqIASe2pSf3jySYTSBDIL
+         TK2w==
+X-Gm-Message-State: AOAM531xaV31M7T9sT75Dr22dzaoup7mn92UCY7GqwL/71bbfypMc1yh
+        e+wS0k9ca/FrYOZ7nM7lessKoA==
+X-Google-Smtp-Source: ABdhPJz4b0lMXsFarjs4hvv7b56QCJbNwlB5BQ3EhjhfU5mMZX5sesLrrn5nUl1ecUAXszvidaqo3A==
+X-Received: by 2002:a17:902:b78a:b029:e4:8ce6:fb64 with SMTP id e10-20020a170902b78ab02900e48ce6fb64mr14231808pls.77.1615854419519;
+        Mon, 15 Mar 2021 17:26:59 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id p184sm14663118pgp.13.2021.03.15.17.26.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Mar 2021 17:26:58 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 2/3] tty: serial: meson: retrieve port FIFO size from DT
+In-Reply-To: <20210315083459.359773-3-narmstrong@baylibre.com>
+References: <20210315083459.359773-1-narmstrong@baylibre.com>
+ <20210315083459.359773-3-narmstrong@baylibre.com>
+Date:   Mon, 15 Mar 2021 17:26:58 -0700
+Message-ID: <7hv99seyel.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdb7vmFgH0XTG3Z6OzFv0CfPsBguKqVAZt=PZ+ms2-0WjA@mail.gmail.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 02:41:58PM +0100, Linus Walleij wrote:
-> Hi Eric,
-> 
-> thanks for stepping in and clarifying! I get it better now, I though
-> this was some other encryption scheme "on the side".
-> 
-> There is one worrying thing in the patch still:
-> 
-> On Thu, Mar 11, 2021 at 8:08 PM Eric Biggers <ebiggers@kernel.org> wrote:
-> > On Thu, Mar 11, 2021 at 02:48:23PM +0100, Linus Walleij wrote:
-> > > On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
-> 
-> > > > +       /*
-> > > > +        * 1: MSDC_AES_CTL_INIT
-> > > > +        * 4: cap_id, no-meaning now
-> > > > +        * 1: cfg_id, we choose the second cfg group
-> > > > +        */
-> > > > +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
-> > > > +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
-> > > > +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
-> 
-> So MSDC_AES_CTL_INIT. Assumes we are using AES and AES
-> only I suppose?
-> 
-> > It happens in the same place, cqhci-crypto.c.  Mediatek's eMMC inline encryption
-> > hardware follows the eMMC standard fairly closely, so Peng's patch series just
-> > sets MMC_CAP2_CRYPTO to make it use the standard cqhci crypto code, and does a
-> > couple extra things to actually enable the hardware's crypto support on Mediatek
-> > platforms since it isn't enabled by default.  (*Why* it requires an SMC call to
-> > enable instead of just working as expected, I don't know though.)
-> 
-> Now I don't know the limitations of cqhci crypto. Clearly it only supports
-> AES today.
-> 
-> However would the cqhci crypto grow support for any other crypto
-> like 2Fish or DES and the user request this, then I suppose there is
-> no way for the MTK driver to announce "uh no I don't do that"?
-> 
-> Or will this cqhci hardware only ever support AES?
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-The standard specifies the encryption algorithms that may be supported, and it
-specifies that host controllers have a set of crypto capability registers that
-list the subset of those algorithms that the hardware actually supports.  See
-cqhci_crypto_init() which reads these registers.
+> Now the DT bindings has a property to get the FIFO size for a particular port,
+> retrieve it and use to setup the FIFO interrupts threshold.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-If new algorithms get added, the hardware won't declare support for them.
-So what you describe won't be a problem.
-
-If, nevertheless, there is broken hardware that declares support for algorithms
-it doesn't support, we could work around it using a method in cqhci_host_ops.
-That isn't necessary now though.
-
-- Eric
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
