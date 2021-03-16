@@ -2,131 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07AEC33CCE2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 06:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D437E33CD65
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 06:39:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235147AbhCPFGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 01:06:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49234 "EHLO mail.kernel.org"
+        id S235517AbhCPFjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 01:39:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:45128 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235171AbhCPFF5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 01:05:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D1CFD65142;
-        Tue, 16 Mar 2021 05:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615871157;
-        bh=cVbmNCunkCaS+UAXYbKdMGWrvOK5rfRn967P5BV1mvA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SZ7Qqv3k+z2lfXwJh0IzauQzRLnEreEAVuM+XCb0RdV0tQF43Wc8vp53HfcDlCpFn
-         yG0XIbtCPqJjzn4yGQDvX51s7TEP5IA530a7znIQma4Nvrqc+jWIVywDjXSbgXX842
-         kyFN068A9+RSluiQWses1QdyAY4VUeAoIgxyI15Cb5qZ6B2hwrmxEFk7s5cfoJyx+m
-         IvgbYioMWjAmlGvrWxcEFr5HJY/B11ebvtT3mQeiW5suHU8iWgGs8ZYV/9AaEWM2pU
-         Nr/hOQJFZmzvBbA43CloONeZ5l7ulqVYYsdmgZHaMX/G+GHieD1oxNoRXf86iJI+tz
-         r6jDwZhxnCsig==
-Received: by mail-ed1-f42.google.com with SMTP id bx7so19946176edb.12;
-        Mon, 15 Mar 2021 22:05:56 -0700 (PDT)
-X-Gm-Message-State: AOAM530LkpbQb6LuBPOsXGuvxybe9C/880bL/QUkMd9mLGvTtcqs5ddI
-        nXJ6E2d5DIIb6S/BRiKc9ieJOlxJFK3KA2gJGUw=
-X-Google-Smtp-Source: ABdhPJzK79FmgJ0C57g+KUn1bwdww1LQ8aLQZI1QQ9/6Bf3ST4MJLgWngCooLHXFbLFO/wbHLPrOHtDkOhlc+tqhAiI=
-X-Received: by 2002:aa7:d792:: with SMTP id s18mr33267634edq.176.1615871155305;
- Mon, 15 Mar 2021 22:05:55 -0700 (PDT)
+        id S232611AbhCPFit (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 01:38:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 38DF3D6E;
+        Mon, 15 Mar 2021 22:38:48 -0700 (PDT)
+Received: from bogus (unknown [10.163.66.225])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F9E03F792;
+        Mon, 15 Mar 2021 22:38:44 -0700 (PDT)
+Date:   Tue, 16 Mar 2021 05:38:37 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, ksitaraman@nvidia.com,
+        sanjayc@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 3/5] dt-bindings: arm: Add cpu-idle-states to Tegra194
+ CPU nodes
+Message-ID: <20210316053837.apw3g7sbyqrpu7xn@bogus>
+References: <1614838092-30398-1-git-send-email-skomatineni@nvidia.com>
+ <1614838092-30398-4-git-send-email-skomatineni@nvidia.com>
+ <20210308043755.llvdsuz2jwvweovb@bogus>
+ <4cebf482-a2f8-5a79-a2f6-4ccd7d31c6ad@nvidia.com>
+ <20210311025138.o4ub4j2ss725zpv4@bogus>
+ <b31d14ef-81d8-0480-805b-a3cb64404b12@nvidia.com>
 MIME-Version: 1.0
-References: <20210312063502.3685-1-zhiyong.tao@mediatek.com> <20210312063502.3685-2-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210312063502.3685-2-zhiyong.tao@mediatek.com>
-From:   Sean Wang <sean.wang@kernel.org>
-Date:   Tue, 16 Mar 2021 13:05:44 +0800
-X-Gmail-Original-Message-ID: <CAGp9Lzq+NQhguSoc5DE4kyUgi2uSNOkURuAeAFpGuizcaXUXew@mail.gmail.com>
-Message-ID: <CAGp9Lzq+NQhguSoc5DE4kyUgi2uSNOkURuAeAFpGuizcaXUXew@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: add lock in mtk_rmw function.
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com,
-        =?UTF-8?B?RWRkaWUgSHVhbmcgKOm7g+aZuuWCkSk=?= 
-        <eddie.huang@mediatek.com>, jg_poxu@mediatek.com,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        =?UTF-8?B?RXJpbiBMbyAo576F6ZuF6b2hKQ==?= <erin.lo@mediatek.com>,
-        =?UTF-8?B?U2VhbiBXYW5nICjnjovlv5fkupgp?= <sean.wang@mediatek.com>,
-        seiya.wang@mediatek.com, sj.huang@mediatek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b31d14ef-81d8-0480-805b-a3cb64404b12@nvidia.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhiyong,
++Lorenzo
 
-On Fri, Mar 12, 2021 at 2:35 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
->
-> When multiple threads operate on the same register resource
-> which include multiple pin, It will make the register resource
-> wrong to control. So we add lock to avoid the case.
->
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> ---
->  drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 4 ++++
->  drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h | 2 ++
->  drivers/pinctrl/mediatek/pinctrl-paris.c         | 2 ++
->  3 files changed, 8 insertions(+)
->
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> index 72f17f26acd8..fcf7c3eeee4a 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> @@ -58,10 +58,14 @@ void mtk_rmw(struct mtk_pinctrl *pctl, u8 i, u32 reg, u32 mask, u32 set)
->  {
->         u32 val;
->
-> +       mutex_lock(&pctl->lock);
-> +
->         val = mtk_r32(pctl, i, reg);
->         val &= ~mask;
->         val |= set;
->         mtk_w32(pctl, i, reg, val);
-> +
-> +       mutex_unlock(&pctl->lock);
->  }
->
->  static int mtk_hw_pin_field_lookup(struct mtk_pinctrl *hw,
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> index e2aae285b5fc..65eac708a3b3 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> @@ -251,6 +251,8 @@ struct mtk_pinctrl {
->         struct mtk_eint                 *eint;
->         struct mtk_pinctrl_group        *groups;
->         const char          **grp_names;
-> +       /* lock pin's register resource to avoid multiple threads issue*/
-> +       struct mutex lock;
->  };
->
->  void mtk_rmw(struct mtk_pinctrl *pctl, u8 i, u32 reg, u32 mask, u32 set);
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> index da1f19288aa6..48e823f6d293 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> @@ -970,6 +970,8 @@ int mtk_paris_pinctrl_probe(struct platform_device *pdev,
->
->         hw->nbase = hw->soc->nbase_names;
->
-> +       mutex_init(&hw->lock);
-> +
+Hi Sowjanya,
 
-Could you help add the mutex initialization into pinctrl-moore.c too?
-and then the patch would look good to me.
+Sorry for the delayed response. I am still in vacation 😉
 
->         err = mtk_pctrl_build_state(pdev);
->         if (err) {
->                 dev_err(&pdev->dev, "build state failed: %d\n", err);
-> --
-> 2.18.0
+On Thu, Mar 11, 2021 at 01:11:37PM -0800, Sowjanya Komatineni wrote:
 >
+> On 3/10/21 6:52 PM, Sudeep Holla wrote:
+> > On Mon, Mar 08, 2021 at 10:32:17AM -0800, Sowjanya Komatineni wrote:
+> > > On 3/7/21 8:37 PM, Sudeep Holla wrote:
+> > > > On Wed, Mar 03, 2021 at 10:08:10PM -0800, Sowjanya Komatineni wrote:
+> > > > > This patch adds cpu-idle-states and corresponding state nodes to
+> > > > > Tegra194 CPU in dt-binding document
+> > > > >
+> > > > I see that this platform has PSCI support. Can you care to explain why
+> > > > you need additional DT bindings and driver for PSCI based CPU suspend.
+> > > > Until the reasons are convincing, consider NACK from my side for this
+> > > > driver and DT bindings. You should be really using those bindings and
+> > > > the driver may be with minor changes there.
+> > > >
+> > > MCE firmware is in charge of state transition for Tegra194 carmel CPUs.
+> > >
+> > Sure, but I assume only TF-A talks to MCE and not any OSPM/Linux kernel.
+>
+> No. Tegra194 CPU idle driver works with MCE firmware running in background
+> so cpuidle kernel driver also talks to MCE firmware directly on state
+> information.
+
+If that is the case I wouldn't term this as PSCI compliant firmware and
+wouldn't attempt to use PSCI CPU idle driver. Now if we would what to allow
+non-PSCI idle driver for Arm64 is entirely different question that deserves
+a separate discussion IMO.
+
+> >
+> > > For run-time state transitions, need to provide state request along with its
+> > > residency time to MCE firmware which is running in the background.
+> > >
+> > Sounds similar to x86 mwait, perhaps we need to extend PSCI if we need
+> > to make this firmware PSCI compliant or just say it is not and implement
+> > completely independent implementation. I am not saying that is acceptable
+> > ATM but I prefer not to mix some implementation to make it look like
+> > PSCI compliant.
+> >
+> > > State min residency is updated into power_state value along with state id
+> > > that is passed to psci_cpu_suspend_enter
+> > >
+> > Sounds like a hack/workaround. I would prefer to standardise that. IIUC
+> > the power_state is more static and derived from DT. I don't like to
+> > overload that TBH. Need to check with authors of that binding.
+>
+> Passing state idle time to ATF along with state to enter is Tegra specific
+> as ATF firmware updates idle time to Tegra MCE firmware which will be used
+> for deciding on state transition along with other information and background
+> load.
+>
+
+So far we don't have any platform specific PSCI in OSPM and I prefer to keep
+it that way.
+
+> Not sure if this need to be standardized but will try to find alternate way
+> to update idle time without misusing power-state value.
+>
+
+Sure, we can always review and see if any alternatives are acceptable, but
+I am bit nervous to tie this as PSCI if it is not strictly spec compliant.
+
+> Will discuss on this internally and get back.
+>
+
+Thanks.
+
+> >
+> > > Also states cross-over idle times need to be provided to MCE firmware.
+> > >
+> > New requirements if this has to be PSCI compliant.
+>
+> Updating cross-over idle times from DT to MCE firmware directly from cpuidle
+> kernel driver with corresponding MCE ARI commands is again Tegra specific.
+>
+
+So all there are platform specific but static information you need from DT ?
+If so, what can't it be made part of TF-A and OSPM can avoid interfering
+with that info completely. My understanding was that OSPM provides runtime
+hints like x86 mwait. If that's not the case, I am failing to understand
+the need for OSPM to pass such static information from DT to the firmware.
+Why can't that be just part of the firmware to begin with ?
+
+> >
+> > > MCE firmware decides on state transition based on these inputs along with
+> > > its background work load.
+> > >
+
+What do you mean by this *"background work load"* ?
+
+--
+Regards,
+Sudeep
