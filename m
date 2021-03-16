@@ -2,312 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2C033D0FA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 10:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31AAD33D171
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 11:10:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231825AbhCPJlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 05:41:06 -0400
-Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:50309 "EHLO
-        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234161AbhCPJlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 05:41:04 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id M6CAl0yYY4ywlM6CDlAR2K; Tue, 16 Mar 2021 10:41:02 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1615887662; bh=CugcxmEGRPCNeLQbQYJZM+ylLGD1my8oO6vsENcmFt0=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=MYgG7AJeP2Chzagwl9IiUtxqyUjzbqkhGdgBVhu9cR1SB5+M2k39pXku4Xr2lAsi6
-         qOP+fxP96fhK4mc9GEsx6cTv/vr9no5D/TxSHsSg9EZructpOFdqzLtaGIx6GXuMjZ
-         EP+FV1CxyoTiiAGtn6nhZ9D0PKEDUXUOSLrxmoOAG/WL1i2SKdK+pEuKvD+mJbnKnB
-         7/pnhog40R5wRoZ0GXmQwTz1bkk1GaOhUiF3yiDcAt8tTktpQZmXs6K33UIPyiPqJY
-         dt8LBR68Nki8L3+z8CI66lUE51w3oHcGrb7bPotfsieroWG4jlHJ7P3QU8CiHJrya0
-         kg0lAEcQSQj9Q==
-Subject: Re: [PATCH v8 06/22] media: camss: Refactor VFE HW version support
-To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, todor.too@gmail.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-References: <20210315155942.640889-1-robert.foss@linaro.org>
- <20210315155942.640889-7-robert.foss@linaro.org>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <d11ad801-e387-dcd8-1737-1cbc69dea046@xs4all.nl>
-Date:   Tue, 16 Mar 2021 10:40:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.1
+        id S234809AbhCPKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 06:10:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236527AbhCPKJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 06:09:40 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1815EC06175F
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 03:09:40 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id p24so17853170vsj.13
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 03:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X9Na/+PVWk4g8/wD78e6RJzQ9OBaw9J1B/mNYyZp3D0=;
+        b=KessVOImWJDDR1sgc7VENaWUmsRfSUncqyyzC21NX8l+xTUX53x0lVIUGvM3aqDGfT
+         NCokaTk+RCrR6uhrdMrcIaVSm4UqhmJrIdbj5qmkeZY7SaRDK74VNTnnfahN9GKuXifn
+         yePKCw16clu+nHLXhV/WyUiQL6MEoishaN+NnLI5Ynnl8Wa2FRwcy1is4fnatnBv8ZSh
+         C40VldW90jVLNGADVWZ1qaveWRKVR18oiFW7/99L74WaXIymMyYtzFkNNcmI5hUv+S62
+         43bYue2/vusMDTZHn88QhEDzmL2l0N9lpWEqj7KrPxwxeZ4T5UHh1WvbS2OY0XX4FpWW
+         y0TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X9Na/+PVWk4g8/wD78e6RJzQ9OBaw9J1B/mNYyZp3D0=;
+        b=m85JWwjQOqwEAKhP7HGP1pXEY7WDsOtUDdV4gZj8xBsv6MjRRN/y1vkFNoN9lmJ81/
+         bxWetRIIiGJc0TMHdxvzeyqql2FKfi59WRVPij64luzgr/2bifUshaWV6n4XxEnx62u2
+         WAS706oZL74++DQyrWxDKq30AvRACMoEkg7L118zLakDAEKbVbW6LlQ9H5PNR5patD2B
+         W2MPYRHhPbDXggM1ESOVr62yNlg9ouzT14gxiXP/2axq18kmQU3V8RA/3MT0XiuT0GQm
+         xipj4qGRnIV0Iqip3SQDYwnN7qH0TbCEoHvqfBTnyk+CpOGXUKoemenEVQ7OZzYAsaiQ
+         LIEA==
+X-Gm-Message-State: AOAM532q2t0ghbIV/MM7dE/SJH2bhQh00o0+iz5QW91QiBx980Ld5VW/
+        Lqp0+9SZKjDDMbWUlz+0bPlBSc67TrlJFvlJrd3FGg==
+X-Google-Smtp-Source: ABdhPJx6ejJioJvxX9xBl7ZLIjG5O3H107YOWCKPYNw5Wez9IAWnZN+og/+StGRsHqI5UT4RW1mvFgG96vGwADmv/34=
+X-Received: by 2002:a67:77c1:: with SMTP id s184mr6734329vsc.55.1615889378445;
+ Tue, 16 Mar 2021 03:09:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210315155942.640889-7-robert.foss@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfIz9gAZi9PqPsJH2z5AwHuPrkg3KrQJ9sbK70pFxZYUKtM9Vac6JU0hlh1OJ3ZjQBw2Erhc9/dN58D9R+3bW8Ydrc3+2CA5Otfx4jgz+/YIQ2QkHzcKq
- RkSiCAM/pWuVGinIlqI/G0XlINEHoMgi5ojTrqF2KWZHU1lCa3oxtWG4OmoT8s9b/3OHTYhsDs68wcWFNDE3ij4EwA0yvRJJrYfHRjhqxd4jaPmL0jgApoBg
- zeJQrpcefD41dyvER8q0OZTGD+lMFKCi6CVqanq1eX2Ejdh3WQ+l0z07oE755lquqzIe3y90KJouGll85BJLfmeRO8RdZ0LLSIIBJ4B6BY1hMqFCUS/fpXnc
- Bh30NeARFRmIXLqfW2p7G5qosPgNdX98TMAZ0cO8Za3q5VWBfdX+SFF+RvVLzK1UUAOdNys4c6pJbRjKwXGTtoTrpYE5QWmdvfreUWFU7577gs0ToNEJaggt
- g3qOLfTrL530wBHZIO+BfgdS5r7KuLIrsE1H/Im6aeUXW2ZmiuR7O5H8y/xX9c/yF4jEOshOanmwF9Z9RWpUKm2ihMzi0VETsZQ5HspfeEUGaaH6eTdhO+BS
- Z12o6VXwClkKF5rCNri4YIHBpwS/NGWOwp2vOyJ67znJhPHP5Myviy2XFjOHTKF1eDYgEHGomho6muwgEVn+RTlI83o61qAHLKVB7NWl6cxtwqXigM5fEz9t
- kr/a/VTa9O3+Pln7RoMMKZAU1RJkWzDjlMPTrglXJjsumEnI1decX6kMNSdwyyhbZZsacqRziNtvVCwDsd6EMzzba1MkFAzBNu9H7Oe4sqWcs0pEjIERj7z6
- e2tD2MhS+W/B6oFmUlrQuTh5b6dvxIFEcGDQjGXlQmPkM8bPihnt0s4vAByAgQ==
+References: <20210309015750.6283-1-peng.zhou@mediatek.com> <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
+ <YEpqkAq6wOZ+TpR9@gmail.com> <CAPDyKFoWg7HYHAbxYJRbOad5kqm+rzVLVQ0O3g76ROO5Z+MF3Q@mail.gmail.com>
+ <1615884533.21508.118.camel@mbjsdccf07>
+In-Reply-To: <1615884533.21508.118.camel@mbjsdccf07>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 16 Mar 2021 11:09:01 +0100
+Message-ID: <CAPDyKFqtjYVAAe_wUKQC3n3ok5bUpGtpu=TUiOgFmbb6+Qkg=A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
+To:     "Peng.Zhou" <peng.zhou@mediatek.com>
+Cc:     Eric Biggers <ebiggers@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-block <linux-block@vger.kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wulin Li <wulin.li@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2021 16:59, Robert Foss wrote:
-> In order to support Qualcomm ISP hardware architectures that diverge
-> from older architectures, the VFE subdevice driver needs to be refactored
-> to better abstract the different ISP architectures.
-> 
-> Gen1 represents the CAMSS ISP architecture. The ISP architecture developed
-> after CAMSS, Titan, will be referred to as Gen2.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
-> ---
-> 
-> 
+On Tue, 16 Mar 2021 at 09:55, Peng.Zhou <peng.zhou@mediatek.com> wrote:
+>
+> On Fri, 2021-03-12 at 10:05 +0100, Ulf Hansson wrote:
+> > + Arnd, Sudeep
+> >
+> > On Thu, 11 Mar 2021 at 20:08, Eric Biggers <ebiggers@kernel.org> wrote:
+> > >
+> > > On Thu, Mar 11, 2021 at 02:48:23PM +0100, Linus Walleij wrote:
+> > > > Hi Peng,
+> > > >
+> > > > thanks for your patch!
+> > > >
+> > > > On Tue, Mar 9, 2021 at 3:06 AM Peng Zhou <peng.zhou@mediatek.com> wrote:
+> > > >
+> > > > > Use SMC call enable hardware crypto engine
+> > > > > due to it only be changed in ATF(EL3).
+> > > > >
+> > > > > Signed-off-by: Peng Zhou <peng.zhou@mediatek.com>
+> > > >
+> > > > Unfortunately this commit message is way to short to
+> > > > understand what is going on, and has a lot of assumed
+> > > > previous knowledge.
+> > > >
+> > > > Can you expand the commit message so that anyone
+> > > > who just know MMC and some SoC basics can understand
+> > > > what an SMC call and and what ATF(EL3) means?
+> > > >
+> > > > I assume this some kind of inline encryption?
+> > > >
+> > > > I think maybe linux-block mailing list need to be involved
+> > > > because there is certain a Linux standard way of setting
+> > > > up inline encryption for the block layer.
+> > > >
+> > > > For example: how is the key to be used derived?
+> > > > How is the device unlocked in the first place?
+> > > >
+> > > > If I insert a LUKS encrypted harddrive in a Linux machine
+> > > > the whole system is pretty much aware of how this should
+> > > > be handled and everything "just works", I enter a pass
+> > > > phrase and off it goes. I can use symmetric keys as well.
+> > > > How is this stuff done for this hardware?
+> > > >
+> > > > > +       /*
+> > > > > +        * 1: MSDC_AES_CTL_INIT
+> > > > > +        * 4: cap_id, no-meaning now
+> > > > > +        * 1: cfg_id, we choose the second cfg group
+> > > > > +        */
+> > > > > +       if (mmc->caps2 & MMC_CAP2_CRYPTO)
+> > > > > +               arm_smccc_smc(MTK_SIP_MMC_CONTROL,
+> > > > > +                             1, 4, 1, 0, 0, 0, 0, &smccc_res);
+> > > >
+> > > > The same as above: these comments assume that everyone
+> > > > already knows what is going on.
+> > > >
+> > > > AES encryption requires a key and I don't see the driver
+> > > > setting up any key. How is the code in this file:
+> > > > drivers/mmc/core/crypto.c
+> > > > interacting with your driver?
+> > > > drivers/mmc/host/cqhci-crypto.c
+> > > > is used by SDHCI and is quite readable and I see what is going on.
+> > > > For example it contains functions like:
+> > > > cqhci_crypto_program_key()
+> > > > cqhci_crypto_keyslot_program()
+> > > > cqhci_crypto_clear_keyslot()
+> > > > cqhci_crypto_keyslot_evict()
+> > > > cqhci_find_blk_crypto_mode()
+> > > >
+> > > > MMC_CAP2_CRYPTO is used as a sign that the driver
+> > > > can do inline encryption, then devm_blk_ksm_init() is called
+> > > > to initialize a block encryption abstraction with the block layer.
+> > > > Ops are registered using
+> > > > struct blk_ksm_ll_ops cqhci_ksm_ops.
+> > > >
+> > > > This is very straight forward.
+> > > >
+> > > > But where does all the above happen for this driver?
+> > > >
+> > >
+> > > It happens in the same place, cqhci-crypto.c.  Mediatek's eMMC inline encryption
+> > > hardware follows the eMMC standard fairly closely, so Peng's patch series just
+> > > sets MMC_CAP2_CRYPTO to make it use the standard cqhci crypto code, and does a
+> > > couple extra things to actually enable the hardware's crypto support on Mediatek
+> > > platforms since it isn't enabled by default.  (*Why* it requires an SMC call to
+> > > enable instead of just working as expected, I don't know though.)
+> >
+> > As I have probably indicated earlier, I am starting to become more and
+> > more annoyed with these arm_smccc_smc() calls in generic drivers.
+> >
+> > As a matter of fact, I think the situation is about to explode. Just
+> > do a "git grep arm_smccc_smc" and you will find that it's not only SoC
+> > specific drivers that call them. In general we want to keep drivers
+> > portable and this is clearly moving in the wrong direction. Or maybe
+> > it's just me being grumpy and having a bad day. :-)
+> >
+> > In the Qcom mmc case (drivers/mmc/host/sdhci-msm.c) for eMMC inline
+> > encryption, the arm_smccc_smc() call is slightly better handled as
+> > it's abstracted behind a Qcom specific firmware API. So, sdhci-msm.c
+> > calls qcom_scm_ice_set_key() (implemented in
+> > drivers/firmware/qcom_scm.c) to program a key. I guess we don't have
+> > an abstraction layer that would fit for this case, right?
+> >
+> > My point is, when there is no proper abstraction layer to use for the
+> > relevant arm_smccc_smc() call, the Qcom way is fine to me.
+> >
+> > In this Mediatek case, it looks slightly different. To me it looks
+> > more like a resource that needs to be turned on/off to enable/disable
+> > the "inline encryption engine". Could it be modeled as phy,
+> > power-rail, clock, pinctrl or perhaps behind a PM domain (where SoC
+> > specific calls makes perfect sense).
+> >
+> > Peng can you please elaborate on what goes on behind the
+> > arm_smccc_smc() call, as that would help us to understand what
+> > abstraction layer to pick?
+> >
+> > [...]
+> >
+> > Kind regards
+> > Uffe
+>
+> Hi All,
+>
+> First of all, I appreciated that you are interested in my patch series
+> and give me so much significant suggestions! Then, please let me summary
+> the detail information about MediaTek eMMC hardware crypto IP.
+>
+> Before that, as you know, due to I work for MediaTek.inc that means I'm
+> as an employee in this mail thread, so I don't give any comment about
+> other SoC manufacturers.I will only focus on ours.
+>
+>
+> [Background] Why I upstream this patch series?
+> Obiviously, we want to support hardware level file base encryption, file
+> encryption had been a mandatory feature in mobile device such as Android
+> environment.
+>
+> A few years ago, we only support software level file encryption, it
+> based on the reality of that time:
+>  - There is no official encryption specification announced by JEDEC or
+> any device manufacturers
+>  - File based encryption is not a mandatory feature for mobile devices
+>  - Security is not the highest priority thing for our most of Customers
+>
+> Time can fly and Market requirement is also, hardware level encryption
+> functions had been add in our SoCs in soon, because that:
+>  - An encryption specification which is widely recognized by device
+> manufacturers and SoC manufacturers had been announced. Although it
+> doesn't been accepted by JEDEC until now, most of eMMC device
+> manufacturers had support it.
+>  - Performance, special in low end mobile device, to some extent,
+> hardware encryption could reduce some CPU loading,
+>  - Almost overnight, Security has became the super star, everyone want
+> it, consider the performance (comparing with full disk encryption) and
+> flexibility, file based encryption is indispensable.
+>
+> One more thing, there is no common framework in kernel when our SoCs had
+> crypto IP in that time, so we design a special framework in kernel to
+> support it. In fact, we had support hardware encryption for several
+> years in a special and non-public way.
+>
+> You'll know the rest, Eric design a common framework that lets SoC
+> manufacturers support hardware encryption easier now. That' why we give
+> up our own special private way and try to support it.
+>
+> In fact, at this point in time, we have used this framework(include my
+> patch series) in our mobile products with newest Android version for
+> almost one year.
+>
+>
+> [Your question] Why we need use SMC call in our driver? or Why our
+> crypto hardware IP is not default on?
+>
+> Yes, MediaTek eMMC crypto hardware IP is default off in current design
+> and most important is we only turn it on in ARM exception level 3
+> (EL3,the highest security level), that means we can only control it
+> under ARM trust firmware (ATF) environment, but kernel space (it's EL2
+> in our platform).
+>
+> I can get your bewilderment: why it's default off and why put it in high
+> security level control?
 
-<snip>
+Actually, I don't have an issue with this, at all. Instead, my worries
+are about keeping generic drivers portable, which means resources need
+to be modelled through proper abstraction layers. SoC specific drivers
+are different, they don't necessarily need to cope with this
+requirement.
 
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-> index 5bce6736e4bb..ceff4985b1cc 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.h
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-> @@ -17,15 +17,26 @@
->  #include <media/v4l2-subdev.h>
->  
->  #include "camss-video.h"
-> +#include "camss-vfe-gen1.h"
->  
->  #define MSM_VFE_PAD_SINK 0
->  #define MSM_VFE_PAD_SRC 1
->  #define MSM_VFE_PADS_NUM 2
->  
-> -#define MSM_VFE_LINE_NUM 4
->  #define MSM_VFE_IMAGE_MASTERS_NUM 7
->  #define MSM_VFE_COMPOSITE_IRQ_NUM 4
->  
-> +/* VFE halt timeout */
-> +#define VFE_HALT_TIMEOUT_MS 100
-> +/* Frame drop value. VAL + UPDATES - 1 should not exceed 31 */
-> +#define VFE_FRAME_DROP_VAL 30
-> +
-> +#define vfe_line_array(ptr_line)	\
-> +	((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
+Additionally, to me, it makes perfect sense to allow the crypto IP
+block to be powered off, as you would likely waste energy to have it
+always powered on, especially when it's not being in use.
 
-I get a checkpatch warning on this:
+So, this boils down to understand what "turn on" crypto hardware IP
+actually means? Is it a clock, a phy, a power-rail or perhaps a
+combination of things that is turned on for the IP to work? What
+happens behind the SMC call?
 
-CHECK: Unnecessary parentheses around ptr_line[-(ptr_line->id)]
-#3612: FILE: drivers/media/platform/qcom/camss/camss-vfe.h:35:
-+       ((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
+The answer to this question will help us understand what abstraction
+layer we should pick.
 
-This should be:
+[...]
 
-	((const struct vfe_line (*)[]) &(ptr_line)[-(ptr_line)->id])
+>
+> [Your suggestion]
+> In general, I agree it, and I will check qcom's solution then try to do
+> a firmware layer for our eMMC driver to call.
 
-The checkpatch message is a bit odd, the real problem here is the missing
-parenthesis around ptr_line: this would cause problems if ptr_line is an
-expression like 'ptr + 5', which would lead to a bad expansion.
+According to what you have described, I don't think the Qcom solution
+is feasible for this case. In your case it's about turning on a
+resource and not about programming a key.
 
-Regards,
+I am sure we can find an existing abstraction layer to use, we just
+need to agree on which one that makes best sense.
 
-	Hans
-
-> +
-> +#define to_vfe(ptr_line)	\
-> +	container_of(vfe_line_array(ptr_line), struct vfe_device, line)
-> +
->  enum vfe_output_state {
->  	VFE_OUTPUT_OFF,
->  	VFE_OUTPUT_RESERVED,
-> @@ -40,23 +51,30 @@ enum vfe_line_id {
->  	VFE_LINE_RDI0 = 0,
->  	VFE_LINE_RDI1 = 1,
->  	VFE_LINE_RDI2 = 2,
-> -	VFE_LINE_PIX = 3
-> +	VFE_LINE_PIX = 3,
-> +	VFE_LINE_NUM_GEN1 = 4,
-> +	VFE_LINE_NUM_MAX = 4
->  };
->  
->  struct vfe_output {
->  	u8 wm_num;
->  	u8 wm_idx[3];
->  
-> -	int active_buf;
->  	struct camss_buffer *buf[2];
->  	struct camss_buffer *last_buffer;
->  	struct list_head pending_bufs;
->  
->  	unsigned int drop_update_idx;
->  
-> +	union {
-> +		struct {
-> +			int active_buf;
-> +			int wait_sof;
-> +		} gen1;
-> +	};
->  	enum vfe_output_state state;
->  	unsigned int sequence;
-> -	int wait_sof;
-> +
->  	int wait_reg_update;
->  	struct completion sof;
->  	struct completion reg_update;
-> @@ -78,59 +96,19 @@ struct vfe_line {
->  struct vfe_device;
->  
->  struct vfe_hw_ops {
-> -	void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
-> -	u16 (*get_ub_size)(u8 vfe_id);
-> +	void (*enable_irq_common)(struct vfe_device *vfe);
->  	void (*global_reset)(struct vfe_device *vfe);
-> -	void (*halt_request)(struct vfe_device *vfe);
-> -	void (*halt_clear)(struct vfe_device *vfe);
-> -	void (*wm_enable)(struct vfe_device *vfe, u8 wm, u8 enable);
-> -	void (*wm_frame_based)(struct vfe_device *vfe, u8 wm, u8 enable);
-> -	void (*wm_line_based)(struct vfe_device *vfe, u32 wm,
-> -			      struct v4l2_pix_format_mplane *pix,
-> -			      u8 plane, u32 enable);
-> -	void (*wm_set_framedrop_period)(struct vfe_device *vfe, u8 wm, u8 per);
-> -	void (*wm_set_framedrop_pattern)(struct vfe_device *vfe, u8 wm,
-> -					 u32 pattern);
-> -	void (*wm_set_ub_cfg)(struct vfe_device *vfe, u8 wm, u16 offset,
-> -			      u16 depth);
-> -	void (*bus_reload_wm)(struct vfe_device *vfe, u8 wm);
-> -	void (*wm_set_ping_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
-> -	void (*wm_set_pong_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
-> -	int (*wm_get_ping_pong_status)(struct vfe_device *vfe, u8 wm);
-> -	void (*bus_enable_wr_if)(struct vfe_device *vfe, u8 enable);
-> -	void (*bus_connect_wm_to_rdi)(struct vfe_device *vfe, u8 wm,
-> -				      enum vfe_line_id id);
-> -	void (*wm_set_subsample)(struct vfe_device *vfe, u8 wm);
-> -	void (*bus_disconnect_wm_from_rdi)(struct vfe_device *vfe, u8 wm,
-> -					   enum vfe_line_id id);
-> -	void (*set_xbar_cfg)(struct vfe_device *vfe, struct vfe_output *output,
-> -			     u8 enable);
-> -	void (*set_rdi_cid)(struct vfe_device *vfe, enum vfe_line_id id,
-> -			    u8 cid);
-> -	void (*set_realign_cfg)(struct vfe_device *vfe, struct vfe_line *line,
-> -				u8 enable);
-> +	void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
-> +	irqreturn_t (*isr)(int irq, void *dev);
-> +	void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
->  	void (*reg_update)(struct vfe_device *vfe, enum vfe_line_id line_id);
->  	void (*reg_update_clear)(struct vfe_device *vfe,
->  				 enum vfe_line_id line_id);
-> -	void (*enable_irq_wm_line)(struct vfe_device *vfe, u8 wm,
-> -				   enum vfe_line_id line_id, u8 enable);
-> -	void (*enable_irq_pix_line)(struct vfe_device *vfe, u8 comp,
-> -				    enum vfe_line_id line_id, u8 enable);
-> -	void (*enable_irq_common)(struct vfe_device *vfe);
-> -	void (*set_demux_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> -	void (*set_scale_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> -	void (*set_crop_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> -	void (*set_clamp_cfg)(struct vfe_device *vfe);
-> -	void (*set_qos)(struct vfe_device *vfe);
-> -	void (*set_ds)(struct vfe_device *vfe);
-> -	void (*set_cgc_override)(struct vfe_device *vfe, u8 wm, u8 enable);
-> -	void (*set_camif_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> -	void (*set_camif_cmd)(struct vfe_device *vfe, u8 enable);
-> -	void (*set_module_cfg)(struct vfe_device *vfe, u8 enable);
-> -	int (*camif_wait_for_stop)(struct vfe_device *vfe, struct device *dev);
-> -	void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
-> +	void (*subdev_init)(struct device *dev, struct vfe_device *vfe);
-> +	int (*vfe_disable)(struct vfe_line *line);
-> +	int (*vfe_enable)(struct vfe_line *line);
-> +	int (*vfe_halt)(struct vfe_device *vfe);
->  	void (*violation_read)(struct vfe_device *vfe);
-> -	irqreturn_t (*isr)(int irq, void *dev);
->  };
->  
->  struct vfe_isr_ops {
-> @@ -158,11 +136,14 @@ struct vfe_device {
->  	int stream_count;
->  	spinlock_t output_lock;
->  	enum vfe_line_id wm_output_map[MSM_VFE_IMAGE_MASTERS_NUM];
-> -	struct vfe_line line[MSM_VFE_LINE_NUM];
-> +	struct vfe_line line[VFE_LINE_NUM_MAX];
-> +	u8 line_num;
->  	u32 reg_update;
->  	u8 was_streaming;
->  	const struct vfe_hw_ops *ops;
-> +	const struct vfe_hw_ops_gen1 *ops_gen1;
->  	struct vfe_isr_ops isr_ops;
-> +	struct camss_video_ops video_ops;
->  };
->  
->  struct resources;
-> @@ -178,6 +159,37 @@ void msm_vfe_unregister_entities(struct vfe_device *vfe);
->  void msm_vfe_get_vfe_id(struct media_entity *entity, u8 *id);
->  void msm_vfe_get_vfe_line_id(struct media_entity *entity, enum vfe_line_id *id);
->  
-> +/*
-> + * vfe_buf_add_pending - Add output buffer to list of pending
-> + * @output: VFE output
-> + * @buffer: Video buffer
-> + */
-> +void vfe_buf_add_pending(struct vfe_output *output, struct camss_buffer *buffer);
-> +
-> +struct camss_buffer *vfe_buf_get_pending(struct vfe_output *output);
-> +
-> +/*
-> + * vfe_disable - Disable streaming on VFE line
-> + * @line: VFE line
-> + *
-> + * Return 0 on success or a negative error code otherwise
-> + */
-> +int vfe_disable(struct vfe_line *line);
-> +
-> +int vfe_flush_buffers(struct camss_video *vid, enum vb2_buffer_state state);
-> +
-> +/*
-> + * vfe_isr_comp_done - Process composite image done interrupt
-> + * @vfe: VFE Device
-> + * @comp: Composite image id
-> + */
-> +void vfe_isr_comp_done(struct vfe_device *vfe, u8 comp);
-> +
-> +void vfe_isr_reset_ack(struct vfe_device *vfe);
-> +int vfe_put_output(struct vfe_line *line);
-> +int vfe_release_wm(struct vfe_device *vfe, u8 wm);
-> +int vfe_reserve_wm(struct vfe_device *vfe, enum vfe_line_id line_id);
-> +
->  extern const struct vfe_hw_ops vfe_ops_4_1;
->  extern const struct vfe_hw_ops vfe_ops_4_7;
->  extern const struct vfe_hw_ops vfe_ops_4_8;
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 0c679c97da6d..49e25c837bdc 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -881,7 +881,7 @@ static int camss_register_entities(struct camss *camss)
->  
->  		for (i = 0; i < camss->ispif->line_num; i++)
->  			for (k = 0; k < camss->vfe_num; k++)
-> -				for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
-> +				for (j = 0; j < camss->vfe[k].line_num; j++) {
->  					struct v4l2_subdev *ispif = &camss->ispif->line[i].subdev;
->  					struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
->  
-> @@ -902,7 +902,7 @@ static int camss_register_entities(struct camss *camss)
->  	} else {
->  		for (i = 0; i < camss->csid_num; i++)
->  			for (k = 0; k < camss->vfe_num; k++)
-> -				for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
-> +				for (j = 0; j < camss->vfe[k].line_num; j++) {
->  					struct v4l2_subdev *csid = &camss->csid[i].subdev;
->  					struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
->  
-> 
-
+Kind regards
+Uffe
