@@ -2,99 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 798F433D64B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFC1033D7B1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 16:35:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231724AbhCPPAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 11:00:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbhCPPAk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 11:00:40 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC9CCC06174A;
-        Tue, 16 Mar 2021 08:00:39 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id k2so12969136ili.4;
-        Tue, 16 Mar 2021 08:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Tbz96+rxny8J82X7hbX/9a0BDi/EpimzsJipF8+VGW0=;
-        b=Y2PCILLXRZsUqAuogyJ/UoyDOEq4tP4EBO1vrj+uVaXsJ5Fl4h/7646bRdN+YXGj9E
-         BVNPLIWW3quPffAmdxBGfgZq8bgt2PixVrMNj3XKcBPIJhUWV+fqzflTHE1gbUvmHVpi
-         G11Oc0LMEuQER9rwarwtPxvuZwwbiIYeFevUR5nmykGwLxXO96zJFkQsy9r0+B0iMNAv
-         IN3ZY3MtsG0i4axEj6ugrTsk0ROHQ7CCiABkLRrCLCR5iggLJtwXZfRC+sZBqslHb2Sb
-         ocewQtfp+w7e4TB3K/VNn2R4JR047Qd2srwywiiUYvD74rewhANrd2IUq48f6859Fvgs
-         sEOA==
+        id S230508AbhCPPf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 11:35:26 -0400
+Received: from mail-vs1-f44.google.com ([209.85.217.44]:46711 "EHLO
+        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238125AbhCPPfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 11:35:02 -0400
+Received: by mail-vs1-f44.google.com with SMTP id p24so18401674vsj.13;
+        Tue, 16 Mar 2021 08:35:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Tbz96+rxny8J82X7hbX/9a0BDi/EpimzsJipF8+VGW0=;
-        b=S/95+je7vO+x2jaq5F94grKBYETxFdpgq9z5yXwuvHuPqIrYgNO0Y8MH+6GlZ0viW/
-         H91ITfxQS1dqTCgMxET4wy40vY0QqvtjAIpw5kds5XbNF9ygzHACQNP1plfmEkMMYLZF
-         qLjCfgZE2wz9qaJNC2mias/BZYDo+UuHzuh2UEVFdls0yJdCYbrxp81pNKjd2bAoBX7t
-         cMQja31mRduGn0HPJP9L5vYDJijHwV2sgfUwxHaCVitzdm78iEfi80tXKGBi3egqsf+9
-         R93QcSeDiopbIFjlj8955YAhCyRdSWGnBzZrWXnZI90VotobjRn98iB8GPEgajvo8jLm
-         ut5A==
-X-Gm-Message-State: AOAM531pYeoAweL09IlfBhQ6uMHrPm22PWupeIw1X7p/tRwVtifuGzBe
-        R6/bZC4A4yDCivdnLgCiHiM=
-X-Google-Smtp-Source: ABdhPJxWl/Ss8IgojCB80uGaYNl8T5f5XPhHAYATvsrNV++iLm2d8c0Mc45pByMjb+pj0XvUcLcjKg==
-X-Received: by 2002:a92:d2c3:: with SMTP id w3mr4390045ilg.181.1615906839205;
-        Tue, 16 Mar 2021 08:00:39 -0700 (PDT)
-Received: from localhost.localdomain (tunnel525895-pt.tunnel.tserv15.lax1.ipv6.he.net. [2001:470:c:1200::2])
-        by smtp.googlemail.com with ESMTPSA id r18sm9553739ilj.86.2021.03.16.08.00.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 08:00:38 -0700 (PDT)
-From:   Tianling Shen <cnsztl@gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bQXFQUK1Smo7zLwGGBtKvcaQNYzdWt9/qzFR9xYxQFU=;
+        b=rj/oSvQfMzDVW6Vrz5CKUkcNd86omR2EAPLRVX9fV+PNZOj9ZFvmZ6xQAZZ3kyBbtX
+         G3B26Z7xRUVsc8c6J+i0/2pvu+5A6Ls/VEAI80nG3S3kYAOFffOr8uSmFv1jDEh3E+lz
+         ZH+GcmWcuAv0cQtOeRoBU9DA0ugaxKCBwnJqrDKGovpAOCsZxv7vShMYTwhoA7RGocAs
+         YqwHo914Tl3yeRj8Aj4rPvO61iIPSKSjtrXE6W4Aaq+uaK2opSMp+XFOAkQuQ4/trEVQ
+         f7gngwRvaoa5md5Aal/FlQKfztPwo6CyXrvAwPFyFG0Eu2CXH7RP1cvVGRFy0i83VcVa
+         rgcw==
+X-Gm-Message-State: AOAM533DlDyFaAst/HZLv7h8zSM/E1+SMhY3cUV+Jy6paCH6UbysuhID
+        i3mIrf+Jwo7qQZuOXOFXJnls4CVpYO1+/TJiiZw=
+X-Google-Smtp-Source: ABdhPJyiREAov3bNX/VpoD0WiQljCXe/K/wAaktLKqeyeqzULAafFKKBHsJA0VsqBFIKp1TItrvPZJ2crVn4Y+MyLis=
+X-Received: by 2002:a67:8883:: with SMTP id k125mr9392973vsd.18.1615908901334;
+ Tue, 16 Mar 2021 08:35:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
+ <20210316150033.15987-1-cnsztl@gmail.com>
+In-Reply-To: <20210316150033.15987-1-cnsztl@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 16 Mar 2021 16:34:50 +0100
+Message-ID: <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM
+ NanoPi R4S
+To:     Tianling Shen <cnsztl@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
         Jagan Teki <jagan@amarulasolutions.com>,
         Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Tianling Shen <cnsztl@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
         Johan Jonker <jbx6244@gmail.com>,
         David Bauer <mail@david-bauer.net>,
         Jensen Huang <jensenhuang@friendlyarm.com>,
-        Marty Jones <mj8263788@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM NanoPi R4S
-Date:   Tue, 16 Mar 2021 23:00:33 +0800
-Message-Id: <20210316150033.15987-1-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
-References: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Marty Jones <mj8263788@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Tianling,
 
-On 2021-03-16 02:23 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> Personally, I'm not so fond of the <foo>-%u node names, and prefer
-> <foo>-<function>.  With the former, it's way too easy to have a silent
-> override in your .dts(i) stack.
-> Cfr. commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak:
-> Fix backlight regulator name")
+CC Jacek, Pavel
 
-How about using `lan-led`, `sys-led` and `wan-led` here?
+On Tue, Mar 16, 2021 at 4:00 PM Tianling Shen <cnsztl@gmail.com> wrote:
+> On 2021-03-16 02:23 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > Personally, I'm not so fond of the <foo>-%u node names, and prefer
+> > <foo>-<function>.  With the former, it's way too easy to have a silent
+> > override in your .dts(i) stack.
+> > Cfr. commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak:
+> > Fix backlight regulator name")
+>
+> How about using `lan-led`, `sys-led` and `wan-led` here?
 
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Documentation/devicetree/bindings/leds/leds-gpio.yaml says "led-%u"
+is the preferred form, but that anything containing "led" as a substring
+is accepted.  So I'd go for "led-lan" etc.
 
-Thanks,
-Tianling.
+BTW, you can validate your DTB against the leds-gpio DT bindings
+by running:
+
+    make dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/leds-gpio.yaml
+
+Background info for CCed parties:
+https://lore.kernel.org/linux-arm-kernel/20210316150033.15987-1-cnsztl@gmail.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
