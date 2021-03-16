@@ -2,95 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE3BE33CC87
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67B3933CC97
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:36:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234991AbhCPEWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 00:22:12 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:56561 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230016AbhCPEV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 00:21:59 -0400
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 16170891AE;
-        Tue, 16 Mar 2021 17:21:58 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1615868518;
-        bh=TT0EhtSrRCuCPo99Tf5CmraeqPT2f9p/23xnyCoCNZ4=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=sXARCpmANcI/iPwDYvytx5SLd8ZO//pg1A4VXrD3udnede1jDbr1lf7SjJu6ML7+7
-         KrprhkQO/5P5oImULx+At42wjZ/gzMJT4bWDBrVDmsihzIqHy+rixEPtKzNf9IT8bC
-         k/3Jl+1dZG0ao7ETBKtnd7/Gro85xMEukTE58gY6WE89AzB5fy4UJ9rDyxNiHFMamr
-         Bp6cGjyKzcj8xRXdCOd/iSbsVQZoaOEc/mdmMepkbfdifcXJpebvzsZ/lEnlUm4diK
-         xUdxUZYo3Y6KoGOPIskUO7uLOqK2chQDiGclVsQX9WVIUub7axmv0jlhGM2OjEyguN
-         NVa3VxvSxsDSA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B605032660000>; Tue, 16 Mar 2021 17:21:58 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Tue, 16 Mar 2021 17:21:57 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.012; Tue, 16 Mar 2021 17:21:57 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] hwmon: (pmbus): Add driver for BluTek BPA-RS600
-Thread-Topic: [PATCH 2/2] hwmon: (pmbus): Add driver for BluTek BPA-RS600
-Thread-Index: AQHXGg0JQkIPU0GURU+Z4hUV3SNYs6qFHxwAgAAKqAA=
-Date:   Tue, 16 Mar 2021 04:21:56 +0000
-Message-ID: <ea648b3d-f6ac-d7ec-fc5b-2b15c827c3dc@alliedtelesis.co.nz>
-References: <20210316023524.12574-1-chris.packham@alliedtelesis.co.nz>
- <20210316023524.12574-2-chris.packham@alliedtelesis.co.nz>
- <46a69700-ae1f-a441-2399-0e8c8e2a588d@roeck-us.net>
-In-Reply-To: <46a69700-ae1f-a441-2399-0e8c8e2a588d@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3EAC71656026364FBDBCE7B8FE0DBF71@atlnz.lc>
-Content-Transfer-Encoding: base64
+        id S231867AbhCPEgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 00:36:00 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:33723 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229972AbhCPEf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 00:35:28 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 1A50D5807B3;
+        Tue, 16 Mar 2021 00:35:27 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 16 Mar 2021 00:35:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=s
+        ZyhAcTCkCrINPeM1EDpvNypDpkGEOBvU+a0UsEG4ng=; b=Jrp59v8o/gxPG60nv
+        oTnV5NzPUn/zL281biS8kg1u2tJUlSsKnD9XN8noIG7lWqrhEV+E7cF9RICYR+TL
+        B0CKEgkkhiXJhhlDpmMw3U/00SKLDDSbqZyfvnMGn56ZsYLcMfP4zadIejkXxFMf
+        8A3XTtz9y6D82boygMm0vJqm9OdpB+nk/4ujQlYtK10h8rnxGTQ6HrFDDXAsSMuv
+        T4T1kxGuU99FgUaugCzEwuzF8bbxy/YYlfrjx1esiRj+f+hXpx2Q/C2L0UFtIjck
+        lnq+PT4bnOIGbG2TAcJJPc4WrrO1u0UWjd0GJDrb9WRgdLk6I3H7w9izvb+ETyza
+        R+JRA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=sZyhAcTCkCrINPeM1EDpvNypDpkGEOBvU+a0UsEG4
+        ng=; b=iBWmB1eE6DsIEoJtZMSQdnDuk8dFjpYGx/SbcY09YVZ/OTbyTmCA9NuTl
+        dqAN+DVar+UcZvGpWZNsXgoBC5eF76ZkTA00tGhJkAgiTgrf4GoIObrb+7ZQ6sZO
+        I06C93jJvHrQo4fm+iufSGmkgitDlFRaSJINVzTLxeA6csGD1GBAAQ30RDA6Ziiq
+        0z/jApqhCqH8SOvKGyrAAzzE0MzYqwT2gmsz60aWExMYihs9BPwJr1tkhH0JDRcC
+        izZCa7aCPTXBadiu/1+ai2idq0KiZuZHyRktpduType5lEd+/8pL39aijYlKrzR7
+        uYjywJlJR8LEURrlyYEuVAEkBWAMA==
+X-ME-Sender: <xms:jTVQYPJ3HY9bPCti7mrJHndCOK1bixBS4gKpp0rFHlNaJxb4Hv8Gzg>
+    <xme:jTVQYDKaXSAl_py3cmYOLBQerdytVVNWvMTQxXrlKvuk9EEzMbxIsYT8zCP-5x3WC
+    EZRbgBG-5hTZriLRA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefuddgjedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
+    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:jTVQYHvr21nW1sbegQZ8IWDuL_nNrwqtTOYLrDfvbPjvcyPNtjXfEw>
+    <xmx:jTVQYIYxe9yIwLrK511j2BUlW1oezJ3HL3ueM7qaGSjNGSc7i3HcPQ>
+    <xmx:jTVQYGY-vqb5BNAvD70iHSrHAG9lhvXUowu8w-CR1bV63NjaRyOsJg>
+    <xmx:jzVQYMOoGJQLyn661zaV9zSXhGm0CqKmYCZFb1trdsInfpG0B3JYtw>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 4CC4324005B;
+        Tue, 16 Mar 2021 00:35:25 -0400 (EDT)
+Subject: Re: [PATCH 4/5] arm64: dts: allwinner: Add sun4i MMIO timer nodes
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@siol.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210315043250.45095-1-samuel@sholland.org>
+ <20210315043250.45095-5-samuel@sholland.org>
+ <1897259.uecf0MpyRy@jernej-laptop>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <43b4d9e5-55c8-c844-069f-c8f8290c20e2@sholland.org>
+Date:   Mon, 15 Mar 2021 23:35:24 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=dESyimp9J3IA:10 a=G3IL0jre2ez7scXUKXwA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+In-Reply-To: <1897259.uecf0MpyRy@jernej-laptop>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxNi8wMy8yMSA0OjQzIHBtLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0KPiBPbiAzLzE1LzIx
-IDc6MzUgUE0sIENocmlzIFBhY2toYW0gd3JvdGU6DQo+PiBUaGUgQlBBLVJTNjAwIGlzIGEgY29t
-cGFjdCA2MDBXIEFDIHRvIERDIHJlbW92YWJsZSBwb3dlciBzdXBwbHkgbW9kdWxlLg0KPj4NCj4+
-IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNp
-cy5jby5uej4NCj4+IC0tLQ0KPHNuaXA+DQo+PiArDQo+PiArc3RhdGljIGludCBicGFfcnM2MDBf
-cmVhZF93b3JkX2RhdGEoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCwgaW50IHBhZ2UsDQo+PiAr
-CQlpbnQgcGhhc2UsIGludCByZWcpK3sNCj4+ICsJaW50IHJldDsNCj4+ICsNCj4+ICsJaWYgKHBh
-Z2UgPiAwKQ0KPj4gKwkJcmV0dXJuIC1FTlhJTzsNCj4+ICsNCj4+ICsJc3dpdGNoIChyZWcpIHsN
-Cj4+ICsJY2FzZSBQTUJVU19WSU5fVVZfRkFVTFRfTElNSVQ6DQo+PiArCWNhc2UgUE1CVVNfVklO
-X09WX0ZBVUxUX0xJTUlUOg0KPj4gKwljYXNlIFBNQlVTX1ZPVVRfVVZfRkFVTFRfTElNSVQ6DQo+
-PiArCWNhc2UgUE1CVVNfVk9VVF9PVl9GQVVMVF9MSU1JVDoNCj4+ICsJCXJldCA9IC1FTlhJTzsN
-Cj4gSXMgdGhhdCBuZWVkZWQgPyBXaHkgbm90IC1FTk9EQVRBID8NCg0KQmFzaWNhbGx5IHRoZXNl
-IGNvbW1hbmRzIGdldCByZXNwb25zZXMgb24gdGhlIGJ1cyBidXQgdGhleSBkb24ndCBoYXZlIA0K
-dmFsaWQgZGF0YSAobm9yIGFyZSB0aGV5IGRvY3VtZW50ZWQgaW4gdGhlIGRhdGFzaGVldCkuIEkn
-bGwgYWRkIGEgDQpjb21tZW50IHRvIHRoYXQgZWZmZWN0Lg0KDQpJZiBJJ20gcmVhZGluZyB0aGlu
-Z3MgY29ycmVjdGx5IC1FTk9EQVRBIGlzIGEgc2lnbmFsIHRvIA0KX3BtYnVzX3JlYWRfd29yZF9k
-YXRhIHVzZSB0aGUgIm5vcm1hbCIgcmVhZCBvcGVyYXRpb24uIFNvIEkgbmVlZCB0byANCnJldHVy
-biBzb21ldGhpbmcgb3RoZXIgdGhhbiB0aGF0LiBJIGZvdW5kIGFub3RoZXIgZHJpdmVyIChtcDI5
-NzUuYykgDQpkb2luZyB0aGUgc2FtZSB0aGluZyBmb3Igd2hhdCBJIGFzc3VtZSBhcmUgc2ltaWxh
-ciByZWFzb25zIHNvIEkgd2VudCANCndpdGggLUVOWElPLg0KDQo+DQo+PiArCQlicmVhazsNCjxz
-bmlwPg0KPiArDQo+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBpMmNfZGV2aWNlX2lkIGJwYV9yczYw
-MF9pZFtdID0gew0KPj4gKwl7ICJicGFfcnM2MDAiLCAwIH0sDQo+IEhtbSwgbm8sIHRoaXMgaGFz
-IGFuIHVuZGVyc2NvcmUuIEd1ZXNzIHlvdSdsbCBoYXZlIHRvIHVzZSB0aGUgdHJpY2sgZnJvbQ0K
-PiBpaW9faHdtb24uYyBvciBzaW1pbGFyIHRvIGdlbmVyYXRlIGEgdmFsaWQgbmFtZS4NCj4NCj4g
-T2gsIHdhaXQsIHRoaXMgaXMgYSBwbWJ1cyBkcml2ZXIsIGFuZCB0aGUgcG1idXMgY29yZSB1c2Vz
-IGNsaWVudC0+bmFtZS4NCj4gTWF5YmUgd2UgbmVlZCB0byBhZGQgYW4gb3B0aW9uYWwgc3RycmVw
-bGFjZSgpIHRvIHRoZSBwbWJ1cyBjb3JlLg0KTG9va2luZyBpbnRvIHRoaXMgbm93Lg==
+On 3/15/21 1:32 PM, Jernej Škrabec wrote:
+> Hi!
+> 
+> Dne ponedeljek, 15. marec 2021 ob 05:32:49 CET je Samuel Holland napisal(a):
+>> For a CPU to enter an idle state, there must be some timer which can
+>> trigger an IRQ to wake it back up. The local ARM architectural timer is
+>> not sufficient, because that timer stops when the CPU is powered down.
+>> Some other CPU's ARM architectural timer can be used, but this prevents
+>> that other CPU from entering an idle state. So to allow all CPUs to
+>> enter an idle state at the same time, some MMIO timer must be available
+>> that is not tied to any CPU.
+>>
+>> The basic "sun4i" timer seems most appropriate for this purpose due to
+>> its moderate rate, balancing precision and power consumption.
+>>
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> ---
+>>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi  | 9 +++++++++
+>>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 9 +++++++++
+>>  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
+>>  3 files changed, 27 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi index
+>> 33df866f6ea9..64e8b4a372cc 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>> @@ -905,6 +905,15 @@ uart4_rts_cts_pins: uart4-rts-cts-pins {
+>>  			};
+>>  		};
+>>
+>> +		timer@1c20c00 {
+>> +			compatible = "allwinner,sun50i-a64-timer",
+>> +				     "allwinner,sun8i-a23-timer";
+>> +			reg = <0x01c20c00 0xa0>;
+>> +			interrupts = <GIC_SPI 18 
+> IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 19 
+> IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&osc24M>;
+>> +		};
+>> +
+>>  		wdt0: watchdog@1c20ca0 {
+>>  			compatible = "allwinner,sun50i-a64-wdt",
+>>  				     "allwinner,sun6i-a31-wdt";
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+>> b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
+>> 62334054c710..9ba3b30e11fa 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+>> @@ -332,6 +332,15 @@ cpu_speed_grade: cpu-speed-grade@1c {
+>>  			};
+>>  		};
+>>
+>> +		timer@3009000 {
+>> +			compatible = "allwinner,sun50i-h6-timer",
+>> +				     "allwinner,sun8i-a23-timer";
+>> +			reg = <0x03009000 0xa0>;
+>> +			interrupts = <GIC_SPI 48 
+> IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 49 
+> IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&osc24M>;
+>> +		};
+>> +
+>>  		watchdog: watchdog@30090a0 {
+>>  			compatible = "allwinner,sun50i-h6-wdt",
+>>  				     "allwinner,sun6i-a31-wdt";
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+>> b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi index
+>> c277b53f94ea..ff55712ce96e 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> 
+> This file does not exist yet upstream.
+
+Right. I will remove this section for v2.
+
+Cheers,
+Samuel
+
+> Best regards,
+> Jernej
+> 
+>> @@ -128,6 +128,15 @@ ccu: clock@3001000 {
+>>  			#reset-cells = <1>;
+>>  		};
+>>
+>> +		timer@3009000 {
+>> +			compatible = "allwinner,sun50i-h616-timer",
+>> +				     "allwinner,sun8i-a23-timer";
+>> +			reg = <0x03009000 0xa0>;
+>> +			interrupts = <GIC_SPI 48 
+> IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 49 
+> IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&osc24M>;
+>> +		};
+>> +
+>>  		watchdog: watchdog@30090a0 {
+>>  			compatible = "allwinner,sun50i-h616-wdt",
+>>  				     "allwinner,sun6i-a31-wdt";
+> 
+> 
+> 
+> 
+
