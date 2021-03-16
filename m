@@ -2,75 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 147CD33CA53
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 01:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0918633CAB4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 02:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbhCPA11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Mar 2021 20:27:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
+        id S234221AbhCPBPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Mar 2021 21:15:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233420AbhCPA1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 20:27:00 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653D5C06175F
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 17:27:00 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id a8so9606693plp.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 17:27:00 -0700 (PDT)
+        with ESMTP id S234274AbhCPBPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Mar 2021 21:15:19 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89AB2C06174A
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 18:15:19 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id u18so16146736plc.12
+        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 18:15:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=rZUYFJv5Y/9QIzNACfb+ndYMjACnAQceRVQGoMosV8E=;
-        b=OBkNlRb6xN2ayKnNDcsEKLQ2gG31LmzeJ53uREMYQRPjArgckrti2329xjYJSuzwm6
-         EXBtiaCXIiqM7X8gBMEtZHXBEQsFC7TZ9hMY4hAvLArEqEFQcZWDKPV/OtFa/x6I8uGs
-         Wf2h74dXSXFFJ8Sz8u5Mnrdu/ZOdFEG6OVpbdQiNJ5edGJnJkuxycMFkN8FMINZzRRTU
-         fBYgnh1oE1DYRiQYC7ysJ2+Ik7SzxK0nsZEPDKofmyAOyVEAHY5qAi5gyUjUbwwY4Oci
-         LP0o81Lk1Rh6Tid+Ugt5JPPck2VD7iFJ4S7FgULsC9zKdZ9l+JoHYzPkyCpEcGl1M2Y7
-         IvMg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N8PazbWxeQpma3IK9jRB0TxFsaKkwjN5cuc0b0m+m2M=;
+        b=Yucta2XTHd86ALutAlq9i8vYXxo8CaGrEyvfGJ9dgeAaEvR3W6aRRqPI4kdM8RuUWy
+         1po+j965cuiAM754oSDUDRwpiwHMV1yuRM4BI2k8jhzdlAVDxiN66/hxGyjuFV+DTS+O
+         AfurjumWkxNMUz7cOdZk2jMrmeiESEgJT+S/I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=rZUYFJv5Y/9QIzNACfb+ndYMjACnAQceRVQGoMosV8E=;
-        b=BKCQEvXtLF+5mejHF+bemSjVTZ5fjxU9qCAQyY+EJcUenmEIT6KmiR+TQ94uAJ7EPb
-         qXZXC+64XO04Pq8HSry3U78nmSt2gy5KgCb3kjHUfndqZrnXz5Ftv852oO+C0HstTBOn
-         BxRmPzA7Y41Oc7OQiMRBPO2GqbcBdBS4RTMTPsOeRozjI0TlMJpANwVyqjaG1/SPdZlF
-         fa5Vr5NzW0C2qzreoIxIfu//SuyIalXWvf9Oy/5cYg8TeLLbRrJYDBwiNjHq6w7xW6Ma
-         T78RTew3a3xqeggVQgw8m1Dy7KQ3vQ35wRq+AdA2sZohu1JdqIASe2pSf3jySYTSBDIL
-         TK2w==
-X-Gm-Message-State: AOAM531xaV31M7T9sT75Dr22dzaoup7mn92UCY7GqwL/71bbfypMc1yh
-        e+wS0k9ca/FrYOZ7nM7lessKoA==
-X-Google-Smtp-Source: ABdhPJz4b0lMXsFarjs4hvv7b56QCJbNwlB5BQ3EhjhfU5mMZX5sesLrrn5nUl1ecUAXszvidaqo3A==
-X-Received: by 2002:a17:902:b78a:b029:e4:8ce6:fb64 with SMTP id e10-20020a170902b78ab02900e48ce6fb64mr14231808pls.77.1615854419519;
-        Mon, 15 Mar 2021 17:26:59 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id p184sm14663118pgp.13.2021.03.15.17.26.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 17:26:58 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 2/3] tty: serial: meson: retrieve port FIFO size from DT
-In-Reply-To: <20210315083459.359773-3-narmstrong@baylibre.com>
-References: <20210315083459.359773-1-narmstrong@baylibre.com>
- <20210315083459.359773-3-narmstrong@baylibre.com>
-Date:   Mon, 15 Mar 2021 17:26:58 -0700
-Message-ID: <7hv99seyel.fsf@baylibre.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N8PazbWxeQpma3IK9jRB0TxFsaKkwjN5cuc0b0m+m2M=;
+        b=DomPvuyXfiN3x/g821MbQR4VKRN2KsvgRGe/YgyYil/nqwkhHDW7JGK5oFGPgsAAWl
+         X2a6LogLGjusQPvU+UrDfw8BPzW/l7Kii7U8SH3ygv84A1+IWvBho+hux75MSdzRgnLj
+         drdv3byqV19C+P3LoQJ+ooF+T4iSNzh0l4ZA0Qc1mww4mqEaoQ4sEvOhj5T2xnSYzyr7
+         fDl1DaIaGnxH7BkrunBIRjfriwkpjRq89QCqAFUCIEEO7Uon4Kv1ueHUB+UtMdYxQ+/S
+         wh27S6DUGoPrS1UGM3PwUA9BE5C8uUZaB1jQ3/yq9NZ6AxIBRF+Okcmws/7fVOlMkzqv
+         i8zg==
+X-Gm-Message-State: AOAM5314Ft0lzwzSGc7mQ8HlQ+wThgL7ih3mKd4shfdnQn9LYK8kU4xi
+        fvcXz0kpawF2/N1RCxlqIrXaLw==
+X-Google-Smtp-Source: ABdhPJwUXEsQ6bCOeQfni68O7RS1LZO5BRxAyA+VB21PrjYoHi6CoRlKsF2rEpEQRvjV6L/PGeH+HA==
+X-Received: by 2002:a17:902:e309:b029:e6:c17b:895a with SMTP id q9-20020a170902e309b02900e6c17b895amr34441plc.74.1615857319034;
+        Mon, 15 Mar 2021 18:15:19 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:9867:b969:5d4f:e017])
+        by smtp.gmail.com with UTF8SMTPSA id gb1sm811159pjb.21.2021.03.15.18.15.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Mar 2021 18:15:18 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: sc7180: Disable the charger thermal zone on more trogdor boards
+Date:   Mon, 15 Mar 2021 18:15:12 -0700
+Message-Id: <20210316011516.1314686-1-mka@chromium.org>
+X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+We already disabled the charger thermal zone for lazor to avoid
+bogus temperature readings from an unsupported thermistor. Some
+revisions of other trogdor boards that are added by Doug's
+'arm64: dts: qcom: Update sc7180-trogdor variants from downstream'
+series have the same problem. Disable the charger thermal zone for
+them too.
 
-> Now the DT bindings has a property to get the FIFO size for a particular port,
-> retrieve it and use to setup the FIFO interrupts threshold.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+This series is based on v2 of the 'arm64: dts: qcom: Update
+sc7180-trogdor variants from downstream' series
+(https://patchwork.kernel.org/project/linux-arm-msm/list/?series=440315)
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+(no changes since v1)
+
+Matthias Kaehlcke (3):
+  arm64: dts: qcom: sc7180: lazor: Simplify disabling of charger thermal
+    zone
+  arm64: dts: qcom: sc7180: Add pompom rev3
+  arm64: dts: qcom: sc7180: Add CoachZ rev3
+
+ arch/arm64/boot/dts/qcom/Makefile             |  6 ++-
+ .../dts/qcom/sc7180-trogdor-coachz-r1-lte.dts |  4 +-
+ .../dts/qcom/sc7180-trogdor-coachz-r1.dts     | 13 ++++++-
+ ...e.dts => sc7180-trogdor-coachz-r3-lte.dts} |  6 +--
+ ...hz-r2.dts => sc7180-trogdor-coachz-r3.dts} |  4 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  9 -----
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  9 -----
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r3.dts |  9 -----
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  9 +++++
+ .../dts/qcom/sc7180-trogdor-pompom-r1.dts     | 12 ++++++
+ .../dts/qcom/sc7180-trogdor-pompom-r2-lte.dts |  4 +-
+ .../dts/qcom/sc7180-trogdor-pompom-r2.dts     | 38 +++++--------------
+ .../dts/qcom/sc7180-trogdor-pompom-r3-lte.dts | 14 +++++++
+ .../dts/qcom/sc7180-trogdor-pompom-r3.dts     | 15 ++++++++
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  | 29 ++++++++++++++
+ 15 files changed, 112 insertions(+), 69 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2-lte.dts => sc7180-trogdor-coachz-r3-lte.dts} (69%)
+ rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2.dts => sc7180-trogdor-coachz-r3.dts} (75%)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dts
+
+-- 
+2.31.0.rc2.261.g7f71774620-goog
+
