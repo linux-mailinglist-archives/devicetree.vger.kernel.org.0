@@ -2,83 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BD133E20E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 00:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 065A433E214
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 00:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbhCPXYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 19:24:32 -0400
-Received: from 3.mo3.mail-out.ovh.net ([46.105.44.175]:39253 "EHLO
-        3.mo3.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhCPXYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 19:24:04 -0400
-X-Greylist: delayed 105640 seconds by postgrey-1.27 at vger.kernel.org; Tue, 16 Mar 2021 19:24:04 EDT
-Received: from player762.ha.ovh.net (unknown [10.110.103.202])
-        by mo3.mail-out.ovh.net (Postfix) with ESMTP id D23FD281483
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 23:44:52 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player762.ha.ovh.net (Postfix) with ESMTPSA id B5C461C1A0637;
-        Tue, 16 Mar 2021 22:44:44 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-104R00590ba227f-f0e6-4995-86e5-396bb2d1189f,
-                    A1A54852ADC5FECC858E3B1428EFF252DD499A2B) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>
-References: <20210310070025.9150-1-zajec5@gmail.com>
- <20210316223122.GA3800914@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <37f56e82-f60a-2375-e809-2b12fde5311b@milecki.pl>
-Date:   Tue, 16 Mar 2021 23:44:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S229632AbhCPX0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 19:26:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55810 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229561AbhCPX0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 19:26:19 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB25CC061762
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 16:26:19 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id mz6-20020a17090b3786b02900c16cb41d63so314969pjb.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 16:26:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=w5QajIxS6y5Fi0iTPRAGrD8S6mOwAPT15FoB2waGPFM=;
+        b=FzPs1avgRjsFZ3d35srKz+eBOPtuhZPWPiqY8vX4CiI+UonDB4LwUENMF1EWSIYIOS
+         57SgIkt4SgO4qJ5h+GZBUaY/AWZld2KW49mvMOi5iTScTH9ojaR4ieyLJIgbJLatef46
+         zCepIuqzZRDAbX/HbgGNRErpChZRZ8jjiDmC0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w5QajIxS6y5Fi0iTPRAGrD8S6mOwAPT15FoB2waGPFM=;
+        b=fiwZyhqQbwKqmJBEhT9azu/BTh3YVGqE+L7jjtatFxGejDuBAg8S3ESQRAsLQ4D9pn
+         s6y7GwGM0s7jfcA1BY50DGDBESgJAgya9r1clx1gmtXc6zmAvd/ag4V3NF1MIif2VKPf
+         HEHm3BNQyzbpZ9RbmzaO3dKOIaUQnc+TnOCageeBQq8qI9E8Y3sT/VZpiZuZ7h1Fx3hP
+         ouFw3iqp9n5A3t56SNhjeEAe0yFU/dVfbpmQ67/zqVNdnY32+1BoO/+svTkuOgiF5GN9
+         vqynZ/wH56T7KvsBGLO7MIWMbxDomH8SrSbI8WvIrKw7KiClKR/dTtLnF3sWOyQckyzs
+         3Nqw==
+X-Gm-Message-State: AOAM530df66d4xjIBg3yKFXDuS6zR7M6p9l6nvO6z1muvHgvIE0PNrwB
+        D9bGtBNTWVQQ17D1x6CQAvLEgf/Ig1aGUw==
+X-Google-Smtp-Source: ABdhPJzA1Ew/ucDvRg38/OJGbarhjjqP83rSwho6aOC3HYRd5w679AuzfHyi8xZpQhflL2/8N0zgFA==
+X-Received: by 2002:a17:90a:b63:: with SMTP id 90mr1424994pjq.124.1615937179059;
+        Tue, 16 Mar 2021 16:26:19 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:b471:7d:bf21:d7dd])
+        by smtp.gmail.com with UTF8SMTPSA id v7sm17515668pfv.93.2021.03.16.16.26.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Mar 2021 16:26:18 -0700 (PDT)
+Date:   Tue, 16 Mar 2021 16:26:16 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        David Collins <collinsd@codeaurora.org>
+Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: sc7280: Add RPMh regulators for
+ sc7280-idp
+Message-ID: <YFE+mC0dP0atFA8A@google.com>
+References: <1615816454-1733-1-git-send-email-skakit@codeaurora.org>
+ <1615816454-1733-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210316223122.GA3800914@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 3811171185956523759
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrudefvddgudeiiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeekudehjeehffdufefhgffhgeejjeelteekveeuleevgeekhffhffeiheellefgveenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeeivddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1615816454-1733-4-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.03.2021 23:31, Rob Herring wrote:
-> On Wed, Mar 10, 2021 at 08:00:25AM +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> The old regex allowed only 1 character to follow the "led-" prefix which
->> was most likely just an overlook.
+On Mon, Mar 15, 2021 at 07:24:12PM +0530, satya priya wrote:
+> Add regulator devices for SC7280 as RPMh regulators. This ensures
+> that consumers are able to modify the physical state of PMIC
+> regulators.
 > 
-> Indeed.
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - Corrected the indentation for "compatible" and "qcom,pmic-id" under
+>    pm8350c-regulators as per Konrad's comment.
 > 
->> Fix it and while at it allow dashes in
->> node names. It allows more meaningful names and it helpful e.g. when
->> having the same function name with 2 different colors. For example:
->> 1. led-power-white
->> 2. led-power-blue
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 212 ++++++++++++++++++++++++++++++++
+>  1 file changed, 212 insertions(+)
 > 
-> No, node names are supposed to be generic and reflect the class of
-> device.
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 428f863..78effe5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -22,6 +22,218 @@
+>  	};
+>  };
+>  
+> +&apps_rsc {
+> +	pm7325-regulators {
+> +		compatible = "qcom,pm7325-rpmh-regulators";
+> +		qcom,pmic-id = "b";
+> +
+> +		vreg_s1b_1p8: smps1 {
+> +			regulator-min-microvolt = <1856000>;
 
-There was some extra discussion on this patch that has ended up with a question about numbering nodes.
+For most LDOs their 'Active minimum voltage' is specified as their
+minimum, however for S1B and S8B it's the 'Nominal voltage. Is that
+intentional?
 
-Current binding assumes that nodes should be numbered with independent suffix numbers like:
-led-0 { };
-led-1 { };
-led-2 { };
+There might be a misunderstanding on my side what the values in the
+datasheet actually mean, see my comment at the end.
 
-Do you think this could / should be improved somehow?
+> +			regulator-max-microvolt = <2040000>;
+> +		};
+> +
+> +		vreg_s7b_0p9: smps7 {
+> +			regulator-min-microvolt = <535000>;
 
-One option I was thinking about was using:
-led@0 { };
-led@5 { };
-where numbers ("0", "5") should match GPIO numbers.
+According to the datasheet the minimum voltage of the S7B regulator
+is 904 mV.
 
-Is that a valid solution and does it improve things to make it worth it?
+> +			regulator-max-microvolt = <1120000>;
+> +		};
+> +
+> +		vreg_s8b_1p2: smps8 {
+> +			regulator-min-microvolt = <1256000>;
+> +			regulator-max-microvolt = <1500000>;
+> +		};
+> +
+> +		vreg_l1b_0p8: ldo1 {
+> +			regulator-min-microvolt = <825000>;
+> +			regulator-max-microvolt = <925000>;
+> +		};
+> +
+> +		vreg_l2b_3p0: ldo2 {
+> +			regulator-min-microvolt = <2700000>;
+> +			regulator-max-microvolt = <3544000>;
+> +		};
+
+Another question that came up for sc7180-trogdor regulators,
+whose core regulator config was derived from sc7180-idp: the
+label suggests that this regulator is supposed to supply 3V,
+however the range spans from 2.7 to 3.54V. Shouldn't it be
+narrower around 3V? Same for other some regulators.
+
+> +
+> +		vreg_l6b_1p2: ldo6 {
+> +			regulator-min-microvolt = <1140000>;
+
+The datasheet says the minimum for L6B is 1.2V.
+
+> +			regulator-max-microvolt = <1260000>;
+> +		};
+> +
+> +		vreg_l7b_2p9: ldo7 {
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <2960000>;
+> +		};
+
+This regulator has a fixed voltage in difference to the others, why
+is that?
+
+> +
+> +		vreg_l8b_0p9: ldo8 {
+> +			regulator-min-microvolt = <870000>;
+> +			regulator-max-microvolt = <970000>;
+> +		};
+> +
+> +		vreg_l9b_1p2: ldo9 {
+> +			regulator-min-microvolt = <1080000>;
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +
+> +		vreg_l11b_1p7: ldo11 {
+> +			regulator-min-microvolt = <1504000>;
+
+The datasheet says the mininum voltage for L11B is 1.776V.
+
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_l12b_0p8: ldo12 {
+> +			regulator-min-microvolt = <751000>;
+> +			regulator-max-microvolt = <824000>;
+> +		};
+> +
+> +		vreg_l13b_0p8: ldo13 {
+> +			regulator-min-microvolt = <530000>;
+> +			regulator-max-microvolt = <824000>;
+
+The max for L13B is 880mV, is this a copy and paste from L12B?
+
+> +		};
+> +
+> +		vreg_l14b_1p2: ldo14 {
+> +			regulator-min-microvolt = <1080000>;
+
+The datasheet says the mininum voltage for L14B is 1.2V.
+
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +
+> +		vreg_l15b_0p8: ldo15 {
+> +			regulator-min-microvolt = <765000>;
+> +			regulator-max-microvolt = <1020000>;
+> +		};
+> +
+> +		vreg_l16b_1p2: ldo16 {
+> +			regulator-min-microvolt = <1100000>;
+
+The datasheet says the mininum voltage for L16B is 1.2V.
+
+> +			regulator-max-microvolt = <1300000>;
+> +		};
+> +
+> +		vreg_l17b_1p8: ldo17 {
+> +			regulator-min-microvolt = <1700000>;
+
+The datasheet says the mininum voltage for L17B is 1.8V.
+
+> +			regulator-max-microvolt = <1900000>;
+> +		};
+> +
+> +		vreg_l18b_1p8: ldo18 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_l19b_1p8: ldo19 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+
+Is a fixed voltage intentional here?
+
+> +		};
+> +	};
+> +
+> +	pm8350c-regulators {
+> +		compatible = "qcom,pm8350c-rpmh-regulators";
+
+I can't find the datasheet for this chip, skipping this part.
+
+
+> +	pmr735a-regulators {
+> +		compatible = "qcom,pmr735a-rpmh-regulators";
+> +		qcom,pmic-id = "e";
+> +
+> +		vreg_l2e_1p2: ldo2 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		vreg_l3e_0p9: ldo3 {
+> +			regulator-min-microvolt = <912000>;
+> +			regulator-max-microvolt = <1020000>;
+
+According to the datasheet min and max for L3E is 1.2V. The
+datasheet lists different voltages for 'SM8350 lineup' and
+'SM8xyz' lineup though, does that mean that the voltages
+aren't limitations of what the regulators can provide but
+what their consumers support?
+
+There are also deltas for the remaining regulators, but now
+I'm in doubt about what the info in the datasheet actually
+means.
+
+> +		};
+> +
+> +		vreg_l4e_1p7: ldo4 {
+> +			regulator-min-microvolt = <1776000>;
+> +			regulator-max-microvolt = <1890000>;
+> +		};
+> +
+> +		vreg_l5e_0p8: ldo5 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <800000>;
+> +		};
+> +
+> +		vreg_l6e_0p8: ldo6 {
+> +			regulator-min-microvolt = <480000>;
+> +			regulator-max-microvolt = <904000>;
+> +		};
+> +	};
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
