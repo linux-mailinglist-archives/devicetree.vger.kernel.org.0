@@ -2,97 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 047BB33DB81
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A8033DBC5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 19:00:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239347AbhCPRyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 13:54:16 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:42133 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239351AbhCPRyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 13:54:12 -0400
-Received: by mail-io1-f50.google.com with SMTP id u20so38105868iot.9;
-        Tue, 16 Mar 2021 10:54:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Z93rlUj9sdWeq37uZfM03RuUP74yX70Y9MLTGZ1xQjw=;
-        b=e27tK+eOU1ayF0YZhD4iP21I89e/adqzgnYnwUeMh7rJbNJI8WLG9nfLWL6fZhm3sX
-         sCXxlc+tZKt92fmcbKhwOILvGYli2sZDWpN1rfJsTxuFSzPoPfvauqZKUHpv0wEPYJNz
-         xFzoULuBSL9OQIKBPh3zzuBjWaG+1IBDdGmlqX+Km9+3d0WAINSwhpa7Nw5iYRh1D+uu
-         czpMrUhJMy7Bn6DAGFXQwhRZsEWkxDGAULuIXyxXfLdTS5e79LODYQEr5iToT46823mk
-         9jT5hVZA/M8MR4gEoEspvmZGTKcY4Pxd//AcN8nczrN8+dYhcp5ORNlzCr5BdDATP7Ac
-         Gr7g==
-X-Gm-Message-State: AOAM533oUnr9C7vvlMbHmXNhWW//U16F9pDjnTCd3M5Jngj0qgSKJtj5
-        kyKUPmYlDPUlMi5NFN9Zag==
-X-Google-Smtp-Source: ABdhPJx9NqGassAFyEjEetsnxzPc4LiCv5OZO+q67dVfM9IFfAuk7yGqkR/agnODdaVp/QC2A1v/ig==
-X-Received: by 2002:a05:6602:26cb:: with SMTP id g11mr4090124ioo.180.1615917252062;
-        Tue, 16 Mar 2021 10:54:12 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id l16sm9795688ils.11.2021.03.16.10.54.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 10:54:11 -0700 (PDT)
-Received: (nullmailer pid 3326118 invoked by uid 1000);
-        Tue, 16 Mar 2021 17:54:09 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Roger Lu <roger.lu@mediatek.com>
-Cc:     Kevin Hilman <khilman@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        id S239493AbhCPSAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 14:00:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46408 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239547AbhCPR7x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 13:59:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 68DBA6512B;
+        Tue, 16 Mar 2021 17:59:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615917592;
+        bh=nXlw2vfyIp1WV4usGhcoH7XilW2OrIy0e0d+yxJsh9E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=e8pqAQMPjtlThMC66+kC/1hiYm64eWZ4wYu4wYB5j5y7/non75NV+4zzyXJ/+Whf9
+         LsklXdLpM/fJxJNyg7ccJ6WdDe7xFKiYpv2nB9fIQUiYIeLbzoGxzdIlAQxx5BJQtj
+         fg9JlGMFIYeHWV7iJ00Ct6qCS2rqxHtF0cOYWY8rsWRzYkdKqZb2UPFQnPsXQZSNGa
+         aupAREoPkP7+LV5Iv7X4CgE5SqmeIchFynOt+etteCZ7Ly3mq8mzFp5pkV8b56iEZf
+         mFvvw9TdSuroBaPuJqFasTU/ZmQQUSXe+4uRAi5ygoUtfFeyL5IdN6r0zaWBGh69I6
+         Z0WRHjPpDrV/g==
+From:   Mark Brown <broonie@kernel.org>
+To:     Seiya Wang <seiya.wang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        YT Lee <yt.lee@mediatek.com>, Stephen Boyd <sboyd@kernel.org>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, linux-iio@vger.kernel.org,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
         linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Fan Chen <fan.chen@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Nishanth Menon <nm@ti.com>, linux-pm@vger.kernel.org
-In-Reply-To: <20210315133018.4976-2-roger.lu@mediatek.com>
-References: <20210315133018.4976-1-roger.lu@mediatek.com> <20210315133018.4976-2-roger.lu@mediatek.com>
-Subject: Re: [PATCH v12 1/7] dt-bindings: soc: mediatek: add mtk svs dt-bindings
-Date:   Tue, 16 Mar 2021 11:54:09 -0600
-Message-Id: <1615917249.208932.3326117.nullmailer@robh.at.kernel.org>
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-serial@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-spi@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-mmc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org,
+        Stanley Chu <stanley.chu@mediatek.com>
+Subject: Re: (subset) [PATCH 00/10] Add basic node support for Mediatek MT8195 SoC
+Date:   Tue, 16 Mar 2021 17:59:39 +0000
+Message-Id: <161591750213.14124.1270039699331063876.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210316111443.3332-1-seiya.wang@mediatek.com>
+References: <20210316111443.3332-1-seiya.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 21:30:12 +0800, Roger Lu wrote:
-> Document the binding for enabling mtk svs on MediaTek SoC.
+On Tue, 16 Mar 2021 19:14:33 +0800, Seiya Wang wrote:
+> MT8195 is a SoC based on 64bit ARMv8 architecture.
+> It contains 4 CA55 and 4 CA78 cores.
+> MT8195 share many HW IP with MT65xx series.
+> This patchset was tested on MT8195 evaluation board to shell.
 > 
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> ---
->  .../bindings/soc/mediatek/mtk-svs.yaml        | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+> Based on v5.12-rc2
 > 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied to
 
-yamllint warnings/errors:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml: properties:nvmem-cells:maxItems: False schema does not allow 2
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml: ignoring, error in schema: properties: nvmem-cells: maxItems
-warning: no schema found in file: ./Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+Thanks!
 
-See https://patchwork.ozlabs.org/patch/1453275
+[05/10] dt-bindings: spi: Add compatible for Mediatek MT8195
+        commit: 5ac1b909e5b60cc2735bd9174f631dc2c7f44c5a
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-pip3 install dtschema --upgrade
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Please check and re-submit.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
+Thanks,
+Mark
