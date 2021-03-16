@@ -2,626 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B4A533CDE1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 07:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C8333CE09
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 07:43:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233369AbhCPGQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 02:16:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229923AbhCPGQI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 02:16:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2443965194;
-        Tue, 16 Mar 2021 06:16:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615875368;
-        bh=dQlTmvmPqShOwY5ctNYesynqJYC1wN4+p7fEUtD/vec=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VRkpJ3kOB6XJtX/KSNv5ovCHqh0iSUv7TfIIlryEHCwLNdsgqn/CBeMRUsRYIwXLb
-         InvB4xpazMCQLh5swzNGcvjHOEZv/CXbCh5mjAf6FgSCFeIKSsybsGRFfax7Mnb8ex
-         zkrfew/MEDNQwlRCX/+vBp39IXKbk/ppysVscjEwZSWTBAi6GW1tLYg/66HNs26eHl
-         Q9j7RqbiDYQ2Gp+TxpRfLwjCryBlnXzptlmRGqsCKNzt/NbK5miIKn/awP0XjiADev
-         FJhmX8lXdhtz83sxsP1hyuP0RGJcMmcgATW5nQ75rccy4weDVy7KFiLe5YXiUJZ1QA
-         x1fIlbQStSBcQ==
-Date:   Tue, 16 Mar 2021 11:46:04 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231441AbhCPGmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 02:42:49 -0400
+Received: from mail-eopbgr20077.outbound.protection.outlook.com ([40.107.2.77]:46861
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230385AbhCPGm0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 02:42:26 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IpEmyw53Vpx8WMmIW9LpKIICgBtGTMyRygPAfiBTsT72di1o2QxAf2THam7iSjvXkMKKnMVFSl3Fs583KA71UW1YHDO7axZT6W1LiOw0oADcD7FCux3MXs5gF3UiVr7HuM162CppsZ9CTMxNmMd3CnLG/J/nk/riJ4dnImEeyUyykOyMst4jCwfO5ifwqZBl/thJ7iS2usCi9jGiVZPj11WDCc44nMROxLuREujtc3g2HxVH9ZpfKZIiZH11er3XavFqsEIcyoalibwhE2K3B0qIVwI9UhDjgPIQ2fOKXKku07YakF3nQl9pbdG22oYnWNaUMaOOlT6jgSP+2oHojg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9kotEWciMuVcCTxStL+MFLWlEZhjUREv3Pf/3Yk5BFk=;
+ b=NY7a5S/FCdGoNXbXAEVcsVpdmoT+mua1LohxOqAUyEfkVN3B4CD35LCXmbbkvwfmvGA+E88ed6/NknaFfYhJHNh+JHXXg1Y7/j7vT0pVDxBhUvlVRu+OMgzyjjhORlVbIVkAciX1ZRHbbHaKtqFcrZ5vmopEA7rk5jfr9YGyvONH+FwARYHv94PuNxMgPmf7RDCi9lyplz9dvX2zG7LLI62VnQ6R4fmFRDO39cdO0pYYgWhPuwXhmeKoAyns6T1h+QtDNPO+1O8O8EA6VRNR7/Vl5qwR1bmtHH7jM6nT6jmqMKEZvk4vWkYcKSrveW/wVwKEuL5RauxaluqgKzkGYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9kotEWciMuVcCTxStL+MFLWlEZhjUREv3Pf/3Yk5BFk=;
+ b=Cy6797fv3l+/Y0rNLaPk5dih0MQ7A288CjlyznWx7c05C2vBFC1YjvJVrIa8vJJHtgjvCeMUG7NmxIh2igoIG4MmJsBk9EW3wuypJ6tMWvKIKT2AhSzv9rpB03K7Z/aBqxUw8cGfLMbEcyJeOyZrDhA+fSxNPqNen3QdXcLhPtg=
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com (2603:10a6:4:96::7)
+ by DBBPR04MB7787.eurprd04.prod.outlook.com (2603:10a6:10:1e3::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Tue, 16 Mar
+ 2021 06:42:23 +0000
+Received: from DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8]) by DB6PR0402MB2758.eurprd04.prod.outlook.com
+ ([fe80::c99c:dbc3:ed75:e6e8%5]) with mapi id 15.20.3933.032; Tue, 16 Mar 2021
+ 06:42:23 +0000
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Heiko Schocher <hs@denx.de>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8150: add i2c nodes
-Message-ID: <YFBNJJPLhxZ5Xx7c@vkoul-mobl>
-References: <20210310163024.393578-1-caleb@connolly.tech>
- <20210310163024.393578-4-caleb@connolly.tech>
+        Shawn Guo <shawnguo@kernel.org>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] [PATCH 0/2] enable flexspi support on imx8mp
+Thread-Topic: [EXT] [PATCH 0/2] enable flexspi support on imx8mp
+Thread-Index: AQHXGiHilVAG0/q0oE2pkR62eySgfqqGI38w
+Date:   Tue, 16 Mar 2021 06:42:23 +0000
+Message-ID: <DB6PR0402MB2758717E38C20E7BFEC5FED8E06B9@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+References: <20210316050425.1758778-1-hs@denx.de>
+In-Reply-To: <20210316050425.1758778-1-hs@denx.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: denx.de; dkim=none (message not signed)
+ header.d=none;denx.de; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [223.236.221.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1a317c45-d598-459e-8370-08d8e846a7f9
+x-ms-traffictypediagnostic: DBBPR04MB7787:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DBBPR04MB778707940AC3CC5B3B717D9BE06B9@DBBPR04MB7787.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3383;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: E95yjg1YW0nCvxP/vJMSxm25U07zbVtxo/a7XdgpFYq3lRPLhsochoTFjzrnq0fHMmwy0MRFvWoX0cBzVqG47UftR2PIhW4eJPpk02B4qVRsuUwg7qOVVTN7AjgoDN2jiQklahcic5Lk+53l2n/Eie0bt5RASoT0EDJU7H4WwaX+ZVs3fPU70AMhx7H0g75PyzsFAxWe0E6bxMrTvdoydJaU4xxrdNpwkQ7An9m/enok/fEwu/Fx//jMjzqMbHv+KdUIF5rmbd7Yk0mWgJbdj5TiLdUt5HHdZXIM1HZDqGawzjFFbyExuR1qVnJjUGdsvrz+GqhLEqIhGTpIE++oICgmwk6Ula5oZhp19JWDgPpnQiJAN1SDX9xTBaoGA1H+phTqMi6dq8QKdyg81FI0Pnp+/xEd52BKtIYqtzAVUtFb+TH7gywfEioiKoq6VLVk/UZ1V6VhCQqVsc9W6dR8R00wipe9IMTVKugqk0bejYbiX8WS3SMiRTOu8JDnJn/O/5JD5QtAlYBeDu42dBXLmaehR+baG/8VIQdFRdf0GrdL9qsX/s2Xenm5RC4l2k3+rcVkIb29qcz9g0XqNCY11zNOFG4XxKNC3NlKqdwFje1hSHy6VkdiZwB17HNKb51rc6FMWTcUs3IaBqx5QgIIRw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2758.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(346002)(39860400002)(136003)(396003)(4326008)(55016002)(316002)(2906002)(71200400001)(54906003)(26005)(83380400001)(76116006)(5660300002)(33656002)(186003)(44832011)(66446008)(9686003)(66556008)(45080400002)(110136005)(53546011)(64756008)(6506007)(7696005)(966005)(478600001)(86362001)(8676002)(52536014)(66476007)(66946007)(8936002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?pT4ul0HF8+zPUIT1t9GK4X4MT8WxZCSWamAQPye35akKk8TlH1twwax/ZCn7?=
+ =?us-ascii?Q?xtfmLOPeawKx5h4Z7JeOc/UygYNGWEWRl3OGswr/UNnUokaLowu0NkvAD/wX?=
+ =?us-ascii?Q?A7HWTbf+EfpmoZAzoPlyTXUkXPMyugUuUln0P/epKuHzoLkFJh3MVa3i+6au?=
+ =?us-ascii?Q?PCeleWr8FrR0Lkzd4CvxDjo7eYEbvzLPRmwj533KQ/5i55MIO7Y9H0IQBFfs?=
+ =?us-ascii?Q?8LK+x242BgVfGnnr+Wm9n14V+i6HE8H6OBdgs/5dBLbUKA5lLUUYbTrxz6Gw?=
+ =?us-ascii?Q?HJOJmZXXH1OkepBn+xRbfJGqJo+/hLMfuFxwsGkunJ3iHJl6xr4ljWK/ZjhP?=
+ =?us-ascii?Q?mx5frZ31pdthxTlp7Tyqy7D+vaQWm2LEx670Ykuha0NPx4fOqD8QlQrjWsfo?=
+ =?us-ascii?Q?Bxu7VAOt+66DzmpExMH5f3V7E51XcIdCFG1rnnsrWJ6PSrYY7h5NpwjXMFat?=
+ =?us-ascii?Q?m5xuL+EL7rmLs8SMPh4PPTFX+lwgUp5TbkGLXDXEDTRUCrq2b3AVjes5hbSS?=
+ =?us-ascii?Q?bJZrjqFCw2ssqTMRIm/Qtr7stx4gmRaCGvB3zitas92BF26aOvZXk/8ki6FW?=
+ =?us-ascii?Q?d7E2yRKUMQHpkNYf3QtTNcT/3GWlss+Dkva164fWhZ0iIWQIpHMjLu0bb537?=
+ =?us-ascii?Q?Vuz0TlSwZdZ6LMZU/cQtad3zYtclRibbRj9eXty+klJT/2VLPh/C5co8p7Ck?=
+ =?us-ascii?Q?wEeuIpLlusP/CEpZ2xfPnJpV7uOAWD57Jw56fDPdK4N4prRSyJkxxlEKuipU?=
+ =?us-ascii?Q?JzMnmrjxnSJE3rY1Pg7aoAX3i+Jaxx+AhtoXyNUdjMyBj54TX/my/ZE1Y/Vz?=
+ =?us-ascii?Q?ic3o6pVJA29+G4Y9+etDHO9aGmk9swujm9YwT5VoNBd2wIJZkhlcqewnNh8g?=
+ =?us-ascii?Q?LidTRbltOVLZr6lJNjlksN57KCD85gHsSOiyni95tSkx4mrri6GmYUTyM5PS?=
+ =?us-ascii?Q?pAoS8iPXr9uayvgfRPcsnIQvbJRW5LkzV/9ek9LGhcQlq4+b4Q8vLJiyaJ6d?=
+ =?us-ascii?Q?vQ0LCMMhBPnfrWt/egMgMIk7wFIDSbk+SIlDGUXpbEO1vlJyQX0fANfgxqeL?=
+ =?us-ascii?Q?bPUl/2lMEzwcsC+ufPYIJ74IDuVQyZcGNarq4fR5Nxqoq5rKWYS+bCU/R4A3?=
+ =?us-ascii?Q?MViUnrUYAniQ7HXtn/+zZIiZCStn1FNYtQEfXFHO2cHHTD02ZvQDTk+08Xcs?=
+ =?us-ascii?Q?pM5alFl8xJ2ftxyfHBiaLFNc0j6TAqSA96tFVMEL2A4K83XlQ1ujAJYzWyeo?=
+ =?us-ascii?Q?KUV7QPjiN2NKPG5r+eGEd9k5LVirxlz9I4jxnSlgWfa3mbj/ttNhtXOoiMFL?=
+ =?us-ascii?Q?cAba0Mmxl6eNah5dyh1ApNry?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210310163024.393578-4-caleb@connolly.tech>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2758.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a317c45-d598-459e-8370-08d8e846a7f9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2021 06:42:23.5447
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZF/0GcpDJ7p+3uTaDz/1f0fw1HH/eIYzt9Hr92e5RDJuv6VyeP5/ewQo3qE+McsNRufmLtfQoVYnciVaNEJByg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7787
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-03-21, 16:31, Caleb Connolly wrote:
-> Tested on the OnePlus 7 Pro (including DMA).
+Hi Heiko,
 
-Lgtm:
+> -----Original Message-----
+> From: Heiko Schocher <hs@denx.de>
+> Sent: Tuesday, March 16, 2021 10:34 AM
+> To: linux-spi@vger.kernel.org
+> Cc: Heiko Schocher <hs@denx.de>; linux-arm-kernel@lists.infradead.org;
+> Ashish Kumar <ashish.kumar@nxp.com>; Kuldeep Singh
+> <kuldeep.singh@nxp.com>; Mark Brown <broonie@kernel.org>; Rob Herring
+> <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Yogesh Gaur
+> <yogeshgaur.83@gmail.com>; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org
+> Subject: [EXT] [PATCH 0/2] enable flexspi support on imx8mp
+>=20
+> Caution: EXT Email
+>=20
+> add compatible entry in nxp_fspi driver for imx8mp
+>=20
+> new in v3:
+> seperate spi changes from series:
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Flists.=
+inf
+> radead.org%2Fpipermail%2Flinux-arm-kernel%2F2021-
+> March%2F643289.html&amp;data=3D04%7C01%7Ckuldeep.singh%40nxp.com%
+> 7C5da0c3da3dbe410baaf508d8e83903f4%7C686ea1d3bc2b4c6fa92cd99c5c3
+> 01635%7C0%7C0%7C637514678868305498%7CUnknown%7CTWFpbGZsb3d8
+> eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3
+> D%7C1000&amp;sdata=3D2uy0EKUh4Nt0BceSQbIkCZDfakid3wx5uwebw0DhEIQ
+> %3D&amp;reserved=3D0
+>=20
+> into own series as Kuldeep suggested and rebased against
+> git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> 144c79ef33536 ("Merge tag 'perf-tools-fixes-for-v5.12-2020-03-07' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux")
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+The changes are not on on top of spi tree
+git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+and therefore may not apply seamlessly.
 
-But missing enabling nodes in board dts ..?
+I recently added driver support for imx8dxl which is accepted in spi tree
+And these patches will cause conflict with it.
 
-> 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 521 +++++++++++++++++++++++++++
->  1 file changed, 521 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 543417d74216..0a38ad54c715 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -588,6 +588,111 @@ qupv3_id_0: geniqup@8c0000 {
->  			#size-cells = <2>;
->  			ranges;
->  			status = "disabled";
-> +
-> +			i2c0: i2c@880000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00880000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c0_default>;
-> +				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c1: i2c@884000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00884000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c1_default>;
-> +				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c2: i2c@888000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00888000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c2_default>;
-> +				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c3: i2c@88c000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x0088c000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c3_default>;
-> +				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c4: i2c@890000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00890000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c4_default>;
-> +				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c5: i2c@894000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00894000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c5_default>;
-> +				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c6: i2c@898000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00898000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c6_default>;
-> +				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c7: i2c@89c000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x0089c000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP0_S7_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c7_default>;
-> +				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
->  		};
->  
->  		qupv3_id_1: geniqup@ac0000 {
-> @@ -602,6 +707,58 @@ qupv3_id_1: geniqup@ac0000 {
->  			ranges;
->  			status = "disabled";
->  
-> +			i2c8: i2c@a80000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00a80000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c8_default>;
-> +				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c9: i2c@a84000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00a84000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c9_default>;
-> +				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c10: i2c@a88000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00a88000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c10_default>;
-> +				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c11: i2c@a8c000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00a8c000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c11_default>;
-> +				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
->  			uart2: serial@a90000 {
->  				compatible = "qcom,geni-debug-uart";
->  				reg = <0x0 0x00a90000 0x0 0x4000>;
-> @@ -610,6 +767,32 @@ uart2: serial@a90000 {
->  				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
->  				status = "disabled";
->  			};
-> +
-> +			i2c12: i2c@a90000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00a90000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c12_default>;
-> +				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c16: i2c@94000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x0094000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c16_default>;
-> +				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
->  		};
->  
->  		qupv3_id_2: geniqup@cc0000 {
-> @@ -624,6 +807,84 @@ qupv3_id_2: geniqup@cc0000 {
->  			#size-cells = <2>;
->  			ranges;
->  			status = "disabled";
-> +
-> +			i2c17: i2c@c80000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c80000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c17_default>;
-> +				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c18: i2c@c84000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c84000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c18_default>;
-> +				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c19: i2c@c88000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c88000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c19_default>;
-> +				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "okay";
-> +			};
-> +
-> +			i2c13: i2c@c8c000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c8c000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c13_default>;
-> +				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c14: i2c@c90000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c90000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c14_default>;
-> +				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c15: i2c@c94000 {
-> +				compatible = "qcom,geni-i2c";
-> +				reg = <0 0x00c94000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_i2c15_default>;
-> +				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
->  		};
->  
->  		config_noc: interconnect@1500000 {
-> @@ -947,6 +1208,266 @@ tlmm: pinctrl@3100000 {
->  			#gpio-cells = <2>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
-> +
-> +			qup_i2c0_default: qup-i2c0-default {
-> +				mux {
-> +					pins = "gpio0", "gpio1";
-> +					function = "qup0";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio0", "gpio1";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c1_default: qup-i2c1-default {
-> +				mux {
-> +					pins = "gpio114", "gpio115";
-> +					function = "qup1";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio114", "gpio115";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c2_default: qup-i2c2-default {
-> +				mux {
-> +					pins = "gpio126", "gpio127";
-> +					function = "qup2";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio126", "gpio127";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c3_default: qup-i2c3-default {
-> +				mux {
-> +					pins = "gpio144", "gpio145";
-> +					function = "qup3";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio144", "gpio145";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c4_default: qup-i2c4-default {
-> +				mux {
-> +					pins = "gpio51", "gpio52";
-> +					function = "qup4";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio51", "gpio52";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c5_default: qup-i2c5-default {
-> +				mux {
-> +					pins = "gpio121", "gpio122";
-> +					function = "qup5";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio121", "gpio122";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c6_default: qup-i2c6-default {
-> +				mux {
-> +					pins = "gpio6", "gpio7";
-> +					function = "qup6";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio6", "gpio7";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c7_default: qup-i2c7-default {
-> +				mux {
-> +					pins = "gpio98", "gpio99";
-> +					function = "qup7";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio98", "gpio99";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c8_default: qup-i2c8-default {
-> +				mux {
-> +					pins = "gpio88", "gpio89";
-> +					function = "qup8";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio88", "gpio89";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c9_default: qup-i2c9-default {
-> +				mux {
-> +					pins = "gpio39", "gpio40";
-> +					function = "qup9";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio39", "gpio40";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c10_default: qup-i2c10-default {
-> +				mux {
-> +					pins = "gpio9", "gpio10";
-> +					function = "qup10";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio9", "gpio10";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c11_default: qup-i2c11-default {
-> +				mux {
-> +					pins = "gpio94", "gpio95";
-> +					function = "qup11";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio94", "gpio95";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c12_default: qup-i2c12-default {
-> +				mux {
-> +					pins = "gpio83", "gpio84";
-> +					function = "qup12";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio83", "gpio84";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c13_default: qup-i2c13-default {
-> +				mux {
-> +					pins = "gpio43", "gpio44";
-> +					function = "qup13";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio43", "gpio44";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c14_default: qup-i2c14-default {
-> +				mux {
-> +					pins = "gpio47", "gpio48";
-> +					function = "qup14";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio47", "gpio48";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c15_default: qup-i2c15-default {
-> +				mux {
-> +					pins = "gpio27", "gpio28";
-> +					function = "qup15";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio27", "gpio28";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c16_default: qup-i2c16-default {
-> +				mux {
-> +					pins = "gpio86", "gpio85";
-> +					function = "qup16";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio86", "gpio85";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c17_default: qup-i2c17-default {
-> +				mux {
-> +					pins = "gpio55", "gpio56";
-> +					function = "qup17";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio55", "gpio56";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c18_default: qup-i2c18-default {
-> +				mux {
-> +					pins = "gpio23", "gpio24";
-> +					function = "qup18";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio23", "gpio24";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			qup_i2c19_default: qup-i2c19-default {
-> +				mux {
-> +					pins = "gpio57", "gpio58";
-> +					function = "qup19";
-> +				};
-> +
-> +				config {
-> +					pins = "gpio57", "gpio58";
-> +					drive-strength = <0x02>;
-> +					bias-disable;
-> +				};
-> +			};
->  		};
->  
->  		remoteproc_mpss: remoteproc@4080000 {
-> -- 
-> 2.29.2
-> 
+Kindly rebase these patches on top of the tree.
 
--- 
-~Vinod
+Regards
+Kuldeep
