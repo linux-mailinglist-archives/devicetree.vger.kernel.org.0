@@ -2,83 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D919C33DD7E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75F233DDAC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 20:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236876AbhCPT2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 15:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240442AbhCPT15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:27:57 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F57C06174A;
-        Tue, 16 Mar 2021 12:27:56 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9DC8522238;
-        Tue, 16 Mar 2021 20:27:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1615922871;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=t9oTzvmR9m08GcJX5x4Qj7U6037F+XpGCNpETFyhQBY=;
-        b=QeWpVQNkO+k1G5Jtvp/UlCGLokXMw8tBA4kcpE2dwkb/TWx9sClKBQQu0qlQXS8maK5cJ1
-        JQjses3PkZIxY/mmMs2kC4Vstz1MQsBv3TlB/opvR2HGfgJSgGHVAHE9JgHV8EVUEyzAMW
-        BYsWT+YEmbp1UOMmp2h07AGxkcAnp44=
+        id S236896AbhCPTia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 15:38:30 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:59913 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234578AbhCPTiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 15:38:24 -0400
+Received: from debian.home (lfbn-lyo-1-457-219.w2-7.abo.wanadoo.fr [2.7.49.219])
+        (Authenticated sender: alex@ghiti.fr)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 30ACF240006;
+        Tue, 16 Mar 2021 19:38:21 +0000 (UTC)
+From:   Alexandre Ghiti <alex@ghiti.fr>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Alexandre Ghiti <alex@ghiti.fr>
+Subject: [PATCH] driver: of: Properly truncate command line if too long
+Date:   Tue, 16 Mar 2021 15:38:20 -0400
+Message-Id: <20210316193820.3137-1-alex@ghiti.fr>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 16 Mar 2021 20:27:51 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Guillaume Tucker <guillaume.tucker@collabora.com>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, kernelci-results@groups.io,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: next/master bisection: baseline.login on kontron-kbox-a-230-ls
-In-Reply-To: <38c31f5c-4400-eed7-d561-8f45e261ab01@collabora.com>
-References: <6050bf47.1c69fb81.59c4d.85f2@mx.google.com>
- <38c31f5c-4400-eed7-d561-8f45e261ab01@collabora.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <edcb6c52f754935341ee8711f30062c4@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-16 19:33, schrieb Guillaume Tucker:
-> Hi Sahil,
-> 
-> Please see the bisection report below about a boot failure on
-> kontron-kbox-a-230-ls on linux-next.
-> 
-> Reports aren't automatically sent to the public while we're
-> trialing new bisection features on kernelci.org but this one
-> looks valid.
+In case the command line given by the user is too long, warn about it
+and truncate it to the last full argument.
 
-nice! Thanks.
+This is what efi already does in commit 80b1bfe1cb2f ("efi/libstub:
+Don't parse overlong command lines").
 
-[..]
+Reported-by: Dmitry Vyukov <dvyukov@google.com>
+Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+---
+ drivers/of/fdt.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
->> commit 48787485f8de44915016d4583e898b62bb2d5753
->> Author: Sahil Malhotra <sahil.malhotra@nxp.com>
->> Date:   Fri Mar 5 14:03:51 2021 +0530
->> 
->>     arm64: dts: ls1028a: enable optee node
->> 
->>     optee node was disabled in ls1028a.dtsi, enabling it by default.
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index dcc1dd96911a..de4c6f9bac39 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -25,6 +25,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
++#include <linux/ctype.h>
+ 
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -1050,9 +1051,27 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 
+ 	/* Retrieve command line */
+ 	p = of_get_flat_dt_prop(node, "bootargs", &l);
+-	if (p != NULL && l > 0)
++	if (p != NULL && l > 0) {
+ 		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+ 
++		/*
++		 * If the given command line size is larger than
++		 * COMMAND_LINE_SIZE, truncate it to the last complete
++		 * parameter.
++		 */
++		if (l > COMMAND_LINE_SIZE) {
++			char *cmd_p = (char *)data + COMMAND_LINE_SIZE - 1;
++
++			while (!isspace(*cmd_p))
++				cmd_p--;
++
++			*cmd_p = '\0';
++
++			pr_err("Command line is too long: truncated to %d bytes\n",
++			       (int)(cmd_p - (char *)data + 1));
++		}
++	}
++
+ 	/*
+ 	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+ 	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
+-- 
+2.20.1
 
-Please enable this per board. As it is also indicated by my original
-commit f90931aeefe3 ("arm64: dts: ls1028a: add optee node") message:
-
-   Add the optee node which can either be enabled by a specific board or 
-by
-   the bootloader.
-
--michael
