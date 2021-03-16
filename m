@@ -2,268 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C304E33E12C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7DC733E149
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 23:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230403AbhCPWJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 18:09:50 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:38412 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230398AbhCPWJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:09:30 -0400
-Received: by mail-io1-f45.google.com with SMTP id k2so38960959ioh.5;
-        Tue, 16 Mar 2021 15:09:29 -0700 (PDT)
+        id S230527AbhCPWUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 18:20:01 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:45874 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230391AbhCPWTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 18:19:38 -0400
+Received: by mail-io1-f50.google.com with SMTP id a7so38907511iok.12;
+        Tue, 16 Mar 2021 15:19:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jz8R/aNPIItoq2l02Px8QwlLUmeIpPIwCgu086Ui92o=;
-        b=Nxuy+ZPqaOlNHiPoi5BsrnWUjXlNbx6QMJxnqTCNQI21pDAv10CG9khT2XZ54cl9e6
-         5F9ybrbo2Namic8kAnXSvK6gYfCAMdVJVEI0x5QKYJBDDXMgysBwYgd8yBnQaaP6Itm7
-         dxF5NxYyv5Zczc3ZBRXBgKNDHZ/I8Hp4U1F61MYtHkx/gacORthnPpKqcpnJedX2Vj/t
-         42D0s0O1SK8iBFPM8H4L2zjmrZ2I7VojAY0snfh/wOcvgARAL3Dn16WQCti1Uu8AfjHk
-         slRmUA3IR0YF2vg7Pp3cnQSELEjo5Ytt6Ij23/S2A3+5SPXNOWkiwFrHzC47mIbCfNbH
-         zs1Q==
-X-Gm-Message-State: AOAM530bONt7uJaUnXkKmrq7/uGkFb7AuqzZ4pP3R2ihu7VAtLm/4TFS
-        RiItTuGfOn6ntR6dsogLeA==
-X-Google-Smtp-Source: ABdhPJzC4nUeyJn7e2xHHLNBjeOUbTXLI+V1ajUbCI1o7x7ZExjT2vdV0Nl46WhApXkGnIjmLcHz/Q==
-X-Received: by 2002:a02:93e9:: with SMTP id z96mr629658jah.73.1615932569199;
-        Tue, 16 Mar 2021 15:09:29 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=oYgQtLAcDkuiiVRZNURhrrpQnYuhErdiIXEJ4Ufn24g=;
+        b=cLdIMxpRFFxAvRtKXubq/Pm0vF/PZwRsj7ASntPhpTSWYqHFGD/lQGPJshilXkaRUe
+         IKHH/BVFAUuvCRnC7jfpKMNPo2mxYVLh9ZxXUlpTTN7r1sgQiyLx+v2HqZeKxmp5C7vE
+         7ffyZgIEBKPbWDmH74q2Zxm5SjR+DM4Doaw83fzlUMJwdt5bFUbFARk2/q3VeNb3YdJK
+         /5S+Du8hDmNsl5hTek8kkGZapc3L/WYuPwfzJYLzMVm8SDkFyNSOKAEKBb7FayxFhnvc
+         fz3qcmuUhe8Zu00H1gAlB8DgWp5CP0hh80bO3YN729/SRENdjkj6WTFUb8jwKlwrNU8V
+         6TLQ==
+X-Gm-Message-State: AOAM531M3ikLKuU3BBhl1/U//X+KEVow9wtaa+wLkaysglpZ62lPo/p4
+        5fPQtafZvO+e7BPeOUcn6z1+gyAFzA==
+X-Google-Smtp-Source: ABdhPJz4K6Y8JD6lcRDjBOoDjvVLizQXfXiKGk1a1rv79FMAkLG2rir+/YbIhr+/u31qoR1eVKZoHw==
+X-Received: by 2002:a5d:93cc:: with SMTP id j12mr4932416ioo.15.1615933177701;
+        Tue, 16 Mar 2021 15:19:37 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f15sm10191672ilj.24.2021.03.16.15.09.26
+        by smtp.gmail.com with ESMTPSA id n16sm8831040ilq.71.2021.03.16.15.19.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 15:09:28 -0700 (PDT)
-Received: (nullmailer pid 3768469 invoked by uid 1000);
-        Tue, 16 Mar 2021 22:09:25 -0000
-Date:   Tue, 16 Mar 2021 16:09:25 -0600
+        Tue, 16 Mar 2021 15:19:37 -0700 (PDT)
+Received: (nullmailer pid 3784287 invoked by uid 1000);
+        Tue, 16 Mar 2021 22:19:34 -0000
+Date:   Tue, 16 Mar 2021 16:19:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Odelu Kukatla <okukatla@codeaurora.org>
-Cc:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
-        evgreen@google.com, Andy Gross <agross@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
-        elder@linaro.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [1/3] dt-bindings: interconnect: Add Qualcomm SC7280 DT bindings
-Message-ID: <20210316220925.GA3767772@robh.at.kernel.org>
-References: <1615290609-21009-1-git-send-email-okukatla@codeaurora.org>
- <1615290609-21009-2-git-send-email-okukatla@codeaurora.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH robh next] dt-bindings: usb: add USB controller port
+Message-ID: <20210316221934.GA3768880@robh.at.kernel.org>
+References: <20210309121311.7263-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1615290609-21009-2-git-send-email-okukatla@codeaurora.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210309121311.7263-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 09, 2021 at 05:20:07PM +0530, Odelu Kukatla wrote:
-> The Qualcomm SC7280 platform has several bus fabrics that could be
-> controlled and tuned dynamically according to the bandwidth demand.
+On Tue, Mar 09, 2021 at 01:13:11PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+> USB bindings already allow specifying USB device hard wired to a
+> specific controller port but they don't allow describing port on its
+> own.
+> 
+> This fixes:
+> arch/arm/boot/dts/bcm4708-buffalo-wzr-1750dhp.dt.yaml: usb@23000: port@1: 'compatible' is a required property
+>         From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  .../bindings/interconnect/qcom,rpmh.yaml           |  12 ++
->  include/dt-bindings/interconnect/qcom,sc7280.h     | 163 +++++++++++++++++++++
->  2 files changed, 175 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/qcom,sc7280.h
+> Please check if I got the $nodename part right. Somehow I don't see any
+> errors / warnings when using:
 > 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> index 799e73cdb90..e65da19 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> @@ -37,6 +37,18 @@ properties:
->        - qcom,sc7180-npu-noc
->        - qcom,sc7180-qup-virt
->        - qcom,sc7180-system-noc
-> +      - qcom,sc7280-aggre1-noc
-> +      - qcom,sc7280-aggre2-noc
-> +      - qcom,sc7280-clk-virt
-> +      - qcom,sc7280-cnoc2
-> +      - qcom,sc7280-cnoc3
-> +      - qcom,sc7280-dc-noc
-> +      - qcom,sc7280-gem-noc
-> +      - qcom,sc7280-lpass-ag-noc
-> +      - qcom,sc7280-mc-virt
-> +      - qcom,sc7280-mmss-noc
-> +      - qcom,sc7280-nsp-noc
-> +      - qcom,sc7280-system-noc
->        - qcom,sdm845-aggre1-noc
->        - qcom,sdm845-aggre2-noc
->        - qcom,sdm845-config-noc
-> diff --git a/include/dt-bindings/interconnect/qcom,sc7280.h b/include/dt-bindings/interconnect/qcom,sc7280.h
+> something@1 {
+> 	reg = <1>;
+> };
+
+$nodename may not work in child nodes of a schema.
+
+> ---
+>  .../devicetree/bindings/usb/usb-hcd.yaml      |  4 +-
+>  .../devicetree/bindings/usb/usb-port.yaml     | 39 +++++++++++++++++++
+>  2 files changed, 42 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/usb-port.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.yaml b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> index 56853c17af66..b0c6a79cad57 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-hcd.yaml
+> @@ -33,7 +33,9 @@ patternProperties:
+>    "^.*@[0-9a-f]{1,2}$":
+>      description: The hard wired USB devices
+>      type: object
+> -    $ref: /usb/usb-device.yaml
+> +    oneOf:
+> +      - $ref: /usb/usb-port.yaml
+> +      - $ref: /usb/usb-device.yaml
+>  
+>  additionalProperties: true
+>  
+> diff --git a/Documentation/devicetree/bindings/usb/usb-port.yaml b/Documentation/devicetree/bindings/usb/usb-port.yaml
 > new file mode 100644
-> index 0000000..75a243d
+> index 000000000000..68fe16c8703e
 > --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,sc7280.h
-> @@ -0,0 +1,163 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/Documentation/devicetree/bindings/usb/usb-port.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/usb-port.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: USB port on USB controller
+> +
+> +maintainers:
+> +  - Rafał Miłecki <rafal@milecki.pl>
+> +
+> +description: |
+> +  This binding describes a single USB controller port that doesn't have any
+> +  device hard wired.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^port@[0-9a-f]{1,2}$"
 
-Don't care about non-GPL users?
+Unfortunately, 'port' is used elsewhere, so this would be applied 
+any node that matches. That's not really a problem as this is simple 
+enough, but then what does it buy us?
 
-> +/*
-> + * Qualcomm SC7280 interconnect IDs
-> + *
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + */
+I'd be fine just dropping 'compatible' as required in usb-device.yaml.
+
 > +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_SC7280_H
-> +#define __DT_BINDINGS_INTERCONNECT_QCOM_SC7280_H
+> +  reg:
+> +    description: number of USB controller port
+> +    maxItems: 1
 > +
-> +#define MASTER_QSPI_0			0
-> +#define MASTER_QUP_0			1
-> +#define MASTER_QUP_1			2
-> +#define MASTER_A1NOC_CFG			3
-> +#define MASTER_PCIE_0			4
-> +#define MASTER_PCIE_1			5
-> +#define MASTER_SDCC_1			6
-> +#define MASTER_SDCC_2			7
-> +#define MASTER_SDCC_4			8
-> +#define MASTER_UFS_MEM			9
-> +#define MASTER_USB3_0			10
-> +#define SLAVE_A1NOC_SNOC			11
-> +#define SLAVE_ANOC_PCIE_GEM_NOC			12
-> +#define SLAVE_SERVICE_A1NOC			13
+> +required:
+> +  - reg
 > +
-> +#define MASTER_QDSS_BAM			0
-> +#define MASTER_A2NOC_CFG			1
-> +#define MASTER_CNOC_A2NOC			2
-> +#define MASTER_CRYPTO			3
-> +#define MASTER_IPA			4
-> +#define MASTER_QDSS_ETR			5
-> +#define SLAVE_A2NOC_SNOC			6
-> +#define SLAVE_SERVICE_A2NOC			7
+> +additionalProperties: true
 > +
-> +#define MASTER_QUP_CORE_0			0
-> +#define MASTER_QUP_CORE_1		1
-> +#define SLAVE_QUP_CORE_0			2
-> +#define SLAVE_QUP_CORE_1			3
+> +examples:
+> +  - |
+> +    usb@11270000 {
+> +        reg = <0x11270000 0x1000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +#define MASTER_CNOC3_CNOC2			0
-> +#define MASTER_QDSS_DAP			1
-> +#define SLAVE_AHB2PHY_SOUTH			2
-> +#define SLAVE_AHB2PHY_NORTH			3
-> +#define SLAVE_CAMERA_CFG			4
-> +#define SLAVE_CLK_CTL			5
-> +#define SLAVE_CDSP_CFG			6
-> +#define SLAVE_RBCPR_CX_CFG			7
-> +#define SLAVE_RBCPR_MX_CFG			8
-> +#define SLAVE_CRYPTO_0_CFG			9
-> +#define SLAVE_CX_RDPM			10
-> +#define SLAVE_DCC_CFG			11
-> +#define SLAVE_DISPLAY_CFG			12
-> +#define SLAVE_GFX3D_CFG			13
-> +#define SLAVE_HWKM			14
-> +#define SLAVE_IMEM_CFG			15
-> +#define SLAVE_IPA_CFG			16
-> +#define SLAVE_IPC_ROUTER_CFG			17
-> +#define SLAVE_LPASS			18
-> +#define SLAVE_CNOC_MSS			19
-> +#define SLAVE_MX_RDPM			20
-> +#define SLAVE_PCIE_0_CFG			21
-> +#define SLAVE_PCIE_1_CFG			22
-> +#define SLAVE_PDM			23
-> +#define SLAVE_PIMEM_CFG			24
-> +#define SLAVE_PKA_WRAPPER_CFG			25
-> +#define SLAVE_PMU_WRAPPER_CFG			26
-> +#define SLAVE_QDSS_CFG			27
-> +#define SLAVE_QSPI_0			28
-> +#define SLAVE_QUP_0			29
-> +#define SLAVE_QUP_1			30
-> +#define SLAVE_SDCC_1			31
-> +#define SLAVE_SDCC_2			32
-> +#define SLAVE_SDCC_4			33
-> +#define SLAVE_SECURITY			34
-> +#define SLAVE_TCSR			35
-> +#define SLAVE_TLMM			36
-> +#define SLAVE_UFS_MEM_CFG			37
-> +#define SLAVE_USB3_0			38
-> +#define SLAVE_VENUS_CFG			39
-> +#define SLAVE_VSENSE_CTRL_CFG			40
-> +#define SLAVE_A1NOC_CFG			41
-> +#define SLAVE_A2NOC_CFG			42
-> +#define SLAVE_CNOC2_CNOC3			43
-> +#define SLAVE_CNOC_MNOC_CFG			44
-> +#define SLAVE_SNOC_CFG			45
-> +
-> +#define MASTER_CNOC2_CNOC3			0
-> +#define MASTER_GEM_NOC_CNOC			1
-> +#define MASTER_GEM_NOC_PCIE_SNOC			2
-> +#define SLAVE_AOSS			3
-> +#define SLAVE_APPSS			4
-> +#define SLAVE_CNOC3_CNOC2			5
-> +#define SLAVE_CNOC_A2NOC			6
-> +#define SLAVE_DDRSS_CFG			7
-> +#define SLAVE_BOOT_IMEM			8
-> +#define SLAVE_IMEM			9
-> +#define SLAVE_PIMEM			10
-> +#define SLAVE_PCIE_0			11
-> +#define SLAVE_PCIE_1			12
-> +#define SLAVE_QDSS_STM			13
-> +#define SLAVE_TCU			14
-> +
-> +#define MASTER_CNOC_DC_NOC			0
-> +#define SLAVE_LLCC_CFG			1
-> +#define SLAVE_GEM_NOC_CFG			2
-> +
-> +#define MASTER_GPU_TCU			0
-> +#define MASTER_SYS_TCU			1
-> +#define MASTER_APPSS_PROC			2
-> +#define MASTER_COMPUTE_NOC			3
-> +#define MASTER_GEM_NOC_CFG			4
-> +#define MASTER_GFX3D			5
-> +#define MASTER_MNOC_HF_MEM_NOC			6
-> +#define MASTER_MNOC_SF_MEM_NOC			7
-> +#define MASTER_ANOC_PCIE_GEM_NOC			8
-> +#define MASTER_SNOC_GC_MEM_NOC			9
-> +#define MASTER_SNOC_SF_MEM_NOC			10
-> +#define SLAVE_MSS_PROC_MS_MPU_CFG			11
-> +#define SLAVE_MCDMA_MS_MPU_CFG			12
-> +#define SLAVE_GEM_NOC_CNOC			13
-> +#define SLAVE_LLCC			14
-> +#define SLAVE_MEM_NOC_PCIE_SNOC			15
-> +#define SLAVE_SERVICE_GEM_NOC_1			16
-> +#define SLAVE_SERVICE_GEM_NOC_2			17
-> +#define SLAVE_SERVICE_GEM_NOC			18
-> +
-> +#define MASTER_CNOC_LPASS_AG_NOC			0
-> +#define SLAVE_LPASS_CORE_CFG			1
-> +#define SLAVE_LPASS_LPI_CFG			2
-> +#define SLAVE_LPASS_MPU_CFG			3
-> +#define SLAVE_LPASS_TOP_CFG			4
-> +#define SLAVE_SERVICES_LPASS_AML_NOC			5
-> +#define SLAVE_SERVICE_LPASS_AG_NOC			6
-> +
-> +#define MASTER_LLCC			0
-> +#define SLAVE_EBI1			1
-> +
-> +#define MASTER_CNOC_MNOC_CFG			0
-> +#define MASTER_VIDEO_P0			1
-> +#define MASTER_VIDEO_PROC			2
-> +#define MASTER_CAMNOC_HF			3
-> +#define MASTER_CAMNOC_ICP			4
-> +#define MASTER_CAMNOC_SF			5
-> +#define MASTER_MDP0			6
-> +#define SLAVE_MNOC_HF_MEM_NOC			7
-> +#define SLAVE_MNOC_SF_MEM_NOC			8
-> +#define SLAVE_SERVICE_MNOC			9
-> +
-> +#define MASTER_CDSP_NOC_CFG			0
-> +#define MASTER_CDSP_PROC			1
-> +#define SLAVE_CDSP_MEM_NOC			2
-> +#define SLAVE_SERVICE_NSP_NOC			3
-> +
-> +#define MASTER_A1NOC_SNOC			0
-> +#define MASTER_A2NOC_SNOC			1
-> +#define MASTER_SNOC_CFG			2
-> +#define MASTER_PIMEM			3
-> +#define MASTER_GIC			4
-> +#define SLAVE_SNOC_GEM_NOC_GC			5
-> +#define SLAVE_SNOC_GEM_NOC_SF			6
-> +#define SLAVE_SERVICE_SNOC			7
-> +
-> +#endif
+> +        port@1 {
+> +            reg = <1>;
+> +        };
+> +    };
 > -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> 2.26.2
 > 
