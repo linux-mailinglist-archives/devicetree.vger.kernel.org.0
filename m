@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8845F33D260
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 12:03:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A5733D27B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 12:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237017AbhCPLC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 07:02:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
+        id S237094AbhCPLMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 07:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237001AbhCPLCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 07:02:33 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F21C06174A
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:02:32 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 205so5376360pgh.9
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:02:32 -0700 (PDT)
+        with ESMTP id S232334AbhCPLMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 07:12:21 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727B7C06174A
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:12:20 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id w8so10427734pjf.4
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 04:12:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1LVjUoUKXm7FsxD4sNTz87mVaO1PBBHxa9gw0uYkS4k=;
-        b=IpHXM0oXiw4jjywx+X1sTYVH2tWV+/PlIcYbDKGyTm7jkZE7OMeuxf9ctrW60RcmL8
-         F6tZ+3RiJBgiEgcStQPnilJ9PrKbrfxlKbxTTiDrCbLbFDcNMQv7Hg2Ky+vwbyPB5BLE
-         JehzN3iXDRtsOzC/djFi8HL7RqjVlBvu+n4FEJSMSvTsFaXL/Wii63KsEt+4za9/ZiYq
-         6s+v9qRMe4/U8GwMcwTyEeWEi5weZrgQcDe8wUdRwP/UiAtwdAXk8/x0o5NxKXOLRyCz
-         63v2QMQ4FMEWto9dOuOIh+RkcO5j0bGT2eCf9sdKFNbXmNmGk7cIghIHx6fSnO5Lob1v
-         MYPA==
+        bh=co9C6unBdFkpgv7+tGLws46NOGe8/tBYeyT4qQSLwlc=;
+        b=HRiKQVMBFG/A6gPAZpN/MiRsDAwXqD/MYUJKSSh7ybK9TDtdRJgVUyb6DmaBH3WnQz
+         bUs0wPminx/GLoogW8PPeQjVhbHPa352X6JsDfIPqNdBCATDUT3J3rQFcrStCK5u5teb
+         uPL+6lUUTM5+1l0QIFweXzlE8Wu9czn9A/AkON5+Nv1dydAobbQBiG8LCisAx/6LktD0
+         zOvKX19zzAdh0xZ2ghA6NjnjPJL3gi3OLOm118yFanFdHyq97W+0toDndtv/7KPhHdhU
+         I/vo64LXjAEFq++SXAX96lHwWcSD65CTcqqivRLZ9LeEY3d7S8zliAfEvBCWzrlVubZ/
+         lcQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1LVjUoUKXm7FsxD4sNTz87mVaO1PBBHxa9gw0uYkS4k=;
-        b=qpzqjlQM5FrXTRdyj8+PrmiI0SIlk+nc/XtxtqK+h39iS0nfkME7HNETOA7Y+SYU5U
-         IMgJnqwZItir5relCz9+C+mylHbq9ZEAPGLrg19NhSD/xqolVDxyZ4UQOkXjCWxsDZS1
-         GojS6zV9lLZN5SozBqqIlDNwvNkATpybqsWgmqbkNX0qopWrPVS9dR5LmdGk1re97seW
-         /QvjdLVGdOMXBu72OcR17sicuUr4aYupyvY6xLhrRIJPNcF1x4b15Ji2zKog0W9wQBSV
-         GRu8NT10i9Sr7LPuKueOtmMoH3hCJmxpqjVzFTWcR78IU91d9dpCkKl1yfqmqTWRxat5
-         e06A==
-X-Gm-Message-State: AOAM531qdqfpIL5xqRlpSJ2WQBRSSpoK4J1cWciNJzvIs3E9XH3i4sKL
-        Rs27TtEein9sCRBcHOSq09E+LAT6usu0jxoShecqQw==
-X-Google-Smtp-Source: ABdhPJytwDjMxe8LwG/BHqKor9Zn9/GEW6yMYHEIa7hnTHfy2FDsmrF8YFkhcn/uO9rVH3qYGC1nOyKBKgz94K+bSuU=
-X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
- p20-20020a056a000b54b02902072a047b05mr9353340pfo.12.1615892552290; Tue, 16
- Mar 2021 04:02:32 -0700 (PDT)
+        bh=co9C6unBdFkpgv7+tGLws46NOGe8/tBYeyT4qQSLwlc=;
+        b=KqGBwHXbH8KOOMulZ7WuAH9K2WaDozJNJEYNvZeUuQcqjk7IZDgZDmqdFdFUIgg3Tr
+         9cCRDbxEtsGR5rB+NuZAQZQc1WLFUBOoePQiT6r0rYU2WmWRv+3Bqzr180Xn78Icrrrs
+         ERUw72UAOZDxG/VFdCmvK2wDJb9MsuEa2Q4OZg4kKqQw4rT+kevjnkBUPhD2mVMcJUvG
+         Z2xtzvg5TQw/oCM39+0sF339vdl5VDh13raErBtw8WiqRg2Ji7GRHOKRPuH96Lfuoh8N
+         IxJ7YCvzP9F7ouC//LDL500FgPS2GJmSG17ATffmSYNZtVR+XYLg7SNQfA2zjSQ/LZKX
+         iHhA==
+X-Gm-Message-State: AOAM533+RnOhvr8pzlcIMZi2FJktCon1nqjz2JzzoxRKF23wRNt9r+LN
+        NLV1Nj7T3qnN1jWbXS+t5UetPmGyStbS/ic7s8EtTA==
+X-Google-Smtp-Source: ABdhPJxxy+osmijXyuDaa1mP5+f0EErKvMxpTVF7WymI+74vScoiTtjvsZJ0oOoCIDCp368NI1c6lnxCs1T1BBXgrw0=
+X-Received: by 2002:a17:90a:516:: with SMTP id h22mr4143299pjh.222.1615893139917;
+ Tue, 16 Mar 2021 04:12:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210315155942.640889-1-robert.foss@linaro.org>
- <20210315155942.640889-7-robert.foss@linaro.org> <d11ad801-e387-dcd8-1737-1cbc69dea046@xs4all.nl>
-In-Reply-To: <d11ad801-e387-dcd8-1737-1cbc69dea046@xs4all.nl>
+ <20210315155942.640889-10-robert.foss@linaro.org> <b06ce7af-4449-fb5c-2920-09ebd5abdf75@xs4all.nl>
+In-Reply-To: <b06ce7af-4449-fb5c-2920-09ebd5abdf75@xs4all.nl>
 From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 16 Mar 2021 12:02:21 +0100
-Message-ID: <CAG3jFyt6fu6VD8Svrupb7MPKeN7boYeOUcUycs4g2jsZLxdbOA@mail.gmail.com>
-Subject: Re: [PATCH v8 06/22] media: camss: Refactor VFE HW version support
+Date:   Tue, 16 Mar 2021 12:12:08 +0100
+Message-ID: <CAG3jFytECFBW7mC0=0ZwL2HNof3jOiJ9=KqUhaPb-KvnW5ut2g@mail.gmail.com>
+Subject: Re: [PATCH v8 09/22] media: camss: Refactor CSID HW version support
 To:     Hans Verkuil <hverkuil@xs4all.nl>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -80,257 +79,168 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hey Hans,
 
-Thanks for having a look!
+Thanks for looking into this.
 
-On Tue, 16 Mar 2021 at 10:41, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+On Tue, 16 Mar 2021 at 10:36, Hans Verkuil <hverkuil@xs4all.nl> wrote:
 >
 > On 15/03/2021 16:59, Robert Foss wrote:
 > > In order to support Qualcomm ISP hardware architectures that diverge
-> > from older architectures, the VFE subdevice driver needs to be refactored
-> > to better abstract the different ISP architectures.
-> >
-> > Gen1 represents the CAMSS ISP architecture. The ISP architecture developed
-> > after CAMSS, Titan, will be referred to as Gen2.
+> > from older architectures, the CSID subdevice drivers needs to be refactored
+> > to better abstract the different ISP hardware architectures.
 > >
 > > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > > Reviewed-by: Andrey Konovalov <andrey.konovalov@linaro.org>
 > > ---
 > >
 > >
+> > Changes since v1:
+> >  - kernel test robot: Add missing include, interrupt.h
+> >
+> > Changes since v4:
+> >  - Andrey: Removed whitespace from some includes
+> >  - Andrey: Removed unused enum
+> >
+> > Changes since v5:
+> >  - Andrey: Fixed test pattern selection logic
+> >  - Andrey: Align test mode enum values with v4l mode selection return values
+> >  - Andrey: r-b
+> >  - Move Titan 170 test modes to the the Titan 170 commit
+> >  - Fixed test pattern boundary check
+> >
+> > Changes since v7:
+> >  - Hans: Fix checkpatch.pl --strict warnings
+> >
+> >
+> >
+> >  drivers/media/platform/qcom/camss/Makefile    |   2 +
+> >  .../platform/qcom/camss/camss-csid-4-1.c      | 328 ++++++++++
+> >  .../platform/qcom/camss/camss-csid-4-7.c      | 404 ++++++++++++
+> >  .../media/platform/qcom/camss/camss-csid.c    | 608 +-----------------
+> >  .../media/platform/qcom/camss/camss-csid.h    | 129 +++-
+> >  5 files changed, 885 insertions(+), 586 deletions(-)
+> >  create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-1.c
+> >  create mode 100644 drivers/media/platform/qcom/camss/camss-csid-4-7.c
+> >
 >
 > <snip>
 >
-> > diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-> > index 5bce6736e4bb..ceff4985b1cc 100644
-> > --- a/drivers/media/platform/qcom/camss/camss-vfe.h
-> > +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-> > @@ -17,15 +17,26 @@
-> >  #include <media/v4l2-subdev.h>
+> > diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
+> > index 479ac1f83836..613ef377b051 100644
+> > --- a/drivers/media/platform/qcom/camss/camss-csid.h
+> > +++ b/drivers/media/platform/qcom/camss/camss-csid.h
+> > @@ -11,6 +11,7 @@
+> >  #define QC_MSM_CAMSS_CSID_H
 > >
-> >  #include "camss-video.h"
-> > +#include "camss-vfe-gen1.h"
+> >  #include <linux/clk.h>
+> > +#include <linux/interrupt.h>
+> >  #include <media/media-entity.h>
+> >  #include <media/v4l2-ctrls.h>
+> >  #include <media/v4l2-device.h>
+> > @@ -44,18 +45,42 @@
+> >  #define DATA_TYPE_RAW_16BIT          0x2e
+> >  #define DATA_TYPE_RAW_20BIT          0x2f
 > >
-> >  #define MSM_VFE_PAD_SINK 0
-> >  #define MSM_VFE_PAD_SRC 1
-> >  #define MSM_VFE_PADS_NUM 2
-> >
-> > -#define MSM_VFE_LINE_NUM 4
-> >  #define MSM_VFE_IMAGE_MASTERS_NUM 7
-> >  #define MSM_VFE_COMPOSITE_IRQ_NUM 4
-> >
-> > +/* VFE halt timeout */
-> > +#define VFE_HALT_TIMEOUT_MS 100
-> > +/* Frame drop value. VAL + UPDATES - 1 should not exceed 31 */
-> > +#define VFE_FRAME_DROP_VAL 30
+> > -enum csid_payload_mode {
+> > -     CSID_PAYLOAD_MODE_INCREMENTING = 0,
+> > -     CSID_PAYLOAD_MODE_ALTERNATING_55_AA = 1,
+> > -     CSID_PAYLOAD_MODE_ALL_ZEROES = 2,
+> > -     CSID_PAYLOAD_MODE_ALL_ONES = 3,
+> > -     CSID_PAYLOAD_MODE_RANDOM = 4,
+> > -     CSID_PAYLOAD_MODE_USER_SPECIFIED = 5,
+> > +#define CSID_RESET_TIMEOUT_MS 500
 > > +
-> > +#define vfe_line_array(ptr_line)     \
-> > +     ((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
+> > +enum csid_testgen_mode {
+> > +     CSID_PAYLOAD_MODE_DISABLED = 0,
+> > +     CSID_PAYLOAD_MODE_INCREMENTING = 1,
+> > +     CSID_PAYLOAD_MODE_ALTERNATING_55_AA = 2,
+> > +     CSID_PAYLOAD_MODE_ALL_ZEROES = 3,
+> > +     CSID_PAYLOAD_MODE_ALL_ONES = 4,
+> > +     CSID_PAYLOAD_MODE_RANDOM = 5,
+> > +     CSID_PAYLOAD_MODE_USER_SPECIFIED = 6,
+> > +     CSID_PAYLOAD_MODE_NUM_SUPPORTED_GEN1 = 6, /* excluding disabled */
+> > +};
+> > +
+> > +static const char * const csid_testgen_modes[] = {
+> > +     "Disabled",
+> > +     "Incrementing",
+> > +     "Alternating 0x55/0xAA",
+> > +     "All Zeros 0x00",
+> > +     "All Ones 0xFF",
+> > +     "Pseudo-random Data",
+> > +     "User Specified",
+> > +};
 >
-> I get a checkpatch warning on this:
+> This gives this sparse warning:
 >
-> CHECK: Unnecessary parentheses around ptr_line[-(ptr_line->id)]
-> #3612: FILE: drivers/media/platform/qcom/camss/camss-vfe.h:35:
-> +       ((const struct vfe_line (*)[]) &(ptr_line[-(ptr_line->id)]))
->
-> This should be:
->
->         ((const struct vfe_line (*)[]) &(ptr_line)[-(ptr_line)->id])
->
-> The checkpatch message is a bit odd, the real problem here is the missing
-> parenthesis around ptr_line: this would cause problems if ptr_line is an
-> expression like 'ptr + 5', which would lead to a bad expansion.
->
+> 'csid_testgen_modes' defined but not used [-Wunused-const-variable=]
 
-Ack
+Thanks for supplying a patch. I'll merge it into patch 9 & 10.
 
+>
+> This array needs to be moved to camss-csid.c and declared as an extern
+> here. Also, this menu array needs to be terminated with a NULL, and the
+> right capitalization needs to be used (first character of each word must
+> be a capital). This is a suggested patch I made to verify that this solves
+> this issue, but really both patch 9 and 10 need to be modified.
+>
+> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> ---
+>  drivers/media/platform/qcom/camss/camss-csid.c | 14 ++++++++++++++
+>  drivers/media/platform/qcom/camss/camss-csid.h | 13 +------------
+>  2 files changed, 15 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.c b/drivers/media/platform/qcom/camss/camss-csid.c
+> index fb94dc03ccd4..1513b3d47fc2 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.c
+> @@ -27,6 +27,20 @@
+>
+>  #define MSM_CSID_NAME "msm_csid"
+>
+> +const char * const csid_testgen_modes[] = {
+> +       "Disabled",
+> +       "Incrementing",
+> +       "Alternating 0x55/0xAA",
+> +       "All Zeros 0x00",
+> +       "All Ones 0xFF",
+> +       "Pseudo-Random Data",
+> +       "User Specified",
+> +       "Complex Pattern",
+> +       "Color Box",
+> +       "Color Bars",
+> +       NULL
+> +};
+> +
+>  u32 csid_find_code(u32 *codes, unsigned int ncodes,
+>                    unsigned int match_format_idx, u32 match_code)
+>  {
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
+> index c2a025f6846b..81a3704ac0e3 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid.h
+> +++ b/drivers/media/platform/qcom/camss/camss-csid.h
+> @@ -62,18 +62,7 @@ enum csid_testgen_mode {
+>         CSID_PAYLOAD_MODE_NUM_SUPPORTED_GEN2 = 9, /* excluding disabled */
+>  };
+>
+> -static const char * const csid_testgen_modes[] = {
+> -       "Disabled",
+> -       "Incrementing",
+> -       "Alternating 0x55/0xAA",
+> -       "All Zeros 0x00",
+> -       "All Ones 0xFF",
+> -       "Pseudo-random Data",
+> -       "User Specified",
+> -       "Complex pattern",
+> -       "Color box",
+> -       "Color bars",
+> -};
+> +extern const char * const csid_testgen_modes[];
+>
+>  struct csid_format {
+>         u32 code;
+> --
+> 2.30.1
+>
 > Regards,
 >
 >         Hans
->
-> > +
-> > +#define to_vfe(ptr_line)     \
-> > +     container_of(vfe_line_array(ptr_line), struct vfe_device, line)
-> > +
-> >  enum vfe_output_state {
-> >       VFE_OUTPUT_OFF,
-> >       VFE_OUTPUT_RESERVED,
-> > @@ -40,23 +51,30 @@ enum vfe_line_id {
-> >       VFE_LINE_RDI0 = 0,
-> >       VFE_LINE_RDI1 = 1,
-> >       VFE_LINE_RDI2 = 2,
-> > -     VFE_LINE_PIX = 3
-> > +     VFE_LINE_PIX = 3,
-> > +     VFE_LINE_NUM_GEN1 = 4,
-> > +     VFE_LINE_NUM_MAX = 4
-> >  };
-> >
-> >  struct vfe_output {
-> >       u8 wm_num;
-> >       u8 wm_idx[3];
-> >
-> > -     int active_buf;
-> >       struct camss_buffer *buf[2];
-> >       struct camss_buffer *last_buffer;
-> >       struct list_head pending_bufs;
-> >
-> >       unsigned int drop_update_idx;
-> >
-> > +     union {
-> > +             struct {
-> > +                     int active_buf;
-> > +                     int wait_sof;
-> > +             } gen1;
-> > +     };
-> >       enum vfe_output_state state;
-> >       unsigned int sequence;
-> > -     int wait_sof;
-> > +
-> >       int wait_reg_update;
-> >       struct completion sof;
-> >       struct completion reg_update;
-> > @@ -78,59 +96,19 @@ struct vfe_line {
-> >  struct vfe_device;
-> >
-> >  struct vfe_hw_ops {
-> > -     void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
-> > -     u16 (*get_ub_size)(u8 vfe_id);
-> > +     void (*enable_irq_common)(struct vfe_device *vfe);
-> >       void (*global_reset)(struct vfe_device *vfe);
-> > -     void (*halt_request)(struct vfe_device *vfe);
-> > -     void (*halt_clear)(struct vfe_device *vfe);
-> > -     void (*wm_enable)(struct vfe_device *vfe, u8 wm, u8 enable);
-> > -     void (*wm_frame_based)(struct vfe_device *vfe, u8 wm, u8 enable);
-> > -     void (*wm_line_based)(struct vfe_device *vfe, u32 wm,
-> > -                           struct v4l2_pix_format_mplane *pix,
-> > -                           u8 plane, u32 enable);
-> > -     void (*wm_set_framedrop_period)(struct vfe_device *vfe, u8 wm, u8 per);
-> > -     void (*wm_set_framedrop_pattern)(struct vfe_device *vfe, u8 wm,
-> > -                                      u32 pattern);
-> > -     void (*wm_set_ub_cfg)(struct vfe_device *vfe, u8 wm, u16 offset,
-> > -                           u16 depth);
-> > -     void (*bus_reload_wm)(struct vfe_device *vfe, u8 wm);
-> > -     void (*wm_set_ping_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
-> > -     void (*wm_set_pong_addr)(struct vfe_device *vfe, u8 wm, u32 addr);
-> > -     int (*wm_get_ping_pong_status)(struct vfe_device *vfe, u8 wm);
-> > -     void (*bus_enable_wr_if)(struct vfe_device *vfe, u8 enable);
-> > -     void (*bus_connect_wm_to_rdi)(struct vfe_device *vfe, u8 wm,
-> > -                                   enum vfe_line_id id);
-> > -     void (*wm_set_subsample)(struct vfe_device *vfe, u8 wm);
-> > -     void (*bus_disconnect_wm_from_rdi)(struct vfe_device *vfe, u8 wm,
-> > -                                        enum vfe_line_id id);
-> > -     void (*set_xbar_cfg)(struct vfe_device *vfe, struct vfe_output *output,
-> > -                          u8 enable);
-> > -     void (*set_rdi_cid)(struct vfe_device *vfe, enum vfe_line_id id,
-> > -                         u8 cid);
-> > -     void (*set_realign_cfg)(struct vfe_device *vfe, struct vfe_line *line,
-> > -                             u8 enable);
-> > +     void (*hw_version_read)(struct vfe_device *vfe, struct device *dev);
-> > +     irqreturn_t (*isr)(int irq, void *dev);
-> > +     void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
-> >       void (*reg_update)(struct vfe_device *vfe, enum vfe_line_id line_id);
-> >       void (*reg_update_clear)(struct vfe_device *vfe,
-> >                                enum vfe_line_id line_id);
-> > -     void (*enable_irq_wm_line)(struct vfe_device *vfe, u8 wm,
-> > -                                enum vfe_line_id line_id, u8 enable);
-> > -     void (*enable_irq_pix_line)(struct vfe_device *vfe, u8 comp,
-> > -                                 enum vfe_line_id line_id, u8 enable);
-> > -     void (*enable_irq_common)(struct vfe_device *vfe);
-> > -     void (*set_demux_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> > -     void (*set_scale_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> > -     void (*set_crop_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> > -     void (*set_clamp_cfg)(struct vfe_device *vfe);
-> > -     void (*set_qos)(struct vfe_device *vfe);
-> > -     void (*set_ds)(struct vfe_device *vfe);
-> > -     void (*set_cgc_override)(struct vfe_device *vfe, u8 wm, u8 enable);
-> > -     void (*set_camif_cfg)(struct vfe_device *vfe, struct vfe_line *line);
-> > -     void (*set_camif_cmd)(struct vfe_device *vfe, u8 enable);
-> > -     void (*set_module_cfg)(struct vfe_device *vfe, u8 enable);
-> > -     int (*camif_wait_for_stop)(struct vfe_device *vfe, struct device *dev);
-> > -     void (*isr_read)(struct vfe_device *vfe, u32 *value0, u32 *value1);
-> > +     void (*subdev_init)(struct device *dev, struct vfe_device *vfe);
-> > +     int (*vfe_disable)(struct vfe_line *line);
-> > +     int (*vfe_enable)(struct vfe_line *line);
-> > +     int (*vfe_halt)(struct vfe_device *vfe);
-> >       void (*violation_read)(struct vfe_device *vfe);
-> > -     irqreturn_t (*isr)(int irq, void *dev);
-> >  };
-> >
-> >  struct vfe_isr_ops {
-> > @@ -158,11 +136,14 @@ struct vfe_device {
-> >       int stream_count;
-> >       spinlock_t output_lock;
-> >       enum vfe_line_id wm_output_map[MSM_VFE_IMAGE_MASTERS_NUM];
-> > -     struct vfe_line line[MSM_VFE_LINE_NUM];
-> > +     struct vfe_line line[VFE_LINE_NUM_MAX];
-> > +     u8 line_num;
-> >       u32 reg_update;
-> >       u8 was_streaming;
-> >       const struct vfe_hw_ops *ops;
-> > +     const struct vfe_hw_ops_gen1 *ops_gen1;
-> >       struct vfe_isr_ops isr_ops;
-> > +     struct camss_video_ops video_ops;
-> >  };
-> >
-> >  struct resources;
-> > @@ -178,6 +159,37 @@ void msm_vfe_unregister_entities(struct vfe_device *vfe);
-> >  void msm_vfe_get_vfe_id(struct media_entity *entity, u8 *id);
-> >  void msm_vfe_get_vfe_line_id(struct media_entity *entity, enum vfe_line_id *id);
-> >
-> > +/*
-> > + * vfe_buf_add_pending - Add output buffer to list of pending
-> > + * @output: VFE output
-> > + * @buffer: Video buffer
-> > + */
-> > +void vfe_buf_add_pending(struct vfe_output *output, struct camss_buffer *buffer);
-> > +
-> > +struct camss_buffer *vfe_buf_get_pending(struct vfe_output *output);
-> > +
-> > +/*
-> > + * vfe_disable - Disable streaming on VFE line
-> > + * @line: VFE line
-> > + *
-> > + * Return 0 on success or a negative error code otherwise
-> > + */
-> > +int vfe_disable(struct vfe_line *line);
-> > +
-> > +int vfe_flush_buffers(struct camss_video *vid, enum vb2_buffer_state state);
-> > +
-> > +/*
-> > + * vfe_isr_comp_done - Process composite image done interrupt
-> > + * @vfe: VFE Device
-> > + * @comp: Composite image id
-> > + */
-> > +void vfe_isr_comp_done(struct vfe_device *vfe, u8 comp);
-> > +
-> > +void vfe_isr_reset_ack(struct vfe_device *vfe);
-> > +int vfe_put_output(struct vfe_line *line);
-> > +int vfe_release_wm(struct vfe_device *vfe, u8 wm);
-> > +int vfe_reserve_wm(struct vfe_device *vfe, enum vfe_line_id line_id);
-> > +
-> >  extern const struct vfe_hw_ops vfe_ops_4_1;
-> >  extern const struct vfe_hw_ops vfe_ops_4_7;
-> >  extern const struct vfe_hw_ops vfe_ops_4_8;
-> > diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> > index 0c679c97da6d..49e25c837bdc 100644
-> > --- a/drivers/media/platform/qcom/camss/camss.c
-> > +++ b/drivers/media/platform/qcom/camss/camss.c
-> > @@ -881,7 +881,7 @@ static int camss_register_entities(struct camss *camss)
-> >
-> >               for (i = 0; i < camss->ispif->line_num; i++)
-> >                       for (k = 0; k < camss->vfe_num; k++)
-> > -                             for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
-> > +                             for (j = 0; j < camss->vfe[k].line_num; j++) {
-> >                                       struct v4l2_subdev *ispif = &camss->ispif->line[i].subdev;
-> >                                       struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
-> >
-> > @@ -902,7 +902,7 @@ static int camss_register_entities(struct camss *camss)
-> >       } else {
-> >               for (i = 0; i < camss->csid_num; i++)
-> >                       for (k = 0; k < camss->vfe_num; k++)
-> > -                             for (j = 0; j < ARRAY_SIZE(camss->vfe[k].line); j++) {
-> > +                             for (j = 0; j < camss->vfe[k].line_num; j++) {
-> >                                       struct v4l2_subdev *csid = &camss->csid[i].subdev;
-> >                                       struct v4l2_subdev *vfe = &camss->vfe[k].line[j].subdev;
-> >
-> >
->
