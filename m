@@ -2,116 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73AEF33D5D3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E998733D5D9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 15:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbhCPOez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 10:34:55 -0400
-Received: from mail-vs1-f42.google.com ([209.85.217.42]:34171 "EHLO
-        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232266AbhCPOet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 10:34:49 -0400
-Received: by mail-vs1-f42.google.com with SMTP id m18so18345213vsa.1;
-        Tue, 16 Mar 2021 07:34:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J/CaSMW6mHvMrxRGMwX6vygFCDnZG5TgrFBraedQTtk=;
-        b=PrDyyZg2UfAEzGcBFrl1w92AHkIj9PUG/BhCw3rHLE4vqye2bl3HNxfr7QimV4bRvW
-         JlK1zWmiw3R5DjSvZssnGEqaA/5q693zHmRvtHKTQ68w8d8ff3/Bf/q4r1nMIfNfvKgH
-         hRJB8mk3dkLwBIaJBN/r6ycCgp4uC0MdAAkE/Ik4YZPVe8QX1uPAILX+jCKF9wTzSn+N
-         56KZQITvbL/1qtbLmAhDSyEBYeqrFlo2bzCZy2FHz8rS8hfKdB2IOOg6aXPHKdaz82/N
-         Nvs6krsikL+lY6V+0zJKSDPbaTAGF+CQ3tXXkwUugYfvRHs94ZWWrLC9IWCpU4WtLM37
-         K6GA==
-X-Gm-Message-State: AOAM530Hk46ZJg2+RjQ34Otd7AwuPremo7Hj6gPUovMRKx1WWtiw4jm5
-        6H1HJvOUo5p2DyfUyPsCBVoTVr6pLIL9vIgAD8MXijt5
-X-Google-Smtp-Source: ABdhPJzA7gtqTSfS56UqGIGIxOsCspglJmqVjbp97rZLkCPKdRRzc2Qqe0tPHbwiHYbsIaRSAu/aZok4oBvcEwC3ax8=
-X-Received: by 2002:a67:8883:: with SMTP id k125mr9034488vsd.18.1615905289017;
- Tue, 16 Mar 2021 07:34:49 -0700 (PDT)
+        id S236611AbhCPOf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 10:35:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:43752 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235436AbhCPOe5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 10:34:57 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CB01BD6E;
+        Tue, 16 Mar 2021 07:34:56 -0700 (PDT)
+Received: from bogus (unknown [10.163.66.95])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9B9DB3F792;
+        Tue, 16 Mar 2021 07:34:53 -0700 (PDT)
+Date:   Tue, 16 Mar 2021 14:34:41 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: Re: [PATCH v4 0/7] firmware: Add initial support for Arm FF-A
+Message-ID: <20210316143429.tdyyulkml4ypdixy@bogus>
+References: <20210212154614.38604-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
-References: <20210311233640.1581526-1-robh@kernel.org> <20210311233640.1581526-2-robh@kernel.org>
- <CAMuHMdV3hG4ddXo6jBu52+2=n3mBLfbmoCzb4VRUQ8YvanH9+Q@mail.gmail.com> <CAL_JsqKPgB+Zz4VHd9dn27bdiZgE=_QUem8BR76Vfc6Y3G8GVw@mail.gmail.com>
-In-Reply-To: <CAL_JsqKPgB+Zz4VHd9dn27bdiZgE=_QUem8BR76Vfc6Y3G8GVw@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 16 Mar 2021 15:34:37 +0100
-Message-ID: <CAMuHMdXqnHq+zdpdr3y7NO-a_JCT-ogfTKDnLLOhFb-UWiGwrA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] kbuild: Enable DT undocumented compatible checks
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210212154614.38604-1-sudeep.holla@arm.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Jens,
 
-On Tue, Mar 16, 2021 at 3:28 PM Rob Herring <robh@kernel.org> wrote:
-> On Tue, Mar 16, 2021 at 7:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Fri, Mar 12, 2021 at 12:38 AM Rob Herring <robh@kernel.org> wrote:
-> > > dt-validate has an option to warn on any compatible strings which don't
-> > > match any schema. The option has recently been improved to fix false
-> > > positives, so let's enable the option. This is useful for tracking
-> > > compatibles which are undocumented or not yet converted to DT schema.
-> > > Previously, the only check of undocumented compatible strings has been
-> > > an imperfect checkpatch.pl check.
-> > >
-> > > The option is enabled by default for 'dtbs_check'. This will add more
-> > > warnings, but some platforms are down to only a handful of these
-> > > warnings (good job!).
-> > >
-> > > There's about 100 cases in the binding examples, so the option is
-> > > disabled until these are fixed. In the meantime, they can be checked
-> > > with:
-> > >
-> > > make DT_CHECKER_FLAGS=-m dt_binding_check
-> > >
-> > > Cc: Maxime Ripard <mripard@kernel.org>
-> > > Cc: Masahiro Yamada <masahiroy@kernel.org>
-> > > Cc: Michal Marek <michal.lkml@markovi.net>
-> > > Cc: linux-kbuild@vger.kernel.org
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> >
-> > Thanks for your patch!
-> >
-> > This causes lots of warning when using DT_SCHEMA_FILES, as all
-> > compatible values in bindings not specified with DT_SCHEMA_FILES
-> > become unknown.
-> >
-> > Perhaps this should be disabled automatically when DT_SCHEMA_FILES
-> > is specified?
+On Fri, Feb 12, 2021 at 03:46:07PM +0000, Sudeep Holla wrote:
+> Hi all,
 >
-> Indeed. I'll fix it up like this:
+> This is very basic implementation for in-kernel support for Arm FF-A
+> specification.
 >
-> index 90b095c60f79..ad6938468c11 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -360,7 +360,7 @@ $(overlay-y): FORCE
->  $(call multi_depend, $(overlay-y), .dtb, -dtbs)
+> Arm Firmware Framework for Armv8-A specification[1] describes a software
+> architecture that provides mechanism to utilise the virtualization
+> extension to isolate software images and describes interfaces that
+> standardize communication between the various software images. This
+> includes communication between images in the Secure and Normal world.
 >
->  DT_CHECKER ?= dt-validate
-> -DT_CHECKER_FLAGS ?= -m
-> +DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),,-m)
->  DT_BINDING_DIR := Documentation/devicetree/bindings
->  # DT_TMP_SCHEMA may be overridden from
-> Documentation/devicetree/bindings/Makefile
->  DT_TMP_SCHEMA ?= $(objtree)/$(DT_BINDING_DIR)/processed-schema.json
+> The main idea here is to create FFA device to establish any communication
+> with a secure partition. This is currently tested with OPTEE(with changes
+> to OPTEE driver adding FFA as transport)
+>
 
-Thanks, works like a charm!
+Since you reviewed the last version, it would be helpful if you provide
+Reviewed-by or Tested-by if you happy with this version. I would like to
+get this initial version merged for v5.13
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--
+Regards,
+Sudeep
