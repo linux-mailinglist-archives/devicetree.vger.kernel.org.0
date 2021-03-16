@@ -2,90 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2165033D9BF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0F2433DA50
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 18:11:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236476AbhCPQqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 12:46:47 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:43164 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236800AbhCPQqF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:46:05 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 42FA01F44B4A
-Received: by earth.universe (Postfix, from userid 1000)
-        id 07E9C3C0C96; Tue, 16 Mar 2021 17:46:02 +0100 (CET)
-Date:   Tue, 16 Mar 2021 17:46:02 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [PATCH 04/38] dt-bindings: power: supply: bq25890: Convert to DT
- schema format
-Message-ID: <20210316164602.hupmcy2hjflf4za2@earth.universe>
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
- <20210312154357.1561730-5-sebastian.reichel@collabora.com>
- <CAL_JsqKFJPSMyMbcrpnL1WgttHSP+3Q+U8bJ_m5hm=O0gEPe4g@mail.gmail.com>
+        id S238503AbhCPRKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 13:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238496AbhCPRKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 13:10:31 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B07CC06174A
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 10:10:31 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id m186so19355169qke.12
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 10:10:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=p88jzDekSTGYLM6NKUCLc0y3fKPYlDntP6Vq2tG1VtY=;
+        b=L6kcGQMOYDV0GoE1WeGYlx/XvEIji8dIrGM8oI7eCunXASKkCPa6HbYzqYafFka1b7
+         lWDKqTWjJzL47mTKi5L92FRpl8AQd/LRlkIQP6+lO9HUr5Rugk89YufXtTM5x4Rkd8ZD
+         o6TwhdEolHKZYtqhSLuKNYLp+Q51eN14jaVec=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p88jzDekSTGYLM6NKUCLc0y3fKPYlDntP6Vq2tG1VtY=;
+        b=SqkrZlP81pOav5DiyPyNmgzXAI8AnB81teM9RnLVIGdFiOfnhCtEOYLYodmCjQZTuA
+         DjKTOe5Larken8xzkQ+p6P+7SqU/I6PXm25vsKbu7PVX+fBTAfCOkCH6A6NTlg0Q17XX
+         o8bzSN/C8+WxQc2cqVAObr1XoGafWzNZ1k4zVd4DtYhCyNjew4v/XRvD/X6mUxBMF28S
+         Z/ehpRBK2v1XHIqWZ2z3+zpKadUO0NhFXOR+aP8dodLjgPVrkmfoNQV7V1tDM0Ry/a4e
+         Asgv5tqi0jgaD4jftnYdueB92pK8lKi4ppc6M/1R/869g9ot7XmuEZL1xZRxR0F5Xtl0
+         bl2w==
+X-Gm-Message-State: AOAM531DZEJAIrp2b0sHSaQDipA2yrozF3tRPPqiO8cVQHAcTmfcPRcS
+        1DRHIk4VOf7GWVZ//BefRx/o12Oe6xSh/w==
+X-Google-Smtp-Source: ABdhPJxmykKWnlL6DGjIwNMGMw/u8LJKLwc8Z1rgkMTSuWXfyUF6EOyJY4nxi6MuispEi9Ye0PaUlg==
+X-Received: by 2002:a37:a350:: with SMTP id m77mr57357qke.146.1615914629916;
+        Tue, 16 Mar 2021 10:10:29 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id v4sm13520165qte.18.2021.03.16.10.10.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Mar 2021 10:10:12 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id f145so21194375ybg.11
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 10:10:06 -0700 (PDT)
+X-Received: by 2002:a25:cf88:: with SMTP id f130mr8233555ybg.476.1615914605769;
+ Tue, 16 Mar 2021 10:10:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="flvvchtw4vhvmjx2"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKFJPSMyMbcrpnL1WgttHSP+3Q+U8bJ_m5hm=O0gEPe4g@mail.gmail.com>
+References: <20210316011516.1314686-1-mka@chromium.org> <20210315181509.v3.2.I4138c3edee23d1efa637eef51e841d9d2e266659@changeid>
+In-Reply-To: <20210315181509.v3.2.I4138c3edee23d1efa637eef51e841d9d2e266659@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 16 Mar 2021 10:09:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VmC-y7GX5UTAyv2+MueKtcTkaQnWxLFQNQ+ahO3AiCJA@mail.gmail.com>
+Message-ID: <CAD=FV=VmC-y7GX5UTAyv2+MueKtcTkaQnWxLFQNQ+ahO3AiCJA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sc7180: Add pompom rev3
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---flvvchtw4vhvmjx2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
 Hi,
 
-On Mon, Mar 15, 2021 at 12:21:34PM -0600, Rob Herring wrote:
-> On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
-> > +  ti,ibatcomp-clamp-microvolt:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: max. charging voltage adjustment due to expected volt=
-age drop on in-series resistor
->=20
-> You don't need a type $ref on properties with a standard unit suffix.
-> Though it looks like there's some non-standard ones (-microvolts) in
-> the series.
+On Mon, Mar 15, 2021 at 6:15 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The only kernel visible change with respect to rev2 is that pompom
+> rev3 changed the charger thermistor from a 47k to a 100k NTC to use
+> a thermistor which is supported by the PM6150 ADC driver.
+>
+> Disable the charger thermal zone for pompom rev1 and rev2 to avoid
+> the use of bogus temperature values from the unsupported thermistor.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+> Changes in v3:
+> - don't add LOCK key
+>
+> Changes in v2:
+> - moved keyboard definition to sc7180-trogdor-pompom.dtsi instead
+>   of duplicating it, use cros-ec keyboard for rev1
+> - squashed with 'arm64: dts: qcom: sc7180: pompom: Disable charger
+>   thermal zone for rev1 and rev2'
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |  2 +
+>  .../dts/qcom/sc7180-trogdor-pompom-r1.dts     | 12 ++++++
+>  .../dts/qcom/sc7180-trogdor-pompom-r2-lte.dts |  4 +-
+>  .../dts/qcom/sc7180-trogdor-pompom-r2.dts     | 38 +++++--------------
+>  .../dts/qcom/sc7180-trogdor-pompom-r3-lte.dts | 14 +++++++
+>  .../dts/qcom/sc7180-trogdor-pompom-r3.dts     | 15 ++++++++
+>  .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  | 29 ++++++++++++++
+>  7 files changed, 83 insertions(+), 31 deletions(-)
 
-Ok. Unfortunately most properties in this series use non-standard
-ones :(. Newer bindings using common properties have already been
-written in YAML and/or make use of simple-battery.
-
-Can we have a warning for this in the dt_binding_check? Maybe
-something like
-
-superfluous $ref for property with standard suffix
-
--- Sebastian
-
---flvvchtw4vhvmjx2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBQ4L8ACgkQ2O7X88g7
-+pomkQ//SV1SH4IZrBUvhr1PWPaxWITOE2xaWZpk+hDYHvGxB3p4aBSAzZbVt0Fz
-ZgBHByvmNpHNBOdk9C9g288A+p4XfiR9yWpL4V9IHLvEr0Nh2U3k5Nwv5xokqpzh
-xP62HCQNbMBMys+E0rrEHRC5395mX/c9A4vbVRoVHHbl3MUpili7Y4PxpYjAPj6D
-CW+AqP76rZ6YKRMAg6/S6VEf/Mo0v8+GkA9alKpso6VFicUig7tFwnz+uap3Uzen
-iVDmbhcv2wYZyszgKQlGrJdgeERTPoJF+1O0Ww2ZaLpEE6pJLo3ITXMIva9wkqQX
-JIrEBaZmAgLbwM/lOwUbHzBBJTNyOKr/4ZAP2k94+xHdEJlhsYsktP6Jh3/cRHp8
-Su26iiol/YYtKyA2DkTgW9UQORNgh9nbAZiNvAfs0FnT6deDnrXq+PwqcUqe7Bxm
-7R7TszYXYnBuuEUN3m26rRrFU613wnS3M6aZBAwnfwf8JRGiNGwiAslMUTypu2Pb
-LIVakKLLl3NSz8p8u21LIVo6g7E0cpY4714fUm3EMIRjuoRiuEQo3hXHOnMv+QC/
-FxgBdmZGU62OAjvKJbTJpKaZ8YL3/L1jYDYPPha3CnVs4MNAKQzwBsYYDFwIgUY6
-BpbU5wM23j3PI6qYzLIkjSgBxznsox7r0y8EtookMzJ0jDxZ/ls=
-=B+Am
------END PGP SIGNATURE-----
-
---flvvchtw4vhvmjx2--
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
