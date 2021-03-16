@@ -2,126 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF13933D995
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:39:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2165033D9BF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 17:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237996AbhCPQjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 12:39:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237903AbhCPQi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:38:58 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E27C06174A;
-        Tue, 16 Mar 2021 09:38:57 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id k9so63434295lfo.12;
-        Tue, 16 Mar 2021 09:38:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=HavWasjxV9NQ1oI4iDdWCtYqPVYFm4z7qKSkYjITAbU=;
-        b=I6yNUVH/2EruY7ZLi2CzCRDe4KA1Ei1x7yCHvFlZImPsmyOwJSzqSUMvidbSIQHZ5C
-         R+vzT0NWXTG7wmaER0xMugBaTZzSMpnFsd/X4Vyp0wr9vPXsURfLOQZrufspTFVK483M
-         NJ7AYjafaVs3bAotWjP97ntjTWKKRAzoZSF2V/GU6qOqcgewa+fuXuwoTxgLH84XJhvp
-         PAdDAtN8dNRUlIcOopu15y0FewGtcCaZjlOjarmAHxrQGJSdK2dir57pHVhI1wWXZ7st
-         VNuoAhRuXNdVJDCSXYjoAr1SOvxZyQzcjVDwk1fffR5ZR4Tx+EJkLWyOm69m4rmLAlAt
-         +cPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=HavWasjxV9NQ1oI4iDdWCtYqPVYFm4z7qKSkYjITAbU=;
-        b=YG2i+jzfmvChRwtBQ05z0dXvqiF9ADTNKXmzMAfiuMVuBd+xmMI1tMCPWJymbOSbxs
-         sWLYUy5CR5o3FKOF+46LvJ7vwEFY+MxoV75mCEky5qOjJbO4diKkVbsokzn7uPEwrLMJ
-         njDutPZYOh16ofpobp33OPce9t87+QdZ5KgoTXmV4u5MBHMUwbvmMwTeBwq0ZK63Mlzk
-         Y3KkTZ/XQ3eMvzjuITOzIZJmzqQqH5XqoemBD14v1UZtV95yipm7eU+a7MvlVxFpZVPI
-         Cz28n+AoGhHeo8qZ/xYaQN3K5bhQKzZN17iFnon+pluiFrJFvprtXzjy6jB+3T/ADL18
-         vqEg==
-X-Gm-Message-State: AOAM532qXpB3g06SUIvPwhEe6ZoSnLC130MYRDCuCbpUoCc9Zvgi+LYj
-        GXCGvBi9/R6MFeoO3/Bu4pSJRINs7zW244k+NoI=
-X-Google-Smtp-Source: ABdhPJw4u+xt7+sbHoua05Z3aaUK0a22EuFY82JHHu0pg1Wc73HeDFvQhMj7MCdPu36LP//hg7Uby0M6MugcoHoFxFY=
-X-Received: by 2002:a05:6512:ad3:: with SMTP id n19mr11974682lfu.328.1615912735697;
- Tue, 16 Mar 2021 09:38:55 -0700 (PDT)
+        id S236476AbhCPQqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 12:46:47 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:43164 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236800AbhCPQqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 12:46:05 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 42FA01F44B4A
+Received: by earth.universe (Postfix, from userid 1000)
+        id 07E9C3C0C96; Tue, 16 Mar 2021 17:46:02 +0100 (CET)
+Date:   Tue, 16 Mar 2021 17:46:02 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Collabora Kernel ML <kernel@collabora.com>
+Subject: Re: [PATCH 04/38] dt-bindings: power: supply: bq25890: Convert to DT
+ schema format
+Message-ID: <20210316164602.hupmcy2hjflf4za2@earth.universe>
+References: <20210312154357.1561730-1-sebastian.reichel@collabora.com>
+ <20210312154357.1561730-5-sebastian.reichel@collabora.com>
+ <CAL_JsqKFJPSMyMbcrpnL1WgttHSP+3Q+U8bJ_m5hm=O0gEPe4g@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAMuHMdWYrS=YT7F7erM-e6xhDME4judx-T7rdFGi7CpW1_iqkg@mail.gmail.com>
- <20210316150033.15987-1-cnsztl@gmail.com> <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
-In-Reply-To: <CAMuHMdU+agaOdf4hQhn5JQDHCbuWm3dETJu01baxfDAY=nikow@mail.gmail.com>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Wed, 17 Mar 2021 00:38:43 +0800
-Message-ID: <CAOP2_TheFHfPZYXm0jYV-a-FOudtqFXmTxDi_pb+_Yt5E_W2YA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] rockchip: rk3399: Add support for FriendlyARM
- NanoPi R4S
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Marty Jones <mj8263788@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="flvvchtw4vhvmjx2"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKFJPSMyMbcrpnL1WgttHSP+3Q+U8bJ_m5hm=O0gEPe4g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-16 11:35, Geert Uytterhoeven <geert@linux-m68k.org> wrote=EF=BC=
-=9A
->
-> Hi Tianling,
->
-> CC Jacek, Pavel
->
-> On Tue, Mar 16, 2021 at 4:00 PM Tianling Shen <cnsztl@gmail.com> wrote:
-> > On 2021-03-16 02:23 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > Personally, I'm not so fond of the <foo>-%u node names, and prefer
-> > > <foo>-<function>.  With the former, it's way too easy to have a silen=
-t
-> > > override in your .dts(i) stack.
-> > > Cfr. commit 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak:
-> > > Fix backlight regulator name")
-> >
-> > How about using `lan-led`, `sys-led` and `wan-led` here?
->
-> Documentation/devicetree/bindings/leds/leds-gpio.yaml says "led-%u"
-> is the preferred form, but that anything containing "led" as a substring
-> is accepted.  So I'd go for "led-lan" etc.
->
-> BTW, you can validate your DTB against the leds-gpio DT bindings
-> by running:
->
->     make dtbs_check
-> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/leds/leds-gpio.yaml
->
 
-Thank you so much!
-I renamed them to `led-lan` etc., and the result of dtbs_check seems fine.
+--flvvchtw4vhvmjx2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Background info for CCed parties:
-> https://lore.kernel.org/linux-arm-kernel/20210316150033.15987-1-cnsztl@gm=
-ail.com/
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+Hi,
 
-Tianling.
+On Mon, Mar 15, 2021 at 12:21:34PM -0600, Rob Herring wrote:
+> On Fri, Mar 12, 2021 at 8:44 AM Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> > +  ti,ibatcomp-clamp-microvolt:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: max. charging voltage adjustment due to expected volt=
+age drop on in-series resistor
+>=20
+> You don't need a type $ref on properties with a standard unit suffix.
+> Though it looks like there's some non-standard ones (-microvolts) in
+> the series.
+
+Ok. Unfortunately most properties in this series use non-standard
+ones :(. Newer bindings using common properties have already been
+written in YAML and/or make use of simple-battery.
+
+Can we have a warning for this in the dt_binding_check? Maybe
+something like
+
+superfluous $ref for property with standard suffix
+
+-- Sebastian
+
+--flvvchtw4vhvmjx2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBQ4L8ACgkQ2O7X88g7
++pomkQ//SV1SH4IZrBUvhr1PWPaxWITOE2xaWZpk+hDYHvGxB3p4aBSAzZbVt0Fz
+ZgBHByvmNpHNBOdk9C9g288A+p4XfiR9yWpL4V9IHLvEr0Nh2U3k5Nwv5xokqpzh
+xP62HCQNbMBMys+E0rrEHRC5395mX/c9A4vbVRoVHHbl3MUpili7Y4PxpYjAPj6D
+CW+AqP76rZ6YKRMAg6/S6VEf/Mo0v8+GkA9alKpso6VFicUig7tFwnz+uap3Uzen
+iVDmbhcv2wYZyszgKQlGrJdgeERTPoJF+1O0Ww2ZaLpEE6pJLo3ITXMIva9wkqQX
+JIrEBaZmAgLbwM/lOwUbHzBBJTNyOKr/4ZAP2k94+xHdEJlhsYsktP6Jh3/cRHp8
+Su26iiol/YYtKyA2DkTgW9UQORNgh9nbAZiNvAfs0FnT6deDnrXq+PwqcUqe7Bxm
+7R7TszYXYnBuuEUN3m26rRrFU613wnS3M6aZBAwnfwf8JRGiNGwiAslMUTypu2Pb
+LIVakKLLl3NSz8p8u21LIVo6g7E0cpY4714fUm3EMIRjuoRiuEQo3hXHOnMv+QC/
+FxgBdmZGU62OAjvKJbTJpKaZ8YL3/L1jYDYPPha3CnVs4MNAKQzwBsYYDFwIgUY6
+BpbU5wM23j3PI6qYzLIkjSgBxznsox7r0y8EtookMzJ0jDxZ/ls=
+=B+Am
+-----END PGP SIGNATURE-----
+
+--flvvchtw4vhvmjx2--
