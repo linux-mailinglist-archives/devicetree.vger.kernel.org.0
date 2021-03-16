@@ -2,213 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EFC33CC7A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:18:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3BE33CC87
+	for <lists+devicetree@lfdr.de>; Tue, 16 Mar 2021 05:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbhCPER4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 00:17:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233883AbhCPERs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 00:17:48 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBB8C061756
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 21:17:47 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id c16so16358635ply.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Mar 2021 21:17:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=L9ULtcqGYTnWawh4D1wXvHmxmJ7k2IGAJbXzUghtJMs=;
-        b=IRi5oSOI4BQYL409WOfrFSXKkfeafVCD5PgI7TqP7oDk3s+vCWdE2KUhYIGaMIG5Oj
-         gKHYJiQwZ+XrxcKQi8kOcDOzfy8lV6KQWePFHD5B2LjluHQroAX9ZPI5D5LnxbbkH5jr
-         yiVQTgpPg7W1jLU1I1xPIC7XpYX4uBy5ngGDOrhl7/5fW9CWRidS29wnKUmizsGngqHK
-         fHDB8TEVmo2XVT1dDCkI5a3eGq5DoNUCwSN9GUyEzLlxUjG5yC8Nr1sysLB3Zr/MUoFw
-         TXf2dG1x50cmeEJj0dATxt8S0+Y4C/8ZKE2WWNMlKK1wqIJybCOgPtmpG95NeAtXMt5N
-         mPzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=L9ULtcqGYTnWawh4D1wXvHmxmJ7k2IGAJbXzUghtJMs=;
-        b=d5Haasfgw31MeyUHzfSuoxXkzoZhg6FU7qdco9/Onn3xkT4v7Z9nRRPB9kZGjtDD9X
-         SSKN+oyJ50zw7oL0fOKxihNA5OuCjU8ounPqEmPwhpirDKy3lxe/Sm3aU55LtDX0tvtd
-         fS4ljkoziuNHtot3CHWcZKTc4zIAYA/Mu64Sddek4lhPBvN2T6cZPXFtGcdA7AcXtxh+
-         N6pnduS2BZlswsGg7uJNRu9QsAH4d5N+OH0CxtDCf/RkO+M42nwJ9hav/2N/HFluRrtc
-         LPnE12rKjcEDWHUuliH1cE3s/YJIRIDmSsmhA20xHT5sNlEkPE+Q9dPxyTgi7LKG9JXY
-         Vfsw==
-X-Gm-Message-State: AOAM531Tdy08NzAfKl4CyQvrYxoXSSs6ti76zHuAIB5PGEGhx/pSzSmB
-        zzEcYx1TQ0UGMs2/+Zb37V9O
-X-Google-Smtp-Source: ABdhPJxaSL9vQK4+t5ToAAf4Ts3kKd4oJ9MuAuPien88UqWov5j8i5jBNnazX5SNNNZ1afHvraCAtw==
-X-Received: by 2002:a17:90a:4d07:: with SMTP id c7mr2728272pjg.104.1615868267033;
-        Mon, 15 Mar 2021 21:17:47 -0700 (PDT)
-Received: from thinkpad ([103.66.79.72])
-        by smtp.gmail.com with ESMTPSA id l19sm1107820pjt.16.2021.03.15.21.17.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Mar 2021 21:17:46 -0700 (PDT)
-Date:   Tue, 16 Mar 2021 09:47:39 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/6] clk: actions: Fix bisp_factor_table based clocks on
- Owl S500 SoC
-Message-ID: <20210316041739.GC1798@thinkpad>
-References: <cover.1615221459.git.cristian.ciocaltea@gmail.com>
- <13576ddb604a9097603d95cd2605275c20fb2f56.1615221459.git.cristian.ciocaltea@gmail.com>
+        id S234991AbhCPEWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 00:22:12 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:56561 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230016AbhCPEV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 00:21:59 -0400
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 16170891AE;
+        Tue, 16 Mar 2021 17:21:58 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1615868518;
+        bh=TT0EhtSrRCuCPo99Tf5CmraeqPT2f9p/23xnyCoCNZ4=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=sXARCpmANcI/iPwDYvytx5SLd8ZO//pg1A4VXrD3udnede1jDbr1lf7SjJu6ML7+7
+         KrprhkQO/5P5oImULx+At42wjZ/gzMJT4bWDBrVDmsihzIqHy+rixEPtKzNf9IT8bC
+         k/3Jl+1dZG0ao7ETBKtnd7/Gro85xMEukTE58gY6WE89AzB5fy4UJ9rDyxNiHFMamr
+         Bp6cGjyKzcj8xRXdCOd/iSbsVQZoaOEc/mdmMepkbfdifcXJpebvzsZ/lEnlUm4diK
+         xUdxUZYo3Y6KoGOPIskUO7uLOqK2chQDiGclVsQX9WVIUub7axmv0jlhGM2OjEyguN
+         NVa3VxvSxsDSA==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B605032660000>; Tue, 16 Mar 2021 17:21:58 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Tue, 16 Mar 2021 17:21:57 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.012; Tue, 16 Mar 2021 17:21:57 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] hwmon: (pmbus): Add driver for BluTek BPA-RS600
+Thread-Topic: [PATCH 2/2] hwmon: (pmbus): Add driver for BluTek BPA-RS600
+Thread-Index: AQHXGg0JQkIPU0GURU+Z4hUV3SNYs6qFHxwAgAAKqAA=
+Date:   Tue, 16 Mar 2021 04:21:56 +0000
+Message-ID: <ea648b3d-f6ac-d7ec-fc5b-2b15c827c3dc@alliedtelesis.co.nz>
+References: <20210316023524.12574-1-chris.packham@alliedtelesis.co.nz>
+ <20210316023524.12574-2-chris.packham@alliedtelesis.co.nz>
+ <46a69700-ae1f-a441-2399-0e8c8e2a588d@roeck-us.net>
+In-Reply-To: <46a69700-ae1f-a441-2399-0e8c8e2a588d@roeck-us.net>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3EAC71656026364FBDBCE7B8FE0DBF71@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13576ddb604a9097603d95cd2605275c20fb2f56.1615221459.git.cristian.ciocaltea@gmail.com>
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=dESyimp9J3IA:10 a=G3IL0jre2ez7scXUKXwA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 08, 2021 at 07:18:28PM +0200, Cristian Ciocaltea wrote:
-> The following clocks of the Actions Semi Owl S500 SoC have been defined
-> to use a shared clock factor table 'bisp_factor_table[]': DE[1-2], VCE,
-> VDE, BISP, SENSOR[0-1]
-> 
-> There are several issues involved in this approach:
-> 
-> * 'bisp_factor_table[]' describes the configuration of a regular 8-rates
->   divider, so its usage is redundant. Additionally, judging by the BISP
->   clock context, it is incomplete since it maps only 8 out of 12
->   possible entries.
-> 
-> * The clocks mentioned above are not identical in terms of the available
->   rates, therefore cannot rely on the same factor table. Specifically,
->   BISP and SENSOR* are standard 12-rate dividers so their configuration
->   should rely on a proper clock div table, while VCE and VDE require a
->   factor table that is a actually a subset of the one needed for DE[1-2]
->   clocks.
-> 
-> Let's fix this by implementing the following:
-> 
-> * Add new factor tables 'de_factor_table' and 'hde_factor_table' to
->   properly handle DE[1-2], VCE and VDE clocks.
-> 
-> * Add a common div table 'std12rate_div_table' for BISP and SENSOR[0-1]
->   clocks converted to OWL_COMP_DIV.
-> 
-> * Drop the now unused 'bisp_factor_table[]'.
-> 
-
-Nice!
-
-> Additionally, since SENSOR[0-1] are not gated, unset the OWL_GATE_HW
-> configuration and drop the CLK_IGNORE_UNUSED flag in their definitions.
-> 
-
-No. You should not screen the functionality exposed by the hw, that's what the
-purpose of these CLK_ flags.
-
-Other than that, this patch looks good to me.
-
-> Fixes: ed6b4795ece4 ("clk: actions: Add clock driver for S500 SoC")
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> ---
->  drivers/clk/actions/owl-s500.c | 48 ++++++++++++++++++++++------------
->  1 file changed, 31 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/clk/actions/owl-s500.c b/drivers/clk/actions/owl-s500.c
-> index 69cd959205f5..abe8874353de 100644
-> --- a/drivers/clk/actions/owl-s500.c
-> +++ b/drivers/clk/actions/owl-s500.c
-> @@ -138,9 +138,16 @@ static struct clk_factor_table sd_factor_table[] = {
->  	{ 0, 0, 0 },
->  };
->  
-> -static struct clk_factor_table bisp_factor_table[] = {
-> -	{ 0, 1, 1 }, { 1, 1, 2 }, { 2, 1, 3 }, { 3, 1, 4 },
-> -	{ 4, 1, 5 }, { 5, 1, 6 }, { 6, 1, 7 }, { 7, 1, 8 },
-> +static struct clk_factor_table de_factor_table[] = {
-> +	{ 0, 1, 1 }, { 1, 2, 3 }, { 2, 1, 2 }, { 3, 2, 5 },
-> +	{ 4, 1, 3 }, { 5, 1, 4 }, { 6, 1, 6 }, { 7, 1, 8 },
-> +	{ 8, 1, 12 },
-> +	{ 0, 0, 0 },
-> +};
-> +
-> +static struct clk_factor_table hde_factor_table[] = {
-> +	{ 0, 1, 1 }, { 1, 2, 3 }, { 2, 1, 2 }, { 3, 2, 5 },
-> +	{ 4, 1, 3 }, { 5, 1, 4 }, { 6, 1, 6 }, { 7, 1, 8 },
->  	{ 0, 0, 0 },
->  };
->  
-> @@ -154,6 +161,13 @@ static struct clk_div_table rmii_ref_div_table[] = {
->  	{ 0, 0 },
->  };
->  
-> +static struct clk_div_table std12rate_div_table[] = {
-> +	{ 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 4 },
-> +	{ 4, 5 }, { 5, 6 }, { 6, 7 }, { 7, 8 },
-> +	{ 8, 9 }, { 9, 10 }, { 10, 11 }, { 11, 12 },
-> +	{ 0, 0 },
-> +};
-> +
->  static struct clk_div_table i2s_div_table[] = {
->  	{ 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 4 },
->  	{ 4, 6 }, { 5, 8 }, { 6, 12 }, { 7, 16 },
-> @@ -189,39 +203,39 @@ static OWL_DIVIDER(rmii_ref_clk, "rmii_ref_clk", "ethernet_pll_clk", CMU_ETHERNE
->  
->  /* factor clocks */
->  static OWL_FACTOR(ahb_clk, "ahb_clk", "h_clk", CMU_BUSCLK1, 2, 2, ahb_factor_table, 0, 0);
-> -static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 3, bisp_factor_table, 0, 0);
-> -static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 3, bisp_factor_table, 0, 0);
-> +static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 4, de_factor_table, 0, 0);
-> +static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 4, de_factor_table, 0, 0);
->  
->  /* composite clocks */
->  static OWL_COMP_FACTOR(vce_clk, "vce_clk", hde_clk_mux_p,
->  			OWL_MUX_HW(CMU_VCECLK, 4, 2),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 26, 0),
-> -			OWL_FACTOR_HW(CMU_VCECLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_FACTOR_HW(CMU_VCECLK, 0, 3, 0, hde_factor_table),
->  			0);
->  
->  static OWL_COMP_FACTOR(vde_clk, "vde_clk", hde_clk_mux_p,
->  			OWL_MUX_HW(CMU_VDECLK, 4, 2),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 25, 0),
-> -			OWL_FACTOR_HW(CMU_VDECLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_FACTOR_HW(CMU_VDECLK, 0, 3, 0, hde_factor_table),
->  			0);
->  
-> -static OWL_COMP_FACTOR(bisp_clk, "bisp_clk", bisp_clk_mux_p,
-> +static OWL_COMP_DIV(bisp_clk, "bisp_clk", bisp_clk_mux_p,
->  			OWL_MUX_HW(CMU_BISPCLK, 4, 1),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_BISPCLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_DIVIDER_HW(CMU_BISPCLK, 0, 4, 0, std12rate_div_table),
->  			0);
->  
-> -static OWL_COMP_FACTOR(sensor0_clk, "sensor0_clk", sensor_clk_mux_p,
-> +static OWL_COMP_DIV(sensor0_clk, "sensor0_clk", sensor_clk_mux_p,
->  			OWL_MUX_HW(CMU_SENSORCLK, 4, 1),
-> -			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_SENSORCLK, 0, 3, 0, bisp_factor_table),
-> -			CLK_IGNORE_UNUSED);
-> +			{ 0 },
-> +			OWL_DIVIDER_HW(CMU_SENSORCLK, 0, 4, 0, std12rate_div_table),
-> +			0);
->  
-> -static OWL_COMP_FACTOR(sensor1_clk, "sensor1_clk", sensor_clk_mux_p,
-> +static OWL_COMP_DIV(sensor1_clk, "sensor1_clk", sensor_clk_mux_p,
->  			OWL_MUX_HW(CMU_SENSORCLK, 4, 1),
-> -			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_SENSORCLK, 8, 3, 0, bisp_factor_table),
-> -			CLK_IGNORE_UNUSED);
-> +			{ 0 },
-> +			OWL_DIVIDER_HW(CMU_SENSORCLK, 8, 4, 0, std12rate_div_table),
-> +			0);
->  
->  static OWL_COMP_FACTOR(sd0_clk, "sd0_clk", sd_clk_mux_p,
->  			OWL_MUX_HW(CMU_SD0CLK, 9, 1),
-> -- 
-> 2.30.1
-> 
+DQpPbiAxNi8wMy8yMSA0OjQzIHBtLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0KPiBPbiAzLzE1LzIx
+IDc6MzUgUE0sIENocmlzIFBhY2toYW0gd3JvdGU6DQo+PiBUaGUgQlBBLVJTNjAwIGlzIGEgY29t
+cGFjdCA2MDBXIEFDIHRvIERDIHJlbW92YWJsZSBwb3dlciBzdXBwbHkgbW9kdWxlLg0KPj4NCj4+
+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNp
+cy5jby5uej4NCj4+IC0tLQ0KPHNuaXA+DQo+PiArDQo+PiArc3RhdGljIGludCBicGFfcnM2MDBf
+cmVhZF93b3JkX2RhdGEoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCwgaW50IHBhZ2UsDQo+PiAr
+CQlpbnQgcGhhc2UsIGludCByZWcpK3sNCj4+ICsJaW50IHJldDsNCj4+ICsNCj4+ICsJaWYgKHBh
+Z2UgPiAwKQ0KPj4gKwkJcmV0dXJuIC1FTlhJTzsNCj4+ICsNCj4+ICsJc3dpdGNoIChyZWcpIHsN
+Cj4+ICsJY2FzZSBQTUJVU19WSU5fVVZfRkFVTFRfTElNSVQ6DQo+PiArCWNhc2UgUE1CVVNfVklO
+X09WX0ZBVUxUX0xJTUlUOg0KPj4gKwljYXNlIFBNQlVTX1ZPVVRfVVZfRkFVTFRfTElNSVQ6DQo+
+PiArCWNhc2UgUE1CVVNfVk9VVF9PVl9GQVVMVF9MSU1JVDoNCj4+ICsJCXJldCA9IC1FTlhJTzsN
+Cj4gSXMgdGhhdCBuZWVkZWQgPyBXaHkgbm90IC1FTk9EQVRBID8NCg0KQmFzaWNhbGx5IHRoZXNl
+IGNvbW1hbmRzIGdldCByZXNwb25zZXMgb24gdGhlIGJ1cyBidXQgdGhleSBkb24ndCBoYXZlIA0K
+dmFsaWQgZGF0YSAobm9yIGFyZSB0aGV5IGRvY3VtZW50ZWQgaW4gdGhlIGRhdGFzaGVldCkuIEkn
+bGwgYWRkIGEgDQpjb21tZW50IHRvIHRoYXQgZWZmZWN0Lg0KDQpJZiBJJ20gcmVhZGluZyB0aGlu
+Z3MgY29ycmVjdGx5IC1FTk9EQVRBIGlzIGEgc2lnbmFsIHRvIA0KX3BtYnVzX3JlYWRfd29yZF9k
+YXRhIHVzZSB0aGUgIm5vcm1hbCIgcmVhZCBvcGVyYXRpb24uIFNvIEkgbmVlZCB0byANCnJldHVy
+biBzb21ldGhpbmcgb3RoZXIgdGhhbiB0aGF0LiBJIGZvdW5kIGFub3RoZXIgZHJpdmVyIChtcDI5
+NzUuYykgDQpkb2luZyB0aGUgc2FtZSB0aGluZyBmb3Igd2hhdCBJIGFzc3VtZSBhcmUgc2ltaWxh
+ciByZWFzb25zIHNvIEkgd2VudCANCndpdGggLUVOWElPLg0KDQo+DQo+PiArCQlicmVhazsNCjxz
+bmlwPg0KPiArDQo+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBpMmNfZGV2aWNlX2lkIGJwYV9yczYw
+MF9pZFtdID0gew0KPj4gKwl7ICJicGFfcnM2MDAiLCAwIH0sDQo+IEhtbSwgbm8sIHRoaXMgaGFz
+IGFuIHVuZGVyc2NvcmUuIEd1ZXNzIHlvdSdsbCBoYXZlIHRvIHVzZSB0aGUgdHJpY2sgZnJvbQ0K
+PiBpaW9faHdtb24uYyBvciBzaW1pbGFyIHRvIGdlbmVyYXRlIGEgdmFsaWQgbmFtZS4NCj4NCj4g
+T2gsIHdhaXQsIHRoaXMgaXMgYSBwbWJ1cyBkcml2ZXIsIGFuZCB0aGUgcG1idXMgY29yZSB1c2Vz
+IGNsaWVudC0+bmFtZS4NCj4gTWF5YmUgd2UgbmVlZCB0byBhZGQgYW4gb3B0aW9uYWwgc3RycmVw
+bGFjZSgpIHRvIHRoZSBwbWJ1cyBjb3JlLg0KTG9va2luZyBpbnRvIHRoaXMgbm93Lg==
