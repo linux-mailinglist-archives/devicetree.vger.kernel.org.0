@@ -2,166 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C7433E85D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 05:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 855E333E868
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 05:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbhCQEUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 00:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbhCQET7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 00:19:59 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6CFC06174A;
-        Tue, 16 Mar 2021 21:19:59 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id e2so143655pld.9;
-        Tue, 16 Mar 2021 21:19:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=noDJG0O0IWEUpmFsatAS1NpPqP7TLehQO6ORX+ZK5tM=;
-        b=oBwzozzmcjkKAvkdms978WNvR1tQsctTxIP7gml9zFve7PpQjIAb1sRL8CAn8CWRzV
-         St98yTgzgcST5WgxdZSRgvmjCXnFZsjrYRkGoPCRHN6vAAFKuTbiaOCT20rYmstMCK86
-         xZ3ZfBJA7m2a3pOsiFmFgpeGWcmY2geOD9u/V6Ulvl8iNQRCETP7kotgSww2nouvuNC8
-         IQwRyRfAtnhHTB6+PTmPazcPkxEoM8IsXEXQM8+td2u1TptFNUK20mcKJDnAI+ruWubg
-         rbKcJjoLFs68Vrp743SuF253exwbAuIh5raIAC1pZZ3SzEoqo1wQrx2Rh+J0eKmXSyXF
-         bVEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=noDJG0O0IWEUpmFsatAS1NpPqP7TLehQO6ORX+ZK5tM=;
-        b=nKKUtkL1xkaXcjsfYmZHO8Ym5UgY/SSuGlq1SZ9jWu5l/w/3YyBR79ltA1FTNi6nry
-         rToN2+MazbrGFKq0HRsuwFuXULAO/+9yuCPBG/wSKUU2+GSLasfy78Dy4S4HUEFfwSl/
-         btetPT2nbJ60P0ZZXdP2HCJTB6f68RQwoM+isIFBjQAD8zT+Tde+to32m0DKzUg9GquA
-         W+uzqGZXTbYRVlQBvmau5lSd74cH010peWAE1faEHKPywZFdFRN9eAcLuJjuhHAK+o3+
-         iGLdIbgYUmPX2CYPEr0hPbSXEdU503sUxK+DksTG87ho5FdfMz5DrWsSK8tCYYSWymHv
-         nm+Q==
-X-Gm-Message-State: AOAM531jZ929xUw9VFCQCGsSEJXj0bj/pPjaiD5JglSW0hu1tV3QOIg+
-        iv0nlG8hqYHn2twYFJV2o/k=
-X-Google-Smtp-Source: ABdhPJwa3SHLOa4Wkp8GeGZGva9TAEJOLKujkktaI8Jk+f83RKA50I65StFDtJsgveRzR7Y3NVSe3Q==
-X-Received: by 2002:a17:902:a406:b029:e6:78c4:71c8 with SMTP id p6-20020a170902a406b02900e678c471c8mr2637410plq.17.1615954799008;
-        Tue, 16 Mar 2021 21:19:59 -0700 (PDT)
-Received: from gmail.com ([223.179.156.119])
-        by smtp.gmail.com with ESMTPSA id o18sm844046pji.10.2021.03.16.21.19.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 21:19:58 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 09:46:32 +0530
-From:   Vaibhav Gupta <vaibhavgupta40@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Gowtham Tammana <g-tammana@ti.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Vaibhav Gupta <v_gupta@ti.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: crypto: ti,sa2ul: Add new compatible
- for AM64
-Message-ID: <YFGCoMk7Kemrwizc@gmail.com>
-References: <20210308202005.243228-1-vaibhavgupta40@gmail.com>
- <20210308202005.243228-2-vaibhavgupta40@gmail.com>
- <20210316220558.GA3754419@robh.at.kernel.org>
+        id S229487AbhCQE0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 00:26:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229469AbhCQEZ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 00:25:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 27F3764F9E;
+        Wed, 17 Mar 2021 04:25:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615955158;
+        bh=b0+guY3uHI/7UugdBIJZaedLb8084zSH7Fj2VTny2X0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZnTO7xz3vXP2Hf3iarFYTkOy0PTS63Wwsd6gQE4Sklk4G9sX/pd5jC78A3wO+QrNo
+         rCOBENUMFbAvxpj2Bdkrls0VFfqJ3FiRzw45r4MCdpzcC0vFkP1fXhlj6N+hod6RhI
+         0caOQfvz+18hHQu6dcxqShjZ0CjLMxgyf1on3dpS7pKxBmpnbDF3PIoro33h5aAdnu
+         iiOJRlTEDqLRVzUN3V4iuKv8Vd6EvxHP82AN3+bG7xP81PHIujuNKe9bWWsBO11ak1
+         0YcZEJDZNUQRdHtCvJDAz+T+800RykOSqCTdtghpS00lMdv1T/OxaLn07ALduFYk0W
+         htpuRlHqcfXhw==
+Date:   Wed, 17 Mar 2021 06:25:54 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v5 03/24] wfx: add Makefile/Kconfig
+Message-ID: <YFGE0t5LQuPp0M5h@unreal>
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+ <20210315132501.441681-4-Jerome.Pouiller@silabs.com>
+ <YE95OCx5hWRedi+W@unreal>
+ <1718324.Ee3sdLpQUQ@pc-42>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210316220558.GA3754419@robh.at.kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1718324.Ee3sdLpQUQ@pc-42>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 04:05:58PM -0600, Rob Herring wrote:
-> On Tue, Mar 09, 2021 at 01:50:03AM +0530, Vaibhav Gupta wrote:
-> > From: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> > 
-> > Add the AM64 version of sa2ul to the compatible list.
-> > 
-> > [v_gupta@ti.com: Conditional dma-coherent requirement, clocks]
-> > Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> > Signed-off-by: Vaibhav Gupta <v_gupta@ti.com>
-> > ---
-> >  .../devicetree/bindings/crypto/ti,sa2ul.yaml  | 40 +++++++++++++++----
-> >  1 file changed, 33 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> > index 1d48ac712b23..6eb9acd564c2 100644
-> > --- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> > +++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-> > @@ -14,6 +14,7 @@ properties:
-> >      enum:
-> >        - ti,j721e-sa2ul
-> >        - ti,am654-sa2ul
-> > +      - ti,am64-sa2ul
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -45,19 +46,44 @@ properties:
-> >      description:
-> >        Address translation for the possible RNG child node for SA2UL
-> >  
-> > +  clocks:
-> > +    items:
-> > +      - description: Clock used by PKA
-> > +      - description: Main Input Clock
-> > +      - description: Clock used by rng
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pka_in_clk
-> > +      - const: x1_clk
-> > +      - const: x2_clk
-> > +
-> >  patternProperties:
-> >    "^rng@[a-f0-9]+$":
-> >      type: object
-> >      description:
-> >        Child RNG node for SA2UL
-> >  
-> > -required:
-> > -  - compatible
-> > -  - reg
-> > -  - power-domains
-> > -  - dmas
-> > -  - dma-names
-> > -  - dma-coherent
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      const: ti,am64-sa2ul
-> > +then:
-> > +  required:
-> > +    - compatible
-> > +    - reg
-> > +    - power-domains
-> > +    - dmas
-> > +    - dma-names
-> > +
-> > +else:
-> > +  required:
-> > +    - compatible
-> > +    - reg
-> > +    - power-domains
-> > +    - dmas
-> > +    - dma-names
-> > +    - dma-coherent
-> 
-> The only difference is 'dma-coherent'. You can simplify the if/then to 
-> just that.
-Hello Rob,
+On Mon, Mar 15, 2021 at 05:21:35PM +0100, Jérôme Pouiller wrote:
+> Hi Leon,
+>
+> On Monday 15 March 2021 16:11:52 CET Leon Romanovsky wrote:
+> > On Mon, Mar 15, 2021 at 02:24:40PM +0100, Jerome Pouiller wrote:
+> > > From: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> > >
+> > > Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> > > ---
+> > >  drivers/net/wireless/silabs/wfx/Kconfig  | 12 +++++++++++
+> > >  drivers/net/wireless/silabs/wfx/Makefile | 26 ++++++++++++++++++++++++
+> > >  2 files changed, 38 insertions(+)
+> > >  create mode 100644 drivers/net/wireless/silabs/wfx/Kconfig
+> > >  create mode 100644 drivers/net/wireless/silabs/wfx/Makefile
+> > >
+> > > diff --git a/drivers/net/wireless/silabs/wfx/Kconfig b/drivers/net/wireless/silabs/wfx/Kconfig
+> > > new file mode 100644
+> > > index 000000000000..3be4b1e735e1
+> > > --- /dev/null
+> > > +++ b/drivers/net/wireless/silabs/wfx/Kconfig
+> > > @@ -0,0 +1,12 @@
+> > > +config WFX
+> > > +     tristate "Silicon Labs wireless chips WF200 and further"
+> > > +     depends on MAC80211
+> > > +     depends on MMC || !MMC # do not allow WFX=y if MMC=m
+> > > +     depends on (SPI || MMC)
+> > > +     help
+> > > +       This is a driver for Silicons Labs WFxxx series (WF200 and further)
+> > > +       chipsets. This chip can be found on SPI or SDIO buses.
+> > > +
+> > > +       Silabs does not use a reliable SDIO vendor ID. So, to avoid conflicts,
+> > > +       the driver won't probe the device if it is not also declared in the
+> > > +       Device Tree.
+> > > diff --git a/drivers/net/wireless/silabs/wfx/Makefile b/drivers/net/wireless/silabs/wfx/Makefile
+> > > new file mode 100644
+> > > index 000000000000..f399962c8619
+> > > --- /dev/null
+> > > +++ b/drivers/net/wireless/silabs/wfx/Makefile
+> > > @@ -0,0 +1,26 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +# Necessary for CREATE_TRACE_POINTS
+> > > +CFLAGS_debug.o = -I$(src)
+> >
+> > I wonder if it is still relevant outside of the staging tree.
+>
+> It seems this pattern is common in the main tree. You suggest to relocate
+> trace.h to include/trace/events?
 
-I agree with your point. But with that case we will have to modify/append the
-'required' list. Something like:
+No, leave it as it. Sorry for the noise.
 
-	if !(properties.compatible == 'ti,am64-sa2ul')
-		required += dma-coherent
+Thanks
 
-I even tried to use anchors but that didn't help. I didn't find it even in
-examples. Any hint how to achieve that?
-
-Thanks,
-Vaibhav
+>
+> --
+> Jérôme Pouiller
+>
+>
