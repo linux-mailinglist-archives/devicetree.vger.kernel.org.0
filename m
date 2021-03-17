@@ -2,142 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 202C533FBB6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 00:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72DB733FBCF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 00:28:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbhCQXKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 19:10:38 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:39696 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbhCQXK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 19:10:28 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12HNANHY094897;
-        Wed, 17 Mar 2021 18:10:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616022623;
-        bh=khCW1g2ORRW9ukgfAPbQ+I2Y4vXzn5UGwDzR+gSDbW8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=T6HpB/s7ZmovY0OyZG44CCu7PqWYsoizukJGp2JdyJrXeFepF78yBPO/glXsBmShy
-         VdNqnt04IQhdZIbqOkgJaIzhnrIH1dlwqoqV7KhVCqZn7HwBdgIhA66agJhi7IYrMK
-         gCbPny76AYrjrLwJVqcuvSlvwCSMZOiVFXp6QZq0=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12HNANLd023884
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Mar 2021 18:10:23 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 17
- Mar 2021 18:10:23 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 17 Mar 2021 18:10:23 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12HNANcQ004735;
-        Wed, 17 Mar 2021 18:10:23 -0500
-Received: from localhost ([10.250.32.139])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 12HNANmA002864;
-        Wed, 17 Mar 2021 18:10:23 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-am642-sk: Add IPC sub-mailbox nodes
-Date:   Wed, 17 Mar 2021 18:09:46 -0500
-Message-ID: <20210317230946.23675-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210317230946.23675-1-s-anna@ti.com>
-References: <20210317230946.23675-1-s-anna@ti.com>
+        id S229720AbhCQX1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 19:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229545AbhCQX1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 19:27:40 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89CD9C06175F
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id 11so2185913pfn.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ODgJlo11thr3abRRn5H88pJeZKbcK7WUWOM8GS7dn/E=;
+        b=ka7O4tt5b/1Dj+gDV75rnKYCFDViijs6tPrSecl/kL4FE/l3HAn8wK2w7DCA/GvLMz
+         vzLzimLuFdKdgF8qD04l6Hl6ELjSIJ2DmchyQZq+HAFFv7uXuz0J+WyWzxCsFodfyJMD
+         JqVKZ2cm3qQs9iPt7qK9kDLHA527OLYf70mSw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ODgJlo11thr3abRRn5H88pJeZKbcK7WUWOM8GS7dn/E=;
+        b=LpD3me/xccmDtdmNzrnV+fv2YZcRLK0PaFjvqqDdH3FrXWEL9VtMtaYTjxQiXiXVFA
+         ThFEKMjUjgoSxvOoe7Th6D1Id5ExsrsFqtWRxsT5M7SjZqSU7KHKBgbKg0/WMlf40NLD
+         hDP9DvW59ixdMMIjU1/Qj4XmhosA1tsD8RDP8KTujGeQNUiR9tsNFJq3NdQR95ESCuZH
+         N/k++u+1lpGVyBJq4YqLQNzoJ0VHB5V02kO8Yor4q+cL3Pcqd1lPEtoWc9Gwx0x/L6Lt
+         NS5LNDQNq26sHUdbWipthSbXU/6KPMXuu3uc6Qtcr8MCcLbHiE40a+O2akFT/mu+7oow
+         XqkQ==
+X-Gm-Message-State: AOAM532xpL3A1NhaXUhoEtW5Hlng/cK6jXIVoBKN2GV8VPk9IhANesrQ
+        m3TC+S5cN9n00EluQQjzTBpKaw==
+X-Google-Smtp-Source: ABdhPJzeS30ixDkVh9yP6I/NanMrQ/pjkgpILrw4pj9P0Ogh+/lOMqEh56QvyTw5PcFj2orL9mcEJA==
+X-Received: by 2002:aa7:8a58:0:b029:1fb:8ab:866e with SMTP id n24-20020aa78a580000b02901fb08ab866emr1339585pfa.0.1616023660024;
+        Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
+        by smtp.gmail.com with UTF8SMTPSA id x186sm166239pfc.65.2021.03.17.16.27.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Mar 2021 16:27:39 -0700 (PDT)
+Date:   Wed, 17 Mar 2021 16:27:37 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, robdclark@chromium.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>,
+        eballetbo@gmail.com, Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        drinkcat@chromium.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on
+ sc7180-trogdor-pompom
+Message-ID: <YFKQaXOmOwYyeqvM@google.com>
+References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the sub-mailbox nodes that are used to communicate between MPU and
-various remote processors present in the AM64x SoCs for the AM642 SK
-board. These include the R5F remote processors in the two dual-R5F
-clusters (MAIN_R5FSS0 & MAIN_R5FSS1) in the MAIN domain; and a M4
-processor in the MCU safety island.
+On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
+> The sc7180-trogdor-pompom board might be attached to any number of a
+> pile of eDP panels. At the moment I'm told that the list might include:
+> - KD KD116N21-30NV-A010
+> - KD KD116N09-30NH-A016
+> - Starry 2081116HHD028001-51D
+> - Sharp LQ116M1JW10
+> 
+> It should be noted that while the EDID programmed in the first 3
+> panels indicates that they should run with exactly the same timing (to
+> keep things simple), the 4th panel not only needs different timing but
+> has a different resolution.
+> 
+> As is true in general with eDP panels, we can figure out which panel
+> we have and all the info needed to drive its pixel clock by reading
+> the EDID. However, we can do this only after we've powered the panel
+> on. Powering on the panels requires following the timing diagram in
+> each panel's datasheet which specifies delays between certain
+> actions. This means that, while we can be quite dynamic about handling
+> things we can't just totally skip out on describing the panel like we
+> could do if it was connected to an external-facing DP port.
+> 
+> While the different panels have slightly different delays, it's
+> possible to come up with a set of unified delays that will work on all
+> the panels. From reading the datasheets:
+> * KD KD116N21-30NV-A010 and KD KD116N09-30NH-A016
+>   - HPD absent delay: 200 ms
+>   - Unprepare delay: 150 ms (datasheet is confusing, might be 500 ms)
+> * Starry 2081116HHD028001-51D
+>   - HPD absent delay: 100 ms
+>   - Enable delay: (link training done till enable BL): 200 ms
+>   - Unprepare delay: 500 ms
+> * Sharp LQ116M1JW10
+>   - HPD absent delay: 200 ms
+>   - Unprepare delay: 500 ms
+>   - Prepare to enable delay (power on till backlight): 100 ms
+> 
+> Unified:
+> - HPD absent delay: 200 ms
+> - Unprepare delay: 500 ms
+> - Enable delay: 200 ms
+> 
+> NOTE: in theory the only thing that we _really_ need unity on is the
+> "HPD absent delay" since once the panel asserts HPD we can read the
+> EDID and could make per-panel decisions if we wanted.
+> 
+> Let's create a definition of "a panel that can be attached to pompom"
+> as a panel that provides a valid EDID and can work with the standard
+> pompom power sequencing. If more panels are later attached to pompom
+> then it's fine as long as they work in a compatible way.
+> 
+> One might ask why we can't just use a generic string here and provide
+> the timings directly in the device tree file. As I understand it,
+> trying to describe generic power sequencing in the device tree is
+> frowned upon and the one instance (SD/MMC) is regarded as a mistake
+> that shouldn't be repeated. Specifying a power sequence per board (or
+> per board class) feels like a reasonable compromise. We're not trying
+> to define fully generic power sequence bindings but we can also take
+> advantage of the semi-probable properties of the attached device.
+> 
+> NOTE: I believe that past instances of supporting this type of thing
+> have used the "white lie" approach. One representative panel was
+> listed in the device tree. The power sequencings of this
+> representative panel were OK to use across all panels that might be
+> attached and other differences were handled by EDID. This patch
+> attempts to set a new precedent and avoid the need for the white lie.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-These sub-mailbox nodes utilize the System Mailbox clusters 2, 4 and 6.
-The remaining clusters 3, 5 and 7 are currently not used, and so are
-disabled. Clusters 0 and 1 were never added to the dts file as they do
-not support interrupts towards the A53 core.
+Sounds reasonable to me if DT maintainers can live with this abstract
+hardware definition. It's clearer than the 'white lie' approach.
 
-The sub-mailbox nodes added match the hard-coded mailbox configuration
-used within the TI RTOS IPC software packages. The R5F processor
-sub-systems are assumed to be running in Split mode, so a sub-mailbox
-node is used by each of the R5F cores. Only the sub-mailbox node for
-the first R5F core in each cluster is used in case of a Single-CPU mode
-for that R5F cluster. The nodes are all identical to those added on the
-AM64x EVM board to maintain firmware compatibility between the two boards.
+It's then up to the vendor/manufacturer to ensure to only ship devices
+with panels that have compatible timings.
 
-NOTE:
-The cluster nodes only have the Mailbox IP interrupt outputs that are
-routed to the GIC_SPI. The sub-mailbox nodes' irq-id are indexing into
-the listed interrupts, with the usr-id using the actual interrupt output
-line number from the Mailbox IP.
+>  .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 62b0d54d87b7..9807dbc1cceb 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -140,6 +140,10 @@ properties:
+>        - giantplus,gpg48273qs5
+>          # GiantPlus GPM940B0 3.0" QVGA TFT LCD panel
+>        - giantplus,gpm940b0
+> +        # A panel connected to a google,pompom board. Panel is guaranteed to
+> +        # confirm to google,pompom-panel power sequencing requirements and then
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 43 ++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+s/confirm/conform/ ?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 397ed3b2e121..fad0cddd67d6 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -244,3 +244,46 @@ cpsw3g_phy1: ethernet-phy@1 {
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 	};
- };
-+
-+&mailbox0_cluster2 {
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster4 {
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster5 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster6 {
-+	mbox_m4_0: mbox-m4-0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster7 {
-+	status = "disabled";
-+};
--- 
-2.30.1
+> +        # the specific panel will be probed via EDID.
+> +      - google,pompom-panel
+>          # HannStar Display Corp. HSD070PWW1 7.0" WXGA TFT LCD panel
+>        - hannstar,hsd070pww1
+>          # HannStar Display Corp. HSD100PXN1 10.1" XGA LVDS panel
 
+FWIW:
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
