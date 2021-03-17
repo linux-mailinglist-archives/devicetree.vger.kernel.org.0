@@ -2,67 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A712333F77C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E30733F796
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232648AbhCQRt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 13:49:56 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:33222 "EHLO vps0.lunn.ch"
+        id S232858AbhCQRyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 13:54:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39192 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232483AbhCQRtk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 13:49:40 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lMaIR-00BV78-QU; Wed, 17 Mar 2021 18:49:27 +0100
-Date:   Wed, 17 Mar 2021 18:49:27 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     Jonas Gorski <jonas.gorski@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] net: mdio: Add BCM6368 MDIO mux bus controller
-Message-ID: <YFJBJ1IHpkXXaGvc@lunn.ch>
-References: <20210308184102.3921-1-noltari@gmail.com>
- <20210308184102.3921-3-noltari@gmail.com>
- <YEaQdXwrmVekXp4G@lunn.ch>
- <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com>
+        id S232852AbhCQRyi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 13:54:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B063864F0F;
+        Wed, 17 Mar 2021 17:54:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616003678;
+        bh=XxJeuZ+cw4amQUvKU8GjVxoePa5w1uzwY9Tpr8JD79o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YL0xzOV44xFC6fmX7FY7A0vi5+ciK4IFMJeLPQmdiSHP4/xEGcIdycnzKKRpGVVy7
+         Pp0ei3Mr4NETkYL1YooSg2Wt+hKumQDzPCZOxUJkoQvUpi91yGJu56p0+HT5uQXyWw
+         E/c1RP+K6LXUiLPYFqVRmHOQYRB7YdXt0UkgCEXbm4JIfSqjY5ibFk5ZBU2DzgofyX
+         uixko/CYHJC6cw0ADdrBlwYDY0gC3iT1svl4MhTUxbJlxWQ+FZ5ODXM01vE+/hxJbJ
+         4T1kLzBGu07iIoezzhgUoNH5LDtPPskj3wdnn6E6jmx46ahbWnIjFL4zo7kcgkiIXX
+         25P3a3M4mwjFA==
+Date:   Wed, 17 Mar 2021 17:54:34 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC
+ drivers
+Message-ID: <20210317175434.GD5559@sirena.org.uk>
+References: <20210314154459.15375-1-digetx@gmail.com>
+ <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tNQTSEo8WG/FKZ8E"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com>
+In-Reply-To: <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
+X-Cookie: Please ignore previous fortune.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> BCM6368 (and newer) SoCs have an integrated ethernet switch controller with dedicated internal phys, but it also supports connecting to external phys not integrated in the internal switch.
-> Ports 0-3 are internal, ports 4-7 are external and can be connected to external switches or phys and port 8 is the CPU.
-> This MDIO bus device is integrated in the BCM63xx switch registers, which corresponds to the same registers present in drivers/net/dsa/b53/b53_regs.h.
-> As you can see in the source code, registers are the same for the internal and external bus. The only difference is that if MDIOC_EXT_MASK (bit 16) is set, the MDIO bus accessed will be the external, and on the contrary, if bit 16 isn’t set, the MDIO bus accessed will be the internal one.
-> 
-> I don’t know if this answers your question, but I think that adding it as mdiomux is the way to go.
 
-Hi Álvaro
+--tNQTSEo8WG/FKZ8E
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The Marvell mv88e6390 family of switches has a very similar setup. An
-internal and an external MDIO bus, one bit difference in a
-register. When i wrote the code for that, i decided it was not a mux
-as such, but two MDIO busses. So i register two MDIO busses, and rely
-on a higher level switch register mutex to prevent parallel operations
-on the two busses.
+On Wed, Mar 17, 2021 at 08:20:10PM +0300, Dmitry Osipenko wrote:
 
-The reason i decided it was not a mux, is that all the other mux
-drivers are separate drivers which rely on another MDIO bus
-driver. The mux driver gets a handle to the underlying MDIO bus
-driver, and and builds on it. Here you have it all combined in one, so
-it does not follow the pattern.
+> Mark / Takashi, I may try to split up this series into two or three
+> smaller patchsets and then the reset/ patch from Philipp Zabel could be
+> merged by Philipp himself. I primarily want to have the audio resets
+> fixed and the reset API extended with reset_control_bulk in 5.13 because
+> this will unblock other patches. Please let me know what you prefer more.
 
-So if you want to use a max, please break this up into an MDIO driver,
-and a mux driver. Or have one driver which registers two mdio busses,
-no mux.
+I've actually already got this queued for application next time I apply
+things, I'm guessing Phillip was intending that the reset patch go via
+ASoC?
 
-   Andrew
+--tNQTSEo8WG/FKZ8E
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBSQloACgkQJNaLcl1U
+h9AAsgf/egRRBL2B24oNKvQ4OlsR6yr1Z1xvvwq1T2lCBKJV6kddrTOwC2ycOGJd
+hupHoKwAfdG+eMlbOIyCh2/NyRK+gPuJjqhVRi0iT6ypmWFaxFVXF+2ziLaLVwmx
+LV0G0ktWt/hw4o7Sai982eQJQCMkdLAMZ1/WsGup1lkyM0Gp1s8aPk+gB9WfC+18
+oVMmyQAEXBK9t4xnhT2YJOiWD3QID1O79yGfio2VMSg5UydVZcYGz5Obum0DtlUU
+K4tXp0NE5dmIuUzYbKTQuz6wkPDDpv7IaygJaFw0aYImj62cmWaPcE4Jeyu5+5Jv
+4PglDPb4IaWxuU6VqJbxgmXV3wUkkQ==
+=74VK
+-----END PGP SIGNATURE-----
+
+--tNQTSEo8WG/FKZ8E--
