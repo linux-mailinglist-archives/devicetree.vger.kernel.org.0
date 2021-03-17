@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2954C33F7DD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 19:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 088D233F8D4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 20:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232781AbhCQSMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 14:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232836AbhCQSML (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 14:12:11 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E26ACC06174A;
-        Wed, 17 Mar 2021 11:12:10 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id q29so321375lfb.4;
-        Wed, 17 Mar 2021 11:12:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Rm3F1cA66zuHgAWNRDnehpSfjsTieaJWbbEO5oa1uuM=;
-        b=vVgz3AQi0vg3TM/jatpKxgQ/QE6HJO9dEZ8vJzAgmdLbuBOYqnMujyiVKvIXyRJRSa
-         YGC/22kFevbVibqEWnnSMAyi9C3rZ0htJNht6qXp2OVG8ejP9jpNrpbzJwyieTVJszN4
-         TR5/D+X5IyXZ3Xw3FdiF4poNMFIx9a4YY0d8z1SWMq29wqKgAc+aSBbtawJgrEE6rRqa
-         RDo53bXS8jQXfhAknx2wvK5nFRfPgltQOoFFrYmyslbqLh/IybV6dZgqfYNVeJy6rbEQ
-         pnkywobegW+vx3vCNNF785P/5naKfz5uPwzbmqqH+KjEzBlY7ei+qW4pkRiIl+j3r/jn
-         ghhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Rm3F1cA66zuHgAWNRDnehpSfjsTieaJWbbEO5oa1uuM=;
-        b=fPleuLEGB4n1M5E2vjjsECmvtu42YCf3fwTfOQjMWn4r5VbpLvXRnsA/2s7t0S5U3g
-         EiYcA/lZzcktlgXKTTckGHuLiiWvvnPHim39dT9fjJeTdhH+kdEyV5Pq46hXyubd9KxU
-         JqUWn9+4NJvAYB1QQd09el8gnOkY3NxEH4H8T1yd7GOocSagKq7OBu09s2018eo9Lut8
-         F+LxakZ7LUORqqrknTPVc8qiqZweBZXP4TKx6elvUjyaGEbtiNKDgo6VDK1xE1KE2B7n
-         9rKHHV3QyDZNmdrVSVNH4BH7z5HksHeuk+CAvskdDK7YtYyvL50g+DgoyJOGEl9x2fvi
-         H1aw==
-X-Gm-Message-State: AOAM530VFRcZ2M2Kl9O50YXGfTR+BNf55DrLJeRRCaW+O0HGCEAa7Pvq
-        UU2gs5aBZXqaN0MXRrqHweSVwYK74ds=
-X-Google-Smtp-Source: ABdhPJy8C3qkLS4DHxFIw+3kI4BF3VFOS96SBfc4NPrMSaw9BPWwByRgdUj6C7Q4vrBF00Nhg7jtCg==
-X-Received: by 2002:a19:c0f:: with SMTP id 15mr3068331lfm.580.1616004729249;
-        Wed, 17 Mar 2021 11:12:09 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.googlemail.com with ESMTPSA id u2sm3421397lfi.187.2021.03.17.11.12.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 11:12:08 -0700 (PDT)
-Subject: Re: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC
- drivers
-To:     Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Paul Fertser <fercerpav@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210314154459.15375-1-digetx@gmail.com>
- <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
- <20210317175434.GD5559@sirena.org.uk>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <81ddddba-a179-9389-2458-de6741428822@gmail.com>
-Date:   Wed, 17 Mar 2021 21:12:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S232964AbhCQTL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 15:11:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38290 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229796AbhCQTKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 15:10:55 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12HJAjaV005132;
+        Wed, 17 Mar 2021 14:10:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616008245;
+        bh=Tr1lXzHpbqJJQa5y6bYpsIDAlJx1boXQSoQ2aG86+I4=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=HFy/MoyRluFqNqLcQLCeEfVE7pQjZsu4PbG5RISYUNuaCfr3MzuE99lbKnbPpkGlz
+         T7UHQ7QRZcAn/dAAHw3mF9Np0KFhfcGVnlyexgPWV37EXofr1kRiANzZ8aVc4Mx74d
+         nC+vXz/M+ba2d555MTrRjiSoE3snm//HKi27jPCI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12HJAj6F080447
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 17 Mar 2021 14:10:45 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 17
+ Mar 2021 14:10:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 17 Mar 2021 14:10:45 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12HJAjE5031520;
+        Wed, 17 Mar 2021 14:10:45 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v3 0/2] AM64: Add USB support
+Date:   Wed, 17 Mar 2021 14:10:39 -0500
+Message-ID: <161600762739.1043.8722896780317279431.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210317043007.18272-1-a-govindraju@ti.com>
+References: <20210317043007.18272-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210317175434.GD5559@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.03.2021 20:54, Mark Brown пишет:
-> On Wed, Mar 17, 2021 at 08:20:10PM +0300, Dmitry Osipenko wrote:
+On Wed, 17 Mar 2021 10:00:04 +0530, Aswath Govindraju wrote:
+> The following series of patches, add USB support for AM642 evm.
 > 
->> Mark / Takashi, I may try to split up this series into two or three
->> smaller patchsets and then the reset/ patch from Philipp Zabel could be
->> merged by Philipp himself. I primarily want to have the audio resets
->> fixed and the reset API extended with reset_control_bulk in 5.13 because
->> this will unblock other patches. Please let me know what you prefer more.
+> USB test logs,
+> https://pastebin.ubuntu.com/p/YSQRBWGmzd/
 > 
-> I've actually already got this queued for application next time I apply
-> things, I'm guessing Phillip was intending that the reset patch go via
-> ASoC?
+> Changes since v2:
+> - dropped compatible string "ti,j721e-usb" leading to DT schema errors
+> - Reran test logs
+> - Couldn't pick up reviewed-by from kishon as a change was made in the
+>   patch
 > 
+> [...]
 
-I assume that Phillip is okay with applying the reset patch via ASoC
-since he didn't say anything specifically about it. Thank you for taking
-care of the patches!
+Hi Aswath Govindraju,
 
-Phillip, please let us know if you have objections in regards to
-applying the reset_control_bulk via ASoC.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/2] arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
+      commit: d06a661309d30b654b74a4633dd78804ef16369f
+[2/2] arm64: dts: ti: k3-am642-evm: Add USB support
+      commit: 04a80a75baa1c80f7e5096147b6173c13ca3d3e0
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
