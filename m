@@ -2,543 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF1C933F0DE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 14:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD26933F0E3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 14:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbhCQNIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 09:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229986AbhCQNIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 09:08:22 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F07C06174A;
-        Wed, 17 Mar 2021 06:08:22 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id q5so12090512pgk.5;
-        Wed, 17 Mar 2021 06:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lDYCEwdNWPewAeosgbIIkjpNIF4er8m+MwlavNwzRnA=;
-        b=ZablnC3OpBVNeaeo5aj/H8fnJ3DpRcMk4hvfT4ahbnv0FKpE7+7EPWh9nL8JipFFHP
-         owhwgtBK9VjG3YWAHmTqCTOj1dqZBGqS1QVnV2A+oDneo4GL5utyVNUumL254WGyd6CA
-         oEgGtdWu1eSxG6mUd++C+tPEgEjcCXFwWga0/G3aRDk8WBv58J5b7orWMZXPyr+XXH5f
-         TTiesLHS3Z3FkNdfIuR5FOMD6KJqV3pViTsQhMdt26vKrm7UUTleGoREm7KT+42ZZRU1
-         UJMVJhfN6B/A9XKfxEzxUHG2+WDc7uCPthOXtCrw6GMM0IeMrYGG/dOr9uV3g6VPe/99
-         XflA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lDYCEwdNWPewAeosgbIIkjpNIF4er8m+MwlavNwzRnA=;
-        b=oFKptQoFmMYFk0zpns6Dk7kk+oFjKnYiy+HeLPF7/d2p05xmIHjZ3SHkxW9H9GSFqF
-         h+6pBsuWTbM40TWfrePpdFRm4um7jGxu1CfGMCb0lbj+rZ/6OOO0YwdOWOgbK1ssf1ZX
-         NU/5WcVM1apUocQUTvmh5oud/MpfL2ThOFlC6sr7SHNf4b+Rsc2N6XDjkr/zRjfUTXa0
-         1NLhhDQWAxy1tPot09L1sVHEy7E+I0s5RVmtv3tdhwf+fKAMUopPK0wWw2u5GeL67Wma
-         +nW6Lq1mBFjiqjRvh9yz8OUNeYEZaWfG/PoSkBhMCvYisTNP+zcTXKV9dx/ret7mg2kt
-         nW2Q==
-X-Gm-Message-State: AOAM532IqtC28i1eRc+yMODGociLCsisepJ0zToqlAeoV5ei8ULexSEK
-        Zv+OrkucSd8tWY0fJ2vAf7SzyexTs7Boiqwt64Q=
-X-Google-Smtp-Source: ABdhPJxR4P49jAD80Ndi7CNlIr9jZ+JUMsM+9HRSiVGkyTAXzQEDsloFLjPrSv06d1RiqSOhsjMtO8PvOKnEYQHx0ek=
-X-Received: by 2002:a65:4bc5:: with SMTP id p5mr2569919pgr.74.1615986501557;
- Wed, 17 Mar 2021 06:08:21 -0700 (PDT)
+        id S230391AbhCQNJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 09:09:38 -0400
+Received: from aserp2130.oracle.com ([141.146.126.79]:40518 "EHLO
+        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230331AbhCQNJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 09:09:11 -0400
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12HD5D7A081962;
+        Wed, 17 Mar 2021 13:09:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=ekkLyr+qO4g3X6qwNCmwaxn3aHmZPF5LU3lLwDE3t48=;
+ b=VlYcBQD5ybK1yxgyrtRcRebE6eTHcM1RausTJXaBVx0ETuib1om0jkNrKJC9QQtMb3Hd
+ 5/LCHDoIcDPxKQkK4QdfJodpu8mz1mSwskGxb15eIwhNQ747FV24CEYDFuzdtFxdFbaD
+ 3evO5j8IeIQ6bxi+4kVM9M0wSSfGL1n0G/cprFNudDtx7yk9UKKNyxRpUU9S+JBfjQgl
+ aOyego/3/Ua8wWs5aePH8i6S01ce3QG6fEPmUJpP7U3UFUUFmc4GgLNyTE3ZswOFBipF
+ Z7SmDozxgRrqb87talQpBtTeNejPHt3iFHWufwwE79ZH+GYvHY2W6Vx8eWWu9UBIdjTm 7Q== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by aserp2130.oracle.com with ESMTP id 378jwbm2eq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 17 Mar 2021 13:09:10 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12HD6ikZ181711;
+        Wed, 17 Mar 2021 13:09:08 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+        by aserp3030.oracle.com with ESMTP id 3796yutca7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 17 Mar 2021 13:09:08 +0000
+Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
+        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 12HD97XB019409;
+        Wed, 17 Mar 2021 13:09:07 GMT
+Received: from mwanda (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Wed, 17 Mar 2021 06:09:06 -0700
+Date:   Wed, 17 Mar 2021 16:09:00 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     stephen.boyd@linaro.org
+Cc:     devicetree@vger.kernel.org
+Subject: [bug report] of: Support parsing phandle argument lists through a
+ nexus node
+Message-ID: <YFH/bLGZo43quuc9@mwanda>
 MIME-Version: 1.0
-References: <20210315082339.9787-1-sander@svanheule.net> <20210315190806.66762-1-sander@svanheule.net>
- <20210315190806.66762-3-sander@svanheule.net>
-In-Reply-To: <20210315190806.66762-3-sander@svanheule.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 17 Mar 2021 15:08:00 +0200
-Message-ID: <CAHp75Vc6aaDhVN7LzvLNQjuOPguz+nbfmfpZ7TZHK=fNjCRz8w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bert Vermeulen <bert@biot.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Proofpoint-IMR: 1
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9925 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 malwarescore=0 spamscore=0
+ bulkscore=0 mlxlogscore=999 mlxscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2103170097
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9925 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxlogscore=999
+ spamscore=0 mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 clxscore=1011 adultscore=0 phishscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2103170097
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 11:11 PM Sander Vanheule <sander@svanheule.net> wrote:
->
-> Realtek MIPS SoCs (platform name Otto) have GPIO controllers with up to
-> 64 GPIOs, divided over two banks. Each bank has a set of registers for
-> 32 GPIOs, with support for edge-triggered interrupts.
->
-> Each GPIO bank consists of four 8-bit GPIO ports (ABCD and EFGH). Most
-> registers pack one bit per GPIO, except for the IMR register, which
-> packs two bits per GPIO (AB-CD).
->
-> Although the byte order is currently assumed to have port A..D at offset
-> 0x0..0x3, this has been observed to be reversed on other, Lexra-based,
-> SoCs (e.g. RTL8196E/97D/97F).
->
-> Interrupt support is disabled for the fallback devicetree-compatible
-> 'realtek,otto-gpio'. This allows for quick support of GPIO banks in
-> which the byte order would be unknown. In this case, the port ordering
-> in the IMR registers may not match the reversed order in the other
-> registers (DCBA, and BA-DC or DC-BA).
+Hello Stephen Boyd,
 
-I have few comments.
+The patch bd6f2fd5a1d5: "of: Support parsing phandle argument lists
+through a nexus node" from Jan 30, 2018, leads to the following
+static checker warning:
 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  drivers/gpio/Kconfig             |  12 ++
->  drivers/gpio/Makefile            |   1 +
->  drivers/gpio/gpio-realtek-otto.c | 331 +++++++++++++++++++++++++++++++
->  3 files changed, 344 insertions(+)
->  create mode 100644 drivers/gpio/gpio-realtek-otto.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index e3607ec4c2e8..fedf1e49469e 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -502,6 +502,18 @@ config GPIO_RDA
->         help
->           Say Y here to support RDA Micro GPIO controller.
->
-> +config GPIO_REALTEK_OTTO
-> +       bool "Realtek Otto GPIO support"
-> +       depends on MACH_REALTEK_RTL
+	drivers/of/base.c:1592 of_parse_phandle_with_args_map()
+	warn: loop overwrites return value 'ret'
 
-> +       depends on OF_GPIO
+drivers/of/base.c
+  1590  
+  1591          ret = -EINVAL;
+                ^^^^^^^^^^^^^
+This return is only used until part way through the first iteration.
+For subsequent iterations, the code will return success in the case of
+an error.
 
-Don't see how it's used.
+  1592          while (cur) {
+  1593                  /* Get the <list>-map property */
+  1594                  map = of_get_property(cur, map_name, &map_len);
+  1595                  if (!map) {
+  1596                          ret = 0;
+  1597                          goto free;
+  1598                  }
+  1599                  map_len /= sizeof(u32);
+  1600  
+  1601                  /* Get the <list>-map-mask property (optional) */
+  1602                  mask = of_get_property(cur, mask_name, NULL);
+  1603                  if (!mask)
+  1604                          mask = dummy_mask;
+  1605                  /* Iterate through <list>-map property */
+  1606                  match = 0;
+  1607                  while (map_len > (list_size + 1) && !match) {
+  1608                          /* Compare specifiers */
+  1609                          match = 1;
+  1610                          for (i = 0; i < list_size; i++, map_len--)
+  1611                                  match &= !((match_array[i] ^ *map++) & mask[i]);
+  1612  
+  1613                          of_node_put(new);
+  1614                          new = of_find_node_by_phandle(be32_to_cpup(map));
+  1615                          map++;
+  1616                          map_len--;
+  1617  
+  1618                          /* Check if not found */
+  1619                          if (!new)
+  1620                                  goto put;
+  1621  
+  1622                          if (!of_device_is_available(new))
+  1623                                  match = 0;
+  1624  
+  1625                          ret = of_property_read_u32(new, cells_name, &new_size);
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"ret" set to zero here.
 
-> +       default MACH_REALTEK_RTL
-> +       select GPIO_GENERIC
-> +       select GPIOLIB_IRQCHIP
-> +       help
-> +         The GPIO controller on the Otto MIPS platform supports up to two
-> +         banks of 32 GPIOs, with edge triggered interrupts. The 32 GPIOs
-> +         are grouped in four 8-bit wide ports.
-> +
->  config GPIO_REG
->         bool
->         help
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index c58a90a3c3b1..8ace5934e3c3 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -124,6 +124,7 @@ obj-$(CONFIG_GPIO_RC5T583)          += gpio-rc5t583.o
->  obj-$(CONFIG_GPIO_RCAR)                        += gpio-rcar.o
->  obj-$(CONFIG_GPIO_RDA)                 += gpio-rda.o
->  obj-$(CONFIG_GPIO_RDC321X)             += gpio-rdc321x.o
-> +obj-$(CONFIG_GPIO_REALTEK_OTTO)                += gpio-realtek-otto.o
->  obj-$(CONFIG_GPIO_REG)                 += gpio-reg.o
->  obj-$(CONFIG_ARCH_SA1100)              += gpio-sa1100.o
->  obj-$(CONFIG_GPIO_SAMA5D2_PIOBU)       += gpio-sama5d2-piobu.o
-> diff --git a/drivers/gpio/gpio-realtek-otto.c b/drivers/gpio/gpio-realtek-otto.c
-> new file mode 100644
-> index 000000000000..818412687346
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-realtek-otto.c
-> @@ -0,0 +1,331 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#include <linux/gpio/driver.h>
-> +#include <linux/irq.h>
-> +#include <linux/module.h>
+  1626                          if (ret)
+  1627                                  goto put;
+  1628  
+  1629                          /* Check for malformed properties */
+  1630                          if (WARN_ON(new_size > MAX_PHANDLE_ARGS))
+  1631                                  goto put;
+                                        ^^^^^^^^
+Probably -EINVAL was intended here.
 
-> +#include <linux/of_irq.h>
+  1632                          if (map_len < new_size)
+  1633                                  goto put;
+  1634  
+  1635                          /* Move forward by new node's #<list>-cells amount */
+  1636                          map += new_size;
+  1637                          map_len -= new_size;
+  1638                  }
+  1639                  if (!match)
+  1640                          goto put;
+  1641  
+  1642                  /* Get the <list>-map-pass-thru property (optional) */
+  1643                  pass = of_get_property(cur, pass_name, NULL);
+  1644                  if (!pass)
+  1645                          pass = dummy_pass;
+  1646  
+  1647                  /*
+  1648                   * Successfully parsed a <list>-map translation; copy new
+  1649                   * specifier into the out_args structure, keeping the
+  1650                   * bits specified in <list>-map-pass-thru.
+  1651                   */
+  1652                  match_array = map - new_size;
+  1653                  for (i = 0; i < new_size; i++) {
+  1654                          __be32 val = *(map - new_size + i);
+  1655  
+  1656                          if (i < list_size) {
+  1657                                  val &= ~pass[i];
+  1658                                  val |= cpu_to_be32(out_args->args[i]) & pass[i];
+  1659                          }
+  1660  
+  1661                          out_args->args[i] = be32_to_cpu(val);
+  1662                  }
+  1663                  out_args->args_count = list_size = new_size;
+  1664                  /* Iterate again with new provider */
+  1665                  out_args->np = new;
+  1666                  of_node_put(cur);
+  1667                  cur = new;
+  1668          }
+  1669  put:
+  1670          of_node_put(cur);
+  1671          of_node_put(new);
+  1672  free:
+  1673          kfree(mask_name);
+  1674          kfree(map_name);
+  1675          kfree(cells_name);
+  1676          kfree(pass_name);
+  1677  
+  1678          return ret;
+  1679  }
 
-Why?
-Perhaps what you need is property.h and mod_devicetable.h. See below.
-
-> +#include <linux/platform_device.h>
-
-> +#include <linux/swab.h>
-
-Not sure why you need this? See below.
-
-> +/*
-> + * Total register block size is 0x1C for four ports.
-> + * On the RTL8380/RLT8390 platforms port A, B, and C are implemented.
-> + * RTL8389 and RTL8328 implement a second bank with ports E, F, G, and H.
-> + *
-> + * Port information is stored with the first port at offset 0, followed by the
-> + * second, etc. Most registers store one bit per GPIO and should be read out in
-> + * reversed endian order. The two interrupt mask registers store two bits per
-> + * GPIO, and should be manipulated with swahw32, if required.
-> + */
-> +
-> +/*
-> + * Pin select: (0) "normal", (1) "dedicate peripheral"
-> + * Not used on RTL8380/RTL8390, peripheral selection is managed by control bits
-> + * in the peripheral registers.
-> + */
-> +#define REALTEK_GPIO_REG_CNR           0x00
-> +/* Clear bit (0) for input, set bit (1) for output */
-> +#define REALTEK_GPIO_REG_DIR           0x08
-> +#define REALTEK_GPIO_REG_DATA          0x0C
-> +/* Read bit for IRQ status, write 1 to clear IRQ */
-> +#define REALTEK_GPIO_REG_ISR           0x10
-> +/* Two bits per GPIO */
-> +#define REALTEK_GPIO_REG_IMR_AB                0x14
-> +#define REALTEK_GPIO_REG_IMR_CD                0x18
-
-> +#define REALTEK_GPIO_IMR_LINE_MASK     3
-
-GENMASK() ?
-
-> +#define REALTEK_GPIO_IRQ_EDGE_FALLING  1
-> +#define REALTEK_GPIO_IRQ_EDGE_RISING   2
-> +#define REALTEK_GPIO_IRQ_EDGE_BOTH     3
-> +
-> +#define REALTEK_GPIO_MAX               32
-> +
-> +/*
-> + * Realtek GPIO driver data
-> + * Because the interrupt mask register (IMR) combines the function of
-> + * IRQ type selection and masking, two extra values are stored.
-> + * intr_mask is used to mask/unmask the interrupts for certain GPIO,
-> + * and intr_type is used to store the selected interrupt types. The
-> + * logical AND of these values is written to IMR on changes.
-> + *
-> + * @dev Parent device
-> + * @gc Associated gpio_chip instance
-> + * @base Base address of the register block
-> + * @lock Lock for accessing the IRQ registers and values
-> + * @intr_mask Mask for GPIO interrupts
-> + * @intr_type GPIO interrupt type selection
-> + */
-> +struct realtek_gpio_ctrl {
-> +       struct device *dev;
-> +       struct gpio_chip gc;
-> +       void __iomem *base;
-> +       raw_spinlock_t lock;
-> +       u32 intr_mask[2];
-> +       u32 intr_type[2];
-> +};
-> +
-> +enum realtek_gpio_flags {
-> +       GPIO_INTERRUPTS = BIT(0),
-> +};
-> +
-> +static struct realtek_gpio_ctrl *irq_data_to_ctrl(struct irq_data *data)
-> +{
-> +       struct gpio_chip *gc = irq_data_get_irq_chip_data(data);
-> +
-> +       return container_of(gc, struct realtek_gpio_ctrl, gc);
-> +}
-> +
-> +static inline u32 realtek_gpio_isr_read(struct realtek_gpio_ctrl *ctrl)
-> +{
-> +       return swab32(readl(ctrl->base + REALTEK_GPIO_REG_ISR));
-
-Why swab?! How is this supposed to work on BE CPUs?
-Ditto for all swabXX() usage.
-
-> +}
-> +
-> +static inline void realtek_gpio_isr_clear(struct realtek_gpio_ctrl *ctrl,
-> +       unsigned int pin_mask)
-> +{
-> +       writel(swab32(pin_mask), ctrl->base + REALTEK_GPIO_REG_ISR);
-> +}
-> +
-> +static inline void realtek_gpio_update_imr(struct realtek_gpio_ctrl *ctrl,
-> +       unsigned int imr_offset, u32 type, u32 mask)
-> +{
-> +       unsigned int reg;
-> +
-> +       if (imr_offset == 0)
-> +               reg = REALTEK_GPIO_REG_IMR_AB;
-> +       else
-> +               reg = REALTEK_GPIO_REG_IMR_CD;
-> +       writel(swahw32(type & mask), ctrl->base + reg);
-> +}
-> +
-> +/*
-> + * Since the IMRs contain two bits per GPIO, only 16 GPIO lines fit in a 32-bit
-> + * register.
-> + * Use realtek_gpio_pin_to_imr_offset() to select the correct IMR offset, and
-> + * realtek_gpio_imr_bits() to put the GPIO line's new value in the right place.
-> + */
-> +static inline u32 realtek_gpio_pin_to_imr_offset(unsigned int pin)
-> +{
-> +       return pin/16;
-
-Too few spaces.
-
-> +}
-> +
-> +static inline u32 realtek_gpio_imr_bits(unsigned int pin, u32 value)
-> +{
-> +       return ((value & REALTEK_GPIO_IMR_LINE_MASK) << 2*(pin % 16));
-
-Too many parentheses.
-Too few spaces.
-
-> +}
-> +
-> +static void realtek_gpio_irq_ack(struct irq_data *data)
-> +{
-> +       struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
-> +       u32 pin = irqd_to_hwirq(data);
-
-irq_hwnum_t (or how is it called? check the return type of
-irqd_to_hwirq() function).
-
-> +       realtek_gpio_isr_clear(ctrl, BIT(pin));
-> +}
-> +
-> +static void realtek_gpio_irq_unmask(struct irq_data *data)
-> +{
-> +       struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
-> +       unsigned int pin = irqd_to_hwirq(data);
-> +       unsigned int imr_offset = realtek_gpio_pin_to_imr_offset(pin);
-> +       unsigned long flags;
-> +       u32 m;
-> +
-> +       raw_spin_lock_irqsave(&ctrl->lock, flags);
-> +       m = ctrl->intr_mask[imr_offset];
-> +       m |= realtek_gpio_imr_bits(pin, REALTEK_GPIO_IMR_LINE_MASK);
-> +       ctrl->intr_mask[imr_offset] = m;
-> +       realtek_gpio_update_imr(ctrl, imr_offset, ctrl->intr_type[imr_offset], m);
-> +       raw_spin_unlock_irqrestore(&ctrl->lock, flags);
-> +}
-> +
-> +static void realtek_gpio_irq_mask(struct irq_data *data)
-> +{
-> +       struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
-> +       unsigned int pin = irqd_to_hwirq(data);
-> +       unsigned int imr_offset = realtek_gpio_pin_to_imr_offset(pin);
-> +       unsigned long flags;
-> +       u32 m;
-> +
-> +       raw_spin_lock_irqsave(&ctrl->lock, flags);
-> +       m = ctrl->intr_mask[imr_offset];
-> +       m &= ~realtek_gpio_imr_bits(pin, REALTEK_GPIO_IMR_LINE_MASK);
-> +       ctrl->intr_mask[imr_offset] = m;
-> +       realtek_gpio_update_imr(ctrl, imr_offset, ctrl->intr_type[imr_offset], m);
-> +       raw_spin_unlock_irqrestore(&ctrl->lock, flags);
-> +}
-> +
-> +static int realtek_gpio_irq_set_type(struct irq_data *data,
-> +       unsigned int flow_type)
-> +{
-> +       struct realtek_gpio_ctrl *ctrl = irq_data_to_ctrl(data);
-> +       irq_flow_handler_t handler;
-> +       unsigned int pin = irqd_to_hwirq(data);
-> +       unsigned int imr_offset = realtek_gpio_pin_to_imr_offset(pin);
-> +       unsigned long flags;
-> +       u32 type, t;
-> +
-> +       switch (flow_type & IRQ_TYPE_SENSE_MASK) {
-
-> +       case IRQ_TYPE_NONE:
-> +               type = 0;
-> +               handler = handle_bad_irq;
-> +               break;
-
-Why is it here? Make it default like many other GPIO drivers do.
-
-> +       case IRQ_TYPE_EDGE_FALLING:
-> +               type = REALTEK_GPIO_IRQ_EDGE_FALLING;
-> +               handler = handle_edge_irq;
-> +               break;
-> +       case IRQ_TYPE_EDGE_RISING:
-> +               type = REALTEK_GPIO_IRQ_EDGE_RISING;
-> +               handler = handle_edge_irq;
-> +               break;
-> +       case IRQ_TYPE_EDGE_BOTH:
-> +               type = REALTEK_GPIO_IRQ_EDGE_BOTH;
-> +               handler = handle_edge_irq;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       irq_set_handler_locked(data, handler);
-
-handler is always the same. Use it directly here.
-
-> +       raw_spin_lock_irqsave(&ctrl->lock, flags);
-> +       t = ctrl->intr_type[imr_offset];
-> +       t &= ~realtek_gpio_imr_bits(pin, REALTEK_GPIO_IMR_LINE_MASK);
-> +       t |= realtek_gpio_imr_bits(pin, type);
-> +       ctrl->intr_type[imr_offset] = t;
-> +       realtek_gpio_update_imr(ctrl, imr_offset, t, ctrl->intr_mask[imr_offset]);
-> +       raw_spin_unlock_irqrestore(&ctrl->lock, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static void realtek_gpio_irq_handler(struct irq_desc *desc)
-> +{
-> +       struct gpio_chip *gc = irq_desc_get_handler_data(desc);
-> +       struct realtek_gpio_ctrl *ctrl = gpiochip_get_data(gc);
-> +       struct irq_chip *irq_chip = irq_desc_get_chip(desc);
-> +       int offset;
-> +       unsigned long status;
-> +
-> +       chained_irq_enter(irq_chip, desc);
-> +
-> +       status = realtek_gpio_isr_read(ctrl);
-> +       for_each_set_bit(offset, &status, gc->ngpio) {
-
-> +               dev_dbg(ctrl->dev, "gpio irq %d\n", offset);
-
-Why? Drop this development-phase line.
-
-> +               generic_handle_irq(irq_find_mapping(gc->irq.domain, offset));
-> +               realtek_gpio_isr_clear(ctrl, BIT(offset));
-> +       }
-> +
-> +       chained_irq_exit(irq_chip, desc);
-> +}
-> +
-> +static struct irq_chip realtek_gpio_irq_chip = {
-> +       .name = "realtek-otto-gpio",
-> +       .irq_ack = realtek_gpio_irq_ack,
-> +       .irq_mask = realtek_gpio_irq_mask,
-> +       .irq_unmask = realtek_gpio_irq_unmask,
-
-> +       .irq_set_type = realtek_gpio_irq_set_type
-
-+ comma
-
-> +};
-> +
-> +static const struct of_device_id realtek_gpio_of_match[] = {
-> +       { .compatible = "realtek,otto-gpio" },
-> +       {
-> +               .compatible = "realtek,rtl8380-gpio",
-> +               .data = (void *)GPIO_INTERRUPTS
-> +       },
-> +       {
-> +               .compatible = "realtek,rtl8390-gpio",
-> +               .data = (void *)GPIO_INTERRUPTS
-> +       },
-
-> +       {},
-
-Drop comma. They are not needed for terminator lines.
-
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, realtek_gpio_of_match);
-> +
-> +static int realtek_gpio_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct device_node *np = dev->of_node;
-> +       struct gpio_irq_chip *girq;
-> +       struct realtek_gpio_ctrl *ctrl;
-> +       const struct of_device_id *match;
-> +       unsigned int match_flags;
-> +       u32 ngpios;
-> +       int err, irq;
-> +
-> +       ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
-> +       if (!ctrl)
-> +               return -ENOMEM;
-> +
-> +       ctrl->dev = dev;
-> +
-> +       if (!np) {
-> +               dev_err(&pdev->dev, "no DT node found\n");
-> +               return -EINVAL;
-> +       }
-> +
-
-> +       match = of_match_node(realtek_gpio_of_match, np);
-> +       match_flags = (unsigned int) match->data;
-
-device_get_match_data();
-
-> +       if (of_property_read_u32(np, "ngpios", &ngpios) != 0)
-
-' != 0' can be replaced by ''
-
-device_property_read_u32()
-
-> +               ngpios = REALTEK_GPIO_MAX;
-> +
-> +       if (ngpios > REALTEK_GPIO_MAX) {
-> +               dev_err(&pdev->dev, "invalid ngpios (max. %d)\n",
-> +                       REALTEK_GPIO_MAX);
-> +               return -EINVAL;
-> +       }
-> +
-> +       ctrl->base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(ctrl->base))
-> +               return PTR_ERR(ctrl->base);
-> +
-> +       raw_spin_lock_init(&ctrl->lock);
-> +
-> +       err = bgpio_init(&ctrl->gc, dev, 4,
-> +               ctrl->base + REALTEK_GPIO_REG_DATA, NULL, NULL,
-> +               ctrl->base + REALTEK_GPIO_REG_DIR, NULL,
-> +               BGPIOF_BIG_ENDIAN_BYTE_ORDER);
-> +       if (err) {
-> +               dev_err(dev, "unable to init generic GPIO");
-> +               return err;
-> +       }
-> +
-> +       ctrl->gc.ngpio = ngpios;
-> +       ctrl->gc.owner = THIS_MODULE;
-> +
-> +       irq = of_irq_get(np, 0);
-
-Why not platform_get_irq_optional() ?
-
-> +       if ((match_flags & GPIO_INTERRUPTS) && irq > 0) {
-> +               girq = &ctrl->gc.irq;
-> +               girq->chip = &realtek_gpio_irq_chip;
-> +               girq->parent_handler = realtek_gpio_irq_handler;
-> +               girq->num_parents = 1;
-> +               girq->parents = devm_kcalloc(dev, 1, sizeof(*girq->parents),
-
-1 -> girq->num_parent
-
-> +                                       GFP_KERNEL);
-> +               if (!girq->parents)
-> +                       return -ENOMEM;
-> +               girq->default_type = IRQ_TYPE_NONE;
-> +               girq->handler = handle_bad_irq;
-> +               girq->parents[0] = irq;
-> +
-> +               /* Disable and clear all interrupts */
-> +               realtek_gpio_update_imr(ctrl, 0, 0, 0);
-> +               realtek_gpio_update_imr(ctrl, 1, 0, 0);
-> +               realtek_gpio_isr_clear(ctrl, BIT(ngpios)-1);
-> +       }
-
-> +       err = gpiochip_add_data(&ctrl->gc, ctrl);
-> +       return err;
-
-Fold it.
-
-> +}
-> +
-> +static struct platform_driver realtek_gpio_driver = {
-> +       .driver = {
-> +               .name = "realtek-otto-gpio",
-> +               .of_match_table = realtek_gpio_of_match,
-> +       },
-> +       .probe = realtek_gpio_probe,
-> +};
-> +
-> +builtin_platform_driver(realtek_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("Realtek Otto GPIO support");
-> +MODULE_AUTHOR("Sander Vanheule <sander@svanheule.net>");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.30.2
->
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+regards,
+dan carpenter
