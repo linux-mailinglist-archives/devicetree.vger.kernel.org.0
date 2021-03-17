@@ -2,136 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 042B733F52A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:11:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8E333F561
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:23:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232375AbhCQQKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 12:10:43 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22056 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S232332AbhCQQKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 12:10:23 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12HFlrRv010043;
-        Wed, 17 Mar 2021 17:10:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=xgpzGC4wdyQX7DWrBZkXr6BWb3iEnXnND5XfVReNl8c=;
- b=n7qV4iFaKwMjmk5V+qYigLrv88LW+LziE7pfYzJ5OksDpkA+KSuu7G5mBIHFkSY5qxAG
- UMizZf74A1pN81Pyc+gNMi913ObEWmEgTNe2FgVNeKoQgm9pPY4Jj9yUDowT7A0lWpNg
- KjFk66AyoHbpr37BmwyJbyY0vteXC21OFLR35yC7GXBJE6OBP78VqfaqADawviKrhpAq
- doZPh5wQYL5TABK4opzrPkQuwWGxVmOrEboBHP5aD8Bz/8XHZx08p7md7yT+K555TQe6
- +7vFvlrUMK6d3Vo/X8cJ1im5+XnKWQpeeTYnPP0pJPZxwhG/RERZOIC/6lI+S+5MUIBF AA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37a8pr67jj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 Mar 2021 17:10:08 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 311F910002A;
-        Wed, 17 Mar 2021 17:10:08 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2173B23E915;
-        Wed, 17 Mar 2021 17:10:08 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 17 Mar 2021 17:10:07
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
+        id S232374AbhCQQXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 12:23:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232360AbhCQQW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 12:22:56 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF55C06175F
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 09:22:56 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id t37so14260516pga.11
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 09:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=F/NINQB6sPLYh+yrEh/k+DH7DYJo1ZCA8NxADWNTIuc=;
+        b=lwy1ZiWIAtcKPMq2R26yQtWGUBjV2/aZx0LQ5/d5QuNihi8Wtz5itX/qLsFLULsdJm
+         7h05IW0RREuLx9FjL+YHBC95rXkwbpjzIhuHNIZtFaMA7EuOA+eScoYXw2MGSaFRKVAX
+         2P/x3fmsNZ2EPyAEGghzUlj4dmRdMu9OYP8eVLPXGM5xFJ4l161c5YBcpnYSb0si1ad/
+         zTwmcmY/rSF9fYLI30rNoc1hu5Dqyjrq1344Tyw4f181YmPSmMJt17lKgUziZxarFICt
+         d1uhVm1jNw51JcIejSnN+UQERVi46InH2Km0pKVXytIkQcMw3l9goxuyK196nkww2Hyj
+         G+Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=F/NINQB6sPLYh+yrEh/k+DH7DYJo1ZCA8NxADWNTIuc=;
+        b=YxMEWBpvod9mGXjR0mBhPv+A3m+Lx77ee5MfIwGkCsxtqekxHif5nZd8AgvNWWqayf
+         XqgYcM/dRUG1wTTaGg7laqzgaux6oXW5WOhUdGKWisbImGM1BlRy6LyQE0HnxTk/uVmO
+         i7j0ZvYzqyUPaw6fi/MsNxR/Vqfbj+N6/JNVeYc3MBEOlMMF6C8k3zM4CrMuPZCBiYxr
+         Ijkrzb4SKTOEX3eTPYdpx/1gsnMr3u8HNd4ZljQNsl86VwdqRM/SvAQOVEPm4uVdM1sC
+         d8bv8UeOeDvWd5yNUe3CGKoqWqvGt6fMtETiUE0WtlU6y0CjFOcgkEeQ5nakquxbFAWX
+         1pAg==
+X-Gm-Message-State: AOAM532MY6rLdo2JRJNUFm3+43geKbV5Vbi/w95+eQo+THOoIJ6Stnuv
+        5F2Zef8vCSkLQDBfNvuoaKLWSQ==
+X-Google-Smtp-Source: ABdhPJydMrFwkMHsrjjZHTQdQe8G/EncvIH1JMyUfSF3ZGFQ+NkG6boP3+9sjSylWtMrgquoYZZWbQ==
+X-Received: by 2002:aa7:9910:0:b029:1f1:b41b:f95c with SMTP id z16-20020aa799100000b02901f1b41bf95cmr4989428pff.5.1615998175710;
+        Wed, 17 Mar 2021 09:22:55 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id 14sm20277815pfo.141.2021.03.17.09.22.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Mar 2021 09:22:51 -0700 (PDT)
+Date:   Wed, 17 Mar 2021 10:22:49 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Ben Levinsky <BLEVINSK@xilinx.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 2/2] phy: stm32: manage optional vbus regulator on phy_power_on/off
-Date:   Wed, 17 Mar 2021 17:09:54 +0100
-Message-ID: <20210317160954.15487-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210317160954.15487-1-amelie.delaunay@foss.st.com>
-References: <20210317160954.15487-1-amelie.delaunay@foss.st.com>
+        Michal Simek <michals@xilinx.com>,
+        "Ed T. Mooring" <emooring@xilinx.com>
+Subject: Re: [PATCH v26 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Message-ID: <20210317162249.GA1494354@xps15>
+References: <20210223154447.13247-1-ben.levinsky@xilinx.com>
+ <20210223154447.13247-6-ben.levinsky@xilinx.com>
+ <20210308190046.GA3983426@xps15>
+ <FF6E631A-87E0-4194-844A-E6B58E5B2928@xilinx.com>
+ <20210315172558.GA1342614@xps15>
+ <1AD6632B-A69E-406B-A644-440B9C8B929F@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-17_10:2021-03-17,2021-03-17 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1AD6632B-A69E-406B-A644-440B9C8B929F@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for optional vbus regulator.
-It is managed on phy_power_on/off calls and may be needed for host mode.
+[...]
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- drivers/phy/st/phy-stm32-usbphyc.c | 31 ++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+>     >     > +/*
+>     >     > + * zynqmp_r5_remoteproc_probe
+>     >     > + *
+>     >     > + * @pdev: domain platform device for R5 cluster
+>     >     > + *
+>     >     > + * called when driver is probed, for each R5 core specified in DT,
+>     >     > + * setup as needed to do remoteproc-related operations
+>     >     > + *
+>     >     > + * Return: 0 for success, negative value for failure.
+>     >     > + */
+>     >     > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+>     >     > +{
+>     >     > +	int ret, core_count;
+>     >     > +	struct device *dev = &pdev->dev;
+>     >     > +	struct device_node *nc;
+>     >     > +	enum rpu_oper_mode rpu_mode = PM_RPU_MODE_LOCKSTEP;
+>     >     > +	struct list_head *cluster; /* list to track each core's rproc */
+>     >     > +	struct zynqmp_r5_rproc *z_rproc;
+>     >     > +	struct platform_device *child_pdev;
+>     >     > +	struct list_head *pos;
+>     >     > +
+>     >     > +	ret = of_property_read_u32(dev->of_node, "xlnx,cluster-mode", &rpu_mode);
+>     >     > +	if (ret < 0 || (rpu_mode != PM_RPU_MODE_LOCKSTEP &&
+>     >     > +			rpu_mode != PM_RPU_MODE_SPLIT)) {
+>     >     > +		dev_err(dev, "invalid cluster mode: ret %d mode %x\n",
+>     >     > +			ret, rpu_mode);
+>     >     > +		return ret;
+>     >     > +	}
+>     >     > +
+>     >     > +	dev_dbg(dev, "RPU configuration: %s\n",
+>     >     > +		rpu_mode == PM_RPU_MODE_LOCKSTEP ? "lockstep" : "split");
+>     >     > +
+>     >     > +	/*
+>     >     > +	 * if 2 RPUs provided but one is lockstep, then we have an
+>     >     > +	 * invalid configuration.
+>     >     > +	 */
+>     >     > +
+>     >     > +	core_count = of_get_available_child_count(dev->of_node);
+>     >     > +	if ((rpu_mode == PM_RPU_MODE_LOCKSTEP && core_count != 1) ||
+>     >     > +	    core_count > MAX_RPROCS)
+>     >     > +		return -EINVAL;
+>     >     > +
+>     >     > +	cluster = devm_kzalloc(dev, sizeof(*cluster), GFP_KERNEL);
+>     >     > +	if (!cluster)
+>     >     > +		return -ENOMEM;
+>     >     > +	INIT_LIST_HEAD(cluster);
+>     >     > +
+>     >     > +	ret = devm_of_platform_populate(dev);
+>     >     > +	if (ret) {
+>     >     > +		dev_err(dev, "devm_of_platform_populate failed, ret = %d\n", ret);
+>     >     > +		return ret;
+>     >     > +	}
+>     >     > +
+>     >     > +	/* probe each individual r5 core's remoteproc-related info */
+>     >     > +	for_each_available_child_of_node(dev->of_node, nc) {
+>     >     > +		child_pdev = of_find_device_by_node(nc);
+>     > 
+>     >     The device reference needs to be dropped after use, as described in the function
+>     >     documentation.
+>     > 
+>     >     I'm out of time - I will continue tomorrow.
+>     > 
+>     >     Mathieu
+>     > 
+>     > 
+>     > [Ben] By this do you mean that for each platform_device should have a call like
+>     > 	platform_set_drvdata(child_pdev, NULL); if it fails? or something else?
+> 
+>     Have another read at the documentation and look at how other people have used
+>     it.  You may already be aware but Bootlin's kernel cross-reference tool is
+>     really good for that.
+> 
+>     https://elixir.bootlin.com/linux/v5.12-rc3/source
+> 
+> If I understand what you are saying I will add calls for put_device(child_pdev) in error handling and at end of the loop.
 
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index c184f4e34584..3e491dfb2525 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -57,6 +57,7 @@ struct pll_params {
- struct stm32_usbphyc_phy {
- 	struct phy *phy;
- 	struct stm32_usbphyc *usbphyc;
-+	struct regulator *vbus;
- 	u32 index;
- 	bool active;
- };
-@@ -291,9 +292,31 @@ static int stm32_usbphyc_phy_exit(struct phy *phy)
- 	return stm32_usbphyc_pll_disable(usbphyc);
- }
- 
-+static int stm32_usbphyc_phy_power_on(struct phy *phy)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = phy_get_drvdata(phy);
-+
-+	if (usbphyc_phy->vbus)
-+		return regulator_enable(usbphyc_phy->vbus);
-+
-+	return 0;
-+}
-+
-+static int stm32_usbphyc_phy_power_off(struct phy *phy)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = phy_get_drvdata(phy);
-+
-+	if (usbphyc_phy->vbus)
-+		return regulator_disable(usbphyc_phy->vbus);
-+
-+	return 0;
-+}
-+
- static const struct phy_ops stm32_usbphyc_phy_ops = {
- 	.init = stm32_usbphyc_phy_init,
- 	.exit = stm32_usbphyc_phy_exit,
-+	.power_on = stm32_usbphyc_phy_power_on,
-+	.power_off = stm32_usbphyc_phy_power_off,
- 	.owner = THIS_MODULE,
- };
- 
-@@ -519,6 +542,14 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 		usbphyc->phys[port]->index = index;
- 		usbphyc->phys[port]->active = false;
- 
-+		usbphyc->phys[port]->vbus = devm_regulator_get_optional(&phy->dev, "vbus");
-+		if (IS_ERR(usbphyc->phys[port]->vbus)) {
-+			ret = PTR_ERR(usbphyc->phys[port]->vbus);
-+			if (ret == -EPROBE_DEFER)
-+				goto put_child;
-+			usbphyc->phys[port]->vbus = NULL;
-+		}
-+
- 		port++;
- 	}
- 
--- 
-2.17.1
+That's one part of it.  But what will happen if there is no errors to deal with?
+Where will the reference to child_pdev->dev be dropped?
 
+> 
+> 
