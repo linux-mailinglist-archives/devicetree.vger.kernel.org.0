@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0956633E557
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:03:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4157E33E572
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:06:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232357AbhCQBDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 21:03:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49068 "EHLO
+        id S231414AbhCQBEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 21:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232879AbhCQBBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 21:01:15 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B81C061762
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:01:14 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id e2so12527070pld.9
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:01:14 -0700 (PDT)
+        with ESMTP id S231838AbhCQBCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 21:02:49 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C32AC061765
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:01:27 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id bt4so161079pjb.5
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:01:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=KJCmnpc2/C4XeDva7kjuk3JPosO+NPqReP5hP00Z3JE=;
-        b=GA9tnHlNZNzAjc3rVYBKtBdyTjZHMI5UDGsTb00NWsqV+t9jgbi4kdhpcFA67tCL0e
-         27IgQGr9MU+0/jcMzWtbtDdvJ0GolF/cUfqurCg3cQIIxYeZI0LIKutJ0rlPM/C7tZQc
-         gnrqE1GjmSC2diBdiYLh5j6j5T8jVIxsIuHz8=
+        bh=0/7cuBD31bRc94t826ZX3SA6XCbgb4AOvA5tVg9sOEM=;
+        b=hVe7cSjsNHp/4Sab2cN5zNzsP+5IqhBK+Bc4zJ31VOXGrYOqfGHDh+tk5kjldIUNCd
+         VBWzcYxYjTzsIBt9JnYO8BHHgMji4T4INhSTI/97P5WjRYVlNWdbSle9C/3mwY+XhPHs
+         6iBcOtZqUwf5alK7EasWOQHwDE8u4lRucnP1g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=KJCmnpc2/C4XeDva7kjuk3JPosO+NPqReP5hP00Z3JE=;
-        b=Ud8xCN6/FAIMZacdSAR4ecCrT5bu2mPH0juANPca+vt4Dxsp23dvNRP8zk294oYUE0
-         TnJ9wQ7jjhbu4UfbvbCZIKVINE7h+9hMrXPEHzU/xiptZJzKJOZg58xeWTDOO8lg884P
-         Tw6xlIGOCTFBrk1W+v1/lziYMUr0GmHfRwdzH49aT0W6/MmPW5w1s7GWf8ZwI0BsmOqY
-         GMgeMfXJ5slOzpbbRxu/2UfQ90IbeN+8+DuloqxYhaNrK0mW6VBfSrU8e0V11HzUPqcd
-         dG0fMTefKj9voC3zIsrqo2Wi3LZFb7Nqas58z4lxy9ZDZml0OFvhEV1hKSrAqEhvm2sS
-         dmZg==
-X-Gm-Message-State: AOAM531X9r1DsuBFuz++BOKDZxwNP+Z7xnCyneSn0xwk/kmmvbkMlzHy
-        pPEiTBxdQjP7s/Qy5tqWgbF3Qw==
-X-Google-Smtp-Source: ABdhPJw5dqGNJi9f/m+faGVvr4ee/ieLilqXPEtXhbebP0VFa0sRXw5uNy4+tK9xUFP8F0DScTicOQ==
-X-Received: by 2002:a17:902:8306:b029:e6:125c:1a3a with SMTP id bd6-20020a1709028306b02900e6125c1a3amr2055612plb.65.1615942874061;
-        Tue, 16 Mar 2021 18:01:14 -0700 (PDT)
+        bh=0/7cuBD31bRc94t826ZX3SA6XCbgb4AOvA5tVg9sOEM=;
+        b=ac+x33J6PRb+/GW0KQIvGJL58lHGawbdOCbEP7yL6siMUHcGYgSQKSDDMRkCmpIrf4
+         R/hyibjfQuQrlulTIrTYbHTOgiI3jzNWDWcOiYf6IbEJsfZ2wXtQyGAuBLRDXSmX1ZPD
+         n2353fG+VE95Q8P5zf1MNMxdmVuXpsMjMnOyCZXgXh4rbqgYJLzoay+10astSu8W1DOn
+         89redUkSbL7GUR+J461pwIQ4y1tdlR3m92wxHGDXxdjygxyaCfY62U1JyLte8IRVAzYq
+         UAfTZ3t/ScYlTX34bY4u/w2lgDxBOMY5hXkXz7+J+1Qk1x/I3t1F5yU2hptUbHRWhGmq
+         o2jA==
+X-Gm-Message-State: AOAM532E5k/gwvsyZwOyLbZzb2YlRbyxKx3h0NIbliDgrNO+R0k6h5mQ
+        QzOexw5eQyR92csQLsIDpGzksQ==
+X-Google-Smtp-Source: ABdhPJzbShmzFjxCAEbPOYoMggij9YUMfH2fockl5MfmEFDe3bwEJ6NEQ3pxQoZrbU0vt4JSNb1g+A==
+X-Received: by 2002:a17:903:20c1:b029:e6:8df3:f3ec with SMTP id i1-20020a17090320c1b02900e68df3f3ecmr2038291plb.60.1615942886722;
+        Tue, 16 Mar 2021 18:01:26 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:201:e1e0:9aee:aecc:ef78])
-        by smtp.gmail.com with ESMTPSA id 35sm16892208pgm.64.2021.03.16.18.01.13
+        by smtp.gmail.com with ESMTPSA id w26sm17693110pfn.33.2021.03.16.18.01.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 18:01:13 -0700 (PDT)
+        Tue, 16 Mar 2021 18:01:26 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210314061054.19451-2-srivasam@codeaurora.org>
-References: <20210314061054.19451-1-srivasam@codeaurora.org> <20210314061054.19451-2-srivasam@codeaurora.org>
-Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for I2S driver
+In-Reply-To: <20210314061054.19451-3-srivasam@codeaurora.org>
+References: <20210314061054.19451-1-srivasam@codeaurora.org> <20210314061054.19451-3-srivasam@codeaurora.org>
+Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: Add sound node for sc7180-trogdor-coachz
 From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Ajit Pandey <ajitp@codeaurora.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, dianders@chromium.org,
         judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, robh+dt@kernel.org,
         rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Date:   Tue, 16 Mar 2021 18:01:12 -0700
-Message-ID: <161594287222.1478170.13150046375446210090@swboyd.mtv.corp.google.com>
+Date:   Tue, 16 Mar 2021 18:01:24 -0700
+Message-ID: <161594288488.1478170.9924299131220575265@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-03-13 22:10:53)
-> From: Ajit Pandey <ajitp@codeaurora.org>
+Quoting Srinivasa Rao Mandadapu (2021-03-13 22:10:54)
+> This is a trgodor variant, required to have sound node variable
+> for coachz specific platform.
 >=20
-> Add dai link for supporting lpass I2S driver, which is used
-> for audio capture and playback.
-> Add lpass-cpu node with  pin controls and i2s primary
-> and secondary dai-links
->=20
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 > ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
