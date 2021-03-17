@@ -2,180 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD26933F0E3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 14:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77C1B33F0EE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 14:15:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbhCQNJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 09:09:38 -0400
-Received: from aserp2130.oracle.com ([141.146.126.79]:40518 "EHLO
-        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhCQNJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 09:09:11 -0400
-Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
-        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12HD5D7A081962;
-        Wed, 17 Mar 2021 13:09:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=ekkLyr+qO4g3X6qwNCmwaxn3aHmZPF5LU3lLwDE3t48=;
- b=VlYcBQD5ybK1yxgyrtRcRebE6eTHcM1RausTJXaBVx0ETuib1om0jkNrKJC9QQtMb3Hd
- 5/LCHDoIcDPxKQkK4QdfJodpu8mz1mSwskGxb15eIwhNQ747FV24CEYDFuzdtFxdFbaD
- 3evO5j8IeIQ6bxi+4kVM9M0wSSfGL1n0G/cprFNudDtx7yk9UKKNyxRpUU9S+JBfjQgl
- aOyego/3/Ua8wWs5aePH8i6S01ce3QG6fEPmUJpP7U3UFUUFmc4GgLNyTE3ZswOFBipF
- Z7SmDozxgRrqb87talQpBtTeNejPHt3iFHWufwwE79ZH+GYvHY2W6Vx8eWWu9UBIdjTm 7Q== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by aserp2130.oracle.com with ESMTP id 378jwbm2eq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 17 Mar 2021 13:09:10 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12HD6ikZ181711;
-        Wed, 17 Mar 2021 13:09:08 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by aserp3030.oracle.com with ESMTP id 3796yutca7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 17 Mar 2021 13:09:08 +0000
-Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 12HD97XB019409;
-        Wed, 17 Mar 2021 13:09:07 GMT
-Received: from mwanda (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Wed, 17 Mar 2021 06:09:06 -0700
-Date:   Wed, 17 Mar 2021 16:09:00 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     stephen.boyd@linaro.org
-Cc:     devicetree@vger.kernel.org
-Subject: [bug report] of: Support parsing phandle argument lists through a
- nexus node
-Message-ID: <YFH/bLGZo43quuc9@mwanda>
+        id S230372AbhCQNPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 09:15:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230196AbhCQNOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 09:14:55 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42154C06174A;
+        Wed, 17 Mar 2021 06:14:55 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 035C01F45217;
+        Wed, 17 Mar 2021 13:14:52 +0000 (GMT)
+Date:   Wed, 17 Mar 2021 14:14:49 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org
+Subject: Re: [PATCH v5 3/3] mtd: rawnand: Add support for secure regions in
+ NAND memory
+Message-ID: <20210317141449.7a4b5294@collabora.com>
+In-Reply-To: <20210317122513.42369-4-manivannan.sadhasivam@linaro.org>
+References: <20210317122513.42369-1-manivannan.sadhasivam@linaro.org>
+        <20210317122513.42369-4-manivannan.sadhasivam@linaro.org>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Proofpoint-IMR: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9925 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 malwarescore=0 spamscore=0
- bulkscore=0 mlxlogscore=999 mlxscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2103170097
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9925 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxlogscore=999
- spamscore=0 mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 clxscore=1011 adultscore=0 phishscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2103170097
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Stephen Boyd,
+On Wed, 17 Mar 2021 17:55:13 +0530
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
 
-The patch bd6f2fd5a1d5: "of: Support parsing phandle argument lists
-through a nexus node" from Jan 30, 2018, leads to the following
-static checker warning:
+> On a typical end product, a vendor may choose to secure some regions in
+> the NAND memory which are supposed to stay intact between FW upgrades.
+> The access to those regions will be blocked by a secure element like
+> Trustzone. So the normal world software like Linux kernel should not
+> touch these regions (including reading).
+> 
+> The regions are declared using a NAND chip DT property,
+> "secure-regions". So let's make use of this property in the nand core
+> and skip access to the secure regions present in a system.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/mtd/nand/raw/nand_base.c | 105 +++++++++++++++++++++++++++++++
+>  include/linux/mtd/rawnand.h      |   4 ++
+>  2 files changed, 109 insertions(+)
+> 
+> diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+> index c33fa1b1847f..c85cbd491f05 100644
+> --- a/drivers/mtd/nand/raw/nand_base.c
+> +++ b/drivers/mtd/nand/raw/nand_base.c
+> @@ -278,11 +278,41 @@ static int nand_block_bad(struct nand_chip *chip, loff_t ofs)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * nand_check_sec_region() - Check if the region is secured
+> + * @chip: NAND chip object
+> + * @offset: Offset of the region to check
+> + *
+> + * Checks if the region is secured by comparing the offset with the list of
+> + * secure regions obtained from DT. Returns -EIO if the region is secured
+> + * else 0.
+> + */
+> +static int nand_check_sec_region(struct nand_chip *chip, loff_t offset)
 
-	drivers/of/base.c:1592 of_parse_phandle_with_args_map()
-	warn: loop overwrites return value 'ret'
+You're only passing an offset, looks like the size is missing, which
+will be problematic for nand_do_{read,write}_ops() which might
+read/write more than one page.
 
-drivers/of/base.c
-  1590  
-  1591          ret = -EINVAL;
-                ^^^^^^^^^^^^^
-This return is only used until part way through the first iteration.
-For subsequent iterations, the code will return success in the case of
-an error.
+> +{
+> +	int i, j;
+> +
+> +	/* Skip touching the secure regions if present */
+> +	for (i = 0, j = 0; i < chip->nr_sec_regions; i++, j += 2) {
+> +		if (offset >= chip->sec_regions[j] &&
+> +		    (offset <= chip->sec_regions[j] + chip->sec_regions[j + 1]))
+> +			return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int nand_isbad_bbm(struct nand_chip *chip, loff_t ofs)
+>  {
+> +	int ret;
+> +
+>  	if (chip->options & NAND_NO_BBM_QUIRK)
+>  		return 0;
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, ofs);
+> +	if (ret)
+> +		return ret;
+> +
+>  	if (chip->legacy.block_bad)
+>  		return chip->legacy.block_bad(chip, ofs);
+>  
+> @@ -397,6 +427,11 @@ static int nand_do_write_oob(struct nand_chip *chip, loff_t to,
+>  		return -EINVAL;
+>  	}
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, to);
+> +	if (ret)
+> +		return ret;
+> +
+>  	chipnr = (int)(to >> chip->chip_shift);
+>  
+>  	/*
+> @@ -565,6 +600,11 @@ static int nand_block_isreserved(struct mtd_info *mtd, loff_t ofs)
+>  
+>  	if (!chip->bbt)
+>  		return 0;
+> +
+> +	/* Check if the region is secured */
+> +	if (nand_check_sec_region(chip, ofs))
+> +		return -EIO;
+> +
+>  	/* Return info from the table */
+>  	return nand_isreserved_bbt(chip, ofs);
+>  }
+> @@ -2737,6 +2777,11 @@ static int nand_read_page_swecc(struct nand_chip *chip, uint8_t *buf,
+>  	uint8_t *ecc_code = chip->ecc.code_buf;
+>  	unsigned int max_bitflips = 0;
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, ((loff_t)page << chip->page_shift));
+> +	if (ret)
+> +		return ret;
+> +
+>  	chip->ecc.read_page_raw(chip, buf, 1, page);
+>  
+>  	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize)
+> @@ -3127,6 +3172,11 @@ static int nand_do_read_ops(struct nand_chip *chip, loff_t from,
+>  	int retry_mode = 0;
+>  	bool ecc_fail = false;
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, from);
+> +	if (ret)
+> +		return ret;
+> +
+>  	chipnr = (int)(from >> chip->chip_shift);
+>  	nand_select_target(chip, chipnr);
+>  
+> @@ -3458,6 +3508,11 @@ static int nand_do_read_oob(struct nand_chip *chip, loff_t from,
+>  	pr_debug("%s: from = 0x%08Lx, len = %i\n",
+>  			__func__, (unsigned long long)from, readlen);
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, from);
+> +	if (ret)
+> +		return ret;
+> +
+>  	stats = mtd->ecc_stats;
+>  
+>  	len = mtd_oobavail(mtd, ops);
+> @@ -3709,6 +3764,11 @@ static int nand_write_page_swecc(struct nand_chip *chip, const uint8_t *buf,
+>  	uint8_t *ecc_calc = chip->ecc.calc_buf;
+>  	const uint8_t *p = buf;
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, ((loff_t)page << chip->page_shift));
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Software ECC calculation */
+>  	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize)
+>  		chip->ecc.calculate(chip, p, &ecc_calc[i]);
+> @@ -3979,6 +4039,11 @@ static int nand_do_write_ops(struct nand_chip *chip, loff_t to,
+>  		return -EINVAL;
+>  	}
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, to);
+> +	if (ret)
+> +		return ret;
+> +
+>  	column = to & (mtd->writesize - 1);
+>  
+>  	chipnr = (int)(to >> chip->chip_shift);
+> @@ -4180,6 +4245,11 @@ int nand_erase_nand(struct nand_chip *chip, struct erase_info *instr,
+>  	if (check_offs_len(chip, instr->addr, instr->len))
+>  		return -EINVAL;
+>  
+> +	/* Check if the region is secured */
+> +	ret = nand_check_sec_region(chip, instr->addr);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Grab the lock and see if the device is available */
+>  	ret = nand_get_device(chip);
+>  	if (ret)
+> @@ -4995,10 +5065,32 @@ static bool of_get_nand_on_flash_bbt(struct device_node *np)
+>  	return of_property_read_bool(np, "nand-on-flash-bbt");
+>  }
+>  
+> +static int of_get_nand_secure_regions(struct nand_chip *chip)
+> +{
+> +	struct device_node *dn = nand_get_flash_node(chip);
+> +	struct property *prop;
+> +	int length, nr_elem;
+> +
+> +	prop = of_find_property(dn, "secure-regions", &length);
+> +	if (prop) {
+> +		nr_elem = length / sizeof(u64);
+> +		chip->nr_sec_regions = nr_elem / 2;
+> +
+> +		chip->sec_regions = kcalloc(nr_elem, sizeof(u32), GFP_KERNEL);
 
-  1592          while (cur) {
-  1593                  /* Get the <list>-map property */
-  1594                  map = of_get_property(cur, map_name, &map_len);
-  1595                  if (!map) {
-  1596                          ret = 0;
-  1597                          goto free;
-  1598                  }
-  1599                  map_len /= sizeof(u32);
-  1600  
-  1601                  /* Get the <list>-map-mask property (optional) */
-  1602                  mask = of_get_property(cur, mask_name, NULL);
-  1603                  if (!mask)
-  1604                          mask = dummy_mask;
-  1605                  /* Iterate through <list>-map property */
-  1606                  match = 0;
-  1607                  while (map_len > (list_size + 1) && !match) {
-  1608                          /* Compare specifiers */
-  1609                          match = 1;
-  1610                          for (i = 0; i < list_size; i++, map_len--)
-  1611                                  match &= !((match_array[i] ^ *map++) & mask[i]);
-  1612  
-  1613                          of_node_put(new);
-  1614                          new = of_find_node_by_phandle(be32_to_cpup(map));
-  1615                          map++;
-  1616                          map_len--;
-  1617  
-  1618                          /* Check if not found */
-  1619                          if (!new)
-  1620                                  goto put;
-  1621  
-  1622                          if (!of_device_is_available(new))
-  1623                                  match = 0;
-  1624  
-  1625                          ret = of_property_read_u32(new, cells_name, &new_size);
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-"ret" set to zero here.
+s/sizeof(u32)/sizeof(*chip->sec_regions)/
 
-  1626                          if (ret)
-  1627                                  goto put;
-  1628  
-  1629                          /* Check for malformed properties */
-  1630                          if (WARN_ON(new_size > MAX_PHANDLE_ARGS))
-  1631                                  goto put;
-                                        ^^^^^^^^
-Probably -EINVAL was intended here.
+> +		if (!chip->sec_regions)
+> +			return -ENOMEM;
+> +
+> +		of_property_read_u64_array(dn, "secure-regions", chip->sec_regions, nr_elem);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int rawnand_dt_init(struct nand_chip *chip)
+>  {
+>  	struct nand_device *nand = mtd_to_nanddev(nand_to_mtd(chip));
+>  	struct device_node *dn = nand_get_flash_node(chip);
+> +	int ret;
+>  
+>  	if (!dn)
+>  		return 0;
+> @@ -5015,6 +5107,16 @@ static int rawnand_dt_init(struct nand_chip *chip)
+>  	of_get_nand_ecc_user_config(nand);
+>  	of_get_nand_ecc_legacy_user_config(chip);
+>  
+> +	/*
+> +	 * Look for secure regions in the NAND chip. These regions are supposed
+> +	 * to be protected by a secure element like Trustzone. So the read/write
+> +	 * accesses to these regions will be blocked in the runtime by this
+> +	 * driver.
+> +	 */
+> +	ret = of_get_nand_secure_regions(chip);
+> +	if (!ret)
+> +		return ret;
+> +
+>  	/*
+>  	 * If neither the user nor the NAND controller have requested a specific
+>  	 * ECC engine type, we will default to NAND_ECC_ENGINE_TYPE_ON_HOST.
+> @@ -6068,6 +6170,9 @@ void nand_cleanup(struct nand_chip *chip)
+>  	/* Free manufacturer priv data. */
+>  	nand_manufacturer_cleanup(chip);
+>  
+> +	/* Free secure regions data */
+> +	kfree(chip->sec_regions);
+> +
+>  	/* Free controller specific allocations after chip identification */
+>  	nand_detach(chip);
+>  
+> diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+> index 6b3240e44310..5ae77ecf41f3 100644
+> --- a/include/linux/mtd/rawnand.h
+> +++ b/include/linux/mtd/rawnand.h
+> @@ -1086,6 +1086,8 @@ struct nand_manufacturer {
+>   *          NAND Controller drivers should not modify this value, but they're
+>   *          allowed to read it.
+>   * @read_retries: The number of read retry modes supported
+> + * @sec_regions: Array representing the secure regions
+> + * @nr_sec_regions: Number of secure regions
+>   * @controller: The hardware controller	structure which is shared among multiple
+>   *              independent devices
+>   * @ecc: The ECC controller structure
+> @@ -1135,6 +1137,8 @@ struct nand_chip {
+>  	unsigned int suspended : 1;
+>  	int cur_cs;
+>  	int read_retries;
+> +	u64 *sec_regions;
 
-  1632                          if (map_len < new_size)
-  1633                                  goto put;
-  1634  
-  1635                          /* Move forward by new node's #<list>-cells amount */
-  1636                          map += new_size;
-  1637                          map_len -= new_size;
-  1638                  }
-  1639                  if (!match)
-  1640                          goto put;
-  1641  
-  1642                  /* Get the <list>-map-pass-thru property (optional) */
-  1643                  pass = of_get_property(cur, pass_name, NULL);
-  1644                  if (!pass)
-  1645                          pass = dummy_pass;
-  1646  
-  1647                  /*
-  1648                   * Successfully parsed a <list>-map translation; copy new
-  1649                   * specifier into the out_args structure, keeping the
-  1650                   * bits specified in <list>-map-pass-thru.
-  1651                   */
-  1652                  match_array = map - new_size;
-  1653                  for (i = 0; i < new_size; i++) {
-  1654                          __be32 val = *(map - new_size + i);
-  1655  
-  1656                          if (i < list_size) {
-  1657                                  val &= ~pass[i];
-  1658                                  val |= cpu_to_be32(out_args->args[i]) & pass[i];
-  1659                          }
-  1660  
-  1661                          out_args->args[i] = be32_to_cpu(val);
-  1662                  }
-  1663                  out_args->args_count = list_size = new_size;
-  1664                  /* Iterate again with new provider */
-  1665                  out_args->np = new;
-  1666                  of_node_put(cur);
-  1667                  cur = new;
-  1668          }
-  1669  put:
-  1670          of_node_put(cur);
-  1671          of_node_put(new);
-  1672  free:
-  1673          kfree(mask_name);
-  1674          kfree(map_name);
-  1675          kfree(cells_name);
-  1676          kfree(pass_name);
-  1677  
-  1678          return ret;
-  1679  }
+	struct {
+		u64 start;
+		u64 size;
+	} *sec_regions;
 
-regards,
-dan carpenter
+> +	u8 nr_sec_regions;
+>  
+>  	/* Externals */
+>  	struct nand_controller *controller;
+
