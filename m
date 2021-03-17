@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06CE933E5FA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 400F233E63A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbhCQBW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 21:22:59 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:58180 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230085AbhCQBWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 21:22:45 -0400
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A61CD891AE;
-        Wed, 17 Mar 2021 14:22:41 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1615944161;
-        bh=NDCn+m/6zQTNIcGqDPLY+JbvTvxKxMVFrdcZY3Ql06o=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=evaNuv+wczhWUNyPgtVUcx+7JvE02uOkFxFaQ05ZNtyqkwdrovhVfAJiKm9omWsBN
-         7gKJs6qef+s3UFErDipxnoVTB9DUyRgfssooLwh/l/0p6QxBKjn/sf3YfwNvqpBNwL
-         EZqH8jhLtZsPFZbJidOr/66K3GgTkKvpXxrKpnibLDaD1I/l4V6MehasEY0fFJSuTf
-         6NOhRnBTdk2a5QhgLxaFfLP4O+esChKaOnV49EhtWjmGblRZ2YgV5mZjEeztAKAyYC
-         +3p2uzGykF/BY1s/4OfcHRAAmSxKYzSfXdJUqQgdafwHjlHDzznbXhiB4VibNFasww
-         10dfpZqvu2Ddg==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B605159e10001>; Wed, 17 Mar 2021 14:22:41 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 17 Mar 2021 14:22:40 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.012; Wed, 17 Mar 2021 14:22:40 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] hwmon: (pmbus): Add driver for BluTek BPA-RS600
-Thread-Topic: [PATCH v2 3/3] hwmon: (pmbus): Add driver for BluTek BPA-RS600
-Thread-Index: AQHXGqM9QTqCv4sNP0Wa1dh121ckK6qGiNWA
-Date:   Wed, 17 Mar 2021 01:22:39 +0000
-Message-ID: <df8fc719-0fa0-0ac6-ed7e-0e018f999f80@alliedtelesis.co.nz>
-References: <20210316203036.17674-1-chris.packham@alliedtelesis.co.nz>
- <20210316203036.17674-3-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20210316203036.17674-3-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
+        id S230051AbhCQBft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 21:35:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59450 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229490AbhCQBfs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 21:35:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F4F364E76;
+        Wed, 17 Mar 2021 01:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1615944948;
+        bh=wfVsG34NpnkPgDNvkfeM6rHhymxXjOqDbCNsoIlma9s=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=YIqypZavA3LNYBIPc1EreM/QDPJFqyeB+Xdvbxq1wCfvXWZPydjiMAe93cDQh4+eP
+         gNfTj7D7paWO1O1uNQp5ZMkVeXR4tM+BdMTxVPf7ZHJgcbbQYFnHQUnkS0MbaK6aBI
+         1lYIEDicUaOY6H5SCN9STWjcGvWH9N6oQxERx16WPgjZ+GZOtcqa4v8Cv9dr0er7bD
+         zXQaQIScBIieUeVWBkI/izQUVGrDePmYFQnkIK9ggZdGQlXuXgCXkOD/lXjuMFUPAa
+         ElY2b6rfq+i9r07KPQ0xNtZvpLo2I2UF9Ks3/hgj/xLiUs+4v6dyI4uRkLJEViE+go
+         QGH6AH4BQz8Jg==
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <416F9AE35D342A4C985292D9CF28366F@atlnz.lc>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=dESyimp9J3IA:10 a=B7YJzAzbl6ovjaQtLAcA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210316194918.3528417-1-robh@kernel.org>
+References: <20210316194918.3528417-1-robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: Clean-up undocumented compatible strings
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Vinod Koul <vkoul@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Date:   Tue, 16 Mar 2021 18:35:46 -0700
+Message-ID: <161594494696.1478170.13888306623342465859@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxNy8wMy8yMSA5OjMwIGFtLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPiBUaGUgQlBBLVJT
-NjAwIGlzIGEgY29tcGFjdCA2MDBXIEFDIHRvIERDIHJlbW92YWJsZSBwb3dlciBzdXBwbHkgbW9k
-dWxlLg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFs
-bGllZHRlbGVzaXMuY28ubno+DQo+IC0tLQ0KPg0KPiBOb3RlczoNCj4gICAgICBDaGFuZ2VzIGlu
-IHYyOg0KPiAgICAgIC0gV2hpdGVzcGFjZSBhbmQgbGluZSBsZW5ndGggY2xlYW51cA0KPiAgICAg
-IC0gQWRkIGNvbW1lbnRzIGFib3V0IGNvbW1hbmRzIHRoYXQgcmV0dXJuIGRhdGEgYnV0IHNob3Vs
-ZG4ndCBiZSB1c2VkDQo+DQo+ICAgRG9jdW1lbnRhdGlvbi9od21vbi9icGEtcnM2MDAucnN0IHwg
-IDc0ICsrKysrKysrKysrKysNCj4gICBkcml2ZXJzL2h3bW9uL3BtYnVzL0tjb25maWcgICAgICAg
-fCAgIDkgKysNCj4gICBkcml2ZXJzL2h3bW9uL3BtYnVzL01ha2VmaWxlICAgICAgfCAgIDEgKw0K
-PiAgIGRyaXZlcnMvaHdtb24vcG1idXMvYnBhLXJzNjAwLmMgICB8IDE3MiArKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysNCj4gICA0IGZpbGVzIGNoYW5nZWQsIDI1NiBpbnNlcnRpb25zKCsp
-DQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vaHdtb24vYnBhLXJzNjAwLnJz
-dA0KPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2h3bW9uL3BtYnVzL2JwYS1yczYwMC5j
-DQo+DQo+ICAgDQo+ICtjb25maWcgU0VOU09SU19CUEFfUlM2MDANCj4gKwl0cmlzdGF0ZSAiQmx1
-VGVrIEJQRC1SUzYwMCBQb3dlciBTdXBwbGllcyINCj4gKwloZWxwDQo+ICsJICBJZiB5b3Ugc2F5
-IHllcyBoZXJlIHlvdSBnZXQgaGFyZHdhcmUgbW9uaXRvcmluZyBzdXBwb3J0IGZvciBCbHVUZWsN
-Cj4gKwkgIEJQRC1SUzYwMCBQb3dlciBTdXBwbGllcy4NCj4gKw0KPiArCSAgVGhpcyBkcml2ZXIg
-Y2FuIGFsc28gYmUgYnVpbHQgYXMgYSBtb2R1bGUuIElmIHNvLCB0aGUgbW9kdWxlIHdpbGwNCj4g
-KwkgIGJlIGNhbGxlZCBicGQtcnM2MDAuDQo+ICsNCkkndmUgdXNlZCBCUEQgaGVyZSBidXQgaXQg
-c2hvdWxkIGJlIEJQQSAoQSA9PSBBQywgRCA9PSBEQykuIEknbGwgZ2V0IA0KdGhhdCByZWFkeSBm
-b3IgYSB2My4=
+Quoting Rob Herring (2021-03-16 12:49:18)
+> Adding checks for undocumented compatible strings reveals a bunch of
+> warnings in the DT binding examples. Fix the cases which are typos, just
+> a mismatch between the schema and the example, or aren't documented at al=
+l.
+> In a couple of cases, fixing the compatible revealed some schema errors
+> which are fixed.
+>=20
+> There's a bunch of others remaining after this which have bindings, but
+> those aren't converted to schema yet.
+>=20
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dmaengine@vger.kernel.org
+> Cc: linux-i3c@lists.infradead.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: linux-spi@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+
+Acked-by: Stephen Boyd <sboyd@kernel.org>
