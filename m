@@ -2,625 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4292733F09F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 13:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A85FA33F0B8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 13:56:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbhCQMmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 08:42:23 -0400
-Received: from out28-122.mail.aliyun.com ([115.124.28.122]:56827 "EHLO
-        out28-122.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbhCQMl5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 08:41:57 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436287|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00896281-0.000255982-0.990781;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047203;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=9;RT=9;SR=0;TI=SMTPD_---.JmMgph4_1615984913;
-Received: from 192.168.88.129(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.JmMgph4_1615984913)
-          by smtp.aliyun-inc.com(10.147.40.7);
-          Wed, 17 Mar 2021 20:41:53 +0800
-Subject: Re: [PATCH 6/6] clk: ingenic: Add support for the JZ4760
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     od@zcrc.me, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20210307141759.30426-1-paul@crapouillou.net>
- <20210307141759.30426-7-paul@crapouillou.net>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <dbd5bea3-a693-cbb6-c411-f164f8f0452f@wanyeetech.com>
-Date:   Wed, 17 Mar 2021 20:41:52 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20210307141759.30426-7-paul@crapouillou.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S230140AbhCQMz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 08:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230063AbhCQMzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 08:55:16 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B4AC06174A;
+        Wed, 17 Mar 2021 05:55:04 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id u5-20020a7bcb050000b029010e9316b9d5so1234851wmj.2;
+        Wed, 17 Mar 2021 05:55:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=c/iGXO0LQFnltqKfY4yg5UzvSvHRVmZFpZ9ygW/SvpU=;
+        b=ZnwUL/ueBD9IyNQXGaSMm7Zkkawj0pWzhNr+VF2gyI3J8JO7SBF8oNG/HzNGvhePA3
+         78eKSDeuEotLXVR/KLVCKeOG1GuD/5cJ/ZrQQtnUK4Vr3Yb+vqwiT1iXztmTIluKa3ki
+         xYvHuM7d8/50j0oZ4c3CfD00ajAerYhVfu7O/JwojnQk1GHDx0QJzsNPgfDucD/KShsQ
+         4PBMwF4PmJTlAToTxB8Ev077FA0xANqTH82HAlrdW85t+8FVq+Z/Fyr7L1yun0OcRO7G
+         rdmMdx6Gs//vJ7ec0vr3TDiZEqMWVhMjDIXGmihij+M+1BG/5J0HAYPuPLJ1U3TMdyjU
+         xi1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=c/iGXO0LQFnltqKfY4yg5UzvSvHRVmZFpZ9ygW/SvpU=;
+        b=DLup9NOekkclkipTSi/DNUJ2SaNW/277BygbxbiNUA0cQYatcmXM/hiYdipqH57j2v
+         6NMIc/qT/2nFrVg2yZtfwloApG50vKzPya6V2SwmlIzDkrKUsilJdogIeWubkpGbhG7N
+         CiRoCK3n8vpDLckXFZr5L7vq2rtwVZY+iNf7IKV9D4s95D/kO3EyWhD9y878PxcpaGYb
+         pQL9CwmR1rRDPOVPcHivGvdi2niwPrUN3sGdT6GLaY4vF6ASL81PnagJnsyqBeNM7Ns1
+         9irYvqNpdRfPsgKfwcCErlyjpXk6mxTW4N25ScLbAeLenalETVCzSA1cfOwmVjtzOduj
+         5H2A==
+X-Gm-Message-State: AOAM53176NkJSN+xYp9cylT0Vdbk/gGH7O9RWHXnfSCuufDtKEHQpNCu
+        rhI4pErZlcdcw3E398mThec=
+X-Google-Smtp-Source: ABdhPJxpndn1bJZpXDdsJyGhF3hyN3JXTjEp+IS1f408zsg6owR7eyier0QZBE+COLWOk+J1Ul3iQQ==
+X-Received: by 2002:a7b:cc84:: with SMTP id p4mr3648503wma.10.1615985702884;
+        Wed, 17 Mar 2021 05:55:02 -0700 (PDT)
+Received: from macbook-pro-alvaro.lan ([80.31.204.166])
+        by smtp.gmail.com with ESMTPSA id u23sm2454109wmn.26.2021.03.17.05.55.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Mar 2021 05:55:02 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
+Subject: Re: [PATCH v7 05/22] dt-bindings: add BCM6328 pincontroller binding
+ documentation
+From:   =?utf-8?Q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>
+In-Reply-To: <20210316205905.GB3629500@robh.at.kernel.org>
+Date:   Wed, 17 Mar 2021 13:54:59 +0100
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <AA04F2C0-89F0-4389-B956-8420E4D88FA6@gmail.com>
+References: <20210315114214.3096-1-noltari@gmail.com>
+ <20210315114214.3096-6-noltari@gmail.com>
+ <20210316205905.GB3629500@robh.at.kernel.org>
+To:     Rob Herring <robh@kernel.org>
+X-Mailer: Apple Mail (2.3654.60.0.2.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Rob,
 
-On 2021/3/7 下午10:17, Paul Cercueil wrote:
-> Add the CGU code and the compatible string to the TCU driver to support
-> the JZ4760 SoC.
->
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->   drivers/clk/ingenic/Kconfig            |  10 +
->   drivers/clk/ingenic/Makefile           |   1 +
->   drivers/clk/ingenic/jz4760-cgu.c       | 433 +++++++++++++++++++++++++
->   drivers/clk/ingenic/tcu.c              |   2 +
->   include/dt-bindings/clock/jz4760-cgu.h |  54 +++
->   5 files changed, 500 insertions(+)
->   create mode 100644 drivers/clk/ingenic/jz4760-cgu.c
->   create mode 100644 include/dt-bindings/clock/jz4760-cgu.h
->
-> diff --git a/drivers/clk/ingenic/Kconfig b/drivers/clk/ingenic/Kconfig
-> index 580b0cf69ed5..898f1bc478c9 100644
-> --- a/drivers/clk/ingenic/Kconfig
-> +++ b/drivers/clk/ingenic/Kconfig
-> @@ -25,6 +25,16 @@ config INGENIC_CGU_JZ4725B
->   
->   	  If building for a JZ4725B SoC, you want to say Y here.
->   
-> +config INGENIC_CGU_JZ4760
-> +	bool "Ingenic JZ4760 CGU driver"
-> +	default MACH_JZ4760
-> +	select INGENIC_CGU_COMMON
-> +	help
-> +	  Support the clocks provided by the CGU hardware on Ingenic JZ4760
-> +	  and compatible SoCs.
-> +
-> +	  If building for a JZ4760 SoC, you want to say Y here.
-> +
->   config INGENIC_CGU_JZ4770
->   	bool "Ingenic JZ4770 CGU driver"
->   	default MACH_JZ4770
-> diff --git a/drivers/clk/ingenic/Makefile b/drivers/clk/ingenic/Makefile
-> index aaa4bffe03c6..9edfaf4610b9 100644
-> --- a/drivers/clk/ingenic/Makefile
-> +++ b/drivers/clk/ingenic/Makefile
-> @@ -2,6 +2,7 @@
->   obj-$(CONFIG_INGENIC_CGU_COMMON)	+= cgu.o pm.o
->   obj-$(CONFIG_INGENIC_CGU_JZ4740)	+= jz4740-cgu.o
->   obj-$(CONFIG_INGENIC_CGU_JZ4725B)	+= jz4725b-cgu.o
-> +obj-$(CONFIG_INGENIC_CGU_JZ4760)	+= jz4760-cgu.o
->   obj-$(CONFIG_INGENIC_CGU_JZ4770)	+= jz4770-cgu.o
->   obj-$(CONFIG_INGENIC_CGU_JZ4780)	+= jz4780-cgu.o
->   obj-$(CONFIG_INGENIC_CGU_X1000)		+= x1000-cgu.o
-> diff --git a/drivers/clk/ingenic/jz4760-cgu.c b/drivers/clk/ingenic/jz4760-cgu.c
-> new file mode 100644
-> index 000000000000..a45327cba7d1
-> --- /dev/null
-> +++ b/drivers/clk/ingenic/jz4760-cgu.c
-> @@ -0,0 +1,433 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * JZ4760 SoC CGU driver
-> + * Copyright 2018, Paul Cercueil <paul@crapouillou.net>
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +
-> +#include <linux/clk.h>
-> +
-> +#include <dt-bindings/clock/jz4760-cgu.h>
-> +
-> +#include "cgu.h"
-> +#include "pm.h"
-> +
-> +#define MHZ (1000 * 1000)
-> +
-> +/*
-> + * CPM registers offset address definition
-> + */
-> +#define CGU_REG_CPCCR		0x00
-> +#define CGU_REG_LCR		0x04
-> +#define CGU_REG_CPPCR0		0x10
-> +#define CGU_REG_CLKGR0		0x20
-> +#define CGU_REG_OPCR		0x24
-> +#define CGU_REG_CLKGR1		0x28
-> +#define CGU_REG_CPPCR1		0x30
-> +#define CGU_REG_USBPCR		0x3c
-> +#define CGU_REG_USBCDR		0x50
-> +#define CGU_REG_I2SCDR		0x60
-> +#define CGU_REG_LPCDR		0x64
-> +#define CGU_REG_MSCCDR		0x68
-> +#define CGU_REG_UHCCDR		0x6c
-> +#define CGU_REG_SSICDR		0x74
-> +#define CGU_REG_CIMCDR		0x7c
-> +#define CGU_REG_GPSCDR		0x80
-> +#define CGU_REG_PCMCDR		0x84
-> +#define CGU_REG_GPUCDR		0x88
-> +
-> +static const s8 pll_od_encoding[8] = {
-> +	0x0, 0x1, -1, 0x2, -1, -1, -1, 0x3,
-> +};
-> +
-> +static const u8 jz4760_cgu_cpccr_div_table[] = {
-> +	1, 2, 3, 4, 6, 8,
-> +};
-> +
-> +static const u8 jz4760_cgu_pll_half_div_table[] = {
-> +	2, 1,
-> +};
-> +
-> +static void
-> +jz4760_cgu_calc_m_n_od(const struct ingenic_cgu_pll_info *pll_info,
-> +		       unsigned long rate, unsigned long parent_rate,
-> +		       unsigned int *pm, unsigned int *pn, unsigned int *pod)
-> +{
-> +	unsigned int m, n, od;
-> +
-> +	/* The output of the PLL must be between 500 and 1500 MHz. */
-> +	rate = clamp_val(rate, 500ul * MHZ, 1500ul * MHZ);
-> +
-> +	/* The frequency after the N divider must be between 1 and 50 MHz. */
-> +	n = parent_rate / (1 * MHZ);
-> +
-> +	/* The N divider must be >= 2. */
-> +	n = clamp_val(n, 2, 1 << pll_info->n_bits);
-> +
-> +	for (;;) {
-> +		od = 0;
-> +
-> +		do {
-> +			m = (rate / MHZ) * ++od * n / (parent_rate / MHZ);
+> El 16 mar 2021, a las 21:59, Rob Herring <robh@kernel.org> escribi=C3=B3=
+:
+>=20
+> On Mon, Mar 15, 2021 at 12:41:57PM +0100, =C3=81lvaro Fern=C3=A1ndez =
+Rojas wrote:
+>> Add binding documentation for the pincontrol core found in BCM6328 =
+SoCs.
+>>=20
+>> Co-developed-by: Jonas Gorski <jonas.gorski@gmail.com>
+>> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+>> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+>> ---
+>> v7: add changes suggested by Rob Herring
+>> v6: add changes suggested by Rob Herring
+>> v5: change Documentation to dt-bindings in commit title
+>> v4: no changes
+>> v3: add new gpio node
+>> v2: remove interrupts
+>>=20
+>> .../pinctrl/brcm,bcm6328-pinctrl.yaml         | 132 =
+++++++++++++++++++
+>> 1 file changed, 132 insertions(+)
+>> create mode 100644 =
+Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+>>=20
+>> diff --git =
+a/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml =
+b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..e1ecdc578f32
+>> --- /dev/null
+>> +++ =
+b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6328-pinctrl.yaml
+>> @@ -0,0 +1,132 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: =
+http://devicetree.org/schemas/pinctrl/brcm,bcm6328-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Broadcom BCM6328 pin controller
+>> +
+>> +maintainers:
+>> +  - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+>> +  - Jonas Gorski <jonas.gorski@gmail.com>
+>> +
+>> +description: |+
+>> +  The pin controller node should be the child of a syscon node.
+>> +
+>> +  Refer to the the bindings described in
+>> +  Documentation/devicetree/bindings/mfd/syscon.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: brcm,bcm6328-pinctrl
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  '^.*-pins$':
+>=20
+> '-pins$' is equivalent.
+>=20
+>> +    if:
+>> +      type: object
+>> +    then:
+>=20
+> You don't need this if/then. This should be:
+>=20
+> '-pins$':
+>  type: object
+>  $ref: pinmux-node.yaml#
+>=20
+>  additionalProperties: false
+>  properties:
+>    ...
 
+If I add "additionalProperties: false" I get the following error:
+=
+/home/noltari/workspace/linux/Documentation/devicetree/bindings/pinctrl/br=
+cm,bcm6328-pinctrl.example.dt.yaml: pinctrl@18: serial_led-pins: =
+'serial_led_clk-pins', 'serial_led_data-pins' do not match any of the =
+regexes: 'pinctrl-[0-9]+'
+	=46rom schema: =
+/home/noltari/workspace/linux/Documentation/devicetree/bindings/pinctrl/br=
+cm,bcm6328-pinctrl.yaml
 
-Please correct me if I am wrong, according to the PM, when the register 
-value of OD is 0, 1, 2, 3, the value corresponding participating PL 
-frequency calculation is 1, 2, 4, 8. Therefore, change
+>=20
+>> +      properties:
+>> +        function:
+>> +          $ref: "pinmux-node.yaml#/properties/function"
+>=20
+> Drop this as you need the $ref up a level.
+>=20
+>> +          enum: [ serial_led_data, serial_led_clk, inet_act_led, =
+pcie_clkreq,
+>> +                  led, ephy0_act_led, ephy1_act_led, ephy2_act_led,
+>> +                  ephy3_act_led, hsspi_cs1, usb_device_port, =
+usb_host_port ]
+>> +
+>> +        pins:
+>> +          $ref: "pinmux-node.yaml#/properties/pins"
+>> +          enum: [ gpio6, gpio7, gpio11, gpio16, gpio17, gpio18, =
+gpio19,
+>> +                  gpio20, gpio25, gpio26, gpio27, gpio28, hsspi_cs1,
+>> +                  usb_port1 ]
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    pinctrl@18 {
+>> +      compatible =3D "brcm,bcm6328-pinctrl";
+>> +      reg =3D <0x18 0x10>;
+>> +
+>> +      pinctrl_serial_led: serial_led-pins {
+>> +        pinctrl_serial_led_data: serial_led_data-pins {
+>> +          function =3D "serial_led_data";
+>> +          pins =3D "gpio6";
+>> +        };
+>> +
+>> +        pinctrl_serial_led_clk: serial_led_clk-pins {
+>> +          function =3D "serial_led_clk";
+>> +          pins =3D "gpio7";
+>> +        };
+>> +      };
+>> +
+>> +      pinctrl_inet_act_led: inet_act_led-pins {
+>> +        function =3D "inet_act_led";
+>> +        pins =3D "gpio11";
+>> +      };
+>> +
+>> +      pinctrl_pcie_clkreq: pcie_clkreq-pins {
+>> +        function =3D "pcie_clkreq";
+>> +        pins =3D "gpio16";
+>> +      };
+>> +
+>> +      pinctrl_ephy0_spd_led: ephy0_spd_led-pins {
+>> +        function =3D "led";
+>> +        pins =3D "gpio17";
+>> +      };
+>> +
+>> +      pinctrl_ephy1_spd_led: ephy1_spd_led-pins {
+>> +        function =3D "led";
+>> +        pins =3D "gpio18";
+>> +      };
+>> +
+>> +      pinctrl_ephy2_spd_led: ephy2_spd_led-pins {
+>> +        function =3D "led";
+>> +        pins =3D "gpio19";
+>> +      };
+>> +
+>> +      pinctrl_ephy3_spd_led: ephy3_spd_led-pins {
+>> +        function =3D "led";
+>> +        pins =3D "gpio20";
+>> +      };
+>> +
+>> +      pinctrl_ephy0_act_led: ephy0_act_led-pins {
+>> +        function =3D "ephy0_act_led";
+>> +        pins =3D "gpio25";
+>> +      };
+>> +
+>> +      pinctrl_ephy1_act_led: ephy1_act_led-pins {
+>> +        function =3D "ephy1_act_led";
+>> +        pins =3D "gpio26";
+>> +      };
+>> +
+>> +      pinctrl_ephy2_act_led: ephy2_act_led-pins {
+>> +        function =3D "ephy2_act_led";
+>> +        pins =3D "gpio27";
+>> +      };
+>> +
+>> +      pinctrl_ephy3_act_led: ephy3_act_led-pins {
+>> +        function =3D "ephy3_act_led";
+>> +        pins =3D "gpio28";
+>> +      };
+>> +
+>> +      pinctrl_hsspi_cs1: hsspi_cs1-pins {
+>> +        function =3D "hsspi_cs1";
+>> +        pins =3D "hsspi_cs1";
+>> +      };
+>> +
+>> +      pinctrl_usb_port1_device: usb_port1_device-pins {
+>> +        function =3D "usb_device_port";
+>> +        pins =3D "usb_port1";
+>> +      };
+>> +
+>> +      pinctrl_usb_port1_host: usb_port1_host-pins {
+>> +        function =3D "usb_host_port";
+>> +        pins =3D "usb_port1";
+>> +      };
+>> +    };
+>> --=20
+>> 2.20.1
 
-m = (rate / MHZ) * ++od * n / (parent_rate / MHZ); to m = (rate / MHZ) * (2 ^ od++) * n / (parent_rate / MHZ); seems to be more appropriate, it can avoid 3, 5, 6, and 7 that should not exist.
-
-
-> +		} while (m < pll_info->m_offset || m & 1);
-> +
-> +		if (m <= (1 << pll_info->m_bits) - 2)
-> +			break;
-> +
-> +		n >>= 1;
-> +	}
-> +
-> +	*pm = m;
-> +	*pn = n;
-> +	*pod = od;
-
-
-If we change the above formula, we also need to change this to *pod = 2 
-^ od;
-
-
-Thanks and best regards!
-
-
-> +}
-> +
-> +static const struct ingenic_cgu_clk_info jz4760_cgu_clocks[] = {
-> +
-> +	/* External clocks */
-> +
-> +	[JZ4760_CLK_EXT] = { "ext", CGU_CLK_EXT },
-> +	[JZ4760_CLK_OSC32K] = { "osc32k", CGU_CLK_EXT },
-> +
-> +	/* PLLs */
-> +
-> +	[JZ4760_CLK_PLL0] = {
-> +		"pll0", CGU_CLK_PLL,
-> +		.parents = { JZ4760_CLK_EXT },
-> +		.pll = {
-> +			.reg = CGU_REG_CPPCR0,
-> +			.rate_multiplier = 1,
-> +			.m_shift = 23,
-> +			.m_bits = 8,
-> +			.m_offset = 0,
-> +			.n_shift = 18,
-> +			.n_bits = 4,
-> +			.n_offset = 0,
-> +			.od_shift = 16,
-> +			.od_bits = 2,
-> +			.od_max = 8,
-> +			.od_encoding = pll_od_encoding,
-> +			.bypass_reg = CGU_REG_CPPCR0,
-> +			.bypass_bit = 9,
-> +			.enable_bit = 8,
-> +			.stable_bit = 10,
-> +			.calc_m_n_od = jz4760_cgu_calc_m_n_od,
-> +		},
-> +	},
-> +
-> +	[JZ4760_CLK_PLL1] = {
-> +		/* TODO: PLL1 can depend on PLL0 */
-> +		"pll1", CGU_CLK_PLL,
-> +		.parents = { JZ4760_CLK_EXT },
-> +		.pll = {
-> +			.reg = CGU_REG_CPPCR1,
-> +			.rate_multiplier = 1,
-> +			.m_shift = 23,
-> +			.m_bits = 8,
-> +			.m_offset = 0,
-> +			.n_shift = 18,
-> +			.n_bits = 4,
-> +			.n_offset = 0,
-> +			.od_shift = 16,
-> +			.od_bits = 2,
-> +			.od_max = 8,
-> +			.od_encoding = pll_od_encoding,
-> +			.bypass_bit = -1,
-> +			.enable_bit = 7,
-> +			.stable_bit = 6,
-> +			.calc_m_n_od = jz4760_cgu_calc_m_n_od,
-> +		},
-> +	},
-> +
-> +	/* Main clocks */
-> +
-> +	[JZ4760_CLK_CCLK] = {
-> +		"cclk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 0, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +	[JZ4760_CLK_HCLK] = {
-> +		"hclk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 4, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +	[JZ4760_CLK_SCLK] = {
-> +		"sclk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 24, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +	[JZ4760_CLK_H2CLK] = {
-> +		"h2clk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 16, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +	[JZ4760_CLK_MCLK] = {
-> +		"mclk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 12, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +	[JZ4760_CLK_PCLK] = {
-> +		"pclk", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0, },
-> +		.div = {
-> +			CGU_REG_CPCCR, 8, 1, 4, 22, -1, -1, 0,
-> +			jz4760_cgu_cpccr_div_table,
-> +		},
-> +	},
-> +
-> +	/* Divided clocks */
-> +
-> +	[JZ4760_CLK_PLL0_HALF] = {
-> +		"pll0_half", CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_PLL0 },
-> +		.div = {
-> +			CGU_REG_CPCCR, 21, 1, 1, 22, -1, -1, 0,
-> +			jz4760_cgu_pll_half_div_table,
-> +		},
-> +	},
-> +
-> +	/* Those divided clocks can connect to PLL0 or PLL1 */
-> +
-> +	[JZ4760_CLK_UHC] = {
-> +		"uhc", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
-> +		.mux = { CGU_REG_UHCCDR, 31, 1 },
-> +		.div = { CGU_REG_UHCCDR, 0, 1, 4, -1, -1, -1 },
-> +		.gate = { CGU_REG_CLKGR0, 24 },
-> +	},
-> +	[JZ4760_CLK_GPU] = {
-> +		"gpu", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
-> +		.mux = { CGU_REG_GPUCDR, 31, 1 },
-> +		.div = { CGU_REG_GPUCDR, 0, 1, 3, -1, -1, -1 },
-> +		.gate = { CGU_REG_CLKGR1, 9 },
-> +	},
-> +	[JZ4760_CLK_LPCLK_DIV] = {
-> +		"lpclk_div", CGU_CLK_DIV | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
-> +		.mux = { CGU_REG_LPCDR, 29, 1 },
-> +		.div = { CGU_REG_LPCDR, 0, 1, 11, -1, -1, -1 },
-> +	},
-> +	[JZ4760_CLK_TVE] = {
-> +		"tve", CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_LPCLK_DIV, JZ4760_CLK_EXT, },
-> +		.mux = { CGU_REG_LPCDR, 31, 1 },
-> +		.gate = { CGU_REG_CLKGR0, 27 },
-> +	},
-> +	[JZ4760_CLK_LPCLK] = {
-> +		"lpclk", CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_LPCLK_DIV, JZ4760_CLK_TVE, },
-> +		.mux = { CGU_REG_LPCDR, 30, 1 },
-> +		.gate = { CGU_REG_CLKGR0, 28 },
-> +	},
-> +	[JZ4760_CLK_GPS] = {
-> +		"gps", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
-> +		.mux = { CGU_REG_GPSCDR, 31, 1 },
-> +		.div = { CGU_REG_GPSCDR, 0, 1, 4, -1, -1, -1 },
-> +		.gate = { CGU_REG_CLKGR0, 22 },
-> +	},
-> +
-> +	/* Those divided clocks can connect to EXT, PLL0 or PLL1 */
-> +
-> +	[JZ4760_CLK_PCM] = {
-> +		"pcm", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_EXT, -1,
-> +			JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
-> +		.mux = { CGU_REG_PCMCDR, 30, 2 },
-> +		.div = { CGU_REG_PCMCDR, 0, 1, 9, -1, -1, -1, BIT(0) },
-> +		.gate = { CGU_REG_CLKGR1, 8 },
-> +	},
-> +	[JZ4760_CLK_I2S] = {
-> +		"i2s", CGU_CLK_DIV | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_EXT, -1,
-> +			JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
-> +		.mux = { CGU_REG_I2SCDR, 30, 2 },
-> +		.div = { CGU_REG_I2SCDR, 0, 1, 9, -1, -1, -1, BIT(0) },
-> +	},
-> +	[JZ4760_CLK_OTG] = {
-> +		"usb", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_EXT, -1,
-> +			JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
-> +		.mux = { CGU_REG_USBCDR, 30, 2 },
-> +		.div = { CGU_REG_USBCDR, 0, 1, 8, -1, -1, -1 },
-> +		.gate = { CGU_REG_CLKGR0, 2 },
-> +	},
-> +
-> +	/* Those divided clocks can connect to EXT or PLL0 */
-> +	[JZ4760_CLK_MMC_MUX] = {
-> +		"mmc_mux", CGU_CLK_MUX | CGU_CLK_DIV,
-> +		.parents = { JZ4760_CLK_EXT, JZ4760_CLK_PLL0_HALF, },
-> +		.mux = { CGU_REG_MSCCDR, 31, 1 },
-> +		.div = { CGU_REG_MSCCDR, 0, 1, 6, -1, -1, -1, BIT(0) },
-> +	},
-> +	[JZ4760_CLK_SSI_MUX] = {
-> +		"ssi_mux", CGU_CLK_DIV | CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_EXT, JZ4760_CLK_PLL0_HALF, },
-> +		.mux = { CGU_REG_SSICDR, 31, 1 },
-> +		.div = { CGU_REG_SSICDR, 0, 1, 6, -1, -1, -1, BIT(0) },
-> +	},
-> +
-> +	/* These divided clock can connect to PLL0 only */
-> +	[JZ4760_CLK_CIM] = {
-> +		"cim", CGU_CLK_DIV | CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_PLL0_HALF },
-> +		.div = { CGU_REG_CIMCDR, 0, 1, 8, -1, -1, -1 },
-> +		.gate = { CGU_REG_CLKGR0, 26 },
-> +	},
-> +
-> +	/* Gate-only clocks */
-> +
-> +	[JZ4760_CLK_SSI0] = {
-> +		"ssi0", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_SSI_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 4 },
-> +	},
-> +	[JZ4760_CLK_SSI1] = {
-> +		"ssi1", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_SSI_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 19 },
-> +	},
-> +	[JZ4760_CLK_SSI2] = {
-> +		"ssi2", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_SSI_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 20 },
-> +	},
-> +	[JZ4760_CLK_DMA] = {
-> +		"dma", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_H2CLK, },
-> +		.gate = { CGU_REG_CLKGR0, 21 },
-> +	},
-> +	[JZ4760_CLK_I2C0] = {
-> +		"i2c0", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 5 },
-> +	},
-> +	[JZ4760_CLK_I2C1] = {
-> +		"i2c1", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 6 },
-> +	},
-> +	[JZ4760_CLK_UART0] = {
-> +		"uart0", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 15 },
-> +	},
-> +	[JZ4760_CLK_UART1] = {
-> +		"uart1", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 16 },
-> +	},
-> +	[JZ4760_CLK_UART2] = {
-> +		"uart2", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 17 },
-> +	},
-> +	[JZ4760_CLK_UART3] = {
-> +		"uart3", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 18 },
-> +	},
-> +	[JZ4760_CLK_IPU] = {
-> +		"ipu", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_HCLK, },
-> +		.gate = { CGU_REG_CLKGR0, 29 },
-> +	},
-> +	[JZ4760_CLK_ADC] = {
-> +		"adc", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 14 },
-> +	},
-> +	[JZ4760_CLK_AIC] = {
-> +		"aic", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_EXT, },
-> +		.gate = { CGU_REG_CLKGR0, 8 },
-> +	},
-> +	[JZ4760_CLK_VPU] = {
-> +		"vpu", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_HCLK, },
-> +		.gate = { CGU_REG_LCR, 30, false, 150 },
-> +	},
-> +	[JZ4760_CLK_MMC0] = {
-> +		"mmc0", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_MMC_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 3 },
-> +	},
-> +	[JZ4760_CLK_MMC1] = {
-> +		"mmc1", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_MMC_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 11 },
-> +	},
-> +	[JZ4760_CLK_MMC2] = {
-> +		"mmc2", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_MMC_MUX, },
-> +		.gate = { CGU_REG_CLKGR0, 12 },
-> +	},
-> +	[JZ4760_CLK_UHC_PHY] = {
-> +		"uhc_phy", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_UHC, },
-> +		.gate = { CGU_REG_OPCR, 5 },
-> +	},
-> +	[JZ4760_CLK_OTG_PHY] = {
-> +		"usb_phy", CGU_CLK_GATE,
-> +		.parents = { JZ4760_CLK_OTG },
-> +		.gate = { CGU_REG_OPCR, 7, true, 50 },
-> +	},
-> +
-> +	/* Custom clocks */
-> +	[JZ4760_CLK_EXT512] = {
-> +		"ext/512", CGU_CLK_FIXDIV,
-> +		.parents = { JZ4760_CLK_EXT },
-> +		.fixdiv = { 512 },
-> +	},
-> +	[JZ4760_CLK_RTC] = {
-> +		"rtc", CGU_CLK_MUX,
-> +		.parents = { JZ4760_CLK_EXT512, JZ4760_CLK_OSC32K, },
-> +		.mux = { CGU_REG_OPCR, 2, 1},
-> +	},
-> +};
-> +
-> +static void __init jz4760_cgu_init(struct device_node *np)
-> +{
-> +	struct ingenic_cgu *cgu;
-> +	int retval;
-> +
-> +	cgu = ingenic_cgu_new(jz4760_cgu_clocks,
-> +			      ARRAY_SIZE(jz4760_cgu_clocks), np);
-> +	if (!cgu) {
-> +		pr_err("%s: failed to initialise CGU\n", __func__);
-> +		return;
-> +	}
-> +
-> +	retval = ingenic_cgu_register_clocks(cgu);
-> +	if (retval)
-> +		pr_err("%s: failed to register CGU Clocks\n", __func__);
-> +
-> +	ingenic_cgu_register_syscore_ops(cgu);
-> +}
-> +
-> +/* We only probe via devicetree, no need for a platform driver */
-> +CLK_OF_DECLARE_DRIVER(jz4760_cgu, "ingenic,jz4760-cgu", jz4760_cgu_init);
-> +
-> +/* JZ4760B has some small differences, but we don't implement them. */
-> +CLK_OF_DECLARE_DRIVER(jz4760b_cgu, "ingenic,jz4760b-cgu", jz4760_cgu_init);
-> diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
-> index 9382dc3aa27e..77acfbeb4830 100644
-> --- a/drivers/clk/ingenic/tcu.c
-> +++ b/drivers/clk/ingenic/tcu.c
-> @@ -326,6 +326,7 @@ static const struct ingenic_soc_info x1000_soc_info = {
->   static const struct of_device_id __maybe_unused ingenic_tcu_of_match[] __initconst = {
->   	{ .compatible = "ingenic,jz4740-tcu", .data = &jz4740_soc_info, },
->   	{ .compatible = "ingenic,jz4725b-tcu", .data = &jz4725b_soc_info, },
-> +	{ .compatible = "ingenic,jz4760-tcu", .data = &jz4770_soc_info, },
->   	{ .compatible = "ingenic,jz4770-tcu", .data = &jz4770_soc_info, },
->   	{ .compatible = "ingenic,x1000-tcu", .data = &x1000_soc_info, },
->   	{ /* sentinel */ }
-> @@ -477,5 +478,6 @@ static void __init ingenic_tcu_init(struct device_node *np)
->   
->   CLK_OF_DECLARE_DRIVER(jz4740_cgu, "ingenic,jz4740-tcu", ingenic_tcu_init);
->   CLK_OF_DECLARE_DRIVER(jz4725b_cgu, "ingenic,jz4725b-tcu", ingenic_tcu_init);
-> +CLK_OF_DECLARE_DRIVER(jz4760_cgu, "ingenic,jz4760-tcu", ingenic_tcu_init);
->   CLK_OF_DECLARE_DRIVER(jz4770_cgu, "ingenic,jz4770-tcu", ingenic_tcu_init);
->   CLK_OF_DECLARE_DRIVER(x1000_cgu, "ingenic,x1000-tcu", ingenic_tcu_init);
-> diff --git a/include/dt-bindings/clock/jz4760-cgu.h b/include/dt-bindings/clock/jz4760-cgu.h
-> new file mode 100644
-> index 000000000000..4bb2e19c4743
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/jz4760-cgu.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * This header provides clock numbers for the ingenic,jz4760-cgu DT binding.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_JZ4760_CGU_H__
-> +#define __DT_BINDINGS_CLOCK_JZ4760_CGU_H__
-> +
-> +#define JZ4760_CLK_EXT		0
-> +#define JZ4760_CLK_OSC32K	1
-> +#define JZ4760_CLK_PLL0		2
-> +#define JZ4760_CLK_PLL0_HALF	3
-> +#define JZ4760_CLK_PLL1		4
-> +#define JZ4760_CLK_CCLK		5
-> +#define JZ4760_CLK_HCLK		6
-> +#define JZ4760_CLK_SCLK		7
-> +#define JZ4760_CLK_H2CLK	8
-> +#define JZ4760_CLK_MCLK		9
-> +#define JZ4760_CLK_PCLK		10
-> +#define JZ4760_CLK_MMC_MUX	11
-> +#define JZ4760_CLK_MMC0		12
-> +#define JZ4760_CLK_MMC1		13
-> +#define JZ4760_CLK_MMC2		14
-> +#define JZ4760_CLK_CIM		15
-> +#define JZ4760_CLK_UHC		16
-> +#define JZ4760_CLK_GPU		17
-> +#define JZ4760_CLK_GPS		18
-> +#define JZ4760_CLK_SSI_MUX	19
-> +#define JZ4760_CLK_PCM		20
-> +#define JZ4760_CLK_I2S		21
-> +#define JZ4760_CLK_OTG		22
-> +#define JZ4760_CLK_SSI0		23
-> +#define JZ4760_CLK_SSI1		24
-> +#define JZ4760_CLK_SSI2		25
-> +#define JZ4760_CLK_DMA		26
-> +#define JZ4760_CLK_I2C0		27
-> +#define JZ4760_CLK_I2C1		28
-> +#define JZ4760_CLK_UART0	29
-> +#define JZ4760_CLK_UART1	30
-> +#define JZ4760_CLK_UART2	31
-> +#define JZ4760_CLK_UART3	32
-> +#define JZ4760_CLK_IPU		33
-> +#define JZ4760_CLK_ADC		34
-> +#define JZ4760_CLK_AIC		35
-> +#define JZ4760_CLK_VPU		36
-> +#define JZ4760_CLK_UHC_PHY	37
-> +#define JZ4760_CLK_OTG_PHY	38
-> +#define JZ4760_CLK_EXT512	39
-> +#define JZ4760_CLK_RTC		40
-> +#define JZ4760_CLK_LPCLK_DIV	41
-> +#define JZ4760_CLK_TVE		42
-> +#define JZ4760_CLK_LPCLK	43
-> +
-> +#endif /* __DT_BINDINGS_CLOCK_JZ4760_CGU_H__ */
