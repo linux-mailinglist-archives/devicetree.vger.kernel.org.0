@@ -2,109 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D1A33F254
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 15:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4EC33F28D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 15:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231565AbhCQOLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 10:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51108 "EHLO
+        id S231843AbhCQO0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 10:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231326AbhCQOLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 10:11:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7D2C06174A
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 07:11:02 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1lMWsv-0004Qw-QZ; Wed, 17 Mar 2021 15:10:53 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1lMWsu-00032p-MK; Wed, 17 Mar 2021 15:10:52 +0100
-Date:   Wed, 17 Mar 2021 15:10:52 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dillon min <dillon.minfei@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
-        parthiban@linumiz.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: imx6ull: fix ubi mount failed on MYS-6ULX-IOT
- board
-Message-ID: <20210317141052.GW4207@pengutronix.de>
-References: <1615270520-16951-1-git-send-email-dillon.minfei@gmail.com>
- <20210309121836.GU4207@pengutronix.de>
- <CAL9mu0JOyM8n9LABwrOYgV4Qxj27XKTchWiGKsE3dMU0W5RNbw@mail.gmail.com>
+        with ESMTP id S231617AbhCQO0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 10:26:01 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D1AC06174A
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 07:26:00 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id t16so1419157qvr.12
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 07:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Oac/DlVej6hY85el0HaXgLiTpQUzb79aFBt4IEthyz0=;
+        b=GKM4NaIxpRPCpBQcQWSGyqYsfZU/PTZSYW3A0Jz0vsRsLiAsfw410A2D0WKTa2PslS
+         rey3lj5hAfeS+D7i4uvXO9e3pg/iTbD5dQK3yQdgHMC8eyafGpCBjlQtjGbHI1QnNWkt
+         uMG8yr4WwyDUIoFrSkPn0k5vG1xR4Q/3C0++5tkOATQ87QqTDYb93hoh8pYj5GerQPxT
+         YNXfPCyOyKNobP7NObSiJKhF+3ZXL7DNXLsuIo1oWUoASEUeeTZviIoeeJIarbj819/Y
+         8z+EOoMylKhzK8v76auJzF+9+yT6JWsbl5eh0Tw51Vxr3LIVT65m+mye92QDidHQmLps
+         WMWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Oac/DlVej6hY85el0HaXgLiTpQUzb79aFBt4IEthyz0=;
+        b=ZAWYStKcLKxhmTFkGitE4t62q/jnkNr0iUsVbFBrymNEkWJeqF9k2/G5jpbWal6IpV
+         O6qr+02D2H18GgQKE5U3+OUpKCqZbCu8QvyacK3DJPfs/qm89mxAva8jmBKoEVos90Hc
+         dvh+qi9vqh8M5BPv2XPp+iCdNtyvubzy+AZMnckQ9tyt8qO84NUi5m/ykrmIThthZeIm
+         +TXYIoHOpTl7bHxwoRlcyeK2E/B8sxRFzHfiRf2w4aaO5izOLDzCl9KJOPOK2LWWtpxY
+         E3G08KY08SIzQO043grKqt+r+WP9MvRlWVhTo6MsLL/2tZfOdirp1OG36lyQ+mUqgMVZ
+         2crw==
+X-Gm-Message-State: AOAM530Elvk/UvQOu88zDmu5Eb7DI+VaP3FcxMTVwQx7gDabza8DC/sQ
+        IEGAz6E7qD+FT1NkVONNeUyBtA==
+X-Google-Smtp-Source: ABdhPJwUz2llOCCtPaylYmaDAP5eIdLpLfqeSpbLBQJXQonnkq+QeBs5NJ2NXWpytzPxXJWA4IU/SQ==
+X-Received: by 2002:a0c:c248:: with SMTP id w8mr5675492qvh.58.1615991159804;
+        Wed, 17 Mar 2021 07:25:59 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id y9sm17232696qkm.19.2021.03.17.07.25.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Mar 2021 07:25:59 -0700 (PDT)
+Subject: Re: [PATCH 2/8] dt-bindings: crypto : Add new compatible strings for
+ qcom-qce
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com
+References: <20210310052503.3618486-1-bhupesh.sharma@linaro.org>
+ <20210310052503.3618486-3-bhupesh.sharma@linaro.org>
+ <20210316222825.GA3792517@robh.at.kernel.org>
+ <CAH=2Ntw2dMaSYsx-Q=mXx_mMBr5PcmwhhBvTcmPYYKmy=rcCqw@mail.gmail.com>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <525bea31-b377-6f64-5cc2-827c738df372@linaro.org>
+Date:   Wed, 17 Mar 2021 10:25:58 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL9mu0JOyM8n9LABwrOYgV4Qxj27XKTchWiGKsE3dMU0W5RNbw@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:07:52 up 27 days, 17:31, 85 users,  load average: 0.07, 0.24,
- 0.23
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAH=2Ntw2dMaSYsx-Q=mXx_mMBr5PcmwhhBvTcmPYYKmy=rcCqw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 10, 2021 at 10:54:05AM +0800, dillon min wrote:
-> Hi Sascha,
-> 
-> Thanks for reviewing.
-> 
-> On Tue, Mar 9, 2021 at 8:18 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > On Tue, Mar 09, 2021 at 02:15:19PM +0800, dillon.minfei@gmail.com wrote:
-> > > From: dillon min <dillon.minfei@gmail.com>
-> > >
-> > > This patch intend to fix ubi filesystem mount failed on MYS-6ULX-IOT board,
-> > > from Micron MT29F2G08ABAEAWP's datasheets, we need to choose 4-bit ECC.
-> > >
-> > > Table 18: Error Management Details
-> > >
-> > > Description                                   Requirement
-> > >
-> > > Minimum number of valid blocks (NVB) per LUN  2008
-> > > Total available blocks per LUN                        2048
-> > > First spare area location                     x8: byte 2048 x16: word 1024
-> > > Bad-block mark                                        x8: 00h x16: 0000h
-> > > Minimum required ECC                          4-bit ECC per 528 bytes
-> > > Minimum ECC with internal ECC enabled         4-bit ECC per 516 bytes (user data) + 8
-> > >                                               bytes (parity data)
-> > > Minimum required ECC for block 0 if PROGRAM/
-> > > ERASE cycles are less than 1000                       1-bit ECC per 528 bytes
-> >
-> > 4-bit ECC is the minimum this chip requires. There's nothing wrong with
-> > choosing a better ECC like the GPMI driver does by default.
-> >
-> Yes, indeed, the mt29f2g08's minimum ecc is 4-bit, you can use 8-bits ecc.
-> but there is a dependency between new kernel gpmi-nand with the old
-> mfg-kernel's , which means
-> if the old nand ecc layout is 4-bits, you should use ecc 4-bit in the
-> new kernel (by fsl,use-minimum-ecc),
-> else use 8-bits.
-> 
-> For my case, the ubifs filesystem was created by ecc 4-bits, without
-> reflash filesystem or change
 
-Then this is the justification for this patch, not anything from the
-datasheet like you've written in your commit message.
 
-Sascha
+On 3/17/21 9:20 AM, Bhupesh Sharma wrote:
+> Hi Rob,
+> 
+> Thanks for your review.
+> 
+> On Wed, 17 Mar 2021 at 03:58, Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Wed, Mar 10, 2021 at 10:54:57AM +0530, Bhupesh Sharma wrote:
+>>> Newer qcom chips support newer versions of the qce IP, so add
+>>> new compatible strings for qcom-qce (in addition to the existing
+>>> "qcom,crypto-v5.1").
+>>>
+>>> With [1], Thara tried to add the support for new compatible strings,
+>>> but we couldn't conclude on the approach to be used. Since we have
+>>> a number of new qcom arm64 SoCs available now, several of which
+>>> support the same crypto IP version, so it makes more sense to use
+>>> the IP version for the compatible string, rather than using the soc
+>>> name as the compatible string.
+>>>
+>>> [1]. https://lore.kernel.org/linux-arm-msm/20201119155233.3974286-7-thara.gopinath@linaro.org/
+>>>
+>>> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+>>> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Andy Gross <agross@kernel.org>
+>>> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+>>> Cc: David S. Miller <davem@davemloft.net>
+>>> Cc: Stephen Boyd <sboyd@kernel.org>
+>>> Cc: Michael Turquette <mturquette@baylibre.com>
+>>> Cc: linux-clk@vger.kernel.org
+>>> Cc: linux-crypto@vger.kernel.org
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: linux-kernel@vger.kernel.org
+>>> Cc: bhupesh.linux@gmail.com
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
+>>>   Documentation/devicetree/bindings/crypto/qcom-qce.txt | 6 +++++-
+>>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
+>>> index 07ee1b12000b..217b37dbd58a 100644
+>>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
+>>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
+>>> @@ -2,7 +2,11 @@ Qualcomm crypto engine driver
+>>>
+>>>   Required properties:
+>>>
+>>> -- compatible  : should be "qcom,crypto-v5.1"
+>>> +- compatible  : Supported versions are:
+>>> +             - "qcom,crypto-v5.1", for ipq6018
+>>> +             - "qcom,crypto-v5.4", for sdm845, sm8150
+>>
+>> 2 SoCs sharing 1 version doesn't convince me on using version numbers.
+>> Having 4 versions for 5 SoCs further convinces me you should stick with
+>> SoC specific compatibles as *everyone* else does (including most QCom
+>> bindings).
+
+Hi!
+
+So, it is 2 SoCs today. But we do have a bunch of SoCs for each version 
+and these could be added in future. I think I have asked this question 
+before as well,how about "qcom,sdm845-crypto", "qcom,crypto-v5.4" and 
+have only "qcom,crypto-<version>" in the driver ? I see this being done 
+by some Qcom bindings.
+
+
+> Fair enough. I will add SoC specific compatibles in v2, which should
+> be out shortly.
+> 
+> Regards,
+> Bhupesh
+> 
+>>> +             - "qcom,crypto-v5.5", for sm8250
+>>> +             - "qcom,crypto-v5.6", for sm8350
+>>>   - reg         : specifies base physical address and size of the registers map
+>>>   - clocks      : phandle to clock-controller plus clock-specifier pair
+>>>   - clock-names : "iface" clocks register interface
+>>> --
+>>> 2.29.2
+>>>
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Warm Regards
+Thara
