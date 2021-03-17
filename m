@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D21E33F69C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A074833F637
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbhCQRVv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 17 Mar 2021 13:21:51 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:33553 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232412AbhCQRUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 13:20:38 -0400
-Received: from relay4-d.mail.gandi.net (unknown [217.70.183.196])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 766F13A79FA;
-        Wed, 17 Mar 2021 14:54:45 +0000 (UTC)
-X-Originating-IP: 90.89.138.59
-Received: from xps13 (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id C6743E0007;
-        Wed, 17 Mar 2021 14:51:22 +0000 (UTC)
-Date:   Wed, 17 Mar 2021 15:51:21 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v5 0/3] Add support for secure regions in NAND
-Message-ID: <20210317155121.19cbb50c@xps13>
-In-Reply-To: <20210317122513.42369-1-manivannan.sadhasivam@linaro.org>
-References: <20210317122513.42369-1-manivannan.sadhasivam@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S232663AbhCQRCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 13:02:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39904 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232670AbhCQRB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 13:01:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1EC1261580;
+        Wed, 17 Mar 2021 17:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616000516;
+        bh=D5aIjqmiOUYZl13Ajhpo46UMf5Qv0uThh2gxXrypg4Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P/lDAbTusNU8/I+ESum6PU/pLylMXRA05sso9tvoSpj1oxQJoR/zW6Z7R9EY6LtZM
+         Uvs7O3FjhBy7+kZlykyWDkSjt9lhcIJG7FB7uPyOyrR+8pnMLifCANcdqFYxvAQUkj
+         +Md3iz/vtf0Br6kdNrHT4wgX5R1YODHy9VFpeFcozXQBGLje1b1L/rWFrDnMyRYM1T
+         eyJ6h945OWso43VtenJ6HM+SAiWSPHzCjwbfvsckHXvDqxfwL+4UkeU9zQ6hqCN4lM
+         a2cELM02A/BBXBWOea+SHy1ZFOq720LpJHIilBACsEc44YUQDoxrxbwuEFPT+BOPGf
+         HynHOUtcm93bQ==
+Received: by pali.im (Postfix)
+        id 900E18A9; Wed, 17 Mar 2021 18:01:52 +0100 (CET)
+Date:   Wed, 17 Mar 2021 18:01:52 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCHv2 18/38] dt-bindings: power: supply: n900-battery:
+ Convert to DT schema format
+Message-ID: <20210317170152.dsg7s6kik5gyqd64@pali>
+References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
+ <20210317134904.80737-19-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210317134904.80737-19-sebastian.reichel@collabora.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
-
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote on Wed,
-17 Mar 2021 17:55:10 +0530:
-
-> On a typical end product, a vendor may choose to secure some regions in
-> the NAND memory which are supposed to stay intact between FW upgrades.
-> The access to those regions will be blocked by a secure element like
-> Trustzone. So the normal world software like Linux kernel should not
-> touch these regions (including reading).
+On Wednesday 17 March 2021 14:48:44 Sebastian Reichel wrote:
+> Convert the binding to DT schema format.
 > 
-> So this series adds a property for declaring such secure regions in DT
-> so that the driver can skip touching them. While at it, the Qcom NANDc
-> DT binding is also converted to YAML format.
-> 
-> Thanks,
-> Mani
-> 
-> Changes in v5:
-> 
-> * Switched to "uint64-matrix" as suggested by Rob
-> * Moved the whole logic from qcom driver to nand core as suggested by Boris
+> Cc: Pali Rohár <pali@kernel.org>
 
-I'm really thinking about a nand-wide property now. Do you think it
-makes sense to move the helper to the NAND core (instead of the raw
-NAND core)? I'm fine only using it in the raw NAND core though.
+Rejected-by: Pali Rohár <pali@kernel.org>
 
-Also, can I request a global s/sec/secure/ update? I find the "sec"
-abbreviation unclear and I think we have more than enough cryptic
-names :-)
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Thanks,
-Miquèl
+Hello Sebastian! I'm really really sorry, I have nothing against you,
+but personally I cannot ack change signed by company where some people
+are supporting censorship, GPL violations and other similar immoral
+activities against other individual developers.
+
+> ---
+>  .../power/supply/nokia,n900-battery.yaml      | 49 +++++++++++++++++++
+>  .../bindings/power/supply/rx51-battery.txt    | 25 ----------
+>  2 files changed, 49 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/power/supply/rx51-battery.txt
