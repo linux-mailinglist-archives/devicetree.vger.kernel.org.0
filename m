@@ -2,112 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD42333F7D6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 19:08:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2954C33F7DD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 19:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbhCQSII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 14:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        id S232781AbhCQSMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 14:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232678AbhCQSIF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 14:08:05 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31302C06175F
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 11:08:05 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id t83so32726635oih.12
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 11:08:05 -0700 (PDT)
+        with ESMTP id S232836AbhCQSML (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 14:12:11 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E26ACC06174A;
+        Wed, 17 Mar 2021 11:12:10 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id q29so321375lfb.4;
+        Wed, 17 Mar 2021 11:12:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GcUhCfYNDJJjGJ8ohBHX1C0ch2jy4DUHssr3MoU+AWU=;
-        b=eTIpubIUPvbN1WuH36RG/3paeJR1Sg/C8sf0rcDyhhU/ya9dRgqAhtAyyosAFXdlOl
-         f6APtnanqw6EHUoI6LIOrZ5YIg6G4sUpb8Z5wsFGPdyej2BZxOLQM5WtW7+B/moYFKtN
-         RXBeqzVbetGTq+rwkaXhzgYGHaCwfSi+mjzTIoVucRsE8BcuVRHXSaI1dClwhESxGFZB
-         xY9exQiDak1Af7W9jX8HJ47k6I1+dmvByXGJ7wQbyvNYNIqvExX8OFgjVBNcRFSD7TIp
-         02nc4dZeGWc/hrJrQxgWU9qZ4LWsU2JQdfgQsN9iG69UvfaBexYvrIa+q0CQe01gTNZf
-         NgLQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Rm3F1cA66zuHgAWNRDnehpSfjsTieaJWbbEO5oa1uuM=;
+        b=vVgz3AQi0vg3TM/jatpKxgQ/QE6HJO9dEZ8vJzAgmdLbuBOYqnMujyiVKvIXyRJRSa
+         YGC/22kFevbVibqEWnnSMAyi9C3rZ0htJNht6qXp2OVG8ejP9jpNrpbzJwyieTVJszN4
+         TR5/D+X5IyXZ3Xw3FdiF4poNMFIx9a4YY0d8z1SWMq29wqKgAc+aSBbtawJgrEE6rRqa
+         RDo53bXS8jQXfhAknx2wvK5nFRfPgltQOoFFrYmyslbqLh/IybV6dZgqfYNVeJy6rbEQ
+         pnkywobegW+vx3vCNNF785P/5naKfz5uPwzbmqqH+KjEzBlY7ei+qW4pkRiIl+j3r/jn
+         ghhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GcUhCfYNDJJjGJ8ohBHX1C0ch2jy4DUHssr3MoU+AWU=;
-        b=DV+oRdyT469HhNWXC4Liec2KySKa3Z5QEn8QDOjHr3TE++aEfrgoGmdSv8ekle+JpP
-         mxLB8QhD77lrBqIMo6S0I7IDT3E+Iy2P/ZALkeq9tOddrI9tJI/hm1+weIyEZTtVDs3k
-         WIMMDji67lgiy9EF/Uajxx9XuMFVIbnUJ9zSpyPRfz9HFlnjf7BvOhOtLYd0BKreGJX1
-         Pty3+1YtG3ssUKmi1jJLa+nAjfCVfX/aYT0qScky8aRrNJLO8QGWdIngqkENVvcij6iT
-         fAfsDNRQojU5hl7UXB5DtH1nYuqyM8CODX+k4Oqn4DDDpkiLjSnROXHuomo2V+uKi69D
-         Ku5g==
-X-Gm-Message-State: AOAM5305UTAGCfMNREFH56sR88RM9bnmuA97f3UDXEhKDmthyr9K1YBK
-        /dmeZqbTYa1GjE92olODDd5Fag==
-X-Google-Smtp-Source: ABdhPJylmisE+8bmumR+vj5OdRXxasLNVpv/JgwNeVN6sXzYD7xEr2o0CHdpEfznl7Nv7EqJDJt5LA==
-X-Received: by 2002:aca:5d82:: with SMTP id r124mr28532oib.59.1616004484509;
-        Wed, 17 Mar 2021 11:08:04 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s193sm7966921oih.52.2021.03.17.11.08.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Mar 2021 11:08:04 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 13:08:02 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Marc Zyngier <maz@kernel.org>, Maulik Shah <mkshah@codeaurora.org>
-Cc:     swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        dianders@chromium.org, rnayak@codeaurora.org, lsrao@codeaurora.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8350: Remove second reg from pdc
-Message-ID: <YFJFgvLQfr49EvWE@builder.lan>
-References: <1615958996-31807-1-git-send-email-mkshah@codeaurora.org>
- <87k0q6i1g5.wl-maz@kernel.org>
- <bce03166-e65b-198c-8b93-39e0c218aaed@codeaurora.org>
- <87czvxj2t9.wl-maz@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Rm3F1cA66zuHgAWNRDnehpSfjsTieaJWbbEO5oa1uuM=;
+        b=fPleuLEGB4n1M5E2vjjsECmvtu42YCf3fwTfOQjMWn4r5VbpLvXRnsA/2s7t0S5U3g
+         EiYcA/lZzcktlgXKTTckGHuLiiWvvnPHim39dT9fjJeTdhH+kdEyV5Pq46hXyubd9KxU
+         JqUWn9+4NJvAYB1QQd09el8gnOkY3NxEH4H8T1yd7GOocSagKq7OBu09s2018eo9Lut8
+         F+LxakZ7LUORqqrknTPVc8qiqZweBZXP4TKx6elvUjyaGEbtiNKDgo6VDK1xE1KE2B7n
+         9rKHHV3QyDZNmdrVSVNH4BH7z5HksHeuk+CAvskdDK7YtYyvL50g+DgoyJOGEl9x2fvi
+         H1aw==
+X-Gm-Message-State: AOAM530VFRcZ2M2Kl9O50YXGfTR+BNf55DrLJeRRCaW+O0HGCEAa7Pvq
+        UU2gs5aBZXqaN0MXRrqHweSVwYK74ds=
+X-Google-Smtp-Source: ABdhPJy8C3qkLS4DHxFIw+3kI4BF3VFOS96SBfc4NPrMSaw9BPWwByRgdUj6C7Q4vrBF00Nhg7jtCg==
+X-Received: by 2002:a19:c0f:: with SMTP id 15mr3068331lfm.580.1616004729249;
+        Wed, 17 Mar 2021 11:12:09 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id u2sm3421397lfi.187.2021.03.17.11.12.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Mar 2021 11:12:08 -0700 (PDT)
+Subject: Re: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC
+ drivers
+To:     Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Paul Fertser <fercerpav@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210314154459.15375-1-digetx@gmail.com>
+ <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
+ <20210317175434.GD5559@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <81ddddba-a179-9389-2458-de6741428822@gmail.com>
+Date:   Wed, 17 Mar 2021 21:12:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87czvxj2t9.wl-maz@kernel.org>
+In-Reply-To: <20210317175434.GD5559@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 17 Mar 09:02 CDT 2021, Marc Zyngier wrote:
-
-> On Wed, 17 Mar 2021 09:48:09 +0000,
-> Maulik Shah <mkshah@codeaurora.org> wrote:
-> > 
-> > Hi Marc,
-> > 
-> > On 3/17/2021 2:47 PM, Marc Zyngier wrote:
-> > > On Wed, 17 Mar 2021 05:29:54 +0000,
-> > > Maulik Shah <mkshah@codeaurora.org> wrote:
-> > >> PDC interrupt controller driver do not use second reg. Remove it.
-> > > This is a DT file, not a driver. What the driver does is irrelevant.
-> > > 
-> > > The real question is: what does this range do?
-> > > 
-> > > Thanks,
-> > > 
-> > > 	M.
-> > 
-> > This is to set interrupt type in SPI config for which there was a
-> > change [1] but has not gone in for upstream PDC driver.
-> > 
-> > The second reg is not used in upstream PDC driver, probably when
-> > posting downstream DT changes for sm8350/sm8250 it was carried in
-> > device node as is.
-> > 
-> > As its not mentioned in bindigs as well, dtbs_check reports it as
-> > additional reg when converted to yaml.
+17.03.2021 20:54, Mark Brown пишет:
+> On Wed, Mar 17, 2021 at 08:20:10PM +0300, Dmitry Osipenko wrote:
 > 
-> Then I'd rather you provide accurate documentation in the binding
-> rather than changing the DT files. Other operating systems may use it,
-> and it isn't unlikely that Linux could use the feature at some point.
+>> Mark / Takashi, I may try to split up this series into two or three
+>> smaller patchsets and then the reset/ patch from Philipp Zabel could be
+>> merged by Philipp himself. I primarily want to have the audio resets
+>> fixed and the reset API extended with reset_control_bulk in 5.13 because
+>> this will unblock other patches. Please let me know what you prefer more.
+> 
+> I've actually already got this queued for application next time I apply
+> things, I'm guessing Phillip was intending that the reset patch go via
+> ASoC?
 > 
 
-I agree. Maulik, please update the DT binding to document this region as
-well.
+I assume that Phillip is okay with applying the reset patch via ASoC
+since he didn't say anything specifically about it. Thank you for taking
+care of the patches!
 
-
-It also seems relevant to pursue getting [1] into the upstream Linux
-kernel. Is this something that you use downstream Maulik?
-
-Regards,
-Bjorn
+Phillip, please let us know if you have objections in regards to
+applying the reset_control_bulk via ASoC.
