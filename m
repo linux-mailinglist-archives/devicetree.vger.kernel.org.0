@@ -2,69 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19FCF33EAF8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 09:00:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC85E33EB10
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 09:07:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbhCQIAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 04:00:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36026 "EHLO mail.kernel.org"
+        id S229554AbhCQIH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 04:07:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37068 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230099AbhCQIAC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 04:00:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BEC8064F7F;
-        Wed, 17 Mar 2021 07:59:55 +0000 (UTC)
+        id S229524AbhCQIHS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 04:07:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9C50F64F7F;
+        Wed, 17 Mar 2021 08:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615967997;
-        bh=zHlz/DP1LMQdZ4feA4AUsePng/JL/gc3mcPdR5jADsE=;
+        s=k20201202; t=1615968438;
+        bh=JjS5m2yPDHpWdfC2ifQGepgziRsPL5CojQq5WXxi9Ow=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KzJ3KvrVrK6mhM0cJkQf9V2wrc0cZfOOTvhKUWQp13dj4IQcq6rDqazZ3bsKmlAOI
-         SQpg48vUBBSku+AXLMAsxy5Vf1O+bwDZSQiFmRE5duJs0ZHS7PZCmuQIom0r0igEvL
-         c/NzXd2wZQItyd8yzVTQ1AfBE5tk5sQAdNUMSnf9kQDNjLH2AFvvKl9C3wqJMA46Qm
-         /TPEoE8UXG/RbWt91PmQmk0qLsiti/f2u7WxMOPRyDkudeuzayZYMZApxdGN5Um+ES
-         +0G+kYheSI78EXdeSrtDt5QwNBb49LMQpGv8f0to4ylDuVwGVYqAKD/NeV2VX7mEH+
-         x+pHFOsCuMz5Q==
-Date:   Wed, 17 Mar 2021 15:59:51 +0800
+        b=WXByjGhGztc/4fmMD4fV5d6jRzqTT3QDvfY8ulWhEa+lQLGTw/qYc70d35tQYUc5G
+         4OdJ24aptdNgwu7sEEMpKrdRhJA/D5CVARcJHa9sX6A3aKaBEfz+Rz9ibB9PbURGK1
+         UFROHPl5rjZGMrVBl1uAT8O/IW8Jp6HVz2i0bAmpfe6fNyA4xnhqVgmbLzX3jVhIhM
+         o6qNEIO75bUxPgk/gxh2LkeFe2vWCh31EcoyPPSXz60Mt/0yle+v9jGRLebi0PoNuj
+         M+l1SxUUY2nF7olTPOBB8u7RYmYFYXCE6DEJRYFrXpBNRKLWtiAMMRHB+iNqbPglUQ
+         sAHJzTjtfndMg==
+Date:   Wed, 17 Mar 2021 16:07:12 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v2 0/3] Librem 5 phone dts fixes
-Message-ID: <20210317075951.GS11246@dragon>
-References: <20210311120259.3310499-1-martin.kepplinger@puri.sm>
- <20210315083531.3743183-1-martin.kepplinger@puri.sm>
+To:     Heiko Schocher <hs@denx.de>
+Cc:     linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] enable flexspi support on imx8mp
+Message-ID: <20210317080712.GU11246@dragon>
+References: <20210316075928.1763460-1-hs@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210315083531.3743183-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20210316075928.1763460-1-hs@denx.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 09:35:28AM +0100, Martin Kepplinger wrote:
-> Two fixes for the Librem 5 phone descriptions and one resend of
-> https://lore.kernel.org/linux-arm-kernel/20200915141622.14736-1-festevam@gmail.com/
-> that enables the hantro vpu staging driver. Feel free to ignore that one
-> if we want to wait for it to be out of staging.
+On Tue, Mar 16, 2021 at 08:59:26AM +0100, Heiko Schocher wrote:
+> add compatible entry in nxp_fspi driver for imx8mp
 > 
-> revision history
-> ----------------
-> v2: (thanks Shawn)
->  * fix commit hash in commit message
-> 
-> v1:
->  * https://lore.kernel.org/phone-devel/20210311120259.3310499-1-martin.kepplinger@puri.sm/T/
-> 
-> Fabio Estevam (1):
->   arm64: defconfig: Enable the Hantro decoder
-> 
-> Guido Günther (1):
->   arm64: dts: imx8mq-librem5: Hog the correct gpio
-> 
-> Sebastian Krzyszkowiak (1):
->   arm64: dts: imx8mq-librem5-r3: Mark buck3 as always on
+> @Shawn: If this series is accepted, can you apply the DTS patches from
+> series v2?
+> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-March/643292.html
+> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-March/643293.html
 
-Applied all, thanks.
+Sure.  I will pick them up after this series gets accepted.
+
+Shawn
