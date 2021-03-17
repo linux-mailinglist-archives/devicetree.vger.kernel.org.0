@@ -2,86 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E12533F703
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:33:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A712333F77C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:50:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232435AbhCQRdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 13:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231465AbhCQRc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 13:32:58 -0400
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D21C06174A;
-        Wed, 17 Mar 2021 10:32:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
-        Reply-To:Cc:Content-ID:Content-Description;
-        bh=M2U69fnHtSDeQy8UM59zhzg/Vai3uTHHXB9W3I5zXPg=; b=gBs8YaMxW+u/Tsz1jBGmoQpZsZ
-        jPW07LUYgAwo3GS74aRF+JVVxN2JW7QMAeBUcVDI0EHjNfP+jbHaORzfLlgNviDrVBSrXhKeu3qpf
-        ZMm2Gw7QXAf1hO7JKLnhEiFvncqd6lXeJa9qaYQLjYVXDIj+kjlc9h6QaxOnD2R6Rdjo/roAjiBNj
-        DAyNTSC/isoGJoji7buiqtrej7vcHGo4DPh77d0SeJHIlCMUrJSyE+sTKLhxrJucrHeWIEtlkdSyh
-        VAVZ117uCMZmTh3w32DiTfc1To3BcP0W4UuoBuTIAYpikXzpMKPCbXutWMKvBMKJ9BaKObQKUuheK
-        peq9IHwA==;
-Received: from [2601:1c0:6280:3f0::9757]
-        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lMa2Q-001fTl-TX; Wed, 17 Mar 2021 17:32:56 +0000
-Subject: Re: [PATCH] devicetree: bindings: clock: Minor typo fix in the file
- armada3700-tbg-clock.txt
-To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210317100840.2449462-1-unixbhaskar@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <546989ea-c6b2-42e4-46b2-d7de5d208728@infradead.org>
-Date:   Wed, 17 Mar 2021 10:32:51 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S232648AbhCQRt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 13:49:56 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33222 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232483AbhCQRtk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 13:49:40 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lMaIR-00BV78-QU; Wed, 17 Mar 2021 18:49:27 +0100
+Date:   Wed, 17 Mar 2021 18:49:27 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
+Cc:     Jonas Gorski <jonas.gorski@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] net: mdio: Add BCM6368 MDIO mux bus controller
+Message-ID: <YFJBJ1IHpkXXaGvc@lunn.ch>
+References: <20210308184102.3921-1-noltari@gmail.com>
+ <20210308184102.3921-3-noltari@gmail.com>
+ <YEaQdXwrmVekXp4G@lunn.ch>
+ <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210317100840.2449462-1-unixbhaskar@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/17/21 3:08 AM, Bhaskar Chowdhury wrote:
+> BCM6368 (and newer) SoCs have an integrated ethernet switch controller with dedicated internal phys, but it also supports connecting to external phys not integrated in the internal switch.
+> Ports 0-3 are internal, ports 4-7 are external and can be connected to external switches or phys and port 8 is the CPU.
+> This MDIO bus device is integrated in the BCM63xx switch registers, which corresponds to the same registers present in drivers/net/dsa/b53/b53_regs.h.
+> As you can see in the source code, registers are the same for the internal and external bus. The only difference is that if MDIOC_EXT_MASK (bit 16) is set, the MDIO bus accessed will be the external, and on the contrary, if bit 16 isn’t set, the MDIO bus accessed will be the internal one.
 > 
-> s/provde/provide/
-> 
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+> I don’t know if this answers your question, but I think that adding it as mdiomux is the way to go.
 
-Bhaskar,
+Hi Álvaro
 
-Did you send this one to "robh+dt@kernel.org"?
-AFAICT, it was sent to "dt@kernel.org", which bounces.
+The Marvell mv88e6390 family of switches has a very similar setup. An
+internal and an external MDIO bus, one bit difference in a
+register. When i wrote the code for that, i decided it was not a mux
+as such, but two MDIO busses. So i register two MDIO busses, and rely
+on a higher level switch register mutex to prevent parallel operations
+on the two busses.
 
-If you used "robh+dt@kernel.org", it appears that 'get send-email' has a problem with that.
+The reason i decided it was not a mux, is that all the other mux
+drivers are separate drivers which rely on another MDIO bus
+driver. The mux driver gets a handle to the underlying MDIO bus
+driver, and and builds on it. Here you have it all combined in one, so
+it does not follow the pattern.
 
-thanks.
+So if you want to use a max, please break this up into an MDIO driver,
+and a mux driver. Or have one driver which registers two mdio busses,
+no mux.
 
-> ---
->  .../devicetree/bindings/clock/armada3700-tbg-clock.txt          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
-> index 0ba1d83ff363..ed1df32c577a 100644
-> --- a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
-> +++ b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
-> @@ -1,6 +1,6 @@
->  * Time Base Generator Clock bindings for Marvell Armada 37xx SoCs
-> 
-> -Marvell Armada 37xx SoCs provde Time Base Generator clocks which are
-> +Marvell Armada 37xx SoCs provide Time Base Generator clocks which are
->  used as parent clocks for the peripheral clocks.
-> 
->  The TBG clock consumer should specify the desired clock by having the
-> --
-
-
--- 
-~Randy
-
+   Andrew
