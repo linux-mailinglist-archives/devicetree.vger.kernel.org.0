@@ -2,95 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2268233F9AE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 21:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD14533F9C8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 21:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233361AbhCQUED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 16:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42770 "EHLO
+        id S233322AbhCQUMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 16:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233357AbhCQUDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 16:03:46 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8D9C061760
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 13:03:45 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id t37so251881pga.11
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 13:03:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PMZcSuGazFdtOb5qvPexbIVWGQzVKNMJ7ZZH0Yf8cCs=;
-        b=Da5G1yif8DdX+8w8KJ4dBsTTgesPOgdGFV0u/nK8pyzOMYg0odPKBeOlgKoMOsygW7
-         qVSetOn7sBkEyflrN/a9gL/N0QuUrqlTUCAp8EdYTeab0g8HXgQcb/S59tsABZn3zSkD
-         W9LwL8oqfKGiHN+4ts8NEL9k/OwvdJPSWioqA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PMZcSuGazFdtOb5qvPexbIVWGQzVKNMJ7ZZH0Yf8cCs=;
-        b=mUuU60xBD9hedPcGzrCyfIQsT2xOUK9kLIPPxOhISZAj5hy/3ncdtzP64B+LAkUJkF
-         nx9z8EP/EmSwBo22D58vZ+IOFQnC2mzaQznCEoCygr/GHVyG4WnAC+yug94jyskXkWeU
-         AvlEbBH9G99uWjapLFeohfrT7FFoqsQtZ2cWJdsn57M6Oi09KYibDH2uFSh9nfsRyv/i
-         4guxiyD0/DNuMT1QoaLqFKpaSxZ/V9Z3uvIWW5qNgaRzZoBdxucEF6o60VBxaO9is8w0
-         6PCEIeOBh806A7Jprn1Wx1XFB93o+frHOjp9qlrTdwUXiagPDWNNGblRQKORn6RWeLKs
-         O6kQ==
-X-Gm-Message-State: AOAM533RktVyXSA/drhVzEcpXvo1OieLIurzrJN5bQFte8KDm0Th/SC6
-        6Qbk8hGLZlWPGPvCqdALBtI+MA==
-X-Google-Smtp-Source: ABdhPJxhKXf2juJqtE1bn8z/X2ECPS65c7/sTPzGQLSiMoHGnctCifHOfFffOrE0CYg/TSWJVVotJA==
-X-Received: by 2002:a63:4c4e:: with SMTP id m14mr4065710pgl.35.1616011424752;
-        Wed, 17 Mar 2021 13:03:44 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
-        by smtp.gmail.com with UTF8SMTPSA id q15sm3870178pje.28.2021.03.17.13.03.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 13:03:44 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 13:03:42 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH 2/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add
- bindings for SC7280
-Message-ID: <YFJgnnoOxI7n0HPL@google.com>
-References: <1615978901-4202-1-git-send-email-sanm@codeaurora.org>
- <1615978901-4202-3-git-send-email-sanm@codeaurora.org>
+        with ESMTP id S233340AbhCQUMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 16:12:33 -0400
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FE4C06174A;
+        Wed, 17 Mar 2021 13:12:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+        Reply-To:Cc:Content-ID:Content-Description;
+        bh=KLAHwcd2QZ23rDr/5Z70QKfxvKIFkoTNZ3q3rZSsusQ=; b=jEgVG4lCtXmAMEgO1vHsH/ZGOt
+        NXcTYviTA2tIgXt+11oFfLAcHdOKvmooiSV5dX1TwBSXQ222coDHKFSS1t+Qsgg/XsYRsYxJQDCsk
+        C0YjQU4Q7YciUegtyud+vPBlk7/FOUL2e5CvIV7jm5bQuEzyrVqY39JfFHt+HNfr5XbJvJd0qV5K8
+        EFCqO4hHfMok65hHp+PyY7CEHAdcWFML7WHqpgaaWCGRhppsEtyTsubfnTCsKZ+uYcWYjMcx2QSu6
+        ZP9I/D1HGaHYKzxI6RhQ8bvArBhvLPMdFDwUxX5eso3Y74XFvHQ99gbIlCA2Arr8ILCgd0+kr+Sye
+        mRq5FkEQ==;
+Received: from [2601:1c0:6280:3f0::9757]
+        by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1lMcWs-001gXv-Vf; Wed, 17 Mar 2021 20:12:31 +0000
+Subject: Re: [PATCH] devicetree: bindings: clock: Minor typo fix in the file
+ armada3700-tbg-clock.txt
+To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210317100840.2449462-1-unixbhaskar@gmail.com>
+ <546989ea-c6b2-42e4-46b2-d7de5d208728@infradead.org>
+ <YFJcl6i95cRM22MI@ArchLinux>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <efc138db-d82d-a9f0-ca7b-61ae993e0459@infradead.org>
+Date:   Wed, 17 Mar 2021 13:12:28 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1615978901-4202-3-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <YFJcl6i95cRM22MI@ArchLinux>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 04:31:40PM +0530, Sandeep Maheswaram wrote:
-> Add the compatible string for sc7280 SoC from Qualcomm
-> 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> index ee77c64..20203a8 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,usb-snps-hs-7nm-phy
-> +      - qcom,sc7280-usb-hs-phy
->        - qcom,sm8150-usb-hs-phy
->        - qcom,sm8250-usb-hs-phy
->        - qcom,sm8350-usb-hs-phy
+On 3/17/21 12:46 PM, Bhaskar Chowdhury wrote:
+> On 10:32 Wed 17 Mar 2021, Randy Dunlap wrote:
+>> On 3/17/21 3:08 AM, Bhaskar Chowdhury wrote:
+>>>
+>>> s/provde/provide/
+>>>
+>>> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+>>
+>> Bhaskar,
+>>
+>> Did you send this one to "robh+dt@kernel.org"?
+>> AFAICT, it was sent to "dt@kernel.org", which bounces.
+>>
+>> If you used "robh+dt@kernel.org", it appears that 'get send-email' has a problem with that.
+>>
+> I sent out a mail to David and Rob, including you for the same problem . Hope
+> David will do something to change that address or Rob might do something . So
+> that it will not bounce in future.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+David said that vger isn't modifying the email address.
+And there is nothing wrong with it (robh+dt@kernel.org),
+although it appears that either git send-email or just gmail.com
+does not like it.
+
+
+> Lets see.
+>> thanks.
+>>
+>>> ---
+>>>  .../devicetree/bindings/clock/armada3700-tbg-clock.txt          | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>>> index 0ba1d83ff363..ed1df32c577a 100644
+>>> --- a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>>> +++ b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>>> @@ -1,6 +1,6 @@
+>>>  * Time Base Generator Clock bindings for Marvell Armada 37xx SoCs
+>>>
+>>> -Marvell Armada 37xx SoCs provde Time Base Generator clocks which are
+>>> +Marvell Armada 37xx SoCs provide Time Base Generator clocks which are
+>>>  used as parent clocks for the peripheral clocks.
+>>>
+>>>  The TBG clock consumer should specify the desired clock by having the
+>>> -- 
+>>
+>>
+>> -- 
+>> ~Randy
+>>
+
+
+-- 
+~Randy
+
