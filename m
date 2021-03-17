@@ -2,159 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DA9633E82C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 05:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD8B33E841
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 05:03:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230493AbhCQD6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 23:58:19 -0400
-Received: from mail-eopbgr80077.outbound.protection.outlook.com ([40.107.8.77]:15493
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230410AbhCQD5s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 23:57:48 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CcpPu+kRim028pyfTJEo78nZqCD6VDBSPwCdwEdF7K2S3IZESWPqRmhkKiUFfLZjuhB5qPcIK1gGApx/D4yqeRZ6j7ge3D6s8t3HTX/9oXh/g8D/QuLUsQnxoMx0COHvGECnZRaX9V08eVqO0Cbs7YwjfNokxYm5FmgEUvL8/cAE+1Fv1vgfv0Ft9p9sNTLhGUt6NtYqUVwoseeFbqAbcAJZqYO74ZHY5CA6zQveBTrEIZqNuqUPNW/TakvqD0dvw+Nn/8l+mvb2mzeJ8BhBgEz7BG84u2CgV6zyxbMZtyzivnmH5QIvJZjDjVqB2+npFMLhG4n2v3kNrMPnUvAycg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2gKC906WdIFlqRL+Z34rwX/zHZ0DcNJIZ2s7eZMXT8=;
- b=QIYq2ivnvDik4YastI6W++pzhK508Pnn//sgwVg/OjnJV5NynKnbyMWa0pEYvTNsjIpEVprW+YfzvfJezoqChjkvL6pOfyPERJU7fR1yeFdt2jJfKk5id0ClonJqgCMKWukw91UbjWCdI3DP9XJ8ETuXe9byzW22NUx+aGc9XMlYX/ElYuv+GhsBJics+YJxzpc9fdI3YFmJjEANZHJOsMiyseA7573FzOAdZ8yqM7MNG1srs/RknO5UeNyAQ0ceOy0wI5QfFNa+cAulxKuHC5pAL8vON5iig7/EZuaQXBQC9A5t5Q+TL4+ZfzlisZVR0iS+4vIkcB4DyH+F3N1QcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2gKC906WdIFlqRL+Z34rwX/zHZ0DcNJIZ2s7eZMXT8=;
- b=J/PIW7zkhXFYFjAZYauj4cijNWX4udtZa86vEhrIU4Xzr2fOJOzjXd3XSINP5OrgV6gB44J5dfLTXdVTRjqadIUMFVD5IZBRqsjDjshVa20ueFalR+cJS9xSBUccObMXnx+jtKirhF2awIPdixV7FHPRe4Y8Yo5mbyK5kGVk9AA=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB6991.eurprd04.prod.outlook.com (2603:10a6:803:12d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Wed, 17 Mar
- 2021 03:57:45 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3933.032; Wed, 17 Mar 2021
- 03:57:45 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org,
-        robert.foss@linaro.org, lee.jones@linaro.org
-Subject: [PATCH v6 14/14] MAINTAINERS: add maintainer for DRM bridge drivers for i.MX SoCs
-Date:   Wed, 17 Mar 2021 11:42:49 +0800
-Message-Id: <1615952569-4711-15-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1615952569-4711-1-git-send-email-victor.liu@nxp.com>
-References: <1615952569-4711-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: HK2PR04CA0090.apcprd04.prod.outlook.com
- (2603:1096:202:15::34) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S229806AbhCQEDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 00:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229660AbhCQECn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 00:02:43 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091F4C061763
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 21:02:42 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7D4DA891AE;
+        Wed, 17 Mar 2021 17:02:38 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1615953758;
+        bh=IWnzGbdhoY3I/3H/FRPN91hsW4fCSbI+PNT01Z3SHRk=;
+        h=From:To:Cc:Subject:Date;
+        b=h9YHDvJwJSvEngk0brf5/B6d6nJasHnYcVQxBa4Z5onpW6CXCaS5cFG5tv7YnOIxp
+         EdGFACYsvFRvzkvMlXQxJvfbmiLslyz44VfqLTh1bv1qeH+49Ab8ndqAeH69bVwu6x
+         9OFNUYOvkesIKGs6SpdBDa4Qn0fCmORMN+QnjktY50+0Si57K603NH22SvXZbvlKzZ
+         HylRZYeEaqzxQnpNmNQX8XTigI6jMC14BaENbK+V0mkcfxzejY3ET2H7Mr31AxbXqH
+         hyQRYgKpHzgDwipNaChBCR5xqb5O7+e9xBddwb/AMbxWMlRYeLGieBtbDQA8aifVH3
+         PdoznljYXdeJA==
+Received: from smtp (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B60517f5e0000>; Wed, 17 Mar 2021 17:02:38 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id 5331413EF08;
+        Wed, 17 Mar 2021 17:02:52 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 3D6F4284092; Wed, 17 Mar 2021 17:02:38 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net
+Cc:     devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 1/3] dt-bindings: Add vendor prefix and trivial device for BluTek BPA-RS600
+Date:   Wed, 17 Mar 2021 17:02:29 +1300
+Message-Id: <20210317040231.21490-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by HK2PR04CA0090.apcprd04.prod.outlook.com (2603:1096:202:15::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3955.18 via Frontend Transport; Wed, 17 Mar 2021 03:57:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 5388acd9-247e-476c-e007-08d8e8f8d267
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6991:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB699178A7E9F0562B35976EF0986A9@VI1PR04MB6991.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NyzELOxnSZCDF1Z9e4lkqbEbQBGHRNaAqZOEurhBXKfNY92PgLK2ktsO1iF/HnyGL+6w8Kn4aZKXXg5R4NIfGAQc+qy/8GFhAZ88H11YYdL1KEIdittulUa+nJBJRIdOLkTPCWlCPw1asgNuw2rU2PUewci2ylIed0aTkkXhuT/SgZXaJcxQTdk+fLnqK/azZ+OfTlzRbfl1WGa9KchZgeqtkHdNSUAtJBxHm38T0LyngcL6K8uWj607tLKMJYnWmRtv5T3T1fO4eDyUazCyHcNYm7IGA6/WeaJsFQi3DBOGbncAtQhEDDTtCUv4D7bSELEgTYDOSTitICUiUAfs/LszPDyvGoc074Psub3nyIGNUIFbhEkVGHxdov8/YmfHTsnXMhcLJ19HzUjRLusqXTlHyx8W0UqS/KIbnixtxQrXoL15d5VYtSmv6EGHJjhFdVyQkgLO4oWwxWv3JCHyekDMVWK+LpS/ozBnZgZWOWLgW0vyJNWV2QFZUq4egA3oB+2vbJpLgj/RiVcOM49Pzm3xznqwlxO7f+IScJVHdv6h7/hD2E8VOBe9W5gZOO31bdikReq5bO8H1QsF8/h0omTYRw8d2axIGIbjO90agiX56oKLboiOfg5mRhorPFyq
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(366004)(346002)(136003)(39860400002)(396003)(376002)(6506007)(36756003)(2616005)(6512007)(86362001)(6486002)(478600001)(69590400012)(52116002)(186003)(66556008)(66946007)(4326008)(66476007)(6666004)(8676002)(956004)(5660300002)(316002)(26005)(2906002)(16526019)(8936002)(7416002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?HSu9/ITuoAcsHmVUVoY8JrfsRjkvShvJtu2XaTIjL9ezq7zYK2GjM9ujd78X?=
- =?us-ascii?Q?lHoWvE15UfLuYMhpMrVH5w6Ov3QghQGv6rAR3dRLkOjVHIZ0NRaoIW3T0/Z7?=
- =?us-ascii?Q?es3WiFQ5UtYvF0s7xLnRM9fbgCwO2Vlu7SgPpriGG9hiMDCKXuK+6zFlO0ZJ?=
- =?us-ascii?Q?+IHb6/S63DEmXSPXMiYfiw14idj+dUPNucU18mYyOQEEXZf3CLrxCalHWRxe?=
- =?us-ascii?Q?psONsX64XzEnYTHGbfDepE5XmeZiQVq+qYIhLQI9TTJUppATpzXW5Kkz+gfD?=
- =?us-ascii?Q?EmlPRy4Rmx89obefTUHq/FsoBSWctN/ibZqck2r22tCrlrHllnOUa1C2mUf0?=
- =?us-ascii?Q?Aqp0MJunKZHH9Kmvmp8V5SWnxqV6sqj73gS11tG9ykR32A57OlL+oXYEkrAf?=
- =?us-ascii?Q?02GJwLe5pA3QM9kBGlGt/KKSnbsP1+JadUOtQahyfXWeR0c2tOfLIcOdNz+j?=
- =?us-ascii?Q?XSVNs2/KhEIr6+3X2wCvS0iO17AGcMfVVSvCIDpzYFBiZktfiM5Fa8MDOTCS?=
- =?us-ascii?Q?Bw/Qtdb4x0nCUd96OIIWDYF2pT52hRol5pbhRqKyF5nIbvmL+XJ8qiAtFreS?=
- =?us-ascii?Q?bAY404lXeY75o//mheQV7PeiTW5v7ipp+JZ/GbgASbv21jtdPZIE6h4l1GXm?=
- =?us-ascii?Q?3gIuELfriaG2XWnrrcY9+7drdUzjTe1dYG0pBy0u/FhQ+FX+CPfFhtsRjHTT?=
- =?us-ascii?Q?NvQqncoPk4YYaFFmfrLTlhbTqeOLVaUzHQ4/ntxxQnH93jSpsJFJxUO/aTWW?=
- =?us-ascii?Q?6S97/wPPsApodLHwDRfhrF9mcutp4vyjHfrhXm1pE5k1Msze01B7EVkHPwxH?=
- =?us-ascii?Q?+c2ssm4ahKUB0j0TtjmVMe2WcAaqIp+LkIlGL+GywU/q7eBzwxEudAdjuoZ1?=
- =?us-ascii?Q?+BCCnkaq98/0FgiiIFEGIVa2D/Z8JCqA6r6Nx8888efGJxBgRpeGHwjZQNsd?=
- =?us-ascii?Q?9AxeHzkuntgmuG67KrWP/vjPUgCuYf5pBuGZ//75c3Ibf3D3WiVuOZOE0zcp?=
- =?us-ascii?Q?YQIiU1oKj/nd7qmyOnxsz4QpTPfz+QdrioVDzEHJrR2oMFl+NL5Ayj5fG9Md?=
- =?us-ascii?Q?jvHj7AWkKRI3nNKLUjjJyR0eZ5pT6T6Ld5gxF91/LO74a5ROp7SyCqo00Pvt?=
- =?us-ascii?Q?GAoTLC+IiB5CHr+fRpWEli0jk6/4dRODG8kg7SOFg0KDPdRtHX1PihfCm0Mu?=
- =?us-ascii?Q?WYuRJ+mu9i6jK7LbAbwa5oAqyPX8sD34msw6IJZhQ+Xz3oyd+Jf0vSjXu+I7?=
- =?us-ascii?Q?0/9rRnPAKnIagLwJwwwxWFhXzOGFIQ74HmE50Uv+GRsl0cV7yf5QrhfCeOUK?=
- =?us-ascii?Q?fg5+D4TzOwh6mM6gvPcF2j6E?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5388acd9-247e-476c-e007-08d8e8f8d267
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2021 03:57:45.6479
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XCiHarbLOlIbrzWMSR3MzdV4XIGNbHJ6peO1PlG0YSvCkLrq4blmBa5TNcyMOPoGKAd87k1BaJlxOtKiKz0/og==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6991
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=dESyimp9J3IA:10 a=ueuSTYl9OFj5rdJX3qQA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of DRM bridge drivers for i.MX SoCs.
+Add vendor prefix "blutek" for BluTek Power.
+Add trivial device entry for BPA-RS600.
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
-v5->v6:
-* No change.
 
-v4->v5:
-* No change.
+Notes:
+    Changes in v3:
+    - None
+    Changes in v2:
+    - None
 
-v3->v4:
-* No change.
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 2 files changed, 4 insertions(+)
 
-v2->v3:
-* No change.
-
-v1->v2:
-* No change.
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4b705ba..488e0ef 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5939,6 +5939,16 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE IMX BRIDGE
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
-+F:	drivers/gpu/drm/bridge/imx/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
--- 
-2.7.4
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+index a327130d1faa..569236e9bed0 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -50,6 +50,8 @@ properties:
+           - atmel,atsha204a
+             # i2c h/w elliptic curve crypto module
+           - atmel,atecc508a
++            # BPA-RS600: Power Supply
++          - blutek,bpa-rs600
+             # Bosch Sensortec pressure, temperature, humididty and VOC s=
+ensor
+           - bosch,bme680
+             # CM32181: Ambient Light Sensor
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+index f6064d84a424..d9d7226f5dfe 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -169,6 +169,8 @@ patternProperties:
+     description: Beckhoff Automation GmbH & Co. KG
+   "^bitmain,.*":
+     description: Bitmain Technologies
++  "^blutek,.*":
++    description: BluTek Power
+   "^boe,.*":
+     description: BOE Technology Group Co., Ltd.
+   "^bosch,.*":
+--=20
+2.30.2
 
