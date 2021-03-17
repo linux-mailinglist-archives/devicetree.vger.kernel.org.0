@@ -2,157 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B0E33EB87
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 09:31:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A9433EBE1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 09:55:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhCQIbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 04:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33486 "EHLO
+        id S229564AbhCQIzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 04:55:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbhCQIa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 04:30:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1FBC06174A
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 01:30:59 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1lMRZV-00016k-TZ; Wed, 17 Mar 2021 09:30:29 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:31e3:6e40:b1cd:40a8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 582725F73BA;
-        Wed, 17 Mar 2021 08:30:22 +0000 (UTC)
-Date:   Wed, 17 Mar 2021 09:30:21 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mark Brown <broonie@kernel.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Alex Elder <elder@kernel.org>, Suman Anna <s-anna@ti.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Drop type references on common properties
-Message-ID: <20210317082003.rhm6sdrwxmt4elu2@pengutronix.de>
-References: <20210316194858.3527845-1-robh@kernel.org>
+        with ESMTP id S229508AbhCQIyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 04:54:47 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE68CC06174A
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 01:54:46 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id e9so939271wrw.10
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 01:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1ep4RAOuLpsLyK7c13YsySxBNqK6BBmFhVdnhfjr9A8=;
+        b=kbVjdlr56gNt7X0U4NNzNAphXMwon7ggznxDhWnZZ4kGmfPCg6kWlUy25REgbi6ET8
+         M3L5aQRoOA1usapyXbO9G2Av6ITaFP9ddwYsiFVT0TJpw3Bf5MYInj9QF98sND8hUWBF
+         PaGo+UNFVet02vQsHWJHQC6Ss+VpM65HvKCUjMyqQfPHL0meCeHvJGIsVIypwZgTiHW9
+         xYdxfdIWFRa61Zmxb/kN9AaIveL1keVi0FOKoOV9j4HdiMnhWnLyuEVCrcAJe/ZNUZWu
+         7nMjyBfiICdSVEl035rQ0qf1Gwr9ri73OvWlGXvuuufDRQRj2HheO+3gTm/BGRyzUqfN
+         fB3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1ep4RAOuLpsLyK7c13YsySxBNqK6BBmFhVdnhfjr9A8=;
+        b=EwyAJOXEikuqZfGnzLeZy908LtMkDxwEb4Z9ztmkgvx/SLszv8Xor1aTj3R43l8PoJ
+         6ubCTmQcYvK3iCtPoIN9acYCA9Dbhjh/UVXE6aVPCoR1XK3tzjWmtj7ZhrcEMlFewXl8
+         t6lDODFglbFftUUm+SV5PW+WD89gH/9GjvZTi/07HQbm9iLWzmWZD+wLELKeo4bVyUJQ
+         cDVMnmrdAanciZLKR2IaSvCxZMBsD+5DLVp3mhXlsLiLDu2kvLuKvbvbPm8dUA27BS6j
+         Coh+VzEjj4YFS0r0P29Snm98584L33WoHcJndx07/+Ps+T1X7LRiAGqN98wentSCF7+u
+         h3TA==
+X-Gm-Message-State: AOAM531B7PeoYtDbuxCT4kpAne9hSPeGLILy6YF/J/sItxV6kg+Cuwuj
+        txl7rbntDo/lTV4omQMF1QZcFW+9hKPsAA==
+X-Google-Smtp-Source: ABdhPJwxh1HB2ueQyw/RPGx9iR32jttFoPuAd7ri2XiENH5A1B0vgz0mLsZuP8B+JeZADiwF7MhpzQ==
+X-Received: by 2002:a5d:5487:: with SMTP id h7mr3286509wrv.348.1615971285523;
+        Wed, 17 Mar 2021 01:54:45 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id p10sm26188538wrw.33.2021.03.17.01.54.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Mar 2021 01:54:44 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: nvmem: use base meta-schema for consumer
+ schema
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org
+References: <20210316195111.3531755-1-robh@kernel.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <b91daddf-6162-3679-ff7b-354170e0d0fb@linaro.org>
+Date:   Wed, 17 Mar 2021 08:54:43 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rrfkyphxuuq3viq3"
-Content-Disposition: inline
-In-Reply-To: <20210316194858.3527845-1-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210316195111.3531755-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---rrfkyphxuuq3viq3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 16.03.2021 13:48:58, Rob Herring wrote:
-> Users of common properties shouldn't have a type definition as the
-> common schemas already have one. Drop all the unnecessary type
-> references in the tree.
->=20
-> A meta-schema update to catch these is pending.
->=20
-> Cc: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Marc Kleine-Budde <mkl@pengutronix.de>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
+On 16/03/2021 19:51, Rob Herring wrote:
+> Common consumer schemas need to use the base.yaml meta-schema because
+> they need to define different constraints (e.g. the type) from what
+> users of the common schema need to define (e.g. how many entries).
+> 
 > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Cc: Ohad Ben-Cohen <ohad@wizery.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Cheng-Yi Chiang <cychiang@chromium.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Stefan Wahren <wahrenst@gmx.net>
-> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-> Cc: Odelu Kukatla <okukatla@codeaurora.org>
-> Cc: Alex Elder <elder@kernel.org>
-> Cc: Suman Anna <s-anna@ti.com>
-> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: linux-can@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-remoteproc@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-usb@vger.kernel.org
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml       | 5 +----
->  Documentation/devicetree/bindings/arm/cpus.yaml              | 2 --
->  .../bindings/display/allwinner,sun4i-a10-tcon.yaml           | 1 -
->  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml    | 3 +--
->  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml      | 1 -
->  .../devicetree/bindings/interconnect/qcom,rpmh.yaml          | 1 -
->  .../bindings/memory-controllers/nvidia,tegra210-emc.yaml     | 2 +-
->  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml   | 1 -
 
-For the flexcan:
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+--srini
 
-regards,
-Marc
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---rrfkyphxuuq3viq3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmBRvhoACgkQqclaivrt
-76mnKAf+PxQ/8rd3QepXVtp0iP7BwfTPO2Vw0b0/dXzEt5pT/cygYEDP2YE6dumw
-9LbLd9JPDJJFhwXpMje5DOZW+Nfa93SRBq/MC1/XynoG8UAa7r2VuO7ZJscUNuI7
-nL04VVsP17gLMoR9ZGSvd+Vbau0uCw3APVawqN2d2nsi9eCCTykaIpQBrXGL+VHo
-h225JlHCOUVizUbAE8BFWxDXXff1mMEKHU46APvK+RXz1nExI23zmwJeIGA11RwP
-bjFMRZehLZesl/p6uDndUYNL4wTK7LXOf+u/A/wGDdQSuLOwoVbX9ACOLHsB0qfP
-+1kjTYyaduEG1rpaYQ966dHZqjQEuQ==
-=4979
------END PGP SIGNATURE-----
-
---rrfkyphxuuq3viq3--
+>   Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+> index 828e4a1ece41..b1da238c8bcb 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+> @@ -2,7 +2,7 @@
+>   %YAML 1.2
+>   ---
+>   $id: http://devicetree.org/schemas/nvmem/nvmem-consumer.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +$schema: http://devicetree.org/meta-schemas/base.yaml#
+>   
+>   title: NVMEM (Non Volatile Memory) Consumer Device Tree Bindings
+>   
+> 
