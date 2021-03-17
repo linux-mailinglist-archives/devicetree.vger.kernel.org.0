@@ -2,387 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B51A633FA5F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 22:17:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E510433FA93
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 22:43:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbhCQVQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 17:16:55 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:39904 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231167AbhCQVQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 17:16:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1616015804;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fvmTNKdyQD8s3a5BWMkDpJz/hGcnvlu2wRkq0iMW4OU=;
-        b=HSAWmSB6Vx0JdP7wdNayemJ74z/hk6lYvmpjcurqSIPtM2jk1MM7a6Xpdlx1QIfib6t7Tm
-        5DqqL+n7Kbd+5b9jeSS+7Urrab50xIoDcW95qa+0ocyaY6DW8yVF5WdcP7M6/Cb76txFtD
-        U7afpCe+LoZgNJBJM6MGgYrx1Syfhjc=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-551-YCUTCtUfOQuneX-yz6P_Kw-1; Wed, 17 Mar 2021 17:16:43 -0400
-X-MC-Unique: YCUTCtUfOQuneX-yz6P_Kw-1
-Received: by mail-qt1-f198.google.com with SMTP id b18so12237414qte.21
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 14:16:43 -0700 (PDT)
+        id S231820AbhCQVmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 17:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231741AbhCQVm1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 17:42:27 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7959CC06174A;
+        Wed, 17 Mar 2021 14:42:27 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id t18so1829155pjs.3;
+        Wed, 17 Mar 2021 14:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=44auvYUUIKCuBlG/Ha93OO2YDP539tvtlw8ITUUzMzo=;
+        b=aCK6xxAIu5rG0ENNdO5fYXZLu/ZaImRKfqIeE1G+848dh0Z8YzTDT83F+LyuYj0LGR
+         9MLUSQZzVxE7UsSVzr9Bf5sKVlX5ShWg8jV7GS9vns83+TvBQu79GWiNn5OxDECu81nS
+         CHsGUi2Nw/6H0NjfdTWFk3QBKY9KcXRfjch357crjF6CZrjUPRuDG8JiM1HuGALrsoyp
+         Z7izaL24xj0scQkyKtXnPxEn85sILNXVa2jbpAydcoufuNor9krIcD6ugBvmm1rSBR2T
+         mjKWPMZf5m6pM3iQsTppmwyXVsYaqZzC60pEiRJPz9yIL6kM/F8Rz2xcyfYZ5SCJrQ2h
+         /WzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=fvmTNKdyQD8s3a5BWMkDpJz/hGcnvlu2wRkq0iMW4OU=;
-        b=JN9Jk/JkUq0Ib0HlGIDmpBIkOty6hiIb+anWqRx2KqZhUbHWAEoeSJ+FhM+0smXLyr
-         hRq4kMfExIZECgfzVj93l36MSn9U97zyPPQjFcseBLIVZrTKQZZWqj0+CJvHFpudUJcb
-         f+8ZqElLNg4lmGpfpwGc+DkpeqGNWjh54Wzj1V5x51ZuPbrV230+fVu1NSug9+UdUNcn
-         QXc6/2WWOPbZhWfPO2CWRn/aKtuBesnu7kxPKvwaoMlHO0hdnri8dMUHejBhBDLV13WG
-         i74RwicmVRK6M+g5YYcP9IplH7mTvpAKK2D9nN7gz0yIxcqDtNU5S9y2qCIMvmJ07JyA
-         ydnQ==
-X-Gm-Message-State: AOAM532l8TgHmFIy9qkz2HQYXdfjPSY7X8dKIktIR4610Jrq1qLQD/+F
-        XphEEbsskpl/Mvm4FLnoDKRVYP21v8UB2bD811IdHgt46reFJ+gFLOfYqgm3IenQzYjHgPT2ICp
-        kpfw7ceSujz7hPMY1L1m0Pg==
-X-Received: by 2002:a37:a48a:: with SMTP id n132mr1185090qke.359.1616015802574;
-        Wed, 17 Mar 2021 14:16:42 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw/BvBhnDa8a8DLIvfUbh0rE0VszZi3/FHrSP2wMKoc1etEvOecXgSsyijGzdtQ96HrRNp/lA==
-X-Received: by 2002:a37:a48a:: with SMTP id n132mr1185064qke.359.1616015802310;
-        Wed, 17 Mar 2021 14:16:42 -0700 (PDT)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id p186sm174867qka.66.2021.03.17.14.16.40
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=44auvYUUIKCuBlG/Ha93OO2YDP539tvtlw8ITUUzMzo=;
+        b=ZyydG9UaEK0KjsG8pH//NjXUqDI+kpC2QteokBvYnx46sqce5w63cyScrh1BTuYklD
+         5P9245hSXPm3cbW9oMuWCpB3pU/arg3CB7PfodRoP6RbmmpwleFbJNwCrsx+xr6nXJx3
+         rviPMABUwea04TNKTgZjJyqrF7zCRvyr6RpEld00Ep8VSCanD+IdxggUqYjLZVaBHlSH
+         62Mm4TQUntCBynOq3on69VcDlQBbsiRC40nKoqAjsPk8piPv75bZnvfCgMhi0mlGbUdZ
+         FrVasJqiL+hZT9cG6o3fqmEG7xl3hQ4yPRg7iaGmPbihBdVk/EoseTJEcATQxxw+jmkb
+         fUkg==
+X-Gm-Message-State: AOAM5338d1xVg5H44YZvaV+U+OiDUHiTUEv1iStRbSLTUbB4e1nx66bM
+        li1AWtGKwgnsdRB4+xMkwEacsgjwT2s=
+X-Google-Smtp-Source: ABdhPJy9hEpuOivND1Etai95q/eD9Q6CPXWmpcHhBWejSZz8MJkvsEUHucaXmGIq9Mb3b8jx9qL5Xg==
+X-Received: by 2002:a17:903:1c3:b029:e6:a15:751f with SMTP id e3-20020a17090301c3b02900e60a15751fmr6464154plh.44.1616017346581;
+        Wed, 17 Mar 2021 14:42:26 -0700 (PDT)
+Received: from [10.230.29.202] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id j20sm4228573pji.3.2021.03.17.14.42.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 14:16:42 -0700 (PDT)
-Subject: Re: [PATCH V3 XRT Alveo 13/18] fpga: xrt: devctl platform driver
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210218064019.29189-1-lizhih@xilinx.com>
- <20210218064019.29189-14-lizhih@xilinx.com>
- <f32d06bc-1054-eb97-cce1-9b40e9c4442b@redhat.com>
- <20b2a60e-1ed1-c466-ce0b-26179338390e@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <1c0b59ac-400a-aac6-9886-6b6e7c685a9c@redhat.com>
-Date:   Wed, 17 Mar 2021 14:16:39 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        Wed, 17 Mar 2021 14:42:26 -0700 (PDT)
+Subject: Re: [PATCH 2/2] net: mdio: Add BCM6368 MDIO mux bus controller
+To:     Andrew Lunn <andrew@lunn.ch>,
+        =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>
+Cc:     Jonas Gorski <jonas.gorski@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210308184102.3921-1-noltari@gmail.com>
+ <20210308184102.3921-3-noltari@gmail.com> <YEaQdXwrmVekXp4G@lunn.ch>
+ <D39D163A-C6B3-4B66-B650-8FF0A06EF7A2@gmail.com> <YFJBJ1IHpkXXaGvc@lunn.ch>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <4c3f1252-50fd-8d90-3fac-009dace44813@gmail.com>
+Date:   Wed, 17 Mar 2021 14:42:23 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20b2a60e-1ed1-c466-ce0b-26179338390e@xilinx.com>
+In-Reply-To: <YFJBJ1IHpkXXaGvc@lunn.ch>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 3/16/21 4:54 PM, Lizhi Hou wrote:
->
->
-> On 03/04/2021 05:39 AM, Tom Rix wrote:
->> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+
+On 3/17/2021 10:49 AM, Andrew Lunn wrote:
+>> BCM6368 (and newer) SoCs have an integrated ethernet switch controller with dedicated internal phys, but it also supports connecting to external phys not integrated in the internal switch.
+>> Ports 0-3 are internal, ports 4-7 are external and can be connected to external switches or phys and port 8 is the CPU.
+>> This MDIO bus device is integrated in the BCM63xx switch registers, which corresponds to the same registers present in drivers/net/dsa/b53/b53_regs.h.
+>> As you can see in the source code, registers are the same for the internal and external bus. The only difference is that if MDIOC_EXT_MASK (bit 16) is set, the MDIO bus accessed will be the external, and on the contrary, if bit 16 isn’t set, the MDIO bus accessed will be the internal one.
 >>
->>
->> On 2/17/21 10:40 PM, Lizhi Hou wrote:
->>> Add devctl driver. devctl is a type of hardware function which only has
->>> few registers to read or write. They are discovered by walking firmware
->>> metadata. A platform device node will be created for them.
->>>
->>> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
->>> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
->>> Signed-off-by: Lizhi Hou <lizhih@xilinx.com>
->>> ---
->>>   drivers/fpga/xrt/include/xleaf/devctl.h |  43 +++++
->>>   drivers/fpga/xrt/lib/xleaf/devctl.c     | 206 ++++++++++++++++++++++++
->>>   2 files changed, 249 insertions(+)
->>>   create mode 100644 drivers/fpga/xrt/include/xleaf/devctl.h
->>>   create mode 100644 drivers/fpga/xrt/lib/xleaf/devctl.c
->>>
->>> diff --git a/drivers/fpga/xrt/include/xleaf/devctl.h b/drivers/fpga/xrt/include/xleaf/devctl.h
->>> new file mode 100644
->>> index 000000000000..96a40e066f83
->>> --- /dev/null
->>> +++ b/drivers/fpga/xrt/include/xleaf/devctl.h
->>> @@ -0,0 +1,43 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * Header file for XRT DEVCTL Leaf Driver
->>> + *
->>> + * Copyright (C) 2020-2021 Xilinx, Inc.
->>> + *
->>> + * Authors:
->>> + *   Lizhi Hou <Lizhi.Hou@xilinx.com>
->>> + */
->>> +
->>> +#ifndef _XRT_DEVCTL_H_
->>> +#define _XRT_DEVCTL_H_
->>> +
->>> +#include "xleaf.h"
->>> +
->>> +/*
->>> + * DEVCTL driver IOCTL calls.
->>> + */
->>> +enum xrt_devctl_ioctl_cmd {
->>> +     XRT_DEVCTL_READ = XRT_XLEAF_CUSTOM_BASE, /* See comments in xleaf.h */
->>> +     XRT_DEVCTL_WRITE,
->>> +};
->>> +
->>> +enum xrt_devctl_id {
->>> +     XRT_DEVCTL_ROM_UUID,
->> Assumes 0, should make this explicit and initialize to 0
-> Sure.
->>> +     XRT_DEVCTL_DDR_CALIB,
->>> +     XRT_DEVCTL_GOLDEN_VER,
->>> +     XRT_DEVCTL_MAX
->>> +};
->>> +
->>> +struct xrt_devctl_ioctl_rw {
->>> +     u32     xgir_id;
->>> +     void    *xgir_buf;
->>> +     u32     xgir_len;
->>> +     u32     xgir_offset;
->> similar to other patches, the xgir_ prefix is not needed
->>> +};
->>> +
->>> +struct xrt_devctl_ioctl_intf_uuid {
->>> +     u32     xgir_uuid_num;
->>> +     uuid_t  *xgir_uuids;
->>> +};
->>> +
->>> +#endif       /* _XRT_DEVCTL_H_ */
->>> diff --git a/drivers/fpga/xrt/lib/xleaf/devctl.c b/drivers/fpga/xrt/lib/xleaf/devctl.c
->>> new file mode 100644
->>> index 000000000000..caf8c6569f0f
->>> --- /dev/null
->>> +++ b/drivers/fpga/xrt/lib/xleaf/devctl.c
->>> @@ -0,0 +1,206 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Xilinx Alveo FPGA devctl Driver
->>> + *
->>> + * Copyright (C) 2020-2021 Xilinx, Inc.
->>> + *
->>> + * Authors:
->>> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
->>> + */
->>> +
->>> +#include <linux/mod_devicetable.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/delay.h>
->>> +#include <linux/device.h>
->>> +#include <linux/io.h>
->>> +#include "metadata.h"
->>> +#include "xleaf.h"
->>> +#include "xleaf/devctl.h"
->>> +
->>> +#define XRT_DEVCTL "xrt_devctl"
->>> +
->>> +struct xrt_name_id {
->>> +     char *ep_name;
->>> +     int id;
->>> +};
->>> +
->>> +static struct xrt_name_id name_id[XRT_DEVCTL_MAX] = {
->>> +     { XRT_MD_NODE_BLP_ROM, XRT_DEVCTL_ROM_UUID },
->>> +     { XRT_MD_NODE_GOLDEN_VER, XRT_DEVCTL_GOLDEN_VER },
->> DDR_CALIB is unused ?
-> Not sure if I understand the question correctly. ddr_calib will have more things need to handle other than just read/write.
+>> I don’t know if this answers your question, but I think that adding it as mdiomux is the way to go.
+> 
+> Hi Álvaro
+> 
+> The Marvell mv88e6390 family of switches has a very similar setup. An
+> internal and an external MDIO bus, one bit difference in a
+> register. When i wrote the code for that, i decided it was not a mux
+> as such, but two MDIO busses. So i register two MDIO busses, and rely
+> on a higher level switch register mutex to prevent parallel operations
+> on the two busses.
+> 
+> The reason i decided it was not a mux, is that all the other mux
+> drivers are separate drivers which rely on another MDIO bus
+> driver. The mux driver gets a handle to the underlying MDIO bus
+> driver, and and builds on it. Here you have it all combined in one, so
+> it does not follow the pattern.
+> 
+> So if you want to use a max, please break this up into an MDIO driver,
+> and a mux driver. Or have one driver which registers two mdio busses,
+> no mux.
 
-I do not understand either, ignore this comment.
-
-If it is important, I will bring it up in a later revision's review and do a better job of explaining the issue.
-
-Tom
-
->>> +};
->>> +
->>> +struct xrt_devctl {
->>> +     struct platform_device  *pdev;
->>> +     void            __iomem *base_addrs[XRT_DEVCTL_MAX];
->>> +     ulong                   sizes[XRT_DEVCTL_MAX];
->>> +};
->> similar to other patches, why not use regmap ?
-> Will change to regmap.
->>> +
->>> +static int xrt_devctl_name2id(struct xrt_devctl *devctl, const char *name)
->>> +{
->>> +     int     i;
->>> +
->>> +     for (i = 0; i < XRT_DEVCTL_MAX && name_id[i].ep_name; i++) {
->>> +             if (!strncmp(name_id[i].ep_name, name, strlen(name_id[i].ep_name) + 1))
->>> +                     return name_id[i].id;
->>> +     }
->>> +
->>> +     return -EINVAL;
->>> +}
->>> +
->>> +static int
->>> +xrt_devctl_leaf_ioctl(struct platform_device *pdev, u32 cmd, void *arg)
->>> +{
->>> +     struct xrt_devctl       *devctl;
->>> +     int                     ret = 0;
->>> +
->>> +     devctl = platform_get_drvdata(pdev);
->>> +
->>> +     switch (cmd) {
->>> +     case XRT_XLEAF_EVENT:
->>> +             /* Does not handle any event. */
->>> +             break;
->>> +     case XRT_DEVCTL_READ: {
->>> +             struct xrt_devctl_ioctl_rw      *rw_arg = arg;
->>> +             u32                             *p_src, *p_dst, i;
->>> +
->>> +             if (rw_arg->xgir_len & 0x3) {
->>> +                     xrt_err(pdev, "invalid len %d", rw_arg->xgir_len);
->>> +                     return -EINVAL;
->>> +             }
->>> +
->>> +             if (rw_arg->xgir_id >= XRT_DEVCTL_MAX) {
->>> +                     xrt_err(pdev, "invalid id %d", rw_arg->xgir_id);
->>> +                     return -EINVAL;
->>> +             }
->> needs a < 0 check ?
-> change xgir_id to u32.
->>> +
->>> +             p_src = devctl->base_addrs[rw_arg->xgir_id];
->>> +             if (!p_src) {
->>> +                     xrt_err(pdev, "io not found, id %d",
->>> +                             rw_arg->xgir_id);
->>> +                     return -EINVAL;
->>> +             }
->>> +             if (rw_arg->xgir_offset + rw_arg->xgir_len >
->>> +                 devctl->sizes[rw_arg->xgir_id]) {
->>> +                     xrt_err(pdev, "invalid argument, off %d, len %d",
->>> +                             rw_arg->xgir_offset, rw_arg->xgir_len);
->>> +                     return -EINVAL;
->>> +             }
->>> +             p_dst = rw_arg->xgir_buf;
->>> +             for (i = 0; i < rw_arg->xgir_len / sizeof(u32); i++) {
->>> +                     u32 val = ioread32(p_src + rw_arg->xgir_offset + i);
->>> +
->>> +                     memcpy(p_dst + i, &val, sizeof(u32));
->>> +             }
->>> +             break;
->>> +     }
->> The _WRITE msg is not handled Then why have it ?
-> Will remove write msg from this patch set and add it back in future patches.
->
-> Thanks,
-> Lizhi
->>
->> Tom
->>
->>> +     default:
->>> +             xrt_err(pdev, "unsupported cmd %d", cmd);
->>> +             return -EINVAL;
->>> +     }
->>> +
->>> +     return ret;
->>> +}
->>> +
->>> +static int xrt_devctl_remove(struct platform_device *pdev)
->>> +{
->>> +     struct xrt_devctl       *devctl;
->>> +     int                     i;
->>> +
->>> +     devctl = platform_get_drvdata(pdev);
->>> +
->>> +     for (i = 0; i < XRT_DEVCTL_MAX; i++) {
->>> +             if (devctl->base_addrs[i])
->>> +                     iounmap(devctl->base_addrs[i]);
->>> +     }
->>> +
->>> +     platform_set_drvdata(pdev, NULL);
->>> +     devm_kfree(&pdev->dev, devctl);
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static int xrt_devctl_probe(struct platform_device *pdev)
->>> +{
->>> +     struct xrt_devctl       *devctl;
->>> +     int                     i, id, ret = 0;
->>> +     struct resource         *res;
->>> +
->>> +     devctl = devm_kzalloc(&pdev->dev, sizeof(*devctl), GFP_KERNEL);
->>> +     if (!devctl)
->>> +             return -ENOMEM;
->>> +
->>> +     devctl->pdev = pdev;
->>> +     platform_set_drvdata(pdev, devctl);
->>> +
->>> +     xrt_info(pdev, "probing...");
->>> +     for (i = 0, res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +         res;
->>> +         res = platform_get_resource(pdev, IORESOURCE_MEM, ++i)) {
->>> +             id = xrt_devctl_name2id(devctl, res->name);
->>> +             if (id < 0) {
->>> +                     xrt_err(pdev, "ep %s not found", res->name);
->>> +                     continue;
->>> +             }
->>> +             devctl->base_addrs[id] = ioremap(res->start, res->end - res->start + 1);
->>> +             if (!devctl->base_addrs[id]) {
->>> +                     xrt_err(pdev, "map base failed %pR", res);
->>> +                     ret = -EIO;
->>> +                     goto failed;
->>> +             }
->>> +             devctl->sizes[id] = res->end - res->start + 1;
->>> +     }
->>> +
->>> +failed:
->>> +     if (ret)
->>> +             xrt_devctl_remove(pdev);
->>> +
->>> +     return ret;
->>> +}
->>> +
->>> +static struct xrt_subdev_endpoints xrt_devctl_endpoints[] = {
->>> +     {
->>> +             .xse_names = (struct xrt_subdev_ep_names[]) {
->>> +                     /* add name if ep is in same partition */
->>> +                     { .ep_name = XRT_MD_NODE_BLP_ROM },
->>> +                     { NULL },
->>> +             },
->>> +             .xse_min_ep = 1,
->>> +     },
->>> +     {
->>> +             .xse_names = (struct xrt_subdev_ep_names[]) {
->>> +                     { .ep_name = XRT_MD_NODE_GOLDEN_VER },
->>> +                     { NULL },
->>> +             },
->>> +             .xse_min_ep = 1,
->>> +     },
->>> +     /* adding ep bundle generates devctl device instance */
->>> +     { 0 },
->>> +};
->>> +
->>> +static struct xrt_subdev_drvdata xrt_devctl_data = {
->>> +     .xsd_dev_ops = {
->>> +             .xsd_ioctl = xrt_devctl_leaf_ioctl,
->>> +     },
->>> +};
->>> +
->>> +static const struct platform_device_id xrt_devctl_table[] = {
->>> +     { XRT_DEVCTL, (kernel_ulong_t)&xrt_devctl_data },
->>> +     { },
->>> +};
->>> +
->>> +static struct platform_driver xrt_devctl_driver = {
->>> +     .driver = {
->>> +             .name = XRT_DEVCTL,
->>> +     },
->>> +     .probe = xrt_devctl_probe,
->>> +     .remove = xrt_devctl_remove,
->>> +     .id_table = xrt_devctl_table,
->>> +};
->>> +
->>> +void devctl_leaf_init_fini(bool init)
->>> +{
->>> +     if (init)
->>> +             xleaf_register_driver(XRT_SUBDEV_DEVCTL, &xrt_devctl_driver, xrt_devctl_endpoints);
->>> +     else
->>> +             xleaf_unregister_driver(XRT_SUBDEV_DEVCTL);
->>> +}
->
-
+Also, if you were to support some dynamic power management in the
+future, it may be desirable to have the switch drivers and the MDIO mux
+controller be within the same driver, so you are in complete control of
+when the resources are needed and you can fully clock gate everything.
+-- 
+Florian
