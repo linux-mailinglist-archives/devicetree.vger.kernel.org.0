@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A0E33E538
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7450333E53B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbhCQBCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 21:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48774 "EHLO
+        id S231492AbhCQBCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 21:02:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232096AbhCQBAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 21:00:09 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D342C06174A
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 17:59:57 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id kr3-20020a17090b4903b02900c096fc01deso406299pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 17:59:57 -0700 (PDT)
+        with ESMTP id S232478AbhCQBAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Mar 2021 21:00:20 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 005C1C061765
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:00:06 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so4458228pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Mar 2021 18:00:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=A2bEAqIF45uVIy1NyhLffdc3Vl3zlbiHGv1l9FcXM1U=;
-        b=hXr7Dv22ffhDrMpBEx2FnaUv5d4cLxWaJzE15/1oSyFNPaaBA06p+hW1FUU3YDX5kv
-         pcsPNuhGhO7X/hhryV8BpOc667fHSwFWujz3V84WXZdapkqsWhTwU375xx9K3lBFU7nj
-         LGV3iTXnb9GHeqHdEZKZz432kt8RdWNHPbWwA=
+        bh=JBEnLG6p6/B5IxR4abKEg2z7MsyL/dH1QIZvxapo1/g=;
+        b=WwpTaQKV5j1nA95NgWspMB4tSDYauve7lK5W8occUsJekfPrnEB6MVtIT+a2GVH8pn
+         ndXmX05Xf11J+plNntxVxXH3jlqdNo4ZQJQHQwhs5ghYUm5LEejn2tK7K4Bx0HiBag8+
+         YkooMTUzBgnSmiBv2yMGCGu8X2xQ7CI+01LZY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=A2bEAqIF45uVIy1NyhLffdc3Vl3zlbiHGv1l9FcXM1U=;
-        b=VaU7H/Rf/v7a7FaeXMgAp7xW96fAynWtNSy20gltmyRibZkCD77F2npsagTD/2PyTW
-         DIdY/+mCUip886cbNbfVgCQGqBw8ehmkfh1OwVl/8rVhBXxtbxbbpjWxRj/UFdvMQiqS
-         S1xmE+1ceSWf7aSDqOsGGlr9hs1AVGAcboK9v9h1xOyvh2NI8IVUzNeeeAIS4KdAM6d2
-         Z1MqeaQJQ4Fb3sJGO0UmBkMHceExie1IC9YqGixfwtf0lG0B9gqJk2bSYPObGuEovJxz
-         Gexw2dFg2ALeijk6RCsYJ9jH4pBJnWGcVWWHxZl1fifGlVAWfbRQfk6aeJ/caxLRnN7f
-         s5KQ==
-X-Gm-Message-State: AOAM5308vDxYEyb8264U+nuUXEKgRy9lixgkUm2VUNDukL2blXU+X5nx
-        4jW4lTwaRf3nPVEl9dW6XyhTZg==
-X-Google-Smtp-Source: ABdhPJxfV0VD4LpWQQN9RPf1oD4VSYvZciDFI0ECk+IGfhlQmTgha1/hmVw+zMhQJpGrP33Kfs2hOg==
-X-Received: by 2002:a17:90a:b10a:: with SMTP id z10mr1741356pjq.125.1615942796783;
-        Tue, 16 Mar 2021 17:59:56 -0700 (PDT)
+        bh=JBEnLG6p6/B5IxR4abKEg2z7MsyL/dH1QIZvxapo1/g=;
+        b=KasNofD2vVD82IjpW7L79m0oCDRFw/Bpgv5C9TsWs2Sz8x5ZPEUmdCE0dUPtbkUvqB
+         OB4bkPeb1OOEzyzL09388qcb1ZE61XkWwYabIUHPd+/13JvFMJcjs9Th4rbbDbuftyez
+         CMwvgS/wP8u+ua8JEN8NOyHg7jHSO6yUbPr/Bq60zhgxbpkeG1CLz0RPdi0Gjg/SeNBT
+         ZwYis1WNwudrN4iUoSVfSvETAGF7MtsCGqYqt3CRJH1C74DzfSqBVtaceIS2cqOOGgin
+         n3iNH7bpOcfaSrMYaNTUaSyeeGVJEBCfMPqaWgtYmwZbdmpDQV3SbZmlBGprZxBPnSf5
+         DCmA==
+X-Gm-Message-State: AOAM531fvGJHCM928VX5W80o/svof5o+hxy7Z4nG5yIPhmmsfOPJV6RD
+        dZ4E0zyiFPvnpfxdueyzbvuD9w==
+X-Google-Smtp-Source: ABdhPJyWohFwruH6CMfmHeOWwb1l14aXHW2lxKJVTvrPsE4wVlYOllNx4Nxj04F4pqJfLgzdgirllg==
+X-Received: by 2002:a17:902:7592:b029:e2:e80f:6893 with SMTP id j18-20020a1709027592b02900e2e80f6893mr1975766pll.61.1615942806582;
+        Tue, 16 Mar 2021 18:00:06 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:201:e1e0:9aee:aecc:ef78])
-        by smtp.gmail.com with ESMTPSA id 205sm13008405pfc.201.2021.03.16.17.59.56
+        by smtp.gmail.com with ESMTPSA id j27sm17217024pgn.61.2021.03.16.18.00.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Mar 2021 17:59:56 -0700 (PDT)
+        Tue, 16 Mar 2021 18:00:06 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210315133924.v2.1.I601a051cad7cfd0923e55b69ef7e5748910a6096@changeid>
-References: <20210315133924.v2.1.I601a051cad7cfd0923e55b69ef7e5748910a6096@changeid>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add "dmic_clk_en" for sc7180-trogdor-coachz
+In-Reply-To: <20210315133924.v2.2.If218189eff613a6c48ba12d75fad992377d8f181@changeid>
+References: <20210315133924.v2.1.I601a051cad7cfd0923e55b69ef7e5748910a6096@changeid> <20210315133924.v2.2.If218189eff613a6c48ba12d75fad992377d8f181@changeid>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add "dmic_clk_en" + sound model for sc7180-trogdor-pompom
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     Douglas Anderson <dianders@chromium.org>,
         Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
@@ -63,18 +63,15 @@ Cc:     Douglas Anderson <dianders@chromium.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Douglas Anderson <dianders@chromium.org>
-Date:   Tue, 16 Mar 2021 17:59:54 -0700
-Message-ID: <161594279473.1478170.12227892343505111031@swboyd.mtv.corp.google.com>
+Date:   Tue, 16 Mar 2021 18:00:04 -0700
+Message-ID: <161594280472.1478170.100740500706598633@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-03-15 13:39:30)
-> This was present downstream. Add upstream too. NOTE: upstream I
-> managed to get some sort of halfway state and got one pinctrl entry in
-> the coachz-r1 device tree. Remove that as part of this since it's now
-> in the dtsi.
+Quoting Douglas Anderson (2021-03-15 13:39:31)
+> Match what's downstream for this board.
 >=20
 > Cc: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > Cc: Ajit Pandey <ajitp@codeaurora.org>
