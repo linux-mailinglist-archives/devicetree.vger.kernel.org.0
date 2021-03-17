@@ -2,167 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D95333EE3D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 11:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65BE333EE3F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 11:26:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbhCQKXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 06:23:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35304 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229772AbhCQKWx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 06:22:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D3F064EE1;
-        Wed, 17 Mar 2021 10:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615976572;
-        bh=desTsx3WQtjTaVBjhTB+jOTKBQ4fVjhRjO2BfJzcTvw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uXWROD1l0QOnrXuCYjcLc4/v2MYTS0MwDMSd1ekyiUJ89MDjNelAY0o5t77I0zkam
-         CLm01YdIrPgKjQzcfcCcPpRQZzm9ZIO2ywGBPKv8k+2maxCepIZFNRkqCxszU5JRnH
-         OPM7O9/qIjOqaGzm2SKAPl5eRnVt/ziIU//lRqzH+wfmJhT4ZAx6PZPQ5EVX5k55ss
-         sZnVQKwsIqWKvBu+nDrHJqLE2806MBQ1UZTBeWrSpFng878P0gmi2BE+HvInRYE9AP
-         4MpaCOoDj6Wvj1lJW+D3HgKBVrNgfVmlhWuZUWnG96a7R77FB+JzZfk1wDuSXd/sq7
-         XakProKWsCPUQ==
-Date:   Wed, 17 Mar 2021 15:52:49 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, kishon@ti.com,
-        robh+dt@kernel.org, a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm,
-        robert.foss@linaro.org
-Subject: Re: [PATCH v4 2/5] phy: Add LVDS configuration options
-Message-ID: <YFHYeZ/ZVqNiG/yo@vkoul-mobl.Dlink>
-References: <1615175541-29009-1-git-send-email-victor.liu@nxp.com>
- <1615175541-29009-3-git-send-email-victor.liu@nxp.com>
+        id S229601AbhCQKZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 06:25:44 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:41439 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbhCQKZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 06:25:16 -0400
+X-Originating-IP: 90.65.108.55
+Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id DC92F40015;
+        Wed, 17 Mar 2021 10:25:11 +0000 (UTC)
+Date:   Wed, 17 Mar 2021 11:25:11 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Vinod Koul <vkoul@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Clean-up undocumented compatible strings
+Message-ID: <YFHZBwG9JBFPzJhS@piout.net>
+References: <20210316194918.3528417-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1615175541-29009-3-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20210316194918.3528417-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-03-21, 11:52, Liu Ying wrote:
-> This patch allows LVDS PHYs to be configured through
-> the generic functions and through a custom structure
-> added to the generic union.
+On 16/03/2021 13:49:18-0600, Rob Herring wrote:
+> Adding checks for undocumented compatible strings reveals a bunch of
+> warnings in the DT binding examples. Fix the cases which are typos, just
+> a mismatch between the schema and the example, or aren't documented at all.
+> In a couple of cases, fixing the compatible revealed some schema errors
+> which are fixed.
 > 
-> The parameters added here are based on common LVDS PHY
-> implementation practices.  The set of parameters
-> should cover all potential users.
+> There's a bunch of others remaining after this which have bindings, but
+> those aren't converted to schema yet.
 > 
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
 > Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Reviewed-by: Robert Foss <robert.foss@linaro.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v3->v4:
-> * Add Robert's R-b tag.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * No change.
-> 
->  include/linux/phy/phy-lvds.h | 48 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/phy/phy.h      |  4 ++++
->  2 files changed, 52 insertions(+)
->  create mode 100644 include/linux/phy/phy-lvds.h
-> 
-> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
-> new file mode 100644
-> index 00000000..1b5b9d6
-> --- /dev/null
-> +++ b/include/linux/phy/phy-lvds.h
-> @@ -0,0 +1,48 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright 2020 NXP
-> + */
-> +
-> +#ifndef __PHY_LVDS_H_
-> +#define __PHY_LVDS_H_
-> +
-> +/**
-> + * struct phy_configure_opts_lvds - LVDS configuration set
-> + *
-> + * This structure is used to represent the configuration state of a
-> + * LVDS phy.
-> + */
-> +struct phy_configure_opts_lvds {
-> +	/**
-> +	 * @bits_per_lane_and_dclk_cycle:
-> +	 *
-> +	 * Number of bits per data lane and differential clock cycle.
-> +	 */
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dmaengine@vger.kernel.org
+> Cc: linux-i3c@lists.infradead.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: linux-spi@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Can we have these in kernel-doc style please, similar to style in linux/phy/phy.h
-
-> +	unsigned int bits_per_lane_and_dclk_cycle;
-> +
-> +	/**
-> +	 * @differential_clk_rate:
-> +	 *
-> +	 * Clock rate, in Hertz, of the LVDS differential clock.
-> +	 */
-> +	unsigned long differential_clk_rate;
-> +
-> +	/**
-> +	 * @lanes:
-> +	 *
-> +	 * Number of active, consecutive, data lanes, starting from
-> +	 * lane 0, used for the transmissions.
-> +	 */
-> +	unsigned int lanes;
-> +
-> +	/**
-> +	 * @is_slave:
-> +	 *
-> +	 * Boolean, true if the phy is a slave which works together
-> +	 * with a master phy to support dual link transmission,
-> +	 * otherwise a regular phy or a master phy.
-> +	 */
-> +	bool is_slave;
-> +};
-> +
-> +#endif /* __PHY_LVDS_H_ */
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index e435bdb..d450b44 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -17,6 +17,7 @@
->  #include <linux/regulator/consumer.h>
->  
->  #include <linux/phy/phy-dp.h>
-> +#include <linux/phy/phy-lvds.h>
->  #include <linux/phy/phy-mipi-dphy.h>
->  
->  struct phy;
-> @@ -51,10 +52,13 @@ enum phy_mode {
->   *		the MIPI_DPHY phy mode.
->   * @dp:		Configuration set applicable for phys supporting
->   *		the DisplayPort protocol.
-> + * @lvds:	Configuration set applicable for phys supporting
-> + *		the LVDS phy mode.
->   */
->  union phy_configure_opts {
->  	struct phy_configure_opts_mipi_dphy	mipi_dphy;
->  	struct phy_configure_opts_dp		dp;
-> +	struct phy_configure_opts_lvds		lvds;
->  };
->  
->  /**
-> -- 
-> 2.7.4
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
 -- 
-~Vinod
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
