@@ -2,110 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAF433F516
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 153BF33F52B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbhCQQIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 12:08:35 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50972 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232323AbhCQQIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 12:08:21 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12HG8FbO066072;
-        Wed, 17 Mar 2021 11:08:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615997295;
-        bh=MXA3mwzYXUdtkyTPzmKYdoJSlYboxEQDB3qFHto5cjA=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=lMUJuOUIowxb4r+6hjRQtufnoPKsarpdeOixK9cCusPszZwN0x6g2JMyiB1UmS4Ax
-         sctfcJRz7zkvtdz2F3X8I7zYg0veUi6KoiymvVmu0l5Q2vMkqQ1B0X5d2jD8F9D0bf
-         sLxUthy1W5nMJ9gktbqAieWEHinmXL1thZUT1sGY=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12HG8FHV123935
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Mar 2021 11:08:15 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 17
- Mar 2021 11:08:15 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 17 Mar 2021 11:08:15 -0500
-Received: from [10.250.235.239] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12HG8A4K001718;
-        Wed, 17 Mar 2021 11:08:11 -0500
-Subject: Re: [PATCH v3 0/2] AM64: Add USB support
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        id S232410AbhCQQKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 12:10:45 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:27706 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232419AbhCQQKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 12:10:25 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12HFlk8E009540;
+        Wed, 17 Mar 2021 17:10:06 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=Iz7+Lyw7xDy/yfHdJRZxvAco5e3gTiWzHz1ThRW4Ph8=;
+ b=s8ZHEx63Owo1nhicnpGs4gsRTuS6gbMUnRAnLO154i+Gx+HMNjbtGuujGvbDG69yZc45
+ ers4wZEWIFGmyOkNlKrNaWGqf3or8ZX0B0niT05LWvdTbwn1/8qPg4s6o9Qmy+HZtbCy
+ PlqKAayRxWKx+UWhRy7E1Ue1KS39TCZ+hPANetszjw5/CtLcQL4rPMveNnq7Z8SRLa3r
+ g057Sg70FEnURZt58w5bkInwmulHwhkXo36KzPO3R16ke8LDn/J78IS5Ul2igyMpofMu
+ 4kTbdWwjCTq8NPhVO5I9RO93Y3+6i6VwFHnTGFoXvWMUdGXxOyXqMhBMZkYfmRliOLXz 3Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37a8pr67jd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 Mar 2021 17:10:06 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AF17E10002A;
+        Wed, 17 Mar 2021 17:10:05 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9939A23E915;
+        Wed, 17 Mar 2021 17:10:05 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 17 Mar 2021 17:10:05
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210317043007.18272-1-a-govindraju@ti.com>
- <33c7b945-5a3b-649b-ebaf-26465e480edc@ti.com>
-Message-ID: <ea7d50d2-1a54-7730-c40b-d66efeadcc30@ti.com>
-Date:   Wed, 17 Mar 2021 21:38:09 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 0/2] STM32 USBPHYC vbus-supply property support
+Date:   Wed, 17 Mar 2021 17:09:52 +0100
+Message-ID: <20210317160954.15487-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <33c7b945-5a3b-649b-ebaf-26465e480edc@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-17_10:2021-03-17,2021-03-17 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+STM32 USBPHYC provides two USB High-Speed ports which are used by controllers
+with Host capabilities. That's why vbus-supply has to be supported on each
+phy node.
 
-On 17/03/21 8:22 pm, Kishon Vijay Abraham I wrote:
-> Aswath and Nishanth,
-> 
-> On 17/03/21 10:00 am, Aswath Govindraju wrote:
->> The following series of patches, add USB support for AM642 evm.
->>
->> USB test logs,
->> https://pastebin.ubuntu.com/p/YSQRBWGmzd/
-> 
-> Vinod has provided stable tag [1]
-> git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git
-> tags/ti-serdes-for-5.13
-> 
-> This should unblock us from up-streaming SK along with this.
+Amelie Delaunay (2):
+  dt-bindings: phy: add vbus-supply optional property to
+    phy-stm32-usbphyc
+  phy: stm32: manage optional vbus regulator on phy_power_on/off
 
-In case you prefer to send SK support as follow up patches
+ .../bindings/phy/phy-stm32-usbphyc.yaml       |  3 ++
+ drivers/phy/st/phy-stm32-usbphyc.c            | 31 +++++++++++++++++++
+ 2 files changed, 34 insertions(+)
 
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
+-- 
+2.17.1
 
-Thanks
-Kishon
-
-> 
-> Thanks
-> Kishon
-> 
-> [1] -> http://lore.kernel.org/r/YFGjPNonIlA4Anar@vkoul-mobl.Dlink
->>
->> Changes since v2:
->> - dropped compatible string "ti,j721e-usb" leading to DT schema errors
->> - Reran test logs
->> - Couldn't pick up reviewed-by from kishon as a change was made in the
->>   patch
->>
->> Changes since v1:
->> - Rebased the patches on top of ti-k3-dts-next
->> - Added test logs
->>
->> Aswath Govindraju (2):
->>   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->>   arm64: dts: ti: k3-am642-evm: Add USB support
->>
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->>  2 files changed, 48 insertions(+)
->>
