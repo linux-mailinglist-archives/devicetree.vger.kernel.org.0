@@ -2,98 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E30FB33F599
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41DD533F58E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:32:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232387AbhCQQeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 12:34:37 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57676 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbhCQQeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 12:34:15 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12HEqKeI036084;
-        Wed, 17 Mar 2021 09:52:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1615992740;
-        bh=XkvcLBmVzT7NpgsGUAPba2Yg5rTGS1pWzJeIeGkKbBA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fO3D3mTc1YS/wHXBSY7Eo/8dQz4bjBnyWIu1pg8Y67z9vcdDDA3czAsW5sA/s5wJD
-         nF38hJnwI5XdHaiOlpC2nkA56IZSryYhyHcXCvAJz20K2FMNHYMrBNg2iqv/pxim+L
-         CiEDuikUjmpylMl5Hx3vPS3wh0yi202lwDpx86BM=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12HEqKog109658
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Mar 2021 09:52:20 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 17
- Mar 2021 09:52:20 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 17 Mar 2021 09:52:19 -0500
-Received: from [10.250.235.239] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12HEqF8C102095;
-        Wed, 17 Mar 2021 09:52:16 -0500
-Subject: Re: [PATCH v3 0/2] AM64: Add USB support
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210317043007.18272-1-a-govindraju@ti.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <33c7b945-5a3b-649b-ebaf-26465e480edc@ti.com>
-Date:   Wed, 17 Mar 2021 20:22:15 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232523AbhCQQbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 12:31:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232288AbhCQQbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 12:31:20 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B2A5C06174A;
+        Wed, 17 Mar 2021 09:31:20 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id o16so2491883wrn.0;
+        Wed, 17 Mar 2021 09:31:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QE6T5rkzVXyVG4b9FRno1df2BtGxnFCnOZE4VoMr7VE=;
+        b=CrX+5ZPcNrwcCneoIbXKNRHVF0R2KhRrGqiTGlT2zqw4tQ+jT6WbsSbuOdfR4wO6IH
+         6/wlQ1qfe3c4PpUGfku6eJmwxc331NOpDMy0ijZ/r2GBQbxNDp944E3yKgW0UKFZ181T
+         Jn8Ku/iFETMIfR6PM703248kcyaKGf0m2xkVBGmflaesG0yCmr+iF6S/TT/4WbbBzxJo
+         jn7ZfMxbfBD1xleKkQ6U60lHxttSM3bJ/0X/FGlihrVs1LDPLW38jRNEjeyfv/xQ78Cn
+         mJQ0oG0zMUnanuY/vLX8Uh0e/jSgqivRIkNA6vmSEnsgab8E6sA8n4zZwkDiTwkuD7WY
+         2Vvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QE6T5rkzVXyVG4b9FRno1df2BtGxnFCnOZE4VoMr7VE=;
+        b=gXsyKTohwDQ251vAwlVpHgq8THvd2tLZA3HEJikncpDmJBR0EqCKKRyoPgYnNNkRNf
+         MS+bDOK8HmUjcx5OT7rx0zVQ9uABGVgVahrP64hzq/1gIC65ECYq+rtz42qyp5u2u3Y5
+         aqOVni67jZamN5YeoPzcBRmVu+Q5dQO4ja+I1ygwsVxa5AQHe7qU+Ia5OovJBlEA/jQz
+         x6SDgKW2AJKBQw+2/o8Ax7gzP2/shujmnxEaDQXPXfqxxyTE9WoenqXuaXwO+7aOJhFY
+         wLSBdy7VhQgrz5Z0YtaQ7CyZZv4efreHvXvRj7Aen4mu2bcx13c3rFMmehyNcjMWFoFp
+         Iurw==
+X-Gm-Message-State: AOAM532i8Pq6WOMxwRG/RpPkv3yRX6KGSedk7Ps8IQ+eMOmeUP07Iw8V
+        ioi7vAfryIXIXxzGmSVhOj4=
+X-Google-Smtp-Source: ABdhPJznMr0BQQsfVJMF7zQOUfeloplh7n6YhrqhslkID7n4r23aVU3uY5EU06FVhUO8bs2rFB4/lQ==
+X-Received: by 2002:adf:828e:: with SMTP id 14mr5331283wrc.123.1615998678851;
+        Wed, 17 Mar 2021 09:31:18 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id s8sm27059845wrn.97.2021.03.17.09.31.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Mar 2021 09:31:17 -0700 (PDT)
+Subject: Re: [PATCH v13 7/8] soc: mediatek: add mtk mutex support for MT8183
+To:     Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+References: <20210129092209.2584718-1-hsinyi@chromium.org>
+ <20210129092209.2584718-8-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <8452df75-c9ae-ed1f-3f0a-b449f35bd173@gmail.com>
+Date:   Wed, 17 Mar 2021 17:31:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210317043007.18272-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210129092209.2584718-8-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aswath and Nishanth,
 
-On 17/03/21 10:00 am, Aswath Govindraju wrote:
-> The following series of patches, add USB support for AM642 evm.
+
+On 29/01/2021 10:22, Hsin-Yi Wang wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> USB test logs,
-> https://pastebin.ubuntu.com/p/YSQRBWGmzd/
+> Add mtk mutex support for MT8183 SoC.
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-mutex.c | 50 ++++++++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
 
-Vinod has provided stable tag [1]
-git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git
-tags/ti-serdes-for-5.13
-
-This should unblock us from up-streaming SK along with this.
+Applied to v5.12-next/soc
 
 Thanks
-Kishon
 
-[1] -> http://lore.kernel.org/r/YFGjPNonIlA4Anar@vkoul-mobl.Dlink
-> 
-> Changes since v2:
-> - dropped compatible string "ti,j721e-usb" leading to DT schema errors
-> - Reran test logs
-> - Couldn't pick up reviewed-by from kishon as a change was made in the
->   patch
-> 
-> Changes since v1:
-> - Rebased the patches on top of ti-k3-dts-next
-> - Added test logs
-> 
-> Aswath Govindraju (2):
->   arm64: dts: ti: k3-am64-main: Add DT node for USB subsystem
->   arm64: dts: ti: k3-am642-evm: Add USB support
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 30 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 18 ++++++++++++++
->  2 files changed, 48 insertions(+)
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index f531b119da7a9..718a41beb6afb 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -14,6 +14,8 @@
+>  
+>  #define MT2701_MUTEX0_MOD0			0x2c
+>  #define MT2701_MUTEX0_SOF0			0x30
+> +#define MT8183_MUTEX0_MOD0			0x30
+> +#define MT8183_MUTEX0_SOF0			0x2c
+>  
+>  #define DISP_REG_MUTEX_EN(n)			(0x20 + 0x20 * (n))
+>  #define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
+> @@ -37,6 +39,18 @@
+>  #define MT8167_MUTEX_MOD_DISP_DITHER		15
+>  #define MT8167_MUTEX_MOD_DISP_UFOE		16
+>  
+> +#define MT8183_MUTEX_MOD_DISP_RDMA0		0
+> +#define MT8183_MUTEX_MOD_DISP_RDMA1		1
+> +#define MT8183_MUTEX_MOD_DISP_OVL0		9
+> +#define MT8183_MUTEX_MOD_DISP_OVL0_2L		10
+> +#define MT8183_MUTEX_MOD_DISP_OVL1_2L		11
+> +#define MT8183_MUTEX_MOD_DISP_WDMA0		12
+> +#define MT8183_MUTEX_MOD_DISP_COLOR0		13
+> +#define MT8183_MUTEX_MOD_DISP_CCORR0		14
+> +#define MT8183_MUTEX_MOD_DISP_AAL0		15
+> +#define MT8183_MUTEX_MOD_DISP_GAMMA0		16
+> +#define MT8183_MUTEX_MOD_DISP_DITHER0		17
+> +
+>  #define MT8173_MUTEX_MOD_DISP_OVL0		11
+>  #define MT8173_MUTEX_MOD_DISP_OVL1		12
+>  #define MT8173_MUTEX_MOD_DISP_RDMA0		13
+> @@ -87,6 +101,11 @@
+>  #define MT2712_MUTEX_SOF_DSI3			6
+>  #define MT8167_MUTEX_SOF_DPI0			2
+>  #define MT8167_MUTEX_SOF_DPI1			3
+> +#define MT8183_MUTEX_SOF_DSI0			1
+> +#define MT8183_MUTEX_SOF_DPI0			2
+> +
+> +#define MT8183_MUTEX_EOF_DSI0			(MT8183_MUTEX_SOF_DSI0 << 6)
+> +#define MT8183_MUTEX_EOF_DPI0			(MT8183_MUTEX_SOF_DPI0 << 6)
+>  
+>  struct mtk_mutex {
+>  	int id;
+> @@ -181,6 +200,20 @@ static const unsigned int mt8173_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+>  	[DDP_COMPONENT_WDMA1] = MT8173_MUTEX_MOD_DISP_WDMA1,
+>  };
+>  
+> +static const unsigned int mt8183_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+> +	[DDP_COMPONENT_AAL0] = MT8183_MUTEX_MOD_DISP_AAL0,
+> +	[DDP_COMPONENT_CCORR] = MT8183_MUTEX_MOD_DISP_CCORR0,
+> +	[DDP_COMPONENT_COLOR0] = MT8183_MUTEX_MOD_DISP_COLOR0,
+> +	[DDP_COMPONENT_DITHER] = MT8183_MUTEX_MOD_DISP_DITHER0,
+> +	[DDP_COMPONENT_GAMMA] = MT8183_MUTEX_MOD_DISP_GAMMA0,
+> +	[DDP_COMPONENT_OVL0] = MT8183_MUTEX_MOD_DISP_OVL0,
+> +	[DDP_COMPONENT_OVL_2L0] = MT8183_MUTEX_MOD_DISP_OVL0_2L,
+> +	[DDP_COMPONENT_OVL_2L1] = MT8183_MUTEX_MOD_DISP_OVL1_2L,
+> +	[DDP_COMPONENT_RDMA0] = MT8183_MUTEX_MOD_DISP_RDMA0,
+> +	[DDP_COMPONENT_RDMA1] = MT8183_MUTEX_MOD_DISP_RDMA1,
+> +	[DDP_COMPONENT_WDMA0] = MT8183_MUTEX_MOD_DISP_WDMA0,
+> +};
+> +
+>  static const unsigned int mt2712_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+>  	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
+>  	[MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
+> @@ -198,6 +231,13 @@ static const unsigned int mt8167_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+>  	[MUTEX_SOF_DPI1] = MT8167_MUTEX_SOF_DPI1,
+>  };
+>  
+> +/* Add EOF setting so overlay hardware can receive frame done irq */
+> +static const unsigned int mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
+> +	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
+> +	[MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0 | MT8183_MUTEX_EOF_DSI0,
+> +	[MUTEX_SOF_DPI0] = MT8183_MUTEX_SOF_DPI0 | MT8183_MUTEX_EOF_DPI0,
+> +};
+> +
+>  static const struct mtk_mutex_data mt2701_mutex_driver_data = {
+>  	.mutex_mod = mt2701_mutex_mod,
+>  	.mutex_sof = mt2712_mutex_sof,
+> @@ -227,6 +267,14 @@ static const struct mtk_mutex_data mt8173_mutex_driver_data = {
+>  	.mutex_sof_reg = MT2701_MUTEX0_SOF0,
+>  };
+>  
+> +static const struct mtk_mutex_data mt8183_mutex_driver_data = {
+> +	.mutex_mod = mt8183_mutex_mod,
+> +	.mutex_sof = mt8183_mutex_sof,
+> +	.mutex_mod_reg = MT8183_MUTEX0_MOD0,
+> +	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
+> +	.no_clk = true,
+> +};
+> +
+>  struct mtk_mutex *mtk_mutex_get(struct device *dev)
+>  {
+>  	struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
+> @@ -457,6 +505,8 @@ static const struct of_device_id mutex_driver_dt_match[] = {
+>  	  .data = &mt8167_mutex_driver_data},
+>  	{ .compatible = "mediatek,mt8173-disp-mutex",
+>  	  .data = &mt8173_mutex_driver_data},
+> +	{ .compatible = "mediatek,mt8183-disp-mutex",
+> +	  .data = &mt8183_mutex_driver_data},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, mutex_driver_dt_match);
 > 
