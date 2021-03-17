@@ -2,68 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A074833F637
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F1A833F69B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:22:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232663AbhCQRCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 13:02:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232670AbhCQRB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 13:01:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1EC1261580;
-        Wed, 17 Mar 2021 17:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616000516;
-        bh=D5aIjqmiOUYZl13Ajhpo46UMf5Qv0uThh2gxXrypg4Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P/lDAbTusNU8/I+ESum6PU/pLylMXRA05sso9tvoSpj1oxQJoR/zW6Z7R9EY6LtZM
-         Uvs7O3FjhBy7+kZlykyWDkSjt9lhcIJG7FB7uPyOyrR+8pnMLifCANcdqFYxvAQUkj
-         +Md3iz/vtf0Br6kdNrHT4wgX5R1YODHy9VFpeFcozXQBGLje1b1L/rWFrDnMyRYM1T
-         eyJ6h945OWso43VtenJ6HM+SAiWSPHzCjwbfvsckHXvDqxfwL+4UkeU9zQ6hqCN4lM
-         a2cELM02A/BBXBWOea+SHy1ZFOq720LpJHIilBACsEc44YUQDoxrxbwuEFPT+BOPGf
-         HynHOUtcm93bQ==
-Received: by pali.im (Postfix)
-        id 900E18A9; Wed, 17 Mar 2021 18:01:52 +0100 (CET)
-Date:   Wed, 17 Mar 2021 18:01:52 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCHv2 18/38] dt-bindings: power: supply: n900-battery:
- Convert to DT schema format
-Message-ID: <20210317170152.dsg7s6kik5gyqd64@pali>
-References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
- <20210317134904.80737-19-sebastian.reichel@collabora.com>
+        id S231433AbhCQRVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 13:21:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232635AbhCQRU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 13:20:29 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E7EC06175F;
+        Wed, 17 Mar 2021 10:20:28 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id a198so83898lfd.7;
+        Wed, 17 Mar 2021 10:20:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=NFi1kFhrUTgn5FvPk8wh5i9n6BvR2USVpUn/9xflTkk=;
+        b=OoZX2tiIQyHFy7a/jirVKoULGhIrjwPvuvQYgCktz4ZesxRQIDzLxjYERGMvcaXbl7
+         ryx5JZPNhEiujaONPvnTEyRdEh2Ng2lheMKTZRstYdQVPM/2jB3HUccjYkZXVPtkuvCL
+         EqfZCMS7EewunrhZM9O7vYe+c200rM1v8egLvPZN2bAYMqGlTxg7Asacma/8LAFUbrts
+         IOGgi9jIHiCuEn5jWEstEXVelAIqOj77bkrhQkwwnuj3vQ3N6xqO/u/DKvCK3iEs3TeY
+         NKspi5cJRrgqwvKgXLBFsQnrkviRb9cN8vW0kJjjPSRkzLj5itjRAq50N/XjuEgvfjLd
+         Zpug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=NFi1kFhrUTgn5FvPk8wh5i9n6BvR2USVpUn/9xflTkk=;
+        b=Rxx6u42TXi2atrCvsWOxN9DRcnQGoPOa0vtj8FzkifIJHj7pJn7h+tjHuxVfSgb/0H
+         xVmDHOiVEawAGnYM9dfHPpzNIRBWU7RYZbiDjyI3JSl3ycUxYQgTqdO9EYE5MSGtKGdq
+         TSlrW6ZOTZT6Pxx9XfyTDN1zh0WFhxmoj2FHnA0ZxPB9Xe2nBkz5WyaG2kQBxFbSIEjN
+         9fvCKC8SjWeLe6weoaqfAH9ObisT2KbzeSsVETA8qTz912wAdettsE7d3ufJt3OS8v7I
+         wgh353TesubwD4yVXnH1uR1BlWgHNuian2ZPG+dwCT0oQu5uyffi87UrRze3qTsosJJU
+         t5AA==
+X-Gm-Message-State: AOAM531xlKFpWcLYcso0sTB1ZUT/4cnXBi9B6Xhki0j+X7fFX56bPywb
+        f9UTMBElCiq7+oPY2XHjuX6OXlhxeg4=
+X-Google-Smtp-Source: ABdhPJxMJd14k9yjtgxRwNLmMWFGlgc0PX7nuLmBb8FfvmGKIWsxLnOUuuJIpmAAfPUbW+HjT4CY2A==
+X-Received: by 2002:a05:6512:108e:: with SMTP id j14mr2741412lfg.364.1616001611659;
+        Wed, 17 Mar 2021 10:20:11 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id v2sm3576654ljg.89.2021.03.17.10.20.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Mar 2021 10:20:11 -0700 (PDT)
+Subject: Re: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC
+ drivers
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Fertser <fercerpav@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210314154459.15375-1-digetx@gmail.com>
+Message-ID: <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
+Date:   Wed, 17 Mar 2021 20:20:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210314154459.15375-1-digetx@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210317134904.80737-19-sebastian.reichel@collabora.com>
-User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 17 March 2021 14:48:44 Sebastian Reichel wrote:
-> Convert the binding to DT schema format.
+14.03.2021 18:44, Dmitry Osipenko пишет:
+> Hi,
 > 
-> Cc: Pali Rohár <pali@kernel.org>
+> This series adds missing hardware reset controls to I2S and AC97 drivers,
+> corrects runtime PM usage and drivers probe/remove order. Currently drivers
+> happen to work properly because reset is implicitly deasserted by tegra-clk
+> driver, but clk driver shouldn't touch the resets and we need to fix it
+> because this breaks other Tegra drivers. Previously we fixed the resets of
+> the AHUB and HDMI codec drivers, but turned out that we missed the I2C and
+> AC97 drivers.
+> 
+> Thanks to Paul Fertser for testing the pending clk patches and finding
+> that audio got broken on Tegra20 AC100 netbook because of the missing I2S
+> reset.
+....
+> Dmitry Osipenko (16):
+>   ASoC: tegra20: ac97: Add reset control
+>   ASoC: tegra20: i2s: Add reset control
+>   ASoC: tegra30: i2s: Restore hardware state on runtime PM resume
+>   ASoC: tegra30: ahub: Switch to use reset-bulk API
+>   ASoC: tegra20: spdif: Correct driver removal order
+>   ASoC: tegra20: spdif: Remove handing of disabled runtime PM
+>   ASoC: tegra20: i2s: Add system level suspend-resume callbacks
+>   ASoC: tegra20: i2s: Correct driver removal order
+>   ASoC: tegra20: i2s: Use devm_clk_get()
+>   ASoC: tegra20: i2s: Remove handing of disabled runtime PM
+>   ASoC: tegra30: i2s: Correct driver removal order
+>   ASoC: tegra30: i2s: Use devm_clk_get()
+>   ASoC: tegra30: i2s: Remove handing of disabled runtime PM
+>   ASoC: tegra30: ahub: Reset global variable
+>   ASoC: tegra30: ahub: Correct suspend-resume callbacks
+>   ASoC: tegra30: ahub: Remove handing of disabled runtime PM
+> 
+> Philipp Zabel (1):
+>   reset: Add reset_control_bulk API
 
-Rejected-by: Pali Rohár <pali@kernel.org>
-
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Hello Sebastian! I'm really really sorry, I have nothing against you,
-but personally I cannot ack change signed by company where some people
-are supporting censorship, GPL violations and other similar immoral
-activities against other individual developers.
-
-> ---
->  .../power/supply/nokia,n900-battery.yaml      | 49 +++++++++++++++++++
->  .../bindings/power/supply/rx51-battery.txt    | 25 ----------
->  2 files changed, 49 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/nokia,n900-battery.yaml
->  delete mode 100644 Documentation/devicetree/bindings/power/supply/rx51-battery.txt
+Mark / Takashi, I may try to split up this series into two or three
+smaller patchsets and then the reset/ patch from Philipp Zabel could be
+merged by Philipp himself. I primarily want to have the audio resets
+fixed and the reset API extended with reset_control_bulk in 5.13 because
+this will unblock other patches. Please let me know what you prefer more.
