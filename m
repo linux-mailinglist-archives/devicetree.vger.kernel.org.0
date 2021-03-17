@@ -2,84 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E30733F796
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 18:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD42333F7D6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 19:08:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbhCQRyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 13:54:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232852AbhCQRyi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 13:54:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B063864F0F;
-        Wed, 17 Mar 2021 17:54:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616003678;
-        bh=XxJeuZ+cw4amQUvKU8GjVxoePa5w1uzwY9Tpr8JD79o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YL0xzOV44xFC6fmX7FY7A0vi5+ciK4IFMJeLPQmdiSHP4/xEGcIdycnzKKRpGVVy7
-         Pp0ei3Mr4NETkYL1YooSg2Wt+hKumQDzPCZOxUJkoQvUpi91yGJu56p0+HT5uQXyWw
-         E/c1RP+K6LXUiLPYFqVRmHOQYRB7YdXt0UkgCEXbm4JIfSqjY5ibFk5ZBU2DzgofyX
-         uixko/CYHJC6cw0ADdrBlwYDY0gC3iT1svl4MhTUxbJlxWQ+FZ5ODXM01vE+/hxJbJ
-         4T1kLzBGu07iIoezzhgUoNH5LDtPPskj3wdnn6E6jmx46ahbWnIjFL4zo7kcgkiIXX
-         25P3a3M4mwjFA==
-Date:   Wed, 17 Mar 2021 17:54:34 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Fertser <fercerpav@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 00/17] Fix reset controls and RPM of NVIDIA Tegra ASoC
- drivers
-Message-ID: <20210317175434.GD5559@sirena.org.uk>
-References: <20210314154459.15375-1-digetx@gmail.com>
- <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
+        id S232537AbhCQSII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 14:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232678AbhCQSIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 14:08:05 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31302C06175F
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 11:08:05 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id t83so32726635oih.12
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 11:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GcUhCfYNDJJjGJ8ohBHX1C0ch2jy4DUHssr3MoU+AWU=;
+        b=eTIpubIUPvbN1WuH36RG/3paeJR1Sg/C8sf0rcDyhhU/ya9dRgqAhtAyyosAFXdlOl
+         f6APtnanqw6EHUoI6LIOrZ5YIg6G4sUpb8Z5wsFGPdyej2BZxOLQM5WtW7+B/moYFKtN
+         RXBeqzVbetGTq+rwkaXhzgYGHaCwfSi+mjzTIoVucRsE8BcuVRHXSaI1dClwhESxGFZB
+         xY9exQiDak1Af7W9jX8HJ47k6I1+dmvByXGJ7wQbyvNYNIqvExX8OFgjVBNcRFSD7TIp
+         02nc4dZeGWc/hrJrQxgWU9qZ4LWsU2JQdfgQsN9iG69UvfaBexYvrIa+q0CQe01gTNZf
+         NgLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GcUhCfYNDJJjGJ8ohBHX1C0ch2jy4DUHssr3MoU+AWU=;
+        b=DV+oRdyT469HhNWXC4Liec2KySKa3Z5QEn8QDOjHr3TE++aEfrgoGmdSv8ekle+JpP
+         mxLB8QhD77lrBqIMo6S0I7IDT3E+Iy2P/ZALkeq9tOddrI9tJI/hm1+weIyEZTtVDs3k
+         WIMMDji67lgiy9EF/Uajxx9XuMFVIbnUJ9zSpyPRfz9HFlnjf7BvOhOtLYd0BKreGJX1
+         Pty3+1YtG3ssUKmi1jJLa+nAjfCVfX/aYT0qScky8aRrNJLO8QGWdIngqkENVvcij6iT
+         fAfsDNRQojU5hl7UXB5DtH1nYuqyM8CODX+k4Oqn4DDDpkiLjSnROXHuomo2V+uKi69D
+         Ku5g==
+X-Gm-Message-State: AOAM5305UTAGCfMNREFH56sR88RM9bnmuA97f3UDXEhKDmthyr9K1YBK
+        /dmeZqbTYa1GjE92olODDd5Fag==
+X-Google-Smtp-Source: ABdhPJylmisE+8bmumR+vj5OdRXxasLNVpv/JgwNeVN6sXzYD7xEr2o0CHdpEfznl7Nv7EqJDJt5LA==
+X-Received: by 2002:aca:5d82:: with SMTP id r124mr28532oib.59.1616004484509;
+        Wed, 17 Mar 2021 11:08:04 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s193sm7966921oih.52.2021.03.17.11.08.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Mar 2021 11:08:04 -0700 (PDT)
+Date:   Wed, 17 Mar 2021 13:08:02 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marc Zyngier <maz@kernel.org>, Maulik Shah <mkshah@codeaurora.org>
+Cc:     swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        dianders@chromium.org, rnayak@codeaurora.org, lsrao@codeaurora.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8350: Remove second reg from pdc
+Message-ID: <YFJFgvLQfr49EvWE@builder.lan>
+References: <1615958996-31807-1-git-send-email-mkshah@codeaurora.org>
+ <87k0q6i1g5.wl-maz@kernel.org>
+ <bce03166-e65b-198c-8b93-39e0c218aaed@codeaurora.org>
+ <87czvxj2t9.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tNQTSEo8WG/FKZ8E"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <be93d088-fefe-77f0-9b8e-9c815cc0d0f0@gmail.com>
-X-Cookie: Please ignore previous fortune.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <87czvxj2t9.wl-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed 17 Mar 09:02 CDT 2021, Marc Zyngier wrote:
 
---tNQTSEo8WG/FKZ8E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On Wed, 17 Mar 2021 09:48:09 +0000,
+> Maulik Shah <mkshah@codeaurora.org> wrote:
+> > 
+> > Hi Marc,
+> > 
+> > On 3/17/2021 2:47 PM, Marc Zyngier wrote:
+> > > On Wed, 17 Mar 2021 05:29:54 +0000,
+> > > Maulik Shah <mkshah@codeaurora.org> wrote:
+> > >> PDC interrupt controller driver do not use second reg. Remove it.
+> > > This is a DT file, not a driver. What the driver does is irrelevant.
+> > > 
+> > > The real question is: what does this range do?
+> > > 
+> > > Thanks,
+> > > 
+> > > 	M.
+> > 
+> > This is to set interrupt type in SPI config for which there was a
+> > change [1] but has not gone in for upstream PDC driver.
+> > 
+> > The second reg is not used in upstream PDC driver, probably when
+> > posting downstream DT changes for sm8350/sm8250 it was carried in
+> > device node as is.
+> > 
+> > As its not mentioned in bindigs as well, dtbs_check reports it as
+> > additional reg when converted to yaml.
+> 
+> Then I'd rather you provide accurate documentation in the binding
+> rather than changing the DT files. Other operating systems may use it,
+> and it isn't unlikely that Linux could use the feature at some point.
+> 
 
-On Wed, Mar 17, 2021 at 08:20:10PM +0300, Dmitry Osipenko wrote:
+I agree. Maulik, please update the DT binding to document this region as
+well.
 
-> Mark / Takashi, I may try to split up this series into two or three
-> smaller patchsets and then the reset/ patch from Philipp Zabel could be
-> merged by Philipp himself. I primarily want to have the audio resets
-> fixed and the reset API extended with reset_control_bulk in 5.13 because
-> this will unblock other patches. Please let me know what you prefer more.
 
-I've actually already got this queued for application next time I apply
-things, I'm guessing Phillip was intending that the reset patch go via
-ASoC?
+It also seems relevant to pursue getting [1] into the upstream Linux
+kernel. Is this something that you use downstream Maulik?
 
---tNQTSEo8WG/FKZ8E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBSQloACgkQJNaLcl1U
-h9AAsgf/egRRBL2B24oNKvQ4OlsR6yr1Z1xvvwq1T2lCBKJV6kddrTOwC2ycOGJd
-hupHoKwAfdG+eMlbOIyCh2/NyRK+gPuJjqhVRi0iT6ypmWFaxFVXF+2ziLaLVwmx
-LV0G0ktWt/hw4o7Sai982eQJQCMkdLAMZ1/WsGup1lkyM0Gp1s8aPk+gB9WfC+18
-oVMmyQAEXBK9t4xnhT2YJOiWD3QID1O79yGfio2VMSg5UydVZcYGz5Obum0DtlUU
-K4tXp0NE5dmIuUzYbKTQuz6wkPDDpv7IaygJaFw0aYImj62cmWaPcE4Jeyu5+5Jv
-4PglDPb4IaWxuU6VqJbxgmXV3wUkkQ==
-=74VK
------END PGP SIGNATURE-----
-
---tNQTSEo8WG/FKZ8E--
+Regards,
+Bjorn
