@@ -2,94 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED8433F963
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 20:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 150BA33F989
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 20:48:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233249AbhCQTev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 15:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36564 "EHLO
+        id S233218AbhCQTr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 15:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233243AbhCQTek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 15:34:40 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8654CC061762
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 12:34:40 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so1507471pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 12:34:40 -0700 (PDT)
+        with ESMTP id S232861AbhCQTqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 15:46:50 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C44C06174A;
+        Wed, 17 Mar 2021 12:46:50 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id f124so40189941qkj.5;
+        Wed, 17 Mar 2021 12:46:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=aC9XfsPEhWKeOkyFve3gS/y0ZK6Rzz537p4VTrc/pes=;
-        b=J7R0WNva4AWUE8efmdEYqtl6XZlVUBn+CBlU6HWx77oRXvMjetKAsiD/YUYQchl7iR
-         2dUWIMmTGRS552IhNuMHn1MRe2X8gDQzUE6Lt7q3D1P1kUmDH9CicIblf5m/yUbpIH7+
-         9RvzBuZs+pQx9RJHQGgaGMxoUQJYjDIi9qVR4=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=38QftDwGYTFsF09wdjbjQ7byRgm+bvbg9dFB30l6dug=;
+        b=uWalbaNxjLCppgPJ94UGPOrX1aJSHK5Hzd+Dlgrg4b9hd51W7wZdDApkxzZwgmZVOr
+         gw7qRH1/rwiyiVXKNUUlyxMAzsn19vShpZejSW5ZbVly+p6fYdGY77nJ0NJtvXWTtDK2
+         NfP5rBFD3YeD1SuMK6OHHujQr0qJZX7Czc/0RAxcsVZhYr8te2+QdNrnln9FjCOneg2X
+         zYMOM4pPAcOLz9327xW5lCNSqRLYPYV/1aRQeE+LWOPuJWqNQTVGZ/W13rPOc2ixLMQK
+         dImMB897UKTu2CL95hqz6h3H+7icxY+EqAhsiXhopAiXNE9Qbyh06S69dGS0NGnytdpi
+         f9hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aC9XfsPEhWKeOkyFve3gS/y0ZK6Rzz537p4VTrc/pes=;
-        b=kbqtXWDNsmPvOMDRUH6L6Sw+FNiU5LeJyAq5SSQ043jHfSbl3wrlgaAHLcUgJSNv1v
-         awce2qGZ/IdGdlyD5hsnl+W67cl3ipCMHO6rypH/TCh+LX2S2l3IWMtXmTT+w2hO9+Pn
-         avZGZNyaFeZT5IpjYzUSTYB4tGNPOMatK87DtSQWKeJBMxk0MoQVAepdmbvsdouAQpwv
-         oZC0LUJK9iWG1FNVmoElbKNYkc3tCbvJIuIZMSEhxO6/KVAksoPIQ/+NuKqBf+CKX+oS
-         IE3M6u3uLLF8+Wxp8VtTFuZg9NCsLcPPsm/9fiaXWupbga1x1DJaTw8ctHugjTQNfFMo
-         cmMQ==
-X-Gm-Message-State: AOAM531bc3dTUSjFUiiL8JGR+Uj+ToWoU9MUyU10tciq27+1WTKksUxd
-        rgrNXpU+hxI/iBqwt1OZBKQD+Q==
-X-Google-Smtp-Source: ABdhPJzvuzh0GDbQL02R1z72e58lYtYzY2DOXtCGDAWJ1P7tMT0SK4OSOelL6P3kE8/PqHxea2fa1w==
-X-Received: by 2002:a17:902:ee06:b029:e4:ba18:3726 with SMTP id z6-20020a170902ee06b02900e4ba183726mr5991813plb.17.1616009679874;
-        Wed, 17 Mar 2021 12:34:39 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
-        by smtp.gmail.com with UTF8SMTPSA id v134sm20517485pfc.182.2021.03.17.12.34.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 12:34:39 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 12:34:36 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: qcom,dwc3: Add bindings for SC7280
-Message-ID: <YFJZzAPo4Rh8I5lX@google.com>
-References: <1615978901-4202-1-git-send-email-sanm@codeaurora.org>
- <1615978901-4202-2-git-send-email-sanm@codeaurora.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to;
+        bh=38QftDwGYTFsF09wdjbjQ7byRgm+bvbg9dFB30l6dug=;
+        b=cI4JLC8x6lMAuhR3KRfnA5P0MSlWRFuLuu3nSGbfW5tBRfa4xK+WUbSlWWFsvavFcA
+         mmZflv1A6MRDrhW807UllkKrtbTbGgSUVc5V4gfXpFO35YJkrQaWiEpmgIz2YB0EIWbH
+         Gch66NPPQaGiXLv6anmMLudu9MrvaVD6KAMBsJgCgcgk0e6BZMHkFwfHgqLZoBhkpUz4
+         v7krGe3n9G1qfm3zG59S9OZpdfwabs+KzFj/q7xrnroneMybxj0mhgBcMS6cDQN5ykHS
+         Th3ZC0aO4+EaMfihHycQXd6L5+97jBel7bm1DJ8JeDL8mQ1EpgX4MxGlSe+ba7C97PQj
+         C8fw==
+X-Gm-Message-State: AOAM532vTMYaMVMhqCppLb8aZ0MPk51Z1wimEY4jml8wdbg524b114rg
+        idKx9+ry8HIyHpYKDcSvwu4=
+X-Google-Smtp-Source: ABdhPJw9tRTcpQEibvaEVYUIv0PMURtsr3GgPkltKsE8vsap1jDVKEb/IoubKoRXNIx8i80ljBoW1w==
+X-Received: by 2002:a05:620a:a8b:: with SMTP id v11mr868485qkg.414.1616010409321;
+        Wed, 17 Mar 2021 12:46:49 -0700 (PDT)
+Received: from ArchLinux ([156.146.37.138])
+        by smtp.gmail.com with ESMTPSA id j6sm18570289qkm.81.2021.03.17.12.46.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Mar 2021 12:46:48 -0700 (PDT)
+Date:   Thu, 18 Mar 2021 01:16:31 +0530
+From:   Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] devicetree: bindings: clock: Minor typo fix in the file
+ armada3700-tbg-clock.txt
+Message-ID: <YFJcl6i95cRM22MI@ArchLinux>
+Mail-Followup-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210317100840.2449462-1-unixbhaskar@gmail.com>
+ <546989ea-c6b2-42e4-46b2-d7de5d208728@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9hpVVWNMD0hP0C8Q"
 Content-Disposition: inline
-In-Reply-To: <1615978901-4202-2-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <546989ea-c6b2-42e4-46b2-d7de5d208728@infradead.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 04:31:39PM +0530, Sandeep Maheswaram wrote:
-> Add the compatible string for sc7280 SoC from Qualcomm.
-> 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index c3cbd1f..413299b 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -16,6 +16,7 @@ properties:
->            - qcom,msm8996-dwc3
->            - qcom,msm8998-dwc3
->            - qcom,sc7180-dwc3
-> +          - qcom,sc7280-dwc3
->            - qcom,sdm845-dwc3
->            - qcom,sdx55-dwc3
->            - qcom,sm8150-dwc3
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+--9hpVVWNMD0hP0C8Q
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+On 10:32 Wed 17 Mar 2021, Randy Dunlap wrote:
+>On 3/17/21 3:08 AM, Bhaskar Chowdhury wrote:
+>>
+>> s/provde/provide/
+>>
+>> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+>
+>Bhaskar,
+>
+>Did you send this one to "robh+dt@kernel.org"?
+>AFAICT, it was sent to "dt@kernel.org", which bounces.
+>
+>If you used "robh+dt@kernel.org", it appears that 'get send-email' has a problem with that.
+>
+I sent out a mail to David and Rob, including you for the same problem . Hope
+David will do something to change that address or Rob might do something . So
+that it will not bounce in future.
+
+Lets see.
+>thanks.
+>
+>> ---
+>>  .../devicetree/bindings/clock/armada3700-tbg-clock.txt          | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>> index 0ba1d83ff363..ed1df32c577a 100644
+>> --- a/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>> +++ b/Documentation/devicetree/bindings/clock/armada3700-tbg-clock.txt
+>> @@ -1,6 +1,6 @@
+>>  * Time Base Generator Clock bindings for Marvell Armada 37xx SoCs
+>>
+>> -Marvell Armada 37xx SoCs provde Time Base Generator clocks which are
+>> +Marvell Armada 37xx SoCs provide Time Base Generator clocks which are
+>>  used as parent clocks for the peripheral clocks.
+>>
+>>  The TBG clock consumer should specify the desired clock by having the
+>> --
+>
+>
+>--
+>~Randy
+>
+
+--9hpVVWNMD0hP0C8Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAmBSXJMACgkQsjqdtxFL
+KRWS3wgA2UZIYYaZVB6OMPavg2ALfytPLf3VNPNXZ85rvFOOE51TzBcdut85UVTu
+GF3NnjDsf5r2jiojVrLg2kjG8PGDG+uMmoif3o/oKbyhCullJjjiWFJcuZiV++Oc
+j5l6G5R1o4KuZzlMK6Ihf1zvznd4GANVGs+4eee2Xq5nunBwVLmdxbfCeUaqF9Fn
+X9Rl1EL2ER6phR7tqV7cITb22dmVXhs36hJ2LEIphrYgSG7AJbi3gZ7EM7H+pW2l
+raMAFJdNGwLfRM1i/98X86oy68Qb5i/jgscpGf3lsf9JJw3ZXty8Qzw6vq3mvFwm
+OeGcAEuGfyfHwCDqHeZVQ2O6ulMX9Q==
+=dR1+
+-----END PGP SIGNATURE-----
+
+--9hpVVWNMD0hP0C8Q--
