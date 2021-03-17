@@ -2,89 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E3733F8FB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 20:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2404233F936
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 20:32:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233136AbhCQTRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 15:17:23 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43844 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbhCQTRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 15:17:00 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12HJGs3k064784;
-        Wed, 17 Mar 2021 14:16:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616008614;
-        bh=jsQOfjpbp04TY9yBBdvk2lKx8Ml6EzBPMf8jcmIoMB0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=AmtY9LpjjSXq0uKTCALyhbZsba/N8boopjZHFx4s04VIXbJ4KnmXwFxArKoTj1qwJ
-         VgyTU+wvQyVhuEh1Uno4Ex90Hs3HRjnXELi6K1WC/gTDDtv5m5bgR/bnLMIKvmNtNg
-         0GLdtrcyONvOqxC52duJr4Z4pVwqO0v8pOmtp0EU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12HJGsUi109410
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Mar 2021 14:16:54 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 17
- Mar 2021 14:16:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 17 Mar 2021 14:16:54 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12HJGske042673;
-        Wed, 17 Mar 2021 14:16:54 -0500
-Date:   Wed, 17 Mar 2021 14:16:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Aswath Govindraju <a-govindraju@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/2] AM64: Add USB support
-Message-ID: <20210317191654.qwrrgwqpjx4kkmh7@supper>
-References: <20210317043007.18272-1-a-govindraju@ti.com>
- <33c7b945-5a3b-649b-ebaf-26465e480edc@ti.com>
+        id S233239AbhCQTbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 15:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233112AbhCQTbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 15:31:24 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E18AC06174A;
+        Wed, 17 Mar 2021 12:31:23 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id m12so683381lfq.10;
+        Wed, 17 Mar 2021 12:31:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=73TjCXjVrkI58MW+Nim3q1ayD1X0BXNWSG6Q1INh2NQ=;
+        b=e/lOgyIE+jGT4cotYrNiAE+c+4C5ZYHt4ordarHogFxS99/5oUnB5b+XfsWV8VOqYn
+         FGlbzgIwQzzjKCh+tI8FEEBeRUAuibv7OQGwBxUo6aYA9CEKROF75qKqIXqOVzQJ6tST
+         LslAhdhuc1Rx71KCa1Fp6mEi6z/r72alvwzNd+EnKJTcR0w6QTKjveelq5j/ydwryZZI
+         7kznsPz6GXVXIWpF/0ao4nl4wAwQaiPy5L6LT0EtqdEAfU8TTD3KONmpozF8UhnAD1Uw
+         Ly45v+dsIxB8at6hf5TBcR+gEG5Df50ObdCYKkG2mQE+w1hVv8tO1xmSzio+tUtivB0W
+         b++Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=73TjCXjVrkI58MW+Nim3q1ayD1X0BXNWSG6Q1INh2NQ=;
+        b=GeZiO+zCz/4uuT00aX5G8P6jL62zgLfqwkJKpRjWu9W1B+QCv0Sm76MAeqc1HDJhQp
+         lNmVfS+Z9LfpKhpOpy/IUa2zhcBEv5XZGbQ1MdNu6hj61ANCOJftNPrqDj9n37sEh3sn
+         yq6CeqxMqQu0qLy7wpGqktRe4ExXcBhpMfJNkiUeKbI83BckEUu1cfu2j8DtfErmDPuB
+         1wni9eQ2vFKHk9ibcYWAhnuuGkC5pBf3Hi1j5Hb+qthNIl6g04baE/pwJWpBqYu3YAsr
+         YkUmrjUfMkBtsiFrQqYNKcJYWowbw1AVqBZnXsq5RKCteJXzBa3u+ylSOrPf4WREEYaU
+         a38Q==
+X-Gm-Message-State: AOAM532kV70/wHnu7a+NkWM8EW2t/iK6MRmdnLzzQ6gFtrLgutWTQTos
+        uedK/F4V+OXE3/khX8UHzt0=
+X-Google-Smtp-Source: ABdhPJw570vvk63jmImjLYg9KSlx1saOpjJ0148MYcR6pgOd66+xlrMJNj57vGDtjOEU62JLasEjIA==
+X-Received: by 2002:ac2:5c0a:: with SMTP id r10mr3013997lfp.47.1616009482197;
+        Wed, 17 Mar 2021 12:31:22 -0700 (PDT)
+Received: from localhost.localdomain (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.gmail.com with ESMTPSA id q24sm3623098lji.40.2021.03.17.12.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Mar 2021 12:31:21 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] Couple improvements for Tegra clk driver
+Date:   Wed, 17 Mar 2021 22:29:59 +0300
+Message-Id: <20210317193006.29633-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <33c7b945-5a3b-649b-ebaf-26465e480edc@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:22-20210317, Kishon Vijay Abraham I wrote:
-> Aswath and Nishanth,
-> 
-> On 17/03/21 10:00 am, Aswath Govindraju wrote:
-> > The following series of patches, add USB support for AM642 evm.
-> > 
-> > USB test logs,
-> > https://pastebin.ubuntu.com/p/YSQRBWGmzd/
-> 
-> Vinod has provided stable tag [1]
-> git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git
-> tags/ti-serdes-for-5.13
-> 
-> This should unblock us from up-streaming SK along with this.
-> 
+This series fixes couple minor standalone problems of the Tegra clk
+driver.
 
-Awesome. Thanks Vinod and Kishon for helping co-ordinate this.
+Changelog:
 
-Ashwath,
+v5: - Corrected example in the schema binding to silence dt_binding_check
+      warning.
 
-Please highlight this detail as part SK USB3 addendum series and I can
-pick it up as part of pulling that series in. our window is starting to
-narrow, so lets respin asap.
+    - The Tegra124 binding is factored out into standalone binding since
+      Tegra124 has properties that aren't used by other SoCs and I couldn't
+      figure out how to make them conditional in schema.
+
+v4: - Added new patch that converts DT bindings to schema.
+
+v3: - Added acks from Thierry Reding that he gave to v2.
+
+    - Added new patch "clk: tegra: Don't allow zero clock rate for PLLs".
+
+v2: - Added these new patches:
+
+      clk: tegra: Halve SCLK rate on Tegra20
+      MAINTAINERS: Hand Tegra clk driver to Jon and Thierry
+
+v1: - Collected clk patches into a single series.
+
+Dmitry Osipenko (7):
+  clk: tegra30: Use 300MHz for video decoder by default
+  clk: tegra: Fix refcounting of gate clocks
+  clk: tegra: Ensure that PLLU configuration is applied properly
+  clk: tegra: Halve SCLK rate on Tegra20
+  MAINTAINERS: Hand Tegra clk driver to Jon and Thierry
+  clk: tegra: Don't allow zero clock rate for PLLs
+  dt-bindings: clock: tegra: Convert to schema
+
+ CREDITS                                       |   6 +
+ .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
+ .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
+ .../bindings/clock/nvidia,tegra124-car.yaml   | 115 ++++++++++++++++++
+ .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
+ .../bindings/clock/nvidia,tegra20-car.yaml    |  69 +++++++++++
+ .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
+ .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
+ MAINTAINERS                                   |   4 +-
+ drivers/clk/tegra/clk-periph-gate.c           |  72 +++++++----
+ drivers/clk/tegra/clk-periph.c                |  11 ++
+ drivers/clk/tegra/clk-pll.c                   |  12 +-
+ drivers/clk/tegra/clk-tegra20.c               |   6 +-
+ drivers/clk/tegra/clk-tegra30.c               |   2 +-
+ 14 files changed, 261 insertions(+), 388 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.30.2
+
