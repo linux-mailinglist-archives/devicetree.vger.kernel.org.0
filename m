@@ -2,167 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4EC33F28D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 15:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE96B33F298
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 15:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbhCQO0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 10:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231617AbhCQO0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 10:26:01 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D1AC06174A
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 07:26:00 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id t16so1419157qvr.12
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 07:26:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Oac/DlVej6hY85el0HaXgLiTpQUzb79aFBt4IEthyz0=;
-        b=GKM4NaIxpRPCpBQcQWSGyqYsfZU/PTZSYW3A0Jz0vsRsLiAsfw410A2D0WKTa2PslS
-         rey3lj5hAfeS+D7i4uvXO9e3pg/iTbD5dQK3yQdgHMC8eyafGpCBjlQtjGbHI1QnNWkt
-         uMG8yr4WwyDUIoFrSkPn0k5vG1xR4Q/3C0++5tkOATQ87QqTDYb93hoh8pYj5GerQPxT
-         YNXfPCyOyKNobP7NObSiJKhF+3ZXL7DNXLsuIo1oWUoASEUeeTZviIoeeJIarbj819/Y
-         8z+EOoMylKhzK8v76auJzF+9+yT6JWsbl5eh0Tw51Vxr3LIVT65m+mye92QDidHQmLps
-         WMWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Oac/DlVej6hY85el0HaXgLiTpQUzb79aFBt4IEthyz0=;
-        b=ZAWYStKcLKxhmTFkGitE4t62q/jnkNr0iUsVbFBrymNEkWJeqF9k2/G5jpbWal6IpV
-         O6qr+02D2H18GgQKE5U3+OUpKCqZbCu8QvyacK3DJPfs/qm89mxAva8jmBKoEVos90Hc
-         dvh+qi9vqh8M5BPv2XPp+iCdNtyvubzy+AZMnckQ9tyt8qO84NUi5m/ykrmIThthZeIm
-         +TXYIoHOpTl7bHxwoRlcyeK2E/B8sxRFzHfiRf2w4aaO5izOLDzCl9KJOPOK2LWWtpxY
-         E3G08KY08SIzQO043grKqt+r+WP9MvRlWVhTo6MsLL/2tZfOdirp1OG36lyQ+mUqgMVZ
-         2crw==
-X-Gm-Message-State: AOAM530Elvk/UvQOu88zDmu5Eb7DI+VaP3FcxMTVwQx7gDabza8DC/sQ
-        IEGAz6E7qD+FT1NkVONNeUyBtA==
-X-Google-Smtp-Source: ABdhPJwUz2llOCCtPaylYmaDAP5eIdLpLfqeSpbLBQJXQonnkq+QeBs5NJ2NXWpytzPxXJWA4IU/SQ==
-X-Received: by 2002:a0c:c248:: with SMTP id w8mr5675492qvh.58.1615991159804;
-        Wed, 17 Mar 2021 07:25:59 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id y9sm17232696qkm.19.2021.03.17.07.25.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 07:25:59 -0700 (PDT)
-Subject: Re: [PATCH 2/8] dt-bindings: crypto : Add new compatible strings for
- qcom-qce
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        id S231707AbhCQO30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 10:29:26 -0400
+Received: from muru.com ([72.249.23.125]:44138 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231313AbhCQO3Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 10:29:24 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 54A0B80BA;
+        Wed, 17 Mar 2021 14:30:13 +0000 (UTC)
+Date:   Wed, 17 Mar 2021 16:29:19 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com
-References: <20210310052503.3618486-1-bhupesh.sharma@linaro.org>
- <20210310052503.3618486-3-bhupesh.sharma@linaro.org>
- <20210316222825.GA3792517@robh.at.kernel.org>
- <CAH=2Ntw2dMaSYsx-Q=mXx_mMBr5PcmwhhBvTcmPYYKmy=rcCqw@mail.gmail.com>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <525bea31-b377-6f64-5cc2-827c738df372@linaro.org>
-Date:   Wed, 17 Mar 2021 10:25:58 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        kernel@collabora.com, linux-omap@vger.kernel.org
+Subject: Re: [PATCHv2 01/38] ARM: dts: motorola-cpcap-mapphone: Prepare for
+ dtbs_check parsing
+Message-ID: <YFISPyIMCbp6WcAr@atomide.com>
+References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
+ <20210317134904.80737-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <CAH=2Ntw2dMaSYsx-Q=mXx_mMBr5PcmwhhBvTcmPYYKmy=rcCqw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210317134904.80737-2-sebastian.reichel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Sebastian Reichel <sebastian.reichel@collabora.com> [210317 13:50]:
+> '<&gpio1 parameters &gpio2 parameters>' and '<&gpio1 parameters>,
+> <&gpio2 parameters>' result in the same DTB, but second format has
+> better source code readability. Also 'dtbs_check' currently uses
+> this format to determine the amount of items specified, so using
+> this syntax is needed to successfully verify the devicetree source
+> against a DT schema format.
 
+Looks good to me:
 
-On 3/17/21 9:20 AM, Bhupesh Sharma wrote:
-> Hi Rob,
-> 
-> Thanks for your review.
-> 
-> On Wed, 17 Mar 2021 at 03:58, Rob Herring <robh@kernel.org> wrote:
->>
->> On Wed, Mar 10, 2021 at 10:54:57AM +0530, Bhupesh Sharma wrote:
->>> Newer qcom chips support newer versions of the qce IP, so add
->>> new compatible strings for qcom-qce (in addition to the existing
->>> "qcom,crypto-v5.1").
->>>
->>> With [1], Thara tried to add the support for new compatible strings,
->>> but we couldn't conclude on the approach to be used. Since we have
->>> a number of new qcom arm64 SoCs available now, several of which
->>> support the same crypto IP version, so it makes more sense to use
->>> the IP version for the compatible string, rather than using the soc
->>> name as the compatible string.
->>>
->>> [1]. https://lore.kernel.org/linux-arm-msm/20201119155233.3974286-7-thara.gopinath@linaro.org/
->>>
->>> Cc: Thara Gopinath <thara.gopinath@linaro.org>
->>> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Andy Gross <agross@kernel.org>
->>> Cc: Herbert Xu <herbert@gondor.apana.org.au>
->>> Cc: David S. Miller <davem@davemloft.net>
->>> Cc: Stephen Boyd <sboyd@kernel.org>
->>> Cc: Michael Turquette <mturquette@baylibre.com>
->>> Cc: linux-clk@vger.kernel.org
->>> Cc: linux-crypto@vger.kernel.org
->>> Cc: devicetree@vger.kernel.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Cc: bhupesh.linux@gmail.com
->>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>> ---
->>>   Documentation/devicetree/bindings/crypto/qcom-qce.txt | 6 +++++-
->>>   1 file changed, 5 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
->>> index 07ee1b12000b..217b37dbd58a 100644
->>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
->>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
->>> @@ -2,7 +2,11 @@ Qualcomm crypto engine driver
->>>
->>>   Required properties:
->>>
->>> -- compatible  : should be "qcom,crypto-v5.1"
->>> +- compatible  : Supported versions are:
->>> +             - "qcom,crypto-v5.1", for ipq6018
->>> +             - "qcom,crypto-v5.4", for sdm845, sm8150
->>
->> 2 SoCs sharing 1 version doesn't convince me on using version numbers.
->> Having 4 versions for 5 SoCs further convinces me you should stick with
->> SoC specific compatibles as *everyone* else does (including most QCom
->> bindings).
-
-Hi!
-
-So, it is 2 SoCs today. But we do have a bunch of SoCs for each version 
-and these could be added in future. I think I have asked this question 
-before as well,how about "qcom,sdm845-crypto", "qcom,crypto-v5.4" and 
-have only "qcom,crypto-<version>" in the driver ? I see this being done 
-by some Qcom bindings.
-
-
-> Fair enough. I will add SoC specific compatibles in v2, which should
-> be out shortly.
-> 
-> Regards,
-> Bhupesh
-> 
->>> +             - "qcom,crypto-v5.5", for sm8250
->>> +             - "qcom,crypto-v5.6", for sm8350
->>>   - reg         : specifies base physical address and size of the registers map
->>>   - clocks      : phandle to clock-controller plus clock-specifier pair
->>>   - clock-names : "iface" clocks register interface
->>> --
->>> 2.29.2
->>>
-
--- 
-Warm Regards
-Thara
+Acked-by: Tony Lindgren <tony@atomide.com>
