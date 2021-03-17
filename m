@@ -2,88 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 400F233E63A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D917233E64D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 02:40:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbhCQBft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Mar 2021 21:35:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59450 "EHLO mail.kernel.org"
+        id S229587AbhCQBjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Mar 2021 21:39:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60414 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229490AbhCQBfs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Mar 2021 21:35:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F4F364E76;
-        Wed, 17 Mar 2021 01:35:48 +0000 (UTC)
+        id S229624AbhCQBjG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Mar 2021 21:39:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 50CA364F3C;
+        Wed, 17 Mar 2021 01:39:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1615944948;
-        bh=wfVsG34NpnkPgDNvkfeM6rHhymxXjOqDbCNsoIlma9s=;
+        s=k20201202; t=1615945146;
+        bh=qGnc9fuxsfjUHSlaUCeiyxDxXEohk8ay31RvtAPRkDE=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=YIqypZavA3LNYBIPc1EreM/QDPJFqyeB+Xdvbxq1wCfvXWZPydjiMAe93cDQh4+eP
-         gNfTj7D7paWO1O1uNQp5ZMkVeXR4tM+BdMTxVPf7ZHJgcbbQYFnHQUnkS0MbaK6aBI
-         1lYIEDicUaOY6H5SCN9STWjcGvWH9N6oQxERx16WPgjZ+GZOtcqa4v8Cv9dr0er7bD
-         zXQaQIScBIieUeVWBkI/izQUVGrDePmYFQnkIK9ggZdGQlXuXgCXkOD/lXjuMFUPAa
-         ElY2b6rfq+i9r07KPQ0xNtZvpLo2I2UF9Ks3/hgj/xLiUs+4v6dyI4uRkLJEViE+go
-         QGH6AH4BQz8Jg==
+        b=BqUhghEP2W5tHnWYYQg5SbChqqx5dyGv498DX9lWX8BHg8Zzoa2d4PY0n6qfztG5o
+         QpXB9KzVv4zfQ8xWT3PyKoSCvTbfgeaDjm4GcBAvEQ1EUyHr/IWRQN+KEem/QFdggm
+         IVlH84OwRUBQa0Pizb0sl3IJXe3Ygfh7DCVIiGPTyBH4HC4bRj64OlC8jcDw5ltriz
+         9Klv5aaSVydz6aBEnMr26G1/RYnxEp6BeUnuGMV02XpX5VnOLsS/nVanXPYQRLLYGw
+         bvQD9XkRwSVMF+BuaWAtLVJ4U9S3oYs9ByoISEGHR6V+IeDSiclY8w1eQYI/zK7S7h
+         rc3GkWx5QFNhg==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210316194918.3528417-1-robh@kernel.org>
-References: <20210316194918.3528417-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Clean-up undocumented compatible strings
+In-Reply-To: <20210315085608.16010-2-zhangqing@rock-chips.com>
+References: <20210315085608.16010-1-zhangqing@rock-chips.com> <20210315085608.16010-2-zhangqing@rock-chips.com>
+Subject: Re: [PATCH v5 1/4] dt-binding: clock: Document rockchip,rk3568-cru bindings
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Vinod Koul <vkoul@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Date:   Tue, 16 Mar 2021 18:35:46 -0700
-Message-ID: <161594494696.1478170.13888306623342465859@swboyd.mtv.corp.google.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+To:     Elaine Zhang <zhangqing@rock-chips.com>, heiko@sntech.de,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Date:   Tue, 16 Mar 2021 18:39:05 -0700
+Message-ID: <161594514504.1478170.12364418555385947548@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2021-03-16 12:49:18)
-> Adding checks for undocumented compatible strings reveals a bunch of
-> warnings in the DT binding examples. Fix the cases which are typos, just
-> a mismatch between the schema and the example, or aren't documented at al=
-l.
-> In a couple of cases, fixing the compatible revealed some schema errors
-> which are fixed.
+Quoting Elaine Zhang (2021-03-15 01:56:05)
+> Document the device tree bindings of the rockchip Rk3568 SoC
+> clock driver in Documentation/devicetree/bindings/clock/rockchip,rk3568-c=
+ru.yaml.
 >=20
-> There's a bunch of others remaining after this which have bindings, but
-> those aren't converted to schema yet.
->=20
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: linux-clk@vger.kernel.org
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-i3c@lists.infradead.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: linux-serial@vger.kernel.org
-> Cc: linux-spi@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
 
 Acked-by: Stephen Boyd <sboyd@kernel.org>
