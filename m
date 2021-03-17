@@ -2,107 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA1A33F49A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 16:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E11DA33F4F7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Mar 2021 17:05:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbhCQPv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 11:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232626AbhCQPvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 11:51:46 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B0AC061762;
-        Wed, 17 Mar 2021 08:51:42 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id ga23-20020a17090b0397b02900c0b81bbcd4so3507881pjb.0;
-        Wed, 17 Mar 2021 08:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=d/IqkkkG8gu4Lsp1z4NhPLqO/6BQq1UIwKvK3Ngt8MI=;
-        b=XK+xOy7Wj66HJhvvJp5sqfur3XsemX5SmneG9VwO1JaTeYbNp8+PnnNrf2TSWKedEc
-         3rqS3G45F9Z6B5ZqfL8hYOkSDoRkzua2gRGcr4id2UrSWP8KDnIqoZg7efusZwWAfJJg
-         aH89o+WO9ZQE++Eoiv9uEr1kJS/1uZR3V9iNtDDeoBFs4FwHP8N/cSM5+4ni1JP9PGHB
-         YWbK6zWQB5ESXekmaV88yW655U2ZErQYty2IKEqh0ZvIsSqVwEQ+nxlyyDh0VBLuzxIA
-         c3nO+yq04EVCXAsrFtK6SWOF+LaZ0T+aVNUTK+Gn+RdMW5jbsQBoB3G7nUPxBhjfHrdL
-         GGMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=d/IqkkkG8gu4Lsp1z4NhPLqO/6BQq1UIwKvK3Ngt8MI=;
-        b=Ri93z8IXkbhhU1OcXpA9vOsJCHgzChN5S8EpS+HenU4vD1vDSfpAlxgN2xv+f8LZTn
-         Rcn71cTzzUHjMNfDjCa4Le/T8Hp9KM6J1uStsLf2ONxT2cHhHUUvm77d4+1kCDmaP8bf
-         2wV33EeHFkVOrEOl5pk8/lqe7qG5O6HblbjXPje7l/soVgsZTbF3IWc4jsa20fry3VwV
-         dt5TxcDhRDFaJNIKVHvh64Cvml/W9G++3kfslznt2H1EzWweMA9FxxL5UeX6x9pjXWYY
-         zKTKxFz5GIbBoC5iY+qN9sgKdsvEHkdo6cNtGZvHzdDOBa+klN0mJbaq28NlpKSkpHjs
-         DXtw==
-X-Gm-Message-State: AOAM530Uw4r/pWNn42lR9zVuSyQvWalE6KMH+YoI4OORZa5B2cc7ISJv
-        c5DnFagkBzQW88BGninka4hnbiulHMSpc2q8
-X-Google-Smtp-Source: ABdhPJz8aRKcgs7Dx433lstM3SHUcOLizC+xA7i+aAOzModxhnXq9npxMyKHQtGABS9bQ5T8Scac1w==
-X-Received: by 2002:a62:80cf:0:b029:1f3:1959:2e42 with SMTP id j198-20020a6280cf0000b02901f319592e42mr4877037pfd.39.1615995920636;
-        Wed, 17 Mar 2021 08:45:20 -0700 (PDT)
-Received: from localhost.localdomain ([204.44.111.4])
-        by smtp.gmail.com with ESMTPSA id cv3sm3535796pjb.9.2021.03.17.08.45.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Mar 2021 08:45:20 -0700 (PDT)
-From:   dillon.minfei@gmail.com
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        parthiban@linumiz.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH v2] ARM: dts: imx6ull: fix ubi filesystem mount failed
-Date:   Wed, 17 Mar 2021 23:45:09 +0800
-Message-Id: <1615995909-6240-2-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1615995909-6240-1-git-send-email-dillon.minfei@gmail.com>
-References: <1615995909-6240-1-git-send-email-dillon.minfei@gmail.com>
+        id S232156AbhCQQEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 12:04:50 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:20618 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232130AbhCQQEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 12:04:41 -0400
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12HFnIbx027528;
+        Wed, 17 Mar 2021 09:04:23 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=2Vg8BOjl+DYg66fSaxSsmqwWU9BIPJZRi8RgDskYZYc=;
+ b=dwPcVQ30pp+VtZz0kTeS3c1gHuOaDGw9RMhlFEkQlfglKfgRbgY6J8l1n3nl3bw/eD/r
+ 38nK65ZYPxbAavvCxouVGbuA3n43FhTL64TRcTECNSCjMWObcDo4Uez70lBGzetn/Wmm
+ rQ5HnE0ha/dFHr5pBQPX0WoC2p92H0H5kNdok+a8tJY44nf9q0UvMsTqP+sEoGQRtQhC
+ UbWA1l5nscaVR/dVef6EckoCY+nTWh8czueDkL7r9zQpbu5NccyzEl9NuwLyyT1BXxnU
+ 083/1Ge2crKKVRKFSISuHiY92X3OJnYu9hoomns1wtfQIkxy3HTJ1BWItIykwkh76250 iQ== 
+Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2059.outbound.protection.outlook.com [104.47.37.59])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 378sv2p93x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 Mar 2021 09:04:23 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mkP2n9pIRqBCZ6I8eVhLgyM7qvU8LmAAECKKmMQ7ZyB0E2tkx3v25Mb9SbPbMSaGH1KAubl7KYl69m3yc9+enyRKR89C893J1DStOckVVumLpyNAuCzG4guf0JifGOIM3eWHGSwCfnCqXbD1YMgUyisnDL7OKKeeL8Xqn3hUNv/imDEFwqOe2zz9/pRa0KhJWmPcBTtGtFqR8cuydj7Camm0xspQ3fI8R/axp4icig3SzKNNUotyIvpLQn/LzbnVW1LOOdRc0NOpEAoubLfXjMikzBFn0P5S2CtxWVaiOSF3hTv4qHCGd4OJpVWvuJu3BUl4UQ5Nybx8aW1SLQY6GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Vg8BOjl+DYg66fSaxSsmqwWU9BIPJZRi8RgDskYZYc=;
+ b=V+Voux9p3HHvF47MooMkPPL8rQa9wFAoPUbYV1J1aoRBd9oDMnafOmaGvVV5Oij645LXxotMaQGjPkG0nWIgN/i6Cr/o7gwq1qdz/rOjnjMyT/HBTJQWUCpzbLuo3FOGUJgdWsfiPxJz7TaajOxjYozm8qEUWEx96Ux98t9VJ13SGFERE9z8sqtFPs3aoaT7Pyw5u20/KIvOXqFrnPnyxDtZuxlROCObhKkilC0l09ETlbVaWamOlKFIz/SWhBEAI/LvO6G4ZBPHK3SGgJv8nWX0wCNzZ/It1OZVrms87qp+bTO6ieUQeJvndlsgLQBX7bNSpa9BhUueNAxeKrXthg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 199.43.4.23) smtp.rcpttodomain=linux.ie smtp.mailfrom=cadence.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=cadence.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Vg8BOjl+DYg66fSaxSsmqwWU9BIPJZRi8RgDskYZYc=;
+ b=SqoEAKSNfxHsfVH/9QLT6AkLUtEcPWM3ThiYt1qvwpvkgvtSgWx31b6fRNSp8/7qdw/WD6YTGJ0l16ztTzfI4eS17D3Z7OgpVVtWOseRt9PEmMQliwk+ly8sv/BcBYK4xEP+37kN3T8qglmLan349OwqY93BZRmDyKqUUQqhqXE=
+Received: from MWHPR18CA0050.namprd18.prod.outlook.com (2603:10b6:300:39::12)
+ by DM6PR07MB5705.namprd07.prod.outlook.com (2603:10b6:5:35::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Wed, 17 Mar
+ 2021 16:04:20 +0000
+Received: from MW2NAM12FT014.eop-nam12.prod.protection.outlook.com
+ (2603:10b6:300:39:cafe::31) by MWHPR18CA0050.outlook.office365.com
+ (2603:10b6:300:39::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend
+ Transport; Wed, 17 Mar 2021 16:04:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 199.43.4.23)
+ smtp.mailfrom=cadence.com; linux.ie; dkim=none (message not signed)
+ header.d=none;linux.ie; dmarc=pass action=none header.from=cadence.com;
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 199.43.4.23 as permitted sender) receiver=protection.outlook.com;
+ client-ip=199.43.4.23; helo=rmmaillnx1.cadence.com;
+Received: from rmmaillnx1.cadence.com (199.43.4.23) by
+ MW2NAM12FT014.mail.protection.outlook.com (10.13.180.81) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3955.9 via Frontend Transport; Wed, 17 Mar 2021 16:04:19 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 12HG4Dd5031005
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 17 Mar 2021 12:04:14 -0400
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 17 Mar 2021 17:04:13 +0100
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Wed, 17 Mar 2021 17:04:12 +0100
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 12HG4DAF016111;
+        Wed, 17 Mar 2021 17:04:13 +0100
+Received: (from pthombar@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 12HG4AR1016094;
+        Wed, 17 Mar 2021 17:04:10 +0100
+From:   Parshuram Thombare <pthombar@cadence.com>
+To:     <robert.foss@linaro.org>, <robh+dt@kernel.org>,
+        <laurent.pinchart@ideasonboard.com>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>, <nikhil.nd@ti.com>, <kishon@ti.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>,
+        Parshuram Thombare <pthombar@cadence.com>
+Subject: [PATCH v3 0/2] enable HDCP in Cadence MHDP bridge driver
+Date:   Wed, 17 Mar 2021 17:04:08 +0100
+Message-ID: <1615997048-16043-1-git-send-email-pthombar@cadence.com>
+X-Mailer: git-send-email 2.2.2
+MIME-Version: 1.0
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 28bac655-9f1d-427a-679a-08d8e95e52c8
+X-MS-TrafficTypeDiagnostic: DM6PR07MB5705:
+X-Microsoft-Antispam-PRVS: <DM6PR07MB570507768DBF177EF6AEDBB3C16A9@DM6PR07MB5705.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4e9XUWtRR4Fr6nCb96OaXvfa1Ot99cRSWU8WzGukVDch8opNtsq8tbsUfKN84uBZRLBIzg1E+WliOxW1nwjFBKg0R+dFYf0HcUbRAPRRr0CDnhhJgcLo+brbrW/So+JFO6CgVZrQKFGRfAXOZWensVkd/HTEDC3fg7ghpj6S7KY+LD7FYyHebNFLqq25IMJjIb6+wvg9iEF8q7QJbH3TBf2JYvnO+64wyNq2A5pEMEG0hE3fqfCW4RSqAk5VsCCFGjf/7wqFVYRNUPFCe0was6017PAuTrCvZaBglf3uGeCcoYgKA/9sOCKbfJhNp5DPK2m0+2Or+lsNoFffg/7vjtsZdynMmezvjgSSPrXLd9h9rqi15+YZVv4XZHFeazH0njvu0F8w3EIZeluwEGXUNNec/pOi1HKohlLzvrjh1j0Kjw0SuST0MRTXOGe21gNKGnUVoUW1SKrMP1N62454TiY75Q0pjk6/C2hAkW1CeJMFw1VGvjIAf63+8/q478EcXNdoJsg5BNgr5jPPZC3PA6KOMYhySNFzNxmsOOpaqaAHvh+I2dcBfzHYFWII14Kx6tGnbDt/mT9dxN5dSN2WQYKyto/PgtxDaBjWMJeVxQGAaWXScJJXa7qNiFgMRHfkK/LOMeXcq9FegZzrV5necmLgJH/CsVbSV5X281DLbyaGmx0ekN74GocbHMKwQ+n89KfYgpKLSQYHC2/MQxNISDz72bzZvs5XKHEiX0f8cy0=
+X-Forefront-Antispam-Report: CIP:199.43.4.23;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:rmmaillnx1.cadence.com;PTR:ErrorRetry;CAT:NONE;SFS:(4636009)(136003)(39860400002)(396003)(376002)(346002)(36092001)(36840700001)(46966006)(7416002)(70586007)(70206006)(5660300002)(336012)(26005)(426003)(8676002)(478600001)(54906003)(186003)(47076005)(81166007)(356005)(82740400003)(83380400001)(2906002)(36906005)(4326008)(107886003)(82310400003)(36756003)(36860700001)(86362001)(8936002)(2616005)(316002)(42186006)(110136005)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2021 16:04:19.6399
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28bac655-9f1d-427a-679a-08d8e95e52c8
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.23];Helo=[rmmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-AuthSource: MW2NAM12FT014.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR07MB5705
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-17_10:2021-03-17,2021-03-17 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 phishscore=0
+ mlxlogscore=871 priorityscore=1501 bulkscore=0 impostorscore=0 spamscore=0
+ adultscore=0 malwarescore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2103170113
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+This patch series enables HDCP in Cadence MHDP DPI/DP bridge driver.
 
-For NAND Ecc layout, there is a dependency from old kernel's nand driver
-setting and current. if old kernel use 4 bit ecc , we should use 4 bit
-in new kernel either. else will run into following error at filesystem
-mounting.
+Changes since v1:
+- Move sapb reg block right after apb reg block
+- Corresponding changes in binding and example
 
-So, enable fsl,use-minimum-ecc from device tree, to fix this mismatch
+Changes since v2:
+- Revert reg resource sequence in binding and 
+  use resource mapping by name
+- Remove hdcp_config from binding and use
+  DRM HDCP Content Type property to select
+  HDCP version
 
-[    9.449265] ubi0: scanning is finished
-[    9.463968] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-[    9.486940] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-[    9.509906] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-[    9.532845] ubi0 error: ubi_io_read: error -74 (ECC error) while reading
-22528 bytes from PEB 513:4096, read 22528 bytes
+Parshuram Thombare (2):
+  dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP
+  drm: bridge: cdns-mhdp8546: Enable HDCP
 
-Fixes: f9ecf10cb88c ("ARM: dts: imx6ull: add MYiR MYS-6ULX SBC")
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
----
-v2:
-correct commit message according to Fabio Estevam's suggestion.
+ .../display/bridge/cdns,mhdp8546.yaml         |  24 +-
+ drivers/gpu/drm/bridge/cadence/Makefile       |   2 +-
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 113 +++-
+ .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  21 +
+ .../drm/bridge/cadence/cdns-mhdp8546-hdcp.c   | 570 ++++++++++++++++++
+ .../drm/bridge/cadence/cdns-mhdp8546-hdcp.h   |  89 +++
+ 6 files changed, 796 insertions(+), 23 deletions(-)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.h
 
- arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dts b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dts
-index ecbb2cc5b9ab..79cc45728cd2 100644
---- a/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dts
-+++ b/arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dts
-@@ -14,5 +14,6 @@
- };
- 
- &gpmi {
-+	fsl,use-minimum-ecc;
- 	status = "okay";
- };
 -- 
-1.9.1
+2.25.1
 
