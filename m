@@ -2,84 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F077C34040D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 11:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D29E34041E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 12:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbhCRK6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 06:58:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49458 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230014AbhCRK6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 06:58:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B091C64F24;
-        Thu, 18 Mar 2021 10:58:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616065122;
-        bh=H5haXsTyRhLH/Tr8Ot7gpbm3NkcHxuV0oId1CbO3wi8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UCMC6stWkb2KilpzcwYzrjpiy5n+IpWGdjpEGJcn62LZGF/JEVu/l+o4838XaU4JF
-         33dMvw4nnd8Ab9NYlRZi2stoE3seDxO8q2p2DWJzIFPAJpkWdE0CDEBNZuNmIcxn3Z
-         ReodiIJP1S2W6KP/Bmy+LWtpa9+ppL4L5iegrI1TEWRohlJwMhOQtN/ffdDLbYzwjq
-         WgXsJJkHtaZxDVRXT8H35kBtt2svxImYyiesoMP8jLS1yQkB1FzAd9xpibMj9VtIb9
-         f/Wfj8bgsPXLi7CPqzF+XItZZ0jW4RdLjFsNGiqg/LSNs9gGK49YHjh6MUqwv6M9IY
-         4+kTnXS4WC7Yg==
-Date:   Thu, 18 Mar 2021 11:58:39 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH 5/5] i2c: stm32f7: indicate the address being accessed on
- errors
-Message-ID: <20210318105839.GG974@ninjato>
-References: <1612515104-838-1-git-send-email-alain.volmat@foss.st.com>
- <1612515104-838-6-git-send-email-alain.volmat@foss.st.com>
+        id S230386AbhCRLCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 07:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230243AbhCRLCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 07:02:31 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A629C06174A
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 04:02:31 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id o16so5041419wrn.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 04:02:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RaGPtlv7SLOWssA/2OUjy96UMHcyvtNafHHhHgBI9nE=;
+        b=neqRkEFXfZtkXLH4oNWGmf98m9VyR+4pLz7ASX4JlNjSA6r6ofaHXscCkatdoeYd5k
+         aRfr5v8VAE6CtRo7HZlZ65DmqICPLY8kkVkihKsluSQcGn3SgGUB/o7MUze+ng08Hmv9
+         TL7LKIkxU0b33vA6ReNJYCye9qZjTPlI3wONrsLDAiiZddT4kebuRD9d+rRXJYQp2e3B
+         PCIM9nQI6rC18zQbFtlhYEKgzxH0gE5q6MWOdX4RtQjHIGKgbWAZnz/v6PX23SyMKBvU
+         /hAsigmRLuPntdq+nMH6jHjHw1/VWop6UFemTQ9ap7osnLB+t5QNs8ctn8ORhViD8nUg
+         d+uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RaGPtlv7SLOWssA/2OUjy96UMHcyvtNafHHhHgBI9nE=;
+        b=T0nd9gFXE7riacPDMv3dSjYSJ+Shk7C9WUq96m78QkryO4Z45O/lS8YPwdj+TC1Jqw
+         bRm8VmEq4fTt18ADnGIU46ssIi2znDblhA2JppAQWZzlQWq25FugyJJb7xRS04zy9oqN
+         BZodbWzElquMBhP4UquW3YWKl4GMlaQUvMTfhNiDNcuUMIJvvsTikoTOstyWElIUxiPa
+         lBksYnn/noqBhbHau0tFjrPkMzP1z3nzv+RYJeAeByKrcWmJY6YOPDStLi9gb3YiZAc/
+         pYsha46utXNWARz4Zuwwaa0NxWibzAhY8VeEl+L3s17+y5djUfTCNbyxDURUbcryxe0x
+         wyRw==
+X-Gm-Message-State: AOAM5322TcdDwf3TJr65H6fcyUG1Mg4L9ilppW1rn2hzc0h5TtEwQXbx
+        uTeCxVRzd2zvbBi7uOLxSxALza25j9HTbJmJAdFhPQ==
+X-Google-Smtp-Source: ABdhPJwFsXGsLWhLFOZr4bxCvM8KZC8buTThv4SMuDErXUoXK9GWDjMjklpqTSS37yJlD7sfGHJb4PqkhUXq40SX3e0=
+X-Received: by 2002:a05:6000:250:: with SMTP id m16mr9289960wrz.325.1616065349871;
+ Thu, 18 Mar 2021 04:02:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="KIzF6Cje4W/osXrF"
-Content-Disposition: inline
-In-Reply-To: <1612515104-838-6-git-send-email-alain.volmat@foss.st.com>
+References: <20210221093758.210981-1-anup.patel@wdc.com> <20210221093758.210981-8-anup.patel@wdc.com>
+ <20210305232245.GA820565@robh.at.kernel.org> <CAAhSdy0TwcE17-GJp664of4DV_R+6Q-S_h-N4Sbv9KL4Xofxvg@mail.gmail.com>
+ <CAL_JsqKPwND6BGq3gEuMugEnv4TNvM2_DMdB-p-v7qh5NXyPiQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqKPwND6BGq3gEuMugEnv4TNvM2_DMdB-p-v7qh5NXyPiQ@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Thu, 18 Mar 2021 16:32:18 +0530
+Message-ID: <CAAhSdy0ex1PjGa+=KgkSYFd+BteH7txJSrRdOhZnetwXaL42hQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 7/8] dt-bindings: Add bindings documentation for
+ RISC-V idle states
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 16, 2021 at 9:24 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Mar 7, 2021 at 8:18 PM Anup Patel <anup@brainfault.org> wrote:
+> >
+> > On Sat, Mar 6, 2021 at 4:52 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sun, Feb 21, 2021 at 03:07:57PM +0530, Anup Patel wrote:
+> > > > The RISC-V CPU idle states will be described in DT under the
+> > > > /cpus/riscv-idle-states DT node. This patch adds the bindings
+> > > > documentation for riscv-idle-states DT nodes and idle state DT
+> > > > nodes under it.
+> > > >
+> > > > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > > > ---
+> > > >  .../bindings/riscv/idle-states.yaml           | 250 ++++++++++++++++++
+> > > >  1 file changed, 250 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/riscv/idle-states.yaml b/Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..3eff763fed23
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/riscv/idle-states.yaml
+> > > > @@ -0,0 +1,250 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/riscv/idle-states.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: RISC-V idle states binding description
+> > > > +
+> > > > +maintainers:
+> > > > +  - Anup Patel <anup.patel@wdc.com>
+> > > > +
+> > > > +description: |+
+> > > > +  RISC-V systems can manage power consumption dynamically, where HARTs
+> > > > +  (or CPUs) [1] can be put in different platform specific suspend (or
+> > > > +  idle) states (ranging from simple WFI, power gating, etc). The RISC-V
+> > > > +  SBI [2] hart state management extension provides a standard mechanism
+> > > > +  for OSes to request HART state transitions.
+> > > > +
+> > > > +  The platform specific suspend (or idle) states of a hart can be either
+> > > > +  retentive or non-rententive in nature. A retentive suspend state will
+> > > > +  preserve hart register and CSR values for all privilege modes whereas
+> > > > +  a non-retentive suspend state will not preserve hart register and CSR
+> > > > +  values. The suspend (or idle) state entered by executing the WFI
+> > > > +  instruction is considered standard on all RISC-V systems and therefore
+> > > > +  must not be listed in device tree.
+> > > > +
+> > > > +  The device tree binding definition for RISC-V idle states described
+> > > > +  in this document is quite similar to the ARM idle states [3].
+> > > > +
+> > > > +  References
+> > > > +
+> > > > +  [1] RISC-V Linux Kernel documentation - CPUs bindings
+> > > > +      Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > > +
+> > > > +  [2] RISC-V Supervisor Binary Interface (SBI)
+> > > > +      http://github.com/riscv/riscv-sbi-doc/riscv-sbi.adoc
+> > > > +
+> > > > +  [3] ARM idle states binding description - Idle states bindings
+> > > > +      Documentation/devicetree/bindings/arm/idle-states.yaml
+> > >
+> > > I'd assume there's common parts we can share.
+> >
+> > Yes, except few properties most are the same.
+> >
+> > We can have a shared DT bindings for both ARM and RISC-V but
+> > both architectures will always have some architecture specific details
+> > (or properties) which need to be documented under arch specific
+> > DT documentation. Is it okay if this is done as a separate series ?
+>
+> No...
 
---KIzF6Cje4W/osXrF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Okay, I will create a common DT bindings for both ARM and RISC-V
+in the next revision.
 
-On Fri, Feb 05, 2021 at 09:51:44AM +0100, Alain Volmat wrote:
-> To help debugging issues, add the address of the slave being
-> accessed when getting an error.
->=20
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+>
+> > > > +
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    const: riscv-idle-states
+> > >
+> > > Just 'idle-states' like Arm.
+> >
+> > I had tried "idle-states" node name but DT bindings check complaints
+> > conflict with ARM idle state bindings.
+>
+> ...and this being one reason why.
+>
+> Actually, I think this can all be in 1 doc if you want. It's fine with
+> me if a common doc has RiscV and Arm specific properties.
 
-Applied to for-next, thanks!
+Sure, will add common DT bindings.
 
+>
+> > > > +
+> > > > +patternProperties:
+> > > > +  "^(cpu|cluster)-":
+> > > > +    type: object
+> > > > +    description: |
+> > > > +      Each state node represents an idle state description and must be
+> > > > +      defined as follows.
+> > > > +
+> > >
+> > >        additionalProperties: false
+> >
+> > okay, will update.
+> >
+> > >
+> > > > +    properties:
+> > > > +      compatible:
+> > > > +        const: riscv,idle-state
+> > > > +
+> > > > +      local-timer-stop:
+> > > > +        description:
+> > > > +          If present the CPU local timer control logic is lost on state
+> > > > +          entry, otherwise it is retained.
+> > > > +        type: boolean
+> > > > +
+> > > > +      entry-latency-us:
+> > > > +        description:
+> > > > +          Worst case latency in microseconds required to enter the idle state.
+> > > > +
+> > > > +      exit-latency-us:
+> > > > +        description:
+> > > > +          Worst case latency in microseconds required to exit the idle state.
+> > > > +          The exit-latency-us duration may be guaranteed only after
+> > > > +          entry-latency-us has passed.
+> > > > +
+> > > > +      min-residency-us:
+> > > > +        description:
+> > > > +          Minimum residency duration in microseconds, inclusive of preparation
+> > > > +          and entry, for this idle state to be considered worthwhile energy
+> > > > +          wise (refer to section 2 of this document for a complete description).
+> > > > +
+> > > > +      wakeup-latency-us:
+> > > > +        description: |
+> > > > +          Maximum delay between the signaling of a wake-up event and the CPU
+> > > > +          being able to execute normal code again. If omitted, this is assumed
+> > > > +          to be equal to:
+> > > > +
+> > > > +            entry-latency-us + exit-latency-us
+> > > > +
+> > > > +          It is important to supply this value on systems where the duration
+> > > > +          of PREP phase (see diagram 1, section 2) is non-neglibigle. In such
+> > > > +          systems entry-latency-us + exit-latency-us will exceed
+> > > > +          wakeup-latency-us by this duration.
+> > > > +
+> > > > +      idle-state-name:
+> > > > +        $ref: /schemas/types.yaml#/definitions/string
+> > > > +        description:
+> > > > +          A string used as a descriptive name for the idle state.
+> > > > +
+> > > > +    required:
+> > > > +      - compatible
+> > > > +      - entry-latency-us
+> > > > +      - exit-latency-us
+> > > > +      - min-residency-us
+> > > > +
+> > > > +additionalProperties: false
+> >
+> > I will move this up.
+>
+> TBC, you need this at 2 levels. Both the idle-states node and child nodes.
 
---KIzF6Cje4W/osXrF
-Content-Type: application/pgp-signature; name="signature.asc"
+Sure, I will add at both levels.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBTMl8ACgkQFA3kzBSg
-KbYFGhAAqK39kHrbMrNW65/acOoglcf2ZVyUccSvCvlPuqXeheH7V39lIoRoOlwz
-YjKFLQ4/WE8r5YEZfIbQKLxOjTEGCm9M3UILFEV+SL4xiCpsD6hiqjhvHdRponph
-VJcnrF7mvkCC9dvybD7gqHz3LUcMeaC266wvIC/0fUcm1YUkvehIDzilECeweTV6
-N4j33IOlQLd1SJ4IH0x4S0Mrh66Y6XS5dbBBHxmx4MrdSSxfGfVkyPB4JTDZgrsc
-mXWx3+4bMNaZW4OnEa7NbjYEtIGZLOBE7r5NFE3w/RudmabTHOCp7Mg6YCDwKNoe
-CSMQ4EfH5dpiUSEEYu/myNPtiGemyTvWbEjPFk3YYZuuTatiyyIPOPQwBKsBlDAR
-IGs3fmTur/ooCyIvb1HhDIaDD/BXMt5oJcgZKItXQRQQfn3mxoy16Cajz5v3/NQM
-GZkLG4pFOl41Irv1kw5hMhfBqIsqEswO9H+yRpWWjx+KRDXDzgr780fj7fPW+HGL
-MNXydEy8vmf7V3Hx50aWGaVQEkEUx8wORRBdPd+HG/PhIj7b0E0x2z6OkJssf59W
-ZBdKc9kfvz3hm5WzW3iVcG7tMoltGTL+5kex6ufI9TpG7P1qgt2Q/+jz15ErkTkw
-m01+/cxWGPBhdRJCmgwYVGegsLXBPjM/luqJc2f2UhPZmD1Q61A=
-=AQRM
------END PGP SIGNATURE-----
-
---KIzF6Cje4W/osXrF--
+Regards,
+Anup
