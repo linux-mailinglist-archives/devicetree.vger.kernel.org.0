@@ -2,142 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58CE434078D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 874CF3407C7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:26:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbhCROP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 10:15:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51412 "EHLO
+        id S231327AbhCROZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 10:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230159AbhCROO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:14:57 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E341C06174A;
-        Thu, 18 Mar 2021 07:14:57 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so5298089ota.9;
-        Thu, 18 Mar 2021 07:14:57 -0700 (PDT)
+        with ESMTP id S231434AbhCROZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:25:10 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850EDC06174A;
+        Thu, 18 Mar 2021 07:25:06 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id l79so1272403oib.1;
+        Thu, 18 Mar 2021 07:25:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=whMoHbtKnfcby2pmtzf2mISpuDe1wTbNYLjDL6S2nWU=;
-        b=qnl2CydrzMzC1UDRQdu6kUSjpCCCERB4VXU1TsW3mEZaC8xka3ipUQL6J1VTG4Pwqc
-         RRujaoAFQU03tQFMkmvqldCSHZXv/qbKdUIr2OIVBAwK5GXkvNAX56DXdXaG4qWxbCZx
-         etQd4aIdrdgBXruRaS6HSONWle+4MMBa5nTxYAOLgvAB8JyS6BIkT8agoFkL+EnV8nJA
-         TyIWpFJZEfFqSDEj0q1KXWfQtBF/F1YebpfrYzjBovVWr2eMRu+EF8WoGBI1S41XL+up
-         +6QhY62tVov/4oYqTf8g6b6C6WB8rRmXpi8NJ+mdJHINT0lGPpHfD5Po6xI82jzCDdY0
-         t0TA==
+        bh=x3gm3O0zGV8d6mrkbGdIstufDDjuTEV+EDN8sx1MHFs=;
+        b=uFGGOC4Ywk38a7fsMuK1d25rlsW5/SVNRmMEVbRSofSkKCpYoAXsTUGK+c7MQ4/U6C
+         8UY6cdQqic8CUKPdi9K2n91vOnIC5JEQuI12KQOx2Oa7CYg47pS87oja4fKSFERHAVD5
+         zO5EONSGDbeCfXVYSF2iLtlnICXpnJbGDvBj+8nuMlFeOXNKP/4mhMBp4VYLfIukY3ZZ
+         G6V7bWXvj03TMheyPLxxdsG2NuyEZlfpr5z5VdhKuKA3PGhElNJkqdCCdyO8K6k5EupI
+         2OetHceDyWe72SgbsvqmHdLXO56YJBetfboxUqGsPH6tHlm+ZDdvP2Hg14RdEcsQPcSR
+         F4Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=whMoHbtKnfcby2pmtzf2mISpuDe1wTbNYLjDL6S2nWU=;
-        b=idQiiJBRnjmCNzuoDegk14zuvuqtHqDCfbfO2s6QNbby/Qkfni7v1+cagq/cbNZ6Rf
-         hIavbqGrJnF92D4f+kUtASAjlUAYEEK9waprDdbTttHU7w7JtH5/GyDm1UcPdVz2T2mX
-         WVMpJ1l2oJAc2fY2sb3QZamXTl2m3v4g46ELLoXwhJUCNLna0mhK5cnlbavFLuaAKRFL
-         nOsP1iI4VIvU9Bb5zfCV3u6eTmKomXAnzs5mPEt1YL3fZFNFgmHiXPIgugPPMgkOHJb2
-         1TVAHjYV8jMMx/z9by5XAheOoIKAjiVTlrtP1vfX3JI5wUIuY6cpwlapUw9wVNOe+6p5
-         hoQg==
-X-Gm-Message-State: AOAM533ewxTBiJ+Mq4FjbmrfJh7EIhSLo/7QIczeC8xGHeE/fRdg3soy
-        DOhp4fRMJGCJ3pc2PsI5HKsoMq3WFjAldkhSrF4=
-X-Google-Smtp-Source: ABdhPJxTMcnggbeYkpD5TX+BjZlctL0gnQTf4UVoA3HsEiYZzWmnyeHJbxL7vl20IqOugt08qXLgSl5C2fQYL7yUt/E=
-X-Received: by 2002:a9d:226a:: with SMTP id o97mr7736917ota.362.1616076896631;
- Thu, 18 Mar 2021 07:14:56 -0700 (PDT)
+        bh=x3gm3O0zGV8d6mrkbGdIstufDDjuTEV+EDN8sx1MHFs=;
+        b=lT9XAGNKVfhb1ZvgX38xqTjBMPJBtvlt62NsyHuFvojE4FTzOkh/BEjjRW+fugZFB8
+         QMPRyBO1psdqfRVGPU38PWt1Wwq/JwRXRxTK2mO0OtVgacg6WBwUWYPQHFjV5I+zbPxi
+         Z3Qny9VVfDi8zy8vwhdMt2ZUF6+u49mJueIUAsXqqHlAijVNWLQBjNg7EyHv925hr1in
+         Hu2LzmFVm8uhrONDa8Dan2ZpLOuU+Y6dDHnYVSaD/H1880oczANTQPFh7eWknMjt+5Z1
+         oY2z25YN6uBfcPTliN8zlvk539cqTT/sZjXxI3JwAoLEbjgXR9cE0p42L6tB8WGX8wTb
+         cuDg==
+X-Gm-Message-State: AOAM531hOEV9FOlj556a5HUbB+6Tv0QSKZyza+8I2gGaqRWAfYo5WU6J
+        yf5Pc7XqpwZUFiHB2zDsvGjzYyLxBRgUQ/FH3MY=
+X-Google-Smtp-Source: ABdhPJxczSmp9JhNjJ3jMbWiFTuzUjg10FCu/S5NMdSOgtYKIeIzaQfwZ8OYrjih3HhdHbZ5ZkhHFhjjpP2iIqIh8Io=
+X-Received: by 2002:a05:6808:14cf:: with SMTP id f15mr3233685oiw.39.1616077505936;
+ Thu, 18 Mar 2021 07:25:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210312145545.26050-1-matthias.bgg@kernel.org> <20210312145545.26050-7-matthias.bgg@kernel.org>
-In-Reply-To: <20210312145545.26050-7-matthias.bgg@kernel.org>
+References: <1616046056-29068-1-git-send-email-rex-bc.chen@mediatek.com> <1616046056-29068-2-git-send-email-rex-bc.chen@mediatek.com>
+In-Reply-To: <1616046056-29068-2-git-send-email-rex-bc.chen@mediatek.com>
 From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 18 Mar 2021 15:14:44 +0100
-Message-ID: <CAFqH_52aDxqdK8=1iiUcGM-+CcyMmQoAKCUmozD7otoBHOvCcA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: mt8173: Drop compatible for mt6397
-To:     matthias.bgg@kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+Date:   Thu, 18 Mar 2021 15:24:54 +0100
+Message-ID: <CAFqH_51qkjtRRS8yjiRXQhN7Hvn-rG34ieKxKnKmreJrOJVUow@mail.gmail.com>
+Subject: Re: [v5, 1/2] drm/mediatek: mtk_dpi: Add check for max clock rate in mode_valid
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Matthias Brugger <mbrugger@suse.com>
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Pi-Hsun Shih <pihsun@chromium.org>,
+        Jitao Shi <jitao.shi@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi Rex-BC Chen,
 
 Thank you for your patch.
 
-Missatge de l'adre=C3=A7a <matthias.bgg@kernel.org> del dia dv., 12 de mar=
-=C3=A7
-2021 a les 15:57:
+Missatge de Rex-BC Chen <rex-bc.chen@mediatek.com> del dia dj., 18 de
+mar=C3=A7 2021 a les 6:42:
 >
-> From: Matthias Brugger <mbrugger@suse.com>
+> Add per-platform max clock rate check in mtk_dpi_bridge_mode_valid.
 >
-> The regulator framework does not need compatible, it's actually
-> superfluous. Drop it from the DT.
->
-> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
->
-> Series-to: lee.jones@linaro.org
-> Series-to: robh+dt@kernel.org
-> Series-to: matthias.bgg@gmail.com
-> Series-to: lgirdwood@gmail.com
-> Series-to: broonie@kernel.org
-> Series-cc: devicetree@vger.kernel.org
-> Series-cc: linux-arm-kernel@lists.infradead.org
-> Series-cc: linux-mediatek@lists.infradead.org
-> Series-cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 +---
->  arch/arm64/boot/dts/mediatek/mt8173-evb.dts  | 4 +---
->  2 files changed, 2 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/bo=
-ot/dts/mediatek/mt8173-elm.dtsi
-> index 21452c51a20a8..db06a986f763e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> @@ -916,9 +916,7 @@ pio6397: pinctrl {
->                         #gpio-cells =3D <2>;
->                 };
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index b05f900d9322..0b427ad0cd9b 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -120,6 +120,7 @@ struct mtk_dpi_yc_limit {
+>  struct mtk_dpi_conf {
+>         unsigned int (*cal_factor)(int clock);
+>         u32 reg_h_fre_con;
+> +       u32 max_clock_khz;
+>         bool edge_sel_en;
+>  };
 >
-> -               regulator: mt6397regulator {
-> -                       compatible =3D "mediatek,mt6397-regulator";
-> -
-> +               mt6397regulator {
-
-The same happens here, it is not checked because the mt6397 is not in
-YAML format yet, but once we do this it'll trigger an error as the
-node name should be 'regulators'
-
-
->                         mt6397_vpca15_reg: buck_vpca15 {
->                                 regulator-compatible =3D "buck_vpca15";
->                                 regulator-name =3D "vpca15";
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boo=
-t/dts/mediatek/mt8173-evb.dts
-> index 6dffada2e66b4..c3f2a85d55fe7 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> @@ -303,9 +303,7 @@ pmic: mt6397 {
->                 interrupt-controller;
->                 #interrupt-cells =3D <2>;
+> @@ -557,9 +558,23 @@ static void mtk_dpi_bridge_enable(struct drm_bridge =
+*bridge)
+>         mtk_dpi_set_display_mode(dpi, &dpi->mode);
+>  }
 >
-> -               mt6397regulator: mt6397regulator {
-> -                       compatible =3D "mediatek,mt6397-regulator";
-> -
-> +               mt6397regulator {
->                         mt6397_vpca15_reg: buck_vpca15 {
->                                 regulator-compatible =3D "buck_vpca15";
->                                 regulator-name =3D "vpca15";
+> +static enum drm_mode_status
+> +mtk_dpi_bridge_mode_valid(struct drm_bridge *bridge,
+> +                         const struct drm_display_info *info,
+> +                         const struct drm_display_mode *mode)
+> +{
+> +       struct mtk_dpi *dpi =3D bridge_to_dpi(bridge);
+> +
+> +       if (dpi->conf->max_clock_khz && mode->clock > dpi->conf->max_cloc=
+k_khz)
+
+Maybe I read this patch too fast, but why the &&? Shouldn't be more
+simple and readable
+
+          if (mode->clock > max_clock)
+
+Thanks,
+  Enric
+
+
+> +               return MODE_CLOCK_HIGH;
+> +
+> +       return MODE_OK;
+> +}
+> +
+>  static const struct drm_bridge_funcs mtk_dpi_bridge_funcs =3D {
+>         .attach =3D mtk_dpi_bridge_attach,
+>         .mode_set =3D mtk_dpi_bridge_mode_set,
+> +       .mode_valid =3D mtk_dpi_bridge_mode_valid,
+>         .disable =3D mtk_dpi_bridge_disable,
+>         .enable =3D mtk_dpi_bridge_enable,
+>  };
+> @@ -668,17 +683,20 @@ static unsigned int mt8183_calculate_factor(int clo=
+ck)
+>  static const struct mtk_dpi_conf mt8173_conf =3D {
+>         .cal_factor =3D mt8173_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+> +       .max_clock_khz =3D 300000,
+>  };
+>
+>  static const struct mtk_dpi_conf mt2701_conf =3D {
+>         .cal_factor =3D mt2701_calculate_factor,
+>         .reg_h_fre_con =3D 0xb0,
+>         .edge_sel_en =3D true,
+> +       .max_clock_khz =3D 150000,
+>  };
+>
+>  static const struct mtk_dpi_conf mt8183_conf =3D {
+>         .cal_factor =3D mt8183_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+> +       .max_clock_khz =3D 100000,
+>  };
+>
+>  static int mtk_dpi_probe(struct platform_device *pdev)
 > --
-> 2.30.1
->
->
+> 2.18.0
 > _______________________________________________
 > Linux-mediatek mailing list
 > Linux-mediatek@lists.infradead.org
