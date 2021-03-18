@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D25CF33FF53
+	by mail.lfdr.de (Postfix) with ESMTP id 5AFFD33FF52
 	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 07:09:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbhCRGJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229736AbhCRGJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 18 Mar 2021 02:09:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbhCRGIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 02:08:40 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54FFC061760
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 23:08:39 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id mz6-20020a17090b3786b02900c16cb41d63so2566087pjb.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 23:08:39 -0700 (PDT)
+        with ESMTP id S229826AbhCRGIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 02:08:44 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21E8C061760
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 23:08:43 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id m7so759304pgj.8
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 23:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=QOCh/TS5wxbMixJ7U1RoahsowYw6MPj7syv0qXToETI=;
-        b=OSNnFQJ9g8WOy5HU5t5ON2uOn4RJGZMdvNEVS7gPDoKYMWj5hT9NOo4uNGCU1rGI24
-         YDs3ITxQETXVdDATX47Mhz5PZWYxMB3D6sSosj3gAyn4DPOxJOqeVZlZRs53D+F6xWii
-         sSOvo8gRXLWdiA37HtSSapyLmvChWTbOq5btpITekVRt5hgngQlRnliZm2+2cd5EnILC
-         E8n47jJBgMYvijJr+8tS80hyq9gTssWkATn1tMJg0FxLMBQuneDDx/ci5KDdpNZypjAG
-         LJQAoRliyLoG4BSiXQY0QeYDNgOK437xpOPo8m8oUULUoR3tYZLX3qw0/wB7up3/czEf
-         Vx8A==
+        bh=fSrevoybFbbsL26TSxrZpRYYrBRYxB21pxWqc/6RRUU=;
+        b=C/Es5d4upGpMtvw6iLJ6YHD0hNfbTZr6yw7tNDk5X/Xe5qyDK6eK6OzBrwNhqOKuzh
+         KSUw8CpafEfYIM8e9KsmRJ/vBesl0/61oQaE5V+nqnR+6QYLuUEYmQDGI4sRPYigMUe9
+         vhUTUf3YM+6q2mHdVXC+cjUa17nuGfe7MB210ZRAaaT/G78suluEgFWo39Q0CkMe26ct
+         s3Pf4pIQ2Vhl5v//jFQi0DoKLamm85P4+pg8ZmS112RB+0WZCEfblOenyhlmrLbb52wA
+         d2EZMMdUmofzZ1xl+QMnfYrzm4Y9tDhOGHy3144lD+lFvJXo8knMNyZJ5oN+l2WLhs3T
+         Y/rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=QOCh/TS5wxbMixJ7U1RoahsowYw6MPj7syv0qXToETI=;
-        b=l0TWorB+ZXJUK+gj372WqoM7F2FE4iGD7BKmDfxDFscdjPI5uJqZExaMJDUMWYfXWh
-         ZKBKURH71mjbe9T1PXIGDvJ02PC3OmHjMV53kiTpQsLIQDMkukL7P4OwM9e/7iBpSdKH
-         cCj8RT4BpCihG1zCnmO55D7cKVK11kx2vXcX67Fcl0rfXh5QFigmUB5I8KSDcfFFzvOL
-         jGsOwSqMCvTMGS/lKK9s8LI61zaJ5HQzWOtA6IrJz4y6O/FegBnZvFZM5HSqNuREv3hk
-         kaX/pGm2RIDmfi4BLnYMDkiU2nkMhDolQdWeJ9gVp82PzxSc7JT20B69W89QNba8See2
-         3jAg==
-X-Gm-Message-State: AOAM532fz2mAAGuPYWmo3baZjqmzXbM8uThpXIta89OyWqiUAReuflb1
-        RWS/DDIxHthPO8bEDjIziNvEYw==
-X-Google-Smtp-Source: ABdhPJx16mWqhA7ExfAYAyXajYSVjGOiyGqdUj61KCpCqrNusOxlG5QHcFo4hqVoLue2bm3E0Fbd3Q==
-X-Received: by 2002:a17:90a:9d82:: with SMTP id k2mr2541894pjp.48.1616047719436;
-        Wed, 17 Mar 2021 23:08:39 -0700 (PDT)
+        bh=fSrevoybFbbsL26TSxrZpRYYrBRYxB21pxWqc/6RRUU=;
+        b=p6X+99VcMl6lcxN2r3FBVahowU1sCL7zIhBs5X8fo28uRZKAJljV92Y2V1thYIvb9T
+         w9UTQWjMucS3W8qrF2ejTeNkvvfdcXHR5HSVW/GozrRujUx7Yz8UxzIa8+GoXwgk7I4N
+         pHbkov6VA4l4xoVZfm2QxdWMGfjxE9KbWVBC6pbyTwLrCLJeYuJipAI9jJ+WI2tT5x65
+         XTaZr1ADDRzy2JqMSzg+hCGXCiIm/FGOu7eivu2zu31kX5IR8Aik9xX5LaxKsNFE4S9R
+         YMi6J3wIgt6uGGkxArouCHjcJGGbzCB5FWV+x7bHQz4867gCUSXWFijxT8OMYkbJRqBk
+         MDlw==
+X-Gm-Message-State: AOAM531XX+B8wKBir4wT5S2o5+A2TQ/1MDk86sAAjchmgKFEf3Cg38HE
+        ts/WldnBWZrpZ27T2hbYe0mkKQ==
+X-Google-Smtp-Source: ABdhPJxyBke2WbfVFJChIlEXKlnhNRVbDUTIX8VvrjnbRYdaYH0emxFFu3+K+tEHdW67z/GrE4FOUg==
+X-Received: by 2002:a63:905:: with SMTP id 5mr5515276pgj.337.1616047723477;
+        Wed, 17 Mar 2021 23:08:43 -0700 (PDT)
 Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id 68sm967353pfd.75.2021.03.17.23.08.35
+        by smtp.gmail.com with ESMTPSA id 68sm967353pfd.75.2021.03.17.23.08.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Mar 2021 23:08:39 -0700 (PDT)
+        Wed, 17 Mar 2021 23:08:43 -0700 (PDT)
 From:   Greentime Hu <greentime.hu@sifive.com>
 To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
         erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
@@ -59,9 +59,9 @@ To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         helgaas@kernel.org
-Subject: [PATCH v2 3/6] MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
-Date:   Thu, 18 Mar 2021 14:08:10 +0800
-Message-Id: <e32c9700ba07b6e07e7923c0e680b7f643cec8ee.1615954046.git.greentime.hu@sifive.com>
+Subject: [PATCH v2 4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+Date:   Thu, 18 Mar 2021 14:08:11 +0800
+Message-Id: <8008af6d86737b74020d7d8f9c3fbc9b500e9993.1615954046.git.greentime.hu@sifive.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1615954045.git.greentime.hu@sifive.com>
 References: <cover.1615954045.git.greentime.hu@sifive.com>
@@ -71,32 +71,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Here add maintainer information for SiFive FU740 PCIe driver.
+Add PCIe host controller DT bindings of SiFive FU740.
 
 Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
 ---
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../bindings/pci/sifive,fu740-pcie.yaml       | 119 ++++++++++++++++++
+ 1 file changed, 119 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bfc1b86e3e73..4da888be6e80 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13592,6 +13592,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
- F:	drivers/pci/controller/dwc/*imx6*
- 
-+PCI DRIVER FOR FU740
-+M:	Paul Walmsley <paul.walmsley@sifive.com>
-+M:	Greentime Hu <greentime.hu@sifive.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-+F:	drivers/pci/controller/dwc/pcie-fu740.c
+diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+new file mode 100644
+index 000000000000..c25a91b18cd7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+@@ -0,0 +1,119 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/sifive,fu740-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- PCI DRIVER FOR INTEL VOLUME MANAGEMENT DEVICE (VMD)
- M:	Jonathan Derrick <jonathan.derrick@intel.com>
- L:	linux-pci@vger.kernel.org
++title: SiFive fu740 PCIe host controller
++
++description:
++  SiFive fu740 PCIe host controller is based on the Synopsys DesignWare
++  PCI core. It shares common features with the PCIe DesignWare core and
++  inherits common properties defined in
++  Documentation/devicetree/bindings/pci/designware-pcie.txt.
++
++maintainers:
++  - Paul Walmsley <paul.walmsley@sifive.com>
++  - Greentime Hu <greentime.hu@sifive.com>
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    const: sifive,fu740-pcie
++
++  reg:
++    maxItems: 4
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: config
++      - const: mgmt
++
++  device_type:
++    const: pci
++
++  dma-coherent:
++    description: Indicates that the PCIe IP block can ensure the coherency
++
++  bus-range:
++    description: Range of bus numbers associated with this controller.
++
++  num-lanes: true
++
++  msi-parent: true
++
++  interrupt-names:
++    items:
++      - const: msi
++      - const: inta
++      - const: intb
++      - const: intc
++      - const: intd
++
++  resets:
++    description: A phandle to the PCIe power up reset line
++
++  pwren-gpios:
++    description: Should specify the GPIO for controlling the PCI bus device power on
++
++  perstn-gpios:
++    description: Should specify the GPIO for controlling the PCI bus device reset
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - device_type
++  - dma-coherent
++  - bus-range
++  - ranges
++  - num-lanes
++  - interrupts
++  - interrupt-names
++  - interrupt-parent
++  - interrupt-map-mask
++  - interrupt-map
++  - clock-names
++  - clocks
++  - resets
++  - pwren-gpios
++  - perstn-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    pcie@e00000000 {
++        #address-cells = <3>;
++        #interrupt-cells = <1>;
++        #size-cells = <2>;
++        compatible = "sifive,fu740-pcie";
++        reg = <0xe 0x00000000 0x1 0x0
++               0xd 0xf0000000 0x0 0x10000000
++               0x0 0x100d0000 0x0 0x1000>;
++        reg-names = "dbi", "config", "mgmt";
++        device_type = "pci";
++        dma-coherent;
++        bus-range = <0x0 0xff>;
++        ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000        /* I/O */
++                  0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000      /* mem */
++                  0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000      /* mem */
++                  0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
++        num-lanes = <0x8>;
++        interrupts = <56 57 58 59 60 61 62 63 64>;
++        interrupt-names = "msi", "inta", "intb", "intc", "intd";
++        interrupt-parent = <&plic0>;
++        interrupt-map-mask = <0x0 0x0 0x0 0x7>;
++        interrupt-map = <0x0 0x0 0x0 0x1 &plic0 57>,
++                        <0x0 0x0 0x0 0x2 &plic0 58>,
++                        <0x0 0x0 0x0 0x3 &plic0 59>,
++                        <0x0 0x0 0x0 0x4 &plic0 60>;
++        clock-names = "pcie_aux";
++        clocks = <&prci PRCI_CLK_PCIE_AUX>;
++        resets = <&prci 4>;
++        pwren-gpios = <&gpio 5 0>;
++        perstn-gpios = <&gpio 8 0>;
++    };
 -- 
 2.30.2
 
