@@ -2,172 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72DB733FBCF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 00:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BACC33FC10
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 01:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbhCQX1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 19:27:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58478 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbhCQX1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 19:27:40 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89CD9C06175F
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id 11so2185913pfn.9
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ODgJlo11thr3abRRn5H88pJeZKbcK7WUWOM8GS7dn/E=;
-        b=ka7O4tt5b/1Dj+gDV75rnKYCFDViijs6tPrSecl/kL4FE/l3HAn8wK2w7DCA/GvLMz
-         vzLzimLuFdKdgF8qD04l6Hl6ELjSIJ2DmchyQZq+HAFFv7uXuz0J+WyWzxCsFodfyJMD
-         JqVKZ2cm3qQs9iPt7qK9kDLHA527OLYf70mSw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ODgJlo11thr3abRRn5H88pJeZKbcK7WUWOM8GS7dn/E=;
-        b=LpD3me/xccmDtdmNzrnV+fv2YZcRLK0PaFjvqqDdH3FrXWEL9VtMtaYTjxQiXiXVFA
-         ThFEKMjUjgoSxvOoe7Th6D1Id5ExsrsFqtWRxsT5M7SjZqSU7KHKBgbKg0/WMlf40NLD
-         hDP9DvW59ixdMMIjU1/Qj4XmhosA1tsD8RDP8KTujGeQNUiR9tsNFJq3NdQR95ESCuZH
-         N/k++u+1lpGVyBJq4YqLQNzoJ0VHB5V02kO8Yor4q+cL3Pcqd1lPEtoWc9Gwx0x/L6Lt
-         NS5LNDQNq26sHUdbWipthSbXU/6KPMXuu3uc6Qtcr8MCcLbHiE40a+O2akFT/mu+7oow
-         XqkQ==
-X-Gm-Message-State: AOAM532xpL3A1NhaXUhoEtW5Hlng/cK6jXIVoBKN2GV8VPk9IhANesrQ
-        m3TC+S5cN9n00EluQQjzTBpKaw==
-X-Google-Smtp-Source: ABdhPJzeS30ixDkVh9yP6I/NanMrQ/pjkgpILrw4pj9P0Ogh+/lOMqEh56QvyTw5PcFj2orL9mcEJA==
-X-Received: by 2002:aa7:8a58:0:b029:1fb:8ab:866e with SMTP id n24-20020aa78a580000b02901fb08ab866emr1339585pfa.0.1616023660024;
-        Wed, 17 Mar 2021 16:27:40 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
-        by smtp.gmail.com with UTF8SMTPSA id x186sm166239pfc.65.2021.03.17.16.27.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Mar 2021 16:27:39 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 16:27:37 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, robdclark@chromium.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>,
-        eballetbo@gmail.com, Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        drinkcat@chromium.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on
- sc7180-trogdor-pompom
-Message-ID: <YFKQaXOmOwYyeqvM@google.com>
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
+        id S229884AbhCRACb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 20:02:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48118 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229934AbhCRACP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 20:02:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7EC4D64F26;
+        Thu, 18 Mar 2021 00:02:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616025734;
+        bh=vresu2JOh2P7GZ/rMBfA5rTS0ajtTjBCvoZV08Sk+io=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=je6CmOhaVM4p4tGNzDMHgEx0pYGEAjhtEWu9Q0qdlDUXnTIGpDK2Bydk3OjUFvhp1
+         xc8b1Wv21q+6HkFj4ed+odlffSNg6Z/TscVV5viovfg0jLODgtIxXk4QSU9gXpLckx
+         QPd7oxHEawOUuj8X08KNOEfmNERjlzy/u7k1iPVzfBElmAJ7b3Ie4n/gx4afV7AH6G
+         lWBwQi17mqeofHOAJcavZbB8KqwsQ9wuSjPBBI8/BHBdMrCMr4m4X8+cSNrXSXLAog
+         AM+H04t9NNykXep1a8u/s8Ujh9t+bSaLKbeRUwzGopUqD8Cef7ehLnU0uJVX7sSVpr
+         fIKfdwlINGo9g==
+Received: by pali.im (Postfix)
+        id EFD9B8A9; Thu, 18 Mar 2021 01:02:11 +0100 (CET)
+Date:   Thu, 18 Mar 2021 01:02:11 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, maz@kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+Subject: Re: [v8,3/7] PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+Message-ID: <20210318000211.ykjsfavfc7suu2sb@pali>
+References: <20210224061132.26526-1-jianjun.wang@mediatek.com>
+ <20210224061132.26526-4-jianjun.wang@mediatek.com>
+ <20210311123844.qzl264ungtk7b6xz@pali>
+ <1615621394.25662.70.camel@mhfsdcap03>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1615621394.25662.70.camel@mhfsdcap03>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
-> The sc7180-trogdor-pompom board might be attached to any number of a
-> pile of eDP panels. At the moment I'm told that the list might include:
-> - KD KD116N21-30NV-A010
-> - KD KD116N09-30NH-A016
-> - Starry 2081116HHD028001-51D
-> - Sharp LQ116M1JW10
+On Saturday 13 March 2021 15:43:14 Jianjun Wang wrote:
+> On Thu, 2021-03-11 at 13:38 +0100, Pali Rohár wrote:
+> > On Wednesday 24 February 2021 14:11:28 Jianjun Wang wrote:
+> > > +static int mtk_pcie_startup_port(struct mtk_pcie_port *port)
+> > > +{
+> > ...
+> > > +
+> > > +	/* Delay 100ms to wait the reference clocks become stable */
+> > > +	msleep(100);
+> > > +
+> > > +	/* De-assert PERST# signal */
+> > > +	val &= ~PCIE_PE_RSTB;
+> > > +	writel_relaxed(val, port->base + PCIE_RST_CTRL_REG);
+> > 
+> > Hello! This is a new driver which introduce yet another custom timeout
+> > prior PERST# signal for PCIe card is de-asserted. Timeouts for other
+> > drivers I collected in older email [2].
+> > 
+> > Please look at my email [1] about PCIe Warm Reset if you have any clue
+> > about it. Lorenzo and Rob already expressed that this timeout should not
+> > be driver specific. But nobody was able to "decode" and "understand"
+> > PCIe spec yet about these timeouts.
 > 
-> It should be noted that while the EDID programmed in the first 3
-> panels indicates that they should run with exactly the same timing (to
-> keep things simple), the 4th panel not only needs different timing but
-> has a different resolution.
+> Hi Pali,
 > 
-> As is true in general with eDP panels, we can figure out which panel
-> we have and all the info needed to drive its pixel clock by reading
-> the EDID. However, we can do this only after we've powered the panel
-> on. Powering on the panels requires following the timing diagram in
-> each panel's datasheet which specifies delays between certain
-> actions. This means that, while we can be quite dynamic about handling
-> things we can't just totally skip out on describing the panel like we
-> could do if it was connected to an external-facing DP port.
+> I think this is more like a platform specific timeout, which is used to
+> wait for the reference clocks to become stable and finish the reset flow
+> of HW blocks.
 > 
-> While the different panels have slightly different delays, it's
-> possible to come up with a set of unified delays that will work on all
-> the panels. From reading the datasheets:
-> * KD KD116N21-30NV-A010 and KD KD116N09-30NH-A016
->   - HPD absent delay: 200 ms
->   - Unprepare delay: 150 ms (datasheet is confusing, might be 500 ms)
-> * Starry 2081116HHD028001-51D
->   - HPD absent delay: 100 ms
->   - Enable delay: (link training done till enable BL): 200 ms
->   - Unprepare delay: 500 ms
-> * Sharp LQ116M1JW10
->   - HPD absent delay: 200 ms
->   - Unprepare delay: 500 ms
->   - Prepare to enable delay (power on till backlight): 100 ms
+> Here is the steps to start a link training in this HW:
 > 
-> Unified:
-> - HPD absent delay: 200 ms
-> - Unprepare delay: 500 ms
-> - Enable delay: 200 ms
+> 1. Assert all reset signals which including the transaction layer, PIPE
+> interface and internal bus interface;
 > 
-> NOTE: in theory the only thing that we _really_ need unity on is the
-> "HPD absent delay" since once the panel asserts HPD we can read the
-> EDID and could make per-panel decisions if we wanted.
+> 2. De-assert reset signals except the PERST#, this will make the
+> physical layer active and start to output the reference clock, but the
+> EP device remains in the reset state.
+>    Before releasing the PERST# signal, the HW blocks needs at least 10ms
+> to finish the reset flow, and ref-clk needs about 30us to become stable.
 > 
-> Let's create a definition of "a panel that can be attached to pompom"
-> as a panel that provides a valid EDID and can work with the standard
-> pompom power sequencing. If more panels are later attached to pompom
-> then it's fine as long as they work in a compatible way.
+> 3. De-assert PERST# signal, wait LTSSM enter L0 state.
 > 
-> One might ask why we can't just use a generic string here and provide
-> the timings directly in the device tree file. As I understand it,
-> trying to describe generic power sequencing in the device tree is
-> frowned upon and the one instance (SD/MMC) is regarded as a mistake
-> that shouldn't be repeated. Specifying a power sequence per board (or
-> per board class) feels like a reasonable compromise. We're not trying
-> to define fully generic power sequence bindings but we can also take
-> advantage of the semi-probable properties of the attached device.
-> 
-> NOTE: I believe that past instances of supporting this type of thing
-> have used the "white lie" approach. One representative panel was
-> listed in the device tree. The power sequencings of this
-> representative panel were OK to use across all panels that might be
-> attached and other differences were handled by EDID. This patch
-> attempts to set a new precedent and avoid the need for the white lie.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+> This 100ms timeout is reference to TPVPERL in the PCIe CEM spec. Since
+> we are in the kernel stage, the power supply has already stabled, this
+> timeout may not take that long.
 
-Sounds reasonable to me if DT maintainers can live with this abstract
-hardware definition. It's clearer than the 'white lie' approach.
+I think that this is not platform specific timeout or platform specific
+steps. This matches generic steps as defined in PCIe CEM spec, section
+2.2.1. Initial Power-Up (G3 to S0).
 
-It's then up to the vendor/manufacturer to ensure to only ship devices
-with panels that have compatible timings.
+What is platform specific is just how to achieve these steps.
 
->  .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 ++++
->  1 file changed, 4 insertions(+)
+Am I right?
+
+...
+
+TPVPERL is one of my timeout candidates as minimal required timeout for
+Warm Reset. I have wrote it in email:
+
+https://lore.kernel.org/linux-pci/20200430082245.xblvb7xeamm4e336@pali/
+
+But I'm not sure as specially in none diagram is described just warm
+reset as defined in mPCIe CEM (3.2.4.3. PERST# Signal).
+
+...
+
+Anyway, I would suggest to define constants for those timeouts. I guess
+that in future we could be able to define "generic" timeout constants
+which would not be in private driver section, but in some common header
+file.
+
+> > > +
+> > > +	/* Check if the link is up or not */
+> > > +	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_REG, val,
+> > > +				 !!(val & PCIE_PORT_LINKUP), 20,
+> > > +				 50 * USEC_PER_MSEC);
+> > 
+> > IIRC, you need to wait at least 100ms after de-asserting PERST# signal
+> > as it is required by PCIe specs and also because experiments proved that
+> > some Compex wifi cards (e.g. WLE900VX) are not detected if you do not
+> > wait this minimal time.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 62b0d54d87b7..9807dbc1cceb 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -140,6 +140,10 @@ properties:
->        - giantplus,gpg48273qs5
->          # GiantPlus GPM940B0 3.0" QVGA TFT LCD panel
->        - giantplus,gpm940b0
-> +        # A panel connected to a google,pompom board. Panel is guaranteed to
-> +        # confirm to google,pompom-panel power sequencing requirements and then
+> Yes, this should be 100ms, I will fix it at next version, thanks for
+> your review.
 
-s/confirm/conform/ ?
+In past Bjorn suggested to use msleep(PCI_PM_D3COLD_WAIT); macro for
+this step during reviewing aardvark driver.
 
-> +        # the specific panel will be probed via EDID.
-> +      - google,pompom-panel
->          # HannStar Display Corp. HSD070PWW1 7.0" WXGA TFT LCD panel
->        - hannstar,hsd070pww1
->          # HannStar Display Corp. HSD100PXN1 10.1" XGA LVDS panel
+https://lore.kernel.org/linux-pci/20190426161050.GA189964@google.com/
 
-FWIW:
+And next iteration used this PCI_PM_D3COLD_WAIT macro instead of 100:
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+https://lore.kernel.org/linux-pci/20190522213351.21366-2-repk@triplefau.lt/
+
+> Thanks.
+> > 
+> > > +	if (err) {
+> > > +		val = readl_relaxed(port->base + PCIE_LTSSM_STATUS_REG);
+> > > +		dev_err(port->dev, "PCIe link down, ltssm reg val: %#x\n", val);
+> > > +		return err;
+> > > +	}
+> > 
+> > [1] - https://lore.kernel.org/linux-pci/20210310110535.zh4pnn4vpmvzwl5q@pali/
+> > [2] - https://lore.kernel.org/linux-pci/20200424092546.25p3hdtkehohe3xw@pali/
+> 
