@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D85340B06
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07ED2340B76
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:14:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232242AbhCRRHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 13:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60412 "EHLO
+        id S232183AbhCRRNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 13:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232256AbhCRRG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 13:06:59 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95495C06174A
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:06:59 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id h6-20020a0568300346b02901b71a850ab4so5862194ote.6
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:06:59 -0700 (PDT)
+        with ESMTP id S232250AbhCRRNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 13:13:39 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCED2C06174A
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:13:38 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id gb6so3286386pjb.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:13:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EDdfsUwbPl0ZGq8W3pDbYPnirHDxA/3J0stRMcNF0Dg=;
-        b=oRJZAS68b40yb38sZtyOpRDHIksYzLVy02oabfn866Hs3YyRLMQ9eN3F7H+eY0+1Si
-         xCNuv9BRJuSWAX8FMGVN2YO/5LzbL5M3F9mNn94CX3IsnpwkRC91dUMM4eU1lcpeQRzU
-         ryLxuwQAoXMty9V2zSAI9n+OhKSq4ivq17r+Xs1rJaRL03lmqDVpR2GrrTzv/MQbFa76
-         ButnbScHf0u3fC1ijw9uXSTkbw3sEM6mlkIXHbWfnZPif/ZStTwOuez4xbh2xq8bIoAC
-         6knnnPcg5PruVshvHdHl8sW5xcMtTFBYRI8a+LweNz/rgKlJd6FK7z1ueSqfo2VquKpr
-         jDYA==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1sseX0Xf3BUtKz3PR0Gizm8Ulb+76kkvwxNlI1Phel0=;
+        b=lPHk5Qo2Lb35CXcQnM+dRJ5QATTMsQuJnxyOV8yE5AlzOJe7G7CXoxkCB7ivQ1MHCq
+         B0Dm0BhakKimujDv9ePNv9PH/WSAC/PW8M3GpTFZZTKsPwsBEPHQeT7nPFnN4GWCBNKC
+         6kDr0+TmcPqWTq4cnlMVj4fQ/ezN8uIhxFx9I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EDdfsUwbPl0ZGq8W3pDbYPnirHDxA/3J0stRMcNF0Dg=;
-        b=bi5+nn3A+MSJhjVI16tv5vLdYZKqpEaIb6pYamtXc+vb1nq1DjGnHAJAvZ6DwQmItL
-         VgYLPCXNHzlFary0DMF/WceRnvlHeJRBNfRaigdQBuNdLBSEli/Wwr1eaYZHzkxjZWtq
-         Lg3eW7UtIbHNbXgFqYhdfpafaMO6c7LnDvQZku6BqaHdbE65hWL5yQh/H3ZcPjKjR6JJ
-         5GD07uu3yYAYQ+cIjrAxhfYNEFbLJjWFHC3QkZB1N8Vmqq4KfxyrMJDJoGbbT8CZYCqW
-         1flvb8v1V1gQFiOhMpb4xH+iCuUvxsi1sTfZB2RMNUIjduXKpHEA41pq0/BlINvbqevi
-         I20Q==
-X-Gm-Message-State: AOAM531T+3prKLta9cP8OGH7v0eZQNYtxlnHrZalMU85mVOmcsDV/eEZ
-        cV1IigYRsS4TySLmVRyM/rbXvw==
-X-Google-Smtp-Source: ABdhPJzf/Rw1E3Gk1SXd4/sFwfQABV43qXhdPVCJWAOiKt5jrh4jvCA4u7gzetMyoiT+LKNKiE2KlA==
-X-Received: by 2002:a9d:5e89:: with SMTP id f9mr8268359otl.241.1616087218543;
-        Thu, 18 Mar 2021 10:06:58 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s3sm657086ool.36.2021.03.18.10.06.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Mar 2021 10:06:58 -0700 (PDT)
-Date:   Thu, 18 Mar 2021 12:06:56 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, wcn36xx@lists.infradead.org,
-        "open list:NETWORKING DRIVERS (WIRELESS)" 
-        <linux-wireless@vger.kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>
-Subject: Re: [PATCH 0/5] qcom: wcnss: Allow overriding firmware form DT
-Message-ID: <YFOIsIxIC2mgzhZ1@builder.lan>
-References: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
- <CAOCk7Nq5B=TKh40wseAdnjGufcXuMRkc-e1GMsKDvZ-T7NfPGg@mail.gmail.com>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1sseX0Xf3BUtKz3PR0Gizm8Ulb+76kkvwxNlI1Phel0=;
+        b=LH46XGb8E/3Pz6gndFEMupELfSwRgSa66inqBtEHarJjOQU+MY4/W/hEMVFQj7J6Pn
+         1cAIStCTeJY6vl9kE/FBOEobmNj/aHHaqXvygy2V9x0a80rkiDqvoSUKgSiwfK52kZQv
+         iN1ipQoWA1r6Elxy35uWeJD68zqAv0g8eMSGUVOqjD+IlwN5+2Bqqvl+iieG6iqqqB+v
+         ql69tdpO4C2igyY4fv54M6H18q4HMfQsGLpPw96ixJjOiL4msCIkBvaglHYfGbJx1k3r
+         FTIfUK1nNmpjPsWgzykCLNf0EV87GVqQUsqEqOm10fnQxboMQVFCHSUshYLt3JMIklPy
+         pQuw==
+X-Gm-Message-State: AOAM5309JLkh8ZJIjHwB0W363EheqO6CqMQU9ynZpX5ZkasaCkXDK2oV
+        tKZM/g58M3/dwgpw3TbVATlEjw==
+X-Google-Smtp-Source: ABdhPJwbOEmo329XpSz1wEf3cFY6vA7M4NEYEfSU9e0kOD9VDn2EAXvUS6ECDxze8HrI66RfVx5BJA==
+X-Received: by 2002:a17:902:441:b029:e6:364a:5f55 with SMTP id 59-20020a1709020441b02900e6364a5f55mr10714521ple.7.1616087618263;
+        Thu, 18 Mar 2021 10:13:38 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
+        by smtp.gmail.com with UTF8SMTPSA id 21sm2666277pgf.69.2021.03.18.10.13.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Mar 2021 10:13:37 -0700 (PDT)
+Date:   Thu, 18 Mar 2021 10:13:36 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Roja Rani Yarubandi <rojay@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        akashast@codeaurora.org, msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V2 1/2] soc: qcom-geni-se: Cleanup the code to remove
+ proxy votes
+Message-ID: <YFOKQKlI3MjMouEA@google.com>
+References: <20210318111009.30365-1-rojay@codeaurora.org>
+ <20210318111009.30365-2-rojay@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAOCk7Nq5B=TKh40wseAdnjGufcXuMRkc-e1GMsKDvZ-T7NfPGg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210318111009.30365-2-rojay@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 18 Mar 11:56 CDT 2021, Jeffrey Hugo wrote:
-
-> form -> from in the subject?
+On Thu, Mar 18, 2021 at 04:40:08PM +0530, Roja Rani Yarubandi wrote:
+> ICC core and platforms drivers supports sync_state feature, which
+> ensures that the default ICC BW votes from the bootloader is not
+> removed until all it's consumers are probes.
 > 
+> The proxy votes were needed in case other QUP child drivers
+> I2C, SPI probes before UART, they can turn off the QUP-CORE clock
+> which is shared resources for all QUP driver, this causes unclocked
+> access to HW from earlycon.
+> 
+> Given above support from ICC there is no longer need to maintain
+> proxy votes on QUP-CORE ICC node from QUP wrapper driver for early
+> console usecase, the default votes won't be removed until real
+> console is probed.
+> 
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
 
-Seems like I only failed in the cover letter, right?
+I suggest to mention that this is essentially a revert of commit
+048eb908a1f2 ("soc: qcom-geni-se: Add interconnect support to fix
+earlycon crash"). This makes the life of reviewers easier and it's
+also good to have the reference in the git history.
 
-Regards,
-Bjorn
+You could also mention commit 7d3b0b0d8184 ("interconnect: qcom:
+Use icc_sync_state") in the intro.
 
-> On Thu, Mar 11, 2021 at 5:34 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > The wireless subsystem found in Qualcomm MSM8974 and MSM8916 among others needs
-> > platform-, and perhaps even board-, specific firmware. Add support for
-> > providing this in devicetree.
+I tried to test by first reproducing the original issue without
+'sync_state' in the ICC, but wasn't successful, probably something
+changed in the boot/ICC timing in the meantime ¯\_(ツ)_/¯.
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
