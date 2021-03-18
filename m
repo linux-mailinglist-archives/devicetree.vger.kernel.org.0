@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C6E93401F4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:25:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 971D2340253
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbhCRJY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 05:24:28 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39908 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbhCRJYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 05:24:09 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 55FED1F45907
-Subject: Re: [PATCH] arm64: dts: mt8173: fix wrong power-domain phandle of
- pmic
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <49433ae0-0563-8783-f17e-98eaeba09c57@collabora.com>
-Date:   Thu, 18 Mar 2021 10:24:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S229834AbhCRJqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 05:46:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36726 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229564AbhCRJqb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 05:46:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4EE4B64F0C;
+        Thu, 18 Mar 2021 09:46:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616060790;
+        bh=hxJs/mIL6KwJJl4VSxDtA4EFb/qBN31GavYb1+99x9M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=O9GvhqQrBSSRCOAg78sYzGAMoPboqFJbPcQ5Gv4sC41z1mY0CT+XeJBT4h0v+1DSs
+         ChTdKmkNx8bK0vF9VBUKz3nCQ7yZTpnD1lsSYEFpX6gosBBMOtYf3xW/LG+drfd7KZ
+         RnqZl2JI1PwFo0QEG2y6Lcwt96wIoCK6VTIvdpdM6vQW7xBaTtz74808m5CMonVTxm
+         vAS8VdBSa9fPVmU20cq8sS8Z/zkRgJEzK5Z4uPaKQioybj3Q2VKSU0y47fO6sSHVBv
+         z6o20IMSD0HdMD179kJpNrY11EKTLWiTeea3T8FXUzfI0syBwLU/mwxsh/KMhYbN6D
+         t3QgNnV++JSVw==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] interconnect: qcom: Add SM8350 support
+Date:   Thu, 18 Mar 2021 15:16:15 +0530
+Message-Id: <20210318094617.951212-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-In-Reply-To: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chunfeng Yun,
+This adds support for interconnect support for SM8350 SoC
 
-Thank you for the patch.
+Changes since v2:
+ - Plug gaps in indexes
+ - fix typo in commit log for patch2 and kconfig depends (for real this time)
 
-On 18/3/21 7:18, Chunfeng Yun wrote:
-> Due to power domain controller is added, the power domain's
-> phanle is also changed from 'scpsys' to 'spm', but forget to
-> modify pmic node's
-> 
-> Fixes: 8b6562644df9 ("arm64: dts: mediatek: Add mt8173 power domain controller")
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Changes since v1:
+ - Fix comments by Georgi, split the header
+ - Fix the macro for qns_llcc
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Vinod Koul (2):
+  dt-bindings: interconnect: Add Qualcomm SM8350 DT bindings
+  interconnect: qcom: Add SM8350 interconnect provider driver
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8173-evb.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> index 6dffada2e66b..28aa634c9780 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> @@ -294,7 +294,7 @@
->  
->  &pwrap {
->  	/* Only MT8173 E1 needs USB power domain */
-> -	power-domains = <&scpsys MT8173_POWER_DOMAIN_USB>;
-> +	power-domains = <&spm MT8173_POWER_DOMAIN_USB>;
->  
->  	pmic: mt6397 {
->  		compatible = "mediatek,mt6397";
-> 
+ .../bindings/interconnect/qcom,rpmh.yaml      |  10 +
+ drivers/interconnect/qcom/Kconfig             |   9 +
+ drivers/interconnect/qcom/Makefile            |   2 +
+ drivers/interconnect/qcom/sm8350.c            | 633 ++++++++++++++++++
+ drivers/interconnect/qcom/sm8350.h            | 168 +++++
+ .../dt-bindings/interconnect/qcom,sm8350.h    | 172 +++++
+ 6 files changed, 994 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/sm8350.c
+ create mode 100644 drivers/interconnect/qcom/sm8350.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sm8350.h
+
+-- 
+2.26.3
+
