@@ -2,180 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0CAB33FE28
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 05:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E096533FE44
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 05:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbhCRE1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 00:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
+        id S229637AbhCREi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 00:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbhCRE0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 00:26:53 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9992C06174A
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id z136so917629iof.10
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
+        with ESMTP id S229610AbhCREiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 00:38:01 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFAFAC06174A
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:38:00 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id ga23-20020a17090b0397b02900c0b81bbcd4so4384122pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:38:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ql2dgaEyzlxz1rnlLy2Wg/nnnp7tmOxMWx8bJq2EFZU=;
-        b=W8cx8DyHSkSFRXpWsBNRnLfWNZxWBaqqHtgHrd/WpU0n2AEAEWHPGDzYqFXwZW576h
-         EcVKZzyxSb3zHtDCDhhYE4iNDuWSd50c4Pvl1YOJtIE6BKhTjwNRAddrDPPyJdHLDLVM
-         491KnMySN0siPXOHZisSPMAhdy2AKATWs/m0s=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wu0UN0qTxD7NQTRZi1+qshriPs2sSwGOFj55/TJrhfs=;
+        b=JnhEYHtG8GcWblkEqlnukB3sW2ozfkVUOTi3eX2FyFLMPicJSZpmzGzd+87u7SdNwT
+         GWnRMgt6j7VvIAueGQqv9p9IOntxQzyunv1Xjh5gRySqiBmJVRdvVYuF57pLWJsqrqaU
+         Jc3Wx//wy9wlk3spgOF09gRE0KkQhOyFxTUfU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ql2dgaEyzlxz1rnlLy2Wg/nnnp7tmOxMWx8bJq2EFZU=;
-        b=HU+YZT05SPKZ56WU2wKd3J5sdwSzki3qPycgl8GQvs/GmAkmOQ3f9Lx1FpHuzRQy1f
-         UpJ0G/memT27Zrwmr3w3Pn7hA5IPXsAXeVh3N2ONpxtGX6W932WuKyJs5N8v7MQTDYwY
-         el7Qu58883FjwYfYGT9BU5gXAta19/JUENCv4ZvV8LOlW6ulxlErqFYDVFYNO2zNU5bh
-         kdel19iccFdJcu8b/TW0IMKEyWQUHF0daKM3fa1FDVDoWUdAhQbDwrqs6AEe1g1UUum6
-         VlNWy4NL/Np7+A5u+DzS95nXgtzC+QNZ06mZ/Q0i15gnv3wLGOuI31n3YIPtZYYpjVzu
-         msXg==
-X-Gm-Message-State: AOAM5305M7gLuS50uXVNqChe8ZNNLFdfcHJAT37gziIKTEkqqQPg2u8l
-        c5zhK10SZPN89bRaX8tunZasLMUQVxxidBKIoiexzw==
-X-Google-Smtp-Source: ABdhPJyiT+pK5YW1/xho4IDNMJd1L9KoZwDrKi/f2JRgrLZDLUc4ArB1kHW9DAPXHK1IuoyC3hGih7UIy39ozt/dTSQ=
-X-Received: by 2002:a05:6638:43:: with SMTP id a3mr5366562jap.102.1616041612173;
- Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210224061409.3996755-1-hsinyi@chromium.org> <20210224061409.3996755-2-hsinyi@chromium.org>
-In-Reply-To: <20210224061409.3996755-2-hsinyi@chromium.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wu0UN0qTxD7NQTRZi1+qshriPs2sSwGOFj55/TJrhfs=;
+        b=gtbMAOZTr6R66K0RylDTnR2lnEuGg6zkR8abyPSOoLdPCkSTNH7MZJ0YiYB5fKcZVE
+         P1oqQ080QAm7RlKxj0dj1pBP3PV2Xaa9HdIQKJrb40wJhPSn9OajSvviy5+ow4okY5AA
+         nM2Mq6vTlNvFcNgxSOGIGG02/93pQCPxVabbL7ynsDknewJADiuN/+h1tFOkn9BQIlcd
+         0GGz+XIEdzW/y67y7hOWhH4g9xme6kMMiAtfXAvbTdUJvvCJeP03fl306ygU9wsiYP9C
+         Hdk2jWADNtk0WmAAVg+AqYrccNqgD3iW0Zo9oF133wl55+P4ltADhV//ySWqd+nXBuqF
+         GuJA==
+X-Gm-Message-State: AOAM530keYVqXC2ThrgD+yAK+dvhrFAajGzVdcuMIHb8kGbA/xlHwxbc
+        S3chxMxn69qG+aX0wU/98+wMlXhY/rFX+Zl2
+X-Google-Smtp-Source: ABdhPJzIaZ6w7w9IBg3hxpIxje9WnBHc4M9GJ0YeFtZVWASjJiKw0xd9PcjxU1CC3FLuBSfqt4Gq9Q==
+X-Received: by 2002:a17:902:ec84:b029:e5:bd05:4a98 with SMTP id x4-20020a170902ec84b02900e5bd054a98mr7801174plg.76.1616042280176;
+        Wed, 17 Mar 2021 21:38:00 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:e12f:5c36:14f:bbf5])
+        by smtp.gmail.com with ESMTPSA id ft22sm611234pjb.8.2021.03.17.21.37.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Mar 2021 21:37:59 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Thu, 18 Mar 2021 12:26:25 +0800
-Message-ID: <CAJMQK-ho9Ncqd=muCv-aMsHSRhgKtC3H6asxR=+3CODpeiWQWQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] drm/bridge: anx7625: disable regulators when power off
-To:     Xin Ji <xji@analogixsemi.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Cc:     David Airlie <airlied@linux.ie>,
-        Robert Foss <robert.foss@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, Ben Ho <Ben.Ho@mediatek.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-damu
+Date:   Thu, 18 Mar 2021 12:37:54 +0800
+Message-Id: <20210318043755.2273782-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 2:14 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> When suspending the driver, anx7625_power_standby() will be called to
-> turn off reset-gpios and enable-gpios. However, power supplies are not
-> disabled. To save power, the driver can get the power supply regulators
-> and turn off them in anx7625_power_standby().
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Robert Foss <robert.foss@linaro.org>
-> ---
+mt8183-kukui-jacuzzi-damu board also known as ASUS Chromebook Flip CM3,
+using mediatek mt8183 SoC.
 
-Ping on the thread, thanks.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 34 +++++++++++++++++++++++
->  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
->  2 files changed, 35 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index 65cc05982f826..23283ba0c4f93 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -11,6 +11,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
->  #include <linux/workqueue.h>
-> @@ -875,12 +876,25 @@ static int sp_tx_edid_read(struct anx7625_data *ctx,
->  static void anx7625_power_on(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret, i;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
->                 return;
->         }
->
-> +       for (i = 0; i < ARRAY_SIZE(ctx->pdata.supplies); i++) {
-> +               ret = regulator_enable(ctx->pdata.supplies[i].consumer);
-> +               if (ret < 0) {
-> +                       DRM_DEV_DEBUG_DRIVER(dev, "cannot enable supply %d: %d\n",
-> +                                            i, ret);
-> +                       goto reg_err;
-> +               }
-> +               usleep_range(2000, 2100);
-> +       }
-> +
-> +       usleep_range(4000, 4100);
-> +
->         /* Power on pin enable */
->         gpiod_set_value(ctx->pdata.gpio_p_on, 1);
->         usleep_range(10000, 11000);
-> @@ -889,11 +903,16 @@ static void anx7625_power_on(struct anx7625_data *ctx)
->         usleep_range(10000, 11000);
->
->         DRM_DEV_DEBUG_DRIVER(dev, "power on !\n");
-> +       return;
-> +reg_err:
-> +       for (--i; i >= 0; i--)
-> +               regulator_disable(ctx->pdata.supplies[i].consumer);
->  }
->
->  static void anx7625_power_standby(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
-> +       int ret;
->
->         if (!ctx->pdata.low_power_mode) {
->                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
-> @@ -904,6 +923,12 @@ static void anx7625_power_standby(struct anx7625_data *ctx)
->         usleep_range(1000, 1100);
->         gpiod_set_value(ctx->pdata.gpio_p_on, 0);
->         usleep_range(1000, 1100);
-> +
-> +       ret = regulator_bulk_disable(ARRAY_SIZE(ctx->pdata.supplies),
-> +                                    ctx->pdata.supplies);
-> +       if (ret < 0)
-> +               DRM_DEV_DEBUG_DRIVER(dev, "cannot disable supplies %d\n", ret);
-> +
->         DRM_DEV_DEBUG_DRIVER(dev, "power down\n");
->  }
->
-> @@ -1742,6 +1767,15 @@ static int anx7625_i2c_probe(struct i2c_client *client,
->         platform->client = client;
->         i2c_set_clientdata(client, platform);
->
-> +       pdata->supplies[0].supply = "vdd10";
-> +       pdata->supplies[1].supply = "vdd18";
-> +       pdata->supplies[2].supply = "vdd33";
-> +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
-> +                                     pdata->supplies);
-> +       if (ret) {
-> +               DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
-> +               return ret;
-> +       }
->         anx7625_init_gpio(platform);
->
->         atomic_set(&platform->power_status, 0);
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> index 193ad86c54503..e4a086b3a3d7b 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> @@ -350,6 +350,7 @@ struct s_edid_data {
->  struct anx7625_platform_data {
->         struct gpio_desc *gpio_p_on;
->         struct gpio_desc *gpio_reset;
-> +       struct regulator_bulk_data supplies[3];
->         struct drm_bridge *panel_bridge;
->         int intp_irq;
->         u32 low_power_mode;
-> --
-> 2.30.1.766.gb4fecdf3b7-goog
->
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 93b3bdf6eaeb..a86716cdd408 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -125,6 +125,10 @@ properties:
+               - google,krane-sku176
+           - const: google,krane
+           - const: mediatek,mt8183
++      - description: Google Damu (ASUS Chromebook Flip CM3)
++        items:
++          - const: google,damu
++          - const: mediatek,mt8183
+ 
+ additionalProperties: true
+ 
+-- 
+2.31.0.rc2.261.g7f71774620-goog
+
