@@ -2,123 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86BD63403A4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 11:41:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 346903403BD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 11:45:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbhCRKlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 06:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
+        id S230151AbhCRKpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 06:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbhCRKky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 06:40:54 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88171C061764
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:54 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t9so4940387wrn.11
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:54 -0700 (PDT)
+        with ESMTP id S229999AbhCRKow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 06:44:52 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A52C06174A;
+        Thu, 18 Mar 2021 03:44:52 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id f26so6866976ljp.8;
+        Thu, 18 Mar 2021 03:44:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CqsJEFNZDm1zRQWkx9oBbTS7v3YGOj5LKMbHcTRx7PQ=;
-        b=c4aKYDLxmr57pQXCsjKqPoy8XCYciLJ9N+tpcorGz9F1LHX8NQi74FoEND8uug/RN9
-         ez8yaDpAtg1IBvk6MF+7xPlErckecdqr+nzp5lbuxNtkNfT6LZoqPLuFqTx5AItUiLs4
-         cpR47f/qAHTx5O7CFGZYiaWFrRcnQrAy8cfiM4wd4m0I0MLFvXOVTfybuZi1YvkIX83V
-         PWq1hO/o0XKYiVRZus1sUq7jtZ+9NLsPUAMM3Ii/seGT3LznUtLbPGUWtt6mz2+8iMmx
-         rXzTbVfv37DGISLqNJT9UFXZNdoZBH+R5EUarBa1KulLq+8o1XilACquFpnkIho/LwvO
-         HPVQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UZZzq/9McYqHi4InJGaReUkavQ57VQ1UkA2ucnh78uI=;
+        b=gTbIM+eVxHGNlcaYXsqO6C0ktHAtRqi8q20fGcwHQ7semqVJMZXtpkH3pUFPSQzVYl
+         +WeAtppdRYVyjxzgwUh+BgHpEe4qAn3IgFJE50GSbAeZlhxYE1NhbzyWcz0qANY02xD9
+         WP/N8IHj1Xbipui8Hxo0TpkS0cIx3pOqI+fEMQahZIx3V9BTkJvMMa+O4GB3oqVFmtOe
+         PcYtWLGkWX1vePVvpC7ryqpXjGSLfeD9PLLYAl2nESHcF6eZHkofYB/GOLFT3CpPW+cG
+         454A9TWQJ4AC+2RGIkZZU0S6hK9JCBBXxB3v2kxS2/Soah9MHXBtHvehAqnp3ZeAXTMk
+         xD8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CqsJEFNZDm1zRQWkx9oBbTS7v3YGOj5LKMbHcTRx7PQ=;
-        b=JnUoI5jT5plGtdpvgeujXzTUFAafX8l9t/8ZHnSgSjq/sHOBhNLBmV3E0wFqHXsxd3
-         2xP+PsEfypVCPn0zMWNgaGaLC4H/H4340bfnu3cphe8iZM+VSP4nK3rhFGXRrufm5eDK
-         gQA70XOJQvqhc9GtYV4qlAJiUNOTOYgnUt0EP8V192HZwB+OZMJvSwpKpPJYgJyrjAGC
-         5L5egiNwmyQqTbAVQVNgCcAok/GGzVSO7A4KFwFmPXQmD/rfIZjBtATiUt4tK1AV2vQL
-         dXfypgbYKa2m91CiKJVBaTGMGppY6PX2i3qw2NPvXSwrRyZIfi2519E5S4IiQLmVS0ZD
-         n1qQ==
-X-Gm-Message-State: AOAM533jX5VMUyFUrFcdkGbVdhqy52p5c3lJLXRgQ95N2r8pc8PGRLy2
-        E7Fk8nTXPwHYWiynhS4kH8JPTA==
-X-Google-Smtp-Source: ABdhPJywv7telrZhgTo8CVB0g7RRIFhem/IKumPSW4fk8cikOR2kTnVdQri7On5rsLI1iJA9gcO6RQ==
-X-Received: by 2002:adf:f4ce:: with SMTP id h14mr8895057wrp.257.1616064053290;
-        Thu, 18 Mar 2021 03:40:53 -0700 (PDT)
-Received: from dell.default ([91.110.221.194])
-        by smtp.gmail.com with ESMTPSA id z1sm2426033wru.95.2021.03.18.03.40.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Mar 2021 03:40:52 -0700 (PDT)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     lee.jones@linaro.org
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Josh Cartwright <joshc@codeaurora.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UZZzq/9McYqHi4InJGaReUkavQ57VQ1UkA2ucnh78uI=;
+        b=cA6hRWkFE5QGmIZebR5CU8VvqaWt2pv2XfEKyM4ZFeYwdmu1GeuiFzOqU6qjvrH04o
+         casrI3RfpUYfnt+WWUcBR6Nqhgg5JEnlNNNK+YyZu7iNIQVmZKT85/J6e99ABgmZo94O
+         lY35j4hu5K3q62SDBeWSHc/k/dOSebN5XMmwP7+ytFwPA+LKElv8Nseb2xdDI+Qd0ebx
+         ZZRZvEndH0omQbJELpa6so46jf79GCpydZOuNfaPNIZl5qbfUtfwbeQxIYfOxB9hjrL4
+         RB4WoPhzKZf3stPutyY3+PNqJj8yrE05XVweWrwsn2Kw7qghWn9h9/MbaaZDU984ICRN
+         D7Eg==
+X-Gm-Message-State: AOAM5318WkY2JDhgDZ7IiIzag436r3VtktkZ+8varTmal4VVNCPPH8lg
+        eCQ8Kb7rPOxFBQ6t4T3DCr7xGZodIvM=
+X-Google-Smtp-Source: ABdhPJyZkPBz604XveIMMKnivIAAlI3Kq+ffrnq13fyiOfAK/uWCFgXw6pG59Ahla1dsNA6XD5eWHQ==
+X-Received: by 2002:a2e:974d:: with SMTP id f13mr4956977ljj.210.1616064290378;
+        Thu, 18 Mar 2021 03:44:50 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
+        by smtp.googlemail.com with ESMTPSA id a1sm191289ljb.76.2021.03.18.03.44.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Mar 2021 03:44:50 -0700 (PDT)
+Subject: Re: [PATCH v5 2/7] clk: tegra: Fix refcounting of gate clocks
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 10/10] of: of_reserved_mem: Demote kernel-doc abuses
-Date:   Thu, 18 Mar 2021 10:40:36 +0000
-Message-Id: <20210318104036.3175910-11-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210318104036.3175910-1-lee.jones@linaro.org>
-References: <20210318104036.3175910-1-lee.jones@linaro.org>
+References: <20210317193006.29633-1-digetx@gmail.com>
+ <20210317193006.29633-3-digetx@gmail.com>
+ <20210318091219.GA18038@qmqm.qmqm.pl>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <768dcbd3-a29b-33c1-2147-e59e3847e75c@gmail.com>
+Date:   Thu, 18 Mar 2021 13:44:49 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210318091219.GA18038@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes the following W=1 kernel build warning(s):
+18.03.2021 12:12, Michał Mirosław пишет:
+> On Wed, Mar 17, 2021 at 10:30:01PM +0300, Dmitry Osipenko wrote:
+>> The refcounting of the gate clocks has a bug causing the enable_refcnt
+>> to underflow when unused clocks are disabled. This happens because clk
+>> provider erroneously bumps the refcount if clock is enabled at a boot
+>> time, which it shouldn't be doing, and it does this only for the gate
+>> clocks, while peripheral clocks are using the same gate ops and the
+>> peripheral clocks are missing the initial bump. Hence the refcount of
+>> the peripheral clocks is 0 when unused clocks are disabled and then the
+>> counter is decremented further by the gate ops, causing the integer
+>> underflow.
+> [...]
+>> diff --git a/drivers/clk/tegra/clk-periph-gate.c b/drivers/clk/tegra/clk-periph-gate.c
+>> index 4b31beefc9fc..3c4259fec82e 100644
+>> --- a/drivers/clk/tegra/clk-periph-gate.c
+>> +++ b/drivers/clk/tegra/clk-periph-gate.c
+> [...]
+>> @@ -91,21 +108,28 @@ static void clk_periph_disable(struct clk_hw *hw)
+>>  
+>>  	spin_lock_irqsave(&periph_ref_lock, flags);
+>>  
+>> -	gate->enable_refcnt[gate->clk_num]--;
+>> -	if (gate->enable_refcnt[gate->clk_num] > 0) {
+>> -		spin_unlock_irqrestore(&periph_ref_lock, flags);
+>> -		return;
+>> -	}
+>> +	WARN_ON(!gate->enable_refcnt[gate->clk_num]);
+>> +
+>> +	if (gate->enable_refcnt[gate->clk_num]-- == 1)
+>> +		clk_periph_disable_locked(hw);
+> 
+> Nit: "if (--n == 0)" seems more natural, as you want to call
+> clk_periph_disable_locked() when the refcount goes down to 0.
+> 
+> [...]
+>>  	/*
+>> -	 * If peripheral is in the APB bus then read the APB bus to
+>> -	 * flush the write operation in apb bus. This will avoid the
+>> -	 * peripheral access after disabling clock
+>> +	 * Some clocks are duplicated and some of them are marked as critical,
+>> +	 * like fuse and fuse_burn for example, thus the enable_refcnt will
+>> +	 * be non-zero here id the "unused" duplicate is disabled by CCF.
+> 
+> s/id/if/ ?
 
- drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'node' not described in 'fdt_reserved_mem_save_node'
- drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'uname' not described in 'fdt_reserved_mem_save_node'
- drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'base' not described in 'fdt_reserved_mem_save_node'
- drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'size' not described in 'fdt_reserved_mem_save_node'
- drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'node' not described in '__reserved_mem_alloc_size'
- drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'uname' not described in '__reserved_mem_alloc_size'
- drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'res_base' not described in '__reserved_mem_alloc_size'
- drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'res_size' not described in '__reserved_mem_alloc_size'
- drivers/of/of_reserved_mem.c:171: warning: Function parameter or member 'rmem' not described in '__reserved_mem_init_node'
-
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Josh Cartwright <joshc@codeaurora.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/of/of_reserved_mem.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index a7fbc5e37e19e..15e2417974d67 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -45,7 +45,7 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
- 	return memblock_reserve(base, size);
- }
- 
--/**
-+/*
-  * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
-  */
- void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
-@@ -67,7 +67,7 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
- 	return;
- }
- 
--/**
-+/*
-  * __reserved_mem_alloc_size() - allocate reserved memory described by
-  *	'size', 'alignment'  and 'alloc-ranges' properties.
-  */
-@@ -164,7 +164,7 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
- static const struct of_device_id __rmem_of_table_sentinel
- 	__used __section("__reservedmem_of_table_end");
- 
--/**
-+/*
-  * __reserved_mem_init_node() - call region specific reserved memory init code
-  */
- static int __init __reserved_mem_init_node(struct reserved_mem *rmem)
--- 
-2.27.0
-
+I'll update this patch over the weekend, thanks!
