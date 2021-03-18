@@ -2,147 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCAB533FC37
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 01:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4291533FC3F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 01:32:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbhCRA0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 20:26:16 -0400
-Received: from mail-eopbgr680077.outbound.protection.outlook.com ([40.107.68.77]:19077
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229898AbhCRAZ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Mar 2021 20:25:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DDTRLvEvzbSUQJOK5Ul+iflQ3+8f1oyWyhbOz836AS/NNMMcBTjd9lj3UEy4wUpdse7tLXHorKZiY3xxvCsr9sQTHkveFqy32p+R8J/zmbrCI+yvhSe3ZP9a1uoCy/9VcicrQ5gwOy1jkl/s/ET3Pbj6G7jeMEEQ9xb2PGe8Wxu7H89g7JBjscoohKq1oVzvICGss0espSWdGrJpJIOlSy3maZyQ2XwQKov8ZCMeIvKM4hD4yBzsR7qtnxMuGyuTjQv/R73umN5JSCBbTu82raGF7foSIdcw6Ls2BCK4Cl3pjXN1JSQcGXTFAV0QNlTOaoSRP/Ffba5wi8uu/kYYMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZHOdsLutLeX3JfUXLmTv+ny7fTWfYCZ8Yaf6/lT0LTQ=;
- b=SQ5SEFrDn/8fklfBT8McNdppAWNUsiOC0Yd33WgbqqOnqJtJgFSf9CiaFLS5RDgpFzX9xuYtLjMk1kBmczcWqFiQAmg6g5r1Xz+IRH5yRl4Ti5G3MDkjS0Q6nMhZdbkZXv79NuBNlq+iV0QeXRGR8C7aXJozWkXxGa27m12RfG23UxHHzAlQ2sKcSkvm14bGRX7iLic5v6fI3EPr/T89VEY0x3JUaQ2Vj5DkRQe77wBVSI4dx7LKARbfFOO8BU6qon4ijn4KdnZMVwf8LkgAIMPqMx1+6jDKR+USB6HIHJ0c3aeln22DKFXXfcKP7g1A0nq+l4QAjvJLxs7AYNBGHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZHOdsLutLeX3JfUXLmTv+ny7fTWfYCZ8Yaf6/lT0LTQ=;
- b=p5Ljjs1kbjP/nSOf1xiucuEW8fquVfOkHXN/l2GfnzBPh0TgSTou/2jVGmHS1coGWOTlBJY81/GF7u0s793ra2g80yAzo0Ptcog+NJIzn3CIB5YhKFw1/iai/jvExaTzF+Waa+FM6ivVDAvFj2FJSGHj3JrgLenBcJarZc3TLbDY76btpksCVGCH5GKOqm97BTYzL8oSNysU/pdHNO/BqBfnb+16SbZ+Hj0c5Thi/13q7twB2fcrYlJ+I22B5Oll4DMa1HvHvRoPtMkeZE5tr0bz5kaCp5LfdWKlkPWESM0ojCT7QjEfqpA4fzGbZlVdS2TRdw7eEeUQUb+94VA60A==
-Received: from BY5PR12MB3764.namprd12.prod.outlook.com (2603:10b6:a03:1ac::17)
- by BY5PR12MB4869.namprd12.prod.outlook.com (2603:10b6:a03:1d9::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Thu, 18 Mar
- 2021 00:25:48 +0000
-Received: from BY5PR12MB3764.namprd12.prod.outlook.com
- ([fe80::11bb:b39e:3f42:d2af]) by BY5PR12MB3764.namprd12.prod.outlook.com
- ([fe80::11bb:b39e:3f42:d2af%7]) with mapi id 15.20.3933.032; Thu, 18 Mar 2021
- 00:25:48 +0000
-From:   Krishna Reddy <vdumpa@nvidia.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "will@kernel.org" <will@kernel.org>
-CC:     "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "guohanjun@huawei.com" <guohanjun@huawei.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
-        "lenb@kernel.org" <lenb@kernel.org>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-accelerators@lists.ozlabs.org" 
-        <linux-accelerators@lists.ozlabs.org>,
-        "baolu.lu@linux.intel.com" <baolu.lu@linux.intel.com>,
-        "jacob.jun.pan@linux.intel.com" <jacob.jun.pan@linux.intel.com>,
-        "kevin.tian@intel.com" <kevin.tian@intel.com>,
-        "zhangfei.gao@linaro.org" <zhangfei.gao@linaro.org>,
-        "shameerali.kolothum.thodi@huawei.com" 
-        <shameerali.kolothum.thodi@huawei.com>,
-        "vivek.gautam@arm.com" <vivek.gautam@arm.com>,
-        "zhukeqian1@huawei.com" <zhukeqian1@huawei.com>,
-        "wangzhou1@hisilicon.com" <wangzhou1@hisilicon.com>,
-        Yu-Huan Hsu <YHsu@nvidia.com>,
-        Bryan Huntsman <bhuntsman@nvidia.com>,
-        Sachin Nikam <Snikam@nvidia.com>,
-        Pritesh Raithatha <praithatha@nvidia.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Vikram Sethi <vsethi@nvidia.com>,
-        Terje Bergstrom <tbergstrom@nvidia.com>
-Subject: RE: [PATCH v13 00/10] iommu: I/O page faults for SMMUv3
-Thread-Topic: [PATCH v13 00/10] iommu: I/O page faults for SMMUv3
-Thread-Index: AQHXD0drlTdxumYxFk+ZFSU15kg2EqqI+WNw
-Date:   Thu, 18 Mar 2021 00:25:48 +0000
-Message-ID: <BY5PR12MB3764F891751224804232725AB3699@BY5PR12MB3764.namprd12.prod.outlook.com>
-References: <20210302092644.2553014-1-jean-philippe@linaro.org>
-In-Reply-To: <20210302092644.2553014-1-jean-philippe@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=nvidia.com;
-x-originating-ip: [216.228.112.22]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 73015e1f-e84b-4fb4-fb1f-08d8e9a460f9
-x-ms-traffictypediagnostic: BY5PR12MB4869:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR12MB4869E84D6D5B475B0DA60AC6B3699@BY5PR12MB4869.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PvgZc90fBJz51fyw9reG5N579j0W+oEVlHMhXylkUEFIB/kOSWGt2QhHv1MdTVwv7B+1K7vOmRNJIwemfzSQE9yZ1U0hAjKBwOPiVwbvru7bIzlkWWl1tVBFijbVmknC2rySRVxZyQOIe/Za96x05mRkTbr367aQnulvlGdJOzlzzYnWwU5L2NxDW917Rxjx2mbhmutyEjGTqOHh3h3q/Yh8C2Y7Dn1gSpYNZ1pdkWIDOfbhcASEqUXNzPRpvbprh+wCdI3t6mkslUgASO543lzGRHZGXkiyaLvzkjDSETadKkv9fVNQfMnuwMkKkklJbS0kN8XiyaxDjZx+ZLIYmhwhe4l6fpOIAQvm+T8evwVqqYI0+FaTGQhmy8RxS/PwuWRoqdU7O3ig3jq1VxRFXOJioonEa1vhiXyXQr+gSj0E+5nHUzSyL3qZm8Gdrm1zHOi9hHzwVBDrZENgSml5CKlTH1cVQG/G376iuwK9w1c+PwHnTUXjqOHRvvGGyGjH7A5kiB7djDFFNMA87A7KPn1vTn3wB03qsBg2/twAaxcgpOKancJf6b9ygJXe/p3Ka8CngVe3OtNMdh4MempWYStmTHIOxI3nv6WKIUvuwW23rLStk/fRrKwmCp8XCjaf
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3764.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(396003)(136003)(376002)(346002)(7416002)(5660300002)(2906002)(55016002)(83380400001)(71200400001)(186003)(4326008)(8676002)(9686003)(478600001)(33656002)(558084003)(86362001)(110136005)(316002)(26005)(7696005)(66476007)(66556008)(76116006)(66946007)(107886003)(6506007)(8936002)(54906003)(52536014)(38100700001)(64756008)(66446008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?umGjHxGPPjoF6fW95E59yn+CmKmOoq4S7F5Ao+5OX1ddiD3He1eaMa4Sn//m?=
- =?us-ascii?Q?QYl7VlpqzfxePCwHFgR+c7+OBW2ke9YC2i9vU6W0frLQX2NwRM30mjejjtKV?=
- =?us-ascii?Q?vazwzD+m0isi6H8/I58sJlTKCYP/6fFdnKma+7Jbvp1Cpa0chuRi85GJQJ1j?=
- =?us-ascii?Q?c8Qfea/DP7Evj6zBcCWHpiXLcmoKhJuHFgZWHbE+yftmKojKJL7MmINQzqk6?=
- =?us-ascii?Q?GlJXDHsxCEh/sT+zfVB2R9CHddZvF+ST3Tv4rk4tBERv+Bq3cciw0Fd2yIp/?=
- =?us-ascii?Q?uzhSImG8yvYBuUNWa3OuQBTbd7Smffv57FKCYK3kpAD3RwO8mNW20FmVmICl?=
- =?us-ascii?Q?e5pfQDln+A6J4sr9Re9Vv/xQUepDSlZKXmzXX+T5fKkEdp4Ub69irDPAZu4v?=
- =?us-ascii?Q?lz6ZEyBGFvgS9x9/sC2JH6GZ3/xttTxL5upKxD/bSn2KLYQ86T+owgYPO+zg?=
- =?us-ascii?Q?SZZ8nQu8wAv2XO+HJ6qCGkhx0KJ3eV8Qn5od/yjkX6z3q08Vsyeh73IpRpyt?=
- =?us-ascii?Q?+jdnxdFSPrads1AmdLxJUPDRqIuhz/QAf7H9yFVd5pbwSPyoRR4t1kNuTOFi?=
- =?us-ascii?Q?D1fK3OlrgF6EqLqQOPVXuYDHBksCv2lbGtEL+ygyECQKhXgULF9fyu8PU+o1?=
- =?us-ascii?Q?tPsgimcBcgKmkmcwAcSPTz6lNB+1joHJcFkzMI1+ff3NEzCVoJUhy5f0R8HI?=
- =?us-ascii?Q?/MVjaHJ2oDj/3Sd6q0iR3XdTZDLM1d9sAH2AzIXjgdN+y/EjjAxakeN46qiX?=
- =?us-ascii?Q?vm8cm+Q+CGLSu5dJQsYHbtKLARNRvY3BKFctFbTtP3Wv9+DaflFLOH/2MN3M?=
- =?us-ascii?Q?ae7J7Hg0lD8NYLj0tqTge+vgDAgxaiFoytUM67YWJH3Oej+lX5a1AtPWUxrg?=
- =?us-ascii?Q?WwbxSVHdxqD5OypkDb2SD+ZyoV808LnfBbL79jAgpTINyzq0/1AjLPwOaJWv?=
- =?us-ascii?Q?1HXg/ZpCmgeg6LZPt5VfkNYeHlkpSJJx5+xGqbpgBnbtcbX1/B8c3XrxzUhL?=
- =?us-ascii?Q?Go6VsnxS2J3Ez2iNIcFe4pMws4vIPhD/Yyjxtro1uQda/p6N2UBSDx1q1iap?=
- =?us-ascii?Q?DPgIv4g6Cy/B2l1Yw6q1ZRTeh2OlXYZdfH7V9O3xOx3Q6/r3mxfalWY5hKW6?=
- =?us-ascii?Q?d15u3aYBPulkKIOZpJGlMo1NU8n0FmY1AzzyHVIoq8ZATRM9X1pZhnhHDnTk?=
- =?us-ascii?Q?71zqbwxC74m39jVPNCgzWiazYBaiIcRA14EQI0SNLUCIMzg7bXnFpnIyrA2U?=
- =?us-ascii?Q?fZsc3CVwwPV1NqplSdZ2cLfESZkAfiD9ly6BKiuVg9eP3KAx8v3TXsWvzRGN?=
- =?us-ascii?Q?rSxcVaKgRRzx4tKK68qtdV59?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S229702AbhCRAb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 20:31:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39090 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229644AbhCRAbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Mar 2021 20:31:16 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A420764F2B;
+        Thu, 18 Mar 2021 00:31:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616027476;
+        bh=kE5pzJREcMtcsKe3XXovC6KJw1unQTOB5zOB90M91cY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mgEdWsITi62mNieWrt3tt4Ns/P9SkqyfMc4vReldRwLoUMBhwCeLpKFrGitrVwO59
+         i8j6PIp2pGqzOw5zBDDYh3FCyiHGnYDTzzv7DimOmXrbnxyjT58J57rttyeT+gXRsP
+         hhSHuapQuAoYMuAcVFjcxOre4h3RyYrNXlp7nyqvWEmrJg+JzhxnEjufjYuF+IrqwD
+         KV3tZDwKhJQqOrVs4NIvcq74tTGCKgKBWMklbZUvKI1x9hTDejZ6eeWdeN7HAW4ZYj
+         ZCLrQaO51S3FceqzACjNEjRZ0JxLaAh4HaExjt9IK1Jj+R/12M0fAGa4t+Ok2UMDs3
+         /gMmCT9ZWHEpQ==
+Received: by mail-ej1-f52.google.com with SMTP id t18so1187225ejc.13;
+        Wed, 17 Mar 2021 17:31:15 -0700 (PDT)
+X-Gm-Message-State: AOAM532LU8OEgzaEMdgKvkxT3oFvJ56AwjTl+uQUfXBCtStjssuSiJyX
+        t75g1pv+8oU/MsRF3pGAZMIu1wnh5LtJeVnhTg==
+X-Google-Smtp-Source: ABdhPJyRt0/BHVBbK/+kJchk+xOcRQnGlNm6MFZSoVqqh6s/25AE46ySni1iQzV9dfexmdF4fKF39m+xGj/DSl/FVys=
+X-Received: by 2002:a17:907:3e8a:: with SMTP id hs10mr38674530ejc.267.1616027473977;
+ Wed, 17 Mar 2021 17:31:13 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3764.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73015e1f-e84b-4fb4-fb1f-08d8e9a460f9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2021 00:25:48.0211
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pC5lM2x0MYQ2nQGaz0lydUhpUhU3K/u57z55PI0gnv/9bIXDIgScmBfCwXhtoI6r8lyS52tyKQuFjllQWABLZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4869
+References: <20210201034755.15793-1-jitao.shi@mediatek.com>
+In-Reply-To: <20210201034755.15793-1-jitao.shi@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 18 Mar 2021 08:31:02 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_--LQxwvnmWws23OkShBiQdxumoULoLTuHeXXMqZ6aW7g@mail.gmail.com>
+Message-ID: <CAAOTY_--LQxwvnmWws23OkShBiQdxumoULoLTuHeXXMqZ6aW7g@mail.gmail.com>
+Subject: Re: [PATCH] drm/mediatek: fine tune the data lane trail by project dts
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        huijuan.xie@mediatek.com, stonea168@163.com,
+        Cawa Cheng <cawa.cheng@mediatek.com>, shuijing.li@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, yingjoe.chen@mediatek.com,
+        eddie.huang@mediatek.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested-by: Krishna Reddy <vdumpa@nvidia.com>
+Hi, Jitao:
 
-Validated v13 patches in context of nested translations validation for NVMe=
- PCIe device assigned to Guest VM.
-V12 patches(v13 is yet to be tested) has been tested for SVA functionality =
-on Native OS and is functional.=20
+Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2021=E5=B9=B42=E6=9C=881=E6=97=
+=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:48=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Some panels or bridges require customized hs_da_trail time.
+> So add a property in devicetree for this panels and bridges.
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index 8c70ec39bfe1..6e7092fa2fee 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -194,6 +194,7 @@ struct mtk_dsi {
+>         struct clk *hs_clk;
+>
+>         u32 data_rate;
+> +       u32 da_trail_delta;
+>
+>         unsigned long mode_flags;
+>         enum mipi_dsi_pixel_format format;
+> @@ -234,7 +235,7 @@ static void mtk_dsi_phy_timconfig(struct mtk_dsi *dsi=
+)
+>         timing->da_hs_prepare =3D (80 * data_rate_mhz + 4 * 1000) / 8000;
+>         timing->da_hs_zero =3D (170 * data_rate_mhz + 10 * 1000) / 8000 +=
+ 1 -
+>                              timing->da_hs_prepare;
+> -       timing->da_hs_trail =3D timing->da_hs_prepare + 1;
+> +       timing->da_hs_trail =3D timing->da_hs_prepare + 1 + dsi->da_trail=
+_delta;
+>
+>         timing->ta_go =3D 4 * timing->lpx - 2;
+>         timing->ta_sure =3D timing->lpx + 2;
+> @@ -1094,6 +1095,13 @@ static int mtk_dsi_probe(struct platform_device *p=
+dev)
+>                 goto err_unregister_host;
+>         }
+>
+> +       ret =3D of_property_read_u32_index(dev->of_node, "da_trail_delta"=
+, 0,
+> +                                        &dsi->da_trail_delta);
 
--KR
+This value depends on panel, so I think we should get some value from
+panel's device node to calculate this value.
 
+Regards,
+Chun-Kuang.
+
+> +       if (ret) {
+> +               dev_info(dev, "Can't get da_trail_delta, keep it as 0: %d=
+\n", ret);
+> +               dsi->da_trail_delta =3D 0;
+> +       }
+> +
+>         comp_id =3D mtk_ddp_comp_get_id(dev->of_node, MTK_DSI);
+>         if (comp_id < 0) {
+>                 dev_err(dev, "Failed to identify by alias: %d\n", comp_id=
+);
+> --
+> 2.12.5
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
