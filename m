@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 496A73401DD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C6E93401F4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:25:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbhCRJVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 05:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbhCRJUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 05:20:46 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF9AC06174A;
-        Thu, 18 Mar 2021 02:20:46 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 177E322234;
-        Thu, 18 Mar 2021 10:20:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1616059239;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YbjBgGxLTNqIr9z+FaZf6hjC3vuBrM/H1mvIkKLukMs=;
-        b=ldcpYshYLYmytDFwfW203zEvzd1MAXafF2Ng4ruWX7X8S1MTWdqwvscKxuQ/VSa8+eMNtW
-        oTUW71oZarMsy9zzc5zTQOuJLCEVOcNvDcE300Mvd+dAQf/q0gOrnm60h0gKH0uSo5kjrp
-        qb8EDJrb4zo88cfPaKtXviaPg/Xw37o=
+        id S229785AbhCRJY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 05:24:28 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:39908 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229808AbhCRJYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 05:24:09 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 55FED1F45907
+Subject: Re: [PATCH] arm64: dts: mt8173: fix wrong power-domain phandle of
+ pmic
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <49433ae0-0563-8783-f17e-98eaeba09c57@collabora.com>
+Date:   Thu, 18 Mar 2021 10:24:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 18 Mar 2021 10:20:38 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Guillaume Tucker <guillaume.tucker@collabora.com>,
-        "kernelci.org bot" <bot@kernelci.org>
-Subject: Re: [PATCH] arm64: dts: ls1028a: fix optee node
-In-Reply-To: <20210318083438.26536-1-michael@walle.cc>
-References: <20210318083438.26536-1-michael@walle.cc>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <b0a6c305e23bc31ba770441e04393925@walle.cc>
-X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-18 09:34, schrieb Michael Walle:
-> Don't enable the optee node in the SoC include. It is an optional
-> component and actually, if enabled, breaks boards which doesn't have 
-> it.
+Hi Chunfeng Yun,
+
+Thank you for the patch.
+
+On 18/3/21 7:18, Chunfeng Yun wrote:
+> Due to power domain controller is added, the power domain's
+> phanle is also changed from 'scpsys' to 'spm', but forget to
+> modify pmic node's
 > 
-> This reverts commit 48787485f8de ("arm64: dts: ls1028a: enable optee
-> node") and enables the node per board, assuming the intend of the
-> original author was to enable OPTEE for the LS1028A-RDB and the
-> LS1028A-QDS.
-> 
-> Fixes: 48787485f8de ("arm64: dts: ls1028a: enable optee node")
-> Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
-> Reported-by: "kernelci.org bot" <bot@kernelci.org>
-> Tested-by: Michael Walle <michael@walle.cc>
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Fixes: 8b6562644df9 ("arm64: dts: mediatek: Add mt8173 power domain controller")
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
 > ---
-
-Please disregard this patch, because the offending patch was
-already dropped:
-https://lore.kernel.org/lkml/20210318084029.GY11246@dragon/
-
-Sahil, if you like you can pick it up to enable the nodes for
-your ls1028a boards.
-
--michael
+>  arch/arm64/boot/dts/mediatek/mt8173-evb.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+> index 6dffada2e66b..28aa634c9780 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+> @@ -294,7 +294,7 @@
+>  
+>  &pwrap {
+>  	/* Only MT8173 E1 needs USB power domain */
+> -	power-domains = <&scpsys MT8173_POWER_DOMAIN_USB>;
+> +	power-domains = <&spm MT8173_POWER_DOMAIN_USB>;
+>  
+>  	pmic: mt6397 {
+>  		compatible = "mediatek,mt6397";
+> 
