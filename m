@@ -2,122 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ED213400EB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 09:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B920F340113
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 09:35:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbhCRIVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 04:21:46 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39010 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbhCRIVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 04:21:20 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: benjamin.gaignard)
-        with ESMTPSA id 9ABD41F456D3
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v6 13/13] arm64: dts: imx8mq: Add node to G2 hardware
-Date:   Thu, 18 Mar 2021 09:20:46 +0100
-Message-Id: <20210318082046.51546-14-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
-References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
+        id S229624AbhCRIfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 04:35:12 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:54879 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229512AbhCRIeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 04:34:50 -0400
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 6DF7F22234;
+        Thu, 18 Mar 2021 09:34:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1616056485;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=UkQYujCU5/ac5fJri9Y/OOHb2OqCHcjc2jWw+xBSdVM=;
+        b=HQC1T4OJAEEUv1WdFlzJXd9zeKiQS9JkKIefdijT/SdmYrQkAkzqetVkbI4IcSf3TnWNtH
+        1CXdqL61XWaDWpVso6CALC32Il9slf7Q24rKFdQTpSoQjz0aN63sKpNEaYdGk2Ru1RHRpw
+        /q3GkmQqxFHnu8zZ5elitSqjup20XKQ=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>,
+        Michael Walle <michael@walle.cc>,
+        Guillaume Tucker <guillaume.tucker@collabora.com>,
+        "kernelci.org bot" <bot@kernelci.org>
+Subject: [PATCH] arm64: dts: ls1028a: fix optee node
+Date:   Thu, 18 Mar 2021 09:34:38 +0100
+Message-Id: <20210318083438.26536-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Split VPU node in two: one for G1 and one for G2 since they are
-different hardware blocks.
-Add syscon for hardware control block.
-Remove reg-names property that is useless.
-Each VPU node only need one interrupt.
+Don't enable the optee node in the SoC include. It is an optional
+component and actually, if enabled, breaks boards which doesn't have it.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+This reverts commit 48787485f8de ("arm64: dts: ls1028a: enable optee
+node") and enables the node per board, assuming the intend of the
+original author was to enable OPTEE for the LS1028A-RDB and the
+LS1028A-QDS.
+
+Fixes: 48787485f8de ("arm64: dts: ls1028a: enable optee node")
+Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
+Reported-by: "kernelci.org bot" <bot@kernelci.org>
+Tested-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Michael Walle <michael@walle.cc>
 ---
-version 5:
- - use syscon instead of VPU reset
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 4 ++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 4 ++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    | 3 ++-
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 43 ++++++++++++++++++-----
- 1 file changed, 34 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 17c449e12c2e..b537d153ebbd 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1329,15 +1329,16 @@ usb3_phy1: usb-phy@382f0040 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+index fbcba9cb8503..060d3c79244d 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+@@ -327,6 +327,10 @@
+ 	status = "okay";
+ };
  
--		vpu: video-codec@38300000 {
-+		vpu_ctrl: syscon@38320000 {
-+			compatible = "nxp,imx8mq-vpu-ctrl", "syscon";
-+			reg = <0x38320000 0x10000>;
-+		};
++&optee {
++	status = "okay";
++};
 +
-+		vpu_g1: video-codec@38300000 {
- 			compatible = "nxp,imx8mq-vpu";
--			reg = <0x38300000 0x10000>,
--			      <0x38310000 0x10000>,
--			      <0x38320000 0x10000>;
--			reg-names = "g1", "g2", "ctrl";
--			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "g1", "g2";
-+			reg = <0x38300000 0x10000>;
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g1";
- 			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
- 				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
- 				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-@@ -1350,9 +1351,33 @@ vpu: video-codec@38300000 {
- 						 <&clk IMX8MQ_VPU_PLL_OUT>,
- 						 <&clk IMX8MQ_SYS1_PLL_800M>,
- 						 <&clk IMX8MQ_VPU_PLL>;
--			assigned-clock-rates = <600000000>, <600000000>,
-+			assigned-clock-rates = <600000000>, <300000000>,
-+					       <800000000>, <0>;
-+			power-domains = <&pgc_vpu>;
-+			nxp,imx8mq-vpu-ctrl = <&vpu_ctrl>;
-+		};
-+
-+		vpu_g2: video-codec@38310000 {
-+			compatible = "nxp,imx8mq-vpu-g2";
-+			reg = <0x38310000 0x10000>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g2";
-+			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-+				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-+				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-+			clock-names = "g1", "g2",  "bus";
-+			assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
-+					  <&clk IMX8MQ_CLK_VPU_G2>,
-+					  <&clk IMX8MQ_CLK_VPU_BUS>,
-+					  <&clk IMX8MQ_VPU_PLL_BYPASS>;
-+			assigned-clock-parents = <&clk IMX8MQ_VPU_PLL_OUT>,
-+						 <&clk IMX8MQ_VPU_PLL_OUT>,
-+						 <&clk IMX8MQ_SYS1_PLL_800M>,
-+						 <&clk IMX8MQ_VPU_PLL>;
-+			assigned-clock-rates = <600000000>, <300000000>,
- 					       <800000000>, <0>;
- 			power-domains = <&pgc_vpu>;
-+			nxp,imx8mq-vpu-ctrl = <&vpu_ctrl>;
- 		};
+ &sai1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+index 41ae6e7675ba..1bdf0104d492 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+@@ -274,6 +274,10 @@
+ 	status = "okay";
+ };
  
- 		pcie0: pcie@33800000 {
++&optee {
++	status = "okay";
++};
++
+ &sai4 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 50d277eb2a54..e2007ebacd69 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -92,9 +92,10 @@
+ 	};
+ 
+ 	firmware {
+-		optee {
++		optee: optee {
+ 			compatible = "linaro,optee-tz";
+ 			method = "smc";
++			status = "disabled";
+ 		};
+ 	};
+ 
 -- 
-2.25.1
+2.20.1
 
