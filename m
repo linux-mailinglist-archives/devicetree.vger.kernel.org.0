@@ -2,160 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B6734000C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 08:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465C4340052
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 08:39:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229664AbhCRHJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 03:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbhCRHIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 03:08:41 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BF8C06175F
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 00:08:41 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id d191so2847596wmd.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 00:08:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=to:cc:references:from:subject:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=tYyCLy2hNOWzr8X9wkzDu/aLJvecRkc3MlIGDL43D84=;
-        b=zd8JS1IsADKWR0H+haadl3kwgDVTY80wS5vVfwcKWHtA+Pc8uUUADplsCdwc58x9Ay
-         cz+eMWMeqWXNfmTvVzFmEKGfUJZzljEEV21WDaqoflGHGbdiXNbQWEka+8SL4jmRgmRt
-         AP0u2/ipb/3a33yPjSuMSY9nzLnGzl3H6ULxMawzzELwBc5T9pTpDm+m2XFZkKrJ1zj5
-         iSQE/TSbkZ26RG0MMa4FOGDu7nhbBxfqeAi4Ylccp1HXSbMLmRqshH97R3BpAV9cMP0+
-         v3GKw8vYSFoxz/K4WdTtA4/WjHwkLcGYhK/5THvaZYzseLzZUh5UWMlfwHWSZWSY6VIF
-         Jtbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tYyCLy2hNOWzr8X9wkzDu/aLJvecRkc3MlIGDL43D84=;
-        b=MfgI1SOgQ6XF8b9mYbrbj/jgaIJsyPTGh8eiudLncn8746RxcCJfqQRSrgTQ8VuwML
-         RtpcYqa7b/PbtEVVcEFsLk9vA7NVw6+eQRBpXj9s9SoITZ6qtvmcp50V4ARZlNH3DhvD
-         cl9UtEG7XBRB4ijvQ79vBGWw5C39rYd+UdxNSwidZ7ALz07rAI8Zg7FMv3506pYxYeIV
-         VSwSaKlHxB25xPtCmaj0lsBtaOD/H5Pc0pNfg7ld9iSgnWtBjujpKl0RDrPDUpz4PZnw
-         Gegq8VlbOrkjfZB4BlbW0aZW5+/tU06jrfSzv6+NdwjrRNaO2/5NYJOcMMRglpTtkvRP
-         Yw9w==
-X-Gm-Message-State: AOAM530GayAqrn03cq8edFih0fbo0aMaYGcmgtrS0QcYFbo+JtJpQp0I
-        MEETOwF5dSHtHF3KugsY5BjFLQ==
-X-Google-Smtp-Source: ABdhPJx2mwu56ekL6RAkkwFD/e0wUpre3b1LhPriPxcJtF90oIkr/C7m31U9JM3IOE2Alq7gYWwTOA==
-X-Received: by 2002:a05:600c:290a:: with SMTP id i10mr2143686wmd.91.1616051320240;
-        Thu, 18 Mar 2021 00:08:40 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id e18sm1696061wru.73.2021.03.18.00.08.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Mar 2021 00:08:39 -0700 (PDT)
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        id S229600AbhCRHjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 03:39:05 -0400
+Received: from smtp-33-i2.italiaonline.it ([213.209.12.33]:58146 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229559AbhCRHi4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 03:38:56 -0400
+Received: from oxapps-17-098.iol.local ([10.101.8.108])
+        by smtp-33.iol.local with ESMTPA
+        id MnF8lFBb6R8VAMnF8lNXaq; Thu, 18 Mar 2021 08:38:54 +0100
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1616053134; bh=UmWZibCkZXTHJgwmZDv3hJCRtDBRvCXUKmKgxOB37/E=;
+        h=From;
+        b=y0qYDGYULbWM7DwuKnl0EUny6mDQ7IOwDsKAJjjdZ7Zn4cjYynPnnwKV28yQ553mO
+         P774JA4bXetT8FswKoP0Dle/dDtjX/9nzlypyXtUOVH9q/EZj+vIXsSaPyamheZOBK
+         N3eWBcXe18+juba6SF1HBxX2NSkDWW5DkhUUZ/c1vtp8fxbG5s673wL2yamNIclbrf
+         p5Ws2TZCOqQNYCM7stQ+FOtqDR4CxJJJspZx82ZNB1pBs8LywvDY5PhtFLiE0wrv38
+         qU5i3VgVMRyp4dOp6EYC+M7HP7bfgfk8CvWqU24MExJfRlMz5ChOdclFH9V8BSDK/u
+         5yCns0AGix6hg==
+X-CNFS-Analysis: v=2.4 cv=OapdsjfY c=1 sm=1 tr=0 ts=6053038e cx=a_exe
+ a=NIaCDMyvpSx5HZmal66lBw==:117 a=C-c6dMTymFoA:10 a=IkcTkHD0fZMA:10
+ a=vesc6bHxzc4A:10 a=sozttTNsAAAA:8 a=e1VBGZ4yoO3jfIRmQH0A:9 a=QEXdDO2ut3YA:10
+ a=FYBFfbkh9HQ-bD74xMz0:22 a=aeg5Gbbo78KNqacMgKqU:22
+Date:   Thu, 18 Mar 2021 08:38:53 +0100 (CET)
+From:   Dario Binacchi <dariobin@libero.it>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        linux-kernel@vger.kernel.org, "Vutla, Lokesh" <lokeshvutla@ti.com>,
+        "Menon, Nishanth" <nm@ti.com>
+Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210302134323.2822076-1-vkoul@kernel.org>
- <20210302134323.2822076-3-vkoul@kernel.org>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add SM8350 interconnect
- provider driver
-Message-ID: <0c405a3c-1759-34f3-08c6-116444479b09@linaro.org>
-Date:   Thu, 18 Mar 2021 09:08:39 +0200
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
+Message-ID: <2069482516.552063.1616053134087@mail1.libero.it>
+In-Reply-To: <6dc0d2c6-570a-3fbf-77e1-6731a6c8d558@ti.com>
+References: <20210314151233.23243-1-dariobin@libero.it>
+ <20210314151233.23243-5-dariobin@libero.it>
+ <6dc0d2c6-570a-3fbf-77e1-6731a6c8d558@ti.com>
+Subject: Re: [PATCH 4/4] clk: ti: add am33xx spread spectrum clock support
 MIME-Version: 1.0
-In-Reply-To: <20210302134323.2822076-3-vkoul@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.3-Rev27
+X-Originating-IP: 185.33.57.41
+X-Originating-Client: open-xchange-appsuite
+x-libjamsun: V9BCza01eXjhlOGmMwcPmz48CscjONcn
+x-libjamv: P64oCIh3Pcc=
+X-CMAE-Envelope: MS4xfKeTUvUL2ykB0ir2RKaYwNgGaD68vavXR+zoqs1MQ0+mscfvpGxvgIjeKLFnHa+P05DQSlOqI6DZdr3tL4g7mGuS8fMsjGSCwHBKQ9TpP2Ft9PyI9sD3
+ 5+peIeVj5Zc92eNup0rDybr/wA2HrVX+OqTB60KAhlMMhVk8aqvrHQqd1ziOTDuZWuBpkwh3o8aVWUUDDc2mZMG16rJVxlkeKq3GUACiRrKsD4SthDhBdYs2
+ kN9selwKi6d3FjhiPOyVC0Z29TtBfozPmy+nENnz87QzPBg+FYPPd/ZvjD6J4x1I+zwz5R0VfblTsFeB0GX4pZzv4dzdu4LYyU0r8wIIt7Oc5YLVAhZUJUvR
+ nI5v2wzJQpEgIcjlyiglHAzyTY4afBnY+7uVgzbN3MF4CE1mYWv/zFEcJJErS6WOv9mkb/CgJa3coe9Nixt0HZHHQDoBBcL7wPtynEahrqce+gHSCINc4Ex5
+ hvkPRSwwvsyMGl9E+xsNMy9hs6rE6hWnLyftslQkP+b8VR1Ai4nxltUCxk42MyyqHJek5qff1NgfKIcY1B4jFN0iedO4BRhoUXHiYXSZxk4D5EH1mHgBSwlk
+ PKWKoDygc0UXiCYEpMsUlbrPID59ULlFuihW2yfYFsx5rg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+Hi Grygorii,
 
-On 3/2/21 15:43, Vinod Koul wrote:
-> Add driver for the Qualcomm interconnect buses found in SM8i350 based
-
-Still SM8i350? Have you checked my comments on v1?
-
-> platforms. The topology consists of several NoCs that are controlled by
-> a remote processor that collects the aggregated bandwidth for each
-> master-slave pairs.
+> Il 16/03/2021 12:52 Grygorii Strashko <grygorii.strashko@ti.com> ha scritto:
 > 
-> Generated from downstream interconnect driver written by David Dai
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/interconnect/qcom/Kconfig  |  10 +
->  drivers/interconnect/qcom/Makefile |   2 +
->  drivers/interconnect/qcom/sm8350.c | 636 +++++++++++++++++++++++++++++
->  drivers/interconnect/qcom/sm8350.h | 168 ++++++++
->  4 files changed, 816 insertions(+)
->  create mode 100644 drivers/interconnect/qcom/sm8350.c
->  create mode 100644 drivers/interconnect/qcom/sm8350.h
-> 
-> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
-> index ca52647f8955..836157d97cae 100644
-> --- a/drivers/interconnect/qcom/Kconfig
-> +++ b/drivers/interconnect/qcom/Kconfig
-> @@ -110,5 +110,15 @@ config INTERCONNECT_QCOM_SM8250
->  	  This is a driver for the Qualcomm Network-on-Chip on sm8250-based
->  	  platforms.
 >  
-> +config INTERCONNECT_QCOM_SM8350
-> +	tristate "Qualcomm SM8350 interconnect driver"
-> +	depends on INTERCONNECT_QCOM
-> +	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
+> On 14/03/2021 17:12, Dario Binacchi wrote:
+> > The patch enables spread spectrum clocking (SSC) for MPU and LCD PLLs.
+> > As reported by the TI spruh73x RM, SSC is only supported for the
+> > DISP/LCD and MPU PLLs on am33xx device. SSC is not supported for DDR,
+> > PER, and CORE PLLs.
+> > 
+> > Calculating the required values and setting the registers accordingly
+> > was taken from the set_mpu_spreadspectrum routine contained in the
+> > arch/arm/mach-omap2/am33xx/clock_am33xx.c file of the u-boot project.
+> > 
+> > In locked condition, DPLL output clock = CLKINP *[M/N]. In case of
+> > SSC enabled, the AM335x reference manual explains that there is a
+> > restriction of range of M values. Since the omap2_dpll_round_rate
+> > routine attempts to select the minimum possible N, the value of M
+> > obtained is not guaranteed to be within the range required. With the new
+> > "ti,min-div" parameter it is possible to increase N and consequently M
+> > to satisfy the constraint imposed by SSC.
+> > 
+> > Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> > 
+> > ---
+> > 
+> >   arch/arm/boot/dts/am33xx-clocks.dtsi |  4 +-
+> >   drivers/clk/ti/dpll.c                | 41 ++++++++++++++
+> >   drivers/clk/ti/dpll3xxx.c            | 85 ++++++++++++++++++++++++++++
+> >   include/linux/clk/ti.h               | 24 ++++++++
+> >   4 files changed, 152 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
+> > index e7bbbf536a8c..a02e0b1229a4 100644
+> > --- a/arch/arm/boot/dts/am33xx-clocks.dtsi
+> > +++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
+> > @@ -164,7 +164,7 @@
+> >   		#clock-cells = <0>;
+> >   		compatible = "ti,am3-dpll-core-clock";
+> >   		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
+> > -		reg = <0x0490>, <0x045c>, <0x0468>, <0x0460>, <0x0464>;
+> > +		reg = <0x0490>, <0x045c>, <0x0468>;
+> >   	};
+> >   
+> >   	dpll_core_x2_ck: dpll_core_x2_ck {
+> > @@ -204,7 +204,7 @@
+> >   		#clock-cells = <0>;
+> >   		compatible = "ti,am3-dpll-clock";
+> >   		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
+> > -		reg = <0x0488>, <0x0420>, <0x042c>;
+> > +		reg = <0x0488>, <0x0420>, <0x042c>, <0x0424>, <0x0428>;
+> >   	};
+> 
+> You can't mix DT vs code.
 
-Again: depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+Right, I forgot to remove it during a rebase of the series.
 
-> +	select INTERCONNECT_QCOM_RPMH
-> +	select INTERCONNECT_QCOM_BCM_VOTER
-> +	help
-> +	  This is a driver for the Qualcomm Network-on-Chip on SM8350-based
-> +	  platforms.
-> +
->  config INTERCONNECT_QCOM_SMD_RPM
->  	tristate
-> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
-> index c6a735df067e..93d97e590836 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -12,6 +12,7 @@ qnoc-sdm845-objs			:= sdm845.o
->  qnoc-sdx55-objs				:= sdx55.o
->  qnoc-sm8150-objs			:= sm8150.o
->  qnoc-sm8250-objs			:= sm8250.o
-> +qnoc-sm8350-objs			:= sm8350.o
->  icc-smd-rpm-objs			:= smd-rpm.o icc-rpm.o
->  
->  obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) += icc-bcm-voter.o
-> @@ -26,4 +27,5 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDX55) += qnoc-sdx55.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) += qnoc-sm8150.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM8250) += qnoc-sm8250.o
-> +obj-$(CONFIG_INTERCONNECT_QCOM_SM8350) += qnoc-sm8350.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
-> diff --git a/drivers/interconnect/qcom/sm8350.c b/drivers/interconnect/qcom/sm8350.c
-> new file mode 100644
-> index 000000000000..55c76542aeff
-> --- /dev/null
-> +++ b/drivers/interconnect/qcom/sm8350.c
-> @@ -0,0 +1,636 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021, Linaro Limited
-> + *
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/interconnect.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
+> 
+> >   
+> >   	dpll_mpu_m2_ck: dpll_mpu_m2_ck@4a8 {
+> > diff --git a/drivers/clk/ti/dpll.c b/drivers/clk/ti/dpll.c
+> > index d6f1ac5b53e1..2738417a47b7 100644
+> > --- a/drivers/clk/ti/dpll.c
+> > +++ b/drivers/clk/ti/dpll.c
+> > @@ -290,7 +290,9 @@ static void __init of_ti_dpll_setup(struct device_node *node,
+> >   	struct clk_init_data *init = NULL;
+> >   	const char **parent_names = NULL;
+> >   	struct dpll_data *dd = NULL;
+> > +	int ssc_clk_index;
+> >   	u8 dpll_mode = 0;
+> > +	u32 min_div;
+> >   
+> >   	dd = kmemdup(ddt, sizeof(*dd), GFP_KERNEL);
+> >   	clk_hw = kzalloc(sizeof(*clk_hw), GFP_KERNEL);
+> > @@ -345,6 +347,27 @@ static void __init of_ti_dpll_setup(struct device_node *node,
+> >   	if (dd->autoidle_mask) {
+> >   		if (ti_clk_get_reg_addr(node, 3, &dd->autoidle_reg))
+> >   			goto cleanup;
+> > +
+> > +		ssc_clk_index = 4;
+> > +	} else {
+> > +		ssc_clk_index = 3;
+> > +	}
+> > +
+> > +	if (dd->ssc_deltam_int_mask && dd->ssc_deltam_frac_mask &&
+> > +	    dd->ssc_modfreq_mant_mask && dd->ssc_modfreq_exp_mask) {
+> > +		if (ti_clk_get_reg_addr(node, ssc_clk_index++,
+> > +					&dd->ssc_deltam_reg))
+> > +			goto cleanup;
+> > +
+> > +		if (ti_clk_get_reg_addr(node, ssc_clk_index++,
+> > +					&dd->ssc_modfreq_reg))
+> > +			goto cleanup;
+> > +
+> > +		of_property_read_u32(node, "ti,ssc-modfreq", &dd->ssc_modfreq);
+> > +		of_property_read_u32(node, "ti,ssc-deltam", &dd->ssc_deltam);
+> > +		if (of_property_read_bool(node, "ti,ssc-downspread"))
+> > +			dd->ssc_downspread = 1;
+> 
+> New bindings.
 
-Is this used?
+I added the bindings documentation in another patch of the series.
 
-Thanks,
-Georgi
+Thanks and regards,
+Dario
+> 
+> > +
+> >   	}
+> >   
+> >   	if (of_property_read_bool(node, "ti,low-power-stop"))
+> > @@ -356,6 +379,10 @@ static void __init of_ti_dpll_setup(struct device_node *node,
+> >   	if (of_property_read_bool(node, "ti,lock"))
+> >   		dpll_mode |= 1 << DPLL_LOCKED;
+> >   
+> > +	if (!of_property_read_u32(node, "ti,min-div", &min_div) &&
+> > +	    min_div > dd->min_divider)
+> > +		dd->min_divider = min_div;
+> > +
+> 
+> New bindings.
+> 
+> [...]
+> 
+> -- 
+> Best regards,
+> grygorii
