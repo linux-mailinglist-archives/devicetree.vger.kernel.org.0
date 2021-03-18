@@ -2,193 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29188340EA8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 20:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 960B1340EAE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 21:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbhCRT6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 15:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
+        id S232289AbhCRT7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 15:59:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232950AbhCRT6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 15:58:21 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF27C06175F
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 12:58:21 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id o19so8199261edc.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 12:58:21 -0700 (PDT)
+        with ESMTP id S232954AbhCRT7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 15:59:37 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C540C06175F
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 12:59:36 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id m17so6477774lfg.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 12:59:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5sxinzDiN1la62MYlJRjehM8ue8AVlNm8Yb/YIglQZ0=;
-        b=wNBlcxWA9mQA/cvqLRPAnDgqExhTkYWTTPacOw+r8FKUWUjv65szQJrrLj51woi5Il
-         GFyKUOCV0uQwdnlw7ZZs6LbdvixIinRu4xWtZNfIs/4HLjmXV2VHFbBrPlX+J7yA+Kz2
-         IEgjXiKKgfO0yWl3fXv+8f2roVRA6kdVf98R2kRzDkSQiY2RV+cVHiM5gyCaoTep+snR
-         MZmGmlCX3BXGsq8s1TugCiw7re/1ffgtOXZFAnCifza67rXn1iRcnATPCkcfCwLrcI5t
-         9kYRkGdg2V1Cj6T0fOzSWCjoaoQwVmu+H+Wb5Cy3BhL/rLsFkpDxTQeCR/jtE+NEPlI4
-         NRTA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P1rcveWXMVbmUI08P7yo7o1jOZYDTdFMfxcMXg2Pco4=;
+        b=kUTQqs9YUwKdZmMyssA/Agyv6JmeKyuAgfawFJCENWtZK5O7Be7DDIgF49UvOBiUc5
+         7T42EzfYh91WoSW7LerGOBEkSoHWzmSTzP1RPZjidmEToZbskkBuuL12tz06ioVZy1iW
+         jpVtXWfqj9NHIX8xOI8hxKhRyRvCsXcc5+EWsPLcaJnF434roiwOBoGp37tReOA9gtKt
+         E0vrEHYGaxwZrtwHQukzZZmPIcLYNdqM0LdPcPOMVIS8HKXJgmBQ85TYSctKLdb8bnQk
+         ay0oRCdDxz57E1loyHCWYQ79efWmdZ6e/h92VDb2YOUrrbaRi8c40DBQzJIaFeYLtwz8
+         ZkRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5sxinzDiN1la62MYlJRjehM8ue8AVlNm8Yb/YIglQZ0=;
-        b=TCSpmRLaRfzOWePqiyFPV1+74s+4hkjrMacvWtgo6kwnEq/v0ING0dh8+1QeUF3aF/
-         qnm5V580IsKRVQgfld6B6UDxLE2Sw+TLX9FZIFi/9nsunvcTKKr9Rhf8u8rbTgbuFz7+
-         oWYjsigSVUkl3wBS+7WPnormf0QdaZBO+YyUXZnY8S9IUSufSxO0hyRZp/GIy1/QhsWN
-         ujG3d4HHqC7pMeKA7JGpFAFJS2/D/jo2/NTPr+bxwR0zAuC5LUkInLvQMYX4N4g8n924
-         1DCPq89RbU1m549Zx67Fsk7YuWWBASDEqrMxAP1gun2QvLtmzbrRVh+dvO+BsBHEW7AE
-         CAGw==
-X-Gm-Message-State: AOAM531hl1QW5snOfkJ5DrZHACQMJdJWDqSYuYQyPQ5n/FEh/osXHfyr
-        ONnQeUO37eQEEEnoMc1cgWgiXcet+NyBONkDGcHs4A==
-X-Google-Smtp-Source: ABdhPJxvIpU0efzVUcaO5hMfj1b5ZbFhUJvZKQjAxCnIbCN+8TyQzvbaigH1LcZv1BjFi2UK1tSVXc1mdvdxdSCLORU=
-X-Received: by 2002:a05:6402:3550:: with SMTP id f16mr5666092edd.134.1616097499821;
- Thu, 18 Mar 2021 12:58:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
- <1604402306-5348-11-git-send-email-abel.vesa@nxp.com> <CAA+hA=TfyW6Ya9adcQFd1=-sJyoCgMyaENmGumtV1ZYar1Ud2g@mail.gmail.com>
- <20201117144828.omlwhu5y7cwsf5ci@fsr-ub1664-175> <6ecf593d-bee6-b0c1-718f-edcee90650ad@kontron.de>
- <DBBPR04MB7930D839D5595BB692CB26DA879E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
-In-Reply-To: <DBBPR04MB7930D839D5595BB692CB26DA879E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 18 Mar 2021 12:58:08 -0700
-Message-ID: <CAJ+vNU27TUQC4Dt=RHKDkOZFzCV2kWEoxOy-RYyv0+O=fLE+LQ@mail.gmail.com>
-Subject: Re: [PATCH v5 10/14] clk: imx: Add generic blk-ctl driver
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Dong Aisheng <dongas86@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Rob Herring <robh@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P1rcveWXMVbmUI08P7yo7o1jOZYDTdFMfxcMXg2Pco4=;
+        b=mkoAtXsVQEzb5bTb0qN9uPOWAHPJQyFDhABCNVIyOo7SmTPYUBmSbUseS2qryDwMY9
+         O/zxGjMEIDUwbEjGfLg4d6yKj/5UXPdEC+BPZeniqQ/VR8FTswvTrzejFLLwmExOSGh5
+         7XWnMnIpTgV6Z9o/kZsioOI69wKP3lBOqE8bopwNYNH7scUqQeg/H1S+Bc+XFK4txDf4
+         VDj0a8XaLv4Kr6UoZKomDrgsLhaO2aF6YPvmpsfOZ28unnUOBfAXmjX0KTDQCfC0jFbQ
+         QT98EaIMINIM1BUlOOAevNZWKoOUQkM6z1EilbWi21povaj3gkezphTrlEmFC54Tnl1w
+         jXxg==
+X-Gm-Message-State: AOAM5313IuFBZz/o2oRo6RXRAx7LpwA+TpwIMmX/dOJdugNE0iOIUzAn
+        hlwfT0aLXwngpbIWO7+QCsY/lg==
+X-Google-Smtp-Source: ABdhPJx/L6412T2QwZNfbmMG8R469G27LuwHg+Rf+E0cXxQ6YdoOIFV00Wq6ZR0oUtpUsWRmz8t5tA==
+X-Received: by 2002:a19:23c7:: with SMTP id j190mr6230266lfj.148.1616097575129;
+        Thu, 18 Mar 2021 12:59:35 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id g6sm344159lfh.232.2021.03.18.12.59.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Mar 2021 12:59:34 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
         Stephen Boyd <sboyd@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/6] phy: qcom-qmp: provide DP phy support for sm8250
+Date:   Thu, 18 Mar 2021 22:59:24 +0300
+Message-Id: <20210318195930.2229546-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 25, 2021 at 12:28 AM Jacky Bai <ping.bai@nxp.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Frieder Schrempf [mailto:frieder.schrempf@kontron.de]
-> > Sent: Thursday, February 25, 2021 4:23 PM
-> > To: Abel Vesa <abel.vesa@nxp.com>; Dong Aisheng <dongas86@gmail.com>
-> > Cc: Aisheng Dong <aisheng.dong@nxp.com>; Rob Herring <robh@kernel.org>;
-> > Peng Fan <peng.fan@nxp.com>; Jacky Bai <ping.bai@nxp.com>; Anson Huang
-> > <anson.huang@nxp.com>; devicetree <devicetree@vger.kernel.org>;
-> > Stephen Boyd <sboyd@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
-> > Mike Turquette <mturquette@baylibre.com>; Linux Kernel Mailing List
-> > <linux-kernel@vger.kernel.org>; Marek Vasut <marek.vasut@gmail.com>;
-> > dl-linux-imx <linux-imx@nxp.com>; Sascha Hauer <kernel@pengutronix.de>;
-> > Fabio Estevam <fabio.estevam@nxp.com>; Philipp Zabel
-> > <p.zabel@pengutronix.de>; Adam Ford <aford173@gmail.com>; linux-clk
-> > <linux-clk@vger.kernel.org>; moderated list:ARM/FREESCALE IMX / MXC
-> > ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>; Lucas Stach
-> > <l.stach@pengutronix.de>
-> > Subject: Re: [PATCH v5 10/14] clk: imx: Add generic blk-ctl driver
-> >
-> > Hi Abel,
-> >
-> > On 17.11.20 15:48, Abel Vesa wrote:
-> > > On 20-11-11 17:13:25, Dong Aisheng wrote:
-> > >> On Tue, Nov 3, 2020 at 7:22 PM Abel Vesa <abel.vesa@nxp.com> wrote:
-> > >> ...
-> > >>> +static int imx_blk_ctl_reset_set(struct reset_controller_dev *rcdev,
-> > >>> +                                 unsigned long id, bool assert) {
-> > >>> +       struct imx_blk_ctl_drvdata *drvdata = container_of(rcdev,
-> > >>> +                       struct imx_blk_ctl_drvdata, rcdev);
-> > >>> +       unsigned int offset = drvdata->rst_hws[id].offset;
-> > >>> +       unsigned int shift = drvdata->rst_hws[id].shift;
-> > >>> +       unsigned int mask = drvdata->rst_hws[id].mask;
-> > >>> +       void __iomem *reg_addr = drvdata->base + offset;
-> > >>> +       unsigned long flags;
-> > >>> +       u32 reg;
-> > >>> +
-> > >>> +       if (!assert && !test_bit(1, &drvdata->rst_hws[id].asserted))
-> > >>> +               return -ENODEV;
-> > >>
-> > >> What if consumers call deassert first in probe which seems common in
-> > kernel?
-> > >> It seems will fail.
-> > >> e.g.
-> > >> probe() {
-> > >>      reset_control_get()
-> > >>      reset_control_deassert()
-> > >> }
-> > >>
-> > >> Regards
-> > >> Aisheng
-> > >>
-> > >
-> > > OK, I'm trying to explain here how I know the resets are supposed to
-> > > be working and how the BLK_CTL IP is working.
-> > >
-> > >
-> > > First of, the BLK_CTL bits (resets and clocks) all have the HW init
-> > > (default) values as 0. Basically, after the blk_ctl PD is powered on,
-> > > the resets are deasserted and clocks are gated by default. Since the
-> > > blk_ctl is not the parent of any of the consumers in devicetree (the
-> > > reg maps are entirely different anyway), there is no way of ordering
-> > > the runtime callbacks between the consumer and the blk_ctl. So we
-> > > might end up having the runtime resume callback after the one from
-> > > EARC (consumer), for example, which will basically overwrite the value
-> > written by EARC driver with whatever was saved on suspend.
-> > >
-> > > Now, about the usage of the reset bits. AFAICT, it would make more
-> > > sense to assert the reset, then enable the clock, then deassert. This
-> > > way, you're keeping the EARC (consumer) in reset (with the clocks on)
-> > > until you eventually release it out of reset by deasserting. This is
-> > > how the runtime resume should deal with the reset and the clock. As
-> > > for the runtime suspend, the reset can be entirely ignored as long as you're
-> > disabling the clock.
-> > >
-> > > This last part will allow the blk_ctl to make the following assumption:
-> > > if all the clocks are disabled and none of the reset bits are asserted, I can
-> > power off.
-> > >
-> > > Now, I know there are drivers outthere that do assert on suspend, but
-> > > as long as the clocks are disabled, the assert will have no impact.
-> > > But maybe in their case the reset controller cannot power down itself.
-> > >
-> > > As for the safekeeping of the register, I'll just drop it due to the following
-> > arguments:
-> > > 1. all the clocks are gated by default 2. all resets are deasserted by
-> > > default 3. when blk_ctl goes down, all the consumers go down. (all
-> > > have the same PD)
-> > >
-> > >  From 1 and 2 results the IP will not be running and from 3 results
-> > > the HW state of every IP becomes HW init state.
-> >
-> > Are there any plans to continue this work? As BLK-CTL it is not only relevant
-> > for the i.MX8MP, but also for i.MX8MM and i.MX8MN, it would be nice to get
-> > this ready in order to prepare for proper graphics/display support.
-> >
->
-> Before continuing this work, we need to find out a way to resolve the cycling dependency issue between power domain and blk-ctrl.
-> it is indeed introduced some troubles in NXP latest internal release when the blk-ctrl driver is added.
->
+Changes since v2:
+ - Drop unused qmp_v4_usb3_rx_tbl
 
-Jacky,
+Changes since v1:
+ - Provide dt bindings
+ - Split register renaming from sm8250-dp-phy patch
+ - Add respective changes to sm8250 device tree
 
-Any update on this? This is still blocking several drivers and major
-functionality of the i.MX8 SoC's in mainline and I would hope this
-would be a top priority for NXP.
+The following changes since commit a38fd8748464831584a19438cbb3082b5a2dab15:
 
-Best regards,
+  Linux 5.12-rc2 (2021-03-05 17:33:41 -0800)
 
-Tim
+are available in the Git repository at:
+
+  https://git.linaro.org/people/dmitry.baryshkov/kernel.git sm8250-dp-phy
+
+for you to fetch changes up to 31f660041a72c2321ebc5328a9cfdaa6e0c63ff1:
+
+  arm64: dts: qcom: use dp_phy to provide clocks to dispcc (2021-03-18 22:57:57 +0300)
+
+----------------------------------------------------------------
+Dmitry Baryshkov (6):
+      dt-bindings: phy: qcom,qmp-usb3-dp: Add support for SM8250
+      phy: qcom-qmp: move DP functions to callbacks
+      phy: qcom-qmp: rename common registers
+      phy: qcom-qmp: add support for sm8250-usb3-dp phy
+      arm64: dts: qcom: sm8250: switch usb1 qmp phy to USB3+DP mode
+      arm64: dts: qcom: use dp_phy to provide clocks to dispcc
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   1 -
+ .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  31 +-
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 850 +++++++++++++++------
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |  77 +-
+ 5 files changed, 692 insertions(+), 269 deletions(-)
+
+
