@@ -2,140 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAE933FD13
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 03:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2565A33FD22
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 03:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbhCRCLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Mar 2021 22:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbhCRCKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 22:10:51 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79F6C061760
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 19:10:51 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id t23-20020a0568301e37b02901b65ab30024so3785381otr.4
-        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 19:10:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/eUcg0X5VUIePvtm+rdhKH75GAS9jZwtwPgS7YKHJh4=;
-        b=b3nH3tDdN6X9tWCkrPUmCz++vd43nsDG1G3j5JbHwl6XFrsbO7gGrrL1/PKQh0030A
-         wQVARi9iJnT1vjyfQSrdODBjvhBqq9z+PfPSH8utKDKg3TYjc3OOiQXT161GLJSbsnac
-         3s/1Du4xl65YzutMvV3RVExp89e8n3tqOL7zPBUXHlJ/SvXVGWXCZE8AhbbxQsjDd9Uj
-         +zc7fakqZffWVDmMkRyDp4Q4bnOOmn3Q6yZv4jQsoiGsIt0dxh3HiB/6BhE/00zGwH09
-         wCMxIh8/sCnuIRVPzmj1H4MNJxoQ7QSZpRzqUfbcdUDPJNgC5Hq5xr+DHMNsO4vkZ5+N
-         E7CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/eUcg0X5VUIePvtm+rdhKH75GAS9jZwtwPgS7YKHJh4=;
-        b=lHx4lIGnt+AgRgTP04mLFNZ+WO0MI8cTn8TCiRF1/HYR2oFd9429eHeVoGUOFrU3KT
-         d6GGRTLPCKPFVv3NHBalW9XRV/bQIg5HgpSeacPTn6mUaUGROcPm7H/RjFbvrMbJQezu
-         XD1gcI68Qjr/9p538Ri0NQHX0fNBLKLDih2Cd/7MIgANuC4WrF+TbtzF4koo1iMoiraK
-         okhV/vHSlfeLattdJ+48TZ8lg19Joe/VVku8j73GLTt7qS/knHjzYNb81jFxyeaJoow/
-         rPSHkNrfFyLRGwcHB9mTVt6SDtvbo8wxAAJk+b+gEj2DpjqkaQJTuMaEsDvfgXXvxHLo
-         BzHQ==
-X-Gm-Message-State: AOAM530XnWPqppKkuM2cl353iEHMITuXQdmxAm/2AK4lfDi+BwF9YaGc
-        k8hZNhaXH1yGu9gaZYCcYZecLA==
-X-Google-Smtp-Source: ABdhPJxvDz6D8BIG2BMVUDnZ2a0wHB9Fmt2Gr4GiNu5pqGK8tryq0WsnLEcjBGUNoptBjTCzf/kcCQ==
-X-Received: by 2002:a05:6830:24a1:: with SMTP id v1mr5361822ots.119.1616033451092;
-        Wed, 17 Mar 2021 19:10:51 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w16sm162442otq.15.2021.03.17.19.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Mar 2021 19:10:50 -0700 (PDT)
-Date:   Wed, 17 Mar 2021 21:10:48 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-Cc:     sboyd@kernel.org, agross@kernel.org, david.brown@linaro.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        mark.rutland@arm.com, mturquette@baylibre.com, ohad@wizery.com,
-        robh+dt@kernel.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 2/3] remoteproc: qcom: wcss: populate driver data for
- IPQ6018
-Message-ID: <YFK2qL+/50L7+LKV@builder.lan>
-References: <1611940320-24830-1-git-send-email-gokulsri@codeaurora.org>
- <1611940320-24830-3-git-send-email-gokulsri@codeaurora.org>
+        id S230221AbhCRCTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Mar 2021 22:19:40 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:19283 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229472AbhCRCTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Mar 2021 22:19:15 -0400
+X-UUID: c905431e1f3f4a5299a5323149f077f1-20210318
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=fvS14rbiT2d22DFwCGoxXDf2m5IbaDkfUXz9j0R/ZyY=;
+        b=utMmE0P5iSOuXkT/WqV2aM+LMzPjydIn9h3v2TxGWOcXfp6a+8cg0p55E3nikWxXHIh4GG9/EKQFk4K1u5T708S/NDTgK3MsS9GZgCBim/ynCedHTq8vEfZ+c082f4Km2ckWlPu4PPRrageCcASeB0Tde4/5fcMGI/H0vH0nOAg=;
+X-UUID: c905431e1f3f4a5299a5323149f077f1-20210318
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1353121258; Thu, 18 Mar 2021 10:19:10 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 18 Mar
+ 2021 10:19:07 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 18 Mar 2021 10:19:05 +0800
+Message-ID: <1616033945.25733.7.camel@mhfsdcap03>
+Subject: Re: [PATCH 08/10] dt-bindings: phy: Add compatible for Mediatek
+ MT8195
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Seiya Wang <seiya.wang@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Fabien Parent" <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        "Zhiyong Tao" <zhiyong.tao@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
+        "Chuanhong Guo" <gch981213@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <srv_heupstream@mediatek.com>
+Date:   Thu, 18 Mar 2021 10:19:05 +0800
+In-Reply-To: <20210316111443.3332-9-seiya.wang@mediatek.com>
+References: <20210316111443.3332-1-seiya.wang@mediatek.com>
+         <20210316111443.3332-9-seiya.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611940320-24830-3-git-send-email-gokulsri@codeaurora.org>
+X-TM-SNTS-SMTP: B58A0C7D8BC9BE44BF3BB2CCC0B6C0A769AC13E5E1AA726D14F7FBB3F75F4B022000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 29 Jan 11:11 CST 2021, Gokul Sriram Palanisamy wrote:
+T24gVHVlLCAyMDIxLTAzLTE2IGF0IDE5OjE0ICswODAwLCBTZWl5YSBXYW5nIHdyb3RlOg0KPiBU
+aGlzIGNvbW1pdCBhZGRzIGR0LWJpbmRpbmcgZG9jdW1lbnRhdGlvbiBvZiBVRlMgTS1QaHkgZm9y
+IE1lZGlhdGVrIE1UODE5NSBTb0MNCj4gUGxhdGZvcm0uDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBT
+ZWl5YSBXYW5nIDxzZWl5YS53YW5nQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBEb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLHVmcy1waHkueWFtbCB8IDEgKw0K
+PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayx1ZnMtcGh5LnlhbWwg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLHVmcy1waHku
+eWFtbA0KPiBpbmRleCAzYTliZTgyZTdmMTMuLjUyMzViMWEwZDE4OCAxMDA2NDQNCj4gLS0tIGEv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayx1ZnMtcGh5Lnlh
+bWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRl
+ayx1ZnMtcGh5LnlhbWwNCj4gQEAgLTIyLDYgKzIyLDcgQEAgcHJvcGVydGllczoNCj4gICAgICBw
+YXR0ZXJuOiAiXnVmcy1waHlAWzAtOWEtZl0rJCINCj4gIA0KPiAgICBjb21wYXRpYmxlOg0KPiAr
+ICAgIGVudW06IG1lZGlhdGVrLG10ODE5NS11ZnNwaHkNCj4gICAgICBjb25zdDogbWVkaWF0ZWss
+bXQ4MTgzLXVmc3BoeQ0KPiAgDQpUaGVyZSBpcyB3YXJuaW5nIHdoZW4gSSBtYWtlIGR0X2JpbmRp
+bmdfY2hlY2ssIGlmIG10ODE5NSBpcyBjb21wYXRpYmxlDQp3aXRoIG10ODE4Mywgd2lsbCBhZGQg
+aXQgYXMgZm9sbG93aW5nOg0KDQogICAgb25lT2Y6DQogICAgICAtIGl0ZW1zOg0KICAgICAgICAg
+IC0gZW51bToNCiAgICAgICAgICAgICAgLSBtZWRpYXRlayxtdDgxOTUtdWZzcGh5DQogICAgICAg
+ICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTgzLXVmc3BoeQ0KICAgICAgLSBjb25zdDogbWVkaWF0
+ZWssbXQ4MTgzLXVmc3BoeQ0KDQpEdWUgdG8gVmlub2QgYWxyZWFkeSBhcHBseSB0aGlzIHBhdGNo
+LCBJJ2xsIHNlbmQgb3V0IGEgZml4IHBhdGNoIGxhdGVyDQoNClRoYW5rcw0KDQo+ICAgIHJlZzoN
+Cg0K
 
-> Populate hardcoded param using driver data for IPQ6018 SoCs.
-> 
-> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
-> ---
->  drivers/remoteproc/qcom_q6v5_wcss.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
-> index 7c64bfc..bc9531c 100644
-> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
-> @@ -965,7 +965,7 @@ static int q6v5_alloc_memory_region(struct q6v5_wcss *wcss)
->  	return 0;
->  }
->  
-> -static int ipq8074_init_clock(struct q6v5_wcss *wcss)
-> +static int ipq_init_clock(struct q6v5_wcss *wcss)
->  {
->  	int ret;
->  
-> @@ -1172,7 +1172,7 @@ static int q6v5_wcss_remove(struct platform_device *pdev)
->  }
->  
->  static const struct wcss_data wcss_ipq8074_res_init = {
-> -	.init_clock = ipq8074_init_clock,
-> +	.init_clock = ipq_init_clock,
->  	.q6_firmware_name = "IPQ8074/q6_fw.mdt",
->  	.m3_firmware_name = "IPQ8074/m3_fw.mdt",
->  	.crash_reason_smem = WCSS_CRASH_REASON,
-> @@ -1185,6 +1185,20 @@ static const struct wcss_data wcss_ipq8074_res_init = {
->  	.need_mem_protection = true,
->  };
->  
-> +static const struct wcss_data wcss_ipq6018_res_init = {
-> +	.init_clock = ipq_init_clock,
-> +	.q6_firmware_name = "IPQ6018/q6_fw.mdt",
-> +	.m3_firmware_name = "IPQ6018/m3_fw.mdt",
-> +	.crash_reason_smem = WCSS_CRASH_REASON,
-> +	.aon_reset_required = true,
-> +	.wcss_q6_reset_required = true,
-> +	.bcr_reset_required = false,
-> +	.ssr_name = "q6wcss",
-> +	.ops = &q6v5_wcss_ipq8074_ops,
-> +	.requires_force_stop = true,
-> +	.need_mem_protection = true,
-> +};
-> +
->  static const struct wcss_data wcss_qcs404_res_init = {
->  	.init_clock = qcs404_init_clock,
->  	.init_regulator = qcs404_init_regulator,
-> @@ -1203,6 +1217,7 @@ static const struct wcss_data wcss_qcs404_res_init = {
->  
->  static const struct of_device_id q6v5_wcss_of_match[] = {
->  	{ .compatible = "qcom,ipq8074-wcss-pil", .data = &wcss_ipq8074_res_init },
-> +	{ .compatible = "qcom,ipq6018-wcss-pil", .data = &wcss_ipq6018_res_init },
-
-As you rebase on the reworked dependency, please sorted alphabetically
-(i.e 6 < 8)
-
-Regards,
-Bjorn
-
->  	{ .compatible = "qcom,qcs404-wcss-pil", .data = &wcss_qcs404_res_init },
->  	{ },
->  };
-> -- 
-> 2.7.4
-> 
