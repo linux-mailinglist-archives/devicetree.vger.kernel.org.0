@@ -2,92 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EC39340BCF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4656C340C83
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 19:10:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbhCRR1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 13:27:40 -0400
-Received: from smtp-17.italiaonline.it ([213.209.10.17]:47190 "EHLO libero.it"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232209AbhCRR1Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 13:27:24 -0400
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([87.20.116.197])
-        by smtp-17.iol.local with ESMTPA
-        id MwPulsZ9jtpGHMwQVlfgk8; Thu, 18 Mar 2021 18:27:23 +0100
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1616088443; bh=/JtNHFPQxpgEPu+dfDXNV+uLNsHLjDP8LHhRbZyB9o4=;
-        h=From;
-        b=CsoACI+N+Gku2yN3GvfBFJs95U2AWHIa9QEbTKQO8dBBHYLqH1EwHDOaGk4GvtjtJ
-         Ma6CjEo5UJCKs9pLaMY4Ztji9to359sjUaecT2FLKIjRbD3WgiG294byZLd/nbwiKj
-         fbkVf7zOpMIhA/NwfNuEcOcWkrrJySakwFowC15cXu6L5TLpk94aLbxXkjezz2S2h0
-         aLpq906svWn1rAQimf3v3On3y+CR1Qx3yzBxsLwB5FhbFN/4lMkJfJHfwXB70xzK6o
-         7CqRFLwFdv9Oq68LEmyQn9r96j9sXAJ9WTk4KiMT2c1z7PcHp8DQyzvWo0e4eF0s0W
-         Mz3GIrrSsEZiA==
-X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=60538d7b cx=a_exe
- a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
- a=jCmRPZ0w5czJu0AXxT0A:9
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dariobin@libero.it>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH v2 3/4] ARM: dts: am33xx-clocks: add spread spectrum support
-Date:   Thu, 18 Mar 2021 18:26:25 +0100
-Message-Id: <20210318172627.12173-4-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210318172627.12173-1-dariobin@libero.it>
-References: <20210318172627.12173-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfBCdEK8Y1/Vj+00whOzUoDwgiPoQiUtddJqsSj7ZsR1rfYkxgsJExNkbTWWxBnCa9tMBCOxCEMEjy/kBHPk+A2A0cczfFSUnmn/hKjgoIb4y4HybvQdR
- ua4UluzdhLJF1bn9FwwK7GwyNQiqJ2blkLP+lEu9o6A8OOOX3pYK3+k5AUrxNr7JzymM/mwDmZaWOMX2FQp0L9V6pP32ofifCyGeN9l6pgWl5w/SBOh+Qccv
- FFg8Qj8LuvCxYvG26rdz9ge266YvX/2Lh0+GClb0OfubBG63Q9rY8VZI+3FVU90tprCbd1UFWGUK/zySU3FEioOyHkzAwKocRy3yDE84B79RYYnE3Y2hmHcq
- GnZJetdlVhX6y6jAf/jGslzF8JvCJ1ov6OQ3fdTO36qj6f0Db4lMQLBlgbzn1DyoNv/EURgVoM+vkMvxH8ILkTNJNVJVf3Sbb81i1s56IY19N5xpOwLB12o+
- Bth48vJHQbC9lR3+
+        id S229591AbhCRSJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 14:09:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232496AbhCRSJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 14:09:44 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CE8C06174A;
+        Thu, 18 Mar 2021 11:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+        Reply-To:Cc:Content-ID:Content-Description;
+        bh=tNPxUnGftRpagH2OZ6eFkvX23OEU1dEHYoHHt3Um+6E=; b=o/laOTbAAXP7yew+2Zcv2Vsy/3
+        je7CEMSrkBD9eei2m6FwB+44rpjpp6epNUYU+TSIjEIAgMEXXqLMgpuPs+v+N7F5yaAYjAhm0wJrs
+        MqUfeJxgDf5w375tBjFk7UHYPBpUyMUkxJ0qPGQOts1oKlda2xtZGIIRWUihW49T3/CXNpKEaESWI
+        nZIiIBi+QYpDGQ1wC9wV//g8+HpYx6hy3GKEoNCWLpnpOSnZdfYQBgsb5Z1aee2HgBPPX4+iGYglg
+        TtBOVVQYgY2U7Hq8OLEUZb5WTl85QYCdQTvfudF25TcOS8TMyu03g5j6iXfV+Dgx7GwMEfT3QSChr
+        tRy/MF/Q==;
+Received: from [2601:1c0:6280:3f0::9757]
+        by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1lMx5D-003KSi-1I; Thu, 18 Mar 2021 18:09:22 +0000
+Subject: Re: [PATCH] ARM: boot: dts: Fix a typo
+To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210318095237.28436-1-unixbhaskar@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <d4a480e9-de13-b697-e624-1b2aa944c381@infradead.org>
+Date:   Thu, 18 Mar 2021 11:09:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
+MIME-Version: 1.0
+In-Reply-To: <20210318095237.28436-1-unixbhaskar@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Registers for adjusting the spread spectrum clocking (SSC) have been
-added. As reported by the TI spruh73x RM, SSC is supported only for
-LCD and MPU PLLs.
+On 3/18/21 2:52 AM, Bhaskar Chowdhury wrote:
+> 
+> s/conlicts/conflicts/
+> 
+> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
 
----
+> ---
+>  arch/arm/boot/dts/sama5d3.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
+> index 7c979652f330..d1841bffe3c5 100644
+> --- a/arch/arm/boot/dts/sama5d3.dtsi
+> +++ b/arch/arm/boot/dts/sama5d3.dtsi
+> @@ -709,7 +709,7 @@ pinctrl_mmc0_dat4_7: mmc0_dat4_7 {
+>  						atmel,pins =
+>  							<AT91_PIOD 5 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD5 periph A MCI0_DA4 with pullup, conflicts with TIOA0, PWMH2 */
+>  							 AT91_PIOD 6 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD6 periph A MCI0_DA5 with pullup, conflicts with TIOB0, PWML2 */
+> -							 AT91_PIOD 7 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD7 periph A MCI0_DA6 with pullup, conlicts with TCLK0, PWMH3 */
+> +							 AT91_PIOD 7 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD7 periph A MCI0_DA6 with pullup, conflicts with TCLK0, PWMH3 */
+>  							 AT91_PIOD 8 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;	/* PD8 periph A MCI0_DA7 with pullup, conflicts with PWML3 */
+>  					};
+>  				};
+> --
+> 2.26.2
+> 
 
-Changes in v2:
-- Remove SSC registers from dpll_core_ck@490 node (SSC is not supported)
-- Add SSC registers to dpll_mpu_ck@488 node.
 
- arch/arm/boot/dts/am33xx-clocks.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
-index dced92a8970e..a02e0b1229a4 100644
---- a/arch/arm/boot/dts/am33xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
-@@ -204,7 +204,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x0488>, <0x0420>, <0x042c>;
-+		reg = <0x0488>, <0x0420>, <0x042c>, <0x0424>, <0x0428>;
- 	};
- 
- 	dpll_mpu_m2_ck: dpll_mpu_m2_ck@4a8 {
-@@ -244,7 +244,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-no-gate-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x0498>, <0x0448>, <0x0454>;
-+		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
- 	};
- 
- 	dpll_disp_m2_ck: dpll_disp_m2_ck@4a4 {
 -- 
-2.17.1
+~Randy
 
