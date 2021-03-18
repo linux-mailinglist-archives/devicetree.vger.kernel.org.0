@@ -2,131 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9976F340822
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1954C34084E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 16:00:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbhCROvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 10:51:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231430AbhCROuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:50:55 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6AFC061762
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:50:55 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id o22so1756531oic.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:50:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=og89K6jV3HFX8PE96KX/c5Zy0nyRjtFamlhCSJhcZac=;
-        b=BbZoR5bKJdUlBsWePVP9pZFO52LSwx83bqvlA+iFEHEJbXRLCIjazsIWJ7Viy6/Dqg
-         ms11HMn9qzvtUSKYV7kiYroJ8GoudjnuRaAotpDXCJkiH2454Zsrw0r8xOeT1eDT6YxS
-         q+3+MBnu38qnO454OYLGBpBP8Gq2YHx7vcVu1igvYYB7TkhTKWyAqpE95EEQZcA7yNgB
-         R/S0blHSK+wctWLHT5XamyOYHV+RON+tPa7QPNHdEwmYkO7LDY4BJHU3BGXMaxeArqVY
-         EZJyG7pBZFDAX8JWQxpbOFMez+cg1l1eLriE/6/arkjyVorRKAMnxrrUHlTsEIB5mVvO
-         PCAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=og89K6jV3HFX8PE96KX/c5Zy0nyRjtFamlhCSJhcZac=;
-        b=YTLJJp4tv2201r/OHGsSyW256PioXL9PT13wVVOXUUoTLkj26WZJgol8EzA53jQFeq
-         8d8jlE1mUljykQL6lRe0YpFbJvzfoVj/mWOyx1uLh0ZwcNEWrJH0fiZYLJSUerK9WKFl
-         cy7Bm3Nc6Yce/sIKPhbdc8HHoHrf2795wnPc5MaV4NTOFNZKKiG5F06HKdAjZAgxhvCT
-         uCANnv11N+sHo+h8CjyolGL4qjQ+YMWFlL1KCQSzRJ9dH7xDRkHvY0zuYOtlxsB3i1e0
-         EFIvmFqm21LhOKZ/naKySGmngWWApf89m9b+KPcBMX/RfF9qjvsMPsGCCn/734s+HJEs
-         RNKg==
-X-Gm-Message-State: AOAM533PW/voaKZ/DDJ7KcJShTjNc/gS3MdOpCh1HPaCPtxGpq3bRphh
-        HwksvMdXsgE1+oirwj4StuLo7A==
-X-Google-Smtp-Source: ABdhPJw88D0okVHzO8aCSbNOnCSK+c61zfhIoBhm9ubX4GrgcqtKVy0DZAl00IvFZIUH6e7eT8sHOA==
-X-Received: by 2002:a05:6808:987:: with SMTP id a7mr3198012oic.162.1616079054839;
-        Thu, 18 Mar 2021 07:50:54 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r13sm594897oot.41.2021.03.18.07.50.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Mar 2021 07:50:54 -0700 (PDT)
-Date:   Thu, 18 Mar 2021 09:50:52 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wcn36xx@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: msm8916: Enable modem and WiFi
-Message-ID: <YFNozCCa4fdR5kSb@builder.lan>
-References: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
- <20210312003318.3273536-6-bjorn.andersson@linaro.org>
- <f03b639f-f95a-a31a-6615-23cd6154182d@linaro.org>
+        id S229890AbhCRPAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 11:00:12 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:2236 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229943AbhCRPAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 11:00:07 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12IEps40030703;
+        Thu, 18 Mar 2021 15:59:54 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=aEk1LpIoswU+KY7dqudj3axx8EnaeYBiMGxagD03H1I=;
+ b=UlogJNZp+qe7/64PRtXlDCHsiIvRIvWoeW/WC0WP58n5g42RNja2blFiWeIeELCW5BN1
+ yXo4DYVWa0VKq5VmdO/ZQIv0BmpL4/Mxsv5yimxn5fq6HWyef04LiauR3ay5UsBM9cxw
+ 7zbsjVh8/1nNBel/ph/A+xDXKXJo0XlYaANTCuYxSU0LKl2JpT3ELB98jU3B3YIHyyt0
+ ZlXNFEq6vVkmBrfHvcJVMKCKtB3Z2Jl23ZN+/ubkIR6hWMpwuFXKjmNb2b1P8Dw6sbYN
+ umAD38kcFetFOh99BDakBdQ/vNHOJzvDlTwxaCXMecUkKVMWnSskFcBq3hhrE3jcSJmr zA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37a8prc15q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 Mar 2021 15:59:54 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 59EB810002A;
+        Thu, 18 Mar 2021 15:59:54 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 387A7210470;
+        Thu, 18 Mar 2021 15:59:54 +0100 (CET)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 18 Mar 2021 15:59:53
+ +0100
+From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH 0/2] remoteproc: stm32: add support of detaching a remote processor
+Date:   Thu, 18 Mar 2021 15:59:21 +0100
+Message-ID: <20210318145923.31936-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f03b639f-f95a-a31a-6615-23cd6154182d@linaro.org>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-18_09:2021-03-17,2021-03-18 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 15 Mar 07:01 CDT 2021, Bryan O'Donoghue wrote:
+This patchset is the stm32mp1 platform implementation of the detach operation
+added in series [1].
 
-> On 12/03/2021 00:33, Bjorn Andersson wrote:
-> > Enable the modem and WiFi subsystems and specify msm8916 specific
-> > firmware path for these and the WCNSS control service.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 12 ++++++++++++
-> >   arch/arm64/boot/dts/qcom/msm8916.dtsi     |  2 +-
-> >   2 files changed, 13 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > index 6aef0c2e4f0a..448e3561ef63 100644
-> > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > @@ -305,6 +305,12 @@ &mdss {
-> >   	status = "okay";
-> >   };
-> > +&mpss {
-> > +	status = "okay";
-> > +
-> > +	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
-> > +};
-> > +
-> >   &pm8916_resin {
-> >   	status = "okay";
-> >   	linux,code = <KEY_VOLUMEDOWN>;
-> > @@ -312,6 +318,8 @@ &pm8916_resin {
-> >   &pronto {
-> >   	status = "okay";
-> > +
-> > +	firmware-name = "qcom/msm8916/wcnss.mbn";
-> >   };
-> 
-> On Debian I have to do this
-> 
-> 
-> index 2a6a23cb14ca..597cdc8f51cc 100644
-> --- a/drivers/remoteproc/qcom_wcnss.c
-> +++ b/drivers/remoteproc/qcom_wcnss.c
-> @@ -33,7 +33,7 @@
->  #include "qcom_wcnss.h"
-> 
->  #define WCNSS_CRASH_REASON_SMEM                422
-> -#define WCNSS_FIRMWARE_NAME            "wcnss.mdt"
-> +#define WCNSS_FIRMWARE_NAME            "qcom/msm8916/wcnss.mdt"
-> 
-> so I guess wcnss_probe() -> rproc_alloc() wants this fix too.
-> 
+On detach, the stm32 rproc driver sends a mailbox signal to the remote 
+processor to inform it that it will be detached. 
 
-Can you confirm that you're saying that you want below patch, which I
-just merged?
+Applied and tested on Bjorn's "for_next" branch (2b81aa17008e)
 
-https://lore.kernel.org/linux-remoteproc/20210312002441.3273183-1-bjorn.andersson@linaro.org/
+[1] https://patchwork.kernel.org/project/linux-remoteproc/list/?series=447171
 
-(Which makes it possible to specify firmware name per platform/board)
+Arnaud Pouliquen (2):
+  dt-bindings: remoteproc: stm32-rproc: add new mailbox channel for
+    detach
+  remoteproc: stm32: add capability to detach
 
-Regards,
-Bjorn
+ .../bindings/remoteproc/st,stm32-rproc.yaml   | 11 +++++-
+ drivers/remoteproc/stm32_rproc.c              | 38 ++++++++++++++++++-
+ 2 files changed, 45 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
