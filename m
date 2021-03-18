@@ -2,84 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D86B033FEF7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 06:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC8F33FEFD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 06:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbhCRFmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 01:42:08 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41043 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229559AbhCRFly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 01:41:54 -0400
-X-UUID: d1a0ebb0985c430d883ae05cce2b6da5-20210318
-X-UUID: d1a0ebb0985c430d883ae05cce2b6da5-20210318
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1556378434; Thu, 18 Mar 2021 13:41:50 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 18 Mar 2021 13:41:41 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 18 Mar 2021 13:41:41 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [v5,2/2] drm/mediatek: mtk_dpi: Add dpi config for mt8192
-Date:   Thu, 18 Mar 2021 13:40:56 +0800
-Message-ID: <1616046056-29068-3-git-send-email-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1616046056-29068-1-git-send-email-rex-bc.chen@mediatek.com>
-References: <1616046056-29068-1-git-send-email-rex-bc.chen@mediatek.com>
+        id S229712AbhCRFmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 01:42:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53686 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229690AbhCRFmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 01:42:09 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64996C06174A;
+        Wed, 17 Mar 2021 22:42:09 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso4134780otq.3;
+        Wed, 17 Mar 2021 22:42:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=e5E4cv+qzO6RqNYov3uCSW6dw7gV2q0enyiUMpZ0Cjg=;
+        b=LyAApYYT3TQfh+yLVjVHE9ILKZZh3xAndVkUTbEakNpMFn9lKsw5w9XmVMhGg/1XBU
+         l0SZqx+mpRqgQia+R0sTQAiMn9Fzu+Y44k6u2WRsGjJtmbmRfqNmSXI7Cg3IeqXa7Iep
+         k9xcmerxp+WXJDzUQ8CfrtfJH7333tZXfx0mmEQKdBxL0lG5Lz1qy3PNY335ceNrsf5U
+         YIjpsqqJCH/FwpsH0conEXCANsFNO/HtbAfpUMUc2KmjvJgrNG9aG+9m8/sTHuFn4RFP
+         /7ZiqAP/rSuYYuLnN5tMrIp3Jv4OHZJw6v+TMMtgYaJpTuEyVcjiMrj2B1dxSFMNbh3X
+         uQPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=e5E4cv+qzO6RqNYov3uCSW6dw7gV2q0enyiUMpZ0Cjg=;
+        b=lvQSkx9H/hbK3D064K/U1zzTzZZu/f97e9dmGlgGD3XkhoYE0L5eXaULwiHuAUQNoB
+         q4BNZp3oP8ZJWupRs6FZ2fRCkgZtUeO7RreZRv3EKSyq7t++kcUyu8wxwkyIxc3OQ6Dm
+         cOpfybc9dsWpUzjFp3cqhw0+D9sqLLZZH7VZAzAiViXAVuTcPVFrh6PZzSpYsOFWZv7n
+         d7d6aANFq8bV4Di0xK9c3RureAhlWbTKmlA7fqLkrfs4sSPX0EReI/6vgv7/t+Zc58qn
+         euS5GOYgb8aAoDUZ5SnvvDWtTffUdfR/8Xc4WlvZJXmGbczYlrt0zeDBbNtzYuyEtXEA
+         zcSA==
+X-Gm-Message-State: AOAM532PUMLJ9/7FE99/2xILDLFKHl1fWEev0T6PD4+BwqhdKgP9DqmC
+        fnXH3pt6/RPxOkj+lVq44eUdk7Y7TxUVqmwCArA=
+X-Google-Smtp-Source: ABdhPJy2GkYXi/bDDIvaBgNq+ChA9bCJlBqUGUMTmp+/pVXcMOoHj/tpoSVgbNFMMT5RUvJ8GYHRr2F0cRWbhh8qNIA=
+X-Received: by 2002:a05:6830:408a:: with SMTP id x10mr6147308ott.248.1616046128852;
+ Wed, 17 Mar 2021 22:42:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
+In-Reply-To: <CACY_kjSRbgSWsfo+JTyQdqorQ+wcy8OqAtKSbJt6tL4t-AUciw@mail.gmail.com>
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
+Date:   Thu, 18 Mar 2021 11:11:57 +0530
+Message-ID: <CAKfKVtF+9XyOXq2aLoEyMFr9ZsvHOsqPaAPu79ziUtF-VeMnWw@mail.gmail.com>
+Subject: Re: [PATCH v10 5/9] staging: clocking-wizard: Add support for dynamic reconfiguration
+To:     Zhengxun Li <zhengxunli.mxic@gmail.com>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        devel@driverdev.osuosl.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, git@xilinx.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, zhengxunli@mxic.com.tw,
+        Julien Su <juliensu@mxic.com.tw>, slwu@mxic.com.tw
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add dpi config setting and compatible for MT8192
+On Mon, Mar 15, 2021 at 12:37 PM Zhengxun Li <zhengxunli.mxic@gmail.com> wr=
+ote:
+>
+> Hi Shubhrajyoti,
+>
+> My name is Zhengxun and I am the engineer from Macronix. We are
+> using the platform PicoZed 7015/7030 SOM (System On Module),
+> which is based on Xilinx Zynq=C2=AE-7000 All Programmable (AP) SoC to
+> verify our Flash driver. Of course, we are also using your clock
+> wizard, our version seems to be v5.2, but something went wrong.
+>
+> +static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long ra=
+te,
+> + unsigned long parent_rate)
+> +{
+> + int err;
+> + u32 value;
+> + unsigned long flags =3D 0;
+> + struct clk_wzrd_divider *divider =3D to_clk_wzrd_divider(hw);
+> + void __iomem *div_addr =3D divider->base + divider->offset;
+> +
+> + if (divider->lock)
+> + spin_lock_irqsave(divider->lock, flags);
+> + else
+> + __acquire(divider->lock);
+> +
+> + value =3D DIV_ROUND_CLOSEST(parent_rate, rate);
+> +
+> + /* Cap the value to max */
+> + min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
+> +
+> + /* Set divisor and clear phase offset */
+> + writel(value, div_addr);
+> + writel(0x00, div_addr + WZRD_DR_DIV_TO_PHASE_OFFSET);
+>
+> Why phase always set to zero? We want to support DTR operation in
+> Flash driver. Can you add a set_phase function to adjust the phase?
+>
+The phase setting is a separate feature will address in a separate series.
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dpi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 0b427ad0cd9b..88ad58ca4115 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -699,6 +699,12 @@ static const struct mtk_dpi_conf mt8183_conf = {
- 	.max_clock_khz = 100000,
- };
- 
-+static const struct mtk_dpi_conf mt8192_conf = {
-+	.cal_factor = mt8183_calculate_factor,
-+	.reg_h_fre_con = 0xe0,
-+	.max_clock_khz = 150000,
-+};
-+
- static int mtk_dpi_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -819,6 +825,9 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
- 	{ .compatible = "mediatek,mt8183-dpi",
- 	  .data = &mt8183_conf,
- 	},
-+	{ .compatible = "mediatek,mt8192-dpi",
-+	  .data = &mt8192_conf,
-+	},
- 	{ },
- };
- 
--- 
-2.18.0
-
+>
