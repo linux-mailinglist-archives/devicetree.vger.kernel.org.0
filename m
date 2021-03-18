@@ -2,90 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED9FF340518
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 13:04:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E93B3340537
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 13:10:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhCRMDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 08:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbhCRMDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 08:03:24 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDC1DC06174A;
-        Thu, 18 Mar 2021 05:03:23 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so2619761pjb.4;
-        Thu, 18 Mar 2021 05:03:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=O18RE2ihq2VzB80oeThlToJ8TPq6RnBWqHK+hxtzy2Q=;
-        b=ZiAKpXyKoBPo1oe3D6dZZ8NUACbmvvlCFdwLQ9lexMoaxaO8/4U1HLEPcJZl+2TAMH
-         nmtEuMVsxrvRbgC/7T8S0lDZOh1KMOwFLEYAHhsHVMtW2Jkt8MPrSmambVy6oMqwrPve
-         rAyBKm+fVs5ph1KuZr0k/1wpjfuat/c1IvUulaUPYNmRfPH+Gxbqu8PuyMLA6Jv1jW4R
-         iGp3lOeT2n9TS+UPmTJmFd9EuPOwV4d3LcphXxHud4SRFd7GrXVTGVKrVHORasJgv24u
-         TIR0vwxX+E/d911luWP38Uh4Q5NwAnMhV2Bo9sn1YILkXUlGBs3f5VEgqzRob1497Y94
-         oCwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=O18RE2ihq2VzB80oeThlToJ8TPq6RnBWqHK+hxtzy2Q=;
-        b=gkmM7EQGuecw5/RGGgoi16RBcx8otPx0A9wJylghYajxFQmKDP8oPb4FgogSy9ElTS
-         BBAiN0V8UCE8eDo/I0IJJeONYEVpJTJL+tkdWslje707oe4NXtPv7jHPQ+hSgI02rB4B
-         pwYJKDzmS+bnHYVS4bwa2+iJZI6QLoQ13Bn6U/tx9Av2O/CdJF5KGsIsnOO0zRsDU+sv
-         ojsmH3SN3FlatUEeiicNwk0JTvPjRKtLsa6s3UUvk3BlW5VxcX/Y6qMRfeHnpdhm7tf8
-         NhDNgJXcZ2JERkzLyuKihrQDZSOAL78bwB6y+2hfAN3RmKrrU3XbyAwYCW7cMRs3aO3L
-         Tf+w==
-X-Gm-Message-State: AOAM531FZxwWnNEgQxGeWD+qe9x84jCTq+ZyDKyaZlZSZJAhXXdzPZnN
-        HcVgHUnls5aVg1Jq0h5WoKEZ0dGmsQiR4OR/V74Eimti58p4NA==
-X-Google-Smtp-Source: ABdhPJxeHE4GSY7N6rN3OrhmXTJlz+p+cMMDS45o+vmCpwO0Q49pyq6EEXYEdYI2asdmuM+cySoMNtIc9WRbFiPpLFI=
-X-Received: by 2002:a17:90a:e454:: with SMTP id jp20mr4190971pjb.129.1616069002455;
- Thu, 18 Mar 2021 05:03:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210317143803.26127-1-noltari@gmail.com> <20210317143803.26127-3-noltari@gmail.com>
-In-Reply-To: <20210317143803.26127-3-noltari@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 18 Mar 2021 14:03:06 +0200
-Message-ID: <CAHp75VeKwLn1VyG30LoPhLHDxiMZDfnBDwy6t1Ka_rVP224eyw@mail.gmail.com>
-Subject: Re: [PATCH v8 02/22] gpio: regmap: set gpio_chip of_node
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S230458AbhCRMK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 08:10:28 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48852 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230408AbhCRMKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 08:10:18 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12ICACtI064381;
+        Thu, 18 Mar 2021 07:10:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616069412;
+        bh=V55Fqi93WhICRWF6k7K7rR1gLR73q2SA61LmnQTRQKM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=hEIkECQhKK9Uri7GuzN66hQ75ct6ucFuxvgLH+Zc7/meHfMCrI51CuALpW6DXEXar
+         3EDlt3EyNJX5bgMkErdrpKYOW2NK0CCLoYdD/1y7kKdYPEssmTgxjEajwX0yTjyhaN
+         WRFO2B7jMMgyYE7k/Jyk6pgU65G78qU+q/6eq/sw=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12ICABqK015215
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 18 Mar 2021 07:10:12 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 18
+ Mar 2021 07:10:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 18 Mar 2021 07:10:11 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12ICA8Tm116376;
+        Thu, 18 Mar 2021 07:10:08 -0500
+Subject: Re: [PATCH 4/4] clk: ti: add am33xx spread spectrum clock support
+To:     Dario Binacchi <dariobin@libero.it>,
+        <linux-kernel@vger.kernel.org>,
+        "Vutla, Lokesh" <lokeshvutla@ti.com>, "Menon, Nishanth" <nm@ti.com>
+CC:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
         Lee Jones <lee.jones@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-omap@vger.kernel.org>
+References: <20210314151233.23243-1-dariobin@libero.it>
+ <20210314151233.23243-5-dariobin@libero.it>
+ <6dc0d2c6-570a-3fbf-77e1-6731a6c8d558@ti.com>
+ <2069482516.552063.1616053134087@mail1.libero.it>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <64771168-1222-cfb5-f79c-31a945b713a5@ti.com>
+Date:   Thu, 18 Mar 2021 14:08:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <2069482516.552063.1616053134087@mail1.libero.it>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 4:38 PM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
->
-> This is needed for properly registering GPIO regmap as a child of a regma=
-p
-> pin controller.
 
-...
 
-> +       /* gpiolib will use of_node of the parent if chip->of_node is NUL=
-L */
-> +       chip->of_node =3D to_of_node(config->fwnode);
+On 18/03/2021 09:38, Dario Binacchi wrote:
+> Hi Grygorii,
+> 
+>> Il 16/03/2021 12:52 Grygorii Strashko <grygorii.strashko@ti.com> ha scritto:
+>>
+>>   
+>> On 14/03/2021 17:12, Dario Binacchi wrote:
+>>> The patch enables spread spectrum clocking (SSC) for MPU and LCD PLLs.
+>>> As reported by the TI spruh73x RM, SSC is only supported for the
+>>> DISP/LCD and MPU PLLs on am33xx device. SSC is not supported for DDR,
+>>> PER, and CORE PLLs.
+>>>
+>>> Calculating the required values and setting the registers accordingly
+>>> was taken from the set_mpu_spreadspectrum routine contained in the
+>>> arch/arm/mach-omap2/am33xx/clock_am33xx.c file of the u-boot project.
+>>>
+>>> In locked condition, DPLL output clock = CLKINP *[M/N]. In case of
+>>> SSC enabled, the AM335x reference manual explains that there is a
+>>> restriction of range of M values. Since the omap2_dpll_round_rate
+>>> routine attempts to select the minimum possible N, the value of M
+>>> obtained is not guaranteed to be within the range required. With the new
+>>> "ti,min-div" parameter it is possible to increase N and consequently M
+>>> to satisfy the constraint imposed by SSC.
+>>>
+>>> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+>>>
+>>> ---
+>>>
+>>>    arch/arm/boot/dts/am33xx-clocks.dtsi |  4 +-
+>>>    drivers/clk/ti/dpll.c                | 41 ++++++++++++++
+>>>    drivers/clk/ti/dpll3xxx.c            | 85 ++++++++++++++++++++++++++++
+>>>    include/linux/clk/ti.h               | 24 ++++++++
+>>>    4 files changed, 152 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
+>>> index e7bbbf536a8c..a02e0b1229a4 100644
+>>> --- a/arch/arm/boot/dts/am33xx-clocks.dtsi
+>>> +++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
+>>> @@ -164,7 +164,7 @@
+>>>    		#clock-cells = <0>;
+>>>    		compatible = "ti,am3-dpll-core-clock";
+>>>    		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
+>>> -		reg = <0x0490>, <0x045c>, <0x0468>, <0x0460>, <0x0464>;
+>>> +		reg = <0x0490>, <0x045c>, <0x0468>;
+>>>    	};
+>>>    
+>>>    	dpll_core_x2_ck: dpll_core_x2_ck {
+>>> @@ -204,7 +204,7 @@
+>>>    		#clock-cells = <0>;
+>>>    		compatible = "ti,am3-dpll-clock";
+>>>    		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
+>>> -		reg = <0x0488>, <0x0420>, <0x042c>;
+>>> +		reg = <0x0488>, <0x0420>, <0x042c>, <0x0424>, <0x0428>;
+>>>    	};
+>>
+>> You can't mix DT vs code.
+> 
+> Right, I forgot to remove it during a rebase of the series.
+> 
+>>
+>>>    
+>>>    	dpll_mpu_m2_ck: dpll_mpu_m2_ck@4a8 {
+>>> diff --git a/drivers/clk/ti/dpll.c b/drivers/clk/ti/dpll.c
+>>> index d6f1ac5b53e1..2738417a47b7 100644
+>>> --- a/drivers/clk/ti/dpll.c
+>>> +++ b/drivers/clk/ti/dpll.c
+>>> @@ -290,7 +290,9 @@ static void __init of_ti_dpll_setup(struct device_node *node,
+>>>    	struct clk_init_data *init = NULL;
+>>>    	const char **parent_names = NULL;
+>>>    	struct dpll_data *dd = NULL;
+>>> +	int ssc_clk_index;
+>>>    	u8 dpll_mode = 0;
+>>> +	u32 min_div;
+>>>    
+>>>    	dd = kmemdup(ddt, sizeof(*dd), GFP_KERNEL);
+>>>    	clk_hw = kzalloc(sizeof(*clk_hw), GFP_KERNEL);
+>>> @@ -345,6 +347,27 @@ static void __init of_ti_dpll_setup(struct device_node *node,
+>>>    	if (dd->autoidle_mask) {
+>>>    		if (ti_clk_get_reg_addr(node, 3, &dd->autoidle_reg))
+>>>    			goto cleanup;
+>>> +
+>>> +		ssc_clk_index = 4;
+>>> +	} else {
+>>> +		ssc_clk_index = 3;
+>>> +	}
+>>> +
+>>> +	if (dd->ssc_deltam_int_mask && dd->ssc_deltam_frac_mask &&
+>>> +	    dd->ssc_modfreq_mant_mask && dd->ssc_modfreq_exp_mask) {
+>>> +		if (ti_clk_get_reg_addr(node, ssc_clk_index++,
+>>> +					&dd->ssc_deltam_reg))
+>>> +			goto cleanup;
+>>> +
+>>> +		if (ti_clk_get_reg_addr(node, ssc_clk_index++,
+>>> +					&dd->ssc_modfreq_reg))
+>>> +			goto cleanup;
+>>> +
+>>> +		of_property_read_u32(node, "ti,ssc-modfreq", &dd->ssc_modfreq);
+>>> +		of_property_read_u32(node, "ti,ssc-deltam", &dd->ssc_deltam);
+>>> +		if (of_property_read_bool(node, "ti,ssc-downspread"))
+>>> +			dd->ssc_downspread = 1;
+>>
+>> New bindings.
+> 
+> I added the bindings documentation in another patch of the series.
+> 
 
-As the kernel bot rightfully noticed this should be under ifdeffery (OF_GPI=
-O?).
+oh. sorry I've not received it for some reasons :(
 
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+Best regards,
+grygorii
