@@ -2,98 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A2E340196
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:14:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23DC33401A3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 10:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbhCRJOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 05:14:06 -0400
-Received: from rere.qmqm.pl ([91.227.64.183]:9436 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229600AbhCRJNi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 05:13:38 -0400
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 4F1Lt74w3zzFV;
-        Thu, 18 Mar 2021 10:13:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1616058816; bh=B/w6FnU1M8k1x8n6SpOvWjJ7fnKVBOzRmgm3GyKX0h4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FxIh9eKfWmGwT5IZxR16FfA9VRI+Ub43iw+oRHsJeETqL9G8qt9bw8GhVsB3UCzBm
-         +WYmN+7N4HvMx/8QwCcGbJ2o6uKZYLM6CA0ZPeM7F3A2qUbvEu9AomWdfoNzvCJmC2
-         MqhjvUr4aDgurjwJbsnGBtzcq4EXfnxQW6y4sEtt+1sGb8mn4aF4BE0wmveQlMGGkM
-         GXvICbgnZ+Tz75q/eIVToRrgu8C004NyVwGAvtOhe/3OHrlFaklZ0rhUv2TNHFChm4
-         lOJBK64yFJUVaGTIzXow9F+t8u/fGEJLL9H6KAAogJDI1MkvEsyiv/+WffktvZW2gM
-         1eB/DSPMBom2Q==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-Date:   Thu, 18 Mar 2021 10:12:19 +0100
-From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/7] clk: tegra: Fix refcounting of gate clocks
-Message-ID: <20210318091219.GA18038@qmqm.qmqm.pl>
-References: <20210317193006.29633-1-digetx@gmail.com>
- <20210317193006.29633-3-digetx@gmail.com>
+        id S229834AbhCRJOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 05:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229823AbhCRJO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 05:14:28 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83660C061760
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 02:14:27 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id e9so4668638wrw.10
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 02:14:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=Uiv09UGTwFa3RRLsvY7QxQvxRJLPKqm4niX7REF+uBI=;
+        b=coPhGBtIDCp11up6qLgepezHxSY9MAu+TIL4HmsjE1SENNt1EVWlXvVyN4/KFhHvND
+         ZWEfg4iOZxb5sdttHrJQyfNcNKxiLHvhk5SHivOpsOaL+s1XROwwR79ZZn3g+Al3BusC
+         DbUooT4K6XGJXBE+wAqn1msIvpva4OwXZEQeW1c3vFRKBxJ5MIX2/0Nj2m4XHNrzqLot
+         XANEtb6ctkGxDim4PP3+ZcTUIhSTGgg0FxsHBJckeSgQwEQO2g+RDstg+VOeGVTv2WIX
+         3ITK+0hRnIW4P4n7Gr+Zy+1rY7qWgmc+efNrUw3q6ceHH1f3lqU1GXZUpYRcB4SpDVBa
+         oDBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Uiv09UGTwFa3RRLsvY7QxQvxRJLPKqm4niX7REF+uBI=;
+        b=frElFImRecm+RUgrgCpyzDUhzzeO8e4Jdv6hTbmC7SEWvg0qEyrF6N1i4sR5p7B+D9
+         KVBv420PEWSt7yrO4WZJ4brK0qGElHnI42Rr0EeNgojZ80U6Zm/q9CrU+7qahR1+6KjU
+         zpS2uISWHJdlOR3hsIdbzM6yWvgrDO71FMZNXr8b8n5hcID7zpLzb6H9JtEOo+SOmxXA
+         Vp4q5nKPTF8EbTGaoPEfb5YRzBTOhq21lLeA9+ddnSnOPFmTU8kZqN3TCgg9Dl5ljPvo
+         oh5Jqz3al7VQiK297nS1ia5LXOnIYLlEwSwCw/P9iNrtiQXBvRW6N9ywZbReJ1W963gt
+         VwIA==
+X-Gm-Message-State: AOAM533UWG8/1rx4+SRowhfQ5LvqJahIykZf5Dk8Ie+IYFquJy07RVHC
+        h+IrbOrgYKu+Ie/7RoLRp6R+iA==
+X-Google-Smtp-Source: ABdhPJwCAE5GuLxhwuncmpoKP2i/ihcBTLpoW7+Qpnjtwc5szQ26Ujm9zCiwDkLrmji6uToHNGYY1w==
+X-Received: by 2002:adf:c64a:: with SMTP id u10mr8561102wrg.412.1616058866201;
+        Thu, 18 Mar 2021 02:14:26 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id l8sm2122201wrx.83.2021.03.18.02.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Mar 2021 02:14:25 -0700 (PDT)
+To:     Henry Chen <henryc.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <1614656863-8530-1-git-send-email-henryc.chen@mediatek.com>
+ <1614656863-8530-4-git-send-email-henryc.chen@mediatek.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH V9 03/12] soc: mediatek: add driver for dvfsrc support
+Message-ID: <c1c96a65-b322-44ad-39ad-5f9f27fdc4a4@linaro.org>
+Date:   Thu, 18 Mar 2021 11:14:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
-Content-Disposition: inline
+In-Reply-To: <1614656863-8530-4-git-send-email-henryc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210317193006.29633-3-digetx@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 10:30:01PM +0300, Dmitry Osipenko wrote:
-> The refcounting of the gate clocks has a bug causing the enable_refcnt
-> to underflow when unused clocks are disabled. This happens because clk
-> provider erroneously bumps the refcount if clock is enabled at a boot
-> time, which it shouldn't be doing, and it does this only for the gate
-> clocks, while peripheral clocks are using the same gate ops and the
-> peripheral clocks are missing the initial bump. Hence the refcount of
-> the peripheral clocks is 0 when unused clocks are disabled and then the
-> counter is decremented further by the gate ops, causing the integer
-> underflow.
-[...]
-> diff --git a/drivers/clk/tegra/clk-periph-gate.c b/drivers/clk/tegra/clk-periph-gate.c
-> index 4b31beefc9fc..3c4259fec82e 100644
-> --- a/drivers/clk/tegra/clk-periph-gate.c
-> +++ b/drivers/clk/tegra/clk-periph-gate.c
-[...]
-> @@ -91,21 +108,28 @@ static void clk_periph_disable(struct clk_hw *hw)
+Hi Henry,
+
+On 3/2/21 05:47, Henry Chen wrote:
+> Add dvfsrc driver for MT6873/MT8183/MT8192
+> 
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> ---
+>  drivers/soc/mediatek/Kconfig            |  11 +
+>  drivers/soc/mediatek/Makefile           |   1 +
+>  drivers/soc/mediatek/mtk-dvfsrc.c       | 421 ++++++++++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk_dvfsrc.h |  35 +++
+>  4 files changed, 468 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+>  create mode 100644 include/linux/soc/mediatek/mtk_dvfsrc.h
+> 
+> diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+> index fdd8bc0..2dcf023 100644
+> --- a/drivers/soc/mediatek/Kconfig
+> +++ b/drivers/soc/mediatek/Kconfig
+> @@ -26,6 +26,17 @@ config MTK_DEVAPC
+>  	  The violation information is logged for further analysis or
+>  	  countermeasures.
 >  
->  	spin_lock_irqsave(&periph_ref_lock, flags);
->  
-> -	gate->enable_refcnt[gate->clk_num]--;
-> -	if (gate->enable_refcnt[gate->clk_num] > 0) {
-> -		spin_unlock_irqrestore(&periph_ref_lock, flags);
-> -		return;
-> -	}
-> +	WARN_ON(!gate->enable_refcnt[gate->clk_num]);
+> +config MTK_DVFSRC
+> +	tristate "MediaTek DVFSRC Support"
+> +	depends on ARCH_MEDIATEK
+I'm wondering whether adding COMPILE_TEST would make sense here, but it's
+also fine as is.
+
+> +	help
+> +	  Say yes here to add support for the MediaTek DVFSRC (dynamic voltage
+> +	  and frequency scaling resource collector) found
+> +	  on different MediaTek SoCs. The DVFSRC is a proprietary
+> +	  hardware which is used to collect all the requests from
+> +	  system and turn into the decision of minimum Vcore voltage
+> +	  and minimum DRAM frequency to fulfill those requests.
 > +
-> +	if (gate->enable_refcnt[gate->clk_num]-- == 1)
-> +		clk_periph_disable_locked(hw);
+>  config MTK_INFRACFG
+>  	bool "MediaTek INFRACFG Support"
+>  	select REGMAP
+> diff --git a/drivers/soc/mediatek/Makefile b/drivers/soc/mediatek/Makefile
+> index b6908db..4ead103 100644
+> --- a/drivers/soc/mediatek/Makefile
+> +++ b/drivers/soc/mediatek/Makefile
+[..]
+> +void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd, u64 data)
+> +{
+> +	int ret, state;
+> +	struct mtk_dvfsrc *dvfsrc = dev_get_drvdata(dev);
+> +
+> +	dev_dbg(dvfsrc->dev, "cmd: %d, data: %llu\n", cmd, data);
+> +
+> +	switch (cmd) {
+> +	case MTK_DVFSRC_CMD_BW_REQUEST:
+> +		dvfsrc->dvd->set_dram_bw(dvfsrc, data);
+> +		return;
+> +	case MTK_DVFSRC_CMD_PEAK_BW_REQUEST:
+> +		if (dvfsrc->dvd->set_dram_peak_bw)
+> +			dvfsrc->dvd->set_dram_peak_bw(dvfsrc, data);
+> +		return;
+> +	case MTK_DVFSRC_CMD_OPP_REQUEST:
+> +		if (dvfsrc->dvd->set_opp_level)
+> +			dvfsrc->dvd->set_opp_level(dvfsrc, data);
+> +		break;
+> +	case MTK_DVFSRC_CMD_VCORE_REQUEST:
+> +		dvfsrc->dvd->set_vcore_level(dvfsrc, data);
+> +		break;
+> +	case MTK_DVFSRC_CMD_HRTBW_REQUEST:
+> +		if (dvfsrc->dvd->set_dram_hrtbw)
+> +			dvfsrc->dvd->set_dram_hrtbw(dvfsrc, data);
+> +		else
+> +			return;
+> +		break;
+> +	case MTK_DVFSRC_CMD_VSCP_REQUEST:
+> +		dvfsrc->dvd->set_vscp_level(dvfsrc, data);
+> +		break;
+> +	default:
+> +		dev_err(dvfsrc->dev, "unknown command: %d\n", cmd);
+> +		return;
+> +	}
+> +
+> +	/* DVFSRC need to wait at least 2T(~196ns) to handle request
+> +	 * after recieving command
 
-Nit: "if (--n == 0)" seems more natural, as you want to call
-clk_periph_disable_locked() when the refcount goes down to 0.
+Nit: s/recieving/receiving/
 
-[...]
->  	/*
-> -	 * If peripheral is in the APB bus then read the APB bus to
-> -	 * flush the write operation in apb bus. This will avoid the
-> -	 * peripheral access after disabling clock
-> +	 * Some clocks are duplicated and some of them are marked as critical,
-> +	 * like fuse and fuse_burn for example, thus the enable_refcnt will
-> +	 * be non-zero here id the "unused" duplicate is disabled by CCF.
-
-s/id/if/ ?
-
-Best Regards
-Micha³ Miros³aw
+Thanks,
+Georgi
