@@ -2,81 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56242340464
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 12:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 082D83404B2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 12:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbhCRLQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 07:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbhCRLPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 07:15:44 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB66C06174A;
-        Thu, 18 Mar 2021 04:15:43 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 15so7060938ljj.0;
-        Thu, 18 Mar 2021 04:15:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lyNcHfk83roTwvdJIlHqrYHP3nduWOOraeh2JSUHlGw=;
-        b=uv6TY1wQg4REZq3APCa64EYho4ouL5vuGEU0UZ45C60RE5NqtEWlBk0Jd64PUqVuN/
-         lJNKMbZTg7EJ55w4OWPtfhYTSlRj/NByXX9CCxcQZujlax6S0s/KgIY1+89MOH6AAs8C
-         S0cp1Xf3CFt3x7Y+zjwSf81tvA2q9jfCATtU2gh4tZ4YfOWY+t3ytZmz9dwRiQlpMbyq
-         CC61BtR6mQXJ9sLR0horfofk37JXsE9KWzau9v/XL+N/HHfbwu6QqQg4K6lYkTHeDUfw
-         EjwQfYWKtMJDFyvnk02w/V4l/FdH3ALumbUOFHSN68XBs6gw/B1YPr5VVW7y9XaLSVOS
-         Cplw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lyNcHfk83roTwvdJIlHqrYHP3nduWOOraeh2JSUHlGw=;
-        b=ZoQCJ6TG8wZLfAw4tqNmsOsAFOfu7M/qhj0JwN9LoNhpI/AWTfvJxgtDJ0CGMa0OiN
-         CaFtZJTCPOKNnacn/uomHmmQPgpe/uAq5kDPpL6DUtHmHLy9MNJ1bi/kFs/AFG0mxYr0
-         R2SV64ChMJpQ1LzIxFIx8OEtPchNruioC+dFI21DiLkVBEmGkmwT+VkInFsOhvE5hL9O
-         lAiJmMv0GOW5Tym0gf76LrN6u7Vf76pQiNsFrqnhXgafpZDXw4jOfqqXV032CbTcsK9B
-         oIwx6HBYTFM4QR2uDgoCnyXD5yT3EA1zzroRVfXObE/oRsUw0+PfmVbTgQ0sSfeiiTsP
-         0qxA==
-X-Gm-Message-State: AOAM5309lau2PiKXEPeqQg3GFqKW6cNnXVAIIKM8WiCjFBwC+j1G1PRv
-        bE/cMUObpRteZMOcbXdweMWcZrAVUKKaE9ZI3Yw=
-X-Google-Smtp-Source: ABdhPJz8mKz5IRLIKkRTKtqyV7TUGy5n7srh7ZxcZbrYzDpbqQ2IR0M4B8d+oi1rBqHMf/v6jtevAfs3i/j8jG9KqaU=
-X-Received: by 2002:a2e:6f15:: with SMTP id k21mr5124042ljc.444.1616066142520;
- Thu, 18 Mar 2021 04:15:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210304114013.18494-1-qiangqing.zhang@nxp.com>
- <20210318104813.GB22955@dragon> <DB8PR04MB6795178A70C52D067DC1AEE1E6699@DB8PR04MB6795.eurprd04.prod.outlook.com>
-In-Reply-To: <DB8PR04MB6795178A70C52D067DC1AEE1E6699@DB8PR04MB6795.eurprd04.prod.outlook.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 18 Mar 2021 08:15:31 -0300
-Message-ID: <CAOMZO5D8n-+PUgrr5wer4y92hX8CLxwDbfLb4mxahTbG+HTNMQ@mail.gmail.com>
-Subject: Re: [PATCH V1] arm64: dts: imx8mp: fix FEC can't work when attached
- to generic phy driver
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S229908AbhCRLfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 07:35:06 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41602 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229931AbhCRLez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 07:34:55 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12IBYm2J052924;
+        Thu, 18 Mar 2021 06:34:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616067288;
+        bh=pQp9TdiWFXFmbvvfkvhvwWm/3WqsaJmINLKWXONFnxE=;
+        h=From:To:CC:Subject:Date;
+        b=PIYPgAP0X3td1IeDQEBS9vJVP+XqEHoROr6zrwxIXxdWJE21rqVX7+ljRAzWeo8F/
+         amdUl42ekD9IMrVyf1ggyJolIOYOxuTmqldAPmlDDcQMgsWVvfZTjYlPMXQiaaoS4A
+         9R+JEsBT0SxoQG/RYU+XBGFNkhYZoAVpfku8BASQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12IBYmW4092348
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 18 Mar 2021 06:34:48 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 18
+ Mar 2021 06:34:48 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 18 Mar 2021 06:34:48 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12IBYjtV077067;
+        Thu, 18 Mar 2021 06:34:46 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [RESEND PATCH] arm64: dts: ti: k3-am64-main: Add ADC nodes
+Date:   Thu, 18 Mar 2021 17:04:43 +0530
+Message-ID: <20210318113443.20036-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.31.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joakim,
+AM64 SoC has a single ADC IP with 8 channels. Add DT node for the same.
 
-On Thu, Mar 18, 2021 at 8:04 AM Joakim Zhang <qiangqing.zhang@nxp.com> wrote:
+Default usecase is to control ADC from non Linux core on the system on
+AM642 GP EVM, therefore mark the node as reserved in k3-am642-evm.dts
+file. ADC lines are not pinned out on AM642 SK board, therefore disable
+the node in k3-am642-sk.dts file.
 
-> Hi Shawn,
->
-> Seems you prefer to 2, is it possible to buildin Realtek PHY(CONFIG_REALTEK_PHY=y)? If not, it is going to be tricky.
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+---
 
-Yes, we should select the driver as built-in and describe the reset
-timing requirements as per the datasheet.
+Rebase onto latest k3-dts-next:
+v1: lore.kernel.org/r/20210309130708.12391-1-vigneshr@ti.com
 
-I have just sent two patches to address the issue you reported. Please
-test them.
+Do note that dtbs_check warns about having the bindings converted to
+YAML which is in my future TODO list.
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 17 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  5 +++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  4 ++++
+ 3 files changed, 26 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index 7e7997e3adff..dc852f63d1a2 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -521,4 +521,21 @@ usb0: usb@f400000{
+ 			dr_mode = "otg";
+ 		};
+ 	};
++
++	tscadc0: tscadc@28001000 {
++		compatible = "ti,am654-tscadc", "ti,am3359-tscadc";
++		reg = <0x00 0x28001000 0x00 0x1000>;
++		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
++		power-domains = <&k3_pds 0 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 0 0>;
++		assigned-clocks = <&k3_clks 0 0>;
++		assigned-clock-parents = <&k3_clks 0 3>;
++		assigned-clock-rates = <60000000>;
++		clock-names = "adc_tsc_fck";
++
++		adc {
++			#io-channel-cells = <1>;
++			compatible = "ti,am654-adc", "ti,am3359-adc";
++		};
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+index 1365e3164294..6331fd426157 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+@@ -377,3 +377,8 @@ cpsw3g_phy0: ethernet-phy@0 {
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 	};
+ };
++
++&tscadc0 {
++	/* ADC is reserved for R5 usage */
++	status = "reserved";
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 397ed3b2e121..8f9b1078b7b5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -244,3 +244,7 @@ cpsw3g_phy1: ethernet-phy@1 {
+ 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 	};
+ };
++
++&tscadc0 {
++	status = "disabled";
++};
+-- 
+2.31.0
+
