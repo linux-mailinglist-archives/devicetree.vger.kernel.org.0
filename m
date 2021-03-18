@@ -2,89 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 598F7340BC8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F26BA340BCC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:28:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbhCRR1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 13:27:07 -0400
+        id S232276AbhCRR1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 13:27:39 -0400
 Received: from smtp-17.italiaonline.it ([213.209.10.17]:37616 "EHLO libero.it"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230417AbhCRR1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 13:27:02 -0400
+        id S232126AbhCRR1O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 13:27:14 -0400
 Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
  ([87.20.116.197])
         by smtp-17.iol.local with ESMTPA
-        id MwPulsZ9jtpGHMwQ6lfgb1; Thu, 18 Mar 2021 18:27:00 +0100
+        id MwPulsZ9jtpGHMwQRlfgiu; Thu, 18 Mar 2021 18:27:13 +0100
 x-libjamoibt: 1601
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1616088420; bh=yj+a1jaz0T1SShJsQxra1ks1sG+DRrSV4DLGd8lOu9s=;
+        t=1616088433; bh=wOVMM8fe4k6pPP97MUyM+VmdNWuzQWM6uK83ju/ajGI=;
         h=From;
-        b=leBrLWXb2shmeRi3o/q/Gbfouyxfd/RERHWK0EvtA4VNnA585MFZXpgn3xtGMBd7z
-         EuGXoPYLB8Cm88zee+MYAexhkyqD6FpJSU5NDfdpvnhCfmYOnRup4JeITuEM067U3O
-         GIBI7KZW1IwWBAJpMdthU8Uc1HZb359Edy5FkGLJek0FY5vBPqk7vIxzHEUXq8evQd
-         TMuiIklElrCzP00VjY/fmAFsFjE79wch1z8jZalQHWtcMOLarNI0nJWbVuIMI8s8e+
-         GfmyE4LSz0FoOqSW4gWo0XhDHtwZlLtNqvLAEGPtEQ2xdcNb/eHQ3vPmP7BZjnDNow
-         5TI1XlgzilW6w==
-X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=60538d64 cx=a_exe
+        b=rdg4N/0cyb33V1brFRYb6CGlqrfTpU5A2q4PqN/R6z5AufJQ2f4xSyp83ZcDIFxko
+         KO4i61gSf4+J3YcduFoS3uHdeO0rPq9F996ZXVX9M3Z7BPWA4mK+0qZYQzDsbmOvyf
+         PiNpu4QSH5MFEd+ZFv6/JFkkJEsPDAH8KrdWt6LPmFDnNyPTUo7SVwRofwOCivTIys
+         2BUJrRwNgpR2S7zQZhpzQmN5sZvklC3LrTB7mlqBX1iHn/Avs5x1m6ZF42JkdpptO4
+         mptgRBJocGvxjNyObrysmHiosRt7l8Ea90XZoTwMQT/3M2xPljpyrZTBJ2ket08aq4
+         cbIQRNLiX4Y/A==
+X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=60538d71 cx=a_exe
  a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
- a=IkcTkHD0fZMA:10 a=wWb8P1eRJa4rfLIeBvsA:9 a=QEXdDO2ut3YA:10
+ a=gUdohDFUAsczsVxzKVAA:9
 From:   Dario Binacchi <dariobin@libero.it>
 To:     linux-kernel@vger.kernel.org
 Cc:     Dario Binacchi <dariobin@libero.it>,
         Grygorii Strashko <grygorii.strashko@ti.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: [PATCH v2 0/4] clk: ti: add am33xx spread spectrum clock support
-Date:   Thu, 18 Mar 2021 18:26:22 +0100
-Message-Id: <20210318172627.12173-1-dariobin@libero.it>
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 2/4] dt-bindings: ti: dpll: add spread spectrum support
+Date:   Thu, 18 Mar 2021 18:26:24 +0100
+Message-Id: <20210318172627.12173-3-dariobin@libero.it>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfDK4Q7A05zj30Dnd5wsWaqgHe2FaIszhcG0sF0Nc6Q2eaRdpepRVILGMtNqciN7iPltx6QEa+aL18eJ1LLW0hvl3LKRp8Jz3ACW0OisqPVpUYNY8Fg2y
- APwmtA/n5STDvlked/NvnlpO5tsgYKGKkhrS9gHb3EGicLVyC/4DeYdHv66wBPgy1itn+qI35Fqk+Z+lfSleL0u3u5XXmLkpIEk43PfMW1D0kteAyWpKuAI5
- zpSynDDQQ9Cc6Swrk46h9wWqyg56gaavXjbzo5OZgpWDKDe9bTcLoCUblflNl1Dygmt276gECpWL7KkfWMhxSaBB3OstVNOhb7F7q0q2eImkoNbRSpe5xsac
- nFvLvw/nzssLFXddqPtVW2mYNVPvud5JGQjEcoPu7dFnCXZQB6Az1cbYdUQqBlW3QCDmvcgUj9/VWwx9qVoQ2IHv9t2RYN9G1NiCNavzrDJ7ezzutdQzkMlV
- ewdVPsn5I1Y8eBkqPjUACPc2NWQH9seHMgVcgV7kf2lhtvIXlqQkWO9APTnMvKgWJNrKvNkbWUbR6emjQEagjywkAfCsv+eDbkeKqolEMzfNd9iw4DLDU7w8
- +TAwA+PLHhTLySidEW1CqNwtsdHk7rSw+8ujnYLxpiVSSQ==
+In-Reply-To: <20210318172627.12173-1-dariobin@libero.it>
+References: <20210318172627.12173-1-dariobin@libero.it>
+X-CMAE-Envelope: MS4xfE7cZ8YkxtFmG0Psp4XifQ7ICm7GXAILORL5K/V9b+vqby/yBwGvOwdJ2yTis2NoFLyR8f+C1aGCRI486vKmcBIzDiju/ZZx1OLv1nde0UGfxLwzSA5x
+ aws3zPJREAb/jZ/sGiEjiP6GSCBNRTVmtxisBTRj268qNRSN41m99V0YvaensOKcvyRAyQ23SptkpJ/gf1Yv5vOt0rOG07kXmqh/dy531o+usygl/lpLyzg9
+ eligt6yxB+3v5kEpBTjSmOXHL3bYBciVFm7SmoaT1HDc3DdPPHaVg93b8+P/oLVwWkKFaeov3+WSbsMVCu9m5uvMPEhSNpesPlLXESyt/L4ss+t6tHDhnf28
+ J+xuYdB0z2mKqe2WXwupiqWe2DSbv8Q+JGu6HZyyCWuCa1j3RmhcEhPGHlg8VWk4HJH2LsoX1akKfDKsHoyPItjph0CqM0vTKzUrGFcAFgrJb04AfOk9URY8
+ MwRyZJ0AGFawXAig
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+DT bindings for enabling and adjusting spread spectrum clocking have
+been added.
 
-As reported by the TI spruh73x RM, MPU and LCD modules support spread
-spectrum clocking (SSC) on their output clocks. SSC is used to spread
-the spectral peaking of the clock to reduce any electromagnetic
-interference (EMI) that may be caused due to the clock’s fundamental
-or any of its harmonics.
-The series allows you to enable and adjust the spread spectrum clocking
-for all am33xx PLLs for which it is supported.
+Signed-off-by: Dario Binacchi <dariobin@libero.it>
+---
 
+(no changes since v1)
 
-Changes in v2:
-- Remove SSC registers from dpll_core_ck@490 node (SSC is not supported)
-- Add SSC registers to dpll_mpu_ck@488 node.
-- Move the DT changes to the previous patch in the series.
+ .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Dario Binacchi (4):
-  clk: ti: fix typo in routine description
-  dt-bindings: ti: dpll: add spread spectrum support
-  ARM: dts: am33xx-clocks: add spread spectrum support
-  clk: ti: add am33xx spread spectrum clock support
-
- .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++
- arch/arm/boot/dts/am33xx-clocks.dtsi          |  4 +-
- drivers/clk/ti/dpll.c                         | 41 +++++++++
- drivers/clk/ti/dpll3xxx.c                     | 87 ++++++++++++++++++-
- include/linux/clk/ti.h                        | 24 +++++
- 5 files changed, 173 insertions(+), 3 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+index df57009ff8e7..0810ae073294 100644
+--- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
++++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+@@ -42,6 +42,11 @@ Required properties:
+ 	"idlest" - contains the idle status register base address
+ 	"mult-div1" - contains the multiplier / divider register base address
+ 	"autoidle" - contains the autoidle register base address (optional)
++	"ssc-deltam" - DPLL supports spread spectrum clocking (SSC), contains
++		       the frequency spreading register base address (optional)
++	"ssc-modfreq" - DPLL supports spread spectrum clocking (SSC), contains
++		        the modulation frequency register base address
++			(optional)
+   ti,am3-* dpll types do not have autoidle register
+   ti,omap2-* dpll type does not support idlest / autoidle registers
+ 
+@@ -51,6 +56,14 @@ Optional properties:
+ 	- ti,low-power-stop : DPLL supports low power stop mode, gating output
+ 	- ti,low-power-bypass : DPLL output matches rate of parent bypass clock
+ 	- ti,lock : DPLL locks in programmed rate
++	- ti,min-div : the minimum divisor to start from to round the DPLL
++		       target rate
++	- ti,ssc-deltam : DPLL supports spread spectrum clocking, frequency
++			  spreading in permille (10th of a percent)
++	- ti,ssc-modfreq : DPLL supports spread spectrum clocking, spread
++			   spectrum modulation frequency in kHz
++	- ti,ssc-downspread : DPLL supports spread spectrum clocking, boolean
++			      to enable the downspread feature
+ 
+ Examples:
+ 	dpll_core_ck: dpll_core_ck@44e00490 {
+@@ -83,3 +96,10 @@ Examples:
+ 		clocks = <&sys_ck>, <&sys_ck>;
+ 		reg = <0x0500>, <0x0540>;
+ 	};
++
++	dpll_disp_ck: dpll_disp_ck {
++		#clock-cells = <0>;
++		compatible = "ti,am3-dpll-no-gate-clock";
++		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
++		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
++	};
 -- 
 2.17.1
 
