@@ -2,83 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8521C340B8A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B420340B98
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 18:20:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbhCRRSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 13:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34758 "EHLO
+        id S229472AbhCRRTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 13:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbhCRRSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 13:18:03 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4B6C06175F
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:18:02 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id mz6-20020a17090b3786b02900c16cb41d63so3484180pjb.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 10:18:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Q/dGxKGWMn9sfMz1b8CCSg+fiC/dJhHGZJq+3SdzjOQ=;
-        b=WVWbyAI5kfosqOyzscCScjiH7ZCnvPLgynzAoQ7C8JvvuMRmVO+nfLQVdRcBcbhBl3
-         3CAeupwS4atfV2Uk80gYt5uTO+qtyNw+uAc7j/oep/H3uv4GOvIOY24izAyzE2DQ8VW7
-         kUqFutxVa5UtqjSHyhZiVeHY4i4xf4tXelALM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q/dGxKGWMn9sfMz1b8CCSg+fiC/dJhHGZJq+3SdzjOQ=;
-        b=LOTr3UVX7bPFdIO8LldgEfZJi0lyFgXRfX3XkZ8S+9AM8NSOmPhQGMF1Mx5iYi00cE
-         Greble6UAnFCFqDU9EBScrEI3eyoY2GB+SmbMuVLFcX++LVea+vs+iObhILEwR7S19Tw
-         Z7jW9xoRQjsp0pcOgCkv4MKkDhOSal+B+uqo8HBKmBY/t486UXihwB/uujv5xMsWuYNi
-         tQxu+/rVIfYS9ck2GTv+hLnw/65tMXd2G0tPfktygThVK9mz3zYyJSMYBNXzhcu3cC/F
-         1mdVWBwwvWmyC1lBa3zlqH6NyWprLAFATAXdGmPVlIjq+y3Ri2BbKSt1nh7bXg6fZ8qG
-         /ZkA==
-X-Gm-Message-State: AOAM531A9bNMc01lz7c5AFG7edlfFlqrtDmtm92Htt6x4qyVwYgILHTY
-        a49fo3YemDwPzMqgmIogQuUBsA==
-X-Google-Smtp-Source: ABdhPJwjpWZE1h3EfmpA8uaekrYi2l/kcDS5O6e6heHIWgnAfkX7fPzdsgqyeP70KZ8aaKjMwXs8Rg==
-X-Received: by 2002:a17:90b:f15:: with SMTP id br21mr5479022pjb.234.1616087881552;
-        Thu, 18 Mar 2021 10:18:01 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:3cf8:6a09:780b:f65d])
-        by smtp.gmail.com with UTF8SMTPSA id r23sm3063398pje.38.2021.03.18.10.18.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Mar 2021 10:18:01 -0700 (PDT)
-Date:   Thu, 18 Mar 2021 10:17:59 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Roja Rani Yarubandi <rojay@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        akashast@codeaurora.org, msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH V2 2/2] arm64: dts: qcom: sc7180: Remove QUP-CORE ICC path
-Message-ID: <YFOLR4pem0mRFkoQ@google.com>
-References: <20210318111009.30365-1-rojay@codeaurora.org>
- <20210318111009.30365-3-rojay@codeaurora.org>
+        with ESMTP id S232316AbhCRRTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 13:19:14 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E249EC06174A;
+        Thu, 18 Mar 2021 10:19:13 -0700 (PDT)
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id B97CD22205;
+        Thu, 18 Mar 2021 18:19:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1616087951;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zScicOu5h1kWopVKEvc+11eswp5j64QDoz9ikr8fwU4=;
+        b=U6FKg4DlCfe2ajUlm/m/Cgc78Udvwjo8n0R2mvrm77eRcTHE0LZy6D14pP3Bp3Ugpb/JL3
+        Om1IkqK3Kf5s/thsoE31k/ofLkhvACIZsbv7axClaWuPkX0TnMaF92LKzYdrtUFKIKkKKg
+        ddDZ+WqFCZwRvi4G+4n64HIGPGyTg1A=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH 1/2] arm64: dts: fsl-ls1028a-kontron-sl28: move MTD partitions
+Date:   Thu, 18 Mar 2021 18:18:55 +0100
+Message-Id: <20210318171856.3487-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210318111009.30365-3-rojay@codeaurora.org>
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 04:40:09PM +0530, Roja Rani Yarubandi wrote:
-> We had introduced the QUP-CORE ICC path to put proxy votes from
-> QUP wrapper on behalf of earlycon, if other users of QUP-CORE turn
-> off this clock before the real console is probed, unclocked access
-> to HW was seen from earlycon.
-> 
-> With ICC sync state support proxy votes are no longer need as ICC
-> will ensure that the default bootloader votes are not removed until
-> all it's consumer are probed.
-> 
-> We can safely remove ICC path for QUP-CORE clock from QUP wrapper
-> device.
-> 
-> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+Move the MTD partitions to the partitions subnode. This is the new way
+to specify the partitions, see
+  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ .../freescale/fsl-ls1028a-kontron-sl28.dts    | 94 ++++++++++---------
+ 1 file changed, 49 insertions(+), 45 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
+index 0516076087ae..7e3a33eb2045 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
+@@ -115,8 +115,6 @@
+ 	status = "okay";
+ 
+ 	flash@0 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 		compatible = "jedec,spi-nor";
+ 		m25p,fast-read;
+ 		spi-max-frequency = <133000000>;
+@@ -125,49 +123,55 @@
+ 		spi-rx-bus-width = <2>; /* 2 SPI Rx lines */
+ 		spi-tx-bus-width = <1>; /* 1 SPI Tx line */
+ 
+-		partition@0 {
+-			reg = <0x000000 0x010000>;
+-			label = "rcw";
+-			read-only;
+-		};
+-
+-		partition@10000 {
+-			reg = <0x010000 0x0f0000>;
+-			label = "failsafe bootloader";
+-			read-only;
+-		};
+-
+-		partition@100000 {
+-			reg = <0x100000 0x040000>;
+-			label = "failsafe DP firmware";
+-			read-only;
+-		};
+-
+-		partition@140000 {
+-			reg = <0x140000 0x0a0000>;
+-			label = "failsafe trusted firmware";
+-			read-only;
+-		};
+-
+-		partition@1e0000 {
+-			reg = <0x1e0000 0x020000>;
+-			label = "reserved";
+-			read-only;
+-		};
+-
+-		partition@200000 {
+-			reg = <0x200000 0x010000>;
+-			label = "configuration store";
+-		};
+-
+-		partition@210000 {
+-			reg = <0x210000 0x1d0000>;
+-			label = "bootloader";
+-		};
+-
+-		partition@3e0000 {
+-			reg = <0x3e0000 0x020000>;
+-			label = "bootloader environment";
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				reg = <0x000000 0x010000>;
++				label = "rcw";
++				read-only;
++			};
++
++			partition@10000 {
++				reg = <0x010000 0x0f0000>;
++				label = "failsafe bootloader";
++				read-only;
++			};
++
++			partition@100000 {
++				reg = <0x100000 0x040000>;
++				label = "failsafe DP firmware";
++				read-only;
++			};
++
++			partition@140000 {
++				reg = <0x140000 0x0a0000>;
++				label = "failsafe trusted firmware";
++				read-only;
++			};
++
++			partition@1e0000 {
++				reg = <0x1e0000 0x020000>;
++				label = "reserved";
++				read-only;
++			};
++
++			partition@200000 {
++				reg = <0x200000 0x010000>;
++				label = "configuration store";
++			};
++
++			partition@210000 {
++				reg = <0x210000 0x1d0000>;
++				label = "bootloader";
++			};
++
++			partition@3e0000 {
++				reg = <0x3e0000 0x020000>;
++				label = "bootloader environment";
++			};
+ 		};
+ 	};
+ };
+-- 
+2.20.1
+
