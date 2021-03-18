@@ -2,87 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5A1340675
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 14:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B6E6340673
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 14:09:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbhCRNJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230204AbhCRNJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 18 Mar 2021 09:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37132 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbhCRNI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 09:08:59 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A7CC06174A
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 06:08:48 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id x187-20020a4a41c40000b02901b664cf3220so1408276ooa.10
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 06:08:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ml8axY3qlzG3ov6dmEpT5bvGhbf+BjkuHFIDOheG9jg=;
-        b=k5nNnynNiDS4V73GHwZzqcAYkVyCn/OW5C+TqZaef6nm+DAFrnIy8kHRBNYElUsVq6
-         sspz6NUKaLxIg3aJvvufbo/e3MsZnvlgc8QWUIzLfQkvXFMA4FBcsBEO7zRQ4vA+tL5O
-         x+RwF0hT3lCmL4VebLPHzi4SrgB4SQ/aGZskBYHnErQ95xELIzTI8vFqXWwcISYhWs1i
-         i7NEB/scfXPBxHpPwIEET0FONNz8e5c3YUIcSrx3l00YQgeGtAxt3EVSGNKi855mSJsg
-         YcgcPzUsTTe5JFWWn15sxd/nfF3xa1atxtgFTeMa2YU5Kf+AiNJqKPDQ4Xw3+sI8c1Pn
-         8xKQ==
+Received: from mail-vs1-f41.google.com ([209.85.217.41]:47084 "EHLO
+        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231244AbhCRNIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 09:08:53 -0400
+Received: by mail-vs1-f41.google.com with SMTP id l22so1502354vsr.13;
+        Thu, 18 Mar 2021 06:08:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ml8axY3qlzG3ov6dmEpT5bvGhbf+BjkuHFIDOheG9jg=;
-        b=W8rzIsx/Gy7ssx5x11I5erev9Y5pk3SGaPUrvISTB3gttYSG0gumk4+KdhPr8Vo7Lo
-         2g2PErwAkeVcOLbN04KfuSttQpbB+Df+n50OgKgv1/Gi3Fy00dR+XwU2RB/w3L1E3z67
-         Yv+Ehn2FHfXsN+vZei89W5ZXAyeqfCXnOOPdqNf0l84SpXSTMZ/mvVTTFJiOc5zYfg0/
-         O0RyC3xLhTrSWnUJj6Ng/zci1E0AFYYMCWkQpjGIXw5cz/mufZI+3d2ueFJIy3tDFYqZ
-         wCMsu90+5TQ2YjFEsvHS01HdoH4K9G84IlnY/JzcyT3WxOlkagM47CvxYPKJJYp7g+hh
-         GeHw==
-X-Gm-Message-State: AOAM533fSZ+04QZ4NTlVt7eD8KTYTZ42BnkHi4nIdA+aZl0H/kM0Djv9
-        hmce4dZa2Pi/j14K+DA3nFsmTej9LmBhWdvG6y9hcw==
-X-Google-Smtp-Source: ABdhPJwYTZ0R7oWBMVlfA1wLsHY6nyw0acIJ8D21GcHyeSTqYFF6MFGF8XYM9wZIaNWiuMdtac21DPaCgRRJriMa43Q=
-X-Received: by 2002:a05:6820:3c8:: with SMTP id s8mr7491791ooj.49.1616072928106;
- Thu, 18 Mar 2021 06:08:48 -0700 (PDT)
+        bh=3W+gRU3tHOQftjVIDBjSp6oKqWWk/fcbiFHz3gji3RA=;
+        b=CKLH0megC93YIgSK38RvzBgRSunx8AfYLFKJEXOkUwzC+6uykuBEJQcrvkIrrPiRym
+         UBK9CtgPSuySJQZfk0262NzsI/l8ytFJg6V0I5+NR6BjEIGSOg9R7y3fNg9LCo10md1r
+         D5IV6uAca2FX+CEuKGLuwfp7zmkHdDiakw3WD0AFFvEl/mP2AKKm86QKssqATIpP4ONN
+         9sKccpUzMpj5eqo7fAhvzwGaI1Y1jYHE0BxEBmZFrWjMw6DzrC19xXvjfOLETMVhrAOB
+         gxguLwVnNFZatVUPU0T0YFxK5EYEEVgwzKvPWxquyZRNon3vxeGnqTfUhGPPIurAxD8L
+         JnJg==
+X-Gm-Message-State: AOAM531xD/d6M6HngzRvmAy4DFKzNi3MicdnCj35Y/5y7VW0U92rYx+1
+        ui9bQmLXvokyOTacitIQtipwFqI4tT90XcAg6XminUhR
+X-Google-Smtp-Source: ABdhPJwSYclVqk3CG+KwOsQJDNF/gnlOqbyQv3/6dPaqrdvn9b/kEKBWwIe28FgiQQb6nLHFTrMEdwstEC2d9ss4Ju8=
+X-Received: by 2002:a67:fe90:: with SMTP id b16mr6581294vsr.40.1616072932463;
+ Thu, 18 Mar 2021 06:08:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210212154614.38604-1-sudeep.holla@arm.com> <20210212154614.38604-7-sudeep.holla@arm.com>
-In-Reply-To: <20210212154614.38604-7-sudeep.holla@arm.com>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Thu, 18 Mar 2021 14:08:37 +0100
-Message-ID: <CAHUa44Fuq3MoS+r60rfG4Fgh_gQ-_8R6qfTx0TUmUvVQYpXOMQ@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] firmware: arm_ffa: Setup in-kernel users of FFA partitions
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
+References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-5-aford173@gmail.com>
+ <CAMuHMdW3SO7LemssHrGKkV0TUVNuT4oq1EfmJ-Js79=QBvNhqQ@mail.gmail.com> <CAHCN7xLtDyfB5h5rWTLpiUgWY==2KmxYCOQkVSeU8DV8KB-NKg@mail.gmail.com>
+In-Reply-To: <CAHCN7xLtDyfB5h5rWTLpiUgWY==2KmxYCOQkVSeU8DV8KB-NKg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Mar 2021 14:08:40 +0100
+Message-ID: <CAMuHMdV1e+bBapynOQwhuBpdBcpn-03hpOu4KAaK4GHhcdROEg@mail.gmail.com>
+Subject: Re: [PATCH V3 5/5] arm64: dts: renesas: beacon kits: Setup AVB refclk
+To:     Adam Ford <aford173@gmail.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc:     netdev <netdev@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 12, 2021 at 4:46 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> Parse the FFA nodes from the device-tree and register all the partitions
-> whose services will be used in the kernel.
->
-> In order to also enable in-kernel users of FFA interface, let us add
-> simple set of operations for such devices.
->
-> The in-kernel users are registered without the character device interface.
->
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  drivers/firmware/arm_ffa/common.h |   2 +
->  drivers/firmware/arm_ffa/driver.c | 188 ++++++++++++++++++++++++++++++
->  include/linux/arm_ffa.h           |  38 +++++-
->  3 files changed, 227 insertions(+), 1 deletion(-)
->
+Hi Adam,
 
-Reviewed-by: Jens Wiklander <jens.wiklander@linaro.org>
+On Thu, Mar 18, 2021 at 1:44 PM Adam Ford <aford173@gmail.com> wrote:
+> On Thu, Mar 4, 2021 at 2:04 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
+> > > The AVB refererence clock assumes an external clock that runs
+> >
+> > reference
+> >
+> > > automatically.  Because the Versaclock is wired to provide the
+> > > AVB refclock, the device tree needs to reference it in order for the
+> > > driver to start the clock.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > i.e. will queue in renesas-devel (with the typo fixed) once the DT
+> > bindings have been accepted.
+> >
+>
+> Who do I need to ping to get the DT bindings accepted?  They have an
+> acked-by from Rob.
 
-Thanks,
-Jens
+Sergei, can you please have a look at the DT binding change?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
