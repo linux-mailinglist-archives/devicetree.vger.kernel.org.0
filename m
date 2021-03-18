@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9965E34077C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58CE434078D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbhCROMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 10:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50818 "EHLO
+        id S230248AbhCROP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 10:15:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbhCROMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:12:09 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FA6C06175F;
-        Thu, 18 Mar 2021 07:12:08 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso5285109oti.11;
-        Thu, 18 Mar 2021 07:12:08 -0700 (PDT)
+        with ESMTP id S230159AbhCROO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:14:57 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E341C06174A;
+        Thu, 18 Mar 2021 07:14:57 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so5298089ota.9;
+        Thu, 18 Mar 2021 07:14:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=a50uAhSDderMggKK8RFXjAkHNeNGYqS63dv1RpSuGyc=;
-        b=pgxmK244IvKUUg6U3uQJetoS+P0+C8mca9STqv7sC4W8TZCh5gs2zqBkg6m0/1MHrd
-         zDFi6ctfeSfr8D88QSqD9ENo8Fl4YJw7lv2//Gpd8mYKT9ly3G7ZVDAOmodrP16TY9HS
-         uoGzDxmAp4r4JyuepHDPwpObn9sADhthag0/LMq3gq29wU0ZBi8RFp2hacxC3Edr+5Er
-         lUR9QIiOoDQgqsyjHZi0xHL3qwzfIclZOB+C2mjjAW80ukWtpIOziYTHHGQZvu28DGRu
-         5WKgq+LPHhqNfM7jkltObWELadokmy3rzlZP1I8knEpn0jzma24CppiQeUYNtKyl+5Gh
-         buiw==
+        bh=whMoHbtKnfcby2pmtzf2mISpuDe1wTbNYLjDL6S2nWU=;
+        b=qnl2CydrzMzC1UDRQdu6kUSjpCCCERB4VXU1TsW3mEZaC8xka3ipUQL6J1VTG4Pwqc
+         RRujaoAFQU03tQFMkmvqldCSHZXv/qbKdUIr2OIVBAwK5GXkvNAX56DXdXaG4qWxbCZx
+         etQd4aIdrdgBXruRaS6HSONWle+4MMBa5nTxYAOLgvAB8JyS6BIkT8agoFkL+EnV8nJA
+         TyIWpFJZEfFqSDEj0q1KXWfQtBF/F1YebpfrYzjBovVWr2eMRu+EF8WoGBI1S41XL+up
+         +6QhY62tVov/4oYqTf8g6b6C6WB8rRmXpi8NJ+mdJHINT0lGPpHfD5Po6xI82jzCDdY0
+         t0TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=a50uAhSDderMggKK8RFXjAkHNeNGYqS63dv1RpSuGyc=;
-        b=Cqg8mpFZu1scP6vxN+fE6Cdetj0NjPzSktwRAZKBW2RkGe7rMcBoP4WOOfSrfGPpzJ
-         NlDVE9h0HGRiFc5cJADG2kGLfzOxFFd7+vVrjRBVnEVM0kVv2E3iYZzJuL/ri3rutdWv
-         eobxraFBJG7Dphx1jQ5Ri/FU99Y9Dlge6YZYrRaDDx6/T1RUWBHjILffUzh3VjzgSskp
-         Edy/Qbfyx9I2W0s+cngoh27CpDMBKJ8zk8pWnsftmEhuZ0r3Z3wU9LPBOJEYXW6W6pRn
-         DwhPZFbGR04/P07whUon2YXdtjUutHFXuPLHUwAr9QLa38miskAYhMp3GmZ5Vkt2c+pU
-         yP7Q==
-X-Gm-Message-State: AOAM530JQdoO6LdgvFvqTNuJbDQT3mo44RA+rjDIPazGqhSXJSXfjEM7
-        JKy3jpij+hHQat9IfcEDlqBPpxIEkMPlgogZlMc=
-X-Google-Smtp-Source: ABdhPJw4DThuBC9XHi/q9lTAvpKLtWEp1SFB4rMT1KtPPWqAyCi1s2Scsgg6cdjyBkmyan/VAEidSQQvMEkhEBLQHUs=
-X-Received: by 2002:a9d:7b4e:: with SMTP id f14mr7771017oto.281.1616076728381;
- Thu, 18 Mar 2021 07:12:08 -0700 (PDT)
+        bh=whMoHbtKnfcby2pmtzf2mISpuDe1wTbNYLjDL6S2nWU=;
+        b=idQiiJBRnjmCNzuoDegk14zuvuqtHqDCfbfO2s6QNbby/Qkfni7v1+cagq/cbNZ6Rf
+         hIavbqGrJnF92D4f+kUtASAjlUAYEEK9waprDdbTttHU7w7JtH5/GyDm1UcPdVz2T2mX
+         WVMpJ1l2oJAc2fY2sb3QZamXTl2m3v4g46ELLoXwhJUCNLna0mhK5cnlbavFLuaAKRFL
+         nOsP1iI4VIvU9Bb5zfCV3u6eTmKomXAnzs5mPEt1YL3fZFNFgmHiXPIgugPPMgkOHJb2
+         1TVAHjYV8jMMx/z9by5XAheOoIKAjiVTlrtP1vfX3JI5wUIuY6cpwlapUw9wVNOe+6p5
+         hoQg==
+X-Gm-Message-State: AOAM533ewxTBiJ+Mq4FjbmrfJh7EIhSLo/7QIczeC8xGHeE/fRdg3soy
+        DOhp4fRMJGCJ3pc2PsI5HKsoMq3WFjAldkhSrF4=
+X-Google-Smtp-Source: ABdhPJxTMcnggbeYkpD5TX+BjZlctL0gnQTf4UVoA3HsEiYZzWmnyeHJbxL7vl20IqOugt08qXLgSl5C2fQYL7yUt/E=
+X-Received: by 2002:a9d:226a:: with SMTP id o97mr7736917ota.362.1616076896631;
+ Thu, 18 Mar 2021 07:14:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210312145545.26050-1-matthias.bgg@kernel.org> <20210312145545.26050-2-matthias.bgg@kernel.org>
-In-Reply-To: <20210312145545.26050-2-matthias.bgg@kernel.org>
+References: <20210312145545.26050-1-matthias.bgg@kernel.org> <20210312145545.26050-7-matthias.bgg@kernel.org>
+In-Reply-To: <20210312145545.26050-7-matthias.bgg@kernel.org>
 From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 18 Mar 2021 15:11:56 +0100
-Message-ID: <CAFqH_500_xUU9=y1t=FFErD5LwUb8p9KT7qngW_t99_OPQWeVg@mail.gmail.com>
-Subject: Re: [PATCH 2/7] dt-bindigns: regulator: mtk: Drop unneeded compatible
+Date:   Thu, 18 Mar 2021 15:14:44 +0100
+Message-ID: <CAFqH_52aDxqdK8=1iiUcGM-+CcyMmQoAKCUmozD7otoBHOvCcA@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: mt8173: Drop compatible for mt6397
 To:     matthias.bgg@kernel.org
 Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -69,9 +69,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Matthias,
 
-Thank you for your patch. There is a typo in the subject line
-s/dt-bindigns/dt-bindings/ Rob might miss this patch as he filters the
-patches by subject I guess.
+Thank you for your patch.
 
 Missatge de l'adre=C3=A7a <matthias.bgg@kernel.org> del dia dv., 12 de mar=
 =C3=A7
@@ -79,81 +77,55 @@ Missatge de l'adre=C3=A7a <matthias.bgg@kernel.org> del dia dv., 12 de mar=
 >
 > From: Matthias Brugger <mbrugger@suse.com>
 >
-> The regulator does not need to have a device tree compatible, if it's
-> part of an MFD. We leave the node name to the SoC specific name (e.g.
-> mt6323regulator) to allow older kernels to work with the new binding.
+> The regulator framework does not need compatible, it's actually
+> superfluous. Drop it from the DT.
 >
 > Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+>
+> Series-to: lee.jones@linaro.org
+> Series-to: robh+dt@kernel.org
+> Series-to: matthias.bgg@gmail.com
+> Series-to: lgirdwood@gmail.com
+> Series-to: broonie@kernel.org
+> Series-cc: devicetree@vger.kernel.org
+> Series-cc: linux-arm-kernel@lists.infradead.org
+> Series-cc: linux-mediatek@lists.infradead.org
+> Series-cc: linux-kernel@vger.kernel.org
 > ---
->  .../bindings/regulator/mt6323-regulator.txt        |  2 +-
->  .../bindings/regulator/mt6358-regulator.txt        |  4 +---
->  .../bindings/regulator/mt6397-regulator.txt        | 14 +++++---------
->  3 files changed, 7 insertions(+), 13 deletions(-)
+>  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 +---
+>  arch/arm64/boot/dts/mediatek/mt8173-evb.dts  | 4 +---
+>  2 files changed, 2 insertions(+), 6 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/regulator/mt6323-regulator=
-.txt b/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> index a48749db4df36..69f32e1a6702e 100644
-> --- a/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> +++ b/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> @@ -19,7 +19,7 @@ LDO:
->  Example:
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/bo=
+ot/dts/mediatek/mt8173-elm.dtsi
+> index 21452c51a20a8..db06a986f763e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> @@ -916,9 +916,7 @@ pio6397: pinctrl {
+>                         #gpio-cells =3D <2>;
+>                 };
 >
->         pmic: mt6323 {
-> -               mt6323regulator: regulators {
-> +               mt6323regulator {
-
-If you convert this binding to YAML, you'll probably get a review that
-the node name must be just 'regulators' here. And then, looking at the
-other patches something will break I guess ...
-
->                         mt6323_vproc_reg: buck_vproc{
->                                 regulator-name =3D "vproc";
->                                 regulator-min-microvolt =3D < 700000>;
-> diff --git a/Documentation/devicetree/bindings/regulator/mt6358-regulator=
-.txt b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> index 9a90a92f2d7e1..ba1214da5bf7c 100644
-> --- a/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> +++ b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> @@ -23,9 +23,7 @@ Example:
->         pmic {
->                 compatible =3D "mediatek,mt6358";
->
-> -               mt6358regulator: mt6358regulator {
-> -                       compatible =3D "mediatek,mt6358-regulator";
+> -               regulator: mt6397regulator {
+> -                       compatible =3D "mediatek,mt6397-regulator";
 > -
-> +               mt6358regulator {
->                         mt6358_vdram1_reg: buck_vdram1 {
->                                 regulator-compatible =3D "buck_vdram1";
->                                 regulator-name =3D "vdram1";
-> diff --git a/Documentation/devicetree/bindings/regulator/mt6397-regulator=
-.txt b/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> index c080086d3e629..2b14362ac56e1 100644
-> --- a/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> +++ b/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> @@ -1,11 +1,9 @@
->  Mediatek MT6397 Regulator
->
-> -Required properties:
-> -- compatible: "mediatek,mt6397-regulator"
-> -- mt6397regulator: List of regulators provided by this controller. It is=
- named
-> -  according to its regulator type, buck_<name> and ldo_<name>.
-> -  The definition for each of these nodes is defined using the standard b=
-inding
-> -  for regulators at Documentation/devicetree/bindings/regulator/regulato=
-r.txt.
-> +List of regulators provided by this controller. It is named
-> +according to its regulator type, buck_<name> and ldo_<name>.
-> +The definition for each of these nodes is defined using the standard bin=
-ding
-> +for regulators at Documentation/devicetree/bindings/regulator/regulator.=
-txt.
->
->  The valid names for regulators are::
->  BUCK:
-> @@ -23,9 +21,7 @@ Example:
->         pmic {
->                 compatible =3D "mediatek,mt6397";
+> +               mt6397regulator {
+
+The same happens here, it is not checked because the mt6397 is not in
+YAML format yet, but once we do this it'll trigger an error as the
+node name should be 'regulators'
+
+
+>                         mt6397_vpca15_reg: buck_vpca15 {
+>                                 regulator-compatible =3D "buck_vpca15";
+>                                 regulator-name =3D "vpca15";
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boo=
+t/dts/mediatek/mt8173-evb.dts
+> index 6dffada2e66b4..c3f2a85d55fe7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+> @@ -303,9 +303,7 @@ pmic: mt6397 {
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
 >
 > -               mt6397regulator: mt6397regulator {
 > -                       compatible =3D "mediatek,mt6397-regulator";
