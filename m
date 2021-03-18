@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9AB33403A1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 11:41:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86BD63403A4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 11:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbhCRKlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 06:41:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
+        id S230250AbhCRKlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 06:41:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbhCRKkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 06:40:53 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C687C061764
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:53 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id z2so4948991wrl.5
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:53 -0700 (PDT)
+        with ESMTP id S230253AbhCRKky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 06:40:54 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88171C061764
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:54 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id t9so4940387wrn.11
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 03:40:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=0qmJtn2ROcq97cCAA/GgmHQVBHx/QLh0PdVV8I8LApw=;
-        b=iyszRt+qnglpKenDT7tSKvwnF7XSjKMucfcncfvxvC0oJVpSZ38UxRbu4Oyh7jfuGo
-         2Ii2HBDIKTLsU8IU7MletnbtM+gSuYYwWmuG8t6qiCThOPDEvezjJ78Yvfdd76115zsq
-         e8zLfOaOyAeSaggFcy/kh44hc3Pjij6gcaAYlz62Gv4xUuvo3OFZ7my+BsspnlRUBiB7
-         F4yrRl2Kwe5ir62MBY7TLaXaosGX6p6S/bzsfDzh0XQsZzEQrE7gHCKpdZ+rpS0luB+6
-         5yBFhglOCsQ2u8nrKVyUcfAOQf5ShDa5zrjeZPcOKb0ekFjJIYl+Lqcf1ebjhHEKaJmu
-         PADg==
+        bh=CqsJEFNZDm1zRQWkx9oBbTS7v3YGOj5LKMbHcTRx7PQ=;
+        b=c4aKYDLxmr57pQXCsjKqPoy8XCYciLJ9N+tpcorGz9F1LHX8NQi74FoEND8uug/RN9
+         ez8yaDpAtg1IBvk6MF+7xPlErckecdqr+nzp5lbuxNtkNfT6LZoqPLuFqTx5AItUiLs4
+         cpR47f/qAHTx5O7CFGZYiaWFrRcnQrAy8cfiM4wd4m0I0MLFvXOVTfybuZi1YvkIX83V
+         PWq1hO/o0XKYiVRZus1sUq7jtZ+9NLsPUAMM3Ii/seGT3LznUtLbPGUWtt6mz2+8iMmx
+         rXzTbVfv37DGISLqNJT9UFXZNdoZBH+R5EUarBa1KulLq+8o1XilACquFpnkIho/LwvO
+         HPVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=0qmJtn2ROcq97cCAA/GgmHQVBHx/QLh0PdVV8I8LApw=;
-        b=Xd/kkympkmZ5+Oh2Ev82QglxrND4WsjCktOeYVf5b/rOWojddEN2zW+oOdmobVSFhx
-         1hA7GmqRoeOpWIe+xLJOeXyyQB7vlJBgYLV2NtjcWcO8b+U28YvrJLGnVAHnWYKQWdab
-         PKdV/p7FotR1/36IODNbYs2U44y2k1RcI12KbDKx3lbUSeeXFl8yWtpJENsHeQxlBZBz
-         hyoEtUgpiZUPj3S1yJvruYdsg8sxVkXG9ed3kTDg+6xuM/y0Mm7YlATsvN/5qWavvciO
-         8w8bSeFmQcJslCeDlJ7WetUxgdHzpd5NdqjkZ8z2Fvu3Kx8zyTMeItJc+tQ7CT4r6/Q2
-         y+vw==
-X-Gm-Message-State: AOAM533COqErBaPOOPWICIL8T9RJl3ac19KTysiXdQivul/AyUY/zICQ
-        eR5iU91o1Th4Qy5PzwQl0oeCmw==
-X-Google-Smtp-Source: ABdhPJwMp9iRDNvao+XEbdBR8svEJrBe3NcG5BTs9NahQPQEQJ9wTZyLfbM2gl07kazSUr/wWXs6+Q==
-X-Received: by 2002:adf:fb0e:: with SMTP id c14mr4143667wrr.140.1616064052384;
-        Thu, 18 Mar 2021 03:40:52 -0700 (PDT)
+        bh=CqsJEFNZDm1zRQWkx9oBbTS7v3YGOj5LKMbHcTRx7PQ=;
+        b=JnUoI5jT5plGtdpvgeujXzTUFAafX8l9t/8ZHnSgSjq/sHOBhNLBmV3E0wFqHXsxd3
+         2xP+PsEfypVCPn0zMWNgaGaLC4H/H4340bfnu3cphe8iZM+VSP4nK3rhFGXRrufm5eDK
+         gQA70XOJQvqhc9GtYV4qlAJiUNOTOYgnUt0EP8V192HZwB+OZMJvSwpKpPJYgJyrjAGC
+         5L5egiNwmyQqTbAVQVNgCcAok/GGzVSO7A4KFwFmPXQmD/rfIZjBtATiUt4tK1AV2vQL
+         dXfypgbYKa2m91CiKJVBaTGMGppY6PX2i3qw2NPvXSwrRyZIfi2519E5S4IiQLmVS0ZD
+         n1qQ==
+X-Gm-Message-State: AOAM533jX5VMUyFUrFcdkGbVdhqy52p5c3lJLXRgQ95N2r8pc8PGRLy2
+        E7Fk8nTXPwHYWiynhS4kH8JPTA==
+X-Google-Smtp-Source: ABdhPJywv7telrZhgTo8CVB0g7RRIFhem/IKumPSW4fk8cikOR2kTnVdQri7On5rsLI1iJA9gcO6RQ==
+X-Received: by 2002:adf:f4ce:: with SMTP id h14mr8895057wrp.257.1616064053290;
+        Thu, 18 Mar 2021 03:40:53 -0700 (PDT)
 Received: from dell.default ([91.110.221.194])
-        by smtp.gmail.com with ESMTPSA id z1sm2426033wru.95.2021.03.18.03.40.51
+        by smtp.gmail.com with ESMTPSA id z1sm2426033wru.95.2021.03.18.03.40.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Mar 2021 03:40:51 -0700 (PDT)
+        Thu, 18 Mar 2021 03:40:52 -0700 (PDT)
 From:   Lee Jones <lee.jones@linaro.org>
 To:     lee.jones@linaro.org
-Cc:     linux-kernel@vger.kernel.org,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 09/10] of: overlay: Fix function name disparity
-Date:   Thu, 18 Mar 2021 10:40:35 +0000
-Message-Id: <20210318104036.3175910-10-lee.jones@linaro.org>
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Josh Cartwright <joshc@codeaurora.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 10/10] of: of_reserved_mem: Demote kernel-doc abuses
+Date:   Thu, 18 Mar 2021 10:40:36 +0000
+Message-Id: <20210318104036.3175910-11-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210318104036.3175910-1-lee.jones@linaro.org>
 References: <20210318104036.3175910-1-lee.jones@linaro.org>
@@ -67,30 +68,57 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/of/overlay.c:147: warning: expecting prototype for of_overlay_notifier_register(). Prototype was for of_overlay_notifier_unregister() instead
+ drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'node' not described in 'fdt_reserved_mem_save_node'
+ drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'uname' not described in 'fdt_reserved_mem_save_node'
+ drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'base' not described in 'fdt_reserved_mem_save_node'
+ drivers/of/of_reserved_mem.c:53: warning: Function parameter or member 'size' not described in 'fdt_reserved_mem_save_node'
+ drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'node' not described in '__reserved_mem_alloc_size'
+ drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'uname' not described in '__reserved_mem_alloc_size'
+ drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'res_base' not described in '__reserved_mem_alloc_size'
+ drivers/of/of_reserved_mem.c:76: warning: Function parameter or member 'res_size' not described in '__reserved_mem_alloc_size'
+ drivers/of/of_reserved_mem.c:171: warning: Function parameter or member 'rmem' not described in '__reserved_mem_init_node'
 
-Cc: Pantelis Antoniou <pantelis.antoniou@konsulko.com>
-Cc: Frank Rowand <frowand.list@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Josh Cartwright <joshc@codeaurora.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Lee Jones <lee.jones@linaro.org>
 ---
- drivers/of/overlay.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/of/of_reserved_mem.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index 50bbe0edf5380..1c867a5e4c7c2 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -140,7 +140,7 @@ int of_overlay_notifier_register(struct notifier_block *nb)
- EXPORT_SYMBOL_GPL(of_overlay_notifier_register);
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index a7fbc5e37e19e..15e2417974d67 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -45,7 +45,7 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+ 	return memblock_reserve(base, size);
+ }
  
- /**
-- * of_overlay_notifier_register() - Unregister notifier for overlay operations
-+ * of_overlay_notifier_unregister() - Unregister notifier for overlay operations
-  * @nb:		Notifier block to unregister
+-/**
++/*
+  * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
   */
- int of_overlay_notifier_unregister(struct notifier_block *nb)
+ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+@@ -67,7 +67,7 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ 	return;
+ }
+ 
+-/**
++/*
+  * __reserved_mem_alloc_size() - allocate reserved memory described by
+  *	'size', 'alignment'  and 'alloc-ranges' properties.
+  */
+@@ -164,7 +164,7 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
+ static const struct of_device_id __rmem_of_table_sentinel
+ 	__used __section("__reservedmem_of_table_end");
+ 
+-/**
++/*
+  * __reserved_mem_init_node() - call region specific reserved memory init code
+  */
+ static int __init __reserved_mem_init_node(struct reserved_mem *rmem)
 -- 
 2.27.0
 
