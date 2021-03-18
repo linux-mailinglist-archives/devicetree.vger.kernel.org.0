@@ -2,72 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB0833FE0A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 05:08:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0CAB33FE28
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 05:28:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbhCREIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 00:08:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229454AbhCREHr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 00:07:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B2EB964F10;
-        Thu, 18 Mar 2021 04:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616040466;
-        bh=6Z0+ws9wMVStoDerj/3Uu7pkXPXYhZ2EPZ/Tp7i5qCY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gnZ2CoOg7vKcTtb4Eppj2AEMIEfv6vwrj63dLljaa7d8uNWvjX53N7UdURpDmyETR
-         YRPgIJV9Ja/y2MTVAHR95X8sjd1u9ITY5a1K1ESHOK6rmcwXa04wcE0pMQ0iuICFUo
-         gMZ2I6tzjiDznTG36cCeu1MreYTTCc3xYPAMGWpK/blT5C12InPnjzAIGBdBWk45wk
-         PW+vXE64uaZmSH3wfV5qzOhlegwDYrcR8DvTA3JZQhIlhY2fdz/XFRC3gawGafOqI0
-         iGE4klG5GzJ06oy72pTCMaY7BZBH6LOazPjk73sEUyzexHQ2wcm4iEXGluQ8h6J/ef
-         ReH6ejWhTbzZw==
-Date:   Thu, 18 Mar 2021 12:07:40 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     dillon.minfei@gmail.com
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, parthiban@linumiz.com,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: imx6ull: fix ubi filesystem mount failed
-Message-ID: <20210318040740.GX11246@dragon>
-References: <1615995909-6240-1-git-send-email-dillon.minfei@gmail.com>
- <1615995909-6240-2-git-send-email-dillon.minfei@gmail.com>
+        id S229558AbhCRE1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 00:27:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229454AbhCRE0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 00:26:53 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9992C06174A
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id z136so917629iof.10
+        for <devicetree@vger.kernel.org>; Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ql2dgaEyzlxz1rnlLy2Wg/nnnp7tmOxMWx8bJq2EFZU=;
+        b=W8cx8DyHSkSFRXpWsBNRnLfWNZxWBaqqHtgHrd/WpU0n2AEAEWHPGDzYqFXwZW576h
+         EcVKZzyxSb3zHtDCDhhYE4iNDuWSd50c4Pvl1YOJtIE6BKhTjwNRAddrDPPyJdHLDLVM
+         491KnMySN0siPXOHZisSPMAhdy2AKATWs/m0s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ql2dgaEyzlxz1rnlLy2Wg/nnnp7tmOxMWx8bJq2EFZU=;
+        b=HU+YZT05SPKZ56WU2wKd3J5sdwSzki3qPycgl8GQvs/GmAkmOQ3f9Lx1FpHuzRQy1f
+         UpJ0G/memT27Zrwmr3w3Pn7hA5IPXsAXeVh3N2ONpxtGX6W932WuKyJs5N8v7MQTDYwY
+         el7Qu58883FjwYfYGT9BU5gXAta19/JUENCv4ZvV8LOlW6ulxlErqFYDVFYNO2zNU5bh
+         kdel19iccFdJcu8b/TW0IMKEyWQUHF0daKM3fa1FDVDoWUdAhQbDwrqs6AEe1g1UUum6
+         VlNWy4NL/Np7+A5u+DzS95nXgtzC+QNZ06mZ/Q0i15gnv3wLGOuI31n3YIPtZYYpjVzu
+         msXg==
+X-Gm-Message-State: AOAM5305M7gLuS50uXVNqChe8ZNNLFdfcHJAT37gziIKTEkqqQPg2u8l
+        c5zhK10SZPN89bRaX8tunZasLMUQVxxidBKIoiexzw==
+X-Google-Smtp-Source: ABdhPJyiT+pK5YW1/xho4IDNMJd1L9KoZwDrKi/f2JRgrLZDLUc4ArB1kHW9DAPXHK1IuoyC3hGih7UIy39ozt/dTSQ=
+X-Received: by 2002:a05:6638:43:: with SMTP id a3mr5366562jap.102.1616041612173;
+ Wed, 17 Mar 2021 21:26:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1615995909-6240-2-git-send-email-dillon.minfei@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210224061409.3996755-1-hsinyi@chromium.org> <20210224061409.3996755-2-hsinyi@chromium.org>
+In-Reply-To: <20210224061409.3996755-2-hsinyi@chromium.org>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Thu, 18 Mar 2021 12:26:25 +0800
+Message-ID: <CAJMQK-ho9Ncqd=muCv-aMsHSRhgKtC3H6asxR=+3CODpeiWQWQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] drm/bridge: anx7625: disable regulators when power off
+To:     Xin Ji <xji@analogixsemi.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Cc:     David Airlie <airlied@linux.ie>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 11:45:09PM +0800, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
-> 
-> For NAND Ecc layout, there is a dependency from old kernel's nand driver
-> setting and current. if old kernel use 4 bit ecc , we should use 4 bit
-> in new kernel either. else will run into following error at filesystem
-> mounting.
-> 
-> So, enable fsl,use-minimum-ecc from device tree, to fix this mismatch
-> 
-> [    9.449265] ubi0: scanning is finished
-> [    9.463968] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.486940] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.509906] ubi0 warning: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read only 22528 bytes, retry
-> [    9.532845] ubi0 error: ubi_io_read: error -74 (ECC error) while reading
-> 22528 bytes from PEB 513:4096, read 22528 bytes
-> 
-> Fixes: f9ecf10cb88c ("ARM: dts: imx6ull: add MYiR MYS-6ULX SBC")
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+On Wed, Feb 24, 2021 at 2:14 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> When suspending the driver, anx7625_power_standby() will be called to
+> turn off reset-gpios and enable-gpios. However, power supplies are not
+> disabled. To save power, the driver can get the power supply regulators
+> and turn off them in anx7625_power_standby().
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Robert Foss <robert.foss@linaro.org>
+> ---
 
-Replaced with this version.
+Ping on the thread, thanks.
 
-Shawn
+>  drivers/gpu/drm/bridge/analogix/anx7625.c | 34 +++++++++++++++++++++++
+>  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
+>  2 files changed, 35 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> index 65cc05982f826..23283ba0c4f93 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+>  #include <linux/workqueue.h>
+> @@ -875,12 +876,25 @@ static int sp_tx_edid_read(struct anx7625_data *ctx,
+>  static void anx7625_power_on(struct anx7625_data *ctx)
+>  {
+>         struct device *dev = &ctx->client->dev;
+> +       int ret, i;
+>
+>         if (!ctx->pdata.low_power_mode) {
+>                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
+>                 return;
+>         }
+>
+> +       for (i = 0; i < ARRAY_SIZE(ctx->pdata.supplies); i++) {
+> +               ret = regulator_enable(ctx->pdata.supplies[i].consumer);
+> +               if (ret < 0) {
+> +                       DRM_DEV_DEBUG_DRIVER(dev, "cannot enable supply %d: %d\n",
+> +                                            i, ret);
+> +                       goto reg_err;
+> +               }
+> +               usleep_range(2000, 2100);
+> +       }
+> +
+> +       usleep_range(4000, 4100);
+> +
+>         /* Power on pin enable */
+>         gpiod_set_value(ctx->pdata.gpio_p_on, 1);
+>         usleep_range(10000, 11000);
+> @@ -889,11 +903,16 @@ static void anx7625_power_on(struct anx7625_data *ctx)
+>         usleep_range(10000, 11000);
+>
+>         DRM_DEV_DEBUG_DRIVER(dev, "power on !\n");
+> +       return;
+> +reg_err:
+> +       for (--i; i >= 0; i--)
+> +               regulator_disable(ctx->pdata.supplies[i].consumer);
+>  }
+>
+>  static void anx7625_power_standby(struct anx7625_data *ctx)
+>  {
+>         struct device *dev = &ctx->client->dev;
+> +       int ret;
+>
+>         if (!ctx->pdata.low_power_mode) {
+>                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
+> @@ -904,6 +923,12 @@ static void anx7625_power_standby(struct anx7625_data *ctx)
+>         usleep_range(1000, 1100);
+>         gpiod_set_value(ctx->pdata.gpio_p_on, 0);
+>         usleep_range(1000, 1100);
+> +
+> +       ret = regulator_bulk_disable(ARRAY_SIZE(ctx->pdata.supplies),
+> +                                    ctx->pdata.supplies);
+> +       if (ret < 0)
+> +               DRM_DEV_DEBUG_DRIVER(dev, "cannot disable supplies %d\n", ret);
+> +
+>         DRM_DEV_DEBUG_DRIVER(dev, "power down\n");
+>  }
+>
+> @@ -1742,6 +1767,15 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+>         platform->client = client;
+>         i2c_set_clientdata(client, platform);
+>
+> +       pdata->supplies[0].supply = "vdd10";
+> +       pdata->supplies[1].supply = "vdd18";
+> +       pdata->supplies[2].supply = "vdd33";
+> +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
+> +                                     pdata->supplies);
+> +       if (ret) {
+> +               DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
+> +               return ret;
+> +       }
+>         anx7625_init_gpio(platform);
+>
+>         atomic_set(&platform->power_status, 0);
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> index 193ad86c54503..e4a086b3a3d7b 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> @@ -350,6 +350,7 @@ struct s_edid_data {
+>  struct anx7625_platform_data {
+>         struct gpio_desc *gpio_p_on;
+>         struct gpio_desc *gpio_reset;
+> +       struct regulator_bulk_data supplies[3];
+>         struct drm_bridge *panel_bridge;
+>         int intp_irq;
+>         u32 low_power_mode;
+> --
+> 2.30.1.766.gb4fecdf3b7-goog
+>
