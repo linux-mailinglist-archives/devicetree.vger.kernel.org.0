@@ -2,101 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F7F340768
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:11:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C4A34076E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 15:12:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbhCROKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 10:10:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50292 "EHLO
+        id S231370AbhCROMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 10:12:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhCROJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:09:58 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B07C06174A
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:09:58 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id w125so1615928oib.13
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:09:58 -0700 (PDT)
+        with ESMTP id S230401AbhCROLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 10:11:48 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3A3C06175F
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:11:48 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id b83so4818147lfd.11
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 07:11:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5vI3l1ZaiofUPOeQyA6WQKSQOzAMKhrXWWM9QsLR65w=;
-        b=oCxKOpUOhoNaFCVZ2wTEC1bnJS5HnQrVr5gPdcSCOYSA1qPNCf4VQlsybRlHXEqQZO
-         Ba/TYGas5fqrWKtLqhwjCuS2Tz+rhx5Yhk/OTfH3mNNc7ZSb5bjLZ1PVV9LtzQxEPk9w
-         aJ4juCcFJT9qaVQoAtr3YDlmEWjMJQQU3LpT7rk4s5IY5IId98Oe8ZCCR8ImGlal1MGP
-         aMczZv2gexYlIm/NF+v3nc7iYUafhcRQcdqM5T7cOOYI+46KVccAWaeZ9aVscYcFc7kf
-         nI2xWjA/YNsGPK5P+zS+H0QmRDIZZUcT96IrNna+rRY0Nkt8TiqupAqem8Jf28dT9ch2
-         PDzQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AM/Ll5KkOxkTBAonI2Fnw1gYvxAm1x1c9zXwysXQM1E=;
+        b=ZAUnyce8KxNEfygMuIyRvdQzBo8fsF0qHZb8SVyJpJTHdtgHmeFhAmRRAEI33dYv9d
+         tnWdczfpo75fKi3AsqAhl3PiX5t4cQbO39mdSAwsQrZKUM0uUUQDO+JOI5zBwbouaTVE
+         dzw6aJ/pf5rsWg4WgX29uhnRIqDJDPsEmNkLQQF8Nkbw+aYPYuNC1Zk8Ual7GzuFEsXt
+         pOHWttD/0N5hzeAt3GxZFDZgAjR8QDdXCz+k9ferwLCEfx0O0DCnBBBP0r0Y0PFpXEho
+         qhGNoSKLHbK9ovPATen1WSUSAZmj1cl1upK5poPv/nUOkl0bcph8kZ2lgiseikcGocf2
+         7fcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5vI3l1ZaiofUPOeQyA6WQKSQOzAMKhrXWWM9QsLR65w=;
-        b=J7JqVQsz585LX0MvPtqf++dbUUg4JdWGXU/fBJq9LkxnSnSzC3TaQ2P+/F5QFKkT7q
-         JxDXqhUGbRbU5qmzGY34mKSTf4f6CoyuesTxFay+lPzABn/30hXTdnDv8p1oXa655rTb
-         7HxIF+DQY9joEXxgLv1zWSVONHo78Q9cblUjzqiwNREe/HVeE3dR/UesuCXZHl+h8Dej
-         ncvMaxhzxWk3jQ/a2EVrqPmAIVx55vrW5HK6N+s0M0uLjg051sGOkw1V4q9iBBLzllyp
-         53l+iB2DOENMK1ovA+ZuMXMbth7ukFPV+MGdNETuODWuJo4gdzES7+b2ILUJR9uquAQW
-         YsrA==
-X-Gm-Message-State: AOAM531f9g86cpiphNd9smFY1zMEur7EhK6SlPGGi3ISkJfiully4But
-        FAyH1gZ7cHAUk1hqdCBeQXi2f20nF6JplhE6MT1Vyg==
-X-Google-Smtp-Source: ABdhPJzmrCiCYJvHYF4lC635t/eeQUVraKAdQtEzvnzsqBANoOPnTz1O0EOZ/zGfvA7iBPijzUXdNaMKFvDsDQt7zTo=
-X-Received: by 2002:aca:ea44:: with SMTP id i65mr3154466oih.149.1616076597783;
- Thu, 18 Mar 2021 07:09:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AM/Ll5KkOxkTBAonI2Fnw1gYvxAm1x1c9zXwysXQM1E=;
+        b=Z+ule4fHRGJ8Qt5yjoJgREMu5W4zIHu2XpNjF16YqPxAjZgDC1KWkKIfIdfgjdOuBc
+         rO7HlcI5Wg17zq8Yyx8d3+eewne3dtB6EFfndnRId77u0ukK/e/9MPcrAd34U0NwSsAh
+         wOyypAtyebdia/nNHY52whopzadhTtQeewSKgsmv5QbZON1W8frN/N7HJ8HrD6AZQgWT
+         fu84dSp5+dVDN5VSgj9i55KrlHFMFBKal7d4OZ93n0YhLdYpw3NB6KSE8kYoy6WzAI9G
+         szJdNCJss0Ci/UpY2hHMSP6plSsD5cDbL+ccQXC0xCOMep6k8Pe/PCeBdgvjvbKcrU88
+         Ef2A==
+X-Gm-Message-State: AOAM533VxrSP5tVnH4RVX3H3+nnamR8w5y1D5wOSrsGMasFX2cgzVPWH
+        +ud1H/J52vTeTx/QAXH8RQ0DqQ==
+X-Google-Smtp-Source: ABdhPJyE7Kh18otNDCN8WkMSBEQsoBkKa5KYCSAvQfNGh2Mc/ZUNzyWZet6UmS7OEa97Yy647fNEmQ==
+X-Received: by 2002:ac2:4a75:: with SMTP id q21mr5396497lfp.457.1616076706428;
+        Thu, 18 Mar 2021 07:11:46 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id f20sm254713ljn.123.2021.03.18.07.11.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Mar 2021 07:11:45 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] phy: qcom-qmp: provide DP phy support for sm8250
+Date:   Thu, 18 Mar 2021 17:11:38 +0300
+Message-Id: <20210318141144.2147610-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210212154614.38604-1-sudeep.holla@arm.com> <20210316143429.tdyyulkml4ypdixy@bogus>
-In-Reply-To: <20210316143429.tdyyulkml4ypdixy@bogus>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Thu, 18 Mar 2021 15:09:46 +0100
-Message-ID: <CAHUa44HdHdN7tES60vcBqRo=afUtxNHx1vnYx5JmX-UocV5PRA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] firmware: Add initial support for Arm FF-A
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+Changes since v1:
+ - Provide dt bindings
+ - Split register renaming from sm8250-dp-phy patch
+ - Add respective changes to sm8250 device tree
 
-On Tue, Mar 16, 2021 at 3:34 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> Hi Jens,
->
-> On Fri, Feb 12, 2021 at 03:46:07PM +0000, Sudeep Holla wrote:
-> > Hi all,
-> >
-> > This is very basic implementation for in-kernel support for Arm FF-A
-> > specification.
-> >
-> > Arm Firmware Framework for Armv8-A specification[1] describes a software
-> > architecture that provides mechanism to utilise the virtualization
-> > extension to isolate software images and describes interfaces that
-> > standardize communication between the various software images. This
-> > includes communication between images in the Secure and Normal world.
-> >
-> > The main idea here is to create FFA device to establish any communication
-> > with a secure partition. This is currently tested with OPTEE(with changes
-> > to OPTEE driver adding FFA as transport)
-> >
->
-> Since you reviewed the last version, it would be helpful if you provide
-> Reviewed-by or Tested-by if you happy with this version. I would like to
-> get this initial version merged for v5.13
+The following changes since commit a38fd8748464831584a19438cbb3082b5a2dab15:
 
-I've tested this in a few of my setups and everything looks over all
-fine, so please apply:
-Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
+  Linux 5.12-rc2 (2021-03-05 17:33:41 -0800)
 
-I'm also double checking the details of the patches for some further
-feedback. Stay tuned.
+are available in the Git repository at:
 
-Thanks,
-Jens
+  https://git.linaro.org/people/dmitry.baryshkov/kernel.git sm8250-dp-phy
+
+for you to fetch changes up to 112496035090508ff6e901d6b373bb6ab1ccc9ad:
+
+  arm64: dts: qcom: use dp_phy to provide clocks to dispcc (2021-03-18 17:01:53 +0300)
+
+----------------------------------------------------------------
+Dmitry Baryshkov (6):
+      dt-bindings: phy: qcom,qmp-usb3-dp: Add support for SM8250
+      phy: qcom-qmp: move DP functions to callbacks
+      phy: qcom-qmp: rename common registers
+      phy: qcom-qmp: add support for sm8250-usb3-dp phy
+      arm64: dts: qcom: sm8250: switch usb1 qmp phy to USB3+DP mode
+      arm64: dts: qcom: use dp_phy to provide clocks to dispcc
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   1 -
+ .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  31 +-
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 862 +++++++++++++++------
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |  77 +-
+ 5 files changed, 704 insertions(+), 269 deletions(-)
+
+
