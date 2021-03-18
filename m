@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4656C340C83
-	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 19:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 173AE340C96
+	for <lists+devicetree@lfdr.de>; Thu, 18 Mar 2021 19:13:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbhCRSJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 14:09:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
+        id S229467AbhCRSNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 14:13:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbhCRSJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 14:09:44 -0400
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CE8C06174A;
-        Thu, 18 Mar 2021 11:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
-        Reply-To:Cc:Content-ID:Content-Description;
-        bh=tNPxUnGftRpagH2OZ6eFkvX23OEU1dEHYoHHt3Um+6E=; b=o/laOTbAAXP7yew+2Zcv2Vsy/3
-        je7CEMSrkBD9eei2m6FwB+44rpjpp6epNUYU+TSIjEIAgMEXXqLMgpuPs+v+N7F5yaAYjAhm0wJrs
-        MqUfeJxgDf5w375tBjFk7UHYPBpUyMUkxJ0qPGQOts1oKlda2xtZGIIRWUihW49T3/CXNpKEaESWI
-        nZIiIBi+QYpDGQ1wC9wV//g8+HpYx6hy3GKEoNCWLpnpOSnZdfYQBgsb5Z1aee2HgBPPX4+iGYglg
-        TtBOVVQYgY2U7Hq8OLEUZb5WTl85QYCdQTvfudF25TcOS8TMyu03g5j6iXfV+Dgx7GwMEfT3QSChr
-        tRy/MF/Q==;
-Received: from [2601:1c0:6280:3f0::9757]
-        by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lMx5D-003KSi-1I; Thu, 18 Mar 2021 18:09:22 +0000
-Subject: Re: [PATCH] ARM: boot: dts: Fix a typo
-To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210318095237.28436-1-unixbhaskar@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <d4a480e9-de13-b697-e624-1b2aa944c381@infradead.org>
-Date:   Thu, 18 Mar 2021 11:09:15 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        with ESMTP id S232530AbhCRSMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 14:12:34 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE42CC06174A;
+        Thu, 18 Mar 2021 11:12:33 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id t6so5734790ilp.11;
+        Thu, 18 Mar 2021 11:12:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q41xXuRmur179OHVx//rhAqOsEcMpgA+YrpYo7J41Gs=;
+        b=T+Il8wRP5/FIUoeDAvnQz9LVZSgHUpRSk2v95XYOaoKJe14ZwbG/TuPOYQTGiLKx1T
+         L2U0Ro2gkPwIwen3Nsb8405VKPRwo8CfvWqz0kX46Q0EfqaXIBObrzmYic5PoUa7Yq2M
+         YdViJwR959Mq0kjLyY/2SD/VQb956vVIQjtMyk3X3rJFnvzM+f+5xMe8nghOT02Dd8AX
+         s/RQCdIh1dVYFkQjKmxmpts/qF07bbUiJGhCcIgoXJYys/mSJF20yTXyin5/RRH7ZhH8
+         tQ1gNqeEl3IF8V52FIjn+u076EJopMKRk1Z56SEYQtcMx1e5VFFmeq7JDLS04lK0fNaF
+         3DCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q41xXuRmur179OHVx//rhAqOsEcMpgA+YrpYo7J41Gs=;
+        b=MXuFmjPysw4gKATSJFaJbsr+Dzs8IiCZ3I5x0eejx63xBDrBQqy0hX4leJnIlY1EaY
+         GiGlfnMkCjjZMeeiNgTuwnXHJDMb6F8afWGP+xWBYHFANmNnb5mrm1rGy4pN7MGmIw9V
+         Qc6LtgFwqzCVhZNpgmgj6eterHGHv9i1d1h4xJ6lG/WA/izguPus0SMy+sDeWndQnwTu
+         rvfxW5JeLQW/gizUjbx1k0di9CA7l18ayZii/zkPBG0B3VDAhgKSNHZgfaWHfN+TPh/m
+         iYCE2bIuh9f/f51IwhKh56obfbHnbb6Icss5XiLHYlZvOfTdov4qK2Wq5mtFXWOD6K6b
+         KDMQ==
+X-Gm-Message-State: AOAM531pWUX/llxmNRS+H2DWN/vQkfQ2Dyj5Al93hRlUFtvhuB4W6rHV
+        6WrlruucL4uMrpTrGi35cNPKkXV4fcvPObBzGZc=
+X-Google-Smtp-Source: ABdhPJxCjCW9kXCdSRTEyPNBJPdoVR+YRar9BF6hVktq6LhZLgBZ05ns7zXGmjM10DygGEah3i1SbmoBj1XuLlWFBOY=
+X-Received: by 2002:a92:d5c4:: with SMTP id d4mr2705539ilq.102.1616091153416;
+ Thu, 18 Mar 2021 11:12:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210318095237.28436-1-unixbhaskar@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
+ <CAOCk7Nq5B=TKh40wseAdnjGufcXuMRkc-e1GMsKDvZ-T7NfPGg@mail.gmail.com> <YFOIsIxIC2mgzhZ1@builder.lan>
+In-Reply-To: <YFOIsIxIC2mgzhZ1@builder.lan>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Thu, 18 Mar 2021 12:12:22 -0600
+Message-ID: <CAOCk7NqBnfb-snrd=kh9d4TQc+pobDN+rYPpVJrdLXWSqGq8mg@mail.gmail.com>
+Subject: Re: [PATCH 0/5] qcom: wcnss: Allow overriding firmware form DT
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, wcn36xx@lists.infradead.org,
+        "open list:NETWORKING DRIVERS (WIRELESS)" 
+        <linux-wireless@vger.kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/18/21 2:52 AM, Bhaskar Chowdhury wrote:
-> 
-> s/conlicts/conflicts/
-> 
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+On Thu, Mar 18, 2021 at 11:06 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Thu 18 Mar 11:56 CDT 2021, Jeffrey Hugo wrote:
+>
+> > form -> from in the subject?
+> >
+>
+> Seems like I only failed in the cover letter, right?
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
+Looks like.  I didn't even parse that this was the cover letter.
 
-> ---
->  arch/arm/boot/dts/sama5d3.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
-> index 7c979652f330..d1841bffe3c5 100644
-> --- a/arch/arm/boot/dts/sama5d3.dtsi
-> +++ b/arch/arm/boot/dts/sama5d3.dtsi
-> @@ -709,7 +709,7 @@ pinctrl_mmc0_dat4_7: mmc0_dat4_7 {
->  						atmel,pins =
->  							<AT91_PIOD 5 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD5 periph A MCI0_DA4 with pullup, conflicts with TIOA0, PWMH2 */
->  							 AT91_PIOD 6 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD6 periph A MCI0_DA5 with pullup, conflicts with TIOB0, PWML2 */
-> -							 AT91_PIOD 7 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD7 periph A MCI0_DA6 with pullup, conlicts with TCLK0, PWMH3 */
-> +							 AT91_PIOD 7 AT91_PERIPH_A AT91_PINCTRL_PULL_UP	/* PD7 periph A MCI0_DA6 with pullup, conflicts with TCLK0, PWMH3 */
->  							 AT91_PIOD 8 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;	/* PD8 periph A MCI0_DA7 with pullup, conflicts with PWML3 */
->  					};
->  				};
-> --
-> 2.26.2
-> 
-
-
--- 
-~Randy
-
+Nothing to see here.
