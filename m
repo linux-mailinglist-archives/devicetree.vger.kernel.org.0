@@ -2,1427 +2,378 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 109B334192A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 11:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F573419BC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 11:17:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbhCSKCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 06:02:01 -0400
-Received: from aclms3.advantech.com.tw ([125.252.70.86]:61960 "EHLO
-        aclms3.advantech.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhCSKBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 06:01:40 -0400
-Received: from Taipei11.ADVANTECH.CORP (unverified [172.20.0.56]) by ACLMS4.ADVANTECH.CORP
- (Clearswift SMTPRS 5.6.0) with ESMTP id <Te5580f22b3ac1401c82cc0@ACLMS4.ADVANTECH.CORP>;
- Fri, 19 Mar 2021 18:01:37 +0800
-Received: from localhost (172.16.12.146) by Taipei11.ADVANTECH.CORP
- (172.20.0.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 19 Mar
- 2021 18:01:37 +0800
-From:   Campion Kang <campion.kang@advantech.com.tw>
-To:     <lee.jones@linaro.org>
-CC:     <campion.kang@advantech.com.tw>, <chia-lin.kao@canonical.com>,
-        <devicetree@vger.kernel.org>, <jdelvare@suse.com>,
-        <linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <linux@roeck-us.net>,
-        <robh+dt@kernel.org>, <wim@linux-watchdog.org>,
-        <Campion.Kang@gmail.com>
-Subject: Re: [PATCH v6 4/6] mfd: ahc1ec0: Add support for Advantech embedded controller
-Date:   Fri, 19 Mar 2021 18:01:05 +0800
-Message-ID: <20210319100105.18278-1-campion.kang@advantech.com.tw>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210309160755.GR4931@dell>
-References: <20210309160755.GR4931@dell>
+        id S230006AbhCSKRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 06:17:04 -0400
+Received: from mail-db8eur05on2131.outbound.protection.outlook.com ([40.107.20.131]:46945
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229975AbhCSKQx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 06:16:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ll+ldTS4LtxDq3CxgnBOmPK2+mBdHXIsaKHKwsrDkx51Q+YsOtHWR5yRUWBRoI8QwwpDCgpZDds4pOmzDcJIndcrvHANtO2nhUHoIGJQEfIz5F4HAiRDVayj22GqeYlURxqgExdEt+YwiPELn7T3z06fb7iyouuvJ5KML9Tjjil+6mVupUxTm/tTR85Sij2RicPagBFedOJq6L/LI9EDrFVvQRJTDe3HwZ7bXkapTdiClWKy2Ow6KXLrCxUqPUiSKeryMLNRMQxcEzjMEkXudMXON4vF8MLyiUAzIUTxm3C+goUICsIokMjtcVDGVh+3CEunxPIsMnQ3Ibke4vFORA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lp7MqrnnPKFF4ArtaUgRY3SwVlulOTADuOLoCOFC0jI=;
+ b=PpaI6Z1TwNKs1dL3oL3RAAjea+qKI+k99d7Of9FErF2D0UiAyBvSIwcOoFW3U5kVAo/VG97El87DjQG3foBJzZMfdklOvaTNh+tPcAXb6cdjNlmIGAOh9FO5Y6A8zh9vJqTctlzCLdPMD4Y6WVjNCOW9S4l/8b7b16Q0K50Mj5E4yEAtQZF1Rs0Xfh2gsU+resziQN8SOM2XSszOg6YSXgyO37lc/+UxUTHsg6BUH/YDhqqHd4bFXY4xv55pfh3zjAl7WUeMG8bjEjT+hCOWmXoG0v2nGZzYV/8E3BrNYcyb/EOgrobdQSp9yE8FsBJDD2FSKSjPvCz8G/xQKtbqIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass action=none
+ header.from=leica-geosystems.com.cn; dkim=pass
+ header.d=leica-geosystems.com.cn; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=leica-geosystems.com.cn; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lp7MqrnnPKFF4ArtaUgRY3SwVlulOTADuOLoCOFC0jI=;
+ b=Z+NeSG4LkBoyoJFpaWd2e1zicA5rJ5Ch8x+QZ0RWdFZxWrGFJi2/+zB49xj2G9/wG8he9/b/vroeLw9pi37EFQi51FM2O3pCF8S1kfh69LrLpKbWg9bF/ewDFvF7rsLbVv6VhnI7vE3jDWWIbSO9uPbFi4KmQHDHIJIAF9E4Qd0=
+Received: from DB7PR06MB4571.eurprd06.prod.outlook.com (2603:10a6:10:70::20)
+ by DB6PR0602MB3336.eurprd06.prod.outlook.com (2603:10a6:6:4::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Fri, 19 Mar
+ 2021 10:16:51 +0000
+Received: from DB7PR06MB4571.eurprd06.prod.outlook.com
+ ([fe80::dcab:24bb:617a:30ee]) by DB7PR06MB4571.eurprd06.prod.outlook.com
+ ([fe80::dcab:24bb:617a:30ee%3]) with mapi id 15.20.3955.023; Fri, 19 Mar 2021
+ 10:16:51 +0000
+From:   LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
+To:     Sebastian Reichel <sre@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "pali@kernel.org" <pali@kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        TERTYCHNYI Grygorii <grygorii.tertychnyi@leica-geosystems.com>,
+        ZHIZHIKIN Andrey <andrey.zhizhikin@leica-geosystems.com>
+Subject: RE: [PATCH V6 2/2] power: supply: bq27xxx: Add support for BQ78Z100
+Thread-Topic: [PATCH V6 2/2] power: supply: bq27xxx: Add support for BQ78Z100
+Thread-Index: AQHXGxsxmxnGSu+XJk+tGqT75Haq9KqILbIAgALs4RA=
+Date:   Fri, 19 Mar 2021 10:16:51 +0000
+Message-ID: <DB7PR06MB4571FB9071EA8EC176C85755D7689@DB7PR06MB4571.eurprd06.prod.outlook.com>
+References: <20210317104918.12323-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20210317104918.12323-3-Qing-wu.Li@leica-geosystems.com.cn>
+ <20210317133220.sv2nlyyiw4nnai4t@earth.universe>
+In-Reply-To: <20210317133220.sv2nlyyiw4nnai4t@earth.universe>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none
+ header.from=leica-geosystems.com.cn;
+x-originating-ip: [140.207.15.106]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 9b401b2b-6d17-451d-29ee-08d8eac01ce4
+x-ms-traffictypediagnostic: DB6PR0602MB3336:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR0602MB3336117F1BE6E4EFEE111F1DD7689@DB6PR0602MB3336.eurprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DB15nki8+0tvwBfXWU7jyq7lUceqATkrIkOt9eONsvoPre1wcyN2rdCYEbmxKbBFRndMkbFeyE8O0Zi3x5So0vg2F91NOlnB0IZu3HhnghNPZWbfA6p4Z/MPFUNxDMyobBmwyqoEISkMENXN9cDy+7PkOgzidUdfZrWvUSoDT5gsC5sV8mX7oikMUlSIEOHl6aiNpY7QJLWfhDRFQV3Xl8i+Gs5BglGFLk+v2bxTuqDpCWlC3FKNaw+1iw2xj66z5MfqXwIbvwTmviNiMjm1FQ7fCpJPLcayuN+RBPfXSkr6mX7FT5LTigp5DN2xeTBSWzlyqQr+trJZqt3z6IP1FCUm1x/gCitAbLroYoD9lGSajIJM3wa1IIJeD/S2B9e+zk/lkNdKD49cUBLUzNdX7s5Y6+MxdCusAe2V6KvJ+bfivIAqIg1hD5FwrRXjmG0+ifv2HbPjLg35mdYgDvacp9t33Vf63wxBEAHch5aOzsd8X1UZtiqr1uTbEfGgt/E0L6U0NKGYTeK0CNOl4ubWOW1ZApy3HcAF2sYfrqsP8131yHm5oTiW0Y1SSIwJJEgJ2sDZ5bL+ukJxjofckyTHbvuMhHAZrXEYz6UjW3yyhwccZfqqioKJUu1Unqo9mThFqKK9YDPVIXNxHqHXEU8uIrL/9l8v6V0jp4qUMiQW6WrzHwcPAOf8xcN0FJ9xLByW/8mcJH+TjB6hsa0NpBmXspwEFmtjb/B7dho4T4L1tfoJ8TWH5Z39BQQQ4AUlqChS
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR06MB4571.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(136003)(366004)(39860400002)(54906003)(186003)(53546011)(26005)(8676002)(4326008)(76116006)(478600001)(8936002)(966005)(64756008)(9686003)(5660300002)(316002)(33656002)(2906002)(55016002)(83380400001)(66476007)(7696005)(52536014)(107886003)(66446008)(6506007)(86362001)(71200400001)(6916009)(66556008)(66946007)(38100700001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?MrOO1tk6yNhDquPiW62nnWUObYSrDoOYbQ7m83pPYJ7k1vVoa0b1s+G6eKy5?=
+ =?us-ascii?Q?RPejuG0dFhcYVzgAs6wzjDYMsy9/O/fo+IUVM5fVo+LWgf299NlY70wLKYPH?=
+ =?us-ascii?Q?4qMfJtMAsDdhLvV4fANjH50EKCmgoFZx8jmC3w1QAlOzdVTjfifRiDOKdiyI?=
+ =?us-ascii?Q?85eGX7cItKmLtiAbnOQ70OQmkPng44S2YHEQhsrYN+gK3/ZppSvHHMp4MQEU?=
+ =?us-ascii?Q?Rov1MtmH3Vapr8hc+WaoCy1TWhxnFAK5GpI2ycyf1cj0yOULDtLilVKQ747R?=
+ =?us-ascii?Q?/88+KtOk0JUcitt/iqkGD+mM44eENj0FFqUK76v+HazwG0oUfVnPjqcIbtHp?=
+ =?us-ascii?Q?yUJyaTjqnplQ26QKQgT7NaVv2puMp/JcapRlc0dKkqJgA6tMQ8yppPk2wPEy?=
+ =?us-ascii?Q?7RM36Mpjqkgxq3M/rZ+OCySu63pDCRf64dlL81C4EQow/7gc9QBfd2dTLqWD?=
+ =?us-ascii?Q?s+fNNzoRg6kAIgnin5eaths1qOOytbTOhxjTPDzu7RM09ZpCjw3qVgnQVhVn?=
+ =?us-ascii?Q?mLhCFufNAsOkTCql0woYu7eFNK8ZD0Fy44YyQ8NmzfzFo3b/r8Chmyi76zW2?=
+ =?us-ascii?Q?rPVt/k0clxisJqBmVedodW9Y33zPjInxUxOuWeeUXyTT0hLQO73Q66Ri1T9u?=
+ =?us-ascii?Q?T9Js1WXrFD9kQB2EidYEdO8D8PoQHjm3DcJe9T/gwC47id+cpypFYITwxSP9?=
+ =?us-ascii?Q?nZKNWIR7c01g7HVhuL6zqFuW7fLNf2euEfv8l/2KaMmwRqiWsWDIvavYCbOE?=
+ =?us-ascii?Q?oLjorr43Pne9Ez3PQnWXdnF5mpPDx96UP9CaY4nISSQfVWi7C3OeaT50sM9g?=
+ =?us-ascii?Q?2bkXR+hN9pD8Mxzv7xC6oo/wxWBRDmfu4TNAfsHjaHo1wWmVGhoB9m6khwWD?=
+ =?us-ascii?Q?2y5C2FWhaTLldQPQILXBshYaTfuwlgTJOMsvcEJZqQyq6pKb31S/ehoA0KtW?=
+ =?us-ascii?Q?7NWIOhwf5NQOAVIfyEeaWcNuafe1Q+Gp2jYStYQH76g38dZXpDVEYfSz2iWu?=
+ =?us-ascii?Q?JbSvZquEdR0Oo7sMp4gfvk7iCtW3NEKYJpnwiVb7cWp5q6oJcBThd1PPHpm0?=
+ =?us-ascii?Q?uGWwPtom6uKyEvFpww0NKtSzTO7LHqns+ED21yuwFASBq/7lnCUYarl+gzyF?=
+ =?us-ascii?Q?rxwYnhqAhL4oDyJ3iFUrvoV477Fy74mAErhUd59B8bsteTGn6MOVld8eaRPb?=
+ =?us-ascii?Q?UaHMQ87eXuoFOTkjFTtPBitdVVBFyZ8FocjWPvQnqW1MTCZqTDZVGmwNknqf?=
+ =?us-ascii?Q?A0dy2ms1WrnI7vjTaP2D3VqB6aieVgFUCRI9KHYlB2d4D4E8OKNtC3M5jgbl?=
+ =?us-ascii?Q?lD5GlrGCHSiQbG8div6QVo8U?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="y"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [172.16.12.146]
-X-ClientProxiedBy: ACLCAS4.ADVANTECH.CORP (172.20.2.20) To
- Taipei11.ADVANTECH.CORP (172.20.0.56)
+X-OriginatorOrg: leica-geosystems.com.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR06MB4571.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b401b2b-6d17-451d-29ee-08d8eac01ce4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2021 10:16:51.1331
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hC3v2B58yMlqGOalZqonjkOU9cl9o1TaNt0WxfhHSs7zs7KVWbEjLlcqbKnnKLznMJIVKXvCIz87YXfWuEN5FgF2WncgutyX638+LOE++vY0tUOkYzBQAuRdYNolbVnU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0602MB3336
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Please check [Campion] text in below as my reply.
-
-Sorry, due to the mail was rejected by vger.kernel.org as SPAM before 
-so I reply the mail late and had some test email before.
+Hi Sebastian,
 
 
+About 4mA current, it's not the expected current, since we are working remo=
+tely, the instrument was unattended.
+With the real current, the battery will be empty in a working day, so we ju=
+st connect a dummy load for test for a while,
+You mentioned the POWER_AVG looks suspicious, yes, it's due to I didn't pic=
+k the all the commits from master into my code, after pick it's looks corre=
+ct.
+About " Discharging " for idle battery, I picked you change, and it is "Not=
+ Charging", yes fixed by you!
+One question, after I pick all the commits, the current goes to negative du=
+ring discharging, is this correct?
 
------------------------------------------------------------------------------------------
-Date:   Tue, 9 Mar 2021 16:07:55 +0000
-From:   Lee Jones <lee.jones@linaro.org>
+POWER_SUPPLY_NAME=3Dbq78z100-0
+POWER_SUPPLY_STATUS=3DDischarging
+POWER_SUPPLY_PRESENT=3D1
+POWER_SUPPLY_VOLTAGE_NOW=3D3386000
+POWER_SUPPLY_CURRENT_NOW=3D-5000
+POWER_SUPPLY_CAPACITY=3D27
+POWER_SUPPLY_CAPACITY_LEVEL=3DNormal
+POWER_SUPPLY_TEMP=3D269
+POWER_SUPPLY_TIME_TO_EMPTY_NOW=3D1249920
+POWER_SUPPLY_TECHNOLOGY=3DLi-ion
+POWER_SUPPLY_CHARGE_FULL=3D6494000
+POWER_SUPPLY_CHARGE_NOW=3D1736000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=3D6000000
+POWER_SUPPLY_CYCLE_COUNT=3D1
+POWER_SUPPLY_POWER_AVG=3D-20000
+POWER_SUPPLY_HEALTH=3DGood
+POWER_SUPPLY_MANUFACTURER=3DTexas Instruments
 
 
-On Mon, 18 Jan 2021, Campion Kang wrote:
 
-> AHC1EC0 is the embedded controller driver for Advantech industrial
 
-It would be nice to have the model number in the subject line.
+Best Regards
+Li Qingwu (Terry)
 
-[Campion] AHC1EC0 is its model name that used in Advantech device internal. 
-          There is no external module name.
 
-Drop "driver".
 
-[Campion] OK
 
-> products. This provides sub-devices such as hwmon and watchdog, and
-> also
+-----Original Message-----
+From: Sebastian Reichel <sre@kernel.org>=20
+Sent: Wednesday, March 17, 2021 9:32 PM
+To: LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
+Cc: robh+dt@kernel.org; pali@kernel.org; krzk@kernel.org; linux-pm@vger.ker=
+nel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; TERTYCHN=
+YI Grygorii <grygorii.tertychnyi@leica-geosystems.com>; ZHIZHIKIN Andrey <a=
+ndrey.zhizhikin@leica-geosystems.com>
+Subject: Re: [PATCH V6 2/2] power: supply: bq27xxx: Add support for BQ78Z10=
+0
 
-"HWMON and Watchdog"
+Hi,
 
-> expose functions for sub-devices to read/write the value to embedded
+On Wed, Mar 17, 2021 at 10:49:18AM +0000, LI Qingwu wrote:
+> Add support for TI BQ78Z100, I2C interface gas gauge.
+> It provides a fully integrated safety protection and authentication=20
+> for 1 to 2-series cell Li-Ion and Li-Polymer battery packs.
+>=20
+> The patch was tested with BQ78Z100 equipment.
+>=20
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>=20
+> result of cat "/sys/class/power_supply/<bat_name>/uevent"
+>=20
+> CASE I:  Discharging current>0:
+>     POWER_SUPPLY_NAME=3Dbq78z100-0
+>     POWER_SUPPLY_STATUS=3DDischarging
+>     POWER_SUPPLY_PRESENT=3D1
+>     POWER_SUPPLY_VOLTAGE_NOW=3D3405000
+>     POWER_SUPPLY_CURRENT_NOW=3D4000
 
-"exposes"
+4mA @ 3.4V is 13.6 mW, which seems really small to me.
+Is this what you expect for your hardware?
 
-> controller.
-> 
-> Changed since V5:
-> 	- Kconfig: add "AHC1EC0" string to clearly define the EC name
-> 	- fix the code according to reviewer's suggestion
-> 	- remove unnecessary header files
-> 	- change the structure name to lower case, align with others
-> naming
-> 
-> Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+>     POWER_SUPPLY_CAPACITY=3D28
+>     POWER_SUPPLY_CAPACITY_LEVEL=3DNormal
+>     POWER_SUPPLY_TEMP=3D259
+>     POWER_SUPPLY_TIME_TO_EMPTY_NOW=3D1611000
+
+I guess 18 days TTE is expected with such a small discharge rate.
+
+>     POWER_SUPPLY_TECHNOLOGY=3DLi-ion
+>     POWER_SUPPLY_CHARGE_FULL=3D6494000
+>     POWER_SUPPLY_CHARGE_FULL_DESIGN=3D6000000
+>     POWER_SUPPLY_CYCLE_COUNT=3D1
+>     POWER_SUPPLY_ENERGY_NOW=3D0
+
+You are not feeding ENERGY_NOW with data, so do not expose it.
+
+>     POWER_SUPPLY_POWER_AVG=3D65535
+
+That's a signed int16 -1 and looks suspicious. Especially since expected po=
+wer average is around 13.6 mW. Is something wrong with the handling of BQ27=
+XXX_REG_AP for your chip?
+
+>     POWER_SUPPLY_HEALTH=3DGood
+>     POWER_SUPPLY_MANUFACTURER=3DTexas Instruments
+>=20
+> CASE II : No discharging current:
+>     POWER_SUPPLY_NAME=3Dbq78z100-0
+>     POWER_SUPPLY_STATUS=3DDischarging
+
+That should actually be "Not Charging" for an idle battery. I suppose recen=
+t changes to bq27000, which I applied in the last few days to my for-next b=
+ranch, might fix this.
+
+>     POWER_SUPPLY_PRESENT=3D1
+>     POWER_SUPPLY_VOLTAGE_NOW=3D3405000
+>     POWER_SUPPLY_CURRENT_NOW=3D0
+>     POWER_SUPPLY_CAPACITY=3D28
+>     POWER_SUPPLY_CAPACITY_LEVEL=3DNormal
+>     POWER_SUPPLY_TEMP=3D260
+>     POWER_SUPPLY_TECHNOLOGY=3DLi-ion
+>     POWER_SUPPLY_CHARGE_FULL=3D6494000
+>     POWER_SUPPLY_CHARGE_FULL_DESIGN=3D6000000
+>     POWER_SUPPLY_CYCLE_COUNT=3D1
+>     POWER_SUPPLY_ENERGY_NOW=3D0
+>     POWER_SUPPLY_POWER_AVG=3D0
+>     POWER_SUPPLY_HEALTH=3DGood
+>     POWER_SUPPLY_MANUFACTURER=3DTexas Instruments
 > ---
->  drivers/mfd/Kconfig         |  10 +
->  drivers/mfd/Makefile        |   2 +
->  drivers/mfd/ahc1ec0.c       | 808 ++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/ahc1ec0.h | 276 ++++++++++++
->  4 files changed, 1096 insertions(+)
->  create mode 100644 drivers/mfd/ahc1ec0.c
->  create mode 100644 include/linux/mfd/ahc1ec0.h
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index bdfce7b15621..7d5fb5c17d9a 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -2154,5 +2154,15 @@ config MFD_INTEL_M10_BMC
->  	  additional drivers must be enabled in order to use the functionality
->  	  of the device.
->  
-> +config MFD_AHC1EC0
-> +	tristate "Advantech AHC1EC0 Embedded Controller Module"
 
-Please remove "Module"
-
-> +	depends on X86
-> +	select MFD_CORE
-> +	help
-> +	  This is the core function that for Advantech EC drivers. It
-> +	  includes the sub-devices such as hwmon, watchdog, etc. And also
-> +	  provides expose functions for sub-devices to read/write the value
-> +	  to embedded controller.
-
-"This provides core functionality for the Advantech AHC1EC0 Embedded
-Controller (EC) along with registration for HWMON and Watchdog
-sub-devices.  It also provides read and write APIs for communication
-with the EC."
-
-[Campion] OK, thanks.
-
->  endmenu
->  endif
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 14fdb188af02..a6af9d8825f4 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -268,3 +268,5 @@ obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
->  obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
->  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
->  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
-> +
-
-You don't need to space this out.
-
-> +obj-$(CONFIG_MFD_AHC1EC0)	+= ahc1ec0.o
-> diff --git a/drivers/mfd/ahc1ec0.c b/drivers/mfd/ahc1ec0.c
-> new file mode 100644
-> index 000000000000..015f4307a54e
-> --- /dev/null
-> +++ b/drivers/mfd/ahc1ec0.c
-> @@ -0,0 +1,808 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Advantech embedded controller core driver AHC1EC0
-
-Advantech AHC1EC0 Embedded Controller
- 
-> + * Copyright 2020 Advantech IIoT Group
-
-This is out of date.
-
-> + *
-
-Drop this '\n' please.
-
-> + */
-> +
-> +#include <linux/acpi.h>
-> +#include <linux/delay.h>
-> +#include <linux/dmi.h>
-> +#include <linux/errno.h>
-> +#include <linux/mfd/ahc1ec0.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define DRV_NAME      "ahc1ec0"
-
-Please don't do this.  Just use the string in-place.
-
-> +enum {
-> +	ADVEC_SUBDEV_BRIGHTNESS = 0,
-> +	ADVEC_SUBDEV_EEPROM,
-> +	ADVEC_SUBDEV_GPIO,
-> +	ADVEC_SUBDEV_HWMON,
-> +	ADVEC_SUBDEV_LED,
-> +	ADVEC_SUBDEV_WDT,
-> +	ADVEC_SUBDEV_MAX,
-> +};
-
-Are these arbitrary?
-[Campion] cannot arbitrary there, due to it is a index to identify its number of sub device. 
-
-
-> +/* Wait IBF (Input Buffer Full) clear */
-> +static int ec_wait_write(void)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < EC_MAX_TIMEOUT_COUNT; i++) {
-> +		if ((inb(EC_COMMAND_PORT) & EC_COMMAND_BIT_IBF) == 0)
-> +			return 0;
-> +
-> +		udelay(EC_RETRY_UDELAY);
-> +	}
-> +
-> +	return -ETIMEDOUT;
-> +}
-> 
-> +/* Wait OBF (Output Buffer Full) data ready */
-> +static int ec_wait_read(void)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < EC_MAX_TIMEOUT_COUNT; i++) {
-> +		if ((inb(EC_COMMAND_PORT) & EC_COMMAND_BIT_OBF) != 0)
-> +			return 0;
-> +
-> +		udelay(EC_RETRY_UDELAY);
-> +	}
-> +
-> +	return -ETIMEDOUT;
-> +}
-> +
-> +/* Read data from EC HW RAM, the process is the following:
-> + * Step 0. Wait IBF clear to send command
-> + * Step 1. Send read command to EC command port
-> + * Step 2. Wait IBF clear that means command is got by EC
-> + * Step 3. Send read address to EC data port
-> + * Step 4. Wait OBF data ready
-> + * Step 5. Get data from EC data port
-> + */
-> +int read_hw_ram(struct adv_ec_platform_data *adv_ec_data, unsigned char addr, unsigned char *data)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_HW_RAM_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(addr, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	*data = inb(EC_STATUS_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	return ret;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	dev_err(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +	       __LINE__);
-> +
-> +	return ret;
-> +}
-
-EXPORT?
-[Campion] Yes, thanks.
-
-> +/* Write data to EC HW RAM
-> + * Step 0. Wait IBF clear to send command
-> + * Step 1. Send write command to EC command port
-> + * Step 2. Wait IBF clear that means command is got by EC
-> + * Step 3. Send write address to EC data port
-> + * Step 4. Wait IBF clear that means command is got by EC
-> + * Step 5. Send data to EC data port
-> + */
-> +int write_hw_ram(struct adv_ec_platform_data *adv_ec_data, unsigned char addr, unsigned char data)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_HW_RAM_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(addr, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(data, EC_STATUS_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_err(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +	       __LINE__);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(write_hw_ram);
-
-If you're going to export these, they should be in their own
-namespace.
-
-[Campion] Yes, i will rename it to ahc1ec_write_hw_ram().
-
-> +/* Get dynamic control table */
-> +static int adv_get_dynamic_tab(struct adv_ec_platform_data *adv_ec_data)
-> +{
-> +	int i, ret;
-> +	unsigned char pin_tmp, device_id;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	for (i = 0; i < EC_MAX_TBL_NUM; i++) {
-> +		adv_ec_data->dym_tbl[i].device_id = 0xff;
-> +		adv_ec_data->dym_tbl[i].hw_pin_num = 0xff;
-> +	}
-> +
-> +	for (i = 0; i < EC_MAX_TBL_NUM; i++) {
-> +		ret = ec_wait_write();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_write. line: %d\n", __func__,
-> +				__LINE__);
-
-Please remove all of this debug code.
-[Campion] OK.
-
-> +			goto error;
-> +		}
-> +		outb(EC_TBL_WRITE_ITEM, EC_COMMAND_PORT);
-
-More basic commentary is required throughout I think.
-[Campion] OK.
-
-> +		ret = ec_wait_write();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_write. line: %d\n", __func__,
-> +				__LINE__);
-> +			goto error;
-> +		}
-> +		outb(i, EC_STATUS_PORT);
-> +
-> +		ret = ec_wait_read();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_read. line: %d\n", __func__,
-> +				__LINE__);
-> +			goto error;
-> +		}
-> +
-> +		/*
-> +		 *  If item is defined, EC will return item number.
-> +		 *  If table item is not defined, EC will return 0xFF.
-> +		 */
-> +		pin_tmp = inb(EC_STATUS_PORT);
-> +		if (pin_tmp == 0xff) {
-
-Please define all magic numbers.
-[Campion] OK
-
-> +			dev_dbg(adv_ec_data->dev, "%s: inb(EC_STATUS_PORT)=0x%02x != 0xff.\n",
-> +				__func__, pin_tmp);
-> +			goto pass;
-> +		}
-> +
-> +		ret = ec_wait_write();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_write. line: %d\n", __func__,
-> +				__LINE__);
-> +			goto error;
-> +		}
-> +		outb(EC_TBL_GET_PIN, EC_COMMAND_PORT);
-> +
-> +		ret = ec_wait_read();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_read. line: %d\n", __func__,
-> +				__LINE__);
-> +			goto error;
-> +		}
-> +		pin_tmp = inb(EC_STATUS_PORT) & 0xff;
-> +		if (pin_tmp == 0xff) {
-> +			dev_dbg(adv_ec_data->dev, "%s: pin_tmp(0x%02X). line: %d\n", __func__,
-> +				pin_tmp, __LINE__);
-> +			goto pass;
-> +		}
-> +
-> +		ret = ec_wait_write();
-> +		if (ret)
-> +			goto error;
-> +		outb(EC_TBL_GET_DEVID, EC_COMMAND_PORT);
-> +
-> +		ret = ec_wait_read();
-> +		if (ret) {
-> +			dev_dbg(adv_ec_data->dev, "%s: ec_wait_read. line: %d\n", __func__,
-> +				__LINE__);
-> +			goto error;
-> +		}
-> +		device_id = inb(EC_STATUS_PORT) & 0xff;
-> +
-> +		dev_dbg(adv_ec_data->dev, "%s: device_id=0x%02X. line: %d\n", __func__,
-> +			device_id, __LINE__);
-> +
-> +		adv_ec_data->dym_tbl[i].device_id = device_id;
-> +		adv_ec_data->dym_tbl[i].hw_pin_num = pin_tmp;
-> +	}
-> +
-> +pass:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	dev_err(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n",
-> +		__func__, __LINE__);
-
-Remove all _func_ and _LINE_ info.  It's seldom helpful.
-[Campion] OK.
-
-> +	return ret;
-> +}
-> +
-> +int read_ad_value(struct adv_ec_platform_data *adv_ec_data, unsigned char hwpin,
-
-What is 'ad'?
-[Campion] it is for ADC. I will rename it to 'adc' that more clear.
-
-> +		unsigned char multi)
-> +{
-> +	int ret;
-> +	u32 ret_val;
-> +	unsigned int LSB, MSB;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_AD_INDEX_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(hwpin, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +
-> +	if (inb(EC_STATUS_PORT) == 0xff) {
-> +		mutex_unlock(&adv_ec_data->lock);
-> +		return -1;
-> +	}
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_AD_LSB_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	LSB = inb(EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_AD_MSB_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	MSB = inb(EC_STATUS_PORT);
-> +	ret_val = ((MSB << 8) | LSB) & 0x03FF;
-> +	ret_val = ret_val * multi * 100;
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return ret_val;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +		__LINE__);
-
-dev_err()
-[Campion] OK.
-
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(read_ad_value);
-> +
-> +int read_acpi_value(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +		unsigned char *pvalue)
-> +{
-> +	int ret;
-> +	unsigned char value;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_ACPI_RAM_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(addr, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	value = inb(EC_STATUS_PORT);
-> +	*pvalue = value;
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +		__LINE__);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(read_acpi_value);
-
-Namespace.
-[Campion] OK, rename to 'ahc1ec_read_acpi_value'
-
-> +int write_acpi_value(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +		unsigned char value)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_ACPI_DATA_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(addr, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(value, EC_STATUS_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +		__LINE__);
-> +
-> +	return ret;
-> +}
-
-EXPORT?
-
-I think this API (i.e. all of the functions above) should be moved
-into drivers/platform.  They really don't have a place in MFD.
-
-[Campion] this is a common function for upper HWMON and brightness control used. 
-          So far this API only used by HWMON, but then it will be used by 
-          brightness in next stage. So i put this API here, OK?
-
-
-> +int read_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +		unsigned char *pvalue)
-> +{
-> +	int ret;
-> +
-> +	unsigned char gpio_status_value;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_INDEX_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(PinNumber, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +
-> +	if (inb(EC_STATUS_PORT) == 0xff) {
-> +		dev_err(adv_ec_data->dev, "%s: Read Pin Number error!!\n", __func__);
-> +		mutex_unlock(&adv_ec_data->lock);
-> +		return -1;
-> +	}
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_STATUS_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	gpio_status_value = inb(EC_STATUS_PORT);
-> +
-> +	*pvalue = gpio_status_value;
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +		__LINE__);
-> +	return ret;
-> +}
-> +
-> +int write_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +		unsigned char value)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_INDEX_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(PinNumber, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +
-> +	if (inb(EC_STATUS_PORT) == 0xff) {
-> +		mutex_unlock(&adv_ec_data->lock);
-> +		dev_err(adv_ec_data->dev, "%s: Read Pin Number error!!\n", __func__);
-> +		return -1;
-> +	}
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_STATUS_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(value, EC_STATUS_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	dev_err(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d", __func__,
-> +		__LINE__);
-> +
-> +	return ret;
-> +}
-> +
-> +int read_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +		unsigned char *pvalue)
-> +{
-> +	int ret;
-> +	unsigned char gpio_dir_value;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_INDEX_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(PinNumber, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +
-> +	if (inb(EC_STATUS_PORT) == 0xff) {
-> +		mutex_unlock(&adv_ec_data->lock);
-> +		dev_err(adv_ec_data->dev, "%s: Read Pin Number error!! line: %d\n", __func__,
-> +			__LINE__);
-> +		return -1;
-> +	}
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_DIR_READ, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +	gpio_dir_value = inb(EC_STATUS_PORT);
-> +	*pvalue = gpio_dir_value;
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +			__LINE__);
-> +
-> +	return ret;
-> +}
-> +
-> +int write_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +		unsigned char value)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_INDEX_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(PinNumber, EC_STATUS_PORT);
-> +
-> +	ret = ec_wait_read();
-> +	if (ret)
-> +		goto error;
-> +
-> +	if (inb(EC_STATUS_PORT) == 0xff) {
-> +		mutex_unlock(&adv_ec_data->lock);
-> +		dev_warn(adv_ec_data->dev, "%s: Read Pin Number error!! line: %d\n", __func__,
-> +			__LINE__);
-> +
-> +		return -1;
-> +	}
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(EC_GPIO_DIR_WRITE, EC_COMMAND_PORT);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(value, EC_STATUS_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +			__LINE__);
-> +
-> +	return ret;
-> +}
-
-All of the GPIO functions above should move into drivers/gpio.
-
-[Campion] Due to it has a flow need to cowork with EC chip and firmware, it cannot be interrupt
-          by other functions. So it needs to keep in here. 
-
-> +int write_hwram_command(struct adv_ec_platform_data *adv_ec_data, unsigned char data)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&adv_ec_data->lock);
-> +
-> +	ret = ec_wait_write();
-> +	if (ret)
-> +		goto error;
-> +	outb(data, EC_COMMAND_PORT);
-> +
-> +	mutex_unlock(&adv_ec_data->lock);
-> +	return 0;
-> +
-> +error:
-> +	mutex_unlock(&adv_ec_data->lock);
-> +
-> +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> +			__LINE__);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(write_hwram_command);
-> +
-> +static int adv_ec_get_productname(struct adv_ec_platform_data *adv_ec_data, char *product)
-> +{
-> +	const char *vendor, *device;
-> +	int length = 0;
-> +
-> +	/* Check it is Advantech board */
-> +	vendor = dmi_get_system_info(DMI_SYS_VENDOR);
-> +	if (memcmp(vendor, "Advantech", sizeof("Advantech")) != 0)
-> +		return -ENODEV;
-> +
-> +	/* Get product model name */
-> +	device = dmi_get_system_info(DMI_PRODUCT_NAME);
-> +	if (device) {
-> +		while ((device[length] != ' ')
-> +			&& (length < AMI_ADVANTECH_BOARD_ID_LENGTH))
-> +			length++;
-> +		memset(product, 0, AMI_ADVANTECH_BOARD_ID_LENGTH);
-> +		memmove(product, device, length);
-> +
-> +		dev_info(adv_ec_data->dev, "BIOS Product Name = %s\n", product);
-> +
-> +		return 0;
-> +	}
-> +
-> +	dev_warn(adv_ec_data->dev, "This device is not Advantech Board (%s)!\n", product);
-> +
-> +	return -ENODEV;
-> +}
-
-These should go into drivers/platform.
-
-[Campion] This is a simple function to get module name from BIOS DMI table, it is not need to 
-          access EC chip. But it can get once and other drivers can get this information,
-          donot call DMI every time. Can it keep in here?
-
-> +static const struct mfd_cell adv_ec_sub_cells[] = {
-> +	{ .name = "adv-ec-brightness", },
-> +	{ .name = "adv-ec-eeprom", },
-> +	{ .name = "adv-ec-gpio", },
-> +	{ .name = "ahc1ec0-hwmon", },
-> +	{ .name = "adv-ec-led", },
-> +	{ .name = "ahc1ec0-wdt", },
-> +};
-> +
-> +static int adv_ec_init_ec_data(struct adv_ec_platform_data *adv_ec_data)
-> +{
-> +	int ret;
-> +
-> +	adv_ec_data->sub_dev_mask = 0;
-> +	adv_ec_data->sub_dev_nb = 0;
-> +	adv_ec_data->dym_tbl = NULL;
-> +	adv_ec_data->bios_product_name = NULL;
-
-Why are pre-initialising these?
-
-[Campion] Just make sure they have empty pointer, but I will remove it. 
-
-> +	mutex_init(&adv_ec_data->lock);
-> +
-> +	/* Get product name */
-> +	adv_ec_data->bios_product_name =
-> +		devm_kzalloc(adv_ec_data->dev, AMI_ADVANTECH_BOARD_ID_LENGTH, GFP_KERNEL);
-> +	if (!adv_ec_data->bios_product_name)
-> +		return -ENOMEM;
-> +
-> +	memset(adv_ec_data->bios_product_name, 0, AMI_ADVANTECH_BOARD_ID_LENGTH);
-
-Why are you doing this?
-
-[Campion] Just make sure the memory is null all
-
-> +	ret = adv_ec_get_productname(adv_ec_data, adv_ec_data->bios_product_name);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Get pin table */
-> +	adv_ec_data->dym_tbl = devm_kzalloc(adv_ec_data->dev,
-> +					EC_MAX_TBL_NUM * sizeof(struct ec_dynamic_table),
-> +					GFP_KERNEL);
-> +	if (!adv_ec_data->dym_tbl)
-> +		return -ENOMEM;
-
-What does a dynamic table do?
-
-[Campion] The dynamic table is reterived from EC firmware according to different platform HW device.
-          it will based on dynamic table information to get HW pin definition based on its function.
-          The pin value will retrive to calcute the value, for example, voltage value, vcore value. 
-          
-
-> +	ret = adv_get_dynamic_tab(adv_ec_data);
-
-return adv_get_dynamic_tab();
-
-[Campion] OK
-
-> +	return ret;
-> +}
-> +
-> +static int adv_ec_parse_prop(struct adv_ec_platform_data *adv_ec_data)
-> +{
-> +	int i, ret;
-> +	u32 nb, sub_dev[ADVEC_SUBDEV_MAX];
-> +
-> +	ret = device_property_read_u32(adv_ec_data->dev, "advantech,sub-dev-nb", &nb);
-
-Indexing devices is generally not a good strategy.
-
----------------------------------------------------------------------------
-[Campion] Yes, I will remove it, just use the following that defined in ahc1ec0.yaml. 
-          I ever feedback related mail for "https://lore.kernel.org/linux-watchdog/20210118123749.4769-6-campion.kang@advantech.com.tw/t/#m5126adbc2453e3ab3e6bda717c257fab364b9f45". 
-          But vger.kernel.org returned the mail to mail as spam mail. 
-          I will modity it as the following, is it OK?
-          examples:
-            - |
-          #include <dt-bindings/mfd/ahc1ec0-dt.h>
-          ahc1ec0 {
-                  compatible = "advantech,ahc1ec0";
-
-                  advantech,hwmon-profile = <AHC1EC0_HWMON_PRO_UNO2271G>;
-                  advantech,watchdog = true;
-          };
-----------------------------------------------------------------------------
-
-> +	if (ret < 0) {
-> +		dev_err(adv_ec_data->dev, "get sub-dev-nb failed! (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	adv_ec_data->sub_dev_nb = nb;
-
-'nb' is not a good choice for a variable name.
-
-[Campion] I will remove it.
-
-> +	ret = device_property_read_u32_array(adv_ec_data->dev, "advantech,sub-dev",
-> +					     sub_dev, nb);
-> +	if (ret < 0) {
-
-Is '> 0' valid?
-
-[Campion] It will be remove it.
-
-> +		dev_err(adv_ec_data->dev, "get sub-dev failed! (%d)\n", ret);
-
-Please use proper error messages.
-
-"Failed to read 'advantech,sub-dev' property"
-
-[Campion] It will be removed according the above changed.
-
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < nb; i++) {
-> +		switch (sub_dev[i]) {
-> +		case ADVEC_SUBDEV_BRIGHTNESS:
-> +		case ADVEC_SUBDEV_EEPROM:
-> +		case ADVEC_SUBDEV_GPIO:
-> +		case ADVEC_SUBDEV_HWMON:
-> +		case ADVEC_SUBDEV_LED:
-> +		case ADVEC_SUBDEV_WDT:
-> +			adv_ec_data->sub_dev_mask |= BIT(sub_dev[i]);
-> +			break;
-> +		default:
-> +			dev_err(adv_ec_data->dev, "invalid prop value(%d)!\n",
-> +				sub_dev[i]);
-> +		}
-> +	}
-> +	dev_info(adv_ec_data->dev, "sub-dev mask = 0x%x\n", adv_ec_data->sub_dev_mask);
-> +
-> +	return 0;
-> +}
-> +
-> +static int adv_ec_probe(struct platform_device *pdev)
-> +{
-> +	int ret, i;
-> +	struct device *dev = &pdev->dev;
-> +	struct adv_ec_platform_data *adv_ec_data;
-
-This is not platform data.  This is driver data.
-
-  struct adv_ec_ddata *ddata;
-
-[Campion] OK, I modified it.
-
-> +	adv_ec_data = devm_kzalloc(dev, sizeof(struct adv_ec_platform_data), GFP_KERNEL);
-
-sizeof(*adv_ec_data)
-
-[Campion] OK, also update ahc1ec0-wdt.c and ahc1ec0-hwmon.c.
-
-> +	if (!adv_ec_data)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, adv_ec_data);
-> +	adv_ec_data->dev = dev;
-> +
-> +	ret = adv_ec_init_ec_data(adv_ec_data);
-> +	if (ret)
-> +		goto err_init_data;
-> +
-> +	ret = adv_ec_parse_prop(adv_ec_data);
-> +	if (ret)
-> +		goto err_prop;
-> +
-> +	/* check whether this EC has the following subdevices. */
-> +	for (i = 0; i < ARRAY_SIZE(adv_ec_sub_cells); i++) {
-> +		if (adv_ec_data->sub_dev_mask & BIT(i)) {
-> +			ret = mfd_add_hotplug_devices(dev, &adv_ec_sub_cells[i], 1);
-
-Why have you chosen to use hotplug here?
-
-[Campion] There is a information in BIOS ACPI table according to different device to decide 
-          which function drivers need to be probe. May be a device has HWMON, it will dynamic 
-          to load HWMON driver, but other device may not.
-
-> +			dev_info(adv_ec_data->dev, "mfd_add_hotplug_devices[%d] %s\n", i,
-> +				adv_ec_sub_cells[i].name);
-> +			if (ret)
-> +				dev_err(dev, "failed to add %s subdevice: %d\n",
-> +					adv_ec_sub_cells[i].name, ret);
-> +		}
-> +	}
-
-This is a mess!
-
-Where are you pulling these devices from?  
-
-[Campion] decide which drivers need to mount from BIOS ACPI table. This drive would built in Linux Kernel.
-          I am not sure what's your meaning, can you describe more? Thank you
-
-
-> +	dev_info(adv_ec_data->dev, "Advantech EC probe done");
-> +
-> +	return 0;
-> +
-> +err_prop:
-> +	dev_err(dev, "failed to probe\n");
-> +
-> +err_init_data:
-> +	mutex_destroy(&adv_ec_data->lock);
-> +
-> +	dev_err(dev, "failed to init data\n");
-
-You don't need 2 error messages in the error path.
-
-[Campion] OK, remove one.
-
-> +	return ret;
-> +}
-> +
-> +static int adv_ec_remove(struct platform_device *pdev)
-> +{
-> +	struct adv_ec_platform_data *adv_ec_data;
-> +
-> +	adv_ec_data = dev_get_drvdata(&pdev->dev);
-> +
-> +	mutex_destroy(&adv_ec_data->lock);
-> +
-> +	mfd_remove_devices(&pdev->dev);
-
-If you don't use the hotplug variant, you can use devm_* and omit
-this.
-
-[Campion] got it.
-
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id adv_ec_of_match[] __maybe_unused = {
-> +	{
-> +		.compatible = "advantech,ahc1ec0",
+You should expose POWER_SUPPLY_PROP_CHARGE_NOW for exposing BQ27XXX_REG_RC =
+info, which is more precise than CAPACITY.
+
+Thanks,
+
+-- Sebastian
+
+>  drivers/power/supply/bq27xxx_battery.c     | 44 ++++++++++++++++++++++
+>  drivers/power/supply/bq27xxx_battery_i2c.c |  2 +
+>  include/linux/power/bq27xxx_battery.h      |  1 +
+>  3 files changed, 47 insertions(+)
+>=20
+> diff --git a/drivers/power/supply/bq27xxx_battery.c=20
+> b/drivers/power/supply/bq27xxx_battery.c
+> index 4c4a7b1c64c5..05a4f9190160 100644
+> --- a/drivers/power/supply/bq27xxx_battery.c
+> +++ b/drivers/power/supply/bq27xxx_battery.c
+> @@ -39,6 +39,7 @@
+>   * https://www.ti.com/product/bq27z561
+>   * https://www.ti.com/product/bq28z610
+>   * https://www.ti.com/product/bq34z100-g1
+> + * https://www.ti.com/product/bq78z100
+>   */
+> =20
+>  #include <linux/device.h>
+> @@ -515,6 +516,27 @@ static u8
+>  		[BQ27XXX_REG_DCAP] =3D 0x3c,
+>  		[BQ27XXX_REG_AP] =3D 0x22,
+>  		BQ27XXX_DM_REG_ROWS,
 > +	},
-
-Put this on one line please.
-
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, adv_ec_of_match);
-> +
-> +static const struct acpi_device_id adv_ec_acpi_match[] __maybe_unused = {
-> +	{"AHC1EC0", 0},
-
-Spaces inside the '{' and '}' please.
-
-> +	{},
-
-',' here, but not on the one above.  Please be consistent.
-
-> +};
-> +MODULE_DEVICE_TABLE(acpi, adv_ec_acpi_match);
-> +
-> +static struct platform_driver adv_ec_driver = {
-> +	.driver = {
-> +		.name = DRV_NAME,
-> +		.of_match_table = of_match_ptr(adv_ec_of_match),
-> +		.acpi_match_table = ACPI_PTR(adv_ec_acpi_match),
-> +	},
-> +	.probe = adv_ec_probe,
-> +	.remove = adv_ec_remove,
-> +};
-> +module_platform_driver(adv_ec_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:" DRV_NAME);
-> +MODULE_DESCRIPTION("Advantech Embedded Controller core driver.");
-
-Name as in the header.
-
-> +MODULE_AUTHOR("Campion Kang <campion.kang@advantech.com.tw>");
-> +MODULE_AUTHOR("Jianfeng Dai <jianfeng.dai@advantech.com.cn>");
-> +MODULE_VERSION("1.0");
-
-Is this used?
-
-[Campion] Yes, it is used. AceLan whom is Canonical Kernel RD was test this drivers for Advantech UNO device on Ubuntu Kernel.
-
-> diff --git a/include/linux/mfd/ahc1ec0.h b/include/linux/mfd/ahc1ec0.h
-> new file mode 100644
-> index 000000000000..1b01e10c1fef
-> --- /dev/null
-> +++ b/include/linux/mfd/ahc1ec0.h
-> @@ -0,0 +1,276 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +#ifndef __LINUX_MFD_AHC1EC0_H
-> +#define __LINUX_MFD_AHC1EC0_H
-> +
-> +#include <linux/device.h>
-> +
-> +#define EC_COMMAND_PORT             0x29A /* EC I/O command port */
-> +#define EC_STATUS_PORT              0x299 /* EC I/O data port */
-> +
-> +#define EC_RETRY_UDELAY              200 /* EC command retry delay in microseconds */
-> +#define EC_MAX_TIMEOUT_COUNT        5000 /* EC command max retry count */
-> +#define EC_COMMAND_BIT_OBF          0x01 /* Bit 0 is for OBF ready (Output buffer full) */
-> +#define EC_COMMAND_BIT_IBF          0x02 /* Bit 1 is for IBF ready (Input buffer full) */
-> +
-> +/* Analog to digital converter command */
-> +#define EC_AD_INDEX_WRITE   0x15 /* Write ADC port number into index */
-> +#define EC_AD_LSB_READ      0x16 /* Read ADC LSB value from ADC port */
-> +#define EC_AD_MSB_READ      0x1F /* Read ADC MSB value from ADC port */
-> +
-> +/* Voltage device ID */
-> +#define EC_DID_SMBOEM0      0x28 /* SMBUS/I2C. Smbus channel 0 */
-> +#define EC_DID_CMOSBAT      0x50 /* CMOS coin battery voltage */
-> +#define EC_DID_CMOSBAT_X2   0x51 /* CMOS coin battery voltage*2 */
-> +#define EC_DID_CMOSBAT_X10  0x52 /* CMOS coin battery voltage*10 */
-> +#define EC_DID_5VS0         0x56 /* 5VS0 voltage */
-> +#define EC_DID_5VS0_X2      0x57 /* 5VS0 voltage*2 */
-> +#define EC_DID_5VS0_X10     0x58 /* 5VS0 voltage*10 */
-> +#define EC_DID_5VS5         0x59 /* 5VS5 voltage */
-> +#define EC_DID_5VS5_X2      0x5A /* 5VS5 voltage*2 */
-> +#define EC_DID_5VS5_X10     0x5B /* 5VS5 voltage*10 */
-> +#define EC_DID_12VS0        0x62 /* 12VS0 voltage */
-> +#define EC_DID_12VS0_X2     0x63 /* 12VS0 voltage*2 */
-> +#define EC_DID_12VS0_X10    0x64 /* 12VS0 voltage*10 */
-> +#define EC_DID_VCOREA       0x65 /* CPU A core voltage */
-> +#define EC_DID_VCOREA_X2    0x66 /* CPU A core voltage*2 */
-> +#define EC_DID_VCOREA_X10   0x67 /* CPU A core voltage*10 */
-> +#define EC_DID_VCOREB       0x68 /* CPU B core voltage */
-> +#define EC_DID_VCOREB_X2    0x69 /* CPU B core voltage*2 */
-> +#define EC_DID_VCOREB_X10   0x6A /* CPU B core voltage*10 */
-> +#define EC_DID_DC           0x6B /* ADC. onboard voltage */
-> +#define EC_DID_DC_X2        0x6C /* ADC. onboard voltage*2 */
-> +#define EC_DID_DC_X10       0x6D /* ADC. onboard voltage*10 */
-> +
-> +/* Current device ID */
-> +#define EC_DID_CURRENT              0x74
-> +
-> +/* ACPI commands */
-> +#define EC_ACPI_RAM_READ            0x80
-> +#define EC_ACPI_RAM_WRITE           0x81
-> +
-> +/*
-> + *  Dynamic control table commands
-> + *  The table includes HW pin number, Device ID, and Pin polarity
-> + */
-> +#define EC_TBL_WRITE_ITEM           0x20
-> +#define EC_TBL_GET_PIN              0x21
-> +#define EC_TBL_GET_DEVID            0x22
-> +#define EC_MAX_TBL_NUM              32
-> +
-> +/* LED Device ID table */
-> +#define EC_DID_LED_RUN              0xE1
-> +#define EC_DID_LED_ERR              0xE2
-> +#define EC_DID_LED_SYS_RECOVERY     0xE3
-> +#define EC_DID_LED_D105_G           0xE4
-> +#define EC_DID_LED_D106_G           0xE5
-> +#define EC_DID_LED_D107_G           0xE6
-> +
-> +/* LED control HW RAM address 0xA0-0xAF */
-> +#define EC_HWRAM_LED_BASE_ADDR      0xA0
-> +#define EC_HWRAM_LED_PIN(N)         (EC_HWRAM_LED_BASE_ADDR + (4 * (N))) // N:0-3
-> +#define EC_HWRAM_LED_CTRL_HIBYTE(N) (EC_HWRAM_LED_BASE_ADDR + (4 * (N)) + 1)
-> +#define EC_HWRAM_LED_CTRL_LOBYTE(N) (EC_HWRAM_LED_BASE_ADDR + (4 * (N)) + 2)
-> +#define EC_HWRAM_LED_DEVICE_ID(N)   (EC_HWRAM_LED_BASE_ADDR + (4 * (N)) + 3)
-> +
-> +/* LED control bit */
-> +#define LED_CTRL_ENABLE_BIT()           BIT(4)
-> +#define LED_CTRL_INTCTL_BIT()           BIT(5)
-> +#define LED_CTRL_LEDBIT_MASK            (0x03FF << 6)
-> +#define LED_CTRL_POLARITY_MASK          (0x000F << 0)
-> +#define LED_CTRL_INTCTL_EXTERNAL        0
-> +#define LED_CTRL_INTCTL_INTERNAL        1
-> +
-> +#define LED_DISABLE  0x0
-> +#define LED_ON       0x1
-> +#define LED_FAST     0x3
-> +#define LED_NORMAL   0x5
-> +#define LED_SLOW     0x7
-> +#define LED_MANUAL   0xF
-> +
-> +#define LED_CTRL_LEDBIT_DISABLE	0x0000
-> +#define LED_CTRL_LEDBIT_ON		0x03FF
-> +#define LED_CTRL_LEDBIT_FAST	0x02AA
-> +#define LED_CTRL_LEDBIT_NORMAL	0x0333
-> +#define LED_CTRL_LEDBIT_SLOW	0x03E0
-> +
-> +/* Get the device name */
-> +#define AMI_ADVANTECH_BOARD_ID_LENGTH	32
-> +
-> +/*
-> + * Advantech Embedded Controller watchdog commands
-> + * EC can send multi-stage watchdog event. System can setup watchdog event
-> + * independently to make up event sequence.
-> + */
-> +#define EC_COMMANS_PORT_IBF_MASK	0x02
-> +#define EC_RESET_EVENT				0x04
-> +#define	EC_WDT_START				0x28
-> +#define	EC_WDT_STOP					0x29
-> +#define	EC_WDT_RESET				0x2A
-> +#define	EC_WDT_BOOTTMEWDT_STOP		0x2B
-> +
-> +#define EC_HW_RAM					0x89
-> +
-> +#define EC_EVENT_FLAG				0x57
-> +#define EC_ENABLE_DELAY_H			0x58
-> +#define EC_ENABLE_DELAY_L			0x59
-> +#define EC_POWER_BTN_TIME_H			0x5A
-> +#define EC_POWER_BTN_TIME_L			0x5B
-> +#define EC_RESET_DELAY_TIME_H		0x5E
-> +#define EC_RESET_DELAY_TIME_L		0x5F
-> +#define EC_PIN_DELAY_TIME_H			0x60
-> +#define EC_PIN_DELAY_TIME_L			0x61
-> +#define EC_SCI_DELAY_TIME_H			0x62
-> +#define EC_SCI_DELAY_TIME_L			0x63
-> +
-> +/* EC ACPI commands */
-> +#define EC_ACPI_DATA_READ			0x80
-> +#define EC_ACPI_DATA_WRITE			0x81
-> +
-> +/* Brightness ACPI Addr */
-> +#define BRIGHTNESS_ACPI_ADDR		0x50
-> +
-> +/* EC HW RAM commands */
-> +#define EC_HW_EXTEND_RAM_READ		0x86
-> +#define EC_HW_EXTEND_RAM_WRITE		0x87
-> +#define	EC_HW_RAM_READ				0x88
-> +#define EC_HW_RAM_WRITE				0x89
-> +
-> +/* EC Smbus commands */
-> +#define EC_SMBUS_CHANNEL_SET		0x8A	 /* Set selector number (SMBUS channel) */
-> +#define EC_SMBUS_ENABLE_I2C			0x8C	 /* Enable channel I2C */
-> +#define EC_SMBUS_DISABLE_I2C		0x8D	 /* Disable channel I2C */
-> +
-> +/* Smbus transmit protocol */
-> +#define EC_SMBUS_PROTOCOL			0x00
-> +
-> +/* SMBUS status */
-> +#define EC_SMBUS_STATUS				0x01
-> +
-> +/* SMBUS device slave address (bit0 must be 0) */
-> +#define EC_SMBUS_SLV_ADDR			0x02
-> +
-> +/* SMBUS device command */
-> +#define EC_SMBUS_CMD				0x03
-> +
-> +/* 0x04-0x24 Data In read process, return data are stored in this address */
-> +#define EC_SMBUS_DATA				0x04
-> +
-> +#define EC_SMBUS_DAT_OFFSET(n)	(EC_SMBUS_DATA + (n))
-> +
-> +/* SMBUS channel selector (0-4) */
-> +#define EC_SMBUS_CHANNEL			0x2B
-> +
-> +/* EC SMBUS transmit Protocol code */
-> +#define SMBUS_QUICK_WRITE			0x02 /* Write Quick Command */
-> +#define SMBUS_QUICK_READ			0x03 /* Read Quick Command */
-> +#define SMBUS_BYTE_SEND				0x04 /* Send Byte */
-> +#define SMBUS_BYTE_RECEIVE			0x05 /* Receive Byte */
-> +#define SMBUS_BYTE_WRITE			0x06 /* Write Byte */
-> +#define SMBUS_BYTE_READ				0x07 /* Read Byte */
-> +#define SMBUS_WORD_WRITE			0x08 /* Write Word */
-> +#define SMBUS_WORD_READ				0x09 /* Read Word */
-> +#define SMBUS_BLOCK_WRITE			0x0A /* Write Block */
-> +#define SMBUS_BLOCK_READ			0x0B /* Read Block */
-> +#define SMBUS_PROC_CALL				0x0C /* Process Call */
-> +#define SMBUS_BLOCK_PROC_CALL		0x0D /* Write Block-Read Block Process Call */
-> +#define SMBUS_I2C_READ_WRITE		0x0E /* I2C block Read-Write */
-> +#define SMBUS_I2C_WRITE_READ		0x0F /* I2C block Write-Read */
-> +
-> +/* GPIO control commands */
-> +#define EC_GPIO_INDEX_WRITE			0x10
-> +#define EC_GPIO_STATUS_READ			0x11
-> +#define EC_GPIO_STATUS_WRITE		0x12
-> +#define EC_GPIO_DIR_READ			0x1D
-> +#define EC_GPIO_DIR_WRITE			0x1E
-> +
-> +/* One Key Recovery commands */
-> +#define EC_ONE_KEY_FLAG				0x9C
-> +
-> +/* ASG OEM commands */
-> +#define EC_ASG_OEM					0xEA
-> +#define EC_ASG_OEM_READ				0x00
-> +#define EC_ASG_OEM_WRITE			0x01
-> +#define EC_OEM_POWER_STATUS_VIN1	0X10
-> +#define EC_OEM_POWER_STATUS_VIN2	0X11
-> +#define EC_OEM_POWER_STATUS_BAT1	0X12
-> +#define EC_OEM_POWER_STATUS_BAT2	0X13
-> +
-> +/* GPIO DEVICE ID */
-> +#define EC_DID_ALTGPIO_0			0x10    /* 0x10 AltGpio0 User define gpio */
-> +#define EC_DID_ALTGPIO_1			0x11    /* 0x11 AltGpio1 User define gpio */
-> +#define EC_DID_ALTGPIO_2			0x12    /* 0x12 AltGpio2 User define gpio */
-> +#define EC_DID_ALTGPIO_3			0x13    /* 0x13 AltGpio3 User define gpio */
-> +#define EC_DID_ALTGPIO_4			0x14    /* 0x14 AltGpio4 User define gpio */
-> +#define EC_DID_ALTGPIO_5			0x15    /* 0x15 AltGpio5 User define gpio */
-> +#define EC_DID_ALTGPIO_6			0x16    /* 0x16 AltGpio6 User define gpio */
-> +#define EC_DID_ALTGPIO_7			0x17    /* 0x17 AltGpio7 User define gpio */
-> +
-> +/* Lmsensor Chip Register */
-> +#define NSLM96163_CHANNEL			0x02
-> +
-> +/* NS_LM96163 address 0x98 */
-> +#define NSLM96163_ADDR				0x98
-> +
-> +/* LM96163 index(0x00) Local Temperature (Signed MSB) */
-> +#define NSLM96163_LOC_TEMP			0x00
-> +
-> +/* HWMON registers */
-> +#define INA266_REG_VOLTAGE          0x02    /* 1.25mV */
-> +#define INA266_REG_POWER            0x03    /* 25mW */
-> +#define INA266_REG_CURRENT          0x04    /* 1mA */
-> +
-> +struct ec_hw_pin_table {
-> +	unsigned int vbat[2];
-> +	unsigned int v5[2];
-> +	unsigned int v12[2];
-> +	unsigned int vcore[2];
-> +	unsigned int vdc[2];
-> +	unsigned int ec_current[2];
-> +	unsigned int power[2];
+> +	bq78z100_regs[BQ27XXX_REG_MAX] =3D {
+> +		[BQ27XXX_REG_CTRL] =3D 0x00,
+> +		[BQ27XXX_REG_TEMP] =3D 0x06,
+> +		[BQ27XXX_REG_INT_TEMP] =3D 0x28,
+> +		[BQ27XXX_REG_VOLT] =3D 0x08,
+> +		[BQ27XXX_REG_AI] =3D 0x14,
+> +		[BQ27XXX_REG_FLAGS] =3D 0x0a,
+> +		[BQ27XXX_REG_TTE] =3D 0x16,
+> +		[BQ27XXX_REG_TTF] =3D 0x18,
+> +		[BQ27XXX_REG_TTES] =3D 0x1c,
+> +		[BQ27XXX_REG_TTECP] =3D INVALID_REG_ADDR,
+> +		[BQ27XXX_REG_NAC] =3D INVALID_REG_ADDR,
+> +		[BQ27XXX_REG_RC] =3D 0x10,
+> +		[BQ27XXX_REG_FCC] =3D 0x12,
+> +		[BQ27XXX_REG_CYCT] =3D 0x2a,
+> +		[BQ27XXX_REG_AE] =3D INVALID_REG_ADDR,
+> +		[BQ27XXX_REG_SOC] =3D 0x2c,
+> +		[BQ27XXX_REG_DCAP] =3D 0x3c,
+> +		[BQ27XXX_REG_AP] =3D 0x22,
+> +		BQ27XXX_DM_REG_ROWS,
+>  	};
+> =20
+>  static enum power_supply_property bq27000_props[] =3D { @@ -813,6=20
+> +835,26 @@ static enum power_supply_property bq34z100_props[] =3D {
+>  	POWER_SUPPLY_PROP_MANUFACTURER,
+>  };
+> =20
+> +static enum power_supply_property bq78z100_props[] =3D {
+> +	POWER_SUPPLY_PROP_STATUS,
+> +	POWER_SUPPLY_PROP_PRESENT,
+> +	POWER_SUPPLY_PROP_VOLTAGE_NOW,
+> +	POWER_SUPPLY_PROP_CURRENT_NOW,
+> +	POWER_SUPPLY_PROP_CAPACITY,
+> +	POWER_SUPPLY_PROP_CAPACITY_LEVEL,
+> +	POWER_SUPPLY_PROP_TEMP,
+> +	POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
+> +	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
+> +	POWER_SUPPLY_PROP_TECHNOLOGY,
+> +	POWER_SUPPLY_PROP_CHARGE_FULL,
+> +	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
+> +	POWER_SUPPLY_PROP_CYCLE_COUNT,
+> +	POWER_SUPPLY_PROP_ENERGY_NOW,
+> +	POWER_SUPPLY_PROP_POWER_AVG,
+> +	POWER_SUPPLY_PROP_HEALTH,
+> +	POWER_SUPPLY_PROP_MANUFACTURER,
 > +};
 > +
-> +struct ec_dynamic_table {
-> +	unsigned char device_id;
-> +	unsigned char hw_pin_num;
-> +};
-> +
-> +struct ec_smbuso_em0 {
-> +	unsigned char hw_pin_num;
-> +};
-> +
-> +struct pled_hw_pin_tbl {
-> +	unsigned int pled[6];
-> +};
-> +
-> +struct adv_ec_platform_data {
-> +	char *bios_product_name;
-
-Where is this used?
-
-[Campion] Get the module name once and upper application can get it by EC driver.
-
-> +	int sub_dev_nb;
-> +	u32 sub_dev_mask;
-> +	struct mutex lock;
-> +	struct device *dev;
-> +	struct class *adv_ec_class;
-> +
-> +	struct ec_dynamic_table *dym_tbl;
-> +};
-
-Check whether all of these really need to be in device data i.e. check
-that they are all used in sub-devices.
-
-[Campion] It seems donot use sub_dev_nb and sub_dev_mask in device data, i will remove it.
-
-> +int read_ad_value(struct adv_ec_platform_data *adv_ec_data, unsigned char hwpin,
-> +			unsigned char multi);
-> +int read_acpi_value(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +			unsigned char *pvalue);
-> +int write_acpi_value(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +			unsigned char value);
-> +int read_hw_ram(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +			unsigned char *data);
-> +int write_hw_ram(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> +			unsigned char data);
-> +int write_hwram_command(struct adv_ec_platform_data *adv_ec_data, unsigned char data);
-> +int read_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +			unsigned char *pvalue);
-> +int write_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +			unsigned char value);
-> +int read_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +			unsigned char *pvalue);
-> +int write_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> +			unsigned char value);
-> +
-> +#endif /* __LINUX_MFD_AHC1EC0_H */
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
-
+>  struct bq27xxx_dm_reg {
+>  	u8 subclass_id;
+>  	u8 offset;
+> @@ -911,6 +953,7 @@ static struct bq27xxx_dm_reg bq27621_dm_regs[] =3D { =
+=20
+> #define bq27z561_dm_regs 0  #define bq28z610_dm_regs 0  #define=20
+> bq34z100_dm_regs 0
+> +#define bq78z100_dm_regs 0
+> =20
+>  #define BQ27XXX_O_ZERO		BIT(0)
+>  #define BQ27XXX_O_OTDC		BIT(1) /* has OTC/OTD overtemperature flags */
+> @@ -969,6 +1012,7 @@ static struct {
+>  	[BQ28Z610]  =3D BQ27XXX_DATA(bq28z610,  0         , BQ27Z561_O_BITS),
+>  	[BQ34Z100]  =3D BQ27XXX_DATA(bq34z100,  0         , BQ27XXX_O_OTDC | BQ=
+27XXX_O_SOC_SI | \
+>  							  BQ27XXX_O_HAS_CI | BQ27XXX_O_MUL_CHEM),
+> +	[BQ78Z100]  =3D BQ27XXX_DATA(bq78z100,  0x00000000, BQ27Z561_O_BITS),
+>  };
+> =20
+>  static DEFINE_MUTEX(bq27xxx_list_lock); diff --git=20
+> a/drivers/power/supply/bq27xxx_battery_i2c.c=20
+> b/drivers/power/supply/bq27xxx_battery_i2c.c
+> index eb4f4284982f..46f078350fd3 100644
+> --- a/drivers/power/supply/bq27xxx_battery_i2c.c
+> +++ b/drivers/power/supply/bq27xxx_battery_i2c.c
+> @@ -248,6 +248,7 @@ static const struct i2c_device_id bq27xxx_i2c_id_tabl=
+e[] =3D {
+>  	{ "bq27z561", BQ27Z561 },
+>  	{ "bq28z610", BQ28Z610 },
+>  	{ "bq34z100", BQ34Z100 },
+> +	{ "bq78z100", BQ78Z100 },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(i2c, bq27xxx_i2c_id_table); @@ -284,6 +285,7 @@=20
+> static const struct of_device_id bq27xxx_battery_i2c_of_match_table[] =3D=
+ {
+>  	{ .compatible =3D "ti,bq27z561" },
+>  	{ .compatible =3D "ti,bq28z610" },
+>  	{ .compatible =3D "ti,bq34z100" },
+> +	{ .compatible =3D "ti,bq78z100" },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, bq27xxx_battery_i2c_of_match_table);
+> diff --git a/include/linux/power/bq27xxx_battery.h=20
+> b/include/linux/power/bq27xxx_battery.h
+> index 111a40d0d3d5..ac17618043b1 100644
+> --- a/include/linux/power/bq27xxx_battery.h
+> +++ b/include/linux/power/bq27xxx_battery.h
+> @@ -33,6 +33,7 @@ enum bq27xxx_chip {
+>  	BQ27Z561,
+>  	BQ28Z610,
+>  	BQ34Z100,
+> +	BQ78Z100,
+>  };
+> =20
+>  struct bq27xxx_device_info;
+> --
+> 2.17.1
+>=20
