@@ -2,117 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E678C342713
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 21:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0C034272B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 21:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbhCSUlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 16:41:02 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:53467 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbhCSUkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 16:40:39 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id c7471d42;
-        Fri, 19 Mar 2021 21:40:32 +0100 (CET)
-Date:   Fri, 19 Mar 2021 21:40:32 +0100 (CET)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Marcin Wojtas <mw@semihalf.com>
-Cc:     maz@kernel.org, gregory.clement@bootlin.com,
-        sven.auhagen@voleatech.de, axboe@kernel.dk, hdegoede@redhat.com,
-        robh+dt@kernel.org, tglx@linutronix.de, andrew@lunn.ch,
-        devicetree@vger.kernel.org, antoine.tenart@bootlin.com,
-        viresh.kumar@linaro.org, rjw@rjwysocki.net,
-        maxime.chevallier@bootlin.com, linux-ide@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com,
-        linux-arm-kernel@lists.infradead.org, jaz@semihalf.com
-In-Reply-To: <CAPv3WKdfywQpBx0HpeBTAZ2G5U+jFVQ6We8J_WeK7sYgWNiuJg@mail.gmail.com>
-        (message from Marcin Wojtas on Fri, 19 Mar 2021 10:48:08 +0100)
-Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop
- a hack in the IRQ subsystem
-References: <20201109173948.96663-1-sven.auhagen@voleatech.de>
- <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
- <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
- <87czvviok9.fsf@BL-laptop>
- <CAPv3WKfiuV5h2m=579-3UajwBFtHB2MP5tdSvzxTZo+0MPnZNA@mail.gmail.com>
- <87wnu3h4hw.wl-maz@kernel.org> <CAPv3WKdfywQpBx0HpeBTAZ2G5U+jFVQ6We8J_WeK7sYgWNiuJg@mail.gmail.com>
-MIME-version: 1.0
-Content-type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Message-ID: <c1bcbd5402f4af12@bloch.sibelius.xs4all.nl>
+        id S230288AbhCSUvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 16:51:13 -0400
+Received: from finn.gateworks.com ([108.161.129.64]:53106 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230273AbhCSUus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 16:50:48 -0400
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1lNM4x-001fYH-Hz; Fri, 19 Mar 2021 20:50:43 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: imx: add imx8mm gw7901 support
+Date:   Fri, 19 Mar 2021 13:50:40 -0700
+Message-Id: <20210319205041.15579-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Marcin Wojtas <mw@semihalf.com>
-> Date: Fri, 19 Mar 2021 10:48:08 +0100
-> 
-> Hi Marc,
-> 
-> pt., 19 mar 2021 o 10:33 Marc Zyngier <maz@kernel.org> napisał(a):
-> >
-> > On Fri, 19 Mar 2021 08:08:34 +0000,
-> > Marcin Wojtas <mw@semihalf.com> wrote:
-> > >
-> > > HI Gregory,
-> > >
-> > > pt., 19 mar 2021 o 08:35 Gregory CLEMENT <gregory.clement@bootlin.com>
-> > > napisał(a):
-> > > >
-> > > > Hello Marcin,
-> > > >
-> > > > > [Resend in plain text]
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > Just letting everyone know - merging only the DT part of this patchset
-> > > > > broke AHCI on all Marvell Armada 7k8k / CN913x platforms in v5.11
-> > > > > release.
-> > > >
-> > > > It's unfortunate that we didn't know this when v5.11-rc1 was
-> > > > released. However it is still time for a fix, I will submit it.
-> > > > As I explained in the other email when I applied this I really though
-> > > > that the driver part will be applied, I don't know what happened here.
-> > > >
-> > >
-> > > Sure, looking at the thread it looks more of a communication issue. I
-> > > am also surprised the breakage went unnoticed for a while (unless
-> > > everyone is using edk2, like myself :) ). I think it would be good to
-> > > revert the change on top of v5.11.x. The drivers adoption would have to
-> > > land before v5.12 though, so that not to repeat the problem during next release.
-> > >
-> > > Small rant:
-> > > A general issue with the DT binding changes of this kind (previously
-> > > clocks, ICU, etc.) that I have, is a side effect of incompatibility
-> > > with older kernels/other OSs. The latter must follow the
-> > > modifications, but you can forget of booting e.g. Debian Buster with
-> > > the ToT device tree. Therefore in edk2 I do not update the device tree
-> > > fork to often and need to tweak it in order to have the widest support
-> > > coverage.
-> >
-> > Unfortunately, this has been the case for this machine since it became
-> > available. I can happily boot any kernel on other systems of the same
-> > vintage without touching anything firmware related, which is crucial
-> > to identify regressions.
-> >
-> > The A8k requires instead a per-kernel DT, something that only works if
-> > you treat it as an embedded system, and not a standard system (which
-> > is why mine has been collecting dust for some time now). I don't think
-> > the maintainers have ever been interested in solving this problem.
-> >
-> > As for ACPI, that'd probably be the best thing that can happen to this
-> > platform. Not sure that's remotely possible though, given how
-> > "interesting" the HW is.
-> 
-> ACPI has been up and running for this platform for a couple of years
-> now, on MacchiatoBin you get USB, SATA, network ports, PCIE and even
-> SD/MMC (the latter was merged in v5.11 kernel).
+The Gateworks GW7901 is an ARM based single board computer (SBC)
+featuring:
+ - i.MX8M Mini SoC
+ - LPDDR4 DRAM
+ - eMMC FLASH
+ - SPI FRAM
+ - Gateworks System Controller (GSC)
+ - Atmel ATECC Crypto Authentication
+ - USB 2.0
+ - Microchip GbE Switch
+ - Multiple multi-protocol RS232/RS485/RS422 Serial ports
+ - onboard 802.11ac WiFi / BT
+ - microSD socket
+ - miniPCIe socket with PCIe, USB 2.0 and dual SIM sockets
+ - Wide range DC power input
+ - 802.3at PoE
 
-Unfortunately ACPI doesn't describe how the SFP cages are connected.
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+v2:
+ - add Rob's Acked-by
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-As soon as GPIOs and I2C busses are involved device trees are so much
-better than ACPI, and I wouldn't really be interested in adding the
-necessary OS support the network ports with ACPI in OpenBSD.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 297c87f45db8..9af86ce3142d 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -684,6 +684,7 @@ properties:
+               - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw73xx-0x       # i.MX8MM Gateworks Development Kit
++              - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
+               - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
+               - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-MX8MM module
+           - const: fsl,imx8mm
+-- 
+2.17.1
 
-Cheers,
-
-Mark
