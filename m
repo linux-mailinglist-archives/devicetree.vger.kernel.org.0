@@ -2,109 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B783416F6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 08:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0EC3416F8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 08:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234023AbhCSH5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 03:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234267AbhCSH46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 03:56:58 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D127C06174A
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 00:56:58 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so7693462ota.9
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 00:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wKLDlhxIRmQDfaYHrkzF6lP07Hoq0etlvj8YZ+tMFUY=;
-        b=t9AFpqhrO7yibnxTuuF+1EaucOklRGoqoNi7aLr0dcqaIZ1U5xcwcprdas6SQDFJai
-         HpryM94huCuIp/QGnmzNcotYmO2p0o/wsK7Gfb2mDtd28yrpgO56I/HUsyBKGQ2lwIfT
-         SF9HV1G3aQnyGhpWIapGROwcXqIfayKM9viiLSel+mrccgYzu9kEhS3/vimKJiZ1AWJH
-         4/BApaSvim0LD7IrH80un2OfTgYGJqQF9+QVzOGi7kgC1ahheJDQBvBq0aBSDw8XIJ9/
-         CXuzHasC41ADGVeGy2w7fA5K+eTCx+mq1lYBbbVbFQFX+D3dncCS9ANCERYzJjyi6Ono
-         +yfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wKLDlhxIRmQDfaYHrkzF6lP07Hoq0etlvj8YZ+tMFUY=;
-        b=q6O91REDeatzssxTVuyCYsKu2RXYiizqgNDE2eUGLRBvmZpsvZ7JiPcgR2h60WWBTj
-         cPNb/SCg+vknf6jsT9QFlKCHR2+X2t2aoTbSOdDiyvNemy+zYeInr18n57JYjBurVarb
-         HUFUKTRba+5aWMYZX9K27i6YAZU4hP7bDpkrN3+cvzhHK79SZLOcL4Jnd4wwAuTwmRuu
-         If9qvtYMHkPLcEw05brKtyShElSXPY4TXTRN15Kq1eHtkrcQcpZJ3MtIZFBWyv172Czo
-         NsRKusTLdF82nNAQI8cUJmI2VjP7sgi6IebAi5PdhM45woMvMxQJ7AD/qMFyZHGXyXbG
-         NAwg==
-X-Gm-Message-State: AOAM531opmuWqyhh2NxKMetz3lbAEK4e17BwowXKxRTKC/aFhBtXJJmB
-        LQYuZEjQs3LWU6y1dffxiWJZSgTzlJC4sCEb0XkYdQ==
-X-Google-Smtp-Source: ABdhPJzeCdl1/RBLyUCwTe6EyBOOE3ePCeoQEaUMRUr1SSxHvuhC9Ilw+F4ytyNulEB3u0lsp7idrYwaWv3PWHg1C10=
-X-Received: by 2002:a05:6830:1352:: with SMTP id r18mr57884otq.283.1616140617798;
- Fri, 19 Mar 2021 00:56:57 -0700 (PDT)
+        id S233902AbhCSH5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 03:57:55 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:48621 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234281AbhCSH5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 03:57:39 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1616140659; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=zTtVE4UELiIUK/7N7IxA0XTHBceDWZcQFMbG5n3Nyqw=;
+ b=HrxmRRkoGDW09I9OMqVgHf4FFwNg9cH03mRRRat7DfpmL+2TFJP2yAkAel6kcolI4Xa0IPnD
+ IcpcZDQ9fpiGtAiwyjgvSit3onkx/f35VZHXxcSD4PyZHZkRjw21oRHBm7WXrdJsGJh9MLp9
+ g8DRi2RwXFEXUByBxhFp1T+rB7U=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6054596d5d70193f8849fbff (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Mar 2021 07:57:33
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 741D8C43464; Fri, 19 Mar 2021 07:57:33 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 68FF8C433C6;
+        Fri, 19 Mar 2021 07:57:32 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210212154614.38604-1-sudeep.holla@arm.com> <20210316143429.tdyyulkml4ypdixy@bogus>
- <CAHUa44HdHdN7tES60vcBqRo=afUtxNHx1vnYx5JmX-UocV5PRA@mail.gmail.com>
-In-Reply-To: <CAHUa44HdHdN7tES60vcBqRo=afUtxNHx1vnYx5JmX-UocV5PRA@mail.gmail.com>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Fri, 19 Mar 2021 08:56:47 +0100
-Message-ID: <CAHUa44FKdj0a9Zd4Kd__J400Z9bvAKgN2bSOKeqHYO1_C1zr5g@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] firmware: Add initial support for Arm FF-A
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 19 Mar 2021 13:27:32 +0530
+From:   skakit@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        David Collins <collinsd@codeaurora.org>
+Subject: Re: [PATCH V2 2/5] regulator: qcom-rpmh: Add PM7325/PMR735A regulator
+ support
+In-Reply-To: <YFEMezCRjK2W6THZ@google.com>
+References: <1615816454-1733-1-git-send-email-skakit@codeaurora.org>
+ <1615816454-1733-3-git-send-email-skakit@codeaurora.org>
+ <YFEMezCRjK2W6THZ@google.com>
+Message-ID: <bdd081f3ec5df5f6ecb2a4c4d826778b@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 3:09 PM Jens Wiklander
-<jens.wiklander@linaro.org> wrote:
->
-> Hi Sudeep,
->
-> On Tue, Mar 16, 2021 at 3:34 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > Hi Jens,
-> >
-> > On Fri, Feb 12, 2021 at 03:46:07PM +0000, Sudeep Holla wrote:
-> > > Hi all,
-> > >
-> > > This is very basic implementation for in-kernel support for Arm FF-A
-> > > specification.
-> > >
-> > > Arm Firmware Framework for Armv8-A specification[1] describes a software
-> > > architecture that provides mechanism to utilise the virtualization
-> > > extension to isolate software images and describes interfaces that
-> > > standardize communication between the various software images. This
-> > > includes communication between images in the Secure and Normal world.
-> > >
-> > > The main idea here is to create FFA device to establish any communication
-> > > with a secure partition. This is currently tested with OPTEE(with changes
-> > > to OPTEE driver adding FFA as transport)
-> > >
-> >
-> > Since you reviewed the last version, it would be helpful if you provide
-> > Reviewed-by or Tested-by if you happy with this version. I would like to
-> > get this initial version merged for v5.13
->
-> I've tested this in a few of my setups and everything looks over all
-> fine, so please apply:
-> Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
->
-> I'm also double checking the details of the patches for some further
-> feedback. Stay tuned.
+Hi Matthias,
 
-I'm done reviewing this patchset. I had a comment about a TODO in
-"arm64: smccc: Add support for SMCCCv1.2 input/output registers", I
-suppose it isn't very urgent with a 32-bit implementation.
+Thanks for reviewing the patches!
 
-Cheers,
-Jens
+On 2021-03-17 01:22, Matthias Kaehlcke wrote:
+> On Mon, Mar 15, 2021 at 07:24:11PM +0530, satya priya wrote:
+>> Add support for PM7325/PMR735A regulators. This ensures
+>> that consumers are able to modify the physical state of PMIC
+>> regulators.
+>> 
+>> Signed-off-by: satya priya <skakit@codeaurora.org>
+>> ---
+>> Changes in V2:
+>>  - No change.
+>> 
+>>  drivers/regulator/qcom-rpmh-regulator.c | 53 
+>> ++++++++++++++++++++++++++++++++-
+>>  1 file changed, 52 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/regulator/qcom-rpmh-regulator.c 
+>> b/drivers/regulator/qcom-rpmh-regulator.c
+>> index 9471890..3509523 100644
+>> --- a/drivers/regulator/qcom-rpmh-regulator.c
+>> +++ b/drivers/regulator/qcom-rpmh-regulator.c
+>> @@ -1,5 +1,5 @@
+>>  // SPDX-License-Identifier: GPL-2.0
+>> -// Copyright (c) 2018-2019, The Linux Foundation. All rights 
+>> reserved.
+>> +// Copyright (c) 2018-2021, The Linux Foundation. All rights 
+>> reserved.
+>> 
+>>  #define pr_fmt(fmt) "%s: " fmt, __func__
+>> 
+>> @@ -1042,6 +1042,49 @@ static const struct rpmh_vreg_init_data 
+>> pmx55_vreg_data[] = {
+>>  	{},
+>>  };
+>> 
+>> +static const struct rpmh_vreg_init_data pm7325_vreg_data[] = {
+>> +	RPMH_VREG("smps1",  "smp%s1",  &pmic5_hfsmps510, "vdd-s1"),
+>> +	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps520, "vdd-s2"),
+>> +	RPMH_VREG("smps3",  "smp%s3",  &pmic5_ftsmps520, "vdd-s3"),
+>> +	RPMH_VREG("smps4",  "smp%s4",  &pmic5_ftsmps520, "vdd-s4"),
+>> +	RPMH_VREG("smps5",  "smp%s5",  &pmic5_ftsmps520, "vdd-s5"),
+>> +	RPMH_VREG("smps6",  "smp%s6",  &pmic5_ftsmps520, "vdd-s6"),
+>> +	RPMH_VREG("smps7",  "smp%s7",  &pmic5_ftsmps520, "vdd-s7"),
+>> +	RPMH_VREG("smps8",  "smp%s8",  &pmic5_hfsmps510, "vdd-s8"),
+>> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_nldo,      
+>> "vdd-l1-l4-l12-l15"),
+>> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_pldo,      "vdd-l2-l7"),
+>> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_nldo,      "vdd-l3"),
+>> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo,      
+>> "vdd-l1-l4-l12-l15"),
+>> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_nldo,      "vdd-l5"),
+>> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_nldo,      "vdd-l6-l9-l10"),
+>> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo,      "vdd-l2-l7"),
+>> +	RPMH_VREG("ldo8",   "ldo%s8",  &pmic5_nldo,      "vdd-l8"),
+>> +	RPMH_VREG("ldo9",   "ldo%s9",  &pmic5_nldo,      "vdd-l6-l9-l10"),
+>> +	RPMH_VREG("ldo10",  "ldo%s10", &pmic5_nldo,      "vdd-l6-l9-l10"),
+>> +	RPMH_VREG("ldo11",  "ldo%s11", &pmic5_pldo_lv,   
+>> "vdd-l11-l17-l18-l19"),
+>> +	RPMH_VREG("ldo12",  "ldo%s12", &pmic5_nldo,      
+>> "vdd-l1-l4-l12-l15"),
+>> +	RPMH_VREG("ldo13",  "ldo%s13", &pmic5_nldo,      "vdd-l13"),
+>> +	RPMH_VREG("ldo14",  "ldo%s14", &pmic5_nldo,      "vdd-l14-l16"),
+>> +	RPMH_VREG("ldo15",  "ldo%s15", &pmic5_nldo,      
+>> "vdd-l1-l4-l12-l15"),
+>> +	RPMH_VREG("ldo16",  "ldo%s16", &pmic5_nldo,      "vdd-l14-l16"),
+>> +	RPMH_VREG("ldo17",  "ldo%s17", &pmic5_pldo_lv,   
+>> "vdd-l11-l17-l18-l19"),
+>> +	RPMH_VREG("ldo18",  "ldo%s18", &pmic5_pldo_lv,   
+>> "vdd-l11-l17-l18-l19"),
+>> +	RPMH_VREG("ldo19",  "ldo%s19", &pmic5_pldo_lv,   
+>> "vdd-l11-l17-l18-l19"),
+>> +};
+> 
+> Could you help me understand these funky supply names? I see other RPMh
+> regulators also have them, so they are probably totally fine, but it
+> isn't clear to me what exactly the names represent. Apparently the LDO
+> itself is in the supply name, but many LDOs also list others.
+
+These supply names are taken from powergrid. They are basically the 
+parent supply names.
+For example ldo2 and ldo7 have the parent supply vdd-l2-l7. Hence we 
+gave supply name vdd-l2-l7 for these 2 regulators.
+
+Thanks,
+Satya Priya
