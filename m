@@ -2,227 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 266B4341554
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B8C34155B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233989AbhCSGVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 02:21:05 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:56531 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232992AbhCSGUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Mar 2021 02:20:39 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 9C2E3580A7A;
-        Fri, 19 Mar 2021 02:20:38 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Fri, 19 Mar 2021 02:20:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=DQ0e988igZ7sIe0ymg68c1lDju
-        Q6xtIxXzAGPLSh1nI=; b=iUz/zNDta8Y4JVXEyCbmxRcBFb5BonujfrZcF74o1l
-        Lq9sUqDmc7QhyS25xjwdSc17BL7nsG8FJ4BqoJw+cVF9k/Bs6A4Y2pSY+mpRdzd8
-        uDzMOQCJgIixT0HWC947AfbzNVGU9TXK1fJoIHykU9K/neeKvT2/V55RjotrPW3f
-        0bdAYas6+ipiflJbLSUZmDhU3tm4wBe22TJKRzLjUIfgoEqNIX6SMmA+bw6KHLWQ
-        ViwTslmqAoZFFa54qdeXE6XEVlD6bGKBhFv2lAr8lGBUkUU09vn0CQ8xApEzHE8K
-        xImiHcEUDKCI5mJDACqyPD5b7ZnF5SV9V8CCgXxdloww==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=DQ0e988igZ7sIe0ym
-        g68c1lDjuQ6xtIxXzAGPLSh1nI=; b=p9WxThGyse3NLP1n85Tefdn9wRP9DroOd
-        Wt4kI5kWTS9qWGNJ6qXYJiCqAu1jViYKt6ai6060xTok9QaR6A2uG41/j3n6XWei
-        KwmirTXI9Fs8k2iLrMqeORuUb/qm9poyfrkF2CJgatKUpHa2lVCaguTZCQQnaB5J
-        dlg+6OAztW+KgVz0QhCOjn7XkihFW7ZTO38WqYp80YrpKWcyWbyinNAMZ6zcY27y
-        GjqYzHpI7jZ9UYJx1sdBtBpfnXt9NMjm26cJWiT3CwhOALYTwSd70Ai3L8tyrIfg
-        XLDPhVc00BNGyJsWvdwZf84J43/u+LFALGXA/tJ4HUXpHq1Vl4zkg==
-X-ME-Sender: <xms:tEJUYKrEAw83XIPwBr00WxFhp2WZ5d-BLl6z3o_LC1ngenwJsl8i9w>
-    <xme:tEJUYIqU-cfA8GFwKefHDBOiqY2fT6E3oc5TJ-SFBUh1js33ec0n1ZYnPXJTrLztR
-    ZYMn5DRwXIFH6DPDg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefjedgleegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
-    ihgurdgruheqnecuggftrfgrthhtvghrnhepieelfedtfeetveffgeetteetveeitefhke
-    etvdefteevledvheekveeihfekffefnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdp
-    ihhnthgvlhdrtghomhdpghhithhhuhgsrdgtohhmpdgumhhtfhdrohhrghenucfkphepud
-    dukedrvddutddrudekuddrheehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
-    pehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:tEJUYPOSUPMwivbIyWS38m-BJhaItSyeFld-Wx5cogxEeh1WiUkorA>
-    <xmx:tEJUYJ5PPHRMmBGYzM-2rEZsrOVsOtPxT2ZI7YgQu6OQT5WkuFXiTQ>
-    <xmx:tEJUYJ6eIVNBF6GlxfKCVkaUi-NiLfOELpLPCIJJw01JAijIfOQfdg>
-    <xmx:tkJUYNr0HfU6wBe_dLUJAnGFkWxAV5APce1QEPqn88fUpE8Wv0FuNw>
-Received: from localhost.localdomain (ppp118-210-181-55.adl-adc-lon-bras34.tpg.internode.on.net [118.210.181.55])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3FD8C1080057;
-        Fri, 19 Mar 2021 02:20:31 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
-        minyard@acm.org
-Cc:     joel@jms.id.au, ryan_chen@aspeedtech.com,
-        devicetree@vger.kernel.org, tmaimon77@gmail.com,
-        linux-aspeed@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        avifishman70@gmail.com, venture@google.com,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        tali.perry1@gmail.com, robh+dt@kernel.org, lee.jones@linaro.org,
-        chiawei_wang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        benjaminfair@google.com
-Subject: [PATCH v2 00/21] ipmi: Allow raw access to KCS devices
-Date:   Fri, 19 Mar 2021 16:49:30 +1030
-Message-Id: <20210319061952.145040-1-andrew@aj.id.au>
-X-Mailer: git-send-email 2.27.0
+        id S233883AbhCSGZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 02:25:56 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46340 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233865AbhCSGZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 02:25:41 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12J6PWUP099188;
+        Fri, 19 Mar 2021 01:25:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616135132;
+        bh=9chgDqoD1UxYGC4NutX/T+3ytMmCVetZiooHAF2T+dQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=KZvO6j0VEJoSckt1duMotqEPfekp5W2AXSoU43oq8aFd4htxcchqpXmHyo5leLMyF
+         Hv1VGZhnhfow6pLCW62NOkWLvW8rFZQvRA6UV10bU6oZylHAk7360L/ZOokc5uAHMJ
+         b32rKlvar3cwd7cWmQ3ySikqKZp3EzEEv+LvBmdg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12J6PWPA004672
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Mar 2021 01:25:32 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 19
+ Mar 2021 01:25:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 19 Mar 2021 01:25:32 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12J6PTk2068016;
+        Fri, 19 Mar 2021 01:25:30 -0500
+Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am64: Add GPIO DT nodes
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210319051950.17549-1-a-govindraju@ti.com>
+ <20210319051950.17549-2-a-govindraju@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <b736ac35-6f2b-a31f-2704-2412ab3bbec4@ti.com>
+Date:   Fri, 19 Mar 2021 11:55:28 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210319051950.17549-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-This series is a bit of a mix of things, but its primary purpose is to
-expose BMC KCS IPMI devices to userspace in a way that enables userspace
-to talk to host firmware using protocols that are not IPMI.
 
-v1 can be found here:
+On 19/03/21 10:49 am, Aswath Govindraju wrote:
+> Add device tree nodes for GPIO modules and interrupt controller in main
+> and mcu domains.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-https://lore.kernel.org/openbmc/20210219142523.3464540-1-andrew@aj.id.au/
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
-Changes in v2 include:
+Thanks and regards,
+Lokesh
 
-* A rebase onto v5.12-rc2
-* Incorporation of off-list feedback on SerIRQ configuration from
-  Chiawei
-* Further validation on hardware for ASPEED KCS devices 2, 3 and 4
-* Lifting the existing single-open constraint of the IPMI chardev
-* Fixes addressing Rob's feedback on the conversion of the ASPEED KCS
-  binding to dt-schema
-* Fixes addressing Rob's feedback on the new aspeed,lpc-interrupts
-  property definition for the ASPEED KCS binding
-
-A new chardev device is added whose implementation exposes the Input
-Data Register (IDR), Output Data Register (ODR) and Status Register
-(STR) via read() and write(), and implements poll() for event
-monitoring.
-
-The existing /dev/ipmi-kcs* chardev interface exposes the KCS devices in
-a way which encoded the IPMI protocol in its behaviour. However, as
-LPC[0] KCS devices give us bi-directional interrupts between the host
-and a BMC with both a data and status byte, they are useful for purposes
-beyond IPMI.
-
-As a concrete example, libmctp[1] implements a vendor-defined MCTP[2]
-binding using a combination of LPC Firmware cycles for bulk data
-transfer and a KCS device via LPC IO cycles for out-of-band protocol
-control messages[3]. This gives a throughput improvement over the
-standard KCS binding[4] while continuing to exploit the ease of setup of
-the LPC bus for early boot firmware on the host processor.
-
-The series takes a bit of a winding path to achieve its aim:
-
-1. It begins with patches 1-5 put together by Chia-Wei, which I've
-rebased on v5.12-rc2. These fix the ASPEED LPC bindings and other
-non-KCS LPC-related ASPEED device drivers in a way that enables the
-SerIRQ patches at the end of the series. With Joel's review I'm hoping
-these 5 can go through the aspeed tree, and that the rest can go through
-the IPMI tree.
-
-2. Next, patches 6-13 fairly heavily refactor the KCS support in the
-IPMI part of the tree, re-architecting things such that it's possible to
-support multiple chardev implementations sitting on top of the ASPEED
-and Nuvoton device drivers. However, the KCS code didn't really have
-great separation of concerns as it stood, so even if we disregard the
-multiple-chardev support I think the cleanups are worthwhile.
-
-3. Patch 14 adds some interrupt management capabilities to the KCS
-device drivers in preparation for patch 16, which introduces the new
-"raw" KCS device interface. I'm not stoked about the device name/path,
-so if people are looking to bikeshed something then feel free to lay
-into that.
-
-4. The remaining patches switch the ASPEED KCS devicetree binding to
-dt-schema, add a new interrupt property to describe the SerIRQ behaviour
-of the device and finally clean up Serial IRQ support in the ASPEED KCS
-driver.
-
-Rob: The dt-binding patches still come before the relevant driver
-changes, I tried to keep the two close together in the series, hence the
-bindings changes not being patches 1 and 2.
-
-I've exercised the series under qemu with the rainier-bmc machine plus
-additional patches for KCS support[5]. I've also substituted this series in
-place of a hacky out-of-tree driver that we've been using for the
-libmctp stack and successfully booted the host processor under our
-internal full-platform simulation tools for a Rainier system.
-
-Note that this work touches the Nuvoton driver as well as ASPEED's, but
-I don't have the capability to test those changes or the IPMI chardev
-path. Tested-by tags would be much appreciated if you can exercise one
-or both.
-
-Please review!
-
-Andrew
-
-[0] https://www.intel.com/content/dam/www/program/design/us/en/documents/low-pin-count-interface-specification.pdf
-[1] https://github.com/openbmc/libmctp/
-[2] https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.1.pdf
-[3] https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-astlpc.md
-[4] https://www.dmtf.org/sites/default/files/standards/documents/DSP0254_1.0.0.pdf
-[5] https://lore.kernel.org/qemu-devel/20210309131641.2709380-1-clg@kaod.org/
-
-Andrew Jeffery (16):
-  ipmi: kcs_bmc_aspeed: Use of match data to extract KCS properties
-  ipmi: kcs_bmc: Make status update atomic
-  ipmi: kcs_bmc: Rename {read,write}_{status,data}() functions
-  ipmi: kcs_bmc: Split out kcs_bmc_cdev_ipmi
-  ipmi: kcs_bmc: Turn the driver data-structures inside-out
-  ipmi: kcs_bmc: Split headers into device and client
-  ipmi: kcs_bmc: Strip private client data from struct kcs_bmc
-  ipmi: kcs_bmc: Decouple the IPMI chardev from the core
-  ipmi: kcs_bmc: Allow clients to control KCS IRQ state
-  ipmi: kcs_bmc: Don't enforce single-open policy in the kernel
-  ipmi: kcs_bmc: Add a "raw" character device interface
-  dt-bindings: ipmi: Convert ASPEED KCS binding to schema
-  dt-bindings: ipmi: Add optional SerIRQ property to ASPEED KCS devices
-  ipmi: kcs_bmc_aspeed: Implement KCS SerIRQ configuration
-  ipmi: kcs_bmc_aspeed: Fix IBFIE typo from datasheet
-  ipmi: kcs_bmc_aspeed: Optionally apply status address
-
-Chia-Wei, Wang (5):
-  dt-bindings: aspeed-lpc: Remove LPC partitioning
-  ARM: dts: Remove LPC BMC and Host partitions
-  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
-  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
-  soc: aspeed: Adapt to new LPC device tree layout
-
- Documentation/ABI/testing/dev-raw-kcs         |  25 +
- .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml | 106 +++
- .../bindings/ipmi/aspeed-kcs-bmc.txt          |  33 -
- .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 +--
- arch/arm/boot/dts/aspeed-g4.dtsi              |  70 +-
- arch/arm/boot/dts/aspeed-g5.dtsi              | 121 ++--
- arch/arm/boot/dts/aspeed-g6.dtsi              | 123 ++--
- drivers/char/ipmi/Kconfig                     |  30 +
- drivers/char/ipmi/Makefile                    |   2 +
- drivers/char/ipmi/kcs_bmc.c                   | 534 ++++----------
- drivers/char/ipmi/kcs_bmc.h                   |  94 +--
- drivers/char/ipmi/kcs_bmc_aspeed.c            | 663 +++++++++++++-----
- drivers/char/ipmi/kcs_bmc_cdev_ipmi.c         | 570 +++++++++++++++
- drivers/char/ipmi/kcs_bmc_cdev_raw.c          | 443 ++++++++++++
- drivers/char/ipmi/kcs_bmc_client.h            |  47 ++
- drivers/char/ipmi/kcs_bmc_device.h            |  20 +
- drivers/char/ipmi/kcs_bmc_npcm7xx.c           |  97 ++-
- drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 +-
- drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 +-
- drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +-
- 20 files changed, 2132 insertions(+), 1006 deletions(-)
- create mode 100644 Documentation/ABI/testing/dev-raw-kcs
- create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
- delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-kcs-bmc.txt
- create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_ipmi.c
- create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_raw.c
- create mode 100644 drivers/char/ipmi/kcs_bmc_client.h
- create mode 100644 drivers/char/ipmi/kcs_bmc_device.h
-
--- 
-2.27.0
-
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 45 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  | 27 ++++++++++++++
+>  2 files changed, 72 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index a03b66456062..b997d13f9ec5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -373,6 +373,51 @@
+>  		clocks = <&k3_clks 145 0>;
+>  	};
+>  
+> +	main_gpio_intr: interrupt-controller0 {
+> +		compatible = "ti,sci-intr";
+> +		ti,intr-trigger-type = <1>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&gic500>;
+> +		#interrupt-cells = <1>;
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <3>;
+> +		ti,interrupt-ranges = <0 32 16>;
+> +	};
+> +
+> +	main_gpio0: gpio@600000 {
+> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
+> +		reg = <0x0 0x00600000 0x0 0x100>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&main_gpio_intr>;
+> +		interrupts = <190>, <191>, <192>,
+> +			     <193>, <194>, <195>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		ti,ngpio = <87>;
+> +		ti,davinci-gpio-unbanked = <0>;
+> +		power-domains = <&k3_pds 77 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 77 0>;
+> +		clock-names = "gpio";
+> +	};
+> +
+> +	main_gpio1: gpio@601000 {
+> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
+> +		reg = <0x0 0x00601000 0x0 0x100>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&main_gpio_intr>;
+> +		interrupts = <180>, <181>, <182>,
+> +			     <183>, <184>, <185>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		ti,ngpio = <88>;
+> +		ti,davinci-gpio-unbanked = <0>;
+> +		power-domains = <&k3_pds 78 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 78 0>;
+> +		clock-names = "gpio";
+> +	};
+> +
+>  	sdhci0: mmc@fa10000 {
+>  		compatible = "ti,am64-sdhci-8bit";
+>  		reg = <0x00 0xfa10000 0x00 0x260>, <0x00 0xfa18000 0x00 0x134>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> index 1d2be485a669..99e94dee1bd4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> @@ -73,4 +73,31 @@
+>  		power-domains = <&k3_pds 148 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 148 0>;
+>  	};
+> +
+> +	mcu_gpio_intr: interrupt-controller1 {
+> +		compatible = "ti,sci-intr";
+> +		ti,intr-trigger-type = <1>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&gic500>;
+> +		#interrupt-cells = <1>;
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <5>;
+> +		ti,interrupt-ranges = <0 104 4>;
+> +	};
+> +
+> +	mcu_gpio0: gpio@4201000 {
+> +		compatible = "ti,am64-gpio", "keystone-gpio";
+> +		reg = <0x0 0x4201000 0x0 0x100>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&mcu_gpio_intr>;
+> +		interrupts = <30>, <31>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		ti,ngpio = <23>;
+> +		ti,davinci-gpio-unbanked = <0>;
+> +		power-domains = <&k3_pds 79 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 79 0>;
+> +		clock-names = "gpio";
+> +	};
+>  };
+> 
