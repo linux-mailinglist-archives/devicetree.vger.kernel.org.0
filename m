@@ -2,1234 +2,656 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 602D0342326
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 18:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B12B342387
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 18:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbhCSRYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 13:24:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229949AbhCSRY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 13:24:27 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0207CC06175F;
-        Fri, 19 Mar 2021 10:24:27 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id y1so12889085ljm.10;
-        Fri, 19 Mar 2021 10:24:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=knT3sgBKpC8m3bSjdXMf/0yGj3b2IDwpY4JDOcyh67o=;
-        b=AI0ZWp/c2lO3DVMWzejxsRC0nWr9fXwc6jmbf82Hw0pqtDjogdY35rTWLhIlOT9Yfp
-         o/yeSeFgh3YJJUsolhyLmAhmJ/EZuBaAEFKccYJdayiszA3KCL8az6TRRXzLAIGOS86k
-         tL8tceyc712s/DcESU291ehP1lzZIW6UNnevjyneF4Ubu5lt8aDhwZkyBTIXqxzP7sF6
-         Ow7Tb6A6oDKGiCqM8GeKn/A+wSZWMYDZJcbWLk3PZuS7pdO5VYAJPH97R2utM5cO6qhJ
-         r/Dol/qgWQrRMnHjWPV1fiXUcRxTlwJglYW8H6qfGmU3AZoQFOlA0f7N9UU5jxAHpHPk
-         /w5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=knT3sgBKpC8m3bSjdXMf/0yGj3b2IDwpY4JDOcyh67o=;
-        b=aNm/nt12XmVqcvXHJnC0OB22oFzi1GXHWnGyj+QlasjzDIj1lUWiN33Oi8O2GFGGew
-         n+A0tV9FNIPwp1WsLfzqDJ2RnVrBBs3EnhxKzrcvZlX46m3Qvb1CRVye2LfQZ5Nw/FR3
-         kRd02KwdITysvcJkRJXOOaeLJ0IWTGLYzJgD8r/DeoPKecSj8CMAlufDwCWk+d1Rj6SW
-         uhFECdAZssqpgY3qbSsJAgI1B5zW8Gt0f4vaX2r54OSy/Kc+cupvN45SVtM0pAjqTio2
-         8bU5c2ryp5vQdZKpN/S2MVAuAabPQZhuP/2V7SlEJxE/8nU49QqyxiRhBc+0c1nkLK3n
-         Ce/Q==
-X-Gm-Message-State: AOAM531HjJmGwPlWSVIVShyPL0rHP5BiYYFI/Wza6Gqm+gPT6NJJ2NGG
-        lIFAksPOUSXJbJBDgLI7Gow=
-X-Google-Smtp-Source: ABdhPJwNI/sEqAQIyYLgMiRaYvGqqcO038O/hSR66sKnpxUBSEeg6FDFyLS5ZucdoW1O6AIajbCkGA==
-X-Received: by 2002:a2e:144c:: with SMTP id 12mr1524905lju.113.1616174665265;
-        Fri, 19 Mar 2021 10:24:25 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:540:2421:e100:198e:5123:d77b:1e2e])
-        by smtp.gmail.com with ESMTPSA id y17sm693237lfb.132.2021.03.19.10.24.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Mar 2021 10:24:24 -0700 (PDT)
-From:   nikitos.tr@gmail.com
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nikita Travkin <nikitos.tr@gmail.com>
-Subject: [PATCH 2/2] soc: qcom: Add Qualcomm Memshare QMI service
-Date:   Fri, 19 Mar 2021 22:23:21 +0500
-Message-Id: <20210319172321.22248-3-nikitos.tr@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210319172321.22248-1-nikitos.tr@gmail.com>
-References: <20210319172321.22248-1-nikitos.tr@gmail.com>
+        id S229949AbhCSRkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 13:40:51 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:54543 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229974AbhCSRkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 13:40:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1616175650;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=0YXeb0VKeoqxu9ThF0gJfQ+jHH9X/ktjWqNHpo+SoEg=;
+        b=M6xCE+s0RV8h832A6nQta1YR1/KQaMYCUVy+WbANcLU3K7gZw9bQgDRMgy40vXlEpdy7kv
+        2tGl4d+wn3x3noi/5FxYgOY+R6difCPaOd8t5waYinw8qqU/OJBoFxL1Lejw88stet5nWB
+        IaFWLqUjY9lsH9cdmto7DqmnBwbTpcw=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-142-UAsLvp-TMoOHGryHKnjLnw-1; Fri, 19 Mar 2021 13:40:47 -0400
+X-MC-Unique: UAsLvp-TMoOHGryHKnjLnw-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com [10.5.11.22])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 70A94190B2A8;
+        Fri, 19 Mar 2021 17:40:44 +0000 (UTC)
+Received: from [10.36.113.141] (ovpn-113-141.ams2.redhat.com [10.36.113.141])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 5960910013D7;
+        Fri, 19 Mar 2021 17:40:34 +0000 (UTC)
+Subject: Re: [PATCH v13 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com
+References: <20210302092644.2553014-1-jean-philippe@linaro.org>
+ <20210302092644.2553014-11-jean-philippe@linaro.org>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <a5f89d03-301e-8946-2e14-5805e5bc1cb8@redhat.com>
+Date:   Fri, 19 Mar 2021 18:40:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210302092644.2553014-11-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nikita Travkin <nikitos.tr@gmail.com>
+Hi Jean,
 
-This QMI service provides memory region for remote processors (like
-modem) on request. It is known to be used in GPS service in modem
-firmware for some (most) of msm8916 devices.
+On 3/2/21 10:26 AM, Jean-Philippe Brucker wrote:
+> The SMMU provides a Stall model for handling page faults in platform
+> devices. It is similar to PCIe PRI, but doesn't require devices to have
+> their own translation cache. Instead, faulting transactions are parked
+> and the OS is given a chance to fix the page tables and retry the
+> transaction.
+> 
+> Enable stall for devices that support it (opt-in by firmware). When an
+> event corresponds to a translation error, call the IOMMU fault handler.
+> If the fault is recoverable, it will call us back to terminate or
+> continue the stall.
+> 
+> To use stall device drivers need to enable IOMMU_DEV_FEAT_IOPF, which
+> initializes the fault queue for the device.
+> 
+> Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
 
-This commit implements "guaranteed allocation" of memory using
-reserved-memory regions because gps service crashes on some devices
-unless specific address was provided.
+Thanks
 
-Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
----
- drivers/soc/qcom/Kconfig            |   8 +
- drivers/soc/qcom/Makefile           |   2 +
- drivers/soc/qcom/memshare.c         | 501 ++++++++++++++++++++++++++++
- drivers/soc/qcom/memshare_qmi_msg.c | 370 ++++++++++++++++++++
- drivers/soc/qcom/memshare_qmi_msg.h | 228 +++++++++++++
- 5 files changed, 1109 insertions(+)
- create mode 100644 drivers/soc/qcom/memshare.c
- create mode 100644 drivers/soc/qcom/memshare_qmi_msg.c
- create mode 100644 drivers/soc/qcom/memshare_qmi_msg.h
+Eric
 
-diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-index 79b568f82a1c..8575cd6fe0ef 100644
---- a/drivers/soc/qcom/Kconfig
-+++ b/drivers/soc/qcom/Kconfig
-@@ -209,4 +209,12 @@ config QCOM_APR
- 	  application processor and QDSP6. APR is
- 	  used by audio driver to configure QDSP6
- 	  ASM, ADM and AFE modules.
-+
-+config QCOM_MEMSHARE_QMI_SERVICE
-+       select QCOM_QMI_HELPERS
-+       tristate "Qualcomm QMI Shared Memory Service (MEMSHARE)"
-+       help
-+	  This service provides additional memory regions on request from
-+	  remote processors. On some platforms it is used for GPS by
-+	  the location service in the modem subsystem.
- endmenu
-diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-index ad675a6593d0..5a986c2e1770 100644
---- a/drivers/soc/qcom/Makefile
-+++ b/drivers/soc/qcom/Makefile
-@@ -26,3 +26,5 @@ obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
- obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
- obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
- obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
-+obj-$(CONFIG_QCOM_MEMSHARE_QMI_SERVICE) += qcom_memshare.o
-+qcom_memshare-y := memshare.o memshare_qmi_msg.o
-diff --git a/drivers/soc/qcom/memshare.c b/drivers/soc/qcom/memshare.c
-new file mode 100644
-index 000000000000..a19858b91276
---- /dev/null
-+++ b/drivers/soc/qcom/memshare.c
-@@ -0,0 +1,501 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/kernel.h>
-+#include <linux/types.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/device.h>
-+#include <linux/platform_device.h>
-+#include <linux/net.h>
-+#include <linux/soc/qcom/qmi.h>
-+
-+#include "memshare_qmi_msg.h"
-+
-+#define MEMSHARE_MAX_CLIENTS 10
-+
-+struct memshare_client {
-+	u32 id;
-+	u32 proc_id;
-+	u32 qrtr_node;
-+	u32 size;
-+	phys_addr_t phy_addr;
-+};
-+
-+struct memshare {
-+	struct device *dev;
-+	struct qmi_handle qmi;
-+	unsigned int client_cnt;
-+	struct memshare_client *legacy_client;
-+	struct memshare_client *clients[MEMSHARE_MAX_CLIENTS];
-+};
-+
-+static struct memshare_client *memshare_get_client(struct memshare *share, u32 id, u32 proc_id)
-+{
-+	int i;
-+
-+	for (i = 0; i < share->client_cnt; i++)
-+		if (share->clients[i]->id == id && share->clients[i]->proc_id == proc_id)
-+			return share->clients[i];
-+
-+	return NULL;
-+}
-+
-+static void memshare_alloc_req_handler(struct qmi_handle *qmi, struct sockaddr_qrtr *sq,
-+				       struct qmi_txn *txn, const void *data)
-+{
-+	struct memshare *share = container_of(qmi, struct memshare, qmi);
-+	const struct mem_alloc_req_msg_v01 *req = data;
-+	struct mem_alloc_resp_msg_v01 resp = { .resp = QMI_RESULT_FAILURE_V01 };
-+	struct memshare_client *client = share->legacy_client;
-+	int ret;
-+
-+	dev_dbg(share->dev,
-+		"alloc_req: num_bytes=%d, block_alignment_valid=%d, block_alignment=%d, node=%d\n",
-+		req->num_bytes,
-+		req->block_alignment_valid,
-+		req->block_alignment,
-+		sq->sq_node
-+	);
-+
-+	if (!client) {
-+		dev_err(share->dev, "Unknown request from legacy client (size=%d, node=%d)\n",
-+			req->num_bytes, sq->sq_node);
-+		goto send_response;
-+	}
-+
-+	if (sq->sq_node != client->qrtr_node) {
-+		dev_err(share->dev, "Request from node %d but %d expected\n",
-+			sq->sq_node, client->qrtr_node);
-+		goto send_response;
-+	}
-+
-+	if (client->size && client->size != req->num_bytes) {
-+		dev_err(share->dev, "Got a request with wrong size (size=%d)\n",
-+			req->num_bytes);
-+		goto send_response;
-+	}
-+
-+	if (req->block_alignment_valid)
-+		if (client->phy_addr % MEM_BLOCK_ALIGN_TO_BYTES(req->block_alignment) != 0)
-+			dev_warn(share->dev, "Memory region is not aligned by %d bytes\n",
-+				 MEM_BLOCK_ALIGN_TO_BYTES(req->block_alignment));
-+
-+	if (!client->phy_addr) {
-+		dev_info(share->dev,
-+			 "Client sent a request but no memory is configured (size=%d, node=%d)\n",
-+			 req->num_bytes, sq->sq_node);
-+		goto send_response;
-+	}
-+
-+	resp.resp = QMI_RESULT_SUCCESS_V01;
-+	resp.handle_valid = true;
-+	resp.handle = client->phy_addr;
-+	resp.num_bytes_valid = true;
-+	resp.num_bytes = client->size;
-+
-+send_response:
-+	ret = qmi_send_response(qmi, sq, txn, MEM_ALLOC_MSG_V01, MEM_MAX_MSG_LEN_V01,
-+				mem_alloc_resp_msg_data_v01_ei, &resp);
-+	if (ret < 0)
-+		dev_err(share->dev, "Failed to send response: %d\n", ret);
-+}
-+
-+static void memshare_free_req_handler(struct qmi_handle *qmi, struct sockaddr_qrtr *sq,
-+				      struct qmi_txn *txn, const void *data)
-+{
-+	struct memshare *share = container_of(qmi, struct memshare, qmi);
-+	const struct mem_free_req_msg_v01 *req = data;
-+	struct mem_free_resp_msg_v01 resp = { .resp = QMI_RESULT_FAILURE_V01 };
-+	struct memshare_client *client = share->legacy_client;
-+	int ret;
-+
-+	dev_dbg(share->dev, "free_req: node=%d\n", sq->sq_node);
-+
-+	if (!client) {
-+		dev_err(share->dev, "Unknown request from legacy client\n");
-+		goto send_response;
-+	}
-+
-+	if (sq->sq_node != client->qrtr_node) {
-+		dev_err(share->dev, "Request from node %d but %d expected\n",
-+			sq->sq_node, client->qrtr_node);
-+		goto send_response;
-+	}
-+
-+	if (client->phy_addr != req->handle) {
-+		dev_err(share->dev, "Got a request with wrong address\n");
-+		goto send_response;
-+	}
-+
-+	resp.resp = QMI_RESULT_SUCCESS_V01;
-+
-+send_response:
-+	ret = qmi_send_response(qmi, sq, txn, MEM_FREE_MSG_V01, MEM_MAX_MSG_LEN_V01,
-+				mem_free_resp_msg_data_v01_ei, &resp);
-+	if (ret < 0)
-+		dev_err(share->dev, "Failed to send response: %d\n", ret);
-+}
-+
-+static void memshare_alloc_generic_req_handler(struct qmi_handle *qmi, struct sockaddr_qrtr *sq,
-+					       struct qmi_txn *txn, const void *data)
-+{
-+	struct memshare *share = container_of(qmi, struct memshare, qmi);
-+	const struct mem_alloc_generic_req_msg_v01 *req = data;
-+	struct mem_alloc_generic_resp_msg_v01 *resp;
-+	struct memshare_client *client;
-+	int ret;
-+
-+	resp = kzalloc(sizeof(*resp), GFP_KERNEL);
-+	if (!resp)
-+		return;
-+
-+	resp->resp.result = QMI_RESULT_FAILURE_V01;
-+	resp->resp.error = QMI_ERR_INTERNAL_V01;
-+
-+	dev_dbg(share->dev,
-+		"alloc_generic_req: num_bytes=%d, client_id=%d, proc_id=%d, sequence_id=%d, "
-+		"alloc_contiguous_valid=%d, alloc_contiguous=%d, block_alignment_valid=%d, "
-+		"block_alignment=%d, node=%d\n",
-+		req->num_bytes,
-+		req->client_id,
-+		req->proc_id,
-+		req->sequence_id,
-+		req->alloc_contiguous_valid,
-+		req->alloc_contiguous,
-+		req->block_alignment_valid,
-+		req->block_alignment,
-+		sq->sq_node
-+	);
-+
-+	client = memshare_get_client(share, req->client_id, req->proc_id);
-+	if (!client) {
-+		dev_err(share->dev,
-+			"Got a request from unknown client (id=%d, proc=%d, size=%d, node=%d)\n",
-+			req->client_id, req->proc_id, req->num_bytes, sq->sq_node);
-+		goto send_response;
-+	}
-+
-+	if (sq->sq_node != client->qrtr_node) {
-+		dev_err(share->dev, "Request from node %d but %d expected\n",
-+			sq->sq_node, client->qrtr_node);
-+		goto send_response;
-+	}
-+
-+	if (!client->phy_addr) {
-+		dev_info(share->dev,
-+			 "Client sent a request but no memory is configured "
-+			 "(id=%d, proc=%d, size=%d, node=%d)\n",
-+			 req->client_id, req->proc_id, req->num_bytes, sq->sq_node);
-+		goto send_response;
-+	}
-+
-+	if (client->size != req->num_bytes) {
-+		dev_err(share->dev,
-+			"Got a request with wrong size (id=%d, proc=%d, size=%d)\n",
-+			req->client_id, req->proc_id, req->num_bytes);
-+		goto send_response;
-+	}
-+
-+	if (req->block_alignment_valid)
-+		if (client->phy_addr % MEM_BLOCK_ALIGN_TO_BYTES(req->block_alignment) != 0)
-+			dev_warn(share->dev, "Memory region is not aligned by %d bytes\n",
-+				 MEM_BLOCK_ALIGN_TO_BYTES(req->block_alignment));
-+
-+	resp->resp.result = QMI_RESULT_SUCCESS_V01;
-+	resp->resp.error = QMI_ERR_NONE_V01;
-+	resp->sequence_id_valid = true;
-+	resp->sequence_id = req->sequence_id;
-+	resp->dhms_mem_alloc_addr_info_valid = true;
-+	resp->dhms_mem_alloc_addr_info_len = 1;
-+	resp->dhms_mem_alloc_addr_info[0].phy_addr = client->phy_addr;
-+	resp->dhms_mem_alloc_addr_info[0].num_bytes = client->size;
-+
-+send_response:
-+	ret = qmi_send_response(qmi, sq, txn, MEM_ALLOC_GENERIC_MSG_V01, MEM_MAX_MSG_LEN_V01,
-+				mem_alloc_generic_resp_msg_data_v01_ei, resp);
-+	if (ret < 0)
-+		dev_err(share->dev, "Failed to send response: %d\n", ret);
-+
-+	kfree(resp);
-+}
-+
-+static void memshare_free_generic_req_handler(struct qmi_handle *qmi, struct sockaddr_qrtr *sq,
-+					      struct qmi_txn *txn, const void *data)
-+{
-+	struct memshare *share = container_of(qmi, struct memshare, qmi);
-+	const struct mem_free_generic_req_msg_v01 *req = data;
-+	struct mem_free_generic_resp_msg_v01 resp = {
-+		.resp.result = QMI_RESULT_FAILURE_V01,
-+		.resp.error = QMI_ERR_INTERNAL_V01,
-+	};
-+	struct memshare_client *client;
-+	int ret;
-+
-+	dev_dbg(share->dev,
-+		"free_generic_req: dhms_mem_alloc_addr_info_len=%d, client_id_valid=%d, "
-+		"client_id=%d, proc_id_valid=%d, proc_id=%d, node=%d\n",
-+		req->dhms_mem_alloc_addr_info_len,
-+		req->client_id_valid,
-+		req->client_id,
-+		req->proc_id_valid,
-+		req->proc_id,
-+		sq->sq_node
-+	);
-+
-+	if (req->dhms_mem_alloc_addr_info_len != 1) {
-+		dev_err(share->dev, "addr_info_len = %d is unexpected\n",
-+			req->dhms_mem_alloc_addr_info_len);
-+		goto send_response;
-+	}
-+
-+	if (!req->client_id_valid || !req->proc_id_valid) {
-+		dev_err(share->dev, "Got a request from unknown client\n");
-+		goto send_response;
-+	}
-+
-+	client = memshare_get_client(share, req->client_id, req->proc_id);
-+	if (!client) {
-+		dev_err(share->dev, "Got a request from unknown client (id=%d, proc=%d)\n",
-+			req->client_id, req->proc_id);
-+		goto send_response;
-+	}
-+
-+	if (req->dhms_mem_alloc_addr_info[0].phy_addr != client->phy_addr) {
-+		dev_err(share->dev, "Client sent invalid handle\n");
-+		goto send_response;
-+	}
-+
-+	if (sq->sq_node != client->qrtr_node) {
-+		dev_err(share->dev, "Request from node %d but %d expected\n",
-+			sq->sq_node, client->qrtr_node);
-+		goto send_response;
-+	}
-+
-+	resp.resp.result = QMI_RESULT_SUCCESS_V01;
-+	resp.resp.error = QMI_ERR_NONE_V01;
-+
-+send_response:
-+	ret = qmi_send_response(qmi, sq, txn, MEM_FREE_GENERIC_MSG_V01, MEM_MAX_MSG_LEN_V01,
-+				mem_free_generic_resp_msg_data_v01_ei, &resp);
-+	if (ret < 0)
-+		dev_err(share->dev, "Failed to send response: %d\n", ret);
-+}
-+
-+static void memshare_query_size_req_handler(struct qmi_handle *qmi, struct sockaddr_qrtr *sq,
-+					    struct qmi_txn *txn, const void *data)
-+{
-+	struct memshare *share = container_of(qmi, struct memshare, qmi);
-+	const struct mem_query_size_req_msg_v01 *req = data;
-+	struct mem_query_size_rsp_msg_v01 resp = {
-+		.resp.result = QMI_RESULT_FAILURE_V01,
-+		.resp.error = QMI_ERR_INTERNAL_V01,
-+	};
-+	struct memshare_client *client;
-+	int ret;
-+
-+	dev_dbg(share->dev,
-+		"query_size_req: client_id=%d, proc_id_valid=%d, proc_id=%d, node=%d\n",
-+		req->client_id,
-+		req->proc_id_valid,
-+		req->proc_id,
-+		sq->sq_node
-+	);
-+
-+	client = memshare_get_client(share, req->client_id, req->proc_id);
-+	if (!client) {
-+		dev_err(share->dev, "Got a request from unknown client (id=%d, proc=%d)\n",
-+			req->client_id, req->proc_id);
-+		goto send_response;
-+	}
-+
-+	if (sq->sq_node != client->qrtr_node) {
-+		dev_err(share->dev, "Request from node %d but %d expected\n",
-+			sq->sq_node, client->qrtr_node);
-+		goto send_response;
-+	}
-+
-+	if (!client->phy_addr)
-+		goto send_response;
-+
-+	resp.resp.result = QMI_RESULT_SUCCESS_V01;
-+	resp.resp.error = QMI_ERR_NONE_V01;
-+	resp.size_valid = true;
-+	resp.size = client->size;
-+
-+send_response:
-+	ret = qmi_send_response(qmi, sq, txn, MEM_QUERY_SIZE_MSG_V01, MEM_MAX_MSG_LEN_V01,
-+				mem_query_size_resp_msg_data_v01_ei, &resp);
-+	if (ret < 0)
-+		dev_err(share->dev, "Failed to send response: %d\n", ret);
-+}
-+
-+static struct qmi_msg_handler memshare_handlers[] = {
-+	{
-+		.type = QMI_REQUEST,
-+		.msg_id = MEM_ALLOC_MSG_V01,
-+		.ei = mem_alloc_req_msg_data_v01_ei,
-+		.decoded_size = sizeof(struct mem_alloc_req_msg_v01),
-+		.fn = memshare_alloc_req_handler,
-+	},
-+	{
-+		.type = QMI_REQUEST,
-+		.msg_id = MEM_FREE_MSG_V01,
-+		.ei = mem_free_req_msg_data_v01_ei,
-+		.decoded_size = sizeof(struct mem_free_req_msg_v01),
-+		.fn = memshare_free_req_handler,
-+	},
-+	{
-+		.type = QMI_REQUEST,
-+		.msg_id = MEM_ALLOC_GENERIC_MSG_V01,
-+		.ei = mem_alloc_generic_req_msg_data_v01_ei,
-+		.decoded_size = sizeof(struct mem_alloc_generic_req_msg_v01),
-+		.fn = memshare_alloc_generic_req_handler,
-+	},
-+	{
-+		.type = QMI_REQUEST,
-+		.msg_id = MEM_FREE_GENERIC_MSG_V01,
-+		.ei = mem_free_generic_req_msg_data_v01_ei,
-+		.decoded_size = sizeof(struct mem_free_generic_req_msg_v01),
-+		.fn = memshare_free_generic_req_handler,
-+	},
-+	{
-+		.type = QMI_REQUEST,
-+		.msg_id = MEM_QUERY_SIZE_MSG_V01,
-+		.ei = mem_query_size_req_msg_data_v01_ei,
-+		.decoded_size = sizeof(struct mem_query_size_req_msg_v01),
-+		.fn = memshare_query_size_req_handler,
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+static int memshare_probe_dt(struct memshare *share)
-+{
-+	struct device_node *np = share->dev->of_node;
-+	struct device_node *proc_node = NULL, *client_node = NULL, *mem_node = NULL;
-+	int ret = 0;
-+	u32 proc_id, qrtr_node;
-+	struct memshare_client *client;
-+	phandle legacy_client = 0;
-+	struct resource reserved_memory;
-+
-+	ret = of_property_read_u32(np, "qcom,legacy-client", &legacy_client);
-+	if (ret && ret != -EINVAL)
-+		return ret;
-+
-+	for_each_available_child_of_node(np, proc_node) {
-+		ret = of_property_read_u32(proc_node, "reg", &proc_id);
-+		if (ret)
-+			goto error;
-+
-+		ret = of_property_read_u32(proc_node, "qcom,qrtr-node", &qrtr_node);
-+		if (ret)
-+			goto error;
-+
-+		for_each_available_child_of_node(proc_node, client_node) {
-+			if (share->client_cnt >= MEMSHARE_MAX_CLIENTS) {
-+				ret = -EINVAL;
-+				goto error;
-+			}
-+
-+			client = devm_kzalloc(share->dev, sizeof(*client), GFP_KERNEL);
-+			if (!client) {
-+				ret = -ENOMEM;
-+				goto error;
-+			}
-+
-+			ret = of_property_read_u32(client_node, "reg", &client->id);
-+			if (ret)
-+				goto error;
-+
-+			client->proc_id = proc_id;
-+			client->qrtr_node = qrtr_node;
-+
-+			mem_node = of_parse_phandle(client_node, "memory-region", 0);
-+			if (mem_node) {
-+				ret = of_address_to_resource(mem_node, 0, &reserved_memory);
-+				of_node_put(mem_node);
-+				if (ret)
-+					goto error;
-+
-+				client->phy_addr = reserved_memory.start;
-+				client->size = resource_size(&reserved_memory);
-+			}
-+
-+			if (client_node->phandle == legacy_client)
-+				share->legacy_client = client;
-+
-+			share->clients[share->client_cnt] = client;
-+			share->client_cnt++;
-+		}
-+	}
-+
-+	return 0;
-+
-+error:
-+	of_node_put(client_node);
-+	of_node_put(proc_node);
-+	return ret;
-+}
-+
-+static int memshare_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct memshare *share;
-+	int ret;
-+
-+	share = devm_kzalloc(&pdev->dev, sizeof(*share), GFP_KERNEL);
-+	if (!share)
-+		return -ENOMEM;
-+
-+	share->dev = dev;
-+	dev_set_drvdata(&pdev->dev, share);
-+
-+	ret = qmi_handle_init(&share->qmi, MEM_MAX_MSG_LEN_V01, NULL, memshare_handlers);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = memshare_probe_dt(share);
-+	if (ret < 0)
-+		goto error;
-+
-+	ret = qmi_add_server(&share->qmi, MEM_SERVICE_SVC_ID,
-+			     MEM_SERVICE_VER, MEM_SERVICE_INS_ID);
-+	if (ret < 0)
-+		goto error;
-+
-+	return 0;
-+
-+error:
-+	qmi_handle_release(&share->qmi);
-+	return ret;
-+}
-+
-+static int memshare_remove(struct platform_device *pdev)
-+{
-+	struct memshare *share = dev_get_drvdata(&pdev->dev);
-+
-+	qmi_handle_release(&share->qmi);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id memshare_of_match[] = {
-+	{ .compatible = "qcom,memshare", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, memshare_of_match);
-+
-+static struct platform_driver memshare_driver = {
-+	.probe = memshare_probe,
-+	.remove = memshare_remove,
-+	.driver = {
-+		.name = "qcom-memshare",
-+		.of_match_table = of_match_ptr(memshare_of_match),
-+	},
-+};
-+module_platform_driver(memshare_driver);
-+
-+MODULE_DESCRIPTION("Qualcomm Memory Share Service");
-+MODULE_AUTHOR("Nikita Travkin <nikitos.tr@gmail.com>");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/soc/qcom/memshare_qmi_msg.c b/drivers/soc/qcom/memshare_qmi_msg.c
-new file mode 100644
-index 000000000000..0cbccaaa7994
---- /dev/null
-+++ b/drivers/soc/qcom/memshare_qmi_msg.c
-@@ -0,0 +1,370 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2013-2015, 2017-2018, The Linux Foundation. All rights reserved.
-+
-+#include <linux/stddef.h>
-+#include <linux/soc/qcom/qmi.h>
-+
-+#include "memshare_qmi_msg.h"
-+
-+struct qmi_elem_info mem_alloc_req_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_req_msg_v01, num_bytes),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_alloc_req_msg_v01, num_bytes),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_req_msg_v01, block_alignment_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_req_msg_v01, block_alignment_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_req_msg_v01, block_alignment),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_req_msg_v01, block_alignment),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_alloc_resp_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_SIGNED_2_BYTE_ENUM,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_resp_msg_v01, resp),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_alloc_resp_msg_v01, resp),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_resp_msg_v01, handle_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_resp_msg_v01, handle_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_8_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_resp_msg_v01, handle),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_resp_msg_v01, handle),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_resp_msg_v01, num_bytes_valid),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_resp_msg_v01, num_bytes_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_resp_msg_v01, num_bytes),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_resp_msg_v01, num_bytes),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_free_req_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_UNSIGNED_8_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_req_msg_v01, handle),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_free_req_msg_v01, handle),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_free_resp_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_SIGNED_2_BYTE_ENUM,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_resp_msg_v01, resp),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_free_resp_msg_v01, resp),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info dhms_mem_alloc_addr_info_type_v01_ei[] = {
-+	{
-+		.data_type      = QMI_UNSIGNED_8_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct dhms_mem_alloc_addr_info_type_v01, phy_addr),
-+		.tlv_type       = QMI_COMMON_TLV_TYPE,
-+		.offset         = offsetof(struct dhms_mem_alloc_addr_info_type_v01, phy_addr),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct dhms_mem_alloc_addr_info_type_v01, num_bytes),
-+		.tlv_type       = QMI_COMMON_TLV_TYPE,
-+		.offset         = offsetof(struct dhms_mem_alloc_addr_info_type_v01, num_bytes),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_alloc_generic_req_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01, num_bytes),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, num_bytes),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01, client_id),
-+		.tlv_type       = 0x02,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, client_id),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01, proc_id),
-+		.tlv_type       = 0x03,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, proc_id),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01, sequence_id),
-+		.tlv_type       = 0x04,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, sequence_id),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01,
-+					       alloc_contiguous_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01,
-+					   alloc_contiguous_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_1_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01,
-+					       alloc_contiguous),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, alloc_contiguous),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01,
-+					       block_alignment_valid),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01,
-+					   block_alignment_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_req_msg_v01,
-+					       block_alignment),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_generic_req_msg_v01, block_alignment),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_alloc_generic_resp_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_STRUCT,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01, resp),
-+		.tlv_type       = 0x02,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01, resp),
-+		.ei_array	= qmi_response_type_v01_ei,
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01,
-+					       sequence_id_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01, sequence_id_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01, sequence_id),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01, sequence_id),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01,
-+					       dhms_mem_alloc_addr_info_valid),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01,
-+					   dhms_mem_alloc_addr_info_valid),
-+	},
-+	{
-+		.data_type	= QMI_DATA_LEN,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01,
-+					       dhms_mem_alloc_addr_info_len),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01,
-+					   dhms_mem_alloc_addr_info_len),
-+	},
-+	{
-+		.data_type      = QMI_STRUCT,
-+		.elem_len       = MAX_ARR_CNT_V01,
-+		.elem_size      = sizeof_field(struct mem_alloc_generic_resp_msg_v01,
-+					       dhms_mem_alloc_addr_info),
-+		.array_type     = VAR_LEN_ARRAY,
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_alloc_generic_resp_msg_v01,
-+					   dhms_mem_alloc_addr_info),
-+		.ei_array       = dhms_mem_alloc_addr_info_type_v01_ei,
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_free_generic_req_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_DATA_LEN,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01,
-+					       dhms_mem_alloc_addr_info_len),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01,
-+					   dhms_mem_alloc_addr_info_len),
-+	},
-+	{
-+		.data_type      = QMI_STRUCT,
-+		.elem_len       = MAX_ARR_CNT_V01,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01,
-+					       dhms_mem_alloc_addr_info),
-+		.array_type     = VAR_LEN_ARRAY,
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01,
-+					   dhms_mem_alloc_addr_info),
-+		.ei_array	= dhms_mem_alloc_addr_info_type_v01_ei,
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01, client_id_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01, client_id_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01, client_id),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01, client_id),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01, proc_id_valid),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01, proc_id_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_req_msg_v01, proc_id),
-+		.tlv_type       = 0x11,
-+		.offset         = offsetof(struct mem_free_generic_req_msg_v01, proc_id),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_free_generic_resp_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_STRUCT,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_free_generic_resp_msg_v01, resp),
-+		.tlv_type       = 0x02,
-+		.offset         = offsetof(struct mem_free_generic_resp_msg_v01, resp),
-+		.ei_array	= qmi_response_type_v01_ei,
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_query_size_req_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_req_msg_v01, client_id),
-+		.tlv_type       = 0x01,
-+		.offset         = offsetof(struct mem_query_size_req_msg_v01, client_id),
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_req_msg_v01, proc_id_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_query_size_req_msg_v01, proc_id_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_req_msg_v01, proc_id),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_query_size_req_msg_v01, proc_id),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-+
-+struct qmi_elem_info mem_query_size_resp_msg_data_v01_ei[] = {
-+	{
-+		.data_type      = QMI_STRUCT,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_rsp_msg_v01, resp),
-+		.tlv_type       = 0x02,
-+		.offset         = offsetof(struct mem_query_size_rsp_msg_v01, resp),
-+		.ei_array	= qmi_response_type_v01_ei,
-+	},
-+	{
-+		.data_type      = QMI_OPT_FLAG,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_rsp_msg_v01, size_valid),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_query_size_rsp_msg_v01, size_valid),
-+	},
-+	{
-+		.data_type      = QMI_UNSIGNED_4_BYTE,
-+		.elem_len       = 1,
-+		.elem_size      = sizeof_field(struct mem_query_size_rsp_msg_v01, size),
-+		.tlv_type       = 0x10,
-+		.offset         = offsetof(struct mem_query_size_rsp_msg_v01, size),
-+	},
-+	{
-+		.data_type      = QMI_EOTI,
-+	},
-+};
-diff --git a/drivers/soc/qcom/memshare_qmi_msg.h b/drivers/soc/qcom/memshare_qmi_msg.h
-new file mode 100644
-index 000000000000..c436330a0713
---- /dev/null
-+++ b/drivers/soc/qcom/memshare_qmi_msg.h
-@@ -0,0 +1,228 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Copyright (c) 2013-2015, 2017-2018, The Linux Foundation. All rights reserved. */
-+
-+#ifndef HEAP_MEM_EXT_SERVICE_01_H
-+#define HEAP_MEM_EXT_SERVICE_01_H
-+
-+#include <linux/types.h>
-+#include <linux/soc/qcom/qmi.h>
-+
-+#define MEM_SERVICE_SVC_ID 0x00000034
-+#define MEM_SERVICE_INS_ID 1
-+#define MEM_SERVICE_VER 1
-+
-+/* Service Message Definition */
-+#define MEM_ALLOC_MSG_V01 0x0020
-+#define MEM_FREE_MSG_V01 0x0021
-+#define MEM_ALLOC_GENERIC_MSG_V01 0x0022
-+#define MEM_FREE_GENERIC_MSG_V01 0x0023
-+#define MEM_QUERY_SIZE_MSG_V01 0x0024
-+
-+#define MEM_MAX_MSG_LEN_V01 255
-+#define MAX_ARR_CNT_V01 64
-+
-+#define MEM_BLOCK_ALIGN_TO_BYTES(x) (2 << (x)) /* 0..11 */
-+
-+/**
-+ * Unless stated otherwise, any property X that is paired with X_valid
-+ * property is an optional property. Other properties are mandatory.
-+ */
-+
-+/**
-+ * struct dhms_mem_alloc_addr_info_type_v01 - Element of memory block array.
-+ * @phy_addr: Physical address of memory block.
-+ * @num_bytes: Size of memory block.
-+ */
-+struct dhms_mem_alloc_addr_info_type_v01 {
-+	u64 phy_addr;
-+	u32 num_bytes;
-+};
-+
-+/**
-+ * struct mem_alloc_req_msg_v01 - Legacy memory allocation request.
-+ * @num_bytes: Requested size.
-+ * @block_alignment_valid: Must be set to true if block_alignment is being passed.
-+ * @block_alignment: The block alignment for the memory block to be allocated.
-+ *
-+ * Request Message.
-+ * This command is used for getting the multiple physically contiguous memory
-+ * blocks from the server memory subsystem.
-+ */
-+struct mem_alloc_req_msg_v01 {
-+	u32 num_bytes;
-+	u8 block_alignment_valid;
-+	u32 block_alignment;
-+};
-+
-+/**
-+ * struct mem_alloc_resp_msg_v01 - Response for legacy allocation memory request.
-+ * @resp: Result Code. The result of the requested memory operation.
-+ * @handle_valid: Must be set to true if handle is being passed.
-+ * @handle: Memory Block Handle. The physical address of the memory allocated on the HLOS.
-+ * @num_bytes_valid: Must be set to true if num_bytes is being passed.
-+ * @num_bytes: Memory block size. The number of bytes actually allocated for the request.
-+ *             This value can be smaller than the size requested in QMI_DHMS_MEM_ALLOC_REQ_MSG.
-+ *
-+ * Response Message.
-+ * This command is used for getting the multiple physically contiguous memory
-+ * blocks from the server memory subsystem
-+ */
-+struct mem_alloc_resp_msg_v01 {
-+	u16 resp;
-+	u8 handle_valid;
-+	u64 handle;
-+	u8 num_bytes_valid;
-+	u32 num_bytes;
-+};
-+
-+/**
-+ * struct mem_free_req_msg_v01 - Legacy memory free request.
-+ * @handle: Physical address of memory to be freed.
-+ *
-+ * Request Message.
-+ * This command is used for releasing the multiple physically contiguous memory
-+ * blocks to the server memory subsystem.
-+ */
-+struct mem_free_req_msg_v01 {
-+	u64 handle;
-+};
-+
-+/**
-+ * struct mem_free_resp_msg_v01 - Response for legacy memory free request.
-+ * @resp: Result of the requested memory operation.
-+ *
-+ * Response Message.
-+ * This command is used for releasing the multiple physically contiguous memory
-+ * blocks to the server memory subsystem.
-+ */
-+struct mem_free_resp_msg_v01 {
-+	u16 resp;
-+};
-+
-+/**
-+ * struct mem_alloc_generic_req_msg_v01 - Memory allocation request.
-+ * @num_bytes: Requested size.
-+ * @client_id: Client ID.
-+ * @proc_id: Peripheral ID.
-+ * @sequence_id: Sequence ID.
-+ * @alloc_contiguous_valid: Must be set to true if alloc_contiguous is being passed.
-+ * @alloc_contiguous: alloc_contiguous is used to identify that clients are requesting
-+ *                    for contiguous or non contiguous memory, default is contiguous.
-+ *                    0 = non contiguous else contiguous.
-+ * @block_alignment_valid: Must be set to true if block_alignment is being passed.
-+ * @block_alignment: The block alignment for the memory block to be allocated.
-+ *
-+ * Request Message.
-+ * This command is used for getting the multiple physically contiguous memory
-+ * blocks from the server memory subsystem
-+ */
-+struct mem_alloc_generic_req_msg_v01 {
-+	u32 num_bytes;
-+	u32 client_id;
-+	u32 proc_id;
-+	u32 sequence_id;
-+	u8 alloc_contiguous_valid;
-+	u8 alloc_contiguous;
-+	u8 block_alignment_valid;
-+	u32 block_alignment;
-+};
-+
-+/**
-+ * struct mem_alloc_generic_resp_msg_v01 - Response for memory allocation request.
-+ * @resp: Result Code. The result of the requested memory operation.
-+ * @sequence_id_valid: Must be set to true if sequence_id is being passed.
-+ * @sequence_id: Sequence ID. This property is marked as mandatory.
-+ * @dhms_mem_alloc_addr_info_valid: Must be set to true if handle is being passed.
-+ * @dhms_mem_alloc_addr_info_len: Handle Size.
-+ * @dhms_mem_alloc_addr_info: Memory Block Handle. The physical address of the
-+ *                            memory allocated on the HLOS.
-+ *
-+ * Response Message.
-+ * This command is used for getting the multiple physically contiguous memory
-+ * blocks from the server memory subsystem
-+ */
-+struct mem_alloc_generic_resp_msg_v01 {
-+	struct qmi_response_type_v01 resp;
-+	u8 sequence_id_valid;
-+	u32 sequence_id;
-+	u8 dhms_mem_alloc_addr_info_valid;
-+	u8 dhms_mem_alloc_addr_info_len;
-+	struct dhms_mem_alloc_addr_info_type_v01 dhms_mem_alloc_addr_info[MAX_ARR_CNT_V01];
-+};
-+
-+/**
-+ * struct mem_free_generic_req_msg_v01 - Memory free request.
-+ * @dhms_mem_alloc_addr_info_len: Must be set to # of elments in array.
-+ * @dhms_mem_alloc_addr_info: Physical address and size of the memory allocated
-+ *                            on the HLOS to be freed.
-+ * @client_id_valid: Must be set to true if client_id is being passed.
-+ * @client_id: Client ID.
-+ * @proc_id_valid: Must be set to true if proc_id is being passed.
-+ * @proc_id: Peripheral ID.
-+ *
-+ * Request Message.
-+ * This command is used for releasing the multiple physically contiguous memory
-+ * blocks to the server memory subsystem
-+ */
-+struct mem_free_generic_req_msg_v01 {
-+	u8 dhms_mem_alloc_addr_info_len;
-+	struct dhms_mem_alloc_addr_info_type_v01 dhms_mem_alloc_addr_info[MAX_ARR_CNT_V01];
-+	u8 client_id_valid;
-+	u32 client_id;
-+	u8 proc_id_valid;
-+	u32 proc_id;
-+};
-+
-+/**
-+ * struct mem_free_generic_resp_msg_v01 - Response for memory free request.
-+ * @resp: Result of the requested memory operation.
-+ *
-+ * Response Message.
-+ * This command is used for releasing the multiple physically contiguous memory
-+ * blocks to the server memory subsystem
-+ */
-+struct mem_free_generic_resp_msg_v01 {
-+	struct qmi_response_type_v01 resp;
-+};
-+
-+/**
-+ * struct mem_query_size_req_msg_v01 - Size query request.
-+ * @client_id: Client ID.
-+ * @proc_id_valid: proc_id_valid must be set to true if proc_id is being passed.
-+ * @proc_id: Proc ID.
-+ *
-+ * Request Message.
-+ */
-+struct mem_query_size_req_msg_v01 {
-+	u32 client_id;
-+	u8 proc_id_valid;
-+	u32 proc_id;
-+};
-+
-+/**
-+ * struct mem_query_size_rsp_msg_v01 - Response for Size query request.
-+ * @resp: Result Code.
-+ * @size_valid: size_valid must be set to true if size is being passed.
-+ * @size: Size.
-+ *
-+ * Response Message.
-+ */
-+struct mem_query_size_rsp_msg_v01 {
-+	struct qmi_response_type_v01 resp;
-+	u8 size_valid;
-+	u32 size;
-+};
-+
-+/* Message structure definitions defined in "memshare_qmi_msg.c" */
-+extern struct qmi_elem_info mem_alloc_req_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_alloc_resp_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_free_req_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_free_resp_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_alloc_generic_req_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_alloc_generic_resp_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_free_generic_req_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_free_generic_resp_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_query_size_req_msg_data_v01_ei[];
-+extern struct qmi_elem_info mem_query_size_resp_msg_data_v01_ei[];
-+
-+#endif
--- 
-2.27.0
+> ---
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  43 ++++
+>  .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 +++++-
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 196 +++++++++++++++++-
+>  3 files changed, 283 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> index 7b15b7580c6e..59af0bbd2f7b 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> @@ -354,6 +354,13 @@
+>  #define CMDQ_PRI_1_GRPID		GENMASK_ULL(8, 0)
+>  #define CMDQ_PRI_1_RESP			GENMASK_ULL(13, 12)
+>  
+> +#define CMDQ_RESUME_0_RESP_TERM		0UL
+> +#define CMDQ_RESUME_0_RESP_RETRY	1UL
+> +#define CMDQ_RESUME_0_RESP_ABORT	2UL
+> +#define CMDQ_RESUME_0_RESP		GENMASK_ULL(13, 12)
+> +#define CMDQ_RESUME_0_SID		GENMASK_ULL(63, 32)
+> +#define CMDQ_RESUME_1_STAG		GENMASK_ULL(15, 0)
+> +
+>  #define CMDQ_SYNC_0_CS			GENMASK_ULL(13, 12)
+>  #define CMDQ_SYNC_0_CS_NONE		0
+>  #define CMDQ_SYNC_0_CS_IRQ		1
+> @@ -370,6 +377,25 @@
+>  
+>  #define EVTQ_0_ID			GENMASK_ULL(7, 0)
+>  
+> +#define EVT_ID_TRANSLATION_FAULT	0x10
+> +#define EVT_ID_ADDR_SIZE_FAULT		0x11
+> +#define EVT_ID_ACCESS_FAULT		0x12
+> +#define EVT_ID_PERMISSION_FAULT		0x13
+> +
+> +#define EVTQ_0_SSV			(1UL << 11)
+> +#define EVTQ_0_SSID			GENMASK_ULL(31, 12)
+> +#define EVTQ_0_SID			GENMASK_ULL(63, 32)
+> +#define EVTQ_1_STAG			GENMASK_ULL(15, 0)
+> +#define EVTQ_1_STALL			(1UL << 31)
+> +#define EVTQ_1_PnU			(1UL << 33)
+> +#define EVTQ_1_InD			(1UL << 34)
+> +#define EVTQ_1_RnW			(1UL << 35)
+> +#define EVTQ_1_S2			(1UL << 39)
+> +#define EVTQ_1_CLASS			GENMASK_ULL(41, 40)
+> +#define EVTQ_1_TT_READ			(1UL << 44)
+> +#define EVTQ_2_ADDR			GENMASK_ULL(63, 0)
+> +#define EVTQ_3_IPA			GENMASK_ULL(51, 12)
+> +
+>  /* PRI queue */
+>  #define PRIQ_ENT_SZ_SHIFT		4
+>  #define PRIQ_ENT_DWORDS			((1 << PRIQ_ENT_SZ_SHIFT) >> 3)
+> @@ -464,6 +490,13 @@ struct arm_smmu_cmdq_ent {
+>  			enum pri_resp		resp;
+>  		} pri;
+>  
+> +		#define CMDQ_OP_RESUME		0x44
+> +		struct {
+> +			u32			sid;
+> +			u16			stag;
+> +			u8			resp;
+> +		} resume;
+> +
+>  		#define CMDQ_OP_CMD_SYNC	0x46
+>  		struct {
+>  			u64			msiaddr;
+> @@ -522,6 +555,7 @@ struct arm_smmu_cmdq_batch {
+>  
+>  struct arm_smmu_evtq {
+>  	struct arm_smmu_queue		q;
+> +	struct iopf_queue		*iopf;
+>  	u32				max_stalls;
+>  };
+>  
+> @@ -659,7 +693,9 @@ struct arm_smmu_master {
+>  	struct arm_smmu_stream		*streams;
+>  	unsigned int			num_streams;
+>  	bool				ats_enabled;
+> +	bool				stall_enabled;
+>  	bool				sva_enabled;
+> +	bool				iopf_enabled;
+>  	struct list_head		bonds;
+>  	unsigned int			ssid_bits;
+>  };
+> @@ -678,6 +714,7 @@ struct arm_smmu_domain {
+>  
+>  	struct io_pgtable_ops		*pgtbl_ops;
+>  	bool				non_strict;
+> +	bool				stall_enabled;
+>  	atomic_t			nr_ats_masters;
+>  
+>  	enum arm_smmu_domain_stage	stage;
+> @@ -719,6 +756,7 @@ bool arm_smmu_master_sva_supported(struct arm_smmu_master *master);
+>  bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master);
+>  int arm_smmu_master_enable_sva(struct arm_smmu_master *master);
+>  int arm_smmu_master_disable_sva(struct arm_smmu_master *master);
+> +bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master);
+>  struct iommu_sva *arm_smmu_sva_bind(struct device *dev, struct mm_struct *mm,
+>  				    void *drvdata);
+>  void arm_smmu_sva_unbind(struct iommu_sva *handle);
+> @@ -750,6 +788,11 @@ static inline int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+>  	return -ENODEV;
+>  }
+>  
+> +static inline bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master)
+> +{
+> +	return false;
+> +}
+> +
+>  static inline struct iommu_sva *
+>  arm_smmu_sva_bind(struct device *dev, struct mm_struct *mm, void *drvdata)
+>  {
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> index bb251cab61f3..ee66d1f4cb81 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> @@ -435,9 +435,13 @@ bool arm_smmu_sva_supported(struct arm_smmu_device *smmu)
+>  	return true;
+>  }
+>  
+> -static bool arm_smmu_iopf_supported(struct arm_smmu_master *master)
+> +bool arm_smmu_master_iopf_supported(struct arm_smmu_master *master)
+>  {
+> -	return false;
+> +	/* We're not keeping track of SIDs in fault events */
+> +	if (master->num_streams != 1)
+> +		return false;
+> +
+> +	return master->stall_enabled;
+>  }
+>  
+>  bool arm_smmu_master_sva_supported(struct arm_smmu_master *master)
+> @@ -445,8 +449,8 @@ bool arm_smmu_master_sva_supported(struct arm_smmu_master *master)
+>  	if (!(master->smmu->features & ARM_SMMU_FEAT_SVA))
+>  		return false;
+>  
+> -	/* SSID and IOPF support are mandatory for the moment */
+> -	return master->ssid_bits && arm_smmu_iopf_supported(master);
+> +	/* SSID support is mandatory for the moment */
+> +	return master->ssid_bits;
+>  }
+>  
+>  bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master)
+> @@ -459,13 +463,55 @@ bool arm_smmu_master_sva_enabled(struct arm_smmu_master *master)
+>  	return enabled;
+>  }
+>  
+> +static int arm_smmu_master_sva_enable_iopf(struct arm_smmu_master *master)
+> +{
+> +	int ret;
+> +	struct device *dev = master->dev;
+> +
+> +	/*
+> +	 * Drivers for devices supporting PRI or stall should enable IOPF first.
+> +	 * Others have device-specific fault handlers and don't need IOPF.
+> +	 */
+> +	if (!arm_smmu_master_iopf_supported(master))
+> +		return 0;
+> +
+> +	if (!master->iopf_enabled)
+> +		return -EINVAL;
+> +
+> +	ret = iopf_queue_add_device(master->smmu->evtq.iopf, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iommu_register_device_fault_handler(dev, iommu_queue_iopf, dev);
+> +	if (ret) {
+> +		iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+> +		return ret;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static void arm_smmu_master_sva_disable_iopf(struct arm_smmu_master *master)
+> +{
+> +	struct device *dev = master->dev;
+> +
+> +	if (!master->iopf_enabled)
+> +		return;
+> +
+> +	iommu_unregister_device_fault_handler(dev);
+> +	iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+> +}
+> +
+>  int arm_smmu_master_enable_sva(struct arm_smmu_master *master)
+>  {
+> +	int ret;
+> +
+>  	mutex_lock(&sva_lock);
+> -	master->sva_enabled = true;
+> +	ret = arm_smmu_master_sva_enable_iopf(master);
+> +	if (!ret)
+> +		master->sva_enabled = true;
+>  	mutex_unlock(&sva_lock);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+> @@ -476,6 +522,7 @@ int arm_smmu_master_disable_sva(struct arm_smmu_master *master)
+>  		mutex_unlock(&sva_lock);
+>  		return -EBUSY;
+>  	}
+> +	arm_smmu_master_sva_disable_iopf(master);
+>  	master->sva_enabled = false;
+>  	mutex_unlock(&sva_lock);
+>  
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> index d148bb6d4289..363744df8d51 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> @@ -32,6 +32,7 @@
+>  #include <linux/amba/bus.h>
+>  
+>  #include "arm-smmu-v3.h"
+> +#include "../../iommu-sva-lib.h"
+>  
+>  static bool disable_bypass = true;
+>  module_param(disable_bypass, bool, 0444);
+> @@ -315,6 +316,11 @@ static int arm_smmu_cmdq_build_cmd(u64 *cmd, struct arm_smmu_cmdq_ent *ent)
+>  		}
+>  		cmd[1] |= FIELD_PREP(CMDQ_PRI_1_RESP, ent->pri.resp);
+>  		break;
+> +	case CMDQ_OP_RESUME:
+> +		cmd[0] |= FIELD_PREP(CMDQ_RESUME_0_SID, ent->resume.sid);
+> +		cmd[0] |= FIELD_PREP(CMDQ_RESUME_0_RESP, ent->resume.resp);
+> +		cmd[1] |= FIELD_PREP(CMDQ_RESUME_1_STAG, ent->resume.stag);
+> +		break;
+>  	case CMDQ_OP_CMD_SYNC:
+>  		if (ent->sync.msiaddr) {
+>  			cmd[0] |= FIELD_PREP(CMDQ_SYNC_0_CS, CMDQ_SYNC_0_CS_IRQ);
+> @@ -878,6 +884,44 @@ static int arm_smmu_cmdq_batch_submit(struct arm_smmu_device *smmu,
+>  	return arm_smmu_cmdq_issue_cmdlist(smmu, cmds->cmds, cmds->num, true);
+>  }
+>  
+> +static int arm_smmu_page_response(struct device *dev,
+> +				  struct iommu_fault_event *unused,
+> +				  struct iommu_page_response *resp)
+> +{
+> +	struct arm_smmu_cmdq_ent cmd = {0};
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +	int sid = master->streams[0].id;
+> +
+> +	if (master->stall_enabled) {
+> +		cmd.opcode		= CMDQ_OP_RESUME;
+> +		cmd.resume.sid		= sid;
+> +		cmd.resume.stag		= resp->grpid;
+> +		switch (resp->code) {
+> +		case IOMMU_PAGE_RESP_INVALID:
+> +		case IOMMU_PAGE_RESP_FAILURE:
+> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_ABORT;
+> +			break;
+> +		case IOMMU_PAGE_RESP_SUCCESS:
+> +			cmd.resume.resp = CMDQ_RESUME_0_RESP_RETRY;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return -ENODEV;
+> +	}
+> +
+> +	arm_smmu_cmdq_issue_cmd(master->smmu, &cmd);
+> +	/*
+> +	 * Don't send a SYNC, it doesn't do anything for RESUME or PRI_RESP.
+> +	 * RESUME consumption guarantees that the stalled transaction will be
+> +	 * terminated... at some point in the future. PRI_RESP is fire and
+> +	 * forget.
+> +	 */
+> +
+> +	return 0;
+> +}
+> +
+>  /* Context descriptor manipulation functions */
+>  void arm_smmu_tlb_inv_asid(struct arm_smmu_device *smmu, u16 asid)
+>  {
+> @@ -988,7 +1032,6 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>  	u64 val;
+>  	bool cd_live;
+>  	__le64 *cdptr;
+> -	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  
+>  	if (WARN_ON(ssid >= (1 << smmu_domain->s1_cfg.s1cdmax)))
+>  		return -E2BIG;
+> @@ -1033,8 +1076,7 @@ int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain, int ssid,
+>  			FIELD_PREP(CTXDESC_CD_0_ASID, cd->asid) |
+>  			CTXDESC_CD_0_V;
+>  
+> -		/* STALL_MODEL==0b10 && CD.S==0 is ILLEGAL */
+> -		if (smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+> +		if (smmu_domain->stall_enabled)
+>  			val |= CTXDESC_CD_0_S;
+>  	}
+>  
+> @@ -1278,7 +1320,7 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  			 FIELD_PREP(STRTAB_STE_1_STRW, strw));
+>  
+>  		if (smmu->features & ARM_SMMU_FEAT_STALLS &&
+> -		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
+> +		    !master->stall_enabled)
+>  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
+>  
+>  		val |= (s1_cfg->cdcfg.cdtab_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+> @@ -1356,7 +1398,6 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+>  }
+>  
+>  /* smmu->streams_mutex must be held */
+> -__maybe_unused
+>  static struct arm_smmu_master *
+>  arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+>  {
+> @@ -1378,9 +1419,103 @@ arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+>  }
+>  
+>  /* IRQ and event handlers */
+> +static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
+> +{
+> +	int ret;
+> +	u32 reason;
+> +	u32 perm = 0;
+> +	struct arm_smmu_master *master;
+> +	bool ssid_valid = evt[0] & EVTQ_0_SSV;
+> +	u32 sid = FIELD_GET(EVTQ_0_SID, evt[0]);
+> +	struct iommu_fault_event fault_evt = { };
+> +	struct iommu_fault *flt = &fault_evt.fault;
+> +
+> +	switch (FIELD_GET(EVTQ_0_ID, evt[0])) {
+> +	case EVT_ID_TRANSLATION_FAULT:
+> +		reason = IOMMU_FAULT_REASON_PTE_FETCH;
+> +		break;
+> +	case EVT_ID_ADDR_SIZE_FAULT:
+> +		reason = IOMMU_FAULT_REASON_OOR_ADDRESS;
+> +		break;
+> +	case EVT_ID_ACCESS_FAULT:
+> +		reason = IOMMU_FAULT_REASON_ACCESS;
+> +		break;
+> +	case EVT_ID_PERMISSION_FAULT:
+> +		reason = IOMMU_FAULT_REASON_PERMISSION;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	/* Stage-2 is always pinned at the moment */
+> +	if (evt[1] & EVTQ_1_S2)
+> +		return -EFAULT;
+> +
+> +	if (evt[1] & EVTQ_1_RnW)
+> +		perm |= IOMMU_FAULT_PERM_READ;
+> +	else
+> +		perm |= IOMMU_FAULT_PERM_WRITE;
+> +
+> +	if (evt[1] & EVTQ_1_InD)
+> +		perm |= IOMMU_FAULT_PERM_EXEC;
+> +
+> +	if (evt[1] & EVTQ_1_PnU)
+> +		perm |= IOMMU_FAULT_PERM_PRIV;
+> +
+> +	if (evt[1] & EVTQ_1_STALL) {
+> +		flt->type = IOMMU_FAULT_PAGE_REQ;
+> +		flt->prm = (struct iommu_fault_page_request) {
+> +			.flags = IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE,
+> +			.grpid = FIELD_GET(EVTQ_1_STAG, evt[1]),
+> +			.perm = perm,
+> +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> +		};
+> +
+> +		if (ssid_valid) {
+> +			flt->prm.flags |= IOMMU_FAULT_PAGE_REQUEST_PASID_VALID;
+> +			flt->prm.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]);
+> +		}
+> +	} else {
+> +		flt->type = IOMMU_FAULT_DMA_UNRECOV;
+> +		flt->event = (struct iommu_fault_unrecoverable) {
+> +			.reason = reason,
+> +			.flags = IOMMU_FAULT_UNRECOV_ADDR_VALID,
+> +			.perm = perm,
+> +			.addr = FIELD_GET(EVTQ_2_ADDR, evt[2]),
+> +		};
+> +
+> +		if (ssid_valid) {
+> +			flt->event.flags |= IOMMU_FAULT_UNRECOV_PASID_VALID;
+> +			flt->event.pasid = FIELD_GET(EVTQ_0_SSID, evt[0]);
+> +		}
+> +	}
+> +
+> +	mutex_lock(&smmu->streams_mutex);
+> +	master = arm_smmu_find_master(smmu, sid);
+> +	if (!master) {
+> +		ret = -EINVAL;
+> +		goto out_unlock;
+> +	}
+> +
+> +	ret = iommu_report_device_fault(master->dev, &fault_evt);
+> +	if (ret && flt->type == IOMMU_FAULT_PAGE_REQ) {
+> +		/* Nobody cared, abort the access */
+> +		struct iommu_page_response resp = {
+> +			.pasid		= flt->prm.pasid,
+> +			.grpid		= flt->prm.grpid,
+> +			.code		= IOMMU_PAGE_RESP_FAILURE,
+> +		};
+> +		arm_smmu_page_response(master->dev, &fault_evt, &resp);
+> +	}
+> +
+> +out_unlock:
+> +	mutex_unlock(&smmu->streams_mutex);
+> +	return ret;
+> +}
+> +
+>  static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  {
+> -	int i;
+> +	int i, ret;
+>  	struct arm_smmu_device *smmu = dev;
+>  	struct arm_smmu_queue *q = &smmu->evtq.q;
+>  	struct arm_smmu_ll_queue *llq = &q->llq;
+> @@ -1390,6 +1525,10 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  		while (!queue_remove_raw(q, evt)) {
+>  			u8 id = FIELD_GET(EVTQ_0_ID, evt[0]);
+>  
+> +			ret = arm_smmu_handle_evt(smmu, evt);
+> +			if (!ret)
+> +				continue;
+> +
+>  			dev_info(smmu->dev, "event 0x%02x received:\n", id);
+>  			for (i = 0; i < ARRAY_SIZE(evt); ++i)
+>  				dev_info(smmu->dev, "\t0x%016llx\n",
+> @@ -1924,6 +2063,8 @@ static int arm_smmu_domain_finalise_s1(struct arm_smmu_domain *smmu_domain,
+>  
+>  	cfg->s1cdmax = master->ssid_bits;
+>  
+> +	smmu_domain->stall_enabled = master->stall_enabled;
+> +
+>  	ret = arm_smmu_alloc_cd_tables(smmu_domain);
+>  	if (ret)
+>  		goto out_free_asid;
+> @@ -2271,6 +2412,12 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
+>  			smmu_domain->s1_cfg.s1cdmax, master->ssid_bits);
+>  		ret = -EINVAL;
+>  		goto out_unlock;
+> +	} else if (smmu_domain->stage == ARM_SMMU_DOMAIN_S1 &&
+> +		   smmu_domain->stall_enabled != master->stall_enabled) {
+> +		dev_err(dev, "cannot attach to stall-%s domain\n",
+> +			smmu_domain->stall_enabled ? "enabled" : "disabled");
+> +		ret = -EINVAL;
+> +		goto out_unlock;
+>  	}
+>  
+>  	master->domain = smmu_domain;
+> @@ -2506,6 +2653,11 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
+>  		master->ssid_bits = min_t(u8, master->ssid_bits,
+>  					  CTXDESC_LINEAR_CDMAX);
+>  
+> +	if ((smmu->features & ARM_SMMU_FEAT_STALLS &&
+> +	     device_property_read_bool(dev, "dma-can-stall")) ||
+> +	    smmu->features & ARM_SMMU_FEAT_STALL_FORCE)
+> +		master->stall_enabled = true;
+> +
+>  	return &smmu->iommu;
+>  
+>  err_free_master:
+> @@ -2523,7 +2675,8 @@ static void arm_smmu_release_device(struct device *dev)
+>  		return;
+>  
+>  	master = dev_iommu_priv_get(dev);
+> -	WARN_ON(arm_smmu_master_sva_enabled(master));
+> +	if (WARN_ON(arm_smmu_master_sva_enabled(master)))
+> +		iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+>  	arm_smmu_detach_dev(master);
+>  	arm_smmu_disable_pasid(master);
+>  	arm_smmu_remove_master(master);
+> @@ -2651,6 +2804,8 @@ static bool arm_smmu_dev_has_feature(struct device *dev,
+>  		return false;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		return arm_smmu_master_iopf_supported(master);
+>  	case IOMMU_DEV_FEAT_SVA:
+>  		return arm_smmu_master_sva_supported(master);
+>  	default:
+> @@ -2667,6 +2822,8 @@ static bool arm_smmu_dev_feature_enabled(struct device *dev,
+>  		return false;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		return master->iopf_enabled;
+>  	case IOMMU_DEV_FEAT_SVA:
+>  		return arm_smmu_master_sva_enabled(master);
+>  	default:
+> @@ -2677,6 +2834,8 @@ static bool arm_smmu_dev_feature_enabled(struct device *dev,
+>  static int arm_smmu_dev_enable_feature(struct device *dev,
+>  				       enum iommu_dev_features feat)
+>  {
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +
+>  	if (!arm_smmu_dev_has_feature(dev, feat))
+>  		return -ENODEV;
+>  
+> @@ -2684,8 +2843,11 @@ static int arm_smmu_dev_enable_feature(struct device *dev,
+>  		return -EBUSY;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		master->iopf_enabled = true;
+> +		return 0;
+>  	case IOMMU_DEV_FEAT_SVA:
+> -		return arm_smmu_master_enable_sva(dev_iommu_priv_get(dev));
+> +		return arm_smmu_master_enable_sva(master);
+>  	default:
+>  		return -EINVAL;
+>  	}
+> @@ -2694,12 +2856,19 @@ static int arm_smmu_dev_enable_feature(struct device *dev,
+>  static int arm_smmu_dev_disable_feature(struct device *dev,
+>  					enum iommu_dev_features feat)
+>  {
+> +	struct arm_smmu_master *master = dev_iommu_priv_get(dev);
+> +
+>  	if (!arm_smmu_dev_feature_enabled(dev, feat))
+>  		return -EINVAL;
+>  
+>  	switch (feat) {
+> +	case IOMMU_DEV_FEAT_IOPF:
+> +		if (master->sva_enabled)
+> +			return -EBUSY;
+> +		master->iopf_enabled = false;
+> +		return 0;
+>  	case IOMMU_DEV_FEAT_SVA:
+> -		return arm_smmu_master_disable_sva(dev_iommu_priv_get(dev));
+> +		return arm_smmu_master_disable_sva(master);
+>  	default:
+>  		return -EINVAL;
+>  	}
+> @@ -2730,6 +2899,7 @@ static struct iommu_ops arm_smmu_ops = {
+>  	.sva_bind		= arm_smmu_sva_bind,
+>  	.sva_unbind		= arm_smmu_sva_unbind,
+>  	.sva_get_pasid		= arm_smmu_sva_get_pasid,
+> +	.page_response		= arm_smmu_page_response,
+>  	.pgsize_bitmap		= -1UL, /* Restricted during device attach */
+>  };
+>  
+> @@ -2827,6 +2997,13 @@ static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if ((smmu->features & ARM_SMMU_FEAT_SVA) &&
+> +	    (smmu->features & ARM_SMMU_FEAT_STALLS)) {
+> +		smmu->evtq.iopf = iopf_queue_alloc(dev_name(smmu->dev));
+> +		if (!smmu->evtq.iopf)
+> +			return -ENOMEM;
+> +	}
+> +
+>  	/* priq */
+>  	if (!(smmu->features & ARM_SMMU_FEAT_PRI))
+>  		return 0;
+> @@ -3742,6 +3919,7 @@ static int arm_smmu_device_remove(struct platform_device *pdev)
+>  	iommu_device_unregister(&smmu->iommu);
+>  	iommu_device_sysfs_remove(&smmu->iommu);
+>  	arm_smmu_device_disable(smmu);
+> +	iopf_queue_free(smmu->evtq.iopf);
+>  
+>  	return 0;
+>  }
+> 
 
