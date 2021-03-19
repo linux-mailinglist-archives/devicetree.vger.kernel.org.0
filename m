@@ -2,191 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 604473412E5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C290934130A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:37:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbhCSCfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 22:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbhCSCep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 22:34:45 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F5FC06174A
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 19:34:44 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id r14so5729591qtt.7
-        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 19:34:44 -0700 (PDT)
+        id S230434AbhCSCgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 22:36:54 -0400
+Received: from mail-bn7nam10on2139.outbound.protection.outlook.com ([40.107.92.139]:44256
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231321AbhCSCgU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 22:36:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g0xiTRMgvcQhQF+/eQQPNGEsQ4F4teEKoKhl4jupi5v3Qf8ye+JzGjlVCzqAve7jBbE+uavCFizTyu1cTxyNJ+yjueurTu+6IGDt4RRIsYashzUBd4OdM0heAwLOgYlUo1AChNxbPyfsrEGGGkVv1GNrSqcp2+urAlMMx1vs/6YRZVnuidcd9x75jii107+ZKhjjd9YeLxfrDi7BVxAaHP36azR8G/oMelKPoRx3yAcKNj+Sj4Yzecig2dukRQ4Gb7Gm7x4HXJzw3V5bA3oWoFT/c9cfmxLAqEVOB47FjqCNUWbCiR3DIxKQMudIiycJYA+jovMI6H+5KMiuMSh+bA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wcMAHVlWIFil9xMDioAKLUkwI7RAd2ugoQndZmXnTkk=;
+ b=QFkSiyl+re75fDlVYJbpoF89Xd6tngYMy7QAmq/rjG61Dchp8AappTFdhC8gGJG+EN00a+r/dDY+Abz+qQ4CJrJB1F1YBtwEG50guej3QWRF8qAlpnFT05w0oiTNlhD6j3qA7u3pZw6UhQeEz1Zj9btDe1FMWAkrBTI3vvT0jjtfKga8K4/Pw5O9hIglpuMT9HoBDUWCa2Xj1t/iLMXpGYCKOiIEoKeXv/qKvP0s2jraRTIEHfzfadD0CdSHBDsZtEsE1vtsaZTe8h+66xnblTPxaJPnblsKSJB9s1mR8gsJQ7P7CEJ/agciWAetfWKh717ZdvGsiDqMmC/ESp0eHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=psinH8XtxfklK+mQg/xmh9CTqB4IAWDh1IKdzXhNoWw=;
-        b=AkpqkDmnPm8shhKYbgXs3nBRpukr3Bo8xUVon0hsQ2S/oY+FBAjTZIfH0X943SMWcC
-         sDKnYxkW+bONV1KMan8nftcYk6dy0Xnby6lh8AzcGY+m9axfCrsbAQ/k8FQAezQMs/g4
-         MYlqnXejBjHYg9OJbKcs8eYmEPs0hpU024NxmIBSuYa6OJv5Tkw+tIqaDM/8Z0wgxiqm
-         JJgjCiUzGekoIn8/wcISklzJs/RYslSpjmazHQINnX2HScAJY8Oeplm3qAGNqWd8Fb8Z
-         z0Fy8pvqV4uBQXLrHLPM4E+QETkq9MKDB3FTUiVHL5p2rWxrtnih63he9tdIbntZlQZ3
-         TWDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=psinH8XtxfklK+mQg/xmh9CTqB4IAWDh1IKdzXhNoWw=;
-        b=LuFrHuNDo6idi3xG6D9tVq94CwJ2VXZ8wAa1PuVEhnkmBRiFj0e2gdoOZzWWeHjDvi
-         C5k6fT3sAzGbCecwyJHwykF6MacyJs7FNYg6fuq/ljGgPrNqUuy1c0sFTMEkFjPhFXYy
-         +eww9VKdaxsH5QTk6HZDr1BeFvpwslfYWBdD4WzoFoBd9cYM55+2YX7wt+D2fgeKiUMv
-         JoHE4V5SZBWy9HFDy1mW0jG650jsvm7qjh+Pr/6mFZT5v/3jyGBm2KnZpzbkOlMP/Th0
-         8dUJUrVJHSdtGfl46AP8ON62xzxeILi4uP9HHF7qZHU1VgVMyoHvVZvn0aLnEZeFoRal
-         jeQg==
-X-Gm-Message-State: AOAM533VInLCodGZrSXbZVP8PGhS1M//5TbkbWrHORUxQ/+P7QbwpHGp
-        v1JaeP06ONXgm91wgyTMwxDwbl2+Th4QasxJqMjaKA==
-X-Google-Smtp-Source: ABdhPJz1IZdC1Wj1CXh7P9ipIV8QYNLJwTdUg08Fqh8VY3a2JffIhGlfarT0QN6oo2g6XPyTjsezHJEDE4v6eCdacQc=
-X-Received: by 2002:ac8:431e:: with SMTP id z30mr6492634qtm.216.1616121283752;
- Thu, 18 Mar 2021 19:34:43 -0700 (PDT)
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wcMAHVlWIFil9xMDioAKLUkwI7RAd2ugoQndZmXnTkk=;
+ b=LvZ0NvdBr+ei/IUj3R8qVPwWJes1bkhlSqYVgF1JK4SiarjB08wdxs1u/wWWKiI24FGrmaQJvdDeApGVSOCs1TdKzXhEtZhXMsJUcIC39P6/QmLMoCF6UDi2+IHBS1aEfbvWqbAmbbch3Yn8UEow2vlo+tOM9f2VlXJhAK4oPCs=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by SJ0PR04MB7597.namprd04.prod.outlook.com (2603:10b6:a03:320::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Fri, 19 Mar
+ 2021 02:36:19 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f%2]) with mapi id 15.20.3955.018; Fri, 19 Mar 2021
+ 02:36:19 +0000
+Date:   Fri, 19 Mar 2021 10:36:13 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
+        Sheng Pan <span@analogixsemi.com>,
+        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/5] dt-bindings:drm/bridge:anx7625:add vendor define flags
+Message-ID: <d73a6d71667d793069a81406bc3f686846b83cc9.1616071250.git.xji@analogixsemi.com>
+References: <cover.1616071250.git.xji@analogixsemi.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1616071250.git.xji@analogixsemi.com>
+X-Originating-IP: [60.251.58.79]
+X-ClientProxiedBy: HK2PR0401CA0008.apcprd04.prod.outlook.com
+ (2603:1096:202:2::18) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-References: <20201109173948.96663-1-sven.auhagen@voleatech.de> <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
-In-Reply-To: <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Fri, 19 Mar 2021 03:34:33 +0100
-Message-ID: <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop
- a hack in the IRQ subsystem
-To:     Sven Auhagen <sven.auhagen@voleatech.de>
-Cc:     axboe@kernel.dk, Hans de Goede <hdegoede@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>, maz@kernel.org,
-        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Jason Cooper <jason@lakedaemon.net>,
-        devicetree@vger.kernel.org,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        viresh.kumar@linaro.org, rjw@rjwysocki.net,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-ide@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Grzegorz Jaszczyk <jaz@semihalf.com>, upstream@semihalf.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR0401CA0008.apcprd04.prod.outlook.com (2603:1096:202:2::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend Transport; Fri, 19 Mar 2021 02:36:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 545e1c8f-7cb5-41db-126f-08d8ea7fc6aa
+X-MS-TrafficTypeDiagnostic: SJ0PR04MB7597:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SJ0PR04MB759788988FD95ADDDACB58FDC7689@SJ0PR04MB7597.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LN8/fSayx4lhld7A7+tp/hJkWUlDUr2+YQB7gzb/Yk9f8VMInfTwubuMO/xslyDWcrPhUKgrVWiu7nOzMcL8iVXk2NslKiSkzLRKDW0kKoSuAGJrKvtiIGpxKFruXRb3iMplnF0udy/M06XxlSJPFcTORGGaOoyWh7OcOBjd2O79WQaOcIGmey3Jkl2CMAPnEKSYuY1rXEQbsfEOc5av9kXU10Bgpz8Zq8byrO3dw7MgZi/GPzLZz0SXGBN8Gn6l0BHf2CK346ja7KmwcbvD/xWEqjk3OpiaVr7x66zj58hU5e+7BL/Q6rcos/CGJYRmcsS6chtzocS5tzJ2HD3R4CA/4nlxVIrqRiktq5JTYP6LSnzOET2PSsxofIb0NrA3U/0CGtq7z9MYKeeDpTRL1V8gZ+a/E6VM/J/9NyfkGCuT+vg7MHb3UbU8O0KoMt6iMcZLDa6r5e8sdgQF1ZH95biN3PPpovDqTAMCLWm2t79bacdy/TWEnZHnO0hYQwIhAgmA4rMbqYV1S1wRdpmU5MMkc5rcuDmJ/YghaOmVOv84+E6Sv+/OS/SHiU9Ejat5D7jpCmtWgKJ2kM20Err0O8XBQBq5mImjT5W75WPnVdMkwyBU77h3yFL6N3gavKO7QOIwXmmGFNnNeGIYHlAW6w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(366004)(136003)(39850400004)(396003)(4326008)(110136005)(26005)(16526019)(86362001)(8676002)(55236004)(6486002)(956004)(2616005)(6666004)(7416002)(38100700001)(52116002)(2906002)(478600001)(5660300002)(8936002)(36756003)(6496006)(54906003)(66556008)(66476007)(316002)(66946007)(186003)(83380400001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?DRrHaAAWdJ/Rr7vQ878QULWNYfaQz4F1Fv1g0cP02CMH6uMLP8FqLFDy5Je2?=
+ =?us-ascii?Q?E2XSAr5gvcpBjeR3hhFK9uVgDSuS1em6M5n+PZdI9PfNCkXJRzcB1xPA6EJq?=
+ =?us-ascii?Q?L+f5AWgfRKj+Rj9H8++Ihuk6EDpGSP7G4qVwXfAbmW2dZVmS1RjwuiWmzFa0?=
+ =?us-ascii?Q?mMOBOWlWb1hAzo2v90f1PPwHuJd2fuJDQyx9VyxATvpjhb3C2ZzO8NKRKYlV?=
+ =?us-ascii?Q?UVlmxef2ZuurCZ6a2sP+xKJdpLCBFbH633WGxrr7m5qlvc03uy6oh25TH4uS?=
+ =?us-ascii?Q?F5ihV1HLc9yFrvJ8Sbv2+cp4Y6Ap4RBYoGMHiUCEURxyl9blKmwytOgsHKyN?=
+ =?us-ascii?Q?UDvP3J+Mi7+68OrUjArJ9tRgmodSMopeNgojrmHqcsFAXavOv+sLqoPySp0Q?=
+ =?us-ascii?Q?h4aLJxVDIwo8zJVdJz1fNAWpaVboTdEaq33OdEBFp4zz6LRJ5jne8SqfGgPm?=
+ =?us-ascii?Q?/XMcivKcC7/aK8EiSq5EUJQz9/BNc1nJuvrEtKBz88NgAjdyaqj96wp8oO+S?=
+ =?us-ascii?Q?nUw8tOJUyx14fei7VX1IWtv7Osf/9cfDxqhAQtVB+51lqHONffNI7T/O8bND?=
+ =?us-ascii?Q?PDjrtN6+IVG7nQNEI5KybQvPExqEJ1dG8MeBGFp1vKZhGQnrcZyDPtpkDYPf?=
+ =?us-ascii?Q?hsxTP7Bb3Iiovc+NF/qqewyf7d1FI7tYd1fAu/hhmAopg3vzlrybBNdtz3IB?=
+ =?us-ascii?Q?TJnXkGsOX9bQ+LyErjTo8SaKdWqz5lAx1jxgekEE8iWK4OqqZB8s9O4JzuGj?=
+ =?us-ascii?Q?fMJtNsbuhwr8DiEaoRtAJk1sv+lKTymgO0+d/Ti9Ih4/zF5vOcyTSpoZxSh5?=
+ =?us-ascii?Q?TPFfcoxHs9aGV6+mrDyAULpp2Wv5DbnsKEH9qUOILw0Vx9q8z9oVgFiVvVtA?=
+ =?us-ascii?Q?NbEzkk7Y6W0JuN+56/QW+c0e1VPjrUPh8dDS8lt3/mEArng7Q8agGN9xQ17k?=
+ =?us-ascii?Q?l4jPXaLi4xeJfu/c3yRHNZgDT+zaxkqAeMLTZ61UkdqOyMFrAio8iVKIBPzK?=
+ =?us-ascii?Q?/JabC3fUxzt5/j4zwtpt94mEaouXnKWPiaEJ1opwPiR07p4QRU1ccXJUA6hK?=
+ =?us-ascii?Q?ZZKHt2OA9BeCAjo/xX1bQuJUOkY5NYRqF4BSRdEGI9IcNHgYhwN9+lRw/DoX?=
+ =?us-ascii?Q?d2u7/2Is2w5O4XEtF9qncIprwTmKr1WdKFRuY7BVzTLBlsas+BHtgY76Z11x?=
+ =?us-ascii?Q?9Cy2eyxh3q8nRYAdaU3Me68GsX3DX4pyXjMETrl5f4Qu/3XfbnOHFpgwVG+e?=
+ =?us-ascii?Q?y1mVWS7JRnXhKzA7G3JNg0kDmvO+kWJ7UtTL2MvwY5Ri6ZkV8N7aeft/Quka?=
+ =?us-ascii?Q?GzKzgLxpAAl3TY0q0iDPMgAv?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 545e1c8f-7cb5-41db-126f-08d8ea7fc6aa
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2021 02:36:18.9069
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 65JrSTd2jsCUFWFUQUwn2MJkVY815B9/Nlfom0ADiCHxhBeoChylE4+GvkNYGDhR4JdwZ0mLYUEMs6lyNMvCeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7597
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Resend in plain text]
+Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
+lane1 swing register array define, and audio enable flag.
 
-Hi,
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+---
+ .../bindings/display/bridge/analogix,anx7625.yaml  | 58 +++++++++++++++++++++-
+ 1 file changed, 57 insertions(+), 1 deletion(-)
 
-Just letting everyone know - merging only the DT part of this patchset
-broke AHCI on all Marvell Armada 7k8k / CN913x platforms in v5.11
-release.
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+index c789784..3f54d58 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -34,6 +34,26 @@ properties:
+     description: used for reset chip control, RESET_N pin B7.
+     maxItems: 1
+ 
++  analogix,lane0-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane0 PHY, please don't
++      add this property, or contact vendor.
++
++  analogix,lane1-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane1 PHY, please don't
++      add this property, or contact vendor.
++
++  analogix,audio-enable:
++    type: boolean
++    description: let the driver enable audio HDMI codec function or not.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -41,13 +61,43 @@ properties:
+       port@0:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+-          Video port for MIPI DSI input.
++          MIPI DSI/DPI input.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            type: object
++            additionalProperties: false
++
++            properties:
++              remote-endpoint: true
++              bus-type: true
++              data-lanes: true
++
++            required:
++              - remote-endpoint
++
++        required:
++          - endpoint
++
+ 
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+           Video port for panel or connector.
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            type: object
++            additionalProperties: false
++
++            properties:
++              remote-endpoint: true
++
++            required:
++              - remote-endpoint
++
+     required:
+       - port@0
+       - port@1
+@@ -73,6 +123,10 @@ examples:
+             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
+ 
++            analogix,audio-enable;
++            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
++            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
++
+             ports {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+@@ -81,6 +135,8 @@ examples:
+                     reg = <0>;
+                     anx7625_in: endpoint {
+                         remote-endpoint = <&mipi_dsi>;
++                        bus-type = <5>;
++                        data-lanes = <0 1 2 3>;
+                     };
+                 };
+ 
+-- 
+2.7.4
 
-FYI, I'm currently updating the device trees in EDK2 based on the
-v5.11 DT sources - I'm going to keep the previous binding anyway, as
-the new one breaks booting with AHCI not only for older Linux
-versions, but also for other OSs (yet another argument to use ACPI).
-
-Best regards,
-Marcin
-
-
-sob., 27 lut 2021 o 12:02 Sven Auhagen <sven.auhagen@voleatech.de> napisa=
-=C5=82(a):
->
-> Hello,
->
-> can I ask about the status of this patch?
-> As far as I can tell it was not merged to ata and I did not receive
-> any further feedback that there was a problem with the patch series.
->
-> As a matter of fact the device tree part was already merged by
-> Gregory Clement.
->
-> Best and thanks
-> Sven
->
-> On Mon, Nov 09, 2020 at 06:39:39PM +0100, sven.auhagen@voleatech.de wrote=
-:
-> > From: Sven Auhagen <sven.auhagen@voleatech.de>
-> >
-> > Hello,
-> >
-> > There were already 4 versions of this series from Miqu=C3=A8l.
-> > I talked to Miqu=C3=A8l and I fixed up the last comments from v4.
-> > I am looking for feedback if this patch series is now ready to be merge=
-d
-> > and what should be further changed.
-> >
-> > Here is the original cover letter:
-> >
-> > Some time ago, when the initial support for Armada CP110 was
-> > contributed, the SATA core was not able to handle per-port
-> > interrupts. Despite the hardware reality, the device tree only
-> > represents one main interrupt for the two ports. Having both SATA
-> > ports enabled at the same time has been achieved by a hack in the ICU
-> > driver(1) that faked the use of the two interrupts, no matter which
-> > SATA port was in use.
-> >
-> > Now that the SATA core is ready to handle more than one interrupt,
-> > this series adds support for it in the libahci_platform code. The
-> > CP110 device tree must be updated to reflect the two SATA ports
-> > available and their respective interrupts. To do not break DT backward
-> > compatibility, the ahci_platform driver now embeds a special quirk
-> > which checks if the DT is valid (only for A8k compatible) and, if
-> > needed, creates the two missing sub-nodes, and assign them the
-> > relevant "reg" and "interrupts" properties, before removing the main
-> > SATA node "interrupts" one.
-> >
-> > (1) The ICU is an irqchip aggregating the CP110 (south-bridge)
-> > interrupts into MSIs for the AP806 (north-bridge).
-> >
-> > Best
-> > Sven
-> >
-> > Change from v2:
-> >   * Fix commit message of custom irq init for host init
-> >
-> > Change from v1:
-> >   * Add a patch to enable custom irq initialization in
-> >     plattform init host
-> >   * Add multi_irq_host_ack callback for the msi irq handler
-> >   * Rework the ahci mvebu patch to initiate the irq and use
-> >     the new multi_irq_host_ack to handle the custom irq code.
-> >     Remove the custom irq handler and duplicate code.
-> >   * Fix the armada8k backwards compatibility code
-> >   * Rename AHCI_PLATFORM_A8K_QUIRK to AHCI_PLATFORM_ARMADA8K_QUIRK
-> >
-> > Miquel Raynal (5):
-> >   ata: ahci: mvebu: Rename a platform data flag
-> >   ata: ahci: mvebu: Support A8k compatible
-> >   irqchip/irq-mvebu-icu: Remove the double SATA ports interrupt hack
-> >   dt-bindings: ata: Update ahci bindings with possible per-port
-> >     interrupts
-> >   dt-bindings: ata: Update ahci_mvebu bindings
-> >
-> > Sven Auhagen (4):
-> >   ata: libahci_platform: Do not try to get an IRQ when
-> >     AHCI_HFLAG_MULTI_MSI is set
-> >   ata: ahci: add ack callback to multi irq handler
-> >   ata: ahci: mvebu: Add support for A8k legacy DT bindings
-> >   arm64: dts: marvell: armada-cp110: Switch to per-port SATA interrupts
-> >
-> >  .../devicetree/bindings/ata/ahci-platform.txt |   7 +
-> >  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   6 +-
-> >  drivers/ata/ahci.h                            |   2 +
-> >  drivers/ata/ahci_mvebu.c                      | 143 ++++++++++++++++--
-> >  drivers/ata/libahci.c                         |   4 +
-> >  drivers/ata/libahci_platform.c                |  19 ++-
-> >  drivers/irqchip/irq-mvebu-icu.c               |  18 ---
-> >  include/linux/ahci_platform.h                 |   1 +
-> >  8 files changed, 160 insertions(+), 40 deletions(-)
-> >
-> > --
-> > 2.20.1
-> >
-> >
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
