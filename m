@@ -2,73 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D57F93417F0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 10:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 845A1341843
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 10:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbhCSJHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 05:07:15 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56720 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbhCSJHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 05:07:04 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 4E55E1F465F9
-Subject: Re: [PATCH v4 2/4] dt-bindings: arm64: dts: mediatek: Add
- mt8183-kukui-jacuzzi-juniper
-To:     Hsin-Yi Wang <hsinyi@chromium.org>, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, Ben Ho <Ben.Ho@mediatek.com>
-References: <20210319035245.2751911-1-hsinyi@chromium.org>
- <20210319035245.2751911-2-hsinyi@chromium.org>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <8b444ea2-0052-23e8-ea52-de07c1a2907d@collabora.com>
-Date:   Fri, 19 Mar 2021 10:06:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S229841AbhCSJaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 05:30:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229524AbhCSJaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 05:30:05 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D94C06174A
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 02:30:05 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id j4-20020a05600c4104b029010c62bc1e20so4849053wmi.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 02:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h7Hm+ghwkLRDBAXMVNnrJw9KnhlIxQw5KKOJ32yVNwQ=;
+        b=B91xc1g1F0dratEusEbJbkRCwWFgBHj6CI00wIY1FiNueZeWwbhdDux76Y05VbhH34
+         6HANw5RONyLoVtsA7hFSiOpX8ncK/aJW0rfvVSsaZK0fBb1x21Nnk5ykZIbWGQiztLIF
+         jZBcMME2jGhhv1LfeOept+9NYEKRGx471crt8i8/lozGOLQvX9UDom3UXlFCpKYNQZHo
+         6Vv7PaMDOtX78JxdmUj2LIPmWydkwIJ3OXO1XrGaE2Ul4tHILN9J+JEQ1vZ6PVvep9o4
+         mI+w/RyooZB523RBlknIrcOCWK+K/qvrx75BDZh27bKEEJkRnKEk3BvhRKOV9aQVs7St
+         TU1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h7Hm+ghwkLRDBAXMVNnrJw9KnhlIxQw5KKOJ32yVNwQ=;
+        b=ONz5gy5TD5+F/XVgHyBVh1vvsoh1eB3Asuns3OF2Ks9/XEDdNdEIXPXgKF0k4Z/uMP
+         nxu8T02g0cjo5GD1RaeC4C1NGTaEUU5simGdp7/FZ6y1rC52Bkp52pYTmV+cMVCTFKdV
+         bZw9v7+W0eaOd1tTzxJUWwhhwA/24Fit2AUwAMiUQShaeMhEp1e5bhcSvrxWEJvedTa3
+         98K34HBOcfESHSnZWSXOu5lFp12D6ysIWSbVMzEE5u2dBiNRfvPg7aJpuqL5JeQr6suJ
+         OA5x8YuXpJz42ccBeRfEu4yZF8JfnrRdchCs7fKkSgvocOHQ0CHx7DuH3rqzr/w2wJ7O
+         2ZAQ==
+X-Gm-Message-State: AOAM532j1Qy9aHcTs/w2+O2bPGSCzeUXNO87hSapH7bmUoB866+pV2LZ
+        NIMz2/v71xNssdBq4Mm+T+zrrpR8zh2deA==
+X-Google-Smtp-Source: ABdhPJwuN6X1S9bPZn0gh5KHG32FcDe6PvNMjiCNqgkQ05fhB+gQUu/EBFvYfuhbNDlPrgEME0nJhA==
+X-Received: by 2002:a05:600c:198d:: with SMTP id t13mr2888475wmq.73.1616146203868;
+        Fri, 19 Mar 2021 02:30:03 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id p6sm6779058wru.2.2021.03.19.02.30.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Mar 2021 02:30:03 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        perex@perex.cz, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/7] ASoC: codecs: add wcd938x support
+Date:   Fri, 19 Mar 2021 09:29:12 +0000
+Message-Id: <20210319092919.21218-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20210319035245.2751911-2-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+This patchset adds support for Qualcomm WCD938X codec.
 
-Thank you for your patch.
+Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+connected over SoundWire. This device has two SoundWire devices, RX and
+TX respectively supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+7 x TX diff inputs, 8 DMICs and MBHC.
 
-On 19/3/21 4:52, Hsin-Yi Wang wrote:
-> mt8183-kukui-jacuzzi-juniper board also known as Acer Chromebook Spin 311,
-> using mediatek mt8183 SoC.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Even though this device has two SoundWire devices, only tx device has
+access to main codec Control/Status Registers!
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+This patchset along with other SoundWire patches on the list
+have been tested on SM8250 MTP device.
 
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index a86716cdd408..edee2c3f8620 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -129,6 +129,11 @@ properties:
->          items:
->            - const: google,damu
->            - const: mediatek,mt8183
-> +      - description: Google Juniper (Acer Chromebook Spin 311)
-> +        items:
-> +          - const: google,juniper-sku16
-> +          - const: google,juniper
-> +          - const: mediatek,mt8183
->  
->  additionalProperties: true
->  
-> 
+Am planning to send support for MBHC once this driver gets accepted!
+
+Thanks,
+srini
+
+Many thanks for reviewing v2.
+
+
+Changes since v2:
+	- fixed dt_binding_check error
+
+
+Srinivas Kandagatla (7):
+  ASoC: dt-bindings: wcd938x: add bindings for wcd938x
+  ASoC: codecs: wcd-clsh: add new version support
+  ASoC: codecs: wcd938x: add basic driver
+  ASoC: codecs: wcd938x: add basic controls
+  ASoC: codecs: wcd938x: add playback dapm widgets
+  ASoC: codecs: wcd938x: add capture dapm widgets
+  ASoC: codecs: wcd938x: add audio routing
+
+ .../bindings/sound/qcom,wcd938x.yaml          |  165 +
+ sound/soc/codecs/Kconfig                      |    9 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wcd-clsh-v2.c                |  350 +-
+ sound/soc/codecs/wcd-clsh-v2.h                |   16 +
+ sound/soc/codecs/wcd938x-sdw.c                |  291 ++
+ sound/soc/codecs/wcd938x.c                    | 3623 +++++++++++++++++
+ sound/soc/codecs/wcd938x.h                    |  676 +++
+ 8 files changed, 5122 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+ create mode 100644 sound/soc/codecs/wcd938x-sdw.c
+ create mode 100644 sound/soc/codecs/wcd938x.c
+ create mode 100644 sound/soc/codecs/wcd938x.h
+
+-- 
+2.21.0
+
