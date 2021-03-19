@@ -2,307 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27F2D341711
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 09:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A3EC34171D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 09:09:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234158AbhCSIGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 04:06:34 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:38893 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234102AbhCSIGF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Mar 2021 04:06:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1616141165; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=anXZKrHijnJBEv675UX9vOPYHJeliPJ8SB1cZ2CSvKQ=;
- b=V7MbAzjhPiakBa0hMWJ0J43pxnWsgL70/1Xd30ul4qlDQezbm0B/sZ0lx5zqOb3L32i+OfUZ
- /6+CwT8I25XNokDgIJ0K3JxqUd2KyAwUEyzwFZbw6ojnqPLo8n8u8G5r7OAcMrAI6rPNJN+b
- ufu5/K7vh65kpxmtlT+2t4QdbbY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 60545a354db3bb6801c93123 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Mar 2021 08:00:53
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id F4114C43462; Fri, 19 Mar 2021 08:00:52 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CE57BC433C6;
-        Fri, 19 Mar 2021 08:00:51 +0000 (UTC)
+        id S234287AbhCSIJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 04:09:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234219AbhCSIIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 04:08:45 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B10C06174A
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 01:08:45 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id v70so2015379qkb.8
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 01:08:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=O0/6ovKk6e5e9v6C+r5vC4t97AsQ1nSKAQGB3wUp3R8=;
+        b=xoea1+ttxpXo14phYMldJAKtZliRDt3pJfxB9BchVuSX13moGzFDAx6dr8WKFISuX7
+         gIxmI/jTC+70ICwPXIqIG8DrgI3bRy0Oo8sg7iywQQtfpfsBuAWNVZRakjHHsyLfezNe
+         4UM/OTupfw2eTba+yodxgaaMOiBy/DCF4RrviN3ojsYZpyfLJ1GArqFON+51o9qejNcQ
+         Jz9CGmTPV7gMvARCENI4FuU0Pagbvcx5eKyeQt+IhlG9AKjqthmRnu4W+/eUmBOC6Ik7
+         kPLTEB1AlgzCdFHuTtSYIwEo21oe8RXjx5i9i7p9HsYLBEybYd+pBn2KC8jWBInheNHU
+         5oJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=O0/6ovKk6e5e9v6C+r5vC4t97AsQ1nSKAQGB3wUp3R8=;
+        b=B017glKGDpSgSG2gbIUJg7PKjTD144TcowK5M48ik31PjNJxdki94NsXGsFVb/4XF+
+         nyB7LJm10ui6SkNZwzpOtr6XHa5c0OXh87fqCD/N88HNRVNor6eK5t1KUAZqbnee8Q6N
+         EvbePhVRlbWd3sF6VKHEQXzfPh50xwmGnJdA4LaIraoBac8WID1p5Vmwmw/TsIR1rekb
+         fRGp93jyKadEmpj3GZrDaHiZdTzVrMrjnQUTCkQBP4VReVQWNKydfIlUoPh3X7x7lz5d
+         uCT02nxphyYvD3nGBFFGXMaTgoEL3l8mdeH7cP946Hqqpye/aEfG5Vi+GnAdNXiooBhX
+         VjNQ==
+X-Gm-Message-State: AOAM531hPEt3tkbcWZonJClrXvkdZPfS2TcK3vtKYm8PQQcIFKa5SKDP
+        SrfJqrp99Y2yTbsy6pUT/xEILfoY5WSM0TNF/3NuKA==
+X-Google-Smtp-Source: ABdhPJxCUx9zkP+WQdqoxgUy4GnwOCwNUzbWvrEkLsCplC3eoVB8F6tuhl91Bjb/oWLV4SfzajK7jz/bGa88znNg4uY=
+X-Received: by 2002:a05:620a:c95:: with SMTP id q21mr8018254qki.360.1616141324728;
+ Fri, 19 Mar 2021 01:08:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 19 Mar 2021 13:30:51 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, rnayak@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org,
-        David Collins <collinsd@codeaurora.org>, sbhanu@codeaurora.org
-Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: sc7280: Add RPMh regulators for
- sc7280-idp
-In-Reply-To: <YFE+mC0dP0atFA8A@google.com>
-References: <1615816454-1733-1-git-send-email-skakit@codeaurora.org>
- <1615816454-1733-4-git-send-email-skakit@codeaurora.org>
- <YFE+mC0dP0atFA8A@google.com>
-Message-ID: <3caea8e288a9e196bd74ff4d57c8230d@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20201109173948.96663-1-sven.auhagen@voleatech.de>
+ <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local> <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
+ <87czvviok9.fsf@BL-laptop>
+In-Reply-To: <87czvviok9.fsf@BL-laptop>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Fri, 19 Mar 2021 09:08:34 +0100
+Message-ID: <CAPv3WKfiuV5h2m=579-3UajwBFtHB2MP5tdSvzxTZo+0MPnZNA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop
+ a hack in the IRQ subsystem
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Sven Auhagen <sven.auhagen@voleatech.de>, axboe@kernel.dk,
+        Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, maz@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Jason Cooper <jason@lakedaemon.net>,
+        devicetree@vger.kernel.org,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-ide@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>, upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-17 04:56, Matthias Kaehlcke wrote:
-> On Mon, Mar 15, 2021 at 07:24:12PM +0530, satya priya wrote:
->> Add regulator devices for SC7280 as RPMh regulators. This ensures
->> that consumers are able to modify the physical state of PMIC
->> regulators.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->> Changes in V2:
->>  - Corrected the indentation for "compatible" and "qcom,pmic-id" under
->>    pm8350c-regulators as per Konrad's comment.
->> 
->>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 212 
->> ++++++++++++++++++++++++++++++++
->>  1 file changed, 212 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> index 428f863..78effe5 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> @@ -22,6 +22,218 @@
->>  	};
->>  };
->> 
->> +&apps_rsc {
->> +	pm7325-regulators {
->> +		compatible = "qcom,pm7325-rpmh-regulators";
->> +		qcom,pmic-id = "b";
->> +
->> +		vreg_s1b_1p8: smps1 {
->> +			regulator-min-microvolt = <1856000>;
-> 
-> For most LDOs their 'Active minimum voltage' is specified as their
-> minimum, however for S1B and S8B it's the 'Nominal voltage. Is that
-> intentional?
-> 
-> There might be a misunderstanding on my side what the values in the
-> datasheet actually mean, see my comment at the end.
-> 
->> +			regulator-max-microvolt = <2040000>;
->> +		};
->> +
->> +		vreg_s7b_0p9: smps7 {
->> +			regulator-min-microvolt = <535000>;
-> 
-> According to the datasheet the minimum voltage of the S7B regulator
-> is 904 mV.
-> 
->> +			regulator-max-microvolt = <1120000>;
->> +		};
->> +
->> +		vreg_s8b_1p2: smps8 {
->> +			regulator-min-microvolt = <1256000>;
->> +			regulator-max-microvolt = <1500000>;
->> +		};
->> +
->> +		vreg_l1b_0p8: ldo1 {
->> +			regulator-min-microvolt = <825000>;
->> +			regulator-max-microvolt = <925000>;
->> +		};
->> +
->> +		vreg_l2b_3p0: ldo2 {
->> +			regulator-min-microvolt = <2700000>;
->> +			regulator-max-microvolt = <3544000>;
->> +		};
-> 
-> Another question that came up for sc7180-trogdor regulators,
-> whose core regulator config was derived from sc7180-idp: the
-> label suggests that this regulator is supposed to supply 3V,
-> however the range spans from 2.7 to 3.54V. Shouldn't it be
-> narrower around 3V? Same for other some regulators.
-> 
+HI Gregory,
 
-The label names are given based on the default voltage value(a typical 
-value supported by any usecase) which is specified in the Powergrid. For 
-this regulator the default voltage is 3.072V, whereas the range is 2.7 
-to 3.5V
+pt., 19 mar 2021 o 08:35 Gregory CLEMENT <gregory.clement@bootlin.com>
+napisa=C5=82(a):
+>
+> Hello Marcin,
+>
+> > [Resend in plain text]
+> >
+> > Hi,
+> >
+> > Just letting everyone know - merging only the DT part of this patchset
+> > broke AHCI on all Marvell Armada 7k8k / CN913x platforms in v5.11
+> > release.
+>
+> It's unfortunate that we didn't know this when v5.11-rc1 was
+> released. However it is still time for a fix, I will submit it.
+> As I explained in the other email when I applied this I really though
+> that the driver part will be applied, I don't know what happened here.
+>
 
->> +
->> +		vreg_l6b_1p2: ldo6 {
->> +			regulator-min-microvolt = <1140000>;
-> 
-> The datasheet says the minimum for L6B is 1.2V.
-> 
->> +			regulator-max-microvolt = <1260000>;
->> +		};
->> +
->> +		vreg_l7b_2p9: ldo7 {
->> +			regulator-min-microvolt = <2960000>;
->> +			regulator-max-microvolt = <2960000>;
->> +		};
-> 
-> This regulator has a fixed voltage in difference to the others, why
-> is that?
-> 
+Sure, looking at the thread it looks more of a communication issue. I
+am also surprised the breakage went unnoticed for a while (unless
+everyone is using edk2, like myself :) ). I think it would be good to
+revert the change on top of v5.11.x. The drivers adoption would have to
+land before v5.12 though, so that not to repeat the problem during next rel=
+ease.
 
-L7B and L19B regulators are used for EMMC. EMMC probe is failing if the 
-value is not fixed to default voltage(2.96V for L7B). Similar issue was 
-seen on Rennell as well, [1] is the upstream change for the same posted 
-by storage team.
+Small rant:
+A general issue with the DT binding changes of this kind (previously
+clocks, ICU, etc.) that I have, is a side effect of incompatibility
+with older kernels/other OSs. The latter must follow the
+modifications, but you can forget of booting e.g. Debian Buster with
+the ToT device tree. Therefore in edk2 I do not update the device tree
+fork to often and need to tweak it in order to have the widest support
+coverage.
 
-[1] https://lore.kernel.org/patchwork/patch/1176993/
+I'm dropping this note, so that in similar case in future, there is additio=
+nal
+consideration, how the change impacts a wider ecosystem, not only
+today's Linux top of tree.
 
->> +
->> +		vreg_l8b_0p9: ldo8 {
->> +			regulator-min-microvolt = <870000>;
->> +			regulator-max-microvolt = <970000>;
->> +		};
->> +
->> +		vreg_l9b_1p2: ldo9 {
->> +			regulator-min-microvolt = <1080000>;
->> +			regulator-max-microvolt = <1304000>;
->> +		};
->> +
->> +		vreg_l11b_1p7: ldo11 {
->> +			regulator-min-microvolt = <1504000>;
-> 
-> The datasheet says the mininum voltage for L11B is 1.776V.
-> 
->> +			regulator-max-microvolt = <2000000>;
->> +		};
->> +
->> +		vreg_l12b_0p8: ldo12 {
->> +			regulator-min-microvolt = <751000>;
->> +			regulator-max-microvolt = <824000>;
->> +		};
->> +
->> +		vreg_l13b_0p8: ldo13 {
->> +			regulator-min-microvolt = <530000>;
->> +			regulator-max-microvolt = <824000>;
-> 
-> The max for L13B is 880mV, is this a copy and paste from L12B?
-> 
->> +		};
->> +
->> +		vreg_l14b_1p2: ldo14 {
->> +			regulator-min-microvolt = <1080000>;
-> 
-> The datasheet says the mininum voltage for L14B is 1.2V.
-> 
->> +			regulator-max-microvolt = <1304000>;
->> +		};
->> +
->> +		vreg_l15b_0p8: ldo15 {
->> +			regulator-min-microvolt = <765000>;
->> +			regulator-max-microvolt = <1020000>;
->> +		};
->> +
->> +		vreg_l16b_1p2: ldo16 {
->> +			regulator-min-microvolt = <1100000>;
-> 
-> The datasheet says the mininum voltage for L16B is 1.2V.
-> 
->> +			regulator-max-microvolt = <1300000>;
->> +		};
->> +
->> +		vreg_l17b_1p8: ldo17 {
->> +			regulator-min-microvolt = <1700000>;
-> 
-> The datasheet says the mininum voltage for L17B is 1.8V.
-> 
->> +			regulator-max-microvolt = <1900000>;
->> +		};
->> +
->> +		vreg_l18b_1p8: ldo18 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <2000000>;
->> +		};
->> +
->> +		vreg_l19b_1p8: ldo19 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
-> 
-> Is a fixed voltage intentional here?
-> 
+Thanks,
+Marcin
 
-Same explanation as l7b regulator(see above).
 
->> +		};
->> +	};
->> +
->> +	pm8350c-regulators {
->> +		compatible = "qcom,pm8350c-rpmh-regulators";
-> 
-> I can't find the datasheet for this chip, skipping this part.
-> 
-> 
->> +	pmr735a-regulators {
->> +		compatible = "qcom,pmr735a-rpmh-regulators";
->> +		qcom,pmic-id = "e";
->> +
->> +		vreg_l2e_1p2: ldo2 {
->> +			regulator-min-microvolt = <1200000>;
->> +			regulator-max-microvolt = <1200000>;
->> +		};
->> +
->> +		vreg_l3e_0p9: ldo3 {
->> +			regulator-min-microvolt = <912000>;
->> +			regulator-max-microvolt = <1020000>;
-> 
-> According to the datasheet min and max for L3E is 1.2V. The
-> datasheet lists different voltages for 'SM8350 lineup' and
-> 'SM8xyz' lineup though, does that mean that the voltages
-> aren't limitations of what the regulators can provide but
-> what their consumers support?
-> 
-> There are also deltas for the remaining regulators, but now
-> I'm in doubt about what the info in the datasheet actually
-> means.
-> 
-
-The min/max voltages here are as per min/max values mentioned in AOP, 
-which are finalized after multiple discussions with chipset architecture 
-team. The same is followed for all chipsets.
-
->> +		};
->> +
->> +		vreg_l4e_1p7: ldo4 {
->> +			regulator-min-microvolt = <1776000>;
->> +			regulator-max-microvolt = <1890000>;
->> +		};
->> +
->> +		vreg_l5e_0p8: ldo5 {
->> +			regulator-min-microvolt = <800000>;
->> +			regulator-max-microvolt = <800000>;
->> +		};
->> +
->> +		vreg_l6e_0p8: ldo6 {
->> +			regulator-min-microvolt = <480000>;
->> +			regulator-max-microvolt = <904000>;
->> +		};
->> +	};
->> +};
->> +
->>  &qupv3_id_0 {
->>  	status = "okay";
->>  };
+> >
+> > FYI, I'm currently updating the device trees in EDK2 based on the
+> > v5.11 DT sources - I'm going to keep the previous binding anyway, as
+> > the new one breaks booting with AHCI not only for older Linux
+> > versions, but also for other OSs (yet another argument to use ACPI).
+> >
+> > Best regards,
+> > Marcin
+> >
+> >
+> > sob., 27 lut 2021 o 12:02 Sven Auhagen <sven.auhagen@voleatech.de> napi=
+sa=C5=82(a):
+> >>
+> >> Hello,
+> >>
+> >> can I ask about the status of this patch?
+> >> As far as I can tell it was not merged to ata and I did not receive
+> >> any further feedback that there was a problem with the patch series.
+> >>
+> >> As a matter of fact the device tree part was already merged by
+> >> Gregory Clement.
+> >>
+> >> Best and thanks
+> >> Sven
+> >>
+> >> On Mon, Nov 09, 2020 at 06:39:39PM +0100, sven.auhagen@voleatech.de wr=
+ote:
+> >> > From: Sven Auhagen <sven.auhagen@voleatech.de>
+> >> >
+> >> > Hello,
+> >> >
+> >> > There were already 4 versions of this series from Miqu=C3=A8l.
+> >> > I talked to Miqu=C3=A8l and I fixed up the last comments from v4.
+> >> > I am looking for feedback if this patch series is now ready to be me=
+rged
+> >> > and what should be further changed.
+> >> >
+> >> > Here is the original cover letter:
+> >> >
+> >> > Some time ago, when the initial support for Armada CP110 was
+> >> > contributed, the SATA core was not able to handle per-port
+> >> > interrupts. Despite the hardware reality, the device tree only
+> >> > represents one main interrupt for the two ports. Having both SATA
+> >> > ports enabled at the same time has been achieved by a hack in the IC=
+U
+> >> > driver(1) that faked the use of the two interrupts, no matter which
+> >> > SATA port was in use.
+> >> >
+> >> > Now that the SATA core is ready to handle more than one interrupt,
+> >> > this series adds support for it in the libahci_platform code. The
+> >> > CP110 device tree must be updated to reflect the two SATA ports
+> >> > available and their respective interrupts. To do not break DT backwa=
+rd
+> >> > compatibility, the ahci_platform driver now embeds a special quirk
+> >> > which checks if the DT is valid (only for A8k compatible) and, if
+> >> > needed, creates the two missing sub-nodes, and assign them the
+> >> > relevant "reg" and "interrupts" properties, before removing the main
+> >> > SATA node "interrupts" one.
+> >> >
+> >> > (1) The ICU is an irqchip aggregating the CP110 (south-bridge)
+> >> > interrupts into MSIs for the AP806 (north-bridge).
+> >> >
+> >> > Best
+> >> > Sven
+> >> >
+> >> > Change from v2:
+> >> >   * Fix commit message of custom irq init for host init
+> >> >
+> >> > Change from v1:
+> >> >   * Add a patch to enable custom irq initialization in
+> >> >     plattform init host
+> >> >   * Add multi_irq_host_ack callback for the msi irq handler
+> >> >   * Rework the ahci mvebu patch to initiate the irq and use
+> >> >     the new multi_irq_host_ack to handle the custom irq code.
+> >> >     Remove the custom irq handler and duplicate code.
+> >> >   * Fix the armada8k backwards compatibility code
+> >> >   * Rename AHCI_PLATFORM_A8K_QUIRK to AHCI_PLATFORM_ARMADA8K_QUIRK
+> >> >
+> >> > Miquel Raynal (5):
+> >> >   ata: ahci: mvebu: Rename a platform data flag
+> >> >   ata: ahci: mvebu: Support A8k compatible
+> >> >   irqchip/irq-mvebu-icu: Remove the double SATA ports interrupt hack
+> >> >   dt-bindings: ata: Update ahci bindings with possible per-port
+> >> >     interrupts
+> >> >   dt-bindings: ata: Update ahci_mvebu bindings
+> >> >
+> >> > Sven Auhagen (4):
+> >> >   ata: libahci_platform: Do not try to get an IRQ when
+> >> >     AHCI_HFLAG_MULTI_MSI is set
+> >> >   ata: ahci: add ack callback to multi irq handler
+> >> >   ata: ahci: mvebu: Add support for A8k legacy DT bindings
+> >> >   arm64: dts: marvell: armada-cp110: Switch to per-port SATA interru=
+pts
+> >> >
+> >> >  .../devicetree/bindings/ata/ahci-platform.txt |   7 +
+> >> >  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   6 +-
+> >> >  drivers/ata/ahci.h                            |   2 +
+> >> >  drivers/ata/ahci_mvebu.c                      | 143 +++++++++++++++=
++--
+> >> >  drivers/ata/libahci.c                         |   4 +
+> >> >  drivers/ata/libahci_platform.c                |  19 ++-
+> >> >  drivers/irqchip/irq-mvebu-icu.c               |  18 ---
+> >> >  include/linux/ahci_platform.h                 |   1 +
+> >> >  8 files changed, 160 insertions(+), 40 deletions(-)
+> >> >
+> >> > --
+> >> > 2.20.1
+> >> >
+> >> >
+> >>
+> >> _______________________________________________
+> >> linux-arm-kernel mailing list
+> >> linux-arm-kernel@lists.infradead.org
+> >> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>
+> --
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
