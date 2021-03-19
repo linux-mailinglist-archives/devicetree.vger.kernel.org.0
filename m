@@ -2,111 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B15A3423FE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1EC342402
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:07:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230024AbhCSSGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 14:06:15 -0400
-Received: from foss.arm.com ([217.140.110.172]:60110 "EHLO foss.arm.com"
+        id S230255AbhCSSGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 14:06:48 -0400
+Received: from mga09.intel.com ([134.134.136.24]:57280 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230097AbhCSSGE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Mar 2021 14:06:04 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AEBB31B;
-        Fri, 19 Mar 2021 11:05:59 -0700 (PDT)
-Received: from [10.57.50.37] (unknown [10.57.50.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A6FD83F792;
-        Fri, 19 Mar 2021 11:05:56 -0700 (PDT)
-Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
- GPU
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>, heiko@sntech.de
-Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Jacob Chen <jacob2.chen@rock-chips.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
- <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
- <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
-Date:   Fri, 19 Mar 2021 18:05:50 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230092AbhCSSGl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 14:06:41 -0400
+IronPort-SDR: 02RIacOS6LXOHf0kwbBq7aSUHSfGT1mKcF9r3X2jNUeTcEMVRa0xpLJpZEgbDGQbfMrIyNg5O4
+ 78CFwISmpaow==
+X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="190035996"
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; 
+   d="scan'208";a="190035996"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2021 11:06:39 -0700
+IronPort-SDR: r5kRvCOGKo7ZcqvQs4AB5PV/u9Te7o7cm7LxcShYESu6hkq8uzrZnNbNZ9DKWHITbR1h5y6u2i
+ Q014uFIsRC7w==
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; 
+   d="scan'208";a="413605679"
+Received: from mkrastex-mobl.ger.corp.intel.com ([10.104.88.55])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2021 11:06:36 -0700
+From:   Martina Krasteva <martinax.krasteva@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com,
+        gjorgjix.rosikopulos@linux.intel.com,
+        martinax.krasteva@linux.intel.com
+Subject: [PATCH 00/10] Keem Bay Camera Subsystem
+Date:   Fri, 19 Mar 2021 18:06:22 +0000
+Message-Id: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-19 14:35, Daniel Lezcano wrote:
-> 
-> Hi Robin,
-> 
-> On 19/03/2021 13:17, Robin Murphy wrote:
->> On 2021-03-19 11:05, Daniel Lezcano wrote:
->>> The DTPM framework is looking for upstream SoC candidates to share the
->>> power numbers.
->>>
->>> We can see around different numbers but the one which seems to be
->>> consistent with the initial post for the values on the CPUs can be
->>> found in the patch https://lore.kernel.org/patchwork/patch/810159/
->>
->> The kernel hacker in me would be more inclined to trust the BSP that the
->> vendor actively supports than a 5-year-old patch that was never pursued
->> upstream. Apparently that was last updated more recently:
->>
->> https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
-> 
-> Yes, I've seen this value also.
-> 
->> The ex-mathematician in me can't even comment either way without
->> evidence that whatever model expects to consume this value is even
->> comparable to whatever "arm,mali-simple-power-model" is. >
->> The way the
->> latter apparently needs an explicit "static" coefficient as well as a
->> "dynamic" one, and the value here being nearly 3 times that of a
->> similarly-named one in active use downstream (ChromeOS appears to still
->> be using the values from before the above commit), certainly incline me
->> to think they may not be...
-> 
-> Sorry, I'm missing the point :/
-> 
-> We dropped in the kernel any static power computation because as there
-> was no value, the resulting code was considered dead. So we rely on the
-> dynamic power only.
+From: Martina Krasteva <martinax.krasteva@intel.com>
 
-Right, so a 2-factor model is clearly not identical to a 1-factor model, 
-so how do we know that a value for one is valid for the other, even if 
-it happens to have a similar name? I'm not saying that it is or isn't; I 
-don't know. If someone can point to the downstream coefficient 
-definition being identical to the upstream one then great, let's use 
-that as justification. If not, then the justification of one arbitrary 
-meaningless number over any other is a bit misleading.
+Patch series contains Keem Bay Camera Subsystem driver implementation,
+documentation and devicetree binding document.
 
->>> I don't know the precision of this value but it is better than
->>> nothing.
->>
->> But is it? If it leads to some throttling mechanism kicking in and
->> crippling GPU performance because it's massively overestimating power
->> consumption, that would be objectively worse for most users, no?
-> 
-> No because there is no sustainable power specified for the thermal zones
-> related to the GPU.
-OK, that's some reassurance at least. Does the exact value have any 
-material effect? If not, what's to stop us from using an obviously 
-made-up value like 1, and saying so?
+Gjorgji Rosikopulos (7):
+  media: Keem Bay Camera: Keem Bay camera driver
+  media: Keem Bay Camera: Add VPU camera interface
+  uapi: Keem Bay ISP Parameters data types
+  media: v4l: Add Keem Bay Camera meta buffer formats
+  media: Keem Bay Camera: Add ISP sub-device
+  media: Keem Bay Camera: Add metadata video node
+  media: admin-guide: Add documentation for Keem Bay Camera
 
-Robin.
+Martina Krasteva (3):
+  dt-bindings: media: Add bindings for Keem Bay Camera
+  media: Keem Bay Camera: Add pipeline support
+  media: Keem Bay Camera: Add capture video node
+
+ Documentation/admin-guide/media/keembay-camera.dot |   12 +
+ Documentation/admin-guide/media/keembay-camera.rst |  174 ++
+ Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+ .../bindings/media/intel,keembay-camera.yaml       |   98 ++
+ .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+ .../media/v4l/pixfmt-meta-intel-kmb.rst            |   98 ++
+ MAINTAINERS                                        |   14 +
+ drivers/media/platform/Kconfig                     |    1 +
+ drivers/media/platform/Makefile                    |    2 +
+ drivers/media/platform/keembay-camera/Kconfig      |   11 +
+ drivers/media/platform/keembay-camera/Makefile     |    5 +
+ .../platform/keembay-camera/keembay-cam-xlink.c    |  327 ++++
+ .../platform/keembay-camera/keembay-cam-xlink.h    |   49 +
+ .../media/platform/keembay-camera/keembay-camera.c |  287 +++
+ .../media/platform/keembay-camera/keembay-camera.h |   43 +
+ .../media/platform/keembay-camera/keembay-isp.c    | 1397 +++++++++++++++
+ .../media/platform/keembay-camera/keembay-isp.h    |  136 ++
+ .../platform/keembay-camera/keembay-metadata.c     | 1860 ++++++++++++++++++++
+ .../platform/keembay-camera/keembay-metadata.h     |  154 ++
+ .../keembay-camera/keembay-params-defaults.c       |  326 ++++
+ .../keembay-camera/keembay-params-defaults.h       |   38 +
+ .../platform/keembay-camera/keembay-pipeline.c     |  401 +++++
+ .../platform/keembay-camera/keembay-pipeline.h     |   75 +
+ .../media/platform/keembay-camera/keembay-video.c  |  922 ++++++++++
+ .../media/platform/keembay-camera/keembay-video.h  |   74 +
+ .../platform/keembay-camera/keembay-vpu-cmd.h      |  110 ++
+ .../platform/keembay-camera/keembay-vpu-frame.h    |  102 ++
+ .../platform/keembay-camera/keembay-vpu-isp.h      |  724 ++++++++
+ .../platform/keembay-camera/keembay-vpu-pipe.h     |  110 ++
+ .../platform/keembay-camera/keembay-vpu-src.h      |  193 ++
+ include/uapi/linux/keembay-isp-ctl.h               |  796 +++++++++
+ include/uapi/linux/videodev2.h                     |    4 +
+ 32 files changed, 8545 insertions(+)
+ create mode 100644 Documentation/admin-guide/media/keembay-camera.dot
+ create mode 100644 Documentation/admin-guide/media/keembay-camera.rst
+ create mode 100644 Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
+ create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+ create mode 100644 drivers/media/platform/keembay-camera/Kconfig
+ create mode 100644 drivers/media/platform/keembay-camera/Makefile
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-video.c
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-video.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-cmd.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-frame.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-isp.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-pipe.h
+ create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-src.h
+ create mode 100644 include/uapi/linux/keembay-isp-ctl.h
+
+
+base-commit: f00397ee41c79b6155b9b44abd0055b2c0621349
+-- 
+2.11.0
+
