@@ -2,174 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8071F3424E3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:39:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742D2342510
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:45:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbhCSSi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 14:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbhCSSih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 14:38:37 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B427C06175F
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 11:38:37 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id b9so10086879wrt.8
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 11:38:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MYEoRUOi3MntuNkgcxlA6PixhZq/KlalSw6PsKJS1mU=;
-        b=SUAFQoXy615WjK85B20Of9o5+6NbEcn/9xeVNPrxbOALG3VcWJDiiAEqTTzRKIXDzo
-         WxFi7vp9gDN8wGTK6caLhl4yrVdp+a4TpRE9h5QzU/BfvRSIjusPNwcZYfS4CiBOkpdi
-         17P0ouNK6+RS5cMOfbss/M6p3HRgbD+jYpQgkJGjSloocdpBJ+YQGLAgjY41pZWJOJv0
-         Km39jOr+Bi3VYPUEPZmr4g64G327d3XI33uY9xPG5J5+gUXpSRMB/s5A8FwKroROPdlo
-         N2n5AqzZTlpG0of7lTEads3/Iehu4hSSKdtCS1954fuMj68J4sdc93YpAKbJbxBtlof6
-         B0eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MYEoRUOi3MntuNkgcxlA6PixhZq/KlalSw6PsKJS1mU=;
-        b=j1JM8HAUIRtTnDpxkp/bcOu8scGzw100wXHLCEkMz+xat2OmOUlJn63B60+wWmoL30
-         NYgK/x7bvIQA2R/obf0ljwMgWAb2oQlMCcj4lv1Dwjte/udD8OOAStL8bBXkjJvxeiE3
-         3VsLsYEYzvX1og1+19RHUxZzrDzaRuQgbRG280rn89BJPkWwknDocW1er8Xj5ds5t1Ot
-         mt5cdzSwQCbfFKlFSM1Yfd2RDyMh6kWCaLAcC/NgsIqd0sFq7JBIfV8S4irgVCBBS70L
-         1kJRyHiyHT1oQfqb3zVJi+vThwAa6i++RMvxQYpMIB9Hbgf8SpPHGQp/vv15A9VtPpMa
-         CGYg==
-X-Gm-Message-State: AOAM533aB4Eo+TauyCgLVen24INYl4sRXfkJqmn7426lcFgkk/BpQn1+
-        qjgKk9AwZuxBXVBkLHTqCoHvnw==
-X-Google-Smtp-Source: ABdhPJy1by9RHeFpSNx+To1gQgU5tcR6deACavE7xJJbx3XBXQciKlwzam3By8vz828NoTt3oZmW9A==
-X-Received: by 2002:adf:f78f:: with SMTP id q15mr5769517wrp.383.1616179115865;
-        Fri, 19 Mar 2021 11:38:35 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85? ([2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85])
-        by smtp.googlemail.com with ESMTPSA id p27sm7792340wmi.12.2021.03.19.11.38.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 11:38:35 -0700 (PDT)
-Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
- GPU
-To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de
-Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Jacob Chen <jacob2.chen@rock-chips.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
+        id S230286AbhCSSo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 14:44:58 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42766 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230049AbhCSSoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 14:44:22 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12JIfj1n006382;
+        Fri, 19 Mar 2021 19:43:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=MtAr9SmPeXDyn07+vMdhlHldoLloU0A8q7B1CdEbI6c=;
+ b=l0fbkVr+KP8H3lp1nH0JfnHWaFZXNZT4Q2f/Nyc2UqgJiHOLWbj9NUKQYOk8z50cR9Qo
+ 1yin/i8hToXS+jqq77z0ZxfBruAF7+WGSBI3M7vovh5X49Rq7SBHIEoNnOtHwbv0mMg/
+ sHuf1u5k1WaydCWvklkxx5HdKkSBuKbtKon91Xh3WlaznPSdu2/J/HTALehuqYyYqu9A
+ ksUcq4xJCLFpiIbw76HRkfZDRFB/tF9+3yxVBJUdHahvBSNb4JTMPhhEw3iv4eORqR8V
+ pOQWDZw8dPxZUQojziWPz30L4oi/NfahTquhRGuYo7ZKtLMepyAYL2lvup3BPsNEyaTB AQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 378psa4ygp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 Mar 2021 19:43:25 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8D66110002A;
+        Fri, 19 Mar 2021 19:43:23 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 74D342721FC;
+        Fri, 19 Mar 2021 19:43:23 +0100 (CET)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 19 Mar 2021 19:43:23
+ +0100
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
- <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
- <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
- <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <54f3d4d4-ca01-d00c-09d6-4cf100538cbe@linaro.org>
-Date:   Fri, 19 Mar 2021 19:38:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        <linux-kernel@vger.kernel.org>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH 0/5] stm32 usart wakeup rework
+Date:   Fri, 19 Mar 2021 19:42:48 +0100
+Message-ID: <20210319184253.5841-1-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-19_10:2021-03-19,2021-03-19 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2021 19:05, Robin Murphy wrote:
-> On 2021-03-19 14:35, Daniel Lezcano wrote:
->>
->> Hi Robin,
->>
->> On 19/03/2021 13:17, Robin Murphy wrote:
->>> On 2021-03-19 11:05, Daniel Lezcano wrote:
->>>> The DTPM framework is looking for upstream SoC candidates to share the
->>>> power numbers.
->>>>
->>>> We can see around different numbers but the one which seems to be
->>>> consistent with the initial post for the values on the CPUs can be
->>>> found in the patch https://lore.kernel.org/patchwork/patch/810159/
->>>
->>> The kernel hacker in me would be more inclined to trust the BSP that the
->>> vendor actively supports than a 5-year-old patch that was never pursued
->>> upstream. Apparently that was last updated more recently:
->>>
->>> https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
->>>
->>
->> Yes, I've seen this value also.
->>
->>> The ex-mathematician in me can't even comment either way without
->>> evidence that whatever model expects to consume this value is even
->>> comparable to whatever "arm,mali-simple-power-model" is. >
->>> The way the
->>> latter apparently needs an explicit "static" coefficient as well as a
->>> "dynamic" one, and the value here being nearly 3 times that of a
->>> similarly-named one in active use downstream (ChromeOS appears to still
->>> be using the values from before the above commit), certainly incline me
->>> to think they may not be...
->>
->> Sorry, I'm missing the point :/
->>
->> We dropped in the kernel any static power computation because as there
->> was no value, the resulting code was considered dead. So we rely on the
->> dynamic power only.
-> 
-> Right, so a 2-factor model is clearly not identical to a 1-factor model,
-> so how do we know that a value for one is valid for the other, even if
-> it happens to have a similar name? I'm not saying that it is or isn't; I
-> don't know. If someone can point to the downstream coefficient
-> definition being identical to the upstream one then great, let's use
-> that as justification. If not, then the justification of one arbitrary
-> meaningless number over any other is a bit misleading.
+This series reworks stm32 usart wakeup management.
 
-That's a call :)
+Alexandre Torgue (1):
+  serial: stm32: update wakeup IRQ management
 
->>>> I don't know the precision of this value but it is better than
->>>> nothing.
->>>
->>> But is it? If it leads to some throttling mechanism kicking in and
->>> crippling GPU performance because it's massively overestimating power
->>> consumption, that would be objectively worse for most users, no?
->>
->> No because there is no sustainable power specified for the thermal zones
->> related to the GPU.
-> OK, that's some reassurance at least. Does the exact value have any
-> material effect? 
+Erwan Le Ray (4):
+  serial: stm32: rework wakeup management
+  serial: stm32: clean wakeup handling in serial_suspend
+  irqchip/stm32: add usart instances exti direct event support
+  ARM: dts: stm32: Add wakeup management on stm32mp15x UART nodes
 
-Yes, it has when it is combined with other devices having also power
-values, like the CPUs and hopefully the DMC soon.
-
-If we can have more or less consistent power numbers for the DMC, CPU
-and GPU on the rock960, with the thermal zone having these three heating
-sources, we can use the DTPM framework to act on the power of the whole.
-
-I don't know the best coefficient, 733, 977 or 1780 [1]
-
-The value of 977 sound to me as a starting point.
-
-
-
-[1]
-https://chromium.googlesource.com/chromiumos/third_party/kernel/+/factory-gru-8652.B-chromeos-4.4/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin-r3.dts
-
-> If not, what's to stop us from using an obviously
-> made-up value like 1, and saying so?
-
-
-
-
+ arch/arm/boot/dts/stm32mp151.dtsi | 24 ++++++++++++-------
+ drivers/irqchip/irq-stm32-exti.c  |  7 ++++++
+ drivers/tty/serial/stm32-usart.c  | 40 +++++++++++--------------------
+ drivers/tty/serial/stm32-usart.h  |  2 +-
+ 4 files changed, 38 insertions(+), 35 deletions(-)
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.17.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
