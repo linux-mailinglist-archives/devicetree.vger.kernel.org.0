@@ -2,109 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CD30341F09
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89191341F12
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:13:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbhCSOLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 10:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51262 "EHLO
+        id S230025AbhCSOM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 10:12:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbhCSOL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:11:26 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385E9C06174A
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:11:24 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id x9so6765868qto.8
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:11:24 -0700 (PDT)
+        with ESMTP id S230090AbhCSOMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:12:55 -0400
+Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD26C06174A
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:12:54 -0700 (PDT)
+Received: by mail-vs1-xe2b.google.com with SMTP id a15so3552535vsi.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=n05/sUnctT8JNpCXRuTVFYfsWiFecSrOrifRVD4fRAo=;
-        b=uQjDbyQuWf0O/YJbUTQbMaXA4pFNWX0tz2Myqmvcmf6G9Cd6FKUqO3gptczGs80b7/
-         Yh1P5BwMoIJck3kcZWF5mxExv5Qy+AOmFXD6Q8XkIqzbsrR3JveJEi0dlxcOiQoebzyP
-         04xz+97zEDc4qCB/lYqCVYKU2uUbv0ZXw+Y1EBzHVke3bIUuQjsz/8gcIS5sTb+iSIEZ
-         MGJJGhgUGCOxg85n5n6k7anttmwhcIRcxMsBogTCeZfujc7DzJ/vpwE79a06Mo/RbBiQ
-         u8MC2gI+FJeUzhSr7GLLUpAAQIeKFb0GRRQ3NCGKx75z2LF0Dt1S5tuqmHpmlzuBM3ZX
-         ao4w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rhtJ+/KMkr9j4F5l7xToUE92auUuaZKXFXYtoFbzKi8=;
+        b=p7spQuRg1ZgSy6xXjHIhASGtcj5pHDWKmuEjqbTuyd2ab5B1LRC1hI5nshuiyBxvzP
+         2KjnykBqVgutT9bhh/25h8ldA8uUsvxNRDkpQOIRmX5+QdfgAVFEMJ9eefG4ow2IN/KU
+         oK4teq7scaPduKErOQRSk9HffPNZanPkoNlWxeC6nDW1PriQLgu/fSPrA+xNc0uBpN6/
+         Ar2IS7WI+Cnl0pCSaJOSmVriUT6Pi0UpVB8TH73IdWqLOcJgHATliBlXxLIIgSRl1CiS
+         S+PM9GC+W+KafUfrXglYpTtlBDSoOoYuew0/3xPTw/engvhuCr2n3rSoFuQhMtAvl4nc
+         sK+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=n05/sUnctT8JNpCXRuTVFYfsWiFecSrOrifRVD4fRAo=;
-        b=N7S3CzgPndeR+jTvU/dem52NvCte5mWQrUzADI7EQQv6rAckYX5a3fWa6yzF+pGz/c
-         lzIctLXaop00n0RuYmt/QQ5VPfhRL23K6R67O7mwNvHaCKsOprT1AAp0srtgZPgENrIi
-         5YHTHyOcQ+MILh2iwNsSutZ5pSm74vZC3ZZPYg55gZ3TZ32Ni+IY9w82AkOyz1uVi/Pr
-         xfUkfGWdRmDSmbBKvjRrgzriYrsIRhdtFTJ3vwKUk1hv0Vh6b7bGXiGoz48FR787d6tq
-         pUzs//D1WJj+nJ9YhewNBN/E2NloSChmJsz0TAvtgcCLOThocp0V6CqJfqDw6heAJyNX
-         6ebg==
-X-Gm-Message-State: AOAM531dfOattqFSl/Y+M4GBnT2o9mj2ReIp6UnM/bzb8VLF80q2pmCe
-        289nupOv513h91N5Eo9/VQfBEg==
-X-Google-Smtp-Source: ABdhPJwVohUpLTVKBQsZX8ZJ3mo/T8pKdNPg5RWYYQxr3M9rJmhdKyY6tuj7lSeJjc2dRHuYtN1goQ==
-X-Received: by 2002:aed:31e2:: with SMTP id 89mr8577216qth.272.1616163083298;
-        Fri, 19 Mar 2021 07:11:23 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id g6sm4496940qkd.62.2021.03.19.07.11.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 07:11:22 -0700 (PDT)
-Subject: Re: [PATCH v11 1/9] drivers: thermal: tsens: Add VER_0 tsens version
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210319005228.1250-1-ansuelsmth@gmail.com>
- <20210319005228.1250-2-ansuelsmth@gmail.com>
- <7c38ea02-d957-6f63-ccce-1c35dd5d04de@linaro.org>
- <YFSm5rz3ivnzxoJ4@Ansuel-xps.localdomain>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <8850c559-45cb-45cd-9d39-287b8c041c79@linaro.org>
-Date:   Fri, 19 Mar 2021 10:11:21 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rhtJ+/KMkr9j4F5l7xToUE92auUuaZKXFXYtoFbzKi8=;
+        b=QXjIpjbZ9ZEhmSKLsN6gg5ws6J8UQMoM0i6JE9xgOrMkbZSZ/ZAsrax3qgKpLLFTLD
+         8qi1vNEA1J1nVfuoZnx1Nq8b40qWNZVZJO04f6Y2Cb77tm6XxDtwioQQdLVE8T34mZNU
+         r5Y4YggA8VTWqT7thBHbaApIKFCGjSpmTLHKqK3tUNyJ007PWw84kB8HzbqnRNJ4nA33
+         6gbDwY2uRgqEJQF1SjWbQc0ZejI6pAaRia5DeH5vUeM7Sc3+54RzL+7oAPTgE29FmTzZ
+         jsQ/qTN/3y432uMRuLsSepYhqbH2pZo3wcURyWx+pumxWTvCSrkryxU48m2bwkohx35o
+         M+6Q==
+X-Gm-Message-State: AOAM5328m8qP2/PRNlo3XOjNgOIFdisVOBwMOFKWTnsjkfuS2H2KhfIb
+        bRVXaQZKtpt4695mKpZFV0iBRDKXvpVxd8kp+E79OQ==
+X-Google-Smtp-Source: ABdhPJzis8HlXL3zAqtJ2aBs7zLA8bDwN8cVmClyr3n/W4dECta2ibESJFO+yC/KmKAcg6A4t8jqptidBW25Oo2rPO4=
+X-Received: by 2002:a67:77c1:: with SMTP id s184mr2813086vsc.55.1616163173959;
+ Fri, 19 Mar 2021 07:12:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YFSm5rz3ivnzxoJ4@Ansuel-xps.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1615879102-45919-1-git-send-email-shawn.lin@rock-chips.com>
+In-Reply-To: <1615879102-45919-1-git-send-email-shawn.lin@rock-chips.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 19 Mar 2021 15:12:16 +0100
+Message-ID: <CAPDyKFou+0=zh-sqOa3DwhQr-iWLjPoP7tjVHDFp87+wVhCr8Q@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Convert to
+ yaml file
+To:     Shawn Lin <shawn.lin@rock-chips.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 16 Mar 2021 at 08:18, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+>
+> This patch converts sdhci-of-dwcmshc.txt to sdhci-of-dwcmshc.yaml
+>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied for next, thanks!
+
+Kind regards
+Uffe
 
 
-On 3/19/21 9:28 AM, Ansuel Smith wrote:
-> On Fri, Mar 19, 2021 at 09:11:38AM -0400, Thara Gopinath wrote:
->>
->>
->> On 3/18/21 8:52 PM, Ansuel Smith wrote:
->>> VER_0 is used to describe device based on tsens version before v0.1.
->>> These device are devices based on msm8960 for example apq8064 or
->>> ipq806x.
->>
->> Hi Ansuel,
->>
->> There are still checkpatch check warnings in this patch. Please run
->> checkpatch.pl --strict and fix them. Once that is done, you can add
->>
->> Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
->>
->> Warm Regards
->> Thara
->>
-> 
-> Hi,
-> thanks a lot for the review. The only warning I have is a line ending
-> with ( that i think I can't fix or I will go over the max char for line.
-> Do you have something more?
-
-I see two warning for line ending with (. The max char limit is 100.
-
--- 
-Warm Regards
-Thara
+> ---
+>
+> Changes in v6: None
+> Changes in v5: None
+> Changes in v4:
+> - add tag from Rob
+> Series-changes: 3
+> - fix filename and other improvments suggested by Rob
+>
+>  .../devicetree/bindings/mmc/sdhci-of-dwcmshc.txt   | 20 -------
+>  .../bindings/mmc/snps,dwcmshc-sdhci.yaml           | 63 ++++++++++++++++++++++
+>  2 files changed, 63 insertions(+), 20 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt b/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+> deleted file mode 100644
+> index ee4253b..0000000
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-of-dwcmshc.txt
+> +++ /dev/null
+> @@ -1,20 +0,0 @@
+> -* Synopsys DesignWare Cores Mobile Storage Host Controller
+> -
+> -Required properties:
+> -- compatible: should be one of the following:
+> -    "snps,dwcmshc-sdhci"
+> -- reg: offset and length of the register set for the device.
+> -- interrupts: a single interrupt specifier.
+> -- clocks: Array of clocks required for SDHCI; requires at least one for
+> -    core clock.
+> -- clock-names: Array of names corresponding to clocks property; shall be
+> -    "core" for core clock and "bus" for optional bus clock.
+> -
+> -Example:
+> -       sdhci2: sdhci@aa0000 {
+> -               compatible = "snps,dwcmshc-sdhci";
+> -               reg = <0xaa0000 0x1000>;
+> -               interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+> -               clocks = <&emmcclk>;
+> -               bus-width = <8>;
+> -       }
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> new file mode 100644
+> index 0000000..f99fb9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/snps,dwcmshc-sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys Designware Mobile Storage Host Controller Binding
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +  - Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - snps,dwcmshc-sdhci
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description: Offset and length of the register set for the device
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: core clock
+> +      - description: bus clock for optional
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: core
+> +      - const: bus
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@aa0000 {
+> +      compatible = "snps,dwcmshc-sdhci";
+> +      reg = <0xaa000 0x1000>;
+> +      interrupts = <0 25 0x4>;
+> +      clocks = <&cru 17>, <&cru 18>;
+> +      clock-names = "core", "bus";
+> +      bus-width = <8>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +    };
+> +
+> +...
+> --
+> 2.7.4
+>
+>
+>
