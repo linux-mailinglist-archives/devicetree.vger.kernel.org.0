@@ -2,293 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A1A34154B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 266B4341554
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233955AbhCSGRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 02:17:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33782 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233934AbhCSGQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 02:16:45 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367DEC06174A;
-        Thu, 18 Mar 2021 23:16:45 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id x7-20020a17090a2b07b02900c0ea793940so6221701pjc.2;
-        Thu, 18 Mar 2021 23:16:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ET4qTdYaBwjetl/xihvy8ecj1oVjERGNlH8HadTByNY=;
-        b=mB4jQJ7kvh3MnYEl3p/uKGOdYOukXeu21vIAIG4KqQxOXSntr7UtJ3qfRcnAx3oCQ3
-         FMtBbEiPZ739OSpPJuUoYJIAnH6zf0V1i3wr8hknj85Z7ELB5us6lGoJ65s5AytWVGTd
-         cgTs+MwIsnacapLTLyVZ7IPl1FdMMDw76s0ryD/ZyggqDpBFcxSTCk2JAI+KE+KqaAre
-         ZXtPisYNWtiZ0epTSlO8XANsjOz+eQwfPQOF6DkS+oHBVdRiuQ+wSDV13vIoklS84IZK
-         pjlMsazUKRbC479Y672JvXcAJaxGOh8nL9MU0AESINcqznXXqeMXfSSSyQZsRrOrGhml
-         tMwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ET4qTdYaBwjetl/xihvy8ecj1oVjERGNlH8HadTByNY=;
-        b=gldekfO404wSNeS2JEcRSBb57YHRrIt1qS8axy7lO6oGmUiGwAX3baCmR5xb4b7kgu
-         5m9jIG0VS730ym6dG+dY9E19ojGnb5yTh4DGdUqEyyD1eR9BgaZV+0HSKSSjzBqSfK9E
-         2it943zccer6z26VAuRUxLoCWpYr4QG+wAmcazYBAdxTrdJp9mZ4K2AuB3TdZv8lBvvW
-         GKSmPaN0n4GZf72bysqWw6KrcgnMyGbJdjAMZ8txJUz0OMkoPYtiJvHSzRQbSIhu+HXS
-         1AyF1tKNtMR56r3FdCE2LXbNtkUaP9GPfArZ0BjDi1DK/IEmtqnIWXhHiyx9amtYiz86
-         ljJA==
-X-Gm-Message-State: AOAM533PpJfZsY3qJ0c8QvsScW/P54HGmiExRDQX4iI44lILnCa8SNbd
-        9N9lgfPKsp8lRaFo54UxuXg=
-X-Google-Smtp-Source: ABdhPJygfHoXhb5Cpnrqr9qMOZyAr+f8VD75jLE6Kqn0vDdvvBbMwLxOKt81brv8DnnGYXocMyOkZA==
-X-Received: by 2002:a17:90a:f40f:: with SMTP id ch15mr8340180pjb.128.1616134604812;
-        Thu, 18 Mar 2021 23:16:44 -0700 (PDT)
-Received: from lenovo.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id o1sm4223103pjp.4.2021.03.18.23.16.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 18 Mar 2021 23:16:44 -0700 (PDT)
-From:   Orson Zhai <orsonzhai@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, haidong.yao@unisoc.com,
-        Orson Zhai <orson.zhai@unisoc.com>
-Subject: [PATCH v3 3/3] mailbox: sprd: Add supplementary inbox support
-Date:   Fri, 19 Mar 2021 14:15:37 +0800
-Message-Id: <1616134537-27966-4-git-send-email-orsonzhai@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1616134537-27966-1-git-send-email-orsonzhai@gmail.com>
-References: <1616134537-27966-1-git-send-email-orsonzhai@gmail.com>
+        id S233989AbhCSGVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 02:21:05 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:56531 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232992AbhCSGUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 02:20:39 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 9C2E3580A7A;
+        Fri, 19 Mar 2021 02:20:38 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Fri, 19 Mar 2021 02:20:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=DQ0e988igZ7sIe0ymg68c1lDju
+        Q6xtIxXzAGPLSh1nI=; b=iUz/zNDta8Y4JVXEyCbmxRcBFb5BonujfrZcF74o1l
+        Lq9sUqDmc7QhyS25xjwdSc17BL7nsG8FJ4BqoJw+cVF9k/Bs6A4Y2pSY+mpRdzd8
+        uDzMOQCJgIixT0HWC947AfbzNVGU9TXK1fJoIHykU9K/neeKvT2/V55RjotrPW3f
+        0bdAYas6+ipiflJbLSUZmDhU3tm4wBe22TJKRzLjUIfgoEqNIX6SMmA+bw6KHLWQ
+        ViwTslmqAoZFFa54qdeXE6XEVlD6bGKBhFv2lAr8lGBUkUU09vn0CQ8xApEzHE8K
+        xImiHcEUDKCI5mJDACqyPD5b7ZnF5SV9V8CCgXxdloww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=DQ0e988igZ7sIe0ym
+        g68c1lDjuQ6xtIxXzAGPLSh1nI=; b=p9WxThGyse3NLP1n85Tefdn9wRP9DroOd
+        Wt4kI5kWTS9qWGNJ6qXYJiCqAu1jViYKt6ai6060xTok9QaR6A2uG41/j3n6XWei
+        KwmirTXI9Fs8k2iLrMqeORuUb/qm9poyfrkF2CJgatKUpHa2lVCaguTZCQQnaB5J
+        dlg+6OAztW+KgVz0QhCOjn7XkihFW7ZTO38WqYp80YrpKWcyWbyinNAMZ6zcY27y
+        GjqYzHpI7jZ9UYJx1sdBtBpfnXt9NMjm26cJWiT3CwhOALYTwSd70Ai3L8tyrIfg
+        XLDPhVc00BNGyJsWvdwZf84J43/u+LFALGXA/tJ4HUXpHq1Vl4zkg==
+X-ME-Sender: <xms:tEJUYKrEAw83XIPwBr00WxFhp2WZ5d-BLl6z3o_LC1ngenwJsl8i9w>
+    <xme:tEJUYIqU-cfA8GFwKefHDBOiqY2fT6E3oc5TJ-SFBUh1js33ec0n1ZYnPXJTrLztR
+    ZYMn5DRwXIFH6DPDg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefjedgleegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepieelfedtfeetveffgeetteetveeitefhke
+    etvdefteevledvheekveeihfekffefnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdp
+    ihhnthgvlhdrtghomhdpghhithhhuhgsrdgtohhmpdgumhhtfhdrohhrghenucfkphepud
+    dukedrvddutddrudekuddrheehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
+    pehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:tEJUYPOSUPMwivbIyWS38m-BJhaItSyeFld-Wx5cogxEeh1WiUkorA>
+    <xmx:tEJUYJ5PPHRMmBGYzM-2rEZsrOVsOtPxT2ZI7YgQu6OQT5WkuFXiTQ>
+    <xmx:tEJUYJ6eIVNBF6GlxfKCVkaUi-NiLfOELpLPCIJJw01JAijIfOQfdg>
+    <xmx:tkJUYNr0HfU6wBe_dLUJAnGFkWxAV5APce1QEPqn88fUpE8Wv0FuNw>
+Received: from localhost.localdomain (ppp118-210-181-55.adl-adc-lon-bras34.tpg.internode.on.net [118.210.181.55])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3FD8C1080057;
+        Fri, 19 Mar 2021 02:20:31 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
+        minyard@acm.org
+Cc:     joel@jms.id.au, ryan_chen@aspeedtech.com,
+        devicetree@vger.kernel.org, tmaimon77@gmail.com,
+        linux-aspeed@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        avifishman70@gmail.com, venture@google.com,
+        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+        tali.perry1@gmail.com, robh+dt@kernel.org, lee.jones@linaro.org,
+        chiawei_wang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
+        benjaminfair@google.com
+Subject: [PATCH v2 00/21] ipmi: Allow raw access to KCS devices
+Date:   Fri, 19 Mar 2021 16:49:30 +1030
+Message-Id: <20210319061952.145040-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Orson Zhai <orson.zhai@unisoc.com>
+Hello,
 
-Some sensors connected to Unisoc mailbox will send data very frequently.
-This makes channel 0 very busy and the messages from other remote cores
-not able to be handled as soon as possible.
+This series is a bit of a mix of things, but its primary purpose is to
+expose BMC KCS IPMI devices to userspace in a way that enables userspace
+to talk to host firmware using protocols that are not IPMI.
 
-It's a trick (un-documented) from Unisoc ASIC designers to resolve this
-special requirement that an inbox assigned to one of the remote cores
-before was modified to be exposed to host cpu core.
+v1 can be found here:
 
-Then from host side, a supplementary inbox is added for transferring mass
-but not emergency messages from the remote cores, such as step counting
-sensor, with an independent FIFO and interrupt which is as same as channel
-0. Meanwihle, inbox part of this channel is still kept for original remote
-core to use.
+https://lore.kernel.org/openbmc/20210219142523.3464540-1-andrew@aj.id.au/
 
-Signed-off-by: Orson Zhai <orson.zhai@unisoc.com>
-Reviewed-by: Baolin Wang <baolin.wang7@gmail.com>
----
- drivers/mailbox/sprd-mailbox.c | 88 ++++++++++++++++++++++++++++++++++--------
- 1 file changed, 71 insertions(+), 17 deletions(-)
+Changes in v2 include:
 
-diff --git a/drivers/mailbox/sprd-mailbox.c b/drivers/mailbox/sprd-mailbox.c
-index 94d9067d..0a1449d 100644
---- a/drivers/mailbox/sprd-mailbox.c
-+++ b/drivers/mailbox/sprd-mailbox.c
-@@ -11,6 +11,7 @@
- #include <linux/io.h>
- #include <linux/mailbox_controller.h>
- #include <linux/module.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/clk.h>
- 
-@@ -50,13 +51,17 @@
- #define SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ		BIT(0)
- #define SPRD_OUTBOX_FIFO_IRQ_MASK		GENMASK(4, 0)
- 
-+#define SPRD_OUTBOX_BASE_SPAN			0x1000
- #define SPRD_MBOX_CHAN_MAX			8
-+#define SPRD_SUPP_INBOX_ID_SC9863A		7
- 
- struct sprd_mbox_priv {
- 	struct mbox_controller	mbox;
- 	struct device		*dev;
- 	void __iomem		*inbox_base;
- 	void __iomem		*outbox_base;
-+	/*  Base register address for supplementary outbox */
-+	void __iomem		*supp_base;
- 	struct clk		*clk;
- 	u32			outbox_fifo_depth;
- 
-@@ -96,14 +101,13 @@ static u32 sprd_mbox_get_fifo_len(struct sprd_mbox_priv *priv, u32 fifo_sts)
- 	return fifo_len;
- }
- 
--static irqreturn_t sprd_mbox_outbox_isr(int irq, void *data)
-+static irqreturn_t do_outbox_isr(void __iomem *base, struct sprd_mbox_priv *priv)
- {
--	struct sprd_mbox_priv *priv = data;
- 	struct mbox_chan *chan;
- 	u32 fifo_sts, fifo_len, msg[2];
- 	int i, id;
- 
--	fifo_sts = readl(priv->outbox_base + SPRD_MBOX_FIFO_STS);
-+	fifo_sts = readl(base + SPRD_MBOX_FIFO_STS);
- 
- 	fifo_len = sprd_mbox_get_fifo_len(priv, fifo_sts);
- 	if (!fifo_len) {
-@@ -112,9 +116,9 @@ static irqreturn_t sprd_mbox_outbox_isr(int irq, void *data)
- 	}
- 
- 	for (i = 0; i < fifo_len; i++) {
--		msg[0] = readl(priv->outbox_base + SPRD_MBOX_MSG_LOW);
--		msg[1] = readl(priv->outbox_base + SPRD_MBOX_MSG_HIGH);
--		id = readl(priv->outbox_base + SPRD_MBOX_ID);
-+		msg[0] = readl(base + SPRD_MBOX_MSG_LOW);
-+		msg[1] = readl(base + SPRD_MBOX_MSG_HIGH);
-+		id = readl(base + SPRD_MBOX_ID);
- 
- 		chan = &priv->chan[id];
- 		if (chan->cl)
-@@ -124,15 +128,29 @@ static irqreturn_t sprd_mbox_outbox_isr(int irq, void *data)
- 				    "message's been dropped at ch[%d]\n", id);
- 
- 		/* Trigger to update outbox FIFO pointer */
--		writel(0x1, priv->outbox_base + SPRD_MBOX_TRIGGER);
-+		writel(0x1, base + SPRD_MBOX_TRIGGER);
- 	}
- 
- 	/* Clear irq status after reading all message. */
--	writel(SPRD_MBOX_IRQ_CLR, priv->outbox_base + SPRD_MBOX_IRQ_STS);
-+	writel(SPRD_MBOX_IRQ_CLR, base + SPRD_MBOX_IRQ_STS);
- 
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t sprd_mbox_outbox_isr(int irq, void *data)
-+{
-+	struct sprd_mbox_priv *priv = data;
-+
-+	return do_outbox_isr(priv->outbox_base, priv);
-+}
-+
-+static irqreturn_t sprd_mbox_supp_isr(int irq, void *data)
-+{
-+	struct sprd_mbox_priv *priv = data;
-+
-+	return do_outbox_isr(priv->supp_base, priv);
-+}
-+
- static irqreturn_t sprd_mbox_inbox_isr(int irq, void *data)
- {
- 	struct sprd_mbox_priv *priv = data;
-@@ -235,6 +253,14 @@ static int sprd_mbox_startup(struct mbox_chan *chan)
- 		val = readl(priv->outbox_base + SPRD_MBOX_IRQ_MSK);
- 		val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
- 		writel(val, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-+
-+		/* Enable supplementary outbox as the fundamental one */
-+		if (priv->supp_base) {
-+			writel(0x0, priv->supp_base + SPRD_MBOX_FIFO_RST);
-+			val = readl(priv->supp_base + SPRD_MBOX_IRQ_MSK);
-+			val &= ~SPRD_OUTBOX_FIFO_NOT_EMPTY_IRQ;
-+			writel(val, priv->supp_base + SPRD_MBOX_IRQ_MSK);
-+		}
- 	}
- 	mutex_unlock(&priv->lock);
- 
-@@ -250,6 +276,10 @@ static void sprd_mbox_shutdown(struct mbox_chan *chan)
- 		/* Disable inbox & outbox interrupt */
- 		writel(SPRD_INBOX_FIFO_IRQ_MASK, priv->inbox_base + SPRD_MBOX_IRQ_MSK);
- 		writel(SPRD_OUTBOX_FIFO_IRQ_MASK, priv->outbox_base + SPRD_MBOX_IRQ_MSK);
-+
-+		if (priv->supp_base)
-+			writel(SPRD_OUTBOX_FIFO_IRQ_MASK,
-+			       priv->supp_base + SPRD_MBOX_IRQ_MSK);
- 	}
- 	mutex_unlock(&priv->lock);
- }
-@@ -272,8 +302,8 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct sprd_mbox_priv *priv;
--	int ret, inbox_irq, outbox_irq;
--	unsigned long id;
-+	int ret, inbox_irq, outbox_irq, supp_irq;
-+	unsigned long id, supp;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -283,11 +313,15 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- 	mutex_init(&priv->lock);
- 
- 	/*
--	 * The Spreadtrum mailbox uses an inbox to send messages to the target
--	 * core, and uses an outbox to receive messages from other cores.
-+	 * Unisoc mailbox uses an inbox to send messages to the target
-+	 * core, and uses (an) outbox(es) to receive messages from other
-+	 * cores.
-+	 *
-+	 * Thus in general the mailbox controller supplies 2 different
-+	 * register addresses and IRQ numbers for inbox and outbox.
- 	 *
--	 * Thus the mailbox controller supplies 2 different register addresses
--	 * and IRQ numbers for inbox and outbox.
-+	 * If necessary, a supplementary inbox could be enabled optionally
-+	 * with an independent FIFO and an extra interrupt.
- 	 */
- 	priv->inbox_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->inbox_base))
-@@ -313,7 +347,7 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	inbox_irq = platform_get_irq(pdev, 0);
-+	inbox_irq = platform_get_irq_byname(pdev, "inbox");
- 	if (inbox_irq < 0)
- 		return inbox_irq;
- 
-@@ -324,7 +358,7 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	outbox_irq = platform_get_irq(pdev, 1);
-+	outbox_irq = platform_get_irq_byname(pdev, "outbox");
- 	if (outbox_irq < 0)
- 		return outbox_irq;
- 
-@@ -335,6 +369,24 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	/* Supplementary outbox IRQ is optional */
-+	supp_irq = platform_get_irq_byname(pdev, "supp-outbox");
-+	if (supp_irq > 0) {
-+		ret = devm_request_irq(dev, supp_irq, sprd_mbox_supp_isr,
-+				       IRQF_NO_SUSPEND, dev_name(dev), priv);
-+		if (ret) {
-+			dev_err(dev, "failed to request outbox IRQ: %d\n", ret);
-+			return ret;
-+		}
-+
-+		supp = (unsigned long) of_device_get_match_data(dev);
-+		if (!supp) {
-+			dev_err(dev, "no supplementary outbox specified\n");
-+			return -ENODEV;
-+		}
-+		priv->supp_base = priv->outbox_base + (SPRD_OUTBOX_BASE_SPAN * supp);
-+	}
-+
- 	/* Get the default outbox FIFO depth */
- 	priv->outbox_fifo_depth =
- 		readl(priv->outbox_base + SPRD_MBOX_FIFO_DEPTH) + 1;
-@@ -357,7 +409,9 @@ static int sprd_mbox_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id sprd_mbox_of_match[] = {
--	{ .compatible = "sprd,sc9860-mailbox", },
-+	{ .compatible = "sprd,sc9860-mailbox" },
-+	{ .compatible = "sprd,sc9863a-mailbox",
-+	  .data = (void *)SPRD_SUPP_INBOX_ID_SC9863A },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, sprd_mbox_of_match);
+* A rebase onto v5.12-rc2
+* Incorporation of off-list feedback on SerIRQ configuration from
+  Chiawei
+* Further validation on hardware for ASPEED KCS devices 2, 3 and 4
+* Lifting the existing single-open constraint of the IPMI chardev
+* Fixes addressing Rob's feedback on the conversion of the ASPEED KCS
+  binding to dt-schema
+* Fixes addressing Rob's feedback on the new aspeed,lpc-interrupts
+  property definition for the ASPEED KCS binding
+
+A new chardev device is added whose implementation exposes the Input
+Data Register (IDR), Output Data Register (ODR) and Status Register
+(STR) via read() and write(), and implements poll() for event
+monitoring.
+
+The existing /dev/ipmi-kcs* chardev interface exposes the KCS devices in
+a way which encoded the IPMI protocol in its behaviour. However, as
+LPC[0] KCS devices give us bi-directional interrupts between the host
+and a BMC with both a data and status byte, they are useful for purposes
+beyond IPMI.
+
+As a concrete example, libmctp[1] implements a vendor-defined MCTP[2]
+binding using a combination of LPC Firmware cycles for bulk data
+transfer and a KCS device via LPC IO cycles for out-of-band protocol
+control messages[3]. This gives a throughput improvement over the
+standard KCS binding[4] while continuing to exploit the ease of setup of
+the LPC bus for early boot firmware on the host processor.
+
+The series takes a bit of a winding path to achieve its aim:
+
+1. It begins with patches 1-5 put together by Chia-Wei, which I've
+rebased on v5.12-rc2. These fix the ASPEED LPC bindings and other
+non-KCS LPC-related ASPEED device drivers in a way that enables the
+SerIRQ patches at the end of the series. With Joel's review I'm hoping
+these 5 can go through the aspeed tree, and that the rest can go through
+the IPMI tree.
+
+2. Next, patches 6-13 fairly heavily refactor the KCS support in the
+IPMI part of the tree, re-architecting things such that it's possible to
+support multiple chardev implementations sitting on top of the ASPEED
+and Nuvoton device drivers. However, the KCS code didn't really have
+great separation of concerns as it stood, so even if we disregard the
+multiple-chardev support I think the cleanups are worthwhile.
+
+3. Patch 14 adds some interrupt management capabilities to the KCS
+device drivers in preparation for patch 16, which introduces the new
+"raw" KCS device interface. I'm not stoked about the device name/path,
+so if people are looking to bikeshed something then feel free to lay
+into that.
+
+4. The remaining patches switch the ASPEED KCS devicetree binding to
+dt-schema, add a new interrupt property to describe the SerIRQ behaviour
+of the device and finally clean up Serial IRQ support in the ASPEED KCS
+driver.
+
+Rob: The dt-binding patches still come before the relevant driver
+changes, I tried to keep the two close together in the series, hence the
+bindings changes not being patches 1 and 2.
+
+I've exercised the series under qemu with the rainier-bmc machine plus
+additional patches for KCS support[5]. I've also substituted this series in
+place of a hacky out-of-tree driver that we've been using for the
+libmctp stack and successfully booted the host processor under our
+internal full-platform simulation tools for a Rainier system.
+
+Note that this work touches the Nuvoton driver as well as ASPEED's, but
+I don't have the capability to test those changes or the IPMI chardev
+path. Tested-by tags would be much appreciated if you can exercise one
+or both.
+
+Please review!
+
+Andrew
+
+[0] https://www.intel.com/content/dam/www/program/design/us/en/documents/low-pin-count-interface-specification.pdf
+[1] https://github.com/openbmc/libmctp/
+[2] https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.1.pdf
+[3] https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-astlpc.md
+[4] https://www.dmtf.org/sites/default/files/standards/documents/DSP0254_1.0.0.pdf
+[5] https://lore.kernel.org/qemu-devel/20210309131641.2709380-1-clg@kaod.org/
+
+Andrew Jeffery (16):
+  ipmi: kcs_bmc_aspeed: Use of match data to extract KCS properties
+  ipmi: kcs_bmc: Make status update atomic
+  ipmi: kcs_bmc: Rename {read,write}_{status,data}() functions
+  ipmi: kcs_bmc: Split out kcs_bmc_cdev_ipmi
+  ipmi: kcs_bmc: Turn the driver data-structures inside-out
+  ipmi: kcs_bmc: Split headers into device and client
+  ipmi: kcs_bmc: Strip private client data from struct kcs_bmc
+  ipmi: kcs_bmc: Decouple the IPMI chardev from the core
+  ipmi: kcs_bmc: Allow clients to control KCS IRQ state
+  ipmi: kcs_bmc: Don't enforce single-open policy in the kernel
+  ipmi: kcs_bmc: Add a "raw" character device interface
+  dt-bindings: ipmi: Convert ASPEED KCS binding to schema
+  dt-bindings: ipmi: Add optional SerIRQ property to ASPEED KCS devices
+  ipmi: kcs_bmc_aspeed: Implement KCS SerIRQ configuration
+  ipmi: kcs_bmc_aspeed: Fix IBFIE typo from datasheet
+  ipmi: kcs_bmc_aspeed: Optionally apply status address
+
+Chia-Wei, Wang (5):
+  dt-bindings: aspeed-lpc: Remove LPC partitioning
+  ARM: dts: Remove LPC BMC and Host partitions
+  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+  soc: aspeed: Adapt to new LPC device tree layout
+
+ Documentation/ABI/testing/dev-raw-kcs         |  25 +
+ .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml | 106 +++
+ .../bindings/ipmi/aspeed-kcs-bmc.txt          |  33 -
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 +--
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  70 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              | 121 ++--
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 123 ++--
+ drivers/char/ipmi/Kconfig                     |  30 +
+ drivers/char/ipmi/Makefile                    |   2 +
+ drivers/char/ipmi/kcs_bmc.c                   | 534 ++++----------
+ drivers/char/ipmi/kcs_bmc.h                   |  94 +--
+ drivers/char/ipmi/kcs_bmc_aspeed.c            | 663 +++++++++++++-----
+ drivers/char/ipmi/kcs_bmc_cdev_ipmi.c         | 570 +++++++++++++++
+ drivers/char/ipmi/kcs_bmc_cdev_raw.c          | 443 ++++++++++++
+ drivers/char/ipmi/kcs_bmc_client.h            |  47 ++
+ drivers/char/ipmi/kcs_bmc_device.h            |  20 +
+ drivers/char/ipmi/kcs_bmc_npcm7xx.c           |  97 ++-
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 +-
+ drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 +-
+ drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +-
+ 20 files changed, 2132 insertions(+), 1006 deletions(-)
+ create mode 100644 Documentation/ABI/testing/dev-raw-kcs
+ create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-kcs-bmc.txt
+ create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_ipmi.c
+ create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_raw.c
+ create mode 100644 drivers/char/ipmi/kcs_bmc_client.h
+ create mode 100644 drivers/char/ipmi/kcs_bmc_device.h
+
 -- 
-2.7.4
+2.27.0
 
