@@ -2,198 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D2234184E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 10:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0249341878
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 10:34:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbhCSJa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 05:30:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229831AbhCSJaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 05:30:14 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4495CC061760
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 02:30:13 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id b9so8390218wrt.8
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 02:30:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/vUWvhAchaqpjbMn74HpIxb8CiMc71rLCGrcTJNmxv0=;
-        b=pNHdPIHmuys1S+NLA4GVXhsQwh0YiF8DEeE2g9Rhs3q/uiP+fReKsGbZjDsugpM4A0
-         PSKJQrHK+22w+DsUrCWQEoA+NlB7JVLJBfepykLFoFW06gjMPDmFzknFj5dY/Ja+qnhC
-         UaAmUdCBWL8PVsyFroDro1RhKarPVHXYGbcjiz0m3fYTClCuNL5OsX2hGilEA9b56x+r
-         4VCzyh9lt6VCs/rUwvyuF9snlP3VYAuwNe1gzubbLYtg0xnLtS1f1JcqhYgfNZGo5G4M
-         Rqo1+9avB/nWWLb6jh0Y1T/OuAJkzV4IOokk7eWVlaV8uZdacT9dQqRoqLuEc4UUyYn9
-         e7wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/vUWvhAchaqpjbMn74HpIxb8CiMc71rLCGrcTJNmxv0=;
-        b=annddbG7UD4znhG03Ycm+IZ1FvizyA1ggopoGaLgyqZO2Xw+AfMUTJsAe8+rCGWJmj
-         TC5obicwjd/0PYEtI6mQOp82tX+f+iPwkFS0bRLlsb87c9IV+4c5UUujj6damh1zIhor
-         tDeM300aQcYFZh+vjGL/266Kgb7zZ/NOHU5OZXpjO47MpDTD5FPtUN+CVg3SalU67t+e
-         sqoUrtb2zqxAY2Zd09b6jS1/O2i33KPo3hniyB3tbewe9AtJAB+XVSqdP+sE0o0VJyJw
-         1eANC0FOfW3XbBlSyWQV3GUuEH1k1KBJQg8/yooclAPxdR4+QXYoRf6CnEv1CJI2OkZ2
-         MUyw==
-X-Gm-Message-State: AOAM531rlwPiP3i1ovD4pcKphZUsQAYXKqsvyMr26H6Z+tLkACaxpFOT
-        kkDMDqt7KfRE5HYnIV93jHYHCA==
-X-Google-Smtp-Source: ABdhPJwohojKWtyTcT7HFyM2s0tU2NVlaQmsEkP0ult9XOLTFZyW2e16y+H5yeIt/DAYhdRpW0hgCg==
-X-Received: by 2002:adf:f144:: with SMTP id y4mr3603415wro.408.1616146212029;
-        Fri, 19 Mar 2021 02:30:12 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id p6sm6779058wru.2.2021.03.19.02.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Mar 2021 02:30:11 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        perex@perex.cz, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 7/7] ASoC: codecs: wcd938x: add audio routing
-Date:   Fri, 19 Mar 2021 09:29:19 +0000
-Message-Id: <20210319092919.21218-8-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210319092919.21218-1-srinivas.kandagatla@linaro.org>
-References: <20210319092919.21218-1-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229710AbhCSJeI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 19 Mar 2021 05:34:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35896 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229914AbhCSJdv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 05:33:51 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BDD0264F6B;
+        Fri, 19 Mar 2021 09:33:50 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lNBVs-002Zft-R7; Fri, 19 Mar 2021 09:33:49 +0000
+Date:   Fri, 19 Mar 2021 09:33:47 +0000
+Message-ID: <87wnu3h4hw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Marcin Wojtas <mw@semihalf.com>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sven Auhagen <sven.auhagen@voleatech.de>, axboe@kernel.dk,
+        Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-ide@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>, upstream@semihalf.com
+Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop a hack in the IRQ subsystem
+In-Reply-To: <CAPv3WKfiuV5h2m=579-3UajwBFtHB2MP5tdSvzxTZo+0MPnZNA@mail.gmail.com>
+References: <20201109173948.96663-1-sven.auhagen@voleatech.de>
+        <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
+        <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
+        <87czvviok9.fsf@BL-laptop>
+        <CAPv3WKfiuV5h2m=579-3UajwBFtHB2MP5tdSvzxTZo+0MPnZNA@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: mw@semihalf.com, gregory.clement@bootlin.com, sven.auhagen@voleatech.de, axboe@kernel.dk, hdegoede@redhat.com, robh+dt@kernel.org, tglx@linutronix.de, andrew@lunn.ch, devicetree@vger.kernel.org, antoine.tenart@bootlin.com, viresh.kumar@linaro.org, rjw@rjwysocki.net, maxime.chevallier@bootlin.com, linux-ide@vger.kernel.org, thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com, linux-arm-kernel@lists.infradead.org, jaz@semihalf.com, upstream@semihalf.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds audio routing for both playback and capture.
+On Fri, 19 Mar 2021 08:08:34 +0000,
+Marcin Wojtas <mw@semihalf.com> wrote:
+> 
+> HI Gregory,
+> 
+> pt., 19 mar 2021 o 08:35 Gregory CLEMENT <gregory.clement@bootlin.com>
+> napisał(a):
+> >
+> > Hello Marcin,
+> >
+> > > [Resend in plain text]
+> > >
+> > > Hi,
+> > >
+> > > Just letting everyone know - merging only the DT part of this patchset
+> > > broke AHCI on all Marvell Armada 7k8k / CN913x platforms in v5.11
+> > > release.
+> >
+> > It's unfortunate that we didn't know this when v5.11-rc1 was
+> > released. However it is still time for a fix, I will submit it.
+> > As I explained in the other email when I applied this I really though
+> > that the driver part will be applied, I don't know what happened here.
+> >
+> 
+> Sure, looking at the thread it looks more of a communication issue. I
+> am also surprised the breakage went unnoticed for a while (unless
+> everyone is using edk2, like myself :) ). I think it would be good to
+> revert the change on top of v5.11.x. The drivers adoption would have to
+> land before v5.12 though, so that not to repeat the problem during next release.
+> 
+> Small rant:
+> A general issue with the DT binding changes of this kind (previously
+> clocks, ICU, etc.) that I have, is a side effect of incompatibility
+> with older kernels/other OSs. The latter must follow the
+> modifications, but you can forget of booting e.g. Debian Buster with
+> the ToT device tree. Therefore in edk2 I do not update the device tree
+> fork to often and need to tweak it in order to have the widest support
+> coverage.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/codecs/wcd938x.c | 97 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+Unfortunately, this has been the case for this machine since it became
+available. I can happily boot any kernel on other systems of the same
+vintage without touching anything firmware related, which is crucial
+to identify regressions.
 
-diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
-index 31e3cf729568..0f801920ebac 100644
---- a/sound/soc/codecs/wcd938x.c
-+++ b/sound/soc/codecs/wcd938x.c
-@@ -3153,6 +3153,99 @@ static const struct snd_soc_dapm_widget wcd938x_rx_dapm_widgets[] = {
- 
- };
- 
-+static const struct snd_soc_dapm_route wcd938x_rx_audio_map[] = {
-+	{"IN1_HPHL", NULL, "VDD_BUCK"},
-+	{"IN1_HPHL", NULL, "CLS_H_PORT"},
-+
-+	{"RX1", NULL, "IN1_HPHL"},
-+	{"RX1", NULL, "RXCLK"},
-+	{"RDAC1", NULL, "RX1"},
-+	{"HPHL_RDAC", "Switch", "RDAC1"},
-+	{"HPHL PGA", NULL, "HPHL_RDAC"},
-+	{"HPHL", NULL, "HPHL PGA"},
-+
-+	{"IN2_HPHR", NULL, "VDD_BUCK"},
-+	{"IN2_HPHR", NULL, "CLS_H_PORT"},
-+	{"RX2", NULL, "IN2_HPHR"},
-+	{"RDAC2", NULL, "RX2"},
-+	{"RX2", NULL, "RXCLK"},
-+	{"HPHR_RDAC", "Switch", "RDAC2"},
-+	{"HPHR PGA", NULL, "HPHR_RDAC"},
-+	{"HPHR", NULL, "HPHR PGA"},
-+
-+	{"IN3_AUX", NULL, "VDD_BUCK"},
-+	{"IN3_AUX", NULL, "CLS_H_PORT"},
-+	{"RX3", NULL, "IN3_AUX"},
-+	{"RDAC4", NULL, "RX3"},
-+	{"RX3", NULL, "RXCLK"},
-+	{"AUX_RDAC", "Switch", "RDAC4"},
-+	{"AUX PGA", NULL, "AUX_RDAC"},
-+	{"AUX", NULL, "AUX PGA"},
-+
-+	{"RDAC3_MUX", "RX3", "RX3"},
-+	{"RDAC3_MUX", "RX1", "RX1"},
-+	{"RDAC3", NULL, "RDAC3_MUX"},
-+	{"EAR_RDAC", "Switch", "RDAC3"},
-+	{"EAR PGA", NULL, "EAR_RDAC"},
-+	{"EAR", NULL, "EAR PGA"},
-+};
-+
-+static const struct snd_soc_dapm_route wcd938x_audio_map[] = {
-+	{"ADC1_OUTPUT", NULL, "ADC1_MIXER"},
-+	{"ADC1_MIXER", "Switch", "ADC1 REQ"},
-+	{"ADC1 REQ", NULL, "ADC1"},
-+	{"ADC1", NULL, "AMIC1"},
-+
-+	{"ADC2_OUTPUT", NULL, "ADC2_MIXER"},
-+	{"ADC2_MIXER", "Switch", "ADC2 REQ"},
-+	{"ADC2 REQ", NULL, "ADC2"},
-+	{"ADC2", NULL, "HDR12 MUX"},
-+	{"HDR12 MUX", "NO_HDR12", "ADC2 MUX"},
-+	{"HDR12 MUX", "HDR12", "AMIC1"},
-+	{"ADC2 MUX", "INP3", "AMIC3"},
-+	{"ADC2 MUX", "INP2", "AMIC2"},
-+
-+	{"ADC3_OUTPUT", NULL, "ADC3_MIXER"},
-+	{"ADC3_MIXER", "Switch", "ADC3 REQ"},
-+	{"ADC3 REQ", NULL, "ADC3"},
-+	{"ADC3", NULL, "HDR34 MUX"},
-+	{"HDR34 MUX", "NO_HDR34", "ADC3 MUX"},
-+	{"HDR34 MUX", "HDR34", "AMIC5"},
-+	{"ADC3 MUX", "INP4", "AMIC4"},
-+	{"ADC3 MUX", "INP6", "AMIC6"},
-+
-+	{"ADC4_OUTPUT", NULL, "ADC4_MIXER"},
-+	{"ADC4_MIXER", "Switch", "ADC4 REQ"},
-+	{"ADC4 REQ", NULL, "ADC4"},
-+	{"ADC4", NULL, "ADC4 MUX"},
-+	{"ADC4 MUX", "INP5", "AMIC5"},
-+	{"ADC4 MUX", "INP7", "AMIC7"},
-+
-+	{"DMIC1_OUTPUT", NULL, "DMIC1_MIXER"},
-+	{"DMIC1_MIXER", "Switch", "DMIC1"},
-+
-+	{"DMIC2_OUTPUT", NULL, "DMIC2_MIXER"},
-+	{"DMIC2_MIXER", "Switch", "DMIC2"},
-+
-+	{"DMIC3_OUTPUT", NULL, "DMIC3_MIXER"},
-+	{"DMIC3_MIXER", "Switch", "DMIC3"},
-+
-+	{"DMIC4_OUTPUT", NULL, "DMIC4_MIXER"},
-+	{"DMIC4_MIXER", "Switch", "DMIC4"},
-+
-+	{"DMIC5_OUTPUT", NULL, "DMIC5_MIXER"},
-+	{"DMIC5_MIXER", "Switch", "DMIC5"},
-+
-+	{"DMIC6_OUTPUT", NULL, "DMIC6_MIXER"},
-+	{"DMIC6_MIXER", "Switch", "DMIC6"},
-+
-+	{"DMIC7_OUTPUT", NULL, "DMIC7_MIXER"},
-+	{"DMIC7_MIXER", "Switch", "DMIC7"},
-+
-+	{"DMIC8_OUTPUT", NULL, "DMIC8_MIXER"},
-+	{"DMIC8_MIXER", "Switch", "DMIC8"},
-+};
-+
- static int wcd938x_get_micb_vout_ctl_val(u32 micb_mv)
- {
- 	/* min micbias voltage is 1V and maximum is 2.85V */
-@@ -3332,6 +3425,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_rx = {
- 	.num_controls = ARRAY_SIZE(wcd938x_rx_snd_controls),
- 	.dapm_widgets = wcd938x_rx_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd938x_rx_dapm_widgets),
-+	.dapm_routes = wcd938x_rx_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd938x_rx_audio_map),
- };
- 
- static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_tx = {
-@@ -3341,6 +3436,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd938x_sdw_tx = {
- 	.num_controls = ARRAY_SIZE(wcd938x_snd_controls),
- 	.dapm_widgets = wcd938x_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd938x_dapm_widgets),
-+	.dapm_routes = wcd938x_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd938x_audio_map),
- };
- 
- static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_priv *wcd)
+The A8k requires instead a per-kernel DT, something that only works if
+you treat it as an embedded system, and not a standard system (which
+is why mine has been collecting dust for some time now). I don't think
+the maintainers have ever been interested in solving this problem.
+
+As for ACPI, that'd probably be the best thing that can happen to this
+platform. Not sure that's remotely possible though, given how
+"interesting" the HW is.
+
+	M.
+
 -- 
-2.21.0
-
+Without deviation from the norm, progress is not possible.
