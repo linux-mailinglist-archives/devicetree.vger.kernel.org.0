@@ -2,597 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A291834131C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:37:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 604473412E5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233225AbhCSChZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 22:37:25 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:33008 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231297AbhCSChI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 22:37:08 -0400
-X-UUID: 309a2a1f5d3245e687f1f1860cecebe8-20210319
-X-UUID: 309a2a1f5d3245e687f1f1860cecebe8-20210319
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <seiya.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 614076810; Fri, 19 Mar 2021 10:37:04 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 19 Mar 2021 10:37:01 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 19 Mar 2021 10:37:02 +0800
-From:   Seiya Wang <seiya.wang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>
-Subject: [PATCH v2 8/8] arm64: dts: Add Mediatek SoC MT8195 and evaluation board dts and Makefile
-Date:   Fri, 19 Mar 2021 10:34:27 +0800
-Message-ID: <20210319023427.16711-10-seiya.wang@mediatek.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20210319023427.16711-1-seiya.wang@mediatek.com>
-References: <20210319023427.16711-1-seiya.wang@mediatek.com>
+        id S231698AbhCSCfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 22:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229954AbhCSCep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Mar 2021 22:34:45 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F5FC06174A
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 19:34:44 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id r14so5729591qtt.7
+        for <devicetree@vger.kernel.org>; Thu, 18 Mar 2021 19:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=psinH8XtxfklK+mQg/xmh9CTqB4IAWDh1IKdzXhNoWw=;
+        b=AkpqkDmnPm8shhKYbgXs3nBRpukr3Bo8xUVon0hsQ2S/oY+FBAjTZIfH0X943SMWcC
+         sDKnYxkW+bONV1KMan8nftcYk6dy0Xnby6lh8AzcGY+m9axfCrsbAQ/k8FQAezQMs/g4
+         MYlqnXejBjHYg9OJbKcs8eYmEPs0hpU024NxmIBSuYa6OJv5Tkw+tIqaDM/8Z0wgxiqm
+         JJgjCiUzGekoIn8/wcISklzJs/RYslSpjmazHQINnX2HScAJY8Oeplm3qAGNqWd8Fb8Z
+         z0Fy8pvqV4uBQXLrHLPM4E+QETkq9MKDB3FTUiVHL5p2rWxrtnih63he9tdIbntZlQZ3
+         TWDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=psinH8XtxfklK+mQg/xmh9CTqB4IAWDh1IKdzXhNoWw=;
+        b=LuFrHuNDo6idi3xG6D9tVq94CwJ2VXZ8wAa1PuVEhnkmBRiFj0e2gdoOZzWWeHjDvi
+         C5k6fT3sAzGbCecwyJHwykF6MacyJs7FNYg6fuq/ljGgPrNqUuy1c0sFTMEkFjPhFXYy
+         +eww9VKdaxsH5QTk6HZDr1BeFvpwslfYWBdD4WzoFoBd9cYM55+2YX7wt+D2fgeKiUMv
+         JoHE4V5SZBWy9HFDy1mW0jG650jsvm7qjh+Pr/6mFZT5v/3jyGBm2KnZpzbkOlMP/Th0
+         8dUJUrVJHSdtGfl46AP8ON62xzxeILi4uP9HHF7qZHU1VgVMyoHvVZvn0aLnEZeFoRal
+         jeQg==
+X-Gm-Message-State: AOAM533VInLCodGZrSXbZVP8PGhS1M//5TbkbWrHORUxQ/+P7QbwpHGp
+        v1JaeP06ONXgm91wgyTMwxDwbl2+Th4QasxJqMjaKA==
+X-Google-Smtp-Source: ABdhPJz1IZdC1Wj1CXh7P9ipIV8QYNLJwTdUg08Fqh8VY3a2JffIhGlfarT0QN6oo2g6XPyTjsezHJEDE4v6eCdacQc=
+X-Received: by 2002:ac8:431e:: with SMTP id z30mr6492634qtm.216.1616121283752;
+ Thu, 18 Mar 2021 19:34:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 040A019FC7C77B8079E45CDE7A23135F10EEE3FF9EA2BEB0565EF3195F5DD24E2000:8
-X-MTK:  N
+References: <20201109173948.96663-1-sven.auhagen@voleatech.de> <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
+In-Reply-To: <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Fri, 19 Mar 2021 03:34:33 +0100
+Message-ID: <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop
+ a hack in the IRQ subsystem
+To:     Sven Auhagen <sven.auhagen@voleatech.de>
+Cc:     axboe@kernel.dk, Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, maz@kernel.org,
+        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Jason Cooper <jason@lakedaemon.net>,
+        devicetree@vger.kernel.org,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-ide@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>, upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic chip support for Mediatek MT8195
+[Resend in plain text]
 
-Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile       |   1 +
- arch/arm64/boot/dts/mediatek/mt8195-evb.dts |  29 ++
- arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 464 ++++++++++++++++++++++++++++
- 3 files changed, 494 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+Hi,
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index deba27ab7657..aee4b9715d2f 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -16,4 +16,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-new file mode 100644
-index 000000000000..82bb10e9a531
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Author: Seiya Wang <seiya.wang@mediatek.com>
-+ */
-+/dts-v1/;
-+#include "mt8195.dtsi"
-+
-+/ {
-+	model = "MediaTek MT8195 evaluation board";
-+	compatible = "mediatek,mt8195-evb", "mediatek,mt8195";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0 0x80000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-new file mode 100644
-index 000000000000..629cd883facf
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -0,0 +1,464 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Seiya Wang <seiya.wang@mediatek.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "mediatek,mt8195";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	clocks {
-+		clk26m: oscillator0 {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <26000000>;
-+			clock-output-names = "clk26m";
-+		};
-+
-+		clk32k: oscillator1 {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <32768>;
-+			clock-output-names = "clk32k";
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55", "arm,armv8";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+			clock-frequency = <1701000000>;
-+			capacity-dmips-mhz = <578>;
-+			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-+			next-level-cache = <&l2_0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55", "arm,armv8";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			clock-frequency = <1701000000>;
-+			capacity-dmips-mhz = <578>;
-+			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-+			next-level-cache = <&l2_0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55", "arm,armv8";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			clock-frequency = <1701000000>;
-+			capacity-dmips-mhz = <578>;
-+			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-+			next-level-cache = <&l2_0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55", "arm,armv8";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			clock-frequency = <1701000000>;
-+			capacity-dmips-mhz = <578>;
-+			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-+			next-level-cache = <&l2_0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78", "arm,armv8";
-+			reg = <0x400>;
-+			enable-method = "psci";
-+			clock-frequency = <2171000000>;
-+			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-+			next-level-cache = <&l2_1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78", "arm,armv8";
-+			reg = <0x500>;
-+			enable-method = "psci";
-+			clock-frequency = <2171000000>;
-+			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-+			next-level-cache = <&l2_1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78", "arm,armv8";
-+			reg = <0x600>;
-+			enable-method = "psci";
-+			clock-frequency = <2171000000>;
-+			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-+			next-level-cache = <&l2_1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78", "arm,armv8";
-+			reg = <0x700>;
-+			enable-method = "psci";
-+			clock-frequency = <2171000000>;
-+			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-+			next-level-cache = <&l2_1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+			};
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu4>;
-+				};
-+				core1 {
-+					cpu = <&cpu5>;
-+				};
-+				core2 {
-+					cpu = <&cpu6>;
-+				};
-+				core3 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		idle-states {
-+			entry-method = "arm,psci";
-+			cpuoff_l: cpuoff_l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010001>;
-+				local-timer-stop;
-+				entry-latency-us = <50>;
-+				exit-latency-us = <95>;
-+				min-residency-us = <580>;
-+			};
-+			cpuoff_b: cpuoff_b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010001>;
-+				local-timer-stop;
-+				entry-latency-us = <45>;
-+				exit-latency-us = <140>;
-+				min-residency-us = <740>;
-+			};
-+			clusteroff_l: clusteroff_l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010002>;
-+				local-timer-stop;
-+				entry-latency-us = <55>;
-+				exit-latency-us = <155>;
-+				min-residency-us = <840>;
-+			};
-+			clusteroff_b: clusteroff_b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010002>;
-+				local-timer-stop;
-+				entry-latency-us = <50>;
-+				exit-latency-us = <200>;
-+				min-residency-us = <1000>;
-+			};
-+		};
-+
-+		l2_0: l2-cache0 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_1: l2-cache1 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l3_0: l3-cache {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	dsu-pmu {
-+		compatible = "arm,dsu-pmu";
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH 0>;
-+		cpus = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
-+		       <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
-+	};
-+
-+	pmu-a55 {
-+		compatible = "arm,cortex-a55-pmu";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster0>;
-+	};
-+
-+	pmu-a78 {
-+		compatible = "arm,cortex-a78-pmu";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_cluster1>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clock-frequency = <13000000>;
-+	};
-+
-+	soc {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		compatible = "simple-bus";
-+		ranges;
-+
-+		gic: interrupt-controller@c000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <4>;
-+			#redistributor-regions = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupt-controller;
-+			reg = <0 0x0c000000 0 0x40000>,
-+			      <0 0x0c040000 0 0x200000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			ppi-partitions {
-+				ppi_cluster0: interrupt-partition-0 {
-+					affinity = <&cpu0 &cpu1 &cpu2 &cpu3>;
-+				};
-+				ppi_cluster1: interrupt-partition-1 {
-+					affinity = <&cpu4 &cpu5 &cpu6 &cpu7>;
-+				};
-+			};
-+		};
-+
-+		watchdog: watchdog@10007000 {
-+			compatible = "mediatek,mt8195-wdt", "mediatek,mt6589-wdt";
-+			reg = <0 0x10007000 0 0x100>;
-+		};
-+
-+		systimer: timer@10017000 {
-+			compatible = "mediatek,mt8195-timer", "mediatek,mt6765-timer";
-+			reg = <0 0x10017000 0 0x1000>;
-+			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>;
-+		};
-+
-+		uart0: serial@11001100 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001100 0 0x100>;
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		uart1: serial@11001200 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001200 0 0x100>;
-+			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+		};
-+
-+		uart2: serial@11001300 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001300 0 0x100>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		uart3: serial@11001400 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001400 0 0x100>;
-+			interrupts = <GIC_SPI 723 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		uart4: serial@11001500 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001500 0 0x100>;
-+			interrupts = <GIC_SPI 724 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		uart5: serial@11001600 {
-+			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001600 0 0x100>;
-+			interrupts = <GIC_SPI 725 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+
-+		auxadc: auxadc@11002000 {
-+			compatible = "mediatek,mt8195-auxadc", "mediatek,mt8173-auxadc";
-+			reg = <0 0x11002000 0 0x1000>;
-+			clocks = <&clk26m>;
-+			clock-names = "main";
-+			#io-channel-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		mmc0: mmc@11230000 {
-+			compatible = "mediatek,mt8195-mmc", "mediatek,mt8192-mmc";
-+			reg = <0 0x11230000 0 0x10000>,
-+			      <0 0x11f50000 0 0x1000>;
-+			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>, <&clk26m>;
-+			clock-names = "source", "hclk", "source_cg";
-+			status = "disabled";
-+		};
-+
-+		mmc1: mmc@11240000 {
-+			compatible = "mediatek,mt8195-mmc", "mediatek,mt8192-mmc";
-+			reg = <0 0x11240000 0 0x1000>,
-+			      <0 0x11c70000 0 0x1000>;
-+			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>, <&clk26m>;
-+			clock-names = "source", "hclk", "source_cg";
-+			status = "disabled";
-+		};
-+
-+		nor_flash: nor@1132c000 {
-+			compatible = "mediatek,mt8195-nor", "mediatek,mt8173-nor";
-+			reg = <0 0x1132c000 0 0x1000>;
-+			interrupts = <GIC_SPI 825 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "spi", "sf";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		u3phy2: t-phy@11c40000 {
-+			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x11c40000 0x700>;
-+			status = "disabled";
-+
-+			u2port2: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+		};
-+
-+		u3phy3: t-phy@11c50000 {
-+			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x11c50000 0x700>;
-+			status = "disabled";
-+
-+			u2port3: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+		};
-+
-+		u3phy1: t-phy@11e30000 {
-+			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x11e30000 0xe00>;
-+			status = "disabled";
-+
-+			u2port1: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+
-+			u3port1: usb-phy@700 {
-+				reg = <0x700 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+		};
-+
-+		u3phy0: t-phy@11e40000 {
-+			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x11e40000 0xe00>;
-+			status = "disabled";
-+
-+			u2port0: usb-phy@0 {
-+				reg = <0x0 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+
-+			u3port0: usb-phy@700 {
-+				reg = <0x700 0x700>;
-+				clocks = <&clk26m>;
-+				clock-names = "ref";
-+				#phy-cells = <1>;
-+			};
-+		};
-+
-+		ufsphy: phy@11fa0000 {
-+			compatible = "mediatek,mt8195-ufsphy", "mediatek,mt8183-ufsphy";
-+			reg = <0 0x11fa0000 0 0xc000>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "unipro", "mp";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+	};
-+};
--- 
-2.14.1
+Just letting everyone know - merging only the DT part of this patchset
+broke AHCI on all Marvell Armada 7k8k / CN913x platforms in v5.11
+release.
 
+FYI, I'm currently updating the device trees in EDK2 based on the
+v5.11 DT sources - I'm going to keep the previous binding anyway, as
+the new one breaks booting with AHCI not only for older Linux
+versions, but also for other OSs (yet another argument to use ACPI).
+
+Best regards,
+Marcin
+
+
+sob., 27 lut 2021 o 12:02 Sven Auhagen <sven.auhagen@voleatech.de> napisa=
+=C5=82(a):
+>
+> Hello,
+>
+> can I ask about the status of this patch?
+> As far as I can tell it was not merged to ata and I did not receive
+> any further feedback that there was a problem with the patch series.
+>
+> As a matter of fact the device tree part was already merged by
+> Gregory Clement.
+>
+> Best and thanks
+> Sven
+>
+> On Mon, Nov 09, 2020 at 06:39:39PM +0100, sven.auhagen@voleatech.de wrote=
+:
+> > From: Sven Auhagen <sven.auhagen@voleatech.de>
+> >
+> > Hello,
+> >
+> > There were already 4 versions of this series from Miqu=C3=A8l.
+> > I talked to Miqu=C3=A8l and I fixed up the last comments from v4.
+> > I am looking for feedback if this patch series is now ready to be merge=
+d
+> > and what should be further changed.
+> >
+> > Here is the original cover letter:
+> >
+> > Some time ago, when the initial support for Armada CP110 was
+> > contributed, the SATA core was not able to handle per-port
+> > interrupts. Despite the hardware reality, the device tree only
+> > represents one main interrupt for the two ports. Having both SATA
+> > ports enabled at the same time has been achieved by a hack in the ICU
+> > driver(1) that faked the use of the two interrupts, no matter which
+> > SATA port was in use.
+> >
+> > Now that the SATA core is ready to handle more than one interrupt,
+> > this series adds support for it in the libahci_platform code. The
+> > CP110 device tree must be updated to reflect the two SATA ports
+> > available and their respective interrupts. To do not break DT backward
+> > compatibility, the ahci_platform driver now embeds a special quirk
+> > which checks if the DT is valid (only for A8k compatible) and, if
+> > needed, creates the two missing sub-nodes, and assign them the
+> > relevant "reg" and "interrupts" properties, before removing the main
+> > SATA node "interrupts" one.
+> >
+> > (1) The ICU is an irqchip aggregating the CP110 (south-bridge)
+> > interrupts into MSIs for the AP806 (north-bridge).
+> >
+> > Best
+> > Sven
+> >
+> > Change from v2:
+> >   * Fix commit message of custom irq init for host init
+> >
+> > Change from v1:
+> >   * Add a patch to enable custom irq initialization in
+> >     plattform init host
+> >   * Add multi_irq_host_ack callback for the msi irq handler
+> >   * Rework the ahci mvebu patch to initiate the irq and use
+> >     the new multi_irq_host_ack to handle the custom irq code.
+> >     Remove the custom irq handler and duplicate code.
+> >   * Fix the armada8k backwards compatibility code
+> >   * Rename AHCI_PLATFORM_A8K_QUIRK to AHCI_PLATFORM_ARMADA8K_QUIRK
+> >
+> > Miquel Raynal (5):
+> >   ata: ahci: mvebu: Rename a platform data flag
+> >   ata: ahci: mvebu: Support A8k compatible
+> >   irqchip/irq-mvebu-icu: Remove the double SATA ports interrupt hack
+> >   dt-bindings: ata: Update ahci bindings with possible per-port
+> >     interrupts
+> >   dt-bindings: ata: Update ahci_mvebu bindings
+> >
+> > Sven Auhagen (4):
+> >   ata: libahci_platform: Do not try to get an IRQ when
+> >     AHCI_HFLAG_MULTI_MSI is set
+> >   ata: ahci: add ack callback to multi irq handler
+> >   ata: ahci: mvebu: Add support for A8k legacy DT bindings
+> >   arm64: dts: marvell: armada-cp110: Switch to per-port SATA interrupts
+> >
+> >  .../devicetree/bindings/ata/ahci-platform.txt |   7 +
+> >  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   6 +-
+> >  drivers/ata/ahci.h                            |   2 +
+> >  drivers/ata/ahci_mvebu.c                      | 143 ++++++++++++++++--
+> >  drivers/ata/libahci.c                         |   4 +
+> >  drivers/ata/libahci_platform.c                |  19 ++-
+> >  drivers/irqchip/irq-mvebu-icu.c               |  18 ---
+> >  include/linux/ahci_platform.h                 |   1 +
+> >  8 files changed, 160 insertions(+), 40 deletions(-)
+> >
+> > --
+> > 2.20.1
+> >
+> >
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
