@@ -2,136 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ABB834179F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 09:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6953417A8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 09:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234331AbhCSIje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 04:39:34 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:9208 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234399AbhCSIjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Mar 2021 04:39:07 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12J8cEHT002008;
-        Fri, 19 Mar 2021 09:38:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=66Y1jOy+i4E+OEpba8S19bATG0w9+cq/uIbqX4l/N6M=;
- b=aeI/wqqazvGmB+C7mNgMlMcVOgnyeDhb+lxlbyEuhoWnV1hHYRT2VwnsJgdPpxARATMZ
- Ip+qHXdUFtFr+HUF7Kw4s+x67amNctvHcmiDJEFqqRm/QLPsETRvxamUv93FlR9IbrLO
- Z8L3bpjYWeNSw6wyvfQ6N3SyWfr/urmB5Q9K9CaM7AJnBSECssJH6WudiKHamSm7nGKb
- ZvKbJFmkTUzm9ICbMk802yEzInHIlQe8qd8dQnbKDOd8HX+swe1BacmWHLr3CGOwJuTX
- li9OKTz9WlT/SNXrCBFOmTJTHv6XhMlyKm5Sg6hLzyT4icc/LgrkfPhbVC7DRTip4mt/ 2g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 378pr6a6u9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 Mar 2021 09:38:44 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8BD7310002A;
-        Fri, 19 Mar 2021 09:38:40 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 645452257E6;
-        Fri, 19 Mar 2021 09:38:40 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 19 Mar
- 2021 09:38:39 +0100
-Subject: Re: [PATCH v3 9/9] dt-bindings: serial: stm32: add phandle
- 'bluetooth' to fix dtbs_check warrning
-To:     dillon min <dillon.minfei@gmail.com>,
+        id S234390AbhCSIkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 04:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234462AbhCSIkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 04:40:16 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FC9DC06174A;
+        Fri, 19 Mar 2021 01:40:15 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id w37so8756050lfu.13;
+        Fri, 19 Mar 2021 01:40:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Xqvabz6cLoghFbRuwuIjapRhuEI02T8/6UJvViDDDg4=;
+        b=dH7skqon7lZvrh2iPIF3FFUqR6In9xtSazt8oCeUUsCMtMRh2QN1+YmuUXP+P/F9gp
+         rW0h3Koj3rtuCNwfz9HyJCpyAcRmW4SBr06Ql0ckpFZ93IvGFTYvvyT0/0CcW0V28/iU
+         sv2C42ZxhsnD4WoiDL88Vhxu1fUwqCcVh6Ho/4fXuTmp7lrS+9TuisqTmZWQox80hS2h
+         +N09kvgCcCuZhppMprHpXvd3pE9MhObd8r621DyBeZVL3hpzGa38/oXKBAvxScCOMK1S
+         uDSrz1UK7P5dVs6gJ8wWDB022wTNwsrGFvs625l2bgt2hNLJaJ8DBRcGR2eBhvCekSyF
+         D8dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Xqvabz6cLoghFbRuwuIjapRhuEI02T8/6UJvViDDDg4=;
+        b=XfasbMLrNh3N+lFPmu1EbyEX7cqIWU7mfw/s9DysSZW8OHVR+0xR00UP5ll4kepoGt
+         quxcI3ekpZrQyUipycgZNv90q8dPXFDrOsaK2Gqp6cNVINLwGFWFdy4jjnqU1I6Pz/4W
+         zmAXX4ZlB7HIi76pZ+dHeOh0wmdF74644Eu43F9G1Upr949peIow8G0wQ15/LtrUSJuO
+         KWUGe3EX/9HooRwyKD2ClD8v7wSc+2e0PCLdFbpKSV+ZNth4m/NOCXSsbkr9bn2KCnRX
+         5uOf/8bU3nXKoct0ysVcZmcpNXxBs2pH6A+WY5jIxG3aXyGHtsTLLJq2DPl5TFgg/WIb
+         IEaQ==
+X-Gm-Message-State: AOAM531MPbdha2wFRGugT8K7Vfc7OoqN+0EGHE6FWmOTGSkRjXGVq+pk
+        n4bhqBfd4+UIRwE7Tjdq/3PeJZUBSristQ==
+X-Google-Smtp-Source: ABdhPJzaEiTpP8fxRkGHbXTOslYlQloPXXz4F15mGUCXwMfTKndZzrbEpaeHYcMkKaOWeuUXIqcuRQ==
+X-Received: by 2002:a19:501b:: with SMTP id e27mr190844lfb.584.1616143213944;
+        Fri, 19 Mar 2021 01:40:13 -0700 (PDT)
+Received: from [192.168.1.100] ([178.176.79.146])
+        by smtp.gmail.com with ESMTPSA id d8sm535926lfg.96.2021.03.19.01.40.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Mar 2021 01:40:13 -0700 (PDT)
+Subject: Re: [PATCH V3 5/5] arm64: dts: renesas: beacon kits: Setup AVB refclk
+To:     Adam Ford <aford173@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     netdev <netdev@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>, Vladimir Murzin <vladimir.murzin@arm.com>,
-        <afzal.mohd.ma@gmail.com>, <gregkh@linuxfoundation.org>,
-        <erwan.leray@st.com>, <erwan.leray@foss.st.com>,
-        <linux-serial@vger.kernel.org>, <lkp@intel.com>
-References: <1615801436-3016-1-git-send-email-dillon.minfei@gmail.com>
- <1615801436-3016-10-git-send-email-dillon.minfei@gmail.com>
- <CAL9mu0Lfj+n4uk2rT8QnDtRveHn2gLx4ut6fLCByt0w9e08vwQ@mail.gmail.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <01c9f635-7b2b-fc9c-3cf9-6d7f425d683e@foss.st.com>
-Date:   Fri, 19 Mar 2021 09:38:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210224115146.9131-1-aford173@gmail.com>
+ <20210224115146.9131-5-aford173@gmail.com>
+ <CAMuHMdW3SO7LemssHrGKkV0TUVNuT4oq1EfmJ-Js79=QBvNhqQ@mail.gmail.com>
+ <CAHCN7xLtDyfB5h5rWTLpiUgWY==2KmxYCOQkVSeU8DV8KB-NKg@mail.gmail.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <2c9b5bb0-7229-43b4-adc6-dce8f96eac90@gmail.com>
+Date:   Fri, 19 Mar 2021 11:40:02 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAL9mu0Lfj+n4uk2rT8QnDtRveHn2gLx4ut6fLCByt0w9e08vwQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <CAHCN7xLtDyfB5h5rWTLpiUgWY==2KmxYCOQkVSeU8DV8KB-NKg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-19_02:2021-03-17,2021-03-19 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dillon
+On 18.03.2021 15:44, Adam Ford wrote:
 
-On 3/19/21 5:28 AM, dillon min wrote:
-> No changes, Just loop lkp in.
+>>> The AVB refererence clock assumes an external clock that runs
+>>
+>> reference
+>>
+>>> automatically.  Because the Versaclock is wired to provide the
+>>> AVB refclock, the device tree needs to reference it in order for the
+>>> driver to start the clock.
+>>>
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>
+>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> i.e. will queue in renesas-devel (with the typo fixed) once the DT
+>> bindings have been accepted.
+>>
 > 
-> 
-> Hi lkp,
-> 
-> Sorry for the late reply, thanks for your report.
-> This patch is to fix the build warning message.
-> 
-> Thanks.
-> Regards
-> 
-> On Mon, Mar 15, 2021 at 5:45 PM <dillon.minfei@gmail.com> wrote:
->>
->> From: dillon min <dillon.minfei@gmail.com>
->>
->> when run make dtbs_check with 'bluetoothi brcm,bcm43438-bt'
->> dts enabled on stm32h7, there is a warrning popup:
->>
->>>> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800: 'bluetooth'
->>     does not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> to make dtbs_check happy, so add a phandle bluetooth
->>
->> Fixes: 500cdb23d608 ("ARM: dts: stm32: Add STM32H743 MCU and STM32H743i-EVAL board")
->> Signed-off-by: dillon min <dillon.minfei@gmail.com>
->> Reported-by: kernel test robot <lkp@intel.com>
->> ---
->>   Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
->> index 8631678283f9..5e674840e62d 100644
->> --- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
->> +++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
->> @@ -50,6 +50,11 @@ properties:
->>       minItems: 1
->>       maxItems: 2
->>
->> +  bluetooth:
->> +    type: object
->> +    description: |
->> +      phandles to the usart controller and bluetooth
->> +
+> Who do I need to ping to get the DT bindings accepted?  They have an
+> acked-by from Rob.
 
-Do we really need to add this "generic" property here ? You could test 
-without the "AditionalProperties:False".
+    Normally, the bindings get picked up by a subsystem maintainer... or Rob :-)
 
-Regards
-Alex
+[...]
 
-
->>   # cts-gpios and rts-gpios properties can be used instead of 'uart-has-rtscts'
->>   # or 'st,hw-flow-ctrl' (deprecated) for making use of any gpio pins for flow
->>   # control instead of dedicated pins.
->> --
->> 1.9.1
->>
+MBR, Sergei
