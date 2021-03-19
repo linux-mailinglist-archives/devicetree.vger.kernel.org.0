@@ -2,152 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43580341DE3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 14:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E46341E06
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 14:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbhCSNMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 09:12:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbhCSNMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 09:12:30 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D1EC061760
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:12:29 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id y5so1183481qkl.9
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:12:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/+fWO4Wa4J/MjEIX6MtHgXnTBL0daD6nOFXcsG5rZ5E=;
-        b=whYMkM1Kw9ejBOhhiybyihLYyAlHTjngNDpaBr7xS1VELCGaE2Jl7PhFnwpQx7/32j
-         Qhci3G5jOocPAw64DgjWIDAbggdXKLRmnVTNgCurG/4Q/L0LxJNLaqgFeManGLdK19xP
-         alXNxhut7Jul9JWQDDgmS4TLVXORlBf/oTW/XBGmk4FFZKAgfNrbqZzh78tR9pqKHdvd
-         j6GWKlZMvAposB1Xprzk6+moVZd+2UlrqQMbRXZi3UkeR2o52hckETQSef+wCJ2CKO8J
-         pJYd6DKzZv51CBXDjb027gAjQItmtNzGE+H18G6qizm747hxYHp9eMWXKNerJBVTblPl
-         dNGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/+fWO4Wa4J/MjEIX6MtHgXnTBL0daD6nOFXcsG5rZ5E=;
-        b=BpKpU6UrzHWx+0mfMuTpka6/qhTAeYGMIFozVxKZCH8D3jWYHjLIuwrCgEFlq8yHd/
-         QroBOr00MDdQKS+wpWDt2yi9ia4EVvUYLNRAkUCmvsuT0GAJrTiBMi9rn7Ftl2cCBykC
-         YgFckxg33DWHJ8LfvYLqxVK9GuzpEEF13vJ/Zx8iY4SMX0N4jvc/guQuTRlZsxUsaUei
-         YbY4BadZSSiMzNBNqg3uvwD7eYkqwm1g5qkc2vRoLjStJ3goiek9KEa8Rgs6RwXoMf8Q
-         0UU+oAApR7p2JCMI4sfoP+sXzAFfiZ939+aCuZOjLyoQQyK/X76P7daa7R4q393lJFoy
-         T/Tw==
-X-Gm-Message-State: AOAM533Yzxo0FaX2kmXPk3wxu3g49uHSK8rmn1USklGcR3FDL7ZbL/PE
-        jpawhfgbde3cTA759ZGRUtJIOw==
-X-Google-Smtp-Source: ABdhPJyW1YeWJ48Lqbk5Lh7sGZnCPwo0t00/uUtLgo8zAZgPMUWmJ80N6Ci1shInqypKPZfh1pxWQw==
-X-Received: by 2002:a37:a2c8:: with SMTP id l191mr9362412qke.413.1616159549179;
-        Fri, 19 Mar 2021 06:12:29 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id 84sm4639116qkg.8.2021.03.19.06.12.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 06:12:28 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Subject: Re: [PATCH v11 7/9] drivers: thermal: tsens: Drop unused define for
- msm8960
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Amit Kucheria <amitk@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210319005228.1250-1-ansuelsmth@gmail.com>
- <20210319005228.1250-8-ansuelsmth@gmail.com>
-Message-ID: <f510946f-23f1-bda7-0701-870b1494bc35@linaro.org>
-Date:   Fri, 19 Mar 2021 09:12:27 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229618AbhCSNVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 09:21:01 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:49027 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229914AbhCSNU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 09:20:59 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1297E5C0058;
+        Fri, 19 Mar 2021 09:20:59 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Fri, 19 Mar 2021 09:20:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=ksDPQUXeM9U98hCEjxuinON746W
+        wfuMCxW5XRIaE9Ss=; b=AFG+rrDDUo2f64lK8UEsY3SiaIFInKU25/Jv4UpFI1x
+        cycwqi/CVtpZcaGxTnbVzpT8RMPCx+0NQQ4sHXgz2psyopPFNgHOCh4sDTTwI2iW
+        huPtH50heiUX4fv2w7u+YIM+BeV0zZVnqvICB4ciOk4Of1mywyfKbyCV6wGYltyZ
+        /PU4vbTyeyrcbV8fKmJxcvTTy1Wjm77t/xeVZYWpnGlKLi3Tys4sPAdG5ZsZsDNp
+        5HV5HScEyKrKjR5nsJxPOXchWLpVYrUcTjfGraJyMa4iNIPQeL0bkrg6DJiWh0eZ
+        T35dLH3TN8Bw7lZKvE+mt299HWFyqzABLaQaawZ5qpw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ksDPQU
+        XeM9U98hCEjxuinON746WwfuMCxW5XRIaE9Ss=; b=lAZpUbn3r+lz3uLNSLcHKS
+        35BzIRKcJJ+nvgTxjCMLg5MvWZfflXzMXrspXxhQ2Ic+mqRZDbMgfUcIBQ+7WHRr
+        qUspgu4nXOzIHC/A44bAy9lpPRh+KuJ+mByKcXZ16eLo4ZgaVE4pFv2Yt84bTPta
+        BEOUaLWtzWw/OuEI6u98jC918FpaYe3YOrUJiEcervZw9dhwGOCID/65lmUMLHgU
+        DX7WHC0bu+XL/SmQ1NNp4B/M5XRbzNKmWOOjQbQkaK5nfluGOUu5I2FYZAC0HPST
+        FAbIE//h+FB2cPnrPwIGQzC3J4aWiq/wFCZavU2MgcB77Wd6V0060UutWV0h7qaw
+        ==
+X-ME-Sender: <xms:OaVUYPypT9VXZ2y1F8hqw95KXXHk2TAVuR6oaZaucJFL8R13rtQFGA>
+    <xme:OaVUYHNJaQoIkkkDh0StcRcZFAz4sjXJD_jSgRyzrJ9Tj0H56oFWa1naCkMIEaanS
+    V0eA0ebsmJqeD2c6Bc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefkedghedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:OaVUYGON-hc3IX_doZKSnuLtGpdnB-D0sgPZLORKL_WWGbUeY6mhaQ>
+    <xmx:OaVUYBQSpEMfTI-u_zs0ZdA4QSAx3vaVRTYTaIyyXn9hai4ovxhI7A>
+    <xmx:OaVUYAC0iEYRfGBFixbfWuW3vhcWzOERvrg7KkBY7xeiCWv9aByyeA>
+    <xmx:O6VUYAG0t2qt2Ngz6HZu3AFIb6fY_Gyp6USTYegSw9xpAz1hGtAqyg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 87F141080066;
+        Fri, 19 Mar 2021 09:20:57 -0400 (EDT)
+Date:   Fri, 19 Mar 2021 14:20:55 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm64: dts: allwinner: Fix SD card CD GPIO for SOPine
+ systems
+Message-ID: <20210319132055.5vsdg5hlz4g6iui4@gilmour>
+References: <20210316144219.5973-1-andre.przywara@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20210319005228.1250-8-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="az5wrjp7vcwyuwa6"
+Content-Disposition: inline
+In-Reply-To: <20210316144219.5973-1-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--az5wrjp7vcwyuwa6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 3/18/21 8:52 PM, Ansuel Smith wrote:
-> Drop unused define for msm8960 replaced by generic api and reg_field.
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+On Tue, Mar 16, 2021 at 02:42:19PM +0000, Andre Przywara wrote:
+> Commit 941432d00768 ("arm64: dts: allwinner: Drop non-removable from
+> SoPine/LTS SD card") enabled the card detect GPIO for the SOPine module,
+> along the way with the Pine64-LTS, which share the same base .dtsi.
+>=20
+> However while both boards indeed have a working CD GPIO on PF6, the
+> polarity is different: the SOPine modules uses a "push-pull" socket,
+> which has an active-high switch, while the Pine64-LTS use the more
+> traditional push-push socket and the common active-low switch.
+>=20
+> Fix the polarity in the sopine.dtsi, and overwrite it in the LTS
+> board .dts, to make the SD card work again on systems using SOPine
+> modules.
+>=20
+> Fixes: 941432d00768 ("arm64: dts: allwinner: Drop non-removable from SoPi=
+ne/LTS SD card")
+> Reported-by: Ashley <contact@victorianfox.com>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Thanks for the clean up!
+Applied, thanks
 
-Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
+Maxime
 
-Warm Regards
-Thara
+--az5wrjp7vcwyuwa6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> ---
->   drivers/thermal/qcom/tsens-8960.c | 24 +-----------------------
->   1 file changed, 1 insertion(+), 23 deletions(-)
-> 
-> diff --git a/drivers/thermal/qcom/tsens-8960.c b/drivers/thermal/qcom/tsens-8960.c
-> index 8c523b764862..31e44d17d484 100644
-> --- a/drivers/thermal/qcom/tsens-8960.c
-> +++ b/drivers/thermal/qcom/tsens-8960.c
-> @@ -10,8 +10,6 @@
->   #include <linux/thermal.h>
->   #include "tsens.h"
->   
-> -#define CAL_MDEGC		30000
-> -
->   #define CONFIG_ADDR		0x3640
->   #define CONFIG_ADDR_8660	0x3620
->   /* CONFIG_ADDR bitmasks */
-> @@ -21,39 +19,19 @@
->   #define CONFIG_SHIFT_8660	28
->   #define CONFIG_MASK_8660	(3 << CONFIG_SHIFT_8660)
->   
-> -#define STATUS_CNTL_ADDR_8064	0x3660
->   #define CNTL_ADDR		0x3620
->   /* CNTL_ADDR bitmasks */
->   #define EN			BIT(0)
->   #define SW_RST			BIT(1)
-> -#define SENSOR0_EN		BIT(3)
-> +
->   #define MEASURE_PERIOD		BIT(18)
->   #define SLP_CLK_ENA		BIT(26)
->   #define SLP_CLK_ENA_8660	BIT(24)
->   #define SENSOR0_SHIFT		3
->   
-> -/* INT_STATUS_ADDR bitmasks */
-> -#define MIN_STATUS_MASK		BIT(0)
-> -#define LOWER_STATUS_CLR	BIT(1)
-> -#define UPPER_STATUS_CLR	BIT(2)
-> -#define MAX_STATUS_MASK		BIT(3)
-> -
->   #define THRESHOLD_ADDR		0x3624
-> -/* THRESHOLD_ADDR bitmasks */
-> -#define THRESHOLD_MAX_LIMIT_SHIFT	24
-> -#define THRESHOLD_MIN_LIMIT_SHIFT	16
-> -#define THRESHOLD_UPPER_LIMIT_SHIFT	8
-> -#define THRESHOLD_LOWER_LIMIT_SHIFT	0
-> -
-> -/* Initial temperature threshold values */
-> -#define LOWER_LIMIT_TH		0x50
-> -#define UPPER_LIMIT_TH		0xdf
-> -#define MIN_LIMIT_TH		0x0
-> -#define MAX_LIMIT_TH		0xff
->   
->   #define INT_STATUS_ADDR		0x363c
-> -#define TRDY_MASK		BIT(7)
-> -#define TIMEOUT_US		100
->   
->   #define S0_STATUS_OFF		0x3628
->   #define S1_STATUS_OFF		0x362c
-> 
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Warm Regards
-Thara
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYFSlNwAKCRDj7w1vZxhR
+xWhmAQDZ3v68wp4jr/FoX/igiDajIaOBuEk8eqJBolKCpwFQIwEAjuZ5d16UAyqP
+0hGeQnnUbztD7tohlu6hWzYon3eBugQ=
+=aq3+
+-----END PGP SIGNATURE-----
+
+--az5wrjp7vcwyuwa6--
