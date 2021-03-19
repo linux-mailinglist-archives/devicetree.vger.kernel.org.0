@@ -2,222 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C290934130A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30183341335
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 03:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230434AbhCSCgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Mar 2021 22:36:54 -0400
-Received: from mail-bn7nam10on2139.outbound.protection.outlook.com ([40.107.92.139]:44256
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        id S230516AbhCSCta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Mar 2021 22:49:30 -0400
+Received: from mail-dm6nam11on2091.outbound.protection.outlook.com ([40.107.223.91]:25697
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231321AbhCSCgU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Mar 2021 22:36:20 -0400
+        id S231617AbhCSCtT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Mar 2021 22:49:19 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g0xiTRMgvcQhQF+/eQQPNGEsQ4F4teEKoKhl4jupi5v3Qf8ye+JzGjlVCzqAve7jBbE+uavCFizTyu1cTxyNJ+yjueurTu+6IGDt4RRIsYashzUBd4OdM0heAwLOgYlUo1AChNxbPyfsrEGGGkVv1GNrSqcp2+urAlMMx1vs/6YRZVnuidcd9x75jii107+ZKhjjd9YeLxfrDi7BVxAaHP36azR8G/oMelKPoRx3yAcKNj+Sj4Yzecig2dukRQ4Gb7Gm7x4HXJzw3V5bA3oWoFT/c9cfmxLAqEVOB47FjqCNUWbCiR3DIxKQMudIiycJYA+jovMI6H+5KMiuMSh+bA==
+ b=F2THvaGUquc/fXHwiFq1+0kK49rIqMszP0jLgVPqkYAY3QS6h8aH69ZKMrd028gGUlybZK2qDgAel+wXcn2vYRvQE5xV87KV514KyMv//p/FxL+0dBcK03Rk8Ks3EYRn71FBaSWInf3W8uU4u0tQBhDxbUr3wn9KdxQal2QtjXbDRrG1kSV8YidoHWtrMp0qL4ufJMhICj/yvpyGuwKBd0dxZJkDmEH0lJS34FXemqbNk9GXRAjomcYkPRgrZT2Fwlj+fzni8sIB9WVZBBpTcuxGNkYnkBWPhKCjFKbZCNfrmCHBhOj8NysIgBDsyTSe4HCf+PpRlwTqQCcvIGcaow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wcMAHVlWIFil9xMDioAKLUkwI7RAd2ugoQndZmXnTkk=;
- b=QFkSiyl+re75fDlVYJbpoF89Xd6tngYMy7QAmq/rjG61Dchp8AappTFdhC8gGJG+EN00a+r/dDY+Abz+qQ4CJrJB1F1YBtwEG50guej3QWRF8qAlpnFT05w0oiTNlhD6j3qA7u3pZw6UhQeEz1Zj9btDe1FMWAkrBTI3vvT0jjtfKga8K4/Pw5O9hIglpuMT9HoBDUWCa2Xj1t/iLMXpGYCKOiIEoKeXv/qKvP0s2jraRTIEHfzfadD0CdSHBDsZtEsE1vtsaZTe8h+66xnblTPxaJPnblsKSJB9s1mR8gsJQ7P7CEJ/agciWAetfWKh717ZdvGsiDqMmC/ESp0eHQ==
+ bh=VLkYTYEC6LFNKd74J8jt+qSlkT1Xk3lN5jmdM25lk6U=;
+ b=aeiF2MySJxKPjmca59vK7USQLqJLMGv37mU7XXO39RZ7DFYQPB2M2YWHp9WQGtn/Sjcl/eXV0NVzVYSpDNGf4NNtR3grxVJ3WSXgyX2MNkpdi2VQBxKAo1excmSiGAa6Mf/P2v0LK+G7bvrcaXma+/6QGGAPJfXt0XVvFo39+Lt8s13akDE36jcw7/t6kTWjMnuJ6tym7YU+SbI9IyOdDVVRFdeRQGtMtwnHMizKRp7RswpE+3t4N6nrpbHwX52xdwt3wBKwob3dHL4+e9XGpdxE3x82eLsknXRF7olcZkDAAZyiU0t8U9B4V/+gBDq8zQgExD5xV6TTPXd/ve7eug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
  header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wcMAHVlWIFil9xMDioAKLUkwI7RAd2ugoQndZmXnTkk=;
- b=LvZ0NvdBr+ei/IUj3R8qVPwWJes1bkhlSqYVgF1JK4SiarjB08wdxs1u/wWWKiI24FGrmaQJvdDeApGVSOCs1TdKzXhEtZhXMsJUcIC39P6/QmLMoCF6UDi2+IHBS1aEfbvWqbAmbbch3Yn8UEow2vlo+tOM9f2VlXJhAK4oPCs=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
+ bh=VLkYTYEC6LFNKd74J8jt+qSlkT1Xk3lN5jmdM25lk6U=;
+ b=JvZwVLAbCw50uMhCeXInvWKmIdrE7BRMVdNcdKocids4E9PfYRi1AwnLOV6KagFu735dxW2kJvDfokhUxCNX7pTwhiPj5BRV2Hbz3Y+lfCaBwbLb5YqocOrM3lNc6044kX4E0FvBBidOjLcLzt4TZTETebzvG2uGOXAUyJi2HMo=
+Authentication-Results: analogixsemi.com; dkim=none (message not signed)
+ header.d=none;analogixsemi.com; dmarc=none action=none
  header.from=analogixsemi.com;
 Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by SJ0PR04MB7597.namprd04.prod.outlook.com (2603:10b6:a03:320::14) with
+ by BY5PR04MB6962.namprd04.prod.outlook.com (2603:10b6:a03:221::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Fri, 19 Mar
- 2021 02:36:19 +0000
+ 2021 02:49:15 +0000
 Received: from BY5PR04MB6739.namprd04.prod.outlook.com
  ([fe80::6481:f617:8105:491f]) by BY5PR04MB6739.namprd04.prod.outlook.com
  ([fe80::6481:f617:8105:491f%2]) with mapi id 15.20.3955.018; Fri, 19 Mar 2021
- 02:36:19 +0000
-Date:   Fri, 19 Mar 2021 10:36:13 +0800
+ 02:49:15 +0000
+Date:   Fri, 19 Mar 2021 10:49:09 +0800
 From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
-        Sheng Pan <span@analogixsemi.com>,
-        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/5] dt-bindings:drm/bridge:anx7625:add vendor define flags
-Message-ID: <d73a6d71667d793069a81406bc3f686846b83cc9.1616071250.git.xji@analogixsemi.com>
-References: <cover.1616071250.git.xji@analogixsemi.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     David Airlie <airlied@linux.ie>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Bernie Liang <bliang@analogixsemi.com>
+Subject: Re: [PATCH v4 2/2] drm/bridge: anx7625: disable regulators when
+ power off
+Message-ID: <20210319024909.GA1063740@anxtwsw-Precision-3640-Tower>
+References: <20210224061409.3996755-1-hsinyi@chromium.org>
+ <20210224061409.3996755-2-hsinyi@chromium.org>
+ <CAJMQK-ho9Ncqd=muCv-aMsHSRhgKtC3H6asxR=+3CODpeiWQWQ@mail.gmail.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1616071250.git.xji@analogixsemi.com>
+In-Reply-To: <CAJMQK-ho9Ncqd=muCv-aMsHSRhgKtC3H6asxR=+3CODpeiWQWQ@mail.gmail.com>
 X-Originating-IP: [60.251.58.79]
-X-ClientProxiedBy: HK2PR0401CA0008.apcprd04.prod.outlook.com
- (2603:1096:202:2::18) To BY5PR04MB6739.namprd04.prod.outlook.com
+X-ClientProxiedBy: HK2PR03CA0062.apcprd03.prod.outlook.com
+ (2603:1096:202:17::32) To BY5PR04MB6739.namprd04.prod.outlook.com
  (2603:10b6:a03:229::8)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR0401CA0008.apcprd04.prod.outlook.com (2603:1096:202:2::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend Transport; Fri, 19 Mar 2021 02:36:18 +0000
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR03CA0062.apcprd03.prod.outlook.com (2603:1096:202:17::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.14 via Frontend Transport; Fri, 19 Mar 2021 02:49:14 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 545e1c8f-7cb5-41db-126f-08d8ea7fc6aa
-X-MS-TrafficTypeDiagnostic: SJ0PR04MB7597:
+X-MS-Office365-Filtering-Correlation-Id: edb24b98-f027-4f3b-f060-08d8ea81954b
+X-MS-TrafficTypeDiagnostic: BY5PR04MB6962:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SJ0PR04MB759788988FD95ADDDACB58FDC7689@SJ0PR04MB7597.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-Microsoft-Antispam-PRVS: <BY5PR04MB696265D1CACAD4775050D8BCC7689@BY5PR04MB6962.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LN8/fSayx4lhld7A7+tp/hJkWUlDUr2+YQB7gzb/Yk9f8VMInfTwubuMO/xslyDWcrPhUKgrVWiu7nOzMcL8iVXk2NslKiSkzLRKDW0kKoSuAGJrKvtiIGpxKFruXRb3iMplnF0udy/M06XxlSJPFcTORGGaOoyWh7OcOBjd2O79WQaOcIGmey3Jkl2CMAPnEKSYuY1rXEQbsfEOc5av9kXU10Bgpz8Zq8byrO3dw7MgZi/GPzLZz0SXGBN8Gn6l0BHf2CK346ja7KmwcbvD/xWEqjk3OpiaVr7x66zj58hU5e+7BL/Q6rcos/CGJYRmcsS6chtzocS5tzJ2HD3R4CA/4nlxVIrqRiktq5JTYP6LSnzOET2PSsxofIb0NrA3U/0CGtq7z9MYKeeDpTRL1V8gZ+a/E6VM/J/9NyfkGCuT+vg7MHb3UbU8O0KoMt6iMcZLDa6r5e8sdgQF1ZH95biN3PPpovDqTAMCLWm2t79bacdy/TWEnZHnO0hYQwIhAgmA4rMbqYV1S1wRdpmU5MMkc5rcuDmJ/YghaOmVOv84+E6Sv+/OS/SHiU9Ejat5D7jpCmtWgKJ2kM20Err0O8XBQBq5mImjT5W75WPnVdMkwyBU77h3yFL6N3gavKO7QOIwXmmGFNnNeGIYHlAW6w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(366004)(136003)(39850400004)(396003)(4326008)(110136005)(26005)(16526019)(86362001)(8676002)(55236004)(6486002)(956004)(2616005)(6666004)(7416002)(38100700001)(52116002)(2906002)(478600001)(5660300002)(8936002)(36756003)(6496006)(54906003)(66556008)(66476007)(316002)(66946007)(186003)(83380400001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?DRrHaAAWdJ/Rr7vQ878QULWNYfaQz4F1Fv1g0cP02CMH6uMLP8FqLFDy5Je2?=
- =?us-ascii?Q?E2XSAr5gvcpBjeR3hhFK9uVgDSuS1em6M5n+PZdI9PfNCkXJRzcB1xPA6EJq?=
- =?us-ascii?Q?L+f5AWgfRKj+Rj9H8++Ihuk6EDpGSP7G4qVwXfAbmW2dZVmS1RjwuiWmzFa0?=
- =?us-ascii?Q?mMOBOWlWb1hAzo2v90f1PPwHuJd2fuJDQyx9VyxATvpjhb3C2ZzO8NKRKYlV?=
- =?us-ascii?Q?UVlmxef2ZuurCZ6a2sP+xKJdpLCBFbH633WGxrr7m5qlvc03uy6oh25TH4uS?=
- =?us-ascii?Q?F5ihV1HLc9yFrvJ8Sbv2+cp4Y6Ap4RBYoGMHiUCEURxyl9blKmwytOgsHKyN?=
- =?us-ascii?Q?UDvP3J+Mi7+68OrUjArJ9tRgmodSMopeNgojrmHqcsFAXavOv+sLqoPySp0Q?=
- =?us-ascii?Q?h4aLJxVDIwo8zJVdJz1fNAWpaVboTdEaq33OdEBFp4zz6LRJ5jne8SqfGgPm?=
- =?us-ascii?Q?/XMcivKcC7/aK8EiSq5EUJQz9/BNc1nJuvrEtKBz88NgAjdyaqj96wp8oO+S?=
- =?us-ascii?Q?nUw8tOJUyx14fei7VX1IWtv7Osf/9cfDxqhAQtVB+51lqHONffNI7T/O8bND?=
- =?us-ascii?Q?PDjrtN6+IVG7nQNEI5KybQvPExqEJ1dG8MeBGFp1vKZhGQnrcZyDPtpkDYPf?=
- =?us-ascii?Q?hsxTP7Bb3Iiovc+NF/qqewyf7d1FI7tYd1fAu/hhmAopg3vzlrybBNdtz3IB?=
- =?us-ascii?Q?TJnXkGsOX9bQ+LyErjTo8SaKdWqz5lAx1jxgekEE8iWK4OqqZB8s9O4JzuGj?=
- =?us-ascii?Q?fMJtNsbuhwr8DiEaoRtAJk1sv+lKTymgO0+d/Ti9Ih4/zF5vOcyTSpoZxSh5?=
- =?us-ascii?Q?TPFfcoxHs9aGV6+mrDyAULpp2Wv5DbnsKEH9qUOILw0Vx9q8z9oVgFiVvVtA?=
- =?us-ascii?Q?NbEzkk7Y6W0JuN+56/QW+c0e1VPjrUPh8dDS8lt3/mEArng7Q8agGN9xQ17k?=
- =?us-ascii?Q?l4jPXaLi4xeJfu/c3yRHNZgDT+zaxkqAeMLTZ61UkdqOyMFrAio8iVKIBPzK?=
- =?us-ascii?Q?/JabC3fUxzt5/j4zwtpt94mEaouXnKWPiaEJ1opwPiR07p4QRU1ccXJUA6hK?=
- =?us-ascii?Q?ZZKHt2OA9BeCAjo/xX1bQuJUOkY5NYRqF4BSRdEGI9IcNHgYhwN9+lRw/DoX?=
- =?us-ascii?Q?d2u7/2Is2w5O4XEtF9qncIprwTmKr1WdKFRuY7BVzTLBlsas+BHtgY76Z11x?=
- =?us-ascii?Q?9Cy2eyxh3q8nRYAdaU3Me68GsX3DX4pyXjMETrl5f4Qu/3XfbnOHFpgwVG+e?=
- =?us-ascii?Q?y1mVWS7JRnXhKzA7G3JNg0kDmvO+kWJ7UtTL2MvwY5Ri6ZkV8N7aeft/Quka?=
- =?us-ascii?Q?GzKzgLxpAAl3TY0q0iDPMgAv?=
+X-Microsoft-Antispam-Message-Info: 1jS3YDmwFB1E+KH2SOmOk/5cnWDc5cUPKDGk0JVLeJPP8ChKLt35gZxTAx7HgkIfiGQNQ+9G6EodbBFvdqcsgvyNzx5xnaij1Cl84u1ZgixBbbyhJsJiZrj7yENMDedER1NTTrreE0DyaDN9xzUPB4bQPYtS0MuEoM+ls7n3f8zren8KF2ElEYrjcWUNCEY2bQq1O6zCcBKc0nF8Agc/qdsS++PlVxoJAncZPabl0MSuD3+sUvCSdlCOHke7iZvjxzX+NLDTjshyMi5FRMAcUKmaB0DaHlgyfV3CxFKW4ZZEwp13cn/TMuRpVGxfO0yP2YpJDlktvjDp7VKV0R8i3EIo1AX8q7M2E+QzWXJMjax+OJ2nA28RXhNIFi59E7/lafK8WKK/kWjVo/OwwKD+QFDQkK21KQzaMSfRvfVzVvYPld8hJxkpAM5/GNT4Zy/j3awQFFJTya5z+X9QNEvs63qe+rRWvMXMT8z+ikQ0l5jTzRCYQRxWD1sgzzk8in671PK9M8I5tRrlzIqJHN0/LGZ87kHVMiYbSnEb6DzMn3VpavoBqtZ+hnAkM/zjbE2esT4Rr5KC1s7UZT4iHrPltXM58MS6HwUPDQu3qQWOWukn6HkcBDaZxpTVpAjPHb2K0Ad65ETNnFS4c1aWR2jqnw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(396003)(376002)(366004)(39840400004)(5660300002)(316002)(55016002)(52116002)(6496006)(83380400001)(33716001)(7416002)(1076003)(38100700001)(66556008)(956004)(4326008)(6666004)(2906002)(33656002)(26005)(8936002)(186003)(16526019)(54906003)(66946007)(53546011)(107886003)(8676002)(66476007)(9686003)(6916009)(478600001)(86362001)(55236004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?2g4A2QhjxWR0kh48Im2MEQz4iuQlyek/uYyPSBVPhGg5mhFkeLAweaYHJDHc?=
+ =?us-ascii?Q?UiQ7dsRo9L6ZETfv+nHiqO+o1ZhHF7Fd59hWwReTYc/wdfYyNhCEdVI6sQFj?=
+ =?us-ascii?Q?yuGkSmJRiSTPEIhNtp27wOuCcXSGdmFEm73Nez5WfPf39pRhn0d7pp3X5Kg+?=
+ =?us-ascii?Q?qrlTzXbWEJKsoiLSKDB92I//0d7Q/KOJZUCnbYv4K1HZHp0mDI44q4R+Yy4A?=
+ =?us-ascii?Q?vnljUyz7qcUGPgAgdR1ICriYJdrtCiPhNO8jwIQOYMp2JTj+2iLaA47N3Rkr?=
+ =?us-ascii?Q?RoSoTvOqxdAKguVDd7DCXMD53KfGkwxkQnGa7uAKeNesq1Ajsm9BfdZu/pht?=
+ =?us-ascii?Q?nfb9/Xka5K2MJs5NVruORIpS3LtQHKhnEeijClquFIwAYEZFE7RuQcWqBRGl?=
+ =?us-ascii?Q?2sZboKondSj7qHBkGt96WHt8LP8vZGF04gATdYAGcrun6d56qiSLtDc3YrKT?=
+ =?us-ascii?Q?84DSkjj/ymZg5m1/UsX1qbQzfpRgwODN7ROhhXyaIr7L4FxUdD3jjhljzQym?=
+ =?us-ascii?Q?KKcaRE+AMBc1Hx2xTa7t8hRZa1rxaXPMmvsOdOolwELuC97w1d3OVnkCIlHT?=
+ =?us-ascii?Q?GWRLPbM7oh7P7SStblpkx2nlQRYW58DaAyDY4UXGwSSS3sOst1UwH6bRYG7T?=
+ =?us-ascii?Q?lKNXlRqpJORZdYbi/M7iVtFSUIQ1oA+K2O80JuOeVYx+ryqzN+16Gszmesgi?=
+ =?us-ascii?Q?2sFA1vSKHKsU3x4cBkmJTM9cPxmQriHn6TzW7g0z5ymhRc4fpJY/uw102P30?=
+ =?us-ascii?Q?FHeaAYoARq1T7iu/TxSzPyhMcEqX6t9OU6vm6k+wv0lMzFp6cpsAiaMyh7Wy?=
+ =?us-ascii?Q?/kfdz3uk/N7+m3a1dqbTBAtELJXyDsgTfESCMskYwDECBY/rFacU71NAYnJh?=
+ =?us-ascii?Q?UHsoJuQLQyxBx5tpq/OD8N/a8GmlAhSMMj/DJiJHepV6rmKXz8vFcnb4fV9k?=
+ =?us-ascii?Q?iDTAK8JGk75S2V02BLY1BGZOwqyyl4DASyKeiarf+KLHB2CWMm+0lfu9lugo?=
+ =?us-ascii?Q?kXyy/4BkSicI7S7gZ9dXMpPjVcXk4G6969etYrjvii3V6D9OLfyXaOMEseLQ?=
+ =?us-ascii?Q?swVuRB/sm3yWU/0g2ph4DwCmrj+Iom2rcwwJsGyEdhrdoz3J11podLJa5bTh?=
+ =?us-ascii?Q?s/PAf4Nc6szH4Nm2+0VuTLkLtoJK1gaKDpYhv33EjB+0aE7ttRaETFNTbAz2?=
+ =?us-ascii?Q?h+7bpba6LYYYtpmlfvro5I8vC/vjwPrZz/HJd3LhJUhzItOoje7nJJoO4FJh?=
+ =?us-ascii?Q?nX5bzIUd0HHyRz236RgZdgK/SyChiFUjfgbBLYoqiBjLcBe04+roY12nmeKy?=
+ =?us-ascii?Q?Hb9H/QMlwVp8yHuYJVzX8OeI?=
 X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 545e1c8f-7cb5-41db-126f-08d8ea7fc6aa
+X-MS-Exchange-CrossTenant-Network-Message-Id: edb24b98-f027-4f3b-f060-08d8ea81954b
 X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2021 02:36:18.9069
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2021 02:49:15.1020
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 65JrSTd2jsCUFWFUQUwn2MJkVY815B9/Nlfom0ADiCHxhBeoChylE4+GvkNYGDhR4JdwZ0mLYUEMs6lyNMvCeg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7597
+X-MS-Exchange-CrossTenant-UserPrincipalName: L8VyQ0OcZj1ptRYTcEfZSApPoHhTi6ovulZdxOWlK7+7YYzc5QvOXolFzLz8PY7TdS9kXkCyluZCMm4H2+MfOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6962
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
-lane1 swing register array define, and audio enable flag.
+On Thu, Mar 18, 2021 at 12:26:25PM +0800, Hsin-Yi Wang wrote:
+> On Wed, Feb 24, 2021 at 2:14 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > When suspending the driver, anx7625_power_standby() will be called to
+> > turn off reset-gpios and enable-gpios. However, power supplies are not
+> > disabled. To save power, the driver can get the power supply regulators
+> > and turn off them in anx7625_power_standby().
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > Reviewed-by: Robert Foss <robert.foss@linaro.org>
+> > ---
+Hi Hsin-Yi, it's OK for me, please add my r-b.
+Reviewed-by: Xin Ji <xji@analogixsemi.com>
 
-Signed-off-by: Xin Ji <xji@analogixsemi.com>
----
- .../bindings/display/bridge/analogix,anx7625.yaml  | 58 +++++++++++++++++++++-
- 1 file changed, 57 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index c789784..3f54d58 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -34,6 +34,26 @@ properties:
-     description: used for reset chip control, RESET_N pin B7.
-     maxItems: 1
- 
-+  analogix,lane0-swing:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 20
-+    description:
-+      an array of swing register setting for DP tx lane0 PHY, please don't
-+      add this property, or contact vendor.
-+
-+  analogix,lane1-swing:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 20
-+    description:
-+      an array of swing register setting for DP tx lane1 PHY, please don't
-+      add this property, or contact vendor.
-+
-+  analogix,audio-enable:
-+    type: boolean
-+    description: let the driver enable audio HDMI codec function or not.
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -41,13 +61,43 @@ properties:
-       port@0:
-         $ref: /schemas/graph.yaml#/properties/port
-         description:
--          Video port for MIPI DSI input.
-+          MIPI DSI/DPI input.
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            type: object
-+            additionalProperties: false
-+
-+            properties:
-+              remote-endpoint: true
-+              bus-type: true
-+              data-lanes: true
-+
-+            required:
-+              - remote-endpoint
-+
-+        required:
-+          - endpoint
-+
- 
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description:
-           Video port for panel or connector.
- 
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            type: object
-+            additionalProperties: false
-+
-+            properties:
-+              remote-endpoint: true
-+
-+            required:
-+              - remote-endpoint
-+
-     required:
-       - port@0
-       - port@1
-@@ -73,6 +123,10 @@ examples:
-             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
- 
-+            analogix,audio-enable;
-+            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-+            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-+
-             ports {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-@@ -81,6 +135,8 @@ examples:
-                     reg = <0>;
-                     anx7625_in: endpoint {
-                         remote-endpoint = <&mipi_dsi>;
-+                        bus-type = <5>;
-+                        data-lanes = <0 1 2 3>;
-                     };
-                 };
- 
--- 
-2.7.4
-
+Thanks,
+Xin
+> 
+> Ping on the thread, thanks.
+> 
+> >  drivers/gpu/drm/bridge/analogix/anx7625.c | 34 +++++++++++++++++++++++
+> >  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
+> >  2 files changed, 35 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > index 65cc05982f826..23283ba0c4f93 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > @@ -11,6 +11,7 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/mutex.h>
+> > +#include <linux/regulator/consumer.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/types.h>
+> >  #include <linux/workqueue.h>
+> > @@ -875,12 +876,25 @@ static int sp_tx_edid_read(struct anx7625_data *ctx,
+> >  static void anx7625_power_on(struct anx7625_data *ctx)
+> >  {
+> >         struct device *dev = &ctx->client->dev;
+> > +       int ret, i;
+> >
+> >         if (!ctx->pdata.low_power_mode) {
+> >                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
+> >                 return;
+> >         }
+> >
+> > +       for (i = 0; i < ARRAY_SIZE(ctx->pdata.supplies); i++) {
+> > +               ret = regulator_enable(ctx->pdata.supplies[i].consumer);
+> > +               if (ret < 0) {
+> > +                       DRM_DEV_DEBUG_DRIVER(dev, "cannot enable supply %d: %d\n",
+> > +                                            i, ret);
+> > +                       goto reg_err;
+> > +               }
+> > +               usleep_range(2000, 2100);
+> > +       }
+> > +
+> > +       usleep_range(4000, 4100);
+> > +
+> >         /* Power on pin enable */
+> >         gpiod_set_value(ctx->pdata.gpio_p_on, 1);
+> >         usleep_range(10000, 11000);
+> > @@ -889,11 +903,16 @@ static void anx7625_power_on(struct anx7625_data *ctx)
+> >         usleep_range(10000, 11000);
+> >
+> >         DRM_DEV_DEBUG_DRIVER(dev, "power on !\n");
+> > +       return;
+> > +reg_err:
+> > +       for (--i; i >= 0; i--)
+> > +               regulator_disable(ctx->pdata.supplies[i].consumer);
+> >  }
+> >
+> >  static void anx7625_power_standby(struct anx7625_data *ctx)
+> >  {
+> >         struct device *dev = &ctx->client->dev;
+> > +       int ret;
+> >
+> >         if (!ctx->pdata.low_power_mode) {
+> >                 DRM_DEV_DEBUG_DRIVER(dev, "not low power mode!\n");
+> > @@ -904,6 +923,12 @@ static void anx7625_power_standby(struct anx7625_data *ctx)
+> >         usleep_range(1000, 1100);
+> >         gpiod_set_value(ctx->pdata.gpio_p_on, 0);
+> >         usleep_range(1000, 1100);
+> > +
+> > +       ret = regulator_bulk_disable(ARRAY_SIZE(ctx->pdata.supplies),
+> > +                                    ctx->pdata.supplies);
+> > +       if (ret < 0)
+> > +               DRM_DEV_DEBUG_DRIVER(dev, "cannot disable supplies %d\n", ret);
+> > +
+> >         DRM_DEV_DEBUG_DRIVER(dev, "power down\n");
+> >  }
+> >
+> > @@ -1742,6 +1767,15 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+> >         platform->client = client;
+> >         i2c_set_clientdata(client, platform);
+> >
+> > +       pdata->supplies[0].supply = "vdd10";
+> > +       pdata->supplies[1].supply = "vdd18";
+> > +       pdata->supplies[2].supply = "vdd33";
+> > +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
+> > +                                     pdata->supplies);
+> > +       if (ret) {
+> > +               DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
+> > +               return ret;
+> > +       }
+> >         anx7625_init_gpio(platform);
+> >
+> >         atomic_set(&platform->power_status, 0);
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > index 193ad86c54503..e4a086b3a3d7b 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > @@ -350,6 +350,7 @@ struct s_edid_data {
+> >  struct anx7625_platform_data {
+> >         struct gpio_desc *gpio_p_on;
+> >         struct gpio_desc *gpio_reset;
+> > +       struct regulator_bulk_data supplies[3];
+> >         struct drm_bridge *panel_bridge;
+> >         int intp_irq;
+> >         u32 low_power_mode;
+> > --
+> > 2.30.1.766.gb4fecdf3b7-goog
+> >
