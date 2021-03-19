@@ -2,136 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2918D341F87
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8352341FC3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbhCSOfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 10:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56442 "EHLO
+        id S230187AbhCSOkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 10:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbhCSOfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:35:17 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB18BC06174A
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:35:16 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id w203-20020a1c49d40000b029010c706d0642so8487334wma.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:35:16 -0700 (PDT)
+        with ESMTP id S230131AbhCSOj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:39:56 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D80C061760
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:39:56 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id v4so9345347wrp.13
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:39:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aG3hsMsSF84DehWdMYy5xOrEmBMs4XEnaGkmWmOkDWc=;
-        b=J9KMgYMVZseCs92nqFlibr8ezBeRsZFadGIPmmu/06a+u0aGNjKfDUsrc+pjDzxsQE
-         mkk1nwhozlvKHGJtiqN9OYBEjM/MhYawGCNV9AZIkQb1W1HPR5pkRUYPwXzyCF/Z8sKi
-         YAB4c6ZDaNWDu6y2KAd/ywmWM449zp6gCE6Or+BLnvbW0tkmqaH4rgBH27e8ZB2hT7jL
-         eT0Uxb5VDOaOUozeyfySML0u1sh9L2htmSknpJj3WgOhkhyarEHRA9fkTjwDWI903HhL
-         Flrv6XHcy8t1Nd8x2EZC2tPAEbNe7L6Vob/H6O55Ussv13uP10jTLSCHYscvnXmvZwAL
-         ffTg==
+        bh=ZoqWXP/V3WLtx6b82eSZ18zEGdu+ELeHI92zYjQlVlw=;
+        b=hpoQFBQ/jhs/9wnYQgMd66znVviny9jd/FIw3gd79H2mp5bd77fm50waCtVzeDG7WQ
+         vUxVVWOXLJ0dmww0TAaDOo03QIQKMQs5CuTN0iVrXwrjTStdHJicBwojTt4xbljFIs9M
+         CFeyOy11oom0pOfMHcDGeNpCmgyzgEjYzuoUi/gtHlsb9sYLwG7KbgAQC8luqnnx6oG4
+         kBosQ3NpH2s2BUoVuCiG/FAz/ihpmBfha6bqeZer0RYZoa4pGbylA5LoHtRlz1kw+Yfw
+         XDTd8XhPNtnrIFMeojGFlZxW3AdzTijR3brK4M0gTTJruxSb7Jam0hAb4nuE+W/OWaip
+         /gqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=aG3hsMsSF84DehWdMYy5xOrEmBMs4XEnaGkmWmOkDWc=;
-        b=H6adUhrC/oB4A/WIYW6/49TwSBuKFJPmZKKlrR5x2NgAoY3X37Q0VlTRfHQAuVO9pO
-         HWxGyZc7eeSZpeZgs6rabvvAsw43v5n8pNaZAvMPqUewQsiheI5UJW4EEDd450ndH9Cm
-         JfHfAn35oIy6RGnGNYkndP2RB1V14//DQRMoLvj+L61Cqllk5jY3BZ/yrqpmItcrPD9Z
-         FX93jdtWo+AtPuv6TiukZ+k7dKCG0AOKhuVpgxfwxm+95F1Hqv/P1zS8ggkRS9z8wMnx
-         kV7zhcUEm5QJBWmzyzhysE0ap3Z7Ix0d4sJAMSMyJcEVU1uIbrimzzn+kDqRVydfs937
-         3Gtw==
-X-Gm-Message-State: AOAM5325CuagWoS3UdZBxwYQROzEyDi5P3l6q7Verra23Zfc7yfJAWhO
-        Ji3xOVFfS3RtbPqTX5phZueqDA==
-X-Google-Smtp-Source: ABdhPJzSX3PFY+cvi6T6/TD2sAivLk7L3F3d4hXr31NTWiAroz3YXBttnpjlUk5WQvBG43jOnRuznQ==
-X-Received: by 2002:a1c:b006:: with SMTP id z6mr3877987wme.19.1616164515310;
-        Fri, 19 Mar 2021 07:35:15 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85? ([2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85])
-        by smtp.googlemail.com with ESMTPSA id l15sm6781389wme.43.2021.03.19.07.35.14
+        bh=ZoqWXP/V3WLtx6b82eSZ18zEGdu+ELeHI92zYjQlVlw=;
+        b=HyhhyBX80J9hA5j0PJvTQzlFqy03bkgq1lAZqxYPU2HLJDisgPW+rOLIkPG+HOuew0
+         ApdD2sADR1Kj+sMEUsmrAPIM7iJ9pAlUAKl8yD6vRctZkMUxzMQOlgLNRgcHjezmwVlG
+         GnYr1pFuvklUUJQbGcZApP5CAz+xg5Ux/+PfnQt+jIFRSbsvyFidx9QCgCJDL1VRxtA3
+         IiFUFSazsawWYqoY/2CVd7uoQsjB77IblLJ5qWwJsXpgm+KkBld5ltPkKHCyMLZ9m2ds
+         oEaT6iXGvDULYqhl57LQUgymybvLM4sxdNBFWjKk5Iyjiw8fy7KghdIN3GcaGgdlinHL
+         yjmg==
+X-Gm-Message-State: AOAM533meypVsET6k4eLd306U96OyMw23zfitmeHYhg80SCvFt3KeXXg
+        9JJrk991ik1okpeiAtoXy8pq5A==
+X-Google-Smtp-Source: ABdhPJxHGCGcyu/t3eP25M8WuesResjre6x95sD6wnidHPAvYNpJEoTYYoJAqDtcI8DAOV2z4OtbOg==
+X-Received: by 2002:adf:b609:: with SMTP id f9mr4705658wre.223.1616164794956;
+        Fri, 19 Mar 2021 07:39:54 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id n6sm7700611wmd.27.2021.03.19.07.39.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 07:35:14 -0700 (PDT)
-Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
- GPU
-To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de
-Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Jacob Chen <jacob2.chen@rock-chips.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
- <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
-Date:   Fri, 19 Mar 2021 15:35:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Fri, 19 Mar 2021 07:39:54 -0700 (PDT)
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: msm8916: Enable modem and WiFi
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wcn36xx@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+References: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
+ <20210312003318.3273536-6-bjorn.andersson@linaro.org>
+ <f03b639f-f95a-a31a-6615-23cd6154182d@linaro.org>
+ <YFNozCCa4fdR5kSb@builder.lan>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Message-ID: <2da2ee91-f3f9-bab7-1d38-e01300fcdbc5@linaro.org>
+Date:   Fri, 19 Mar 2021 14:41:25 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <YFNozCCa4fdR5kSb@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Robin,
-
-On 19/03/2021 13:17, Robin Murphy wrote:
-> On 2021-03-19 11:05, Daniel Lezcano wrote:
->> The DTPM framework is looking for upstream SoC candidates to share the
->> power numbers.
+On 18/03/2021 14:50, Bjorn Andersson wrote:
+> On Mon 15 Mar 07:01 CDT 2021, Bryan O'Donoghue wrote:
+> 
+>> On 12/03/2021 00:33, Bjorn Andersson wrote:
+>>> Enable the modem and WiFi subsystems and specify msm8916 specific
+>>> firmware path for these and the WCNSS control service.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> ---
+>>>    arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 12 ++++++++++++
+>>>    arch/arm64/boot/dts/qcom/msm8916.dtsi     |  2 +-
+>>>    2 files changed, 13 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+>>> index 6aef0c2e4f0a..448e3561ef63 100644
+>>> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+>>> @@ -305,6 +305,12 @@ &mdss {
+>>>    	status = "okay";
+>>>    };
+>>> +&mpss {
+>>> +	status = "okay";
+>>> +
+>>> +	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
+>>> +};
+>>> +
+>>>    &pm8916_resin {
+>>>    	status = "okay";
+>>>    	linux,code = <KEY_VOLUMEDOWN>;
+>>> @@ -312,6 +318,8 @@ &pm8916_resin {
+>>>    &pronto {
+>>>    	status = "okay";
+>>> +
+>>> +	firmware-name = "qcom/msm8916/wcnss.mbn";
+>>>    };
 >>
->> We can see around different numbers but the one which seems to be
->> consistent with the initial post for the values on the CPUs can be
->> found in the patch https://lore.kernel.org/patchwork/patch/810159/
+>> On Debian I have to do this
+>>
+>>
+>> index 2a6a23cb14ca..597cdc8f51cc 100644
+>> --- a/drivers/remoteproc/qcom_wcnss.c
+>> +++ b/drivers/remoteproc/qcom_wcnss.c
+>> @@ -33,7 +33,7 @@
+>>   #include "qcom_wcnss.h"
+>>
+>>   #define WCNSS_CRASH_REASON_SMEM                422
+>> -#define WCNSS_FIRMWARE_NAME            "wcnss.mdt"
+>> +#define WCNSS_FIRMWARE_NAME            "qcom/msm8916/wcnss.mdt"
+>>
+>> so I guess wcnss_probe() -> rproc_alloc() wants this fix too.
+>>
 > 
-> The kernel hacker in me would be more inclined to trust the BSP that the
-> vendor actively supports than a 5-year-old patch that was never pursued
-> upstream. Apparently that was last updated more recently:
+> Can you confirm that you're saying that you want below patch, which I
+> just merged?
 > 
-> https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
-
-Yes, I've seen this value also.
-
-> The ex-mathematician in me can't even comment either way without
-> evidence that whatever model expects to consume this value is even
-> comparable to whatever "arm,mali-simple-power-model" is. >
-> The way the
-> latter apparently needs an explicit "static" coefficient as well as a
-> "dynamic" one, and the value here being nearly 3 times that of a
-> similarly-named one in active use downstream (ChromeOS appears to still
-> be using the values from before the above commit), certainly incline me
-> to think they may not be...
-
-Sorry, I'm missing the point :/
-
-We dropped in the kernel any static power computation because as there
-was no value, the resulting code was considered dead. So we rely on the
-dynamic power only.
-
->> I don't know the precision of this value but it is better than
->> nothing.
+> https://lore.kernel.org/linux-remoteproc/20210312002441.3273183-1-bjorn.andersson@linaro.org/
 > 
-> But is it? If it leads to some throttling mechanism kicking in and
-> crippling GPU performance because it's massively overestimating power
-> consumption, that would be objectively worse for most users, no?
+> (Which makes it possible to specify firmware name per platform/board)
+> 
+> Regards,
+> Bjorn
+> 
 
-No because there is no sustainable power specified for the thermal zones
-related to the GPU.
+yep
 
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
