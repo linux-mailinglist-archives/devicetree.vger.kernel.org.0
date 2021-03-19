@@ -2,88 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0113424A3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:28:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8071F3424E3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:39:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbhCSS2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 14:28:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50500 "EHLO
+        id S230113AbhCSSi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 14:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbhCSS2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 14:28:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389FDC06174A;
-        Fri, 19 Mar 2021 11:28:10 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id dm8so11916086edb.2;
-        Fri, 19 Mar 2021 11:28:10 -0700 (PDT)
+        with ESMTP id S231146AbhCSSih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 14:38:37 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B427C06175F
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 11:38:37 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id b9so10086879wrt.8
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 11:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=EM7JC43IVWcp3nEFu0gDCR5Wo09NKYkxznZ0QTA4BIY=;
-        b=g0HxaZGZUz9eHQydmGhhhOzkdd7x7QGLC7lotAXvH6DCDD4me7BBoYKHvOdgUxntbp
-         4YFgXEBoXjzy/J7wHtYznj0jTRQF19gwHhDf8NTP2jrlOYs1IrsZMRDaiClK0V+XBtFF
-         5/WzixxeK0xIRqup/gczpB37jdDnVeUqIJ/BoOAcL6xZJ+eBeCAacE3OFKJB9cfcbjuj
-         tBUY+2yxAg1K8eogQCmqPyFonGIKdpO0HOcODXPEM9Azudlt1zocMCDCEIem81koMhVT
-         bZ6MNJl6xAGxmUri4gzHQnHdA8YLzJ0+ZNzDbeI/jxsSlBkTT2Rq848jKFRDt0s/dF2T
-         zvTg==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MYEoRUOi3MntuNkgcxlA6PixhZq/KlalSw6PsKJS1mU=;
+        b=SUAFQoXy615WjK85B20Of9o5+6NbEcn/9xeVNPrxbOALG3VcWJDiiAEqTTzRKIXDzo
+         WxFi7vp9gDN8wGTK6caLhl4yrVdp+a4TpRE9h5QzU/BfvRSIjusPNwcZYfS4CiBOkpdi
+         17P0ouNK6+RS5cMOfbss/M6p3HRgbD+jYpQgkJGjSloocdpBJ+YQGLAgjY41pZWJOJv0
+         Km39jOr+Bi3VYPUEPZmr4g64G327d3XI33uY9xPG5J5+gUXpSRMB/s5A8FwKroROPdlo
+         N2n5AqzZTlpG0of7lTEads3/Iehu4hSSKdtCS1954fuMj68J4sdc93YpAKbJbxBtlof6
+         B0eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=EM7JC43IVWcp3nEFu0gDCR5Wo09NKYkxznZ0QTA4BIY=;
-        b=r7gaGNGquzcO2K0X+fXlwIbdvZXMC3lfNyo1usASelrLDbgWiKBWRFYv418GlnHxAd
-         2XDC8cuWYhPqSUlEN+vNf3HkQQxJXwNToXgk7zpJnbNmTYi2swWBX9V8OnARS3XZrS82
-         qBuvdbpa6RBsEeFzt4vEfolYzU2L3fIrXRNgwr0XfMtAS2/epbbCe4Zo7tphZBZHgwHa
-         5M1/xTgQDryVuswg+4AkD9JRZ6yrnmo0zIITDqxZdouH5FITkS5FxCU2P2g+GutqLQ3s
-         BjTqcDfI7mOKnTGnNXa0v6ru8GfzlgWH38I1f2lNOblzjFcGmn2J9JP36+gvNLjj79m1
-         LZYQ==
-X-Gm-Message-State: AOAM531k3O88ILmjKCzW+Sa54xmQ+bW6W0CHsYauv71MKEFBxFpnbk0c
-        E8HhtVbNrISI0i+joAdNcxE=
-X-Google-Smtp-Source: ABdhPJyDuDcix29yDHCqJv0NQ+RcQSRulZQgDhDYfs8irdBW4RY58iYdVJTBb+sJ3W526dqEMYt+yw==
-X-Received: by 2002:aa7:da46:: with SMTP id w6mr11341879eds.40.1616178489040;
-        Fri, 19 Mar 2021 11:28:09 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id gb22sm3951070ejc.78.2021.03.19.11.28.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Mar 2021 11:28:08 -0700 (PDT)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] MAINTAINERS: Add entry for Actions Semi Owl socinfo binding
-Date:   Fri, 19 Mar 2021 20:28:02 +0200
-Message-Id: <fc4dd769f497bcc955858cd5591d1e523d83d881.1616178258.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <cover.1616178258.git.cristian.ciocaltea@gmail.com>
-References: <cover.1616178258.git.cristian.ciocaltea@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MYEoRUOi3MntuNkgcxlA6PixhZq/KlalSw6PsKJS1mU=;
+        b=j1JM8HAUIRtTnDpxkp/bcOu8scGzw100wXHLCEkMz+xat2OmOUlJn63B60+wWmoL30
+         NYgK/x7bvIQA2R/obf0ljwMgWAb2oQlMCcj4lv1Dwjte/udD8OOAStL8bBXkjJvxeiE3
+         3VsLsYEYzvX1og1+19RHUxZzrDzaRuQgbRG280rn89BJPkWwknDocW1er8Xj5ds5t1Ot
+         mt5cdzSwQCbfFKlFSM1Yfd2RDyMh6kWCaLAcC/NgsIqd0sFq7JBIfV8S4irgVCBBS70L
+         1kJRyHiyHT1oQfqb3zVJi+vThwAa6i++RMvxQYpMIB9Hbgf8SpPHGQp/vv15A9VtPpMa
+         CGYg==
+X-Gm-Message-State: AOAM533aB4Eo+TauyCgLVen24INYl4sRXfkJqmn7426lcFgkk/BpQn1+
+        qjgKk9AwZuxBXVBkLHTqCoHvnw==
+X-Google-Smtp-Source: ABdhPJy1by9RHeFpSNx+To1gQgU5tcR6deACavE7xJJbx3XBXQciKlwzam3By8vz828NoTt3oZmW9A==
+X-Received: by 2002:adf:f78f:: with SMTP id q15mr5769517wrp.383.1616179115865;
+        Fri, 19 Mar 2021 11:38:35 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85? ([2a01:e34:ed2f:f020:ddd7:1eb:a66:7a85])
+        by smtp.googlemail.com with ESMTPSA id p27sm7792340wmi.12.2021.03.19.11.38.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Mar 2021 11:38:35 -0700 (PDT)
+Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
+ GPU
+To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de
+Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacob Chen <jacob2.chen@rock-chips.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
+ <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
+ <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
+ <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <54f3d4d4-ca01-d00c-09d6-4cf100538cbe@linaro.org>
+Date:   Fri, 19 Mar 2021 19:38:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for the Actions Semi Owl socinfo binding.
+On 19/03/2021 19:05, Robin Murphy wrote:
+> On 2021-03-19 14:35, Daniel Lezcano wrote:
+>>
+>> Hi Robin,
+>>
+>> On 19/03/2021 13:17, Robin Murphy wrote:
+>>> On 2021-03-19 11:05, Daniel Lezcano wrote:
+>>>> The DTPM framework is looking for upstream SoC candidates to share the
+>>>> power numbers.
+>>>>
+>>>> We can see around different numbers but the one which seems to be
+>>>> consistent with the initial post for the values on the CPUs can be
+>>>> found in the patch https://lore.kernel.org/patchwork/patch/810159/
+>>>
+>>> The kernel hacker in me would be more inclined to trust the BSP that the
+>>> vendor actively supports than a 5-year-old patch that was never pursued
+>>> upstream. Apparently that was last updated more recently:
+>>>
+>>> https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
+>>>
+>>
+>> Yes, I've seen this value also.
+>>
+>>> The ex-mathematician in me can't even comment either way without
+>>> evidence that whatever model expects to consume this value is even
+>>> comparable to whatever "arm,mali-simple-power-model" is. >
+>>> The way the
+>>> latter apparently needs an explicit "static" coefficient as well as a
+>>> "dynamic" one, and the value here being nearly 3 times that of a
+>>> similarly-named one in active use downstream (ChromeOS appears to still
+>>> be using the values from before the above commit), certainly incline me
+>>> to think they may not be...
+>>
+>> Sorry, I'm missing the point :/
+>>
+>> We dropped in the kernel any static power computation because as there
+>> was no value, the resulting code was considered dead. So we rely on the
+>> dynamic power only.
+> 
+> Right, so a 2-factor model is clearly not identical to a 1-factor model,
+> so how do we know that a value for one is valid for the other, even if
+> it happens to have a similar name? I'm not saying that it is or isn't; I
+> don't know. If someone can point to the downstream coefficient
+> definition being identical to the upstream one then great, let's use
+> that as justification. If not, then the justification of one arbitrary
+> meaningless number over any other is a bit misleading.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+That's a call :)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 20b8e37ea34c..21d54ddcceb4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1533,6 +1533,7 @@ F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
- F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
- F:	Documentation/devicetree/bindings/pinctrl/actions,*
- F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
-+F:	Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
- F:	Documentation/devicetree/bindings/timer/actions,owl-timer.txt
- F:	arch/arm/boot/dts/owl-*
- F:	arch/arm/mach-actions/
+>>>> I don't know the precision of this value but it is better than
+>>>> nothing.
+>>>
+>>> But is it? If it leads to some throttling mechanism kicking in and
+>>> crippling GPU performance because it's massively overestimating power
+>>> consumption, that would be objectively worse for most users, no?
+>>
+>> No because there is no sustainable power specified for the thermal zones
+>> related to the GPU.
+> OK, that's some reassurance at least. Does the exact value have any
+> material effect? 
+
+Yes, it has when it is combined with other devices having also power
+values, like the CPUs and hopefully the DMC soon.
+
+If we can have more or less consistent power numbers for the DMC, CPU
+and GPU on the rock960, with the thermal zone having these three heating
+sources, we can use the DTPM framework to act on the power of the whole.
+
+I don't know the best coefficient, 733, 977 or 1780 [1]
+
+The value of 977 sound to me as a starting point.
+
+
+
+[1]
+https://chromium.googlesource.com/chromiumos/third_party/kernel/+/factory-gru-8652.B-chromeos-4.4/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin-r3.dts
+
+> If not, what's to stop us from using an obviously
+> made-up value like 1, and saying so?
+
+
+
+
+
 -- 
-2.31.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
