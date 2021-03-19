@@ -2,133 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DAB3420D2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 16:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E06534213B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 16:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbhCSPWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 11:22:49 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:11552 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbhCSPWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 11:22:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1616167159; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=aYCO4DQQhlORuE+cq+TGogVzWTWWzsvrR0cRRzU0/hZDSkLmb/obl44X2VdXFgap0a
-    oodLDXffioFYOGG9pvY55bRkWkU8cxTwmFtK16FGLqpD/JEKl0ijbDv/LSCisvott9kk
-    UOzYI5gNxhpFmlqPF2eqkBcAAoks7euVaJZ1tOaeoC7brJfwM+vtp8HmC8qee5LLQvKh
-    46ZU7ND3rGRX86CyKhFNh3IHzUqpEPquNhImTysGW0FXI7q1G/OqWRFmHgotRLECGWRx
-    2z1LXiqABuRlsLcrSRf8gvagx5T3sYfd1MuCyshm4gVfMSjKXIUxhVESrrXbNrBskth1
-    7ZkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1616167159;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=AKOqFWwkTKX0gmc5FtpmyCaMS1mYuj+WZ1NRA7Dh9/Y=;
-    b=lJU5RPf+vAsBvwqW0yVHEriRcwbNBH7qvjuhe/YUMYpzBAhsI7AiU5vW2KRLH5teLN
-    nSEL1UUhCQIcHdiONwnDbqW5qNH0eIN8VQPM+5et6jGP54p2I/GnytJ5HVUn0HKvdCkK
-    r0awGN2dOePl/CCaUnSZTvbOKF5KBQZmKiiYAoyzTE17oP7u4bNPvyPp8CRxcmnlU1Qg
-    VR9P7q7H6IOoCPMIyB7Dth6ziLRhlDhf49GYckcN7zV6gPjtIvOTbAeh/7hF28IA+Vi5
-    ClIJsDONjeAuSG7fsEpZyR5znBsHfI8ynPm9mnJKwZQaUJN2Y4OYgzfESkmEGDALC2Yg
-    53zQ==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1616167159;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=AKOqFWwkTKX0gmc5FtpmyCaMS1mYuj+WZ1NRA7Dh9/Y=;
-    b=aMWgft27kqzbjQK+j8v+Pk6yeXXJavo9ChQKOcbFWf+MYBGhr4OhHmlh7nbhAKrYHg
-    kpcqKiIkrzX+DxqGXtCwkM+WRZBVQ2ArntyACV5rvIHBs3+1vIXlWSFOx5/lCImcaPvp
-    LY9FGkyj/U/2ihbWaVrqwZaCUza/vSjPG4cZ/OyZtTPRPZqhGUjx0RyzfbgjoMHxW7AY
-    h22+z9Y8q+VHxCFMxiSPG6fEGp81ERxbygmkagZ7Qt2lTVsl/xahYcyegOap5e25jpfz
-    o6kd4RAix7gRDYQr3XzdBBEX9TS3+xw9YxwyP7tqteZwshVbNj9uTvuCAkPQ1yWaHLiw
-    seSA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7Icip"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.21.0 DYNA|AUTH)
-    with ESMTPSA id Q03f86x2JFJIGSS
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 19 Mar 2021 16:19:18 +0100 (CET)
-Date:   Fri, 19 Mar 2021 16:19:14 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wcn36xx@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: msm8916: Enable modem and WiFi
-Message-ID: <YFTA8gEPp1x6o/9f@gerhold.net>
-References: <20210312003318.3273536-1-bjorn.andersson@linaro.org>
- <20210312003318.3273536-6-bjorn.andersson@linaro.org>
+        id S229914AbhCSPwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 11:52:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230289AbhCSPvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 11:51:40 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5776CC06175F
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 08:51:35 -0700 (PDT)
+Received: from [IPv6:2a02:a03f:eaff:9f01:ffbc:9626:10f7:ec57] (unknown [IPv6:2a02:a03f:eaff:9f01:ffbc:9626:10f7:ec57])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 2D2EA1E028B;
+        Fri, 19 Mar 2021 16:51:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1616169093;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KHu/bWBDWcOGFH8ElI16GIvRT2i23adhxH7rfaQXLL8=;
+        b=EENJK7v3+SqmUS7WP2PHlCZn3urahuvIqWEuIZ8MrDbrqGm4tLYU7iGQaSFV+pI2pxmlTp
+        +MHscDEmJyk8mwSM/MGWGRcNUVlhpH7lm32NtT2s9AK0krjQ7Si8cTti4rfAAVa0cOO2Ab
+        dKEtKmqvDG1mmsPu7ByX/KzVeBh4YtO3yh8XXTpBaOO5REjE6KtrdsSzxoVaKwmDeb1neB
+        InbPYzqywzXEDWul8fL9WZY0hVsduG8Dqmq3O5eBX+S+rXZzWIhzwGR6BqQy9gGfFavGNw
+        /xA1LSP5N2/2xhFB6VcM4NXA5feN6jOaLpugx2gUDBbtDaXNFe8iaS4E0xxfJg==
+Message-ID: <a7d410216d35ed2b3015bfdd8e21dafd9c42d9d4.camel@svanheule.net>
+Subject: Re: [PATCH v2 2/2] gpio: Add Realtek Otto GPIO support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Bert Vermeulen <bert@biot.com>
+Date:   Fri, 19 Mar 2021 16:51:31 +0100
+In-Reply-To: <CAHp75Vc6aaDhVN7LzvLNQjuOPguz+nbfmfpZ7TZHK=fNjCRz8w@mail.gmail.com>
+References: <20210315082339.9787-1-sander@svanheule.net>
+         <20210315190806.66762-1-sander@svanheule.net>
+         <20210315190806.66762-3-sander@svanheule.net>
+         <CAHp75Vc6aaDhVN7LzvLNQjuOPguz+nbfmfpZ7TZHK=fNjCRz8w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210312003318.3273536-6-bjorn.andersson@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Hi Andy,
 
-On Thu, Mar 11, 2021 at 04:33:18PM -0800, Bjorn Andersson wrote:
-> Enable the modem and WiFi subsystems and specify msm8916 specific
-> firmware path for these and the WCNSS control service.
+Thanks for the review. I'll address the style comments in a v3. Some
+further comments and discussion below.
+
+
+On Wed, 2021-03-17 at 15:08 +0200, Andy Shevchenko wrote:
+> On Mon, Mar 15, 2021 at 11:11 PM Sander Vanheule < 
+> sander@svanheule.net> wrote:
+> > +       depends on OF_GPIO
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Don't see how it's used.
 
-The changes itself look good to me, but the commit message is really
-misleading. It does not mention anywhere that the change actually just
-enables "modem" on apq8016-sbc instead of "msm8916". :)
+It isn't, so I'll remove it.
 
-Also, WCNSS was actually enabled before already (with the default
-firmware path). In my opinion, it would be clearer to change the
-firmware-name for it in an extra patch.
 
-> ---
->  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 12 ++++++++++++
->  arch/arm64/boot/dts/qcom/msm8916.dtsi     |  2 +-
->  2 files changed, 13 insertions(+), 1 deletion(-)
+> > +#include <linux/of_irq.h>
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> index 6aef0c2e4f0a..448e3561ef63 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> @@ -305,6 +305,12 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mpss {
-> +	status = "okay";
-> +
-> +	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
-> +};
-> +
->  &pm8916_resin {
->  	status = "okay";
->  	linux,code = <KEY_VOLUMEDOWN>;
-> @@ -312,6 +318,8 @@ &pm8916_resin {
->  
->  &pronto {
->  	status = "okay";
-> +
-> +	firmware-name = "qcom/msm8916/wcnss.mbn";
->  };
->  
+> Why?
+> Perhaps what you need is property.h and mod_devicetable.h. See below.
 
-How do I get a .mbn from the wcnss.{mdt,.b??} files provided in the
-DB410c firmware package? I guess I should just run them through
-https://github.com/andersson/pil-squasher?
+With you suggestions, I was able to drop most explicit OF references.
+Only of_device_id remains, for which I'll include mod_devicetable.h.
 
-Also, is the single file format (mbn) preferred now? Not sure if there
-is any significant difference except having less files laying around.
 
-Thanks,
-Stephan
+> > +#include <linux/swab.h>
+> 
+> Not sure why you need this? See below.
+
+[snip]
+
+> 
+> > +
+> > +static inline u32 realtek_gpio_isr_read(struct realtek_gpio_ctrl
+> > *ctrl)
+> > +{
+> > +       return swab32(readl(ctrl->base + REALTEK_GPIO_REG_ISR));
+> 
+> Why swab?! How is this supposed to work on BE CPUs?
+> Ditto for all swabXX() usage.
+
+My use of swab32/swahw32 has little to do with the CPU being BE or LE,
+but more with the register packing in the GPIO peripheral.
+
+The supported SoCs have port layout A-B-C-D in the registers, where
+firmware built with Realtek's SDK always denotes A0 as the first GPIO
+line. So bit 24 in a register has the value for A0 (with the exception
+of the IMR register).
+
+I wrote these wrapper functions to be able to use the BIT() macro with
+the GPIO line number, similar to how gpio-mmio uses ioread32be() when
+the BGPIOF_BIG_ENDIAN_BYTE_ORDER flag is used.
+
+For the IMR register, port A again comes first, but is now 16 bits wide
+instead of 8, with A0 at bits 16:17. That's why swahw32 is used for
+this register.
+
+On the currently unsupported RTL9300-series, the port layout is
+reversed: D-C-B-A. GPIO line A0 is then at bit 0, so the swapping
+functions won't be required. When support for this alternate port
+layout is added, some code will need to be added to differentiate
+between the two cases.
+
+
+> > +}
+> > +
+> > +static inline void realtek_gpio_isr_clear(struct realtek_gpio_ctrl
+> > *ctrl,
+> > +       unsigned int pin_mask)
+> > +{
+> > +       writel(swab32(pin_mask), ctrl->base +
+> > REALTEK_GPIO_REG_ISR);
+> > +}
+> > +
+> > +static inline void realtek_gpio_update_imr(struct
+> > realtek_gpio_ctrl *ctrl,
+> > +       unsigned int imr_offset, u32 type, u32 mask)
+> > +{
+> > +       unsigned int reg;
+> > +
+> > +       if (imr_offset == 0)
+> > +               reg = REALTEK_GPIO_REG_IMR_AB;
+> > +       else
+> > +               reg = REALTEK_GPIO_REG_IMR_CD;
+> > +       writel(swahw32(type & mask), ctrl->base + reg);
+> > +}
+
+[snip]
+
+> > +       switch (flow_type & IRQ_TYPE_SENSE_MASK) {
+> 
+> > +       case IRQ_TYPE_NONE:
+> > +               type = 0;
+> > +               handler = handle_bad_irq;
+> > +               break;
+> 
+> Why is it here? Make it default like many other GPIO drivers do.
+> 
+> > +       case IRQ_TYPE_EDGE_FALLING:
+> > +               type = REALTEK_GPIO_IRQ_EDGE_FALLING;
+> > +               handler = handle_edge_irq;
+> > +               break;
+> > +       case IRQ_TYPE_EDGE_RISING:
+> > +               type = REALTEK_GPIO_IRQ_EDGE_RISING;
+> > +               handler = handle_edge_irq;
+> > +               break;
+> > +       case IRQ_TYPE_EDGE_BOTH:
+> > +               type = REALTEK_GPIO_IRQ_EDGE_BOTH;
+> > +               handler = handle_edge_irq;
+> > +               break;
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       irq_set_handler_locked(data, handler);
+> 
+> handler is always the same. Use it directly here.
+
+I'll drop the IRQ_TYPE_NONE case. Do I understand it correctly, that
+IRQ_TYPE_NONE should never be used as the new value, but only as the
+default initial value?
+
+
+Best,
+Sander
+
+
+
+
