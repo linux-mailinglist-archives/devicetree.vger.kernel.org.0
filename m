@@ -2,138 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE0B7341B77
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 12:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D533D341C17
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 13:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbhCSL2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 07:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbhCSL1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 07:27:47 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1E0C061761
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 04:27:47 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id 61so8720504wrm.12
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 04:27:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=2VJaPR0cL5VhiRl/G98uxV1YtiqmA8CybmYYke4TwKI=;
-        b=KMjl+VBJcDtflimUBJBK78KSATLmG9uVLVByHXgpxmc6DOcX9hQU34JCY/ldwGshcT
-         YJBpLs8zmTWOM0KVKtpHzdbqO0FkI8qUn8TIsGSN5/ClfRslx2Ic6TGVQOe/0PsmmPsM
-         VjCvD5nXEu6Sn2LrS9gwfr5aeNv9o0m3WHl9xCnSYzZakFOMzpyh3F8V1IyC3/+8KsRt
-         J0A/qQF9Dv1SC1AoTfBA2y2nG779nkBXrz8bYGAdON3kaBZwmE85ezhIO+sm0blEs5HT
-         M8fg90yUHbLVwaEM0CShvJN6qIpYfmAgqeK4eJwZSrLhuo3BLXt0pWSVKxHOCVLpVJ0Q
-         +5jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2VJaPR0cL5VhiRl/G98uxV1YtiqmA8CybmYYke4TwKI=;
-        b=cU81i59TLgzuP1b5OULyzTeJizSziwUkR5aXwGDdeb8gTISwvhB3lLEnXu3lsg0UKJ
-         52VeclKIsXx4ujcU6Y+XnlG/2QrHMWPgREIFyy85fDW7UmrNXVGxFq+c7oJLn7xvngV7
-         UbDScjC4vl9ZFWQSM2sXSrSSY6R/F707Ba+oF1MaAnoEmaVq7+MX7YiF2oHQVBmOFq3T
-         VPZebPZJV3DUtHLR61W5we9DxMSsLLU86d4TPxQNRDASBulaBn8//jHcDcYaCLe/LYTi
-         M3ok4BmgFQkDvBZmLSruAjjb/jlEPEWNfA9uCShfYXs/fQ25idKuIYGzxw7LgGFcaPpR
-         WEDA==
-X-Gm-Message-State: AOAM533jKBasoCrwnS/oiZTDWvznyG0CNw9PsJP3xtk0UP3giv3y0Jzf
-        Qqc0zw47gzngFi/VbfEokdXk2w==
-X-Google-Smtp-Source: ABdhPJwIXBunKgGFPhv+gFeiV3dd3BaZbnDn4LZu4azzEckiqCYMC/J3ClDH1Q1xkf1o5KRlOVpwBA==
-X-Received: by 2002:adf:e5cf:: with SMTP id a15mr3961013wrn.226.1616153265918;
-        Fri, 19 Mar 2021 04:27:45 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:60ac:4ae1:fb5b:5813? ([2a01:e34:ed2f:f020:60ac:4ae1:fb5b:5813])
-        by smtp.googlemail.com with ESMTPSA id a14sm7272722wrn.5.2021.03.19.04.27.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 04:27:45 -0700 (PDT)
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: sm8350: Add thermal zones and
- throttling support
-To:     Robert Foss <robert.foss@linaro.org>, amitk@kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        rui.zhang@intel.com, Rob Herring <robh+dt@kernel.org>,
-        linux-pm@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
+        id S229922AbhCSMR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 08:17:29 -0400
+Received: from foss.arm.com ([217.140.110.172]:48070 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229847AbhCSMRK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 08:17:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 06F64ED1;
+        Fri, 19 Mar 2021 05:17:10 -0700 (PDT)
+Received: from [10.57.50.37] (unknown [10.57.50.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F02D83F70D;
+        Fri, 19 Mar 2021 05:17:07 -0700 (PDT)
+Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
+ GPU
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>, heiko@sntech.de
+Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacob Chen <jacob2.chen@rock-chips.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vinod.koul@linaro.org>
-References: <20210319104855.85075-1-robert.foss@linaro.org>
- <20210319104855.85075-2-robert.foss@linaro.org>
- <CAG3jFytSoTP1UDWAYR=rAdHLBr9rU49ZF1=F9rfqZptCBuJFTQ@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <5fdd232b-6392-8684-2be2-6ff4375b7a8c@linaro.org>
-Date:   Fri, 19 Mar 2021 12:27:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
+Date:   Fri, 19 Mar 2021 12:17:01 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAG3jFytSoTP1UDWAYR=rAdHLBr9rU49ZF1=F9rfqZptCBuJFTQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210319110511.24787-1-daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2021 12:24, Robert Foss wrote:
-> On Fri, 19 Mar 2021 at 11:49, Robert Foss <robert.foss@linaro.org> wrote:
->>
->> sm8350 has 29 thermal sensors split across two tsens controllers. Add
->> the thermal zones to expose them and wireup the cpus to throttle their
->> frequencies on crossing passive temperature thresholds.
->>
->> Signed-off-by: Robert Foss <robert.foss@linaro.org>
->> ---
-
-[ ... ]
-
->> +               };
->> +
->> +               // TODO: What is the NSP subsystem?
+On 2021-03-19 11:05, Daniel Lezcano wrote:
+> The DTPM framework is looking for upstream SoC candidates to share the
+> power numbers.
 > 
-> This comment should not have been included, will remove in v2
+> We can see around different numbers but the one which seems to be
+> consistent with the initial post for the values on the CPUs can be
+> found in the patch https://lore.kernel.org/patchwork/patch/810159/
 
-Please trim when replying to a large patch file.
+The kernel hacker in me would be more inclined to trust the BSP that the 
+vendor actively supports than a 5-year-old patch that was never pursued 
+upstream. Apparently that was last updated more recently:
 
-[ ... ]
+https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
 
->> +                       trips {
->> +                               nspss1_alert0: trip-point0 {
->> +                                       temperature = <90000>;
->> +                                       hysteresis = <1000>;
->> +                                       type = "hot";
->> +                               };
->> +                       };
->> +               };
->> +
->> +               // TODO: What is the NSP subsystem?
+The ex-mathematician in me can't even comment either way without 
+evidence that whatever model expects to consume this value is even 
+comparable to whatever "arm,mali-simple-power-model" is. The way the 
+latter apparently needs an explicit "static" coefficient as well as a 
+"dynamic" one, and the value here being nearly 3 times that of a 
+similarly-named one in active use downstream (ChromeOS appears to still 
+be using the values from before the above commit), certainly incline me 
+to think they may not be...
+
+> I don't know the precision of this value but it is better than
+> nothing.
+
+But is it? If it leads to some throttling mechanism kicking in and 
+crippling GPU performance because it's massively overestimating power 
+consumption, that would be objectively worse for most users, no?
+
+Robin.
+
+> Hopefully, one day SoC vendors will be more generous with the power
+> numbers at least for the SoC which are from the previous generation
+> and give the community the opportunity to develop power based
+> frameworks.
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> This comment should not have been included, will remove in v2
-
-[ ... ]
-
->> +                       trips {
->> +                               nspss2_alert0: trip-point0 {
->> +                                       temperature = <90000>;
->> +                                       hysteresis = <1000>;
->> +                                       type = "hot";
->> +                               };
->> +                       };
->> +               };
->> +
->> +               // TODO: What is the NSP subsystem?
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index edbbf35fe19e..1ab1d293d2e9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -1933,6 +1933,7 @@
+>   		interrupt-names = "job", "mmu", "gpu";
+>   		clocks = <&cru ACLK_GPU>;
+>   		#cooling-cells = <2>;
+> +		dynamic-power-coefficient = <977>;
+>   		power-domains = <&power RK3399_PD_GPU>;
+>   		status = "disabled";
+>   	};
 > 
-> This comment should not have been included, will remove in v2
-> 
-
-[ ... ]
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
