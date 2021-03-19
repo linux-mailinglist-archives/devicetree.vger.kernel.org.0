@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C079B341DD8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 14:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65320341DDC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 14:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbhCSNMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 09:12:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38500 "EHLO
+        id S230117AbhCSNMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 09:12:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbhCSNL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 09:11:58 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE739C06175F
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:11:57 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id i9so2730896qka.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:11:57 -0700 (PDT)
+        with ESMTP id S229942AbhCSNML (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 09:12:11 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77295C06175F
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:12:11 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id a11so6627736qto.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:12:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:subject:to:cc:references:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=d3g17e9VigHay445f+y3uOuEFw2fZxjZoG+ibZHgzqs=;
-        b=QRjC59j5f2KAXnT+xggIRU3EeQqNyNa1/VA5jxpsEKFdH9Bs/hgBgTYAEWyqCK0ng2
-         KEmtWwjyz4QEpUO6q7+mmSSnAx+BTv2TQric/bzirrz4IrTVirXsVkUstE5/2nokA5QT
-         HRD5qZSmjPIIJlY22foLQ8m/P5xCCxU3wY6jCQ4Jdr3QdWDtqAx1AU11U2bJ2c6STh1d
-         /7yBWALoOQYUDdmDuFILh2r2XubZ6ngcuKkjwcIRyAM8HzxA7WXeIDz9RQxYPluqe6fJ
-         WaqJQ4uHPH1LbjmZCSiep+6pY3/SKa7n3hvBCH9sZMniwGlnmwF5t8vVVioTPsuEjalA
-         Deeg==
+        bh=8AjV5s8aOfyy3KT30UQRTNY2SjJvqQorjtJI5nyloq0=;
+        b=viUBvBj4Em71xPV7glPu3zcqVMPq5Fq9+oSYKg7PyDkcEj0/YVz717DaCnFuAKmYcK
+         qiiRPnonwcnfVPw4H3+BUn02ZNjOjBH9rC3fRU0v2goMYXbz9h25HVuW2cIGRLBwAc6I
+         AdC8y5kbv/YF18tWCt36jpJVjL22Glj+DCBz6rOmamaz5tCry1As5jhtLy5laj97V2Nd
+         KtjD0WDlsv4FQK96CLezut5GoGdZ8KQd4nSdXmvRLaiY9oNqSA6B/yLsWMrUGogkS1NF
+         xW5+q8b85kL+9B34W27+WN2ai8AKWMJknScnESDEPVBL6qk5PAmBVNuKTeBeQMhPzT6w
+         Isxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:subject:to:cc:references:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=d3g17e9VigHay445f+y3uOuEFw2fZxjZoG+ibZHgzqs=;
-        b=HMeGFUIKLPH2TKc+CKCRC3tvk0LqORY98qbI7RCIW4cvJjXPzMUleOx0XXSg6kj1D8
-         VjG4L5PD2iQyyLpLledl/8d7D0eLhkeuuqV6i9agwvTX5CVMONKBu+PXnYRY//Xbqg4D
-         1f2Esf4vVu4221qxZljyWtFyP0gkacCJxy3cHnvR+ICNgtsRAhm5Wp4emE8ocx/4yC3F
-         yzmZK3PZNtu60+uPh+Sh3TGcp3WQ3fONCCkeQ8Njwu67HUoU82XZitcwiPUMn+YqLY/Z
-         l0gTWiJ6IRU7dwhFFr7Fpvw2vmbcoIqQLZZkupYjSdv95JBakhDii8Mziqtch4+K1h8J
-         Z+QA==
-X-Gm-Message-State: AOAM533t+78QD1NU5NxDZcvIztI0Y65+vRXjVStPE4fyCrZNFuVboFYQ
-        rG+PaoIBKHLd4RKCi/WfWZw9dQ==
-X-Google-Smtp-Source: ABdhPJxkamjzDpqd4OAfQMTSHB0KHh3yRsaka6xNNhYNYOwQ/yCLvUrhLPVJv1q/BFwbMkGEsp7tMQ==
-X-Received: by 2002:ae9:e50c:: with SMTP id w12mr9150152qkf.13.1616159516953;
-        Fri, 19 Mar 2021 06:11:56 -0700 (PDT)
+        bh=8AjV5s8aOfyy3KT30UQRTNY2SjJvqQorjtJI5nyloq0=;
+        b=iONpswxy4fkDU4L4+5d61p7HARblLsYgBcD46sgbEOAt20iPAkQelpfJiDkThFgYV/
+         6RGLso7tZkW2EHWXmvdS70gKQ3kZABllervqyeAOUE6/ePO5yXXtDGEN/t2XHAlkKRAJ
+         HDGVBP8GVlx2MjAGkgxVMxV3uAB0re0f46Kq1i3XHSkRUu7w3gilcdcDZ0CD4qjt++Md
+         CZXV1QeHx1gdg7+q4IG25tIMi7G3yKoaY2LPqSIGQpqVjbS50GMSndy2Y4ZTScm629zk
+         Gx4u70kkAbEH9Etqf87LjTbDW5aeSNuhCadWzZbsURaMaTKyHuhD2tRyycLAfwswTuyX
+         VUvQ==
+X-Gm-Message-State: AOAM5300BzUAG8mnvxZHaY7rOT9LqR4DMN4NdRje7ohNEWQxG1Qjjv+l
+        ilpOtqLCZBC9spD0iHN07Du+0kc9FTx//g==
+X-Google-Smtp-Source: ABdhPJzYpwsFI868JfavXgcFuabV0GrhMPLuCnNTWahVJqRLN9HvxCe+LJha08h8v8ANBgwUzpY0ZQ==
+X-Received: by 2002:aed:206c:: with SMTP id 99mr8365070qta.64.1616159530619;
+        Fri, 19 Mar 2021 06:12:10 -0700 (PDT)
 Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id c5sm4358607qkl.21.2021.03.19.06.11.56
+        by smtp.gmail.com with ESMTPSA id g74sm4225789qke.3.2021.03.19.06.12.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Mar 2021 06:11:56 -0700 (PDT)
+        Fri, 19 Mar 2021 06:12:10 -0700 (PDT)
 From:   Thara Gopinath <thara.gopinath@linaro.org>
-Subject: Re: [PATCH v11 5/9] drivers: thermal: tsens: Fix bug in sensor enable
- for msm8960
+Subject: Re: [PATCH v11 6/9] drivers: thermal: tsens: Replace custom 8960 apis
+ with generic apis
 To:     Ansuel Smith <ansuelsmth@gmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -61,13 +61,13 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20210319005228.1250-1-ansuelsmth@gmail.com>
- <20210319005228.1250-6-ansuelsmth@gmail.com>
-Message-ID: <c1771c13-5a9a-ed4e-cf30-9494b165f00b@linaro.org>
-Date:   Fri, 19 Mar 2021 09:11:55 -0400
+ <20210319005228.1250-7-ansuelsmth@gmail.com>
+Message-ID: <adc9dfb1-1667-a012-68aa-3bd4d91387bb@linaro.org>
+Date:   Fri, 19 Mar 2021 09:12:09 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210319005228.1250-6-ansuelsmth@gmail.com>
+In-Reply-To: <20210319005228.1250-7-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -75,79 +75,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+
 
 On 3/18/21 8:52 PM, Ansuel Smith wrote:
-> Device based on tsens VER_0 contains a hardware bug that results in some
-> problem with sensor enablement. Sensor id 6-11 can't be enabled
-> selectively and all of them must be enabled in one step.
-
-Thanks for rewording!
-
+> Rework calibrate function to use common function. Derive the offset from
+> a missing hardcoded slope table and the data from the nvmem calib
+> efuses.
+> Drop custom get_temp function and use generic api.
 > 
 > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Acked-by: Thara Gopinath <thara.gopinath@linaro.org>
 > ---
->   drivers/thermal/qcom/tsens-8960.c | 24 +++++++++++++++++++++---
->   1 file changed, 21 insertions(+), 3 deletions(-)
+>   drivers/thermal/qcom/tsens-8960.c | 56 +++++++++----------------------
+>   1 file changed, 15 insertions(+), 41 deletions(-)
 > 
 > diff --git a/drivers/thermal/qcom/tsens-8960.c b/drivers/thermal/qcom/tsens-8960.c
-> index 86585f439985..bdc64d4188bf 100644
+> index bdc64d4188bf..8c523b764862 100644
 > --- a/drivers/thermal/qcom/tsens-8960.c
 > +++ b/drivers/thermal/qcom/tsens-8960.c
-> @@ -27,9 +27,9 @@
->   #define EN			BIT(0)
->   #define SW_RST			BIT(1)
->   #define SENSOR0_EN		BIT(3)
-> +#define MEASURE_PERIOD		BIT(18)
->   #define SLP_CLK_ENA		BIT(26)
->   #define SLP_CLK_ENA_8660	BIT(24)
-> -#define MEASURE_PERIOD		1
->   #define SENSOR0_SHIFT		3
+> @@ -67,6 +67,13 @@
+>   #define S9_STATUS_OFF		0x3674
+>   #define S10_STATUS_OFF		0x3678
 >   
->   /* INT_STATUS_ADDR bitmasks */
-> @@ -126,17 +126,35 @@ static int resume_8960(struct tsens_priv *priv)
->   static int enable_8960(struct tsens_priv *priv, int id)
->   {
->   	int ret;
-> -	u32 reg, mask;
-> +	u32 reg, mask = BIT(id);
->   
->   	ret = regmap_read(priv->tm_map, CNTL_ADDR, &reg);
->   	if (ret)
->   		return ret;
->   
-> -	mask = BIT(id + SENSOR0_SHIFT);
-> +	/* HARDWARE BUG:
-> +	 * On platform with more than 6 sensors, all the remaining
-> +	 * sensors needs to be enabled all togheder or underfined
-> +	 * results are expected. (Sensor 6-7 disabled, Sensor 3
-> +	 * disabled...) In the original driver, all the sensors
-> +	 * are enabled in one step hence this bug is not triggered.
-> +	 */
-> +	if (id > 5) {
-> +		mask = GENMASK(10, 6);
-> +
-> +		/* Sensors already enabled. Skip. */
-> +		if ((reg & mask) == mask)
+> +/* Original slope - 200 to compensate mC to C inaccuracy */
+> +u32 tsens_msm8960_slope[] = {
+> +			976, 976, 954, 976,
+> +			911, 932, 932, 999,
+> +			932, 999, 932
+> +			};
 
-This is a bug. You have to do mask <<= SENSOR0_SHIFT; before reg & mask.
+make -C1 throws a warning for this. You have to make the table static. 
+You can keep my Acked-by once it is fixed.
 
-> +			return 0;
-> +	}
-> +
-> +	mask <<= SENSOR0_SHIFT;
-> +
->   	ret = regmap_write(priv->tm_map, CNTL_ADDR, reg | SW_RST);
->   	if (ret)
->   		return ret;
->   
-> +	reg |= MEASURE_PERIOD;
-> +
->   	if (priv->num_sensors > 1)
->   		reg |= mask | SLP_CLK_ENA | EN;
->   	else
-> 
-
--- 
 Warm Regards
 Thara
