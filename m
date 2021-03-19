@@ -2,203 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE84F34286E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 23:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD9F5342891
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 23:14:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbhCSWI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 18:08:29 -0400
-Received: from relay01.th.seeweb.it ([5.144.164.162]:47675 "EHLO
-        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbhCSWIL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 18:08:11 -0400
-Received: from localhost.localdomain (abac242.neoplus.adsl.tpnet.pl [83.6.166.242])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id B75B21F928;
-        Fri, 19 Mar 2021 23:08:08 +0100 (CET)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v4 2/2] thermal: qcom: tsens-v0_1: Add support for MDM9607
-Date:   Fri, 19 Mar 2021 23:08:02 +0100
-Message-Id: <20210319220802.198215-2-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210319220802.198215-1-konrad.dybcio@somainline.org>
-References: <20210319220802.198215-1-konrad.dybcio@somainline.org>
+        id S231181AbhCSWNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 18:13:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231157AbhCSWNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 18:13:20 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF85C061760
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 15:13:20 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id 7so4562048qka.7
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 15:13:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=akhwgBZwBqYs1E9EdtzwjwkaNd6XJZskQMI9Lvw5iuM=;
+        b=oTwgt8i8faM+MHywMtUJEPpchwSSKMJ0jEG+SgCu+9kd+WIfS0MWTovDMaqNUS1/qQ
+         V+vyN7USl8NnSrbZsJU6+hhvwvKBNJAOsBfez6B4yrLS0/Lhe+9I9brWbckJkc9sZtnH
+         xpbIkyNrZ5Tm+eRlBhWoxc7Mbz1hgY0hXfWW7Pp3uJzF2f6v/zE4Sv3cmxB1piAtF8Pl
+         hgVmL93yzB57fpepYfom/XmDw/iAPAOtZrPdQnh6m1+QmuEoCpU0jGVszH0r03WWadLV
+         1Db5T666S43Yx0kBtQfV2LZyyucWORJaLsli3WIj544uYDSvQ6ae0VFcVvRtT0dSxwbw
+         Z7og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=akhwgBZwBqYs1E9EdtzwjwkaNd6XJZskQMI9Lvw5iuM=;
+        b=EDjNFGUyY5bix0BPPvaB6Ww1Fthg1XgdaI4YhvyRUmlBsBYBlhDblthJTq3iUcMRtV
+         sdly/Tl386zwA196DFfC7l/OA76ONOtDELSNNuZ7g+h+zbP5e+1H42hAMGg55hIwOWht
+         6qQIebAluxBwgRBOahhyYOQ9jk3+r049hIb77NVxlTSzfdvPKoOEncTFA+YtB2SacdAF
+         ymNT5AAFSaR7wgHGR4JEYAyUEmuZWopTCyIgeNq+jqmVjdVu66ApSyyWN4iHGshXkWwl
+         Iy/Tw5zJR+1CudTLj9MyC+3AYeyW51E+H96e7j+GBRcszwe447nxblopzDZsd04WhJiE
+         yn3g==
+X-Gm-Message-State: AOAM5317jlCdwj+SaXwVWGNN85CjT/0jt9UQpKtY9pUv9lL/vU/pIfNr
+        QC+gj7r9e5xszi9deda35jdDQlyF9wBIxIPKSvuagscqdNSaR2MX
+X-Google-Smtp-Source: ABdhPJznRAnFkGewB8R17TJbOZMWszFPk7NtesKeWagtbDQoOr3Hn35s9vADEAKDDhvHVVGNiwXO6wxMKq7oFQCRAsQ=
+X-Received: by 2002:a37:9fce:: with SMTP id i197mr742271qke.155.1616191999457;
+ Fri, 19 Mar 2021 15:13:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201109173948.96663-1-sven.auhagen@voleatech.de>
+ <20210227105723.7i42cw376qmnozcp@SvensMacBookAir-2.local> <CAPv3WKfH_-ydZ4GXW8UUNuvWyT7xAXjPOLGVxt+X2svXt=PYdg@mail.gmail.com>
+ <87czvviok9.fsf@BL-laptop> <CAPv3WKfiuV5h2m=579-3UajwBFtHB2MP5tdSvzxTZo+0MPnZNA@mail.gmail.com>
+ <87wnu3h4hw.wl-maz@kernel.org> <CAPv3WKdfywQpBx0HpeBTAZ2G5U+jFVQ6We8J_WeK7sYgWNiuJg@mail.gmail.com>
+ <c1bcbd5402f4af12@bloch.sibelius.xs4all.nl> <YFUPTlR/pFjxoKiF@lunn.ch>
+In-Reply-To: <YFUPTlR/pFjxoKiF@lunn.ch>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Fri, 19 Mar 2021 23:13:09 +0100
+Message-ID: <CAPv3WKct6PZq32-wLXrpwA+_0gU3nrA3ieMnvFWqda+GnQ2jyQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Armada8k enable per-port SATA interrupts and drop
+ a hack in the IRQ subsystem
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>, maz@kernel.org,
+        =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+        Sven Auhagen <sven.auhagen@voleatech.de>, axboe@kernel.dk,
+        Hans de Goede <hdegoede@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-ide@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Jon Nettleton <jon@solid-run.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MDM9607 TSENS IP is very similar to the one of MSM8916, with
-minor adjustments to various tuning values.
+Hi Andrew,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-v4: Remove unneeded braces and newline
+pt., 19 mar 2021 o 21:53 Andrew Lunn <andrew@lunn.ch> napisa=C5=82(a):
+>
+> > Unfortunately ACPI doesn't describe how the SFP cages are connected.
+>
+> Nor MDIO busses and Ethernet PHYs.
+>
+> ACPI is missing a lot of support for basic elements of networking. I
+> guess this is because it expects firmware in the NIC to be controlling
+> these parts, not Linux.
+>
+> >
+> > As soon as GPIOs and I2C busses are involved device trees are so much
+> > better than ACPI
+>
+> Yes, ACPI has along way to go before it is usable for SoCs with
+> integrated Ethernet.
+>
 
- drivers/thermal/qcom/tsens-v0_1.c | 98 ++++++++++++++++++++++++++++++-
- drivers/thermal/qcom/tsens.c      |  3 +
- drivers/thermal/qcom/tsens.h      |  2 +-
- 3 files changed, 101 insertions(+), 2 deletions(-)
+I agree, however hopefully the MDIO + ACPI patchset, that currently
+seems to be pretty advanced on the lists, will land - it will be a big
+step forward and open a path for full SFP support. However, my point
+is, that in case of MacchiatoBin, I prefer to use a bit limited link
+IRQs, just for having a guarantee to boot each Linux kernel with mvpp2
+starting from v4.16 until today and being sure to install various
+distros/OSs/ESXI. For DT one have to find a matching version, that
+luckily won't break the boot.
 
-diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index 4ffa2e2c0145..f136cb350238 100644
---- a/drivers/thermal/qcom/tsens-v0_1.c
-+++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -190,6 +190,39 @@
- 
- #define BIT_APPEND		0x3
- 
-+/* eeprom layout data for mdm9607 */
-+#define MDM9607_BASE0_MASK	0x000000ff
-+#define MDM9607_BASE1_MASK	0x000ff000
-+#define MDM9607_BASE0_SHIFT	0
-+#define MDM9607_BASE1_SHIFT	12
-+
-+#define MDM9607_S0_P1_MASK	0x00003f00
-+#define MDM9607_S1_P1_MASK	0x03f00000
-+#define MDM9607_S2_P1_MASK	0x0000003f
-+#define MDM9607_S3_P1_MASK	0x0003f000
-+#define MDM9607_S4_P1_MASK	0x0000003f
-+
-+#define MDM9607_S0_P2_MASK	0x000fc000
-+#define MDM9607_S1_P2_MASK	0xfc000000
-+#define MDM9607_S2_P2_MASK	0x00000fc0
-+#define MDM9607_S3_P2_MASK	0x00fc0000
-+#define MDM9607_S4_P2_MASK	0x00000fc0
-+
-+#define MDM9607_S0_P1_SHIFT	8
-+#define MDM9607_S1_P1_SHIFT	20
-+#define MDM9607_S2_P1_SHIFT	0
-+#define MDM9607_S3_P1_SHIFT	12
-+#define MDM9607_S4_P1_SHIFT	0
-+
-+#define MDM9607_S0_P2_SHIFT	14
-+#define MDM9607_S1_P2_SHIFT	26
-+#define MDM9607_S2_P2_SHIFT	6
-+#define MDM9607_S3_P2_SHIFT	18
-+#define MDM9607_S4_P2_SHIFT	6
-+
-+#define MDM9607_CAL_SEL_MASK	0x00700000
-+#define MDM9607_CAL_SEL_SHIFT	20
-+
- static int calibrate_8916(struct tsens_priv *priv)
- {
- 	int base0 = 0, base1 = 0, i;
-@@ -452,7 +485,56 @@ static int calibrate_8974(struct tsens_priv *priv)
- 	return 0;
- }
- 
--/* v0.1: 8916, 8939, 8974 */
-+static int calibrate_9607(struct tsens_priv *priv)
-+{
-+	int base, i;
-+	u32 p1[5], p2[5];
-+	int mode = 0;
-+	u32 *qfprom_cdata;
-+
-+	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-+	if (IS_ERR(qfprom_cdata))
-+		return PTR_ERR(qfprom_cdata);
-+
-+	mode = (qfprom_cdata[2] & MDM9607_CAL_SEL_MASK) >> MDM9607_CAL_SEL_SHIFT;
-+	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
-+
-+	switch (mode) {
-+	case TWO_PT_CALIB:
-+		base = (qfprom_cdata[2] & MDM9607_BASE1_MASK) >> MDM9607_BASE1_SHIFT;
-+		p2[0] = (qfprom_cdata[0] & MDM9607_S0_P2_MASK) >> MDM9607_S0_P2_SHIFT;
-+		p2[1] = (qfprom_cdata[0] & MDM9607_S1_P2_MASK) >> MDM9607_S1_P2_SHIFT;
-+		p2[2] = (qfprom_cdata[1] & MDM9607_S2_P2_MASK) >> MDM9607_S2_P2_SHIFT;
-+		p2[3] = (qfprom_cdata[1] & MDM9607_S3_P2_MASK) >> MDM9607_S3_P2_SHIFT;
-+		p2[4] = (qfprom_cdata[2] & MDM9607_S4_P2_MASK) >> MDM9607_S4_P2_SHIFT;
-+		for (i = 0; i < priv->num_sensors; i++)
-+			p2[i] = ((base + p2[i]) << 2);
-+		fallthrough;
-+	case ONE_PT_CALIB2:
-+		base = (qfprom_cdata[0] & MDM9607_BASE0_MASK);
-+		p1[0] = (qfprom_cdata[0] & MDM9607_S0_P1_MASK) >> MDM9607_S0_P1_SHIFT;
-+		p1[1] = (qfprom_cdata[0] & MDM9607_S1_P1_MASK) >> MDM9607_S1_P1_SHIFT;
-+		p1[2] = (qfprom_cdata[1] & MDM9607_S2_P1_MASK) >> MDM9607_S2_P1_SHIFT;
-+		p1[3] = (qfprom_cdata[1] & MDM9607_S3_P1_MASK) >> MDM9607_S3_P1_SHIFT;
-+		p1[4] = (qfprom_cdata[2] & MDM9607_S4_P1_MASK) >> MDM9607_S4_P1_SHIFT;
-+		for (i = 0; i < priv->num_sensors; i++)
-+			p1[i] = ((base + p1[i]) << 2);
-+		break;
-+	default:
-+		for (i = 0; i < priv->num_sensors; i++) {
-+			p1[i] = 500;
-+			p2[i] = 780;
-+		}
-+		break;
-+	}
-+
-+	compute_intercept_slope(priv, p1, p2, mode);
-+	kfree(qfprom_cdata);
-+
-+	return 0;
-+}
-+
-+/* v0.1: 8916, 8939, 8974, 9607 */
- 
- static struct tsens_features tsens_v0_1_feat = {
- 	.ver_major	= VER_0_1,
-@@ -540,3 +622,17 @@ struct tsens_plat_data data_8974 = {
- 	.feat		= &tsens_v0_1_feat,
- 	.fields	= tsens_v0_1_regfields,
- };
-+
-+static const struct tsens_ops ops_9607 = {
-+	.init		= init_common,
-+	.calibrate	= calibrate_9607,
-+	.get_temp	= get_temp_common,
-+};
-+
-+struct tsens_plat_data data_9607 = {
-+	.num_sensors	= 5,
-+	.ops		= &ops_9607,
-+	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4 },
-+	.feat		= &tsens_v0_1_feat,
-+	.fields	= tsens_v0_1_regfields,
-+};
-diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-index d8ce3a687b80..51c36b9e8e69 100644
---- a/drivers/thermal/qcom/tsens.c
-+++ b/drivers/thermal/qcom/tsens.c
-@@ -895,6 +895,9 @@ static SIMPLE_DEV_PM_OPS(tsens_pm_ops, tsens_suspend, tsens_resume);
- 
- static const struct of_device_id tsens_table[] = {
- 	{
-+		.compatible = "qcom,mdm9607-tsens",
-+		.data = &data_9607,
-+	}, {
- 		.compatible = "qcom,msm8916-tsens",
- 		.data = &data_8916,
- 	}, {
-diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-index f40b625f897e..cba64c33b4f9 100644
---- a/drivers/thermal/qcom/tsens.h
-+++ b/drivers/thermal/qcom/tsens.h
-@@ -585,7 +585,7 @@ int get_temp_common(const struct tsens_sensor *s, int *temp);
- extern struct tsens_plat_data data_8960;
- 
- /* TSENS v0.1 targets */
--extern struct tsens_plat_data data_8916, data_8939, data_8974;
-+extern struct tsens_plat_data data_8916, data_8939, data_8974, data_9607;
- 
- /* TSENS v1 targets */
- extern struct tsens_plat_data data_tsens_v1, data_8976;
--- 
-2.31.0
+Of course the DT is more flexible and offers huge possibilities (e.g.
+DSA), but the way it's been done, inherited straight from armv7
+embedded-hacking times is imo a burden. Unstable, constantly changing
+ABI, extending drivers rather than describe HW is too often a problem.
+This patchset is a bright example that there is a field for
+improvement.
 
+In my ideal world DT should be properly designed (vendors+community),
+out of Linux tree, reviewed by maintainers from different projects,
+backward compatible and ensuring proper information/heads-up when
+planning to do a meaningful change. I know how it looks and I'm aware
+it is hard, but we should at least try :)
+
+Best regards,
+Marcin
