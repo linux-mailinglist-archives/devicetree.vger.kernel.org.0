@@ -2,81 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DA6341D7A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 13:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B885E341DB5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 14:07:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhCSMzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 08:55:07 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:62386 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbhCSMye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 08:54:34 -0400
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 19 Mar 2021 05:54:34 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 19 Mar 2021 05:54:32 -0700
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 19 Mar 2021 18:24:09 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 879904309; Fri, 19 Mar 2021 05:54:08 -0700 (PDT)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org
-Subject: [v1] drm/msm/disp/dpu1: fix display underruns during modeset.
-Date:   Fri, 19 Mar 2021 05:54:06 -0700
-Message-Id: <1616158446-19290-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <y>
-References: <y>
+        id S229524AbhCSNG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 09:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37276 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229618AbhCSNG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 09:06:26 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBCEC06174A
+        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 06:06:25 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lNEpW-0005sd-0P; Fri, 19 Mar 2021 14:06:18 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lNEpT-0005ea-IO; Fri, 19 Mar 2021 14:06:15 +0100
+Date:   Fri, 19 Mar 2021 14:06:15 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alistair23@gmail.com
+Subject: Re: [PATCH v5 3/3] ARM: imx7d-remarkable2.dts: Initial device tree
+ for reMarkable2
+Message-ID: <20210319130615.k2y6u7otnzbs3hpx@pengutronix.de>
+References: <20210316022740.132-1-alistair@alistair23.me>
+ <20210316022740.132-3-alistair@alistair23.me>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210316022740.132-3-alistair@alistair23.me>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:02:05 up 107 days,  3:08, 44 users,  load average: 0.21, 0.14,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-During crtc disable, display perf structures are reset to 0
-which includes state varibles which are immutable. On crtc
-enable, we use the same structures and they don't refelect
-the actual values
+Hi Alistair,
 
-1) Fix is to avoid updating the state structures during disable.
-2) Reset the perf structures during atomic check when there is no
-modeset enable.
+the patch looks quite good only a few notes inline.
 
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c | 1 -
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      | 1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
+PS: It would be cool to have a log to previous patch versions.
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-index 37c8270..b4cd479 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-@@ -382,7 +382,6 @@ int dpu_core_perf_crtc_update(struct drm_crtc *crtc,
- 	} else {
- 		DPU_DEBUG("crtc=%d disable\n", crtc->base.id);
- 		memset(old, 0, sizeof(*old));
--		memset(new, 0, sizeof(*new));
- 		update_bus = true;
- 		update_clk = true;
- 	}
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-index 9a80981..a821e2c 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-@@ -912,6 +912,7 @@ static int dpu_crtc_atomic_check(struct drm_crtc *crtc,
- 	if (!state->enable || !state->active) {
- 		DPU_DEBUG("crtc%d -> enable %d, active %d, skip atomic_check\n",
- 				crtc->base.id, state->enable, state->active);
-+		memset(&cstate->new_perf, 0, sizeof(cstate->new_perf));
- 		goto end;
- 	}
- 
--- 
-2.7.4
+On 21-03-15 22:27, Alistair Francis wrote:
 
+...
+
+> +&crypto {
+> +	status = "disabled";
+> +};
+
+Why do you disable the crypto subsystem?
+
+> +&dma_apbh {
+> +	status = "disabled";
+> +};
+
+Why do you disable this dma controller?
+
+> +
+> +&sdma {
+> +	status = "okay";
+> +};
+
+This is the default state so you can drop this node.
+
+Regards,
+  Marco
