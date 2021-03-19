@@ -2,135 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEA533423DD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 18:58:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B15A3423FE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 19:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbhCSR6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 13:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbhCSR5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 13:57:45 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A02DC06174A;
-        Fri, 19 Mar 2021 10:57:45 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id q5so6431466pfh.10;
-        Fri, 19 Mar 2021 10:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2mOuHKD0JWNPyTnS6xCqcxhUtEeEE1ODpShZbCe3d/U=;
-        b=nfpZ0TcD94lEBjcu726Cfru/DoQOzFy7PylCdjgur1T/Hfl+p7xP4vxYGlunzXHoRe
-         IpkPlcmeVP225Ss7tLkdzQIor3rk1OvPbTXiTumQCuCXh1Z0fS3IBYEWQzzEn1sj3Ih4
-         XVZBs3HSoP1Un6Px4ODwyFVJGtmpla463XvC3/wQCd/oe8RKBlJUzbcPq43rcBO3exxf
-         06ycQS23jgAkpU4y+zENZWY8PEqlhZC+enfEHBWIcIaoYtnbZj4TX4hyy5DtFms1mFbX
-         jWuRADZxMPeTYuVyjkZ1sbq78SyPUI3A/nq6L+uPCs9FOHPSHh/spVXHA6RbTl9+oiP4
-         7c8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2mOuHKD0JWNPyTnS6xCqcxhUtEeEE1ODpShZbCe3d/U=;
-        b=J+D8E6lPKVQUetNdEG07T/8y6RbEuOmSUJ9Oci1WOyhjyXcb/VBJ8oGkurIt+k1/zV
-         rXhABoxhcgzg0AEPoLOZK+laC4Nev4cT+vMdJf4l3ZmLxqHb72DLV+CKvXb7kohGq1/k
-         M3bTJ2X1RU0NCXtKKWEKC2fdsHY3GobAaYpMxXnJLrQLKlX9RMITEmkHgR/KkhGmenyE
-         WA0C2gz8FI0uME7YEpW1aN4g2jc51W/m/9DCA5rcl8l2/wyZaVkxwCPTBCnEdUVmS8YC
-         GotSkNnVMlfXi/gsRN4fVXXt+fvTuFMEtSpQQz9BM4o5G0FzVGJPowlioVbBPb6Cwt+d
-         F79g==
-X-Gm-Message-State: AOAM532y6kNbSvdt82MzS8+2nnP2salE+jh/1P6HH3cIaKQoQLN5kbcA
-        Vri8npdXJIkq4jjj0/HIC+Hhucqdmo04pGb5YPI=
-X-Google-Smtp-Source: ABdhPJxHw/1t8tXyIfGGvo/j9gXzEeKGwGR2258hjHISoO/K+/IK8SZCvQFGurRuO9IuvoSnnBVfcruTROTMSK30cro=
-X-Received: by 2002:a63:ce15:: with SMTP id y21mr12520886pgf.4.1616176664463;
- Fri, 19 Mar 2021 10:57:44 -0700 (PDT)
+        id S230024AbhCSSGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 14:06:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:60110 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230097AbhCSSGE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 14:06:04 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AEBB31B;
+        Fri, 19 Mar 2021 11:05:59 -0700 (PDT)
+Received: from [10.57.50.37] (unknown [10.57.50.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A6FD83F792;
+        Fri, 19 Mar 2021 11:05:56 -0700 (PDT)
+Subject: Re: [PATCH] dt: rockchip: rk3399: Add dynamic power coefficient for
+ GPU
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>, heiko@sntech.de
+Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacob Chen <jacob2.chen@rock-chips.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210319110511.24787-1-daniel.lezcano@linaro.org>
+ <5db868e4-5b86-7b32-51e0-665a2e1fc1ac@arm.com>
+ <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <11480a47-47da-c5b3-edad-c2dd8edb2cd9@arm.com>
+Date:   Fri, 19 Mar 2021 18:05:50 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210315082339.9787-1-sander@svanheule.net> <20210315190806.66762-1-sander@svanheule.net>
- <20210315190806.66762-3-sander@svanheule.net> <CAHp75Vc6aaDhVN7LzvLNQjuOPguz+nbfmfpZ7TZHK=fNjCRz8w@mail.gmail.com>
- <a7d410216d35ed2b3015bfdd8e21dafd9c42d9d4.camel@svanheule.net>
-In-Reply-To: <a7d410216d35ed2b3015bfdd8e21dafd9c42d9d4.camel@svanheule.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 19 Mar 2021 19:57:28 +0200
-Message-ID: <CAHp75VdrqE0kBwzK9Jk7pZGjyfFnhatfa8UY0z-3T1w1PrbAbw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bert Vermeulen <bert@biot.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <9322db05-2cad-453c-ec1b-1fdb3df142fa@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 19, 2021 at 5:51 PM Sander Vanheule <sander@svanheule.net> wrote:
-> On Wed, 2021-03-17 at 15:08 +0200, Andy Shevchenko wrote:
-> > On Mon, Mar 15, 2021 at 11:11 PM Sander Vanheule <
-> > sander@svanheule.net> wrote:
+On 2021-03-19 14:35, Daniel Lezcano wrote:
+> 
+> Hi Robin,
+> 
+> On 19/03/2021 13:17, Robin Murphy wrote:
+>> On 2021-03-19 11:05, Daniel Lezcano wrote:
+>>> The DTPM framework is looking for upstream SoC candidates to share the
+>>> power numbers.
+>>>
+>>> We can see around different numbers but the one which seems to be
+>>> consistent with the initial post for the values on the CPUs can be
+>>> found in the patch https://lore.kernel.org/patchwork/patch/810159/
+>>
+>> The kernel hacker in me would be more inclined to trust the BSP that the
+>> vendor actively supports than a 5-year-old patch that was never pursued
+>> upstream. Apparently that was last updated more recently:
+>>
+>> https://github.com/rockchip-linux/kernel/commit/98d4505e1bd62ff028bd79fbd8284d64b6f468f8
+> 
+> Yes, I've seen this value also.
+> 
+>> The ex-mathematician in me can't even comment either way without
+>> evidence that whatever model expects to consume this value is even
+>> comparable to whatever "arm,mali-simple-power-model" is. >
+>> The way the
+>> latter apparently needs an explicit "static" coefficient as well as a
+>> "dynamic" one, and the value here being nearly 3 times that of a
+>> similarly-named one in active use downstream (ChromeOS appears to still
+>> be using the values from before the above commit), certainly incline me
+>> to think they may not be...
+> 
+> Sorry, I'm missing the point :/
+> 
+> We dropped in the kernel any static power computation because as there
+> was no value, the resulting code was considered dead. So we rely on the
+> dynamic power only.
 
-...
+Right, so a 2-factor model is clearly not identical to a 1-factor model, 
+so how do we know that a value for one is valid for the other, even if 
+it happens to have a similar name? I'm not saying that it is or isn't; I 
+don't know. If someone can point to the downstream coefficient 
+definition being identical to the upstream one then great, let's use 
+that as justification. If not, then the justification of one arbitrary 
+meaningless number over any other is a bit misleading.
 
-> > > +#include <linux/swab.h>
-> >
-> > Not sure why you need this? See below.
+>>> I don't know the precision of this value but it is better than
+>>> nothing.
+>>
+>> But is it? If it leads to some throttling mechanism kicking in and
+>> crippling GPU performance because it's massively overestimating power
+>> consumption, that would be objectively worse for most users, no?
+> 
+> No because there is no sustainable power specified for the thermal zones
+> related to the GPU.
+OK, that's some reassurance at least. Does the exact value have any 
+material effect? If not, what's to stop us from using an obviously 
+made-up value like 1, and saying so?
 
-> > > +       return swab32(readl(ctrl->base + REALTEK_GPIO_REG_ISR));
-> >
-> > Why swab?! How is this supposed to work on BE CPUs?
-> > Ditto for all swabXX() usage.
->
-> My use of swab32/swahw32 has little to do with the CPU being BE or LE,
-> but more with the register packing in the GPIO peripheral.
->
-> The supported SoCs have port layout A-B-C-D in the registers, where
-> firmware built with Realtek's SDK always denotes A0 as the first GPIO
-> line. So bit 24 in a register has the value for A0 (with the exception
-> of the IMR register).
->
-> I wrote these wrapper functions to be able to use the BIT() macro with
-> the GPIO line number, similar to how gpio-mmio uses ioread32be() when
-> the BGPIOF_BIG_ENDIAN_BYTE_ORDER flag is used.
->
-> For the IMR register, port A again comes first, but is now 16 bits wide
-> instead of 8, with A0 at bits 16:17. That's why swahw32 is used for
-> this register.
->
-> On the currently unsupported RTL9300-series, the port layout is
-> reversed: D-C-B-A. GPIO line A0 is then at bit 0, so the swapping
-> functions won't be required. When support for this alternate port
-> layout is added, some code will need to be added to differentiate
-> between the two cases.
-
-Yes, you have different endianess on the hardware level, why not to
-use the proper accessors (with or without utilization of the above
-mentioned BGPIOF_BIG_ENDIAN_BYTE_ORDER)?
-
-...
-
-> > > +       case IRQ_TYPE_NONE:
-> > > +               type = 0;
-> > > +               handler = handle_bad_irq;
-> > > +               break;
-> >
-> > Why is it here? Make it default like many other GPIO drivers do.
-
-> > > +       irq_set_handler_locked(data, handler);
-> >
-> > handler is always the same. Use it directly here.
->
-> I'll drop the IRQ_TYPE_NONE case. Do I understand it correctly, that
-> IRQ_TYPE_NONE should never be used as the new value, but only as the
-> default initial value?
-
-Initially you initialize the default handler to be "bad" (in order to
-easily catch up issues with IRQ configurations).
-When ->irq_set_type() is called, if everything is okay it will lock
-the handler to the proper one.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Robin.
