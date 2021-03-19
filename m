@@ -2,312 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E98B3415C0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD723415D1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 07:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbhCSGas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 02:30:48 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39585 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234186AbhCSGaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Mar 2021 02:30:25 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E73E9580A7D;
-        Fri, 19 Mar 2021 02:30:24 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 19 Mar 2021 02:30:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=LKmXDb+OBH8vc
-        rQsLHQ/uqSreIyyMcXsaq0h99thI6g=; b=G8nK0j7Uqwpon5XvV7Npcqiz3GTWF
-        uAzeceU/Xe8OQod1XLyx/1wZAOFmXZstWmzmPWKHj7AZVKBFh1XpEacubbbf4Nwp
-        Wuu6JeP3vvWbibyUPh5dF0+YhErZSCmqjEloTdv1hN4mrmuEZQsVlBZitXqXIX3d
-        /5A0gpa94j9IjFopZQo7jh0AIiPckvjIqqrMYA2UPVGOH38AcknNLHWeX0IVTKbh
-        kWknSrqT72M/Rcll+J/BuQpDaZuhPLoilb9QoYvVs+8uMbrHTxcQZtZSMxFGgoOA
-        tKczu4nPFzTSIcbUUhXWxMgIeELNy8IN0W8dYRXLru+FFYz1WjcTW0LkA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=LKmXDb+OBH8vcrQsLHQ/uqSreIyyMcXsaq0h99thI6g=; b=EXHv05Ur
-        MamlBSitCbHu1FVmgDkgath0o0S7qIHesS4QPcVr1Zj7LC5hu4xKlicy6mUVgKsg
-        Xq8qEW1b0XwGbxKAvY0XIsU3uWvdXaZBnu54QMhSG7Co8xczxo0eAkBR9wY9PN1M
-        NzgcgrF1xAfr/lo3hup0zci4pQroWcoWM92sFzptRHW3HQdnsFfJGUYm0JZ0J9+x
-        99sh0qyN8Fm2W7Yf2UjwySdhWttumOsxWJfr/YNhQR2StMikhE8QNm9+x8M/guRa
-        EStr05v3LdBQ0i5LPu40X/xnQimciaJpPd1cP6Swjc9zQg7aijXwNDy5X0ektT7x
-        M0+c+KCGpDiFww==
-X-ME-Sender: <xms:AEVUYBDxgylti2QwvCsW-URdkbYbc09ryLHWVWId7XsIIWv9EwA3HA>
-    <xme:AEVUYPgfeJqYQZz4IkiLiWl4KtwGaHfk12xLxybAN26x6hUGFmY79_eaRgBx8L7xt
-    f6WjGNZaZzVOWSHAw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefjedgleeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecuggftrfgrthhtvghrnhepjefgvdevheetkeevgeegleelgfelte
-    etjeffleffvdduudevieffgeetleevhfetnecukfhppeduudekrddvuddtrddukedurdeh
-    heenucevlhhushhtvghrufhiiigvpeelnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnh
-    gurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:AEVUYMnE3jHQ9Jb3U8274WMLXiXLvtYr2jckrTk4v7st0gmvjGhafQ>
-    <xmx:AEVUYLzL1VyqWWE1KhJYbzkTs2vO26kgYv2VoDvBCHwckMCgGBt-BA>
-    <xmx:AEVUYGRrprHB1KPSdvqBaui0tlxjqrFcEKr2syDt5WnF7CKTPB4UjQ>
-    <xmx:AEVUYPAcjyos8veh7G0EsYBYXcvbiZ5TKAcSUNJykwCdEDa7frMQwg>
-Received: from localhost.localdomain (ppp118-210-181-55.adl-adc-lon-bras34.tpg.internode.on.net [118.210.181.55])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 5A119240057;
-        Fri, 19 Mar 2021 02:30:19 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
-        minyard@acm.org
-Cc:     joel@jms.id.au, ryan_chen@aspeedtech.com,
-        devicetree@vger.kernel.org, tmaimon77@gmail.com,
-        linux-aspeed@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        avifishman70@gmail.com, venture@google.com,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        tali.perry1@gmail.com, robh+dt@kernel.org, lee.jones@linaro.org,
-        chiawei_wang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        benjaminfair@google.com
-Subject: [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply status address
-Date:   Fri, 19 Mar 2021 16:57:52 +1030
-Message-Id: <20210319062752.145730-21-andrew@aj.id.au>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210319062752.145730-1-andrew@aj.id.au>
-References: <20210319062752.145730-1-andrew@aj.id.au>
+        id S233943AbhCSGcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 02:32:53 -0400
+Received: from mail-dm6nam11on2136.outbound.protection.outlook.com ([40.107.223.136]:61408
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233909AbhCSGcr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 02:32:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eU4LEENeRNvcIALV9Qe1/sASA1v7Y6GR6omVZNlO/SL6jZFoRDhpPSM7HQvrq8Bjetg52gLMFvsOip+9w1K4kcy2Zxtlr4XeGlhGv37C2/e5IOGy+IJcu4YF5/s3gC9+wM6oo0h75masB/dIHrqmXoo7BSAyWvCzOGguToTvrK2yVAZebtHc7DTH9Ms69mEJ0EOMRrl3LS3BtwgknvkUA5ubjK6OV7M/+7K1XzSzf/rEzTIMs3l/iUTBAkS0gKMrkpG0yPy+BllQUw+uKGee2zUmJkVeU5HjLpEO7e6hfpUHFElMcaPZ9Da0MBFh5t28hAx3gLBO2w9tT4VsCbnUfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sAtwGnwSPFchf/xK46R+lyXD+Lj9/kehGreqjV+V8qI=;
+ b=Gea2J+E2ucJnS6dymef8mjiDKMI7hAwK0/J18ObUgcaRZHfLaesPOSmZdR4idWyvcE9cjX2KX5N7C/HtV2YZZCKwXutcJXFVKAGIQt29Q6mpJBnTtnuIYjy+XxTdiHas+9LMAcuwo9a0xvBQstQscpG2T47R1LPsalJLGgCH4aGjEvaDAw0lBApqyokIfetUeo9+SsLS/+jT9xUMYEiswAIKmK/ZCFQ+fWCdwVnHwhstjnFm6J761mFhLbMVJZpjg8nAeNIFxoVb8qDGhkUvQMaZFD6Bge4+MdARLyPZwMaflHJrNI/gDt29xCifvL7c6GoX3LxcMedMpJl/lCYPtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sAtwGnwSPFchf/xK46R+lyXD+Lj9/kehGreqjV+V8qI=;
+ b=4HuySeYsmzWWyLWSTJQe/iAcehsAtpXBPcLaJJKFo+az4IY4yM3SnszHACuEZgZPnbBjdnU3ZT+Nq9wMZ376M6FWxIa8KC5/CeRNJ1KqB2zKj96JL/O6HJ17ThBAEZTd8P2pZPsVaQc2rI0DjnMCZ513TjBotg7zZ9bGqC261LY=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BYAPR04MB4581.namprd04.prod.outlook.com (2603:10b6:a03:15::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Fri, 19 Mar
+ 2021 06:32:45 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f%2]) with mapi id 15.20.3955.018; Fri, 19 Mar 2021
+ 06:32:45 +0000
+Date:   Fri, 19 Mar 2021 14:32:39 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
+        Sheng Pan <span@analogixsemi.com>,
+        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/5] dt-bindings:drm/bridge:anx7625:add vendor define flags
+Message-ID: <4b09b40ce53c5b5fe7d2ba65a3c7a1b23f6eec04.1616135353.git.xji@analogixsemi.com>
+References: <cover.1616135353.git.xji@analogixsemi.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1616135353.git.xji@analogixsemi.com>
+X-Originating-IP: [60.251.58.79]
+X-ClientProxiedBy: HK2PR02CA0148.apcprd02.prod.outlook.com
+ (2603:1096:202:16::32) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR02CA0148.apcprd02.prod.outlook.com (2603:1096:202:16::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend Transport; Fri, 19 Mar 2021 06:32:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ddac081b-1d1c-497d-4da6-08d8eaa0ce6c
+X-MS-TrafficTypeDiagnostic: BYAPR04MB4581:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR04MB4581F2470635411D5FAA9065C7689@BYAPR04MB4581.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q2tC/LFDhshTqAqjglpXZuz2tMcJqt/+nWKgpysRMwieWDuyjxY9+tvLKiVm2hT6oRzmzFy7JuqDXvyg2Jq+07aL6NMwJBmG5cKW1irf14S0K8ba4cipadGc1OnwFxv7K2Ic2rByAv0fQ/0+YanFyS3fj0xUq7ZirZkYojFKfphILlPdoA1QW2wHneponw1h0lZu638N5OvyW8AEXKbiKMim4dqPiViUCqu7RYyCLmlCRGjoJe0ZGMbMQm/0lD2Dl/jMMIIxGV9js2IR3pBJOeyYaiF5P1jyTNy3MN6RWTT206rvRV5Sqxmy+d5GpKZRrxhGNse8Mic3xJyw3gqPI0lGo6HESwK+d2NNTmjfAsFrIDTuJ953K623kiQ0KcBGd3gfH4fyqh24Lq5tOH2da2kTkYYgix/FfLb+KctlBuHfCulHQhx3sp1OXABKUYw2zf6S9CnOzkaTmQyXa51PHSg54RVHqcSZLGDD0HKoDDj4nS7voxgi5RXvDgKaxAzXEKJB6JbvJXVMbRsQu2Dq3PL0QVd1Jf7q6h3K1ca03N2iIjt9I6x3LRjp3u+AeA0jf4Fmy80fc0gOoIojU5/R2XufqCOJBt8asJ8lQer05X2cU9BDOisZ3JJM7WE1CdI9CpjuC2KsL4Ug0NXKJXO0Ig==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(346002)(376002)(39840400004)(136003)(396003)(26005)(54906003)(7416002)(186003)(36756003)(2616005)(6486002)(86362001)(6496006)(956004)(38100700001)(16526019)(2906002)(52116002)(8676002)(5660300002)(4326008)(110136005)(66476007)(316002)(478600001)(55236004)(66946007)(6666004)(83380400001)(66556008)(8936002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?9objvXZ6EqQtc/6med8y5/kJZzshdwTFwwCxBVfgyJ4Oxo41LQHEpDu7Ivw8?=
+ =?us-ascii?Q?EBpAmioX8VJ4mRMrjzzZBelG+vp6sy+iday2WNGsJXzXQVH5dk2cfGwUDpP/?=
+ =?us-ascii?Q?46w0CGfwO17Tznkd+LQeMo1/viXBg/jx/vaxJcqKeE8G12RflfNVp2s+rMh0?=
+ =?us-ascii?Q?oTRG7FG8PCkbIKQHRjU0ZuxTOKPpfim9Wa0nTtbmUqMsGLt2EUJTLtA3bqoV?=
+ =?us-ascii?Q?ihRzYQZEC9PAW82aEmCdw2Amr5OrPIvN4TwFYTNHBmD0aoVCkysawSvTcgOo?=
+ =?us-ascii?Q?quq1r8JegrJr5xds3Et9gRzY0Uecr0a07GF+PSGUPEF6wTidi8t1YWKjU00E?=
+ =?us-ascii?Q?gKTzOKNU2FBiP3NFFgZxf2jFyosVPj9T4h6B68RSfyss71IC1W9+QpF5eIOX?=
+ =?us-ascii?Q?/V0KRQVrxD+pyfHBgQSQrT9ZpuUrEG1EMfDXrAFtytAt68njwtc2hSWRW66C?=
+ =?us-ascii?Q?4N6Z68rNjbpug5xbFH6bJ+6sBYIUBSpIK7FHYzKJiB3LDVLf4W8rM0dFPtuh?=
+ =?us-ascii?Q?eaOZVezk1l3vl3uxhS+YJnKE5UTtR17pq9nanQHNLFKFAXRUYn79OdbMyus1?=
+ =?us-ascii?Q?mnbXK71Bv478xcHAjE4Su8z0TcTGTRl1rgDboIYy4RsOfbvKzOiY6QUJTUPa?=
+ =?us-ascii?Q?AFsBHA9rGo/t7E3cuAyXx4h144H/xsGXtuQOOJb0IipBHcs+58UOWrpcEuaN?=
+ =?us-ascii?Q?CjeEkIIEf8YHTRG10AG89nuSImCjF2TXvjw6oYRQ6plKy5jQ5IzZm7Qp54tX?=
+ =?us-ascii?Q?c6HrNvbGKAfY7mZYGODRCToHqZW/a3dlQnWLeQwT0Q/KHYLChGRjCHrjZMAh?=
+ =?us-ascii?Q?1vX9TadKV8Wq0614oPYOO8LIiNo2dcJ0FOiu1Rtlphb6bcA4oUk75ELspD4d?=
+ =?us-ascii?Q?0TmKzbIQjR57m/MbbzaKymmLu/aVXefqIrRLOkNfvSqRdiSDsDliCzP3hi+N?=
+ =?us-ascii?Q?NV1sUuESDCgxxqw3CxpJlWfuvetnIA2SBNh3x5yLZu4TKxs2dSfYsxzF1dDR?=
+ =?us-ascii?Q?aaNBBCLx0JIBKPDd6ofcztloxoBntjRUg6Tq9p4I+DTbWTN+9Bc9wLYY9TpC?=
+ =?us-ascii?Q?0sVG0PAFbA8GCSlpjoDi8WfHBUbQnVjrNDlzea1rpwFL1vopUg54L4bw9o7g?=
+ =?us-ascii?Q?gE1EmEYQhJjOhrPNuIC2O1trnBteBVZI9rYDcJvVHqqoPF3FRRFStKJDu6eu?=
+ =?us-ascii?Q?KWvejr6I24mvrUaz0YhV+kr4phps4+eXO6Rya3eq0375TRStnJtu0VhF+Uy0?=
+ =?us-ascii?Q?vUlUJMvFNNScuZkVwjd87hgK/5QiX9OdE4dC/oP1rQh+fUir6zULzyM2W7vw?=
+ =?us-ascii?Q?0NtmxlOV+Irsu8q7IFVaF+f1?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddac081b-1d1c-497d-4da6-08d8eaa0ce6c
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2021 06:32:45.4852
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aZ1B2aO/nTzmbyH8ShU6FxiSZUM1i5bMM00BT1L1RTclabDlcyROEpRNIYqU35w9e8QhVQgs3KjjTp0KmcOUaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4581
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Aspeed KCS devices can derive the status register address from the
-address of the data register. As such, the address of the status
-register can be implicit in the configuration if desired. On the other
-hand, sometimes address schemes might be requested that are incompatible
-with the default addressing scheme. Allow these requests where possible
-if the devicetree specifies the status register address.
+Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
+lane1 swing register array define, and audio enable flag.
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
 ---
- drivers/char/ipmi/kcs_bmc_aspeed.c | 113 +++++++++++++++++++++--------
- 1 file changed, 81 insertions(+), 32 deletions(-)
+ .../display/bridge/analogix,anx7625.yaml      | 58 ++++++++++++++++++-
+ 1 file changed, 57 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bmc_aspeed.c
-index 7334b1f51dcc..98789b837690 100644
---- a/drivers/char/ipmi/kcs_bmc_aspeed.c
-+++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
-@@ -83,6 +83,8 @@
- #define LPC_STR2             0x040
- #define LPC_STR3             0x044
- #define LPC_HICRB            0x100
-+#define     LPC_HICRB_EN16LADR2      BIT(5)
-+#define     LPC_HICRB_EN16LADR1      BIT(4)
- #define     LPC_HICRB_IBFIE4         BIT(1)
- #define     LPC_HICRB_LPC4E          BIT(0)
- #define LPC_HICRC            0x104
-@@ -96,6 +98,11 @@
- #define LPC_IDR4             0x114
- #define LPC_ODR4             0x118
- #define LPC_STR4             0x11C
-+#define LPC_LSADR12	     0x120
-+#define     LPC_LSADR12_LSADR2_MASK  GENMASK(31, 16)
-+#define     LPC_LSADR12_LSADR2_SHIFT 16
-+#define     LPC_LSADR12_LSADR1_MASK  GENMASK(15, 0)
-+#define     LPC_LSADR12_LSADR1_SHIFT 0
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+index c789784efe30..3f54d5876982 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+@@ -34,6 +34,26 @@ properties:
+     description: used for reset chip control, RESET_N pin B7.
+     maxItems: 1
  
- #define OBE_POLL_PERIOD	     (HZ / 2)
- 
-@@ -123,7 +130,7 @@ struct aspeed_kcs_bmc {
- 
- struct aspeed_kcs_of_ops {
- 	int (*get_channel)(struct platform_device *pdev);
--	int (*get_io_address)(struct platform_device *pdev);
-+	int (*get_io_address)(struct platform_device *pdev, u32 addrs[2]);
- };
- 
- static inline struct aspeed_kcs_bmc *to_aspeed_kcs_bmc(struct kcs_bmc_device *kcs_bmc)
-@@ -217,38 +224,64 @@ static void aspeed_kcs_updateb(struct kcs_bmc_device *kcs_bmc, u32 reg, u8 mask,
-  *     C. KCS4
-  *        D / C : CA4h / CA5h
-  */
--static void aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u16 addr)
-+static int aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u32 addrs[2], int nr_addrs)
- {
- 	struct aspeed_kcs_bmc *priv = to_aspeed_kcs_bmc(kcs_bmc);
- 
--	switch (kcs_bmc->channel) {
-+	if (WARN_ON(nr_addrs < 1 || nr_addrs > 2))
-+		return -EINVAL;
++  analogix,lane0-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane0 PHY, please don't
++      add this property, or contact vendor.
 +
-+	switch (priv->kcs_bmc.channel) {
- 	case 1:
--		regmap_update_bits(priv->map, LPC_HICR4,
--				LPC_HICR4_LADR12AS, 0);
--		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, 0);
-+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-+		if (nr_addrs == 2) {
-+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR1_MASK,
-+					   addrs[1] << LPC_LSADR12_LSADR1_SHIFT);
++  analogix,lane1-swing:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 20
++    description:
++      an array of swing register setting for DP tx lane1 PHY, please don't
++      add this property, or contact vendor.
 +
-+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR1,
-+					   LPC_HICRB_EN16LADR1);
-+		}
- 		break;
- 
- 	case 2:
--		regmap_update_bits(priv->map, LPC_HICR4,
--				LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
--		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
-+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-+		if (nr_addrs == 2) {
-+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR2_MASK,
-+					   addrs[1] << LPC_LSADR12_LSADR2_SHIFT);
++  analogix,audio-enable:
++    type: boolean
++    description: let the driver enable audio HDMI codec function or not.
 +
-+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR2,
-+					   LPC_HICRB_EN16LADR2);
-+		}
- 		break;
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
  
- 	case 3:
--		regmap_write(priv->map, LPC_LADR3H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR3L, addr & 0xFF);
-+		if (nr_addrs == 2) {
-+			dev_err(priv->kcs_bmc.dev,
-+				"Channel 3 only supports inferred status IO address\n");
-+			return -EINVAL;
-+		}
+@@ -41,13 +61,43 @@ properties:
+       port@0:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+-          Video port for MIPI DSI input.
++          MIPI DSI/DPI input.
 +
-+		regmap_write(priv->map, LPC_LADR3H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR3L, addrs[0] & 0xFF);
- 		break;
- 
- 	case 4:
--		regmap_write(priv->map, LPC_LADR4, ((addr + 1) << 16) |
--			addr);
-+		if (nr_addrs == 1)
-+			regmap_write(priv->map, LPC_LADR4, ((addrs[0] + 1) << 16) | addrs[0]);
-+		else
-+			regmap_write(priv->map, LPC_LADR4, (addrs[1] << 16) | addrs[0]);
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            type: object
++            additionalProperties: false
 +
- 		break;
- 
- 	default:
--		break;
-+		return -EINVAL;
- 	}
++            properties:
++              remote-endpoint: true
++              bus-type: true
++              data-lanes: true
 +
-+	return 0;
- }
- 
- static inline int aspeed_kcs_map_serirq_type(u32 dt_type)
-@@ -462,18 +495,18 @@ static int aspeed_kcs_of_v1_get_channel(struct platform_device *pdev)
- 	return channel;
- }
- 
--static int aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev)
-+static int
-+aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev, u32 addrs[2])
- {
--	u32 slave;
- 	int rc;
- 
--	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", &slave);
--	if (rc || slave > 0xffff) {
-+	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", addrs);
-+	if (rc || addrs[0] > 0xffff) {
- 		dev_err(&pdev->dev, "no valid 'kcs_addr' configured\n");
- 		return -EINVAL;
- 	}
- 
--	return slave;
-+	return 1;
- }
- 
- static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
-@@ -509,16 +542,27 @@ static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
- 	return -EINVAL;
- }
- 
--static int aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev)
-+static int
-+aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev, u32 addrs[2])
- {
--	uint32_t slave;
- 	int rc;
- 
--	rc = of_property_read_u32(pdev->dev.of_node, "aspeed,lpc-io-reg", &slave);
--	if (rc || slave > 0xffff)
-+	rc = of_property_read_variable_u32_array(pdev->dev.of_node,
-+						 "aspeed,lpc-io-reg",
-+						 addrs, 1, 2);
-+	if (rc < 0)
-+		return rc;
++            required:
++              - remote-endpoint
 +
-+	if (WARN_ON(rc == 0))
-+		return -EINVAL;
++        required:
++          - endpoint
 +
-+	if (addrs[0] > 0xffff)
-+		return -EINVAL;
+ 
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+           Video port for panel or connector.
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            type: object
++            additionalProperties: false
 +
-+	if (rc == 2 && addrs[1] > 0xffff)
- 		return -EINVAL;
++            properties:
++              remote-endpoint: true
++
++            required:
++              - remote-endpoint
++
+     required:
+       - port@0
+       - port@1
+@@ -73,6 +123,10 @@ examples:
+             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
  
--	return slave;
-+	return rc;
- }
++            analogix,audio-enable;
++            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
++            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
++
+             ports {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+@@ -81,6 +135,8 @@ examples:
+                     reg = <0>;
+                     anx7625_in: endpoint {
+                         remote-endpoint = <&mipi_dsi>;
++                        bus-type = <5>;
++                        data-lanes = <0 1 2 3>;
+                     };
+                 };
  
- static int aspeed_kcs_probe(struct platform_device *pdev)
-@@ -527,9 +571,11 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	struct kcs_bmc_device *kcs_bmc;
- 	struct aspeed_kcs_bmc *priv;
- 	struct device_node *np;
--	int rc, channel, addr;
- 	bool have_upstream_irq;
- 	u32 upstream_irq[2];
-+	int rc, channel;
-+	int nr_addrs;
-+	u32 addrs[2];
- 
- 	np = pdev->dev.of_node->parent;
- 	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
-@@ -547,9 +593,9 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	if (channel < 0)
- 		return channel;
- 
--	addr = ops->get_io_address(pdev);
--	if (addr < 0)
--		return addr;
-+	nr_addrs = ops->get_io_address(pdev, addrs);
-+	if (nr_addrs < 0)
-+		return nr_addrs;
- 
- 	np = pdev->dev.of_node;
- 	rc = of_property_read_u32_array(np, "aspeed,lpc-interrupts", upstream_irq, 2);
-@@ -578,7 +624,9 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	priv->obe.remove = false;
- 	timer_setup(&priv->obe.timer, aspeed_kcs_check_obe, 0);
- 
--	aspeed_kcs_set_address(kcs_bmc, addr);
-+	rc = aspeed_kcs_set_address(kcs_bmc, addrs, nr_addrs);
-+	if (rc)
-+		return rc;
- 
- 	/* Host to BMC IRQ */
- 	rc = aspeed_kcs_config_downstream_irq(kcs_bmc, pdev);
-@@ -600,7 +648,8 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	if (rc < 0)
- 		return rc;
- 
--	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n", kcs_bmc->channel, addr);
-+	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n",
-+			kcs_bmc->channel, addrs[0]);
- 
- 	return 0;
- }
 -- 
-2.27.0
+2.25.1
 
