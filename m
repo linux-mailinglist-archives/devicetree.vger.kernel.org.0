@@ -2,388 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1077E341F26
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:15:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 116C6341F62
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 15:31:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbhCSOPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 10:15:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbhCSOOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:14:47 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27861C061761
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:14:47 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a7so9961595ejs.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Mar 2021 07:14:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=SbMKz/3RhCWrpSYDoZPsqOEniItXF6fKoMAg9IIFEmg=;
-        b=yfwtbNFMg36yYpybAtmB6MT2i2U3sa9OmuoZDdLYao3JoARYokN6E3bgJFoKmtCBS1
-         YRqzHwtkt75FfrEqJIZxqc0Sy4ZP511A7IOabJhtfrQJsU5x5nUf7QDv+UOWPVJvHKFX
-         wtFMWIIizZPs3RZQhWxOuquhdQsL/dOXRoV8ehEdmMtZtrBuYNu9KJHQWqFeo4UFnUN5
-         SNrdqVjxrDsO0yaqBtrb6pDT1CWLAr7kIJashpXP9LZtcAo30NNHOFTBK4fK0R1ZDK8V
-         wjie2Pi+ysy/A7N6KrqHRQ7N1/fPaGDOwSL4pV5QV/XzjVSfi8jne3hCQQAS+NR7sRhd
-         /LDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=SbMKz/3RhCWrpSYDoZPsqOEniItXF6fKoMAg9IIFEmg=;
-        b=oSa1XXY6+FSXcsqcHoKlIaDi6y4haf1M9qKiiliDyTSdYZrfZw073Gqdfv4ewX6quR
-         XGD/v9RDoJibMZbbXuwY+7njOF13EtMivmBBCMaP8tfNmTby5+qQ3rr6/qZOznwrLuG5
-         eENMJQbN+4AH3SQE6hd5GyaGPU5nRcNvuiMbiNRN+KrG96gZcrNtb04k66XDOxHNG/Co
-         /gVceBBh7lDOrb5zvgwtecWOIGJZa4IeMPQoHroLMdg589f0vmKmkF5292gEGH8sCASm
-         PD111Pq/orlvfG7A8nuWRwSX34KuQ5cHdsmXqT/Ww/0ySIUr6ygElnQxp400+r7kDQqR
-         1O2A==
-X-Gm-Message-State: AOAM532J7+7kdluLIhJCdz6nLaBqTkiKpB6PFOblkJtuNCXFo47V5rTl
-        /5vSINZO2jK9CbWZEgaxKlixRQ==
-X-Google-Smtp-Source: ABdhPJxn2LDJsBInTIQUjEDXHE7MkT+hru/lyirfodBGK6L8iPYN6WGP+xDa1hCxq9shH+MJCPyezw==
-X-Received: by 2002:a17:906:cc89:: with SMTP id oq9mr4537205ejb.258.1616163285720;
-        Fri, 19 Mar 2021 07:14:45 -0700 (PDT)
-Received: from dell ([91.110.221.194])
-        by smtp.gmail.com with ESMTPSA id v15sm4100578edw.28.2021.03.19.07.14.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Mar 2021 07:14:45 -0700 (PDT)
-Date:   Fri, 19 Mar 2021 14:14:43 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Campion Kang <campion.kang@advantech.com.tw>
-Cc:     chia-lin.kao@canonical.com, devicetree@vger.kernel.org,
-        jdelvare@suse.com, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, robh+dt@kernel.org, wim@linux-watchdog.org,
-        Campion.Kang@gmail.com
-Subject: Re: [PATCH v6 4/6] mfd: ahc1ec0: Add support for Advantech embedded
- controller
-Message-ID: <20210319141443.GI2916463@dell>
-References: <20210309160755.GR4931@dell>
- <20210319100105.18278-1-campion.kang@advantech.com.tw>
+        id S230050AbhCSOaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 10:30:30 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:47490 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229994AbhCSOaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 10:30:11 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12JEU3C3023173;
+        Fri, 19 Mar 2021 09:30:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616164203;
+        bh=x5HWx753qFh0Ql2F6Fz017bjNiIxJNOMTdfDAHzPS7E=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=He2K8arL0DQLD/U+5Arhl81cyff1E4R3iM3l3yOdhn/jGng2a8hy2BHqWDdrd5XxL
+         WcYy2NMadZx7vkR6ykDK0VO02c0iCXv9G2On9X3F8PFk6xY8hrITfIF444Y4Te5yY8
+         uMHRyMpPfqrfQFq4NGx5L6CSUQDWVIaHudITYcAw=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12JEU2IQ011208
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Mar 2021 09:30:03 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 19
+ Mar 2021 09:30:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 19 Mar 2021 09:30:02 -0500
+Received: from [10.250.232.114] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12JETwnh097198;
+        Fri, 19 Mar 2021 09:29:59 -0500
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am64: Add SERDES DT node
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210319080038.10521-1-a-govindraju@ti.com>
+ <20210319080038.10521-2-a-govindraju@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <eb05e914-9fa6-d12d-918a-949e1d243e43@ti.com>
+Date:   Fri, 19 Mar 2021 19:59:57 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210319100105.18278-1-campion.kang@advantech.com.tw>
+In-Reply-To: <20210319080038.10521-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Mar 2021, Campion Kang wrote:
+Hi Aswath,
 
+On 19/03/21 1:30 pm, Aswath Govindraju wrote:
+> From: Kishon Vijay Abraham I <kishon@ti.com>
 > 
-> Please check [Campion] text in below as my reply.
-
-This is a mess.  Please setup your mailer to quote correctly.
-
-> Sorry, due to the mail was rejected by vger.kernel.org as SPAM before 
-> so I reply the mail late and had some test email before.
+> Add SERDES DT node for the single one lane SERDES present in
+> AM64.
 > 
-> -----------------------------------------------------------------------------------------
-> Date:   Tue, 9 Mar 2021 16:07:55 +0000
-> From:   Lee Jones <lee.jones@linaro.org>
-
-[...]
-
-> > +enum {
-> > +	ADVEC_SUBDEV_BRIGHTNESS = 0,
-> > +	ADVEC_SUBDEV_EEPROM,
-> > +	ADVEC_SUBDEV_GPIO,
-> > +	ADVEC_SUBDEV_HWMON,
-> > +	ADVEC_SUBDEV_LED,
-> > +	ADVEC_SUBDEV_WDT,
-> > +	ADVEC_SUBDEV_MAX,
-> > +};
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 52 ++++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
 > 
-> Are these arbitrary?
-> [Campion] cannot arbitrary there, due to it is a index to identify its number of sub device. 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index a03b66456062..5a62a96c048c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -5,6 +5,17 @@
+>   * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  
+> +#include <dt-bindings/phy/phy-cadence-torrent.h>
 
-I'm asking what this is dictated by.
+One of my patches in other series which renames the header file will
+cause issues here :-/
+http://lore.kernel.org/r/20210319124128.13308-9-kishon@ti.com
 
-Are these ID/index values written into H/W?
+We'll need a immutable tag for this as well.
+> +#include <dt-bindings/phy/phy-ti.h>
+> +
+> +/ {
+> +	serdes_refclk: serdes-refclk {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <100000000>;
+> +	};
 
-[...]
+Clock frequency of serdes_refclk depends on how it is tied in the EVM.
+In the case of AM64EVM there is no external clock generator.
 
-> > +int write_acpi_value(struct adv_ec_platform_data *adv_ec_data, unsigned char addr,
-> > +		unsigned char value)
-> > +{
-> > +	int ret;
-> > +
-> > +	mutex_lock(&adv_ec_data->lock);
-> > +
-> > +	ret = ec_wait_write();
-> > +	if (ret)
-> > +		goto error;
-> > +	outb(EC_ACPI_DATA_WRITE, EC_COMMAND_PORT);
-> > +
-> > +	ret = ec_wait_write();
-> > +	if (ret)
-> > +		goto error;
-> > +	outb(addr, EC_STATUS_PORT);
-> > +
-> > +	ret = ec_wait_write();
-> > +	if (ret)
-> > +		goto error;
-> > +	outb(value, EC_STATUS_PORT);
-> > +
-> > +	mutex_unlock(&adv_ec_data->lock);
-> > +	return 0;
-> > +
-> > +error:
-> > +	mutex_unlock(&adv_ec_data->lock);
-> > +
-> > +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> > +		__LINE__);
-> > +
-> > +	return ret;
-> > +}
+It should be something like in
+https://github.com/kishon/linux-wip/commit/e5196b0819d334ce8a21b398b7c47557a145d250
+
+Thanks
+Kishon
+
+> +};
+> +
+>  &cbass_main {
+>  	oc_sram: sram@70000000 {
+>  		compatible = "mmio-sram";
+> @@ -184,6 +195,12 @@
+>  			reg = <0x4044 0x8>;
+>  			#phy-cells = <1>;
+>  		};
+> +
+> +		serdes_ln_ctrl: mux {
+> +			compatible = "mmio-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x4080 0x3>; /* SERDES0 lane0 select */
+> +		};
+>  	};
+>  
+>  	main_uart0: serial@2800000 {
+> @@ -477,6 +494,41 @@
+>  		};
+>  	};
+>  
+> +	serdes_wiz0: wiz@f000000 {
+> +		compatible = "ti,am64-wiz-10g";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 162 0>, <&k3_clks 162 1>, <&serdes_refclk>;
+> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+> +		num-lanes = <1>;
+> +		#reset-cells = <1>;
+> +		#clock-cells = <1>;
+> +		ranges = <0x0f000000 0x0 0x0f000000 0x00010000>;
+> +		assigned-clocks = <&k3_clks 162 1>;
+> +		assigned-clock-parents = <&k3_clks 162 5>;
+> +
+> +		serdes0: serdes@f000000 {
+> +			compatible = "ti,j721e-serdes-10g";
+> +			reg = <0x0f000000 0x00010000>;
+> +			reg-names = "torrent_phy";
+> +			resets = <&serdes_wiz0 0>;
+> +			reset-names = "torrent_reset";
+> +			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
+> +				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
+> +			clock-names = "refclk", "phy_en_refclk";
+> +			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
+> +					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
+> +					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
+> +			assigned-clock-parents = <&k3_clks 162 1>,
+> +						 <&k3_clks 162 1>,
+> +						 <&k3_clks 162 1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#clock-cells = <1>;
+> +		};
+> +	};
+> +
+>  	cpts@39000000 {
+>  		compatible = "ti,j721e-cpts";
+>  		reg = <0x0 0x39000000 0x0 0x400>;
 > 
-> EXPORT?
-> 
-> I think this API (i.e. all of the functions above) should be moved
-> into drivers/platform.  They really don't have a place in MFD.
-> 
-> [Campion] this is a common function for upper HWMON and brightness control used. 
->           So far this API only used by HWMON, but then it will be used by 
->           brightness in next stage. So i put this API here, OK?
-
-I think it belongs in drivers/platform.  Take a look at some of the
-other Embedded Controller code that lives there.
-
-> > +int read_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> > +		unsigned char *pvalue)
-> > +{
-> > +}
-> > +
-> > +int write_gpio_status(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> > +		unsigned char value)
-> > +{
-> > +}
-> > +
-> > +int read_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> > +		unsigned char *pvalue)
-> > +{
-> > +}
-> > +
-> > +int write_gpio_dir(struct adv_ec_platform_data *adv_ec_data, unsigned char PinNumber,
-> > +		unsigned char value)
-> > +{
-> > +}
-> 
-> All of the GPIO functions above should move into drivers/gpio.
-> 
-> [Campion] Due to it has a flow need to cowork with EC chip and firmware, it cannot be interrupt
->           by other functions. So it needs to keep in here. 
-
-Please provide more details.
-
-> > +int write_hwram_command(struct adv_ec_platform_data *adv_ec_data, unsigned char data)
-> > +{
-> > +	int ret;
-> > +
-> > +	mutex_lock(&adv_ec_data->lock);
-> > +
-> > +	ret = ec_wait_write();
-> > +	if (ret)
-> > +		goto error;
-> > +	outb(data, EC_COMMAND_PORT);
-> > +
-> > +	mutex_unlock(&adv_ec_data->lock);
-> > +	return 0;
-> > +
-> > +error:
-> > +	mutex_unlock(&adv_ec_data->lock);
-> > +
-> > +	dev_warn(adv_ec_data->dev, "%s: Wait for IBF or OBF too long. line: %d\n", __func__,
-> > +			__LINE__);
-> > +
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(write_hwram_command);
-> > +
-> > +static int adv_ec_get_productname(struct adv_ec_platform_data *adv_ec_data, char *product)
-> > +{
-> > +	const char *vendor, *device;
-> > +	int length = 0;
-> > +
-> > +	/* Check it is Advantech board */
-> > +	vendor = dmi_get_system_info(DMI_SYS_VENDOR);
-> > +	if (memcmp(vendor, "Advantech", sizeof("Advantech")) != 0)
-> > +		return -ENODEV;
-> > +
-> > +	/* Get product model name */
-> > +	device = dmi_get_system_info(DMI_PRODUCT_NAME);
-> > +	if (device) {
-> > +		while ((device[length] != ' ')
-> > +			&& (length < AMI_ADVANTECH_BOARD_ID_LENGTH))
-> > +			length++;
-> > +		memset(product, 0, AMI_ADVANTECH_BOARD_ID_LENGTH);
-> > +		memmove(product, device, length);
-> > +
-> > +		dev_info(adv_ec_data->dev, "BIOS Product Name = %s\n", product);
-> > +
-> > +		return 0;
-> > +	}
-> > +
-> > +	dev_warn(adv_ec_data->dev, "This device is not Advantech Board (%s)!\n", product);
-> > +
-> > +	return -ENODEV;
-> > +}
-> 
-> These should go into drivers/platform.
-> 
-> [Campion] This is a simple function to get module name from BIOS DMI table, it is not need to 
->           access EC chip. But it can get once and other drivers can get this information,
->           donot call DMI every time. Can it keep in here?
-
-I thought this driver was for the EC chip.
-
-> > +static const struct mfd_cell adv_ec_sub_cells[] = {
-> > +	{ .name = "adv-ec-brightness", },
-> > +	{ .name = "adv-ec-eeprom", },
-> > +	{ .name = "adv-ec-gpio", },
-> > +	{ .name = "ahc1ec0-hwmon", },
-> > +	{ .name = "adv-ec-led", },
-> > +	{ .name = "ahc1ec0-wdt", },
-> > +};
-> > +
-> > +static int adv_ec_init_ec_data(struct adv_ec_platform_data *adv_ec_data)
-> > +{
-> > +	int ret;
-> > +
-> > +	adv_ec_data->sub_dev_mask = 0;
-> > +	adv_ec_data->sub_dev_nb = 0;
-> > +	adv_ec_data->dym_tbl = NULL;
-> > +	adv_ec_data->bios_product_name = NULL;
-> 
-> Why are pre-initialising these?
-> 
-> [Campion] Just make sure they have empty pointer, but I will remove it. 
-
-There's no need to do that if they are being allocated below.
-
-> > +	mutex_init(&adv_ec_data->lock);
-> > +
-> > +	/* Get product name */
-> > +	adv_ec_data->bios_product_name =
-> > +		devm_kzalloc(adv_ec_data->dev, AMI_ADVANTECH_BOARD_ID_LENGTH, GFP_KERNEL);
-> > +	if (!adv_ec_data->bios_product_name)
-> > +		return -ENOMEM;
-> > +
-> > +	memset(adv_ec_data->bios_product_name, 0, AMI_ADVANTECH_BOARD_ID_LENGTH);
-> 
-> Why are you doing this?
-> 
-> [Campion] Just make sure the memory is null all
-
-devm_kzalloc() does that for you - that's what the 'z' means.
-
-> > +	ret = adv_ec_get_productname(adv_ec_data, adv_ec_data->bios_product_name);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Get pin table */
-> > +	adv_ec_data->dym_tbl = devm_kzalloc(adv_ec_data->dev,
-> > +					EC_MAX_TBL_NUM * sizeof(struct ec_dynamic_table),
-> > +					GFP_KERNEL);
-> > +	if (!adv_ec_data->dym_tbl)
-> > +		return -ENOMEM;
-> 
-> What does a dynamic table do?
-> 
-> [Campion] The dynamic table is reterived from EC firmware according to different platform HW device.
->           it will based on dynamic table information to get HW pin definition based on its function.
->           The pin value will retrive to calcute the value, for example, voltage value, vcore value. 
->           
-> 
-> > +	ret = adv_get_dynamic_tab(adv_ec_data);
-> 
-> return adv_get_dynamic_tab();
-> 
-> [Campion] OK
-> 
-> > +	return ret;
-> > +}
-> > +
-> > +static int adv_ec_parse_prop(struct adv_ec_platform_data *adv_ec_data)
-> > +{
-> > +	int i, ret;
-> > +	u32 nb, sub_dev[ADVEC_SUBDEV_MAX];
-> > +
-> > +	ret = device_property_read_u32(adv_ec_data->dev, "advantech,sub-dev-nb", &nb);
-> 
-> Indexing devices is generally not a good strategy.
-> 
-> ---------------------------------------------------------------------------
-> [Campion] Yes, I will remove it, just use the following that defined in ahc1ec0.yaml. 
->           I ever feedback related mail for "https://lore.kernel.org/linux-watchdog/20210118123749.4769-6-campion.kang@advantech.com.tw/t/#m5126adbc2453e3ab3e6bda717c257fab364b9f45". 
->           But vger.kernel.org returned the mail to mail as spam mail. 
->           I will modity it as the following, is it OK?
->           examples:
->             - |
->           #include <dt-bindings/mfd/ahc1ec0-dt.h>
->           ahc1ec0 {
->                   compatible = "advantech,ahc1ec0";
-> 
->                   advantech,hwmon-profile = <AHC1EC0_HWMON_PRO_UNO2271G>;
->                   advantech,watchdog = true;
-
-Shouldn't the watchdog be it's own sub-node?
-
-Is that functionality not probably at all?
-
-Surely it has it's own register set?
-
-[...]
-
-> > +	/* check whether this EC has the following subdevices. */
-> > +	for (i = 0; i < ARRAY_SIZE(adv_ec_sub_cells); i++) {
-> > +		if (adv_ec_data->sub_dev_mask & BIT(i)) {
-> > +			ret = mfd_add_hotplug_devices(dev, &adv_ec_sub_cells[i], 1);
-> 
-> Why have you chosen to use hotplug here?
-> 
-> [Campion] There is a information in BIOS ACPI table according to different device to decide 
->           which function drivers need to be probe. May be a device has HWMON, it will dynamic 
->           to load HWMON driver, but other device may not.
-
-The only thing hotplug does is hard-code the platform ID.
-
-It's more of a win if you can omit the mfd_remove_devices() call.
-
-> > +			dev_info(adv_ec_data->dev, "mfd_add_hotplug_devices[%d] %s\n", i,
-> > +				adv_ec_sub_cells[i].name);
-> > +			if (ret)
-> > +				dev_err(dev, "failed to add %s subdevice: %d\n",
-> > +					adv_ec_sub_cells[i].name, ret);
-> > +		}
-> > +	}
-> 
-> This is a mess!
-> 
-> Where are you pulling these devices from?  
-> 
-> [Campion] decide which drivers need to mount from BIOS ACPI table. This drive would built in Linux Kernel.
->           I am not sure what's your meaning, can you describe more? Thank you
-
-I really don't like the sub_dev_mask idea.
-
-Are the ACPI tables available?
-
-[...]
-
-> > +struct adv_ec_platform_data {
-> > +	char *bios_product_name;
-> 
-> Where is this used?
-> 
-> [Campion] Get the module name once and upper application can get it by EC driver.
-
-From DMI?  What do you use it for?  Debug prints or something else?
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
