@@ -2,304 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0054342390
-	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 18:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F854342398
+	for <lists+devicetree@lfdr.de>; Fri, 19 Mar 2021 18:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbhCSRnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Mar 2021 13:43:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbhCSRm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Mar 2021 13:42:58 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F4CC06174A;
-        Fri, 19 Mar 2021 10:42:58 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id l1so3298177plg.12;
-        Fri, 19 Mar 2021 10:42:58 -0700 (PDT)
+        id S230108AbhCSRqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Mar 2021 13:46:47 -0400
+Received: from mail-dm3nam07on2069.outbound.protection.outlook.com ([40.107.95.69]:17505
+        "EHLO NAM02-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230055AbhCSRqo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Mar 2021 13:46:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lI0zJwL0RktwuUQZDJxuXA+4RUPKuaj3W87wR64YmAWpp5ywNEs/caClv8X+MKka6cDx++UHboJp9kYTxLpMCQdotLPkTIgUhDunDXd6fHhRFVV8hh8Xc81Ep/F9+/cAONVQZphpnbaKXa3o0PZWRd81ilWmU8T7USWPKJqA6n+0hvBHXtVfn6EMSeY156U47GtfSn1GbIlopP9qUzzCGJVHHohHrdmY43Be5IEsABT2ZlGdyUitXrOWozIDc9L8hQX4tNp7xkmyAxBuwRJy0GArt13oC7ZO7aWPgbs3OetMewNlyvZOFbVpe68dvcuNHs4hIFU0SE7DTP3U1XxoxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=owzLwxwKZDW/E6xJEUg8suaUTsxwaQsZX3tvr7Op0xs=;
+ b=VdjThJKnIvhwVd55yGsmIFbsvos7djD7/WKb656pn1W6WIAcQl6FSRQ7q892/2SHaudCRHmL8Ab0Xm5GorwJWel+5e4yiCV5rPtRaM5EwJlW3mpNPCzTV4w3ICEXSewRl8p2g0QfYUFDFhAnnYDPWEtYOZLqJcgVw/44ode4p1Hq8DQ4BvpUFS39PN1nRC4QJNqtSdMbpzjhvCyGoa53ZySwCEmWRZAHch4CU+aE4kALMB4JLjVxdm0LhJ2x15gLDQ6SbExKmspfkads1DAbtU4JmP0u7fKUQhWtZhAGbyeNsaFgvkvGkaGzQ55ptPCMOCvjHp34SihXA7kus7AdNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aCBxKGyN1RW9McR86Ob8DISjqGfg+CaKCVIqc4Cd+b4=;
-        b=nlkD62njG7eZA+nK9kojt3lTe8jXKPwyFlwaHD10T+uTYR+qjk11Epgurd4S7Ws6Bh
-         P/iMS7+vU1KiOKTKSoeoQKenAhFwJbsrW6SnSI2O9XZzrQcnfpsqiQpxVIw33EXQbeZi
-         xnx3DaDPm/kHhRcLtsPUIrjrrKA9sMKWq7DLRMn/+WQVPa5B7uETH1RHLY0moZ78K1Dh
-         6Ar3KeDnvFHen5vKyBoPgGBGPF0Q+gdPNL7sJWxX7E0i0cAcWQuFuOPa3rPj7v+uam0A
-         levOpW3GNzL5dfN5zG0jAFbBG+/TvjqmS6AnKDfzJpWvBjgz4EjfGxZ9nljQtoyPMETp
-         wCFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aCBxKGyN1RW9McR86Ob8DISjqGfg+CaKCVIqc4Cd+b4=;
-        b=S34Ti16GzEBkj23jS1PlJyp5tHTPi42MCRS6B5Yf2iFTiN+Az9phQ9ZrNYig3n3ckW
-         Nls14W9jxk5zvJE+39ImAk5sr01pZUiL48ulEGIZdsJo5QXmRKhbUd8NoA7WUoJ8Xq9j
-         gCFCncZZB7AUmsv19LMqLTj2Pe5z69WFAXjjRH0X2odU6NHmc6wG2V+sRCFcA3WYMM8x
-         CokuDEuoa9LvopjC+MpIAbz6fE3ripQ1DtsIcD7mOineSpgRKBPmwAUGtu4dwes80i2R
-         OzTCruNCEDUPKhYDUvN5emU2T7uOmt06zhhuSv33qt5VYt9qzLEjRWVVYc9TABB0U0Mn
-         EgOw==
-X-Gm-Message-State: AOAM530R2MoOx2GdhvECJbbKQp1p5yyXg5v6pdtotomrTGVW494xkAXx
-        rqdfBm36uINURpM7og3fmBYktrVg48ZZdZPZCSI=
-X-Google-Smtp-Source: ABdhPJxoo4vsSIeNDkBBr2mzZSj7vcXIsQn3r+AXxkiCjnO3Z0ouzSL6VmvOsWbYb+aTQulZXjfRzeLOqrwZg4+4I80=
-X-Received: by 2002:a17:902:a406:b029:e6:78c4:71c8 with SMTP id
- p6-20020a170902a406b02900e678c471c8mr15307631plq.17.1616175777639; Fri, 19
- Mar 2021 10:42:57 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=owzLwxwKZDW/E6xJEUg8suaUTsxwaQsZX3tvr7Op0xs=;
+ b=TAzQC9Bs63XtTv3Di4LhDfkvLUke+o79cOdzlXsR16hWd3/XN9BiIKbegotz1ioPv0aK+J6/7fPLpflOJR82R6TJqnAy7ybGFHkGP7GKs9UmuDWUFjpMlS2JcsgEhcgjStkqPE10lyC+OSfJHUvQHnjf0o5JTOczJjSVkzCD3LE=
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com (2603:10b6:a03:55::31)
+ by BYAPR02MB5031.namprd02.prod.outlook.com (2603:10b6:a03:6f::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Fri, 19 Mar
+ 2021 17:46:40 +0000
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::2cf3:79d2:d169:7fdb]) by BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::2cf3:79d2:d169:7fdb%3]) with mapi id 15.20.3933.033; Fri, 19 Mar 2021
+ 17:46:40 +0000
+From:   Ben Levinsky <BLEVINSK@xilinx.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Michal Simek <michals@xilinx.com>,
+        "Ed T. Mooring" <emooring@xilinx.com>
+Subject: Re: [PATCH v26 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Topic: [PATCH v26 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Index: AQHXCfsr2E1q1mchlUeHFfIK6xXzWap79YAAgAMSswCABmeOAP//zGMAgANExgCAAsVngA==
+Date:   Fri, 19 Mar 2021 17:46:39 +0000
+Message-ID: <4E5CF929-9B5B-41AE-B272-8B29857E4D2E@xilinx.com>
+References: <20210223154447.13247-1-ben.levinsky@xilinx.com>
+ <20210223154447.13247-6-ben.levinsky@xilinx.com>
+ <20210309165330.GA4013290@xps15>
+ <38527B70-FE3A-4D05-8C2E-6A95A3D4ADF3@xilinx.com>
+ <20210315173724.GB1342614@xps15>
+ <09895E3D-AED4-4DBF-A48C-684271275D49@xilinx.com>
+ <20210317162736.GB1494354@xps15>
+In-Reply-To: <20210317162736.GB1494354@xps15>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/16.46.21021202
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.62.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 8bf1c849-1b5e-41f8-807b-08d8eafef3b8
+x-ms-traffictypediagnostic: BYAPR02MB5031:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR02MB5031E17B7DF13B55AF71C470B5689@BYAPR02MB5031.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2803;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ehc010EB3SEYYxvDUq3S7bbDlqIzIXGI2XBDJR+e+OCPDhe5QKZkxTcvtepyv5odi12Gq7mNlkz+kSO90pnKaIlfZWXxDroPqlq5EGrSnaco5YrGbPjiZNNsBsYfvn4nJWnGZh1frfXEx8Y26MMLnsbJo8B1dl07BtgYP25Isc9l1fYVDy5cFCCjfK5F+MvpVl+02LE95RLcR7jxKM1yl7q9+F13Wm3idUdBwRlwEt0qaK3Bu1mvC7jwZMY94JuDKfUIE5eENGj5e2trpZmuLaghcLOtLRQmDUGQam6cHsHBRn0bcew8GZhUFLAScYgqGwz04ykt/NaARBSpkDdqE60VWp3A8niLWbKpp9hDH0P1I+IYfsg0Jj5ciiX8j9qMrMdvu4rX8bTt6+JoyKym//kIZLHKsPhJ1x4ZvtV9rEf+uxHHE1f6lfuwJRMjt/839qa8HRAZZPZFhtRuINo/izJmCf1iDThIgh/tZ4c+qHC1T+gLAY2+cd97Dkwg9zRSNMe/yXlbMTVRpZod45ccytuXb8io/sIj5s/FjK9NI1Oa33/LRCXhGQw0ptmPqniw9SOw+2Vrp5297n2fdUxbAO8AL7UldA65djGflXhZjqRZXwBoQd9DOQuH146CkScEPM57x1U1AEDv3XIhaduAYOR/vgpSNpW4Z2aWRUs1VyXaTLKjRB8wSURF7xzBWRcj
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB4407.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(376002)(39850400004)(396003)(366004)(6512007)(64756008)(8936002)(66556008)(66446008)(316002)(478600001)(53546011)(26005)(186003)(76116006)(54906003)(66946007)(4326008)(66476007)(86362001)(6506007)(8676002)(83380400001)(2616005)(36756003)(5660300002)(71200400001)(2906002)(6916009)(38100700001)(6486002)(107886003)(33656002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?ajRvR1BqSW5iYnZiZmx6aGVDUjBlOUxFOXZxdXhBQndDREQrWjkvaW0vTU1w?=
+ =?utf-8?B?NW9MdGQyaEZpRVVtU0hBd2EvV29yL0lHRE82NUVmRVcyWGZ1cWczQmtEVFNZ?=
+ =?utf-8?B?VDZiY2xqS1ltbzZhMjlnazRnMzN5TTBEN0JVM1lGdDkyZHNURnREc0VNZXRW?=
+ =?utf-8?B?NXNBb2dqUmhuWk5ocmZoZTJkd2pna1VEZkNRMHozanFHajN0SiszcmFySVJi?=
+ =?utf-8?B?a24xVTc2WlV0bjU4WFdLL3ZlaDd5TjVrQjBIQU95U1N1K3E1M2s5Y3ZpRk9U?=
+ =?utf-8?B?cTJudG5LZjdsQ2VZR1BBd0xzYTB5cXVtSkFNczFsSTlsYkpnTklLQm8vaHh6?=
+ =?utf-8?B?Titvcm9jaHA3Tk81Y1NFaWdoRk9uSDlueTNFWmwvM01iWTUyUnF0QnpGK1F6?=
+ =?utf-8?B?MFI2UTVTNGdLWHNCMytNME5ra2FxaDVNcU5KaDQ5aE1reE1OR1Boc3FqVTkr?=
+ =?utf-8?B?VVBlV081eUhKeFBFSFBEQ0lnUmdTL0hocG52V3pGZHQyeDBJOEYzQ284dlh6?=
+ =?utf-8?B?VWl6VjhBS25qajF5QzI0eS9xOTNUdDFNWWNnekVIM2M3NWdsV2tXOWxPdWhP?=
+ =?utf-8?B?ZjJEMnJpa1RhNlRwR0sxa28zOHcwZ3hyWUYvSTUzT25nV3BQaFAzcW9MZURC?=
+ =?utf-8?B?OVBtU21vTTFFUmozTnJUZXdkSi9OQkFLNlhOY1U1RGZYWTlVdXpEUHg4NGZB?=
+ =?utf-8?B?MDRVbm4xaXZUSmxBZmh0a3VpRTlYZWxwbVhjT0RQd3RoVFFSSkRwczBZNnRI?=
+ =?utf-8?B?Q3VZODB0UnNSTU1DZk5sWG4xbW9SSVd0dTlDd1BYNE9LK1dITXMzbnJXb2ZM?=
+ =?utf-8?B?MEhBd0x5MXFPMEFZZVRncTAyTWNMUFltUHhxM1pGVjE2b2Uxc3lTbFluOWhx?=
+ =?utf-8?B?OWJZRko0RWNYZjhaRCtHMXp3cGMyVmsxc0pJOGMvOWN5NDFxTkZ4K09aSEFm?=
+ =?utf-8?B?WjMzTmh3UWFTRHpoMll6d21oZTFvRno4ZW5TT1hwSXpXSk1LYVJ3bm8zcVBk?=
+ =?utf-8?B?MTBCK29pSDlZZ0M1ZzV3SmFBZUc0bUxPSEZoY1JnZ2hxSEtGZUkzKzlOVlJk?=
+ =?utf-8?B?MDhMT25ERllOVUdHR2dZRmJpRUJXcTBLUms4bTVuZHRyaUwybzk2WDE4Rmdt?=
+ =?utf-8?B?dWNkSzBaS0x2YTFzcUlHRVY0cWJoTGZ6OVRuRWNFMDQ4cnpoWGQxZDZRbnl1?=
+ =?utf-8?B?TXl4ZC9kVFh4Y1Ura0NiV2ZIYi9zRkw4TVQydGFjVFFDR0kxZFlQQWpkcGR3?=
+ =?utf-8?B?eTgwOFNmSGtwMExBNUFoN0o3ZGk1K0dhNjZNNExaOEkwemIzajRxV1AvOW1r?=
+ =?utf-8?B?UlRwOHlBeU96MkpnTk9iaWY4Z1ZKUnlNYjlFMW10d1IrWWNVMHlQNzFGVVM1?=
+ =?utf-8?B?ZnBYT0ZhUTNPUm5wVWE1VXRXYUNEVyt1Q3hSN0lhSUxyUVU0aGlnYUVnUkV3?=
+ =?utf-8?B?aHYzdEJhdnBXTnBZZG5lZGNmYlNaRlBJc0duWWpSajBFb1FDV2VmYVhDZURl?=
+ =?utf-8?B?V1FVeFpVbTBlR01WRjZoTDY1aXFPR2lQK0JKZ3QyT2I1SE04K0FrQzhQRVJk?=
+ =?utf-8?B?U2Z1LzdTbjhRNTdTRERCTlc5WmJZTzBxR05KcWJ3RDhIS3dLY3IvbVlWY0hn?=
+ =?utf-8?B?ejVrd3ZCdWRyZEhTanpiQ0ZxcTRXRFdLaHRhVjZDNEJJK3ZmYVMwMzkyb1hY?=
+ =?utf-8?B?NDlma0RDM0wrVi9nNmJPcnZOMXBvN0dQdU00QkNYVjR4dU13WlAvYUJMZE9k?=
+ =?utf-8?B?WlRtMXkxcHRBeG5PNHN2ajI3WFhmMTB5L0ZqdmV2VkQweDE0VFFTSlA2TFh3?=
+ =?utf-8?B?NEo0K2tqdmg3dFU1SXo3QT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9C976CD052F6CE48AEFF9C9C15EB021B@namprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210319144509.7627-1-o.rempel@pengutronix.de> <20210319144509.7627-4-o.rempel@pengutronix.de>
-In-Reply-To: <20210319144509.7627-4-o.rempel@pengutronix.de>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 19 Mar 2021 19:42:41 +0200
-Message-ID: <CAHp75Vcn=g-3NRXAEd5jEu4uxD_fHbybiDg=t9QiY80TNZuTgQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] iio: adc: add ADC driver for the TI TSC2046 controller
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB4407.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8bf1c849-1b5e-41f8-807b-08d8eafef3b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2021 17:46:40.2394
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H/G6fojTrxtWtXuoxYkptsYB2llvjM5eoMlMnQkw/pNVE04BPENe5oaJzhAPNtveguaA9A4ktnhivDFxCRP9Wg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5031
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 19, 2021 at 4:45 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
->
-> Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
-> the touchscreen use case. By implementing it as an IIO ADC device, we can
-> make use of resistive-adc-touch and iio-hwmon drivers.
->
-> So far, this driver was tested with a custom version of resistive-adc-touch driver,
-> since it needs to be extended to make use of Z1 and Z2 channels. The X/Y
-> are working without additional changes.
-
-Since kbuild bot found some issues and it will be v4, some additional
-comments from me below.
-
-...
-
-> +#define        TI_TSC2046_SAMPLE_BITS \
-> +       (sizeof(struct tsc2046_adc_atom) * BITS_PER_BYTE)
-
-Isn't it something like BITS_PER_TYPE(struct ...) ?
-
-...
-
-> +struct tsc2046_adc_atom {
-> +       /*
-> +        * Command transmitted to the controller. This filed is empty on the RX
-> +        * buffer.
-> +        */
-> +       u8 cmd;
-> +       /*
-> +        * Data received from the controller. This filed is empty for the TX
-> +        * buffer
-> +        */
-> +       __be16 data;
-> +} __packed;
-
-filed -> field in both cases above.
-
-...
-
-> +       /*
-> +        * Lock to protect the layout and the spi transfer buffer.
-
-SPI
-
-> +        * tsc2046_adc_group_layout can be changed within update_scan_mode(),
-> +        * in this case the l[] and tx/rx buffer will be out of sync to each
-> +        * other.
-> +        */
-
-...
-
-> +static unsigned int tsc2046_adc_time_to_count(struct tsc2046_adc_priv *priv,
-> +                                             unsigned long time)
-> +{
-> +       unsigned int bit_count, sample_count;
-> +
-> +       bit_count = DIV_ROUND_UP(time * NSEC_PER_USEC, priv->time_per_bit_ns);
-
-Does it survive 32-bit builds?
-
-> +       sample_count = DIV_ROUND_UP(bit_count, TI_TSC2046_SAMPLE_BITS);
-> +
-> +       dev_dbg(&priv->spi->dev, "Effective speed %u, time per bit: %u, count bits: %u, count samples: %u\n",
-> +               priv->effective_speed_hz, priv->time_per_bit_ns,
-> +               bit_count, sample_count);
-> +
-> +       return sample_count;
-> +}
-
-...
-
-> +       /*
-> +        * if PD bits are 0, controller will automatically disable ADC, VREF and
-> +        * enable IRQ.
-> +        */
-> +       if (keep_power)
-> +               pd = TI_TSC2046_PD0_ADC_ON;
-> +       else
-> +               pd = 0;
-
-Can be ternary on one line, but it's up to you.
-
-...
-
-> +static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
-> +{
-> +       /* Last 3 bits on the wire are empty */
-
-Last?! You meant Least significant?
-Also, don't we lose precision if a new compatible chip appears that
-does fill those bits?
-
-Perhaps define the constant and put a comment why it's like this.
-
-> +       return get_unaligned_be16(&buf->data) >> 3;
-> +}
-
-...
-
-> +static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
-> +                                          unsigned int group,
-> +                                          unsigned int ch_idx)
-> +{
-> +       struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
-> +       struct tsc2046_adc_group_layout *prev, *cur;
-> +       unsigned int max_count, count_skip;
-> +       unsigned int offset = 0;
-> +
-> +       if (group) {
-> +               prev = &priv->l[group - 1];
-> +               offset = prev->offset + prev->count;
-> +       }
-
-I guess you may easily refactor this by supplying a pointer to the
-current layout + current size.
-
-> +       cur = &priv->l[group];
-
-Also, can you move it down closer to the (single?) caller.
-
-> +}
-
-...
-
-> +static int tsc2046_adc_scan(struct iio_dev *indio_dev)
-> +{
-> +       struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +       struct device *dev = &priv->spi->dev;
-> +       int group;
-> +       int ret;
-> +
-> +       ret = spi_sync(priv->spi, &priv->msg);
-> +       if (ret < 0) {
-
-> +               dev_err_ratelimited(dev, "SPI transfer filed: %pe\n",
-> +                                   ERR_PTR(ret));
-
-One line?
-
-> +               return ret;
-> +       }
-
-> +       ret = iio_push_to_buffers_with_timestamp(indio_dev, &priv->scan_buf,
-> +                                                iio_get_time_ns(indio_dev));
-> +       /* If consumer is kfifo, we may get a EBUSY here - ignore it. */
-
-the consumer
-
-> +       if (ret < 0 && ret != -EBUSY) {
-> +               dev_err_ratelimited(dev, "Failed to push scan buffer %pe\n",
-> +                                   ERR_PTR(ret));
-> +
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-
-
-...
-
-> +static enum hrtimer_restart tsc2046_adc_trig_more(struct hrtimer *hrtimer)
-> +{
-> +       struct tsc2046_adc_priv *priv = container_of(hrtimer,
-> +                                                    struct tsc2046_adc_priv,
-> +                                                    trig_timer);
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&priv->trig_lock, flags);
-> +
-> +       disable_irq_nosync(priv->spi->irq);
-
-> +       atomic_inc(&priv->trig_more_count);
-
-You already have a spin lock, do you need to use the atomic API?
-
-> +       iio_trigger_poll(priv->trig);
-> +
-> +       spin_unlock_irqrestore(&priv->trig_lock, flags);
-> +
-> +       return HRTIMER_NORESTART;
-> +}
-
-...
-
-> +       size_t size = 0;
-
-Move the assignment closer to the actual use of the variable.
-
-...
-
-> +       /*
-> +        * In case SPI controller do not report effective_speed_hz, use
-> +        * configure value and hope it will match
-
-Missed period.
-
-> +        */
-> +       if (!priv->effective_speed_hz)
-> +               priv->effective_speed_hz = priv->spi->max_speed_hz;
-
-Also can be ternary on one line, but it's up to you.
-
-...
-
-> +       name = devm_kasprintf(dev, GFP_KERNEL, "%s-%s",
-> +                             TI_TSC2046_NAME, dev_name(dev));
-
-No NULL check?
-Should be added or justified.
-
-...
-
-> +       trig->dev.parent = indio_dev->dev.parent;
-
-Don't we have this done by core (some recent patches in upstream)?
-
-...
-
-> +       ret = devm_iio_device_register(dev, indio_dev);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to register iio device\n");
-
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-
-  return ret;
-or even
-  return devm_iio_device_register(dev, indio_dev);
-
--- 
-With Best Regards,
-Andy Shevchenko
+DQoNCu+7vy0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBNYXRoaWV1IFBvaXJpZXIg
+PG1hdGhpZXUucG9pcmllckBsaW5hcm8ub3JnPg0KRGF0ZTogV2VkbmVzZGF5LCBNYXJjaCAxNywg
+MjAyMSBhdCA5OjI3IEFNDQpUbzogQmVuIExldmluc2t5IDxCTEVWSU5TS0B4aWxpbnguY29tPg0K
+Q2M6ICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIgPGRldmljZXRyZWVAdmdlci5rZXJuZWwu
+b3JnPiwgImxpbnV4LXJlbW90ZXByb2NAdmdlci5rZXJuZWwub3JnIiA8bGludXgtcmVtb3RlcHJv
+Y0B2Z2VyLmtlcm5lbC5vcmc+LCAibGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZyIgPGxpbnV4
+LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+LCAibGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRl
+YWQub3JnIiA8bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPiwgTWljaGFsIFNp
+bWVrIDxtaWNoYWxzQHhpbGlueC5jb20+LCAiRWQgVC4gTW9vcmluZyIgPGVtb29yaW5nQHhpbGlu
+eC5jb20+DQpTdWJqZWN0OiBSZTogW1BBVENIIHYyNiA1LzVdIHJlbW90ZXByb2M6IEFkZCBpbml0
+aWFsIHp5bnFtcCBSNSByZW1vdGVwcm9jIGRyaXZlcg0KDQogICAgT24gTW9uLCBNYXIgMTUsIDIw
+MjEgYXQgMDk6MzI6NDBQTSArMDAwMCwgQmVuIExldmluc2t5IHdyb3RlOg0KICAgID4gDQogICAg
+PiANCiAgICA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQogICAgPiBGcm9tOiBNYXRoaWV1
+IFBvaXJpZXIgPG1hdGhpZXUucG9pcmllckBsaW5hcm8ub3JnPg0KICAgID4gRGF0ZTogTW9uZGF5
+LCBNYXJjaCAxNSwgMjAyMSBhdCAxMDozNyBBTQ0KICAgID4gVG86IEJlbiBMZXZpbnNreSA8QkxF
+VklOU0tAeGlsaW54LmNvbT4NCiAgICA+IENjOiAiZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmci
+IDxkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZz4sICJsaW51eC1yZW1vdGVwcm9jQHZnZXIua2Vy
+bmVsLm9yZyIgPGxpbnV4LXJlbW90ZXByb2NAdmdlci5rZXJuZWwub3JnPiwgImxpbnV4LWtlcm5l
+bEB2Z2VyLmtlcm5lbC5vcmciIDxsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnPiwgImxpbnV4
+LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZyIgPGxpbnV4LWFybS1rZXJuZWxAbGlzdHMu
+aW5mcmFkZWFkLm9yZz4sIE1pY2hhbCBTaW1layA8bWljaGFsc0B4aWxpbnguY29tPiwgIkVkIFQu
+IE1vb3JpbmciIDxlbW9vcmluZ0B4aWxpbnguY29tPg0KICAgID4gU3ViamVjdDogUmU6IFtQQVRD
+SCB2MjYgNS81XSByZW1vdGVwcm9jOiBBZGQgaW5pdGlhbCB6eW5xbXAgUjUgcmVtb3RlcHJvYyBk
+cml2ZXINCiAgICA+IA0KICAgID4gICAgIE9uIFRodSwgTWFyIDExLCAyMDIxIGF0IDExOjQ5OjEz
+UE0gKzAwMDAsIEJlbiBMZXZpbnNreSB3cm90ZToNCiAgICA+ICAgICA+IEhpIE1hdGhpZXUNCiAg
+ICA+ICAgICA+IA0KICAgID4gICAgID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCiAgICA+
+ICAgICA+IEZyb206IE1hdGhpZXUgUG9pcmllciA8bWF0aGlldS5wb2lyaWVyQGxpbmFyby5vcmc+
+DQogICAgPiAgICAgPiBEYXRlOiBUdWVzZGF5LCBNYXJjaCA5LCAyMDIxIGF0IDg6NTMgQU0NCiAg
+ICA+ICAgICA+IFRvOiBCZW4gTGV2aW5za3kgPEJMRVZJTlNLQHhpbGlueC5jb20+DQogICAgPiAg
+ICAgPiBDYzogImRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnIiA8ZGV2aWNldHJlZUB2Z2VyLmtl
+cm5lbC5vcmc+LCAibGludXgtcmVtb3RlcHJvY0B2Z2VyLmtlcm5lbC5vcmciIDxsaW51eC1yZW1v
+dGVwcm9jQHZnZXIua2VybmVsLm9yZz4sICJsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnIiA8
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZz4sICJsaW51eC1hcm0ta2VybmVsQGxpc3RzLmlu
+ZnJhZGVhZC5vcmciIDxsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc+LCBNaWNo
+YWwgU2ltZWsgPG1pY2hhbHNAeGlsaW54LmNvbT4NCiAgICA+ICAgICA+IFN1YmplY3Q6IFJlOiBb
+UEFUQ0ggdjI2IDUvNV0gcmVtb3RlcHJvYzogQWRkIGluaXRpYWwgenlucW1wIFI1IHJlbW90ZXBy
+b2MgZHJpdmVyDQogICAgPiAgICAgPiANCiAgICA+ICAgICA+ICAgICBbLi4uXQ0KICAgID4gICAg
+ID4gDQogICAgPiAgICAgPiAgICAgPiArDQogICAgPiAgICAgPiAgICAgPiArLyoqDQogICAgPiAg
+ICAgPiAgICAgPiArICogenlucW1wX3I1X3Byb2JlIC0gUHJvYmVzIFp5bnFNUCBSNSBwcm9jZXNz
+b3IgZGV2aWNlIG5vZGUNCiAgICA+ICAgICA+ICAgICA+ICsgKgkJICAgICAgIHRoaXMgaXMgY2Fs
+bGVkIGZvciBlYWNoIGluZGl2aWR1YWwgUjUgY29yZSB0bw0KICAgID4gICAgID4gICAgID4gKyAq
+CQkgICAgICAgc2V0IHVwIG1haWxib3gsIFhpbGlueCBwbGF0Zm9ybSBtYW5hZ2VyIHVuaXF1ZSBJ
+RCwNCiAgICA+ICAgICA+ICAgICA+ICsgKgkJICAgICAgIGFkZCB0byBycHJvYyBjb3JlDQogICAg
+PiAgICAgPiAgICAgPiArICoNCiAgICA+ICAgICA+ICAgICA+ICsgKiBAcGRldjogZG9tYWluIHBs
+YXRmb3JtIGRldmljZSBmb3IgY3VycmVudCBSNSBjb3JlDQogICAgPiAgICAgPiAgICAgPiArICog
+QG5vZGU6IHBvaW50ZXIgb2YgdGhlIGRldmljZSBub2RlIGZvciBjdXJyZW50IFI1IGNvcmUNCiAg
+ICA+ICAgICA+ICAgICA+ICsgKiBAcnB1X21vZGU6IG1vZGUgdG8gY29uZmlndXJlIFJQVSwgc3Bs
+aXQgb3IgbG9ja3N0ZXANCiAgICA+ICAgICA+ICAgICA+ICsgKg0KICAgID4gICAgID4gICAgID4g
+KyAqIFJldHVybjogMCBmb3Igc3VjY2VzcywgbmVnYXRpdmUgdmFsdWUgZm9yIGZhaWx1cmUuDQog
+ICAgPiAgICAgPiAgICAgPiArICovDQogICAgPiAgICAgPiAgICAgPiArc3RhdGljIHN0cnVjdCB6
+eW5xbXBfcjVfcnByb2MgKnp5bnFtcF9yNV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpw
+ZGV2LA0KICAgID4gICAgID4gICAgID4gKwkJCQkJICAgICAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAq
+bm9kZSwNCiAgICA+ICAgICA+ICAgICA+ICsJCQkJCSAgICAgICBlbnVtIHJwdV9vcGVyX21vZGUg
+cnB1X21vZGUpDQogICAgPiAgICAgPiAgICAgPiArew0KICAgID4gICAgID4gICAgID4gKwlpbnQg
+cmV0LCBudW1fYmFua3M7DQogICAgPiAgICAgPiAgICAgPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9
+ICZwZGV2LT5kZXY7DQogICAgPiAgICAgPiAgICAgPiArCXN0cnVjdCBycHJvYyAqcnByb2NfcHRy
+Ow0KICAgID4gICAgID4gICAgID4gKwlzdHJ1Y3QgenlucW1wX3I1X3Jwcm9jICp6X3Jwcm9jOw0K
+ICAgID4gICAgID4gICAgID4gKwlzdHJ1Y3QgZGV2aWNlX25vZGUgKnI1X25vZGU7DQogICAgPiAg
+ICAgPiAgICAgPiArDQogICAgPiAgICAgPiAgICAgPiArCS8qIEFsbG9jYXRlIHJlbW90ZXByb2Mg
+aW5zdGFuY2UgKi8NCiAgICA+ICAgICA+ICAgICA+ICsJcnByb2NfcHRyID0gZGV2bV9ycHJvY19h
+bGxvYyhkZXYsIGRldl9uYW1lKGRldiksICZ6eW5xbXBfcjVfcnByb2Nfb3BzLA0KICAgID4gICAg
+ID4gICAgID4gKwkJCQkgICAgIE5VTEwsIHNpemVvZihzdHJ1Y3QgenlucW1wX3I1X3Jwcm9jKSk7
+DQogICAgPiAgICAgPiAgICAgPiArCWlmICghcnByb2NfcHRyKSB7DQogICAgPiAgICAgPiAgICAg
+PiArCQlyZXQgPSAtRU5PTUVNOw0KICAgID4gICAgID4gICAgID4gKwkJZ290byBlcnJvcjsNCiAg
+ICA+ICAgICA+ICAgICA+ICsJfQ0KICAgID4gICAgID4gICAgID4gKw0KICAgID4gICAgID4gICAg
+ID4gKwlycHJvY19wdHItPmF1dG9fYm9vdCA9IGZhbHNlOw0KICAgID4gICAgID4gICAgID4gKwl6
+X3Jwcm9jID0gcnByb2NfcHRyLT5wcml2Ow0KICAgID4gICAgID4gICAgID4gKwl6X3Jwcm9jLT5y
+cHJvYyA9IHJwcm9jX3B0cjsNCiAgICA+ICAgICA+ICAgICA+ICsJcjVfbm9kZSA9IHpfcnByb2Mt
+PnJwcm9jLT5kZXYucGFyZW50LT5vZl9ub2RlOw0KICAgID4gICAgID4gICAgID4gKw0KICAgID4g
+ICAgID4gICAgID4gKwkvKiBTZXQgdXAgRE1BIG1hc2sgKi8NCiAgICA+ICAgICA+ICAgICA+ICsJ
+cmV0ID0gZG1hX3NldF9jb2hlcmVudF9tYXNrKGRldiwgRE1BX0JJVF9NQVNLKDMyKSk7DQogICAg
+PiAgICAgPiAgICAgPiArCWlmIChyZXQpDQogICAgPiAgICAgPiAgICAgPiArCQlnb3RvIGVycm9y
+Ow0KICAgID4gICAgID4gICAgID4gKw0KICAgID4gICAgID4gICAgID4gKwkvKiBHZXQgUjUgcG93
+ZXIgZG9tYWluIG5vZGUgKi8NCiAgICA+ICAgICA+ICAgICA+ICsJcmV0ID0gb2ZfcHJvcGVydHlf
+cmVhZF91MzIobm9kZSwgInBvd2VyLWRvbWFpbiIsICZ6X3Jwcm9jLT5wbm9kZV9pZCk7DQogICAg
+PiAgICAgPiAgICAgPiArCWlmIChyZXQpDQogICAgPiAgICAgPiAgICAgPiArCQlnb3RvIGVycm9y
+Ow0KICAgID4gICAgID4gICAgID4gKw0KICAgID4gICAgID4gICAgID4gKwlyZXQgPSByNV9zZXRf
+bW9kZSh6X3Jwcm9jLCBycHVfbW9kZSk7DQogICAgPiAgICAgPiAgICAgPiArCWlmIChyZXQpDQog
+ICAgPiAgICAgPiAgICAgPiArCQlnb3RvIGVycm9yOw0KICAgID4gICAgID4gICAgID4gKw0KICAg
+ID4gICAgID4gICAgID4gKwlpZiAob2ZfcHJvcGVydHlfcmVhZF9ib29sKG5vZGUsICJtYm94ZXMi
+KSkgew0KICAgID4gICAgID4gICAgID4gKwkJcmV0ID0genlucW1wX3I1X3NldHVwX21ib3goel9y
+cHJvYywgbm9kZSk7DQogICAgPiAgICAgPiAgICAgPiArCQlpZiAocmV0KQ0KICAgID4gICAgID4g
+ICAgID4gKwkJCWdvdG8gZXJyb3I7DQogICAgPiAgICAgPiAgICAgPiArCX0NCiAgICA+ICAgICA+
+ICAgICA+ICsNCiAgICA+ICAgICA+ICAgICA+ICsJLyogZ28gdGhyb3VnaCBUQ00gYmFua3MgZm9y
+IHI1IG5vZGUgKi8NCiAgICA+ICAgICA+ICAgICA+ICsJbnVtX2JhbmtzID0gb2ZfY291bnRfcGhh
+bmRsZV93aXRoX2FyZ3MocjVfbm9kZSwgQkFOS19MSVNUX1BST1AsIE5VTEwpOw0KICAgID4gICAg
+ID4gICAgID4gKwlpZiAobnVtX2JhbmtzIDw9IDApIHsNCiAgICA+ICAgICA+ICAgICA+ICsJCWRl
+dl9lcnIoZGV2LCAibmVlZCB0byBzcGVjaWZ5IFRDTSBiYW5rc1xuIik7DQogICAgPiAgICAgPiAg
+ICAgPiArCQlyZXQgPSAtRUlOVkFMOw0KICAgID4gICAgID4gICAgID4gKwkJZ290byBlcnJvcjsN
+CiAgICA+ICAgICA+ICAgICA+ICsJfQ0KICAgID4gICAgID4gICAgID4gKw0KICAgID4gICAgID4g
+ICAgID4gKwlpZiAobnVtX2JhbmtzID4gTlVNX1NSQU1TKSB7DQogICAgPiAgICAgPiAgICAgPiAr
+CQlkZXZfZXJyKGRldiwgIm1heCBudW1iZXIgb2Ygc3JhbXMgaXMgJWQuIGdpdmVuOiAlZCBcclxu
+IiwNCiAgICA+ICAgICA+ICAgICA+ICsJCQlOVU1fU1JBTVMsIG51bV9iYW5rcyk7DQogICAgPiAg
+ICAgPiAgICAgPiArCQlyZXQgPSAtRUlOVkFMOw0KICAgID4gICAgID4gICAgID4gKwkJZ290byBl
+cnJvcjsNCiAgICA+ICAgICA+ICAgICA+ICsJfQ0KICAgID4gICAgID4gICAgID4gKw0KICAgID4g
+ICAgID4gICAgID4gKwkvKiBjb25zdHJ1Y3QgY29sbGVjdGlvbiBvZiBzcmFtcyB1c2VkIGJ5IHRo
+ZSBjdXJyZW50IFI1IGNvcmUgKi8NCiAgICA+ICAgICA+ICAgICA+ICsJZm9yICg7IG51bV9iYW5r
+czsgbnVtX2JhbmtzLS0pIHsNCiAgICA+ICAgICA+ICAgICA+ICsJCXN0cnVjdCByZXNvdXJjZSBy
+c2M7DQogICAgPiAgICAgPiAgICAgPiArCQlzdHJ1Y3QgZGV2aWNlX25vZGUgKmR0X25vZGU7DQog
+ICAgPiAgICAgPiAgICAgPiArCQlyZXNvdXJjZV9zaXplX3Qgc2l6ZTsNCiAgICA+ICAgICA+ICAg
+ICA+ICsJCWludCBpOw0KICAgID4gICAgID4gICAgID4gKw0KICAgID4gICAgID4gICAgID4gKwkJ
+ZHRfbm9kZSA9IG9mX3BhcnNlX3BoYW5kbGUocjVfbm9kZSwgQkFOS19MSVNUX1BST1AsIGkpOw0K
+ICAgID4gICAgID4gDQogICAgPiAgICAgPiAgICAgVmFyaWFibGUgQGkgaXMgbm90IGluaXRpYWxp
+c2VkIGJ1dCBpdCBpcyB1c2VkIGFzIGFuIGluZGV4IHRvIHJldHJpZXZlIGEgaGFuZGxlDQogICAg
+PiAgICAgPiAgICAgdG8gdGhlIHNyYW0gYmFua3MuICBUaGF0IGNvZGUgX3Nob3VsZF8gaGF2ZSBm
+YWlsZWQgZnJlcXVlbnRseSBvciBhdCBsZWFzdCBoYXZlDQogICAgPiAgICAgPiAgICAgeWllbGRl
+ZCBhYm5vcm1hbCByZXN1bHRzIG9mdGVuIGVub3VnaCB0byBiZSBub3RpY2VkLiAgV2h5IHdhc24n
+dCBpdCB0aGUgY2FzZT8NCiAgICA+ICAgICA+IA0KICAgID4gICAgID4gICAgIEkgd2lsbCBzdG9w
+IGhlcmUgZm9yIHRoZSBtb21lbnQuDQogICAgPiAgICAgPiANCiAgICA+ICAgICA+IFtCZW5dDQog
+ICAgPiAgICAgPiBZZXMgdGhpcyBzaG91bGQgYmUgaW5pdGlhbGl6ZWQuIFRoZSByZWFzb24gdGhp
+cyBnb3QgdGhyb3VnaCBpcyB0aGF0IGFzIGkgZGVmYXVsdHMgdG8gMCBhbmQgdGhlIDB0aCBiYW5r
+IGhvdXNlZCB0aGUgcmVxdWlyZWQgZGF0YS4gdGhlIGNhc2Ugd2hlcmUgU1JBTVMgdGhhdCBjYW4g
+YmUgd3JpdHRlbiB0bywgMHhGRkUyMDAwMCBpbiB0aGlzIGNhc2Ugb2Ygc3BsaXQgbW9kZSBhbmQg
+b24gUjUtMCwgd2FzIG5vdCBjYXVnaHQuDQogICAgPiAgICAgPiANCiAgICA+IA0KICAgID4gICAg
+IEhlcmUgQGkgaXMgYSB2YXJpYWJsZSBhbGxvY2F0ZWQgb24gdGhlIHN0YWNrIGFuZCBhcyBzdWNo
+IGl0IGlzIGdhcmFudGVlZCB0byBiZQ0KICAgID4gICAgIGdhcmJhZ2Ugb24gaW5pdGlhbGlzYXRp
+b24gLSBpdCB3aWxsIGRvIGFueXRoaW5nIGJ1dCBkZWZhdWx0IHRvIDAuDQogICAgPiANCiAgICA+
+IE9rLg0KICAgID4gDQogICAgPiAgICAgPiBJbnN0ZWFkIG9mIGkgSSB3aWxsIHVzZSANCiAgICA+
+ICAgICA+IA0KICAgID4gICAgID4gICAgICAgICAgICAgICAgIHNyYW1fbm9kZSA9IG9mX3BhcnNl
+X3BoYW5kbGUobm9kZSwgQkFOS19MSVNUX1BST1AsICAgICAgICAgICAgICANCiAgICA+ICAgICA+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG51bV9iYW5rcyAt
+IDEpOyANCiAgICA+IA0KICAgID4gICAgIERvIHlvdSBoYXZlIHRvIHN0YXJ0IHdpdGggdGhlIGxh
+c3QgYmFuaz8gIElmIG1lbW9yeSBzZXJ2ZXMgbWUgd2VsbCBpdCBpc24ndCB0aGUNCiAgICA+ICAg
+ICBjYXNlIGluIHRoZSBwcmV2aW91cyByZXZpc2lvbnMuICBXaHkgbm90IGdvIGJhY2sgdG8gdGhl
+IGltcGxlbWVudGF0aW9uIHlvdSBoYWQNCiAgICA+ICAgICBpbiBWMjU/ICANCiAgICA+IA0KICAg
+ID4gTWFrZXMgc2Vuc2UuIFdpbGwgcmV2ZXJ0IGFzIHN1Z2dlc3RlZC4NCg0KICAgIEZvciB5b3Vy
+IG5leHQgcmV2aXNpb24sIGdvIGJhY2sgdG8gVjI1IGFuZCBmaXggb25seSB3aGF0IEkgY29tbWVu
+dGVkIG9uLiAgSQ0KICAgIGNhbid0IHJlbWVtYmVyIGJ1dCB5b3UgbWF5IGFsc28gaGF2ZSB0byBm
+aXggdGhlIHB1dF9kZXZpY2UoKSBwcm9ibGVtIHdlJ3ZlIGJlZW4NCiAgICBkaXNjdXNzaW5nLiAN
+Cg0KT2suIFdpbGwgZG8NCg0KICAgID4gDQogICAgPiANCg0K
