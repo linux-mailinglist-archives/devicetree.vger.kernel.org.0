@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5900A342E6F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 17:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED921342E92
+	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 18:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbhCTQlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 12:41:10 -0400
-Received: from mout.gmx.net ([212.227.17.21]:54093 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229769AbhCTQki (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Mar 2021 12:40:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1616258433;
-        bh=L26U0dSxXV92Zaj3k91eaUjljjT8BQetpl9WjDf6874=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ilrWU23sAGX2IYU8loALRr+957bF+RDbf7CYTuaclrHh+I7yVOe4hZ1d9NYB7h5qN
-         tn0xOrjCYwIpeq+nkjP5BARzmeSHcv4NBcKsgd3JkfZqqWU0o/MBNvb0FBXXexQ+sD
-         QCZaD99+4wbcduEJJhknTxKruA0NDNxJ/ys61WAo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N4zAy-1ln7X30Wgu-010xBv; Sat, 20
- Mar 2021 17:40:33 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     devicetree@vger.kernel.org
-Cc:     openbmc@lists.ozlabs.org,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] ARM: dts: Add board-specific compatible string to npcm750-evb devicetree
-Date:   Sat, 20 Mar 2021 17:40:22 +0100
-Message-Id: <20210320164023.614059-2-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210320164023.614059-1-j.neuschaefer@gmx.net>
-References: <20210320164023.614059-1-j.neuschaefer@gmx.net>
+        id S229772AbhCTRQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Mar 2021 13:16:58 -0400
+Received: from mail-40131.protonmail.ch ([185.70.40.131]:56499 "EHLO
+        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229821AbhCTRQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 13:16:53 -0400
+Date:   Sat, 20 Mar 2021 17:16:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1616260611;
+        bh=XHD5SNh+JKh0y8dumYp4YnG/TSTm/z8ZjC7Ay7aNkvI=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=Zzcz8jnVlrGykUWjhEwsd3PP2HLzin8LdqVKriRM7EwIUfo5z0kzLyTSHudAeJrwl
+         HRfgu0REkoxNRMdCT1/0JoDJ5Y3ZHVFaluT2bGik2/3b3Z4+06ytW0hLlSt2D41tj+
+         ZxXZddxGiWUNBvl8I9nwWq3WNpdcqsj92l1D3/3U=
+To:     Vinod Koul <vkoul@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: add iommus to qups
+Message-ID: <5ab5b7df-1624-10bf-f268-c32dc5bf0bb6@connolly.tech>
+In-Reply-To: <YFBM5Up5caWZCMSx@vkoul-mobl>
+References: <20210310163024.393578-1-caleb@connolly.tech> <20210310163024.393578-3-caleb@connolly.tech> <YFBM5Up5caWZCMSx@vkoul-mobl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:21kWaxejy7e7NxgQlEvkLx2G+V4V5I4UsiWLRFMInkk9qykpfZO
- /48Yk+VR8pFFR2gz9lBCSPve/2ItAOhLMNs2l+FZnMgZsxZnh/GMpY2DQsmD8CGyZTNFjNL
- 6f5T2mJOr0l1xaJjVauH80F/NIpOOwA9Tb2inzlM0QuEux5wd9/cakbXY3hSRpYm3rip0Gs
- p60bFx+vIlcf87JPH3uXg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:T7u96VjaVqQ=:yS9lxHNITsi5drK87khYQL
- LYCyFbqwpTJpBYEwJZG+/Qqg7Tn0Mg4DDqqBh95YDMOjARmo6t37ytswBuviKYCurmP7+wKMS
- Y7yLAp5a7YfTqcrv/C3qiF8L2e4nENz3ch3Af/Fy/paOBPFxlAtBXHWuGt/mbpWmpufSnIUes
- X11NApJlczPOpNPT466l0zalF1JT+SYkz3MJzMdnBwhY3a16vEJZ4SpM5HBrPPAtEbnmjhtIv
- gPv3i1HI/yufiBeMizSnkHjqITJ186bxNBFt4LskTTK1l0Mb151HYe+YefKztGiIa5LVAX1K8
- z/Nuu2iq+cy8lRwS1In675dRHyWV93Q/i75xI1OGVUKBWzoqPGk85eugA/9sno3h+C0/cuwcj
- i+lZ1sf9+tQi6tGs7rnmiP+iWNbvXBM79DyI2+eG7t7IWo7kr8DZV2z12RzxYMOv2QfwUfuZM
- qvDK68FSx0KAai0Bv5DOy4dFZyxaACcul9Er/6rGoQai9Jggi4db3/uonZK/ZzCPOwjaH6klj
- GmrKql4MTsi4wFxIMgwGXhcb6OgiUM9T/RyMHd7FmYIA9iJNYPLXIo1MmXp/gYsNyaQHdtF1H
- E22zAA7nTUTmDaOvBP+1ok/LdR45GLzWxY5yfdy7uZGpakHnzqECTfHIuprGE/AKPeoVJV4ZU
- quLxIMor634f8D8k31HL0m4ucv7+egqgDBhOh/Z3LyNKKnSg8DHY03LCjhBttri+2JVEplY1y
- ipnV2FrgdHtxgbEjzrGSN7UdLl4LcpsvL08W6wkmaRUYZ1pgAydjObIwCj0Q5eSvDahbLT4mX
- BuFZ36V9hYn27E5sAB+8EHlYnTEpWJypdgNcPf/zfQ72PRSSyUCGY8OUA7iVJFT+LEKWz/zPs
- 6ownoy6/7j4evJTJCS3Q==
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the revised binding, the devicetree needs a board-specific
-compatible string.
+Hi Vinod,
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+On 16/03/2021 6:15 am, Vinod Koul wrote:
+> On 10-03-21, 16:31, Caleb Connolly wrote:
+>> Hook up the SMMU for doing DMA over i2c. Some peripherals like
+>> touchscreens easily exceed 32-bytes per transfer, causing errors and
+>> lockups without this.
+> Why not squash this to patch 1..?
 
-v4:
-- the same as v2
+I thought it made more sense to separate these patches to keep the=20
+history a bit cleaner. I can squash them if you'd prefer.
 
-v2:
-- no changes
-=2D--
- arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ =C2=A0=C2=A0=C2=A0 Caleb
 
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts=
-/nuvoton-npcm750-evb.dts
-index 9f13d08f5804e..dea3dbc4a6a52 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-@@ -9,7 +9,7 @@
-
- / {
- 	model =3D "Nuvoton npcm750 Development Board (Device Tree)";
--	compatible =3D "nuvoton,npcm750";
-+	compatible =3D "nuvoton,npcm750-evb", "nuvoton,npcm750";
-
- 	aliases {
- 		ethernet2 =3D &gmac0;
-=2D-
-2.30.2
+>
+>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+>> ---
+>> Fixes i2c on the OnePlus 7, without this touching the screen with more
+>> than 4 fingers causes the device to lock up and reboot.
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/=
+qcom/sm8150.dtsi
+>> index 03e05d98daf2..543417d74216 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+>> @@ -583,6 +583,7 @@ qupv3_id_0: geniqup@8c0000 {
+>>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
+>>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+>>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+>> +=09=09=09iommus =3D <&apps_smmu 0xc3 0x0>;
+>>   =09=09=09#address-cells =3D <2>;
+>>   =09=09=09#size-cells =3D <2>;
+>>   =09=09=09ranges;
+>> @@ -595,6 +596,7 @@ qupv3_id_1: geniqup@ac0000 {
+>>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
+>>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
+>>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
+>> +=09=09=09iommus =3D <&apps_smmu 0x603 0x0>;
+>>   =09=09=09#address-cells =3D <2>;
+>>   =09=09=09#size-cells =3D <2>;
+>>   =09=09=09ranges;
+>> @@ -617,6 +619,7 @@ qupv3_id_2: geniqup@cc0000 {
+>>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
+>>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_2_M_AHB_CLK>,
+>>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
+>> +=09=09=09iommus =3D <&apps_smmu 0x7a3 0x0>;
+>>   =09=09=09#address-cells =3D <2>;
+>>   =09=09=09#size-cells =3D <2>;
+>>   =09=09=09ranges;
+>> --
+>> 2.29.2
+>>
+> --
+> ~Vinod
 
