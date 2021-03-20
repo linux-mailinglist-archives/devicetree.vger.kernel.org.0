@@ -2,102 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D9E342C4F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 12:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CCDC342D2F
+	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 14:52:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbhCTLiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 07:38:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45032 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbhCTLiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 07:38:16 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD2C0C0613E7
-        for <devicetree@vger.kernel.org>; Sat, 20 Mar 2021 04:38:15 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id u4so15091424ljo.6
-        for <devicetree@vger.kernel.org>; Sat, 20 Mar 2021 04:38:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=kpNq+4pzC9q8PqJhkJv2XRb1wrmskPmzcnX1wwKvIT4=;
-        b=usugGJstphxXID2U3mOQ0opUCwdg/eCHLAtS59XDR8tr3xP4kZJtMMR0DrqiFbW6mZ
-         BbckAuDWNuz4KbRLDestCcqT8Uez7tzJLs3cwOfMLdwRXZsl7SibDBzirk2IQpxekq61
-         /1QsQsXGlPQCx2dOSloA4aUDIYozO+iw6KrlI5M8yeiFs7qryv3HcqriKXyrq/4EumRg
-         l/+GL0zfhGgQtURUrW75R1gFnJPspwWqYqyt9UVBfhyO4nJMyX/Sv27EqiGlzWull2St
-         yuH9eYED9+/Acl2/IA4GACeD2tlkq04pmCkJl+RObkCDqUMklXKnGJGd+VyRHyzvZcko
-         jpUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=kpNq+4pzC9q8PqJhkJv2XRb1wrmskPmzcnX1wwKvIT4=;
-        b=XCXluqYIkWY7bWbxwi4D5NA54UmyTJ9vP9EqhE2Lr3wFRVdiZs0uvkIETDldQDAAQK
-         vVSQ2kDLTnBP4caw6m+9wC2UELJ4jx+FZLP4DbsRXXlPa/V6tAMP8JYgtwDcKOXYCMR1
-         725eeVR1NJQMHI+5xqqZ57X+9FC4f+VOzaW41jJH6bIDlnErZtsjgUM/tYcA12DgIJF5
-         BGdWweDbAWylUoRYuJOXjiSLZRa1v+bWVaTmpvfpcQmQr0wR0gGqTCK3yc1LV5R38Wso
-         h7yZKmJufoqT5rtf143C8/SsKSaxlPABzvPHLJumKvdrFW222PXLoKg8x6PTAIvMyfln
-         xtKg==
-X-Gm-Message-State: AOAM533xBAEn/dwJVaMKGjamBeXO8/e4eSABooUhV+jQY5a2shrZDk9g
-        ETG62lemPGDw9ExV+5+ueMlPFYFT1KCPtSv7pvYW0w==
-X-Google-Smtp-Source: ABdhPJyph+35e/m+iaGdkuTx9JEupeD2nzqVohDvenngcwRbROO6Pk1TaZAWccwtj4OtmgFGBBO29aVwIAewWbg4Yhc=
-X-Received: by 2002:a2e:700a:: with SMTP id l10mr3571819ljc.368.1616240294278;
- Sat, 20 Mar 2021 04:38:14 -0700 (PDT)
+        id S229640AbhCTNvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Mar 2021 09:51:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44930 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229585AbhCTNvK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Mar 2021 09:51:10 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5167C6193F;
+        Sat, 20 Mar 2021 13:51:05 +0000 (UTC)
+Date:   Sat, 20 Mar 2021 13:51:01 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Kevin Tsai <ktsai@capellamicro.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: More cleanup of standard unit properties
+Message-ID: <20210320135101.64c5c4e1@jic23-huawei>
+In-Reply-To: <20210316194824.3526913-1-robh@kernel.org>
+References: <20210316194824.3526913-1-robh@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210315114214.3096-1-noltari@gmail.com> <CACRpkdYdHgP7QNWco4aN1G-GaRjOd2Y=_fkxv4zOKsQtXtpqfg@mail.gmail.com>
- <34672AEE-B28E-4B07-BFDA-8DF2F20FD410@gmail.com>
-In-Reply-To: <34672AEE-B28E-4B07-BFDA-8DF2F20FD410@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 20 Mar 2021 12:38:03 +0100
-Message-ID: <CACRpkdbKtjNjC57_m9+3BTex6XmjUrsYN8NkMiCxPt37s3pv-A@mail.gmail.com>
-Subject: Re: [PATCH v7 00/22] pinctrl: add BCM63XX pincontrol support
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 12:20 PM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
+On Tue, 16 Mar 2021 13:48:24 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> I appreciate that, but I=E2=80=99m having a hard time in understanding wh=
-at
-> Rob wants and since there are no examples available on most of the
-> stuff he=E2=80=99s requesting this is really frustrating...
+> Properties with standard unit suffixes already have a type and don't need
+> type references. Fix a few more cases which have gotten added.
+> 
+> Cc: Luca Ceresoli <luca@lucaceresoli.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Zhang Rui <rui.zhang@intel.com>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Kevin Tsai <ktsai@capellamicro.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: linux-iio@vger.kernel.org
+> Cc: linux-input@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-I am sorry that the situation can be stressful.
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-This is not Rob's fault, at least it's also mine.
+> ---
+>  Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml | 1 -
+>  Documentation/devicetree/bindings/input/input.yaml              | 1 -
+>  Documentation/devicetree/bindings/power/supply/bq256xx.yaml     | 1 -
+>  Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml   | 2 --
+>  .../devicetree/bindings/regulator/qcom-labibb-regulator.yaml    | 1 -
+>  .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml          | 1 -
+>  6 files changed, 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml b/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
+> index 27972938b60d..c63b79c3351b 100644
+> --- a/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml
+> @@ -48,7 +48,6 @@ properties:
+>    vdd-supply: true
+>  
+>    capella,aset-resistance-ohms:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [50000, 100000, 300000, 600000]
+>      description: >
+>        Sensitivity calibration resistance. Note that calibration curves
+> diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+> index ab407f266bef..3fc37478c0c0 100644
+> --- a/Documentation/devicetree/bindings/input/input.yaml
+> +++ b/Documentation/devicetree/bindings/input/input.yaml
+> @@ -32,6 +32,5 @@ properties:
+>        Duration in seconds which the key should be kept pressed for device to
+>        power off automatically. Device with key pressed shutdown feature can
+>        specify this property.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+>  
+>  additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> index 18b54783e11a..92ec7ed25668 100644
+> --- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> @@ -39,7 +39,6 @@ properties:
+>      maxItems: 1
+>  
+>    ti,watchdog-timeout-ms:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+>      default: 0
+>      description: |
+>        Watchdog timer in ms. 0 (default) disables the watchdog
+> diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+> index 1f88c9e013f4..6d7aa97a6475 100644
+> --- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+> @@ -29,12 +29,10 @@ properties:
+>      description: I2C address of the charger.
+>  
+>    lltc,rsnsb-micro-ohms:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+>      description: Battery sense resistor in microohm.
+>      minimum: 1000
+>  
+>    lltc,rsnsi-micro-ohms:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+>      description: Input current sense resistor in microohm.
+>      minimum: 1000
+>  
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> index cf784bd1f5e5..1ddc1efd19e2 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> @@ -23,7 +23,6 @@ properties:
+>  
+>      properties:
+>        qcom,soft-start-us:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+>          description: Regulator soft start time in microseconds.
+>          enum: [200, 400, 600, 800]
+>          default: 200
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> index 7cd364430573..95a728f4d333 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> @@ -78,7 +78,6 @@ patternProperties:
+>            also known as absolute calibration.
+>  
+>        qcom,hw-settle-time-us:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+>          description: Time between AMUX getting configured and the ADC starting conversion.
+>          enum: [15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
+>  
 
-The real problem we have is lack of hardware people
-reviewing hardware descriptions, to put it simple.
-As reviewers we get a bit confused, then we try to make
-a mind map of the hardware as most driver developers do,
-but as we are not chip designers we will make
-mistakes and get confused and there will be a bit
-of back-and-forth and inconsistencies.
-
-The bindings have very high ambitions (to describe all
-hardware) but it's a bit like food: the less you know
-about how it's produced, the better the taste.
-In fact it is a best effort and involves a bit of guesswork
-and group effort and you are part of the group effort
-now :)
-
-Yours,
-Linus Walleij
