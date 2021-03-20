@@ -2,108 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8716342F11
-	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 19:48:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC776342F1A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 20:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbhCTSrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 14:47:40 -0400
-Received: from mout.gmx.net ([212.227.17.20]:46849 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229618AbhCTSrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Mar 2021 14:47:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1616266033;
-        bh=LuOjfQRBhHaxebGkf9teuGUSZn3FEqur6K8tG5qXzbw=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=NSfDKI2FYEv4rlvO2c/VGEasauxFNeXLDT9XBpN/3AGKYEkXk1HANVmi9TSY2F/kL
-         GjCctfv90pKvApD/4WbtMi0wbmDbhjsX3+mxFPMxeTDifaI5N1wPGVyvmR03ygFqWM
-         qhW8824Xkj7EPmfOUL1cE0xlygYfIwHmVMdY5/Ww=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MdefJ-1lxIQa02AD-00Zjd1; Sat, 20
- Mar 2021 19:47:13 +0100
-Date:   Sat, 20 Mar 2021 19:47:12 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/14] Initial support for Nuvoton WPCM450 BMC SoC
-Message-ID: <YFZDMN2Y45LywFhp@latitude>
-References: <20210320181610.680870-1-j.neuschaefer@gmx.net>
+        id S229879AbhCTTCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Mar 2021 15:02:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229874AbhCTTBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 15:01:35 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33AEC061574;
+        Sat, 20 Mar 2021 12:01:34 -0700 (PDT)
+Received: from [192.168.1.101] (abac242.neoplus.adsl.tpnet.pl [83.6.166.242])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 83C4D1F5FA;
+        Sat, 20 Mar 2021 20:01:30 +0100 (CET)
+Subject: Re: [RESEND PATCH v4 1/2] dt-bindings: tsens: qcom: Document MDM9607
+ compatible
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, Amit Kucheria <amitk@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210319220802.198215-1-konrad.dybcio@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <5733a2bf-8a75-2224-b821-eeb8556c6914@somainline.org>
+Date:   Sat, 20 Mar 2021 20:01:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="u+V4Hm1L7gfdagCz"
-Content-Disposition: inline
-In-Reply-To: <20210320181610.680870-1-j.neuschaefer@gmx.net>
-X-Provags-ID: V03:K1:o8+G4TVvh3KdxtyWxezJR3C4JAolmncFVIJVLrEkLtrqwecWd9p
- OKjY6SZZo2QXxEEVtO6KvB7rqC/AWy3Dz2rUOQSzYZQ7ZHhIeSTOpJ5AoRmsIgz5oTc1Z0f
- lIWHXcaBN+nrI0MYoFR2EoRvuwOaAjt0oZT1ven8FiZMt+Dx/xHZeh52aCR8t/1/zeGck3P
- Xs6+KWaS5T/bY4oJIixYg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:b093PQXZp68=:pheTT2yS73H0mjRqZcfJQY
- IhFsMWInNOs/KEXtpDqYKZifUuzPtcwNtPTta4TuDqquzixrDL1kasqRk8D1VIqljfYO5nRAz
- lMy2QGXAjp/f4Ich8q6Kzu23I8BZIA6ULqG3/JXDCggWQ1et7RF++BPdWtuV3WWi8dNZEKSF9
- zqvTEu3W0y6QlT4CM470EpNXCEtKWdmmEal0u6LoHsYAoLA7vlTraNRthvL1RGeqDUisIt30Z
- sxZJu7X4cXbsqqwf8T3iu6bZ3g04tFalZZBdMiwvv7y8U3S36vOcvQDRR/vfkndD5F3aKxra9
- 0Rtl0nNK7B06RrCPkIp70dbks2GfQhBSu6toZmERZu83gwKRJLiuUnQozKWQTudeugEz3IyjU
- EVvbTNQfJrSa2ZeebLS5Ld+BHuqWwR2+tekgG+2XqKiZIupSOEN5cfQHNPMPea0eDwnmv0y4I
- P2SnWvEHJV/qKqr2LjOjoddeahuPjVDqCLAkk7lopjeO1STYrDsKvRJkm7ZIGAvaQaKDkWGBv
- pGQjcFfxYpniSctUT+7gmD9RQnAJjaVuB8h4u4ixBcYbiq2ZnyIQIleb7M37C2hDI1fPfSfkq
- qOKiPVn50LZe6hzcpLQVRaKwf0T4Hpa4c7vJ9QI30MzBy+6vu6N6XOY4UByC8KGi+yi1YFwSY
- RvbCYDMjx72LmVqELUsEUmKnRe/vRiEqpu/KgF0EDJbGt5Hf0h2LuzSiV0b5zjrcsvIryGrgp
- ENA5MYbPbH1AMnZreYBIGetw8y2Nf8Wtkts71zbQyGnu9+mtt4bzHoR8HdBdrsFFOHGQ3RXN/
- slx9/pbd9PTdg+z0BUWacF774XnP0aSaD59uR+C/IDcVVFkvvIezRaO2hc6nnX0h74SQ3745X
- AW+cMbo+l68EMjZJagpeDy6Ewi00Ap1sJ5d7mvGWk9ASb8ggP6+i6Ab+sbJr/X0UR1u0PuYUh
- PeLkQeN/G2fcqSgXdFRg0bAdvFEF2pLuisHrO+XvFzCaa+8EKE8lt+gkQivOFPkrEw7x0fZ4p
- 8XU1JYM1y6QkeeCXhZ28GIYXZNB62xaYebZnUeacm6l9CcYasd1pbamT3Ni7l8gbuqy7oA5z/
- d0Tnr2pa1e0lbpcNTrX3IzHYx3gkYLxIo5ONA0pFs5aswWEYhWH2tp38hlEOhrj7XQQmWirGI
- k0ERrJyrRZUlVoIW8DJTh2yipkWpmpw2Aj9MG/1x9qbC5wBje1zAykInEKL4epniNsJq95jB/
- ott8/6Gi/wguFRklB
+In-Reply-To: <20210319220802.198215-1-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the compatible for MDM9607.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+> v4: separate from the main patch
+>
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
---u+V4Hm1L7gfdagCz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Mar 20, 2021 at 07:15:56PM +0100, Jonathan Neusch=C3=A4fer wrote:
-> This series adds basic support for the Nuvoton WPCM450 BMC SoC. It's an o=
-lder
-> SoC but still commonly found on eBay, mostly in Supermicro X9 server boar=
-ds.
-
-Something I forgot to mention: I wrote a bit of third-party
-documentation based on the various vendor kernel trees and it's
-available at:
-
-  https://github.com/neuschaefer/wpcm450/wiki
+This change was previously a-b Rob Herring, I forgot to add the ack back in after separating the patch, sorry for that.
 
 
+Konrad
 
-Best regards,
-Jonathan Neusch=C3=A4fer
-
---u+V4Hm1L7gfdagCz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBWQzAACgkQCDBEmo7z
-X9sNUQ//QYevCWqjbbrsYVVPQWIT8JzCoGIJDIpfzMsgBsu3pkklN9zSZs/R+yH9
-O4lDdU3eHDU53sgkoOEreUR89NfqJZ+/nZQD1V5KmrNl3gDFFiuofKSDGs8ay7JA
-2Eu5oyFceIoB93QjE6JIjcYXy2eQutaui+3q5/dqqJfUwBPHCHcDygLynoXuSb1R
-q7IpkNms4PrZzcCoOd2FS81TWEsnuSwABx9n6s7SfNCn2RMMzyVsOwfPiCryleQI
-LLz8bFWaeIM+VpxGwWvOK6xPO0PMnzXL6+sl2XPakyJSc74slvw0+X2XBvzUx+tg
-oFf8IKpDcO/j7A6LS68jInhUFOp3NIIxuvFZj+pk4zOg9a4Z0jnx6jZxCNIk9K8e
-OsSK1tHf5Oyh2eJrKRNAVEE3xSjvKfGLcJFDLRpgNKEoeSDBqTdFHarOilKGHzHJ
-revhD2cryCtdcvUaaJX/TCE8KSwQVzKkpgL/xAjzxqQMpl+yTEpLQf4qUY3G9K/Q
-S00Dd/He+q9FLT8mLfwwzYdXOU3o/HNcj+lcOc320C0DVyDmQG7OU4B7DM7U7hVD
-34PhR9AswDGo01EESVuU2NZtBVn4TQYTeUsdQJLlkN9Y0/lp1C6I/BLzn6uFwkXV
-L67mVUZHLhDmV63EgRh7WhlA4wJB4Lueg8w6cEbgEAx99DIy6S4=
-=Bcqm
------END PGP SIGNATURE-----
-
---u+V4Hm1L7gfdagCz--
