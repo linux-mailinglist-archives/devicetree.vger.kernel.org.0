@@ -2,105 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED38C342E1E
-	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 17:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054B7342E5A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 17:26:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbhCTQCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 12:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbhCTQCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 12:02:47 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3BDC061574;
-        Sat, 20 Mar 2021 09:02:47 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id f26so15675074ljp.8;
-        Sat, 20 Mar 2021 09:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ckrcEbmff1iIMspLq9lx4bc/o3J3DdXAByPuLZNU9cg=;
-        b=HzwIqhpBTZUgkPY3d5szguL4q6maumEY/kIcJ7ceQ5vMmlEic7jw/quc0RHxOxs0C3
-         uILyid4u/gwzxEeKIPWVykAhGCEHaLPuTfqfgggE0gD694grWgrVFbcuYZ9gsdjBODQH
-         HV2O2PgS9bu2u6FUKXEXyzTOwHRCW7nq9GixeI6HqEFwvT7AFu4BeOHxwivYVOaORCgg
-         NnnOMumwtvUqYi8drtcJVf4Qb/byXz9KTTjaL6qvQ3Ojpif8iLWOlfFmDMHN8yA1nCpY
-         X9LHEp/3LPY/FDMLjDs/HPCIFqMARvcPWpC7xvdxR9zAuWcig2f0t6C7IdNZKdMhUSgC
-         LkKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ckrcEbmff1iIMspLq9lx4bc/o3J3DdXAByPuLZNU9cg=;
-        b=bauKiJpBFcpZEQqSLYChddlTZ+N5Bp8WSIM4PaSYVB9LGBLGNmLR3bkT5GvjNhutNU
-         yT0V98nHoy3T3Da78qJQYKNmxbJU233x1Gi9tME92WdIKs7hMGaSztNQUzhHJCkazT+e
-         uUfLyxcbpphrMxJqLHt0eOeeK/TIIdMDKFwD5I54zDntCDmYZAvqJ7iclURZW4PqsDn5
-         3q4veHqQbRjmGqp1N6xia1E6SX+8TJQ4c6zQLnCFFh+KjPOGq8p2FcE3SF+S/TDmrUqW
-         3aED0AVSOQoTu4BUueJQsy7knpO6hc0h4s/h7CsnaC6D97YwloP9qqN45PagpowqYsVq
-         iIkA==
-X-Gm-Message-State: AOAM533G/yXqZQ9ydpvyLItVDsZTwXJK5GwWdz3IqTnrSa+l7NRQ6OVn
-        PZBUZN6NcWfPNHJAwg6+g81f24OzKi8=
-X-Google-Smtp-Source: ABdhPJwfcJXcIHdsjEO62pMyNeYxKV4L0QkLYIMwtkeP29PwQ3/0ZdkIvd3fBIA8Iz+lgQ5CRgBubA==
-X-Received: by 2002:a2e:9e8e:: with SMTP id f14mr4408333ljk.140.1616256164712;
-        Sat, 20 Mar 2021 09:02:44 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-52.dynamic.spd-mgts.ru. [109.252.193.52])
-        by smtp.googlemail.com with ESMTPSA id q14sm964257lfd.214.2021.03.20.09.02.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Mar 2021 09:02:44 -0700 (PDT)
-Subject: Re: [PATCH v6 0/3] Support wakeup methods of Atmel maXTouch
- controllers
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiada Wang <jiada_wang@mentor.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210302102158.10533-1-digetx@gmail.com>
-Message-ID: <8c1280f6-b79f-9c62-a064-68b119d74c49@gmail.com>
-Date:   Sat, 20 Mar 2021 19:02:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229870AbhCTQZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Mar 2021 12:25:46 -0400
+Received: from mout.gmx.net ([212.227.17.21]:40719 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229821AbhCTQZ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Mar 2021 12:25:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1616257522;
+        bh=ZpkTsQVJAs0NmjcD3kPzM+Qqlv9LHiEPdh8aPjoXU6w=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=TKFg4pfGRP4tnVOXItunWvOkHGvYjwSoE0129cCYJgIS0Jk1yAG3E2746msZq0n54
+         4e8mqrcaiBHNFnmsJhL7ivB0w2ADgjAS8IiGQqkemTajDVQ4UiLl6bSpAdvTuiDHH5
+         L/6Ri1SJLxSs1y+Bxgrqn3ZygH0Y3xWKnchIJQKQ=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MgNh1-1ltRSY3f4R-00hyOH; Sat, 20
+ Mar 2021 17:25:21 +0100
+Date:   Sat, 20 Mar 2021 17:25:19 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Rob Herring <robh@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: arm: Convert nuvoton,npcm750 binding to
+ YAML
+Message-ID: <YFYh79cydgukgTSv@latitude>
+References: <20210313175321.2515675-1-j.neuschaefer@gmx.net>
+ <20210315162338.GA973222@robh.at.kernel.org>
+ <YE+dmdBBk0BZ7BIO@latitude>
+ <CAP6Zq1hsmTQfA+EvRmJsK2UosV3YAeRqNxA+jRaeYUx5T-wE1A@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210302102158.10533-1-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OByzjVDcIkp4YBkT"
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1hsmTQfA+EvRmJsK2UosV3YAeRqNxA+jRaeYUx5T-wE1A@mail.gmail.com>
+X-Provags-ID: V03:K1:5gJjv8CuTmoyg4ZYdvDNUl7h45WoDH2ALmkuUuiOumF3NA9yGzj
+ k/LKmhSLnK0V0J56db+X7EpdYlj6F2yYt5WqHSHylG5AtBa/2Ami/8ZnoFycfXV9RW5woQE
+ QZyfsqEtmFwa8im7O0+r4kz+ecHSR9DMco3DBfkxEe/+rWtMbx5NwH8nHCiCm+51Hj741Hw
+ 8q31mPXxMcfoU2yjnFnig==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:h3bbpHIxfWU=:9Fwy92oSnTi9znW9izPVaT
+ dxpolH6gYH7XXKvbx+O8Mk97e/UqQPqLj9hpfLEy8Ww19b2Pa0JrOkeFbZXW5Zy9071HyabBH
+ G76vTjEF6JzjhP4EvA3tRFU9jrQaclid6h/VyEgzECyWGkp44eYKJO9bzRN1vbfkXizAqPl1z
+ +JhA2Q+J2HSJe1D+Kzsaag3oUc0ED1Bg2i1rLBS0911GdLhSk+oLvr16RQ73DzCPcALn7imtJ
+ H42me/ZjGCRvkAUpAv+TkT5lzsOWB5xmrD01Tomk1HJZt4Z/T2Kg+OiCSs5FJvVdDOsBuWn/G
+ tomrly+S0t551AY56p760ALloBqsoQzNMCYfDo44lk1Joo6Q0JA33jzCSUq7qFRFq7i9UBPk3
+ g315lIiFD9xzz6c8VS9KuLJ0BAQmBTbVAtz41RAuWQubMiNxhgma3RI/OmUsrDw8Pfzw4zu4c
+ WXu3S+HLyMFHOOL2WuwVXN/EBM/+NIBbQpgIjEezvaXuP7avs79kz61QP9dHgVtv0W42vnT6r
+ ERa9tYjacXJZ86Tfn/Nkr2WHtUe3J0SbTfBk97I1qsBsRYZ75lJGl7X4jT8eglsZBsyHHqd+C
+ ddLp1FyR5lkT2j2WmQwckwmEZkQu/EKws2JVPGAIsdZ8BkxkzEXvq4Vr8L2q+9RW0b1QJESkS
+ 6GdviuJx2JcNDvQLqGYka6UhUzHGP92BhewAXKwY5ufQUdhpHrityl1PSbYA0d16wem85E4Gs
+ 7HoLu77IpUyBS+ypiP/OjUHLa2dVKgj6lT8gIPm43LDf5cHoKFmYP1X230Xw85wManq2mTGeO
+ +7UKdWyhXNcv08AyAOPdrBi6aQE1N7kuc9TlBBNmWa6q5+pa81GY6TzZU+3psZze0Z1CTtUJL
+ n0uzPkGjhqCrM7fRWrRg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.03.2021 13:21, Dmitry Osipenko пишет:
-> Some Atmel maXTouch controllers, like mXT1386 and mXT3432S1 for example,
-> have a WAKE line that needs to be asserted in order to wake controller
-> from a deep sleep, otherwise it will be unusable. This series implements
-> support for the wakeup methods in accordance to the mXT1386 datasheet [1],
-> see page 29 (chapter "5.8 WAKE Line").
-> 
-> The mXT1386 is a widely used controller found on many older Android tablet
-> devices. Touchscreen on Acer A500 tablet now works properly after this
-> series.
-> 
-> This patchset is a continuation of the work originally started by
-> Jiada Wang [2].
-> 
-> [1] https://ww1.microchip.com/downloads/en/DeviceDoc/mXT1386_1vx_Datasheet_LX.pdf
-> [2] https://patchwork.kernel.org/project/linux-input/list/?series=357875
 
-Hi,
+--OByzjVDcIkp4YBkT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This series is very wanted by Android tablet devices from Acer, Asus and
-other vendors which use Maxtouch 1386 controller. Touchscreens don't
-work without the wakeup support, i.e. without this series. The wakeup
-support is implemented in accordance to the datasheet and touchscreens
-are working excellent using these patches.
+On Tue, Mar 16, 2021 at 01:03:38PM +0200, Tomer Maimon wrote:
+> Hi,
+>=20
+> Appreciate your help Jonathan and Rob,
+>=20
+> Just seeing the following EVB device tree
+> https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed-as=
+t2500-evb.dts#L8
+>=20
+> And not a EVB board.
+> https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed-bm=
+c-facebook-cmm.dts#L9
 
-Could you please take this series into v5.13?
+I see.
 
-Or could you please let me know what exactly needs to be improved?
+>=20
+> but still also option V2 is good for us.
 
-Thanks in advance.
+That's good to know.
+
+
+
+Thanks,
+Jonathan Neusch=C3=A4fer
+
+--OByzjVDcIkp4YBkT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBWIegACgkQCDBEmo7z
+X9u3SBAAi7yF8y7prcMxeGu6T/oC2LpqRpmxMKOL9+ltzU3sjL7us8m8fwabaXSU
+dnrzNCEBzOrbhJxG5N23t4dttdjeH8dGU3bOUGkKwsedxltrTIHaOuJCoJZeKzn9
+zYM53pYfarMiNYSPQNWhF5OPl71CyABQfeqdVK29hpVRxdAE8V8Ts9nQ1jPR+ete
+SzmvZM3tDHCDQWPDVGCIWY5UZr2BYGOFGDOEyuH0XPsTODM6yXnRLw2RvFjPRtnX
+4LGoso8IpWDoUBZEvaTXyprQZ4X5C2lcAb1FCxZ+mEjBPPhtgkcK1JVy99E6/y7A
+BhkB2Vbv7bhkCrC6GVbPx4j7a45wegkEomDANGVKvTIw3CkrxCAfpVOGQY5Tv91K
+emnFaNkRziV3/erQN52FuyYQNWJ4K58Ec7zt9GO5DZTRBXdg3GCPNf0e3mOFXLo5
+8emly5xbSqA/Rh/lwBZcHlqx2ZIUFjRdyUdwawtKL9MMyGAGxe1kECKgKxwbtY0I
+k25TpiBvJOIbJIeUkZtlO2QkbpUKwNeIEq1m/43OVtBzAT7SISu0ObakT6q4m44y
+YDpjtUo258DbO+lVrB/WpIZzE6M/nW6aCvku9ahOMXAh4i6EYzILYieb0SZi/T7D
+k/7J4twe1H9nXmeX3QkCMEMxKYG4wTbjhns1/PwdMKz0xUiMXCI=
+=s8+L
+-----END PGP SIGNATURE-----
+
+--OByzjVDcIkp4YBkT--
