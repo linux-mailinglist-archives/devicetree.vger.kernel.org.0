@@ -2,103 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED921342E92
-	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 18:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40ABF342EAD
+	for <lists+devicetree@lfdr.de>; Sat, 20 Mar 2021 18:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbhCTRQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 13:16:58 -0400
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:56499 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbhCTRQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 13:16:53 -0400
-Date:   Sat, 20 Mar 2021 17:16:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1616260611;
-        bh=XHD5SNh+JKh0y8dumYp4YnG/TSTm/z8ZjC7Ay7aNkvI=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=Zzcz8jnVlrGykUWjhEwsd3PP2HLzin8LdqVKriRM7EwIUfo5z0kzLyTSHudAeJrwl
-         HRfgu0REkoxNRMdCT1/0JoDJ5Y3ZHVFaluT2bGik2/3b3Z4+06ytW0hLlSt2D41tj+
-         ZxXZddxGiWUNBvl8I9nwWq3WNpdcqsj92l1D3/3U=
-To:     Vinod Koul <vkoul@kernel.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        id S229766AbhCTRv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Mar 2021 13:51:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34794 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229618AbhCTRva (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Mar 2021 13:51:30 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5F4F96192D;
+        Sat, 20 Mar 2021 17:51:28 +0000 (UTC)
+Date:   Sat, 20 Mar 2021 17:51:25 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     alexandru.ardelean@analog.com, devicetree@vger.kernel.org,
+        knaack.h@gmx.de, linux-iio@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: add iommus to qups
-Message-ID: <5ab5b7df-1624-10bf-f268-c32dc5bf0bb6@connolly.tech>
-In-Reply-To: <YFBM5Up5caWZCMSx@vkoul-mobl>
-References: <20210310163024.393578-1-caleb@connolly.tech> <20210310163024.393578-3-caleb@connolly.tech> <YFBM5Up5caWZCMSx@vkoul-mobl>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: temperature: Add DT bindings
+ for TMP117
+Message-ID: <20210320175125.3d6e5b01@jic23-huawei>
+In-Reply-To: <20210320064509.119878-2-puranjay12@gmail.com>
+References: <20210320064509.119878-1-puranjay12@gmail.com>
+        <20210320064509.119878-2-puranjay12@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On Sat, 20 Mar 2021 12:15:08 +0530
+Puranjay Mohan <puranjay12@gmail.com> wrote:
 
-On 16/03/2021 6:15 am, Vinod Koul wrote:
-> On 10-03-21, 16:31, Caleb Connolly wrote:
->> Hook up the SMMU for doing DMA over i2c. Some peripherals like
->> touchscreens easily exceed 32-bytes per transfer, causing errors and
->> lockups without this.
-> Why not squash this to patch 1..?
+> Add devicetree binding document for TMP117, a digital temperature sensor.
 
-I thought it made more sense to separate these patches to keep the=20
-history a bit cleaner. I can squash them if you'd prefer.
+Contents looks fine, but the ordering is unusual.
 
- =C2=A0=C2=A0=C2=A0 Caleb
+Vast majority of bindings I've seen have document in an order that makes
+sense for human readers (not alphabetical!)  Use whitespace
+to help readability as well.
 
->
->> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
->> ---
->> Fixes i2c on the OnePlus 7, without this touching the screen with more
->> than 4 fingers causes the device to lock up and reboot.
->> ---
->>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/=
-qcom/sm8150.dtsi
->> index 03e05d98daf2..543417d74216 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> @@ -583,6 +583,7 @@ qupv3_id_0: geniqup@8c0000 {
->>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
->>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
->>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
->> +=09=09=09iommus =3D <&apps_smmu 0xc3 0x0>;
->>   =09=09=09#address-cells =3D <2>;
->>   =09=09=09#size-cells =3D <2>;
->>   =09=09=09ranges;
->> @@ -595,6 +596,7 @@ qupv3_id_1: geniqup@ac0000 {
->>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
->>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
->>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
->> +=09=09=09iommus =3D <&apps_smmu 0x603 0x0>;
->>   =09=09=09#address-cells =3D <2>;
->>   =09=09=09#size-cells =3D <2>;
->>   =09=09=09ranges;
->> @@ -617,6 +619,7 @@ qupv3_id_2: geniqup@cc0000 {
->>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
->>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_2_M_AHB_CLK>,
->>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
->> +=09=09=09iommus =3D <&apps_smmu 0x7a3 0x0>;
->>   =09=09=09#address-cells =3D <2>;
->>   =09=09=09#size-cells =3D <2>;
->>   =09=09=09ranges;
->> --
->> 2.29.2
->>
-> --
-> ~Vinod
+Something like:
+
+
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+
+> +title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
+
+> +description: |
+> +    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
+
+Avoid repeating info in the title.
+
+> +    I2C interface.
+> +      https://www.ti.com/lit/gpn/tmp1
+
+> +maintainers: 
+> +  - "Puranjay Mohan <puranjay12@gmail.com>"
+
+> +properties: 
+> +  compatible: 
+> +    enum: 
+> +      - "ti,tmp117"
+> +  reg: 
+> +    maxItems: 1
+
+> +required: 
+> +  - compatible
+> +  - reg
+
+> +examples: |
+> +    tmp117@48 {
+> +        compatible = "ti,tmp117";
+> +        reg = <0x48>;
+> +    };
+
+> 
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+> ---
+>  .../bindings/iio/temperature/ti,tmp117.yaml   | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> new file mode 100644
+> index 000000000..927660461
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +description: |
+> +    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
+> +    I2C interface.
+> +      https://www.ti.com/lit/gpn/tmp1
+> +examples: |
+> +    tmp117@48 {
+> +        compatible = "ti,tmp117";
+> +        reg = <0x48>;
+> +    };
+> +maintainers: 
+> +  - "Puranjay Mohan <puranjay12@gmail.com>"
+> +properties: 
+> +  compatible: 
+> +    enum: 
+> +      - "ti,tmp117"
+> +  reg: 
+> +    maxItems: 1
+> +required: 
+> +  - compatible
+> +  - reg
+> +title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
+> +
 
