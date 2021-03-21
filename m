@@ -2,128 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C83F3434DE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 21:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1AEC343566
+	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 23:40:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbhCUUuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 16:50:01 -0400
-Received: from st43p00im-ztbu10073601.me.com ([17.58.63.184]:38893 "EHLO
-        st43p00im-ztbu10073601.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231343AbhCUUuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Mar 2021 16:50:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1616359336; bh=juyzAcWja1peAtly+ZqfcunSjhvziQOQK78108njBZM=;
-        h=From:To:Subject:Date:Message-Id;
-        b=KXmRqMls5SuqqpWBNn2JviOebbVuvvEY29ZWXY3jjMWZRwFLUetyZOHQdB9FFOjq0
-         eeLkMHSFHjGbgB5jXc9eKANS6EscrdZ/kejb5KAtcRKXw1FQWKrjQiJyRCRlMHHY1X
-         iy2kpCZkvnJ/n9h3MtAvwdtBdnoML3Xw5gSffyZt/dDddSZfI9zct/dqhaoVjVioUM
-         wZMjDUWb5RbsEDulOQYQd3i62TU2D2Nd5IKk30tGbf/S1Z1HT7A4x8hNe8qs1K98J5
-         S6GKK4fNIawCBUn8UCg7+DYf3XaKxvQYAsqH1jF0xx2fahsUbUmORica6gcH9T9BKX
-         o0efjrpZsfKZg==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-ztbu10073601.me.com (Postfix) with ESMTPSA id 17000820404;
-        Sun, 21 Mar 2021 20:42:15 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-Subject: [PATCH 16/16] ARM: dts: sti: update clkgen-fsyn entries in stih418-clock
-Date:   Sun, 21 Mar 2021 21:40:38 +0100
-Message-Id: <20210321204038.14417-17-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210321204038.14417-1-avolmat@me.com>
-References: <20210321204038.14417-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-21_05:2021-03-19,2021-03-21 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=987 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-2006250000 definitions=main-2103210167
+        id S230333AbhCUWkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 18:40:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230114AbhCUWkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 18:40:09 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78199C061574;
+        Sun, 21 Mar 2021 15:40:09 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id u19so7407025pgh.10;
+        Sun, 21 Mar 2021 15:40:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xOxl4J+gaL5mXp7jLwmlzUFd6rJJflkq4ygTnBvJT4M=;
+        b=GuMEytY7TtmswJXpDvUtYEHIitP5d21S5RZrRY77/hspzygn7FaS1kTy1II9LS5TL5
+         APWs2IMlOO+otcMdS3s07gLsFkflC5uzIgnJpYiOrN2NZBot2BPhHq6pa7XwPZwD5VeK
+         oDA8FroOjsE8ru4W3aFCZ5Fwq+UvtQ7AR/twoTVEq0pV+KoDsmt0EFRGzX3FaaiYZ8eR
+         jyMiF4gYyITdM40i3Q+/v1RFJPdGnP46ptLhF0J4XtCbhGouB3ysA0TMiDCcoRS/jO34
+         qxZOSXrO4dS2eij8G2wAH9rr51TqZzdg/ex3ztDt78tfX5rfufbtPbHTTKZyMMiJLwSc
+         vwEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xOxl4J+gaL5mXp7jLwmlzUFd6rJJflkq4ygTnBvJT4M=;
+        b=uG8y9EBOlLtCwBoKaO4XQUthA18Jf7dBmE6uRD51RSEvKs2PUYN44VzMeOtMOAdoqE
+         3UZJyZ4p/U7ohXnGYPclKQz3d7+8x3PnZZ7BExYC9I4u/Lt/OemNBfFWrxFny0f4BfbH
+         klZu7xGQAS1eYVs1hirM2N1vf0X1AQQUc6C8NZlbLUlhBWYHJ+ntNBW4bomScZIbEFD8
+         wW3pMT09UZzj7NJZAmiyfZHgx33XDv/0JdxWZxMYxXSb3kJSy5TcLoBzHGJGKAlDcNOl
+         g/UDQKgswV0ZlGAOmymX3UfKhi/UFC3ux9Ft9AlXh30eubjETj606Zjf4XETBaWvRcJV
+         FHPQ==
+X-Gm-Message-State: AOAM533B95c1XfvCqobMFeJPMX6/Id/OvYnFfUPyHnJ2kDtQ3yoQgWIm
+        vGM7EVgEV9PzLi1pZ1tdzUz1dw6bdwU=
+X-Google-Smtp-Source: ABdhPJx3RHJ1XtU06A9FfT0I+ZF6kxv208Dgw4ROLjzio2rYSj/nXKLtOrtSFQs87wO6AcbOmHwdnQ==
+X-Received: by 2002:a63:c901:: with SMTP id o1mr20758172pgg.232.1616366408894;
+        Sun, 21 Mar 2021 15:40:08 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:85c2:9df1:533a:87e9])
+        by smtp.gmail.com with ESMTPSA id q14sm11859021pff.94.2021.03.21.15.40.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Mar 2021 15:40:07 -0700 (PDT)
+Date:   Sun, 21 Mar 2021 15:40:04 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Nick Dyer <nick@shmanahar.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jiada Wang <jiada_wang@mentor.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: input: atmel_mxt_ts: Document
+ atmel,wakeup-method and WAKE line GPIO
+Message-ID: <YFfLRHXw/rCnGhRA@google.com>
+References: <20210302102158.10533-1-digetx@gmail.com>
+ <20210302102158.10533-2-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210302102158.10533-2-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clkgen-fsyn driver now embed the clock names (assuming the
-right compatible is used). Remove all clock-output-names property
-and update when necessary the compatible.
+On Tue, Mar 02, 2021 at 01:21:56PM +0300, Dmitry Osipenko wrote:
+> Some Atmel touchscreen controllers have a WAKE line that needs to be
+> asserted low in order to wake up controller from a deep sleep. Document
+> the wakeup methods and the new GPIO properties.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- arch/arm/boot/dts/stih418-clock.dtsi | 26 +++-----------------------
- 1 file changed, 3 insertions(+), 23 deletions(-)
+Applied, thank you.
 
-diff --git a/arch/arm/boot/dts/stih418-clock.dtsi b/arch/arm/boot/dts/stih418-clock.dtsi
-index d628e656458d..e84c476b83ed 100644
---- a/arch/arm/boot/dts/stih418-clock.dtsi
-+++ b/arch/arm/boot/dts/stih418-clock.dtsi
-@@ -94,11 +94,6 @@
- 			reg = <0x9103000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-c0-fs0-ch0",
--					     "clk-s-c0-fs0-ch1",
--					     "clk-s-c0-fs0-ch2",
--					     "clk-s-c0-fs0-ch3";
- 		};
- 
- 		clk_s_c0: clockgen-c@9103000 {
-@@ -150,15 +145,10 @@
- 
- 		clk_s_d0_quadfs: clk-s-d0-quadfs@9104000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d0";
- 			reg = <0x9104000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d0-fs0-ch0",
--					     "clk-s-d0-fs0-ch1",
--					     "clk-s-d0-fs0-ch2",
--					     "clk-s-d0-fs0-ch3";
- 		};
- 
- 		clockgen-d0@9104000 {
-@@ -179,15 +169,10 @@
- 
- 		clk_s_d2_quadfs: clk-s-d2-quadfs@9106000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d2";
- 			reg = <0x9106000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d2-fs0-ch0",
--					     "clk-s-d2-fs0-ch1",
--					     "clk-s-d2-fs0-ch2",
--					     "clk-s-d2-fs0-ch3";
- 		};
- 
- 		clockgen-d2@9106000 {
-@@ -210,15 +195,10 @@
- 
- 		clk_s_d3_quadfs: clk-s-d3-quadfs@9107000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d3";
- 			reg = <0x9107000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d3-fs0-ch0",
--					     "clk-s-d3-fs0-ch1",
--					     "clk-s-d3-fs0-ch2",
--					     "clk-s-d3-fs0-ch3";
- 		};
- 
- 		clockgen-d3@9107000 {
 -- 
-2.17.1
-
+Dmitry
