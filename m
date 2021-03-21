@@ -2,128 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF59343262
-	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 13:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BCB343274
+	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 13:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbhCUMVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 08:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbhCUMVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 08:21:18 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316BBC061574
-        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:21:18 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id ay2so5131115plb.3
-        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pk1zBavQCMgJOfI6/3DRueMGRnMF64T8/XpKS/gU6sc=;
-        b=E3oSfjmnpT74rFr+EqN+eQ4x7Xs7dlMR29T/W+9l3L3Z0+vdjmwdsk7DqXj4QDMBu8
-         N5fb1V6DUDrCG6tBLEIAKownVTj5NP7gqoeRDyXjOHlEGg2nB3EKiLmUAQh4UPayutD4
-         pL6cxwgqe/mRq5Cf7J2jIYf+uHOE1tGvLZTJeBcsM1F2HO4lMDf7gEc+d5DCxCYkRiI8
-         uX2yaLXx+gQJQWf3biN1thOJiq7uptRe/GzmPloR+aiLrhTVQQB5+EL4C08LJ1UZ7Wlg
-         EXqjIFj5HOThPfe+zb+gTa2ZJ7DhC2HMq74OepUNNaqu5/A/hryAM0XW4Ls+v10KBTie
-         D4Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pk1zBavQCMgJOfI6/3DRueMGRnMF64T8/XpKS/gU6sc=;
-        b=WHNRCtBQC0fvsqtHVjO9Vdyu1V3vaALsP+Znky6Nsdv4vrqohLkuiE/h6T4BtFgTyN
-         nA04yrso/Q+6C8F30gxjIOJvHaOgdi/kPvV3eQImzmb/qYX3jUP0SnjGthloTCMK3JSt
-         S/64a8eXzHmbFGQah6mBHKkmgyAVFOOT0zi9K0k/FYeUdk9CA1iLCkTrHpIPb5l0dt1F
-         ulLgQSQz+Cpmf3JcC6UcEr7c0yGK9U6DOzjwzIXoHLcDXRIRsVPIoUfWAWv4hFEsJAiD
-         K+7NrOnrNi6cgRe3z8exp1huXIGy220jId/TIbLaPEqhAcea6Nb1U+MgKLtY6ptP9Fsi
-         jWyQ==
-X-Gm-Message-State: AOAM533JBhOq5Ptop9/sLCDCNWwDZEmYrharVpq8tVCcZa5TZT5U15Om
-        Mv+pk6PrA6L2DN2rKcpeM912IQ==
-X-Google-Smtp-Source: ABdhPJzcNNhPqQPpRA8BGhB9v2KHrjW8RMbEuLZyH07qGD4EzaTILUyOwqgJtz/F1lOewT5bWZ1NSA==
-X-Received: by 2002:a17:902:7889:b029:e6:b9c3:bc0d with SMTP id q9-20020a1709027889b02900e6b9c3bc0dmr22583020pll.23.1616329277591;
-        Sun, 21 Mar 2021 05:21:17 -0700 (PDT)
-Received: from leoy-ThinkPad-X240s (144.34.177.189.16clouds.com. [144.34.177.189])
-        by smtp.gmail.com with ESMTPSA id p3sm9715690pgi.24.2021.03.21.05.21.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Mar 2021 05:21:16 -0700 (PDT)
-Date:   Sun, 21 Mar 2021 20:21:12 +0800
-From:   Leo Yan <leo.yan@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Coresight ML <coresight@lists.linaro.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH] arm64: dts: msm8916: Enable CoreSight STM component
-Message-ID: <20210321122112.GB488187@leoy-ThinkPad-X240s>
-References: <20210320025942.487916-1-leo.yan@linaro.org>
- <YFYWOOdHT/qJk4Mr@gerhold.net>
+        id S229874AbhCUMbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 08:31:35 -0400
+Received: from mout.gmx.net ([212.227.15.19]:45189 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229840AbhCUMbT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Mar 2021 08:31:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1616329869;
+        bh=50Y/rHSssdb5Pwhs5XahNE/25EWb0MYPd2+DkOjaeSo=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=K4MFOgmkGsCESMw93aZbF3tNIhXEMdLh8c1/gCzCjBH47PHtNeSWRNCNZRDxQlsUH
+         yRxoc+T5plK26zQtl0Eo4BDqsF4WdAAKSqJpupnrggn93jlEwyvM/Cbix2x7zMkf/i
+         iQvMC3sj5QLEfdHlgvkS2UZykwEJSgmnQ3ElbCbE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mj8mV-1lrUhF3pG1-00fAWY; Sun, 21
+ Mar 2021 13:31:09 +0100
+Date:   Sun, 21 Mar 2021 13:31:07 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 00/14] Initial support for Nuvoton WPCM450 BMC SoC
+Message-ID: <YFc8ix6TsQhLIC2v@latitude>
+References: <20210320181610.680870-1-j.neuschaefer@gmx.net>
+ <CAP6Zq1jdO_kw-B-SX0VNiVqQ1rz1vbt+DJ1quvm286+cbKec1Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ilxIgzm+yXs67A+p"
 Content-Disposition: inline
-In-Reply-To: <YFYWOOdHT/qJk4Mr@gerhold.net>
+In-Reply-To: <CAP6Zq1jdO_kw-B-SX0VNiVqQ1rz1vbt+DJ1quvm286+cbKec1Q@mail.gmail.com>
+X-Provags-ID: V03:K1:FQs9pDrWozbdgB4aDvQJNyPj2qq4NUi4WXWfmpdJ9Ugs4le4doN
+ vAUyUjwOFkMcwaivZp+wkpUWkuzY4nri9ZCR7tZhFTEffA/Lh1Xw9rm1HtP9E3Ni7Dz20xh
+ y9JZYMocTjRBzWsA7voim/gFXOapLP5ZSrGeer53sOdnZpZIAgGjXNBPwSU/yoQurDCbuA1
+ jierxz6Mvs/CkddABmvSg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Sqz6zrCVGo0=:fb6rpxLt5B0hw5thCb9eeF
+ bQIIdxRE9R5+SKzws+F0Y1QssVXt7m1y8Uuc0x0B+3xT4mcR4ov/ubEmpi3/oB67VnR9Z2bI6
+ dEaxreH4+J1oKkZ8cqsBiWk7k5Q//Rvo63jodH0Gqo67Dj25EcKUkzG0gWhrZTnZPDlVSKyjh
+ wTaQdhWy9H+IrOHyXFJomY+UURogtjyOf0EXtK+8vnYHULbEUFhRJO8CfVDL7LPLTdgCPBaIc
+ T0re3EOMeir1Bvy/kByR6M2WblaHNghIMtr5BZc2Qeiq9MPzJlSzYo5tVx/4DvYQFnTpah6ok
+ BLl6SbskYQ+jJvKZcYOFm505FpYA8EWt0OkHN2BqTC5smZ79uBuwjsIMUAzHhjctEOAoYv/+1
+ 4d8WN2msJZuvmWaYHOkEtLB+HSH/6/AYU6deVWnFKlkqYVbiv6Q6YzSUc3cAxQA4gP/zW0XC8
+ KH85vAd3L2eILogfWC71pEKRfsx722rBddYulqVlYoN0pYhgsydwSdMJzzF6G9GrFcz2mK7eJ
+ UNkKJSsQhZ+zK9R0bKMAjROJp/7YKRht2GIHdsK5KkEhP/p4SnBZGv5yK7Mf/vmHZV8Da0qs5
+ MtEeifs9tZHSsdCED+dOcJ7dkB1u7C0cFhmKgLpzubqY4ONuH+vB6y0ZE/mezLKm2WoGhPJBx
+ FdIlAMKshvmwrX4f/06vvVfANJYvf3d1XpEJ2Thmgj5YT5UFZEC53Xb1WaWhtFH7XxXOriwQ9
+ ekmp57ewVjoW5Fw61i7JgXTPFJMHNdhWD2PHz7WnDB3yknetESFKmvd3W+lp21zPmBDhG+puU
+ SYINtf3viibAseRDs/Dmh9Uo2XmvJ8c3CorsiqkxpzWn7j7NfhXa4R5uwC/nU+JzIbrKVCob6
+ O2Lvrj9/hyCVNhy4JnGw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 20, 2021 at 04:35:20PM +0100, Stephan Gerhold wrote:
-> Hi Leo,
-> 
-> On Sat, Mar 20, 2021 at 10:59:42AM +0800, Leo Yan wrote:
-> > From: Georgi Djakov <georgi.djakov@linaro.org>
-> > 
-> > Add DT binding for CoreSight System Trace Macrocell (STM) on msm8916,
-> > which can benefit the CoreSight development on DB410c.
-> > 
-> > Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> > Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi |  1 +
-> >  arch/arm64/boot/dts/qcom/msm8916.dtsi     | 27 +++++++++++++++++++++++
-> >  2 files changed, 28 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > index 3a9538e1ec97..dd87e5d739ab 100644
-> > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > @@ -406,6 +406,7 @@ &wcd_codec {
-> >  &etm1 { status = "okay"; };
-> >  &etm2 { status = "okay"; };
-> >  &etm3 { status = "okay"; };
-> > +&stm { status = "okay"; };
-> >  &etr { status = "okay"; };
-> >  &funnel0 { status = "okay"; };
-> >  &funnel1 { status = "okay"; };
-> 
-> This is alphabetically ordered so &stm should be on the line before &tpiu.
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > index 402e891a84ab..892f1772e53c 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > [...]
-> > @@ -882,6 +889,26 @@ etm3_out: endpoint {
-> >  			};
-> >  		};
-> >  
-> > +		stm: stm@802000 {
-> 
-> And these nodes are sorted by their unit address (0x802000),
-> so stm@802000 should be the first coresight node, before cti@810000.
-> 
-> > +			compatible = "arm,coresight-stm", "arm,primecell";
-> > +			reg = <0x802000 0x1000>,
-> > +			      <0x9280000 0x180000>;
-> 
-> And please pad these addresses with zeroes so the order is more easily
-> visible, i.e.
-> 
-> +			reg = <0x00802000 0x1000>,
-> +			      <0x09280000 0x180000>;
 
-Good suggestions, Stephan!  Have sent patch v2 for this.
+--ilxIgzm+yXs67A+p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thank you,
-Leo
+On Sun, Mar 21, 2021 at 01:07:53PM +0200, Tomer Maimon wrote:
+> Hi Jonathan,
+>=20
+> Thanks a lot for trying to add WPCM450.
+>=20
+> Hoever WPCM450 is in EOL for several years and we are not supporting this
+> product anymore.
+> As you said it is only available in the secondary market.
+>=20
+> Due to it is better not to add the WPCM450 under Nuvoton maintenance.
+
+I understand. I will instead add a new, separate section for WPCM450 to
+the MAINTAINERS file.
+
+> Again we highly appreciate your support and time on NPCM750 patches.
+
+I expect there will be some more cooperation, because the SoCs share
+some architectural similarity, for example the 100Mbit Ethernet
+controller.
+
+
+Best regards,
+Jonathan
+
+--ilxIgzm+yXs67A+p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBXPIMACgkQCDBEmo7z
+X9u1mA//SQ1OYXP0aAQV5lmvmwj1JJq9R1Hxu1Bu4plirEkWUGR9IYbUpNEb0Wjt
+aslffTV/Y9LjLYryXv2lQRVdbylFF2IsQL2oM+N6H9wl+GqoYswLdSuJ7YtQnWYs
+yw2hEtB3Dt9vS+p86JWT8cb2r0v+hpdnuYuhFG9kLx4hl/HI8//NsDmP9LuzLgR8
+ebh1k25S7SFGuHYQDw1LFoTCZuh43RTM0EdR8NXyPLIbAcE6DZC2d160E7cSfRcN
++RMt/GDMwlFdsbVoN/jH0yknDm+sLlDtSquixbztH65lcWiDliYtPYbFB1HopJrP
+dSikkJQFP6agSKeyHNUlHwChQxulkqV5EmS3HoF+SQcG/1WySakvz/qWKn3p1cBl
+v9wKLbPvCw1H3UnWuXG5ZRZ6E8cTnoqvDyBFdCCeYmGchZc7CV0nBk2ldibD8Sd2
+1a1nXau6B+GeVDFfgNoIulFSb+xJpar8/soZc3YyZHDnGsj3HuQBVech2X7zHccj
+ZXrUeLetzM0HZ8wARcMsKQCcNhCVEot8d+4zdInLafEGZk1htAnvK89TKYdIXbks
+5m43CTcDF7mn1Kb/6EJliXoR/6WtXXceEnMhYaGqFzIuCgH3hRpR8msqjHbnbYr7
+C3PTO9D22Hb5puORp1jhJD+jNSyvIG23MnSDtJbQTZd4xSikR4k=
+=QlNO
+-----END PGP SIGNATURE-----
+
+--ilxIgzm+yXs67A+p--
