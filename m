@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A664634328F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 13:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B9E0343298
+	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 13:44:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbhCUMmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 08:42:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
+        id S229874AbhCUMo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 08:44:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbhCUMmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 08:42:21 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F84C061574
-        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:42:20 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id nh23-20020a17090b3657b02900c0d5e235a8so7143031pjb.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:42:20 -0700 (PDT)
+        with ESMTP id S230039AbhCUMoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 08:44:06 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B0EC061763
+        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:44:06 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id s21so6963832pjq.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Mar 2021 05:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XedR4D63zUvw1J+WKjbyJOOz+/A4gC1Wz66rLRAAKFM=;
-        b=oj22IieoJ7hv+uAPIgxTaFRsEDoIse1V91LhPaGz2yCMBF6lDasshA25Lg3c0lIZcV
-         HxXs7kKiaAhlTO7CLbhJRo8B1OSkRBtrPHYvYKMctN4YKva3i0TbkjDNP1bMG03bJOSt
-         SqgzCWy+j4DR9huHcv1QXymACKvig+2IdjyPQ+mLj87l2V5cid2xYp9Lscy8FnZxtF1Q
-         UbT4YqhU7yo8E0vacmw4F1KR6F8PlDmvEKG5UWOMSUJfK3rZcW0LGqAfrBP6qV3koOD+
-         hbQbtCGnCf1zjiuTbDRc2h6Taa1L7d7BVEZ/srLVjVD8zlLTJlBKg9Oz6DXN7iH5WXFN
-         No8g==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=oYh42NVmprfmi6tokkVG4Y+HhObAPKALxbHzNEVJ2Gs=;
+        b=uzjWYn3XdJl5n7W+G1ELkbYiYFavm62OKGn2YfOnhiNaO0dKAN2f6hwe54r0PkXgQP
+         a6qdbt654yG1qoo7FBlFeMTzYBb3c6Htm3u8dOn7SOxC+05utbHN4HMJ1mbL8Pq7OiBy
+         fjA8B+7gmtyMOzr4MjlJP830wZpnwJaNtcRGJsha8TdXYnRN1ylLYtgzHNVNa8fw/P8X
+         h/ja6hqyL5jaN6NPK3t+ssQMoQCg3GMiSzY88KU15c57E2mmwTxyGcLuxQh2ycBCoY/Y
+         cPwF7Q2uqx6LLFnPYUXE62tn2Dudu5FW/ES9tCGw094xB7gtAV/+fQLkFHVSAWeq9Kfv
+         mXfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XedR4D63zUvw1J+WKjbyJOOz+/A4gC1Wz66rLRAAKFM=;
-        b=f2oYpmWNS2/HnvxZ5L0wOpNCtQmMRnkBXRL/UY3Ism/1Fmrut+8pFdDFZh674F0LPh
-         TpGU7b6ElNtpo/KDaJgPGsZrY8bLExUuAJTNvcPze24H/QeUjJyNgrdfShhMfh6qIYn3
-         7xE2JK32G79UlzZBDj0copeBZyyvW50+Z+cpXGXl5bocLTZ3IJOElR8yuRw0BjeRNoxM
-         wgJyksedO/0cUD+Tl1pPXLFYGE7sH0v9DZtF0iO+3/YFbSx3ODAljWVsf7NXkqOLMBOT
-         g9uAPVGgKk/Ore5zcXOqvTKyukHk3s6onrK4vI5c/EUO1Uks2t2pUrlzwv4yxO7jqWBn
-         y59Q==
-X-Gm-Message-State: AOAM530mYv1xKf++eMiFHMsg+Hk+dwZ/sTEvhAAbE4skxIeQBgBa31FA
-        0pIW/uTKYlcSVlKSB0b0HBp5lA==
-X-Google-Smtp-Source: ABdhPJz9tEOhms+sw51vndtnLuai0NKy9rh8QteyN7vews4P/+DdVN0S5k2zoHxwFvN7sREFEZKpcw==
-X-Received: by 2002:a17:902:b68b:b029:e6:cda9:39d with SMTP id c11-20020a170902b68bb02900e6cda9039dmr18588590pls.63.1616330539591;
-        Sun, 21 Mar 2021 05:42:19 -0700 (PDT)
-Received: from localhost ([116.206.101.232])
-        by smtp.gmail.com with ESMTPSA id v13sm9973103pfu.54.2021.03.21.05.42.18
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oYh42NVmprfmi6tokkVG4Y+HhObAPKALxbHzNEVJ2Gs=;
+        b=oiCs1CjoJUAImomWslA3bipDDJGB2aUQJvAkX2DsK7wQZa5DiaUWgvdtfsTCEWMA3K
+         0rCXB4/lDS0S9tin7+CEEZVRdvD46PEfDZvcJdXl0FoSCmQFL+XHI6f24cCfQIBsjoYu
+         3Yo5ZEZ1RUZpyrU7fooxltgwGy1Jq8rdelxeb8+y8pW/kUG0SyxKCkeE2CWzjjR1ZLST
+         PkcvbS0h8t7fpUuI3MgPsQ8H1W3pxkOvGsrBoEbmzUDYEXvf+pWpmcKUu4SxBzxi5hbT
+         GQIE15N5ZORCgQv9n3WRUJYwLbs1PfhN1PUlZ740dOaI7rgClLsZzw5jpETtT6wFnA+8
+         hz5w==
+X-Gm-Message-State: AOAM532hd0s897L0Aix3pyR4bLiONaP5mbmJ3I/eodG/o8HGdNCRAk/r
+        K3ehEJowxnC6N2GVw8IGSn45VA==
+X-Google-Smtp-Source: ABdhPJwQ7Iy0N2drugvLFKCBR81+m5DM/sT7wdJv7MyQOMU1WE6jf0iEjozzNqa8jsCBsF79jxv6Xw==
+X-Received: by 2002:a17:90a:5910:: with SMTP id k16mr8413808pji.207.1616330645735;
+        Sun, 21 Mar 2021 05:44:05 -0700 (PDT)
+Received: from leoy-ThinkPad-X240s (144.34.177.189.16clouds.com. [144.34.177.189])
+        by smtp.gmail.com with ESMTPSA id u66sm10349141pfu.186.2021.03.21.05.44.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Mar 2021 05:42:19 -0700 (PDT)
+        Sun, 21 Mar 2021 05:44:05 -0700 (PDT)
+Date:   Sun, 21 Mar 2021 20:44:00 +0800
 From:   Leo Yan <leo.yan@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,95 +56,27 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Coresight ML <coresight@lists.linaro.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>
-Subject: [PATCH v3] arm64: dts: msm8916: Enable CoreSight STM component
-Date:   Sun, 21 Mar 2021 20:42:12 +0800
-Message-Id: <20210321124212.4253-1-leo.yan@linaro.org>
-X-Mailer: git-send-email 2.25.1
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH v2] arm64: dts: msm8916: Enable CoreSight STM component
+Message-ID: <20210321124400.GA4329@leoy-ThinkPad-X240s>
+References: <20210321121105.678515-1-leo.yan@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210321121105.678515-1-leo.yan@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Georgi Djakov <georgi.djakov@linaro.org>
+On Sun, Mar 21, 2021 at 08:11:05PM +0800, Leo Yan wrote:
+> Add DT binding for CoreSight System Trace Macrocell (STM) on msm8916,
+> which can benefit the CoreSight development on DB410c.
+> 
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Signed-off-by: Leo Yan <leo.yan@linaro.org>
 
-Add DT binding for CoreSight System Trace Macrocell (STM) on msm8916,
-which can benefit the CoreSight development on DB410c.
+When I rebased this patch, I didn't know why the patch auther's name was
+changed unexpectly.  So have sent patch v3 to correct it.
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-Signed-off-by: Leo Yan <leo.yan@linaro.org>
----
-
-Changes from v2:
-* Correct for author name.
-
-Changes from v1:
-* alphabetically and address ordering for DT node; pad addresses with
-  zeroes (Stephan Gerhold).
-
- arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi |  1 +
- arch/arm64/boot/dts/qcom/msm8916.dtsi     | 27 +++++++++++++++++++++++
- 2 files changed, 28 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-index 3a9538e1ec97..2165b7415add 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-@@ -410,6 +410,7 @@ &wcd_codec {
- &funnel0 { status = "okay"; };
- &funnel1 { status = "okay"; };
- &replicator { status = "okay"; };
-+&stm { status = "okay"; };
- &tpiu { status = "okay"; };
- 
- &smd_rpm_regulators {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 402e891a84ab..f02b976480d5 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -489,6 +489,26 @@ snoc: interconnect@580000 {
- 				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
- 		};
- 
-+		stm: stm@802000 {
-+			compatible = "arm,coresight-stm", "arm,primecell";
-+			reg = <0x00802000 0x1000>,
-+			      <0x09280000 0x180000>;
-+			reg-names = "stm-base", "stm-stimulus-base";
-+
-+			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
-+			clock-names = "apb_pclk", "atclk";
-+
-+			status = "disabled";
-+
-+			out-ports {
-+				port {
-+					stm_out: endpoint {
-+						remote-endpoint = <&funnel0_in7>;
-+					};
-+				};
-+			};
-+		};
-+
- 		/* System CTIs */
- 		/* CTI 0 - TMC connections */
- 		cti0: cti@810000 {
-@@ -562,6 +582,13 @@ funnel0_in4: endpoint {
- 						remote-endpoint = <&funnel1_out>;
- 					};
- 				};
-+
-+				port@7 {
-+					reg = <7>;
-+					funnel0_in7: endpoint {
-+						remote-endpoint = <&stm_out>;
-+					};
-+				};
- 			};
- 
- 			out-ports {
--- 
-2.25.1
-
+Sorry for spamming.
+Leo
