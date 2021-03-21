@@ -2,124 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4149C3430BA
-	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 04:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963FE3430EE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Mar 2021 06:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbhCUDcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Mar 2021 23:32:51 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:43907 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229766AbhCUDcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Mar 2021 23:32:23 -0400
-X-UUID: 68a4fdba93ae430aa3d84cafde72d6b8-20210321
-X-UUID: 68a4fdba93ae430aa3d84cafde72d6b8-20210321
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 99678444; Sun, 21 Mar 2021 11:32:18 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 21 Mar 2021 11:31:55 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 21 Mar 2021 11:31:54 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
-        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
-        <sean.wang@kernel.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
-        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
-        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
-        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
-        <sj.huang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-Subject: [PATCH] pinctrl: add lock in mtk_rmw function.
-Date:   Sun, 21 Mar 2021 11:31:50 +0800
-Message-ID: <20210321033150.15380-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210321033150.15380-1-zhiyong.tao@mediatek.com>
-References: <20210321033150.15380-1-zhiyong.tao@mediatek.com>
+        id S229931AbhCUFIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 01:08:07 -0400
+Received: from www381.your-server.de ([78.46.137.84]:44210 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229870AbhCUFHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 01:07:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=Jks5ta4y+3q9mJRz/Bx4bb41R4Rxu6P7ARvWnNtXXOY=; b=KRerUw58hGPjrNoXFte5PE2KH5
+        7OO5dSmXsWfIIoH7yqUoElXXipTDNz57ByqVDEJKlQGPxHdkrkQ87VJAH3yGWMp3R+8NY3UXCNnOq
+        nc2w2CRJuMOAcJ23Q8WoOixr+tLUGnCIhhdcelI0wNDWRI/BoUnq/+UQJOJDs2PXY8rP8obbwOzaN
+        68nxmY+XT1g2TfaSB1Nnfwdv1Y4PTLMpPwFEFAxAc0BpuhzOBT8HqBjIeJhdXNlEYAMFME4ItuII6
+        h0yvgV+k5Q+RaivgYRySs/or9vQ6cj7EWXyjl11EyL7lhU3qLRztPzIujUS5D00CmfqYxcnv+kJWF
+        jog854vg==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1lNqJI-00098Y-Dh; Sun, 21 Mar 2021 06:07:32 +0100
+Received: from [2001:a61:2aa9:e001:9e5c:8eff:fe01:8578]
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1lNqJI-000XTx-8T; Sun, 21 Mar 2021 06:07:32 +0100
+Subject: Re: [PATCH v1 2/2] iio: temperature: add driver support for ti tmp117
+To:     Puranjay Mohan <puranjay12@gmail.com>,
+        alexandru.ardelean@analog.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, knaack.h@gmx.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210320064509.119878-1-puranjay12@gmail.com>
+ <20210320064509.119878-3-puranjay12@gmail.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <760dccc2-b098-71ce-037b-b667dbc05f57@metafoo.de>
+Date:   Sun, 21 Mar 2021 06:07:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: EF78D9D04B7ACC28C8390CE98C6ECE40209D1609D7CFD814B5CD4A3CF3C78F032000:8
-X-MTK:  N
+In-Reply-To: <20210320064509.119878-3-puranjay12@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.4/26115/Sat Mar 20 12:03:55 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When multiple threads operate on the same register resource
-which include multiple pin, It will make the register resource
-wrong to control. So we add lock to avoid the case.
+On 3/20/21 7:45 AM, Puranjay Mohan wrote:
+> TMP117 is a Digital temperature sensor with integrated NV memory.
+>
+> Add support for tmp117 driver in iio subsystem.
+>
+> Datasheet:-https://www.ti.com/lit/gpn/tmp117
+>
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
----
- drivers/pinctrl/mediatek/pinctrl-moore.c         | 2 ++
- drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 4 ++++
- drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h | 2 ++
- drivers/pinctrl/mediatek/pinctrl-paris.c         | 2 ++
- 4 files changed, 10 insertions(+)
+This looks good to me. Just two small bits I overlooked during the first 
+review, sorry for that.
 
-diff --git a/drivers/pinctrl/mediatek/pinctrl-moore.c b/drivers/pinctrl/mediatek/pinctrl-moore.c
-index 0fa7de43bc4c..f77921957f15 100644
---- a/drivers/pinctrl/mediatek/pinctrl-moore.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-moore.c
-@@ -619,6 +619,8 @@ int mtk_moore_pinctrl_probe(struct platform_device *pdev,
- 
- 	hw->nbase = hw->soc->nbase_names;
- 
-+	mutex_init(&hw->lock);
-+
- 	/* Copy from internal struct mtk_pin_desc to register to the core */
- 	pins = devm_kmalloc_array(&pdev->dev, hw->soc->npins, sizeof(*pins),
- 				  GFP_KERNEL);
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-index 72f17f26acd8..fcf7c3eeee4a 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-@@ -58,10 +58,14 @@ void mtk_rmw(struct mtk_pinctrl *pctl, u8 i, u32 reg, u32 mask, u32 set)
- {
- 	u32 val;
- 
-+	mutex_lock(&pctl->lock);
-+
- 	val = mtk_r32(pctl, i, reg);
- 	val &= ~mask;
- 	val |= set;
- 	mtk_w32(pctl, i, reg, val);
-+
-+	mutex_unlock(&pctl->lock);
- }
- 
- static int mtk_hw_pin_field_lookup(struct mtk_pinctrl *hw,
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-index e2aae285b5fc..65eac708a3b3 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-+++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-@@ -251,6 +251,8 @@ struct mtk_pinctrl {
- 	struct mtk_eint			*eint;
- 	struct mtk_pinctrl_group	*groups;
- 	const char          **grp_names;
-+	/* lock pin's register resource to avoid multiple threads issue*/
-+	struct mutex lock;
- };
- 
- void mtk_rmw(struct mtk_pinctrl *pctl, u8 i, u32 reg, u32 mask, u32 set);
-diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-index da1f19288aa6..48e823f6d293 100644
---- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-@@ -970,6 +970,8 @@ int mtk_paris_pinctrl_probe(struct platform_device *pdev,
- 
- 	hw->nbase = hw->soc->nbase_names;
- 
-+	mutex_init(&hw->lock);
-+
- 	err = mtk_pctrl_build_state(pdev);
- 	if (err) {
- 		dev_err(&pdev->dev, "build state failed: %d\n", err);
--- 
-2.18.0
+> +};
+> +
+> [...]
+> +static int tmp117_read_raw(struct iio_dev *indio_dev,
+> +		struct iio_chan_spec const *channel, int *val,
+> +		int *val2, long mask)
+> +{
+> +	struct tmp117_data *data = iio_priv(indio_dev);
+> +	u16 tmp, off;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		tmp = tmp117_read_reg(data, TMP117_REG_TEMP);
+> +		*val = tmp;
+No need for tmp here. Just directly assign to val.
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		off = tmp117_read_reg(data, TMP117_REG_TEMP_OFFSET);
+> +		*val = ((int16_t)off * (int32_t)TMP117_RESOLUTION) / 10000000;
+> +		*val2 = ((int16_t)off * (int32_t)TMP117_RESOLUTION) % 10000000;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = 0;
+> +		*val2 = TMP117_SCALE;
+> +		return IIO_VAL_INT_PLUS_NANO;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int tmp117_write_raw(struct iio_dev *indio_dev,
+> +		struct iio_chan_spec const *channel, int val,
+> +		int val2, long mask)
+> +{
+> +	struct tmp117_data *data = iio_priv(indio_dev);
+> +	u16 off;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		off = ((val * 10000000) + (val2 * 10))
+> +						/ (int32_t)TMP117_RESOLUTION;
+
+This needs some input validation. Writing a too large or too small value 
+will cause an overflow/underflow and a bogus value will be written to 
+the register.
+
+You can either reject invalid values by returning -EINVAL or clamp them 
+into the right range. Up to you how you want to handle this.
+
+> +		return tmp117_write_reg(data, TMP117_REG_TEMP_OFFSET, off);
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
 
