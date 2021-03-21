@@ -2,121 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 504DC3435A3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 00:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C7DA3435B1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 00:30:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbhCUXIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 19:08:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
+        id S229884AbhCUXaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 19:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230167AbhCUXIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 19:08:14 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B659EC061574;
-        Sun, 21 Mar 2021 16:08:13 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id g8so11288635lfv.12;
-        Sun, 21 Mar 2021 16:08:13 -0700 (PDT)
+        with ESMTP id S229613AbhCUX3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 19:29:50 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EA1CC061574;
+        Sun, 21 Mar 2021 16:29:49 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id r12so18352271ejr.5;
+        Sun, 21 Mar 2021 16:29:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jbiSYaRoly7YDQ5SJLDPetR8P6ODmQjNdf1sQDmotw8=;
-        b=ff+gaXNO3SSTluTB7T2bmC03+xJqcrP0+E+h7VIJSxc+I1w8JJf5Td4SwNSbYg6dxN
-         Uqr+C2lKLyZ5ls2FfSIhacn5Qcn6k8gGUTgmQMC9bazdY59ocqmdF1YYWJAgjKDe7Eu/
-         UfsZPOnGXLW/UNpzMNO3N3uAca7+Pi7oI2XJkOaqklHLpITIz7buj0CzWCITM7Gqx702
-         Ycqg6cgKC6pz05Dnzkf00gepG6WLM74ubsK1HENqCjUZdnQK5hhJASfLjhl6Uh5Yb4+d
-         2YhMfIZ/M/o2NyzDCrUFPAXHw2ImKEqyZGHS2IXv+0Ip18DDZhUp3qFJtzQ+Qyn0r1UC
-         g5ZA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7pOLNQfROV9DESH9c1z/95PUsvdUmS+ux4xUVmugTq0=;
+        b=h9qc2xEvgfRcB+T+8D4cDQ+gO7nMzZAye7jQiJqFNHSVNa4+cj/xwYUwklpJl9xV33
+         mqXJU3Xy44xfdONRVov7Wa24Gz16ZPufnUPAPg7v9aP51g7iNohl+CNR8QimxgcBqKZq
+         6kA1ig9kralNr6tedvjWNlaYZaeNti05dDjou9IlJ/TF77+GDHkySX2sDlX4YNNztwao
+         uajypSuKh+TX6sWyralMuN8waKHdAmhK2HVgtMrTJeDDwgRs3kL3wDuB1+oi9FR2ELi6
+         CcJspofOkDRKuPaMiNe06bu7Xp9rQ4GTNaS73oOJae/zOW6hyDA6bnqKf37FXbAG7nCH
+         YFyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=jbiSYaRoly7YDQ5SJLDPetR8P6ODmQjNdf1sQDmotw8=;
-        b=ebMwh1Dxztci/gkxkvOxe3iAUP3HaCIU33JLZeawhvr6CEQ6SZlnadtQf+6bKlpTT/
-         uWnn6KSd7IrffbMESGogzdQiCFz7uDhReWnZNrx2PhCAoJj6lTVFSZ9K+4ver392oNyE
-         0wOUux+jUySt7Dkv1eATGVAFTEmh1pa4guWt028TaMtf7XT87cqgpC0vm2PxYBudeWoK
-         lBh6LGsWYxw+M0gnW9F7n6kCfN2iwbMg4CKCnT2QuNqCXbTdj/qKkfeON4nA8msbkoTY
-         k1QOJyoiG7CVmvVzoC0IfSP3GMqBTtSDtqaGaEbp3aoV+9R6izPtx6/bvd3Wm1kM8mXk
-         hrtQ==
-X-Gm-Message-State: AOAM530QcQLB3H6+frWNPDdKGwexhOeh+gbqlhM6t4gw0Xo88/zFQyod
-        1MkKreJlizQNSWJ72UcDKVLOlytfaV8=
-X-Google-Smtp-Source: ABdhPJysoMEqRcybkZrFHhug/ztvNZPJzxopxxz3Fm57izRLkvgXGQNrHJ1TXpgkzSICRHLKKfazLg==
-X-Received: by 2002:a05:6512:3b95:: with SMTP id g21mr4698937lfv.261.1616368091896;
-        Sun, 21 Mar 2021 16:08:11 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-47.dynamic.spd-mgts.ru. [109.252.193.47])
-        by smtp.googlemail.com with ESMTPSA id g9sm1361501lfc.258.2021.03.21.16.08.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Mar 2021 16:08:11 -0700 (PDT)
-Subject: Re: [PATCH v6 0/3] Support wakeup methods of Atmel maXTouch
- controllers
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Nick Dyer <nick@shmanahar.org>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiada Wang <jiada_wang@mentor.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210302102158.10533-1-digetx@gmail.com>
- <8c1280f6-b79f-9c62-a064-68b119d74c49@gmail.com>
- <YFfMNQPvaNOjUwBB@google.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9f1f1bbb-31ef-c4fe-fcf5-c798e53739cf@gmail.com>
-Date:   Mon, 22 Mar 2021 02:08:09 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=7pOLNQfROV9DESH9c1z/95PUsvdUmS+ux4xUVmugTq0=;
+        b=OqWhQZF+ji9oDdzgDxHL2kE/3ASfquGxYmWTsnShcQsPq08mo1pbWRI4iew5nfgN41
+         n7wr/cGvbgACJfGyOtwjTKYDWOw+XKOoc40NX6+e28R3LGOYm4DOOr0aAQlkBQRZLrS4
+         BTeJ/jkFy/AvVkLCKHTihibkN8N5kcZQv3URfIgx1dj1/XA6OTKdj90Tq8Fz5GM7niR3
+         QYAUJM0m1gDXsOszPbU5FcsOqFgCu6Gbxprn8kG3+e7ZFW/vBJuwl8hygW3hEvdOdBuG
+         lWBpE36xz4ckZOh075vKnehP2CMfitTqKoYlU6mcPYegn9AJrkAGHv6gKe1ruqgPmw73
+         5D+g==
+X-Gm-Message-State: AOAM533ztcrZErzryFcGja4iOTf6b3AeA3pyd5skOkCBeOMHKS3jtPSN
+        iPJrC1Elb7Ogq8yM6dkfJLU=
+X-Google-Smtp-Source: ABdhPJz6DWGODcj429igJhmLIHWMUTHzDEAasDLnQIVoj9x7rHcLoKbHHOoDgqdUl0liiet5NjJj5g==
+X-Received: by 2002:a17:906:13c4:: with SMTP id g4mr16551073ejc.390.1616369388113;
+        Sun, 21 Mar 2021 16:29:48 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id bt14sm9801472edb.92.2021.03.21.16.29.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Mar 2021 16:29:47 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] Add support for Actions Semi Owl Ethernet MAC
+Date:   Mon, 22 Mar 2021 01:29:42 +0200
+Message-Id: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-In-Reply-To: <YFfMNQPvaNOjUwBB@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-22.03.2021 01:44, Dmitry Torokhov пишет:
-> Hi Dmitry,
-> 
-> On Sat, Mar 20, 2021 at 07:02:43PM +0300, Dmitry Osipenko wrote:
->> 02.03.2021 13:21, Dmitry Osipenko пишет:
->>> Some Atmel maXTouch controllers, like mXT1386 and mXT3432S1 for example,
->>> have a WAKE line that needs to be asserted in order to wake controller
->>> from a deep sleep, otherwise it will be unusable. This series implements
->>> support for the wakeup methods in accordance to the mXT1386 datasheet [1],
->>> see page 29 (chapter "5.8 WAKE Line").
->>>
->>> The mXT1386 is a widely used controller found on many older Android tablet
->>> devices. Touchscreen on Acer A500 tablet now works properly after this
->>> series.
->>>
->>> This patchset is a continuation of the work originally started by
->>> Jiada Wang [2].
->>>
->>> [1] https://ww1.microchip.com/downloads/en/DeviceDoc/mXT1386_1vx_Datasheet_LX.pdf
->>> [2] https://patchwork.kernel.org/project/linux-input/list/?series=357875
->>
->> Hi,
->>
->> This series is very wanted by Android tablet devices from Acer, Asus and
->> other vendors which use Maxtouch 1386 controller. Touchscreens don't
->> work without the wakeup support, i.e. without this series. The wakeup
->> support is implemented in accordance to the datasheet and touchscreens
->> are working excellent using these patches.
->>
->> Could you please take this series into v5.13?
->>
->> Or could you please let me know what exactly needs to be improved?
-> 
-> Sorry, I was still slightly unhappy that we still are not tracking the
-> state of controller and opportunistically retrying failed I2C transfers,
-> but as I am failing to find time to come up with another solution I have
-> just applied your series.
+This patch series adds support for the Ethernet MAC found on the Actions
+Semi Owl family of SoCs.
 
-Thank you! I don't have other solutions either, although /I think/
-potentially it should be possible to differentiate the I2C error here.
-On NVIDIA Tegra I see that I2C controller always gets a h/w NAK on TS
-wake-up and it returns -EREMOTEIO in this case. IIRC, some other
-non-NVIDIA I2C drivers always return -EIO on any error, so this method
-isn't universal, but certainly it feels like there is some a room for
-further improvements.
+For the moment I have only tested the driver on RoseapplePi SBC, which is
+based on the S500 SoC variant. It might work on S900 as well, but I cannot
+tell for sure since the S900 datasheet I currently have doesn't provide
+any information regarding the MAC registers - so I couldn't check the
+compatibility with S500.
+
+Similar story for S700: the datasheet I own is incomplete, but it seems
+the MAC is advertised with Gigabit capabilities. For that reason most
+probably we need to extend the current implementation in order to support
+this SoC variant as well.
+
+Please note that for testing the driver it is also necessary to update the
+S500 clock subsystem:
+
+https://lore.kernel.org/lkml/cover.1615221459.git.cristian.ciocaltea@gmail.com/
+
+The DTS changes for the S500 SBCs will be provided separately.
+
+Thanks,
+Cristi
+
+Changes in v3:
+ - Dropped the 'debug' module parameter and passed the default NETIF_MSG flags
+to netif_msg_init(), according to David's review
+
+ - Removed the owl_emac_generate_mac_addr() function and the related
+OWL_EMAC_GEN_ADDR_SYS_SN config option until a portable solution to get
+the system serial number is found - when building on arm64 the following
+error is thrown (as reported by Rob's kernel bot):
+ '[...]/owl-emac.c:9:10: fatal error: asm/system_info.h: No such file or directory'
+
+ - Rebased patchset on v5.12-rc4
+
+Changes in v2:
+* According to Philipp's review
+ - Requested exclusive control over serial line via
+   devm_reset_control_get_exclusive()
+ - Optimized error handling by using dev_err_probe()
+
+* According to Andrew's review
+ - Dropped the inline keywords
+ - Applied Reverse Christmas Tree format to local variable declarations
+ - Renamed owl_emac_phy_config() to owl_emac_update_link_state()
+ - Documented the purpose of the special descriptor used in the context of
+   owl_emac_setup_frame_xmit()
+ - Updated comment inside owl_emac_mdio_clock_enable() regarding the MDC
+   clock divider setup
+ - Indicated MAC support for symmetric pause via phy_set_sym_pause()
+   in owl_emac_phy_init()
+ - Changed the MAC addr generation algorithm in owl_emac_generate_mac_addr()
+   by setting the locally administered bit in byte 0 and replacing bytes 1 & 2
+   with additional entries from enc_sn
+ - Moved devm_add_action_or_reset() before clk_set_rate() in owl_emac_probe()
+
+* Other
+ - Added SMII interface support: updated owl_emac_core_sw_reset(), added
+   owl_emac_clk_set_rate(), updated description in the YAML binding
+ - Changed OWL_EMAC_TX_TIMEOUT from 0.05*HZ to 2*HZ
+ - Rebased patchset on v5.12-rc3
+
+Cristian Ciocaltea (3):
+  dt-bindings: net: Add Actions Semi Owl Ethernet MAC binding
+  net: ethernet: actions: Add Actions Semi Owl Ethernet MAC driver
+  MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
+
+ .../bindings/net/actions,owl-emac.yaml        |   92 +
+ MAINTAINERS                                   |    2 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/actions/Kconfig          |   26 +
+ drivers/net/ethernet/actions/Makefile         |    6 +
+ drivers/net/ethernet/actions/owl-emac.c       | 1625 +++++++++++++++++
+ drivers/net/ethernet/actions/owl-emac.h       |  280 +++
+ 8 files changed, 2033 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+ create mode 100644 drivers/net/ethernet/actions/Kconfig
+ create mode 100644 drivers/net/ethernet/actions/Makefile
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.c
+ create mode 100644 drivers/net/ethernet/actions/owl-emac.h
+
+-- 
+2.31.0
+
