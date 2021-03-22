@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 716663451F7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 22:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 674EC345230
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 23:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbhCVVne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 17:43:34 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:40188 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbhCVVnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 17:43:01 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 9AF1B1F40E9F
-Received: by earth.universe (Postfix, from userid 1000)
-        id 5631F3C0C96; Mon, 22 Mar 2021 22:42:57 +0100 (CET)
-Date:   Mon, 22 Mar 2021 22:42:57 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [PATCHv2 00/38] Convert power-supply DT bindings to YAML
-Message-ID: <20210322214257.3u6dkmygygnewpyl@earth.universe>
-References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
- <CAL_JsqLASixNRTf712201w1nghxdaB28HsN7fdsjeogsoA=oQg@mail.gmail.com>
+        id S229854AbhCVWCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 18:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230113AbhCVWCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 18:02:07 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C33C061574;
+        Mon, 22 Mar 2021 15:02:07 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id c6so13580640qtc.1;
+        Mon, 22 Mar 2021 15:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e8lmPL9l7tYar2avzvzIi16QrccP2sceEgsZ0/+5kWM=;
+        b=Rxb76km2s7iu6iziIs0aQYLlSwN9TTCu37Sj8+CSOLsy5u/dIHb3Lox5r59lNhrE/a
+         GdT9tJsyMNifGMWrIAuzIMl8HeImE2RPaMlfHbHFKtaIJhRyF7Vu4otiztHnW9xlSXCV
+         4NUtUf0YQK4PRjvV815Qo17WwynOUbQXrj1S4O9FVgfKEFUUBzlyxvriaiZQ9XmeeT0n
+         4utMiMwaApzwhdGvkTsvd+bnfN6iYI4WRhXY0TTy7P3M2z8HKLqX4pK+SgGcyfVAF0o5
+         COaJ1D4SY6xQQDTCn7FcsIW+upzmkXLNX+TGoTk0Xo+NC2AziB6vENTcDlZ6ki57MK5c
+         sqZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e8lmPL9l7tYar2avzvzIi16QrccP2sceEgsZ0/+5kWM=;
+        b=VNLIikyYOCDdHD0qiXG8RT6SqE2ZpIZaIpOCb77CvhHDsH9/qkEPFeFZZfL6xmCWt+
+         S1hOJThAMHMn303hKR2NdwxZvn9yPza0A8fOgM6BktTRdGJQI2BW+bXoGxK/U2+sk+W9
+         g/uT9ZFzd+YTWbxXfw7nLKw61giNIZ48rH3ALXlvGqFanwVF4B1t1aXBG23XZAC5JLgF
+         BWMw9CZcDkj2ZwEuFydhO1udcucx4SFA3W3RE+LhiTzw1tStOA28ip7Y0sjI2HTAk89+
+         PzCR6JLilM/0UbUDgj6liMYZyljQ/wR0wPB7WV2AH8C98b+OGu3WzokB6z2Kegeb03cG
+         efOw==
+X-Gm-Message-State: AOAM532UNoTDuG9/Z9VFbMMi9HUaLJOXun0xBsIjkn6C5wgLKPwATwY6
+        Jk82q2VKVPIm8VnbQq8BMQ0=
+X-Google-Smtp-Source: ABdhPJx/0ftrYy+tnKvj5Gkgv2O8gsI1TOJnGHNS/5dMdXeJ8dWdN1I72FxMpiiDnDSOn5B+Jbdn3g==
+X-Received: by 2002:a05:622a:14d3:: with SMTP id u19mr1946284qtx.226.1616450526101;
+        Mon, 22 Mar 2021 15:02:06 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id m21sm11968219qka.28.2021.03.22.15.02.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Mar 2021 15:02:05 -0700 (PDT)
+Subject: Re: [PATCH] of: overlay: fix for_each_child.cocci warnings
+To:     Julia Lawall <julia.lawall@inria.fr>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sumera Priyadarsini <sylphrenadin@gmail.com>,
+        kbuild-all@lists.01.org
+References: <alpine.DEB.2.22.394.2103221918450.2918@hadrien>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <2783d37c-cdb7-9d86-a5e0-07bc523854c1@gmail.com>
+Date:   Mon, 22 Mar 2021 17:02:04 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eizakvp3oo4pli3f"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLASixNRTf712201w1nghxdaB28HsN7fdsjeogsoA=oQg@mail.gmail.com>
+In-Reply-To: <alpine.DEB.2.22.394.2103221918450.2918@hadrien>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/22/21 1:21 PM, Julia Lawall wrote:
+> From: kernel test robot <lkp@intel.com>
+> 
+> Function "for_each_child_of_node" should have of_node_put() before goto.
+> 
+> Generated by: scripts/coccinelle/iterators/for_each_child.cocci
+> 
+> Fixes: 82c2d81361ec ("coccinelle: iterators: Add for_each_child.cocci script")
+> CC: Sumera Priyadarsini <sylphrenadin@gmail.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Julia Lawall <julia.lawall@inria.fr>
+> ---
+> 
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+> head:   812da4d39463a060738008a46cfc9f775e4bfcf6
+> commit: 82c2d81361ecd142a54e84a9da1e287113314a4f coccinelle: iterators: Add for_each_child.cocci script
+> :::::: branch date: 13 hours ago
+> :::::: commit date: 5 months ago
+> 
+>  overlay.c |    1 +
+>  1 file changed, 1 insertion(+)
+> 
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -796,6 +796,7 @@ static int init_overlay_changeset(struct
+>  		if (!fragment->target) {
+>  			of_node_put(fragment->overlay);
+>  			ret = -EINVAL;
+> +			of_node_put(node);
+>  			goto err_free_fragments;
+>  		}
+> 
 
---eizakvp3oo4pli3f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+Tested-by: Frank Rowand <frank.rowand@sony.com>
 
-Hi,
+While reading through the code touched by the patch I noticed that
+the clean up at label err_free_fragments does not do the required
+of_node_put() calls.  I'll add creating a patch to fix that to my
+todo list.
 
-On Mon, Mar 22, 2021 at 10:25:49AM -0600, Rob Herring wrote:
-> On Wed, Mar 17, 2021 at 7:49 AM Sebastian Reichel wrote:
-> > Sebastian Reichel (38):
-> >   ARM: dts: motorola-cpcap-mapphone: Prepare for dtbs_check parsing
-> >   dt-bindings: power: supply: cpcap-battery: Convert to DT schema format
-> >   dt-bindings: power: supply: cpcap-charger: Convert to DT schema format
-> >   [...]
->=20
-> Thanks! For the series:
->=20
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-How should we proceed with the DTS patch?
-
-a) Tony takes DT through his tree, I take all YAML files through my tree.
-   The verification might be broken for some time when being merged
-   in wrong order. Looks like there are already quite a few warnings
-   for in-tree DTS files, so it might be ok to have some more
-   temporarily? It's obviously the most simple solution.
-
-b) Tony takes DTS and the cpcap related patches through his tree;
-   I take the other ones.
-
-c) I take the full series through my tree.
-
-d) I can merge the DT through an immutable branch and provide a PR.
-
-I'm fine with either way.
-
--- Sebastian
-
---eizakvp3oo4pli3f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBZD1UACgkQ2O7X88g7
-+pp7lg/+PMI2OqAClTyTcBLzklUXDO2wu34sTaXoEdZ/Oo2KnPULp3+kPPb3nslF
-nDXv6CpHuB8vyA5qvP8YvEVs4J2Wc4J4ZYvYlBsIaYbUUADwiHDANTTBySDOOg+p
-oSpWMo9HooDD3w8Hq1wojldixeOI6WZmMFXCr5AqTxIVz/iCs2jjGjhYYsdATqUF
-vAFJjGX0ICANhdWg9WxTnKElJ63vvPlDUmp9dQ/sfA+V27ws8zNqLjchv0h2Ifsa
-71LCB1JgcveG5P+NYxPa9ZaOeGYlZgDXp41DuRsZMrEJ81R82jsUa3zhWEHjhw1Q
-YVAjkbDFUykx041GOgLX78tTMhlEyK87RcncjlnIgxv2Hh6CjG3PswPS/vmtufBP
-MgtCzTH084q9e+dPK01Hu79FORWnP8nkRBHSSxiMJF1cbZ89vMR36Yh9y4sNkBk8
-MVg/tqenmPNYOsaltyQcRa7ApkAtaCjpzqG0m5Fk89ErqCDyZjtF8ujalZV6TQxs
-rtVMYBRWW/5cAYbFn/F/S2mP61RtGXBjBmHoylhdBrnCq5FHBUcuFlOgmS8BYZHl
-E26Wb9pZryWC5VWGhBrmHto/dsT93O6lBhk5+ZsbdgWfT4YZ13n9mmoRmSexJWlU
-ckVZi/fnbtC2bmb3PKYwGcOmpoAEPfIL0u2CDxBQ+YvKCpuU574=
-=ImNM
------END PGP SIGNATURE-----
-
---eizakvp3oo4pli3f--
+-Frank
