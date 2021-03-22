@@ -2,153 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C953A345260
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 23:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97A91345290
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 23:50:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbhCVWXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 18:23:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59870 "EHLO mail.kernel.org"
+        id S230031AbhCVWtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 18:49:45 -0400
+Received: from foss.arm.com ([217.140.110.172]:38720 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229764AbhCVWXD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 18:23:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0BDC5619A3;
-        Mon, 22 Mar 2021 22:23:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616451783;
-        bh=9TOm/vUdTVgkLrEcvTO6xa6y15f8WUxq5hs+UGMAt0w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=U0iFIjhulmjOHIH4ZCHGXKBTlk4hg5aK/NBUps8Mp8OdMncu+JsfhCVHc7Fy3mjMN
-         v5dLlyafisbAoZ8bJQoxyZnlOYisXMLnrd9/ZIM78JjzH+AN9ftQHRa2Xf233ycVwI
-         BVwvGUEBoJJCDGnMeh4GCYDVHEGKBMraxikxVROOKW27S8ShtH/HbOsUp/rQQIxn28
-         YjnDkmRrGWFYvA08QXRjzGxJRX742mBWY5tmsSxZgcIEVYdyMAH+Qal1CA+pnkv7d+
-         ljAMmRoEzgEP06BBkCm3ndmMb3Qgxj09+pxbrlwhqkM4k0YHn2ujTtAoY2q8MEUAt6
-         T/XvKWUgQgG6A==
-Received: by mail-ej1-f49.google.com with SMTP id e14so5640164ejz.11;
-        Mon, 22 Mar 2021 15:23:02 -0700 (PDT)
-X-Gm-Message-State: AOAM5330Ufdgf6tRqDczHDez93+Fm9OxshlyUk4PN1aqi63/hogG5m9a
-        I4GYE0oMM293hW9CH3X/oPzxe5457yGKLi4RlA==
-X-Google-Smtp-Source: ABdhPJx3z7wXtL8KQ3NRS45wE2EUgPtOjsUMqBUiolC7/JCPmaRaai1z8yHmFPME7Qtf+AsOQ2F81DUULd1XRtw/K00=
-X-Received: by 2002:a17:906:d153:: with SMTP id br19mr1849046ejb.360.1616451781529;
- Mon, 22 Mar 2021 15:23:01 -0700 (PDT)
+        id S229995AbhCVWth (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 18:49:37 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 401841042;
+        Mon, 22 Mar 2021 15:49:37 -0700 (PDT)
+Received: from [10.57.55.187] (unknown [10.57.55.187])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 034DD3F792;
+        Mon, 22 Mar 2021 15:49:35 -0700 (PDT)
+Subject: Re: [PATCH v4 15/19] dts: bindings: Document device tree bindings for
+ ETE
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org
+References: <20210225193543.2920532-1-suzuki.poulose@arm.com>
+ <20210225193543.2920532-16-suzuki.poulose@arm.com>
+ <20210306210627.GA1207387@robh.at.kernel.org>
+ <f69ad530-baec-2e73-827a-b5a5a6df3d23@arm.com>
+ <CAL_JsqL6ZQPFqc_Q4A6cB+8d7eGidoFhvJwa_YrZm-Xz7oC6mQ@mail.gmail.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <e971dde9-5eec-368e-b351-61e7172bbce7@arm.com>
+Date:   Mon, 22 Mar 2021 22:49:34 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
+ Gecko/20100101 Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210318104036.3175910-1-lee.jones@linaro.org>
-In-Reply-To: <20210318104036.3175910-1-lee.jones@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 22 Mar 2021 16:22:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKueTWKbXNuN+74COR1LT6XLyw61GqCLpOgv-knNtEdKg@mail.gmail.com>
-Message-ID: <CAL_JsqKueTWKbXNuN+74COR1LT6XLyw61GqCLpOgv-knNtEdKg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Rid W=1 warnings from OF
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Colin Cross <ccross@android.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Josh Cartwright <joshc@codeaurora.org>,
-        Kees Cook <keescook@chromium.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        netdev <netdev@vger.kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Tony Luck <tony.luck@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqL6ZQPFqc_Q4A6cB+8d7eGidoFhvJwa_YrZm-Xz7oC6mQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 4:40 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> This set is part of a larger effort attempting to clean-up W=1
-> kernel builds, which are currently overwhelmingly riddled with
-> niggly little warnings.
->
-> v2:
->  - Provided some descriptions to exported functions
->
-> Lee Jones (10):
->   of: device: Fix function name in header and provide missing
->     descriptions
->   of: dynamic: Fix incorrect parameter name and provide missing
->     descriptions
->   of: platform: Demote kernel-doc abuse
->   of: base: Fix some formatting issues and provide missing descriptions
->   of: property: Provide missing member description and remove excess
->     param
->   of: address: Provide descriptions for 'of_address_to_resource's params
->   of: fdt: Demote kernel-doc abuses and fix function naming
->   of: of_net: Provide function name and param description
->   of: overlay: Fix function name disparity
->   of: of_reserved_mem: Demote kernel-doc abuses
->
->  drivers/of/address.c         |  3 +++
->  drivers/of/base.c            | 16 +++++++++++-----
->  drivers/of/device.c          |  7 ++++++-
->  drivers/of/dynamic.c         |  4 +++-
->  drivers/of/fdt.c             | 23 ++++++++++++-----------
->  drivers/of/of_net.c          |  3 +++
->  drivers/of/of_reserved_mem.c |  6 +++---
->  drivers/of/overlay.c         |  2 +-
->  drivers/of/platform.c        |  2 +-
->  drivers/of/property.c        |  2 +-
->  10 files changed, 44 insertions(+), 24 deletions(-)
+On 22/03/2021 17:28, Rob Herring wrote:
+> On Mon, Mar 22, 2021 at 10:53 AM Suzuki K Poulose
+> <suzuki.poulose@arm.com> wrote:
+>>
+>> Hi Rob
+>>
+>> On 06/03/2021 21:06, Rob Herring wrote:
+>>> On Thu, Feb 25, 2021 at 07:35:39PM +0000, Suzuki K Poulose wrote:
+>>>> Document the device tree bindings for Embedded Trace Extensions.
+>>>> ETE can be connected to legacy coresight components and thus
+>>>> could optionally contain a connection graph as described by
+>>>> the CoreSight bindings.
+>>>>
+>>>> Cc: devicetree@vger.kernel.org
+>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>>> Cc: Mike Leach <mike.leach@linaro.org>
+>>>> Cc: Rob Herring <robh@kernel.org>
+>>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>> ---
 
-I still see some warnings (note this is with DT files added to doc
-build). Can you send follow-up patches:
+>>>> +  out-ports:
+>>>> +    description: |
+>>>> +      Output connections from the ETE to legacy CoreSight trace bus.
+>>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>>
+>>> s/port/ports/
+>>
+>> Ok.
+>>
+>>>
+>>> And then you need:
+>>>
+>>>          properties:
+>>>            port:
+>>>              description: what this port is
+>>>              $ref: /schemas/graph.yaml#/properties/port
+>>
+>> Isn't this already covered by the definition of ports ? There are no
+>> fixed connections for ETE. It is optional and could be connected to
+>> any legacy CoreSight component. i.e, a "ports" object can have port
+>> objects inside.
+> 
+> 'properties/ports' only defines that you have 'port' nodes within it.
+> 
+>> Given we have defined out-ports as an object "confirming to the ports"
+>> do we need to describe the individual port nodes ?
+> 
+> Yes, you have to define what the 'port' nodes are. A port is a data
+> stream and you should know what your hardware has. What the data
+> stream is connected to is outside the scope of the binding.
 
-../include/linux/of.h:1193: warning: Function parameter or member
-'output' not described in 'of_property_read_string_index'
-../include/linux/of.h:1193: warning: Excess function parameter
-'out_string' description in 'of_property_read_string_index'
-../include/linux/of.h:1461: warning: cannot understand function
-prototype: 'enum of_overlay_notify_action '
-../drivers/of/base.c:1781: warning: Excess function parameter 'prob'
-description in '__of_add_property'
-../drivers/of/base.c:1804: warning: Excess function parameter 'prob'
-description in 'of_add_property'
-../drivers/of/base.c:1855: warning: Function parameter or member
-'prop' not described in 'of_remove_property'
-../drivers/of/base.c:1855: warning: Excess function parameter 'prob'
-description in 'of_remove_property'
+Ok, I have included the above changes for the next version.
 
-BTW, there some more which I guess W=1 doesn't find:
-
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:906: WARNING: Block quote ends without a blank
-line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1465: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1469: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1473: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1517: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1521: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1526: WARNING: Unexpected indentation.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1528: WARNING: Block quote ends without a blank
-line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1529: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1533: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-../drivers/of/base.c:1705: WARNING: Definition list ends without a
-blank line; unexpected unindent.
-/home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:49:
-../drivers/of/overlay.c:1183: WARNING: Inline emphasis start-string
-without end-string.
-
-Rob
+Thanks
+Suzuki
