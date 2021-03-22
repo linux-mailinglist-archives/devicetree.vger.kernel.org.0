@@ -2,176 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33056343CC7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA900343D0D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbhCVJ1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 05:27:47 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:20438 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230048AbhCVJ1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 05:27:24 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12M9CxkN014304;
-        Mon, 22 Mar 2021 10:27:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=+TEAoakqQ2P/EInqBDC7sgpRA0k9i6CV8PBrFGCQ13o=;
- b=lIhI5MtiThg42YmcUa4gIGCbDSmkRYiwg8L7DrBSv352Gtsjh/wha0UsgbKsI8TC1bSc
- lnPOT+C5K/kY2eIDKQUBzlKjMcDClyrZn1sOM8svvjup2oCd7qKMyw2fXo63DXoQeREp
- J1ZbddXRzLdjzoY5S14vP8VDm+3UVl4H4i+Da6WwymWE9l4mtFxwSojy11yfaMSGDjVb
- q16TRdEUl7FDsLuXFne26TAadfY9eenTB3C4dgggmxsSRyJqkzOT3QS8hU96TNxh5JNZ
- +vZvZKlv1uSmCFLLFJjQAQf4mvQUGBysVWrdIFbz+B8XB25HPBaUw1mJLvewsiJDfeS1 2Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37d7d7rq7m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 Mar 2021 10:27:08 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DA52F100038;
-        Mon, 22 Mar 2021 10:27:07 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C6A59231DE9;
-        Mon, 22 Mar 2021 10:27:07 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 22 Mar 2021 10:27:07
- +0100
-From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH v2 2/2] remoteproc: stm32: add capability to detach
-Date:   Mon, 22 Mar 2021 10:26:51 +0100
-Message-ID: <20210322092651.7381-3-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210322092651.7381-1-arnaud.pouliquen@foss.st.com>
-References: <20210322092651.7381-1-arnaud.pouliquen@foss.st.com>
+        id S230079AbhCVJjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 05:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230048AbhCVJje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 05:39:34 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F669C061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 02:39:34 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id t18so8088965pjs.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 02:39:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wqHZMdC6rUxDyCcQ9/UiKhgX+/ervzY6iVzUm9vwHtE=;
+        b=qIuXQoutDEgBKQInI7J0pFo7lPchsNyAgwQuoNJ2wFzSsG8ykCUIZ+YPFqtoS26Mz1
+         hV+bXEEnX67VZq1EKNpC+7mrPcRdyeSCGU5S5GqBWysh6kfmKNA9gPwJQ1bHL+Lh06uh
+         A2YPCKKulH2mRo2f8kBkgq+URI3KKFh/Bm4ZWJIt4eZwFDOvz2UXXHgW8FqGewIj6jP3
+         mv7xXEha8ltbpZ6KxJVkVWp9JOEOdaOplsK+BIX0O1t0d3xgCvSW0CH/czcR/+Q4JI40
+         kQuSyB69pnreP0f0a8ypQscp1vjsweLxYFDoJBjGN4WNvHua5X6klQRus5ri7IrB0UEj
+         fzDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wqHZMdC6rUxDyCcQ9/UiKhgX+/ervzY6iVzUm9vwHtE=;
+        b=R3fFIIzAStMRHhMsm4s0sjvCcOUOaQYM8dZM4YAMV8xIkfc0QwN+xmWlbbpd743rjO
+         I+IbXB0MbUzqUQhVt9oUIJHf25J7InvukKn0otDyGc1NMopbP3f802npE+hfpUg1LK9F
+         ZaOqbpoERR3Wzbqnz6xQksYHb5ymsuhsq1KgQwy4IJctVyCfedvtOw3oDBuQQXIyZKju
+         MigEmrZGOE/aKpttwmo2lSdqElYv3p+OwMx86Ymh9YtcLD5XzZCOK8Q26OUsaACdmjOE
+         p9HPns8LCwO9/1XPJIc7dCljzafw4aCSCPTuwxYxvAjfsN3wIrta1Ahu/0Ss/rXOUXdK
+         NbDg==
+X-Gm-Message-State: AOAM530IHqNIIaGCoioaWj4B8GAhufbbe60uklCzYGoGgD2FqERiSCez
+        VKgH7x1tVyqLZS5vWQRUJ81Y
+X-Google-Smtp-Source: ABdhPJy8XVuIct7JmQJB4vmoUOg0R04Oj6ixVbI7Z072PYBkXC9iQpAALem0b+7e7hGmxDYKG2g67g==
+X-Received: by 2002:a17:90a:d3d1:: with SMTP id d17mr12193992pjw.21.1616405974041;
+        Mon, 22 Mar 2021 02:39:34 -0700 (PDT)
+Received: from thinkpad ([2409:4072:88e:ef5e:dccf:398f:4151:2e02])
+        by smtp.gmail.com with ESMTPSA id j188sm13320925pfd.64.2021.03.22.02.39.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Mar 2021 02:39:33 -0700 (PDT)
+Date:   Mon, 22 Mar 2021 15:09:23 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org
+Subject: Re: [PATCH v7 3/3] mtd: rawnand: Add support for secure regions in
+ NAND memory
+Message-ID: <20210322093923.GA70634@thinkpad>
+References: <20210319150010.32122-1-manivannan.sadhasivam@linaro.org>
+ <20210319150010.32122-4-manivannan.sadhasivam@linaro.org>
+ <20210319175258.2cce6acd@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-22_03:2021-03-22,2021-03-22 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210319175258.2cce6acd@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+On Fri, Mar 19, 2021 at 05:52:58PM +0100, Boris Brezillon wrote:
+> On Fri, 19 Mar 2021 20:30:10 +0530
+> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+> 
+> > On a typical end product, a vendor may choose to secure some regions in
+> > the NAND memory which are supposed to stay intact between FW upgrades.
+> > The access to those regions will be blocked by a secure element like
+> > Trustzone. So the normal world software like Linux kernel should not
+> > touch these regions (including reading).
+> > 
+> > The regions are declared using a NAND chip DT property,
+> > "secure-regions". So let's make use of this property in the raw NAND
+> > core and skip access to the secure regions present in a system.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/mtd/nand/raw/nand_base.c | 111 +++++++++++++++++++++++++++++++
+> >  include/linux/mtd/rawnand.h      |   4 ++
+> >  2 files changed, 115 insertions(+)
+> > 
+> > diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+> > index c33fa1b1847f..479a79e682cd 100644
+> > --- a/drivers/mtd/nand/raw/nand_base.c
+> > +++ b/drivers/mtd/nand/raw/nand_base.c
+> > @@ -278,11 +278,47 @@ static int nand_block_bad(struct nand_chip *chip, loff_t ofs)
+> >  	return 0;
+> >  }
+> >  
+> > +/**
+> > + * nand_check_secure_region() - Check if the region is secured
+> > + * @chip: NAND chip object
+> > + * @offset: Offset of the region to check
+> > + * @size: Size of the region to check
+> > + *
+> > + * Checks if the region is secured by comparing the offset and size with the
+> > + * list of secure regions obtained from DT. Returns -EIO if the region is
+> > + * secured else 0.
+> > + */
+> > +static int nand_check_secure_region(struct nand_chip *chip, loff_t offset, u64 size)
+> > +{
+> > +	int i, j;
+> > +
+> > +	/* Skip touching the secure regions if present */
+> > +	for (i = 0, j = 0; i < chip->nr_secure_regions; i++, j += 2) {
+> > +		/* First compare the start offset */
+> > +		if (offset >= chip->secure_regions[j] &&
+> > +		    (offset < chip->secure_regions[j] + chip->secure_regions[j + 1]))
+> > +			return -EIO;
+> > +		/* ...then offset + size */
+> > +		else if (offset < chip->secure_regions[i] &&
+> > +			 (offset + size) >= chip->secure_regions[i])
+> > +			return -EIO;
+> 
+> How about:
+> 
+> 		const struct nand_secure_region *region = &chip->secure_regions[i];
+> 
+> 		if (offset + size <= region->offset ||
+> 		    offset >= region->offset +	region->size)
+> 			continue;
+> 
+> 		return -EIO;
+> 
 
-A mechanism similar to the shutdown mailbox signal is implemented to
-detach a remote processor.
+I guess you mean this:
 
-Upon detachment, a signal is sent to the remote firmware, allowing it
-to perform specific actions such as stopping RPMsg communication.
+        /* Skip touching the secure regions if present */
+        for (i = 0; i < chip->nr_secure_regions; i++) {
+                const struct nand_secure_region *region = &chip->secure_regions[i];
 
-The Cortex-M hold boot is also disabled to allow the remote processor
-to restart in case of crash.
+                if (offset + size < region->offset ||
+                    offset >= region->offset + region->size)
+                        continue;
 
-Notice that for this feature to be supported, the remote firmware
-resource table must be stored at the beginning of a 1kB section
-(default size provided to the remoteproc core).
+                return -EIO;
+        }
 
-This restriction should be lifted in the future by using a backup
-register to store the actual size of the resource table.
+	return 0;
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
----
- drivers/remoteproc/stm32_rproc.c | 38 ++++++++++++++++++++++++++++++--
- 1 file changed, 36 insertions(+), 2 deletions(-)
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index 3d45f51de4d0..298ef5b19e27 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -28,7 +28,7 @@
- #define RELEASE_BOOT		1
- 
- #define MBOX_NB_VQ		2
--#define MBOX_NB_MBX		3
-+#define MBOX_NB_MBX		4
- 
- #define STM32_SMC_RCC		0x82001000
- #define STM32_SMC_REG_WRITE	0x1
-@@ -38,6 +38,7 @@
- #define STM32_MBX_VQ1		"vq1"
- #define STM32_MBX_VQ1_ID	1
- #define STM32_MBX_SHUTDOWN	"shutdown"
-+#define STM32_MBX_DETACH	"detach"
- 
- #define RSC_TBL_SIZE		1024
- 
-@@ -336,6 +337,15 @@ static const struct stm32_mbox stm32_rproc_mbox[MBOX_NB_MBX] = {
- 			.tx_done = NULL,
- 			.tx_tout = 500, /* 500 ms time out */
- 		},
-+	},
-+	{
-+		.name = STM32_MBX_DETACH,
-+		.vq_id = -1,
-+		.client = {
-+			.tx_block = true,
-+			.tx_done = NULL,
-+			.tx_tout = 200, /* 200 ms time out to detach should be fair enough */
-+		},
- 	}
- };
- 
-@@ -461,6 +471,25 @@ static int stm32_rproc_attach(struct rproc *rproc)
- 	return stm32_rproc_set_hold_boot(rproc, true);
- }
- 
-+static int stm32_rproc_detach(struct rproc *rproc)
-+{
-+	struct stm32_rproc *ddata = rproc->priv;
-+	int err, dummy_data, idx;
-+
-+	/* Inform the remote processor of the detach */
-+	idx = stm32_rproc_mbox_idx(rproc, STM32_MBX_DETACH);
-+	if (idx >= 0 && ddata->mb[idx].chan) {
-+		/* A dummy data is sent to allow to block on transmit */
-+		err = mbox_send_message(ddata->mb[idx].chan,
-+					&dummy_data);
-+		if (err < 0)
-+			dev_warn(&rproc->dev, "warning: remote FW detach without ack\n");
-+	}
-+
-+	/* Allow remote processor to auto-reboot */
-+	return stm32_rproc_set_hold_boot(rproc, false);
-+}
-+
- static int stm32_rproc_stop(struct rproc *rproc)
- {
- 	struct stm32_rproc *ddata = rproc->priv;
-@@ -597,7 +626,11 @@ stm32_rproc_get_loaded_rsc_table(struct rproc *rproc, size_t *table_sz)
- 	}
- 
- done:
--	/* Assuming the resource table fits in 1kB is fair */
-+	/*
-+	 * Assuming the resource table fits in 1kB is fair.
-+	 * Notice for the detach, that this 1 kB memory area has to be reserved in the coprocessor
-+	 * firmware for the resource table. A clean of this whole area is done on detach.
-+	 */
- 	*table_sz = RSC_TBL_SIZE;
- 	return (struct resource_table *)ddata->rsc_va;
- }
-@@ -607,6 +640,7 @@ static const struct rproc_ops st_rproc_ops = {
- 	.start		= stm32_rproc_start,
- 	.stop		= stm32_rproc_stop,
- 	.attach		= stm32_rproc_attach,
-+	.detach		= stm32_rproc_detach,
- 	.kick		= stm32_rproc_kick,
- 	.load		= rproc_elf_load_segments,
- 	.parse_fw	= stm32_rproc_parse_fw,
--- 
-2.17.1
+[...]
 
+> > diff --git a/include/linux/mtd/rawnand.h b/include/linux/mtd/rawnand.h
+> > index 6b3240e44310..d385c4fe8b0f 100644
+> > --- a/include/linux/mtd/rawnand.h
+> > +++ b/include/linux/mtd/rawnand.h
+> > @@ -1086,6 +1086,8 @@ struct nand_manufacturer {
+> >   *          NAND Controller drivers should not modify this value, but they're
+> >   *          allowed to read it.
+> >   * @read_retries: The number of read retry modes supported
+> > + * @secure_regions: Array representing the secure regions
+> > + * @nr_secure_regions: Number of secure regions
+> >   * @controller: The hardware controller	structure which is shared among multiple
+> >   *              independent devices
+> >   * @ecc: The ECC controller structure
+> > @@ -1135,6 +1137,8 @@ struct nand_chip {
+> >  	unsigned int suspended : 1;
+> >  	int cur_cs;
+> >  	int read_retries;
+> > +	u64 *secure_regions;
+> 
+> 
+> Can you please define the following struct:
+> 
+> struct nand_secure_region {
+> 	u64 offset;
+> 	u64 size;
+> };
+> 
+> instead of having an array of u64 where even entries encode the offset
+> and odd ones the size.
+> 
+
+Hmm, I think you implicitly said this in your previous review as well and I
+somehow lost it. Will incorporate. So we'll have something like this in
+of_get_nand_secure_regions():
+
+                for (i = 0, j = 0; i < chip->nr_secure_regions; i++, j += 2) {
+                        of_property_read_u64_index(dn, "secure-regions", j,
+                                                   &chip->secure_regions[i].offset);
+                        of_property_read_u64_index(dn, "secure-regions", j + 1,
+                                                   &chip->secure_regions[i].size);
+                }
+
+
+Thanks,
+Mani
