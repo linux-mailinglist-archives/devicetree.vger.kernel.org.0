@@ -2,141 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA99E344B29
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A995344B34
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:26:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbhCVQYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 12:24:39 -0400
-Received: from foss.arm.com ([217.140.110.172]:34712 "EHLO foss.arm.com"
+        id S230377AbhCVQ0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 12:26:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59018 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231645AbhCVQYR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 12:24:17 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A873D1042;
-        Mon, 22 Mar 2021 09:24:16 -0700 (PDT)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 52A053F719;
-        Mon, 22 Mar 2021 09:24:15 -0700 (PDT)
-Date:   Mon, 22 Mar 2021 16:24:11 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
-Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH v2 2/4] ARM: dts: sun8i: r40: add pinmux settings for
- MMC3 and UARTs 2,4,5&7
-Message-ID: <20210322162411.1569bc4c@slackpad.fritz.box>
-In-Reply-To: <20210322105538.3475183-3-i.uvarov@cognitivepilot.com>
-References: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
-        <20210322105538.3475183-3-i.uvarov@cognitivepilot.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S231807AbhCVQ0D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 12:26:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A448D61923;
+        Mon, 22 Mar 2021 16:26:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616430362;
+        bh=ceQ5NOwJb9FM/epRVuKXnXy9KZ3kKLgrUadTmgZr2Nk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XQ4OnlKCgYf2qA8cha/7tibsbD3VcoMYzhKL5Lf38Y3CHx2XWKqHvppccXKaPGmTW
+         td4U1Th95B0qy1EC9R2ZBOAxsS1aTZxM5M00htG6bkjsVOmGd8jpFg/eXyEnhB/QsK
+         RcL7oJN9nUwuFO+1b2nSvkkmywyH9DuftEgS5fGbj7zpWql43hi1histS4PPXU9omk
+         t4KJG+GD8no22EGODQRQfktSYPKDYuuwAaMLqWQ0JhmXQ9BP74+RVZcfpqTFezYCGp
+         1VHxVg5d2Rjpjq0Fzz/LfNg5uUyRCYJp2WhocWWwCrkovhkRlPWWnsxaIXIhse/Vml
+         WhLWPbAdhry6A==
+Received: by mail-ed1-f53.google.com with SMTP id dm8so20123902edb.2;
+        Mon, 22 Mar 2021 09:26:02 -0700 (PDT)
+X-Gm-Message-State: AOAM532KmTd8ixaf4Ud618nivEF7RPakY2GuwmumCPWClMxRtYFiqDnI
+        0KB2sGTfKrygI6K4hWfgmcXA+JhMC+pCg7rkPQ==
+X-Google-Smtp-Source: ABdhPJwuPn8U7kIVUhCfwZoxyYPPdZcXFdxetHAglstyF75ep9cAElEhNjBTsVpxYryDcJzvlZY0sdWXj7LXFY54zpA=
+X-Received: by 2002:aa7:d385:: with SMTP id x5mr353341edq.289.1616430361296;
+ Mon, 22 Mar 2021 09:26:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20210317134904.80737-1-sebastian.reichel@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 22 Mar 2021 10:25:49 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLASixNRTf712201w1nghxdaB28HsN7fdsjeogsoA=oQg@mail.gmail.com>
+Message-ID: <CAL_JsqLASixNRTf712201w1nghxdaB28HsN7fdsjeogsoA=oQg@mail.gmail.com>
+Subject: Re: [PATCHv2 00/38] Convert power-supply DT bindings to YAML
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Mar 2021 13:55:36 +0300
-Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
+On Wed, Mar 17, 2021 at 7:49 AM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> I keep getting patches for existing drivers, that modify DT behaviour
+> without updating the binding file. Let's move everything to DT schema
+> files, so that this can easily be cached automatically by dtbs_check.
+>
+> After this series only three bindings are left unconverted:
+>
+> 1. max8925_battery.txt
+>    This describes a node below the PMIC, which does not have its own
+>    compatible value. It needs to be described in the PMIC binding
+>    file, which has not yet been converted.
+>
+> 2. stericsson,ab8500-battery.txt
+>    This also describes a node below the PMIC, which does not have
+>    its own compatible value. The same applies.
+>
+> 3. charger-manager.txt
+>    This is far more complex to convert than the other files, due
+>    to the 'cm-regulator-name' / "<>-supply" thing. I skipped it
+>    for now.
+>
+> I tested the series using dt-validate 2021.3.dev6+g38efe3f and nothing
+> is reported when running dtbs_check like this:
+>
+> make -s -j100 dtbs_check DT_SCHEMA_FILES="Documentation/devicetree/bindings/power/supply/*.yaml"
+>
+> Also nothing is reported when checking the power-supply binding files
+> like this:
+>
+> for file in Documentation/devicetree/bindings/power/supply/*yaml ; do
+>     make -s -j42 dt_binding_check DT_SCHEMA_FILES=$file ;
+> done
+>
+> This is also available as 'psy-yaml-binding' branch from my repository:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git
+>
+> Changes since PATCHv1:
+> [1] https://lore.kernel.org/linux-devicetree/20210312154357.1561730-1-sebastian.reichel@collabora.com/
+>  * Drop #gpio-cells/gpio-controller dependency (inherited from standard binding)
+>  * Drop $ref for properties with standard suffix
+>  * ti,bq24735: Add $ref property for poll-interval
+>  * ti,lp8727: Combine usb and ac property information using patternProperties
+>
+> Thanks for reviewing it,
+>
+> -- Sebastian
+>
+> Sebastian Reichel (38):
+>   ARM: dts: motorola-cpcap-mapphone: Prepare for dtbs_check parsing
+>   dt-bindings: power: supply: cpcap-battery: Convert to DT schema format
+>   dt-bindings: power: supply: cpcap-charger: Convert to DT schema format
+>   dt-bindings: power: supply: bq25890: Convert to DT schema format
+>   dt-bindings: power: supply: bq24257: Convert to DT schema format
+>   dt-bindings: power: supply: bq24190: Convert to DT schema format
+>   dt-bindings: power: supply: bq2415x: Convert to DT schema format
+>   dt-bindings: power: supply: bq24735: Convert to DT schema format
+>   dt-bindings: power: supply: isp1704: Convert to DT schema format
+>   dt-bindings: power: supply: sbs-charger: Convert to DT schema format
+>   dt-bindings: power: supply: sbs-manager: Convert to DT schema format
+>   dt-bindings: power: supply: ds2760: Convert to DT schema format
+>   dt-bindings: power: supply: sc27xx-fg: Convert to DT schema format
+>   dt-bindings: power: supply: sc2731-charger: Convert to DT schema
+>     format
+>   dt-bindings: power: supply: tps65090: Convert to DT schema format
+>   dt-bindings: power: supply: tps65217: Convert to DT schema format
+>   dt-bindings: power: supply: twl4030: Convert to DT schema format
+>   dt-bindings: power: supply: n900-battery: Convert to DT schema format
+>   dt-bindings: power: supply: lego-ev3-battery: Convert to DT schema
+>     format
+>   dt-bindings: power: supply: max17040: Convert to DT schema format
+>   dt-bindings: power: supply: max14656: Convert to DT schema format
+>   dt-bindings: power: supply: max17042: Convert to DT schema format
+>   dt-bindings: power: supply: max8903: Convert to DT schema format
+>   dt-bindings: power: supply: ucs1002: Convert to DT schema format
+>   dt-bindings: power: supply: pm8941-charger: Convert to DT schema
+>     format
+>   dt-bindings: power: supply: pm8941-coincell: Convert to DT schema
+>     format
+>   dt-bindings: power: supply: act8945a: Convert to DT schema format
+>   dt-bindings: power: supply: axp20x: Convert to DT schema format
+>   dt-bindings: power: supply: da9150: Convert to DT schema format
+>   dt-bindings: power: supply: lp8727: Convert to DT schema format
+>   dt-bindings: power: supply: lt3651: Convert to DT schema format
+>   dt-bindings: power: supply: ltc294x: Convert to DT schema format
+>   dt-bindings: power: supply: rt9455: Convert to DT schema format
+>   dt-bindings: power: supply: olpc-battery: Convert to DT schema format
+>   dt-bindings: power: supply: ab8500: Convert to DT schema format
+>   dt-bindings: power: supply: sbs-battery: Fix dtbs_check
+>   dt-bindings: power: supply: Fix remaining battery.txt links
+>   dt-bindings: power: supply: Drop power_supply.txt
 
-Hi,
+Thanks! For the series:
 
-> The Forlinx OKA40i-C devboard makes use of UARTs 0,2,3,4,5 and 7 of the R40
-> SoC, of which UART 0 is connected to an RS232 converter, UART 5 routed to
-> an RS485 converter, and the rest broken out directly via labeled headers.
-> The board also contains a micro-SD slot connected to SDC3.
-> 
-> This patch adds settings to R40's pinmux node for those UARTs that were not
-> already mapped, which would allow us to make use of all available UARTs and
-> the micro-SD slot on this board in a further patch.
-> 
-> Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
-
-Looks alright, compared against the R40 manual.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> 
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-> index 0b257a0779..51031a0e59 100644
-> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-> @@ -357,6 +357,8 @@ mmc3: mmc@1c12000 {
->  			clock-names = "ahb", "mmc";
->  			resets = <&ccu RST_BUS_MMC3>;
->  			reset-names = "ahb";
-> +			pinctrl-0 = <&mmc3_pins>;
-> +			pinctrl-names = "default";
->  			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->  			status = "disabled";
->  			#address-cells = <1>;
-> @@ -601,6 +603,14 @@ mmc2_pins: mmc2-pins {
->  				bias-pull-up;
->  			};
->  
-> +			mmc3_pins: mmc3-pins {
-> +				pins = "PI4", "PI5", "PI6",
-> +				       "PI7", "PI8", "PI9";
-> +				function = "mmc3";
-> +				drive-strength = <30>;
-> +				bias-pull-up;
-> +			};
-> +
->  			/omit-if-no-ref/
->  			spi0_pc_pins: spi0-pc-pins {
->  				pins = "PC0", "PC1", "PC2";
-> @@ -637,6 +647,18 @@ uart0_pb_pins: uart0-pb-pins {
->  				function = "uart0";
->  			};
->  
-> +			/omit-if-no-ref/
-> +			uart2_pi_pins: uart2-pi-pins {
-> +				pins = "PI18", "PI19";
-> +				function = "uart2";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			uart2_rts_cts_pi_pins: uart2-rts-cts-pi-pins{
-> +				pins = "PI16", "PI17";
-> +				function = "uart2";
-> +			};
-> +
->  			/omit-if-no-ref/
->  			uart3_pg_pins: uart3-pg-pins {
->  				pins = "PG6", "PG7";
-> @@ -648,6 +670,24 @@ uart3_rts_cts_pg_pins: uart3-rts-cts-pg-pins {
->  				pins = "PG8", "PG9";
->  				function = "uart3";
->  			};
-> +
-> +			/omit-if-no-ref/
-> +			uart4_pg_pins: uart4-pg-pins {
-> +				pins = "PG10", "PG11";
-> +				function = "uart4";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			uart5_ph_pins: uart5-ph-pins {
-> +				pins = "PH6", "PH7";
-> +				function = "uart5";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			uart7_pi_pins: uart7-pi-pins {
-> +				pins = "PI20", "PI21";
-> +				function = "uart7";
-> +			};
->  		};
->  
->  		wdt: watchdog@1c20c90 {
-
+Reviewed-by: Rob Herring <robh@kernel.org>
