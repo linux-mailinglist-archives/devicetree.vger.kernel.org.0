@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B474B3436CB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 03:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D653436DC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 03:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbhCVCu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 22:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39900 "EHLO
+        id S229728AbhCVCye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 22:54:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbhCVCuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 22:50:10 -0400
+        with ESMTP id S229840AbhCVCyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 22:54:19 -0400
 Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6C2C061574;
-        Sun, 21 Mar 2021 19:50:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86166C061574;
+        Sun, 21 Mar 2021 19:54:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
         :In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
         Reply-To:Cc:Content-ID:Content-Description;
-        bh=mpHndGB3+9Mow3KD4ja1xykikgNIMh47D/6m5Cx+egM=; b=K4J0rMOlNv9PE36E8mk1JaonoL
-        zh7ennjhaP+qR6NWnXeKPloDapPI9qvuDrOpW2PxkT53e33/1BM0ORKpZxCCLPU31K5EIx/c/NIRy
-        kyneZ0TF1xQOFZKioxXWi+T2AjRV4I0cjiDcpSZP2+kWDu4id/6Tx5dMVWZy5jW6xHtix3C0W/zIM
-        4UtKWg64NrQ1lPwfJr0qgZskbR9GA1p8ErTYroj/q52FeCL+R4KoCRHzxCsXabfetCMUBSPv3pMgI
-        /m+XuSnmtz9433yRKSqjFzx+hDb88gHJb0XZdYffeklJJuchezoLSuNrLxC6iCH+awqUvTwxWv/f4
-        lMdr8a4A==;
+        bh=LchtIFk89xU4+bvTjczihlQeS2+A0oDJIO4T86TI7/c=; b=RZ/s6ksgaYtj7p+TO5f9seCcQG
+        BMq4dpCNgALtQVBROU5goabiQotB2mVRNwp2ImlFVmh3L1idMsAMG4bP3qScTy6lD5UwT6Bay29Nc
+        PstMsP+uYeNcePvahbCfgWy9+aLuDv96qseFVXrAfC+iarvImt9lZmnjHdeR+40aX3HEpIM9+fdxu
+        h3n+6A5d/yRAN4ddclbxesB4Hk8mo9RRcn4ZcYctt3VK4MSiJOn2zF6vmhdwvC5+b6dsW70wbRaYN
+        0VMKCxAI6bzE2yij7ZqUWjTZTMeVdmltI9wMs4SmhHOi9SHvXt3jLOk/d2dPSP+PhNRHBEEAXvAyJ
+        YUF3pzdg==;
 Received: from [2601:1c0:6280:3f0::3ba4]
         by desiato.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
-        id 1lOAdZ-00AjN6-Jh; Mon, 22 Mar 2021 02:50:01 +0000
-Subject: Re: [PATCH] dt-bindings: display: Fix a typo
-To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, robdclark@gmail.com,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch, dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210322022953.40901-1-unixbhaskar@gmail.com>
+        id 1lOAhm-00AjUJ-BA; Mon, 22 Mar 2021 02:54:13 +0000
+Subject: Re: [PATCH] IB/hns: Fix a spelling
+To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, oulijun@huawei.com,
+        huwei87@hisilicon.com, liweihang@huawei.com, dledford@redhat.com,
+        jgg@ziepe.ca, dt@kernel.org, linux-rdma@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210322022751.4137205-1-unixbhaskar@gmail.com>
 From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <7dcd0f8d-0337-e557-492d-973f89ffde14@infradead.org>
-Date:   Sun, 21 Mar 2021 19:49:45 -0700
+Message-ID: <d29400f4-32fd-d479-9d8e-7dd91499cce5@infradead.org>
+Date:   Sun, 21 Mar 2021 19:54:06 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <20210322022953.40901-1-unixbhaskar@gmail.com>
+In-Reply-To: <20210322022751.4137205-1-unixbhaskar@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -48,31 +47,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/21/21 7:29 PM, Bhaskar Chowdhury wrote:
+On 3/21/21 7:27 PM, Bhaskar Chowdhury wrote:
 > 
-> s/Subsytem/Subsystem/
+> s/wubsytem/subsystem/
 > 
 > Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/mdp5.txt | 2 +-
+>  .../devicetree/bindings/infiniband/hisilicon-hns-roce.txt       | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/mdp5.txt b/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> index 43d11279c925..4b335baa3fd2 100644
-> --- a/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> +++ b/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> @@ -2,7 +2,7 @@ Qualcomm adreno/snapdragon MDP5 display controller
+> diff --git a/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt b/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
+> index 84f1a1b505d2..c57e09099bcb 100644
+> --- a/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
+> +++ b/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
+> @@ -1,7 +1,7 @@
+>  Hisilicon RoCE DT description
 > 
->  Description:
-> 
-> -This is the bindings documentation for the Mobile Display Subsytem(MDSS) that
-> +This is the bindings documentation for the Mobile Display Subsystem(MDSS) that
+>  Hisilicon RoCE engine is a part of network subsystem.
+> -It works depending on other part of network wubsytem, such as, gmac and
+> +It works depending on other part of network subsystem, such as, gmac and
 
-add a space:                                                 Subsystem (MDSS) that
+No comma after "such as".
 
->  encapsulates sub-blocks like MDP5, DSI, HDMI, eDP etc, and the MDP5 display
->  controller found in SoCs like MSM8974, APQ8084, MSM8916, MSM8994 and MSM8996.
+>  dsa fabric.
 > 
+>  Additional properties are described here:
 > --
 
 
