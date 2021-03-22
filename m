@@ -2,76 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C425345065
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 21:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7F934509D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 21:21:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbhCVUAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 16:00:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43302 "EHLO mail.kernel.org"
+        id S231362AbhCVUUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 16:20:37 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:40423 "EHLO gecko.sbs.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230159AbhCVUAJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 16:00:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id BA1756198E;
-        Mon, 22 Mar 2021 20:00:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616443208;
-        bh=4jgTN6ojCCD0JVn9q1wWywSnw2YcEIzNqGndcCOVxqU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=ZB7p3nGoqs8Xp5bsm+vJEHKGE78hmMMtHqYiEGqWd/zRhXfVWyXU0aAGCYx5DzEb5
-         4je9ezzMW79ykLuzeZEvI+JnXuieYBbaa6ejIfq8SEeiQcLec+KlZCcNsyzSDpiATI
-         EgPq7S54rPyQHZzLGvXBb1Fmy2Wdjrjq+0mJ9yWoi8+zm4Z7qOaW6C4kETZHVlNlYI
-         hXnh4Iid7w8P+2o4UvFVLyyHGF2kFFBZLLSWOLmUdpgkH5hjSQzLvb2wSAoPeF3C5G
-         VhdEk9yOREoRspPEaY3oYG9VGrPgLlf3+xNIJo/MFjsPlxDjbH9TBsgfu4nHvDaBAY
-         LG2Rz99ojJCAA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id AAC7E609F6;
-        Mon, 22 Mar 2021 20:00:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S231181AbhCVUUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 16:20:17 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 12MKK63B032536
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 22 Mar 2021 21:20:06 +0100
+Received: from [167.87.37.70] ([167.87.37.70])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12MKF5ct032167;
+        Mon, 22 Mar 2021 21:15:05 +0100
+Subject: Re: [PATCH] of/fdt: Make sure no-map does not remove already reserved
+ regions
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Phil Elwell <phil@raspberrypi.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Ian Campbell <ian.campbell@citrix.com>,
+        Grant Likely <grant.likely@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+References: <20190703050827.173284-1-drinkcat@chromium.org>
+ <12b02977-d038-8fc7-d61e-e694a6b90f7b@siemens.com>
+ <5154396c-fffd-8e9d-3e2e-860fff35e9fc@siemens.com>
+Message-ID: <6a283aef-388d-c300-8304-503bc88a4dcf@siemens.com>
+Date:   Mon, 22 Mar 2021 21:15:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/3] Add support for Actions Semi Owl Ethernet MAC
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161644320869.18911.13353114414768088371.git-patchwork-notify@kernel.org>
-Date:   Mon, 22 Mar 2021 20:00:08 +0000
-References: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
-In-Reply-To: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     davem@davemloft.net, andrew@lunn.ch, kuba@kernel.org,
-        robh+dt@kernel.org, afaerber@suse.de, mani@kernel.org,
-        p.zabel@pengutronix.de, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <5154396c-fffd-8e9d-3e2e-860fff35e9fc@siemens.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (refs/heads/master):
-
-On Mon, 22 Mar 2021 01:29:42 +0200 you wrote:
-> This patch series adds support for the Ethernet MAC found on the Actions
-> Semi Owl family of SoCs.
+On 22.03.21 19:05, Jan Kiszka wrote:
+> On 22.03.21 08:58, Jan Kiszka wrote:
+>> On 03.07.19 07:08, Nicolas Boichat wrote:
+>>> If the device tree is incorrectly configured, and attempts to
+>>> define a "no-map" reserved memory that overlaps with the kernel
+>>> data/code, the kernel would crash quickly after boot, with no
+>>> obvious clue about the nature of the issue.
+>>>
+>>> For example, this would happen if we have the kernel mapped at
+>>> these addresses (from /proc/iomem):
+>>> 40000000-41ffffff : System RAM
+>>>   40080000-40dfffff : Kernel code
+>>>   40e00000-411fffff : reserved
+>>>   41200000-413e0fff : Kernel data
+>>>
+>>> And we declare a no-map shared-dma-pool region at a fixed address
+>>> within that range:
+>>> mem_reserved: mem_region {
+>>> 	compatible = "shared-dma-pool";
+>>> 	reg = <0 0x40000000 0 0x01A00000>;
+>>> 	no-map;
+>>> };
+>>>
+>>> To fix this, when removing memory regions at early boot (which is
+>>> what "no-map" regions do), we need to make sure that the memory
+>>> is not already reserved. If we do, __reserved_mem_reserve_reg
+>>> will throw an error:
+>>> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory
+>>>    for node 'mem_region': base 0x0000000040000000, size 26 MiB
+>>> and the code that will try to use the region should also fail,
+>>> later on.
+>>>
+>>> We do not do anything for non-"no-map" regions, as memblock
+>>> explicitly allows reserved regions to overlap, and the commit
+>>> that this fixes removed the check for that precise reason.
+>>>
+>>> Fixes: 094cb98179f19b7 ("of/fdt: memblock_reserve /memreserve/ regions in the case of partial overlap")
+>>> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+>>> ---
+>>>  drivers/of/fdt.c | 10 +++++++++-
+>>>  1 file changed, 9 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>>> index cd17dc62a71980a..a1ded43fc332d0c 100644
+>>> --- a/drivers/of/fdt.c
+>>> +++ b/drivers/of/fdt.c
+>>> @@ -1138,8 +1138,16 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
+>>>  int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
+>>>  					phys_addr_t size, bool nomap)
+>>>  {
+>>> -	if (nomap)
+>>> +	if (nomap) {
+>>> +		/*
+>>> +		 * If the memory is already reserved (by another region), we
+>>> +		 * should not allow it to be removed altogether.
+>>> +		 */
+>>> +		if (memblock_is_region_reserved(base, size))
+>>> +			return -EBUSY;
+>>> +
+>>>  		return memblock_remove(base, size);
+>>> +	}
+>>>  	return memblock_reserve(base, size);
+>>>  }
+>>>  
+>>>
+>>
+>> Likely the wrong patch to blame but hopefully the right audience:
+>>
+>> I'm trying to migrate my RPi4 setup to mainline, and this commit breaks 
+>> booting with TF-A (current master) in the loop. Error:
+>>
+>> [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd083]                                                                                                                                                                        
+>> [    0.000000] Linux version 5.10.24+ (jan@md1f2u6c) (aarch64-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)) 9.2.1 20191025, GNU ld (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)1
+>> [    0.000000] Machine model: Raspberry Pi 4 Model B Rev 1.1                                                                                                                                                                                  
+>> [    0.000000] efi: UEFI not found.                                                                                                                                                                                                           
+>> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'atf@0': base 0x0000000000000000, size 0 MiB                                                                                                                       
+>>
+>> And then we hang later on when Linux does start to use that memory and 
+>> seems to trigger an exception.
+>>
+>> Is there a bug in the upstream RPi4 DT?
+>>
 > 
-> For the moment I have only tested the driver on RoseapplePi SBC, which is
-> based on the S500 SoC variant. It might work on S900 as well, but I cannot
-> tell for sure since the S900 datasheet I currently have doesn't provide
-> any information regarding the MAC registers - so I couldn't check the
-> compatibility with S500.
+> FWIW, this is triggering the conflict:
 > 
-> [...]
+> (arch/arm/boot/dts/bcm283x.dtsi)
+> 
+> /* firmware-provided startup stubs live here, where the secondary CPUs are
+>  * spinning.
+>  */
+> /memreserve/ 0x00000000 0x00001000;
+> 
+> I strongly suspect this is only needed in case of TF-A-free boot. With 
+> TF-A we have standard PCSI (my motivation to use TF-A in the first 
+> place) - and then this is in conflict with the firmware's reservation.
+> 
+> Do we need separate DTs for this use case? Or should TF-A account for 
+> this?
+> 
 
-Here is the summary with links:
-  - [v3,1/3] dt-bindings: net: Add Actions Semi Owl Ethernet MAC binding
-    https://git.kernel.org/netdev/net-next/c/fd42327f31bb
-  - [v3,2/3] net: ethernet: actions: Add Actions Semi Owl Ethernet MAC driver
-    https://git.kernel.org/netdev/net-next/c/de6e0b198239
-  - [v3,3/3] MAINTAINERS: Add entries for Actions Semi Owl Ethernet MAC
-    https://git.kernel.org/netdev/net-next/c/b31f51832acf
+Nah, TF-A issue:
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/9316
 
+With that applied, upstream kernel & DT work fine.
 
+Jan
+
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
