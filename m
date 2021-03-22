@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB5D343708
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 04:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12544343729
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 04:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbhCVDCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 23:02:50 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:35412 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230016AbhCVDCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 23:02:19 -0400
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B6F1BAD6;
-        Mon, 22 Mar 2021 04:02:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1616382137;
-        bh=oe1/Wdj5FWpelYYwipukb7KrPvZJeboz8t2tMJQq0V8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JeMvkBuUlkSYTdqIf575bAVcxz7npokYKm6lC8guDCrnkovUfqwxfIcvMuaFhbpP2
-         kHV9nNxRL99mKvu5Y1tYC+8JwGcqt0J1Jihf3rbRcO6CNAWRHoyhVT7/gyMDvIvKNu
-         VmIH8Ik9xepVKKjh5YFQQDJASjgxK9LNOXwFg1ts=
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [RFC PATCH 01/11] dt-bindings: drm/bridge: ti-sn65dsi8: Make enable GPIO optional
-Date:   Mon, 22 Mar 2021 05:01:18 +0200
-Message-Id: <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: git-send-email 2.28.1
-In-Reply-To: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com>
+        id S229728AbhCVDOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 23:14:00 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44951 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229731AbhCVDN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 23:13:59 -0400
+X-UUID: 0bf61d431024479e90c1e00393c3d511-20210322
+X-UUID: 0bf61d431024479e90c1e00393c3d511-20210322
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 405543037; Mon, 22 Mar 2021 11:13:55 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 22 Mar 2021 11:13:53 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 22 Mar 2021 11:13:53 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Subject: [PATCH 01/13] dt-bindings: usb: mtk-xhci: support property usb2-lpm-disable
+Date:   Mon, 22 Mar 2021 11:13:40 +0800
+Message-ID: <1616382832-28450-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SN65DSI86 EN pin can be hardwired to a high level, or connected to a
-global reset signal, not controllable by the kernel. Make it optional in
-those cases.
+Add support common property usb2-lpm-disable
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml         | 1 -
- 1 file changed, 1 deletion(-)
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-index 26932d2e86ab..2506765cb338 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-@@ -150,7 +150,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - enable-gpios
-   - vccio-supply
-   - vpll-supply
-   - vcca-supply
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 14f40efb3b22..2246d29a5e4e 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -103,6 +103,10 @@ properties:
+     description: supports USB3.0 LPM
+     type: boolean
+ 
++  usb2-lpm-disable:
++    description: disable USB2 HW LPM
++    type: boolean
++
+   imod-interval-ns:
+     description:
+       Interrupt moderation interval value, it is 8 times as much as that
 -- 
-Regards,
-
-Laurent Pinchart
+2.18.0
 
