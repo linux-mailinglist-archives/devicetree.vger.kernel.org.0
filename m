@@ -2,69 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EABBB344D88
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:39:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC2C344D8B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:39:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbhCVRi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 13:38:59 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:36775 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231516AbhCVRiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:38:23 -0400
-Received: by mail-il1-f169.google.com with SMTP id t14so5781931ilu.3;
-        Mon, 22 Mar 2021 10:38:23 -0700 (PDT)
+        id S231656AbhCVRjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:39:02 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:44873 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231751AbhCVRi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:38:27 -0400
+Received: by mail-io1-f42.google.com with SMTP id v26so14817985iox.11
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 10:38:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=LgzDGJWoJMOgdng0fXijoHV8KSFecL3FBQ9h1vUK0NI=;
-        b=N4G5HndlaBKtLTr0JzZdLDbBvqvhP9NuLgGylOLhpm+AGVchRD6MUXPGeVTKBxklCi
-         zylC3ptXR2vV+G6RqmZBg5Vxir35J4c/9K1P7kNi62DtcWH8hb1ZqrGPNtZJIyEYx6/d
-         RYmkRCGi6aau9LkHd24kRdi6EoeOOMXi7hhpQk1Bc+b8dsn3ZiHSY/HxnlKKaXP2sEQF
-         ru8WKiXzFuEVnvrT4rw0Ij732UV1zph+kl0P+oybYAQmthK6Fxt2U/f63d8a6Gp5DZus
-         oQU2HjoGbU/MXLyPTFhOBEgRCRYF9E92f7Oxu5sEmcjt6o2lOJHsg0+huc581AFpK2sm
-         EOEA==
-X-Gm-Message-State: AOAM531mNtVqFU5vzsdd0dmaFIH06ANIGHeKVm3uSugHins55RDn1DeD
-        PGdJIyhO+kdOZrRoYU2bH6XbvAjsWA==
-X-Google-Smtp-Source: ABdhPJxJsfYMmDLRVj07ECod4Bv/+uOMDFRG69sXvE06tBcQaetoDa2CL4ahsTS18NH1joGL10Kgnw==
-X-Received: by 2002:a92:dd82:: with SMTP id g2mr957624iln.194.1616434701096;
-        Mon, 22 Mar 2021 10:38:21 -0700 (PDT)
+        bh=pYhMb2E3pJC4VdfHUbYx0B8sz8Ik3Em99NDUWtj80bM=;
+        b=CuKmyh8ck/lOaTlOmoccZAWTpoa7zO46reAlScBM+5QV7g5jWqQK+cJWK5wtIywsOC
+         XWB7kyM9qKeOhe2PWPqrfqKANDlPhk7DbJx0/YxNR8xufcVLOGAo7eNVWZxC0tILjxaj
+         tDuVKPQPOMsNCVc/ibUZA+Iq3N2mhvURQeqm5eI4L+DUmpgQJ2egPzq+0ksXLec+cbTs
+         eoPALzG7deYzvLs5VGVs5wjK1yR8Eh39aq5H5hJ5UgqXjzpPWUTuxlrUsHKZ2lI9E87I
+         dgiBsvIPbJHtlI6te6zMBAepwDOFHxuf+q/zM9cmeNwQ7Hj+tCNGHnN17Q8NLKbNiDg9
+         KhIg==
+X-Gm-Message-State: AOAM532wWkxl8Q1MxPI6UuVViv9egJ9qqGaVjVWYg1/hQvOGRNPLCT7D
+        7xqwl/VxqRsHWo1RADey3n91XauUdQ==
+X-Google-Smtp-Source: ABdhPJz67/j7RkcEz0IlATilsw4oAlPHSdB4DptV1A33256Nq/4jAtvpQj5E6o59QkY5ssbLGpiMTQ==
+X-Received: by 2002:a05:6638:371f:: with SMTP id k31mr439971jav.143.1616434706608;
+        Mon, 22 Mar 2021 10:38:26 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e195sm7784494iof.51.2021.03.22.10.38.19
+        by smtp.gmail.com with ESMTPSA id m20sm8242992ilj.66.2021.03.22.10.38.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 10:38:20 -0700 (PDT)
-Received: (nullmailer pid 2887755 invoked by uid 1000);
+        Mon, 22 Mar 2021 10:38:25 -0700 (PDT)
+Received: (nullmailer pid 2887762 invoked by uid 1000);
         Mon, 22 Mar 2021 17:38:18 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Hermes Zhang <chenhui.zhang@axis.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, kernel@axis.com,
-        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        Hermes Zhang <chenhuiz@axis.com>, linux-leds@vger.kernel.org
-In-Reply-To: <20210322091819.29119-1-chenhui.zhang@axis.com>
-References: <20210322091819.29119-1-chenhui.zhang@axis.com>
-Subject: Re: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20210322150406.2411162-1-dinguyen@kernel.org>
+References: <20210322150406.2411162-1-dinguyen@kernel.org>
+Subject: Re: [PATCH] dt-bindings: documentation: add clock bindings information for N5X
 Date:   Mon, 22 Mar 2021 11:38:18 -0600
-Message-Id: <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
+Message-Id: <1616434698.377481.2887761.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Mar 2021 17:18:19 +0800, Hermes Zhang wrote:
-> From: Hermes Zhang <chenhuiz@axis.com>
+On Mon, 22 Mar 2021 10:04:06 -0500, Dinh Nguyen wrote:
+> Document the N5X clock bindings.
 > 
-> Document the device tree bindings of the multiple GPIOs LED driver
-> Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
-> 
-> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 > ---
-> 
-> Notes:
->     Fix typo and missing item
-> 
->  .../bindings/leds/leds-multi-gpio.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+>  .../devicetree/bindings/clock/intel,n5x.yaml  | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/intel,n5x.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -72,12 +63,11 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-multi-gpio.example.dt.yaml: gpios-led: led-states: 'oneOf' conditional failed, one must be fixed:
-	[[0, 1, 2, 3]] is too short
-	[0, 1, 2, 3] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+./Documentation/devicetree/bindings/clock/intel,n5x.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/clock/intel,n5x.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/intel,agilex.yaml: duplicate '$id' value 'http://devicetree.org/schemas/clock/intel,agilex.yaml#'
 
-See https://patchwork.ozlabs.org/patch/1456433
+See https://patchwork.ozlabs.org/patch/1456654
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
