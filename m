@@ -2,105 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9101C343C7C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:18:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82075343C82
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:19:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhCVJRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 05:17:53 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:28220 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhCVJRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 05:17:49 -0400
-Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 22 Mar 2021 02:17:48 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 22 Mar 2021 02:17:46 -0700
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 22 Mar 2021 14:47:14 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 831DB4315; Mon, 22 Mar 2021 02:17:13 -0700 (PDT)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyant@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org, hywu@google.com,
-        mka@google.com, midean@google.com,
-        Kalyan Thota <kalyan_t@codeaurora.org>
-Subject: [v1] drm/msm/disp/dpu1: icc path needs to be set before dpu runtime resume
-Date:   Mon, 22 Mar 2021 02:17:12 -0700
-Message-Id: <1616404632-13693-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <y>
-References: <y>
+        id S229875AbhCVJS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 05:18:58 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:11422 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229715AbhCVJSy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 05:18:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1616404734;
+  x=1647940734;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=g5tYG87gKb/YXICTkOJmjh+gZmp5GtwbsSdRRWsGes4=;
+  b=pilaUFKz7saTXddNEHstUqFZy8NhCaHEfpLqE8wMf5faDd1f3zZM/FMl
+   EecydCIj5Rjz8fMftaEt7P124WEaQAIYIIxCFbsNDuxFF7XiBGLnSkW/l
+   6I4GqkhkPTXQsj39KB+ENBKhxs0gxDft5rJGT7kyGiajJ5FSHybhea6Fq
+   Rn2mhUDRIEHtohcI9lCr6Arjxfykcdc3TR45CiZmMTA0KCe9XHANQXfDT
+   H4OejXw7r3DgugQM0NsW4Pejrn/MMaGJR6u23gN3rbpZyvH36mUXGvAG6
+   9D5n2ShCTcYYqSh7VoeggAIqSRSc4ffnostCP0B+0MQws8OKINVqlnOi1
+   A==;
+From:   Hermes Zhang <chenhui.zhang@axis.com>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hermes Zhang <chenhuiz@axis.com>
+CC:     <kernel@axis.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
+Date:   Mon, 22 Mar 2021 17:18:19 +0800
+Message-ID: <20210322091819.29119-1-chenhui.zhang@axis.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kalyan Thota <kalyant@codeaurora.org>
+From: Hermes Zhang <chenhuiz@axis.com>
 
-DPU runtime resume will request for a min vote on the AXI bus as
-it is a necessary step before turning ON the AXI clock.
+Document the device tree bindings of the multiple GPIOs LED driver
+Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
 
-The change does below
-1) Move the icc path set before requesting runtime get_sync.
-2) remove the dependency of hw catalog for min ib vote
-as it is initialized at a later point.
-
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
 ---
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index ed636f1..cab387f 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -44,6 +44,8 @@
- #define DPU_DEBUGFS_DIR "msm_dpu"
- #define DPU_DEBUGFS_HWMASKNAME "hw_log_mask"
- 
-+#define MIN_IB_BW	400000000ULL /* Min ib vote 400MB */
+Notes:
+    Fix typo and missing item
+
+ .../bindings/leds/leds-multi-gpio.yaml        | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+new file mode 100644
+index 000000000000..bc19d1758d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- static int dpu_kms_hw_init(struct msm_kms *kms);
- static void _dpu_kms_mmu_destroy(struct dpu_kms *dpu_kms);
- 
-@@ -932,6 +934,9 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
- 		DPU_DEBUG("REG_DMA is not defined");
- 	}
- 
-+	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
-+		dpu_kms_parse_data_bus_icc_path(dpu_kms);
++title: Multiple GPIOs LED driver
 +
- 	pm_runtime_get_sync(&dpu_kms->pdev->dev);
- 
- 	dpu_kms->core_rev = readl_relaxed(dpu_kms->mmio + 0x0);
-@@ -1037,9 +1042,6 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
- 
- 	dpu_vbif_init_memtypes(dpu_kms);
- 
--	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
--		dpu_kms_parse_data_bus_icc_path(dpu_kms);
--
- 	pm_runtime_put_sync(&dpu_kms->pdev->dev);
- 
- 	return 0;
-@@ -1196,10 +1198,10 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
- 
- 	ddev = dpu_kms->dev;
- 
-+	WARN_ON(!(dpu_kms->num_paths));
- 	/* Min vote of BW is required before turning on AXI clk */
- 	for (i = 0; i < dpu_kms->num_paths; i++)
--		icc_set_bw(dpu_kms->path[i], 0,
--			dpu_kms->catalog->perf.min_dram_ib);
-+		icc_set_bw(dpu_kms->path[i], 0, Bps_to_icc(MIN_IB_BW));
- 
- 	rc = msm_dss_enable_clk(mp->clk_config, mp->num_clk, true);
- 	if (rc) {
++maintainers:
++  - Hermes Zhang <chenhuiz@axis.com>
++
++description:
++  This will support some LED made of multiple GPIOs and the brightness of the
++  LED could map to different states of the GPIOs.
++
++properties:
++  compatible:
++    const: multi-gpio-led
++
++  led-gpios:
++    description: Array of one or more GPIOs pins used to control the LED.
++    minItems: 1
++    maxItems: 8  # Should be enough
++
++  led-states:
++    description: |
++      The array list the supported states here which will map to brightness
++      from 0 to maximum. Each item in the array will present all the GPIOs
++      value by bit.
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 1
++
++required:
++  - compatible
++  - led-gpios
++  - led-states
++
++additionalProperties: false
++
++examples:
++  - |
++    gpios-led {
++      compatible = "multi-gpio-led";
++
++      led-gpios = <&gpio0 23 0x1>,
++                  <&gpio0 24 0x1>;
++      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
++    };
++...
 -- 
-2.7.4
+2.20.1
 
