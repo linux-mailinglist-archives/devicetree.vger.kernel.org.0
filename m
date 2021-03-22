@@ -2,104 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FAC8344AF6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA99E344B29
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:25:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbhCVQSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 12:18:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbhCVQSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 12:18:15 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4651BC061763
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 09:18:14 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id u21so4284927ejo.13
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 09:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5fPU70P+apIZaZ90738281RBQVtiFO6xyPzB24/nFj0=;
-        b=PPVMKoO2LmrxB/EqF6MdsVCuOvCwzdnYIGu2CT53plAQh+yZIwJP+JPbBQG8Mez/X4
-         dL+oIx21/VF4Hq39I/bVUmtrzWJmFH7xgszYCiT6J/He6X7upD15585k4QOPFADu+/eD
-         QGre1T0qcLb0GWCg+tAd2MOaQpSFdYMLRvJ9ocygy2vTtaMWSScKS0tdYl6wOAWqz4wo
-         LuanlAHsC/rGWiQE/jkEUFFhBiiHpYDaYCa8eUN8gX7TC4Pna+GrsqForZ85Nrxp3sbW
-         U9FgvTr2gCIpDVhOQvLw9b1r+gGjYEy2RnlbmW5LH+1/GPpC1dGpGaafVjfP69uGspZ+
-         3Chg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5fPU70P+apIZaZ90738281RBQVtiFO6xyPzB24/nFj0=;
-        b=ZslWwxuQ0Vob3WtgM/Qkk4JknbuvoOyF+tcLMRrsIu+YEBpuMQTbDKxEu1IEUd24Tv
-         sxy9mwYFs7f0wcNmm2nxUWNcwZs0CMFlU8FjNGkVYEP39yoJmESwjivV1PkJ41thXB0v
-         BzTTtaJqIUiSdMkx8DgSdJpGaEZwJF5+GZgkLUpsW2NH5Raxdvdk0A57H+zcORAW2Emz
-         YlxNeGXZHQ0sO+opjEHAoRpQGDZVJ62mhntZqYzpdlTnvV1RB+apCtvV+04n63JxX1jA
-         NEZEIaduLC+iAnj2LBkfUq835gceKz7ELeuZlSGLwFDnvW5cF37o7jKg0jEUBnh8zhvo
-         fNTw==
-X-Gm-Message-State: AOAM530YD6t6ZxPMz72sAXajInPR7saplKZhHJJxIze9Q0kN8Qu1d830
-        idRJytUItKrvuyan8tnVngOyZQ==
-X-Google-Smtp-Source: ABdhPJxWxOTWcNLPwlbFuHUTnCQvbb7chDavRLIX6ffZBF7loKDa89ZLnniTNDnUEtQqJ6ccAuewSw==
-X-Received: by 2002:a17:906:b316:: with SMTP id n22mr539237ejz.249.1616429892990;
-        Mon, 22 Mar 2021 09:18:12 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id q12sm9950268ejy.91.2021.03.22.09.18.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 09:18:12 -0700 (PDT)
-Date:   Mon, 22 Mar 2021 16:18:10 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-Message-ID: <20210322161810.biagj2qro66rv4gt@maple.lan>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
+        id S231129AbhCVQYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 12:24:39 -0400
+Received: from foss.arm.com ([217.140.110.172]:34712 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231645AbhCVQYR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 12:24:17 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A873D1042;
+        Mon, 22 Mar 2021 09:24:16 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 52A053F719;
+        Mon, 22 Mar 2021 09:24:15 -0700 (PDT)
+Date:   Mon, 22 Mar 2021 16:24:11 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v2 2/4] ARM: dts: sun8i: r40: add pinmux settings for
+ MMC3 and UARTs 2,4,5&7
+Message-ID: <20210322162411.1569bc4c@slackpad.fritz.box>
+In-Reply-To: <20210322105538.3475183-3-i.uvarov@cognitivepilot.com>
+References: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
+        <20210322105538.3475183-3-i.uvarov@cognitivepilot.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210228124106.135812-2-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
-> Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
+On Mon, 22 Mar 2021 13:55:36 +0300
+Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
+
+Hi,
+
+> The Forlinx OKA40i-C devboard makes use of UARTs 0,2,3,4,5 and 7 of the R40
+> SoC, of which UART 0 is connected to an RS232 converter, UART 5 routed to
+> an RS485 converter, and the rest broken out directly via labeled headers.
+> The board also contains a micro-SD slot connected to SDC3.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
-
-
-Daniel.
-
-
-> ---
->  drivers/video/backlight/qcom-wled.c | 1 +
->  1 file changed, 1 insertion(+)
+> This patch adds settings to R40's pinmux node for those UARTs that were not
+> already mapped, which would allow us to make use of all available UARTs and
+> the micro-SD slot on this board in a further patch.
 > 
-> diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> index 3bc7800eb0a9..497b9035a908 100644
-> --- a/drivers/video/backlight/qcom-wled.c
-> +++ b/drivers/video/backlight/qcom-wled.c
-> @@ -1704,6 +1704,7 @@ static int wled_remove(struct platform_device *pdev)
+> Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+
+Looks alright, compared against the R40 manual.
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> 
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+> index 0b257a0779..51031a0e59 100644
+> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+> @@ -357,6 +357,8 @@ mmc3: mmc@1c12000 {
+>  			clock-names = "ahb", "mmc";
+>  			resets = <&ccu RST_BUS_MMC3>;
+>  			reset-names = "ahb";
+> +			pinctrl-0 = <&mmc3_pins>;
+> +			pinctrl-names = "default";
+>  			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>  			status = "disabled";
+>  			#address-cells = <1>;
+> @@ -601,6 +603,14 @@ mmc2_pins: mmc2-pins {
+>  				bias-pull-up;
+>  			};
 >  
->  static const struct of_device_id wled_match_table[] = {
->  	{ .compatible = "qcom,pm8941-wled", .data = (void *)3 },
-> +	{ .compatible = "qcom,pmi8994-wled", .data = (void *)4 },
->  	{ .compatible = "qcom,pmi8998-wled", .data = (void *)4 },
->  	{ .compatible = "qcom,pm660l-wled", .data = (void *)4 },
->  	{ .compatible = "qcom,pm8150l-wled", .data = (void *)5 },
-> -- 
-> 2.30.1
+> +			mmc3_pins: mmc3-pins {
+> +				pins = "PI4", "PI5", "PI6",
+> +				       "PI7", "PI8", "PI9";
+> +				function = "mmc3";
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+>  			/omit-if-no-ref/
+>  			spi0_pc_pins: spi0-pc-pins {
+>  				pins = "PC0", "PC1", "PC2";
+> @@ -637,6 +647,18 @@ uart0_pb_pins: uart0-pb-pins {
+>  				function = "uart0";
+>  			};
+>  
+> +			/omit-if-no-ref/
+> +			uart2_pi_pins: uart2-pi-pins {
+> +				pins = "PI18", "PI19";
+> +				function = "uart2";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			uart2_rts_cts_pi_pins: uart2-rts-cts-pi-pins{
+> +				pins = "PI16", "PI17";
+> +				function = "uart2";
+> +			};
+> +
+>  			/omit-if-no-ref/
+>  			uart3_pg_pins: uart3-pg-pins {
+>  				pins = "PG6", "PG7";
+> @@ -648,6 +670,24 @@ uart3_rts_cts_pg_pins: uart3-rts-cts-pg-pins {
+>  				pins = "PG8", "PG9";
+>  				function = "uart3";
+>  			};
+> +
+> +			/omit-if-no-ref/
+> +			uart4_pg_pins: uart4-pg-pins {
+> +				pins = "PG10", "PG11";
+> +				function = "uart4";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			uart5_ph_pins: uart5-ph-pins {
+> +				pins = "PH6", "PH7";
+> +				function = "uart5";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			uart7_pi_pins: uart7-pi-pins {
+> +				pins = "PI20", "PI21";
+> +				function = "uart7";
+> +			};
+>  		};
+>  
+>  		wdt: watchdog@1c20c90 {
+
