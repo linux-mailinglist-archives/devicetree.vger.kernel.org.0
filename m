@@ -2,118 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C438343C32
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 09:59:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9101C343C7C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:18:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbhCVI67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 04:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbhCVI6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 04:58:48 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5B2C061574;
-        Mon, 22 Mar 2021 01:58:47 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id x28so19997722lfu.6;
-        Mon, 22 Mar 2021 01:58:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PczL/i8DI0v6bV5Bqb7xK3jB9Ud2bBghp0p1H6uE45k=;
-        b=Zzfgfbhjr6omMPasXx7EptNOXKHhyfoa79NSlCDRNvUiypFULzvxaoJj1ZBJ9jInwB
-         vCm7/FAI/cNI9KxvCdyTNNQp48vS1A6koufQSCC1Xgk6/z7JvES1gxayZ1nbsrMd/BwB
-         y/7DPt3s3w6PfMWgfbzHxfqx85U2GXiMgmSinIMlKRUwuewILIrfBaRfD4Odv3Jensjt
-         vAU8RqYi3x/nTtRTyRyRwiAMoYHicuOU3AvZtXTA6fPaFhcnK5uZbi2iwymjTmKy46QR
-         L01FJWiIRYfWI4KYIvVEUyytFx/SEFm6UgcAnKCbEzpDMxUR379ZVkud7UoroUwO5ion
-         O5kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=PczL/i8DI0v6bV5Bqb7xK3jB9Ud2bBghp0p1H6uE45k=;
-        b=pLQcF6QAGup6tkyVUL7ZYqva/mz14doDjptpAD6/rJ2qwpsaGXB/VtKAmnwB/0m/sS
-         2yxYUcJd9IqVHY6eHY/qFscMtfVKDjAvFpn2dnA9rYmwmoHB/6NSKBB/pvpKsAuw5MJz
-         s2z81hkV/+WPDQgx5rYevISLJubOaW0HsCogxB3cXJP0k6wgC1DVjhjJDkwq2LjmaD2+
-         A0ztVICjlPICkWlIzcmFhLeMsS86oHFyuyO/4KCbJ9FmsqA2OM/uHSoGCw/fUyp3soWg
-         yX8OyGVS5FR5XVbiCrFExOPWEs4Zngo87/NwjJlglQdR1/eWBAS5HsUVVhBuM1CobN3k
-         GBvw==
-X-Gm-Message-State: AOAM530zny0VuDLMehtFqxRDvQUqdWXrIW1R7b3xBfOoqkX5woJCs2C+
-        k6jMClTE6aTcBB5qjfBnLFo=
-X-Google-Smtp-Source: ABdhPJwkYZ8LlbYbzeHnceTbtbYUvqyReoc5EvZh4NuqQ8PKASe1h6Vo0Di4YEMIEm0AlcBM7ZoV8A==
-X-Received: by 2002:ac2:5933:: with SMTP id v19mr8182977lfi.405.1616403526211;
-        Mon, 22 Mar 2021 01:58:46 -0700 (PDT)
-Received: from [192.168.1.100] ([178.176.79.3])
-        by smtp.gmail.com with ESMTPSA id k30sm1792377ljc.140.2021.03.22.01.58.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 01:58:45 -0700 (PDT)
-Subject: Re: [PATCH 07/13] usb: xhci-mtk: add support ip-sleep wakeup for
- mT8192
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-References: <1616382832-28450-1-git-send-email-chunfeng.yun@mediatek.com>
- <1616382832-28450-7-git-send-email-chunfeng.yun@mediatek.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <f9d14506-5db5-8f97-e3d0-5956cc17dadd@gmail.com>
-Date:   Mon, 22 Mar 2021 11:58:40 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <1616382832-28450-7-git-send-email-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S229547AbhCVJRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 05:17:53 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:28220 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbhCVJRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 05:17:49 -0400
+Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 22 Mar 2021 02:17:48 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 22 Mar 2021 02:17:46 -0700
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 22 Mar 2021 14:47:14 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 831DB4315; Mon, 22 Mar 2021 02:17:13 -0700 (PDT)
+From:   Kalyan Thota <kalyan_t@codeaurora.org>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyant@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org, hywu@google.com,
+        mka@google.com, midean@google.com,
+        Kalyan Thota <kalyan_t@codeaurora.org>
+Subject: [v1] drm/msm/disp/dpu1: icc path needs to be set before dpu runtime resume
+Date:   Mon, 22 Mar 2021 02:17:12 -0700
+Message-Id: <1616404632-13693-1-git-send-email-kalyan_t@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.03.2021 6:13, Chunfeng Yun wrote:
+From: Kalyan Thota <kalyant@codeaurora.org>
 
-> Add support ip-sleep wakeup for mT8192, it's a specific revision,
-              ^ for
+DPU runtime resume will request for a min vote on the AXI bus as
+it is a necessary step before turning ON the AXI clock.
 
-> and not follow IPM rule.
+The change does below
+1) Move the icc path set before requesting runtime get_sync.
+2) remove the dependency of hw catalog for min ib vote
+as it is initialized at a later point.
 
-    Following?
+Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->   drivers/usb/host/xhci-mtk.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-> index 8ba1f914cb75..1bfa28c9b5a2 100644
-> --- a/drivers/usb/host/xhci-mtk.c
-> +++ b/drivers/usb/host/xhci-mtk.c
-> @@ -70,6 +70,10 @@
->   #define WC0_IS_P	BIT(12)	/* polarity */
->   #define WC0_IS_EN	BIT(6)
->   
-> +/* mt8192 */
-> +#define WC0_SSUSB0_CDEN		BIT(6)
-> +#define WC0_IS_SPM_EN		BIT(1)
-> +
->   /* mt2712 etc */
->   #define PERI_SSUSB_SPM_CTRL	0x0
->   #define SSC_IP_SLEEP_EN	BIT(4)
-> @@ -79,6 +83,7 @@ enum ssusb_uwk_vers {
->   	SSUSB_UWK_V1 = 1,
->   	SSUSB_UWK_V2,
->   	SSUSB_UWK_V11 = 11,	/* specific revision 1.1 */
-> +	SSUSB_UWK_V12,		/* specific revision 1.2 */
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index ed636f1..cab387f 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -44,6 +44,8 @@
+ #define DPU_DEBUGFS_DIR "msm_dpu"
+ #define DPU_DEBUGFS_HWMASKNAME "hw_log_mask"
+ 
++#define MIN_IB_BW	400000000ULL /* Min ib vote 400MB */
++
+ static int dpu_kms_hw_init(struct msm_kms *kms);
+ static void _dpu_kms_mmu_destroy(struct dpu_kms *dpu_kms);
+ 
+@@ -932,6 +934,9 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+ 		DPU_DEBUG("REG_DMA is not defined");
+ 	}
+ 
++	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
++		dpu_kms_parse_data_bus_icc_path(dpu_kms);
++
+ 	pm_runtime_get_sync(&dpu_kms->pdev->dev);
+ 
+ 	dpu_kms->core_rev = readl_relaxed(dpu_kms->mmio + 0x0);
+@@ -1037,9 +1042,6 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+ 
+ 	dpu_vbif_init_memtypes(dpu_kms);
+ 
+-	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
+-		dpu_kms_parse_data_bus_icc_path(dpu_kms);
+-
+ 	pm_runtime_put_sync(&dpu_kms->pdev->dev);
+ 
+ 	return 0;
+@@ -1196,10 +1198,10 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
+ 
+ 	ddev = dpu_kms->dev;
+ 
++	WARN_ON(!(dpu_kms->num_paths));
+ 	/* Min vote of BW is required before turning on AXI clk */
+ 	for (i = 0; i < dpu_kms->num_paths; i++)
+-		icc_set_bw(dpu_kms->path[i], 0,
+-			dpu_kms->catalog->perf.min_dram_ib);
++		icc_set_bw(dpu_kms->path[i], 0, Bps_to_icc(MIN_IB_BW));
+ 
+ 	rc = msm_dss_enable_clk(mp->clk_config, mp->num_clk, true);
+ 	if (rc) {
+-- 
+2.7.4
 
-    SSUSB_UWK_V1_2, maybe?
-
-[...]
-
-MBR, Sergei
