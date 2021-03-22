@@ -2,206 +2,447 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 280B2344C2E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C375344C35
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 17:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231680AbhCVQrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 12:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbhCVQqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 12:46:47 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012ABC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 09:46:46 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id ha17so8793636pjb.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 09:46:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OIhzGD6weism7EEZJmrFjVrI+R4NmB79ezAybkk6vX8=;
-        b=VGrzFuAtWqr69r687nj09FF8EZQY7OuiTw9ckFwvcIqns4FFze7kCFF8h9dLtp8+FA
-         n+4VbhKsIeepLppDhoUocsU4poxMDzAv7PWOaa/P0cyWiAfRyWRV1JTGgTs5Rj7MGw89
-         MJA0Lg1VzuatgE3wr7nirN5s8xSZRuwMivxHc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OIhzGD6weism7EEZJmrFjVrI+R4NmB79ezAybkk6vX8=;
-        b=rA1x00tCFqvVzU3rfp1lSwEM8bjRUV2jr712wYHzo9NKLsdlq4TWm7QwfEgjqHroki
-         FMhQdW8VbmJntSbR4vVt+fuJNa6vDS3LEVAfVyot97XpI+UDM01Q9JeO+I+VxRVlnkjp
-         dAuK/DbGLLarIRTR4CRkc5J/CpkrKbHI2xQoyAKGA40rHkaeDyHN1T7YE9HqSNcf8y0X
-         VznMjQzASdQscGrftz6P7gsihoGm922cPJBVoqgX3LKcBHF7RFn4L+ngsbbghAH1x3+m
-         Jz+eooNsws67oRafxzoqTiInW4//nh8MQx8sIzS6sMVieq/7y4r2aCA3C+hNcfRixHHy
-         Y7Dg==
-X-Gm-Message-State: AOAM5316ComDplBTEdWIYem0LPwZC9Ut3og2OSf6xXIblIDW2FYl4+lr
-        6+nJ+dNYClYnJUSiosmNhvg+tg==
-X-Google-Smtp-Source: ABdhPJxHqpyeMWUORP/mRnaO5qLyqlLLPZ2Netpk6XmSZOMFoNF1fZ4prJFCiourxpObJ0nkwWVmbQ==
-X-Received: by 2002:a17:902:c94c:b029:e6:cd16:24ec with SMTP id i12-20020a170902c94cb02900e6cd1624ecmr512095pla.27.1616431605565;
-        Mon, 22 Mar 2021 09:46:45 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:90a9:b908:f93a:2f78])
-        by smtp.gmail.com with UTF8SMTPSA id d124sm14289179pfa.149.2021.03.22.09.46.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 09:46:45 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sc7180: Add CoachZ rev3
-Date:   Mon, 22 Mar 2021 09:46:35 -0700
-Message-Id: <20210322094628.v4.3.I95b8a63103b77cab6a7cf9c150f0541db57fda98@changeid>
-X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
-In-Reply-To: <20210322164635.273729-1-mka@chromium.org>
-References: <20210322164635.273729-1-mka@chromium.org>
+        id S230527AbhCVQry convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 22 Mar 2021 12:47:54 -0400
+Received: from foss.arm.com ([217.140.110.172]:35200 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230448AbhCVQrV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 12:47:21 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 73D6F1042;
+        Mon, 22 Mar 2021 09:47:21 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2819A3F719;
+        Mon, 22 Mar 2021 09:47:20 -0700 (PDT)
+Date:   Mon, 22 Mar 2021 16:47:10 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v2 4/4] ARM: dts: sun8i: r40: add devicetree for Forlinx
+ FETA40i-C & OKA40i-C
+Message-ID: <20210322164710.7054614e@slackpad.fritz.box>
+In-Reply-To: <20210322105538.3475183-5-i.uvarov@cognitivepilot.com>
+References: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
+        <20210322105538.3475183-5-i.uvarov@cognitivepilot.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CoachZ rev3 uses a 100k NTC thermistor for the charger temperatures,
-instead of the 47k NTC that is stuffed in earlier revisions. Add .dts
-files for rev3.
+On Mon, 22 Mar 2021 13:55:38 +0300
+Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
 
-The 47k NTC currently isn't supported by the PM6150 ADC driver.
-Disable the charger thermal zone for rev1 and rev2 to avoid the use
-of bogus temperature values.
+Hi,
 
-This also gets rid of the explicit DT files for rev2 and handles
-rev2 in the rev1 .dts instead. There was some back and forth
-downstream involving the 'dmic_clk_en' pin, after that was sorted
-out the DT for rev1 and rev2 is the same.
+> The FETA40i-C is a SoM by Forlinx based on the Allwinner R40/A40i.
+> 
+> SoM specifications:
+> 
+> - SoC: R40 or A40i
+> - PMIC: AXP221S
+> - RAM: 1GiB/2GiB DDR3 (dual-rank)
+> - eMMC: 8GB,
+> - Mates with carrier board via four 80-pin connectors (AXK6F80337YG).
+> 
+> OKA40i-C is a carrier board by the same manufacturer for this SoM,
+> whose main purpose is as a development board with a wide variety of
+> peripherals:
+> 
+> - Power: DC5V barrel or USB OTG or 4.2V Lipo battery
+> - Video out: HDMI, TV out, LVDS
+> - WiFi+Bluetooth: RL-UM02WBS-8723BU-V1.2 (802.11 b/g/n, BT V2.1/3.0/4.0)
+> - Ethernet: 10/100Mbps
+> - Storage: µSD, fullsize SD, eMMC (on SoM), SATA
+> - USB: 3 x USB2.0 Host (2 via hub, 1 native), 1 x USB2.0 OTG (micro-B)
+> - UART: RS232, RS485, 4 3.3v uarts (of which 2 have RTS/CTS)
+> - Other I/O: SPI x2, TWI, SDIO header, GPIO header, JTAG header
+> - Mini PCIe slot with sim holder for WLAN modem
+> - Smart card holder
+> - RTC (RX8010SJ)
+> - Two user LEDs
+> - Three user buttons (via KeyADC).
+> 
+> This patch adds a devicetree for the aforementioned SoM and devboard.
+> In order to reflect the modularity of this devboard and simplify adding
+> support for future hardware based on the same SoM, the devicetree is split:
+> Everything pertaining to the SoM itself is described in a separate .dtsi
+> file, which is included by the devboard's .dts.
+> 
+> Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+> 
+>  3 files changed, 310 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 8e5d4ab4e7..88aae9de95 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1222,6 +1222,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+>  	sun8i-r16-nintendo-super-nes-classic.dtb \
+>  	sun8i-r16-parrot.dtb \
+>  	sun8i-r40-bananapi-m2-ultra.dtb \
+> +	sun8i-r40-oka40i-c.dtb \
+>  	sun8i-s3-elimo-initium.dtb \
+>  	sun8i-s3-lichee-zero-plus.dtb \
+>  	sun8i-s3-pinecube.dtb \
+> diff --git a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
+> new file mode 100644
+> index 0000000000..d3cc6f974f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
+> @@ -0,0 +1,66 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
+> +// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
+> +//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
+> +//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+> +
+> +#include "sun8i-r40.dtsi"
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	axp22x: pmic@34 {
+> +		compatible = "x-powers,axp221";
+> +		reg = <0x34>;
+> +		interrupt-parent = <&nmi_intc>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +#include "axp22x.dtsi"
+> +
+> +&mmc2 {
+> +	vmmc-supply = <&reg_dcdc1>;
+> +	vqmmc-supply = <&reg_aldo2>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&pio {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&clk_out_a_pin>;
+> +	vcc-pa-supply = <&reg_dcdc1>;
+uar> +	vcc-pc-supply = <&reg_aldo2>;
+> +	vcc-pd-supply = <&reg_dcdc1>;
+> +	vcc-pf-supply = <&reg_dldo4>;
+> +	vcc-pg-supply = <&reg_dldo1>;
+> +};
+> +
+> +&reg_aldo2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <1800000>;
+> +	regulator-max-microvolt = <1800000>;
+> +	regulator-name = "vcc-pa";
+> +};
+> +
+> +&reg_dcdc1 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-3v3";
+> +};
+> +
+> +&reg_dldo1 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-wifi-io";
+> +};
+> +
+> +&reg_dldo4 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <2500000>;
+> +	regulator-max-microvolt = <2500000>;
+> +	regulator-name = "vdd2v5-sata";
+> +};
+> diff --git a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+> new file mode 100644
+> index 0000000000..133991d7b3
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+> @@ -0,0 +1,243 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
+> +// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
+> +//	Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
+> +//	Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+> +
+> +/dts-v1/;
+> +#include "sun8i-r40-feta40i.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Forlinx OKA40i-C";
+> +	compatible = "forlinx,oka40i-c", "allwinner,sun8i-r40";
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+As mentioned in the other patch, this should contain the SoM compatible
+string in-between the two.
 
-Changes in v4:
-- added Reviewed-by tag from Doug
+> +
+> +	aliases {
+> +		ethernet0 = &gmac;
+> +		serial0 = &uart0;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5; /* RS485 */
+> +		serial7 = &uart7;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint = <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-5 {
+> +			gpios = <&pio 7 26 GPIO_ACTIVE_LOW>; /* PH26 */
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +		};
+> +
+> +		led-6 {
+> +			gpios = <&pio 8 15 GPIO_ACTIVE_LOW>; /* PI15 */
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_STATUS;
+> +		};
+> +	};
+> +
+> +	reg_vcc5v0: vcc5v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi_pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&pio 1 10 GPIO_ACTIVE_LOW>; // PB10 WIFI_EN
+> +		clocks = <&ccu CLK_OUTA>;
+> +		clock-names = "ext_clock";
+> +	};
+> +};
+> +
+> +&ahci {
+> +	ahci-supply = <&reg_dldo4>;
+> +	phy-supply = <&reg_eldo2>;
+> +	status = "okay";
+> +};
+> +
+> +&de {
+> +	status = "okay";
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci2 {
+> +	status = "okay";
+> +};
+> +
+> +&gmac {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac_rgmii_pins>;
+> +	phy-handle = <&phy1>;
+> +	phy-mode = "rgmii-id";
+> +	phy-supply = <&reg_dcdc1>;
+> +	status = "okay";
+> +};
+> +
+> +&gmac_mdio {
+> +	phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&hdmi {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi_out {
+> +	hdmi_out_con: endpoint {
+> +		remote-endpoint = <&hdmi_con_in>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply = <&reg_dcdc1>;
+> +	vqmmc-supply = <&reg_dcdc1>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&pio 8 11 GPIO_ACTIVE_LOW>; // PI11
+> +	status = "okay";
+> +};
+> +
+> +&mmc3 {
+> +	vmmc-supply = <&reg_dcdc1>;
+> +	vqmmc-supply = <&reg_dcdc1>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&pio 8 10 GPIO_ACTIVE_LOW>; // PI10
+> +	status = "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci2 {
+> +	status = "okay";
+> +};
+> +
+> +&reg_aldo3 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <3000000>;
+> +	regulator-max-microvolt = <3000000>;
+> +	regulator-name = "avcc";
+> +};
 
-Changes in v3:
-- get rid of separate .dts for rev2
+I believe this regulator should be in the SoM .dtsi. If I get this
+correctly, this regulator is somewhat essential, also the connection is
+entirely on the SoM (as both the AXP and the SoC are).
+I don't know for sure if you can actually disable this if you don't
+need any "analogue" functionality, but then any board .dts could still
+put a: status = "disabled"; property in its .dts.
 
-Changes in v2:
-- added CoachZ rev3
-- updated subject and commit message
+> +
+> +&reg_dc1sw {
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-lcd";
+> +};
+> +
+> +&reg_dcdc2 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <1100000>;
+> +	regulator-max-microvolt = <1100000>;
+> +	regulator-name = "vdd-cpu";
+> +};
+> +
+> +&reg_dcdc3 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <1100000>;
+> +	regulator-max-microvolt = <1100000>;
+> +	regulator-name = "vdd-sys";
+> +};
+> +
+> +&reg_dcdc5 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <1500000>;
+> +	regulator-max-microvolt = <1500000>;
+> +	regulator-name = "vcc-dram";
+> +};
 
- arch/arm64/boot/dts/qcom/Makefile                   |  4 ++--
- .../boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts  |  4 ++--
- .../boot/dts/qcom/sc7180-trogdor-coachz-r1.dts      | 13 +++++++++++--
- ...-r2-lte.dts => sc7180-trogdor-coachz-r3-lte.dts} |  6 +++---
- ...r-coachz-r2.dts => sc7180-trogdor-coachz-r3.dts} |  4 ++--
- 5 files changed, 20 insertions(+), 11 deletions(-)
- rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2-lte.dts => sc7180-trogdor-coachz-r3-lte.dts} (69%)
- rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-coachz-r2.dts => sc7180-trogdor-coachz-r3.dts} (75%)
+Those three (cpu, sys, dram) definitely belong into the SoM .dtsi.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 11aa83ca798f..39db370cf1a4 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -33,8 +33,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r2-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-index 533c048903ea..82dc00cc7fb9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dts
-@@ -9,8 +9,8 @@
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google CoachZ (rev1) with LTE";
--	compatible = "google,coachz-rev1-sku0", "qcom,sc7180";
-+	model = "Google CoachZ (rev1 - 2) with LTE";
-+	compatible = "google,coachz-rev1-sku0", "google,coachz-rev2-sku0", "qcom,sc7180";
- };
- 
- &cros_ec_proximity {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-index 86619f6c1134..b9c252df9fa1 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-@@ -10,8 +10,17 @@
- #include "sc7180-trogdor-coachz.dtsi"
- 
- / {
--	model = "Google CoachZ (rev1)";
--	compatible = "google,coachz-rev1", "qcom,sc7180";
-+	model = "Google CoachZ (rev1 - 2)";
-+	compatible = "google,coachz-rev1", "google,coachz-rev2", "qcom,sc7180";
-+};
-+
-+/*
-+ * CoachZ rev1 is stuffed with a 47k NTC as charger thermistor which currently
-+ * is not supported by the PM6150 ADC driver. Disable the charger thermal zone
-+ * to avoid using bogus temperature values.
-+ */
-+&charger_thermal {
-+	status = "disabled";
- };
- 
- &tlmm {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-similarity index 69%
-rename from arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-rename to arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-index 6e7745801fae..d23409034e8c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dts
-@@ -2,14 +2,14 @@
- /*
-  * Google CoachZ board device tree source
-  *
-- * Copyright 2020 Google LLC.
-+ * Copyright 2021 Google LLC.
-  */
- 
--#include "sc7180-trogdor-coachz-r2.dts"
-+#include "sc7180-trogdor-coachz-r3.dts"
- #include "sc7180-trogdor-lte-sku.dtsi"
- 
- / {
--	model = "Google CoachZ (rev2+) with LTE";
-+	model = "Google CoachZ (rev3+) with LTE";
- 	compatible = "google,coachz-sku0", "qcom,sc7180";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-similarity index 75%
-rename from arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-rename to arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-index 4f69b6ba299f..a02d2d57c78c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dts
-@@ -2,7 +2,7 @@
- /*
-  * Google CoachZ board device tree source
-  *
-- * Copyright 2020 Google LLC.
-+ * Copyright 2021 Google LLC.
-  */
- 
- /dts-v1/;
-@@ -10,6 +10,6 @@
- #include "sc7180-trogdor-coachz.dtsi"
- 
- / {
--	model = "Google CoachZ (rev2+)";
-+	model = "Google CoachZ (rev3+)";
- 	compatible = "google,coachz", "qcom,sc7180";
- };
--- 
-2.31.0.rc2.261.g7f71774620-goog
+> +
+> +&reg_dldo2 {
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-wifi";
+> +};
+> +
+> +&reg_eldo2 {
+> +	regulator-min-microvolt = <1200000>;
+> +	regulator-max-microvolt = <1200000>;
+> +	regulator-name = "vdd1v2-sata";
+> +};
+
+Since this is not always-on, but is hardwired on the SoM, it should
+probably just live in the SoM .dtsi as well.
+
+> +
+> +&reg_eldo3 {
+> +	regulator-min-microvolt = <2800000>;
+> +	regulator-max-microvolt = <2800000>;
+> +	regulator-name = "vcc-pe";
+> +};
+
+I guess the same rationale applies to PE: the line is on the SoM, and
+any board users could just reference it from there to make use of it.
+
+The rest looks alright.
+
+Cheers,
+Andre
+
+> +
+> +&tcon_tv0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pb_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart2_pi_pins>, <&uart2_rts_cts_pi_pins>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart3_pg_pins>, <&uart3_rts_cts_pg_pins>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart4_pg_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&uart5 { /* RS485 */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart5_ph_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&uart7 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart7_pi_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	usb1_vbus-supply = <&reg_vcc5v0>;
+> +	usb2_vbus-supply = <&reg_vcc5v0>;
+> +	status = "okay";
+> +};
 
