@@ -2,201 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E663C34457A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 14:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A24C34458E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 14:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbhCVNVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 09:21:05 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:59878 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232316AbhCVNTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 09:19:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1616419154; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Q/r41fIqJ2Y9Toafnn95hP48WRb+YnexiUA7BrVZA/o=;
- b=LMw98UzCoLHWtk6hMdfC8wNLboVxNJPvGH714mSVKFMXq8OxtuvmRp5sv7cDwAYXYlWaGDMQ
- j7Z2DcGaa6AQHFQy5mNPNy6FAoH89mC38MmCfKeHlCAv2t8ypPTsW6nUVITObtlqAXBtD6HW
- vr/p4pfzfqfQnHoyw5uD19vMmwE=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 605899354db3bb6801285cb4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Mar 2021 13:18:45
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D44EEC4347C; Mon, 22 Mar 2021 13:18:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 66DEEC4347C;
-        Mon, 22 Mar 2021 13:18:43 +0000 (UTC)
+        id S230174AbhCVNXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 09:23:45 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45812 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233240AbhCVNWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 09:22:38 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MDKScU111557;
+        Mon, 22 Mar 2021 08:20:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616419228;
+        bh=26DPjYQQRL+10iBnOu2PfjSw1h9HtqmQpGx0mKS6rfc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=X1qtgf3E6OtWvC74sm9vBiyMIKB8KkHDLR26uraWd4kzAJg4cX+yZ58v2jnguNrQF
+         SE8MJz+4mLoiflb4ve9bUdtgY4xu4lsc4vh42a27i0U2VAddUv383tdkDGp4vMzgjK
+         gD0xXheAIufthqa7WfJqm6HvrJfXc1EGE9JUM72Y=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MDKRVA120742
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Mar 2021 08:20:27 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
+ Mar 2021 08:20:08 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 22 Mar 2021 08:20:08 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MDK7dk112900;
+        Mon, 22 Mar 2021 08:20:08 -0500
+Date:   Mon, 22 Mar 2021 18:50:06 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        <linux-mtd@lists.infradead.org>
+Subject: Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to json schema
+Message-ID: <20210322132004.n4r2thznsm7poq74@ti.com>
+References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
+ <20210315183051.ugvmz4zqrvuo6iqq@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 22 Mar 2021 18:48:43 +0530
-From:   skakit@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
-In-Reply-To: <YEumre0+KKxZ0p6Z@builder.lan>
-References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
- <YEumre0+KKxZ0p6Z@builder.lan>
-Message-ID: <d1b8925da8197424d73cb9ac0a60b6ac@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210315183051.ugvmz4zqrvuo6iqq@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+On 16/03/21 12:00AM, Pratyush Yadav wrote:
+> +Cc mtd list
+> 
+> Hi,
+> 
+> On 15/03/21 05:45PM, Kuldeep Singh wrote:
+> > Convert the Freescale DSPI binding to DT schema format using json-schema.
+> > 
+> > Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> > ---
+> > Hi Rob,
+> > This patch is checked with following commands with no warnings observed.
+> > make distclean; make allmodconfig;
+> > make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml;
+> > make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
+> 
+> When I add the "fsl,spi-cs-sck-delay" property under the flash@0 node in 
+> the example and run dt_binding_check, I see the below error:
+> 
+>   /home/pratyush/src/linux/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.example.dt.yaml: flash@0: 'fsl,spi-cs-sck-delay' does not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+>      From schema: /home/pratyush/src/lin/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> 
+> I am trying to solve a similar problem for the Cadence QSPI controller 
+> binding and I wonder what the best solution for this is. The obvious one 
+> would be to add these properties to jedec,spi-nor.yaml. I haven't 
+> managed to come up with any other solution to this problem.
+> 
+> Rob, all, any suggestions on how to best model this?
 
-On 2021-03-12 23:06, Bjorn Andersson wrote:
-> On Thu 11 Mar 04:40 CST 2021, satya priya wrote:
-> 
->> Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
->> GPIOs, RTC and other PMIC infra modules for SC7280.
->> 
-> 
-> Overall this looks good, just two small things below.
-> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->> This patch depends on base DT and board files for SC7280 to merge 
->> first
->> https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
->> 
->>  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104 
->> ++++++++++++++++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
->>  5 files changed, 292 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
->>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
->>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
->>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi 
->> b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> new file mode 100644
->> index 0000000..393b256
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> @@ -0,0 +1,60 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/spmi/spmi.h>
->> +
->> +&spmi_bus {
->> +	pm7325: pmic@1 {
->> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
->> +		reg = <0x1 SPMI_USID>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		pm7325_tz: temp-alarm@a00 {
->> +			compatible = "qcom,spmi-temp-alarm";
->> +			reg = <0xa00>;
->> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
->> +			#thermal-sensor-cells = <0>;
->> +		};
->> +
->> +		pm7325_gpios: gpios@8800 {
->> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
->> +			reg = <0x8800>;
->> +			gpio-controller;
->> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
->> +			#gpio-cells = <2>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +		};
->> +	};
->> +};
->> +
->> +&thermal_zones {
->> +	pm7325_temp_alarm: pm7325_tz {
-> 
-> '_' is not allowed to be used in node names, there's a few of these
-> sprinkled through the patch. Please replace them with '-'.
-> 
+Ping. Any ideas?
 
-Okay, will replace them.
-
->> +		polling-delay-passive = <100>;
->> +		polling-delay = <0>;
->> +		thermal-governor = "step_wise";
->> +		thermal-sensors = <&pm7325_tz>;
->> +
->> +		trips {
->> +			pm7325_trip0: trip0 {
->> +				temperature = <95000>;
->> +				hysteresis = <0>;
->> +				type = "passive";
->> +			};
->> +
->> +			pm7325_trip1: trip1 {
->> +				temperature = <115000>;
->> +				hysteresis = <0>;
->> +				type = "critical";
->> +			};
->> +
->> +			pm7325_trip2: trip2 {
->> +				temperature = <145000>;
->> +				hysteresis = <0>;
->> +				type = "critical";
->> +			};
->> +		};
->> +	};
->> +};
-> [..]
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 8af6d77..25402d4 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -606,4 +606,12 @@
->>  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
->>  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->>  	};
->> +
->> +	thermal_zones: thermal-zones {
->> +	};
->>  };
->> +
->> +#include "pm7325.dtsi"
->> +#include "pm8350c.dtsi"
->> +#include "pmk8350.dtsi"
->> +#include "pmr735a.dtsi"
-> 
-> Is there any particular reason for you including these at the end of
-> sc7270.dtsi, rather than the top like we do in other platforms?
-> 
-> Also, are all SC7280 devices always coming with this quartet? We've 
-> seen
-> variations of this in the past and therefor typically include them from
-> the board dts instead.
-> 
-
-No specific reason, will add them in board dts file.
-
-> Regards,
-> Bjorn
-
-Thanks,
-Satya Priya
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
