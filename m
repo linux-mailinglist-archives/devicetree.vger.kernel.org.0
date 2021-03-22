@@ -2,96 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A78E3343D19
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:41:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D077F343D54
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 10:58:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbhCVJlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 05:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
+        id S229870AbhCVJ5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 05:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbhCVJkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 05:40:51 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC82CC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 02:40:50 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id f17so6244650plr.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 02:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ADfJ8XxZaIUTO4Shw2feZhZGB3RwS6NXo/0ZVYfJyEI=;
-        b=vuCGKMIjlS5UYwQqxhmr8nPtU1ChMMs+B1J5ZbQQJAJvUGi96AXtA7v8UH2UkJdPqR
-         kyXJ+beER2DmMnUfKDrE9VkGyp68GHtOUDb1Ax26rtGr92ZVJFj79oq5Xn8yJLtkqJTf
-         1UFshpI3ZPuFpoNsrkOj0SpQyeDf/z4qh3Biu8+B71vrNpRkQqdTJG+4/lCEJVyqS3jN
-         dlBKqKJevbrE/8sgOESiZUmU/jTqkmiYV3B4d5UsjPf5VTSN1QZrxELExjKsxbi3HYtN
-         vDZzOZyIRiKE/UmclwbDgoxdt5hoNlcHEPyldTSq048iLKvz81kwJfmneW+1IrSZF4Nl
-         Ftwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ADfJ8XxZaIUTO4Shw2feZhZGB3RwS6NXo/0ZVYfJyEI=;
-        b=j0DOqFl30iLiNITVDREJHyA1T73iCcdIYfmKzJRRRX1oj/Fjyxjc5lg4Rtgt2ntKGt
-         ww5PczfmcrdZLNhvaXcq4WRMWtRgGAqxOYvM0H1U8taCZa19xks2zFj32UudzlpfvXno
-         274Hu+gVT35NcYH6skhl4l2bEzwWRSropQ9uxMyStmn34AMfUrvS1kfl9938NwrcU/XE
-         1z3wlIDM1/cvlheAF2DhJgSTQN+dELUtiP8SKT36wGfBapaKj3EtE19TVpnKG+WFxUz9
-         lFyaPQuriSusIMQTQiLk3cNRmIzuMv+GqDnK48UpJtctgl5SMQviVcBnsWG6Zdfp79iS
-         2OVg==
-X-Gm-Message-State: AOAM530H7kX3x6PLNCkCql0bVaavwCtaqCRpBkSUpaIvEbLQ7rOymOKs
-        WWRX5yWYx8aTe8RBGROH0vf+
-X-Google-Smtp-Source: ABdhPJxXYjtqadurjjAFkFFRifdEFnG3qdB33Q8mykdETZt453Mf2F1NvB7ZmqzgOrmLaz2phIhYtg==
-X-Received: by 2002:a17:90a:5284:: with SMTP id w4mr12092419pjh.29.1616406050218;
-        Mon, 22 Mar 2021 02:40:50 -0700 (PDT)
-Received: from thinkpad ([2409:4072:88e:ef5e:dccf:398f:4151:2e02])
-        by smtp.gmail.com with ESMTPSA id l25sm3616113pgu.72.2021.03.22.02.40.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 02:40:49 -0700 (PDT)
-Date:   Mon, 22 Mar 2021 15:10:40 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v7 3/3] mtd: rawnand: Add support for secure regions in
- NAND memory
-Message-ID: <20210322094040.GB70634@thinkpad>
-References: <20210319150010.32122-1-manivannan.sadhasivam@linaro.org>
- <20210319150010.32122-4-manivannan.sadhasivam@linaro.org>
- <20210319175659.17c9e8e6@collabora.com>
+        with ESMTP id S230001AbhCVJ5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 05:57:34 -0400
+X-Greylist: delayed 300 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 22 Mar 2021 02:57:33 PDT
+Received: from mail.bugwerft.de (mail.bugwerft.de [IPv6:2a03:6000:1011::59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E167DC061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 02:57:33 -0700 (PDT)
+Received: from hq-00021.fritz.box (p57bc9f6a.dip0.t-ipconnect.de [87.188.159.106])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 6ACF64C3071;
+        Mon, 22 Mar 2021 09:52:30 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     airlied@linux.ie, daniel@ffwll.ch
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Daniel Mack <daniel@zonque.org>
+Subject: [PATCH v3 0/2] gpu: drm: add driver for ili9361 panel
+Date:   Mon, 22 Mar 2021 10:52:21 +0100
+Message-Id: <20210322095223.3607627-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210319175659.17c9e8e6@collabora.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 19, 2021 at 05:56:59PM +0100, Boris Brezillon wrote:
-> On Fri, 19 Mar 2021 20:30:10 +0530
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-> 
-> > @@ -2737,6 +2783,11 @@ static int nand_read_page_swecc(struct nand_chip *chip, uint8_t *buf,
-> >  	uint8_t *ecc_code = chip->ecc.code_buf;
-> >  	unsigned int max_bitflips = 0;
-> >  
-> > +	/* Check if the region is secured */
-> > +	ret = nand_check_secure_region(chip, ((loff_t)page << chip->page_shift), 0);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> 
-> I'm lost. Why do you need to do that here if it's already done in
-> nand_do_read_{ops,oob}()?
-> 
+This is v3 of the series.
 
-I think that's a mistake. Will remove it.
+Changelog:
 
-Thanks,
-Mani
+v2 -> v3:
+	* Turn Documentation into yaml format
 
-> >  	chip->ecc.read_page_raw(chip, buf, 1, page);
-> >  
-> >  	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize)
+Daniel Mack (2):
+  dt-bindings: display: add bindings for newhaven,1.8-128160EF
+  drm/tiny: add driver for newhaven,1.8-128160EF
+
+ .../bindings/display/ilitek,ili9163.yaml      |  70 ++++++
+ drivers/gpu/drm/tiny/Kconfig                  |  13 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/ili9163.c                | 224 ++++++++++++++++++
+ 4 files changed, 308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9163.yaml
+ create mode 100644 drivers/gpu/drm/tiny/ili9163.c
+
+-- 
+2.29.2
+
