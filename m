@@ -2,71 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21704344D7F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:37:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EABBB344D88
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:39:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbhCVRgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 13:36:52 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:34309 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230310AbhCVRgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:36:40 -0400
-Received: by mail-il1-f176.google.com with SMTP id h1so15620402ilr.1;
-        Mon, 22 Mar 2021 10:36:39 -0700 (PDT)
+        id S230448AbhCVRi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:38:59 -0400
+Received: from mail-il1-f169.google.com ([209.85.166.169]:36775 "EHLO
+        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231516AbhCVRiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:38:23 -0400
+Received: by mail-il1-f169.google.com with SMTP id t14so5781931ilu.3;
+        Mon, 22 Mar 2021 10:38:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xQUjNuHYH7XMWAm47YqJRg5aTzrqz/XmeXkLwUmyQa4=;
-        b=OtP42r32dBlHszlNvirK9K2DtxwB0diOQqw0xqBhmrHresWXEEhgOKH6gxedaoq+JV
-         +k/R3dIaUlfI4ei4YL+Rng82P+aKy3EG/qSPi5aKXVkcdfyL0LiKtzSPOG2q2TdDixhN
-         u3aDHlYcQ+UG2pfL8pVmcYNgCnKs51D85Pk3nnmnaS4HS6N1pvPmIeEAdMKN8NfF+DEl
-         +qosuOPXTEnRa1FRfCddUnZSS9fcqF4a6BeYnyt8WAeiCXpvNBRJhFzRo8aFa5fsScR1
-         re5FZJpzRBcrjZFeVB82K06yFyKxsUriqlUB1wvbTSr8yAs3GaztRKiCnqdD1aKXyb3B
-         DrlA==
-X-Gm-Message-State: AOAM530MayX+fBVr6/TJyheomHIgtEF/fUQzbuQv0WIM/Tj+di50nCjO
-        Ehi5VV84wE/WD69okr54Eg==
-X-Google-Smtp-Source: ABdhPJz0JG49VkPhTiL2TvHFN9lMzCKwmiz4gcgj6j7qQOhQ3jUPxoFkxwEQmOy2s0WF8gnhh5Tufw==
-X-Received: by 2002:a92:b003:: with SMTP id x3mr996149ilh.15.1616434599213;
-        Mon, 22 Mar 2021 10:36:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=LgzDGJWoJMOgdng0fXijoHV8KSFecL3FBQ9h1vUK0NI=;
+        b=N4G5HndlaBKtLTr0JzZdLDbBvqvhP9NuLgGylOLhpm+AGVchRD6MUXPGeVTKBxklCi
+         zylC3ptXR2vV+G6RqmZBg5Vxir35J4c/9K1P7kNi62DtcWH8hb1ZqrGPNtZJIyEYx6/d
+         RYmkRCGi6aau9LkHd24kRdi6EoeOOMXi7hhpQk1Bc+b8dsn3ZiHSY/HxnlKKaXP2sEQF
+         ru8WKiXzFuEVnvrT4rw0Ij732UV1zph+kl0P+oybYAQmthK6Fxt2U/f63d8a6Gp5DZus
+         oQU2HjoGbU/MXLyPTFhOBEgRCRYF9E92f7Oxu5sEmcjt6o2lOJHsg0+huc581AFpK2sm
+         EOEA==
+X-Gm-Message-State: AOAM531mNtVqFU5vzsdd0dmaFIH06ANIGHeKVm3uSugHins55RDn1DeD
+        PGdJIyhO+kdOZrRoYU2bH6XbvAjsWA==
+X-Google-Smtp-Source: ABdhPJxJsfYMmDLRVj07ECod4Bv/+uOMDFRG69sXvE06tBcQaetoDa2CL4ahsTS18NH1joGL10Kgnw==
+X-Received: by 2002:a92:dd82:: with SMTP id g2mr957624iln.194.1616434701096;
+        Mon, 22 Mar 2021 10:38:21 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m5sm8194929ilq.65.2021.03.22.10.36.37
+        by smtp.gmail.com with ESMTPSA id e195sm7784494iof.51.2021.03.22.10.38.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 10:36:38 -0700 (PDT)
-Received: (nullmailer pid 2885394 invoked by uid 1000);
-        Mon, 22 Mar 2021 17:36:36 -0000
-Date:   Mon, 22 Mar 2021 11:36:36 -0600
+        Mon, 22 Mar 2021 10:38:20 -0700 (PDT)
+Received: (nullmailer pid 2887755 invoked by uid 1000);
+        Mon, 22 Mar 2021 17:38:18 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v7 2/3] devicetree: nvmem: nvmem: drop $nodename
- restriction
-Message-ID: <20210322173636.GA2885364@robh.at.kernel.org>
-References: <20210312062830.20548-1-ansuelsmth@gmail.com>
- <20210312062830.20548-2-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210312062830.20548-2-ansuelsmth@gmail.com>
+To:     Hermes Zhang <chenhui.zhang@axis.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, kernel@axis.com,
+        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        Hermes Zhang <chenhuiz@axis.com>, linux-leds@vger.kernel.org
+In-Reply-To: <20210322091819.29119-1-chenhui.zhang@axis.com>
+References: <20210322091819.29119-1-chenhui.zhang@axis.com>
+Subject: Re: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
+Date:   Mon, 22 Mar 2021 11:38:18 -0600
+Message-Id: <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Mar 2021 07:28:20 +0100, Ansuel Smith wrote:
-> Drop $nodename restriction as now mtd partition can also be used as
-> nvmem provider.
+On Mon, 22 Mar 2021 17:18:19 +0800, Hermes Zhang wrote:
+> From: Hermes Zhang <chenhuiz@axis.com>
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Document the device tree bindings of the multiple GPIOs LED driver
+> Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
+> 
+> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
 > ---
->  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 ---
->  1 file changed, 3 deletions(-)
+> 
+> Notes:
+>     Fix typo and missing item
+> 
+>  .../bindings/leds/leds-multi-gpio.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-multi-gpio.example.dt.yaml: gpios-led: led-states: 'oneOf' conditional failed, one must be fixed:
+	[[0, 1, 2, 3]] is too short
+	[0, 1, 2, 3] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+
+See https://patchwork.ozlabs.org/patch/1456433
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
