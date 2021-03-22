@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AB973436BC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 03:44:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B474B3436CB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 03:51:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbhCVCn6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 21 Mar 2021 22:43:58 -0400
-Received: from szxga08-in.huawei.com ([45.249.212.255]:3314 "EHLO
-        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbhCVCne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 22:43:34 -0400
-Received: from dggeme708-chm.china.huawei.com (unknown [172.30.72.53])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4F3dyW52nkz147QC;
-        Mon, 22 Mar 2021 10:40:19 +0800 (CST)
-Received: from dggema753-chm.china.huawei.com (10.1.198.195) by
- dggeme708-chm.china.huawei.com (10.1.199.104) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2106.2; Mon, 22 Mar 2021 10:43:27 +0800
-Received: from dggema753-chm.china.huawei.com ([10.9.48.84]) by
- dggema753-chm.china.huawei.com ([10.9.48.84]) with mapi id 15.01.2106.013;
- Mon, 22 Mar 2021 10:43:27 +0800
-From:   liweihang <liweihang@huawei.com>
-To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        oulijun <oulijun@huawei.com>,
-        "huwei87@hisilicon.com" <huwei87@hisilicon.com>,
-        "dledford@redhat.com" <dledford@redhat.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>, "dt@kernel.org" <dt@kernel.org>,
-        "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     "rdunlap@infradead.org" <rdunlap@infradead.org>
-Subject: Re: [PATCH] IB/hns: Fix a spelling
-Thread-Topic: [PATCH] IB/hns: Fix a spelling
-Thread-Index: AQHXHsMDqemTdt75o0mxIdrXWvWfRQ==
-Date:   Mon, 22 Mar 2021 02:43:27 +0000
-Message-ID: <5d404e23725a4c62b06c4a00875c7312@huawei.com>
-References: <20210322022751.4137205-1-unixbhaskar@gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.67.100.165]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S229761AbhCVCu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 22:50:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229574AbhCVCuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 22:50:10 -0400
+Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6C2C061574;
+        Sun, 21 Mar 2021 19:50:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+        :In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+        Reply-To:Cc:Content-ID:Content-Description;
+        bh=mpHndGB3+9Mow3KD4ja1xykikgNIMh47D/6m5Cx+egM=; b=K4J0rMOlNv9PE36E8mk1JaonoL
+        zh7ennjhaP+qR6NWnXeKPloDapPI9qvuDrOpW2PxkT53e33/1BM0ORKpZxCCLPU31K5EIx/c/NIRy
+        kyneZ0TF1xQOFZKioxXWi+T2AjRV4I0cjiDcpSZP2+kWDu4id/6Tx5dMVWZy5jW6xHtix3C0W/zIM
+        4UtKWg64NrQ1lPwfJr0qgZskbR9GA1p8ErTYroj/q52FeCL+R4KoCRHzxCsXabfetCMUBSPv3pMgI
+        /m+XuSnmtz9433yRKSqjFzx+hDb88gHJb0XZdYffeklJJuchezoLSuNrLxC6iCH+awqUvTwxWv/f4
+        lMdr8a4A==;
+Received: from [2601:1c0:6280:3f0::3ba4]
+        by desiato.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1lOAdZ-00AjN6-Jh; Mon, 22 Mar 2021 02:50:01 +0000
+Subject: Re: [PATCH] dt-bindings: display: Fix a typo
+To:     Bhaskar Chowdhury <unixbhaskar@gmail.com>, robdclark@gmail.com,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch, dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210322022953.40901-1-unixbhaskar@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <7dcd0f8d-0337-e557-492d-973f89ffde14@infradead.org>
+Date:   Sun, 21 Mar 2021 19:49:45 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
+In-Reply-To: <20210322022953.40901-1-unixbhaskar@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/3/22 10:28, Bhaskar Chowdhury wrote:
+On 3/21/21 7:29 PM, Bhaskar Chowdhury wrote:
 > 
-> s/wubsytem/subsystem/
+> s/Subsytem/Subsystem/
 > 
 > Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 > ---
->  .../devicetree/bindings/infiniband/hisilicon-hns-roce.txt       | 2 +-
+>  Documentation/devicetree/bindings/display/msm/mdp5.txt | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt b/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
-> index 84f1a1b505d2..c57e09099bcb 100644
-> --- a/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
-> +++ b/Documentation/devicetree/bindings/infiniband/hisilicon-hns-roce.txt
-> @@ -1,7 +1,7 @@
->  Hisilicon RoCE DT description
+> diff --git a/Documentation/devicetree/bindings/display/msm/mdp5.txt b/Documentation/devicetree/bindings/display/msm/mdp5.txt
+> index 43d11279c925..4b335baa3fd2 100644
+> --- a/Documentation/devicetree/bindings/display/msm/mdp5.txt
+> +++ b/Documentation/devicetree/bindings/display/msm/mdp5.txt
+> @@ -2,7 +2,7 @@ Qualcomm adreno/snapdragon MDP5 display controller
 > 
->  Hisilicon RoCE engine is a part of network subsystem.
-> -It works depending on other part of network wubsytem, such as, gmac and
-> +It works depending on other part of network subsystem, such as, gmac and
->  dsa fabric.
+>  Description:
 > 
->  Additional properties are described here:
+> -This is the bindings documentation for the Mobile Display Subsytem(MDSS) that
+> +This is the bindings documentation for the Mobile Display Subsystem(MDSS) that
+
+add a space:                                                 Subsystem (MDSS) that
+
+>  encapsulates sub-blocks like MDP5, DSI, HDMI, eDP etc, and the MDP5 display
+>  controller found in SoCs like MSM8974, APQ8084, MSM8916, MSM8994 and MSM8996.
+> 
 > --
-> 2.31.0
-> 
-> 
 
-Thank you.
 
-Acked-by: Weihang Li <liweihang@huawei.com>
+-- 
+~Randy
+
