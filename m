@@ -2,157 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 586F4344720
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:29:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2FA83447C2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbhCVO3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 10:29:00 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2725 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhCVO2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:28:43 -0400
-Received: from fraeml742-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4F3xXS6zLBz681n6;
-        Mon, 22 Mar 2021 22:22:16 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml742-chm.china.huawei.com (10.206.15.223) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Mar 2021 15:28:41 +0100
-Received: from localhost (10.47.84.0) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Mon, 22 Mar
- 2021 14:28:40 +0000
-Date:   Mon, 22 Mar 2021 14:27:22 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-CC:     Jonathan Cameron <jic23@kernel.org>, <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        <linux-iio@vger.kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        id S230314AbhCVOtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 10:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53632 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229993AbhCVOsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:48:55 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446BBC061762
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:48:54 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:250b:f16c:c5e2:505d])
+        by laurent.telenet-ops.be with bizsmtp
+        id jSos2400M2HDxaV01Sosfq; Mon, 22 Mar 2021 15:48:52 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lOLrQ-009ZW8-5x; Mon, 22 Mar 2021 15:48:52 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lOLrP-004T5Y-BW; Mon, 22 Mar 2021 15:48:51 +0100
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v3 3/3] iio: adc: add ADC driver for the TI TSC2046
- controller
-Message-ID: <20210322142722.000053a6@Huawei.com>
-In-Reply-To: <20210322115635.GA14791@pengutronix.de>
-References: <20210319144509.7627-1-o.rempel@pengutronix.de>
-        <20210319144509.7627-4-o.rempel@pengutronix.de>
-        <20210320154601.0131805d@jic23-huawei>
-        <20210322115635.GA14791@pengutronix.de>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH 00/17] auxdisplay: ht16k33: Add character display support
+Date:   Mon, 22 Mar 2021 15:48:31 +0100
+Message-Id: <20210322144848.1065067-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.84.0]
-X-ClientProxiedBy: lhreml711-chm.china.huawei.com (10.201.108.62) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi all,
 
-> >   
-> > > +	/*
-> > > +	 * Lock to protect the layout and the spi transfer buffer.
-> > > +	 * tsc2046_adc_group_layout can be changed within update_scan_mode(),
-> > > +	 * in this case the l[] and tx/rx buffer will be out of sync to each
-> > > +	 * other.
-> > > +	 */
-> > > +	struct mutex slock;
-> > > +	struct tsc2046_adc_group_layout l[TI_TSC2046_MAX_CHAN];
-> > > +	struct tsc2046_adc_atom *rx;
-> > > +	struct tsc2046_adc_atom *tx;
-> > > +
-> > > +	struct tsc2046_adc_atom *rx_one;
-> > > +	struct tsc2046_adc_atom *tx_one;
-> > > +
-> > > +	unsigned int count;
-> > > +	unsigned int groups;
-> > > +	u32 effective_speed_hz;
-> > > +	u32 scan_interval_us;
-> > > +	u32 time_per_scan_us;
-> > > +	u32 time_per_bit_ns;
-> > > +
-> > > +	struct tsc2046_adc_ch_cfg ch_cfg[TI_TSC2046_MAX_CHAN];
-> > > +};
-> > > +
-> > > +#define TI_TSC2046_V_CHAN(index, bits, name)			\
-> > > +{								\
-> > > +	.type = IIO_VOLTAGE,					\
-> > > +	.indexed = 1,						\
-> > > +	.channel = index,					\
-> > > +	.datasheet_name = "#name",				\
-> > > +	.scan_index = index,					\
-> > > +	.scan_type = {						\
-> > > +		.sign = 'u',					\
-> > > +		.realbits = bits,				\
-> > > +		.storagebits = 16,				\
-> > > +		.endianness = IIO_CPU,				\
-> > > +	},							\
-> > > +}  
-> > 
-> > I'd not noticed this before but you are exposing nothing to the
-> > normal IIO interfaces.
-> > 
-> > That means for usecases like iio-hwmon there is no access
-> > to polled readings, or information like channel scaling.
-> > 
-> > I suppose that could be added later, but perhaps you want to call this
-> > out by mentioning it in the patch description.  
-> 
-> If it is ok for you, then I'll add some words about it in to the patch
-> description.
-Sure
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
 
-> 
-> > > +
-> > > +#define DECLARE_TI_TSC2046_8_CHANNELS(name, bits) \
-> > > +const struct iio_chan_spec name ## _channels[] = { \
-> > > +	TI_TSC2046_V_CHAN(0, bits, TEMP0), \
-> > > +	TI_TSC2046_V_CHAN(1, bits, Y), \
-> > > +	TI_TSC2046_V_CHAN(2, bits, VBAT), \
-> > > +	TI_TSC2046_V_CHAN(3, bits, Z1), \
-> > > +	TI_TSC2046_V_CHAN(4, bits, Z2), \
-> > > +	TI_TSC2046_V_CHAN(5, bits, X), \
-> > > +	TI_TSC2046_V_CHAN(6, bits, AUX), \
-> > > +	TI_TSC2046_V_CHAN(7, bits, TEMP1), \
-> > > +	IIO_CHAN_SOFT_TIMESTAMP(8), \
-> > > +}
-> > > +
-> > > +static DECLARE_TI_TSC2046_8_CHANNELS(tsc2046_adc, 12);
-> > > +
-> > > +static const struct tsc2046_adc_dcfg tsc2046_adc_dcfg_tsc2046e = {
-> > > +	.channels = tsc2046_adc_channels,
-> > > +	.num_channels = ARRAY_SIZE(tsc2046_adc_channels),
-> > > +};
-> > > +  
-> > 
-> > Hmm.  Flexibility that isn't yet used.  Normally I'm pretty resistant
-> > to this going in, unless I'm reassured that there is support for additional
-> > devices already in the pipeline.  Is that true here?  Otherwise
-> > this is basically unneeded complexity.  
-> 
-> In the long term this driver should replace
-> drivers/input/touchscreen/ads7846.c
-> 
-> This driver supports ti,ads7843, ti,ads7845, ti,ads7846.. at least with
-> following number of supported channels:
-> ti,ads7843 - 4 channels: x, y, aux0, aux1
-> ti,ads7845 - 3 channels: x, y, aux0
-> ti,ads7846 - 8 channels...
-> 
-> Currently I don't have this HW for testing and there a subtle
-> differences that have to be taken care of and tested.
-> 
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
 
-Note that I'm only going to merge this driver with an explicit statement
-from Dmitry as input maintainer that he is fine with this approach.
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-15 contain cleanups and improvements for the HT16K33
+    driver, to prepare for segment display support,
+  - Patch 16 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 17 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color.
 
-Jonathan
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, plugged into an OrangeCrab ECP5-based FPGA
+board running linux-on-litex-vexriscv.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
+
+Thanks for your comments!
+
+Geert Uytterhoeven (17):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  auxdisplay: ht16k33: Add segment display LED support
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  22 +-
+ drivers/auxdisplay/Kconfig                    |   8 +
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 451 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 199 +-------
+ drivers/auxdisplay/line-display.c             | 261 ++++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 240 ++++++++++
+ 8 files changed, 961 insertions(+), 264 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
