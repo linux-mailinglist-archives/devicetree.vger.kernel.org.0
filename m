@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 658C3344622
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 14:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FE9344665
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:00:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbhCVNqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 09:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbhCVNp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 09:45:56 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B666C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 06:45:55 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id f26so21103402ljp.8
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 06:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MAsqu+nrUaGfuKdfO5JWOn1zVTZWLnet3/TkGIueees=;
-        b=YEq3ulraf8GyTw13ab79KrtHWPmPGpFytr5S3JQPwnlGTBNgFP4IphrGJl3pfigMYX
-         07ShF9QZQPZ+EuWBFqf/BnA46aC6P8SFY8vRF4pxBHwK+oMdBJxlEGT4adTFA4kagdqo
-         mRZuaUJ/7q3y12Yq9saPcDbTOn62cish5pHqgYNx1DU7PD1dQw6OvAxyzKhqDdJlvUql
-         Viqd96oS54A2qZfyDgs/hCc9eIDNvzrJfNn1SQEuCGWDdmy2jeZsJZLZAT+71zoYO2oH
-         8/YoAjJSM3XfjvqOvU3yrTdcuvjYviPSXBHtOqGwjQ8wWuyHbbPuc27+jX9ELpC2Vb4E
-         1DSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MAsqu+nrUaGfuKdfO5JWOn1zVTZWLnet3/TkGIueees=;
-        b=Nyj7OH/i4S48gX2a9akCMHLwzaT/xzvz8tKd/LHlq4eN0jj+R+IZWUzCmOjeLiU/Ha
-         jJ7GGQcNkAPcMWl0jR9Jo4xp5mTDjStUm8akHPayGQLhsHAsqXSKYiGHfPq4FqFDs8Dz
-         y8HPHCvTX5Io5zjyi+3NVF4jx/awFHAT5Punhr1bF0fsnj3jHhYWe+br7+Q5aaxxAox9
-         zkGJb7O0bVGQkwnFY7NrZoARFONycCxEz5x4nvo+hb2kXMqEpV9zqLBfn+ZDfNLEtliV
-         TpR8iPjOd9XrABR1gAu4ts1lN5fHXdIr3e3NJHQah4GQSsVCCNe8LFDXFccHP4jHErKk
-         KO4A==
-X-Gm-Message-State: AOAM5331zu9q3bRroOc4lsyNyAElKLrt0MS0Sr/stEkPYf6p89Qz5/aT
-        C3r5x/JK/EgHbSzMGO1BnCO4paerOdBLIjmkKtzROg==
-X-Google-Smtp-Source: ABdhPJyezaVrNAfZsA0jCpOMJbhcpIkdGG6bxanetzRDs2x1TbHiBHrJuJI+v6mGNmCwWZbdqs2mPiUp/qAEeG5uMcI=
-X-Received: by 2002:a05:651c:103a:: with SMTP id w26mr9692444ljm.273.1616420753913;
- Mon, 22 Mar 2021 06:45:53 -0700 (PDT)
+        id S231137AbhCVN76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 09:59:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45788 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230501AbhCVN70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 09:59:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2A02F61931;
+        Mon, 22 Mar 2021 13:59:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616421565;
+        bh=6uNGZYiD7TptJN9tSXE/bFTNOQAIFTxSCqtDwCYJemM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N+IE9qtbr+8FlphNLpfm5zQ33ol3vtZB83BpNmoToW2PlftLptO+K0aM9HEkldptQ
+         G9n0InbUkoCU37kiTQXoPYc+OdiPCFfzSS+bHINadxmW7h3WVr5zbWQP+f12c42Wr3
+         bgP3F5le9bqMR9OVZp/LdE2ksdSWIP+imxrO/vfPX5XYW83a5jD03lQ3LGr3zPZ0wR
+         0VKOuSnSSadvm1UikL5TbojH2QGLd0wrrHXDsIUffIp9zX7LdNimLHfIeLQyqr9NYC
+         Lu83CCJ5BfHgK5MCfbB4K4jNZs14+BP3wH8NiVP7srDqbpk/d/XQecjlPzWagHYWbH
+         iptWTKMmr5Ggw==
+Received: by earth.universe (Postfix, from userid 1000)
+        id 6897A3C0C96; Mon, 22 Mar 2021 14:59:23 +0100 (CET)
+Date:   Mon, 22 Mar 2021 14:59:23 +0100
+From:   Sebastian Reichel <sre@kernel.org>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     robh+dt@kernel.org, pali@kernel.org, krzk@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        grygorii.tertychnyi@leica-geosystems.com,
+        andrey.zhizhikin@leica-geosystems.com
+Subject: Re: [PATCH V7 0/2] power: supply: bq27xxx: Add support for BQ78Z100
+Message-ID: <20210322135923.mwva57vzokpu4wee@earth.universe>
+References: <20210319110236.4353-1-Qing-wu.Li@leica-geosystems.com.cn>
 MIME-Version: 1.0
-References: <20210309015750.6283-1-peng.zhou@mediatek.com> <CACRpkdYTkW7b9SFEY6Ubq4NicgR_5ewQMjE2zHvGbgxYadhHQQ@mail.gmail.com>
- <YEpqkAq6wOZ+TpR9@gmail.com> <CAPDyKFoWg7HYHAbxYJRbOad5kqm+rzVLVQ0O3g76ROO5Z+MF3Q@mail.gmail.com>
- <1615884533.21508.118.camel@mbjsdccf07> <CAPDyKFqtjYVAAe_wUKQC3n3ok5bUpGtpu=TUiOgFmbb6+Qkg=A@mail.gmail.com>
- <1615893329.21508.128.camel@mbjsdccf07> <CAPDyKFqaFbviwxQ8U_X8U64F7OwNaxXde6XdUcGPeGg8k9MWWg@mail.gmail.com>
-In-Reply-To: <CAPDyKFqaFbviwxQ8U_X8U64F7OwNaxXde6XdUcGPeGg8k9MWWg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 22 Mar 2021 14:45:42 +0100
-Message-ID: <CACRpkdapAOq7NtZDOgnugvTmO0+Yh+EoCVod-s_akPfs2=Sj9Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: Mediatek: enable crypto hardware engine
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     "Peng.Zhou" <peng.zhou@mediatek.com>,
-        Eric Biggers <ebiggers@kernel.org>,
-        linux-block <linux-block@vger.kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wulin Li <wulin.li@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7rts4mwuk3ytnhn2"
+Content-Disposition: inline
+In-Reply-To: <20210319110236.4353-1-Qing-wu.Li@leica-geosystems.com.cn>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 2:56 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 
-> It looks like we have a couple of options to support this. I suggest
-> we consider the two below, but perhaps others (Arnd/Linus?) have
-> better ideas?
+--7rts4mwuk3ytnhn2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Admittedly it's a bit hard to shoehorn this in as it is not a standard
-resource (clk, regulator, genpd, reset, gpio...)
+Hi,
 
-There is drivers/soc and then you end up with the same custom
-abstraction that qcom is using. The upside to using that
-is that we can #ifdef it to static stubs in the .h file if this SoC
-is not used, so I would go for that.
+On Fri, Mar 19, 2021 at 11:02:34AM +0000, LI Qingwu wrote:
+> Changes in V7:
+>=20
+> Add    POWER_SUPPLY_CHARGE_NOW
+> Remove POWER_SUPPLY_PROP_ENERGY_NOW
+> Refresh result of dump uevent
+>=20
+>=20
+> LI Qingwu (2):
+>   dt-bindings: power: bq27xxx: add bq78z100
+>   power: supply: bq27xxx: Add support for BQ78Z100
+>=20
+>  .../bindings/power/supply/bq27xxx.yaml        |  1 +
+>  drivers/power/supply/bq27xxx_battery.c        | 44 +++++++++++++++++++
+>  drivers/power/supply/bq27xxx_battery_i2c.c    |  2 +
+>  include/linux/power/bq27xxx_battery.h         |  1 +
+>  4 files changed, 48 insertions(+)
 
-See for example qcom_scm_ice_invalidate_key() used from
-drivers/firmware/qcom_scm.c, header is at
-include/linux/qcom_scm.h and here you find:
-#if IS_ENABLED(CONFIG_QCOM_SCM)
-and if not, there are some stubs.
+Thanks, queued.
 
-Yours,
-Linus Walleij
+-- Sebastian
+
+--7rts4mwuk3ytnhn2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBYorsACgkQ2O7X88g7
++ppUxhAApT+tGZZdr1XjomjDjh+1wuDJlUhB8l4OTAVmdyVpn2qe6VKKiP4USmVS
+B5now5XQEpRPZPRN/Ya0TglNQSam/7xYQndzysZ/oFP6YMA1H6sdbSWABw7U4peh
+bjnYGCHTZY5VpsERMfqftv8GVWHPLo61Hvm2Tpgste0VmOgRqg3DyuzIT65dzynd
+JX+yxy11DfKvbN+WI6VsOcXRo8lHkW52/JsgC08qOVHdXoGcJfFILxeOhhYrwRjY
+3oGbfz8tof0tbBMhN0F4W0F1J/qdwu1x5UJyA4oiGXVApkwzWQ3LI/v9WnMehV3a
+1y0z2N60FemGHNZfEJjyJ/XtX07BTIU/rnAsNaUK73FORL7HiCvIBhTMAQV70Wyj
++n1VIlNW9FT0XeTm/Grh1e6onP4FFOjKLA6vim4QKI5ARxOEvdAm+W6dyWFX1akf
+2SkCoYw73esglbznPPCJpWxj25a8fqyqDJ4QzpPfQAGzReeNCytZAJUXgL8yabRW
+oNNoO3P/230LGM2mKwoU6Vo9qUBE4by29ru6Z79y/ecXIWK43NaQ5PZeJow9dOlM
+Xq+wn+aEZ8mQ62HR1iIoCuernyJqRyCe7ftQ2a3Pg/Suar3DfoZpw4JsdAtVCmAs
+3MeSqt95sealtJNzf5xaNTKycW2wzzmhRmOs17ZhL9Dc/FZ4MOc=
+=eEyc
+-----END PGP SIGNATURE-----
+
+--7rts4mwuk3ytnhn2--
