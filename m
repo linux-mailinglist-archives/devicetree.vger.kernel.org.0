@@ -2,149 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE4D344E23
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5198B344E42
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbhCVSKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 14:10:33 -0400
-Received: from lizzard.sbs.de ([194.138.37.39]:37808 "EHLO lizzard.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230165AbhCVSKY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 14:10:24 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 12MIAD3O000529
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 22 Mar 2021 19:10:13 +0100
-Received: from [167.87.37.70] ([167.87.37.70])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12MI5CsM007874;
-        Mon, 22 Mar 2021 19:05:12 +0100
-Subject: Re: [PATCH] of/fdt: Make sure no-map does not remove already reserved
- regions
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Phil Elwell <phil@raspberrypi.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Ian Campbell <ian.campbell@citrix.com>,
-        Grant Likely <grant.likely@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>
-References: <20190703050827.173284-1-drinkcat@chromium.org>
- <12b02977-d038-8fc7-d61e-e694a6b90f7b@siemens.com>
-Message-ID: <5154396c-fffd-8e9d-3e2e-860fff35e9fc@siemens.com>
-Date:   Mon, 22 Mar 2021 19:05:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
-MIME-Version: 1.0
-In-Reply-To: <12b02977-d038-8fc7-d61e-e694a6b90f7b@siemens.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230428AbhCVSRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 14:17:34 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:54263 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229746AbhCVSRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 14:17:10 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B21EC580832;
+        Mon, 22 Mar 2021 14:17:09 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute3.internal (MEProxy); Mon, 22 Mar 2021 14:17:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm1; bh=ai83ObAamB4LrMOc3G4nVgW5/sy+
+        gIqBJIYzf+pgCMY=; b=DuFuR/KwjaKcHaXXBMn2JqyE1eTkT0Sa5EnZ7VumbIz9
+        v0dWSGDrGOjsDGDU3kqYGB96ystm8c3PUOsr5A/aUSYEO5zaYd0pebE9GIo8WkDd
+        IkOxpgnpq8/Fg0E+/D4w0Kkg0fM7dWqyLAhh+m+Cexmiq2hvM32qcHMxIAAJ+L1G
+        setMVvh5n2Kjr33DuXwf4JEb+a/WpjR/nplHw9A8SkVkbCdfnKmTSbj7SdHQbEsc
+        ZF1ggZw8YELFIqL7b0pGudPOsZSIcsbdNRAfUSYSBxxRHjnz9PH7V3FUYaDqRQei
+        g8YVafRhbn9IkWKuhwZWjsgf1RmSycTMZo7kIvSWNw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ai83Ob
+        AamB4LrMOc3G4nVgW5/sy+gIqBJIYzf+pgCMY=; b=eZrFgoCxaH62cG8QlWk8eg
+        pKZ40WJFfQSMIOV9zoFyuBS7LM27UXZE26C4y/bsgxya2LZeilAxB5UFDRuKWTYC
+        sVZMd91BRzjpUHK1mFsqTNdz8tlYGQEwaCPry6sbCKD4VdoqEjQRhWfOsRCN0nzY
+        Wyuh90UZIIV9UJ7g2x3xvfWLFCNqLWITbFZ26uNiEmNUZImRSZs/N8239+gfJlgq
+        +VxRA0J0+VDu/hpd8b4O4jYL0jLa5/VGh39f5m1wP/OfXoyQ1bhFO+eIltwXIe0c
+        O9COzT2p0qkKqX6jSkegg9kxzt8awNDSRFxiWIiLzGlEI5ZO+ec5q/n8s8Sj8HXg
+        ==
+X-ME-Sender: <xms:I99YYI9tjTasK_ZhXTuE4FaqxkRXRpnr6GVrP23ei15cHQLcaD0HRg>
+    <xme:I99YYAs8cJS7jG3WP7ET5nBCQASRjlVsZVl2oONNFowMZXL4ybHOv4lO8qzVxwcMK
+    5Auino15NbeGA4mQlM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeggedguddutdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:I99YYODKP-UhuA3X3vZ4UMwQD-ACxt4NsPP9FePDaH0ezkSa3yWp8A>
+    <xmx:I99YYIcN0ndJcxpPmCq1q-Cll4e7a37dAoo8rlVlGwquxYrAz0AlfQ>
+    <xmx:I99YYNPQToM0YWuNtD7nFQfx-0GqXRe7-QSNZ5j6k0dEJBYgllmM4Q>
+    <xmx:Jd9YYBnmKRQeOt2B0vl8-yha0HHOuF-cMHUXIKYiDXDNRWl8xmIrJtoPEEE>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CFA9E51C005E; Mon, 22 Mar 2021 14:17:07 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-271-g88286cf463-fm-20210318.001-g88286cf4
+Mime-Version: 1.0
+Message-Id: <957e0f84-efcf-43f1-90b7-ef85a854d463@www.fastmail.com>
+In-Reply-To: <1616372137.246877.1475028.nullmailer@robh.at.kernel.org>
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+ <20210320151903.60759-3-sven@svenpeter.dev>
+ <1616372137.246877.1475028.nullmailer@robh.at.kernel.org>
+Date:   Mon, 22 Mar 2021 19:16:25 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     "Hector Martin" <marcan@marcan.st>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Stan Skowronek" <stan@corellium.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Arnd Bergmann" <arnd@kernel.org>,
+        "Robin Murphy" <robin.murphy@arm.com>,
+        iommu@lists.linux-foundation.org, "Joerg Roedel" <joro@8bytes.org>,
+        "Rob Herring" <robh+dt@kernel.org>, "Will Deacon" <will@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: iommu: add DART iommu bindings
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.03.21 08:58, Jan Kiszka wrote:
-> On 03.07.19 07:08, Nicolas Boichat wrote:
->> If the device tree is incorrectly configured, and attempts to
->> define a "no-map" reserved memory that overlaps with the kernel
->> data/code, the kernel would crash quickly after boot, with no
->> obvious clue about the nature of the issue.
->>
->> For example, this would happen if we have the kernel mapped at
->> these addresses (from /proc/iomem):
->> 40000000-41ffffff : System RAM
->>   40080000-40dfffff : Kernel code
->>   40e00000-411fffff : reserved
->>   41200000-413e0fff : Kernel data
->>
->> And we declare a no-map shared-dma-pool region at a fixed address
->> within that range:
->> mem_reserved: mem_region {
->> 	compatible = "shared-dma-pool";
->> 	reg = <0 0x40000000 0 0x01A00000>;
->> 	no-map;
->> };
->>
->> To fix this, when removing memory regions at early boot (which is
->> what "no-map" regions do), we need to make sure that the memory
->> is not already reserved. If we do, __reserved_mem_reserve_reg
->> will throw an error:
->> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory
->>    for node 'mem_region': base 0x0000000040000000, size 26 MiB
->> and the code that will try to use the region should also fail,
->> later on.
->>
->> We do not do anything for non-"no-map" regions, as memblock
->> explicitly allows reserved regions to overlap, and the commit
->> that this fixes removed the check for that precise reason.
->>
->> Fixes: 094cb98179f19b7 ("of/fdt: memblock_reserve /memreserve/ regions in the case of partial overlap")
->> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
->> ---
->>  drivers/of/fdt.c | 10 +++++++++-
->>  1 file changed, 9 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->> index cd17dc62a71980a..a1ded43fc332d0c 100644
->> --- a/drivers/of/fdt.c
->> +++ b/drivers/of/fdt.c
->> @@ -1138,8 +1138,16 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
->>  int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
->>  					phys_addr_t size, bool nomap)
->>  {
->> -	if (nomap)
->> +	if (nomap) {
->> +		/*
->> +		 * If the memory is already reserved (by another region), we
->> +		 * should not allow it to be removed altogether.
->> +		 */
->> +		if (memblock_is_region_reserved(base, size))
->> +			return -EBUSY;
->> +
->>  		return memblock_remove(base, size);
->> +	}
->>  	return memblock_reserve(base, size);
->>  }
->>  
->>
+Hi Rob,
+
+On Mon, Mar 22, 2021, at 01:15, Rob Herring wrote:
 > 
-> Likely the wrong patch to blame but hopefully the right audience:
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
 > 
-> I'm trying to migrate my RPi4 setup to mainline, and this commit breaks 
-> booting with TF-A (current master) in the loop. Error:
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
 > 
-> [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd083]                                                                                                                                                                        
-> [    0.000000] Linux version 5.10.24+ (jan@md1f2u6c) (aarch64-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)) 9.2.1 20191025, GNU ld (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)1
-> [    0.000000] Machine model: Raspberry Pi 4 Model B Rev 1.1                                                                                                                                                                                  
-> [    0.000000] efi: UEFI not found.                                                                                                                                                                                                           
-> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'atf@0': base 0x0000000000000000, size 0 MiB                                                                                                                       
+> pip3 install dtschema --upgrade
 > 
-> And then we hang later on when Linux does start to use that memory and 
-> seems to trigger an exception.
-> 
-> Is there a bug in the upstream RPi4 DT?
-> 
+> Please check and re-submit.
 
-FWIW, this is triggering the conflict:
+Sorry about that! It looks like I didn't have yamllint installed.
+I have fixed the issues and will re-submit.
 
-(arch/arm/boot/dts/bcm283x.dtsi)
 
-/* firmware-provided startup stubs live here, where the secondary CPUs are
- * spinning.
- */
-/memreserve/ 0x00000000 0x00001000;
+Thanks,
 
-I strongly suspect this is only needed in case of TF-A-free boot. With 
-TF-A we have standard PCSI (my motivation to use TF-A in the first 
-place) - and then this is in conflict with the firmware's reservation.
+Sven
 
-Do we need separate DTs for this use case? Or should TF-A account for 
-this?
-
-Jan
-
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
