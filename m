@@ -2,114 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F44343EE1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 12:06:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3740D343F82
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 12:21:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbhCVLGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 07:06:05 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:40512 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230384AbhCVLFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 07:05:35 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12MAudE4013707;
-        Mon, 22 Mar 2021 12:05:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=selector1;
- bh=Pymfk/EgZE9Sai/go/LCUbW5Sj5kXKwBZSorsF6E/JM=;
- b=AS1MsmI1/uy4Sqoh816U7Rf3Y4jB9++nFcdz5kCsetmSk2Iey3fDSAJZWiUPA8dmOsan
- cg1qUuooc9ceCD1crogkfyUqwd7vOUTAmK4ul6KOWPoiephnLdt88q8+Uh68SLUEsmVt
- FqBo76MwbFm7NEuC0Al0+j1GsRNXc8j89xjU4BK1CbkbRAtnP1jgdK6qLJSx9xxxEK0E
- 9MPtSVMMKqxiJ6cimeucoxj0T4rBVpJddbanKv+r8pCWWRAatphwWnGEcq5MXjAzC0lk
- Mv9/0lymVBMCXAur+C/5mrNwpfWb+0AsyR/6BZSByxKWhOFsmRuygl8gnSBDLHL+Lpku lg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37d9968xhu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 Mar 2021 12:05:06 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4829C10002A;
-        Mon, 22 Mar 2021 12:05:04 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1B8BF2463CD;
-        Mon, 22 Mar 2021 12:05:04 +0100 (CET)
-Received: from SFHDAG2NODE3.st.com (10.75.127.6) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 22 Mar
- 2021 12:05:03 +0100
-Received: from SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c]) by
- SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c%20]) with mapi id
- 15.00.1497.012; Mon, 22 Mar 2021 12:05:03 +0100
-From:   Valentin CARON - foss <valentin.caron@foss.st.com>
-To:     "dillon.minfei@gmail.com" <dillon.minfei@gmail.com>,
-        "Alexandre TORGUE - foss" <alexandre.torgue@foss.st.com>,
-        "rong.a.chen@intel.com" <rong.a.chen@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "a.fatoum@pengutronix.de" <a.fatoum@pengutronix.de>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "vladimir.murzin@arm.com" <vladimir.murzin@arm.com>,
-        "afzal.mohd.ma@gmail.com" <afzal.mohd.ma@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "Erwan LE-RAY - foss" <erwan.leray@foss.st.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "lkp@intel.com" <lkp@intel.com>
-Subject: Re: [Linux-stm32] [PATCH v4 9/9] dt-bindings: serial: stm32: Use
- 'unevaluatedProperties' instead of 'additionalProperties'
-Thread-Topic: [Linux-stm32] [PATCH v4 9/9] dt-bindings: serial: stm32: Use
- 'unevaluatedProperties' instead of 'additionalProperties'
-Thread-Index: AQHXHws10grT1ARp1UKFub73w++Z4Q==
-Date:   Mon, 22 Mar 2021 11:05:03 +0000
-Message-ID: <5f95b6ad-ddbe-8394-8599-e78f30c8b62c@foss.st.com>
-References: <1616205383-24114-1-git-send-email-dillon.minfei@gmail.com>
- <1616205383-24114-8-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1616205383-24114-8-git-send-email-dillon.minfei@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.48]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3C33FA9F1EEDA74F9DCE468962861821@st.com>
-Content-Transfer-Encoding: base64
+        id S229472AbhCVLUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 07:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230008AbhCVLUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 07:20:33 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48DC5C061756
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 04:20:32 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id k8so13458960iop.12
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 04:20:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WLLgEIAtDhMTSlLjCARkd+VJiQyrR8iYWRkfviadf/g=;
+        b=AbqpB8QwU4/7RB4f8fZepWBAaxQqLiKJjhB3ycqCCzkyq9EnbPksnDKUcrS6HfOF2C
+         IrhRp1J48jiVA6DGtRTHD3UNITrkQ32d92aguVjWKzmHBVD8fffe9ndzSKT45hC3Vt+F
+         DAupby+KLDTRgaOw8EnYRNkH6sWQALyACQANw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WLLgEIAtDhMTSlLjCARkd+VJiQyrR8iYWRkfviadf/g=;
+        b=sJdQEM6DDEUyT/+fOumTgMOzuqOQAEFwCPHvVGA7K8ooZXEsE7jlG/QetKxmrCajZX
+         nkgZY4tB7rMnCSWb0HsMhXqQqKnUx4k2I/lKBUKivoGtXtiTdoAc9c6sna6FrtyELRs/
+         5Wyf14FT8GvqrRzp9E2Z94C7uwQibG7caaiggRUjVnJPjYU/V+aqwDf+2GCEBxQD4fpM
+         Vz2/r/yU1sQjH1zu4T/O5/i66V7KbFaETG5OdLC4lQknWKdVdGk45EpWBlnUmPmC+gm1
+         koXAXS/wUelo6/vjg6dqoEKDqPtsj2vvJaytQPynQp+xWWLXbVy2EgHTcXNK2cAK4QbD
+         N4+Q==
+X-Gm-Message-State: AOAM531IjconblNXpu1ztn9RYXJaUEIS1DqgdG8vokPGxJV7X92dl4t8
+        5ZkmHUR+H90mTURrxKbFVyGZX5ckS8xlOpzIrJzAcQ==
+X-Google-Smtp-Source: ABdhPJzUJ+JxnlyP/XApOqLy+Gt3yTqy+AekHvnYCXijerfjWVc0LzSdZZqcyLxOpFBc8xCRTu8kBAhdLf1Mjb4Hi0c=
+X-Received: by 2002:a02:ccd9:: with SMTP id k25mr10591705jaq.43.1616412031652;
+ Mon, 22 Mar 2021 04:20:31 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-22_04:2021-03-22,2021-03-22 signatures=0
+References: <20210316070144.28440-1-michael.kao@mediatek.com> <20210316070144.28440-2-michael.kao@mediatek.com>
+In-Reply-To: <20210316070144.28440-2-michael.kao@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Mon, 22 Mar 2021 19:20:05 +0800
+Message-ID: <CAJMQK-gQxMmq-4+Hb2vuTmz9T7XOZPV3=uwTp-8doHRVD4y_Jg@mail.gmail.com>
+Subject: Re: [v7,1/3] arm64: dts: mt8183: add thermal zone node
+To:     Michael Kao <michael.kao@mediatek.com>
+Cc:     fan.chen@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        srv_heupstream@mediatek.com,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRGlsbG9uLA0KDQpJdCB3b3JrcyBmb3IgbWUuDQoNCk9uIDMvMjAvMjEgMjo1NiBBTSwgZGls
-bG9uLm1pbmZlaUBnbWFpbC5jb20gd3JvdGU6DQo+IEZyb206IGRpbGxvbiBtaW4gPGRpbGxvbi5t
-aW5mZWlAZ21haWwuY29tPg0KPg0KPiBUbyB1c2UgYWRkaXRpb25hbCBwcm9wZXJ0aWVzICdibHVl
-dG9vdGgnLCBuZWVkIHVzZSB1bmV2YWx1YXRlZFByb3BlcnRpZXMNCj4gdG8gZml4IGR0YnNfY2hl
-Y2sgd2FybmluZ3MuDQo+DQo+ICdhcmNoL2FybS9ib290L2R0cy9zdG0zMmg3NTBpLWFydC1waS5k
-dC55YW1sOiBzZXJpYWxANDAwMDQ4MDA6ICdibHVldG9vdGgnDQo+IGRvZXMgbm90IG1hdGNoIGFu
-eSBvZiB0aGUgcmVnZXhlczogJ3BpbmN0cmwtWzAtOV0rJw0KPg0KPiBSZXBvcnRlZC1ieToga2Vy
-bmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+DQo+IEZpeGVzOiBhZjFjMmQ4MTY5NWIgKCJk
-dC1iaW5kaW5nczogc2VyaWFsOiBDb252ZXJ0IFNUTTMyIFVBUlQgdG8ganNvbi1zY2hlbWEiKQ0K
-DQpZb3UgY2FuIGFkZCBteToNClRlc3RlZC1ieTogVmFsZW50aW4gQ2Fyb24gPHZhbGVudGluLmNh
-cm9uQGZvc3Muc3QuY29tPg0KDQo+IFNpZ25lZC1vZmYtYnk6IGRpbGxvbiBtaW4gPGRpbGxvbi5t
-aW5mZWlAZ21haWwuY29tPg0KPiAtLS0NCj4NCj4gdjQ6DQo+IC0gYWRkIFJlcG9ydGVkLWJ5IGFu
-ZCBGaXhlcyB0YWcNCj4gLSB1c2UgdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZSB0byBmaXgg
-ZHRic19jaGVjayB3YXJybmluZ3MgaW5zdGVhZCBvZg0KPiAgICBhZGQgJ2JsdWV0b290aCcgaW4g
-c3Qsc3RtMzItdWFydC55YW1sDQo+DQo+ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3NlcmlhbC9zdCxzdG0zMi11YXJ0LnlhbWwgfCAyICstDQo+ICAgMSBmaWxlIGNoYW5nZWQs
-IDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+DQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL3N0LHN0bTMyLXVhcnQueWFtbCBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvc3Qsc3RtMzItdWFydC55YW1s
-DQo+IGluZGV4IDg2MzE2NzgyODNmOS4uMzA1OTQxYjFkNWEwIDEwMDY0NA0KPiAtLS0gYS9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL3N0LHN0bTMyLXVhcnQueWFtbA0K
-PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL3N0LHN0bTMy
-LXVhcnQueWFtbA0KPiBAQCAtODAsNyArODAsNyBAQCByZXF1aXJlZDoNCj4gICAgIC0gaW50ZXJy
-dXB0cw0KPiAgICAgLSBjbG9ja3MNCj4gICANCj4gLWFkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxz
-ZQ0KPiArdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KPiAgIA0KPiAgIGV4YW1wbGVzOg0K
-PiAgICAgLSB8DQoNClJlZ2FyZHMsDQpWYWxlbnRpbg0K
+On Tue, Mar 16, 2021 at 3:02 PM Michael Kao <michael.kao@mediatek.com> wrote:
+>
+> From: "michael.kao" <michael.kao@mediatek.com>
+>
+> Add thermal zone node to Mediatek MT8183 dts file.
+>
+> Evaluate the thermal zone every 500ms while not cooling
+> and every 100ms when passive cooling is performed.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+
+Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
+
+Tested this patch on mt8183 devices.
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 85 ++++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5b782a4769e7..d3550af06408 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -657,6 +657,87 @@
+>                         status = "disabled";
+>                 };
+>
+> +               thermal: thermal@1100b000 {
+> +                       #thermal-sensor-cells = <1>;
+> +                       compatible = "mediatek,mt8183-thermal";
+> +                       reg = <0 0x1100b000 0 0x1000>;
+> +                       clocks = <&infracfg CLK_INFRA_THERM>,
+> +                                <&infracfg CLK_INFRA_AUXADC>;
+> +                       clock-names = "therm", "auxadc";
+> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> +                       mediatek,auxadc = <&auxadc>;
+> +                       mediatek,apmixedsys = <&apmixedsys>;
+> +                       nvmem-cells = <&thermal_calibration>;
+> +                       nvmem-cell-names = "calibration-data";
+> +               };
+> +
+> +               thermal-zones {
+> +                       cpu_thermal: cpu_thermal {
+> +                               polling-delay-passive = <100>;
+> +                               polling-delay = <500>;
+> +                               thermal-sensors = <&thermal 0>;
+> +                               sustainable-power = <5000>;
+> +                       };
+> +
+> +                       /* The tzts1 ~ tzts6 don't need to polling */
+> +                       /* The tzts1 ~ tzts6 don't need to thermal throttle */
+> +
+> +                       tzts1: tzts1 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 1>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts2: tzts2 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 2>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts3: tzts3 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 3>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts4: tzts4 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 4>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tzts5: tzts5 {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 5>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +
+> +                       tztsABB: tztsABB {
+> +                               polling-delay-passive = <0>;
+> +                               polling-delay = <0>;
+> +                               thermal-sensors = <&thermal 6>;
+> +                               sustainable-power = <5000>;
+> +                               trips {};
+> +                               cooling-maps {};
+> +                       };
+> +               };
+> +
+>                 pwm0: pwm@1100e000 {
+>                         compatible = "mediatek,mt8183-disp-pwm";
+>                         reg = <0 0x1100e000 0 0x1000>;
+> @@ -926,6 +1007,10 @@
+>                         reg = <0 0x11f10000 0 0x1000>;
+>                         #address-cells = <1>;
+>                         #size-cells = <1>;
+> +                       thermal_calibration: calib@180 {
+> +                               reg = <0x180 0xc>;
+> +                       };
+> +
+>                         mipi_tx_calibration: calib@190 {
+>                                 reg = <0x190 0xc>;
+>                         };
+> --
+> 2.18.0
+>
