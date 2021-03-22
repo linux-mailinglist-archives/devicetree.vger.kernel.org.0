@@ -2,87 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86950343AC6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 08:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D138E343B16
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 08:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbhCVHjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 03:39:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhCVHjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 03:39:42 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD87DC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 00:39:41 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1lOFA1-0002rH-Oz; Mon, 22 Mar 2021 08:39:37 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1lOFA0-0007nU-To; Mon, 22 Mar 2021 08:39:36 +0100
-Date:   Mon, 22 Mar 2021 08:39:36 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, robh+dt@kernel.org, hkallweit1@gmail.com
-Subject: Re: [PATCH 0/2] net: phy: dp83867: Configure LED modes via device
- tree
-Message-ID: <20210322073936.GA31778@pengutronix.de>
-References: <20210319155710.2793637-1-m.tretter@pengutronix.de>
- <YFUVcLCzONhPmeh8@lunn.ch>
+        id S229926AbhCVH6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 03:58:53 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:60831 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229870AbhCVH6q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 03:58:46 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 12M7wYCD021043
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 22 Mar 2021 08:58:35 +0100
+Received: from [167.87.37.70] ([167.87.37.70])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 12M7wY2u002040;
+        Mon, 22 Mar 2021 08:58:34 +0100
+Subject: Re: [PATCH] of/fdt: Make sure no-map does not remove already reserved
+ regions
+To:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Ian Campbell <ian.campbell@citrix.com>,
+        Grant Likely <grant.likely@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+References: <20190703050827.173284-1-drinkcat@chromium.org>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <12b02977-d038-8fc7-d61e-e694a6b90f7b@siemens.com>
+Date:   Mon, 22 Mar 2021 08:58:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190703050827.173284-1-drinkcat@chromium.org>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YFUVcLCzONhPmeh8@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:13:54 up 32 days, 10:37, 79 users,  load average: 0.75, 0.72,
- 0.58
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Mar 2021 22:19:44 +0100, Andrew Lunn wrote:
-> On Fri, Mar 19, 2021 at 04:57:08PM +0100, Michael Tretter wrote:
-> > The dp83867 has 4 LED pins, which can be multiplexed with different functions
-> > of the phy.
-> > 
-> > This series adds a device tree binding to describe the multiplexing of the
-> > functions to the LEDs and implements the binding for the dp83867 phy.
-> > 
-> > I found existing bindings for configuring the LED modes for other phys:
-> > 
-> > In Documentation/devicetree/bindings/net/micrel.txt, the binding is not
-> > flexible enough for the use case in the dp83867, because there is a value for
-> > each LED configuration, which would be a lot of values for the dp83867.
-> > 
-> > In Documentation/devicetree/bindings/net/mscc-phy-vsc8532.txt, there is a
-> > separate property for each LED, which would work, but I found rather
-> > unintuitive compared to how clock bindings etc. work.
-> > 
-> > The new binding defines two properties: one for the led names and another
-> > property for the modes of the LEDs with defined values in the same order.
-> > Currently, the binding is specific to the dp83867, but I guess that the
-> > binding could be made more generic and used for other phys, too.
+On 03.07.19 07:08, Nicolas Boichat wrote:
+> If the device tree is incorrectly configured, and attempts to
+> define a "no-map" reserved memory that overlaps with the kernel
+> data/code, the kernel would crash quickly after boot, with no
+> obvious clue about the nature of the issue.
 > 
-> There is some work going on to manage PHY LEDs just like other LEDs in
-> Linux, using /sys/class/leds.
+> For example, this would happen if we have the kernel mapped at
+> these addresses (from /proc/iomem):
+> 40000000-41ffffff : System RAM
+>   40080000-40dfffff : Kernel code
+>   40e00000-411fffff : reserved
+>   41200000-413e0fff : Kernel data
 > 
-> Please try to help out with that work, rather than adding yet another
-> DT binding.
+> And we declare a no-map shared-dma-pool region at a fixed address
+> within that range:
+> mem_reserved: mem_region {
+> 	compatible = "shared-dma-pool";
+> 	reg = <0 0x40000000 0 0x01A00000>;
+> 	no-map;
+> };
+> 
+> To fix this, when removing memory regions at early boot (which is
+> what "no-map" regions do), we need to make sure that the memory
+> is not already reserved. If we do, __reserved_mem_reserve_reg
+> will throw an error:
+> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory
+>    for node 'mem_region': base 0x0000000040000000, size 26 MiB
+> and the code that will try to use the region should also fail,
+> later on.
+> 
+> We do not do anything for non-"no-map" regions, as memblock
+> explicitly allows reserved regions to overlap, and the commit
+> that this fixes removed the check for that precise reason.
+> 
+> Fixes: 094cb98179f19b7 ("of/fdt: memblock_reserve /memreserve/ regions in the case of partial overlap")
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> ---
+>  drivers/of/fdt.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index cd17dc62a71980a..a1ded43fc332d0c 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1138,8 +1138,16 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
+>  int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
+>  					phys_addr_t size, bool nomap)
+>  {
+> -	if (nomap)
+> +	if (nomap) {
+> +		/*
+> +		 * If the memory is already reserved (by another region), we
+> +		 * should not allow it to be removed altogether.
+> +		 */
+> +		if (memblock_is_region_reserved(base, size))
+> +			return -EBUSY;
+> +
+>  		return memblock_remove(base, size);
+> +	}
+>  	return memblock_reserve(base, size);
+>  }
+>  
+> 
 
-Oh, thanks. That's even better.
+Likely the wrong patch to blame but hopefully the right audience:
 
-For reference: https://lore.kernel.org/netdev/20190813191147.19936-1-mka@chromium.org/
+I'm trying to migrate my RPi4 setup to mainline, and this commit breaks 
+booting with TF-A (current master) in the loop. Error:
 
-Michael
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd083]                                                                                                                                                                        
+[    0.000000] Linux version 5.10.24+ (jan@md1f2u6c) (aarch64-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)) 9.2.1 20191025, GNU ld (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10)1
+[    0.000000] Machine model: Raspberry Pi 4 Model B Rev 1.1                                                                                                                                                                                  
+[    0.000000] efi: UEFI not found.                                                                                                                                                                                                           
+[    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'atf@0': base 0x0000000000000000, size 0 MiB                                                                                                                       
+
+And then we hang later on when Linux does start to use that memory and 
+seems to trigger an exception.
+
+Is there a bug in the upstream RPi4 DT?
+
+Jan
+
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
