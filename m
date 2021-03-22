@@ -2,256 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B01F344934
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 16:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D14B34495C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 16:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230381AbhCVP0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 11:26:03 -0400
-Received: from mail-bn8nam12on2076.outbound.protection.outlook.com ([40.107.237.76]:53249
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230047AbhCVPZZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 11:25:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C2PaAqU61Ha48skvFQ9KAlRMsf97s2X1RO8dD58zVuQyxgofcZKTjmveILrAZ+Ts4ZBVMhxqUhdmD1NkYwSciTiulBC+injtb/qb2YnWY9DmpfIux03FYRfYQp/HeTAm/RHIbGytlhhWFTEOEaBg4rTc4C3HXd+c8s6NWx1Fwbfgn0kONye1jB5lh0AZb1ZyQOVeXVI6IcxiqRERi+ghg4tzFDkY21rk7z7qVG61VhaBd3YD0PLs/Lh/WnODStSswbRZq8tCYiTQ9tU1dcZhFfNEIoJ7DYdp71tdzYqEdLBPC3N/V6RXKFXUd8NVs/4ZC6bzvXBVxud8LExfobRFxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IHDOHpJewX7blZmh6gArxtVMmi90pS6z2/ViSujnIKY=;
- b=O4+9ZbiF0KQQgvmnuyYC4TImWkr/zuGwlDwQrwQfs7RjrdrSrxCzvhVZ7kPQBN8iXsp/O6qq+DEgQmafH60HUJjHLUm1ULJ1xZ5q4T/m8NukHRf5Gw5+//yWzN6yJYmp1XDt6iOD1DD3OklkBuUoe4rFFqOWOB4tCCWN6qiR6jCdbycLK0QgqSFRepUZCHcwtS+EKsesXDPb09W8Xzv/CyX+YG9wFeqf2nuGcebWddVaUaFVhTIAVbK825qMnpzECTnFGAgKnOv+O8b0XAUEfDBjDewtvrMKtyP5VTkI70EAFWDRhf/1BWdWmGNa3NBQG+d9MQgCAmmDYu6nvNCKFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IHDOHpJewX7blZmh6gArxtVMmi90pS6z2/ViSujnIKY=;
- b=YH8mhwnPDuc7Yw+TZoP1h+cq8evyg8ILEUAxyDj0M0YtZJGp4ZSndJ/h9hANbrxtwKytBVBIeJyDL391q0XeQizQn7G6vpKI3PHIRYJRvbKGo/wdTLIzFM7jxnbrt/spHtkE2EGPQUoVXsfNlXLwM6hF++mjUkB6X1l+bkZ813I=
-Received: from SN6PR02MB3917.namprd02.prod.outlook.com (2603:10b6:805:2e::26)
- by SN6PR02MB4463.namprd02.prod.outlook.com (2603:10b6:805:a6::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Mon, 22 Mar
- 2021 15:25:19 +0000
-Received: from SN6PR02MB3917.namprd02.prod.outlook.com
- ([fe80::68cc:492b:dd78:daba]) by SN6PR02MB3917.namprd02.prod.outlook.com
- ([fe80::68cc:492b:dd78:daba%4]) with mapi id 15.20.3955.025; Mon, 22 Mar 2021
- 15:25:18 +0000
-From:   Sai Krishna Potthuri <lakshmis@xilinx.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
+        id S230121AbhCVPgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 11:36:13 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51440 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229810AbhCVPf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 11:35:57 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MFZl6V036824;
+        Mon, 22 Mar 2021 10:35:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616427347;
+        bh=09AtaVjJH+oz8QL+pYId5GvQzzXcwsfv35oByjnH9A4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=buPOGlo+3ezC5WQrcyWE9TjSH2g5L6uiHgVXJeBs5I7reuJH8J3QsZ/z9967wNr3n
+         84syCKFZEtJ7oAzbExpCnD25nT6fb9PS5w7gVGUjDAc/CF5j/3vxB7O3jWP0MHmE30
+         +FsE6p/SZbDh8hoxDGcQmxd/HVh6d3lgDHI00A+s=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MFZl10108074
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Mar 2021 10:35:47 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
+ Mar 2021 10:35:47 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 22 Mar 2021 10:35:47 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MFZlqN102141;
+        Mon, 22 Mar 2021 10:35:47 -0500
+Date:   Mon, 22 Mar 2021 10:35:47 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
-Subject: RE: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-Thread-Topic: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-Thread-Index: AQHXGwdloppct9WdF06D8lw8GDUKq6qII6IAgAEUy/CAAeU9gIAE1ayQ
-Date:   Mon, 22 Mar 2021 15:25:18 +0000
-Message-ID: <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
-References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CAHp75VehkqzDPQp87JL=hnCi_b4y0d3htpxRKBJ2q73AAAbBXA@mail.gmail.com>
- <SN6PR02MB3917DC23268D35870E85F37DBD699@SN6PR02MB3917.namprd02.prod.outlook.com>
- <CAHp75VcbxvVsQRP_0J0mXb5vPhBor7=cq-4nqMNb-+D_+O1cdA@mail.gmail.com>
-In-Reply-To: <CAHp75VcbxvVsQRP_0J0mXb5vPhBor7=cq-4nqMNb-+D_+O1cdA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.50.128]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 0cfd27cd-b47e-4701-21db-08d8ed46b39f
-x-ms-traffictypediagnostic: SN6PR02MB4463:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR02MB4463FB40D49A6C2B654A7CDBBD659@SN6PR02MB4463.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: O1T3LDSXbqwZQGfkgw7m4BPiup+LzEjCmQOnK6NeYwBNEKqCZ6mCXCF9vyfrvOraXzGvSnKPIHDGVORv0XEzh6aoDDxeQcIp2sbfQU9pL5btT3A77iT4ia3raB+uzHk86RNb61fsOqFsh8vgw1FMgYQuAKMDEh1zbv3YjcgEvYMWV2VW//fQVgboSYGS6C9yAyx/DJNGltZLql6l8aOLHYPXqtWJgqGkWUNPb+8o7XRdXKUzHm0a+mUpA5K9HkSMFTkYpeePJ3yf2Vq32Z1U/9TubKFDBt6soY7LegOHA4wtLboVGUL5PhjA/94Nl5UpPLLwSh4kJbiXfUasMLkKdL7iBn0aYV44HCy4FlQLAB7tCPflxDBXMfwrSEUSpBhqbJ7Xcb1oMRvqKWP6LtNjd8xvhc3RPQyb8AQx2KEkV2UznDKswIUZPlue+kUgkQrTSnheHenguInzTq8L8NJXQ5GfKoMgwlM+YxGEOWflsiiQUHdTZW/3Ppoxt0rHOuA1EfhTH0vHDHTCZfUSmSlnyXXesBpKj1Ev62BqfHjeTzZPO7Vj9xz30vwN7APGf/mwvOg9kiUus4/CGkmgnKMIKlDwhXuCo/x8ZuK2eORc55cBiwhsnT88MvWbn7MvxdEiz4OWrfpMhd56E7CWNENarfG1WZW2Ws8QmvuIM0h5kx4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR02MB3917.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(396003)(366004)(136003)(376002)(316002)(54906003)(52536014)(5660300002)(66476007)(66556008)(64756008)(66446008)(66946007)(76116006)(86362001)(83380400001)(71200400001)(26005)(6506007)(9686003)(8936002)(53546011)(55016002)(38100700001)(4326008)(186003)(6916009)(7696005)(478600001)(8676002)(33656002)(7416002)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?WStBNkVZZ0cvNHk1bFRKOHBGNTZIWXF0a1krTWZaV1c3Z0gwWU9aa2JOcGs3?=
- =?utf-8?B?TmUzTnJibnp6djdjejZNTWZVdnE4T2NOaGNwVTRNODBLSWFQcmtyMk9XdHBC?=
- =?utf-8?B?Z2xnOWkyNWdWcERDTjZzdzdyMFBweC9FUVBUSTJTVnpUSmNRYkRjNi9yNFRO?=
- =?utf-8?B?bzg1bVgyZDJUWE51MU9QYU1NclJmUGdHS1pQNzY5M0pyS1A3WFhFSlA3M2lW?=
- =?utf-8?B?eWVTMDM4U3J2VlNpUndOOWk2ZXUrbktMQjhsbm1xcmhXOHMwalo3NFJ6bzdz?=
- =?utf-8?B?dTMwdXhmZWd6VDVxb0p3bEVJcVJkM3BKY09kVXdndjFVeTFqcWhoUk54cDFF?=
- =?utf-8?B?RnllY3piblBpZzhTbnI2RWNFZlo2SFg5THVFWHdDdElQSXU1RFM0OHQwTHE5?=
- =?utf-8?B?cnJuRVBEbmlZYzRGQnJKWFY1YXNtM2NzQjMySWRrSXJwVHJHZ3czNUN3S2I1?=
- =?utf-8?B?SlVxZm5jaVRRcEFOajF1NVEyWHF0ak9TdXY2bkFLRk5udlR2aTFtTkhFcW1T?=
- =?utf-8?B?RUs1c0tISWVQazJSNitudWU2eCtlcHp1SWJKZE5wVUlYMXN3ZGI1ektTcWxv?=
- =?utf-8?B?dEtZOFlHNXdsYmE3a2pFT0xoZVJPZ0E3aUFTTVpwMnRkY2MxeTFnNGVpcy82?=
- =?utf-8?B?bFUyVVBYK0dENll4c2M2bjRkd2JWa3FjR1RUOFArYUNuM3JNVW4xVEFob3dQ?=
- =?utf-8?B?Nk1pQkJ4a2lka2wyYStNNGNLSUpwU0c4KzdJRk9MRytZdXk1SXJMemwxV0FB?=
- =?utf-8?B?d0ZUVzJuaVFCYi96L0gyaWx6UFNGU0NLcEFpd1plQ01DZ0VDUDRkSkEyMThy?=
- =?utf-8?B?OEhuanFQZnNaS0xrL2FpTHNORWJlNkloRGQrL3BVdDI2S2RaRTdrWFNQZHk5?=
- =?utf-8?B?VWpmK09NdlV6Q20wYndsSUVJYkp5dXBCVU0vU3kwWDJFbmdxYTFZVFB4RUx5?=
- =?utf-8?B?SlpqOHh2QXp4VmdNTXN1Sy9Dd2hkY1hiYTI4RFQzWDE2UEVVeG5iM2NQZ3hY?=
- =?utf-8?B?TGtRZU5CWW8zSU82QmNyc3JLTDJWUWUrUHJLeUJRcDJNL0dtQVUvMGtIOTd1?=
- =?utf-8?B?emNHVFZFMTgzME1TNzV1VnFudTFtN2dXUFJDZXR0RzZ5dHN3amg1ZjZKb2dq?=
- =?utf-8?B?Yk1YQUREYUlNTXBYUXAvaDdNNkFnZ25sdTZSU2cwNWx6MVhadTdNZzlKWjRQ?=
- =?utf-8?B?MGd6Z0pmaUNSWUZid0ppSlhvK3loZkVQRnQyM3JpbGxDMFFhdWN0clNLMjM5?=
- =?utf-8?B?RGlEeGxGaWVONTQ5Mjd1dDMza2pLbmRtS0JMNlVhdytYY2NsNk1TU1IrSVNN?=
- =?utf-8?B?U0kxVk9GQ1lxOGlReDkzT0cwdVlRYnhZZXhucFdQMjJPWTBYdm5JWW5CNkdx?=
- =?utf-8?B?bkZHVTZlcmsyd0ZvU0lyYVo4b1BLUEoxYkVCc0wyelRtRm5RUmFVelg2UGFi?=
- =?utf-8?B?d2N6RWVjV2srZVlkZE8wRFFzdG54cUhpUTd5ZGdtRCtBdEtrUnMxZi9YdHFy?=
- =?utf-8?B?aFhFSjY3M0FOcUxJdmVlamJQQ1l6aFlXbTAwaWpQTHl2VEx2dHRoU3VKa2E5?=
- =?utf-8?B?UzlXNG80ZW1iTENZcGVsT0llWW12Q0hIZk01Y1BVc2VYTUwwNTdDM0tkQ0pm?=
- =?utf-8?B?bTVVUW5ORmZZRkQ2SzhzWUFqTHNhQ3lvMmg0ZDZnSkxiTVZKNnMweGRBeS9x?=
- =?utf-8?B?R0pGb2IvNlZyd0IwWVEwN3laK0NXL0FqblMzT25YWVhFVm52ODVML3Q1cW1E?=
- =?utf-8?Q?XMDz5m/dfgal/7qPFSZSfHa4FhWsW+KucXSM5+V?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 3/3] arm64: dts: ti: k3-j7200: Add support for higher
+ speed modes and update delay select values for MMCSD subsystems
+Message-ID: <20210322153547.d5hkqydpe372rpwg@manicure>
+References: <20210322131206.24887-1-a-govindraju@ti.com>
+ <20210322131206.24887-4-a-govindraju@ti.com>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR02MB3917.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0cfd27cd-b47e-4701-21db-08d8ed46b39f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2021 15:25:18.8140
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 73p2Vp48toscJ/YDUi6ECmbQgY6R2X5UXLKWSX8St9nJnek7A2GY6MNZ4R18qbPOx41qOV9nNNy0LBLvW9egrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4463
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210322131206.24887-4-a-govindraju@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5keSBTaGV2Y2hlbmtvLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
-b206IEFuZHkgU2hldmNoZW5rbyA8YW5keS5zaGV2Y2hlbmtvQGdtYWlsLmNvbT4NCj4gU2VudDog
-RnJpZGF5LCBNYXJjaCAxOSwgMjAyMSAzOjUzIFBNDQo+IFRvOiBTYWkgS3Jpc2huYSBQb3R0aHVy
-aSA8bGFrc2htaXNAeGlsaW54LmNvbT4NCj4gQ2M6IExpbnVzIFdhbGxlaWogPGxpbnVzLndhbGxl
-aWpAbGluYXJvLm9yZz47IFJvYiBIZXJyaW5nDQo+IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBNaWNo
-YWwgU2ltZWsgPG1pY2hhbHNAeGlsaW54LmNvbT47IEdyZWcgS3JvYWgtDQo+IEhhcnRtYW4gPGdy
-ZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPjsgbGludXgtYXJtIE1haWxpbmcgTGlzdCA8bGludXgt
-YXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz47IExpbnV4IEtlcm5lbCBNYWlsaW5n
-IExpc3QgPGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnPjsgZGV2aWNldHJlZSA8ZGV2
-aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+OyBvcGVuDQo+IGxpc3Q6R1BJTyBTVUJTWVNURU0gPGxp
-bnV4LWdwaW9Admdlci5rZXJuZWwub3JnPjsgZ2l0IDxnaXRAeGlsaW54LmNvbT47DQo+IHNhaWty
-aXNobmExMjQ2OEBnbWFpbC5jb20NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCAzLzNdIHBpbmN0
-cmw6IEFkZCBYaWxpbnggWnlucU1QIHBpbmN0cmwgZHJpdmVyIHN1cHBvcnQNCj4gDQo+IE9uIFRo
-dSwgTWFyIDE4LCAyMDIxIGF0IDQ6NDIgUE0gU2FpIEtyaXNobmEgUG90dGh1cmkgPGxha3NobWlz
-QHhpbGlueC5jb20+DQo+IHdyb3RlOg0KPiA+ID4gRnJvbTogQW5keSBTaGV2Y2hlbmtvIDxhbmR5
-LnNoZXZjaGVua29AZ21haWwuY29tPg0KPiA+ID4gU2VudDogV2VkbmVzZGF5LCBNYXJjaCAxNywg
-MjAyMSA2OjI2IFBNIE9uIFdlZCwgTWFyIDE3LCAyMDIxIGF0DQo+ID4gPiAxMDoyNyBBTSBTYWkg
-S3Jpc2huYSBQb3R0aHVyaQ0KPiA+ID4gPGxha3NobWkuc2FpLmtyaXNobmEucG90dGh1cmlAeGls
-aW54LmNvbT4gd3JvdGU6DQo+IA0KPiAuLi4NCj4gDQo+ID4gPiA+ICtjb25maWcgUElOQ1RSTF9a
-WU5RTVANCj4gPiA+ID4gKyAgICAgICBib29sICJQaW5jdHJsIGRyaXZlciBmb3IgWGlsaW54IFp5
-bnFNUCINCj4gPiA+DQo+ID4gPiBXaHkgbm90IG1vZHVsZT8NCj4gPiBBcyBtb3N0IG9mIHRoZSBY
-aWxpbnggZHJpdmVycyBkZXBlbmRpbmcgb24gdGhlIHBpbiBjb250cm9sbGVyIGRyaXZlcg0KPiA+
-IGZvciBjb25maWd1cmluZyB0aGUgTUlPIHBpbnMsIHdlIGFyZSBub3Qgc3VwcG9ydGluZyB0byBi
-dWlsZCB0aGlzDQo+ID4gZHJpdmVyIGFzIGEgbW9kdWxlLg0KPiANCj4gT0suDQo+IA0KPiA+ID4g
-PiArICAgICAgIGRlcGVuZHMgb24gQVJDSF9aWU5RTVANCj4gPiA+ID4gKyAgICAgICBzZWxlY3Qg
-UElOTVVYDQo+ID4gPiA+ICsgICAgICAgc2VsZWN0IEdFTkVSSUNfUElOQ09ORg0KPiANCj4gLi4u
-DQo+IA0KPiA+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2luaXQuaD4NCj4gPiA+ID4gKyNpbmNsdWRl
-IDxsaW51eC9vZl9hZGRyZXNzLmg+DQo+ID4gPg0KPiA+ID4gPiArI2luY2x1ZGUgPGxpbnV4L3Bp
-bmN0cmwvcGlubXV4Lmg+ICNpbmNsdWRlDQo+ID4gPiA+ICs8bGludXgvcGluY3RybC9waW5jb25m
-LWdlbmVyaWMuaD4NCj4gPiA+DQo+ID4gPiBDYW4geW91IG1vdmUgdGhpcyBncm91cCBvZiBoZWFk
-ZXJzIGFmdGVyIGxpbnV4LyogPw0KPiA+ID4NCj4gPiA+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5n
-cy9waW5jdHJsL3BpbmN0cmwtenlucW1wLmg+DQo+ID4gPg0KPiA+ID4gQ2FuIGl0IGJlIG1vdmVk
-IG91dHNpZGUgb2YgdGhlc2UgaGVhZGVycw0KPiA+ID4NCj4gPiA+ID4gKyNpbmNsdWRlIDxsaW51
-eC9wbGF0Zm9ybV9kZXZpY2UuaD4gI2luY2x1ZGUNCj4gPiA+ID4gKzxsaW51eC9maXJtd2FyZS94
-bG54LXp5bnFtcC5oPg0KPiA+ID4NCj4gPiA+IE9yZGVyaW5nIChmb3IgYWxsIGdyb3VwcyBvZiBo
-ZWFkZXJzKT8NCj4gPiBPaywgSSB3aWxsIG9yZGVyIHRoZSBoZWFkZXJzIGluIHRoZSBiZWxvdyBv
-cmRlciAjaW5jbHVkZSA8bGludXgvKj4NCj4gPiAjaW5jbHVkZSA8bGludXgvZmlybXdhcmUveGxu
-eC16eW5xbXAuaD4NCj4gDQo+ICsgYmxhbmsgbGluZQ0KPiANCj4gPiAjaW5jbHVkZSA8bGludXgv
-cGluY3RybC8qPg0KPiANCj4gKyBibGFuayBsaW5lDQpPaywgSSB3aWxsIGFkZCBhYm92ZSB0d28g
-YmxhbmsgbGluZXMuDQo+IA0KPiA+ICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9waW5jdHJsL3BpbmN0
-cmwtenlucW1wLmg+DQo+IA0KPiBMb29raW5nIGludG8gb3RoZXIgZHJpdmVycyB3aXRoIHNpbWls
-YXIgaW5jbHVkZXMsIHNob3VsZG4ndCBpdCBnbyBmaXJzdCBpbiB0aGUgZmlsZQ0KPiBiZWZvcmUg
-YW55IG90aGVyIGxpbnV4LyogYXNtLyogZXRjPw0KSSBzZWUgc29tZSBkcml2ZXJzIGFyZSBpbmNs
-dWRpbmcgdGhpcyBoZWFkZXIgYmVmb3JlIGxpbnV4LyogYW5kIHNvbWUgYXJlIHVzaW5nDQphZnRl
-ciBsaW51eC8qLg0KPiANCj4gPiA+ID4gKyNpbmNsdWRlICJjb3JlLmgiDQo+ID4gPiA+ICsjaW5j
-bHVkZSAicGluY3RybC11dGlscy5oIg0KPiANCj4gLi4uDQo+IA0KPiA+ID4gPiArICAgICAgIFBJ
-Tl9DT05GSUdfSU9TVEFOREFSRCA9IFBJTl9DT05GSUdfRU5EICsgMSwgfTsNCj4gPiA+DQo+ID4g
-PiBJJ20gbG9zdCBoZXJlLiBXaGF0IGlzIElPIHN0YW5kYXJkIGV4YWN0bHk/IFdoeSBpdCBjYW4n
-dCBiZSBpbg0KPiA+ID4gZ2VuZXJpYyBoZWFkZXJzPw0KPiA+IEl0IHJlcHJlc2VudHMgTFZDTU9T
-IDMuMyB2b2x0cy8gTFZDTU9TIDEuOCB2b2x0cy4NCj4gPiBTaW5jZSB0aGlzIGlzIHNwZWNpZmlj
-IHRvIFhpbGlueCBaeW5xTVAgcGxhdGZvcm0sIGNvbnNpZGVyZWQgdG8gYmUNCj4gPiBhZGRlZCBp
-biB0aGUgZHJpdmVyIGZpbGUuDQo+IA0KPiBTbywgd2h5IGNhbid0IHdlIGNyZWF0ZSBhIGNvdXBs
-ZSBvZiBiaXRzIHRvIHJlcHJlc2VudCB0aGlzIHZvbHRhZ2VzIGluIHRoZQ0KPiBnZW5lcmljIGhl
-YWRlciBhbmQgZ2FpbiB1c2FiaWxpdHkgZm9yIG90aGVycyBhcyB3ZWxsPw0KSSBzZWUgc29tZSBk
-cml2ZXJzIGFyZSBtYWludGFpbmluZyB0aGUgY29uZmlndXJhdGlvbiBsaXN0IGluIHRoZSBkcml2
-ZXIgZmlsZSwgaWYNCnRoZSBjb25maWd1cmF0aW9uIGlzIHNwZWNpZmljIHRvIHRoZSBkcml2ZXIu
-DQpXZSBjYW4gbW92ZSB0aGlzIHRvIGdlbmVyaWMgaGVhZGVyIGlmIGl0IGlzIHVzZWQgYnkgb3Ro
-ZXJzIGFzIHdlbGwuDQpPaywgd2lsbCB3YWl0IGZvciBMaW51cyB0byBjb21tZW50Lg0KPiANCj4g
-TGludXM/DQo+IA0KPiAuLi4NCj4gDQo+ID4gPiA+ICsgICAgICAgcmV0ID0genlucW1wX3BtX3Bp
-bmN0cmxfcmVxdWVzdChwaW4pOw0KPiA+ID4gPiArICAgICAgIGlmIChyZXQpIHsNCj4gPiA+ID4g
-KyAgICAgICAgICAgICAgIGRldl9lcnIocGN0bGRldi0+ZGV2LCAicmVxdWVzdCBmYWlsZWQgZm9y
-IHBpbg0KPiA+ID4gPiArICV1XG4iLCBwaW4pOw0KPiA+ID4NCj4gPiA+ID4gKyAgICAgICAgICAg
-ICAgIHJldHVybiAtRUlPOw0KPiA+ID4NCj4gPiA+IFdoeSBzaGFkb3dpbmcgZXJyb3IgY29kZT8N
-Cj4gDQo+IFNvLCBhbnkgY29tbWVudHMgb24gdGhlIGluaXRpYWwgUT8NClhpbGlueCBsb3cgbGV2
-ZWwgc2VjdXJlIGZpcm13YXJlIGVycm9yIGNvZGVzIGFyZSBkaWZmZXJlbnQgZnJvbSBMaW51eCBl
-cnJvciBjb2Rlcy4NClNlY3VyZSBmaXJtd2FyZSBtYWludGFpbnMgbGlzdCBvZiBlcnJvciBjb2Rl
-cyAocG9zaXRpdmUgdmFsdWVzIG90aGVyIHRoYW4gemVybykuDQpIZW5jZSB3ZSByZXR1cm4gLUVJ
-TywgaWYgdGhlIHJldHVybiB2YWx1ZSBmcm9tIGZpcm13YXJlIGlzIG5vbi16ZXJvLiANCj4gDQo+
-ID4+ICBTaW5jZSBpdCdzIHRoZSBvbmx5IHBvc3NpYmxlIGVycm9yLCB3aHkgaXMgaXQgbm90DQo+
-ID4gPiByZWZsZWN0ZWQgaW4gdGhlIGtlcm5lbCBkb2M/DQo+ID4gSSB3aWxsIHVwZGF0ZSB0aGUg
-a2VybmVsIGRvYyB3aXRoIHRoZSBlcnJvciB2YWx1ZSBmb3Igc3VjaCBjYXNlcy4NCj4gPiA+DQo+
-ID4gPiA+ICsgICAgICAgfQ0KPiANCj4gLi4uDQo+IA0KPiA+ID4gPiArICAgICAgICAgICAgICAg
-ZGVmYXVsdDoNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogSW52YWxpZCBkcml2
-ZSBzdHJlbmd0aCAqLw0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBkZXZfd2Fybihw
-Y3RsZGV2LT5kZXYsDQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJJ
-bnZhbGlkIGRyaXZlIHN0cmVuZ3RoIGZvciBwaW4gJWRcbiIsDQo+ID4gPiA+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIHBpbik7DQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ID4gPiArICAgICAgICAgICAgICAgfQ0KPiA+ID4gPiAr
-ICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4gPiA+ICsgICAgICAgZGVmYXVsdDoNCj4gPiA+ID4g
-KyAgICAgICAgICAgICAgIHJldCA9IC1FT1BOT1RTVVBQOw0KPiA+ID4gPiArICAgICAgICAgICAg
-ICAgYnJlYWs7DQo+ID4gPiA+ICsgICAgICAgfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAgICAg
-cGFyYW0gPSBwaW5jb25mX3RvX2NvbmZpZ19wYXJhbSgqY29uZmlnKTsNCj4gPiA+ID4gKyAgICAg
-ICAqY29uZmlnID0gcGluY29uZl90b19jb25maWdfcGFja2VkKHBhcmFtLCBhcmcpOw0KPiA+ID4g
-PiArDQo+ID4gPiA+ICsgICAgICAgcmV0dXJuIHJldDsNCj4gPiA+DQo+ID4gPiBUaGlzIGlzIHdy
-b25nLiBZb3UgaGF2ZSB0byByZXR1cm4gdGhlIGVycm9yIGNvZGVzIGRpcmVjdGx5IGFuZCBkbw0K
-PiA+ID4gbm90IHRvdWNoICpjb25maWcgYXMgbG9uZyBhcyBlcnJvciBoYXBwZW5zLg0KPiA+IEkg
-d2lsbCB1cGRhdGUgdGhlICpjb25maWcgYW5kIHBhcmFtIHVuZGVyIGlmICghcmV0KSBjb25kaXRp
-b24uDQo+IA0KPiBTaW1wbGVyIGFuZCBiZXR0ZXIganVzdCB0byByZXR1cm4gZXJyb3JzIGltbWVk
-aWF0ZWx5IGZyb20gdGhlIHN3aXRjaC1jYXNlDQo+IGVudHJpZXMuDQpPaywgSSB3aWxsIHVwZGF0
-ZS4NCj4gDQo+IC4uLg0KPiANCj4gPiA+ID4gKyAgICAgICBmZ3JvdXBzID0gZGV2bV9remFsbG9j
-KGRldiwgc2l6ZW9mKCpmZ3JvdXBzKSAqIGZ1bmMtPm5ncm91cHMsDQo+ID4gPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBHRlBfS0VSTkVMKTsNCj4gPiA+DQo+ID4gPiBPbmUgbGlu
-ZQ0KPiA+IFdpdGggc2luZ2xlIGxpbmUgaXQgaXMgY3Jvc3NpbmcgODAgbGluZSBiYXIgYW5kIGdl
-dHRpbmcgdGhlIGNoZWNrcGF0Y2gNCj4gPiB3YXJuaW5nLCBoZW5jZSBzcGxpdCBpbnRvIHR3byBs
-aW5lcy4NCj4gDQo+IE5vLCB5b3UgbWF5IG5vdCBnZXQgYSBjaGVja3BhdGNoIHdhcm5pbmcuIEFy
-ZSB5b3Ugd29ya2luZyBvbiB2NS40IGtlcm5lbHMNCj4gb3IgZWFybGllcj8NCk9rLCBnb3QgaXQu
-DQpEcml2ZXIgaXMgZGV2ZWxvcGVkIG9uIHRvcCBvZiB0aGUgb2xkZXIga2VybmVsICg8PTUuNCkg
-YW5kIHdlIHNlZSB0aGlzIHdhcm5pbmcgYXQgdGhhdA0KdGltZSBhbmQgZml4ZWQgYnkgc3BsaXR0
-aW5nIGludG8gdHdvIGxpbmVzLg0KWWVzLCB3aXRoIHRoZSBsYXRlc3Qga2VybmVsIEkgYW0gbm90
-IHNlZWluZyB0aGUgd2FybmluZyBieSBrZWVwaW5nIGl0IGluIG9uZQ0KbGluZSwgSSB3aWxsIHVw
-ZGF0ZSB0aGlzLg0KPiANCj4gPiA+ID4gKyAgICAgICBpZiAoIWZncm91cHMpDQo+ID4gPiA+ICsg
-ICAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsNCj4gDQo+IC4uLg0KPiANCj4gPiA+ID4gK3N0
-YXRpYyBpbnQgenlucW1wX3BpbmN0cmxfcHJlcGFyZV9ncm91cF9waW5zKHN0cnVjdCBkZXZpY2Ug
-KmRldiwNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgc3RydWN0IHp5bnFtcF9wY3RybF9ncm91cCAqZ3JvdXBzLA0KPiA+ID4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBpbnQgbmdyb3Vwcykg
-ew0KPiA+ID4gPiArICAgICAgIHVuc2lnbmVkIGludCBwaW47DQo+ID4gPiA+ICsgICAgICAgaW50
-IHJldCA9IDA7DQo+ID4gPg0KPiA+ID4gUmVkdW5kYW50IGFzc2lnbm1lbnQuDQo+ID4gU3RhdGlj
-IGFuYWx5emVyIHRvb2wgd2lsbCB0aHJvdyB3YXJuaW5nIGFzIGl0IGV4cGVjdHMgdGhlIHZhcmlh
-YmxlIHRvDQo+ID4gYmUgSW5pdGlhbGl6ZWQgaW4gYWxsIHBvc3NpYmxlIHBhdGhzLg0KPiANCj4g
-QmVjYXVzZSB5b3UgbmVlZCB0byBleHBsaWNpdGx5IHJldHVybiAwIGF0IHRoZSBlbmQgb2YgdGhl
-IGZ1bmN0aW9uLg0KPiBEb24ndCBmb2xsb3cgc3RhdGljIGFuYWx5emVycyBvciBvdGhlciB0b29s
-cyBibGluZGx5LiBUaGluayBhYm91dCBhbGwgYXNwZWN0cy4NCk9rLCBJIHdpbGwgdXBkYXRlIHRo
-aXMuDQo+IA0KPiA+IEkgd2lsbCBjcm9zcyBjaGVjayBvbiB0aGlzIGFuZCByZW1vdmUgaWYgaXQg
-aXMgbm90IHRoZSBjYXNlLg0KPiA+ID4NCj4gPiA+ID4gKyAgICAgICBmb3IgKHBpbiA9IDA7IHBp
-biA8IHp5bnFtcF9kZXNjLm5waW5zOyBwaW4rKykgew0KPiA+ID4gPiArICAgICAgICAgICAgICAg
-cmV0ID0genlucW1wX3BpbmN0cmxfY3JlYXRlX3Bpbl9ncm91cHMoZGV2LCBncm91cHMsIHBpbik7
-DQo+ID4gPiA+ICsgICAgICAgICAgICAgICBpZiAocmV0KQ0KPiA+ID4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+ID4gPiArICAgICAgIH0NCj4gPiA+ID4gKw0KPiA+
-ID4gPiArICAgICAgIHJldHVybiByZXQ7DQo+ID4gPiA+ICt9DQo+IA0KPiAuLi4NCj4gDQo+ID4g
-PiA+ICsgICAgICAgZ3JvdXBzID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCpncm91cHMpICog
-cGN0cmwtPm5ncm91cHMsDQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEdG
-UF9LRVJORUwpOw0KPiA+ID4NCj4gPiA+IE9uZSBsaW5lLg0KPiA+IEl0IHdpbGwgY3Jvc3MgODAg
-bGluZSBtYXJrIGlmIHdlIG1ha2UgaXQgdG8gYSBzaW5nbGUgbGluZS4NCj4gDQo+IEkgZG9uJ3Qg
-dGhpbmsgaXQncyBhIHByb2JsZW0gaW4gdGhpcyBjYXNlLg0KSSB3aWxsIHVwZGF0ZSB0aGlzLg0K
-PiANCj4gPiA+ID4gKyAgICAgICBpZiAoIWdyb3VwcykNCj4gPiA+ID4gKyAgICAgICAgICAgICAg
-IHJldHVybiAtRU5PTUVNOw0KPiANCj4gLS0NCj4gV2l0aCBCZXN0IFJlZ2FyZHMsDQo+IEFuZHkg
-U2hldmNoZW5rbw0K
+On 18:42-20210322, Aswath Govindraju wrote:
+> The following speed modes are now supported in J7200 SoC,
+> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
+> - UHS-I speed modes in MMCSD1 subsystem [1].
+> 
+> Add support for UHS-I modes by adding voltage regulator device tree nodes
+> and corresponding pinmux details, to power cycle and voltage switch cards.
+> Set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
+> device tree nodes.
+> 
+> Also update the delay values for various speed modes supported, based on
+> the revised january 2021 J7200 datasheet[2].
+> 
+> [1] - section 12.3.6.1.1 MMCSD Features, in
+>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf,
+>       (SPRUIU1A – JULY 2020 – REVISED JANUARY 2021)
+> 
+> [2] - https://www.ti.com/lit/ds/symlink/dra821u.pdf,
+>       (SPRSP57B – APRIL 2020 – REVISED JANUARY 2021)
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  .../dts/ti/k3-j7200-common-proc-board.dts     | 42 +++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 14 ++++++-
+>  2 files changed, 54 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index b493f939b09a..de8c06bdc825 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -16,6 +16,29 @@
+>  		stdout-path = "serial2:115200n8";
+>  		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+>  	};
+> +
+> +	vdd_mmc1: fixedregulator-sd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_mmc1";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		gpios = <&exp2 2 GPIO_ACTIVE_HIGH>;
+
+is that gpio ?
+I'd encourage to use vin-supply as well.
+
+> +	};
+> +
+> +	vdd_sd_dv: gpio-regulator-vdd-sd-dv {
+	What does this drive? TLV71033 ?
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "vdd_sd_dv";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+
+normally, I'd encourage to use vin-supply as well.
+
+> +		gpios = <&main_gpio0 55 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0
+> +			  3300000 0x1>;
+states = <1800000 0x0>,
+<3300000 0x1>;
+
+Can you look at j721e as reference?
+
+> +	};
+>  };
+>  
+
+Kishon,
+	can you look closer at this series?
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
