@@ -2,234 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13C6C3446C1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 189863446F3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:19:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbhCVOJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 10:09:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44840 "EHLO
+        id S229897AbhCVOSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 10:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230430AbhCVOIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:08:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D927AC061762
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:08:19 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lOLE6-0002AP-Q6; Mon, 22 Mar 2021 15:08:14 +0100
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lOLE6-0003Fv-4W; Mon, 22 Mar 2021 15:08:14 +0100
-Date:   Mon, 22 Mar 2021 15:08:14 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        with ESMTP id S230259AbhCVOSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:18:48 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F8CC061756
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:18:47 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id j7so17136735wrd.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eDCWh6/zJaj6zj0loMji4f0PCuzcxZ0geR05LJmW8Tg=;
+        b=oVyA+z3y23uEnKtQkY1RQf5yBOuxoeerXKQv7B381EZ76ZS862W5ZxxSKg2fAoC19m
+         YE5wIA6FXOdsJY8P6ap7/h4Z02gjoxAqK5eB0iEJRDvasHi17g7tCithsM+mpdkg15ys
+         5qc2ONzgmVZp56LOkrB9V9pUvk1Wjk2VTSzv3mFa4yanuJmGBMXRG/4jREIBVtzDN0tK
+         XU69jMatGZFzSkq5Rv6ckSkcmoUQtnLuCXDT6t3DuPILC76D5F85UyV8mU0PUeMGKFjd
+         GqjxqA6ojxl/3+po1xeqe4ZRjh6yIlggCJoRyeTdgt8YcI55JWl3P16jdlw0hl2yoaOj
+         +fUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eDCWh6/zJaj6zj0loMji4f0PCuzcxZ0geR05LJmW8Tg=;
+        b=s/ENvLxBaA/pVuylDa7oDYNuDhICxK+YXPd6b2C6FIBfGNrkQyb6UpigaoQiQFXyxS
+         +d5IEFvvN4zWbFBbggsguKDgEV0v8SZzrtlf7EWHI4USdg8G/C+0+IcEUKar+3kNZofY
+         XscP/+3W6BYahrQKMnW+CneRjAyE0wWol62oAiGcA3emZbWaor3emvYXuyUjR+Ki+O6A
+         hVlKqQZWN3QgOK5GrEdPHqHPQAq1fVSTQCtg+EnZZZO1c97SsnOq9H39x4Zv8hF1n39A
+         k/pMn8vh2yNynW9E4fbFQUAO3ZCwadj6SB7kxAei4jFL2WxFaUvIczPRW4V1YG8JS6u5
+         b5Lg==
+X-Gm-Message-State: AOAM531cON7rNfP7SmAPA/3aD8J63/OyeidQU4JZZ/tGpVOySqSv8hV1
+        Ul/p2vXX1/BfnAmtA37B8pqbAg==
+X-Google-Smtp-Source: ABdhPJx4TchNaAFzgkknT14TZmeFXnxSJqznxfQPDOGIN4glPGFPb8gW6hhV2mLK1NhbSD4LnbVcbQ==
+X-Received: by 2002:a5d:55c4:: with SMTP id i4mr18636846wrw.84.1616422726280;
+        Mon, 22 Mar 2021 07:18:46 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:2091:71d6:3ab2:37f2? ([2a01:e34:ed2f:f020:2091:71d6:3ab2:37f2])
+        by smtp.googlemail.com with ESMTPSA id r11sm20213102wrm.26.2021.03.22.07.18.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Mar 2021 07:18:45 -0700 (PDT)
+Subject: Re: [PATCH v2 0/5] arm64: sunxi: Enable the sun4i timer
+To:     Samuel Holland <samuel@sholland.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v3 3/3] iio: adc: add ADC driver for the TI TSC2046
- controller
-Message-ID: <20210322140814.kp23m4b3xx7bapag@pengutronix.de>
-References: <20210319144509.7627-1-o.rempel@pengutronix.de>
- <20210319144509.7627-4-o.rempel@pengutronix.de>
- <CAHp75Vcn=g-3NRXAEd5jEu4uxD_fHbybiDg=t9QiY80TNZuTgQ@mail.gmail.com>
- <20210322103034.bd6swzn2udpvm66o@pengutronix.de>
- <CAHp75VeemLnMJWQOHL8qrqaher2kOn1xTye1tK2OPtpSHhwOcA@mail.gmail.com>
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20210322044707.19479-1-samuel@sholland.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <7bb14a82-5dc9-cefe-4b58-1d2c83974965@linaro.org>
+Date:   Mon, 22 Mar 2021 15:18:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210322044707.19479-1-samuel@sholland.org>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHp75VeemLnMJWQOHL8qrqaher2kOn1xTye1tK2OPtpSHhwOcA@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:53:44 up 110 days,  4:00, 42 users,  load average: 0.11, 0.05,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 03:41:22PM +0200, Andy Shevchenko wrote:
-> On Mon, Mar 22, 2021 at 12:30 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> > On Fri, Mar 19, 2021 at 07:42:41PM +0200, Andy Shevchenko wrote:
-> > > On Fri, Mar 19, 2021 at 4:45 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> 
-> ...
-> 
-> > > > +static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
-> > > > +{
-> > > > +       /* Last 3 bits on the wire are empty */
-> > >
-> > > Last?! You meant Least significant?
-> >
-> > ACK. LSB
-> >
-> > > Also, don't we lose precision if a new compatible chip appears that
-> > > does fill those bits?
-> >
-> > ACK. All of controllers supported by this driver:
-> > drivers/input/touchscreen/ads7846.c:
-> > - ti,tsc2046
-> > - ti,ads7843
-> > - ti,ads7845
-> > - ti,ads7846
-> > - ti,ads7873 (hm, there is no ti,ads7873, is it actually analog devices AD7873?)
-> >
-> > support 8- or 12-bit resolution. Only 12 bit mode is supported by this
-> > driver. It is possible that some one can produce a resistive touchscreen
-> > controller based on X > 12bit ADC, but this will probably not increase precision
-> > of this construction (there is a lot of noise any ways...). With other
-> > words, it is possible, but not probably that some one will really do it.
-> >
-> > > Perhaps define the constant and put a comment why it's like this.
-> 
-> Okay, and what happens here is something like cutting LSBs, but it
-> sounds strange to me. If you get 16 bit values, the MSBs should not be
-> used?
-> 
-> So, a good comment is required to explain the logic behind.
-> 
-> > > > +       return get_unaligned_be16(&buf->data) >> 3;
-> > > > +}
-> 
-> ...
-> 
-> > > > +static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
-> > > > +                                          unsigned int group,
-> > > > +                                          unsigned int ch_idx)
-> > > > +{
-> > > > +       struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
-> > > > +       struct tsc2046_adc_group_layout *prev, *cur;
-> > > > +       unsigned int max_count, count_skip;
-> > > > +       unsigned int offset = 0;
-> > > > +
-> > > > +       if (group) {
-> > > > +               prev = &priv->l[group - 1];
-> > > > +               offset = prev->offset + prev->count;
-> > > > +       }
-> > >
-> > > I guess you may easily refactor this by supplying a pointer to the
-> > > current layout + current size.
-> >
-> > Sure, but this will not make code more readable and it will not affect
-> > the performance. Are there any other reason to do it? Just to make one
-> > line instead of two?
-> 
-> It's still N - 1 unneeded checks and code is slightly harder to read.
+On 22/03/2021 05:47, Samuel Holland wrote:
+> In preparation for adding CPU idle states, hook up the sun4i timer.
+> Having a non-c3stop clockevent source available is necessary for all
+> CPUs to simultaneously enter a local-timer-stop idle state.
 
-fixed
+Why simultaneously ?
 
-> > > > +       cur = &priv->l[group];
-> > >
-> > > Also, can you move it down closer to the (single?) caller.
-> > >
-> > > > +}
+> Changes from v1:
+>   - Removed H616 changes (depends on an unmerged patch set)
+>   - Reworded the patch 4-5 commit messages for clarity
+>   - Added Acked-by tags
 > 
-> ...
+> Samuel Holland (5):
+>   dt-bindings: timer: Simplify conditional expressions
+>   dt-bindings: timer: Add compatibles for sun50i timers
+>   arm64: dts: allwinner: a64: Sort watchdog node
+>   arm64: dts: allwinner: Add sun4i MMIO timer nodes
+>   arm64: sunxi: Build the sun4i timer driver
 > 
-> > > > +               dev_err_ratelimited(dev, "SPI transfer filed: %pe\n",
-> > > > +                                   ERR_PTR(ret));
-> > >
-> > > One line?
-> >
-> > it will exceed the 80 char rule
+>  .../timer/allwinner,sun4i-a10-timer.yaml      | 42 +++++++++----------
+>  arch/arm64/Kconfig.platforms                  |  1 +
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 25 +++++++----
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  9 ++++
+>  4 files changed, 46 insertions(+), 31 deletions(-)
 > 
-> It's fine here.
 
-fixed
 
-> ...
-> 
-> > > > +       spin_lock_irqsave(&priv->trig_lock, flags);
-> > > > +
-> > > > +       disable_irq_nosync(priv->spi->irq);
-> > >
-> > > > +       atomic_inc(&priv->trig_more_count);
-> > >
-> > > You already have a spin lock, do you need to use the atomic API?
-> >
-> > I can only pass review comment from my other driver:
-> > Memory locations that are concurrently accessed needs to be
-> > marked as such, otherwise the compiler is allowed to funky stuff:
-> > https://lore.kernel.org/lkml/CAGzjT4ez+gWr3BFQsEr-wma+vs6UZNJ+mRARx_BWoAKEJSsN=w@mail.gmail.com/
-> >
-> > And here is one more link:
-> > https://lwn.net/Articles/793253/#How%20Real%20Is%20All%20This?
-> >
-> > Starting with commit 62e8a3258bda atomic API is using READ/WRITE_ONCE,
-> > so I assume, I do nothing wrong by using it. Correct?
-> 
-> Hmm... What I don't understand here is why you need a second level of
-> atomicity. spin lock already makes this access atomic (at least I have
-> checked couple of places and in both the variable is being accessed
-> under spin lock).
-
-fixed
-
-> > > > +       iio_trigger_poll(priv->trig);
-> > > > +
-> > > > +       spin_unlock_irqrestore(&priv->trig_lock, flags);
-> 
-> ...
-> 
-> > > > +       name = devm_kasprintf(dev, GFP_KERNEL, "%s-%s",
-> > > > +                             TI_TSC2046_NAME, dev_name(dev));
-> > >
-> > > No NULL check?
-> > > Should be added or justified.
-> >
-> > name is set not optionally  by the spi_add_device()->spi_dev_set_name()
-> 
-> I didn't get it.
-> You allocate memory and haven't checked against NULL. Why?
-
-> If the name field is optional and having it's NULL is okay (non-fatal
-> error), put a comment.
-
-ah... I missed the point. You was talking about name == NULL, i was
-thinking about dev_name(dev) == NULL.
-
-fixed
-
-> ...
-> 
-> > > > +       trig->dev.parent = indio_dev->dev.parent;
-> > >
-> > > Don't we have this done by core (some recent patches in upstream)?
-> >
-> > can you please point to the code which is doing it?
-> 
-> I believe it's this one:
-> 
-> commit 970108185a0be29d1dbb25202d8c12d798e1c3a5
-> Author: Gwendal Grignou <gwendal@chromium.org>
-> Date:   Tue Mar 9 11:36:13 2021 -0800
-> 
->    iio: set default trig->dev.parent
-
-ok, found it on iio/testing and rebased against it..
-
-fixed
-
-Thank you,
-Oleksij
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
