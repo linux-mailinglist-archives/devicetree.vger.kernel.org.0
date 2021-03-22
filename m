@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4589D3440C7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 13:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 643983440D4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 13:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbhCVMVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 08:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49682 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbhCVMVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 08:21:14 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB14C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 05:21:12 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id e13so7319023vsl.5
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 05:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XGgimpglaRwteb/Bgl+pO/u/VHpnAlSvFxg2F0n2KCo=;
-        b=p6ePlsePjZxtZiq6dspm5RqfO23b/cRwiaAUzyGDHXFYH5sx1t4bJGWn0FOttl90Fl
-         9l+Pfmy1A5eZFy/TSoAvoVzQdfoD2qAan4ZvPA6wRfZWyReRLg4ebDoHO03QxuwMUSbG
-         Xw/8chYtadgBTlSZOweb9p+3rtNCRRcjugB/lnaBMco22zR1SkNQM6lzIQNj8EexBez6
-         v7JH/YONvbt8dLTbvqGS0sAH1lBuk1leff10dNlL9TDI1CpIRaVwIzuXwq2+NNyRsGqx
-         z1w0fgf4bGexsX5E3k40FkRmO1RTFVZAOD6tpBLRoVWKOKlZDiXK9Zj5nr2RvdtstoJq
-         nujA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XGgimpglaRwteb/Bgl+pO/u/VHpnAlSvFxg2F0n2KCo=;
-        b=Wit7fPkfeRVZ+birjku2sIJ7TbRJ65ciGLRdvKECo6u+UeOvmn5wLVl1CY0PPYCRoj
-         PkoTWxE1zSEHDH8J4Fse720NeTZItGbYGyI4Fyj2rIFnYJu196GR807ujSlCC9Fuz3bq
-         Hz+93OJdgbcEDYRbrUYBw/yxyyXmojpTiKlfqp5ccxkH6cHNFg5HwbfLGwcEQgci0riE
-         C0rwtLvdeNY2Z8zf+g7lRkZgKpZCRZRxQqz4qSZMjHR9UmUj3xoNi+x5C/PnxepEEjfS
-         5lwOPloyrnD+XQA7RwG9EH0vhiLRdHhvhcVL1dgjTPboBdKMtsYnay8Gp3x78YzU0+3v
-         q2TA==
-X-Gm-Message-State: AOAM5303YCzOOfPRej7Hc+wS+sk1ezLbtNMzAI7XnrUfsb4j1RQRrc2w
-        +ilk8Xt3jGGobJTXYxNhSh1rz9kHntqknYyTLATEIw==
-X-Google-Smtp-Source: ABdhPJxi1HPq3PGcbuB9unHpIbKlJszyykT5Ik5ywDW/5koSttdd0dNdIDei/RcqxPZPwkzSrOy7RcSt9jXbJOzDcy4=
-X-Received: by 2002:a67:2a85:: with SMTP id q127mr8477457vsq.19.1616415672109;
- Mon, 22 Mar 2021 05:21:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com> <20210315132501.441681-9-Jerome.Pouiller@silabs.com>
-In-Reply-To: <20210315132501.441681-9-Jerome.Pouiller@silabs.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 22 Mar 2021 13:20:35 +0100
-Message-ID: <CAPDyKFqJf=vUqpQg3suDCadKrFTkQWFTY_qp=+yDK=_Lu9gJGg@mail.gmail.com>
-Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
+        id S229992AbhCVMYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 08:24:01 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57510 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229665AbhCVMXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 08:23:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MCNLxj086841;
+        Mon, 22 Mar 2021 07:23:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616415802;
+        bh=PiRW0/9mtm/S8YiQ/PLn61d98+Y3SPEfOvjSFUm16bE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=iks2DHarvcRQVAn75QK7cWi39dMfM8IZFTmaebZNmLEQb1Xq02gsrac9OIp9bpaOL
+         +l1jPOE+FHz6CdBRQ2bQJxRe6ZQmlwhsgIzijrlqNGXBgbtd3kZCR++SQi5RgInE50
+         tnYLeNvwdd07hWSlWFfY2fFmWpkD994MvRvlKESs=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MCNLUG077120
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Mar 2021 07:23:21 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
+ Mar 2021 07:23:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 22 Mar 2021 07:23:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MCNL60074361;
+        Mon, 22 Mar 2021 07:23:21 -0500
+Date:   Mon, 22 Mar 2021 07:23:21 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 3/3] arm64: dts: ti: k3-j7200: Add support for higher
+ speed modes and update delay select values for MMCSD subsystems
+Message-ID: <20210322122321.tpvvhr2jqao7rgjd@tingle>
+References: <20210319034422.17630-1-a-govindraju@ti.com>
+ <20210319034422.17630-4-a-govindraju@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210319034422.17630-4-a-govindraju@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 at 14:25, Jerome Pouiller
-<Jerome.Pouiller@silabs.com> wrote:
->
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+On 09:14-20210319, Aswath Govindraju wrote:
+> The following speed modes are now supported in J7200 SoC,
+> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
+> - UHS-I speed modes in MMCSD1 subsystem [1].
+> 
+> Add support for UHS-I modes by adding voltage regulator device tree nodes
+> and corresponding pinmux details, to power cycle and voltage switch cards.
+> Set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
+> device tree nodes.
+> 
+> Also update the delay values for various speed modes supported, based on
+> the revised january 2021 J7200 datasheet[2].
+> 
+> [1] - section 12.3.6.1.1 MMCSD Features, in
+>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf,
+>       (SPRUIU1A – JULY 2020 – REVISED JANUARY 2021)
+> 
+> [2] - https://www.ti.com/lit/ds/symlink/dra821u.pdf,
+>       (SPRSP57B – APRIL 2020 – REVISED JANUARY 2021)
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
->  drivers/net/wireless/silabs/wfx/bus_sdio.c | 259 +++++++++++++++++++++
->  1 file changed, 259 insertions(+)
->  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
-
 [...]
 
-> +static const struct sdio_device_id wfx_sdio_ids[] =3D {
-> +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF200)=
- },
-> +       { },
-> +};
-> +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
 > +
-> +struct sdio_driver wfx_sdio_driver =3D {
-> +       .name =3D "wfx-sdio",
-> +       .id_table =3D wfx_sdio_ids,
-> +       .probe =3D wfx_sdio_probe,
-> +       .remove =3D wfx_sdio_remove,
-> +       .drv =3D {
-> +               .owner =3D THIS_MODULE,
-> +               .of_match_table =3D wfx_sdio_of_match,
+> +	vdd_sd_dv_pins_default: vdd_sd_dv_pins_default {
 
-It's not mandatory to support power management, like system
-suspend/resume. However, as this looks like this is a driver for an
-embedded SDIO device, you probably want this.
+	Nope. Use:
+		vdd_sd_dv_pins_default: vdd-sd-dv-pins-default
 
-If that is the case, please assign the dev_pm_ops here and implement
-the ->suspend|resume() callbacks.
-
-[...]
-
-Kind regards
-Uffe
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
