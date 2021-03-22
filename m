@@ -2,512 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5640C344F91
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 20:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DD7344F99
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 20:07:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230465AbhCVTDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 15:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52406 "EHLO
+        id S231577AbhCVTG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 15:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231401AbhCVTDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 15:03:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31304C061574;
-        Mon, 22 Mar 2021 12:03:44 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id e14so4861036ejz.11;
-        Mon, 22 Mar 2021 12:03:44 -0700 (PDT)
+        with ESMTP id S230467AbhCVTGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 15:06:13 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0FDC061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 12:06:13 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so46531pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 12:06:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=broadcom.com; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nS7FRgbdv9jzkLNC53gBu26ppeGL60bI1cJEtoSx6Q4=;
-        b=cy84B8AuA2CqCaMmNm1zSllxGdADGcNXpbhdemnIUroofKmE+81iCJRRQ3uheQdzlu
-         TddoX+ru/grVclcYiN5+VpICZ0lg/wdSuP5I/4hmXcLiaEDZMpCuqmzel3tdri5v6Q5e
-         rSog0kKkbI2FYd8LmnhtBP3avfl2SCuWwrc87zImU7Gx7T1mK3bWcesQ77Pn8jUOP8IE
-         0dLZ66uSWY5waEVNw/EhOgRh+nsbRWVST+GlwijTsDr7U+rmQbm7MrMmIn21hlc2rqBO
-         AP+7eRgVKq63Q6uL/NnToR9UaUzO21XQhaCResJHxqfOeUOirICc6VcQK0CtDDpX+9vu
-         61FA==
+         :mime-version:in-reply-to;
+        bh=KalOdtrsehqL8DedZR8zDfRa1qGujhuZnnY7cIGe+lM=;
+        b=cNoxghLnkCqV9VpRexkC1E0nU7ac4wYcdHoVUJH2iD9ubWJlSArNyrtBDIn1qzwIj8
+         Q3bmOoVE+e5xqy5LH47gnNYKEyV4aMkz5Wv7MGa0EtZq4B238jceA2YAVjWdF7JgxqTL
+         RIR9GMmPSlDbx8AWSLM7cgRWcOc5xC4AU8KPA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=nS7FRgbdv9jzkLNC53gBu26ppeGL60bI1cJEtoSx6Q4=;
-        b=VRzbBuDqpP083NcFfN2a16E8Plhd1PI42r0lh+XKBvEIlsjeq/r14ycbXeTGK1F2CL
-         ZDbwGrwjduH9Z0gGiVGd3K58pru2/fwhK3ZFRIRcStLAdN7CII0Usw3PMEXntQvxO4+2
-         0hXgw1C5t+mCP6NNDy7B/PQKRm+DPHwFH1+26p/rovNJ3GblpRROIzc0GJqfIpuk0Eyl
-         B5D7oGZrKC/IRjjeiooqel+moH0ulyUmyPbz3WAE/OR0mjXtcEtlmlaqL823P+jF+guu
-         kQQBChqkJGGE001Rkb2iZ11XeQxTAQtPwL9FOmqDEOBrymDmRVCNnDq8p5PDemZ5juI6
-         VYdA==
-X-Gm-Message-State: AOAM532CSWFnh29LaDzlnWe0AJOAl+gYWRWkkf0NbgE40ms1bL2Rx7XK
-        mHC7Nl2dDnQuSUIpxVCA1GM=
-X-Google-Smtp-Source: ABdhPJx+VYqzaOlZ8muPmDOzZLCW3YLYfps8nZreDgEpD0r5b/SxK92p5oynRs5wr6ly6o1dnfW3rw==
-X-Received: by 2002:a17:906:c9c2:: with SMTP id hk2mr1296044ejb.244.1616439822903;
-        Mon, 22 Mar 2021 12:03:42 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id d1sm10059728eje.26.2021.03.22.12.03.40
+         :user-agent:mime-version:in-reply-to;
+        bh=KalOdtrsehqL8DedZR8zDfRa1qGujhuZnnY7cIGe+lM=;
+        b=JX44UbQkT+zS7vlmWcDamvhDNQSwkCK/3YiVlrsmTffV91/MpnbqBPjIZs8Ct+TpN9
+         kcb1knoGmcmuzJHwJi7kD3qxXaYWNyDpA8ZTDXmNUpLHZ4RlBrBWzZ8UIWy8mZ7h1VRi
+         AL7b9Z2wpFd5lt40WA6thd+0T2CSJz/8A+U6M/c0Z+m5oRlS9zJJdGOM7lUkCsRmVs0w
+         KCDZb8px7ickw5bkJPrxAv45Ob1Of7f2+PpKEWDP2F/oKSf4Q5xoDfnesH/ZdrNWXajU
+         R6oXFLUzlKBw2DBcwY/CG8SnEcnR4OEz9OehSd/tzw1eEmzuZ2EetATEp5Kv3+EL8GkA
+         LR1A==
+X-Gm-Message-State: AOAM531e/VLZJorzvQiSgRl0fwOr38P4ntYCsSj65OBdlxk1Kl7Veh5S
+        /Rlf1s5hq8DkPLmTjyfO60oKHw==
+X-Google-Smtp-Source: ABdhPJwZKLhJH6vEg/ZBa9OyV5Sj3naM9N3w0pZGLkXe8xOxjHZPVMOigyYte4yl/PUVeNYNR02b0Q==
+X-Received: by 2002:a17:90a:f2d5:: with SMTP id gt21mr540085pjb.197.1616439972571;
+        Mon, 22 Mar 2021 12:06:12 -0700 (PDT)
+Received: from lbrmn-lnxub113.ric.broadcom.net ([192.19.228.250])
+        by smtp.gmail.com with ESMTPSA id z18sm14002873pfa.39.2021.03.22.12.06.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 12:03:42 -0700 (PDT)
-Subject: Re: [PATCH v1 2/3] dt-bindings: Convert the rockchip power_domain to
- YAML and extend
-To:     Elaine Zhang <zhangqing@rock-chips.com>, robh+dt@kernel.org,
-        heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cl@rock-chips.com, huangtao@rock-chips.com,
-        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com
-References: <20210317025159.2248-1-zhangqing@rock-chips.com>
- <20210317025159.2248-3-zhangqing@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <79a19747-0dcf-5bc7-6c1f-3a76df9b1002@gmail.com>
-Date:   Mon, 22 Mar 2021 20:03:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        Mon, 22 Mar 2021 12:06:11 -0700 (PDT)
+Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
+To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     f.fainelli@gmail.com, phil@raspberrypi.com,
+        tim.gover@raspberrypi.com, adrian.hunter@intel.com,
+        sbranden@broadcom.com, alcooperx@gmail.com,
+        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org
+References: <20210322185816.27582-1-nsaenz@kernel.org>
+ <20210322185816.27582-5-nsaenz@kernel.org>
+From:   Scott Branden <scott.branden@broadcom.com>
+Message-ID: <13a62975-23a4-60d3-a740-9ef44edc74c3@broadcom.com>
+Date:   Mon, 22 Mar 2021 12:06:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210317025159.2248-3-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20210322185816.27582-5-nsaenz@kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000064d48e05be24c290"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elaine,
+--00000000000064d48e05be24c290
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Some comments. Have a look if it's useful or that you disagree with...
+1st line of commit should be ARM: dts: bcm2711
 
-On 3/17/21 3:51 AM, Elaine Zhang wrote:
-> This converts the rockchip power domain family bindings to YAML schema,
-> and add binding documentation for the power domains found on Rockchip
-> RK3568 SoCs.
->
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+On 2021-03-22 11:58 a.m., Nicolas Saenz Julienne wrote:
+> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> 
+> Force emmc2's frequency to 150MHz as the default 100MHz (set by FW)
+> seems to interfere with the VPU clock when setup at frequencies bigger
+> than 500MHz (a pretty common case). This ends up causing unwarranted
+> SDHCI CMD hangs  when no SD card is present.
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
 > ---
->  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
->  .../rockchip/rockchip,power-controller.yaml   | 196 ++++++++++++++++++
->  2 files changed, 196 insertions(+), 136 deletions(-)
->  delete mode 100644
-Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
->  create mode 100644
-Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
->
-> diff --git
-a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-b/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-> deleted file mode 100644
-> index 8304eceb62e4..000000000000
-> --- a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-> +++ /dev/null
-> @@ -1,136 +0,0 @@
-> -* Rockchip Power Domains
-> -
-> -Rockchip processors include support for multiple power domains which
-can be
-> -powered up/down by software based on different application scenes to
-save power.
-> -
-> -Required properties for power domain controller:
-> -- compatible: Should be one of the following.
-> -	"rockchip,px30-power-controller" - for PX30 SoCs.
-> -	"rockchip,rk3036-power-controller" - for RK3036 SoCs.
-> -	"rockchip,rk3066-power-controller" - for RK3066 SoCs.
-> -	"rockchip,rk3128-power-controller" - for RK3128 SoCs.
-> -	"rockchip,rk3188-power-controller" - for RK3188 SoCs.
-> -	"rockchip,rk3228-power-controller" - for RK3228 SoCs.
-> -	"rockchip,rk3288-power-controller" - for RK3288 SoCs.
-> -	"rockchip,rk3328-power-controller" - for RK3328 SoCs.
-> -	"rockchip,rk3366-power-controller" - for RK3366 SoCs.
-> -	"rockchip,rk3368-power-controller" - for RK3368 SoCs.
-> -	"rockchip,rk3399-power-controller" - for RK3399 SoCs.
-> -- #power-domain-cells: Number of cells in a power-domain specifier.
-> -	Should be 1 for multiple PM domains.
-> -- #address-cells: Should be 1.
-> -- #size-cells: Should be 0.
-> -
-> -Required properties for power domain sub nodes:
-> -- reg: index of the power domain, should use macros in:
-> -	"include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
-> -	"include/dt-bindings/power/rk3036-power.h" - for RK3036 type power
-domain.
-> -	"include/dt-bindings/power/rk3066-power.h" - for RK3066 type power
-domain.
-> -	"include/dt-bindings/power/rk3128-power.h" - for RK3128 type power
-domain.
-> -	"include/dt-bindings/power/rk3188-power.h" - for RK3188 type power
-domain.
-> -	"include/dt-bindings/power/rk3228-power.h" - for RK3228 type power
-domain.
-> -	"include/dt-bindings/power/rk3288-power.h" - for RK3288 type power
-domain.
-> -	"include/dt-bindings/power/rk3328-power.h" - for RK3328 type power
-domain.
-> -	"include/dt-bindings/power/rk3366-power.h" - for RK3366 type power
-domain.
-> -	"include/dt-bindings/power/rk3368-power.h" - for RK3368 type power
-domain.
-> -	"include/dt-bindings/power/rk3399-power.h" - for RK3399 type power
-domain.
-> -- clocks (optional): phandles to clocks which need to be enabled
-while power domain
-> -	switches state.
-> -- pm_qos (optional): phandles to qos blocks which need to be saved
-and restored
-> -	while power domain switches state.
-> -
-> -Qos Example:
-> -
-> -	qos_gpu: qos_gpu@ffaf0000 {
-> -		compatible ="syscon";
-> -		reg = <0x0 0xffaf0000 0x0 0x20>;
-> -	};
-> -
-> -Example:
-> -
-> -	power: power-controller {
-> -		compatible = "rockchip,rk3288-power-controller";
-> -		#power-domain-cells = <1>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		pd_gpu {
-> -			reg = <RK3288_PD_GPU>;
-> -			clocks = <&cru ACLK_GPU>;
-> -			pm_qos = <&qos_gpu>;
-> -		};
-> -	};
-> -
-> -	 power: power-controller {
-> -                compatible = "rockchip,rk3368-power-controller";
-> -                #power-domain-cells = <1>;
-> -                #address-cells = <1>;
-> -                #size-cells = <0>;
-> -
-> -                pd_gpu_1 {
-> -                        reg = <RK3368_PD_GPU_1>;
-> -                        clocks = <&cru ACLK_GPU_CFG>;
-> -                };
-> -        };
-> -
-> -Example 2:
-> -		power: power-controller {
-> -			compatible = "rockchip,rk3399-power-controller";
-> -			#power-domain-cells = <1>;
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			pd_vio {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -				reg = <RK3399_PD_VIO>;
-> -
-> -				pd_vo {
-> -					#address-cells = <1>;
-> -					#size-cells = <0>;
-> -					reg = <RK3399_PD_VO>;
-> -
-> -					pd_vopb {
-> -						reg = <RK3399_PD_VOPB>;
-> -					};
-> -
-> -					pd_vopl {
-> -						reg = <RK3399_PD_VOPL>;
-> -					};
-> -				};
-> -			};
-> -		};
-> -
-> -Node of a device using power domains must have a power-domains property,
-> -containing a phandle to the power device node and an index specifying
-which
-> -power domain to use.
-> -The index should use macros in:
-> -	"include/dt-bindings/power/px30-power.h" - for px30 type power domain.
-> -	"include/dt-bindings/power/rk3036-power.h" - for rk3036 type power
-domain.
-> -	"include/dt-bindings/power/rk3128-power.h" - for rk3128 type power
-domain.
-> -	"include/dt-bindings/power/rk3128-power.h" - for rk3228 type power
-domain.
-> -	"include/dt-bindings/power/rk3288-power.h" - for rk3288 type power
-domain.
-> -	"include/dt-bindings/power/rk3328-power.h" - for rk3328 type power
-domain.
-> -	"include/dt-bindings/power/rk3366-power.h" - for rk3366 type power
-domain.
-> -	"include/dt-bindings/power/rk3368-power.h" - for rk3368 type power
-domain.
-> -	"include/dt-bindings/power/rk3399-power.h" - for rk3399 type power
-domain.
-> -
-> -Example of the node using power domain:
-> -
-> -	node {
-> -		/* ... */
-> -		power-domains = <&power RK3288_PD_GPU>;
-> -		/* ... */
-> -	};
-> -
-> -	node {
-> -                /* ... */
-> -                power-domains = <&power RK3368_PD_GPU_1>;
-> -                /* ... */
-> -        };
-> -
-> -	node {
-> -		/* ... */
-> -		power-domains = <&power RK3399_PD_VOPB>;
-> -		/* ... */
-> -	};
-> diff --git
-a/Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
-b/Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
-> new file mode 100644
-> index 000000000000..c9c8058d17ab
-> --- /dev/null
-> +++
-b/Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
-> @@ -0,0 +1,196 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +# %YAML 1.2
-> +---
-> +$id: http://devicetree.org/soc/rockchip/rockchip,power-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rcokchip Generic PM domains
-Rockchip
-Maybe use correct company name?
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> index 3b4ab947492a..9aa8408d9960 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> @@ -257,6 +257,12 @@ &emmc2 {
+>  	vqmmc-supply = <&sd_io_1v8_reg>;
+>  	vmmc-supply = <&sd_vcc_reg>;
+>  	broken-cd;
+> +	/*
+> +	 * Force the frequency to 150MHz as the default 100MHz seems to
+> +	 * interfere with the VPU clock when setup at frequencies bigger than
+> +	 * 500MHz, causing unwarranted CMD hangs.
+> +	 */
+> +	clock-frequency = <150000000>;
+>  	status = "okay";
+>  };
+>  
+> 
 
-> +
-> +maintainers:
-> +  - Rob Herring <robh+dt@kernel.org>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |
-> +  Rockchip processors include support for multiple power domains
-which can be
-> +  powered up/down by software based on different application scenes
-to save power.
-> +
-> +  IP cores belonging to a power domain should contain a 'power-domains'
-> +  property that is a phandle for SCPSYS node representing the domain.
-what's SCPSYS?
-Maybe reword phrase?
 
-> +
-> +properties:
-> +  $nodename:
-> +    const: power-controller
-> +
-> +  compatible:
-> +    enum:
-> +      - rockchip,px30-power-controller
-> +      - rockchip,rk3036-power-controller
-> +      - rockchip,rk3066-power-controller
-> +      - rockchip,rk3128-power-controller
-> +      - rockchip,rk3188-power-controller
-> +      - rockchip,rk3228-power-controller
-> +      - rockchip,rk3288-power-controller
-> +      - rockchip,rk3328-power-controller
-> +      - rockchip,rk3366-power-controller
-> +      - rockchip,rk3368-power-controller
-> +      - rockchip,rk3399-power-controller
-> +      - rockchip,rk3568-power-controller
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^power-domain@[0-9a-f]+$":
-> +    type: object
-> +    description: |
-> +      Represents the power domains within the power controller node
-as documented
-> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
-> +
-> +    properties:
-> +
-> +      '#power-domain-cells':
-> +        description:
-> +          Must be 0 for nodes representing a single PM domain and 1
-for nodes
-> +          providing multiple PM domains.
-> +
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        description: |
-> +          Power domain index. Valid values are defined in:
-in the files with the SoC name as prefix in the file name below.
-improve phrase
+--00000000000064d48e05be24c290
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-> +              "include/dt-bindings/power/px30-power.h" - for PX30
-type power domain.
-> +              "include/dt-bindings/power/rk3036-power.h" - for RK3036
-type power domain.
-> +              "include/dt-bindings/power/rk3066-power.h" - for RK3066
-type power domain.
-> +              "include/dt-bindings/power/rk3128-power.h" - for RK3128
-type power domain.
-> +              "include/dt-bindings/power/rk3188-power.h" - for RK3188
-type power domain.
-> +              "include/dt-bindings/power/rk3228-power.h" - for RK3228
-type power domain.
-> +              "include/dt-bindings/power/rk3288-power.h" - for RK3288
-type power domain.
-> +              "include/dt-bindings/power/rk3328-power.h" - for RK3328
-type power domain.
-> +              "include/dt-bindings/power/rk3366-power.h" - for RK3366
-type power domain.
-> +              "include/dt-bindings/power/rk3368-power.h" - for RK3368
-type power domain.
-> +              "include/dt-bindings/power/rk3399-power.h" - for RK3399
-type power domain.
-> +              "include/dt-bindings/power/rk3568-power.h" - for RK3568
-type power domain.
-The phrase "for RK3568 type power domain" repeats the file name.
-Maybe reduce a little bit of text?
-
-> +        maxItems: 1
-move up below reg:
-
-> +
-> +      clocks:
-> +        description: |
-> +          A number of phandles to clocks that need to be enabled
-during domain
-> +          power-up sequencing.
-> +
-> +      clock-names:
-> +        description: |
-> +          List of names of clocks, in order to match the power-up
-sequencing
-> +          for each power domain we need to group the clocks by name.
-BASIC
-> +          clocks need to be enabled before enabling the corresponding
-power
-> +          domain.
-> +
-> +      pm_qos:
-> +        description: |
-> +          A number of phandles for qos registers that need to be save
-and restor during domain
-QoS is an abriviation
-saved
-restored
-
-> +          power-up sequencing.
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-#include <dt-bindings/clock/rk3568-cru.h>
-#include <dt-bindings/power/rk3568-power.h>
-
-Please check example with script before submitting and fix!
-
-> +    pmu: power-management@fdd90000 {
-> +        compatible = "rockchip,rk3568-pmu", "syscon", "simple-mfd";
-> +        reg = <0xfdd90000 0x1000>;
-> +
-> +        power: power-controller {
-> +            compatible = "rockchip,rk3568-power-controller";
-> +            #power-domain-cells = <1>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            status = "okay";
-no status in examples
-
-> +
-> +            /* These power domains are grouped by VD_NPU */
-> +            pd_npu@RK3568_PD_NPU {
-> +                reg = <RK3568_PD_NPU>;
-> +                clocks = <&cru ACLK_NPU_PRE>,
-> +                         <&cru HCLK_NPU_PRE>,
-> +                         <&cru PCLK_NPU_PRE>;
-> +                pm_qos = <&qos_npu>;
-> +            };
-> +            /* These power domains are grouped by VD_GPU */
-> +            pd_gpu@RK3568_PD_GPU {
-> +                reg = <RK3568_PD_GPU>;
-> +                clocks = <&cru ACLK_GPU_PRE>,
-> +                         <&cru PCLK_GPU_PRE>;
-> +                pm_qos = <&qos_gpu>;
-> +            };
-> +            /* These power domains are grouped by VD_LOGIC */
-> +            pd_vi@RK3568_PD_VI {
-> +                reg = <RK3568_PD_VI>;
-> +                clocks = <&cru HCLK_VI>,
-> +                         <&cru PCLK_VI>;
-> +                pm_qos = <&qos_isp>,
-> +                         <&qos_vicap0>,
-> +                         <&qos_vicap1>;
-> +            };
-> +            pd_vo@RK3568_PD_VO {
-> +                reg = <RK3568_PD_VO>;
-> +                clocks = <&cru HCLK_VO>,
-> +                         <&cru PCLK_VO>,
-> +                         <&cru ACLK_VOP_PRE>;
-> +                pm_qos = <&qos_hdcp>,
-> +                         <&qos_vop_m0>,
-> +                         <&qos_vop_m1>;
-> +            };
-> +            pd_rga@RK3568_PD_RGA {
-> +                reg = <RK3568_PD_RGA>;
-> +                clocks = <&cru HCLK_RGA_PRE>,
-> +                         <&cru PCLK_RGA_PRE>;
-> +                pm_qos = <&qos_ebc>,
-> +                         <&qos_iep>,
-> +                         <&qos_jpeg_dec>,
-> +                         <&qos_jpeg_enc>,
-> +                         <&qos_rga_rd>,
-> +                         <&qos_rga_wr>;
-> +            };
-> +            pd_vpu@RK3568_PD_VPU {
-> +                reg = <RK3568_PD_VPU>;
-> +                clocks = <&cru HCLK_VPU_PRE>;
-> +                pm_qos = <&qos_vpu>;
-> +            };
-> +            pd_rkvdec@RK3568_PD_RKVDEC {
-> +                clocks = <&cru HCLK_RKVDEC_PRE>;
-> +                reg = <RK3568_PD_RKVDEC>;
-> +                pm_qos = <&qos_rkvdec>;
-> +            };
-> +            pd_rkvenc@RK3568_PD_RKVENC {
-> +                reg = <RK3568_PD_RKVENC>;
-> +                clocks = <&cru HCLK_RKVENC_PRE>;
-> +                pm_qos = <&qos_rkvenc_rd_m0>,
-> +                <&qos_rkvenc_rd_m1>,
-> +                <&qos_rkvenc_wr_m0>;
-> +            };
-> +            pd_pipe@RK3568_PD_PIPE {
-> +                reg = <RK3568_PD_PIPE>;
-> +                clocks = <&cru PCLK_PIPE>;
-> +                pm_qos = <&qos_pcie2x1>,
-> +                         <&qos_pcie3x1>,
-> +                         <&qos_pcie3x2>,
-> +                         <&qos_sata0>,
-> +                         <&qos_sata1>,
-> +                         <&qos_sata2>,
-> +                         <&qos_usb3_0>,
-> +                         <&qos_usb3_1>;
-> +            };
-> +        };
-> +    };
->
+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
+cRe0CRXA7ypOJSgxO/nOOyQoaJxT7CGg1npOeSpPjEuc3fE4xum3l0nvU85hj6MlKZu43hokdBh0
+D0nLyyhEwlR3AC/msdff/UGbM/JR9vk812RP4m/aNWZFJwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRpzY290dC5icmFuZGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUOhjEpl04Sz9dh5MI82E1
+V39lM/owDQYJKoZIhvcNAQELBQADggEBAA7Rlypx/esz/iq1yA4+KW7uwV/aBY344BWcXt6I+SNK
+VwFBgFWfLj5vaEud9TVv2fPSiaHJo0umemOJk+43QD+bsoqmgcFXd21PrOt7Jjs+jjVED9VC5kJq
+S4NNKUkS+BqijJwSegtVygrc/atrIlJbjI21q4qpemUo5fgwqCNm++BmBGTI8yA09vtGSNDRN42k
+lLX9hl3iEj5SBgkQqCbbnoE+ZjjKfqt7ED166WhgyQWNrl39yLcvLj+JRUB3RuvXKZjH0NQEEBII
+wZBDSkyneykLt3CBNIhSCTxKM6OWxVp936ALSa5K9FNy00TeWSpokR6NmzaW8VD/EjTgvqAxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgx9oXSJpKniO4dS
+Gk8wDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFxtmIoPIXbgQgXXpj7OjPv55e1R
+1v1GDBdwE4yfyp26MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIx
+MDMyMjE5MDYxM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQBzOfeijSqJL7snXvhoQnw5NlM6hRUWkJ8XT/SW7hutVvrb
+ZhbLaBxbUh3+Iim0FzL5jo+fJTKk9b0TFobyx+mK9x396i7oP0UfXSv0OfrleI5uzNzolX0k0YPX
+NUcNUhYlcfIDr2xR+089s7zFE9qRaBxgyDxVNmHwMvF8UIxtK1bAO7FL6OJ4B7wyBSFBaoHQK6Nc
+/4MQNJhzN86vXzvRy9on2IR98gIqhQSCpjGjQJbPuN3ba44ZTW5J1gGITzJDYN0X69GQ1t3UewI6
+kRR216+4APOA+lsd8gwdcBw1XY+8ZqlSPVWBahHFylTfitNjHeSbq6jmZ1neomR7FJq3
+--00000000000064d48e05be24c290--
