@@ -2,194 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C7B6344F4B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92985344F69
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:59:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbhCVSzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 14:55:11 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35870 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232246AbhCVSyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 14:54:43 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MIsZCR108101;
-        Mon, 22 Mar 2021 13:54:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616439276;
-        bh=LgnkISi5sP9nD3D55mg+BQJYMT4pSZVW2X270a8GdjE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Cilo3vJ9y7y9B0gxnfQDYjfoBunmE7e7sTlFtGbwNaick59rtPyftfS3hKYwj2bVF
-         TqvFh2anHmPj3iszHAoWavAVYwedpW1mag4rVtiUEw+dPJrx5g+wSirRhR9TaRta/w
-         86kVoG67DiFnLYNn8RgyPu9DOdt1vG3k0wMlZLqU=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MIsZ90010993
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Mar 2021 13:54:35 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
- Mar 2021 13:54:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 22 Mar 2021 13:54:35 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MIsZgE037590;
-        Mon, 22 Mar 2021 13:54:35 -0500
-Received: from localhost ([10.250.66.107])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 12MIsZlJ019565;
-        Mon, 22 Mar 2021 13:54:35 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     Gowtham Tammana <g-tammana@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-am642-evm/sk: Add IPC sub-mailbox nodes
-Date:   Mon, 22 Mar 2021 13:54:30 -0500
-Message-ID: <20210322185430.957-4-s-anna@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210322185430.957-1-s-anna@ti.com>
-References: <20210322185430.957-1-s-anna@ti.com>
+        id S232243AbhCVS73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 14:59:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232030AbhCVS7T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 14:59:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B511061994;
+        Mon, 22 Mar 2021 18:59:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616439559;
+        bh=ma5DQZiST6UuyaXhG1RK3qqQkaUKYMAQFWfliR48sPE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SSE65I6P2nTrfma4pzn7lsxd92K0aAl/O+XlncTRhO8W0n5ebTr9vJiqrSGp9SFU4
+         ZuF0GnSFVn9cAGDPux0FfqWjdO0+iYQsqrkuwY5exIOyI3baeOdK7kKv8RsFmIuYdU
+         V/EptWkZNcZwK0+OM4XQMAUwKZck6lsb7syKaECwiwy8A+p05qeIqTbB5LH2mJTwrF
+         ie89t+Tao0fEir6bV9rwwCgOTJqUJBl/eap9BV3oapVQ0gYdhpgwN8uIuUkiFW1Jgk
+         PA7jyPVE5kP94PsnmLPjtk603Do6P80UFGHG9mxQXQIJ0M9+pbkBIBgI0m7OQrFTIq
+         As88LluFAuPYg==
+From:   Nicolas Saenz Julienne <nsaenz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Saenz Julienne <nsaenz@kernel.org>
+Cc:     f.fainelli@gmail.com, phil@raspberrypi.com,
+        tim.gover@raspberrypi.com, adrian.hunter@intel.com,
+        sbranden@broadcom.com, alcooperx@gmail.com, nsaenzjulienne@suse.de,
+        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org
+Subject: [PATCH 0/4] BCM2711's sdhci-iproc CMD timeouts
+Date:   Mon, 22 Mar 2021 19:58:13 +0100
+Message-Id: <20210322185816.27582-1-nsaenz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the sub-mailbox nodes that are used to communicate between MPU and
-various remote processors present in the AM64x SoCs for the AM642 EVM
-and AM642 SK boards. These include the R5F remote processors in the two
-dual-R5F clusters (MAIN_R5FSS0 & MAIN_R5FSS1) in the MAIN domain; and a
-M4 processor in the MCU safety island.
+This series tries to address rather odd behavior from BCM2711's
+integration of sdhci-iproc (Raspberry Pi 4's SoC). The controller will
+timeout on SDHCI CMDs under the following conditions:
 
-These sub-mailbox nodes utilize the System Mailbox clusters 2, 4 and 6.
-The remaining clusters 3, 5 and 7 are currently not used, and so are
-disabled. Clusters 0 and 1 were never added to the dts file as they do
-not support interrupts towards the A53 core.
+ - No SD card plugged in (the card polling thread is running, CD irq disabled).
+ - BCM2711's VPU clock configured at 500MHz or more, lower clocks are OK.
 
-The sub-mailbox nodes added match the hard-coded mailbox configuration
-used within the TI RTOS IPC software packages. The R5F processor
-sub-systems are assumed to be running in Split mode, so a sub-mailbox
-node is used by each of the R5F cores. Only the sub-mailbox node for
-the first R5F core in each cluster is used in case of a Single-CPU mode
-for that R5F cluster.
+There is no specific command that will time out, it seems random.
 
-NOTE:
-The cluster nodes only have the Mailbox IP interrupt outputs that are
-routed to the GIC_SPI. The sub-mailbox nodes' irq-id are indexing into
-the listed interrupts, with the usr-id using the actual interrupt output
-line number from the Mailbox IP.
+I found out that by bumping the controller's frequency to 150MHz the
+issue disapears. So let's do that.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Gowtham Tammana <g-tammana@ti.com>
+Regards,
+Nicolas
+
 ---
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 43 +++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 43 +++++++++++++++++++++++++
- 2 files changed, 86 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 9522f104d979..0ebdd7981853 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -418,3 +418,46 @@ flash@0{
- 		#size-cells = <1>;
- 	};
- };
-+
-+&mailbox0_cluster2 {
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster4 {
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster5 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster6 {
-+	mbox_m4_0: mbox-m4-0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster7 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 3a5bee4b0b0c..5503fc6ddc0d 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -284,3 +284,46 @@ flash@0{
- 		#size-cells = <1>;
- 	};
- };
-+
-+&mailbox0_cluster2 {
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster4 {
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 2>;
-+		ti,mbox-tx = <3 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster5 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster6 {
-+	mbox_m4_0: mbox-m4-0 {
-+		ti,mbox-rx = <0 0 2>;
-+		ti,mbox-tx = <1 0 2>;
-+	};
-+};
-+
-+&mailbox0_cluster7 {
-+	status = "disabled";
-+};
+Nicolas Saenz Julienne (4):
+  dt-bindings: mmc: iproc-sdhci: Convert to json-schema
+  dt-bindings: mmc: iproc-sdhci: Add clock-frequency support
+  mmc: sdhci-iproc: Set clock frequency as per DT
+  ARM: dts: Fix-up EMMC2 controller's frequency
+
+ .../bindings/mmc/brcm,iproc-sdhci.yaml        | 64 +++++++++++++++++++
+ .../bindings/mmc/brcm,sdhci-iproc.txt         | 37 -----------
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  6 ++
+ drivers/mmc/host/sdhci-iproc.c                | 10 +++
+ 4 files changed, 80 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-iproc.txt
+
 -- 
-2.30.1
+2.30.2
 
