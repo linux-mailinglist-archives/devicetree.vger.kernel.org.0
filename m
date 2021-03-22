@@ -2,73 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B4834373E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 04:15:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1708343770
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 04:31:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbhCVDOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Mar 2021 23:14:39 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:45128 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229962AbhCVDOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 23:14:08 -0400
-X-UUID: 625627276ec94e7d865ab531948ddcc8-20210322
-X-UUID: 625627276ec94e7d865ab531948ddcc8-20210322
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1990234015; Mon, 22 Mar 2021 11:14:05 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 22 Mar 2021 11:14:04 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 22 Mar 2021 11:14:03 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S229930AbhCVDar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Mar 2021 23:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229941AbhCVDaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Mar 2021 23:30:14 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110F7C061574;
+        Sun, 21 Mar 2021 20:30:12 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id v3so7733296pgq.2;
+        Sun, 21 Mar 2021 20:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YC55n+nEQVXWx2jWMnvmQnF5PDmoYdD2StH0ZPzYESE=;
+        b=ngiALxpO6zUsiAPQy3oR0GiT54vhutwDNc247RMHNWbOQ9XCnQus1mjUtZEmNNXySr
+         ozhI3Ewg3hMMNgMVa/YDHph27Ak2wI+mlrcA3mn+um/ZgaIhV4+0JL6VPR1/f1yYMk+s
+         e0TT+SFLJVRO7QAbL6aVG6wnRMliBDG8NuO5b+ml7yQxKZHAEmH+XhuijBCDq4xCXyCd
+         aGXqPE+J8mEb24oL6abR6AucfHLiEzJcZdWTmheudDGooDLYS3G1sHLSK7mqeGBe0rgR
+         Y+ecaVd9cA0P7KBCiRQxGBihawCsaqwtGtHadp13ZhpRQnpRehKUA10QByATfC5tVZK6
+         MGeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YC55n+nEQVXWx2jWMnvmQnF5PDmoYdD2StH0ZPzYESE=;
+        b=EyWygjZGR5V3xoYsBY9Mx1BPD1bUeXLmNA3/yMnWgYg/kfjWsVSSgVtYeCNtQqHvzD
+         Tfu2bM1H7NEE/vdVjS7WwhXjjvv8LTL3fJtazj7FhtOZ3UPoeoFUeevIA0pWLUTcLlxm
+         ihJCODXzEXdLhg2BcF5MJgKCuxRQR4eTGpDyp9PsTx377a1DI9r4hmSp9k0Yfq+7g87t
+         pk1ptcpxIIgGlELCuSP09vXiM/5AxlLW4btCnee5Ch6kYG2zChZk+P4CNM1wc2MZi8hY
+         7vX5XmZgYkTTOzu4gZpf9ckKOEtggvZ6pqTBUailEl1TtwoTV5egLyi8HGJbZESLkxYM
+         /aWQ==
+X-Gm-Message-State: AOAM530+DwSwvP+THtTFBIlnCg3yzmwMee9uEhtydhMiEPX4yW8MZG/V
+        5eY1aBmg7VqRTKOSgTojkE1F7Y8RZJM=
+X-Google-Smtp-Source: ABdhPJxikkODGWqC6H/nFrMgDo437J9DOX54/CKLLhSXZw7jbQdoT3eH3eX2K2YaF2D5gp4zwImtxw==
+X-Received: by 2002:aa7:9e5b:0:b029:1f1:5ba4:57a2 with SMTP id z27-20020aa79e5b0000b02901f15ba457a2mr19647252pfq.59.1616383811020;
+        Sun, 21 Mar 2021 20:30:11 -0700 (PDT)
+Received: from [10.230.29.202] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id b24sm10824272pgj.58.2021.03.21.20.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Mar 2021 20:30:10 -0700 (PDT)
+Subject: Re: [PATCH v3 2/3] net: ethernet: actions: Add Actions Semi Owl
+ Ethernet MAC driver
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Subject: [PATCH 13/13] arm64: dts: mt8183: update wakeup register offset
-Date:   Mon, 22 Mar 2021 11:13:52 +0800
-Message-ID: <1616382832-28450-13-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1616382832-28450-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1616382832-28450-1-git-send-email-chunfeng.yun@mediatek.com>
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
+ <ab25bd143589d3c1894cdb3189670efa62ed1440.1616368101.git.cristian.ciocaltea@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <17876c6e-4688-59e6-216f-445f91a8b884@gmail.com>
+Date:   Sun, 21 Mar 2021 20:30:07 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <ab25bd143589d3c1894cdb3189670efa62ed1440.1616368101.git.cristian.ciocaltea@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use wakeup control register offset exactly, and update revision
-number
+Hi Christian,
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 3/21/2021 4:29 PM, Cristian Ciocaltea wrote:
+> Add new driver for the Ethernet MAC used on the Actions Semi Owl
+> family of SoCs.
+> 
+> Currently this has been tested only on the Actions Semi S500 SoC
+> variant.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 80519a145f13..9d18a938150c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -874,7 +874,7 @@
- 			clocks = <&infracfg CLK_INFRA_UNIPRO_SCK>,
- 				 <&infracfg CLK_INFRA_USB>;
- 			clock-names = "sys_ck", "ref_ck";
--			mediatek,syscon-wakeup = <&pericfg 0x400 0>;
-+			mediatek,syscon-wakeup = <&pericfg 0x420 11>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
+[snip]
+
+Do you know the story behind this Ethernet controller? The various
+receive/transmit descriptor definitions are 99% those defined in
+drivers/net/ethernet/stmmicro/stmmac/descs.h for the normal descriptor.
+
+The register layout of the MAC looks completely different from a
+dwmac100 or dwmac1000 however.
 -- 
-2.18.0
-
+Florian
