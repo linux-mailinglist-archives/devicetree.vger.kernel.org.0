@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3DC5344D75
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:35:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30847344D7B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbhCVRfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 13:35:15 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:32936 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232135AbhCVRfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:35:01 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MHYrDl015209;
-        Mon, 22 Mar 2021 12:34:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616434493;
-        bh=z0vbEyOTrOoGYMGsPYWtTu3KJaFcej5oHYJbY4RaMgs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ouONTltjR7H8G0lPlHzQ/J9pEVlKOp7FvXjfo+iQ2WMoax9CIi/IVTJ5+4cdPY0UP
-         4YhSuf+xuQhCtkt74cXA7aMiuz2fViqFGW6xGLaD8c7OIRFUtb8Z/6U2NksfKD9TAR
-         AfXpvGbiDzA217BSMdx5lci+sT089ByTIEdU/Z4g=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MHYr73021815
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Mar 2021 12:34:53 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
- Mar 2021 12:34:53 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 22 Mar 2021 12:34:53 -0500
-Received: from [10.250.66.107] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MHYqNm025899;
-        Mon, 22 Mar 2021 12:34:53 -0500
-Subject: Re: [PATCH 0/4] AM64x HwSpinlock and Mailbox DT nodes
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210317230946.23675-1-s-anna@ti.com>
- <20210322172406.ywkn3gsr7bfy2nyp@doorman>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <10ab1853-aa6f-fd8e-59a9-df13d6dbc697@ti.com>
-Date:   Mon, 22 Mar 2021 12:34:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230242AbhCVRgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:36:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48082 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231365AbhCVRgP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 13:36:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0770361994;
+        Mon, 22 Mar 2021 17:36:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616434575;
+        bh=VdW4om2AyPCfqy4wAovCR7HUVEe2frovxQ0Cc8nEk7s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Mh9yoSTNMWrpBFxp7mRAqgfTfZOlph3dYZnhso+XBF99dtzEHkgBu1YOy2DccLzzn
+         fUylSmXKjiXNkdvZx/WKnjEV+5GnHZAVRPf8FAuQ+FX2zNlEFwMnVuBx3/7QcHBGRR
+         VmCt4+L4cInUjBNq78zxXp4FBDQOleC4/KxA9aQVsnHM3Zt5q+sPQ+9++fOCLAChGA
+         ZrbBCoyVviPqoFFBHsivxNrK5fArDQmqAhFcrkwkX3XZuyzri6iX5TjfgUyKO2BGWn
+         +jNA3cIftCwjS8BGd8BxZpoBiA5+h4IHlX0hKg0akAFueiGgUW8oqUusCrgeyLdw+R
+         NAjf6bEHS7S5w==
+Received: by mail-ed1-f45.google.com with SMTP id z1so20406691edb.8;
+        Mon, 22 Mar 2021 10:36:14 -0700 (PDT)
+X-Gm-Message-State: AOAM531IT0C8EmZXdUdl2/O0RfqM2n+Belt7+onRvizq6QDIQphW2JSP
+        Rz4HTlybecblpmqZzlLW4FYCCmlGZgWGlIDeSg==
+X-Google-Smtp-Source: ABdhPJx2NmuQG0Y5DzdS5+450riDgemRYrFCSvVWhwcs0YPSA/NP54tZmFoCyKBJEdQ1WhL/o13t1FITdk/T511dQts=
+X-Received: by 2002:aa7:c403:: with SMTP id j3mr718221edq.137.1616434573540;
+ Mon, 22 Mar 2021 10:36:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210322172406.ywkn3gsr7bfy2nyp@doorman>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1599734644-4791-1-git-send-email-sagar.kadam@sifive.com>
+ <1599734644-4791-3-git-send-email-sagar.kadam@sifive.com> <20200922203429.GA3188204@bogus>
+ <CAMuHMdXPG-+EOCrQZi1deKv1yYMBtohprUVYW_-Shdp_gfQs5Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdXPG-+EOCrQZi1deKv1yYMBtohprUVYW_-Shdp_gfQs5Q@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 22 Mar 2021 11:36:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJSF=p657tdvm4CW_LYi93t6vG0aOmQxUmYYW3_5h5UHQ@mail.gmail.com>
+Message-ID: <CAL_JsqJSF=p657tdvm4CW_LYi93t6vG0aOmQxUmYYW3_5h5UHQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] dt-bindings: riscv: convert plic bindings to json-schema
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Sagar Kadam <sagar.kadam@sifive.com>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Yash Shah <yash.shah@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+On Mon, Mar 22, 2021 at 9:38 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Sagar, Rob,
+>
+> (replying to an old email, as this one seems to be the most appropriate)
+>
+> On Tue, Sep 22, 2020 at 10:34 PM Rob Herring <robh@kernel.org> wrote:
+> > On Thu, Sep 10, 2020 at 04:14:03PM +0530, Sagar Kadam wrote:
+> > > Convert device tree bindings for SiFive's PLIC to YAML format
+> > >
+> > > Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
+>
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+>
+> > > +
+> > > +  '#address-cells':
+> > > +    const: 0
+> > > +    description: Should be <0> or more.
+> >
+> > Drop. 'or more' is wrong. If there's a case with more, it will need to
+> > be documented.
+>
+> Why do we have the "'#address-cells': const: 0" at all...
+>
+> > > +required:
+> > > +  - compatible
+> > > +  - '#address-cells'
+>
+> ... and why is it required?
 
-On 3/22/21 12:24 PM, Nishanth Menon wrote:
-> On 18:09-20210317, Suman Anna wrote:
->> Hi Nishanth,
->>
->> The following series adds the HwSpinlock and Mailbox DT nodes for
->> AM64x SoCs on AM64x-EVM and AM64x-SK boards. The bindings for both
->> drivers were merged in 5.12-rc1.
->>
->> Patches are based on top of your latest ti-k3-dts-next branch,
->> commit 04a80a75baa1 ("arm64: dts: ti: k3-am642-evm: Add USB support").
-> 
-> yep, you'd be next in the queue here, so if you dont mind rebasing one
-> last time, it will help. Also in the repost, please address the
-> following comment.
-> 
->>
->>
->> Suman Anna (4):
->>   arm64: dts: ti: k3-am64-main: Add hwspinlock node
->>   arm64: dts: ti: k3-am64-main: Add mailbox cluster nodes
->>   arm64: dts: ti: k3-am642-evm: Add IPC sub-mailbox nodes
->>   arm64: dts: ti: k3-am642-sk: Add IPC sub-mailbox nodes
-> 
-> 	please squash patches 3,4.
+It is only required if an 'interrupt-map' points to this node.
+Currently dtc is warning if it is missing always, but there are plans
+to relax dtc to only warn when 'interrupt-map' is present. Of course,
+if you had 'interrupt-map' in an overlay, you'd want #address-cells in
+the base dt and there's no other way to check that than making it
+required.
 
-Hmm, I prefer to not mix or combine stuff that affects more than a single board.
-This is not a bug fix, so, if you don't mind, I would like to keep these as is.
-
-regards
-Suman
+Rob
