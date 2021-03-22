@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 046EE344C83
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77242344CA7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:04:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbhCVQ7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 12:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53834 "EHLO
+        id S231829AbhCVREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230495AbhCVQ7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 12:59:32 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BC4C061574;
-        Mon, 22 Mar 2021 09:59:30 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id g38so7308989ybi.12;
-        Mon, 22 Mar 2021 09:59:30 -0700 (PDT)
+        with ESMTP id S231664AbhCVRDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:03:45 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2390C061756;
+        Mon, 22 Mar 2021 10:03:44 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id m3so7340585ybt.0;
+        Mon, 22 Mar 2021 10:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MzN/sXQ/XVj/NfU+6jTmm5tb6uOktbF1W0iQRoG8Y7A=;
-        b=TJNZDtQK2o1+m7Mu3JT2bmqRgA/Rc0Dae5WKN+20czRJI167N6a5JxozNzp+Su6Cp/
-         rt9L981xUs8ZVBxDmrAG9vdRLP3NkT7Rwj/FaGvkQ3vRa5mGeEdsW+pTFYveHet77Hm4
-         LC6VLvv+ZbQEd6dHkKFoccEeQgX/6RIMHZUHXUZe97dtLHvbXP7CEN2ugp7Ti4zxfzNx
-         xa+q/GbjOQXVX5M7tqj62srB34xRL4eWo747HPSh6CN+FjZL9UqKTLcgnrXkoB0umkNz
-         pOeL+3vvVG4cS+8+7MaTFoJn9pO9Rabn3yKHxKZH/r36lMm9KJH/MzFPxoDrDtfXvB1z
-         u/0w==
+        bh=ZOljc04t5W0SUG7srUbPvSgsB/FGIZayT6DVZGLWN+w=;
+        b=exCPMSiK430a0FW4Meg32jeboSqL0KY5onrZn7kdcsnYhL+//3MXbtq6plUCPsCIpc
+         3CtAuVdmJrfpUuMOKNIW5NfsjMpgRTHwxRQ+WmgVrV9LKXWki9qW41ALRo80g4kbCj8q
+         X527/5eVBLx4xs9b39g2GacrGKz3x7edcvE7R3otWOyyvpGbFZ0EuWC66TsX4hmqzD9B
+         ppsYbB20l9ThMaQpjeHEqJDgJmVU4IG3O5rk6mCOZTIaTWE4IszsppmaqYlUhT16SfQK
+         Ne45xB1Tgzr6hVXoynozItYEt9FG3n8GvCqGqc5XxSRL02q/BkfEzG3zl210fOZxc1WS
+         ZymA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MzN/sXQ/XVj/NfU+6jTmm5tb6uOktbF1W0iQRoG8Y7A=;
-        b=YjGYkfM1RcVOve08q/jDjn1YQ0aSAgS++vMZJK2rLFLesCD8ZhrKIr7Miacl+iwzCc
-         jf/jFn+8/ouGbap3PUzF65Dxx2z6Q7KD51J4U0IHehW3vh4IDQ2NJ00mXeLhjHdGfbbj
-         R65OM7JoCo8LMnqU6Uvl2I9K4mD/BErqQbHKVlriy4q6VExLprrzaZK8AF58p7EDzi3b
-         I4EJGTu4JUryaDfJiYksNTu30hHSt3NZdTRWaZs2TZE4kI7WRRp8fmRsRPn0PIWtJtTU
-         9s+agH5I82/5KzkngCAGS6afOLlQ9sH3LpMY+P7FveknCFWUmCNOFocev9XEmoKQJQs2
-         qcsw==
-X-Gm-Message-State: AOAM5328pfIVKuamEewRrM1U2RZoc1dfZD7QKiQ94VO5cIKVsDzOcaz6
-        9rsW/AoOvCQaHC4N0AVcePaceHZiNqqghq0t4MY=
-X-Google-Smtp-Source: ABdhPJxPyS6kdjPud5OaFu3PW0Uo+y4VdJsXNi1XID1XDH6tzg4XLJgbelzfxwFfGXLY9WfLOI1cTvfQelmOFjI1LMs=
-X-Received: by 2002:a25:844a:: with SMTP id r10mr728925ybm.26.1616432370141;
- Mon, 22 Mar 2021 09:59:30 -0700 (PDT)
+        bh=ZOljc04t5W0SUG7srUbPvSgsB/FGIZayT6DVZGLWN+w=;
+        b=o3QACyBLKIfeDX+ulsZIWy7YwklyfNd3sjmmGjLl5BF0ZiNm0458HKBJKPfitr6HBb
+         z6kRjaSaGPy1tuhGZjqJL/IvF3Egv5o2lCiVS567rbj3fCNJ7mVQD3MnyAX8F1+3TXix
+         LVBaqUHvdwrmpdkBR64CeT0Edvf6tmbBsistpJKg07Tp0eRi4cfvFmvjM6zUSeMTWGzY
+         e/Y+UcMif/DNJbTEBH6ga+1dIDZW2wcz4TJ1m5a/Cf1wX3Q7nsoiHSne5c7SWnUk8IWj
+         41Pf5DXGg5cIw39unJaLNuxQkqeQ5C3EIYJoIdpJwSucNJGonWMworaW5+DO15l4KeLE
+         d2IQ==
+X-Gm-Message-State: AOAM533mZl0MNSHGLAtGKS7vQPsADNf4lnopkRetetiIjc4Jjlhxlr8t
+        X1lE8XbCPPsc1hKHZ5OBYfwNhdHmhaUVsK4BEFc=
+X-Google-Smtp-Source: ABdhPJzXhhzm+9Km3ayepaExYQ/+mSazkf6ZWSZTXcZULZ9qdkRKq1tiyZI7pEJgOr/psRbhdunpq8Yj4+AyuxjBbZU=
+X-Received: by 2002:a25:d296:: with SMTP id j144mr643664ybg.33.1616432624083;
+ Mon, 22 Mar 2021 10:03:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210322144848.1065067-1-geert@linux-m68k.org> <20210322144848.1065067-5-geert@linux-m68k.org>
-In-Reply-To: <20210322144848.1065067-5-geert@linux-m68k.org>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+In-Reply-To: <20210322144848.1065067-1-geert@linux-m68k.org>
 From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Mon, 22 Mar 2021 17:59:19 +0100
-Message-ID: <CANiq72ng1J210QwAGO_qFQrJ_1REizLGkejieuxbpOJ0Bmm_Cg@mail.gmail.com>
-Subject: Re: [PATCH 04/17] auxdisplay: img-ascii-lcd: Add helper variable dev
+Date:   Mon, 22 Mar 2021 18:03:33 +0100
+Message-ID: <CANiq72kFi2-xevrSgd86bNAUdLE4DLYcx_c8GaPeYV90oojz3Q@mail.gmail.com>
+Subject: Re: [PATCH 00/17] auxdisplay: ht16k33: Add character display support
 To:     Geert Uytterhoeven <geert@linux-m68k.org>
 Cc:     Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,10 +65,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Mar 22, 2021 at 3:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> +       struct device *dev = &pdev->dev;
+> Thanks for your comments!
 
-Do we want helpers like this to be `*const` (assuming they can)? (same
-for patch 12).
+We could use this as a showcase on how to structure and present a
+patch series! ;-)
 
 Cheers,
 Miguel
