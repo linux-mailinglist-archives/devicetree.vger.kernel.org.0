@@ -2,85 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 814AF344D33
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D037344D3E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230385AbhCVRYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 13:24:32 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45936 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbhCVRYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:24:12 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12MHO6VW076896;
-        Mon, 22 Mar 2021 12:24:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616433846;
-        bh=s09Qi3de82W38oar/OGz7Fuo6c8bZx6uqwUGVCx98c8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=fH/xjvDxRe4M8jjTOH86MSxvm5VSzftC1hYRjHFY5cZFcQUFI7ljzA6LmAy1qvX9r
-         GNQd7Ov0jwvwB99axrS9RKnXCiKmg1ThXg+Jap6AKiCRsDVAzDxpdB1lHhPe0fhGoZ
-         KlcI3uJmJLeYFSN3r8z3E0iedJ9x/WT+t7vwnszo=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12MHO65K005079
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Mar 2021 12:24:06 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 22
- Mar 2021 12:24:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 22 Mar 2021 12:24:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12MHO6ER026606;
-        Mon, 22 Mar 2021 12:24:06 -0500
-Date:   Mon, 22 Mar 2021 12:24:06 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 0/4] AM64x HwSpinlock and Mailbox DT nodes
-Message-ID: <20210322172406.ywkn3gsr7bfy2nyp@doorman>
-References: <20210317230946.23675-1-s-anna@ti.com>
+        id S230299AbhCVR1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:27:47 -0400
+Received: from relay02.th.seeweb.it ([5.144.164.163]:45611 "EHLO
+        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230040AbhCVR1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:27:23 -0400
+Received: from [192.168.1.101] (abac242.neoplus.adsl.tpnet.pl [83.6.166.242])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 02EE31F3D9;
+        Mon, 22 Mar 2021 18:27:14 +0100 (CET)
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sm8350: Add thermal zones and
+ throttling support
+To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vinod Koul <vinod.koul@linaro.org>
+References: <20210322100420.125616-1-robert.foss@linaro.org>
+ <20210322100420.125616-2-robert.foss@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <b3f17dd3-d4b3-930c-db02-9f67748e4427@somainline.org>
+Date:   Mon, 22 Mar 2021 18:27:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210317230946.23675-1-s-anna@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210322100420.125616-2-robert.foss@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:09-20210317, Suman Anna wrote:
-> Hi Nishanth,
-> 
-> The following series adds the HwSpinlock and Mailbox DT nodes for
-> AM64x SoCs on AM64x-EVM and AM64x-SK boards. The bindings for both
-> drivers were merged in 5.12-rc1.
-> 
-> Patches are based on top of your latest ti-k3-dts-next branch,
-> commit 04a80a75baa1 ("arm64: dts: ti: k3-am642-evm: Add USB support").
-
-yep, you'd be next in the queue here, so if you dont mind rebasing one
-last time, it will help. Also in the repost, please address the
-following comment.
-
-> 
-> 
-> Suman Anna (4):
->   arm64: dts: ti: k3-am64-main: Add hwspinlock node
->   arm64: dts: ti: k3-am64-main: Add mailbox cluster nodes
->   arm64: dts: ti: k3-am642-evm: Add IPC sub-mailbox nodes
->   arm64: dts: ti: k3-am642-sk: Add IPC sub-mailbox nodes
-
-	please squash patches 3,4.
+Hi!
 
 
+> +		tsens0: thermal-sensor@c222000 {
+> +			compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0C263000 0 0x1ff>, /* TM */
+> +			      <0 0x0C222000 0 0x8>; /* SROT */
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Please use lowercase hex
+
+
+> +		tsens1: thermal-sensor@c223000 {
+> +			compatible = "qcom,sm8350-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0C265000 0 0x1ff>, /* TM */
+> +			      <0 0x0c223000 0 0x8>; /* SROT */
+
+Ditto
+
+
+> +			trips {
+> +				cpu0_alert0: trip-point0 {
+> +					temperature = <90000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu0_alert1: trip-point1 {
+> +					temperature = <95000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+
+Shouldn't this be "hot"? Possibly ditto for all cpu*alert1-labeled nodes.
+
+
+> +				};
+> +
+> +				cpu0_crit: cpu_crit {
+> +					temperature = <110000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+
+These values seem, err.. scorching hot.. Are they alright?
+
+
+
+> +		// TODO: What is the NSP subsystem?
+Please use C-style comments (/* foo */)
+
+	
+
+
+Konrad
