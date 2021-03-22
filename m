@@ -2,114 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 674EC345230
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 23:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C43D3345257
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 23:18:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbhCVWCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 18:02:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbhCVWCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 18:02:07 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C33C061574;
-        Mon, 22 Mar 2021 15:02:07 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id c6so13580640qtc.1;
-        Mon, 22 Mar 2021 15:02:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=e8lmPL9l7tYar2avzvzIi16QrccP2sceEgsZ0/+5kWM=;
-        b=Rxb76km2s7iu6iziIs0aQYLlSwN9TTCu37Sj8+CSOLsy5u/dIHb3Lox5r59lNhrE/a
-         GdT9tJsyMNifGMWrIAuzIMl8HeImE2RPaMlfHbHFKtaIJhRyF7Vu4otiztHnW9xlSXCV
-         4NUtUf0YQK4PRjvV815Qo17WwynOUbQXrj1S4O9FVgfKEFUUBzlyxvriaiZQ9XmeeT0n
-         4utMiMwaApzwhdGvkTsvd+bnfN6iYI4WRhXY0TTy7P3M2z8HKLqX4pK+SgGcyfVAF0o5
-         COaJ1D4SY6xQQDTCn7FcsIW+upzmkXLNX+TGoTk0Xo+NC2AziB6vENTcDlZ6ki57MK5c
-         sqZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e8lmPL9l7tYar2avzvzIi16QrccP2sceEgsZ0/+5kWM=;
-        b=VNLIikyYOCDdHD0qiXG8RT6SqE2ZpIZaIpOCb77CvhHDsH9/qkEPFeFZZfL6xmCWt+
-         S1hOJThAMHMn303hKR2NdwxZvn9yPza0A8fOgM6BktTRdGJQI2BW+bXoGxK/U2+sk+W9
-         g/uT9ZFzd+YTWbxXfw7nLKw61giNIZ48rH3ALXlvGqFanwVF4B1t1aXBG23XZAC5JLgF
-         BWMw9CZcDkj2ZwEuFydhO1udcucx4SFA3W3RE+LhiTzw1tStOA28ip7Y0sjI2HTAk89+
-         PzCR6JLilM/0UbUDgj6liMYZyljQ/wR0wPB7WV2AH8C98b+OGu3WzokB6z2Kegeb03cG
-         efOw==
-X-Gm-Message-State: AOAM532UNoTDuG9/Z9VFbMMi9HUaLJOXun0xBsIjkn6C5wgLKPwATwY6
-        Jk82q2VKVPIm8VnbQq8BMQ0=
-X-Google-Smtp-Source: ABdhPJx/0ftrYy+tnKvj5Gkgv2O8gsI1TOJnGHNS/5dMdXeJ8dWdN1I72FxMpiiDnDSOn5B+Jbdn3g==
-X-Received: by 2002:a05:622a:14d3:: with SMTP id u19mr1946284qtx.226.1616450526101;
-        Mon, 22 Mar 2021 15:02:06 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id m21sm11968219qka.28.2021.03.22.15.02.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 15:02:05 -0700 (PDT)
-Subject: Re: [PATCH] of: overlay: fix for_each_child.cocci warnings
-To:     Julia Lawall <julia.lawall@inria.fr>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sumera Priyadarsini <sylphrenadin@gmail.com>,
-        kbuild-all@lists.01.org
-References: <alpine.DEB.2.22.394.2103221918450.2918@hadrien>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <2783d37c-cdb7-9d86-a5e0-07bc523854c1@gmail.com>
-Date:   Mon, 22 Mar 2021 17:02:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.22.394.2103221918450.2918@hadrien>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S229673AbhCVWSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 18:18:21 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:59627 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229639AbhCVWRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 18:17:55 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 685E45804DD;
+        Mon, 22 Mar 2021 18:17:54 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute3.internal (MEProxy); Mon, 22 Mar 2021 18:17:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm1; bh=ZWi4GtAKz6MJnR4YgJPLnmK6aRpu
+        RQjPkHSWuDbn2hw=; b=FTv+4FlaBI3nXkxsa7BojoAkYJrOjRcOzmC3RGEeEswA
+        zcn8SGPQ5MDiSZvzFOoQaHhYWjY5Zfu8w6RbXJIlX/lkeoihJehq7b3DmVqRdgei
+        Kc31ki6aj6L015JQbET5Eo+gfJ7zO7PslknCI2/93BWPjgsxaLRbjE1bW3T7mVBR
+        zrqQ9K5WjwtmcJBrjd5qLVRW85hTHBXmKYntfSL6+AJkRc0qmIUPWUq4hZlJjpbf
+        r1ruGJJJChwjGlb0/NQb8Opdu7Mq8uLmMy0F1VqyKPl5RfAjj/NVnueqQrE7PzM1
+        lU3fIxS5Wo9wPleZ1Sm+QuIck8u4mVcse0bDVuFM5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ZWi4Gt
+        AKz6MJnR4YgJPLnmK6aRpuRQjPkHSWuDbn2hw=; b=jYDkRuJqLc1gQX1YIg6lJR
+        EsuKs8DlVizuIL6jBEDPwauOF4v77Kf+sA44eeK22O9inufF2Le8r+aQUVL7fEtH
+        +nQvt9LISbklUqPjiIyJfcQajHG4NmUSYBDewSwt57lE8KoxivY8N7SV0jO+Pl6Q
+        HXb3wzkG9q6sPDM3NPQlw/BYj/iX0pNPAzIYQDckl2qN52KbgZQyKAVuVdbhvbzy
+        o4jvi2muKlUsKldoEMnLCgtvPzIIjr/Tt2zIG9NVAU/5DKsyXQqrx7DUF0lhjM/u
+        CYCZpRIfrXF3/mWtyx6EB6Q2wswoZY4f5xEnolb9K48m3Jq+WRcvY37Db8IlkOaw
+        ==
+X-ME-Sender: <xms:kBdZYNZa_zfBQyNVqg09XWG6y_omDyN7S6Hvrsx8qMyDD4TFPPNKfA>
+    <xme:kBdZYEYNlNxESbTnoJGMgIF6hSh_bxnzoFNENRh0y4wTcKfFAkxk-UaC0XN3dVazd
+    nBK6VLtV0Dy9crO_H4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeggedgudehlecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:kBdZYP_i3tbdtKRRVGfAidaUBrJnQ0ERc1r6toG6BtKRdzoY2EmZiA>
+    <xmx:kBdZYLosz2ZP4J8_IYekp6RhbP_T-TOe8aNKqDu9Ba2iqYePJKy8DQ>
+    <xmx:kBdZYIrrIKxv0MGFn75u8QDj-K-S7v1xpZwhrzL4eJ_vaKdBK_pOsw>
+    <xmx:khdZYNShY084XZvHOtsreFHxtDtzB6GQOSOVksjUZj2QLQvb6XLGLNuk4ys>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 811F851C005E; Mon, 22 Mar 2021 18:17:52 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-271-g88286cf463-fm-20210318.001-g88286cf4
+Mime-Version: 1.0
+Message-Id: <d280843b-77e3-4fa8-9452-5a2f8a45052e@www.fastmail.com>
+In-Reply-To: <c1bcc0be8ae6e500@bloch.sibelius.xs4all.nl>
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+ <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
+ <8360b3b3-296c-450d-abc3-bb47159bf4e1@www.fastmail.com>
+ <c1bcc0be8ae6e500@bloch.sibelius.xs4all.nl>
+Date:   Mon, 22 Mar 2021 23:17:31 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Mark Kettenis" <mark.kettenis@xs4all.nl>
+Cc:     iommu@lists.linux-foundation.org, joro@8bytes.org, will@kernel.org,
+        robin.murphy@arm.com, robh+dt@kernel.org, arnd@kernel.org,
+        marcan@marcan.st, maz@kernel.org, mohamed.mediouni@caramail.com,
+        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/22/21 1:21 PM, Julia Lawall wrote:
-> From: kernel test robot <lkp@intel.com>
-> 
-> Function "for_each_child_of_node" should have of_node_put() before goto.
-> 
-> Generated by: scripts/coccinelle/iterators/for_each_child.cocci
-> 
-> Fixes: 82c2d81361ec ("coccinelle: iterators: Add for_each_child.cocci script")
-> CC: Sumera Priyadarsini <sylphrenadin@gmail.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Julia Lawall <julia.lawall@inria.fr>
-> ---
-> 
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-> head:   812da4d39463a060738008a46cfc9f775e4bfcf6
-> commit: 82c2d81361ecd142a54e84a9da1e287113314a4f coccinelle: iterators: Add for_each_child.cocci script
-> :::::: branch date: 13 hours ago
-> :::::: commit date: 5 months ago
-> 
->  overlay.c |    1 +
->  1 file changed, 1 insertion(+)
-> 
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -796,6 +796,7 @@ static int init_overlay_changeset(struct
->  		if (!fragment->target) {
->  			of_node_put(fragment->overlay);
->  			ret = -EINVAL;
-> +			of_node_put(node);
->  			goto err_free_fragments;
->  		}
-> 
 
-Reviewed-by: Frank Rowand <frank.rowand@sony.com>
-Tested-by: Frank Rowand <frank.rowand@sony.com>
+Hi Mark,
 
-While reading through the code touched by the patch I noticed that
-the clean up at label err_free_fragments does not do the required
-of_node_put() calls.  I'll add creating a patch to fix that to my
-todo list.
+On Sun, Mar 21, 2021, at 19:35, Mark Kettenis wrote:
+>
+> Guess we do need to understand a little bit better how the USB DART
+> actually works.  My hypothesis (based on our discussion on #asahi) is
+> that the XHCI host controller and the peripheral controller of the
+> DWC3 block use different DMA "streams" that are handled by the
+> different sub-DARTs.
 
--Frank
+I've done some more experiments and the situation is unfortunately more
+complicated: Most DMA transfers are translated with the first DART.
+But sometimes (and I have not been able to figure out the exact conditions)
+transfers instead have to go through the second DART. 
+This happens e.g. with one of my USB keyboards after a stop EP command
+is issued: Suddenly the xhci_ep_ctx struct must be translated through the
+second DART.
+
+What this likely means is that we'll need to point both DARTs
+to the same pagetables and just issue the TLB maintenance operations
+as a group.
+
+> 
+> The Corellium folks use a DART + sub-DART model in their driver and a
+> single node in the device tree that represents both.  That might sense
+> since the error registers and interrupts are shared.  Maybe it would
+> make sense to select the appropriate sub-DART based on the DMA stream
+> ID?
+
+dwc3 specifically seems to require stream id #1 from the DART
+at <0x5 0x02f00000> and stream id #0 from the DART at <0x5 0x02f80000>.
+Both of these only share a IRQ line but are otherwise completely independent.
+Each has their own error registers, etc. and we need some way to
+specify these two DARTs + the appropriate stream ID.
+
+Essentially we have three options to represent this now:
+
+1) Add both DARTs as separate regs, use #iommu-cells = <2> and have the
+   first cell select the DART and the second one the stream ID.
+   We could allow #iommu-cells = <1> in case only one reg is specified
+   for the PCIe DART:
+
+   usb_dart1@502f00000 {
+     compatible = "apple,t8103-dart";
+     reg = <0x5 0x02f00000 0x0 0x4000>, <0x5 0x02f80000 0x0 0x4000>;
+     #iommu-cells = <2>;
+     ...
+   };
+
+   usb1 {
+     iommus = <&usb_dart1 0 1>, <&usb_dart1 1 0>;
+     ...
+   };
+
+   I prefer this option because we fully describe the DART in a single
+   device node here. It also feels natural to group them like this because
+   they need to share some properties (like dma-window and the interrupt)
+   anyway. 
+
+2) Create two DART nodes which share the same IRQ line and attach them
+   both to the master node:
+
+   usb_dart1a@502f00000 {
+     compatible = "apple,t8103-dart";
+     reg = <0x5 0x02f00000 0x0 0x4000>;
+     #iommu-cells = <1>;
+     ...
+   };
+   usb_dart1b@502f80000 {
+     compatible = "apple,t8103-dart";
+     reg = <0x5 0x02f80000 0x0 0x4000>;
+     #iommu-cells = <1>;
+     ...
+   };
+
+   usb1 {
+     iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
+     ...
+   };
+
+   I dislike this one because attaching those two DARTs to a single device
+   seems rather unusual. We'd also have to duplicate the dma-window setting,
+   make sure it's the same for both DARTs and there are probably even more
+   complications I can't think of right now. It seems like this would also
+   make the device tree very verbose and the implementation itself more
+   complicated.
+
+3) Introduce another property and let the DART driver take care of
+   mirroring the pagetables. I believe this would be similar to
+   the sid-remap property:
+
+   usb_dart1@502f00000 {
+     compatible = "apple,t8103-dart";
+     reg = <0x5 0x02f00000 0x0 0x4000>, <0x5 0x02f80000 0x0 0x4000>;
+     #iommu-cells = <1>;
+     sid-remap = <0 1>;
+   };
+   usb1 {
+     iommus = <&usb_dart1 0>;
+   };
+
+   I slightly dislike this one because we now specify which stream id 
+   to use in two places: Once in the device node and another time in the
+   new property in the DART node. I also don't think the binding is much
+   simpler than the first one.
+
+
+> > where #dma-address-cells and #dma-size-cells default to
+> > #address-cells and #size-cells respectively if I understand
+> > the code correctly. That way we could also just always use
+> > a 64bit address and size in the DT, e.g.
+> > 
+> >   pcie_dart {
+> >       [ ... ]
+> >       dma-window = <0 0x100000 0 0x3fe00000>;
+> >       [ ... ]
+> >   };
+> 
+> That sounds like a serious contender to me!  Hopefully one of the
+> Linux kernel developers can give this some sort of blessing.
+> 
+> I think it would make sense for us to just rely on the #address-cells
+> and #size-cells defaults for the M1 device tree.
+>
+
+Agreed.
+
+
+Best,
+
+Sven
