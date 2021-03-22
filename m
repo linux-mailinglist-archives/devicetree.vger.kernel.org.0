@@ -2,108 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 189863446F3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 586F4344720
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 15:29:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229897AbhCVOSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 10:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230259AbhCVOSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:18:48 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F8CC061756
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:18:47 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id j7so17136735wrd.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 07:18:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=eDCWh6/zJaj6zj0loMji4f0PCuzcxZ0geR05LJmW8Tg=;
-        b=oVyA+z3y23uEnKtQkY1RQf5yBOuxoeerXKQv7B381EZ76ZS862W5ZxxSKg2fAoC19m
-         YE5wIA6FXOdsJY8P6ap7/h4Z02gjoxAqK5eB0iEJRDvasHi17g7tCithsM+mpdkg15ys
-         5qc2ONzgmVZp56LOkrB9V9pUvk1Wjk2VTSzv3mFa4yanuJmGBMXRG/4jREIBVtzDN0tK
-         XU69jMatGZFzSkq5Rv6ckSkcmoUQtnLuCXDT6t3DuPILC76D5F85UyV8mU0PUeMGKFjd
-         GqjxqA6ojxl/3+po1xeqe4ZRjh6yIlggCJoRyeTdgt8YcI55JWl3P16jdlw0hl2yoaOj
-         +fUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eDCWh6/zJaj6zj0loMji4f0PCuzcxZ0geR05LJmW8Tg=;
-        b=s/ENvLxBaA/pVuylDa7oDYNuDhICxK+YXPd6b2C6FIBfGNrkQyb6UpigaoQiQFXyxS
-         +d5IEFvvN4zWbFBbggsguKDgEV0v8SZzrtlf7EWHI4USdg8G/C+0+IcEUKar+3kNZofY
-         XscP/+3W6BYahrQKMnW+CneRjAyE0wWol62oAiGcA3emZbWaor3emvYXuyUjR+Ki+O6A
-         hVlKqQZWN3QgOK5GrEdPHqHPQAq1fVSTQCtg+EnZZZO1c97SsnOq9H39x4Zv8hF1n39A
-         k/pMn8vh2yNynW9E4fbFQUAO3ZCwadj6SB7kxAei4jFL2WxFaUvIczPRW4V1YG8JS6u5
-         b5Lg==
-X-Gm-Message-State: AOAM531cON7rNfP7SmAPA/3aD8J63/OyeidQU4JZZ/tGpVOySqSv8hV1
-        Ul/p2vXX1/BfnAmtA37B8pqbAg==
-X-Google-Smtp-Source: ABdhPJx4TchNaAFzgkknT14TZmeFXnxSJqznxfQPDOGIN4glPGFPb8gW6hhV2mLK1NhbSD4LnbVcbQ==
-X-Received: by 2002:a5d:55c4:: with SMTP id i4mr18636846wrw.84.1616422726280;
-        Mon, 22 Mar 2021 07:18:46 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:2091:71d6:3ab2:37f2? ([2a01:e34:ed2f:f020:2091:71d6:3ab2:37f2])
-        by smtp.googlemail.com with ESMTPSA id r11sm20213102wrm.26.2021.03.22.07.18.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 07:18:45 -0700 (PDT)
-Subject: Re: [PATCH v2 0/5] arm64: sunxi: Enable the sun4i timer
-To:     Samuel Holland <samuel@sholland.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        id S229992AbhCVO3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 10:29:00 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2725 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230331AbhCVO2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 10:28:43 -0400
+Received: from fraeml742-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4F3xXS6zLBz681n6;
+        Mon, 22 Mar 2021 22:22:16 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml742-chm.china.huawei.com (10.206.15.223) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 22 Mar 2021 15:28:41 +0100
+Received: from localhost (10.47.84.0) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Mon, 22 Mar
+ 2021 14:28:40 +0000
+Date:   Mon, 22 Mar 2021 14:27:22 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+CC:     Jonathan Cameron <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        <linux-iio@vger.kernel.org>,
+        Robin van der Gracht <robin@protonic.nl>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20210322044707.19479-1-samuel@sholland.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <7bb14a82-5dc9-cefe-4b58-1d2c83974965@linaro.org>
-Date:   Mon, 22 Mar 2021 15:18:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v3 3/3] iio: adc: add ADC driver for the TI TSC2046
+ controller
+Message-ID: <20210322142722.000053a6@Huawei.com>
+In-Reply-To: <20210322115635.GA14791@pengutronix.de>
+References: <20210319144509.7627-1-o.rempel@pengutronix.de>
+        <20210319144509.7627-4-o.rempel@pengutronix.de>
+        <20210320154601.0131805d@jic23-huawei>
+        <20210322115635.GA14791@pengutronix.de>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <20210322044707.19479-1-samuel@sholland.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.84.0]
+X-ClientProxiedBy: lhreml711-chm.china.huawei.com (10.201.108.62) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2021 05:47, Samuel Holland wrote:
-> In preparation for adding CPU idle states, hook up the sun4i timer.
-> Having a non-c3stop clockevent source available is necessary for all
-> CPUs to simultaneously enter a local-timer-stop idle state.
 
-Why simultaneously ?
-
-> Changes from v1:
->   - Removed H616 changes (depends on an unmerged patch set)
->   - Reworded the patch 4-5 commit messages for clarity
->   - Added Acked-by tags
+> >   
+> > > +	/*
+> > > +	 * Lock to protect the layout and the spi transfer buffer.
+> > > +	 * tsc2046_adc_group_layout can be changed within update_scan_mode(),
+> > > +	 * in this case the l[] and tx/rx buffer will be out of sync to each
+> > > +	 * other.
+> > > +	 */
+> > > +	struct mutex slock;
+> > > +	struct tsc2046_adc_group_layout l[TI_TSC2046_MAX_CHAN];
+> > > +	struct tsc2046_adc_atom *rx;
+> > > +	struct tsc2046_adc_atom *tx;
+> > > +
+> > > +	struct tsc2046_adc_atom *rx_one;
+> > > +	struct tsc2046_adc_atom *tx_one;
+> > > +
+> > > +	unsigned int count;
+> > > +	unsigned int groups;
+> > > +	u32 effective_speed_hz;
+> > > +	u32 scan_interval_us;
+> > > +	u32 time_per_scan_us;
+> > > +	u32 time_per_bit_ns;
+> > > +
+> > > +	struct tsc2046_adc_ch_cfg ch_cfg[TI_TSC2046_MAX_CHAN];
+> > > +};
+> > > +
+> > > +#define TI_TSC2046_V_CHAN(index, bits, name)			\
+> > > +{								\
+> > > +	.type = IIO_VOLTAGE,					\
+> > > +	.indexed = 1,						\
+> > > +	.channel = index,					\
+> > > +	.datasheet_name = "#name",				\
+> > > +	.scan_index = index,					\
+> > > +	.scan_type = {						\
+> > > +		.sign = 'u',					\
+> > > +		.realbits = bits,				\
+> > > +		.storagebits = 16,				\
+> > > +		.endianness = IIO_CPU,				\
+> > > +	},							\
+> > > +}  
+> > 
+> > I'd not noticed this before but you are exposing nothing to the
+> > normal IIO interfaces.
+> > 
+> > That means for usecases like iio-hwmon there is no access
+> > to polled readings, or information like channel scaling.
+> > 
+> > I suppose that could be added later, but perhaps you want to call this
+> > out by mentioning it in the patch description.  
 > 
-> Samuel Holland (5):
->   dt-bindings: timer: Simplify conditional expressions
->   dt-bindings: timer: Add compatibles for sun50i timers
->   arm64: dts: allwinner: a64: Sort watchdog node
->   arm64: dts: allwinner: Add sun4i MMIO timer nodes
->   arm64: sunxi: Build the sun4i timer driver
+> If it is ok for you, then I'll add some words about it in to the patch
+> description.
+Sure
+
 > 
->  .../timer/allwinner,sun4i-a10-timer.yaml      | 42 +++++++++----------
->  arch/arm64/Kconfig.platforms                  |  1 +
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 25 +++++++----
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  9 ++++
->  4 files changed, 46 insertions(+), 31 deletions(-)
+> > > +
+> > > +#define DECLARE_TI_TSC2046_8_CHANNELS(name, bits) \
+> > > +const struct iio_chan_spec name ## _channels[] = { \
+> > > +	TI_TSC2046_V_CHAN(0, bits, TEMP0), \
+> > > +	TI_TSC2046_V_CHAN(1, bits, Y), \
+> > > +	TI_TSC2046_V_CHAN(2, bits, VBAT), \
+> > > +	TI_TSC2046_V_CHAN(3, bits, Z1), \
+> > > +	TI_TSC2046_V_CHAN(4, bits, Z2), \
+> > > +	TI_TSC2046_V_CHAN(5, bits, X), \
+> > > +	TI_TSC2046_V_CHAN(6, bits, AUX), \
+> > > +	TI_TSC2046_V_CHAN(7, bits, TEMP1), \
+> > > +	IIO_CHAN_SOFT_TIMESTAMP(8), \
+> > > +}
+> > > +
+> > > +static DECLARE_TI_TSC2046_8_CHANNELS(tsc2046_adc, 12);
+> > > +
+> > > +static const struct tsc2046_adc_dcfg tsc2046_adc_dcfg_tsc2046e = {
+> > > +	.channels = tsc2046_adc_channels,
+> > > +	.num_channels = ARRAY_SIZE(tsc2046_adc_channels),
+> > > +};
+> > > +  
+> > 
+> > Hmm.  Flexibility that isn't yet used.  Normally I'm pretty resistant
+> > to this going in, unless I'm reassured that there is support for additional
+> > devices already in the pipeline.  Is that true here?  Otherwise
+> > this is basically unneeded complexity.  
+> 
+> In the long term this driver should replace
+> drivers/input/touchscreen/ads7846.c
+> 
+> This driver supports ti,ads7843, ti,ads7845, ti,ads7846.. at least with
+> following number of supported channels:
+> ti,ads7843 - 4 channels: x, y, aux0, aux1
+> ti,ads7845 - 3 channels: x, y, aux0
+> ti,ads7846 - 8 channels...
+> 
+> Currently I don't have this HW for testing and there a subtle
+> differences that have to be taken care of and tested.
 > 
 
+Note that I'm only going to merge this driver with an explicit statement
+from Dmitry as input maintainer that he is fine with this approach.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Jonathan
