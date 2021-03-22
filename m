@@ -2,107 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 588C0343802
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 05:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B77E33438D3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 06:54:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbhCVErp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 00:47:45 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:49111 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229872AbhCVErM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 00:47:12 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id B7ED9581B0F;
-        Mon, 22 Mar 2021 00:47:11 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 22 Mar 2021 00:47:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=Ow8+C1n+5nakf
-        +x70/1kbyfB9ApJLz6iTJRCy/x/ueU=; b=WYCEJuLEh0BOAC0gqpg7dr4/qhhq8
-        83q6nhGABVK9RYpf63J4BqgFr/ynkA3liMWwVuLzAou7f4eEtiKBwa+WDko4LgKA
-        7vImUk5efSXhYKuGsOH0RYWycKTIY5uwxUoVp7vpUQgTpigG+3Wy8m259yPuVbdA
-        BHESHVrOf2u/w/lzk/aMxKLcle8lBPVecXmvkfa0GKf8/NNz6SoG3bKGPu2fuspW
-        GaCevNKJGCjrWXw1oO1giLQU3ZHhrNk/KXdWPZPrfg71mlcmI9TXNkxUPPRWcrm1
-        Wxq15qmLUALKEtwpP6v09aTho5xtAPEGyVu/5omYdyuGVbF+2WQT8tK7w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=Ow8+C1n+5nakf+x70/1kbyfB9ApJLz6iTJRCy/x/ueU=; b=ayhgVyzD
-        DoV+/Ya4owz4HbSZGl/3IdG4X5UlGevNtzyQfpCD5OAJWCDbTyLBFuvktt7+szik
-        HShW0ToQ3uasa9L8ndzXyxBmjQLEQ2D2rkpwQk6SPKDMUpsO82raKXUSSCBGFmKm
-        XEdr2zJlpSyF9RzrOKgG5Ihm4lzUyxRVPPvhpf4hTxJd/G7FrODOXdRQtORE49Vn
-        KadxUN6mgUZtLvSlzNeF6o4Ro+CWteaHVG33nG2Vw+emv+B7+uJ8KXrCZ6xQSSl2
-        7wawusAJpi3i0Nux4vinrNHSzqQDk1bMvdDZ7dbhZSQKoNuMJfKuW+QPx3CY2v0g
-        M5GK2pur0xUJoA==
-X-ME-Sender: <xms:TyFYYG2AhLJY47r3RGhaL9C9HVYJZG8zY-gvhOx1neApv_bzlvAzzQ>
-    <xme:TyFYYA0gE-F42pQoPGBohupSTnERdkYTYa9zze0-59uBVKHmrx7jiRMZc9LBGgjrZ
-    g2WPtzaTXQ6Rtmjug>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudegfedgjeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:TyFYYB_PTUDGPgyWgCEe-BKAGDObZ5y3P656dR-i86-SqH9k2d97Qg>
-    <xmx:TyFYYF2LXCYaN-BC_xRn2qMVgkhhr3OqGXMaV3DRkyvVSXSXkkTMMA>
-    <xmx:TyFYYG_uKwiIPbFhWRlnhdoqBjdPZgkwP_Hv1XeyXkWPPtajFNeq5w>
-    <xmx:TyFYYFYHA62AV0O_D4xErddAgrXj64bYTo8nfS06rVAtXHDO1Dq8aw>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 210A8108005F;
-        Mon, 22 Mar 2021 00:47:11 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2 5/5] arm64: sunxi: Build the sun4i timer driver
-Date:   Sun, 21 Mar 2021 23:47:07 -0500
-Message-Id: <20210322044707.19479-6-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210322044707.19479-1-samuel@sholland.org>
-References: <20210322044707.19479-1-samuel@sholland.org>
+        id S229897AbhCVFxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 01:53:50 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:50022 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229870AbhCVFxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 01:53:15 -0400
+X-UUID: 6aed3cc16ab34655b546913d7f3bde1e-20210322
+X-UUID: 6aed3cc16ab34655b546913d7f3bde1e-20210322
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 771264958; Mon, 22 Mar 2021 13:53:06 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 22 Mar 2021 13:53:04 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 22 Mar 2021 13:53:03 +0800
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <fparent@baylibre.com>
+Subject: [PATCH 0/4] Add Mediatek MT8195 SPI driver support
+Date:   Mon, 22 Mar 2021 13:52:40 +0800
+Message-ID: <20210322055244.30179-1-leilk.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: DFA52094B9505363474F86AB7C703C61050DCB637600FD4349E41A44D408118C2000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While the ARM architectural timer is generatlly the best timer to use,
-a non-c3stop timer is needed for cpuidle.
+This series are based on spi/for-next, and provide 4 patches to add MT8195 spi support.
 
-Build the "sun4i" timer driver so it can be used for this purpose.
-It is present on all 64-bit sunxi SoCs.
+Leilk Liu (4):
+  spi: update spi master bindings for MT8195 SoC
+  spi: update spi slave bindings for MT8195 SoC
+  spi: mediatek: add mtk_spi_compatible support
+  spi: mediatek: add mt8195 spi slave support
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/Kconfig.platforms | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/spi/spi-mt65xx.txt    |  1 +
+ .../bindings/spi/spi-slave-mt27xx.txt         |  1 +
+ drivers/spi/spi-slave-mt27xx.c                | 36 ++++++++++++++++---
+ 3 files changed, 34 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index cdfd5fed457f..7f6a66431fa7 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -26,6 +26,7 @@ config ARCH_SUNXI
- 	select IRQ_FASTEOI_HIERARCHY_HANDLERS
- 	select PINCTRL
- 	select RESET_CONTROLLER
-+	select SUN4I_TIMER
- 	help
- 	  This enables support for Allwinner sunxi based SoCs like the A64.
- 
 -- 
-2.26.2
+2.25.1
+
 
