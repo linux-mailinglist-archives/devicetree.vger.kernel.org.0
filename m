@@ -2,367 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82991344E80
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFC5344E8B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:28:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231609AbhCVSZh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 22 Mar 2021 14:25:37 -0400
-Received: from aposti.net ([89.234.176.197]:60246 "EHLO aposti.net"
+        id S230289AbhCVS1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 14:27:50 -0400
+Received: from mga03.intel.com ([134.134.136.65]:52474 "EHLO mga03.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230195AbhCVSZV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 14:25:21 -0400
-Date:   Mon, 22 Mar 2021 18:25:08 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 09/10] pinctrl: Ingenic: Add pinctrl driver for JZ4775.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        hns@goldelico.com, paul@boddie.org.uk, andy.shevchenko@gmail.com,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        sernia.zhou@foxmail.com
-Message-Id: <W5VDQQ.VB9HP582KGC7@crapouillou.net>
-In-Reply-To: <1615975084-68203-10-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1615975084-68203-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1615975084-68203-10-git-send-email-zhouyanjie@wanyeetech.com>
+        id S229994AbhCVS1t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 14:27:49 -0400
+IronPort-SDR: hFX/6NZSpEGF1d3aWGnUjIUTxTzrKNWqz24L8lxEE/9dep789wjLPk704i+pbfr0iiOub1FFWB
+ EvOCZMpEezbw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="190352718"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; 
+   d="scan'208";a="190352718"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2021 11:27:48 -0700
+IronPort-SDR: PHO82oQlp6/w5aKkH14N0P+ioivw2g1izuSpaO8+P3NSw1prwKND+5GN1yW+ZmqRBNICVu6rld
+ TLa6r6HI5jtQ==
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; 
+   d="scan'208";a="592709956"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2021 11:27:46 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 1FA6F203ED;
+        Mon, 22 Mar 2021 20:27:44 +0200 (EET)
+Date:   Mon, 22 Mar 2021 20:27:44 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
+Subject: Re: [PATCH 05/10] media: v4l: Add Keem Bay Camera meta buffer formats
+Message-ID: <20210322182743.GR3@paasikivi.fi.intel.com>
+References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+ <20210319180632.585-6-martinax.krasteva@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210319180632.585-6-martinax.krasteva@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Martian and Gjorgji,
 
-
-Le mer. 17 mars 2021 à 17:58, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> Add support for probing the pinctrl-ingenic driver on the
-> JZ4775 SoC from Ingenic.
+On Fri, Mar 19, 2021 at 06:06:27PM +0000, Martina Krasteva wrote:
+> From: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
 > 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> Add Keem Bay Camera specific meta formats for processing
+> parameters and statistics:
+> 
+>     V4L2_META_FMT_KMB_PARAMS
+>     V4L2_META_FMT_KMB_STATS
+> 
+> Signed-off-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
+> Co-developed-by: Ivan Dimitrov <ivanx.dimitrov@intel.com>
+> Signed-off-by: Ivan Dimitrov <ivanx.dimitrov@intel.com>
+> Co-developed-by: Martina Krasteva <martinax.krasteva@intel.com>
+> Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
+> Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
+> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 > ---
+>  .../userspace-api/media/v4l/meta-formats.rst       |  1 +
+>  .../media/v4l/pixfmt-meta-intel-kmb.rst            | 98 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  2 +
+>  include/uapi/linux/videodev2.h                     |  4 +
+>  4 files changed, 105 insertions(+)
+>  create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
 > 
-> Notes:
->     v3:
->     New patch.
-> 
->  drivers/pinctrl/pinctrl-ingenic.c | 259 
-> ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 259 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
-> b/drivers/pinctrl/pinctrl-ingenic.c
-> index d8b37fa..eb4912d 100644
-> --- a/drivers/pinctrl/pinctrl-ingenic.c
-> +++ b/drivers/pinctrl/pinctrl-ingenic.c
-> @@ -89,6 +89,7 @@ enum jz_version {
->  	ID_JZ4755,
->  	ID_JZ4760,
->  	ID_JZ4770,
-> +	ID_JZ4775,
->  	ID_JZ4780,
->  	ID_X1000,
->  	ID_X1500,
-> @@ -1237,6 +1238,259 @@ static const struct ingenic_chip_info 
-> jz4770_chip_info = {
->  	.pull_downs = jz4770_pull_downs,
->  };
-> 
-> +static const u32 jz4775_pull_ups[7] = {
-> +	0x28ff00ff, 0xf030f3fc, 0x0fffffff, 0xfffe4000, 0xf0f0000c, 
-> 0x0000f00f, 0x0000f3c0,
-> +};
+> diff --git a/Documentation/userspace-api/media/v4l/meta-formats.rst b/Documentation/userspace-api/media/v4l/meta-formats.rst
+> index fff25357fe86..cb85161dc1ae 100644
+> --- a/Documentation/userspace-api/media/v4l/meta-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/meta-formats.rst
+> @@ -14,6 +14,7 @@ These formats are used for the :ref:`metadata` interface only.
+>  
+>      pixfmt-meta-d4xx
+>      pixfmt-meta-intel-ipu3
+> +    pixfmt-meta-intel-kmb
+>      pixfmt-meta-rkisp1
+>      pixfmt-meta-uvc
+>      pixfmt-meta-vsp1-hgo
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst b/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+> new file mode 100644
+> index 000000000000..99615bbed106
+> --- /dev/null
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+> @@ -0,0 +1,98 @@
+> +.. SPDX-License-Identifier: GPL-2.0 OR GFDL-1.1-no-invariants-or-later
 > +
-> +static const u32 jz4775_pull_downs[7] = {
-> +	0x00000000, 0x00030c03, 0x00000000, 0x00008000, 0x00000403, 
-> 0x00000ff0, 0x00030c00,
-> +};
+> +.. _v4l2-meta-fmt-params:
+> +.. _v4l2-meta-fmt-stats:
 > +
-> +static int jz4775_uart0_data_pins[] = { 0xa0, 0xa3, };
-> +static int jz4775_uart0_hwflow_pins[] = { 0xa1, 0xa2, };
-> +static int jz4775_uart1_data_pins[] = { 0x7a, 0x7c, };
-> +static int jz4775_uart1_hwflow_pins[] = { 0x7b, 0x7d, };
-> +static int jz4775_uart2_data_c_pins[] = { 0x54, 0x4a, };
-> +static int jz4775_uart2_data_f_pins[] = { 0xa5, 0xa4, };
-> +static int jz4775_uart3_data_pins[] = { 0x1e, 0x1f, };
-> +static int jz4775_ssi_dt_a_pins[] = { 0x13, };
-> +static int jz4775_ssi_dt_d_pins[] = { 0x75, };
-> +static int jz4775_ssi_dr_a_pins[] = { 0x14, };
-> +static int jz4775_ssi_dr_d_pins[] = { 0x74, };
-> +static int jz4775_ssi_clk_a_pins[] = { 0x12, };
-> +static int jz4775_ssi_clk_d_pins[] = { 0x78, };
-> +static int jz4775_ssi_gpc_pins[] = { 0x76, };
-> +static int jz4775_ssi_ce0_a_pins[] = { 0x17, };
-> +static int jz4775_ssi_ce0_d_pins[] = { 0x79, };
-> +static int jz4775_ssi_ce1_pins[] = { 0x77, };
-> +static int jz4775_mmc0_1bit_a_pins[] = { 0x12, 0x13, 0x14, };
-> +static int jz4775_mmc0_4bit_a_pins[] = { 0x15, 0x16, 0x17, };
-> +static int jz4775_mmc0_8bit_a_pins[] = { 0x04, 0x05, 0x06, 0x07, };
-> +static int jz4775_mmc0_1bit_e_pins[] = { 0x9c, 0x9d, 0x94, };
-> +static int jz4775_mmc0_4bit_e_pins[] = { 0x95, 0x96, 0x97, };
-> +static int jz4775_mmc1_1bit_d_pins[] = { 0x78, 0x79, 0x74, };
-> +static int jz4775_mmc1_4bit_d_pins[] = { 0x75, 0x76, 0x77, };
-> +static int jz4775_mmc1_1bit_e_pins[] = { 0x9c, 0x9d, 0x94, };
-> +static int jz4775_mmc1_4bit_e_pins[] = { 0x95, 0x96, 0x97, };
-> +static int jz4775_mmc2_1bit_b_pins[] = { 0x3c, 0x3d, 0x34, };
-> +static int jz4775_mmc2_4bit_b_pins[] = { 0x35, 0x3e, 0x3f, };
-> +static int jz4775_mmc2_1bit_e_pins[] = { 0x9c, 0x9d, 0x94, };
-> +static int jz4775_mmc2_4bit_e_pins[] = { 0x95, 0x96, 0x97, };
-> +static int jz4775_nemc_8bit_data_pins[] = {
-> +	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
-> +};
-> +static int jz4775_nemc_16bit_data_pins[] = {
-> +	0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1,
-> +};
-> +static int jz4775_nemc_cle_ale_pins[] = { 0x20, 0x21, };
-> +static int jz4775_nemc_addr_pins[] = { 0x22, 0x23, 0x24, 0x25, };
-> +static int jz4775_nemc_rd_we_pins[] = { 0x10, 0x11, };
-> +static int jz4775_nemc_frd_fwe_pins[] = { 0x12, 0x13, };
-> +static int jz4775_nemc_wait_pins[] = { 0x1b, };
-> +static int jz4775_nemc_cs1_pins[] = { 0x15, };
-> +static int jz4775_nemc_cs2_pins[] = { 0x16, };
-> +static int jz4775_nemc_cs3_pins[] = { 0x17, };
-> +static int jz4775_i2c0_pins[] = { 0x7e, 0x7f, };
-> +static int jz4775_i2c1_pins[] = { 0x9e, 0x9f, };
-> +static int jz4775_i2c2_pins[] = { 0x80, 0x83, };
-> +static int jz4775_i2s_data_tx_pins[] = { 0xa3, };
-> +static int jz4775_i2s_data_rx_pins[] = { 0xa2, };
-> +static int jz4775_i2s_clk_txrx_pins[] = { 0xa0, 0xa1, };
-> +static int jz4775_i2s_sysclk_pins[] = { 0x83, };
-> +static int jz4775_cim_pins[] = {
-> +	0x26, 0x27, 0x28, 0x29,
-> +	0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x31,
-> +};
-> +static int jz4775_lcd_24bit_pins[] = {
-> +	0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47,
-> +	0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f,
-> +	0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57,
-> +	0x58, 0x59, 0x5a, 0x5b,
-> +};
-> +static int jz4775_pwm_pwm0_pins[] = { 0x80, };
-> +static int jz4775_pwm_pwm1_pins[] = { 0x81, };
-> +static int jz4775_pwm_pwm2_pins[] = { 0x82, };
-> +static int jz4775_pwm_pwm3_pins[] = { 0x83, };
-> +static int jz4775_mac_rmii_pins[] = {
-> +	0xa9, 0xab, 0xaa, 0xac, 0xa5, 0xa4, 0xad, 0xae, 0xa6, 0xa8,
-> +};
-> +static int jz4775_mac_mii_pins[] = {
-> +	0x7b, 0x7a, 0x7d, 0x7c, 0xa7, 0x24, 0xaf,
-> +};
-> +static int jz4775_mac_rgmii_pins[] = {
-> +	0xa9, 0x7b, 0x7a, 0xab, 0xaa, 0xac, 0x7d, 0x7c, 0xa5, 0xa4,
-> +	0xad, 0xae, 0xa7, 0xa6,
-> +};
-> +static int jz4775_mac_gmii_pins[] = {
-> +	0x31, 0x30, 0x2f, 0x2e, 0x2d, 0x2c, 0x2b, 0x2a,
-> +	0xa8, 0x28, 0x24, 0xaf,
-> +};
-> +static int jz4775_otg_pins[] = { 0x8a, };
+> +*******************************************************************
+> +V4L2_META_FMT_KMB_PARAMS ('kmbp'), V4L2_META_FMT_KMB_STATS ('kmbs')
+> +*******************************************************************
 > +
-> +static u8 jz4775_uart3_data_funcs[] = { 0, 1, };
-> +static u8 jz4775_mac_mii_funcs[] = { 1, 1, 1, 1, 0, 1, 0, };
-> +static u8 jz4775_mac_rgmii_funcs[] = {
-> +	0, 1, 1, 0, 0, 0, 1, 1, 0, 0,
-> +	0, 0, 0, 0,
-> +};
-> +static u8 jz4775_mac_gmii_funcs[] = {
-> +	1, 1, 1, 1, 1, 1, 1, 1,
-> +	0, 1, 1, 0,
-> +};
+> +.. kmb_isp_stats
 > +
-> +static const struct group_desc jz4775_groups[] = {
-> +	INGENIC_PIN_GROUP("uart0-data", jz4775_uart0_data, 0),
-> +	INGENIC_PIN_GROUP("uart0-hwflow", jz4775_uart0_hwflow, 0),
-> +	INGENIC_PIN_GROUP("uart1-data", jz4775_uart1_data, 0),
-> +	INGENIC_PIN_GROUP("uart1-hwflow", jz4775_uart1_hwflow, 0),
-> +	INGENIC_PIN_GROUP("uart2-data-c", jz4775_uart2_data_c, 2),
-> +	INGENIC_PIN_GROUP("uart2-data-f", jz4775_uart2_data_f, 1),
-> +	INGENIC_PIN_GROUP_FUNCS("uart3-data", jz4775_uart3_data,
-> +				jz4775_uart3_data_funcs),
-> +	INGENIC_PIN_GROUP("ssi-dt-a", jz4775_ssi_dt_a, 2),
-> +	INGENIC_PIN_GROUP("ssi-dt-d", jz4775_ssi_dt_d, 1),
-> +	INGENIC_PIN_GROUP("ssi-dr-a", jz4775_ssi_dr_a, 2),
-> +	INGENIC_PIN_GROUP("ssi-dr-d", jz4775_ssi_dr_d, 1),
-> +	INGENIC_PIN_GROUP("ssi-clk-a", jz4775_ssi_clk_a, 2),
-> +	INGENIC_PIN_GROUP("ssi-clk-d", jz4775_ssi_clk_d, 1),
-> +	INGENIC_PIN_GROUP("ssi-gpc", jz4775_ssi_gpc, 1),
-> +	INGENIC_PIN_GROUP("ssi-ce0-a", jz4775_ssi_ce0_a, 2),
-> +	INGENIC_PIN_GROUP("ssi-ce0-d", jz4775_ssi_ce0_d, 1),
-> +	INGENIC_PIN_GROUP("ssi-ce1", jz4775_ssi_ce1, 1),
-> +	INGENIC_PIN_GROUP("mmc0-1bit-a", jz4775_mmc0_1bit_a, 1),
-> +	INGENIC_PIN_GROUP("mmc0-4bit-a", jz4775_mmc0_4bit_a, 1),
-> +	INGENIC_PIN_GROUP("mmc0-8bit-a", jz4775_mmc0_8bit_a, 1),
-> +	INGENIC_PIN_GROUP("mmc0-1bit-e", jz4775_mmc0_1bit_e, 0),
-> +	INGENIC_PIN_GROUP("mmc0-4bit-e", jz4775_mmc0_4bit_e, 0),
-> +	INGENIC_PIN_GROUP("mmc1-1bit-d", jz4775_mmc1_1bit_d, 0),
-> +	INGENIC_PIN_GROUP("mmc1-4bit-d", jz4775_mmc1_4bit_d, 0),
-> +	INGENIC_PIN_GROUP("mmc1-1bit-e", jz4775_mmc1_1bit_e, 1),
-> +	INGENIC_PIN_GROUP("mmc1-4bit-e", jz4775_mmc1_4bit_e, 1),
-> +	INGENIC_PIN_GROUP("mmc2-1bit-b", jz4775_mmc2_1bit_b, 0),
-> +	INGENIC_PIN_GROUP("mmc2-4bit-b", jz4775_mmc2_4bit_b, 0),
-> +	INGENIC_PIN_GROUP("mmc2-1bit-e", jz4775_mmc2_1bit_e, 2),
-> +	INGENIC_PIN_GROUP("mmc2-4bit-e", jz4775_mmc2_4bit_e, 2),
-> +	INGENIC_PIN_GROUP("nemc-8bit-data", jz4775_nemc_8bit_data, 0),
-> +	INGENIC_PIN_GROUP("nemc-16bit-data", jz4775_nemc_16bit_data, 1),
-> +	INGENIC_PIN_GROUP("nemc-cle-ale", jz4775_nemc_cle_ale, 0),
-> +	INGENIC_PIN_GROUP("nemc-addr", jz4775_nemc_addr, 0),
-> +	INGENIC_PIN_GROUP("nemc-rd-we", jz4775_nemc_rd_we, 0),
-> +	INGENIC_PIN_GROUP("nemc-frd-fwe", jz4775_nemc_frd_fwe, 0),
-> +	INGENIC_PIN_GROUP("nemc-wait", jz4775_nemc_wait, 0),
-> +	INGENIC_PIN_GROUP("nemc-cs1", jz4775_nemc_cs1, 0),
-> +	INGENIC_PIN_GROUP("nemc-cs2", jz4775_nemc_cs2, 0),
-> +	INGENIC_PIN_GROUP("nemc-cs3", jz4775_nemc_cs3, 0),
-> +	INGENIC_PIN_GROUP("i2c0-data", jz4775_i2c0, 0),
-> +	INGENIC_PIN_GROUP("i2c1-data", jz4775_i2c1, 0),
-> +	INGENIC_PIN_GROUP("i2c2-data", jz4775_i2c2, 1),
-> +	INGENIC_PIN_GROUP("i2s-data-tx", jz4775_i2s_data_tx, 1),
-> +	INGENIC_PIN_GROUP("i2s-data-rx", jz4775_i2s_data_rx, 1),
-> +	INGENIC_PIN_GROUP("i2s-clk-txrx", jz4775_i2s_clk_txrx, 1),
-> +	INGENIC_PIN_GROUP("i2s-sysclk", jz4775_i2s_sysclk, 2),
-> +	INGENIC_PIN_GROUP("cim-data", jz4775_cim, 0),
-> +	INGENIC_PIN_GROUP("lcd-24bit", jz4775_lcd_24bit, 0),
+> +ISP statistics
+> +==============
+> +
+> +The Keembay ISP statistics blocks collect different statistics over
+> +an input Bayer frame in non-HDR mode, or up to three input Bayer frames
+> +in HDR mode. Those statistics are obtained from the "keembay-metadata-stats"
+> +metadata capture video node, using the :c:type:`v4l2_meta_format` interface.
+> +They are formatted as described by the :c:type:`kmb_isp_stats` structure.
+> +
+> +The statistics collected are AE/AWB (Auto-exposure/Auto-white balance),
+> +AF (Auto-focus) filter response, luma histogram, rgb histograms and dehaze statistics.
+> +Dehaze statistic are collected after HDR fusion in HDR mode.
+> +
+> +The struct :c:type:`kmb_isp_params` contain all configurable parameters for the
 
-Same comments as the previous patch.
+The syntax has changed recently regarding references to structs, which now
+are simply "struct nameofthestruct".
 
-> +	{ "lcd-no-pins", },
-
-And here too.
-
-Cheers,
--Paul
-
-> +	INGENIC_PIN_GROUP("pwm0", jz4775_pwm_pwm0, 0),
-> +	INGENIC_PIN_GROUP("pwm1", jz4775_pwm_pwm1, 0),
-> +	INGENIC_PIN_GROUP("pwm2", jz4775_pwm_pwm2, 0),
-> +	INGENIC_PIN_GROUP("pwm3", jz4775_pwm_pwm3, 0),
-> +	INGENIC_PIN_GROUP("mac-rmii", jz4775_mac_rmii, 0),
-> +	INGENIC_PIN_GROUP_FUNCS("mac-mii", jz4775_mac_mii,
-> +				jz4775_mac_mii_funcs),
-> +	INGENIC_PIN_GROUP_FUNCS("mac-rgmii", jz4775_mac_rgmii,
-> +				jz4775_mac_rgmii_funcs),
-> +	INGENIC_PIN_GROUP_FUNCS("mac-gmii", jz4775_mac_gmii,
-> +				jz4775_mac_gmii_funcs),
-> +	INGENIC_PIN_GROUP("otg-vbus", jz4775_otg, 0),
-> +};
+> +statistics:
 > +
-> +static const char *jz4775_uart0_groups[] = { "uart0-data", 
-> "uart0-hwflow", };
-> +static const char *jz4775_uart1_groups[] = { "uart1-data", 
-> "uart1-hwflow", };
-> +static const char *jz4775_uart2_groups[] = { "uart2-data-c", 
-> "uart2-data-f", };
-> +static const char *jz4775_uart3_groups[] = { "uart3-data", };
-> +static const char *jz4775_ssi_groups[] = {
-> +	"ssi-dt-a", "ssi-dt-d",
-> +	"ssi-dr-a", "ssi-dr-d",
-> +	"ssi-clk-a", "ssi-clk-d",
-> +	"ssi-gpc",
-> +	"ssi-ce0-a", "ssi-ce0-d",
-> +	"ssi-ce1",
-> +};
-> +static const char *jz4775_mmc0_groups[] = {
-> +	"mmc0-1bit-a", "mmc0-4bit-a", "mmc0-8bit-a",
-> +	"mmc0-1bit-e", "mmc0-4bit-e",
-> +};
-> +static const char *jz4775_mmc1_groups[] = {
-> +	"mmc1-1bit-d", "mmc1-4bit-d",
-> +	"mmc1-1bit-e", "mmc1-4bit-e",
-> +};
-> +static const char *jz4775_mmc2_groups[] = {
-> +	"mmc2-1bit-b", "mmc2-4bit-b",
-> +	"mmc2-1bit-e", "mmc2-4bit-e",
-> +};
-> +static const char *jz4775_nemc_groups[] = {
-> +	"nemc-8bit-data", "nemc-16bit-data", "nemc-cle-ale",
-> +	"nemc-addr", "nemc-rd-we", "nemc-frd-fwe", "nemc-wait",
-> +};
-> +static const char *jz4775_cs1_groups[] = { "nemc-cs1", };
-> +static const char *jz4775_cs2_groups[] = { "nemc-cs2", };
-> +static const char *jz4775_cs3_groups[] = { "nemc-cs3", };
-> +static const char *jz4775_i2c0_groups[] = { "i2c0-data", };
-> +static const char *jz4775_i2c1_groups[] = { "i2c1-data", };
-> +static const char *jz4775_i2c2_groups[] = { "i2c2-data", };
-> +static const char *jz4775_i2s_groups[] = {
-> +	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-sysclk",
-> +};
-> +static const char *jz4775_cim_groups[] = { "cim-data", };
-> +static const char *jz4775_lcd_groups[] = { "lcd-24bit", 
-> "lcd-no-pins", };
-> +static const char *jz4775_pwm0_groups[] = { "pwm0", };
-> +static const char *jz4775_pwm1_groups[] = { "pwm1", };
-> +static const char *jz4775_pwm2_groups[] = { "pwm2", };
-> +static const char *jz4775_pwm3_groups[] = { "pwm3", };
-> +static const char *jz4775_mac_groups[] = {
-> +	"mac-rmii", "mac-mii", "mac-rgmii", "mac-gmii",
-> +};
-> +static const char *jz4775_otg_groups[] = { "otg-vbus", };
-> +
-> +static const struct function_desc jz4775_functions[] = {
-> +	{ "uart0", jz4775_uart0_groups, ARRAY_SIZE(jz4775_uart0_groups), },
-> +	{ "uart1", jz4775_uart1_groups, ARRAY_SIZE(jz4775_uart1_groups), },
-> +	{ "uart2", jz4775_uart2_groups, ARRAY_SIZE(jz4775_uart2_groups), },
-> +	{ "uart3", jz4775_uart3_groups, ARRAY_SIZE(jz4775_uart3_groups), },
-> +	{ "ssi", jz4775_ssi_groups, ARRAY_SIZE(jz4775_ssi_groups), },
-> +	{ "mmc0", jz4775_mmc0_groups, ARRAY_SIZE(jz4775_mmc0_groups), },
-> +	{ "mmc1", jz4775_mmc1_groups, ARRAY_SIZE(jz4775_mmc1_groups), },
-> +	{ "mmc2", jz4775_mmc2_groups, ARRAY_SIZE(jz4775_mmc2_groups), },
-> +	{ "nemc", jz4775_nemc_groups, ARRAY_SIZE(jz4775_nemc_groups), },
-> +	{ "nemc-cs1", jz4775_cs1_groups, ARRAY_SIZE(jz4775_cs1_groups), },
-> +	{ "nemc-cs2", jz4775_cs2_groups, ARRAY_SIZE(jz4775_cs2_groups), },
-> +	{ "nemc-cs3", jz4775_cs3_groups, ARRAY_SIZE(jz4775_cs3_groups), },
-> +	{ "i2c0", jz4775_i2c0_groups, ARRAY_SIZE(jz4775_i2c0_groups), },
-> +	{ "i2c1", jz4775_i2c1_groups, ARRAY_SIZE(jz4775_i2c1_groups), },
-> +	{ "i2c2", jz4775_i2c2_groups, ARRAY_SIZE(jz4775_i2c2_groups), },
-> +	{ "i2s", jz4775_i2s_groups, ARRAY_SIZE(jz4775_i2s_groups), },
-> +	{ "cim", jz4775_cim_groups, ARRAY_SIZE(jz4775_cim_groups), },
-> +	{ "lcd", jz4775_lcd_groups, ARRAY_SIZE(jz4775_lcd_groups), },
-> +	{ "pwm0", jz4775_pwm0_groups, ARRAY_SIZE(jz4775_pwm0_groups), },
-> +	{ "pwm1", jz4775_pwm1_groups, ARRAY_SIZE(jz4775_pwm1_groups), },
-> +	{ "pwm2", jz4775_pwm2_groups, ARRAY_SIZE(jz4775_pwm2_groups), },
-> +	{ "pwm3", jz4775_pwm3_groups, ARRAY_SIZE(jz4775_pwm3_groups), },
-> +	{ "mac", jz4775_mac_groups, ARRAY_SIZE(jz4775_mac_groups), },
-> +	{ "otg", jz4775_otg_groups, ARRAY_SIZE(jz4775_otg_groups), },
-> +};
-> +
-> +static const struct ingenic_chip_info jz4775_chip_info = {
-> +	.num_chips = 7,
-> +	.reg_offset = 0x100,
-> +	.version = ID_JZ4775,
-> +	.groups = jz4775_groups,
-> +	.num_groups = ARRAY_SIZE(jz4775_groups),
-> +	.functions = jz4775_functions,
-> +	.num_functions = ARRAY_SIZE(jz4775_functions),
-> +	.pull_ups = jz4775_pull_ups,
-> +	.pull_downs = jz4775_pull_downs,
-> +};
-> +
->  static const u32 jz4780_pull_ups[6] = {
->  	0x3fffffff, 0xfff0f3fc, 0x0fffffff, 0xffff4fff, 0xfffffb7c, 
-> 0x7fa7f00f,
->  };
-> @@ -2775,6 +3029,7 @@ static const struct of_device_id 
-> ingenic_gpio_of_match[] __initconst = {
->  	{ .compatible = "ingenic,jz4755-gpio", },
->  	{ .compatible = "ingenic,jz4760-gpio", },
->  	{ .compatible = "ingenic,jz4770-gpio", },
-> +	{ .compatible = "ingenic,jz4775-gpio", },
->  	{ .compatible = "ingenic,jz4780-gpio", },
->  	{ .compatible = "ingenic,x1000-gpio", },
->  	{ .compatible = "ingenic,x1830-gpio", },
-> @@ -2997,6 +3252,10 @@ static const struct of_device_id 
-> ingenic_pinctrl_of_match[] = {
->  		.data = IF_ENABLED(CONFIG_MACH_JZ4770, &jz4770_chip_info)
->  	},
->  	{
-> +		.compatible = "ingenic,jz4775-pinctrl",
-> +		.data = IF_ENABLED(CONFIG_MACH_JZ4775, &jz4775_chip_info)
-> +	},
-> +	{
->  		.compatible = "ingenic,jz4780-pinctrl",
->  		.data = IF_ENABLED(CONFIG_MACH_JZ4780, &jz4780_chip_info)
->  	},
-> --
-> 2.7.4
-> 
+> +- The struct :c:type:`kmb_raw_params` contain enable flags for all
+> +  statistics except dehaze (always enabled) and configuration for flicker rows
+> +  statistics.
+> +- The struct :c:type:`kmb_ae_awb_params` contain configuration parameters for AE/AWB
+> +  statistics.
+> +- The struct :c:type:`kmb_af_params` contain configuration for AF (Auto-focus) filter
+> +  response statistics.
+> +- The struct :c:type:`kmb_hist_params` contain configuration for luma and rgb histograms.
+> +- The struct :c:type:`kmb_hist_params` contain configuration for luma and rgb histograms.
+> +- The struct :c:type:`kmb_dehaze_params` contain configuration for dehaze statistics.
 
+Please wrap before 80 characters per line unless there's a reason to do
+otherwise.
 
+> +
+> +.. code-block:: c
+> +
+> +	struct kmb_isp_stats {
+> +		struct {
+> +			__u8 ae_awb_stats[KMB_CAM_AE_AWB_STATS_SIZE];
+> +			__u8 af_stats[KMB_CAM_AF_STATS_SIZE];
+> +			__u8 hist_luma[KMB_CAM_HIST_LUMA_SIZE];
+> +			__u8 hist_rgb[KMB_CAM_HIST_RGB_SIZE];
+> +			__u8 flicker_rows[KMB_CAM_FLICKER_ROWS_SIZE];
+> +		} exposure[KMB_CAM_MAX_EXPOSURES];
+> +		__u8 dehaze[MAX_DHZ_AIRLIGHT_STATS_SIZE];
+> +		struct kmb_isp_stats_flags update;
+> +	};
+> +
+> +.. kmb_isp_stats
+> +
+> +ISP parameters
+> +==============
+> +
+> +The ISP parameters are passed to the "keembay-metadata-params" metadata
+> +output video node, using the :c:type:`v4l2_meta_format` interface. They are
+> +formatted as described by the :c:type:`kmb_isp_params` structure.
+> +
+> +Both ISP statistics and ISP parameters described here are closely tied to
+> +the underlying camera sub-system (VPU Camera) APIs. They are usually consumed
+> +and produced by dedicated user space libraries that comprise the important
+> +tuning tools, thus freeing the developers from being bothered with the low
+> +level hardware and algorithm details.
+> +
+> +.. code-block:: c
+> +
+> +	struct kmb_isp_params {
+> +		struct kmb_isp_params_flags update;
+> +		struct kmb_blc_params blc[KMB_CAM_MAX_EXPOSURES];
+> +		struct kmb_sigma_dns_params sigma_dns[KMB_CAM_MAX_EXPOSURES];
+> +		struct kmb_lsc_params lsc;
+> +		struct kmb_raw_params raw;
+> +		struct kmb_ae_awb_params ae_awb;
+> +		struct kmb_af_params af;
+> +		struct kmb_hist_params histogram;
+> +		struct kmb_lca_params lca;
+> +		struct kmb_debayer_params debayer;
+> +		struct kmb_dog_dns_params dog_dns;
+> +		struct kmb_luma_dns_params luma_dns;
+> +		struct kmb_sharpen_params sharpen;
+> +		struct kmb_chroma_gen_params chroma_gen;
+> +		struct kmb_median_params median;
+> +		struct kmb_chroma_dns_params chroma_dns;
+> +		struct kmb_color_comb_params color_comb;
+> +		struct kmb_hdr_params hdr;
+> +		struct kmb_lut_params lut;
+> +		struct kmb_tnf_params tnf;
+> +		struct kmb_dehaze_params dehaze;
+> +		struct kmb_warp_params warp;
+> +	};
+
+As this is already part of the UAPI header you don't need to repeat it
+here.
+
+> +
+> +Keembay ISP uAPI data types
+> +===============================
+> +
+> +.. kernel-doc:: include/uapi/linux/keembay-isp-ctl.h
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 955f9f6a195d..d90eaf453012 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1972,6 +1972,8 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
+> +F:	Documentation/media/uapi/v4l/meta-formats.rst
+> +F:	Documentation/media/uapi/v4l/pixfmt-meta-intel-kmb.rst
+
+The files are under Documentation/userspace-api/media/v4l/ .
+
+>  F:	drivers/media/platform/keembay-camera/
+>  F:	include/uapi/linux/keembay-isp-ctl.h
+>  
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index 79dbde3bcf8d..0d32269638f6 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -769,6 +769,10 @@ struct v4l2_pix_format {
+>  #define V4L2_META_FMT_RK_ISP1_PARAMS	v4l2_fourcc('R', 'K', '1', 'P') /* Rockchip ISP1 3A Parameters */
+>  #define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A Statistics */
+>  
+> +/* Vendor specific - used for Keem Bay camera sub-system */
+> +#define V4L2_META_FMT_KMB_PARAMS v4l2_fourcc('K', 'M', 'B', 'P') /* Keem Bay parameters */
+> +#define V4L2_META_FMT_KMB_STATS  v4l2_fourcc('K', 'M', 'B', 'S') /* Keem Bay statistics */
+> +
+>  /* priv field value to indicates that subsequent fields are valid. */
+>  #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
+>  
+
+-- 
+Kind regards,
+
+Sakari Ailus
