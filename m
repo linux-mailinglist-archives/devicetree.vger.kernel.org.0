@@ -2,170 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B849344D0A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B13C344D15
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 18:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231897AbhCVRPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 13:15:18 -0400
-Received: from mail-bn7nam10on2089.outbound.protection.outlook.com ([40.107.92.89]:27591
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230334AbhCVROq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 13:14:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EIEbxZvXpolTN4bBFMLNK8gzO7yk31UTK2s3smkBOmsQvL2nS+T88qv5UZCQ+I36/a2sJ3Ed3K+jzX6lsD6Z2Ln6gjTkF4lM8Ml+CHTtIqVFuub+R2yygehmQRh6SrXX5vpARNx7naoVucEwl6wAgg+EAnUztOMFQHh8W9OpQZHmidQ0njpELSEgT5uvmq1vUW5L9Cx7w5ekRBgeBVLlcuRz8Qre/dJ5OpIN0KsAnRmoGMCsuxKZ0vx7PsZIkrgzyyaReWlk56Ob+YzrSKVv8K7EnKWkB9UBXSurJcKPOZXAZb/+atXwHiiMpvlVWsAigaxPNTjp8jqfCA9Lz9tIMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hst/YM/qPFiQ20GaPXW7z81quuvY+QfkKCzDv7OkUzs=;
- b=JJWNyTiMcWX48PNfsoU6PQrRxGY3nEtqd9+agznmJtE0u7F6Qw/rQpZw2MLjyW69CpICaXfqWgW9ayWW+SvsiUae0uGICzwDmo3wg77infaGCyhI/Tm5QbJTkPJWBR1vqhiVfaCWR0QgM7Gai2UakSWgwMqFqYrLBTzamd5uMVWnI7PQpql8x9Ny3hRB6eeR0/3HroAxKHFlarnxhQDzibPjY8EiZxSMikr6Fzo1XrEfmF3/64juQrlvMx35e5+xl6eC4UDzpo10EE/jO9FoTMQ2XgpEuUydhk5em9jCMgmdMffnkf1wdfh5A4Nt4ybNBlm9Ap4ACOWbaf2P/CwHVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
- dkim=pass header.d=silabs.com; arc=none
+        id S230113AbhCVRR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 13:17:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57632 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232047AbhCVRQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 13:16:59 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A7CC061574;
+        Mon, 22 Mar 2021 10:16:58 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id r17so9054076pgi.0;
+        Mon, 22 Mar 2021 10:16:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hst/YM/qPFiQ20GaPXW7z81quuvY+QfkKCzDv7OkUzs=;
- b=fDKpMPrTf9Q1SSRaGKtfp49/ZxuZTRQcm4MWP9HABSJ7ChE3lNaXIDUwooBQQtCs+Y3jInzr7X2JbIPmJlnj9il9u8zofqtsxWOhLVlWEoAhV2/gVKjIFuuHko0WsPuu7H/RGsNFXVC6INmc4da8DhaEJsA0zSq32Az8TmOVFsc=
-Authentication-Results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=silabs.com;
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com (2603:10b6:805:63::18)
- by SA2PR11MB5114.namprd11.prod.outlook.com (2603:10b6:806:114::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Mon, 22 Mar
- 2021 17:14:43 +0000
-Received: from SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::41bc:5ce:dfa0:9701]) by SN6PR11MB2718.namprd11.prod.outlook.com
- ([fe80::41bc:5ce:dfa0:9701%7]) with mapi id 15.20.3955.025; Mon, 22 Mar 2021
- 17:14:43 +0000
-From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
-Date:   Mon, 22 Mar 2021 18:14:36 +0100
-Message-ID: <4503971.bAhddQ8uqO@pc-42>
-Organization: Silicon Labs
-In-Reply-To: <CAPDyKFqJf=vUqpQg3suDCadKrFTkQWFTY_qp=+yDK=_Lu9gJGg@mail.gmail.com>
-References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com> <20210315132501.441681-9-Jerome.Pouiller@silabs.com> <CAPDyKFqJf=vUqpQg3suDCadKrFTkQWFTY_qp=+yDK=_Lu9gJGg@mail.gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Originating-IP: [2a01:e35:2435:66a0:544b:f17b:7ae8:fb7]
-X-ClientProxiedBy: BL0PR0102CA0031.prod.exchangelabs.com
- (2603:10b6:207:18::44) To SN6PR11MB2718.namprd11.prod.outlook.com
- (2603:10b6:805:63::18)
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2w5fCu8w6D3zdeoWzRFOIFWsZdJByg7rSbBNLFCe+3o=;
+        b=vVBsxK9o8fw8BFBALl180QyiYSBYJOhFQQeASqP8U4L0gA8lWRRZSYwliT1m82FxP6
+         ZTgFVenIyz69wwiqYU4nuiWXBe9BXefJBuv/hsKCLpc/ZjLBkIEHrYZVUOxLLQPaVM15
+         XcLOl9QEtYxnCpEobQ2EuBUHAhZrup3hluH1VvfEL2OEPslsjj2kx6MIUUILJFg/Hrnw
+         PQRY0KV/fzpyN70xkcv6ixhfzwNY/jMpZUOVRP5B+Bo1af1rGqdD7HPPfsC3l98IajKV
+         pquLy6TgtM7w9Hb4a0GfC/y5zPZS3iqbzUH9WmCIOXIwas6xABqULRmJmcOxfDTBbEmq
+         5WGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2w5fCu8w6D3zdeoWzRFOIFWsZdJByg7rSbBNLFCe+3o=;
+        b=SZ1jKXQKq8lHqcabQorFEFInNP4sTe2+hbvz7Ks9TVean8v/cd7o5RICnXAWADoBAb
+         J72fEkTta8PkLd/xfyGwYbamebsfcy2RSAZQJUJtc6wngx4Utsaf9LcCg5K2mVUmAB3q
+         eL1SfacK+A8L/ylXU9tBIDiIze4r7l38BAWeqzKH77tqtL7w5Q6CRA5BWmyOlC4/WGA3
+         Zcp2CZMZOxa+LY7xy5G3xB4yxSFeb35cjINBaEQmseU+UGqXpktomDpguYj15Ktfd8jI
+         R35e3wmQgGqovv5Ff2sLBqGuscFckwgeWtgZ0VZGXfxGO21UK4MOIIA5vLrscNUOx0s5
+         xROg==
+X-Gm-Message-State: AOAM531seORc4xhExksFME97436bTh9ze+VceOEwBmVrrbWR5LE9hdvH
+        MIEdjYl6OpkE9fYChAacZ5y9ab9AYJE5Q5PW/gU=
+X-Google-Smtp-Source: ABdhPJwC//xqNPPavm3VwVopRp0zBqkabO253SedJKX7XxKp0C+zaEj6I2gboHkOWehPVmfetRGb6a7sDxW1GtiNRio=
+X-Received: by 2002:a62:e50f:0:b029:214:8e4a:ae46 with SMTP id
+ n15-20020a62e50f0000b02902148e4aae46mr796317pff.73.1616433418096; Mon, 22 Mar
+ 2021 10:16:58 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-42.localnet (2a01:e35:2435:66a0:544b:f17b:7ae8:fb7) by BL0PR0102CA0031.prod.exchangelabs.com (2603:10b6:207:18::44) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend Transport; Mon, 22 Mar 2021 17:14:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 287acc7b-f23d-410c-5ec1-08d8ed55fc4f
-X-MS-TrafficTypeDiagnostic: SA2PR11MB5114:
-X-Microsoft-Antispam-PRVS: <SA2PR11MB51146055839C718D9A2C7BFA93659@SA2PR11MB5114.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e/wZfVm4O9B6wpMOwPoTmA9umYTAL+XQLoXOIULZ/DvPzjbdvvyv5Y/gHzE0gs1dAiiDlx6GgUxBztZLBF3DgbfckgHgsdkcAsDnEafAlqlhJjc+Ld1RsvZ7OMsauWSurFD5+0Kb0xH6CvN67soofzqO6PIMNyDffsGQt6tRjpHRXqK+79D2cakNL9uDWxzaRg9IG3A7UBhi4bFUSQgg+W/HtUNv4vogudoLbTeUW5s+1GgRV+i7jViQQEePqF0ltMV/D6pOUyUqU5hPL95eA+j+wmbsoKZsD3jBm6R32HRxlRm5dpCCFUmNmG37NRLEFQeYK/TAHGajcxXD9v9xfKWZ//UAVSfYTVlWJAb18g8L7eV5mL/BK9UdKiLJy1FSW1/3FJW8EctLRxwMOUd5VGIdNLBi7jAKuioCFkH4wSqFSLJLkP2ESnMYOcPs5pWQRcpnFwC2cZ/eoUrTrA9iNQ/EwWZ9kch3QSmlMWOkvIIExoR9GrYMK9/MayHHTy8u8cUdACyUTUI3N1Ioz98NDbMohYLmD6RL0w5XOjcYJ8GAXg5WVBgBjA/ZFToEhJhktE+QhqxshHzQoGH65GYk/5SJYuIE0BhiJszNrhCszglqOHQG8Jby0SqeYwEanK6C3NrmTXKw/mKotjPZZrVmKEN1GxZoPLSqYX8f7JVSkQhV0j872vY7uCK+oJveIkIB
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2718.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(366004)(376002)(39850400004)(396003)(346002)(6916009)(36916002)(6512007)(7416002)(478600001)(9686003)(6666004)(6486002)(5660300002)(52116002)(8676002)(4326008)(38100700001)(6506007)(2906002)(186003)(316002)(54906003)(66574015)(83380400001)(33716001)(8936002)(16526019)(66476007)(86362001)(66946007)(66556008)(39026012);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?iso-8859-1?Q?dus6qcuOBIE7CvCbfOyGS2QkrLKrI1LdJSW7ohdg5WKQrOowPgFtTOJrOV?=
- =?iso-8859-1?Q?XY+x4zh02lyBQh9/6UlIstoc28bgFw9wRbAYyFIj+5DkEggI7X4z73bGji?=
- =?iso-8859-1?Q?NP5bFx2aPyCTfvCnb9kxPRiZB6j1eKbxio8RNXGfckbQsrkUtxLpk0YQq0?=
- =?iso-8859-1?Q?W0XKn7u0TQt0NbM/Nvb8fNQRPUE9BsMy79clHCqfjko0nDMA6y29El5R/K?=
- =?iso-8859-1?Q?GNnf5aetZs835fhODUkT5aFf4EgYnZFhfnxnqQbq8oxqURy7tSpu41hPoE?=
- =?iso-8859-1?Q?e220k3DHSqiZp/IuWpNaIi4dQwKVn1OEJxtuLYWrZe7QHsb/6L/Go9OwIL?=
- =?iso-8859-1?Q?SzgOuF6SGIZhMvRHBRtUWeQu9EWO4JronMW55wd/JiijGARrkX6O1w5Mp+?=
- =?iso-8859-1?Q?Hy4gui1/SBWiUG9OFDKFD13QjQ4iwQAOHUIgujw7SKEn9VKv6u1ghAWsGK?=
- =?iso-8859-1?Q?zppUo+l8EeXncTQF7uQ+mKVW5Z5T/HT0q5lu9uC5GeJXgf2ucChDloZ86B?=
- =?iso-8859-1?Q?qKCnLL3IAP6xqhmBRwykKlSZoIxQfjR71a4XiUC6YShE9ZRMDz/QFuXDqQ?=
- =?iso-8859-1?Q?VhsQ3epZR4BFjLOdINta2SjCylsGYKCie0jwqrQGCZbKV8GoXraXagc8BZ?=
- =?iso-8859-1?Q?PytZ/NzyyOzQBT4ous9D9v1ME5mCpylTTy8OdL6aSyyda4gPDczaSg6k/p?=
- =?iso-8859-1?Q?ocHDDzK/FwP600p4fcTNUmhrqgisxCRbvZ+xeM4lR30Q9tQ9oZ/JzVP8xP?=
- =?iso-8859-1?Q?tNkOVsY+KCM+d8gMFEEdT751gBxz716XzDrak2iCsNtemcTswjDuIN1N/6?=
- =?iso-8859-1?Q?/MFKjN9i51NxFnXj7RcMrFgdAOXekq9/etF62Fjo4I6Si2L055DEXTc4bO?=
- =?iso-8859-1?Q?QubtgYFJtaIiLZyyzP8d8zgiax5Bg85OwbExS8YGHPm7mtPbMo150w+nBM?=
- =?iso-8859-1?Q?NgQb63DszfBtiUUCop9e7+QoxWYQTrD46wvKs/v/6wJkhQcUlh+yWGEMh7?=
- =?iso-8859-1?Q?a/VTwllA22PaYM/n0dclUT4JuHkMMCB9/807uwqa6tIiAANly4f8xXqS7D?=
- =?iso-8859-1?Q?CbjDUAy4LhztPS12OGI0gi+6uqZyFZfOsAzINGO8JaRRlTQoQ3HWkRqbuc?=
- =?iso-8859-1?Q?3VKucQRdNr5rAdVjnbKkUjDPJ5qYdyH3j6A8ctMsaq6BSC7JqCIVpHiU0d?=
- =?iso-8859-1?Q?yw5lXig1sQ6jUHCmu7IbVsEvjoNAoXjR4NZbtBH6B4FD6Dicm1MX+rMieo?=
- =?iso-8859-1?Q?aakaemhvsS8Uxz4lwdrzaR4ixor7b4qPTS+DlmA0leL6I2vJcg71Bo+qdF?=
- =?iso-8859-1?Q?eMPA8RGorwNyd68AQLdnsnEp4ag4yqHt5JmFcis786N3RO83Hc897exVRK?=
- =?iso-8859-1?Q?ykD9eRZvBqM61tTvb7hMAbTz+s9cwdyjOkRQiCcTrQrNrDF2OK2fEHSkfc?=
- =?iso-8859-1?Q?SJoPiRwMTOdu9n3V?=
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 287acc7b-f23d-410c-5ec1-08d8ed55fc4f
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2718.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 17:14:43.6226
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aKJvcqDCXBx6CPKPkqJLId1CXCPk/V4iboYBx+KE8Volyoc6x4aaxfRYI6Mw9Rl9nh/ZXEPZSUO8e3d7fSMllg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5114
+References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <CAHp75VehkqzDPQp87JL=hnCi_b4y0d3htpxRKBJ2q73AAAbBXA@mail.gmail.com>
+ <SN6PR02MB3917DC23268D35870E85F37DBD699@SN6PR02MB3917.namprd02.prod.outlook.com>
+ <CAHp75VcbxvVsQRP_0J0mXb5vPhBor7=cq-4nqMNb-+D_+O1cdA@mail.gmail.com> <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
+In-Reply-To: <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 22 Mar 2021 19:16:41 +0200
+Message-ID: <CAHp75VeQyk6E4DJY0ArYX=Too-nkZ12oA2YcVZ0gw0zz5chNAQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
+To:     Sai Krishna Potthuri <lakshmis@xilinx.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ulf,
+On Mon, Mar 22, 2021 at 5:25 PM Sai Krishna Potthuri
+<lakshmis@xilinx.com> wrote:
+> > From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > Sent: Friday, March 19, 2021 3:53 PM
+> > On Thu, Mar 18, 2021 at 4:42 PM Sai Krishna Potthuri <lakshmis@xilinx.com>
+> > wrote:
+> > > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > > Sent: Wednesday, March 17, 2021 6:26 PM On Wed, Mar 17, 2021 at
+> > > > 10:27 AM Sai Krishna Potthuri
+> > > > <lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
 
-On Monday 22 March 2021 13:20:35 CET Ulf Hansson wrote:
-> On Mon, 15 Mar 2021 at 14:25, Jerome Pouiller
-> <Jerome.Pouiller@silabs.com> wrote:
+...
+
+> > > #include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
 > >
-> > From: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
+> > Looking into other drivers with similar includes, shouldn't it go first in the file
+> > before any other linux/* asm/* etc?
+> I see some drivers are including this header before linux/* and some are using
+> after linux/*.
+
+The rule of thumb is that: more generic headers are going first.
+
+I consider dt/* ones are more generic than linux/* ones because they
+are covering more than just the Linux kernel.
+
+...
+
+> > > > I'm lost here. What is IO standard exactly? Why it can't be in
+> > > > generic headers?
+> > > It represents LVCMOS 3.3 volts/ LVCMOS 1.8 volts.
+> > > Since this is specific to Xilinx ZynqMP platform, considered to be
+> > > added in the driver file.
 > >
-> > Signed-off-by: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> > ---
-> >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 259 +++++++++++++++++++++
-> >  1 file changed, 259 insertions(+)
-> >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
->=20
-> [...]
->=20
-> > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
-> > +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF20=
-0) },
-> > +       { },
-> > +};
-> > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
-> > +
-> > +struct sdio_driver wfx_sdio_driver =3D {
-> > +       .name =3D "wfx-sdio",
-> > +       .id_table =3D wfx_sdio_ids,
-> > +       .probe =3D wfx_sdio_probe,
-> > +       .remove =3D wfx_sdio_remove,
-> > +       .drv =3D {
-> > +               .owner =3D THIS_MODULE,
-> > +               .of_match_table =3D wfx_sdio_of_match,
->=20
-> It's not mandatory to support power management, like system
-> suspend/resume. However, as this looks like this is a driver for an
-> embedded SDIO device, you probably want this.
->=20
-> If that is the case, please assign the dev_pm_ops here and implement
-> the ->suspend|resume() callbacks.
+> > So, why can't we create a couple of bits to represent this voltages in the
+> > generic header and gain usability for others as well?
+> I see some drivers are maintaining the configuration list in the driver file, if
+> the configuration is specific to the driver.
 
-I have no platform to test suspend/resume, so I have only a
-theoretical understanding of this subject.
+Yes, my point is that this case doesn't sound too specific to the
+driver. Many pin control buffers (in hardware way of speaking) have
+properties to be different voltage tolerant / produce.
 
-I understanding is that with the current implementation, the
-device will be powered off on suspend and then totally reset
-(including reloading of the firmware) on resume. I am wrong?
+> We can move this to generic header if it is used by others as well.
+> Ok, will wait for Linus to comment.
+> >
+> > Linus?
 
-This behavior sounds correct to me. You would expect something
-more?=20
+...
 
+> > > > > +       ret = zynqmp_pm_pinctrl_request(pin);
+> > > > > +       if (ret) {
+> > > > > +               dev_err(pctldev->dev, "request failed for pin
+> > > > > + %u\n", pin);
+> > > >
+> > > > > +               return -EIO;
+> > > >
+> > > > Why shadowing error code?
+> >
+> > So, any comments on the initial Q?
+> Xilinx low level secure firmware error codes are different from Linux error codes.
+> Secure firmware maintains list of error codes (positive values other than zero).
+> Hence we return -EIO, if the return value from firmware is non-zero.
 
---=20
-J=E9r=F4me Pouiller
+Why the zynqmp_pm_pinctrl_request() can't return codes in Linux error
+code space?
 
+> > >>  Since it's the only possible error, why is it not
+> > > > reflected in the kernel doc?
+> > > I will update the kernel doc with the error value for such cases.
+> > > >
+> > > > > +       }
 
+-- 
+With Best Regards,
+Andy Shevchenko
