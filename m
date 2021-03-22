@@ -2,145 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23978344565
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 14:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E663C34457A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 14:21:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231556AbhCVNSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 09:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbhCVNQz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 09:16:55 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5ADAC061762;
-        Mon, 22 Mar 2021 06:16:54 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id g1so6551710plg.7;
-        Mon, 22 Mar 2021 06:16:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K57hes70Y9glf2q1uih1lFr//oeCaWquhrG1a8vl7tI=;
-        b=mLWf2rrM1KV5IhBtwlUucUCUuYornZ/N+fY1RoIERa/PpHBE57T/K3VvYiWDiRgnus
-         A51FzDkevuiQANz0BSteAH+2lJ8pbisqzMDtPSEUXlOfeaCPr3RuQ3kumFhrAAISof7/
-         iwqmWnDrnM4hsLxzW8yZrRQBnF4DM8KG9b7F9KYW4NCxxt6Waywed5V45Yeq0Bhg/9bi
-         PPPREBF2sQOqz31zHDMgDQ4i2o4O+WS5dtbaI8GrxF4dVdY9JljFOZBW1ZQSSWh88E/e
-         G+wyb9PsQr7BGnflhew/BDVglX15SjJhOM4HXk+bQAbaaOYy1efTkNCZpik4teJq/oqj
-         JxnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K57hes70Y9glf2q1uih1lFr//oeCaWquhrG1a8vl7tI=;
-        b=cpYKQpBgnQGrctUyH77zo/tavQKFi+1ZK/2aAG/49mMdfq74qQluTjSCD0HgKryvpV
-         hv64JO0kkyc2fNXZ2UXfdFt0olzUQl8Uo/XxmhQisaHT66UlYV+iM1w5NDhy1OfttHeH
-         Y0+8lzXaH8TMujdLT3WRL0jxEt31+LnkvWL01iFm4hlpxYTe6EQOls11FQZz4fQ4yzkX
-         AF9ECW4We34V1ZyB3WAftwLxyaran9QKNWL9xJmy+lfQ43jgxyHKhvxYjTEe+vavAn4B
-         cw0sAzvRhWz4uYRx/9up9pnmrZH4/+C0ZQw89bPSzbHs7cLAqe6bpeKobqhX67ENy3s+
-         GiOg==
-X-Gm-Message-State: AOAM531wQ4iaypj4yFjp8/ml6NVwetip+5Dy84mjnIBpZzjuvkxIKdBG
-        CZaWb22uo/Wdy4MV6uK4ewlCFcQ8FLzM29zAIRs=
-X-Google-Smtp-Source: ABdhPJyAaZ/6vVR0qPPoyWiz0yovB0VUvK5knKjOMHb4y4dSFPQXoGgB/EjSzR2pwMmCQpM9xXZ0EExloxsRHGNVW6s=
-X-Received: by 2002:a17:902:c808:b029:e6:4204:f62f with SMTP id
- u8-20020a170902c808b02900e64204f62fmr27505252plx.0.1616419014403; Mon, 22 Mar
- 2021 06:16:54 -0700 (PDT)
+        id S229829AbhCVNVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 09:21:05 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:59878 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232316AbhCVNTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 09:19:14 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1616419154; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Q/r41fIqJ2Y9Toafnn95hP48WRb+YnexiUA7BrVZA/o=;
+ b=LMw98UzCoLHWtk6hMdfC8wNLboVxNJPvGH714mSVKFMXq8OxtuvmRp5sv7cDwAYXYlWaGDMQ
+ j7Z2DcGaa6AQHFQy5mNPNy6FAoH89mC38MmCfKeHlCAv2t8ypPTsW6nUVITObtlqAXBtD6HW
+ vr/p4pfzfqfQnHoyw5uD19vMmwE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 605899354db3bb6801285cb4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Mar 2021 13:18:45
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D44EEC4347C; Mon, 22 Mar 2021 13:18:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 66DEEC4347C;
+        Mon, 22 Mar 2021 13:18:43 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210315082339.9787-1-sander@svanheule.net> <20210315190806.66762-1-sander@svanheule.net>
- <20210315190806.66762-3-sander@svanheule.net> <CAHp75Vc6aaDhVN7LzvLNQjuOPguz+nbfmfpZ7TZHK=fNjCRz8w@mail.gmail.com>
- <a7d410216d35ed2b3015bfdd8e21dafd9c42d9d4.camel@svanheule.net>
- <CAHp75VdrqE0kBwzK9Jk7pZGjyfFnhatfa8UY0z-3T1w1PrbAbw@mail.gmail.com>
- <9d736f272aae42b154a4fdfbcadc1572ee82f516.camel@svanheule.net>
- <CAHp75Vf=-WdJ3U6o1G-Xi4W7tkCzyij0FD3MNY1q0x6bkimxow@mail.gmail.com> <e89125c1ffb56f64c7c2037192e490d56ab12492.camel@svanheule.net>
-In-Reply-To: <e89125c1ffb56f64c7c2037192e490d56ab12492.camel@svanheule.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 22 Mar 2021 15:16:38 +0200
-Message-ID: <CAHp75VdPro54q9_hhdi8m+GkwYDqyvsUthBGjksk2LTkHeYJgA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Bert Vermeulen <bert@biot.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 22 Mar 2021 18:48:43 +0530
+From:   skakit@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
+In-Reply-To: <YEumre0+KKxZ0p6Z@builder.lan>
+References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
+ <YEumre0+KKxZ0p6Z@builder.lan>
+Message-ID: <d1b8925da8197424d73cb9ac0a60b6ac@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 19, 2021 at 11:48 PM Sander Vanheule <sander@svanheule.net> wrote:
-> On Fri, 2021-03-19 at 23:24 +0200, Andy Shevchenko wrote:
-> > On Fri, Mar 19, 2021 at 11:20 PM Sander Vanheule <
-> > sander@svanheule.net> wrote:
-> > > On Fri, 2021-03-19 at 19:57 +0200, Andy Shevchenko wrote:
+Hi Bjorn,
 
-...
+On 2021-03-12 23:06, Bjorn Andersson wrote:
+> On Thu 11 Mar 04:40 CST 2021, satya priya wrote:
+> 
+>> Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
+>> GPIOs, RTC and other PMIC infra modules for SC7280.
+>> 
+> 
+> Overall this looks good, just two small things below.
+> 
+>> Signed-off-by: satya priya <skakit@codeaurora.org>
+>> ---
+>> This patch depends on base DT and board files for SC7280 to merge 
+>> first
+>> https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+>> 
+>>  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104 
+>> ++++++++++++++++++++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
+>>  5 files changed, 292 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi 
+>> b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> new file mode 100644
+>> index 0000000..393b256
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> @@ -0,0 +1,60 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+>> +
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/spmi/spmi.h>
+>> +
+>> +&spmi_bus {
+>> +	pm7325: pmic@1 {
+>> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+>> +		reg = <0x1 SPMI_USID>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		pm7325_tz: temp-alarm@a00 {
+>> +			compatible = "qcom,spmi-temp-alarm";
+>> +			reg = <0xa00>;
+>> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>> +			#thermal-sensor-cells = <0>;
+>> +		};
+>> +
+>> +		pm7325_gpios: gpios@8800 {
+>> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+>> +			reg = <0x8800>;
+>> +			gpio-controller;
+>> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+>> +			#gpio-cells = <2>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&thermal_zones {
+>> +	pm7325_temp_alarm: pm7325_tz {
+> 
+> '_' is not allowed to be used in node names, there's a few of these
+> sprinkled through the patch. Please replace them with '-'.
+> 
 
-> > > The point I was trying to make, is that it isn't an endianess issue.
-> > > I
-> > > shouldn't have used a register with single byte values to try to
-> > > illustrate that.
-> > >
-> > > Consider instead the interrupt masking registers. To write the IMR
-> > > bits
-> > > for port A (GPIO 0-7), a 16-bit value must be written. This value
-> > > (e.g.
-> > > u16 port_a_imr) is always BE, independent of the packing order of the
-> > > ports in the registers:
-> > >
-> > >    // On RTL8380: port A is in the upper word
-> > >    writew(port_a_imr, base + OFFSET_IMR_AB);
-> > >
-> > >    // On RTL9300: port A is in the lower word
-> > >    writew(port_a_imr, base + OFFSET_IMR_AB + 2);
-> > >
-> > > I want the low GPIO lines to be in the lower half-word, so I can
-> > > manipulate GPIO lines 0-15 with simple mask and shift operations.
-> > >
-> > > It just so happens, that all registers needed by bgpio_init contain
-> > > single-byte values. With BGPIO_BIG_ENDIAN_BYTE_ORDER  the port order
-> > > is
-> > > reversed as required, but it's a bit of a misnomer here.
-> >
-> > How many registers (per GPIO / port) do you have?
-> > Can you list them and show endianess of the data for each of them and
-> > for old and new hardware (something like a 3 column table)?
->
-> Each GPIO bank, with 32 GPIO lines, consists of four 8-line ports.
-> There are seven registers per port, but only five are used:
->
->        |        | Data    | RTL8380    | RTL9300
-> Reg    | Offset | type    | byte order | byte order
-> -------+--------+---------+------------+-----------
-> DIR    | 0x08   | 4 * u8  | A-B-C-D    | D-C-B-A
-> DATA   | 0x0C   | 4 * u8  | A-B-C-D    | D-C-B-A
-> ISR    | 0x10   | 4 * u8  | A-B-C-D    | D-C-B-A
-> IMR_AB | 0x14   | 2 * u16 | A-A-B-B    | B-B-A-A
-> IMR_CD | 0x18   | 2 * u16 | C-C-D-D    | D-D-C-C
->
-> The unused other registers are all 4*u8.
+Okay, will replace them.
 
-You mean that they are following the same rules as DIR/DATA/ISR. right?
+>> +		polling-delay-passive = <100>;
+>> +		polling-delay = <0>;
+>> +		thermal-governor = "step_wise";
+>> +		thermal-sensors = <&pm7325_tz>;
+>> +
+>> +		trips {
+>> +			pm7325_trip0: trip0 {
+>> +				temperature = <95000>;
+>> +				hysteresis = <0>;
+>> +				type = "passive";
+>> +			};
+>> +
+>> +			pm7325_trip1: trip1 {
+>> +				temperature = <115000>;
+>> +				hysteresis = <0>;
+>> +				type = "critical";
+>> +			};
+>> +
+>> +			pm7325_trip2: trip2 {
+>> +				temperature = <145000>;
+>> +				hysteresis = <0>;
+>> +				type = "critical";
+>> +			};
+>> +		};
+>> +	};
+>> +};
+> [..]
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 8af6d77..25402d4 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -606,4 +606,12 @@
+>>  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+>>  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+>>  	};
+>> +
+>> +	thermal_zones: thermal-zones {
+>> +	};
+>>  };
+>> +
+>> +#include "pm7325.dtsi"
+>> +#include "pm8350c.dtsi"
+>> +#include "pmk8350.dtsi"
+>> +#include "pmr735a.dtsi"
+> 
+> Is there any particular reason for you including these at the end of
+> sc7270.dtsi, rather than the top like we do in other platforms?
+> 
+> Also, are all SC7280 devices always coming with this quartet? We've 
+> seen
+> variations of this in the past and therefor typically include them from
+> the board dts instead.
+> 
 
-> A-B-C-D means:  (A << 24) | (B << 16) | (C << 8) | D
-> A-A-B-B means:  (A << 16) | B
+No specific reason, will add them in board dts file.
 
-If the above is true for unused registers, it's clearly hardware endianness.
+> Regards,
+> Bjorn
 
-You need special treatment for IMR, but in general it follows the
-logic behind the others.
-
-So, you need some kind of I/O accessors like
- read_u8_reg()
- write_u8_reg()
- read_u16_reg()
- write_u16_reg()
-
-And depending on endianess of hardware to call proper set of them.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks,
+Satya Priya
