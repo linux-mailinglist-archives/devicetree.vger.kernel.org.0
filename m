@@ -2,90 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7FF034507F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 21:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D9BC3451BB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 22:26:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbhCVUMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 16:12:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50206 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230358AbhCVULw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 16:11:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F42276196C;
-        Mon, 22 Mar 2021 20:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616443912;
-        bh=SUjHYsJBeIJrPqPO5nxHKyATiHgntMMjbecPWDGKyk4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=hyxbV7vH/BkAFfvdS+YlHp7E/locQouO+IWAOziL2PH4u9gAtndlRVwQVhDJR2EmA
-         h5l4OTvD5KPoNqd+0qNjuqyCjBzgPkXIZjfwlg40vOOSXpniCtYlRv1FkIa3/xq6+X
-         3xB6OmDf8oX0qEoBP4WLM9YAv1mePWhPq9HlVlQwo1p/VgSMYTtH61nL/wejP2yj1x
-         rZwlatCJ2Pfjyglzz2TNgmM01memM6+RxI4MBvQp0Rcgyojd92n8Y4tB6IxsL8yv9j
-         0J1JvF4F4WLCr5JbYj6JStdJK+RWo9XFjDqIO/75CKAtBKu/xwORUE0WcCq1eUrTm/
-         cqyyppkR86tVw==
-Date:   Mon, 22 Mar 2021 21:11:47 +0000
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC net-next 2/2] dt-bindings: ethernet-phy: define
- `unsupported-mac-connection-types` property
-Message-ID: <20210322211147.56642804@thinkpad>
-In-Reply-To: <20210322195605.GA1463@shell.armlinux.org.uk>
-References: <20210322195001.28036-1-kabel@kernel.org>
-        <20210322195001.28036-2-kabel@kernel.org>
-        <20210322195605.GA1463@shell.armlinux.org.uk>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S229865AbhCVVZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 17:25:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229614AbhCVVZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 17:25:23 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51A0C061574;
+        Mon, 22 Mar 2021 14:25:22 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id m20-20020a7bcb940000b029010cab7e5a9fso11883192wmi.3;
+        Mon, 22 Mar 2021 14:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mQGoNaPsmy1IXWU9jJIw0B6sqnx/pgrCgoYL+xGvia8=;
+        b=DczGeAhbuxcAJ2miEjIX6ySIgzkbdvJh5Dohx3P1qd8EFzuNu5RuoSl76l0zp4UdCq
+         hdbsF5ZjW8oE7IrkpgDDyxJCm8BckCRF9zvZgsSAluS1XuE6U+CeIsZn9i+Gaf1mfH21
+         /p9GAT+lXM36TQSj+jNpyPxiRcl1zyyWbLTt6gXK2e8BpWksPS00OCewOung4uYBt2Pu
+         ZPuASOBFHOYfaMp+LEL+V1oj5VrmeaJDkDqd6KKomlrVNvChbDjU9ns4pVhrW+mmA9Ha
+         coNv+chzKzDooGZpcX7CgtOvb3J4Bf0HHXbBZ4lIdukDADutegWRPQumiWdbU8/1njMA
+         xVZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mQGoNaPsmy1IXWU9jJIw0B6sqnx/pgrCgoYL+xGvia8=;
+        b=q+fqbn7OR8H5btc4Y/EmWxjURGU5RsdssSOa0mtUpXkeaJiTEwP4GNFsEYOkT1ohos
+         Kxir4T4X9HX2mAJsybgZ6zLBTVULpBa1ahE6pnY4sWvMYP3KuugHNJCKyEdNYtvc8VSZ
+         kO6Kz+DfsMR1P0GvkLx/ZSgGhMEftji0eTMLzE9MZ4MqikaJfdhLm/dOMRvHSC+Js2Z9
+         5ZBnsKvyN87eDjCnAHpfPMzZV8p5TxlQzhS8Y+dtlrhkccjGSn8ONcC+kswAJSDK0F2b
+         QDFh1Ok25/q1C9ic87B4Q5yd+Th1U0+0ivPrCoHObJ5CsaRNuNQ9cVuSLa5iqYaAQhOc
+         p4YQ==
+X-Gm-Message-State: AOAM533iuk7ZOlnM7zEPCpmkaJkfny2GMpZUoLkA9RNsjDqZTEGLegve
+        kDiAYUujtIsQbDFafRccxLY1b4HIYjBDy2lb
+X-Google-Smtp-Source: ABdhPJztdGj74fHoag570iExS+t/KivNOuKFaGwEsR48SKLnA6lqAChEvhGiavdnGxfqNdC/Fr7VDg==
+X-Received: by 2002:a1c:e184:: with SMTP id y126mr325641wmg.163.1616448321331;
+        Mon, 22 Mar 2021 14:25:21 -0700 (PDT)
+Received: from hthiery.fritz.box (ip1f1322f8.dynamic.kabel-deutschland.de. [31.19.34.248])
+        by smtp.gmail.com with ESMTPSA id x14sm20264875wrw.13.2021.03.22.14.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Mar 2021 14:25:20 -0700 (PDT)
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, heiko.thiery@gmail.com,
+        michael@walle.cc
+Subject: [PATCH] arm64: dts: imx8mq-kontron-pitx-imx8m: pass phy reset delays
+Date:   Mon, 22 Mar 2021 22:24:46 +0100
+Message-Id: <20210322212445.23410-1-heiko.thiery@gmail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Mar 2021 19:56:05 +0000
-Russell King - ARM Linux admin <linux@armlinux.org.uk> wrote:
+The TI DP83867 PHY datasheet says:
+T1: Post RESET stabilization time == 195us
+T3: Hardware configuration pins transition to output drivers == 64us
+T4: RESET pulse width == 1us
 
-> On Mon, Mar 22, 2021 at 08:49:59PM +0100, Marek Beh=C3=BAn wrote:
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/=
-Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 2766fe45bb98..4c5b8fabbec3 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -136,6 +136,20 @@ properties:
-> >        used. The absence of this property indicates the muxers
-> >        should be configured so that the external PHY is used.
-> > =20
-> > +  unsupported-mac-connection-types:
-> > +    $ref: "ethernet-controller.yaml#/$defs/phy-connection-type-array"
-> > +    description:
-> > +      The PHY device may support different interface types for
-> > +      connecting the Ethernet MAC device to the PHY device (i.e.
-> > +      rgmii, sgmii, xaui, ...), but not all of these interface
-> > +      types must necessarily be supported for a specific board
-> > +      (either not all of them are wired, or there is a known bug
-> > +      for a specific mode).
-> > +      This property specifies a list of interface modes are not
-> > +      supported on the board. =20
->=20
-> I think this needs to be clearer. "This property specifies a list
-> of interface modes supported by the PHY hardware but are not
-> supported on the board."
->=20
-> I would also suggest having a think about a PHY that supports some
-> interface types that we don't have support in the kernel for, but
-> which also are not part of the board. Should these be listed
-> somehow as well? If not, how do we deal with the kernel later gaining
-> support for those interface modes, potentially the PHY driver as well,
-> and then having a load of boards not listing this?
->=20
-> My feeling is that listing negative properties presents something of
-> a problem, and we ought to stick with boards specifying what they
-> support, rather than what they don't.
+So with a little overhead set 'reset-assert-us' to 10us (T4) and
+'reset-deassert-us' to 280us (T1+T3).
 
-That is a good point. And if this alternative `supported-modes` property
-is missing, we can just assume that all modes are supported, in order
-to be backward compatible.
+Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+index 91a9ceb10305..f593e4ff62e1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+@@ -90,6 +90,8 @@ ethphy0: ethernet-phy@0 {
+ 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
+ 			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 			reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10>;
++			reset-deassert-us = <280>;
+ 		};
+ 	};
+ };
+-- 
+2.30.0
+
