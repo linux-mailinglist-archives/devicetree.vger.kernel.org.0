@@ -2,71 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3E53450EE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 21:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2500E34518D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 22:12:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbhCVUhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 16:37:48 -0400
-Received: from mx3.wp.pl ([212.77.101.10]:33427 "EHLO mx3.wp.pl"
+        id S230364AbhCVVLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 17:11:40 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41614 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231605AbhCVUhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 16:37:43 -0400
-Received: (wp-smtpd smtp.wp.pl 20356 invoked from network); 22 Mar 2021 21:37:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1616445462; bh=o94tkwrqVWEmgKEXCHzrLb0JlcxwSS/Fe4MA+Z0KhV0=;
-          h=From:To:Cc:Subject;
-          b=C+NEBhkE10X90SjiNJVqb8+fj29E8SUF4zlDOwgnOUupKQ9seEAnplYLN4R+LORMF
-           ysLF6s9gozG1TRasensqIKrwLrojLbF/xkZbMXte4wpqKsHcti0LlQ6r8t44aCJYvI
-           6nLt+F/fhelJt9eEkQVbhv/as2xN6EZYSyy2QFqM=
-Received: from riviera.nat.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <hauke@hauke-m.de>; 22 Mar 2021 21:37:41 +0100
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     hauke@hauke-m.de, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, linux@armlinux.org.uk, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v4 3/3] dt-bindings: net: dsa: lantiq: add xRx300 and xRX330 switch bindings
-Date:   Mon, 22 Mar 2021 21:37:17 +0100
-Message-Id: <20210322203717.20616-4-olek2@wp.pl>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210322203717.20616-1-olek2@wp.pl>
-References: <20210322203717.20616-1-olek2@wp.pl>
+        id S229526AbhCVVLK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 17:11:10 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lORpI-00CT0A-M0; Mon, 22 Mar 2021 22:11:04 +0100
+Date:   Mon, 22 Mar 2021 22:11:04 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC net-next 1/2] dt-bindings: ethernet-controller: create a
+ type for PHY interface modes
+Message-ID: <YFkH6AKEAaPbhy9f@lunn.ch>
+References: <20210322195001.28036-1-kabel@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                      
-X-WP-MailID: f6e22edb542e4ae8ec30c62ce8667e97
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0100004 [Ubcg]                               
+In-Reply-To: <20210322195001.28036-1-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for xRX300 and xRX330 SoCs.
+On Mon, Mar 22, 2021 at 08:49:58PM +0100, Marek Behún wrote:
+> In order to be able to define a property describing an array of PHY
+> interface modes, we need to change the current scalar
+> `phy-connection-type`, which lists the possible PHY interface modes, to
+> an array of length 1 (otherwise we would need to define the same list at
+> two different places).
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi Marek
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt b/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-index 886cbe8ffb38..e3829d3e480e 100644
---- a/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/lantiq-gswip.txt
-@@ -5,6 +5,10 @@ Required properties for GSWIP core:
- 
- - compatible	: "lantiq,xrx200-gswip" for the embedded GSWIP in the
- 		  xRX200 SoC
-+		  "lantiq,xrx300-gswip" for the embedded GSWIP in the
-+		  xRX300 SoC
-+		  "lantiq,xrx330-gswip" for the embedded GSWIP in the
-+		  xRX330 SoC
- - reg		: memory range of the GSWIP core registers
- 		: memory range of the GSWIP MDIO registers
- 		: memory range of the GSWIP MII registers
--- 
-2.20.1
+Please could you include a 0/2 patch which explains the big
+picture. It is not clear to me why you need these properties.  What is
+the problem you are trying to solve? That should be in the patch
+series cover note.
 
+	 Andrew
