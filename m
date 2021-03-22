@@ -2,140 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3706F3452D5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 00:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2490D34531E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 00:39:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbhCVXMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 19:12:52 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:45912 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbhCVXMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 19:12:20 -0400
-Received: by mail-oi1-f174.google.com with SMTP id d12so14951401oiw.12;
-        Mon, 22 Mar 2021 16:12:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=McQT4s4j4Lcn3Ti7MbeKUQbdrUGlmk29d7hOHsI/ts0=;
-        b=lhwKYsR/eKSewzvsyqNWVxsnAYgo3Ado9f2V1yqTzn6aDwYrglvIPVxmDb9ydh6gQm
-         2c7rDQAK8pA1Sh1D0/WVVZCQQjHZZ7nutTl82bZZCbx7Z1tF/CtGLEVkl3CludJ2iyYi
-         1kGPwQlIJGCt8DOYAjyYOPw7rOHNRRVdqpLA5vhi9CWl4L8tTqq0Z5jE7pzUa3z1pdQf
-         LM03iorCaWnQ5VH2g4HQ3yz1Rk36xt7umW6z/KXZjDQdPUzphnpTXBWnlRT9Utajuhhd
-         EgijnD0+eAQektSmT7prTg6Liv1YM6r+3kb6F8QBS6Bo+20M96O7gwLS506EAS0A/vOm
-         yJBQ==
-X-Gm-Message-State: AOAM532Fo+6iHamJRnBIU3L2BKicdL7M5ZeJ/eXAGGUfMyoCkSGehNrh
-        cXB5XzT+xTmb+EKFtyygwABBlfDdovg=
-X-Google-Smtp-Source: ABdhPJxPt5TwswTrvlJO6XxM4Tpe3zdnqW/9eFPTjO90E4sAAuGkVTWYB7wZck6o23Zvb5PAMTe5EA==
-X-Received: by 2002:aca:ab86:: with SMTP id u128mr1040692oie.47.1616454739781;
-        Mon, 22 Mar 2021 16:12:19 -0700 (PDT)
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com. [209.85.210.43])
-        by smtp.gmail.com with ESMTPSA id h59sm3818999otb.29.2021.03.22.16.12.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Mar 2021 16:12:19 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so17660372ota.9;
-        Mon, 22 Mar 2021 16:12:18 -0700 (PDT)
-X-Received: by 2002:a05:6830:2043:: with SMTP id f3mr1853763otp.63.1616454738360;
- Mon, 22 Mar 2021 16:12:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210318083438.26536-1-michael@walle.cc>
-In-Reply-To: <20210318083438.26536-1-michael@walle.cc>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Mon, 22 Mar 2021 18:12:06 -0500
-X-Gmail-Original-Message-ID: <CADRPPNR=xy_oBZFS+hmO1k+uu2ckFyrK9EUP77N3buU5XpuHrw@mail.gmail.com>
-Message-ID: <CADRPPNR=xy_oBZFS+hmO1k+uu2ckFyrK9EUP77N3buU5XpuHrw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: ls1028a: fix optee node
-To:     Michael Walle <michael@walle.cc>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        id S230188AbhCVXjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 19:39:11 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41772 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230009AbhCVXil (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 19:38:41 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lOU7e-00CUJd-OG; Tue, 23 Mar 2021 00:38:10 +0100
+Date:   Tue, 23 Mar 2021 00:38:10 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Guillaume Tucker <guillaume.tucker@collabora.com>,
-        "kernelci.org bot" <bot@kernelci.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] net: ethernet: actions: Add Actions Semi Owl
+ Ethernet MAC driver
+Message-ID: <YFkqYqgwDhV/bBlc@lunn.ch>
+References: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
+ <ab25bd143589d3c1894cdb3189670efa62ed1440.1616368101.git.cristian.ciocaltea@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab25bd143589d3c1894cdb3189670efa62ed1440.1616368101.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 3:36 AM Michael Walle <michael@walle.cc> wrote:
->
-> Don't enable the optee node in the SoC include. It is an optional
-> component and actually, if enabled, breaks boards which doesn't have it.
-
-Hi Shawn,
-
-Shall we make this a general rule?  I see quite a few SoC dtsi files
-are having the optee node enabled by default.
-
-Regards,
-Leo
-
->
-> This reverts commit 48787485f8de ("arm64: dts: ls1028a: enable optee
-> node") and enables the node per board, assuming the intend of the
-> original author was to enable OPTEE for the LS1028A-RDB and the
-> LS1028A-QDS.
->
-> Fixes: 48787485f8de ("arm64: dts: ls1028a: enable optee node")
-> Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
-> Reported-by: "kernelci.org bot" <bot@kernelci.org>
-> Tested-by: Michael Walle <michael@walle.cc>
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 4 ++++
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 4 ++++
->  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    | 3 ++-
->  3 files changed, 10 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> index fbcba9cb8503..060d3c79244d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> @@ -327,6 +327,10 @@
->         status = "okay";
->  };
->
-> +&optee {
-> +       status = "okay";
-> +};
+> +static void owl_emac_set_multicast(struct net_device *netdev, int count)
+> +{
+> +	struct owl_emac_priv *priv = netdev_priv(netdev);
+> +	struct netdev_hw_addr *ha;
+> +	int index = 0;
 > +
->  &sai1 {
->         status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> index 41ae6e7675ba..1bdf0104d492 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> @@ -274,6 +274,10 @@
->         status = "okay";
->  };
->
-> +&optee {
-> +       status = "okay";
-> +};
+> +	if (count <= 0) {
+> +		priv->mcaddr_list.count = 0;
+> +		return;
+> +	}
 > +
->  &sai4 {
->         status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index 50d277eb2a54..e2007ebacd69 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -92,9 +92,10 @@
->         };
->
->         firmware {
-> -               optee {
-> +               optee: optee {
->                         compatible = "linaro,optee-tz";
->                         method = "smc";
-> +                       status = "disabled";
->                 };
->         };
->
-> --
-> 2.20.1
->
+> +	netdev_for_each_mc_addr(ha, netdev) {
+> +		if (!is_multicast_ether_addr(ha->addr))
+> +			continue;
+
+Is this possible?
+
+> +
+> +		WARN_ON(index >= OWL_EMAC_MAX_MULTICAST_ADDRS);
+> +		ether_addr_copy(priv->mcaddr_list.addrs[index++], ha->addr);
+> +	}
+> +
+> +	priv->mcaddr_list.count = index;
+> +
+> +	owl_emac_setup_frame_xmit(priv);
+> +}
+> +
+> +static void owl_emac_ndo_set_rx_mode(struct net_device *netdev)
+> +{
+> +	struct owl_emac_priv *priv = netdev_priv(netdev);
+> +	u32 status, val = 0;
+> +	int mcast_count = 0;
+> +
+> +	if (netdev->flags & IFF_PROMISC) {
+> +		val = OWL_EMAC_BIT_MAC_CSR6_PR;
+> +	} else if (netdev->flags & IFF_ALLMULTI) {
+> +		val = OWL_EMAC_BIT_MAC_CSR6_PM;
+> +	} else if (netdev->flags & IFF_MULTICAST) {
+> +		mcast_count = netdev_mc_count(netdev);
+> +
+> +		if (mcast_count > OWL_EMAC_MAX_MULTICAST_ADDRS) {
+> +			val = OWL_EMAC_BIT_MAC_CSR6_PM;
+> +			mcast_count = 0;
+> +		}
+> +	}
+> +
+> +	spin_lock_bh(&priv->lock);
+> +
+> +	/* Temporarily stop DMA TX & RX. */
+> +	status = owl_emac_dma_cmd_stop(priv);
+> +
+> +	/* Update operation modes. */
+> +	owl_emac_reg_update(priv, OWL_EMAC_REG_MAC_CSR6,
+> +			    OWL_EMAC_BIT_MAC_CSR6_PR | OWL_EMAC_BIT_MAC_CSR6_PM,
+> +			    val);
+> +
+> +	/* Restore DMA TX & RX status. */
+> +	owl_emac_dma_cmd_set(priv, status);
+> +
+> +	spin_unlock_bh(&priv->lock);
+> +
+> +	/* Set/reset multicast addr list. */
+> +	owl_emac_set_multicast(netdev, mcast_count);
+> +}
+
+I think this can be simplified. At least, you had me going around in
+circles a while trying to see if WARN_ON() could be triggered from
+user space.
+
+If you have more than OWL_EMAC_MAX_MULTICAST_ADDRS MC addresses, you
+go into promisc mode. Can you then skip calling
+owl_emac_set_multicast(), which appears not to do too much useful when
+passed 0?
+
+       Andrew
