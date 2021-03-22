@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2A1344E53
+	by mail.lfdr.de (Postfix) with ESMTP id BFE61344E55
 	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 19:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230440AbhCVSUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 14:20:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbhCVSTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 14:19:49 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59EDFC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 11:19:49 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id kr3-20020a17090b4903b02900c096fc01deso8981423pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 11:19:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QB1Sqrq0V8LlXGcBPi7p2agn7+zDjVnfX+PVcN8WlZg=;
-        b=YLk6E+p2so6CZCwnzaSLKo2CTKMc57LYAeXASu1nf7lMP/IKk3tEyBYe7GKDmCYDQb
-         lEvBcR8VkxdxHPabVvNVJOrRYGCddifGO3nW+lcpIIGVmSQLwnoaIvcOIFimurTlP7S9
-         PbaQLjZCzocwcs5BWKgYu9JHaKV+FljfJH3WaBA/ILwSLUcZAfo4GU76ayisMgFySTP4
-         jcjVYo9dqpm1w5OqQWDAbYWEVr7drITxTGseCTv3mlx0OdXMKicO4sE44FZx8FPR9q+P
-         M+wahs6elMJbjCFYsImHCDKrPa/Dql4OL5qtIJbxINSf9hzm6cCJs7P1HbA8qj6xXvXS
-         bafw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QB1Sqrq0V8LlXGcBPi7p2agn7+zDjVnfX+PVcN8WlZg=;
-        b=ahLp2B5/ikhFqz8s5t9KyHWzc+NBrfXcU1IdI3BeKmqIKciu7ebY5J23GKLLCKz26e
-         rmptQfogAqiwULS7Z6/k2FJFMrJE4qtWUWXjNyAXekIGTelfWaqE7mfvyCfVIji8g02U
-         L6VrNUQ6K5piWoQvDrTvS506650LWgcjAWLWunQvLaNyTBd3p5xwa2OIrUAqCBD0L6eG
-         Fg3WNDvNmn3zXVh0aWbFcKJNs/diZU3Ht8pkowLzD4RELyvg6VbSBZqpPNiJbndAazB6
-         e8A3YwfI/gDXLlWWPcpBv+Pf6EasCmu1yC9KRpGzqMmHHWyy9ed8T704fn7qXMbLOoyn
-         ZLlA==
-X-Gm-Message-State: AOAM533i8PjH0iaUSevJEuECujtZEIlArn7bZsGlE8rNl5sY7a2knMVh
-        /ayRZiD4l7hB1eyFHMHJjtNNlVHg2T/kwAPrMRE=
-X-Google-Smtp-Source: ABdhPJyH4rj1NHfQfGhvZvnNVxchblLS8QQBz3Nq7DQoj9F63pThbAYHa4+btp5OaTCwZxQ5viDbPd3xiccP+2chdos=
-X-Received: by 2002:a17:90b:94c:: with SMTP id dw12mr343932pjb.119.1616437188774;
- Mon, 22 Mar 2021 11:19:48 -0700 (PDT)
+        id S231409AbhCVSUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 14:20:14 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:39321 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231334AbhCVSUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 14:20:07 -0400
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 3347122235;
+        Mon, 22 Mar 2021 19:19:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1616437203;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SxpId9qwMWCyRo+nBXdhG1wstwEIVslF9/SHxhhLN5s=;
+        b=KWo0c2fipzhzAxOznyiMV3nndYf9T5pqY15N4oPf5BKWqv3AUM9i/+/bQ2PfJirbqak137
+        gxfK2iQ8CBKDA/w81/XJ6cDmO94ifsGuZ2Ip7eEc8AzZ7qqYTE9aRL1A3jscTjRU+4WaNV
+        ZNot83yCr9OMiYMJcJ0LgiQg9tW9vsQ=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Michael Walle <michael@walle.cc>
+Subject: [RFC PATCH 0/4] mtd: core: OTP nvmem provider support
+Date:   Mon, 22 Mar 2021 19:19:45 +0100
+Message-Id: <20210322181949.2805-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20201105174434.1817539-1-l.stach@pengutronix.de>
- <20201105174434.1817539-9-l.stach@pengutronix.de> <20201109201557.GA1690230@bogus>
- <5b6c97dc74ccb38107a50972427d091cdb114209.camel@pengutronix.de>
-In-Reply-To: <5b6c97dc74ccb38107a50972427d091cdb114209.camel@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 22 Mar 2021 13:19:37 -0500
-Message-ID: <CAHCN7xLdkEd0G3fa9gAp-xvKZ-bYmvcyn-8OEbgNjBJyCCOs9g@mail.gmail.com>
-Subject: Re: [PATCH v2 08/13] dt-bindings: imx: gpcv2: add support for
- optional resets
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 8:11 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Am Montag, den 09.11.2020, 14:15 -0600 schrieb Rob Herring:
-> > On Thu, Nov 05, 2020 at 06:44:29PM +0100, Lucas Stach wrote:
-> > > For some domains the resets of the devices in the domain are not
-> > > automatically triggered. Add an optional resets property to allow
-> > > the GPC driver to trigger those resets explicitly.
-> > >
-> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > > ---
-> > >  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > > index a96e6dbf1858..4330c73a2c30 100644
-> > > --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > > +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > > @@ -66,6 +66,13 @@ properties:
-> > >
-> > >            power-supply: true
-> > >
-> > > +          resets:
-> > > +            description: |
-> > > +              A number of phandles to resets that need to be asserted during
-> > > +              power-up sequencing of the domain.
-> > > +            minItems: 1
-> > > +            maxItems: 4
-> >
-> > You need to define what each reset is.
->
-> I can't. The resets belong to devices located inside the power domain,
-> which need to be held in reset across the power-up sequence. So I have
-> no means to specify what each reset is in a generic power-domain
-> binding. Same situation as with the clocks in this binding actually.
->
+The goal is to fetch a (base) MAC address from the OTP region of a SPI NOR
+flash.
 
-Rob,
+This is the first part, where I try to add the nvmem provider support to
+the MTD core.
 
-Do you have any guidance on how we might be able to give you want you
-want so we can move forward?  This power-domain driver will be used
-for a variety of Freescale/NXP IMX SoC's, and looking at other power
-domain controllers [1], they don't explicitly define what each reset
-is.  Since the resets for this family vary from SoC to SoC, the number
-of resets will change from one SoC to another.  If you could give us a
-suggestion or an example of a board that has the power-domain resets
-do what you ask, it would help move this forward.  Without this
-driver, several boards are unable to use a significant number of
-peripherals.
+I'm not sure about the device tree bindings. Consider the following two
+variants:
 
-adam
-[1] - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml?h=v5.12-rc4
+(1)
+    flash@0 {
+        ..
 
-> Regards,
-> Lucas
->
+        otp {
+            compatible = "mtd-user-otp";
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+            serial-number@0 {
+                reg = <0x0 0x8>;
+            };
+        };
+    };
+
+(2)
+    flash@0 {
+        ..
+
+        otp {
+            compatible = "mtd-user-otp";
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+			some-useful-name {
+                compatible = "nvmem-cells";
+
+                serial-number@0 {
+                    reg = <0x0 0x8>;
+                };
+			};
+        };
+    };
+
+Both bindings use a subnode "opt[-N]". We cannot have the nvmem cells as
+children to the flash node because of the legacy partition binding.
+
+(1) seems to be the form which is used almost everywhere in the kernel.
+That is, the nvmem cells are just children of the parent node.
+
+(2) seem to be more natural, because there might also be other properties
+inside the otp subnode and might be more future-proof.
+
+At the moment this patch implements (1).
+
+Michael Walle (4):
+  nvmem: core: allow specifying of_node
+  dt-bindings: mtd: add YAML schema for the generic MTD bindings
+  dt-bindings: mtd: add OTP bindings
+  mtd: core: add OTP nvmem provider support
+
+ .../devicetree/bindings/mtd/common.txt        |  16 +-
+ .../devicetree/bindings/mtd/mtd.yaml          | 110 +++++++++++++
+ drivers/mtd/mtdcore.c                         | 149 ++++++++++++++++++
+ drivers/nvmem/core.c                          |   4 +-
+ include/linux/mtd/mtd.h                       |   2 +
+ include/linux/nvmem-provider.h                |   2 +
+ 6 files changed, 267 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mtd.yaml
+
+-- 
+2.20.1
+
