@@ -2,110 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CB38343E7E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 11:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14156343E93
+	for <lists+devicetree@lfdr.de>; Mon, 22 Mar 2021 11:57:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230202AbhCVKyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 06:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230346AbhCVKyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 06:54:35 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79CAEC061574;
-        Mon, 22 Mar 2021 03:54:35 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id i81so11080139oif.6;
-        Mon, 22 Mar 2021 03:54:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4btGnEyoNuVChZYQdjnSeuZUMKkjapFAE1UjjfFOhXg=;
-        b=AXSN3tkM/O+AP8mifoDYebSrDhypdDFA9bIsFvE5KVjYYFhKewHRdSrP2xlEH338Ye
-         B5IsGT7pdRwi5OhPQV7ac884568cL/y2GFCGxYTn2VF8nKhN4kPr4P90UQktyRQSiSdC
-         lGFPjEETdE3WM9X+q7HbQp1xem8xk+qNsA+H4K7l6F/mdPAY54I8k7Airj4adsZq6hd2
-         X1etzfzBj459ebL2L46klon9a2hc9n7ldemCwGtKKuJgc6M50qANR21zXDWY8PklcKDk
-         MVzSZGANIzKVZmTLcqGUnbypNtZDlT4vNa1Wl5TIAZIE9f3CBn/FGZrv/XkfrRc9gLY1
-         0MDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4btGnEyoNuVChZYQdjnSeuZUMKkjapFAE1UjjfFOhXg=;
-        b=QqIZYEb/uca2TKuvShb6Ehxg6iYKmvUUQ8c+R4zg5CgqzExfDi7XR2dT1BDB7o93ZH
-         kDTc5dXhdm3uJDefLJsEBsH/d8Tym+rn+IpCLEuN/RCbvcLT9Q1pOOmBtJNu1OycdoEf
-         aAheLcDd7WeFRuYbIYLgJEr/GVHu+EuQDtL9B7NogLGloTj6V4dzh9+IWeKz+vyDQgr3
-         LexTRoWQBGkQOcFR1e8jVKvag7f8cre0Zvq1LbUd25Q65rGpglRRSZDCQs39qP3LDU7S
-         ZVDoP9uHT5AA+Khu5w+WgsIwP0rqo+0jow9OeuffKygqfaY6Ko8MiCOfKXetjuU2e0NA
-         P9lg==
-X-Gm-Message-State: AOAM533pC/QkWESfghyxAzXhVFUs/3b6QkNI/Pb1dllUDJ0cpordvcX5
-        ZDZlOmLg+Jc0h1h7INA4VBW7m9L0I4Fl2MGfvpo=
-X-Google-Smtp-Source: ABdhPJxiyHeNB8axrMRnudukjDpmAsBj09fDs/WjMXObgtI2684KhRJG7sNOZQx2D4NZTsnAJZgIPi138fY+Ik+P+O4=
-X-Received: by 2002:a05:6808:14c8:: with SMTP id f8mr9860256oiw.55.1616410474915;
- Mon, 22 Mar 2021 03:54:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <1608547554-6602-1-git-send-email-gene.chen.richtek@gmail.com>
- <1608547554-6602-4-git-send-email-gene.chen.richtek@gmail.com>
- <20210219104724.GC19207@duo.ucw.cz> <CAE+NS36NvH-s_UOR8RUZA_gd+FUZ5oLqb=n0s41dSMYWDn9DnA@mail.gmail.com>
-In-Reply-To: <CAE+NS36NvH-s_UOR8RUZA_gd+FUZ5oLqb=n0s41dSMYWDn9DnA@mail.gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Mon, 22 Mar 2021 18:54:23 +0800
-Message-ID: <CAE+NS37XOgRotVTBLeFtbLYEksRydOLBHdCfMH9fTFNZ5J+2Dw@mail.gmail.com>
-Subject: Re: [PATCH v13 3/5] dt-bindings: leds: Add LED_FUNCTION_MOONLIGHT definitions
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        id S230202AbhCVK46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 06:56:58 -0400
+Received: from mail.cognitivepilot.com ([91.218.251.140]:10837 "EHLO
+        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230429AbhCVK4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 06:56:34 -0400
+Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4F3rz30V3dzq5B4Y
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 13:56:31 +0300 (MSK)
+X-Virus-Scanned: amavisd-new at cognitivepilot.com
+X-Spam-Flag: NO
+X-Spam-Score: 2.247
+X-Spam-Level: **
+X-Spam-Status: No, score=2.247 tagged_above=2 required=6.2
+        tests=[RDNS_NONE=1.274, SPF_HELO_NONE=0.001, SPF_SOFTFAIL=0.972]
+        autolearn=no autolearn_force=no
+Received: from mail.cognitivepilot.com ([127.0.0.1])
+        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id GH3mJliYtaoW for <devicetree@vger.kernel.org>;
+        Mon, 22 Mar 2021 13:56:30 +0300 (MSK)
+Received: from localhost.localdomain (unknown [185.68.147.27])
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4F3rz21LFWzmfJsj;
+        Mon, 22 Mar 2021 13:56:30 +0300 (MSK)
+From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
+To:     devicetree@vger.kernel.org
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-kernel@lists.infradead.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Subject: [PATCH v2 0/4] add devicetree for Forlinx FETA40i-C & OKA40i-C
+Date:   Mon, 22 Mar 2021 13:55:34 +0300
+Message-Id: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gene Chen <gene.chen.richtek@gmail.com> =E6=96=BC 2021=E5=B9=B43=E6=9C=882=
-=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:08=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Pavel Machek <pavel@ucw.cz> =E6=96=BC 2021=E5=B9=B42=E6=9C=8819=E6=97=A5 =
-=E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:47=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > Hi!
-> >
-> > > From: Gene Chen <gene_chen@richtek.com>
-> > >
-> > > Add LED_FUNCTION_MOONLIGHT definitions
-> > >
-> > > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> >
-> > No, sorry, I don't believe we need another define for flash/torch.
-> >
->
-> As previous discuss,
-> > We use term "Moonlight" as reference says
-> > "When you are trying to imitate moonlight you need to use low voltage,
-> > softer lighting. You don=E2=80=99t want something that=E2=80=99s too br=
-ight"
-> > which is focus on brightness instead of color.
->
-> If any concern about this change, maybe we use LED_FUNCTION_INDICATOR ins=
-tead?
-> (refs: https://lkml.org/lkml/2020/11/24/1267)
+This patch series adds devicetree support for the Forlinx FETA40i-C SoM
+and OKA40i-C carrier board/devboard.
 
-Is there any update?
+The FETA40i-C is an "industrial/automotive" SoM by Forlinx.
 
-> > Best regards,
-> >                                                                 Pavel
-> > --
-> > http://www.livejournal.com/~pavelmachek
+SoM specs:
+- SoC: R40 or A40i
+- PMIC: AXP221S
+- RAM: 1GiB/2GiB DDR3 (dual-rank)
+- eMMC: 8GB,
+- Mates with carrier board via four 80-pin connectors (AXK6F80337YG).
+
+OKA40i-C is a carrier board by the same manufacturer for this SoM,
+whose main purpose is as a development board with a variety of
+peripherals:
+
+- Power: DC5V barrel or USB OTG or 4.2V Lipo battery
+- Video out: HDMI, TV out, LVDS
+- WiFi+Bluetooth: RL-UM02WBS-8723BU-V1.2 (802.11 b/g/n, BT V2.1/3.0/4.0)
+- Ethernet: 10/100Mbps
+- Storage: µSD, fullsize SD, eMMC (on SoM), SATA
+- USB: 3 x USB2.0 Host (2 via hub, 1 native), 1 x USB2.0 OTG (micro-B)
+- UART: RS232, RS485, 4 3.3v uarts (of which 2 have RTS/CTS)
+- Other I/O: SPI x2, TWI, SDIO header, GPIO header, JTAG header
+- Mini PCIe slot with sim holder for WLAN modem
+- Smart card holder
+- RTC (RX8010SJ)
+- Two user LEDs
+- Three user buttons (via KeyADC).
+
+Of the board features listed above, support for the following has *NOT*
+been tested:
+- TV out & LVDS
+- SATA
+- Smart cards
+- KeyADC buttons (no support)
+
+The series consists of four patches, the first three of which are mutually
+independent (although patch 2 may not apply without patch 1).
+The last patch depends on patches 2 and 3.
+
+Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+---
+
+Changelog:
+
+v1 -> v2:
+
+* split patch into series
+  * edits to sun8i-r40.dtsi are now in separate patch
+* add dt bindings for compatible strings (in separate patch)
+* add /omit-if-no-ref/ to the new uart pin nodes
+  * preliminary patch adds the keyword to existing nodes for UART0 & UART3
+* whitespace fixes as suggested by checkpatch.pl
+
+
+draft2 -> v1: 
+
+* fix indentation from spaces to tabs;
+* remove commented properties and other extraneous comments;
+* enable uarts 2,4,5&7 and alias uart3;
+* update the user-LED bindings;
+* remove mmc1 & add mmc3 binding;
+* bring together the max/min microvolts on three regulators;
+    * The reported 2.5v value in ALDO2 comes from U-Boot, where apparently
+      this is the KConfig default for this regulator. The correct voltage
+      is 1.8v.
+* remove extraneous `always-on`s from regulators dldo1 and eldo2/3;
+* remove reg_dldo3 node entirely.
+
+
+
+Ivan Uvarov (4):
+  ARM: dts: sun8i: r40: add /omit-if-no-ref/ to pinmux nodes for UARTs 0&3
+  ARM: dts: sun8i: r40: add pinmux settings for MMC3 and UARTs 2,4,5&7
+  dt-bindings: arm: add compatible strings for Forlinx OKA40i-C
+  ARM: dts: sun8i: r40: add devicetree for Forlinx FETA40i-C & OKA40i-C
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/sun8i-r40-feta40i.dtsi      |  66 +++++
+ arch/arm/boot/dts/sun8i-r40-oka40i-c.dts      | 243 ++++++++++++++++++
+ arch/arm/boot/dts/sun8i-r40.dtsi              |  43 ++++
+ 6 files changed, 360 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
+
+-- 
+2.25.1
+
