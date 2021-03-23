@@ -2,300 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C327734581A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 08:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95865345825
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 08:04:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbhCWHCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 03:02:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbhCWHBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 03:01:43 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B146C061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:01:42 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id v186so10745482pgv.7
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:01:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=fKnECfkV+SG90cvN0DOvRc0qoLw7OOrrpIiUr3W81zg=;
-        b=SCZVM46+SoWCELmYc4l9vtMe4ZSBI6fIZdXAQfVwM2Le4DLRaw/CbL7jgIv/iV+D96
-         ax1GjjUATepTB/S+NmJTGe9cdKV5i8lNpB+/veymz4oOAPTneQ4Oyrn3ZyScwyiUW64/
-         hFSfHK8s/CU8AtuLgX8RWnpLnWDlaFGkOXAOE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=fKnECfkV+SG90cvN0DOvRc0qoLw7OOrrpIiUr3W81zg=;
-        b=luCT2edzw8eBdBGtNPtHuKrze83kieuF+MjA2DOJFGT7Y+AvKzK/HzRDWUnkJi6CIP
-         9uIVqk5C+SChE2Z07ENBQ7WE5txniHry1FyXNYdTt9QAlZoEaafX+2mk3hVxJxgG5av/
-         8st0jqUVkl+Fii87fuS3lc3lMNoDTfzdHXCeCnX+wXv82wq8jEWu7T9i1Ahk4FuoUZtA
-         AdNzRqT1AICywbfDWyAGLgbU0JJ6FaI7JIX2ov22GsGsapLjwYx7L+QajtX+mp9q3Oh0
-         9o77+AYaPciv4G3TQmYFzNh1X7akqNp9YJiCfCebR7NAS4PK1KJqxBiU+zECCRiDNAHP
-         Hb7Q==
-X-Gm-Message-State: AOAM530jsh+EsSQe1IVWNDXU8dUBx8i7HQGm/91DsebqnvRIGz5a7TWx
-        ddi+Qq7y3KFpSI6+49njMUZJgA==
-X-Google-Smtp-Source: ABdhPJy2qDd9Se7BqIP+wL4emg4fHBvfz5kk2mpVmnYx7YsGoVef1eXEKdkl0Xl1rquhxYQYl2oavw==
-X-Received: by 2002:a17:902:ec84:b029:e5:bd05:4a98 with SMTP id x4-20020a170902ec84b02900e5bd054a98mr4020274plg.76.1616482901435;
-        Tue, 23 Mar 2021 00:01:41 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:e90d:d453:87ae:2e10])
-        by smtp.gmail.com with ESMTPSA id l10sm14927941pfc.125.2021.03.23.00.01.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 00:01:41 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S230100AbhCWHDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 03:03:46 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52446 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230045AbhCWHDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 03:03:14 -0400
+X-UUID: 3f500fdb6c69468fa657cf43a21cb5fa-20210323
+X-UUID: 3f500fdb6c69468fa657cf43a21cb5fa-20210323
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1194524314; Tue, 23 Mar 2021 15:03:11 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 23 Mar 2021 15:03:09 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 23 Mar 2021 15:03:08 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Subject: [PATCH v2 01/13] dt-bindings: usb: mtk-xhci: support property usb2-lpm-disable
+Date:   Tue, 23 Mar 2021 15:02:43 +0800
+Message-ID: <1616482975-17841-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
-References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        adrian.hunter@intel.com, robh+dt@kernel.org, ulf.hansson@linaro.org
-Date:   Tue, 23 Mar 2021 00:01:39 -0700
-Message-ID: <161648289959.3012082.11356063123403968180@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 6BAD75C4FD4F36F94A318E365A514E122BC97291D6295AB56703BF5B33020AF82000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shaik Sajida Bhanu (2021-03-20 11:17:00)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dt=
-s/qcom/sc7280-idp.dts
-> index 54d2cb3..4105263 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -8,6 +8,7 @@
->  /dts-v1/;
-> =20
->  #include "sc7280.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
+Add support common property usb2-lpm-disable
 
-Please include this before sc7280.dtsi
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v2: no changes
+---
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> =20
->  / {
->         model =3D "Qualcomm Technologies, Inc. sc7280 IDP platform";
-> @@ -242,6 +243,30 @@
->         status =3D "okay";
->  };
-> =20
-> +&sdhc_1 {
-> +       status =3D "okay";
-> +
-> +       pinctrl-names =3D "default", "sleep";
-> +       pinctrl-0 =3D <&sdc1_on>;
-> +       pinctrl-1 =3D <&sdc1_off>;
-> +
-> +       vmmc-supply =3D <&vreg_l7b_2p9>;
-> +       vqmmc-supply =3D <&vreg_l19b_1p8>;
-> +};
-> +
-> +&sdhc_2 {
-> +       status =3D "okay";
-> +
-> +       pinctrl-names =3D "default","sleep";
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 14f40efb3b22..2246d29a5e4e 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -103,6 +103,10 @@ properties:
+     description: supports USB3.0 LPM
+     type: boolean
+ 
++  usb2-lpm-disable:
++    description: disable USB2 HW LPM
++    type: boolean
++
+   imod-interval-ns:
+     description:
+       Interrupt moderation interval value, it is 8 times as much as that
+-- 
+2.18.0
 
-Please add a space after the comma ^
-
-> +       pinctrl-0 =3D <&sdc2_on>;
-> +       pinctrl-1 =3D <&sdc2_off>;
-> +
-> +       vmmc-supply =3D <&vreg_l9c_2p9>;
-> +       vqmmc-supply =3D <&vreg_l6c_2p9>;
-> +
-> +       cd-gpios =3D <&tlmm 91 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
-> =20
->  &qup_uart5_default {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
-com/sc7280.dtsi
-> index 8f6b569..69eb064 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -20,6 +20,11 @@
-> =20
->         chosen { };
-> =20
-> +       aliases {
-> +               mmc1 =3D &sdhc_1;
-> +               mmc2 =3D &sdhc_2;
-> +       };
-> +
->         clocks {
->                 xo_board: xo-board {
->                         compatible =3D "fixed-clock";
-> @@ -305,6 +310,64 @@
->                         #power-domain-cells =3D <1>;
->                 };
-> =20
-> +               sdhc_1: sdhci@7c4000 {
-> +                       compatible =3D "qcom,sdhci-msm-v5";
-> +                       reg =3D <0 0x7c4000 0 0x1000>,
-
-Please add leading zeroes to the physical address, i.e. 0x007c4000
-
-> +                                       <0 0x7c5000 0 0x1000>;
-> +                       reg-names =3D "hc", "cqhci";
-> +
-> +                       iommus =3D <&apps_smmu 0xC0 0x0>;
-
-Lowercase hex please.
-
-> +                       interrupts =3D <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-> +                                       <GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names =3D "hc_irq", "pwr_irq";
-> +
-> +                       clocks =3D <&gcc GCC_SDCC1_APPS_CLK>,
-> +                                       <&gcc GCC_SDCC1_AHB_CLK>,
-> +                                       <&rpmhcc RPMH_CXO_CLK>;
-> +                       clock-names =3D "core", "iface", "xo";
-> +                       interconnects =3D <&aggre1_noc MASTER_SDCC_1 0 &m=
-c_virt SLAVE_EBI1 0>,
-> +                                       <&gem_noc MASTER_APPSS_PROC 0 &cn=
-oc2 SLAVE_SDCC_1 0>;
-> +                       interconnect-names =3D "sdhc-ddr","cpu-sdhc";
-> +                       power-domains =3D <&rpmhpd SC7280_CX>;
-> +                       operating-points-v2 =3D <&sdhc1_opp_table>;
-> +
-> +                       bus-width =3D <8>;
-> +                       non-removable;
-> +                       supports-cqe;
-> +                       no-sd;
-> +                       no-sdio;
-> +
-> +                       max-frequency =3D <192000000>;
-
-Is this necessary?
-
-> +
-> +                       qcom,dll-config =3D <0x0007642c>;
-> +                       qcom,ddr-config =3D <0x80040868>;
-> +
-> +                       mmc-ddr-1_8v;
-> +                       mmc-hs200-1_8v;
-> +                       mmc-hs400-1_8v;
-> +                       mmc-hs400-enhanced-strobe;
-> +
-> +                       status =3D "disabled";
-
-Can this be near the compatible string?
-
-> +
-> +                       sdhc1_opp_table: sdhc1-opp-table {
-> +                               compatible =3D "operating-points-v2";
-> +
-> +                               opp-100000000 {
-> +                                       opp-hz =3D /bits/ 64 <100000000>;
-> +                                       required-opps =3D <&rpmhpd_opp_lo=
-w_svs>;
-> +                                       opp-peak-kBps =3D <1200000 76000>;
-> +                                       opp-avg-kBps =3D <1200000 50000>;
-> +                               };
-> +
-> +                               opp-384000000 {
-> +                                       opp-hz =3D /bits/ 64 <384000000>;
-> +                                       required-opps =3D <&rpmhpd_opp_no=
-m>;
-> +                                       opp-peak-kBps =3D <5400000 160000=
-0>;
-> +                                       opp-avg-kBps =3D <6000000 300000>;
-> +                               };
-> +                       };
-> +               };
-> +
->                 qupv3_id_0: geniqup@9c0000 {
->                         compatible =3D "qcom,geni-se-qup";
->                         reg =3D <0 0x009c0000 0 0x2000>;
-> @@ -328,6 +391,54 @@
->                         };
->                 };
-> =20
-> +               sdhc_2: sdhci@8804000 {
-> +                       compatible =3D "qcom,sdhci-msm-v5";
-> +                       reg =3D <0 0x08804000 0 0x1000>;
-
-This has leading zeroes, great!
-
-> +
-> +                       iommus =3D <&apps_smmu 0x100 0x0>;
-> +                       interrupts =3D <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +                                       <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names =3D "hc_irq", "pwr_irq";
-> +
-> +                       clocks =3D <&gcc GCC_SDCC2_APPS_CLK>,
-> +                                       <&gcc GCC_SDCC2_AHB_CLK>,
-> +                                       <&rpmhcc RPMH_CXO_CLK>;
-
-Is this aligned properly?
-
-> +                       clock-names =3D "core", "iface", "xo";
-> +                       interconnects =3D <&aggre1_noc MASTER_SDCC_2 0 &m=
-c_virt SLAVE_EBI1 0>,
-> +                                       <&gem_noc MASTER_APPSS_PROC 0 &cn=
-oc2 SLAVE_SDCC_2 0>;
-> +                       interconnect-names =3D "sdhc-ddr","cpu-sdhc";
-> +                       power-domains =3D <&rpmhpd SC7280_CX>;
-> +                       operating-points-v2 =3D <&sdhc2_opp_table>;
-> +
-> +                       bus-width =3D <4>;
-> +
-> +                       no-mmc;
-> +                       no-sdio;
-> +
-> +                       max-frequency =3D <202000000>;
-
-Is this necessary?
-
-> +
-> +                       qcom,dll-config =3D <0x0007642c>;
-> +
-> +                       status =3D "disabled";
-
-Move up near compatible?
-
-> +
-> +                       sdhc2_opp_table: sdhc2-opp-table {
-> +                                       compatible =3D "operating-points-=
-v2";
-> +
-> +                                       opp-100000000 {
-> +                                               opp-hz =3D/bits/ 64 <1000=
-00000>;
-> +                                               required-opps =3D <&rpmhp=
-d_opp_low_svs>;
-> +                                               opp-peak-kBps =3D <120000=
-0 76000>;
-> +                                               opp-avg-kBps =3D <1200000=
- 50000>;
-> +                                       };
-> +                                       opp-202000000 {
-> +                                               opp-hz =3D /bits/ 64 <202=
-000000>;
-> +                                               required-opps =3D <&rpmhp=
-d_opp_nom>;
-> +                                               opp-peak-kBps =3D <350000=
-0 1200000>;
-> +                                               opp-avg-kBps =3D <5000000=
- 100000>;
-> +                                       };
-> +                               };
-> +               };
-> +
->                 pdc: interrupt-controller@b220000 {
->                         compatible =3D "qcom,sc7280-pdc", "qcom,pdc";
->                         reg =3D <0 0x0b220000 0 0x30000>;
