@@ -2,122 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6CDF345655
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 04:39:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F1234565A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 04:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbhCWDia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 23:38:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49808 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbhCWDiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 23:38:06 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3B7C061763
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 20:38:05 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id u19so10342854pgh.10
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 20:38:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=til1v4SH/TtmLKm35mHk+XE9IxkpsVFKSNvaMqYYu14=;
-        b=Xdu7khG7OrvQmYH7UZEB2jC8kCjyE46zrTCWcHBHksw60fcJNDOkjzHT/Z5mAQ+gaY
-         kpxRkgGVWjSFG3hdyO8h5ggyqiPSQeY8Lbef8ODvDVYBFGdLMTVreXtTGdwZqjf3TR3r
-         PCCOfCT4ad07EKhXY4kFu4I9MznOA5xL/YkP8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=til1v4SH/TtmLKm35mHk+XE9IxkpsVFKSNvaMqYYu14=;
-        b=i7gKYxX/14UcQjM4YmkTgiKVo715c2wn+JSqlUoVAtyV/fRTvBm+aNv09AhEsDrZaU
-         DH9LBI2XmWq3YJ1O2Q9fhFpHjA8SetTYkJiMXzH8Cl9NbQSMhbfJRPyVVVrDRzu8RZAu
-         A+QVogpDDBJmCuNvNI36kJY5+qGO5jyuthajjSJUZRRzNwxWi9uBq+2SEL5R4p/mJDdd
-         dRhk6qeGHIYSQwuq0HlbWyf2pi5q7yGsLDyi2ml5lI739QBQTeJMRq1rwIEoGIUseOFv
-         oxgrTHJFXuR5DFTn1bg3yYfZZ9BF4WLTirZl5MA3GyQoLARod6W5FIZZDhHS/Dvs5AXL
-         b3fw==
-X-Gm-Message-State: AOAM5312gcYPGQtKe7xC5OataPmX+6U3Mpz7JmSbxZ32bAYVvfilQ+sJ
-        qNDak6hbI5uaJ709VFD9JeLUc5UVEmO4Bg==
-X-Google-Smtp-Source: ABdhPJz9TDRQtbtypmCWRo4JsjThyKds0XJ5xWAnkZjLZbvs6WxJKLo2fB78nRAtrAsldM+thjM+fA==
-X-Received: by 2002:a65:5a0a:: with SMTP id y10mr2232648pgs.285.1616470685184;
-        Mon, 22 Mar 2021 20:38:05 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:e90d:d453:87ae:2e10])
-        by smtp.gmail.com with ESMTPSA id i20sm13156817pgg.65.2021.03.22.20.38.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 20:38:04 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S229764AbhCWDjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 23:39:03 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:53379 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229622AbhCWDiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 23:38:54 -0400
+X-UUID: d40041ce935440c890fa30adbdefee4d-20210323
+X-UUID: d40041ce935440c890fa30adbdefee4d-20210323
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <chuanjia.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1762477047; Tue, 23 Mar 2021 11:38:49 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 23 Mar 2021 11:38:48 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 23 Mar 2021 11:38:47 +0800
+From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
+To:     <robh+dt@kernel.org>, <bhelgaas@google.com>,
+        <matthias.bgg@gmail.com>
+CC:     <ryder.lee@mediatek.com>, <lorenzo.pieralisi@arm.com>,
+        <jianjun.wang@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>,
+        <frank-w@public-files.de>
+Subject: [PATCH v8 0/4] PCI: mediatek: Spilt PCIe node to comply with hardware design
+Date:   Tue, 23 Mar 2021 11:38:29 +0800
+Message-ID: <20210323033833.14954-1-chuanjia.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <d19fbcc91b4ef045014b225e7fdf9780@codeaurora.org>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org> <463a45f2c3e4a91430c006fa1637c7f4f124185e.1614244789.git.saiprakash.ranjan@codeaurora.org> <161428210272.1254594.16034240343090747878@swboyd.mtv.corp.google.com> <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org> <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com> <5cf5692ef7d348ec361081d0341f1254@codeaurora.org> <d19fbcc91b4ef045014b225e7fdf9780@codeaurora.org>
-Subject: Re: [PATCH 8/9] arm64: dts: qcom: sc7280: Add AOSS QMP node
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Date:   Mon, 22 Mar 2021 20:38:03 -0700
-Message-ID: <161647068330.3012082.2910442813045392403@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-03-08 21:58:21)
-> On 2021-02-27 19:26, Sai Prakash Ranjan wrote:
-> > On 2021-02-27 00:16, Stephen Boyd wrote:
-> >> Quoting Sai Prakash Ranjan (2021-02-25 23:51:00)
-> >>> On 2021-02-26 01:11, Stephen Boyd wrote:
-> >>> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:24)
-> >>> >> Add a DT node for the AOSS QMP on SC7280 SoC.
-> >>> >>
-> >>> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.or=
-g>
-> >>> >> ---
-> >>> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++++++++++++++
-> >>> >>  1 file changed, 14 insertions(+)
-> >>> >>
-> >>> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> >> index 65c1e0f2fb56..cbd567ccc04e 100644
-> >>> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> >> @@ -9,6 +9,7 @@
-> >>> >>  #include <dt-bindings/clock/qcom,rpmh.h>
-> >>> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>> >>  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> >>> >> +#include <dt-bindings/power/qcom-aoss-qmp.h>
-> >>> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> >>> >>
-> >>> >>  / {
-> >>> >> @@ -368,6 +369,19 @@ pdc: interrupt-controller@b220000 {
-> >>> >>                         interrupt-controller;
-> >>> >>                 };
-> >>> >>
-> >>> >> +               aoss_qmp: qmp@c300000 {
-> >>> >
-> >>> > power-domain-controller@c300000? power-controller@c300000?
-> >>> >
-> >>>=20
-> >>> Its an AOSS message RAM and all other SM* SoCs have as qmp@
-> >>> and the dt binding as well, I see only SM8150 with power-controller,
-> >>> that should probably be fixed?
-> >>=20
-> >> Node name should be generic while still being meaningful. Nobody knows
-> >> what qmp is, but power-controller makes sense. Can you fix this and=20
-> >> the
-> >> others to be power-controller?
-> >>=20
->=20
-> we probably would be changing them back
-> to qmp or something more generic soon
-> since the consensus was qmp wasn't a
-> power-controller. So not sure if its
-> worth the effort here.
->=20
+There are two independent PCIe controllers in MT2712 and MT7622
+platform. Each of them should contain an independent MSI domain.
 
-Hmm alright. Maybe mailbox? qmp is not generic. What does it stand for?
-qualcomm messaging protocol?
+In old dts architecture, MSI domain will be inherited from the root
+bridge, and all of the devices will share the same MSI domain.
+Hence that, the PCIe devices will not work properly if the irq number
+which required is more than 32.
+
+Split the PCIe node for MT2712 and MT7622 platform to comply with
+the hardware design and fix MSI issue.
+
+change note:
+  v8:remove slot node and fix yaml warning.
+  v7:dt-bindings file was modified as suggested by Rob, other file no
+     change.
+  v6:Fix yaml error. make sure driver compatible with old and 
+     new DTS format.
+  v5:rebase for 5.9-rc1, no code change. 
+  v4:change commit message due to bayes statistical bogofilter
+     considers this series patch SPAM.
+  v3:rebase for 5.8-rc1. Only collect ack of Ryder, No code change.
+  v2:change the allocation of MT2712 PCIe MMIO space due to the
+     allocation size is not right in v1.
+
+Chuanjia Liu (4):
+  dt-bindings: PCI: mediatek: Update the Device tree bindings
+  PCI: mediatek: Add new method to get shared pcie-cfg base address and
+       parse node
+  arm64: dts: mediatek: Split PCIe node for MT2712 and MT7622
+  ARM: dts: mediatek: Update MT7629 PCIe node for new format
+
+ .../bindings/pci/mediatek-pcie-cfg.yaml       |  39 ++++
+ .../devicetree/bindings/pci/mediatek-pcie.txt | 201 ++++++++++--------
+ arch/arm/boot/dts/mt7629-rfb.dts              |   3 +-
+ arch/arm/boot/dts/mt7629.dtsi                 |  45 ++--
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  97 +++++----
+ .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  |  16 +-
+ arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts  |   6 +-
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      | 112 +++++-----
+ drivers/pci/controller/pcie-mediatek.c        |  50 +++--
+ 9 files changed, 325 insertions(+), 244 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-cfg.yaml
+
+-- 
+2.18.0
+
+
