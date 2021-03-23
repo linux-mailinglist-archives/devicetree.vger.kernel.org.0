@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8722B34701D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29195346BD7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:13:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234961AbhCXD2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:28:22 -0400
-Received: from 14.mo5.mail-out.ovh.net ([188.165.51.82]:39473 "EHLO
-        14.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232568AbhCXD1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:27:52 -0400
-X-Greylist: delayed 8401 seconds by postgrey-1.27 at vger.kernel.org; Tue, 23 Mar 2021 23:27:52 EDT
-Received: from player762.ha.ovh.net (unknown [10.110.115.149])
-        by mo5.mail-out.ovh.net (Postfix) with ESMTP id B9F442A88F3
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 23:07:53 +0100 (CET)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player762.ha.ovh.net (Postfix) with ESMTPSA id 86DC91C591AF3;
-        Tue, 23 Mar 2021 22:07:45 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-102R004ff11d61f-c83b-4b06-a604-ca9a14255473,
-                    FF25B3CCD00EBCF90D9E5B8D6084FA1CF06082A2) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Subject: Re: [PATCH] dt-bindings: leds: leds-gpio: fix & extend node regex
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>
-References: <20210310070025.9150-1-zajec5@gmail.com>
- <20210316223122.GA3800914@robh.at.kernel.org>
- <37f56e82-f60a-2375-e809-2b12fde5311b@milecki.pl>
- <CAL_JsqL5fPhVCHtUZjoWy6O-y0JWdLTyNDHWv=t64OvUje2Rsg@mail.gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Message-ID: <ada9e6e0-ab1b-e86a-812b-e2e087594539@milecki.pl>
-Date:   Tue, 23 Mar 2021 23:07:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S233737AbhCWWMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 18:12:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37020 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233710AbhCWWMX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 18:12:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ED45B61879;
+        Tue, 23 Mar 2021 22:12:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616537542;
+        bh=pwSmxqNMkA747BUHnXfYuf0RrtYw2mTZVLOuLq6Q5b4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ODtRG9pEjmcKRgX6egp7zU8A5yxsvBnuhzQY5l1GDx+pC3p/ykOXEqotqzb4+Z7bR
+         cA61sk9vtgdao0uFkQ+yZviKh3FbYeS+qq/YHtrJWoL+ffFSUl/pr+T6oWWL52ZlHp
+         oJtj8cHLjkzf2tlVGtBYnttWMiNR3p88ZTb0K/3pfMcJA4O1zeKJyOhGbDVdkZoy8E
+         YnnQVejhYymD/WKzgnRgukH6Z3gOqzov85OyiCPKnDoYFdOfnVHNXy8f7Bmz6WO3vW
+         1ocYMKaejFKao4TR2o4T2h8n3lJHGtFFVlN5U0xKYWCyYgzj7OvrCp545HxSolNexh
+         4SpsRL8s2s34g==
+From:   Mark Brown <broonie@kernel.org>
+To:     Leilk Liu <leilk.liu@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, fparent@baylibre.com
+Subject: Re: [PATCH 0/4] Add Mediatek MT8195 SPI driver support
+Date:   Tue, 23 Mar 2021 22:12:11 +0000
+Message-Id: <161653753131.32935.1864016176434654452.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210322055244.30179-1-leilk.liu@mediatek.com>
+References: <20210322055244.30179-1-leilk.liu@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL5fPhVCHtUZjoWy6O-y0JWdLTyNDHWv=t64OvUje2Rsg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 7401947464525647599
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrudegiedgudehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeekudehjeehffdufefhgffhgeejjeelteekveeuleevgeekhffhffeiheellefgveenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeeivddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.03.2021 23:02, Rob Herring wrote:
-> On Tue, Mar 16, 2021 at 5:25 PM Rafał Miłecki <rafal@milecki.pl> wrote:
->>
->> On 16.03.2021 23:31, Rob Herring wrote:
->>> On Wed, Mar 10, 2021 at 08:00:25AM +0100, Rafał Miłecki wrote:
->>>> From: Rafał Miłecki <rafal@milecki.pl>
->>>>
->>>> The old regex allowed only 1 character to follow the "led-" prefix which
->>>> was most likely just an overlook.
->>>
->>> Indeed.
->>>
->>>> Fix it and while at it allow dashes in
->>>> node names. It allows more meaningful names and it helpful e.g. when
->>>> having the same function name with 2 different colors. For example:
->>>> 1. led-power-white
->>>> 2. led-power-blue
->>>
->>> No, node names are supposed to be generic and reflect the class of
->>> device.
->>
->> There was some extra discussion on this patch that has ended up with a question about numbering nodes.
->>
->> Current binding assumes that nodes should be numbered with independent suffix numbers like:
->> led-0 { };
->> led-1 { };
->> led-2 { };
->>
->> Do you think this could / should be improved somehow?
+On Mon, 22 Mar 2021 13:52:40 +0800, Leilk Liu wrote:
+> This series are based on spi/for-next, and provide 4 patches to add MT8195 spi support.
 > 
-> No, we have other ways for meaningful names (label, color, function, etc.).
+> Leilk Liu (4):
+>   spi: update spi master bindings for MT8195 SoC
+>   spi: update spi slave bindings for MT8195 SoC
+>   spi: mediatek: add mtk_spi_compatible support
+>   spi: mediatek: add mt8195 spi slave support
 > 
->> One option I was thinking about was using:
->> led@0 { };
->> led@5 { };
->> where numbers ("0", "5") should match GPIO numbers.
->>
->> Is that a valid solution and does it improve things to make it worth it?
-> 
-> What if you have <gpioa 1> and <gpiob 1>?
-> 
-> The cells in a consumer for a provider are opaque to the consumer.
+> [...]
 
-Thanks a lot for helping me understand that, it make sense ofc.
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/4] spi: update spi master bindings for MT8195 SoC
+      commit: 08b020d3e9a87fb6d94b02782c42c001a4e084f4
+[2/4] spi: update spi slave bindings for MT8195 SoC
+      commit: f42698a8dc589dc7cc8e36641e86e6a9b3b32f9b
+[3/4] spi: mediatek: add mtk_spi_compatible support
+      commit: d666a833b0b9f5b8e08ecdc002a4cf5d34932b7a
+[4/4] spi: mediatek: add mt8195 spi slave support
+      commit: 1527b09bc80018f02fe0b6d14e97c95f93596221
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
