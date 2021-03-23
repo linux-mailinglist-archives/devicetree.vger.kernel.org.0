@@ -2,152 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87911346DAB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 00:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F16FB346DB7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 00:08:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233966AbhCWXCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 19:02:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
+        id S230362AbhCWXIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 19:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233782AbhCWXBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 19:01:33 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7FF3C061574;
-        Tue, 23 Mar 2021 16:01:32 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id f26so27813805ljp.8;
-        Tue, 23 Mar 2021 16:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=84HXR80VeHqLZESZc4iMlUDSruLJkHK/M+dHGF0r0qw=;
-        b=Oz0KBishfAMWO1yb3BpbgXhz7TWlRcehMQEHkJwal80qEUOQUATrfcXELGBvDnJG7A
-         pQydMuERCrpZLnZ8vLvJMkPPcIbRYJSxvUK8LZ1MGfRuhyb9aheNjSEMjq/dvwB4LpcV
-         2GGTDvDhVMWjzoqypG+Kl2XhsK2dun22t6VmcbdyfuUnG4e9MWbEKh14Mg8WoZCHPJu/
-         g1JCpUSJ65LrsVBftTHkXiljFCBUQF+RDwUS2JRKfKYWybis5CvDe3SaKI6RByO4utA4
-         CbSZWPmabvcoO52k4I0KZa9ey/RJxea+24Kh2LayAB4KgVSIU1Ws87nQ3gcBadNGBSDf
-         pjig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=84HXR80VeHqLZESZc4iMlUDSruLJkHK/M+dHGF0r0qw=;
-        b=HAafdFRUPa06lxaqSKIX07s+J0Xk1JHgS9crRw9xdrZg/AJ7dH6HKoEw+reahB2ZbP
-         hmuRGBrWDldATv3zAl9s7LBZ8VF7c938wutyIEENzg/1wyjhkDw/lfjU8ECz99DNIiAF
-         zjA+MFaPj8J9udnr0JpB4Up7g/6hFvaGiK+EBDYSZyKk4UXo2KAGrHfmN9AuqBF5KR8H
-         VV6DzZ1McVuvvfq71Bdwd+kv9DgBEdIkaBS/4Vf2yzAz2INwiR7rfv36vxy2rmrwWmKy
-         7GbPGyzu6tPSSbaRVbVfnBOk56z8h1dhIGjKSTk3MvSwgVT0R4S9NqPkUOSt5VEDuaE8
-         if4Q==
-X-Gm-Message-State: AOAM530J4U104LHlDynYGoiuc0UZdKfyY5FQPxZQtfHeEAfF+njIdlxc
-        hDeEvyeNT2ankndwFXuzmJZ68nSbQCM=
-X-Google-Smtp-Source: ABdhPJzzkICY/JETPG882gQh1Ch42Yd8ZvDm5b/QmppZiX2s1xgyZyQYX510NiN5cgrBxHKANQKwpw==
-X-Received: by 2002:a2e:8e36:: with SMTP id r22mr131297ljk.427.1616540491159;
-        Tue, 23 Mar 2021 16:01:31 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-60.dynamic.spd-mgts.ru. [109.252.193.60])
-        by smtp.googlemail.com with ESMTPSA id j19sm41718lfg.225.2021.03.23.16.01.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 16:01:30 -0700 (PDT)
-Subject: Re: [PATCH v4 3/6] dt-bindings: power: tegra: Add binding for core
- power domain
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210314164810.26317-1-digetx@gmail.com>
- <20210314164810.26317-4-digetx@gmail.com>
- <20210323224826.GA1490612@robh.at.kernel.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <fd60e507-37b4-acc1-b19a-a3904cd13f65@gmail.com>
-Date:   Wed, 24 Mar 2021 02:01:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S229931AbhCWXHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 19:07:49 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C460C061574;
+        Tue, 23 Mar 2021 16:07:49 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4A03B22260;
+        Wed, 24 Mar 2021 00:07:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1616540866;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=C8nXM32KMkKRWhGgs0N1HKDFZiCWuwPI3z2aCDDXFbk=;
+        b=oALP9ZD3prSS6SGNrjoUUBoDtku9bM8urrR9UjVpLpWMvYdYzQlrQxw+rpSp18OjIZHxiD
+        Hc3kdGvzwuhcgZPwbr6iSiFFO3vm1ggyge8oePN6iR+odWSc0ZPJ3YeXzVvmd26GfhJlsp
+        QnMuE/U8E6c8gkN1dT5vk7EA9evzk0Q=
 MIME-Version: 1.0
-In-Reply-To: <20210323224826.GA1490612@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 24 Mar 2021 00:07:46 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [RFC PATCH 1/6] spi: spi-mem: Tell controller when device is
+ ready for calibration
+In-Reply-To: <20210311191216.7363-2-p.yadav@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <20210311191216.7363-2-p.yadav@ti.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <934c8c6f7bb71729bfdaefd39c63a262@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.03.2021 01:48, Rob Herring пишет:
-> On Sun, Mar 14, 2021 at 07:48:07PM +0300, Dmitry Osipenko wrote:
->> All NVIDIA Tegra SoCs have a core power domain where majority of hardware
->> blocks reside. Add binding for the core power domain.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  .../power/nvidia,tegra20-core-domain.yaml     | 51 +++++++++++++++++++
->>  1 file changed, 51 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml b/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
->> new file mode 100644
->> index 000000000000..4692489d780a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/nvidia,tegra20-core-domain.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NVIDIA Tegra Core Power Domain
->> +
->> +maintainers:
->> +  - Dmitry Osipenko <digetx@gmail.com>
->> +  - Jon Hunter <jonathanh@nvidia.com>
->> +  - Thierry Reding <thierry.reding@gmail.com>
->> +
->> +allOf:
->> +  - $ref: power-domain.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra20-core-domain
->> +      - nvidia,tegra30-core-domain
->> +
->> +  operating-points-v2:
->> +    description:
->> +      Should contain level, voltages and opp-supported-hw property.
->> +      The supported-hw is a bitfield indicating SoC speedo or process
->> +      ID mask.
->> +
->> +  "#power-domain-cells":
->> +    const: 0
->> +
->> +  power-supply:
->> +    description:
->> +      Phandle to voltage regulator connected to the SoC Core power rail.
->> +
->> +required:
->> +  - compatible
->> +  - operating-points-v2
->> +  - "#power-domain-cells"
->> +  - power-supply
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    power-domain {
->> +        compatible = "nvidia,tegra20-core-domain";
->> +        operating-points-v2 = <&opp_table>;
->> +        power-supply = <&regulator>;
->> +        #power-domain-cells = <0>;
+Hi Pratyush,
+
+Am 2021-03-11 20:12, schrieb Pratyush Yadav:
+> Some controllers like the Cadence OSPI controller need to perform a
+> calibration sequence to operate at high clock speeds. This calibration
+> should happen after the flash is fully initialized otherwise the
+> calibration might happen in a different SPI mode from the one the flash
+> is finally set to. Add a hook that can be used to tell the controller
+> when the flash is ready for calibration. Whether calibration is needed
+> depends on the controller.
 > 
-> AFAICT, there's no way to access this 'hardware'?
-correct
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> ---
+>  drivers/spi/spi-mem.c       | 12 ++++++++++++
+>  include/linux/spi/spi-mem.h |  8 ++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+> index dc713b0c3c4d..e2f05ad3f4dc 100644
+> --- a/drivers/spi/spi-mem.c
+> +++ b/drivers/spi/spi-mem.c
+> @@ -464,6 +464,18 @@ int spi_mem_adjust_op_size(struct spi_mem *mem,
+> struct spi_mem_op *op)
+>  }
+>  EXPORT_SYMBOL_GPL(spi_mem_adjust_op_size);
+> 
+> +int spi_mem_do_calibration(struct spi_mem *mem, struct spi_mem_op *op)
+> +{
+> +	struct spi_controller *ctlr = mem->spi->controller;
+> +
+> +	if (!ctlr->mem_ops || !ctlr->mem_ops->do_calibration)
+> +		return -EOPNOTSUPP;
+> +
+> +	ctlr->mem_ops->do_calibration(mem, op);
+
+Can't a calibration fail?
+
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(spi_mem_do_calibration);
+> +
+>  static ssize_t spi_mem_no_dirmap_read(struct spi_mem_dirmap_desc 
+> *desc,
+>  				      u64 offs, size_t len, void *buf)
+>  {
+> diff --git a/include/linux/spi/spi-mem.h b/include/linux/spi/spi-mem.h
+> index 2b65c9edc34e..97a2d280f2d0 100644
+> --- a/include/linux/spi/spi-mem.h
+> +++ b/include/linux/spi/spi-mem.h
+> @@ -250,6 +250,12 @@ static inline void *spi_mem_get_drvdata(struct
+> spi_mem *mem)
+>   *		  the currently mapped area), and the caller of
+>   *		  spi_mem_dirmap_write() is responsible for calling it again in
+>   *		  this case.
+> + * @do_calibration: perform calibration needed for high SPI clock 
+> speed
+> + *		    operation. Should be called after the SPI memory device has
+> + *		    been completely initialized. The op passed should contain
+> + *		    a template for the read operation used for the device so
+> + *		    the controller can decide what type of calibration is
+> + *		    required for this type of read.
+>   *
+>   * This interface should be implemented by SPI controllers providing 
+> an
+>   * high-level interface to execute SPI memory operation, which is 
+> usually the
+> @@ -274,6 +280,7 @@ struct spi_controller_mem_ops {
+>  			       u64 offs, size_t len, void *buf);
+>  	ssize_t (*dirmap_write)(struct spi_mem_dirmap_desc *desc,
+>  				u64 offs, size_t len, const void *buf);
+> +	void (*do_calibration)(struct spi_mem *mem, struct spi_mem_op *op);
+>  };
+> 
+>  /**
+> @@ -346,6 +353,7 @@ bool spi_mem_dtr_supports_op(struct spi_mem *mem,
+>  #endif /* CONFIG_SPI_MEM */
+> 
+>  int spi_mem_adjust_op_size(struct spi_mem *mem, struct spi_mem_op 
+> *op);
+> +int spi_mem_do_calibration(struct spi_mem *mem, struct spi_mem_op 
+> *op);
+> 
+>  bool spi_mem_supports_op(struct spi_mem *mem,
+>  			 const struct spi_mem_op *op);
+
+-- 
+-michael
