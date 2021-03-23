@@ -2,1447 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA72345397
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 01:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9AF3453C6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 01:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230357AbhCWAFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 20:05:10 -0400
-Received: from mx2.suse.de ([195.135.220.15]:46966 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231255AbhCWAEy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Mar 2021 20:04:54 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 0119EACB4;
-        Tue, 23 Mar 2021 00:04:53 +0000 (UTC)
-Date:   Mon, 22 Mar 2021 17:04:36 -0700
-From:   Davidlohr Bueso <dave@stgolabs.net>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Jens Axboe <axboe@kernel.dk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>, devicetree@vger.kernel.org,
-        linux-block@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] xsysace: Remove SYSACE driver
-Message-ID: <20210323000436.qm5rkiplwt5x5ttk@offworld>
-References: <ee1fe969905f641f5f97d812ee0cac44c12fe0f6.1604919578.git.michal.simek@xilinx.com>
+        id S230401AbhCWAU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 20:20:26 -0400
+Received: from mail-eopbgr60131.outbound.protection.outlook.com ([40.107.6.131]:65351
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230370AbhCWATv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Mar 2021 20:19:51 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TAKLkXK00rgjH6r1ggZxMSUrCdF+ZlSr5J8vPpwMrHm/UuoNysY2+x0yQ0FbqXyUZD6eroSXAWjNTKOn6t+/M5rwkxAdQNberwurhNQ9KRNBSeytJ/tP9AR8HVBKBp+ngOj0HgBPdzgdL7YeUQGMk+fJCRqOjqfWue3cPE4UN6qs34IdGNl/GyMh9A5Q7QwbudWVghcmdxnAryvJNiYFTRhu6rEC/ndPgKa2zaJJbnEQNRyOHuiAODtSYVvSn17JNSe4dzAOSz6YpzJxBGLTDEJj2+2qJnObWTy/BXKtxvR+VCgb8qkFf1DHe+xE7EmH2eJ7qEIeNVGgIG+IRGJu1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F9gPq1WZfhJ9j5YWAZbAsyrv57qCS+qDAiWE48D3NoY=;
+ b=UhJUMbWVZ/VFc+q2B689E26ITnYY/C3w+RC61323E/Iex7XcJPAiH2DMEUpx+rExrrNpOsARWfa/6EovGjO1EPJIHOvSmo7F/CJLGJ3dW6MznczJj3tw6SQgmvPW10AwYqeoJOLS0RdeQEATDduSwsSMW9aSlky3Kh8bjTr+0q1MAuKr0PwwiYxnYao083MEHgUujMSsEGL/ft15sP2l+tFb3rTJSdFI3H43NTIsmJCNEQSGIFoUJP+1EcTH0+GXwGoPLoE4Q6hGNR7ry4Bvqq56GgB2mo9nbnUaSsZVKkfw97IOvXV+PmqLEOoCUaGcotHG78buaNnTWw4RPNuqaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F9gPq1WZfhJ9j5YWAZbAsyrv57qCS+qDAiWE48D3NoY=;
+ b=d+wa/k6DoQ2Wlrm9/QWT0c5EW3li2czYfLyvY8zHtI8ipFjvAUx4nxvD14a4Wh9nW24a8LMO/wZd0zZYA7oUzHgTSwu6dLDTkRgV5zCNqIohAfkEODVpM/uHYGxDIXzleRFMbJdsUMWigBy4B0XNgl1BpIIwEKT7QBq+U3gZnWg=
+Received: from DB7PR05MB5431.eurprd05.prod.outlook.com (2603:10a6:10:55::32)
+ by DBAPR05MB7224.eurprd05.prod.outlook.com (2603:10a6:10:1ad::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Tue, 23 Mar
+ 2021 00:19:48 +0000
+Received: from DB7PR05MB5431.eurprd05.prod.outlook.com
+ ([fe80::65bd:95f4:78b0:bcd1]) by DB7PR05MB5431.eurprd05.prod.outlook.com
+ ([fe80::65bd:95f4:78b0:bcd1%5]) with mapi id 15.20.3955.024; Tue, 23 Mar 2021
+ 00:19:48 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "victor.liu@nxp.com" <victor.liu@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+CC:     "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "robert.foss@linaro.org" <robert.foss@linaro.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "a.hajda@samsung.com" <a.hajda@samsung.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>
+Subject: Re: [PATCH v6 00/14] Add some DRM bridge drivers support for
+ i.MX8qm/qxp SoCs
+Thread-Topic: [PATCH v6 00/14] Add some DRM bridge drivers support for
+ i.MX8qm/qxp SoCs
+Thread-Index: AQHXH3o7P50aegC/OE+7g/8I6e1n1w==
+Date:   Tue, 23 Mar 2021 00:19:47 +0000
+Message-ID: <7b5a6990a2ed8f06986cee66380264cb7e84c720.camel@toradex.com>
+References: <1615952569-4711-1-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <1615952569-4711-1-git-send-email-victor.liu@nxp.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=none action=none
+ header.from=toradex.com;
+x-originating-ip: [2a01:2ac:51dd:d885:51ae:2f9c:9f1e:70f4]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2367e809-2367-45e8-f14e-08d8ed915e55
+x-ms-traffictypediagnostic: DBAPR05MB7224:
+x-microsoft-antispam-prvs: <DBAPR05MB722448D5C037F6445EEE6B55FB649@DBAPR05MB7224.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pvB8ZbfpGb4oVofpxNtfwFyVPncY+hXoQH6FmVQb7WpLb7Ox/xpdVoRmIhuitmx7lF8fh1i/VnkGQQPNQxotO/hMOndZRpDVlhstCPu8mQoUHEoT6Bg6Q0+PKQD6qqaLGaUfjWN/GqZjQ9wFPzVh7trGG67eKEHVCfL9c1jtcTH492laanmR7hASP2CdosH0dT+PUBIqg/npUqMHvKglE11BreF2+sBu7xWXWJugCAc9YP2DS4Y1bcGBMXAu3MuTlhcsGnGXsieLiFARLfmaJ/8YnbZfqspL4QWg0cw3adagI50gi8jQSlhmzq5T9oyRNqK4zpxl8jrAgAQAPHltG5vbw526oe7dF4xyEJMm2RdLGlEzuj/0cjnmUsedFf2lHlT8Ts/gR/kAJ6NSRlYqy3akBxiTT6Ulun42EhrtFU2UXmOo1edTDZGyXx9vjA1HCiBlwbhKzjRq3ftIS6gMcewGYS2S8v5xjvMXeKu/51ASSdj+NBlgRNlIOxUrbF++O2f4Sr16qOzippy83mjuHI80dt+igXSABNIzCRSx/hB8d+qUH1DG3nn5NvjKmj/+MFuzWEsBRBdi4JfTebL7HWxUoxRYUcSzZV1kiisX5NFDkDBx9OhRkygPm+6XxrruRPgiA3KoPatCcSWehmRn2TydZCHUGlZ4DvpMMzLnozPTU3Zn2LxB0oKYBjf/libu7JcOiOkPaKsyY93UHf0N51sXpXoxBbPLLWL8s7WDgTCH2OKrYpg4QL9wZ43nAL6H
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR05MB5431.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(366004)(346002)(396003)(136003)(376002)(39830400003)(110136005)(186003)(83380400001)(71200400001)(316002)(2616005)(86362001)(54906003)(7416002)(4326008)(38100700001)(8676002)(966005)(66946007)(478600001)(44832011)(2906002)(6512007)(6486002)(8936002)(6506007)(76116006)(64756008)(36756003)(66446008)(66556008)(91956017)(30864003)(66476007)(5660300002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?Skdnd3JWL3ZLUXpPb3ZMakhnWU5XRDgrZEtsNWJxNEVERGNObFhKMHF4NE4r?=
+ =?utf-8?B?bFdWTGtlVDB5ODFoYUtmWWxwNGd2bVNOTStVT1lISjNZSzJROElxYU80em50?=
+ =?utf-8?B?NWcyVjlaa2tOVzEzYkpyUUZDWjZEcENqZEF1WC9TL2lZTm5VbzhPZWZiTjZj?=
+ =?utf-8?B?MEcxUktjbklXOGdtMW53ejdrenVPbGEyOGZBSjJOdlJ0R0cwVTdzTWl6Mk0x?=
+ =?utf-8?B?dzZnVlZma2Z6c0lpcTdNUHltaXV5bERZVTJyTW1DTmxObmdGU010aEJCTXJv?=
+ =?utf-8?B?cy9xZ0hIOGx2ZkwzZks2bUlFbWNpeExiL0VTNUw4ZXNTV28wYmc0dFJKdGk1?=
+ =?utf-8?B?NjlKYnNLODZGbml2STB4bXcyTkJQZm90SnVtVnVDT0FoaXBrSnNnRSsxdzVn?=
+ =?utf-8?B?cEJONkI0Kys2WndXd1FzRC9JM3hXUng2L1VSUERvb09jMk1VZGVORE8vWTdT?=
+ =?utf-8?B?UGFrdVFFS1poWmJSN0t0REpmT0NJMlJBamkvcWN1UDZCd0c1S0VueVI3NlRP?=
+ =?utf-8?B?L1ZVUmh5MHBRU2JaQ2YzL0dhSm50ZjVCZEt3djk0YVFYcnc1OG1hRkdqSGFI?=
+ =?utf-8?B?bno1N1dHTGtodDdSQ2Fwd0Z1SGdDTVF4eHNYYTlnczVDeUNmUldJOEt3b0Ns?=
+ =?utf-8?B?WnVwdlFYVVVHcEJHekxpbnVtQy9meW1JQXpGVEk0aUpZdFk2TzZteDlrYTdE?=
+ =?utf-8?B?M0YrNWtKNVZJV3VleHBHM3lDR3NiSXJBN0VhU1FVdjdvdGptOFZraUx3dGNn?=
+ =?utf-8?B?cFBwT1FnaUV3ZW1LWEFlaHJ1SmVpWmJwZHpFOXdPRFlwWHo4M3NsTTdzeHdX?=
+ =?utf-8?B?QjJUcTBnbklNUVJOb25KTXMzejhFYW5iM0duRXhpUmVnWWx4YUlTeUU0WExH?=
+ =?utf-8?B?R28zRGtvUDMwbUFTaW5BdWpTaUlCbisvd1FVVFF2Zzk3MGFCVnFYcUgwNGNs?=
+ =?utf-8?B?eGJtKzJJTGV3NzVOd1hjdGZZYms0MExhWmt6S291RXJXTm9mVlJScFhnQy9G?=
+ =?utf-8?B?NGwzdk9kNEtWWnRQY0JIeHFXZ2JWZVNQUDR4cENnUEYvUlk5d3MwVnNSUHZo?=
+ =?utf-8?B?ZEt5WnhaM1E4SFFJcW9nY2t6OHJUVHMrcFNxdkJNdFpqbFVVUmcxTm9vU0Rm?=
+ =?utf-8?B?dW5KUlNtbTZVeE03MGhCanVRaFozekQvZzBqN3FzdEFlcS9UV1dYTng0TVo3?=
+ =?utf-8?B?TDVmSFRaRk5KMkxhdko5VXYxRit0T3ovdFBFZU9TbUFWeVZIWHd2K0FHN0M3?=
+ =?utf-8?B?RXN3V1RnR2FRQmt6U1VMQ2VjZEQ0aGgySzIrTFVtUzhMcEdmM3NYempJdXla?=
+ =?utf-8?B?NTJxT2E0S1RvTTZIYmlYekQxSHpid0g0Nk8yRUp0Ujd4eTZiUFJ4dFJvZGdM?=
+ =?utf-8?B?dzNMWjVWa05qejJXajd5VldodlFNVndJMHRiN3cvVjFDL1dDMjV4U05XN3ps?=
+ =?utf-8?B?MW5qK1p5Wm94Sk5BQWJPNnZGeTRBSzBFZjFlV01KV2huckREWC80MUdaQUZr?=
+ =?utf-8?B?YnVOZDVaRmtBSExCUG12TVpXMVJYeHlTMlNkTktpa3hkUFZDZ2g1NTRiOEV4?=
+ =?utf-8?B?WGFTZUtFMDR3TEUzWDFQV0JzWDVPVGxFc2lkMmhiMHBHUHJYVXI5NzZzamhj?=
+ =?utf-8?B?RFVKaVVJY0ZCWVRzQlpvcFNGZmNWK2RLdDdEbTNsRWdOUmk2L3ZraGhWTlhD?=
+ =?utf-8?B?RzYrbXBxUUxmOGJVM3p5dFpNdmFZRVk0MzlzV1o4dm5Qd2lhdzkxazJXNzBl?=
+ =?utf-8?B?dmZJS3JoSUJqVCtZTnhCNlpIbW5OMmE0b2xIUDVuZnJ3SDNHdjc2RkFrTFJi?=
+ =?utf-8?B?NTVJZmlKV0w4MCs4eU0wOC84VVhKa0tJeG1aQ25vMVB0SXNmbWl1d0NYTmho?=
+ =?utf-8?B?QVMrVVo4ck0yRVlaSThvYkZQNm1ramRJMlQ2UWdKUGdSZGc9PQ==?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <094E19D41ADA6641AA1B4C7700E91166@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ee1fe969905f641f5f97d812ee0cac44c12fe0f6.1604919578.git.michal.simek@xilinx.com>
-User-Agent: NeoMutt/20201120
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR05MB5431.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2367e809-2367-45e8-f14e-08d8ed915e55
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2021 00:19:47.9078
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ypuSEzlB/lL8KmPCpaKV9ZzTRHCm9nIWgeZ5gD/rvLf01mE9ey6sQIrysz0wk+OXg2LDES6VU7N6+f39hvZvW5MUXm4ar8WiAwNAXJCWiP0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR05MB7224
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 09 Nov 2020, Michal Simek wrote:
-
->Sysace IP is no longer used on Xilinx PowerPC 405/440 and Microblaze
->systems. The driver is not regularly tested and very likely not working for
->quite a long time that's why remove it.
-
-Is there a reason this patch was never merged? can the driver be removed? I ran
-into this as a potential tasklet user that can be replaced/removed.
-
-Thanks,
-Davidlohr
-
->
->Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->---
->
->Based on discussion
->https://lore.kernel.org/linux-arm-kernel/5ab9a2a1-20e3-c7b2-f666-2034df436e74@kernel.dk/
->
->I have grepped the kernel and found any old ppc platform. I have included
->it in this patch to have a discussion about it.
->
->---
-> MAINTAINERS                             |    1 -
-> arch/microblaze/boot/dts/system.dts     |    8 -
-> arch/powerpc/boot/dts/icon.dts          |    7 -
-> arch/powerpc/configs/44x/icon_defconfig |    1 -
-> drivers/block/Kconfig                   |    6 -
-> drivers/block/Makefile                  |    1 -
-> drivers/block/xsysace.c                 | 1273 -----------------------
-> 7 files changed, 1297 deletions(-)
-> delete mode 100644 drivers/block/xsysace.c
->
->diff --git a/MAINTAINERS b/MAINTAINERS
->index cba8ddf87a08..38556c009758 100644
->--- a/MAINTAINERS
->+++ b/MAINTAINERS
->@@ -2741,7 +2741,6 @@ T:	git https://github.com/Xilinx/linux-xlnx.git
-> F:	Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
-> F:	Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
-> F:	arch/arm/mach-zynq/
->-F:	drivers/block/xsysace.c
-> F:	drivers/clocksource/timer-cadence-ttc.c
-> F:	drivers/cpuidle/cpuidle-zynq.c
-> F:	drivers/edac/synopsys_edac.c
->diff --git a/arch/microblaze/boot/dts/system.dts b/arch/microblaze/boot/dts/system.dts
->index 5b236527176e..b7ee1056779e 100644
->--- a/arch/microblaze/boot/dts/system.dts
->+++ b/arch/microblaze/boot/dts/system.dts
->@@ -310,14 +310,6 @@ RS232_Uart_1: serial@84000000 {
-> 			xlnx,odd-parity = <0x0>;
-> 			xlnx,use-parity = <0x0>;
-> 		} ;
->-		SysACE_CompactFlash: sysace@83600000 {
->-			compatible = "xlnx,xps-sysace-1.00.a";
->-			interrupt-parent = <&xps_intc_0>;
->-			interrupts = < 4 2 >;
->-			reg = < 0x83600000 0x10000 >;
->-			xlnx,family = "virtex5";
->-			xlnx,mem-width = <0x10>;
->-		} ;
-> 		debug_module: debug@84400000 {
-> 			compatible = "xlnx,mdm-1.00.d";
-> 			reg = < 0x84400000 0x10000 >;
->diff --git a/arch/powerpc/boot/dts/icon.dts b/arch/powerpc/boot/dts/icon.dts
->index fbaa60b8f87a..4fd7a4fbb4fb 100644
->--- a/arch/powerpc/boot/dts/icon.dts
->+++ b/arch/powerpc/boot/dts/icon.dts
->@@ -197,13 +197,6 @@ partition@fa0000 {
-> 						reg = <0x00fa0000 0x00060000>;
-> 					};
-> 				};
->-
->-				SysACE_CompactFlash: sysace@1,0 {
->-					compatible = "xlnx,sysace";
->-					interrupt-parent = <&UIC2>;
->-					interrupts = <24 0x4>;
->-					reg = <0x00000001 0x00000000 0x10000>;
->-				};
-> 			};
->
-> 			UART0: serial@f0000200 {
->diff --git a/arch/powerpc/configs/44x/icon_defconfig b/arch/powerpc/configs/44x/icon_defconfig
->index 930948a1da76..fb9a15573546 100644
->--- a/arch/powerpc/configs/44x/icon_defconfig
->+++ b/arch/powerpc/configs/44x/icon_defconfig
->@@ -28,7 +28,6 @@ CONFIG_MTD_CFI_AMDSTD=y
-> CONFIG_MTD_PHYSMAP_OF=y
-> CONFIG_BLK_DEV_RAM=y
-> CONFIG_BLK_DEV_RAM_SIZE=35000
->-CONFIG_XILINX_SYSACE=y
-> CONFIG_SCSI=y
-> CONFIG_BLK_DEV_SD=y
-> CONFIG_SCSI_CONSTANTS=y
->diff --git a/drivers/block/Kconfig b/drivers/block/Kconfig
->index ecceaaa1a66f..9cb02861298d 100644
->--- a/drivers/block/Kconfig
->+++ b/drivers/block/Kconfig
->@@ -388,12 +388,6 @@ config SUNVDC
->
-> source "drivers/s390/block/Kconfig"
->
->-config XILINX_SYSACE
->-	tristate "Xilinx SystemACE support"
->-	depends on 4xx || MICROBLAZE
->-	help
->-	  Include support for the Xilinx SystemACE CompactFlash interface
->-
-> config XEN_BLKDEV_FRONTEND
-> 	tristate "Xen virtual block device support"
-> 	depends on XEN
->diff --git a/drivers/block/Makefile b/drivers/block/Makefile
->index e1f63117ee94..5ddd9370972a 100644
->--- a/drivers/block/Makefile
->+++ b/drivers/block/Makefile
->@@ -19,7 +19,6 @@ obj-$(CONFIG_ATARI_FLOPPY)	+= ataflop.o
-> obj-$(CONFIG_AMIGA_Z2RAM)	+= z2ram.o
-> obj-$(CONFIG_BLK_DEV_RAM)	+= brd.o
-> obj-$(CONFIG_BLK_DEV_LOOP)	+= loop.o
->-obj-$(CONFIG_XILINX_SYSACE)	+= xsysace.o
-> obj-$(CONFIG_CDROM_PKTCDVD)	+= pktcdvd.o
-> obj-$(CONFIG_SUNVDC)		+= sunvdc.o
-> obj-$(CONFIG_BLK_DEV_SKD)	+= skd.o
->diff --git a/drivers/block/xsysace.c b/drivers/block/xsysace.c
->deleted file mode 100644
->index eb8ef65778c3..000000000000
->--- a/drivers/block/xsysace.c
->+++ /dev/null
->@@ -1,1273 +0,0 @@
->-// SPDX-License-Identifier: GPL-2.0-only
->-/*
->- * Xilinx SystemACE device driver
->- *
->- * Copyright 2007 Secret Lab Technologies Ltd.
->- */
->-
->-/*
->- * The SystemACE chip is designed to configure FPGAs by loading an FPGA
->- * bitstream from a file on a CF card and squirting it into FPGAs connected
->- * to the SystemACE JTAG chain.  It also has the advantage of providing an
->- * MPU interface which can be used to control the FPGA configuration process
->- * and to use the attached CF card for general purpose storage.
->- *
->- * This driver is a block device driver for the SystemACE.
->- *
->- * Initialization:
->- *    The driver registers itself as a platform_device driver at module
->- *    load time.  The platform bus will take care of calling the
->- *    ace_probe() method for all SystemACE instances in the system.  Any
->- *    number of SystemACE instances are supported.  ace_probe() calls
->- *    ace_setup() which initialized all data structures, reads the CF
->- *    id structure and registers the device.
->- *
->- * Processing:
->- *    Just about all of the heavy lifting in this driver is performed by
->- *    a Finite State Machine (FSM).  The driver needs to wait on a number
->- *    of events; some raised by interrupts, some which need to be polled
->- *    for.  Describing all of the behaviour in a FSM seems to be the
->- *    easiest way to keep the complexity low and make it easy to
->- *    understand what the driver is doing.  If the block ops or the
->- *    request function need to interact with the hardware, then they
->- *    simply need to flag the request and kick of FSM processing.
->- *
->- *    The FSM itself is atomic-safe code which can be run from any
->- *    context.  The general process flow is:
->- *    1. obtain the ace->lock spinlock.
->- *    2. loop on ace_fsm_dostate() until the ace->fsm_continue flag is
->- *       cleared.
->- *    3. release the lock.
->- *
->- *    Individual states do not sleep in any way.  If a condition needs to
->- *    be waited for then the state much clear the fsm_continue flag and
->- *    either schedule the FSM to be run again at a later time, or expect
->- *    an interrupt to call the FSM when the desired condition is met.
->- *
->- *    In normal operation, the FSM is processed at interrupt context
->- *    either when the driver's tasklet is scheduled, or when an irq is
->- *    raised by the hardware.  The tasklet can be scheduled at any time.
->- *    The request method in particular schedules the tasklet when a new
->- *    request has been indicated by the block layer.  Once started, the
->- *    FSM proceeds as far as it can processing the request until it
->- *    needs on a hardware event.  At this point, it must yield execution.
->- *
->- *    A state has two options when yielding execution:
->- *    1. ace_fsm_yield()
->- *       - Call if need to poll for event.
->- *       - clears the fsm_continue flag to exit the processing loop
->- *       - reschedules the tasklet to run again as soon as possible
->- *    2. ace_fsm_yieldirq()
->- *       - Call if an irq is expected from the HW
->- *       - clears the fsm_continue flag to exit the processing loop
->- *       - does not reschedule the tasklet so the FSM will not be processed
->- *         again until an irq is received.
->- *    After calling a yield function, the state must return control back
->- *    to the FSM main loop.
->- *
->- *    Additionally, the driver maintains a kernel timer which can process
->- *    the FSM.  If the FSM gets stalled, typically due to a missed
->- *    interrupt, then the kernel timer will expire and the driver can
->- *    continue where it left off.
->- *
->- * To Do:
->- *    - Add FPGA configuration control interface.
->- *    - Request major number from lanana
->- */
->-
->-#undef DEBUG
->-
->-#include <linux/module.h>
->-#include <linux/ctype.h>
->-#include <linux/init.h>
->-#include <linux/interrupt.h>
->-#include <linux/errno.h>
->-#include <linux/kernel.h>
->-#include <linux/delay.h>
->-#include <linux/slab.h>
->-#include <linux/blk-mq.h>
->-#include <linux/mutex.h>
->-#include <linux/ata.h>
->-#include <linux/hdreg.h>
->-#include <linux/platform_device.h>
->-#if defined(CONFIG_OF)
->-#include <linux/of_address.h>
->-#include <linux/of_device.h>
->-#include <linux/of_platform.h>
->-#endif
->-
->-MODULE_AUTHOR("Grant Likely <grant.likely@secretlab.ca>");
->-MODULE_DESCRIPTION("Xilinx SystemACE device driver");
->-MODULE_LICENSE("GPL");
->-
->-/* SystemACE register definitions */
->-#define ACE_BUSMODE (0x00)
->-
->-#define ACE_STATUS (0x04)
->-#define ACE_STATUS_CFGLOCK      (0x00000001)
->-#define ACE_STATUS_MPULOCK      (0x00000002)
->-#define ACE_STATUS_CFGERROR     (0x00000004)	/* config controller error */
->-#define ACE_STATUS_CFCERROR     (0x00000008)	/* CF controller error */
->-#define ACE_STATUS_CFDETECT     (0x00000010)
->-#define ACE_STATUS_DATABUFRDY   (0x00000020)
->-#define ACE_STATUS_DATABUFMODE  (0x00000040)
->-#define ACE_STATUS_CFGDONE      (0x00000080)
->-#define ACE_STATUS_RDYFORCFCMD  (0x00000100)
->-#define ACE_STATUS_CFGMODEPIN   (0x00000200)
->-#define ACE_STATUS_CFGADDR_MASK (0x0000e000)
->-#define ACE_STATUS_CFBSY        (0x00020000)
->-#define ACE_STATUS_CFRDY        (0x00040000)
->-#define ACE_STATUS_CFDWF        (0x00080000)
->-#define ACE_STATUS_CFDSC        (0x00100000)
->-#define ACE_STATUS_CFDRQ        (0x00200000)
->-#define ACE_STATUS_CFCORR       (0x00400000)
->-#define ACE_STATUS_CFERR        (0x00800000)
->-
->-#define ACE_ERROR (0x08)
->-#define ACE_CFGLBA (0x0c)
->-#define ACE_MPULBA (0x10)
->-
->-#define ACE_SECCNTCMD (0x14)
->-#define ACE_SECCNTCMD_RESET      (0x0100)
->-#define ACE_SECCNTCMD_IDENTIFY   (0x0200)
->-#define ACE_SECCNTCMD_READ_DATA  (0x0300)
->-#define ACE_SECCNTCMD_WRITE_DATA (0x0400)
->-#define ACE_SECCNTCMD_ABORT      (0x0600)
->-
->-#define ACE_VERSION (0x16)
->-#define ACE_VERSION_REVISION_MASK (0x00FF)
->-#define ACE_VERSION_MINOR_MASK    (0x0F00)
->-#define ACE_VERSION_MAJOR_MASK    (0xF000)
->-
->-#define ACE_CTRL (0x18)
->-#define ACE_CTRL_FORCELOCKREQ   (0x0001)
->-#define ACE_CTRL_LOCKREQ        (0x0002)
->-#define ACE_CTRL_FORCECFGADDR   (0x0004)
->-#define ACE_CTRL_FORCECFGMODE   (0x0008)
->-#define ACE_CTRL_CFGMODE        (0x0010)
->-#define ACE_CTRL_CFGSTART       (0x0020)
->-#define ACE_CTRL_CFGSEL         (0x0040)
->-#define ACE_CTRL_CFGRESET       (0x0080)
->-#define ACE_CTRL_DATABUFRDYIRQ  (0x0100)
->-#define ACE_CTRL_ERRORIRQ       (0x0200)
->-#define ACE_CTRL_CFGDONEIRQ     (0x0400)
->-#define ACE_CTRL_RESETIRQ       (0x0800)
->-#define ACE_CTRL_CFGPROG        (0x1000)
->-#define ACE_CTRL_CFGADDR_MASK   (0xe000)
->-
->-#define ACE_FATSTAT (0x1c)
->-
->-#define ACE_NUM_MINORS 16
->-#define ACE_SECTOR_SIZE (512)
->-#define ACE_FIFO_SIZE (32)
->-#define ACE_BUF_PER_SECTOR (ACE_SECTOR_SIZE / ACE_FIFO_SIZE)
->-
->-#define ACE_BUS_WIDTH_8  0
->-#define ACE_BUS_WIDTH_16 1
->-
->-struct ace_reg_ops;
->-
->-struct ace_device {
->-	/* driver state data */
->-	int id;
->-	int media_change;
->-	int users;
->-	struct list_head list;
->-
->-	/* finite state machine data */
->-	struct tasklet_struct fsm_tasklet;
->-	uint fsm_task;		/* Current activity (ACE_TASK_*) */
->-	uint fsm_state;		/* Current state (ACE_FSM_STATE_*) */
->-	uint fsm_continue_flag;	/* cleared to exit FSM mainloop */
->-	uint fsm_iter_num;
->-	struct timer_list stall_timer;
->-
->-	/* Transfer state/result, use for both id and block request */
->-	struct request *req;	/* request being processed */
->-	void *data_ptr;		/* pointer to I/O buffer */
->-	int data_count;		/* number of buffers remaining */
->-	int data_result;	/* Result of transfer; 0 := success */
->-
->-	int id_req_count;	/* count of id requests */
->-	int id_result;
->-	struct completion id_completion;	/* used when id req finishes */
->-	int in_irq;
->-
->-	/* Details of hardware device */
->-	resource_size_t physaddr;
->-	void __iomem *baseaddr;
->-	int irq;
->-	int bus_width;		/* 0 := 8 bit; 1 := 16 bit */
->-	struct ace_reg_ops *reg_ops;
->-	int lock_count;
->-
->-	/* Block device data structures */
->-	spinlock_t lock;
->-	struct device *dev;
->-	struct request_queue *queue;
->-	struct gendisk *gd;
->-	struct blk_mq_tag_set tag_set;
->-	struct list_head rq_list;
->-
->-	/* Inserted CF card parameters */
->-	u16 cf_id[ATA_ID_WORDS];
->-};
->-
->-static DEFINE_MUTEX(xsysace_mutex);
->-static int ace_major;
->-
->-/* ---------------------------------------------------------------------
->- * Low level register access
->- */
->-
->-struct ace_reg_ops {
->-	u16(*in) (struct ace_device * ace, int reg);
->-	void (*out) (struct ace_device * ace, int reg, u16 val);
->-	void (*datain) (struct ace_device * ace);
->-	void (*dataout) (struct ace_device * ace);
->-};
->-
->-/* 8 Bit bus width */
->-static u16 ace_in_8(struct ace_device *ace, int reg)
->-{
->-	void __iomem *r = ace->baseaddr + reg;
->-	return in_8(r) | (in_8(r + 1) << 8);
->-}
->-
->-static void ace_out_8(struct ace_device *ace, int reg, u16 val)
->-{
->-	void __iomem *r = ace->baseaddr + reg;
->-	out_8(r, val);
->-	out_8(r + 1, val >> 8);
->-}
->-
->-static void ace_datain_8(struct ace_device *ace)
->-{
->-	void __iomem *r = ace->baseaddr + 0x40;
->-	u8 *dst = ace->data_ptr;
->-	int i = ACE_FIFO_SIZE;
->-	while (i--)
->-		*dst++ = in_8(r++);
->-	ace->data_ptr = dst;
->-}
->-
->-static void ace_dataout_8(struct ace_device *ace)
->-{
->-	void __iomem *r = ace->baseaddr + 0x40;
->-	u8 *src = ace->data_ptr;
->-	int i = ACE_FIFO_SIZE;
->-	while (i--)
->-		out_8(r++, *src++);
->-	ace->data_ptr = src;
->-}
->-
->-static struct ace_reg_ops ace_reg_8_ops = {
->-	.in = ace_in_8,
->-	.out = ace_out_8,
->-	.datain = ace_datain_8,
->-	.dataout = ace_dataout_8,
->-};
->-
->-/* 16 bit big endian bus attachment */
->-static u16 ace_in_be16(struct ace_device *ace, int reg)
->-{
->-	return in_be16(ace->baseaddr + reg);
->-}
->-
->-static void ace_out_be16(struct ace_device *ace, int reg, u16 val)
->-{
->-	out_be16(ace->baseaddr + reg, val);
->-}
->-
->-static void ace_datain_be16(struct ace_device *ace)
->-{
->-	int i = ACE_FIFO_SIZE / 2;
->-	u16 *dst = ace->data_ptr;
->-	while (i--)
->-		*dst++ = in_le16(ace->baseaddr + 0x40);
->-	ace->data_ptr = dst;
->-}
->-
->-static void ace_dataout_be16(struct ace_device *ace)
->-{
->-	int i = ACE_FIFO_SIZE / 2;
->-	u16 *src = ace->data_ptr;
->-	while (i--)
->-		out_le16(ace->baseaddr + 0x40, *src++);
->-	ace->data_ptr = src;
->-}
->-
->-/* 16 bit little endian bus attachment */
->-static u16 ace_in_le16(struct ace_device *ace, int reg)
->-{
->-	return in_le16(ace->baseaddr + reg);
->-}
->-
->-static void ace_out_le16(struct ace_device *ace, int reg, u16 val)
->-{
->-	out_le16(ace->baseaddr + reg, val);
->-}
->-
->-static void ace_datain_le16(struct ace_device *ace)
->-{
->-	int i = ACE_FIFO_SIZE / 2;
->-	u16 *dst = ace->data_ptr;
->-	while (i--)
->-		*dst++ = in_be16(ace->baseaddr + 0x40);
->-	ace->data_ptr = dst;
->-}
->-
->-static void ace_dataout_le16(struct ace_device *ace)
->-{
->-	int i = ACE_FIFO_SIZE / 2;
->-	u16 *src = ace->data_ptr;
->-	while (i--)
->-		out_be16(ace->baseaddr + 0x40, *src++);
->-	ace->data_ptr = src;
->-}
->-
->-static struct ace_reg_ops ace_reg_be16_ops = {
->-	.in = ace_in_be16,
->-	.out = ace_out_be16,
->-	.datain = ace_datain_be16,
->-	.dataout = ace_dataout_be16,
->-};
->-
->-static struct ace_reg_ops ace_reg_le16_ops = {
->-	.in = ace_in_le16,
->-	.out = ace_out_le16,
->-	.datain = ace_datain_le16,
->-	.dataout = ace_dataout_le16,
->-};
->-
->-static inline u16 ace_in(struct ace_device *ace, int reg)
->-{
->-	return ace->reg_ops->in(ace, reg);
->-}
->-
->-static inline u32 ace_in32(struct ace_device *ace, int reg)
->-{
->-	return ace_in(ace, reg) | (ace_in(ace, reg + 2) << 16);
->-}
->-
->-static inline void ace_out(struct ace_device *ace, int reg, u16 val)
->-{
->-	ace->reg_ops->out(ace, reg, val);
->-}
->-
->-static inline void ace_out32(struct ace_device *ace, int reg, u32 val)
->-{
->-	ace_out(ace, reg, val);
->-	ace_out(ace, reg + 2, val >> 16);
->-}
->-
->-/* ---------------------------------------------------------------------
->- * Debug support functions
->- */
->-
->-#if defined(DEBUG)
->-static void ace_dump_mem(void *base, int len)
->-{
->-	const char *ptr = base;
->-	int i, j;
->-
->-	for (i = 0; i < len; i += 16) {
->-		printk(KERN_INFO "%.8x:", i);
->-		for (j = 0; j < 16; j++) {
->-			if (!(j % 4))
->-				printk(" ");
->-			printk("%.2x", ptr[i + j]);
->-		}
->-		printk(" ");
->-		for (j = 0; j < 16; j++)
->-			printk("%c", isprint(ptr[i + j]) ? ptr[i + j] : '.');
->-		printk("\n");
->-	}
->-}
->-#else
->-static inline void ace_dump_mem(void *base, int len)
->-{
->-}
->-#endif
->-
->-static void ace_dump_regs(struct ace_device *ace)
->-{
->-	dev_info(ace->dev,
->-		 "    ctrl:  %.8x  seccnt/cmd: %.4x      ver:%.4x\n"
->-		 "    status:%.8x  mpu_lba:%.8x  busmode:%4x\n"
->-		 "    error: %.8x  cfg_lba:%.8x  fatstat:%.4x\n",
->-		 ace_in32(ace, ACE_CTRL),
->-		 ace_in(ace, ACE_SECCNTCMD),
->-		 ace_in(ace, ACE_VERSION),
->-		 ace_in32(ace, ACE_STATUS),
->-		 ace_in32(ace, ACE_MPULBA),
->-		 ace_in(ace, ACE_BUSMODE),
->-		 ace_in32(ace, ACE_ERROR),
->-		 ace_in32(ace, ACE_CFGLBA), ace_in(ace, ACE_FATSTAT));
->-}
->-
->-static void ace_fix_driveid(u16 *id)
->-{
->-#if defined(__BIG_ENDIAN)
->-	int i;
->-
->-	/* All half words have wrong byte order; swap the bytes */
->-	for (i = 0; i < ATA_ID_WORDS; i++, id++)
->-		*id = le16_to_cpu(*id);
->-#endif
->-}
->-
->-/* ---------------------------------------------------------------------
->- * Finite State Machine (FSM) implementation
->- */
->-
->-/* FSM tasks; used to direct state transitions */
->-#define ACE_TASK_IDLE      0
->-#define ACE_TASK_IDENTIFY  1
->-#define ACE_TASK_READ      2
->-#define ACE_TASK_WRITE     3
->-#define ACE_FSM_NUM_TASKS  4
->-
->-/* FSM state definitions */
->-#define ACE_FSM_STATE_IDLE               0
->-#define ACE_FSM_STATE_REQ_LOCK           1
->-#define ACE_FSM_STATE_WAIT_LOCK          2
->-#define ACE_FSM_STATE_WAIT_CFREADY       3
->-#define ACE_FSM_STATE_IDENTIFY_PREPARE   4
->-#define ACE_FSM_STATE_IDENTIFY_TRANSFER  5
->-#define ACE_FSM_STATE_IDENTIFY_COMPLETE  6
->-#define ACE_FSM_STATE_REQ_PREPARE        7
->-#define ACE_FSM_STATE_REQ_TRANSFER       8
->-#define ACE_FSM_STATE_REQ_COMPLETE       9
->-#define ACE_FSM_STATE_ERROR             10
->-#define ACE_FSM_NUM_STATES              11
->-
->-/* Set flag to exit FSM loop and reschedule tasklet */
->-static inline void ace_fsm_yieldpoll(struct ace_device *ace)
->-{
->-	tasklet_schedule(&ace->fsm_tasklet);
->-	ace->fsm_continue_flag = 0;
->-}
->-
->-static inline void ace_fsm_yield(struct ace_device *ace)
->-{
->-	dev_dbg(ace->dev, "%s()\n", __func__);
->-	ace_fsm_yieldpoll(ace);
->-}
->-
->-/* Set flag to exit FSM loop and wait for IRQ to reschedule tasklet */
->-static inline void ace_fsm_yieldirq(struct ace_device *ace)
->-{
->-	dev_dbg(ace->dev, "ace_fsm_yieldirq()\n");
->-
->-	if (ace->irq > 0)
->-		ace->fsm_continue_flag = 0;
->-	else
->-		ace_fsm_yieldpoll(ace);
->-}
->-
->-static bool ace_has_next_request(struct request_queue *q)
->-{
->-	struct ace_device *ace = q->queuedata;
->-
->-	return !list_empty(&ace->rq_list);
->-}
->-
->-/* Get the next read/write request; ending requests that we don't handle */
->-static struct request *ace_get_next_request(struct request_queue *q)
->-{
->-	struct ace_device *ace = q->queuedata;
->-	struct request *rq;
->-
->-	rq = list_first_entry_or_null(&ace->rq_list, struct request, queuelist);
->-	if (rq) {
->-		list_del_init(&rq->queuelist);
->-		blk_mq_start_request(rq);
->-	}
->-
->-	return NULL;
->-}
->-
->-static void ace_fsm_dostate(struct ace_device *ace)
->-{
->-	struct request *req;
->-	u32 status;
->-	u16 val;
->-	int count;
->-
->-#if defined(DEBUG)
->-	dev_dbg(ace->dev, "fsm_state=%i, id_req_count=%i\n",
->-		ace->fsm_state, ace->id_req_count);
->-#endif
->-
->-	/* Verify that there is actually a CF in the slot. If not, then
->-	 * bail out back to the idle state and wake up all the waiters */
->-	status = ace_in32(ace, ACE_STATUS);
->-	if ((status & ACE_STATUS_CFDETECT) == 0) {
->-		ace->fsm_state = ACE_FSM_STATE_IDLE;
->-		ace->media_change = 1;
->-		set_capacity(ace->gd, 0);
->-		dev_info(ace->dev, "No CF in slot\n");
->-
->-		/* Drop all in-flight and pending requests */
->-		if (ace->req) {
->-			blk_mq_end_request(ace->req, BLK_STS_IOERR);
->-			ace->req = NULL;
->-		}
->-		while ((req = ace_get_next_request(ace->queue)) != NULL)
->-			blk_mq_end_request(req, BLK_STS_IOERR);
->-
->-		/* Drop back to IDLE state and notify waiters */
->-		ace->fsm_state = ACE_FSM_STATE_IDLE;
->-		ace->id_result = -EIO;
->-		while (ace->id_req_count) {
->-			complete(&ace->id_completion);
->-			ace->id_req_count--;
->-		}
->-	}
->-
->-	switch (ace->fsm_state) {
->-	case ACE_FSM_STATE_IDLE:
->-		/* See if there is anything to do */
->-		if (ace->id_req_count || ace_has_next_request(ace->queue)) {
->-			ace->fsm_iter_num++;
->-			ace->fsm_state = ACE_FSM_STATE_REQ_LOCK;
->-			mod_timer(&ace->stall_timer, jiffies + HZ);
->-			if (!timer_pending(&ace->stall_timer))
->-				add_timer(&ace->stall_timer);
->-			break;
->-		}
->-		del_timer(&ace->stall_timer);
->-		ace->fsm_continue_flag = 0;
->-		break;
->-
->-	case ACE_FSM_STATE_REQ_LOCK:
->-		if (ace_in(ace, ACE_STATUS) & ACE_STATUS_MPULOCK) {
->-			/* Already have the lock, jump to next state */
->-			ace->fsm_state = ACE_FSM_STATE_WAIT_CFREADY;
->-			break;
->-		}
->-
->-		/* Request the lock */
->-		val = ace_in(ace, ACE_CTRL);
->-		ace_out(ace, ACE_CTRL, val | ACE_CTRL_LOCKREQ);
->-		ace->fsm_state = ACE_FSM_STATE_WAIT_LOCK;
->-		break;
->-
->-	case ACE_FSM_STATE_WAIT_LOCK:
->-		if (ace_in(ace, ACE_STATUS) & ACE_STATUS_MPULOCK) {
->-			/* got the lock; move to next state */
->-			ace->fsm_state = ACE_FSM_STATE_WAIT_CFREADY;
->-			break;
->-		}
->-
->-		/* wait a bit for the lock */
->-		ace_fsm_yield(ace);
->-		break;
->-
->-	case ACE_FSM_STATE_WAIT_CFREADY:
->-		status = ace_in32(ace, ACE_STATUS);
->-		if (!(status & ACE_STATUS_RDYFORCFCMD) ||
->-		    (status & ACE_STATUS_CFBSY)) {
->-			/* CF card isn't ready; it needs to be polled */
->-			ace_fsm_yield(ace);
->-			break;
->-		}
->-
->-		/* Device is ready for command; determine what to do next */
->-		if (ace->id_req_count)
->-			ace->fsm_state = ACE_FSM_STATE_IDENTIFY_PREPARE;
->-		else
->-			ace->fsm_state = ACE_FSM_STATE_REQ_PREPARE;
->-		break;
->-
->-	case ACE_FSM_STATE_IDENTIFY_PREPARE:
->-		/* Send identify command */
->-		ace->fsm_task = ACE_TASK_IDENTIFY;
->-		ace->data_ptr = ace->cf_id;
->-		ace->data_count = ACE_BUF_PER_SECTOR;
->-		ace_out(ace, ACE_SECCNTCMD, ACE_SECCNTCMD_IDENTIFY);
->-
->-		/* As per datasheet, put config controller in reset */
->-		val = ace_in(ace, ACE_CTRL);
->-		ace_out(ace, ACE_CTRL, val | ACE_CTRL_CFGRESET);
->-
->-		/* irq handler takes over from this point; wait for the
->-		 * transfer to complete */
->-		ace->fsm_state = ACE_FSM_STATE_IDENTIFY_TRANSFER;
->-		ace_fsm_yieldirq(ace);
->-		break;
->-
->-	case ACE_FSM_STATE_IDENTIFY_TRANSFER:
->-		/* Check that the sysace is ready to receive data */
->-		status = ace_in32(ace, ACE_STATUS);
->-		if (status & ACE_STATUS_CFBSY) {
->-			dev_dbg(ace->dev, "CFBSY set; t=%i iter=%i dc=%i\n",
->-				ace->fsm_task, ace->fsm_iter_num,
->-				ace->data_count);
->-			ace_fsm_yield(ace);
->-			break;
->-		}
->-		if (!(status & ACE_STATUS_DATABUFRDY)) {
->-			ace_fsm_yield(ace);
->-			break;
->-		}
->-
->-		/* Transfer the next buffer */
->-		ace->reg_ops->datain(ace);
->-		ace->data_count--;
->-
->-		/* If there are still buffers to be transfers; jump out here */
->-		if (ace->data_count != 0) {
->-			ace_fsm_yieldirq(ace);
->-			break;
->-		}
->-
->-		/* transfer finished; kick state machine */
->-		dev_dbg(ace->dev, "identify finished\n");
->-		ace->fsm_state = ACE_FSM_STATE_IDENTIFY_COMPLETE;
->-		break;
->-
->-	case ACE_FSM_STATE_IDENTIFY_COMPLETE:
->-		ace_fix_driveid(ace->cf_id);
->-		ace_dump_mem(ace->cf_id, 512);	/* Debug: Dump out disk ID */
->-
->-		if (ace->data_result) {
->-			/* Error occurred, disable the disk */
->-			ace->media_change = 1;
->-			set_capacity(ace->gd, 0);
->-			dev_err(ace->dev, "error fetching CF id (%i)\n",
->-				ace->data_result);
->-		} else {
->-			ace->media_change = 0;
->-
->-			/* Record disk parameters */
->-			set_capacity(ace->gd,
->-				ata_id_u32(ace->cf_id, ATA_ID_LBA_CAPACITY));
->-			dev_info(ace->dev, "capacity: %i sectors\n",
->-				ata_id_u32(ace->cf_id, ATA_ID_LBA_CAPACITY));
->-		}
->-
->-		/* We're done, drop to IDLE state and notify waiters */
->-		ace->fsm_state = ACE_FSM_STATE_IDLE;
->-		ace->id_result = ace->data_result;
->-		while (ace->id_req_count) {
->-			complete(&ace->id_completion);
->-			ace->id_req_count--;
->-		}
->-		break;
->-
->-	case ACE_FSM_STATE_REQ_PREPARE:
->-		req = ace_get_next_request(ace->queue);
->-		if (!req) {
->-			ace->fsm_state = ACE_FSM_STATE_IDLE;
->-			break;
->-		}
->-
->-		/* Okay, it's a data request, set it up for transfer */
->-		dev_dbg(ace->dev,
->-			"request: sec=%llx hcnt=%x, ccnt=%x, dir=%i\n",
->-			(unsigned long long)blk_rq_pos(req),
->-			blk_rq_sectors(req), blk_rq_cur_sectors(req),
->-			rq_data_dir(req));
->-
->-		ace->req = req;
->-		ace->data_ptr = bio_data(req->bio);
->-		ace->data_count = blk_rq_cur_sectors(req) * ACE_BUF_PER_SECTOR;
->-		ace_out32(ace, ACE_MPULBA, blk_rq_pos(req) & 0x0FFFFFFF);
->-
->-		count = blk_rq_sectors(req);
->-		if (rq_data_dir(req)) {
->-			/* Kick off write request */
->-			dev_dbg(ace->dev, "write data\n");
->-			ace->fsm_task = ACE_TASK_WRITE;
->-			ace_out(ace, ACE_SECCNTCMD,
->-				count | ACE_SECCNTCMD_WRITE_DATA);
->-		} else {
->-			/* Kick off read request */
->-			dev_dbg(ace->dev, "read data\n");
->-			ace->fsm_task = ACE_TASK_READ;
->-			ace_out(ace, ACE_SECCNTCMD,
->-				count | ACE_SECCNTCMD_READ_DATA);
->-		}
->-
->-		/* As per datasheet, put config controller in reset */
->-		val = ace_in(ace, ACE_CTRL);
->-		ace_out(ace, ACE_CTRL, val | ACE_CTRL_CFGRESET);
->-
->-		/* Move to the transfer state.  The systemace will raise
->-		 * an interrupt once there is something to do
->-		 */
->-		ace->fsm_state = ACE_FSM_STATE_REQ_TRANSFER;
->-		if (ace->fsm_task == ACE_TASK_READ)
->-			ace_fsm_yieldirq(ace);	/* wait for data ready */
->-		break;
->-
->-	case ACE_FSM_STATE_REQ_TRANSFER:
->-		/* Check that the sysace is ready to receive data */
->-		status = ace_in32(ace, ACE_STATUS);
->-		if (status & ACE_STATUS_CFBSY) {
->-			dev_dbg(ace->dev,
->-				"CFBSY set; t=%i iter=%i c=%i dc=%i irq=%i\n",
->-				ace->fsm_task, ace->fsm_iter_num,
->-				blk_rq_cur_sectors(ace->req) * 16,
->-				ace->data_count, ace->in_irq);
->-			ace_fsm_yield(ace);	/* need to poll CFBSY bit */
->-			break;
->-		}
->-		if (!(status & ACE_STATUS_DATABUFRDY)) {
->-			dev_dbg(ace->dev,
->-				"DATABUF not set; t=%i iter=%i c=%i dc=%i irq=%i\n",
->-				ace->fsm_task, ace->fsm_iter_num,
->-				blk_rq_cur_sectors(ace->req) * 16,
->-				ace->data_count, ace->in_irq);
->-			ace_fsm_yieldirq(ace);
->-			break;
->-		}
->-
->-		/* Transfer the next buffer */
->-		if (ace->fsm_task == ACE_TASK_WRITE)
->-			ace->reg_ops->dataout(ace);
->-		else
->-			ace->reg_ops->datain(ace);
->-		ace->data_count--;
->-
->-		/* If there are still buffers to be transfers; jump out here */
->-		if (ace->data_count != 0) {
->-			ace_fsm_yieldirq(ace);
->-			break;
->-		}
->-
->-		/* bio finished; is there another one? */
->-		if (blk_update_request(ace->req, BLK_STS_OK,
->-		    blk_rq_cur_bytes(ace->req))) {
->-			/* dev_dbg(ace->dev, "next block; h=%u c=%u\n",
->-			 *      blk_rq_sectors(ace->req),
->-			 *      blk_rq_cur_sectors(ace->req));
->-			 */
->-			ace->data_ptr = bio_data(ace->req->bio);
->-			ace->data_count = blk_rq_cur_sectors(ace->req) * 16;
->-			ace_fsm_yieldirq(ace);
->-			break;
->-		}
->-
->-		ace->fsm_state = ACE_FSM_STATE_REQ_COMPLETE;
->-		break;
->-
->-	case ACE_FSM_STATE_REQ_COMPLETE:
->-		ace->req = NULL;
->-
->-		/* Finished request; go to idle state */
->-		ace->fsm_state = ACE_FSM_STATE_IDLE;
->-		break;
->-
->-	default:
->-		ace->fsm_state = ACE_FSM_STATE_IDLE;
->-		break;
->-	}
->-}
->-
->-static void ace_fsm_tasklet(unsigned long data)
->-{
->-	struct ace_device *ace = (void *)data;
->-	unsigned long flags;
->-
->-	spin_lock_irqsave(&ace->lock, flags);
->-
->-	/* Loop over state machine until told to stop */
->-	ace->fsm_continue_flag = 1;
->-	while (ace->fsm_continue_flag)
->-		ace_fsm_dostate(ace);
->-
->-	spin_unlock_irqrestore(&ace->lock, flags);
->-}
->-
->-static void ace_stall_timer(struct timer_list *t)
->-{
->-	struct ace_device *ace = from_timer(ace, t, stall_timer);
->-	unsigned long flags;
->-
->-	dev_warn(ace->dev,
->-		 "kicking stalled fsm; state=%i task=%i iter=%i dc=%i\n",
->-		 ace->fsm_state, ace->fsm_task, ace->fsm_iter_num,
->-		 ace->data_count);
->-	spin_lock_irqsave(&ace->lock, flags);
->-
->-	/* Rearm the stall timer *before* entering FSM (which may then
->-	 * delete the timer) */
->-	mod_timer(&ace->stall_timer, jiffies + HZ);
->-
->-	/* Loop over state machine until told to stop */
->-	ace->fsm_continue_flag = 1;
->-	while (ace->fsm_continue_flag)
->-		ace_fsm_dostate(ace);
->-
->-	spin_unlock_irqrestore(&ace->lock, flags);
->-}
->-
->-/* ---------------------------------------------------------------------
->- * Interrupt handling routines
->- */
->-static int ace_interrupt_checkstate(struct ace_device *ace)
->-{
->-	u32 sreg = ace_in32(ace, ACE_STATUS);
->-	u16 creg = ace_in(ace, ACE_CTRL);
->-
->-	/* Check for error occurrence */
->-	if ((sreg & (ACE_STATUS_CFGERROR | ACE_STATUS_CFCERROR)) &&
->-	    (creg & ACE_CTRL_ERRORIRQ)) {
->-		dev_err(ace->dev, "transfer failure\n");
->-		ace_dump_regs(ace);
->-		return -EIO;
->-	}
->-
->-	return 0;
->-}
->-
->-static irqreturn_t ace_interrupt(int irq, void *dev_id)
->-{
->-	u16 creg;
->-	struct ace_device *ace = dev_id;
->-
->-	/* be safe and get the lock */
->-	spin_lock(&ace->lock);
->-	ace->in_irq = 1;
->-
->-	/* clear the interrupt */
->-	creg = ace_in(ace, ACE_CTRL);
->-	ace_out(ace, ACE_CTRL, creg | ACE_CTRL_RESETIRQ);
->-	ace_out(ace, ACE_CTRL, creg);
->-
->-	/* check for IO failures */
->-	if (ace_interrupt_checkstate(ace))
->-		ace->data_result = -EIO;
->-
->-	if (ace->fsm_task == 0) {
->-		dev_err(ace->dev,
->-			"spurious irq; stat=%.8x ctrl=%.8x cmd=%.4x\n",
->-			ace_in32(ace, ACE_STATUS), ace_in32(ace, ACE_CTRL),
->-			ace_in(ace, ACE_SECCNTCMD));
->-		dev_err(ace->dev, "fsm_task=%i fsm_state=%i data_count=%i\n",
->-			ace->fsm_task, ace->fsm_state, ace->data_count);
->-	}
->-
->-	/* Loop over state machine until told to stop */
->-	ace->fsm_continue_flag = 1;
->-	while (ace->fsm_continue_flag)
->-		ace_fsm_dostate(ace);
->-
->-	/* done with interrupt; drop the lock */
->-	ace->in_irq = 0;
->-	spin_unlock(&ace->lock);
->-
->-	return IRQ_HANDLED;
->-}
->-
->-/* ---------------------------------------------------------------------
->- * Block ops
->- */
->-static blk_status_t ace_queue_rq(struct blk_mq_hw_ctx *hctx,
->-				 const struct blk_mq_queue_data *bd)
->-{
->-	struct ace_device *ace = hctx->queue->queuedata;
->-	struct request *req = bd->rq;
->-
->-	if (blk_rq_is_passthrough(req)) {
->-		blk_mq_start_request(req);
->-		return BLK_STS_IOERR;
->-	}
->-
->-	spin_lock_irq(&ace->lock);
->-	list_add_tail(&req->queuelist, &ace->rq_list);
->-	spin_unlock_irq(&ace->lock);
->-
->-	tasklet_schedule(&ace->fsm_tasklet);
->-	return BLK_STS_OK;
->-}
->-
->-static unsigned int ace_check_events(struct gendisk *gd, unsigned int clearing)
->-{
->-	struct ace_device *ace = gd->private_data;
->-	dev_dbg(ace->dev, "ace_check_events(): %i\n", ace->media_change);
->-
->-	return ace->media_change ? DISK_EVENT_MEDIA_CHANGE : 0;
->-}
->-
->-static void ace_media_changed(struct ace_device *ace)
->-{
->-	unsigned long flags;
->-
->-	dev_dbg(ace->dev, "requesting cf id and scheduling tasklet\n");
->-
->-	spin_lock_irqsave(&ace->lock, flags);
->-	ace->id_req_count++;
->-	spin_unlock_irqrestore(&ace->lock, flags);
->-
->-	tasklet_schedule(&ace->fsm_tasklet);
->-	wait_for_completion(&ace->id_completion);
->-
->-	dev_dbg(ace->dev, "revalidate complete\n");
->-}
->-
->-static int ace_open(struct block_device *bdev, fmode_t mode)
->-{
->-	struct ace_device *ace = bdev->bd_disk->private_data;
->-	unsigned long flags;
->-
->-	dev_dbg(ace->dev, "ace_open() users=%i\n", ace->users + 1);
->-
->-	mutex_lock(&xsysace_mutex);
->-	spin_lock_irqsave(&ace->lock, flags);
->-	ace->users++;
->-	spin_unlock_irqrestore(&ace->lock, flags);
->-
->-	if (bdev_check_media_change(bdev) && ace->media_change)
->-		ace_media_changed(ace);
->-	mutex_unlock(&xsysace_mutex);
->-
->-	return 0;
->-}
->-
->-static void ace_release(struct gendisk *disk, fmode_t mode)
->-{
->-	struct ace_device *ace = disk->private_data;
->-	unsigned long flags;
->-	u16 val;
->-
->-	dev_dbg(ace->dev, "ace_release() users=%i\n", ace->users - 1);
->-
->-	mutex_lock(&xsysace_mutex);
->-	spin_lock_irqsave(&ace->lock, flags);
->-	ace->users--;
->-	if (ace->users == 0) {
->-		val = ace_in(ace, ACE_CTRL);
->-		ace_out(ace, ACE_CTRL, val & ~ACE_CTRL_LOCKREQ);
->-	}
->-	spin_unlock_irqrestore(&ace->lock, flags);
->-	mutex_unlock(&xsysace_mutex);
->-}
->-
->-static int ace_getgeo(struct block_device *bdev, struct hd_geometry *geo)
->-{
->-	struct ace_device *ace = bdev->bd_disk->private_data;
->-	u16 *cf_id = ace->cf_id;
->-
->-	dev_dbg(ace->dev, "ace_getgeo()\n");
->-
->-	geo->heads	= cf_id[ATA_ID_HEADS];
->-	geo->sectors	= cf_id[ATA_ID_SECTORS];
->-	geo->cylinders	= cf_id[ATA_ID_CYLS];
->-
->-	return 0;
->-}
->-
->-static const struct block_device_operations ace_fops = {
->-	.owner = THIS_MODULE,
->-	.open = ace_open,
->-	.release = ace_release,
->-	.check_events = ace_check_events,
->-	.getgeo = ace_getgeo,
->-};
->-
->-static const struct blk_mq_ops ace_mq_ops = {
->-	.queue_rq	= ace_queue_rq,
->-};
->-
->-/* --------------------------------------------------------------------
->- * SystemACE device setup/teardown code
->- */
->-static int ace_setup(struct ace_device *ace)
->-{
->-	u16 version;
->-	u16 val;
->-	int rc;
->-
->-	dev_dbg(ace->dev, "ace_setup(ace=0x%p)\n", ace);
->-	dev_dbg(ace->dev, "physaddr=0x%llx irq=%i\n",
->-		(unsigned long long)ace->physaddr, ace->irq);
->-
->-	spin_lock_init(&ace->lock);
->-	init_completion(&ace->id_completion);
->-	INIT_LIST_HEAD(&ace->rq_list);
->-
->-	/*
->-	 * Map the device
->-	 */
->-	ace->baseaddr = ioremap(ace->physaddr, 0x80);
->-	if (!ace->baseaddr)
->-		goto err_ioremap;
->-
->-	/*
->-	 * Initialize the state machine tasklet and stall timer
->-	 */
->-	tasklet_init(&ace->fsm_tasklet, ace_fsm_tasklet, (unsigned long)ace);
->-	timer_setup(&ace->stall_timer, ace_stall_timer, 0);
->-
->-	/*
->-	 * Initialize the request queue
->-	 */
->-	ace->queue = blk_mq_init_sq_queue(&ace->tag_set, &ace_mq_ops, 2,
->-						BLK_MQ_F_SHOULD_MERGE);
->-	if (IS_ERR(ace->queue)) {
->-		rc = PTR_ERR(ace->queue);
->-		ace->queue = NULL;
->-		goto err_blk_initq;
->-	}
->-	ace->queue->queuedata = ace;
->-
->-	blk_queue_logical_block_size(ace->queue, 512);
->-	blk_queue_bounce_limit(ace->queue, BLK_BOUNCE_HIGH);
->-
->-	/*
->-	 * Allocate and initialize GD structure
->-	 */
->-	ace->gd = alloc_disk(ACE_NUM_MINORS);
->-	if (!ace->gd)
->-		goto err_alloc_disk;
->-
->-	ace->gd->major = ace_major;
->-	ace->gd->first_minor = ace->id * ACE_NUM_MINORS;
->-	ace->gd->fops = &ace_fops;
->-	ace->gd->events = DISK_EVENT_MEDIA_CHANGE;
->-	ace->gd->queue = ace->queue;
->-	ace->gd->private_data = ace;
->-	snprintf(ace->gd->disk_name, 32, "xs%c", ace->id + 'a');
->-
->-	/* set bus width */
->-	if (ace->bus_width == ACE_BUS_WIDTH_16) {
->-		/* 0x0101 should work regardless of endianess */
->-		ace_out_le16(ace, ACE_BUSMODE, 0x0101);
->-
->-		/* read it back to determine endianess */
->-		if (ace_in_le16(ace, ACE_BUSMODE) == 0x0001)
->-			ace->reg_ops = &ace_reg_le16_ops;
->-		else
->-			ace->reg_ops = &ace_reg_be16_ops;
->-	} else {
->-		ace_out_8(ace, ACE_BUSMODE, 0x00);
->-		ace->reg_ops = &ace_reg_8_ops;
->-	}
->-
->-	/* Make sure version register is sane */
->-	version = ace_in(ace, ACE_VERSION);
->-	if ((version == 0) || (version == 0xFFFF))
->-		goto err_read;
->-
->-	/* Put sysace in a sane state by clearing most control reg bits */
->-	ace_out(ace, ACE_CTRL, ACE_CTRL_FORCECFGMODE |
->-		ACE_CTRL_DATABUFRDYIRQ | ACE_CTRL_ERRORIRQ);
->-
->-	/* Now we can hook up the irq handler */
->-	if (ace->irq > 0) {
->-		rc = request_irq(ace->irq, ace_interrupt, 0, "systemace", ace);
->-		if (rc) {
->-			/* Failure - fall back to polled mode */
->-			dev_err(ace->dev, "request_irq failed\n");
->-			ace->irq = rc;
->-		}
->-	}
->-
->-	/* Enable interrupts */
->-	val = ace_in(ace, ACE_CTRL);
->-	val |= ACE_CTRL_DATABUFRDYIRQ | ACE_CTRL_ERRORIRQ;
->-	ace_out(ace, ACE_CTRL, val);
->-
->-	/* Print the identification */
->-	dev_info(ace->dev, "Xilinx SystemACE revision %i.%i.%i\n",
->-		 (version >> 12) & 0xf, (version >> 8) & 0x0f, version & 0xff);
->-	dev_dbg(ace->dev, "physaddr 0x%llx, mapped to 0x%p, irq=%i\n",
->-		(unsigned long long) ace->physaddr, ace->baseaddr, ace->irq);
->-
->-	ace->media_change = 1;
->-	ace_media_changed(ace);
->-
->-	/* Make the sysace device 'live' */
->-	add_disk(ace->gd);
->-
->-	return 0;
->-
->-err_read:
->-	/* prevent double queue cleanup */
->-	ace->gd->queue = NULL;
->-	put_disk(ace->gd);
->-err_alloc_disk:
->-	blk_cleanup_queue(ace->queue);
->-	blk_mq_free_tag_set(&ace->tag_set);
->-err_blk_initq:
->-	iounmap(ace->baseaddr);
->-err_ioremap:
->-	dev_info(ace->dev, "xsysace: error initializing device at 0x%llx\n",
->-		 (unsigned long long) ace->physaddr);
->-	return -ENOMEM;
->-}
->-
->-static void ace_teardown(struct ace_device *ace)
->-{
->-	if (ace->gd) {
->-		del_gendisk(ace->gd);
->-		put_disk(ace->gd);
->-	}
->-
->-	if (ace->queue) {
->-		blk_cleanup_queue(ace->queue);
->-		blk_mq_free_tag_set(&ace->tag_set);
->-	}
->-
->-	tasklet_kill(&ace->fsm_tasklet);
->-
->-	if (ace->irq > 0)
->-		free_irq(ace->irq, ace);
->-
->-	iounmap(ace->baseaddr);
->-}
->-
->-static int ace_alloc(struct device *dev, int id, resource_size_t physaddr,
->-		     int irq, int bus_width)
->-{
->-	struct ace_device *ace;
->-	int rc;
->-	dev_dbg(dev, "ace_alloc(%p)\n", dev);
->-
->-	/* Allocate and initialize the ace device structure */
->-	ace = kzalloc(sizeof(struct ace_device), GFP_KERNEL);
->-	if (!ace) {
->-		rc = -ENOMEM;
->-		goto err_alloc;
->-	}
->-
->-	ace->dev = dev;
->-	ace->id = id;
->-	ace->physaddr = physaddr;
->-	ace->irq = irq;
->-	ace->bus_width = bus_width;
->-
->-	/* Call the setup code */
->-	rc = ace_setup(ace);
->-	if (rc)
->-		goto err_setup;
->-
->-	dev_set_drvdata(dev, ace);
->-	return 0;
->-
->-err_setup:
->-	dev_set_drvdata(dev, NULL);
->-	kfree(ace);
->-err_alloc:
->-	dev_err(dev, "could not initialize device, err=%i\n", rc);
->-	return rc;
->-}
->-
->-static void ace_free(struct device *dev)
->-{
->-	struct ace_device *ace = dev_get_drvdata(dev);
->-	dev_dbg(dev, "ace_free(%p)\n", dev);
->-
->-	if (ace) {
->-		ace_teardown(ace);
->-		dev_set_drvdata(dev, NULL);
->-		kfree(ace);
->-	}
->-}
->-
->-/* ---------------------------------------------------------------------
->- * Platform Bus Support
->- */
->-
->-static int ace_probe(struct platform_device *dev)
->-{
->-	int bus_width = ACE_BUS_WIDTH_16; /* FIXME: should not be hard coded */
->-	resource_size_t physaddr;
->-	struct resource *res;
->-	u32 id = dev->id;
->-	int irq;
->-	int i;
->-
->-	dev_dbg(&dev->dev, "ace_probe(%p)\n", dev);
->-
->-	/* device id and bus width */
->-	if (of_property_read_u32(dev->dev.of_node, "port-number", &id))
->-		id = 0;
->-	if (of_find_property(dev->dev.of_node, "8-bit", NULL))
->-		bus_width = ACE_BUS_WIDTH_8;
->-
->-	res = platform_get_resource(dev, IORESOURCE_MEM, 0);
->-	if (!res)
->-		return -EINVAL;
->-
->-	physaddr = res->start;
->-	if (!physaddr)
->-		return -ENODEV;
->-
->-	irq = platform_get_irq_optional(dev, 0);
->-
->-	/* Call the bus-independent setup code */
->-	return ace_alloc(&dev->dev, id, physaddr, irq, bus_width);
->-}
->-
->-/*
->- * Platform bus remove() method
->- */
->-static int ace_remove(struct platform_device *dev)
->-{
->-	ace_free(&dev->dev);
->-	return 0;
->-}
->-
->-#if defined(CONFIG_OF)
->-/* Match table for of_platform binding */
->-static const struct of_device_id ace_of_match[] = {
->-	{ .compatible = "xlnx,opb-sysace-1.00.b", },
->-	{ .compatible = "xlnx,opb-sysace-1.00.c", },
->-	{ .compatible = "xlnx,xps-sysace-1.00.a", },
->-	{ .compatible = "xlnx,sysace", },
->-	{},
->-};
->-MODULE_DEVICE_TABLE(of, ace_of_match);
->-#else /* CONFIG_OF */
->-#define ace_of_match NULL
->-#endif /* CONFIG_OF */
->-
->-static struct platform_driver ace_platform_driver = {
->-	.probe = ace_probe,
->-	.remove = ace_remove,
->-	.driver = {
->-		.name = "xsysace",
->-		.of_match_table = ace_of_match,
->-	},
->-};
->-
->-/* ---------------------------------------------------------------------
->- * Module init/exit routines
->- */
->-static int __init ace_init(void)
->-{
->-	int rc;
->-
->-	ace_major = register_blkdev(ace_major, "xsysace");
->-	if (ace_major <= 0) {
->-		rc = -ENOMEM;
->-		goto err_blk;
->-	}
->-
->-	rc = platform_driver_register(&ace_platform_driver);
->-	if (rc)
->-		goto err_plat;
->-
->-	pr_info("Xilinx SystemACE device driver, major=%i\n", ace_major);
->-	return 0;
->-
->-err_plat:
->-	unregister_blkdev(ace_major, "xsysace");
->-err_blk:
->-	printk(KERN_ERR "xsysace: registration failed; err=%i\n", rc);
->-	return rc;
->-}
->-module_init(ace_init);
->-
->-static void __exit ace_exit(void)
->-{
->-	pr_debug("Unregistering Xilinx SystemACE driver\n");
->-	platform_driver_unregister(&ace_platform_driver);
->-	unregister_blkdev(ace_major, "xsysace");
->-}
->-module_exit(ace_exit);
->-- 
->2.29.2
->
+SGkgTGl1DQoNCkkgZ2F2ZSB0aGlzIGEgdHJ5IGhvd2V2ZXIgSSBiZWxpZXZlIEkgYW0gc3RpbGwg
+bWlzc2luZyBzb21lIHBpZWNlIGFzIGl0IHRocm93cyB0aGUgZm9sbG93aW5nIGR1cmluZyBjb21w
+aWxhdGlvbg0Kb2YgdGhlIGRldmljZSB0cmVlOg0KDQphcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9pbXg4cXhwLmR0c2k6MzMzLjE4LTQzOS43OiBFUlJPUiAocGhhbmRsZV9yZWZlcmVuY2Vz
+KTogL2RwdUA1NjE4MDAwMDogUmVmZXJlbmNlDQp0byBub24tZXhpc3RlbnQgbm9kZSBvciBsYWJl
+bCAiZGMwX2lycXN0ZWVyIg0KDQphcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhw
+LmR0c2k6MzMzLjE4LTQzOS43OiBFUlJPUiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL2RwdUA1NjE4
+MDAwMDogUmVmZXJlbmNlDQp0byBub24tZXhpc3RlbnQgbm9kZSBvciBsYWJlbCAiZGMwX2RwdV9s
+cGNnIg0KDQphcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2k6MzMzLjE4
+LTQzOS43OiBFUlJPUiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL2RwdUA1NjE4MDAwMDogUmVmZXJl
+bmNlDQp0byBub24tZXhpc3RlbnQgbm9kZSBvciBsYWJlbCAiZGMwX2RwdV9scGNnIg0KDQphcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2k6MzMzLjE4LTQzOS43OiBFUlJP
+UiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL2RwdUA1NjE4MDAwMDogUmVmZXJlbmNlDQp0byBub24t
+ZXhpc3RlbnQgbm9kZSBvciBsYWJlbCAiZGMwX2Rpc3BfbHBjZyINCg0KYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpOjMzMy4xOC00MzkuNzogRVJST1IgKHBoYW5kbGVf
+cmVmZXJlbmNlcyk6IC9kcHVANTYxODAwMDA6IFJlZmVyZW5jZQ0KdG8gbm9uLWV4aXN0ZW50IG5v
+ZGUgb3IgbGFiZWwgImRjMF9kaXNwX2xwY2ciDQoNCmFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDhxeHAuZHRzaTozMzMuMTgtNDM5Ljc6IEVSUk9SIChwaGFuZGxlX3JlZmVyZW5jZXMp
+OiAvZHB1QDU2MTgwMDAwOiBSZWZlcmVuY2UNCnRvIG5vbi1leGlzdGVudCBub2RlIG9yIGxhYmVs
+ICJkYzBfZHByMV9jaGFubmVsMSINCg0KYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
+OHF4cC5kdHNpOjMzMy4xOC00MzkuNzogRVJST1IgKHBoYW5kbGVfcmVmZXJlbmNlcyk6IC9kcHVA
+NTYxODAwMDA6IFJlZmVyZW5jZQ0KdG8gbm9uLWV4aXN0ZW50IG5vZGUgb3IgbGFiZWwgImRjMF9k
+cHIxX2NoYW5uZWwyIg0KDQphcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0
+c2k6MzMzLjE4LTQzOS43OiBFUlJPUiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL2RwdUA1NjE4MDAw
+MDogUmVmZXJlbmNlDQp0byBub24tZXhpc3RlbnQgbm9kZSBvciBsYWJlbCAiZGMwX2RwcjFfY2hh
+bm5lbDMiDQoNCmFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxeHAuZHRzaTozMzMu
+MTgtNDM5Ljc6IEVSUk9SIChwaGFuZGxlX3JlZmVyZW5jZXMpOiAvZHB1QDU2MTgwMDAwOiBSZWZl
+cmVuY2UNCnRvIG5vbi1leGlzdGVudCBub2RlIG9yIGxhYmVsICJkYzBfZHByMl9jaGFubmVsMSIN
+Cg0KYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpOjMzMy4xOC00Mzku
+NzogRVJST1IgKHBoYW5kbGVfcmVmZXJlbmNlcyk6IC9kcHVANTYxODAwMDA6IFJlZmVyZW5jZQ0K
+dG8gbm9uLWV4aXN0ZW50IG5vZGUgb3IgbGFiZWwgImRjMF9kcHIyX2NoYW5uZWwyIg0KDQphcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2k6MzMzLjE4LTQzOS43OiBFUlJP
+UiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL2RwdUA1NjE4MDAwMDogUmVmZXJlbmNlDQp0byBub24t
+ZXhpc3RlbnQgbm9kZSBvciBsYWJlbCAiZGMwX2RwcjJfY2hhbm5lbDMiDQoNCmFyY2gvYXJtNjQv
+Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhxeHAuZHRzaTo1MDEuMzgtNTkxLjM6IEVSUk9SIChwaGFu
+ZGxlX3JlZmVyZW5jZXMpOiAvc3lzY29uQDU2MjIxMDAwOg0KUmVmZXJlbmNlIHRvIG5vbi1leGlz
+dGVudCBub2RlIG9yIGxhYmVsICJtaXBpX2x2ZHNfMF9kaV9taXBpX2x2ZHNfcmVnc19scGNnIg0K
+DQphcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2k6NjAzLjI5LTY1Ni43
+OiBFUlJPUiAocGhhbmRsZV9yZWZlcmVuY2VzKTogL3BpeGVsLWNvbWJpbmVyQDU2MDIwMDAwOg0K
+UmVmZXJlbmNlIHRvIG5vbi1leGlzdGVudCBub2RlIG9yIGxhYmVsICJkYzBfcGl4ZWxfY29tYmlu
+ZXJfbHBjZyINCg0KRm9yIG5vdyBJIGp1c3QgcHV0IGFsbCB0aGUgZXhhbXBsZXMgZnJvbSB0aGUg
+dmFyaW91cyBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvKi9pbXg4cXhwLSoueWFt
+bCBmaWxlcw0KZGlyZWN0bHkgaW50byBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+cXhwLmR0c2kuIE1heWJlIHlvdSBkbyBoYXZlIHRoZSB2YXJpb3VzIGRldmljZSB0cmVlIHBhcnRz
+DQphdmFpbGFibGUgc29tZXdoZXJlIGFzIHdlbGw/DQoNCkFueSBzdWdnZXN0aW9ucz8gRG8geW91
+IGJ5IGFueSBjaGFuY2UgaGF2ZSBhIGdpdCB0cmVlIGF2YWlsYWJsZSBhbnl3aGVyZSB3aGljaCBp
+bmNsdWRlcyBhbGwgZGVwZW5kZW5jaWVzIGFuZA0KZXZlcnl0aGluZyB3aGljaCBvbmUgY291bGQg
+dHJ5Pw0KDQpUaGFua3MhDQoNCkNoZWVycw0KDQpNYXJjZWwNCg0KT24gV2VkLCAyMDIxLTAzLTE3
+IGF0IDExOjQyICswODAwLCBMaXUgWWluZyB3cm90ZToNCj4gSGksDQo+IA0KPiBUaGlzIGlzIHRo
+ZSB2NiBzZXJpZXMgdG8gYWRkIHNvbWUgRFJNIGJyaWRnZSBkcml2ZXJzIHN1cHBvcnQNCj4gZm9y
+IGkuTVg4cW0vcXhwIFNvQ3MuDQo+IA0KPiBUaGUgYnJpZGdlcyBtYXkgY2hhaW4gb25lIGJ5IG9u
+ZSB0byBmb3JtIGRpc3BsYXkgcGlwZXMgdG8gc3VwcG9ydA0KPiBMVkRTIGRpc3BsYXlzLsKgIFRo
+ZSByZWxldmFudCBkaXNwbGF5IGNvbnRyb2xsZXIgaXMgRFBVIGVtYmVkZGVkIGluDQo+IGkuTVg4
+cW0vcXhwIFNvQ3MuDQo+IA0KPiBUaGUgRFBVIEtNUyBkcml2ZXIgY2FuIGJlIGZvdW5kIGF0Og0K
+PiBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9hcm0ta2VybmVsL21zZzg3ODU0Mi5odG1s
+DQo+IA0KPiBUaGlzIHNlcmllcyBzdXBwb3J0cyB0aGUgZm9sbG93aW5nIGRpc3BsYXkgcGlwZXM6
+DQo+IDEpIGkuTVg4cXhwOg0KPiBwcmVmZXRjaCBlbmcgLT4gRFBVIC0+IHBpeGVsIGNvbWJpbmVy
+IC0+IHBpeGVsIGxpbmsgLT4NCj4gcGl4ZWwgbGluayB0byBEUEkoUFhMMkRQSSkgLT4gTFZEUyBk
+aXNwbGF5IGJyaWRnZShMREIpDQo+IA0KPiAyKSBpLk1YOHFtOg0KPiBwcmVmZXRjaCBlbmcgLT4g
+RFBVIC0+IHBpeGVsIGNvbWJpbmVyIC0+IHBpeGVsIGxpbmsgLT4gTFZEUyBkaXNwbGF5IGJyaWRn
+ZShMREIpDQo+IA0KPiANCj4gVGhpcyBzZXJpZXMgZHJvcHBlZCB0aGUgcGF0Y2ggJ3BoeTogQWRk
+IExWRFMgY29uZmlndXJhdGlvbiBvcHRpb25zJywgYXMNCj4gc3VnZ2VzdGVkIGJ5IFJvYmVydCBG
+b3NzLCBiZWNhdXNlIGl0IGhhcyBhbHJlYWR5IGJlZW4gc2VudCB3aXRoIHRoZSBmb2xsb3dpbmcN
+Cj4gc2VyaWVzIHRvIGFkZCBNaXhlbCBjb21ibyBQSFkgZm91bmQgaW4gaS5NWDhxeHA6DQo+IGh0
+dHBzOi8vd3d3LnNwaW5pY3MubmV0L2xpc3RzL2FybS1rZXJuZWwvbXNnODc5OTU3Lmh0bWwNCj4g
+DQo+IFNvLCB0aGlzIHZlcnNpb24gZGVwZW5kcyBvbiB0aGF0IHNlcmllcy4NCj4gDQo+IA0KPiBQ
+YXRjaCAxLzE0IGFuZCAyLzE0IGFkZCBidXMgZm9ybWF0cyB1c2VkIGJ5IHBpeGVsIGNvbWJpbmVy
+Lg0KPiANCj4gUGF0Y2ggNy8xNCBhZGRzIGR0LWJpbmRpbmcgZm9yIENvbnRyb2wgYW5kIFN0YXR1
+cyBSZWdpc3RlcnMgbW9kdWxlKGEgc3lzY29uDQo+IHVzZWQgYnkgUFhMMkRQSSBhbmQgTERCKSwg
+d2hpY2ggcmVmZXJlbmNlcyB0aGUgUFhMMkRQSSBhbmQgTERCIHNjaGVtYXMuDQo+IA0KPiBQYXRj
+aCAxMC8xNCBhZGRzIGEgaGVscGVyIGZvciBMREIgYnJpZGdlIGRyaXZlcnMuDQo+IA0KPiBQYXRj
+aCAzLzE0IH4gNi8xNCwgOC8xNCwgOS8xNCBhbmQgMTEvMTQgfiAxMy8xNCBhZGQgZHJtIGJyaWRn
+ZSBkcml2ZXJzIGFuZA0KPiBkdC1iaW5kaW5ncyBzdXBwb3J0IGZvciB0aGUgYnJpZGdlcy4NCj4g
+DQo+IFBhdGNoIDE0LzE0IHVwZGF0ZXMgTUFJTlRBSU5FUlMuDQo+IA0KPiANCj4gSSd2ZSB0ZXN0
+ZWQgdGhpcyBzZXJpZXMgd2l0aCBhIGtvZSx0eDI2ZDIwMnZtMGJ3YSBkdWFsIGxpbmsgTFZEUyBw
+YW5lbCBhbmQNCj4gYSBMVkRTIHRvIEhETUkgYnJpZGdlKHdpdGggYSBkb3duc3RyZWFtIGRybSBi
+cmlkZ2UgZHJpdmVyKS4NCj4gDQo+IA0KPiBXZWxjb21lIGNvbW1lbnRzLCB0aGFua3MuDQo+IA0K
+PiB2NS0+djY6DQo+ICogRml4IGRhdGEgb3JnYW5pemF0aW9ucyBpbiBkb2N1bWVudGF0aW9uKHBh
+dGNoIDIvMTQpIGZvcg0KPiDCoCBNRURJQV9CVVNfRk1UX1JHQns2NjYsODg4fV8xWDMwLUNQQURM
+Ty4gKExhdXJlbnQpDQo+ICogQWRkIExhdXJlbnQncyBSLWIgdGFncyBvbiBwYXRjaCAxLzE0IGFu
+ZCAyLzE0Lg0KPiAqIERyb3AgJ3NlbGVjdCcgc2NoZW1hIGZyb20gdGhlIENTUiBkdC1iaW5kaW5n
+IGRvY3VtZW50YXRpb24ocGF0Y2ggNy8xNCkuIChSb2IpDQo+ICogQWRkIFJvYidzIFItYiB0YWcg
+b24gcGF0Y2ggOC8xNC4NCj4gDQo+IHY0LT52NToNCj4gKiBEcm9wIHRoZSBwYXRjaCAncGh5OiBB
+ZGQgTFZEUyBjb25maWd1cmF0aW9uIG9wdGlvbnMnLiAoUm9iZXJ0KQ0KPiAqIEFkZCBSb2JlcnQn
+cyBSLWIgdGFncyBvbiBwYXRjaCAxLzE0LCAyLzE0LCA0LzE0IGFuZCA2LzE0Lg0KPiAqIERyb3Ag
+dGhlICdQQ19CVUZfUEFSQV9SRUcnIHJlZ2lzdGVyIGRlZmluaXRpb24gZnJvbSB0aGUgcGl4ZWwg
+Y29tYmluZXIgYnJpZGdlDQo+IMKgIGRyaXZlcihwYXRjaCA0LzE0KS4gKFJvYmVydCkNCj4gKiBN
+YWtlIGEgY29tbWVudCBvY2N1cHkgYSBsaW5lIGluIHRoZSBwaXhlbCBsaW5rIGJyaWRnZSBkcml2
+ZXIocGF0Y2ggNi8xNCkuDQo+IMKgIChSb2JlcnQpDQo+ICogSW50cm9kdWNlIGEgbmV3IHBhdGNo
+KHBhdGNoIDcvMTQpIHRvIGFkZCBkdC1iaW5kaW5nIGZvciBDb250cm9sIGFuZCBTdGF0dXMNCj4g
+wqAgUmVnaXN0ZXJzIG1vZHVsZS4gKFJvYikNCj4gKiBNYWtlIGlteC1sZGItaGVscGVyIGJlIGEg
+cHVyZSBvYmplY3QgdG8gYmUgbGlua2VkIHdpdGggaS5NWDhxeHAgTERCIGJyaWRnZQ0KPiDCoCBk
+cml2ZXIgYW5kIGkuTVg4cW0gTERCIGJyaWRnZSBkcml2ZXIsIGluc3RlYWQgb2YgYSBtb2R1bGUu
+wqAgQ29ycmVzcG9uZGluZ2x5LA0KPiDCoCByZW5hbWUgJ2lteDh7cW0sIHF4cH0tbGRiLmMnIHRv
+ICdpbXg4e3FtLCBxeHB9LWxkYi1kcnYuYycuIChSb2JlcnQpDQo+ICogTW92ZSAnaW14X2xkYl9o
+ZWxwZXIuaCcgdG8gJ2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW14L2lteC1sZGItaGVscGVyLmgn
+Lg0KPiDCoCAoUm9iZXJ0KQ0KPiAqIHMvX19GU0xfSU1YX0xEQl9fL19fSU1YX0xEQl9IRUxQRVJf
+Xy/CoCBmb3IgJ2lteC1sZGItaGVscGVyLmgnLg0KPiANCj4gdjMtPnY0Og0KPiAqIFVzZSAnZnNs
+LHNjLXJlc291cmNlJyBEVCBwcm9wZXJ0eSB0byBnZXQgdGhlIFNDVSByZXNvdXJjZSBJRCBhc3Nv
+Y2lhdGVkIHdpdGgNCj4gwqAgdGhlIFBYTDJEUEkgaW5zdGFuY2UgaW5zdGVhZCBvZiB1c2luZyBh
+bGlhcyBJRC4gKFJvYikNCj4gKiBBZGQgUm9iJ3MgUi1iIHRhZyBvbiBwYXRjaCAxMS8xNC4NCj4g
+DQo+IHYyLT52MzoNCj4gKiBEcm9wICdmc2wsc3lzY29uJyBEVCBwcm9wZXJ0aWVzIGZyb20gZnNs
+LGlteDhxeHAtbGRiLnlhbWwgYW5kDQo+IMKgIGZzbCxpbXg4cXhwLXB4bDJkcGkueWFtbC4gKFJv
+YikNCj4gKiBNZW50aW9uIHRoZSBDU1IgbW9kdWxlIGNvbnRyb2xzIExEQiBhbmQgUFhMMkRQSSBp
+biBmc2wsaW14OHF4cC1sZGIueWFtbCBhbmQNCj4gwqAgZnNsLGlteDhxeHAtcHhsMmRwaS55YW1s
+Lg0KPiAqIENhbGwgc3lzY29uX25vZGVfdG9fcmVnbWFwKCkgdG8gZ2V0IHJlZ21hcHMgZnJvbSBM
+REIgYnJpZGdlIGhlbHBlciBkcml2ZXINCj4gwqAgYW5kIFBYTDJEUEkgYnJpZGdlciBkcml2ZXIg
+aW5zdGVhZCBvZiBzeXNjb25fcmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKCkuDQo+ICogRHJvcCB0
+d28gbWFjcm9zIGZyb20gcGl4ZWwgbGluayBicmlkZ2UgZHJpdmVyIHdoaWNoIGhlbHAgZGVmaW5l
+IGZ1bmN0aW9ucw0KPiDCoCBhbmQgZGVmaW5lIHRoZW0gZGlyZWN0bHkuDQo+ICogUHJvcGVybHkg
+ZGlzYWJsZSBhbGwgcGl4ZWwgbGluayBjb250cm9scyB0byBQT1IgdmFsdWUgYnkgY2FsbGluZw0K
+PiDCoCBpbXg4cXhwX3BpeGVsX2xpbmtfZGlzYWJsZV9hbGxfY29udHJvbHMoKSBmcm9tDQo+IMKg
+IGlteDhxeHBfcGl4ZWxfbGlua19icmlkZ2VfcHJvYmUoKS4NCj4gKiBBZGQgUm9iJ3MgUi1iIHRh
+Z3Mgb24gcGF0Y2ggNC8xNCBhbmQgNi8xNC4NCj4gDQo+IHYxLT52MjoNCj4gKiBSZWJhc2UgdGhl
+IHNlcmllcyB1cG9uIHRoZSBsYXRlc3QgZHJtLW1pc2MtbmV4dCBicmFuY2goNS4xMS1yYzIgYmFz
+ZWQpLg0KPiAqIFVzZSBncmFwaCBzY2hlbWEgaW4gdGhlIGR0LWJpbmRpbmdzIG9mIHRoZSBicmlk
+Z2VzLiAoTGF1cmVudCkNCj4gKiBSZXF1aXJlIGFsbCBmb3VyIHBpeGVsIGxpbmsgb3V0cHV0IHBv
+cnRzIGluIGZzbCxpbXg4cXhwLXBpeGVsLWxpbmsueWFtbC4NCj4gwqAgKExhdXJlbnQpDQo+ICog
+U2lkZSBub3RlIGkuTVg4cW0vcXhwIExEQiBvZmZpY2lhbCBuYW1lICdwaXhlbCBtYXBwZXInIGlu
+IGZzbCxpbXg4cXhwLWxkYi55YW1sLg0KPiDCoCAoTGF1cmVudCkNCj4gKiBNZW50aW9uIHBpeGVs
+IGxpbmsgaXMgYWNjZXNzZWQgdmlhIFNDVSBmaXJtd2FyZSBpbiBmc2wsaW14OHF4cC1waXhlbC1s
+aW5rLnlhbWwuDQo+IMKgIChSb2IpDQo+ICogVXNlIGVudW0gaW5zdGVhZCBvZiBvbmVPZiArIGNv
+bnN0IGZvciB0aGUgcmVnIHByb3BlcnR5IG9mIHBpeGVsIGNvbWJpbmVyDQo+IMKgIGNoYW5uZWxz
+IGluIGZzbCxpbXg4cXhwLXBpeGVsLWNvbWJpbmVyLnlhbWwuIChSb2IpDQo+ICogUmV3cml0ZSB0
+aGUgZnVuY3Rpb24gdG8gZmluZCB0aGUgbmV4dCBicmlkZ2UgaW4gcGl4ZWwgbGluayBicmlkZ2Ug
+ZHJpdmVyDQo+IMKgIGJ5IHByb3Blcmx5IHVzaW5nIE9GIEFQSXMgYW5kIGRyb3BwaW5nIHVubmVj
+ZXNzYXJ5IERUIHZhbGlkYXRpb24uIChSb2IpDQo+ICogRHJvcCB1bm5lY2Vzc2FyeSBwb3J0IGF2
+YWlsYWJpbGl0eSBjaGVjayBpbiBpLk1YOHF4cCBwaXhlbCBsaW5rIHRvIERQSQ0KPiDCoCBicmlk
+Z2UgZHJpdmVyLg0KPiAqIERyb3AgdW5uZWNlc3NhcnkgRFQgdmFsaWRhdGlvbiBmcm9tIGkuTVg4
+cXhwIExEQiBicmlkZ2UgZHJpdmVyLg0KPiAqIFVzZSBvZl9ncmFwaF9nZXRfZW5kcG9pbnRfYnlf
+cmVncygpIGFuZCBvZl9ncmFwaF9nZXRfcmVtb3RlX2VuZHBvaW50KCkgdG8NCj4gwqAgZ2V0IHRo
+ZSBpbnB1dCByZW1vdGUgZW5kcG9pbnQgaW4gaW14OHF4cF9sZGJfc2V0X2RpX2lkKCkgb2YgaS5N
+WDhxeHAgTERCDQo+IMKgIGJyaWRnZSBkcml2ZXIuDQo+ICogQXZvaWQgdXNpbmcgY29tcGFuaW9u
+X3BvcnQgT0Ygbm9kZSBhZnRlciBwdXR0aW5nIGl0IGluDQo+IMKgIGlteDhxeHBfbGRiX3BhcnNl
+X2R0X2NvbXBhbmlvbigpIG9mIGkuTVg4cXhwIExEQiBicmlkZ2UgZHJpdmVyLg0KPiAqIERyb3Ag
+dW5uZWNlc3NhcnkgY2hlY2sgZm9yIG1heGltdW0gYXZhaWxhYmxlIExEQiBjaGFubmVscyBmcm9t
+DQo+IMKgIGkuTVg4cW0gTERCIGJyaWRnZSBkcml2ZXIuDQo+ICogTWVudGlvbiBpLk1YOHFtL3F4
+cCBMREIgb2ZmaWNpYWwgbmFtZSAncGl4ZWwgbWFwcGVyJyBpbiBpLk1YOHFtL3F4cCBMREINCj4g
+wqAgYnJpZGdlIGRyaXZlcnMgYW5kIEtjb25maWcgaGVscCBtZXNzYWdlcy4NCj4gDQo+IExpdSBZ
+aW5nICgxNCk6DQo+IMKgIG1lZGlhOiB1YXBpOiBBZGQgc29tZSBSR0IgYnVzIGZvcm1hdHMgZm9y
+IGkuTVg4cW0vcXhwIHBpeGVsIGNvbWJpbmVyDQo+IMKgIG1lZGlhOiBkb2NzOiBBZGQgc29tZSBS
+R0IgYnVzIGZvcm1hdHMgZm9yIGkuTVg4cW0vcXhwIHBpeGVsIGNvbWJpbmVyDQo+IMKgIGR0LWJp
+bmRpbmdzOiBkaXNwbGF5OiBicmlkZ2U6IEFkZCBpLk1YOHFtL3F4cCBwaXhlbCBjb21iaW5lciBi
+aW5kaW5nDQo+IMKgIGRybS9icmlkZ2U6IGlteDogQWRkIGkuTVg4cW0vcXhwIHBpeGVsIGNvbWJp
+bmVyIHN1cHBvcnQNCj4gwqAgZHQtYmluZGluZ3M6IGRpc3BsYXk6IGJyaWRnZTogQWRkIGkuTVg4
+cW0vcXhwIGRpc3BsYXkgcGl4ZWwgbGluaw0KPiDCoMKgwqAgYmluZGluZw0KPiDCoCBkcm0vYnJp
+ZGdlOiBpbXg6IEFkZCBpLk1YOHFtL3F4cCBkaXNwbGF5IHBpeGVsIGxpbmsgc3VwcG9ydA0KPiDC
+oCBkdC1iaW5kaW5nczogbWZkOiBBZGQgaS5NWDhxbS9xeHAgQ29udHJvbCBhbmQgU3RhdHVzIFJl
+Z2lzdGVycyBtb2R1bGUNCj4gwqDCoMKgIGJpbmRpbmcNCj4gwqAgZHQtYmluZGluZ3M6IGRpc3Bs
+YXk6IGJyaWRnZTogQWRkIGkuTVg4cXhwIHBpeGVsIGxpbmsgdG8gRFBJIGJpbmRpbmcNCj4gwqAg
+ZHJtL2JyaWRnZTogaW14OiBBZGQgaS5NWDhxeHAgcGl4ZWwgbGluayB0byBEUEkgc3VwcG9ydA0K
+PiDCoCBkcm0vYnJpZGdlOiBpbXg6IEFkZCBMREIgZHJpdmVyIGhlbHBlciBzdXBwb3J0DQo+IMKg
+IGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBicmlkZ2U6IEFkZCBpLk1YOHFtL3F4cCBMVkRTIGRpc3Bs
+YXkgYnJpZGdlDQo+IMKgwqDCoCBiaW5kaW5nDQo+IMKgIGRybS9icmlkZ2U6IGlteDogQWRkIExE
+QiBzdXBwb3J0IGZvciBpLk1YOHF4cA0KPiDCoCBkcm0vYnJpZGdlOiBpbXg6IEFkZCBMREIgc3Vw
+cG9ydCBmb3IgaS5NWDhxbQ0KPiDCoCBNQUlOVEFJTkVSUzogYWRkIG1haW50YWluZXIgZm9yIERS
+TSBicmlkZ2UgZHJpdmVycyBmb3IgaS5NWCBTb0NzDQo+IA0KPiDCoC4uLi9iaW5kaW5ncy9kaXNw
+bGF5L2JyaWRnZS9mc2wsaW14OHF4cC1sZGIueWFtbMKgwqAgfCAxNzMgKysrKysNCj4gwqAuLi4v
+ZGlzcGxheS9icmlkZ2UvZnNsLGlteDhxeHAtcGl4ZWwtY29tYmluZXIueWFtbCB8IDE0NCArKysr
+Kw0KPiDCoC4uLi9kaXNwbGF5L2JyaWRnZS9mc2wsaW14OHF4cC1waXhlbC1saW5rLnlhbWzCoMKg
+wqDCoCB8IDEwNiArKysNCj4gwqAuLi4vZGlzcGxheS9icmlkZ2UvZnNsLGlteDhxeHAtcHhsMmRw
+aS55YW1swqDCoMKgwqDCoMKgwqAgfCAxMDggKysrKw0KPiDCoC4uLi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL21mZC9mc2wsaW14OHF4cC1jc3IueWFtbMKgwqAgfCAxOTIgKysrKysrDQo+IMKgLi4uL3Vz
+ZXJzcGFjZS1hcGkvbWVkaWEvdjRsL3N1YmRldi1mb3JtYXRzLnJzdMKgwqDCoMKgIHwgMTU2ICsr
+KysrDQo+IMKgTUFJTlRBSU5FUlPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDEwICsNCj4gwqBk
+cml2ZXJzL2dwdS9kcm0vYnJpZGdlL0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIHzCoMKgIDIgKw0KPiDCoGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvTWFrZWZp
+bGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsNCj4gwqBk
+cml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9LY29uZmlnwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgfMKgIDQyICsrDQo+IMKgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9pbXgvTWFrZWZp
+bGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgOSArDQo+IMKgZHJpdmVycy9n
+cHUvZHJtL2JyaWRnZS9pbXgvaW14LWxkYi1oZWxwZXIuY8KgwqDCoMKgwqDCoMKgIHwgMjMyICsr
+KysrKysNCj4gwqBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXgtbGRiLWhlbHBlci5owqDC
+oMKgwqDCoMKgwqAgfMKgIDk4ICsrKw0KPiDCoGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW14L2lt
+eDhxbS1sZGItZHJ2LmPCoMKgwqDCoMKgwqDCoCB8IDU4NiArKysrKysrKysrKysrKysrKw0KPiDC
+oGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW14L2lteDhxeHAtbGRiLWRydi5jwqDCoMKgwqDCoMKg
+IHwgNzIwICsrKysrKysrKysrKysrKysrKysrKw0KPiDCoC4uLi9ncHUvZHJtL2JyaWRnZS9pbXgv
+aW14OHF4cC1waXhlbC1jb21iaW5lci5jwqDCoMKgIHwgNDQ4ICsrKysrKysrKysrKysNCj4gwqBk
+cml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4cXhwLXBpeGVsLWxpbmsuY8KgwqDCoCB8IDQy
+NyArKysrKysrKysrKysNCj4gwqBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4cXhwLXB4
+bDJkcGkuY8KgwqDCoMKgwqDCoCB8IDQ4NSArKysrKysrKysrKysrKw0KPiDCoGluY2x1ZGUvdWFw
+aS9saW51eC9tZWRpYS1idXMtZm9ybWF0LmjCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDC
+oCA2ICstDQo+IMKgMTkgZmlsZXMgY2hhbmdlZCwgMzk0NCBpbnNlcnRpb25zKCspLCAxIGRlbGV0
+aW9uKC0pDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9mc2wsaW14OHF4cC1sZGIueWFtbA0KPiDCoGNyZWF0ZSBt
+b2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlk
+Z2UvZnNsLGlteDhxeHAtcGl4ZWwtY29tYmluZXIueWFtbA0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0
+NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvZnNsLGlt
+eDhxeHAtcGl4ZWwtbGluay55YW1sDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9mc2wsaW14OHF4cC1weGwyZHBp
+LnlhbWwNCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21mZC9mc2wsaW14OHF4cC1jc3IueWFtbA0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9LY29uZmlnDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW14L01ha2VmaWxlDQo+IMKgY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW14L2lteC1sZGItaGVscGVyLmMNCj4gwqBjcmVh
+dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9pbXgvaW14LWxkYi1oZWxwZXIu
+aA0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4
+cW0tbGRiLWRydi5jDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9icmlk
+Z2UvaW14L2lteDhxeHAtbGRiLWRydi5jDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
+Z3B1L2RybS9icmlkZ2UvaW14L2lteDhxeHAtcGl4ZWwtY29tYmluZXIuYw0KPiDCoGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4cXhwLXBpeGVsLWxpbmsu
+Yw0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4
+cXhwLXB4bDJkcGkuYw0K
