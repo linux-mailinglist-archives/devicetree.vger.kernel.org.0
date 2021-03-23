@@ -2,87 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BA3A345D49
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 12:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 168D8345DAE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 13:08:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbhCWLr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 07:47:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55204 "EHLO mail.kernel.org"
+        id S230494AbhCWMIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 08:08:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:45178 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229508AbhCWLrv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 07:47:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 589A8619BF;
-        Tue, 23 Mar 2021 11:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616500070;
-        bh=6tOFh9a0qtxxlZRCAFGaHM+gh3jhX0LL8TQ/odb571s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PO1CrBKr3s42i4iMwW7WFMXcszIple91cJcTyTXrXjXQbB3yZGPkQI9FvQ1szS9l3
-         UenM7ch7OlAEvWaJunUbZPogBwn2A3IwFxFn8sPrUReMM854ucictVxolhkiXy3m3W
-         HdO2cChspr+knJLE66uNC315TbVD13lK6sm0P6iE=
-Date:   Tue, 23 Mar 2021 12:47:48 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     kernel test robot <lkp@intel.com>
-Cc:     Manish Narani <manish.narani@xilinx.com>, robh+dt@kernel.org,
-        michal.simek@xilinx.com, balbi@kernel.org, p.zabel@pengutronix.de,
-        kbuild-all@lists.01.org, git@xilinx.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] usb: dwc3: Add driver for Xilinx platforms
-Message-ID: <YFnVZEFr3xBsRdiX@kroah.com>
-References: <1615963949-75320-3-git-send-email-manish.narani@xilinx.com>
- <202103171704.VHPs8XOA-lkp@intel.com>
+        id S230259AbhCWMHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 08:07:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 102D911B3;
+        Tue, 23 Mar 2021 05:07:32 -0700 (PDT)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7D8DF3F719;
+        Tue, 23 Mar 2021 05:07:30 -0700 (PDT)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+        mathieu.poirier@linaro.org, mike.leach@linaro.org,
+        leo.yan@linaro.org, anshuman.khandual@arm.com, maz@kernel.org,
+        catalin.marinas@arm.com, Suzuki K Poulose <suzuki.poulose@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 13/19] dts: bindings: Document device tree bindings for ETE
+Date:   Tue, 23 Mar 2021 12:06:41 +0000
+Message-Id: <20210323120647.454211-14-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20210323120647.454211-1-suzuki.poulose@arm.com>
+References: <20210323120647.454211-1-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202103171704.VHPs8XOA-lkp@intel.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 05:50:22PM +0800, kernel test robot wrote:
-> Hi Manish,
-> 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on usb/usb-testing]
-> [also build test WARNING on robh/for-next v5.12-rc3 next-20210316]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Manish-Narani/Add-a-separate-DWC3-OF-driver-for-Xilinx-platforms/20210317-145425
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-> config: arm64-allyesconfig (attached as .config)
-> compiler: aarch64-linux-gcc (GCC) 9.3.0
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://github.com/0day-ci/linux/commit/def409fdf931cd77f4a88812570ea6f38f4053d8
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Manish-Narani/Add-a-separate-DWC3-OF-driver-for-Xilinx-platforms/20210317-145425
->         git checkout def409fdf931cd77f4a88812570ea6f38f4053d8
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm64 
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> drivers/usb/dwc3/dwc3-xilinx.c:27: warning: expecting prototype for dwc3(). Prototype was for XLNX_USB_PHY_RST_EN() instead
-> 
-> 
-> vim +27 drivers/usb/dwc3/dwc3-xilinx.c
-> 
->     25	
->     26	/* USB phy reset mask register */
->   > 27	#define XLNX_USB_PHY_RST_EN			0x001C
->     28	#define XLNX_PHY_RST_MASK			0x1
->     29	
+Document the device tree bindings for Embedded Trace Extensions.
+ETE can be connected to legacy coresight components and thus
+could optionally contain a connection graph as described by
+the CoreSight bindings.
 
-I do not understand this warning message.  What is it trying to say?
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+---
+Changes since v4:
+ - Fix the out-ports definition (Rob Herring)
+---
+ .../devicetree/bindings/arm/ete.yaml          | 75 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
 
-confused,
+diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
+new file mode 100644
+index 000000000000..7f9b2d1e1147
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/ete.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright 2021, Arm Ltd
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/ete.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: ARM Embedded Trace Extensions
++
++maintainers:
++  - Suzuki K Poulose <suzuki.poulose@arm.com>
++  - Mathieu Poirier <mathieu.poirier@linaro.org>
++
++description: |
++  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
++  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
++  architecture and has extended support for future architecture changes.
++  The trace generated by the ETE could be stored via legacy CoreSight
++  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
++  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
++  legacy CoreSight components, a node must be listed per instance, along
++  with any optional connection graph as per the coresight bindings.
++  See bindings/arm/coresight.txt.
++
++properties:
++  $nodename:
++    pattern: "^ete([0-9a-f]+)$"
++  compatible:
++    items:
++      - const: arm,embedded-trace-extension
++
++  cpu:
++    description: |
++      Handle to the cpu this ETE is bound to.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  out-ports:
++    description: |
++      Output connections from the ETE to legacy CoreSight trace bus.
++    $ref: /schemas/graph.yaml#/properties/ports
++    properties:
++      port:
++        description: Output connection from the ETE to legacy CoreSight Trace bus.
++        $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - cpu
++
++additionalProperties: false
++
++examples:
++
++# An ETE node without legacy CoreSight connections
++  - |
++    ete0 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_0>;
++    };
++# An ETE node with legacy CoreSight connections
++  - |
++   ete1 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_1>;
++
++      out-ports {        /* legacy coresight connection */
++         port {
++             ete1_out_port: endpoint {
++                remote-endpoint = <&funnel_in_port0>;
++             };
++         };
++      };
++   };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9e876927c60d..3454ed1011c8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1761,6 +1761,7 @@ F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
+ F:	Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt
+ F:	Documentation/devicetree/bindings/arm/coresight-cti.yaml
+ F:	Documentation/devicetree/bindings/arm/coresight.txt
++F:	Documentation/devicetree/bindings/arm/ete.yaml
+ F:	Documentation/trace/coresight/*
+ F:	drivers/hwtracing/coresight/*
+ F:	include/dt-bindings/arm/coresight-cti-dt.h
+-- 
+2.24.1
 
-greg k-h
