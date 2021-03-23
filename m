@@ -2,149 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD02346BB9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:07:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B90346BC1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:08:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233869AbhCWWHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 18:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233805AbhCWWGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:06:36 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D283C061765
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 15:06:36 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id kk2-20020a17090b4a02b02900c777aa746fso139488pjb.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 15:06:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=8BWo86i33iioKOqmV9jmlpLM238hwKZcbsQlqWFESLQ=;
-        b=SRyH0LMOFeDhLTkyt07Fac/cikXZSsPnUOK51gyyB8ilGHXP+rPOfv/H9+0peOLovh
-         WipjBkkj4EfAAhS9/jOZIBlsDKjACD5o51gIU94JtLJEleoZs7l6ABj4/yYJg5mjk4pw
-         A2t2eRw8dh3Zwys/TZPEd8ix5v9gu2xzEoqog=
+        id S233674AbhCWWII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 18:08:08 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:38901 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233870AbhCWWHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:07:42 -0400
+Received: by mail-io1-f53.google.com with SMTP id e8so19415106iok.5;
+        Tue, 23 Mar 2021 15:07:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=8BWo86i33iioKOqmV9jmlpLM238hwKZcbsQlqWFESLQ=;
-        b=A7jrvNVV1v9Mj4sQwkqX+LI8P5FIFRB0pIw+oxDnMq/wpwMkTEjKsTU1e4mRgPZkgJ
-         rQ61YZMA03z2aMAKgntCZ8PzMioCuByv/jppiOQZ19i1wfyZV2Y5KFGp/jeSF2bwPcDe
-         lTB+qQ8D0tZDCS4wpc5sqcsIPBmg7OSTKvO0/QMU2VGMZmgjLtSplhDJ4V9c8qEqWYBA
-         xBTBMtMwCmK//v3Q27QUjXdBmbcI646GVmvx6UxIcQ5aUCFgk6ux9OUl1ElxAs5uGmub
-         o9w08mp05jdTIzHtO5X/Yv5F5zIK+ytozm/Kxm2cmFsWMA9EG52o4MuzFA3XyKA56XQ2
-         8mng==
-X-Gm-Message-State: AOAM532+O3/pvtRdUIdeaKCJ1AFU4VarLUs2zj5T1eYfJpPGxhd4fYgp
-        hJBkWr2w1r8EeX2Vein/m/nLWA==
-X-Google-Smtp-Source: ABdhPJx3BSKJkGqKncxsCX7h4oQjQSZMLIt2kP+1EHD/sHhFBU6e9vx8boqNaD/PvJjEUtCfSV2mXQ==
-X-Received: by 2002:a17:90a:9e7:: with SMTP id 94mr193837pjo.117.1616537195704;
-        Tue, 23 Mar 2021 15:06:35 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:84ac:62f7:16a8:ccc7])
-        by smtp.gmail.com with ESMTPSA id v135sm161428pgb.82.2021.03.23.15.06.34
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=duC2vQDOWTSfWZWv1lE7SGrANbWeUaoPK0ak3TfFKF0=;
+        b=UXaYAF5NGg61/tEcud5q9Qn7WazSqNLCXMoc1kvLYmxXu913zO+TgNwe/Iw8FC4LvF
+         jrtBu8QqK2fWEJeKWm052mDayrNVQQwqN6W+mG5tfpXBDnCL/vEU5JucTC5u7lqTtFEV
+         s2DyEy3jfQzgkXJcI9MtpYMq49tsUJjSJ+Xkg8abB+jy5aVNoI+fdE+ICAmTGM6daafF
+         O0f8/vbnaan7UipWxlLVJzrNmAxNILoisvA7kpILgOqcGLiBjPc6dd4Ji3LxINqI2mih
+         x0x0D1Vv3mMp87RsQ+9UqNlmQWE6EZNTQ9PVCU4U3lRGC2PeeDMsFMpEEVEvaQ2y0mZq
+         kyFQ==
+X-Gm-Message-State: AOAM532F4RUOPryXXaR/KsgrLzEt/Bzl/uVNEUR9yylyaOzdux/C80LC
+        eShK9khrJccihHda0v8FUw==
+X-Google-Smtp-Source: ABdhPJx5CUAJFvnGhugiymB5gjr3DCufBCGz0JSxA6lD/EsVVv3Sx2P/b+bfSicGZK0xaQgaZWeOrQ==
+X-Received: by 2002:a05:6602:1592:: with SMTP id e18mr178341iow.49.1616537262173;
+        Tue, 23 Mar 2021 15:07:42 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id r5sm74223ilb.75.2021.03.23.15.07.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 15:06:35 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Tue, 23 Mar 2021 15:07:41 -0700 (PDT)
+Received: (nullmailer pid 1425584 invoked by uid 1000);
+        Tue, 23 Mar 2021 22:07:40 -0000
+Date:   Tue, 23 Mar 2021 16:07:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Steen Hegelund <steen.hegelund@microchip.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v8 1/3] dt-bindings: reset: microchip sparx5 reset driver
+ bindings
+Message-ID: <20210323220740.GA1425527@robh.at.kernel.org>
+References: <20210316090839.3207930-1-steen.hegelund@microchip.com>
+ <20210316090839.3207930-2-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YE2OJz1pI81Uj8DA@builder.lan>
-References: <1615269111-25559-1-git-send-email-sibis@codeaurora.org> <1615269111-25559-7-git-send-email-sibis@codeaurora.org> <161567197220.1478170.12600358804299446135@swboyd.mtv.corp.google.com> <YE2OJz1pI81Uj8DA@builder.lan>
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sc7280: Add nodes to boot WPSS
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, agross@kernel.org, mani@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Date:   Tue, 23 Mar 2021 15:06:33 -0700
-Message-ID: <161653719350.3012082.12055201782488576903@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210316090839.3207930-2-steen.hegelund@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-03-13 20:16:39)
-> On Sat 13 Mar 15:46 CST 2021, Stephen Boyd wrote:
->=20
-> > Quoting Sibi Sankar (2021-03-08 21:51:51)
-> > > Add miscellaneous nodes to boot the Wireless Processor Subsystem on
-> >=20
-> > Maybe add (WPSS) after the name so we know they're related.
-> >=20
-> > > SC7280 SoCs.
-> > >=20
-> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> > > ---
-> > >=20
-> > > https://patchwork.kernel.org/project/linux-arm-msm/list/?series=3D438=
-217
-> > > Depends on ipcc dt node enablement from ^^=20
-> > >=20
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 143 +++++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 143 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/d=
-ts/qcom/sc7280.dtsi
-> > > index 18637c369c1d..4f03c468df51 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -244,12 +251,131 @@
-> > >                 reg =3D <0 0x80000000 0 0>;
-> > >         };
-> > > =20
-> > > +       tcsr_mutex: hwlock {
-> > > +               compatible =3D "qcom,tcsr-mutex";
-> > > +               syscon =3D <&tcsr_mutex_regs 0 0x1000>;
-> > > +               #hwlock-cells =3D <1>;
-> > > +       };
-> >=20
-> > Is this node in the right place? I think the node above it is 'memory'?
-> > In which case 'hwlock' comes before 'memory' alphabetically.
-> >=20
->=20
-> Thanks for spotting this, as it's no longer acceptable to have a
-> standalone "syscon" node I was asked to rewrite the binding for this a
-> few months ago. So the tcsr_mutex should now be represented with a reg
-> under /soc.
+On Tue, 16 Mar 2021 10:08:37 +0100, Steen Hegelund wrote:
+> Document the Sparx5 reset device driver bindings
+> 
+> The driver uses a syscon and an IO range on sparx5 for access to
+> the reset control and the reset status.
+> 
+> Sparx5 will no longer use the existing Ocelot chip reset driver, but use
+> this new switch reset driver as it has the reset controller interface that
+> allows the first client to perform the reset on behalf of all the Sparx5
+> component drivers.
+> 
+> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> ---
+>  .../bindings/reset/microchip,rst.yaml         | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> 
 
-Oh nice, I wasn't aware.
-
-> > > +                       #interrupt-cells =3D <2>;
-> > > +               };
-> > > +       };
-> > > +
-> > > +       smp2p-mpss {
-> > > +               compatible =3D "qcom,smp2p";
-> > > +               qcom,smem =3D <435>, <428>;
-> > > +               interrupts-extended =3D <&ipcc IPCC_CLIENT_MPSS
-> > > +                                            IPCC_MPROC_SIGNAL_SMP2P
-> > > +                                            IRQ_TYPE_EDGE_RISING>;
-> > > +               mboxes =3D <&ipcc IPCC_CLIENT_MPSS
-> > > +                               IPCC_MPROC_SIGNAL_SMP2P>;
-> > > +
-> > > +               qcom,local-pid =3D <0>;
-> > > +               qcom,remote-pid =3D <1>;
-> > > +
-> > > +               modem_smp2p_out: master-kernel {
-> > > +                       qcom,entry-name =3D "master-kernel";
-> > > +                       #qcom,smem-state-cells =3D <1>;
-> > > +               };
-> > > +
-> > > +               modem_smp2p_in: slave-kernel {
-> > > +                       qcom,entry-name =3D "slave-kernel";
-> >=20
-> > Do these names need to have 'master' and 'slave' in them? We're trying
-> > to avoid these terms. See Documentation/process/coding-style.rst Section
-> > 4 naming.
-> >=20
->=20
-> They need to match the naming in the firmware, but I would welcome a
-> future change to something in line with the coding style and simply more
-> descriptive.
->=20
-
-Sibi can this be done? I think it's still pretty early days for the
-firmware so hopefully the terms can be replaced with something
-different.
+Reviewed-by: Rob Herring <robh@kernel.org>
