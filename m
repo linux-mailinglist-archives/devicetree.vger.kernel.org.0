@@ -2,98 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4CA345C42
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6034A345C4D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbhCWKwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 06:52:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57904 "EHLO
+        id S230305AbhCWKxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 06:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbhCWKve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:51:34 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF170C061756
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:51:32 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id j7so20284740wrd.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:51:32 -0700 (PDT)
+        with ESMTP id S230165AbhCWKxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:53:31 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93317C061756
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:53:29 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id c8so7360050wrq.11
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=+Rm0Eb8opKfQYfpYJDV6Y/tLoSsGpuasG3Yqocn/+wk=;
-        b=V460lnV5MQidZ9drlcjju5WKgJWJ4lnAjSvh4/bhA7gqTaBNKu/P50bMFcOlFlrU7g
-         3P86p+Fu68NyIPOW6b4N8XvzWPnCOTY6oZwtBN2Wf+NgPRcoOPEXv09i7CGCthKYzz7Q
-         +2bT1OTMMIFjDijjUEbJzYNAI2vPkJKcx9en6iPxWyCstDTPrAZK/0H+aaqxy7mtozAY
-         50RoU1cq+m0ZD6XgKgFW0T9uHDQvo1V1SjLjjDCd6CRjw8ljVzwPH7DUOTdB5hVFWKQL
-         MF7jHtAqOqvXQrpLdx5fWEgKm/rKTmC/YjI/QejxGrLeDYZHCag93xqYU640uNPkcZuZ
-         /AUA==
+        bh=WGlnCIX+gPkt5saLRl1AO/eSfyQX4KhnrSrkJYnpgYY=;
+        b=lIV8cb4KFfS7wkzFGd10vbdRrumERBd84XwjQG3DjbGuRdwbmikbg0jk61DgpoawxN
+         BBl7QlKsTaJXnPCOF2y6MKlpThqG96Zmz81Yrp+FEZ6nTCt8av7uCsN5iwc29SpdsQSl
+         EiW8j9VDV469niDRLYcAmzwI0D62kxpgUkue6nlgB7GxWnCpKMJp7zKfYmw4LCttdy0W
+         G+gypPOTuKhWasizmui5cLDWk8ApZ/QXiji5JiDhmE2Nqmn2He3ID9hBKFsjODY4B8Q9
+         b/M0eeC82xya4hZASNOjs2fKQtd+/3nIbS+1xCePGaJtlOEzWWikRqqdme5aVwM8jGf1
+         rxZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+Rm0Eb8opKfQYfpYJDV6Y/tLoSsGpuasG3Yqocn/+wk=;
-        b=K8hp35sKlsTYFrX1aXYyGr5jpCK+hBOoNlnhPWih5x32d+/M+R7Ijyk9uS3dGe9O/F
-         +snZvz5dTjpPgcjTjYP2uQplNMzVugZZMVfj/R0RoK77+I9q0KTAw5f6DaOTs7I9JZ7U
-         1GT2AEqWeo+dFScERwLm8mzBIfFJnMAna1MDjtifCMahmqHSltKP4c84c2RpEQ6rTlYb
-         M+vZ+gRUMQv9UH6I5Ao25ws5uWnoei77zqh+uMyyzQ0Kki7oZlf5HaNtFipZRHSvg+CP
-         jDuRrZuIdpkmjG9rpnqCRy8QleprIZETY2rQxX6MxxjUEvU9OsFQXe9vsduKwx7iSFK/
-         2ung==
-X-Gm-Message-State: AOAM5334yWH1vvg9koCHvl+lU9NxQhXvkVesBQhUMbj4jllEy0zy8MyN
-        zU/p6q0XbPk+VwrNNgZCnH9LkQ==
-X-Google-Smtp-Source: ABdhPJyEzvSO/OvPPWnDWPmPBfRqF7mbRvT971F7XWqd4tOlJNGs3xw7PhQkeJHkjfLb3M4W8l8jRg==
-X-Received: by 2002:adf:fb0b:: with SMTP id c11mr3314660wrr.425.1616496691557;
-        Tue, 23 Mar 2021 03:51:31 -0700 (PDT)
+        bh=WGlnCIX+gPkt5saLRl1AO/eSfyQX4KhnrSrkJYnpgYY=;
+        b=Cnjk4p+wL5CW76p6G0qzRaJXRMRj6u5AEMIMV6LWZQqysLUeir+vCjthzFR06wnT+0
+         P7pTY2vyE24jEScvILvbNRym+1+iBJwtS/ZZbURd9nGNKTF5nrycUatlqWpKSc9NbHsa
+         SjESuFsE2UuwZgoCpEDm56G+GL2N1yGJo1QgksKsCJXZNYAA0PyTgkvRcTXM3ARt021E
+         OjjzY0X1atKPyiL9fUXEFbVVzWc2gQkZNeRVrnujYo9Voxz2IeSlpRTXAVUQ6/FyqtIV
+         ULq+uh5a0NG9GBO6HwJ/jVZNytZR4WUeEcOttWt1MHuS0q6n7rkFiMZU/rhA8JmeNcfk
+         TMfg==
+X-Gm-Message-State: AOAM533zVFDzQWtmh+qM3pd8/26BCTgRgnfAYQ7mru4SNadfkS3CnPOc
+        fu2V6Xa5X46Ad+cgzzBMi7yGoA==
+X-Google-Smtp-Source: ABdhPJxsZ4rfGrv8Gu+78757z6bQt9fLbU/W53+clBFuohI6UOhnceZv0BUdjXF3LdKpnrW2LNNtVA==
+X-Received: by 2002:a5d:4d01:: with SMTP id z1mr3253375wrt.133.1616496808336;
+        Tue, 23 Mar 2021 03:53:28 -0700 (PDT)
 Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id s16sm22887746wru.91.2021.03.23.03.51.30
+        by smtp.gmail.com with ESMTPSA id z1sm23063818wru.95.2021.03.23.03.53.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 03:51:31 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 11:51:13 +0100
+        Tue, 23 Mar 2021 03:53:27 -0700 (PDT)
+Date:   Tue, 23 Mar 2021 11:53:10 +0100
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Lu Baolu <baolu.lu@linux.intel.com>
-Cc:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
-        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
-        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
-        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, jacob.jun.pan@linux.intel.com,
-        kevin.tian@intel.com, vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
-        Ashok Raj <ashok.raj@intel.com>
+To:     "Raj, Ashok" <ashok.raj@intel.com>
+Cc:     joro@8bytes.org, will@kernel.org, vivek.gautam@arm.com,
+        guohanjun@huawei.com, zhukeqian1@huawei.com,
+        wangzhou1@hisilicon.com, linux-acpi@vger.kernel.org,
+        zhangfei.gao@linaro.org, lenb@kernel.org,
+        devicetree@vger.kernel.org, kevin.tian@intel.com,
+        jacob.jun.pan@linux.intel.com, eric.auger@redhat.com,
+        vdumpa@nvidia.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, rjw@rjwysocki.net,
+        shameerali.kolothum.thodi@huawei.com,
+        iommu@lists.linux-foundation.org, sudeep.holla@arm.com,
+        robin.murphy@arm.com, linux-accelerators@lists.ozlabs.org,
+        baolu.lu@linux.intel.com
 Subject: Re: [PATCH v13 06/10] iommu: Add a page fault handler
-Message-ID: <YFnIIYW0aMdGXuS/@myrica>
+Message-ID: <YFnIlrecY6nkq5pP@myrica>
 References: <20210302092644.2553014-1-jean-philippe@linaro.org>
  <20210302092644.2553014-7-jean-philippe@linaro.org>
- <15ff4704-0fbd-243f-8e49-a9523ae63ce6@linux.intel.com>
+ <20210303055727.GF1914@otc-nc-03>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <15ff4704-0fbd-243f-8e49-a9523ae63ce6@linux.intel.com>
+In-Reply-To: <20210303055727.GF1914@otc-nc-03>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 03, 2021 at 01:27:34PM +0800, Lu Baolu wrote:
-> I have tested this framework with the Intel VT-d implementation. It
-> works as expected. Hence,
+On Tue, Mar 02, 2021 at 09:57:27PM -0800, Raj, Ashok wrote:
+> > +	ret = handle_mm_fault(vma, prm->addr, fault_flags, NULL);
 > 
-> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
-> Tested-by: Lu Baolu <baolu.lu@linux.intel.com>
+> Should we add a trace similar to trace_page_fault_user() or kernel in
+> arch/x86/kernel/mm/fault.c 
 
-Thanks!
+Yes that would definitely be useful for debugging hardware and developping
+applications. I can send a separate patch to add tracepoints here and in
+the lower-level device fault path.
 
-> One possible future optimization is that we could allow the system
-> administrators to choose between handle PRQs in a workqueue or handle
-> them synchronously. One research discovered that most of the software
-> latency of handling a single page fault exists in the schedule part.
-> Hence, synchronous processing will get shorter software latency if PRQs
-> are rare and limited.
+> or maybe add a perf_sw_event() for device faults? 
 
-Yes, the risk is that processing a fault synchronously will take too much
-time, leading to PRI queue overflow if the IOMMU keeps receiving page
-faults. That's why I opted for the workqueue initially, but it's
-definitely something we can tweak
+It does seem like that would fit well alongside the existing
+PERF_COUNT_SW_PAGE_FAULTS, but I don't think it would be useful in
+practice, because we can't provide a context for the event. Since we're
+handling these faults remotely, the only way for a user to get IOPF events
+is to enable them on all CPUs and all tasks. Tracepoints can have 'pasid'
+and 'device' fields to identify an event, but the perf_sw_event wouldn't
+have any useful metadata apart from the faulting address.
+
+We could also add tracepoints on bind(), so users can get the PASID
+obtained with the PID they care about and filter fault events based on
+that.
+
+I've been wondering about associating a PASID with a PID internally,
+because we don't currently have anywhere to send SEGV signals for
+unhandled page faults. But I think it would be best to notify the device
+driver on unhandled fault and let them deal with it. They'll probably want
+that information anyway.
 
 Thanks,
 Jean
