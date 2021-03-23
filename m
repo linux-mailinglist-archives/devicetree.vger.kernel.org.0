@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBDC5345A55
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:06:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6260B345A5B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:08:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbhCWJFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 05:05:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
+        id S229452AbhCWJHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 05:07:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCWJFR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:05:17 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF52CC061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:05:16 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id b7so25829286ejv.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:05:16 -0700 (PDT)
+        with ESMTP id S229822AbhCWJH1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:07:27 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6F9C061574;
+        Tue, 23 Mar 2021 02:07:27 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id u10so24633098lju.7;
+        Tue, 23 Mar 2021 02:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=NaxMk1X4JgQvNguaXzrkddVGWdXTSwTVvMkeeopGQCc=;
-        b=EkcarqZKUy0ymiF4kWv0Lkwrc9OXZEDWInUH5Be+lbkNWzuZ0bH1/rBhCpRwLiqTdt
-         rBd/jZXsSc+/gr0W5vVDjKeAbBiJNnqL4d8FVLGBZgt06UhuthKl3hoG91vBLikuJLNs
-         4XHZBPrXItBGRVsuFFU+Aay2UuLxvNpfwAp+UJOTSQ35dL31Q2B9wQ2HZT8KRflMEb7C
-         pXRPGCU0Nclm8CvMHG0ni3P5qwx4l1n1LIqBhgxjANlEzftOTvwqxahdOlKmHDfAvEyg
-         qLjBEZ5ypgC1Nmdp+HiBhrAcllw0tq/I+5iHIj2uYWO+CKOFFc2s9MXEMg7ZkLbOmQms
-         BM5Q==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=r5SAZtnTWXxLSfp5x9mNUDN04JTLz5IpjnjCJ8TVqCM=;
+        b=f7jt0gNGdizSy7AGbY2k+u1IwC505G9TcJFzN1tTZUMKMXLOTQYbac9XtjIkO2QYI8
+         lmtO1uRyQwnbY8NoZVFJ0+kAz8Ci3dyRHLhXF1yt6qL1n9jqqhDUSQ93oqNSKNCQj81J
+         491VFyZmtOTzNRDsjUAkTCG+0bQToZ4iYmPrcyQkwHkvWD/HUmEXpBVnMzCN33X3spO4
+         I9zubvfpLWhHk+9hyoPTisPIWBTGoKlLdWWEZo+Eig+rtlmgtXD6Tdbn7Rv23iiTxLD8
+         Hh4lNfnjQrx/4dCACveqq5BVnWbB0DcYWMPL8rZDheJuH1h0raS8zl8EulAySsyYYpY9
+         XdKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=NaxMk1X4JgQvNguaXzrkddVGWdXTSwTVvMkeeopGQCc=;
-        b=b980uhismfd4acorcnoKlPkYYcQ5IQZ369A6qcfJT1HCjFPMNqyfY+ea5xNrEXGhyP
-         tpEUu4AtLAndd1oBvHlcjS9+OVxP4JrARpwCidu0cm7pmJDYKDYehXTkjCtbKwPXpoWa
-         mtAl/beZ0OTmqLqlCGA28JQQE2SyKyhgc29rCxzkfpNdNY8EEEBEKxNxpjWcMJfvmCXv
-         Dztn2yVlxxyatjvlIAN6x+X7DkBbY/cwsjwCufbWAZaCFTNsYBDbnXYsJPcAUKqPOLjQ
-         8VBzBw5WQmwAxwHMOnxgZerFa/Q8naFhcx+Ee2Xo9XEqFaVMHb5z04NvDwnkcxuESfyS
-         egqQ==
-X-Gm-Message-State: AOAM53080Zu0xZHm5W8uTRkX5yua034fN8rsJa6qHxsP3/b0rMyHWB37
-        uuOGR2bw2edcmH2FwATG3Aeqzg==
-X-Google-Smtp-Source: ABdhPJzVzXe2FBZymosCx+Rjdu4KKVi7Zq3N3gYPqVzkCfVULSYBS8mOmRdLM8ry58+y1DxBB4xE/w==
-X-Received: by 2002:a17:907:720a:: with SMTP id dr10mr3843386ejc.375.1616490315603;
-        Tue, 23 Mar 2021 02:05:15 -0700 (PDT)
-Received: from dell ([91.110.221.180])
-        by smtp.gmail.com with ESMTPSA id be27sm12873864edb.47.2021.03.23.02.05.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 02:05:15 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 09:05:13 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     matthias.bgg@kernel.org
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH 3/7] mfd: mt6397: Drop of_compatible for regulator
-Message-ID: <20210323090513.GJ2916463@dell>
-References: <20210312145545.26050-1-matthias.bgg@kernel.org>
- <20210312145545.26050-3-matthias.bgg@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=r5SAZtnTWXxLSfp5x9mNUDN04JTLz5IpjnjCJ8TVqCM=;
+        b=GqoST2I0SzxzHe6+7jmN+kxFGRihsOIoZl5HK1aEM8uzWVrYpX+SDVPYSUDOOpnFKs
+         8eaBrpKdiZyfuaolZ9Z+w322k+EhAzblerlWAxF9z8aMBGR+geHxu4thWhJ2xFicxbeb
+         i1onCJ6NXeqw7fZkUPUjhbdi3ER480ItJkfhnSW6a2i4cfC19i1Eyp2Vp7EyQa41oLuJ
+         StAblGiBXMrkV4ZN1EE3ps45PSmBz3f3QqIbVnsTe49myJ5M8dmkrCuax7CqFVydzZrs
+         E0S5j+4C2PA8LNU2pUhFckU4023FAQbJ3vXcZ2S7HBCBbeFq+4qSWwQkfk3hbYXCvhDu
+         AB0Q==
+X-Gm-Message-State: AOAM530NWCy/ZRAfnZxOQg3XS1irDoMlm2ja0Y+6Q1kvCbKCuqYmMgy8
+        HwdWYd+tJ4HITI7sLaRo6aM=
+X-Google-Smtp-Source: ABdhPJywmUTFte0z9HFu9YRNCVTTVo/LOl4cWWDaRUxplW0BJuLorXxwUvKRfJ+EOuEmKfuUS07jMA==
+X-Received: by 2002:a2e:2d02:: with SMTP id t2mr2426043ljt.488.1616490445739;
+        Tue, 23 Mar 2021 02:07:25 -0700 (PDT)
+Received: from [192.168.1.100] ([31.173.87.52])
+        by smtp.gmail.com with ESMTPSA id w24sm2251214ljh.19.2021.03.23.02.07.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Mar 2021 02:07:25 -0700 (PDT)
+Subject: Re: [PATCH v2 01/13] dt-bindings: usb: mtk-xhci: support property
+ usb2-lpm-disable
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+References: <1616482975-17841-1-git-send-email-chunfeng.yun@mediatek.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <32d4b418-a078-560a-2b65-4a80a2869aae@gmail.com>
+Date:   Tue, 23 Mar 2021 12:07:17 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210312145545.26050-3-matthias.bgg@kernel.org>
+In-Reply-To: <1616482975-17841-1-git-send-email-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Mar 2021, matthias.bgg@kernel.org wrote:
+Hello!
 
-> From: Matthias Brugger <mbrugger@suse.com>
-> 
-> For regulators a compatible string is superfluous. Drop the string.
-> 
-> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
-> ---
->  drivers/mfd/mt6397-core.c | 3 ---
->  1 file changed, 3 deletions(-)
+On 23.03.2021 10:02, Chunfeng Yun wrote:
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+> Add support common property usb2-lpm-disable
+              ^ for
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+[...]
+
+MBR, Sergei
