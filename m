@@ -2,79 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62941345854
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 08:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBE5A3458E0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 08:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbhCWHKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 03:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38524 "EHLO
+        id S229771AbhCWHju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 03:39:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbhCWHKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 03:10:07 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE164C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:10:06 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id n11so10756535pgm.12
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:10:06 -0700 (PDT)
+        with ESMTP id S229653AbhCWHjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 03:39:40 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FC0C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:39:40 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id v3so10834205pgq.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 00:39:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=+K97PdVuEE+1g5sFpZ/HQJps6vR1JaS12plaQgGGVrc=;
-        b=hJPsR0X8zUt01jIOr510j6YVCgU5chpqEtRn3weogf28emnKpbetTL+jaiJCKCfBeO
-         1sI7ghj81uIZvzwFy3Kw9NHdOWH17EYsE6SN/FBJNDwCq8UG3f8Y/fbxraf7I4+zVX+Z
-         esuBJPP66rpgSEeOoDQUjQu95RLTM06PCrCZ8=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PvF1HrRBEs+yUQZzjOuXkf0eJP1lcdc9T4URK25JLiE=;
+        b=IOgARvtDCkd4788B8IVLLNeGvkRiH8zapo76SvNMeVay8WkXWauSzwj6e0dBENjmcK
+         svY9lsPOKeQ+1xfPCB+k1EROasuAfuFETH6u+Uqg64de5xEBcmf1qyuIuiooVVgRvpjc
+         HBza6moWYqIUGNg/6cb9RV9zBFZrn3IBY2e3ZlLFCmsggYn3EG6gyMrbS1GtS7F6v/4z
+         PbU0PFYNWZh5FMfniriUqJrHOC4ZyiAk1HumjI0Z1Yxf0F2rrWWa9sG3O3JqWBwijEPr
+         PMGYM1y8Zp/nONQwprb1zliScimQZ4gHxaqqkBc58xIQKVYkPPOh9kIl7L1aFa7+1kWt
+         ynyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=+K97PdVuEE+1g5sFpZ/HQJps6vR1JaS12plaQgGGVrc=;
-        b=IE6f5NkjSma6C0vFRIvR9bA5vfAKG469WwXa6VuHCpwWFT+C1EfpKoEmkTsklNxfec
-         +tvesYcZ433fBO70asy7EXLtjj7w5FFHRhfB1YZpoylVxLKubQcs7PhQAs/1/G+q3EZQ
-         JE/bFy4acV/2K/chCtkLUSwZ4jH40fG9xcXR2AySY2Zlm0HxKj57LlWGYqm9DHmawl0V
-         SZFrKtEOTZr4cSHSkQTmgMfrbQO/SeNzKebxJKR6zCwOvIAJtabtnzNKcwY/Tdec69Yw
-         w2RuB15klj06SxW3wTTT1ANnm14jmVSrhEGRLkBtujEdfxCii8+mRXPIQ0zfoJjgO00F
-         LWMg==
-X-Gm-Message-State: AOAM5336W3qaUIHNkiObsaYFFFkyrWK1S5nPejeTjpoVIU7eGymqw3O/
-        CIHDgnCLv3VGAYOzdzODYpFTww==
-X-Google-Smtp-Source: ABdhPJwBA4HX/OVdGFcBVhzxavJbsPmpXxWAd100ZSbxVqWbcho629Mo06rAJsZji1oYXubYDKV3Aw==
-X-Received: by 2002:a17:902:d2c5:b029:e5:c9ce:cb3c with SMTP id n5-20020a170902d2c5b02900e5c9cecb3cmr3914484plc.74.1616483406508;
-        Tue, 23 Mar 2021 00:10:06 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:e90d:d453:87ae:2e10])
-        by smtp.gmail.com with ESMTPSA id x125sm6171927pfd.124.2021.03.23.00.10.05
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PvF1HrRBEs+yUQZzjOuXkf0eJP1lcdc9T4URK25JLiE=;
+        b=HLwfB0yMf1PhDIxRdMAtmwxcjxw8AQQeSb6tQ195xKH90rRk5s42hgawpOziMJfzaX
+         h4G2dRGyFrH79/J3t+coK2cnMJiAF0uF01IKa0RJ3HINvoTjMvBqIjVV3B8UnXagPJ7K
+         2CATAZilM6blQFT96TDZB36RXewt87sE6he6Sgrp0VUMwMEa/OydQbFoPBFPVcwbmkgv
+         AWDVZx9nEFZAdhBILRBliVvcZXZ3dcDU1lCDMzJWB8OJMPqt/KxAyZdJul5T9RZbBno0
+         rB953yDeBSwdFn2lN0h/lDOB9koPwhMlCn7BB0w33HAi4IUb/YbJLPCOeggHB6ySYxx5
+         hkrg==
+X-Gm-Message-State: AOAM5335YqxRXWp6DWMBY/ooXLrTbFVGhRJTSji8AGAdiWNs6KYJ8zo6
+        5uoGtzJr1FVx9L9/wAjuf4Q3
+X-Google-Smtp-Source: ABdhPJwKcCmBgi+2BFyvGBP7U0ZM5gtxyveh/rSEI9A3yXA7Pto+p2nuS8rNdoos58t2dRw3w8NfFA==
+X-Received: by 2002:a05:6a00:1ad4:b029:216:aa9d:dcea with SMTP id f20-20020a056a001ad4b0290216aa9ddceamr3596742pfv.47.1616485179957;
+        Tue, 23 Mar 2021 00:39:39 -0700 (PDT)
+Received: from localhost.localdomain ([103.77.37.149])
+        by smtp.gmail.com with ESMTPSA id fs9sm1587465pjb.40.2021.03.23.00.39.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 00:10:06 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Tue, 23 Mar 2021 00:39:39 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v8 0/3] Add support for secure regions in NAND
+Date:   Tue, 23 Mar 2021 13:09:27 +0530
+Message-Id: <20210323073930.89754-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
-References: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com> <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [RFC PATCH 01/11] dt-bindings: drm/bridge: ti-sn65dsi8: Make enable GPIO optional
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org
-Date:   Tue, 23 Mar 2021 00:10:04 -0700
-Message-ID: <161648340457.3012082.17691256832017517403@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Laurent Pinchart (2021-03-21 20:01:18)
-> The SN65DSI86 EN pin can be hardwired to a high level, or connected to a
-> global reset signal, not controllable by the kernel. Make it optional in
-> those cases.
->=20
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.co=
-m>
-> ---
+On a typical end product, a vendor may choose to secure some regions in
+the NAND memory which are supposed to stay intact between FW upgrades.
+The access to those regions will be blocked by a secure element like
+Trustzone. So the normal world software like Linux kernel should not
+touch these regions (including reading).
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+So this series adds a property for declaring such secure regions in DT
+so that the driver can skip touching them. While at it, the Qcom NANDc
+DT binding is also converted to YAML format.
+
+Thanks,
+Mani
+
+Changes in v8:
+
+* Reworked the secure region check logic based on input from Boris
+* Removed the check where unnecessary in rawnand core.
+
+Changes in v7:
+
+* Made "size" u64 and fixed a warning reported by Kernel test bot
+
+Changes in v6:
+
+* Made use of "size" of the regions for comparision
+* Used "secure" instead of "sec"
+* Fixed the sizeof parameter in of_get_nand_secure_regions()
+
+Changes in v5:
+
+* Switched to "uint64-matrix" as suggested by Rob
+* Moved the whole logic from qcom driver to nand core as suggested by Boris
+
+Changes in v4:
+
+* Used "uint32-matrix" instead of "uint32-array" as per Rob's review.
+* Collected Rob's review tag for binding conversion patch
+
+Changes in v3:
+
+* Removed the nand prefix from DT property and moved the property parsing
+  logic before nand_scan() in driver.
+
+Changes in v2:
+
+* Moved the secure-regions property to generic NAND binding as a NAND
+  chip property and renamed it as "nand-secure-regions".
+
+Manivannan Sadhasivam (3):
+  dt-bindings: mtd: Convert Qcom NANDc binding to YAML
+  dt-bindings: mtd: Add a property to declare secure regions in NAND
+    chips
+  mtd: rawnand: Add support for secure regions in NAND memory
+
+ .../bindings/mtd/nand-controller.yaml         |   7 +
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   | 196 ++++++++++++++++++
+ .../devicetree/bindings/mtd/qcom_nandc.txt    | 142 -------------
+ drivers/mtd/nand/raw/nand_base.c              | 105 ++++++++++
+ include/linux/mtd/rawnand.h                   |  14 ++
+ 5 files changed, 322 insertions(+), 142 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/qcom_nandc.txt
+
+-- 
+2.25.1
+
