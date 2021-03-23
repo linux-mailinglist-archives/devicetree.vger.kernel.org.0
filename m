@@ -2,122 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 288E3345AF4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01168345AF3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:36:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbhCWJgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229665AbhCWJgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 23 Mar 2021 05:36:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41586 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbhCWJfo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:35:44 -0400
+        with ESMTP id S230140AbhCWJfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:35:45 -0400
 Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279A2C061765
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D51E9C061574
         for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:35:44 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id w3so25949871ejc.4
+Received: by mail-ej1-x62c.google.com with SMTP id u5so25958230ejn.8
         for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:35:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=T8ujadlsfMOs83cAs9UtDu2l6f6I0ppOLicLa7+9n6s=;
-        b=rhGUZpU3lq5FuN30OA5Lu/hODznQG1MHp3rCnsMvUr+jaUOk5+8issQpgldBzkuSw9
-         i2fmo6f9WkqeLOhkE75LJsZtyjw4jy0BOeMgVvkPN/mQM7cm5q00oNKE19Q+Lfwf3hND
-         d3Vyr2vaKckTtvJRZJagY+VMVZB220QmCBLiF1zJdopIMcih5ZmHvEr2Hic6fmNOmtJl
-         YI5o5EuJYApg+IDqrgbWj/QogHm2uvark0SAUYZDxVJvfy4hhXJP3rg+Qg30zMFARi5s
-         +McQ5ehedTb4vloDDhWhPsNV/y5IWPY5wkGxTNxserKwKfhgwYHJPf8bpefB68WXf4Lc
-         G4Eg==
+        bh=Dq+A8bXkgLP4LCXqXNUDH5ZiTBBc0y9mfd6LMDIWfCU=;
+        b=tKkIq3X7o/IL5dkQNju1wLTVOoPVV67taVtXTYskG4CouQe2JIk5wd6faYWU4DUmKT
+         XYXtQ/K0nBSAxzd+qjL6+mYK7+dgV8DCP+YqRvVbwWvWj0C8WV8tlTVN8RlI63i0TLl1
+         vMJRhzHYZo8dATdMEQgfartBQtwjWpebWJoNCGGH1NRYvCNt+UFcdlntZnH9BcsKNScd
+         Hm5udRpBcg67SNmERm8UYchvCe0PfaPvKeaESw6FgnyME2Zoo5BxXU5wrZd0RssHibYr
+         4/eRHuoZamqRIq6cOAPYUb/EhVCqYJgFI4aT+UgpkJ/7QLeH4I1ZGO+QyA+pQly1+NIP
+         w8qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=T8ujadlsfMOs83cAs9UtDu2l6f6I0ppOLicLa7+9n6s=;
-        b=pvMv20Ubtvlhiu8/xUotkjp+5+AQTGIZx8OHTD1mGVfr42d+LCEADli9N2ZEDAzvSL
-         Rb6//fq/OrHmLVEOBKBLUra77R90tRLBNKk+cmAZPff0ht+47y3XGDa5UjM7mvdL6R21
-         c/tv3eZrfhI04MKDSsYzEn+KoO3fGWrtu7X8au/epy9I7nvIO/9lum36WwQATS3juRGq
-         6KSr8CyDHXNw1R9RYmn+5LtrXPbI8LeF4OumhTB6/UNrdXmqenhmGbg6fbUcX+lvFx3H
-         cEGvFbXGk0PXutzvqi1MgpiWXqOHtsa6I8VHAwaOl031hFcuV6UYQxl2txwjcebDjYJd
-         8+Jg==
-X-Gm-Message-State: AOAM531b+h3yPmZm9F0gG2vI8QSljkCJ3QWT7C6aEhi+Xvj0gVCHxZy8
-        Q8HgKfidGv1uBUEoumjjIFMMOw==
-X-Google-Smtp-Source: ABdhPJznA5cuEOX+OJTa2zs2ul2EylGfPKzOYpS/rjV0k2ciZGN4I3439arfs0FK6NUztAu3QzBrnA==
-X-Received: by 2002:a17:907:2809:: with SMTP id eb9mr3935111ejc.204.1616492142655;
-        Tue, 23 Mar 2021 02:35:42 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id a9sm12701859eds.33.2021.03.23.02.35.41
+        bh=Dq+A8bXkgLP4LCXqXNUDH5ZiTBBc0y9mfd6LMDIWfCU=;
+        b=ovsgAcNUV+OsJxrsiL8Y3mXWDu5mq0Xe92Ergc1vpd7Ijpw3zmZVCVlEt0EYOkqF94
+         +FzyeG4KhMZ5DvwEkB6zIpz0uh5H08BglKKYfkIknXALaDbdMCnlAPJTVvZw3lT4tB5M
+         ANV70axDetX3jG9+4Ce4rJky10ZpczNvl8tPLAh4PkSYAOZO5b/kit/uXj8LHdCg+qhq
+         zbixtUZvl0gaBNvNH7wRegFYJRnq+z6LahoYx4FjC4Sn/mdYuff5y0Ql1sCBv4sGclLc
+         NTAy0K/0Bub3Q2lAUGaX/epbzcIeo/d+ArJrDhs95cmafB9usdpl+fkOYJ8208BSDd4r
+         8f1w==
+X-Gm-Message-State: AOAM530rigzzF28SX5OxJmDUwNKXJ7pWyZtQm66wLEUXOgRqpE6wqqAT
+        phMrEnrxM57IhLXb7rAC3d/RqQ==
+X-Google-Smtp-Source: ABdhPJx8d9Fb6QSct22A22acIyeW/4/rhm0vpea+VKpy7EcNMH/eI0uEx/iYxPBOqdV61D4CiV5kkg==
+X-Received: by 2002:a17:907:b06:: with SMTP id h6mr4046258ejl.144.1616492143515;
+        Tue, 23 Mar 2021 02:35:43 -0700 (PDT)
+Received: from dell ([91.110.221.180])
+        by smtp.gmail.com with ESMTPSA id u24sm10811910ejr.34.2021.03.23.02.35.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 02:35:42 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 09:35:40 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-Message-ID: <20210323093540.dqrhjlvr6oza3hvt@maple.lan>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
- <20210322161810.biagj2qro66rv4gt@maple.lan>
- <20210323083935.GF2916463@dell>
+        Tue, 23 Mar 2021 02:35:43 -0700 (PDT)
+Date:   Tue, 23 Mar 2021 09:35:41 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/6] mfd: Initial commit of sy7636a
+Message-ID: <20210323093541.GQ2916463@dell>
+References: <20210117042539.1609-1-alistair@alistair23.me>
+ <20210117042539.1609-2-alistair@alistair23.me>
+ <20210204103126.GA2789116@dell>
+ <CAKmqyKOJ251sRUaxUKJ_U=puYRkypPEHAVZOnAKbQtP2skMJBA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210323083935.GF2916463@dell>
+In-Reply-To: <CAKmqyKOJ251sRUaxUKJ_U=puYRkypPEHAVZOnAKbQtP2skMJBA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 23, 2021 at 08:39:35AM +0000, Lee Jones wrote:
-> On Mon, 22 Mar 2021, Daniel Thompson wrote:
+On Sat, 20 Mar 2021, Alistair Francis wrote:
+
+> On Thu, Feb 4, 2021 at 5:31 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Sat, 16 Jan 2021, Alistair Francis wrote:
+> >
+> > > Initial support for the Silergy SY7636A Power Management chip
+> > > driver.
+> >
+> > Please remove "driver", as this is not support for the driver, it *is*
+> > the driver which supports the chip.
 > 
-> > On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
-> > > Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
-> > > 
-> > > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > 
-> > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+> Sorry for the long delay here.
 > 
-> Why are you Reviewing/Acking a patch that was applied on the 10th?
+> I have addressed your comments.
 
-Simply an oversight. Looks like I forgot to remove it from my backlog
-when it was applied.
+[...]
 
-
-Daniel.
-
-
+> > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > > new file mode 100644
+> > > index 000000000000..39aac965d854
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/sy7636a.c
+> > > @@ -0,0 +1,252 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * MFD driver for SY7636A chip
+> >
+> > "Parent driver".
+> >
+> > > + * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
+> >
+> > This is quite out of date.  Please update.
 > 
-> > > ---
-> > >  drivers/video/backlight/qcom-wled.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > > index 3bc7800eb0a9..497b9035a908 100644
-> > > --- a/drivers/video/backlight/qcom-wled.c
-> > > +++ b/drivers/video/backlight/qcom-wled.c
-> > > @@ -1704,6 +1704,7 @@ static int wled_remove(struct platform_device *pdev)
-> > >  
-> > >  static const struct of_device_id wled_match_table[] = {
-> > >  	{ .compatible = "qcom,pm8941-wled", .data = (void *)3 },
-> > > +	{ .compatible = "qcom,pmi8994-wled", .data = (void *)4 },
-> > >  	{ .compatible = "qcom,pmi8998-wled", .data = (void *)4 },
-> > >  	{ .compatible = "qcom,pm660l-wled", .data = (void *)4 },
-> > >  	{ .compatible = "qcom,pm8150l-wled", .data = (void *)5 },
+> I don't own this copyright, so I would rather not change it.
+
+I'm not comfortable taking a new driver with an old Copyright.
+
+Maybe ask reMarkable if it's okay to bump it.
+
+> > > + * Author: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+
+Or ping this guy.
+
+[...]
+
+> > > +int set_vcom_voltage_mv(struct regmap *regmap, unsigned int vcom)
+> > > +{
+> > > +     int ret;
+> > > +     unsigned int val;
+> > > +
+> > > +     if (vcom < 0 || vcom > 5000)
+> >
+> > Please define min/max values.
+> >
+> > > +             return -EINVAL;
+> > > +
+> > > +     val = (unsigned int)(vcom / 10) & 0x1ff;
+> >
+> > As above.
 > 
-> -- 
-> Lee Jones [李琼斯]
-> Senior Technical Lead - Developer Services
-> Linaro.org │ Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+> I have used defines for all of these.
+> 
+> >
+> > > +     ret = regmap_write(regmap, SY7636A_REG_VCOM_ADJUST_CTRL_L, val);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     ret = regmap_write(regmap, SY7636A_REG_VCOM_ADJUST_CTRL_H, val >> 8);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     return 0;
+> > > +}
+> >
+> > Who calls these?
+> 
+> They sysfs store and show functions.
+
+They should be in a power/regulator driver really.
+
+[...]
+
+> > > +     if (val >= ARRAY_SIZE(states)) {
+> > > +             dev_err(sy7636a->dev, "Unexpected value read from device: %u\n", val);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     return snprintf(buf, PAGE_SIZE, "%s\n", states[val]);
+> > > +}
+> > > +static DEVICE_ATTR(state, 0444, state_show, NULL);
+> >
+> > You need to document new sysfs entries.
+> 
+> I'm not sure how to document this. Do you mind pointing out an example
+> I can use?
+
+See the final paragraph in:
+
+  Documentation/filesystems/sysfs.rst
+
+[...]
+
+> > > +static struct attribute *sy7636a_sysfs_attrs[] = {
+> > > +     &dev_attr_state.attr,
+> > > +     &dev_attr_power_good.attr,
+> > > +     &dev_attr_vcom.attr,
+> > > +     NULL,
+> > > +};
+> >
+> > These all look like power options?  Do they really belong here?
+> 
+> From what I can tell I think they do. Let me know if you don't think so.
+
+As above, I think they should be in power or regulator.
+
+[...]
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
