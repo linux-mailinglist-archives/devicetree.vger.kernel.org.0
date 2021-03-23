@@ -2,206 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC156346106
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 15:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34570346120
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 15:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231847AbhCWOIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 10:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44244 "EHLO
+        id S232221AbhCWONF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 10:13:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232177AbhCWOHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 10:07:54 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B057EC061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 07:07:53 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id f2-20020a17090a4a82b02900c67bf8dc69so12252577pjh.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 07:07:53 -0700 (PDT)
+        with ESMTP id S231668AbhCWOMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 10:12:36 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB9B8C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 07:12:35 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id b4so2922680lfi.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 07:12:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y5suZ7MtFQiO2esuDP6fUstvejIt/3DWj5wCdeiJAXE=;
-        b=PTwjgnJk3BXf+py1vygtF934nMvUyIv/iPhrAV9dGFGXoB+KFQnFjHl7pPFUQ1At2S
-         tqMmns1H1w2/bo7YGJGnkJ2Jjd3wxf/L2HoBEl/W2PDepsVQDIASeRrAJCjcUr8aQyY7
-         rM0CnlpBNqKAjmwB6oam79Pv3i3kkup0JrYRPVTwIJ7/0XiaUvqJb/Q3IeCk5tTCENG7
-         EMo/s0PXZDYqFI+4evzTrh+QcH8uG+7abEDt3+lc6+0j5nOUNrLlH3Hc5BoCSn/R8271
-         96ZHWU7GGGOL7v9eSUZHLVQ46yUEiQuuvCUIVMAY3+WY7vY4prHie7t+Xc/ibHLgqhVX
-         /WCg==
+         :cc:content-transfer-encoding;
+        bh=l19bR+nFxXiu4GIfVq6f/m3LcDLqMDiNOa9Zpl4Ovvc=;
+        b=K2WN6O0RNtylg2y5kj+7tUO3G3Ow+0lo/9Kbfq2doL0HIfUyReVmwWRdhF0uGNJ2OX
+         Sf9sQUS2cU+99jYx7m3iFdK6k47YBGTOsnDBoiJD97coMPMO/lhH3U2sptWPOEIKO4H7
+         YKr76EcmmC4dtIC8svew3hPv2dkrnaPY/Lq4EyGjEcvwN9FoVLvmOC/7dMwxApzKoebv
+         SNkM+3naV4PXRdlZ/+86gfwzP06/2XLnnBDnSB/PWjL2e1cGIZAgoKHGTGQy8UxmfpbI
+         qszWcnijbnse7HrTyooN+GkyEGYI6hkC3TXrEPzfmKXfvlr8EjllH/lgx+m5Xjj/4kQ9
+         swaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y5suZ7MtFQiO2esuDP6fUstvejIt/3DWj5wCdeiJAXE=;
-        b=eZzJ9M2JYBf5emFp6G0iOzJGwN2uzxzkYTjabkfZ+BwnwxQ0I49htMLC6vnC+whGl3
-         dTEYAWCLofHIjjcH8k0spQ7rvAczcpVcegR1gOCV+070ciNRZUUDNMYq2AJQtR494Pv7
-         oH8lcLqaAQIZexqsdlOscD7O2G5cwvx82BR/qMS65Zr/18WACowepBs09ZkHbf30s/7l
-         Zwu4wwNHaEOqUGwccDCrS0NWg61VdEXXl4q/VGRQ8cKr6REt2yAbw9utmuhhcqpRWpy9
-         G8lk4dObCPMhZZxCBDP/mfjLVhGq07r0AXxNSJEfTkpeTRIDGvRCkSvE0casz36yD4te
-         UTrg==
-X-Gm-Message-State: AOAM5315b5ANJI6EHe5zwvibRj8W3gh950F4mg7z2EIzkdFx9V32Yju3
-        fruEE+sc6G3X1EJmTAzthl9ax6sWGiriGb09jTY7qw==
-X-Google-Smtp-Source: ABdhPJxuC7iyBO75to72eg1dtT8fn/Wy5EQ8iTyPWPxiku7f7zskF65BXpl8o6+s0GrDzoATrmKJZI7XvGTjvMqa9g4=
-X-Received: by 2002:a17:90a:516:: with SMTP id h22mr4483088pjh.222.1616508473133;
- Tue, 23 Mar 2021 07:07:53 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=l19bR+nFxXiu4GIfVq6f/m3LcDLqMDiNOa9Zpl4Ovvc=;
+        b=SParF3wMGf9B26YVcBc1ikxvRpCQmVtM0rGKrr5PANdv05hiw6JMYFSTInkePsO307
+         YAp46Yq2mdpRXuP7LYIdw63MlZR5iZtrBRwkhWNC86mMxdApX5YF+5i8ITC6wu2fwI9m
+         zPWK/mxkHsuK3UlkhJY0ORM0RIBXH5090X/KR+G/op1bmPYLSCFarzPWPWUfmKEwqaHb
+         hhkk9Hi0HS8tEyTwNwXmRL3mXrmoLDE+LjIegBSjijHQJFu3MhI9+ZPA2bO6bg28/kyq
+         PX4PzuqYTqBjierU92t/x4LULWQsfzXpqks6XRaAHtQy13wRAbBFd///zJcJY5OrcYbn
+         OAlA==
+X-Gm-Message-State: AOAM533YrSD5CTCkvFChG5sdDo+qKvz0usT8l5fsMmAcbujFXpA9dXPZ
+        HMFO7QAGXAlejg4DuPJZjau0h6bqWPXTnfbA6RsC3A==
+X-Google-Smtp-Source: ABdhPJzly95nqr4yJOsMgNbyvkzewf61fS24O2skNJrtHSN97B0AO6qNDxBBBfq6gMyuY4h8Z8m/nW9MARYn+j3bS1I=
+X-Received: by 2002:a19:501b:: with SMTP id e27mr2822930lfb.584.1616508753810;
+ Tue, 23 Mar 2021 07:12:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210308120555.252524-1-adrien.grassein@gmail.com>
- <20210308120555.252524-3-adrien.grassein@gmail.com> <CAG3jFytoE9hWvq2e2Caqn4qP_RuEOnm4r9VQ85ffbAcguSLf+w@mail.gmail.com>
- <CABkfQAGvPy3DzXQnDJqm1q_rOLWR7BQTXb8z05iML3s3Mc8LJw@mail.gmail.com>
- <CAG3jFytmJSjvWp0Bu7MaJ7EVuJov8gbs6cguatoOtTJpXTGVLA@mail.gmail.com> <CABkfQAGcSsQ74FtvAK4_awHRXswgBrThKww_xhpmTzordZ5X8w@mail.gmail.com>
-In-Reply-To: <CABkfQAGcSsQ74FtvAK4_awHRXswgBrThKww_xhpmTzordZ5X8w@mail.gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 23 Mar 2021 15:07:42 +0100
-Message-ID: <CAG3jFyvQt=Bv2_Hi8UdOhgznp1gVZwAw8gZv6FnLwHJV4WD6Kw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] drm/bridge: Introduce LT8912B DSI to HDMI bridge
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+ <20210315132501.441681-9-Jerome.Pouiller@silabs.com> <CAPDyKFqJf=vUqpQg3suDCadKrFTkQWFTY_qp=+yDK=_Lu9gJGg@mail.gmail.com>
+ <4503971.bAhddQ8uqO@pc-42>
+In-Reply-To: <4503971.bAhddQ8uqO@pc-42>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 23 Mar 2021 15:11:56 +0100
+Message-ID: <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
+Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > >
-> > > > > +static enum drm_connector_status lt8912_check_cable_status(struct lt8912 *lt)
-> > > > > +{
-> > > > > +       int ret;
-> > > > > +       unsigned int reg_val;
-> > > > > +
-> > > > > +       ret = regmap_read(lt->regmap[I2C_MAIN], 0xC1, &reg_val);
-> > > > > +       if (ret)
-> > > > > +               return connector_status_unknown;
-> > > > > +
-> > > > > +       if (reg_val & BIT(7))
-> > > > > +               return connector_status_connected;
-> > > >
-> > > > Register 0xc0 & BIT(7) - HPD signal after debounce
-> > > > Register 0xc0 & BIT(6) - HPD signal for TX HPD pad
+On Mon, 22 Mar 2021 at 18:14, J=C3=A9r=C3=B4me Pouiller
+<jerome.pouiller@silabs.com> wrote:
+>
+> Hello Ulf,
+>
+> On Monday 22 March 2021 13:20:35 CET Ulf Hansson wrote:
+> > On Mon, 15 Mar 2021 at 14:25, Jerome Pouiller
+> > <Jerome.Pouiller@silabs.com> wrote:
 > > >
-> > > So, if I understand well, I need to write 0xc0 & BIT(6) with 1 to
-> > > enable the HPD pin.
-> >
-> > Ah, sorry about being a bit terse.
-> >
-> > Both bit 6 & 7 are read only, and are probably best read after an IRQ.
->
-> In my case, IRQ is not triggered at all.
-
-Are you saying that pin 63 never is high, or that an irq/isr routine
-isn't getting executed?
-
-> When reading the value of the HPD pin, I always get 1 (and no
-> transition occurs when plugging / unplugging a cable).
-> The HPD IRQ is done on the HDMI connector driver [5].
-> I think a register configuration should be done to enable the IRQ pin
-> or maybe there is a nug in electronics.
-
-After looking at the documentation a bit more, I think we can ignore
-pin63 and instead have a look at pin14. It is the HDMI TX HPD Control
-pin. It has a 100k pull-down, so it should be active high.
-
-I also found some different I2C addresses than what you've used, I
-assume the device is available on both addresses.
-
-Chip control registers, address:0x90
-CEC control registers, address 0x92
-
-> The HPD pin is linked to a 2.2k pullup resistor (maybe it's wrong)
-
-The datasheet isn't entirely clear about if pin14 has an internal 100k
-pull-down, or if they recommend adding a 100k pull-down.
-
-But this does seem like an issue.
-
->
-> >
-> > > >
-> > > > > +
-> > > > > +static int lt8912_probe(struct i2c_client *client,
-> > > > > +        const struct i2c_device_id *id)
-> > > > > +{
-> > > > > +       static struct lt8912 *lt;
-> > > > > +       int ret = 0;
-> > > > > +       struct device *dev = &client->dev;
-> > > > > +
-> > > > > +       lt = devm_kzalloc(dev, sizeof(struct lt8912), GFP_KERNEL);
-> > > > > +       if (!lt)
-> > > > > +               return -ENOMEM;
-> > > > > +
-> > > > > +       lt->dev = dev;
-> > > > > +       lt->i2c_client[0] = client;
-> > > > > +       lt->cable_status = connector_status_unknown;
-> > > > > +       lt->workq = create_workqueue("lt8912_workq");
-> > > >
-> > > > Looking at [1] and maybe even better [2], I think this polling
-> > > > approach is the wrong way to go. And with access to documentation, I
-> > > > think we should be able to sort this out.
+> > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
 > > >
-> > > I neither like the polling approach too. I did it to go on this issue.
-> > > I will totally remove it once the HPD issue will be resolved.
-> > > >
-> > > > Using the irq driver approach requires the interrupt pin to be
-> > > > configured. Pin 63 of the lt8912b is the IRQ output pin.
-> > > >
-> > > > In order to trigger interrupts based on it, the dt-binding would need
-> > > > to be updated[3][4] as well as whichever DTS you're using.
-> > > >
-> > >
-> > > The IRQ part is working well in my DTB. It test it by adding some
-> > > electronics to emulate the HPD pin on the GPIO expander where the HPD
-> > > pin is linked.
+> > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+> > > ---
+> > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 259 +++++++++++++++++++=
+++
+> > >  1 file changed, 259 insertions(+)
+> > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
 > >
-> > Looking at the dt-binding patch, it does not seem to list any
-> > interrupts. So that should be added. I think the irq support from [3]
-> > & [4] can be pretty much copied.
+> > [...]
 > >
-> > Then we can come back and replace the polling code with the IRQ driven
-> > code from [2].
->
-> My board uses a "max7323" GPIO expander and the HPD pin is linked to it.
-> I test this GPIO expander by soldering a pull up resistor and an
-> interrupt on it and an interrupt was correctly triggered in both
-> max7323 driver and hdmi-connector;
-> So I guess that my DTB configuration is correct.
-> I made my DBT configuration available:
->   - hdmi-connector node: [6]
->   - lt8912b node: |7]
->   - max7323 node: [8].
-
-Looking at [7] I think that you would want to add something like:
-
-hdmi-bridge@48 {
-        interrupts-extended = <&max7323 $LT8912B_PIN_14 IRQ_TYPE_EDGE_RISING>;
-}
-
-And of course add the corresponding parts from [2] and [3].
-
->
->
+> > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > > +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF=
+200) },
+> > > +       { },
+> > > +};
+> > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
+> > > +
+> > > +struct sdio_driver wfx_sdio_driver =3D {
+> > > +       .name =3D "wfx-sdio",
+> > > +       .id_table =3D wfx_sdio_ids,
+> > > +       .probe =3D wfx_sdio_probe,
+> > > +       .remove =3D wfx_sdio_remove,
+> > > +       .drv =3D {
+> > > +               .owner =3D THIS_MODULE,
+> > > +               .of_match_table =3D wfx_sdio_of_match,
 > >
-> > >
-> > > >
-> > > > [1] https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/analogix/anx7625.c#L1751
-> > > >
-> > > > [2] https://github.com/torvalds/linux/blob/v5.11/drivers/gpu/drm/bridge/lontium-lt9611.c#L1160
-> > > >
-> > > > [3] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml#L27
-> > > >
-> > > > [4] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml#L144
+> > It's not mandatory to support power management, like system
+> > suspend/resume. However, as this looks like this is a driver for an
+> > embedded SDIO device, you probably want this.
+> >
+> > If that is the case, please assign the dev_pm_ops here and implement
+> > the ->suspend|resume() callbacks.
 >
-> [5] https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/display-connector.c#L199
-> [6] https://github.com/grassead/linux-next/blob/master/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts#L37
-> [7] https://github.com/grassead/linux-next/blob/master/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts#L249
-> [8] https://github.com/grassead/linux-next/blob/master/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts#L291
+> I have no platform to test suspend/resume, so I have only a
+> theoretical understanding of this subject.
+
+I see.
+
 >
+> I understanding is that with the current implementation, the
+> device will be powered off on suspend and then totally reset
+> (including reloading of the firmware) on resume. I am wrong?
+
+You are correct, for a *removable* SDIO card. In this case, the
+mmc/sdio core will remove the corresponding SDIO card/device and its
+corresponding SDIO func devices at system suspend. It will then be
+redetected at system resume (and the SDIO func driver re-probed).
+
+Although, as this is an embedded SDIO device, per definition it's not
+a removable card (MMC_CAP_NONREMOVABLE should be set for the
+corresponding mmc host), the SDIO card will stick around and instead
+the ->suspend|resume() callback needs to be implemented for the SDIO
+func driver.
+
 >
-> Thanks,
+> This behavior sounds correct to me. You would expect something
+> more?
+
+Yes, see above.
+
+Kind regards
+Uffe
