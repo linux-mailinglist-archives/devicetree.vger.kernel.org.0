@@ -2,102 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B04345618
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 04:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F13C734561F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 04:17:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbhCWDPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Mar 2021 23:15:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44986 "EHLO
+        id S229494AbhCWDQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Mar 2021 23:16:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbhCWDPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 23:15:38 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2778DC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 20:15:37 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id y200so12809871pfb.5
-        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 20:15:37 -0700 (PDT)
+        with ESMTP id S230034AbhCWDQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Mar 2021 23:16:27 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5577C061574;
+        Mon, 22 Mar 2021 20:16:26 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so9284981pjb.4;
+        Mon, 22 Mar 2021 20:16:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=jGUaPOQSEmqCBFbxb1GC8sYi3rSqHsQAKV/yKvutXBM=;
-        b=hz2tYU3k4W75mMAU+jqBN9xgqJEwwMyrLdTSVCspMr1KuOY55R/RuigQr9VChS0WZe
-         YYHY36/kV7NjDkslQmspUjH1Sc1D+kZo3N+AyEEmEAEqgnhs2WggMsPwJ+oQn6ClZXJ0
-         8bbeTuAOzVoR0XTONGKiZT3tv1tvZ+oD1H8xM=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hb9ppy/2Xid9gW7VtyfhfvgmVC3xm5wuAMLNm3/uELY=;
+        b=TEa8adPoHx5ISnOF1pkcUaRMFa0MuJU+waBWp9tdMPPB0zh7zzDv6xlKyicyzYAY5w
+         7qMsjfHCciXdPbcBtFlM+n5UN9WxNpbs4aoKN9/HQixeQBorLh/x2q8WaSKViILwTMvh
+         CuI+cA2FCq8jbM7WzJZ7yhkMnu+SPrnsvU7rLiQd+o4oZEktl7I92EFyefTArl923RAj
+         MHR1zVS4XiA87ZvTnSWDcQWpQQejgCsWTFvBG/sJKijbKJlc8txOXkn+6qNl1R77kIG/
+         qRi87bYzODrY4EnDtCgeFVqrzLJ/uFPggMyLwgKHP1efZ9SViMFPmNi+K374vKQGBTCY
+         b3Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=jGUaPOQSEmqCBFbxb1GC8sYi3rSqHsQAKV/yKvutXBM=;
-        b=EQrDCfs7TJwF0OX/pKStCs1ejxyU6yGykDCAiIDvhWTFyR4GQOyp9Bhdv/uY3Fpaz+
-         hBJ0R38jwXN12jfuroq2Dfh6WB16nlJALfAzSe+Yh+gUFmNZ3mCUjygMP7lsNNheG0VH
-         fNks5SolY5lrTe1hhSX9IuYQtdyb9U+YAcEmtnye/gm+++q2KBtV7kfSNuYOGejeLvXP
-         CPoNhBzQRZt49wFjGF0ihK+HdO9yUlSKjW3Yw+F2gBEK2L5OGl5z0SqB3An1RmS2vYAY
-         /qsW9v6n0SqgsjMBLWRQKoCP9ZStUT8/OQxuV6WqRR3kLW+wdu5c0P2mbvxwSGHPRu4x
-         sWMA==
-X-Gm-Message-State: AOAM533N15ZEQl797egFzOusR0DEQlYUNL4NwDZTbT5jZ8zPbi6e53g1
-        A38p0CCiYlxbf3PBjp2WYg4P6w==
-X-Google-Smtp-Source: ABdhPJxarOGT5B7hQXaAuoJ9oYGLFb3jDqyW2N7ukTRwPWfqHsmjpflHqbfk1NG5prtsPOJp+ZsWxw==
-X-Received: by 2002:a63:1a0d:: with SMTP id a13mr2123511pga.167.1616469336672;
-        Mon, 22 Mar 2021 20:15:36 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:e90d:d453:87ae:2e10])
-        by smtp.gmail.com with ESMTPSA id 3sm14766038pfh.13.2021.03.22.20.15.36
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hb9ppy/2Xid9gW7VtyfhfvgmVC3xm5wuAMLNm3/uELY=;
+        b=PjYC9bidT7KBzW/e5E1CA/MKXX3nzkWkYm3Z6ShpVI+u9WmM8vZ/GCyvS9LKHovOsK
+         iAQ18LtC9PrKVUzCklaWWW8nd6PNqjgutdgphQjxO2znCQARusMS2ZewU3kUxUPyzdSW
+         PA+TkPM2TIz2rzoLdqOIbn1HGsQX5oLUboIijwO0tqFAvxjHjdTwpKaeVKa2Sg8zO2Kw
+         589P6nBRlLZa4MKJrh0hhhGzdouxUo7iYNdA2psNi5/UTPkDQFwSnuN2LZAdutwu5WC0
+         zY8m+rr349W0Jtx5I6MWFsPI2RxDvGmb8qVNAkJcA0fobt5ubLnyEhfI1PYfP9C4tRsg
+         o7vA==
+X-Gm-Message-State: AOAM533kEtGPXoPAFe63s83e54OT2ndb42H8FhjhsCef6kyTJg+ufWTF
+        wxV8g2AHz3TSOPbOkF0LUB8=
+X-Google-Smtp-Source: ABdhPJzQe4OJMXwB8Aq6k4DRvbxOz/7vPzM48VqcGu3n9YhIFkt5VHIxvH/8LoL8aP8nq88M4vimWA==
+X-Received: by 2002:a17:90a:1509:: with SMTP id l9mr2231024pja.163.1616469386277;
+        Mon, 22 Mar 2021 20:16:26 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:499f:7361:582b:fd05])
+        by smtp.gmail.com with ESMTPSA id h68sm4841433pfe.111.2021.03.22.20.16.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Mar 2021 20:15:36 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Mon, 22 Mar 2021 20:16:25 -0700 (PDT)
+Date:   Mon, 22 Mar 2021 20:16:23 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] Input: iqs5xx - make reset GPIO optional
+Message-ID: <YFldhzhYiuqLKdNq@google.com>
+References: <20210323021006.367-1-jeff@labundy.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210315103836.1.I9a97120319d43b42353aeac4d348624d60687df7@changeid>
-References: <20210315103836.1.I9a97120319d43b42353aeac4d348624d60687df7@changeid>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Fix sc7180-qmp-usb3-dp-phy reg sizes
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Date:   Mon, 22 Mar 2021 20:15:34 -0700
-Message-ID: <161646933476.2972785.7556083242076314882@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210323021006.367-1-jeff@labundy.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-03-15 10:38:54)
-> As per Dmitry Baryshkov [1]:
-> a) The 2nd "reg" should be 0x3c because "Offset 0x38 is
->    USB3_DP_COM_REVISION_ID3 (not used by the current driver though)."
+On Mon, Mar 22, 2021 at 09:10:05PM -0500, Jeff LaBundy wrote:
+> The device's hardware reset pin is only required if the platform
+> must be able to update the device's firmware.
+> 
+> As such, demote the reset GPIO to optional in support of devices
+> that ship with pre-programmed firmware and don't route the reset
+> pin back to the SoC.
+> 
+> In that case, the 'fw_file' attribute is hidden because there is
+> no way to open the bootloader. The logic is extended to the case
+> in which the device does not advertise bootloader support in the
+> first place.
+> 
+> Last but not least, remove the hardware reset performed at probe
+> because there is no reason to reset the device manually. A power
+> on reset function already ensures a clean reset at start-up.
+> 
+> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
 
-I see 0x34 for the offset here instead of 0x38 but I don't think it
-really matters either way.
+Applied, thank you.
 
-> b) The 3rd "reg" "is a serdes region and qmp_v3_dp_serdes_tbl contains
->    registers 0x148 and 0x154."
->=20
-> I think because the 3rd "reg" is a serdes region we should just use
-> the same size as the 1st "reg"?
->=20
-> [1] https://lore.kernel.org/r/ee5695bb-a603-0dd5-7a7f-695e919b1af1@linaro=
-.org
->=20
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
-> Cc: Chandan Uddaraju <chandanu@codeaurora.org>
-> Cc: Vara Reddy <varar@codeaurora.org>
-> Cc: Tanmay Shah <tanmay@codeaurora.org>
-> Cc: Rob Clark <robdclark@chromium.org>
-> Fixes: 58fd7ae621e7 ("arm64: dts: qcom: sc7180: Update dts for DP phy ins=
-ide QMP phy")
-> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+-- 
+Dmitry
