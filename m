@@ -2,101 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A23913467F7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 19:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 970DE3468AA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 20:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232332AbhCWSoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 14:44:03 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:40219 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232278AbhCWSnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 14:43:53 -0400
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Mar 2021 11:43:53 -0700
-X-QCInternal: smtphost
-Received: from gurus-linux.qualcomm.com (HELO gurus-linux.localdomain) ([10.46.162.81])
-  by ironmsg05-sd.qualcomm.com with ESMTP; 23 Mar 2021 11:43:52 -0700
-Received: by gurus-linux.localdomain (Postfix, from userid 383780)
-        id AA44A1939; Tue, 23 Mar 2021 11:43:52 -0700 (PDT)
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Mark Brown <broonie@kernel.org>,
-        Markus Elfring <Markus.Elfring@web.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Joe Perches <joe@perches.com>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Anirudh Ghayal <aghayal@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [PATCH v4 2/2] regmap-irq: Add driver callback to configure virtual regs
-Date:   Tue, 23 Mar 2021 11:43:51 -0700
-Message-Id: <93e7e694e6dc26333a371a19b950919c3d80595e.1616488322.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1616488322.git.gurus@codeaurora.org>
-References: <cover.1616488322.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1616488322.git.gurus@codeaurora.org>
-References: <cover.1616488322.git.gurus@codeaurora.org>
+        id S232386AbhCWTNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 15:13:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233024AbhCWTMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 15:12:44 -0400
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1369C061763
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 12:12:43 -0700 (PDT)
+Received: by mail-vs1-xe36.google.com with SMTP id e5so10001851vse.4
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 12:12:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NziR4wdTwbPmQRK5YhnnRmXhP9symav7D77le3H4K+M=;
+        b=PMVJrfgoW6IO/eykiWrjsd3M2rhVX4YPMZxActq4wpEAmRKoODLJqZ5eOI8hAd3Ui/
+         kSzrQ3FuaOzZIBiwn4SSeTiH56nva7fJ7jwJArxrKBI9I08bC2iOW/X4AFzNtLAsNXVw
+         fIdYVNCx+ySgZrYUG4o13ipFMssy5VH6uWnpKJyoinFpA+/8heYRsB9WTXd4ONt/Bv7O
+         +LCu9D9LBylKYOceGf33CRSQzA3Vf9iXuF4A9rSuewX9xMRvJ+rKmskixMa6u1701MFN
+         KAZ3CnQdmXTvVit/bpC9d7KazulRxJUeQ0HNNX5bneUJLaxYamCbK0WSNJFdJKmbm+5W
+         bGZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NziR4wdTwbPmQRK5YhnnRmXhP9symav7D77le3H4K+M=;
+        b=ZL13U6eLuH75N5XhV5oqOOHOPEQ16J7jqdH3Fouai40G3akdkPeH2IO15eWQ1F9t9r
+         UhvvFIzLWSzxi44b0tB41i+759iKlXP9t7KeE4FM9nExtmcq7LxAMYoGyyXK524sl95U
+         6OWRq8TmS0ltM2NQcWl5td2+Lmvh3W2RScyL6G88qYcrl8ljPt8S/zaZM+JZ/9eEN93f
+         gBlBZauqzl5e7v8ou0UWwN5VfrkW3pDA/fy7JrLnnCYyhCdHxeCov9aEJw/qP2ScRt7I
+         O7JPDHNKJfCXA75SA3YblUV112BD6sOeeD78pm0Q4meXHtmGsnoUEJYd1c/Ukwe0h/f7
+         HOig==
+X-Gm-Message-State: AOAM533L3YiTpdYJk9mQom70BKb0d5InZSczeVGi5VUQRFB68hYxaWVA
+        KXQQoIAQO/wPyVYWpVkjoS65ojfRs7gVXkAk1eXrLA==
+X-Google-Smtp-Source: ABdhPJzXFydY5TcCz9J1Or2xn4GBkykV9ba3oKyGbccCBa4HxmuOl+Gv/PYBfFODfgfgi/kqTbKgrJDTOyQZhsuqwfY=
+X-Received: by 2002:a67:77c1:: with SMTP id s184mr4758525vsc.55.1616526762989;
+ Tue, 23 Mar 2021 12:12:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+ <4503971.bAhddQ8uqO@pc-42> <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
+ <5713463.b6Cmjs1FeV@pc-42>
+In-Reply-To: <5713463.b6Cmjs1FeV@pc-42>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 23 Mar 2021 20:12:06 +0100
+Message-ID: <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
+Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable drivers to configure and modify "virtual" registers, which are
-non-standard registers that further configure irq type on some devices.
-Since they are non-standard, enable drivers to configure them according
-to their particular idiosyncrasies by specifying an optional callback
-function while registering with the framework.
+On Tue, 23 Mar 2021 at 18:53, J=C3=A9r=C3=B4me Pouiller
+<jerome.pouiller@silabs.com> wrote:
+>
+> On Tuesday 23 March 2021 15:11:56 CET Ulf Hansson wrote:
+> > On Mon, 22 Mar 2021 at 18:14, J=C3=A9r=C3=B4me Pouiller <jerome.pouille=
+r@silabs.com> wrote:
+> > > On Monday 22 March 2021 13:20:35 CET Ulf Hansson wrote:
+> > > > On Mon, 15 Mar 2021 at 14:25, Jerome Pouiller <Jerome.Pouiller@sila=
+bs.com> wrote:
+> > > > >
+> > > > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+> > > > >
+> > > > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.=
+com>
+> > > > > ---
+> > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 259 +++++++++++++++=
+++++++
+> > > > >  1 file changed, 259 insertions(+)
+> > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
+> > > >
+> > > > [...]
+> > > >
+> > > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > > > > +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILAB=
+S_WF200) },
+> > > > > +       { },
+> > > > > +};
+> > > > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
+> > > > > +
+> > > > > +struct sdio_driver wfx_sdio_driver =3D {
+> > > > > +       .name =3D "wfx-sdio",
+> > > > > +       .id_table =3D wfx_sdio_ids,
+> > > > > +       .probe =3D wfx_sdio_probe,
+> > > > > +       .remove =3D wfx_sdio_remove,
+> > > > > +       .drv =3D {
+> > > > > +               .owner =3D THIS_MODULE,
+> > > > > +               .of_match_table =3D wfx_sdio_of_match,
+> > > >
+> > > > It's not mandatory to support power management, like system
+> > > > suspend/resume. However, as this looks like this is a driver for an
+> > > > embedded SDIO device, you probably want this.
+> > > >
+> > > > If that is the case, please assign the dev_pm_ops here and implemen=
+t
+> > > > the ->suspend|resume() callbacks.
+> > >
+> > > I have no platform to test suspend/resume, so I have only a
+> > > theoretical understanding of this subject.
+> >
+> > I see.
+> >
+> > >
+> > > I understanding is that with the current implementation, the
+> > > device will be powered off on suspend and then totally reset
+> > > (including reloading of the firmware) on resume. I am wrong?
+> >
+> > You are correct, for a *removable* SDIO card. In this case, the
+> > mmc/sdio core will remove the corresponding SDIO card/device and its
+> > corresponding SDIO func devices at system suspend. It will then be
+> > redetected at system resume (and the SDIO func driver re-probed).
+> >
+> > Although, as this is an embedded SDIO device, per definition it's not
+> > a removable card (MMC_CAP_NONREMOVABLE should be set for the
+> > corresponding mmc host), the SDIO card will stick around and instead
+> > the ->suspend|resume() callback needs to be implemented for the SDIO
+> > func driver.
+>
+> If I follow what has been done in other drivers I would write something
+> like:
+>
+>   static int wfx_sdio_suspend(struct device *dev)
+>   {
+>           struct sdio_func *func =3D dev_to_sdio_func(dev);
+>           struct wfx_sdio_priv *bus =3D sdio_get_drvdata(func);
+>
+>           config_reg_write_bits(bus->core, CFG_IRQ_ENABLE_DATA, 0);
+>           // Necessary to keep device firmware in RAM
+>           return sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
 
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
- drivers/base/regmap/regmap-irq.c | 5 +++++
- include/linux/regmap.h           | 4 ++++
- 2 files changed, 9 insertions(+)
+This will tell the mmc/sdio core to keep the SDIO card powered on
+during system suspend. Thus, it doesn't need to re-initialize it at
+system resume - and the firmware should not need to be re-programmed.
 
-diff --git a/drivers/base/regmap/regmap-irq.c b/drivers/base/regmap/regmap-irq.c
-index d1ade76..e6343ccc 100644
---- a/drivers/base/regmap/regmap-irq.c
-+++ b/drivers/base/regmap/regmap-irq.c
-@@ -333,6 +333,11 @@ static int regmap_irq_set_type(struct irq_data *data, unsigned int type)
- 	default:
- 		return -EINVAL;
- 	}
-+
-+	if (d->chip->set_type_virt)
-+		return d->chip->set_type_virt(d->virt_buf, type, data->hwirq,
-+					      reg);
-+
- 	return 0;
- }
- 
-diff --git a/include/linux/regmap.h b/include/linux/regmap.h
-index 4c75717..7cf143ce 100644
---- a/include/linux/regmap.h
-+++ b/include/linux/regmap.h
-@@ -1426,6 +1426,8 @@ struct regmap_irq_sub_irq_map {
-  *		     before regmap_irq_handler process the interrupts.
-  * @handle_post_irq: Driver specific callback to handle interrupt from device
-  *		     after handling the interrupts in regmap_irq_handler().
-+ * @set_type_virt:   Driver specific callback to extend regmap_irq_set_type()
-+ *		     and configure virt regs.
-  * @irq_drv_data:    Driver specific IRQ data which is passed as parameter when
-  *		     driver specific pre/post interrupt handler is called.
-  *
-@@ -1473,6 +1475,8 @@ struct regmap_irq_chip {
- 
- 	int (*handle_pre_irq)(void *irq_drv_data);
- 	int (*handle_post_irq)(void *irq_drv_data);
-+	int (*set_type_virt)(unsigned int **buf, unsigned int type,
-+			     unsigned long hwirq, int reg);
- 	void *irq_drv_data;
- };
- 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+On the other hand, if you don't plan to support system wakeups, it
+would probably be better to power off the card, to avoid wasting
+energy while the system is suspended. I assume that means you need to
+re-program the firmware as well. Normally, it's these kinds of things
+that need to be managed from a ->resume() callback.
 
+>   }
+>
+> However, why not the implementation below?
+>
+>   static int wfx_sdio_suspend(struct device *dev)
+>   {
+>           struct sdio_func *func =3D dev_to_sdio_func(dev);
+>
+>           wfx_sdio_remove(func);
+
+I don't know what wfx_sdio_remove() does, but for sure you would need
+a ->resume() callback to make it possible to restore power/firmware.
+
+>           return 0;
+>   }
+>
+> In both cases, I worry to provide these functions without being able to
+> test them.
+
+Alright, let's simply leave this driver without having the PM
+callbacks assigned. I guess we can revisit this at some later point.
+
+The mmc core will log a message about the missing callbacks, in case
+someone tries to execute system suspend/resume when the driver has
+been probed.
+
+Kind regards
+Uffe
