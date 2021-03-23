@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5A26346ACA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 22:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1CD346ACF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 22:09:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233441AbhCWVI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 17:08:27 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:38518 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233409AbhCWVIR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 17:08:17 -0400
-Received: by mail-io1-f48.google.com with SMTP id e8so19259559iok.5;
-        Tue, 23 Mar 2021 14:08:17 -0700 (PDT)
+        id S233461AbhCWVJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 17:09:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233439AbhCWVIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 17:08:37 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DD2C061763
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:37 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id a11so16088771qto.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fGp9OGhSFYep+wgICuctJHe6AunYvp6GoDFbNEb/8TM=;
+        b=j+5PaN95fKfswhdgD662vrvF8rN4CfNwG0kwHV81OlkvM8XS2H8sc20+r4YTghNet/
+         V0wWg+nF1W9hUBEZeCgYjjcdqHm1Fy539xa2f7uEmeWZ7IkAJ/1lPspWn7yLuI81nwHf
+         o3jILhpzIInb7kSAYo3jc2GypXixenKdS/mqU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JZelDKKXclIol74spAdVi/fynrQDuz+32X7i8r9v4EU=;
-        b=mg4C42YHYYgv5UoZKG3rlJwrFWAz+p5LvsYvKIVFgvwe+iUixLHUJgJBnUEvlrWcyu
-         waVXjCIEYpsqcxTexOh7JwsDFLF1HoA/yH1g/3dtOdLFZuVjELa2Lbr9lCf1hU7Zbfy1
-         AL3VLL1hh8cOGSjWksdvckIQ4jmO88dIzp0uWsMd2ebUn9YcTqj3x+bSRv6jeIS7gI2l
-         GmIGuiqKoT9X7X5gYjWkfP8DBT5gpE/MXqxiDd6gVVGY7Pu2Uc9Wd09woiUnmtocRH1l
-         IbDmDTB3Wz6yXADpBeZ/nDo9oJxvQ8tnQYOyBERS/jh8SswTfh3YLmeG172ku1aPZLoG
-         MKIA==
-X-Gm-Message-State: AOAM530JQB7SSI5qaHYJMN8FVs9OtR65j8Fu3QzKi3FRlpInpB2jMb1M
-        LMES4KAQd2VzvMXf7P693eI1tTV17g==
-X-Google-Smtp-Source: ABdhPJzYlEcksihAORQf6PyjIBkT3hrljQ7weuU86zb0eUS1SWhXvLglPbs4XhJ3YvH3CIu51m+zuA==
-X-Received: by 2002:a6b:4f09:: with SMTP id d9mr65238iob.60.1616533696947;
-        Tue, 23 Mar 2021 14:08:16 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id b9sm11836iof.54.2021.03.23.14.08.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 14:08:16 -0700 (PDT)
-Received: (nullmailer pid 1325739 invoked by uid 1000);
-        Tue, 23 Mar 2021 21:08:12 -0000
-Date:   Tue, 23 Mar 2021 15:08:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Scott Branden <scott.branden@broadcom.com>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>, f.fainelli@gmail.com,
-        phil@raspberrypi.com, tim.gover@raspberrypi.com,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        nsaenzjulienne@suse.de, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: mmc: iproc-sdhci: Convert to json-schema
-Message-ID: <20210323210812.GA1318204@robh.at.kernel.org>
-References: <20210322185816.27582-1-nsaenz@kernel.org>
- <20210322185816.27582-2-nsaenz@kernel.org>
- <0e98588e-65f1-6839-1fcd-584b480a31bd@broadcom.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fGp9OGhSFYep+wgICuctJHe6AunYvp6GoDFbNEb/8TM=;
+        b=CSpNiGck+nZgBvYW36OAAU/xcXh4V2EPMYQbS9P6Sc1xZ0B/yFYPaEVxltrg6SXa0G
+         Pb0TCnkXUo8QkWfU2yP7c6GQ4D/tcG3KNjXTwYey1hFnZCK9D1CUEXDT1fi3yoek6Amk
+         HrH37Hkx8MXzYkKK//5yYfljULhBADt/vlCfI9Ln/3cDSnNcqa04AKXQ7GdJslb9q2Cq
+         oUPvjq98PDtzxwD4A9vWD9FpuyrAtCP+Luhcpn2G3UNMKQxxwnbfgNR+1QfmNv52MbDc
+         hWH0KEY+VsLRg1kYnnvwy28NIc/BwfaajOyAjuTCjZPQVxnX2139DpApQhJy446iqiWv
+         VmNg==
+X-Gm-Message-State: AOAM530R6Tf2kMzkiqdv9sBBYktHStkJ3A70ZGOh0Y8XHD4tsGt6rbpd
+        IklYXGAut6CEygAzjBmgkafVhvbqr5f7jg==
+X-Google-Smtp-Source: ABdhPJyLJK9ZlWLqe5wxKVIZB7Yy9bqp8pjM+Fa2YkQ+HfHfRwUA4qe1ySmFzE6ntIDWypIUxwp8Qg==
+X-Received: by 2002:ac8:6c3b:: with SMTP id k27mr249929qtu.354.1616533715882;
+        Tue, 23 Mar 2021 14:08:35 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id r35sm48612qtd.95.2021.03.23.14.08.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Mar 2021 14:08:35 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id x189so4498251ybg.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:34 -0700 (PDT)
+X-Received: by 2002:a25:b443:: with SMTP id c3mr300894ybg.32.1616533714574;
+ Tue, 23 Mar 2021 14:08:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0e98588e-65f1-6839-1fcd-584b480a31bd@broadcom.com>
+References: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com> <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 23 Mar 2021 14:08:23 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xak21bi5zcoKv9o7aLcJpWsm67U9NzYZ6zJD+UnOOtfw@mail.gmail.com>
+Message-ID: <CAD=FV=Xak21bi5zcoKv9o7aLcJpWsm67U9NzYZ6zJD+UnOOtfw@mail.gmail.com>
+Subject: Re: [RFC PATCH 01/11] dt-bindings: drm/bridge: ti-sn65dsi8: Make
+ enable GPIO optional
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 12:11:29PM -0700, Scott Branden wrote:
-> On 2021-03-22 11:58 a.m., Nicolas Saenz Julienne wrote:
-> > Convert the brcm,iproc-sdhci binding to DT schema format using json-schema
-> > 
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > ---
-> >  .../bindings/mmc/brcm,iproc-sdhci.yaml        | 58 +++++++++++++++++++
-> >  .../bindings/mmc/brcm,sdhci-iproc.txt         | 37 ------------
-> >  2 files changed, 58 insertions(+), 37 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-iproc.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
-> > new file mode 100644
-> > index 000000000000..19d84f3ef9e6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
-> > @@ -0,0 +1,58 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mmc/brcm,iproc-sdhci.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom IPROC SDHCI controller
-> > +
-> > +maintainers:
-> > +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> This is already covered in the MAINTAINERS section via "N:	iproc".
-> M:	Ray Jui <ray.jui@broadcom.com>
-> 
-> M:	Scott Branden <scott.branden@broadcom.com>
-> 
-> M:	bcm-kernel-feedback-list@broadcom.com
+Hi,
 
-Maybe so, but still required here. The problem is there is no 
-MAINTAINERS file in the DT only tree[1].
+On Sun, Mar 21, 2021 at 8:02 PM Laurent Pinchart
+<laurent.pinchart+renesas@ideasonboard.com> wrote:
+>
+> The SN65DSI86 EN pin can be hardwired to a high level, or connected to a
+> global reset signal, not controllable by the kernel. Make it optional in
+> those cases.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> ---
+>  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml         | 1 -
+>  1 file changed, 1 deletion(-)
 
-Rob
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
