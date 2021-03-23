@@ -2,69 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3180345C96
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 12:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D2A345CA0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 12:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230299AbhCWLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 07:15:51 -0400
-Received: from foss.arm.com ([217.140.110.172]:44132 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230358AbhCWLP3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 07:15:29 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3C3F1042;
-        Tue, 23 Mar 2021 04:15:28 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D3CE3F719;
-        Tue, 23 Mar 2021 04:15:27 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 11:15:24 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bhelgaas@google.com,
-        robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
-        gustavo.pimentel@synopsys.com, minghuan.Lian@nxp.com,
-        mingkai.hu@nxp.com, roy.zang@nxp.com
-Subject: Re: [PATCH 0/7] PCI: layerscape: Add power management support
-Message-ID: <20210323111524.GD29286@e121166-lin.cambridge.arm.com>
-References: <20200907053801.22149-1-Zhiqiang.Hou@nxp.com>
+        id S230236AbhCWLR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 07:17:26 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:19224 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230228AbhCWLRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 07:17:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1616498241; x=1648034241;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=xkEtnj795OGz0YOCi1K5ZAUBjS8scZ1aflNvlUmjf0Q=;
+  b=s7L/W9XO/FyaCx65CjCOqH+1iHlANCXMJL+jWxdTf6trkWdwcBK6KKpz
+   GGBcFX45WShEmyCjaOWfJm1TvVsWj7r6bhomtvL+nYPwydvlr7maY/IQx
+   6P6DtcKkIYX05ZPOd2UVEDG1S6FLKQW6Nff4TNvntnhis1eEWspZlaarV
+   PI3vM29Kd292XGlS2GDasW6zJGax3xN9+5D9u8EvakM1fBV4vs3klXJNf
+   hhGu8cmRAGUnid42OG+/Xs+V7TMyBI564aEHuDi7HNj4tlVGSPGsMD4FT
+   uBXlAcwo3ODmSQ0cYAp+FYj/U1nMoFwpapi3nmJ+/fcu+Ra7K8HTuUkmp
+   A==;
+IronPort-SDR: dkIXIA6MiHaqQFqxXM+aBgCxFDlrG/dDsWufP43wMkKAC9OPqYPlBdKobBVSToJXsx6s2K1Aut
+ sz0MegjHkRV9Sh6EAy5IadY5Ar+XYyl9Nk2ad0a3iHLSXGNsd0pTp2QALl3du/bS+iisCvV2nK
+ q4dOs/DjHmCu1VpAt5vzqobV3EN8S6QDvtS1HwcLPL+ncCVnWUQLbgoNx/Y4cMh9Nz/F3HbAKa
+ ksLey87/bqx2zosANHwA81EtVmG+J8yy2ahMFr7cOD/ElaD0EBjoiRmo4E+TQg8H5OVC/thrIt
+ Ac8=
+X-IronPort-AV: E=Sophos;i="5.81,271,1610434800"; 
+   d="scan'208";a="48534067"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Mar 2021 04:17:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 23 Mar 2021 04:17:14 -0700
+Received: from [10.12.80.255] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Tue, 23 Mar 2021 04:17:11 -0700
+Subject: Re: [PATCH] ARM: dts: at91-sama5d27_som1: fix phy address to 7
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Alexander Dahl <ada@thorsis.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>
+CC:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <stable@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+        Oleksij Rempel <ore@pengutronix.de>
+References: <20210217113808.21804-1-nicolas.ferre@microchip.com>
+ <1732882030.11903.1616496356027@seven.thorsis.com>
+ <ddedd53b-6087-f7a5-3c41-2b91fec35980@pengutronix.de>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <580984ef-41fe-62d0-ad30-f707a6669a13@microchip.com>
+Date:   Tue, 23 Mar 2021 12:17:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200907053801.22149-1-Zhiqiang.Hou@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <ddedd53b-6087-f7a5-3c41-2b91fec35980@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 01:37:54PM +0800, Zhiqiang Hou wrote:
-> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> 
-> This patch series is to add PCIe power management support for NXP
-> Layerscape platfroms.
-> 
-> Hou Zhiqiang (7):
->   PCI: dwc: Fix a bug of the case dw_pci->ops is NULL
->   PCI: layerscape: Change to use the DWC common link-up check function
->   dt-bindings: pci: layerscape-pci: Add a optional property big-endian
->   arm64: dts: layerscape: Add big-endian property for PCIe nodes
->   dt-bindings: pci: layerscape-pci: Update the description of SCFG
->     property
->   dts: arm64: ls1043a: Add SCFG phandle for PCIe nodes
->   PCI: layerscape: Add power management support
-> 
->  .../bindings/pci/layerscape-pci.txt           |   6 +-
->  .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi |   1 +
->  .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |   6 +
->  .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |   3 +
->  drivers/pci/controller/dwc/pci-layerscape.c   | 473 ++++++++++++++----
->  drivers/pci/controller/dwc/pcie-designware.c  |  12 +-
->  drivers/pci/controller/dwc/pcie-designware.h  |   1 +
->  7 files changed, 388 insertions(+), 114 deletions(-)
+Alexander, Ahmad,
 
-I don't know which patches are still applicable, I will mark this
-series as superseded since you will have to rebase it anyway - please
-let me know what's the plan.
+On 23/03/2021 at 11:55, Ahmad Fatoum wrote:
+> Hello Alexander,
+> 
+> On 23.03.21 11:45, Alexander Dahl wrote:
+>> Hei hei,
+>>
+>> I could not get ethernet to work on SAMA5D27-SOM1-EK1 with kernels v5.10 and v5.11 built by a recent ptxdist based DistroKit BSP, while it used to work with an older v4.19 kernel. Just applying this patch to the tree made ethernet working again, thus:
+>>
+>> Tested-by: Alexander Dahl <ada@thorsis.com>
+>>
+>> Not sure why it worked with that older kernel, though.
+> 
+> Thanks for investigating! Seems that somehow PHY broadcast worked on this
+> board with older kernels (and current barebox), but no longer does with
+> newer kernels.
+> 
+> A bisection could shed some light onto what broke this.
+> 
+> As the KSZ8081 driver disables broadcast in the phy config init, this change
+> looks appropriate regardless. The fixes tag doesn't refer to an upstream
+> commit though. This should probably read:
+> Fixes: af690fa37e39 ("ARM: dts: at91: at91-sama5d27_som1: add sama5d27 SoM1 support")
 
-Thanks,
-Lorenzo
+I didn't noticed that on my side.
+
+> With this addressed:
+> 
+> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
+Thanks a lot for your feedback.
+
+> You could send a proper patch and stick your S-o-b under it.
+
+Actually this patch is already in arm-soc tree here:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?h=arm/fixes&id=221c3a09ddf70a0a51715e6c2878d8305e95c558
+
+So I cannot add tags anymore to it, sorry.
+
+Best regards,
+   Nicolas
+
+>> I added Ahmad to Cc, he added board support to DistroKit for that board, and might want to know. And I added the devicetree list to Cc, I wondered why the patch was not there and get_maintainers.pl proposed it.
+>>
+>> Thanks for fixing this and greetings
+>> Alex
+>>
+>>> nicolas.ferre@microchip.com hat am 17.02.2021 12:38 geschrieben:
+>>>
+>>>
+>>> From: Claudiu Beznea <claudiu.beznea@microchip.com>
+>>>
+>>> Fix the phy address to 7 for Ethernet PHY on SAMA5D27 SOM1. No
+>>> connection established if phy address 0 is used.
+>>>
+>>> The board uses the 24 pins version of the KSZ8081RNA part, KSZ8081RNA
+>>> pin 16 REFCLK as PHYAD bit [2] has weak internal pull-down.  But at
+>>> reset, connected to PD09 of the MPU it's connected with an internal
+>>> pull-up forming PHYAD[2:0] = 7.
+>>>
+>>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+>>> Fixes: 2f61929eb10a ("ARM: dts: at91: at91-sama5d27_som1: fix PHY ID")
+>>> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+>>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>> Cc: <stable@vger.kernel.org> # 4.14+
+>>> ---
+>>>   arch/arm/boot/dts/at91-sama5d27_som1.dtsi | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>>> index 1b1163858b1d..e3251f3e3eaa 100644
+>>> --- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>>> +++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>>> @@ -84,8 +84,8 @@ macb0: ethernet@f8008000 {
+>>>                               pinctrl-0 = <&pinctrl_macb0_default>;
+>>>                               phy-mode = "rmii";
+>>>
+>>> -                            ethernet-phy@0 {
+>>> -                                    reg = <0x0>;
+>>> +                            ethernet-phy@7 {
+>>> +                                    reg = <0x7>;
+>>>                                       interrupt-parent = <&pioA>;
+>>>                                       interrupts = <PIN_PD31 IRQ_TYPE_LEVEL_LOW>;
+>>>                                       pinctrl-names = "default";
+>>> --
+>>> 2.30.0
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-arm-kernel mailing list
+>>> linux-arm-kernel@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>>
+> 
+> --
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+
+
+-- 
+Nicolas Ferre
