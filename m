@@ -2,242 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E4BF3469E9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E7E346A56
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:41:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233406AbhCWUfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 16:35:39 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:34492 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233403AbhCWUfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:35:14 -0400
-Received: by mail-io1-f52.google.com with SMTP id x16so19150956iob.1;
-        Tue, 23 Mar 2021 13:35:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9YIaGfAZj+YyjN7GR+t7YC8glZc4pR3XJSdqGay7KgQ=;
-        b=PCqR+Q7DKUhZHvA6oybElnxGJanBIRnhoNvL+2VQwzoYNH8yah57kvEmzh+4zADU6B
-         VufWbsb5EbgNXpPRZwcot/NQdu9pboaGKFAP7hyqx/k2zAqH5LvEc8two8CgSQ/726BX
-         SqzbkZe5l9Zm1mZgdqR503jEt7baVB+0j1nrT6o48ET8tDY3Xhy9bX8fOsSes7wmMajq
-         fpmQ41V+7rT+t6m3J4AXnqyxUJ20D6ks0ntOqN4MUB3RUQaHzZ5lE/SIekPTu1NxXrdH
-         7RAwC9iwgoUZpR5JoW9/soPM3PVt5Kd0nkp8Ezixp2qc6RHtuWj5ujLxX3GbeyY5OCuq
-         tdqg==
-X-Gm-Message-State: AOAM5332uTg6pENsXebi/SIqtWtKl3ZqR75DhGk1ovsaB5Iq6KknuJXi
-        vWewLhh398UwgnxC6ClZbQ==
-X-Google-Smtp-Source: ABdhPJwzJ2B7jz3IcS2YFgHRhk8QN9GsvyttcWFvv1Wu+rg5K/Q853NzU1OV8ds7D7TbHLSDnOtZ4A==
-X-Received: by 2002:a02:9986:: with SMTP id a6mr6462501jal.46.1616531713152;
-        Tue, 23 Mar 2021 13:35:13 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id o14sm9982424ilt.39.2021.03.23.13.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 13:35:12 -0700 (PDT)
-Received: (nullmailer pid 1273621 invoked by uid 1000);
-        Tue, 23 Mar 2021 20:35:08 -0000
-Date:   Tue, 23 Mar 2021 14:35:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Greentime Hu <greentime.hu@sifive.com>
-Cc:     paul.walmsley@sifive.com, hes@sifive.com, erik.danie@sifive.com,
-        zong.li@sifive.com, bhelgaas@google.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, mturquette@baylibre.com, sboyd@kernel.org,
-        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
-        alex.dewar90@gmail.com, khilman@baylibre.com,
-        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
-        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        helgaas@kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host
- controller
-Message-ID: <20210323203508.GA1251968@robh.at.kernel.org>
-References: <cover.1615954045.git.greentime.hu@sifive.com>
- <8008af6d86737b74020d7d8f9c3fbc9b500e9993.1615954046.git.greentime.hu@sifive.com>
+        id S233436AbhCWUlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 16:41:10 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:53058 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233518AbhCWUkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:40:42 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 082FF1C0B81; Tue, 23 Mar 2021 21:40:39 +0100 (CET)
+Date:   Tue, 23 Mar 2021 21:40:38 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: Re: [PATCH 17/17] auxdisplay: ht16k33: Add segment display LED
+ support
+Message-ID: <20210323204038.GA10002@duo.ucw.cz>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-18-geert@linux-m68k.org>
+ <543ec200931af3192541fef51bc8e96a@protonic.nl>
+ <CAMuHMdXMQYoGbyLsbiZSEWKK0+iPZe7WELmtDUTjqK-VKMZURg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
 Content-Disposition: inline
-In-Reply-To: <8008af6d86737b74020d7d8f9c3fbc9b500e9993.1615954046.git.greentime.hu@sifive.com>
+In-Reply-To: <CAMuHMdXMQYoGbyLsbiZSEWKK0+iPZe7WELmtDUTjqK-VKMZURg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 02:08:11PM +0800, Greentime Hu wrote:
-> Add PCIe host controller DT bindings of SiFive FU740.
-> 
-> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-> ---
->  .../bindings/pci/sifive,fu740-pcie.yaml       | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> new file mode 100644
-> index 000000000000..c25a91b18cd7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/sifive,fu740-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SiFive fu740 PCIe host controller
-> +
-> +description:
-> +  SiFive fu740 PCIe host controller is based on the Synopsys DesignWare
-> +  PCI core. It shares common features with the PCIe DesignWare core and
-> +  inherits common properties defined in
-> +  Documentation/devicetree/bindings/pci/designware-pcie.txt.
-> +
-> +maintainers:
-> +  - Paul Walmsley <paul.walmsley@sifive.com>
-> +  - Greentime Hu <greentime.hu@sifive.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sifive,fu740-pcie
-> +
-> +  reg:
-> +    maxItems: 4
 
-What's the 4th item because there's only 3 names:
+--OgqxwSJOaUobr8KG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +      - const: mgmt
-> +
-> +  device_type:
-> +    const: pci
+Hi!
 
-Already in pci-bus.yaml
+> CC linux-leds (which I intended, but forgot to add)
+>=20
+> cover letter at
+> https://lore.kernel.org/linux-devicetree/20210322144848.1065067-1-geert@l=
+inux-m68k.org/
 
-> +
-> +  dma-coherent:
-> +    description: Indicates that the PCIe IP block can ensure the coherency
-> +
-> +  bus-range:
-> +    description: Range of bus numbers associated with this controller.
+Still does not tell me... riscv on fpga with 4 character display. What
+is this? :-).
 
-Already in pci-bus.yaml
 
-> +
-> +  num-lanes: true
+> On Tue, Mar 23, 2021 at 11:08 AM Robin van der Gracht <robin@protonic.nl>=
+ wrote:
+> >
+> > On 2021-03-22 15:48, Geert Uytterhoeven wrote:
+> > > Instantiate a single LED for a segment display.  This allows the user
+> > > to
+> > > control display brightness and blinking through the LED class API and
+> > > triggers, and exposes the display color.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > ---
+> > > For setting display brightness, this could use the existing backlight
+> > > support for frame buffer devices instantiated for dot-matrix displays.
+> > > However, using the leds subsystem instead has the advantage that the
+> > > driver can make use of the HT16K33's hardware blinking support, and c=
+an
+> > > expose the display color.
 
-Need to define possible values if not all of 1,2,4,8,16.
+We have multicolor support now...
 
-> +
-> +  msi-parent: true
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: inta
-> +      - const: intb
-> +      - const: intc
-> +      - const: intd
-> +
-> +  resets:
-> +    description: A phandle to the PCIe power up reset line
-> +
-> +  pwren-gpios:
-> +    description: Should specify the GPIO for controlling the PCI bus device power on
+> > > -     err =3D ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
+> > > +     of_property_read_u32(node, "color", &color);
+> > > +     seg->led.name =3D devm_kasprintf(dev, GFP_KERNEL,
+> > > +                     DRIVER_NAME ":%s:" LED_FUNCTION_BACKLIGHT,
+> > > +                     color < LED_COLOR_ID_MAX ? led_colors[color] : =
+"");
 
-maxItems: 1
+And would prefer not to see driver_name as part of LED name.
 
-> +
-> +  perstn-gpios:
-> +    description: Should specify the GPIO for controlling the PCI bus device reset
+> > > +     err =3D ht16k33_brightness_set(priv, seg->led.brightness);
+> > >       if (err)
+> > >               return err;
+> >
+> > The LED class can pretty much do what the backlight class can and more.
+> >
+> > Maybe we can stop registering a backlight device in the fbdev case and
+> > register a led device for both. This makes the code cleaner and drops
+> > a dependency but will break backwards compatibility.
+> >
+> > I'd prefer a single solution that covers both use cases, but I'm not
+> > sure about the 'breaking backwards compatibility' consequence...
 
-The DWC binding and pci.txt already define 'reset-gpios' for this 
-purpose.
+For new drivers, breaking compatibility should not be a problem.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - device_type
+Best regards,
+									Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
 
-pci-bus.yaml already requires this.
+--OgqxwSJOaUobr8KG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +  - dma-coherent
-> +  - bus-range
+-----BEGIN PGP SIGNATURE-----
 
-This generally doesn't need to be required unless the h/w can't support 
-0-0xff.
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYFpSRgAKCRAw5/Bqldv6
+8gx1AJ9DrhY+6jZ2APCdwgx/TBVkD/BG/QCfZ9Mg2jmE6B1ZET6bJceiU04bD7g=
+=7qmH
+-----END PGP SIGNATURE-----
 
-> +  - ranges
-
-pci-bus.yaml already requires this.
-
-> +  - num-lanes
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-parent
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - clock-names
-> +  - clocks
-> +  - resets
-> +  - pwren-gpios
-> +  - perstn-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pcie@e00000000 {
-> +        #address-cells = <3>;
-> +        #interrupt-cells = <1>;
-> +        #size-cells = <2>;
-> +        compatible = "sifive,fu740-pcie";
-> +        reg = <0xe 0x00000000 0x1 0x0
-
-Humm, 4GB for DBI space? The DWC controller doesn't have that much 
-space, and the kernel will map *all* of that. That's not an 
-insignificant amount of memory just for page tables.
-
-> +               0xd 0xf0000000 0x0 0x10000000
-> +               0x0 0x100d0000 0x0 0x1000>;
-
-<> around each reg entry.
-
-> +        reg-names = "dbi", "config", "mgmt";
-> +        device_type = "pci";
-> +        dma-coherent;
-> +        bus-range = <0x0 0xff>;
-> +        ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000        /* I/O */
-> +                  0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000      /* mem */
-> +                  0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000      /* mem */
-> +                  0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
-
-<> around each ranges entry.
-
-> +        num-lanes = <0x8>;
-> +        interrupts = <56 57 58 59 60 61 62 63 64>;
-
-And here.
-
-> +        interrupt-names = "msi", "inta", "intb", "intc", "intd";
-> +        interrupt-parent = <&plic0>;
-> +        interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +        interrupt-map = <0x0 0x0 0x0 0x1 &plic0 57>,
-> +                        <0x0 0x0 0x0 0x2 &plic0 58>,
-> +                        <0x0 0x0 0x0 0x3 &plic0 59>,
-> +                        <0x0 0x0 0x0 0x4 &plic0 60>;
-> +        clock-names = "pcie_aux";
-> +        clocks = <&prci PRCI_CLK_PCIE_AUX>;
-> +        resets = <&prci 4>;
-> +        pwren-gpios = <&gpio 5 0>;
-> +        perstn-gpios = <&gpio 8 0>;
-> +    };
-> -- 
-> 2.30.2
-> 
+--OgqxwSJOaUobr8KG--
