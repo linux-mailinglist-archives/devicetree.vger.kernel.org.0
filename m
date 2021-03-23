@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53456346D80
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E60ED346D86
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:48:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234117AbhCWWq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 18:46:26 -0400
-Received: from mail-il1-f177.google.com ([209.85.166.177]:42867 "EHLO
-        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233945AbhCWWqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:46:21 -0400
-Received: by mail-il1-f177.google.com with SMTP id l5so19681153ilv.9;
-        Tue, 23 Mar 2021 15:46:21 -0700 (PDT)
+        id S233924AbhCWWrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 18:47:32 -0400
+Received: from mail-il1-f169.google.com ([209.85.166.169]:38901 "EHLO
+        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233859AbhCWWrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:47:10 -0400
+Received: by mail-il1-f169.google.com with SMTP id d10so12901125ils.5;
+        Tue, 23 Mar 2021 15:47:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/wR0YgOktInMZuZoZR56NBPkknGa+dooOPGBNWO9aVg=;
-        b=JdHbV5p+6RetdEly46qkRFonfD8k/BIfV/GoxgY6BqcPOfqAc7ZemMTS6cL6gkHpws
-         ahGoHHHoSvEe0wvC2HuqV3y9KxISg93HlidM9BMOkrjfpIvRlY6eD4L+iwRgQqImdiYL
-         SuFkwRYgai4azXmfFh0TEyYiTTkBZ9NDSzh1pI72QfmserfeaqBNwOZQRonfM3zLnga2
-         XbO/537lwY6bh9fL63oFf/Ifxlz6bZQU6g+fZ2X/BpzaYfbTydEryXoKeJUAcficqIV3
-         pYKFWcylB/a2ZPA2cFxn7nJaIOqFgeQHzKIyeDRMqxvTRrJrztdFUjhYbTvYa+SH91Ww
-         bYdw==
-X-Gm-Message-State: AOAM533Jlq9m9vcqD+WYP1DRqK2DqVuF0ZJZ/uNcaGgUfpAUf4JOwpog
-        qVFrcbjxyPigDtowrxZ4G3SKnJddLw==
-X-Google-Smtp-Source: ABdhPJwGUdvYAubFEadv/LIEVgcEiGjjG3eq6vdtBuJIomuWBdYeHvNSXUOJMkEj84DxNQFQ3QBcUw==
-X-Received: by 2002:a92:dc83:: with SMTP id c3mr376598iln.167.1616539581110;
-        Tue, 23 Mar 2021 15:46:21 -0700 (PDT)
+        bh=6AvTzTJOE2gdHJ0jAl+cPe+wrFwOXJMa+4lkL1LoiVc=;
+        b=cpRrZm+zhsKGY5ioGJfmShm1vfWM65BUcTPV6iljCDH3pslNXIMObzFxCC9nXAL1ZO
+         aFv3rjCLe3FfJpsP21fuxsO5YBe0F+nY6sno+xZ8okG0OcoNjwHF4OuArXWh7SFKbDMU
+         x5Ds63V7EL6znNkepuB0CrQCqcUUazIlj/Wem7iZfwHKqM2DJFm68p0miwW1rljYUH9R
+         nQa8e2cSnetSMz9AlTVd+bNwdHyv5ltlt8Riwnr9RwvNdPKkjEMaVrIfaG4w5+igZmk3
+         vL8uNMdNT4hbSwJJflRJC8BFXqfMUpx33AXBNim0e9utiw/TtQj7cyi583qg6ZGPYAKb
+         n6Pw==
+X-Gm-Message-State: AOAM531O8OvaRKDBZ4oKZqxpc2QzI80caQRepa6oSj1gVeUKFHh+cWvz
+        erOzgsYI6cCcoLjoLiJJioyk0KUiPg==
+X-Google-Smtp-Source: ABdhPJxKDO7Wh/viLDxew90U7hRX/c7nWyGGJAhip302aaAmxwMw11ciA4E5DtW5YvV9Mu7WUEYoxA==
+X-Received: by 2002:a92:dc83:: with SMTP id c3mr378452iln.167.1616539629624;
+        Tue, 23 Mar 2021 15:47:09 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id g16sm128361iln.29.2021.03.23.15.46.19
+        by smtp.gmail.com with ESMTPSA id e2sm120890iov.26.2021.03.23.15.47.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 15:46:20 -0700 (PDT)
-Received: (nullmailer pid 1489100 invoked by uid 1000);
-        Tue, 23 Mar 2021 22:46:18 -0000
-Date:   Tue, 23 Mar 2021 16:46:18 -0600
+        Tue, 23 Mar 2021 15:47:08 -0700 (PDT)
+Received: (nullmailer pid 1490458 invoked by uid 1000);
+        Tue, 23 Mar 2021 22:47:07 -0000
+Date:   Tue, 23 Mar 2021 16:47:07 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     mathieu.poirier@linaro.org, mike.leach@linaro.org, maz@kernel.org,
-        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-        leo.yan@linaro.org, devicetree@vger.kernel.org,
-        catalin.marinas@arm.com, anshuman.khandual@arm.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 13/19] dts: bindings: Document device tree bindings
- for ETE
-Message-ID: <20210323224618.GA1489048@robh.at.kernel.org>
-References: <20210323120647.454211-1-suzuki.poulose@arm.com>
- <20210323120647.454211-14-suzuki.poulose@arm.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
+        yung-chuan.liao@linux.intel.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/9] dt-bindings: soundwire: qcom: clarify data port
+ bus parameters
+Message-ID: <20210323224707.GA1490400@robh.at.kernel.org>
+References: <20210312120009.22386-1-srinivas.kandagatla@linaro.org>
+ <20210312120009.22386-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210323120647.454211-14-suzuki.poulose@arm.com>
+In-Reply-To: <20210312120009.22386-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Mar 2021 12:06:41 +0000, Suzuki K Poulose wrote:
-> Document the device tree bindings for Embedded Trace Extensions.
-> ETE can be connected to legacy coresight components and thus
-> could optionally contain a connection graph as described by
-> the CoreSight bindings.
+On Fri, 12 Mar 2021 12:00:01 +0000, Srinivas Kandagatla wrote:
+> Some of the parameters for data ports are not applicable or not implemented
+> in IP. So mark them as invalid/not applicable in DT so that controller is
+> aware of this.
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Add comment to these bindings to provide more clarity on the values!
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
-> Changes since v4:
->  - Fix the out-ports definition (Rob Herring)
-> ---
->  .../devicetree/bindings/arm/ete.yaml          | 75 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+>  .../bindings/soundwire/qcom,sdw.txt           | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
