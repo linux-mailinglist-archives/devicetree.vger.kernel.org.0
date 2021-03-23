@@ -2,155 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27055346A79
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41652346A89
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:59:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbhCWUyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 16:54:18 -0400
-Received: from mail-il1-f179.google.com ([209.85.166.179]:40952 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233355AbhCWUxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:53:49 -0400
-Received: by mail-il1-f179.google.com with SMTP id c17so19436046ilj.7;
-        Tue, 23 Mar 2021 13:53:48 -0700 (PDT)
+        id S233370AbhCWU6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 16:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233228AbhCWU6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:58:16 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113DCC061574;
+        Tue, 23 Mar 2021 13:58:15 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id l23-20020a05683004b7b02901b529d1a2fdso20848930otd.8;
+        Tue, 23 Mar 2021 13:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Z4LFUuvacEBtLCJec2bwGks21oMmeJwUPGKWv10C7C8=;
+        b=aWqwV9krBYdgh9hR8z79d2Qzw/sRzYFWMsWJk9Ozj4GxrngcfN+8qvMLXiHzdAi3Nt
+         LBwARDJl4FwHlwTiJ59wLv6GcfmTMr0VcwMXV7eegwjnD+kVp/IdNgDpWJzFry0eyv5w
+         RRtXqv3oidstONhzh13gAtV+oSj1B7yREwtFDmAjPVdc7ng8LlInOO65/DrPuao6NHBF
+         dWP35xM7aImsonOMr6Svmpfgm1H+DpBZuTFNb0qpLHPagthaXAHhPjX0OfiwyXQp6Qoy
+         KgytKqJKB4wJ8CBRfaGGC3Dd6Ey8ZwCaJjkkbNjVawQBK39Y76oH6pFc5bHexFRVuV1l
+         pdmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PHYJdMOhlozVGJVh1oALPNAZWOy/E29w1l72RoruR20=;
-        b=CV8TSCJq2YlNT9JAfKtdKNhSacBv30XWeTy3yQuQHzXH+CcqEaQqSkKxfb+Y/3ukdz
-         PBlSUrY2dzZ5m/3C+WJxG4DR7toLNm5Pl5RdZShcatXpySyysKGtgZkBGVNprQsJSiDX
-         HCVjNyRDddXGcahqwR+FVLDg9O4R2gl1G3QKLK/s4A3R2qbVtgLmji0gb9PfolYHhMU7
-         WWpAuICDBytfnzXyBQCoI7XnJ2vDJgODWwmUlZ0WvFJaxpIB6GS3ga8bk+r10dtlpWMy
-         4yEYEC8SaTDJSfdcvhRJlIgw7Re4NmRrnmAyP2S5+7w3i08NIiIjrMFEmIL+YhhukH54
-         VOgg==
-X-Gm-Message-State: AOAM5309EFtyp0fjpKQcz7vVSRruoO5WYCgXp3inwTYQyL9AWbKDO1CL
-        Pi9H3YQldNoLQyE/kSSC0w==
-X-Google-Smtp-Source: ABdhPJwAkhqmMD7d8QqODSssQ97V2pFypdhqwqehElXuGTHngBGyJOmgjnNRf8y1zQyPvSz1qRMvEA==
-X-Received: by 2002:a05:6e02:158c:: with SMTP id m12mr75161ilu.121.1616532828308;
-        Tue, 23 Mar 2021 13:53:48 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id d3sm11345ilo.32.2021.03.23.13.53.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 13:53:47 -0700 (PDT)
-Received: (nullmailer pid 1302881 invoked by uid 1000);
-        Tue, 23 Mar 2021 20:53:46 -0000
-Date:   Tue, 23 Mar 2021 14:53:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     Sven Peter <sven@svenpeter.dev>, iommu@lists.linux-foundation.org,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        arnd@kernel.org, marcan@marcan.st, maz@kernel.org,
-        mohamed.mediouni@caramail.com, stan@corellium.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-Message-ID: <20210323205346.GA1283560@robh.at.kernel.org>
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Z4LFUuvacEBtLCJec2bwGks21oMmeJwUPGKWv10C7C8=;
+        b=ady2pj6ZBbuhWrmF7CH6tyNHVp/3tqAbla9Q5iCHHVr2wuYx99Bzo5XcgflSL8ktxv
+         tJKXqAHxiSBGERI70ntWaO4y2WJsaOegEweN9I7HTq3VgAgpzLgcW6eqA47mmrdzEQOD
+         GkEzURRycEBF8NjMPoOUkWlSbgkxiyFLe4tfDoP15Dw4xelMGuyIL48amjDPijaalq8p
+         4uRAeY0YqG8h8wRooy9cy4VS1OAynd3HsCoiOWxFBGpyqj0qsLrLbz8hZQnLWsI2ihgO
+         5GSQa66R5dYAcMuJuBT2Mwax2zFxmI5bdDkZrl4iP+2m7FuyeiwRMymNbm+Fx5xDKrCX
+         NrdA==
+X-Gm-Message-State: AOAM530bKTG8A3M0vMcFNRoKS7RadPqmz2tSU0nKTkKcUCO3lS0lpwUF
+        6RwSAMKo+2bclwpVkWR1u1guelJ94ibJo69V2D8=
+X-Google-Smtp-Source: ABdhPJyHZ1pae6Nl2pvb8qk7MYGjCTtqtWRnJhavUHApDVyIXkNdKqNK1n7ZWNeQ7Hp9hZaoN0cvhGQSiep/mGFUBWU=
+X-Received: by 2002:a05:6830:10d3:: with SMTP id z19mr202422oto.362.1616533094272;
+ Tue, 23 Mar 2021 13:58:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
+References: <20210323082410.22818-1-zhangqing@rock-chips.com>
+ <20210323082410.22818-3-zhangqing@rock-chips.com> <87e50d5b-604b-508c-f3cb-ee07fcf15241@gmail.com>
+In-Reply-To: <87e50d5b-604b-508c-f3cb-ee07fcf15241@gmail.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Tue, 23 Mar 2021 21:58:07 +0100
+Message-ID: <CAFqH_53kBf++SPfir_5mA9Dv2v=u4s1zpqnztAH8Tt2-9dLVnQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: Convert the rockchip power_domain to
+ YAML and extend
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Elaine Zhang <zhangqing@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, cl@rock-chips.com,
+        huangtao@rock-chips.com, kever.yang@rock-chips.com,
+        tony.xie@rock-chips.com, finley.xiao@rock-chips.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 21, 2021 at 05:00:50PM +0100, Mark Kettenis wrote:
-> > Date: Sat, 20 Mar 2021 15:19:33 +0000
-> > From: Sven Peter <sven@svenpeter.dev>
-> > 
-> > Hi,
-> > 
-> > After Hector's initial work [1] to bring up Linux on Apple's M1 it's time to
-> > bring up more devices. Most peripherals connected to the SoC are behind a iommu
-> > which Apple calls "Device Address Resolution Table", or DART for short [2].
-> > Unfortunately, it only shares the name with PowerPC's DART.
-> > Configuring this iommu is mandatory if these peripherals require DMA access.
-> > 
-> > This patchset implements initial support for this iommu. The hardware itself
-> > uses a pagetable format that's very similar to the one already implement in
-> > io-pgtable.c. There are some minor modifications, namely some details of the
-> > PTE format and that there are always three pagetable levels, which I've
-> > implement as a new format variant.
-> > 
-> > I have mainly tested this with the USB controller in device mode which is
-> > compatible with Linux's dwc3 driver. Some custom PHY initialization (which is
-> > not yet ready or fully understood) is required though to bring up the ports,
-> > see e.g. my patches to our m1n1 bootloader [3,4]. If you want to test the same
-> > setup you will probably need that branch for now and add the nodes from
-> > the DT binding specification example to your device tree.
-> > 
-> > Even though each DART instances could support up to 16 devices usually only
-> > a single device is actually connected. Different devices generally just use
-> > an entirely separate DART instance with a seperate MMIO range, IRQ, etc.
-> > 
-> > I have just noticed today though that at least the USB DWC3 controller in host
-> > mode uses *two* darts at the same time. I'm not sure yet which parts seem to
-> > require which DART instance.
-> > 
-> > This means that we might need to support devices attached to two iommus
-> > simultaneously and just create the same iova mappings. Currently this only
-> > seems to be required for USB according to Apple's Device Tree.
-> > 
-> > I see two options for this and would like to get feedback before
-> > I implement either one:
-> > 
-> >     1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
-> >        to identify the DART and the second one to identify the master.
-> >        The DART DT node would then also take two register ranges that would
-> >        correspond to the two DARTs. Both instances use the same IRQ and the
-> >        same clocks according to Apple's device tree and my experiments.
-> >        This would keep a single device node and the DART driver would then
-> >        simply map iovas in both DARTs if required.
-> > 
-> >     2) Keep #iommu-cells as-is but support
-> >             iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
-> >        instead.
-> >        This would then require two devices nodes for the two DART instances and
-> >        some housekeeping in the DART driver to support mapping iovas in both
-> >        DARTs.
-> >        I believe omap-iommu.c supports this setup but I will have to read
-> >        more code to understand the details there and figure out how to implement
-> >        this in a sane way.
-> > 
-> > I currently prefer the first option but I don't understand enough details of
-> > the iommu system to actually make an informed decision.
+Hi Elaine,
 
-Please don't mix what does the h/w look like and what's easy to 
-implement in Linux's IOMMU subsytem. It's pretty clear (at least 
-from the description here) that option 2 reflects the h/w. 
+Missatge de Johan Jonker <jbx6244@gmail.com> del dia dt., 23 de mar=C3=A7
+2021 a les 12:06:
+>
+> Hi Elaine,
+>
+> Some comments. Have a look if it's useful or that you disagree
+> with...(part 1)
+>
+> =3D=3D=3D=3D=3D=3D
+> There is currently already a patch proposal that does the same.
+> Could you read that review history and port the good things to your own
+> patch serie?
+>
+> Re: [PATCH] dt-bindings: power: rockchip: Convert to json-schema
+> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
+>
+> Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
+> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
+>
 
-> > I'm obviously also open to more options :-)
-> 
-> Hi Sven,
-> 
-> I don't think the first option is going to work for PCIe.  PCIe
-> devices will have to use "iommu-map" properties to map PCI devices to
-> the right iommu, and the currently implementation seems to assume that
-> #iommu-cells = <1>.  The devictree binding[1] doesn't explicitly state
-> that it relies on #iommu-cells = <1>, but it isn't clear how the
-> rid-base to iommu-base mapping mechanism would work when that isn't
-> the case.
-> 
-> Now the PCIe DARTs are simpler and seem to have only one "instance"
-> per DART.  So if we keep #iommu-cells = <1> for those, you'd still be
-> fine using the first approach.
-> 
-> As I mentioned before, not all DARTs support the full 32-bit aperture.
-> In particular the PCIe DARTs support a smaller address-space.  It is
-> not clear whether this is a restriction of the PCIe host controller or
-> the DART, but the Apple Device Tree has "vm-base" and "vm-size"
-> properties that encode the base address and size of the aperture.
-> These single-cell properties which is probably why for the USB DARTs
-> only "vm-base" is given; since "vm-base" is 0, a 32-bit number
-> wouldn't be able to encode the full aperture size.  We could make them
-> 64-bit numbers in the Linux device tree though and always be explicit
-> about the size.  Older Sun SPARC machines used a single "virtual-dma"
-> property to encode the aperture.  We could do someting similar.  You
-> would use this property to initialize domain->geometry.aperture_start
-> and domain->geometry.aperture_end in diff 3/3 of this series.
+In fact, the latest version is v6 which can be found here:
 
-'dma-ranges' is what should be used here.
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.65=
+3095-1-enric.balletbo@collabora.com/
 
-Rob
+Feel free to integrate and/or improve that version in your series.
