@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF6F3469A5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219843469B3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:17:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbhCWUP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 16:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbhCWUPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:15:12 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BC6C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 13:15:07 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id kt15so19705662ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 13:15:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytesatwork-ch.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EGPRM4nqneL5zev4fUrYZk+40PzLIOTPL4HZY+QrxqU=;
-        b=rbHcfo731tJ3mGSpI7XAXZOTH60pcM4YHpbimE9QfOMyBuWwFLvr3VPfiNCvFKKPa7
-         Nt2iyuk74fdCDhoxWMieafkFKAdQUUmhpWa6sUYCcHQ2pTEJUtx5tDTh0yeIeyQibiQ9
-         Y8mn1DzuvkTlXRHARgFOk22VlCQGDmHMYcjAF5b8CpjjK5TEu+oqoH6Y4B9CQD3lG5L8
-         qlW+gOG4EOlbtst4PVkKbgtBq1HsoCa4ajvZ7Y3Vum2c9E7VTxNc2tl02yAgPKXsoo5D
-         xv6/D10vvaG3gUwWBSbkWGnGY9wWCLGPnB74KUTmc5TwFBvNlG848eQe9QvaP5Af1Atg
-         /iGA==
+        id S233231AbhCWURI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 16:17:08 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:38497 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233272AbhCWUQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:16:54 -0400
+Received: by mail-io1-f42.google.com with SMTP id e8so19104834iok.5;
+        Tue, 23 Mar 2021 13:16:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EGPRM4nqneL5zev4fUrYZk+40PzLIOTPL4HZY+QrxqU=;
-        b=KFUG6MCl/6SbpHZW+vuCi4Bnip5PvV3yyvrROlZ0y0sPta9f92Lig6dDX7Z90568FM
-         AB8RXkXRwW1zwgSGWbi+OH/Bze1jssuE68r8r988YuUc6XPkFcSZJHneqOpPlkmPGFX/
-         yNxpXFbxAP4XIcCt6QSy/fFpW4kr+HC6vfJsW6w3QHK1sVXg8fxdHkEqZwvGoEeB9Yo4
-         N7NFMgKlCQr2ydeMbMlaDtzDf/2fXXQ6shZOQf0TfnPOCW246lQlP5KGbFfIdmGVF3Pd
-         gb9gV6zg3UGpxpvm+M66xqJFaQ2jqa/wHad83q2PoIQMPyXGvRJTdepgJn/uFuJI5xpE
-         UolA==
-X-Gm-Message-State: AOAM530uT1U0iSY+fW5auJMtXJG7fPZIWkpxjRTahu6coxVkeEAV6iRY
-        B+GDxyolvlDoBxMvlrnV0kKk/A==
-X-Google-Smtp-Source: ABdhPJxN8IGumZCWd1fAAmcDYxuZpHog0y7EPKYYSZrueky3QkPY19f3QXZocnmRUF7EpsZHvD+dow==
-X-Received: by 2002:a17:906:1386:: with SMTP id f6mr6502713ejc.45.1616530506708;
-        Tue, 23 Mar 2021 13:15:06 -0700 (PDT)
-Received: from localhost.localdomain (162.40.150.83.ftth.as8758.net. [83.150.40.162])
-        by smtp.gmail.com with ESMTPSA id bx24sm11841131ejc.88.2021.03.23.13.15.05
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=D9YiSRrs2fw2afTTENd+WaQd259uaLT3vYO3ElQUi/o=;
+        b=CO3s8OO5CtktsyREBpaneUIqmKQ3gTML2mTN2JjQtvlbnyT8Iwje10XIrlUzKlbJzE
+         VuuezY2eKtFLN8ePMALEHNcXek+i2owOvcsmbyb4ePL+ND93P5E/eRi0R0+BjKrTv4bw
+         Y7ZHmv9D699CJ+4nyBx77rgB9HwnhWZZ2IEmTmhHca/ZdTuf2aaoHs/RAdcuUi5L9pTT
+         Clb6IzZDL9WOYzrJ1G+VY7cqcfIs8uw3doK7GYIoh5TGlo+jPWvx8ibVNFyMkGLPb/N8
+         P5aiZhWzooFnUZzTN6Xq2A5SLArOO9rkWhUyLjEgNDoBvwBzSAiKv5BYd3qx3r6eU5jc
+         eJzg==
+X-Gm-Message-State: AOAM5308HGEfpoba3xOOFePvCR5ShKsnwzXeG2TRfSSW9A4SZ2YMOxow
+        3wvOkYb/niRaPDaptsAkHA==
+X-Google-Smtp-Source: ABdhPJzYfWvKVsiIzkecMWnD+0zHO4VuZZq2JJwNcfzKfx/OWaPuu2kWkkJaoJm/v/G2sBf3SkCcqA==
+X-Received: by 2002:a05:6638:2209:: with SMTP id l9mr6114752jas.13.1616530613847;
+        Tue, 23 Mar 2021 13:16:53 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id g14sm9384335ioc.38.2021.03.23.13.16.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 13:15:06 -0700 (PDT)
-From:   =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     oliver.staebler@bytesatwork.ch, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm: Fix pad control of SD1_DATA0
-Date:   Tue, 23 Mar 2021 21:14:50 +0100
-Message-Id: <20210323201450.12060-1-oliver.staebler@bytesatwork.ch>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Tue, 23 Mar 2021 13:16:53 -0700 (PDT)
+Received: (nullmailer pid 1244767 invoked by uid 1000);
+        Tue, 23 Mar 2021 20:16:47 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     tony.xie@rock-chips.com, huangtao@rock-chips.com, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, finley.xiao@rock-chips.com,
+        kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, cl@rock-chips.com,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20210323082410.22818-3-zhangqing@rock-chips.com>
+References: <20210323082410.22818-1-zhangqing@rock-chips.com> <20210323082410.22818-3-zhangqing@rock-chips.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: Convert the rockchip power_domain to YAML and extend
+Date:   Tue, 23 Mar 2021 14:16:47 -0600
+Message-Id: <1616530607.412616.1244766.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix address of the pad control register
-(IOMUXC_SW_PAD_CTL_PAD_SD1_DATA0) for SD1_DATA0_GPIO2_IO2.  This seems
-to be a typo but it leads to an exception when pinctrl is applied due to
-wrong memory address access.
+On Tue, 23 Mar 2021 16:24:09 +0800, Elaine Zhang wrote:
+> This converts the rockchip power domain family bindings to YAML schema,
+> and add binding documentation for the power domains found on Rockchip
+> RK3568 SoCs.
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> ---
+>  .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+>  .../rockchip/rockchip,power-controller.yaml   | 259 ++++++++++++++++++
+>  2 files changed, 259 insertions(+), 136 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
+> 
 
-Signed-off-by: Oliver Stäbler <oliver.staebler@bytesatwork.ch>
----
- arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-index 5ccc4cc91959d..a003e6af33533 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-@@ -124,7 +124,7 @@
- #define MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD                                     0x0A4 0x30C 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1                                      0x0A4 0x30C 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0                                 0x0A8 0x310 0x000 0x0 0x0
--#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x31  0x000 0x5 0x0
-+#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x310 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1                                 0x0AC 0x314 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3                                    0x0AC 0x314 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2                                 0x0B0 0x318 0x000 0x0 0x0
--- 
-2.29.2
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dts:19:18: fatal error: dt-bindings/clock/rk3568-cru.h: No such file or directory
+   19 |         #include <dt-bindings/clock/rk3568-cru.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dt.yaml] Error 1
+make: *** [Makefile:1380: dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1457096
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
