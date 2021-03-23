@@ -2,188 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 970DE3468AA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 20:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7153B3468BD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 20:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232386AbhCWTNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 15:13:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233024AbhCWTMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 15:12:44 -0400
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1369C061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 12:12:43 -0700 (PDT)
-Received: by mail-vs1-xe36.google.com with SMTP id e5so10001851vse.4
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 12:12:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NziR4wdTwbPmQRK5YhnnRmXhP9symav7D77le3H4K+M=;
-        b=PMVJrfgoW6IO/eykiWrjsd3M2rhVX4YPMZxActq4wpEAmRKoODLJqZ5eOI8hAd3Ui/
-         kSzrQ3FuaOzZIBiwn4SSeTiH56nva7fJ7jwJArxrKBI9I08bC2iOW/X4AFzNtLAsNXVw
-         fIdYVNCx+ySgZrYUG4o13ipFMssy5VH6uWnpKJyoinFpA+/8heYRsB9WTXd4ONt/Bv7O
-         +LCu9D9LBylKYOceGf33CRSQzA3Vf9iXuF4A9rSuewX9xMRvJ+rKmskixMa6u1701MFN
-         KAZ3CnQdmXTvVit/bpC9d7KazulRxJUeQ0HNNX5bneUJLaxYamCbK0WSNJFdJKmbm+5W
-         bGZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NziR4wdTwbPmQRK5YhnnRmXhP9symav7D77le3H4K+M=;
-        b=ZL13U6eLuH75N5XhV5oqOOHOPEQ16J7jqdH3Fouai40G3akdkPeH2IO15eWQ1F9t9r
-         UhvvFIzLWSzxi44b0tB41i+759iKlXP9t7KeE4FM9nExtmcq7LxAMYoGyyXK524sl95U
-         6OWRq8TmS0ltM2NQcWl5td2+Lmvh3W2RScyL6G88qYcrl8ljPt8S/zaZM+JZ/9eEN93f
-         gBlBZauqzl5e7v8ou0UWwN5VfrkW3pDA/fy7JrLnnCYyhCdHxeCov9aEJw/qP2ScRt7I
-         O7JPDHNKJfCXA75SA3YblUV112BD6sOeeD78pm0Q4meXHtmGsnoUEJYd1c/Ukwe0h/f7
-         HOig==
-X-Gm-Message-State: AOAM533L3YiTpdYJk9mQom70BKb0d5InZSczeVGi5VUQRFB68hYxaWVA
-        KXQQoIAQO/wPyVYWpVkjoS65ojfRs7gVXkAk1eXrLA==
-X-Google-Smtp-Source: ABdhPJzXFydY5TcCz9J1Or2xn4GBkykV9ba3oKyGbccCBa4HxmuOl+Gv/PYBfFODfgfgi/kqTbKgrJDTOyQZhsuqwfY=
-X-Received: by 2002:a67:77c1:: with SMTP id s184mr4758525vsc.55.1616526762989;
- Tue, 23 Mar 2021 12:12:42 -0700 (PDT)
+        id S233061AbhCWTPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 15:15:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36224 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233300AbhCWTPX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 15:15:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F1FD9619D5;
+        Tue, 23 Mar 2021 19:15:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616526923;
+        bh=vz1/BwgKsE4QbkxEXRmEGYxQ6lPFuYc202DcZfmWPD8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rQFSHnitQ6+kpGJZuvHSKEGBHFXMX+wwPTFR7qY5UowNPpwAoZNZEy1w0auxbFQV6
+         Waok3+0GibjFa/ysyW3jB6MjhXPl33LPeK2B19lgGhljJFV8L75EYoe+cxy68shxb4
+         D+LtRkf8M3g7UN18j2Gh8Ae5N0nIpDlNjN6X3bQaNRtzJiuMIHoz6VMLIxzDUwVNsu
+         Vx+Dmphj3hlUYjc1I9wtyKZ4JnEcJWm65DDMSFvKbDX/Gfszc6YR30Aglh8ABw2BnY
+         Iny/3S32BZFCHZt8nDApWM8V0aMvTFQjp1AQP2rMWwQ0+9joX8xOvYgpye+oCzHfSu
+         2U6gRYJZKMWxw==
+Received: by mail-ed1-f51.google.com with SMTP id b16so24788293eds.7;
+        Tue, 23 Mar 2021 12:15:22 -0700 (PDT)
+X-Gm-Message-State: AOAM530AQh6dGQ2eqUZ/5Khzj17Dw9hMufAfyZ45pfDw/h+2Q3pwHHqj
+        ZJFnKvV8Bfud63CE9lqmcthqdNJMaCO839VC8w==
+X-Google-Smtp-Source: ABdhPJyQUqDZQDlvFKjPPDtTkz4sNMlGLVxwHNqzDZOmCnzfXNGTmq/LBSdLt5mLoL79k61b8WRMes6qPDOkgy4P01Y=
+X-Received: by 2002:a05:6402:2d0:: with SMTP id b16mr6214654edx.194.1616526921538;
+ Tue, 23 Mar 2021 12:15:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
- <4503971.bAhddQ8uqO@pc-42> <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
- <5713463.b6Cmjs1FeV@pc-42>
-In-Reply-To: <5713463.b6Cmjs1FeV@pc-42>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 23 Mar 2021 20:12:06 +0100
-Message-ID: <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
-Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
-To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+References: <20210323163634.877511-1-robh@kernel.org> <20210323163634.877511-2-robh@kernel.org>
+In-Reply-To: <20210323163634.877511-2-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 23 Mar 2021 13:15:08 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLFj3tUUeEeKoZx=P3AHE4Tu1TzuA-tqK4+qD=4J6c=8Q@mail.gmail.com>
+Message-ID: <CAL_JsqLFj3tUUeEeKoZx=P3AHE4Tu1TzuA-tqK4+qD=4J6c=8Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Move port/ports properties out of audio-graph-port.yaml
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Mar 2021 at 18:53, J=C3=A9r=C3=B4me Pouiller
-<jerome.pouiller@silabs.com> wrote:
+On Tue, Mar 23, 2021 at 10:36 AM Rob Herring <robh@kernel.org> wrote:
 >
-> On Tuesday 23 March 2021 15:11:56 CET Ulf Hansson wrote:
-> > On Mon, 22 Mar 2021 at 18:14, J=C3=A9r=C3=B4me Pouiller <jerome.pouille=
-r@silabs.com> wrote:
-> > > On Monday 22 March 2021 13:20:35 CET Ulf Hansson wrote:
-> > > > On Mon, 15 Mar 2021 at 14:25, Jerome Pouiller <Jerome.Pouiller@sila=
-bs.com> wrote:
-> > > > >
-> > > > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
-> > > > >
-> > > > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.=
-com>
-> > > > > ---
-> > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 259 +++++++++++++++=
-++++++
-> > > > >  1 file changed, 259 insertions(+)
-> > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
-> > > >
-> > > > [...]
-> > > >
-> > > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
-> > > > > +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILAB=
-S_WF200) },
-> > > > > +       { },
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
-> > > > > +
-> > > > > +struct sdio_driver wfx_sdio_driver =3D {
-> > > > > +       .name =3D "wfx-sdio",
-> > > > > +       .id_table =3D wfx_sdio_ids,
-> > > > > +       .probe =3D wfx_sdio_probe,
-> > > > > +       .remove =3D wfx_sdio_remove,
-> > > > > +       .drv =3D {
-> > > > > +               .owner =3D THIS_MODULE,
-> > > > > +               .of_match_table =3D wfx_sdio_of_match,
-> > > >
-> > > > It's not mandatory to support power management, like system
-> > > > suspend/resume. However, as this looks like this is a driver for an
-> > > > embedded SDIO device, you probably want this.
-> > > >
-> > > > If that is the case, please assign the dev_pm_ops here and implemen=
-t
-> > > > the ->suspend|resume() callbacks.
-> > >
-> > > I have no platform to test suspend/resume, so I have only a
-> > > theoretical understanding of this subject.
-> >
-> > I see.
-> >
-> > >
-> > > I understanding is that with the current implementation, the
-> > > device will be powered off on suspend and then totally reset
-> > > (including reloading of the firmware) on resume. I am wrong?
-> >
-> > You are correct, for a *removable* SDIO card. In this case, the
-> > mmc/sdio core will remove the corresponding SDIO card/device and its
-> > corresponding SDIO func devices at system suspend. It will then be
-> > redetected at system resume (and the SDIO func driver re-probed).
-> >
-> > Although, as this is an embedded SDIO device, per definition it's not
-> > a removable card (MMC_CAP_NONREMOVABLE should be set for the
-> > corresponding mmc host), the SDIO card will stick around and instead
-> > the ->suspend|resume() callback needs to be implemented for the SDIO
-> > func driver.
+> Users of the audio-graph-port schema need to define how many ports
+> and what each port is, so they need to define 'ports' and/or 'port'
+> anyways. Let's drop 'ports' and 'port' from the schema and adjust users
+> to reference audio-graph-port.yaml from a port property.
 >
-> If I follow what has been done in other drivers I would write something
-> like:
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Cc: Lubomir Rintel <lkundrak@v3.sk>
+> Cc: Sameer Pujar <spujar@nvidia.com>
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-tegra@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> index 31f3e51974bb..e568d6c7dddd 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> @@ -17,9 +17,6 @@ maintainers:
+>    - Jon Hunter <jonathanh@nvidia.com>
+>    - Sameer Pujar <spujar@nvidia.com>
 >
->   static int wfx_sdio_suspend(struct device *dev)
->   {
->           struct sdio_func *func =3D dev_to_sdio_func(dev);
->           struct wfx_sdio_priv *bus =3D sdio_get_drvdata(func);
+> -allOf:
+> -  - $ref: audio-graph-port.yaml#
+> -
+>  properties:
+>    $nodename:
+>      pattern: "^ahub@[0-9a-f]*$"
+> @@ -60,12 +57,18 @@ properties:
+>    ranges: true
 >
->           config_reg_write_bits(bus->core, CFG_IRQ_ENABLE_DATA, 0);
->           // Necessary to keep device firmware in RAM
->           return sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
-
-This will tell the mmc/sdio core to keep the SDIO card powered on
-during system suspend. Thus, it doesn't need to re-initialize it at
-system resume - and the firmware should not need to be re-programmed.
-
-On the other hand, if you don't plan to support system wakeups, it
-would probably be better to power off the card, to avoid wasting
-energy while the system is suspended. I assume that means you need to
-re-program the firmware as well. Normally, it's these kinds of things
-that need to be managed from a ->resume() callback.
-
->   }
+>    ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+>      description: |
+>        Contains list of ACIF (Audio CIF) port nodes for AHUB (Audio Hub).
+>        These are connected to ACIF interfaces of AHUB clients. Thus the
+>        number of port nodes depend on the number of clients that AHUB may
+>        have depending on the SoC revision.
 >
-> However, why not the implementation below?
+> +    patternProperties:
+> +      '^port@[0-9]':
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -77,7 +80,7 @@ required:
+>    - "#size-cells"
+>    - ranges
 >
->   static int wfx_sdio_suspend(struct device *dev)
->   {
->           struct sdio_func *func =3D dev_to_sdio_func(dev);
->
->           wfx_sdio_remove(func);
+> -unevaluatedProperties: false
+> +additionalProperties: false
 
-I don't know what wfx_sdio_remove() does, but for sure you would need
-a ->resume() callback to make it possible to restore power/firmware.
+Adding this results in schema errors in the example, so a prerequisite
+patch is needed.
 
->           return 0;
->   }
->
-> In both cases, I worry to provide these functions without being able to
-> test them.
-
-Alright, let's simply leave this driver without having the PM
-callbacks assigned. I guess we can revisit this at some later point.
-
-The mmc core will log a message about the missing callbacks, in case
-someone tries to execute system suspend/resume when the driver has
-been probed.
-
-Kind regards
-Uffe
+Rob
