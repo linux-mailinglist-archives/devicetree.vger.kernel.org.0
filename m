@@ -2,101 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8C32345987
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B252D3459A0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:25:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbhCWISb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 04:18:31 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:60142 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbhCWISN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 04:18:13 -0400
-Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
-        by sparta.prtnl (Postfix) with ESMTP id 671C744A022C;
-        Tue, 23 Mar 2021 09:18:11 +0100 (CET)
-MIME-Version: 1.0
-Date:   Tue, 23 Mar 2021 09:18:11 +0100
-From:   robin <robin@protonic.nl>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 06/17] auxdisplay: Extract character line display core
- support
-Reply-To: robin@protonic.nl
-In-Reply-To: <20210322144848.1065067-7-geert@linux-m68k.org>
-References: <20210322144848.1065067-1-geert@linux-m68k.org>
- <20210322144848.1065067-7-geert@linux-m68k.org>
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <8a5e3e480022990f0889864d0ace56a0@protonic.nl>
-X-Sender: robin@protonic.nl
-Organization: Protonic Holland
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+        id S229670AbhCWIZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 04:25:15 -0400
+Received: from lucky1.263xmail.com ([211.157.147.134]:48622 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229590AbhCWIYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 04:24:36 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 12983C7D2B;
+        Tue, 23 Mar 2021 16:24:21 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13109T139928883160832S1616487860290898_;
+        Tue, 23 Mar 2021 16:24:22 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <40834fb20227d1c9f63301016460590d>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Elaine Zhang <zhangqing@rock-chips.com>
+To:     robh+dt@kernel.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+Subject: [PATCH v2 0/3] soc: rockchip: power-domain: add rk3568 powerdomains
+Date:   Tue, 23 Mar 2021 16:24:07 +0800
+Message-Id: <20210323082410.22818-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-22 15:48, Geert Uytterhoeven wrote:
-> Extract the character line display core support from the simple ASCII
-> LCD driver for the MIPS Boston, Malta & SEAD3 development boards into
-> its own subdriver, so it can be reused for other displays.
-> 
-> Note that this moves the "message" device attribute in sysfs in a
-> "linedisp.N" subdirectory.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> ---
-> Changes to img-ascii-lcd.c are untested due to lack of hardware.
-> ---
->  drivers/auxdisplay/Kconfig         |   8 +
->  drivers/auxdisplay/Makefile        |   1 +
->  drivers/auxdisplay/img-ascii-lcd.c | 198 +++----------------------
->  drivers/auxdisplay/line-display.c  | 231 +++++++++++++++++++++++++++++
->  drivers/auxdisplay/line-display.h  |  43 ++++++
->  5 files changed, 304 insertions(+), 177 deletions(-)
->  create mode 100644 drivers/auxdisplay/line-display.c
->  create mode 100644 drivers/auxdisplay/line-display.h
-> 
-> diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-> index 1509cb74705a30ad..42fc7b155de09dbc 100644
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-> @@ -25,6 +25,12 @@ config CHARLCD
->  	  This is some character LCD core interface that multiple drivers can
->  	  use.
-> 
-> +config LINEDISP
-> +	tristate "Character line display core support" if COMPILE_TEST
-> +	help
-> +	  This is the core support for single-line character displays, to be
-> +	  selected by drivers that use it.
-> +
->  config HD44780_COMMON
->  	tristate "Common functions for HD44780 (and compatibles) LCD
-> displays" if COMPILE_TEST
->  	select CHARLCD
-> @@ -155,6 +161,7 @@ config IMG_ASCII_LCD
->  	depends on HAS_IOMEM
->  	default y if MIPS_MALTA
->  	select MFD_SYSCON
-> +	select LINEDISP
->  	help
->  	  Enable this to support the simple ASCII LCD displays found on
->  	  development boards such as the MIPS Boston, MIPS Malta & MIPS SEAD3
-> @@ -169,6 +176,7 @@ config HT16K33
->  	select FB_SYS_IMAGEBLIT
->  	select INPUT_MATRIXKMAP
->  	select FB_BACKLIGHT
-> +	select LINEDISP
+Support power domain function for RK3568 Soc.
 
-At this point in your patch stack it's not used by the ht16k33 driver. I 
-think it
-would be nicer to add this dependency when the code actually starts 
-depending on it.
-So that when this patch stack gets applied partially or not in one go 
-the chunks
-would be independent.
+Change in V2:
+[PATCH v2 1/3]: No change.
+[PATCH v2 2/3]: Fix up yaml code styles.
+[PATCH v2 3/3]: No change.
+
+Elaine Zhang (3):
+  dt-bindings: add power-domain header for RK3568 SoCs
+  dt-bindings: Convert the rockchip power_domain to YAML and extend
+  soc: rockchip: power-domain: add rk3568 powerdomains
+
+ .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+ .../rockchip/rockchip,power-controller.yaml   | 259 ++++++++++++++++++
+ drivers/soc/rockchip/pm_domains.c             |  31 +++
+ include/dt-bindings/power/rk3568-power.h      |  32 +++
+ 4 files changed, 322 insertions(+), 136 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
+ create mode 100644 include/dt-bindings/power/rk3568-power.h
+
+-- 
+2.17.1
+
+
+
