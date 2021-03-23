@@ -2,108 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6034A345C4D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6AC6345C5C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230305AbhCWKxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 06:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
+        id S229728AbhCWK42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 06:56:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbhCWKxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:53:31 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93317C061756
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:53:29 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id c8so7360050wrq.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:53:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WGlnCIX+gPkt5saLRl1AO/eSfyQX4KhnrSrkJYnpgYY=;
-        b=lIV8cb4KFfS7wkzFGd10vbdRrumERBd84XwjQG3DjbGuRdwbmikbg0jk61DgpoawxN
-         BBl7QlKsTaJXnPCOF2y6MKlpThqG96Zmz81Yrp+FEZ6nTCt8av7uCsN5iwc29SpdsQSl
-         EiW8j9VDV469niDRLYcAmzwI0D62kxpgUkue6nlgB7GxWnCpKMJp7zKfYmw4LCttdy0W
-         G+gypPOTuKhWasizmui5cLDWk8ApZ/QXiji5JiDhmE2Nqmn2He3ID9hBKFsjODY4B8Q9
-         b/M0eeC82xya4hZASNOjs2fKQtd+/3nIbS+1xCePGaJtlOEzWWikRqqdme5aVwM8jGf1
-         rxZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WGlnCIX+gPkt5saLRl1AO/eSfyQX4KhnrSrkJYnpgYY=;
-        b=Cnjk4p+wL5CW76p6G0qzRaJXRMRj6u5AEMIMV6LWZQqysLUeir+vCjthzFR06wnT+0
-         P7pTY2vyE24jEScvILvbNRym+1+iBJwtS/ZZbURd9nGNKTF5nrycUatlqWpKSc9NbHsa
-         SjESuFsE2UuwZgoCpEDm56G+GL2N1yGJo1QgksKsCJXZNYAA0PyTgkvRcTXM3ARt021E
-         OjjzY0X1atKPyiL9fUXEFbVVzWc2gQkZNeRVrnujYo9Voxz2IeSlpRTXAVUQ6/FyqtIV
-         ULq+uh5a0NG9GBO6HwJ/jVZNytZR4WUeEcOttWt1MHuS0q6n7rkFiMZU/rhA8JmeNcfk
-         TMfg==
-X-Gm-Message-State: AOAM533zVFDzQWtmh+qM3pd8/26BCTgRgnfAYQ7mru4SNadfkS3CnPOc
-        fu2V6Xa5X46Ad+cgzzBMi7yGoA==
-X-Google-Smtp-Source: ABdhPJxsZ4rfGrv8Gu+78757z6bQt9fLbU/W53+clBFuohI6UOhnceZv0BUdjXF3LdKpnrW2LNNtVA==
-X-Received: by 2002:a5d:4d01:: with SMTP id z1mr3253375wrt.133.1616496808336;
-        Tue, 23 Mar 2021 03:53:28 -0700 (PDT)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id z1sm23063818wru.95.2021.03.23.03.53.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 03:53:27 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 11:53:10 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     "Raj, Ashok" <ashok.raj@intel.com>
-Cc:     joro@8bytes.org, will@kernel.org, vivek.gautam@arm.com,
-        guohanjun@huawei.com, zhukeqian1@huawei.com,
-        wangzhou1@hisilicon.com, linux-acpi@vger.kernel.org,
-        zhangfei.gao@linaro.org, lenb@kernel.org,
-        devicetree@vger.kernel.org, kevin.tian@intel.com,
-        jacob.jun.pan@linux.intel.com, eric.auger@redhat.com,
-        vdumpa@nvidia.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, rjw@rjwysocki.net,
-        shameerali.kolothum.thodi@huawei.com,
-        iommu@lists.linux-foundation.org, sudeep.holla@arm.com,
-        robin.murphy@arm.com, linux-accelerators@lists.ozlabs.org,
-        baolu.lu@linux.intel.com
-Subject: Re: [PATCH v13 06/10] iommu: Add a page fault handler
-Message-ID: <YFnIlrecY6nkq5pP@myrica>
-References: <20210302092644.2553014-1-jean-philippe@linaro.org>
- <20210302092644.2553014-7-jean-philippe@linaro.org>
- <20210303055727.GF1914@otc-nc-03>
+        with ESMTP id S229452AbhCWK4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:56:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DADC5C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 03:56:00 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1lOehb-0003uq-5I; Tue, 23 Mar 2021 11:55:59 +0100
+Subject: Re: [PATCH] ARM: dts: at91-sama5d27_som1: fix phy address to 7
+To:     Alexander Dahl <ada@thorsis.com>, nicolas.ferre@microchip.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        stable@vger.kernel.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Oleksij Rempel <ore@pengutronix.de>
+References: <20210217113808.21804-1-nicolas.ferre@microchip.com>
+ <1732882030.11903.1616496356027@seven.thorsis.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <ddedd53b-6087-f7a5-3c41-2b91fec35980@pengutronix.de>
+Date:   Tue, 23 Mar 2021 11:55:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210303055727.GF1914@otc-nc-03>
+In-Reply-To: <1732882030.11903.1616496356027@seven.thorsis.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 02, 2021 at 09:57:27PM -0800, Raj, Ashok wrote:
-> > +	ret = handle_mm_fault(vma, prm->addr, fault_flags, NULL);
+Hello Alexander,
+
+On 23.03.21 11:45, Alexander Dahl wrote:
+> Hei hei,
 > 
-> Should we add a trace similar to trace_page_fault_user() or kernel in
-> arch/x86/kernel/mm/fault.c 
+> I could not get ethernet to work on SAMA5D27-SOM1-EK1 with kernels v5.10 and v5.11 built by a recent ptxdist based DistroKit BSP, while it used to work with an older v4.19 kernel. Just applying this patch to the tree made ethernet working again, thus:
+> 
+> Tested-by: Alexander Dahl <ada@thorsis.com>
+> 
+> Not sure why it worked with that older kernel, though.
 
-Yes that would definitely be useful for debugging hardware and developping
-applications. I can send a separate patch to add tracepoints here and in
-the lower-level device fault path.
+Thanks for investigating! Seems that somehow PHY broadcast worked on this
+board with older kernels (and current barebox), but no longer does with
+newer kernels.
 
-> or maybe add a perf_sw_event() for device faults? 
+A bisection could shed some light onto what broke this.
 
-It does seem like that would fit well alongside the existing
-PERF_COUNT_SW_PAGE_FAULTS, but I don't think it would be useful in
-practice, because we can't provide a context for the event. Since we're
-handling these faults remotely, the only way for a user to get IOPF events
-is to enable them on all CPUs and all tasks. Tracepoints can have 'pasid'
-and 'device' fields to identify an event, but the perf_sw_event wouldn't
-have any useful metadata apart from the faulting address.
+As the KSZ8081 driver disables broadcast in the phy config init, this change
+looks appropriate regardless. The fixes tag doesn't refer to an upstream
+commit though. This should probably read:
+Fixes: af690fa37e39 ("ARM: dts: at91: at91-sama5d27_som1: add sama5d27 SoM1 support")
 
-We could also add tracepoints on bind(), so users can get the PASID
-obtained with the PID they care about and filter fault events based on
-that.
+With this addressed:
 
-I've been wondering about associating a PASID with a PID internally,
-because we don't currently have anywhere to send SEGV signals for
-unhandled page faults. But I think it would be best to notify the device
-driver on unhandled fault and let them deal with it. They'll probably want
-that information anyway.
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 
-Thanks,
-Jean
+You could send a proper patch and stick your S-o-b under it.
+
+Cheers,
+Ahmad
+
+> 
+> I added Ahmad to Cc, he added board support to DistroKit for that board, and might want to know. And I added the devicetree list to Cc, I wondered why the patch was not there and get_maintainers.pl proposed it.
+> 
+> Thanks for fixing this and greetings
+> Alex
+> 
+>> nicolas.ferre@microchip.com hat am 17.02.2021 12:38 geschrieben:
+>>
+>>  
+>> From: Claudiu Beznea <claudiu.beznea@microchip.com>
+>>
+>> Fix the phy address to 7 for Ethernet PHY on SAMA5D27 SOM1. No
+>> connection established if phy address 0 is used.
+>>
+>> The board uses the 24 pins version of the KSZ8081RNA part, KSZ8081RNA
+>> pin 16 REFCLK as PHYAD bit [2] has weak internal pull-down.  But at
+>> reset, connected to PD09 of the MPU it's connected with an internal
+>> pull-up forming PHYAD[2:0] = 7.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+>> Fixes: 2f61929eb10a ("ARM: dts: at91: at91-sama5d27_som1: fix PHY ID")
+>> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+>> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>> Cc: <stable@vger.kernel.org> # 4.14+
+>> ---
+>>  arch/arm/boot/dts/at91-sama5d27_som1.dtsi | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>> index 1b1163858b1d..e3251f3e3eaa 100644
+>> --- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>> +++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+>> @@ -84,8 +84,8 @@ macb0: ethernet@f8008000 {
+>>  				pinctrl-0 = <&pinctrl_macb0_default>;
+>>  				phy-mode = "rmii";
+>>  
+>> -				ethernet-phy@0 {
+>> -					reg = <0x0>;
+>> +				ethernet-phy@7 {
+>> +					reg = <0x7>;
+>>  					interrupt-parent = <&pioA>;
+>>  					interrupts = <PIN_PD31 IRQ_TYPE_LEVEL_LOW>;
+>>  					pinctrl-names = "default";
+>> -- 
+>> 2.30.0
+>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
