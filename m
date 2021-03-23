@@ -2,89 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1CD346ACF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 22:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0FAA346AD7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 22:11:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233461AbhCWVJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 17:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbhCWVIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 17:08:37 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DD2C061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:37 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id a11so16088771qto.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fGp9OGhSFYep+wgICuctJHe6AunYvp6GoDFbNEb/8TM=;
-        b=j+5PaN95fKfswhdgD662vrvF8rN4CfNwG0kwHV81OlkvM8XS2H8sc20+r4YTghNet/
-         V0wWg+nF1W9hUBEZeCgYjjcdqHm1Fy539xa2f7uEmeWZ7IkAJ/1lPspWn7yLuI81nwHf
-         o3jILhpzIInb7kSAYo3jc2GypXixenKdS/mqU=
+        id S233486AbhCWVLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 17:11:08 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:38790 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233422AbhCWVKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 17:10:38 -0400
+Received: by mail-io1-f49.google.com with SMTP id e8so19267466iok.5;
+        Tue, 23 Mar 2021 14:10:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fGp9OGhSFYep+wgICuctJHe6AunYvp6GoDFbNEb/8TM=;
-        b=CSpNiGck+nZgBvYW36OAAU/xcXh4V2EPMYQbS9P6Sc1xZ0B/yFYPaEVxltrg6SXa0G
-         Pb0TCnkXUo8QkWfU2yP7c6GQ4D/tcG3KNjXTwYey1hFnZCK9D1CUEXDT1fi3yoek6Amk
-         HrH37Hkx8MXzYkKK//5yYfljULhBADt/vlCfI9Ln/3cDSnNcqa04AKXQ7GdJslb9q2Cq
-         oUPvjq98PDtzxwD4A9vWD9FpuyrAtCP+Luhcpn2G3UNMKQxxwnbfgNR+1QfmNv52MbDc
-         hWH0KEY+VsLRg1kYnnvwy28NIc/BwfaajOyAjuTCjZPQVxnX2139DpApQhJy446iqiWv
-         VmNg==
-X-Gm-Message-State: AOAM530R6Tf2kMzkiqdv9sBBYktHStkJ3A70ZGOh0Y8XHD4tsGt6rbpd
-        IklYXGAut6CEygAzjBmgkafVhvbqr5f7jg==
-X-Google-Smtp-Source: ABdhPJyLJK9ZlWLqe5wxKVIZB7Yy9bqp8pjM+Fa2YkQ+HfHfRwUA4qe1ySmFzE6ntIDWypIUxwp8Qg==
-X-Received: by 2002:ac8:6c3b:: with SMTP id k27mr249929qtu.354.1616533715882;
-        Tue, 23 Mar 2021 14:08:35 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id r35sm48612qtd.95.2021.03.23.14.08.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 14:08:35 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id x189so4498251ybg.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 14:08:34 -0700 (PDT)
-X-Received: by 2002:a25:b443:: with SMTP id c3mr300894ybg.32.1616533714574;
- Tue, 23 Mar 2021 14:08:34 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d5v+QZ+m+eAEAjjKWBWtWNR+M9eFWkJnF+zMMFTSdC4=;
+        b=Gen3eNakaN5R7nicASVX5ZTCNUFqxCbvZz3WouhBC8Y37lIfdSvxwIdUYYJldBVeUH
+         WeCstPQYPDHYQV8fEE3HxxWjwC4XiAGFSMupT8wOLIAlL46MZt/UQEmsW0hnzS/icjH+
+         FmpZ03tLr06c5rSNpFiaQGt7heJdXQ1t4OFZTB6F3d3s1vlm+SYAaRC8qMVcpwDvpIGa
+         B/isSRwTn7jNzkqzo21bNy178AMcCIDLyh9u9sUJqz+pRbhtIGuBhO3S91e0Zo4mcL8I
+         Wk4I6A6++gZZ3Y0BrMIHiJtsdaF0re2B4heAVG16J9HDRCrlkrU/FBX75SC7Ory4Flq7
+         bq5A==
+X-Gm-Message-State: AOAM531+VAoV/TtCX6cyJkRdEhTlJeXWzUTqCvBxsxqXaHmaY0JLhNaM
+        5v99PKlGjmKzNvlrmZqUiCXu9J4inA==
+X-Google-Smtp-Source: ABdhPJxT4j+C0gXVMrO6N6qd7p57V0ywq7ZBe3/M0oSPHIExCam+fvC++i2KrfSmw791jxXpQB8ujw==
+X-Received: by 2002:a02:7119:: with SMTP id n25mr17271jac.48.1616533837693;
+        Tue, 23 Mar 2021 14:10:37 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id q20sm23950ilj.56.2021.03.23.14.10.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Mar 2021 14:10:37 -0700 (PDT)
+Received: (nullmailer pid 1329565 invoked by uid 1000);
+        Tue, 23 Mar 2021 21:10:35 -0000
+Date:   Tue, 23 Mar 2021 15:10:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wsa@kernel.org" <wsa@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
+Message-ID: <20210323211035.GA1326908@robh.at.kernel.org>
+References: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz>
+ <20210323043331.21878-3-chris.packham@alliedtelesis.co.nz>
+ <1616530607.398955.1244764.nullmailer@robh.at.kernel.org>
+ <f5e86696-07f1-f1d2-9596-af7fa6ae1cdd@alliedtelesis.co.nz>
 MIME-Version: 1.0
-References: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com> <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 23 Mar 2021 14:08:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xak21bi5zcoKv9o7aLcJpWsm67U9NzYZ6zJD+UnOOtfw@mail.gmail.com>
-Message-ID: <CAD=FV=Xak21bi5zcoKv9o7aLcJpWsm67U9NzYZ6zJD+UnOOtfw@mail.gmail.com>
-Subject: Re: [RFC PATCH 01/11] dt-bindings: drm/bridge: ti-sn65dsi8: Make
- enable GPIO optional
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f5e86696-07f1-f1d2-9596-af7fa6ae1cdd@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Mar 23, 2021 at 08:22:00PM +0000, Chris Packham wrote:
+> Hi Rob,
+> 
+> On 24/03/21 9:16 am, Rob Herring wrote:
+> > On Tue, 23 Mar 2021 17:33:27 +1300, Chris Packham wrote:
+> >> Convert i2c-mpc to YAML.
+> >>
+> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >> ---
+> >>   .../devicetree/bindings/i2c/i2c-mpc.txt       | 62 ------------
+> >>   .../devicetree/bindings/i2c/i2c-mpc.yaml      | 99 +++++++++++++++++++
+> >>   2 files changed, 99 insertions(+), 62 deletions(-)
+> >>   delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.txt
+> >>   create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+> >>
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/i2c/i2c-mpc.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> > ./Documentation/devicetree/bindings/i2c/i2c-mpc.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+> Hmm I did run 'make dt_binding_check' is yamllint run separately (or not 
+> run if it's not installed?).
 
-On Sun, Mar 21, 2021 at 8:02 PM Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
->
-> The SN65DSI86 EN pin can be hardwired to a high level, or connected to a
-> global reset signal, not controllable by the kernel. Make it optional in
-> those cases.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml         | 1 -
->  1 file changed, 1 deletion(-)
+No and yes...
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > dtschema/dtc warnings/errors:
+> >
+> > See https://patchwork.ozlabs.org/patch/1457053
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+
+^^^^^
+
+> >
+> > pip3 install dtschema --upgrade
+> >
+> > Please check and re-submit.
+> Should be easy to fix the binding but I'll spend a bit of time trying to 
+> get my tooling sorted.
