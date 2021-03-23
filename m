@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F1F3456BE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 05:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 379B73456D8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 05:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbhCWE2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 00:28:22 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:9581 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229560AbhCWE2E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 00:28:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1616473685;
-  x=1648009685;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=DoZBedXlsVXxp9TK78nJgsu4jYFzEXmWx4rX2mAkAxk=;
-  b=KLBhp4eC+TjuzGVwmoiWKklgg9HxuAJybNoqCjGnXcuwCZw4IKkIMxj4
-   VHrciekr66YmersEFHbQXakQqGP0XQ+Boqy36jc6zyhAQQ4uJFLQtPgQ4
-   b02Zqd5nQ7QHtyM+yXuqOSwOVGpLWpNW6fbbeU357CgJk1d6QXMBtssK2
-   1ajDWsAyLb8wRm9voR29Iygb3Qe6BQ+5x8AxNRj8JBOY4mh9hPlVVyTVo
-   0cuodEQU8x/iJkTj1RKp9QOIZgAjHkmQLhdX2QjfvkOM5L9o/zCD/SqDp
-   86VIV1XiXT9A2zUD9F6b+PEBhBkYkIJH8m+d1+xykvY8XS+ZL0b7gL3GQ
-   w==;
-From:   Hermes Zhang <Hermes.Zhang@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@axis.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Subject: RE: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
-Thread-Topic: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
-Thread-Index: AQHXHvxgm+r+aZrBek+AmH3Nb8cHlKqQNY0AgAC2GSA=
-Date:   Tue, 23 Mar 2021 04:27:57 +0000
-Message-ID: <424d3de97a154c6a9580f27347882413@XBOX01.axis.com>
-References: <20210322091819.29119-1-chenhui.zhang@axis.com>
- <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S229622AbhCWEe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 00:34:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33478 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229592AbhCWEdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 00:33:54 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35919C061765
+        for <devicetree@vger.kernel.org>; Mon, 22 Mar 2021 21:33:53 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B47C58365A;
+        Tue, 23 Mar 2021 17:33:47 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1616474027;
+        bh=WNE1jzoHayASoTWR0UMgInhsS9UPRGat+farEX1wxCQ=;
+        h=From:To:Cc:Subject:Date;
+        b=slF1YQhtAtAT4XMs4NHGtL/OY5K4dl79AMFg3D5LOUNyD/wfMYRs7Xg3++71cXEpZ
+         Xt3IX1EsppZJUNVjn2gi0QAdt2Ul+gzGW0/6Nf0pjsWHDvyOV/G5FIYD+Qcuaftiyo
+         cdQdaiayrv0P5c570ksckBTAVq6g3EzvFmW/kabbzEfbEoemhxAVbeQ+yoEX/36DXW
+         sAQFWNNVL/WJe434iVZQgNwiRHzPZUKf+gALeHtPr90c+nuqIEmS3V7w9TAMZ/WIsy
+         oRVMp9OIYzkdHRndUMkBha2DnSFORh7/c75vLrnIRG+aJOQE0c/MWACQ2V3Vwux4YB
+         eS3RS7W1yZjPw==
+Received: from smtp (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B60596fab0000>; Tue, 23 Mar 2021 17:33:47 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id 212F713EED4;
+        Tue, 23 Mar 2021 17:34:03 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 9207128409A; Tue, 23 Mar 2021 17:33:47 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, linux@roeck-us.net, wsa@kernel.org,
+        jdelvare@suse.com
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/6] i2c: mpc: Refactor to improve responsiveness
+Date:   Tue, 23 Mar 2021 17:33:25 +1300
+Message-Id: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=dESyimp9J3IA:10 a=ao_VAR3SBByvQXh7kj8A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyA8cm9iaEBr
-ZXJuZWwub3JnPg0KPiBTZW50OiAyMDIxxOoz1MIyM8jVIDE6MzgNCj4gTXkgYm90IGZvdW5kIGVy
-cm9ycyBydW5uaW5nICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIG9uIHlvdXIgcGF0Y2g6DQo+IA0K
-PiB5YW1sbGludCB3YXJuaW5ncy9lcnJvcnM6DQo+IA0KPiBkdHNjaGVtYS9kdGMgd2FybmluZ3Mv
-ZXJyb3JzOg0KPiAvYnVpbGRzL3JvYmhlcnJpbmcvbGludXgtZHQtDQo+IHJldmlldy9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLW11bHRpLQ0KPiBncGlvLmV4YW1w
-bGUuZHQueWFtbDogZ3Bpb3MtbGVkOiBsZWQtc3RhdGVzOiAnb25lT2YnIGNvbmRpdGlvbmFsIGZh
-aWxlZCwgb25lDQo+IG11c3QgYmUgZml4ZWQ6DQo+IAlbWzAsIDEsIDIsIDNdXSBpcyB0b28gc2hv
-cnQNCj4gCVswLCAxLCAyLCAzXSBpcyB0b28gbG9uZw0KPiAJRnJvbSBzY2hlbWE6IC9idWlsZHMv
-cm9iaGVycmluZy9saW51eC1kdC0NCj4gcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9sZWRzL2xlZHMtbXVsdGktZ3Bpby55YW1sDQo+IA0KDQpIaSBSb2IsDQoNClRoYW5r
-cy4gWWVzLCBub3cgSSBjYW4gc2VlIHRoZSB3YXJuaW5nLCBidXQgSSBjb3VsZCBub3QgdW5kZXJz
-dGFuZCB3aGF0IHdhcyB3cm9uZz8gQ291bGQgeW91IGdpdmUgc29tZSBoaW50PyANCg0KQmVzdCBS
-ZWdhcmRzLA0KSGVybWVzDQo=
+The "meat" of this series is in the last patch which is the change that
+actually starts making use of the interrupts to drive a state machine.
+The dt-bindings patches can probably go in at any time. The rest of the
+series isn't dependent on them.
+
+I've tested it on a T2081 based system with a number of i2c and smbus
+devices.  Its the end of my work day so I figured I'd get this out now
+but I'll do some more testing on a P2041 board and a few different i2c
+devices tomorrow.
+
+Chris Packham (6):
+  dt-bindings: i2c-mpc: Document interrupt property as required
+  dt-bindings: i2c: convert i2c-mpc to json-schema
+  i2c: mpc: Make use of i2c_recover_bus()
+  i2c: mpc: make interrupt mandatory and remove polling code
+  i2c: mpc: use device managed APIs
+  i2c: mpc: Interrupt driven transfer
+
+ .../devicetree/bindings/i2c/i2c-mpc.txt       |  62 ---
+ .../devicetree/bindings/i2c/i2c-mpc.yaml      |  99 ++++
+ drivers/i2c/busses/i2c-mpc.c                  | 513 ++++++++++--------
+ 3 files changed, 373 insertions(+), 301 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+
+--=20
+2.30.2
+
