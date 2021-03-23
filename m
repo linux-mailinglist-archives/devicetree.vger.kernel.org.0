@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6BA346D4F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09A39346D55
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233915AbhCWWix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 18:38:53 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:45623 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233652AbhCWWiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:38:25 -0400
-Received: by mail-il1-f169.google.com with SMTP id v3so19664826ilj.12;
-        Tue, 23 Mar 2021 15:38:25 -0700 (PDT)
+        id S233998AbhCWWj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 18:39:27 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:40914 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233872AbhCWWjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:39:01 -0400
+Received: by mail-il1-f181.google.com with SMTP id c17so19676842ilj.7;
+        Tue, 23 Mar 2021 15:39:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=m3KU9ojkcc0Xo1iQNgnxQRVgpyEXyiLaxGNp9t3RWAs=;
-        b=Bxj20ifXx4ksaBGoijx9zT1Yp6AkmRkW4V5KBuPqAM3gbulloQsF75cUt9JbiVfTOv
-         N0pma4pVaMGOYOeimbqtvq8JHeFLUnaNaicqxlCG7QAcBpyOsuY+eQRXmsQIxnA0XDde
-         MhpvgLvhIr10Jpo4v8wHmETbmxxD6XlGE0Rsnx+AUB37hTxI7FC3PQdqAKlWL8AytlJx
-         uHI3PLboZIRLUtNrB+7lzQnc2V6tXOLviC7GnmEEoMN5T8VsH/vQm1nqcPr258tk3F5S
-         Garl3SXANdxZlO4UtJqqDYPIf3RWJU8YxmftPTUAH7HIKfqLqKnEwqMPzGZWga1ta/oJ
-         i1nw==
-X-Gm-Message-State: AOAM533xRjnAjkmGwNK1Fqvj/K7CD7vHC1CjSVsrWrfezoMKQE7m4w4O
-        z/PnCEcY/bvUMo+88CmfkIODgdOUAA==
-X-Google-Smtp-Source: ABdhPJwAEp/g8EW3zhRIlMs4bDjQqMp5SSZ/GzMzFmgnA7JOvlwtyJF4TANQsYYlTTs3fyak6xPTng==
-X-Received: by 2002:a92:d912:: with SMTP id s18mr340012iln.230.1616539104740;
-        Tue, 23 Mar 2021 15:38:24 -0700 (PDT)
+        bh=n93tRpc1y3Scz8NdK0KtJ25qrRXHPQSGSmrn+ERZczM=;
+        b=dGxmj0kg2myws0eLKZaeEQpbjQuh3Ye8AEMy6T3rQm782fq//6dj7EJb3msVxdWQOj
+         PNtw1fbFXPtEgY4kkiL3tnbmw9PRQs6bwz73Tney9CKVRktBpIqHpasd6RWncc4tjFZQ
+         GNVOkjbeimq0n0dYSTb9geE2y1yqpOdeVkJ3tqugzDyeXWqJ5BQQbELlkmY1cmKxNMiV
+         JRqud3LOtsIgULmLdLXc9jArbwLm68c2bXqANg/IhSXtqmfC18yLrPXkwhTgqXQ+97fZ
+         dhtIsyFcQoC05bBXLWqfwKonj5zBRoPBW4ivkHUFpRYVVz12WV5uv0AjLN9ECVFFKwQb
+         rnjA==
+X-Gm-Message-State: AOAM531Cdzolnn+C2qqfZYV+Y4jrteO/wsGmi4UaFkDmn/gsAvHjxLJe
+        YMwgCoBPAr9fcaE6L2FQlg==
+X-Google-Smtp-Source: ABdhPJzgolRS14HRNOPqMMa6E3INzfkwpnXF6U/WLIxqGlbxnOapNd4xCj65DnXpGVGvmnTY18CeVw==
+X-Received: by 2002:a05:6e02:1143:: with SMTP id o3mr374494ill.104.1616539140851;
+        Tue, 23 Mar 2021 15:39:00 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a14sm112381ilm.68.2021.03.23.15.38.22
+        by smtp.gmail.com with ESMTPSA id x6sm116569ioh.19.2021.03.23.15.38.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 15:38:23 -0700 (PDT)
-Received: (nullmailer pid 1475853 invoked by uid 1000);
-        Tue, 23 Mar 2021 22:38:21 -0000
-Date:   Tue, 23 Mar 2021 16:38:21 -0600
+        Tue, 23 Mar 2021 15:39:00 -0700 (PDT)
+Received: (nullmailer pid 1476934 invoked by uid 1000);
+        Tue, 23 Mar 2021 22:38:58 -0000
+Date:   Tue, 23 Mar 2021 16:38:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Prashant Gaikwad <pgaikwad@nvidia.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-clk@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Subject: Re: [PATCH v6 7/7] dt-bindings: clock: tegra: Convert to schema
-Message-ID: <20210323223821.GA1475819@robh.at.kernel.org>
-References: <20210320152648.8389-1-digetx@gmail.com>
- <20210320152648.8389-8-digetx@gmail.com>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     shawnguo@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, olof@lixom.net, festevam@gmail.com,
+        alistair23@gmail.com, linux-imx@nxp.com, arnd@arndb.de,
+        kernel@pengutronix.de, s.hauer@pengutronix.de
+Subject: Re: [PATCH v6 1/3] dt-bindings: Add vendor prefix for reMarkable
+Message-ID: <20210323223858.GA1476900@robh.at.kernel.org>
+References: <20210322130928.132-1-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210320152648.8389-8-digetx@gmail.com>
+In-Reply-To: <20210322130928.132-1-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Mar 2021 18:26:48 +0300, Dmitry Osipenko wrote:
-> Convert NVIDIA Tegra clock bindings to schema.
+On Mon, 22 Mar 2021 09:09:25 -0400, Alistair Francis wrote:
+> reMarkable AS produces eInk tablets
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 > ---
->  .../bindings/clock/nvidia,tegra114-car.txt    |  63 ----------
->  .../bindings/clock/nvidia,tegra124-car.txt    | 107 ----------------
->  .../bindings/clock/nvidia,tegra124-car.yaml   | 115 ++++++++++++++++++
->  .../bindings/clock/nvidia,tegra20-car.txt     |  63 ----------
->  .../bindings/clock/nvidia,tegra20-car.yaml    |  69 +++++++++++
->  .../bindings/clock/nvidia,tegra210-car.txt    |  56 ---------
->  .../bindings/clock/nvidia,tegra30-car.txt     |  63 ----------
->  7 files changed, 184 insertions(+), 352 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra114-car.txt
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra210-car.txt
->  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra30-car.txt
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
