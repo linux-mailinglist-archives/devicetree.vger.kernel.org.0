@@ -2,124 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D87B6345A77
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:11:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50FA5345A80
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:13:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbhCWJLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 05:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbhCWJKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:10:55 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5519FC061756
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:10:55 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id l3so13657354pfc.7
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:10:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WbW5E3Qe4WZYEnKi/sCmjQ1D+Tk7jZ1l2FTPgjhfZMQ=;
-        b=yo8DL/aCSBDBcC0tqsQubEuqRWy6eLT5ir9zRrGsKjmyULNbNnccMqMnD7jmadxDw3
-         BGBok2NgqzzaR3uNkDmIajtKjfw1xjOqIJ/YLBW7GZNZbbv5CvEI9cgeue+5MtK4BpKN
-         S1arzGTW1r4QJhbOQlc9o3b2oa2Lw+Ahw1ZqH5D2F0AMxncx0PgX2TScKhHBj8o47wKQ
-         dADPkn6khGV+qRPCxXNv3qWXWtC0UTJPjxleX2xzunTLpcwnYPyR7WxEqEmzwO/kCH97
-         BvOa35YvQG7GVC9RhR+xBt2MsYZYMEWcBUIATnocN31bsvzJxFJWzKx+r42IA62GTkkc
-         BzvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WbW5E3Qe4WZYEnKi/sCmjQ1D+Tk7jZ1l2FTPgjhfZMQ=;
-        b=Ojb1aXGhY+Oi0hEkI0oMQ17yzQv90wuhKA3TGOWHnqukIW8ABVUFu3ZsHmWW++ZuiI
-         ArqcDk9DTgcWtZiun60V0YvTYUm4bUx7LD9opHOl2kT+JkdgsZUcVoIm5imMh0V6bwn8
-         XZBXlF6lU4vR/hRBdy2RL8iCRhRSLg6bibUp9D2eXpj52hGNqfhDj5ig8TV2iASsyfvX
-         j013IFkzZB8hHiKTx//sFLXkwJbKyDt/G7AlMwi1zlm7e/wYAMYLAp4rVRjSamCvNimn
-         GGuIze/L5PUCAk4QMRUYBxMVmshPOBc5QOZiOD1qX3uWCaC/aMzPX3NhCpjuHOlbRjXH
-         /YiQ==
-X-Gm-Message-State: AOAM532fRz4gWAhsxfYcg4t+u5dlUo6hJGZTGJB7iyzgPwIypTp2KEmX
-        jAmSIBZiWCTUUXMPINX68DVe4b18AKbh5tdctRVnLA==
-X-Google-Smtp-Source: ABdhPJxIS20E4tfWyNlD9+niQr2Ru+nuZgsxwL8HvALaLQyatNmIeXyoZrtnqaDhRUCxdvIm1IRm+HpRgaUET82BHa4=
-X-Received: by 2002:a63:ee4b:: with SMTP id n11mr3235216pgk.265.1616490654726;
- Tue, 23 Mar 2021 02:10:54 -0700 (PDT)
+        id S230032AbhCWJNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 05:13:02 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:60632 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229920AbhCWJMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:12:52 -0400
+Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
+        by sparta.prtnl (Postfix) with ESMTP id 8F1CE44A022C;
+        Tue, 23 Mar 2021 10:12:50 +0100 (CET)
 MIME-Version: 1.0
-References: <20210308120555.252524-1-adrien.grassein@gmail.com> <20210308120555.252524-3-adrien.grassein@gmail.com>
-In-Reply-To: <20210308120555.252524-3-adrien.grassein@gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 23 Mar 2021 10:10:43 +0100
-Message-ID: <CAG3jFytoE9hWvq2e2Caqn4qP_RuEOnm4r9VQ85ffbAcguSLf+w@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] drm/bridge: Introduce LT8912B DSI to HDMI bridge
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Date:   Tue, 23 Mar 2021 10:12:50 +0100
+From:   robin <robin@protonic.nl>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/17] dt-bindings: auxdisplay: ht16k33: Document Adafruit
+ segment displays
+Reply-To: robin@protonic.nl
+In-Reply-To: <20210322144848.1065067-3-geert@linux-m68k.org>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-3-geert@linux-m68k.org>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <fb42abb0e79a57e2aab123468d95ff7e@protonic.nl>
+X-Sender: robin@protonic.nl
+Organization: Protonic Holland
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Adrien,
-
-Sorry about the slow reply, but I just received the documentation from
-the vendor. So let's dig in to the HPD issue.
-
-> +static enum drm_connector_status lt8912_check_cable_status(struct lt8912 *lt)
-> +{
-> +       int ret;
-> +       unsigned int reg_val;
+On 2021-03-22 15:48, Geert Uytterhoeven wrote:
+> The Holtek HT16K33 LED controller is not only used for driving
+> dot-matrix displays, but also for driving segment displays.
+> 
+> Document compatible values for the Adafruit 7-segment[1] and
+> 14-segment[2] FeatherWing expansion boards with red displays.  
+> According
+> to the schematics, all other Adafruit 7-segment and 14-segment display
+> backpack and FeatherWing expansion boards (including bare boards and
+> boards fitted with displays) are compatible with these two boards.
+> Add a "color" property to support the different color variants.
+> 
+> [1] https://www.adafruit.com/product/3108
+> [2] https://www.adafruit.com/product/3130
+> 
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+> Alternatives I considered:
+>   1. Document the attached display type in a child node.
+>      I.e. specify segment type, number of characters, and wiring.
+>      Especially the latter would become really complex, due to the 
+> sheer
+>      amount of possible wiring combinations.
+>      Using this method, you also loose the ability to just connect a
+>      display to an i2c bus, and instantiate the device from sysfs,
+>      without using DT:
+> 
+> 	echo adafruit,3130 0x70 > /sys/class/i2c/i2c-adapter/.../new_device
+> 
+>   2. Do not use the "color" property, but document all Adafruit
+>      7-segment and 14-segment display backpack and FeatherWing 
+> expansion
+>      boards.
+>      This would lead to a myriad of compatible values:
+> 
+>       - items:
+> 	  - enum:
+> 	      - adafruit,878      # 0.56" 4-Digit 7-Segment Display Backpack 
+> (Red)
+> 	      - adafruit,879      # 0.56" 4-Digit 7-Segment Display Backpack 
+> (Yellow)
+> 	      - adafruit,880      # 0.56" 4-Digit 7-Segment Display Backpack 
+> (Green)
+> 	      - adafruit,881      # 0.56" 4-Digit 7-Segment Display Backpack 
+> (Blue)
+> 	      - adafruit,1002     # 0.56" 4-Digit 7-Segment Display Backpack 
+> (White)
+> 	  - const: adafruit,877   # 0.56" 4-Digit 7-Segment Backpack
+> 	  - const: holtek,ht16k33
+> 
+>       - items:
+> 	  - enum:
+> 	      - adafruit,1268     # 1.2" 4-Digit 7-Segment Display Backpack 
+> (Green)
+> 	      - adafruit,1269     # 1.2" 4-Digit 7-Segment Display Backpack 
+> (Yellow)
+> 	      - adafruit,1270     # 1.2" 4-Digit 7-Segment Display Backpack 
+> (Red)
+> 	  - const: adafruit,1271  # 1.2" 4-Digit 7-Segment Backpack
+> 	  - const: holtek,ht16k33
+> 
+>       - items:
+> 	  - enum:
+> 	      - adafruit,1911     # 0.54" Quad Alphanumeric Display Backpack 
+> (Red)
+> 	      - adafruit,1912     # 0.54" Quad Alphanumeric Display Backpack 
+> (Blue)
+> 	      - adafruit,2157     # 0.54" Quad Alphanumeric Display Backpack 
+> (White)
+> 	      - adafruit,2158     # 0.54" Quad Alphanumeric Display Backpack 
+> (Yellow)
+> 	      - adafruit,2159     # 0.54" Quad Alphanumeric Display Backpack
+> (Yellow-Green)
+> 	      - adafruit,2160     # 0.54" Quad Alphanumeric Display Backpack 
+> (Green)
+> 	  - const: adafruit,1910  # 0.54" Quad 14-segment Alphanumeric 
+> Backpack
+> 	  - const: holtek,ht16k33
+> 
+>       - items:
+> 	  - enum:
+> 	      - adafruit,3106     # 0.56" 4-Digit 7-Segment FeatherWing 
+> Display (Blue)
+> 	      - adafruit,3107     # 0.56" 4-Digit 7-Segment FeatherWing 
+> Display (Green)
+> 	      - adafruit,3108     # 0.56" 4-Digit 7-Segment FeatherWing 
+> Display (Red)
+> 	      - adafruit,3109     # 0.56" 4-Digit 7-Segment FeatherWing 
+> Display (White)
+> 	      - adafruit,3110     # 0.56" 4-Digit 7-Segment FeatherWing
+> Display (Yellow)
+> 	  - const: adafruit,3088  # 0.56" 4-Digit 7-Segment FeatherWing
+> 	  - const: holtek,ht16k33
+> 
+>       - items:
+> 	  - enum:
+> 	      - adafruit,3127     # 0.54" Quad Alphanumeric FeatherWing 
+> Display (White)
+> 	      - adafruit,3128     # 0.54" Quad Alphanumeric FeatherWing 
+> Display (Blue)
+> 	      - adafruit,3129     # 0.54" Quad Alphanumeric FeatherWing 
+> Display (Green)
+> 	      - adafruit,3130     # 0.54" Quad Alphanumeric FeatherWing 
+> Display (Red)
+> 	      - adafruit,3131     # 0.54" Quad Alphanumeric FeatherWing
+> Display (Yellow)
+> 	      - adafruit,3132     # 0.54" Quad Alphanumeric FeatherWing
+> Display (Yellow-Green)
+> 	  - const: adafruit,3089  # 0.54" Quad 14-segment Alphanumeric 
+> FeatherWing
+> 	  - const: holtek,ht16k33
+> ---
+>  .../bindings/auxdisplay/holtek,ht16k33.yaml   | 22 ++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> index 64ffff460026040f..4380a5177a67d2e2 100644
+> --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> @@ -14,14 +14,23 @@ allOf:
+> 
+>  properties:
+>    compatible:
+> -    const: holtek,ht16k33
+> +    oneOf:
+> +      - items:
+> +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment
+> FeatherWing Display (Red)
+> +          - const: holtek,ht16k33
 > +
-> +       ret = regmap_read(lt->regmap[I2C_MAIN], 0xC1, &reg_val);
-> +       if (ret)
-> +               return connector_status_unknown;
+> +      - items:
+> +          - const: adafruit,3130  # 0.54" Quad Alphanumeric
+> FeatherWing Display (Red)
+> +          - const: holtek,ht16k33
 > +
-> +       if (reg_val & BIT(7))
-> +               return connector_status_connected;
+> +      - const: holtek,ht16k33     # Generic 16*8 LED controller with
+> dot-matrix display
+> 
+>    reg:
+>      maxItems: 1
+> 
+>    refresh-rate-hz:
+>      maxItems: 1
+> -    description: Display update interval in Hertz
+> +    description: Display update interval in Hertz for dot-matrix 
+> displays
 
-Register 0xc0 & BIT(7) - HPD signal after debounce
-Register 0xc0 & BIT(6) - HPD signal for TX HPD pad
+The above should be included in patch 16
 
+> 
+>    interrupts:
+>      maxItems: 1
+> @@ -41,10 +50,17 @@ properties:
+>      default: 16
+>      description: Initial brightness level
+> 
+> +  color: true
+> +    description:
+> +      Color of the display.  Use one of the LED_COLOR_ID_* prefixed 
+> definitions
+> +      from the header include/dt-bindings/leds/common.h.  The default 
+> is red.
+> +    minimum: 0
+> +    maximum: 9
+> +    default: 1
 > +
-> +static int lt8912_probe(struct i2c_client *client,
-> +        const struct i2c_device_id *id)
-> +{
-> +       static struct lt8912 *lt;
-> +       int ret = 0;
-> +       struct device *dev = &client->dev;
-> +
-> +       lt = devm_kzalloc(dev, sizeof(struct lt8912), GFP_KERNEL);
-> +       if (!lt)
-> +               return -ENOMEM;
-> +
-> +       lt->dev = dev;
-> +       lt->i2c_client[0] = client;
-> +       lt->cable_status = connector_status_unknown;
-> +       lt->workq = create_workqueue("lt8912_workq");
 
-Looking at [1] and maybe even better [2], I think this polling
-approach is the wrong way to go. And with access to documentation, I
-think we should be able to sort this out.
+The above should be included in patch 17
 
-Using the irq driver approach requires the interrupt pin to be
-configured. Pin 63 of the lt8912b is the IRQ output pin.
+>  required:
+>    - compatible
+>    - reg
+> -  - refresh-rate-hz
 
-In order to trigger interrupts based on it, the dt-binding would need
-to be updated[3][4] as well as whichever DTS you're using.
+'refresh-rate-hz' is still a required property for the dot-matrix / 
+fbdev setup.
+If it can no longer be listed here than maybe its nice to mention that 
+it's required
+somewhere else (in it's description?).
+Rob?
 
+Groetjes / Kind regards,
 
-[1] https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/analogix/anx7625.c#L1751
-
-[2] https://github.com/torvalds/linux/blob/v5.11/drivers/gpu/drm/bridge/lontium-lt9611.c#L1160
-
-[3] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml#L27
-
-[4] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml#L144
+Robin van der Gracht
