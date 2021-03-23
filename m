@@ -2,121 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 663CE345DB2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 13:08:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B25D6345DBF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 13:10:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbhCWMIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 08:08:04 -0400
-Received: from foss.arm.com ([217.140.110.172]:45242 "EHLO foss.arm.com"
+        id S231249AbhCWMJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 08:09:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59246 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230385AbhCWMHm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 08:07:42 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0B75E106F;
-        Tue, 23 Mar 2021 05:07:42 -0700 (PDT)
-Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 795323F719;
-        Tue, 23 Mar 2021 05:07:40 -0700 (PDT)
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-        mathieu.poirier@linaro.org, mike.leach@linaro.org,
-        leo.yan@linaro.org, anshuman.khandual@arm.com, maz@kernel.org,
-        catalin.marinas@arm.com, Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 19/19] dts: bindings: Document device tree bindings for Arm TRBE
-Date:   Tue, 23 Mar 2021 12:06:47 +0000
-Message-Id: <20210323120647.454211-20-suzuki.poulose@arm.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20210323120647.454211-1-suzuki.poulose@arm.com>
-References: <20210323120647.454211-1-suzuki.poulose@arm.com>
+        id S230158AbhCWMJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 08:09:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E39C261974;
+        Tue, 23 Mar 2021 12:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1616501344;
+        bh=Z0GUuCwYtJE2IfROw879wG5LQDJyC8bAIhRxjCk4ySE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yoZpw+w30p1X4TXfFM8HDAqFwNb92YcB6rOt45QPr70NWjCRkQ5qUahii0W9848Ja
+         wcNqOILUSmiU+F0XDrJOUfNh08d0RMu3O7RDI3m3NM0KwEbX9lD48YOeD7GN1veXZ5
+         p/a7WIhyG2ncQChCfs4D2Zotg6j37VtgaG3fpoUE=
+Date:   Tue, 23 Mar 2021 13:09:02 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v5 2/4] usb: dwc3: host: Add suspend_quirk for dwc3 host
+Message-ID: <YFnaXj2DAbz4jWbQ@kroah.com>
+References: <1616434280-32635-1-git-send-email-sanm@codeaurora.org>
+ <1616434280-32635-3-git-send-email-sanm@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1616434280-32635-3-git-send-email-sanm@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the device tree bindings for Trace Buffer Extension (TRBE).
+On Mon, Mar 22, 2021 at 11:01:18PM +0530, Sandeep Maheswaram wrote:
+> Adding suspend quirk function for dwc3 host which will be called
+> during xhci suspend.
 
-Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
----
- .../devicetree/bindings/arm/trbe.yaml         | 49 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
+What does xhci have to do with this?
 
-diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml b/Documentation/devicetree/bindings/arm/trbe.yaml
-new file mode 100644
-index 000000000000..4402d7bfd1fc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/trbe.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# Copyright 2021, Arm Ltd
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/arm/trbe.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: ARM Trace Buffer Extensions
-+
-+maintainers:
-+  - Anshuman Khandual <anshuman.khandual@arm.com>
-+
-+description: |
-+  Arm Trace Buffer Extension (TRBE) is a per CPU component
-+  for storing trace generated on the CPU to memory. It is
-+  accessed via CPU system registers. The software can verify
-+  if it is permitted to use the component by checking the
-+  TRBIDR register.
-+
-+properties:
-+  $nodename:
-+    const: "trbe"
-+  compatible:
-+    items:
-+      - const: arm,trace-buffer-extension
-+
-+  interrupts:
-+    description: |
-+       Exactly 1 PPI must be listed. For heterogeneous systems where
-+       TRBE is only supported on a subset of the CPUs, please consult
-+       the arm,gic-v3 binding for details on describing a PPI partition.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+
-+  - |
-+   #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+   trbe {
-+     compatible = "arm,trace-buffer-extension";
-+     interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+   };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3454ed1011c8..fbe863456ed1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1762,6 +1762,7 @@ F:	Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt
- F:	Documentation/devicetree/bindings/arm/coresight-cti.yaml
- F:	Documentation/devicetree/bindings/arm/coresight.txt
- F:	Documentation/devicetree/bindings/arm/ete.yaml
-+F:	Documentation/devicetree/bindings/arm/trbe.yaml
- F:	Documentation/trace/coresight/*
- F:	drivers/hwtracing/coresight/*
- F:	include/dt-bindings/arm/coresight-cti-dt.h
--- 
-2.24.1
+And where is the user of this quirk function in this series?
 
+> Setting hs_phy_mode, ss_phy_mode , phy_power_off flags and phy mode
+> during host suspend.
+> 
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> ---
+>  drivers/usb/dwc3/core.h |  3 +++
+>  drivers/usb/dwc3/host.c | 58 +++++++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 61 insertions(+)
+> 
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index ce6bd84..f05546c 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -1113,6 +1113,9 @@ struct dwc3 {
+>  
+>  	bool			phys_ready;
+>  
+> +	unsigned int            hs_phy_mode;
+> +	bool			phy_power_off;
+> +
+>  	struct ulpi		*ulpi;
+>  	bool			ulpi_ready;
+>  
+> diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
+> index f29a264..3db042c 100644
+> --- a/drivers/usb/dwc3/host.c
+> +++ b/drivers/usb/dwc3/host.c
+> @@ -11,6 +11,13 @@
+>  #include <linux/platform_device.h>
+>  
+>  #include "core.h"
+> +#include "../host/xhci.h"
+> +#include "../host/xhci-plat.h"
+
+Hah, really?
+
+> +int xhci_dwc3_suspend_quirk(struct usb_hcd *hcd);
+
+Didn't checkpatch complain about this?
+
+Put function prototypes in .h files please, this isn't the 1980's...
+
+thanks,
+
+greg k-h
