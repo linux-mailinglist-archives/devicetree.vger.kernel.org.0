@@ -2,154 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE55345B93
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C060345BAC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 11:09:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbhCWKBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 06:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbhCWKBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:01:24 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDC9C061574;
-        Tue, 23 Mar 2021 03:01:24 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id kt15so16576085ejb.12;
-        Tue, 23 Mar 2021 03:01:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=nj4YcCb7xjYVbxlcwxxDQrqQ71mTXMPHZgfWFiKufYI=;
-        b=Vwnf9gIIyfDs4RawhTaywxnMirJTfyjnqOrLX2NEQ3rhT8n/yMvtszcac60vbIREjo
-         poQKz2Y604m2WZTdvoRefkvHJ9O9DZ9kE2CFeeBKpVDVEsZePKSyoSWvJr6d04m3wgDJ
-         8JIcCxyYxl7mC0dfGVm7jUsibRu0Rgo4Q2JWBLgglZisNRE1IuUoaHSIHrCgaOw5JakA
-         K51rnUknIWtg7Ej5zEMMNboAB9llNqHQ15QMokSpR7X2Qyds8+j5GR7dtOnFnYxBI7JI
-         8BunhCHS571+8CkvdDjlRl10vsT7TGYENTq0E1m3T6fkW66BMO5W5n9tqQsLr8GSf2fU
-         3AMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=nj4YcCb7xjYVbxlcwxxDQrqQ71mTXMPHZgfWFiKufYI=;
-        b=czdMpBiNYDzAznsSpuulnWl3lchbiwxhhplmX/X9q3Q8eb6SK8WI/wP/6Mm8+bYh6F
-         tGrSy44FxdoHbdNqg9F+UNxe3hU8UX7BiCgSpmqBXqrQ1QRqzLNLyvyzFIcOM2XQaEKf
-         Z/prNn1cEFKRGYgaW5xGnLWPQ+tzk8Z+V2no2w0e+guY5usuzI+EqzzGRt8jfdW7eBn5
-         +aRZ56+RsFXHr7EvOA4m4ArP7hwkfbmadgYulSJFg47RPUiZZOuvBv7bT90LEeT74v0o
-         Fv+u9RYgDUvA6GLQsd2yonTqbOL022JgZXPNaM3ygUUtgxDdUZmHUa6vv16REWxgn8Sb
-         mQuA==
-X-Gm-Message-State: AOAM531xRnGZP9ygobrZee04AN/tnXPgbEdysP5uczkGQJH3niz/mc1b
-        dTf5dgYiBJeee/5zEWSFsAdU3L2+b+qagOG0QPk=
-X-Google-Smtp-Source: ABdhPJx0yvU4tb0BcWmW3MEpF/P3YjS9itwZH71QHOPG67k7RMfo5h3+ymT/wvQgYmGv6Vmbu15NqNphFtzHRPrl3kU=
-X-Received: by 2002:a17:906:a8a:: with SMTP id y10mr4250922ejf.288.1616493683238;
- Tue, 23 Mar 2021 03:01:23 -0700 (PDT)
+        id S229448AbhCWKIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 06:08:31 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:32902 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229693AbhCWKIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 06:08:17 -0400
+Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
+        by sparta.prtnl (Postfix) with ESMTP id 8611044A022C;
+        Tue, 23 Mar 2021 11:08:15 +0100 (CET)
 MIME-Version: 1.0
-References: <20210308120555.252524-1-adrien.grassein@gmail.com>
- <20210308120555.252524-3-adrien.grassein@gmail.com> <CAG3jFytoE9hWvq2e2Caqn4qP_RuEOnm4r9VQ85ffbAcguSLf+w@mail.gmail.com>
-In-Reply-To: <CAG3jFytoE9hWvq2e2Caqn4qP_RuEOnm4r9VQ85ffbAcguSLf+w@mail.gmail.com>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Tue, 23 Mar 2021 11:01:12 +0100
-Message-ID: <CABkfQAGvPy3DzXQnDJqm1q_rOLWR7BQTXb8z05iML3s3Mc8LJw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] drm/bridge: Introduce LT8912B DSI to HDMI bridge
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date:   Tue, 23 Mar 2021 11:08:15 +0100
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 17/17] auxdisplay: ht16k33: Add segment display LED
+ support
+Reply-To: robin@protonic.nl
+In-Reply-To: <20210322144848.1065067-18-geert@linux-m68k.org>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-18-geert@linux-m68k.org>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <543ec200931af3192541fef51bc8e96a@protonic.nl>
+X-Sender: robin@protonic.nl
+Organization: Protonic Holland
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Robert,
+On 2021-03-22 15:48, Geert Uytterhoeven wrote:
+> Instantiate a single LED for a segment display.  This allows the user 
+> to
+> control display brightness and blinking through the LED class API and
+> triggers, and exposes the display color.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+> For setting display brightness, this could use the existing backlight
+> support for frame buffer devices instantiated for dot-matrix displays.
+> However, using the leds subsystem instead has the advantage that the
+> driver can make use of the HT16K33's hardware blinking support, and can
+> expose the display color.
+> ---
+>  drivers/auxdisplay/ht16k33.c | 81 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 77 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/auxdisplay/ht16k33.c 
+> b/drivers/auxdisplay/ht16k33.c
+> index 0b502a6039f89c6b..5821addd9aec5633 100644
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -29,6 +29,7 @@
+>  #include <asm/unaligned.h>
+> 
+>  #include "line-display.h"
+> +#include "../leds/leds.h"		/* for led_colors[] */
+> 
+>  /* Registers */
+>  #define REG_SYSTEM_SETUP		0x20
+> @@ -36,6 +37,10 @@
+> 
+>  #define REG_DISPLAY_SETUP		0x80
+>  #define REG_DISPLAY_SETUP_ON		BIT(0)
+> +#define REG_DISPLAY_SETUP_BLINK_OFF	(0 << 1)
+> +#define REG_DISPLAY_SETUP_BLINK_2HZ	(1 << 1)
+> +#define REG_DISPLAY_SETUP_BLINK_1HZ	(2 << 1)
+> +#define REG_DISPLAY_SETUP_BLINK_0HZ5	(3 << 1)
+> 
+>  #define REG_ROWINT_SET			0xA0
+>  #define REG_ROWINT_SET_INT_EN		BIT(0)
+> @@ -57,6 +62,8 @@
+>  #define BYTES_PER_ROW		(HT16K33_MATRIX_LED_MAX_ROWS / 8)
+>  #define HT16K33_FB_SIZE		(HT16K33_MATRIX_LED_MAX_COLS * BYTES_PER_ROW)
+> 
+> +#define COLOR_DEFAULT		LED_COLOR_ID_RED
+> +
+>  enum display_type {
+>  	DISP_MATRIX = 0,
+>  	DISP_QUAD_7SEG,
+> @@ -85,6 +92,7 @@ struct ht16k33_fbdev {
+> 
+>  struct ht16k33_seg {
+>  	struct linedisp linedisp;
+> +	struct led_classdev led;
+>  	union {
+>  		struct seg7_conversion_map seg7;
+>  		struct seg14_conversion_map seg14;
+> @@ -102,6 +110,7 @@ struct ht16k33_priv {
+>  		struct ht16k33_seg seg;
+>  	};
+>  	enum display_type type;
+> +	uint8_t blink;
+>  };
+> 
+>  static const struct fb_fix_screeninfo ht16k33_fb_fix = {
+> @@ -160,7 +169,7 @@ static DEVICE_ATTR(map_seg14, 0644, map_seg_show,
+> map_seg_store);
+> 
+>  static int ht16k33_display_on(struct ht16k33_priv *priv)
+>  {
+> -	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
+> +	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON | 
+> priv->blink;
+> 
+>  	return i2c_smbus_write_byte(priv->client, data);
+>  }
+> @@ -175,8 +184,11 @@ static int ht16k33_brightness_set(struct
+> ht16k33_priv *priv,
+>  {
+>  	int error;
+> 
+> -	if (brightness == 0)
+> +	if (brightness == 0) {
+> +		// Disable blink mode
+> +		priv->blink = REG_DISPLAY_SETUP_BLINK_OFF;
+>  		return ht16k33_display_off(priv);
+> +	}
+> 
+>  	error = ht16k33_display_on(priv);
+>  	if (error)
+> @@ -186,6 +198,49 @@ static int ht16k33_brightness_set(struct
+> ht16k33_priv *priv,
+>  				    REG_BRIGHTNESS | (brightness - 1));
+>  }
+> 
+> +static int ht16k33_brightness_set_blocking(struct led_classdev 
+> *led_cdev,
+> +					   enum led_brightness brightness)
+> +{
+> +	struct ht16k33_priv *priv = container_of(led_cdev, struct 
+> ht16k33_priv,
+> +						 seg.led);
+> +
+> +	return ht16k33_brightness_set(priv, brightness);
+> +}
+> +
+> +static int ht16k33_blink_set(struct led_classdev *led_cdev,
+> +			     unsigned long *delay_on, unsigned long *delay_off)
+> +{
+> +	struct ht16k33_priv *priv = container_of(led_cdev, struct 
+> ht16k33_priv,
+> +						 seg.led);
+> +	unsigned int delay;
+> +	uint8_t blink;
+> +	int error;
+> +
+> +	if (!*delay_on && !*delay_off) {
+> +		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
+> +		delay = 1000;
+> +	} else if (*delay_on <= 750) {
+> +		blink = REG_DISPLAY_SETUP_BLINK_2HZ;
+> +		delay = 500;
+> +	} else if (*delay_on <= 1500) {
+> +		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
+> +		delay = 1000;
+> +	} else {
+> +		blink = REG_DISPLAY_SETUP_BLINK_0HZ5;
+> +		delay = 2000;
+> +	}
+> +
+> +	error = i2c_smbus_write_byte(priv->client,
+> +				     REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON |
+> +				     blink);
+> +	if (error)
+> +		return error;
+> +
+> +	priv->blink = blink;
+> +	*delay_on = *delay_off = delay;
+> +	return 0;
+> +}
+> +
+>  static void ht16k33_fb_queue(struct ht16k33_priv *priv)
+>  {
+>  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+> @@ -578,11 +633,29 @@ static int ht16k33_fbdev_probe(struct i2c_client 
+> *client,
+>  static int ht16k33_seg_probe(struct i2c_client *client,
+>  			     struct ht16k33_priv *priv, uint32_t brightness)
+>  {
+> -	struct ht16k33_seg *seg = &priv->seg;
+>  	struct device *dev = &client->dev;
+> +	struct device_node *node = dev->of_node;
+> +	struct ht16k33_seg *seg = &priv->seg;
+> +	u32 color = COLOR_DEFAULT;
+>  	int err;
+> 
+> -	err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
+> +	of_property_read_u32(node, "color", &color);
+> +	seg->led.name = devm_kasprintf(dev, GFP_KERNEL,
+> +			DRIVER_NAME ":%s:" LED_FUNCTION_BACKLIGHT,
+> +			color < LED_COLOR_ID_MAX ? led_colors[color] : "");
+> +	seg->led.brightness_set_blocking = ht16k33_brightness_set_blocking;
+> +	seg->led.blink_set = ht16k33_blink_set;
+> +	seg->led.flags = LED_CORE_SUSPENDRESUME;
+> +	seg->led.brightness = brightness;
+> +	seg->led.max_brightness = MAX_BRIGHTNESS;
+> +
+> +	err = devm_led_classdev_register(dev, &seg->led);
+> +	if (err) {
+> +		dev_err(dev, "Failed to register LED\n");
+> +		return err;
+> +	}
+> +
+> +	err = ht16k33_brightness_set(priv, seg->led.brightness);
+>  	if (err)
+>  		return err;
 
-Thanks for the update.
+The LED class can pretty much do what the backlight class can and more.
 
-Le mar. 23 mars 2021 =C3=A0 10:10, Robert Foss <robert.foss@linaro.org> a =
-=C3=A9crit :
->
-> Hey Adrien,
->
-> Sorry about the slow reply, but I just received the documentation from
-> the vendor. So let's dig in to the HPD issue.
+Maybe we can stop registering a backlight device in the fbdev case and
+register a led device for both. This makes the code cleaner and drops
+a dependency but will break backwards compatibility.
 
-No problem :)
->
-> > +static enum drm_connector_status lt8912_check_cable_status(struct lt89=
-12 *lt)
-> > +{
-> > +       int ret;
-> > +       unsigned int reg_val;
-> > +
-> > +       ret =3D regmap_read(lt->regmap[I2C_MAIN], 0xC1, &reg_val);
-> > +       if (ret)
-> > +               return connector_status_unknown;
-> > +
-> > +       if (reg_val & BIT(7))
-> > +               return connector_status_connected;
->
-> Register 0xc0 & BIT(7) - HPD signal after debounce
-> Register 0xc0 & BIT(6) - HPD signal for TX HPD pad
+I'd prefer a single solution that covers both use cases, but I'm not
+sure about the 'breaking backwards compatibility' consequence...
 
-So, if I understand well, I need to write 0xc0 & BIT(6) with 1 to
-enable the HPD pin.
->
-> > +
-> > +static int lt8912_probe(struct i2c_client *client,
-> > +        const struct i2c_device_id *id)
-> > +{
-> > +       static struct lt8912 *lt;
-> > +       int ret =3D 0;
-> > +       struct device *dev =3D &client->dev;
-> > +
-> > +       lt =3D devm_kzalloc(dev, sizeof(struct lt8912), GFP_KERNEL);
-> > +       if (!lt)
-> > +               return -ENOMEM;
-> > +
-> > +       lt->dev =3D dev;
-> > +       lt->i2c_client[0] =3D client;
-> > +       lt->cable_status =3D connector_status_unknown;
-> > +       lt->workq =3D create_workqueue("lt8912_workq");
->
-> Looking at [1] and maybe even better [2], I think this polling
-> approach is the wrong way to go. And with access to documentation, I
-> think we should be able to sort this out.
-
-I neither like the polling approach too. I did it to go on this issue.
-I will totally remove it once the HPD issue will be resolved.
->
-> Using the irq driver approach requires the interrupt pin to be
-> configured. Pin 63 of the lt8912b is the IRQ output pin.
->
-> In order to trigger interrupts based on it, the dt-binding would need
-> to be updated[3][4] as well as whichever DTS you're using.
->
-
-The IRQ part is working well in my DTB. It test it by adding some
-electronics to emulate the HPD pin on the GPIO expander where the HPD
-pin is linked.
-
->
-> [1] https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/=
-analogix/anx7625.c#L1751
->
-> [2] https://github.com/torvalds/linux/blob/v5.11/drivers/gpu/drm/bridge/l=
-ontium-lt9611.c#L1160
->
-> [3] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree=
-/bindings/display/bridge/lontium,lt9611.yaml#L27
->
-> [4] https://github.com/torvalds/linux/blob/v5.11/Documentation/devicetree=
-/bindings/display/bridge/lontium,lt9611.yaml#L144
-
-Thanks a lot,
-Adrien
+Groetjes / Kind regards,
+Robin van der Gracht
