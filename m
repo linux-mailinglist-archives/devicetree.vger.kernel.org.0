@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C903469B2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:17:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2DC63469BA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 21:21:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233320AbhCWURK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 16:17:10 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:33313 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233274AbhCWUQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:16:56 -0400
-Received: by mail-io1-f54.google.com with SMTP id n198so19105831iod.0;
-        Tue, 23 Mar 2021 13:16:56 -0700 (PDT)
+        id S231396AbhCWUUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 16:20:53 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:43974 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231293AbhCWUUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 16:20:24 -0400
+Received: by mail-io1-f51.google.com with SMTP id z136so19105504iof.10;
+        Tue, 23 Mar 2021 13:20:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=1j8kGtoUQfseUwnDLVw50cgb9xrn2aTuK5d8pgx2u2M=;
-        b=pd9ynP03rEopv+8XXFbKQJapgteyx0f863sDx8rUESsZoV1ZtFAAQykZWQkk/681ac
-         Gj/1OQRmog/aLMtVXSz6R4d6vd6IvjCji3ISL1xa8ZzE6Y8bzQYBNpni2+RkJrfU8wX5
-         nsvn/PMiEXtU1NYL+Gps97JD7DiRYDOOGtYQUXI/+btypvQn4NfngA/FmxtF/M2lyh66
-         0/8jsvBwfXYg2tNopMxnEqi491OHvVK3k8lstLj0cO8LmTQEVW8R+7Lt0ZqLYkOVzqmK
-         n8qLvjZ7ugwnFjTok0/5vwNmppZVMSaCy7GOgawHID1aHvFoiZ45FVdLEzyycZXScrz5
-         yoiQ==
-X-Gm-Message-State: AOAM533I+Qy3q98yXKuNAlNfOtIMAd+jSLOj2toNcFYsxerDh4OVoY8K
-        SmpZvz+uHuHDVcuoS/KufA==
-X-Google-Smtp-Source: ABdhPJzvec4H0WE9VzYEPuEyT4XGyKXjkOQpFHtGQ2GXQqoNh0Si9ptOh8gUJkx5LVJi13EgDQuoMg==
-X-Received: by 2002:a05:6638:d47:: with SMTP id d7mr6254564jak.2.1616530615703;
-        Tue, 23 Mar 2021 13:16:55 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9Tp80gy+0OkNwU5Jvc6Bj62i4jpwSRXTDIXhxrL5nq0=;
+        b=CMIcuRhT+iBuiRoxNvUOT8c+R/Kw4QVq8hF2yMMr7zNlFNqIyR0Fxh+5Ms4jpBXb0I
+         Vo/rWxSq4O9Qft/sg+8SX8tFiYV9J51hBctyMVOxnKa7ys5oD/FbEyqtccKmwYQRzVWX
+         k7jOVxDdPuA9LYzEwmjfZ8jG1wsJCaFmZMXpeKWYVkzMEA2LbYb0+L2BgBai619OBemX
+         y6LxWC/gGKfZYApsyHRdB+ClMgnjmffdn9JUAl55E4DvjxCAbrEF41mO2kDvsA7j7KDy
+         qYnRH1+uS7wc+3gjpSbBuD4yiEl1eoIxOUPrJrSMPrTLjRifnFNwGg2YyPTNcgzUfHGL
+         vzoQ==
+X-Gm-Message-State: AOAM531y95xRtkeb4SWdJHyBsF021adhHfEd5rRgz/tuRWY9zg9R860m
+        brBMm+vKvOMBnTHYwOaPIQ==
+X-Google-Smtp-Source: ABdhPJwiamQiJEfKQT0y+jbtus3lBMMGGCM3cCXWnYFJsj5T/y8a7/HZNP8JHP80rewyR1hKdB3KaQ==
+X-Received: by 2002:a5e:d901:: with SMTP id n1mr5947919iop.84.1616530823835;
+        Tue, 23 Mar 2021 13:20:23 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id z10sm122287ilm.19.2021.03.23.13.16.54
+        by smtp.gmail.com with ESMTPSA id f13sm9614313ila.51.2021.03.23.13.20.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 13:16:55 -0700 (PDT)
-Received: (nullmailer pid 1244765 invoked by uid 1000);
-        Tue, 23 Mar 2021 20:16:47 -0000
+        Tue, 23 Mar 2021 13:20:23 -0700 (PDT)
+Received: (nullmailer pid 1250413 invoked by uid 1000);
+        Tue, 23 Mar 2021 20:20:20 -0000
+Date:   Tue, 23 Mar 2021 14:20:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     linux-i2c@vger.kernel.org, robh+dt@kernel.org, linux@roeck-us.net,
-        wsa@kernel.org, jdelvare@suse.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20210323043331.21878-3-chris.packham@alliedtelesis.co.nz>
-References: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz> <20210323043331.21878-3-chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
-Date:   Tue, 23 Mar 2021 14:16:47 -0600
-Message-Id: <1616530607.398955.1244764.nullmailer@robh.at.kernel.org>
+To:     Michael Kao <michael.kao@mediatek.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        srv_heupstream@mediatek.com
+Subject: Re: [v3, 3/3] dt-bindings: thermal: Add binding document for mt6873
+ thermal controller
+Message-ID: <20210323202020.GA1250358@robh.at.kernel.org>
+References: <20210312034018.17437-1-michael.kao@mediatek.com>
+ <20210312034018.17437-4-michael.kao@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210312034018.17437-4-michael.kao@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Mar 2021 17:33:27 +1300, Chris Packham wrote:
-> Convert i2c-mpc to YAML.
+On Fri, 12 Mar 2021 11:40:18 +0800, Michael Kao wrote:
+> This patch adds binding document for mt6873 thermal controller.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
 > ---
->  .../devicetree/bindings/i2c/i2c-mpc.txt       | 62 ------------
->  .../devicetree/bindings/i2c/i2c-mpc.yaml      | 99 +++++++++++++++++++
->  2 files changed, 99 insertions(+), 62 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
+> This patch depends on [1].
+> 
+> [1]https://patchwork.kernel.org/project/linux-mediatek/cover/1608642587-15634-1-git-send-email-weiyi.lu@mediatek.com/
+> ---
+>  .../thermal/mediatek-thermal-lvts.yaml        | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal-lvts.yaml
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/i2c/i2c-mpc.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/i2c/i2c-mpc.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1457053
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
