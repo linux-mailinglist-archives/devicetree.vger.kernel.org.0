@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F90C3459F3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0493459FB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:44:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbhCWIj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 04:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
+        id S229504AbhCWIoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 04:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbhCWIju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 04:39:50 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20028C061756
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 01:39:39 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id l4so25673141ejc.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 01:39:39 -0700 (PDT)
+        with ESMTP id S229836AbhCWIoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 04:44:07 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47F0C061756
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 01:44:06 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id w3so25715004ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 01:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=vOdKWnp3rkpIGMt87ZNlf2cZf53/gDQXm8BtihNuwrY=;
-        b=awC7OJCja/vDjs8UM3Q2cV7cH4nuw99ReUsihpNF+0rbb/GYsXuZl+yoz8gQu8xn4B
-         hTALcZCKLmRhR6rGBx5oe19l9xnWJ31Ch53+rY2CpZSSvH55LYyJp+91113PSVJNIS00
-         yFWPcW99/D9lZFnQZlpOHcfmEI5dxY6BBarjNauuYBRpKnAvbIeobKullrS6/F+GabEX
-         RLIqR2rCthAonYJaBQByTJodXq+ZjqYwTvE5UiCKMUxKQmKPupfoBqFqkV0eDKW7SzPm
-         0+ul8XGZKTS40YtkXqZCXjiN7E6EnNaZwrf+8JXCI2s9pdm7CQckxordKve2k8LhNwLb
-         jcoQ==
+        bh=CA2HZYCAYEZ2FQmqritjssLiySaAB6hp+s1n0HMOzrM=;
+        b=mXsIAOkGezeWC53T0nh3D1JBDoJ4z5/OTcthjLlPayIzf4BV/jnKTl26vlpiXk0kwA
+         +2FeUBtGby6BLKHHX+ERL/w2K78vRPvhGW9ymAhwzJdlqIGq7fmHx4f8KH9P9WkAftQ+
+         +2O7oaWJUczuKjvUYsJTh6rD2TfjgP/zuB+mLTtpvgIH54OCAYO+cOeH635SzrmRtM2m
+         h0Q22/SzDXh5kyycPLfZRulpXkL9P+/bk7w6wGB+GRtrRQdp3YkY0iqVf2q5cr8e/7mG
+         heOe7dDwSq0YFujk4oThOjuymsWCnxVhWQiRK6ULZBCJfX0JnPNHgMiXnrE/n2c+6zco
+         O/Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=vOdKWnp3rkpIGMt87ZNlf2cZf53/gDQXm8BtihNuwrY=;
-        b=RQkO3oo5CYtJa+BR8mo3Vu4XGnHZ+mnArA5Cnc8f7KFpDyOkMmXPrhV2F5GXpx4+Pt
-         JcZ5HgENq8s4YddmDCCRIcjTqJ97QPDcB0Hzp90N37oQR0nSj8K9MlrajHD/xyVeqLYD
-         y7gTTKkrn3ITF/vsrWqymxnDTA80LVWLdF4Yh7JATGRv0nFRMQ1U1IPTJ22HqYS7kwxn
-         4t6jWJgXuw+n6Vi3E+mEh9sq1odHItCVct5cHo4gUzt0q2i7Jrf6N8NivXaSzIK65VlM
-         +kb4rJ0AR3JzwzHyN2pCSWaxoR2xmpF9R0GUiHDvuwl7h7EkNMiRE8NMIHv4kHw0mODa
-         Rwjg==
-X-Gm-Message-State: AOAM531Ytw3Ye19dglYP3L/XZ9mMxXpmMzrZnYas2tGersVd3pcyXgZt
-        LSc00f0WM6KF+uqYqoshXIXEXA==
-X-Google-Smtp-Source: ABdhPJztz2rpnHmS0vjtxAqb+sjwT+S9UIOX/8oNcIG+D+p3IjWse50o3nha+gQW7cNBnqWhjOEJGw==
-X-Received: by 2002:a17:906:d153:: with SMTP id br19mr3749846ejb.360.1616488777820;
-        Tue, 23 Mar 2021 01:39:37 -0700 (PDT)
+        bh=CA2HZYCAYEZ2FQmqritjssLiySaAB6hp+s1n0HMOzrM=;
+        b=FKqBbAoIUDPXmkWUvdRzZt2Wm6/orWnASRKLJGWKjc0dOBCUDzJJ51M/iM5Oxv0a+G
+         NiYjJ9lzM/xsoDth1AazqemDzfTdAXrxck3QO/Tl8f2Ms++jFVVQ8v4DhgnLgIaH/orE
+         GB7mRDUZLrgMTetrGt/sauNeGnhp3bjIRjMLFidjZcfYeNSpGi8CMgGrHyGcQBAUQI7R
+         kr/U2z4xBoizBu0AXDRHm7qH54AjyzTPmgD7OzBV+WJwuBTa4e+W5Uz/Y1yhanHu/W0M
+         JphRC0z95iN3ieMg+jaqPS7Xxjbv/2dy561d8vRlMPnH0xeZlbJv4rEXb9P8X2KTFSlL
+         Uvgg==
+X-Gm-Message-State: AOAM532sNns45cKUThlwwb5jXgYXIrU97AeHOf51v9g/xe5W8EjWRigo
+        d7SKfF54lYOEN6rCjyXYVEzang==
+X-Google-Smtp-Source: ABdhPJx9f42ahaRhGy9fzg+cOl9fMRYRkTUnFmGO+1xdqw33EBaNEa/TmFK5DHuUkPMIJUjZhzIdiQ==
+X-Received: by 2002:a17:906:1b54:: with SMTP id p20mr3758551ejg.307.1616489045510;
+        Tue, 23 Mar 2021 01:44:05 -0700 (PDT)
 Received: from dell ([91.110.221.180])
-        by smtp.gmail.com with ESMTPSA id h13sm12649939edz.71.2021.03.23.01.39.36
+        by smtp.gmail.com with ESMTPSA id qo25sm10738421ejb.93.2021.03.23.01.44.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 01:39:37 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 08:39:35 +0000
+        Tue, 23 Mar 2021 01:44:05 -0700 (PDT)
+Date:   Tue, 23 Mar 2021 08:44:03 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-Message-ID: <20210323083935.GF2916463@dell>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
- <20210322161810.biagj2qro66rv4gt@maple.lan>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v1] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <20210323084403.GG2916463@dell>
+References: <1616254985-28920-1-git-send-email-min.li.xe@renesas.com>
+ <20210322150319.GZ2916463@dell>
+ <OSBPR01MB4773618A38B6797EDDE2E5B9BA659@OSBPR01MB4773.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210322161810.biagj2qro66rv4gt@maple.lan>
+In-Reply-To: <OSBPR01MB4773618A38B6797EDDE2E5B9BA659@OSBPR01MB4773.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Mar 2021, Daniel Thompson wrote:
+On Mon, 22 Mar 2021, Min Li wrote:
 
-> On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
-> > Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
 > > 
-> > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> > I'm pretty confused.  This has been sent ~6 times already.  What is the v1 of?
+> > Is this a different driver?  If so, why does it have the same $SUBJECT line?
+> > 
+> > If this is not actually v1.  Please provide a change-log.
+> > 
 > 
-> Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+> 
+> Hi Lee
+> 
+> Sorry for confusion. This is no version before v1. The reason you saw it multiple times is because 
+> I was basing the change in the wrong tree and I now I switched it to
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/
+> 
+> I am wondering if this is the correct tree to submit the patch for MFD?
+> 
+> So to sum it up, the latest patch is my first version to this tree.
 
-Why are you Reviewing/Acking a patch that was applied on the 10th?
+Either MFD or -next is fine for MFD-only patches.
 
-> > ---
-> >  drivers/video/backlight/qcom-wled.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > index 3bc7800eb0a9..497b9035a908 100644
-> > --- a/drivers/video/backlight/qcom-wled.c
-> > +++ b/drivers/video/backlight/qcom-wled.c
-> > @@ -1704,6 +1704,7 @@ static int wled_remove(struct platform_device *pdev)
-> >  
-> >  static const struct of_device_id wled_match_table[] = {
-> >  	{ .compatible = "qcom,pm8941-wled", .data = (void *)3 },
-> > +	{ .compatible = "qcom,pmi8994-wled", .data = (void *)4 },
-> >  	{ .compatible = "qcom,pmi8998-wled", .data = (void *)4 },
-> >  	{ .compatible = "qcom,pm660l-wled", .data = (void *)4 },
-> >  	{ .compatible = "qcom,pm8150l-wled", .data = (void *)5 },
+Has the code changed at all in any of the patches?
+
+If so, please provide a change-log, so we can keep up.
 
 -- 
 Lee Jones [李琼斯]
