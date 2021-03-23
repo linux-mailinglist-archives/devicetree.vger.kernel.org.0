@@ -2,125 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346E0345B24
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB3B4345B56
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 10:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbhCWJnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 05:43:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43094 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbhCWJmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 05:42:35 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE215C0613D8
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:42:34 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id e14so7767062ejz.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 02:42:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RJI1ZulJI/N1c2SHSzXG2bAltLew6mzjF/sjYCXcM5o=;
-        b=JUN66A/8cTYU/eCzY1rGy5pu3Ui6LtQGLfl6KYjMr29YoVG/cdEJDdLL3Rx7rc5i2l
-         QtXpb4pWe9w0bC1DCL7OK/oYYh+mOMk9IAxiy2bA4M8WH+Njssh46rgJrBNVNOhpAKIV
-         VMXATaJV4nZUAxzKlMh2F06xFz+zdQwrb2BJv2VNWWIbB0utRYUhknkLfmbQSr7VGycf
-         1w3WosdRggV3OYeQOERJdI4dNRjvCEwSlEAUsSGgeCWWyRWjEOHRCUDdNu3dO4GPwUGi
-         TIW0ZgHSwC5mRhD3CUAVE533pNm9bdOIDFmJiagr5hE/VViE+ajDPRfkOJZh7hdjpZk/
-         L/Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RJI1ZulJI/N1c2SHSzXG2bAltLew6mzjF/sjYCXcM5o=;
-        b=Bhi3aj4P2a3BU10FTp2XCHz6dHzqJYScBJ6TtYsTQSGSb2oGzPtTwpYoA6LUfabVnu
-         gXb4XP34nPceZMmy4ux9arT99dzkerazWWSnzgj01EG2weYajVLJ8KRug6U/3VZcYtZp
-         weQs31GkmEhcCtsZp1HXFbhyDNT0Su+OzPYH55pe9yMnYLZOF0h9TARfbEepRVyy8ZUi
-         ijZAHqYIZYYxPolXjtPi/99km7k4Y/VJzcAtAioVGk65wK8CXAX8WkLICqU0XdRY67xg
-         emzZwZ9FFZCqlTUu1WIcqIgdRpcW4IFfQuNxlizlHZAPHU5IKKlUSjHjKY7Kj6+RMmQA
-         Obhg==
-X-Gm-Message-State: AOAM533DGkNmMto9+AqQ72KmFF8iV2+i3zs4oh71zplfDMd0hqFAycUL
-        2eLrTL6y6gt5+x3sfnjKsdMhAw==
-X-Google-Smtp-Source: ABdhPJxpkafTXkKvGJHA7aA0u50WutkG/PVWSHFxm9DTViiMH8PsMPRMvCNLbKu9rHqMZj1o5whwtg==
-X-Received: by 2002:a17:906:ca50:: with SMTP id jx16mr4131927ejb.72.1616492553383;
-        Tue, 23 Mar 2021 02:42:33 -0700 (PDT)
-Received: from dell ([91.110.221.180])
-        by smtp.gmail.com with ESMTPSA id g11sm12635053edt.35.2021.03.23.02.42.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 02:42:32 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 09:42:29 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-Message-ID: <20210323094229.GU2916463@dell>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
- <20210322161810.biagj2qro66rv4gt@maple.lan>
- <20210323083935.GF2916463@dell>
- <20210323093540.dqrhjlvr6oza3hvt@maple.lan>
+        id S230105AbhCWJuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 05:50:01 -0400
+Received: from foss.arm.com ([217.140.110.172]:43052 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230071AbhCWJti (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 05:49:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9ACDF1042;
+        Tue, 23 Mar 2021 02:49:37 -0700 (PDT)
+Received: from bogus (unknown [10.57.54.194])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 320EA3F719;
+        Tue, 23 Mar 2021 02:49:36 -0700 (PDT)
+Date:   Tue, 23 Mar 2021 09:49:34 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: Re: [PATCH v4 0/7] firmware: Add initial support for Arm FF-A
+Message-ID: <20210323094934.gzwfg3nf5bi74lpu@bogus>
+References: <20210212154614.38604-1-sudeep.holla@arm.com>
+ <20210316143429.tdyyulkml4ypdixy@bogus>
+ <CAHUa44HdHdN7tES60vcBqRo=afUtxNHx1vnYx5JmX-UocV5PRA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210323093540.dqrhjlvr6oza3hvt@maple.lan>
+In-Reply-To: <CAHUa44HdHdN7tES60vcBqRo=afUtxNHx1vnYx5JmX-UocV5PRA@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Mar 2021, Daniel Thompson wrote:
+Hi Jens,
 
-> On Tue, Mar 23, 2021 at 08:39:35AM +0000, Lee Jones wrote:
-> > On Mon, 22 Mar 2021, Daniel Thompson wrote:
-> > 
-> > > On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
-> > > > Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
-> > > > 
-> > > > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > > 
-> > > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
-> > 
-> > Why are you Reviewing/Acking a patch that was applied on the 10th?
+On Thu, Mar 18, 2021 at 03:09:46PM +0100, Jens Wiklander wrote:
+> Hi Sudeep,
 > 
-> Simply an oversight. Looks like I forgot to remove it from my backlog
-> when it was applied.
+> On Tue, Mar 16, 2021 at 3:34 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > Hi Jens,
+> >
+> > On Fri, Feb 12, 2021 at 03:46:07PM +0000, Sudeep Holla wrote:
+> > > Hi all,
+> > >
+> > > This is very basic implementation for in-kernel support for Arm FF-A
+> > > specification.
+> > >
+> > > Arm Firmware Framework for Armv8-A specification[1] describes a software
+> > > architecture that provides mechanism to utilise the virtualization
+> > > extension to isolate software images and describes interfaces that
+> > > standardize communication between the various software images. This
+> > > includes communication between images in the Secure and Normal world.
+> > >
+> > > The main idea here is to create FFA device to establish any communication
+> > > with a secure partition. This is currently tested with OPTEE(with changes
+> > > to OPTEE driver adding FFA as transport)
+> > >
+> >
+> > Since you reviewed the last version, it would be helpful if you provide
+> > Reviewed-by or Tested-by if you happy with this version. I would like to
+> > get this initial version merged for v5.13
+> 
+> I've tested this in a few of my setups and everything looks over all
+> fine, so please apply:
+> Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
+> 
+> I'm also double checking the details of the patches for some further
+> feedback. Stay tuned.
+> 
 
-I wondered if I'd made a mistake.
-
-No problem.  Thanks for the clarification.
-
-> > > > ---
-> > > >  drivers/video/backlight/qcom-wled.c | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > > 
-> > > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > > > index 3bc7800eb0a9..497b9035a908 100644
-> > > > --- a/drivers/video/backlight/qcom-wled.c
-> > > > +++ b/drivers/video/backlight/qcom-wled.c
-> > > > @@ -1704,6 +1704,7 @@ static int wled_remove(struct platform_device *pdev)
-> > > >  
-> > > >  static const struct of_device_id wled_match_table[] = {
-> > > >  	{ .compatible = "qcom,pm8941-wled", .data = (void *)3 },
-> > > > +	{ .compatible = "qcom,pmi8994-wled", .data = (void *)4 },
-> > > >  	{ .compatible = "qcom,pmi8998-wled", .data = (void *)4 },
-> > > >  	{ .compatible = "qcom,pm660l-wled", .data = (void *)4 },
-> > > >  	{ .compatible = "qcom,pm8150l-wled", .data = (void *)5 },
-> > 
+Thanks a lot, much appreciated !
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sudeep
