@@ -2,17 +2,17 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B252D3459A0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5202C34599C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 09:25:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbhCWIZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 04:25:15 -0400
-Received: from lucky1.263xmail.com ([211.157.147.134]:48622 "EHLO
+        id S229666AbhCWIZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 04:25:14 -0400
+Received: from lucky1.263xmail.com ([211.157.147.135]:32850 "EHLO
         lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbhCWIYg (ORCPT
+        with ESMTP id S229591AbhCWIYg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 04:24:36 -0400
 Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 12983C7D2B;
+        by lucky1.263xmail.com (Postfix) with ESMTP id C06B4A86C4;
         Tue, 23 Mar 2021 16:24:21 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
@@ -23,7 +23,7 @@ Received: from localhost.localdomain (unknown [58.22.7.114])
         by smtp.263.net (postfix) whith ESMTP id P13109T139928883160832S1616487860290898_;
         Tue, 23 Mar 2021 16:24:22 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <40834fb20227d1c9f63301016460590d>
+X-UNIQUE-TAG: <634dbf2edb83a2cb954848ed9bfa076b>
 X-RL-SENDER: zhangqing@rock-chips.com
 X-SENDER: zhangqing@rock-chips.com
 X-LOGIN-NAME: zhangqing@rock-chips.com
@@ -38,35 +38,62 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         cl@rock-chips.com, huangtao@rock-chips.com,
         kever.yang@rock-chips.com, tony.xie@rock-chips.com,
         finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v2 0/3] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Tue, 23 Mar 2021 16:24:07 +0800
-Message-Id: <20210323082410.22818-1-zhangqing@rock-chips.com>
+Subject: [PATCH v2 1/3] dt-bindings: add power-domain header for RK3568 SoCs
+Date:   Tue, 23 Mar 2021 16:24:08 +0800
+Message-Id: <20210323082410.22818-2-zhangqing@rock-chips.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210323082410.22818-1-zhangqing@rock-chips.com>
+References: <20210323082410.22818-1-zhangqing@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support power domain function for RK3568 Soc.
+According to a description from TRM, add all the power domains
 
-Change in V2:
-[PATCH v2 1/3]: No change.
-[PATCH v2 2/3]: Fix up yaml code styles.
-[PATCH v2 3/3]: No change.
-
-Elaine Zhang (3):
-  dt-bindings: add power-domain header for RK3568 SoCs
-  dt-bindings: Convert the rockchip power_domain to YAML and extend
-  soc: rockchip: power-domain: add rk3568 powerdomains
-
- .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
- .../rockchip/rockchip,power-controller.yaml   | 259 ++++++++++++++++++
- drivers/soc/rockchip/pm_domains.c             |  31 +++
- include/dt-bindings/power/rk3568-power.h      |  32 +++
- 4 files changed, 322 insertions(+), 136 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
- create mode 100644 Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+---
+ include/dt-bindings/power/rk3568-power.h | 32 ++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
  create mode 100644 include/dt-bindings/power/rk3568-power.h
 
+diff --git a/include/dt-bindings/power/rk3568-power.h b/include/dt-bindings/power/rk3568-power.h
+new file mode 100644
+index 000000000000..6cc1af1a9d26
+--- /dev/null
++++ b/include/dt-bindings/power/rk3568-power.h
+@@ -0,0 +1,32 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __DT_BINDINGS_POWER_RK3568_POWER_H__
++#define __DT_BINDINGS_POWER_RK3568_POWER_H__
++
++/* VD_CORE */
++#define RK3568_PD_CPU_0		0
++#define RK3568_PD_CPU_1		1
++#define RK3568_PD_CPU_2		2
++#define RK3568_PD_CPU_3		3
++#define RK3568_PD_CORE_ALIVE	4
++
++/* VD_PMU */
++#define RK3568_PD_PMU		5
++
++/* VD_NPU */
++#define RK3568_PD_NPU		6
++
++/* VD_GPU */
++#define RK3568_PD_GPU		7
++
++/* VD_LOGIC */
++#define RK3568_PD_VI		8
++#define RK3568_PD_VO		9
++#define RK3568_PD_RGA		10
++#define RK3568_PD_VPU		11
++#define RK3568_PD_CENTER	12
++#define RK3568_PD_RKVDEC	13
++#define RK3568_PD_RKVENC	14
++#define RK3568_PD_PIPE		15
++#define RK3568_PD_LOGIC_ALIVE	16
++
++#endif
 -- 
 2.17.1
 
