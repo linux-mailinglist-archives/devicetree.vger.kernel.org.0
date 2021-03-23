@@ -2,687 +2,531 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBFDB3463D1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 16:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64F40346494
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 17:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbhCWP4R convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Mar 2021 11:56:17 -0400
-Received: from aposti.net ([89.234.176.197]:40126 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232860AbhCWPzx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 11:55:53 -0400
-Date:   Tue, 23 Mar 2021 15:55:30 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 6/6] clk: ingenic: Add support for the JZ4760
-To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, od@zcrc.me,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <IWIFQQ.1OSA1NYIWEHT1@crapouillou.net>
-In-Reply-To: <8dfd794e-be79-22e7-a9cf-feb59056e34f@wanyeetech.com>
-References: <20210307141759.30426-1-paul@crapouillou.net>
-        <20210307141759.30426-7-paul@crapouillou.net>
-        <dbd5bea3-a693-cbb6-c411-f164f8f0452f@wanyeetech.com>
-        <83TDQQ.FC04M4R63ME53@crapouillou.net>
-        <8dfd794e-be79-22e7-a9cf-feb59056e34f@wanyeetech.com>
+        id S233185AbhCWQLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 12:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233017AbhCWQLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 12:11:24 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44442C061763
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 09:11:24 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id w8so10889428ybt.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 09:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=r6fYm6v1+NtzKjblEgfJQxdoG2k+Zr4a48HLzY6DGeM=;
+        b=Ic+KwvlJ8HOwCoKVzzalG/b7Hzm0Al9PNMvylKP5sUlNEoJ0G9iJ3MQJL94eDkMAFU
+         +WELO/x1LOHKUo4akkPP8hukD6LBxVrBIFLykoO54LeHI6DFoBm8zgnA8RDVeafWTlMj
+         4YZI4iE2/ktV71JzLUXJZATeOZTQ+GPSfl7s9v0xUnwGzfL/wpakU86XzYAh6J7mgHVu
+         fMsLtskyVZOOs31IqGTpEpCanFaW0utsWGoRCKo+z5rpdR5Xf4CvMS3uEBZz+Xms5vrW
+         XAQC/n/07mxzggNwvbSNeYxY/A0mSmFJnH1BthVjVXSqjnajVCze+L/6bXPmhI0HT3XN
+         IoNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=r6fYm6v1+NtzKjblEgfJQxdoG2k+Zr4a48HLzY6DGeM=;
+        b=ldlVawkpz+9gEGEjBh1EFDAR1zYsh3y6g0aHk4/I7HqVH7DhP3zYz+jai96FfovyGh
+         zWDgF7MiHIUUv4H4hC+oc8hkRHHFxF3wo63Qj0+800Z+cUOhSnVkAqlbZGTdXPpc0lrs
+         MW5SAZhb2iYF+8PHjYxgxQFvHf4NTsgX4GmAIG6t5cJFwsA5hyCcQT6zixBRgfhKMsyE
+         iPXAmqVli7WeddqaS1xgEGS2GQF0M0GTlmKE6V1u+2NrhzAd+B95cT5qKgRfoekXPs7K
+         /04t1biuUJFWBLpB+jrXrGyLusmj+PGAaNMor+u4WLX/pOSo2ey9gxKA+p+2FDfrJNsZ
+         6+RA==
+X-Gm-Message-State: AOAM531xipIogccDhPikmaTjIu1VZ9bTAj8V5tEt3VO9uLa1OmzzRXDL
+        FcFnuhclxcZK7wbdxQ/9HXOoGkYaQrmm8ZNQ6OF3Xg==
+X-Google-Smtp-Source: ABdhPJzgE+mNtUNHuqxKsfgIZ8b84w7N2wjcsxFsTXtVFk5PNzpfYZOgD2sKu+eV+N7xl1p/0tdo7DDT1QFH2jK8Rsw=
+X-Received: by 2002:a25:2f4b:: with SMTP id v72mr6107133ybv.79.1616515882962;
+ Tue, 23 Mar 2021 09:11:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+In-Reply-To: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+From:   Doug Anderson <dianders@google.com>
+Date:   Tue, 23 Mar 2021 09:11:11 -0700
+Message-ID: <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
+To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+Hi,
 
-Le mar. 23 mars 2021 à 23:41, Zhou Yanjie <zhouyanjie@wanyeetech.com> 
-a écrit :
-> Hi Paul,
-> 
-> On 2021/3/23 上午1:40, Paul Cercueil wrote:
->> Hi Zhou,
->> 
->> Le mer. 17 mars 2021 à 20:41, Zhou Yanjie 
->> <zhouyanjie@wanyeetech.com> a écrit :
->>> Hi Paul,
->>> 
->>> On 2021/3/7 下午10:17, Paul Cercueil wrote:
->>>> Add the CGU code and the compatible string to the TCU driver to 
->>>> support
->>>> the JZ4760 SoC.
->>>> 
->>>> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>>> ---
->>>>   drivers/clk/ingenic/Kconfig            |  10 +
->>>>   drivers/clk/ingenic/Makefile           |   1 +
->>>>   drivers/clk/ingenic/jz4760-cgu.c       | 433 
->>>> +++++++++++++++++++++++++
->>>>   drivers/clk/ingenic/tcu.c              |   2 +
->>>>   include/dt-bindings/clock/jz4760-cgu.h |  54 +++
->>>>   5 files changed, 500 insertions(+)
->>>>   create mode 100644 drivers/clk/ingenic/jz4760-cgu.c
->>>>   create mode 100644 include/dt-bindings/clock/jz4760-cgu.h
->>>> 
->>>> diff --git a/drivers/clk/ingenic/Kconfig 
->>>> b/drivers/clk/ingenic/Kconfig
->>>> index 580b0cf69ed5..898f1bc478c9 100644
->>>> --- a/drivers/clk/ingenic/Kconfig
->>>> +++ b/drivers/clk/ingenic/Kconfig
->>>> @@ -25,6 +25,16 @@ config INGENIC_CGU_JZ4725B
->>>>           If building for a JZ4725B SoC, you want to say Y here.
->>>>   +config INGENIC_CGU_JZ4760
->>>> +    bool "Ingenic JZ4760 CGU driver"
->>>> +    default MACH_JZ4760
->>>> +    select INGENIC_CGU_COMMON
->>>> +    help
->>>> +      Support the clocks provided by the CGU hardware on Ingenic 
->>>> JZ4760
->>>> +      and compatible SoCs.
->>>> +
->>>> +      If building for a JZ4760 SoC, you want to say Y here.
->>>> +
->>>>   config INGENIC_CGU_JZ4770
->>>>       bool "Ingenic JZ4770 CGU driver"
->>>>       default MACH_JZ4770
->>>> diff --git a/drivers/clk/ingenic/Makefile 
->>>> b/drivers/clk/ingenic/Makefile
->>>> index aaa4bffe03c6..9edfaf4610b9 100644
->>>> --- a/drivers/clk/ingenic/Makefile
->>>> +++ b/drivers/clk/ingenic/Makefile
->>>> @@ -2,6 +2,7 @@
->>>>   obj-$(CONFIG_INGENIC_CGU_COMMON)    += cgu.o pm.o
->>>>   obj-$(CONFIG_INGENIC_CGU_JZ4740)    += jz4740-cgu.o
->>>>   obj-$(CONFIG_INGENIC_CGU_JZ4725B)    += jz4725b-cgu.o
->>>> +obj-$(CONFIG_INGENIC_CGU_JZ4760)    += jz4760-cgu.o
->>>>   obj-$(CONFIG_INGENIC_CGU_JZ4770)    += jz4770-cgu.o
->>>>   obj-$(CONFIG_INGENIC_CGU_JZ4780)    += jz4780-cgu.o
->>>>   obj-$(CONFIG_INGENIC_CGU_X1000)        += x1000-cgu.o
->>>> diff --git a/drivers/clk/ingenic/jz4760-cgu.c 
->>>> b/drivers/clk/ingenic/jz4760-cgu.c
->>>> new file mode 100644
->>>> index 000000000000..a45327cba7d1
->>>> --- /dev/null
->>>> +++ b/drivers/clk/ingenic/jz4760-cgu.c
->>>> @@ -0,0 +1,433 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * JZ4760 SoC CGU driver
->>>> + * Copyright 2018, Paul Cercueil <paul@crapouillou.net>
->>>> + */
->>>> +
->>>> +#include <linux/bitops.h>
->>>> +#include <linux/clk-provider.h>
->>>> +#include <linux/delay.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/of.h>
->>>> +
->>>> +#include <linux/clk.h>
->>>> +
->>>> +#include <dt-bindings/clock/jz4760-cgu.h>
->>>> +
->>>> +#include "cgu.h"
->>>> +#include "pm.h"
->>>> +
->>>> +#define MHZ (1000 * 1000)
->>>> +
->>>> +/*
->>>> + * CPM registers offset address definition
->>>> + */
->>>> +#define CGU_REG_CPCCR        0x00
->>>> +#define CGU_REG_LCR        0x04
->>>> +#define CGU_REG_CPPCR0        0x10
->>>> +#define CGU_REG_CLKGR0        0x20
->>>> +#define CGU_REG_OPCR        0x24
->>>> +#define CGU_REG_CLKGR1        0x28
->>>> +#define CGU_REG_CPPCR1        0x30
->>>> +#define CGU_REG_USBPCR        0x3c
->>>> +#define CGU_REG_USBCDR        0x50
->>>> +#define CGU_REG_I2SCDR        0x60
->>>> +#define CGU_REG_LPCDR        0x64
->>>> +#define CGU_REG_MSCCDR        0x68
->>>> +#define CGU_REG_UHCCDR        0x6c
->>>> +#define CGU_REG_SSICDR        0x74
->>>> +#define CGU_REG_CIMCDR        0x7c
->>>> +#define CGU_REG_GPSCDR        0x80
->>>> +#define CGU_REG_PCMCDR        0x84
->>>> +#define CGU_REG_GPUCDR        0x88
->>>> +
->>>> +static const s8 pll_od_encoding[8] = {
->>>> +    0x0, 0x1, -1, 0x2, -1, -1, -1, 0x3,
->>>> +};
->>>> +
->>>> +static const u8 jz4760_cgu_cpccr_div_table[] = {
->>>> +    1, 2, 3, 4, 6, 8,
->>>> +};
->>>> +
->>>> +static const u8 jz4760_cgu_pll_half_div_table[] = {
->>>> +    2, 1,
->>>> +};
->>>> +
->>>> +static void
->>>> +jz4760_cgu_calc_m_n_od(const struct ingenic_cgu_pll_info 
->>>> *pll_info,
->>>> +               unsigned long rate, unsigned long parent_rate,
->>>> +               unsigned int *pm, unsigned int *pn, unsigned int 
->>>> *pod)
->>>> +{
->>>> +    unsigned int m, n, od;
->>>> +
->>>> +    /* The output of the PLL must be between 500 and 1500 MHz. */
->>>> +    rate = clamp_val(rate, 500ul * MHZ, 1500ul * MHZ);
->>>> +
->>>> +    /* The frequency after the N divider must be between 1 and 50 
->>>> MHz. */
->>>> +    n = parent_rate / (1 * MHZ);
->>>> +
->>>> +    /* The N divider must be >= 2. */
->>>> +    n = clamp_val(n, 2, 1 << pll_info->n_bits);
->>>> +
->>>> +    for (;;) {
->>>> +        od = 0;
->>>> +
->>>> +        do {
->>>> +            m = (rate / MHZ) * ++od * n / (parent_rate / MHZ);
->>> 
->>> 
->>> Please correct me if I am wrong, according to the PM, when the 
->>> register value of OD is 0, 1, 2, 3, the value corresponding 
->>> participating PL frequency calculation is 1, 2, 4, 8. Therefore, 
->>> change
->>> 
->>> m = (rate / MHZ) * ++od * n / (parent_rate / MHZ); to m = (rate / 
->>> MHZ) * (2 ^ od++) * n / (parent_rate / MHZ); seems to be more 
->>> appropriate, it can avoid 3, 5, 6, and 7 that should not exist.
->> 
-> 
-> I found a mistake. My brain must have been broken at that time. The 2 
-> ^ od here I intended to express the meaning of od power of 2, but it 
-> should be written as 1 << od, otherwise it becomes a XOR operation.
+On Sat, Mar 20, 2021 at 11:18 AM Shaik Sajida Bhanu
+<sbhanu@codeaurora.org> wrote:
+>
+> Add nodes for eMMC and SD card on sc7280.
+>
+> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+>
+> ---
+> This change is depends on the below patch series:
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=489530
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=488429
+>
+> Changes since V1:
+>         - Moved SDHC nodes as suggested by Bjorn Andersson.
+>         - Dropped "pinconf-" prefix as suggested by Bjorn Andersson.
+>         - Removed extra newlines as suggested by Konrad Dybcio.
+>         - Changed sd-cd pin to bias-pull-up in sdc2_off as suggested by
+>           Veerabhadrarao Badiganti.
+>         - Added bandwidth votes for eMMC and SD card.
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  25 ++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 213 ++++++++++++++++++++++++++++++++
+>  2 files changed, 238 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 54d2cb3..4105263 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>
+>  #include "sc7280.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+>
+>  / {
+>         model = "Qualcomm Technologies, Inc. sc7280 IDP platform";
+> @@ -242,6 +243,30 @@
+>         status = "okay";
+>  };
+>
+> +&sdhc_1 {
+> +       status = "okay";
 
-Yes, don't worry - I understood it as (1 << od).
-
-I'll send a v2 soon.
-
-Cheers,
--Paul
-
->> You are totally correct. I will send a revised version.
->> 
->> Thanks!
->> 
->> Cheers,
->> -Paul
->> 
->>>> +        } while (m < pll_info->m_offset || m & 1);
->>>> +
->>>> +        if (m <= (1 << pll_info->m_bits) - 2)
->>>> +            break;
->>>> +
->>>> +        n >>= 1;
->>>> +    }
->>>> +
->>>> +    *pm = m;
->>>> +    *pn = n;
->>>> +    *pod = od;
->>> 
->>> 
->>> If we change the above formula, we also need to change this to *pod 
->>> = 2 ^ od;
->>> 
-> 
-> Same here.
-> 
-> 
-> Thanks and best regards!
-> 
-> 
->>> 
->>> Thanks and best regards!
->>> 
->>> 
->>>> +}
->>>> +
->>>> +static const struct ingenic_cgu_clk_info jz4760_cgu_clocks[] = {
->>>> +
->>>> +    /* External clocks */
->>>> +
->>>> +    [JZ4760_CLK_EXT] = { "ext", CGU_CLK_EXT },
->>>> +    [JZ4760_CLK_OSC32K] = { "osc32k", CGU_CLK_EXT },
->>>> +
->>>> +    /* PLLs */
->>>> +
->>>> +    [JZ4760_CLK_PLL0] = {
->>>> +        "pll0", CGU_CLK_PLL,
->>>> +        .parents = { JZ4760_CLK_EXT },
->>>> +        .pll = {
->>>> +            .reg = CGU_REG_CPPCR0,
->>>> +            .rate_multiplier = 1,
->>>> +            .m_shift = 23,
->>>> +            .m_bits = 8,
->>>> +            .m_offset = 0,
->>>> +            .n_shift = 18,
->>>> +            .n_bits = 4,
->>>> +            .n_offset = 0,
->>>> +            .od_shift = 16,
->>>> +            .od_bits = 2,
->>>> +            .od_max = 8,
->>>> +            .od_encoding = pll_od_encoding,
->>>> +            .bypass_reg = CGU_REG_CPPCR0,
->>>> +            .bypass_bit = 9,
->>>> +            .enable_bit = 8,
->>>> +            .stable_bit = 10,
->>>> +            .calc_m_n_od = jz4760_cgu_calc_m_n_od,
->>>> +        },
->>>> +    },
->>>> +
->>>> +    [JZ4760_CLK_PLL1] = {
->>>> +        /* TODO: PLL1 can depend on PLL0 */
->>>> +        "pll1", CGU_CLK_PLL,
->>>> +        .parents = { JZ4760_CLK_EXT },
->>>> +        .pll = {
->>>> +            .reg = CGU_REG_CPPCR1,
->>>> +            .rate_multiplier = 1,
->>>> +            .m_shift = 23,
->>>> +            .m_bits = 8,
->>>> +            .m_offset = 0,
->>>> +            .n_shift = 18,
->>>> +            .n_bits = 4,
->>>> +            .n_offset = 0,
->>>> +            .od_shift = 16,
->>>> +            .od_bits = 2,
->>>> +            .od_max = 8,
->>>> +            .od_encoding = pll_od_encoding,
->>>> +            .bypass_bit = -1,
->>>> +            .enable_bit = 7,
->>>> +            .stable_bit = 6,
->>>> +            .calc_m_n_od = jz4760_cgu_calc_m_n_od,
->>>> +        },
->>>> +    },
->>>> +
->>>> +    /* Main clocks */
->>>> +
->>>> +    [JZ4760_CLK_CCLK] = {
->>>> +        "cclk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 0, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +    [JZ4760_CLK_HCLK] = {
->>>> +        "hclk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 4, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +    [JZ4760_CLK_SCLK] = {
->>>> +        "sclk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 24, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +    [JZ4760_CLK_H2CLK] = {
->>>> +        "h2clk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 16, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +    [JZ4760_CLK_MCLK] = {
->>>> +        "mclk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 12, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +    [JZ4760_CLK_PCLK] = {
->>>> +        "pclk", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0, },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 8, 1, 4, 22, -1, -1, 0,
->>>> +            jz4760_cgu_cpccr_div_table,
->>>> +        },
->>>> +    },
->>>> +
->>>> +    /* Divided clocks */
->>>> +
->>>> +    [JZ4760_CLK_PLL0_HALF] = {
->>>> +        "pll0_half", CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_PLL0 },
->>>> +        .div = {
->>>> +            CGU_REG_CPCCR, 21, 1, 1, 22, -1, -1, 0,
->>>> +            jz4760_cgu_pll_half_div_table,
->>>> +        },
->>>> +    },
->>>> +
->>>> +    /* Those divided clocks can connect to PLL0 or PLL1 */
->>>> +
->>>> +    [JZ4760_CLK_UHC] = {
->>>> +        "uhc", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
->>>> +        .mux = { CGU_REG_UHCCDR, 31, 1 },
->>>> +        .div = { CGU_REG_UHCCDR, 0, 1, 4, -1, -1, -1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 24 },
->>>> +    },
->>>> +    [JZ4760_CLK_GPU] = {
->>>> +        "gpu", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
->>>> +        .mux = { CGU_REG_GPUCDR, 31, 1 },
->>>> +        .div = { CGU_REG_GPUCDR, 0, 1, 3, -1, -1, -1 },
->>>> +        .gate = { CGU_REG_CLKGR1, 9 },
->>>> +    },
->>>> +    [JZ4760_CLK_LPCLK_DIV] = {
->>>> +        "lpclk_div", CGU_CLK_DIV | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
->>>> +        .mux = { CGU_REG_LPCDR, 29, 1 },
->>>> +        .div = { CGU_REG_LPCDR, 0, 1, 11, -1, -1, -1 },
->>>> +    },
->>>> +    [JZ4760_CLK_TVE] = {
->>>> +        "tve", CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_LPCLK_DIV, JZ4760_CLK_EXT, },
->>>> +        .mux = { CGU_REG_LPCDR, 31, 1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 27 },
->>>> +    },
->>>> +    [JZ4760_CLK_LPCLK] = {
->>>> +        "lpclk", CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_LPCLK_DIV, JZ4760_CLK_TVE, },
->>>> +        .mux = { CGU_REG_LPCDR, 30, 1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 28 },
->>>> +    },
->>>> +    [JZ4760_CLK_GPS] = {
->>>> +        "gps", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1, },
->>>> +        .mux = { CGU_REG_GPSCDR, 31, 1 },
->>>> +        .div = { CGU_REG_GPSCDR, 0, 1, 4, -1, -1, -1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 22 },
->>>> +    },
->>>> +
->>>> +    /* Those divided clocks can connect to EXT, PLL0 or PLL1 */
->>>> +
->>>> +    [JZ4760_CLK_PCM] = {
->>>> +        "pcm", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_EXT, -1,
->>>> +            JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
->>>> +        .mux = { CGU_REG_PCMCDR, 30, 2 },
->>>> +        .div = { CGU_REG_PCMCDR, 0, 1, 9, -1, -1, -1, BIT(0) },
->>>> +        .gate = { CGU_REG_CLKGR1, 8 },
->>>> +    },
->>>> +    [JZ4760_CLK_I2S] = {
->>>> +        "i2s", CGU_CLK_DIV | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_EXT, -1,
->>>> +            JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
->>>> +        .mux = { CGU_REG_I2SCDR, 30, 2 },
->>>> +        .div = { CGU_REG_I2SCDR, 0, 1, 9, -1, -1, -1, BIT(0) },
->>>> +    },
->>>> +    [JZ4760_CLK_OTG] = {
->>>> +        "usb", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_EXT, -1,
->>>> +            JZ4760_CLK_PLL0_HALF, JZ4760_CLK_PLL1 },
->>>> +        .mux = { CGU_REG_USBCDR, 30, 2 },
->>>> +        .div = { CGU_REG_USBCDR, 0, 1, 8, -1, -1, -1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 2 },
->>>> +    },
->>>> +
->>>> +    /* Those divided clocks can connect to EXT or PLL0 */
->>>> +    [JZ4760_CLK_MMC_MUX] = {
->>>> +        "mmc_mux", CGU_CLK_MUX | CGU_CLK_DIV,
->>>> +        .parents = { JZ4760_CLK_EXT, JZ4760_CLK_PLL0_HALF, },
->>>> +        .mux = { CGU_REG_MSCCDR, 31, 1 },
->>>> +        .div = { CGU_REG_MSCCDR, 0, 1, 6, -1, -1, -1, BIT(0) },
->>>> +    },
->>>> +    [JZ4760_CLK_SSI_MUX] = {
->>>> +        "ssi_mux", CGU_CLK_DIV | CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_EXT, JZ4760_CLK_PLL0_HALF, },
->>>> +        .mux = { CGU_REG_SSICDR, 31, 1 },
->>>> +        .div = { CGU_REG_SSICDR, 0, 1, 6, -1, -1, -1, BIT(0) },
->>>> +    },
->>>> +
->>>> +    /* These divided clock can connect to PLL0 only */
->>>> +    [JZ4760_CLK_CIM] = {
->>>> +        "cim", CGU_CLK_DIV | CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_PLL0_HALF },
->>>> +        .div = { CGU_REG_CIMCDR, 0, 1, 8, -1, -1, -1 },
->>>> +        .gate = { CGU_REG_CLKGR0, 26 },
->>>> +    },
->>>> +
->>>> +    /* Gate-only clocks */
->>>> +
->>>> +    [JZ4760_CLK_SSI0] = {
->>>> +        "ssi0", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_SSI_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 4 },
->>>> +    },
->>>> +    [JZ4760_CLK_SSI1] = {
->>>> +        "ssi1", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_SSI_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 19 },
->>>> +    },
->>>> +    [JZ4760_CLK_SSI2] = {
->>>> +        "ssi2", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_SSI_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 20 },
->>>> +    },
->>>> +    [JZ4760_CLK_DMA] = {
->>>> +        "dma", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_H2CLK, },
->>>> +        .gate = { CGU_REG_CLKGR0, 21 },
->>>> +    },
->>>> +    [JZ4760_CLK_I2C0] = {
->>>> +        "i2c0", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 5 },
->>>> +    },
->>>> +    [JZ4760_CLK_I2C1] = {
->>>> +        "i2c1", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 6 },
->>>> +    },
->>>> +    [JZ4760_CLK_UART0] = {
->>>> +        "uart0", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 15 },
->>>> +    },
->>>> +    [JZ4760_CLK_UART1] = {
->>>> +        "uart1", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 16 },
->>>> +    },
->>>> +    [JZ4760_CLK_UART2] = {
->>>> +        "uart2", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 17 },
->>>> +    },
->>>> +    [JZ4760_CLK_UART3] = {
->>>> +        "uart3", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 18 },
->>>> +    },
->>>> +    [JZ4760_CLK_IPU] = {
->>>> +        "ipu", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_HCLK, },
->>>> +        .gate = { CGU_REG_CLKGR0, 29 },
->>>> +    },
->>>> +    [JZ4760_CLK_ADC] = {
->>>> +        "adc", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 14 },
->>>> +    },
->>>> +    [JZ4760_CLK_AIC] = {
->>>> +        "aic", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_EXT, },
->>>> +        .gate = { CGU_REG_CLKGR0, 8 },
->>>> +    },
->>>> +    [JZ4760_CLK_VPU] = {
->>>> +        "vpu", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_HCLK, },
->>>> +        .gate = { CGU_REG_LCR, 30, false, 150 },
->>>> +    },
->>>> +    [JZ4760_CLK_MMC0] = {
->>>> +        "mmc0", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_MMC_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 3 },
->>>> +    },
->>>> +    [JZ4760_CLK_MMC1] = {
->>>> +        "mmc1", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_MMC_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 11 },
->>>> +    },
->>>> +    [JZ4760_CLK_MMC2] = {
->>>> +        "mmc2", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_MMC_MUX, },
->>>> +        .gate = { CGU_REG_CLKGR0, 12 },
->>>> +    },
->>>> +    [JZ4760_CLK_UHC_PHY] = {
->>>> +        "uhc_phy", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_UHC, },
->>>> +        .gate = { CGU_REG_OPCR, 5 },
->>>> +    },
->>>> +    [JZ4760_CLK_OTG_PHY] = {
->>>> +        "usb_phy", CGU_CLK_GATE,
->>>> +        .parents = { JZ4760_CLK_OTG },
->>>> +        .gate = { CGU_REG_OPCR, 7, true, 50 },
->>>> +    },
->>>> +
->>>> +    /* Custom clocks */
->>>> +    [JZ4760_CLK_EXT512] = {
->>>> +        "ext/512", CGU_CLK_FIXDIV,
->>>> +        .parents = { JZ4760_CLK_EXT },
->>>> +        .fixdiv = { 512 },
->>>> +    },
->>>> +    [JZ4760_CLK_RTC] = {
->>>> +        "rtc", CGU_CLK_MUX,
->>>> +        .parents = { JZ4760_CLK_EXT512, JZ4760_CLK_OSC32K, },
->>>> +        .mux = { CGU_REG_OPCR, 2, 1},
->>>> +    },
->>>> +};
->>>> +
->>>> +static void __init jz4760_cgu_init(struct device_node *np)
->>>> +{
->>>> +    struct ingenic_cgu *cgu;
->>>> +    int retval;
->>>> +
->>>> +    cgu = ingenic_cgu_new(jz4760_cgu_clocks,
->>>> +                  ARRAY_SIZE(jz4760_cgu_clocks), np);
->>>> +    if (!cgu) {
->>>> +        pr_err("%s: failed to initialise CGU\n", __func__);
->>>> +        return;
->>>> +    }
->>>> +
->>>> +    retval = ingenic_cgu_register_clocks(cgu);
->>>> +    if (retval)
->>>> +        pr_err("%s: failed to register CGU Clocks\n", __func__);
->>>> +
->>>> +    ingenic_cgu_register_syscore_ops(cgu);
->>>> +}
->>>> +
->>>> +/* We only probe via devicetree, no need for a platform driver */
->>>> +CLK_OF_DECLARE_DRIVER(jz4760_cgu, "ingenic,jz4760-cgu", 
->>>> jz4760_cgu_init);
->>>> +
->>>> +/* JZ4760B has some small differences, but we don't implement 
->>>> them. */
->>>> +CLK_OF_DECLARE_DRIVER(jz4760b_cgu, "ingenic,jz4760b-cgu", 
->>>> jz4760_cgu_init);
->>>> diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
->>>> index 9382dc3aa27e..77acfbeb4830 100644
->>>> --- a/drivers/clk/ingenic/tcu.c
->>>> +++ b/drivers/clk/ingenic/tcu.c
->>>> @@ -326,6 +326,7 @@ static const struct ingenic_soc_info 
->>>> x1000_soc_info = {
->>>>   static const struct of_device_id __maybe_unused 
->>>> ingenic_tcu_of_match[] __initconst = {
->>>>       { .compatible = "ingenic,jz4740-tcu", .data = 
->>>> &jz4740_soc_info, },
->>>>       { .compatible = "ingenic,jz4725b-tcu", .data = 
->>>> &jz4725b_soc_info, },
->>>> +    { .compatible = "ingenic,jz4760-tcu", .data = 
->>>> &jz4770_soc_info, },
->>>>       { .compatible = "ingenic,jz4770-tcu", .data = 
->>>> &jz4770_soc_info, },
->>>>       { .compatible = "ingenic,x1000-tcu", .data = 
->>>> &x1000_soc_info, },
->>>>       { /* sentinel */ }
->>>> @@ -477,5 +478,6 @@ static void __init ingenic_tcu_init(struct 
->>>> device_node *np)
->>>>     CLK_OF_DECLARE_DRIVER(jz4740_cgu, "ingenic,jz4740-tcu", 
->>>> ingenic_tcu_init);
->>>>   CLK_OF_DECLARE_DRIVER(jz4725b_cgu, "ingenic,jz4725b-tcu", 
->>>> ingenic_tcu_init);
->>>> +CLK_OF_DECLARE_DRIVER(jz4760_cgu, "ingenic,jz4760-tcu", 
->>>> ingenic_tcu_init);
->>>>   CLK_OF_DECLARE_DRIVER(jz4770_cgu, "ingenic,jz4770-tcu", 
->>>> ingenic_tcu_init);
->>>>   CLK_OF_DECLARE_DRIVER(x1000_cgu, "ingenic,x1000-tcu", 
->>>> ingenic_tcu_init);
->>>> diff --git a/include/dt-bindings/clock/jz4760-cgu.h 
->>>> b/include/dt-bindings/clock/jz4760-cgu.h
->>>> new file mode 100644
->>>> index 000000000000..4bb2e19c4743
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/jz4760-cgu.h
->>>> @@ -0,0 +1,54 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0 */
->>>> +/*
->>>> + * This header provides clock numbers for the ingenic,jz4760-cgu 
->>>> DT binding.
->>>> + */
->>>> +
->>>> +#ifndef __DT_BINDINGS_CLOCK_JZ4760_CGU_H__
->>>> +#define __DT_BINDINGS_CLOCK_JZ4760_CGU_H__
->>>> +
->>>> +#define JZ4760_CLK_EXT        0
->>>> +#define JZ4760_CLK_OSC32K    1
->>>> +#define JZ4760_CLK_PLL0        2
->>>> +#define JZ4760_CLK_PLL0_HALF    3
->>>> +#define JZ4760_CLK_PLL1        4
->>>> +#define JZ4760_CLK_CCLK        5
->>>> +#define JZ4760_CLK_HCLK        6
->>>> +#define JZ4760_CLK_SCLK        7
->>>> +#define JZ4760_CLK_H2CLK    8
->>>> +#define JZ4760_CLK_MCLK        9
->>>> +#define JZ4760_CLK_PCLK        10
->>>> +#define JZ4760_CLK_MMC_MUX    11
->>>> +#define JZ4760_CLK_MMC0        12
->>>> +#define JZ4760_CLK_MMC1        13
->>>> +#define JZ4760_CLK_MMC2        14
->>>> +#define JZ4760_CLK_CIM        15
->>>> +#define JZ4760_CLK_UHC        16
->>>> +#define JZ4760_CLK_GPU        17
->>>> +#define JZ4760_CLK_GPS        18
->>>> +#define JZ4760_CLK_SSI_MUX    19
->>>> +#define JZ4760_CLK_PCM        20
->>>> +#define JZ4760_CLK_I2S        21
->>>> +#define JZ4760_CLK_OTG        22
->>>> +#define JZ4760_CLK_SSI0        23
->>>> +#define JZ4760_CLK_SSI1        24
->>>> +#define JZ4760_CLK_SSI2        25
->>>> +#define JZ4760_CLK_DMA        26
->>>> +#define JZ4760_CLK_I2C0        27
->>>> +#define JZ4760_CLK_I2C1        28
->>>> +#define JZ4760_CLK_UART0    29
->>>> +#define JZ4760_CLK_UART1    30
->>>> +#define JZ4760_CLK_UART2    31
->>>> +#define JZ4760_CLK_UART3    32
->>>> +#define JZ4760_CLK_IPU        33
->>>> +#define JZ4760_CLK_ADC        34
->>>> +#define JZ4760_CLK_AIC        35
->>>> +#define JZ4760_CLK_VPU        36
->>>> +#define JZ4760_CLK_UHC_PHY    37
->>>> +#define JZ4760_CLK_OTG_PHY    38
->>>> +#define JZ4760_CLK_EXT512    39
->>>> +#define JZ4760_CLK_RTC        40
->>>> +#define JZ4760_CLK_LPCLK_DIV    41
->>>> +#define JZ4760_CLK_TVE        42
->>>> +#define JZ4760_CLK_LPCLK    43
->>>> +
->>>> +#endif /* __DT_BINDINGS_CLOCK_JZ4760_CGU_H__ */
->> 
+When I apply your patch I find that your sort order is wrong. "s"
+comes before "u" and after "q" in the alphabet so "sdhc_1" and
+"sdhc_2" should sort _after "qupv3_id_0" and before "uart5"
 
 
+> +       pinctrl-names = "default", "sleep";
+> +       pinctrl-0 = <&sdc1_on>;
+> +       pinctrl-1 = <&sdc1_off>;
+> +
+> +       vmmc-supply = <&vreg_l7b_2p9>;
+> +       vqmmc-supply = <&vreg_l19b_1p8>;
+> +};
+> +
+> +&sdhc_2 {
+> +       status = "okay";
+> +
+> +       pinctrl-names = "default","sleep";
+> +       pinctrl-0 = <&sdc2_on>;
+> +       pinctrl-1 = <&sdc2_off>;
+> +
+> +       vmmc-supply = <&vreg_l9c_2p9>;
+> +       vqmmc-supply = <&vreg_l6c_2p9>;
+> +
+> +       cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+
+Where is the pinctrl for the card detect?  Oh, I see it's in
+"sdc2_on". Probably would be good to break it out since this is
+board-specific. See below.
+
+
+> +};
+> +
+>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+>
+>  &qup_uart5_default {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 8f6b569..69eb064 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -20,6 +20,11 @@
+>
+>         chosen { };
+>
+> +       aliases {
+> +               mmc1 = &sdhc_1;
+> +               mmc2 = &sdhc_2;
+> +       };
+> +
+>         clocks {
+>                 xo_board: xo-board {
+>                         compatible = "fixed-clock";
+> @@ -305,6 +310,64 @@
+>                         #power-domain-cells = <1>;
+>                 };
+>
+> +               sdhc_1: sdhci@7c4000 {
+> +                       compatible = "qcom,sdhci-msm-v5";
+
+Please make the compatible:
+  compatible = "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
+
+...and add to the bindings. It should be a trivial bindings patch so
+not too much trouble.
+
+NOTE: even though the "qcom,sc7280-sdhci" should be in the bindings
+and here you _shouldn't_ be adding any code for it. Just let the
+fallback compatible string ("qcom,sdhci-msm-v5") do its magic. Adding
+the sc7280 specific version is more of a "just in case we need it
+later" type thing.
+
+
+> +                       reg = <0 0x7c4000 0 0x1000>,
+> +                                       <0 0x7c5000 0 0x1000>;
+> +                       reg-names = "hc", "cqhci";
+> +
+> +                       iommus = <&apps_smmu 0xC0 0x0>;
+> +                       interrupts = <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +                       clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+> +                                       <&gcc GCC_SDCC1_AHB_CLK>,
+> +                                       <&rpmhcc RPMH_CXO_CLK>;
+> +                       clock-names = "core", "iface", "xo";
+
+I'm curious: why is the "xo" clock needed here but not for sc7180?
+
+
+> +                       interconnects = <&aggre1_noc MASTER_SDCC_1 0 &mc_virt SLAVE_EBI1 0>,
+> +                                       <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_SDCC_1 0>;
+> +                       interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +                       power-domains = <&rpmhpd SC7280_CX>;
+> +                       operating-points-v2 = <&sdhc1_opp_table>;
+> +
+> +                       bus-width = <8>;
+> +                       non-removable;
+
+This was actually a problem on sc7180 too, but you probably don't want
+"non-removable" in the SoC file. Board files really should be adding
+this. Though the SoC might be designed with the idea that this would
+be used for a non-removable eMMC card I don't know why it wouldn't be
+possible for someone to hook this up to an external slot and use a
+GPIO somewhere as a card detect.
+
+
+> +                       supports-cqe;
+> +                       no-sd;
+> +                       no-sdio;
+
+Does the port really not support SD / SDIO, or are you adding these
+two properties just because on your reference board it's not hooked up
+to SD/SDIO? What exactly makes it impossible to use SD/SDIO on this
+port?
+
+
+> +                       max-frequency = <192000000>;
+
+Why do you need to specify this?
+
+
+> +                       qcom,dll-config = <0x0007642c>;
+> +                       qcom,ddr-config = <0x80040868>;
+
+These magic hex values really have no place being in dts which should
+have things expressed at a higher level. ...but I guess that ship has
+sailed and this is in the bindings so I guess we're stuck with them,
+so I guess they're fine.
+
+
+> +                       mmc-ddr-1_8v;
+> +                       mmc-hs200-1_8v;
+> +                       mmc-hs400-1_8v;
+> +                       mmc-hs400-enhanced-strobe;
+> +
+> +                       status = "disabled";
+> +
+> +                       sdhc1_opp_table: sdhc1-opp-table {
+> +                               compatible = "operating-points-v2";
+> +
+> +                               opp-100000000 {
+> +                                       opp-hz = /bits/ 64 <100000000>;
+> +                                       required-opps = <&rpmhpd_opp_low_svs>;
+> +                                       opp-peak-kBps = <1200000 76000>;
+> +                                       opp-avg-kBps = <1200000 50000>;
+
+Why are the kBps numbers so vastly different than the ones on sc7180
+for the same OPP point. That implies:
+
+a) sc7180 is wrong.
+
+b) This patch is wrong.
+
+c) The numbers are essentially random and don't really matter.
+
+Can you identify which of a), b), or c) is correct, or propose an
+alternate explanation of the difference?
+
+
+> +                               };
+> +
+> +                               opp-384000000 {
+> +                                       opp-hz = /bits/ 64 <384000000>;
+> +                                       required-opps = <&rpmhpd_opp_nom>;
+> +                                       opp-peak-kBps = <5400000 1600000>;
+> +                                       opp-avg-kBps = <6000000 300000>;
+
+These opp numbers are also quite different than sc7180
+
+
+> +                               };
+> +                       };
+> +               };
+> +
+>                 qupv3_id_0: geniqup@9c0000 {
+>                         compatible = "qcom,geni-se-qup";
+>                         reg = <0 0x009c0000 0 0x2000>;
+> @@ -328,6 +391,54 @@
+>                         };
+>                 };
+>
+> +               sdhc_2: sdhci@8804000 {
+> +                       compatible = "qcom,sdhci-msm-v5";
+> +                       reg = <0 0x08804000 0 0x1000>;
+> +
+> +                       iommus = <&apps_smmu 0x100 0x0>;
+> +                       interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +                       clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+> +                                       <&gcc GCC_SDCC2_AHB_CLK>,
+> +                                       <&rpmhcc RPMH_CXO_CLK>;
+> +                       clock-names = "core", "iface", "xo";
+> +                       interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> +                                       <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_SDCC_2 0>;
+> +                       interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +                       power-domains = <&rpmhpd SC7280_CX>;
+> +                       operating-points-v2 = <&sdhc2_opp_table>;
+> +
+> +                       bus-width = <4>;
+> +
+> +                       no-mmc;
+> +                       no-sdio;
+
+Similar question to above: why exactly would mmc not work? Are you
+saying that if someone hooked this up to a full sized SD card slot and
+placed an MMC card into the slot that it wouldn't work? Similar
+question about SDIO. If someone placed an external SDIO card into your
+slot, would it not work?
+
+
+> +                       max-frequency = <202000000>;
+
+Not needed?
+
+> +
+> +                       qcom,dll-config = <0x0007642c>;
+> +
+> +                       status = "disabled";
+> +
+> +                       sdhc2_opp_table: sdhc2-opp-table {
+> +                                       compatible = "operating-points-v2";
+> +
+> +                                       opp-100000000 {
+> +                                               opp-hz =/bits/ 64 <100000000>;
+> +                                               required-opps = <&rpmhpd_opp_low_svs>;
+> +                                               opp-peak-kBps = <1200000 76000>;
+> +                                               opp-avg-kBps = <1200000 50000>;
+> +                                       };
+> +                                       opp-202000000 {
+
+Blank line between the OPPs?
+
+> +                                               opp-hz = /bits/ 64 <202000000>;
+> +                                               required-opps = <&rpmhpd_opp_nom>;
+> +                                               opp-peak-kBps = <3500000 1200000>;
+> +                                               opp-avg-kBps = <5000000 100000>;
+> +                                       };
+
+Similar questions about why the OPPs are so vastly different from sc7180.
+
+> +                               };
+> +               };
+> +
+>                 pdc: interrupt-controller@b220000 {
+>                         compatible = "qcom,sc7280-pdc", "qcom,pdc";
+>                         reg = <0 0x0b220000 0 0x30000>;
+> @@ -374,6 +485,108 @@
+>                                 pins = "gpio46", "gpio47";
+>                                 function = "qup13";
+>                         };
+> +
+> +                       sdc1_on: sdc1-on {
+> +                               clk {
+> +                                       pins = "sdc1_clk";
+> +                                       bias-disable;
+> +                                       drive-strength = <16>;
+> +                               };
+> +
+> +                               cmd {
+> +                                       pins = "sdc1_cmd";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <10>;
+> +                               };
+> +
+> +                               data {
+> +                                       pins = "sdc1_data";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <10>;
+> +                               };
+> +
+> +                               rclk {
+> +                                       pins = "sdc1_rclk";
+> +                                       bias-pull-down;
+> +                               };
+
+* generally "bias" doesn't belong in the SoC file but instead should
+be in the board file. Some boards might have external pulls (even if
+the internal ones would work fine, hardware designers do weird things)
+and thus might need to disable the internal ones (double pulls are not
+great).
+
+* generally drive-strength doesn't belong in the SoC file but should
+be in the board file. Different boards with different layouts might
+need different drive strengths, right?
+
+If you remove those two things, I guess there's not actually much left
+in the SoC dtsi file so I guess move these all to the board file? That
+seems to be what we ended up with in "qrb5165-rb5.dts" / "sm8250.dtsi"
+which is an example of a board using the new style of pinctrl for
+devicetree.
+
+
+> +                       };
+> +
+> +                       sdc1_off: sdc1-off {
+> +                               clk {
+> +                                       pins = "sdc1_clk";
+> +                                       bias-disable;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               cmd {
+> +                                       pins = "sdc1_cmd";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               data {
+> +                                       pins = "sdc1_data";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               rclk {
+> +                                       pins = "sdc1_rclk";
+> +                                       bias-pull-down;
+> +                               };
+> +                       };
+
+No need for a sleep state for the rclk since it's the same as the
+active state, right? NOTE: one way to handle this would be to define
+one node per pingroup and thus do something like:
+
+pinctrl-names = "default", "sleep";
+pinctrl-0 = <&sdc1_clk>, <&sdc1_cmd>, <&sdc1_data>, <&sdc1_rclk>;
+pinctrl-1 = <&sdc1_clk_sleep>, <&sdc1_cmd_sleep>, <&sdc1_data_sleep>,
+<&sdc1_rclk>;
+
+I do wish we could avoid having to duplicate the "bias" in every board
+file. Hrm, I wonder if this could be made simpler by actually putting
+the "sleep" states in the sc7180.dtsi file (not the board file) and
+using "bias-bus-hold" to avoid it being board specific?
+
+Thus (assuming it works), the total summary would be:
+
+1. Board dts file fully defines "sdc1_clk", "sdc1_cmd", "sdc1_data",
+"sdc1_rclk", specifying whatever bias and drive strength needed for
+the board.
+
+2. SoC dtsi fully defines "sdc1_clk_sleep", "sdc1_cmd_sleep",
+"sdc1_data_sleep", "sdc1_rclk_sleep", specifying drive-strength of 2
+(for outputs) and "bias-bus-hold" which is OK for all board.
+
+
+> +
+> +                       sdc2_on: sdc2-on {
+> +                               clk {
+> +                                       pins = "sdc2_clk";
+> +                                       bias-disable;
+> +                                       drive-strength = <16>;
+> +                               };
+> +
+> +                               cmd {
+> +                                       pins = "sdc2_cmd";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <10>;
+> +                               };
+> +
+> +                               data {
+> +                                       pins = "sdc2_data";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <10>;
+> +                               };
+> +
+> +                               sd-cd {
+> +                                       pins = "gpio91";
+
+NOTE: even if we find some reason to keep some of the pinctrl in the
+SoC dtsi file, the card detect almost certainly needs to move _fully_
+to the board dts file. Different boards could use a different card
+detect pin.
+
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+
+Drive strength isn't needed for input pins. Please remove.
+
+> +                               };
+> +                       };
+> +
+> +                       sdc2_off: sdc2-off {
+> +                               clk {
+> +                                       pins = "sdc2_clk";
+> +                                       bias-disable;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               cmd {
+> +                                       pins = "sdc2_cmd";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               data {
+> +                                       pins = "sdc2_data";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+> +                               };
+> +
+> +                               sd-cd {
+> +                                       pins = "gpio91";
+> +                                       bias-pull-up;
+> +                                       drive-strength = <2>;
+> +                               };
+
+There's definitely no need for a separate sleep state for the CD line.
+
+
+-Doug
