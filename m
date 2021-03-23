@@ -2,76 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D54B5346D76
-	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F525346D7E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Mar 2021 23:46:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233945AbhCWWoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 18:44:16 -0400
-Received: from mail-il1-f178.google.com ([209.85.166.178]:43579 "EHLO
-        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234203AbhCWWoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:44:05 -0400
-Received: by mail-il1-f178.google.com with SMTP id d2so19663016ilm.10;
-        Tue, 23 Mar 2021 15:44:05 -0700 (PDT)
+        id S234025AbhCWWpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 18:45:51 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:42904 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233888AbhCWWpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 18:45:49 -0400
+Received: by mail-io1-f50.google.com with SMTP id r193so19475288ior.9;
+        Tue, 23 Mar 2021 15:45:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=To9cZZSfsdpSpDQw0W+UmnGEzxUUpkZfOtO0q/U8W/s=;
-        b=GIyvNIiwTfwRmEeLlTzY4pPcvecm5nE/Ne3soULwTb/WUaneMSjnOF70nxneqU12Tc
-         LZisoHc68HomibfqP5FOrLXAZc2f0qVXnVhq2s6SKHnqBFYBwdF+f2v5uCakQ/+mCM9m
-         WWHsqemKMUwyfR49Y2gDDS9l1UUVGBcjYd6472vvkI2Ap1HSVdrssSe3Lok9r5g0NhaF
-         dqOGwN0TbmQ1bRJ11yd1daRTPXGNeIlChUGSEj0dMYxFq35LUJd8h+mcb9mbp4Rj6Wu4
-         Bq3M09Gbf07tDneF+/13CLao2ygj5+1W7BwaSigSJRI5p7CmyYB6hzuS+lJ6+Rf01556
-         +FKg==
-X-Gm-Message-State: AOAM531Y2/ozgo28lZr9XlvtFYKoMc0+dCGvOSWL6TXoYrO425zxsnGr
-        z0k1xMVPPtzzU76PxeET1sfZ/aVEMg==
-X-Google-Smtp-Source: ABdhPJxqGs67jhtTLty5OdHwPAGfKZPUCrN5SvDX5Ss4Kn3MzXOQEUOV8Zjk+93kV8LZiGFtHI0xuw==
-X-Received: by 2002:a92:874d:: with SMTP id d13mr372236ilm.214.1616539445175;
-        Tue, 23 Mar 2021 15:44:05 -0700 (PDT)
+        bh=ab4o4vZ3Z9H6htd+vIWwUIBld84Fbz0WvCeZIZS5gUY=;
+        b=cW3itOXB4kPWQycvPfdUmh+MzvUrz+BOyaDS9lOu9G9dAx/9GOeh9xz1u8T69m75pS
+         7kI9cZk8EvA1lVAA9/O0kqG5+2mmU8oGstMacs1PCgre6ESnkWjMxMmBCcQ0DSxLnheA
+         SNOEk1Xlp51wiMRE7/xzpce4PZRsHGPQM4KzP1ra4JxJJ9xYJDxkq80Al5zaD3gatytU
+         fMfN6uXtO/LpVbrpDi0TixqcxJQNuWKjqC8Xbqp/PgrVJGdcOk3idUh0bnKzCECXa7Ww
+         sH6LVkwGRWYAZ5oYLTHXdq3Ic7xccdi+ltOsX3Lr2O/Ri2PkzStTYz61iZaLQR2vt/qQ
+         X58g==
+X-Gm-Message-State: AOAM530/UeNRhQZ5B0b3Y6KgyHM3paDxjT56OPRY8YvfYrv+K2CQeZH/
+        rGf/5BAKpj3SLKFJcrHyXiQItXQrVQ==
+X-Google-Smtp-Source: ABdhPJwczXzVNl7B5zrDCuYGHxJJ00UYCjp7Y8H7wIQACyPGFHS/a8D4OsUfEtPeY1Q9yTMPTNnYoA==
+X-Received: by 2002:a02:662b:: with SMTP id k43mr224183jac.139.1616539548932;
+        Tue, 23 Mar 2021 15:45:48 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id i3sm116018ilu.67.2021.03.23.15.44.03
+        by smtp.gmail.com with ESMTPSA id b15sm136066ilm.25.2021.03.23.15.45.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 15:44:04 -0700 (PDT)
-Received: (nullmailer pid 1485445 invoked by uid 1000);
-        Tue, 23 Mar 2021 22:44:02 -0000
-Date:   Tue, 23 Mar 2021 16:44:02 -0600
+        Tue, 23 Mar 2021 15:45:47 -0700 (PDT)
+Received: (nullmailer pid 1488135 invoked by uid 1000);
+        Tue, 23 Mar 2021 22:45:46 -0000
+Date:   Tue, 23 Mar 2021 16:45:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, linux-usb@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-mediatek@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jie Qiu <jie.qiu@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Cawa Cheng <cawa.cheng@mediatek.com>
-Subject: Re: [PATCH v5 01/13] dt-bindings: usb: fix yamllint check warning
-Message-ID: <20210323224402.GA1485389@robh.at.kernel.org>
-References: <20210316092232.9806-1-chunfeng.yun@mediatek.com>
+To:     Parshuram Thombare <pthombar@cadence.com>
+Cc:     robert.foss@linaro.org, laurent.pinchart@ideasonboard.com,
+        airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com, nikhil.nd@ti.com,
+        kishon@ti.com, sjakhade@cadence.com, mparab@cadence.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
+ changes for HDCP
+Message-ID: <20210323224546.GA1485576@robh.at.kernel.org>
+References: <1616146664-6941-1-git-send-email-pthombar@cadence.com>
+ <1616146709-7227-1-git-send-email-pthombar@cadence.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210316092232.9806-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <1616146709-7227-1-git-send-email-pthombar@cadence.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Mar 2021 17:22:20 +0800, Chunfeng Yun wrote:
-> Fix warning: "missing starting space in comment"
+On Fri, Mar 19, 2021 at 10:38:29AM +0100, Parshuram Thombare wrote:
+> Add binding changes for HDCP in the MHDP8546 DPI/DP bridge binding.
 > 
-> Fixes: 23bf6fc7046c ("dt-bindings: usb: convert usb-device.txt to YAML schema")
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
 > ---
-> v5: add Fixes tag suggested by Greg
-> v2~v4: no changes
-> ---
->  Documentation/devicetree/bindings/usb/usb-device.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  .../display/bridge/cdns,mhdp8546.yaml         | 34 ++++++++++++-------
+>  1 file changed, 21 insertions(+), 13 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> index 63427878715e..d571f4bb6b16 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> @@ -17,8 +17,8 @@ properties:
+>        - ti,j721e-mhdp8546
+>  
+>    reg:
+> -    minItems: 1
+> -    maxItems: 2
+> +    minItems: 2
+> +    maxItems: 3
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+1 entry was valid and now it is not? That's not a compatible change and 
+needs an explanation at a minimum.
+
+>      items:
+>        - description:
+>            Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
+> @@ -26,13 +26,20 @@ properties:
+>            included in the associated PHY.
+>        - description:
+>            Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+> +      - description:
+> +          Register block of mhdptx sapb registers.
+>  
+>    reg-names:
+> -    minItems: 1
+> -    maxItems: 2
+> -    items:
+> -      - const: mhdptx
+> -      - const: j721e-intg
+> +    minItems: 2
+> +    maxItems: 3
+> +    oneOf:
+> +      - items:
+> +          - const: mhdptx
+> +          - const: j721e-intg
+> +          - const: mhdptx-sapb
+> +      - items:
+> +          - const: mhdptx
+> +          - const: mhdptx-sapb
+>  
+>    clocks:
+>      maxItems: 1
+> @@ -98,15 +105,15 @@ allOf:
+>      then:
+>        properties:
+>          reg:
+> -          minItems: 2
+> +          minItems: 3
+>          reg-names:
+> -          minItems: 2
+> +          minItems: 3
+>      else:
+>        properties:
+>          reg:
+> -          maxItems: 1
+> +          maxItems: 2
+>          reg-names:
+> -          maxItems: 1
+> +          maxItems: 2
+>  
+>  required:
+>    - compatible
+> @@ -129,8 +136,9 @@ examples:
+>  
+>          mhdp: dp-bridge@f0fb000000 {
+>              compatible = "cdns,mhdp8546";
+> -            reg = <0xf0 0xfb000000 0x0 0x1000000>;
+> -            reg-names = "mhdptx";
+> +            reg = <0xf0 0xfb000000 0x0 0x1000000>,
+> +                  <0x0 0x4f48000 0x0 0x74>;
+> +            reg-names = "mhdptx", "mhdptx-sapb";
+>              clocks = <&mhdp_clock>;
+>              phys = <&dp_phy>;
+>              phy-names = "dpphy";
+> -- 
+> 2.25.1
+> 
