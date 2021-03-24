@@ -2,206 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0433482D2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 21:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E348C348325
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 21:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238091AbhCXUXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 16:23:16 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:41719 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238058AbhCXUW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 16:22:56 -0400
-Received: by mail-il1-f176.google.com with SMTP id r8so186355ilo.8;
-        Wed, 24 Mar 2021 13:22:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ym9wQJ835EhicfJs2Z/0AiEJTDHIWA8h8IYBIVzB34I=;
-        b=T8A0FHcCIWiyBuOlIz/O5+Ot5ut0YUNRhcFHly0k5BZPhvhOla6W/rGXyFo91iEwXT
-         BA0HhMM66Edy1877SVp7cPo9twuOqAejBlafaVIEdc1ivwCK2U/CnaQwNh5Sf0m2+sGa
-         NaKT09qBexiid1s1pW+YQkiLHvNj3RNN5sVIyVr3YHr3/UHC0Nm2nLA8Gb5U1P5U4KVO
-         J5s5BNiA4fWU6pcg2utG/Hu9FLDDx93dna3ixAKgjF73umAFnwgGkL6qFQEaeqbmka1W
-         1V9MCFuEQCiwuX4RznarezLD0O0n3J1I/6pyzBetlE7R8C+YsQIm6Jqz1doqJ37QjcBv
-         I6Hg==
-X-Gm-Message-State: AOAM531rM5HS8l6mp30oTwuRwEhZ9Y09N/b0B+jyU6HrUMj798HCfNag
-        3IRPxVxavG/obXHIgWR60/SPZBAEZLKo
-X-Google-Smtp-Source: ABdhPJx3LwNgG+pEwKPSbbPIAocbEobG0kVRkstX/EHtFKqufLF2VaRE6e/EzOizKuOO3upBFpe2XA==
-X-Received: by 2002:a05:6e02:128c:: with SMTP id y12mr3996206ilq.7.1616617375356;
-        Wed, 24 Mar 2021 13:22:55 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.253])
-        by smtp.googlemail.com with ESMTPSA id p5sm1544811iod.31.2021.03.24.13.22.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 13:22:54 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: media: video-interfaces: Drop the example
-Date:   Wed, 24 Mar 2021 14:22:53 -0600
-Message-Id: <20210324202253.3576798-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S238052AbhCXUvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 16:51:47 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:37484 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238185AbhCXUvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 16:51:32 -0400
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linuxppc-dev@lists.ozlabs.org>,
+        <linux-snps-arc@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 0/7] dt-bindings: usb: Harmonize xHCI/EHCI/OHCI/DWC3 nodes name
+Date:   Wed, 24 Mar 2021 23:48:29 +0300
+Message-ID: <20210324204836.29668-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The example in video-interfaces.yaml uses a bunch of undocumented
-bindings which will cause warnings when undocumented compatible checks
-are enabled. The example could be fixed to use documented bindings, but
-doing so would just duplicate other examples. So let's just remove the
-example.
+As the subject states this series is an attempt to harmonize the xHCI,
+EHCI, OHCI and DWC USB3 DT nodes with the DT schema introduced in the
+framework of the patchset [1].
 
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2: Drop instead of fixing the example
+Firstly as Krzysztof suggested we've deprecated a support of DWC USB3
+controllers with "synopsys,"-vendor prefix compatible string in favor of
+the ones with valid "snps,"-prefix. It's done in all the DTS files,
+which have been unfortunate to define such nodes.
 
- .../bindings/media/video-interfaces.yaml      | 127 ------------------
- 1 file changed, 127 deletions(-)
+Secondly we suggest to fix the snps,quirk-frame-length-adjustment property
+declaration in the Amlogic meson-g12-common.dtsi DTS file, since it has
+been erroneously declared as boolean while having uint32 type. Neil said
+it was ok to init that property with 0x20 value.
 
-diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-index 0a7a73fd59f2..4391dce2caee 100644
---- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
-+++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-@@ -215,130 +215,3 @@ properties:
-       CCP2, for instance.
- 
- additionalProperties: true
--
--examples:
--  # The example snippet below describes two data pipelines.  ov772x and imx074
--  # are camera sensors with a parallel and serial (MIPI CSI-2) video bus
--  # respectively. Both sensors are on the I2C control bus corresponding to the
--  # i2c0 controller node.  ov772x sensor is linked directly to the ceu0 video
--  # host interface. imx074 is linked to ceu0 through the MIPI CSI-2 receiver
--  # (csi2). ceu0 has a (single) DMA engine writing captured data to memory.
--  # ceu0 node has a single 'port' node which may indicate that at any time
--  # only one of the following data pipelines can be active:
--  # ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
--  - |
--    ceu@fe910000 {
--        compatible = "renesas,sh-mobile-ceu";
--        reg = <0xfe910000 0xa0>;
--        interrupts = <0x880>;
--
--        mclk: master_clock {
--            compatible = "renesas,ceu-clock";
--            #clock-cells = <1>;
--            clock-frequency = <50000000>;  /* Max clock frequency */
--            clock-output-names = "mclk";
--        };
--
--        port {
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            /* Parallel bus endpoint */
--            ceu0_1: endpoint@1 {
--                reg = <1>;    /* Local endpoint # */
--                remote-endpoint = <&ov772x_1_1>;  /* Remote phandle */
--                bus-width = <8>;  /* Used data lines */
--                data-shift = <2>;  /* Lines 9:2 are used */
--
--                /* If hsync-active/vsync-active are missing,
--                   embedded BT.656 sync is used */
--                hsync-active = <0>;  /* Active low */
--                vsync-active = <0>;  /* Active low */
--                data-active = <1>;  /* Active high */
--                pclk-sample = <1>;  /* Rising */
--            };
--
--            /* MIPI CSI-2 bus endpoint */
--            ceu0_0: endpoint@0 {
--                reg = <0>;
--                remote-endpoint = <&csi2_2>;
--            };
--        };
--    };
--
--    i2c {
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        camera@21 {
--            compatible = "ovti,ov772x";
--            reg = <0x21>;
--            vddio-supply = <&regulator1>;
--            vddcore-supply = <&regulator2>;
--
--            clock-frequency = <20000000>;
--            clocks = <&mclk 0>;
--            clock-names = "xclk";
--
--            port {
--                /* With 1 endpoint per port no need for addresses. */
--                ov772x_1_1: endpoint {
--                    bus-width = <8>;
--                    remote-endpoint = <&ceu0_1>;
--                    hsync-active = <1>;
--                    vsync-active = <0>; /* Who came up with an
--                               inverter here ?... */
--                    data-active = <1>;
--                    pclk-sample = <1>;
--                };
--            };
--        };
--
--        camera@1a {
--            compatible = "sony,imx074";
--            reg = <0x1a>;
--            vddio-supply = <&regulator1>;
--            vddcore-supply = <&regulator2>;
--
--            clock-frequency = <30000000>;  /* Shared clock with ov772x_1 */
--            clocks = <&mclk 0>;
--            clock-names = "sysclk";    /* Assuming this is the
--                       name in the datasheet */
--            port {
--                imx074_1: endpoint {
--                    clock-lanes = <0>;
--                    data-lanes = <1 2>;
--                    remote-endpoint = <&csi2_1>;
--                };
--            };
--        };
--    };
--
--    csi2: csi2@ffc90000 {
--        compatible = "renesas,sh-mobile-csi2";
--        reg = <0xffc90000 0x1000>;
--        interrupts = <0x17a0>;
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        port@1 {
--            compatible = "renesas,csi2c";  /* One of CSI2I and CSI2C. */
--            reg = <1>;      /* CSI-2 PHY #1 of 2: PHY_S,
--                       PHY_M has port address 0,
--                       is unused. */
--            csi2_1: endpoint {
--                clock-lanes = <0>;
--                data-lanes = <2 1>;
--                remote-endpoint = <&imx074_1>;
--            };
--        };
--        port@2 {
--            reg = <2>;      /* port 2: link to the CEU */
--
--            csi2_2: endpoint {
--                remote-endpoint = <&ceu0_0>;
--            };
--        };
--    };
--
--...
+Thirdly the main part of the patchset concern fixing the xHCI, EHCI/OHCI
+and DWC USB3 DT nodes name as in accordance with their DT schema the
+corresponding node name is suppose to comply with the Generic USB HCD DT
+schema, which requires the USB nodes to have the name acceptable by the
+regexp: "^usb(@.*)?". Such requirement had been applicable even before we
+introduced the new DT schema in [1], but as we can see it hasn't been
+strictly implemented for a lot the DTS files. Since DT schema is now
+available the automated DTS validation shall make sure that the rule isn't
+violated.
+
+Note most of these patches have been a part of the last three patches of
+[1]. But since there is no way to have them merged in in a combined
+manner, I had to move them to the dedicated series and split them up so to
+be accepted by the corresponding subsystem maintainers one-by-one.
+
+[1] Link: https://lore.kernel.org/linux-usb/20201014101402.18271-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v1:
+- As Krzysztof suggested I've created a script which checked whether the
+  node names had been also updated in all the depended dts files. As a
+  result I found two more files which should have been also modified:
+  arch/arc/boot/dts/{axc003.dtsi,axc003_idu.dtsi}
+- Correct the USB DWC3 nodes name found in
+  arch/arm64/boot/dts/apm/{apm-storm.dtsi,apm-shadowcat.dtsi} too.
+
+Link: https://lore.kernel.org/linux-usb/20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru
+Changelog v2:
+- Drop the patch:
+  [PATCH 01/29] usb: dwc3: Discard synopsys,dwc3 compatibility string
+  and get back the one which marks the "synopsys,dwc3" compatible string
+  as deprecated into the DT schema related series.
+- Drop the patches:
+  [PATCH 03/29] arm: dts: am437x: Correct DWC USB3 compatible string
+  [PATCH 04/29] arm: dts: exynos: Correct DWC USB3 compatible string
+  [PATCH 07/29] arm: dts: bcm53x: Harmonize EHCI/OHCI DT nodes name
+  [PATCH 08/29] arm: dts: stm32: Harmonize EHCI/OHCI DT nodes name
+  [PATCH 16/29] arm: dts: bcm5301x: Harmonize xHCI DT nodes name
+  [PATCH 19/29] arm: dts: exynos: Harmonize DWC USB3 DT nodes name
+  [PATCH 21/29] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  [PATCH 22/29] arm: dts: omap5: Harmonize DWC USB3 DT nodes name
+  [PATCH 24/29] arm64: dts: allwinner: h6: Harmonize DWC USB3 DT nodes name
+  [PATCH 26/29] arm64: dts: exynos: Harmonize DWC USB3 DT nodes name
+  [PATCH 27/29] arm64: dts: layerscape: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+- Fix drivers/usb/dwc3/dwc3-qcom.c to be looking for the "usb@"-prefixed
+  sub-node and falling back to the "dwc3@"-prefixed one on failure.
+
+Link: https://lore.kernel.org/linux-usb/20201111091552.15593-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Drop the patches:
+  [PATCH v2 04/18] arm: dts: hisi-x5hd2: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 06/18] arm64: dts: hisi: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 07/18] mips: dts: jz47x: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 08/18] mips: dts: sead3: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 09/18] mips: dts: ralink: mt7628a: Harmonize EHCI/OHCI DT nodes name
+  [PATCH v2 11/18] arm64: dts: marvell: cp11x: Harmonize xHCI DT nodes name
+  [PATCH v2 12/18] arm: dts: marvell: armada-375: Harmonize DWC USB3 DT nodes name
+  [PATCH v2 16/18] arm64: dts: hi3660: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+
+Link: https://lore.kernel.org/linux-usb/20201205155621.3045-1-Sergey.Semin@baikalelectronics.ru
+Changelog v4:
+- Just resend.
+
+Link: https://lore.kernel.org/linux-usb/20201210091756.18057-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v5:
+- Drop the patch:
+  [PATCH v4 02/10] arm64: dts: amlogic: meson-g12: Set FL-adj property value
+  since it has been applied to the corresponding maintainers repos.
+- Get back the patch:
+  [PATCH 21/29] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  as it has been missing in the kernel 5.11-rc7
+- Rebase onto the kernel 5.11-rc7.
+
+Link: https://lore.kernel.org/lkml/20210208135154.6645-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v6:
+- Just resend and add linux-usb.vger.kernel.org to the list of Ccecipients.
+
+Link: https://lore.kernel.org/linux-usb/20210210172850.20849-1-Sergey.Semin@baikalelectronics.ru
+Link: https://lore.kernel.org/linux-usb/20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru
+Changelog v7:
+- Replace "of_get_child_by_name(np, "usb") ?: of_get_child_by_name(np, "dwc3");"
+  pattern with using of_get_compatible_child() method in the Qcom DWC3 driver.
+- Drop the patches:
+  [PATCH v6 01/10] arm: dts: ls1021a: Harmonize DWC USB3 DT nodes name
+  [PATCH v6 02/10] arm: dts: keystone: Correct DWC USB3 compatible string
+  [PATCH v6 06/10] arm: dts: keystone: Harmonize DWC USB3 DT nodes name
+  since they have been applied to the corresponding maintainers repos.
+- Cleanup the list of recipients.
+- Rebase onto kernel 5.12-rc4.
+
+Cc: Khuong Dinh <khuong@os.amperecomputing.com>
+Cc: Patrice Chotard <patrice.chotard@st.com>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-snps-arc@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (7):
+  arc: dts: Harmonize EHCI/OHCI DT nodes name
+  arm: dts: lpc18xx: Harmonize EHCI/OHCI DT nodes name
+  powerpc: dts: akebono: Harmonize EHCI/OHCI DT nodes name
+  arm: dts: stih407-family: Harmonize DWC USB3 DT nodes name
+  arm64: dts: apm: Harmonize DWC USB3 DT nodes name
+  usb: dwc3: qcom: Detect DWC3 DT-nodes using compatible string
+  arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
+
+ arch/arc/boot/dts/axc003.dtsi                | 4 ++--
+ arch/arc/boot/dts/axc003_idu.dtsi            | 4 ++--
+ arch/arc/boot/dts/axs10x_mb.dtsi             | 4 ++--
+ arch/arc/boot/dts/hsdk.dts                   | 4 ++--
+ arch/arc/boot/dts/vdk_axs10x_mb.dtsi         | 2 +-
+ arch/arm/boot/dts/lpc18xx.dtsi               | 4 ++--
+ arch/arm/boot/dts/stih407-family.dtsi        | 2 +-
+ arch/arm64/boot/dts/apm/apm-shadowcat.dtsi   | 4 ++--
+ arch/arm64/boot/dts/apm/apm-storm.dtsi       | 6 +++---
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi        | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi        | 2 +-
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi     | 2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi         | 4 ++--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi         | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi         | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8150.dtsi         | 2 +-
+ arch/powerpc/boot/dts/akebono.dts            | 6 +++---
+ drivers/usb/dwc3/dwc3-qcom.c                 | 2 +-
+ 20 files changed, 35 insertions(+), 35 deletions(-)
+
 -- 
-2.27.0
+2.30.1
 
