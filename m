@@ -2,111 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CA734827C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 21:03:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 297C4348293
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 21:08:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238069AbhCXUCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 16:02:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238063AbhCXUCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 16:02:25 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B006C0613DF
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 13:02:24 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id h5so4306665uaw.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 13:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L71/S95zyMXln0afxkBYB5ecQb9oQgPfUTdLdtQNpqM=;
-        b=LCsBAiOC+y06xN3oDZidZ6bb6lX3Yx+f23Y5uftO1CK55yFBsI5/nl1jACgNP3pG+X
-         ok4YyEiZZGyWE2mn/s1jsasO3Ne+RqB+DEeiPbQfHWHpphR9qr14QWDBOnuREjFrCS9F
-         5asp3O1NORHpJlr3Cg4A11M/Oj8nuwNHLiLwGZ/M+JYv5S6Z8PGjutcQj5nrwRz7Z8C4
-         zMwbYUosBD+upB9muVU97vydBn7eHis5WSh6v/BHg5LZMFnQm8O/eJkS+7mk8WXAG+5f
-         2mWm5JXf97DKyr3aFv4NVlpoGLsGFsi7OIysv1HFejKGvBBcTefHwyHo1R3Ia0pd/0Nn
-         bLaw==
+        id S238052AbhCXUHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 16:07:34 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:46738 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238170AbhCXUHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 16:07:09 -0400
+Received: by mail-io1-f52.google.com with SMTP id j26so22833236iog.13;
+        Wed, 24 Mar 2021 13:07:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L71/S95zyMXln0afxkBYB5ecQb9oQgPfUTdLdtQNpqM=;
-        b=G4rxq52bFOmnbL6wQV9xCSKXzVMjvi6yX/M8pw2Kxrq/Cjn/vQNKophw9TLnKbnS+9
-         Lq498zfjNA/daKGeeMw8s6oqrlcGo3bEYAARFz9JHiFaotMSN+MHrZLFOJbLG3OH5S75
-         +u4ptwqOLu2s8GAKb8i762suvEF8k7EufOEyVaNUOdNvvcUI3zz82nV/vYMMfGzI4EN+
-         9u1PvGfSxurGOJ/anMy9Plk0wJb/ZOUxrBjP20Dlf1VUSdW9xmIUuCslpM8xI1yt9l9e
-         YLMfOzuJ7qHZRkElAg6aiWu992MDMmmqqlTA6ZSj5X/clEq4JN9/+uph9sEWlN/fvFDy
-         iXsg==
-X-Gm-Message-State: AOAM530JCNAlKYPvQuiOME4Va2qWNpSDm4B/OuqhgO/A+u2LHeOxKMqb
-        zOZ4uh8KRUyy9kejXDLMPIjWjB6O0GhH6ts2WbdeWg==
-X-Google-Smtp-Source: ABdhPJwJ5tqbbKkbNKAssimRu1mg50OYnYGjGxnnFswA4GlfmVCV27jhf+B+w0+kbm5rRm38C7W/01CfWNUnuhT1NdA=
-X-Received: by 2002:a9f:3d89:: with SMTP id c9mr3068324uai.65.1616616143142;
- Wed, 24 Mar 2021 13:02:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=kQ8EfIai0iW2bIIQK0w4Z5qSxl9rVxcELF+Eo3Tf2YU=;
+        b=kOgr6ar5LmlJ3xK+vriwT8/Ry6ZRS8goKGCg72ztIl6EvL3K3FwJfdz+CcBNGgc+qe
+         MrtBmVpgA+SxIrpglEQAg/1Iu3HKSyQHamgUu1WdmsvoO4XqtSTturG3IH6IGutCB8pC
+         kslyyJ/33v/5emjtTic7KhpLqf4hqV3zAED8dCsEqlPlBGe/zUULb2RDgdXfLxjhj68G
+         mARWYbzLMClu2Nh4dDwTusaDPzK1VrTgu+zmDNN14aKMP712/Popx1b10wanZ1DXz8R3
+         I76bMTG/DHM8BMKbw+guiRSDe1cyONocObpkGmH5ODIBu6G0/Ofl0D8TOBqpvZsSwHoF
+         KPaQ==
+X-Gm-Message-State: AOAM5302oxQEvZibMPHq51/98aBuPgZmeKVQcpqUX90/C1z2CW2+jcpQ
+        Wd8NBZirD9OlEJeXJho3UA==
+X-Google-Smtp-Source: ABdhPJx0+97Pr/JkbHMlL2UCLm05Zhgoan9kw7ATFj5Cv/Hz995ecWbwg/NXjiAh3m4sMsXnmG31Eg==
+X-Received: by 2002:a05:6638:378c:: with SMTP id w12mr4456448jal.127.1616616428402;
+        Wed, 24 Mar 2021 13:07:08 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id z12sm1619693ilb.18.2021.03.24.13.07.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 13:07:07 -0700 (PDT)
+Received: (nullmailer pid 3539458 invoked by uid 1000);
+        Wed, 24 Mar 2021 20:07:06 -0000
+Date:   Wed, 24 Mar 2021 14:07:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        devicetree@vger.kernel.org, pali@kernel.org
+Subject: Re: [PATCH net-next 1/2] dt-bindings: ethernet-controller: create a
+ type for PHY interface modes
+Message-ID: <20210324200706.GA3528805@robh.at.kernel.org>
+References: <20210324103556.11338-1-kabel@kernel.org>
+ <20210324103556.11338-2-kabel@kernel.org>
 MIME-Version: 1.0
-References: <20210311100313.3591254-1-badhri@google.com> <20210311100313.3591254-4-badhri@google.com>
- <20210324145042.GA3036037@robh.at.kernel.org>
-In-Reply-To: <20210324145042.GA3036037@robh.at.kernel.org>
-From:   Badhri Jagan Sridharan <badhri@google.com>
-Date:   Wed, 24 Mar 2021 13:01:46 -0700
-Message-ID: <CAPTae5KZGPz8jF_C=UjobDe_SotvtR1PecNinOQWUjnLMyF4rQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: usb: Add chg-psy-name property Maxim
- 33359 binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        USB <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Kyle Tso <kyletso@google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210324103556.11338-2-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Mar 24, 2021 at 11:35:55AM +0100, Marek Behún wrote:
+> In order to be able to define a property describing an array of PHY
+> interface modes, we need to change the current scalar
+> `phy-connection-type`, which lists the possible PHY interface modes, to
+> an array of length 1 (otherwise we would need to define the same list at
+> two different places).
+> 
+> Moreover Rob Herring says that we cannot reuse the values of a property;
+> we need to $ref a type.
+> 
+> Move the definition of possible PHY interface modes from the
+> `phy-connection-type` property to an array type definition
+> `phy-connection-type-array`, and simply reference this type in the
+> original property.
 
-Thanks for the feedback !
-From the feedback that I received from the other patches in the stack,
-we have identified an alternate approach of doing this without
-introducing this device tree addition.
-So, for now this patch is no longer needed. While the alternate
-approach is still being validated, will resurface this patch if I
-identify any drawbacks of the alternate approach.
-
-Regards,
-Badhri
-
-
-On Wed, Mar 24, 2021 at 7:50 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Mar 11, 2021 at 02:03:13AM -0800, Badhri Jagan Sridharan wrote:
-> > chg-psy-name is an optional string property used to indicate the
-> > power supply object for which the current/voltage_max limits have
-> > to be set.
-> >
-> > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> > index 93a19eda610b..3a278969109e 100644
-> > --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> > @@ -28,6 +28,11 @@ properties:
-> >      description:
-> >        Properties for usb c connector.
-> >
-> > +  chg-psy-name:
-> > +    description: Power supply whose current/voltage_max values to be
-> > +      configured.
-> > +    $ref: /schemas/types.yaml#definitions/string
->
-> If you want a non-vendor specific property, this needs to be documented
-> in a common binding. I think this needs a better explaination and
-> examples of multiple chargers.
->
-> Rob
+Why not just extend phy-connection-type to support more than 1 entry?
