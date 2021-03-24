@@ -2,205 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B119E347BD5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8ED347BE4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236399AbhCXPNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
+        id S236524AbhCXPPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236543AbhCXPMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:12:44 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F58C0613DF
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:12:43 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id b7so33492198ejv.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:12:43 -0700 (PDT)
+        with ESMTP id S236471AbhCXPPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:15:19 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFE6C061763
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:15:17 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id q9so12430731qvm.6
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=rpBp7AJWNevm6XgUCf8It0J8VZS6BW6Ytb0WBwtBHdg=;
-        b=x11HJDqtbJl0RTpUhMaDPb+kNEbmK+x5fbaCoTlVUixv/5/HaAKw5Dd64BEzGfofMF
-         LsiqJbFAT9WHMm99hUYfuEDak85bttisRRf9s3bKL1BN0APkM6sylKDQXTjUA0Krl8Ru
-         CNoisLPabGDqyzctcBzGz4EvgUYvZqk2SWRCiURdFg9nCxJS8HTAaXAPUnlctXvSKYis
-         c7Y1J7evNK9i4fQ+v/G861QyFoaqXSjPTaDoaVmX0cxcbv4WL0Bc/l+UY96uQjb99cE/
-         JMlR8tw9iWKmc5qM/OEANq7az5sws7cbVpl3zl7rP3B3q7hxIGB489EQwO6da6fmjrlw
-         TkTw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=vP5Ba5XxBveTQZdoFSZIes52LiCUiGwat+bAoOH5Ibs=;
+        b=SemKYZPVvzB03V4d4YoUaFXCHuKC6vAQsbKXEhWOgO6HlPBQNZ9JSGrgsBl0MCBHoy
+         YyHOkxxsG8papwOChhJBOwTTZ347SF4sP7DY+wqxXWMhjJP9Vlv8K5XLo67TVLB3OQqf
+         tILrPkS8Abo1giP4HLN7CTnOWB9Jew0hffWdAPDjRGAHjdf/+H+Hwf121rQXsQmvD655
+         /AU6bsPknBs+nRzsJ8/pcRIkWLS1ntYyVribg0+Zi8ehhf/6JQOKdzl6Lg4i1sfJs3Dp
+         wy9SYXqovEu9vgKXWPkoW8PpoiKjMjVAy98UBtCmIeWipX7tifVs1VllH2PSlNZ/US36
+         JntA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rpBp7AJWNevm6XgUCf8It0J8VZS6BW6Ytb0WBwtBHdg=;
-        b=hW/KnapoEFiZ+tnAP5+zZnX4pwLjKyPjM4ovYp99XLOwLBLW5IZPWz32lJS8c+2lOz
-         bTA1oeyeyoOhjlOcuz1YRC3WkXKLYBGJRh4VndOU9Hgpog59aeyDLegtd3ywy54DiMw6
-         jXwAMiR2JMAve9M4KJ64Zz88dKtr5M4CWMeNK7rE41mePO3vPH3FX4g6hgN8lJXqs4HK
-         NS07v5cT+XbmFbwy6SBGPeteXQw0ENuh1aEWNjcR7T7HrUUxhsLBZgYCLFViJolH//zj
-         1/GzjoHEPqmiZ2DEK40INi9T4K8E3mXYHudF+TvG/RCfIRPog6uOLI6Ow+3u0za54M6c
-         b/Eg==
-X-Gm-Message-State: AOAM5338yZttMklMBzYlorh15UB0ofBeZmrpLhiudiCUU7MJ/ppUXId9
-        T2I7vCnktH3EfNUbahJnb9kxbA==
-X-Google-Smtp-Source: ABdhPJzg53S6lyQmMlD42NaqXRVBk89kv+dLjpRmEQhNsToTbn1tsv8VtnmWHHyP74tBd6ePTRJ0pw==
-X-Received: by 2002:a17:906:2a16:: with SMTP id j22mr4234588eje.247.1616598762069;
-        Wed, 24 Mar 2021 08:12:42 -0700 (PDT)
-Received: from dell ([91.110.221.180])
-        by smtp.gmail.com with ESMTPSA id q12sm1064411ejy.91.2021.03.24.08.12.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 08:12:41 -0700 (PDT)
-Date:   Wed, 24 Mar 2021 15:12:39 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Colin Cross <ccross@android.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Josh Cartwright <joshc@codeaurora.org>,
-        Kees Cook <keescook@chromium.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        netdev <netdev@vger.kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Tony Luck <tony.luck@intel.com>
-Subject: Re: [PATCH v2 00/10] Rid W=1 warnings from OF
-Message-ID: <20210324151239.GP2916463@dell>
-References: <20210318104036.3175910-1-lee.jones@linaro.org>
- <CAL_JsqKueTWKbXNuN+74COR1LT6XLyw61GqCLpOgv-knNtEdKg@mail.gmail.com>
- <20210323083631.GE2916463@dell>
- <CAL_JsqL_V-BgZpSCLL4JQHF3OC-60RPeExkDLf-uSohnpcBdOA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=vP5Ba5XxBveTQZdoFSZIes52LiCUiGwat+bAoOH5Ibs=;
+        b=Z4qvDHuWTXhQBTvu3V8klawBoy5+EUMJmm7rw/LaSKNR2g1LsZ4jy8AwtK6VOUaaQl
+         3e8QhSVDDdPvgSvZRnAojqbihlf5Gbyja62hVc4Cb3j1XVMRjUswzdv5Xtj31UZVy7gd
+         u6RCqkQRPWHnJT8tv30KaOV05rspHyRqubOwTvdHLC+ojbB4mEOJF7lomsjE8W+E1gLA
+         7KiTTDK5wcjRDc9PSA6kDv01WdTKzvIt63Ix0QuwtrMhTJhiaaCFZF5xmXBajnIsue+p
+         EOrjZwYjx7JQNOHhwoSFAVsapzbJBrHKGrfCn8qgeHkcefoWDDUzw1st3SbBIjb/VNAy
+         dPHQ==
+X-Gm-Message-State: AOAM533jl6YW1KHzRFt3il8iaYLhRRCPdJwb8M368UTLsJf9qSNsgcej
+        5/9AGrcTEvaT7r5KG+Y/7ocPsb9/1U09HIiMr5A=
+X-Google-Smtp-Source: ABdhPJxwcRI2T7vHZskMLW/TbhH4vKBPGoPRpyfTUSWRtRWh3+dkDN96mEjkVm3B1i8NNjm5ytGjwfM6B92d7053U0s=
+X-Received: by 2002:a0c:f6cf:: with SMTP id d15mr3369019qvo.62.1616598916529;
+ Wed, 24 Mar 2021 08:15:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqL_V-BgZpSCLL4JQHF3OC-60RPeExkDLf-uSohnpcBdOA@mail.gmail.com>
+Received: by 2002:a05:6214:572:0:0:0:0 with HTTP; Wed, 24 Mar 2021 08:15:16
+ -0700 (PDT)
+Reply-To: barrywade111@gmail.com
+From:   "Mr.Barry Wade" <johnson.h.bobolo@gmail.com>
+Date:   Wed, 24 Mar 2021 16:15:16 +0100
+Message-ID: <CABGg1v=sMqP9STJPQSOasYqezxBSm0+fY2ApqAQPZQ_4=9nkYA@mail.gmail.com>
+Subject: Good day
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Mar 2021, Rob Herring wrote:
-
-> On Tue, Mar 23, 2021 at 2:36 AM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Mon, 22 Mar 2021, Rob Herring wrote:
-> >
-> > > On Thu, Mar 18, 2021 at 4:40 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > > >
-> > > > This set is part of a larger effort attempting to clean-up W=1
-> > > > kernel builds, which are currently overwhelmingly riddled with
-> > > > niggly little warnings.
-> > > >
-> > > > v2:
-> > > >  - Provided some descriptions to exported functions
-> > > >
-> > > > Lee Jones (10):
-> > > >   of: device: Fix function name in header and provide missing
-> > > >     descriptions
-> > > >   of: dynamic: Fix incorrect parameter name and provide missing
-> > > >     descriptions
-> > > >   of: platform: Demote kernel-doc abuse
-> > > >   of: base: Fix some formatting issues and provide missing descriptions
-> > > >   of: property: Provide missing member description and remove excess
-> > > >     param
-> > > >   of: address: Provide descriptions for 'of_address_to_resource's params
-> > > >   of: fdt: Demote kernel-doc abuses and fix function naming
-> > > >   of: of_net: Provide function name and param description
-> > > >   of: overlay: Fix function name disparity
-> > > >   of: of_reserved_mem: Demote kernel-doc abuses
-> > > >
-> > > >  drivers/of/address.c         |  3 +++
-> > > >  drivers/of/base.c            | 16 +++++++++++-----
-> > > >  drivers/of/device.c          |  7 ++++++-
-> > > >  drivers/of/dynamic.c         |  4 +++-
-> > > >  drivers/of/fdt.c             | 23 ++++++++++++-----------
-> > > >  drivers/of/of_net.c          |  3 +++
-> > > >  drivers/of/of_reserved_mem.c |  6 +++---
-> > > >  drivers/of/overlay.c         |  2 +-
-> > > >  drivers/of/platform.c        |  2 +-
-> > > >  drivers/of/property.c        |  2 +-
-> > > >  10 files changed, 44 insertions(+), 24 deletions(-)
-> > >
-> > > I still see some warnings (note this is with DT files added to doc
-> > > build). Can you send follow-up patches:
-> > >
-> > > ../include/linux/of.h:1193: warning: Function parameter or member
-> > > 'output' not described in 'of_property_read_string_index'
-> > > ../include/linux/of.h:1193: warning: Excess function parameter
-> > > 'out_string' description in 'of_property_read_string_index'
-> > > ../include/linux/of.h:1461: warning: cannot understand function
-> > > prototype: 'enum of_overlay_notify_action '
-> > > ../drivers/of/base.c:1781: warning: Excess function parameter 'prob'
-> > > description in '__of_add_property'
-> > > ../drivers/of/base.c:1804: warning: Excess function parameter 'prob'
-> > > description in 'of_add_property'
-> > > ../drivers/of/base.c:1855: warning: Function parameter or member
-> > > 'prop' not described in 'of_remove_property'
-> > > ../drivers/of/base.c:1855: warning: Excess function parameter 'prob'
-> > > description in 'of_remove_property'
-> >
-> > You don't want much do you! ;)
-> 
-> Hey, want to fix all the schema warnings for me? ;)
-
-Definitely not.  I've even gone to the trouble of disabling them. :D
-
-> > Sure, I plan to clean up all of the kernel with subsequent patches.
-> >
-> > > BTW, there some more which I guess W=1 doesn't find:
-> > >
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:906: WARNING: Block quote ends without a blank
-> > > line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1465: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1469: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1473: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1517: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1521: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1526: WARNING: Unexpected indentation.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1528: WARNING: Block quote ends without a blank
-> > > line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1529: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1533: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:19:
-> > > ../drivers/of/base.c:1705: WARNING: Definition list ends without a
-> > > blank line; unexpected unindent.
-> > > /home/rob/proj/git/linux-dt/Documentation/driver-api/devicetree:49:
-> > > ../drivers/of/overlay.c:1183: WARNING: Inline emphasis start-string
-> > > without end-string.
-> >
-> > What command did you use to find these?
-> 
-> make htmldocs
-> 
-> (with the DT files added to the docs)
-> 
-> These turn out to be the tip of the iceberg. There's all sorts of
-> formatting issues. Tabs are a problem and the 'Return' section is
-> wrong. These are only found looking at the output.
-
-Heh!  Depends how desperate I get. :'D
-
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+--
+
+I Am Mr.Barry Wade. from west Africa i have a business deal to sharewith
+you in the sum of10.2 USD dollars that is been held in our here in
+(B.O.A) bank of Africa the fund mentioned rightful belong to one ofour
+late client who deposited the money in our bank here ever sincehe
+died nobody have been able to apply to claim the fund so i wish that
+you will come and assume as his foreign business partner alsonote this
+business is risk free not to be sacred or doubt is real please my
+dearest one also note this once we succeed in transferringthis fund to
+your wish provided account in your country it will shared among us
+inagreement of 60%40 i believe that after this deal joy and happiness
+will be on or face's and family's please reply to me with your
+detailsso we can move on with this great plan ok.
+
+
+REPLY TO-- ( barrywade111@gmail.com )
+
+
+Your Full Name.......
+
+Your Age&Sex........
+
+Your Marital Status......
+
+Your Country Name.......
+
+Your Phone Number......
+
+Your Occupation.....
+
+Your Bank Name......
+
+Your Account Number......
+
+Thanks Yours Brotherly
+
+Mr.Barry Wade.
