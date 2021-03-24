@@ -2,145 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E21347F35
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C78347F46
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237091AbhCXRVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 13:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237073AbhCXRV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:21:26 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2100EC061763;
-        Wed, 24 Mar 2021 10:21:26 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id kt15so24715242ejb.12;
-        Wed, 24 Mar 2021 10:21:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ROVD6p8uWXCEzUfy6fJv/Vx954JFE0p8W73iVJQaYSI=;
-        b=ccRE/yRezGAfcVnuNAQV8LBeXvGefdRC+zrTt4K87lxDa3E/cMLXKP38ThihsYN3+u
-         1O+pWkGWKMokC+ym3AdANZrogKxGBXQLxxFqxJ5xac5R5KmNAKwUIjHZwuv9pHgCQMr7
-         6eyHO6/6HQYossBzEEtfGg1KnLBMEQDUK8lO9AQeV3x1nCqPDv/X80ACGW2LX5NjcLqU
-         1rys515irZv5F+38Sl/3T7s/ETabI2lD79sc78+zRMAiEZatopH2G+ouKDqcDjPJoSlX
-         xbcAheWhx6kv9ZygaCwdgQ7pIkh1k92vCQjkMKn8dGPkoHuTKHHRZniEzTonhx4paYc/
-         tG3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ROVD6p8uWXCEzUfy6fJv/Vx954JFE0p8W73iVJQaYSI=;
-        b=Aaq+Wr2RlBLU7ELuVbE07gMUczCDVZiGHNQ30urxLw8Cu22+bcApmdYkZ18+kxnmx7
-         E5o/I4QdMsZZ7nIBB17QyU++dy/OV53U3GjsOLVMVFJB2+LHkjaoGr2VgooX8yOAu+IK
-         lI81qMB8j+C4nrxaIMNntqFz6x4GeGkb3OFokM8iijv6Ft2bdza2CcycS9qU60BvJU+q
-         0u0wMxQs6MsN/dARAUXKg6XWRaSFRijyxoEWhgB7EtLo9phszRVyjSyru1Y4rXpIt2MP
-         WEYEM+YleI/vZDxOgBHXQdWDitk1F6dLh+duUAlF/uAYlZdyKYksRdtwO8WuTIx/dCML
-         HnSQ==
-X-Gm-Message-State: AOAM5314uareFNzG893qcwN/eZ9LGGLMvSTQ5XF4crKUCSNsAPrOb+zv
-        1I8D4us467Rl8eef6eT7xguToqxIt4zU1w==
-X-Google-Smtp-Source: ABdhPJxXPXyXb5CpO8/df0wLucEXxyD42Eyw+KiYYQEpFqg0f1nkj759Nev3X7z9xcQeMhl8TZohCQ==
-X-Received: by 2002:a17:906:c9c2:: with SMTP id hk2mr4928118ejb.244.1616606484688;
-        Wed, 24 Mar 2021 10:21:24 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w6sm1205140eje.107.2021.03.24.10.21.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 10:21:24 -0700 (PDT)
-Subject: Re: [PATCH v5 2/8] usb: dwc3: of-simple: bail probe if no dwc3 child
- node
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        gregkh@linuxfoundation.org, balbi@kernel.org
-Cc:     robh+dt@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210209192350.7130-1-jbx6244@gmail.com>
- <20210209192350.7130-2-jbx6244@gmail.com> <1861638.PYKUYFuaPT@diego>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <919d24be-69e5-72be-8627-8ebabd1d693d@gmail.com>
-Date:   Wed, 24 Mar 2021 18:21:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S237030AbhCXRYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 13:24:12 -0400
+Received: from mga12.intel.com ([192.55.52.136]:53023 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237203AbhCXRXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 13:23:51 -0400
+IronPort-SDR: yL9oxq2NkZhlquImkta6nt+h9S/S6oz+ynljTV03SlpY+jxHj3Z6YSi0/BEl28bI2zVmhs+Ax6
+ jb4UeXGk3rHA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="170100330"
+X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; 
+   d="scan'208";a="170100330"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2021 10:23:51 -0700
+IronPort-SDR: uedm2LZaTEm8EkjTV/0VLgh1rPKRHAjmVPtN/kS8dDwXw/C2k9RPfFWtVOABELAa3gXSrjXbjY
+ C4ZS/Dclw49g==
+X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; 
+   d="scan'208";a="452676278"
+Received: from grosikox-mobl.ger.corp.intel.com (HELO [10.214.230.125]) ([10.214.230.125])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2021 10:23:48 -0700
+From:   "Rosikopulos, GjorgjiX" <gjorgjix.rosikopulos@linux.intel.com>
+Subject: Re: [PATCH 05/10] media: v4l: Add Keem Bay Camera meta buffer formats
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com
+References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+ <20210319180632.585-6-martinax.krasteva@linux.intel.com>
+ <20210322182743.GR3@paasikivi.fi.intel.com>
+Message-ID: <1b377362-17b9-8bf8-4095-fe4978f9aa15@linux.intel.com>
+Date:   Wed, 24 Mar 2021 17:23:45 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <1861638.PYKUYFuaPT@diego>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210322182743.GR3@paasikivi.fi.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/24/21 5:41 PM, Heiko Stübner wrote:
-> Hi Greg, Felipe,
-> 
-> Am Dienstag, 9. Februar 2021, 20:23:44 CET schrieb Johan Jonker:
->> For some of the dwc3-of-simple compatible SoCs we
->> don't want to bind this driver to a dwc3 node,
->> but bind that node to the 'snps,dwc3' driver instead.
->> The kernel has no logic to decide which driver to bind
->> to if there are 2 matching drivers, so bail probe if no
->> dwc3 child node.
+Hi Sakari,
+
+Thank you for the review,
+
+On 22/03/2021 18:27, Sakari Ailus wrote:
+> Hi Martian and Gjorgji,
+>
+> On Fri, Mar 19, 2021 at 06:06:27PM +0000, Martina Krasteva wrote:
+>> From: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
 >>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> 
-> It looks like this patch fell through the cracks?
-> 
-> I.e. I can see patches 1+6 adding the devicetree bindings
-> in 5.12-rc but haven't found this patch there.
-> 
-> And looking at
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/log/drivers/usb/dwc3/dwc3-of-simple.c?h=usb-next
-> I also didn't find it.
-> 
-> From what I gathered that was somehow mandated from the Devicetree side
-> as the dwc3-subnode system merely is some Linux-specific thingy
-> and should not be enforced if not explicitly needed.
-> 
-
-> I guess Johan can provide pointers to the previous discussion.
-
-Comment by Rob in version 3:
-Presumably you are getting lucky here (with link order). The kernel
-has no logic to decide which driver to bind to if there are 2 matching
-drivers. If we did, it would probably be the opposite of what you want
-here as we'd pick the most specific match. This driver should probably
-bail probe if no dwc3 child node.
-
-https://lore.kernel.org/linux-rockchip/20210205114011.10381-6-jbx6244@gmail.com/
-
-https://lore.kernel.org/linux-rockchip/CAL_JsqJwNdUfoYM8SZmOgMG9iAyZkJ4-kzjjiDDm_mdmghTEOA@mail.gmail.com/
-
-> 
-> So could you look at applying this patch to some usb-tree?
-> 
-> 
-> Thanks
-> Heiko
-> 
-> 
+>> Add Keem Bay Camera specific meta formats for processing
+>> parameters and statistics:
+>>
+>>      V4L2_META_FMT_KMB_PARAMS
+>>      V4L2_META_FMT_KMB_STATS
+>>
+>> Signed-off-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
+>> Co-developed-by: Ivan Dimitrov <ivanx.dimitrov@intel.com>
+>> Signed-off-by: Ivan Dimitrov <ivanx.dimitrov@intel.com>
+>> Co-developed-by: Martina Krasteva <martinax.krasteva@intel.com>
+>> Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
+>> Acked-by: Paul J. Murphy <paul.j.murphy@intel.com>
+>> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 >> ---
->>  drivers/usb/dwc3/dwc3-of-simple.c | 4 ++++
->>  1 file changed, 4 insertions(+)
+>>   .../userspace-api/media/v4l/meta-formats.rst       |  1 +
+>>   .../media/v4l/pixfmt-meta-intel-kmb.rst            | 98 ++++++++++++++++++++++
+>>   MAINTAINERS                                        |  2 +
+>>   include/uapi/linux/videodev2.h                     |  4 +
+>>   4 files changed, 105 insertions(+)
+>>   create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
 >>
->> diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
->> index e62ecd22b..347b4d384 100644
->> --- a/drivers/usb/dwc3/dwc3-of-simple.c
->> +++ b/drivers/usb/dwc3/dwc3-of-simple.c
->> @@ -38,6 +38,10 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
->>  
->>  	int			ret;
->>  
->> +	/* Bail probe if no dwc3 child node. */
->> +	if (!of_get_compatible_child(dev->of_node, "snps,dwc3"))
->> +		return -ENODEV;
+>> diff --git a/Documentation/userspace-api/media/v4l/meta-formats.rst b/Documentation/userspace-api/media/v4l/meta-formats.rst
+>> index fff25357fe86..cb85161dc1ae 100644
+>> --- a/Documentation/userspace-api/media/v4l/meta-formats.rst
+>> +++ b/Documentation/userspace-api/media/v4l/meta-formats.rst
+>> @@ -14,6 +14,7 @@ These formats are used for the :ref:`metadata` interface only.
+>>   
+>>       pixfmt-meta-d4xx
+>>       pixfmt-meta-intel-ipu3
+>> +    pixfmt-meta-intel-kmb
+>>       pixfmt-meta-rkisp1
+>>       pixfmt-meta-uvc
+>>       pixfmt-meta-vsp1-hgo
+>> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst b/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+>> new file mode 100644
+>> index 000000000000..99615bbed106
+>> --- /dev/null
+>> +++ b/Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+>> @@ -0,0 +1,98 @@
+>> +.. SPDX-License-Identifier: GPL-2.0 OR GFDL-1.1-no-invariants-or-later
 >> +
->>  	simple = devm_kzalloc(dev, sizeof(*simple), GFP_KERNEL);
->>  	if (!simple)
->>  		return -ENOMEM;
->>
-> 
-> 
-> 
-> 
+>> +.. _v4l2-meta-fmt-params:
+>> +.. _v4l2-meta-fmt-stats:
+>> +
+>> +*******************************************************************
+>> +V4L2_META_FMT_KMB_PARAMS ('kmbp'), V4L2_META_FMT_KMB_STATS ('kmbs')
+>> +*******************************************************************
+>> +
+>> +.. kmb_isp_stats
+>> +
+>> +ISP statistics
+>> +==============
+>> +
+>> +The Keembay ISP statistics blocks collect different statistics over
+>> +an input Bayer frame in non-HDR mode, or up to three input Bayer frames
+>> +in HDR mode. Those statistics are obtained from the "keembay-metadata-stats"
+>> +metadata capture video node, using the :c:type:`v4l2_meta_format` interface.
+>> +They are formatted as described by the :c:type:`kmb_isp_stats` structure.
+>> +
+>> +The statistics collected are AE/AWB (Auto-exposure/Auto-white balance),
+>> +AF (Auto-focus) filter response, luma histogram, rgb histograms and dehaze statistics.
+>> +Dehaze statistic are collected after HDR fusion in HDR mode.
+>> +
+>> +The struct :c:type:`kmb_isp_params` contain all configurable parameters for the
+> The syntax has changed recently regarding references to structs, which now
+> are simply "struct nameofthestruct".
 
+Thanks i have missed that, it will be fixed in next patchset.
+
+>
+>> +statistics:
+>> +
+>> +- The struct :c:type:`kmb_raw_params` contain enable flags for all
+>> +  statistics except dehaze (always enabled) and configuration for flicker rows
+>> +  statistics.
+>> +- The struct :c:type:`kmb_ae_awb_params` contain configuration parameters for AE/AWB
+>> +  statistics.
+>> +- The struct :c:type:`kmb_af_params` contain configuration for AF (Auto-focus) filter
+>> +  response statistics.
+>> +- The struct :c:type:`kmb_hist_params` contain configuration for luma and rgb histograms.
+>> +- The struct :c:type:`kmb_hist_params` contain configuration for luma and rgb histograms.
+>> +- The struct :c:type:`kmb_dehaze_params` contain configuration for dehaze statistics.
+> Please wrap before 80 characters per line unless there's a reason to do
+> otherwise.
+Ok
+>
+>> +
+>> +.. code-block:: c
+>> +
+>> +	struct kmb_isp_stats {
+>> +		struct {
+>> +			__u8 ae_awb_stats[KMB_CAM_AE_AWB_STATS_SIZE];
+>> +			__u8 af_stats[KMB_CAM_AF_STATS_SIZE];
+>> +			__u8 hist_luma[KMB_CAM_HIST_LUMA_SIZE];
+>> +			__u8 hist_rgb[KMB_CAM_HIST_RGB_SIZE];
+>> +			__u8 flicker_rows[KMB_CAM_FLICKER_ROWS_SIZE];
+>> +		} exposure[KMB_CAM_MAX_EXPOSURES];
+>> +		__u8 dehaze[MAX_DHZ_AIRLIGHT_STATS_SIZE];
+>> +		struct kmb_isp_stats_flags update;
+>> +	};
+>> +
+>> +.. kmb_isp_stats
+>> +
+>> +ISP parameters
+>> +==============
+>> +
+>> +The ISP parameters are passed to the "keembay-metadata-params" metadata
+>> +output video node, using the :c:type:`v4l2_meta_format` interface. They are
+>> +formatted as described by the :c:type:`kmb_isp_params` structure.
+>> +
+>> +Both ISP statistics and ISP parameters described here are closely tied to
+>> +the underlying camera sub-system (VPU Camera) APIs. They are usually consumed
+>> +and produced by dedicated user space libraries that comprise the important
+>> +tuning tools, thus freeing the developers from being bothered with the low
+>> +level hardware and algorithm details.
+>> +
+>> +.. code-block:: c
+>> +
+>> +	struct kmb_isp_params {
+>> +		struct kmb_isp_params_flags update;
+>> +		struct kmb_blc_params blc[KMB_CAM_MAX_EXPOSURES];
+>> +		struct kmb_sigma_dns_params sigma_dns[KMB_CAM_MAX_EXPOSURES];
+>> +		struct kmb_lsc_params lsc;
+>> +		struct kmb_raw_params raw;
+>> +		struct kmb_ae_awb_params ae_awb;
+>> +		struct kmb_af_params af;
+>> +		struct kmb_hist_params histogram;
+>> +		struct kmb_lca_params lca;
+>> +		struct kmb_debayer_params debayer;
+>> +		struct kmb_dog_dns_params dog_dns;
+>> +		struct kmb_luma_dns_params luma_dns;
+>> +		struct kmb_sharpen_params sharpen;
+>> +		struct kmb_chroma_gen_params chroma_gen;
+>> +		struct kmb_median_params median;
+>> +		struct kmb_chroma_dns_params chroma_dns;
+>> +		struct kmb_color_comb_params color_comb;
+>> +		struct kmb_hdr_params hdr;
+>> +		struct kmb_lut_params lut;
+>> +		struct kmb_tnf_params tnf;
+>> +		struct kmb_dehaze_params dehaze;
+>> +		struct kmb_warp_params warp;
+>> +	};
+> As this is already part of the UAPI header you don't need to repeat it
+> here.
+
+I Agree it will be removed in next patchset.
+
+>
+>> +
+>> +Keembay ISP uAPI data types
+>> +===============================
+>> +
+>> +.. kernel-doc:: include/uapi/linux/keembay-isp-ctl.h
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 955f9f6a195d..d90eaf453012 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -1972,6 +1972,8 @@ L:	linux-media@vger.kernel.org
+>>   S:	Maintained
+>>   T:	git git://linuxtv.org/media_tree.git
+>>   F:	Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
+>> +F:	Documentation/media/uapi/v4l/meta-formats.rst
+>> +F:	Documentation/media/uapi/v4l/pixfmt-meta-intel-kmb.rst
+> The files are under Documentation/userspace-api/media/v4l/ .
+
+Thanks it will be fixed.
+
+>
+>>   F:	drivers/media/platform/keembay-camera/
+>>   F:	include/uapi/linux/keembay-isp-ctl.h
+>>   
+>> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+>> index 79dbde3bcf8d..0d32269638f6 100644
+>> --- a/include/uapi/linux/videodev2.h
+>> +++ b/include/uapi/linux/videodev2.h
+>> @@ -769,6 +769,10 @@ struct v4l2_pix_format {
+>>   #define V4L2_META_FMT_RK_ISP1_PARAMS	v4l2_fourcc('R', 'K', '1', 'P') /* Rockchip ISP1 3A Parameters */
+>>   #define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A Statistics */
+>>   
+>> +/* Vendor specific - used for Keem Bay camera sub-system */
+>> +#define V4L2_META_FMT_KMB_PARAMS v4l2_fourcc('K', 'M', 'B', 'P') /* Keem Bay parameters */
+>> +#define V4L2_META_FMT_KMB_STATS  v4l2_fourcc('K', 'M', 'B', 'S') /* Keem Bay statistics */
+>> +
+>>   /* priv field value to indicates that subsequent fields are valid. */
+>>   #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
+>>   
