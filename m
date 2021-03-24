@@ -2,131 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD64434700F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6980B34702F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:37:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbhCXDXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:23:49 -0400
-Received: from lucky1.263xmail.com ([211.157.147.131]:39386 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232286AbhCXDXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:23:30 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 5AA34B94F4;
-        Wed, 24 Mar 2021 11:23:17 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P13109T139929674307328S1616556189578495_;
-        Wed, 24 Mar 2021 11:23:17 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <6d2fb10d702c4223b693ada0ad6c1bbb>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: robh+dt@kernel.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Elaine Zhang <zhangqing@rock-chips.com>
-To:     robh+dt@kernel.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cl@rock-chips.com, huangtao@rock-chips.com,
-        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v3 3/3] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Wed, 24 Mar 2021 11:23:08 +0800
-Message-Id: <20210324032308.6309-4-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210324032308.6309-1-zhangqing@rock-chips.com>
-References: <20210324032308.6309-1-zhangqing@rock-chips.com>
+        id S232842AbhCXDgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:36:49 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:40915 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232851AbhCXDgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:36:17 -0400
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A2A00891AF;
+        Wed, 24 Mar 2021 16:36:14 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1616556974;
+        bh=I49K3YD6NHlH2qBa13eW2ZFKUP83cYW5CjpG3xy/dH4=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=VyHDjidGhiKIN5bJLQONjRd5ofbYTOO4Viz3lEfcMM+k+d8APlq9D/zQgyr5Qaxem
+         L7MFlJU32mJYSfT7eENc/Fl/W1c6jl/C2LlzAXduXbR96g4VsadziLfN7PSo7QzRua
+         r1Kx4+ABFCCMsmhIWmZLED+YVSG1LDiGdIEU6J18pM/xL/k5dkc9UM6eV4ATOg/CB/
+         HXG0F4JC9Pr7FVAZr3D3khhb6vgKQbSo8tE/FJP423JgxK4inuKBDqrOkgl1l5kwLd
+         UbUl87zWXS2UfO2UJkXraE2B83b2Mi8pC2GvbRXqu5X5bbNWEVv+O4UYtzxfApyoKs
+         wm9wf/Uv0AxCw==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B605ab3ae0001>; Wed, 24 Mar 2021 16:36:14 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 16:36:14 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.012; Wed, 24 Mar 2021 16:36:14 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Rob Herring <robh@kernel.org>
+CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wsa@kernel.org" <wsa@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
+Thread-Topic: [PATCH 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
+Thread-Index: AQHXH5233LnDPck5U0iG88OvYj8e5KqROi+AgAAMNQCAAF4fgA==
+Date:   Wed, 24 Mar 2021 03:36:13 +0000
+Message-ID: <00052125-3dc3-aad5-35df-957bc09a0840@alliedtelesis.co.nz>
+References: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz>
+ <20210323043331.21878-3-chris.packham@alliedtelesis.co.nz>
+ <20210323211539.GB1326908@robh.at.kernel.org>
+ <7ef36459-e23a-64cd-e9e1-35fb6cb9279f@alliedtelesis.co.nz>
+In-Reply-To: <7ef36459-e23a-64cd-e9e1-35fb6cb9279f@alliedtelesis.co.nz>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DA36D5CF4617A449BC7D4C379335296A@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=dESyimp9J3IA:10 a=gEfo2CItAAAA:8 a=YU5wBylNl02igCwKOGgA:9 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=RBBcRewTFc8P4JkPnay6:22
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power-domains found on rk3568 socs.
-
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
----
- drivers/soc/rockchip/pm_domains.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-index 54eb6cfc5d5b..a2c19c845cf2 100644
---- a/drivers/soc/rockchip/pm_domains.c
-+++ b/drivers/soc/rockchip/pm_domains.c
-@@ -27,6 +27,7 @@
- #include <dt-bindings/power/rk3366-power.h>
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
-+#include <dt-bindings/power/rk3568-power.h>
- 
- struct rockchip_domain_info {
- 	int pwr_mask;
-@@ -131,6 +132,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3399(pwr, status, req, wakeup)		\
- 	DOMAIN(pwr, status, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3568(pwr, req, wakeup)		\
-+	DOMAIN_M(pwr, pwr, req, req, req, wakeup)
-+
- static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
- {
- 	struct rockchip_pmu *pmu = pd->pmu;
-@@ -841,6 +845,18 @@ static const struct rockchip_domain_info rk3399_pm_domains[] = {
- 	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399(BIT(31), BIT(31), BIT(29), true),
- };
- 
-+static const struct rockchip_domain_info rk3568_pm_domains[] = {
-+	[RK3568_PD_NPU]		= DOMAIN_RK3568(BIT(1), BIT(2), false),
-+	[RK3568_PD_GPU]		= DOMAIN_RK3568(BIT(0), BIT(1), false),
-+	[RK3568_PD_VI]		= DOMAIN_RK3568(BIT(6), BIT(3), false),
-+	[RK3568_PD_VO]		= DOMAIN_RK3568(BIT(7),  BIT(4), false),
-+	[RK3568_PD_RGA]		= DOMAIN_RK3568(BIT(5),  BIT(5), false),
-+	[RK3568_PD_VPU]		= DOMAIN_RK3568(BIT(2), BIT(6), false),
-+	[RK3568_PD_RKVDEC]	= DOMAIN_RK3568(BIT(4), BIT(8), false),
-+	[RK3568_PD_RKVENC]	= DOMAIN_RK3568(BIT(3), BIT(7), false),
-+	[RK3568_PD_PIPE]	= DOMAIN_RK3568(BIT(8), BIT(11), false),
-+};
-+
- static const struct rockchip_pmu_info px30_pmu = {
- 	.pwr_offset = 0x18,
- 	.status_offset = 0x20,
-@@ -976,6 +992,17 @@ static const struct rockchip_pmu_info rk3399_pmu = {
- 	.domain_info = rk3399_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3568_pmu = {
-+	.pwr_offset = 0xa0,
-+	.status_offset = 0x98,
-+	.req_offset = 0x50,
-+	.idle_offset = 0x68,
-+	.ack_offset = 0x60,
-+
-+	.num_domains = ARRAY_SIZE(rk3568_pm_domains),
-+	.domain_info = rk3568_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1021,6 +1048,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3399-power-controller",
- 		.data = (void *)&rk3399_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-power-controller",
-+		.data = (void *)&rk3568_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
--- 
-2.17.1
-
-
-
+DQpPbiAyNC8wMy8yMSAxMDo1OSBhbSwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4NCj4gT24gMjQv
+MDMvMjEgMTA6MTUgYW0sIFJvYiBIZXJyaW5nIHdyb3RlOg0KPj4gT24gVHVlLCBNYXIgMjMsIDIw
+MjEgYXQgMDU6MzM6MjdQTSArMTMwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+PiBDb252ZXJ0
+IGkyYy1tcGMgdG8gWUFNTC4NCj4+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0g
+PGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+PiAtLS0NCjxzbmlwPg0KPj4+
+IC0tLSAvZGV2L251bGwNCj4+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvaTJjL2kyYy1tcGMueWFtbA0KPj4+IEBAIC0wLDAgKzEsOTkgQEANCj4+PiArIyBTUERYLUxp
+Y2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+Pj4gKyVZ
+QU1MIDEuMg0KPj4+ICstLS0NCj4+PiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1h
+cy9pMmMvaTJjLW1wYy55YW1sIw0KPj4+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcv
+bWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4+PiArDQo+Pj4gK3RpdGxlOiBJMkMtQnVzIGFkYXB0
+ZXIgZm9yIE1QQzgyNHgvODN4eC84NXh4Lzg2eHgvNTEyeC81Mnh4IFNvQ3MNCj4+PiArDQo+Pj4g
+K21haW50YWluZXJzOg0KPj4+ICvCoCAtIENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxs
+aWVkdGVsZXNpcy5jby5uej4NCj4+PiArDQo+Pj4gK2FsbE9mOg0KPj4+ICvCoCAtICRyZWY6IC9z
+Y2hlbWFzL2kyYy9pMmMtY29udHJvbGxlci55YW1sIw0KPj4+ICsNCj4+PiArcHJvcGVydGllczoN
+Cj4+PiArwqAgY29tcGF0aWJsZToNCj4+PiArwqDCoMKgIGFueU9mOg0KPj4+ICvCoMKgwqDCoMKg
+IC0gaXRlbXM6DQo+Pj4gK8KgwqDCoMKgwqDCoMKgIC0gZW51bToNCj4+PiArwqDCoMKgwqDCoMKg
+wqDCoMKgIC0gbXBjNTIwMC1pMmMNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gZnNsLG1wYzUy
+MDBiLWkyYw0KPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBmc2wsbXBjNTIwMC1pMmMNCj4+PiAr
+wqDCoMKgwqDCoMKgwqDCoMKgIC0gZnNsLG1wYzUxMjEtaTJjDQo+Pj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoCAtIGZzbCxtcGM4MzEzLWkyYw0KPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBmc2wsbXBj
+ODU0My1pMmMNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gZnNsLG1wYzg1NDQtaTJjDQo+Pj4g
+Kw0KPj4+ICvCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBmc2wtaTJjDQo+Pj4gKw0KPj4+ICvCoMKg
+wqDCoMKgIC0gY29udGFpbnM6DQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoCBjb25zdDogZnNsLWky
+Yw0KPj4+ICvCoMKgwqDCoMKgwqDCoCBtaW5JdGVtczogMQ0KPj4+ICvCoMKgwqDCoMKgwqDCoCBt
+YXhJdGVtczogNA0KPj4gQ2FuJ3Qgd2UgZHJvcCB0aGlzIGFuZCBsaXN0IG91dCBhbnkgb3RoZXIg
+Y29tcGF0aWJsZXM/DQo+DQo+IEknbSBzdHJ1Z2dsaW5nIGEgbGl0dGxlIGJpdCB3aXRoIGhvdyB0
+byBnZXQgdGhlIHNjaGVtYSByaWdodCB0byBhbGxvdyANCj4gb25lIG9yIG1vcmUgb2YgYSBzZXQg
+b2YgY29tcGF0aWJsZSB2YWx1ZXMuDQo+DQo+IEJhc2ljYWxseSBJIHdhbnQgdG8gYWxsb3cgJ2Nv
+bXBhdGlibGUgPSAiZnNsLWkyYyI7JyBvciAnY29tcGF0aWJsZSA9IA0KPiAiZnNsLG1wYzg1NDQt
+aTJjIiwgImZzbC1pMmMiOycgYnV0IGRpc2FsbG93ICdjb21wYXRpYmxlID0gImZvb2JhciIsIA0K
+PiAiZnNsLWkyYyI7Jw0KDQpUaGlzIGlzIHdoYXQgSSd2ZSBlbmRlZCB1cCB3aXRoDQoNCnByb3Bl
+cnRpZXM6DQpjb21wYXRpYmxlOg0Kb25lT2Y6DQogwqDCoMKgwqDCoCAtIGl0ZW1zOg0KIMKgwqDC
+oMKgwqDCoMKgwqDCoCAtIGVudW06DQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBtcGM1
+MjAwLWkyYw0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gZnNsLG1wYzUyMDAtaTJjDQog
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBmc2wsbXBjNTEyMS1pMmMNCiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAtIGZzbCxtcGM4MzEzLWkyYw0KIMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIC0gZnNsLG1wYzg1NDMtaTJjDQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBm
+c2wsbXBjODU0NC1pMmMNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGZzbC1pMmMNCiDC
+oMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogZnNsLWkyYw0KIMKgwqDCoMKgwqAgLSBpdGVtczoN
+CiDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogZnNsLG1wYzUyMDBiLWkyYw0KIMKgwqDCoMKg
+wqDCoMKgwqDCoCAtIGNvbnN0OiBmc2wsbXBjNTIwMC1pMmMNCiDCoMKgwqDCoMKgwqDCoMKgwqAg
+LSBjb25zdDogZnNsLWkyYw0KDQpJdCBwYXNzZXMgYG1ha2UgZHRfYmluZGluZ19jaGVja2AgYW5k
+IHJlamVjdHMgdGhpbmdzIHdoZW4gSSBhZGQgb3RoZXIgDQpub24tZG9jdW1lbnRlZCB2YWx1ZXMg
+dG8gdGhlIGNvbXBhdGlibGUgcHJvcGVydHkuIEkgZGlkIHN0cnVnZ2xlIHdpdGggaXQgDQpzbyBJ
+J20gbm90IGNvbmZpZGVudCBpdCdzIHRoZSBiZXN0IGFwcHJvYWNoIGJ1dCBpdCBzZWVtcyB0byB3
+b3JrLg0K
