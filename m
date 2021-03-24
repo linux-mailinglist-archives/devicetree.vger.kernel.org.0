@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5456F346FB6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24CB0346FC1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232076AbhCXCxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 22:53:04 -0400
-Received: from smtp1.axis.com ([195.60.68.17]:34337 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231668AbhCXCwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 22:52:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1616554358;
-  x=1648090358;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Dg8oeMNDYycBgS5zf20SGi8YwA6Qx64E/aiSgxCBJzg=;
-  b=QXd154vWMvFteUBTq2tc7HOGRQkkbwfXMfUjMYSgRYBS1UskhYfrvic3
-   6UnkDyWq3jcgLPQhicVQkFHBsm6p65+NXV39ATIrpBfNcCi8BozDdx8wP
-   yABJLAO8wWnXThlDDVmZhiBXhJHiq6L8QwEdunQ4nxWzpBVsJ0px5VXiJ
-   R9cZPWxnL+LMMIdFYgfZcRYrlwlt4URvyXelOCG4igj5eF1+IJOQp7Gb6
-   h/JsH4vX2dRrP0dIV16BJBf6ts2e9RmAcHVuTH3k1ob8Ujg7X3owteBjc
-   MOYuti/0lKTiCx1peyXZ+UB2g3VvXkLgdFOrFVs3Z8CJn9vhRZMWwwldE
-   Q==;
-From:   Hermes Zhang <Hermes.Zhang@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Pavel Machek <pavel@ucw.cz>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@axis.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Subject: RE: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
-Thread-Topic: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
-Thread-Index: AQHXHvxgm+r+aZrBek+AmH3Nb8cHlKqQNY0AgAC2GSCAAJ9XgIAA6EZw
-Date:   Wed, 24 Mar 2021 02:52:36 +0000
-Message-ID: <2f711d85081d4556acc5d8a658119868@XBOX01.axis.com>
-References: <20210322091819.29119-1-chenhui.zhang@axis.com>
- <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
- <424d3de97a154c6a9580f27347882413@XBOX01.axis.com>
- <CAL_JsqJYSNBHqdZbWTn76tTna+u=1rjiebTPDQjZFQQdTEkp4w@mail.gmail.com>
-In-Reply-To: <CAL_JsqJYSNBHqdZbWTn76tTna+u=1rjiebTPDQjZFQQdTEkp4w@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S234963AbhCXDBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:01:03 -0400
+Received: from mail-lf1-f44.google.com ([209.85.167.44]:46815 "EHLO
+        mail-lf1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231896AbhCXDAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:00:43 -0400
+Received: by mail-lf1-f44.google.com with SMTP id w37so29732419lfu.13;
+        Tue, 23 Mar 2021 20:00:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=d1dReRBrfstAdxcP61fTebHNjPiLX2kfp7/R/spgjuo=;
+        b=jf7tSXkr5wrIW10NcGesQlBbhOHBxYc/c1ngU5YAY+InOOQrp6bpSwnCIDrKB6BnMa
+         Fi2Zl88ljKCRlacHPhI6DE+QWoOm92JY4geACEqb3bumg1hSSUu+zFTYiwVg00lKWBk1
+         EWPe1zK78FQMwF8ZzfPXn5XtfQuyhj13w1m3Z2QOkdby25jhtKygAWztTfK1H/1c28CG
+         qZCLKCQX72oR9VTnbBNNn2OldnXZregt3GWE0U6x1GQebou6G3v5Eo5j1Ykjxxuf3AQK
+         cMoiCKgvcLW7jU+zO7W5dqj2yQzjNWl1M11ng2KBADYvgZApwgEPoVHbZyowU79ARqS6
+         FXqw==
+X-Gm-Message-State: AOAM532n+ksmZXuWsHYPPYuT3XauM+IsofXHVXVZkqeetgExiezjh1bq
+        Azq7so2fv/353CPdlPufg5F4tiybPWDwWQ==
+X-Google-Smtp-Source: ABdhPJxgdlUh9cqfPjsTXgVhR4loTDPlDV7/UZ0X+Syex3wC9IBWh16VYMijcaKi9GNL5+0Qx3zW1w==
+X-Received: by 2002:ac2:5e36:: with SMTP id o22mr664868lfg.525.1616554841761;
+        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id d8sm117738ljc.129.2021.03.23.20.00.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id f16so28370075ljm.1;
+        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
+X-Received: by 2002:a2e:1649:: with SMTP id 9mr648961ljw.74.1616554841085;
+ Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210323204341.28825-1-jernej.skrabec@siol.net>
+In-Reply-To: <20210323204341.28825-1-jernej.skrabec@siol.net>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Wed, 24 Mar 2021 11:00:30 +0800
+X-Gmail-Original-Message-ID: <CAGb2v645M9rrQ_c9P8yBckxz8QsZW6-srhOeTyQkSc0cOo0Wug@mail.gmail.com>
+Message-ID: <CAGb2v645M9rrQ_c9P8yBckxz8QsZW6-srhOeTyQkSc0cOo0Wug@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2] ARM: dts: sun8i: h3: beelink-x2: Add
+ power button
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+DQo+ID4gSGkgUm9iLA0KPiA+DQo+ID4gVGhhbmtzLiBZZXMsIG5vdyBJIGNhbiBzZWUgdGhl
-IHdhcm5pbmcsIGJ1dCBJIGNvdWxkIG5vdCB1bmRlcnN0YW5kIHdoYXQNCj4gd2FzIHdyb25nPyBD
-b3VsZCB5b3UgZ2l2ZSBzb21lIGhpbnQ/DQo+IA0KPiBJIHRoaW5rIHlvdSBuZWVkICdtYXhJdGVt
-cycgaW4gYWRkaXRpb24gdG8gbWluSXRlbXMuDQoNCkV4YWN0bHkhIFRoYW5rcyBmb3IgdGhlIHN1
-Z2dlc3Rpb24uDQoNCkJlc3QgUmVnYXJkcywNCkhlcm1lcw0K
+On Wed, Mar 24, 2021 at 4:44 AM Jernej Skrabec <jernej.skrabec@siol.net> wrote:
+>
+> Beelink X2 has power button. Add node for it.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+
+Acked-by: Chen-Yu Tsai <wens@csie.org>
