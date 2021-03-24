@@ -2,106 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7F7347998
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 374E03479AA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:32:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235154AbhCXN2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 09:28:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234912AbhCXN2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 09:28:48 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AD3C0613DE
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 06:28:47 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x7so1990501wrw.10
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 06:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytesatwork-ch.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9I4AZHWv0YWI2h8e398dfx117Hw+f6MFnU7XsPYdq2Y=;
-        b=TDXRRSmx+Po/IKLV9wl6cmct9YX37QWmMqlDV+ScNn0aCH4whg01yX7ZE/yRLFx10K
-         He7SyfCeDGPRVad89rMTMF8Boy+EbAOm23OP9af3LA4EkwDtBgpLa2FuVwngpgYFeooo
-         q4Z7UoTn48nGTfOAAk7qsnUJe0P/6IXZdmHXj6dlEcWR7Uou7p0M6jYsu6K0ckI59goX
-         6Zt9XW1x/0e8OoAIXDAqj1FIdWE8fuKdCzjQ3SDPbRuQXhogW9sFX/CSpPstpfmr8qlO
-         AzzW6wQVHbdA5KqiecntYTm51fEeuXJqJQVl2EfHDSFEQ5/cHkeD03QN8P3znX5BiaJa
-         kYNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9I4AZHWv0YWI2h8e398dfx117Hw+f6MFnU7XsPYdq2Y=;
-        b=QUR2FmVpWFR0T3vAjjwiChIueb36tJdP9JGsDeTXKduRm2nI8ScbYIJ7ph3pZEA85G
-         ajFPoyVqamAdeoT85cww3ViJLUJFquY70vZNmvajSj5R1JxeqQkafXYvnE53bXwrx9eI
-         u0C06t9Z/UVxR73GVcRG3hi47aFfjkm9CQ7DD14Hcv4cbav7XS51moieJu26uzrOCKx7
-         XVxKAJ/IXmEevUjsQj6JpLYf04KeocSpNNiM+VcBepYBzQWIxokZcYcNF3rkhQFtjPvQ
-         CEURme2Tbk1wZKTtie3IbaHY0ncki8jM6kCdGApBNVNcZjYGYuANkC+NaXcC+d0y39TR
-         zdBQ==
-X-Gm-Message-State: AOAM533swQphf0u1rr0if2rcltipA5I8MBQ+/m4s00zx4WAz+XLa8WHn
-        Cr/cVpvWCH5Tojv/vPe6F7/wOg==
-X-Google-Smtp-Source: ABdhPJxaGkQM+Z2rWDJmOL0reSHlkr4v+WrkCxrQLCoOFiHS65bSSHZY/cHcyf8bOUCEJ/SraArL3w==
-X-Received: by 2002:a5d:5411:: with SMTP id g17mr3559714wrv.194.1616592526581;
-        Wed, 24 Mar 2021 06:28:46 -0700 (PDT)
-Received: from localhost.localdomain ([2001:171b:c9a6:940:259a:e996:942a:832f])
-        by smtp.gmail.com with ESMTPSA id x6sm2645645wmj.32.2021.03.24.06.28.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 06:28:46 -0700 (PDT)
-From:   =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     oliver.staebler@bytesatwork.ch, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: imx8mm/q: Fix pad control of SD1_DATA0
-Date:   Wed, 24 Mar 2021 14:28:41 +0100
-Message-Id: <20210324132841.5841-1-oliver.staebler@bytesatwork.ch>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <CAOMZO5B_uHS_Z2LuMwHDmn9erORrsrNBMHMjkW-hW+pnfHZThQ@mail.gmail.com>
-References: <CAOMZO5B_uHS_Z2LuMwHDmn9erORrsrNBMHMjkW-hW+pnfHZThQ@mail.gmail.com>
+        id S235177AbhCXNcJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 Mar 2021 09:32:09 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:34288 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235048AbhCXNbj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 09:31:39 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lP3ba-0000T8-Q0; Wed, 24 Mar 2021 14:31:26 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     "elaine.zhang" <zhangqing@rock-chips.com>, robh+dt@kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com
+Subject: Re: [PATCH v4 2/4] dt-bindings: power: rockchip: Convert to json-schema
+Date:   Wed, 24 Mar 2021 14:31:25 +0100
+Message-ID: <2066097.irdbgypaU6@diego>
+In-Reply-To: <f1323618-7990-9bb7-a8c2-a7321a4034f8@collabora.com>
+References: <20210324071609.7531-1-zhangqing@rock-chips.com> <40a7fad3-17bb-9275-ed4a-2e3d526d05a1@collabora.com> <f1323618-7990-9bb7-a8c2-a7321a4034f8@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix address of the pad control register
-(IOMUXC_SW_PAD_CTL_PAD_SD1_DATA0) for SD1_DATA0_GPIO2_IO2.  This seems
-to be a typo but it leads to an exception when pinctrl is applied due to
-wrong memory address access.
+Am Mittwoch, 24. März 2021, 11:32:42 CET schrieb Enric Balletbo i Serra:
+> 
+> On 24/3/21 11:25, Enric Balletbo i Serra wrote:
+> > Hi Elaine,
+> > 
+> > On 24/3/21 11:18, elaine.zhang wrote:
+> >> Hi,  Enric
+> >>
+> >> 在 2021/3/24 下午5:56, Enric Balletbo i Serra 写道:
+> >>> Hi Elaine,
+> >>>
+> >>> This is not the exact version I sent, and you reintroduced a "problem" that were
+> >>> already solved/discussed on previous versions. See below:
+> >>>
+> >>> On 24/3/21 8:16, Elaine Zhang wrote:
+> >>>> Convert the soc/rockchip/power_domain.txt binding document to
+> >>>> json-schema and move to the power bindings directory.
+> >>>>
+> >>>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> >>> If you do significant is a good practice shortly describe them within [] here.
+> >>>
+> >>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> >>> Note that my last version already had the
+> >>>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>>
+> >>> Which should be fine for merging (with probably only minor changes) and you
+> >>> could maintain if you don't do significant changes, but that's not the case, as
+> >>> I said, you are reintroducing one problem. Please review the comments already
+> >>> received on this patchset or similar patchsets to avoid this.
+> >>>
+> >>>> ---
+> >>>>   .../power/rockchip,power-controller.yaml      | 284 ++++++++++++++++++
+> >>>>   .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+> >>>>   2 files changed, 284 insertions(+), 136 deletions(-)
+> >>>>   create mode 100644
+> >>>> Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> >>>>   delete mode 100644
+> >>>> Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+> >>>>
+> >>>> diff --git
+> >>>> a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> >>>> b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..a220322c5139
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> >>>> @@ -0,0 +1,284 @@
+> >>>> +# SPDX-License-Identifier: GPL-2.0-only
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Rockchip Power Domains
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Elaine Zhang <zhangqing@rock-chips.com>
+> >>>> +  - Rob Herring <robh+dt@kernel.org>
+> >>> Up to Rob, but I don't think Rob would like to be the maintainer. I think you
+> >>> can only include yourself and Heiko.
+> >>>
+> >>>
+> >>>> +  - Heiko Stuebner <heiko@sntech.de>
+> >>>> +
+> >>>> +description: |
+> >>>> +  Rockchip processors include support for multiple power domains which can be
+> >>>> +  powered up/down by software based on different application scenarios to
+> >>>> save power.
+> >>>> +
+> >>>> +  Power domains contained within power-controller node are generic power domain
+> >>>> +  providers documented in
+> >>>> Documentation/devicetree/bindings/power/power-domain.yaml.
+> >>>> +
+> >>>> +  IP cores belonging to a power domain should contain a "power-domains"
+> >>>> +  property that is a phandle for the power domain node representing the domain.
+> >>>> +
+> >>>> +properties:
+> >>>> +  $nodename:
+> >>>> +    const: power-controller
+> >>>> +
+> >>>> +  compatible:
+> >>>> +    enum:
+> >>>> +      - rockchip,px30-power-controller
+> >>>> +      - rockchip,rk3036-power-controller
+> >>>> +      - rockchip,rk3066-power-controller
+> >>>> +      - rockchip,rk3128-power-controller
+> >>>> +      - rockchip,rk3188-power-controller
+> >>>> +      - rockchip,rk3228-power-controller
+> >>>> +      - rockchip,rk3288-power-controller
+> >>>> +      - rockchip,rk3328-power-controller
+> >>>> +      - rockchip,rk3366-power-controller
+> >>>> +      - rockchip,rk3368-power-controller
+> >>>> +      - rockchip,rk3399-power-controller
+> >>>> +
+> >>>> +  "#power-domain-cells":
+> >>>> +    const: 1
+> >>>> +
+> >>>> +  "#address-cells":
+> >>>> +    const: 1
+> >>>> +
+> >>>> +  "#size-cells":
+> >>>> +    const: 0
+> >>>> +
+> >>>> +patternProperties:
+> >>>> +  "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
+> >>>> +    type: object
+> >>>> +    description: |
+> >>>> +      Represents the power domains within the power controller node as
+> >>>> documented
+> >>>> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
+> >>>> +
+> >>> The node names must be generic, as this is power-domain must be in the form:
+> >>>
+> >>> +patternProperties:
+> >>> +  "^power-domain@[0-9a-f]+$":
+> >> In this way, dtbs_check cannot be passed, and all the usage methods in dts of
+> >> Rockchip need to be corrected, which I think is a bigger change.
+> > 
+> > Well, the problem is in the Rockchip dtbs, so needs to be fixed there. The
+> > bindings must describe hardware in a generic way, not describe the actual dtbs
+> > to not report errors.
+> > 
+> 
+> FWIW I remember I did something regarding this but never sent to upstream, feel
+> free to pick if you find useful.
+> 
+> *
+> https://gitlab.collabora.com/eballetbo/linux/-/commit/12499f223e3d33602449b9102404fe573fb804f5
+> *
+> https://gitlab.collabora.com/eballetbo/linux/-/commit/12499f223e3d33602449b9102404fe573fb804f5
+> *
+> https://gitlab.collabora.com/eballetbo/linux/-/commit/492bf2213c341152a1c2423242c5634b9e53ff27
 
-Signed-off-by: Oliver Stäbler <oliver.staebler@bytesatwork.ch>
----
- arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 2 +-
- arch/arm64/boot/dts/freescale/imx8mq-pinfunc.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+looks good that way. I did look at the power-domain driver and
+we're (of course) not doing anything with the name in front of the @ :-) .
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-index 5ccc4cc91959d..a003e6af33533 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-@@ -124,7 +124,7 @@
- #define MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD                                     0x0A4 0x30C 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1                                      0x0A4 0x30C 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0                                 0x0A8 0x310 0x000 0x0 0x0
--#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x31  0x000 0x5 0x0
-+#define MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x310 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1                                 0x0AC 0x314 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3                                    0x0AC 0x314 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2                                 0x0B0 0x318 0x000 0x0 0x0
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mq-pinfunc.h
-index b94b02080a344..68e8fa1729741 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-pinfunc.h
-@@ -130,7 +130,7 @@
- #define MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD                                     0x0A4 0x30C 0x000 0x0 0x0
- #define MX8MQ_IOMUXC_SD1_CMD_GPIO2_IO1                                      0x0A4 0x30C 0x000 0x5 0x0
- #define MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0                                 0x0A8 0x310 0x000 0x0 0x0
--#define MX8MQ_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x31  0x000 0x5 0x0
-+#define MX8MQ_IOMUXC_SD1_DATA0_GPIO2_IO2                                    0x0A8 0x310 0x000 0x5 0x0
- #define MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1                                 0x0AC 0x314 0x000 0x0 0x0
- #define MX8MQ_IOMUXC_SD1_DATA1_GPIO2_IO3                                    0x0AC 0x314 0x000 0x5 0x0
- #define MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2                                 0x0B0 0x318 0x000 0x0 0x0
--- 
-2.26.2
+So I'd be happy to get these.
+
+Heiko
+
 
