@@ -2,96 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFBA347036
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:44:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3011F34703D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:52:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232853AbhCXDnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:43:46 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:40959 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232871AbhCXDnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:43:46 -0400
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id BB58D891AE;
-        Wed, 24 Mar 2021 16:43:43 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1616557423;
-        bh=MlvuM4GZ54JuNtp8slC5y2UBaxE0XHJISV1jRWwPpEk=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=RUmO63bq/huEx9xw385En31UWuXQO8QubsO/9LKmH7fZlf7piCdjqQ3YF6Daf2mDO
-         YpbENQfysCBrgbGIFb4MUcVa6VTQh1DNk42LkGU75mcgiKd6bbONypaJGV5y3t+tCg
-         CtdEcj8/WHjecVanjHm7p/raJcMWaO0zkSiMRZtagneVDd13YqjYxjEdMn4fzeLTc2
-         s6s1SfyszjHXM++7d38AL5akXRRZkRARE3RQvPsBdpMdPGHVE+yU/i06EJDZhj535d
-         TyKwlDNw0kJe3oy17+YrePOBlxX5Jkzmww9AZ+CPGULAmc/YunkfzyJK1KVu0WzA3h
-         rXV74RNjR0MCA==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B605ab56f0001>; Wed, 24 Mar 2021 16:43:43 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 16:43:43 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.012; Wed, 24 Mar 2021 16:43:43 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>
-CC:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/6] i2c: mpc: Refactor to improve responsiveness
-Thread-Topic: [PATCH 0/6] i2c: mpc: Refactor to improve responsiveness
-Thread-Index: AQHXH523mfZMZexLwESnYJyd01Nd66qRppyA
-Date:   Wed, 24 Mar 2021 03:43:43 +0000
-Message-ID: <7d6acdfe-87f5-6096-a870-58d7d802f975@alliedtelesis.co.nz>
-References: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20210323043331.21878-1-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <23E09B1CC76F0A4293EB5F0C879B8922@atlnz.lc>
-Content-Transfer-Encoding: base64
+        id S235116AbhCXDv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:51:27 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37967 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232735AbhCXDvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 23:51:04 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 82A50580547;
+        Tue, 23 Mar 2021 23:51:03 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 23 Mar 2021 23:51:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=A
+        E6NnJPKV2HGKkqUizuPKiLtp1l2SFt8bu1DsJsxHZY=; b=BiQGrTiSud40CZI10
+        JLpaiDMeXiRBJa3abdfi/OUM7Trc0KmGfd91j/JDjgG5SrU3IHjNnD7oLIurK93e
+        z6ajXxgcdETtxeNqYHSAOb/rxcRWxfO5LCrolOIcv3caU9UZ6ndKAB0mlbjdOHOC
+        fwIMXhdns8WXaMxH3Vek3hgHrE8/Wh+G4yY1bJkDltjEU8SmTBF//uVgZt7AaRFD
+        SUsQDgKZjAHjhgdFtsse1LOm5HF5NrpJaR6w5f6bt1mMMiRaI9VMYXP6HRARz1FA
+        NjmTL0x9rngh0jD2Gyjz9lUhsSu1bGgwKorKRI6X8Vkcl8Py63320TpioXxTN73g
+        u8W0g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=AE6NnJPKV2HGKkqUizuPKiLtp1l2SFt8bu1DsJsxH
+        ZY=; b=OB+Izy6e3hZ2kQeK5HWwqXY9Q91NO3mxrHNcPaquRB+SxZHTYu4UJ1orx
+        YX1nvCon8Dq1Y8Cn8/lfGi4rtFbY008iCfuM3oZ5z+IGcTyVVJ1fbs53oi4u59E4
+        ZZCEiHLp2dMt931Tq+lfgrGteCh3B0BLAWnNS8F+HPCDlLZiVeB/iRJKqINF5J7e
+        t2nTQE1BE3MvFEMwuHlDZ+7CIeav1ciNe0qRr/6eiYh0zhcZ+AMCqAX1QFx4Cany
+        uhWyMR5A9IQf5u2AQFihcCbXyMMrhEtWOhGaaei4PYxfQOgQLnmCnHI/Gxi7YDvs
+        0XbQBOUTiQaSFA/NNuNBxzwg/YnmQ==
+X-ME-Sender: <xms:JbdaYJchcMRDY8wNeB4snLLh6PfOFUtpFfl3UwT4HCKBMpUtjM_jDA>
+    <xme:JbdaYHMTFpMENmnv14pHwTaRHJtHBQrS6B4njURLSgNOSRbTdJxU0pACDL_F1ZO4R
+    K9uxWuf8ODdWEq9wA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudegjedgieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:JbdaYCjyQxWZNDKArMP1T3SdN1p6EqKmidS47viJoVNuouzJKUaAvA>
+    <xmx:JbdaYC93QUs9bA2u-Gj_kYDnm-CFbsbQdbeBdlS-IMIgH6bLhMDVCQ>
+    <xmx:JbdaYFu9i7nPfm_pjVaVCr8xwo9Rkl2IiGT_1zlKQzUxtelQpO5SDA>
+    <xmx:J7daYLLB7lyQbuPU-_WgJYmhq9ZjZJADFZtzmnoayX1TjwRf51_mmw>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 07D33240423;
+        Tue, 23 Mar 2021 23:51:00 -0400 (EDT)
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20210322044707.19479-1-samuel@sholland.org>
+ <7bb14a82-5dc9-cefe-4b58-1d2c83974965@linaro.org>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 0/5] arm64: sunxi: Enable the sun4i timer
+Message-ID: <64f6d712-11fe-4626-aa24-8e31c21a8ad4@sholland.org>
+Date:   Tue, 23 Mar 2021 22:51:00 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=dESyimp9J3IA:10 a=B-IRwknogWAUFU2Uo84A:9 a=QEXdDO2ut3YA:10 a=fCgQI5UlmZDRPDxm0A3o:22
-X-SEG-SpamProfiler-Score: 0
+In-Reply-To: <7bb14a82-5dc9-cefe-4b58-1d2c83974965@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAyMy8wMy8yMSA1OjMzIHBtLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPiBUaGUgIm1lYXQi
-IG9mIHRoaXMgc2VyaWVzIGlzIGluIHRoZSBsYXN0IHBhdGNoIHdoaWNoIGlzIHRoZSBjaGFuZ2Ug
-dGhhdA0KPiBhY3R1YWxseSBzdGFydHMgbWFraW5nIHVzZSBvZiB0aGUgaW50ZXJydXB0cyB0byBk
-cml2ZSBhIHN0YXRlIG1hY2hpbmUuDQo+IFRoZSBkdC1iaW5kaW5ncyBwYXRjaGVzIGNhbiBwcm9i
-YWJseSBnbyBpbiBhdCBhbnkgdGltZS4gVGhlIHJlc3Qgb2YgdGhlDQo+IHNlcmllcyBpc24ndCBk
-ZXBlbmRlbnQgb24gdGhlbS4NCj4NCj4gSSd2ZSB0ZXN0ZWQgaXQgb24gYSBUMjA4MSBiYXNlZCBz
-eXN0ZW0gd2l0aCBhIG51bWJlciBvZiBpMmMgYW5kIHNtYnVzDQo+IGRldmljZXMuICBJdHMgdGhl
-IGVuZCBvZiBteSB3b3JrIGRheSBzbyBJIGZpZ3VyZWQgSSdkIGdldCB0aGlzIG91dCBub3cNCj4g
-YnV0IEknbGwgZG8gc29tZSBtb3JlIHRlc3Rpbmcgb24gYSBQMjA0MSBib2FyZCBhbmQgYSBmZXcg
-ZGlmZmVyZW50IGkyYw0KPiBkZXZpY2VzIHRvbW9ycm93Lg0KDQpJJ3ZlIGRvbmUgbW9yZSB0ZXN0
-aW5nIG9uIGEgVDIwODEgYW5kIFAyMDQxIGJvYXJkLiBCb3RoIGxvb2sgZ29vZC4NCg0KSSd2ZSBo
-YWQgc29tZSBmZWVkYmFjayBmcm9tIFJvYiBvbiB0aGUgZHQtYmluZGluZ3Mgd2hpY2ggSSB0aGlu
-ayBJJ3ZlIA0KZ290IHNvcnRlZCBub3cuIEkndmUgZ290IGEgY291cGxlIG9mIG1pbm9yIGNvc21l
-dGljIGNoYW5nZXMgdG8gNi82IGJ1dCANCkknbGwgaG9sZCBmaXJlIG9uIHNlbmRpbmcgYSB2MiB0
-byBnaXZlIHBlb3BsZSBhIGNoYW5jZSB0byBsb29rIGF0IHRoZSANCmZ1bmN0aW9uYWwgY2hhbmdl
-cy4NCg0KPiBDaHJpcyBQYWNraGFtICg2KToNCj4gICAgZHQtYmluZGluZ3M6IGkyYy1tcGM6IERv
-Y3VtZW50IGludGVycnVwdCBwcm9wZXJ0eSBhcyByZXF1aXJlZA0KPiAgICBkdC1iaW5kaW5nczog
-aTJjOiBjb252ZXJ0IGkyYy1tcGMgdG8ganNvbi1zY2hlbWENCj4gICAgaTJjOiBtcGM6IE1ha2Ug
-dXNlIG9mIGkyY19yZWNvdmVyX2J1cygpDQo+ICAgIGkyYzogbXBjOiBtYWtlIGludGVycnVwdCBt
-YW5kYXRvcnkgYW5kIHJlbW92ZSBwb2xsaW5nIGNvZGUNCj4gICAgaTJjOiBtcGM6IHVzZSBkZXZp
-Y2UgbWFuYWdlZCBBUElzDQo+ICAgIGkyYzogbXBjOiBJbnRlcnJ1cHQgZHJpdmVuIHRyYW5zZmVy
-DQo+DQo+ICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tcGMudHh0ICAgICAgIHwg
-IDYyIC0tLQ0KPiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXBjLnlhbWwgICAg
-ICB8ICA5OSArKysrDQo+ICAgZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tcGMuYyAgICAgICAgICAg
-ICAgICAgIHwgNTEzICsrKysrKysrKystLS0tLS0tLQ0KPiAgIDMgZmlsZXMgY2hhbmdlZCwgMzcz
-IGluc2VydGlvbnMoKyksIDMwMSBkZWxldGlvbnMoLSkNCj4gICBkZWxldGUgbW9kZSAxMDA2NDQg
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXBjLnR4dA0KPiAgIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2ky
-Yy1tcGMueWFtbA0KPg==
+On 3/22/21 9:18 AM, Daniel Lezcano wrote:
+> On 22/03/2021 05:47, Samuel Holland wrote:
+>> In preparation for adding CPU idle states, hook up the sun4i timer.
+>> Having a non-c3stop clockevent source available is necessary for all
+>> CPUs to simultaneously enter a local-timer-stop idle state.
+> 
+> Why simultaneously ?
+Because the CPU providing (the hrtimer providing) the broadcast timer
+cannot enter an idle state which would stop that timer. So in my case,
+with 4 CPUs, I was seeing at most 3 CPUs enter idle at any given time.
+This prevented any cluster-level idle states from doing anything. After
+applying this series, I was able to observe the whole cluster powering
+down when appropriate.
+
+Regards,
+Samuel
+
+>> Changes from v1:
+>>   - Removed H616 changes (depends on an unmerged patch set)
+>>   - Reworded the patch 4-5 commit messages for clarity
+>>   - Added Acked-by tags
+>>
+>> Samuel Holland (5):
+>>   dt-bindings: timer: Simplify conditional expressions
+>>   dt-bindings: timer: Add compatibles for sun50i timers
+>>   arm64: dts: allwinner: a64: Sort watchdog node
+>>   arm64: dts: allwinner: Add sun4i MMIO timer nodes
+>>   arm64: sunxi: Build the sun4i timer driver
+>>
+>>  .../timer/allwinner,sun4i-a10-timer.yaml      | 42 +++++++++----------
+>>  arch/arm64/Kconfig.platforms                  |  1 +
+>>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 25 +++++++----
+>>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  9 ++++
+>>  4 files changed, 46 insertions(+), 31 deletions(-)
+>>
+> 
+> 
+
