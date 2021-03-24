@@ -2,107 +2,534 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A656B3474BA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D852347529
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:57:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232466AbhCXJdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 05:33:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
+        id S233035AbhCXJ4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 05:56:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232285AbhCXJdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 05:33:10 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0135CC061763
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 02:33:09 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id d8-20020a1c1d080000b029010f15546281so754212wmd.4
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 02:33:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=DW7EouFyCURbwP8jZhQOeWE4+yb9VH28DAGEEY1uTLA=;
-        b=lhn/sZFHW1OaA3bqg8UVcZ/oMlJ+b8RpnbPoZspt1bkNo1nCSELiJQR3O7k95jUnSI
-         MjaoXMrXtaey+USMhrCC8a0RE2d8YvdZ+BJTCk7zlbGTBW74zXEPKj28zgcXMhTZ3o1F
-         8o3OEKNnyQbOzImZMvFm7DioR1yiHpL+6jZ8GKX9lw2xsKYDTOo5Db70RqNWv7M0FX7R
-         DNHTX5jPHtmh2MuwnmRmTkOM24VyeVvLYuFA4/tMCoB6/0Yr4iw3cJUv1wnawSK3RRD2
-         5j+15et5Wzqw8FKiuSA32ANxHacxCjgFHtt1TMpFTvaEqnbuMM2BIWTfRHN585bvfXw4
-         2GWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=DW7EouFyCURbwP8jZhQOeWE4+yb9VH28DAGEEY1uTLA=;
-        b=gHGCdY7VlxHwDOx16K0eFkBWCiqQZSwwMs2AKCcOo48ebPxPErQvtL7NFRlrishxvU
-         lfrsGOy2z8rJONYF4xs5UATKP5MRiva5Dv9inBZTW7Y4707R/lWjBYhAtGNrWOBvll2k
-         YTE09N+T/NFUu5IudSe6J+sJ6yMcXeiUVB5jkg3azlKCYEpf0LgbwMp7+8O4TooE1uFe
-         JlK7ZiS8c/gPI+eJVaEek6e5/G5eiIvLFQ0rhhWvHbYageMyBjdpinSzpLo2+UHa6v03
-         /4Uf88U7qua9QZrBmFD86WDZfhpJY0fkqCqPTVOGj6YTfWEugfzn/nTm6xHd0zpMKF1/
-         ss7Q==
-X-Gm-Message-State: AOAM532OKw90sVJAadopIv1leWhyMIlw+tMSXu790kyLW8C6NKTF6Wsq
-        05P+gCeEb5TU7eSJS/xBLN3eCg==
-X-Google-Smtp-Source: ABdhPJxF3U4EiJ3OdXNHJk9Gnn8tzPqKMzJhY0aBsV3veUekqp0YrdrPt8sxtV0BPlDt/64JKfcT2Q==
-X-Received: by 2002:a05:600c:1992:: with SMTP id t18mr1969565wmq.125.1616578388410;
-        Wed, 24 Mar 2021 02:33:08 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:91e2:6a05:a4ac:7d0a? ([2a01:e34:ed2f:f020:91e2:6a05:a4ac:7d0a])
-        by smtp.googlemail.com with ESMTPSA id n4sm1595499wmq.40.2021.03.24.02.33.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 02:33:07 -0700 (PDT)
-Subject: Re: [PATCH v2 0/5] arm64: sunxi: Enable the sun4i timer
-To:     Samuel Holland <samuel@sholland.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
+        with ESMTP id S233055AbhCXJ4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 05:56:43 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94DB9C061763;
+        Wed, 24 Mar 2021 02:56:42 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 4ED9A1F458F1
+Subject: Re: [PATCH v4 2/4] dt-bindings: power: rockchip: Convert to
+ json-schema
+To:     Elaine Zhang <zhangqing@rock-chips.com>, robh+dt@kernel.org,
+        heiko@sntech.de
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20210322044707.19479-1-samuel@sholland.org>
- <7bb14a82-5dc9-cefe-4b58-1d2c83974965@linaro.org>
- <64f6d712-11fe-4626-aa24-8e31c21a8ad4@sholland.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <0b3689ad-6bb3-bd7a-46be-0c4d3d7de268@linaro.org>
-Date:   Wed, 24 Mar 2021 10:33:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com
+References: <20210324071609.7531-1-zhangqing@rock-chips.com>
+ <20210324071609.7531-3-zhangqing@rock-chips.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <7ffdf0ca-1f7c-c135-086a-08e982e6cb41@collabora.com>
+Date:   Wed, 24 Mar 2021 10:56:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <64f6d712-11fe-4626-aa24-8e31c21a8ad4@sholland.org>
+In-Reply-To: <20210324071609.7531-3-zhangqing@rock-chips.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2021 04:51, Samuel Holland wrote:
-> On 3/22/21 9:18 AM, Daniel Lezcano wrote:
->> On 22/03/2021 05:47, Samuel Holland wrote:
->>> In preparation for adding CPU idle states, hook up the sun4i timer.
->>> Having a non-c3stop clockevent source available is necessary for all
->>> CPUs to simultaneously enter a local-timer-stop idle state.
->>
->> Why simultaneously ?
-> Because the CPU providing (the hrtimer providing) the broadcast timer
-> cannot enter an idle state which would stop that timer. So in my case,
-> with 4 CPUs, I was seeing at most 3 CPUs enter idle at any given time.
-> This prevented any cluster-level idle states from doing anything. After
-> applying this series, I was able to observe the whole cluster powering
-> down when appropriate.
+Hi Elaine,
 
-Ah, ok. I did not realize this fourth CPU was acting as the broadcast
-timer, so allowing at least a CPU power down. This setup is unusual.
+This is not the exact version I sent, and you reintroduced a "problem" that were
+already solved/discussed on previous versions. See below:
 
-The changes make sense.
+On 24/3/21 8:16, Elaine Zhang wrote:
+> Convert the soc/rockchip/power_domain.txt binding document to
+> json-schema and move to the power bindings directory.
+> 
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+If you do significant is a good practice shortly describe them within [] here.
+
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+
+Note that my last version already had the
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+Which should be fine for merging (with probably only minor changes) and you
+could maintain if you don't do significant changes, but that's not the case, as
+I said, you are reintroducing one problem. Please review the comments already
+received on this patchset or similar patchsets to avoid this.
+
+> ---
+>  .../power/rockchip,power-controller.yaml      | 284 ++++++++++++++++++
+>  .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+>  2 files changed, 284 insertions(+), 136 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> new file mode 100644
+> index 000000000000..a220322c5139
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> @@ -0,0 +1,284 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip Power Domains
+> +
+> +maintainers:
+> +  - Elaine Zhang <zhangqing@rock-chips.com>
+> +  - Rob Herring <robh+dt@kernel.org>
+
+Up to Rob, but I don't think Rob would like to be the maintainer. I think you
+can only include yourself and Heiko.
+
+
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |
+> +  Rockchip processors include support for multiple power domains which can be
+> +  powered up/down by software based on different application scenarios to save power.
+> +
+> +  Power domains contained within power-controller node are generic power domain
+> +  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
+> +
+> +  IP cores belonging to a power domain should contain a "power-domains"
+> +  property that is a phandle for the power domain node representing the domain.
+> +
+> +properties:
+> +  $nodename:
+> +    const: power-controller
+> +
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-power-controller
+> +      - rockchip,rk3036-power-controller
+> +      - rockchip,rk3066-power-controller
+> +      - rockchip,rk3128-power-controller
+> +      - rockchip,rk3188-power-controller
+> +      - rockchip,rk3228-power-controller
+> +      - rockchip,rk3288-power-controller
+> +      - rockchip,rk3328-power-controller
+> +      - rockchip,rk3366-power-controller
+> +      - rockchip,rk3368-power-controller
+> +      - rockchip,rk3399-power-controller
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
+> +    type: object
+> +    description: |
+> +      Represents the power domains within the power controller node as documented
+> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
+> +
+
+The node names must be generic, as this is power-domain must be in the form:
+
++patternProperties:
++  "^power-domain@[0-9a-f]+$":
+
+
+> +    properties:
+> +
+> +      "#power-domain-cells":
+> +        description:
+> +          Must be 0 for nodes representing a single PM domain and 1 for nodes
+> +          providing multiple PM domains.
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      reg:
+> +        maxItems: 1
+> +        description: |
+> +          Power domain index. Valid values are defined in
+> +          "include/dt-bindings/power/px30-power.h"
+> +          "include/dt-bindings/power/rk3036-power.h"
+> +          "include/dt-bindings/power/rk3066-power.h"
+> +          "include/dt-bindings/power/rk3128-power.h"
+> +          "include/dt-bindings/power/rk3188-power.h"
+> +          "include/dt-bindings/power/rk3228-power.h"
+> +          "include/dt-bindings/power/rk3288-power.h"
+> +          "include/dt-bindings/power/rk3328-power.h"
+> +          "include/dt-bindings/power/rk3366-power.h"
+> +          "include/dt-bindings/power/rk3368-power.h"
+> +          "include/dt-bindings/power/rk3399-power.h"
+> +
+> +      clocks:
+> +        description: |
+> +          A number of phandles to clocks that need to be enabled while power domain
+> +          switches state.
+> +
+> +      pm_qos:
+> +        description: |
+> +          A number of phandles to qos blocks which need to be saved and restored
+> +          while power domain switches state.
+> +
+> +    patternProperties:
+> +      "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
+
+The same here:
+
++patternProperties:
++  "^power-domain@[0-9a-f]+$":
 
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> +        type: object
+> +        description: |
+> +          Represents a power domain child within a power domain parent node.
+> +
+> +        properties:
+> +
+> +          "#power-domain-cells":
+> +            description:
+> +              Must be 0 for nodes representing a single PM domain and 1 for nodes
+> +              providing multiple PM domains.
+> +
+> +          "#address-cells":
+> +            const: 1
+> +
+> +          "#size-cells":
+> +            const: 0
+> +
+> +          reg:
+> +            maxItems: 1
+> +
+> +          clocks:
+> +            description: |
+> +              A number of phandles to clocks that need to be enabled while power domain
+> +              switches state.
+> +
+> +          pm_qos:
+> +            description: |
+> +              A number of phandles to qos blocks which need to be saved and restored
+> +              while power domain switches state.
+> +
+> +        patternProperties:
+> +          "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+And here:
+
+> +            type: object
+> +            description: |
+> +              Represents a power domain child within a power domain parent node.
+> +
+> +            properties:
+> +
+> +              "#power-domain-cells":
+> +                description:
+> +                  Must be 0 for nodes representing a single PM domain and 1 for nodes
+> +                  providing multiple PM domains.
+> +
+> +              "#address-cells":
+> +                const: 1
+> +
+> +              "#size-cells":
+> +                const: 0
+> +
+> +              reg:
+> +                maxItems: 1
+> +
+> +              clocks:
+> +                description: |
+> +                  A number of phandles to clocks that need to be enabled while power domain
+> +                  switches state.
+> +
+> +              pm_qos:
+> +                description: |
+> +                  A number of phandles to qos blocks which need to be saved and restored
+> +                  while power domain switches state.
+> +
+> +            required:
+> +              - reg
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - reg
+> +
+> +        additionalProperties: false
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#power-domain-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/power/rk3399-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        qos_hdcp: qos@ffa90000 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffa90000 0x0 0x20>;
+> +        };
+> +
+> +        qos_iep: qos@ffa98000 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffa98000 0x0 0x20>;
+> +        };
+> +
+> +        qos_rga_r: qos@ffab0000 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffab0000 0x0 0x20>;
+> +        };
+> +
+> +        qos_rga_w: qos@ffab0080 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffab0080 0x0 0x20>;
+> +        };
+> +
+> +        qos_video_m0: qos@ffab8000 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffab8000 0x0 0x20>;
+> +        };
+> +
+> +        qos_video_m1_r: qos@ffac0000 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffac0000 0x0 0x20>;
+> +        };
+> +
+> +        qos_video_m1_w: qos@ffac0080 {
+> +            compatible = "rockchip,rk3399-qos", "syscon";
+> +            reg = <0x0 0xffac0080 0x0 0x20>;
+> +        };
+> +
+> +        power-management@ff310000 {
+> +            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
+> +            reg = <0x0 0xff310000 0x0 0x1000>;
+> +
+> +            power-controller {
+> +                compatible = "rockchip,rk3399-power-controller";
+> +                #power-domain-cells = <1>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                /* These power domains are grouped by VD_CENTER */
+> +                pd_iep@RK3399_PD_IEP {
+
+Here and below must be generic power-domain@RK3399_PD_IEP
+
+
+> +                    reg = <RK3399_PD_IEP>;
+> +                    clocks = <&cru ACLK_IEP>,
+> +                             <&cru HCLK_IEP>;
+> +                    pm_qos = <&qos_iep>;
+> +                    #power-domain-cells = <0>;
+> +                };
+> +                pd_rga@RK3399_PD_RGA {
+> +                    reg = <RK3399_PD_RGA>;
+> +                    clocks = <&cru ACLK_RGA>,
+> +                             <&cru HCLK_RGA>;
+> +                    pm_qos = <&qos_rga_r>,
+> +                             <&qos_rga_w>;
+> +                    #power-domain-cells = <0>;
+> +                };
+> +                pd_vcodec@RK3399_PD_VCODEC {
+> +                    reg = <RK3399_PD_VCODEC>;
+> +                    clocks = <&cru ACLK_VCODEC>,
+> +                             <&cru HCLK_VCODEC>;
+> +                    pm_qos = <&qos_video_m0>;
+> +                    #power-domain-cells = <0>;
+> +                };
+> +                pd_vdu@RK3399_PD_VDU {
+> +                    reg = <RK3399_PD_VDU>;
+> +                    clocks = <&cru ACLK_VDU>,
+> +                             <&cru HCLK_VDU>;
+> +                    pm_qos = <&qos_video_m1_r>,
+> +                             <&qos_video_m1_w>;
+> +                    #power-domain-cells = <0>;
+> +                };
+> +                pd_vio@RK3399_PD_VIO {
+> +                    reg = <RK3399_PD_VIO>;
+> +                    #power-domain-cells = <1>;
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    pd_hdcp@RK3399_PD_HDCP {
+> +                        reg = <RK3399_PD_HDCP>;
+> +                        clocks = <&cru ACLK_HDCP>,
+> +                                 <&cru HCLK_HDCP>,
+> +                                 <&cru PCLK_HDCP>;
+> +                        pm_qos = <&qos_hdcp>;
+> +                        #power-domain-cells = <0>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt b/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+> deleted file mode 100644
+> index 8304eceb62e4..000000000000
+> --- a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+> +++ /dev/null
+> @@ -1,136 +0,0 @@
+> -* Rockchip Power Domains
+> -
+> -Rockchip processors include support for multiple power domains which can be
+> -powered up/down by software based on different application scenes to save power.
+> -
+> -Required properties for power domain controller:
+> -- compatible: Should be one of the following.
+> -	"rockchip,px30-power-controller" - for PX30 SoCs.
+> -	"rockchip,rk3036-power-controller" - for RK3036 SoCs.
+> -	"rockchip,rk3066-power-controller" - for RK3066 SoCs.
+> -	"rockchip,rk3128-power-controller" - for RK3128 SoCs.
+> -	"rockchip,rk3188-power-controller" - for RK3188 SoCs.
+> -	"rockchip,rk3228-power-controller" - for RK3228 SoCs.
+> -	"rockchip,rk3288-power-controller" - for RK3288 SoCs.
+> -	"rockchip,rk3328-power-controller" - for RK3328 SoCs.
+> -	"rockchip,rk3366-power-controller" - for RK3366 SoCs.
+> -	"rockchip,rk3368-power-controller" - for RK3368 SoCs.
+> -	"rockchip,rk3399-power-controller" - for RK3399 SoCs.
+> -- #power-domain-cells: Number of cells in a power-domain specifier.
+> -	Should be 1 for multiple PM domains.
+> -- #address-cells: Should be 1.
+> -- #size-cells: Should be 0.
+> -
+> -Required properties for power domain sub nodes:
+> -- reg: index of the power domain, should use macros in:
+> -	"include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
+> -	"include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
+> -	"include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
+> -	"include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
+> -	"include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
+> -	"include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
+> -	"include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
+> -	"include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
+> -	"include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
+> -	"include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
+> -	"include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
+> -- clocks (optional): phandles to clocks which need to be enabled while power domain
+> -	switches state.
+> -- pm_qos (optional): phandles to qos blocks which need to be saved and restored
+> -	while power domain switches state.
+> -
+> -Qos Example:
+> -
+> -	qos_gpu: qos_gpu@ffaf0000 {
+> -		compatible ="syscon";
+> -		reg = <0x0 0xffaf0000 0x0 0x20>;
+> -	};
+> -
+> -Example:
+> -
+> -	power: power-controller {
+> -		compatible = "rockchip,rk3288-power-controller";
+> -		#power-domain-cells = <1>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		pd_gpu {
+> -			reg = <RK3288_PD_GPU>;
+> -			clocks = <&cru ACLK_GPU>;
+> -			pm_qos = <&qos_gpu>;
+> -		};
+> -	};
+> -
+> -	 power: power-controller {
+> -                compatible = "rockchip,rk3368-power-controller";
+> -                #power-domain-cells = <1>;
+> -                #address-cells = <1>;
+> -                #size-cells = <0>;
+> -
+> -                pd_gpu_1 {
+> -                        reg = <RK3368_PD_GPU_1>;
+> -                        clocks = <&cru ACLK_GPU_CFG>;
+> -                };
+> -        };
+> -
+> -Example 2:
+> -		power: power-controller {
+> -			compatible = "rockchip,rk3399-power-controller";
+> -			#power-domain-cells = <1>;
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			pd_vio {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -				reg = <RK3399_PD_VIO>;
+> -
+> -				pd_vo {
+> -					#address-cells = <1>;
+> -					#size-cells = <0>;
+> -					reg = <RK3399_PD_VO>;
+> -
+> -					pd_vopb {
+> -						reg = <RK3399_PD_VOPB>;
+> -					};
+> -
+> -					pd_vopl {
+> -						reg = <RK3399_PD_VOPL>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+> -Node of a device using power domains must have a power-domains property,
+> -containing a phandle to the power device node and an index specifying which
+> -power domain to use.
+> -The index should use macros in:
+> -	"include/dt-bindings/power/px30-power.h" - for px30 type power domain.
+> -	"include/dt-bindings/power/rk3036-power.h" - for rk3036 type power domain.
+> -	"include/dt-bindings/power/rk3128-power.h" - for rk3128 type power domain.
+> -	"include/dt-bindings/power/rk3128-power.h" - for rk3228 type power domain.
+> -	"include/dt-bindings/power/rk3288-power.h" - for rk3288 type power domain.
+> -	"include/dt-bindings/power/rk3328-power.h" - for rk3328 type power domain.
+> -	"include/dt-bindings/power/rk3366-power.h" - for rk3366 type power domain.
+> -	"include/dt-bindings/power/rk3368-power.h" - for rk3368 type power domain.
+> -	"include/dt-bindings/power/rk3399-power.h" - for rk3399 type power domain.
+> -
+> -Example of the node using power domain:
+> -
+> -	node {
+> -		/* ... */
+> -		power-domains = <&power RK3288_PD_GPU>;
+> -		/* ... */
+> -	};
+> -
+> -	node {
+> -                /* ... */
+> -                power-domains = <&power RK3368_PD_GPU_1>;
+> -                /* ... */
+> -        };
+> -
+> -	node {
+> -		/* ... */
+> -		power-domains = <&power RK3399_PD_VOPB>;
+> -		/* ... */
+> -	};
+> 
