@@ -2,98 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91FEE346E60
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 01:57:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF136346E73
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 02:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233785AbhCXA5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 20:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
+        id S234091AbhCXBEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 21:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233603AbhCXA4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 20:56:42 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB19C0613D9
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:56:42 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id q5so16124202pfh.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:56:42 -0700 (PDT)
+        with ESMTP id S234071AbhCXBEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 21:04:25 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABB7C061765
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 18:04:24 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id e14so7035901plj.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 18:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=h2JtxWq5KlA+aTENrci0BbTIjTR5pL1ehPUfioP17ww=;
-        b=mdylSgtzUAZCVGwTE47jvcDg5m6W4yNItz32xBuv2n0FJcK5bOI46eXiRKAVhmX5gN
-         v69Nc0v05jAQnjH1z50jxw9BfEssWsZemkNU4hdTyWudysyU8wYf6eOMsvynYbEKRHMI
-         OwFtpSlbp1dZzAcCPai22SxLKgViyL6wyOqr4=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GOFzQ2jCakOgU1pwAYyIIEpEFP9m6Nt53S4tZwFxe7s=;
+        b=egZM3rXGWFC4HFLhXb5KdcFzUaaq1rUskREM9ziQJuX5c26cL3x8aLBtbVIm3Suc/H
+         AsSKzUkFDLvvC+ScPNldH+lf8i551ZLIeomM4SAw5GZNewzJM76I2VJeLvWhl+2K4tzt
+         wmzQwRL/RvyAn22ULNdiP8X0wCdh4OG+Q5fug=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=h2JtxWq5KlA+aTENrci0BbTIjTR5pL1ehPUfioP17ww=;
-        b=ftitDhX0jY+byFmvRHdlRTqfgkMOhH/T1LcugehUdi8j2EEgxuutuZ9cUJKlUTNZ+a
-         d7R8KQcp4TQT5rUs6vh3OsEnT96yRYEcDWwkhPhcjwwjD0nCPlCSSzjR7zuZ7KAbNI59
-         c1z9SUXX3yhaiGBCPI4atkl00lkX5BqbSowBiSN6rqZ+jseNEKMvksMWghn6Cu+E7vx+
-         ow0fONwJXy4BkYjEmnyC2sxSfYzXhaEavlOoOZzms3Ja4Wo7YvzoIkmkQ5VrvHP2NlAV
-         IbomrjaSs59SwCI2eC8GotRQueVbgMDdM0BZRGPmLq5DlakUgJB1wQswYtsQ1JmxeD22
-         C/fA==
-X-Gm-Message-State: AOAM532K1tKwFPP09evZeDekcMfVLMmeRRUOptoiTXsqx17wpbnHOcVl
-        JQTubBOLRaXozA+kaJmKgn+9NA==
-X-Google-Smtp-Source: ABdhPJziJ3JXAD6m13EcNQP6pdLqzU32BKmPDBLBzBkozEcZ6Z2/VNUa4r5mBZE4Sm0f/1kY6upfBQ==
-X-Received: by 2002:a62:1997:0:b029:1ed:5de5:5f1c with SMTP id 145-20020a6219970000b02901ed5de55f1cmr527401pfz.14.1616547401706;
-        Tue, 23 Mar 2021 17:56:41 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:40a3:9725:46c3:85f6])
-        by smtp.gmail.com with UTF8SMTPSA id 186sm356171pfb.143.2021.03.23.17.56.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 17:56:41 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 17:56:39 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Sandeep Maheswaram <sanm@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GOFzQ2jCakOgU1pwAYyIIEpEFP9m6Nt53S4tZwFxe7s=;
+        b=a7WU7emI3hXCzS4KoJYa67nbQChQ6810TsZ0Zccl/q0RM+O0HdogvasPu3Bu4jwous
+         crIDsaRudtT9Oo4QU9pGiljoDzD5h/dOBA8feeNMBDECtYFp9Gc3ZOkvCcyC5HjIUt9J
+         stVGwrtog0xjVdve58/n7igy1k9Sty9q7il2FtDrgL/WiFD0zc231HRRgCqM4bEtJajc
+         wz3TctYUKjOjHAEOyTRX1QGlZ7hfZdq3K0jNBI7XpHYXyHR0GxkaCWDYY1NZRCsE0utC
+         QTlh4cn07mLGaU9B9y+heyIyhwgDeDNEh5WLIUwhludUP5c+iMD+PG3yjaticvHAYQej
+         30kA==
+X-Gm-Message-State: AOAM532XVNObRSTNUW2G+2A9t+ViMzRMwPOLMRSdIKHkKy6hWku9Gwn4
+        cC4MDkNQD4dnMm9B1eQfL5+IYQ==
+X-Google-Smtp-Source: ABdhPJwKSSYOOg2WMJ9Ov+4FIPkCVtwmcB3n1NL0u8y7XvB6KA4b/ELp3Mww4J+tZXeSPtYY0sj5Tg==
+X-Received: by 2002:a17:90a:987:: with SMTP id 7mr751037pjo.61.1616547864216;
+        Tue, 23 Mar 2021 18:04:24 -0700 (PDT)
+Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:cc81:ff03:bd16:9643])
+        by smtp.gmail.com with ESMTPSA id j20sm4167217pji.3.2021.03.23.18.04.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Mar 2021 18:04:23 -0700 (PDT)
+From:   Julius Werner <jwerner@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lukasz Luba <l.luba@partner.samsung.com>,
         Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v5 3/4] usb: dwc3: qcom: Configure wakeup interrupts and
- set genpd active wakeup flag
-Message-ID: <YFqORzIw5WOLyDwm@google.com>
-References: <1616434280-32635-1-git-send-email-sanm@codeaurora.org>
- <1616434280-32635-4-git-send-email-sanm@codeaurora.org>
- <YFna5mxrJAzR2s0g@kroah.com>
- <YFqMivRlDllNuqu/@google.com>
+        Julius Werner <jwerner@chromium.org>
+Subject: [PATCH] dt-bindings: ddr: Add optional manufacturer and revision ID to LPDDR3
+Date:   Tue, 23 Mar 2021 18:04:05 -0700
+Message-Id: <20210324010405.1917577-1-jwerner@chromium.org>
+X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YFqMivRlDllNuqu/@google.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 23, 2021 at 05:49:14PM -0700, Matthias Kaehlcke wrote:
-> On Tue, Mar 23, 2021 at 01:11:18PM +0100, Greg Kroah-Hartman wrote:
-> > On Mon, Mar 22, 2021 at 11:01:19PM +0530, Sandeep Maheswaram wrote:
-> > > Configure interrupts based on hs_phy_mode to avoid triggering of
-> > > interrupts during system suspend and suspends successfully.
-> > > Set genpd active wakeup flag for usb gdsc if wakeup capable devices
-> > > are connected so that wake up happens without reenumeration.
-> > > Add helper functions to enable,disable wake irqs.
-> > 
-> > That feels like a lot of different things all in one patch.
-> 
-> Sandeep: one thing you could do to reduce the churn is to add
-> dwc3_qcom_enable/disable_wakeup_irq() in a separate patch, without
-> any functional changes. Then this patch would only add the different
-> branches based on the PHY mode.
-> 
-> The handling of the power domain could probably also be done in a
-> separate patch, if I recall correctly it is only an optimization.
+On some platforms, DDR parts are multi-sourced and the exact part number
+used is not know to either kernel or firmware at build time. Firmware
+can read identifying information from DDR mode registers at boot time
+but needs a way to communicate this information to kernel and/or
+userspace. This patch adds optional properties for this information to
+the existing "jedec,lpddr3" device tree binding to be used for that
+purpose.
 
-Actually another thing that could be in a separate patch is enabling
-wakeup support based on 'wakeup-source'. That's not even directly
-related with this series.
+Signed-off-by: Julius Werner <jwerner@chromium.org>
+---
+ Documentation/devicetree/bindings/ddr/lpddr3.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-With all that you'd have fairly atomic patches and it should be easy to
-write meaningful commit messages.
+diff --git a/Documentation/devicetree/bindings/ddr/lpddr3.txt b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+index a0eda35a86eef9..b221e653d3845e 100644
+--- a/Documentation/devicetree/bindings/ddr/lpddr3.txt
++++ b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+@@ -12,6 +12,9 @@ Required properties:
+ 
+ Optional properties:
+ 
++- manufacturer-id : <u32>     Manufacturer ID value read from Mode Register 5
++- revision-id     : <u32 u32> Revision IDs read from Mode Registers 6 and 7
++
+ The following optional properties represent the minimum value of some AC
+ timing parameters of the DDR device in terms of number of clock cycles.
+ These values shall be obtained from the device data-sheet.
+@@ -49,6 +52,8 @@ samsung_K3QF2F20DB: lpddr3 {
+ 	compatible	= "samsung,K3QF2F20DB", "jedec,lpddr3";
+ 	density		= <16384>;
+ 	io-width	= <32>;
++	manufacturer-id = <1>;
++	revision-id     = <123 234>;
+ 	#address-cells	= <1>;
+ 	#size-cells	= <0>;
+ 
+-- 
+2.29.2
+
