@@ -2,136 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E133471FF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 08:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 753F634720E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 08:09:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235667AbhCXHFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 03:05:36 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:44437 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbhCXHFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 03:05:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1616569516; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=GSuzv68z73zXdYYHmOBg3yhM/DxDs3uPEYGKUNXQJI8=;
- b=FAVfnYJjtY5k+J+RfYKMEk69feGVvMBdEoHk2jWVlflQyw0jgXgozhylr5FO0q314DwCFVHv
- kWft6zpbEWTUoFX8huz3ojNj1+8IG+kgU+CeSCP4fUmEwGTnH99bk7ZT/2h8r/nQl01XKLqp
- fs7k2JFklet0eE0vf10IHabb7bo=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 605ae4a14db3bb68017c7d07 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Mar 2021 07:05:05
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1A89AC43464; Wed, 24 Mar 2021 07:05:04 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3108EC433CA;
-        Wed, 24 Mar 2021 07:05:04 +0000 (UTC)
+        id S230516AbhCXHIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 03:08:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230391AbhCXHIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 03:08:48 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385CDC061763
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 00:08:48 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id i22so2473257pgl.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 00:08:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/RRd13xSmzzPdeil2PYUhQm6+cyptrl5URL+s03EZsI=;
+        b=QAlvvh5jK4gEHwYp56McvWt/j2reVUksBe/t038i9Nj2NpKhSptr9UYnHfJlpEG+0C
+         UwhTCSKgC7iznOpXn6CbSdFmENIzBHhUQBG+azqFBg2RL2lZ7B8/1/2Bz5NU/Jcd0rQi
+         1a9rgyMnNWcZd/Rxtf3SY8EtBjHSmHbaEYUSc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/RRd13xSmzzPdeil2PYUhQm6+cyptrl5URL+s03EZsI=;
+        b=MSaw45vaAg08Qc2ZdIpnUJ4RJDiYqYEoC4x0NA3YTmtM6rsHXV1btFMXPS8YCWUKLB
+         naydbkzY/r2jgkuRd2z8EXXdaS6vUpXIH9/ml2lmD5rfTN4dH1DnwW+xri6KDsHN1483
+         fEjtJaCqHcumAr0yZpp4j1knCkuomTca71J3b863hIV2OhsUR8OY036taFfKtHcAi38M
+         5rFQSyijYIsEVK33zq5LCTkyzb1sMUImvgzN1/8+nBiYWB5NetN2ozsgR5201/2obWnB
+         sgNN1jh8Jg4Lg1yQ6v7VI/y65l6ZFvfBD+e6tZg43Sgrpb6UzUH5DIilU4QLE0z5TznY
+         3RVg==
+X-Gm-Message-State: AOAM533bW2FDlnErBc/6N1j9A6E0mZtcciKdX7FHRLEy4P/1ncFYpPMY
+        rTAxBfVzYtkxQK05z7rItszdzA==
+X-Google-Smtp-Source: ABdhPJwI0x2w6Tp2BHTsGd/z+j1YMe41PeKg3PJTel2Z+1wKA5TzhFhhV2Req+NqwYyObpioIBwOtw==
+X-Received: by 2002:a62:2a83:0:b029:21a:d3a4:80f2 with SMTP id q125-20020a622a830000b029021ad3a480f2mr1665580pfq.47.1616569727657;
+        Wed, 24 Mar 2021 00:08:47 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:c8d1:279a:cb3a:39cd])
+        by smtp.gmail.com with ESMTPSA id t18sm1408077pgg.33.2021.03.24.00.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 00:08:47 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: mt8183: Add gce client reg for display subcomponents
+Date:   Wed, 24 Mar 2021 15:08:42 +0800
+Message-Id: <20210324070842.1037233-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 24 Mar 2021 12:35:04 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        devicetree@vger.kernel.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/9] arm64: dts: qcom: sc7280: Add AOSS QMP node
-In-Reply-To: <161647068330.3012082.2910442813045392403@swboyd.mtv.corp.google.com>
-References: <cover.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <463a45f2c3e4a91430c006fa1637c7f4f124185e.1614244789.git.saiprakash.ranjan@codeaurora.org>
- <161428210272.1254594.16034240343090747878@swboyd.mtv.corp.google.com>
- <dc3be32a3f8197d3138fe1ef6c24316a@codeaurora.org>
- <161436520297.1254594.4348845199981053890@swboyd.mtv.corp.google.com>
- <5cf5692ef7d348ec361081d0341f1254@codeaurora.org>
- <d19fbcc91b4ef045014b225e7fdf9780@codeaurora.org>
- <161647068330.3012082.2910442813045392403@swboyd.mtv.corp.google.com>
-Message-ID: <0a8540993e6f59c3b03e44e6aee4f81b@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-23 09:08, Stephen Boyd wrote:
-> Quoting Sibi Sankar (2021-03-08 21:58:21)
->> On 2021-02-27 19:26, Sai Prakash Ranjan wrote:
->> > On 2021-02-27 00:16, Stephen Boyd wrote:
->> >> Quoting Sai Prakash Ranjan (2021-02-25 23:51:00)
->> >>> On 2021-02-26 01:11, Stephen Boyd wrote:
->> >>> > Quoting Sai Prakash Ranjan (2021-02-25 01:30:24)
->> >>> >> Add a DT node for the AOSS QMP on SC7280 SoC.
->> >>> >>
->> >>> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> >>> >> ---
->> >>> >>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 ++++++++++++++
->> >>> >>  1 file changed, 14 insertions(+)
->> >>> >>
->> >>> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> >> index 65c1e0f2fb56..cbd567ccc04e 100644
->> >>> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> >> @@ -9,6 +9,7 @@
->> >>> >>  #include <dt-bindings/clock/qcom,rpmh.h>
->> >>> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->> >>> >>  #include <dt-bindings/mailbox/qcom-ipcc.h>
->> >>> >> +#include <dt-bindings/power/qcom-aoss-qmp.h>
->> >>> >>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->> >>> >>
->> >>> >>  / {
->> >>> >> @@ -368,6 +369,19 @@ pdc: interrupt-controller@b220000 {
->> >>> >>                         interrupt-controller;
->> >>> >>                 };
->> >>> >>
->> >>> >> +               aoss_qmp: qmp@c300000 {
->> >>> >
->> >>> > power-domain-controller@c300000? power-controller@c300000?
->> >>> >
->> >>>
->> >>> Its an AOSS message RAM and all other SM* SoCs have as qmp@
->> >>> and the dt binding as well, I see only SM8150 with power-controller,
->> >>> that should probably be fixed?
->> >>
->> >> Node name should be generic while still being meaningful. Nobody knows
->> >> what qmp is, but power-controller makes sense. Can you fix this and
->> >> the
->> >> others to be power-controller?
->> >>
->> 
->> we probably would be changing them back
->> to qmp or something more generic soon
->> since the consensus was qmp wasn't a
->> power-controller. So not sure if its
->> worth the effort here.
->> 
-> 
-> Hmm alright. Maybe mailbox? qmp is not generic. What does it stand for?
-> qualcomm messaging protocol?
+Add mediatek,gce-client-reg for mmsys, ccorr, aal, gamma, dither.
 
-It's documented as ^^ in the git log
-but I guess it should be called qualcomm
-mailbox protocol instead. I don't think
-it can be called mailbox since it doesn't
-have mbox cells in its bindings.
+Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
+v1->v2:
+Add for mmsys.
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 80519a145f13..16f4b1fc0fb9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -983,6 +983,9 @@ mmsys: syscon@14000000 {
+ 			compatible = "mediatek,mt8183-mmsys", "syscon";
+ 			reg = <0 0x14000000 0 0x1000>;
+ 			#clock-cells = <1>;
++			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
++				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
++			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
+ 		};
+ 
+ 		ovl0: ovl@14008000 {
+@@ -1058,6 +1061,7 @@ ccorr0: ccorr@1400f000 {
+ 			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_LOW>;
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+ 			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
++			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
+ 		};
+ 
+ 		aal0: aal@14010000 {
+@@ -1067,6 +1071,7 @@ aal0: aal@14010000 {
+ 			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_LOW>;
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+ 			clocks = <&mmsys CLK_MM_DISP_AAL0>;
++			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
+ 		};
+ 
+ 		gamma0: gamma@14011000 {
+@@ -1075,6 +1080,7 @@ gamma0: gamma@14011000 {
+ 			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_LOW>;
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+ 			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
++			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
+ 		};
+ 
+ 		dither0: dither@14012000 {
+@@ -1083,6 +1089,7 @@ dither0: dither@14012000 {
+ 			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_LOW>;
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+ 			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
++			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
+ 		};
+ 
+ 		dsi0: dsi@14014000 {
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+2.31.0.291.g576ba9dcdaf-goog
+
