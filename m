@@ -2,70 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A881A346FC7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:03:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1ACA346FCE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:06:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232130AbhCXDCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:02:38 -0400
-Received: from mail-lj1-f173.google.com ([209.85.208.173]:38629 "EHLO
-        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbhCXDCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:02:13 -0400
-Received: by mail-lj1-f173.google.com with SMTP id s17so28326148ljc.5;
-        Tue, 23 Mar 2021 20:02:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=L0ASU9cck84A4SR2JsZ6ZvDNL4r9jv1aWJ8Dv/WoYzw=;
-        b=PSTNMV++VT4nJlNKVhZXUTc2qDeZDXj1atcrGjMbs6dZ4VKzizFF0a6HwbzOVV4hEl
-         tVduja7OgTTUq25KYBFXpjTvM0x78g6mXwGguG2ppj5wqvAa6SMILBNqDe8d2BcE5cWU
-         kPSGalpgMyPFTRje/BteYNb+eN/ixtxznyS2JJqP4C89ajrtq9vmKjOnTJ7m3pirExPZ
-         jT7/ut1OgqM6yqpvbqoA4Hb1cPklYg8J2PQQosxh/u/8EAT6yGwf8o5xM95D78McmBEK
-         gc4lCsaFasv1zBo45kYOXz07GpPPOJkv15OtyItpvsnls8BSJCb2cZ9d5TNCKqzDedKL
-         +jYw==
-X-Gm-Message-State: AOAM531RpJC4fokdzLa7LmUkjrj5sDGL4AQyfPI4KAFlQiyP/kwdKrVe
-        XyBf3Rfg4YJ737rWx2pkH62ub/4N8NU=
-X-Google-Smtp-Source: ABdhPJwJLXLm8L4PWQbaQnawfiLyDPBUQHSNwJSAxzwSo3+Z7cprqAUdYqst9h4ILxVGfPy6Oo1qzg==
-X-Received: by 2002:a2e:b88e:: with SMTP id r14mr601832ljp.450.1616554932233;
-        Tue, 23 Mar 2021 20:02:12 -0700 (PDT)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
-        by smtp.gmail.com with ESMTPSA id i16sm121296ljj.74.2021.03.23.20.02.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
-Received: by mail-lj1-f173.google.com with SMTP id u20so28285144lja.13;
-        Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
-X-Received: by 2002:a2e:9b14:: with SMTP id u20mr582784lji.463.1616554931635;
- Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-29-sebastian.reichel@collabora.com>
-In-Reply-To: <20210312154357.1561730-29-sebastian.reichel@collabora.com>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 24 Mar 2021 11:02:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67qO0acst+5QPDs_9WC0uYXwMUXYJE+1g=9WoM6_BnCfA@mail.gmail.com>
-Message-ID: <CAGb2v67qO0acst+5QPDs_9WC0uYXwMUXYJE+1g=9WoM6_BnCfA@mail.gmail.com>
-Subject: Re: [PATCH 28/38] dt-bindings: power: supply: axp20x: Convert to DT
- schema format
-To:     sebastian.reichel@collabora.com
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        id S235021AbhCXDGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:06:10 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:43579 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232318AbhCXDFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:05:46 -0400
+X-UUID: 759810d6a0c541d18963cbf02d7fc87d-20210324
+X-UUID: 759810d6a0c541d18963cbf02d7fc87d-20210324
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 57941088; Wed, 24 Mar 2021 11:05:44 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 24 Mar 2021 11:05:43 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 24 Mar 2021 11:05:41 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+        Marc Zyngier <maz@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        <anson.chuang@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+Subject: [v9,0/7] PCI: mediatek: Add new generation controller support
+Date:   Wed, 24 Mar 2021 11:05:03 +0800
+Message-ID: <20210324030510.29177-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 11:52 PM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Convert the binding to DT schema format.
->
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+support new generation PCIe controller.
 
-Looks good to me. Though I'm not well versed in the new YAML binding format yet.
+Changes in v9:
+1. Use mtk_pcie_parse_port() to get the hw resources;
+2. Remove unnecessary logs;
+3. Add local IRQ enable status save/restore instead of
+   the enable/disable callbacks for suspend/resume;
+4. Fix typos.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Changes in v8:
+1. Add irq_clock to protect IRQ register access;
+2. Mask all INTx interrupt when startup port;
+3. Remove activate/deactivate callbacks from bottom_domain_ops;
+4. Add unmask/mask callbacks in mtk_msi_bottom_irq_chip;
+5. Add property information for reg-names.
+
+Changes in v7:
+1. Split the driver patch to core PCIe, INTx, MSI and PM patches;
+2. Reshape MSI init and handle flow, use msi_bottom_domain to cover all sets;
+3. Replace readl/writel with their relaxed version;
+4. Add MSI description in binding document;
+5. Add pl_250m clock in binding document.
+
+Changes in v6:
+1. Export pci_pio_to_address() to support compiling as kernel module;
+2. Replace usleep_range(100 * 1000, 120 * 1000) with msleep(100);
+3. Replace dev_notice with dev_err;
+4. Fix MSI get hwirq flow;
+5. Fix warning for possible recursive locking in mtk_pcie_set_affinity.
+
+Changes in v5:
+1. Remove unused macros
+2. Modify the config read/write callbacks, set the config byte field
+   in TLP header and use pci_generic_config_read32/write32
+   to access the config space
+3. Fix the settings of translation window, both MEM and IO regions
+   works properly
+4. Fix typos
+
+Changes in v4:
+1. Fix PCIe power up/down flow
+2. Use "mac" and "phy" for reset names
+3. Add clock names
+4. Fix the variables type
+
+Changes in v3:
+1. Remove standard property in binding document
+2. Return error number when get_optional* API throws an error
+3. Use the bulk clk APIs
+
+Changes in v2:
+1. Fix the typo of dt-bindings patch
+2. Remove the unnecessary properties in binding document
+3. dispos the irq mappings of msi top domain when irq teardown
+
+Jianjun Wang (7):
+  dt-bindings: PCI: mediatek-gen3: Add YAML schema
+  PCI: Export pci_pio_to_address() for module use
+  PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+  PCI: mediatek-gen3: Add INTx support
+  PCI: mediatek-gen3: Add MSI support
+  PCI: mediatek-gen3: Add system PM support
+  MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  181 +++
+ MAINTAINERS                                   |    1 +
+ drivers/pci/controller/Kconfig                |   13 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 1025 +++++++++++++++++
+ drivers/pci/pci.c                             |    1 +
+ 6 files changed, 1222 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+ create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+
+-- 
+2.25.1
+
