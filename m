@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CB0346FC1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A881A346FC7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234963AbhCXDBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:01:03 -0400
-Received: from mail-lf1-f44.google.com ([209.85.167.44]:46815 "EHLO
-        mail-lf1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231896AbhCXDAn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:00:43 -0400
-Received: by mail-lf1-f44.google.com with SMTP id w37so29732419lfu.13;
-        Tue, 23 Mar 2021 20:00:42 -0700 (PDT)
+        id S232130AbhCXDCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:02:38 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:38629 "EHLO
+        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232312AbhCXDCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:02:13 -0400
+Received: by mail-lj1-f173.google.com with SMTP id s17so28326148ljc.5;
+        Tue, 23 Mar 2021 20:02:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
          :from:date:message-id:subject:to:cc;
-        bh=d1dReRBrfstAdxcP61fTebHNjPiLX2kfp7/R/spgjuo=;
-        b=jf7tSXkr5wrIW10NcGesQlBbhOHBxYc/c1ngU5YAY+InOOQrp6bpSwnCIDrKB6BnMa
-         Fi2Zl88ljKCRlacHPhI6DE+QWoOm92JY4geACEqb3bumg1hSSUu+zFTYiwVg00lKWBk1
-         EWPe1zK78FQMwF8ZzfPXn5XtfQuyhj13w1m3Z2QOkdby25jhtKygAWztTfK1H/1c28CG
-         qZCLKCQX72oR9VTnbBNNn2OldnXZregt3GWE0U6x1GQebou6G3v5Eo5j1Ykjxxuf3AQK
-         cMoiCKgvcLW7jU+zO7W5dqj2yQzjNWl1M11ng2KBADYvgZApwgEPoVHbZyowU79ARqS6
-         FXqw==
-X-Gm-Message-State: AOAM532n+ksmZXuWsHYPPYuT3XauM+IsofXHVXVZkqeetgExiezjh1bq
-        Azq7so2fv/353CPdlPufg5F4tiybPWDwWQ==
-X-Google-Smtp-Source: ABdhPJxgdlUh9cqfPjsTXgVhR4loTDPlDV7/UZ0X+Syex3wC9IBWh16VYMijcaKi9GNL5+0Qx3zW1w==
-X-Received: by 2002:ac2:5e36:: with SMTP id o22mr664868lfg.525.1616554841761;
-        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
-        by smtp.gmail.com with ESMTPSA id d8sm117738ljc.129.2021.03.23.20.00.41
+        bh=L0ASU9cck84A4SR2JsZ6ZvDNL4r9jv1aWJ8Dv/WoYzw=;
+        b=PSTNMV++VT4nJlNKVhZXUTc2qDeZDXj1atcrGjMbs6dZ4VKzizFF0a6HwbzOVV4hEl
+         tVduja7OgTTUq25KYBFXpjTvM0x78g6mXwGguG2ppj5wqvAa6SMILBNqDe8d2BcE5cWU
+         kPSGalpgMyPFTRje/BteYNb+eN/ixtxznyS2JJqP4C89ajrtq9vmKjOnTJ7m3pirExPZ
+         jT7/ut1OgqM6yqpvbqoA4Hb1cPklYg8J2PQQosxh/u/8EAT6yGwf8o5xM95D78McmBEK
+         gc4lCsaFasv1zBo45kYOXz07GpPPOJkv15OtyItpvsnls8BSJCb2cZ9d5TNCKqzDedKL
+         +jYw==
+X-Gm-Message-State: AOAM531RpJC4fokdzLa7LmUkjrj5sDGL4AQyfPI4KAFlQiyP/kwdKrVe
+        XyBf3Rfg4YJ737rWx2pkH62ub/4N8NU=
+X-Google-Smtp-Source: ABdhPJwJLXLm8L4PWQbaQnawfiLyDPBUQHSNwJSAxzwSo3+Z7cprqAUdYqst9h4ILxVGfPy6Oo1qzg==
+X-Received: by 2002:a2e:b88e:: with SMTP id r14mr601832ljp.450.1616554932233;
+        Tue, 23 Mar 2021 20:02:12 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id i16sm121296ljj.74.2021.03.23.20.02.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id f16so28370075ljm.1;
-        Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
-X-Received: by 2002:a2e:1649:: with SMTP id 9mr648961ljw.74.1616554841085;
- Tue, 23 Mar 2021 20:00:41 -0700 (PDT)
+        Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id u20so28285144lja.13;
+        Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
+X-Received: by 2002:a2e:9b14:: with SMTP id u20mr582784lji.463.1616554931635;
+ Tue, 23 Mar 2021 20:02:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210323204341.28825-1-jernej.skrabec@siol.net>
-In-Reply-To: <20210323204341.28825-1-jernej.skrabec@siol.net>
+References: <20210312154357.1561730-1-sebastian.reichel@collabora.com> <20210312154357.1561730-29-sebastian.reichel@collabora.com>
+In-Reply-To: <20210312154357.1561730-29-sebastian.reichel@collabora.com>
 Reply-To: wens@csie.org
 From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 24 Mar 2021 11:00:30 +0800
-X-Gmail-Original-Message-ID: <CAGb2v645M9rrQ_c9P8yBckxz8QsZW6-srhOeTyQkSc0cOo0Wug@mail.gmail.com>
-Message-ID: <CAGb2v645M9rrQ_c9P8yBckxz8QsZW6-srhOeTyQkSc0cOo0Wug@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v2] ARM: dts: sun8i: h3: beelink-x2: Add
- power button
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maxime Ripard <mripard@kernel.org>,
+Date:   Wed, 24 Mar 2021 11:02:00 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67qO0acst+5QPDs_9WC0uYXwMUXYJE+1g=9WoM6_BnCfA@mail.gmail.com>
+Message-ID: <CAGb2v67qO0acst+5QPDs_9WC0uYXwMUXYJE+1g=9WoM6_BnCfA@mail.gmail.com>
+Subject: Re: [PATCH 28/38] dt-bindings: power: supply: axp20x: Convert to DT
+ schema format
+To:     sebastian.reichel@collabora.com
+Cc:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+        linux-kernel <linux-kernel@vger.kernel.org>, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 4:44 AM Jernej Skrabec <jernej.skrabec@siol.net> wrote:
+On Fri, Mar 12, 2021 at 11:52 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
 >
-> Beelink X2 has power button. Add node for it.
+> Convert the binding to DT schema format.
 >
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+Looks good to me. Though I'm not well versed in the new YAML binding format yet.
 
 Acked-by: Chen-Yu Tsai <wens@csie.org>
