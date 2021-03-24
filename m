@@ -2,44 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F132C3477E8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 13:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CC9B34782B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 13:19:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233002AbhCXMKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 08:10:11 -0400
-Received: from muru.com ([72.249.23.125]:46546 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232545AbhCXMKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 08:10:00 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 7FAE18057;
-        Wed, 24 Mar 2021 12:10:56 +0000 (UTC)
-Date:   Wed, 24 Mar 2021 14:09:56 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Dario Binacchi <dariobin@libero.it>
-Cc:     linux-kernel@vger.kernel.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: am33xx-clocks: add spread spectrum
- support
-Message-ID: <YFssFDD1TspUXCOo@atomide.com>
-References: <20210318172627.12173-1-dariobin@libero.it>
- <20210318172627.12173-4-dariobin@libero.it>
+        id S230445AbhCXMTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 08:19:23 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:36462 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232109AbhCXMTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 08:19:14 -0400
+Date:   Wed, 24 Mar 2021 15:18:58 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 1/3] usb: dwc3: qcom: Add missing DWC3 OF node
+ refcount decrement
+Message-ID: <20210324121858.b2hwbm6vmklbbt7c@mobilestation>
+References: <20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru>
+ <20210218152904.75bg2v6uh5ool5h3@mobilestation>
+ <YC6IjYlDXWJMyZIP@kroah.com>
+ <20210218154051.hqhytxv6poizvfgm@mobilestation>
+ <YFnRDaSTKCw4aDuQ@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210318172627.12173-4-dariobin@libero.it>
+In-Reply-To: <YFnRDaSTKCw4aDuQ@kroah.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Dario Binacchi <dariobin@libero.it> [210318 17:28]:
-> Registers for adjusting the spread spectrum clocking (SSC) have been
-> added. As reported by the TI spruh73x RM, SSC is supported only for
-> LCD and MPU PLLs.
+Hi Greg,
 
-Probably best to keep the series together:
+On Tue, Mar 23, 2021 at 12:29:17PM +0100, Greg Kroah-Hartman wrote:
+> On Thu, Feb 18, 2021 at 06:40:51PM +0300, Serge Semin wrote:
+> > On Thu, Feb 18, 2021 at 04:32:29PM +0100, Greg Kroah-Hartman wrote:
+> > > On Thu, Feb 18, 2021 at 06:29:04PM +0300, Serge Semin wrote:
+> > > > Bjorn, Greg, Felippe, Andy,
+> > > > Any comments on this series? Bjorn, Greg you asked me to resend the
+> > > > patches related with the DW USB3 node name change. I did as you said,
+> > > > but no news since then. I'd be glad to have this patch accepted in
+> > > > some -next repo and forget about it.
+> > > 
+> > 
+> > > Sorry, but it's the merge window right now and I can't add anything new
+> > > until 5.12-rc1 is out.  So can you wait until then?
+> > 
+> > Well, I don't think there is another choice but to wait now.)
+> > Hopefully the patchset won't be forgotten when the merge window closes
+> > as that happened with the original series...
+> 
 
-Acked-by: Tony Lindgren <tony@atomide.com>
+> Can you resend this if still needed?  I don't see them in my queue...
+
+I see the very first patch of this series has already been merged in 
+somewhere between v5.12-rc3 and v5.12-rc2. See commit 1cffb1c66499 ("usb: 
+dwc3: qcom: Add missing DWC3 OF node refcount decrement"). But the rest of
+the patches still hanging up unattended. I'll resend them in a few minutes.
+Could you merge them in too?
+
+-Sergey
+
+> 
+> thanks,
+> 
+> greg k-h
