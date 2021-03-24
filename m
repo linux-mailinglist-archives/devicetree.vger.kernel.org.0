@@ -2,85 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8089347B12
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 15:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9595C347B24
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 15:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236364AbhCXOqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 10:46:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42264 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236251AbhCXOqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 10:46:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4188761A0F;
-        Wed, 24 Mar 2021 14:46:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616597163;
-        bh=IpQqeZizpAkmktM1ykYR3SVGsq3cc7ebBvwgwpKHb54=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=f0uoMNCsY34YsQOjwo+6nuFTZULLZcwjyfF47zMiOqHO2Z6jhu9AMPSUvR3Y57LD1
-         028suKzN0rxO3FrrVNP8rSV5SOb/SKEDKLnumQ3lPCKg8ZwW0RwojHzFkqya5YkbJx
-         mtaG3DKcNkFLNBUJ7P0NxijHB7C+WtD7/83CWSjhqIqpVJ3IFWMEYAhgV9Bu86JWBy
-         6tMunJLtesSZL5fTjqhA2zCdAm5jabL7ePNZaapK5elYb95ayP6XfRS+Hbc2mg0ctR
-         VIdu3IvKk677XPRepzNoqzs5dFvbI5rG4AV9oN1JGg2tE7IWyiVqUe+LE0BiDI2H1b
-         8qlzjB/MeeLlQ==
-Received: by mail-ed1-f50.google.com with SMTP id bx7so27924056edb.12;
-        Wed, 24 Mar 2021 07:46:03 -0700 (PDT)
-X-Gm-Message-State: AOAM530j29Bnx2h2zHQ4pFt0IXg27z8J3yL/JMdXgiNIYoDFa4Dg+nzx
-        QQmjka7L5VQsCAH5zfX8yW3OhYfWJe3lnmybjw==
-X-Google-Smtp-Source: ABdhPJx9s+DKhEIneKlm50ecrAh88tChNkD/fmlCgrTsMQymYLNt6jDsywvmbgGVambNzhd8cZzpeq1mkk+S3JmVtj4=
-X-Received: by 2002:a05:6402:2d0:: with SMTP id b16mr3933538edx.194.1616597161877;
- Wed, 24 Mar 2021 07:46:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210309000247.2989531-1-danielwa@cisco.com>
-In-Reply-To: <20210309000247.2989531-1-danielwa@cisco.com>
+        id S236327AbhCXOvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 10:51:08 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:39693 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236376AbhCXOuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 10:50:46 -0400
+Received: by mail-io1-f44.google.com with SMTP id k25so9662094iob.6;
+        Wed, 24 Mar 2021 07:50:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QY39YouPVNLFxxgepgOlsbrnAYheJKoDtXKK2f2Stuk=;
+        b=O92PMtVQixkOrb7mly/ZKIvPMyiD5oN9uBiBr/A/jYGwPVc1EenPuhp/6tfFieO+s8
+         dZ+vSXY05VoAcA+dkpkU1UqoL/+vXGcSyWf739J4JwZc6223YCfCxAEWjcliNhXmw/XB
+         N0KaDkK6g7LY5FTB1ZAurwjLAKMn1RqRll/KN7drnveGxZanttrJ47aZqZik5E8ncLcx
+         +MC8bXh6wfeE6ZRutQcnqePWvzuj0V1lcybRPVNTeMbUucVa1GOsTszOEIvfHKA029Qm
+         6P/++spRRs9um9ujDeQRN30b5Ghhk8lRd1i6e2sDGDj8pj4txzat0Gydit9l80iu4BCs
+         YPDA==
+X-Gm-Message-State: AOAM531bALPb7kvsocQjbGUcLXyDfFakJvvavYeebf7/AWtGXcG727Gt
+        M6hfcyY38ofG1Q3xUeqyDQ==
+X-Google-Smtp-Source: ABdhPJxnCgeUZbH3x2EEcuMejosC56uKWRGil4qG0hK3Uxj+im+R6tTC06xiJ9xqCGlMvwBFKmxqOg==
+X-Received: by 2002:a05:6638:dc3:: with SMTP id m3mr3253704jaj.130.1616597445692;
+        Wed, 24 Mar 2021 07:50:45 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id k125sm1215133iof.14.2021.03.24.07.50.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 07:50:45 -0700 (PDT)
+Received: (nullmailer pid 3041380 invoked by uid 1000);
+        Wed, 24 Mar 2021 14:50:42 -0000
+Date:   Wed, 24 Mar 2021 08:50:42 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 24 Mar 2021 08:45:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLN=TtAck+0cT+MFtxRiMUpiWRUMnrvnJJf55fwCxATLg@mail.gmail.com>
-Message-ID: <CAL_JsqLN=TtAck+0cT+MFtxRiMUpiWRUMnrvnJJf55fwCxATLg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Generic Command Line changes
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        X86 ML <x86@kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        xe-linux-external@cisco.com,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-efi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kyle Tso <kyletso@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: usb: Add chg-psy-name property Maxim
+ 33359 binding
+Message-ID: <20210324145042.GA3036037@robh.at.kernel.org>
+References: <20210311100313.3591254-1-badhri@google.com>
+ <20210311100313.3591254-4-badhri@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210311100313.3591254-4-badhri@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 5:02 PM Daniel Walker <danielwa@cisco.com> wrote:
->
-> This fixed some problem identified in my last release. I made updates
-> based on comments from Christophe Leroy.
->
-> I added scripted updates to the defconfig file for mips and powerpc.
-> This is required in order to maintain the status quo for those platforms
-> which used the prior builtin command line system.
->
-> These were tested on all effected architectures.
->
-> Daniel Walker (7):
->   CMDLINE: add generic builtin command line
->   CMDLINE: drivers: of: ifdef out cmdline section
->   powerpc: convert config files to generic cmdline
->   CMDLINE: powerpc: convert to generic builtin command line
->   mips: convert config files to generic cmdline
->   CMDLINE: mips: convert to generic builtin command line
->   CMDLINE: x86: convert to generic builtin command line
+On Thu, Mar 11, 2021 at 02:03:13AM -0800, Badhri Jagan Sridharan wrote:
+> chg-psy-name is an optional string property used to indicate the
+> power supply object for which the current/voltage_max limits have
+> to be set.
+> 
+> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> ---
+>  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> index 93a19eda610b..3a278969109e 100644
+> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> @@ -28,6 +28,11 @@ properties:
+>      description:
+>        Properties for usb c connector.
+>  
+> +  chg-psy-name:
+> +    description: Power supply whose current/voltage_max values to be
+> +      configured.
+> +    $ref: /schemas/types.yaml#definitions/string
 
-Can you send out or provide a branch of the other converted arches you
-have patches for? Given this got revived due to arm64 cmdline changes,
-including arm64 patches at least would be beneficial as there are
-folks motivated to review and test this on Arm.
+If you want a non-vendor specific property, this needs to be documented 
+in a common binding. I think this needs a better explaination and 
+examples of multiple chargers.
 
 Rob
