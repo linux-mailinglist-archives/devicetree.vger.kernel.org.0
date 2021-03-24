@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B2D346FAC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A6CE346FAE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232169AbhCXCtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 22:49:43 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:36850 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232078AbhCXCtY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Mar 2021 22:49:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1616554164;
-  x=1648090164;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=FqYAXGat8wOi5xlTyUYf8sCt90mXXCBzUhow40r7ORM=;
-  b=nzC26m4YHXgL/Kl7zG9OEXOAYqIsCML15OprSSllzpV5FbIwY3rH767N
-   JhUanOYHpa2PXilMFznlHZgtO27WG/zmdIePP1u2kDVK00K4buu3wWz6N
-   CgyZqBOzHUf14kdCvuxMnm/JTFmhhZZ7XCYHJcECCCmqwDuNC+DGmIVnJ
-   P5TGTtmtmDrSmDtVxFEsXrsTb40lMFRxbMnnPtU0m89jW+7WcuKC5CmrO
-   ZVBfqllXjM84oRl9EFc1I2OgfG77EzF1rq64CJHHyEc2oyC6A8sJma5v0
-   SdbANUiD6Tr+558Jp+nCJdN00+oSq3gg/BuvCkme0suvelbOsrBGf8V1O
-   Q==;
-From:   Hermes Zhang <chenhui.zhang@axis.com>
-To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hermes Zhang <chenhuiz@axis.com>
-CC:     <kernel@axis.com>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3] dt-binding: leds: Document leds-multi-gpio bindings
-Date:   Wed, 24 Mar 2021 10:48:43 +0800
-Message-ID: <20210324024844.15796-1-chenhui.zhang@axis.com>
-X-Mailer: git-send-email 2.20.1
+        id S231262AbhCXCto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 22:49:44 -0400
+Received: from regular1.263xmail.com ([211.150.70.195]:55314 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232089AbhCXCt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:49:29 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by regular1.263xmail.com (Postfix) with ESMTP id 335B91D1D;
+        Wed, 24 Mar 2021 10:49:00 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.236] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13111T139928526636800S1616554138557516_;
+        Wed, 24 Mar 2021 10:48:59 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <04df23d237b6fbd553a9c872d6560c96>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: finley.xiao@rock-chips.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH v2 2/3] dt-bindings: Convert the rockchip power_domain to
+ YAML and extend
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, cl@rock-chips.com,
+        huangtao@rock-chips.com, kever.yang@rock-chips.com,
+        tony.xie@rock-chips.com, finley.xiao@rock-chips.com
+References: <20210323082410.22818-1-zhangqing@rock-chips.com>
+ <20210323082410.22818-3-zhangqing@rock-chips.com>
+ <87e50d5b-604b-508c-f3cb-ee07fcf15241@gmail.com>
+ <CAFqH_53kBf++SPfir_5mA9Dv2v=u4s1zpqnztAH8Tt2-9dLVnQ@mail.gmail.com>
+From:   "elaine.zhang" <zhangqing@rock-chips.com>
+Organization: rockchip
+Message-ID: <6e906aee-646f-ff7e-deca-fe9bbd435cd8@rock-chips.com>
+Date:   Wed, 24 Mar 2021 10:48:58 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <CAFqH_53kBf++SPfir_5mA9Dv2v=u4s1zpqnztAH8Tt2-9dLVnQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hermes Zhang <chenhuiz@axis.com>
+Hi, Enric
 
-Document the device tree bindings of the multiple GPIOs LED driver
-Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
+在 2021/3/24 上午4:58, Enric Balletbo Serra 写道:
+> Hi Elaine,
+>
+> Missatge de Johan Jonker <jbx6244@gmail.com> del dia dt., 23 de març
+> 2021 a les 12:06:
+>> Hi Elaine,
+>>
+>> Some comments. Have a look if it's useful or that you disagree
+>> with...(part 1)
+>>
+>> ======
+>> There is currently already a patch proposal that does the same.
+>> Could you read that review history and port the good things to your own
+>> patch serie?
+>>
+>> Re: [PATCH] dt-bindings: power: rockchip: Convert to json-schema
+>> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
+>>
+>> Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
+>> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
+>>
+> In fact, the latest version is v6 which can be found here:
+>
+> https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+>
+> Feel free to integrate and/or improve that version in your series.
+Thank you for your submission. I will revise the submission on this basis.
+>
+>
+>
 
-Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
----
-
-Notes:
-    Add maxItems
-
- .../bindings/leds/leds-multi-gpio.yaml        | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-
-diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-new file mode 100644
-index 000000000000..6f2b47487b90
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Multiple GPIOs LED driver
-+
-+maintainers:
-+  - Hermes Zhang <chenhuiz@axis.com>
-+
-+description:
-+  This will support some LED made of multiple GPIOs and the brightness of the
-+  LED could map to different states of the GPIOs.
-+
-+properties:
-+  compatible:
-+    const: multi-gpio-led
-+
-+  led-gpios:
-+    description: Array of one or more GPIOs pins used to control the LED.
-+    minItems: 1
-+    maxItems: 8  # Should be enough
-+
-+  led-states:
-+    description: |
-+      The array list the supported states here which will map to brightness
-+      from 0 to maximum. Each item in the array will present all the GPIOs
-+      value by bit.
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    minItems: 1
-+    maxItems: 16 # Should be enough
-+
-+required:
-+  - compatible
-+  - led-gpios
-+  - led-states
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpios-led {
-+      compatible = "multi-gpio-led";
-+
-+      led-gpios = <&gpio0 23 0x1>,
-+                  <&gpio0 24 0x1>;
-+      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
-+    };
-+...
--- 
-2.20.1
 
