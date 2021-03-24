@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 394F4346E41
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 01:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A25B346E4E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 01:39:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbhCXA2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 20:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37454 "EHLO
+        id S233861AbhCXAig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 20:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234472AbhCXA2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 20:28:00 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AFEC061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:28:00 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id l123so16085954pfl.8
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:28:00 -0700 (PDT)
+        with ESMTP id S233669AbhCXAiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 20:38:03 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0263FC061763
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:38:02 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id cl21-20020a17090af695b02900c61ac0f0e9so1747734pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 17:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ArpAGDPO5Zy1J8ZuYbtiaQIyLb1VNF1C+x2MhSZdMr4=;
-        b=NSWaX3i9OKqQTUJpTPB+E9DCf9hW1pebAdgYQy3jt9zPaKJaPWFASPZofTINEVIvYW
-         6pyE9MQMHhc8oLRLUGIoj5ST15nG2oUDt1UCgrZ7p9yMGzEoKYVSGY2ZZyjTOXusFBeJ
-         OwCr61rXmKgl3CNqEngUZw+73q5ADUmlulo3Q=
+        bh=pPlIrrXflt8RSnipMg07xZQ+rTbq5XKn0Tjy7Ot7/1M=;
+        b=LaUeWaLc2Gkl/HXwkVwIpesHnN6jyLWGxSB57EnR1oo05e56FF9akaxxbx31UDFYWD
+         a9siLX/X03G30bnlPJ8qqUAtO9dXE9FNYaKzcc2Zg3RcgirtGG0JifYFlSKomHaP1ulF
+         lxy84KVhxL3N0oKi4nCJwEV7aVMwyaCS3X5xI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ArpAGDPO5Zy1J8ZuYbtiaQIyLb1VNF1C+x2MhSZdMr4=;
-        b=Zes8Ae5WYeOjee+f6OlCk5o69Bxbs0HnePQ+mYuWws1mXXOJLmQTN6Y+jkTD1rykQx
-         M5NbLu9YYatPGdLZ+hNTZw8BO0SkhuFNKmEGNHhKj/UGhSjPj71goZqDRftHo8Wn1Q1O
-         Wovrm9VfPWsTVj5wsJ5lkCFBFk+zvBrslAPwb0FTbjhXT4VuCUQ0CkpuJQrSixGwUSfc
-         zC4FxoohQgacRbuxMIVlSJ3Gj3TSQqpnVUfv+7jx0q59cb6TOZDrsqB2+IXalhjWwaFc
-         fhLa0WAU3+N/lxjOaWyPB58w+nF65Z+6ZFJjFsRBXZudPrgQnXx0xUjBy86B4t1UBbeN
-         xb0A==
-X-Gm-Message-State: AOAM533P/4LePeeb4PPZMtynGuSe+DsbI+YxAnp4eMXUJVYUfagBJcJy
-        XA878u7W8BvJOKgTFQ7vQqFx3g==
-X-Google-Smtp-Source: ABdhPJxjsgxfWM1AN6PzKOVTywe9JPoDDNk0S5uHejboMITv1/9Wv/diAYCV0W0vMKldqz6Y0Res/g==
-X-Received: by 2002:a63:2349:: with SMTP id u9mr661932pgm.361.1616545678567;
-        Tue, 23 Mar 2021 17:27:58 -0700 (PDT)
+        bh=pPlIrrXflt8RSnipMg07xZQ+rTbq5XKn0Tjy7Ot7/1M=;
+        b=oTUHOwLZLavBbsI4MD9JwUKR5UVj5Ar5oR4+AvJqzFKz3tfvL60Dt2rHnuE68R5QXO
+         UhAuD2zbYg4Sxq2pGWGUZVYLkAw0EMcD/ZeLy9snMlV+sOUKKBhHVzZXlKeS6i0XXOfl
+         1VDZQOern+GLhH9BB5YXtds8o0ZiXjiFz9Ij0vXviKJdHDdo91u/mwFVVUVORQ/idZp2
+         cHerrgznVnhl4rDM3D316tJmA+8iQpA6PTZeRJBgYK9C7L/Wf3rj+6S593FheDLRIR+K
+         xrRKzS67ffFNlUYC1GnuWTilE/QQQLOcVF0I6mbpLyEnQJm6949EhtOFymqn7txcX1Vr
+         C/dw==
+X-Gm-Message-State: AOAM533Bsy8TbngWqzQOlaCZW+tS5UKRUo8tVzirZq1vX0zc5pfOKtJG
+        lIDSw/A9fAxzto+ZsLK6uSYH/w==
+X-Google-Smtp-Source: ABdhPJz9oyfMCYlP8x3ieh7MnofBo34nULsK4kbKiNcr0RlZ2x3yRwTVeckXoKmXU5lD5QW/MgqAzg==
+X-Received: by 2002:a17:902:c1c4:b029:e6:7bc9:71fd with SMTP id c4-20020a170902c1c4b02900e67bc971fdmr939065plc.5.1616546282478;
+        Tue, 23 Mar 2021 17:38:02 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:40a3:9725:46c3:85f6])
-        by smtp.gmail.com with UTF8SMTPSA id q66sm295428pja.27.2021.03.23.17.27.56
+        by smtp.gmail.com with UTF8SMTPSA id m21sm338568pff.61.2021.03.23.17.38.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Mar 2021 17:27:57 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 17:27:55 -0700
+        Tue, 23 Mar 2021 17:38:01 -0700 (PDT)
+Date:   Tue, 23 Mar 2021 17:38:00 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Sandeep Maheswaram <sanm@codeaurora.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -57,60 +57,135 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v5 1/4] usb: dwc3: core: Host wake up support from system
- suspend
-Message-ID: <YFqHi91eIcVx2ak1@google.com>
+Subject: Re: [PATCH v5 2/4] usb: dwc3: host: Add suspend_quirk for dwc3 host
+Message-ID: <YFqJ6MfQOrt5CRp2@google.com>
 References: <1616434280-32635-1-git-send-email-sanm@codeaurora.org>
- <1616434280-32635-2-git-send-email-sanm@codeaurora.org>
+ <1616434280-32635-3-git-send-email-sanm@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1616434280-32635-2-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <1616434280-32635-3-git-send-email-sanm@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 11:01:17PM +0530, Sandeep Maheswaram wrote:
-> Avoiding phy powerdown when wakeup capable devices are connected.
+On Mon, Mar 22, 2021 at 11:01:18PM +0530, Sandeep Maheswaram wrote:
+> Adding suspend quirk function for dwc3 host which will be called
+> during xhci suspend.
+> Setting hs_phy_mode, ss_phy_mode , phy_power_off flags and phy mode
+> during host suspend.
 > 
 > Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
 > ---
->  drivers/usb/dwc3/core.c | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+>  drivers/usb/dwc3/core.h |  3 +++
+>  drivers/usb/dwc3/host.c | 58 +++++++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 61 insertions(+)
 > 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 94fdbe5..9ecd7ac 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1702,7 +1702,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
->  		dwc3_core_exit(dwc);
->  		break;
->  	case DWC3_GCTL_PRTCAP_HOST:
-> -		if (!PMSG_IS_AUTO(msg)) {
-> +		if (!PMSG_IS_AUTO(msg) && dwc->phy_power_off) {
-
-This is the first patch of the series, but the 'phy_power_off' flag is
-only added by '[2/4] usb: dwc3: host: Add suspend_quirk for dwc3 host'.
-Patches should not rely on later patches in the series in order to build
-error/warning free. It seems you need to swap the order of patch 1 and 2.
-
->  			dwc3_core_exit(dwc);
->  			break;
->  		}
-> @@ -1763,13 +1763,15 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
->  		spin_unlock_irqrestore(&dwc->lock, flags);
->  		break;
->  	case DWC3_GCTL_PRTCAP_HOST:
-> -		if (!PMSG_IS_AUTO(msg)) {
-> +		if (!PMSG_IS_AUTO(msg) && dwc->phy_power_off) {
->  			ret = dwc3_core_init_for_resume(dwc);
->  			if (ret)
->  				return ret;
->  			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
->  			break;
-> -		}
-> +		} else
-> +			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index ce6bd84..f05546c 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -1113,6 +1113,9 @@ struct dwc3 {
+>  
+>  	bool			phys_ready;
+>  
+> +	unsigned int            hs_phy_mode;
+> +	bool			phy_power_off;
 > +
+>  	struct ulpi		*ulpi;
+>  	bool			ulpi_ready;
+>  
+> diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
+> index f29a264..3db042c 100644
+> --- a/drivers/usb/dwc3/host.c
+> +++ b/drivers/usb/dwc3/host.c
+> @@ -11,6 +11,13 @@
+>  #include <linux/platform_device.h>
+>  
+>  #include "core.h"
+> +#include "../host/xhci.h"
+> +#include "../host/xhci-plat.h"
+> +int xhci_dwc3_suspend_quirk(struct usb_hcd *hcd);
+> +
+> +static const struct xhci_plat_priv xhci_plat_dwc3_xhci = {
+> +	.suspend_quirk = xhci_dwc3_suspend_quirk,
+> +};
+>  
+>  static int dwc3_host_get_irq(struct dwc3 *dwc)
+>  {
+> @@ -115,6 +122,13 @@ int dwc3_host_init(struct dwc3 *dwc)
+>  		}
+>  	}
+>  
+> +	ret = platform_device_add_data(xhci, &xhci_plat_dwc3_xhci,
+> +			sizeof(struct xhci_plat_priv));
+> +	if (ret) {
+> +		dev_err(dwc->dev, "failed to add data to xHCI\n");
+> +		goto err;
+> +	}
+> +
+>  	ret = platform_device_add(xhci);
+>  	if (ret) {
+>  		dev_err(dwc->dev, "failed to register xHCI device\n");
+> @@ -127,6 +141,50 @@ int dwc3_host_init(struct dwc3 *dwc)
+>  	return ret;
+>  }
+>  
+> +static void dwc3_set_phy_mode(struct usb_hcd *hcd)
+> +{
+> +
+> +	int i, num_ports;
+> +	u32 reg;
+> +	unsigned int ss_phy_mode = 0;
+> +	struct dwc3 *dwc = dev_get_drvdata(hcd->self.controller->parent);
+> +	struct xhci_hcd	*xhci_hcd = hcd_to_xhci(hcd);
+> +
+> +	dwc->hs_phy_mode = 0;
+> +
+> +	reg = readl(&xhci_hcd->cap_regs->hcs_params1);
+> +
+> +	num_ports = HCS_MAX_PORTS(reg);
 
-nit: use curly braces since the 'if' block has them.
+nit: remove empty line between the two lines above. 'reg' is read to
+determine the number of ports and discarded afterwards, so it makes
+sense to establish that relationship visually. You could (optionally)
+add an empty line after assigning 'num_ports'.
+
+> +	for (i = 0; i < num_ports; i++) {
+> +		reg = readl(&xhci_hcd->op_regs->port_status_base + i * 0x04);
+> +		if (reg & PORT_PE) {
+> +			if (DEV_HIGHSPEED(reg) || DEV_FULLSPEED(reg))
+> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_HS;
+> +			else if (DEV_LOWSPEED(reg))
+> +				dwc->hs_phy_mode |= PHY_MODE_USB_HOST_LS;
+> +
+> +			if (DEV_SUPERSPEED(reg))
+> +				ss_phy_mode |= PHY_MODE_USB_HOST_SS;
+> +		}
+> +	}
+> +	phy_set_mode(dwc->usb2_generic_phy, dwc->hs_phy_mode);
+> +	phy_set_mode(dwc->usb3_generic_phy, ss_phy_mode);
+> +}
+> +
+> +int xhci_dwc3_suspend_quirk(struct usb_hcd *hcd)
+> +{
+> +	struct dwc3 *dwc = dev_get_drvdata(hcd->self.controller->parent);
+> +
+> +	dwc3_set_phy_mode(hcd);
+> +
+> +	dwc->phy_power_off = true;
+
+it seems silly to assign this field only to overwrite it two lines later
+if wakeup capable descendants are connected. Making the assignment in an
+'else' branch would be clearer IMO.
+
+> +
+> +	if (usb_wakeup_enabled_descendants(hcd->self.root_hub))
+> +		dwc->phy_power_off = false;
+> +
+> +	return 0;
+> +}
+> +
+>  void dwc3_host_exit(struct dwc3 *dwc)
+>  {
+>  	platform_device_unregister(dwc->xhci);
