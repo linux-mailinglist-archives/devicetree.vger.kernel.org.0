@@ -2,203 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 309CE347FFD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:06:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A6C834800F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237338AbhCXSGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 14:06:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232618AbhCXSFy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 14:05:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4430861A1B;
-        Wed, 24 Mar 2021 18:05:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616609154;
-        bh=4ddFWD0HDeMvJooIHBmVBLMfgHrZIiewXKZt5ch7iWs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A6FHmx+M+t/r7327J8jHlQn2j7eeeQwtuRXHcULuzLaaVTXqZuHY/wFrucrpfDQZC
-         takEBJ1G9jXLsxWNCfiPyc5ZsXKzT28qWT72jH7fC40YsYIR6fwCVeQCoVV2TtWmRK
-         LS4MrPVDMZakskpDgdmzRuOpYyqqXPbmznxYMSyIwiDu9rGOlBQrm7O3NetB/A0p/w
-         bo3i8Dzo1959a2p8UE2xQyE/NJhKDQ5hgIwCiTXFbJtvuzmT5chNnES9MbrJQ9BnGx
-         jqlnKGaoqZzmXDfV9VMH5xlIPe9OzrVIVBpaKUO3ToguDiPbUNN04mlRNBY/WbP8/S
-         iEWD9+cmga8Tw==
-Date:   Wed, 24 Mar 2021 18:05:46 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFT PATCH v3 01/27] arm64: Cope with CPUs stuck in VHE mode
-Message-ID: <20210324180546.GA13181@willie-the-truck>
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-2-marcan@marcan.st>
+        id S237380AbhCXSKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 14:10:41 -0400
+Received: from mail-il1-f180.google.com ([209.85.166.180]:42824 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237298AbhCXSKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 14:10:40 -0400
+Received: by mail-il1-f180.google.com with SMTP id l5so22217293ilv.9;
+        Wed, 24 Mar 2021 11:10:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RdLddjC+iEoz4u6jK63hDy1PT64QJ2geKnpXuxhai+o=;
+        b=YWWPMQViLkl9FQYdYnyR044N0GurX1P22Lm1cju9vf4CGc9lJDeUFgjBFHrdeU+xWl
+         RIiKPNXv77gpolW0y8oolLSItnc24ZnZSlP7L8aWH4k+kLcxmECHq3aYj3lvXijOc6mN
+         u123rpeIGUil6qVEEn2gO+1POSupQHm1fOs3mMOlfXUal62EPClj2u9ocsKrwsS8VtpC
+         HhOxQVbuAFuxleoMKobryU2bg92eWSC0l39c/dfmzI7ohk6fcAX9uvi8Iwk7WBvdv6DE
+         6Nvv+F6GURYE8eQ0LxqBmieKKXyK0PK2zvFvCLRHBA2/hIIzA95hugy4fxtA2um8cmBv
+         ySQg==
+X-Gm-Message-State: AOAM530cXiIMnrqOhKEHLScXOGzgyeuqK82a2rUL6HpRd+FZaa8eYty9
+        MboVKajWm0MY5uGe6yZzOQ==
+X-Google-Smtp-Source: ABdhPJwm0lu4eHHZUt2iJVbAnUdqjkeCxMGA0KTL4TLAcSjo5jjJ4hxUEVPPY6roCmHkoYeekofWyg==
+X-Received: by 2002:a92:c748:: with SMTP id y8mr1842248ilp.37.1616609440259;
+        Wed, 24 Mar 2021 11:10:40 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id b9sm1443474iof.54.2021.03.24.11.10.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 11:10:39 -0700 (PDT)
+Received: (nullmailer pid 3355529 invoked by uid 1000);
+        Wed, 24 Mar 2021 18:10:37 -0000
+Date:   Wed, 24 Mar 2021 12:10:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Kuldeep Singh <kuldeep.singh@nxp.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to json schema
+Message-ID: <20210324181037.GB3320002@robh.at.kernel.org>
+References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
+ <20210315183051.ugvmz4zqrvuo6iqq@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210304213902.83903-2-marcan@marcan.st>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210315183051.ugvmz4zqrvuo6iqq@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 05, 2021 at 06:38:36AM +0900, Hector Martin wrote:
-> From: Marc Zyngier <maz@kernel.org>
+On Tue, Mar 16, 2021 at 12:00:52AM +0530, Pratyush Yadav wrote:
+> +Cc mtd list
 > 
-> It seems that the CPU known as Apple M1 has the terrible habit
-> of being stuck with HCR_EL2.E2H==1, in violation of the architecture.
+> Hi,
 > 
-> Try and work around this deplorable state of affairs by detecting
-> the stuck bit early and short-circuit the nVHE dance. It is still
-> unknown whether there are many more such nuggets to be found...
+> On 15/03/21 05:45PM, Kuldeep Singh wrote:
+> > Convert the Freescale DSPI binding to DT schema format using json-schema.
+> > 
+> > Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> > ---
+> > Hi Rob,
+> > This patch is checked with following commands with no warnings observed.
+> > make distclean; make allmodconfig;
+> > make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml;
+> > make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
 > 
-> Reported-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  arch/arm64/kernel/head.S     | 33 ++++++++++++++++++++++++++++++---
->  arch/arm64/kernel/hyp-stub.S | 28 ++++++++++++++++++++++++----
->  2 files changed, 54 insertions(+), 7 deletions(-)
+> When I add the "fsl,spi-cs-sck-delay" property under the flash@0 node in 
+> the example and run dt_binding_check, I see the below error:
 > 
-> diff --git a/arch/arm64/kernel/head.S b/arch/arm64/kernel/head.S
-> index 66b0e0b66e31..673002b11865 100644
-> --- a/arch/arm64/kernel/head.S
-> +++ b/arch/arm64/kernel/head.S
-> @@ -477,14 +477,13 @@ EXPORT_SYMBOL(kimage_vaddr)
->   * booted in EL1 or EL2 respectively.
->   */
->  SYM_FUNC_START(init_kernel_el)
-> -	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
-> -	msr	sctlr_el1, x0
-> -
->  	mrs	x0, CurrentEL
->  	cmp	x0, #CurrentEL_EL2
->  	b.eq	init_el2
->  
->  SYM_INNER_LABEL(init_el1, SYM_L_LOCAL)
-> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
-> +	msr	sctlr_el1, x0
->  	isb
->  	mov_q	x0, INIT_PSTATE_EL1
->  	msr	spsr_el1, x0
-> @@ -504,6 +503,34 @@ SYM_INNER_LABEL(init_el2, SYM_L_LOCAL)
->  	msr	vbar_el2, x0
->  	isb
->  
-> +	/*
-> +	 * Fruity CPUs seem to have HCR_EL2.E2H set to RES1,
-> +	 * making it impossible to start in nVHE mode. Is that
-> +	 * compliant with the architecture? Absolutely not!
-> +	 */
-> +	mrs	x0, hcr_el2
-> +	and	x0, x0, #HCR_E2H
-> +	cbz	x0, 1f
-> +
-> +	/* Switching to VHE requires a sane SCTLR_EL1 as a start */
-> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
-> +	msr_s	SYS_SCTLR_EL12, x0
-> +
-> +	/*
-> +	 * Force an eret into a helper "function", and let it return
-> +	 * to our original caller... This makes sure that we have
-> +	 * initialised the basic PSTATE state.
-> +	 */
-> +	mov	x0, #INIT_PSTATE_EL2
-> +	msr	spsr_el1, x0
-> +	adr_l	x0, stick_to_vhe
-> +	msr	elr_el1, x0
-> +	eret
-> +
-> +1:
-> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
-> +	msr	sctlr_el1, x0
-> +
->  	msr	elr_el2, lr
->  	mov	w0, #BOOT_CPU_MODE_EL2
->  	eret
-> diff --git a/arch/arm64/kernel/hyp-stub.S b/arch/arm64/kernel/hyp-stub.S
-> index 5eccbd62fec8..c7601030ee82 100644
-> --- a/arch/arm64/kernel/hyp-stub.S
-> +++ b/arch/arm64/kernel/hyp-stub.S
-> @@ -27,12 +27,12 @@ SYM_CODE_START(__hyp_stub_vectors)
->  	ventry	el2_fiq_invalid			// FIQ EL2t
->  	ventry	el2_error_invalid		// Error EL2t
->  
-> -	ventry	el2_sync_invalid		// Synchronous EL2h
-> +	ventry	elx_sync			// Synchronous EL2h
->  	ventry	el2_irq_invalid			// IRQ EL2h
->  	ventry	el2_fiq_invalid			// FIQ EL2h
->  	ventry	el2_error_invalid		// Error EL2h
->  
-> -	ventry	el1_sync			// Synchronous 64-bit EL1
-> +	ventry	elx_sync			// Synchronous 64-bit EL1
->  	ventry	el1_irq_invalid			// IRQ 64-bit EL1
->  	ventry	el1_fiq_invalid			// FIQ 64-bit EL1
->  	ventry	el1_error_invalid		// Error 64-bit EL1
-> @@ -45,7 +45,7 @@ SYM_CODE_END(__hyp_stub_vectors)
->  
->  	.align 11
->  
-> -SYM_CODE_START_LOCAL(el1_sync)
-> +SYM_CODE_START_LOCAL(elx_sync)
->  	cmp	x0, #HVC_SET_VECTORS
->  	b.ne	1f
->  	msr	vbar_el2, x1
-> @@ -71,7 +71,7 @@ SYM_CODE_START_LOCAL(el1_sync)
->  
->  9:	mov	x0, xzr
->  	eret
-> -SYM_CODE_END(el1_sync)
-> +SYM_CODE_END(elx_sync)
->  
->  // nVHE? No way! Give me the real thing!
->  SYM_CODE_START_LOCAL(mutate_to_vhe)
-> @@ -243,3 +243,23 @@ SYM_FUNC_START(switch_to_vhe)
->  #endif
->  	ret
->  SYM_FUNC_END(switch_to_vhe)
-> +
-> +SYM_FUNC_START(stick_to_vhe)
-> +	/*
-> +	 * Make sure the switch to VHE cannot fail, by overriding the
-> +	 * override. This is hilarious.
-> +	 */
-> +	adr_l	x1, id_aa64mmfr1_override
-> +	add	x1, x1, #FTR_OVR_MASK_OFFSET
-> +	dc 	civac, x1
-> +	dsb	sy
-> +	isb
+>   /home/pratyush/src/linux/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.example.dt.yaml: flash@0: 'fsl,spi-cs-sck-delay' does not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+>      From schema: /home/pratyush/src/lin/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> 
+> I am trying to solve a similar problem for the Cadence QSPI controller 
+> binding and I wonder what the best solution for this is. The obvious one 
+> would be to add these properties to jedec,spi-nor.yaml. I haven't 
+> managed to come up with any other solution to this problem.
+> 
+> Rob, all, any suggestions on how to best model this?
 
-Why do we need an ISB here?
+I'm aware of the issue, but I don't have a solution for this situation. 
+It's a problem anywhere we have a parent or bus binding defining 
+properties for child nodes. For now, I'd just avoid it in the examples 
+and we'll figure out how to deal with actual dts files later.
 
-> +	ldr	x0, [x1]
-> +	bic	x0, x0, #(0xf << ID_AA64MMFR1_VHE_SHIFT)
-> +	str	x0, [x1]
+For this one in particular, CS to clock timing isn't any FSL or 
+controller specific, but is device specific. So this probably should 
+have been a generic spi bus property (if not implicit). That's somewhat 
+easier to work-around than potentially adding controller specific 
+properties to every slave device schema.
 
-I find it a bit bizarre doing this here, as for the primary CPU we're still
-a way away from parsing the early paramaters and for secondary CPUs this
-doesn't need to be done for each one. Furthermore, this same code is run
-on the resume path, which can probably then race with itself.
-
-Is it possible to do it later on the boot CPU only, e.g. in
-init_feature_override()? We should probably also log a warning that we're
-ignoring the option because nVHE is not available.
-
-Will
+Rob
