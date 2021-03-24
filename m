@@ -2,817 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3CD934787A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 13:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAD2C3478A9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 13:40:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233243AbhCXM0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 08:26:24 -0400
-Received: from mail.ilitek.com.tw ([60.248.80.92]:45520 "EHLO cello.ilitek.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234459AbhCXM0E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 08:26:04 -0400
-X-UUID: 7676ef37a1cc40da8bb660a408206dd1-20210324
-X-UUID: 7676ef37a1cc40da8bb660a408206dd1-20210324
-Received: from ex2.ili.com.tw [(192.168.1.132)] by cello.ilitek.com
-        (envelope-from <joe_hung@ilitek.com>)
-        (Cellopoint E-mail Firewall v4.1.12 Build 0701 with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
-        with ESMTP id 1620376377; Wed, 24 Mar 2021 20:25:56 +0800
-Received: from EX1.ili.com.tw (192.168.1.131) by EX2.ili.com.tw
- (192.168.1.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 24 Mar
- 2021 20:25:55 +0800
-Received: from joehung-Ilitek.ili.com.tw (192.168.18.73) by EX1.ili.com.tw
- (192.168.1.133) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Wed, 24 Mar 2021 20:25:55 +0800
-From:   Joe Hung <joe_hung@ilitek.com>
-To:     <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <linux-input@vger.kernel.org>, <joe_hung@ilitek.com>,
-        <luca_hsu@ilitek.com>
-Subject: [PATCH v7 2/2] input: touchscreen: Add support for ILITEK Lego Series
-Date:   Wed, 24 Mar 2021 20:26:01 +0800
-Message-ID: <20210324122601.125873-2-joe_hung@ilitek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210324122601.125873-1-joe_hung@ilitek.com>
-References: <20210324122601.125873-1-joe_hung@ilitek.com>
+        id S233734AbhCXMjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 08:39:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54126 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230207AbhCXMjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 08:39:15 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16FE3C061763;
+        Wed, 24 Mar 2021 05:39:15 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id w203-20020a1c49d40000b029010c706d0642so2637865wma.0;
+        Wed, 24 Mar 2021 05:39:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=AZ734CjXzkZxxW7LJ76u2/6BjErh6hqwyWyypNcJoZw=;
+        b=G+Jlmg/ALd2lsMKtIHlvZdWKGU6MzG80pmxqLdEYEbINLeYjJgnurKhqJjNy88Shpj
+         8vQvMBdvyxusqhDmvAVKgnNpqqTjK+C7sxDKlDMq7jMiU6PDj1qjOPSg7btSTnrD2ZvP
+         zfNpk17h3Bsotz7iltdEPaD3tmBhfnCgDSqbwFfUubhhrGsW9vVgOcMRQ72DEYyJOp1Z
+         loGI+jCuh1CDaSnqj7TjH12rkIYieWGORG48hsC7/XT8m+YjeH9MuoEMRuQZdgVczChb
+         V7zrq3vmjSA5U1cimpMEekfBHv+pSntC5v4uEY420tByZmKCQD5lsibrCx/0iGpoA1L2
+         fdcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=AZ734CjXzkZxxW7LJ76u2/6BjErh6hqwyWyypNcJoZw=;
+        b=r6DF6QEOAN89zP++JiilmEWxDjO9J6MHwPfIkpdyo1zwb3UCu0SVHSkVvbmxfu/m4C
+         ff/zO6gEj2ytRzIPSo/+r2gYBIakfTQHcQSC4Ao3tpoNGTpnUu+KR7Pc5CXU2c3TdrGM
+         W66iLHYyLjFz+5KZJtjgA6kxxZ2iRxByx7yGXTby9aJvUGY86lTvyQXLz8CgoQujUruV
+         RG8XxmsCYCU2RALV3Za3/GuoQSZlNHC6MZKy4rnGHe/4cmr/eCBoZvkwTrOmOfKvIS+e
+         f+w53DaZ2XXdauVlpcjbIbCWnAUcwvInROMF6NtIL7wg90+wcDCXHy8O6UA7kiXDbUvz
+         aAWg==
+X-Gm-Message-State: AOAM530XWymL71LHD53AHr9ym3FTIS9zFwLEL/3Fx8Vm6JbW3eIZPmj6
+        SB2O/4kV3l4d9J1Wvk1mRKw=
+X-Google-Smtp-Source: ABdhPJys5Jrb6PdF4VBtE5c10/wMy5i+PsWuFX7nrooh4zkWIx0qwo0EbEpsVIBILsQXWSszjk4ubw==
+X-Received: by 2002:a7b:cc84:: with SMTP id p4mr2798680wma.10.1616589553802;
+        Wed, 24 Mar 2021 05:39:13 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id u4sm3055247wrm.24.2021.03.24.05.39.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 05:39:12 -0700 (PDT)
+Date:   Wed, 24 Mar 2021 13:39:32 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, mturquette@baylibre.com,
+        sboyd@kernel.org, JC Kuo <jckuo@nvidia.com>, robh@kernel.org,
+        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, nkristam@nvidia.com,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v7 00/14] Tegra XHCI controller ELPG support
+Message-ID: <YFszBH1JJmjJmjn2@orome.fritz.box>
+References: <20210120073414.69208-1-jckuo@nvidia.com>
+ <YB1vGTt0ufzsYBgo@ulmo>
+ <YB1wxazg/QpRSJz6@kroah.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="OPsgcSQYCpWKq5eH"
+Content-Disposition: inline
+In-Reply-To: <YB1wxazg/QpRSJz6@kroah.com>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for ILITEK Lego series of touch devices.
-Lego series includes ILITEK 213X/23XX/25XX.
 
-Tested/passed with evaluation board with ILI2520/2322 IC.
+--OPsgcSQYCpWKq5eH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Joe Hung <joe_hung@ilitek.com>
----
-Changes in v7:
-  - use input_mt_sync_frame() and remove unneeded tracking flow
-  - remove flow related to checking protocol V3/V6
-  - remove unused macro MOD_AP/BL
-  - remove set capabilities for EV_KEY/ABS and BTN_TOUCH
-  - modify ret to error, to hold error codes
-  - remove unneeded variable initializations
-  - change to use devm_gpiod_get_optional
-  - perform ilitek_reset only after cmd "SET_IC_WAKE"
-  - remove unneeded enable/disable_irq_wake
-
-Changes in v6:
-  - Modified print message from sysfs file node
-  - Add i2c functionality check in probe function
-  - Add single touch ABS_X/ABS_Y registration
-  - Remove TOUCH_MAJOR/WIDTH_MAJOR
-
-Changes in v5:
-  - None
-
-Changes in v4:
-  - Remove unused inlcude header file
-  - Remove parenthesis for scalar values
-  - Place to use standard macro DIV_ROUND_UP
-  - Remove unused/unrequired member of struct
-  - Remove retries when I2C transfer
-  - Remove irq_disable/enable wrapper
-  - Remove key handler
-  - Adjust to use get_unaligned_le16/be16
-  - Modify ilitek_reset() to leave reset gpio in-active finally
-  - Remove null check for input argument that should not happen
-  - Modify return value for read_tp_info()
-  - Modify to use common touchscreen_* api
-  - Add error handling for input_mt_init_slots
-  - Modify input flag for irq request, and parse it from ACPI/DTS
-  - Return stored value instead of querying via I2C in *_show api
-  - Modify to use devm_* APIs and get rid of remove api
-  - Add PM (suspend/resume) handling
-
-Changes in v3:
-  - None
-
-Changes in v2:
-  - Remove irq-gpio and related flow
-
- drivers/input/touchscreen/Kconfig         |  12 +
- drivers/input/touchscreen/Makefile        |   1 +
- drivers/input/touchscreen/ilitek_ts_i2c.c | 676 ++++++++++++++++++++++
- 3 files changed, 689 insertions(+)
- create mode 100644 drivers/input/touchscreen/ilitek_ts_i2c.c
-
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index f012fe746df0..03a16852d4bc 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -1334,4 +1334,16 @@ config TOUCHSCREEN_ZINITIX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called zinitix.
-
-+config TOUCHSCREEN_ILITEK
-+	tristate "Ilitek I2C 213X/23XX/25XX/Lego Series Touch ICs"
-+	depends on I2C
-+	help
-+	  Say Y here if you have touchscreen with ILITEK touch IC,
-+	  it supports 213X/23XX/25XX and other Lego series.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called ilitek_ts_i2c.
-+
- endif
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 6233541e9173..1622e66c4eaa 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -112,3 +112,4 @@ obj-$(CONFIG_TOUCHSCREEN_ROHM_BU21023)	+= rohm_bu21023.o
- obj-$(CONFIG_TOUCHSCREEN_RASPBERRYPI_FW)	+= raspberrypi-ts.o
- obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
- obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
-+obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
-diff --git a/drivers/input/touchscreen/ilitek_ts_i2c.c b/drivers/input/touchscreen/ilitek_ts_i2c.c
-new file mode 100644
-index 000000000000..b17033e5955c
---- /dev/null
-+++ b/drivers/input/touchscreen/ilitek_ts_i2c.c
-@@ -0,0 +1,676 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ILITEK Touch IC driver for 23XX, 25XX and Lego series
-+ *
-+ * Copyright (C) 2011 ILI Technology Corporation.
-+ * Copyright (C) 2020 Luca Hsu <luca_hsu@ilitek.com>
-+ * Copyright (C) 2021 Joe Hung <joe_hung@ilitek.com>
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/input.h>
-+#include <linux/input/mt.h>
-+#include <linux/i2c.h>
-+#include <linux/slab.h>
-+#include <linux/delay.h>
-+#include <linux/interrupt.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/errno.h>
-+#include <linux/acpi.h>
-+#include <linux/input/touchscreen.h>
-+#include <asm/unaligned.h>
-+
-+
-+#define ILITEK_TS_NAME					"ilitek_ts"
-+#define BL_V1_8						0x108
-+#define BL_V1_7						0x107
-+#define BL_V1_6						0x106
-+
-+#define ILITEK_TP_CMD_GET_TP_RES			0x20
-+#define ILITEK_TP_CMD_GET_SCRN_RES			0x21
-+#define ILITEK_TP_CMD_SET_IC_SLEEP			0x30
-+#define ILITEK_TP_CMD_SET_IC_WAKE			0x31
-+#define ILITEK_TP_CMD_GET_FW_VER			0x40
-+#define ILITEK_TP_CMD_GET_PRL_VER			0x42
-+#define ILITEK_TP_CMD_GET_MCU_VER			0x61
-+#define ILITEK_TP_CMD_GET_IC_MODE			0xC0
-+
-+#define REPORT_COUNT_ADDRESS				61
-+#define ILITEK_SUPPORT_MAX_POINT			40
-+
-+struct ilitek_protocol_info {
-+	u16 ver;
-+	u8 ver_major;
-+};
-+
-+struct ilitek_ts_data {
-+	struct i2c_client		*client;
-+	struct gpio_desc		*reset_gpio;
-+	struct input_dev		*input_dev;
-+	struct touchscreen_properties	prop;
-+
-+	struct PROTOCOL_MAP		*ptl_cb_func;
-+	struct ilitek_protocol_info	ptl;
-+
-+	char				product_id[30];
-+	u16				mcu_ver;
-+	u8				ic_mode;
-+	u8				firmware_ver[8];
-+
-+	s32				reset_time;
-+	s32				screen_max_x;
-+	s32				screen_max_y;
-+	s32				screen_min_x;
-+	s32				screen_min_y;
-+	s32				max_tp;
-+};
-+
-+enum ilitek_cmds {
-+	/* common cmds */
-+	GET_PTL_VER = 0,
-+	GET_FW_VER,
-+	GET_SCRN_RES,
-+	GET_TP_RES,
-+	GET_IC_MODE,
-+	GET_MCU_VER,
-+	SET_IC_SLEEP,
-+	SET_IC_WAKE,
-+
-+	/* ALWAYS keep at the end */
-+	MAX_CMD_CNT
-+};
-+
-+typedef int protocol_func(struct ilitek_ts_data *ts,
-+			  u16 cmd, u8 *inbuf, u8 *outbuf);
-+
-+struct PROTOCOL_MAP {
-+	u16 cmd;
-+	const char *name;
-+	protocol_func *func;
-+};
-+
-+/* ILITEK I2C R/W APIs */
-+static int ilitek_i2c_write_and_read(struct ilitek_ts_data *ts,
-+				     u8 *cmd, int write_len, int delay,
-+				     u8 *data, int read_len)
-+{
-+	int error;
-+	struct i2c_client *client = ts->client;
-+	struct i2c_msg msgs[2] = {
-+		{.addr = client->addr, .flags = 0,
-+		 .len = write_len, .buf = cmd,},
-+		{.addr = client->addr, .flags = I2C_M_RD,
-+		 .len = read_len, .buf = data,}
-+	};
-+
-+	if (delay == 0 && write_len > 0 && read_len > 0) {
-+		error = i2c_transfer(client->adapter, msgs, 2);
-+		if (error < 0)
-+			return error;
-+	} else {
-+		if (write_len > 0) {
-+			error = i2c_transfer(client->adapter, msgs, 1);
-+			if (error < 0)
-+				return error;
-+		}
-+		if (delay > 0)
-+			mdelay(delay);
-+		if (read_len > 0) {
-+			error = i2c_transfer(client->adapter, msgs + 1, 1);
-+			if (error < 0)
-+				return error;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+/* ILITEK ISR APIs */
-+static void ilitek_touch_down(struct ilitek_ts_data *ts, unsigned int id,
-+			      unsigned int x, unsigned int y)
-+{
-+	struct input_dev *input = ts->input_dev;
-+
-+	input_mt_slot(input, id);
-+	input_mt_report_slot_state(input, MT_TOOL_FINGER, true);
-+
-+	touchscreen_report_pos(input, &ts->prop, x, y, true);
-+}
-+
-+static int ilitek_process_and_report_v6(struct ilitek_ts_data *ts)
-+{
-+	int error = 0;
-+	u8 buf[512];
-+	int packet_len = 5;
-+	int packet_max_point = 10;
-+	int report_max_point;
-+	int i, count;
-+	struct input_dev *input = ts->input_dev;
-+	struct device *dev = &ts->client->dev;
-+	unsigned int x, y, status, id;
-+
-+	error = ilitek_i2c_write_and_read(ts, NULL, 0, 0, buf, 64);
-+	if (error) {
-+		dev_err(dev, "get touch info failed, err:%d\n", error);
-+		goto err_sync_frame;
-+	}
-+
-+	report_max_point = buf[REPORT_COUNT_ADDRESS];
-+	if (report_max_point > ts->max_tp) {
-+		dev_err(dev, "FW report max point:%d > panel info. max:%d\n",
-+			report_max_point, ts->max_tp);
-+		error = -EINVAL;
-+		goto err_sync_frame;
-+	}
-+
-+	count = DIV_ROUND_UP(report_max_point, packet_max_point);
-+	for (i = 1; i < count; i++) {
-+		error = ilitek_i2c_write_and_read(ts, NULL, 0, 0,
-+			buf + i * 64, 64);
-+		if (error) {
-+			dev_err(dev, "get touch info. failed, cnt:%d, err:%d\n",
-+				count, error);
-+			goto err_sync_frame;
-+		}
-+	}
-+
-+	for (i = 0; i < report_max_point; i++) {
-+		status = buf[i * packet_len + 1] & 0x40;
-+		id = buf[i * packet_len + 1] & 0x3F;
-+
-+		if (!status)
-+			continue;
-+
-+		x = get_unaligned_le16(buf + i * packet_len + 2);
-+		y = get_unaligned_le16(buf + i * packet_len + 4);
-+
-+		if (x > ts->screen_max_x || x < ts->screen_min_x ||
-+		    y > ts->screen_max_y || y < ts->screen_min_y) {
-+			dev_warn(dev, "invalid position, X[%d,%u,%d], Y[%d,%u,%d]\n",
-+				 ts->screen_min_x, x, ts->screen_max_x,
-+				 ts->screen_min_y, y, ts->screen_max_y);
-+			continue;
-+		}
-+		ilitek_touch_down(ts, id, x, y);
-+	}
-+
-+err_sync_frame:
-+	input_mt_sync_frame(input);
-+	input_sync(input);
-+	return error;
-+}
-+
-+/* APIs of cmds for ILITEK Touch IC */
-+static int api_protocol_set_cmd(struct ilitek_ts_data *ts,
-+				u16 idx, u8 *inbuf, u8 *outbuf)
-+{
-+	u16 cmd;
-+	int error;
-+
-+	if (idx >= MAX_CMD_CNT)
-+		return -EINVAL;
-+
-+	cmd = ts->ptl_cb_func[idx].cmd;
-+	error = ts->ptl_cb_func[idx].func(ts, cmd, inbuf, outbuf);
-+	if (error)
-+		return error;
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_ptl_ver(struct ilitek_ts_data *ts,
-+				    u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 3);
-+	if (error)
-+		return error;
-+
-+	ts->ptl.ver = get_unaligned_be16(outbuf);
-+	ts->ptl.ver_major = outbuf[0];
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_mcu_ver(struct ilitek_ts_data *ts,
-+				    u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 32);
-+	if (error)
-+		return error;
-+
-+	ts->mcu_ver = get_unaligned_le16(outbuf);
-+	memset(ts->product_id, 0, sizeof(ts->product_id));
-+	memcpy(ts->product_id, outbuf+6, 26);
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_fw_ver(struct ilitek_ts_data *ts,
-+				   u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 8);
-+	if (error)
-+		return error;
-+
-+	memcpy(ts->firmware_ver, outbuf, 8);
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_scrn_res(struct ilitek_ts_data *ts,
-+				     u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 8);
-+	if (error)
-+		return error;
-+
-+	ts->screen_min_x = get_unaligned_le16(outbuf);
-+	ts->screen_min_y = get_unaligned_le16(outbuf + 2);
-+	ts->screen_max_x = get_unaligned_le16(outbuf + 4);
-+	ts->screen_max_y = get_unaligned_le16(outbuf + 6);
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_tp_res(struct ilitek_ts_data *ts,
-+				   u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 15);
-+	if (error)
-+		return error;
-+
-+	ts->max_tp = outbuf[8];
-+	if (ts->max_tp > ILITEK_SUPPORT_MAX_POINT) {
-+		dev_err(&ts->client->dev, "Invalid MAX_TP:%d from FW\n",
-+			ts->max_tp);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int api_protocol_get_ic_mode(struct ilitek_ts_data *ts,
-+				    u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	int error;
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	error = ilitek_i2c_write_and_read(ts, buf, 1, 5, outbuf, 2);
-+	if (error)
-+		return error;
-+
-+	ts->ic_mode = outbuf[0];
-+	return 0;
-+}
-+
-+static int api_protocol_set_ic_sleep(struct ilitek_ts_data *ts,
-+				     u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	return ilitek_i2c_write_and_read(ts, buf, 1, 0, NULL, 0);
-+}
-+
-+static int api_protocol_set_ic_wake(struct ilitek_ts_data *ts,
-+				    u16 cmd, u8 *inbuf, u8 *outbuf)
-+{
-+	u8 buf[64];
-+
-+	buf[0] = cmd;
-+	return ilitek_i2c_write_and_read(ts, buf, 1, 0, NULL, 0);
-+}
-+
-+struct PROTOCOL_MAP ptl_func_map[] = {
-+	/* common cmds */
-+	[GET_PTL_VER]	= {ILITEK_TP_CMD_GET_PRL_VER, "GET_PTL_VER",
-+			   api_protocol_get_ptl_ver},
-+	[GET_FW_VER]	= {ILITEK_TP_CMD_GET_FW_VER, "GET_FW_VER",
-+			   api_protocol_get_fw_ver},
-+	[GET_SCRN_RES]	= {ILITEK_TP_CMD_GET_SCRN_RES, "GET_SCRN_RES",
-+			   api_protocol_get_scrn_res},
-+	[GET_TP_RES]	= {ILITEK_TP_CMD_GET_TP_RES, "GET_TP_RES",
-+			   api_protocol_get_tp_res},
-+	[GET_IC_MODE]	= {ILITEK_TP_CMD_GET_IC_MODE, "GET_IC_MODE",
-+			   api_protocol_get_ic_mode},
-+	[GET_MCU_VER]	= {ILITEK_TP_CMD_GET_MCU_VER, "GET_MOD_VER",
-+			   api_protocol_get_mcu_ver},
-+	[SET_IC_SLEEP]	= {ILITEK_TP_CMD_SET_IC_SLEEP, "SET_IC_SLEEP",
-+			   api_protocol_set_ic_sleep},
-+	[SET_IC_WAKE]	= {ILITEK_TP_CMD_SET_IC_WAKE, "SET_IC_WAKE",
-+			   api_protocol_set_ic_wake},
-+};
-+
-+/* Probe APIs */
-+static void ilitek_reset(struct ilitek_ts_data *ts, int delay)
-+{
-+	if (ts->reset_gpio) {
-+		gpiod_set_value(ts->reset_gpio, 1);
-+		mdelay(10);
-+		gpiod_set_value(ts->reset_gpio, 0);
-+		mdelay(delay);
-+	}
-+}
-+
-+static int ilitek_protocol_init(struct ilitek_ts_data *ts)
-+{
-+	int error;
-+	u8 outbuf[64];
-+
-+	ts->ptl_cb_func = ptl_func_map;
-+	ts->reset_time = 600;
-+
-+	error = api_protocol_set_cmd(ts, GET_PTL_VER, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	/* Protocol v3 is not support currently */
-+	if (ts->ptl.ver_major == 0x3 ||
-+	    ts->ptl.ver == BL_V1_6 ||
-+	    ts->ptl.ver == BL_V1_7)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int ilitek_read_tp_info(struct ilitek_ts_data *ts, bool boot)
-+{
-+	u8 outbuf[256];
-+	int error;
-+
-+	error = api_protocol_set_cmd(ts, GET_PTL_VER, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	error = api_protocol_set_cmd(ts, GET_MCU_VER, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	error = api_protocol_set_cmd(ts, GET_FW_VER, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	if (boot) {
-+		error = api_protocol_set_cmd(ts, GET_SCRN_RES, NULL,
-+					     outbuf);
-+		if (error)
-+			return error;
-+	}
-+
-+	error = api_protocol_set_cmd(ts, GET_TP_RES, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	error = api_protocol_set_cmd(ts, GET_IC_MODE, NULL, outbuf);
-+	if (error)
-+		return error;
-+
-+	return 0;
-+}
-+
-+static int ilitek_input_dev_init(struct device *dev, struct ilitek_ts_data *ts)
-+{
-+	int error;
-+	struct input_dev *input;
-+
-+	input = devm_input_allocate_device(dev);
-+	if (!input)
-+		return -ENOMEM;
-+
-+	ts->input_dev = input;
-+	input->name = ILITEK_TS_NAME;
-+	input->id.bustype = BUS_I2C;
-+
-+	__set_bit(INPUT_PROP_DIRECT, input->propbit);
-+
-+	/* Single touch input setup */
-+	input_set_abs_params(input, ABS_X, ts->screen_min_x,
-+			     ts->screen_max_x, 0, 0);
-+	input_set_abs_params(input, ABS_Y, ts->screen_min_y,
-+			     ts->screen_max_y, 0, 0);
-+
-+	/* Multi-touch input setup */
-+	input_set_abs_params(input, ABS_MT_POSITION_X,
-+			     ts->screen_min_x,
-+			     ts->screen_max_x, 0, 0);
-+	input_set_abs_params(input, ABS_MT_POSITION_Y,
-+			     ts->screen_min_y,
-+			     ts->screen_max_y, 0, 0);
-+
-+	touchscreen_parse_properties(input, true, &ts->prop);
-+
-+	error = input_mt_init_slots(input, ts->max_tp,
-+				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-+	if (error) {
-+		dev_err(dev, "initialize MT slots failed, err:%d\n", error);
-+		return error;
-+	}
-+
-+	error = input_register_device(input);
-+	if (error) {
-+		dev_err(dev, "register input device failed, err:%d\n", error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static irqreturn_t ilitek_i2c_isr(int irq, void *dev_id)
-+{
-+	struct ilitek_ts_data *ts = dev_id;
-+	int error;
-+
-+	error = ilitek_process_and_report_v6(ts);
-+	if (error < 0) {
-+		dev_err(&ts->client->dev, "[%s] err:%d\n", __func__, error);
-+		return IRQ_NONE;
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static ssize_t firmware_version_show(struct device *dev,
-+				     struct device_attribute *attr, char *buf)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct ilitek_ts_data *ts = i2c_get_clientdata(client);
-+
-+	return scnprintf(buf, PAGE_SIZE,
-+			 "fw version: [%02X%02X.%02X%02X.%02X%02X.%02X%02X]\n",
-+			 ts->firmware_ver[0], ts->firmware_ver[1],
-+			 ts->firmware_ver[2], ts->firmware_ver[3],
-+			 ts->firmware_ver[4], ts->firmware_ver[5],
-+			 ts->firmware_ver[6], ts->firmware_ver[7]);
-+}
-+static DEVICE_ATTR_RO(firmware_version);
-+
-+static ssize_t product_id_show(struct device *dev,
-+			       struct device_attribute *attr, char *buf)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct ilitek_ts_data *ts = i2c_get_clientdata(client);
-+
-+	return scnprintf(buf, PAGE_SIZE, "product id: [%04X], module: [%s]\n",
-+			 ts->mcu_ver, ts->product_id);
-+}
-+static DEVICE_ATTR_RO(product_id);
-+
-+static struct attribute *ilitek_sysfs_attrs[] = {
-+	&dev_attr_firmware_version.attr,
-+	&dev_attr_product_id.attr,
-+	NULL
-+};
-+
-+static struct attribute_group ilitek_attrs_group[] = {
-+	{.attrs = ilitek_sysfs_attrs},
-+};
-+
-+static int ilitek_ts_i2c_probe(struct i2c_client *client,
-+			       const struct i2c_device_id *id)
-+{
-+	struct ilitek_ts_data *ts;
-+	struct device *dev = &client->dev;
-+	int error;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-+		dev_err(dev, "i2c check functionality failed\n");
-+		return -ENXIO;
-+	}
-+
-+	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
-+	if (!ts)
-+		return -ENOMEM;
-+
-+	ts->client = client;
-+	i2c_set_clientdata(client, ts);
-+
-+	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ts->reset_gpio)) {
-+		error = PTR_ERR(ts->reset_gpio);
-+		dev_err(dev, "request gpiod failed, err:%d", error);
-+		return error;
-+	}
-+
-+	ilitek_reset(ts, 1000);
-+
-+	error = ilitek_protocol_init(ts);
-+	if (error) {
-+		dev_err(dev, "protocol init failed, err:%d", error);
-+		return error;
-+	}
-+
-+	error = ilitek_read_tp_info(ts, true);
-+	if (error) {
-+		dev_err(dev, "read tp info failed, err:%d", error);
-+		return error;
-+	}
-+
-+	error = ilitek_input_dev_init(dev, ts);
-+	if (error) {
-+		dev_err(dev, "input dev init failed, err:%d", error);
-+		return error;
-+	}
-+
-+	error = devm_request_threaded_irq(dev, ts->client->irq, NULL,
-+					ilitek_i2c_isr, IRQF_ONESHOT,
-+					"ilitek_touch_irq", ts);
-+	if (error) {
-+		dev_err(dev, "request threaded irq failed, err:%d\n", error);
-+		return error;
-+	}
-+
-+	error = devm_device_add_group(dev, ilitek_attrs_group);
-+	if (error) {
-+		dev_err(dev, "sysfs create group failed, err:%d\n", error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused ilitek_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct ilitek_ts_data *ts = i2c_get_clientdata(client);
-+	int error;
-+
-+	disable_irq(client->irq);
-+
-+	if (!device_may_wakeup(dev)) {
-+		error = api_protocol_set_cmd(ts, SET_IC_SLEEP, NULL, NULL);
-+		if (error)
-+			return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused ilitek_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct ilitek_ts_data *ts = i2c_get_clientdata(client);
-+	int error;
-+
-+	if (!device_may_wakeup(dev)) {
-+		error = api_protocol_set_cmd(ts, SET_IC_WAKE, NULL, NULL);
-+		if (error)
-+			return error;
-+		ilitek_reset(ts, ts->reset_time);
-+	}
-+
-+	enable_irq(client->irq);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(ilitek_pm_ops, ilitek_suspend, ilitek_resume);
-+
-+static const struct i2c_device_id ilitek_ts_i2c_id[] = {
-+	{ILITEK_TS_NAME, 0},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, ilitek_ts_i2c_id);
-+
-+#ifdef CONFIG_ACPI
-+static const struct acpi_device_id ilitekts_acpi_id[] = {
-+	{ "ILTK0001", 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(acpi, ilitekts_acpi_id);
-+#endif
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id ilitek_ts_i2c_match[] = {
-+	{.compatible = "ilitek,ili2130",},
-+	{.compatible = "ilitek,ili2131",},
-+	{.compatible = "ilitek,ili2132",},
-+	{.compatible = "ilitek,ili2316",},
-+	{.compatible = "ilitek,ili2322",},
-+	{.compatible = "ilitek,ili2323",},
-+	{.compatible = "ilitek,ili2326",},
-+	{.compatible = "ilitek,ili2520",},
-+	{.compatible = "ilitek,ili2521",},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, ilitek_ts_i2c_match);
-+#endif
-+
-+static struct i2c_driver ilitek_ts_i2c_driver = {
-+	.driver = {
-+		.name = ILITEK_TS_NAME,
-+		.pm = &ilitek_pm_ops,
-+		.of_match_table = of_match_ptr(ilitek_ts_i2c_match),
-+		.acpi_match_table = ACPI_PTR(ilitekts_acpi_id),
-+	},
-+	.probe = ilitek_ts_i2c_probe,
-+	.id_table = ilitek_ts_i2c_id,
-+};
-+
-+module_i2c_driver(ilitek_ts_i2c_driver);
-+
-+MODULE_AUTHOR("ILITEK");
-+MODULE_DESCRIPTION("ILITEK I2C Touchscreen Driver");
-+MODULE_LICENSE("GPL");
+On Fri, Feb 05, 2021 at 05:22:29PM +0100, Greg KH wrote:
+> On Fri, Feb 05, 2021 at 05:15:21PM +0100, Thierry Reding wrote:
+> > On Wed, Jan 20, 2021 at 03:34:00PM +0800, JC Kuo wrote:
+> > > Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+> > > state for power saving when all of the connected USB devices are in
+> > > suspended state. This patch series includes clk, phy and pmc changes
+> > > that are required for properly place controller in ELPG and bring
+> > > controller out of ELPG.
+> > >=20
+> > > JC Kuo (14):
+> > >   clk: tegra: Add PLLE HW power sequencer control
+> > >   clk: tegra: Don't enable PLLE HW sequencer at init
+> > >   phy: tegra: xusb: Move usb3 port init for Tegra210
+> > >   phy: tegra: xusb: Rearrange UPHY init on Tegra210
+> > >   phy: tegra: xusb: Add Tegra210 lane_iddq operation
+> > >   phy: tegra: xusb: Add sleepwalk and suspend/resume
+> > >   soc/tegra: pmc: Provide USB sleepwalk register map
+> > >   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+> > >   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
+> > >   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+> > >   phy: tegra: xusb: Tegra210 host mode VBUS control
+> > >   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+> > >   usb: host: xhci-tegra: Unlink power domain devices
+> > >   xhci: tegra: Enable ELPG for runtime/system PM
+> > >=20
+> > >  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
+> > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
+> > >  drivers/clk/tegra/clk-pll.c                   |   12 -
+> > >  drivers/clk/tegra/clk-tegra210.c              |   53 +-
+> > >  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
+> > >  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++--=
 --
-2.25.1
+> > >  drivers/phy/tegra/xusb.c                      |   92 +-
+> > >  drivers/phy/tegra/xusb.h                      |   22 +-
+> > >  drivers/soc/tegra/pmc.c                       |   94 +
+> > >  drivers/usb/host/xhci-tegra.c                 |  613 ++++--
+> > >  include/linux/clk/tegra.h                     |    4 +-
+> > >  include/linux/phy/tegra/xusb.h                |   10 +-
+> > >  12 files changed, 2784 insertions(+), 565 deletions(-)
+> > >=20
+> > > v5 "phy: tegra: xusb: tegra210: Do not reset UPHY PLL" is moved
+> > > into v6 "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
+> >=20
+> > Mike, Stephen,
+> >=20
+> > could you guys take a look at the two clk patches here and give an
+> > Acked-by? There's build-time dependencies throughout the series, so it'd
+> > be good if they can all go through either the PHY or USB trees.
+> >=20
+> > Kishon, Greg,
+> >=20
+> > any comments on these patches? Unfortunately, the USB patches in this
+> > series have a build-time dependency on the PHY patches, so this should
+> > all go through one tree. Since this all culminates in the XHCI driver,
+> > merging this through the USB tree might be best, provided that Kishon
+> > provides his Acked-by on the PHY patches.
+> >=20
+> > Alternatively, I can create a set of branches with the correct
+> > dependencies and send out pull requests for the three subsystems if
+> > that's preferrable.
+>=20
+> I have no objection for the usb patches to go through your tree as they
+> are hardware-specific.
 
+Kishon,
 
+I haven't heard back from you on this yet. We missed v5.12 but I'd like
+to get this into v5.13 since it's the last missing piece to get suspend
+and resume working properly on a number of boards.
+
+Are you okay if I take this through the Tegra tree to satisfy the
+interdependencies between clk, PHY and USB patches? I've already got
+Acked-by's from the clock and USB maintainers.
+
+I want to tentatively take this into linux-next to give it a bit of soak
+time before the ARM SoC -rc6 cut-off. Please let me know if you'd prefer
+to apply these to your tree so I can back them out of the Tegra tree
+again.
+
+Thanks,
+Thierry
+
+--OPsgcSQYCpWKq5eH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBbMwIACgkQ3SOs138+
+s6EVZxAAtadd18gHHhsUYyV3OGqDMG+1Y6bGQIcRaAfgqF+SctUTzdCGHkVvyuO5
+sShSqOUZBQeYmbeih8zierPXi0FgGCKf9jjN2J3EPLtgNZG8XrdEl82igowsQVoA
+mTE8WuaEIvJ2A8ffLECTS4oXZcjkSRfEH4YgaBuWMvMx/YjRicjfJzUHM6UIxUdq
+ajqMCLXwfr9ckZ6idNZKcH7kXipIgV5+G+4YXrIX9fl5lc4uV1rg2xU5B5z2Nz6y
+TGzmcWCtO8ns4ls8fJ8ofYKWFWNCcKsAHRn7H8yZmu1vGWYoIgpjxikoJnJdAlM6
+1Jl87sAxHwLgalVkinsCjGWcbWaYiaJnxV4bkXx0QDwMfDAYR/UbLUuU5pJ+ZNsQ
+174ElKGin/GUtz6qX2Ylm/5m4l+E/eP1NJgFTPILBjitaqOekHOVOJwHuZZJK04x
+VlBCobbia0U6N05BE+yqniU3CponP1XgaB7nm1nsk3YW7T/Vnoy05x5sfmSBZ7+S
+4ZbTLXUQSeaJhVrLynDqGQkj/yb7UM3Z9VJyVIk+ZbtTC164SgxprDyGtesNYNry
+pnqaLPtK9weDG09Dh/inyBXvIAhDTq3kLzEcewE/ySdjc+Sc7WC9RObM8d94IIlw
+xRYFZ3OcLfWhTE2LkoYrD8G2YuORb7KXYZM3PfEW0VHEQLmI7rQ=
+=wSm7
+-----END PGP SIGNATURE-----
+
+--OPsgcSQYCpWKq5eH--
