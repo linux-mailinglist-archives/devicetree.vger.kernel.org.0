@@ -2,188 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D921347C92
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47FA9347C99
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236564AbhCXP2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:28:47 -0400
-Received: from mail-io1-f41.google.com ([209.85.166.41]:47050 "EHLO
-        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236517AbhCXP22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:28:28 -0400
-Received: by mail-io1-f41.google.com with SMTP id j26so21892180iog.13;
-        Wed, 24 Mar 2021 08:28:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6xcBXMMCaVDuU5qnrC5kX42d8TK5pM5OgA40PNY4QmM=;
-        b=DPaN4ykJuuwTI6UAc82aigGJ55OGoG0qRGIFIS0G/lkhGQ5mRCQPU3SILq4eolNQtO
-         4jxqikE0ynEBESbcBefqGo6ejWLHu3zRM9q7tppGguB5aC6dPEhyQz+tV3PEqMOKyJxt
-         ww76OBz0Ra8y8lBP9LW07HarIg5+Mpo/qGeFVmtyVfBPDgYf39XfPOanQ8TISe/NS6bd
-         i7P7rOHwf1shC2EwirhOmLIxPhSC8jijjfzcSxmKg6bfcyX1E8AM9PQxsAEsj/1rKzld
-         1GxgrtJwzjHIraHQZoA1MGAUq6SCCwsG5fcVexJ+zkeScuxJqY3XkeEO8g98G4nGUS9E
-         tYmA==
-X-Gm-Message-State: AOAM5315Yrh4qPIFxICT3slJqUzs7Iyn74P9Z+7tKuoRPR6rPuqJBCyC
-        n/PmHwCeRib3spQa4HTK0Q==
-X-Google-Smtp-Source: ABdhPJxY497goQhHxgfca1nf0rj5C+sTusKlHXSWJVMBsqhPpHO9cDYw+mu2Uqn6j4u/NoIqTAqzEA==
-X-Received: by 2002:a05:6638:58f:: with SMTP id a15mr3319656jar.35.1616599708016;
-        Wed, 24 Mar 2021 08:28:28 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id i18sm840950ilk.83.2021.03.24.08.28.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 08:28:26 -0700 (PDT)
-Received: (nullmailer pid 3100117 invoked by uid 1000);
-        Wed, 24 Mar 2021 15:28:24 -0000
-Date:   Wed, 24 Mar 2021 09:28:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>, yong.wu@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org
-Subject: Re: [v3,PATCH 1/3] dt-bindings: media: mtk-vcodec: Separating mtk
- vcodec encoder node
-Message-ID: <20210324152824.GA3093851@robh.at.kernel.org>
-References: <20210312073540.4922-1-irui.wang@mediatek.com>
+        id S236568AbhCXP3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:29:53 -0400
+Received: from foss.arm.com ([217.140.110.172]:35184 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236528AbhCXP3p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 11:29:45 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0BC90D6E;
+        Wed, 24 Mar 2021 08:29:45 -0700 (PDT)
+Received: from [10.57.50.37] (unknown [10.57.50.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC3053F7D7;
+        Wed, 24 Mar 2021 08:29:42 -0700 (PDT)
+Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
+To:     Sven Peter <sven@svenpeter.dev>, iommu@lists.linux-foundation.org
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
+Date:   Wed, 24 Mar 2021 15:29:36 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210312073540.4922-1-irui.wang@mediatek.com>
+In-Reply-To: <20210320151903.60759-1-sven@svenpeter.dev>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 03:35:38PM +0800, Irui Wang wrote:
-> Updates binding document since the avc and vp8 hardware encoder in
-> MT8173 are now separated. Separate "mediatek,mt8173-vcodec-enc" to
-> "mediatek,mt8173-vcodec-enc-vp8" and "mediatek,mt8173-vcodec-enc".
+On 2021-03-20 15:19, Sven Peter wrote:
+> Hi,
 > 
-> This patch separates the two devices, it's a preparing patch for adding
-> device_link between the larbs and venc-device. It's mainly for fixing
-> the problem:
-> https://lkml.org/lkml/2019/9/3/316
+> After Hector's initial work [1] to bring up Linux on Apple's M1 it's time to
+> bring up more devices. Most peripherals connected to the SoC are behind a iommu
+> which Apple calls "Device Address Resolution Table", or DART for short [2].
+> Unfortunately, it only shares the name with PowerPC's DART.
+> Configuring this iommu is mandatory if these peripherals require DMA access.
+> 
+> This patchset implements initial support for this iommu. The hardware itself
+> uses a pagetable format that's very similar to the one already implement in
+> io-pgtable.c. There are some minor modifications, namely some details of the
+> PTE format and that there are always three pagetable levels, which I've
+> implement as a new format variant.
+> 
+> I have mainly tested this with the USB controller in device mode which is
+> compatible with Linux's dwc3 driver. Some custom PHY initialization (which is
+> not yet ready or fully understood) is required though to bring up the ports,
+> see e.g. my patches to our m1n1 bootloader [3,4]. If you want to test the same
+> setup you will probably need that branch for now and add the nodes from
+> the DT binding specification example to your device tree.
+> 
+> Even though each DART instances could support up to 16 devices usually only
+> a single device is actually connected. Different devices generally just use
+> an entirely separate DART instance with a seperate MMIO range, IRQ, etc.
+> 
+> I have just noticed today though that at least the USB DWC3 controller in host
+> mode uses *two* darts at the same time. I'm not sure yet which parts seem to
+> require which DART instance.
+> 
+> This means that we might need to support devices attached to two iommus
+> simultaneously and just create the same iova mappings. Currently this only
+> seems to be required for USB according to Apple's Device Tree.
+> 
+> I see two options for this and would like to get feedback before
+> I implement either one:
+> 
+>      1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
+>         to identify the DART and the second one to identify the master.
+>         The DART DT node would then also take two register ranges that would
+>         correspond to the two DARTs. Both instances use the same IRQ and the
+>         same clocks according to Apple's device tree and my experiments.
+>         This would keep a single device node and the DART driver would then
+>         simply map iovas in both DARTs if required.
 
-This is not a compatible change. That needs to be explained here with 
-why that is okay.
+This is broadly similar to the approach used by rockchip-iommu and the 
+special arm-smmu-nvidia implementation, where there are multiple 
+instances which require programming identically, that are abstracted 
+behind a single "device". Your case is a little different since you're 
+not programming both *entirely* identically, although maybe that's a 
+possibility if each respective ID isn't used by anything else on the 
+"other" DART?
 
+Overall I tend to view this approach as a bit of a hack because it's not 
+really describing the hardware truthfully - just because two distinct 
+functional blocks have their IRQ lines wired together doesn't suddenly 
+make them a single monolithic block with multiple interfaces - and tends 
+to be done for the sake of making the driver implementation easier in 
+terms of the Linux IOMMU API (which, note, hasn't evolved all that far 
+from its PCI-centric origins and isn't exactly great for arbitrary SoC 
+topologies).
+
+>      2) Keep #iommu-cells as-is but support
+>              iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
+>         instead.
+>         This would then require two devices nodes for the two DART instances and
+>         some housekeeping in the DART driver to support mapping iovas in both
+>         DARTs.
+>         I believe omap-iommu.c supports this setup but I will have to read
+>         more code to understand the details there and figure out how to implement
+>         this in a sane way.
+
+This approach is arguably the most honest, and more robust in terms of 
+making fewer assumptions, and is used by at least exynos-iommu and 
+omap-iommu. In Linux it currently takes a little bit more housekeeping 
+to keep track of linked instances within the driver since the IOMMU API 
+holds the notion that any given client device is associated with "an 
+IOMMU", but that's always free to change at any time, unlike the design 
+of a DT binding.
+
+There's also the funky "root" and "leaf" devices thing that ipmmu-vmsa 
+does, although I believe that represents genuine hardware differences 
+where the leaves are more like extra TLBs rather than fully-functional 
+IOMMU blocks in their own right, so that may not be a relevant model here.
+
+Robin.
+
+> I currently prefer the first option but I don't understand enough details of
+> the iommu system to actually make an informed decision.
+> I'm obviously also open to more options :-)
 > 
-> Acked-by: Tiffany Lin <tiffany.lin@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> ---
-> Change since v2:
-> - update dt-bindings commit message
-> ---
 > 
->  .../bindings/media/mediatek-vcodec.txt        | 55 ++++++++++---------
->  1 file changed, 29 insertions(+), 26 deletions(-)
+> Best regards,
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> index 8217424fd4bd..8318f0ed492d 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> @@ -4,7 +4,9 @@ Mediatek Video Codec is the video codec hw present in Mediatek SoCs which
->  supports high resolution encoding and decoding functionalities.
->  
->  Required properties:
-> -- compatible : "mediatek,mt8173-vcodec-enc" for MT8173 encoder
-> +- compatible : must be one of the following string:
-> +  "mediatek,mt8173-vcodec-enc-vp8" for mt8173 vp8 encoder.
-> +  "mediatek,mt8173-vcodec-enc" for mt8173 avc encoder.
->    "mediatek,mt8183-vcodec-enc" for MT8183 encoder.
->    "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
->  - reg : Physical base address of the video codec registers and length of
-> @@ -13,10 +15,10 @@ Required properties:
->  - mediatek,larb : must contain the local arbiters in the current Socs.
->  - clocks : list of clock specifiers, corresponding to entries in
->    the clock-names property.
-> -- clock-names: encoder must contain "venc_sel_src", "venc_sel",,
-> -  "venc_lt_sel_src", "venc_lt_sel", decoder must contain "vcodecpll",
-> -  "univpll_d2", "clk_cci400_sel", "vdec_sel", "vdecpll", "vencpll",
-> -  "venc_lt_sel", "vdec_bus_clk_src".
-> +- clock-names: avc encoder must contain "venc_sel", vp8 encoder must
-> +  contain "venc_lt_sel", decoder must contain "vcodecpll", "univpll_d2",
-> +  "clk_cci400_sel", "vdec_sel", "vdecpll", "vencpll", "venc_lt_sel",
-> +  "vdec_bus_clk_src".
->  - iommus : should point to the respective IOMMU block with master port as
->    argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
->    for details.
-> @@ -80,14 +82,10 @@ vcodec_dec: vcodec@16000000 {
->      assigned-clock-rates = <0>, <0>, <0>, <1482000000>, <800000000>;
->    };
->  
-> -  vcodec_enc: vcodec@18002000 {
-> +vcodec_enc_avc: vcodec@18002000 {
->      compatible = "mediatek,mt8173-vcodec-enc";
-> -    reg = <0 0x18002000 0 0x1000>,    /*VENC_SYS*/
-> -          <0 0x19002000 0 0x1000>;    /*VENC_LT_SYS*/
-> -    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>,
-> -		 <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
-> -    mediatek,larb = <&larb3>,
-> -		    <&larb5>;
-> +    reg = <0 0x18002000 0 0x1000>;
-> +    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
->      iommus = <&iommu M4U_PORT_VENC_RCPU>,
->               <&iommu M4U_PORT_VENC_REC>,
->               <&iommu M4U_PORT_VENC_BSDMA>,
-> @@ -98,8 +96,20 @@ vcodec_dec: vcodec@16000000 {
->               <&iommu M4U_PORT_VENC_REF_LUMA>,
->               <&iommu M4U_PORT_VENC_REF_CHROMA>,
->               <&iommu M4U_PORT_VENC_NBM_RDMA>,
-> -             <&iommu M4U_PORT_VENC_NBM_WDMA>,
-> -             <&iommu M4U_PORT_VENC_RCPU_SET2>,
-> +             <&iommu M4U_PORT_VENC_NBM_WDMA>;
-> +    mediatek,larb = <&larb3>;
-> +    mediatek,vpu = <&vpu>;
-> +    clocks = <&topckgen CLK_TOP_VENC_SEL>;
-> +    clock-names = "venc_sel";
-> +    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
-> +    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
-> +  };
-> +
-> +vcodec_enc_vp8: vcodec@19002000 {
-> +    compatible = "mediatek,mt8173-vcodec-enc-vp8";
-> +    reg =  <0 0x19002000 0 0x1000>;	/* VENC_LT_SYS */
-> +    interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
-> +    iommus = <&iommu M4U_PORT_VENC_RCPU_SET2>,
->               <&iommu M4U_PORT_VENC_REC_FRM_SET2>,
->               <&iommu M4U_PORT_VENC_BSDMA_SET2>,
->               <&iommu M4U_PORT_VENC_SV_COMA_SET2>,
-> @@ -108,17 +118,10 @@ vcodec_dec: vcodec@16000000 {
->               <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
->               <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
->               <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
-> +    mediatek,larb = <&larb5>;
->      mediatek,vpu = <&vpu>;
-> -    clocks = <&topckgen CLK_TOP_VENCPLL_D2>,
-> -             <&topckgen CLK_TOP_VENC_SEL>,
-> -             <&topckgen CLK_TOP_UNIVPLL1_D2>,
-> -             <&topckgen CLK_TOP_VENC_LT_SEL>;
-> -    clock-names = "venc_sel_src",
-> -                  "venc_sel",
-> -                  "venc_lt_sel_src",
-> -                  "venc_lt_sel";
-> -    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>,
-> -                      <&topckgen CLK_TOP_VENC_LT_SEL>;
-> -    assigned-clock-parents = <&topckgen CLK_TOP_VENCPLL_D2>,
-> -                             <&topckgen CLK_TOP_UNIVPLL1_D2>;
-> +    clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
-> +    clock-names = "venc_lt_sel";
-> +    assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
-> +    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
->    };
-> -- 
-> 2.18.0
+> 
+> Sven
+> 
+> [1] https://lore.kernel.org/linux-arch/20210304213902.83903-1-marcan@marcan.st/
+> [2] https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/DataMgmt/DataMgmt.html
+> [3] https://github.com/svenpeter42/m1n1/commit/1e2661abf5ea2c820297b3ff591235c408d19a34
+> [4] https://github.com/svenpeter42/m1n1/tree/usb-uartproxy-console-wip
+> 
+> 
 > 
