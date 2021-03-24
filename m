@@ -2,168 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E862D347D7B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D04B347D7F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:18:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232706AbhCXQRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:17:17 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:37579 "EHLO
-        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233950AbhCXQQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 12:16:48 -0400
-Received: by mail-il1-f170.google.com with SMTP id z9so21870065ilb.4;
-        Wed, 24 Mar 2021 09:16:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=QXqHoBlkPrNwRpEMtYqdUlQOXPQTYdJ14Lsi73wF+Zg=;
-        b=irjvXcUNLsPTRh/AVVbJ7tvRR8p74XEXTX3VGAdZjlfXkMgLbo2r1UIEXHja9BYsLc
-         0ySoIOPwoum9yd2ArAAkWLfZtxiozqzXfmoJNMEJ9TNZ/ErmeB3AJpSB7DZ5xuOMiGSz
-         0Rk2KWiNdZK5xkXGA/FIXPO4NgTCQ5Li5lKK+KaFvHBKZZtTHZMn+S3O8WIYaz4h+eTV
-         qxoFa03NwEOW3+t36sfPr0EOegQMshbAA5OG4NDBO1K0Q2NCsPpOmtTMH9CvqjkaJTiF
-         CObMlymfjKHc/NbN8b1iDjiA//Kj1EV0ML79qVYWjiN6rnJupb0/Nzx2145U38soF2br
-         dJQA==
-X-Gm-Message-State: AOAM5332I/U3zKm8HIFkYeFU924sFU/Gskc+aJUBtubpv6hNeaYv0voF
-        xQKLp9UBqlfi9rtJmIZUgA==
-X-Google-Smtp-Source: ABdhPJzMyvEIIYrr73Ih8QIqBO2t7JAHQThpLoQIFcY0siF6lIGYTH+7kk66x+8FHWGn3D2H2WkCvg==
-X-Received: by 2002:a92:5214:: with SMTP id g20mr3131964ilb.260.1616602607879;
-        Wed, 24 Mar 2021 09:16:47 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m20sm1299949ilj.66.2021.03.24.09.16.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 09:16:46 -0700 (PDT)
-Received: (nullmailer pid 3176722 invoked by uid 1000);
-        Wed, 24 Mar 2021 16:16:43 -0000
-Date:   Wed, 24 Mar 2021 10:16:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     matthias.bgg@kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH 2/7] dt-bindigns: regulator: mtk: Drop unneeded compatible
-Message-ID: <20210324161643.GA3170381@robh.at.kernel.org>
-References: <20210312145545.26050-1-matthias.bgg@kernel.org>
- <20210312145545.26050-2-matthias.bgg@kernel.org>
- <CAFqH_500_xUU9=y1t=FFErD5LwUb8p9KT7qngW_t99_OPQWeVg@mail.gmail.com>
+        id S230525AbhCXQRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 12:17:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234669AbhCXQRX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 12:17:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A986561878;
+        Wed, 24 Mar 2021 16:17:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616602643;
+        bh=ZfQfwnRrFQEw2lg7pL8kZK71afKfEVHk9YK12q8Pq3A=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=kxNts/LJiaGY+S8UMeWsggEZzqhmutWnW+fnYJm8J0IqzPZ5BGa2uls2tEug/CP+R
+         6uoIPuXbU+RT6OAeDWcdTHzlTSUjS5y2Mbu7y8muKCxqTVw0PnUkUUYE18LOj+CXps
+         lxn9O7KHZ9AH2rnw66qDYAXe0kBVQntM8l8HhVhhjFHWcFFhUchOPVSBe1JwvsLz+g
+         ezaM2rf0+ADcukvne72BHyOUPgY3QNFemXPVEmsBbPVXLRgPz/ERxu3UUfbk+2fkoO
+         UI2Yxgfg7om8D6C+eKPKJnX7Ok8WtFt1SS7dPKB6L0BiAq28k4p1skrhlRKS9H6JOU
+         Nq7Xois4VF8kg==
+Date:   Wed, 24 Mar 2021 11:17:21 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Simon Xue <xxm@rock-chips.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: Re: [PATCH v5 2/2] PCI: rockchip: Add DesignWare based PCIe
+ controller
+Message-ID: <20210324161721.GA612661@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFqH_500_xUU9=y1t=FFErD5LwUb8p9KT7qngW_t99_OPQWeVg@mail.gmail.com>
+In-Reply-To: <20210222071828.30120-1-xxm@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 03:11:56PM +0100, Enric Balletbo Serra wrote:
-> Hi Matthias,
-> 
-> Thank you for your patch. There is a typo in the subject line
-> s/dt-bindigns/dt-bindings/ Rob might miss this patch as he filters the
-> patches by subject I guess.
+On Mon, Feb 22, 2021 at 03:18:28PM +0800, Simon Xue wrote:
+> Add driver for DesignWare based PCIe controller found on RK356X.
+> The already existed driver pcie-rockchip-host is only used for
+> Rockchip designed IP found on RK3399.
 
-I should, then I'd have a lot less to review...
+> +static int rockchip_pcie_start_link(struct dw_pcie *pci)
+> +{
+> +	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
+> +
+> +	/* Reset device */
+> +	gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+> +	msleep(100);
 
-> 
-> Missatge de l'adreça <matthias.bgg@kernel.org> del dia dv., 12 de març
-> 2021 a les 15:57:
-> >
-> > From: Matthias Brugger <mbrugger@suse.com>
-> >
-> > The regulator does not need to have a device tree compatible, if it's
-> > part of an MFD. We leave the node name to the SoC specific name (e.g.
-> > mt6323regulator) to allow older kernels to work with the new binding.
-> >
-> > Signed-off-by: Matthias Brugger <mbrugger@suse.com>
-> > ---
-> >  .../bindings/regulator/mt6323-regulator.txt        |  2 +-
-> >  .../bindings/regulator/mt6358-regulator.txt        |  4 +---
-> >  .../bindings/regulator/mt6397-regulator.txt        | 14 +++++---------
-> >  3 files changed, 7 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> > index a48749db4df36..69f32e1a6702e 100644
-> > --- a/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> > +++ b/Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
-> > @@ -19,7 +19,7 @@ LDO:
-> >  Example:
-> >
-> >         pmic: mt6323 {
+Maybe a spec reference for the 100ms delay so we can match this up
+with other places and make sure we aren't repeating delays because we
+don't know what they are?
 
-This one is wrong...
+> +	gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
+> +
+> +	rockchip_pcie_enable_ltssm(rockchip);
+> +
+> +	return 0;
+> +}
 
-> > -               mt6323regulator: regulators {
-> > +               mt6323regulator {
+> +static int rockchip_pcie_clk_init(struct rockchip_pcie *rockchip)
+> +{
+> +	struct device *dev = rockchip->pci.dev;
+> +	int ret;
+> +
+> +	ret = devm_clk_bulk_get_all(dev, &rockchip->clks);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	rockchip->clk_cnt = ret;
+> +
+> +	ret = clk_bulk_prepare_enable(rockchip->clk_cnt, rockchip->clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
 
-And this was right.
+This is the same as
 
-> 
-> If you convert this binding to YAML, you'll probably get a review that
-> the node name must be just 'regulators' here. And then, looking at the
-> other patches something will break I guess ...
-> 
-> >                         mt6323_vproc_reg: buck_vproc{
-> >                                 regulator-name = "vproc";
-> >                                 regulator-min-microvolt = < 700000>;
-> > diff --git a/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> > index 9a90a92f2d7e1..ba1214da5bf7c 100644
-> > --- a/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> > +++ b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-> > @@ -23,9 +23,7 @@ Example:
-> >         pmic {
-> >                 compatible = "mediatek,mt6358";
-> >
-> > -               mt6358regulator: mt6358regulator {
-> > -                       compatible = "mediatek,mt6358-regulator";
-> > -
-> > +               mt6358regulator {
-> >                         mt6358_vdram1_reg: buck_vdram1 {
-> >                                 regulator-compatible = "buck_vdram1";
-> >                                 regulator-name = "vdram1";
-> > diff --git a/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> > index c080086d3e629..2b14362ac56e1 100644
-> > --- a/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> > +++ b/Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> > @@ -1,11 +1,9 @@
-> >  Mediatek MT6397 Regulator
-> >
-> > -Required properties:
-> > -- compatible: "mediatek,mt6397-regulator"
-> > -- mt6397regulator: List of regulators provided by this controller. It is named
-> > -  according to its regulator type, buck_<name> and ldo_<name>.
-> > -  The definition for each of these nodes is defined using the standard binding
-> > -  for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
-> > +List of regulators provided by this controller. It is named
-> > +according to its regulator type, buck_<name> and ldo_<name>.
-> > +The definition for each of these nodes is defined using the standard binding
-> > +for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
-> >
-> >  The valid names for regulators are::
-> >  BUCK:
-> > @@ -23,9 +21,7 @@ Example:
-> >         pmic {
-> >                 compatible = "mediatek,mt6397";
-> >
-> > -               mt6397regulator: mt6397regulator {
-> > -                       compatible = "mediatek,mt6397-regulator";
-> > -
-> > +               mt6397regulator {
-> >                         mt6397_vpca15_reg: buck_vpca15 {
-> >                                 regulator-compatible = "buck_vpca15";
-> >                                 regulator-name = "vpca15";
-> > --
-> > 2.30.1
-> >
-> >
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+  return clk_bulk_prepare_enable(rockchip->clk_cnt, rockchip->clks);
+
+> +}
+
+> +static int rockchip_pcie_reset_control_release(struct rockchip_pcie *rockchip)
+> +{
+> +	struct device *dev = rockchip->pci.dev;
+> +	int ret;
+> +
+> +	rockchip->rst = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(rockchip->rst))
+> +		return dev_err_probe(dev, PTR_ERR(rockchip->rst),
+> +				     "failed to get reset lines\n");
+> +
+> +	ret = reset_control_deassert(rockchip->rst);
+> +
+> +	return ret;
+
+  return reset_control_deassert(rockchip->rst);
+
+and drop "ret".
+
+> +}
+
+> +static int rockchip_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rockchip_pcie *rockchip;
+> +	struct pcie_port *pp;
+> +	int ret;
+> +
+> +	rockchip = devm_kzalloc(dev, sizeof(*rockchip), GFP_KERNEL);
+> +	if (!rockchip)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, rockchip);
+> +
+> +	rockchip->pci.dev = dev;
+> +	rockchip->pci.ops = &dw_pcie_ops;
+> +
+> +	pp = &rockchip->pci.pp;
+> +	pp->ops = &rockchip_pcie_host_ops;
+> +
+> +	ret = rockchip_pcie_resource_get(pdev, rockchip);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* DON'T MOVE ME: must be enable before PHY init */
+> +	rockchip->vpcie3v3 = devm_regulator_get_optional(dev, "vpcie3v3");
+> +	if (IS_ERR(rockchip->vpcie3v3))
+> +		return dev_err_probe(dev, PTR_ERR(rockchip->rst),
+> +				     "failed to get vpcie3v3 regulator\n");
+> +
+> +	if (rockchip->vpcie3v3) {
+
+This assumes devm_regulator_get_optional() returns a valid regulator,
+IS_ERR, or NULL.  I can't easily tell whether it can actually return
+NULL.  The regulator_get_optional() comment says it returns either a
+regulator or IS_ERR; it doesn't mention NULL.
+
+The other callers in drivers/pci (imx6_pcie_probe(),
+histb_pcie_probe(), tegra_pcie_get_slot_regulators()) all explicitly
+set the result to NULL in case of error.  They should all do it the
+same way.
+
+> +		ret = regulator_enable(rockchip->vpcie3v3);
+> +		if (ret) {
+> +			dev_err(dev, "failed to enable vpcie3v3 regulator\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret = rockchip_pcie_phy_init(rockchip);
+> +	if (ret)
+> +		goto disable_regulator;
+> +
+> +	ret = rockchip_pcie_reset_control_release(rockchip);
+> +	if (ret)
+> +		goto deinit_phy;
+> +
+> +	ret = rockchip_pcie_clk_init(rockchip);
+> +	if (ret)
+> +		goto deinit_phy;
+> +
+> +	ret = dw_pcie_host_init(pp);
+> +	if (ret)
+> +		goto deinit_clk;
+> +
+> +	return 0;
+> +
+> +deinit_clk:
+> +	clk_bulk_disable_unprepare(rockchip->clk_cnt, rockchip->clks);
+> +deinit_phy:
+> +	rockchip_pcie_phy_deinit(rockchip);
+> +disable_regulator:
+> +	if (rockchip->vpcie3v3)
+> +		regulator_disable(rockchip->vpcie3v3);
+> +
+> +	return ret;
+> +}
+> +
+> +MODULE_DEVICE_TABLE(of, rockchip_pcie_of_match);
+
+I don't think this is necessary, is it?  I don't see MODULE_DEVICE_TABLE
+being used except for modular drivers.
+
+There are a couple other builtin drivers (mobiveil, microchip) that
+use it, but I think those are mistakes.
+
+> +static const struct of_device_id rockchip_pcie_of_match[] = {
+> +	{ .compatible = "rockchip,rk3568-pcie", },
+> +	{},
+> +};
+> +
+> +static struct platform_driver rockchip_pcie_driver = {
+> +	.driver = {
+> +		.name	= "rockchip-dw-pcie",
+> +		.of_match_table = rockchip_pcie_of_match,
+> +		.suppress_bind_attrs = true,
+> +	},
+> +	.probe = rockchip_pcie_probe,
+> +};
+> +
+
+Drop the blank line.
+
+> +builtin_platform_driver(rockchip_pcie_driver);
