@@ -2,228 +2,461 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14151347DF3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1801347E20
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236461AbhCXQnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51012 "EHLO
+        id S237005AbhCXQrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 12:47:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233671AbhCXQnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 12:43:50 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3123DC061763
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 09:43:50 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id l123so17740352pfl.8
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 09:43:50 -0700 (PDT)
+        with ESMTP id S237141AbhCXQqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 12:46:19 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B20EC0617A7
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 09:46:16 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id m7so15007415pgj.8
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 09:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=uQoswb2FPz7LIgqld1sU5bgtwEqP4QQs51leRFkaTX4=;
-        b=doTQVTS5oBPfMjqhd2EvHo5xdTG0iQrQgFf9d//nBNwwKKKXZgHGbrg3SLYF8QnzKy
-         CjFJbziVCs8g+02irueIal8RK2tGyQv9lmBoE3NyctTnnKydsI4pseuapgd2Lir+dPDu
-         Gnvz0ikLP8C7rD9VAE3dFPKrmEUywBdZ2W0uI=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SNuu8ZzGzMF7xtrSNxC7YMAORADCFBN/fBfCqCTiBqM=;
+        b=zpv+dNB2O+cONDLjCXuVooRA+NyBJx3kH7UwFIL/qT6pI0dZhVN2xNIh5l8LSntj10
+         Jw0exnpo/0fkVG2m6ZbMoXZZZMi8/Oq7/6/0rMhNugPqze9/rLyxTEA6fkMOrCeVNzL8
+         UFHjkW1R9kgIiFvgZk/XYcSBF7IMF1g03ROJoGSYM4+RjU0R54ESQTCI4lEGs/S4EbLz
+         WATDkIKgmR2uMrNk2L+7Y1z+blMEXGvHgzOlGDsK/UI4R6PnFp3BSCHGoWVgMXyemrft
+         4lLBWFhTdFBJ6RdD0lntxFXc60BcQuScxsF1vwxz4mnApuqThD4nIV97Ae5AqIF6Y9ns
+         GxkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=uQoswb2FPz7LIgqld1sU5bgtwEqP4QQs51leRFkaTX4=;
-        b=KoMBfOKY4DUAkg8R9JtldwM0OBEOX575BREmDzkv2mqHLT2G6nI7+hxPjPqJSxC4yP
-         MoCJCEheQXvNKJOtwmu3BpdmUTMCVIulYPwR65PczGNcOCyiGJA1xGrvxiEfIxlxTjFY
-         CE79KFqRyqgIxN0AIQh3QsSbGTL1FcfwAhCg+mEA3evpg2eNR/sPN3QvFn4kRf1FeqeF
-         wL9aze9J6dk/KzKDcuamzw811QQfBb0zO089htCEtsIxVXXEm9jIya0uFaJRw1HPePxy
-         7EqfG1SyJ0h8iFxMemhX5waWPQ7jf8R3GLLja19rtUhmpe+p31MzYWKhZH4Qb+Zz+pR0
-         D1Dw==
-X-Gm-Message-State: AOAM530br4GmZ+ayyyacZy43U1gW34fIlibGajCct480eAKOX/RTyjkl
-        19r+Iajjc2fcTR0t5Gnysm9bJg==
-X-Google-Smtp-Source: ABdhPJy9oB6kLzcAg1sewJLV1RILKrMKpLEU6QhO81UMhCYhgQ/e+CubBnLh6m1Z81OYwzB8g7HTkQ==
-X-Received: by 2002:a65:4782:: with SMTP id e2mr3883245pgs.93.1616604229355;
-        Wed, 24 Mar 2021 09:43:49 -0700 (PDT)
-Received: from lbrmn-lnxub113.ric.broadcom.net ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id x190sm3099541pfx.166.2021.03.24.09.43.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 09:43:48 -0700 (PDT)
-Subject: Re: [PATCH 1/4] dt-bindings: mmc: iproc-sdhci: Convert to json-schema
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>, f.fainelli@gmail.com,
-        phil@raspberrypi.com, tim.gover@raspberrypi.com,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org
-References: <20210322185816.27582-1-nsaenz@kernel.org>
- <20210322185816.27582-2-nsaenz@kernel.org>
- <0e98588e-65f1-6839-1fcd-584b480a31bd@broadcom.com>
- <20210323210812.GA1318204@robh.at.kernel.org>
- <c1989e31501ccfb6e1350d467d4f26089bfcfb64.camel@suse.de>
- <28a133d2-c713-4bce-271c-5fa228d830ca@broadcom.com>
- <9de20a5960e029b8842dc026be3be85295647175.camel@suse.de>
-From:   Scott Branden <scott.branden@broadcom.com>
-Message-ID: <bacfa0ef-dcb1-150a-4d10-46524a0a7082@broadcom.com>
-Date:   Wed, 24 Mar 2021 09:43:45 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SNuu8ZzGzMF7xtrSNxC7YMAORADCFBN/fBfCqCTiBqM=;
+        b=nld14miZjgVWxw80aeK6w+Vn3KvYS55oQ5dmUHKyXtjDH6O/u5Wkt9AaTLs5Ak365U
+         3LZPMW/5iyns821se2UlarGktFxrn0ytPvr0iS/lt9MEh8VcZI3Uzla5DvdEmf3sXced
+         CvqWc6fy0/Q/LNsMCP87pga2PXTX12dVv3XhzOkTB1br2RtZm0ZvHq4N72GApDmy3jMt
+         kPORZ2EUyPI/CWZKWqYAFYxAolRYlSZH+DzcyVaAX2taHco6R8rMXgctDsBE7B+LMWIL
+         X18P4cyQmnT6FeEyFhbvEGMmuBQTYw9Lg/ahtohg/KnQ5NG1aKZ4CmFf8clCQisrXcAd
+         /XOg==
+X-Gm-Message-State: AOAM533FKSxXToADRmlLqwmY1ZHSchlhTPdK99pF3ihc3UFWxb4TfYtU
+        5yCJH7nNis6Jw3+/UesTm94izIVxMbEyUQ==
+X-Google-Smtp-Source: ABdhPJwc19AEHcSKOMWNfda/yZeJ3Rnx8L44uiUVka78fHS1PNm46RwljYR7pdup5Vh/yJSVchgGeg==
+X-Received: by 2002:a63:3e06:: with SMTP id l6mr3746572pga.140.1616604375663;
+        Wed, 24 Mar 2021 09:46:15 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id u2sm2962698pfn.79.2021.03.24.09.46.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 09:46:14 -0700 (PDT)
+Date:   Wed, 24 Mar 2021 10:46:12 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] remoteproc: k3-r5: Extend support to R5F clusters on
+ AM64x SoCs
+Message-ID: <20210324164612.GA1806983@xps15>
+References: <20210318215842.8196-1-s-anna@ti.com>
+ <20210318215842.8196-3-s-anna@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <9de20a5960e029b8842dc026be3be85295647175.camel@suse.de>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000ddaac705be4b002f"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210318215842.8196-3-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000ddaac705be4b002f
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Good day Suman,
 
-On 2021-03-24 9:35 a.m., Nicolas Saenz Julienne wrote:
-> On Wed, 2021-03-24 at 09:27 -0700, Scott Branden wrote:
->> On 2021-03-23 2:24 p.m., Nicolas Saenz Julienne wrote:
->>> On Tue, 2021-03-23 at 15:08 -0600, Rob Herring wrote:
->>>> On Mon, Mar 22, 2021 at 12:11:29PM -0700, Scott Branden wrote:
->>>>> On 2021-03-22 11:58 a.m., Nicolas Saenz Julienne wrote:
->>>>>> Convert the brcm,iproc-sdhci binding to DT schema format using json-schema
->>>>>>
->>>>>> Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
->>>>>> ---
->>>>>>  .../bindings/mmc/brcm,iproc-sdhci.yaml        | 58 +++++++++++++++++++
->>>>>>  .../bindings/mmc/brcm,sdhci-iproc.txt         | 37 ------------
->>>>>>  2 files changed, 58 insertions(+), 37 deletions(-)
->>>>>>  create mode 100644 Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
->>>>>>  delete mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-iproc.txt
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..19d84f3ef9e6
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
->>>>>> @@ -0,0 +1,58 @@
->>>>>> +# SPDX-License-Identifier: GPL-2.0
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/mmc/brcm,iproc-sdhci.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Broadcom IPROC SDHCI controller
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
->>>>> This is already covered in the MAINTAINERS section via "N:	iproc".
->>>>> M:	Ray Jui <ray.jui@broadcom.com>
->>>>>
->>>>> M:	Scott Branden <scott.branden@broadcom.com>
->>>>>
->>>>> M:	bcm-kernel-feedback-list@broadcom.com
->>>>
->>>> Maybe so, but still required here. The problem is there is no 
->>>> MAINTAINERS file in the DT only tree[1].
->>>
->>> Well in that case, if Scott and Ray are OK with it I'll add them.
->> I do not know what the "maintainers" section in the yaml file is used to indicate.
->> If it is maintainer for the driver then please add the duplicate of what is
->> already in the MAINTAINERS file.  If it is for maintainer of devicetrees that
->> use this driver then no need to add us.
+On Thu, Mar 18, 2021 at 04:58:42PM -0500, Suman Anna wrote:
+> The K3 AM64x SoC family has a revised R5F sub-system and contains a
+> subset of the R5F clusters present on J721E SoCs. The K3 AM64x SoCs
+> only have two dual-core Arm R5F clusters/subsystems with 2 R5F cores
+> each present within the MAIN voltage domain (MAIN_R5FSS0 & MAIN_R5FSS1).
 > 
-> From the dt bindings documentation:
+> The revised IP has the following distinct features:
+>  1. The R5FSS IP supports a new "Single-CPU" mode instead of the LockStep
+>     mode on existing SoCs (AM65x, J721E or J7200). This mode is similar
+>     to LockStep-mode on J7200 SoCs in terms of TCM usage without the
+>     fault-tolerant safety feature provided by the LockStep mode.
 > 
-> maintainers
->   A DT specific property. Contains a list of email address(es)
->   for maintainers of this binding.
+>     The Core1 TCMs are combined with the Core0 TCMs effectively doubling
+>     the amount of TCMs available in Single-CPU mode. The LockStep-mode
+>     on previous AM65x and J721E SoCs could only use the Core0 TCMs. These
+>     combined TCMs appear contiguous at the respective Core0 TCM addresses.
+>     The code though is executed only on a single CPU (on Core0), and as
+>     such, requires the halt signal to be programmed only for Core0, while
+>     the resets need to be managed for both the cores.
 > 
-> That's the maintainers for the bindings, not the devicetrees consuming them. I
-> belive it makes sense for you guys to maintain it as it has a strong
-> relationship to driver changes. But if you're not interested I'll do it myself.
-Sure, you can add us as well.
+>  2. TCMs are auto-initialized during module power-up, and the behavior
+>     is programmable through a MMR bit. This feature is the same as on
+>     the recent J7200 SoCs.
 > 
-> Regards,
-> Nicolas
+> Extend the support to these clusters in the K3 R5F remoteproc driver
+> using AM64x specific compatibles. New TI-SCI flags and a unique cluster
+> mode are also needed for the cluster mode detection on these SoCs. The
+> reset assert and deassert sequence of both the cores in Single-CPU mode
+> is agnostic of the order, so the same LockStep reset and release sequences
+> are re-used.
 > 
+> The integration of these clusters is very much similar to existing SoCs
+> otherwise.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c | 155 ++++++++++++++++++-----
+>  1 file changed, 126 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> index 5cf8d030a1f0..497f0d05b887 100644
+> --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> @@ -40,6 +40,8 @@
+>  #define PROC_BOOT_CFG_FLAG_R5_ATCM_EN			0x00002000
+>  /* Available from J7200 SoCs onwards */
+>  #define PROC_BOOT_CFG_FLAG_R5_MEM_INIT_DIS		0x00004000
+> +/* Applicable to only AM64x SoCs */
+> +#define PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE		0x00008000
+>  
+>  /* R5 TI-SCI Processor Control Flags */
+>  #define PROC_BOOT_CTRL_FLAG_R5_CORE_HALT		0x00000001
+> @@ -49,6 +51,8 @@
+>  #define PROC_BOOT_STATUS_FLAG_R5_WFI			0x00000002
+>  #define PROC_BOOT_STATUS_FLAG_R5_CLK_GATED		0x00000004
+>  #define PROC_BOOT_STATUS_FLAG_R5_LOCKSTEP_PERMITTED	0x00000100
+> +/* Applicable to only AM64x SoCs */
+> +#define PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY	0x00000200
+>  
+>  /**
+>   * struct k3_r5_mem - internal memory structure
+> @@ -64,19 +68,29 @@ struct k3_r5_mem {
+>  	size_t size;
+>  };
+>  
+> +/*
+> + * All cluster mode values are not applicable on all SoCs. The following
+> + * are the modes supported on various SoCs:
+> + *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
+> + *   LockStep mode   : AM65x, J721E and J7200 SoCs
+> + *   Single-CPU mode : AM64x SoCs only
+> + */
+>  enum cluster_mode {
+>  	CLUSTER_MODE_SPLIT = 0,
+>  	CLUSTER_MODE_LOCKSTEP,
+> +	CLUSTER_MODE_SINGLECPU,
+>  };
+>  
+>  /**
+>   * struct k3_r5_soc_data - match data to handle SoC variations
+>   * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
+>   * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
+> + * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
+>   */
+>  struct k3_r5_soc_data {
+>  	bool tcm_is_double;
+>  	bool tcm_ecc_autoinit;
+> +	bool single_cpu_mode;
+>  };
+>  
+>  /**
+> @@ -369,6 +383,13 @@ static inline int k3_r5_core_run(struct k3_r5_core *core)
+>   * applicable cores to allow loading into the TCMs. The .prepare() ops is
+>   * invoked by remoteproc core before any firmware loading, and is followed
+>   * by the .start() ops after loading to actually let the R5 cores run.
+> + *
+> + * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to
+> + * execute code, but combines the TCMs from both cores. The resets for both
+> + * cores need to be released to make this possible, as the TCMs are in general
+> + * private to each core. Only Core0 needs to be unhalted for running the
+> + * cluster in this mode. The function uses the same reset logic as LockStep
+> + * mode for this (though the behavior is agnostic of the reset release order).
+>   */
+>  static int k3_r5_rproc_prepare(struct rproc *rproc)
+>  {
+> @@ -386,7 +407,9 @@ static int k3_r5_rproc_prepare(struct rproc *rproc)
+>  		return ret;
+>  	mem_init_dis = !!(cfg & PROC_BOOT_CFG_FLAG_R5_MEM_INIT_DIS);
+>  
+> -	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
+> +	/* Re-use LockStep-mode reset logic for Single-CPU mode */
+> +	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +	       cluster->mode == CLUSTER_MODE_SINGLECPU) ?
+>  		k3_r5_lockstep_release(cluster) : k3_r5_split_release(core);
+>  	if (ret) {
+>  		dev_err(dev, "unable to enable cores for TCM loading, ret = %d\n",
+> @@ -427,6 +450,12 @@ static int k3_r5_rproc_prepare(struct rproc *rproc)
+>   * cores. The cores themselves are only halted in the .stop() ops, and the
+>   * .unprepare() ops is invoked by the remoteproc core after the remoteproc is
+>   * stopped.
+> + *
+> + * The Single-CPU mode on applicable SoCs (eg: AM64x) combines the TCMs from
+> + * both cores. The access is made possible only with releasing the resets for
+> + * both cores, but with only Core0 unhalted. This function re-uses the same
+> + * reset assert logic as LockStep mode for this mode (though the behavior is
+> + * agnostic of the reset assert order).
+>   */
+>  static int k3_r5_rproc_unprepare(struct rproc *rproc)
+>  {
+> @@ -436,7 +465,9 @@ static int k3_r5_rproc_unprepare(struct rproc *rproc)
+>  	struct device *dev = kproc->dev;
+>  	int ret;
+>  
+> -	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
+> +	/* Re-use LockStep-mode reset logic for Single-CPU mode */
+> +	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +	       cluster->mode == CLUSTER_MODE_SINGLECPU) ?
+>  		k3_r5_lockstep_reset(cluster) : k3_r5_split_reset(core);
+>  	if (ret)
+>  		dev_err(dev, "unable to disable cores, ret = %d\n", ret);
+> @@ -455,6 +486,10 @@ static int k3_r5_rproc_unprepare(struct rproc *rproc)
+>   * first followed by Core0. The Split-mode requires that Core0 to be maintained
+>   * always in a higher power state that Core1 (implying Core1 needs to be started
+>   * always only after Core0 is started).
+> + *
+> + * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to execute
+> + * code, so only Core0 needs to be unhalted. The function uses the same logic
+> + * flow as Split-mode for this.
+>   */
+>  static int k3_r5_rproc_start(struct rproc *rproc)
+>  {
+> @@ -539,6 +574,10 @@ static int k3_r5_rproc_start(struct rproc *rproc)
+>   * Core0 to be maintained always in a higher power state that Core1 (implying
+>   * Core1 needs to be stopped first before Core0).
+>   *
+> + * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to execute
+> + * code, so only Core0 needs to be halted. The function uses the same logic
+> + * flow as Split-mode for this.
+> + *
+>   * Note that the R5F halt operation in general is not effective when the R5F
+>   * core is running, but is needed to make sure the core won't run after
+>   * deasserting the reset the subsequent time. The asserting of reset can
+> @@ -665,7 +704,9 @@ static const struct rproc_ops k3_r5_rproc_ops = {
+>   *
+>   * Each R5FSS has a cluster-level setting for configuring the processor
+>   * subsystem either in a safety/fault-tolerant LockStep mode or a performance
+> - * oriented Split mode. Each R5F core has a number of settings to either
+> + * oriented Split mode on most SoCs. A fewer SoCs support a non-safety mode
+> + * as an alternate for LockStep mode that exercises only a single R5F core
+> + * called Single-CPU mode. Each R5F core has a number of settings to either
+>   * enable/disable each of the TCMs, control which TCM appears at the R5F core's
+>   * address 0x0. These settings need to be configured before the resets for the
+>   * corresponding core are released. These settings are all protected and managed
+> @@ -677,11 +718,13 @@ static const struct rproc_ops k3_r5_rproc_ops = {
+>   * the cores are halted before the .prepare() step.
+>   *
+>   * The function is called from k3_r5_cluster_rproc_init() and is invoked either
+> - * once (in LockStep mode) or twice (in Split mode). Support for LockStep-mode
+> - * is dictated by an eFUSE register bit, and the config settings retrieved from
+> - * DT are adjusted accordingly as per the permitted cluster mode. All cluster
+> - * level settings like Cluster mode and TEINIT (exception handling state
+> - * dictating ARM or Thumb mode) can only be set and retrieved using Core0.
+> + * once (in LockStep mode or Single-CPU modes) or twice (in Split mode). Support
+> + * for LockStep-mode is dictated by an eFUSE register bit, and the config
+> + * settings retrieved from DT are adjusted accordingly as per the permitted
+> + * cluster mode. Another eFUSE register bit dictates if the R5F cluster only
+> + * supports a Single-CPU mode. All cluster level settings like Cluster mode and
+> + * TEINIT (exception handling state dictating ARM or Thumb mode) can only be set
+> + * and retrieved using Core0.
+>   *
+>   * The function behavior is different based on the cluster mode. The R5F cores
+>   * are configured independently as per their individual settings in Split mode.
+> @@ -700,10 +743,16 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
+>  	u32 set_cfg = 0, clr_cfg = 0;
+>  	u64 boot_vec = 0;
+>  	bool lockstep_en;
+> +	bool single_cpu;
+>  	int ret;
+>  
+>  	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
+> -	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ? core0 : kproc->core;
+> +	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +	    cluster->mode == CLUSTER_MODE_SINGLECPU) {
+> +		core = core0;
+> +	} else {
+> +		core = kproc->core;
+> +	}
+>  
+>  	ret = ti_sci_proc_get_status(core->tsp, &boot_vec, &cfg, &ctrl,
+>  				     &stat);
+> @@ -713,23 +762,48 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
+>  	dev_dbg(dev, "boot_vector = 0x%llx, cfg = 0x%x ctrl = 0x%x stat = 0x%x\n",
+>  		boot_vec, cfg, ctrl, stat);
+>  
+> +	/* check if only Single-CPU mode is supported on applicable SoCs */
+> +	if (cluster->soc_data->single_cpu_mode) {
+> +		single_cpu =
+> +			!!(stat & PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY);
+> +		if (single_cpu && cluster->mode == CLUSTER_MODE_SPLIT) {
+> +			dev_err(cluster->dev, "split-mode not permitted, force configuring for single-cpu mode\n");
+> +			cluster->mode = CLUSTER_MODE_SINGLECPU;
+> +		}
+> +		goto config;
+> +	}
+> +
+> +	/* check conventional LockStep vs Split mode configuration */
+>  	lockstep_en = !!(stat & PROC_BOOT_STATUS_FLAG_R5_LOCKSTEP_PERMITTED);
+>  	if (!lockstep_en && cluster->mode == CLUSTER_MODE_LOCKSTEP) {
+>  		dev_err(cluster->dev, "lockstep mode not permitted, force configuring for split-mode\n");
+>  		cluster->mode = CLUSTER_MODE_SPLIT;
+>  	}
+>  
+> +config:
+>  	/* always enable ARM mode and set boot vector to 0 */
+>  	boot_vec = 0x0;
+>  	if (core == core0) {
+>  		clr_cfg = PROC_BOOT_CFG_FLAG_R5_TEINIT;
+> -		/*
+> -		 * LockStep configuration bit is Read-only on Split-mode _only_
+> -		 * devices and system firmware will NACK any requests with the
+> -		 * bit configured, so program it only on permitted devices
+> -		 */
+> -		if (lockstep_en)
+> -			clr_cfg |= PROC_BOOT_CFG_FLAG_R5_LOCKSTEP;
+> +		if (cluster->soc_data->single_cpu_mode) {
+> +			/*
+> +			 * Single-CPU configuration bit can only be configured
+> +			 * on Core0 and system firmware will NACK any requests
+> +			 * with the bit configured, so program it only on
+> +			 * permitted cores
+> +			 */
+> +			if (cluster->mode == CLUSTER_MODE_SINGLECPU)
+> +				set_cfg = PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE;
+> +		} else {
+> +			/*
+> +			 * LockStep configuration bit is Read-only on Split-mode
+> +			 * _only_ devices and system firmware will NACK any
+> +			 * requests with the bit configured, so program it only
+> +			 * on permitted devices
+> +			 */
+> +			if (lockstep_en)
+> +				clr_cfg |= PROC_BOOT_CFG_FLAG_R5_LOCKSTEP;
+> +		}
+>  	}
+>  
+>  	if (core->atcm_enable)
+> @@ -894,12 +968,12 @@ static void k3_r5_reserved_mem_exit(struct k3_r5_rproc *kproc)
+>   * cores are usable in Split-mode, but only the Core0 TCMs can be used in
+>   * LockStep-mode. The newer revisions of the R5FSS IP maximizes these TCMs by
+>   * leveraging the Core1 TCMs as well in certain modes where they would have
+> - * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs). This is done by
+> - * making a Core1 TCM visible immediately after the corresponding Core0 TCM.
+> - * The SoC memory map uses the larger 64 KB sizes for the Core0 TCMs, and the
+> - * dts representation reflects this increased size on supported SoCs. The Core0
+> - * TCM sizes therefore have to be adjusted to only half the original size in
+> - * Split mode.
+> + * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs, Single-CPU mode on
+> + * AM64x SoCs). This is done by making a Core1 TCM visible immediately after the
+> + * corresponding Core0 TCM. The SoC memory map uses the larger 64 KB sizes for
+> + * the Core0 TCMs, and the dts representation reflects this increased size on
+> + * supported SoCs. The Core0 TCM sizes therefore have to be adjusted to only
+> + * half the original size in Split mode.
+>   */
+>  static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
+>  {
+> @@ -909,6 +983,7 @@ static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
+>  	struct k3_r5_core *core0;
+>  
+>  	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
+>  	    !cluster->soc_data->tcm_is_double)
+>  		return;
+>  
+> @@ -987,8 +1062,9 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+>  			goto err_add;
+>  		}
+>  
+> -		/* create only one rproc in lockstep mode */
+> -		if (cluster->mode == CLUSTER_MODE_LOCKSTEP)
+> +		/* create only one rproc in lockstep mode or single-cpu mode */
+> +		if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +		    cluster->mode == CLUSTER_MODE_SINGLECPU)
+>  			break;
+>  	}
+>  
+> @@ -1020,11 +1096,12 @@ static void k3_r5_cluster_rproc_exit(void *data)
+>  	struct rproc *rproc;
+>  
+>  	/*
+> -	 * lockstep mode has only one rproc associated with first core, whereas
+> -	 * split-mode has two rprocs associated with each core, and requires
+> -	 * that core1 be powered down first
+> +	 * lockstep mode and single-cpu modes have only one rproc associated
+> +	 * with first core, whereas split-mode has two rprocs associated with
+> +	 * each core, and requires that core1 be powered down first
+>  	 */
+> -	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
+> +	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +		cluster->mode == CLUSTER_MODE_SINGLECPU) ?
+>  		list_first_entry(&cluster->cores, struct k3_r5_core, elem) :
+>  		list_last_entry(&cluster->cores, struct k3_r5_core, elem);
+>  
+> @@ -1396,7 +1473,12 @@ static int k3_r5_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	cluster->dev = dev;
+> -	cluster->mode = CLUSTER_MODE_LOCKSTEP;
+> +	/*
+> +	 * default to most common efuse configurations - Split-mode on AM64x
+> +	 * and LockStep-mode on all others
+> +	 */
+> +	cluster->mode = data->single_cpu_mode ?
+> +				CLUSTER_MODE_SPLIT : CLUSTER_MODE_LOCKSTEP;
+>  	cluster->soc_data = data;
+>  	INIT_LIST_HEAD(&cluster->cores);
+>  
+> @@ -1406,6 +1488,12 @@ static int k3_r5_probe(struct platform_device *pdev)
+>  			ret);
+>  		return ret;
+>  	}
+> +	/*
+> +	 * Translate SoC-specific dts value of 1 or 2 into appropriate
+> +	 * driver-specific mode. Valid values are dictated by YAML binding
+> +	 */
+> +	if (cluster->mode && data->single_cpu_mode)
+> +		cluster->mode = CLUSTER_MODE_SINGLECPU;
 
+Despite its small size this patch was hard to review, mostly because there is
+two flags to keep track of the single cpu mode, that is k3_r5_cluster::mode and
+k3_r5_soc_data::single_cpu_mode.
 
---000000000000ddaac705be4b002f
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+From what I understand it would be possible to get rid of the latter by using
+of_device_is_compatible() in k3_r5_probe() to setup the default cluster mode.
 
-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
-cRe0CRXA7ypOJSgxO/nOOyQoaJxT7CGg1npOeSpPjEuc3fE4xum3l0nvU85hj6MlKZu43hokdBh0
-D0nLyyhEwlR3AC/msdff/UGbM/JR9vk812RP4m/aNWZFJwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRpzY290dC5icmFuZGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUOhjEpl04Sz9dh5MI82E1
-V39lM/owDQYJKoZIhvcNAQELBQADggEBAA7Rlypx/esz/iq1yA4+KW7uwV/aBY344BWcXt6I+SNK
-VwFBgFWfLj5vaEud9TVv2fPSiaHJo0umemOJk+43QD+bsoqmgcFXd21PrOt7Jjs+jjVED9VC5kJq
-S4NNKUkS+BqijJwSegtVygrc/atrIlJbjI21q4qpemUo5fgwqCNm++BmBGTI8yA09vtGSNDRN42k
-lLX9hl3iEj5SBgkQqCbbnoE+ZjjKfqt7ED166WhgyQWNrl39yLcvLj+JRUB3RuvXKZjH0NQEEBII
-wZBDSkyneykLt3CBNIhSCTxKM6OWxVp936ALSa5K9FNy00TeWSpokR6NmzaW8VD/EjTgvqAxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgx9oXSJpKniO4dS
-Gk8wDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBnv6igRHhmDbuAl73NW7VJttv36
-iz9mgBr+KhkZnktaMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIx
-MDMyNDE2NDM0OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBlOuuoo8vxCD9xrAq/CWVbt8vHcjmT9fLh+zQPqIaQv3Q9
-VF6E8S3v7v/RaQftxerqgXkRbJLz/1HnfbPaqLXXNIwksv98F6vZlSoVEvSK5GWwxpB8RGSE4bv8
-Rh7iprxuZkiNBem/8qJQc3tpVFcYxFMWzqmQibu2UZwhGWbqZcVVc9bhtrBb23GQhhwjt9RPuulW
-7QBG0XJ0as2mO8vriFO1oT14BwlgNYS5nZ1I6o+7m/QbJn7PMxVu5t0kkxeomqL1klUD2wxZ/3mw
-wcPsaUEoic+7FiE03dT+ij6q8sR4t6Pz8qUsZ9S7UQ/+5Faxz6R9gmLSfi06ypOEvRUa
---000000000000ddaac705be4b002f--
+Thanks,
+Mathieu
+
+>  
+>  	num_cores = of_get_available_child_count(np);
+>  	if (num_cores != 2) {
+> @@ -1450,17 +1538,26 @@ static int k3_r5_probe(struct platform_device *pdev)
+>  static const struct k3_r5_soc_data am65_j721e_soc_data = {
+>  	.tcm_is_double = false,
+>  	.tcm_ecc_autoinit = false,
+> +	.single_cpu_mode = false,
+>  };
+>  
+>  static const struct k3_r5_soc_data j7200_soc_data = {
+>  	.tcm_is_double = true,
+>  	.tcm_ecc_autoinit = true,
+> +	.single_cpu_mode = false,
+> +};
+> +
+> +static const struct k3_r5_soc_data am64_soc_data = {
+> +	.tcm_is_double = true,
+> +	.tcm_ecc_autoinit = true,
+> +	.single_cpu_mode = true,
+>  };
+>  
+>  static const struct of_device_id k3_r5_of_match[] = {
+>  	{ .compatible = "ti,am654-r5fss", .data = &am65_j721e_soc_data, },
+>  	{ .compatible = "ti,j721e-r5fss", .data = &am65_j721e_soc_data, },
+>  	{ .compatible = "ti,j7200-r5fss", .data = &j7200_soc_data, },
+> +	{ .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, k3_r5_of_match);
+> -- 
+> 2.30.1
+> 
