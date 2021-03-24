@@ -2,154 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4CD2347BEC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F205347C09
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:19:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236503AbhCXPRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:17:31 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:34525 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236497AbhCXPRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:17:19 -0400
-Received: by mail-io1-f48.google.com with SMTP id x16so21871962iob.1;
-        Wed, 24 Mar 2021 08:17:19 -0700 (PDT)
+        id S236519AbhCXPTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:19:07 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:45929 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236428AbhCXPSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:18:55 -0400
+Received: by mail-io1-f51.google.com with SMTP id k8so21874851iop.12;
+        Wed, 24 Mar 2021 08:18:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pFK/hlLIyYgFOB9MKct/KWeHqcYMta2ZA7PC3OnmFDI=;
-        b=al0wPBKmD6GQPhtWm/7RwdxH9f/l7idyDb/DeZ8Bt3ya6oEiNuEffa3QEQ0PnbMx5b
-         KrjeNAuVwWaK45h4d+r+2ytwamt+CcRINuv4oCsn+axMSBEAuZRtr3hEUlsNbpVikGek
-         1oySYssro0+aafRP+nyhr4FO8ZvfEKL/h/mw9GXa1NXTObw65x8E+g9JIUiD4Ct2Oho4
-         gFUVI0QHP35F2t18PGXNDuIy5fCpxSz1+yD7IIuvdefyqsQ/1T2OPP3NTt2clWTawvN1
-         dVKNwMB1+GmfgXOyPwOLldmfzJfUegd/qLguhA08zcz7uvUERxVgnzquZC7cyp+Avm41
-         8VeQ==
-X-Gm-Message-State: AOAM532cpcLj+IKlAE5H4uzeJtuyd8m3q5Attzbx2QZE/6mW3yB6UILw
-        mJONKa2x1pa26dEWesOEzFASXXFKBA==
-X-Google-Smtp-Source: ABdhPJxa1T5Mab+bhlE6pdxQmGvtMBiwyMq64Di77lMMKOnjRC3K5lSWHh1Il3w07Isf9/IdyGVIXg==
-X-Received: by 2002:a6b:4109:: with SMTP id n9mr2760705ioa.43.1616599039279;
-        Wed, 24 Mar 2021 08:17:19 -0700 (PDT)
+        bh=mHWIX01g5QwAZ8qLk5RpjZQyq2xV+NH9VhPdBzNv998=;
+        b=NLZ/SbkMReiudueDGuLUBu3Bae5GE0GT2v6AkGmQCVd6qdJZC4BVMniGDkHENt8VWd
+         qR4kOHTzyA2r1vjkMD3aJ5HeaOhHWWDW95fThiDSHKQ60aDoXAj5nYbaCsV04cMnav6W
+         t6FpBTMAuAij+J6pT2TD40LO3HjIlfepbMWQO/+/HrBEQ4FEt7GULM+WvcXXgUZhd9VK
+         sCXRPnVuBN3KMpUx6LiH8XI8AxOBstfNyRslpIczy9GDZUla9q9yEOWY6B8B2bD/xCzm
+         EvgNBdF1i0WbmTLWtpRgtff7RTOekiGztUulMxKDelClDgO9giCUeyPaVAKlRzp5AAQ6
+         y11g==
+X-Gm-Message-State: AOAM5300V1b4WTVKYqIzbI5AyBFOLlDvEkpY2VXNvbUX9kJgM4OXKaQi
+        PuUDyOqq1jusKgtil13FbU9HzIo3pg==
+X-Google-Smtp-Source: ABdhPJyYehFovzVqPSlDFqfKh5uY8GMU71gp2Kc8r4Nc+hKYTdtZOlPiFGXnKWZsYxztRDEZm1EN4A==
+X-Received: by 2002:a5d:87d5:: with SMTP id q21mr2809629ios.105.1616599134524;
+        Wed, 24 Mar 2021 08:18:54 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s15sm1247129ilv.4.2021.03.24.08.17.16
+        by smtp.gmail.com with ESMTPSA id i67sm1264206ioa.3.2021.03.24.08.18.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 08:17:17 -0700 (PDT)
-Received: (nullmailer pid 3082380 invoked by uid 1000);
-        Wed, 24 Mar 2021 15:17:15 -0000
-Date:   Wed, 24 Mar 2021 09:17:15 -0600
+        Wed, 24 Mar 2021 08:18:52 -0700 (PDT)
+Received: (nullmailer pid 3084914 invoked by uid 1000);
+        Wed, 24 Mar 2021 15:18:50 -0000
+Date:   Wed, 24 Mar 2021 09:18:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Emil Velikov <emil.l.velikov@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 06/10] media: dt-bindings: Document SAMA5D4 VDEC
- bindings
-Message-ID: <20210324151715.GA3070006@robh.at.kernel.org>
-References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
- <20210311154055.3496076-7-emil.l.velikov@gmail.com>
+To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+Cc:     marcel@holtmann.org, johan.hedberg@gmail.com,
+        devicetree@vger.kernel.org, mka@chromium.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        hemantg@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        bgodavar@codeaurora.org, rjliao@codeaurora.org,
+        hbandi@codeaurora.org, abhishekpandit@chromium.org
+Subject: Re: [PATCH v1 2/2] dt-bindings: net: bluetooth: Add device tree
+ bindings for QTI chip wcn6750
+Message-ID: <20210324151850.GA3083022@robh.at.kernel.org>
+References: <1615481904-9400-1-git-send-email-gubbaven@codeaurora.org>
+ <1615481904-9400-3-git-send-email-gubbaven@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210311154055.3496076-7-emil.l.velikov@gmail.com>
+In-Reply-To: <1615481904-9400-3-git-send-email-gubbaven@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 03:40:51PM +0000, Emil Velikov wrote:
-> From: Emil Velikov <emil.velikov@collabora.com>
+On Thu, Mar 11, 2021 at 10:28:24PM +0530, Venkata Lakshmi Narayana Gubba wrote:
+> This patch enables regulators and gpios for the Qualcomm Bluetooth wcn6750
+> controller.
 > 
-> Add devicetree binding documentation for the Hantro G1/G2 VDEC on
-> the Microchip SAMAS5D4 SoC.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: devicetree@vger.kernel.org>
-> Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
+> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
 > ---
-> v2
->  - Newly introduced
->  - s/Atmel/Microchip/ (Nicolas)
->  - Drop leading 0 in node name/address
-> ---
->  .../media/microchip,sama5d4-vdec.yaml         | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
+>  .../devicetree/bindings/net/qualcomm-bluetooth.txt | 43 ++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+
+This is a large change. Please convert to DT schema first.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml b/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
-> new file mode 100644
-> index 000000000000..9cb2c0295d54
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> index 709ca6d..e70fcb7 100644
+> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> @@ -15,6 +15,7 @@ Required properties:
+>     * "qcom,wcn3991-bt"
+>     * "qcom,wcn3998-bt"
+>     * "qcom,qca6390-bt"
+> +   * "qcom,wcn6750-bt"
+>  
+>  Optional properties for compatible string qcom,qca6174-bt:
+>  
+> @@ -39,6 +40,26 @@ Optional properties for compatible string qcom,wcn399x-bt:
+>   - firmware-name: specify the name of nvm firmware to load
+>   - clocks: clock provided to the controller
+>  
+> +Required properties for compatible string qcom,wcn6750-bt:
 > +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/microchip,sama5d4-vdec.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> + - enable-gpios: gpio specifier used to enable chip
+> + - swctrl-gpios: gpio specifier is output from SoC,used to find status
+> +		 of clock supply to SoC.
+> + - vddio-supply: VDD_IO supply regulator handle.
+> + - vddaon-supply: VDD_AON supply regulator handle.
+> + - vddbtcxmx-suppl: VDD_BT_CXMX supply regualtor handle.
+> + - vddrfacmn-supply: VDD_RFA_CMN supply regulator handle.
+> + - vddrfa0p8-supply: VDD_RFA_0P8 suppply regulator handle.
+> + - vddrfa1p7-supply: VDD_RFA_1P7 supply regulator handle.
+> + - vddrfa1p2-supply: VDD_RFA_1P2 supply regulator handle.
+> + - vddrfa2p2-supply: VDD_RFA_2P2 supply regulator handle.
+> + - vddasd-supply: VDD_ASD supply regulator handle.
 > +
-> +title: Hantro G1 VPU codec implemented on Microchip SAMA5D4 SoCs
+> +Optional properties for compatible string qcom,wcn6750-bt:
 > +
-> +maintainers:
-> +  - Emil Velikov <emil.velikov@collabora.com>
+> + - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+> + - firmware-name: specify the name of nvm firmware to load
 > +
-> +description:
-> +  Hantro G1 video decode accelerator present on Microchip SAMA5D4 SoCs.
+>  Examples:
+>  
+>  serial@7570000 {
+> @@ -67,3 +88,25 @@ serial@898000 {
+>  		clocks = <&rpmhcc RPMH_RF_CLK2>;
+>  	};
+>  };
 > +
-> +properties:
-> +  compatible:
-> +    const: microchip,sama5d4-vdec
+> +serial@99c000 {
+> +	bluetooth {
+> +		compatible = "qcom,wcn6750-bt";
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: vdec
-
-Why do you need a name? *-names are used to distinguish multiple entries 
-and don't add anything if only a single entry.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vdec_clk
-
-And here too? These are typically named for either the name of input 
-signal (hclk, aclk, etc.) or function ('core', 'bus', etc.). 
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/clock/at91.h>
-> +        #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +        vdec0: vdec@300000 {
-> +                compatible = "microchip,sama5d4-vdec";
-> +                reg = <0x00300000 0x100000>;
-> +                interrupts = <19 IRQ_TYPE_LEVEL_HIGH 4>;
-> +                interrupt-names = "vdec";
-> +                clocks = <&pmc PMC_TYPE_PERIPHERAL 19>;
-> +                clock-names = "vdec_clk";
-> +        };
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_en_default>;
+> +		enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
+> +		swctrl-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
+> +		vddio-supply = <&vreg_l19b_1p8>;
+> +		vddaon-supply = <&vreg_s7b_0p9>;
+> +		vddbtcxmx-supply = <&vreg_s7b_0p9>;
+> +		vddrfacmn-supply = <&vreg_s7b_0p9>;
+> +		vddrfa0p8-supply = <&vreg_s7b_0p9>;
+> +		vddrfa1p7-supply = <&vreg_s1b_1p8>;
+> +		vddrfa1p2-supply = <&vreg_s8b_1p2>;
+> +		vddrfa2p2-supply = <&vreg_s1c_2p2>;
+> +		vddasd-supply = <&vreg_l11c_2p8>;
+> +		max-speed = <3200000>;
+> +		firmware-name = "msnv11.bin";
+> +	};
+> +};
 > -- 
-> 2.30.1
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
 > 
