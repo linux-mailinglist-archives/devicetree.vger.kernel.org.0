@@ -2,98 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6CE346FAE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5456F346FB6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbhCXCto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 22:49:44 -0400
-Received: from regular1.263xmail.com ([211.150.70.195]:55314 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232089AbhCXCt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:49:29 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by regular1.263xmail.com (Postfix) with ESMTP id 335B91D1D;
-        Wed, 24 Mar 2021 10:49:00 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.236] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P13111T139928526636800S1616554138557516_;
-        Wed, 24 Mar 2021 10:48:59 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <04df23d237b6fbd553a9c872d6560c96>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: finley.xiao@rock-chips.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH v2 2/3] dt-bindings: Convert the rockchip power_domain to
- YAML and extend
-To:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>, cl@rock-chips.com,
-        huangtao@rock-chips.com, kever.yang@rock-chips.com,
-        tony.xie@rock-chips.com, finley.xiao@rock-chips.com
-References: <20210323082410.22818-1-zhangqing@rock-chips.com>
- <20210323082410.22818-3-zhangqing@rock-chips.com>
- <87e50d5b-604b-508c-f3cb-ee07fcf15241@gmail.com>
- <CAFqH_53kBf++SPfir_5mA9Dv2v=u4s1zpqnztAH8Tt2-9dLVnQ@mail.gmail.com>
-From:   "elaine.zhang" <zhangqing@rock-chips.com>
-Organization: rockchip
-Message-ID: <6e906aee-646f-ff7e-deca-fe9bbd435cd8@rock-chips.com>
-Date:   Wed, 24 Mar 2021 10:48:58 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CAFqH_53kBf++SPfir_5mA9Dv2v=u4s1zpqnztAH8Tt2-9dLVnQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S232076AbhCXCxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 22:53:04 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:34337 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231668AbhCXCwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 22:52:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1616554358;
+  x=1648090358;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=Dg8oeMNDYycBgS5zf20SGi8YwA6Qx64E/aiSgxCBJzg=;
+  b=QXd154vWMvFteUBTq2tc7HOGRQkkbwfXMfUjMYSgRYBS1UskhYfrvic3
+   6UnkDyWq3jcgLPQhicVQkFHBsm6p65+NXV39ATIrpBfNcCi8BozDdx8wP
+   yABJLAO8wWnXThlDDVmZhiBXhJHiq6L8QwEdunQ4nxWzpBVsJ0px5VXiJ
+   R9cZPWxnL+LMMIdFYgfZcRYrlwlt4URvyXelOCG4igj5eF1+IJOQp7Gb6
+   h/JsH4vX2dRrP0dIV16BJBf6ts2e9RmAcHVuTH3k1ob8Ujg7X3owteBjc
+   MOYuti/0lKTiCx1peyXZ+UB2g3VvXkLgdFOrFVs3Z8CJn9vhRZMWwwldE
+   Q==;
+From:   Hermes Zhang <Hermes.Zhang@axis.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Pavel Machek <pavel@ucw.cz>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@axis.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
+Subject: RE: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
+Thread-Topic: [PATCH v2] dt-binding: leds: Document leds-multi-gpio bindings
+Thread-Index: AQHXHvxgm+r+aZrBek+AmH3Nb8cHlKqQNY0AgAC2GSCAAJ9XgIAA6EZw
+Date:   Wed, 24 Mar 2021 02:52:36 +0000
+Message-ID: <2f711d85081d4556acc5d8a658119868@XBOX01.axis.com>
+References: <20210322091819.29119-1-chenhui.zhang@axis.com>
+ <1616434698.344402.2887754.nullmailer@robh.at.kernel.org>
+ <424d3de97a154c6a9580f27347882413@XBOX01.axis.com>
+ <CAL_JsqJYSNBHqdZbWTn76tTna+u=1rjiebTPDQjZFQQdTEkp4w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJYSNBHqdZbWTn76tTna+u=1rjiebTPDQjZFQQdTEkp4w@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Enric
-
-在 2021/3/24 上午4:58, Enric Balletbo Serra 写道:
-> Hi Elaine,
->
-> Missatge de Johan Jonker <jbx6244@gmail.com> del dia dt., 23 de març
-> 2021 a les 12:06:
->> Hi Elaine,
->>
->> Some comments. Have a look if it's useful or that you disagree
->> with...(part 1)
->>
->> ======
->> There is currently already a patch proposal that does the same.
->> Could you read that review history and port the good things to your own
->> patch serie?
->>
->> Re: [PATCH] dt-bindings: power: rockchip: Convert to json-schema
->> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
->>
->> Re: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
->> https://lore.kernel.org/linux-rockchip/20201007151159.GA221754@bogus/
->>
-> In fact, the latest version is v6 which can be found here:
->
-> https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
->
-> Feel free to integrate and/or improve that version in your series.
-Thank you for your submission. I will revise the submission on this basis.
->
->
->
-
-
+PiA+DQo+ID4gSGkgUm9iLA0KPiA+DQo+ID4gVGhhbmtzLiBZZXMsIG5vdyBJIGNhbiBzZWUgdGhl
+IHdhcm5pbmcsIGJ1dCBJIGNvdWxkIG5vdCB1bmRlcnN0YW5kIHdoYXQNCj4gd2FzIHdyb25nPyBD
+b3VsZCB5b3UgZ2l2ZSBzb21lIGhpbnQ/DQo+IA0KPiBJIHRoaW5rIHlvdSBuZWVkICdtYXhJdGVt
+cycgaW4gYWRkaXRpb24gdG8gbWluSXRlbXMuDQoNCkV4YWN0bHkhIFRoYW5rcyBmb3IgdGhlIHN1
+Z2dlc3Rpb24uDQoNCkJlc3QgUmVnYXJkcywNCkhlcm1lcw0K
