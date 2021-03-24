@@ -2,57 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B67347DC5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A275E347DC7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235878AbhCXQfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:35:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39032 "EHLO mail.kernel.org"
+        id S235844AbhCXQfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 12:35:41 -0400
+Received: from mx2.suse.de ([195.135.220.15]:33682 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234741AbhCXQez (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 12:34:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E15CB619E4;
-        Wed, 24 Mar 2021 16:34:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616603695;
-        bh=hUOBLPPbTSZw0MdksqtVo7DW9tnlNyx/Ii6rWxq74mA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=p8pYM0SNfVF9Zl28f0ktwPKzyr9TJCwcW1ZyyKMR18Sp4l2/jjj7jcBkhw3uyepkd
-         VSnjPiYccSarkQH5C/XpD+nYYFqXMjcXpsDdsImgLvTUlN6x0+/aXz52gWXBNGlgSI
-         QMxY3ScjWMjhV9uDJaTj+OR3xbL/AUKYrvJs7ORYJj/AS7KJlAg279P220x7rrqM1F
-         uEuMeNPkwjrC1ysHatS9HVV6q9T/jmLsHAF1NDTJ4F0DClwYRSkrXaWWoFHa8IguVY
-         6+R/xCbKHNFht2Yh/n7QsgKavxDsv5aG7euxILjOTASDLUQyvRE9FgwkjNjDuuWbC7
-         JNxzdIO01PEGQ==
-Date:   Wed, 24 Mar 2021 11:34:53 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Subject: Re: [PATCH v5 2/2] PCI: rockchip: Add DesignWare based PCIe
- controller
-Message-ID: <20210324163453.GA695478@bjorn-Precision-5520>
+        id S229653AbhCXQfa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 12:35:30 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 5B282AC1D;
+        Wed, 24 Mar 2021 16:35:28 +0000 (UTC)
+Message-ID: <9de20a5960e029b8842dc026be3be85295647175.camel@suse.de>
+Subject: Re: [PATCH 1/4] dt-bindings: mmc: iproc-sdhci: Convert to
+ json-schema
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Scott Branden <scott.branden@broadcom.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>, f.fainelli@gmail.com,
+        phil@raspberrypi.com, tim.gover@raspberrypi.com,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        linux-kernel@vger.kernel.org
+Date:   Wed, 24 Mar 2021 17:35:26 +0100
+In-Reply-To: <28a133d2-c713-4bce-271c-5fa228d830ca@broadcom.com>
+References: <20210322185816.27582-1-nsaenz@kernel.org>
+         <20210322185816.27582-2-nsaenz@kernel.org>
+         <0e98588e-65f1-6839-1fcd-584b480a31bd@broadcom.com>
+         <20210323210812.GA1318204@robh.at.kernel.org>
+         <c1989e31501ccfb6e1350d467d4f26089bfcfb64.camel@suse.de>
+         <28a133d2-c713-4bce-271c-5fa228d830ca@broadcom.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-ViNOE93gnirGk1EY9hs7"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210222071828.30120-1-xxm@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Also, please make the subject line more specific, e.g.,
 
-  PCI: rockchip: Add Rockchip RK356X host controller driver
+--=-ViNOE93gnirGk1EY9hs7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 22, 2021 at 03:18:28PM +0800, Simon Xue wrote:
-> Add driver for DesignWare based PCIe controller found on RK356X.
-> The already existed driver pcie-rockchip-host is only used for
-> Rockchip designed IP found on RK3399.
+On Wed, 2021-03-24 at 09:27 -0700, Scott Branden wrote:
+> On 2021-03-23 2:24 p.m., Nicolas Saenz Julienne wrote:
+> > On Tue, 2021-03-23 at 15:08 -0600, Rob Herring wrote:
+> > > On Mon, Mar 22, 2021 at 12:11:29PM -0700, Scott Branden wrote:
+> > > > On 2021-03-22 11:58 a.m., Nicolas Saenz Julienne wrote:
+> > > > > Convert the brcm,iproc-sdhci binding to DT schema format using js=
+on-schema
+> > > > >=20
+> > > > > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > > > > ---
+> > > > > =C2=A0.../bindings/mmc/brcm,iproc-sdhci.yaml        | 58 ++++++++=
++++++++++++
+> > > > > =C2=A0.../bindings/mmc/brcm,sdhci-iproc.txt         | 37 --------=
+----
+> > > > > =C2=A02 files changed, 58 insertions(+), 37 deletions(-)
+> > > > > =C2=A0create mode 100644 Documentation/devicetree/bindings/mmc/br=
+cm,iproc-sdhci.yaml
+> > > > > =C2=A0delete mode 100644 Documentation/devicetree/bindings/mmc/br=
+cm,sdhci-iproc.txt
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdh=
+ci.yaml b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..19d84f3ef9e6
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+> > > > > @@ -0,0 +1,58 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/mmc/brcm,iproc-sdhci.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Broadcom IPROC SDHCI controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > > > This is already covered in the MAINTAINERS section via "N:	iproc".
+> > > > M:	Ray Jui <ray.jui@broadcom.com>
+> > > >=20
+> > > > M:	Scott Branden <scott.branden@broadcom.com>
+> > > >=20
+> > > > M:	bcm-kernel-feedback-list@broadcom.com
+> > >=20
+> > > Maybe so, but still required here. The problem is there is no=20
+> > > MAINTAINERS file in the DT only tree[1].
+> >=20
+> > Well in that case, if Scott and Ray are OK with it I'll add them.
+> I do not know what the "maintainers" section in the yaml file is used to =
+indicate.
+> If it is maintainer for the driver then please add the duplicate of what =
+is
+> already in the MAINTAINERS file.  If it is for maintainer of devicetrees =
+that
+> use this driver then no need to add us.
 
-  Add a driver for the DesignWare-based PCIe controller found on
-  RK356X.  The existing pcie-rockchip-host driver is only used for
-  the Rockchip-designed IP found on RK3399.
+=46rom the dt bindings documentation:
+
+maintainers
+  A DT specific property. Contains a list of email address(es)
+  for maintainers of this binding.
+
+That's the maintainers for the bindings, not the devicetrees consuming them=
+. I
+belive it makes sense for you guys to maintain it as it has a strong
+relationship to driver changes. But if you're not interested I'll do it mys=
+elf.
+
+Regards,
+Nicolas
+
+
+
+--=-ViNOE93gnirGk1EY9hs7
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBbak8ACgkQlfZmHno8
+x/7auwf/XiiMWtXMCFAncrVyJbJGU9nIKnVNg3g4XCQqTXHbYDcZ6bf1OIk7/Xst
+dr++njCcrrXqXUyT0gersWwdU9Bhk3tBJ1BPzUjIeieD2GrbdzAm2bs/9WNVkFjg
+4mf8DAx0Mhj8aWa4SKRBZL//2L3QzlbQmmHj6hJPpHWcR5CbYxMc4LSEPQMyD1Tu
++t1TfsHckWyMfkwCfzal/7Tk0H1SW7wXRVM0xzOS+2t3gqZZYn4L1+Va0/NNgsQ6
+qoLIL9qIIPxMpCLgCNsXgx47pFozZTvGvM08fxe5I92ZDQ+6Bx+5joYutjk53xS/
+wtLTUFS4dCSrLkj2joyZdr7A0sBbYA==
+=w+e4
+-----END PGP SIGNATURE-----
+
+--=-ViNOE93gnirGk1EY9hs7--
+
