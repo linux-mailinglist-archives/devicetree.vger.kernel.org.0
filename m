@@ -2,80 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006F7347FCF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 309CE347FFD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:06:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237073AbhCXRwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 13:52:20 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:34526 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236526AbhCXRvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:51:53 -0400
-Received: by mail-io1-f54.google.com with SMTP id x16so22417072iob.1;
-        Wed, 24 Mar 2021 10:51:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=17TKIF0QgDUzTxJGnuM465tbTrl6KEfcXDq37nKfdvc=;
-        b=nshaLLuqQvChe4Mcer+IULnyq4fFJ2+nySWFhiYwRkP2u2/799swfvAEEPZYyX45hb
-         Ldn5aZ6GhQ5SbCklM5P+mVFUV1JUU7JwHz5zPEw31BC6Wdgz3zCgpnc2DoIBGjfoZgN5
-         Wfu3iCQV+JIbmT1yPlEDKzqWWRSjqQymrymFkzt9kQmADN7lt+j7p13+FInGHli42ofX
-         tLQV7JN4MPmV2r79S6RqKD9Oi+fRTKMev7PyqrVYg6+NMAYIq51uNEgFGs1KI1aCGz0F
-         ptYQtkIIVXipcSYUkUAzFSQV2diH7RF2UeVIlMddLUkMFAaofHSVjA/l7m2eiSPuzTBw
-         hsAQ==
-X-Gm-Message-State: AOAM533zpHDZvX8K+kSJ0zdvndDBxd4DCKUMPwgky84O6bhvRVXitGPb
-        gcPGkwn70z0CwI3G8jv37w==
-X-Google-Smtp-Source: ABdhPJx7hPRAeDLMlQ3t6S4EyGJIm+TvC3ilVZW8FSTOnuKiHnkj+ZxNsVYm6pnIJjby7DwcY3TeQA==
-X-Received: by 2002:a02:a90f:: with SMTP id n15mr4000419jam.110.1616608312821;
-        Wed, 24 Mar 2021 10:51:52 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v17sm1361275ios.46.2021.03.24.10.51.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 10:51:52 -0700 (PDT)
-Received: (nullmailer pid 3326340 invoked by uid 1000);
-        Wed, 24 Mar 2021 17:51:49 -0000
-Date:   Wed, 24 Mar 2021 11:51:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Pratyush Yadav <p.yadav@ti.com>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        linux-mtd@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to json schema
-Message-ID: <20210324175149.GA3320002@robh.at.kernel.org>
-References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
- <20210315183051.ugvmz4zqrvuo6iqq@ti.com>
- <067c42f3726578ebe60d201a141dfdb6@walle.cc>
- <20210316180655.6oidvffum7yuwknr@ti.com>
- <97410b24785492f9e80999dd7a1ffdea@walle.cc>
+        id S237338AbhCXSGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 14:06:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37408 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232618AbhCXSFy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 14:05:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4430861A1B;
+        Wed, 24 Mar 2021 18:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616609154;
+        bh=4ddFWD0HDeMvJooIHBmVBLMfgHrZIiewXKZt5ch7iWs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A6FHmx+M+t/r7327J8jHlQn2j7eeeQwtuRXHcULuzLaaVTXqZuHY/wFrucrpfDQZC
+         takEBJ1G9jXLsxWNCfiPyc5ZsXKzT28qWT72jH7fC40YsYIR6fwCVeQCoVV2TtWmRK
+         LS4MrPVDMZakskpDgdmzRuOpYyqqXPbmznxYMSyIwiDu9rGOlBQrm7O3NetB/A0p/w
+         bo3i8Dzo1959a2p8UE2xQyE/NJhKDQ5hgIwCiTXFbJtvuzmT5chNnES9MbrJQ9BnGx
+         jqlnKGaoqZzmXDfV9VMH5xlIPe9OzrVIVBpaKUO3ToguDiPbUNN04mlRNBY/WbP8/S
+         iEWD9+cmga8Tw==
+Date:   Wed, 24 Mar 2021 18:05:46 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH v3 01/27] arm64: Cope with CPUs stuck in VHE mode
+Message-ID: <20210324180546.GA13181@willie-the-truck>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-2-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <97410b24785492f9e80999dd7a1ffdea@walle.cc>
+In-Reply-To: <20210304213902.83903-2-marcan@marcan.st>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 07:22:56PM +0100, Michael Walle wrote:
-> Am 2021-03-16 19:06, schrieb Pratyush Yadav:
-> > On 16/03/21 06:45PM, Michael Walle wrote:
-> > > Am 2021-03-15 19:30, schrieb Pratyush Yadav:
-> > > 
-> > > ..
-> > > > > +patternProperties:
-> > > > > +  "@[0-9a-f]+":
-> > > 
-> > > Shouldn't this be "^.*@[0-9a-f]+$"?
-> > 
-> > The pattern has to match _anywhere_ in the string so both should match
-> > the flash node. Your pattern is more "strict" or "precise". See the note
-> > at [0].
+On Fri, Mar 05, 2021 at 06:38:36AM +0900, Hector Martin wrote:
+> From: Marc Zyngier <maz@kernel.org>
 > 
-> I know, but specifying the whole line is widely used in the bindings.
+> It seems that the CPU known as Apple M1 has the terrible habit
+> of being stuck with HCR_EL2.E2H==1, in violation of the architecture.
+> 
+> Try and work around this deplorable state of affairs by detecting
+> the stuck bit early and short-circuit the nVHE dance. It is still
+> unknown whether there are many more such nuggets to be found...
+> 
+> Reported-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>  arch/arm64/kernel/head.S     | 33 ++++++++++++++++++++++++++++++---
+>  arch/arm64/kernel/hyp-stub.S | 28 ++++++++++++++++++++++++----
+>  2 files changed, 54 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/head.S b/arch/arm64/kernel/head.S
+> index 66b0e0b66e31..673002b11865 100644
+> --- a/arch/arm64/kernel/head.S
+> +++ b/arch/arm64/kernel/head.S
+> @@ -477,14 +477,13 @@ EXPORT_SYMBOL(kimage_vaddr)
+>   * booted in EL1 or EL2 respectively.
+>   */
+>  SYM_FUNC_START(init_kernel_el)
+> -	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
+> -	msr	sctlr_el1, x0
+> -
+>  	mrs	x0, CurrentEL
+>  	cmp	x0, #CurrentEL_EL2
+>  	b.eq	init_el2
+>  
+>  SYM_INNER_LABEL(init_el1, SYM_L_LOCAL)
+> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
+> +	msr	sctlr_el1, x0
+>  	isb
+>  	mov_q	x0, INIT_PSTATE_EL1
+>  	msr	spsr_el1, x0
+> @@ -504,6 +503,34 @@ SYM_INNER_LABEL(init_el2, SYM_L_LOCAL)
+>  	msr	vbar_el2, x0
+>  	isb
+>  
+> +	/*
+> +	 * Fruity CPUs seem to have HCR_EL2.E2H set to RES1,
+> +	 * making it impossible to start in nVHE mode. Is that
+> +	 * compliant with the architecture? Absolutely not!
+> +	 */
+> +	mrs	x0, hcr_el2
+> +	and	x0, x0, #HCR_E2H
+> +	cbz	x0, 1f
+> +
+> +	/* Switching to VHE requires a sane SCTLR_EL1 as a start */
+> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
+> +	msr_s	SYS_SCTLR_EL12, x0
+> +
+> +	/*
+> +	 * Force an eret into a helper "function", and let it return
+> +	 * to our original caller... This makes sure that we have
+> +	 * initialised the basic PSTATE state.
+> +	 */
+> +	mov	x0, #INIT_PSTATE_EL2
+> +	msr	spsr_el1, x0
+> +	adr_l	x0, stick_to_vhe
+> +	msr	elr_el1, x0
+> +	eret
+> +
+> +1:
+> +	mov_q	x0, INIT_SCTLR_EL1_MMU_OFF
+> +	msr	sctlr_el1, x0
+> +
+>  	msr	elr_el2, lr
+>  	mov	w0, #BOOT_CPU_MODE_EL2
+>  	eret
+> diff --git a/arch/arm64/kernel/hyp-stub.S b/arch/arm64/kernel/hyp-stub.S
+> index 5eccbd62fec8..c7601030ee82 100644
+> --- a/arch/arm64/kernel/hyp-stub.S
+> +++ b/arch/arm64/kernel/hyp-stub.S
+> @@ -27,12 +27,12 @@ SYM_CODE_START(__hyp_stub_vectors)
+>  	ventry	el2_fiq_invalid			// FIQ EL2t
+>  	ventry	el2_error_invalid		// Error EL2t
+>  
+> -	ventry	el2_sync_invalid		// Synchronous EL2h
+> +	ventry	elx_sync			// Synchronous EL2h
+>  	ventry	el2_irq_invalid			// IRQ EL2h
+>  	ventry	el2_fiq_invalid			// FIQ EL2h
+>  	ventry	el2_error_invalid		// Error EL2h
+>  
+> -	ventry	el1_sync			// Synchronous 64-bit EL1
+> +	ventry	elx_sync			// Synchronous 64-bit EL1
+>  	ventry	el1_irq_invalid			// IRQ 64-bit EL1
+>  	ventry	el1_fiq_invalid			// FIQ 64-bit EL1
+>  	ventry	el1_error_invalid		// Error 64-bit EL1
+> @@ -45,7 +45,7 @@ SYM_CODE_END(__hyp_stub_vectors)
+>  
+>  	.align 11
+>  
+> -SYM_CODE_START_LOCAL(el1_sync)
+> +SYM_CODE_START_LOCAL(elx_sync)
+>  	cmp	x0, #HVC_SET_VECTORS
+>  	b.ne	1f
+>  	msr	vbar_el2, x1
+> @@ -71,7 +71,7 @@ SYM_CODE_START_LOCAL(el1_sync)
+>  
+>  9:	mov	x0, xzr
+>  	eret
+> -SYM_CODE_END(el1_sync)
+> +SYM_CODE_END(elx_sync)
+>  
+>  // nVHE? No way! Give me the real thing!
+>  SYM_CODE_START_LOCAL(mutate_to_vhe)
+> @@ -243,3 +243,23 @@ SYM_FUNC_START(switch_to_vhe)
+>  #endif
+>  	ret
+>  SYM_FUNC_END(switch_to_vhe)
+> +
+> +SYM_FUNC_START(stick_to_vhe)
+> +	/*
+> +	 * Make sure the switch to VHE cannot fail, by overriding the
+> +	 * override. This is hilarious.
+> +	 */
+> +	adr_l	x1, id_aa64mmfr1_override
+> +	add	x1, x1, #FTR_OVR_MASK_OFFSET
+> +	dc 	civac, x1
+> +	dsb	sy
+> +	isb
 
-It should be '@[0-9a-f]+$' which is equivalent to Michael's suggestion.
+Why do we need an ISB here?
 
-Rob
+> +	ldr	x0, [x1]
+> +	bic	x0, x0, #(0xf << ID_AA64MMFR1_VHE_SHIFT)
+> +	str	x0, [x1]
+
+I find it a bit bizarre doing this here, as for the primary CPU we're still
+a way away from parsing the early paramaters and for secondary CPUs this
+doesn't need to be done for each one. Furthermore, this same code is run
+on the resume path, which can probably then race with itself.
+
+Is it possible to do it later on the boot CPU only, e.g. in
+init_feature_override()? We should probably also log a warning that we're
+ignoring the option because nVHE is not available.
+
+Will
