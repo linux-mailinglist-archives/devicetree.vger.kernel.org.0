@@ -2,149 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47FA9347C99
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D989347CB8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236568AbhCXP3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:29:53 -0400
-Received: from foss.arm.com ([217.140.110.172]:35184 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236528AbhCXP3p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 11:29:45 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0BC90D6E;
-        Wed, 24 Mar 2021 08:29:45 -0700 (PDT)
-Received: from [10.57.50.37] (unknown [10.57.50.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC3053F7D7;
-        Wed, 24 Mar 2021 08:29:42 -0700 (PDT)
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-To:     Sven Peter <sven@svenpeter.dev>, iommu@lists.linux-foundation.org
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210320151903.60759-1-sven@svenpeter.dev>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
-Date:   Wed, 24 Mar 2021 15:29:36 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S236713AbhCXPck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236744AbhCXPcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:32:14 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8ABC0613DE
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:32:14 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id l123so17589508pfl.8
+        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YcW87acVyCevsLYCFMKgehtQqDm5U3c2xzC9Z00X15I=;
+        b=a2kyaJgLYGtbfIdh2qJGaNstsr6ycsHaTmr0CsuJvbR72Mm9wByfcK0CR+hbbtonVG
+         JxJl7hklsIg0XgUHiqTfIlAmr46jlofEDKswmoMOpzrKPaZtE8gTksTDEZE8EcuXYjT3
+         0ihKT8Cv565Hm7WIhOpI+QM2tuZOWrSzWyKaM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YcW87acVyCevsLYCFMKgehtQqDm5U3c2xzC9Z00X15I=;
+        b=kCy7URXw2b01oDETUKn4DCXJud85nsCbkKT4qLU4UmLAeoTfaa/pzPHZZX6IdqiSsL
+         oSGNpVVhZRnQCyu+/6Sk10SrHe+HyuuaKgxpiJjXRl54g61EFAqzd2k0czz76/UAe1q9
+         KYC8wzV81tzpaNdbS1qsi5i95aAmVdJf8aYaC9LOK4RWzV5CEG0boNIqLGyR/u+bhk8P
+         JSZRe/4dHYgTwVKbdcppanGxRY3/sks1BNdpMN936iFRqGcwlrojo3gySJSeH58gEnY4
+         ri2tKo5WOmy2CzX/N2gOYCnf/oVzZWfomURcT9DUzJfeOtAaSgmaXhihppd419lk+J+U
+         NLcg==
+X-Gm-Message-State: AOAM533FSXQPnA8WA47eiwHD7vgQDd+4Y32WpmtXVDRpcp5zNbWEg7Z1
+        uit4ejZD738ERHqvYNYpffpulw==
+X-Google-Smtp-Source: ABdhPJw7ogBm7aBfyhcGbnc6qkVwN1kYQ6sWSFyzU3B4OZ9xwcf9DO1ZwNsFL288NPcUFZqvWwWxxQ==
+X-Received: by 2002:a63:4d0:: with SMTP id 199mr3615699pge.304.1616599933630;
+        Wed, 24 Mar 2021 08:32:13 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:40a3:9725:46c3:85f6])
+        by smtp.gmail.com with UTF8SMTPSA id g22sm2938593pju.30.2021.03.24.08.32.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Mar 2021 08:32:13 -0700 (PDT)
+Date:   Wed, 24 Mar 2021 08:32:10 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Roja Rani Yarubandi <rojay@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        akashast@codeaurora.org, msavaliy@qti.qualcomm.com,
+        stable@vger.kernel.org
+Subject: Re: [RESEND PATCH V3 1/2] soc: qcom-geni-se: Cleanup the code to
+ remove proxy votes
+Message-ID: <YFtbeqc1q2BKsf2e@google.com>
+References: <20210324101836.25272-1-rojay@codeaurora.org>
+ <20210324101836.25272-2-rojay@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210320151903.60759-1-sven@svenpeter.dev>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210324101836.25272-2-rojay@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-20 15:19, Sven Peter wrote:
-> Hi,
+On Wed, Mar 24, 2021 at 03:48:35PM +0530, Roja Rani Yarubandi wrote:
+> This reverts commit 048eb908a1f2 ("soc: qcom-geni-se: Add interconnect
+> support to fix earlycon crash")
 > 
-> After Hector's initial work [1] to bring up Linux on Apple's M1 it's time to
-> bring up more devices. Most peripherals connected to the SoC are behind a iommu
-> which Apple calls "Device Address Resolution Table", or DART for short [2].
-> Unfortunately, it only shares the name with PowerPC's DART.
-> Configuring this iommu is mandatory if these peripherals require DMA access.
+> ICC core and platforms drivers supports sync_state feature, which
+> ensures that the default ICC BW votes from the bootloader is not
+> removed until all it's consumers are probes.
 > 
-> This patchset implements initial support for this iommu. The hardware itself
-> uses a pagetable format that's very similar to the one already implement in
-> io-pgtable.c. There are some minor modifications, namely some details of the
-> PTE format and that there are always three pagetable levels, which I've
-> implement as a new format variant.
+> The proxy votes were needed in case other QUP child drivers
+> I2C, SPI probes before UART, they can turn off the QUP-CORE clock
+> which is shared resources for all QUP driver, this causes unclocked
+> access to HW from earlycon.
 > 
-> I have mainly tested this with the USB controller in device mode which is
-> compatible with Linux's dwc3 driver. Some custom PHY initialization (which is
-> not yet ready or fully understood) is required though to bring up the ports,
-> see e.g. my patches to our m1n1 bootloader [3,4]. If you want to test the same
-> setup you will probably need that branch for now and add the nodes from
-> the DT binding specification example to your device tree.
+> Given above support from ICC there is no longer need to maintain
+> proxy votes on QUP-CORE ICC node from QUP wrapper driver for early
+> console usecase, the default votes won't be removed until real
+> console is probed.
 > 
-> Even though each DART instances could support up to 16 devices usually only
-> a single device is actually connected. Different devices generally just use
-> an entirely separate DART instance with a seperate MMIO range, IRQ, etc.
-> 
-> I have just noticed today though that at least the USB DWC3 controller in host
-> mode uses *two* darts at the same time. I'm not sure yet which parts seem to
-> require which DART instance.
-> 
-> This means that we might need to support devices attached to two iommus
-> simultaneously and just create the same iova mappings. Currently this only
-> seems to be required for USB according to Apple's Device Tree.
-> 
-> I see two options for this and would like to get feedback before
-> I implement either one:
-> 
->      1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
->         to identify the DART and the second one to identify the master.
->         The DART DT node would then also take two register ranges that would
->         correspond to the two DARTs. Both instances use the same IRQ and the
->         same clocks according to Apple's device tree and my experiments.
->         This would keep a single device node and the DART driver would then
->         simply map iovas in both DARTs if required.
+> Cc: stable@vger.kernel.org
+> Fixes: 266cd33b5913 ("interconnect: qcom: Ensure that the floor bandwidth value is enforced")
+> Fixes: 7d3b0b0d8184 ("interconnect: qcom: Use icc_sync_state")
 
-This is broadly similar to the approach used by rockchip-iommu and the 
-special arm-smmu-nvidia implementation, where there are multiple 
-instances which require programming identically, that are abstracted 
-behind a single "device". Your case is a little different since you're 
-not programming both *entirely* identically, although maybe that's a 
-possibility if each respective ID isn't used by anything else on the 
-"other" DART?
+Neither of these commits introduced an issue that is fixed by this
+patch, rather this patch relies on these commits to not (re-)introduce
+an issue.
 
-Overall I tend to view this approach as a bit of a hack because it's not 
-really describing the hardware truthfully - just because two distinct 
-functional blocks have their IRQ lines wired together doesn't suddenly 
-make them a single monolithic block with multiple interfaces - and tends 
-to be done for the sake of making the driver implementation easier in 
-terms of the Linux IOMMU API (which, note, hasn't evolved all that far 
-from its PCI-centric origins and isn't exactly great for arbitrary SoC 
-topologies).
-
->      2) Keep #iommu-cells as-is but support
->              iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
->         instead.
->         This would then require two devices nodes for the two DART instances and
->         some housekeeping in the DART driver to support mapping iovas in both
->         DARTs.
->         I believe omap-iommu.c supports this setup but I will have to read
->         more code to understand the details there and figure out how to implement
->         this in a sane way.
-
-This approach is arguably the most honest, and more robust in terms of 
-making fewer assumptions, and is used by at least exynos-iommu and 
-omap-iommu. In Linux it currently takes a little bit more housekeeping 
-to keep track of linked instances within the driver since the IOMMU API 
-holds the notion that any given client device is associated with "an 
-IOMMU", but that's always free to change at any time, unlike the design 
-of a DT binding.
-
-There's also the funky "root" and "leaf" devices thing that ipmmu-vmsa 
-does, although I believe that represents genuine hardware differences 
-where the leaves are more like extra TLBs rather than fully-functional 
-IOMMU blocks in their own right, so that may not be a relevant model here.
-
-Robin.
-
-> I currently prefer the first option but I don't understand enough details of
-> the iommu system to actually make an informed decision.
-> I'm obviously also open to more options :-)
-> 
-> 
-> Best regards,
-> 
-> 
-> Sven
-> 
-> [1] https://lore.kernel.org/linux-arch/20210304213902.83903-1-marcan@marcan.st/
-> [2] https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/DataMgmt/DataMgmt.html
-> [3] https://github.com/svenpeter42/m1n1/commit/1e2661abf5ea2c820297b3ff591235c408d19a34
-> [4] https://github.com/svenpeter42/m1n1/tree/usb-uartproxy-console-wip
-> 
-> 
-> 
+I don't think a 'Fixes' tag is needed for this patch. If anything it
+fixes the same issue as commit 048eb908a1f2 ("soc: qcom-geni-se:
+Add interconnect support to fix earlycon crash"), which doesn't
+have such a tag.
