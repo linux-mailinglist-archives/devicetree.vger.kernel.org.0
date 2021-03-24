@@ -2,86 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FB2347E3F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D31BF347E7D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236592AbhCXQw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:52:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44076 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236656AbhCXQwp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 12:52:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0CB1961A0E;
-        Wed, 24 Mar 2021 16:52:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616604765;
-        bh=2RAeW9bcOox75IhY932ZgrIfd3SYhUfnOlwv0IAh788=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qwKhfvRJs21r70XcIDwbVnaxi0YfdTx1uMXJyu1qvBXyg3uu8ZDvnBbCB1aI5sPoc
-         9Qb1G3vaxJidF5vQl5Ot6A+ysXsy+1B2QO94FnipFdJAKVdou2fVog3IywNLk2wXYh
-         6i5cxMUu3u0ee2MXSVQmfkPhCqx6ohCF98PrDmxSEaVQpNcvxikpjn08krFyhuBxYb
-         +avQtlxwX+5wzuNz7BUt5YUS5Cxecdr8fJPj6snilRaH+Yvz0/sQj6V7PKuLY/o7WP
-         is6++GViGt3x1P8hQXNunyFEbYyen3rMGOCghKgYTrnE5J6YtXTq6vuiONhuqUtm1B
-         5n3kzFGY9+oJQ==
-Received: by mail-ed1-f53.google.com with SMTP id bx7so28413327edb.12;
-        Wed, 24 Mar 2021 09:52:44 -0700 (PDT)
-X-Gm-Message-State: AOAM5320eWWScYXE18N0j558j6yv/CdegD3aMPbDLbTYf+KCQ5kn8+C8
-        I0XGIsSMVQYpNR5er6/wKZd0Wm09LOceUPUtVg==
-X-Google-Smtp-Source: ABdhPJxxIOCz/2gYbCvfBzS7StJMrjtlADxPoYmAXqfnAHcp9HhCZpm/hq38nfp26uFxTJTeqzm8E5rywirn4wpgNkA=
-X-Received: by 2002:a05:6402:c0f:: with SMTP id co15mr4358269edb.373.1616604763688;
- Wed, 24 Mar 2021 09:52:43 -0700 (PDT)
+        id S237069AbhCXRFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 13:05:19 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:36758 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237023AbhCXRFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:05:02 -0400
+Received: by mail-io1-f43.google.com with SMTP id f19so22247288ion.3;
+        Wed, 24 Mar 2021 10:05:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Y14F9T2jsTltJHPnMpq7UymlxKoj7XEuVdqVJoZYFWE=;
+        b=p3wiJb74Cb1wQU68D3DxUTcy4uMsxf2CXJii82OwL9cPYcHQsHGSayJZH12Ml6r94R
+         dSGR/U7pVE+K/tUlm5kEECZ0ZzeAX1ogeTSUMuSaX7EbKj/nUf5hymcQCY1CAq7N/zgz
+         tAEbkdrvGO2NLycNv38erED6G4HITJ7P5Jd9z8BnY6ylxK9ozeQrdNYSZ11q2LOAcdvz
+         6sIEQ+NUIf3Xd39TvEAWXzknm1vhWD8bCK5gc5z4wcjMZxKPSjIydlkKm0ZmPWpLBTRh
+         seA0luFLXCBk2bgZ47RloB3mkNaPA45QBulK0c8wZymZl+CANHec9Gdkcio4sRnRng+V
+         lzfA==
+X-Gm-Message-State: AOAM530nyf8y+N+VafpWL9mzyYqS5iNLTMGLT6enf7oILBP3J7qH93mQ
+        wt4gwnAmendCHwDJkDkNsA==
+X-Google-Smtp-Source: ABdhPJz3r1fjFM1pybMFqDTGKa9jRyh4zb0saqiI6U8zl7cLJ3Yu8ibOzuV50P+Fkx+4sfdikn9j0Q==
+X-Received: by 2002:a6b:b2cd:: with SMTP id b196mr3295520iof.67.1616605501143;
+        Wed, 24 Mar 2021 10:05:01 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id k4sm1339787ion.29.2021.03.24.10.04.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Mar 2021 10:05:00 -0700 (PDT)
+Received: (nullmailer pid 3252068 invoked by uid 1000);
+        Wed, 24 Mar 2021 17:04:58 -0000
+Date:   Wed, 24 Mar 2021 11:04:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, mike.looijmans@topic.nl,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: clock: clk-si5341: Add new attributes
+Message-ID: <20210324170458.GA3177057@robh.at.kernel.org>
+References: <20210312181710.3998978-1-robert.hancock@calian.com>
+ <20210312181710.3998978-2-robert.hancock@calian.com>
 MIME-Version: 1.0
-References: <20210324150425.20688-1-changbin.du@gmail.com>
-In-Reply-To: <20210324150425.20688-1-changbin.du@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 24 Mar 2021 10:52:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
-Message-ID: <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Check dtb pointer first in unflatten_device_tree
-To:     Changbin Du <changbin.du@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210312181710.3998978-2-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 9:04 AM Changbin Du <changbin.du@gmail.com> wrote:
->
-> The setup_arch() would invoke unflatten_device_tree() even no
-> valid fdt found. So we'd better check it first and return early.
->
-> Signed-off-by: Changbin Du <changbin.du@gmail.com>
+On Fri, Mar 12, 2021 at 12:17:02PM -0600, Robert Hancock wrote:
+> Add new silabs,xaxb-ext-clk and silabs,iovdd-33 properties.
+> 
+> Changed vdd-supply on top-level node to optional since it is not actually
+> used by the driver.
+> 
+> Removed vdd-supply from output sub-nodes, as it was not supported by the
+> driver and it is not easily possible to support this in that location with
+> the kernel regulator infrastructure. Changed to have vddX-supply
+> attributes for each output on the top-level device node.
+> 
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 > ---
->  drivers/of/fdt.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index dcc1dd96911a..05d439d63bc5 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1225,6 +1225,11 @@ bool __init early_init_dt_scan(void *params)
->   */
->  void __init unflatten_device_tree(void)
->  {
-> +       if (!initial_boot_params) {
-> +               pr_warn("No valid device tree found, continuing without\n");
+>  .../devicetree/bindings/clock/silabs,si5341.txt  | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/silabs,si5341.txt b/Documentation/devicetree/bindings/clock/silabs,si5341.txt
+> index 504cce3abe46..1cf7e002cb16 100644
+> --- a/Documentation/devicetree/bindings/clock/silabs,si5341.txt
+> +++ b/Documentation/devicetree/bindings/clock/silabs,si5341.txt
+> @@ -24,9 +24,8 @@ it.
+>  
+>  The device type, speed grade and revision are determined runtime by probing.
+>  
+> -The driver currently only supports XTAL input mode, and does not support any
+> -fancy input configurations. They can still be programmed into the chip and
+> -the driver will leave them "as is".
+> +The driver currently does not support any fancy input configurations. They can
+> +still be programmed into the chip and the driver will leave them "as is".
+>  
+>  ==I2C device node==
+>  
+> @@ -45,9 +44,9 @@ Required properties:
+>  	corresponding to inputs. Use a fixed clock for the "xtal" input.
+>  	At least one must be present.
+>  - clock-names: One of: "xtal", "in0", "in1", "in2"
+> -- vdd-supply: Regulator node for VDD
+>  
+>  Optional properties:
+> +- vdd-supply: Regulator node for VDD
+>  - vdda-supply: Regulator node for VDDA
+>  - vdds-supply: Regulator node for VDDS
+>  - silabs,pll-m-num, silabs,pll-m-den: Numerator and denominator for PLL
+> @@ -60,7 +59,14 @@ Optional properties:
+>    be initialized, and always performs the soft-reset routine. Since this will
+>    temporarily stop all output clocks, don't do this if the chip is generating
+>    the CPU clock for example.
+> +- silabs,xaxb-ext-clk: When present, indicates that the XA/XB pins are used
+> +  in EXTCLK (external reference clock) rather than XTAL (crystal) mode.
+>  - interrupts: Interrupt for INTRb pin.
+> +- silabs,iovdd-33: When present, indicates that the I2C lines are using 3.3V
+> +  rather than 1.8V thresholds.
 
-How are you going to see this message if you have no DT?
+How does communication over I2C to set the register for this work if the 
+register setting is wrong? I guess it's just leakage current...
 
-> +               return;
+> +- vddX-supply (where X is an output index): Regulator node for VDD for the
+> +  specified output. The driver selects the output VDD_SEL setting based on this
+> +  voltage.
 
-And the arch is supposed to just continue on oblivious that it has no DT?
+This is called vddoX in the datasheet.
 
-> +       }
-> +
->         __unflatten_device_tree(initial_boot_params, NULL, &of_root,
->                                 early_init_dt_alloc_memory_arch, false);
-
-Soon as you get here with a NULL initial_boot_params, you'll get a
-backtrace and halt.
-
->
-> --
-> 2.30.2
->
+>  - #address-cells: shall be set to 1.
+>  - #size-cells: shall be set to 0.
+>  
+> @@ -77,8 +83,6 @@ Required child node properties:
+>  - reg: number of clock output.
+>  
+>  Optional child node properties:
+> -- vdd-supply: Regulator node for VDD for this output. The driver selects default
+> -	values for common-mode and amplitude based on the voltage.
+>  - silabs,format: Output format, one of:
+>  	1 = differential (defaults to LVDS levels)
+>  	2 = low-power (defaults to HCSL levels)
+> -- 
+> 2.27.0
+> 
