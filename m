@@ -2,145 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A275E347DC7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1521347DD3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235844AbhCXQfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:35:41 -0400
-Received: from mx2.suse.de ([195.135.220.15]:33682 "EHLO mx2.suse.de"
+        id S236042AbhCXQiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 12:38:24 -0400
+Received: from foss.arm.com ([217.140.110.172]:36060 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229653AbhCXQfa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 12:35:30 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 5B282AC1D;
-        Wed, 24 Mar 2021 16:35:28 +0000 (UTC)
-Message-ID: <9de20a5960e029b8842dc026be3be85295647175.camel@suse.de>
-Subject: Re: [PATCH 1/4] dt-bindings: mmc: iproc-sdhci: Convert to
- json-schema
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Scott Branden <scott.branden@broadcom.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>, f.fainelli@gmail.com,
-        phil@raspberrypi.com, tim.gover@raspberrypi.com,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 24 Mar 2021 17:35:26 +0100
-In-Reply-To: <28a133d2-c713-4bce-271c-5fa228d830ca@broadcom.com>
-References: <20210322185816.27582-1-nsaenz@kernel.org>
-         <20210322185816.27582-2-nsaenz@kernel.org>
-         <0e98588e-65f1-6839-1fcd-584b480a31bd@broadcom.com>
-         <20210323210812.GA1318204@robh.at.kernel.org>
-         <c1989e31501ccfb6e1350d467d4f26089bfcfb64.camel@suse.de>
-         <28a133d2-c713-4bce-271c-5fa228d830ca@broadcom.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-ViNOE93gnirGk1EY9hs7"
-User-Agent: Evolution 3.38.4 
+        id S235159AbhCXQiI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 12:38:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6786D6E;
+        Wed, 24 Mar 2021 09:38:07 -0700 (PDT)
+Received: from [10.57.50.37] (unknown [10.57.50.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98D4F3F7D7;
+        Wed, 24 Mar 2021 09:38:05 -0700 (PDT)
+Subject: Re: [PATCH 1/3] iommu: io-pgtable: add DART pagetable format
+To:     Sven Peter <sven@svenpeter.dev>, iommu@lists.linux-foundation.org
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+ <20210320151903.60759-2-sven@svenpeter.dev>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <2e7e4002-4f37-9348-40e6-aaa523207472@arm.com>
+Date:   Wed, 24 Mar 2021 16:37:57 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210320151903.60759-2-sven@svenpeter.dev>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2021-03-20 15:19, Sven Peter wrote:
+> Apple's DART iommu uses a pagetable format that's very similar to the ones
+> already implemented by io-pgtable.c.
+> Add a new format variant to support the required differences.
 
---=-ViNOE93gnirGk1EY9hs7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+TBH there look to be more differences than similarities, but I guess we 
+already opened that door with the Mali format, and nobody likes writing 
+pagetable code :)
 
-On Wed, 2021-03-24 at 09:27 -0700, Scott Branden wrote:
-> On 2021-03-23 2:24 p.m., Nicolas Saenz Julienne wrote:
-> > On Tue, 2021-03-23 at 15:08 -0600, Rob Herring wrote:
-> > > On Mon, Mar 22, 2021 at 12:11:29PM -0700, Scott Branden wrote:
-> > > > On 2021-03-22 11:58 a.m., Nicolas Saenz Julienne wrote:
-> > > > > Convert the brcm,iproc-sdhci binding to DT schema format using js=
-on-schema
-> > > > >=20
-> > > > > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > > > > ---
-> > > > > =C2=A0.../bindings/mmc/brcm,iproc-sdhci.yaml        | 58 ++++++++=
-+++++++++++
-> > > > > =C2=A0.../bindings/mmc/brcm,sdhci-iproc.txt         | 37 --------=
-----
-> > > > > =C2=A02 files changed, 58 insertions(+), 37 deletions(-)
-> > > > > =C2=A0create mode 100644 Documentation/devicetree/bindings/mmc/br=
-cm,iproc-sdhci.yaml
-> > > > > =C2=A0delete mode 100644 Documentation/devicetree/bindings/mmc/br=
-cm,sdhci-iproc.txt
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdh=
-ci.yaml b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..19d84f3ef9e6
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
-> > > > > @@ -0,0 +1,58 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/mmc/brcm,iproc-sdhci.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Broadcom IPROC SDHCI controller
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > > > This is already covered in the MAINTAINERS section via "N:	iproc".
-> > > > M:	Ray Jui <ray.jui@broadcom.com>
-> > > >=20
-> > > > M:	Scott Branden <scott.branden@broadcom.com>
-> > > >=20
-> > > > M:	bcm-kernel-feedback-list@broadcom.com
-> > >=20
-> > > Maybe so, but still required here. The problem is there is no=20
-> > > MAINTAINERS file in the DT only tree[1].
-> >=20
-> > Well in that case, if Scott and Ray are OK with it I'll add them.
-> I do not know what the "maintainers" section in the yaml file is used to =
-indicate.
-> If it is maintainer for the driver then please add the duplicate of what =
-is
-> already in the MAINTAINERS file.  If it is for maintainer of devicetrees =
-that
-> use this driver then no need to add us.
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> ---
+>   drivers/iommu/Kconfig          | 13 +++++++
+>   drivers/iommu/io-pgtable-arm.c | 70 ++++++++++++++++++++++++++++++++++
+>   drivers/iommu/io-pgtable.c     |  3 ++
+>   include/linux/io-pgtable.h     |  6 +++
+>   4 files changed, 92 insertions(+)
+> 
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 192ef8f61310..3c95c8524abe 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -39,6 +39,19 @@ config IOMMU_IO_PGTABLE_LPAE
+>   	  sizes at both stage-1 and stage-2, as well as address spaces
+>   	  up to 48-bits in size.
+> 
+> +config IOMMU_IO_PGTABLE_APPLE_DART
 
-=46rom the dt bindings documentation:
+Does this really need to be configurable? I don't think there's an 
+appreciable code saving to be had, and it's not like we do it for any of 
+the other sub-formats.
 
-maintainers
-  A DT specific property. Contains a list of email address(es)
-  for maintainers of this binding.
+> +	bool "Apple DART Descriptor Format"
+> +	select IOMMU_IO_PGTABLE
+> +	select IOMMU_IO_PGTABLE_LPAE
+> +	depends on ARM64 || (COMPILE_TEST && !GENERIC_ATOMIC64)
+> +	help
+> +	  Enable support for the Apple DART iommu pagetable format.
+> +	  This format is a variant of the ARMv7/v8 Long Descriptor
+> +	  Format specific to Apple's iommu found in their SoCs.
+> +
+> +	  Say Y here if you have a Apple SoC like the M1 which
+> +	  contains DART iommus.
+> +
+>   config IOMMU_IO_PGTABLE_LPAE_SELFTEST
+>   	bool "LPAE selftests"
+>   	depends on IOMMU_IO_PGTABLE_LPAE
+> diff --git a/drivers/iommu/io-pgtable-arm.c b/drivers/iommu/io-pgtable-arm.c
+> index 87def58e79b5..18674469313d 100644
+> --- a/drivers/iommu/io-pgtable-arm.c
+> +++ b/drivers/iommu/io-pgtable-arm.c
+> @@ -127,6 +127,10 @@
+>   #define ARM_MALI_LPAE_MEMATTR_IMP_DEF	0x88ULL
+>   #define ARM_MALI_LPAE_MEMATTR_WRITE_ALLOC 0x8DULL
+> 
+> +/* APPLE_DART_PTE_PROT_NO_WRITE actually maps to ARM_LPAE_PTE_AP_RDONLY  */
+> +#define APPLE_DART_PTE_PROT_NO_WRITE (1<<7)
+Given that there's apparently zero similarity with any of the other 
+attributes/permissions, this seems more like a coincidence that probably 
+doesn't need to be called out.
 
-That's the maintainers for the bindings, not the devicetrees consuming them=
-. I
-belive it makes sense for you guys to maintain it as it has a strong
-relationship to driver changes. But if you're not interested I'll do it mys=
-elf.
+> +#define APPLE_DART_PTE_PROT_NO_READ (1<<8)
+> +
 
-Regards,
-Nicolas
+Do you have XN permission? How about memory type attributes?
 
+>   /* IOPTE accessors */
+>   #define iopte_deref(pte,d) __va(iopte_to_paddr(pte, d))
+> 
+> @@ -381,6 +385,17 @@ static arm_lpae_iopte arm_lpae_prot_to_pte(struct arm_lpae_io_pgtable *data,
+>   {
+>   	arm_lpae_iopte pte;
+> 
+> +#ifdef CONFIG_IOMMU_IO_PGTABLE_APPLE_DART
 
+As a general tip, prefer IS_ENABLED() to inline #ifdefs.
 
---=-ViNOE93gnirGk1EY9hs7
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+> +	if (data->iop.fmt == ARM_APPLE_DART) { > +		pte = 0;
+> +		if (!(prot & IOMMU_WRITE))
+> +			pte |= APPLE_DART_PTE_PROT_NO_WRITE;
+> +		if (!(prot & IOMMU_READ))
+> +			pte |= APPLE_DART_PTE_PROT_NO_READ;
+> +		return pte;
+> +	}
+> +#endif
+> +
+>   	if (data->iop.fmt == ARM_64_LPAE_S1 ||
+>   	    data->iop.fmt == ARM_32_LPAE_S1) {
+>   		pte = ARM_LPAE_PTE_nG;
+> @@ -1043,6 +1058,54 @@ arm_mali_lpae_alloc_pgtable(struct io_pgtable_cfg *cfg, void *cookie)
+>   	return NULL;
+>   }
+> 
+> +#ifdef CONFIG_IOMMU_IO_PGTABLE_APPLE_DART
 
------BEGIN PGP SIGNATURE-----
+Similarly, prefer __maybe_unused rather than #ifdefing functions if they 
+don't contain any config-dependent references.
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBbak8ACgkQlfZmHno8
-x/7auwf/XiiMWtXMCFAncrVyJbJGU9nIKnVNg3g4XCQqTXHbYDcZ6bf1OIk7/Xst
-dr++njCcrrXqXUyT0gersWwdU9Bhk3tBJ1BPzUjIeieD2GrbdzAm2bs/9WNVkFjg
-4mf8DAx0Mhj8aWa4SKRBZL//2L3QzlbQmmHj6hJPpHWcR5CbYxMc4LSEPQMyD1Tu
-+t1TfsHckWyMfkwCfzal/7Tk0H1SW7wXRVM0xzOS+2t3gqZZYn4L1+Va0/NNgsQ6
-qoLIL9qIIPxMpCLgCNsXgx47pFozZTvGvM08fxe5I92ZDQ+6Bx+5joYutjk53xS/
-wtLTUFS4dCSrLkj2joyZdr7A0sBbYA==
-=w+e4
------END PGP SIGNATURE-----
+> +static struct io_pgtable *
+> +apple_dart_alloc_pgtable(struct io_pgtable_cfg *cfg, void *cookie)
+> +{
+> +	struct arm_lpae_io_pgtable *data;
+> +
+> +	if (cfg->ias > 38)
+> +		return NULL;
+> +	if (cfg->oas > 36)
+> +		return NULL;
+> +
+> +	if (!cfg->coherent_walk)
+> +		return NULL;
 
---=-ViNOE93gnirGk1EY9hs7--
+For completeness you should probably also reject any quirks, since none 
+of them are applicable either.
 
+> +
+> +	cfg->pgsize_bitmap &= SZ_16K;
+
+No block mappings?
+
+> +	if (!cfg->pgsize_bitmap)
+> +		return NULL;
+> +
+> +	data = arm_lpae_alloc_pgtable(cfg);
+> +	if (!data)
+> +		return NULL;
+> +
+> +	/*
+> +	 * the hardware only supports this specific three level pagetable layout with
+> +	 * the first level being encoded into four hardware registers
+> +	 */
+> +	data->start_level = ARM_LPAE_MAX_LEVELS - 2;
+
+The comment implies that walks should start at level 1 (for a 3-level 
+table), but the code here says (in an unnecessarily roundabout manner) 
+level 2 :/
+
+Which is it?
+
+> +	data->pgd_bits = 13;
+
+What if ias < 38? Couldn't we get away with only allocating as much as 
+we actually need?
+
+> +	data->bits_per_level = 11;
+> +
+> +	data->pgd = __arm_lpae_alloc_pages(ARM_LPAE_PGD_SIZE(data), GFP_KERNEL,
+> +					   cfg);
+> +	if (!data->pgd)
+> +		goto out_free_data;
+> +
+> +	cfg->apple_dart_cfg.pgd[0] = virt_to_phys(data->pgd);
+> +	cfg->apple_dart_cfg.pgd[1] = virt_to_phys(data->pgd + 0x4000);
+> +	cfg->apple_dart_cfg.pgd[2] = virt_to_phys(data->pgd + 0x8000);
+> +	cfg->apple_dart_cfg.pgd[3] = virt_to_phys(data->pgd + 0xc000);
+> +
+> +	return &data->iop;
+> +
+> +out_free_data:
+> +	kfree(data);
+> +	return NULL;
+> +}
+> +#endif
+> +
+>   struct io_pgtable_init_fns io_pgtable_arm_64_lpae_s1_init_fns = {
+>   	.alloc	= arm_64_lpae_alloc_pgtable_s1,
+>   	.free	= arm_lpae_free_pgtable,
+> @@ -1068,6 +1131,13 @@ struct io_pgtable_init_fns io_pgtable_arm_mali_lpae_init_fns = {
+>   	.free	= arm_lpae_free_pgtable,
+>   };
+> 
+> +#ifdef CONFIG_IOMMU_IO_PGTABLE_APPLE_DART
+> +struct io_pgtable_init_fns io_pgtable_apple_dart_init_fns = {
+> +	.alloc	= apple_dart_alloc_pgtable,
+> +	.free	= arm_lpae_free_pgtable,
+> +};
+> +#endif
+> +
+>   #ifdef CONFIG_IOMMU_IO_PGTABLE_LPAE_SELFTEST
+> 
+>   static struct io_pgtable_cfg *cfg_cookie __initdata;
+> diff --git a/drivers/iommu/io-pgtable.c b/drivers/iommu/io-pgtable.c
+> index 6e9917ce980f..d86590b0673a 100644
+> --- a/drivers/iommu/io-pgtable.c
+> +++ b/drivers/iommu/io-pgtable.c
+> @@ -27,6 +27,9 @@ io_pgtable_init_table[IO_PGTABLE_NUM_FMTS] = {
+>   #ifdef CONFIG_AMD_IOMMU
+>   	[AMD_IOMMU_V1] = &io_pgtable_amd_iommu_v1_init_fns,
+>   #endif
+> +#ifdef CONFIG_IOMMU_IO_PGTABLE_APPLE_DART
+> +	[ARM_APPLE_DART] = &io_pgtable_apple_dart_init_fns,
+> +#endif
+>   };
+> 
+>   struct io_pgtable_ops *alloc_io_pgtable_ops(enum io_pgtable_fmt fmt,
+> diff --git a/include/linux/io-pgtable.h b/include/linux/io-pgtable.h
+> index a4c9ca2c31f1..19d9b631d319 100644
+> --- a/include/linux/io-pgtable.h
+> +++ b/include/linux/io-pgtable.h
+> @@ -16,6 +16,7 @@ enum io_pgtable_fmt {
+>   	ARM_V7S,
+>   	ARM_MALI_LPAE,
+>   	AMD_IOMMU_V1,
+> +	ARM_APPLE_DART,
+>   	IO_PGTABLE_NUM_FMTS,
+>   };
+> 
+> @@ -136,6 +137,10 @@ struct io_pgtable_cfg {
+>   			u64	transtab;
+>   			u64	memattr;
+>   		} arm_mali_lpae_cfg;
+> +
+> +		struct {
+> +			u64 pgd[4];
+
+Nit: in the driver you call the registers "TTBR" rather than "PGD". The 
+config here tries to represent hardware/architecture definitions rather 
+than internal abstractions.
+
+Robin.
+
+> +		} apple_dart_cfg;
+>   	};
+>   };
+> 
+> @@ -250,5 +255,6 @@ extern struct io_pgtable_init_fns io_pgtable_arm_64_lpae_s2_init_fns;
+>   extern struct io_pgtable_init_fns io_pgtable_arm_v7s_init_fns;
+>   extern struct io_pgtable_init_fns io_pgtable_arm_mali_lpae_init_fns;
+>   extern struct io_pgtable_init_fns io_pgtable_amd_iommu_v1_init_fns;
+> +extern struct io_pgtable_init_fns io_pgtable_apple_dart_init_fns;
+> 
+>   #endif /* __IO_PGTABLE_H */
+> --
+> 2.25.1
+> 
+> 
