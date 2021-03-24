@@ -2,186 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E581A3479A6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBD83479BC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:38:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235353AbhCXNcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 09:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37424 "EHLO
+        id S235226AbhCXNiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 09:38:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235230AbhCXNbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 09:31:47 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5EDC061763;
-        Wed, 24 Mar 2021 06:31:46 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id x16so24459584wrn.4;
-        Wed, 24 Mar 2021 06:31:46 -0700 (PDT)
+        with ESMTP id S235232AbhCXNhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 09:37:46 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C8CC061763;
+        Wed, 24 Mar 2021 06:37:45 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id b83so32009379lfd.11;
+        Wed, 24 Mar 2021 06:37:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=e8lPC72F11p8PBhBhydD1cx8exsNe0wRkeHr07SpaS0=;
-        b=Qd6dhey0+eCqZPgZmDNub1vuPD1DQoapTBwS3wk3+jDCZeWSdnP0Y5AAjbU299drNM
-         6kD8jiYya5D/VsfV6Weg5j4hPKGm9NnrPKd43h/URiYNB7GjplubzGCNQhvT6XeIu/kR
-         OPiU6wgsG/6NOFJrUMO83IHDmGJIM3lz795bi/EPNfUKPist1Se3v4uPNBe1mZZVrcQL
-         hBP9Ih4Ieei7iQ1+D5S4RKYt427BBd9TJ0tMQbvXd+Sxvat4WUzjmkN33pTiW/qUS9ZD
-         s7cJ7Cql0fn/+l0Vu3i/GW40D3PvJIvyga3d9WVLBMzrn6xTQXSNiK3Drbp4/tjcFzD3
-         7FTw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=IL5kwDSryJAVi6JEN0sFtKcKcm1GU6ESrLzLBduwMNM=;
+        b=UAxBKj2xpmkGpMklipBQXcmGNCHlcldt/VmwdLzhIXoc3bICW4snghhzXUkaZXKDD/
+         lUb7COhUBMLGn/zmOo24BD+KRD3j5uII37PcfeGCKFDxMJclIgDHihhlGujeUQ5v0sgz
+         nSfS7MuuXSzbiYmEo7Td5gvRElZ7vky3SLuGwvMLQIeqw3af0aLXPpOdcRcuQZKInRfc
+         Esz1RIjEqkFUekID4cvq6ZcVEE4NrYGck3H8zF4pWQ3hUa7+fZi0CIcK3iAAui8bgpni
+         gQwLMSDPdDp/zuCCkyGjB/au8DBD+19bRPzEcUm7xVRzjEMDqcOW+a3HKAwReZXTW5B5
+         g53A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=e8lPC72F11p8PBhBhydD1cx8exsNe0wRkeHr07SpaS0=;
-        b=hUO60XoOsvfl6TUwzMB4VKUuwvZjJTxQmk3w8khW3mwFlicxaOk3Dw/XU6UKYX7Y9V
-         tvIw6q0Zar4J9eDUlVpU1+yjV+rhEbVHsDlhjpvEj+StbiExJx0nAkT0Qm72+ororeAZ
-         Xt2FyN4k8hlvSJEJFloXfKsIdrjVbPIaQN9N/lqSlT0ETdE+DkW8TTuMmDQB1NuXLqZb
-         dCGsV2A7D2pAbxvQo7rdseOxsbBBW847Fqkawo1nEOBnqC1CN8uyIly9saYQGc5PYFK3
-         iV8Djm6PpnbfRbzIyEkasTXJNbZU/y6wXFV+yYH73RChFB7k3KpYWORK/MdnRJ8V0Uyr
-         bF1g==
-X-Gm-Message-State: AOAM533p7T6y8uBlwc0lHxXvMnC/a7jYcbhxtlufP5wMoTe8l0rzD+Sx
-        ZbyisRKGexkJinUMpMAFR5w=
-X-Google-Smtp-Source: ABdhPJwQ5C/96loWRd8zxzj/soRRkiEZKgv1bSIwXrCr85ovOzmXRjHk77oA03hDU91UqxWjumjXnw==
-X-Received: by 2002:adf:e5c4:: with SMTP id a4mr3588623wrn.174.1616592705153;
-        Wed, 24 Mar 2021 06:31:45 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id u2sm3322739wrp.12.2021.03.24.06.31.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 06:31:43 -0700 (PDT)
-Date:   Wed, 24 Mar 2021 14:32:04 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, mturquette@baylibre.com,
-        sboyd@kernel.org, JC Kuo <jckuo@nvidia.com>, robh@kernel.org,
-        jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 00/14] Tegra XHCI controller ELPG support
-Message-ID: <YFs/VBZvZo6mBJqz@orome.fritz.box>
-References: <20210120073414.69208-1-jckuo@nvidia.com>
- <YB1vGTt0ufzsYBgo@ulmo>
- <YB1wxazg/QpRSJz6@kroah.com>
- <YFszBH1JJmjJmjn2@orome.fritz.box>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=IL5kwDSryJAVi6JEN0sFtKcKcm1GU6ESrLzLBduwMNM=;
+        b=ldbHShj6woW/H4SiMBEwBhqERVAtWyL0mrg4Y2doD0XWSggXsAVvF90eViUEoHnM5H
+         eNaxkjG0G53lSnBMdnC5DNWiVakQ4XsRSkeUupm/0f0Y71+w3JeC7z/yO/+LyY4v9WC9
+         AWcacyPLlrOydZYudVUff2UAAFwGkmax7p77tVklaFyKsKXkhjxsjPJ/SXDLaDW3HAaO
+         cxsbOR7L0rQriExINm/Av2xeCWQoSds8YeXFRoFj1tcGPKT449jtzba8C+VyGbXbj3xH
+         1IyvjCZmZhiDMdvuqMDhGutHQQoGF7ml4yv6HqTEqqJhtPQ/i7fteJpdUXZOww8Bnu2J
+         OdJg==
+X-Gm-Message-State: AOAM532m0taKKgBB0sQG8avoZDFC5y+T+6L4yjTQBNGuOlWek01NtRPB
+        PuqFCFQ9Jh6iJCvwtuGec28KhTr3Hw+z7fDXwUE=
+X-Google-Smtp-Source: ABdhPJz+P0SCzJkREvgOevDYLFGIm89aZAHw2nkzz74pY0wJV3IvPIXGZ4B8riBSSCq3ajuhNXH/bePGm7XzX3gw8kg=
+X-Received: by 2002:a05:6512:b0d:: with SMTP id w13mr1945800lfu.500.1616593063661;
+ Wed, 24 Mar 2021 06:37:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="u5Zpz5lsXNY2k1xR"
-Content-Disposition: inline
-In-Reply-To: <YFszBH1JJmjJmjn2@orome.fritz.box>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+References: <CAOMZO5B_uHS_Z2LuMwHDmn9erORrsrNBMHMjkW-hW+pnfHZThQ@mail.gmail.com>
+ <20210324132841.5841-1-oliver.staebler@bytesatwork.ch>
+In-Reply-To: <20210324132841.5841-1-oliver.staebler@bytesatwork.ch>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 24 Mar 2021 10:37:32 -0300
+Message-ID: <CAOMZO5CP8Hrqgyc8VEkNqam-PoSteZ0=RkWpgOwTbZWokb8r5g@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm/q: Fix pad control of SD1_DATA0
+To:     =?UTF-8?Q?Oliver_St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Oliver,
 
---u5Zpz5lsXNY2k1xR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Mar 24, 2021 at 10:28 AM Oliver St=C3=A4bler
+<oliver.staebler@bytesatwork.ch> wrote:
+>
+> Fix address of the pad control register
+> (IOMUXC_SW_PAD_CTL_PAD_SD1_DATA0) for SD1_DATA0_GPIO2_IO2.  This seems
+> to be a typo but it leads to an exception when pinctrl is applied due to
+> wrong memory address access.
+>
+> Signed-off-by: Oliver St=C3=A4bler <oliver.staebler@bytesatwork.ch>
 
-On Wed, Mar 24, 2021 at 01:39:32PM +0100, Thierry Reding wrote:
-> On Fri, Feb 05, 2021 at 05:22:29PM +0100, Greg KH wrote:
-> > On Fri, Feb 05, 2021 at 05:15:21PM +0100, Thierry Reding wrote:
-> > > On Wed, Jan 20, 2021 at 03:34:00PM +0800, JC Kuo wrote:
-> > > > Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
-> > > > state for power saving when all of the connected USB devices are in
-> > > > suspended state. This patch series includes clk, phy and pmc changes
-> > > > that are required for properly place controller in ELPG and bring
-> > > > controller out of ELPG.
-> > > >=20
-> > > > JC Kuo (14):
-> > > >   clk: tegra: Add PLLE HW power sequencer control
-> > > >   clk: tegra: Don't enable PLLE HW sequencer at init
-> > > >   phy: tegra: xusb: Move usb3 port init for Tegra210
-> > > >   phy: tegra: xusb: Rearrange UPHY init on Tegra210
-> > > >   phy: tegra: xusb: Add Tegra210 lane_iddq operation
-> > > >   phy: tegra: xusb: Add sleepwalk and suspend/resume
-> > > >   soc/tegra: pmc: Provide USB sleepwalk register map
-> > > >   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
-> > > >   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
-> > > >   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
-> > > >   phy: tegra: xusb: Tegra210 host mode VBUS control
-> > > >   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
-> > > >   usb: host: xhci-tegra: Unlink power domain devices
-> > > >   xhci: tegra: Enable ELPG for runtime/system PM
-> > > >=20
-> > > >  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
-> > > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
-> > > >  drivers/clk/tegra/clk-pll.c                   |   12 -
-> > > >  drivers/clk/tegra/clk-tegra210.c              |   53 +-
-> > > >  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
-> > > >  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++=
-----
-> > > >  drivers/phy/tegra/xusb.c                      |   92 +-
-> > > >  drivers/phy/tegra/xusb.h                      |   22 +-
-> > > >  drivers/soc/tegra/pmc.c                       |   94 +
-> > > >  drivers/usb/host/xhci-tegra.c                 |  613 ++++--
-> > > >  include/linux/clk/tegra.h                     |    4 +-
-> > > >  include/linux/phy/tegra/xusb.h                |   10 +-
-> > > >  12 files changed, 2784 insertions(+), 565 deletions(-)
-> > > >=20
-> > > > v5 "phy: tegra: xusb: tegra210: Do not reset UPHY PLL" is moved
-> > > > into v6 "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
-> > >=20
-> > > Mike, Stephen,
-> > >=20
-> > > could you guys take a look at the two clk patches here and give an
-> > > Acked-by? There's build-time dependencies throughout the series, so i=
-t'd
-> > > be good if they can all go through either the PHY or USB trees.
-> > >=20
-> > > Kishon, Greg,
-> > >=20
-> > > any comments on these patches? Unfortunately, the USB patches in this
-> > > series have a build-time dependency on the PHY patches, so this should
-> > > all go through one tree. Since this all culminates in the XHCI driver,
-> > > merging this through the USB tree might be best, provided that Kishon
-> > > provides his Acked-by on the PHY patches.
-> > >=20
-> > > Alternatively, I can create a set of branches with the correct
-> > > dependencies and send out pull requests for the three subsystems if
-> > > that's preferrable.
-> >=20
-> > I have no objection for the usb patches to go through your tree as they
-> > are hardware-specific.
->=20
-> Kishon,
->=20
-> I haven't heard back from you on this yet. We missed v5.12 but I'd like
-> to get this into v5.13 since it's the last missing piece to get suspend
-> and resume working properly on a number of boards.
->=20
-> Are you okay if I take this through the Tegra tree to satisfy the
-> interdependencies between clk, PHY and USB patches? I've already got
-> Acked-by's from the clock and USB maintainers.
->=20
-> I want to tentatively take this into linux-next to give it a bit of soak
-> time before the ARM SoC -rc6 cut-off. Please let me know if you'd prefer
-> to apply these to your tree so I can back them out of the Tegra tree
-> again.
+Thanks for the fix:
 
-Also adding Vinod for visibility and in case Kishon's too busy.
-
-Thierry
-
---u5Zpz5lsXNY2k1xR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBbP1EACgkQ3SOs138+
-s6G5sBAAh0Lkrr0lTVpTOBr3PZOfIjNoSUKj3pElbX7MikbUbfAwbA6Q5kQsS/6U
-Cl0wrHoCeWPnYGxN8tJtB0p2KgvIxocNryeIZEahFkf+dXzJLX+gi3q7I26G9t0c
-KQdsu40RA28kYoUPeNiwMUyueeimHMt0R9neLagCh0NPjUXhFybPtA8fcynT7psm
-dPFdqBRJL4E49dkcT0pZRdFiISqMDGo+b4xy/iyIMUGHrdINshI1NMdRQgYZ2A50
-EB72FmS8nvxEWHO7U7fcRg2qBFqwp/YjCHmzz5eePMXMYttY8buYG2SjmnsXPHTe
-TQWJhs4pa1Jpadjr40bwz76Zt8PbAC1OHTi9l0N4iGUaa1FIw6hoieD8iFLSyjS5
-DbNqawgDUDXFuu1/idLzFccSNU24CALZT1xhy32cT3DqtHIP09aI5LBpu8sFyjCj
-zjpx8IoO1Nk4UHWspb6RycyBGVNU880RjtrMT2ip5roy10Ff00ryeX7KZu4CGdkZ
-IgvxegtSq0wIkq3JstCK7TuGLxuDii8HeGYip2HkmZ19tguNU0Imn+2f8IhErW2K
-OVPaqa8hsI0Jd7eXvedMWOfUk8DAfRn7gXdQiBQPcHy4Pz08piNBmedeyfdeZetO
-H998/kewk+3bMPDdxi/6zADUcwUXdMC/88XWKa5be6uDIO3jzMI=
-=AbYf
------END PGP SIGNATURE-----
-
---u5Zpz5lsXNY2k1xR--
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
