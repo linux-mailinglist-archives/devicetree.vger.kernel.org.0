@@ -2,90 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DE5347B9E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B6ED347BBC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236452AbhCXPEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236459AbhCXPEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:04:33 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE097C061763;
-        Wed, 24 Mar 2021 08:04:32 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id x7-20020a17090a2b07b02900c0ea793940so1319517pjc.2;
-        Wed, 24 Mar 2021 08:04:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y7euH5yOXTToONzoAXK5U4+rRHWz0rknjZEdozlEFGw=;
-        b=VDCYMZ2i+UIkF0bRoD2Wegyzez8CwM5rqvICzEoxsB6zjeY9rww4o0iyd1EWqC3TeO
-         bXZcKWFXVblSc7OAxQr9xSGNT2IiDH3VHWAz8jADMbKCtaWx2roO443CZoI2UieiTbRi
-         0wQxzd8MLUhO62RdnK8yGw+26dDTL/T7rlfaDCFBvoCtnkiuJg+KdYLr2eYHVPp7ZFWU
-         b+Wsv3vyNjjMpEL4iA3kKvAj77w+mJJl7puk53sBCE+q0XFCuJL7qT9gnywZyDTg9SKy
-         TNyWf50ojJ/8SmQGYyh4qmt12gB+9LLA+gqKicBQYfkLzgk2v4JHQ8dJ9o83P28PHBtU
-         vxLQ==
+        id S236455AbhCXPJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:09:27 -0400
+Received: from mail-il1-f173.google.com ([209.85.166.173]:34476 "EHLO
+        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236440AbhCXPI4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:08:56 -0400
+Received: by mail-il1-f173.google.com with SMTP id u2so1467766ilk.1;
+        Wed, 24 Mar 2021 08:08:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y7euH5yOXTToONzoAXK5U4+rRHWz0rknjZEdozlEFGw=;
-        b=PGPyQQliw8HS5TgXjzIgNjUgC57PpJ4p50HbzmbYNa6U2HRE3HL6U8oMfGLnpkjwl+
-         +1CJbi5buLRklo+F2VAh9+si3CVBUz0dqzTtgbevg/XtLvBJjxrFnf7MlY/1ah5/2nWp
-         nyXDGSXk2MiTYwIgtDoS1/jJR1tpoCbLxA1gl3ZW3gy48dwHllO0xljveF7enBdkW8RL
-         +ZLLo6OC+noYFrACjU7U1ItlYLNN3AlrUFzb9MqkFkQ/eB+ptYZ32uY6M3CuXdbVFxm9
-         1UbrixF7DfgDCbuo4U6PYfTwfPDmuUgksHPID3YpiHtsjIsyi6Tt4wrZSvtKHDqSP4HX
-         CgnQ==
-X-Gm-Message-State: AOAM5303IsgS5xdBzMXti8NWPtjT/yxNmGSBbFKaQY3W4c3rfsKG9/4P
-        u6fj9gasLVb5Cet89ndxCGOpQ+BMOpxJn0Iv
-X-Google-Smtp-Source: ABdhPJwG07AWe19Exd7mzxFlBqC6ckXmmi3aIfICqr07BirPFjhw2GdWzyAu02x8ucx4dzOJdxJdjg==
-X-Received: by 2002:a17:902:8bc3:b029:e6:8d84:4d50 with SMTP id r3-20020a1709028bc3b02900e68d844d50mr3959677plo.31.1616598272391;
-        Wed, 24 Mar 2021 08:04:32 -0700 (PDT)
-Received: from WRT-WX9.. ([141.164.41.4])
-        by smtp.gmail.com with ESMTPSA id l20sm3070700pfd.82.2021.03.24.08.04.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Jt57g3Q1bvcHWvSSFnpo32F/tY2xxwnncryY+iv03rg=;
+        b=uYd3YhImAztqDWlTtdLNFbA23gPqAl/a1L77InC/YAks8Z3wyFOUFv1yXduZHWhmbt
+         i1erfvXjKSZ7LohPfuV5ybKEsmi96emq+nyRN/8ZBExUi6bCkVanAGSMg3X/W+mDGxT9
+         yo5akPSQvf6fTgfSywwnVlYEGDqBJ9n++WXFTGoED/YPTvezTJ7ZAzQZWu8ZooEvItUO
+         TBAm+9ybBoIEpZ6LFIfos6JpyupAlmL5lHT7Aar4zDyXF1Mbqi9f4Tq/j06ETV7WuEp2
+         fKc8rmHgMwRRlhheSCtnN3XkdsiVqQk6jijXpj6/boI80vEh5Dt+q/tDh4PqJ4PVOxRy
+         vkqQ==
+X-Gm-Message-State: AOAM5321i1LSCb0lV5gCYdaQKbAaYS6yHdNrjbXXknK8Yf2yphZm+11Y
+        HXYGNHZVgtwY+zsGnzgeUA==
+X-Google-Smtp-Source: ABdhPJzQMcSRimLW9Mb9xjoKpW5El8K0RuXwGH0EDYrKdjsAEuEBOT0TK9G1THW/6uNZa1OGFUx0gw==
+X-Received: by 2002:a92:ddd0:: with SMTP id d16mr3081577ilr.52.1616598535326;
+        Wed, 24 Mar 2021 08:08:55 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id c19sm1266794ile.17.2021.03.24.08.08.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 08:04:32 -0700 (PDT)
-From:   Changbin Du <changbin.du@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Changbin Du <changbin.du@gmail.com>
-Subject: [PATCH] of/fdt: Check dtb pointer first in unflatten_device_tree
-Date:   Wed, 24 Mar 2021 23:04:25 +0800
-Message-Id: <20210324150425.20688-1-changbin.du@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        Wed, 24 Mar 2021 08:08:54 -0700 (PDT)
+Received: (nullmailer pid 3069444 invoked by uid 1000);
+        Wed, 24 Mar 2021 15:08:52 -0000
+Date:   Wed, 24 Mar 2021 09:08:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     linux-power@fi.rohmeurope.com,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        mazziesaccount@gmail.com, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [RFC PATCH v3 1/7] dt_bindings: Add protection limit properties
+Message-ID: <20210324150852.GA3069304@robh.at.kernel.org>
+References: <cover.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
+ <4a12be22a3ea1cf9114dd67f017f3adea431c5c4.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4a12be22a3ea1cf9114dd67f017f3adea431c5c4.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The setup_arch() would invoke unflatten_device_tree() even no
-valid fdt found. So we'd better check it first and return early.
+On Thu, 11 Mar 2021 12:21:41 +0200, Matti Vaittinen wrote:
+> Support specifying protection/error/warning limits for regulator
+> over current, over temperature and over/under voltage.
+> 
+> Most of the PMICs support only "protection" feature but few
+> setups do also support error/warning level indications.
+> 
+> On many ICs most of the protection limits can't actually be set.
+> But for example the ampere limit for over-current protection on ROHM
+> BD9576 can be configured - or feature can be completely disabled.
+> 
+> Provide limit setting for all protections/errors for the sake of
+> the completeness and do that using own properties for all so that
+> not all users would need to set all levels when only one or few are
+> supported.
+> 
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> ---
+> v3:
+>  No changes.
+> v2:
+>  Shortended property names as suggested by Rob.
+> 
+>  .../bindings/regulator/regulator.yaml         | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+> 
 
-Signed-off-by: Changbin Du <changbin.du@gmail.com>
----
- drivers/of/fdt.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index dcc1dd96911a..05d439d63bc5 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1225,6 +1225,11 @@ bool __init early_init_dt_scan(void *params)
-  */
- void __init unflatten_device_tree(void)
- {
-+	if (!initial_boot_params) {
-+		pr_warn("No valid device tree found, continuing without\n");
-+		return;
-+	}
-+
- 	__unflatten_device_tree(initial_boot_params, NULL, &of_root,
- 				early_init_dt_alloc_memory_arch, false);
- 
--- 
-2.30.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
