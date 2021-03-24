@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A218346FDA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34B7D347010
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 04:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235039AbhCXDGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 23:06:14 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:47605 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235019AbhCXDF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:05:57 -0400
-X-UUID: e496039b6cea4f51bf3b3162195fa922-20210324
-X-UUID: e496039b6cea4f51bf3b3162195fa922-20210324
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 270299147; Wed, 24 Mar 2021 11:05:54 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 24 Mar 2021 11:05:52 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 24 Mar 2021 11:05:51 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
-        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
-        <anson.chuang@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
-        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-Subject: [v9,7/7] MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
-Date:   Wed, 24 Mar 2021 11:05:10 +0800
-Message-ID: <20210324030510.29177-8-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210324030510.29177-1-jianjun.wang@mediatek.com>
-References: <20210324030510.29177-1-jianjun.wang@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 973E95F7BAF6E3CE5732BC3D6A6899E3412E8CF9B7A6CCB05EF3A179FBAFA7B12000:8
-X-MTK:  N
+        id S232549AbhCXDXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 23:23:50 -0400
+Received: from lucky1.263xmail.com ([211.157.147.132]:54866 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232136AbhCXDXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 23:23:30 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 9FCEEF3344;
+        Wed, 24 Mar 2021 11:23:10 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13109T139929674307328S1616556189578495_;
+        Wed, 24 Mar 2021 11:23:10 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <cdee19ffc678ee8e11142310d3e75f1e>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Elaine Zhang <zhangqing@rock-chips.com>
+To:     robh+dt@kernel.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+Subject: [PATCH v3 0/3] soc: rockchip: power-domain: add rk3568 powerdomains
+Date:   Wed, 24 Mar 2021 11:23:05 +0800
+Message-Id: <20210324032308.6309-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update entry for MediaTek PCIe controller, add Jianjun Wang
-as MediaTek PCI co-maintainer.
+Support power domain function for RK3568 Soc.
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Change in V3:
+[PATCH v3 1/3]: No change.
+[PATCH v3 2/3]: Fix up the code styles and add rk3568 base on:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+[PATCH v3 3/3]: No change.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d92f85ca831d..8050c14e6a7a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13919,6 +13919,7 @@ F:	drivers/pci/controller/dwc/pcie-histb.c
- 
- PCIE DRIVER FOR MEDIATEK
- M:	Ryder Lee <ryder.lee@mediatek.com>
-+M:	Jianjun Wang <jianjun.wang@mediatek.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-mediatek@lists.infradead.org
- S:	Supported
+Change in V2:
+[PATCH v2 1/3]: No change.
+[PATCH v2 2/3]: Fix up yaml code styles.
+[PATCH v2 3/3]: No change.
+
+Elaine Zhang (3):
+  dt-bindings: add power-domain header for RK3568 SoCs
+  dt-bindings: Convert the rockchip power_domain to YAML and extend
+  soc: rockchip: power-domain: add rk3568 powerdomains
+
+ .../power/rockchip,power-controller.yaml      | 286 ++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+ drivers/soc/rockchip/pm_domains.c             |  31 ++
+ include/dt-bindings/power/rk3568-power.h      |  32 ++
+ 4 files changed, 349 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+ create mode 100644 include/dt-bindings/power/rk3568-power.h
+
 -- 
-2.25.1
+2.17.1
+
+
 
