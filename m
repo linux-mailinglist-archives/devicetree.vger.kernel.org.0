@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50360347D51
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F51A347D9E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 17:25:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbhCXQIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 12:08:40 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:36494 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231944AbhCXQIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 12:08:36 -0400
-Received: by mail-io1-f50.google.com with SMTP id f19so22046365ion.3;
-        Wed, 24 Mar 2021 09:08:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=DC6sppFwNSh0V8SQXMfoXHnO/dG93+K4vUIX7b7Jn1g=;
-        b=FNdqwgkC43A+JoKA+y5tn/TuAcyouEG7LLXV1fLeJBZ5bMgUiIrc5IE4782EGYOVdp
-         6vBf7v8IDi6oDIzeQLPBEA/mJvitseSdKt2CaXr3hLYE5RtslId2OqL5/iSQ/HzfxG6U
-         XuPkoVBZZf9SwQGalJLLNbYBabZ71+wAnvxkA5/VCINln5A+PyvpP277hfqzLsXU+THS
-         Du8RHeplo2h65fxP38faGVv4A98gqCaC8FxVvSG/dx4Zj8AfmWEba1FHejfauIubrvtA
-         qtW94Xg9+BDWClUN+lLtRn15XQyrUyBDMuALSsLs2VavVOW4H/DPE4s+WsqbHLHU8njS
-         mmUA==
-X-Gm-Message-State: AOAM533zzXhYIa/H2F27AntNy0vtOxQSSvj0Q/2xLUpzPW0E44oh/nSF
-        xzqmgWL5U4AmEduDsTPJch4WiSCDDA==
-X-Google-Smtp-Source: ABdhPJw2gQcj61bgnRXQyecLd4GvAnJhIsD87E+oxbVR95LbjoF/R/1ll6zJeKQ2LtJ63x71M5GSOw==
-X-Received: by 2002:a5d:9807:: with SMTP id a7mr3092446iol.7.1616602116240;
-        Wed, 24 Mar 2021 09:08:36 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id i18sm883584ilk.83.2021.03.24.09.08.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 09:08:35 -0700 (PDT)
-Received: (nullmailer pid 3163532 invoked by uid 1000);
-        Wed, 24 Mar 2021 16:08:33 -0000
-Date:   Wed, 24 Mar 2021 10:08:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: renesas,csi2: Add r8a77961 support
-Message-ID: <20210324160833.GA3163480@robh.at.kernel.org>
-References: <20210312130421.1743226-1-niklas.soderlund+renesas@ragnatech.se>
+        id S233405AbhCXQY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 12:24:57 -0400
+Received: from sender11-of-o51.zoho.eu ([31.186.226.237]:21122 "EHLO
+        sender11-of-o51.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232650AbhCXQYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 12:24:23 -0400
+X-Greylist: delayed 907 seconds by postgrey-1.27 at vger.kernel.org; Wed, 24 Mar 2021 12:24:23 EDT
+ARC-Seal: i=1; a=rsa-sha256; t=1616602141; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=Coj5qPoXRf4qDnwzRvgcy4Pe2N8O8gpF7A3DYaHs/JBRbjrqBfgcKQXodqKvpb8wx13qeftSi3/N8fHiAfD0ab3swMhK5+Mlr8543DRdouH/YZMgR3vkWbB77c/4pRANF/8ac5fYR/rSYSdTWv542AP6ZCGFVQiukd1tGI5LYPo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1616602141; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=O3Hvxfg/YcoGwihKU1Fyavd8RTA60HQcXRLfLmYZ4Cc=; 
+        b=MYwD+zRViU3Knj+BrFximCiHH3t/EISNfjszp8LgGSsWVieVk7QeezvKcQILhG6G0P6ueoYgXzuSPIDUGmU2yllJdGZ4AHV6wbAS9W3gX1invudcrKhHL55Bnz2VMm414Pcp8B03m700n3v69KcZJ1zp6oK1uuqS7DMZ7TXffkg=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=carl@uvos.xyz;
+        dmarc=pass header.from=<carl@uvos.xyz> header.from=<carl@uvos.xyz>
+Received: from [10.0.0.102] (ip-95-222-214-39.hsi15.unitymediagroup.de [95.222.214.39]) by mx.zoho.eu
+        with SMTPS id 1616602140011723.3978037548596; Wed, 24 Mar 2021 17:09:00 +0100 (CET)
+Date:   Wed, 24 Mar 2021 17:08:58 +0100
+Subject: Re: [PATCH 2/5] ARM: dts: add battery phandle to cpcap_charger
+From:   carl@uvos.xyz
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Arthur Demchenkov <spinal.by@gmail.com>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Carl Philipp Klemm <philipp@uvos.xyz>,
+        devicetree@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
+        linux-omap@vger.kernel.org
+Message-ID: <17864ff0d6d.6fcdc75d-1677305881.-8147809712278605057@zoho.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210312130421.1743226-1-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Mar 2021 14:04:21 +0100, Niklas Söderlund wrote:
-> Add the compatible string for M3-W+ (r8a77961) to the list of supported
-> SoCs.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
->  Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+PiBJIHRoaW5rIHRoZSBwYXRjaCBpcyBhbHNvIHdyb25nLCBzaW5jZSB0aGUgaW5mb3JtYXRpb24g
+aXMgYWxyZWFkeSAKPiBkZXNjcmliZWQgaW4gRFQgLSBqdXN0IHRoZSBvdGhlciB3YXkgYXJvdW5k
+OiBUaGUgYmF0dGVyeSByZWZlcmVuY2VzIAo+IHRoZSBjaGFyZ2VyLiBUaGlzIHByb3ZpZGVzIGFs
+bCByZXF1aXJlZCBpbmZvcm1hdGlvbiB0byB0aGUga2VybmVsIAo+IGZvciBhIDE6MSBsaW5rLiAK
+Pgo+IC0tIFNlYmFzdGlhbiAKCkkgYWRkZWQgdGhpcyBzbyB0aGF0IGNwY2FwX2NoYXJnZXIgbWF5
+IGJlY29tZSBhd2FyZSBvZiB0aGUgYmF0dGVyeSBpbnNlcnRpb24gc3RhdGUgYnkgcXVlcnlpbmcg
+dGhlIGJhdHRlcnkgZHJpdmVyLgpXb3VsZCB5b3UgdGh1cyByZWNvbW1lbmQgdGhhdCBpbnN0ZWFk
+IG9mIGFkZGluZyB0aGlzIHBoYW5kbGUgaSBzaG91bGQgYW1lbmQgdGhlIHNlcmllcyBzdWNoIHRo
+YXQgY3BjYXBfY2hhcmdlciB3YWxrcyB0aGUgdHJlZSBsb29raW5nIGZvciBhIGNwY2FwX2JhdHRl
+cnkgY29tcGF0aWJsZSBub2RlIGFuZCB0aGVuIGRldGVybWluZXMgaWYgdGhlIGNoYXJnZXIgcGhh
+bmRsZSBwb2ludHMgdG8gaXRzZWxmPyBJcyB0aGVyZSBzb21lIHJlY29tbWVuZGVkIHdheSBwZXJm
+b3JtaW5nIHRoaXMgcmV2ZXJzZSBzZWFyY2g/Cg==
+
