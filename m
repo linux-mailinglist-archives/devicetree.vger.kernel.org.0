@@ -2,104 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B72A53481CD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 20:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C71B3481E3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 20:29:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237833AbhCXTVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 15:21:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237842AbhCXTUr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 15:20:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C515B61A1F;
-        Wed, 24 Mar 2021 19:20:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616613647;
-        bh=IpRtc2I/K4He/YjHYwXXay+QOQvkt5PH7UrC2G/o+jA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=i/leH4Pov29oe6LP85rCVABrlLzQ+kzpWYkNa05TWNJRUjY8Zl33+RkiTz+5U4+9r
-         SkAvr7L5Bk7P3OYeeTPVE24QD2VjBDEN+hgMt0LTUb1DvAhfX2mmjStJktp55L9j/1
-         tJKbXYK6Kg8Wb6g6FaLN/us1Wui38jZV0r4sZ5vsuTiXYliR399M4/cfPIlIPNXDPX
-         012ZiuZpBTd7gPYuqbjcEA7qsiUwLWSydO2bEW3UQnJp9BrOJYNfS76MwKVAstsCFL
-         eDJBgHQBtvtnK5+XK1cEbi6CRKssyKb0j79M8JaK468BY1q+guPkp8+MDQH1qvwWSJ
-         6Ieb/K6KTa8Rw==
-Received: by mail-ej1-f47.google.com with SMTP id w3so34761318ejc.4;
-        Wed, 24 Mar 2021 12:20:46 -0700 (PDT)
-X-Gm-Message-State: AOAM5306k56u3JaQoYagC98sUWJMbU8Q7ezxxrdT0C6jwPAjwaVUS1Rj
-        MbHWzdYEepJjcx1kY5p1o5gxbT5gKLJHB9CIqA==
-X-Google-Smtp-Source: ABdhPJxRpUAXAPclCozJuEZW6ZDhmVnl579S7JzZGmBMNcIx8KrBX3Az00WnWhanL/Km6X+rA/5qkEEd6k9jb0atkVU=
-X-Received: by 2002:a17:906:5e01:: with SMTP id n1mr5450325eju.359.1616613645234;
- Wed, 24 Mar 2021 12:20:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
- <20210315205440.lb6hcrvzxtqxdb5x@skbuf> <DB6PR0402MB27580AF77ED738B995616EB5E06B9@DB6PR0402MB2758.eurprd04.prod.outlook.com>
- <20210316101506.rkqcxkw6slv4vuhr@skbuf> <20210324181403.GC3320002@robh.at.kernel.org>
- <20210324185302.dxi2wurf7lgr5yxi@skbuf>
-In-Reply-To: <20210324185302.dxi2wurf7lgr5yxi@skbuf>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 24 Mar 2021 13:20:33 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+8xXcLr8sLk+gj9y+FOi9kiEtRHTxDUV+yxm9CXS+jbQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+8xXcLr8sLk+gj9y+FOi9kiEtRHTxDUV+yxm9CXS+jbQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to
- json schema
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Kuldeep Singh <kuldeep.singh@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S237869AbhCXT3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 15:29:22 -0400
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:55796 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237661AbhCXT25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 15:28:57 -0400
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Mar 2021 12:28:56 -0700
+X-QCInternal: smtphost
+Received: from gurus-linux.qualcomm.com (HELO gurus-linux.localdomain) ([10.46.162.81])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP; 24 Mar 2021 12:28:55 -0700
+Received: by gurus-linux.localdomain (Postfix, from userid 383780)
+        id B7BE61A1A; Wed, 24 Mar 2021 12:28:55 -0700 (PDT)
+From:   Guru Das Srinagesh <gurus@codeaurora.org>
+To:     Mark Brown <broonie@kernel.org>,
+        Markus Elfring <Markus.Elfring@web.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joe Perches <joe@perches.com>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Anirudh Ghayal <aghayal@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Guru Das Srinagesh <gurus@codeaurora.org>
+Subject: [PATCH v5 0/2] Add support for Qualcomm MFD PMIC register layout
+Date:   Wed, 24 Mar 2021 12:28:52 -0700
+Message-Id: <cover.1616613838.git.gurus@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 12:53 PM Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> On Wed, Mar 24, 2021 at 12:14:03PM -0600, Rob Herring wrote:
-> > On Tue, Mar 16, 2021 at 12:15:06PM +0200, Vladimir Oltean wrote:
-> > > On Tue, Mar 16, 2021 at 06:08:17AM +0000, Kuldeep Singh wrote:
-> > > > Compatible entries in conjugation require enum and const pair.
-> > > > For example, ls1012a.dtsi uses compatible = "fsl,ls1012a-dspi","fsl,ls1021a-v1.0-dspi";
-> > > > Same goes for LS1028 as well.
-> > > >
-> > > > Therefore, can't mention the compatible entry as single entity otherwise
-> > > > it may fail "make dt_binding_check" and "make dtbs_check".
-> > > >
-> > > > >
-> > > > > > +examples:
-> > > > > > +  - |
-> > > > > > +    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
-> > > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > > > +
-> > > > > > +    soc {
-> > > > > > +        #address-cells = <2>;
-> > > > > > +        #size-cells = <2>;
-> > > > > > +
-> > > > > > +        spi@2100000 {
-> > > > > > +            compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
-> > > > >
-> > > > > This doesn't need the "fsl,ls1021a-v1.0-dspi" compatible, can you please remove
-> > > > > it?
-> > > >
-> > > > I have taken this example from LS1028a.dtsi and it uses these compatibles in conjugation.
-> > > > If "fsl,ls1021a-v1.0-dspi" is not required, then it should also be removed from device-tree
-> > > > As well as from bindings both.
-> > >
-> > > Yes, the second compatible is never required by the driver and should be
-> > > removed from existing device trees if that makes "make dtbs_check" fail.
-> >
-> > Can you say that is true for every possible driver implementation?
-> > u-boot, *BSD, etc.?
->
-> I don't think other systems are required to follow Linux conventions, so
-> I'm not sure why it matters.
+Changes from v4:
+- Only one cosmetic change: Moved the declaration of num_virt_regs under
+  num_type_reg instead of under num_main_regs in `struct regmap_irq_chip` so as
+  to reinforce the idea that it is related to the type setting of IRQs.
+- No other changes.
 
-Not required, but other projects do in fact use both bindings and dts
-files. Bindings and dts files are stored in the kernel tree for
-convenience as that's where the most activity is, but they are not
-"Linux bindings" or "Linux DT" files.
+Changes from v3:
+- Implemented the scheme proposed in my response to Mark in [4].
+- Dropped the RFC tag from this patch series as this series has been tested on
+  target with a client driver utilizing these changes.
 
-In addition, "fsl,ls1088a-dspi" is not known by the Linux driver, so a
-fallback is needed.
+Changes from v2:
+- Split up framework changes patch for better comprehension.
+- Dropped PM8008 driver example and converted it into example code in cover
+  letter and commit text.
+- Added more info in cover letter and commit message as per v2 feedback.
 
-Rob
+This is a follow-up as promised [1] to the earlier attempts [2] [3] to upstream
+the driver that has been hitherto used to handle IRQs for Qualcomm's PMICs that
+have multiple on-board peripherals when they are interfaced over the I2C
+interface.
+
+This series is a rewrite of that driver while making use of the regmap-irq
+framework, which needs some modifications to handle the register layout of
+Qualcomm's PMICs. This is an RFC because I would like to get feedback on my
+general approach before submitting as a patch per se.
+
+Qualcomm's MFD chips that are interfaced over I2C have a top level interrupt
+status register and sub-irqs (peripherals).  When a bit in the main status
+register goes high, it means that the peripheral corresponding to that bit has
+an unserviced interrupt. If the bit is not set, this means that the
+corresponding peripheral does not.
+
+The differences between Qualcomm's register layout and what the regmap-irq
+framework assumes are best described with an example:
+
+Suppose that there are three peripherals onboard an MFD chip: MISC, TEMP_ALARM
+and GPIO01. Each of these peripherals has the following IRQ configuration
+registers: mask, type and ack. There is a top level interrupt status register
+and per-peripheral status registers as well (not shown below).
+
+The regmap-irq framework expects all similar registers to be at a fixed stride
+from each other, for each peripheral, as below (with stride = 1). 
+
+	/* All mask registers together */
+	MISC_INT_MASK		0x1011
+	TEMP_ALARM_INT_MASK	0x1012
+	GPIO01_INT_MASK		0x1013
+	
+	/* All type registers together */
+	MISC_INT_TYPE		0x2011
+	TEMP_ALARM_INT_TYPE	0x2012
+	GPIO01_INT_TYPE		0x2013
+	
+	/* All ack registers together */
+	MISC_INT_ACK		0x3011
+	TEMP_ALARM_INT_ACK	0x3012
+	GPIO01_INT_ACK		0x3013
+
+In contrast, QCOM's registers are laid out as follows:
+
+	/* All of MISC peripheral's registers together */
+	MISC_INT_MASK		0x1011
+	MISC_INT_TYPE		0x1012
+	MISC_INT_ACK		0x1013
+
+	/* All of TEMP_ALARM peripheral's registers together */
+	TEMP_ALARM_INT_MASK	0x2011
+	TEMP_ALARM_INT_TYPE	0x2012
+	TEMP_ALARM_INT_ACK	0x2013
+	
+	/* All of GPIO01 peripheral's registers together */
+	GPIO01_INT_MASK		0x3011
+	GPIO01_INT_TYPE		0x3012
+	GPIO01_INT_ACK		0x3013
+
+As is evident, the different IRQ configuration registers are just (0x11, 0x12,
+0x13) with offsets of (0x1000, 0x2000 and 0x3000) respectively in QCOM's case.
+If the *_base registers fed to the struct regmap_irq_chip could be set to the
+first peripheral (MISC in this example), then through the sub_reg_offsets
+mechanism, we could add the offsets _to_ the *_base register values to get at
+the configuration registers for each peripheral.
+
+Hopefully this will help when reviewing the changes in this series.
+
+[1] https://lore.kernel.org/lkml/20200519185757.GA13992@codeaurora.org/
+[2] https://lore.kernel.org/lkml/cover.1588037638.git.gurus@codeaurora.org/
+[3] https://lore.kernel.org/lkml/cover.1588115326.git.gurus@codeaurora.org/
+[4] https://lore.kernel.org/lkml/20210315203336.GA8977@codeaurora.org/
+
+Guru Das Srinagesh (2):
+  regmap-irq: Introduce virtual regs to handle more config regs
+  regmap-irq: Add driver callback to configure virtual regs
+
+ drivers/base/regmap/regmap-irq.c | 43 +++++++++++++++++++++++++++++++++++++++-
+ include/linux/regmap.h           |  9 +++++++++
+ 2 files changed, 51 insertions(+), 1 deletion(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
