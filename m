@@ -2,345 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0809C34708C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 05:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF913470E1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 06:33:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235227AbhCXEpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 00:45:02 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:36569 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232732AbhCXEo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 00:44:58 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 202935C00A4;
-        Wed, 24 Mar 2021 00:44:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Wed, 24 Mar 2021 00:44:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=U
-        +jLtGZ3crKCzzHyYT7e7iwoSBlJkEHjIPEjgBND7zs=; b=aHC7zMhxosK5ztkEe
-        gGJMPa3bUrJNJ0ds7WjxP4jV5FPHH6Jqa/y8kf67D3KhXnSzQmKoYzy6ZofVLpUZ
-        ktp5kXTJr1X1snbbJoh/gtFJgMKZhW6v89fXKN2ZLMVSDLwnSdsJQ9HkWecMsFSi
-        c9fZ+APfiWPzTWs5b2eV+Bt878Ur3AIFd1iRmwBlG1A3yFGzVHi84O5LAheScg/f
-        jaOeCPRt7RDQGa6CvGSt5gjWryWuKO5xZ6rg2ew0LBx2Sxncbb7eOxCv4QFHqJ2Y
-        q6jNkmW4XpbecKt17yezvmvr25hX4e4EN2g8irrCAgCq5cLGYh3LPXwivJYE5K49
-        j5H0w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=U+jLtGZ3crKCzzHyYT7e7iwoSBlJkEHjIPEjgBND7
-        zs=; b=sI08tU7ZinIjomd1VIiHq8Dkzj6kDrcBlzEJmwXXz3FywmjsR2+d69YeY
-        lcZPcZdtKtHLOT6eUVtyEHIbYuWtdP7LFCbqKFJSZvkncj7wiZypWfSKDzetFZsR
-        WRehYECK/79qjqAqrmLw/NOf77voZDw/WnzWjWywJ35ylDIGrwrxHL1ptu8Obtqv
-        QgChvrHNtbnsem06gUWfpUnCyNv92zMIKJkGMCkfY+HbvjhwxtELnWtHCTbIdBel
-        Cau1Och/0oB1DlifdDJttcTF3dXLBBB6rNxUwYTU7qsH6AkzI1Lyhxxuzwc5mEZ4
-        tfyziyjbtk7FngDE3/Yj7Z2prhkew==
-X-ME-Sender: <xms:xMNaYEBpasAlFOdXd_hUwGMZHbpGW1G9GyaaiRIY67Sc04TM_kYo9g>
-    <xme:xMNaYGhs1Fad21BeneJzEY9eNk9Lt8SQNM1tt0sMliKBRnq-YVhoOLWE29uuDne4Q
-    cjgIZ5JyUgWZmXUJg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudegjedgjeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepffdtgeeuueeuueekueeiveejtedvtdfhheduteduueeigffftdev
-    tdeffeevhfdunecuffhomhgrihhnpehtrhhushhtvggufhhirhhmfigrrhgvrdhorhhgpd
-    hgihhthhhusgdrtghomhenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshh
-    holhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:xMNaYHnwF-k4E9fQROPeOi6Zz8le7p8PXXaNDcoV-3wnrS3NGehdrg>
-    <xmx:xMNaYKyFraNeGDC6x4i2lSm7c7UcfGfdCSrhcZ3P2DzQT0xVa7ELEQ>
-    <xmx:xMNaYJQ2zjX9HtKAh-zZToUyfGB_exGUv7gs-iwxQZTMJahucCknEA>
-    <xmx:xsNaYIGeRAzxeOcqZCY5MJoH8vrgOcxU5vnQW2fvfNWdvq3sdHdg-A>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A9263240356;
-        Wed, 24 Mar 2021 00:44:51 -0400 (EDT)
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-sunxi@googlegroups.com
-References: <20210322062514.40747-1-samuel@sholland.org>
- <20210323015627.08f9afd6@slackpad.fritz.box>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [RFC PATCH] arm64: dts: allwinner: a64/h5: Add CPU idle states
-Message-ID: <ca26bade-abab-8e01-8014-bc7c72ea13fc@sholland.org>
-Date:   Tue, 23 Mar 2021 23:44:50 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S233871AbhCXFcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 01:32:50 -0400
+Received: from mail-co1nam11on2060.outbound.protection.outlook.com ([40.107.220.60]:6240
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232343AbhCXFc1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 01:32:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a4myuOaUg83aeljVvjzuOEy4XGdRouWRb3tWGv722Djz6r7jM4OnswHiYcW2FkwXRr/5gBo3Qu/knHsioUO57P0/F7BM+CtRwMhqgDA79Z4UVcIHrPY5KRn6QzY3SJz4txdTFj9qawGG9yz73kK5MD4waLD+MQN4RFVQyCCuTvVKBXWklFhYh232qakqVF0FsRFkhYGyrQhSHDna96Ee80gcUaE8QKlafTigFnHxi85Du2j023RbQLuDpq6TFenThR/BDhCgCpBATNVqE/HG+Y2VzZepF1VrKka4yPtfRpJ0FDQWw7vE/mMrgoBiUiVZp3gB5voU4+iADaLVeX3uZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Sq9mbnxVI86OUKNQ793xoJzl2ITUFAAKR1UyoscWNwo=;
+ b=muV1LAJnU9ooac04ArJ6HuoAKD6rI/gMslMrcgK3SIVqYAI+9AhjYEwxIFghPcfMT4BZ1fuk8+MHEhMrqqa5d9ZnIqf0VPjsblWgmKrFvZ+EC5m+zLILWedA+3UOq+strREAn+s06GG9fan9lRgSMeTfDQjG0q9UBUesJ5idhbcdTxz+O2wnxAF5gkj5pswBcTI/oZeSxLz4263IlKlBEqVeILkpjax38H48b6dmIpoBalxMqjqwb0KfO6ssM4cFrw+UAhz8MWPFUl6sG0YhUJn/c16VKRQH6g/7mjw0VAoVRzMVO/vyKCR24sx1kDaJWki3fHmpPyCR6lCXDG1uHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Sq9mbnxVI86OUKNQ793xoJzl2ITUFAAKR1UyoscWNwo=;
+ b=ba2kNv6MnG7suWZcqh7bNDZ/47w5kY9lfDIvknOzA9ZQhIA2A3hlHxTgk2MaUoliPC9Q7UKm4mVPX5Xm0QtofVqbkubFq8JFoBivvgFTKrXKHOcvVTRHWBqO4M3bSeT3DlLPq22IOp7Fd5lT+IuPYZ3lXyrS2mXRALBskHQeSWs=
+Received: from DM6PR05CA0062.namprd05.prod.outlook.com (2603:10b6:5:335::31)
+ by SA0PR02MB7226.namprd02.prod.outlook.com (2603:10b6:806:da::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Wed, 24 Mar
+ 2021 05:32:24 +0000
+Received: from DM3NAM02FT014.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:335:cafe::f6) by DM6PR05CA0062.outlook.office365.com
+ (2603:10b6:5:335::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.14 via Frontend
+ Transport; Wed, 24 Mar 2021 05:32:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT014.mail.protection.outlook.com (10.13.5.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3955.24 via Frontend Transport; Wed, 24 Mar 2021 05:32:23 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 23 Mar 2021 22:32:22 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Tue, 23 Mar 2021 22:32:22 -0700
+Envelope-to: mdf@kernel.org,
+ robh@kernel.org,
+ trix@redhat.com,
+ devicetree@vger.kernel.org,
+ linux-fpga@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [172.19.72.212] (port=51020 helo=xsj-xw9400.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <lizhi.hou@xilinx.com>)
+        id 1lOw7y-0005o8-3m; Tue, 23 Mar 2021 22:32:22 -0700
+Received: by xsj-xw9400.xilinx.com (Postfix, from userid 21952)
+        id 85B5B60011E; Tue, 23 Mar 2021 22:29:55 -0700 (PDT)
+From:   Lizhi Hou <lizhi.hou@xilinx.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     Lizhi Hou <lizhi.hou@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
+        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
+        <devicetree@vger.kernel.org>, <trix@redhat.com>, <mdf@kernel.org>,
+        <robh@kernel.org>
+Subject: [PATCH V4 XRT Alveo 00/20] XRT Alveo driver overview
+Date:   Tue, 23 Mar 2021 22:29:27 -0700
+Message-ID: <20210324052947.27889-1-lizhi.hou@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210323015627.08f9afd6@slackpad.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 38402d1a-6023-4bca-05d6-08d8ee86340c
+X-MS-TrafficTypeDiagnostic: SA0PR02MB7226:
+X-Microsoft-Antispam-PRVS: <SA0PR02MB72265E6B36BF0D8843D59289A1639@SA0PR02MB7226.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KQ6HNirPqUeHw3fkQ59vtm2oliRjAdCNSBJqdfnTZBjYNjxMuJpjqpcUPLLs8oqBVgKJJdNawGGifhzCYuT+z4UJj8MhJvWkPJoiHUaW8E0xXpcGjLIWJ+mmqeaxuWLfDeXjFVQJX8m88fiEVETI1Vn3E/sI0Eqch1zPSIv68iZ0k3VZj/Pk2F34sPhypMqcKNXJWf4lNVYjlgWQ3cr+EXihSTAxj7B835EItVFszE1AnKQHW3HGkScIMi9R0n9GlgPjPnErblbrQ6rBVlcCTnKTtDhje8fmuID9Gdx4/BjofeQr1yqtT4fSHFKj1NjgvIzMs7rXdnMk09hp0SW7cFje/ae/NdNDz8Zw0zBZ9HKtkDRmnWTD7OWn4quAQmH3v9F4/kDBTxqn88SmzHEIdDbN/2dpBOAXWNC4QipAFfNUCkO1oywYmzhvl01+gkVWvFHrexCQ7LrrNgW5khSsdzf2tFE5H1Eh9Axv8wcA4G6L5YEM1Uw4siUGAcf3YPWERfmgB54dJQFTnlovWVj9wXTy7NJOaZAsSzpR2VdEvdxIFkRn4QcVHoPmmCoLfvR0obUrjUEMGxDZdimHPlh9PII6pUtHVmhUnkPnMwZOaVipbkC0taimGUqlDJ1uEGrzqwNUshDW2RemWMNzS0yTblvNGjkUcst/qIM11TBFZ7R4i6XZHjCHu4thjiVFwbOP6VvXG8oYmti48IDT76xWrItQF/6tpS+sVN5vD8TEA4M=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(36840700001)(46966006)(966005)(478600001)(36860700001)(44832011)(2616005)(4326008)(47076005)(1076003)(82740400003)(30864003)(426003)(336012)(8936002)(2906002)(70586007)(6266002)(70206006)(356005)(8676002)(42186006)(82310400003)(36756003)(26005)(5660300002)(186003)(36906005)(316002)(6666004)(7636003)(83380400001)(6916009)(54906003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2021 05:32:23.8267
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38402d1a-6023-4bca-05d6-08d8ee86340c
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT014.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR02MB7226
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/22/21 8:56 PM, Andre Przywara wrote:
->> I'm sending this patch as an RFC because it raises questions about how
->> we handle firmware versioning. How far back does (or should) our support
->> for old TF-A and Crust versions go?
->>
->> cpuidle has a problem that without working firmware support, CPUs will
->> enter idle states and be unable to wake up. As a result, the system will
->> hang at some point during boot, usually before getting to userspace.
->>
->> For over a year[0], TF-A has exposed the PSCI CPU_SUSPEND function when
->> a SCPI implementation is present[1]. Implementing CPU_SUSPEND is
->> required for implementing SYSTEM_SUSPEND[2], even if CPU_SUSPEND is not
->> itself used for anything. 
->>
->> However, there was no code to actually wake up a CPU once it called the
->> CPU_SUSPEND function, because I could not find the register providing
->> the necessary information. The fact that CPU_SUSPEND was broken affected
->> nobody, because nothing ever called it -- there were no idle states in
->> the DTS. In hindsight, what I should have done was always return failure
->> from sunxi_validate_power_state(), but that ship has long sailed.
->>
->> I finally found the elusive register and implemented the wakeup code
->> earlier this month[3]. So now, CPU_SUSPEND actually works, if all of
->> your firmware is up to date, and cpuidle works if you add the states in
->> your device tree.
->>
->> Unfortunately, there is currently nothing verifying that compatibility.
->> So you can get into four possible scenarios:
->>   1) No idle states in DTS, any firmware => Linux works, with baseline
->>      power consumption.
->>   2) Idle states added to DTS, no Crust/SCPI => Linux works, but every
->>      attempt to enter an idle state is rejected because CPU_SUSPEND is
->>      not hooked up. So power consumption increases by a sizable amount.
->>   3) Idle states added to DTS, "old" Crust/SCPI (before [3]) => Linux
->>      fails to boot, because CPUs never return from idle states.
->>   4) Idle states added to DTS, "new" Crust/SCPI (after [3]) => Linux
->>      works, with improved power consumption compared to the baseline.
->>
->> Obviously, we want to prevent scenario 3 if possible.
-> 
-> So I think the core of the problem is that the DT describes some
-> firmware feature, but we have the DT bundled with the kernel, not the
-> firmware.
+Hello,
 
-I would say the core problem is that the firmware lies about supporting
-PSCI CPU_SUSPEND. Linux shouldn't be calling CPU_SUSPEND if the firmware
-declares it as unavailable, regardless of what is in the DTS.
-(Technically, per the PSCI standard, CPU_SUSPEND is a mandatory
-function, but a quick survey of the TF-A platforms shows it is far from
-universally implemented.)
+This is V4 of patch series which adds management physical function driver
+for Xilinx Alveo PCIe accelerator cards.
+    https://www.xilinx.com/products/boards-and-kits/alveo.html
 
-> So is there any way we can detect an older crust version in U-Boot,
-> then remove any potential idle states from the DT?
+This driver is part of Xilinx Runtime (XRT) open source stack.
+The V4 patch series do not include bus_type change as suggested before.
+The bus_type change will come with v5 patch series.
 
-Let's assume that we are using a functioning SoC (H3) or the secure fuse
-is blown (A64) and therefore U-Boot cannot access SRAM A2. I can think
-of three ways it can learn about crust:
+XILINX ALVEO PLATFORM ARCHITECTURE
 
-a) PSCI_FEATURES (e.g. is CPU_SUSPEND supported)
-b) Metadata in the FIT image
-c) Custom SMCs
+Alveo PCIe FPGA based platforms have a static *shell* partition and a
+partial re-configurable *user* partition. The shell partition is
+automatically loaded from flash when host is booted and PCIe is enumerated
+by BIOS. Shell cannot be changed till the next cold reboot. The shell
+exposes two PCIe physical functions:
 
-TF-A has some additional methods available:
+1. management physical function
+2. user physical function
 
-d) The SCPI-reported firmware version
-e) The magic number at the beginning of the firmware binary
+The patch series includes Documentation/xrt.rst which describes Alveo
+platform, XRT driver architecture and deployment model in more detail.
 
-> Granted, this requires recent U-Boot as well, but at least we could try
-> to mitigate the worst case a bit?
+Users compile their high level design in C/C++/OpenCL or RTL into FPGA
+image using Vitis tools.
+    https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html
 
-If we're okay with modifying firmware to solve this problem, then I
-propose the following solution:
+The compiled image is packaged as xclbin which contains partial bitstream
+for the user partition and necessary metadata. Users can dynamically swap
+the image running on the user partition in order to switch between
+different workloads by loading different xclbins.
 
-1) Version bump crust or change its magic number.
-2) Modify TF-A to only report CPU_SUSPEND as available if it detects the
-   new crust version. This would involve conditionally setting
-   sunxi_scpi_psci_ops.validate_power_state, and updating psci_setup.c
-   to also check for .validate_power_state when setting psci_caps.
-3) Modify the Linux PSCI client to respect PSCI_FEATURES when setting
-   psci_ops.cpu_suspend. cpuidle-psci checks for this function before
-   setting up idle states.
-4) Finally, after some time, add the idle states to the DTS.
+XRT DRIVERS FOR XILINX ALVEO
 
-In fact, this solution solves both scenarios 2 and 3, because it also
-takes care of the native PM implementation, which doesn't implement
-CPU_SUSPEND at all.
+XRT Linux kernel driver *xmgmt* binds to management physical function of
+Alveo platform. The modular driver framework is organized into several
+platform drivers which primarily handle the following functionality:
 
-Does that sound workable?
+1.  Loading firmware container also called xsabin at driver attach time
+2.  Loading of user compiled xclbin with FPGA Manager integration
+3.  Clock scaling of image running on user partition
+4.  In-band sensors: temp, voltage, power, etc.
+5.  Device reset and rescan
 
-Regards,
-Samuel
+The platform drivers are packaged into *xrt-lib* helper module with well
+defined interfaces. The module provides a pseudo-bus implementation for the
+platform drivers. More details on the driver model can be found in
+Documentation/xrt.rst.
 
-> A better solution could be to only *add* the idle states if the rest of
-> the firmware is deemed worthy. So the mainline DTs would not carry the
-> properties in the first place, and only U-Boot adds them, on detecting
-> a capable firmware?
-> Admittedly this changes the "flow" of the DT, where the kernel is the
-> authority, but it might help to solve this problem?
-> 
-> Or any other way, which involves U-Boot patching the DTB? (This would
-> apply to the DTB passed to the kernel, regardless of where and when
-> it's loaded from)
-> 
-> Any opinions?
-> 
-> Cheers,
-> Andre
-> 
->> Enter the current patch: I chose the arm,psci-suspend-param values
->> specifically so they would be _rejected_ by the current TF-A code. This
->> makes scenario 3 behave like scenario 2. I then have some follow-up TF-A
->> patches (not yet submitted) to switch to the new parameter encoding[4].
->>
->> This brings me back to my original question. Once the TF-A patches in
->> [4] are merged, scenario 3 (with an updated TF-A but an old Crust) would
->> fail to boot again. Do we care?
->>
->> Should I implement some kind of runtime version checking, so TF-A can
->> disable CPU_SUSPEND if it would be broken? Or instead, should we wait
->> some amount of time to merge this patch (or the patches at [4]) and
->> assume people have upgraded?
->>
->> Where would people expect this sort of possibly-breaking change to be
->> documented?
->>
->> Separately, since I assume most A64/H5 users (outside of LibreELEC and
->> the PinePhone) are not using Crust, scenario 2 would be very common. If
->> merging this patch increases their idle power draw by 500 mW, is that an
->> acceptable cost for decreasing other users' idle power draw by 50 mW?
->>
->> Sorry for the wall of text,
->> Samuel
->>
->> [0]: https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/plat/allwinner/common/sunxi_pm.c?id=e382c88e2a26995099bb931d49e754dcaebc5593
->> [1]: https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/tree/plat/allwinner/common/sunxi_scpi_pm.c?id=2e0e51f42586826a1f6f6c1e532f90e6df642cf5#n190
->> [2]: https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/tree/lib/psci/psci_setup.c?id=2e0e51f42586826a1f6f6c1e532f90e6df642cf5#n251
->> [3]: https://github.com/crust-firmware/crust/commits/85944467c804
->> [4]: https://github.com/crust-firmware/arm-trusted-firmware/commits/d6ebf5dab2da
->>
->> ---
->>
->>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 26 +++++++++++++++++++
->>  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  | 26 +++++++++++++++++++
->>  2 files changed, 52 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> index 57786fc120c3..2b1b5b36098c 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> @@ -54,6 +54,7 @@ cpu0: cpu@0 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-names = "cpu";
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu1: cpu@1 {
->> @@ -65,6 +66,7 @@ cpu1: cpu@1 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-names = "cpu";
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu2: cpu@2 {
->> @@ -76,6 +78,7 @@ cpu2: cpu@2 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-names = "cpu";
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu3: cpu@3 {
->> @@ -87,6 +90,29 @@ cpu3: cpu@3 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-names = "cpu";
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->> +		};
->> +
->> +		idle-states {
->> +			entry-method = "psci";
->> +
->> +			cpu_sleep: cpu-sleep {
->> +				compatible = "arm,idle-state";
->> +				local-timer-stop;
->> +				entry-latency-us = <800>;
->> +				exit-latency-us = <1500>;
->> +				min-residency-us = <25000>;
->> +				arm,psci-suspend-param = <0x00010003>;
->> +			};
->> +
->> +			cluster_sleep: cluster-sleep {
->> +				compatible = "arm,idle-state";
->> +				local-timer-stop;
->> +				entry-latency-us = <850>;
->> +				exit-latency-us = <1500>;
->> +				min-residency-us = <50000>;
->> +				arm,psci-suspend-param = <0x01010013>;
->> +			};
->>  		};
->>  
->>  		L2: l2-cache {
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
->> index 578a63dedf46..1c416f648c58 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
->> @@ -18,6 +18,7 @@ cpu0: cpu@0 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-latency-ns = <244144>; /* 8 32k periods */
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu1: cpu@1 {
->> @@ -28,6 +29,7 @@ cpu1: cpu@1 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-latency-ns = <244144>; /* 8 32k periods */
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu2: cpu@2 {
->> @@ -38,6 +40,7 @@ cpu2: cpu@2 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-latency-ns = <244144>; /* 8 32k periods */
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->>  		};
->>  
->>  		cpu3: cpu@3 {
->> @@ -48,6 +51,29 @@ cpu3: cpu@3 {
->>  			clocks = <&ccu CLK_CPUX>;
->>  			clock-latency-ns = <244144>; /* 8 32k periods */
->>  			#cooling-cells = <2>;
->> +			cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
->> +		};
->> +
->> +		idle-states {
->> +			entry-method = "psci";
->> +
->> +			cpu_sleep: cpu-sleep {
->> +				compatible = "arm,idle-state";
->> +				local-timer-stop;
->> +				entry-latency-us = <800>;
->> +				exit-latency-us = <1500>;
->> +				min-residency-us = <25000>;
->> +				arm,psci-suspend-param = <0x00010003>;
->> +			};
->> +
->> +			cluster_sleep: cluster-sleep {
->> +				compatible = "arm,idle-state";
->> +				local-timer-stop;
->> +				entry-latency-us = <850>;
->> +				exit-latency-us = <1500>;
->> +				min-residency-us = <50000>;
->> +				arm,psci-suspend-param = <0x01010013>;
->> +			};
->>  		};
->>  	};
->>  
-> 
+User physical function driver is not included in this patch series.
+
+LIBFDT REQUIREMENT
+
+XRT driver infrastructure uses Device Tree as a metadata format to discover
+HW subsystems in the Alveo PCIe device. The Device Tree schema used by XRT
+is documented in Documentation/xrt.rst.
+
+TESTING AND VALIDATION
+
+xmgmt driver can be tested with full XRT open source stack which includes
+user space libraries, board utilities and (out of tree) first generation
+user physical function driver xocl. XRT open source runtime stack is
+available at https://github.com/Xilinx/XRT
+
+Complete documentation for XRT open source stack including sections on
+Alveo/XRT security and platform architecture can be found here:
+
+https://xilinx.github.io/XRT/master/html/index.html
+https://xilinx.github.io/XRT/master/html/security.html
+https://xilinx.github.io/XRT/master/html/platforms_partitions.html
+
+Changes since v3:
+- Leaf drivers use regmap-mmio to access hardware registers.
+- Renamed driver module: xmgmt.ko -> xrt-mgmt.ko
+- Renamed files: calib.[c|h] -> ddr_calibration.[c|h],
+                 lib/main.[c|h] -> lib/lib-drv.[c|h],
+                 mgmt/main-impl.h - > mgmt/xmgnt.h
+- Updated code base to include v3 code review comments.
+
+Changes since v2:
+- Streamlined the driver framework into *xleaf*, *group* and *xroot*
+- Updated documentation to show the driver model with examples
+- Addressed kernel test robot errors
+- Added a selftest for basic driver framework
+- Documented device tree schema
+- Removed need to export libfdt symbols
+
+Changes since v1:
+- Updated the driver to use fpga_region and fpga_bridge for FPGA
+  programming
+- Dropped platform drivers not related to PR programming to focus on XRT
+  core framework
+- Updated Documentation/fpga/xrt.rst with information on XRT core framework
+- Addressed checkpatch issues
+- Dropped xrt- prefix from some header files
+
+For reference V3 version of patch series can be found here:
+
+https://lore.kernel.org/lkml/20210218064019.29189-1-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-2-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-3-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-4-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-5-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-6-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-7-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-8-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-9-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-10-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-11-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-12-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-13-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-14-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-15-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-16-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-17-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-18-lizhih@xilinx.com
+https://lore.kernel.org/lkml/20210218064019.29189-19-lizhih@xilinx.com
+
+Lizhi Hou (20):
+  Documentation: fpga: Add a document describing XRT Alveo drivers
+  fpga: xrt: driver metadata helper functions
+  fpga: xrt: xclbin file helper functions
+  fpga: xrt: xrt-lib platform driver manager
+  fpga: xrt: group platform driver
+  fpga: xrt: char dev node helper functions
+  fpga: xrt: root driver infrastructure
+  fpga: xrt: platform driver infrastructure
+  fpga: xrt: management physical function driver (root)
+  fpga: xrt: main platform driver for management function device
+  fpga: xrt: fpga-mgr and region implementation for xclbin download
+  fpga: xrt: VSEC platform driver
+  fpga: xrt: User Clock Subsystem platform driver
+  fpga: xrt: ICAP platform driver
+  fpga: xrt: devctl platform driver
+  fpga: xrt: clock platform driver
+  fpga: xrt: clock frequency counter platform driver
+  fpga: xrt: DDR calibration platform driver
+  fpga: xrt: partition isolation platform driver
+  fpga: xrt: Kconfig and Makefile updates for XRT drivers
+
+ Documentation/fpga/index.rst                  |   1 +
+ Documentation/fpga/xrt.rst                    | 844 +++++++++++++++++
+ MAINTAINERS                                   |  11 +
+ drivers/Makefile                              |   1 +
+ drivers/fpga/Kconfig                          |   2 +
+ drivers/fpga/Makefile                         |   5 +
+ drivers/fpga/xrt/Kconfig                      |   8 +
+ drivers/fpga/xrt/include/events.h             |  45 +
+ drivers/fpga/xrt/include/group.h              |  25 +
+ drivers/fpga/xrt/include/metadata.h           | 233 +++++
+ drivers/fpga/xrt/include/subdev_id.h          |  38 +
+ drivers/fpga/xrt/include/xclbin-helper.h      |  48 +
+ drivers/fpga/xrt/include/xleaf.h              | 264 ++++++
+ drivers/fpga/xrt/include/xleaf/axigate.h      |  23 +
+ drivers/fpga/xrt/include/xleaf/clkfreq.h      |  21 +
+ drivers/fpga/xrt/include/xleaf/clock.h        |  29 +
+ .../fpga/xrt/include/xleaf/ddr_calibration.h  |  28 +
+ drivers/fpga/xrt/include/xleaf/devctl.h       |  40 +
+ drivers/fpga/xrt/include/xleaf/icap.h         |  27 +
+ drivers/fpga/xrt/include/xmgmt-main.h         |  34 +
+ drivers/fpga/xrt/include/xroot.h              | 117 +++
+ drivers/fpga/xrt/lib/Kconfig                  |  17 +
+ drivers/fpga/xrt/lib/Makefile                 |  30 +
+ drivers/fpga/xrt/lib/cdev.c                   | 232 +++++
+ drivers/fpga/xrt/lib/group.c                  | 286 ++++++
+ drivers/fpga/xrt/lib/lib-drv.c                | 277 ++++++
+ drivers/fpga/xrt/lib/lib-drv.h                |  17 +
+ drivers/fpga/xrt/lib/subdev.c                 | 865 ++++++++++++++++++
+ drivers/fpga/xrt/lib/subdev_pool.h            |  53 ++
+ drivers/fpga/xrt/lib/xclbin.c                 | 369 ++++++++
+ drivers/fpga/xrt/lib/xleaf/axigate.c          | 342 +++++++
+ drivers/fpga/xrt/lib/xleaf/clkfreq.c          | 240 +++++
+ drivers/fpga/xrt/lib/xleaf/clock.c            | 669 ++++++++++++++
+ drivers/fpga/xrt/lib/xleaf/ddr_calibration.c  | 226 +++++
+ drivers/fpga/xrt/lib/xleaf/devctl.c           | 183 ++++
+ drivers/fpga/xrt/lib/xleaf/icap.c             | 344 +++++++
+ drivers/fpga/xrt/lib/xleaf/ucs.c              | 167 ++++
+ drivers/fpga/xrt/lib/xleaf/vsec.c             | 388 ++++++++
+ drivers/fpga/xrt/lib/xroot.c                  | 589 ++++++++++++
+ drivers/fpga/xrt/metadata/Kconfig             |  12 +
+ drivers/fpga/xrt/metadata/Makefile            |  16 +
+ drivers/fpga/xrt/metadata/metadata.c          | 545 +++++++++++
+ drivers/fpga/xrt/mgmt/Kconfig                 |  15 +
+ drivers/fpga/xrt/mgmt/Makefile                |  19 +
+ drivers/fpga/xrt/mgmt/fmgr-drv.c              | 191 ++++
+ drivers/fpga/xrt/mgmt/fmgr.h                  |  19 +
+ drivers/fpga/xrt/mgmt/main-region.c           | 483 ++++++++++
+ drivers/fpga/xrt/mgmt/main.c                  | 670 ++++++++++++++
+ drivers/fpga/xrt/mgmt/root.c                  | 333 +++++++
+ drivers/fpga/xrt/mgmt/xmgnt.h                 |  34 +
+ include/uapi/linux/xrt/xclbin.h               | 409 +++++++++
+ include/uapi/linux/xrt/xmgmt-ioctl.h          |  46 +
+ 52 files changed, 9930 insertions(+)
+ create mode 100644 Documentation/fpga/xrt.rst
+ create mode 100644 drivers/fpga/xrt/Kconfig
+ create mode 100644 drivers/fpga/xrt/include/events.h
+ create mode 100644 drivers/fpga/xrt/include/group.h
+ create mode 100644 drivers/fpga/xrt/include/metadata.h
+ create mode 100644 drivers/fpga/xrt/include/subdev_id.h
+ create mode 100644 drivers/fpga/xrt/include/xclbin-helper.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/axigate.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/clkfreq.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/clock.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/ddr_calibration.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/devctl.h
+ create mode 100644 drivers/fpga/xrt/include/xleaf/icap.h
+ create mode 100644 drivers/fpga/xrt/include/xmgmt-main.h
+ create mode 100644 drivers/fpga/xrt/include/xroot.h
+ create mode 100644 drivers/fpga/xrt/lib/Kconfig
+ create mode 100644 drivers/fpga/xrt/lib/Makefile
+ create mode 100644 drivers/fpga/xrt/lib/cdev.c
+ create mode 100644 drivers/fpga/xrt/lib/group.c
+ create mode 100644 drivers/fpga/xrt/lib/lib-drv.c
+ create mode 100644 drivers/fpga/xrt/lib/lib-drv.h
+ create mode 100644 drivers/fpga/xrt/lib/subdev.c
+ create mode 100644 drivers/fpga/xrt/lib/subdev_pool.h
+ create mode 100644 drivers/fpga/xrt/lib/xclbin.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/axigate.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/clkfreq.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/clock.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/ddr_calibration.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/devctl.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/icap.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/ucs.c
+ create mode 100644 drivers/fpga/xrt/lib/xleaf/vsec.c
+ create mode 100644 drivers/fpga/xrt/lib/xroot.c
+ create mode 100644 drivers/fpga/xrt/metadata/Kconfig
+ create mode 100644 drivers/fpga/xrt/metadata/Makefile
+ create mode 100644 drivers/fpga/xrt/metadata/metadata.c
+ create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
+ create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+ create mode 100644 drivers/fpga/xrt/mgmt/fmgr-drv.c
+ create mode 100644 drivers/fpga/xrt/mgmt/fmgr.h
+ create mode 100644 drivers/fpga/xrt/mgmt/main-region.c
+ create mode 100644 drivers/fpga/xrt/mgmt/main.c
+ create mode 100644 drivers/fpga/xrt/mgmt/root.c
+ create mode 100644 drivers/fpga/xrt/mgmt/xmgnt.h
+ create mode 100644 include/uapi/linux/xrt/xclbin.h
+ create mode 100644 include/uapi/linux/xrt/xmgmt-ioctl.h
+
+-- 
+2.27.0
 
