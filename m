@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A4F73471A0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 07:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F23E43471B1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 07:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhCXGbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 02:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbhCXGbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 02:31:38 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6C4C061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 23:31:38 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id t18so11188608pjs.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 23:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=uvaJxOMF68u/mryvJz6oilbFQS2YMDQUaK8sfeTQE6s=;
-        b=XVfm0jguakVnI+mSyKepk45d2Dru6ep0gnGHan7rwZqKOM7xLN1M0yq0LxvBix2Ni+
-         4D9hHOXM9/wLyiOY2f0uwvSX0xRACuysQWh0UCM1xuu9CpbWtS47pSZLoy+1G94xrWO6
-         aycPNmOWLyuO2g94U7asZU/kkLz3vFt4SQPuqCCET9W+HMjlannFTQNBYMqd2yonx6xA
-         P+B4cmuzuB9PDBK1YlVsM8QOPFqlLgf7HmtITZL3PquL+XaukcSBC5Km0KkJ7ObiAY2+
-         a6jhLSq4/Xunl0OHKwTlnoAFv/1RRs7NaamCpBcEQEih+9MGlkkhZbjdhH25hce9e6dr
-         UPkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=uvaJxOMF68u/mryvJz6oilbFQS2YMDQUaK8sfeTQE6s=;
-        b=DUHZYykkDHuJ64qlrmDPTkPQh8oLjonRKryZVbj7DirXtcKyRUnBCAn6dF5noB4tCs
-         YIVdNf4jWd5Fg1uFdZeHZC3KVJievqsN91yzTM2+U2pE9Up65qVmDHClRsTcHIni7TY1
-         9eIfiZb9ZFEIUCx4qFCXJwVU/nkPaJ+ywEhb102wJgFN8o4pDzWSV/BfaaU+o+GJX67Z
-         PNyPElavapx/mUdu726TwApHquITIT0x76PNGEFagmx+Oo6lfc5WsskxHgNQ8y+0xZ0u
-         QrQZQV5y9GlYESUnSBdgk/+GtzXF+WDOh3u8v32rzbDTfQkloOuGi4VJKEwWZEjMHpY0
-         vvuQ==
-X-Gm-Message-State: AOAM531N0MPAkQIrLz1i9yhEmInjJLbLjcvX/Y+78JwxXeRTk0RZVgi6
-        nVCPQAuI7TSm9b042/vrXRYoXk+3G6nbQfp7NHM=
-X-Google-Smtp-Source: ABdhPJyc0VeXrfSM5v8uZtmiBJs4NMy2iKFFYuvglHB6c6BZsp9LMtbpq9feOyR3wvwYNVjBDqaCRLrNl5+7srSR+IQ=
-X-Received: by 2002:a17:90a:bd09:: with SMTP id y9mr1829561pjr.179.1616567497475;
- Tue, 23 Mar 2021 23:31:37 -0700 (PDT)
+        id S230071AbhCXGi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 02:38:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34664 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229764AbhCXGiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 02:38:18 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12O6c5Ia069595;
+        Wed, 24 Mar 2021 01:38:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616567885;
+        bh=OafF6wJwhVSd3dBUNqHOK7IKMis1VR4ZQ+wmHHRnODc=;
+        h=From:To:CC:Subject:Date;
+        b=NYX+CciwxFaS2RPUaZrY4eEJ2aTsGwvZTDwMDkQaQqMqBz7LSfYw2/QxpQCFDapoW
+         GqiVQBpMg9nPHtYRST+fnTHjgT/uZvbJcbArZizVI8Tq0DKbhvBlDQAxWIOzbp6+P9
+         LByGoGEODkc0/fQBR9uD+1pP2/+K+fu1muAZaelA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12O6c5Al128850
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 Mar 2021 01:38:05 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 24
+ Mar 2021 01:38:05 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 24 Mar 2021 01:38:05 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12O6c2c6014513;
+        Wed, 24 Mar 2021 01:38:02 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 0/3] J7200: Add support for GPIO and higher speed modes in MMCSD subsystems
+Date:   Wed, 24 Mar 2021 12:07:56 +0530
+Message-ID: <20210324063759.5837-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Reply-To: tofilbaman1@gmail.com
-Sender: aliftomarn5@gmail.com
-Received: by 2002:a05:6a10:4a02:0:0:0:0 with HTTP; Tue, 23 Mar 2021 23:31:37
- -0700 (PDT)
-From:   Tofil Bama <tofilbaman@gmail.com>
-Date:   Wed, 24 Mar 2021 07:31:37 +0100
-X-Google-Sender-Auth: ehN-JkNXu8wD5swZnvBrCHR4aKk
-Message-ID: <CABvER2R9_eemuadfUKvXtVfi84J_aN4nJ-pQUnTp_DOAz=JyiA@mail.gmail.com>
-Subject: GOOD NEWS.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear,
+The following series of patches
+- Add support for GPIO subsystem in main and wakeup domains.
+- Add voltage regulator device tree nodes and their corresponding pinmux
+  to support power cycle and voltage switch required for UHS-I modes
+- sets respective tags in sdhci0 node to support higher speeds
+- remove no-1-8-v tag from sdhci1 node to support UHS-I modes
+- Update delay values for various speed modes supported.
 
-My name is Mr Tofil Bama, I am the Bill and Exchange assistant
-Manager in Bank of Africa Ouagadougou Burkina Faso. In my department
-I discovered an abandoned sum of eighteen million three hundred
-thousand United State of American dollars (18.3MILLION USA DOLLARS)
-in an account that belongs to one of our foreign customer
-(late Mr Shitu Nuri) who died in Ethiopian Airlines Flight 409 that
-crashed into the Mediterranean Sea on 25th January 2010.
 
-Since I got information about his death I have been expecting
-his next of kin to come over and claim his money because we
-cannot release it unless somebody applies for it as the next
-of kin or relation to the deceased as indicated in our banking
-guidelines, unfortunately we learnt that all his supposed next of
-kin or relation died alongside with him in the plane crash leaving
-nobody behind for the claim.
+test logs
+- eMMC HS400 speed mode
+  https://pastebin.ubuntu.com/p/pRzV2ZvSJZ/
 
-It is therefore upon this discovery that I decided to make this
-business proposal to you and release the money to you as next of kin
-to the deceased for safety and subsequent disbursement since nobody
-is coming for the fund, it is 10 years now the money is lying pending in
-the account of our deceased and I don't want the money to go into the
-bank treasury as unclaimed bill.
+- SD SDR104 speed mode
+  https://pastebin.ubuntu.com/p/n64PNdDy2v/  
+  
+- GPIO logs
+  https://pastebin.ubuntu.com/p/HDBBMwMcdj/
 
-You will be entitled with 40% of the total sum while 60% will be for
-me after which I will visit your Country to invest my own share when
-the fund is successfully transferred into your account, Please I would
-like you to keep this transaction confidential and as a top secret
-between me and you until we successfully achieve this golden
-opportunity.
+Changes since v7:
+- Added the voltage regulator nodes to indicate the complete
+  power flow for MMCSD1 subsystem
+- Corrected minor errors in DT nodes
+- Reran the tests.
+- Rebased the series
 
-Yours sincerely,
-Mr Tofil Bama.
+Changes since v6:
+- Corrected the node name from vdd_sd_dv_pins_default to
+  vdd-sd-dv-pins-default
+
+Changes since v5:
+- Corrected the link in patch 3 as it broken.
+- Added the version number for the references used in patch 3.
+- picked up reviewed-by from grygorii for patches 1 and 2.
+
+Changes since v4:
+- Added main_i2c0 pinmux required for doing power cycles to MMCSD1
+  subsystem
+- Updated delay values for various speed modes supported
+- Corrected the ti,ngpio property to indicate highest gpio lines that
+  can be accessed.
+- Reran the performace tests
+
+Changes since v3:
+- Removed patch (1 in v3).
+- Rebased and included patches that add support for GPIO from series [1].
+- Re-ran the performace tests for SD and eMMC.
+
+Changes since v2:
+- Added main_gpio0 DT node
+- Added voltage regulator device tree nodes required to support UHS-I modes
+
+Changes since v1:
+- squashed the two patches into one
+- added performance logs for the above mentioned speed modes
+
+
+Aswath Govindraju (1):
+  arm64: dts: ti: k3-j7200: Add support for higher speed modes and
+    update delay select values for MMCSD subsystems
+
+Faiz Abbas (2):
+  arm64: dts: ti: k3-j7200: Add gpio nodes
+  arm64: dts: ti: k3-j7200-common-proc-board: Disable unused gpio
+    modules
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 94 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 86 ++++++++++++++++-
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 34 +++++++
+ 3 files changed, 212 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
+
