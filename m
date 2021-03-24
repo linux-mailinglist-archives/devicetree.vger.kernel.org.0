@@ -2,85 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5015347429
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE66C347445
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234473AbhCXJJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 05:09:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52844 "EHLO mail.kernel.org"
+        id S231601AbhCXJOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 05:14:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53636 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234461AbhCXJJp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 05:09:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D9EC619C9;
-        Wed, 24 Mar 2021 09:09:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616576985;
-        bh=jnRQ8XZk0O0MVorAp4ULBhBFeVXaOntVyd1dhKGu/08=;
+        id S234605AbhCXJNr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 05:13:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90ED06157F;
+        Wed, 24 Mar 2021 09:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1616577227;
+        bh=w8CRVnJFyS/XR+Mj1hn0bNzvz+r35MHD7pK0TCVHjD4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J9SxtN4tax4jDCHzd7N2lDjj/TnkkirePg7ebZQZFE14lMDngpFfc1MMbZ6M5yE8r
-         ZU6Ta8fVY0MHn6l1LHxaI6D2AAMXJlLAkM4TVQ5Dvcu6KbTC2pPHoApRXO+X5bo1Sa
-         tA9tgMnawow1GlrTJSK3cCEP0Hc+v8OgITKyw6liFGLoCmb3Xsq3zNKImNxbU1j76c
-         ES1vqy2c4TYHlx3Yr/N2bgG7Ub5zFG3H2ThQztLUD2uL8cHZGyeKN3w/dhCLPeG668
-         ahyRkW0k2tmt8dAU/PcQTOokqNikXMrX0K+wQvEGZCDo7QC80LmKqiBIpyAhHmBAUG
-         4TKpcgPS9iGHw==
-Received: by pali.im (Postfix)
-        id 6F3F2A7E; Wed, 24 Mar 2021 10:09:42 +0100 (CET)
-Date:   Wed, 24 Mar 2021 10:09:42 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        b=Uo2mt6FtAPAq/f6vQn46VxbR2DRGY30BApaODqpGYP2p0eskhkEKbE+6NUzIy9+Mb
+         CqoaAFK4QSC2+gVl5gUS41iuTAxCz4f/4hCOL3gPdEU914dfbdCc5YO8YKCgDN2ksx
+         Gkt/9S6Pw4Y4qwl3JIo32a9eSTw35cKyzKc51DfI=
+Date:   Wed, 24 Mar 2021 10:13:44 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com,
-        Krzysztof Wilczyski <kw@linux.com>
-Subject: Re: [v9,2/7] PCI: Export pci_pio_to_address() for module use
-Message-ID: <20210324090942.kmhxnxzm7tz3ynuy@pali>
-References: <20210324030510.29177-1-jianjun.wang@mediatek.com>
- <20210324030510.29177-3-jianjun.wang@mediatek.com>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        git@xilinx.com, saikrishna12468@gmail.com
+Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
+Message-ID: <YFsCyGO1cLcM7IG0@kroah.com>
+References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <YFnwN6mqXml5xdR3@kroah.com>
+ <e0a2c5b6-ff05-644c-8c88-b614a37b4929@xilinx.com>
+ <YFr9GqNmYuEG2OvZ@kroah.com>
+ <dabcfe43-568a-66c1-642e-eef065f9b5ab@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210324030510.29177-3-jianjun.wang@mediatek.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <dabcfe43-568a-66c1-642e-eef065f9b5ab@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 24 March 2021 11:05:05 Jianjun Wang wrote:
-> This interface will be used by PCI host drivers for PIO translation,
-> export it to support compiling those drivers as kernel modules.
+On Wed, Mar 24, 2021 at 10:02:53AM +0100, Michal Simek wrote:
 > 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> ---
->  drivers/pci/pci.c | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index 16a17215f633..12bba221c9f2 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -4052,6 +4052,7 @@ phys_addr_t pci_pio_to_address(unsigned long pio)
->  
->  	return address;
->  }
-> +EXPORT_SYMBOL(pci_pio_to_address);
+> On 3/24/21 9:49 AM, Greg Kroah-Hartman wrote:
+> > On Wed, Mar 24, 2021 at 09:29:12AM +0100, Michal Simek wrote:
+> >> On 3/23/21 2:42 PM, Greg Kroah-Hartman wrote:
+> >>> On Wed, Mar 17, 2021 at 01:55:16PM +0530, Sai Krishna Potthuri wrote:
+> >>>> Adding pinctrl driver for Xilinx ZynqMP platform.
+> >>>> This driver queries pin information from firmware and registers
+> >>>> pin control accordingly.
+> >>>>
+> >>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+> >>>> ---
+> >>>>  drivers/pinctrl/Kconfig          |   13 +
+> >>>>  drivers/pinctrl/Makefile         |    1 +
+> >>>>  drivers/pinctrl/pinctrl-zynqmp.c | 1030 ++++++++++++++++++++++++++++++
+> >>>>  3 files changed, 1044 insertions(+)
+> >>>>  create mode 100644 drivers/pinctrl/pinctrl-zynqmp.c
+> >>>>
+> >>>> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> >>>> index 815095326e2d..25d3c7208975 100644
+> >>>> --- a/drivers/pinctrl/Kconfig
+> >>>> +++ b/drivers/pinctrl/Kconfig
+> >>>> @@ -341,6 +341,19 @@ config PINCTRL_ZYNQ
+> >>>>  	help
+> >>>>  	  This selects the pinctrl driver for Xilinx Zynq.
+> >>>>  
+> >>>> +config PINCTRL_ZYNQMP
+> >>>> +	bool "Pinctrl driver for Xilinx ZynqMP"
+> >>>
+> >>> Please make this work as a module.
+> >>
+> >> The most of pinctrl drivers are builtin modules now which is not excuse
+> >> it is just fact.
+> >> $ git grep module_pla drivers/pinctrl/ | wc -l
+> >> 40
+> >> $ git grep  builtin_pla drivers/pinctrl/ | wc -l
+> >> 64
+> > 
+> > For new ones, we can do better, don't make us have to go back and fix
+> > this up later.
+> 
+> As I said not a big deal. If this is the way to go then I these rules
+> should be followed which is not what it is happening based on 3 latest
+> pinctrl drivers below.
 
-Hello! I'm not sure if EXPORT_SYMBOL is correct because file has GPL-2.0
-header. Should not be in this case used only EXPORT_SYMBOL_GPL? Maybe
-other people would know what is correct?
-
->  
->  unsigned long __weak pci_address_to_pio(phys_addr_t address)
->  {
-> -- 
-> 2.25.1
-> 
+I do not disagree, but I point out issues when I see them, you got
+unlucky :)
