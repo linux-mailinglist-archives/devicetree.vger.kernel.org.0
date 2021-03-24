@@ -2,205 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3746C3484DA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 23:46:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5D883484FF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 00:00:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238900AbhCXWqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 18:46:23 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38830 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238899AbhCXWqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 18:46:06 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7BF1F580;
-        Wed, 24 Mar 2021 23:46:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1616625964;
-        bh=42HY5uwZ1MbcmUVScEyI1EYtiX5bQBYXMVzT77DP95U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uqfMiK2Vr92pgvCfj8Wsr0mvn5xnHYACf5C6V07SW/bVDjTQpGE2Ec53wGwRsLptr
-         jAfFRR42m/l7MmXXHKptfJHacMpLTXtTO8wvzuNdKMrDwgFnZ1P/jBrQX0vWHbB3id
-         5lnaXX/qDxaRM5vYQuNfzuZIt3Ccbr9UrSg44NsU=
-Date:   Thu, 25 Mar 2021 00:45:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: media: video-interfaces: Drop the example
-Message-ID: <YFvBAazu5yrV6r5b@pendragon.ideasonboard.com>
-References: <20210324202253.3576798-1-robh@kernel.org>
+        id S231466AbhCXXA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 19:00:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58428 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233784AbhCXXAL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 19:00:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 30ACF61A0E;
+        Wed, 24 Mar 2021 23:00:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616626810;
+        bh=d6scC4wzlllCYKmFI7BfA/+PTeW1QYPG6iubfOyrYQw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=h1JUzhsQSmZI99+ikd9D2E8GQ1ThCP6bJAdVohxemgBQ9rfAQD8C6c7Uxh8yBV2si
+         i8E8jd+NA/0MZS690sy3jLjOAIUuEQe4T6b4xLKS+LFZFW8NSDxeNSh81sEyuOhfOW
+         IlVNLu9XkoNeTM5tMhAkAKgDS/w68bTrTKkFcji+De83osSY9ZbEwW26tTWI4qq6DJ
+         9fQzU8ZTvW+ZIY4X5zdkg+4IcuNRh+mkUEAnGCCiUdlLiut4b5J7PzQM0Pl44NeHiE
+         NBaJR+YhBRntKFjgoYR+cwAvX8u0vyL5PoF3cegPml9K3b6bnWG2kVFvAHbOOnanay
+         sSPLJ3KLeMz5A==
+Date:   Thu, 25 Mar 2021 00:00:07 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        pali@kernel.org
+Subject: Re: [PATCH net-next 0/2] dt-bindings: define property describing
+ supported ethernet PHY modes
+Message-ID: <20210325000007.19a38bce@thinkpad>
+In-Reply-To: <e4e088a4-1538-1e7d-241d-e43b69742811@gmail.com>
+References: <20210324103556.11338-1-kabel@kernel.org>
+        <e4e088a4-1538-1e7d-241d-e43b69742811@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210324202253.3576798-1-robh@kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, 24 Mar 2021 14:19:28 -0700
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-Thank you for the patch.
-
-On Wed, Mar 24, 2021 at 02:22:53PM -0600, Rob Herring wrote:
-> The example in video-interfaces.yaml uses a bunch of undocumented
-> bindings which will cause warnings when undocumented compatible checks
-> are enabled. The example could be fixed to use documented bindings, but
-> doing so would just duplicate other examples. So let's just remove the
-> example.
+> > Another problem is that if lower modes are supported, we should
+> > maybe use them in order to save power.  
 > 
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> That is an interesting proposal but if you want it to be truly valuable,
+> does not that mean that an user ought to be able to switch between any
+> of the supported PHY <=> MAC interfaces at runtime, and then within
+> those interfaces to the speeds that yield the best power savings?
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+If the code determines that there are multiple working configurations,
+it theoretically could allow the user to switch between them.
 
-> ---
-> v2: Drop instead of fixing the example
+My idea was that this should be done by kernel, though.
+
+But power saving is not the main problem I am trying to solve.
+What I am trying to solve is that if a board does not support all modes
+supported by the MAC and PHY, because they are not wired or something,
+we need to know about that so that we can select the correct mode for
+PHYs that change this mode at runtime.
+
+> > 
+> > But for this we need to know which phy-modes are supported on the
+> > board.
+> > 
+> > This series adds documentation for a new ethernet PHY property,
+> > called `supported-mac-connection-types`.  
 > 
->  .../bindings/media/video-interfaces.yaml      | 127 ------------------
->  1 file changed, 127 deletions(-)
+> That naming does not quite make sense to me, if we want to describe the
+> MAC supported connection types, then those would naturally be within the
+> Ethernet MAC Device Tree node, no? If we are describing what the PHY is
+> capable, then we should be dropping "mac" from the property name not to
+> create confusion.
+
+I put "mac" there to indicate that this is the SerDes to the MAC (i.e.
+host side in Marvell PHY). 88X3310 has another SerDes side (Fiber Side).
+I guess I put "mac" there so that if in the future we wanted to specify
+supported modes for the fiber side, we could add
+`supported-fiber-connection-types`.
+
+But otherwise it does not matter where this property is. Rob Herring
+says that maybe we don't need a new property at all. We can reuse
+phy-mode property of the MAC, and enumerate all supported modes there.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> index 0a7a73fd59f2..4391dce2caee 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
-> @@ -215,130 +215,3 @@ properties:
->        CCP2, for instance.
->  
->  additionalProperties: true
-> -
-> -examples:
-> -  # The example snippet below describes two data pipelines.  ov772x and imx074
-> -  # are camera sensors with a parallel and serial (MIPI CSI-2) video bus
-> -  # respectively. Both sensors are on the I2C control bus corresponding to the
-> -  # i2c0 controller node.  ov772x sensor is linked directly to the ceu0 video
-> -  # host interface. imx074 is linked to ceu0 through the MIPI CSI-2 receiver
-> -  # (csi2). ceu0 has a (single) DMA engine writing captured data to memory.
-> -  # ceu0 node has a single 'port' node which may indicate that at any time
-> -  # only one of the following data pipelines can be active:
-> -  # ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
-> -  - |
-> -    ceu@fe910000 {
-> -        compatible = "renesas,sh-mobile-ceu";
-> -        reg = <0xfe910000 0xa0>;
-> -        interrupts = <0x880>;
-> -
-> -        mclk: master_clock {
-> -            compatible = "renesas,ceu-clock";
-> -            #clock-cells = <1>;
-> -            clock-frequency = <50000000>;  /* Max clock frequency */
-> -            clock-output-names = "mclk";
-> -        };
-> -
-> -        port {
-> -            #address-cells = <1>;
-> -            #size-cells = <0>;
-> -
-> -            /* Parallel bus endpoint */
-> -            ceu0_1: endpoint@1 {
-> -                reg = <1>;    /* Local endpoint # */
-> -                remote-endpoint = <&ov772x_1_1>;  /* Remote phandle */
-> -                bus-width = <8>;  /* Used data lines */
-> -                data-shift = <2>;  /* Lines 9:2 are used */
-> -
-> -                /* If hsync-active/vsync-active are missing,
-> -                   embedded BT.656 sync is used */
-> -                hsync-active = <0>;  /* Active low */
-> -                vsync-active = <0>;  /* Active low */
-> -                data-active = <1>;  /* Active high */
-> -                pclk-sample = <1>;  /* Rising */
-> -            };
-> -
-> -            /* MIPI CSI-2 bus endpoint */
-> -            ceu0_0: endpoint@0 {
-> -                reg = <0>;
-> -                remote-endpoint = <&csi2_2>;
-> -            };
-> -        };
-> -    };
-> -
-> -    i2c {
-> -        #address-cells = <1>;
-> -        #size-cells = <0>;
-> -
-> -        camera@21 {
-> -            compatible = "ovti,ov772x";
-> -            reg = <0x21>;
-> -            vddio-supply = <&regulator1>;
-> -            vddcore-supply = <&regulator2>;
-> -
-> -            clock-frequency = <20000000>;
-> -            clocks = <&mclk 0>;
-> -            clock-names = "xclk";
-> -
-> -            port {
-> -                /* With 1 endpoint per port no need for addresses. */
-> -                ov772x_1_1: endpoint {
-> -                    bus-width = <8>;
-> -                    remote-endpoint = <&ceu0_1>;
-> -                    hsync-active = <1>;
-> -                    vsync-active = <0>; /* Who came up with an
-> -                               inverter here ?... */
-> -                    data-active = <1>;
-> -                    pclk-sample = <1>;
-> -                };
-> -            };
-> -        };
-> -
-> -        camera@1a {
-> -            compatible = "sony,imx074";
-> -            reg = <0x1a>;
-> -            vddio-supply = <&regulator1>;
-> -            vddcore-supply = <&regulator2>;
-> -
-> -            clock-frequency = <30000000>;  /* Shared clock with ov772x_1 */
-> -            clocks = <&mclk 0>;
-> -            clock-names = "sysclk";    /* Assuming this is the
-> -                       name in the datasheet */
-> -            port {
-> -                imx074_1: endpoint {
-> -                    clock-lanes = <0>;
-> -                    data-lanes = <1 2>;
-> -                    remote-endpoint = <&csi2_1>;
-> -                };
-> -            };
-> -        };
-> -    };
-> -
-> -    csi2: csi2@ffc90000 {
-> -        compatible = "renesas,sh-mobile-csi2";
-> -        reg = <0xffc90000 0x1000>;
-> -        interrupts = <0x17a0>;
-> -        #address-cells = <1>;
-> -        #size-cells = <0>;
-> -
-> -        port@1 {
-> -            compatible = "renesas,csi2c";  /* One of CSI2I and CSI2C. */
-> -            reg = <1>;      /* CSI-2 PHY #1 of 2: PHY_S,
-> -                       PHY_M has port address 0,
-> -                       is unused. */
-> -            csi2_1: endpoint {
-> -                clock-lanes = <0>;
-> -                data-lanes = <2 1>;
-> -                remote-endpoint = <&imx074_1>;
-> -            };
-> -        };
-> -        port@2 {
-> -            reg = <2>;      /* port 2: link to the CEU */
-> -
-> -            csi2_2: endpoint {
-> -                remote-endpoint = <&ceu0_0>;
-> -            };
-> -        };
-> -    };
-> -
-> -...
+> > 
+> > When this property is present for a PHY node, only the phy-modes
+> > listed in this property should be considered to be functional on
+> > the board.  
+> 
+> Can you post the code that is going to utilize these properties so we
+> have a clearer picture of how and what you need to solve?
 
--- 
-Regards,
-
-Laurent Pinchart
+I am still working on this, so the repo may change, but look at
+https://git.kernel.org/pub/scm/linux/kernel/git/kabel/linux.git/log/?h=phy-supported-interfaces
+at the last three patches.
