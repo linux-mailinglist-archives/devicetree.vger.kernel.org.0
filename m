@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9595C347B24
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 15:51:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3389C347B31
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 15:54:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236327AbhCXOvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 10:51:08 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:39693 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236376AbhCXOuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 10:50:46 -0400
-Received: by mail-io1-f44.google.com with SMTP id k25so9662094iob.6;
-        Wed, 24 Mar 2021 07:50:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QY39YouPVNLFxxgepgOlsbrnAYheJKoDtXKK2f2Stuk=;
-        b=O92PMtVQixkOrb7mly/ZKIvPMyiD5oN9uBiBr/A/jYGwPVc1EenPuhp/6tfFieO+s8
-         dZ+vSXY05VoAcA+dkpkU1UqoL/+vXGcSyWf739J4JwZc6223YCfCxAEWjcliNhXmw/XB
-         N0KaDkK6g7LY5FTB1ZAurwjLAKMn1RqRll/KN7drnveGxZanttrJ47aZqZik5E8ncLcx
-         +MC8bXh6wfeE6ZRutQcnqePWvzuj0V1lcybRPVNTeMbUucVa1GOsTszOEIvfHKA029Qm
-         6P/++spRRs9um9ujDeQRN30b5Ghhk8lRd1i6e2sDGDj8pj4txzat0Gydit9l80iu4BCs
-         YPDA==
-X-Gm-Message-State: AOAM531bALPb7kvsocQjbGUcLXyDfFakJvvavYeebf7/AWtGXcG727Gt
-        M6hfcyY38ofG1Q3xUeqyDQ==
-X-Google-Smtp-Source: ABdhPJxnCgeUZbH3x2EEcuMejosC56uKWRGil4qG0hK3Uxj+im+R6tTC06xiJ9xqCGlMvwBFKmxqOg==
-X-Received: by 2002:a05:6638:dc3:: with SMTP id m3mr3253704jaj.130.1616597445692;
-        Wed, 24 Mar 2021 07:50:45 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k125sm1215133iof.14.2021.03.24.07.50.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 07:50:45 -0700 (PDT)
-Received: (nullmailer pid 3041380 invoked by uid 1000);
-        Wed, 24 Mar 2021 14:50:42 -0000
-Date:   Wed, 24 Mar 2021 08:50:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: usb: Add chg-psy-name property Maxim
- 33359 binding
-Message-ID: <20210324145042.GA3036037@robh.at.kernel.org>
-References: <20210311100313.3591254-1-badhri@google.com>
- <20210311100313.3591254-4-badhri@google.com>
+        id S236390AbhCXOxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 10:53:51 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:34780 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236399AbhCXOxS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 10:53:18 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lP4sX-0000qF-Gw; Wed, 24 Mar 2021 15:53:01 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Helen Koike <helen.koike@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hjc@rock-chips.com, robh+dt@kernel.org,
+        sebastian.fricke@posteo.net, linux-media@vger.kernel.org,
+        dafna.hirschfeld@collabora.com, ezequiel@collabora.com,
+        cmuellner@linux.com
+Subject: Re: [PATCH 3/6] drm/rockchip: dsi: add ability to work as a phy instead of full dsi
+Date:   Wed, 24 Mar 2021 15:52:59 +0100
+Message-ID: <12741091.uLZWGnKmhe@diego>
+In-Reply-To: <d7b8137c-66ce-935a-c8d7-e507146143d7@collabora.com>
+References: <20210210111020.2476369-1-heiko@sntech.de> <20210210111020.2476369-4-heiko@sntech.de> <d7b8137c-66ce-935a-c8d7-e507146143d7@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210311100313.3591254-4-badhri@google.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 11, 2021 at 02:03:13AM -0800, Badhri Jagan Sridharan wrote:
-> chg-psy-name is an optional string property used to indicate the
-> power supply object for which the current/voltage_max limits have
-> to be set.
+Am Montag, 15. Februar 2021, 15:33:19 CET schrieb Helen Koike:
+> > From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+> > index cb25c0e8fc9b..3094d4533ad6 100644
+> > --- a/drivers/gpu/drm/rockchip/Kconfig
+> > +++ b/drivers/gpu/drm/rockchip/Kconfig
+> > @@ -9,6 +9,8 @@ config DRM_ROCKCHIP
+> >   	select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
+> >   	select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
+> >   	select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
+> > +	select GENERIC_PHY if ROCKCHIP_DW_MIPI_DSI
+> > +	select GENERIC_PHY_MIPI_DPHY if ROCKCHIP_DW_MIPI_DSI
 > 
-> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> ---
->  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> maybe alphabetical order?
+
+ok
+
+> > +static int dw_mipi_dsi_dphy_power_on(struct phy *phy)
+> > +{
+> > +	struct dw_mipi_dsi_rockchip *dsi = phy_get_drvdata(phy);
+> > +	int i, ret;
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> index 93a19eda610b..3a278969109e 100644
-> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> @@ -28,6 +28,11 @@ properties:
->      description:
->        Properties for usb c connector.
->  
-> +  chg-psy-name:
-> +    description: Power supply whose current/voltage_max values to be
-> +      configured.
-> +    $ref: /schemas/types.yaml#definitions/string
+> It seems "i" could be removed, use ret instead.
 
-If you want a non-vendor specific property, this needs to be documented 
-in a common binding. I think this needs a better explaination and 
-examples of multiple chargers.
+I don't think so
 
-Rob
+I.e. the driver does
+
+	i = max_mbps_to_parameter(...)
+	...
+	ret = power-on-clocks-and-stuff
+	...
+	dw_mipi_dsi_phy_write(.... dppa_map[i].hsfreqrange)
+
+So will need to keep the param index separate.
+
+
+> In general, the patch doesn't look wrong to me.
+> 
+> For the whole serie:
+> Acked-by: Helen Koike <helen.koike@collabora.com>
+
+Thanks a lot :-)
+
+
+Heiko
+
+
