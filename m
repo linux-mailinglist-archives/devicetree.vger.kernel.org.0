@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75EF33475A4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 11:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3A93475B1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 11:19:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbhCXKOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 06:14:52 -0400
-Received: from regular1.263xmail.com ([211.150.70.201]:39402 "EHLO
+        id S231378AbhCXKSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 06:18:37 -0400
+Received: from regular1.263xmail.com ([211.150.70.195]:34398 "EHLO
         regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235619AbhCXKO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 06:14:29 -0400
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id 6460BD68;
-        Wed, 24 Mar 2021 18:14:10 +0800 (CST)
+        with ESMTP id S230378AbhCXKSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 06:18:34 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by regular1.263xmail.com (Postfix) with ESMTP id A6C691CAF;
+        Wed, 24 Mar 2021 18:18:31 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -21,38 +21,37 @@ X-ANTISPAM-LEVEL: 2
 X-SKE-CHECKED: 1
 X-ABS-CHECKED: 1
 Received: from [172.16.12.236] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P1826T139669733877504S1616580848215820_;
-        Wed, 24 Mar 2021 18:14:09 +0800 (CST)
+        by smtp.263.net (postfix) whith ESMTP id P27341T140202496489216S1616581110310544_;
+        Wed, 24 Mar 2021 18:18:31 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <f22c26093101f93084f537449d599e29>
+X-UNIQUE-TAG: <cf743a8aa6de9c26c6bdfb0e00a8b8b8>
 X-RL-SENDER: zhangqing@rock-chips.com
 X-SENDER: zhangqing@rock-chips.com
 X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: enric.balletbo@collabora.com
+X-FST-TO: finley.xiao@rock-chips.com
 X-SENDER-IP: 58.22.7.114
 X-ATTACHMENT-NUM: 0
 X-System-Flag: 0
 Subject: Re: [PATCH v4 2/4] dt-bindings: power: rockchip: Convert to
  json-schema
-To:     Johan Jonker <jbx6244@gmail.com>, robh+dt@kernel.org,
-        heiko@sntech.de
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        robh+dt@kernel.org, heiko@sntech.de
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         cl@rock-chips.com, huangtao@rock-chips.com,
         kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+        finley.xiao@rock-chips.com
 References: <20210324071609.7531-1-zhangqing@rock-chips.com>
  <20210324071609.7531-3-zhangqing@rock-chips.com>
- <be921bd8-a878-3131-15a7-27400786e67a@gmail.com>
+ <7ffdf0ca-1f7c-c135-086a-08e982e6cb41@collabora.com>
 From:   "elaine.zhang" <zhangqing@rock-chips.com>
 Organization: rockchip
-Message-ID: <42489358-8a3e-698e-7d10-816899de75cd@rock-chips.com>
-Date:   Wed, 24 Mar 2021 18:14:08 +0800
+Message-ID: <43f230a3-072a-f41d-5f69-5e61201e52b2@rock-chips.com>
+Date:   Wed, 24 Mar 2021 18:18:30 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <be921bd8-a878-3131-15a7-27400786e67a@gmail.com>
+In-Reply-To: <7ffdf0ca-1f7c-c135-086a-08e982e6cb41@collabora.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
@@ -60,37 +59,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Johan:
+Hi,  Enric
 
-在 2021/3/24 下午5:17, Johan Jonker 写道:
+在 2021/3/24 下午5:56, Enric Balletbo i Serra 写道:
 > Hi Elaine,
 >
-> >From Rob's build log it turns out that 2 more properties must be added.
-> Add these new properties in separate patch.
-> Retest with commands below.
-> ====
-> See rk3288.dtsi
+> This is not the exact version I sent, and you reintroduced a "problem" that were
+> already solved/discussed on previous versions. See below:
 >
-> 			assigned-clocks = <&cru SCLK_EDP_24M>;
-> 			assigned-clock-parents = <&xin24m>;
-This should not be in the power node.
-It should be on the CRU node, or on the EDP's own node.
-I could have added it just to solve dtbs_check .
-> ====
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210324071609.7531-3-zhangqing@rock-chips.com/
->
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
->
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
->
-> On 3/24/21 8:16 AM, Elaine Zhang wrote:
+> On 24/3/21 8:16, Elaine Zhang wrote:
 >> Convert the soc/rockchip/power_domain.txt binding document to
 >> json-schema and move to the power bindings directory.
 >>
 >> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> If you do significant is a good practice shortly describe them within [] here.
+>
 >> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Note that my last version already had the
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Which should be fine for merging (with probably only minor changes) and you
+> could maintain if you don't do significant changes, but that's not the case, as
+> I said, you are reintroducing one problem. Please review the comments already
+> received on this patchset or similar patchsets to avoid this.
+>
 >> ---
 >>   .../power/rockchip,power-controller.yaml      | 284 ++++++++++++++++++
 >>   .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
@@ -115,6 +108,10 @@ I could have added it just to solve dtbs_check .
 >> +maintainers:
 >> +  - Elaine Zhang <zhangqing@rock-chips.com>
 >> +  - Rob Herring <robh+dt@kernel.org>
+> Up to Rob, but I don't think Rob would like to be the maintainer. I think you
+> can only include yourself and Heiko.
+>
+>
 >> +  - Heiko Stuebner <heiko@sntech.de>
 >> +
 >> +description: |
@@ -153,13 +150,6 @@ I could have added it just to solve dtbs_check .
 >> +
 >> +  "#size-cells":
 >> +    const: 0
->
-> assigned-clocks:
->    maxItems: 1
->
-> assigned-clock-parents:
->    maxItems: 1
->
 >> +
 >> +patternProperties:
 >> +  "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
@@ -168,6 +158,14 @@ I could have added it just to solve dtbs_check .
 >> +      Represents the power domains within the power controller node as documented
 >> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
 >> +
+> The node names must be generic, as this is power-domain must be in the form:
+>
+> +patternProperties:
+> +  "^power-domain@[0-9a-f]+$":
+In this way, dtbs_check cannot be passed, and all the usage methods in 
+dts of Rockchip need to be corrected, which I think is a bigger change.
+>
+>
 >> +    properties:
 >> +
 >> +      "#power-domain-cells":
@@ -209,6 +207,13 @@ I could have added it just to solve dtbs_check .
 >> +
 >> +    patternProperties:
 >> +      "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
+> The same here:
+>
+> +patternProperties:
+> +  "^power-domain@[0-9a-f]+$":
+>
+>
+>
 >> +        type: object
 >> +        description: |
 >> +          Represents a power domain child within a power domain parent node.
@@ -241,6 +246,8 @@ I could have added it just to solve dtbs_check .
 >> +
 >> +        patternProperties:
 >> +          "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
+> And here:
+>
 >> +            type: object
 >> +            description: |
 >> +              Represents a power domain child within a power domain parent node.
@@ -348,6 +355,9 @@ I could have added it just to solve dtbs_check .
 >> +
 >> +                /* These power domains are grouped by VD_CENTER */
 >> +                pd_iep@RK3399_PD_IEP {
+> Here and below must be generic power-domain@RK3399_PD_IEP
+>
+>
 >> +                    reg = <RK3399_PD_IEP>;
 >> +                    clocks = <&cru ACLK_IEP>,
 >> +                             <&cru HCLK_IEP>;
