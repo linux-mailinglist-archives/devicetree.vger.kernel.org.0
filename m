@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B4D34834E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 22:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C6F34835E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 22:04:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbhCXU7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 16:59:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57268 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238052AbhCXU70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 16:59:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E2EF861A09;
-        Wed, 24 Mar 2021 20:59:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616619566;
-        bh=CvO16Php+LSKrebIn3eKeKJqJUlKnyMhF+uKSaiJxsY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Z75QFUuND2/N3oYguYuJDghMN+pYcW21T6GJW5kCWWv9NC0amLOdzwLLTT/phFxXf
-         8sjp9K648/39IKuIhZ64DSbo0crjcm/5oHwqyQuxL0LMjQfluxerBZrKD+hx4eK9Y0
-         pGPGnIWfmPY8ie6FYk83hB/1/z2DIPsokW2c6WQGnFUv5nVoBkzI3tpUJh1mfjGppF
-         cMVaqNQuqCyR3bI1qEZM9S06W0nOCLmhXqsxfyXiuxu6osUxLxMlWfTSjcSIzCKNta
-         MWKIoMaW/AEwGRDZkTstSw59qRj2bekbsfBFuEta2o5QdETWUnSR5hzR3iDoWHW71A
-         yvqFBGff6/70g==
-Date:   Wed, 24 Mar 2021 21:59:22 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        devicetree@vger.kernel.org, pali@kernel.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: ethernet-controller: create a
- type for PHY interface modes
-Message-ID: <20210324215922.74f64e5f@thinkpad>
-In-Reply-To: <20210324200706.GA3528805@robh.at.kernel.org>
-References: <20210324103556.11338-1-kabel@kernel.org>
-        <20210324103556.11338-2-kabel@kernel.org>
-        <20210324200706.GA3528805@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S238219AbhCXVDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 17:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51090 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238209AbhCXVDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 17:03:17 -0400
+Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D952BC06174A;
+        Wed, 24 Mar 2021 14:03:12 -0700 (PDT)
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+        (Exim 4.94)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1lPAeg-002mf1-1d; Wed, 24 Mar 2021 22:03:06 +0100
+Message-ID: <dbde688c9525fa2b9c1386fc95828b1851531f13.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings:net:wireless:ieee80211: txt to yaml
+ conversion
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>, nbd@nbd.name
+Cc:     linux-wireless@vger.kernel.org, lorenzo.bianconi@redhat.com,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        sean.wang@mediatek.com, ryder.lee@mediatek.com
+Date:   Wed, 24 Mar 2021 22:03:05 +0100
+In-Reply-To: <3dca0518c14e3a8e563933c903de0d62429a3667.1615752835.git.lorenzo@kernel.org>
+References: <cover.1615752835.git.lorenzo@kernel.org>
+         <3dca0518c14e3a8e563933c903de0d62429a3667.1615752835.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-malware-bazaar: not-scanned
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Mar 2021 14:07:06 -0600
-Rob Herring <robh@kernel.org> wrote:
+On Sun, 2021-03-14 at 21:21 +0100, Lorenzo Bianconi wrote:
+> 
+> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/wireless/ieee80211.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common IEEE 802.11 Binding
+> +
+> +maintainers:
+> +  - Johannes Berg <johannes@sipsolutions.net>
 
-> On Wed, Mar 24, 2021 at 11:35:55AM +0100, Marek Beh=C3=BAn wrote:
-> > In order to be able to define a property describing an array of PHY
-> > interface modes, we need to change the current scalar
-> > `phy-connection-type`, which lists the possible PHY interface modes, to
-> > an array of length 1 (otherwise we would need to define the same list at
-> > two different places).
-> >=20
-> > Moreover Rob Herring says that we cannot reuse the values of a property;
-> > we need to $ref a type.
-> >=20
-> > Move the definition of possible PHY interface modes from the
-> > `phy-connection-type` property to an array type definition
-> > `phy-connection-type-array`, and simply reference this type in the
-> > original property. =20
->=20
-> Why not just extend phy-connection-type to support more than 1 entry?
+Heh, now I realize why I got CC'ed on these patches.
 
-Hmm, that would be even better, although it would complicate the
-Russell's marvell10g patches a little if we want the code to be
-backward compatible with older device trees.
+I'm not sure that's really all that appropriate? I may be the wireless
+stack maintainer, but I really don't know much about DT, and so I'm not
+convinced that this entry helps anyone...
 
-I will look into this.
+johannes
 
-Marek
