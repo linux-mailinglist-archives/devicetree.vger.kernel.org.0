@@ -2,187 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC02E346FA3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:38:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B2D346FAC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234924AbhCXCiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 22:38:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37156 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234910AbhCXCh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:37:58 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C28C061765
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id il9-20020a17090b1649b0290114bcb0d6c2so381602pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
+        id S232169AbhCXCtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 22:49:43 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:36850 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232078AbhCXCtY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Mar 2021 22:49:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=od0BD5phhIgjjdHP+pXkuF/8ytaG+GpUJEyEIVUV7fU=;
-        b=DNny0NmFMN/XKTCWHNlE2Azj31S6ov/KSxCVrZKIPputQXgq1w8Ito0UNkO9JtzRR/
-         Q95hkwirbsGfIfqveuD6BXJyzRl0d4ftjHKXXEkaIduyWocI5G9rRQL4Z6KDX6NPad/F
-         V9hqKIbmwV2xvngJhYKzHD/fp1uNcHvDPhqzs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=od0BD5phhIgjjdHP+pXkuF/8ytaG+GpUJEyEIVUV7fU=;
-        b=sD7nSrWL2fu2jEKRWA/B3b2cnZoJTkeXs9eYgDPiuUET3xQ4esAHHQfaKdvWJGR9a5
-         S8ZGYkDlFHbykhHrBrHtWePTzWfYdfQQzMqw02I3vY7gDFeShf77Y/mTgOufp+NHkl+5
-         veFgEGzShu2M3oboQ/u+f5xvLtGkI+ke0fhtJ7du2S6gLZ0jBALb2CgGad74sSfrAglY
-         Sy1te0RHgznjMoLrz+96XCJfYydKXBF4YloIjePaYBwNlKIMfne9CZW5aG4s4riFadi1
-         NUmSWzEg+W5x/JP9Uc8o6Vq9cvQBkcn6ef81nTb+kaCby/BCPDosZpNKW7DZ3biVEuqL
-         h3Ng==
-X-Gm-Message-State: AOAM533Z+19RoE79ygqcRLo8oZhgk4GLLdEUUazWpW/DM+D3gKtawT3E
-        bevLYI8hI9Vh7e8M8g4Jbn2GbO7VtSeDXQ==
-X-Google-Smtp-Source: ABdhPJyv9plpOoNB10k0a03KKxljHDIU04Ysw825aEB6SSWOjf5EJNYX70Cm0fswlh+QWFmuTfauXA==
-X-Received: by 2002:a17:90a:a96:: with SMTP id 22mr1086638pjw.200.1616553477366;
-        Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:84ac:62f7:16a8:ccc7])
-        by smtp.gmail.com with ESMTPSA id m7sm422290pjc.54.2021.03.23.19.37.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 19:37:56 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+  d=axis.com; q=dns/txt; s=axis-central1; t=1616554164;
+  x=1648090164;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=FqYAXGat8wOi5xlTyUYf8sCt90mXXCBzUhow40r7ORM=;
+  b=nzC26m4YHXgL/Kl7zG9OEXOAYqIsCML15OprSSllzpV5FbIwY3rH767N
+   JhUanOYHpa2PXilMFznlHZgtO27WG/zmdIePP1u2kDVK00K4buu3wWz6N
+   CgyZqBOzHUf14kdCvuxMnm/JTFmhhZZ7XCYHJcECCCmqwDuNC+DGmIVnJ
+   P5TGTtmtmDrSmDtVxFEsXrsTb40lMFRxbMnnPtU0m89jW+7WcuKC5CmrO
+   ZVBfqllXjM84oRl9EFc1I2OgfG77EzF1rq64CJHHyEc2oyC6A8sJma5v0
+   SdbANUiD6Tr+558Jp+nCJdN00+oSq3gg/BuvCkme0suvelbOsrBGf8V1O
+   Q==;
+From:   Hermes Zhang <chenhui.zhang@axis.com>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hermes Zhang <chenhuiz@axis.com>
+CC:     <kernel@axis.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] dt-binding: leds: Document leds-multi-gpio bindings
+Date:   Wed, 24 Mar 2021 10:48:43 +0800
+Message-ID: <20210324024844.15796-1-chenhui.zhang@axis.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1616409015-27682-1-git-send-email-mkshah@codeaurora.org>
-References: <1616409015-27682-1-git-send-email-mkshah@codeaurora.org>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert bindings to yaml for qcom,pdc
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, dianders@chromium.org, rnayak@codeaurora.org,
-        lsrao@codeaurora.org, Maulik Shah <mkshah@codeaurora.org>,
-        devicetree@vger.kernel.org
-To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
-        maz@kernel.org
-Date:   Tue, 23 Mar 2021 19:37:53 -0700
-Message-ID: <161655347383.3012082.3209818534281111587@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2021-03-22 03:30:15)
-> -- qcom,pdc-ranges:
-> -       Usage: required
-> -       Value type: <u32 array>
-> -       Definition: Specifies the PDC pin offset and the number of PDC po=
-rts.
-> -                   The tuples indicates the valid mapping of valid PDC p=
-orts
-> -                   and their hwirq mapping.
-> -                   The first element of the tuple is the starting PDC po=
-rt.
-> -                   The second element is the GIC hwirq number for the PD=
-C port.
-> -                   The third element is the number of interrupts in sequ=
-ence.
-> -
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
-pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.=
-yaml
-> new file mode 100644
-> index 0000000..8b4151c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/qcom,pdc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. PDC interrupt controller
-> +
-> +maintainers:
-> +  - Maulik Shah <mkshah@codeaurora.org>
-> +
-> +description: |
-> +  Qualcomm Technologies, Inc. SoCs based on the RPM Hardened architectur=
-e have a
-> +  Power Domain Controller (PDC) that is on always-on domain. In addition=
- to
-> +  providing power control for the power domains, the hardware also has an
-> +  interrupt controller that can be used to help detect edge low interrup=
-ts as
-> +  well detect interrupts when the GIC is non-operational.
-> +
-> +  GIC is parent interrupt controller at the highest level. Platform inte=
-rrupt
-> +  controller PDC is next in hierarchy, followed by others. Drivers requi=
-ring
-> +  wakeup capabilities of their device interrupts routed through the PDC,=
- must
-> +  specify PDC as their interrupt controller and request the PDC port ass=
-ociated
-> +  with the GIC interrupt. See example below.
-> +
-> +properties:
-> + compatible:
-> +   items:
-> +     - enum:
-> +        # Should contain "qcom,<soc>-pdc" and "qcom,pdc"
-> +         - qcom,sc7180-pdc #For SC7180
-> +         - qcom,sc7280-pdc #For SC7280
-> +         - qcom,sdm845-pdc #For SDM845
-> +         - qcom,sm8250-pdc #For SM8250
-> +         - qcom,sm8350-pdc #For SM8350
-> +     - const: qcom,pdc
-> +
-> + reg:
-> +    description: |
-> +      Specifies the base physical address for PDC hardware followed by o=
-ptional
-> +      PDC's GIC interface registers that need to be configured for wakeu=
-p capable
-> +      GPIOs routed to the PDC.
-> +    minItems: 1
-> +    maxItems: 2
+From: Hermes Zhang <chenhuiz@axis.com>
 
-Can this be
+Document the device tree bindings of the multiple GPIOs LED driver
+Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
 
-	items:
-	  - description: base registers
-	  - description: wakeup configuration registers
+Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+---
 
-and then we should always have both registers?
+Notes:
+    Add maxItems
 
-> +
-> + '#interrupt-cells':
-> +    # Specifies the number of cells needed to encode an interrupt.
-> +    # The first element of the tuple is the PDC pin for the interrupt.
-> +    # The second element is the trigger type.
-> +    const: 2
-> +
-> + interrupt-controller: true
-> +
-> + qcom,pdc-ranges:
-> +   description: |
-> +      Specifies the PDC pin offset and the number of PDC ports.
-> +      The tuples indicates the valid mapping of valid PDC ports
-> +      and their hwirq mapping.
-> +   $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +   items:
-> +      items:
-> +        - description: |
-> +           "a" The first element of the tuple is the starting PDC port.
-> +        - description: |
-> +           "b" The second element is the GIC SPI number for the PDC port.
-> +        - description: |
-> +           "c" The third element is the number of interrupts in sequence.
+ .../bindings/leds/leds-multi-gpio.yaml        | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
 
-Do we need the "a", "b", "c" prefixes? Is there any minItems or maxItems
-that can be placed on this?
+diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+new file mode 100644
+index 000000000000..6f2b47487b90
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Multiple GPIOs LED driver
++
++maintainers:
++  - Hermes Zhang <chenhuiz@axis.com>
++
++description:
++  This will support some LED made of multiple GPIOs and the brightness of the
++  LED could map to different states of the GPIOs.
++
++properties:
++  compatible:
++    const: multi-gpio-led
++
++  led-gpios:
++    description: Array of one or more GPIOs pins used to control the LED.
++    minItems: 1
++    maxItems: 8  # Should be enough
++
++  led-states:
++    description: |
++      The array list the supported states here which will map to brightness
++      from 0 to maximum. Each item in the array will present all the GPIOs
++      value by bit.
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 1
++    maxItems: 16 # Should be enough
++
++required:
++  - compatible
++  - led-gpios
++  - led-states
++
++additionalProperties: false
++
++examples:
++  - |
++    gpios-led {
++      compatible = "multi-gpio-led";
++
++      led-gpios = <&gpio0 23 0x1>,
++                  <&gpio0 24 0x1>;
++      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
++    };
++...
+-- 
+2.20.1
 
-> +
-> +required:
-> +    - compatible
-> +    - reg
-> +    - '#interrupt-cells'
-> +    - interrupt-controller
-> +    - qcom,pdc-ranges
-> +
-> +additionalProperties: false
