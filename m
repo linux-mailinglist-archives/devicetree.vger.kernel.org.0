@@ -2,170 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01263348083
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E78433480AB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:39:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237338AbhCXSaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 14:30:12 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:34432 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237549AbhCXS3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 14:29:39 -0400
-Received: by mail-io1-f45.google.com with SMTP id x16so22543217iob.1;
-        Wed, 24 Mar 2021 11:29:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PrMplCAocXwEHiQAv4gdSYs00Y35/4CyAT3Y3sApfhU=;
-        b=UtdNh50IkiBcMHbYzzeRUxwcQuISDiFh2ddRz2ExvEIBDa6XeaAtclf/4O4weG2yGf
-         2TYZrnboKDks5+HEQXlutU2C+9ZYuDRbZDJ2imdM3BWkF8Bb95UQqu0QVg5wj4r0RRSz
-         bX2R7Xp6irWliOLCRPqwiJyrr15IlMxmwtl0ubnYnL8TXw11zeFI+nAclVVCOePk7ico
-         bs7K6FVHMDl7of+RR13aoLkboodgOHIYYvTFPzlI2UBq0pKCbFbZVuLuGj6Xv1+bJbYA
-         Z3iXCSrCF2A0Lv8nG+9MhA79pUSnBPTxXxkDprQDplPwzJQYGS3EAzHiO11fI7ZEqXNs
-         6pYw==
-X-Gm-Message-State: AOAM532zcGLVr2BN6pkS6LsRrFEyIXz64Ui3Ig8frQ9Wj2zaGAwfhiIA
-        gEhtkgugmmsCQ9zoWiBBVg==
-X-Google-Smtp-Source: ABdhPJzGlId8ja8cdJzuvMtYqZogzjtHhRrIu1PgwdklmlwP4vTUQtGNUsMtb+jEpiYjJ4VpBSTEfg==
-X-Received: by 2002:a02:7419:: with SMTP id o25mr4035861jac.100.1616610578895;
-        Wed, 24 Mar 2021 11:29:38 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e10sm1485589ile.23.2021.03.24.11.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 11:29:38 -0700 (PDT)
-Received: (nullmailer pid 3386128 invoked by uid 1000);
-        Wed, 24 Mar 2021 18:29:37 -0000
-Date:   Wed, 24 Mar 2021 12:29:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        id S237699AbhCXSi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 14:38:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48326 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237595AbhCXSi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 14:38:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B161761A16;
+        Wed, 24 Mar 2021 18:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616611105;
+        bh=2goQGhK9s/vJ0sA2UDpMJYC1frOuoZRBT/P1ep5MeLI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jY7ScJi+1viiIuWHbYWQ14rsshc4fwsLFktskMndtqTZ3QMnvrFERgftm0Zu1HkB2
+         U4M0Ja4iFHE8fT1hLWeMFrAQ3k2UdAph17ovXmz9vIvgifvoLQaqW72X5xtAKpxnSB
+         M5t1tU43Itok8Iy5znf/PSLu6gZW/HsVtachVXTXETj1TXjmqCPFngQvAa7Hcz3tvr
+         Kd9fcGrUa2wo9Nf7hY4YHh4WL+wKOw4zDUJ2kG6dDC5T99LlO+VpYk39aJMwKFjRDw
+         u3kb6uwO5hHl0r6AOSTfcdWetfFlkbYIhDzCM8/XkoKukCVojeiriXwCZntSDQro95
+         dY1I923BXMANg==
+Date:   Wed, 24 Mar 2021 18:38:18 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        bert@biot.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Binding for Realtek Otto GPIO
-Message-ID: <20210324182937.GA3378389@robh.at.kernel.org>
-References: <20210315082339.9787-1-sander@svanheule.net>
- <20210315190806.66762-1-sander@svanheule.net>
- <20210315190806.66762-2-sander@svanheule.net>
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH v3 13/27] arm64: Add Apple vendor-specific system
+ registers
+Message-ID: <20210324183818.GF13181@willie-the-truck>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-14-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210315190806.66762-2-sander@svanheule.net>
+In-Reply-To: <20210304213902.83903-14-marcan@marcan.st>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 15, 2021 at 08:08:05PM +0100, Sander Vanheule wrote:
-> Add a binding description for Realtek's GPIO controller found on several
-> of their MIPS-based SoCs (codenamed Otto), such as the RTL838x and
-> RTL839x series of switch SoCs.
+On Fri, Mar 05, 2021 at 06:38:48AM +0900, Hector Martin wrote:
+> Apple ARM64 SoCs have a ton of vendor-specific registers we're going to
+> have to deal with, and those don't really belong in sysreg.h with all
+> the architectural registers. Make a new home for them, and add some
+> registers which are useful for early bring-up.
 > 
-> A fallback binding 'realtek,otto-gpio' is provided for cases where the
-> actual port ordering is not known yet, and enabling the interrupt
-> controller may result in uncaught interrupts.
-> 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  .../bindings/gpio/gpio-realtek-otto.yaml      | 80 +++++++++++++++++++
-
-Use compatible string: realtek,otto-gpio.yaml
-
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
+>  MAINTAINERS                           |  1 +
+>  arch/arm64/include/asm/sysreg_apple.h | 69 +++++++++++++++++++++++++++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 arch/arm64/include/asm/sysreg_apple.h
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml b/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aec14fbd61b8..3a352c687d4b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1646,6 +1646,7 @@ B:	https://github.com/AsahiLinux/linux/issues
+>  C:	irc://chat.freenode.net/asahi-dev
+>  T:	git https://github.com/AsahiLinux/linux.git
+>  F:	Documentation/devicetree/bindings/arm/apple.yaml
+> +F:	arch/arm64/include/asm/sysreg_apple.h
+
+(this isn't needed with my suggestion below).
+
+>  ARM/ARTPEC MACHINE SUPPORT
+>  M:	Jesper Nilsson <jesper.nilsson@axis.com>
+> diff --git a/arch/arm64/include/asm/sysreg_apple.h b/arch/arm64/include/asm/sysreg_apple.h
 > new file mode 100644
-> index 000000000000..3e8151e3a169
+> index 000000000000..48347a51d564
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-realtek-otto.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-realtek-otto.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek Otto GPIO controller
-> +
-> +maintainers:
-> +  - Sander Vanheule <sander@svanheule.net>
-> +  - Bert Vermeulen <bert@biot.com>
-> +
-> +description: |
-> +  Realtek's GPIO controller on their MIPS switch SoCs (Otto platform) consists
-> +  of two banks of 32 GPIOs. These GPIOs can generate edge-triggered interrupts.
-> +  Each bank's interrupts are cascased into one interrupt line on the parent
-> +  interrupt controller, if provided.
-> +  This binding allows defining a single bank in the devicetree. The interrupt
-> +  controller is not supported on the fallback compatible name, which only
-> +  allows for GPIO port use.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^gpio@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - realtek,rtl8380-gpio
-> +              - realtek,rtl8390-gpio
-> +          - const: realtek,otto-gpio
-> +      - const: realtek,otto-gpio
+> +++ b/arch/arm64/include/asm/sysreg_apple.h
 
-This should be dropped. You should always have an SoC specific 
-compatible.
+I doubt apple are the only folks doing this, so can we instead have
+sysreg-impdef.h please, and then have an Apple section in there for these
+registers? That way, we could also have an imp_sys_reg() macro to limit
+CRn to 11 or 15, which is the reserved encoding space for these registers.
 
+We'll cc you for any patches touching the Apple parts, as we don't have
+the first clue about what's hiding in there.
+
+> @@ -0,0 +1,69 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Apple SoC vendor-defined system register definitions
+> + *
+> + * Copyright The Asahi Linux Contributors
 > +
-> +  reg:
-> +    maxItems: 1
+> + * This file contains only well-understood registers that are useful to
+> + * Linux. If you are looking for things to add here, you should visit:
+> + *
+> + * https://github.com/AsahiLinux/docs/wiki/HW:ARM-System-Registers
+> + */
 > +
-> +  "#gpio-cells":
-> +    const: 2
+> +#ifndef __ASM_SYSREG_APPLE_H
+> +#define __ASM_SYSREG_APPLE_H
 > +
-> +  gpio-controller: true
+> +#include <asm/sysreg.h>
+> +#include <linux/bits.h>
+> +#include <linux/bitfield.h>
 > +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 32
+> +/*
+> + * Keep these registers in encoding order, except for register arrays;
+> + * those should be listed in array order starting from the position of
+> + * the encoding of the first register.
+> + */
 > +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> +
-> +dependencies:
-> +  interrupt-controller: [ interrupts ]
-> +
-> +examples:
-> +  - |
-> +      gpio@3500 {
-> +        compatible = "realtek,rtl8380-gpio", "realtek,otto-gpio";
-> +        reg = <0x3500 0x1c>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        ngpios = <24>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <2>;
-> +        interrupt-parent = <&rtlintc>;
-> +        interrupts = <23>;
-> +      };
-> +
-> +...
-> -- 
-> 2.30.2
-> 
+> +#define SYS_APL_PMCR0_EL1		sys_reg(3, 1, 15, 0, 0)
+> +#define PMCR0_IMODE			GENMASK(10, 8)
+> +#define PMCR0_IMODE_OFF			0
+> +#define PMCR0_IMODE_PMI			1
+> +#define PMCR0_IMODE_AIC			2
+> +#define PMCR0_IMODE_HALT		3
+> +#define PMCR0_IMODE_FIQ			4
+> +#define PMCR0_IACT			BIT(11)
+
+The Arm ARM says this about imp-def sysregs:
+
+  | The Arm architecture guarantees not to define any register name
+  | prefixed with IMP_ as part of the standard Arm architecture.
+  |
+  | Note
+  | Arm strongly recommends that any register names created in the
+  | IMPLEMENTATION DEFINED register spaces be prefixed with IMP_ and
+  | postfixed with _ELx, where appropriate.
+
+and it seems like we could follow that here without much effort, if you
+don't mind.
+
+Will
