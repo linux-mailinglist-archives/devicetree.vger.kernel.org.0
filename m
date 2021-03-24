@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2BB348057
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89AF6348060
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 19:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237495AbhCXSVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 14:21:00 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:38688 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237541AbhCXSUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 14:20:52 -0400
-Received: by mail-io1-f50.google.com with SMTP id e8so22533179iok.5;
-        Wed, 24 Mar 2021 11:20:52 -0700 (PDT)
+        id S237456AbhCXSXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 14:23:08 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:38457 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237354AbhCXSW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 14:22:59 -0400
+Received: by mail-il1-f175.google.com with SMTP id d10so15477291ils.5;
+        Wed, 24 Mar 2021 11:22:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LXQ/cn60etRO06VYX0/TVyUxNGev2BuhBfzjSkMzu9Y=;
-        b=XEJOseeH+4dR9XLHU2jBNc+YrhlyMWsWZ7vU+BQBf4jsMf40aORMkRoYEQIwwcE9BL
-         FRU5KC+yJQfR+jdpV7YDoJ6UbbOOqkfi4OuaHofXNXXfZ7pWbYRdkwZ9ncDKEwS9Rast
-         HY8TDQzshGaNGsgQENgoN7r29kULDLbUx6miN9GZ+UZJhv0W88SNKakNJZAEuAtsjI7/
-         6nZ811aaje+0ViHHMNNadV7zPySQG9CmBc0id0UGk3HPsC2ry0ZS5BWzcX4Rjhi+SK7m
-         I6FuF3GUQh9FVT/hebLL3UXhle5R10wgpqBq1GzQnBdtjReRTNx8OUCyKc0G3yAsUN+e
-         8maA==
-X-Gm-Message-State: AOAM530yVFGq37Fcgc3BeoviTxkhzlq70miqZBFCXVtdZBi/1PaDazFs
-        cqKEKQBfseP1myPnbKQRKQ==
-X-Google-Smtp-Source: ABdhPJycZllu0LH/CKR/lVFOXHC5F+cCiMHSjqyn/uH0Fx2MOKs+qZk0CCJs/TbMxwUlnDuEINPSug==
-X-Received: by 2002:a5e:cb4c:: with SMTP id h12mr3329527iok.183.1616610051683;
-        Wed, 24 Mar 2021 11:20:51 -0700 (PDT)
+        bh=+7jD9Ziw+YPY/ufj9WrL5bWKS/awbf5purcgVlFjpng=;
+        b=DZYsRu+78xhPgTHbur8Fq/BdrU6UCjVyI4j4BD2qNntc/D/k5JsAI68V6OYp5FQ9hN
+         MYIBp1e6YiyFz5cD8X37n1sU3JmhZNYwgjCuIU2OTbW2irfJecbOvSNGQizCE9xqNgrR
+         ApuFA7QrTyUYEdcrkRdhBHwu0uSRmJA2AuWEFsxdiagwDD4fljcCswtgRt5oL3CBnwr8
+         Upm99frxgRvYp+Kt0e+gE9IDtd7LOrxhVX3TCpk7PWr//rgH9XPiCuQ+SIqMAi1bCNkg
+         AR0ieNcTiO6yuEzb9/grUJRjry4j21xG8Gm+iDznipn6AKwjfaLJCiZRtAkCoz6Br47k
+         qlug==
+X-Gm-Message-State: AOAM531u14UEj/97spe9auiG9gAS2+HV84d/INnxoQYDXrOlRTHajoYD
+        0IEsR7V+3L7xZETVsRVYMQ==
+X-Google-Smtp-Source: ABdhPJwVb9jNY+tf48aCkvEKARd+56FFc2A96PY8V0WlIyLx6KzFPooDrUWIeMIWNHDl/AImI3EhAA==
+X-Received: by 2002:a05:6e02:10d1:: with SMTP id s17mr3615039ilj.159.1616610178809;
+        Wed, 24 Mar 2021 11:22:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r3sm1450128ilq.42.2021.03.24.11.20.50
+        by smtp.gmail.com with ESMTPSA id k3sm1404464ioj.35.2021.03.24.11.22.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 11:20:51 -0700 (PDT)
-Received: (nullmailer pid 3371921 invoked by uid 1000);
-        Wed, 24 Mar 2021 18:20:49 -0000
-Date:   Wed, 24 Mar 2021 12:20:49 -0600
+        Wed, 24 Mar 2021 11:22:58 -0700 (PDT)
+Received: (nullmailer pid 3375422 invoked by uid 1000);
+        Wed, 24 Mar 2021 18:22:56 -0000
+Date:   Wed, 24 Mar 2021 12:22:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: add vendor prefix for AESOP
-Message-ID: <20210324182049.GA3371869@robh.at.kernel.org>
-References: <20210315124423.115039-1-krzysztof.kozlowski@canonical.com>
- <20210315124423.115039-3-krzysztof.kozlowski@canonical.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, vkoul@kernel.org,
+        sanyog.r.kale@intel.com, yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, broonie@kernel.org
+Subject: Re: [PATCH v4 4/5] ASoC: dt-bindings: wsa881x: add bindings for port
+ mapping
+Message-ID: <20210324182256.GA3375367@robh.at.kernel.org>
+References: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
+ <20210315165650.13392-5-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210315124423.115039-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210315165650.13392-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Mar 2021 13:44:23 +0100, Krzysztof Kozlowski wrote:
-> Add vendor prefix for AESOP Embedded Forum (http://www.aesop.or.kr).
+On Mon, 15 Mar 2021 16:56:49 +0000, Srinivas Kandagatla wrote:
+> WSA881x SoundWire device ports are statically assigned to master ports
+> at design time. So add bindings required to specify these mappings!
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/sound/qcom,wsa881x.yaml          | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
