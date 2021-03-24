@@ -2,130 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D31BF347E7D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE7A347EE3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237069AbhCXRFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 13:05:19 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:36758 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237023AbhCXRFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:05:02 -0400
-Received: by mail-io1-f43.google.com with SMTP id f19so22247288ion.3;
-        Wed, 24 Mar 2021 10:05:01 -0700 (PDT)
+        id S237027AbhCXRKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 13:10:09 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:42619 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237360AbhCXRIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:08:11 -0400
+Received: by mail-io1-f54.google.com with SMTP id r193so22263914ior.9;
+        Wed, 24 Mar 2021 10:08:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Y14F9T2jsTltJHPnMpq7UymlxKoj7XEuVdqVJoZYFWE=;
-        b=p3wiJb74Cb1wQU68D3DxUTcy4uMsxf2CXJii82OwL9cPYcHQsHGSayJZH12Ml6r94R
-         dSGR/U7pVE+K/tUlm5kEECZ0ZzeAX1ogeTSUMuSaX7EbKj/nUf5hymcQCY1CAq7N/zgz
-         tAEbkdrvGO2NLycNv38erED6G4HITJ7P5Jd9z8BnY6ylxK9ozeQrdNYSZ11q2LOAcdvz
-         6sIEQ+NUIf3Xd39TvEAWXzknm1vhWD8bCK5gc5z4wcjMZxKPSjIydlkKm0ZmPWpLBTRh
-         seA0luFLXCBk2bgZ47RloB3mkNaPA45QBulK0c8wZymZl+CANHec9Gdkcio4sRnRng+V
-         lzfA==
-X-Gm-Message-State: AOAM530nyf8y+N+VafpWL9mzyYqS5iNLTMGLT6enf7oILBP3J7qH93mQ
-        wt4gwnAmendCHwDJkDkNsA==
-X-Google-Smtp-Source: ABdhPJz3r1fjFM1pybMFqDTGKa9jRyh4zb0saqiI6U8zl7cLJ3Yu8ibOzuV50P+Fkx+4sfdikn9j0Q==
-X-Received: by 2002:a6b:b2cd:: with SMTP id b196mr3295520iof.67.1616605501143;
-        Wed, 24 Mar 2021 10:05:01 -0700 (PDT)
+        bh=a8bjI7Bk9OnAORWR+J42MRi1jqglN8fzJASn6WCvgUg=;
+        b=N+SaTllxxb2KiJS7tLYG9ilJKr4LGwsd3gKb5MoRAa6o72/fIpJdi+Lr2fXCLULS6b
+         CiOMN8Oouc5AkjL1IsKsSUgiy10pA0XvZN37fBeDaVlQX63YAJEooN8ozoOnf/UT0/na
+         6m6bu5AYdn4Um91c5ZZi6Ci7mi99KHGdzQb0DNCrS2GrR1QP2muHeOq2T4i4fDvKz1TP
+         ADuPth4bpE6GcQchJokR9MDTkgzNT/jDg/n6mNE8/GjVAeIFMS1eJtZStUQofSzCy642
+         CYN+mjeWICk8yPwj3fRbTGNu0uhG3h7VtgTwY1EgcG8ltnTbILCb2rLY67WOUfuV6HGZ
+         g75g==
+X-Gm-Message-State: AOAM531ZC5KnuT48s6W7FoZtD1LSBMic4lE3XsDP8obOCfkpKilBF7oK
+        CtIzjzDF7ypuYUW1Ieuq7Q==
+X-Google-Smtp-Source: ABdhPJwwBNBkugbGEvRLMhf4o5WxFOf66ehFG+f3jn6AAx5yDtPTy6lNYIvwZHtqB06/7R0je7ErzA==
+X-Received: by 2002:a05:6602:17cd:: with SMTP id z13mr3298765iox.109.1616605690365;
+        Wed, 24 Mar 2021 10:08:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k4sm1339787ion.29.2021.03.24.10.04.59
+        by smtp.gmail.com with ESMTPSA id l17sm1426286ilt.27.2021.03.24.10.08.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 10:05:00 -0700 (PDT)
-Received: (nullmailer pid 3252068 invoked by uid 1000);
-        Wed, 24 Mar 2021 17:04:58 -0000
-Date:   Wed, 24 Mar 2021 11:04:58 -0600
+        Wed, 24 Mar 2021 10:08:09 -0700 (PDT)
+Received: (nullmailer pid 3257036 invoked by uid 1000);
+        Wed, 24 Mar 2021 17:08:06 -0000
+Date:   Wed, 24 Mar 2021 11:08:06 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, mike.looijmans@topic.nl,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 1/9] dt-bindings: clock: clk-si5341: Add new attributes
-Message-ID: <20210324170458.GA3177057@robh.at.kernel.org>
-References: <20210312181710.3998978-1-robert.hancock@calian.com>
- <20210312181710.3998978-2-robert.hancock@calian.com>
+Cc:     radhey.shyam.pandey@xilinx.com, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 v3 1/2] dt-bindings: net: xilinx_axienet:
+ Document additional clocks
+Message-ID: <20210324170806.GA3252450@robh.at.kernel.org>
+References: <20210312195214.4002847-1-robert.hancock@calian.com>
+ <20210312195214.4002847-2-robert.hancock@calian.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210312181710.3998978-2-robert.hancock@calian.com>
+In-Reply-To: <20210312195214.4002847-2-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 12:17:02PM -0600, Robert Hancock wrote:
-> Add new silabs,xaxb-ext-clk and silabs,iovdd-33 properties.
-> 
-> Changed vdd-supply on top-level node to optional since it is not actually
-> used by the driver.
-> 
-> Removed vdd-supply from output sub-nodes, as it was not supported by the
-> driver and it is not easily possible to support this in that location with
-> the kernel regulator infrastructure. Changed to have vddX-supply
-> attributes for each output on the top-level device node.
+On Fri, Mar 12, 2021 at 01:52:13PM -0600, Robert Hancock wrote:
+> Update DT bindings to describe all of the clocks that the axienet
+> driver will now be able to make use of.
 > 
 > Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 > ---
->  .../devicetree/bindings/clock/silabs,si5341.txt  | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
+>  .../bindings/net/xilinx_axienet.txt           | 25 ++++++++++++++-----
+>  1 file changed, 19 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/silabs,si5341.txt b/Documentation/devicetree/bindings/clock/silabs,si5341.txt
-> index 504cce3abe46..1cf7e002cb16 100644
-> --- a/Documentation/devicetree/bindings/clock/silabs,si5341.txt
-> +++ b/Documentation/devicetree/bindings/clock/silabs,si5341.txt
-> @@ -24,9 +24,8 @@ it.
->  
->  The device type, speed grade and revision are determined runtime by probing.
->  
-> -The driver currently only supports XTAL input mode, and does not support any
-> -fancy input configurations. They can still be programmed into the chip and
-> -the driver will leave them "as is".
-> +The driver currently does not support any fancy input configurations. They can
-> +still be programmed into the chip and the driver will leave them "as is".
->  
->  ==I2C device node==
->  
-> @@ -45,9 +44,9 @@ Required properties:
->  	corresponding to inputs. Use a fixed clock for the "xtal" input.
->  	At least one must be present.
->  - clock-names: One of: "xtal", "in0", "in1", "in2"
-> -- vdd-supply: Regulator node for VDD
->  
->  Optional properties:
-> +- vdd-supply: Regulator node for VDD
->  - vdda-supply: Regulator node for VDDA
->  - vdds-supply: Regulator node for VDDS
->  - silabs,pll-m-num, silabs,pll-m-den: Numerator and denominator for PLL
-> @@ -60,7 +59,14 @@ Optional properties:
->    be initialized, and always performs the soft-reset routine. Since this will
->    temporarily stop all output clocks, don't do this if the chip is generating
->    the CPU clock for example.
-> +- silabs,xaxb-ext-clk: When present, indicates that the XA/XB pins are used
-> +  in EXTCLK (external reference clock) rather than XTAL (crystal) mode.
->  - interrupts: Interrupt for INTRb pin.
-> +- silabs,iovdd-33: When present, indicates that the I2C lines are using 3.3V
-> +  rather than 1.8V thresholds.
+> diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> index 2cd452419ed0..b8e4894bc634 100644
+> --- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> +++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> @@ -42,11 +42,23 @@ Optional properties:
+>  		  support both 1000BaseX and SGMII modes. If set, the phy-mode
+>  		  should be set to match the mode selected on core reset (i.e.
+>  		  by the basex_or_sgmii core input line).
+> -- clocks	: AXI bus clock for the device. Refer to common clock bindings.
+> -		  Used to calculate MDIO clock divisor. If not specified, it is
+> -		  auto-detected from the CPU clock (but only on platforms where
+> -		  this is possible). New device trees should specify this - the
+> -		  auto detection is only for backward compatibility.
+> +- clock-names: 	  Tuple listing input clock names. Possible clocks:
+> +		  s_axi_lite_clk: Clock for AXI register slave interface
+> +		  axis_clk: AXI4-Stream clock for TXD RXD TXC and RXS interfaces
+> +		  ref_clk: Ethernet reference clock, used by signal delay
+> +			   primitives and transceivers
+> +		  mgt_clk: MGT reference clock (used by optional internal
+> +			   PCS/PMA PHY)
 
-How does communication over I2C to set the register for this work if the 
-register setting is wrong? I guess it's just leakage current...
+'_clk' is redundant.
 
-> +- vddX-supply (where X is an output index): Regulator node for VDD for the
-> +  specified output. The driver selects the output VDD_SEL setting based on this
-> +  voltage.
-
-This is called vddoX in the datasheet.
-
->  - #address-cells: shall be set to 1.
->  - #size-cells: shall be set to 0.
->  
-> @@ -77,8 +83,6 @@ Required child node properties:
->  - reg: number of clock output.
->  
->  Optional child node properties:
-> -- vdd-supply: Regulator node for VDD for this output. The driver selects default
-> -	values for common-mode and amplitude based on the voltage.
->  - silabs,format: Output format, one of:
->  	1 = differential (defaults to LVDS levels)
->  	2 = low-power (defaults to HCSL levels)
+> +
+> +		  Note that if s_axi_lite_clk is not specified by name, the
+> +		  first clock of any name is used for this. If that is also not
+> +		  specified, the clock rate is auto-detected from the CPU clock
+> +		  (but only on platforms where this is possible). New device
+> +		  trees should specify all applicable clocks by name - the
+> +		  fallbacks to an unnamed clock or to CPU clock are only for
+> +		  backward compatibility.
+> +- clocks: 	  Phandles to input clocks matching clock-names. Refer to common
+> +		  clock bindings.
+>  - axistream-connected: Reference to another node which contains the resources
+>  		       for the AXI DMA controller used by this device.
+>  		       If this is specified, the DMA-related resources from that
+> @@ -62,7 +74,8 @@ Example:
+>  		device_type = "network";
+>  		interrupt-parent = <&microblaze_0_axi_intc>;
+>  		interrupts = <2 0 1>;
+> -		clocks = <&axi_clk>;
+> +		clock-names = "s_axi_lite_clk", "axis_clk", "ref_clk", "mgt_clk";
+> +		clocks = <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>, <&mgt_clk>;
+>  		phy-mode = "mii";
+>  		reg = <0x40c00000 0x40000 0x50c00000 0x40000>;
+>  		xlnx,rxcsum = <0x2>;
 > -- 
 > 2.27.0
 > 
