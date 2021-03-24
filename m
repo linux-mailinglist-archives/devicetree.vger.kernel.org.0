@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA7813474C0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:35:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B7AC34763C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 11:37:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232370AbhCXJfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 05:35:08 -0400
-Received: from mail.nic.cz ([217.31.204.67]:56934 "EHLO mail.nic.cz"
+        id S233223AbhCXKgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 06:36:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32842 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236152AbhCXJeh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 05:34:37 -0400
-Received: from thinkpad (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
-        by mail.nic.cz (Postfix) with ESMTPSA id A0E62140A26;
-        Wed, 24 Mar 2021 10:34:32 +0100 (CET)
-Date:   Wed, 24 Mar 2021 10:34:31 +0000
-From:   Marek Behun <marek.behun@nic.cz>
-To:     Hermes Zhang <chenhui.zhang@axis.com>
-Cc:     <pavel@ucw.cz>, <dmurphy@ti.com>, <robh+dt@kernel.org>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <chenhuiz@axis.com>,
-        <lkml@axis.com>, <kernel@axis.com>
-Subject: Re: [PATCH 1/2] leds: leds-multi-gpio: Add multiple GPIOs LED
- driver
-Message-ID: <20210324103431.4b945915@thinkpad>
-In-Reply-To: <20210324075631.5004-2-chenhui.zhang@axis.com>
-References: <20210324075631.5004-1-chenhui.zhang@axis.com>
-        <20210324075631.5004-2-chenhui.zhang@axis.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233240AbhCXKgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 06:36:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 173E061A01;
+        Wed, 24 Mar 2021 10:36:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616582190;
+        bh=K+wu1moqnyaaWnMlMm2Hi99elaBkWYpg6o00k7xiPBY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mCjAt6l8xkj+gzbE1PMT0seb76QmBsvopd0YBzHrShOi//z4bLeDAlXjN1dPZNqLL
+         2M3ZYsVkiVTvvkNhBr1D54jtig9FIhBS4Dd2aOXLiDSGwAquK4MA9j75GFKN3QgjMG
+         x9A+hXsPXU4S/jQHNqUhD9RAFwvRX6oJZJKttmOT2V9+3mdwRBjp77HNmnw1Qn3S37
+         P44lQBUrattI9ec3Yh3JYGKHrtg2n7SJUrvYG40L62NVYqCOZqXIuMuqUD6qI6kR1D
+         DWIvO/4k6SCnZe2c6RqvmFOGQ5efbz86gjCcFyAd6z+sex1p4kOfPetWsPYXwBobvB
+         +klDJpYS35bWg==
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     pali@kernel.org, =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH net-next 0/2] dt-bindings: define property describing supported ethernet PHY modes
+Date:   Wed, 24 Mar 2021 11:35:54 +0100
+Message-Id: <20210324103556.11338-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Mar 2021 15:56:30 +0800
-Hermes Zhang <chenhui.zhang@axis.com> wrote:
+Hello,
 
-> From: Hermes Zhang <chenhuiz@axis.com>
-> 
-> Introduce a new multiple GPIOs LED driver. This LED will made of
-> multiple GPIOs (up to 8) and will map different brightness to different
-> GPIOs states which defined in dts file.
+the Marvell Alaska PHYs (88X3310, 88E2110) can, depending on their
+configuration, change the PHY mode to the MAC, depending on the
+copper/fiber speed.
 
-I wonder how many boards have such LEDs.
+The 88X3310, for example, can be configured (via MACTYPE register)
+so that it communicates with the MAC in sgmii for 10/100/1000mbps,
+2500base-x for 2500mbps, 5gbase-r for 5gbps and either 10gbase-r,
+xaui or rxaui for 10gbps. Or the PHY may communicate with the MAC
+in usxgmii, or one of the 10gbase-r, rxaui or xaui modes with rate
+matching.
 
-Also if it wouldn't be better to expand the original leds-gpio driver.
-Probably depends on how much larger would such expansion make the
-leds-gpio driver.
+So for the 10gbps mode we have options 10gbase-r, xaui, rxaui and
+usxgmii. The MAC can support some of these modes, and if it does more
+than one, we need to know which one to use. Not all of these modes
+must necessarily be supported by the board (xaui required wiring for
+4 SerDes lanes, for example, and 10gbase-r requires wiring capable
+of transmitting at 10.3125 GBd).
 
-> +#include <linux/err.h>
-> +#include <linux/gpio.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/kernel.h>
-> +#include <linux/leds.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/slab.h>
+The MACTYPE is upon HW reset configured by strapping pins - so the
+board should have a correct mode configured after HW reset.
 
-Why do you include slab.h?
+One problem with this is that some boards configure the MACTYPE to
+a rate matching mode, which, according to the errata, is broken in
+some situations (it does not work for 10/100/1000, for example).
 
-> +
-> +#define MAX_GPIO_NUM  8
-> +
-> +struct multi_gpio_led_priv {
-> +	struct led_classdev cdev;
-> +
-> +	struct gpio_descs *gpios;
-> +
-> +	u8 *states;
-> +	int nr_states;
-> +};
+Another problem is that if lower modes are supported, we should
+maybe use them in order to save power.
 
-Use flexible array members. Allocate with
-  devm_kzalloc(dev, struct_size(priv, states, priv->nr_states),
-               GFP_KERNEL)
+But for this we need to know which phy-modes are supported on the
+board.
 
-> +
-> +
-> +static void multi_gpio_led_set(struct led_classdev *led_cdev,
-> +	enum led_brightness value)
-> +{
-> +	struct multi_gpio_led_priv *priv;
-> +	int idx;
-> +
-> +	DECLARE_BITMAP(values, MAX_GPIO_NUM);
-> +
-> +	priv = container_of(led_cdev, struct multi_gpio_led_priv, cdev);
-> +
-> +	idx = (value - LED_OFF) * priv->nr_states / (LED_FULL + 1);
+This series adds documentation for a new ethernet PHY property,
+called `supported-mac-connection-types`.
 
-LED_FULL / LED_OFF are deprecated, don't use them.
+When this property is present for a PHY node, only the phy-modes
+listed in this property should be considered to be functional on
+the board.
 
-> +
-> +	values[0] = priv->states[idx];
-> +
-> +	gpiod_set_array_value(priv->gpios->ndescs, priv->gpios->desc,
-> +	    priv->gpios->info, values);
-> +}
-> +
-> +static int multi_gpio_led_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->of_node;
-> +	struct multi_gpio_led_priv *priv = NULL;
-> +	int ret;
-> +	const char *state = NULL;
-> +	struct led_init_data init_data = {};
-> +
-> +	priv = devm_kzalloc(dev, sizeof(struct multi_gpio_led_priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->gpios = devm_gpiod_get_array(dev, "led", GPIOD_OUT_LOW);
-> +	if (IS_ERR(priv->gpios))
-> +		return PTR_ERR(priv->gpios);
-> +
-> +	if (priv->gpios->ndescs >= MAX_GPIO_NUM) {
-> +		dev_err(dev, "Too many GPIOs\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = of_property_count_u8_elems(node, "led-states");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	priv->nr_states = ret;
-> +	priv->states = devm_kzalloc(dev, sizeof(*priv->states) * priv->nr_states, GFP_KERNEL);
-> +	if (!priv->states)
-> +		return -ENOMEM;
-> +
-> +	ret = of_property_read_u8_array(node, "led-states", priv->states, priv->nr_states);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->cdev.max_brightness = LED_FULL;
+The second patch adds binding for this property.
 
-???? max_brightness is not 255 (= LED_FULL). max_brightness must be
-derived from the led-states property.
-
-
-> +	priv->cdev.default_trigger = of_get_property(node, "linux,default-trigger", NULL);
-> +	priv->cdev.brightness_set = multi_gpio_led_set;
-> +
-> +	init_data.fwnode = of_fwnode_handle(node);
-> +
-> +	ret = devm_led_classdev_register_ext(dev, &priv->cdev, &init_data);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	of_property_read_string(node, "default-state", &state);
-> +	if (!strcmp(state, "on"))
-> +		multi_gpio_led_set(&priv->cdev, LED_FULL);
-> +	else
-> +		multi_gpio_led_set(&priv->cdev, LED_OFF);
-
-Again LED_FULL and LED_OFF...
-What about default-state = "keep" ?
-
-Hermes, do you actually have a device that controls LEDs this way? How
-many brightness options do they have?
-
-Also I think this functionality could be easily incorporated into the
-existing leds-gpio driver, instead of creating new driver.
-
-Moreover your driver can control only one LED, so it needs to be
-probed multiple times for multiple LEDs. Meanwhile the leds-gpio driver
-can register multiple LEDs in one probe...
+The first patch does some YAML magic in ethernet-controller.yaml
+in order to be able to reuse the PHY modes enum, so that the same
+list does not have to be defined twice.
 
 Marek
+
+Marek Behún (2):
+  dt-bindings: ethernet-controller: create a type for PHY interface
+    modes
+  dt-bindings: ethernet-phy: define `supported-mac-connection-types`
+    property
+
+ .../bindings/net/ethernet-controller.yaml     | 89 ++++++++++---------
+ .../devicetree/bindings/net/ethernet-phy.yaml | 18 ++++
+ 2 files changed, 66 insertions(+), 41 deletions(-)
+
+-- 
+2.26.2
+
