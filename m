@@ -2,114 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B17347CC1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B60B347CD3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236697AbhCXPep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:34:45 -0400
-Received: from mx2.suse.de ([195.135.220.15]:45108 "EHLO mx2.suse.de"
+        id S236627AbhCXPmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:42:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56836 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236629AbhCXPeM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 11:34:12 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id C2AD5AD9F;
-        Wed, 24 Mar 2021 15:34:10 +0000 (UTC)
-Message-ID: <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
-Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     f.fainelli@gmail.com, phil@raspberrypi.com,
-        tim.gover@raspberrypi.com, adrian.hunter@intel.com,
-        sbranden@broadcom.com, alcooperx@gmail.com,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org
-Date:   Wed, 24 Mar 2021 16:34:09 +0100
-In-Reply-To: <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
-References: <20210322185816.27582-1-nsaenz@kernel.org>
-         <20210322185816.27582-5-nsaenz@kernel.org>
-         <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-FFEARCZYyZSHobHLGWfZ"
-User-Agent: Evolution 3.38.4 
+        id S236520AbhCXPmW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 11:42:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C49E960240;
+        Wed, 24 Mar 2021 15:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616600541;
+        bh=C3CE8848+YiYGz5Xm7USW9W7xH+y0vUp3QE+4rjZ2Ts=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ukpQl/fGlOKL39x8EukhhVtK+MSYqIImAroMgzeY/6fZusD3ly5JHWmigYzLTmVQq
+         a72P/gLfZlkvJOCRsgIFiN8hOIEMfM1s6yr8ZrTgxE4D32S9Ary5JGZ5cdBtGkLWHg
+         zBAztvWyo9NeeVwYGKBWrpBe1Zq5b1RXBekDqFemMB8BuRrgE3EQ2SNP9oZ/+WW4Cj
+         1daW5wcX8bjsInnwmYWorRWBVnp3rsjSPs9CXdO/wdQ+Yb1dsgCxPbuVW8NWyriFUZ
+         1E/YsdzLr++SBv99xHMpt0bHPfK0Dfgc8Jt6QZYUdeBwhVafIErGzhB91wr+t1kVFn
+         zFpoUZvpheoJA==
+Received: by earth.universe (Postfix, from userid 1000)
+        id C46BE3C0C96; Wed, 24 Mar 2021 16:42:19 +0100 (CET)
+Date:   Wed, 24 Mar 2021 16:42:19 +0100
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Carl Philipp Klemm <philipp@uvos.xyz>, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Arthur Demchenkov <spinal.by@gmail.com>,
+        Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH 2/5] ARM: dts: add battery phandle to cpcap_charger
+Message-ID: <20210324154219.m4xwm3bayzlele6e@earth.universe>
+References: <20210117224502.0f9a0e80dfd4841ad26a9914@uvos.xyz>
+ <YFsoWjUYhhzo5Tdo@atomide.com>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="opbgvjqo5takw7y5"
+Content-Disposition: inline
+In-Reply-To: <YFsoWjUYhhzo5Tdo@atomide.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-FFEARCZYyZSHobHLGWfZ
-Content-Type: text/plain; charset="UTF-8"
+--opbgvjqo5takw7y5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+Hi,
 
-On Wed, 2021-03-24 at 16:16 +0100, Stefan Wahren wrote:
-> Hi Nicolas,
+On Wed, Mar 24, 2021 at 01:54:02PM +0200, Tony Lindgren wrote:
+> * Carl Philipp Klemm <philipp@uvos.xyz> [210117 23:45]:
+> > --- a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
+> > +++ b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
+> > @@ -61,6 +61,7 @@ &cpcap_adc 2 &cpcap_adc 5
+> >  			io-channel-names =3D "battdetb", "battp",
+> >  					   "vbus", "chg_isense",
+> >  					   "batti";
+> > +			battery =3D <&cpcap_battery>;
+> >  		};
 >=20
-> Am 22.03.21 um 19:58 schrieb Nicolas Saenz Julienne:
-> > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> >=20
-> > Force emmc2's frequency to 150MHz as the default 100MHz (set by FW)
-> > seems to interfere with the VPU clock when setup at frequencies bigger
-> > than 500MHz (a pretty common case). This ends up causing unwarranted
-> > SDHCI CMD hangs  when no SD card is present.
-> >=20
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > ---
-> > =C2=A0arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 6 ++++++
-> > =C2=A01 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/=
-bcm2711-rpi-4-b.dts
-> > index 3b4ab947492a..9aa8408d9960 100644
-> > --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> > +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> > @@ -257,6 +257,12 @@ &emmc2 {
-> > =C2=A0	vqmmc-supply =3D <&sd_io_1v8_reg>;
-> > =C2=A0	vmmc-supply =3D <&sd_vcc_reg>;
-> > =C2=A0	broken-cd;
-> > +	/*
-> > +	 * Force the frequency to 150MHz as the default 100MHz seems to
-> > +	 * interfere with the VPU clock when setup at frequencies bigger than
-> > +	 * 500MHz, causing unwarranted CMD hangs.
-> > +	 */
-> > +	clock-frequency =3D <150000000>;
+> This seems like good standard stuff to have, picking up this patch into
+> omap-for-v5.13/dt thanks.
 >=20
-> i don't want to bike-shed here, but is there any chance to solve this in
-> clk-bcm2835 in a less hacky way?
+> Tony
 
-What do you have in mind?
+This was btw. one of the patches that finally made me convert all
+the binding files to YAML. This patch will now result in warning
+being printed when you run 'make dtbs_check', since the binding has
+not been updated.
 
-All I can think of is adding some kind of heuristic to the clock's prepare(=
-)
-callback. That said, I don't feel it would be a better solution than this.
+I did not yet have time to review the patchset properly, so I have
+not yet replied (partely, because of being busy with the YAML
+stuff).
 
-Regards,
-Nicolas
+I think the patch is also wrong, since the information is already
+described in DT - just the other way around: The battery references
+the charger. This provides all required information to the kernel
+for a 1:1 link.
 
+-- Sebastian
 
-
---=-FFEARCZYyZSHobHLGWfZ
+--opbgvjqo5takw7y5
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBbW/EACgkQlfZmHno8
-x/67jAgAkEAjGxqXoq4Ga/ry0PqEcfUiGD4+CRAlqZtglOAj2WqZ5z6CRwxg6Xt5
-LYDxIoLjBAENrkkjbMv4nQPdLLDvf3UjBeRTK70mfsON7Pt6HLk3fxAws/36/1DK
-AAMprq5BVCTNY04+tjdQvV0A/w6o71aQF74ghlytDlP2fm7jS6WcEqRLIkuGqe7U
-dXtOGwt7SPJGevPbktCQff7xLJ5Aw4W0+JHoM3nxDIdiA3hpOFvuQSQbn90OpCTf
-P4O9cbCFQ4Am60dYBmGAIuV3jGpkB4PZk8wJms+ePiTGtZBso5eorU1jyqKbZAOd
-kB4wrjXd1OrQbZB87A5SELjhUUa1FQ==
-=qWwb
+iQIyBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBbXdQACgkQ2O7X88g7
++prodQ/1Hg8cr07xH95ven0iOw3T9xJxX1D3BsbWgaJvCmM/HP2f1VPg/gE3r6iL
+3bfmRJdhpY0pzwo1+WtOhh8Sllm+nqcMWd5Arcx9QFVxhDKwo/XldSC0DixAWEDU
+3iQODzKBcYBqRC27sbeqsOdfUsPk4e9MYCCT5O1xlgoyKQmd6ZVF/nVP9e9k/ID/
+1Geu2HctFs7uV3R95AoxfzLHsBc15WW8byfb64qDCw4D8p46brvnv7I00ZRzCXoJ
+1eFeZ9HyDibHxOG2kw1X+n7sD14hy72xVansqkIPgv6BjYKyoxi+nYGk1vgzcnd/
+kTjVEx2Hf+pVD0zS4LhuLUgqeToXwSXFYA9IRdg9urA0DcacZfAyPnw1/bbn31Xr
+rfMqb10TdEJ0tJs4JKesQoPEwtk8vUu00kIZLrbC67zEGmKHrAf50e3wEPwiFzaY
+XkbSbI+KZ/VFPfWFDHGheb+KG88Jb442cxoCvVTAEe4OQ74T3oy1S8T//OTFqwc5
+W6V+t148jKKfpKKfNyjYFucPkx42Fzqfn0rf5RFhzLzDKqH0pIRREOY5TkoRsCSZ
+pqxheBb4rAsC9gEPrPSg8+YPU4WyoPSKexKJBS7qdVhD/1H1RkZIvp6HRpd8np1P
+CL+o23Bm65CDKBPBGh7VjVv7Cm/VOStectIsvfrj84ATB5JdGA==
+=Lu5T
 -----END PGP SIGNATURE-----
 
---=-FFEARCZYyZSHobHLGWfZ--
-
+--opbgvjqo5takw7y5--
