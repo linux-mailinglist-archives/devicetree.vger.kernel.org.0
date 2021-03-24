@@ -2,178 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A5E348389
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 22:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A801234838B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 22:24:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238276AbhCXVWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 17:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238277AbhCXVWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 17:22:43 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B4FC061763
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 14:22:43 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id k128so44483wmk.4
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 14:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=C2A13Yg3KqhUO629ZIlsQXhW97Y8pkuoM7AYOwJWu18=;
-        b=I6/7LJWivKQMIcW9vQRNi3CAV4OD+hROU7InNOva/3wbmLv69ffp1sTZIsq/YGsPC9
-         R7Z58vBnZfvwxRUsGHyLc8LYOHzgpy/8gAPLhtNztSOqcQm8Xu9Imsqhia2Ie/pTGi4w
-         vGW6R3qj0TvZutk9FCqJ5tUuETdmC/4ZAw/wSBmNEJeuVKArJl9ATgYsdbTKMMemGrKo
-         z9cSXgbYHfwX/COnrK0N8acxa5rDItKnF/+pRO12HC0GWk3LWGwSTJRPSGx8BxL9ZIWH
-         mVGISl68DD9Ig5q8FV8K6F5o78iPefUzMDC8RrdUJD0BWh/NztHLSZhs1uAieQlGebaj
-         mOsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C2A13Yg3KqhUO629ZIlsQXhW97Y8pkuoM7AYOwJWu18=;
-        b=FvNDrmIqKXuEh5kevRqgy6+KwuTiR41khDpYgQI32hQ7hp4+xU0C+/E8Lc5t/aSUw7
-         Vu/xRhOQNSTls7LNy36HSE1iatqJQ0yiZF/glw28KWhPlZDFKLXNHwc1bBok6V+FVKzE
-         G0bUM3FXSut/yrbbdPdnay+JXUZ4iNz+Bke0ls+vhVFK9Q/k5qEabL6BhDNTdp/bXETS
-         7ZkBX9gHmgUkmdJRiu647Unp0Rv14dQQmknrcj3jZYvEqE7z5KsyRgLKKzgcwKSB1Xwy
-         KdBiEZtgjnbtk52lAjT/aluyjFB+DUVdDlfXLsfP/HpGc0VhmN/P7bpFFcjgVCmGwBc3
-         SFyg==
-X-Gm-Message-State: AOAM531ZYt8CRM9o/wPEwbJnzcwbH0ZVyDc9j/d8zzxDi0gXYTMz9tQk
-        LdRgcND7NFCS26vqqaprA4PIZ+8TXOLnmLLGTeVmig==
-X-Google-Smtp-Source: ABdhPJwDXO54Dc9xzJeq4ZgqkUZc/KbaGHmJxWcrPEX1G4P7YrnT+Wz5DQOWT1UsIz+7M1kPAdwasKt/A+Cf0OniWMU=
-X-Received: by 2002:a7b:c209:: with SMTP id x9mr4754197wmi.92.1616620961979;
- Wed, 24 Mar 2021 14:22:41 -0700 (PDT)
+        id S238227AbhCXVXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 17:23:49 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:39980 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233625AbhCXVXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 17:23:30 -0400
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eaff:9f01:9a93:b6b:1adc:3da7])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 2129D1E4FF5;
+        Wed, 24 Mar 2021 22:23:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1616621007;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+/KBan7pEXMk9C2eO4o+fG6N3X0BchEzJ4IMvWHgbgc=;
+        b=Cij5y/gxGkQOHBR9umvh3CxND9QKD9qr6ZSpEWmU8w6KEYRtelP2GGO345I1JdGSQdti/g
+        HM3JGm3uD9L/dvZjcCRSn799Qlg54lAqrJVefbY6ax0CWXbkWBPkzn5CG165kCCk/GAkvi
+        /XLFBUhvkHlzsXRunDvqBt4e5Al1OxMNR6G1rdEkE16QpIuKSpBPLTKqx0wApDj8TFUoik
+        ++Gv9ksfexuOcY6AUqpz6OG5401cpr4hu5ADNUflh+Nh4FZMCpvZW9kFJlblO4Bf06oAj8
+        9Oqq/GncIhVJSdLuRjxmmCyy77GxfhNNof1KafhftFZkXJtcLdU7c2ibQuPklA==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     bert@biot.com, bgolaszewski@baylibre.com, linus.walleij@linaro.org,
+        linux-kernel@vger.kernel.org, maz@kernel.org, robh+dt@kernel.org,
+        tglx@linutronix.de, Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v3 0/2] Add Realtek Otto GPIO support
+Date:   Wed, 24 Mar 2021 22:22:38 +0100
+Message-Id: <cover.1616620884.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210315082339.9787-1-sander@svanheule.net>
+References: <20210315082339.9787-1-sander@svanheule.net>
 MIME-Version: 1.0
-References: <20210320025942.487916-1-leo.yan@linaro.org> <20210320030528.GA488187@leoy-ThinkPad-X240s>
-In-Reply-To: <20210320030528.GA488187@leoy-ThinkPad-X240s>
-From:   Mike Leach <mike.leach@linaro.org>
-Date:   Wed, 24 Mar 2021 21:22:31 +0000
-Message-ID: <CAJ9a7Vgip=qmFE7Wmf64zHZwH=Rc_PB1zpyNGnNE4++Aqc6VQg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: msm8916: Enable CoreSight STM component
-To:     Leo Yan <leo.yan@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Coresight ML <coresight@lists.linaro.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Leo,
+Add support for the GPIO controller employed by Realtek in multiple series of
+MIPS SoCs. These include the supported RTL838x and RTL839x. The register layout
+also matches the one found in the GPIO controller of other (Lexra-based) SoCs
+such as RTL8196E, RTL8197D, and RTL8197F.
 
-There are additional CTI components on the DB410c - I think there is
-information on base addresses for these - but there is no information
-on connectivity between the CTIs and any components such as STM / ETR
-etc for any of the in / out signal lines.
-Therefore we omitted these from the original DT when adding the other
-CTI devices.
+For the platform name 'otto', I am not aware of any official resources as to
+what hardware this specifically applies to. However, in all of the GPL archives
+we've received, from vendors using compatible SoCs in their design, the
+platform under the MIPS architecture is referred to by this name.
 
-It could well be that there are signals from the STM to a CTI, and if
-the information could be found then it would be useful to add - but I
-have not seen this information anywhere - and it is the sort of thing
-that is often missed out of hardware manuals.
-It might be possible to deduce some information using the Coresight
-intergration management registers - but this would involve a lot of
-trial and error testing
+The GPIO ports have been tested on a Zyxel GS1900-8 (RTL8380), and Zyxel
+GS1900-48 (RTL8393). Furthermore, the GPIO ports and interrupt controller have
+been tested on a Netgear GS110TPPv1 (RTL8381).
 
-Regards
+Changes in v3:
+- Remove OF dependencies in driver probe
+- Don't accept IRQ_TYPE_NONE as a valid interrupt type
+- Remove (now unused) dev property from control structure
+- Use u8/u16 port registers, instead of raw u32 registers
+- Use 'line' name for gpiochip, 'port' and 'pin' names for hardware
+- Renamed DT bindings file
+- Dropped fallback-only DT compatible
+- Various code style clean-ups
 
-Mike
+Changes in v2:
+- Clarify structure and usage of IMR registers
+- Added Linus' Reviewed-by tags
 
-On Sat, 20 Mar 2021 at 03:05, Leo Yan <leo.yan@linaro.org> wrote:
->
-> Hi Mike,
->
-> On Sat, Mar 20, 2021 at 10:59:42AM +0800, Leo Yan wrote:
-> > From: Georgi Djakov <georgi.djakov@linaro.org>
-> >
-> > Add DT binding for CoreSight System Trace Macrocell (STM) on msm8916,
-> > which can benefit the CoreSight development on DB410c.
->
-> For the DT binding for CoreSight STM on DB410c, I have one question:
->
-> Do you know there have any CTI is conntected to STM so that the DT
-> binding needs to reflect the connection?  If this is the case, we
-> should update the DT binding for CTI node as well.
->
-> Thanks,
-> Leo
->
-> >
-> > Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-> > Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi |  1 +
-> >  arch/arm64/boot/dts/qcom/msm8916.dtsi     | 27 +++++++++++++++++++++++
-> >  2 files changed, 28 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > index 3a9538e1ec97..dd87e5d739ab 100644
-> > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > @@ -406,6 +406,7 @@ &wcd_codec {
-> >  &etm1 { status = "okay"; };
-> >  &etm2 { status = "okay"; };
-> >  &etm3 { status = "okay"; };
-> > +&stm { status = "okay"; };
-> >  &etr { status = "okay"; };
-> >  &funnel0 { status = "okay"; };
-> >  &funnel1 { status = "okay"; };
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > index 402e891a84ab..892f1772e53c 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > @@ -562,6 +562,13 @@ funnel0_in4: endpoint {
-> >                                               remote-endpoint = <&funnel1_out>;
-> >                                       };
-> >                               };
-> > +
-> > +                             port@7 {
-> > +                                     reg = <7>;
-> > +                                     funnel0_in7: endpoint {
-> > +                                             remote-endpoint = <&stm_out>;
-> > +                                     };
-> > +                             };
-> >                       };
-> >
-> >                       out-ports {
-> > @@ -882,6 +889,26 @@ etm3_out: endpoint {
-> >                       };
-> >               };
-> >
-> > +             stm: stm@802000 {
-> > +                     compatible = "arm,coresight-stm", "arm,primecell";
-> > +                     reg = <0x802000 0x1000>,
-> > +                           <0x9280000 0x180000>;
-> > +                     reg-names = "stm-base", "stm-stimulus-base";
-> > +
-> > +                     clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
-> > +                     clock-names = "apb_pclk", "atclk";
-> > +
-> > +                     status = "disabled";
-> > +
-> > +                     out-ports {
-> > +                             port {
-> > +                                     stm_out: endpoint {
-> > +                                             remote-endpoint = <&funnel0_in7>;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> >               msmgpio: pinctrl@1000000 {
-> >                       compatible = "qcom,msm8916-pinctrl";
-> >                       reg = <0x01000000 0x300000>;
-> > --
-> > 2.25.1
-> >
+Sander Vanheule (2):
+  dt-bindings: gpio: Binding for Realtek Otto GPIO
+  gpio: Add Realtek Otto GPIO support
 
-
+ .../bindings/gpio/realtek,otto-gpio.yaml      |  78 ++++
+ drivers/gpio/Kconfig                          |  11 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-realtek-otto.c              | 335 ++++++++++++++++++
+ 4 files changed, 425 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-realtek-otto.c
 
 -- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+2.30.2
+
