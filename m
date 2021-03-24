@@ -2,112 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D15D346F62
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC02E346FA3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:38:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234816AbhCXCUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 22:20:22 -0400
-Received: from regular1.263xmail.com ([211.150.70.205]:47570 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234808AbhCXCUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:20:03 -0400
-X-Greylist: delayed 387 seconds by postgrey-1.27 at vger.kernel.org; Tue, 23 Mar 2021 22:20:02 EDT
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id A01AE990;
-        Wed, 24 Mar 2021 10:12:50 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.236] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P1826T139670268532480S1616551969111653_;
-        Wed, 24 Mar 2021 10:12:49 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <c9bb3d9b648f989d6fa9861f5ae7ad8f>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: linux-arm-kernel@lists.infradead.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_2/3=5d_dt-bindings=3a_Convert_the_rockc?=
- =?UTF-8?B?aGlwIHBvd2VyX2RvbWFpbiB0byBZQU1MIGFuZCBleHRlbmTjgJDor7fms6jmhI8=?=
- =?UTF-8?B?77yM6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R44CR?=
-To:     Rob Herring <robh@kernel.org>
-Cc:     tony.xie@rock-chips.com, huangtao@rock-chips.com, heiko@sntech.de,
-        linux-kernel@vger.kernel.org, finley.xiao@rock-chips.com,
-        kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, cl@rock-chips.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20210323082410.22818-1-zhangqing@rock-chips.com>
- <20210323082410.22818-3-zhangqing@rock-chips.com>
- <1616530607.412616.1244766.nullmailer@robh.at.kernel.org>
-From:   "elaine.zhang" <zhangqing@rock-chips.com>
-Organization: rockchip
-Message-ID: <f1c36d81-9896-dec1-b6a8-f859d388ae7f@rock-chips.com>
-Date:   Wed, 24 Mar 2021 10:12:49 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S234924AbhCXCiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 22:38:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37156 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234910AbhCXCh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:37:58 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C28C061765
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id il9-20020a17090b1649b0290114bcb0d6c2so381602pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=od0BD5phhIgjjdHP+pXkuF/8ytaG+GpUJEyEIVUV7fU=;
+        b=DNny0NmFMN/XKTCWHNlE2Azj31S6ov/KSxCVrZKIPputQXgq1w8Ito0UNkO9JtzRR/
+         Q95hkwirbsGfIfqveuD6BXJyzRl0d4ftjHKXXEkaIduyWocI5G9rRQL4Z6KDX6NPad/F
+         V9hqKIbmwV2xvngJhYKzHD/fp1uNcHvDPhqzs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=od0BD5phhIgjjdHP+pXkuF/8ytaG+GpUJEyEIVUV7fU=;
+        b=sD7nSrWL2fu2jEKRWA/B3b2cnZoJTkeXs9eYgDPiuUET3xQ4esAHHQfaKdvWJGR9a5
+         S8ZGYkDlFHbykhHrBrHtWePTzWfYdfQQzMqw02I3vY7gDFeShf77Y/mTgOufp+NHkl+5
+         veFgEGzShu2M3oboQ/u+f5xvLtGkI+ke0fhtJ7du2S6gLZ0jBALb2CgGad74sSfrAglY
+         Sy1te0RHgznjMoLrz+96XCJfYydKXBF4YloIjePaYBwNlKIMfne9CZW5aG4s4riFadi1
+         NUmSWzEg+W5x/JP9Uc8o6Vq9cvQBkcn6ef81nTb+kaCby/BCPDosZpNKW7DZ3biVEuqL
+         h3Ng==
+X-Gm-Message-State: AOAM533Z+19RoE79ygqcRLo8oZhgk4GLLdEUUazWpW/DM+D3gKtawT3E
+        bevLYI8hI9Vh7e8M8g4Jbn2GbO7VtSeDXQ==
+X-Google-Smtp-Source: ABdhPJyv9plpOoNB10k0a03KKxljHDIU04Ysw825aEB6SSWOjf5EJNYX70Cm0fswlh+QWFmuTfauXA==
+X-Received: by 2002:a17:90a:a96:: with SMTP id 22mr1086638pjw.200.1616553477366;
+        Tue, 23 Mar 2021 19:37:57 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:201:84ac:62f7:16a8:ccc7])
+        by smtp.gmail.com with ESMTPSA id m7sm422290pjc.54.2021.03.23.19.37.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Mar 2021 19:37:56 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1616530607.412616.1244766.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1616409015-27682-1-git-send-email-mkshah@codeaurora.org>
+References: <1616409015-27682-1-git-send-email-mkshah@codeaurora.org>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert bindings to yaml for qcom,pdc
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, dianders@chromium.org, rnayak@codeaurora.org,
+        lsrao@codeaurora.org, Maulik Shah <mkshah@codeaurora.org>,
+        devicetree@vger.kernel.org
+To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
+        maz@kernel.org
+Date:   Tue, 23 Mar 2021 19:37:53 -0700
+Message-ID: <161655347383.3012082.3209818534281111587@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob Herring
+Quoting Maulik Shah (2021-03-22 03:30:15)
+> -- qcom,pdc-ranges:
+> -       Usage: required
+> -       Value type: <u32 array>
+> -       Definition: Specifies the PDC pin offset and the number of PDC po=
+rts.
+> -                   The tuples indicates the valid mapping of valid PDC p=
+orts
+> -                   and their hwirq mapping.
+> -                   The first element of the tuple is the starting PDC po=
+rt.
+> -                   The second element is the GIC hwirq number for the PD=
+C port.
+> -                   The third element is the number of interrupts in sequ=
+ence.
+> -
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
+pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.=
+yaml
+> new file mode 100644
+> index 0000000..8b4151c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/qcom,pdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. PDC interrupt controller
+> +
+> +maintainers:
+> +  - Maulik Shah <mkshah@codeaurora.org>
+> +
+> +description: |
+> +  Qualcomm Technologies, Inc. SoCs based on the RPM Hardened architectur=
+e have a
+> +  Power Domain Controller (PDC) that is on always-on domain. In addition=
+ to
+> +  providing power control for the power domains, the hardware also has an
+> +  interrupt controller that can be used to help detect edge low interrup=
+ts as
+> +  well detect interrupts when the GIC is non-operational.
+> +
+> +  GIC is parent interrupt controller at the highest level. Platform inte=
+rrupt
+> +  controller PDC is next in hierarchy, followed by others. Drivers requi=
+ring
+> +  wakeup capabilities of their device interrupts routed through the PDC,=
+ must
+> +  specify PDC as their interrupt controller and request the PDC port ass=
+ociated
+> +  with the GIC interrupt. See example below.
+> +
+> +properties:
+> + compatible:
+> +   items:
+> +     - enum:
+> +        # Should contain "qcom,<soc>-pdc" and "qcom,pdc"
+> +         - qcom,sc7180-pdc #For SC7180
+> +         - qcom,sc7280-pdc #For SC7280
+> +         - qcom,sdm845-pdc #For SDM845
+> +         - qcom,sm8250-pdc #For SM8250
+> +         - qcom,sm8350-pdc #For SM8350
+> +     - const: qcom,pdc
+> +
+> + reg:
+> +    description: |
+> +      Specifies the base physical address for PDC hardware followed by o=
+ptional
+> +      PDC's GIC interface registers that need to be configured for wakeu=
+p capable
+> +      GPIOs routed to the PDC.
+> +    minItems: 1
+> +    maxItems: 2
 
-ÔÚ 2021/3/24 ÉÏÎç4:16, Rob Herring Ð´µÀ:
-> On Tue, 23 Mar 2021 16:24:09 +0800, Elaine Zhang wrote:
->> This converts the rockchip power domain family bindings to YAML schema,
->> and add binding documentation for the power domains found on Rockchip
->> RK3568 SoCs.
->>
->> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->> ---
->>   .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
->>   .../rockchip/rockchip,power-controller.yaml   | 259 ++++++++++++++++++
->>   2 files changed, 259 insertions(+), 136 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
->>   create mode 100644 Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
->>
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dts:19:18: fatal error: dt-bindings/clock/rk3568-cru.h: No such file or directory
->     19 |         #include <dt-bindings/clock/rk3568-cru.h>
->        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dt.yaml] Error 1
-> make: *** [Makefile:1380: dt_binding_check] Error 2
+Can this be
 
-#include <dt-bindings/clock/rk3568-cru.h>
-This file has been merged, can be seen on the Master branch of Linux-Next.
-I will rearrange the submission based on this:
-https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+	items:
+	  - description: base registers
+	  - description: wakeup configuration registers
 
->
-> See https://patchwork.ozlabs.org/patch/1457096
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
->
->
+and then we should always have both registers?
 
+> +
+> + '#interrupt-cells':
+> +    # Specifies the number of cells needed to encode an interrupt.
+> +    # The first element of the tuple is the PDC pin for the interrupt.
+> +    # The second element is the trigger type.
+> +    const: 2
+> +
+> + interrupt-controller: true
+> +
+> + qcom,pdc-ranges:
+> +   description: |
+> +      Specifies the PDC pin offset and the number of PDC ports.
+> +      The tuples indicates the valid mapping of valid PDC ports
+> +      and their hwirq mapping.
+> +   $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +   items:
+> +      items:
+> +        - description: |
+> +           "a" The first element of the tuple is the starting PDC port.
+> +        - description: |
+> +           "b" The second element is the GIC SPI number for the PDC port.
+> +        - description: |
+> +           "c" The third element is the number of interrupts in sequence.
 
+Do we need the "a", "b", "c" prefixes? Is there any minItems or maxItems
+that can be placed on this?
+
+> +
+> +required:
+> +    - compatible
+> +    - reg
+> +    - '#interrupt-cells'
+> +    - interrupt-controller
+> +    - qcom,pdc-ranges
+> +
+> +additionalProperties: false
