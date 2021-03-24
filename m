@@ -2,99 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B96E634855C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 00:36:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 405BF348577
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 00:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231920AbhCXXfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 19:35:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36222 "EHLO mail.kernel.org"
+        id S231923AbhCXXpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 19:45:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37500 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231386AbhCXXfa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 19:35:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BC29561962;
-        Wed, 24 Mar 2021 23:35:29 +0000 (UTC)
+        id S231776AbhCXXpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 19:45:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0CF7261A17;
+        Wed, 24 Mar 2021 23:45:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616628929;
-        bh=ffEX2jF8yikBiJK1Or5nM6+CCATa+j1nRlUYPlnzhAc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iLU6+H8cJwedFtjmab8Eidwa2OV/i4C7vGkaHaC7Ud55oR0+BCk3KOiQAz2i5/Ncv
-         gLYBZnxvX+20IMizc4h4yHSTUASV/G7gxPwEXXIiJb1TtrOxsgw/8r2FHshnvI3Yi0
-         aGv21x/0YGVXuMCX2UfowgMQ1UgqoCEY6hKcI++UAFvH1TXADIeOdvBD+YqPJ9lERp
-         LCQhA4jcdvTpG4zPRXkjdJDEpYTf9F9RtRk1SqCW4KeQioRODwhpkfJHwEJ7onlIWf
-         zwMm2hsCHmb5ySHFccBnSW9Z3/05b6hng/YLakjDMj1mPlnhjWqY9Zm/E7eUS39WNX
-         /SsbvHu9mSYlA==
-Received: by earth.universe (Postfix, from userid 1000)
-        id B4A0E3C0C96; Thu, 25 Mar 2021 00:35:27 +0100 (CET)
-Date:   Thu, 25 Mar 2021 00:35:27 +0100
-From:   Sebastian Reichel <sre@kernel.org>
-To:     carl@uvos.xyz
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Arthur Demchenkov <spinal.by@gmail.com>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Carl Philipp Klemm <philipp@uvos.xyz>,
-        devicetree@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH 2/5] ARM: dts: add battery phandle to cpcap_charger
-Message-ID: <20210324233527.3kb7misyckzwbf4o@earth.universe>
-References: <17864ff0d6d.6fcdc75d-1677305881.-8147809712278605057@zoho.eu>
+        s=k20201202; t=1616629529;
+        bh=WDsmT8Fwstw8a7xa0MI7gnuC2c1vDqVBBCjJ9FULubI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZVNm2f9+ISvF4h0Bc9epTyUO1te47dx3H+d375kpjBUkifrvERk91TagWzs++aXEW
+         /GL7gbdNotGcnFTT5GNCWSqzrVfW+JGGzvpT7JJBbHKuzaeBQt69DKUTd1+lRncYG0
+         PUOBdclVRODU2PswE2YMYc9Jd0vw4ydb4US0lyN0k9yKVUZVLVH01R70nIhSP/yHTq
+         EuyXdRjG65XvQxWyCT6R3CGnS2G7H+AYcUXWNmvBbouiB510srB6wsmw3fJO18YWka
+         2zH++fDzJcdKeqGQvaGMmaXni6AUSIoUpq3D0YmyX2vo7XmwIgAYOQkhPyuzA8fnr6
+         aEM9ouiyDahrg==
+Date:   Thu, 25 Mar 2021 00:45:25 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        pali@kernel.org
+Subject: Re: [PATCH net-next 0/2] dt-bindings: define property describing
+ supported ethernet PHY modes
+Message-ID: <20210325004525.734f3040@thinkpad>
+In-Reply-To: <755130b4-2fab-2b53-456f-e2304b1922f2@gmail.com>
+References: <20210324103556.11338-1-kabel@kernel.org>
+        <e4e088a4-1538-1e7d-241d-e43b69742811@gmail.com>
+        <20210325000007.19a38bce@thinkpad>
+        <755130b4-2fab-2b53-456f-e2304b1922f2@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4r2bnwfzqoytdwri"
-Content-Disposition: inline
-In-Reply-To: <17864ff0d6d.6fcdc75d-1677305881.-8147809712278605057@zoho.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 24 Mar 2021 16:16:41 -0700
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 
---4r2bnwfzqoytdwri
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Mar 24, 2021 at 05:08:58PM +0100, carl@uvos.xyz wrote:
-> > I think the patch is also wrong, since the information is already=20
-> > described in DT - just the other way around: The battery references=20
-> > the charger. This provides all required information to the kernel=20
-> > for a 1:1 link.=20
+> On 3/24/2021 4:00 PM, Marek Beh=C3=BAn wrote:
+> > On Wed, 24 Mar 2021 14:19:28 -0700
+> > Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >  =20
+> >>> Another problem is that if lower modes are supported, we should
+> >>> maybe use them in order to save power.   =20
+> >>
+> >> That is an interesting proposal but if you want it to be truly valuabl=
+e,
+> >> does not that mean that an user ought to be able to switch between any
+> >> of the supported PHY <=3D> MAC interfaces at runtime, and then within
+> >> those interfaces to the speeds that yield the best power savings? =20
+> >=20
+> > If the code determines that there are multiple working configurations,
+> > it theoretically could allow the user to switch between them.
+> >=20
+> > My idea was that this should be done by kernel, though.
+> >=20
+> > But power saving is not the main problem I am trying to solve.
+> > What I am trying to solve is that if a board does not support all modes
+> > supported by the MAC and PHY, because they are not wired or something,
+> > we need to know about that so that we can select the correct mode for
+> > PHYs that change this mode at runtime. =20
 >=20
-> I added this so that cpcap_charger may become aware of the battery
-> insertion state by querying the battery driver.
+> OK so the runtime part comes from plugging in various SFP modules into a
+> cage but other than that, for a "fixed" link such as a SFF or a soldered
+> down PHY, do we agree that there would be no runtime changing of the
+> 'phy-mode'?
 
-> Would you thus recommend that instead of adding this phandle i
-> should amend the series such that cpcap_charger walks the tree
-> looking for a cpcap_battery compatible node and then determines if
-> the charger phandle points to itself? Is there some recommended
-> way performing this reverse search?
+No, we do not. The PHY can be configured (by strapping pins or by
+sw) to change phy-mode depending on the autonegotiated copper speed.
 
-I was thinking of creating a new core function to loop over all
-supplied batteries of a power_supply (using psy->supplied_from),
-but in this specific case it might be enough to just use
-power_supply_get_by_name(). As I said, I have not yet properly
-reviewed the full patchset.
+So if you plug in an ethernet cable where on the otherside is only 1g
+capable device, the PHY will change mode to sgmii. But if you then plug
+a 5g capable device, the PHY will change mode to 5gbase-r.
 
--- Sebastian
+This happens if the PHY is configured into one of these changing
+configurations. It can also be configured to USXGMII, or 10GBASER with
+rate matching.
 
---4r2bnwfzqoytdwri
-Content-Type: application/pgp-signature; name="signature.asc"
+Not many MACs in kernel support USXGMII currently.
 
------BEGIN PGP SIGNATURE-----
+And if you use rate matching mode, and the copper side is
+linked in lower speed (2.5g for example), and the MAC will start
+sending too many packets, the internal buffer in the PHY is only 16 KB,
+so it will fill up quickly. So you need pause frames support. But this
+is broken for speeds <=3D 1g, according to erratum.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBbzLoACgkQ2O7X88g7
-+poPKw/5ARbxyRPIjhsMO4FoW/i1aNj/UGBb1BT+KAkUOwW3oVWWzNYLNy2zvTb+
-AkWfyKybFvJKhbYiw0AtGGDPbMGS/nUE+rrdvz5n6QX19dZNxsy9RKif/GV1wFef
-wGtEEa8vUUOhmWpAvoy+Fa0KYSYSFwkt1cQBPP64cRrjM5Tlu/9F6Es0DCBn/57R
-MA7O/He3rcPjvi3zrMOGkKWt/qWuikAkoaoZWoGOKckh3Qc8uo+bcOMJA9YDHvnq
-UFDk4WfOaWGXHK7rp5EowajHJ23+UE1IxrHPM1/R3wp2tzcpNOgoOulCoyY21qOr
-VfHMV4KPNZaTqFKBKWp2R7XISHCcKvmR4gFxaQl+vbat3vkBkFGIvzYcH8051aEC
-4WxfUR5GMfA8IhvJbmlzHPP/CofWYI4NYm6mkpm0ilJm3AqsKVcuKS9pfR831mi/
-em3htYf8IJUMmiazy4W0fgStU3xBi9BXCAHz0EA0js8rnaly/k8iSLyNbop+KpDy
-nlps3lY5HO6zCN39yUve5HFk3KZIFgmOzX5X1zlRFfJY90j035CzNSAXF1/IM3Y6
-UnC7s//zcAAnVImvUPCSjy4KDIXMgvyhoj+pDU1/tYRJ5HGI25K/1dxzaKyH91hJ
-ZJ8TitWsVR/BPEffai3AQhH6l3JQcTGK+EYDU8m4N1wNgiwjKn8=
-=DPKS
------END PGP SIGNATURE-----
+So you really want to change modes. The rate matching mode is
+basically useless.
 
---4r2bnwfzqoytdwri--
+>=20
+> What I am trying to understand is why this needs to be added to the
+> Device Tree as opposed to a bitmask within the PHY driver that indicates
+> the various interface mode capabilities which, looking at the code you
+> shared below, is how you make decisions ultimately.
+
+Because someone can create a board with a SOC where MAC is capable of
+all of the following modes: 10gbase-r, xaui, rxaui, 5gbase-r,
+2.5gbase-x, sgmii.
+
+And use Marvell 88X3310 PHY to translate to copper.
+
+But only wire the PHY to the MAC with one SerDes lane. So for 10g,
+10gbase-r mode must be used, xaui and rxaui cannot.
+Or wire the PHY to the MAC with 2 SerDes lanes, but both lanes capable
+only of 6 GHz freq. So for 10g, rxaui must be used.
+
+And then make the mistake of wiring the strapping pins to the
+rate-matching mode, which is useless.
+
+So we need to know which modes are supported if we want to change the
+configuration to a working one.
+
+> >  =20
+> >>>
+> >>> But for this we need to know which phy-modes are supported on the
+> >>> board.
+> >>>
+> >>> This series adds documentation for a new ethernet PHY property,
+> >>> called `supported-mac-connection-types`.   =20
+> >>
+> >> That naming does not quite make sense to me, if we want to describe the
+> >> MAC supported connection types, then those would naturally be within t=
+he
+> >> Ethernet MAC Device Tree node, no? If we are describing what the PHY is
+> >> capable, then we should be dropping "mac" from the property name not to
+> >> create confusion. =20
+> >=20
+> > I put "mac" there to indicate that this is the SerDes to the MAC (i.e.
+> > host side in Marvell PHY). 88X3310 has another SerDes side (Fiber Side).
+> > I guess I put "mac" there so that if in the future we wanted to specify
+> > supported modes for the fiber side, we could add
+> > `supported-fiber-connection-types`. =20
+>=20
+> You would traditionally find the words "line side" (copper, optical,
+> etc.) and "MAC side" being used in datasheets, maybe you can use a
+> similar naming here?
+
+So
+  supported-connection-types-mac-side
+  supported-connection-types-line-side
+or maybe media-side?
+
+I am still exploring whether this could be simply defined in the
+ethernet controllers `phy-mode` property, as Rob Herring says. It would
+be simpler...
+
+Marek
