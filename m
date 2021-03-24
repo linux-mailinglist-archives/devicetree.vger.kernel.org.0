@@ -2,98 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D989347CB8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B17347CC1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 16:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236713AbhCXPck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 11:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35452 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236744AbhCXPcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 11:32:14 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8ABC0613DE
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:32:14 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id l123so17589508pfl.8
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 08:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YcW87acVyCevsLYCFMKgehtQqDm5U3c2xzC9Z00X15I=;
-        b=a2kyaJgLYGtbfIdh2qJGaNstsr6ycsHaTmr0CsuJvbR72Mm9wByfcK0CR+hbbtonVG
-         JxJl7hklsIg0XgUHiqTfIlAmr46jlofEDKswmoMOpzrKPaZtE8gTksTDEZE8EcuXYjT3
-         0ihKT8Cv565Hm7WIhOpI+QM2tuZOWrSzWyKaM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YcW87acVyCevsLYCFMKgehtQqDm5U3c2xzC9Z00X15I=;
-        b=kCy7URXw2b01oDETUKn4DCXJud85nsCbkKT4qLU4UmLAeoTfaa/pzPHZZX6IdqiSsL
-         oSGNpVVhZRnQCyu+/6Sk10SrHe+HyuuaKgxpiJjXRl54g61EFAqzd2k0czz76/UAe1q9
-         KYC8wzV81tzpaNdbS1qsi5i95aAmVdJf8aYaC9LOK4RWzV5CEG0boNIqLGyR/u+bhk8P
-         JSZRe/4dHYgTwVKbdcppanGxRY3/sks1BNdpMN936iFRqGcwlrojo3gySJSeH58gEnY4
-         ri2tKo5WOmy2CzX/N2gOYCnf/oVzZWfomURcT9DUzJfeOtAaSgmaXhihppd419lk+J+U
-         NLcg==
-X-Gm-Message-State: AOAM533FSXQPnA8WA47eiwHD7vgQDd+4Y32WpmtXVDRpcp5zNbWEg7Z1
-        uit4ejZD738ERHqvYNYpffpulw==
-X-Google-Smtp-Source: ABdhPJw7ogBm7aBfyhcGbnc6qkVwN1kYQ6sWSFyzU3B4OZ9xwcf9DO1ZwNsFL288NPcUFZqvWwWxxQ==
-X-Received: by 2002:a63:4d0:: with SMTP id 199mr3615699pge.304.1616599933630;
-        Wed, 24 Mar 2021 08:32:13 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:40a3:9725:46c3:85f6])
-        by smtp.gmail.com with UTF8SMTPSA id g22sm2938593pju.30.2021.03.24.08.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 08:32:13 -0700 (PDT)
-Date:   Wed, 24 Mar 2021 08:32:10 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Roja Rani Yarubandi <rojay@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        akashast@codeaurora.org, msavaliy@qti.qualcomm.com,
-        stable@vger.kernel.org
-Subject: Re: [RESEND PATCH V3 1/2] soc: qcom-geni-se: Cleanup the code to
- remove proxy votes
-Message-ID: <YFtbeqc1q2BKsf2e@google.com>
-References: <20210324101836.25272-1-rojay@codeaurora.org>
- <20210324101836.25272-2-rojay@codeaurora.org>
+        id S236697AbhCXPep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 11:34:45 -0400
+Received: from mx2.suse.de ([195.135.220.15]:45108 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236629AbhCXPeM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 11:34:12 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id C2AD5AD9F;
+        Wed, 24 Mar 2021 15:34:10 +0000 (UTC)
+Message-ID: <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
+Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     f.fainelli@gmail.com, phil@raspberrypi.com,
+        tim.gover@raspberrypi.com, adrian.hunter@intel.com,
+        sbranden@broadcom.com, alcooperx@gmail.com,
+        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org
+Date:   Wed, 24 Mar 2021 16:34:09 +0100
+In-Reply-To: <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
+References: <20210322185816.27582-1-nsaenz@kernel.org>
+         <20210322185816.27582-5-nsaenz@kernel.org>
+         <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-FFEARCZYyZSHobHLGWfZ"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210324101836.25272-2-rojay@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 03:48:35PM +0530, Roja Rani Yarubandi wrote:
-> This reverts commit 048eb908a1f2 ("soc: qcom-geni-se: Add interconnect
-> support to fix earlycon crash")
-> 
-> ICC core and platforms drivers supports sync_state feature, which
-> ensures that the default ICC BW votes from the bootloader is not
-> removed until all it's consumers are probes.
-> 
-> The proxy votes were needed in case other QUP child drivers
-> I2C, SPI probes before UART, they can turn off the QUP-CORE clock
-> which is shared resources for all QUP driver, this causes unclocked
-> access to HW from earlycon.
-> 
-> Given above support from ICC there is no longer need to maintain
-> proxy votes on QUP-CORE ICC node from QUP wrapper driver for early
-> console usecase, the default votes won't be removed until real
-> console is probed.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 266cd33b5913 ("interconnect: qcom: Ensure that the floor bandwidth value is enforced")
-> Fixes: 7d3b0b0d8184 ("interconnect: qcom: Use icc_sync_state")
 
-Neither of these commits introduced an issue that is fixed by this
-patch, rather this patch relies on these commits to not (re-)introduce
-an issue.
+--=-FFEARCZYyZSHobHLGWfZ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I don't think a 'Fixes' tag is needed for this patch. If anything it
-fixes the same issue as commit 048eb908a1f2 ("soc: qcom-geni-se:
-Add interconnect support to fix earlycon crash"), which doesn't
-have such a tag.
+Hi Stefan,
+
+On Wed, 2021-03-24 at 16:16 +0100, Stefan Wahren wrote:
+> Hi Nicolas,
+>=20
+> Am 22.03.21 um 19:58 schrieb Nicolas Saenz Julienne:
+> > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> >=20
+> > Force emmc2's frequency to 150MHz as the default 100MHz (set by FW)
+> > seems to interfere with the VPU clock when setup at frequencies bigger
+> > than 500MHz (a pretty common case). This ends up causing unwarranted
+> > SDHCI CMD hangs  when no SD card is present.
+> >=20
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > ---
+> > =C2=A0arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 6 ++++++
+> > =C2=A01 file changed, 6 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/=
+bcm2711-rpi-4-b.dts
+> > index 3b4ab947492a..9aa8408d9960 100644
+> > --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > @@ -257,6 +257,12 @@ &emmc2 {
+> > =C2=A0	vqmmc-supply =3D <&sd_io_1v8_reg>;
+> > =C2=A0	vmmc-supply =3D <&sd_vcc_reg>;
+> > =C2=A0	broken-cd;
+> > +	/*
+> > +	 * Force the frequency to 150MHz as the default 100MHz seems to
+> > +	 * interfere with the VPU clock when setup at frequencies bigger than
+> > +	 * 500MHz, causing unwarranted CMD hangs.
+> > +	 */
+> > +	clock-frequency =3D <150000000>;
+>=20
+> i don't want to bike-shed here, but is there any chance to solve this in
+> clk-bcm2835 in a less hacky way?
+
+What do you have in mind?
+
+All I can think of is adding some kind of heuristic to the clock's prepare(=
+)
+callback. That said, I don't feel it would be a better solution than this.
+
+Regards,
+Nicolas
+
+
+
+--=-FFEARCZYyZSHobHLGWfZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBbW/EACgkQlfZmHno8
+x/67jAgAkEAjGxqXoq4Ga/ry0PqEcfUiGD4+CRAlqZtglOAj2WqZ5z6CRwxg6Xt5
+LYDxIoLjBAENrkkjbMv4nQPdLLDvf3UjBeRTK70mfsON7Pt6HLk3fxAws/36/1DK
+AAMprq5BVCTNY04+tjdQvV0A/w6o71aQF74ghlytDlP2fm7jS6WcEqRLIkuGqe7U
+dXtOGwt7SPJGevPbktCQff7xLJ5Aw4W0+JHoM3nxDIdiA3hpOFvuQSQbn90OpCTf
+P4O9cbCFQ4Am60dYBmGAIuV3jGpkB4PZk8wJms+ePiTGtZBso5eorU1jyqKbZAOd
+kB4wrjXd1OrQbZB87A5SELjhUUa1FQ==
+=qWwb
+-----END PGP SIGNATURE-----
+
+--=-FFEARCZYyZSHobHLGWfZ--
+
