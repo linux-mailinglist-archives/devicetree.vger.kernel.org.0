@@ -2,91 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BCD347980
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577CB347989
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:25:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235370AbhCXNWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 09:22:25 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:51150 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233395AbhCXNV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 09:21:57 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4F585r6cDpz1qtfD;
-        Wed, 24 Mar 2021 14:21:52 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4F585r4y3wz1qsk8;
-        Wed, 24 Mar 2021 14:21:52 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id Ec622X1yBJ6V; Wed, 24 Mar 2021 14:21:50 +0100 (CET)
-X-Auth-Info: Wy0aHOg7MRsGS0dgJhi4wXhn+NlMDJsLXSIT1LPaZwE=
-Received: from [10.88.0.186] (dslb-084-056-254-233.084.056.pools.vodafone-ip.de [84.56.254.233])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 24 Mar 2021 14:21:50 +0100 (CET)
-Subject: Re: [PATCH v3 2/2] drm: bridge: Add TI SN65DSI83/84/85 DSI to LVDS
- bridge
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amarula@amarulasolutions.com
-References: <20210214174453.104616-1-jagan@amarulasolutions.com>
- <20210214174453.104616-2-jagan@amarulasolutions.com>
-From:   Claudius Heine <ch@denx.de>
-Organization: Denx Software Engineering
-Message-ID: <8cac7848-3a8e-c597-1efc-c67fb6daba25@denx.de>
-Date:   Wed, 24 Mar 2021 14:21:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S235003AbhCXNZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 09:25:06 -0400
+Received: from muru.com ([72.249.23.125]:46630 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234912AbhCXNYt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 09:24:49 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 418DA8057;
+        Wed, 24 Mar 2021 13:25:45 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>
+Subject: [PATCH] ARM: dts: Fix swapped mmc order for omap3
+Date:   Wed, 24 Mar 2021 15:24:42 +0200
+Message-Id: <20210324132442.41907-1-tony@atomide.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-In-Reply-To: <20210214174453.104616-2-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Also some omap3 devices like n900 seem to have eMMC and micro-sd swapped
+around with commit 21b2cec61c04 ("mmc: Set PROBE_PREFER_ASYNCHRONOUS for
+drivers that existed in v4.4").
 
-On 2021-02-14 18:44, Jagan Teki wrote:
-[...]
-> +static void sn65dsi_enable(struct drm_bridge *bridge)
-> +{
-> +	struct sn65dsi *sn = bridge_to_sn65dsi(bridge);
-> +	struct drm_display_mode *mode = bridge_to_mode(bridge);
-> +	int bpp = mipi_dsi_pixel_format_to_bpp(sn->dsi->format);
-> +	unsigned int lanes = sn->dsi->lanes;
-> +	unsigned int pixel_clk = mode->clock * 1000;
-> +	unsigned int dsi_clk = pixel_clk * bpp / (lanes * 2);
-> +	unsigned int val;
-> +
-> +	/* reset SOFT_RESET bit */
-> +	regmap_write(sn->regmap, SN65DSI_SOFT_RESET, 0x0);
-> +
-> +	msleep(10);
-> +
-> +	/* reset PLL_EN bit */
-> +	regmap_write(sn->regmap, SN65DSI_CLK_PLL, 0x0);
-> +
-> +	msleep(10);
-> +
-> +	/* setup lvds clock */
-> +	val = sn65dsi_get_clk_range(0, 5, pixel_clk, 25000000, 25000000);
-> +	if (val < 0) {
+Let's fix the issue with aliases as discussed on the mailing lists. While
+the mmc aliases should be board specific, let's first fix the issue with
+minimal changes.
 
-val is unsigned int, so it can never be negative so this condition is 
-always false. Same error further down in that function as well.
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>
+Cc: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm/boot/dts/omap3.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-regards,
-Claudius
+diff --git a/arch/arm/boot/dts/omap3.dtsi b/arch/arm/boot/dts/omap3.dtsi
+--- a/arch/arm/boot/dts/omap3.dtsi
++++ b/arch/arm/boot/dts/omap3.dtsi
+@@ -24,6 +24,9 @@ aliases {
+ 		i2c0 = &i2c1;
+ 		i2c1 = &i2c2;
+ 		i2c2 = &i2c3;
++		mmc0 = &mmc1;
++		mmc1 = &mmc2;
++		mmc2 = &mmc3;
+ 		serial0 = &uart1;
+ 		serial1 = &uart2;
+ 		serial2 = &uart3;
+-- 
+2.31.0
