@@ -2,112 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 508C1346EE4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 02:33:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D15D346F62
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 03:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234647AbhCXBcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Mar 2021 21:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51244 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234764AbhCXBcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 21:32:25 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50903C061763
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 18:32:25 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id t23-20020a0568301e37b02901b65ab30024so21464648otr.4
-        for <devicetree@vger.kernel.org>; Tue, 23 Mar 2021 18:32:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7VOrgrdN70dWogl0XiinauXPdyVgeQermYRaw/QNqt0=;
-        b=hBbmOY/pOdnBESHPKcSbq4XEfcf4CsTlYKItFZKiwcBB/xJPXZAMsIJyLocveyv5+3
-         6eleH0fWCj4QV8HqXjiTV6g/FGwFucgFReVSVdlYeXSv6fXBAIeJaletdSvoFv77FNdk
-         Lnb+TOGdtSauD7phIq8/dztDG5bp8eEKBav5yL5OuNXbd9R86Y2LJtsrRtJ94P6CpRqS
-         emLV3z9gVoAV5j1TjHV/uatbl1hgonybSIpd6tp/26g74llNmPOjI2OUNTR/OE6lH44A
-         p2zyXZhgYaeUVKqIJuvM0EMdeHfjkQqjpCVjddB95WSDqPaN8hdyXbT0dIPIbkRXmQEn
-         1bCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7VOrgrdN70dWogl0XiinauXPdyVgeQermYRaw/QNqt0=;
-        b=EXKp6ocrLEIVysTDDWp+b6WyHemi0rUBDw3E5oWzNRcfNVjeUqRhw5Xzai0Pl5VQQt
-         gWqkhiwBFFCH7X4GT8WabIfEvHFRZMRO4J0wqYIgZcUXmXxaz58xiXmuuwge5pF8OlTV
-         rzk3jbbOjrMVWaxXKYjd9APebfM/qfikRzFE6Innrifdw16ciw+oo6nH7pfeLoV9e4j7
-         Zf+/zqpE3xym814POF/FlN/u88B6OLFTTjrnld7krZ8I+7P+OsKhnS9lwB92T83m0jNL
-         mtKBAmQmYUZopMiKlxX22x2PMHadbj8fHJdZQkd8JS3j78E5irTiDR16yOhd1VBBKGXl
-         sgkg==
-X-Gm-Message-State: AOAM532kBMk43Mc6k8VfvgSoy/kCT2dlNFrYQx5aLeVAIvln7eAu+cwo
-        dV43n+FyPc8SZ1yplLnDv1FxWg==
-X-Google-Smtp-Source: ABdhPJxtPxePyuusyTCENnwTIquDwdttrXeqzFJKy60J6pV9Tb419yReTF9TRc4WVj94R5POEgncvQ==
-X-Received: by 2002:a05:6830:225b:: with SMTP id t27mr992966otd.73.1616549544644;
-        Tue, 23 Mar 2021 18:32:24 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g22sm199167oop.7.2021.03.23.18.32.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Mar 2021 18:32:24 -0700 (PDT)
-Date:   Tue, 23 Mar 2021 20:32:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Doug Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sdm845: Move reserved-memory to
- devices
-Message-ID: <20210324013222.GA857060@yoga>
-References: <20210312234310.3490809-1-bjorn.andersson@linaro.org>
- <13234328-7251-407d-8870-d409708632e3@somainline.org>
+        id S234816AbhCXCUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Mar 2021 22:20:22 -0400
+Received: from regular1.263xmail.com ([211.150.70.205]:47570 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234808AbhCXCUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Mar 2021 22:20:03 -0400
+X-Greylist: delayed 387 seconds by postgrey-1.27 at vger.kernel.org; Tue, 23 Mar 2021 22:20:02 EDT
+Received: from localhost (unknown [192.168.167.69])
+        by regular1.263xmail.com (Postfix) with ESMTP id A01AE990;
+        Wed, 24 Mar 2021 10:12:50 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.236] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P1826T139670268532480S1616551969111653_;
+        Wed, 24 Mar 2021 10:12:49 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <c9bb3d9b648f989d6fa9861f5ae7ad8f>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: linux-arm-kernel@lists.infradead.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_2/3=5d_dt-bindings=3a_Convert_the_rockc?=
+ =?UTF-8?B?aGlwIHBvd2VyX2RvbWFpbiB0byBZQU1MIGFuZCBleHRlbmTjgJDor7fms6jmhI8=?=
+ =?UTF-8?B?77yM6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R44CR?=
+To:     Rob Herring <robh@kernel.org>
+Cc:     tony.xie@rock-chips.com, huangtao@rock-chips.com, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, finley.xiao@rock-chips.com,
+        kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, cl@rock-chips.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20210323082410.22818-1-zhangqing@rock-chips.com>
+ <20210323082410.22818-3-zhangqing@rock-chips.com>
+ <1616530607.412616.1244766.nullmailer@robh.at.kernel.org>
+From:   "elaine.zhang" <zhangqing@rock-chips.com>
+Organization: rockchip
+Message-ID: <f1c36d81-9896-dec1-b6a8-f859d388ae7f@rock-chips.com>
+Date:   Wed, 24 Mar 2021 10:12:49 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13234328-7251-407d-8870-d409708632e3@somainline.org>
+In-Reply-To: <1616530607.412616.1244766.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 12 Mar 20:35 CST 2021, Konrad Dybcio wrote:
+Hi, Rob Herring
 
-> Hi,
-> 
-> 
-> I'm not sure I can agree. Especially for regions like IPA and
-> TZ-reserved, which seem the same on (almost?) all..
-> 
+ÔÚ 2021/3/24 ÉÏÎç4:16, Rob Herring Ð´µÀ:
+> On Tue, 23 Mar 2021 16:24:09 +0800, Elaine Zhang wrote:
+>> This converts the rockchip power domain family bindings to YAML schema,
+>> and add binding documentation for the power domains found on Rockchip
+>> RK3568 SoCs.
+>>
+>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>> ---
+>>   .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
+>>   .../rockchip/rockchip,power-controller.yaml   | 259 ++++++++++++++++++
+>>   2 files changed, 259 insertions(+), 136 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+>>   create mode 100644 Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.yaml
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dts:19:18: fatal error: dt-bindings/clock/rk3568-cru.h: No such file or directory
+>     19 |         #include <dt-bindings/clock/rk3568-cru.h>
+>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/soc/rockchip/rockchip,power-controller.example.dt.yaml] Error 1
+> make: *** [Makefile:1380: dt_binding_check] Error 2
 
-Thanks Konrad, I appreciate that.
+#include <dt-bindings/clock/rk3568-cru.h>
+This file has been merged, can be seen on the Master branch of Linux-Next.
+I will rearrange the submission based on this:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
 
-> 
-> Sure, the configuration for various remoteprocs *can* differ based on
-> what the vendor decided to go with, but more often than not
-> (especially with phones) vendors just take a MTP or CDP design, add a
-> screen, couple of cameras and call it their own (you can tell by how
-> similar most of them to the original reference designs in DT). While
-> this is usually the case with lower-end (so not exactly sdm845)
-> devices, it also kinda applies here...
-> 
+>
+> See https://patchwork.ozlabs.org/patch/1457096
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
+>
+>
 
-Unfortunately there's not a single memory map for each reference design,
-the memory map do change during development based on feature set. I
-think we can see this already among the few devices.
 
-> 
-> I guess for this one, we should find the lowest common denominator and
-> keep the nodes that are in the majority of devices in 845 DTSI and
-> only alter them if need be.. For WoA devices that may stray further
-> away, you can just add a label to reserved-memory and /delete-node/
-> it, so that you can rewrite it cleanly. The proposed approach just
-> adds a lot - A LOT - of duplication. It will REALLY bite after more
-> people submit 845-based phones, of which there are plenty (4 Xperias,
-> a whole lot of Xiaomis, a couple of Samsungs, LGs... need I go on?).
-> 
-
-I was hoping to make it easier to reason about the memory map for each
-device, but if your right about these incoming devices then I agree that
-the duplication isn't worth it.
-
-I'll respin patch 2, to get IPA going on the Yoga C630 and put this
-patch on hold until this annoys me again :)
-
-Thank you,
-Bjorn
