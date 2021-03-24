@@ -2,103 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CF43473EC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 09:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C70DF3473FC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 09:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233799AbhCXItp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 04:49:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48728 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233665AbhCXIth (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Mar 2021 04:49:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 36334619F3;
-        Wed, 24 Mar 2021 08:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616575776;
-        bh=2BfN8HjU6Yqu1jm8Q2KPZxQUG2HzfOk+giTYXadvfxk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i68Wn4kRgN9HOH4r+Hu9KZ4lEeWOj/4xq/sEICeE+8Slo08DZslqXbDQSYl7Ws/6N
-         9ok96yCg4UHx6go58CHP092FvzvwVYJzPKkqUnC7y5PP+KncLkFRJZEJ76rowpo8oV
-         Yt62DpXuYcDXrUB9Im29qd3Zkpzb4chGE1FWE0GM=
-Date:   Wed, 24 Mar 2021 09:49:30 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        git@xilinx.com, saikrishna12468@gmail.com
-Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-Message-ID: <YFr9GqNmYuEG2OvZ@kroah.com>
-References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <YFnwN6mqXml5xdR3@kroah.com>
- <e0a2c5b6-ff05-644c-8c88-b614a37b4929@xilinx.com>
+        id S231288AbhCXIzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 04:55:08 -0400
+Received: from mail-vk1-f176.google.com ([209.85.221.176]:36848 "EHLO
+        mail-vk1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230437AbhCXIyx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 04:54:53 -0400
+Received: by mail-vk1-f176.google.com with SMTP id d82so5286907vkd.3;
+        Wed, 24 Mar 2021 01:54:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xRxwIC3bM0aWnGeWfgHlFRedOLEA/dGDm4UbRmEj3Vw=;
+        b=CIkBqMn1zVHVPgG8CAO/fAhEx5yL3/1d+jK8LMF0xay7R77PCRcMFaR2Sx/T9/T09+
+         /FVCIWFpMGtcEPLkwFGM7BNmv4smxVew11zgJQS64ycDuqAPfRm0K7lw7JetWI2d5kdi
+         GMOAIrvMGj1GXcVm9LENs0DFtYbMRrDRSfkub/SJMtsGk6+HB1RZ34gihM0qNzZwXcux
+         GC6SAQDrvUo/yBT7NiswKsv4CQM1211Uo2/8JsYdBFHURcIs9pk7Q3pojSCV3R9Ss6AR
+         fgw6LDn+Z26qjLCfhO34MRQhZHWD2sXbNs5McTLUBe0LeD97I3XF/ng361eBnkZB6GuO
+         8ZBQ==
+X-Gm-Message-State: AOAM5311N0txRf7Lu699q3eb3Y3ZcYqCM/572oxYvyBjadmR3OPBH7dc
+        4Wok2zIJrguv7Ef/5V9EK01I3xZEsZ1PqvWgfbxEX615y0Y=
+X-Google-Smtp-Source: ABdhPJzMDF6Nt1AF/bI08S3WTSedZ75tpHSB9bs9VB4XV/vIslxfCLJOjjnhguNbqq5W3XrjdDnyZdfuy6oLhuNoxdM=
+X-Received: by 2002:a1f:2502:: with SMTP id l2mr1032890vkl.5.1616576092193;
+ Wed, 24 Mar 2021 01:54:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0a2c5b6-ff05-644c-8c88-b614a37b4929@xilinx.com>
+References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
+ <20210228124106.135812-2-konrad.dybcio@somainline.org> <20210322161810.biagj2qro66rv4gt@maple.lan>
+ <20210323083935.GF2916463@dell>
+In-Reply-To: <20210323083935.GF2916463@dell>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 24 Mar 2021 09:54:40 +0100
+Message-ID: <CAMuHMdUamD4rAY1Sn-3Fb9Xf1B9g0FY0Pob8rAFsFR0ZcNZ0rw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 09:29:12AM +0100, Michal Simek wrote:
-> On 3/23/21 2:42 PM, Greg Kroah-Hartman wrote:
-> > On Wed, Mar 17, 2021 at 01:55:16PM +0530, Sai Krishna Potthuri wrote:
-> >> Adding pinctrl driver for Xilinx ZynqMP platform.
-> >> This driver queries pin information from firmware and registers
-> >> pin control accordingly.
-> >>
-> >> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-> >> ---
-> >>  drivers/pinctrl/Kconfig          |   13 +
-> >>  drivers/pinctrl/Makefile         |    1 +
-> >>  drivers/pinctrl/pinctrl-zynqmp.c | 1030 ++++++++++++++++++++++++++++++
-> >>  3 files changed, 1044 insertions(+)
-> >>  create mode 100644 drivers/pinctrl/pinctrl-zynqmp.c
-> >>
-> >> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-> >> index 815095326e2d..25d3c7208975 100644
-> >> --- a/drivers/pinctrl/Kconfig
-> >> +++ b/drivers/pinctrl/Kconfig
-> >> @@ -341,6 +341,19 @@ config PINCTRL_ZYNQ
-> >>  	help
-> >>  	  This selects the pinctrl driver for Xilinx Zynq.
-> >>  
-> >> +config PINCTRL_ZYNQMP
-> >> +	bool "Pinctrl driver for Xilinx ZynqMP"
-> > 
-> > Please make this work as a module.
-> 
-> The most of pinctrl drivers are builtin modules now which is not excuse
-> it is just fact.
-> $ git grep module_pla drivers/pinctrl/ | wc -l
-> 40
-> $ git grep  builtin_pla drivers/pinctrl/ | wc -l
-> 64
+Hi Lee,
 
-For new ones, we can do better, don't make us have to go back and fix
-this up later.
+On Tue, Mar 23, 2021 at 9:40 AM Lee Jones <lee.jones@linaro.org> wrote:
+> On Mon, 22 Mar 2021, Daniel Thompson wrote:
+> > On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
+> > > Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
+> > >
+> > > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> >
+> > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+>
+> Why are you Reviewing/Acking a patch that was applied on the 10th?
 
-> Also at least last 3 pinctrl drivers which have been merged are not modules.
-> d4c34d09ab03 ("pinctrl: Add RISC-V Canaan Kendryte K210 FPIOA driver")
-> 7e5ea974e61c ("pinctrl: pinctrl-microchip-sgpio: Add pinctrl driver for
-> Microsemi Serial GPIO")
-> a68a7844264e ("pinctrl: visconti: Add Toshiba Visconti SoCs pinctrl
-> support")
-> 
-> None is saying that it can't be done but that cases where you use
-> pinctrl as module are really very limited. When you start to use pinctrl
-> and its functionality you need to have it as the part of the kernel to
-> be to get console, mmc, ethernet, usb, etc.
-> 
-> That's why I would like to know what functionality and use case you have
-> in mind that this driver should be made module.
+Only 12 days later?!?
 
-The "functionality" of building a kernel image that works on all
-hardware types.  Just like x86-64 has been for a very long time :)
+It's not uncommon to receive acks for patches after they have been
+applied upstream. But it is if the patch was applied 10 years and 9
+months ago!
+https://lore.kernel.org/linux-m68k/F5513AE92A5A1047AC2F91AEBB9202680288CBBA3983@E2K7-MS2.ds.strath.ac.uk/
 
-thanks,
+Gr{oetje,eeting}s,
 
-greg k-h
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
