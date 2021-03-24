@@ -2,115 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B8B34744B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:15:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F627347459
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 10:17:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234602AbhCXJOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 05:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231633AbhCXJOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 05:14:37 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3C2C0613DE
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 02:14:36 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id x7so1171153wrw.10
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 02:14:36 -0700 (PDT)
+        id S230121AbhCXJRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 05:17:19 -0400
+Received: from mail-bn8nam11on2089.outbound.protection.outlook.com ([40.107.236.89]:7937
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231810AbhCXJQ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 05:16:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J/f74B1r5il/iQpSRoo1uqkBVWfDln7G3zmvbvap9ZYALqmTwwbyK0aGlmykcbYHX/MoSOELLGPC+NmVXcBSYV/bdXWRYaxdIjJWHJRbpK5DG3f3gQfCHFQpqV5hLWHgQ48E61M8VoUS9LhHjKFcdKF3+4yWJLIR6LBe5ual+QyWR6hWE+bqHZU/zDLqtZndGuSrEWN6n2h1dIV0D0tlTa4sRwYzkc787GAHQEbahK9/Hzb+rwslngmUCeODs/20C3Ka6F9BUtDrNnrib3ZbLwkVsB6rOMyoG3lspb3aYQPG8wX5F07BYosVXMxih3tdkyjAF6T5d3ETqOJhLnBaeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=btDLk4nsag6tY6O9Rvn/TgSeNZHj6iJHjseqtf4kKc0=;
+ b=kKrjjuyKRmcycZ08PQPreOAGBS4K/R58GiwZuvyOJl7YqWMBgiwuvQAGXYq9tyeqTB6foUIX4pKyGo/2ka+wGNziwkFrGb1kwDVo6ET8LqwitUylhhdjrT8rqYtBmjq/bjbD90bjdLo3w2o6eJhIHdzDTBqOPmCdA3XP4yrEjxkLG+cJsfW4nee0b13cVM+cQ7hE0mvYQjQlqp6Wkd8H8U2AAztfs5kiA2dtfEDKm0pHb0Ch6so1ZOOW36hH+0DP6A9w1EeL0sKxZmVIOeNEN77EBB4CJVeuUHO5yP3hVLLNDoi8CbPbSRp2ITjmO8RJyG0GK9ynoWm5Cw0MJ9SPqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=4rN1YksKNQ6jMnv83wrys0vsQCA6pM1XeLstkQR9zSk=;
-        b=aaEalBsXBstsM7Ugh18M+hl8k/wTbYlQwQ6ihztFCEL9SFffFl/IlB3eU6LSKJs1k4
-         GjK340N7lCr3K0iNQ2HLCSKfu9qwSSS5Mp8zQ/OAzufhpBV6bxJQJuLmIMW602QW0Z0i
-         CTqj7hTA4262C48pcQPTWxgvKGSQ1LQgks/73S/V10RAeBK5hHJhx7ZbxahrIHGsK5bU
-         crb2aPqZrt9ArMgFvNEf6/iL2Ia25u/EldQEsOKbOrKgyMUfulRjc6gCETsPm62Fki99
-         ayEXOIgKaYa4YohjIIoMQ+HavVGjkXvTiQCd0/ZohrHC0rsOqSu+B+oZ12+Csh5u+2CE
-         xVgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4rN1YksKNQ6jMnv83wrys0vsQCA6pM1XeLstkQR9zSk=;
-        b=PNH3W8jsJk+3ZxtmqfaHFoJ9S9mZ2yfUxnWh2ZAwbzJeNqIQIR+dVSlinmv4YuJb4s
-         MVBPU7RQxLR5DTQoVqCUC/FTJTtVkQIWJgMWWMc9taGbKGrI2om5ogwFj21UW9LYbkdu
-         uTrixvP7BoHJdQ+u3YNQN5XcbJbODBHOS3lF9CJysXm6GdkjUeoJJc64e+VNXJ9OAOu0
-         1EMNf+DvNtZmQfHhln294KVw/D4b02su1xa6Ea5F1PM/lbyRhrt69HX72HUo6kcGwidr
-         MqSWM7/MV5VBuN3gzio0m/eYCYFjUrk+rr4y8I1YUKkMQNA8bva+FD7fKhxDFpA5RDzn
-         BaYw==
-X-Gm-Message-State: AOAM5302isQrMphdPD48LOowU2/U/YIJKGRF93woVr0yuPKdDJw/pAfl
-        jjcHGvNK3+r5EWLqqNWGG98eoQ==
-X-Google-Smtp-Source: ABdhPJwiwVGAQSOrEM4tqzstTbRBmqfvaxH3KFKNSYNSQI1y++GJvlZicb7puOlrOD6JdzLf3utu9Q==
-X-Received: by 2002:adf:e8c9:: with SMTP id k9mr2327816wrn.315.1616577275230;
-        Wed, 24 Mar 2021 02:14:35 -0700 (PDT)
-Received: from dell ([91.110.221.180])
-        by smtp.gmail.com with ESMTPSA id n1sm2536565wro.36.2021.03.24.02.14.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 02:14:34 -0700 (PDT)
-Date:   Wed, 24 Mar 2021 09:14:32 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=btDLk4nsag6tY6O9Rvn/TgSeNZHj6iJHjseqtf4kKc0=;
+ b=nMNquOPnbvylxWtASiTmkA9mag7SFn8cEW7u2zXGtfUPBoSpDHfCfhFhM1vpDTFI0ubEvslxraP6/94Pk3gNDIYggNtuVV+uDAwB/wkCVDhrKGGRNuMpcbDHANnJGIf0wLkDcVZuMolgzIkAVnR+B3Y+geT+HGCh5rd+SuCPEf4=
+Received: from SN4PR0401CA0017.namprd04.prod.outlook.com
+ (2603:10b6:803:21::27) by BL0PR02MB4900.namprd02.prod.outlook.com
+ (2603:10b6:208:5d::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24; Wed, 24 Mar
+ 2021 09:16:55 +0000
+Received: from SN1NAM02FT004.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:21:cafe::72) by SN4PR0401CA0017.outlook.office365.com
+ (2603:10b6:803:21::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
+ Transport; Wed, 24 Mar 2021 09:16:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT004.mail.protection.outlook.com (10.152.72.175) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3977.25 via Frontend Transport; Wed, 24 Mar 2021 09:16:54 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 24 Mar 2021 02:16:33 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Wed, 24 Mar 2021 02:16:33 -0700
+Envelope-to: git@xilinx.com,
+ saikrishna12468@gmail.com,
+ linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ robh+dt@kernel.org,
+ linus.walleij@linaro.org,
+ gregkh@linuxfoundation.org
+Received: from [172.30.17.109] (port=41536)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1lOzcu-0006Pn-1U; Wed, 24 Mar 2021 02:16:32 -0700
+Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH 2/2] video: backlight: qcom-wled: Add PMI8994 compatible
-Message-ID: <20210324091432.GC2916463@dell>
-References: <20210228124106.135812-1-konrad.dybcio@somainline.org>
- <20210228124106.135812-2-konrad.dybcio@somainline.org>
- <20210322161810.biagj2qro66rv4gt@maple.lan>
- <20210323083935.GF2916463@dell>
- <CAMuHMdUamD4rAY1Sn-3Fb9Xf1B9g0FY0Pob8rAFsFR0ZcNZ0rw@mail.gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <git@xilinx.com>,
+        <saikrishna12468@gmail.com>
+References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <YFnwN6mqXml5xdR3@kroah.com>
+ <e0a2c5b6-ff05-644c-8c88-b614a37b4929@xilinx.com>
+ <YFr9GqNmYuEG2OvZ@kroah.com>
+ <dabcfe43-568a-66c1-642e-eef065f9b5ab@xilinx.com>
+ <YFsCyGO1cLcM7IG0@kroah.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <eb4b54c7-4a90-b1fc-b946-b2ad555dd522@xilinx.com>
+Date:   Wed, 24 Mar 2021 10:16:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUamD4rAY1Sn-3Fb9Xf1B9g0FY0Pob8rAFsFR0ZcNZ0rw@mail.gmail.com>
+In-Reply-To: <YFsCyGO1cLcM7IG0@kroah.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 34ba11a2-9ac7-4d86-780a-08d8eea59148
+X-MS-TrafficTypeDiagnostic: BL0PR02MB4900:
+X-Microsoft-Antispam-PRVS: <BL0PR02MB490051AC408ACD7B50442EA5C6639@BL0PR02MB4900.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5MOTqmjuyoeFnsADVAqfRbrjz/jybXYG6rd4EXKPQOWJxV/bMyaMhyu5UjpelxyVFMdc95onK2FfPn64phdwb5vJRl8XstRcPfPGQN3TClYC8uQOdse3XBE07+tNrYgSx6WMC6UaPz0xxNQFeZw8iV3rxImt8aN4+/pmd4gTCf6s0ZaMp2N3KE/rUIBqSwwKLadDmOxTtWJMI7dQInTwqAGeq/MXP4FdcrSAaQh8MPE0RVH7ZZDLem5ktJrUpKIE2NLOtaDiZ0rwoXzFWsNpct1xnh4/1s/xF/4lNbzPDh6xtDp7E3M0ziFpYLH0Zq7mUYSvVibaJOP95B3TDzfM1b3GSic/dJt4sgOPRw3bmf0f1uHq5vMEP68bT6yTH3Wgal1K9vmbJddgkxIW2qOXeV7K+CKEupv4rdrMZeFeq8gMgw6UZnzZLAHabC6p7I3wke/RwqmmLV2fj71WgbqAEkTsplNQ40r2DJteiAwtvPkmtRlkbQNDjAav7FgBz52GS44OI2QzTEIqvGhzrQjo4SYc8YoH05HVY/m2ThL6zhdd6/abjOgtjkAJGeomDPR86TyoJ29MNZw4JIxvFDKhPeeh+AyNRdSRfsMuKwT8iyRwWf1rxgov4zMsMMImmP8Nsa9l/PHyuu0tZZcfFIaQ+nGHwaGGPj5ynfnLYErlxlptrXXFA0ISNvLA+dFtvLxfDTgLEcQ/6GOeprSHYxLwEA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(346002)(376002)(46966006)(36840700001)(110136005)(36756003)(26005)(5660300002)(7636003)(8936002)(316002)(31696002)(336012)(9786002)(36860700001)(8676002)(6666004)(31686004)(426003)(82310400003)(47076005)(2616005)(356005)(53546011)(70206006)(186003)(82740400003)(44832011)(54906003)(478600001)(4326008)(70586007)(36906005)(2906002)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2021 09:16:54.6585
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34ba11a2-9ac7-4d86-780a-08d8eea59148
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT004.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4900
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Mar 2021, Geert Uytterhoeven wrote:
 
-> Hi Lee,
-> 
-> On Tue, Mar 23, 2021 at 9:40 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > On Mon, 22 Mar 2021, Daniel Thompson wrote:
-> > > On Sun, Feb 28, 2021 at 01:41:05PM +0100, Konrad Dybcio wrote:
-> > > > Add a compatible for PMI8994 WLED. It uses the V4 of WLED IP.
-> > > >
-> > > > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > >
-> > > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
-> >
-> > Why are you Reviewing/Acking a patch that was applied on the 10th?
-> 
-> Only 12 days later?!?
-> 
-> It's not uncommon to receive acks for patches after they have been
-> applied upstream. But it is if the patch was applied 10 years and 9
-> months ago!
-> https://lore.kernel.org/linux-m68k/F5513AE92A5A1047AC2F91AEBB9202680288CBBA3983@E2K7-MS2.ds.strath.ac.uk/
 
-That truly is next level! :)
+On 3/24/21 10:13 AM, Greg Kroah-Hartman wrote:
+> On Wed, Mar 24, 2021 at 10:02:53AM +0100, Michal Simek wrote:
+>>
+>>
+>> On 3/24/21 9:49 AM, Greg Kroah-Hartman wrote:
+>>> On Wed, Mar 24, 2021 at 09:29:12AM +0100, Michal Simek wrote:
+>>>> On 3/23/21 2:42 PM, Greg Kroah-Hartman wrote:
+>>>>> On Wed, Mar 17, 2021 at 01:55:16PM +0530, Sai Krishna Potthuri wrote:
+>>>>>> Adding pinctrl driver for Xilinx ZynqMP platform.
+>>>>>> This driver queries pin information from firmware and registers
+>>>>>> pin control accordingly.
+>>>>>>
+>>>>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+>>>>>> ---
+>>>>>>  drivers/pinctrl/Kconfig          |   13 +
+>>>>>>  drivers/pinctrl/Makefile         |    1 +
+>>>>>>  drivers/pinctrl/pinctrl-zynqmp.c | 1030 ++++++++++++++++++++++++++++++
+>>>>>>  3 files changed, 1044 insertions(+)
+>>>>>>  create mode 100644 drivers/pinctrl/pinctrl-zynqmp.c
+>>>>>>
+>>>>>> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+>>>>>> index 815095326e2d..25d3c7208975 100644
+>>>>>> --- a/drivers/pinctrl/Kconfig
+>>>>>> +++ b/drivers/pinctrl/Kconfig
+>>>>>> @@ -341,6 +341,19 @@ config PINCTRL_ZYNQ
+>>>>>>  	help
+>>>>>>  	  This selects the pinctrl driver for Xilinx Zynq.
+>>>>>>  
+>>>>>> +config PINCTRL_ZYNQMP
+>>>>>> +	bool "Pinctrl driver for Xilinx ZynqMP"
+>>>>>
+>>>>> Please make this work as a module.
+>>>>
+>>>> The most of pinctrl drivers are builtin modules now which is not excuse
+>>>> it is just fact.
+>>>> $ git grep module_pla drivers/pinctrl/ | wc -l
+>>>> 40
+>>>> $ git grep  builtin_pla drivers/pinctrl/ | wc -l
+>>>> 64
+>>>
+>>> For new ones, we can do better, don't make us have to go back and fix
+>>> this up later.
+>>
+>> As I said not a big deal. If this is the way to go then I these rules
+>> should be followed which is not what it is happening based on 3 latest
+>> pinctrl drivers below.
+> 
+> I do not disagree, but I point out issues when I see them, you got
+> unlucky :)
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I feel we were lucky that our driver got your attention and we do it
+properly from the beginning. :-)
+
+Thanks,
+Michal
