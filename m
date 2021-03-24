@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D195347EF6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBB1A347EF9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 18:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236548AbhCXRLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 13:11:44 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:33305 "EHLO
+        id S236982AbhCXRM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 13:12:26 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:37441 "EHLO
         mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237135AbhCXRLV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:11:21 -0400
-Received: by mail-io1-f53.google.com with SMTP id n198so22297165iod.0;
-        Wed, 24 Mar 2021 10:11:20 -0700 (PDT)
+        with ESMTP id S237391AbhCXRMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 13:12:21 -0400
+Received: by mail-io1-f53.google.com with SMTP id b10so22263987iot.4;
+        Wed, 24 Mar 2021 10:12:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FVfgfmrfEXgvH/xwoowikLdiOAgX7H/asfVmfp1otcU=;
-        b=RUswf6je9Q3xi3vyYe+BPwYrzvXW7RnvrP9kcrNJo5I5L3o3IO4c+9KVaa3CkqCySD
-         cX/paiAPQ1NSIqnhiiRvn6+8LjyEyQIr6kUDa/0/6SjxeeDETVsZb8jpyDZK+1EgeTh0
-         E5n5YDdEHLusidEHfNKAob0pvJMwCbwunCNR2teF92NaK41VGDSe8bBmewBOn/CE3yHO
-         nLtWky9xE4Nt6hITLpvRgcaNfdERCeo8L4488482U6axw3VdoGh/K6/l2BVtkk2sE60F
-         F3HvCWtfI5KjntNb3fSQc4SsoUViLG0p1MBF1FeIjUWuqA3hE5/h+WPHjhtKRF2ZVa1T
-         Glgw==
-X-Gm-Message-State: AOAM532J9sgfqjpWv6qnxpYrP0VD5SF9JFq6DhgcSt1wWz7QWaw1GPpk
-        J2OBfyWnSIMom0XJQG5SVg==
-X-Google-Smtp-Source: ABdhPJwEjE7OvTWRIBZQ7oG8M8g0qKgsn0b01EQMIaQ7s0S9RO5YPjjGmsq3cie5wi/4K3Easg0W7Q==
-X-Received: by 2002:a05:6638:2a3:: with SMTP id d3mr3958018jaq.42.1616605880340;
-        Wed, 24 Mar 2021 10:11:20 -0700 (PDT)
+        bh=Kfyvyp1Ln5yTnaTV7CcKtsoEbrgL8xSGq9FGtJAW0mA=;
+        b=J/ZzUnfzEgagxQDb45hZXtkZMTLK+k/MqZlMu6hMbnfUmkIyEXYI26L1ahsyzvUEO7
+         JcR60vNmUht6wUoExVor1zVy9RG5Dx5BSFg8LmMRSd+EmLIe6Ek3r+35p1EfWt48nKtW
+         ATYTyeePiLxgoCRjsfW4qkUcFK73Th/hyyOtSNThI0qGzka7f1DzO1/7XnwzJ4xgSQs5
+         Js5F+4zQUut/RofRtJOEPDnhlFilecVpIU5sc4yUCLd2h2q8NWWVLW0r/LPRiXqDPT5f
+         /YqgyWZ5Ps6Iv48IG7/5oJhjZ1St8bZniRtV7QeZENbbHxD7GGG8HZZfHTyWvgtreRXQ
+         NkaA==
+X-Gm-Message-State: AOAM531JdeI3Rf0D9fCrMTB5Kfm6YFgZfvu2PpQdLYAX9noAbyyi61Ar
+        oZ8j0vrzXyqLKlbzcI8oDQ==
+X-Google-Smtp-Source: ABdhPJzRb9p2nx4RVdyDBLdyoKqhTBxwu57ERtx6jXb/Pon7xXueKAeC6ubejPFeiotv0m6IHkNtpg==
+X-Received: by 2002:a5d:9807:: with SMTP id a7mr3302492iol.7.1616605940764;
+        Wed, 24 Mar 2021 10:12:20 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 18sm1351781ilj.59.2021.03.24.10.11.18
+        by smtp.gmail.com with ESMTPSA id m20sm1358405ilj.66.2021.03.24.10.12.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 10:11:19 -0700 (PDT)
-Received: (nullmailer pid 3262398 invoked by uid 1000);
-        Wed, 24 Mar 2021 17:11:17 -0000
-Date:   Wed, 24 Mar 2021 11:11:17 -0600
+        Wed, 24 Mar 2021 10:12:19 -0700 (PDT)
+Received: (nullmailer pid 3264026 invoked by uid 1000);
+        Wed, 24 Mar 2021 17:12:17 -0000
+Date:   Wed, 24 Mar 2021 11:12:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 9/9] clk: qcom: gcc-msm8994: Add a quirk for a different
- SDCC configuration
-Message-ID: <20210324171117.GA3260515@robh.at.kernel.org>
-References: <20210313021919.435332-1-konrad.dybcio@somainline.org>
- <20210313021919.435332-9-konrad.dybcio@somainline.org>
+To:     qii.wang@mediatek.com
+Cc:     matthias.bgg@gmail.com, wsa@the-dreams.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com
+Subject: Re: [PATCH] dt-bindings: i2c: Add device clock-stretch time via dts
+Message-ID: <20210324171217.GA3262580@robh.at.kernel.org>
+References: <1615622829-15167-1-git-send-email-qii.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210313021919.435332-9-konrad.dybcio@somainline.org>
+In-Reply-To: <1615622829-15167-1-git-send-email-qii.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 13, 2021 at 03:19:18AM +0100, Konrad Dybcio wrote:
-> Some devices come with a different SDCC clock configuration,
-> account for that.
+On Sat, Mar 13, 2021 at 04:07:09PM +0800, qii.wang@mediatek.com wrote:
+> From: Qii Wang <qii.wang@mediatek.com>
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> tSU,STA/tHD,STA/tSU,STOP maybe out of spec due to device
+> clock-stretching or circuit loss, we could get device
+> clock-stretch time from dts to adjust these parameters
+> to meet the spec via EXT_CONF register.
+> 
+> Signed-off-by: Qii Wang <qii.wang@mediatek.com>
 > ---
->  .../bindings/clock/qcom,gcc-msm8994.yaml         |  4 ++++
->  drivers/clk/qcom/gcc-msm8994.c                   | 16 ++++++++++++++++
->  2 files changed, 20 insertions(+)
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> index f8067fb1bbd6..9db0800a4ee4 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> @@ -49,6 +49,10 @@ properties:
->      description:
->        Protected clock specifier list as per common clock binding.
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> index 7f0194f..97f66f0 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> @@ -32,6 +32,7 @@ Optional properties:
+>    - mediatek,have-pmic: platform can control i2c form special pmic side.
+>      Only mt6589 and mt8135 support this feature.
+>    - mediatek,use-push-pull: IO config use push-pull mode.
+> +  - clock-stretch-ns: Slave device clock-stretch time.
+
+Should be a common I2C property?
+
 >  
-> +  qcom,sdcc2-clk-src-40mhz:
-> +    description: SDCC2_APPS clock source runs at 40MHz.
-> +    type: boolean
-
-Why don't you have some input clock you can get the rate from?
-
-> +
->  required:
->    - compatible
->    - reg
+>  Example:
+>  
+> -- 
+> 1.9.1
+> 
