@@ -2,80 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 039F2347A09
-	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 14:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A16347A3D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Mar 2021 15:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235861AbhCXN5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 09:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235785AbhCXN4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 09:56:43 -0400
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E81C061763;
-        Wed, 24 Mar 2021 06:56:43 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4F58sz32hLz1sHHY;
-        Wed, 24 Mar 2021 14:56:39 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4F58sz0rwWz1qsk8;
-        Wed, 24 Mar 2021 14:56:39 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id b0EY_bXTK-ox; Wed, 24 Mar 2021 14:56:38 +0100 (CET)
-X-Auth-Info: VfJp0AaRJ905mdNW4KKeAflxaJ6T5GkmMDFPGmFJZjA=
-Received: from [10.88.0.186] (dslb-084-056-254-233.084.056.pools.vodafone-ip.de [84.56.254.233])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 24 Mar 2021 14:56:37 +0100 (CET)
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for
- SN65DSI83/84/85
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amarula@amarulasolutions.com
-References: <20210214174453.104616-1-jagan@amarulasolutions.com>
-From:   Claudius Heine <ch@denx.de>
-Organization: Denx Software Engineering
-Message-ID: <d7f9b241-3cfc-836a-2519-3b6621899108@denx.de>
-Date:   Wed, 24 Mar 2021 14:56:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S235841AbhCXOIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 10:08:39 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:3450 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S236006AbhCXOIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Mar 2021 10:08:10 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12ODv9r8012701;
+        Wed, 24 Mar 2021 15:07:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=cV9LKgWfxFF9ci2IEbctDkOPPeBQ/ZS/7WrIOgBjVbQ=;
+ b=ihCil4RxF9qG/c/M2jiz8HBZntzpdfDgB/ff4lJzeXegMFOq4GBs0Xxd9od1b6U2XpmJ
+ xnhui3NsX5rS5YwUju64Yld1XqhNyRN4KwwFkX0tcVk4PZpG43pQtBVZC5DQ1c+2fjX6
+ 952qfoGx8ofCW/N0iWO8NE5POTSUWKg8z8R2rmOguSWZ+u2Uc/HaZJHuJfCuZKf+nUby
+ s/JP8TUpvL/iHtQI0Slg6QfnLRXrwvKV6CpbOnSuOVoc33fHm4Ac9O3VHcsJoN5k8pN2
+ UYhU7LzQdP0vw7FWgqfxDSkFoRcVwHxXM93Cgq1BVlRpJ5xfUqoFyw+Fm/mmGiBnRePx MQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37d72dxr6b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 Mar 2021 15:07:59 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5A38C10002A;
+        Wed, 24 Mar 2021 15:07:57 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B07D025F3EC;
+        Wed, 24 Mar 2021 15:07:57 +0100 (CET)
+Received: from lmecxl0889.lme.st.com (10.75.127.51) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 24 Mar
+ 2021 15:07:56 +0100
+Subject: Re: [PATCH v2 2/2] remoteproc: stm32: add capability to detach
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210322092651.7381-1-arnaud.pouliquen@foss.st.com>
+ <20210322092651.7381-3-arnaud.pouliquen@foss.st.com>
+ <20210323211911.GA1714890@xps15>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Message-ID: <ad74c7d6-59d0-c522-6d2c-0608c8e9c33e@foss.st.com>
+Date:   Wed, 24 Mar 2021 15:07:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210214174453.104616-1-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210323211911.GA1714890@xps15>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-24_10:2021-03-24,2021-03-24 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Hi Mathieu,
 
-On 2021-02-14 18:44, Jagan Teki wrote:
-> SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
-> controller IC's from Texas Instruments.
+On 3/23/21 10:19 PM, Mathieu Poirier wrote:
+> Good day Arnaud,
 > 
-> SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
-> SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
-> SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
+> On Mon, Mar 22, 2021 at 10:26:51AM +0100, Arnaud Pouliquen wrote:
+>> From: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+>>
+>> A mechanism similar to the shutdown mailbox signal is implemented to
+>> detach a remote processor.
+>>
+>> Upon detachment, a signal is sent to the remote firmware, allowing it
+>> to perform specific actions such as stopping RPMsg communication.
+>>
+>> The Cortex-M hold boot is also disabled to allow the remote processor
+>> to restart in case of crash.
+>>
+>> Notice that for this feature to be supported, the remote firmware
+>> resource table must be stored at the beginning of a 1kB section
+>> (default size provided to the remoteproc core).
+>>
+>> This restriction should be lifted in the future by using a backup
+>> register to store the actual size of the resource table.
 > 
-> Right now the bridge driver is supporting Channel A with single
-> link, so dt-bindings documented according to it.
+> I'm not sure the above two paragraphs add anything valuable to the changelog.
+> At this time the size of 1kB is fixed and future enhancement are, well, in the
+> future.  So for now this patch is working with the rest of the current
+> environment and that is the important part.
+> 
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss-st.com>
+>> ---
+>>  drivers/remoteproc/stm32_rproc.c | 38 ++++++++++++++++++++++++++++++--
+>>  1 file changed, 36 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+>> index 3d45f51de4d0..298ef5b19e27 100644
+>> --- a/drivers/remoteproc/stm32_rproc.c
+>> +++ b/drivers/remoteproc/stm32_rproc.c
+>> @@ -28,7 +28,7 @@
+>>  #define RELEASE_BOOT		1
+>>  
+>>  #define MBOX_NB_VQ		2
+>> -#define MBOX_NB_MBX		3
+>> +#define MBOX_NB_MBX		4
+>>  
+>>  #define STM32_SMC_RCC		0x82001000
+>>  #define STM32_SMC_REG_WRITE	0x1
+>> @@ -38,6 +38,7 @@
+>>  #define STM32_MBX_VQ1		"vq1"
+>>  #define STM32_MBX_VQ1_ID	1
+>>  #define STM32_MBX_SHUTDOWN	"shutdown"
+>> +#define STM32_MBX_DETACH	"detach"
+>>  
+>>  #define RSC_TBL_SIZE		1024
+>>  
+>> @@ -336,6 +337,15 @@ static const struct stm32_mbox stm32_rproc_mbox[MBOX_NB_MBX] = {
+>>  			.tx_done = NULL,
+>>  			.tx_tout = 500, /* 500 ms time out */
+>>  		},
+>> +	},
+>> +	{
+>> +		.name = STM32_MBX_DETACH,
+>> +		.vq_id = -1,
+>> +		.client = {
+>> +			.tx_block = true,
+>> +			.tx_done = NULL,
+>> +			.tx_tout = 200, /* 200 ms time out to detach should be fair enough */
+>> +		},
+>>  	}
+>>  };
+>>  
+>> @@ -461,6 +471,25 @@ static int stm32_rproc_attach(struct rproc *rproc)
+>>  	return stm32_rproc_set_hold_boot(rproc, true);
+>>  }
+>>  
+>> +static int stm32_rproc_detach(struct rproc *rproc)
+>> +{
+>> +	struct stm32_rproc *ddata = rproc->priv;
+>> +	int err, dummy_data, idx;
+>> +
+>> +	/* Inform the remote processor of the detach */
+>> +	idx = stm32_rproc_mbox_idx(rproc, STM32_MBX_DETACH);
+>> +	if (idx >= 0 && ddata->mb[idx].chan) {
+>> +		/* A dummy data is sent to allow to block on transmit */
+>> +		err = mbox_send_message(ddata->mb[idx].chan,
+>> +					&dummy_data);
+>> +		if (err < 0)
+>> +			dev_warn(&rproc->dev, "warning: remote FW detach without ack\n");
+>> +	}
+>> +
+>> +	/* Allow remote processor to auto-reboot */
+>> +	return stm32_rproc_set_hold_boot(rproc, false);
+>> +}
+>> +
+>>  static int stm32_rproc_stop(struct rproc *rproc)
+>>  {
+>>  	struct stm32_rproc *ddata = rproc->priv;
+>> @@ -597,7 +626,11 @@ stm32_rproc_get_loaded_rsc_table(struct rproc *rproc, size_t *table_sz)
+>>  	}
+>>  
+>>  done:
+>> -	/* Assuming the resource table fits in 1kB is fair */
+>> +	/*
+>> +	 * Assuming the resource table fits in 1kB is fair.
+>> +	 * Notice for the detach, that this 1 kB memory area has to be reserved in the coprocessor
+>> +	 * firmware for the resource table. A clean of this whole area is done on detach.
+>> +	 */
+> 
+> Can you rework the last sentence?  I'm not sure if it means the M4 will clean
+> the resource table or if that should be the application processor... I'm also
+> not clear on what you mean by "clean".  Usually it means zero'ing out but in
+> this case it means a re-initialisation of the original values.
+This is done by the remoteproc core itself by overwriting the resource table
+area with the rproc->clean_table backup.
+i will rework the comment in this way.
 
-Do you know when we can expect a v4 for this?
+Thanks,
+Arnaud
 
-I am currently working on top of your patch set to setup a dual-link 
-LVDS bridge of SN65DSI84.
-
-thanks and kind regards,
-Claudius
+> 
+> 
+>>  	*table_sz = RSC_TBL_SIZE;
+>>  	return (struct resource_table *)ddata->rsc_va;
+>>  }
+>> @@ -607,6 +640,7 @@ static const struct rproc_ops st_rproc_ops = {
+>>  	.start		= stm32_rproc_start,
+>>  	.stop		= stm32_rproc_stop,
+>>  	.attach		= stm32_rproc_attach,
+>> +	.detach		= stm32_rproc_detach,
+> 
+> With the above:
+> 
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> 
+>>  	.kick		= stm32_rproc_kick,
+>>  	.load		= rproc_elf_load_segments,
+>>  	.parse_fw	= stm32_rproc_parse_fw,
+>> -- 
+>> 2.17.1
+>>
