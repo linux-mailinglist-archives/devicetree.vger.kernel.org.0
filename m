@@ -2,168 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30602348ED8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 12:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0E5349135
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 12:51:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbhCYLWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 07:22:45 -0400
-Received: from pegase1.c-s.fr ([93.17.236.30]:59992 "EHLO pegase1.c-s.fr"
+        id S229995AbhCYLvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 07:51:20 -0400
+Received: from foss.arm.com ([217.140.110.172]:47310 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230013AbhCYLWT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 07:22:19 -0400
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4F5jPF3Rmmz9v07B;
-        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id 23Jg9s7auSVF; Thu, 25 Mar 2021 12:22:09 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4F5jPF2Xh6z9v076;
-        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 905718B850;
-        Thu, 25 Mar 2021 12:22:10 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id 17HwWPOOzqFZ; Thu, 25 Mar 2021 12:22:10 +0100 (CET)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 95F028B84F;
-        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
-Subject: Re: [PATCH v2 6/7] cmdline: Gives architectures opportunity to use
- generically defined boot cmdline manipulation
-To:     Will Deacon <will@kernel.org>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
-        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
- <2eb6fad3470256fff5c9f33cd876f344abb1628b.1614705851.git.christophe.leroy@csgroup.eu>
- <20210303175747.GD19713@willie-the-truck>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
-Date:   Thu, 25 Mar 2021 12:18:38 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S229617AbhCYLuy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 07:50:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 79DDE1474;
+        Thu, 25 Mar 2021 04:50:53 -0700 (PDT)
+Received: from [10.57.50.37] (unknown [10.57.50.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC35C3F792;
+        Thu, 25 Mar 2021 04:50:50 -0700 (PDT)
+Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
+To:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     iommu@lists.linux-foundation.org, joro@8bytes.org, will@kernel.org,
+        Arnd Bergmann <arnd@kernel.org>, marcan@marcan.st,
+        Marc Zyngier <maz@kernel.org>, mohamed.mediouni@caramail.com,
+        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+ <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
+ <20210323205346.GA1283560@robh.at.kernel.org>
+ <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <33b3ce35-c42f-331a-79a2-e38917d588ef@arm.com>
+Date:   Thu, 25 Mar 2021 11:50:45 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210303175747.GD19713@willie-the-truck>
+In-Reply-To: <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Le 03/03/2021 à 18:57, Will Deacon a écrit :
-> On Tue, Mar 02, 2021 at 05:25:22PM +0000, Christophe Leroy wrote:
->> Most architectures have similar boot command line manipulation
->> options. This patchs adds the definition in init/Kconfig, gated by
->> CONFIG_HAVE_CMDLINE that the architectures can select to use them.
+On 2021-03-25 07:53, Sven Peter wrote:
+> 
+> 
+> On Tue, Mar 23, 2021, at 21:53, Rob Herring wrote:
+>> On Sun, Mar 21, 2021 at 05:00:50PM +0100, Mark Kettenis wrote:
+>>>> Date: Sat, 20 Mar 2021 15:19:33 +0000
+>>>> From: Sven Peter <sven@svenpeter.dev>
+>>>> I have just noticed today though that at least the USB DWC3 controller in host
+>>>> mode uses *two* darts at the same time. I'm not sure yet which parts seem to
+>>>> require which DART instance.
+>>>>
+>>>> This means that we might need to support devices attached to two iommus
+>>>> simultaneously and just create the same iova mappings. Currently this only
+>>>> seems to be required for USB according to Apple's Device Tree.
+>>>>
+>>>> I see two options for this and would like to get feedback before
+>>>> I implement either one:
+>>>>
+>>>>      1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
+>>>>         to identify the DART and the second one to identify the master.
+>>>>         The DART DT node would then also take two register ranges that would
+>>>>         correspond to the two DARTs. Both instances use the same IRQ and the
+>>>>         same clocks according to Apple's device tree and my experiments.
+>>>>         This would keep a single device node and the DART driver would then
+>>>>         simply map iovas in both DARTs if required.
+>>>>
+>>>>      2) Keep #iommu-cells as-is but support
+>>>>              iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
+>>>>         instead.
+>>>>         This would then require two devices nodes for the two DART instances and
+>>>>         some housekeeping in the DART driver to support mapping iovas in both
+>>>>         DARTs.
+>>>>         I believe omap-iommu.c supports this setup but I will have to read
+>>>>         more code to understand the details there and figure out how to implement
+>>>>         this in a sane way.
+>>>>
+>>>> I currently prefer the first option but I don't understand enough details of
+>>>> the iommu system to actually make an informed decision.
 >>
->> In order to use this, a few architectures will have to change their
->> CONFIG options:
->> - riscv has to replace CMDLINE_FALLBACK by CMDLINE_FROM_BOOTLOADER
->> - architectures using CONFIG_CMDLINE_OVERRIDE or
->> CONFIG_CMDLINE_OVERWRITE have to replace them by CONFIG_CMDLINE_FORCE.
+>> Please don't mix what does the h/w look like and what's easy to
+>> implement in Linux's IOMMU subsytem. It's pretty clear (at least
+>> from the description here) that option 2 reflects the h/w.
 >>
->> Architectures also have to define CONFIG_DEFAULT_CMDLINE.
+> 
+> Good point, I'll keep that in mind and give option 2 a try.
+> 
+>>>
+>>> As I mentioned before, not all DARTs support the full 32-bit aperture.
+>>> In particular the PCIe DARTs support a smaller address-space.  It is
+>>> not clear whether this is a restriction of the PCIe host controller or
+>>> the DART, but the Apple Device Tree has "vm-base" and "vm-size"
+>>> properties that encode the base address and size of the aperture.
+>>> These single-cell properties which is probably why for the USB DARTs
+>>> only "vm-base" is given; since "vm-base" is 0, a 32-bit number
+>>> wouldn't be able to encode the full aperture size.  We could make them
+>>> 64-bit numbers in the Linux device tree though and always be explicit
+>>> about the size.  Older Sun SPARC machines used a single "virtual-dma"
+>>> property to encode the aperture.  We could do someting similar.  You
+>>> would use this property to initialize domain->geometry.aperture_start
+>>> and domain->geometry.aperture_end in diff 3/3 of this series.
 >>
->> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
->> ---
->>   init/Kconfig | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 56 insertions(+)
+>> 'dma-ranges' is what should be used here.
 >>
->> diff --git a/init/Kconfig b/init/Kconfig
->> index 22946fe5ded9..a0f2ad9467df 100644
->> --- a/init/Kconfig
->> +++ b/init/Kconfig
->> @@ -117,6 +117,62 @@ config INIT_ENV_ARG_LIMIT
->>   	  Maximum of each of the number of arguments and environment
->>   	  variables passed to init from the kernel command line.
->>   
->> +config HAVE_CMDLINE
->> +	bool
->> +
->> +config CMDLINE_BOOL
->> +	bool "Default bootloader kernel arguments"
->> +	depends on HAVE_CMDLINE
->> +	help
->> +	  On some platforms, there is currently no way for the boot loader to
->> +	  pass arguments to the kernel. For these platforms, you can supply
->> +	  some command-line options at build time by entering them here.  In
->> +	  most cases you will need to specify the root device here.
 > 
-> Why is this needed as well as CMDLINE_FROM_BOOTLOADER? IIUC, the latter
-> will use CONFIG_CMDLINE if it fails to get anything from the bootloader,
-> which sounds like the same scenario.
+> The iommu binding documentation [1] mentions that
 > 
->> +config CMDLINE
->> +	string "Initial kernel command string"
+>      The device tree node of the IOMMU device's parent bus must contain a valid
+>      "dma-ranges" property that describes how the physical address space of the
+>      IOMMU maps to memory. An empty "dma-ranges" property means that there is a
+>      1:1 mapping from IOMMU to memory.
 > 
-> s/Initial/Default
+> which, if I understand this correctly, means that the 'dma-ranges' for the
+> parent bus of the iommu should be empty since the DART hardware can see the
+> full physical address space with a 1:1 mapping.
 > 
-> which is then consistent with the rest of the text here.
 > 
->> +	depends on CMDLINE_BOOL
+> The documentation also mentions that
 > 
-> Ah, so this is a bit different and I don't think lines-up with the
-> CMDLINE_BOOL help text.
+>       When an "iommus" property is specified in a device tree node, the IOMMU
+>       will be used for address translation. If a "dma-ranges" property exists
+>       in the device's parent node it will be ignored.
 > 
->> +	default DEFAULT_CMDLINE
->> +	help
->> +	  On some platforms, there is currently no way for the boot loader to
->> +	  pass arguments to the kernel. For these platforms, you can supply
->> +	  some command-line options at build time by entering them here.  In
->> +	  most cases you will need to specify the root device here.
-> 
-> (same stale text)
-> 
->> +choice
->> +	prompt "Kernel command line type" if CMDLINE != ""
->> +	default CMDLINE_FROM_BOOTLOADER
->> +	help
->> +	  Selects the way you want to use the default kernel arguments.
-> 
-> How about:
-> 
-> "Determines how the default kernel arguments are combined with any
->   arguments passed by the bootloader"
-> 
->> +config CMDLINE_FROM_BOOTLOADER
->> +	bool "Use bootloader kernel arguments if available"
->> +	help
->> +	  Uses the command-line options passed by the boot loader. If
->> +	  the boot loader doesn't provide any, the default kernel command
->> +	  string provided in CMDLINE will be used.
->> +
->> +config CMDLINE_EXTEND
-> 
-> Can we rename this to CMDLINE_APPEND, please? There is code in the tree
-> which disagrees about what CMDLINE_EXTEND means, so that will need be
-> to be updated to be consistent (e.g. the EFI stub parsing order). Having
-> the generic option with a different name means we won't accidentally end
-> up with the same inconsistent behaviours.
+> which means that specifying a 'dma-ranges' in the parent bus of any devices
+> that use the iommu will just be ignored.
 
-Argh, yes. Seems like the problem is even larger than that IIUC:
+I think that's just wrong and wants updating (or at least clarifying). 
+The high-level view now is that we use "dma-ranges" to describe 
+limitations imposed by a bridge or interconnect segment, and that can 
+certainly happen upstream of an IOMMU. As it happens, I've just recently 
+sent a patch for precisely that case[1].
 
-- For ARM it means to append the bootloader arguments to the CONFIG_CMDLINE
-- For Powerpc it means to append the CONFIG_CMDLINE to the bootloader arguments
-- For SH  it means to append the CONFIG_CMDLINE to the bootloader arguments
-- For EFI it means to append the bootloader arguments to the CONFIG_CMDLINE
-- For OF it means to append the CONFIG_CMDLINE to the bootloader arguments
+I guess what it might have been trying to say is that "dma-ranges" 
+*does* become irrelevant in terms of constraining what physical memory 
+is usable for DMA, but that shouldn't imply that its meaning doesn't 
+just shift to a different purpose.
 
-So what happens on ARM for instance when it selects CONFIG_OF for instance ?
-Or should we consider that EXTEND means APPEND or PREPEND, no matter which ?
-Because EXTEND is for instance used for:
+> As a concrete example, the PCIe DART IOMMU only allows translations from iovas
+> within 0x00100000...0x3ff00000 to the entire physical address space (though
+> realistically it will only map to 16GB RAM starting at 0x800000000 on the M1).
+> 
+> I'm probably just confused or maybe the documentation is outdated but I don't
+> see how I could specify "this device can only use DMA addresses from
+> 0x00100000...0x3ff00000 but can map these via the iommu to any physical
+> address" using 'dma-ranges'.
+> 
+> Could you maybe point me to the right direction or give me a small example?
+> That would help a lot!
 
-	config INITRAMFS_FORCE
-		bool "Ignore the initramfs passed by the bootloader"
-		depends on CMDLINE_EXTEND || CMDLINE_FORCE
+PCI is easy, since it's already standard practice to use "dma-ranges" to 
+describe host bridge inbound windows. Even if the restriction is really 
+out in the host-side interconnect rather than in the bridge itself, to 
+all intents and purposes it's indistinguishable so can still be 
+described the same way.
 
+The case of a standalone device having fewer address bits wired up than 
+both its output and the corresponding IOMMU input might expect is a 
+little more awkward, since that often *does* require adding an extra 
+level of "bus" to explicitly represent that interconnect link in the DT 
+model, e.g. [2].
 
-Christophe
+Robin.
+
+[1] 
+https://lore.kernel.org/linux-arm-kernel/720d0a9a42e33148fcac45cd39a727093a32bf32.1614965598.git.robin.murphy@arm.com/
+[2] 
+https://lore.kernel.org/linux-arm-kernel/20180926132247.10971-23-laurentiu.tudor@nxp.com/
