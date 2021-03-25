@@ -2,158 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FDC348AEE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F3C348B04
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbhCYH71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 03:59:27 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:41949 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229695AbhCYH65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 03:58:57 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 91068580A76;
-        Thu, 25 Mar 2021 03:58:56 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute3.internal (MEProxy); Thu, 25 Mar 2021 03:58:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm1; bh=+T7CqVyoWdNN8bzlePUROPAX6ed7
-        sRoD/m/fHmI9qo4=; b=LpbxgVCzrqQ9ltk79TitEh6KZ0xv+/E3QIvusbwQguuN
-        RJLWtkF7PuJQnsag4PYsVCIkM83ZhZniDcWqK4pj4MqlOx0sPD/sIxgaXUH5WHeN
-        0M+TFrnbDvMFrxIiU8NuFbFzRERTkTD2fYqmXFPVN6c3bBqxaN2jRd3zxXlHXsoc
-        GDT+pXcOB4oR7zn6T90E0iGX8IPIA0RzLQKkoDMmdPbdLHc+ftJJ2pThrVwR9Ptn
-        4QvmlA3AyUuaOO1N11IzIesXf4RWryEwT7lx8byZhdQbv4cbPCOmevWbFp9h+5ck
-        a5HYr61KhiPlAujeYERIxz/Cavcb8fZM24AJIP802A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=+T7CqV
-        yoWdNN8bzlePUROPAX6ed7sRoD/m/fHmI9qo4=; b=hCyXTtepAEJYQhogfMllqO
-        jQxW0FyZbsaIAaGo6XADIRxGbO2rcoJy7LqQUcEVoBJpYEAF55gs5tNV2jnGKRO5
-        M9fnE2Lnxwpr5qHqqNAFNIK5s6j2Ngomuk4/d9p0P7qym2HJTO8u5FiHi4+u1YNR
-        1oDRoS7oOjIVQHUcGUSvqZ3ex56WRYy8q3jOltcf59b1WDwsIIq6f33HvMbqAxjV
-        PpfOQ7YF0DU8aj6uGzFwcnQDws2AwuEk0Otdf/EQrWQ0XSL/5LDa+zN0QcspfX8g
-        h6vHf3q80gomzUv+WlsADLvmek5wvca77JCOwoh+mBYWhT2qkYvmxNGYVa94N8PQ
-        ==
-X-ME-Sender: <xms:v0JcYArC25zHz2V26Ua7EqGjVk7-5p3h7rvzBq2onaRw7MXuY8viHQ>
-    <xme:v0JcYGq2FA_YmyvHTlvCFbmVPR1Fkkk-t9XNzeVKfpYEFgc9oltPKQm8Ox6bnY1hZ
-    SfJQKWNNEA9ohnz4wM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudegledguddufecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
-    vdefkeffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:v0JcYFM_zRQhKUXd3JaCDMcGtfUZoM7DDDYFrbEP_m3GQ5MkKktVOg>
-    <xmx:v0JcYH70r-HSbiG5uFjLNuVhJCAUSFZ8d2dJ3Wmtd2-onZ1PgkNpaA>
-    <xmx:v0JcYP4RABId_lUiZScL_EZ5aIKOuy4DwNz9Lg3DCRti39X3-G6zLw>
-    <xmx:wEJcYDjaRy8l2GQ-99NYJlF457U5BixsylPCdCPBuPmttvyxNZ21Q-C5iwY>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0FBF751C005E; Thu, 25 Mar 2021 03:58:54 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <b05337f3-a4bf-4add-a68d-b9f5c9b8b10d@www.fastmail.com>
-In-Reply-To: <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
-Date:   Thu, 25 Mar 2021 08:58:16 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Robin Murphy" <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org
-Cc:     "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Arnd Bergmann" <arnd@kernel.org>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-Content-Type: text/plain
+        id S229659AbhCYIDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 04:03:49 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:52505 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229635AbhCYIDR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 04:03:17 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1616659397; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=oiHaIhlTw6rdY/eG8o6o068eoRZ8/VbUZDj7L5CPEUU=; b=VcZ/0MThy+3CzlC0acS9zv1wc8J/y8BYIFjPrWok/WGVbZ7pF2nMzpYHYUv5aOKI4hsk6dbZ
+ JRqT+fD8ibetQuasVYOFFRgwR0JvMe8y5v5q7z+Kgs/mJAiAMHli9S+g2RQlW0vgTL8f01kU
+ LEiWOU/DCwU2i0UaHzHCwEcjMuw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 605c43b39a60a4db7cda2f22 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 25 Mar 2021 08:02:59
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 37E09C433CA; Thu, 25 Mar 2021 08:02:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-525.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2E06AC433ED;
+        Thu, 25 Mar 2021 08:02:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2E06AC433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=schowdhu@codeaurora.org
+From:   Souradeep Chowdhury <schowdhu@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+Subject: [PATCH V2 0/5] Add driver support for Data Capture and Compare Engine(DCC) for SM8150
+Date:   Thu, 25 Mar 2021 13:32:31 +0530
+Message-Id: <cover.1616651305.git.schowdhu@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
+DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.In case of a system
+crash or manual software triggers by the user the DCC hardware stores the value at the register
+addresses which can be used for debugging purposes.The DCC driver provides the user with sysfs
+interface to configure the register addresses.The options that the DCC hardware provides include
+reading from registers,writing to registers,first reading and then writing to registers and looping
+through the values of the same register.
 
+In certain cases a register write needs to be executed for accessing the rest of the registers,
+also the user might want to record the changing values of a register with time for which he has the
+option to use the loop feature.
 
-On Wed, Mar 24, 2021, at 16:29, Robin Murphy wrote:
-> On 2021-03-20 15:19, Sven Peter wrote:
-> > 
-> > I have just noticed today though that at least the USB DWC3 controller in host
-> > mode uses *two* darts at the same time. I'm not sure yet which parts seem to
-> > require which DART instance.
-> > 
-> > This means that we might need to support devices attached to two iommus
-> > simultaneously and just create the same iova mappings. Currently this only
-> > seems to be required for USB according to Apple's Device Tree.
-> > 
-> > I see two options for this and would like to get feedback before
-> > I implement either one:
-> > 
-> >      1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
-> >         to identify the DART and the second one to identify the master.
-> >         The DART DT node would then also take two register ranges that would
-> >         correspond to the two DARTs. Both instances use the same IRQ and the
-> >         same clocks according to Apple's device tree and my experiments.
-> >         This would keep a single device node and the DART driver would then
-> >         simply map iovas in both DARTs if required.
-> 
-> This is broadly similar to the approach used by rockchip-iommu and the 
-> special arm-smmu-nvidia implementation, where there are multiple 
-> instances which require programming identically, that are abstracted 
-> behind a single "device". Your case is a little different since you're 
-> not programming both *entirely* identically, although maybe that's a 
-> possibility if each respective ID isn't used by anything else on the 
-> "other" DART?
+The options mentioned above are exposed to the user by sysfs files once the driver is probed.The
+details and usage of this sysfs files are documented in Documentation/ABI/testing/sysfs-driver-dcc.
 
-That would be possible. The only difference is that I need to
-program ID 0 of the first DART and ID 1 of the second one. Both
-of these IDs are only connected to the same USB controller.
+As an example let us consider a couple of debug scenarios where DCC has been proved to be effective
+for debugging purposes:-
 
+i)TimeStamp Related Issue
 
-> 
-> Overall I tend to view this approach as a bit of a hack because it's not 
-> really describing the hardware truthfully - just because two distinct 
-> functional blocks have their IRQ lines wired together doesn't suddenly 
-> make them a single monolithic block with multiple interfaces - and tends 
-> to be done for the sake of making the driver implementation easier in 
-> terms of the Linux IOMMU API (which, note, hasn't evolved all that far 
-> from its PCI-centric origins and isn't exactly great for arbitrary SoC 
-> topologies).
+On SC7180, there was a coresight timestamp issue where it would occasionally be all 0 instead of proper
+timestamp values.
 
-Yes, the easier driver implementation was my reason to favour this option.
+Proper timestamp:
+Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
 
-> 
-> >      2) Keep #iommu-cells as-is but support
-> >              iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
-> >         instead.
-> >         This would then require two devices nodes for the two DART instances and
-> >         some housekeeping in the DART driver to support mapping iovas in both
-> >         DARTs.
-> >         I believe omap-iommu.c supports this setup but I will have to read
-> >         more code to understand the details there and figure out how to implement
-> >         this in a sane way.
-> 
-> This approach is arguably the most honest, and more robust in terms of 
-> making fewer assumptions, and is used by at least exynos-iommu and 
-> omap-iommu. In Linux it currently takes a little bit more housekeeping 
-> to keep track of linked instances within the driver since the IOMMU API 
-> holds the notion that any given client device is associated with "an 
-> IOMMU", but that's always free to change at any time, unlike the design 
-> of a DT binding.
+Zero timestamp:
+Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
 
-Sounds good. I'll read those drivers and give it a try for v2.
+Now this is a non-fatal issue and doesn't need a system reset, but still needs
+to be rootcaused and fixed for those who do care about coresight etm traces.
+Since this is a timestamp issue, we would be looking for any timestamp related
+clocks and such.
 
+o we get all the clk register details from IP documentation and configure it
+via DCC config syfs node. Before that we set the current linked list.
 
-Thanks,
+/* Set the current linked list */
+echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
 
+/* Program the linked list with the addresses */
+echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
+echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
+echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
+echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
+..... and so on for other timestamp related clk registers
 
-Sven
+/* Other way of specifying is in "addr len" pair, in below case it
+specifies to capture 4 words starting 0x10C004 */
+
+echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
+
+/* Enable DCC */
+echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
+
+/* Run the timestamp test for working case */
+
+/* Send SW trigger */
+echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram1.bin
+
+/* Run the timestamp test for non-working case */
+
+/* Send SW trigger */
+echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram2.bin
+
+Get the parser from [1] and checkout the latest branch.
+
+/* Parse the SRAM bin */
+python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+
+Sample parsed output of dcc_sram1.bin:
+
+<hwioDump version="1">
+        <timestamp>03/14/21</timestamp>
+	        <generator>Linux DCC Parser</generator>
+		        <chip name="None" version="None">
+				<register address="0x0010c004" value="0x80000000" />
+				<register address="0x0010c008" value="0x00000008" />
+				<register address="0x0010c00c" value="0x80004220" />
+				<register address="0x0010c010" value="0x80000000" />
+			</chip>
+	<next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+</hwioDump>
+
+ii)NOC register errors
+
+A particular class of registers called NOC which are functional registers was reporting
+errors while logging the values.To trace these errors the DCC has been used effectively.
+The steps followed were similar to the ones mentioned above.
+In addition to NOC registers a few other dependent registers were configured in DCC to
+monitor it's values during a crash. A look at the dependent register values revealed that
+the crash was happening due to a secured access to one of these dependent registers.
+All these debugging activity and finding the root cause was achieved using DCC.
+
+DCC parser is available at the following open source location
+
+https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+
+Souradeep Chowdhury (5):
+  dt-bindings: Added the yaml bindings for DCC
+  soc: qcom: dcc:Add driver support for Data Capture and Compare
+    unit(DCC)
+  DCC: Added the sysfs entries for DCC(Data Capture and Compare) driver
+  MAINTAINERS:Add the entry for DCC(Data Capture and Compare) driver
+    support
+  arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
+    node
+
+ Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
+ .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   49 +
+ MAINTAINERS                                        |    8 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |    7 +
+ drivers/soc/qcom/Kconfig                           |    8 +
+ drivers/soc/qcom/Makefile                          |    1 +
+ drivers/soc/qcom/dcc.c                             | 1549 ++++++++++++++++++++
+ 7 files changed, 1736 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+ create mode 100644 drivers/soc/qcom/dcc.c
+
+--
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
