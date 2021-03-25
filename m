@@ -2,95 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B13BA3493E6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:23:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36237349421
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:34:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbhCYOWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 10:22:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
+        id S229574AbhCYOd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 10:33:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbhCYOWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 10:22:18 -0400
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47051C06174A;
-        Thu, 25 Mar 2021 07:22:17 -0700 (PDT)
-Received: by mail-ua1-x934.google.com with SMTP id j19so564294uax.2;
-        Thu, 25 Mar 2021 07:22:17 -0700 (PDT)
+        with ESMTP id S231404AbhCYOcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 10:32:55 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3220C06175F;
+        Thu, 25 Mar 2021 07:32:54 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id bt4so1112347pjb.5;
+        Thu, 25 Mar 2021 07:32:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=S57t/1uwRfKG1nwTAGZ20K/6m0RxzmSR5OX1ptPVg94=;
-        b=NW7W1qRvf4csE0KVccOVAq5d6aLpAik7ZL3gHuATuZsTcmPe4FwyptfuK1iFjHkLU6
-         liLQQzgOAO35WF2+BvQP4jRs0VVvt1LVmWhdg5QLNgUcmLuY7YAWZBfADxqSaC7VGZBt
-         CdrOkMVOonbMZD3vvoPrBdsFuzfduLQKp+A6HEPbiVTDi/TAlWkG1N7zFSlBBr/NqSYC
-         syQNIP0KjFEm7qKq8YGzihrznCsIyXkN80bswPa1/8Wdc/B19+6ZwGTaYZmjkGDNQUbT
-         qZNsu4E5MVv+3KSdnNfAgS0ZmcuzhGYVbk64eat8IPbuE0UlfF59Dep8mxZGitDBOQG4
-         jXiQ==
+        bh=iu6akMggrk3ZrAZb1WHGakoQg8dYDOL7KwYgoXD8LKo=;
+        b=Eq3eckxCzX63Xj8wsmhtYZPgshqe6ldPE7VXJSPCbIzd/86jZL77W6Y7Wym2MHBhks
+         MvCzM/eROhGsEKpUYZIV0thiUkqnaBEy/AWgzdQHbqf9swW2QDjrzkMWLlJoFKMsMrgo
+         ScNl3B5wP94Al5oCgb0bGNe+e+i5uk4cXbtXq3FmVGWYOGg5U9s2nrROl6ZS/QVOOs81
+         8smHnFvodbzoqLNqa5ptdAGzaIKEAZ4FP+RFdI81jyPKJL/t5kuuqlg+47HxDXP3E3nM
+         cZ1EGQFdpB4C0ldYgyLoPdc+G66XTeolaW7FLoFudxttyoG9k1XzSEI1YtoEOKj9L9aA
+         0KkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=S57t/1uwRfKG1nwTAGZ20K/6m0RxzmSR5OX1ptPVg94=;
-        b=Ds8Lf7h+LZmmE6rMsvga3FUdRufo/08VSJOIX+y0ceUGocVPQ9CW4QH0SPboEOPlui
-         dpPksf59uQgMyv+j2xqOml/CUbmgNJqc80qTuHcsRiarg0dwOa3kpvJoWSYDwY/8YRYL
-         /rd2/iOImlon50tu6h3tBiC490QWquyTpgvyjd6u4Iq1xu0EEVhhCdXkb2MacCMf/cHO
-         /JrpSuxYRx99fPQuxSk+JVtkAwNIp8q+NL+8cs2wEruUGEj/TnI2vEIxiisOgjNIcz8B
-         JJNrJXjufERBELICMU3MrRNK2vpGwcifb4R6dvY30x7RzOts3q+G58HNIcN3llaMctc6
-         VIVw==
-X-Gm-Message-State: AOAM530D5YBeocecakn60xhy1aWRu8C3wL4gmdctlstggi+4LjhzmcaX
-        RlZVCflXBKr9sw2KPmBZK+Xw3wNHWrsCJaWf2/o=
-X-Google-Smtp-Source: ABdhPJwIt5+cIAgYSFiUoxo0sH/fJcm+vHdY0ZMGYnBh5vACdXvgETtySDruWU7NTuQMIgZwon8bevCtNc32q5WaDJg=
-X-Received: by 2002:ab0:6954:: with SMTP id c20mr5160344uas.106.1616682136426;
- Thu, 25 Mar 2021 07:22:16 -0700 (PDT)
+        bh=iu6akMggrk3ZrAZb1WHGakoQg8dYDOL7KwYgoXD8LKo=;
+        b=K2bXI8ZIf47JXvXHUy+Rz0kn8nvOwoPIi+igc6IRueoz1CiJzyJKvTF81U8oNCpav2
+         ay2Kbv30opybAbSmVq4j5+UuOMVfJRLRmH032l0rKsOSOodsR1v0kkGgthfjlSnl30Fa
+         ADye5hCuHlPLmdrd5TDdAPdmh9bpuLjlDE1plezLrM8jwMQ8t6FDOwkfzEr5RCVjzEHQ
+         78+x5KD5FzUPz+qyusJGpnK1j7lF4h17ZEq23EGPJZb4A2fIdD4Yc1FEeZOGU4ChjmHZ
+         CLRq2ru2sC4l26RpJV9w1zfmbQWyxR07y8ZJtzdOeceugtQcNnhBwLV5DTZqxSxLQxbs
+         IC1g==
+X-Gm-Message-State: AOAM5319pHHqzyFNdQdXRlC84HffXCsYotRKIvdpLlKLGey8F1yaTqYC
+        r+z2Kz8gNt0kbA+DmW1g9iEHEH4nr8DpRFPhPoAqUQS0
+X-Google-Smtp-Source: ABdhPJwvBTtoH2he9ApBpc1P2liiGLxNtdlbUqSJXqpU+JgyXAlzDZhIsECbsSFS0L+w60TTuxLAK+ci3HZNO7DVFvc=
+X-Received: by 2002:a17:90a:bd09:: with SMTP id y9mr8969707pjr.179.1616682774540;
+ Thu, 25 Mar 2021 07:32:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
- <5ecf1d3b8a8f88d6387a1549faeb4f4180cf5d4b.camel@collabora.com>
- <CACvgo51uNyQgzGdW=f-0wxvjv-+OD1p7E4DJXRzu1GvnAHbcCQ@mail.gmail.com>
- <50b3b4b3-6c5b-3f1e-3499-c88574ce9f74@microchip.com> <YFxObibxqK23WTMf@piout.net>
-In-Reply-To: <YFxObibxqK23WTMf@piout.net>
-From:   Emil Velikov <emil.l.velikov@gmail.com>
-Date:   Thu, 25 Mar 2021 14:22:05 +0000
-Message-ID: <CACvgo53V8sZ2PA0NTR1=JCqcFGBecqs7=aB4uofApOa-C0GZCA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Microship SAMA5D4 VPU support et al
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <20210312051203.3555751-1-vkoul@kernel.org> <YEukrpG06PBdgGAF@builder.lan>
+ <YFwo2FrCMYJ4AhCs@vkoul-mobl.Dlink>
+In-Reply-To: <YFwo2FrCMYJ4AhCs@vkoul-mobl.Dlink>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Thu, 25 Mar 2021 09:32:43 -0500
+Message-ID: <CABb+yY39yq9=JCYJR8EnMqzYX5wpAWX5nd2Yu0uoCXDcA8jDbg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: Add compatible for SM8350 IPCC
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media@vger.kernel.org,
-        linux-rockchip <linux-rockchip@lists.infradead.org>
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings all,
-
-On Thu, 25 Mar 2021 at 08:48, Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
+On Thu, Mar 25, 2021 at 1:08 AM Vinod Koul <vkoul@kernel.org> wrote:
 >
-> On 24/03/2021 14:44:14+0100, Nicolas Ferre wrote:
-> > Now, when we have the tag from Rob, how to coordinate these different
-> > pieces? Will it go through the media git tree? Will we benefit from a stable
-> > branch to share or will we just have to wait for the driver to hit Mainline
-> > before adding the defconfig and DT patches?
+> On 12-03-21, 11:28, Bjorn Andersson wrote:
+> > On Thu 11 Mar 23:12 CST 2021, Vinod Koul wrote:
 > >
-Thanks for the Acked-by Nicolas.
-
+> > Adding Jassi as recipient. Please let Vinod know if you want him to
+> > resend this patch to you. (I send a patch for MAINTAINERS yesterday)
 >
-> I think the defconfig and dt patches can go through at91 as soon as we
-> get Rob's ack. There is no build dependency so it can be taken at any
-> time. Worst case, we end up with a selected config option that doesn't
-> exist.
+> Jassi, should I resend or you can pick from lore?
 >
-My personal preference is to merge everything in one go.
-I believe it will be easier from maintainer's point of view, plus odds
-of conflicts with the AT91 tree are close to zero.
+I will pick.
 
-Then again, as long as the maintainers are happy - I'm fine either way.
-
-Thanks
-Emil
+thanks
