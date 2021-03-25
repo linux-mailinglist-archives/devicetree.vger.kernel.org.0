@@ -2,172 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92E6D349A4E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 20:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4504B349AB4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 20:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhCYTcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 15:32:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229629AbhCYTcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 15:32:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 43EF861A39;
-        Thu, 25 Mar 2021 19:32:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616700742;
-        bh=wPQ5Sea1VKNbkcHcSE2wOkcPab+jTWd/uy3MX0n6t8Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qhPz13AMwoqBiPYoRSp+sOrqs8xLR1phPnSElfXaT3SrbfZRHiaZgO6D7YxgFZFFB
-         oYa7bMFovpREENQs5jwQgUYDLkzu2gcrVCPDsaBy6SzeQvaW1qrofhoLHr6Wq6E1CS
-         KMdfhVDAoQwH/bhQKHL6qSPnxH+MpGsDZdurCpwfuSeXSV6DGHtZ9Fdftq9PoXLTtS
-         VR152Oo7hAfi8Zdxu/F1l7A4k8xXQKOqYBWtJAYNCqivBoeVVWU4ZgtKVn4Gt+lrBU
-         bmmEoQwh5ps8MzGegpOwIpYOQNtaD7Lg+t46gFEMs2T6iX+7F6kF2hWshOdydJPQ3n
-         9ZQrmixlOTDcA==
-Date:   Thu, 25 Mar 2021 19:32:17 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
-        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] cmdline: Gives architectures opportunity to use
- generically defined boot cmdline manipulation
-Message-ID: <20210325193216.GC16123@willie-the-truck>
-References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
- <2eb6fad3470256fff5c9f33cd876f344abb1628b.1614705851.git.christophe.leroy@csgroup.eu>
- <20210303175747.GD19713@willie-the-truck>
- <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
+        id S230064AbhCYTyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 15:54:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230215AbhCYTyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 15:54:18 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD39C06174A;
+        Thu, 25 Mar 2021 12:54:17 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id l3so3145265pfc.7;
+        Thu, 25 Mar 2021 12:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2ox+lIoJoyg3Q3+HzxwjBXbGMuN52vbWPLtA7Qub7kg=;
+        b=NFFwY8zQIwhkcU272Jm/tvrxR+e+zdpyEFg4BFxEIeC0Do8kt5hzS8pjCkG0kksnca
+         AQyFQCGKeMbBqTUbaDz1DUHSbSlp+n7gnBE4n0to9D2ow9IL1MQcwH3/Jf+GINov9i85
+         Xwbd+Rsh8KJHTUXXkrs93L4csDQUgnmlAylNYPrmzk5vVitnDmhXxzHX2dPEjykP7kRU
+         pr8wY/5/CWCEzS8UHs/jHX3BJbFs/QxBblckmUyXwXCY6qi5kS/J3FTrs8jHysobQJ7d
+         InuZk93Q76uhlfwAAzMb9L5cuqm6yGSZPAQf15W2LnCtfPWMbvANGjmM+rvm+bWmSjkv
+         KsNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2ox+lIoJoyg3Q3+HzxwjBXbGMuN52vbWPLtA7Qub7kg=;
+        b=n2etdgYrscEaGbYWJ1VpRoRD9Jl5He3MBd0gMed6GUa0oDwjqUMwL4ZZEAS3O0gDMF
+         o8NDJvedqNuevXAlbK0EJfwzAAYFb+pFufQD/a8MXfX6oLASXbt3t9QUgrq/zozF+5U8
+         JZZhFDNkeN3FnjA/+aMJoE82mP6bSw4M1luoZjUkf0sqH8pYNOpm92+kSqzFioNHVdMa
+         YDvLQolrYKUc6roLNUyNvk9dCO/2L7zOYdAeAb+DleNBBtIZBFrvNzsviElJelwjKqpO
+         vLb8tu62EIVI9cof5egwxuiUEjQJwkbAjDFXjhYC7smV8MGdR8Za1Bv0dnzpySyaKeuR
+         dA/w==
+X-Gm-Message-State: AOAM530KPqZOz/S3xz57BZ2TS4mxamBgGZSLF9bkL0goj07Ae6mtGL1/
+        SxGzjeTdyNguiiNtn1vaLohGU7awhv8=
+X-Google-Smtp-Source: ABdhPJxlh1ihYtFSa2hkxdYyopMatC6jbdD80SMQE858q/3DidikvgrkbhDcaZEG7YAKz8XeBYnEng==
+X-Received: by 2002:a17:902:8ec9:b029:e6:c5e:cf18 with SMTP id x9-20020a1709028ec9b02900e60c5ecf18mr11465115plo.47.1616702057095;
+        Thu, 25 Mar 2021 12:54:17 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:3991:e59d:d2d4:59dd])
+        by smtp.gmail.com with ESMTPSA id p1sm6576942pfn.22.2021.03.25.12.54.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 12:54:15 -0700 (PDT)
+Date:   Thu, 25 Mar 2021 12:54:12 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [GIT PULL] Immutable branch between MFD and Input due for the
+ v5.13 merge window
+Message-ID: <YFzqZJeYd4nkF89C@google.com>
+References: <cover.1611653995.git.cristian.ciocaltea@gmail.com>
+ <20210309135302.GP4931@dell>
+ <20210309200417.GZ4931@dell>
+ <20210310111250.GM701493@dell>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210310111250.GM701493@dell>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 12:18:38PM +0100, Christophe Leroy wrote:
+Hi Lee,
+
+On Wed, Mar 10, 2021 at 11:12:50AM +0000, Lee Jones wrote:
+> On Tue, 09 Mar 2021, Lee Jones wrote:
 > 
-> 
-> Le 03/03/2021 à 18:57, Will Deacon a écrit :
-> > On Tue, Mar 02, 2021 at 05:25:22PM +0000, Christophe Leroy wrote:
-> > > Most architectures have similar boot command line manipulation
-> > > options. This patchs adds the definition in init/Kconfig, gated by
-> > > CONFIG_HAVE_CMDLINE that the architectures can select to use them.
+> > On Tue, 09 Mar 2021, Lee Jones wrote:
+> > 
+> > > Enjoy!
 > > > 
-> > > In order to use this, a few architectures will have to change their
-> > > CONFIG options:
-> > > - riscv has to replace CMDLINE_FALLBACK by CMDLINE_FROM_BOOTLOADER
-> > > - architectures using CONFIG_CMDLINE_OVERRIDE or
-> > > CONFIG_CMDLINE_OVERWRITE have to replace them by CONFIG_CMDLINE_FORCE.
+> > > The following changes since commit fe07bfda2fb9cdef8a4d4008a409bb02f35f1bd8:
 > > > 
-> > > Architectures also have to define CONFIG_DEFAULT_CMDLINE.
+> > >   Linux 5.12-rc1 (2021-02-28 16:05:19 -0800)
 > > > 
-> > > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> > > ---
-> > >   init/Kconfig | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++
-> > >   1 file changed, 56 insertions(+)
+> > > are available in the Git repository at:
 > > > 
-> > > diff --git a/init/Kconfig b/init/Kconfig
-> > > index 22946fe5ded9..a0f2ad9467df 100644
-> > > --- a/init/Kconfig
-> > > +++ b/init/Kconfig
-> > > @@ -117,6 +117,62 @@ config INIT_ENV_ARG_LIMIT
-> > >   	  Maximum of each of the number of arguments and environment
-> > >   	  variables passed to init from the kernel command line.
-> > > +config HAVE_CMDLINE
-> > > +	bool
-> > > +
-> > > +config CMDLINE_BOOL
-> > > +	bool "Default bootloader kernel arguments"
-> > > +	depends on HAVE_CMDLINE
-> > > +	help
-> > > +	  On some platforms, there is currently no way for the boot loader to
-> > > +	  pass arguments to the kernel. For these platforms, you can supply
-> > > +	  some command-line options at build time by entering them here.  In
-> > > +	  most cases you will need to specify the root device here.
+> > >   git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-input-v5.13
+> > > 
+> > > for you to fetch changes up to b58c808ca46c163c1924ec5d3285e67e9217ec74:
+> > > 
+> > >   MAINTAINERS: Add entry for ATC260x PMIC (2021-03-09 13:50:39 +0000)
+> > > 
+> > > ----------------------------------------------------------------
+> > > Immutable branch between MFD and Input due for the v5.13 merge window
+> > > 
+> > > ----------------------------------------------------------------
+> > > Cristian Ciocaltea (4):
+> > >       dt-bindings: input: Add reset-time-sec common property
+> > >       dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+> > >       mfd: Add MFD driver for ATC260x PMICs
+> > >       input: atc260x: Add onkey driver for ATC260x PMICs
+> > > 
+> > > Manivannan Sadhasivam (1):
+> > >       MAINTAINERS: Add entry for ATC260x PMIC
+> > > 
+> > >  Documentation/devicetree/bindings/input/input.yaml |   7 +
+> > >  .../devicetree/bindings/mfd/actions,atc260x.yaml   | 183 ++++++++++++
+> > >  MAINTAINERS                                        |  12 +
+> > >  drivers/input/misc/Kconfig                         |  11 +
+> > >  drivers/input/misc/Makefile                        |   2 +-
+> > >  drivers/input/misc/atc260x-onkey.c                 | 305 ++++++++++++++++++++
+> > >  drivers/mfd/Kconfig                                |  18 ++
+> > >  drivers/mfd/Makefile                               |   3 +
+> > >  drivers/mfd/atc260x-core.c                         | 310 +++++++++++++++++++++
+> > >  drivers/mfd/atc260x-i2c.c                          |  64 +++++
+> > >  include/linux/mfd/atc260x/atc2603c.h               | 281 +++++++++++++++++++
+> > >  include/linux/mfd/atc260x/atc2609a.h               | 308 ++++++++++++++++++++
+> > >  include/linux/mfd/atc260x/core.h                   |  58 ++++
+> > >  13 files changed, 1561 insertions(+), 1 deletion(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > >  create mode 100644 drivers/input/misc/atc260x-onkey.c
+> > >  create mode 100644 drivers/mfd/atc260x-core.c
+> > >  create mode 100644 drivers/mfd/atc260x-i2c.c
+> > >  create mode 100644 include/linux/mfd/atc260x/atc2603c.h
+> > >  create mode 100644 include/linux/mfd/atc260x/atc2609a.h
+> > >  create mode 100644 include/linux/mfd/atc260x/core.h
 > > 
-> > Why is this needed as well as CMDLINE_FROM_BOOTLOADER? IIUC, the latter
-> > will use CONFIG_CMDLINE if it fails to get anything from the bootloader,
-> > which sounds like the same scenario.
+> > FYI, if anyone has pulled this, they should probably rebase it onto
+> > v5.12-rc2 and delete the v5.12-rc1 tag from their tree:
 > > 
-> > > +config CMDLINE
-> > > +	string "Initial kernel command string"
-> > 
-> > s/Initial/Default
-> > 
-> > which is then consistent with the rest of the text here.
-> > 
-> > > +	depends on CMDLINE_BOOL
-> > 
-> > Ah, so this is a bit different and I don't think lines-up with the
-> > CMDLINE_BOOL help text.
-> > 
-> > > +	default DEFAULT_CMDLINE
-> > > +	help
-> > > +	  On some platforms, there is currently no way for the boot loader to
-> > > +	  pass arguments to the kernel. For these platforms, you can supply
-> > > +	  some command-line options at build time by entering them here.  In
-> > > +	  most cases you will need to specify the root device here.
-> > 
-> > (same stale text)
-> > 
-> > > +choice
-> > > +	prompt "Kernel command line type" if CMDLINE != ""
-> > > +	default CMDLINE_FROM_BOOTLOADER
-> > > +	help
-> > > +	  Selects the way you want to use the default kernel arguments.
-> > 
-> > How about:
-> > 
-> > "Determines how the default kernel arguments are combined with any
-> >   arguments passed by the bootloader"
-> > 
-> > > +config CMDLINE_FROM_BOOTLOADER
-> > > +	bool "Use bootloader kernel arguments if available"
-> > > +	help
-> > > +	  Uses the command-line options passed by the boot loader. If
-> > > +	  the boot loader doesn't provide any, the default kernel command
-> > > +	  string provided in CMDLINE will be used.
-> > > +
-> > > +config CMDLINE_EXTEND
-> > 
-> > Can we rename this to CMDLINE_APPEND, please? There is code in the tree
-> > which disagrees about what CMDLINE_EXTEND means, so that will need be
-> > to be updated to be consistent (e.g. the EFI stub parsing order). Having
-> > the generic option with a different name means we won't accidentally end
-> > up with the same inconsistent behaviours.
+> >  https://lwn.net/Articles/848431/
 > 
-> Argh, yes. Seems like the problem is even larger than that IIUC:
+> In case you haven't pulled this yet, I created a new tag:
 > 
-> - For ARM it means to append the bootloader arguments to the CONFIG_CMDLINE
-> - For Powerpc it means to append the CONFIG_CMDLINE to the bootloader arguments
-> - For SH  it means to append the CONFIG_CMDLINE to the bootloader arguments
-> - For EFI it means to append the bootloader arguments to the CONFIG_CMDLINE
-> - For OF it means to append the CONFIG_CMDLINE to the bootloader arguments
-> 
-> So what happens on ARM for instance when it selects CONFIG_OF for instance ?
+>   ib-mfd-input-v5.13-1
 
-I think ARM gets different behaviour depending on whether it uses ATAGs or
-FDT.
+Did you push this one out? I can't seem to see it.
 
-> Or should we consider that EXTEND means APPEND or PREPEND, no matter which ?
-> Because EXTEND is for instance used for:
-> 
-> 	config INITRAMFS_FORCE
-> 		bool "Ignore the initramfs passed by the bootloader"
-> 		depends on CMDLINE_EXTEND || CMDLINE_FORCE
+Thanks.
 
-Oh man, I didn't spot that one :(
-
-I think I would make the generic options explicit: either APPEND or PREPEND.
-Then architectures which choose to define CMDLINE_EXTEND in their Kconfigs
-can select the generic option that matches their behaviour.
-
-INITRAMFS_FORCE sounds like it should depend on APPEND (assuming that means
-CONFIG_CMDLINE is appended to the bootloader arguments).
-
-Will
+-- 
+Dmitry
