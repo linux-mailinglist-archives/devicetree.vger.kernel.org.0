@@ -2,201 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31DB734945B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:42:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50758349487
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbhCYOl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 10:41:27 -0400
-Received: from foss.arm.com ([217.140.110.172]:51400 "EHLO foss.arm.com"
+        id S230512AbhCYOta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 10:49:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53440 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231299AbhCYOlS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 10:41:18 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 34164143D;
-        Thu, 25 Mar 2021 07:41:18 -0700 (PDT)
-Received: from C02TD0UTHF1T.local (unknown [10.57.22.175])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 080ED3F792;
-        Thu, 25 Mar 2021 07:41:15 -0700 (PDT)
-Date:   Thu, 25 Mar 2021 14:41:13 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>,
+        id S230078AbhCYOtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 10:49:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 837F7619F9;
+        Thu, 25 Mar 2021 14:49:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616683753;
+        bh=g2ZlXDmeEeZxEkxEnqAn7onjv8xh5BForWiFk2ex04U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=B7AXfE4jFRrobfpRw2FaAYKC6MvyXtU6obWFBYkN0lGwjbQiFaLragEzkHbZItBws
+         QBand/1dIuqMlS8nHo0I+YXxuG4FUSBqCuL4lSjtB1KNR8ZC5A0dHPTgjp6C4Oj477
+         YGYoQaHRwjTqkyAUy9nju41KQckd840sj7rAx2b0qbeWS73PVSRLi5XxftNFChRgBj
+         A74iOhWJ7Z2hED2cBG6LJSpp0VhA5RVDGFxCz/bh5Feg/yMuNLIKAvIJSpdBVn+DEc
+         g38Q/XF19LYytoglY1yJyqNca2iKkNPAL5ceWnMOmYHNen+O1Ivl6iLodMdhA7We0k
+         rrMK1jKks2Uxg==
+Date:   Thu, 25 Mar 2021 14:49:06 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
         Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Kelley <mikelley@microsoft.com>
-Subject: Re: [PATCH v5 2/7] arm64: smccc: Add support for SMCCCv1.2
- input/output registers
-Message-ID: <20210325144113.GB41100@C02TD0UTHF1T.local>
-References: <20210325143255.1532452-1-sudeep.holla@arm.com>
- <20210325143255.1532452-3-sudeep.holla@arm.com>
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [RFT PATCH v3 08/27] asm-generic/io.h: Add a non-posted variant
+ of ioremap()
+Message-ID: <20210325144905.GA15109@willie-the-truck>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-9-marcan@marcan.st>
+ <20210324181210.GB13181@willie-the-truck>
+ <CAK8P3a0913Hs4VfHjdDY1WTAQvMzC83LJcP=9zeE0C-terfBhA@mail.gmail.com>
+ <9e510158-551a-3feb-bdba-17e070f12a8e@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210325143255.1532452-3-sudeep.holla@arm.com>
+In-Reply-To: <9e510158-551a-3feb-bdba-17e070f12a8e@marcan.st>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+On Thu, Mar 25, 2021 at 11:07:40PM +0900, Hector Martin wrote:
+> On 25/03/2021 04.09, Arnd Bergmann wrote:
+> > On Wed, Mar 24, 2021 at 7:12 PM Will Deacon <will@kernel.org> wrote:
+> > > 
+> > > > +/*
+> > > > + * ioremap_np needs an explicit architecture implementation, as it
+> > > > + * requests stronger semantics than regular ioremap(). Portable drivers
+> > > > + * should instead use one of the higher-level abstractions, like
+> > > > + * devm_ioremap_resource(), to choose the correct variant for any given
+> > > > + * device and bus. Portable drivers with a good reason to want non-posted
+> > > > + * write semantics should always provide an ioremap() fallback in case
+> > > > + * ioremap_np() is not available.
+> > > > + */
+> > > > +#ifndef ioremap_np
+> > > > +#define ioremap_np ioremap_np
+> > > > +static inline void __iomem *ioremap_np(phys_addr_t offset, size_t size)
+> > > > +{
+> > > > +     return NULL;
+> > > > +}
+> > > > +#endif
+> > > 
+> > > Can we implement the generic pci_remap_cfgspace() in terms of ioremap_np()
+> > > if it is supported by the architecture? That way, we could avoid defining
+> > > both on arm64.
+> > 
+> > Good idea. It needs a fallback in case the ioremap_np() fails on most
+> > architectures, but that sounds easy enough.
+> > 
+> > Since pci_remap_cfgspace() only has custom implementations, it sounds like
+> > we can actually make the generic implementation unconditional in the end,
+> > but that requires adding ioremap_np() on 32-bit as well, and I would keep
+> > that separate from this series.
+> 
+> Sounds good; I'm adding a patch to adjust the generic implementation and
+> remove the arm64 one in v4, and we can then complete the cleanup for other
+> arches later.
 
-On Thu, Mar 25, 2021 at 02:32:50PM +0000, Sudeep Holla wrote:
-> SMCCC v1.2 allows x8-x17 to be used as parameter registers and x4—x17
-> to be used as result registers in SMC64/HVC64. Arm Firmware Framework
-> for Armv8-A specification makes use of x0-x7 as parameter and result
-> registers.
-> 
-> Current SMCCC interface in the kernel just use x0-x7 as parameter and
-> x0-x3 as result registers. Let us add new interface to support x0-x7
-> as parameter and result registers. This can be extended to include
-> x8-x17 when there are users for the same.
+Cheers. Don't forget to update the comment in the generic code which
+complains about the lack of an ioremap() API for non-posted writes ;)
 
-Michael Kelley is also looking at using SMCCCv1.2, and on his HyperV
-thread I'd suggested we should deal with the whole set of SMCCCv1.2
-registers now to avoid future churn in this area (using struct both for
-the arguments and return values).
-
-How painful would it be to extend this patch to do that?
-
-Thanks,
-Mark.
-
-> 
-> Tested-by: Jens Wiklander <jens.wiklander@linaro.org>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  arch/arm64/kernel/asm-offsets.c |  4 +++
->  arch/arm64/kernel/smccc-call.S  | 22 +++++++++++++++
->  include/linux/arm-smccc.h       | 50 +++++++++++++++++++++++++++++++++
->  3 files changed, 76 insertions(+)
-> 
-> Hi Will/Catalin,
-> 
-> I seemed to have missed you on these patches. I realised only when I was
-> collecting Acks to get this series merged. The change here is simple, it
-> would be good if you can review and ack if you are OK with it so that I
-> can get the serier merged via ARM SoC.
-> 
-> diff --git a/arch/arm64/kernel/asm-offsets.c b/arch/arm64/kernel/asm-offsets.c
-> index a36e2fc330d4..57ffea2920b8 100644
-> --- a/arch/arm64/kernel/asm-offsets.c
-> +++ b/arch/arm64/kernel/asm-offsets.c
-> @@ -132,6 +132,10 @@ int main(void)
->    DEFINE(ARM_SMCCC_RES_X2_OFFS,		offsetof(struct arm_smccc_res, a2));
->    DEFINE(ARM_SMCCC_QUIRK_ID_OFFS,	offsetof(struct arm_smccc_quirk, id));
->    DEFINE(ARM_SMCCC_QUIRK_STATE_OFFS,	offsetof(struct arm_smccc_quirk, state));
-> +  DEFINE(ARM_SMCCC_V1_2_RES_X0_OFFS,	offsetof(struct arm_smccc_v1_2_res, a0));
-> +  DEFINE(ARM_SMCCC_V1_2_RES_X2_OFFS,	offsetof(struct arm_smccc_v1_2_res, a2));
-> +  DEFINE(ARM_SMCCC_V1_2_RES_X4_OFFS,	offsetof(struct arm_smccc_v1_2_res, a4));
-> +  DEFINE(ARM_SMCCC_V1_2_RES_X6_OFFS,	offsetof(struct arm_smccc_v1_2_res, a6));
->    BLANK();
->    DEFINE(HIBERN_PBE_ORIG,	offsetof(struct pbe, orig_address));
->    DEFINE(HIBERN_PBE_ADDR,	offsetof(struct pbe, address));
-> diff --git a/arch/arm64/kernel/smccc-call.S b/arch/arm64/kernel/smccc-call.S
-> index d62447964ed9..0ea15c1742f3 100644
-> --- a/arch/arm64/kernel/smccc-call.S
-> +++ b/arch/arm64/kernel/smccc-call.S
-> @@ -43,3 +43,25 @@ SYM_FUNC_START(__arm_smccc_hvc)
->  	SMCCC	hvc
->  SYM_FUNC_END(__arm_smccc_hvc)
->  EXPORT_SYMBOL(__arm_smccc_hvc)
-> +
-> +	.macro SMCCC_v1_2 instr
-> +	.cfi_startproc
-> +	\instr #0
-> +	ldr x8, [sp]
-> +	stp x0, x1, [x8, #ARM_SMCCC_V1_2_RES_X0_OFFS]
-> +	stp x2, x3, [x8, #ARM_SMCCC_V1_2_RES_X2_OFFS]
-> +	stp x4, x5, [x8, #ARM_SMCCC_V1_2_RES_X4_OFFS]
-> +	stp x6, x7, [x8, #ARM_SMCCC_V1_2_RES_X6_OFFS]
-> +	ret
-> +	.cfi_endproc
-> +.endm
-> +
-> +SYM_FUNC_START(arm_smccc_v1_2_hvc)
-> +	SMCCC_v1_2 hvc
-> +SYM_FUNC_END(arm_smccc_v1_2_hvc)
-> +EXPORT_SYMBOL(arm_smccc_v1_2_hvc)
-> +
-> +SYM_FUNC_START(arm_smccc_v1_2_smc)
-> +	SMCCC_v1_2 smc
-> +SYM_FUNC_END(arm_smccc_v1_2_smc)
-> +EXPORT_SYMBOL(arm_smccc_v1_2_smc)
-> diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
-> index 62c54234576c..0b8fa285a054 100644
-> --- a/include/linux/arm-smccc.h
-> +++ b/include/linux/arm-smccc.h
-> @@ -186,6 +186,56 @@ struct arm_smccc_res {
->  	unsigned long a3;
->  };
->  
-> +#ifdef CONFIG_ARM64
-> +/* TODO Need to implement for ARM too */
-> +/**
-> + * struct arm_smccc_v1_2_res - Result from SMC/HVC call
-> + * @a0-a7 result values from registers 0 to 7
-> + */
-> +struct arm_smccc_v1_2_res {
-> +	unsigned long a0;
-> +	unsigned long a1;
-> +	unsigned long a2;
-> +	unsigned long a3;
-> +	unsigned long a4;
-> +	unsigned long a5;
-> +	unsigned long a6;
-> +	unsigned long a7;
-> +};
-> +
-> +/**
-> + * arm_smccc_v1_2_hvc() - make HVC calls
-> + * @a0-a7: arguments passed in registers 0 to 7
-> + * @res: result values from registers 0 to 7
-> + *
-> + * This function is used to make HVC calls following SMC Calling Convention
-> + * v1.2 or above. The content of the supplied param are copied to registers
-> + * 0 to 7 prior to the HVC instruction. The return values are updated with
-> + * the content from register 0 to 7 on return from the HVC instruction.
-> + */
-> +asmlinkage
-> +void arm_smccc_v1_2_hvc(unsigned long a0, unsigned long a1, unsigned long a2,
-> +			unsigned long a3, unsigned long a4, unsigned long a5,
-> +			unsigned long a6, unsigned long a7,
-> +			struct arm_smccc_v1_2_res  *res);
-> +
-> +/**
-> + * arm_smccc_v1_2_smc() - make SMC calls
-> + * @a0-a7: arguments passed in registers 0 to 7
-> + * @res: result values from registers 0 to 7
-> + *
-> + * This function is used to make SMC calls following SMC Calling Convention
-> + * v1.2 or above. The content of the supplied param are copied to registers
-> + * 0 to 7 prior to the SMC instruction. The return values are updated with
-> + * the content from register 0 to 7 on return from the SMC instruction.
-> + */
-> +asmlinkage
-> +void arm_smccc_v1_2_smc(unsigned long a0, unsigned long a1, unsigned long a2,
-> +			unsigned long a3, unsigned long a4, unsigned long a5,
-> +			unsigned long a6, unsigned long a7,
-> +			struct arm_smccc_v1_2_res  *res);
-> +#endif
-> +
->  /**
->   * struct arm_smccc_quirk - Contains quirk information
->   * @id: quirk identification
-> -- 
-> 2.25.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Will
