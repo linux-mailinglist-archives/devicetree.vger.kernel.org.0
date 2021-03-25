@@ -2,77 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B913349CF1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 00:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98845349CEE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 00:35:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231338AbhCYXgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 19:36:05 -0400
-Received: from bosmailout06.eigbox.net ([66.96.189.6]:56749 "EHLO
-        bosmailout06.eigbox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbhCYXfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 19:35:43 -0400
-X-Greylist: delayed 1826 seconds by postgrey-1.27 at vger.kernel.org; Thu, 25 Mar 2021 19:35:43 EDT
-Received: from bosmailscan03.eigbox.net ([10.20.15.3])
-        by bosmailout06.eigbox.net with esmtp (Exim)
-        id 1lPZ2T-0005hK-6r; Thu, 25 Mar 2021 19:05:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=gomangoenterprises.com; s=dkim; h=Sender:Content-Transfer-Encoding:
-        Content-Type:Message-ID:Reply-To:Subject:To:From:Date:MIME-Version:Cc:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=+811ws69aqxMKZdfZMN9xAgrM7MfKI4rmAxX7Fw/9uI=; b=4QPOp95skgTVNgMkjZa+V9mlY
-        yrZBbfvZeC/IOkylWVREvHIWeldHNVWDWT+zW3Lx5bc548lUo6KHIDJ1eOMSJzSCLSI4iWjVcqdP/
-        VN844yZPbT5GRYAB3FrGTvyoc9eo5bIq2pfNPw3Sz8bPFqOT5dOOFJnh32gKzirs4AtFVFVIAx6H6
-        x4gFf/or2vBzXNda0athPLsn+t09BoshWlrkToViA8bv5prqVLSY6PTOQQNhXTkYhLYAFEeUR+QMv
-        cVVDArhUYE0+zQnuUfD4gSmBeTcUpAQlI6s5qxTlgmJEdY8DXBGS/PtGLOcBvBi21aVPVpjSrqcJR
-        NMC2oZwNA==;
-Received: from [10.115.3.32] (helo=bosimpout12)
-        by bosmailscan03.eigbox.net with esmtp (Exim)
-        id 1lPZ2K-0001cr-Q5; Thu, 25 Mar 2021 19:05:08 -0400
-Received: from boswebmail16.eigbox.net ([10.20.16.16])
-        by bosimpout12 with 
-        id kn4q2400H0Lne6201n4tHo; Thu, 25 Mar 2021 19:05:08 -0400
-X-EN-SP-DIR: OUT
-X-EN-SP-SQ: 1
-Received: from [127.0.0.1] (helo=ipage)
-        by boswebmail16.eigbox.net with esmtp (Exim)
-        id 1lPZ22-0000vx-Hq; Thu, 25 Mar 2021 19:04:50 -0400
-Received: from hosted-by.zenex5.com ([92.38.148.53])
- by emailmg.ipage.com
- with HTTP (HTTP/1.1 POST); Thu, 25 Mar 2021 19:04:50 -0400
+        id S231262AbhCYXfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 19:35:01 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:42750 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230486AbhCYXep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 19:34:45 -0400
+Received: by mail-il1-f179.google.com with SMTP id l5so3584287ilv.9
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 16:34:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pXPsmzBHrVuSmB0yCHN+zczfeKxSBQL95Ki7Pc2BtxI=;
+        b=jR8aymtTRdxilTfCtn6j25prNRy3L3+S8I3zRebfRrZOaRLveIIpHFjOSd857hJ6m9
+         Th9GlQOJyNutdZmS4fPzmcovPvUl+bGMD8tBZY+XaiBgUYsW6J2Rhnnmxb/dP5hyqtdr
+         I1WUumIbQUsCzFG5Tc45SN3vnOiLz3JG7xPvG+ywdnVghJkkJF8H5axbEPDERtcgX7n8
+         wdicR+yPMGbnQ1HMOviJHxdaNXtVlwuY5PBaHqE2Keu/ToiAkBGrMgcUiMyXcE0pUbx3
+         uw2+Cc8vvQKUQtCT4N7Dibu6D4PE/9QB7mNjbFBb3nE4iIUsA4Hr/7MPKurnXGN9Uzt0
+         /HwA==
+X-Gm-Message-State: AOAM53071JglM6VI5k9ZazScQ4P1nDYr27BFb2+/UOs0yLFu/D9J4xsa
+        MqmPBuj1SZONsUDhRRIehw==
+X-Google-Smtp-Source: ABdhPJyc/RFnNYL223Kr2b9GgV/2Q79yjW1KobuOZ/KKjFjWhRHpqvZ6A5P+6yjKhNqeFnPk80mEew==
+X-Received: by 2002:a92:cac2:: with SMTP id m2mr8383226ilq.33.1616715285324;
+        Thu, 25 Mar 2021 16:34:45 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v12sm694344ilm.42.2021.03.25.16.34.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 16:34:44 -0700 (PDT)
+Received: (nullmailer pid 1943450 invoked by uid 1000);
+        Thu, 25 Mar 2021 23:34:37 -0000
+Date:   Thu, 25 Mar 2021 17:34:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.linux.org, devicetree@vger.kernel.org,
+        cyril.jean@microchip.com, lewis.hanly@microchip.com,
+        padmarao.begari@microchip.com, conor.dooley@microchip.com,
+        david.abdurachmanov@gmail.com
+Subject: Re: [PATCH v3 2/2] clk: microchip: Add driver for Microchip
+ PolarFire SoC
+Message-ID: <20210325233437.GA1940863@robh.at.kernel.org>
+References: <20210324104351.2200605-1-daire.mcnamara@microchip.com>
+ <20210324104351.2200605-3-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-Date:   Thu, 25 Mar 2021 18:04:50 -0500
-From:   OZKAN SAHIN <michael@gomangoenterprises.com>
-To:     undisclosed-recipients:;
-Subject: Greetings to you
-Reply-To: ozkansahin.gbbva@gmail.com
-Mail-Reply-To: ozkansahin.gbbva@gmail.com
-Message-ID: <b7e5ac6d1a8e9841ea2fbd0f4442c83f@gomangoenterprises.com>
-X-Sender: michael@gomangoenterprises.com
-User-Agent: Roundcube Webmail/1.3.14
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-EN-AuthUser: michael@gomangoenterprises.com
-Sender:  OZKAN SAHIN <michael@gomangoenterprises.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210324104351.2200605-3-daire.mcnamara@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
-I'm Ozkan Sahin, a Senior Manager in the Private Banking department with 
-a REPUTABLE BANK. I'm excited to get in touch with you and to let you 
-know about this LUCRATIVE BUSINESS PROPOSAL I have for you. Please reply 
-as soon as possible if interested in the full details reply here 
-(ozkansahin.gbbva@gmail.com)
+On Wed, Mar 24, 2021 at 10:43:51AM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> Add support for clock configuration on Microchip PolarFire SoC
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  drivers/clk/Kconfig                           |   1 +
+>  drivers/clk/Makefile                          |   2 +-
+>  drivers/clk/microchip/Kconfig                 |   7 +
+>  drivers/clk/microchip/Makefile                |   6 +-
+>  drivers/clk/microchip/clk-mpfs.c              | 444 ++++++++++++++++++
 
-Since I cannot determine your willingness and because you may have 
-received my message in your Inbox, Junk/Spam folder, I have kept this 
-proposal brief. Your expedient response will be appreciated. Please keep 
-it confidential
+>  .../dt-bindings/clock/microchip,mpfs-clock.h  |  45 ++
 
-Thanks for your kind understanding!
-Awaiting your response,
-Mr.Ozkan Sahin
-Personal Banking
+This goes with the binding patch.
+
+>  6 files changed, 502 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/clk/microchip/Kconfig
+>  create mode 100644 drivers/clk/microchip/clk-mpfs.c
+>  create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
+
+
+> diff --git a/include/dt-bindings/clock/microchip,mpfs-clock.h b/include/dt-bindings/clock/microchip,mpfs-clock.h
+> new file mode 100644
+> index 000000000000..1169d4ee27c2
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/microchip,mpfs-clock.h
+> @@ -0,0 +1,45 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+Don't care about your dts with non-GPL projects?
+
+Rob
