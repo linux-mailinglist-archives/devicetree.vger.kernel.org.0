@@ -2,93 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A8734984C
+	by mail.lfdr.de (Postfix) with ESMTP id AAD9234984F
 	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:38:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbhCYRiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 13:38:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45660 "EHLO mail.kernel.org"
+        id S230147AbhCYRiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 13:38:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45722 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230097AbhCYRhm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 13:37:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 13DA461A2C;
-        Thu, 25 Mar 2021 17:37:40 +0000 (UTC)
+        id S230105AbhCYRiB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 13:38:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3D01861A28;
+        Thu, 25 Mar 2021 17:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616693861;
-        bh=1g0ymfKKeil9RN/uPQNtw7qS+3W7ggqGXapUCg0NkV0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kEfGfakWKp7ciHKy0udBHqlqmjlANfUTku7KpJ/sgEjH7iUge9hHR/C+qRjvIDnY9
-         begDphefk0w0XugDXIJZPxUUce3tMuf5GPtrJqmB+YKqbs9jHxNHApLimYsOnvBJsG
-         nh5mdvLe7JSKmb5PiRcpdrJBN8zSlK0m4pk9uPQHZXKNgNIskyPfzDOoDvLnOrkCtn
-         jRJhYwEvfhwTaSoY9RzO1AxgKIMN7/1DP6Rs+dqV4Naw8pWN2lC266o7kqULO6BtpT
-         qM8/+Dpi+QH+GVK/4H2zZwg9zXbqwnY4ipIBECN2S5O5FyO0u+1bleZp/zGhN4s/FZ
-         +rCyuY2Sv/qyA==
-From:   Mark Brown <broonie@kernel.org>
-To:     tiwai@suse.com, perex@perex.cz, festevam@gmail.com,
-        Xiubo.Lee@gmail.com, devicetree@vger.kernel.org,
-        nicoleotsuka@gmail.com, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, timur@kernel.org,
-        alsa-devel@alsa-project.org, Shengjiu Wang <shengjiu.wang@nxp.com>,
-        lgirdwood@gmail.com, robh+dt@kernel.org
-Cc:     Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v5 0/6] Add audio driver base on rpmsg on i.MX platform
-Date:   Thu, 25 Mar 2021 17:37:08 +0000
-Message-Id: <161669370551.41585.13939031002896940550.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1615516725-4975-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1615516725-4975-1-git-send-email-shengjiu.wang@nxp.com>
+        s=k20201202; t=1616693881;
+        bh=kLU4dMuIpS+s+W/i7Bpf406Q9DoXN9YHgPK4PWuvqqw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i7F02zsvW5dF2qOyc0dqsQKG32TjW3bT97zlZn+2iAnDga/2TG37hUAE/4J3bXFcl
+         HVA07BhW1NVdoJ05AOUQ9hfTidbZzhSpcaL65eedcLytYKRRrTornGWQo2WgqHIjD1
+         fGK/+tkAohjvKGMZiKht+liPFkHq/o4mQuOGq+DY1HqwwtiO7JLt+Bm4dLC1mQIB1J
+         qiJFP4X9DxYvO/LoezN/z+SfcOBml/5kJa/E/Qmj61gKhAYcxm+uewRWx7jNzZQudn
+         pjOBfCV5bvYS6e/90TadJdfPWpnuvnM/Ta4Z9cDUyJN55iJ6EhSl9M0yGvGlL20kYt
+         2CcHyVUXG1frg==
+Date:   Thu, 25 Mar 2021 17:37:53 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     joro@8bytes.org, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com
+Subject: Re: [PATCH v13 01/10] iommu: Fix comment for struct iommu_fwspec
+Message-ID: <20210325173753.GC15504@willie-the-truck>
+References: <20210302092644.2553014-1-jean-philippe@linaro.org>
+ <20210302092644.2553014-2-jean-philippe@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210302092644.2553014-2-jean-philippe@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Mar 2021 10:38:39 +0800, Shengjiu Wang wrote:
-> On Asymmetric multiprocessor, there is Cortex-A core and Cortex-M core,
-> Linux is running on A core, RTOS is running on M core.
-> The audio hardware device can be controlled by Cortex-M device,
-> So audio playback/capture can be handled by M core.
+On Tue, Mar 02, 2021 at 10:26:37AM +0100, Jean-Philippe Brucker wrote:
+> Commit 986d5ecc5699 ("iommu: Move fwspec->iommu_priv to struct
+> dev_iommu") removed iommu_priv from fwspec and commit 5702ee24182f
+> ("ACPI/IORT: Check ATS capability in root complex nodes") added @flags.
+> Update the struct doc.
 > 
-> Rpmsg is the interface for sending and receiving msg to and from M
-> core, that we can create a virtual sound on Cortex-A core side.
-> 
-> [...]
+> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+>  include/linux/iommu.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied to
+Acked-by: Will Deacon <will@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/6] ASoC: soc-component: Add snd_soc_pcm_component_ack
-      commit: 8bdfc0455e3a59e2c1207a56be22e910fae0e0d5
-[2/6] ASoC: fsl_rpmsg: Add CPU DAI driver for audio base on rpmsg
-      commit: b73d9e6225e86492f6a901223a34ecfa7b55c178
-[3/6] ASoC: dt-bindings: fsl_rpmsg: Add binding doc for rpmsg audio device
-      commit: 49c6bf62498344fa8f8af2314231f3eb37e0e150
-[4/6] ASoC: imx-audio-rpmsg: Add rpmsg_driver for audio channel
-      commit: 1935050de0b6c6c961e9de51d5b5d05642f861f1
-[5/6] ASoC: imx-pcm-rpmsg: Add platform driver for audio base on rpmsg
-      commit: 3c00eceb2a5391ed1ca6703b71cad35ab8cd4352
-[6/6] ASoC: imx-rpmsg: Add machine driver for audio base on rpmsg
-      commit: 39f8405c3e502e7b9d0533fa0b0bfe715b3e89c1
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Will
