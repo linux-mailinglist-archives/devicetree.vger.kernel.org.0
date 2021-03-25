@@ -2,255 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C1E349A3C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 20:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E6D349A4E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 20:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbhCYT2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 15:28:24 -0400
-Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:43873 "EHLO
-        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230187AbhCYT2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 15:28:08 -0400
-Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12PJQTYa008186;
-        Thu, 25 Mar 2021 15:28:02 -0400
-Received: from can01-qb1-obe.outbound.protection.outlook.com (mail-qb1can01lp2057.outbound.protection.outlook.com [104.47.60.57])
-        by mx0c-0054df01.pphosted.com with ESMTP id 37ddy6a5mu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 Mar 2021 15:28:02 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h09jTiV+rD4TnjoQTOcN0ILuzuEIeda5THGDqZQc1qr41hzh0mc+sRrmnP5UW5ri3mRDgeUQ86a2ChhRZrVNFcm6rAqp21EhnAAVohNYqbd6Y/tslHIgWAahcTkEbDHO7rLjx6VGcjHUK3GIo6hTx3ORIwBfsASUBQyCcR3chaQKDqvLFjlc/316eBMm07XOt2XX+NXmRLZ+X/3FOFnpMpacIJj4ATWq/Fhu/QpgEwwQUzzglHdp9tuQJwsRswq1ZgXaV+nxt4Ajq1uQf5+PAzTJukO1MIX6zmOq8shQrD4GY5sB5sfkYzCSRsvDpwNhoYLt3AajhfIdNvL7ciKSgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+wZiGSh5qg/COXvGPS4DWFgp5zPALcLj2WELUomvko=;
- b=mED/N7QrKyz0XgJaPdid1BpKWnTWOxGN2uJZs9ZUvVBJKOasGitoihxG/K2DVfDct6+Ba2RZW5L2rUmG+zZh/bejTq3e7FLgmuXDGmG8dD48OiGGeFwkgDtmaTziw1HPJo7rR1zijP2XC8MFAYbpsPMxBTe0jMYne8WwU4n4ROg4zJSSuTNUxkrwRjo6W8VLmf8nQ0iuVfHr2X/KtUzoJI9X7hTUDIa9KlxbdmiaeP//gr0oqPiDodtsJrTOGt7EHbU2eKp8yjauab6NPByiT7TClbgx9p06wutianRqwwb3ujXI/6WgziFkGOPfrrQcqacoaeFTCkW7b5KIibLecQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=calian.com; dmarc=pass action=none header.from=calian.com;
- dkim=pass header.d=calian.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+wZiGSh5qg/COXvGPS4DWFgp5zPALcLj2WELUomvko=;
- b=uwkA5yu0WJlpcbHTQwjgoKTjo/xD1WaLlUgX6cpVcmkCHlTvHgeeiqxn0y3w7hL1EGSSNThm3MmcDzuWeVNAzxt9EhCY+BLDuai7ziO1Wt0jNLgfINUsvFNFoQ5ka1BhMQuxPid+x0jipot7kpfN+4TE2T/Q+dbTe/j1TDdBuAg=
-Authentication-Results: baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=none action=none header.from=calian.com;
-Received: from YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:f::20)
- by YT1PR01MB2793.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24; Thu, 25 Mar
- 2021 19:28:01 +0000
-Received: from YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::90d4:4d5b:b4c2:fdeb]) by YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::90d4:4d5b:b4c2:fdeb%7]) with mapi id 15.20.3955.027; Thu, 25 Mar 2021
- 19:28:01 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org
-Cc:     mike.looijmans@topic.nl, robh+dt@kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>
-Subject: [PATCH v3 9/9] clk: si5341: Add sysfs properties to allow checking/resetting device faults
-Date:   Thu, 25 Mar 2021 13:26:43 -0600
-Message-Id: <20210325192643.2190069-10-robert.hancock@calian.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210325192643.2190069-1-robert.hancock@calian.com>
-References: <20210325192643.2190069-1-robert.hancock@calian.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [204.83.154.189]
-X-ClientProxiedBy: MWHPR17CA0049.namprd17.prod.outlook.com
- (2603:10b6:300:93::11) To YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:f::20)
+        id S230175AbhCYTcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 15:32:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51504 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229629AbhCYTcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 15:32:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 43EF861A39;
+        Thu, 25 Mar 2021 19:32:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616700742;
+        bh=wPQ5Sea1VKNbkcHcSE2wOkcPab+jTWd/uy3MX0n6t8Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qhPz13AMwoqBiPYoRSp+sOrqs8xLR1phPnSElfXaT3SrbfZRHiaZgO6D7YxgFZFFB
+         oYa7bMFovpREENQs5jwQgUYDLkzu2gcrVCPDsaBy6SzeQvaW1qrofhoLHr6Wq6E1CS
+         KMdfhVDAoQwH/bhQKHL6qSPnxH+MpGsDZdurCpwfuSeXSV6DGHtZ9Fdftq9PoXLTtS
+         VR152Oo7hAfi8Zdxu/F1l7A4k8xXQKOqYBWtJAYNCqivBoeVVWU4ZgtKVn4Gt+lrBU
+         bmmEoQwh5ps8MzGegpOwIpYOQNtaD7Lg+t46gFEMs2T6iX+7F6kF2hWshOdydJPQ3n
+         9ZQrmixlOTDcA==
+Date:   Thu, 25 Mar 2021 19:32:17 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
+        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] cmdline: Gives architectures opportunity to use
+ generically defined boot cmdline manipulation
+Message-ID: <20210325193216.GC16123@willie-the-truck>
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <2eb6fad3470256fff5c9f33cd876f344abb1628b.1614705851.git.christophe.leroy@csgroup.eu>
+ <20210303175747.GD19713@willie-the-truck>
+ <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (204.83.154.189) by MWHPR17CA0049.namprd17.prod.outlook.com (2603:10b6:300:93::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.29 via Frontend Transport; Thu, 25 Mar 2021 19:27:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eb4c511e-0ad7-4baa-19bb-08d8efc41a60
-X-MS-TrafficTypeDiagnostic: YT1PR01MB2793:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <YT1PR01MB2793251CBD05A8A20A56A68CEC629@YT1PR01MB2793.CANPRD01.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VfWQFIQgufPIOecXV3Dd7iaqFJQUH4gntEBV96mzWqb/0MiYrprk9FXtFZNy7m5gl1T07JMNbMfzhSh+3e/pzNu0cQoRQeOMhCuExAxirpVaxuENSxyyH40rayJfOamzg5/vu/asyAOtvAMfBbDlboy20RMiVYi9Ug8u8d93G0rx4D/aInVqHEJG/yeMNJvKdwA/MbSIqYcJe/rL39SlIezZXTf9cvSJT2uH2BmKkRHHYXsYvd04U/+uvGTyFmq5xQpX8luHv/JD8ed5aEEiSkdYt2QlngFhuwskEJwEa3Nq5n8D0iQJFyVEBv4o9vsIZb16aZKQVXRyKlE5c7tkUI62LZkxFAOR01SiIJsbGl8os+/zb07N13vUC/jbPZcGveT7dKfejrcMiW8efBlClTJjkYSd/HOOVYTRfLzhda3UWui7gEQWuCAynGJLttz6co0Z0z6twNd/xNzgTfED/tcU/FgsL2wk6l4e00+VU+e4Bp67x/rEGwa3nZ7PQGod/mO5a71FimRo04NxGs/seAacG8d39fS8b96kCJ4YsX0+9SZVoqEvucfgjbxivgsC2tdV0vEBkiEBXVLStsmTATI11XCchj7QB07g4iTLFQ1+7JLOzi22UcY8EF03WVr4ay6/W5Uu4yN/qTJ0VucWDrqz9pqpkXaAHnQVp4u60DoXzuGv7B3gBwpt0Nax6sUa
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(396003)(366004)(39850400004)(16526019)(1076003)(44832011)(2906002)(66946007)(6512007)(26005)(8676002)(66476007)(52116002)(316002)(6506007)(69590400012)(66556008)(186003)(2616005)(956004)(107886003)(86362001)(38100700001)(4326008)(478600001)(6666004)(5660300002)(6486002)(36756003)(8936002)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?LrBnFEZGPdpxEHtKiOhY5c9aVEv9H93DA3cwao3B6spjwNxwqt67n7tMTWPA?=
- =?us-ascii?Q?T/hfPZ4kw77xmtFlW5SEjXU0j31D7VZDgD/pszoQ8t11WBPNn0ElX6+1Jtqt?=
- =?us-ascii?Q?ZdW0Nq2cu8rIxlEe/qz7lhR7J2TVDXVeD7uyiEX1qd6BuMyHEqsfKiuiG8Sn?=
- =?us-ascii?Q?IUNwNkFrdL89efQ6L66F0l2YvFO5ed6z3SiJY1KCbe+laLL0WThJ0updcf+C?=
- =?us-ascii?Q?tIu/a0TipktYQs+qwWvWaver80jaJhQWqj7eG7dCnElQYxIysqa5kqYn2PX1?=
- =?us-ascii?Q?M+rFfmKN1TMIwMSUW2AVojHoBaAiEF6brBiuv0mRu3UvDy7cUB9J1CNjzSMc?=
- =?us-ascii?Q?cihHJnXycdzDw9XK+18xpTd+YkIFILjTa5QYZWxC2FMfiAYRS3W8XHfbOTPG?=
- =?us-ascii?Q?2Q82ayojqGqFJEn5unWkmPZwkWOrxH08WOwrNOYWJpPp/x6/bAFs71ZBBS8z?=
- =?us-ascii?Q?9so8n15vMwLZlvkUtRe+JZrzMzoPrK4f+TA1NBVbbveU0dJ7TlkBO0u2U+rg?=
- =?us-ascii?Q?aPgqW8qd0w8+pVeqIN1v47GcGfiD9pDOoQWNefH43Ghxj5mwYDF9cc2hMlH8?=
- =?us-ascii?Q?nGBw3WwiPO4y+4meMnPXU/tR8upCUJviXdXtpa8urd3LlsCgza6AFGfTcMtu?=
- =?us-ascii?Q?iZborccCTi7ZGIo4yG1YvHojKL5oNbmtstHwRtbtKsj34BKxqTi20usVQqRP?=
- =?us-ascii?Q?oN7l8HazkGKyoPlQ0zE4T+c/emjL3lD4HkaC04pIp9wsy3JGFWgj+yv/ZkdU?=
- =?us-ascii?Q?1nxETlEih0bSA2KI7zsi9AFoMvvGIKWtqcY8lOfPCBD0vEYgjUEJsDx9bcPb?=
- =?us-ascii?Q?GeCNgPy2UvN1+NhtqYjsfys1GluII4koxhhdFIfWLE1WOQ5tvWl3Nq2aA+jq?=
- =?us-ascii?Q?BLUJkJPMl1nUc6mhcvOIZ7iZTLU81O7D6FMWw7+AlQl9fd2WAHxppYWsc9ht?=
- =?us-ascii?Q?FPOm0xetZUF+KmBWj8mY0uymR9BXQ6mQosZ5hbkl0bcZacuncY4+cuniXR1X?=
- =?us-ascii?Q?eFbsw+ii3Yi/odal2cNWF58C+iiR2EyJoTPiFkiL074bZjZEtNQqvRoRl+Jv?=
- =?us-ascii?Q?CQJekYeUqP7zBh1lN4V908AsKmE5GIbciJoChGhFIqRmqAMEfRwonoiAj91x?=
- =?us-ascii?Q?kjlJbbiDU0WGD49JQHLZ+coYZOITWgoI4UGprJ6QlGJK7I4nrIgrwnSzsj26?=
- =?us-ascii?Q?7hFyuokC9MGN58RaQb7HID9Ez+Kn6PgJGZaopQ/u5qnX6ga42gslmHezAZHf?=
- =?us-ascii?Q?2EovpQpCUCNhU87SDRdhMgVtzs6iliiVdXSY0tyjqk3LZFhHrPYYaiisppyF?=
- =?us-ascii?Q?xpGIBZiNDwMAz3FHSdLi89yR?=
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb4c511e-0ad7-4baa-19bb-08d8efc41a60
-X-MS-Exchange-CrossTenant-AuthSource: YT1PR01MB3546.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2021 19:28:01.0208
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +oxs5IudqymnTizuUt36JgaZTyDS7zNIwqBs/8a/qwokwwCZI2Ph6DYpnF7zwIlUbckyADP9vhfcq0jww9Y8RsJBxP9OQN69PMkgwq3Tg+A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT1PR01MB2793
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-25_07:2021-03-25,2021-03-25 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 adultscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
- spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103250142
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sysfs property files to allow viewing the current and latched states of
-the input present and PLL lock bits, and allow resetting the latched fault
-state. This allows manual checks or automated userspace polling for faults
-occurring after initialization.
+On Thu, Mar 25, 2021 at 12:18:38PM +0100, Christophe Leroy wrote:
+> 
+> 
+> Le 03/03/2021 à 18:57, Will Deacon a écrit :
+> > On Tue, Mar 02, 2021 at 05:25:22PM +0000, Christophe Leroy wrote:
+> > > Most architectures have similar boot command line manipulation
+> > > options. This patchs adds the definition in init/Kconfig, gated by
+> > > CONFIG_HAVE_CMDLINE that the architectures can select to use them.
+> > > 
+> > > In order to use this, a few architectures will have to change their
+> > > CONFIG options:
+> > > - riscv has to replace CMDLINE_FALLBACK by CMDLINE_FROM_BOOTLOADER
+> > > - architectures using CONFIG_CMDLINE_OVERRIDE or
+> > > CONFIG_CMDLINE_OVERWRITE have to replace them by CONFIG_CMDLINE_FORCE.
+> > > 
+> > > Architectures also have to define CONFIG_DEFAULT_CMDLINE.
+> > > 
+> > > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> > > ---
+> > >   init/Kconfig | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+> > >   1 file changed, 56 insertions(+)
+> > > 
+> > > diff --git a/init/Kconfig b/init/Kconfig
+> > > index 22946fe5ded9..a0f2ad9467df 100644
+> > > --- a/init/Kconfig
+> > > +++ b/init/Kconfig
+> > > @@ -117,6 +117,62 @@ config INIT_ENV_ARG_LIMIT
+> > >   	  Maximum of each of the number of arguments and environment
+> > >   	  variables passed to init from the kernel command line.
+> > > +config HAVE_CMDLINE
+> > > +	bool
+> > > +
+> > > +config CMDLINE_BOOL
+> > > +	bool "Default bootloader kernel arguments"
+> > > +	depends on HAVE_CMDLINE
+> > > +	help
+> > > +	  On some platforms, there is currently no way for the boot loader to
+> > > +	  pass arguments to the kernel. For these platforms, you can supply
+> > > +	  some command-line options at build time by entering them here.  In
+> > > +	  most cases you will need to specify the root device here.
+> > 
+> > Why is this needed as well as CMDLINE_FROM_BOOTLOADER? IIUC, the latter
+> > will use CONFIG_CMDLINE if it fails to get anything from the bootloader,
+> > which sounds like the same scenario.
+> > 
+> > > +config CMDLINE
+> > > +	string "Initial kernel command string"
+> > 
+> > s/Initial/Default
+> > 
+> > which is then consistent with the rest of the text here.
+> > 
+> > > +	depends on CMDLINE_BOOL
+> > 
+> > Ah, so this is a bit different and I don't think lines-up with the
+> > CMDLINE_BOOL help text.
+> > 
+> > > +	default DEFAULT_CMDLINE
+> > > +	help
+> > > +	  On some platforms, there is currently no way for the boot loader to
+> > > +	  pass arguments to the kernel. For these platforms, you can supply
+> > > +	  some command-line options at build time by entering them here.  In
+> > > +	  most cases you will need to specify the root device here.
+> > 
+> > (same stale text)
+> > 
+> > > +choice
+> > > +	prompt "Kernel command line type" if CMDLINE != ""
+> > > +	default CMDLINE_FROM_BOOTLOADER
+> > > +	help
+> > > +	  Selects the way you want to use the default kernel arguments.
+> > 
+> > How about:
+> > 
+> > "Determines how the default kernel arguments are combined with any
+> >   arguments passed by the bootloader"
+> > 
+> > > +config CMDLINE_FROM_BOOTLOADER
+> > > +	bool "Use bootloader kernel arguments if available"
+> > > +	help
+> > > +	  Uses the command-line options passed by the boot loader. If
+> > > +	  the boot loader doesn't provide any, the default kernel command
+> > > +	  string provided in CMDLINE will be used.
+> > > +
+> > > +config CMDLINE_EXTEND
+> > 
+> > Can we rename this to CMDLINE_APPEND, please? There is code in the tree
+> > which disagrees about what CMDLINE_EXTEND means, so that will need be
+> > to be updated to be consistent (e.g. the EFI stub parsing order). Having
+> > the generic option with a different name means we won't accidentally end
+> > up with the same inconsistent behaviours.
+> 
+> Argh, yes. Seems like the problem is even larger than that IIUC:
+> 
+> - For ARM it means to append the bootloader arguments to the CONFIG_CMDLINE
+> - For Powerpc it means to append the CONFIG_CMDLINE to the bootloader arguments
+> - For SH  it means to append the CONFIG_CMDLINE to the bootloader arguments
+> - For EFI it means to append the bootloader arguments to the CONFIG_CMDLINE
+> - For OF it means to append the CONFIG_CMDLINE to the bootloader arguments
+> 
+> So what happens on ARM for instance when it selects CONFIG_OF for instance ?
 
-Signed-off-by: Robert Hancock <robert.hancock@calian.com>
----
- drivers/clk/clk-si5341.c | 96 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+I think ARM gets different behaviour depending on whether it uses ATAGs or
+FDT.
 
-diff --git a/drivers/clk/clk-si5341.c b/drivers/clk/clk-si5341.c
-index d4aa67a4dc66..57ae183982d8 100644
---- a/drivers/clk/clk-si5341.c
-+++ b/drivers/clk/clk-si5341.c
-@@ -1457,6 +1457,94 @@ static int si5341_clk_select_active_input(struct clk_si5341 *data)
- 	return res;
- }
- 
-+static ssize_t input_present_show(struct device *dev,
-+				  struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct clk_si5341 *data = dev_get_drvdata(dev);
-+	u32 status;
-+	int res = regmap_read(data->regmap, SI5341_STATUS, &status);
-+
-+	if (res < 0)
-+		return res;
-+	res = !(status & SI5341_STATUS_LOSREF);
-+	return snprintf(buf, PAGE_SIZE, "%d\n", res);
-+}
-+static DEVICE_ATTR_RO(input_present);
-+
-+static ssize_t input_present_sticky_show(struct device *dev,
-+					 struct device_attribute *attr,
-+					 char *buf)
-+{
-+	struct clk_si5341 *data = dev_get_drvdata(dev);
-+	u32 status;
-+	int res = regmap_read(data->regmap, SI5341_STATUS_STICKY, &status);
-+
-+	if (res < 0)
-+		return res;
-+	res = !(status & SI5341_STATUS_LOSREF);
-+	return snprintf(buf, PAGE_SIZE, "%d\n", res);
-+}
-+static DEVICE_ATTR_RO(input_present_sticky);
-+
-+static ssize_t pll_locked_show(struct device *dev,
-+			       struct device_attribute *attr,
-+			       char *buf)
-+{
-+	struct clk_si5341 *data = dev_get_drvdata(dev);
-+	u32 status;
-+	int res = regmap_read(data->regmap, SI5341_STATUS, &status);
-+
-+	if (res < 0)
-+		return res;
-+	res = !(status & SI5341_STATUS_LOL);
-+	return snprintf(buf, PAGE_SIZE, "%d\n", res);
-+}
-+static DEVICE_ATTR_RO(pll_locked);
-+
-+static ssize_t pll_locked_sticky_show(struct device *dev,
-+				      struct device_attribute *attr,
-+				      char *buf)
-+{
-+	struct clk_si5341 *data = dev_get_drvdata(dev);
-+	u32 status;
-+	int res = regmap_read(data->regmap, SI5341_STATUS_STICKY, &status);
-+
-+	if (res < 0)
-+		return res;
-+	res = !(status & SI5341_STATUS_LOL);
-+	return snprintf(buf, PAGE_SIZE, "%d\n", res);
-+}
-+static DEVICE_ATTR_RO(pll_locked_sticky);
-+
-+static ssize_t clear_sticky_store(struct device *dev,
-+				  struct device_attribute *attr,
-+				  const char *buf, size_t count)
-+{
-+	struct clk_si5341 *data = dev_get_drvdata(dev);
-+	long val;
-+
-+	if (kstrtol(buf, 10, &val))
-+		return -EINVAL;
-+	if (val) {
-+		int res = regmap_write(data->regmap, SI5341_STATUS_STICKY, 0);
-+
-+		if (res < 0)
-+			return res;
-+	}
-+	return count;
-+}
-+static DEVICE_ATTR_WO(clear_sticky);
-+
-+static const struct attribute *si5341_attributes[] = {
-+	&dev_attr_input_present.attr,
-+	&dev_attr_input_present_sticky.attr,
-+	&dev_attr_pll_locked.attr,
-+	&dev_attr_pll_locked_sticky.attr,
-+	&dev_attr_clear_sticky.attr,
-+	NULL
-+};
-+
- static int si5341_probe(struct i2c_client *client,
- 		const struct i2c_device_id *id)
- {
-@@ -1687,6 +1775,12 @@ static int si5341_probe(struct i2c_client *client,
- 		goto cleanup;
- 	}
- 
-+	err = sysfs_create_files(&client->dev.kobj, si5341_attributes);
-+	if (err) {
-+		dev_err(&client->dev, "unable to create sysfs files\n");
-+		goto cleanup;
-+	}
-+
- 	/* Free the names, clk framework makes copies */
- 	for (i = 0; i < data->num_synth; ++i)
- 		 devm_kfree(&client->dev, (void *)synth_clock_names[i]);
-@@ -1706,6 +1800,8 @@ static int si5341_remove(struct i2c_client *client)
- 	struct clk_si5341 *data = i2c_get_clientdata(client);
- 	int i;
- 
-+	sysfs_remove_files(&client->dev.kobj, si5341_attributes);
-+
- 	for (i = 0; i < SI5341_MAX_NUM_OUTPUTS; ++i) {
- 		if (data->clk[i].vddo_reg)
- 			regulator_disable(data->clk[i].vddo_reg);
--- 
-2.27.0
+> Or should we consider that EXTEND means APPEND or PREPEND, no matter which ?
+> Because EXTEND is for instance used for:
+> 
+> 	config INITRAMFS_FORCE
+> 		bool "Ignore the initramfs passed by the bootloader"
+> 		depends on CMDLINE_EXTEND || CMDLINE_FORCE
 
+Oh man, I didn't spot that one :(
+
+I think I would make the generic options explicit: either APPEND or PREPEND.
+Then architectures which choose to define CMDLINE_EXTEND in their Kconfigs
+can select the generic option that matches their behaviour.
+
+INITRAMFS_FORCE sounds like it should depend on APPEND (assuming that means
+CONFIG_CMDLINE is appended to the bootloader arguments).
+
+Will
