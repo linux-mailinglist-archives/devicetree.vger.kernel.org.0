@@ -2,99 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 465813496C5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0259F3496ED
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:37:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbhCYQ2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:28:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54746 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229670AbhCYQ2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 12:28:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8E5B361A2D;
-        Thu, 25 Mar 2021 16:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616689711;
-        bh=UUb2YpPPhrZYBFc+9LA0bPvCH8n+hhtEFgJ+RKvX/jU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mugIGBUbTM2AtNHnwnvdicxWxPrLwc0paD3lyJ4T7azU3O5tBBy3RG4kDaB/poX1a
-         kJiaVQFMkL15GYguSOrLWersfsVGFMm5cDlc8kQn833QIcLuUydXpYGHpV4f0tPtDt
-         Y9yyqvqeGHV4PTGkcF47knLxy4244N6lokYg20WrnJ4Py3nH27aLs5zN3jJRhCLc61
-         nMZWMF6KldOWb8EbyeiIt/JZ4T+4GwUmYNVXK6X6Y/0UlqZvJK2u8AHNBfUucrnjmI
-         l2W4q59ktauvaFOGWNzvqft3FqlGrkGnZz/DIISTp1Ov8g4cR1i5Pg6fE2X0/HjaY3
-         aK/AqvL58tNAg==
-Received: by mail-ej1-f50.google.com with SMTP id b7so3949365ejv.1;
-        Thu, 25 Mar 2021 09:28:31 -0700 (PDT)
-X-Gm-Message-State: AOAM532PHPqYxxGuF5qLywsi0tJcToBzGoww9qQfCu6eyliWkGGz12r9
-        WcE5tsmdEiWV1Ilyiqcg7c728KS690mDXFS1iw==
-X-Google-Smtp-Source: ABdhPJyAS3MOqfSApNDkQLxm69M/5WJ6MViHJtey95Sr4dAEb1f4VANdxueW3S+zI6/Ta09EKpnDN5PoPyiojySt7uw=
-X-Received: by 2002:a17:906:7f84:: with SMTP id f4mr10181968ejr.525.1616689710118;
- Thu, 25 Mar 2021 09:28:30 -0700 (PDT)
+        id S229764AbhCYQhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 12:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51060 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229728AbhCYQgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:36:46 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFEDC06175F
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:36:44 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id h13so3138988eds.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:36:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=uXd5Ow0/uJ5mXjMJvh9jivyPxRRRFA5VIMBQ46EmYlM=;
+        b=csmMR+L3k/cbvJ3BuvNZ3CouXADMZ9mCEcDoy2mb+2qaPVjb5BlS3ZxJaAHw3EfdLW
+         M9m4rluqneyRFWRotScen0sB/tRGL891ULBhvNFfaH9lY+kru2QIF2zc8eFvti1U68nl
+         ZsH7Hp0yYtYgVqfCJlAk/G4gf5LC4S2PLDwHi1/7OuJ3SoE65R9c2AEOA9pqahoDBaDW
+         XgBAcy8koxHbFVADmVM6IrSco2AJAXTxeSMIP5vy1tjYKOTL7SjAMLm1YvJIwoWzQZpM
+         jJ0XFri3j0qdFXZSltpaPBqIjvX9ag5jpsKp/wFZoQy64u24F3vD5NrgN8DCcSxisk0s
+         2cDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=uXd5Ow0/uJ5mXjMJvh9jivyPxRRRFA5VIMBQ46EmYlM=;
+        b=nKz41DvBPSMoOQGdbYqiz+9xIDgQtWRKTu3uuJdwb+IfIl2bOc9mMQDHFBwj7O+eeq
+         BvJHVktqIg9unJq9xqM8SVv1Akqj1p+Z3wAlw0VB042QzutQJIogFKFVSKfRM8n/jy5Z
+         T0WKa1saT/M9OeRypGN2PPm2S+D7CI8O2N3tnawsJxFWJEd0+xkm2+zgI0ezk8afp7dS
+         kgpVwCrYUOvyVV91XuJFmvz5L8MHClkEUrZ+hoaGsdUE/Dxpno+G5XmoXo9l5AM6sywX
+         fkc2M5MxXcKyNCvh2VGaGqhR99M/F3ZM3gwCaIEERfQ13IWPvnXqjInQI1Qvwo93crS2
+         L6DA==
+X-Gm-Message-State: AOAM5326EtkIB8VUqaSQBdC1LTNKJcKBcbT4uStp9QQWeZd78/VMykqp
+        MuAGmMQokfJbiaLZKeICzrr//g==
+X-Google-Smtp-Source: ABdhPJwLaTBpmxnyhQuTnDmJZUjutO7B+LzwRSVvdeHopFxAbvmRiJfMROXWUVQWsuOIvl7S1o4SIA==
+X-Received: by 2002:aa7:ce16:: with SMTP id d22mr9968918edv.95.1616690203508;
+        Thu, 25 Mar 2021 09:36:43 -0700 (PDT)
+Received: from dell ([91.110.221.180])
+        by smtp.gmail.com with ESMTPSA id t15sm2984968edc.34.2021.03.25.09.36.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 09:36:43 -0700 (PDT)
+Date:   Thu, 25 Mar 2021 16:36:41 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v5 4/7] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210325163641.GV2916463@dell>
+References: <cover.1616686958.git.mchehab+huawei@kernel.org>
+ <de3603a366c172923771d3f01aa83b70cbba2199.1616686958.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-References: <20210324150425.20688-1-changbin.du@gmail.com> <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
- <20210325155954.iun4hdcegi4b3qm2@mail.google.com>
-In-Reply-To: <20210325155954.iun4hdcegi4b3qm2@mail.google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 25 Mar 2021 10:28:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLG9Mgndo4WCr8GRdkW3Hrs_U7XedSfjSMQGnsf2cPLmQ@mail.gmail.com>
-Message-ID: <CAL_JsqLG9Mgndo4WCr8GRdkW3Hrs_U7XedSfjSMQGnsf2cPLmQ@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Check dtb pointer first in unflatten_device_tree
-To:     Changbin Du <changbin.du@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <de3603a366c172923771d3f01aa83b70cbba2199.1616686958.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 10:00 AM Changbin Du <changbin.du@gmail.com> wrote:
->
-> On Wed, Mar 24, 2021 at 10:52:30AM -0600, Rob Herring wrote:
-> > On Wed, Mar 24, 2021 at 9:04 AM Changbin Du <changbin.du@gmail.com> wrote:
-> > >
-> > > The setup_arch() would invoke unflatten_device_tree() even no
-> > > valid fdt found. So we'd better check it first and return early.
-> > >
-> > > Signed-off-by: Changbin Du <changbin.du@gmail.com>
-> > > ---
-> > >  drivers/of/fdt.c | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index dcc1dd96911a..05d439d63bc5 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -1225,6 +1225,11 @@ bool __init early_init_dt_scan(void *params)
-> > >   */
-> > >  void __init unflatten_device_tree(void)
-> > >  {
-> > > +       if (!initial_boot_params) {
-> > > +               pr_warn("No valid device tree found, continuing without\n");
-> >
-> > How are you going to see this message if you have no DT?
-> >
-> This aligns to what unflatten_and_copy_device_tree() does.
+On Thu, 25 Mar 2021, Mauro Carvalho Chehab wrote:
 
-Humm, then we should have a single check that covers both cases. Or we
-should remove that one.
+> This driver is ready for mainstream. So, move it out of staging.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../mfd}/hisilicon,hi6421-spmi-pmic.yaml       |  0
+>  MAINTAINERS                                    |  7 +++++++
+>  drivers/mfd/Kconfig                            | 16 ++++++++++++++++
+>  drivers/mfd/Makefile                           |  1 +
+>  .../hikey9xx => mfd}/hi6421-spmi-pmic.c        |  0
+>  drivers/staging/hikey9xx/Kconfig               | 18 ------------------
+>  drivers/staging/hikey9xx/Makefile              |  1 -
+>  7 files changed, 24 insertions(+), 19 deletions(-)
+>  rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
+>  rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
 
->
-> > > +               return;
-> >
-> > And the arch is supposed to just continue on oblivious that it has no DT?
-> >
-> As checking the arch code(arm, riscv), I suppose so.
->
-> > > +       }
-> > > +
-> > >         __unflatten_device_tree(initial_boot_params, NULL, &of_root,
-> > >                                 early_init_dt_alloc_memory_arch, false);
-> >
-> > Soon as you get here with a NULL initial_boot_params, you'll get a
-> > backtrace and halt.
-> >
-> No, we have returned before.
+Could you please resend this with out using the -M flag.
 
-I mean without your addition we'll get here with a NULL.
+I can't review a driver I can't see.
 
-Rob
+Thanks.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
