@@ -2,360 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7851E348ECB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 12:17:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30602348ED8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 12:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbhCYLQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 07:16:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbhCYLQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 07:16:19 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF8FC06174A;
-        Thu, 25 Mar 2021 04:16:18 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id d12so1697121oiw.12;
-        Thu, 25 Mar 2021 04:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jfWJVHugH6F84viKhqW87rxxN4z2FKXxSY/2oOWo2Kk=;
-        b=E29WFlPSSobswq8JFYDlcuoHZ3Y7BajYJkh6/5TbxD3ihkkpdLO1dVL28xMenpmx3q
-         sIGOd+9dT+L44l2oWYD9oFgK01exlorM7VEPoN1ExNU/bFvc0YS0SNH11ZaiKmbilAR7
-         PRfd2L7ONg0CcJnOjB9a3J1d9aeVAXrLXDYYbwZqifJ+WOkx+EaM1qhd20sUEgcJVdtx
-         n2wKy1Oj6JGoxZWQYGC/UIcyKTpE7Vo81JmkJ2TaunfsbYMrMiog67jO33tCifyRmGrw
-         A72L5RuRGiMwGiXlEh+nQ7Jcl835vr+okAlQ1T0BOEODXfqKOnYgZBX+rrkt95LXlT/M
-         EbgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jfWJVHugH6F84viKhqW87rxxN4z2FKXxSY/2oOWo2Kk=;
-        b=SogYHDjsVVkKidbsgX/AJscpF3m0K0TVvQtehz9ybPKmMm2WIzldRDxaTshuH8gw4a
-         2WnWUwnazzdy2J6POeQ3MYHlvDmu14JFr0+Pt+QAJzJJKD/M3qyzyTGkXJBc9VXn6GYI
-         pS2t82xYUuqf28cTyJ/eunv1ZJz7IjWx5s99kf0O0LJfeCUOM2d8nlMbzVTd5jqXd19P
-         MahIkR/J9IwWu1bT/tDeflWZ7zEH32x4qItqUl9+35faERTtacWWMCTmG3NzSr6Au2Jw
-         blCuxw1B1bCEAPHmZTa1fTrx/2NCYKOs7oguEG841IGwX6ESEP+KQGfAHpFpdsLsTp2U
-         r65A==
-X-Gm-Message-State: AOAM531NTf7DLsvjXsuxXU1z8EkBPay8Lg3fhE3m51ZU3Hae/8hThwiG
-        nwAJ60pF08DpZ+nBcAT/ohyUhUsCAEpHBDwrA8ByCtHB3CBstA==
-X-Google-Smtp-Source: ABdhPJxi4yVbyEUatzUa0OEH/exBaiWoMEKvQLjeMIbN6tbjfAh2isPYniJhcQq3idILJbjb/1Coqgzhm8zfvtjnj7A=
-X-Received: by 2002:a05:6808:14cf:: with SMTP id f15mr5676164oiw.39.1616670977915;
- Thu, 25 Mar 2021 04:16:17 -0700 (PDT)
+        id S230029AbhCYLWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 07:22:45 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:59992 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230013AbhCYLWT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 07:22:19 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4F5jPF3Rmmz9v07B;
+        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id 23Jg9s7auSVF; Thu, 25 Mar 2021 12:22:09 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4F5jPF2Xh6z9v076;
+        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 905718B850;
+        Thu, 25 Mar 2021 12:22:10 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id 17HwWPOOzqFZ; Thu, 25 Mar 2021 12:22:10 +0100 (CET)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 95F028B84F;
+        Thu, 25 Mar 2021 12:22:09 +0100 (CET)
+Subject: Re: [PATCH v2 6/7] cmdline: Gives architectures opportunity to use
+ generically defined boot cmdline manipulation
+To:     Will Deacon <will@kernel.org>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
+        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <2eb6fad3470256fff5c9f33cd876f344abb1628b.1614705851.git.christophe.leroy@csgroup.eu>
+ <20210303175747.GD19713@willie-the-truck>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <8db81511-3f28-4ef1-5e66-188cf7cafad1@csgroup.eu>
+Date:   Thu, 25 Mar 2021 12:18:38 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210324071609.7531-1-zhangqing@rock-chips.com>
- <40a7fad3-17bb-9275-ed4a-2e3d526d05a1@collabora.com> <f1323618-7990-9bb7-a8c2-a7321a4034f8@collabora.com>
- <2066097.irdbgypaU6@diego> <6da85755-276d-1f4d-cfa8-2d0e4d836c6b@rock-chips.com>
-In-Reply-To: <6da85755-276d-1f4d-cfa8-2d0e4d836c6b@rock-chips.com>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 25 Mar 2021 12:16:06 +0100
-Message-ID: <CAFqH_51J=jHzp9Nh5ZGRdpgk9305qUHia+cFcvM1p4+nv-O=tg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: power: rockchip: Convert to json-schema
-To:     "elaine.zhang" <zhangqing@rock-chips.com>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>, cl@rock-chips.com,
-        huangtao@rock-chips.com, kever.yang@rock-chips.com,
-        tony.xie@rock-chips.com, finley.xiao@rock-chips.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210303175747.GD19713@willie-the-truck>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elaine,
 
-Missatge de elaine.zhang <zhangqing@rock-chips.com> del dia dj., 25 de
-mar=C3=A7 2021 a les 7:43:
->
-> Hi,Heiko:
->
-> =E5=9C=A8 2021/3/24 =E4=B8=8B=E5=8D=889:31, Heiko St=C3=BCbner =E5=86=99=
-=E9=81=93:
-> > Am Mittwoch, 24. M=C3=A4rz 2021, 11:32:42 CET schrieb Enric Balletbo i =
-Serra:
-> >> On 24/3/21 11:25, Enric Balletbo i Serra wrote:
-> >>> Hi Elaine,
-> >>>
-> >>> On 24/3/21 11:18, elaine.zhang wrote:
-> >>>> Hi,  Enric
-> >>>>
-> >>>> =E5=9C=A8 2021/3/24 =E4=B8=8B=E5=8D=885:56, Enric Balletbo i Serra =
-=E5=86=99=E9=81=93:
-> >>>>> Hi Elaine,
-> >>>>>
-> >>>>> This is not the exact version I sent, and you reintroduced a "probl=
-em" that were
-> >>>>> already solved/discussed on previous versions. See below:
-> >>>>>
-> >>>>> On 24/3/21 8:16, Elaine Zhang wrote:
-> >>>>>> Convert the soc/rockchip/power_domain.txt binding document to
-> >>>>>> json-schema and move to the power bindings directory.
-> >>>>>>
-> >>>>>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.co=
-m>
-> >>>>> If you do significant is a good practice shortly describe them with=
-in [] here.
-> >>>>>
-> >>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> >>>>> Note that my last version already had the
-> >>>>>
-> >>>>> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>>>>
-> >>>>> Which should be fine for merging (with probably only minor changes)=
- and you
-> >>>>> could maintain if you don't do significant changes, but that's not =
-the case, as
-> >>>>> I said, you are reintroducing one problem. Please review the commen=
-ts already
-> >>>>> received on this patchset or similar patchsets to avoid this.
-> >>>>>
-> >>>>>> ---
-> >>>>>>    .../power/rockchip,power-controller.yaml      | 284 +++++++++++=
-+++++++
-> >>>>>>    .../bindings/soc/rockchip/power_domain.txt    | 136 ---------
-> >>>>>>    2 files changed, 284 insertions(+), 136 deletions(-)
-> >>>>>>    create mode 100644
-> >>>>>> Documentation/devicetree/bindings/power/rockchip,power-controller.=
-yaml
-> >>>>>>    delete mode 100644
-> >>>>>> Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-> >>>>>>
-> >>>>>> diff --git
-> >>>>>> a/Documentation/devicetree/bindings/power/rockchip,power-controlle=
-r.yaml
-> >>>>>> b/Documentation/devicetree/bindings/power/rockchip,power-controlle=
-r.yaml
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..a220322c5139
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/Documentation/devicetree/bindings/power/rockchip,power-contr=
-oller.yaml
-> >>>>>> @@ -0,0 +1,284 @@
-> >>>>>> +# SPDX-License-Identifier: GPL-2.0-only
-> >>>>>> +%YAML 1.2
-> >>>>>> +---
-> >>>>>> +$id: http://devicetree.org/schemas/power/rockchip,power-controlle=
-r.yaml#
-> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>> +
-> >>>>>> +title: Rockchip Power Domains
-> >>>>>> +
-> >>>>>> +maintainers:
-> >>>>>> +  - Elaine Zhang <zhangqing@rock-chips.com>
-> >>>>>> +  - Rob Herring <robh+dt@kernel.org>
-> >>>>> Up to Rob, but I don't think Rob would like to be the maintainer. I=
- think you
-> >>>>> can only include yourself and Heiko.
-> >>>>>
-> >>>>>
-> >>>>>> +  - Heiko Stuebner <heiko@sntech.de>
-> >>>>>> +
-> >>>>>> +description: |
-> >>>>>> +  Rockchip processors include support for multiple power domains =
-which can be
-> >>>>>> +  powered up/down by software based on different application scen=
-arios to
-> >>>>>> save power.
-> >>>>>> +
-> >>>>>> +  Power domains contained within power-controller node are generi=
-c power domain
-> >>>>>> +  providers documented in
-> >>>>>> Documentation/devicetree/bindings/power/power-domain.yaml.
-> >>>>>> +
-> >>>>>> +  IP cores belonging to a power domain should contain a "power-do=
-mains"
-> >>>>>> +  property that is a phandle for the power domain node representi=
-ng the domain.
-> >>>>>> +
-> >>>>>> +properties:
-> >>>>>> +  $nodename:
-> >>>>>> +    const: power-controller
-> >>>>>> +
-> >>>>>> +  compatible:
-> >>>>>> +    enum:
-> >>>>>> +      - rockchip,px30-power-controller
-> >>>>>> +      - rockchip,rk3036-power-controller
-> >>>>>> +      - rockchip,rk3066-power-controller
-> >>>>>> +      - rockchip,rk3128-power-controller
-> >>>>>> +      - rockchip,rk3188-power-controller
-> >>>>>> +      - rockchip,rk3228-power-controller
-> >>>>>> +      - rockchip,rk3288-power-controller
-> >>>>>> +      - rockchip,rk3328-power-controller
-> >>>>>> +      - rockchip,rk3366-power-controller
-> >>>>>> +      - rockchip,rk3368-power-controller
-> >>>>>> +      - rockchip,rk3399-power-controller
-> >>>>>> +
-> >>>>>> +  "#power-domain-cells":
-> >>>>>> +    const: 1
-> >>>>>> +
-> >>>>>> +  "#address-cells":
-> >>>>>> +    const: 1
-> >>>>>> +
-> >>>>>> +  "#size-cells":
-> >>>>>> +    const: 0
-> >>>>>> +
-> >>>>>> +patternProperties:
-> >>>>>> +  "^pd_[0-9a-z_]{2,10}@[0-9a-f]+$":
-> >>>>>> +    type: object
-> >>>>>> +    description: |
-> >>>>>> +      Represents the power domains within the power controller no=
-de as
-> >>>>>> documented
-> >>>>>> +      in Documentation/devicetree/bindings/power/power-domain.yam=
-l.
-> >>>>>> +
-> >>>>> The node names must be generic, as this is power-domain must be in =
-the form:
-> >>>>>
-> >>>>> +patternProperties:
-> >>>>> +  "^power-domain@[0-9a-f]+$":
-> >>>> In this way, dtbs_check cannot be passed, and all the usage methods =
-in dts of
-> >>>> Rockchip need to be corrected, which I think is a bigger change.
-> >>> Well, the problem is in the Rockchip dtbs, so needs to be fixed there=
-. The
-> >>> bindings must describe hardware in a generic way, not describe the ac=
-tual dtbs
-> >>> to not report errors.
-> >>>
-> >> FWIW I remember I did something regarding this but never sent to upstr=
-eam, feel
-> >> free to pick if you find useful.
-> >>
-> >> *
-> >> https://gitlab.collabora.com/eballetbo/linux/-/commit/12499f223e3d3360=
-2449b9102404fe573fb804f5
-> >> *
-> >> https://gitlab.collabora.com/eballetbo/linux/-/commit/12499f223e3d3360=
-2449b9102404fe573fb804f5
-> >> *
-> >> https://gitlab.collabora.com/eballetbo/linux/-/commit/492bf2213c341152=
-a1c2423242c5634b9e53ff27
-> > looks good that way. I did look at the power-domain driver and
-> > we're (of course) not doing anything with the name in front of the @ :-=
-) .
-> >
-> > So I'd be happy to get these.
-> >
-> > Heiko
->
-> I still don't want to modify this,  I think the PD summary will become
-> less intuitive.
->
 
-This is because in the pm_domainss driver you have:
+Le 03/03/2021 à 18:57, Will Deacon a écrit :
+> On Tue, Mar 02, 2021 at 05:25:22PM +0000, Christophe Leroy wrote:
+>> Most architectures have similar boot command line manipulation
+>> options. This patchs adds the definition in init/Kconfig, gated by
+>> CONFIG_HAVE_CMDLINE that the architectures can select to use them.
+>>
+>> In order to use this, a few architectures will have to change their
+>> CONFIG options:
+>> - riscv has to replace CMDLINE_FALLBACK by CMDLINE_FROM_BOOTLOADER
+>> - architectures using CONFIG_CMDLINE_OVERRIDE or
+>> CONFIG_CMDLINE_OVERWRITE have to replace them by CONFIG_CMDLINE_FORCE.
+>>
+>> Architectures also have to define CONFIG_DEFAULT_CMDLINE.
+>>
+>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> ---
+>>   init/Kconfig | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 56 insertions(+)
+>>
+>> diff --git a/init/Kconfig b/init/Kconfig
+>> index 22946fe5ded9..a0f2ad9467df 100644
+>> --- a/init/Kconfig
+>> +++ b/init/Kconfig
+>> @@ -117,6 +117,62 @@ config INIT_ENV_ARG_LIMIT
+>>   	  Maximum of each of the number of arguments and environment
+>>   	  variables passed to init from the kernel command line.
+>>   
+>> +config HAVE_CMDLINE
+>> +	bool
+>> +
+>> +config CMDLINE_BOOL
+>> +	bool "Default bootloader kernel arguments"
+>> +	depends on HAVE_CMDLINE
+>> +	help
+>> +	  On some platforms, there is currently no way for the boot loader to
+>> +	  pass arguments to the kernel. For these platforms, you can supply
+>> +	  some command-line options at build time by entering them here.  In
+>> +	  most cases you will need to specify the root device here.
+> 
+> Why is this needed as well as CMDLINE_FROM_BOOTLOADER? IIUC, the latter
+> will use CONFIG_CMDLINE if it fails to get anything from the bootloader,
+> which sounds like the same scenario.
+> 
+>> +config CMDLINE
+>> +	string "Initial kernel command string"
+> 
+> s/Initial/Default
+> 
+> which is then consistent with the rest of the text here.
+> 
+>> +	depends on CMDLINE_BOOL
+> 
+> Ah, so this is a bit different and I don't think lines-up with the
+> CMDLINE_BOOL help text.
+> 
+>> +	default DEFAULT_CMDLINE
+>> +	help
+>> +	  On some platforms, there is currently no way for the boot loader to
+>> +	  pass arguments to the kernel. For these platforms, you can supply
+>> +	  some command-line options at build time by entering them here.  In
+>> +	  most cases you will need to specify the root device here.
+> 
+> (same stale text)
+> 
+>> +choice
+>> +	prompt "Kernel command line type" if CMDLINE != ""
+>> +	default CMDLINE_FROM_BOOTLOADER
+>> +	help
+>> +	  Selects the way you want to use the default kernel arguments.
+> 
+> How about:
+> 
+> "Determines how the default kernel arguments are combined with any
+>   arguments passed by the bootloader"
+> 
+>> +config CMDLINE_FROM_BOOTLOADER
+>> +	bool "Use bootloader kernel arguments if available"
+>> +	help
+>> +	  Uses the command-line options passed by the boot loader. If
+>> +	  the boot loader doesn't provide any, the default kernel command
+>> +	  string provided in CMDLINE will be used.
+>> +
+>> +config CMDLINE_EXTEND
+> 
+> Can we rename this to CMDLINE_APPEND, please? There is code in the tree
+> which disagrees about what CMDLINE_EXTEND means, so that will need be
+> to be updated to be consistent (e.g. the EFI stub parsing order). Having
+> the generic option with a different name means we won't accidentally end
+> up with the same inconsistent behaviours.
 
-    pd->genpd.name =3D node->name;
+Argh, yes. Seems like the problem is even larger than that IIUC:
 
-You can use the full_name or add a meaningful name to the driver if
-you want. We solved this on Mediatek with the following patches [1]
+- For ARM it means to append the bootloader arguments to the CONFIG_CMDLINE
+- For Powerpc it means to append the CONFIG_CMDLINE to the bootloader arguments
+- For SH  it means to append the CONFIG_CMDLINE to the bootloader arguments
+- For EFI it means to append the bootloader arguments to the CONFIG_CMDLINE
+- For OF it means to append the CONFIG_CMDLINE to the bootloader arguments
 
-Again, IMO this is a driver problem, not a binding problem. The
-bindings shouldn't know about debugfs entry names.
+So what happens on ARM for instance when it selects CONFIG_OF for instance ?
+Or should we consider that EXTEND means APPEND or PREPEND, no matter which ?
+Because EXTEND is for instance used for:
 
-Thanks,
-  Enric
+	config INITRAMFS_FORCE
+		bool "Ignore the initramfs passed by the bootloader"
+		depends on CMDLINE_EXTEND || CMDLINE_FORCE
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D4385=
-23
 
-> Now:
->
-> domain                          status          slaves
->      /device                                             runtime status
-> ----------------------------------------------------------------------
-> pd_pipe                         on
->      /devices/platform/3c0800000.pcie unsupported
->      /devices/platform/fc800000.sata                     active
->      /devices/platform/usbdrd/fcc00000.dwc3              active
->      /devices/platform/usbhost/fd000000.dwc3             active
-> pd_rkvenc                       off-0
->      /devices/platform/fdf40f00.iommu                    suspended
->      /devices/platform/fdf40000.rkvenc                   suspended
-> pd_rkvdec                       off-0
->      /devices/platform/fdf80800.iommu                    suspended
->      /devices/platform/fdf80200.rkvdec                   suspended
-> pd_vpu                          off-0
->      /devices/platform/fdea0800.iommu                    suspended
->      /devices/platform/fdea0400.vdpu                     suspended
-> pd_rga                          off-0
->      /devices/platform/fded0480.iommu                    suspended
->      /devices/platform/fdee0800.iommu                    suspended
->      /devices/platform/fdef0800.iommu                    suspended
->      /devices/platform/fdee0000.vepu                     suspended
->      /devices/platform/fdef0000.iep                      suspended
->      /devices/platform/fded0000.jpegd                    suspended
->      /devices/platform/fdeb0000.rk_rga                   suspended
-> pd_vo                           on
->      /devices/platform/fe850000.mipi-dphy                suspended
->      /devices/platform/fe040000.vop                      active
->      /devices/platform/fe0c0000.edp                      suspended
->      /devices/platform/fe0a0000.hdmi                     active
->      /devices/platform/fe060000.dsi                      active
-> pd_vi                           off-0
->      /devices/platform/fdff1a00.iommu                    suspended
->      /devices/platform/fdff0000.rkisp                    suspended
-> pd_gpu                          on
->      /devices/platform/fde60000.gpu                      active
-> pd_npu                          off-0
->
-> If modify to power-domain@:
->
-> domain                          status          slaves
->      /device                                             runtime status
-> ----------------------------------------------------------------------
-> power-domain                    on
->      /devices/platform/3c0800000.pcie unsupported
->      /devices/platform/fc800000.sata                     active
->      /devices/platform/usbdrd/fcc00000.dwc3              active
->      /devices/platform/usbhost/fd000000.dwc3             active
-> power-domain                    off-0
->      /devices/platform/fdf40f00.iommu                    suspended
->      /devices/platform/fdf40000.rkvenc                   suspended
-> power-domain                    off-0
->      /devices/platform/fdf80800.iommu                    suspended
->      /devices/platform/fdf80200.rkvdec                   suspended
-> power-domain                    off-0
->      /devices/platform/fdea0800.iommu                    suspended
->      /devices/platform/fdea0400.vdpu                     suspended
-> power-domain                    off-0
->      /devices/platform/fded0480.iommu                    suspended
->      /devices/platform/fdee0800.iommu                    suspended
->      /devices/platform/fdef0800.iommu                    suspended
->      /devices/platform/fdee0000.vepu                     suspended
->      /devices/platform/fdef0000.iep                      suspended
->      /devices/platform/fded0000.jpegd                    suspended
->      /devices/platform/fdeb0000.rk_rga                   suspended
-> power-domain                    on
->      /devices/platform/fe850000.mipi-dphy                suspended
->      /devices/platform/fe040000.vop                      active
->      /devices/platform/fe0c0000.edp                      suspended
->      /devices/platform/fe0a0000.hdmi                     active
->      /devices/platform/fe060000.dsi                      active
-> power-domain                    off-0
->      /devices/platform/fdff1a00.iommu                    suspended
->      /devices/platform/fdff0000.rkisp                    suspended
-> power-domain                    on
->      /devices/platform/fde60000.gpu                      active
-> power-domain                    off-0
-> console:/ #
->
-> I think the now one is more intuitive, so I don't want to fix it.
->
-> >
-> >
-> >
-> >
->
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Christophe
