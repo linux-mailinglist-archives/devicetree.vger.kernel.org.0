@@ -2,122 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 141DD348973
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 07:56:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9B8C3489F6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:16:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbhCYGzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 02:55:37 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:40938 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229581AbhCYGzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 02:55:20 -0400
-X-UUID: 084e713c575c44c6893c03935f67b687-20210325
-X-UUID: 084e713c575c44c6893c03935f67b687-20210325
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 62350216; Thu, 25 Mar 2021 14:55:11 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 25 Mar 2021 14:55:10 +0800
-Received: from mtkslt301.mediatek.inc (10.21.14.114) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 25 Mar 2021 14:55:09 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cawa Cheng <cawa.cheng@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Jie Qiu <jie.qiu@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH RESEND v5 12/12] arm: dts: mt2701: harmonize node names and compatibles
-Date:   Thu, 25 Mar 2021 14:54:58 +0800
-Message-ID: <20210325065458.43363-12-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210325065458.43363-1-chunfeng.yun@mediatek.com>
-References: <20210325065458.43363-1-chunfeng.yun@mediatek.com>
+        id S229461AbhCYHQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 03:16:12 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:52526 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229695AbhCYHPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 03:15:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1616656541; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=ZF2wEokbtaHkoVJQpXVQZ7oT0+ILgWsy6JEDa7DYhoo=; b=N6ZJJ8ej2tbdKM9kxTrLlaT5SMNc2GPc7wbwwcWonZJ/W3nGyE9m9sO1bSe+zeIf8IDVfC+e
+ vhckyUtdBvn+yx5I64Hos4qpH8oOPI5eJzYLMeP3jBOePXYiJFvl7U858ZkItU13wJC8jOvQ
+ arp8t2iEq0Lht+6DB7aWVStonfU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 605c38964db3bb68015ff304 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 25 Mar 2021 07:15:34
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0D252C43462; Thu, 25 Mar 2021 07:15:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.50.0.146] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 06DE7C433CA;
+        Thu, 25 Mar 2021 07:15:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 06DE7C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH] drivers: nvmem: Fix voltage settings for QTI qfprom-efuse
+To:     Doug Anderson <dianders@chromium.org>,
+        Ravi Kumar Bokka <rbokka@codeaurora.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        dhavalp@codeaurora.org, mturney@codeaurora.org
+References: <1612524533-3970-1-git-send-email-rbokka@codeaurora.org>
+ <CAD=FV=W9YWxVY6cEEXBr1wMcMzEPak3PeyROSvmnOWewL9BiUQ@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <4956f067-4079-84b4-191d-c1036e04c42f@codeaurora.org>
+Date:   Thu, 25 Mar 2021 12:45:28 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <CAD=FV=W9YWxVY6cEEXBr1wMcMzEPak3PeyROSvmnOWewL9BiUQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is used to fix dtbs_check warning
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2~v5: no changes
----
- arch/arm/boot/dts/mt2701.dtsi | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+On 2/5/2021 8:25 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Feb 5, 2021 at 3:29 AM Ravi Kumar Bokka <rbokka@codeaurora.org> wrote:
+>>
+>> QFPROM controller hardware requires 1.8V min for fuse blowing.
+>> So, this change sets the voltage to 1.8V, required to blow the fuse
+>> for qfprom-efuse controller.
+>>
+>> To disable fuse blowing, we set the voltage to 0V since this may
+>> be a shared rail and may be able to run at a lower rate when we're
+>> not blowing fuses.
+>>
+>> Fixes: 93b4e49f8c86 ("nvmem: qfprom: Add fuse blowing support")
+>> Reported-by: Douglas Anderson <dianders@chromium.org>
+>> Suggested-by: Douglas Anderson <dianders@chromium.org>
+>> Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
+>> ---
+>>   drivers/nvmem/qfprom.c | 21 +++++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
+>>
+>> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+>> index 6cace24..100d69d 100644
+>> --- a/drivers/nvmem/qfprom.c
+>> +++ b/drivers/nvmem/qfprom.c
+>> @@ -127,6 +127,16 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+>>   {
+>>          int ret;
+>>
+>> +       /*
+>> +        * This may be a shared rail and may be able to run at a lower rate
+>> +        * when we're not blowing fuses.  At the moment, the regulator framework
+>> +        * applies voltage constraints even on disabled rails, so remove our
+>> +        * constraints and allow the rail to be adjusted by other users.
+> 
+> Some year maybe I'll try to fix the regulator framework to not count
+> voltage constraints for disbled rails, or perhaps have it be optional.
+> ;-)  In theory it should be much easier after the patches we already
+> landed not to count current requests for disabled rails...
+> 
+> 
+>> +        */
+>> +       ret = regulator_set_voltage(priv->vcc, 0, INT_MAX);
+>> +       if (ret)
+>> +               dev_warn(priv->dev, "Failed to set 0 voltage (ignoring)\n");
+>> +
+>>          ret = regulator_disable(priv->vcc);
+>>          if (ret)
+>>                  dev_warn(priv->dev, "Failed to disable regulator (ignoring)\n");
+>> @@ -172,6 +182,17 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
+>>                  goto err_clk_prepared;
+>>          }
+>>
+>> +       /*
+>> +        * Hardware requires 1.8V min for fuse blowing; this may be
+>> +        * a rail shared do don't specify a max--regulator constraints
+>> +        * will handle.
+>> +        */
+>> +       ret = regulator_set_voltage(priv->vcc, 1800000, INT_MAX);
+>> +       if (ret) {
+>> +               dev_err(priv->dev, "Failed to set 1.8 voltage\n");
+>> +               goto err_clk_rate_set;
+>> +       }
+>> +
+> 
+> Looks right to me.  Assuming that this works.
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-diff --git a/arch/arm/boot/dts/mt2701.dtsi b/arch/arm/boot/dts/mt2701.dtsi
-index fade14284017..4776f85d6d5b 100644
---- a/arch/arm/boot/dts/mt2701.dtsi
-+++ b/arch/arm/boot/dts/mt2701.dtsi
-@@ -607,7 +607,7 @@
- 	};
- 
- 	usb0: usb@1a1c0000 {
--		compatible = "mediatek,mt8173-xhci";
-+		compatible = "mediatek,mt2701-xhci", "mediatek,mtk-xhci";
- 		reg = <0 0x1a1c0000 0 0x1000>,
- 		      <0 0x1a1c4700 0 0x0100>;
- 		reg-names = "mac", "ippc";
-@@ -620,8 +620,9 @@
- 		status = "disabled";
- 	};
- 
--	u3phy0: usb-phy@1a1c4000 {
--		compatible = "mediatek,mt2701-u3phy";
-+	u3phy0: t-phy@1a1c4000 {
-+		compatible = "mediatek,mt2701-tphy",
-+			     "mediatek,generic-tphy-v1";
- 		reg = <0 0x1a1c4000 0 0x0700>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -646,7 +647,7 @@
- 	};
- 
- 	usb1: usb@1a240000 {
--		compatible = "mediatek,mt8173-xhci";
-+		compatible = "mediatek,mt2701-xhci", "mediatek,mtk-xhci";
- 		reg = <0 0x1a240000 0 0x1000>,
- 		      <0 0x1a244700 0 0x0100>;
- 		reg-names = "mac", "ippc";
-@@ -659,8 +660,9 @@
- 		status = "disabled";
- 	};
- 
--	u3phy1: usb-phy@1a244000 {
--		compatible = "mediatek,mt2701-u3phy";
-+	u3phy1: t-phy@1a244000 {
-+		compatible = "mediatek,mt2701-tphy",
-+			     "mediatek,generic-tphy-v1";
- 		reg = <0 0x1a244000 0 0x0700>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -700,8 +702,9 @@
- 		status = "disabled";
- 	};
- 
--	u2phy0: usb-phy@11210000 {
--		compatible = "mediatek,generic-tphy-v1";
-+	u2phy0: t-phy@11210000 {
-+		compatible = "mediatek,mt2701-tphy",
-+			     "mediatek,generic-tphy-v1";
- 		reg = <0 0x11210000 0 0x0800>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
+Srini, any plans to queue this up for merge?  
+
 -- 
-2.18.0
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
