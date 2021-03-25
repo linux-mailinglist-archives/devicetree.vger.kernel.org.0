@@ -2,107 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E996F348803
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 05:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED8334884D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:22:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbhCYEmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 00:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbhCYElr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 00:41:47 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C61CC06174A
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 21:41:47 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id v3so586794pgq.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Mar 2021 21:41:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5uloYZ+8PoxiaTnT5ukVkjxfChFSHEatXuJ9cHkJu9M=;
-        b=hiXjI1myZwfoNGPp8+hjoNraAb1rNgkpcycqeWl6te88OdvHNMzTyy2EXiOWpYLwqa
-         tUcRJy5ZN8PVSzhTb65he/NhsLMlJ79gStqExtVfHNxh7aQjOv8KQIDBEgwVnbt5udd6
-         TZye8a8LrUbvmg6Ibe9OB8HoNwZSPoDq2I+ckdjbgsn5tpchFEzeG4H7ISepWWx1MWNt
-         jPhGOSazVVFfSDPJuCdn7Cee8nO/bKvtf5fVNTg5iUevomqJdUrqg51maIUQVbWp3ERt
-         nOAD5S38C3rTPevGOeR3kJMlfPJrZ8Rtk4LjW5g6VsqRPgaAKJXRCUC2WMMJ7fM8HrAi
-         urpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5uloYZ+8PoxiaTnT5ukVkjxfChFSHEatXuJ9cHkJu9M=;
-        b=NQYMdsINw4H5u/E8Oxp7vfwOCM1k7+haGxDlKHDAqdLARPuN4HA1fa4v7KK6EJC28Y
-         3+HIXmbY8fpPXgPQBBKXN7gxYa8A6rxo9//E2BrbuZ4iB5PRWMOQhoqywzbDVsZW4lvp
-         qBk9+fjqDNrfzqtX+o2arZD6pBivKEXn4y72q8UfInZXAwTyM4fQLmqiCxJJkCeBfIgV
-         0dVYuMtQzKqS//bY3QD3VpuJH0jnV/Uk9nk4GJrXntJOob+FRCM6rFxubV+ddJE1ykAg
-         vHEKDcWfSHGhMDbiaFqH6VkwNSXBUjoX3xgKDoGjOdgdT3jyKkUnugVP3Pe94oecTAMv
-         ALZw==
-X-Gm-Message-State: AOAM533IU+lYsxQENLKzsinJ+UnZQJIcaWXxg3m3KbO3GonBZhmJmgv5
-        4j77m8hgmn8J1EmT060U92PXLQ==
-X-Google-Smtp-Source: ABdhPJwaLPUoL4onWYWyHitcJn5dQ/575KUKsL+MTUrspH3NCsoeS4ULL4NojHZ92suFEhnN1JHj/Q==
-X-Received: by 2002:a65:62d9:: with SMTP id m25mr6013481pgv.6.1616647306354;
-        Wed, 24 Mar 2021 21:41:46 -0700 (PDT)
-Received: from localhost ([122.172.6.13])
-        by smtp.gmail.com with ESMTPSA id fa21sm3997449pjb.25.2021.03.24.21.41.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 24 Mar 2021 21:41:45 -0700 (PDT)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Bill Mills <bill.mills@linaro.org>, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V4] kbuild: Add rule to build .dt.yaml files for overlays
-Date:   Thu, 25 Mar 2021 10:11:37 +0530
-Message-Id: <4f50cfd94a43a03e107f83fadd02cd6be7b422e3.1616647039.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <20210324223713.1334666-1-frowand.list@gmail.com>
-References: <20210324223713.1334666-1-frowand.list@gmail.com>
+        id S229592AbhCYFV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 01:21:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:59041 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229547AbhCYFVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:21:17 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1616649677; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=WHPiw1feldgt4gfcCUTFJNoBPpp+MESLBL9s3gDzyOw=;
+ b=emu4T4wr/fzEdAwWyzc0fRn/yF1SOdm+OgZ9PstRDEL0zWcVKGWqJT0zYc3NlsoTTlewUgDI
+ R/5BDl2n3pxBpAMBh5OJgyp/UQwvFx6MxZgUoSSEPXuPPVHRe5ExbkUgj+GoI1u8ucCJwaYx
+ G1KPzQtT/F2M9kUd+nnCFFDs74Q=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 605c1dbbc32ceb3a916dd6c4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 25 Mar 2021 05:20:59
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 99879C433ED; Thu, 25 Mar 2021 05:20:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C02B9C433CA;
+        Thu, 25 Mar 2021 05:20:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 25 Mar 2021 10:50:57 +0530
+From:   skakit@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
+In-Reply-To: <YFjVEjcx36J97hVW@google.com>
+References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
+ <YEvR1kDm32tE7mK3@google.com>
+ <4dc784eb3c00a9805141148732476838@codeaurora.org>
+ <YFjVEjcx36J97hVW@google.com>
+Message-ID: <e8af9692a9a54e44ad687bb8984fad7a@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The overlay source files are named with .dtso extension now, add a new
-rule to generate .dt.yaml for them.
+Hi Matthias,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
-V4:
-- Rebase over Frank's cleanup patch:
+On 2021-03-22 23:04, Matthias Kaehlcke wrote:
+> Hi Satya,
+> 
+> On Mon, Mar 22, 2021 at 06:50:47PM +0530, skakit@codeaurora.org wrote:
+>> Hi Matthias,
+>> 
+>> On 2021-03-13 02:10, Matthias Kaehlcke wrote:
+>> > Hi Satya,
+>> >
+>> > On Thu, Mar 11, 2021 at 04:10:29PM +0530, satya priya wrote:
+>> > > Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
+>> > > GPIOs, RTC and other PMIC infra modules for SC7280.
+>> > >
+>> > > Signed-off-by: satya priya <skakit@codeaurora.org>
+>> > > ---
+>> > > This patch depends on base DT and board files for SC7280 to merge
+>> > > first
+>> > > https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
+>> > >
+>> > >  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
+>> > >  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
+>> > >  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104
+>> > > ++++++++++++++++++++++++++++++++++
+>> > >  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
+>> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
+>> > >  5 files changed, 292 insertions(+)
+>> > >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > >  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+>> > >
+>> > > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > new file mode 100644
+>> > > index 0000000..393b256
+>> > > --- /dev/null
+>> > > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> > > @@ -0,0 +1,60 @@
+>> >
+>> > ...
+>> >
+>> > > +		polling-delay-passive = <100>;
+>> > > +		polling-delay = <0>;
+>> >
+>> > Are you sure that no polling delay is needed? How does the thermal
+>> > framework
+>> > detect that the temperatures is >= the passive trip point and that it
+>> > should
+>> > start polling at 'polling-delay-passive' rate?
+>> >
+>> 
+>> As the temp-alarm has interrupt support, whenever preconfigured 
+>> threshold
+>> violates it notifies thermal framework, so I think the polling delay 
+>> is not
+>> needed here.
+> 
+> From the documentation I found it's not clear to me how exactly these
+> interrupts work. Is a single interrupt triggered when the threshold is
+> violated or are there periodic (?) interrupts as long as the 
+> temperature
+> is above the stage 0 threshold?
+> 
+> Why is 'polling-delay-passive' passive needed if there are interrupts? 
+> Maybe
+> to detect that the zone should transition from passive to no cooling 
+> when the
+> temperature drops below the stage 0 threshold?
 
-  https://lore.kernel.org/lkml/20210324223713.1334666-1-frowand.list@gmail.com/
+The PMIC TEMP_ALARM peripheral maintains an internal over-temperature 
+stage: 0, 1, 2, or 3.  Stage 0 is normal operation below the lowest 
+(stage 1) threshold [usually 95 C].  When in stage 1, the temperature is 
+between the stage 1 and 2 thresholds [stage 2 threshold is usually 115 
+C].  Upon hitting the stage 3 threshold [usually 145 C], the PMIC 
+hardware will automatically shut down the system.
 
-- Drop changes to drivers/of/unittest-data/Makefile.
-- Drop modifications to the rule that builds .dtbo files (as it is
-  already updated by Frank).
+The TEMP_ALARM IRQ fires on stage 0 -> 1 and 1 -> 0 transitions.  We 
+therefore set polling-delay = <0> since there is no need for software to 
+monitor the temperature periodically when operating in stage 0.  Upon 
+crossing the stage 1 threshold, SW receives the IRQ and the thermal 
+framework hits its first trip changing the thermal zone to passive mode. 
+  This then engages the 100 ms polling enabled via polling-delay-passive 
+= <100>.  If the temperate keeps climbing and passes the stage 2 
+threshold, the thermal framework hits the second trip (which is 
+critical) and it initiates an orderly shutdown.  If the temperature 
+drops below the stage 1 threshold, then the thermal framework exits 
+passive mode and stops polling.  This approach reduces/eliminates the 
+software overhead when not at an elevated temperature.
 
- scripts/Makefile.lib | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 814b430b407e..a682869d8f4b 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -376,6 +376,9 @@ endef
- $(obj)/%.dt.yaml: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
- 	$(call if_changed_rule,dtc,yaml)
- 
-+$(obj)/%.dt.yaml: $(src)/%.dtso $(DTC) $(DT_TMP_SCHEMA) FORCE
-+	$(call if_changed_rule,dtc,yaml)
-+
- dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
- 
- # Bzip2
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+Thanks,
+Satya Priya
