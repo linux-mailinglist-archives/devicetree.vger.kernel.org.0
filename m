@@ -2,143 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 269B534973C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:48:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8617934974D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:50:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbhCYQr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:47:56 -0400
-Received: from mail-il1-f180.google.com ([209.85.166.180]:34773 "EHLO
-        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbhCYQrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:47:49 -0400
-Received: by mail-il1-f180.google.com with SMTP id u2so2693350ilk.1;
-        Thu, 25 Mar 2021 09:47:49 -0700 (PDT)
+        id S229664AbhCYQt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 12:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229519AbhCYQtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:49:49 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93729C06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:49:49 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so4361934pjb.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:49:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KaZNs/slFbXR+His3djbKPWrwZ4lvzuSmzWHKektuFM=;
+        b=Vlr0woIKSnzYqOorKJVFFq+dl4PWdwBStgUJVK/JTCgUghS+QDp1JjuyjXUdzyhPQO
+         sYgRWBVWGjHTDHgijhGcL8U51jUGgF04DOENDTJBSpZ+Y3AIjkixor/uLErRjaiGvKhQ
+         QTN8H3gF0kdJjdW8/k1+tcrRV4sUdJhuBROtS0jST6XkauacxKx/L5blCWUyweWotaa7
+         ucRuxOhGc6gyqusUXi1Jl3pBUk4gfJGoNM1YlQ3lbUyewRyX61OEq8uJb19CjNELD34L
+         GEV22TMIh2sxveAwHdjWicFS24NNMLKI1GBXPLEF5AvC6Q0nwVfmqtq2AQyoJXpC59rm
+         b9gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1O1E/xRwZme5NOHcXojTDxawVUZizZj5kgRyChIK9Ao=;
-        b=sfi7ror6M6j9nyTvcoRvlWfNcETGxKZaeUeJtcOY1SOnTUmKBhzakvuSGzT0IfPxxl
-         beEfrwA+u2bm+8jQE/+yDv6jWvXs1049j0lv7fQ7tsAELZ7qn1XJvC+BrpPn8l6IMh9G
-         nwYDhFEz4MP/6gJSO28dpkGSoWUfLfM3KliIjCXarWhClpVAK1lEIattqqlOhi+mk8yN
-         /Wunr4bdbGXJU1XknqA+zCOxhiLzqXMeWDRVklOtBXw+fWYVTb77RiA6LAUEH9/gIZ7z
-         OSqhWIW48NxO+vIna50tiFAHd7cLOw4uWrM1X01uSSWNE2yiwOXN7WlzNaghFYlhM8x3
-         uVPw==
-X-Gm-Message-State: AOAM5326XItPh+mNexOp7fxztIrmwm4alh3nCyIYoPeycmMAd3ZYtQfC
-        7Q4jaYmBBraPFHIsv9OnaBqxeVB5rg==
-X-Google-Smtp-Source: ABdhPJyYIbxtyMkD85vDHkGNFWPiFlXHfzohxPgp8c0NXKytdpBdfMpWXOPqzFN5cE03yAPqwtByVA==
-X-Received: by 2002:a05:6e02:1d9b:: with SMTP id h27mr7501787ila.279.1616690868432;
-        Thu, 25 Mar 2021 09:47:48 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.253])
-        by smtp.googlemail.com with ESMTPSA id h13sm2868615ila.82.2021.03.25.09.47.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 09:47:47 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
-Subject: [PATCH 8/8] docs: dt: Add DT API documentation
-Date:   Thu, 25 Mar 2021 10:47:13 -0600
-Message-Id: <20210325164713.1296407-9-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210325164713.1296407-1-robh@kernel.org>
-References: <20210325164713.1296407-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KaZNs/slFbXR+His3djbKPWrwZ4lvzuSmzWHKektuFM=;
+        b=Ht4IiZtpKs1DrVqVP9XwnyLmFliMfKmKrfw9ipVR0WgEoFIQUTbt0aEvsKT/AE3x1O
+         DQOQEMDIwZdp+f4EjrM+xSpEawqIhdNHvBPgyAWNNT5uGBmlnasq2fOYZkcH7hVZzyoU
+         J13/u3CQU4OR/7VCXeW2ylPE66g4huKUxoqkHtryB3kDcliQ/B2uRwMIWhUgHYD1vQj0
+         fIJoULrkAC/JQZD6FgN0thNPVmE5FPjTGzH1wUTrHBObk9fv3ZZRJks1vfDlaBs1KjGC
+         LQlNWaDx8XwjpcHTA0MhfhkIcrQZ5sCXgs5FxK8zzJoNNGvU1bb0Iq91m6BfhehD9U7E
+         paIw==
+X-Gm-Message-State: AOAM533WCSQwVv9JIxYUmY8In5ew2Vu5u6eal7C2/Ue734pYKBFlD7FV
+        X7+RrLqe5slN7KfmGFlHu/3XAkCs/DO1oiXxgGctCg==
+X-Google-Smtp-Source: ABdhPJx7d0yaG5nL06/Z/qmgArm+E/1zz6/PdivRj7LNIGAYNsSqEjhkh4JiFkM9WhYO6fEUA/XeRv0i5aSyAMHJZZM=
+X-Received: by 2002:a17:90a:4a8f:: with SMTP id f15mr9930336pjh.19.1616690989004;
+ Thu, 25 Mar 2021 09:49:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210322103328.66442-1-jagan@amarulasolutions.com>
+In-Reply-To: <20210322103328.66442-1-jagan@amarulasolutions.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 25 Mar 2021 17:49:38 +0100
+Message-ID: <CAG3jFyt1pztRM=pHmE3VWK0aXKivQJ=7qz8QsryhEtL35LVXKg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: Add Chipone ICN6211 bindings
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-amarula@amarulasolutions.com,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The kernel-doc for the DT APIs are not included in the documentation
-build. Add them.
+Pushed to drm-misc-next
 
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/index.rst      |  1 +
- Documentation/devicetree/kernel-api.rst | 57 +++++++++++++++++++++++++
- 2 files changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/kernel-api.rst
+https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a42e37db23b88120aea9fa31f9c0952accb39296
 
-diff --git a/Documentation/devicetree/index.rst b/Documentation/devicetree/index.rst
-index 70b5dcdbcf07..1a2fc8014996 100644
---- a/Documentation/devicetree/index.rst
-+++ b/Documentation/devicetree/index.rst
-@@ -11,6 +11,7 @@ Kernel Devicetree Usage
- 
-    usage-model
-    of_unittest
-+   kernel-api
- 
- Devicetree Overlays
- ===================
-diff --git a/Documentation/devicetree/kernel-api.rst b/Documentation/devicetree/kernel-api.rst
-new file mode 100644
-index 000000000000..b7429e6ed6d5
---- /dev/null
-+++ b/Documentation/devicetree/kernel-api.rst
-@@ -0,0 +1,57 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+.. _devicetree:
-+
-+======================================
-+DeviceTree Kernel API
-+======================================
-+
-+Core functions
-+--------------
-+
-+.. kernel-doc:: drivers/of/base.c
-+   :export:
-+
-+.. kernel-doc:: include/linux/of.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/of/property.c
-+   :export:
-+
-+.. kernel-doc:: include/linux/of_graph.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/of/address.c
-+   :export:
-+
-+.. kernel-doc:: drivers/of/irq.c
-+   :export:
-+
-+.. kernel-doc:: drivers/of/fdt.c
-+   :export:
-+
-+Driver model functions
-+----------------------
-+
-+.. kernel-doc:: include/linux/of_device.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/of/device.c
-+   :export:
-+
-+.. kernel-doc:: include/linux/of_platform.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/of/platform.c
-+   :export:
-+
-+Overlay and Dynamic DT functions
-+--------------------------------
-+
-+.. kernel-doc:: drivers/of/resolver.c
-+   :export:
-+
-+.. kernel-doc:: drivers/of/dynamic.c
-+   :export:
-+
-+.. kernel-doc:: drivers/of/overlay.c
-+   :export:
--- 
-2.27.0
-
+On Mon, 22 Mar 2021 at 11:33, Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> ICN6211 is MIPI-DSI to RGB Converter bridge from Chipone.
+>
+> It has a flexible configuration of MIPI DSI signal input and
+> produces RGB565, RGB666, RGB888 output format.
+>
+> Add dt-bingings for it.
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Reviewed-by: Robert Foss <robert.foss@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes for v5:
+> - rebase drm-misc-next
+> - collect Rob, Robert review tags
+> Changes for v4:
+> - fixed Laurent comments
+> - added regulators
+> - replace reset with EN
+> - fixed warnings pointed by Robert
+> Changes for v3:
+> - updated to new dt-bindings style
+>
+>  .../display/bridge/chipone,icn6211.yaml       | 99 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 +
+>  2 files changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> new file mode 100644
+> index 000000000000..62c3bd4cb28d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/chipone,icn6211.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Chipone ICN6211 MIPI-DSI to RGB Converter bridge
+> +
+> +maintainers:
+> +  - Jagan Teki <jagan@amarulasolutions.com>
+> +
+> +description: |
+> +  ICN6211 is MIPI-DSI to RGB Converter bridge from chipone.
+> +
+> +  It has a flexible configuration of MIPI DSI signal input and
+> +  produce RGB565, RGB666, RGB888 output format.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - chipone,icn6211
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: virtual channel number of a DSI peripheral
+> +
+> +  enable-gpios:
+> +    description: Bridge EN pin, chip is reset when EN is low.
+> +
+> +  vdd1-supply:
+> +    description: A 1.8V/2.5V/3.3V supply that power the MIPI RX.
+> +
+> +  vdd2-supply:
+> +    description: A 1.8V/2.5V/3.3V supply that power the PLL.
+> +
+> +  vdd3-supply:
+> +    description: A 1.8V/2.5V/3.3V supply that power the RGB output.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port for MIPI DSI input
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port for MIPI DPI output (panel or connector).
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpios
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      bridge@0 {
+> +        compatible = "chipone,icn6211";
+> +        reg = <0>;
+> +        enable-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +
+> +            bridge_in_dsi: endpoint {
+> +              remote-endpoint = <&dsi_out_bridge>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +
+> +            bridge_out_panel: endpoint {
+> +              remote-endpoint = <&panel_out_bridge>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4b705ba51c54..b9d11101d060 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5568,6 +5568,11 @@ S:       Maintained
+>  F:     Documentation/devicetree/bindings/display/panel/boe,himax8279d.yaml
+>  F:     drivers/gpu/drm/panel/panel-boe-himax8279d.c
+>
+> +DRM DRIVER FOR CHIPONE ICN6211 MIPI-DSI to RGB CONVERTER BRIDGE
+> +M:     Jagan Teki <jagan@amarulasolutions.com>
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> +
+>  DRM DRIVER FOR FARADAY TVE200 TV ENCODER
+>  M:     Linus Walleij <linus.walleij@linaro.org>
+>  S:     Maintained
+> --
+> 2.25.1
+>
