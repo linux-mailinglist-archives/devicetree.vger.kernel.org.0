@@ -2,66 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C19E348BEC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B18348BF8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:58:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbhCYIwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 04:52:20 -0400
-Received: from mga12.intel.com ([192.55.52.136]:35109 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229761AbhCYIwL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 04:52:11 -0400
-IronPort-SDR: 6fC6MCW/VKqWG6BhYe7m61xFhw0+4pmXDoINK5PQvz3OsA+heMlFhehLMDGDua1MhG8e1cXUBx
- tVs7J37HWX7Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="170236569"
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; 
-   d="scan'208";a="170236569"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2021 01:52:10 -0700
-IronPort-SDR: zs+SB7lb6LLXt85zal5NPVqsCM4paZ7+Bu0x4GB+P7wyhqOjImKsgHS0ONW+S4NN/UsrgcIsOe
- OFfQU3n1Jk5Q==
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; 
-   d="scan'208";a="593697007"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2021 01:52:08 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 6CF6D2017A;
-        Thu, 25 Mar 2021 10:52:06 +0200 (EET)
-Date:   Thu, 25 Mar 2021 10:52:06 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: media: video-interfaces: Drop the example
-Message-ID: <20210325085206.GF3@paasikivi.fi.intel.com>
-References: <20210324202253.3576798-1-robh@kernel.org>
+        id S229635AbhCYI5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 04:57:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229619AbhCYI5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 04:57:37 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E95C06175F
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 01:57:36 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id a1so2159231ljp.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 01:57:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IBw+fqPCYGPDI6K3X71IFi8mM+m8z83H8t7eBrf5JCU=;
+        b=s+p8JtdX7JNqKg148kB7YqJ2LzP3jEieZthb9Fn07U2hVcxHFIwZhmrymmZ6B2A9tu
+         /nk0P6Ce6W+5pUUowM1vDBrKHCcAWTa4EGvPT0/jpjwRNTp17F/RiNN2GJrP9fRVWFVG
+         tYGH+7g30olnPq4l+uqKbW5PpvNY5hNIznMvAkW9r2kx5DbU2nEFdRpViMX3K1951+N9
+         Ks0WkFhnneCcIthTxwRZ4UwQyxfbd9KHNyL+r3U4iSo9xR2qgRPWlbqr0mfcW8nmUUjK
+         WJnyoDtm580Tg08lC4znFUQUhZKycbQj5Dw1Tdd84SFLdchTyMRwToZWyUFKyjIsLIwg
+         gTPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IBw+fqPCYGPDI6K3X71IFi8mM+m8z83H8t7eBrf5JCU=;
+        b=cbpaxQYGJQP3XQilaAo8NY7QXVEBPESHywMYt9wXvlOxccdtk83rhhrSETPi2dlzmT
+         czVRUYQclIVFyagefJDbxyey/19F/zIfuAXEUHIACpeAeEn6ddYZK20zPHCaSaWsnHnV
+         70En1BEv8gMwfaIb2DCJzQxkjlX2QRKIN7agTThttvbAhPD9esScM9OVYpJBLm0JWAVw
+         XPGMK6CaXDQhoO5sedN8weXIxoqzGkdj6RC50Zjd5p+//EVSjGdr6vGbgf+TiQZzC7P6
+         M7b6ZNKnkhq4r1J5bL7v3a7/3UImxS/X7q3lJsjZj7g8S+QShYS9C6fZ0Cs0YpUHGOhe
+         6NQg==
+X-Gm-Message-State: AOAM5326lpmMRwsolOPP0JyB2CHxLguwogs/+hf02VMFD7MBohUvhG1/
+        MLAMKJPmvOEr7b061NuZRtp7vC0+qqT2jU+Hf4AOZg==
+X-Google-Smtp-Source: ABdhPJw23rq2PFZKKvLfekhae3LHMVKsw8+B+XOVjXVssFdK0jks9D3htf9bhSkipJwf5bc9teGBopemEujtkApukpE=
+X-Received: by 2002:a2e:700a:: with SMTP id l10mr4951839ljc.368.1616662655294;
+ Thu, 25 Mar 2021 01:57:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210324202253.3576798-1-robh@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <CAHp75VehkqzDPQp87JL=hnCi_b4y0d3htpxRKBJ2q73AAAbBXA@mail.gmail.com>
+ <SN6PR02MB3917DC23268D35870E85F37DBD699@SN6PR02MB3917.namprd02.prod.outlook.com>
+ <CAHp75VcbxvVsQRP_0J0mXb5vPhBor7=cq-4nqMNb-+D_+O1cdA@mail.gmail.com> <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
+In-Reply-To: <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 25 Mar 2021 09:57:23 +0100
+Message-ID: <CACRpkdaJRm4x+RaAYhy5gv7Ss897=0U=mCTbXcVAO4wKrRKZEw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
+To:     Sai Krishna Potthuri <lakshmis@xilinx.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 02:22:53PM -0600, Rob Herring wrote:
-> The example in video-interfaces.yaml uses a bunch of undocumented
-> bindings which will cause warnings when undocumented compatible checks
-> are enabled. The example could be fixed to use documented bindings, but
-> doing so would just duplicate other examples. So let's just remove the
-> example.
-> 
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Mon, Mar 22, 2021 at 4:25 PM Sai Krishna Potthuri
+<lakshmis@xilinx.com> wrote:
+> [Andy]
 
-Thanks!
+> > > > > +       PIN_CONFIG_IOSTANDARD = PIN_CONFIG_END + 1, };
+> > > >
+> > > > I'm lost here. What is IO standard exactly? Why it can't be in
+> > > > generic headers?
+> > > It represents LVCMOS 3.3 volts/ LVCMOS 1.8 volts.
+> > > Since this is specific to Xilinx ZynqMP platform, considered to be
+> > > added in the driver file.
+> >
+> > So, why can't we create a couple of bits to represent this voltages in the
+> > generic header and gain usability for others as well?
+>
+> I see some drivers are maintaining the configuration list in the driver file, if
+> the configuration is specific to the driver.
+>
+> We can move this to generic header if it is used by others as well.
+> Ok, will wait for Linus to comment.
+> >
+> > Linus?
 
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+While it is fine to add custom pin config options to pin controllers
+for hopelessly idiomatic stuff, this does look like it should be
+using PIN_CONFIG_POWER_SOURCE with the voltage rail
+as parameter, see
+include/linux/pinctrl/pinconf-generic.h
 
--- 
-Sakari Ailus
+If you're not using that then tell us why.
+
+Yours,
+Linus Walleij
