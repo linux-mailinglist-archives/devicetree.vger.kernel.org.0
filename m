@@ -2,158 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED8334884D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F27E034888C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:28:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbhCYFV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 01:21:29 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:59041 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbhCYFVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:21:17 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1616649677; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=WHPiw1feldgt4gfcCUTFJNoBPpp+MESLBL9s3gDzyOw=;
- b=emu4T4wr/fzEdAwWyzc0fRn/yF1SOdm+OgZ9PstRDEL0zWcVKGWqJT0zYc3NlsoTTlewUgDI
- R/5BDl2n3pxBpAMBh5OJgyp/UQwvFx6MxZgUoSSEPXuPPVHRe5ExbkUgj+GoI1u8ucCJwaYx
- G1KPzQtT/F2M9kUd+nnCFFDs74Q=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 605c1dbbc32ceb3a916dd6c4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 25 Mar 2021 05:20:59
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 99879C433ED; Thu, 25 Mar 2021 05:20:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C02B9C433CA;
-        Thu, 25 Mar 2021 05:20:57 +0000 (UTC)
+        id S229669AbhCYF1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 01:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229730AbhCYF1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:27:33 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F989C06174A;
+        Wed, 24 Mar 2021 22:27:32 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id b14so689439lfv.8;
+        Wed, 24 Mar 2021 22:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZxHGrWsGgW6TprfvvINnFETzyCVg5VNycGG4rTWxoNQ=;
+        b=bVHd3TJE0aQYr1W2z0J8gP18eIX/35mjuD+fGxsdk4GaHOvt9ZOm2WAaftPUlxmGSU
+         Vx0RLY1ljrKuFdl4rp3Fog88g2sCSR6lhDUn8BOx4GFhpmumW334P69LJ4F4XGqT0iut
+         CLaO6TQwTFoKuzb4/r4Qbx8JbJi/VhsfaOO363ZnfwyGZUhXL5p5h5Rc1S3uEwWMxFkS
+         /y5d76oDV6rS2xuoLMTYF/aYD1Bz64ll8KLZ6Wp76Ll6TTixRGhM0bXaGPypFaA8hfZ7
+         FxCjjk8QO4pw0KRMNY7LSBg6OCSGPK6BZy1S0uaAVdGAWipcae4cMwPE243wGxgpgJ+1
+         vzvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZxHGrWsGgW6TprfvvINnFETzyCVg5VNycGG4rTWxoNQ=;
+        b=SaxpYsN6rv8CahGT4kIGIxzi4TBUmBbQG5EN/YNciEOGJA2feuJldYWaaetlqPfjdZ
+         QjCP96XV+4Cn/NLjrWm3McU0C7DXRFJOMqyvkPmESIU5IJk0TIKYFX5porCKr2mPN7/N
+         k0+iKmpcPH/vzEP1xQEIgFugNkAcOGRb2SPvlEagyEDOmSs8kpq6nrTf0bDpWtVM8mZh
+         Gmc2l+deuDkiXoA6GbDqT105u1+psyKV2rOYig5S1xDjqlqo2vtNaKoZb8RMZxa5sUnv
+         mPsyvz3Ys3MivWMsyYJZ22AgBpX68Y7o9NEV6u3tMXDhpwRW4kNGt/QZc5nAOfwXHr3N
+         Mucw==
+X-Gm-Message-State: AOAM533zP1hzhreph6FNMB8sXZgpuCm2Auj5TG+XfCrwKggy/qxDBKDQ
+        zivc9w6BayUh91TkOeznkCI=
+X-Google-Smtp-Source: ABdhPJx9lhFLxGYM+AahSvAkF8cOfJkn8tZwFRFJBxg0JEMHz67z2DGN0eaXzeSnMbQPbyvDCNvu3w==
+X-Received: by 2002:ac2:48ab:: with SMTP id u11mr3913829lfg.79.1616650051160;
+        Wed, 24 Mar 2021 22:27:31 -0700 (PDT)
+Received: from [192.168.1.221] (87-92-162-34.rev.dnainternet.fi. [87.92.162.34])
+        by smtp.googlemail.com with ESMTPSA id l7sm578168lje.30.2021.03.24.22.27.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Mar 2021 22:27:30 -0700 (PDT)
+Subject: Re: [PATCH 2/2] dt-binding: leds: Document leds-multi-gpio bindings
+To:     Hermes Zhang <chenhui.zhang@axis.com>, pavel@ucw.cz,
+        dmurphy@ti.com, robh+dt@kernel.org
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, chenhuiz@axis.com, lkml@axis.com,
+        kernel@axis.com
+References: <20210324075631.5004-1-chenhui.zhang@axis.com>
+ <20210324075631.5004-3-chenhui.zhang@axis.com>
+From:   =?UTF-8?B?VmVzYSBKw6TDpHNrZWzDpGluZW4=?= <dachaac@gmail.com>
+Message-ID: <0648fff2-5b38-66da-7eb0-9969e517421f@gmail.com>
+Date:   Thu, 25 Mar 2021 07:27:33 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
+ Gecko/20100101 Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 25 Mar 2021 10:50:57 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add PMIC peripherals for SC7280
-In-Reply-To: <YFjVEjcx36J97hVW@google.com>
-References: <1615459229-27573-1-git-send-email-skakit@codeaurora.org>
- <YEvR1kDm32tE7mK3@google.com>
- <4dc784eb3c00a9805141148732476838@codeaurora.org>
- <YFjVEjcx36J97hVW@google.com>
-Message-ID: <e8af9692a9a54e44ad687bb8984fad7a@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <20210324075631.5004-3-chenhui.zhang@axis.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi,
 
-On 2021-03-22 23:04, Matthias Kaehlcke wrote:
-> Hi Satya,
-> 
-> On Mon, Mar 22, 2021 at 06:50:47PM +0530, skakit@codeaurora.org wrote:
->> Hi Matthias,
->> 
->> On 2021-03-13 02:10, Matthias Kaehlcke wrote:
->> > Hi Satya,
->> >
->> > On Thu, Mar 11, 2021 at 04:10:29PM +0530, satya priya wrote:
->> > > Add PM7325/PM8350C/PMK8350/PMR735A peripherals such as PON,
->> > > GPIOs, RTC and other PMIC infra modules for SC7280.
->> > >
->> > > Signed-off-by: satya priya <skakit@codeaurora.org>
->> > > ---
->> > > This patch depends on base DT and board files for SC7280 to merge
->> > > first
->> > > https://lore.kernel.org/patchwork/project/lkml/list/?series=487403
->> > >
->> > >  arch/arm64/boot/dts/qcom/pm7325.dtsi  |  60 ++++++++++++++++++++
->> > >  arch/arm64/boot/dts/qcom/pm8350c.dtsi |  60 ++++++++++++++++++++
->> > >  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 104
->> > > ++++++++++++++++++++++++++++++++++
->> > >  arch/arm64/boot/dts/qcom/pmr735a.dtsi |  60 ++++++++++++++++++++
->> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi  |   8 +++
->> > >  5 files changed, 292 insertions(+)
->> > >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > >  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
->> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
->> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
->> > >
->> > > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > new file mode 100644
->> > > index 0000000..393b256
->> > > --- /dev/null
->> > > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
->> > > @@ -0,0 +1,60 @@
->> >
->> > ...
->> >
->> > > +		polling-delay-passive = <100>;
->> > > +		polling-delay = <0>;
->> >
->> > Are you sure that no polling delay is needed? How does the thermal
->> > framework
->> > detect that the temperatures is >= the passive trip point and that it
->> > should
->> > start polling at 'polling-delay-passive' rate?
->> >
->> 
->> As the temp-alarm has interrupt support, whenever preconfigured 
->> threshold
->> violates it notifies thermal framework, so I think the polling delay 
->> is not
->> needed here.
-> 
-> From the documentation I found it's not clear to me how exactly these
-> interrupts work. Is a single interrupt triggered when the threshold is
-> violated or are there periodic (?) interrupts as long as the 
-> temperature
-> is above the stage 0 threshold?
-> 
-> Why is 'polling-delay-passive' passive needed if there are interrupts? 
-> Maybe
-> to detect that the zone should transition from passive to no cooling 
-> when the
-> temperature drops below the stage 0 threshold?
+See below.
 
-The PMIC TEMP_ALARM peripheral maintains an internal over-temperature 
-stage: 0, 1, 2, or 3.  Stage 0 is normal operation below the lowest 
-(stage 1) threshold [usually 95 C].  When in stage 1, the temperature is 
-between the stage 1 and 2 thresholds [stage 2 threshold is usually 115 
-C].  Upon hitting the stage 3 threshold [usually 145 C], the PMIC 
-hardware will automatically shut down the system.
+On 24.3.2021 9.56, Hermes Zhang wrote:
+> From: Hermes Zhang <chenhuiz@axis.com>
+> 
+> Document the device tree bindings of the multiple GPIOs LED driver
+> Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
+> 
+> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+> ---
+>   .../bindings/leds/leds-multi-gpio.yaml        | 50 +++++++++++++++++++
+>   1 file changed, 50 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+> new file mode 100644
+> index 000000000000..6f2b47487b90
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Multiple GPIOs LED driver
+> +
+> +maintainers:
+> +  - Hermes Zhang <chenhuiz@axis.com>
+> +
+> +description:
+> +  This will support some LED made of multiple GPIOs and the brightness of the
+> +  LED could map to different states of the GPIOs.
+> +
+> +properties:
+> +  compatible:
+> +    const: multi-gpio-led
+> +
+> +  led-gpios:
+> +    description: Array of one or more GPIOs pins used to control the LED.
+> +    minItems: 1
+> +    maxItems: 8  # Should be enough
 
-The TEMP_ALARM IRQ fires on stage 0 -> 1 and 1 -> 0 transitions.  We 
-therefore set polling-delay = <0> since there is no need for software to 
-monitor the temperature periodically when operating in stage 0.  Upon 
-crossing the stage 1 threshold, SW receives the IRQ and the thermal 
-framework hits its first trip changing the thermal zone to passive mode. 
-  This then engages the 100 ms polling enabled via polling-delay-passive 
-= <100>.  If the temperate keeps climbing and passes the stage 2 
-threshold, the thermal framework hits the second trip (which is 
-critical) and it initiates an orderly shutdown.  If the temperature 
-drops below the stage 1 threshold, then the thermal framework exits 
-passive mode and stops polling.  This approach reduces/eliminates the 
-software overhead when not at an elevated temperature.
+We also have a case with multi color LEDs (which is probably a more 
+common than multi intensity LED. So I am wondering how these both could 
+co-exist.
+
+From: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/leds-gpio.yaml?h=v5.12-rc4#n58
+
+         led-0 {
+             gpios = <&mcu_pio 0 GPIO_ACTIVE_LOW>;
+             linux,default-trigger = "disk-activity";
+             function = LED_FUNCTION_DISK;
+         };
+
+Now 'gpios' (and in LED context) and 'led-gpios' is very close to each 
+other and could easily be confused.
+
+Perhaps this could be something like:
+
+intensity-gpios = ...
+
+or even simplified then just to gpios = <...>
+
+> +
+> +  led-states:
+> +    description: |
+> +      The array list the supported states here which will map to brightness
+> +      from 0 to maximum. Each item in the array will present all the GPIOs
+> +      value by bit.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 1
+> +    maxItems: 16 # Should be enough
+> +
+> +required:
+> +  - compatible
+> +  - led-gpios
+> +  - led-states
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpios-led {
+> +      compatible = "multi-gpio-led";
+> +
+> +      led-gpios = <&gpio0 23 0x1>,
+> +                  <&gpio0 24 0x1>;
+> +      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
+> +    };
+> +...
+> 
+
+From: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml?h=v5.12-rc4#n196
+
+There is example of multi color LED configuration. In example below I 
+used two-color LED with red and green as an example (which what we seem 
+to have most in use).
+
+Then if try to combine these into something like:
+
+# Multi color LED with single GPIO line per color
+multi-led@2 {
+   compatible = "gpio-leds";
+   color = <LED_COLOR_ID_MULTICOLOR>;
+   led@0 {
+     color = <LED_COLOR_ID_GREEN>;
+     gpios = <&mcu_pio 0 GPIO_ACTIVE_LOW>;
+   };
+
+   led@1 {
+     color = <LED_COLOR_ID_RED>;
+     gpios = <&mcu_pio 1 GPIO_ACTIVE_LOW>;
+   };
+};
+
+# And with intensity GPIOs:
+multi-led@2 {
+   compatible = "gpio-leds";
+   color = <LED_COLOR_ID_MULTICOLOR>;
+
+   led@0 {
+     color = <LED_COLOR_ID_GREEN>;
+     gpios = <&gpio0 23 0x1>,
+             <&gpio0 24 0x1>;
+     ... see below
+   };
+
+   led@1 {
+     color = <LED_COLOR_ID_RED>;
+     gpios = <&gpio0 25 0x1>,
+             <&gpio0 26 0x1>;
+     ... see below
+   };
+};
+
+# And then single GPIO with intensity GPIOs:
+led@2 {
+   compatible = "gpio-leds";
+   gpios = <&gpio0 23 0x1>,
+           <&gpio0 24 0x1>;
+   gpios-brightness-levels = <0 1 2 3>
+};
+
+I changed 'led-states' to 'gpios-brightness-levels' as it describe more 
+that this is about brightness and not some other state information.
+
+How would this sound?
 
 Thanks,
-Satya Priya
+Vesa Jääskeläinen
