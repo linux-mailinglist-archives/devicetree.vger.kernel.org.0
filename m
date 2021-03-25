@@ -2,88 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C7A348C58
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 10:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E297C348C82
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 10:16:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhCYJKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 05:10:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40550 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbhCYJKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 05:10:21 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12P9A1EC104845;
-        Thu, 25 Mar 2021 04:10:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616663401;
-        bh=fizCFa2FC7q85wBtLkQgLLvgIMCdjLrp+tEVBpiTQXI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=SSr7Jx3/AA1GeZQKpipzaX4Txc2++7hZ6xpfzAyyEjuUXJBK6yogFr4jGMp2ZbUG6
-         eyWI36wRrZDrqFxnl+oYMvPXQM60SNwbO8pLo8diNmQ0AlLwiRaJl8tkRXsqdZBTMj
-         0SNQtFPqSEwvfkkAzpJpDZgbdd1A/LRF6PkjFgrM=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12P9A1Of022983
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Mar 2021 04:10:01 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 25
- Mar 2021 04:10:01 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 25 Mar 2021 04:10:01 -0500
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12P99bA1078373;
-        Thu, 25 Mar 2021 04:09:57 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Marc Zyngier <maz@kernel.org>
-CC:     Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH 4/4] PCI: j721e: Add PCIe support for AM64
-Date:   Thu, 25 Mar 2021 14:39:36 +0530
-Message-ID: <20210325090936.9306-5-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210325090936.9306-1-kishon@ti.com>
-References: <20210325090936.9306-1-kishon@ti.com>
+        id S229913AbhCYJPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 05:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229836AbhCYJPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 05:15:31 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25164C06175F
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 02:15:31 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id q29so1460612lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 02:15:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jQSUS0sWefxNSCHEC1KdchHT6ruHmXruWSe0jguDBe4=;
+        b=o57KpS/SVqgB4aa8+prMDX4/0f/sQZGpgBQ8t5UkMLPn5Qn3CNlhP1s7Y7cH4Uk0Yt
+         5+aTgDlMtpj8VahIttojhrrqsMz/i3HQcvat2q+Z9IlJEJlzy4HXE35AMDJMbCm+Fwag
+         qFIWd7dGn1Dkpw/9bBN+AjxUmjgcMmvYPGwu96VWRx3Jk3pOWVzsmR2MflpGxpsR/+zI
+         214Nl9OF95l2M2We75WAIh54bzfBMQE0D8P4KtGSM+lKlRhSnbRTreADGhK5Iq5E6anG
+         Hinv7XgoNn7ofg5sU3fNhh/jDogg7F6goe/WLIVqPG5zG3KvOj4ZK71BAHaib2103KXC
+         sl4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jQSUS0sWefxNSCHEC1KdchHT6ruHmXruWSe0jguDBe4=;
+        b=uefN+9dM5gho5647g3RU9HOqhPxsKX0Vc5zCd8PaAKh45HcNwgVrYBM/zzhUuzX2oW
+         Ir2RjMXzaQadJ9X5s8twD81ML3GMDuA4TVkYOOLFyNRgaU8qsRuIHlgM18ZKB92WVPVZ
+         byEsWHPqOm1pCF2GcqEIr8dL5zD5m+6AoBzOOtIrDJ7iYnprUMWH579KJXAmcaokEOO7
+         rod74lxJpnFcUgu4hhcWlgdVufpDTNz3hqLMCuNbLbWslPHIEqadkB07ROZon+SeptDR
+         60/5o3iRnvMcZRFsnfM/tVkC89v6uNPb1nXbTJSMaQiTJ5LYPTH/aE17krLO6qpDrF6E
+         VJ0Q==
+X-Gm-Message-State: AOAM532wKakLyPBwx6pqndXAK1nvgyVgAEDRw8zwngTz/Y/A8gMJiYXK
+        MxnHMDwyKEZfQwhVWevoP+ZPVCd25HIltkBA/XlqqQ==
+X-Google-Smtp-Source: ABdhPJwItH2xIo9/hQ0G/Dsu3MfocBFrbbbYJg+8rqc4pz2dbpv/HCAoF4I48/Ib6niSpMgouHHNNiCfW6MgVKURop4=
+X-Received: by 2002:a19:548:: with SMTP id 69mr4426509lff.465.1616663729558;
+ Thu, 25 Mar 2021 02:15:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210321033150.15380-1-zhiyong.tao@mediatek.com> <20210321033150.15380-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20210321033150.15380-2-zhiyong.tao@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 25 Mar 2021 10:15:18 +0100
+Message-ID: <CACRpkdaO8YEBo53uUuUpegjFTwaZbtWtbKTUynAX_55p89Dfvg@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: add lock in mtk_rmw function.
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, srv_heupstream@mediatek.com,
+        hui.liu@mediatek.com, huang eddie <eddie.huang@mediatek.com>,
+        jg_poxu@mediatek.com, Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Erin Lo <erin.lo@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, seiya.wang@mediatek.com,
+        sj.huang@mediatek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM64 has the same PCIe IP as in J7200 (legacy interrupt handling is
-same as J7200 instead of J721E). Add support for "ti,am64-pcie-host"
-compatible that is specific to AM64.
+On Sun, Mar 21, 2021 at 4:32 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- drivers/pci/controller/cadence/pci-j721e.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> When multiple threads operate on the same register resource
+> which include multiple pin, It will make the register resource
+> wrong to control. So we add lock to avoid the case.
+>
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-index f175f116abf6..38895a5f4b68 100644
---- a/drivers/pci/controller/cadence/pci-j721e.c
-+++ b/drivers/pci/controller/cadence/pci-j721e.c
-@@ -467,6 +467,10 @@ static const struct of_device_id of_j721e_pcie_match[] = {
- 		.compatible = "ti,j7200-pcie-host",
- 		.data = &j7200_pcie_rc_data,
- 	},
-+	{
-+		.compatible = "ti,am64-pcie-host",
-+		.data = &j7200_pcie_rc_data,
-+	},
- 	{},
- };
- 
--- 
-2.17.1
+Patch applied!
 
+Yours,
+Linus Walleij
