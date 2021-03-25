@@ -2,129 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1C213493C4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58EEA3493CC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231344AbhCYOKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 10:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbhCYOKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 10:10:39 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6012AC06174A;
-        Thu, 25 Mar 2021 07:10:38 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id r10-20020a05600c35cab029010c946c95easo1253533wmq.4;
-        Thu, 25 Mar 2021 07:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0mydIUmMhYaLpC0TGBq89wR0dneeiZBlHKPe/4EHYHQ=;
-        b=a3ElJQirlWF+dI7K4n4nvo1sQoIkDsrGHGpI4TzD8Q5dkBmsANAOjtijDLR8aeCdWR
-         8tCnfIctyLhIYTyi3nRP9xBG++vnW4KpmYe2cgU6/VrlpGHn5kxHvkc1nbEHx9+IkLTu
-         JX9Y+Y5VZzMWpX7/slK0YHqJa3j3akJd/6q2EPGBfY/7cZ7cgtAluRg/XaAEKd0NoI6W
-         vcQqcDUErX9vXyhoqOIN57vWwpAiRFPR1Ow9C8kpGsTD5pnMZ/Ti5FEyDF3bsu2/CFEw
-         uGUDIfA+7kVWW73Trqoqcs51olgm+RdQndp1ISFmn5oQyOaWauPmg3Gj+uP1LiMloreC
-         md8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0mydIUmMhYaLpC0TGBq89wR0dneeiZBlHKPe/4EHYHQ=;
-        b=e9pF3P3xjno5Q22mUYEuydk4vbUDmOl3EzxH3dAx/bT0/2LI8H7mC8UZ2G2GIbYvxr
-         jfWDhVySvFkD86MGc1oKJ+2WRAR4ghIPemODrtRHusetV3oLFNPkA5sC5hYcb/AyB0Ia
-         bPqylkTbKWMlXN4RR/fSLdtr0rEn7vbJhfa4LO+xzpK7j0doTEiQlcF+0TI4kvFuuJOL
-         jSuDu9V/z4zVhiO4bF3BvDMzEFaFchhUKk8oRM0J/GgBWtm7lEuitERt5j3WBTSuDUJw
-         nfZWSFWfLEOZmjnD4WgreDss8VOFNzoXEw3IQefnq399iUzylzNU+QH52fox9NWs0doV
-         asaA==
-X-Gm-Message-State: AOAM532f3/LLmUpm3jW61oIQq5uehWXklqpKek2f+tI2RkfBnngU6HLB
-        vVgMZ9wev1D07ZsY+kPlyPc=
-X-Google-Smtp-Source: ABdhPJwbRUVbk/fkcAVvW+Lw1raZb6rUBMJ2PSvmm+rVzBFiu8qDlP16L2ma9KZzOWdSnZHxzfPaBg==
-X-Received: by 2002:a1c:22c2:: with SMTP id i185mr8179035wmi.99.1616681437080;
-        Thu, 25 Mar 2021 07:10:37 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id v14sm7684745wrd.48.2021.03.25.07.10.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 07:10:17 -0700 (PDT)
-Date:   Thu, 25 Mar 2021 15:10:25 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>, Nick Dyer <nick@shmanahar.org>,
+        id S230140AbhCYOMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 10:12:22 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:51917 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231271AbhCYOMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 10:12:16 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 879D05C00DE;
+        Thu, 25 Mar 2021 10:12:15 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 25 Mar 2021 10:12:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=ves1r/nQmgxtQKc3+3YCO54CxOB
+        ALjxaiKSuGacq514=; b=K2g6mM4fs9OXl38Qo29CdS6HJtFVkwpY7TiLnZBJ/xF
+        COlq8Apuv4rQ/9EzsdIEEvLAeZyeZYHYyCeeYS+Qn3li6gAnwJqPh9nfn3gaqn4R
+        P8hNsfe05bJ0b8QsITa3UYrynFo9495P4HdSfhvmiYEyljEOY093U2y2UN1ozAmt
+        A3CMSCmzk87dGW1A4cOtqHc2WjKagxWt+80PC99TgNrVVCiP3U/kSv3GUiGiNTyz
+        88xETyHETV9m9BwwRVRxXF50+gOGFPs3vnrRYS/8QMEKviREV66BcHwcMXNVsQ7f
+        Pvgbtb9nT1umKZiXobFpIuDOfn5a+1O9YFbJAJxe2sg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ves1r/
+        nQmgxtQKc3+3YCO54CxOBALjxaiKSuGacq514=; b=SJDp8Z3kjuLXv6EFgHx1qW
+        n9MS731fFyFDGd02SFfj1zpndhziOlpaLJQo48flrEhrOfs4ytE96FKCv//dEZTF
+        r0car0nk6Xi5jLaok7LUPkCCk6+MSiFlW1vl+k9n/FvHOFM02n5RJqA0MBGKWprQ
+        JOqVFATMhyQE8pn/8FV8lqhq40ENK1RkH77KA0m+KrMdE/DtXflPW3yuZmZXgPL5
+        RbmXy0P4Xj2Jv0rJVbFUB0K9610dd2/P00iG+j6+DL+pdsgAfcxcXUqUNhNmIp49
+        dEYrB3fatGeCVh/xfVuYdhgKqA8kt3nM+tGokWEKwYK+tlHhfO2X9LkDC67s7DOw
+        ==
+X-ME-Sender: <xms:PppcYEbCHRW4ymRdRB1eteg_IzXWcSJ6XKcpDoArG4J8rG8448RQNw>
+    <xme:PppcYPa3tM4oTJEbCCV6S2oKjrbaFUkSyePGgqtp1xLIV7rOxcLfs0v0ebV0gA1wV
+    hug1fx4Ndv_LgtUbZg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehtddgiedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:PppcYO-vYULEpA3nA3fyojhMZB4vbThe-7HaQZSLPtIZjPVPzPlk4A>
+    <xmx:PppcYOoO4L5RkZDMaPZ6EVCNafw0mWU5NMGPmkVeu7alE67JuDFnJw>
+    <xmx:PppcYPpZyHoYQq0K0hEqiYce3KyWqDS4HE-40isI-xvzlmXxsF9Hsg>
+    <xmx:P5pcYABsyAHU8t8ZU8ALPdTpuxIg6pRqxWfdwKbcJO-hEwSPdrRPkQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C527324006A;
+        Thu, 25 Mar 2021 10:12:13 -0400 (EDT)
+Date:   Thu, 25 Mar 2021 15:12:11 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Ivan Uvarov <i.uvarov@cognitivepilot.com>,
+        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiada Wang <jiada_wang@mentor.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] ARM: tegra: acer-a500: Add atmel,wakeup-method
- property
-Message-ID: <YFyZ0ejrSxWc3JZT@orome.fritz.box>
-References: <20210302102158.10533-1-digetx@gmail.com>
- <20210302102158.10533-4-digetx@gmail.com>
- <YFfLXLDIuRdj2bWs@google.com>
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v2 1/4] ARM: dts: sun8i: r40: add /omit-if-no-ref/ to
+ pinmux nodes for UARTs 0&3
+Message-ID: <20210325141211.5bfemlmn5dkurlym@gilmour>
+References: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
+ <20210322105538.3475183-2-i.uvarov@cognitivepilot.com>
+ <20210322161804.0395de61@slackpad.fritz.box>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="JZH7iAiIxO3WXnjv"
+        protocol="application/pgp-signature"; boundary="usds6ccterplbkj5"
 Content-Disposition: inline
-In-Reply-To: <YFfLXLDIuRdj2bWs@google.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+In-Reply-To: <20210322161804.0395de61@slackpad.fritz.box>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---JZH7iAiIxO3WXnjv
+--usds6ccterplbkj5
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 21, 2021 at 03:40:28PM -0700, Dmitry Torokhov wrote:
-> On Tue, Mar 02, 2021 at 01:21:58PM +0300, Dmitry Osipenko wrote:
-> > Acer A500 uses Atmel Maxtouch 1386 touchscreen controller. This control=
-ler
-> > has WAKE line which could be connected to I2C clock lane, dedicated GPIO
-> > or fixed to HIGH level. Controller wakes up from a deep sleep when WAKE
-> > line is asserted low. Acer A500 has WAKE line connected to I2C clock and
-> > Linux device driver doesn't work property without knowing what wakeup
-> > method is used by h/w.
-> >=20
-> > Add atmel,wakeup-method property to the touchscreen node.
-> >=20
-> > Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+On Mon, Mar 22, 2021 at 04:18:04PM +0000, Andre Przywara wrote:
+> On Mon, 22 Mar 2021 13:55:35 +0300
+> Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
 >=20
-> Applied, thank you.
+> Hi,
+>=20
+> > This patch adds the /omit-if-no-ref/ keyword to the pio nodes for
+> > UART0 and UART3 pins of the R40 SoC, which would reduce the fdt size on
+> > boards which do not use these UARTs.
+>=20
+> But what boards are those? It seems like all boards use uart3-pg and
+> the two existing boards use UART0.
+>=20
+> I think the idea is to use omit-if-no-ref on some rarely used nodes, so
+> if there is only a single user, for instance. Your next patch is a good
+> example.
 
-I noticed that you had applied this as I was applying a different patch
-that touches the same area and it causes a conflict. In general I prefer
-to pick up all device tree changes into the Tegra tree, specifically to
-avoid such conflicts.
+There's no real cost associated to it though, so it's just easier to
+flag all the nodes and let the compiler figure out if it should evict
+them or not.
 
-That said, I didn't see an email from Stephen about this causing a
-conflict in linux-next, so perhaps it's fine. If this pops up again it
-might be worth considering to drop this from your tree so that I can
-resolve the conflict in the Tegra tree.
+Maxime
 
-Thierry
-
---JZH7iAiIxO3WXnjv
+--usds6ccterplbkj5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBcmdEACgkQ3SOs138+
-s6HM1hAAv6/5w7f5FRWHIHF5G+bDGgIf2T9Bf6XOXEaLGpXdXYQjypKwmY9bZ2tg
-ksZQ5Bo4Yf0lFKOfFRVJq8yrxYXGzrA2lj28RHOAgs8H6+KKw04/WIAv+/ySLeUl
-w2fYrmlTlu6SEdMC0mpEhtB1nZcJFIZNOs2Yb1wBeh3bfUDcSt14vDcYxryUn57r
-KV3jt5+djsRYkpp+uf6vQe1/YGoSnqSbWjKb4zpaF0YTK/FkHZfq3/p91F2YbiEi
-3Ru+tB2W1AGoP+z5t/HL0qW2bnCssosm6vfZkO78L/zjagSVSIYshIYMLjVyczKv
-4axWH0LRIcEKben0NczDyXjU+oN2gbDAeay7RYmpLM11HzjSpVWVmhHT27z1lIw1
-tMKMCceERaqWJclInwv/62mv8rLs3QsyefzZEUQe039MgMzFTZBT4WYt+42qG6Fs
-ZseZ/2ujdvXsTnwiMbjqxD1jBQCUchStvKLcXH8rHWE82QrwjulTxElAyAJ6LGJw
-u3dN85bhfYQdry7TR9V5+zDHPabkJddVzb8BaHrJbjbbH2mLsk8RZOeJ6LjhKfDK
-z6TnRacuY1E7li6BDaHbgCayUqRiDbhxfi90l88+Y7qIT2fPvlpwe4+gpp8llIsM
-7jd6hNl19c6C66EsO9vAD5xBUz7ub283rbp1umk3vol8LbToUOc=
-=RvcD
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYFyaOwAKCRDj7w1vZxhR
+xZAdAQDYI5KK8H77Wo1gjzVzWhBN5eEoabG/SZI/TcgP9deWVwEA8EZKEgcvMc3K
+F+uf36DcIFDXKKyqCmx7oN7JkL46Nww=
+=Lha4
 -----END PGP SIGNATURE-----
 
---JZH7iAiIxO3WXnjv--
+--usds6ccterplbkj5--
