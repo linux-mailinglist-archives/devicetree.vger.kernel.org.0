@@ -2,130 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9F1348AAF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D5C5348AAA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:53:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbhCYHwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 03:52:43 -0400
-Received: from st43p00im-zteg10071901.me.com ([17.58.63.169]:54563 "EHLO
-        st43p00im-zteg10071901.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229816AbhCYHwY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 03:52:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1616658742; bh=juyzAcWja1peAtly+ZqfcunSjhvziQOQK78108njBZM=;
-        h=From:To:Subject:Date:Message-Id;
-        b=W2hfsjgDSrX3x0xuXFK0fn4YfSS8YF9bYY+QpH3XGOYTDWKMUMPqF18qHma4D5pxQ
-         XK00RUEfFv6WQZlB45MmjbHq0Tw5kqL++CYSH1qhC5Iq5oroEvWO6YjsQOYSOpxuj8
-         lEcJe4cBuAsqibSF8d8pGLB0PWEGzfG4c4oiqfvZXMFLKWKh3RuWzlIb9lgAvgJG3B
-         hrMVqEw+XBwl0kEM/nYBhBBsuQexyqJ9GQCqwpWXJd7fHNMXNR1MljtLJmLYlDCc4t
-         Cf9ZE5G27sWsG6c2WvXUly6CHwAB6c6JAFmiw4cT43IOBpyXIANwkw7Te7hZZ9nf5p
-         ak4ChE7hbm8nA==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-zteg10071901.me.com (Postfix) with ESMTPSA id 56492D80B1F;
-        Thu, 25 Mar 2021 07:52:21 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S230156AbhCYHwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 03:52:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229913AbhCYHwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 03:52:13 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414FBC06174A;
+        Thu, 25 Mar 2021 00:52:13 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id z25so1950128lja.3;
+        Thu, 25 Mar 2021 00:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=lnLwy/Jou0XEIdxcSbSHHdhXEPhOau+eCiT2vPBYoiU=;
+        b=YOA7+c+dcDSzMeDuPXg4dJGhBKysRgqSFzTQ4F+VSwVUetrPijpfxk1S5g2vitN3S7
+         tgr2eMM+RkM+zkuL52oySLTvklg3e2UlpDxrmZ3dniv8sh8lsgyatMUBfpGHBElgdjwL
+         FOIIfz9fR05lUCc0shZHOAJBBbnA80KQ21NpWFj4YJOAzqrPaCcOidOPgWQ8SAnfiSPz
+         EcJ2zSiKAsz3xiCmiifL8hZtCk9hkSQkdJ01CZh0b1B8n78JNpRmzkwT3x2ryRlHpGdB
+         Bxx14tOjjeZrxDSeIKtuv38xRTmTUEUCUMduYN6vasI9FHWPVAxkWLFSGlGMeABp2oFI
+         3VqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=lnLwy/Jou0XEIdxcSbSHHdhXEPhOau+eCiT2vPBYoiU=;
+        b=R3lch5OvBGcSRsTlOAwxzxJqng9yP8iLB0yyx43NozR+5q5Y/0yE4eX8PGhgJGfRMp
+         C7K/oPSxLTWALY/m0gdBRK8qq3p7++M1U+k4y69vMqnklRbbaaEJxBL0+ySkQt59FAt6
+         ZisP03I5JXcLEC+EIS0m/ho7hOmJFpFU6AtZWHgJCCEjmxNE46WI9ObiHSS1T9yBgNPw
+         4jMLiLBvNB4jOHkilNhMC2k7weuG1faLqO0Wo+sE7aX06CqxSMQRN/AcvhgKKhvuBDyH
+         roz6JWtN0MHDrOfB5gcExiRXep3nDxcnZb+W2jjcbaWyVCbtqGgFPrb9F1LHvPgfQFVH
+         2eVA==
+X-Gm-Message-State: AOAM530FqdFwX4cLmvG5lN1qD6iO9HlAp0aT4uhutpzMppweCTh/vlCX
+        YqROxKNmnwy9cjt4Rz0QG5lGBzGzzZynkfiLl9Q=
+X-Google-Smtp-Source: ABdhPJzIDckoBV4B9YqIJBaupdyoDDSp1YMVagyRHCVdCoOf/5vuwMfVLnmaawNrLecmwBbS+ao+49uMtf/rj+p6mHo=
+X-Received: by 2002:a2e:9591:: with SMTP id w17mr4773935ljh.141.1616658731697;
+ Thu, 25 Mar 2021 00:52:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <1604284946-16254-1-git-send-email-u0084500@gmail.com> <3cf3ee50-3dd8-d3b1-66a9-cea2ba487de3@gmail.com>
+In-Reply-To: <3cf3ee50-3dd8-d3b1-66a9-cea2ba487de3@gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Thu, 25 Mar 2021 15:52:00 +0800
+Message-ID: <CADiBU3-pDdoCioKc1mZwx7tp+_kfcN=4j-iMOT9LupXW03qwNA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] leds: rt4505: Add support for Richtek RT4505 flash
+ LED controller
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-Subject: [PATCH v2 16/16] ARM: dts: sti: update clkgen-fsyn entries in stih418-clock
-Date:   Thu, 25 Mar 2021 08:50:18 +0100
-Message-Id: <20210325075018.6598-17-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210325075018.6598-1-avolmat@me.com>
-References: <20210325075018.6598-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.369,18.0.761,17.0.607.475.0000000_definitions?=
- =?UTF-8?Q?=3D2021-03-24=5F14:2021-03-24=5F01,2021-03-24=5F14,2020-04-07?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 mlxscore=0 adultscore=0
- spamscore=0 clxscore=1015 suspectscore=0 mlxlogscore=999 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103250059
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clkgen-fsyn driver now embed the clock names (assuming the
-right compatible is used). Remove all clock-output-names property
-and update when necessary the compatible.
+Hi, Jacek:
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- arch/arm/boot/dts/stih418-clock.dtsi | 26 +++-----------------------
- 1 file changed, 3 insertions(+), 23 deletions(-)
-
-diff --git a/arch/arm/boot/dts/stih418-clock.dtsi b/arch/arm/boot/dts/stih418-clock.dtsi
-index d628e656458d..e84c476b83ed 100644
---- a/arch/arm/boot/dts/stih418-clock.dtsi
-+++ b/arch/arm/boot/dts/stih418-clock.dtsi
-@@ -94,11 +94,6 @@
- 			reg = <0x9103000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-c0-fs0-ch0",
--					     "clk-s-c0-fs0-ch1",
--					     "clk-s-c0-fs0-ch2",
--					     "clk-s-c0-fs0-ch3";
- 		};
- 
- 		clk_s_c0: clockgen-c@9103000 {
-@@ -150,15 +145,10 @@
- 
- 		clk_s_d0_quadfs: clk-s-d0-quadfs@9104000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d0";
- 			reg = <0x9104000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d0-fs0-ch0",
--					     "clk-s-d0-fs0-ch1",
--					     "clk-s-d0-fs0-ch2",
--					     "clk-s-d0-fs0-ch3";
- 		};
- 
- 		clockgen-d0@9104000 {
-@@ -179,15 +169,10 @@
- 
- 		clk_s_d2_quadfs: clk-s-d2-quadfs@9106000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d2";
- 			reg = <0x9106000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d2-fs0-ch0",
--					     "clk-s-d2-fs0-ch1",
--					     "clk-s-d2-fs0-ch2",
--					     "clk-s-d2-fs0-ch3";
- 		};
- 
- 		clockgen-d2@9106000 {
-@@ -210,15 +195,10 @@
- 
- 		clk_s_d3_quadfs: clk-s-d3-quadfs@9107000 {
- 			#clock-cells = <1>;
--			compatible = "st,quadfs";
-+			compatible = "st,quadfs-d3";
- 			reg = <0x9107000 0x1000>;
- 
- 			clocks = <&clk_sysin>;
--
--			clock-output-names = "clk-s-d3-fs0-ch0",
--					     "clk-s-d3-fs0-ch1",
--					     "clk-s-d3-fs0-ch2",
--					     "clk-s-d3-fs0-ch3";
- 		};
- 
- 		clockgen-d3@9107000 {
--- 
-2.17.1
-
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=
+=9C=883=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=884:44=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+>
+> Hi ChiYuan,
+>
+> On 11/2/20 3:42 AM, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add support for RT4505 flash LED controller. It can support up to 1.5A
+> > flash current with hardware timeout and low input voltage protection.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> > Changes since v1 to v2
+> >
+> > - Create flash directory into drvers/leds.
+> > - Coding style fix to meet 80 charactors per line limit.
+> > - Refine the description in the Kconfig help text.
+> > - Change all descriptions for 'led' text to uppercase 'LED'.
+> >
+> > ---
+> >   drivers/leds/Kconfig             |   2 +
+> >   drivers/leds/Makefile            |   3 +
+> >   drivers/leds/flash/Kconfig       |  17 ++
+> >   drivers/leds/flash/Makefile      |   2 +
+> >   drivers/leds/flash/leds-rt4505.c | 430 ++++++++++++++++++++++++++++++=
++++++++++
+> >   5 files changed, 454 insertions(+)
+> >   create mode 100644 drivers/leds/flash/Kconfig
+> >   create mode 100644 drivers/leds/flash/Makefile
+> >   create mode 100644 drivers/leds/flash/leds-rt4505.c
+>
+> Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+>
+Any problem with this patch? Do I need to submit it again?
+> --
+> Best regards,
+> Jacek Anaszewski
