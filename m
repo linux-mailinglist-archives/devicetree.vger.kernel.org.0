@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B813496AB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465813496C5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbhCYQUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbhCYQUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:20:19 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5B2C06175F
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:20:19 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id t8so2842364yba.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fOuKmIQ20L11UPWLO5kGS488XZNnGHyBfsTGAiMlJ00=;
-        b=BcAU+OB9uKAgG1mFbnckboc98myqWiCKQAi9N++VHHqxShBZT0Wr29Z2btbS1v+V7W
-         05VgmjXppB2By/tSjPVV8J7TVtN2dzn194gyWjJCRdNLDYz8izU2TSx3zBXDSwve4UvZ
-         aMix5bmuD7bIs/cH/STPd3gQ5FQCctVTMinFSezavQTVORb+Cz5Y6Eaj+SfffM8BY58z
-         4XjIaYy3DoOi4nok6yMdGldn4vpfN2i8SgEg1kRk3IMLSpXFaIAVJpi0yUzROgnTVVWy
-         bfbtVTtkLDI1QqsFvBSrRRS9vm3psHvWqhTF5qC7nfSSYZ7mYLHjvM0WdqYAGZVvROfU
-         DpNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fOuKmIQ20L11UPWLO5kGS488XZNnGHyBfsTGAiMlJ00=;
-        b=ibG+AG7rp3Gkuxm5CE5/MPF622eKo0wW1Pj/VyklK+Zu6k8mrDPMZIPJvsEiTLDAgE
-         /3uct0take3F1sZjQVauSVQ/Q+lM+q8dkIJ59Jbg6vCa8nSPmYlrKWJjNawTKy335YuT
-         rBtoXxM3c8ERmd/liZ/7vxEo56emMqTrKHGXWTvstpRqpnSqaQu7hWv9/V9bbvJn+fNI
-         3t3/QEGYwy2nfWd7dC3AilsREpKlTEOziJkwOgS4tTuWWc1CH2k0Q58URL6tf5/+EWJK
-         +g8coYIv9WFmv6jFW48dXPb6OWiiPXF2T/VbwxPszQBR3/Md47q9N4tIrtziT92ZFN5Z
-         ARgg==
-X-Gm-Message-State: AOAM532Cs4GaNACuQJJ0fYS2LkPIZ9r4rn4wYioLmBU6+bocn117ocsI
-        mz+dVgy9EvMuLkDlD4ekA/6ocyrsy2LFYK8h0qM0cA==
-X-Google-Smtp-Source: ABdhPJyNkfTlzFw0oaZmJisGggR5uQ4R0412RTuJp2lStNkv6U/jRbMcTGtGz5SquKyOR4UKKYFOAKmGYyNCBJ+rdd4=
-X-Received: by 2002:a25:3741:: with SMTP id e62mr12327870yba.343.1616689218020;
- Thu, 25 Mar 2021 09:20:18 -0700 (PDT)
+        id S229448AbhCYQ2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 12:28:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54746 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229670AbhCYQ2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 12:28:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8E5B361A2D;
+        Thu, 25 Mar 2021 16:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616689711;
+        bh=UUb2YpPPhrZYBFc+9LA0bPvCH8n+hhtEFgJ+RKvX/jU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mugIGBUbTM2AtNHnwnvdicxWxPrLwc0paD3lyJ4T7azU3O5tBBy3RG4kDaB/poX1a
+         kJiaVQFMkL15GYguSOrLWersfsVGFMm5cDlc8kQn833QIcLuUydXpYGHpV4f0tPtDt
+         Y9yyqvqeGHV4PTGkcF47knLxy4244N6lokYg20WrnJ4Py3nH27aLs5zN3jJRhCLc61
+         nMZWMF6KldOWb8EbyeiIt/JZ4T+4GwUmYNVXK6X6Y/0UlqZvJK2u8AHNBfUucrnjmI
+         l2W4q59ktauvaFOGWNzvqft3FqlGrkGnZz/DIISTp1Ov8g4cR1i5Pg6fE2X0/HjaY3
+         aK/AqvL58tNAg==
+Received: by mail-ej1-f50.google.com with SMTP id b7so3949365ejv.1;
+        Thu, 25 Mar 2021 09:28:31 -0700 (PDT)
+X-Gm-Message-State: AOAM532PHPqYxxGuF5qLywsi0tJcToBzGoww9qQfCu6eyliWkGGz12r9
+        WcE5tsmdEiWV1Ilyiqcg7c728KS690mDXFS1iw==
+X-Google-Smtp-Source: ABdhPJyAS3MOqfSApNDkQLxm69M/5WJ6MViHJtey95Sr4dAEb1f4VANdxueW3S+zI6/Ta09EKpnDN5PoPyiojySt7uw=
+X-Received: by 2002:a17:906:7f84:: with SMTP id f4mr10181968ejr.525.1616689710118;
+ Thu, 25 Mar 2021 09:28:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
- <161648289959.3012082.11356063123403968180@swboyd.mtv.corp.google.com>
- <363c5b7d9baca5a010552137f80a1cf4@codeaurora.org> <161660145349.3012082.16210818967187877873@swboyd.mtv.corp.google.com>
- <161660331135.3012082.15196616622122288364@swboyd.mtv.corp.google.com> <781df94a-b916-76eb-10c9-e95ba789f0b7@codeaurora.org>
-In-Reply-To: <781df94a-b916-76eb-10c9-e95ba789f0b7@codeaurora.org>
-From:   Doug Anderson <dianders@google.com>
-Date:   Thu, 25 Mar 2021 09:20:06 -0700
-Message-ID: <CAD=FV=URGPTCgXdj910tbJK-ydnE2eB21DGzhZQRqHKAt9vhSw@mail.gmail.com>
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20210324150425.20688-1-changbin.du@gmail.com> <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
+ <20210325155954.iun4hdcegi4b3qm2@mail.google.com>
+In-Reply-To: <20210325155954.iun4hdcegi4b3qm2@mail.google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 25 Mar 2021 10:28:17 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLG9Mgndo4WCr8GRdkW3Hrs_U7XedSfjSMQGnsf2cPLmQ@mail.gmail.com>
+Message-ID: <CAL_JsqLG9Mgndo4WCr8GRdkW3Hrs_U7XedSfjSMQGnsf2cPLmQ@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Check dtb pointer first in unflatten_device_tree
+To:     Changbin Du <changbin.du@gmail.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Mar 25, 2021 at 10:00 AM Changbin Du <changbin.du@gmail.com> wrote:
+>
+> On Wed, Mar 24, 2021 at 10:52:30AM -0600, Rob Herring wrote:
+> > On Wed, Mar 24, 2021 at 9:04 AM Changbin Du <changbin.du@gmail.com> wrote:
+> > >
+> > > The setup_arch() would invoke unflatten_device_tree() even no
+> > > valid fdt found. So we'd better check it first and return early.
+> > >
+> > > Signed-off-by: Changbin Du <changbin.du@gmail.com>
+> > > ---
+> > >  drivers/of/fdt.c | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > index dcc1dd96911a..05d439d63bc5 100644
+> > > --- a/drivers/of/fdt.c
+> > > +++ b/drivers/of/fdt.c
+> > > @@ -1225,6 +1225,11 @@ bool __init early_init_dt_scan(void *params)
+> > >   */
+> > >  void __init unflatten_device_tree(void)
+> > >  {
+> > > +       if (!initial_boot_params) {
+> > > +               pr_warn("No valid device tree found, continuing without\n");
+> >
+> > How are you going to see this message if you have no DT?
+> >
+> This aligns to what unflatten_and_copy_device_tree() does.
 
-On Wed, Mar 24, 2021 at 8:37 PM Veerabhadrarao Badiganti
-<vbadigan@codeaurora.org> wrote:
->
->
-> On 3/24/2021 9:58 PM, Stephen Boyd wrote:
-> > Quoting Stephen Boyd (2021-03-24 08:57:33)
-> >> Quoting sbhanu@codeaurora.org (2021-03-24 08:23:55)
-> >>> On 2021-03-23 12:31, Stephen Boyd wrote:
-> >>>> Quoting Shaik Sajida Bhanu (2021-03-20 11:17:00)
-> >>>>> +
-> >>>>> +                       bus-width = <8>;
-> >>>>> +                       non-removable;
-> >>>>> +                       supports-cqe;
-> >>>>> +                       no-sd;
-> >>>>> +                       no-sdio;
-> >>>>> +
-> >>>>> +                       max-frequency = <192000000>;
-> >>>> Is this necessary?
-> >>> yes, to avoid lower speed modes running with high clock rates.
-> >> Is it part of the DT binding? I don't see any mention of it.
-> > Nevermind, found it in mmc-controller.yaml. But I think this is to work
-> > around some problem with the clk driver picking lower speeds than
-> > requested? That has been fixed on the clk driver side (see commit like
-> > 148ddaa89d4a "clk: qcom: gcc-sc7180: Use floor ops for the correct sdcc1
-> > clk") so ideally this property can be omitted.
-> This is a good have dt node.
->
-> This will align clock requests between mmc core layer and sdhci-msm
-> platform driver. Say, for HS200/HS400 modes of eMMC, mmc-core layer
-> tries to set clock at 200Mhz, whereas sdhci-msm expects 192Mhz for
-> these modes. So we have to rely on clock driver floor/ceil values.
-> By having this property, mmc-core layer itself request for 192Mhz.
->
-> Same is for SD card SDR104 mode, core layer expects clock at 208Mhz
-> whereas sdhci-msm can max operate only at 202Mhz. By having this
-> property, core layer requests only for 202Mhz for SDR104 mode.
->
-> BTW, this helps only for max possible speed modes.
-> In case of lower-speed modes (for DDR52) we still need to rely on clock
-> floor rounding.
+Humm, then we should have a single check that covers both cases. Or we
+should remove that one.
 
-Just let the clock driver figure it out and remove this from the
-devicetree, please. As you said, the clock driver needs to understand
-how to round rates anyway for the non-maximum requests. Putting the
-information here just duplicates the data.
+>
+> > > +               return;
+> >
+> > And the arch is supposed to just continue on oblivious that it has no DT?
+> >
+> As checking the arch code(arm, riscv), I suppose so.
+>
+> > > +       }
+> > > +
+> > >         __unflatten_device_tree(initial_boot_params, NULL, &of_root,
+> > >                                 early_init_dt_alloc_memory_arch, false);
+> >
+> > Soon as you get here with a NULL initial_boot_params, you'll get a
+> > backtrace and halt.
+> >
+> No, we have returned before.
 
--Doug
+I mean without your addition we'll get here with a NULL.
+
+Rob
