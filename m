@@ -2,42 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA15349844
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:38:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F76A34984E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:38:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbhCYRhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 13:37:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45370 "EHLO mail.kernel.org"
+        id S229758AbhCYRiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 13:38:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45512 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230047AbhCYRhU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 13:37:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A60B61A2C;
-        Thu, 25 Mar 2021 17:37:19 +0000 (UTC)
+        id S230228AbhCYRhd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 13:37:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90FB061A2F;
+        Thu, 25 Mar 2021 17:37:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616693840;
-        bh=6Ql/KyxL3rY0llO18x1iokuLqwO5tMJP51y5g3IBDy8=;
+        s=k20201202; t=1616693853;
+        bh=FeQb28pNS2AdW2pbIgoRXK1sd/ExR2r66h+k/Zc5vpk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=F/aOPBwT+kBVq267e3QGpELZs8u/VIB1L5qrzRwIfrF0Ujv/cmQMVJHmXgzNCM9Ha
-         jQUgZAQLo7+rT7VenlbHseSzABzScsNPVG9m1GhyWvrAGlekpaWViHQ0vE6BXPZ8q0
-         kNj3WiMK7QJTDoXRL6v+9YpFQ9PkJk2V7Az2tZUx8FbEn+r1P/boqQv8H7X4+1zsc3
-         q1Ny7KKv0RU0bHftYx0ObZAJgh/uaCokU/h+ikN8mzU0+UyQzuXpo9668NoI9DuHRc
-         uBE37mvotgnjxQq5Dh92R+lGj5/Z+FmyvVdFOworYwIBEmicGuEjp4iEKcWfHQqdgT
-         6ntd/ea92jE4Q==
+        b=NXuZCDQ54LwxGOQ65eoPGAjJnEwMR+CEgirer/rQnlUOqG6B8e5zYPaAS76QL/oo6
+         F2X58hkbhzi6pFcUrhCnufhUsOL6kj+uG+NNsI+6cn+j12wjQGH/8P8ABYs+z4k7GV
+         CsDl9RPSBdzi7NY/1IqJmOuBcVo00ei4EdaGVBbADrS9c520/8/XOawBwc7ZLXxiEX
+         MUYZ5S8L8y526cRXV9MN2wmkhW7dJpgVjcy9f9Lb6CpQb7LkW0KaF3k0Q3n7bO8bkm
+         Z1z7gspS3viFRgiD6f5MF+tGhUnEceyyWFSRaOvX4o784r+KfdiZfeuf86QF61owZu
+         M4O2nCBf8c9AQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-spi@vger.kernel.org, Heiko Schocher <hs@denx.de>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Ashish Kumar <ashish.kumar@nxp.com>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        devicetree@vger.kernel.org, Kuldeep Singh <kuldeep.singh@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 0/2] enable flexspi support on imx8mp
-Date:   Thu, 25 Mar 2021 17:37:01 +0000
-Message-Id: <161669381898.42255.12902469942541515996.b4-ty@kernel.org>
+To:     tiwai@suse.com, perex@perex.cz, festevam@gmail.com,
+        Xiubo.Lee@gmail.com, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, nicoleotsuka@gmail.com,
+        linux-kernel@vger.kernel.org, timur@kernel.org,
+        alsa-devel@alsa-project.org, Shengjiu Wang <shengjiu.wang@nxp.com>,
+        lgirdwood@gmail.com, robh+dt@kernel.org
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH 1/2] ASoC: fsl-asoc-card: Add support for WM8958 codec
+Date:   Thu, 25 Mar 2021 17:37:05 +0000
+Message-Id: <161669370551.41585.15951987176621269157.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210316075928.1763460-1-hs@denx.de>
-References: <20210316075928.1763460-1-hs@denx.de>
+In-Reply-To: <1615986303-27959-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1615986303-27959-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,26 +44,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Mar 2021 08:59:26 +0100, Heiko Schocher wrote:
-> add compatible entry in nxp_fspi driver for imx8mp
-> 
-> @Shawn: If this series is accepted, can you apply the DTS patches from
-> series v2?
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-March/643292.html
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-March/643293.html
-> 
-> [...]
+On Wed, 17 Mar 2021 21:05:02 +0800, Shengjiu Wang wrote:
+> WM8958 codec is used on some i.MX based platform.
+> So add it support in this generic driver.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/2] spi: fspi: enable fspi driver for on imx8mp
-      commit: 0467a97367d4767d284ad46ba0e6413b621256a0
-[2/2] dt-bindings: spi: add compatible entry for imx8mp in FlexSPI controller
-      commit: 2801a62dfad46ff228d00126ce8592594c1d0613
+[1/2] ASoC: fsl-asoc-card: Add support for WM8958 codec
+      commit: efd0b1660829a987354cea6a446179c7ac7cd0e6
+[2/2] ASoC: bindings: fsl-asoc-card: add compatible string for WM8958 codec
+      commit: df8077c6fe64fe98c1b1c1f9ecf84afc773e726f
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
