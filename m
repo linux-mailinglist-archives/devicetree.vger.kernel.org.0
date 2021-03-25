@@ -2,161 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D230B3488A3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F633488BA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 07:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbhCYFqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 01:46:08 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:56517 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbhCYFqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:46:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1616651160; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=XAdG2pe22wdwAROVJ7SA4Os2DkiE2XGKKAT0Ug3Dp8w=; b=aF0NrRSyvqrFHXNUJWcoL4IvlRvk6VY/0Dbk2RU/ZM9XDEQAAx8CFerdxFXjUVSWUm/jWBte
- NqEeTW3y2WZrnl4/G7D/6EbDyiM0KgedfGYMnhCIPyVxKAquMhshcuINiDsiTAnljXhwIF+f
- bOOGCbcLbOskayy+Tj+NZ1zF4tc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 605c238c1de5dd7b99272a07 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 25 Mar 2021 05:45:48
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 25479C433ED; Thu, 25 Mar 2021 05:45:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 46CD9C43463;
-        Thu, 25 Mar 2021 05:45:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 46CD9C43463
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Ravi Kumar Bokka <rbokka@codeaurora.org>
-Subject: [PATCH 2/2] nvmem: qfprom: Add support for fuse blowing on sc7280
-Date:   Thu, 25 Mar 2021 11:14:16 +0530
-Message-Id: <1616651056-11844-2-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1616651056-11844-1-git-send-email-rnayak@codeaurora.org>
-References: <1616651056-11844-1-git-send-email-rnayak@codeaurora.org>
+        id S229728AbhCYGEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 02:04:54 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:37558 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229533AbhCYGEp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 02:04:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1616652285;
+  x=1648188285;
+  h=from:to:cc:subject:date:message-id:references:
+   content-transfer-encoding:mime-version;
+  bh=KgAikQLc0a+uXf9MpMW7lcoLMvJvsmQiWu5c216iOEU=;
+  b=YkOnfD8ctxMyXt5arXrn2Ev3sDRIHh4iGKvg0wX9O++uVdI5o5n+IwGU
+   yPoZklOVTmytyHClVO+72rsSO0za4Ljg8HP0i0BwhFTDhaPQkF3HcoZri
+   DQV4jHS7BxQQ5jZmPumWtsG1vM1/2Ift4SbcSVoS8T1hlb16GdKVSHH4h
+   EnoeFLyn672Gssjq/WNV3WNgoiGlIrR8sFUeSwL9FyfcXdu4Cfb8uMz0E
+   is68ketGT7/Ztq62AJuPi8UxdvT6ypTRGfF0z0cFreLwTQNmqwJdT/Vu4
+   TpuyUPeWMQfaxLD1YKyloDQxuvJF49hdfGK9TQDzyUAMfPdobW2yyv9pl
+   Q==;
+From:   Hermes Zhang <Hermes.Zhang@axis.com>
+To:     Marek Behun <marek.behun@nic.cz>,
+        Hermes Zhang <Hermes.Zhang@axis.com>
+CC:     "pavel@ucw.cz" <pavel@ucw.cz>, "dmurphy@ti.com" <dmurphy@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lkml@axis.com" <lkml@axis.com>, kernel <kernel@axis.com>
+Subject: Re: [PATCH 1/2] leds: leds-multi-gpio: Add multiple GPIOs LED driver
+Thread-Topic: [PATCH 1/2] leds: leds-multi-gpio: Add multiple GPIOs LED driver
+Thread-Index: AQHXIINVpz7s49aciUujD1l9rQIjiw==
+Date:   Thu, 25 Mar 2021 06:04:43 +0000
+Message-ID: <7ea3f7e6ea7a464fa4bb59b94857a755@XBOX01.axis.com>
+References: <20210324075631.5004-1-chenhui.zhang@axis.com>
+ <20210324075631.5004-2-chenhui.zhang@axis.com>
+ <20210324103431.4b945915@thinkpad>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Handle the differences across LDO voltage needed for blowing fuses,
-and the blow timer value, identified using a minor version of 15
-on sc7280.
-
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-Signed-off-by: Ravi Kumar Bokka <rbokka@codeaurora.org>
----
-Applies on top of https://lore.kernel.org/patchwork/patch/1376175/
-
- drivers/nvmem/qfprom.c | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-index 100d69d..d6d3f24 100644
---- a/drivers/nvmem/qfprom.c
-+++ b/drivers/nvmem/qfprom.c
-@@ -45,11 +45,13 @@ MODULE_PARM_DESC(read_raw_data, "Read raw instead of corrected data");
-  * @qfprom_blow_timer_value: The timer value of qfprom when doing efuse blow.
-  * @qfprom_blow_set_freq:    The frequency required to set when we start the
-  *                           fuse blowing.
-+ * @qfprom_blow_uV:          LDO voltage to be set when doing efuse blow
-  */
- struct qfprom_soc_data {
- 	u32 accel_value;
- 	u32 qfprom_blow_timer_value;
- 	u32 qfprom_blow_set_freq;
-+	int qfprom_blow_uV;
- };
- 
- /**
-@@ -111,6 +113,15 @@ static const struct qfprom_soc_compatible_data sc7180_qfprom = {
- 	.nkeepout = ARRAY_SIZE(sc7180_qfprom_keepout)
- };
- 
-+static const struct nvmem_keepout sc7280_qfprom_keepout[] = {
-+	{.start = 0x128, .end = 0x148},
-+	{.start = 0x238, .end = 0x248}
-+};
-+
-+static const struct qfprom_soc_compatible_data sc7280_qfprom = {
-+	.keepout = sc7280_qfprom_keepout,
-+	.nkeepout = ARRAY_SIZE(sc7280_qfprom_keepout)
-+};
- /**
-  * qfprom_disable_fuse_blowing() - Undo enabling of fuse blowing.
-  * @priv: Our driver data.
-@@ -168,6 +179,7 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
- 				      struct qfprom_touched_values *old)
- {
- 	int ret;
-+	int qfprom_blow_uV = priv->soc_data->qfprom_blow_uV;
- 
- 	ret = clk_prepare_enable(priv->secclk);
- 	if (ret) {
-@@ -187,9 +199,9 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
- 	 * a rail shared do don't specify a max--regulator constraints
- 	 * will handle.
- 	 */
--	ret = regulator_set_voltage(priv->vcc, 1800000, INT_MAX);
-+	ret = regulator_set_voltage(priv->vcc, qfprom_blow_uV, INT_MAX);
- 	if (ret) {
--		dev_err(priv->dev, "Failed to set 1.8 voltage\n");
-+		dev_err(priv->dev, "Failed to set %duV\n", qfprom_blow_uV);
- 		goto err_clk_rate_set;
- 	}
- 
-@@ -311,6 +323,14 @@ static const struct qfprom_soc_data qfprom_7_8_data = {
- 	.accel_value = 0xD10,
- 	.qfprom_blow_timer_value = 25,
- 	.qfprom_blow_set_freq = 4800000,
-+	.qfprom_blow_uV = 1800000,
-+};
-+
-+static const struct qfprom_soc_data qfprom_7_15_data = {
-+	.accel_value = 0xD08,
-+	.qfprom_blow_timer_value = 24,
-+	.qfprom_blow_set_freq = 4800000,
-+	.qfprom_blow_uV = 1900000,
- };
- 
- static int qfprom_probe(struct platform_device *pdev)
-@@ -379,6 +399,8 @@ static int qfprom_probe(struct platform_device *pdev)
- 
- 		if (major_version == 7 && minor_version == 8)
- 			priv->soc_data = &qfprom_7_8_data;
-+		if (major_version == 7 && minor_version == 15)
-+			priv->soc_data = &qfprom_7_15_data;
- 
- 		priv->vcc = devm_regulator_get(&pdev->dev, "vcc");
- 		if (IS_ERR(priv->vcc))
-@@ -405,6 +427,7 @@ static int qfprom_probe(struct platform_device *pdev)
- static const struct of_device_id qfprom_of_match[] = {
- 	{ .compatible = "qcom,qfprom",},
- 	{ .compatible = "qcom,sc7180-qfprom", .data = &sc7180_qfprom},
-+	{ .compatible = "qcom,sc7280-qfprom", .data = &sc7280_qfprom},
- 	{/* sentinel */},
- };
- MODULE_DEVICE_TABLE(of, qfprom_of_match);
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Hi Marek,=0A=
+=0A=
+On 3/24/21 5:34 PM, Marek Behun wrote:=0A=
+>> +#include <linux/err.h>=0A=
+>> +#include <linux/gpio.h>=0A=
+>> +#include <linux/gpio/consumer.h>=0A=
+>> +#include <linux/kernel.h>=0A=
+>> +#include <linux/leds.h>=0A=
+>> +#include <linux/module.h>=0A=
+>> +#include <linux/of.h>=0A=
+>> +#include <linux/of_gpio.h>=0A=
+>> +#include <linux/platform_device.h>=0A=
+>> +#include <linux/property.h>=0A=
+>> +#include <linux/slab.h>=0A=
+> Why do you include slab.h?=0A=
+Yeah, I will clean it in next commit.=0A=
+>> +=0A=
+>> +=0A=
+>> +static void multi_gpio_led_set(struct led_classdev *led_cdev,=0A=
+>> +	enum led_brightness value)=0A=
+>> +{=0A=
+>> +	struct multi_gpio_led_priv *priv;=0A=
+>> +	int idx;=0A=
+>> +=0A=
+>> +	DECLARE_BITMAP(values, MAX_GPIO_NUM);=0A=
+>> +=0A=
+>> +	priv =3D container_of(led_cdev, struct multi_gpio_led_priv, cdev);=0A=
+>> +=0A=
+>> +	idx =3D (value - LED_OFF) * priv->nr_states / (LED_FULL + 1);=0A=
+> LED_FULL / LED_OFF are deprecated, don't use them.=0A=
+=0A=
+Then could I use just 0 (instead LED_OFF) and led_cdev->max_brightness=0A=
+=0A=
+(instead of LED_FULL) here? The idea here is map the states defined in dts=
+=0A=
+=0A=
+to the full brightness range.=0A=
+=0A=
+> +=0A=
+> +	priv->nr_states =3D ret;=0A=
+> +	priv->states =3D devm_kzalloc(dev, sizeof(*priv->states) * priv->nr_sta=
+tes, GFP_KERNEL);=0A=
+> +	if (!priv->states)=0A=
+> +		return -ENOMEM;=0A=
+> +=0A=
+> +	ret =3D of_property_read_u8_array(node, "led-states", priv->states, pri=
+v->nr_states);=0A=
+> +	if (ret)=0A=
+> +		return ret;=0A=
+> +=0A=
+> +	priv->cdev.max_brightness =3D LED_FULL;=0A=
+> ???? max_brightness is not 255 (=3D LED_FULL). max_brightness must be=0A=
+> derived from the led-states property.=0A=
+=0A=
+Yeah, I will fix this. the max-brightness should for the whole LED,=0A=
+right? So=0A=
+=0A=
+it will at same level with led-states.=0A=
+=0A=
+=0A=
+=0A=
