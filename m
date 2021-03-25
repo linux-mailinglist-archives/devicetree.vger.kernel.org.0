@@ -2,83 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E65F4348A31
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C16348A3B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:38:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbhCYH3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 03:29:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37252 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229448AbhCYH3C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 03:29:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B80A861554;
-        Thu, 25 Mar 2021 07:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616657341;
-        bh=Mr+BDr76BpJXyUusio9MRTC9Cg69ld5vy7wOR2RmRsM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T7atfcBnwjv20i25mhZKHFRB7JQGurVZ2sjsGo6k4fQUQFbzNzhnNsaj9Z1lbDVtl
-         KBNgs1u48j0yPUjp0yTIYN5GUaZ4LnzLQ7rYSW4kN7b1/3lTMtM9ZCa0gZhvMJUJ2g
-         y4NSX1F1mGZDbp+PGqwHP0uNQOCkL6WMgCfltuf8HSPqdg3UMK+vI746ZGSJ/XD3mn
-         wdBc02PZFjSlH2zPRLroJeyOOCgIuFTGJtB0P7u6JlMYi8L6rCZ8qvL2SmLJUOmCpL
-         hdVPO6vvMq6CZsbAsLTd+aAOvCI4KXcEhql7m+Pf9/AY9w8golgBD2YY0cuZRY0Uok
-         lFYF/6rLBY4dA==
-Date:   Thu, 25 Mar 2021 12:58:57 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        id S229592AbhCYHhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 03:37:53 -0400
+Received: from out28-3.mail.aliyun.com ([115.124.28.3]:46653 "EHLO
+        out28-3.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229533AbhCYHhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 03:37:36 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07458173|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.009698-0.000320705-0.989981;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047194;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.Jq-mq02_1616657847;
+Received: from 192.168.88.129(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Jq-mq02_1616657847)
+          by smtp.aliyun-inc.com(10.147.41.199);
+          Thu, 25 Mar 2021 15:37:28 +0800
+Subject: Re: [PATCH v3 01/10] pinctrl: Ingenic: Add missing pins to the JZ4770
+ MAC MII group.
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
-        robert.chiras@nxp.com, martin.kepplinger@puri.sm,
-        robert.foss@linaro.org
-Subject: Re: [PATCH v4 2/5] phy: Add LVDS configuration options
-Message-ID: <YFw7udw4G9WrWlAd@vkoul-mobl.Dlink>
-References: <1615175541-29009-1-git-send-email-victor.liu@nxp.com>
- <1615175541-29009-3-git-send-email-victor.liu@nxp.com>
- <YFHYeZ/ZVqNiG/yo@vkoul-mobl.Dlink>
- <6c52ebc6a027cbe309ed2c8848f2ae8cfa6e15f4.camel@nxp.com>
+        hns@goldelico.com, paul@boddie.org.uk, andy.shevchenko@gmail.com,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        sernia.zhou@foxmail.com
+References: <1615975084-68203-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1615975084-68203-2-git-send-email-zhouyanjie@wanyeetech.com>
+ <JOTDQQ.MOZVXC128CJA2@crapouillou.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <19403957-c1d4-b10d-26b8-bfb6dc6705b8@wanyeetech.com>
+Date:   Thu, 25 Mar 2021 15:37:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c52ebc6a027cbe309ed2c8848f2ae8cfa6e15f4.camel@nxp.com>
+In-Reply-To: <JOTDQQ.MOZVXC128CJA2@crapouillou.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-03-21, 10:22, Liu Ying wrote:
+Hi Paul,
 
-> > Can we have these in kernel-doc style please, similar to style in linux/phy/phy.h
-> 
-> I take this way of in-line member documentation comment for the below 3
-> reasons:
-> 
-> 1) Members of struct phy_configure_opts_mipi_dphy and
-> struct phy_configure_opts_dp use the same way of comment.
-> The structures are defined in linux/phy/phy-mipi-dphy.h and
-> linux/phy/phy-dp.h respectively.
-> Aligning to them makes a bit sense, IMHO.
-> 
-> 2) In-line member documentation comments[1] are mentioned in kernel-doc 
-> guide. It says 'The structure members may also be documented in-line
-> within the definition.'.
-> 
-> 3) Even the 'configure' and 'validate' members of struct phy_ops use
-> the same way of comment.  struct phy_ops is defined in linux/phy/phy.h.
-> 
-> [1] 
-> https://www.kernel.org/doc/html/latest/doc-guide/kernel-doc.html#in-line-member-documentation-comments
+On 2021/3/23 上午1:53, Paul Cercueil wrote:
+> Hi Zhou,
+>
+>
+> Le mer. 17 mars 2021 à 17:57, 周琰杰 (Zhou Yanjie) 
+> <zhouyanjie@wanyeetech.com> a écrit :
+>> The MII group of JZ4770's MAC should have 7 pins, add missing
+>> pins to the MII group.
+>>
+>> Fixes: 5de1a73e78ed ("Pinctrl: Ingenic: Add missing parts for JZ4770 
+>> and JZ4780.")
+>
+> This fixes a commit that was introduced in an older kernel (than the 
+> one in -rc phase). Therefore you need to Cc linux-stable. Like this:
+>
+> Cc: <stable@vger.kernel.org> # v5.0
+>
 
-It 'may be' but I would like all headers of a subsystem to display one
-style. As I said linux/phy/phy.h use a style which we should use
-everywhere.
+Sure, I will add it in the next version.
 
-Thanks
 
--- 
-~Vinod
+>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>
+> With that said:
+>
+> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+>
+> Cheers,
+> -Paul
+>
+>> ---
+>>
+>> Notes:
+>>     v2:
+>>     New patch.
+>>
+>>     v2->v3:
+>>     Add fixes tag.
+>>
+>>  drivers/pinctrl/pinctrl-ingenic.c | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
+>> b/drivers/pinctrl/pinctrl-ingenic.c
+>> index f274612..05dfa0a 100644
+>> --- a/drivers/pinctrl/pinctrl-ingenic.c
+>> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+>> @@ -667,7 +667,9 @@ static int jz4770_pwm_pwm7_pins[] = { 0x6b, };
+>>  static int jz4770_mac_rmii_pins[] = {
+>>      0xa9, 0xab, 0xaa, 0xac, 0xa5, 0xa4, 0xad, 0xae, 0xa6, 0xa8,
+>>  };
+>> -static int jz4770_mac_mii_pins[] = { 0xa7, 0xaf, };
+>> +static int jz4770_mac_mii_pins[] = {
+>> +    0x7b, 0x7a, 0x7d, 0x7c, 0xa7, 0x24, 0xaf,
+>> +};
+>>
+>>  static const struct group_desc jz4770_groups[] = {
+>>      INGENIC_PIN_GROUP("uart0-data", jz4770_uart0_data, 0),
+>> -- 
+>> 2.7.4
+>>
+>
