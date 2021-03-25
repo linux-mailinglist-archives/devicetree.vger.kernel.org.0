@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5745134922E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 13:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA871349245
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 13:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbhCYMir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 08:38:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
+        id S230096AbhCYMnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 08:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbhCYMiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 08:38:18 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B71FAC06174A;
-        Thu, 25 Mar 2021 05:38:18 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id j6-20020a17090adc86b02900cbfe6f2c96so873495pjv.1;
-        Thu, 25 Mar 2021 05:38:18 -0700 (PDT)
+        with ESMTP id S231235AbhCYMmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 08:42:35 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB40C06174A;
+        Thu, 25 Mar 2021 05:42:33 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id l76so1656269pga.6;
+        Thu, 25 Mar 2021 05:42:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=C4nI1KUl9G1G9ZlgtJo82RLpSdsCwNuG0Shl5fKFntc=;
-        b=WKQPqIKg4agimS56D6cDGaNG5KHvmw5XghT0krcHJhqubvq9+oda4+76HQrxpwy92M
-         4tw99ydS11PAR78gmKTuQ204REhc14lAFG83mTUR3HPe5GOOhtwGrSdQfhw9luyvdJQc
-         XSUz3wA5MN+mI9YuxRnx7dGZhIRfXyZXutyeK51aqtw/CoJ5fkZl7zzGNtQB7cjR/DTM
-         t9QoEzlNUZZZxXRxZGklmXB1lwvT9rMi8zXXPIgn6EhQqKOC2vHPqN5//1B2C8rrG7ND
-         SR3MNn4Z3ClVMy8wtgcVXRVKfXa3BUIU4G8YpY36VqCJkOjgJ0Jp+jlPopJM15AzcOax
-         6zOw==
+        b=f8WRyre9YmwoNrvQkJg0F7VluVW7CcXOXHpNuoeoWdw7bVKZTRzfY8UU5aIZq6mFhb
+         oglkr07dW0ahasGEWwPCeyIrLCIrPlnllLV1GkGig3VckQ8teJVcnfqYu/OrVgIvGdsZ
+         zhmWPmywNCX2hKxmfnIHyQKx3YCfp+1W9Ta+34gdFXGdMHMs5l/bzzZb8Uysz8Eg/qci
+         3xfR8gwJgpS4W2daTOEOI2SNYgOY6BbmSJJHmdtOy3+BS3vqU3YQavNVL5FvOhbp4zW2
+         LQN3dWIZkzV45+Gf/C0oC0DN2Z08wTcRzVGcxwuLXivC8/puO95avE5aBMs1c82ezGmW
+         KAPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=C4nI1KUl9G1G9ZlgtJo82RLpSdsCwNuG0Shl5fKFntc=;
-        b=YzMfDB4G14sO5vnC8r+BE9nSD+HlGpzunoHL0KJS0k57StEvlexK72xY8kZdFkrkg/
-         miZF4va9y52OMkkPZvSgLYd0zGiP3GreeeOXEQZeavMwMXKRQQpm72E3fobBTdbOXrni
-         DqBRecD1T4isYYs/ig15BZ/nqTKAhNK9qpPGv1Djf+lx/XQCCL14I4r6/nbBMvzT8wTC
-         vOapnvcSFVscbPpFD1gAO91iHR8Q1IYraOOitwe04PvWh5Q93WyL5W5T+yyOZVzmFlO4
-         m9EhUbGeExH0mbdcXD3FbLtp6Sar/pVJNUgPmfR/JXpNC5giD8Bb2gS8B2Wt7o7ptSsJ
-         jfbw==
-X-Gm-Message-State: AOAM532qWF2DoT+k/99axGTlm0/Ot26Epa97JoCnL0ifvIfPNzj/Qri0
-        eoUqbW09KJO7lzOh7kJAM4A=
-X-Google-Smtp-Source: ABdhPJx6X3I/APZn6CqX4+bF0tvSe0zFJoqtbc9gKN/Ctlx3O3qlT58i3FaLe2PpV/tBAxbaMCsOew==
-X-Received: by 2002:a17:90a:ab09:: with SMTP id m9mr9153049pjq.122.1616675898283;
-        Thu, 25 Mar 2021 05:38:18 -0700 (PDT)
+        b=UGrpl8Q53Lo2W/imnAST6Q/4Niz0HRxtbkRXJhxwWMRDgzRQFEdbmm5WrJ8Q0mMPqn
+         6yI977rCuxy1Io6VLeXFzsY/UBPz4n7t3zPXgNV2f6iuAGRkByN8SyTeSG2cCPTPsMOF
+         FQZ7TS6QxQtprs9qSGi6wt0U8NLeFvg1ymDoIu5foFwRooA2RpJwXJI0wNNdTZgh7Ykf
+         Ee+H7QcYOomicasA5An1eoDh4cTEUtPZkHthgL+DMbJ3ViGINZnuAbCCz/uOodcKZ8Q5
+         F1stHMiiTcfUeWpnGkPaBzxzfCmLQjiZgYkTDzhCKfRXqL6tQ8X5H2NZukCgtxYBAl/h
+         K7/A==
+X-Gm-Message-State: AOAM532pnP3g+3vKXBVcijjPoN0D6wLVg/Rm6l6SltKwbY7lR9XSltp6
+        PPxVdXxy/eu1mICnvLd1Csk=
+X-Google-Smtp-Source: ABdhPJys3UTK7w3g7KmDs+EYdtyXHqpK1lJXIYfn1mX99LDU3uLj/z/qMmlAI144Vlv6vi9TiMJFqQ==
+X-Received: by 2002:a17:902:7887:b029:e6:d880:de91 with SMTP id q7-20020a1709027887b02900e6d880de91mr9741816pll.34.1616676153125;
+        Thu, 25 Mar 2021 05:42:33 -0700 (PDT)
 Received: from archl-c2lm.. ([103.51.72.9])
-        by smtp.gmail.com with ESMTPSA id g18sm5831864pfb.178.2021.03.25.05.38.13
+        by smtp.gmail.com with ESMTPSA id t17sm6125917pgk.25.2021.03.25.05.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 05:38:17 -0700 (PDT)
+        Thu, 25 Mar 2021 05:42:32 -0700 (PDT)
 From:   Anand Moon <linux.amoon@gmail.com>
 To:     Andrew Lunn <andrew@lunn.ch>,
         Heiner Kallweit <hkallweit1@gmail.com>,
@@ -64,8 +64,8 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         Anand Moon <linux.amoon@gmail.com>,
         linux-amlogic@lists.infradead.org
 Subject: [PATCHv1 0/6] Amlogic Soc - Add missing ethernet mdio compatible string
-Date:   Thu, 25 Mar 2021 12:38:04 +0000
-Message-Id: <20210325123810.2624-1-linux.amoon@gmail.com>
+Date:   Thu, 25 Mar 2021 12:42:19 +0000
+Message-Id: <20210325124225.2760-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
