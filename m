@@ -2,256 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0826C348ACE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 08:56:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FDC348AEE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbhCYHzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 03:55:44 -0400
-Received: from out28-74.mail.aliyun.com ([115.124.28.74]:47223 "EHLO
-        out28-74.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbhCYHzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 03:55:17 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436282|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.200372-0.000483074-0.799145;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.Jq.8Wv8_1616658912;
-Received: from 192.168.88.129(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Jq.8Wv8_1616658912)
-          by smtp.aliyun-inc.com(10.147.42.253);
-          Thu, 25 Mar 2021 15:55:13 +0800
-Subject: Re: [PATCH v3 07/10] pinctrl: Ingenic: Add pinctrl driver for JZ4750.
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        hns@goldelico.com, paul@boddie.org.uk, andy.shevchenko@gmail.com,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        sernia.zhou@foxmail.com
-References: <1615975084-68203-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1615975084-68203-8-git-send-email-zhouyanjie@wanyeetech.com>
- <PXUDQQ.WI3R8L8RS0751@crapouillou.net>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <183f59e8-3220-2299-cb23-f8abb26fdf6c@wanyeetech.com>
-Date:   Thu, 25 Mar 2021 15:55:12 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <PXUDQQ.WI3R8L8RS0751@crapouillou.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S229659AbhCYH71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 03:59:27 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:41949 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229695AbhCYH65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 03:58:57 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 91068580A76;
+        Thu, 25 Mar 2021 03:58:56 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute3.internal (MEProxy); Thu, 25 Mar 2021 03:58:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm1; bh=+T7CqVyoWdNN8bzlePUROPAX6ed7
+        sRoD/m/fHmI9qo4=; b=LpbxgVCzrqQ9ltk79TitEh6KZ0xv+/E3QIvusbwQguuN
+        RJLWtkF7PuJQnsag4PYsVCIkM83ZhZniDcWqK4pj4MqlOx0sPD/sIxgaXUH5WHeN
+        0M+TFrnbDvMFrxIiU8NuFbFzRERTkTD2fYqmXFPVN6c3bBqxaN2jRd3zxXlHXsoc
+        GDT+pXcOB4oR7zn6T90E0iGX8IPIA0RzLQKkoDMmdPbdLHc+ftJJ2pThrVwR9Ptn
+        4QvmlA3AyUuaOO1N11IzIesXf4RWryEwT7lx8byZhdQbv4cbPCOmevWbFp9h+5ck
+        a5HYr61KhiPlAujeYERIxz/Cavcb8fZM24AJIP802A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=+T7CqV
+        yoWdNN8bzlePUROPAX6ed7sRoD/m/fHmI9qo4=; b=hCyXTtepAEJYQhogfMllqO
+        jQxW0FyZbsaIAaGo6XADIRxGbO2rcoJy7LqQUcEVoBJpYEAF55gs5tNV2jnGKRO5
+        M9fnE2Lnxwpr5qHqqNAFNIK5s6j2Ngomuk4/d9p0P7qym2HJTO8u5FiHi4+u1YNR
+        1oDRoS7oOjIVQHUcGUSvqZ3ex56WRYy8q3jOltcf59b1WDwsIIq6f33HvMbqAxjV
+        PpfOQ7YF0DU8aj6uGzFwcnQDws2AwuEk0Otdf/EQrWQ0XSL/5LDa+zN0QcspfX8g
+        h6vHf3q80gomzUv+WlsADLvmek5wvca77JCOwoh+mBYWhT2qkYvmxNGYVa94N8PQ
+        ==
+X-ME-Sender: <xms:v0JcYArC25zHz2V26Ua7EqGjVk7-5p3h7rvzBq2onaRw7MXuY8viHQ>
+    <xme:v0JcYGq2FA_YmyvHTlvCFbmVPR1Fkkk-t9XNzeVKfpYEFgc9oltPKQm8Ox6bnY1hZ
+    SfJQKWNNEA9ohnz4wM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudegledguddufecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:v0JcYFM_zRQhKUXd3JaCDMcGtfUZoM7DDDYFrbEP_m3GQ5MkKktVOg>
+    <xmx:v0JcYH70r-HSbiG5uFjLNuVhJCAUSFZ8d2dJ3Wmtd2-onZ1PgkNpaA>
+    <xmx:v0JcYP4RABId_lUiZScL_EZ5aIKOuy4DwNz9Lg3DCRti39X3-G6zLw>
+    <xmx:wEJcYDjaRy8l2GQ-99NYJlF457U5BixsylPCdCPBuPmttvyxNZ21Q-C5iwY>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 0FBF751C005E; Thu, 25 Mar 2021 03:58:54 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
+Mime-Version: 1.0
+Message-Id: <b05337f3-a4bf-4add-a68d-b9f5c9b8b10d@www.fastmail.com>
+In-Reply-To: <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
+References: <20210320151903.60759-1-sven@svenpeter.dev>
+ <9b9d771a-f6d4-2d27-7516-f5b8315909ed@arm.com>
+Date:   Thu, 25 Mar 2021 08:58:16 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Robin Murphy" <robin.murphy@arm.com>,
+        iommu@lists.linux-foundation.org
+Cc:     "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Arnd Bergmann" <arnd@kernel.org>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Stan Skowronek" <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2021/3/23 上午2:20, Paul Cercueil wrote:
->
->
-> Le mer. 17 mars 2021 à 17:58, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
->> Add support for probing the pinctrl-ingenic driver on the
->> JZ4750 SoC from Ingenic.
->>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
->> ---
->>
->> Notes:
->>     v3:
->>     New patch.
->>
->>  drivers/pinctrl/pinctrl-ingenic.c | 137 
->> ++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 137 insertions(+)
->>
->> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
->> b/drivers/pinctrl/pinctrl-ingenic.c
->> index 25458d6..d98767b 100644
->> --- a/drivers/pinctrl/pinctrl-ingenic.c
->> +++ b/drivers/pinctrl/pinctrl-ingenic.c
->> @@ -85,6 +85,7 @@ enum jz_version {
->>      ID_JZ4730,
->>      ID_JZ4740,
->>      ID_JZ4725B,
->> +    ID_JZ4750,
->>      ID_JZ4760,
->>      ID_JZ4770,
->>      ID_JZ4780,
->> @@ -424,6 +425,138 @@ static const struct ingenic_chip_info 
->> jz4725b_chip_info = {
->>      .pull_downs = jz4740_pull_downs,
->>  };
->>
->> +static const u32 jz4750_pull_ups[6] = {
->> +    0xffffffff, 0xffffffff, 0x3fffffff, 0x7fffffff, 0x1fff3fff, 
->> 0x00ffffff,
->> +};
->> +
->> +static const u32 jz4750_pull_downs[6] = {
->> +    0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 
->> 0x00000000,
->> +};
->> +
->> +static int jz4750_uart0_data_pins[] = { 0xa4, 0xa5, };
->> +static int jz4750_uart0_hwflow_pins[] = { 0xa6, 0xa7, };
->> +static int jz4750_uart1_data_pins[] = { 0x90, 0x91, };
->> +static int jz4750_uart1_hwflow_pins[] = { 0x92, 0x93, };
->> +static int jz4750_uart2_data_pins[] = { 0x9b, 0x9a, };
->> +static int jz4750_uart3_data_pins[] = { 0xb0, 0xb1, };
->> +static int jz4750_uart3_hwflow_pins[] = { 0xb2, 0xb3, };
->> +static int jz4750_mmc0_1bit_pins[] = { 0xa8, 0xa9, 0xa0, };
->> +static int jz4750_mmc0_4bit_pins[] = { 0xa1, 0xa2, 0xa3, };
->> +static int jz4750_mmc0_8bit_pins[] = { 0xa4, 0xa5, 0xa6, 0xa7, };
->> +static int jz4750_mmc1_1bit_pins[] = { 0xae, 0xaf, 0xaa, };
->> +static int jz4750_mmc1_4bit_pins[] = { 0xab, 0xac, 0xad, };
->> +static int jz4750_i2c_pins[] = { 0x8c, 0x8d, };
->> +static int jz4750_cim_pins[] = {
->> +    0x89, 0x8b, 0x8a, 0x88,
->> +    0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87,
->> +};
->> +static int jz4750_lcd_8bit_pins[] = {
->> +    0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x72, 0x73, 0x74,
->> +};
->> +static int jz4750_lcd_16bit_pins[] = {
->> +    0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x75,
->> +};
->> +static int jz4750_lcd_18bit_pins[] = { 0x70, 0x71, };
->> +static int jz4750_lcd_18bit_tft_pins[] = { 0x78, 0x79, 0x76, 0x77, };
->> +static int jz4750_nand_cs1_pins[] = { 0x55, };
->> +static int jz4750_nand_cs2_pins[] = { 0x56, };
->> +static int jz4750_nand_cs3_pins[] = { 0x57, };
->> +static int jz4750_nand_cs4_pins[] = { 0x58, };
->> +static int jz4750_nand_fre_fwe_pins[] = { 0x5c, 0x5d, };
->> +static int jz4750_pwm_pwm0_pins[] = { 0x94, };
->> +static int jz4750_pwm_pwm1_pins[] = { 0x95, };
->> +static int jz4750_pwm_pwm2_pins[] = { 0x96, };
->> +static int jz4750_pwm_pwm3_pins[] = { 0x97, };
->> +static int jz4750_pwm_pwm4_pins[] = { 0x98, };
->> +static int jz4750_pwm_pwm5_pins[] = { 0x99, };
->> +
->> +static const struct group_desc jz4750_groups[] = {
->> +    INGENIC_PIN_GROUP("uart0-data", jz4750_uart0_data, 1),
->> +    INGENIC_PIN_GROUP("uart0-hwflow", jz4750_uart0_hwflow, 1),
->> +    INGENIC_PIN_GROUP("uart1-data", jz4750_uart1_data, 0),
->> +    INGENIC_PIN_GROUP("uart1-hwflow", jz4750_uart1_hwflow, 0),
->> +    INGENIC_PIN_GROUP("uart2-data", jz4750_uart2_data, 1),
->> +    INGENIC_PIN_GROUP("uart3-data", jz4750_uart3_data, 0),
->> +    INGENIC_PIN_GROUP("uart3-hwflow", jz4750_uart3_hwflow, 0),
->> +    INGENIC_PIN_GROUP("mmc0-1bit", jz4750_mmc0_1bit, 0),
->> +    INGENIC_PIN_GROUP("mmc0-4bit", jz4750_mmc0_4bit, 0),
->> +    INGENIC_PIN_GROUP("mmc0-8bit", jz4750_mmc0_8bit, 0),
->> +    INGENIC_PIN_GROUP("mmc1-1bit", jz4750_mmc1_1bit, 0),
->> +    INGENIC_PIN_GROUP("mmc1-4bit", jz4750_mmc1_4bit, 0),
->> +    INGENIC_PIN_GROUP("i2c-data", jz4750_i2c, 0),
->> +    INGENIC_PIN_GROUP("cim-data", jz4750_cim, 0),
->> +    INGENIC_PIN_GROUP("lcd-8bit", jz4750_lcd_8bit, 0),
->> +    INGENIC_PIN_GROUP("lcd-16bit", jz4750_lcd_16bit, 0),
->> +    INGENIC_PIN_GROUP("lcd-18bit", jz4750_lcd_18bit, 0),
->> +    INGENIC_PIN_GROUP("lcd-18bit-tft", jz4750_lcd_18bit_tft, 0),
->> +    { "lcd-no-pins", },
->
-> Please drop "lcd-no-pins" from your patches, it is pointless.
->
-
-Sure.
+Hi Robin,
 
 
-> Cheers,
-> -Paul
->
->> +    INGENIC_PIN_GROUP("nand-cs1", jz4750_nand_cs1, 0),
->> +    INGENIC_PIN_GROUP("nand-cs2", jz4750_nand_cs2, 0),
->> +    INGENIC_PIN_GROUP("nand-cs3", jz4750_nand_cs3, 0),
->> +    INGENIC_PIN_GROUP("nand-cs4", jz4750_nand_cs4, 0),
->> +    INGENIC_PIN_GROUP("nand-fre-fwe", jz4750_nand_fre_fwe, 0),
->> +    INGENIC_PIN_GROUP("pwm0", jz4750_pwm_pwm0, 0),
->> +    INGENIC_PIN_GROUP("pwm1", jz4750_pwm_pwm1, 0),
->> +    INGENIC_PIN_GROUP("pwm2", jz4750_pwm_pwm2, 0),
->> +    INGENIC_PIN_GROUP("pwm3", jz4750_pwm_pwm3, 0),
->> +    INGENIC_PIN_GROUP("pwm4", jz4750_pwm_pwm4, 0),
->> +    INGENIC_PIN_GROUP("pwm5", jz4750_pwm_pwm5, 0),
->> +};
->> +
->> +static const char *jz4750_uart0_groups[] = { "uart0-data", 
->> "uart0-hwflow", };
->> +static const char *jz4750_uart1_groups[] = { "uart1-data", 
->> "uart1-hwflow", };
->> +static const char *jz4750_uart2_groups[] = { "uart2-data", };
->> +static const char *jz4750_uart3_groups[] = { "uart3-data", 
->> "uart3-hwflow", };
->> +static const char *jz4750_mmc0_groups[] = {
->> +    "mmc0-1bit", "mmc0-4bit", "mmc0-8bit",
->> +};
->> +static const char *jz4750_mmc1_groups[] = { "mmc0-1bit", 
->> "mmc0-4bit", };
->> +static const char *jz4750_i2c_groups[] = { "i2c-data", };
->> +static const char *jz4750_cim_groups[] = { "cim-data", };
->> +static const char *jz4750_lcd_groups[] = {
->> +    "lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-18bit-tft", 
->> "lcd-no-pins",
->> +};
->> +static const char *jz4750_nand_groups[] = {
->> +    "nand-cs1", "nand-cs2", "nand-cs3", "nand-cs4", "nand-fre-fwe",
->> +};
->> +static const char *jz4750_pwm0_groups[] = { "pwm0", };
->> +static const char *jz4750_pwm1_groups[] = { "pwm1", };
->> +static const char *jz4750_pwm2_groups[] = { "pwm2", };
->> +static const char *jz4750_pwm3_groups[] = { "pwm3", };
->> +static const char *jz4750_pwm4_groups[] = { "pwm4", };
->> +static const char *jz4750_pwm5_groups[] = { "pwm5", };
->> +
->> +static const struct function_desc jz4750_functions[] = {
->> +    { "uart0", jz4750_uart0_groups, ARRAY_SIZE(jz4750_uart0_groups), },
->> +    { "uart1", jz4750_uart1_groups, ARRAY_SIZE(jz4750_uart1_groups), },
->> +    { "uart2", jz4750_uart2_groups, ARRAY_SIZE(jz4750_uart2_groups), },
->> +    { "uart3", jz4750_uart3_groups, ARRAY_SIZE(jz4750_uart3_groups), },
->> +    { "mmc0", jz4750_mmc0_groups, ARRAY_SIZE(jz4750_mmc0_groups), },
->> +    { "mmc1", jz4750_mmc1_groups, ARRAY_SIZE(jz4750_mmc1_groups), },
->> +    { "i2c", jz4750_i2c_groups, ARRAY_SIZE(jz4750_i2c_groups), },
->> +    { "cim", jz4750_cim_groups, ARRAY_SIZE(jz4750_cim_groups), },
->> +    { "lcd", jz4750_lcd_groups, ARRAY_SIZE(jz4750_lcd_groups), },
->> +    { "nand", jz4750_nand_groups, ARRAY_SIZE(jz4750_nand_groups), },
->> +    { "pwm0", jz4750_pwm0_groups, ARRAY_SIZE(jz4750_pwm0_groups), },
->> +    { "pwm1", jz4750_pwm1_groups, ARRAY_SIZE(jz4750_pwm1_groups), },
->> +    { "pwm2", jz4750_pwm2_groups, ARRAY_SIZE(jz4750_pwm2_groups), },
->> +    { "pwm3", jz4750_pwm3_groups, ARRAY_SIZE(jz4750_pwm3_groups), },
->> +    { "pwm4", jz4750_pwm4_groups, ARRAY_SIZE(jz4750_pwm4_groups), },
->> +    { "pwm5", jz4750_pwm5_groups, ARRAY_SIZE(jz4750_pwm5_groups), },
->> +};
->> +
->> +static const struct ingenic_chip_info jz4750_chip_info = {
->> +    .num_chips = 6,
->> +    .reg_offset = 0x100,
->> +    .version = ID_JZ4750,
->> +    .groups = jz4750_groups,
->> +    .num_groups = ARRAY_SIZE(jz4750_groups),
->> +    .functions = jz4750_functions,
->> +    .num_functions = ARRAY_SIZE(jz4750_functions),
->> +    .pull_ups = jz4750_pull_ups,
->> +    .pull_downs = jz4750_pull_downs,
->> +};
->> +
->>  static const u32 jz4760_pull_ups[6] = {
->>      0xffffffff, 0xfffcf3ff, 0xffffffff, 0xffffcfff, 0xfffffb7c, 
->> 0xfffff00f,
->>  };
->> @@ -2512,6 +2645,7 @@ static const struct of_device_id 
->> ingenic_gpio_of_match[] __initconst = {
->>      { .compatible = "ingenic,jz4730-gpio", },
->>      { .compatible = "ingenic,jz4740-gpio", },
->>      { .compatible = "ingenic,jz4725b-gpio", },
->> +    { .compatible = "ingenic,jz4750-gpio", },
->>      { .compatible = "ingenic,jz4760-gpio", },
->>      { .compatible = "ingenic,jz4770-gpio", },
->>      { .compatible = "ingenic,jz4780-gpio", },
->> @@ -2716,6 +2850,9 @@ static const struct of_device_id 
->> ingenic_pinctrl_of_match[] = {
->>          .data = IF_ENABLED(CONFIG_MACH_JZ4725B, &jz4725b_chip_info)
->>      },
->>      {
->> +        .compatible = "ingenic,jz4750-pinctrl",
->> +        .data = IF_ENABLED(CONFIG_MACH_JZ4750, &jz4750_chip_info)
->> +    },
->>          .compatible = "ingenic,jz4760-pinctrl",
->>          .data = IF_ENABLED(CONFIG_MACH_JZ4760, &jz4760_chip_info)
->>      },
->> -- 
->> 2.7.4
->>
->
+On Wed, Mar 24, 2021, at 16:29, Robin Murphy wrote:
+> On 2021-03-20 15:19, Sven Peter wrote:
+> > 
+> > I have just noticed today though that at least the USB DWC3 controller in host
+> > mode uses *two* darts at the same time. I'm not sure yet which parts seem to
+> > require which DART instance.
+> > 
+> > This means that we might need to support devices attached to two iommus
+> > simultaneously and just create the same iova mappings. Currently this only
+> > seems to be required for USB according to Apple's Device Tree.
+> > 
+> > I see two options for this and would like to get feedback before
+> > I implement either one:
+> > 
+> >      1) Change #iommu-cells = <1>; to #iommu-cells = <2>; and use the first cell
+> >         to identify the DART and the second one to identify the master.
+> >         The DART DT node would then also take two register ranges that would
+> >         correspond to the two DARTs. Both instances use the same IRQ and the
+> >         same clocks according to Apple's device tree and my experiments.
+> >         This would keep a single device node and the DART driver would then
+> >         simply map iovas in both DARTs if required.
+> 
+> This is broadly similar to the approach used by rockchip-iommu and the 
+> special arm-smmu-nvidia implementation, where there are multiple 
+> instances which require programming identically, that are abstracted 
+> behind a single "device". Your case is a little different since you're 
+> not programming both *entirely* identically, although maybe that's a 
+> possibility if each respective ID isn't used by anything else on the 
+> "other" DART?
+
+That would be possible. The only difference is that I need to
+program ID 0 of the first DART and ID 1 of the second one. Both
+of these IDs are only connected to the same USB controller.
+
+
+> 
+> Overall I tend to view this approach as a bit of a hack because it's not 
+> really describing the hardware truthfully - just because two distinct 
+> functional blocks have their IRQ lines wired together doesn't suddenly 
+> make them a single monolithic block with multiple interfaces - and tends 
+> to be done for the sake of making the driver implementation easier in 
+> terms of the Linux IOMMU API (which, note, hasn't evolved all that far 
+> from its PCI-centric origins and isn't exactly great for arbitrary SoC 
+> topologies).
+
+Yes, the easier driver implementation was my reason to favour this option.
+
+> 
+> >      2) Keep #iommu-cells as-is but support
+> >              iommus = <&usb_dart1a 1>, <&usb_dart1b 0>;
+> >         instead.
+> >         This would then require two devices nodes for the two DART instances and
+> >         some housekeeping in the DART driver to support mapping iovas in both
+> >         DARTs.
+> >         I believe omap-iommu.c supports this setup but I will have to read
+> >         more code to understand the details there and figure out how to implement
+> >         this in a sane way.
+> 
+> This approach is arguably the most honest, and more robust in terms of 
+> making fewer assumptions, and is used by at least exynos-iommu and 
+> omap-iommu. In Linux it currently takes a little bit more housekeeping 
+> to keep track of linked instances within the driver since the IOMMU API 
+> holds the notion that any given client device is associated with "an 
+> IOMMU", but that's always free to change at any time, unlike the design 
+> of a DT binding.
+
+Sounds good. I'll read those drivers and give it a try for v2.
+
+
+Thanks,
+
+
+Sven
