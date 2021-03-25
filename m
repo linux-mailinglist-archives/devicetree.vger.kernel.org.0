@@ -2,198 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7FE349680
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D8334969D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbhCYQOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:14:54 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54998 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbhCYQOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:14:50 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12PGEY7n005196;
-        Thu, 25 Mar 2021 11:14:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616688874;
-        bh=UZV0sP5zmB6zPNXJrR1Ox1Q35jJB3ri0g+Wh2TcKb4c=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=y9PfDf0wKAE1ajuH/pftgC9pEZGEpIqxbE6bSfAqTBBzzKqziMAHO9vv5A5gE3O97
-         pvxREFi9GTymVgG+nFy7YjIIH/QWA5HnOQKV+lWu6VWox8zslpqPwlNgrFtLsq272S
-         LZO7f7bR0JOF+qeRRxo7jXNGATHd2sbrMs9Y6F2k=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12PGEY1U129582
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Mar 2021 11:14:34 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 25
- Mar 2021 11:14:34 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 25 Mar 2021 11:14:34 -0500
-Received: from [10.250.233.62] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12PGEUSZ073840;
-        Thu, 25 Mar 2021 11:14:31 -0500
-Subject: Re: [PATCH v8 3/3] arm64: dts: ti: k3-j7200: Add support for higher
- speed modes and update delay select values for MMCSD subsystems
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210324063759.5837-1-a-govindraju@ti.com>
- <20210324063759.5837-4-a-govindraju@ti.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <b8799a32-2461-988a-4a88-177e672ab64e@ti.com>
-Date:   Thu, 25 Mar 2021 21:44:29 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229988AbhCYQSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 12:18:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229854AbhCYQSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:18:11 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818B9C061761
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:18:10 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id l15so2915112ybm.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 09:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QQUSMG2MYvr7z2lGID3UbwL8eVjOA95JzM6A/R4Iu1E=;
+        b=IRAPbpwUGbuUSp2HYxkhC7c7pPoKfFtl7jbJslD/5YuRK/PXAtdEHHvefviHJJNJU8
+         /GNZ4Jvf/qQ0BFs1R+xzmZfjtVA6o+81OWemBKmiDSNjAWnip31eC5PgkpPyVCB0uwWR
+         OBeVkR2CBo6VbKoDIeLGSVzeL9PSH9zXyt/Uxj6OAPQAeJxGnVVv0hTRgBhlWAGkhKgv
+         oxHvU/MptLG2T5zdSLxoGRgVCwyjfl7VGTEv2bHv6Nqx9PCqD08DDB14ZIDdxPsoUGxA
+         nCxZznnptNnoDeEZwYSwC/yZT0w0BWchvcZpQ8ZhPQqWoQCM9X8XofRfO7wWT+wvnbR9
+         AdSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QQUSMG2MYvr7z2lGID3UbwL8eVjOA95JzM6A/R4Iu1E=;
+        b=WtvHCvIb+iYprP/89K9WZFMUEghq2jVuWCxlLcXoipNhnKkCs/oPoj1uF/lZF6MWOx
+         /XBnabXM0ULzceYoP1ntoErVQKuBUlSddLBU/JERnmPEdEN1MQrh29WvQe7TfV67Xm4r
+         QoAVOvk9cDcKFVCcC1ToJEO5FrlNvz49KFB6heVkxOaUMavS8QtYPJDSC+dkwCs+pMn8
+         4IRx5gjntWTXPCwOLYhyCYfXnnnbEmekKjwNXUDQy7p+yyk9o1LvTfFtFIEqPJed1B09
+         yrtO13GoJ9ldFk6q/U3V+suLUy0lP48qUqCr4o0RZtez2iJPHsV6Cb/tV2RbWJhS8E2I
+         kgJA==
+X-Gm-Message-State: AOAM530jk4Lbj+6DjduUt5brK9qc05rRTfENaqnxg6IetoMmNCr9yPON
+        pYvu/YHxpwbWEtTi13/cP3Xwnr7yl+IgP0Gh842L7w==
+X-Google-Smtp-Source: ABdhPJyCI41mEQVSMR5OzYWKNCakBrYDxOD4TjekSAjXtIhStEvQQQrTQE12lRIasP2p34vK39aXj/x47+APczR7xLE=
+X-Received: by 2002:a5b:54a:: with SMTP id r10mr12095885ybp.476.1616689089164;
+ Thu, 25 Mar 2021 09:18:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210324063759.5837-4-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+ <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com> <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org>
+In-Reply-To: <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org>
+From:   Doug Anderson <dianders@google.com>
+Date:   Thu, 25 Mar 2021 09:17:57 -0700
+Message-ID: <CAD=FV=ULXU46C4jbx4nJEOuK4+wZmknoD=mZ_3=c0drfa32N=w@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
+To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+Cc:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aswath,
+Hi,
 
-On 24/03/21 12:07 pm, Aswath Govindraju wrote:
-> The following speed modes are now supported in J7200 SoC,
-> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
-> - UHS-I speed modes in MMCSD1 subsystem [1].
-> 
-> Add support for UHS-I modes by adding voltage regulator device tree nodes
-> and corresponding pinmux details, to power cycle and voltage switch cards.
-> Set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
-> device tree nodes.
-> 
-> Also update the delay values for various speed modes supported, based on
-> the revised january 2021 J7200 datasheet[2].
-> 
-> [1] - section 12.3.6.1.1 MMCSD Features, in
->       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf,
->       (SPRUIU1A – JULY 2020 – REVISED JANUARY 2021)
-> 
-> [2] - https://www.ti.com/lit/ds/symlink/dra821u.pdf,
->       (SPRSP57B – APRIL 2020 – REVISED JANUARY 2021)
-minor comments below.. once you fix them, please add
+On Wed, Mar 24, 2021 at 8:59 PM Veerabhadrarao Badiganti
+<vbadigan@codeaurora.org> wrote:
+>
+> >> +                       clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+> >> +                                       <&gcc GCC_SDCC1_AHB_CLK>,
+> >> +                                       <&rpmhcc RPMH_CXO_CLK>;
+> >> +                       clock-names = "core", "iface", "xo";
+> > I'm curious: why is the "xo" clock needed here but not for sc7180?
+> Actually its needed even for sc7180. We are making use of this clock in
+> msm_init_cm_dll()
+> The default PoR value is also same as calculated value for
+> HS200/HS400/SDR104 modes.
+> But just not to rely on default register values we need this entry.
 
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 78 +++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 14 +++-
->  2 files changed, 90 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> index b493f939b09a..a069787e1783 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> @@ -16,6 +16,65 @@
->  		stdout-path = "serial2:115200n8";
->  		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
->  	};
-> +
-> +	evm_12v0: fixedregulator-evm12v0 {
-> +		/* main supply */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "evm_12v0";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_3v3: fixedregulator-vsys3v3 {
-> +		/* Output of LMS140 */
+Can you post a patch for sc7180?
 
-%s/LMS140/LM5140
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&evm_12v0>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_5v0: fixedregulator-vsys5v0 {
-> +		/* Output of LM5140 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&evm_12v0>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vdd_mmc1: fixedregulator-sd {
-> +		/* Output of TPS22918  */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	vdd_sd_dv: gpio-regulator-vdd-sd-dv {
-> +		/* Output of TLV71033 */
 
-Would have preferred to keep this similar to j721e.
-gpio-regulator-TLV71033 is used in j721e
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "vdd_sd_dv";
+> >> +                       bus-width = <4>;
+> >> +
+> >> +                       no-mmc;
+> >> +                       no-sdio;
+> > Similar question to above: why exactly would mmc not work? Are you
+> > saying that if someone hooked this up to a full sized SD card slot and
+> > placed an MMC card into the slot that it wouldn't work? Similar
+> > question about SDIO. If someone placed an external SDIO card into your
+> > slot, would it not work?
+> >
+> As mentioned above, its just to optimize SDcard scan time a little.
 
-same comment here..
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vsys_5v0>;
-> +		gpios = <&main_gpio0 55 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
->  };
->  
->  &wkup_pmx0 {
-> @@ -45,6 +104,13 @@
->  };
->  
->  &main_pmx0 {
-> +	main_i2c0_pins_default: main-i2c0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
-> +			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
-> +		>;
-> +	};
-> +
->  	main_i2c1_pins_default: main-i2c1-pins-default {
->  		pinctrl-single,pins = <
->  			J721E_IOPAD(0xdc, PIN_INPUT_PULLUP, 3) /* (U3) ECAP0_IN_APWM_OUT.I2C1_SCL */
-> @@ -70,6 +136,12 @@
->  			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
->  		>;
->  	};
-> +
-> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0xd0, PIN_INPUT, 7) /* (T5) SPI0_D1.GPIO0_55 */
+OK. ...but while the eMMC one can make sense since the eMMC is
+soldered down (but in the board dts file, not in the SoC dtsi file) I
+think you should just remove these for SD card because:
 
-This should ideally be PIN_OUTPUT. Can you check the latest sysconfig?
+1. Even if only a uSD slot is exposed it's still _possible_ for
+someone to insert a card that uses MMC or SDIO signaling. If nothing
+else I have a (probably non-compliant) adapter that plugs into a uSD
+slot and provides a full sided SD slot. I could plug an MMC card or
+SDIO card in.
 
-Thanks
-Kishon
+2. Presumably the SD card scan time optimization is tiny.
+
+
+-Doug
