@@ -2,149 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 256F53492FA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:20:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AEF349319
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:32:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbhCYNT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 09:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbhCYNTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 09:19:32 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2006C06174A;
-        Thu, 25 Mar 2021 06:19:31 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id o16so2316986wrn.0;
-        Thu, 25 Mar 2021 06:19:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yM+7txaY3YaPXxI4ZrWQxkRlDAfwRXr5c8eBWKInYrQ=;
-        b=Y/6H+C9Ccxwfb26nyliwjTZ6wUHcKjA6cY1a3ELSQhduNGnkbMLX/s4ClGf9azMDvM
-         6w6eVC2vqUKf4I3eQ6rzw9UWM2mi+t4bjUcyLA19m/UJNNXsumxyi8hNGJBzs43yybMd
-         Fdcmu6BgPrv0gxs7sEeUGbTYibJnISr0doSjtzLX+0Z1BsXwuWZPP2epdzG/herOodI+
-         D5lotveJ9EBPGljf/Hujdzg1m8S9pEEZYKmJSwNWKySB8WiDR+gD+2Obk9J6aXZUHipA
-         ePBprKPtmEooD/mf4l8Rjh4kerm70pFEfQGRxkeZO1PuSAEo+SHxEUKYv/n1ZZ/HqWme
-         VpWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yM+7txaY3YaPXxI4ZrWQxkRlDAfwRXr5c8eBWKInYrQ=;
-        b=EtNPzCScRqxFL1QbfX9DQ3MRk2lwvJLBygkZb8SKAoQYkj+9e5rYFPyYYTwxKyBnAO
-         ZprxmDZe2X55owfyVqhEOS0LDas8SorwSkGac48ciAmvxmrqllE6Gr5Add9sHKsvKHg7
-         ngTD+D0e+HAdyEKrkRpjGFhjmRrRFAuGSrpSwYyVNVrYYrEM0bfozOwPNq5dnqra8p61
-         w9vSdMpftrCBb4jv3Kdff7KrdgffER6tTxg/kb2YCRKAtHNzJmrCDXP2QKEIFs2hbO9d
-         J5FRHIlRxZhKzIOms8fvDrgdeMGCWgt6tzGNOiyuDhyoEMrbrDjcp6lWTZfLCVjfHTsS
-         6Yzg==
-X-Gm-Message-State: AOAM530DuBpDk/wzil6x1BhtfvU0OLgRqn9HNKzG0PqNygHzwpserbHI
-        ZX1Bmyd2HPbboKnre74O1GU=
-X-Google-Smtp-Source: ABdhPJxgNiEwF1vncF6OavhaphzdsDVLGyJbTMXInPwidHzU7AfICxxIUG2+OLej1IihRS+1fGzRUQ==
-X-Received: by 2002:adf:f743:: with SMTP id z3mr9037377wrp.304.1616678370546;
-        Thu, 25 Mar 2021 06:19:30 -0700 (PDT)
-Received: from ?IPv6:2003:ea:8f1f:bb00:ec1d:f023:8a26:fc6b? (p200300ea8f1fbb00ec1df0238a26fc6b.dip0.t-ipconnect.de. [2003:ea:8f1f:bb00:ec1d:f023:8a26:fc6b])
-        by smtp.googlemail.com with ESMTPSA id q19sm6298427wmc.44.2021.03.25.06.19.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Mar 2021 06:19:30 -0700 (PDT)
-To:     Anand Moon <linux.amoon@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-References: <20210325124225.2760-1-linux.amoon@gmail.com>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCHv1 0/6] Amlogic Soc - Add missing ethernet mdio compatible
- string
-Message-ID: <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
-Date:   Thu, 25 Mar 2021 14:19:23 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230413AbhCYNcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 09:32:24 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:32241 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230093AbhCYNcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 09:32:02 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210325133200euoutp025643f5f236aaef1ed30dfa6463d4c00c~vmRhEmYoQ2542825428euoutp027
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 13:32:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210325133200euoutp025643f5f236aaef1ed30dfa6463d4c00c~vmRhEmYoQ2542825428euoutp027
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1616679120;
+        bh=Z/DNfCxQzs0IDWoaY5k0ggzsNxFtNfsppQC7SUo3Oxc=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=PMtE0N/GN5n23FKdJXoe8fmfFE0n4PTHJd3YgoYKQPYCm535bMH5dylBD/7xAPS6A
+         q4+0hT/utbRMOzRFTSeYrVtJswhqbLyjqTM7c8/0pfbxpLlEFTUpA/GJHzeLLuskvt
+         JfW95ozqwAKxC+A8pj2zaJLFcCbZ+vpPvtNEovU0=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20210325133200eucas1p220f7c0abe8506fb7c14ee5a19048e6d5~vmRgcvosb0792407924eucas1p2T;
+        Thu, 25 Mar 2021 13:32:00 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 5F.25.09452.FC09C506; Thu, 25
+        Mar 2021 13:31:59 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e~vmRfxkYzT0793607936eucas1p2M;
+        Thu, 25 Mar 2021 13:31:59 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210325133159eusmtrp2092b54a21cf01982167e7e9aebd38641~vmRfwEGGD3060130601eusmtrp2q;
+        Thu, 25 Mar 2021 13:31:59 +0000 (GMT)
+X-AuditID: cbfec7f2-a9fff700000024ec-a5-605c90cf87a7
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id FA.32.08705.FC09C506; Thu, 25
+        Mar 2021 13:31:59 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20210325133157eusmtip1093d76ecea4c2fb8cbe03e117ac26715~vmReav6BN2222222222eusmtip1s;
+        Thu, 25 Mar 2021 13:31:57 +0000 (GMT)
+Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>, corbet@lwn.net,
+        gregkh@linuxfoundation.org, rafael@kernel.org, khilman@kernel.org,
+        ulf.hansson@linaro.org, len.brown@intel.com, lenb@kernel.org,
+        pavel@ucw.cz, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, frowand.list@gmail.com, maz@kernel.org,
+        tglx@linutronix.de, saravanak@google.com
+Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        geert@linux-m68k.org, kernel-team@android.com,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com>
+Date:   Thu, 25 Mar 2021 14:31:57 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210325124225.2760-1-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <20210210114435.122242-2-tudor.ambarus@microchip.com>
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUxTVxzdfa99rxDrHgXTO2aYNJM5l/FhMN6NxjDF7S1EQzYXF4KjFd/A
+        FSq2sM0tGQhUoSoUi1FrCZiiMD4E21GtCKylriBLy4ZjjCGufJTJhqbW+S2O55ON/8459/zO
+        73eSK8BFViJcsEuZx6iU8mwJEcyz/vDA86ZHlyaLNfqkyNP1mEST3x8AqMbp5qMTfz8lkG+k
+        E0PFplYCXTgfhqYsExgyVM1LNu8sgeq7KgDyHxrjo1P763ho8KKRQIHDToAqf28jkc3Yx0c/
+        XdmEzltO4chqqCfQtSuXCVR95yiONJ1OEmkdTwg0N3SOhyzmec1fl4hcLdsSl9PWDiufvjWs
+        IWmb4RpJ15rzadOlGxhtbiwj6NGhSwR90+0maUdPKaC7q5tJ2lJXQJvK9Xx69P5pQFv6v6Yb
+        mu6RdMAckUKlBkt3Mtm7PmdUMetlwVnlk5O83PGILzXXrUQhKAnXgiABpOJhwPYLoQXBAhHV
+        AKDe1P+c3AFwYrYFZ10iKgBgYb1kYaLn0a3npnoAL3fcAxzxA+g3dWBaIBCEUu9DszGL1cOo
+        GxjU+1p5LMGpUhz2/OHlsVEEFQe1s1qCxUJqPTzS58RYzKNWwqkBL58NWkbtgG2O7ZwlBPad
+        mHw2GkRtgP0VTc/sOPUKLG4/iXNYDEcmazB2F6TswVBnbAZsDqSS4F9VG7kGoXDG9R3J4eXw
+        qW3BXwyg191CcuQQgINFxwHnSoCj7ocEG4RTr8PWizGc/A4sDdzmc/lL4fBsCHfDUnjEegzn
+        ZCEs3S/i3FHQ4Dr731r7wM+4DkgMi5oZFrUxLGpj+H9vLeA1AjGTr87JZNRxSuaLaLU8R52v
+        zIzO2J1jBvNfu3/OdfsCqJ7xRzsAJgAOAAW4JEy4Y3OaTCTcKd/7FaPana7Kz2bUDvCygCcR
+        CxtPNqeLqEx5HqNgmFxGtfCKCYLCCzGj8u25pMGOo70vvXo38rcl/Kzjvc6QtYel7mPnIh+t
+        Ufu2JXVRSQV2YpOqL8Ja9GdKXfnVkUp7e9QKRTf2ickzkLCltnt8YxSpV0wcgOsG8E5F6bS1
+        KUCLtQW/vmUs8qTBD8+KKl6bmrbpM16sHz4T8vjT7pLte+7aNQZP+B51WmjDhoS8j6XK96qS
+        /Vs0kaHJg5qxis3XpaMfpH8kU6DuJLtuXEp4qCWf+eIPrvJthS0Pl4l/FL/xZPXVWBQpWrPu
+        4Kqw9sq9qSUZutah1JmBM15Jb3LN/fgU3YPeqH2935QpX2jwrV3R5oopc347nfhu/D9BUxL9
+        ygTZvrFYUe7NZAlPnSWPW42r1PJ/AU4O5fpJBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNKsWRmVeSWpSXmKPExsVy+t/xu7rnJ8QkGHxey29xft8fdosnB9oZ
+        LeYfOcdqMfPNfzaLZ7f2Mlk0L17PZrFju4jF082PmSxmTQEK7Xz4ls1i+b5+RouPPfdYLRa2
+        LWGxuLxrDpvF594jjBYTb29gt9g55ySrxcVTrhbbNy9kttg2azmbxd1TR9ks5n6ZymzRuvcI
+        u0XXob9sFv+ubWSx2LwJKPZxiYPF8bXhDjIe23ZvY/V4f6OV3WPnrLvsHgs2lXos3vOSyWPT
+        qk42jzvX9rB5vDt3jt3j0OEORo/9c9ewe2xeUu+xuG8yq8edH0sZPTafrvZYsfo7u8fnTXIB
+        AlF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6GX1P
+        nrAUPJKraL2/ja2BsUWqi5GTQ0LAROLw7/dsXYxcHEICSxklXi58ygyRkJE4Oa2BFcIWlvhz
+        rQuq6D2jxNfLk1i6GDk4hAU8JTbNyQCJiwi8ZJJ4tWkfK4jDLNDBLHHpeDc7RMdqRolr//4y
+        gYxiEzCU6HoLMoqTg1fATmLSySNgcRYBVYmnFx6CrRMVSJK4vGQiK0SNoMTJmU9YQGxOASeJ
+        0/2rweqZBcwk5m1+yAxhy0s0b50NZYtL3Hoyn2kCo9AsJO2zkLTMQtIyC0nLAkaWVYwiqaXF
+        uem5xYZ6xYm5xaV56XrJ+bmbGIGpatuxn5t3MM579VHvECMTB+MhRgkOZiUR3iTfmAQh3pTE
+        yqrUovz4otKc1OJDjKZA/0xklhJNzgcmy7ySeEMzA1NDEzNLA1NLM2Mlcd6tc9fECwmkJ5ak
+        ZqemFqQWwfQxcXBKNTAd2sJbqSZ3ZsaPzGfXT7892/3YTKtiQ9tn8Uotpq/7Vv/eOMFRykax
+        f9X+bd3fMqdxfRQOq8644Xc84WpJhHE/l5e34oIXxnuWx20si5L5cfMpf4Xw7UvfJ/VwPhDp
+        vCLSv+JQwxyZy3Fs5oZTPvSd5FS1P7OizyJ5wqU+jdStk1N7BZpe7bjLEW2uz+kq/WY189uc
+        iD/7X9Tty5ygu6FvX/cS+wWdN7h1dvzw4nI+s2xVvZRG6HJJdsei0s2PeBhV8rM+W77YcOaW
+        3OHwtypHjH52xRW/zlP8cmjp/LKXbQb9hs99v2hc8/RLCE35pZ3Rxq8R9lOSkeGU8+xXyZOt
+        zl9h95nyPz8mQIOnh0+JpTgj0VCLuag4EQC4OsQT3gMAAA==
+X-CMS-MailID: 20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e
+References: <20210205222644.2357303-9-saravanak@google.com>
+        <20210210114435.122242-1-tudor.ambarus@microchip.com>
+        <20210210114435.122242-2-tudor.ambarus@microchip.com>
+        <CGME20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e@eucas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.03.2021 13:42, Anand Moon wrote:
-> On most of the Amlogic SoC I observed that Ethernet would not get
-> initialize when try to deploy the mainline kernel, earlier I tried to
-> fix this issue with by setting ethernet reset but it did not resolve
-> the issue see below.
-> 	resets = <&reset RESET_ETHERNET>;
-> 	reset-names = "stmmaceth";
-> 
-> After checking what was the missing with Rockchip SoC dts
-> I tried to add this missing compatible string and then it
-> started to working on my setup.
-> 
-> Also I tried to fix the device tree binding to validate the changes.
-> 
-> Tested this on my Odroid-N2 and Odroid-C2 (64 bit) setup.
-> I do not have ready Odroid C1 (32 bit) setup so please somebody test.
-> 
+Hi
 
-When working on the Odroid-C2 I did not have such a problem.
-And if you look at of_mdiobus_child_is_phy() and
-of_mdiobus_register_phy() you'll see that your change shouldn't be
-needed.
+On 10.02.2021 12:44, Tudor Ambarus wrote:
+> This is a follow-up for:
+> commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
+>
+> The above commit updated the deprecated of_clk_add_provider(),
+> but missed to update the preferred of_clk_add_hw_provider().
+> Update it now.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-Could you please elaborate on:
-- What is the exact problem you're facing? Best add a dmesg log.
-- Which kernel version are you using?
+This patch, which landed in linux-next as commit 6579c8d97ad7 ("clk: 
+Mark fwnodes when their clock provider is added") causes the following 
+NULL pointer dereference on Raspberry Pi 3b+ boards:
 
+--->8---
 
-> Best Regards
-> -Anand
-> 
-> Anand Moon (6):
->   dt-bindings: net: ethernet-phy: Fix the parsing of ethernet-phy
->     compatible string
->   arm: dts: meson: Add missing ethernet phy mdio compatible string
->   arm64: dts: meson-gxbb: Add missing ethernet phy mimo compatible
->     string
->   arm64: dts: meson-gxl: Add missing ethernet phy mdio compatible string
->   arm64: dts: meson-g12: Add missing ethernet phy mdio compatible string
->   arm64: dts: meson-glx: Fix the ethernet phy mdio compatible string
-> 
->  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
->  arch/arm/boot/dts/meson8b-ec100.dts                     | 1 +
->  arch/arm/boot/dts/meson8b-mxq.dts                       | 1 +
->  arch/arm/boot/dts/meson8b-odroidc1.dts                  | 1 +
->  arch/arm/boot/dts/meson8m2-mxiii-plus.dts               | 1 +
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts          | 1 +
->  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts      | 1 +
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi   | 3 ++-
->  arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi        | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi  | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts      | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts    | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts  | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts     | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts         | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi    | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi       | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts    | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi              | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts   | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts     | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts          | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts      | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts      | 1 +
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi      | 1 +
->  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi       | 1 +
->  26 files changed, 29 insertions(+), 5 deletions(-)
-> 
+raspberrypi-firmware soc:firmware: Attached to firmware from 
+2020-01-06T13:05:25
+Unable to handle kernel NULL pointer dereference at virtual address 
+0000000000000050
+Mem abort info:
+   ESR = 0x96000004
+   EC = 0x25: DABT (current EL), IL = 32 bits
+   SET = 0, FnV = 0
+   EA = 0, S1PTW = 0
+Data abort info:
+   ISV = 0, ISS = 0x00000004
+   CM = 0, WnR = 0
+[0000000000000050] user address but active_mm is swapper
+Internal error: Oops: 96000004 [#1] PREEMPT SMP
+Modules linked in:
+CPU: 0 PID: 10 Comm: kworker/0:1 Not tainted 5.12.0-rc4+ #2764
+Hardware name: Raspberry Pi 3 Model B (DT)
+Workqueue: events deferred_probe_work_func
+pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=--)
+pc : of_clk_add_hw_provider+0xac/0xe8
+lr : of_clk_add_hw_provider+0x94/0xe8
+sp : ffff8000130936b0
+x29: ffff8000130936b0 x28: ffff800012494e04
+x27: ffff00003b18cb05 x26: ffff00003aa5c010
+x25: 0000000000000000 x24: 0000000000000000
+x23: ffff00003aa1e380 x22: ffff8000106830d0
+x21: ffff80001233f180 x20: 0000000000000018
+x19: 0000000000000000 x18: ffff8000124d38b0
+x17: 0000000000000013 x16: 0000000000000014
+x15: ffff8000125758b0 x14: 00000000000184e0
+x13: 000000000000292e x12: ffff80001258dd98
+x11: 0000000000000001 x10: 0101010101010101
+x9 : ffff80001233f288 x8 : 7f7f7f7f7f7f7f7f
+x7 : fefefefeff6c626f x6 : 5d636d8080808080
+x5 : 00000000006d635d x4 : 0000000000000000
+x3 : 0000000000000000 x2 : 540eb5edae191600
+x1 : 0000000000000000 x0 : 0000000000000000
+Call trace:
+  of_clk_add_hw_provider+0xac/0xe8
+  devm_of_clk_add_hw_provider+0x5c/0xb8
+  raspberrypi_clk_probe+0x110/0x210
+  platform_probe+0x90/0xd8
+  really_probe+0x108/0x3c0
+  driver_probe_device+0x60/0xc0
+  __device_attach_driver+0x9c/0xd0
+  bus_for_each_drv+0x70/0xc8
+  __device_attach+0xec/0x150
+  device_initial_probe+0x10/0x18
+  bus_probe_device+0x94/0xa0
+  device_add+0x47c/0x780
+  platform_device_add+0x110/0x248
+  platform_device_register_full+0x120/0x150
+  rpi_firmware_probe+0x158/0x1f8
+  platform_probe+0x90/0xd8
+  really_probe+0x108/0x3c0
+  driver_probe_device+0x60/0xc0
+  __device_attach_driver+0x9c/0xd0
+  bus_for_each_drv+0x70/0xc8
+  __device_attach+0xec/0x150
+  device_initial_probe+0x10/0x18
+  bus_probe_device+0x94/0xa0
+  deferred_probe_work_func+0x70/0xa8
+  process_one_work+0x2a8/0x718
+  worker_thread+0x48/0x460
+  kthread+0x134/0x160
+  ret_from_fork+0x10/0x18
+Code: b1006294 540000c0 b140069f 54000088 (3940e280)
+---[ end trace 7ead5ec2f0c51cfe ]---
+
+This patch mainly revealed that clk/bcm/clk-raspberrypi.c driver calls 
+devm_of_clk_add_hw_provider(), with a device pointer, which has a NULL 
+dev->of_node. I'm not sure if adding a check for a NULL np in 
+of_clk_add_hw_provider() is a right fix, though.
+
+> ---
+>   drivers/clk/clk.c | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 27ff90eacb1f..9370e4dfecae 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -4594,6 +4594,8 @@ int of_clk_add_hw_provider(struct device_node *np,
+>   	if (ret < 0)
+>   		of_clk_del_provider(np);
+>   
+> +	fwnode_dev_initialized(&np->fwnode, true);
+> +
+>   	return ret;
+>   }
+>   EXPORT_SYMBOL_GPL(of_clk_add_hw_provider);
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
