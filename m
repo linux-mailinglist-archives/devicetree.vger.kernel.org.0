@@ -2,126 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64074349854
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36C47349856
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:39:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbhCYRik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 13:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
+        id S230210AbhCYRil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 13:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbhCYRiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 13:38:11 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1055C06174A;
-        Thu, 25 Mar 2021 10:38:10 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id h13so3361008eds.5;
-        Thu, 25 Mar 2021 10:38:10 -0700 (PDT)
+        with ESMTP id S230195AbhCYRiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 13:38:19 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60454C06174A;
+        Thu, 25 Mar 2021 10:38:19 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id f16so4248442ljm.1;
+        Thu, 25 Mar 2021 10:38:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I9q63tYJ03BknGivZ05XneXQJyIBDXfgHPnv+sgu2h0=;
-        b=t7jvWs6wjvTatSQlhTTEZV62S1SFXf2SkvhIVFBxlYebdjNAjxJhiMJ/U4CdFICFe/
-         jGqfU0+yfJPuT4zI0V/mgDcZWzi0KofGkQ74ESAwu6t7H0bXg7VJcbOZ0Wizgt/E7zuF
-         FUfgV+JhYwjPukLw8VUP+zpbmFIvDBDXcjmS/SG4QI9zPMdxCL96gDeP1fpi03KXvrsd
-         Y+PU6HkFYbtCs6o6/+uJxyZBKevTHNB9qa6gnGCwZz03y1CXW892IqvI+8ZBnzrHaf1I
-         UfLJR/ySXIGj2qaC1ST1ugp8Pwyu0nYodjhG5LZQCe4ajSIYTkfqVKnAXBnfImXvxnna
-         DkmA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IWF2rjUL4RNwP8tqxzEk+CP2xWiPvF7wgM2YggJx29k=;
+        b=Glpk9vDYOel/oYy7nTxAS0XwpNBQzx7ylsJKz74gzs46Eg2558qdSoJDyl+XTKMsk0
+         oNmILuqlxpG+5fw8XZLVvup+A0wXMbs17UWj68DkZcO09STg6NO7DjiYbRIQ4gsCpKx3
+         +ZZE5UKC36gzw4bW3qXcVbLik+GHLeGdbfJoTyIVeWJUpHJLgVtayZsMG/3vgT9Cmncn
+         qihMzZ8p1ZeL89p9vF6AkWK6AFMlTC+slsTCRCqLG8r7GzIlxy6SUuE5RcHojopU8gnP
+         yJ263VxCri8YwQJ+RqpS7Tn6CSAsc7v7H3GV3b1J0dwAd6Hs21OoSBdVLSYVV6ztZ/+I
+         0mDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I9q63tYJ03BknGivZ05XneXQJyIBDXfgHPnv+sgu2h0=;
-        b=QXYZ6TpV+DrIdgSn3SbdVB9z0TyAvatHMThSPUClNWP37+IIQ3I6uj6WrSJ2al+MRX
-         gITgJuNZ4/mJmMNE54T8LdBkU9VoAOU2jj6T43fdiJynkbmhyiKbVR8AfWgWHL2ErdAu
-         7EHGGkBhC/pzjFb45rhab1llhXND4TAYw7XQ9YObob94ufonaP9UiDBaGS1+/hfIycK0
-         65CNj/8IgIlMO7lnqmWNvJ9QF81dDUw7ZTW1PN1AKZt7Mu9uPgQTXz3EYfI5pNwIFQCX
-         2bmZZW0KsYUm9uNDvl4ZcZor9KIwbzlHYMrGXK6VDihQdAYY9EsSjV50kmzJRMryGAjX
-         a6Gg==
-X-Gm-Message-State: AOAM530BhL/t0XO/RcLhBV2j8MYQGbN9yEVKehaEXPCACZOWk2n7O8q6
-        wmNcQM0DHUd+PxQYepWKdNZYJJY46Mhe0GgG2kY=
-X-Google-Smtp-Source: ABdhPJyJuaXnigXxrj2VNTfYCMQjXdN8sTCW5EW1OJFX24BuQs2VGSkwYTcJ/fG2ACrUlSpEZcUFS6W23kZPN4BKpNY=
-X-Received: by 2002:aa7:cf02:: with SMTP id a2mr10325668edy.59.1616693889364;
- Thu, 25 Mar 2021 10:38:09 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IWF2rjUL4RNwP8tqxzEk+CP2xWiPvF7wgM2YggJx29k=;
+        b=pWWjIhjXWTVh1vGkkNYvIlKxO9OJ7C9I/YZVSveCQkQ6RY1sXYdFqUG/hoKF7qZp/1
+         JblIBJFoCL77Uqm12f26QrUfPhxz5NHjgwzhhXVKrVSpnx0dDFvh9xHASnDujdNuw9Sp
+         oNuHEA+mK8tMB5ag5wAxoN+Z/7MSwDoOix9xJsLaTW3lR9wzbnaQQFotJYCRVZAwHVB/
+         Rso2+6Wanz8I8970kw8hW6W9a36E8Gc9FwB16vYpgUznB9wrCelQrm4SU8V4g7xdImMi
+         VtHOf6I8WP+f9UPpkKLQdcRC/TFhGqAB5nEmQVBp1XjsAbFXySKqQCQ/cZT6xSkXEB50
+         cC6A==
+X-Gm-Message-State: AOAM533r+emAQIVXPk97IwJSxB0/qEUWF4eszdHksuIut9b95wGSvDPx
+        kC7eoAuSkK/q93zBZG96ytXvtXgG8aY=
+X-Google-Smtp-Source: ABdhPJy+HFyDQ+YADIRrHEHy+wVQ5U68wTuP3H8gv88XId02H1UxV0aV3nF1ktHee9bm7TnbQmkaWA==
+X-Received: by 2002:a2e:8051:: with SMTP id p17mr6307832ljg.130.1616693897519;
+        Thu, 25 Mar 2021 10:38:17 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-60.dynamic.spd-mgts.ru. [109.252.193.60])
+        by smtp.googlemail.com with ESMTPSA id m20sm836193ljj.93.2021.03.25.10.38.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Mar 2021 10:38:17 -0700 (PDT)
+Subject: Re: [PATCH v4 3/6] dt-bindings: power: tegra: Add binding for core
+ power domain
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Fertser <fercerpav@gmail.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210314164810.26317-1-digetx@gmail.com>
+ <20210314164810.26317-4-digetx@gmail.com>
+ <20210323224826.GA1490612@robh.at.kernel.org>
+ <fd60e507-37b4-acc1-b19a-a3904cd13f65@gmail.com>
+ <YFyjDNYAkbTQU5G0@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <80410199-3b5f-13b7-25b7-3fbd009c31e7@gmail.com>
+Date:   Thu, 25 Mar 2021 20:38:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210325124225.2760-1-linux.amoon@gmail.com> <20210325124225.2760-2-linux.amoon@gmail.com>
- <1616691361.069761.1321894.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1616691361.069761.1321894.nullmailer@robh.at.kernel.org>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 25 Mar 2021 23:07:57 +0530
-Message-ID: <CANAwSgSx0uBy3FVboTh5yiooerZKc5sH3FvAxD-6KkzTOoAhXQ@mail.gmail.com>
-Subject: Re: [PATCHv1 1/6] dt-bindings: net: ethernet-phy: Fix the parsing of
- ethernet-phy compatible string
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        netdev@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YFyjDNYAkbTQU5G0@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+25.03.2021 17:49, Thierry Reding пишет:
+> On Wed, Mar 24, 2021 at 02:01:29AM +0300, Dmitry Osipenko wrote:
+>> 24.03.2021 01:48, Rob Herring пишет:
+>>> On Sun, Mar 14, 2021 at 07:48:07PM +0300, Dmitry Osipenko wrote:
+>>>> All NVIDIA Tegra SoCs have a core power domain where majority of hardware
+>>>> blocks reside. Add binding for the core power domain.
+>>>>
+>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>> ---
+>>>>  .../power/nvidia,tegra20-core-domain.yaml     | 51 +++++++++++++++++++
+>>>>  1 file changed, 51 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml b/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..4692489d780a
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/power/nvidia,tegra20-core-domain.yaml
+>>>> @@ -0,0 +1,51 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/power/nvidia,tegra20-core-domain.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: NVIDIA Tegra Core Power Domain
+>>>> +
+>>>> +maintainers:
+>>>> +  - Dmitry Osipenko <digetx@gmail.com>
+>>>> +  - Jon Hunter <jonathanh@nvidia.com>
+>>>> +  - Thierry Reding <thierry.reding@gmail.com>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: power-domain.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - nvidia,tegra20-core-domain
+>>>> +      - nvidia,tegra30-core-domain
+>>>> +
+>>>> +  operating-points-v2:
+>>>> +    description:
+>>>> +      Should contain level, voltages and opp-supported-hw property.
+>>>> +      The supported-hw is a bitfield indicating SoC speedo or process
+>>>> +      ID mask.
+>>>> +
+>>>> +  "#power-domain-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +  power-supply:
+>>>> +    description:
+>>>> +      Phandle to voltage regulator connected to the SoC Core power rail.
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - operating-points-v2
+>>>> +  - "#power-domain-cells"
+>>>> +  - power-supply
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    power-domain {
+>>>> +        compatible = "nvidia,tegra20-core-domain";
+>>>> +        operating-points-v2 = <&opp_table>;
+>>>> +        power-supply = <&regulator>;
+>>>> +        #power-domain-cells = <0>;
+>>>
+>>> AFAICT, there's no way to access this 'hardware'?
+>> correct
+> 
+> To avoid exposing this "virtual" device in device tree, could this
+> instead be modelled as a child node of the PMC node? We already expose a
+> couple of generic power domains that way on Tegra210 and later, so
+> perhaps some of that infrastructure can be reused? I suppose given that
+> this is different from the standard powergate domains that we expose so
+> far, this may need a different implementation, but from a device tree
+> bindings point of view it could fit in with that.
 
-On Thu, 25 Mar 2021 at 22:26, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, 25 Mar 2021 12:42:20 +0000, Anand Moon wrote:
-> > Fix the parsing of check of pattern ethernet-phy-ieee802.3 used
-> > by the device tree to initialize the mdio phy.
-> >
-> > As per the of_mdio below 2 are valid compatible string
-> >       "ethernet-phy-ieee802.3-c22"
-> >       "ethernet-phy-ieee802.3-c45"
-> >
-> > Cc: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ethernet-phy.example.dt.yaml: ethernet-phy@0: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['ethernet-phy-id0141.0e90', 'ethernet-phy-ieee802.3-c45'] is too long
->         Additional items are not allowed ('ethernet-phy-ieee802.3-c45' was unexpected)
->         'ethernet-phy-ieee802.3-c22' was expected
->         'ethernet-phy-ieee802.3-c45' was expected
->         'ethernet-phy-id0141.0e90' does not match '^ethernet-phy-ieee[0-9]{3}\\.[0-9][-][a-f0-9]{4}$'
->         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->
-> See https://patchwork.ozlabs.org/patch/1458341
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+At a quick glance this should be too troublesome because OPP and regulator frameworks require a proper/real backing device.
 
-Now I have a better understanding on device tree shema in
-Documentation/devicetree/bindings/net/ethernet-phy.yaml
-changes it meant to parse *ethernet-phy-id0181.4400* for example
-and not ethernet-phy-ieee802.3-c22 and ethernet-phy-ieee802.3-c45.
+Perhaps we could either turn the whole PMC into a core-domain or add a virtual device as a child of PMC, like this:
 
-So please dicard these changes.
+diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20.dtsi
+index 79364cdafeab..717273048caf 100644
+--- a/arch/arm/boot/dts/tegra20.dtsi
++++ b/arch/arm/boot/dts/tegra20.dtsi
+@@ -850,6 +850,12 @@ pd_mpe: mpe {
+ 				#power-domain-cells = <0>;
+ 			};
+ 		};
++
++		pd_core: core-domain {
++			compatible = "nvidia,tegra20-core-domain";
++			operating-points-v2 = <&core_opp_table>;
++			#power-domain-cells = <0>;
++		};
+ 	};
+ 
+ 	mc: memory-controller@7000f000 {
 
--Anand
+but then this is still a virtual device, although in a bit nicer way.
+
+It feels like yours suggestion might result in a hardware description that is closer to reality since PMC controls fan out of all power rails within SoC.
