@@ -2,84 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1AD3492AD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 256F53492FA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:20:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbhCYNEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 09:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60626 "EHLO
+        id S229731AbhCYNT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 09:19:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbhCYNEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 09:04:16 -0400
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89CA3C06174A
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 06:04:16 -0700 (PDT)
-Received: by mail-ua1-x931.google.com with SMTP id j19so484950uax.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 06:04:16 -0700 (PDT)
+        with ESMTP id S230155AbhCYNTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 09:19:32 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2006C06174A;
+        Thu, 25 Mar 2021 06:19:31 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id o16so2316986wrn.0;
+        Thu, 25 Mar 2021 06:19:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=D4BiqGhsaUqFPdaaVR87LRJ/HTmA8SkhIap0oicthvE=;
-        b=VFgPtlyI1nagfMDNUMf5tbdG+kLQf6mvOUnfC/Za4oIPT3d5aeet233GVMEIg0VX83
-         NpfvLdSLMVf357ltZsEEBjL7bR53tfkrH3Nnj5wJaSv7wBb29Jg13EKXEYoIdgg2vtKa
-         e5l6xnHoTQQ7HanrPPNSR0i9j8zGOO8rn/+o2zw5VIyL9Dr/l5q9tYzYy23O3gecczXG
-         meVB/FlZZFMPn+BvCmhT09AbVa4jJ7cxd5vZI6s5SXo2E/6KiK2jZHNZ/lec2TWT4zMu
-         gxic15FUtACoa8B7uqDyiVcH41VCING07vGPrbt8gQSrUrcj5gvQxJonaedIr5LflrwQ
-         yOxw==
+        h=to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yM+7txaY3YaPXxI4ZrWQxkRlDAfwRXr5c8eBWKInYrQ=;
+        b=Y/6H+C9Ccxwfb26nyliwjTZ6wUHcKjA6cY1a3ELSQhduNGnkbMLX/s4ClGf9azMDvM
+         6w6eVC2vqUKf4I3eQ6rzw9UWM2mi+t4bjUcyLA19m/UJNNXsumxyi8hNGJBzs43yybMd
+         Fdcmu6BgPrv0gxs7sEeUGbTYibJnISr0doSjtzLX+0Z1BsXwuWZPP2epdzG/herOodI+
+         D5lotveJ9EBPGljf/Hujdzg1m8S9pEEZYKmJSwNWKySB8WiDR+gD+2Obk9J6aXZUHipA
+         ePBprKPtmEooD/mf4l8Rjh4kerm70pFEfQGRxkeZO1PuSAEo+SHxEUKYv/n1ZZ/HqWme
+         VpWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=D4BiqGhsaUqFPdaaVR87LRJ/HTmA8SkhIap0oicthvE=;
-        b=MRZUH4wfDhz+JpYN3YS1yH42DA9Yjs3oznZH2RmhtxbTO0Iuua+bUn+ZlTO3xm1w/D
-         CGR+CcmhssWS4zpKGxJ5SmXYWmedVHkIDkp8kkjaAPjcdajKqyNVwylYAqt6w1DmJIzO
-         zeJ/LtvaT3CFzyt531Anqikv+1BlUFsuAgl1aT3JYC5ALjEiGDWbAfTH5H4y1qec/Ds+
-         TCriizqqoVyDT7FmkSI8MvBwWf/zMXQYDMCgIfFb0TQwRwEmJq+m5VYMKfkzkiMbInG/
-         Z0AZjBrG+tuDHntAMGENKSHK3UhkmBpiGInvu1IdHlmkEU+7q8Rui2WAfKEE3ORVGO73
-         S83A==
-X-Gm-Message-State: AOAM5328rvTNl+IAa+j3vFTfUBKKUox0oGVU5MoEmvwE7tzoSiWVtEVb
-        N3WWbo+fJ+zsp0EmsTef2NcJsf288gEJ++1m1rg=
-X-Google-Smtp-Source: ABdhPJwiELH++O+xCegxB8PxbFKbRRdlH+r4RiNZdtgMKtbs4fSp3vCwfw0TYy263s9UloudOSZJHi+xLXxiIVC9uAo=
-X-Received: by 2002:a9f:24c7:: with SMTP id 65mr4304505uar.119.1616677455653;
- Thu, 25 Mar 2021 06:04:15 -0700 (PDT)
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=yM+7txaY3YaPXxI4ZrWQxkRlDAfwRXr5c8eBWKInYrQ=;
+        b=EtNPzCScRqxFL1QbfX9DQ3MRk2lwvJLBygkZb8SKAoQYkj+9e5rYFPyYYTwxKyBnAO
+         ZprxmDZe2X55owfyVqhEOS0LDas8SorwSkGac48ciAmvxmrqllE6Gr5Add9sHKsvKHg7
+         ngTD+D0e+HAdyEKrkRpjGFhjmRrRFAuGSrpSwYyVNVrYYrEM0bfozOwPNq5dnqra8p61
+         w9vSdMpftrCBb4jv3Kdff7KrdgffER6tTxg/kb2YCRKAtHNzJmrCDXP2QKEIFs2hbO9d
+         J5FRHIlRxZhKzIOms8fvDrgdeMGCWgt6tzGNOiyuDhyoEMrbrDjcp6lWTZfLCVjfHTsS
+         6Yzg==
+X-Gm-Message-State: AOAM530DuBpDk/wzil6x1BhtfvU0OLgRqn9HNKzG0PqNygHzwpserbHI
+        ZX1Bmyd2HPbboKnre74O1GU=
+X-Google-Smtp-Source: ABdhPJxgNiEwF1vncF6OavhaphzdsDVLGyJbTMXInPwidHzU7AfICxxIUG2+OLej1IihRS+1fGzRUQ==
+X-Received: by 2002:adf:f743:: with SMTP id z3mr9037377wrp.304.1616678370546;
+        Thu, 25 Mar 2021 06:19:30 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f1f:bb00:ec1d:f023:8a26:fc6b? (p200300ea8f1fbb00ec1df0238a26fc6b.dip0.t-ipconnect.de. [2003:ea:8f1f:bb00:ec1d:f023:8a26:fc6b])
+        by smtp.googlemail.com with ESMTPSA id q19sm6298427wmc.44.2021.03.25.06.19.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Mar 2021 06:19:30 -0700 (PDT)
+To:     Anand Moon <linux.amoon@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20210325124225.2760-1-linux.amoon@gmail.com>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCHv1 0/6] Amlogic Soc - Add missing ethernet mdio compatible
+ string
+Message-ID: <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
+Date:   Thu, 25 Mar 2021 14:19:23 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Sender: jobs.falconoilfieldservices@gmail.com
-Received: by 2002:a67:1b47:0:0:0:0:0 with HTTP; Thu, 25 Mar 2021 06:04:15
- -0700 (PDT)
-From:   Peter Schulman <schulman.pet@gmail.com>
-Date:   Thu, 25 Mar 2021 14:04:15 +0100
-X-Google-Sender-Auth: WTIy-6Xhhu0dI74fLlfUlAltkhs
-Message-ID: <CAH_4_9Z5eVE_2igWPPWqi5bN6UHbmH7hz4udb374U-_p8pBi+A@mail.gmail.com>
-Subject: Re: Proposal With Jeffery & Schulman
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210325124225.2760-1-linux.amoon@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello ,
+On 25.03.2021 13:42, Anand Moon wrote:
+> On most of the Amlogic SoC I observed that Ethernet would not get
+> initialize when try to deploy the mainline kernel, earlier I tried to
+> fix this issue with by setting ethernet reset but it did not resolve
+> the issue see below.
+> 	resets = <&reset RESET_ETHERNET>;
+> 	reset-names = "stmmaceth";
+> 
+> After checking what was the missing with Rockchip SoC dts
+> I tried to add this missing compatible string and then it
+> started to working on my setup.
+> 
+> Also I tried to fix the device tree binding to validate the changes.
+> 
+> Tested this on my Odroid-N2 and Odroid-C2 (64 bit) setup.
+> I do not have ready Odroid C1 (32 bit) setup so please somebody test.
+> 
 
-I sent you an email before about an inheritance without hearing from
-you. Let me reintroduce my email again to you and please reply
-immediately.
+When working on the Odroid-C2 I did not have such a problem.
+And if you look at of_mdiobus_child_is_phy() and
+of_mdiobus_register_phy() you'll see that your change shouldn't be
+needed.
 
-My name is Mr. Peter Schulman the principal attorney at Jeffery &
-Schulman Law Office based in Canada. I am contacting you because of my
-deceased client who died leaving some funds with a bank in Europe in
-the sum of 9,850,000 USD. I want to announce you as a heir/beneficiary
-to the fund.
+Could you please elaborate on:
+- What is the exact problem you're facing? Best add a dmesg log.
+- Which kernel version are you using?
 
-You don't have to worry, this transaction will be done legally without
-any problem. If you are interested, I can give you more information
-about my proposal as soon as i get your reply.
 
-Regards,
-Best Regards,
+> Best Regards
+> -Anand
+> 
+> Anand Moon (6):
+>   dt-bindings: net: ethernet-phy: Fix the parsing of ethernet-phy
+>     compatible string
+>   arm: dts: meson: Add missing ethernet phy mdio compatible string
+>   arm64: dts: meson-gxbb: Add missing ethernet phy mimo compatible
+>     string
+>   arm64: dts: meson-gxl: Add missing ethernet phy mdio compatible string
+>   arm64: dts: meson-g12: Add missing ethernet phy mdio compatible string
+>   arm64: dts: meson-glx: Fix the ethernet phy mdio compatible string
+> 
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
+>  arch/arm/boot/dts/meson8b-ec100.dts                     | 1 +
+>  arch/arm/boot/dts/meson8b-mxq.dts                       | 1 +
+>  arch/arm/boot/dts/meson8b-odroidc1.dts                  | 1 +
+>  arch/arm/boot/dts/meson8m2-mxiii-plus.dts               | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts          | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts      | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi   | 3 ++-
+>  arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi        | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi  | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts      | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts    | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts  | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts     | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts         | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi    | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi       | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts    | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi              | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts   | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts     | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts          | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts      | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts      | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi      | 1 +
+>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi       | 1 +
+>  26 files changed, 29 insertions(+), 5 deletions(-)
+> 
 
-Mr. Peter Schulman
-Senior Partner | Project Manager | Litigation
-
-Jeffery & Schulman Law Office
-1230 Bay Street
-Suite 810 Toronto
-Ontario, M5R 2A7
