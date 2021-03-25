@@ -2,197 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D573349CF8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 00:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 908D2349CFC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 00:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231401AbhCYXiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 19:38:15 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:43556 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231419AbhCYXiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 19:38:14 -0400
-Received: by mail-il1-f172.google.com with SMTP id d2so3583263ilm.10;
-        Thu, 25 Mar 2021 16:38:14 -0700 (PDT)
+        id S231378AbhCYXoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 19:44:12 -0400
+Received: from mail-il1-f177.google.com ([209.85.166.177]:43930 "EHLO
+        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231272AbhCYXns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 19:43:48 -0400
+Received: by mail-il1-f177.google.com with SMTP id d2so3591718ilm.10;
+        Thu, 25 Mar 2021 16:43:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fSf0ZNyZVaDp/Q6TMA1lW2i5RIZolhAWaOpqwUzEOq8=;
-        b=K5Z52YuOMgatmXQ/+wVMh8ew26UKgnL/EeBjgwaLwul3ACPqKYp6BTCUuE+SspaNkn
-         U12KkuuLk/JRLZGrOMh4OcN1NhdpurSj3lROprLhfGPKjVd9YGBzJDirx2yZZ19VYFzT
-         7FnuePgTwEclfDCrxVSWuCGomzpchNgrmS6QeL13Sgt5CYiz1TTmWmOuW9TKkqXAEdEy
-         v/GUhjdnBs7o9gX3AzEkUkJXVIFaxYjmeDwen3aP8pRhdRFsgI2kpj+czf5bb4kwvT8k
-         JHlGQJGuBaRHyqrZNklbMxfA4yy/7AsFTU2x7c8MjdWPpzVjcIeOXTAMRdBs9L0yJDor
-         G7tA==
-X-Gm-Message-State: AOAM532INGxHDjfLGWCexu9rc21hDI5yAwcKIGcmGRSVPTySLGJ+KCp6
-        65e9jlrQhglnrnNd1FcOLw==
-X-Google-Smtp-Source: ABdhPJwuv6Q3EGM4X8aIYQO3cyFAmqK0aMZ10NrbNU9nmrJF3KSV3GJFpwHx+cd5GpYEuT6eSrf7Pg==
-X-Received: by 2002:a05:6e02:6d2:: with SMTP id p18mr1651444ils.251.1616715494212;
-        Thu, 25 Mar 2021 16:38:14 -0700 (PDT)
+        bh=p59ML68zK60wq9YD60V5pptsxHulU7hq4xvqJD4wijM=;
+        b=RW90zVF7jF9fBKktnDYRj9GsPbCSqm147WHJaDCxYbf4TAh9i5q3Ffm11FhqKVgpB1
+         62lmWx5hZWAMmN/xe8WiLidPbil6pT4aEny9qp811VsbUU3h0/FqUxbd+iR7c+HR0jPR
+         v9RQYBwLPBDp4JPMoBSgthHGYNzJglW25PPkCk8hsz/MlPt/L3SM7SO4bt9Rui4d8p3o
+         p699gSGlKwBU5LbdqoJQi+u/BVHuF0N8M0drZ8s5OO+QTY/gQtEhHb7mYR9BgIpJgnjI
+         BO80roifCtAjGSCApWHarv3CiRZ4DvuH6pbLgBt8w75N22AeuOpo+i3+onlmdkhdXJCr
+         YLZQ==
+X-Gm-Message-State: AOAM533ID90DBcVQXOZOuv5v1WsTpQfcbtCWFMSRm+AnJBUHGCsoUTtQ
+        97sCtry4W8d849+MkohfoA==
+X-Google-Smtp-Source: ABdhPJwfa4q5Qfn77dFh+CE0bpIsOOj53QrW0DhxciTZq+4XZ0reu29n+NslYP5CilZsWawJZ8U8TA==
+X-Received: by 2002:a05:6e02:2182:: with SMTP id j2mr8950348ila.89.1616715827402;
+        Thu, 25 Mar 2021 16:43:47 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k10sm3384472iop.42.2021.03.25.16.38.12
+        by smtp.gmail.com with ESMTPSA id j5sm3442416ile.52.2021.03.25.16.43.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 16:38:13 -0700 (PDT)
-Received: (nullmailer pid 1949077 invoked by uid 1000);
-        Thu, 25 Mar 2021 23:38:12 -0000
-Date:   Thu, 25 Mar 2021 17:38:12 -0600
+        Thu, 25 Mar 2021 16:43:46 -0700 (PDT)
+Received: (nullmailer pid 1960656 invoked by uid 1000);
+        Thu, 25 Mar 2021 23:43:43 -0000
+Date:   Thu, 25 Mar 2021 17:43:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Marc Zyngier <maz@kernel.org>, linux-pci@vger.kernel.org,
+To:     Joe Sandom <joe.g.sandom@gmail.com>
+Cc:     Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, jic23@kernel.org,
+        Rob Herring <robh+dt@kernel.org>, andy.shevchenko@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: PCI: ti,am65: Add PCIe host mode
- dt-bindings for TI's AM65 SoC
-Message-ID: <20210325233812.GA1943834@robh.at.kernel.org>
-References: <20210325090026.8843-1-kishon@ti.com>
- <20210325090026.8843-2-kishon@ti.com>
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v6 2/2] Added AMS tsl2591 device tree binding
+Message-ID: <20210325234343.GA1959978@robh.at.kernel.org>
+References: <20210325220505.14507-1-joe.g.sandom@gmail.com>
+ <20210325220505.14507-2-joe.g.sandom@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210325090026.8843-2-kishon@ti.com>
+In-Reply-To: <20210325220505.14507-2-joe.g.sandom@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 02:30:21PM +0530, Kishon Vijay Abraham I wrote:
-> Add PCIe host mode dt-bindings for TI's AM65 SoC.
+On Thu, 25 Mar 2021 22:05:04 +0000, Joe Sandom wrote:
+> Device tree binding for AMS/TAOS tsl2591 ambient light sensor.
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> This driver supports configuration via device tree and sysfs.
+> Supported channels for raw infrared light intensity,
+> raw combined light intensity and illuminance in lux.
+> The driver additionally supports iio events on lower and
+> upper thresholds.
+> 
+> This is a very-high sensitivity light-to-digital converter that
+> transforms light intensity into a digital signal.
+> 
+> Datasheet: https://ams.com/tsl25911#tab/documents
+> 
+> Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
 > ---
->  .../bindings/pci/ti,am65-pci-host.yaml        | 111 ++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> Changes in v6:
+> - No changes
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
-> new file mode 100644
-> index 000000000000..b77e492886fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/pci/ti,am65-pci-host.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: TI AM65 PCI Host
-> +
-> +maintainers:
-> +  - Kishon Vijay Abraham I <kishon@ti.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,am654-pcie-rc
-> +
-> +  reg:
-> +    maxItems: 4
-> +
-> +  reg-names:
-> +    items:
-> +      - const: app
-> +      - const: dbics
-
-Please use 'dbi' like everyone else if this isn't shared with the other 
-TI DW PCI bindings.
-
-> +      - const: config
-> +      - const: atu
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ti,syscon-pcie-id:
-> +    description: Phandle to the SYSCON entry required for getting PCIe device/vendor ID
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  ti,syscon-pcie-mode:
-> +    description: Phandle to the SYSCON entry required for configuring PCIe in RC or EP mode.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  msi-map: true
-> +
-> +  dma-coherent: true
-> +
-> +patternProperties:
-> +  "interrupt-controller":
-
-Don't need quotes.
-
-> +    type: object
-> +    description: interrupt controller to handle legacy interrupts.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - max-link-speed
-> +  - num-lanes
-> +  - power-domains
-> +  - ti,syscon-pcie-id
-> +  - ti,syscon-pcie-mode
-> +  - msi-map
-> +  - ranges
-> +  - reset-gpios
-> +  - phys
-> +  - phy-names
-> +  - dma-coherent
-
-'interrupt-controller' node is optional?
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie0_rc: pcie@5500000 {
-> +                compatible = "ti,am654-pcie-rc";
-> +                reg =  <0x0 0x5500000 0x0 0x1000>,
-> +                       <0x0 0x5501000 0x0 0x1000>,
-> +                       <0x0 0x10000000 0x0 0x2000>,
-> +                       <0x0 0x5506000 0x0 0x1000>;
-> +                reg-names = "app", "dbics", "config", "atu";
-> +                power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
-> +                #address-cells = <3>;
-> +                #size-cells = <2>;
-> +                ranges = <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
-> +                         <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
-> +                ti,syscon-pcie-id = <&pcie_devid>;
-> +                ti,syscon-pcie-mode = <&pcie0_mode>;
-> +                bus-range = <0x0 0xff>;
-> +                num-viewport = <16>;
-> +                max-link-speed = <2>;
-> +                dma-coherent;
-> +                interrupts = <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>;
-> +                msi-map = <0x0 &gic_its 0x0 0x10000>;
-> +                #interrupt-cells = <1>;
-> +                interrupt-map-mask = <0 0 0 7>;
-> +                interrupt-map = <0 0 0 1 &pcie0_intc 0>, /* INT A */
-> +                                <0 0 0 2 &pcie0_intc 0>, /* INT B */
-> +                                <0 0 0 3 &pcie0_intc 0>, /* INT C */
-> +                                <0 0 0 4 &pcie0_intc 0>; /* INT D */
-> +
-> +                pcie0_intc: interrupt-controller {
-> +                        interrupt-controller;
-> +                        #interrupt-cells = <1>;
-> +                        interrupt-parent = <&gic500>;
-> +                        interrupts = <GIC_SPI 328 IRQ_TYPE_EDGE_RISING>;
-> +                };
-> +        };
-> -- 
-> 2.17.1
+> Notes:
+> - Re-submitted to align the version with part 1 of the patch series
 > 
+>  .../bindings/iio/light/amstaos,tsl2591.yaml   | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
