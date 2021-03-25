@@ -2,101 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DABE349783
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E493497E4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:25:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhCYRBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 13:01:55 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37854 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbhCYRBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 13:01:34 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12PH1Rkj023418;
-        Thu, 25 Mar 2021 12:01:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616691687;
-        bh=iOXa94N/lcMrhiiEn2gZZ8IlLQcRwIJJ4yrJ0QTa8qE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=BC0jl3aC7zGCMRqfW3EIRCDYjqKUgE39Z+XEilefhdyFyO6PHgyW3wM1nRnJMz/zE
-         aAB4kMOeRSZaZImu7+HEsaa7ouZny9RCQzyakbQS9tg0rZ/e05zrz3QWm2AuC2uwlZ
-         NLmgr9bINPi7x2niQ2tGmLa1SwHQps78ypnudN94=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12PH1RWW049348
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Mar 2021 12:01:27 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 25
- Mar 2021 12:01:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 25 Mar 2021 12:01:26 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12PH1Q2A019358;
-        Thu, 25 Mar 2021 12:01:26 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tero Kristo <kristo@kernel.org>, Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Gowtham Tammana <g-tammana@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/3] AM64x HwSpinlock and Mailbox DT nodes
-Date:   Thu, 25 Mar 2021 12:01:25 -0500
-Message-ID: <161669163053.31495.2326767187646410972.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210322185430.957-1-s-anna@ti.com>
-References: <20210322185430.957-1-s-anna@ti.com>
+        id S229508AbhCYRZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 13:25:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229981AbhCYRZL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 13:25:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B874B61A16;
+        Thu, 25 Mar 2021 17:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616693111;
+        bh=PnHeLzccghzbrXM0sHo7bxWwWRa43ib0gDtD0OvYJi0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=K1/xyzkdCjUE6a8BUuwB68ZZAOjzEhYwQmN1VV+rcbz31oqOkNSHEZyTl17wNAJ4a
+         TGhVVwd0xYZgrCuCHoofhdoEOAm3nKazmUAZVsDOL9LlrHBNUsls/jzYlOAQhOJdCh
+         dzf1sjpiJqO0aJqv0Wpp5BmLu/TyTdfYbUHwmMmNGON9izz6RWmW2GX+NxcwYl2ZOL
+         eneMTlh2kCZqvVlnN68KFoY5rNZ6ikP9n/xupgI4t3G86GuUh74GD5ncczQ69TL3hX
+         u5HIIgq2UCoZjn4g+V8eQw1HKx2iBiFagK1cAkWv8m3JPlSE3vJyWDbC9yfQenoVPZ
+         6uOnPu+Ve0Dyg==
+Date:   Thu, 25 Mar 2021 18:25:06 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 4/8] docs: dt: Make 'Devicetree' wording more consistent
+Message-ID: <20210325182506.184d251b@coco.lan>
+In-Reply-To: <20210325164713.1296407-5-robh@kernel.org>
+References: <20210325164713.1296407-1-robh@kernel.org>
+        <20210325164713.1296407-5-robh@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Mar 2021 13:54:27 -0500, Suman Anna wrote:
-> The following is a minor revision of the HwSpinlock and Mailbox DT nodes
-> series [1] for AM64x SoCs on both AM64x-EVM and AM64x-SK boards. The main
-> change is the squashing of the individual board dts patches into a single
-> patch as per your request, and rebasing on your current latest ti-k3-dts-next
-> branch HEAD commit e4e4e89482ea ("arm64: dts: ti: k3-am64-evm/sk: Add OSPI
-> flash DT node"). I have also picked up Gowtham's Reviewed-by tags.
+Em Thu, 25 Mar 2021 10:47:09 -0600
+Rob Herring <robh@kernel.org> escreveu:
+
+> There's a variety of ways 'Devicetree' has been written. This is most
+> evident in the documentation build contents where we have 'Device Tree',
+> 'DeviceTree', etc. The DT spec has somewhat standardized on
+> 'Devicetree', so let's use that.
 > 
-> [...]
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
+>  Documentation/devicetree/changesets.rst                  | 8 ++++----
+>  Documentation/devicetree/dynamic-resolution-notes.rst    | 8 ++++----
+>  Documentation/devicetree/index.rst                       | 2 +-
+>  Documentation/devicetree/of_unittest.rst                 | 6 +++---
+>  Documentation/devicetree/overlay-notes.rst               | 8 ++++----
+>  Documentation/devicetree/usage-model.rst                 | 8 ++++----
+>  Documentation/devicetree/writing-schema.rst              | 2 +-
+>  8 files changed, 22 insertions(+), 22 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+> index 42e86f978be2..51c459909575 100644
+> --- a/Documentation/devicetree/bindings/submitting-patches.rst
+> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
+> @@ -1,7 +1,7 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+>  ==========================================
+> -Submitting devicetree (DT) binding patches
+> +Submitting Devicetree (DT) binding patches
+>  ==========================================
+>  
+>  I. For patch submitters
+> diff --git a/Documentation/devicetree/changesets.rst b/Documentation/devicetree/changesets.rst
+> index c7fd8cd6a270..2091468d4837 100644
+> --- a/Documentation/devicetree/changesets.rst
+> +++ b/Documentation/devicetree/changesets.rst
+> @@ -1,10 +1,10 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -=============
+> -DT Changesets
+> -=============
+> +=====================
+> +Devicetree Changesets
+> +=====================
+>  
+> -A DT changeset is a method which allows one to apply changes
+> +A Devicetree changeset is a method which allows one to apply changes
+>  in the live tree in such a way that either the full set of changes
+>  will be applied, or none of them will be. If an error occurs partway
+>  through applying the changeset, then the tree will be rolled back to the
+> diff --git a/Documentation/devicetree/dynamic-resolution-notes.rst b/Documentation/devicetree/dynamic-resolution-notes.rst
+> index 570b7e1f39eb..f81ad8daa36f 100644
+> --- a/Documentation/devicetree/dynamic-resolution-notes.rst
+> +++ b/Documentation/devicetree/dynamic-resolution-notes.rst
+> @@ -1,11 +1,11 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -==================================
+> -Device Tree Dynamic Resolver Notes
+> -==================================
+> +=================================
+> +Devicetree Dynamic Resolver Notes
+> +=================================
+>  
+>  This document describes the implementation of the in-kernel
+> -Device Tree resolver, residing in drivers/of/resolver.c
+> +DeviceTree resolver, residing in drivers/of/resolver.c
 
-Hi Suman Anna,
+DeviceTree -> Devicetree.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+The rest looks ok to me.
 
-[1/3] arm64: dts: ti: k3-am64-main: Add hwspinlock node
-      commit: 8248d5b3249c8a361c6906e73513769064854252
-[2/3] arm64: dts: ti: k3-am64-main: Add mailbox cluster nodes
-      commit: ef1525761477c18b6b8fd420abb712e38492b480
-[3/3] arm64: dts: ti: k3-am642-evm/sk: Add IPC sub-mailbox nodes
-      commit: 7dd847523ed527cc8e90ca670675ea63d6239f64
+Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+
+>  
+>  How the resolver works
+>  ----------------------
+> diff --git a/Documentation/devicetree/index.rst b/Documentation/devicetree/index.rst
+> index 54026763916d..32509e8de8da 100644
+> --- a/Documentation/devicetree/index.rst
+> +++ b/Documentation/devicetree/index.rst
+> @@ -1,7 +1,7 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+>  =============================
+> -Open Firmware and Device Tree
+> +Open Firmware and Devicetree
+>  =============================
+>  
+>  .. toctree::
+> diff --git a/Documentation/devicetree/of_unittest.rst b/Documentation/devicetree/of_unittest.rst
+> index dea05214f3ad..2afe41a37148 100644
+> --- a/Documentation/devicetree/of_unittest.rst
+> +++ b/Documentation/devicetree/of_unittest.rst
+> @@ -1,8 +1,8 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -==================================
+> -Open Firmware Device Tree Unittest
+> -==================================
+> +=================================
+> +Open Firmware Devicetree Unittest
+> +=================================
+>  
+>  Author: Gaurav Minocha <gaurav.minocha.os@gmail.com>
+>  
+> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+> index c67cc676bbd2..b2b8db765b8c 100644
+> --- a/Documentation/devicetree/overlay-notes.rst
+> +++ b/Documentation/devicetree/overlay-notes.rst
+> @@ -1,8 +1,8 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -=========================
+> -Device Tree Overlay Notes
+> -=========================
+> +========================
+> +Devicetree Overlay Notes
+> +========================
+>  
+>  This document describes the implementation of the in-kernel
+>  device tree overlay functionality residing in drivers/of/overlay.c and is a
+> @@ -11,7 +11,7 @@ companion document to Documentation/devicetree/dynamic-resolution-notes.rst[1]
+>  How overlays work
+>  -----------------
+>  
+> -A Device Tree's overlay purpose is to modify the kernel's live tree, and
+> +A Devicetree's overlay purpose is to modify the kernel's live tree, and
+>  have the modification affecting the state of the kernel in a way that
+>  is reflecting the changes.
+>  Since the kernel mainly deals with devices, any new device node that result
+> diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
+> index 1eb83496ca1e..b6a287955ee5 100644
+> --- a/Documentation/devicetree/usage-model.rst
+> +++ b/Documentation/devicetree/usage-model.rst
+> @@ -1,8 +1,8 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -=========================
+> -Linux and the Device Tree
+> -=========================
+> +========================
+> +Linux and the Devicetree
+> +========================
+>  
+>  The Linux usage model for device tree data
+>  
+> @@ -14,7 +14,7 @@ at devicetree.org\ [1]_.
+>  
+>  .. [1] https://www.devicetree.org/specifications/
+>  
+> -The "Open Firmware Device Tree", or simply Device Tree (DT), is a data
+> +The "Open Firmware Device Tree", or simply Devicetree (DT), is a data
+>  structure and language for describing hardware.  More specifically, it
+>  is a description of hardware that is readable by an operating system
+>  so that the operating system doesn't need to hard code details of the
+> diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
+> index be14dbed6081..23d6579aea2c 100644
+> --- a/Documentation/devicetree/writing-schema.rst
+> +++ b/Documentation/devicetree/writing-schema.rst
+> @@ -1,6 +1,6 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> -Writing DeviceTree Bindings in json-schema
+> +Writing Devicetree Bindings in json-schema
+>  ==========================================
+>  
+>  Devicetree bindings are written using json-schema vocabulary. Schema files are
 
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Thanks,
+Mauro
