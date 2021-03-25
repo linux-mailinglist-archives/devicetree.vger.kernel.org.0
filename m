@@ -2,100 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1095434999B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 19:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 630B13499B9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 19:54:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbhCYSly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 14:41:54 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:51466 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbhCYSlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 14:41:42 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 725AD1C0B94; Thu, 25 Mar 2021 19:41:40 +0100 (CET)
-Date:   Thu, 25 Mar 2021 19:41:40 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Vesa =?iso-8859-1?B?SuTkc2tlbORpbmVu?= <dachaac@gmail.com>
-Cc:     Hermes Zhang <chenhui.zhang@axis.com>, dmurphy@ti.com,
-        robh+dt@kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        chenhuiz@axis.com, lkml@axis.com, kernel@axis.com
-Subject: Re: [PATCH 2/2] dt-binding: leds: Document leds-multi-gpio bindings
-Message-ID: <20210325184140.GA16039@duo.ucw.cz>
-References: <20210324075631.5004-1-chenhui.zhang@axis.com>
- <20210324075631.5004-3-chenhui.zhang@axis.com>
- <0648fff2-5b38-66da-7eb0-9969e517421f@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="r5Pyd7+fXNt84Ff3"
-Content-Disposition: inline
-In-Reply-To: <0648fff2-5b38-66da-7eb0-9969e517421f@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S229576AbhCYSx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 14:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229622AbhCYSxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 14:53:17 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 957EFC06174A;
+        Thu, 25 Mar 2021 11:53:17 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id nh23-20020a17090b3657b02900c0d5e235a8so1345232pjb.0;
+        Thu, 25 Mar 2021 11:53:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=4LGaMRFJFSfjAnJik4GpOAMJdv6vPiTAVHF3TBntEwU=;
+        b=C9BVJHxrjTf5laIPZ7AyMhIPsYqr8O9pG54bvFEIJe9JxDBGCJRIQnCiCSJp6I/u5C
+         BHPGiw+yNEIsbh153KPQEGi98oStG5tw5f93KV1+I6oFvq3nTbkKIaa82Q7WeNGdtk2Y
+         8e3Ig1KeXSGTBxUoyq2tdaqQ+qm3d/mz3sRPQ39J+0sWtovO4NXRsn/V1nRti2XpRdlL
+         0FtGSOJZGyGbDRh3E3OmF+xvmGxeniR7YFLyEy7eWuOwpAFtpdOomCm0prnde3xrwREJ
+         /t3BbJH431AsX6J7PxZMfqw6WSkNrVDMgEGBOz757MK4YvOKWuIexGhWpgsvVkfdPcnc
+         PjjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=4LGaMRFJFSfjAnJik4GpOAMJdv6vPiTAVHF3TBntEwU=;
+        b=Q1cMwNVD1ADOEzeX8LGZlUz15YpFOP8QOkkvVA6xyaup/4mJJt6Dd3Wm5mO976V9lK
+         mLVQDtoka5VAq/L7ETBH1EpbVj+ZFB5OQzk1ILFTt+vSJfY4AfAlVMJqTeO4aVyEV/Z1
+         7JC4ZL/WsVZkC45Yqw5gQV9Uo5yHmeGlB5+43j2p29hsF8VWKlG8bdcFfOargUuEXnfu
+         68I6dkL8Z9ENWzvQawLvErLcatlcUXuniClCPb8Sy81yLJmRe044uo7cg8PsF1QMlFgy
+         TmOi6RjpxTzN8osz+lDyEN2TBpa0DcWDmWll5Nx/aqPldZ5bmD9qLrpQOQijq4zFEktT
+         wT9g==
+X-Gm-Message-State: AOAM530yTVPID1NnPKt6anYhNfUu0pxGh6i5d0pGJ4OsNotbvzzPLoaq
+        bYRnJKYhjsV88gWC/9T2pKvcPccEpIM=
+X-Google-Smtp-Source: ABdhPJz3JRqBT3uumHeTGbTCodAIOp3xBR0A6ocgKg8cR/KLqOWCMNohHoXO/FXl0O6apGFoCJrP+Q==
+X-Received: by 2002:a17:90a:fd89:: with SMTP id cx9mr9940463pjb.93.1616698396899;
+        Thu, 25 Mar 2021 11:53:16 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id k11sm6085961pjs.1.2021.03.25.11.53.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 11:53:16 -0700 (PDT)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v7 0/2] 8250: Add driver for Broadcom UART
+Date:   Thu, 25 Mar 2021 14:52:54 -0400
+Message-Id: <20210325185256.16156-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v7 - Change Kconfig for SERIAL_8250_BCM7271 from "bool" to "tristate"
+     so the driver can be built as a module.
 
---r5Pyd7+fXNt84Ff3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v6 - A few more changes based on requests from Greg Kroah-Hartman
+     - Don't save the debugfs file handle in priv because it was
+       never used.
+     - Change all dev_info() messages to dev_dbg() messages.
+   - Fix warnings from the kernel test robot
+   - Use --base with "git format-patch"
+   - Fixes in the .yaml file based on requests from Rob Herring
+     - Change "oneOf" to "minItems: 1".
+     - Reference serial.yaml instead of using "$nodname".
+     - Add missing newline.
 
-Hi!
+v5 - Changes based on requests from Greg Kroah-Hartman
+     - Move sysfs stats to debugfs.
+     - Merge the .h file into the .c file.
+     - Convert "flags" with only one flag to bool
+     - Remove most dev_dbg() messages. Some can be replaced by using
+       ftrace and some would cause a crash if the driver was used
+       for the console.
 
-> See below.
+v4 - Fix MAINTAINERS
+   - Make all changes requested by Jira Slaby. The only functional
+     change was to handle errors returned by brcmuart_arbitration()
+     in brcmuart_resume().
 
-Please trim.
+v3 - remove "disable_dma" module param because it can be done
+     by modifying the device tree node instead. Reduce size by
+     removing some debug fuctionality that was no longer used.
+   - Fix error from yaml compiler in bindings
 
-> > +  led-gpios:
-> > +    description: Array of one or more GPIOs pins used to control the L=
-ED.
-> > +    minItems: 1
-> > +    maxItems: 8  # Should be enough
->=20
-> We also have a case with multi color LEDs (which is probably a more common
-> than multi intensity LED. So I am wondering how these both could co-exist.
->=20
-> From: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-tree/Documentation/devicetree/bindings/leds/leds-gpio.yaml?h=3Dv5.12-rc4#n58
->=20
->         led-0 {
->             gpios =3D <&mcu_pio 0 GPIO_ACTIVE_LOW>;
->             linux,default-trigger =3D "disk-activity";
->             function =3D LED_FUNCTION_DISK;
->         };
->=20
-> Now 'gpios' (and in LED context) and 'led-gpios' is very close to each ot=
-her
-> and could easily be confused.
->=20
-> Perhaps this could be something like:
->=20
-> intensity-gpios =3D ...
->=20
-> or even simplified then just to gpios =3D <...>
+v2 - remove the patch that modified 8250_of.c to keep it from
+     registering before this driver when this driver was deferred
+     as it was getting it's "clocks". This was fixed by changing
+     the Device Tree entry to remove "clock-frequency". This results
+     in both drivers getting "clocks" and getting same the deferral.
 
-=2E..
-> How would this sound?
 
-Well, not too bad on a quick look.
+Al Cooper (2):
+  dt-bindings: Add support for the Broadcom UART driver
+  serial: 8250: Add new 8250-core based Broadcom STB driver
 
-Are you willing to implement such multi-color-multi-bit-multi-gpio
-driver?
+ .../bindings/serial/brcm,bcm7271-uart.yaml    |   95 ++
+ MAINTAINERS                                   |    8 +
+ drivers/tty/serial/8250/8250_bcm7271.c        | 1202 +++++++++++++++++
+ drivers/tty/serial/8250/Kconfig               |   10 +
+ drivers/tty/serial/8250/Makefile              |    1 +
+ 5 files changed, 1316 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
+ create mode 100644 drivers/tty/serial/8250/8250_bcm7271.c
 
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
 
---r5Pyd7+fXNt84Ff3
-Content-Type: application/pgp-signature; name="signature.asc"
+base-commit: e138138003eb3b3d06cc91cf2e8c5dec77e2a31e
+-- 
+2.17.1
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYFzZZAAKCRAw5/Bqldv6
-8j45AJ9RFvJxNlBDSt9L+2q8p/Lx9iKqbgCfVle9NynAFaWzAsNFO22CXcPitl4=
-=SdkL
------END PGP SIGNATURE-----
-
---r5Pyd7+fXNt84Ff3--
