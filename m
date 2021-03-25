@@ -2,143 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F14349338
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:43:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 365E4349344
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 14:48:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230093AbhCYNnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 09:43:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhCYNm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 09:42:56 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18D6C06174A;
-        Thu, 25 Mar 2021 06:42:55 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id o16so2393515wrn.0;
-        Thu, 25 Mar 2021 06:42:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=r8VujCEl1M2jspW4zhAHvPpPLFXt2mPappg2/9V9Kdk=;
-        b=I1Wd/Nb3x6i2s9ghMxJ2C3bRIG9M4RYMKVpSP3HSeNxNnnZc4CkIwDaSD+RrCKclC4
-         ItWmB/SFnpmSOnDes8A+HUOjMHCdiPKmiK2orql4DeRXACaErSictst6XA4tRMDsDgCG
-         zLKqteNOktNVQM0JaTFKFrMxzN+wMG4Pe76U7d6siwl0b2YpPcnmmvLWidGzztqzpnAB
-         m4yHpg65N/0XFLx341byW9muUdNw+xmzdvZTXvVpyVTVlqNJL2MVCLHswz7FMFR/7fYr
-         o5aDQa9T5sJV/VBh11PD4itKyBmBre0f7kBTLaoDMWPthlxC63UG6qiaIalisnv0GgET
-         thiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=r8VujCEl1M2jspW4zhAHvPpPLFXt2mPappg2/9V9Kdk=;
-        b=McrFRwjSQrRi9Owf8kbjONRtToMVHdFbb7Z1mxHYEi9Xnfi5wugrtn09ORNtut6i5S
-         cPhUs8/OY+d8gNyLRhSN6hxldysVF1C+NUDL09//h/q47i/BVZRfXsJ3i+h0ZG34Eaik
-         tO60Hw5kaheD/ecLhPSkAJWgPTlltiqC+QQZA48r0Wg6dasPNx3Q1yf3jkgxJ1re2EuU
-         l/H9/AGLg8IH9NwG8LZ7/wEw0bmvQjqvyKNLtIge/8DAlUeIBidF+etSjyc5H6uQSC2a
-         ZzhA1GIrVuZA6huwlqnxye/54XONqIjS/9BHXSA5TOlzd3gtoubzIIJgUUtjpiwwvl+g
-         zgpg==
-X-Gm-Message-State: AOAM530u7hBKH+TjcikyXNHpmuROX2E1qbxY0wfp77qNNwVIHHzhDLXH
-        Lz68R2MUT7r1WgH8nkcljBs=
-X-Google-Smtp-Source: ABdhPJy7eF3+00qnRsn9jcb+jRT1qpgWOl4NqrO/iftOAJ30pEX0ydIf/4rSj9pMIR853F4NdGejfw==
-X-Received: by 2002:adf:fd48:: with SMTP id h8mr9218484wrs.229.1616679774308;
-        Thu, 25 Mar 2021 06:42:54 -0700 (PDT)
-Received: from ?IPv6:2003:ea:8f1f:bb00:88ed:8e49:4b12:e7de? (p200300ea8f1fbb0088ed8e494b12e7de.dip0.t-ipconnect.de. [2003:ea:8f1f:bb00:88ed:8e49:4b12:e7de])
-        by smtp.googlemail.com with ESMTPSA id r1sm8420757wrj.63.2021.03.25.06.42.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Mar 2021 06:42:53 -0700 (PDT)
-Subject: Re: [PATCHv1 1/6] dt-bindings: net: ethernet-phy: Fix the parsing of
- ethernet-phy compatible string
-To:     Anand Moon <linux.amoon@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20210325124225.2760-1-linux.amoon@gmail.com>
- <20210325124225.2760-2-linux.amoon@gmail.com> <YFyIvxOHwIs3R/IT@lunn.ch>
- <CANAwSgRHHwOtWb87aeqF=kio53xCO0_c_ZkF+9hKohWoyji6dg@mail.gmail.com>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <9c06a3f6-e2c4-e30a-977c-1f50a8aab328@gmail.com>
-Date:   Thu, 25 Mar 2021 14:42:47 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229731AbhCYNsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 09:48:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57112 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230078AbhCYNrv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 09:47:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7088161A0F;
+        Thu, 25 Mar 2021 13:47:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616680070;
+        bh=rbWgT8Nk/uYvrxfv2Q3Zxu0QvvEsgpltMM38kZY5nns=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Is+XHdO3sb4UPUtdEOQelQf7JpDhKMGXlHz/+nMBUDGKMwzJxakfmypUKmWBwdELr
+         T8Uq990sjxW1hH+jU0jdKZacd8O6y5GqXd3aV88ddiNZCA7h9KTdcfYXKntMSIF8ej
+         FRBlOhM96UbHf+Hixl05+0W3kg+UTEQ+fodZquDanUac9xPXv+QoIwusCS6+5HszGy
+         9afklPQ6RhWF9fDktc6UwD4SU8TUI1WjKwY027QShsN2zqLWUru6idkVOG0hBL0jFD
+         SuwsI6hjhy3+XzIvyki3xHbXYym5jcxClyCRQOCblq763YB/7SwR4BcFRKQKM1eUlJ
+         U0Z9/e17lkaFA==
+Date:   Thu, 25 Mar 2021 14:47:43 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mayulong <mayulong1@huawei.com>, Stephen Boyd <sboyd@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 17/21] spmi: hisi-spmi-controller: move driver from
+ staging
+Message-ID: <20210325144743.2d740a06@coco.lan>
+In-Reply-To: <20210205221947.GA3848249@robh.at.kernel.org>
+References: <cover.1611072387.git.mchehab+huawei@kernel.org>
+        <b74098493891d0e7386c3cdb4e466aed9450b1d9.1611072387.git.mchehab+huawei@kernel.org>
+        <20210205221947.GA3848249@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CANAwSgRHHwOtWb87aeqF=kio53xCO0_c_ZkF+9hKohWoyji6dg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.03.2021 14:33, Anand Moon wrote:
-> Hi Andrew,
-> 
-> On Thu, 25 Mar 2021 at 18:27, Andrew Lunn <andrew@lunn.ch> wrote:
->>
->> On Thu, Mar 25, 2021 at 12:42:20PM +0000, Anand Moon wrote:
->>> Fix the parsing of check of pattern ethernet-phy-ieee802.3 used
->>> by the device tree to initialize the mdio phy.
->>>
->>> As per the of_mdio below 2 are valid compatible string
->>>       "ethernet-phy-ieee802.3-c22"
->>>       "ethernet-phy-ieee802.3-c45"
->>
->> Nope, this is not the full story. Yes, you can have these compatible
->> strings. But you can also use the PHY ID,
->> e.g. ethernet-phy-idAAAA.BBBB, where AAAA and BBBB are what you find in
->> registers 2 and 3 of the PHY.
->>
-> 
-> Oops I did not read the drivers/net/mdio/of_mdio.c completely.
-> Thanks for letting me know so in the next series,
-> I will try to add the below compatible string as per the description in the dts.
+Em Fri, 5 Feb 2021 16:19:47 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-That's not needed, typically the PHY ID is auto-detected.
-Before sending a new series, please describe in detail what
-your problem is. Simply there shouldn't be a need for such a
-series. As I said: e.g. Odroid-C2 worked fine for me with
-a mainline kernel.
+> On Tue, Jan 19, 2021 at 05:10:43PM +0100, Mauro Carvalho Chehab wrote:
+> > The Hisilicon 6421v600 SPMI driver is ready for mainstream.
+> > 
+> > So, move it from staging.
+> > 
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> >  .../spmi/hisilicon,hisi-spmi-controller.yaml  |  75 ++++
+> >  MAINTAINERS                                   |   7 +
+> >  drivers/spmi/Kconfig                          |   9 +
+> >  drivers/spmi/Makefile                         |   1 +
+> >  drivers/spmi/hisi-spmi-controller.c           | 358 ++++++++++++++++++
+> >  drivers/staging/hikey9xx/Kconfig              |  11 -
+> >  drivers/staging/hikey9xx/Makefile             |   1 -
+> >  .../staging/hikey9xx/hisi-spmi-controller.c   | 358 ------------------
+> >  .../hisilicon,hisi-spmi-controller.yaml       |  75 ----
+> >  9 files changed, 450 insertions(+), 445 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+> >  create mode 100644 drivers/spmi/hisi-spmi-controller.c
+> >  delete mode 100644 drivers/staging/hikey9xx/hisi-spmi-controller.c
+> >  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hisi-spmi-controller.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml b/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+> > new file mode 100644
+> > index 000000000000..21f68a9c2df1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+> > @@ -0,0 +1,75 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/spmi/hisilicon,hisi-spmi-controller.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: HiSilicon SPMI controller
+> > +
+> > +maintainers:
+> > +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > +
+> > +description: |
+> > +  The HiSilicon SPMI BUS controller is found on some Kirin-based designs.
+> > +  It is a MIPI System Power Management (SPMI) controller.
+> > +
+> > +  The PMIC part is provided by
+> > +  drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "spmi@[0-9a-f]"
+> > +
+> > +  compatible:
+> > +    const: hisilicon,kirin970-spmi-controller  
+> 
+> '-controller' is kind of redundant.
+
+Ok. Will drop it.
 
 > 
->                compatible = "ethernet-phy-id001c.c916",
->                             "ethernet-phy-ieee802.3-c22";
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +  
 > 
->>> Cc: Rob Herring <robh@kernel.org>
->>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>> ---
->>>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 +++---
->>>  1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>> index 2766fe45bb98..cfc7909d3e56 100644
->>> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
->>> @@ -33,7 +33,7 @@ properties:
->>>          description: PHYs that implement IEEE802.3 clause 22
->>>        - const: ethernet-phy-ieee802.3-c45
->>>          description: PHYs that implement IEEE802.3 clause 45
->>> -      - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
->>> +      - pattern: "^ethernet-phy-ieee[0-9]{3}\\.[0-9][-][a-f0-9]{4}$"
->>
->> So here you need, in addition to, not instead of.
->>
->> Please test you change on for example imx6ul-14x14-evk.dtsi
->>
+> > +  "#address-cells":
+> > +    const: 2
+> > +
+> > +  "#size-cells":
+> > +    const: 0  
 > 
-> Yes I have gone through the test case.
-> 
->>    Andrew
-> 
-> - Anand
-> 
+> These 2 are covered by spmi.yaml
 
+Ok.
+
+> 
+> > +
+> > +  spmi-channel:
+> > +    description: |
+> > +      number of the Kirin 970 SPMI channel where the SPMI devices are connected.  
+> 
+> Common to SPMI? If not, needs a vendor prefix.
+
+That's an interesting question. My understanding is that this is not
+vendor-specific, but maybe Stephen can give us more details.
+
+The spmi.h header calls it "nr", and documents it at include/linux/spmi.h
+as:
+
+	/**
+	 * struct spmi_controller - interface to the SPMI master controller
+	 * @dev:	Driver model representation of the device.
+	 * @nr:		board-specific number identifier for this controller/bus
+	 * @cmd:	sends a non-data command sequence on the SPMI bus.
+	 * @read_cmd:	sends a register read command sequence on the SPMI bus.
+	 * @write_cmd:	sends a register write command sequence on the SPMI bus.
+	 */
+
+There, it says that this is "board-specific number identifier".
+
+Yet, as the SPMI is a serial bus with up to 4 masters (controller), I 
+suspect that the idea is to associate it with the master ID.
+
+This is used on boards with multiple SoCs. See, for instance, slide 5 of:
+
+	https://www.mipi.org/sites/default/files/Bangalore-Qualcomm-SPMI-1.0-Multi-master-Verification.pdf
+
+However, it is hard to know for sure, as no drivers use it, except by
+Hikey 970 controller:
+
+	$ grep "\b\->nr\b" $(git grep -l spmi.h)
+	drivers/spmi/spmi.c:	ida_simple_remove(&ctrl_ida, ctrl->nr);
+	drivers/spmi/spmi.c:	dev_set_name(&sdev->dev, "%d-%02x", ctrl->nr, sdev->usid);
+	drivers/spmi/spmi.c:	ctrl->nr = id;
+	drivers/spmi/spmi.c:		ctrl->nr, &ctrl->dev);
+	drivers/staging/hikey9xx/hisi-spmi-controller.c:	ctrl->nr = spmi_controller->channel;
+
+> 
+> Type? Range of values?
+
+The SPMI core defines it as "unsigned int". So, I would use:
+
+	    $ref: /schemas/types.yaml#/definitions/uint32
+
+as a type. 
+
+At the driver, this is used to calculate the channel offset with:
+
+	static int spmi_write_cmd(...) {
+		u32 chnl_ofst = SPMI_CHANNEL_OFFSET * spmi_controller->channel;
+...
+		writel((u32 __force)cpu_to_be32(data),
+		       spmi_controller->base + chnl_ofst +
+		       SPMI_APB_SPMI_WDATA0_BASE_ADDR +
+		       SPMI_PER_DATAREG_BYTE * i);
+...
+	}
+
+As on both spmi.h and the Hikey 970 SPMI controller defines it as uint32, 
+it doesn't seem to be a good idea to put a range of values, specially 
+since we don't have the datasheets for this SoC.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - spmi-channel  
+> 
+> > +  - "#address-cells"
+> > +  - "#size-cells"  
+> 
+> Covered by spmi.yaml.
+> 
+> > +
+> > +patternProperties:
+> > +  "^pmic@[0-9a-f]$":  
+> 
+> Presumably you could have something besides a PMIC.
+
+Hmm... SPMI means MIPI System Power Management Interface.
+The MIPI says that [1]:
+
+	"The MIPI System Power Management Interface is a two-wire serial
+	 interface that uses CMOS I/Os for the physical layer. The interface
+	 connects the integrated power controller of a system-on-chip (SoC)
+	 processor system with one or more power management IC voltage
+	 regulation systems."
+
+[1] https://www.mipi.org/specifications/system-power-management-interface
+
+OK, as this is a serial bus, I guess one could abuse the interface
+and add non-PMIC devices on it. Also, some future version of SPMI
+might extend it to non-PMIC devices, but, IMO, if we ever add a 
+non-PMIC device, another patternProperties would be needed in order
+to describe the other device types that could be connected to the PM bus.
+
+> 
+> > +    description: |
+> > +      PMIC properties, which are specific to the used SPMI PMIC device(s).
+> > +      When used in combination with HiSilicon 6421v600, the properties
+> > +      are documented at
+> > +      drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml.
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    bus {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      spmi: spmi@fff24000 {
+> > +        compatible = "hisilicon,kirin970-spmi-controller";
+> > +        #address-cells = <2>;
+> > +        #size-cells = <0>;
+> > +        status = "ok";  
+> 
+> Drop status.
+
+Ok.
+
+> 
+> > +        reg = <0x0 0xfff24000 0x0 0x1000>;
+> > +        spmi-channel = <2>;
+> > +
+> > +        pmic@0 {
+> > +          reg = <0 0>;
+> > +          /* pmic properties */
+> > +        };
+> > +      };
+> > +    };
+
+
+Thanks,
+Mauro
