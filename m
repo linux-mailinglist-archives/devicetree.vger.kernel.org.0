@@ -2,121 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58EEA3493CC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DF153493D8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 15:15:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbhCYOMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 10:12:22 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:51917 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231271AbhCYOMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 10:12:16 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 879D05C00DE;
-        Thu, 25 Mar 2021 10:12:15 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 25 Mar 2021 10:12:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=ves1r/nQmgxtQKc3+3YCO54CxOB
-        ALjxaiKSuGacq514=; b=K2g6mM4fs9OXl38Qo29CdS6HJtFVkwpY7TiLnZBJ/xF
-        COlq8Apuv4rQ/9EzsdIEEvLAeZyeZYHYyCeeYS+Qn3li6gAnwJqPh9nfn3gaqn4R
-        P8hNsfe05bJ0b8QsITa3UYrynFo9495P4HdSfhvmiYEyljEOY093U2y2UN1ozAmt
-        A3CMSCmzk87dGW1A4cOtqHc2WjKagxWt+80PC99TgNrVVCiP3U/kSv3GUiGiNTyz
-        88xETyHETV9m9BwwRVRxXF50+gOGFPs3vnrRYS/8QMEKviREV66BcHwcMXNVsQ7f
-        Pvgbtb9nT1umKZiXobFpIuDOfn5a+1O9YFbJAJxe2sg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ves1r/
-        nQmgxtQKc3+3YCO54CxOBALjxaiKSuGacq514=; b=SJDp8Z3kjuLXv6EFgHx1qW
-        n9MS731fFyFDGd02SFfj1zpndhziOlpaLJQo48flrEhrOfs4ytE96FKCv//dEZTF
-        r0car0nk6Xi5jLaok7LUPkCCk6+MSiFlW1vl+k9n/FvHOFM02n5RJqA0MBGKWprQ
-        JOqVFATMhyQE8pn/8FV8lqhq40ENK1RkH77KA0m+KrMdE/DtXflPW3yuZmZXgPL5
-        RbmXy0P4Xj2Jv0rJVbFUB0K9610dd2/P00iG+j6+DL+pdsgAfcxcXUqUNhNmIp49
-        dEYrB3fatGeCVh/xfVuYdhgKqA8kt3nM+tGokWEKwYK+tlHhfO2X9LkDC67s7DOw
-        ==
-X-ME-Sender: <xms:PppcYEbCHRW4ymRdRB1eteg_IzXWcSJ6XKcpDoArG4J8rG8448RQNw>
-    <xme:PppcYPa3tM4oTJEbCCV6S2oKjrbaFUkSyePGgqtp1xLIV7rOxcLfs0v0ebV0gA1wV
-    hug1fx4Ndv_LgtUbZg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehtddgiedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:PppcYO-vYULEpA3nA3fyojhMZB4vbThe-7HaQZSLPtIZjPVPzPlk4A>
-    <xmx:PppcYOoO4L5RkZDMaPZ6EVCNafw0mWU5NMGPmkVeu7alE67JuDFnJw>
-    <xmx:PppcYPpZyHoYQq0K0hEqiYce3KyWqDS4HE-40isI-xvzlmXxsF9Hsg>
-    <xmx:P5pcYABsyAHU8t8ZU8ALPdTpuxIg6pRqxWfdwKbcJO-hEwSPdrRPkQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C527324006A;
-        Thu, 25 Mar 2021 10:12:13 -0400 (EDT)
-Date:   Thu, 25 Mar 2021 15:12:11 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Ivan Uvarov <i.uvarov@cognitivepilot.com>,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH v2 1/4] ARM: dts: sun8i: r40: add /omit-if-no-ref/ to
- pinmux nodes for UARTs 0&3
-Message-ID: <20210325141211.5bfemlmn5dkurlym@gilmour>
-References: <20210322105538.3475183-1-i.uvarov@cognitivepilot.com>
- <20210322105538.3475183-2-i.uvarov@cognitivepilot.com>
- <20210322161804.0395de61@slackpad.fritz.box>
+        id S230239AbhCYOOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 10:14:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47528 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230113AbhCYOOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 10:14:19 -0400
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEDDC06174A;
+        Thu, 25 Mar 2021 07:14:18 -0700 (PDT)
+Received: by mail-ua1-x932.google.com with SMTP id j4so551638uan.1;
+        Thu, 25 Mar 2021 07:14:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0SSljh8VgyOCvuZyrp0irHi3aJFMKD0jnieo/jO7CEI=;
+        b=Tqd7++4+FcQgPrOd6IdwoJABBd4WVgiLVbVQGDorDUfzwmBXuD1Ys2luNVgih5rPXd
+         UTVb13yXK5P8IKpk1q4dtqq97ERfq+pBVRWyR0nWCPORggX0N3MPJZPGt66fEeU7EA6G
+         +SaURMLj8qbFcK5KAibAXit9+bUtnS4GijIxqKVls4t+ozFH5yYT0s29VtTBkE0oZqPL
+         ouRhG9uQOpVbn4fk5+3eYQ08fJnIN0Gswc3XeVgxuC6Cpf3bmKz/h+gRBSnGH3YizS9m
+         G2xoIxRfvwC85jBmnoF96ikNKn3Zewi4SAIuSggMjuJGscvtip557E1s/bd1Krb6wDEq
+         KtFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0SSljh8VgyOCvuZyrp0irHi3aJFMKD0jnieo/jO7CEI=;
+        b=pJeYeRv0TjO6ota+HIpCPBdOP0FSJ8pMZ/QAr9zI6huV8uOsK9sNZjGl/fjTEVc4BZ
+         mUpjE3YKKs4tW4ylyZ6uYmbaarWaULPjXBK6AGzDLrI1Snp/mldDQA0fMKON52pGuK26
+         qmQiBgg2JOq5AAnZ+13RSpayPpYJbnNuEzZhInsUacH/MQJAqPkAD5M28qYFNTXyjmaQ
+         js3OT9YQ6Rh/aZZhEuqT6yOFBOEawd5U24iOmSsSU0XwZhtoBlZg+3vMWhjljaaemdIs
+         A2qhXl/mJs6d8vUHw+GNZJpi/HzrQmSiXj1ka2pyyDOyc0o0wXBtyYhsxrVoVeTTzVSI
+         3/RQ==
+X-Gm-Message-State: AOAM530ntcI5R3FrD58kaHSHMBmupF1XAgAqi1AXQo/WR2UybpN1uuui
+        V/TE+vUtvuOe5H9oDw95zzezQ/p+8bR2j8sKMEgzEU8nUgJTEA==
+X-Google-Smtp-Source: ABdhPJykAGvfrWh/jq0MsPDnI0kz6Tj5UWjX8pgwdXEkcGFOTuEwxthi3FtQxf+dmirWaPsTUHw8+scnIfB4K4Mz6uQ=
+X-Received: by 2002:ab0:32d0:: with SMTP id f16mr4947078uao.64.1616681657893;
+ Thu, 25 Mar 2021 07:14:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="usds6ccterplbkj5"
-Content-Disposition: inline
-In-Reply-To: <20210322161804.0395de61@slackpad.fritz.box>
+References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
+ <20210311154055.3496076-7-emil.l.velikov@gmail.com> <20210324151715.GA3070006@robh.at.kernel.org>
+In-Reply-To: <20210324151715.GA3070006@robh.at.kernel.org>
+From:   Emil Velikov <emil.l.velikov@gmail.com>
+Date:   Thu, 25 Mar 2021 14:14:06 +0000
+Message-ID: <CACvgo51EpUqRBDQ0tO8aoUM3eo=y9R5VFOazWD05hOaiGwgZPg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/10] media: dt-bindings: Document SAMA5D4 VDEC bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org,
+        linux-rockchip <linux-rockchip@lists.infradead.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 24 Mar 2021 at 15:17, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Mar 11, 2021 at 03:40:51PM +0000, Emil Velikov wrote:
+> > From: Emil Velikov <emil.velikov@collabora.com>
+> >
+> > Add devicetree binding documentation for the Hantro G1/G2 VDEC on
+> > the Microchip SAMAS5D4 SoC.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Frank Rowand <frowand.list@gmail.com>
+> > Cc: devicetree@vger.kernel.org>
+> > Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
+> > ---
+> > v2
+> >  - Newly introduced
+> >  - s/Atmel/Microchip/ (Nicolas)
+> >  - Drop leading 0 in node name/address
+> > ---
+> >  .../media/microchip,sama5d4-vdec.yaml         | 59 +++++++++++++++++++
+> >  1 file changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml b/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
+> > new file mode 100644
+> > index 000000000000..9cb2c0295d54
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/media/microchip,sama5d4-vdec.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Hantro G1 VPU codec implemented on Microchip SAMA5D4 SoCs
+> > +
+> > +maintainers:
+> > +  - Emil Velikov <emil.velikov@collabora.com>
+> > +
+> > +description:
+> > +  Hantro G1 video decode accelerator present on Microchip SAMA5D4 SoCs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: microchip,sama5d4-vdec
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: vdec
+>
+> Why do you need a name? *-names are used to distinguish multiple entries
+> and don't add anything if only a single entry.
+>
+On one hand the names are used to describe the hardware - the SAMA
+board uses designated clock and interrupt lines - both called "vdec".
+Additionally the names are ultimately required by the underlying API -
+platform_get_irq_byname and  devm_clk_bulk_get respectively.
+How can we get the respective entries without the name?
 
---usds6ccterplbkj5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Skimming through the existing dts file -
+arch/arm/boot/dts/sama5d4.dtsi and other dts files - there are lots of
+examples where the device tree binding contains the name for a single
+clock/interrupt.
 
-On Mon, Mar 22, 2021 at 04:18:04PM +0000, Andre Przywara wrote:
-> On Mon, 22 Mar 2021 13:55:35 +0300
-> Ivan Uvarov <i.uvarov@cognitivepilot.com> wrote:
->=20
-> Hi,
->=20
-> > This patch adds the /omit-if-no-ref/ keyword to the pio nodes for
-> > UART0 and UART3 pins of the R40 SoC, which would reduce the fdt size on
-> > boards which do not use these UARTs.
->=20
-> But what boards are those? It seems like all boards use uart3-pg and
-> the two existing boards use UART0.
->=20
-> I think the idea is to use omit-if-no-ref on some rarely used nodes, so
-> if there is only a single user, for instance. Your next patch is a good
-> example.
-
-There's no real cost associated to it though, so it's just easier to
-flag all the nodes and let the compiler figure out if it should evict
-them or not.
-
-Maxime
-
---usds6ccterplbkj5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYFyaOwAKCRDj7w1vZxhR
-xZAdAQDYI5KK8H77Wo1gjzVzWhBN5eEoabG/SZI/TcgP9deWVwEA8EZKEgcvMc3K
-F+uf36DcIFDXKKyqCmx7oN7JkL46Nww=
-=Lha4
------END PGP SIGNATURE-----
-
---usds6ccterplbkj5--
+Thanks
+Emil
