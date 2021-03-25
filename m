@@ -2,118 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37832349640
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7FE349680
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhCYQAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43018 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbhCYQAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:00:13 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0227EC06174A;
-        Thu, 25 Mar 2021 09:00:13 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id i22so2236424pgl.4;
-        Thu, 25 Mar 2021 09:00:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ZcvhcVz5SG2l7TXInHqovR8N9PaEaZR96rNMcB7kOXk=;
-        b=pp1Kf4zTb2NfmDO8cXK0HieHJTNPmvsxJ6ggSSvRUo9kraDTjTaT9V5A4XaGwVEuV9
-         PhA5Shv1c+CmSsjqRDA9L687Mj/lU1h5fph7uhcSRgz6YwrNlPE4/PUfGQ5OwfQLkO1G
-         L41/AWv57WPnUwkoBUzl9dsA6ZsRy7pPyq/3nzEDf8uHIRU9gQcZo1HdOf1Ov4+oLBJv
-         Vj8lOS3yOkKTpxAXlj4ohj/4Wm7Z4entt6uwTGdDs3PZI5PjMSNfoPiEQYzO8Xko8Dgk
-         9tV9P5p8Z+XumFarrbu3KrZ++oScPcn8U/Spbn/XFxYefGC7qAop0NrqqmR4CEyIgcyJ
-         bV7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ZcvhcVz5SG2l7TXInHqovR8N9PaEaZR96rNMcB7kOXk=;
-        b=m3+GLYRD4fCl3lxMdWwi2rhu5jwIyZDGHR+/+rEo5kTXAfDqY/qoCR3VR0p8IqoUsX
-         6HfBDl3ZpM9BPCOZadv82H9I/IB2zYfRWne1fc3JgE/badM8WJNcRos5n6egYLl/9GE2
-         6bgAzUC7DufnobjfsFSZJlKeP3HZ5zXoygO4w0Fgi6R/ZFGFys1/jo/xgk55k5DozZc9
-         2xO7IREgU86TZ3O+n3IKL9TwRwheVyN+Sp1zrMGpQLdaIhodDrzRTlQA+wa/Rl2y8Hn7
-         zbu6UAKuiIxlY00DRoqBOA0tBO8Rrz3BfmRqDuzYU92c+uHRjjxt15Sk8UF45A51te8c
-         bZcQ==
-X-Gm-Message-State: AOAM531cD+3j3w3jfuF17Rp1rmP5K73nrpzeOalaCXq0USde/fmj8oXB
-        p1FJP/8Z5ERCmxotX8l9dyw=
-X-Google-Smtp-Source: ABdhPJxCNSdkDyjilxVM+ECwNojpw9K4zwtShTSL38PVGXdGCOLaxgmGKsFkiVZMv1u4RLNOqLm0dQ==
-X-Received: by 2002:a62:2a8b:0:b029:21c:3016:3a9f with SMTP id q133-20020a622a8b0000b029021c30163a9fmr8954623pfq.38.1616688012560;
-        Thu, 25 Mar 2021 09:00:12 -0700 (PDT)
-Received: from mail.google.com ([141.164.41.4])
-        by smtp.gmail.com with ESMTPSA id b19sm6359351pfo.7.2021.03.25.09.00.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Mar 2021 09:00:12 -0700 (PDT)
-Date:   Thu, 25 Mar 2021 16:00:07 +0000
-From:   Changbin Du <changbin.du@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Changbin Du <changbin.du@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] of/fdt: Check dtb pointer first in unflatten_device_tree
-Message-ID: <20210325155954.iun4hdcegi4b3qm2@mail.google.com>
-References: <20210324150425.20688-1-changbin.du@gmail.com>
- <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
+        id S229619AbhCYQOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 12:14:54 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54998 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229639AbhCYQOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:14:50 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12PGEY7n005196;
+        Thu, 25 Mar 2021 11:14:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616688874;
+        bh=UZV0sP5zmB6zPNXJrR1Ox1Q35jJB3ri0g+Wh2TcKb4c=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=y9PfDf0wKAE1ajuH/pftgC9pEZGEpIqxbE6bSfAqTBBzzKqziMAHO9vv5A5gE3O97
+         pvxREFi9GTymVgG+nFy7YjIIH/QWA5HnOQKV+lWu6VWox8zslpqPwlNgrFtLsq272S
+         LZO7f7bR0JOF+qeRRxo7jXNGATHd2sbrMs9Y6F2k=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12PGEY1U129582
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 25 Mar 2021 11:14:34 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 25
+ Mar 2021 11:14:34 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 25 Mar 2021 11:14:34 -0500
+Received: from [10.250.233.62] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12PGEUSZ073840;
+        Thu, 25 Mar 2021 11:14:31 -0500
+Subject: Re: [PATCH v8 3/3] arm64: dts: ti: k3-j7200: Add support for higher
+ speed modes and update delay select values for MMCSD subsystems
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210324063759.5837-1-a-govindraju@ti.com>
+ <20210324063759.5837-4-a-govindraju@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <b8799a32-2461-988a-4a88-177e672ab64e@ti.com>
+Date:   Thu, 25 Mar 2021 21:44:29 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ0hyZ25jSudh3EW1Fipwbp0AzMAKXG565ZrQxn-_kBKg@mail.gmail.com>
-User-Agent: NeoMutt/20180716-508-7c9a6d
+In-Reply-To: <20210324063759.5837-4-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 10:52:30AM -0600, Rob Herring wrote:
-> On Wed, Mar 24, 2021 at 9:04 AM Changbin Du <changbin.du@gmail.com> wrote:
-> >
-> > The setup_arch() would invoke unflatten_device_tree() even no
-> > valid fdt found. So we'd better check it first and return early.
-> >
-> > Signed-off-by: Changbin Du <changbin.du@gmail.com>
-> > ---
-> >  drivers/of/fdt.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index dcc1dd96911a..05d439d63bc5 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -1225,6 +1225,11 @@ bool __init early_init_dt_scan(void *params)
-> >   */
-> >  void __init unflatten_device_tree(void)
-> >  {
-> > +       if (!initial_boot_params) {
-> > +               pr_warn("No valid device tree found, continuing without\n");
-> 
-> How are you going to see this message if you have no DT?
->
-This aligns to what unflatten_and_copy_device_tree() does.
- 
-> > +               return;
-> 
-> And the arch is supposed to just continue on oblivious that it has no DT?
->
-As checking the arch code(arm, riscv), I suppose so.
+Hi Aswath,
 
-> > +       }
-> > +
-> >         __unflatten_device_tree(initial_boot_params, NULL, &of_root,
-> >                                 early_init_dt_alloc_memory_arch, false);
+On 24/03/21 12:07 pm, Aswath Govindraju wrote:
+> The following speed modes are now supported in J7200 SoC,
+> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
+> - UHS-I speed modes in MMCSD1 subsystem [1].
 > 
-> Soon as you get here with a NULL initial_boot_params, you'll get a
-> backtrace and halt.
+> Add support for UHS-I modes by adding voltage regulator device tree nodes
+> and corresponding pinmux details, to power cycle and voltage switch cards.
+> Set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
+> device tree nodes.
 > 
-No, we have returned before.
+> Also update the delay values for various speed modes supported, based on
+> the revised january 2021 J7200 datasheet[2].
+> 
+> [1] - section 12.3.6.1.1 MMCSD Features, in
+>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf,
+>       (SPRUIU1A – JULY 2020 – REVISED JANUARY 2021)
+> 
+> [2] - https://www.ti.com/lit/ds/symlink/dra821u.pdf,
+>       (SPRSP57B – APRIL 2020 – REVISED JANUARY 2021)
+minor comments below.. once you fix them, please add
 
-> >
-> > --
-> > 2.30.2
-> >
+Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  .../dts/ti/k3-j7200-common-proc-board.dts     | 78 +++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 14 +++-
+>  2 files changed, 90 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index b493f939b09a..a069787e1783 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -16,6 +16,65 @@
+>  		stdout-path = "serial2:115200n8";
+>  		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+>  	};
+> +
+> +	evm_12v0: fixedregulator-evm12v0 {
+> +		/* main supply */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "evm_12v0";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_3v3: fixedregulator-vsys3v3 {
+> +		/* Output of LMS140 */
 
--- 
-Cheers,
-Changbin Du
+%s/LMS140/LM5140
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_5v0: fixedregulator-vsys5v0 {
+> +		/* Output of LM5140 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vdd_mmc1: fixedregulator-sd {
+> +		/* Output of TPS22918  */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_mmc1";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		vin-supply = <&vsys_3v3>;
+> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	vdd_sd_dv: gpio-regulator-vdd-sd-dv {
+> +		/* Output of TLV71033 */
+
+Would have preferred to keep this similar to j721e.
+gpio-regulator-TLV71033 is used in j721e
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "vdd_sd_dv";
+
+same comment here..
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		vin-supply = <&vsys_5v0>;
+> +		gpios = <&main_gpio0 55 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0>,
+> +			 <3300000 0x1>;
+> +	};
+>  };
+>  
+>  &wkup_pmx0 {
+> @@ -45,6 +104,13 @@
+>  };
+>  
+>  &main_pmx0 {
+> +	main_i2c0_pins_default: main-i2c0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
+> +			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
+> +		>;
+> +	};
+> +
+>  	main_i2c1_pins_default: main-i2c1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0xdc, PIN_INPUT_PULLUP, 3) /* (U3) ECAP0_IN_APWM_OUT.I2C1_SCL */
+> @@ -70,6 +136,12 @@
+>  			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
+>  		>;
+>  	};
+> +
+> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0xd0, PIN_INPUT, 7) /* (T5) SPI0_D1.GPIO0_55 */
+
+This should ideally be PIN_OUTPUT. Can you check the latest sysconfig?
+
+Thanks
+Kishon
