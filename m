@@ -2,80 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F9E2348634
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 02:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F7534871A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 03:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbhCYBGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Mar 2021 21:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhCYBGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 21:06:45 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A24C06174A;
-        Wed, 24 Mar 2021 18:06:44 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id ce10so212690ejb.6;
-        Wed, 24 Mar 2021 18:06:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QyuEbp79sFDYbVUwlKgrT3LfkDPXhFyHRIfRwWBNnR0=;
-        b=dvATg1dMAPoLoOLjHBOVCfDoI3j9n5CnLc2/CgV5oLkTw+2nL7cIeeRWMapD9xCZAS
-         YcG8ksUQQuumx1IAYgRBPha9JrspUyivUC0jLMfMiDngQVmhzIQynadL4Yz3OXauECRj
-         +KjcoFSu2YHhASm29JwRy1Duc1c8JNsRPRYHIWDGn56i7nZ91tifgaIYwpwLy8/woYif
-         w3aZmBKE2aZOWuC5nVFVYBFqgDfe1MjlIINCe9Ipi2a9QjNWuOF3jlHx7Mnj/9OTDhlp
-         qd/qe00hrPiohh8AqKe9cSMZhWwYdkE44zqaYiOuweHAvtU7X+G+mkinWyfXFatnTy2X
-         Ibdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QyuEbp79sFDYbVUwlKgrT3LfkDPXhFyHRIfRwWBNnR0=;
-        b=BgB6hi7ekFGR6joEyZVq+U06I3YwJ5c7Qy8HilxBK45VQ5P4cPo587RCQ1Lls8e1VX
-         n0I4GLsbSCDjpImzU/olfqJaoCq3Bi0IrPjQ4gJci7kb0Wr99nk6zwx0azoBZDqwTtg0
-         /cD4TWGjGYSXIT/G3a7h4dGdoVARjA/THE+ye9LceoPjZiolUG6Dy9/otRXsl/n/Zd37
-         7pl5byiluU+SAnrcBES6eyLLzNnmy0PmkGZq4bRf92tE0jH0xYCKlP0aQ9YS1X8Dr4hT
-         QcpciQXThTMXzaN3NaR4LW57JugujwlC1+9mRXjP9w5ySnO1nesEIBG4l2D4Kba1nNzB
-         a+wQ==
-X-Gm-Message-State: AOAM532H+j9nGFQ8A/QeBORPZCQLN6AD0kDebgMRJc9cHeXSQjelGsCh
-        OrTaUBzMmzdiPJ7dNPuro+Y=
-X-Google-Smtp-Source: ABdhPJxh7dE1K0DHwlsfznIPjQhExr4agS0ZTI2cZ0n0KlgDTuInl/2y+pu4Uc/IgZ5fw8RQXJ+lQg==
-X-Received: by 2002:a17:906:51c3:: with SMTP id v3mr6667120ejk.497.1616634403336;
-        Wed, 24 Mar 2021 18:06:43 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id w6sm1672755eje.107.2021.03.24.18.06.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Mar 2021 18:06:42 -0700 (PDT)
-Date:   Thu, 25 Mar 2021 03:06:41 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kuldeep Singh <kuldeep.singh@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [EXT] Re: [PATCH] dt-bindings: spi: Convert Freescale DSPI to
- json schema
-Message-ID: <20210325010641.4uaiw54xhqfyauqz@skbuf>
-References: <20210315121518.3710171-1-kuldeep.singh@nxp.com>
- <20210315205440.lb6hcrvzxtqxdb5x@skbuf>
- <DB6PR0402MB27580AF77ED738B995616EB5E06B9@DB6PR0402MB2758.eurprd04.prod.outlook.com>
- <20210316101506.rkqcxkw6slv4vuhr@skbuf>
- <20210324181403.GC3320002@robh.at.kernel.org>
- <20210324185302.dxi2wurf7lgr5yxi@skbuf>
- <CAL_Jsq+8xXcLr8sLk+gj9y+FOi9kiEtRHTxDUV+yxm9CXS+jbQ@mail.gmail.com>
+        id S229548AbhCYCvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Mar 2021 22:51:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39753 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229822AbhCYCvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Mar 2021 22:51:24 -0400
+X-UUID: 15287ade5a4b42bdaf70bf19f34c6687-20210325
+X-UUID: 15287ade5a4b42bdaf70bf19f34c6687-20210325
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1643467707; Thu, 25 Mar 2021 10:51:18 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 25 Mar 2021 10:51:14 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 25 Mar 2021 10:51:14 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v14 0/7] soc: mediatek: SVS: introduce MTK SVS
+Date:   Thu, 25 Mar 2021 10:51:07 +0800
+Message-ID: <20210325025114.25842-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+8xXcLr8sLk+gj9y+FOi9kiEtRHTxDUV+yxm9CXS+jbQ@mail.gmail.com>
+Content-Type: text/plain
+X-TM-SNTS-SMTP: CCF7532FFE7D28D9056E8883632CDEB3DB4D8251430ED60D9E3CCB9A9AABCD842000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 01:20:33PM -0600, Rob Herring wrote:
-> In addition, "fsl,ls1088a-dspi" is not known by the Linux driver, so a
-> fallback is needed.
+1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device(). After retrieving subsys device, SVS driver does
+device_link_add() to make sure probe/suspend callback priority.
+3. SVS dts refers to reset controller [4] to help reset SVS HW.
 
-This is a good point, the LS1088A went completely off of my radar,
-thanks for pointing it out.
+#mt8183 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201013102358.22588-2-michael.kao@mediatek.com/
+[3] https://patchwork.kernel.org/project/linux-mediatek/patch/20200306041345.259332-3-drinkcat@chromium.org/
+
+#mt8192 SVS related patches
+[1] https://patchwork.kernel.org/patch/11193513/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20201223074944.2061-1-michael.kao@mediatek.com/
+[3] https://lore.kernel.org/patchwork/patch/1360551/
+[4] https://patchwork.kernel.org/project/linux-mediatek/patch/20200817030324.5690-5-crystal.guo@mediatek.com/
+
+changes since v13:
+- Fix "mtk-svs.yaml: properties:nvmem-cells:maxItems: False schema does not allow 2"
+- Remove wrong maintainer "Nishanth Menon <nm@ti.com>"
+- When turn_pt = 0, SVS HIGH bank fills FREQPCT74 / FREQPCT30 with 0 and SVS controller won't run normally. Therefore, we initialize SVS HIGH bank's FREQPCT30 with svsb->freqs_pct[0] to avoid this issue.
+- Change SVS GPU opp count back from 14 to 16 because GPU DVFS has a better solution
+
+Roger Lu (7):
+  [v14,1/7]: dt-bindings: soc: mediatek: add mtk svs dt-bindings
+  [v14,2/7]: arm64: dts: mt8183: add svs device information
+  [v14,3/7]: soc: mediatek: SVS: introduce MTK SVS engine
+  [v14,4/7]: soc: mediatek: SVS: add debug commands
+  [v14,5/7]: dt-bindings: soc: mediatek: add mt8192 svs dt-bindings
+  [v14,6/7]: arm64: dts: mt8192: add svs device information
+  [v14,7/7]: soc: mediatek: SVS: add mt8192 SVS GPU driver
+
+ .../bindings/soc/mediatek/mtk-svs.yaml        |   92 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   18 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |   34 +
+ drivers/soc/mediatek/Kconfig                  |   10 +
+ drivers/soc/mediatek/Makefile                 |    1 +
+ drivers/soc/mediatek/mtk-svs.c                | 2495 +++++++++++++++++
+ 6 files changed, 2650 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+ create mode 100644 drivers/soc/mediatek/mtk-svs.c
+
+
