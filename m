@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DFDB348E0D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 11:32:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF7FA348EBA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 12:13:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhCYKcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 06:32:17 -0400
-Received: from mail-lj1-f176.google.com ([209.85.208.176]:34455 "EHLO
-        mail-lj1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbhCYKcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 06:32:13 -0400
-Received: by mail-lj1-f176.google.com with SMTP id f16so2481863ljm.1;
-        Thu, 25 Mar 2021 03:32:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=faLPl7dFJfBc9wUMKlika3avN8VfJYiGHtpkcOchfg4=;
-        b=EaNSFVkM5bnjFgnu1+AE0QvqIq3rlgy3R05hOiUiKJgyAW4WdTe4vPgOceOG5qSGi/
-         oidAa40y/FZHfzvfqAsED04ynUlx+AWRxs2R0WYzH5k2hBiNo3+GGIWQnqLmReAc/KxD
-         D1V5uDCkKV2luRxIpDUx0p2cHi1QhYYEQY4qsDfB8XKt+YNpLG6UYY0YkXVemk1ixoms
-         XUN2p5iqn1oAaOSm/7rowm73oLdPvS/IEkW+RrfKT7RPEpBXF6FMnbs52rIhLZJ9uzCd
-         1Mp5Xhe7aTbitZQxQAlqwG88qsd8yCzYcPG363sz9G04HUdB6urUdg+rI7ziym0xKh5b
-         acZg==
-X-Gm-Message-State: AOAM531sfnIrN1ZmTHdRu7jZJKYq9YiqByMgx5jk17FkCgMfdwYZly0t
-        utq8+ohqkGnH9pyGyCwZTzQ=
-X-Google-Smtp-Source: ABdhPJzLlwtpNHVd/GL3u2kyRHuWUfHkpqqpTtdCWSkei4+bFaw0r1J/K2urn0pBPteK1WSfjLlNyQ==
-X-Received: by 2002:a2e:8e33:: with SMTP id r19mr5091616ljk.40.1616668331621;
-        Thu, 25 Mar 2021 03:32:11 -0700 (PDT)
-Received: from dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
-        by smtp.gmail.com with ESMTPSA id p10sm727834ljg.99.2021.03.25.03.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 03:32:11 -0700 (PDT)
-Message-ID: <c5a4ef7341b5b0b56d1ad950867828463cfdb7fc.camel@fi.rohmeurope.com>
-Subject: Re: [PATCH v4 09/16] gpio: support ROHM BD71815 GPOs
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        id S230140AbhCYLM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 07:12:58 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:34402 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230121AbhCYLMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 07:12:50 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12PB8KZQ029488;
+        Thu, 25 Mar 2021 12:12:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=selector1;
+ bh=sx81ySGR8bPSutf92/n2FFZ8Gn5Yxf3a1PbQ8ivsBJk=;
+ b=THaUiffSVEE09/leQ/NJbBiJbM4G1JPDHfCcK6+DhsFlXjCaGLbUaB+JK1i7rujBaId1
+ kHkC6iMyqIWdE9QxaRsmFW0+Unglqba0mCW1sYkecTtcwu3RfukLTZ50xGXSZy/9ookb
+ VLp5dRBvYgm8oeEyCaGwKiXz0ptn9JBiAP4R0pm9FTc93EhyV1HuRvmF6IQ+hHoQ6XlU
+ P1Z34fDFKPaZEy4Y3gt+IVEEq4AIC5JIw+JamI4Ptfo3IkuH7yMzZkgOddTChf1oNLad
+ KwjmowvdAf3V+6/Ni3hHS6c3Iu+L3o5loaR1H1pgbg5UIHh7uh2aZP8GkGdqWfs5qiOI zQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37d8tpv3wk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 Mar 2021 12:12:23 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7509510002A;
+        Thu, 25 Mar 2021 12:12:22 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 36D142463E6;
+        Thu, 25 Mar 2021 12:12:22 +0100 (CET)
+Received: from SFHDAG2NODE3.st.com (10.75.127.6) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 25 Mar
+ 2021 12:12:21 +0100
+Received: from SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c]) by
+ SFHDAG2NODE3.st.com ([fe80::31b3:13bf:2dbe:f64c%20]) with mapi id
+ 15.00.1497.012; Thu, 25 Mar 2021 12:12:21 +0100
+From:   Valentin CARON - foss <valentin.caron@foss.st.com>
+To:     "dillon.minfei@gmail.com" <dillon.minfei@gmail.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
+        "rong.a.chen@intel.com" <rong.a.chen@intel.com>,
+        "a.fatoum@pengutronix.de" <a.fatoum@pengutronix.de>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-power@fi.rohmeurope.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-In-Reply-To: <CACRpkdZnrkiYGaOTZLvCnp72WYiV0+YhCe+TbMjN_3CLyJHvgA@mail.gmail.com>
-References: <cover.1616566395.git.matti.vaittinen@fi.rohmeurope.com>
-         <b2164e5965218f270e17bf29e00ad5c5a0b54bcf.1616566395.git.matti.vaittinen@fi.rohmeurope.com>
-         <CACRpkdZnrkiYGaOTZLvCnp72WYiV0+YhCe+TbMjN_3CLyJHvgA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "vladimir.murzin@arm.com" <vladimir.murzin@arm.com>,
+        "afzal.mohd.ma@gmail.com" <afzal.mohd.ma@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Erwan LE-RAY - foss" <erwan.leray@foss.st.com>,
+        Erwan LE RAY <erwan.leray@st.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "lkp@intel.com" <lkp@intel.com>
+Subject: Re: [PATCH v5 9/9] dt-bindings: serial: stm32: Use 'type: object'
+ instead of false for 'additionalProperties'
+Thread-Topic: [PATCH v5 9/9] dt-bindings: serial: stm32: Use 'type: object'
+ instead of false for 'additionalProperties'
+Thread-Index: AQHXIT7ih+t4cxLl+EWQ55a6uRUl+aqUfCqA
+Date:   Thu, 25 Mar 2021 11:12:21 +0000
+Message-ID: <068cb7ae-9afc-606d-2579-189e46516cd5@foss.st.com>
+References: <1616653162-19954-1-git-send-email-dillon.minfei@gmail.com>
+ <1616653162-19954-8-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1616653162-19954-8-git-send-email-dillon.minfei@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.47]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <82932ED2BBCA05459E35290288E3E327@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Date:   Thu, 25 Mar 2021 12:32:04 +0200
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-25_02:2021-03-24,2021-03-25 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Linus,
-
-On Thu, 2021-03-25 at 10:35 +0100, Linus Walleij wrote:
-> On Wed, Mar 24, 2021 at 8:29 AM Matti Vaittinen
-> <matti.vaittinen@fi.rohmeurope.com> wrote:
-> 
-> > Support GPO(s) found from ROHM BD71815 power management IC. The IC
-> > has two
-> > GPO pins but only one is properly documented in data-sheet. The
-> > driver
-> > exposes by default only the documented GPO. The second GPO is
-> > connected to
-> > E5 pin and is marked as GND in data-sheet. Control for this
-> > undocumented
-> > pin can be enabled using a special DT property.
-> > 
-> > This driver is derived from work by Peter Yang <
-> > yanglsh@embest-tech.com>
-> > although not so much of original is left.
-> > 
-> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > ---
-> > Changes since v3:
-> >   - No changes
-> 
-> This looks OK to me:
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> 
-> It could potentially (like the other Rohm GPIO MFD PMIC drivers)
-> make some use of the gpio regmap library, but we have some
-> pending changes for that so look into it after the next merge
-> window.
-> 
-> I.e. for your TODO: look at the GPIO_REGMAP helper.
-
-I just took a quick peek at gpio_regmap and it looks pretty good to me!
-
-Any particular reason why gpio_regmap is not just part of gpio_chip? I
-guess providing the 'gpio_regmap_direction_*()', 'gpio_regmap_get()',
-'gpio_regmap_set()' as exported helpers and leaving calling the
-(devm_)gpiochip_add_data() to IC driver would have allowed more
-flexibility. Drivers could then use the gpio_regamap features which fit
-the IC (by providing pointers to helper functions in gpio_chip) - and
-handle potential oddball-features by using pointers to some customized
-functions in gpio_chip.
-
-Anyways, definitely worth getting familiar with! Thanks for the pointer
-:]
-
-Best Regards,
-	Matti Vaittinen
-
-
+SGkgRGlsbG9uLA0KDQpJdCdzIG9rYXkgZm9yIG1lLg0KDQpSZWdhcmRzLA0KDQpWYWxlbnRpbg0K
+DQpPbiAzLzI1LzIxIDc6MTkgQU0sIGRpbGxvbi5taW5mZWlAZ21haWwuY29tIHdyb3RlOg0KPiBG
+cm9tOiBkaWxsb24gbWluIDxkaWxsb24ubWluZmVpQGdtYWlsLmNvbT4NCj4NCj4gVG8gdXNlIGFk
+ZGl0aW9uYWwgcHJvcGVydGllcyAnYmx1ZXRvb3RoJyBvbiBzZXJpYWwsIG5lZWQgcmVwbGFjZSBm
+YWxzZSB3aXRoDQo+ICd0eXBlOiBvYmplY3QnIGZvciAnYWRkaXRpb25hbFByb3BlcnRpZXMnIHRv
+IG1ha2UgaXQgYXMgYSBub2RlLCBlbHNlIHdpbGwNCj4gcnVuIGludG8gZHRic19jaGVjayB3YXJu
+aW5ncy4NCj4NCj4gJ2FyY2gvYXJtL2Jvb3QvZHRzL3N0bTMyaDc1MGktYXJ0LXBpLmR0LnlhbWw6
+IHNlcmlhbEA0MDAwNDgwMDoNCj4gJ2JsdWV0b290aCcgZG9lcyBub3QgbWF0Y2ggYW55IG9mIHRo
+ZSByZWdleGVzOiAncGluY3RybC1bMC05XSsnDQo+DQo+IEZpeGVzOiBhZjFjMmQ4MTY5NWIgKCJk
+dC1iaW5kaW5nczogc2VyaWFsOiBDb252ZXJ0IFNUTTMyIFVBUlQgdG8ganNvbi1zY2hlbWEiKQ0K
+PiBSZXBvcnRlZC1ieToga2VybmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+DQo+IFRlc3Rl
+ZC1ieTogVmFsZW50aW4gQ2Fyb24gPHZhbGVudGluLmNhcm9uQGZvc3Muc3QuY29tPg0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBkaWxsb24gbWluIDxkaWxsb24ubWluZmVpQGdtYWlsLmNvbT4NCj4gLS0tDQo+
+DQo+IHY1OiBhY2Nyb2RpbmcgdG8gcm9iJ3Mgc3VnZ2VzdGlvbiwgcmVwbGFjZSBmYWxzZSB3aXRo
+ICd0eXBlOiBvYmplY3QnDQo+ICAgICAgb2YgJ2FkZGl0aW9uYWxQcm9wZXJ0aWVzJy4NCj4NCj4g
+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL3N0LHN0bTMyLXVhcnQu
+eWFtbCB8IDMgKystDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
+dGlvbigtKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3NlcmlhbC9zdCxzdG0zMi11YXJ0LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3Mvc2VyaWFsL3N0LHN0bTMyLXVhcnQueWFtbA0KPiBpbmRleCA4NjMxNjc4MjgzZjku
+Ljg2NWJlMDUwODNjMyAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3NlcmlhbC9zdCxzdG0zMi11YXJ0LnlhbWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3NlcmlhbC9zdCxzdG0zMi11YXJ0LnlhbWwNCj4gQEAgLTgwLDcg
+KzgwLDggQEAgcmVxdWlyZWQ6DQo+ICAgICAtIGludGVycnVwdHMNCj4gICAgIC0gY2xvY2tzDQo+
+ICAgDQo+IC1hZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4gK2FkZGl0aW9uYWxQcm9wZXJ0
+aWVzOg0KPiArICB0eXBlOiBvYmplY3QNCj4gICANCj4gICBleGFtcGxlczoNCj4gICAgIC0gfA==
