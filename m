@@ -2,104 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B18348BF8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 09:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26D1B348C07
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 10:01:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbhCYI5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 04:57:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        id S229448AbhCYJAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 05:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbhCYI5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 04:57:37 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E95C06175F
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 01:57:36 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id a1so2159231ljp.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 01:57:36 -0700 (PDT)
+        with ESMTP id S229868AbhCYJAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 05:00:20 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D168C06175F
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 02:00:19 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id a198so1383821lfd.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 02:00:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IBw+fqPCYGPDI6K3X71IFi8mM+m8z83H8t7eBrf5JCU=;
-        b=s+p8JtdX7JNqKg148kB7YqJ2LzP3jEieZthb9Fn07U2hVcxHFIwZhmrymmZ6B2A9tu
-         /nk0P6Ce6W+5pUUowM1vDBrKHCcAWTa4EGvPT0/jpjwRNTp17F/RiNN2GJrP9fRVWFVG
-         tYGH+7g30olnPq4l+uqKbW5PpvNY5hNIznMvAkW9r2kx5DbU2nEFdRpViMX3K1951+N9
-         Ks0WkFhnneCcIthTxwRZ4UwQyxfbd9KHNyL+r3U4iSo9xR2qgRPWlbqr0mfcW8nmUUjK
-         WJnyoDtm580Tg08lC4znFUQUhZKycbQj5Dw1Tdd84SFLdchTyMRwToZWyUFKyjIsLIwg
-         gTPg==
+        bh=9hVRMkQ0tHL9uVXvm233X7lLnnZ2hno7sFzdBZfFdOI=;
+        b=Kc1IpBZxWVTOYw66WGTB1QyddKnYREmW1xtY3GcCADOywwhEb8Z3AFFd+id2LunKuy
+         33cR2Qoh205LF926p5IOG4T7etcLoiDHisk4rtvgDkiC6rkf7rYYQroi9PGiM66UPmRL
+         IhkMDH3h+u7Ph+RpUvZciDY5/n4bhiV8AtDigdjW5hdZnENDceYmQZytQJEPjTyWi/UJ
+         qNAmMBPTGJt+BVFUvU0fbwPciqtkv2oE/JE5648hLqsKC3RXAdzBot4Gtv5IObVrGHZe
+         tsoC6JsHDJL6A3HjA8Hw4DgoJHdvTdMC+ob8r0MzFgQkuZsF3ptYkyTk+IZtZCUh/vRr
+         dmvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=IBw+fqPCYGPDI6K3X71IFi8mM+m8z83H8t7eBrf5JCU=;
-        b=cbpaxQYGJQP3XQilaAo8NY7QXVEBPESHywMYt9wXvlOxccdtk83rhhrSETPi2dlzmT
-         czVRUYQclIVFyagefJDbxyey/19F/zIfuAXEUHIACpeAeEn6ddYZK20zPHCaSaWsnHnV
-         70En1BEv8gMwfaIb2DCJzQxkjlX2QRKIN7agTThttvbAhPD9esScM9OVYpJBLm0JWAVw
-         XPGMK6CaXDQhoO5sedN8weXIxoqzGkdj6RC50Zjd5p+//EVSjGdr6vGbgf+TiQZzC7P6
-         M7b6ZNKnkhq4r1J5bL7v3a7/3UImxS/X7q3lJsjZj7g8S+QShYS9C6fZ0Cs0YpUHGOhe
-         6NQg==
-X-Gm-Message-State: AOAM5326lpmMRwsolOPP0JyB2CHxLguwogs/+hf02VMFD7MBohUvhG1/
-        MLAMKJPmvOEr7b061NuZRtp7vC0+qqT2jU+Hf4AOZg==
-X-Google-Smtp-Source: ABdhPJw23rq2PFZKKvLfekhae3LHMVKsw8+B+XOVjXVssFdK0jks9D3htf9bhSkipJwf5bc9teGBopemEujtkApukpE=
-X-Received: by 2002:a2e:700a:: with SMTP id l10mr4951839ljc.368.1616662655294;
- Thu, 25 Mar 2021 01:57:35 -0700 (PDT)
+        bh=9hVRMkQ0tHL9uVXvm233X7lLnnZ2hno7sFzdBZfFdOI=;
+        b=KPth1S0LFuDM8UcathGPvctw9aRPRxf21GhJX1k0+zpE2AstvXmsfrNA8tiyP3G9yh
+         6X9SXuOLRky/vjRv/dkFrq6d1JPwJwHmyNcllwYhb9MRQWIl5MOkmsCh1KW+symxGvmI
+         J4qOVAp2Pd4btJFZUh8bEo/FC/q6BILPVwA4s4L4OUudTi+H9yxJJobCYstxA8dNQQea
+         /zsM9xZelMQDMnpv5HhKi/RhQSA4ZQkID9F2GvC13C8LOnKv1OnR2d5iDq4nCeLHsGts
+         DVLST/MI0vxID2nDubhxUwbnfWdsuBCTAMCCByoSqxm8WMDMvWZ7zHN6k+f4BE0sHDlI
+         Snuw==
+X-Gm-Message-State: AOAM532BqnU/3m84Wvd5zw0zdK7pP6DBnEz8ziFym6ZSBYt3dyI+uflC
+        uhDZhixssaOwabq2gg+VYx1JagnCi35tb/XNJ5x26g==
+X-Google-Smtp-Source: ABdhPJwaQP4N7d6gaupRLo89RKDhrzwRsCXYPYHFvTrbyAYIZ4AwHthQskkvtSOpJPpQUNbeNE169N/PfjYTs7sQF/w=
+X-Received: by 2002:a05:6512:243:: with SMTP id b3mr4510008lfo.529.1616662817810;
+ Thu, 25 Mar 2021 02:00:17 -0700 (PDT)
 MIME-Version: 1.0
 References: <1615969516-87663-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1615969516-87663-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CAHp75VehkqzDPQp87JL=hnCi_b4y0d3htpxRKBJ2q73AAAbBXA@mail.gmail.com>
- <SN6PR02MB3917DC23268D35870E85F37DBD699@SN6PR02MB3917.namprd02.prod.outlook.com>
- <CAHp75VcbxvVsQRP_0J0mXb5vPhBor7=cq-4nqMNb-+D_+O1cdA@mail.gmail.com> <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
-In-Reply-To: <SN6PR02MB39177CD8CA9BAACDA2E6453ABD659@SN6PR02MB3917.namprd02.prod.outlook.com>
+ <1615969516-87663-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+In-Reply-To: <1615969516-87663-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 25 Mar 2021 09:57:23 +0100
-Message-ID: <CACRpkdaJRm4x+RaAYhy5gv7Ss897=0U=mCTbXcVAO4wKrRKZEw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-To:     Sai Krishna Potthuri <lakshmis@xilinx.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
+Date:   Thu, 25 Mar 2021 10:00:06 +0100
+Message-ID: <CACRpkdaWrhEY1izoEm4=Hsysh3RWgNdLVpjDCt=ybd-qZProfA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: pinctrl: Add binding for ZynqMP
+ pinctrl driver
+To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
+        git <git@xilinx.com>, saikrishna12468@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 4:25 PM Sai Krishna Potthuri
-<lakshmis@xilinx.com> wrote:
-> [Andy]
+On Wed, Mar 17, 2021 at 9:26 AM Sai Krishna Potthuri
+<lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
 
-> > > > > +       PIN_CONFIG_IOSTANDARD = PIN_CONFIG_END + 1, };
-> > > >
-> > > > I'm lost here. What is IO standard exactly? Why it can't be in
-> > > > generic headers?
-> > > It represents LVCMOS 3.3 volts/ LVCMOS 1.8 volts.
-> > > Since this is specific to Xilinx ZynqMP platform, considered to be
-> > > added in the driver file.
-> >
-> > So, why can't we create a couple of bits to represent this voltages in the
-> > generic header and gain usability for others as well?
->
-> I see some drivers are maintaining the configuration list in the driver file, if
-> the configuration is specific to the driver.
->
-> We can move this to generic header if it is used by others as well.
-> Ok, will wait for Linus to comment.
-> >
-> > Linus?
+> +          io-standard:
+> +            description:
+> +              Selects the IO standard for MIO pins, this is driver specific.
+> +            $ref: "/schemas/types.yaml#/definitions/uint32"
+> +            enum: [0, 1]
 
-While it is fine to add custom pin config options to pin controllers
-for hopelessly idiomatic stuff, this does look like it should be
-using PIN_CONFIG_POWER_SOURCE with the voltage rail
-as parameter, see
-include/linux/pinctrl/pinconf-generic.h
-
-If you're not using that then tell us why.
+As concluded from driver review, replace this with
+power-source  which is already defined in
+Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
 
 Yours,
 Linus Walleij
