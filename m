@@ -2,88 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8462E349761
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 17:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DABE349783
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 18:02:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbhCYQ4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 12:56:36 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:45034 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbhCYQ4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 12:56:14 -0400
-Received: by mail-io1-f42.google.com with SMTP id v26so2558963iox.11;
-        Thu, 25 Mar 2021 09:56:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=+Byms4pK4Tr8p9R8BbBdKHq/oMBldoupWVsIn9Ftc2U=;
-        b=DkAZn/8PB6QpGcfGryvjMVDp9WjScHfECraFXPAtkNLAZlaZmWSQXI/aXXoPl5R7Xs
-         pOVN1RXS2in3NkE794/1AGLYjsofORC3ZZWj9b3No5Piao7B3YTBlJQd45ERwYUFMHIS
-         ZUB+EYJQu0tIS2Ly970kjj01rvkZDNzMopsdXKDqrr4RYRv4s6U72yoft/dezDHYL4bl
-         59AP/rjb6jahA5RxSJWtDopfu6oZbHxHVqpGMd4TSDbQauQP5ZB0xCR+h6ieQvyBSZWr
-         2QFevOf49I9Yo1Ct1KRhWK9TiP0k5UsoyS9jW+X2mV9HBgtpwV3eryUaO6kCwifudntb
-         Vj/Q==
-X-Gm-Message-State: AOAM531s6IAULgOycODLWwLuW8XQ9u826TZcjtsfx7ebhVML2Hv6RcfG
-        C6nlOfDYLmPRoLuOUCT3CQIhJyMN+g==
-X-Google-Smtp-Source: ABdhPJxyw7HD5gin3k4/HN2QE7YpG8aa4kqpYdKljz5sArazZpNs7Hl/KxaTDan9f5FMYUtPEI2+jw==
-X-Received: by 2002:a05:6602:2018:: with SMTP id y24mr7304821iod.74.1616691373920;
-        Thu, 25 Mar 2021 09:56:13 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id o23sm2994475ioo.24.2021.03.25.09.56.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 09:56:12 -0700 (PDT)
-Received: (nullmailer pid 1321893 invoked by uid 1000);
-        Thu, 25 Mar 2021 16:56:01 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-omap@vger.kernel.org, Tom Joseph <tjoseph@cadence.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-In-Reply-To: <20210325090936.9306-2-kishon@ti.com>
-References: <20210325090936.9306-1-kishon@ti.com> <20210325090936.9306-2-kishon@ti.com>
-Subject: Re: [PATCH 1/4] dt-bindings: PCI: ti, j721e: Add bindings to specify legacy interrupts
-Date:   Thu, 25 Mar 2021 10:56:01 -0600
-Message-Id: <1616691361.062216.1321892.nullmailer@robh.at.kernel.org>
+        id S229508AbhCYRBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 13:01:55 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37854 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229893AbhCYRBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 13:01:34 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12PH1Rkj023418;
+        Thu, 25 Mar 2021 12:01:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1616691687;
+        bh=iOXa94N/lcMrhiiEn2gZZ8IlLQcRwIJJ4yrJ0QTa8qE=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=BC0jl3aC7zGCMRqfW3EIRCDYjqKUgE39Z+XEilefhdyFyO6PHgyW3wM1nRnJMz/zE
+         aAB4kMOeRSZaZImu7+HEsaa7ouZny9RCQzyakbQS9tg0rZ/e05zrz3QWm2AuC2uwlZ
+         NLmgr9bINPi7x2niQ2tGmLa1SwHQps78ypnudN94=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12PH1RWW049348
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 25 Mar 2021 12:01:27 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 25
+ Mar 2021 12:01:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 25 Mar 2021 12:01:26 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12PH1Q2A019358;
+        Thu, 25 Mar 2021 12:01:26 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <kristo@kernel.org>, Suman Anna <s-anna@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Gowtham Tammana <g-tammana@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] AM64x HwSpinlock and Mailbox DT nodes
+Date:   Thu, 25 Mar 2021 12:01:25 -0500
+Message-ID: <161669163053.31495.2326767187646410972.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210322185430.957-1-s-anna@ti.com>
+References: <20210322185430.957-1-s-anna@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Mar 2021 14:39:33 +0530, Kishon Vijay Abraham I wrote:
-> Add bindings to specify interrupt controller for legacy interrupts.
+On Mon, 22 Mar 2021 13:54:27 -0500, Suman Anna wrote:
+> The following is a minor revision of the HwSpinlock and Mailbox DT nodes
+> series [1] for AM64x SoCs on both AM64x-EVM and AM64x-SK boards. The main
+> change is the squashing of the individual board dts patches into a single
+> patch as per your request, and rebasing on your current latest ti-k3-dts-next
+> branch HEAD commit e4e4e89482ea ("arm64: dts: ti: k3-am64-evm/sk: Add OSPI
+> flash DT node"). I have also picked up Gowtham's Reviewed-by tags.
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml  | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hi Suman Anna,
 
-yamllint warnings/errors:
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/pci/ti,j721e-pci-host.example.dts:59.39-40 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/pci/ti,j721e-pci-host.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1380: dt_binding_check] Error 2
+[1/3] arm64: dts: ti: k3-am64-main: Add hwspinlock node
+      commit: 8248d5b3249c8a361c6906e73513769064854252
+[2/3] arm64: dts: ti: k3-am64-main: Add mailbox cluster nodes
+      commit: ef1525761477c18b6b8fd420abb712e38492b480
+[3/3] arm64: dts: ti: k3-am642-evm/sk: Add IPC sub-mailbox nodes
+      commit: 7dd847523ed527cc8e90ca670675ea63d6239f64
 
-See https://patchwork.ozlabs.org/patch/1458255
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-pip3 install dtschema --upgrade
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Please check and re-submit.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
