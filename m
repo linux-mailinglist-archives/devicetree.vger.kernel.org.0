@@ -2,227 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F27E034888C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 357AE34889B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 06:41:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbhCYF1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 01:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46556 "EHLO
+        id S229508AbhCYFlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 01:41:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229730AbhCYF1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:27:33 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F989C06174A;
-        Wed, 24 Mar 2021 22:27:32 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id b14so689439lfv.8;
-        Wed, 24 Mar 2021 22:27:32 -0700 (PDT)
+        with ESMTP id S229493AbhCYFkx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 01:40:53 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34819C06174A;
+        Wed, 24 Mar 2021 22:40:53 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id v26so715423iox.11;
+        Wed, 24 Mar 2021 22:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZxHGrWsGgW6TprfvvINnFETzyCVg5VNycGG4rTWxoNQ=;
-        b=bVHd3TJE0aQYr1W2z0J8gP18eIX/35mjuD+fGxsdk4GaHOvt9ZOm2WAaftPUlxmGSU
-         Vx0RLY1ljrKuFdl4rp3Fog88g2sCSR6lhDUn8BOx4GFhpmumW334P69LJ4F4XGqT0iut
-         CLaO6TQwTFoKuzb4/r4Qbx8JbJi/VhsfaOO363ZnfwyGZUhXL5p5h5Rc1S3uEwWMxFkS
-         /y5d76oDV6rS2xuoLMTYF/aYD1Bz64ll8KLZ6Wp76Ll6TTixRGhM0bXaGPypFaA8hfZ7
-         FxCjjk8QO4pw0KRMNY7LSBg6OCSGPK6BZy1S0uaAVdGAWipcae4cMwPE243wGxgpgJ+1
-         vzvg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5ZJuZyG5EyUyV+P4POHr63Z6WBq4xJYiTvaFchgclQI=;
+        b=enGvwYzYJhFRdA5LENa9xHVplo2yJzy2G+NKOkmYljnWTZntst8oqdA1nmv1c7wIv0
+         P9WtFcTcloxZ61Ag8dkqBZR1jNFAzT8ox3S26lbBFBBHUJwfPsAnHEh6tvS8dbO3ehW0
+         LIjNgg5RG9mYg+mowcyU3juDB9eqzD1LuMI4bSzdRdU51xFcA+uU2QXhQcZRu/biGqbv
+         UWBlnyI9uvZNfFz5ENaAuBoTtKycJaJkb8C84ODshJ3F6yaRtyKCFKqhE083ecPfrGgX
+         ArGaadbQU1q0oPc2VY2JhAZ7A00J6tjfkd3ltsiZ6CNPrtnudsk8zMZuRhW+y3pKJPDJ
+         f5Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZxHGrWsGgW6TprfvvINnFETzyCVg5VNycGG4rTWxoNQ=;
-        b=SaxpYsN6rv8CahGT4kIGIxzi4TBUmBbQG5EN/YNciEOGJA2feuJldYWaaetlqPfjdZ
-         QjCP96XV+4Cn/NLjrWm3McU0C7DXRFJOMqyvkPmESIU5IJk0TIKYFX5porCKr2mPN7/N
-         k0+iKmpcPH/vzEP1xQEIgFugNkAcOGRb2SPvlEagyEDOmSs8kpq6nrTf0bDpWtVM8mZh
-         Gmc2l+deuDkiXoA6GbDqT105u1+psyKV2rOYig5S1xDjqlqo2vtNaKoZb8RMZxa5sUnv
-         mPsyvz3Ys3MivWMsyYJZ22AgBpX68Y7o9NEV6u3tMXDhpwRW4kNGt/QZc5nAOfwXHr3N
-         Mucw==
-X-Gm-Message-State: AOAM533zP1hzhreph6FNMB8sXZgpuCm2Auj5TG+XfCrwKggy/qxDBKDQ
-        zivc9w6BayUh91TkOeznkCI=
-X-Google-Smtp-Source: ABdhPJx9lhFLxGYM+AahSvAkF8cOfJkn8tZwFRFJBxg0JEMHz67z2DGN0eaXzeSnMbQPbyvDCNvu3w==
-X-Received: by 2002:ac2:48ab:: with SMTP id u11mr3913829lfg.79.1616650051160;
-        Wed, 24 Mar 2021 22:27:31 -0700 (PDT)
-Received: from [192.168.1.221] (87-92-162-34.rev.dnainternet.fi. [87.92.162.34])
-        by smtp.googlemail.com with ESMTPSA id l7sm578168lje.30.2021.03.24.22.27.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Mar 2021 22:27:30 -0700 (PDT)
-Subject: Re: [PATCH 2/2] dt-binding: leds: Document leds-multi-gpio bindings
-To:     Hermes Zhang <chenhui.zhang@axis.com>, pavel@ucw.cz,
-        dmurphy@ti.com, robh+dt@kernel.org
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chenhuiz@axis.com, lkml@axis.com,
-        kernel@axis.com
-References: <20210324075631.5004-1-chenhui.zhang@axis.com>
- <20210324075631.5004-3-chenhui.zhang@axis.com>
-From:   =?UTF-8?B?VmVzYSBKw6TDpHNrZWzDpGluZW4=?= <dachaac@gmail.com>
-Message-ID: <0648fff2-5b38-66da-7eb0-9969e517421f@gmail.com>
-Date:   Thu, 25 Mar 2021 07:27:33 +0200
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
- Gecko/20100101 Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5ZJuZyG5EyUyV+P4POHr63Z6WBq4xJYiTvaFchgclQI=;
+        b=fOwWxav8PEGYcHXeTUi2WfkqmJ02qfqeDrEzJEjNc33Z8CMKGIEuEwbDQAn/nJaxhE
+         8g5KIjMbbWuiYBnKeTLjkViUy8b3Ot8zxpAUzLIfAOTUcMOSGh6Ccn9pn7Eg4F32wXf4
+         rYZhU2rleO8v0pkLD4xLLd4oZg1pjc4sAYKKCNLfW2RkuhR+V1NRKcxsR54bUfv7Wq9X
+         OCCjSHOalDEpqFiK6Lzmut/fTGI5/pIiS8t3MO0/Ku9smYlX+j9JMb0dluaHoaB2FLXM
+         2Al98YGnUHzY197lIrx5vBv2ycNlC2cFbYtssW1F5gmrLaxev/02Oy2vdj+le3w9JKiJ
+         Ya6w==
+X-Gm-Message-State: AOAM5334uqZZOu+ps+2j7LFAd4Fe9U3H7wPzuzu1o6sAaIvE/q0Uhuos
+        8b+ofHZ4xMWBv+hbRsZBPRs+s8T+7pswWZ3R7AI=
+X-Google-Smtp-Source: ABdhPJxkLmUszGSoe7SOp77M3RTyBJYMqnmTo2KjwjsX9TQbTc9REpxEGUAdxAS9JWBtNdJjwNljleAbH0UU9cea6UU=
+X-Received: by 2002:a05:6638:d47:: with SMTP id d7mr6042430jak.2.1616650852714;
+ Wed, 24 Mar 2021 22:40:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210324075631.5004-3-chenhui.zhang@axis.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1615801436-3016-1-git-send-email-dillon.minfei@gmail.com>
+ <1615801436-3016-10-git-send-email-dillon.minfei@gmail.com>
+ <CAL9mu0Lfj+n4uk2rT8QnDtRveHn2gLx4ut6fLCByt0w9e08vwQ@mail.gmail.com>
+ <01c9f635-7b2b-fc9c-3cf9-6d7f425d683e@foss.st.com> <CAL9mu0LaWyhb0=CdJgrfq8v08P2cgKSx8g=u3MJU=dRQc8bThw@mail.gmail.com>
+ <20210324174525.GA3309477@robh.at.kernel.org>
+In-Reply-To: <20210324174525.GA3309477@robh.at.kernel.org>
+From:   dillon min <dillon.minfei@gmail.com>
+Date:   Thu, 25 Mar 2021 13:40:16 +0800
+Message-ID: <CAL9mu0+g0fRGNzZp7Mbxd0to6B1gSGvgFFtNcSzB=-h3Y6G92Q@mail.gmail.com>
+Subject: Re: [PATCH v3 9/9] dt-bindings: serial: stm32: add phandle
+ 'bluetooth' to fix dtbs_check warrning
+To:     Rob Herring <robh@kernel.org>,
+        Valentin CARON - foss <valentin.caron@foss.st.com>,
+        Alexandre TORGUE <Alexandre.torgue@foss.st.com>
+Cc:     rong.a.chen@intel.com, Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux@armlinux.org.uk, Vladimir Murzin <vladimir.murzin@arm.com>,
+        afzal.mohd.ma@gmail.com, gregkh@linuxfoundation.org,
+        erwan.leray@st.com, Erwan LE-RAY - foss <erwan.leray@foss.st.com>,
+        linux-serial@vger.kernel.org, lkp@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-See below.
+Thanks for the suggestion.
 
-On 24.3.2021 9.56, Hermes Zhang wrote:
-> From: Hermes Zhang <chenhuiz@axis.com>
-> 
-> Document the device tree bindings of the multiple GPIOs LED driver
-> Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml.
-> 
-> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
-> ---
->   .../bindings/leds/leds-multi-gpio.yaml        | 50 +++++++++++++++++++
->   1 file changed, 50 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-> new file mode 100644
-> index 000000000000..6f2b47487b90
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multiple GPIOs LED driver
-> +
-> +maintainers:
-> +  - Hermes Zhang <chenhuiz@axis.com>
-> +
-> +description:
-> +  This will support some LED made of multiple GPIOs and the brightness of the
-> +  LED could map to different states of the GPIOs.
-> +
-> +properties:
-> +  compatible:
-> +    const: multi-gpio-led
-> +
-> +  led-gpios:
-> +    description: Array of one or more GPIOs pins used to control the LED.
-> +    minItems: 1
-> +    maxItems: 8  # Should be enough
 
-We also have a case with multi color LEDs (which is probably a more 
-common than multi intensity LED. So I am wondering how these both could 
-co-exist.
+On Thu, Mar 25, 2021 at 1:45 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Mar 19, 2021 at 07:13:27PM +0800, dillon min wrote:
+> > Hi Alexandre,
+> >
+> > Thanks for the reply.
+> >
+> > On Fri, Mar 19, 2021 at 4:38 PM Alexandre TORGUE
+> > <alexandre.torgue@foss.st.com> wrote:
+> > >
+> > > Hi Dillon
+> > >
+> > > On 3/19/21 5:28 AM, dillon min wrote:
+> > > > No changes, Just loop lkp in.
+> > > >
+> > > >
+> > > > Hi lkp,
+> > > >
+> > > > Sorry for the late reply, thanks for your report.
+> > > > This patch is to fix the build warning message.
+> > > >
+> > > > Thanks.
+> > > > Regards
+> > > >
+> > > > On Mon, Mar 15, 2021 at 5:45 PM <dillon.minfei@gmail.com> wrote:
+> > > >>
+> > > >> From: dillon min <dillon.minfei@gmail.com>
+> > > >>
+> > > >> when run make dtbs_check with 'bluetoothi brcm,bcm43438-bt'
+> > > >> dts enabled on stm32h7, there is a warrning popup:
+> > > >>
+> > > >>>> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800: 'b=
+luetooth'
+> > > >>     does not match any of the regexes: 'pinctrl-[0-9]+'
+> > > >>
+> > > >> to make dtbs_check happy, so add a phandle bluetooth
+> > > >>
+> > > >> Fixes: 500cdb23d608 ("ARM: dts: stm32: Add STM32H743 MCU and STM32=
+H743i-EVAL board")
+> > > >> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> > > >> Reported-by: kernel test robot <lkp@intel.com>
+> > > >> ---
+> > > >>   Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 5 =
++++++
+> > > >>   1 file changed, 5 insertions(+)
+> > > >>
+> > > >> diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uar=
+t.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> > > >> index 8631678283f9..5e674840e62d 100644
+> > > >> --- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> > > >> +++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> > > >> @@ -50,6 +50,11 @@ properties:
+> > > >>       minItems: 1
+> > > >>       maxItems: 2
+> > > >>
+> > > >> +  bluetooth:
+> > > >> +    type: object
+> > > >> +    description: |
+> > > >> +      phandles to the usart controller and bluetooth
+> > > >> +
+> > >
+> > > Do we really need to add this "generic" property here ? You could tes=
+t
+> > > without the "AditionalProperties:False".
+> > Yes, indeed. we have no reason to add a generic 'bluetooth' property
+> > into specific soc's interface yaml.
+> > I can't just remove "AditionalProperties:False", else make
+> > O=3D../kernel-art/ dtbs dtbs_check will run into
+> >
+> > /home/fmin/linux/Documentation/devicetree/bindings/serial/st,stm32-uart=
+.yaml:
+> > 'oneOf' conditional failed, one must be fixed:
+> > 'unevaluatedProperties' is a required property
+> > 'additionalProperties' is a required property
+> > ...
+> >
+> > So , i will replace "AditionalProperties:False". with
+> > unevaluatedProperties: false, do you agree with this?
+>
+> This is okay as long as 'serial.yaml' is referenced, but will eventually
+> fail if not (unevaluatedProperties isn't actually implemented yet).
+>
+> > If so, i will send patch v4 later.
+>
+> Or you can do this:
+>
+> addtionalProperties:
+>   type: object
+>
+> Which means any other property has to be a node.
+>
+Okay, I just test your patch, it's fixed dtbs_check warrning as well.
+I will merge it to next submit, thanks.
 
-From: 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/leds-gpio.yaml?h=v5.12-rc4#n58
+Hi, Valentin CARON=EF=BC=8C
+Could you help to double check it, after my v5 submit ? thanks so much.
 
-         led-0 {
-             gpios = <&mcu_pio 0 GPIO_ACTIVE_LOW>;
-             linux,default-trigger = "disk-activity";
-             function = LED_FUNCTION_DISK;
-         };
+Regards.
 
-Now 'gpios' (and in LED context) and 'led-gpios' is very close to each 
-other and could easily be confused.
-
-Perhaps this could be something like:
-
-intensity-gpios = ...
-
-or even simplified then just to gpios = <...>
-
-> +
-> +  led-states:
-> +    description: |
-> +      The array list the supported states here which will map to brightness
-> +      from 0 to maximum. Each item in the array will present all the GPIOs
-> +      value by bit.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 1
-> +    maxItems: 16 # Should be enough
-> +
-> +required:
-> +  - compatible
-> +  - led-gpios
-> +  - led-states
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpios-led {
-> +      compatible = "multi-gpio-led";
-> +
-> +      led-gpios = <&gpio0 23 0x1>,
-> +                  <&gpio0 24 0x1>;
-> +      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
-> +    };
-> +...
-> 
-
-From: 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml?h=v5.12-rc4#n196
-
-There is example of multi color LED configuration. In example below I 
-used two-color LED with red and green as an example (which what we seem 
-to have most in use).
-
-Then if try to combine these into something like:
-
-# Multi color LED with single GPIO line per color
-multi-led@2 {
-   compatible = "gpio-leds";
-   color = <LED_COLOR_ID_MULTICOLOR>;
-   led@0 {
-     color = <LED_COLOR_ID_GREEN>;
-     gpios = <&mcu_pio 0 GPIO_ACTIVE_LOW>;
-   };
-
-   led@1 {
-     color = <LED_COLOR_ID_RED>;
-     gpios = <&mcu_pio 1 GPIO_ACTIVE_LOW>;
-   };
-};
-
-# And with intensity GPIOs:
-multi-led@2 {
-   compatible = "gpio-leds";
-   color = <LED_COLOR_ID_MULTICOLOR>;
-
-   led@0 {
-     color = <LED_COLOR_ID_GREEN>;
-     gpios = <&gpio0 23 0x1>,
-             <&gpio0 24 0x1>;
-     ... see below
-   };
-
-   led@1 {
-     color = <LED_COLOR_ID_RED>;
-     gpios = <&gpio0 25 0x1>,
-             <&gpio0 26 0x1>;
-     ... see below
-   };
-};
-
-# And then single GPIO with intensity GPIOs:
-led@2 {
-   compatible = "gpio-leds";
-   gpios = <&gpio0 23 0x1>,
-           <&gpio0 24 0x1>;
-   gpios-brightness-levels = <0 1 2 3>
-};
-
-I changed 'led-states' to 'gpios-brightness-levels' as it describe more 
-that this is about brightness and not some other state information.
-
-How would this sound?
-
-Thanks,
-Vesa Jääskeläinen
+Valent
+> Rob
