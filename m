@@ -2,189 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37C67349606
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 16:48:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A6B349610
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 16:51:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231550AbhCYPsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 11:48:18 -0400
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:38665 "EHLO
-        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbhCYPrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 11:47:45 -0400
-Received: by mail-ua1-f46.google.com with SMTP id h34so646723uah.5;
-        Thu, 25 Mar 2021 08:47:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VORyg37KyhTM2pEju2vrHYnS2b444LAJS39AyI1tLyU=;
-        b=NIbnJ/1DUbHA/K0FQzgEn+Ml5S10WVEPFyT3/1vYjTjpW6U7GEpOwvhiMco+9NXhUn
-         pM8GXczkW4Y+qLQv1zdt3fRLRdpmBulI+eYp9vlx1uUh7Ze2zmwdIVUbIYzVwkSjK2nE
-         XdzH1O5k/IaC7hnqpDWr9Je+wFj7T7EwkhTp77XknpPIhumlQIuI2QqP6K9tB9s7M1N/
-         n+sT0E/xaUFXeVhmMoF2VeKcg7306o62/30lfniz+RxDsd6psnA7u8Cts4LD7E9Vn5MP
-         Ga02gLhpGFlRTMhcgphZpOk0rNhH+gqPzrGRCt80N8pQKRbiOjnKsp6qKsNXwNb2f10k
-         FOQg==
-X-Gm-Message-State: AOAM532az4ky0wLWB4fzXHMsA1IsqEZ5xy9OqfmLSj0GtIpE0Z8nTwgC
-        qVTxrGTkph8BWpxvBKMfCwjTKFuPIIu1Q34jfVc=
-X-Google-Smtp-Source: ABdhPJz9ribtsSNo45nfPsfI32D2+XmTQUPrUgHfSYuhDyGOQqll7eBC8nUPPybEDHZ0rx9LbEO15UIVaXecG/fpF7Q=
-X-Received: by 2002:ab0:2c16:: with SMTP id l22mr5452914uar.100.1616687264304;
- Thu, 25 Mar 2021 08:47:44 -0700 (PDT)
+        id S230298AbhCYPu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 11:50:28 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:50871 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230229AbhCYPuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 11:50:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1616687408; x=1648223408;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=PJSaq6SBrfJT7eP4m6kYKHp8nCSUZQCywIVVXvt1GnU=;
+  b=kaz+yUL4HCb9HbT/tg7cnCEiyIe2qU8kqMdNTgfKZzeQ7hHTbqZK4kHw
+   pzcdbZJ4Mh+ofVPR/7UxnP7eNykqjeJqU8O7ZUpgjOy3e9moQlkHo+0NV
+   gSDp6FHWDet4JkY7TjTzUpYu7ZLTniOr55iv6HnvQgdmG1AyThXWeq5ER
+   Mr+hgKDatW1Py5nOG6t5FDQazOA8cOJYcd+CEesm54mnf3m1IJlw+an9u
+   eMYq4hDSAGCZ7t5+nL/j/VEcYRxo+98nVwQJElg85iJu8Esf+3Z/fJer9
+   9+QVsIEEpgzzmX3gWYd5Cv3ZyHqGHLaT/kzwmroFRTt5AiM3Na5VKVGRa
+   Q==;
+IronPort-SDR: 52+3TdEhxR2RSpXIIiHEIbA+hoS0c4fM8zLxrxWURhsmEezLX2De/V2Y2e1duYCxarDcbyJZea
+ N5xpF0Z5rVGQrDzWdWAj1i8mFNEtqMWyx1DlSbim5uxFsk7VtHMlHITJwW6f5dl47H7xGSiiDQ
+ 8AyDhqGGNaZr9H/pcaWjjzQSao6Whtenv+haOYj+J4GgRU05hT5HernK2IH37565bh++TBQnNj
+ EYOiaGrOSFAQ6DhO8tBo/QBYrMTK1XZVhJy9vPKOoWwbglAdJsW5FuvKP1Eczn8olqyzX0aViw
+ ECE=
+X-IronPort-AV: E=Sophos;i="5.81,277,1610434800"; 
+   d="scan'208";a="114640813"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Mar 2021 08:50:07 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 25 Mar 2021 08:50:07 -0700
+Received: from [10.171.246.120] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 25 Mar 2021 08:50:05 -0700
+Subject: Re: [PATCH v2 00/10] Microship SAMA5D4 VPU support et al
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Emil Velikov <emil.l.velikov@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-media@vger.kernel.org>,
+        linux-rockchip <linux-rockchip@lists.infradead.org>
+References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
+ <5ecf1d3b8a8f88d6387a1549faeb4f4180cf5d4b.camel@collabora.com>
+ <CACvgo51uNyQgzGdW=f-0wxvjv-+OD1p7E4DJXRzu1GvnAHbcCQ@mail.gmail.com>
+ <50b3b4b3-6c5b-3f1e-3499-c88574ce9f74@microchip.com>
+ <YFxObibxqK23WTMf@piout.net>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <6567d6e3-060e-1d94-ef53-60e524bae815@microchip.com>
+Date:   Thu, 25 Mar 2021 16:50:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <20210205222644.2357303-9-saravanak@google.com>
- <20210210114435.122242-1-tudor.ambarus@microchip.com> <CGME20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e@eucas1p2.samsung.com>
- <20210210114435.122242-2-tudor.ambarus@microchip.com> <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com>
-In-Reply-To: <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 25 Mar 2021 16:47:33 +0100
-Message-ID: <CAMuHMdUaROcMbjAM1fu8und4g=BFZe3C3f8-rbB3q+85RWvgeA@mail.gmail.com>
-Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Saravana Kannan <saravanak@google.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YFxObibxqK23WTMf@piout.net>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On 25/03/2021 at 09:48, Alexandre Belloni wrote:
+> On 24/03/2021 14:44:14+0100, Nicolas Ferre wrote:
+>> Now, when we have the tag from Rob, how to coordinate these different
+>> pieces? Will it go through the media git tree? Will we benefit from a stable
+>> branch to share or will we just have to wait for the driver to hit Mainline
+>> before adding the defconfig and DT patches?
+>>
+> 
+> I think the defconfig and dt patches can go through at91 as soon as we
+> get Rob's ack. There is no build dependency so it can be taken at any
+> time. Worst case, we end up with a selected config option that doesn't
+> exist.
 
-On Thu, Mar 25, 2021 at 2:32 PM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
-> On 10.02.2021 12:44, Tudor Ambarus wrote:
-> > This is a follow-up for:
-> > commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
-> >
-> > The above commit updated the deprecated of_clk_add_provider(),
-> > but missed to update the preferred of_clk_add_hw_provider().
-> > Update it now.
-> >
-> > Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
->
-> This patch, which landed in linux-next as commit 6579c8d97ad7 ("clk:
-> Mark fwnodes when their clock provider is added") causes the following
-> NULL pointer dereference on Raspberry Pi 3b+ boards:
->
-> --->8---
->
-> raspberrypi-firmware soc:firmware: Attached to firmware from
-> 2020-01-06T13:05:25
-> Unable to handle kernel NULL pointer dereference at virtual address
-> 0000000000000050
-> Mem abort info:
->    ESR = 0x96000004
->    EC = 0x25: DABT (current EL), IL = 32 bits
->    SET = 0, FnV = 0
->    EA = 0, S1PTW = 0
-> Data abort info:
->    ISV = 0, ISS = 0x00000004
->    CM = 0, WnR = 0
-> [0000000000000050] user address but active_mm is swapper
-> Internal error: Oops: 96000004 [#1] PREEMPT SMP
-> Modules linked in:
-> CPU: 0 PID: 10 Comm: kworker/0:1 Not tainted 5.12.0-rc4+ #2764
-> Hardware name: Raspberry Pi 3 Model B (DT)
-> Workqueue: events deferred_probe_work_func
-> pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=--)
-> pc : of_clk_add_hw_provider+0xac/0xe8
-> lr : of_clk_add_hw_provider+0x94/0xe8
-> sp : ffff8000130936b0
-> x29: ffff8000130936b0 x28: ffff800012494e04
-> x27: ffff00003b18cb05 x26: ffff00003aa5c010
-> x25: 0000000000000000 x24: 0000000000000000
-> x23: ffff00003aa1e380 x22: ffff8000106830d0
-> x21: ffff80001233f180 x20: 0000000000000018
-> x19: 0000000000000000 x18: ffff8000124d38b0
-> x17: 0000000000000013 x16: 0000000000000014
-> x15: ffff8000125758b0 x14: 00000000000184e0
-> x13: 000000000000292e x12: ffff80001258dd98
-> x11: 0000000000000001 x10: 0101010101010101
-> x9 : ffff80001233f288 x8 : 7f7f7f7f7f7f7f7f
-> x7 : fefefefeff6c626f x6 : 5d636d8080808080
-> x5 : 00000000006d635d x4 : 0000000000000000
-> x3 : 0000000000000000 x2 : 540eb5edae191600
-> x1 : 0000000000000000 x0 : 0000000000000000
-> Call trace:
->   of_clk_add_hw_provider+0xac/0xe8
->   devm_of_clk_add_hw_provider+0x5c/0xb8
->   raspberrypi_clk_probe+0x110/0x210
->   platform_probe+0x90/0xd8
->   really_probe+0x108/0x3c0
->   driver_probe_device+0x60/0xc0
->   __device_attach_driver+0x9c/0xd0
->   bus_for_each_drv+0x70/0xc8
->   __device_attach+0xec/0x150
->   device_initial_probe+0x10/0x18
->   bus_probe_device+0x94/0xa0
->   device_add+0x47c/0x780
->   platform_device_add+0x110/0x248
->   platform_device_register_full+0x120/0x150
->   rpi_firmware_probe+0x158/0x1f8
+Agreed, and it simplify things.
 
-> This patch mainly revealed that clk/bcm/clk-raspberrypi.c driver calls
-> devm_of_clk_add_hw_provider(), with a device pointer, which has a NULL
-> dev->of_node. I'm not sure if adding a check for a NULL np in
-> of_clk_add_hw_provider() is a right fix, though.
+My only concern is with triggering some of the bots while checking for 
+DT compatible string definition.
 
-raspberrypi_clk_probe():
+Regards,
+   Nicolas
 
-        /*
-         * We can be probed either through the an old-fashioned
-         * platform device registration or through a DT node that is a
-         * child of the firmware node. Handle both cases.
-         */
 
-So the real issue is rpi_register_clk_driver() creating a platform
-device for the firmware clocks if they're missing in DT.
-
-Then, the clock driver calls devm_of_clk_add_hw_provider(),
-regardless of a DT node being present or not.
-I'm wondering how power consumers are supposed to refer
-to these firmware clocks, without a DT node?
-
-> > --- a/drivers/clk/clk.c
-> > +++ b/drivers/clk/clk.c
-> > @@ -4594,6 +4594,8 @@ int of_clk_add_hw_provider(struct device_node *np,
-> >       if (ret < 0)
-> >               of_clk_del_provider(np);
-> >
-> > +     fwnode_dev_initialized(&np->fwnode, true);
-> > +
-> >       return ret;
-> >   }
-> >   EXPORT_SYMBOL_GPL(of_clk_add_hw_provider);
-
-Gr{oetje,eeting}s,
-
-                        Geert
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Nicolas Ferre
