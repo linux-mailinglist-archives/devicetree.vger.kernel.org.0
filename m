@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA493495CB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 16:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42FB73495F2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Mar 2021 16:47:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbhCYPkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 11:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbhCYPkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 11:40:22 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F1FC06174A;
-        Thu, 25 Mar 2021 08:40:22 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id bx7so2884438edb.12;
-        Thu, 25 Mar 2021 08:40:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BVovXqBbk0wGC2HDbPVyA2PvUhMQtNnpOLKoi6ckjaU=;
-        b=iFeLm+OF/avp81DNNgzalw+tsL7iEPbBLPRqw3QAv2eEf+f749073yoE76q/f4hx8P
-         Vw24m/ksowquw8kplSXYB+L0ibKnbnILK1cPUwO73Rmg7ivRPbbM2XvMzdwn5Gp7y/XT
-         xM6/pSXNvFwDpf8JI2yHsGLpuN4gJdQ3/ouesF9hmV4ZC6mZEjuNuFJuTHzqPjVoBN9X
-         Y9SlykxFTTSawYVTtXAUUtmTUsHM4uZ6RWTtp7PzmePktV9KPzBPzmvhSCPiJUTUp2Pb
-         Rs4Cz/vOU5uumF/DmWhE3FHqDX7ary5poTrZbTHlqXxfODwXPp1wgqZD266Mi++tcku2
-         vp1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BVovXqBbk0wGC2HDbPVyA2PvUhMQtNnpOLKoi6ckjaU=;
-        b=PtDeg7PGelUbJrRTyC6+tT9aWwlrvvCLOTFZwwZoJ1HaFJlsqs3CML3G4GEgTgbFKA
-         /HU/Zx7ZhaItfvMMTk4Dt+3Yvq8RprLaj0mU9/G7ghgc5jMVwBXK9wCnHcjWfOI7N2bk
-         YiEcR0p68mPa2NM1YGVcf/4wJD56vxfEhnmliJ3oHXeIHcAY+z2kYiJkMOkeq14l/Wct
-         YKEIdQeysZhsilsb6wFW41Iy3fkhyr5579TQcDn7JwncgZbWhmMB3Jwsw3TTOdL87gBD
-         iZXiTWMf3yN6A9nUWY5frF34Jbhv5I4BSMWEQQDsIiLSxXXE7TRlRo8yR+W9MAv16kx/
-         1BlA==
-X-Gm-Message-State: AOAM532R0XBduIYKeRKlux9fckXtKsctGPml7+P5/Pd+HLhHoBb6RTHY
-        6UADAtgzZAZIc7SusiPReg3VYQ8We8L/r8P6YHg=
-X-Google-Smtp-Source: ABdhPJxvxq8ahShyOo02COOTW4cd6bEFSU4bQBwGxzqlBBO4cZcfia1CXqKD5Wfaga/VcucZpJdv5Evt9QNBzFKwyo0=
-X-Received: by 2002:aa7:c6da:: with SMTP id b26mr9920197eds.254.1616686820913;
- Thu, 25 Mar 2021 08:40:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210325124225.2760-1-linux.amoon@gmail.com> <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
-In-Reply-To: <4ce8997b-9f20-2c77-2d75-93e038eec6d8@gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 25 Mar 2021 21:10:10 +0530
-Message-ID: <CANAwSgS4SLdYwY9n6uNci+rgE1Q4UAzCy29gX+CL4patDgH15A@mail.gmail.com>
-Subject: Re: [PATCHv1 0/6] Amlogic Soc - Add missing ethernet mdio compatible string
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S231327AbhCYPrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 11:47:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46226 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231296AbhCYPqs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Mar 2021 11:46:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 44320619A3;
+        Thu, 25 Mar 2021 15:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616687207;
+        bh=BrV2f8UV7DfwZLtIuKvf80tdpFqcOSMeqyM1Lf9HasI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IonT1CEzd6aeLfaCrpGvBiZdh8mueXNygqKIfPPoxYP1zuPm6hxtqBrJS4DiPukEe
+         aWCSNToM7PHzds0P0zxkXTS34u8XljYqHau+Yk9nozL3GC05uuPN723yq3KIisSIh7
+         okrAoTh0X+vNrqlYqLwEDYO3k98mqUssxJospVus9cWJLYClLIRans2hVoEX+1I/Qv
+         j/fE8YU/TPePj9fQM+yz9NP1cwNME9MNUZt8ZSbIH8D3ZDNs/Y2KyMFQrGYRirRMZk
+         lvB0q3d7pgIwLTg2cRiTbePkr9dhRSmUHIjr0ckeS1GfwGz6ehi0IztEi7YH2pEekk
+         a/h+1zthdJaZw==
+Received: by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1lPSC4-001FYj-3B; Thu, 25 Mar 2021 16:46:44 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        Atul Gopinathan <leoatul12@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>, Yu Chen <chenyu56@huawei.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-staging@lists.linux.dev
+Subject: [PATCH v5 0/7] Move Hisilicon 6421v600 SPMI and USB drivers out of staging
+Date:   Thu, 25 Mar 2021 16:46:34 +0100
+Message-Id: <cover.1616686958.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiner
+Hi Greg,
+
+Those are the remaining patches that are needed for the USB to work
+with Hikey970. This is based on the top of next-20210323.
+
+The main change from the previous patch series is that a new patch
+was added:
+  - staging: hisilicon,hisi-spmi-controller.yaml cleanup schema
+
+It does some changes at the DT binding file, as requested by Rob.
+
+My understanding from the discussions we had, back on Feb, is that
+those patches will be merged via the staging tree.
+
+Thanks!
+Mauro
+
+Mauro Carvalho Chehab (7):
+  phy: phy-hi3670-usb3: move driver from staging into phy
+  
+  spmi: hisi-spmi-controller: move driver from staging
+  mfd: hi6421-spmi-pmic: move driver from staging
+  regulator: hi6421v600-regulator: move it from staging
+  dts: hisilicon: add support for the PMIC found on Hikey 970
+  dts: hisilicon: add support for USB3 on Hikey 970
+
+ .../mfd}/hisilicon,hi6421-spmi-pmic.yaml      |   0
+ .../bindings/phy/hisilicon,hi3670-usb3.yaml   |   0
+ .../spmi}/hisilicon,hisi-spmi-controller.yaml |  18 +--
+ MAINTAINERS                                   |  23 +++-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 124 +++++++++++++++---
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  58 ++++++++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  87 ++++++++++++
+ drivers/mfd/Kconfig                           |  16 +++
+ drivers/mfd/Makefile                          |   1 +
+ .../hikey9xx => mfd}/hi6421-spmi-pmic.c       |   0
+ drivers/phy/hisilicon/Kconfig                 |  10 ++
+ drivers/phy/hisilicon/Makefile                |   1 +
+ .../hisilicon}/phy-hi3670-usb3.c              |   0
+ drivers/regulator/Kconfig                     |   9 ++
+ drivers/regulator/Makefile                    |   1 +
+ .../hi6421v600-regulator.c                    |   0
+ drivers/spmi/Kconfig                          |   9 ++
+ drivers/spmi/Makefile                         |   1 +
+ .../hikey9xx => spmi}/hisi-spmi-controller.c  |   0
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/hikey9xx/Kconfig              |  52 --------
+ drivers/staging/hikey9xx/Makefile             |   7 -
+ drivers/staging/hikey9xx/TODO                 |   5 -
+ 24 files changed, 327 insertions(+), 98 deletions(-)
+ rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
+ rename drivers/staging/hikey9xx/phy-hi3670-usb3.yaml => Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml (100%)
+ rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/spmi}/hisilicon,hisi-spmi-controller.yaml (89%)
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
+ rename drivers/{staging/hikey9xx => phy/hisilicon}/phy-hi3670-usb3.c (100%)
+ rename drivers/{staging/hikey9xx => regulator}/hi6421v600-regulator.c (100%)
+ rename drivers/{staging/hikey9xx => spmi}/hisi-spmi-controller.c (100%)
+ delete mode 100644 drivers/staging/hikey9xx/Kconfig
+ delete mode 100644 drivers/staging/hikey9xx/Makefile
+ delete mode 100644 drivers/staging/hikey9xx/TODO
+
+-- 
+2.30.2
 
 
-On Thu, 25 Mar 2021 at 18:49, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On 25.03.2021 13:42, Anand Moon wrote:
-> > On most of the Amlogic SoC I observed that Ethernet would not get
-> > initialize when try to deploy the mainline kernel, earlier I tried to
-> > fix this issue with by setting ethernet reset but it did not resolve
-> > the issue see below.
-> >       resets = <&reset RESET_ETHERNET>;
-> >       reset-names = "stmmaceth";
-> >
-> > After checking what was the missing with Rockchip SoC dts
-> > I tried to add this missing compatible string and then it
-> > started to working on my setup.
-> >
-> > Also I tried to fix the device tree binding to validate the changes.
-> >
-> > Tested this on my Odroid-N2 and Odroid-C2 (64 bit) setup.
-> > I do not have ready Odroid C1 (32 bit) setup so please somebody test.
-> >
->
-> When working on the Odroid-C2 I did not have such a problem.
-> And if you look at of_mdiobus_child_is_phy() and
-> of_mdiobus_register_phy() you'll see that your change shouldn't be
-> needed.
-I will check this out, thanks for your inputs.
->
-> Could you please elaborate on:
-> - What is the exact problem you're facing? Best add a dmesg log.
-   1> I am aware all the distro kernel I have tested ethernet will work file
-   2> My issue is when I compile the mainline kernel with the default setting,
-       Ethernet interface will not receive any DHCP IP address from the router
-       Although the Ethernet interface comes up properly.
-      This does not happen frequently but I observed this at my end.
-  3> I tried to collect logs but I did not observe any kernel issue
-like panic or warning.
-
-> - Which kernel version are you using?
-     I am using the mainline kernel with default settings.
-
--Anand
