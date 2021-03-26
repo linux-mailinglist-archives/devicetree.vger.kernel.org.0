@@ -2,182 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C5B349F36
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:56:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6857D349F3E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbhCZBzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 21:55:54 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:50863 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230361AbhCZBza (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Mar 2021 21:55:30 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id F41885C007B;
-        Thu, 25 Mar 2021 21:55:29 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Thu, 25 Mar 2021 21:55:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=4fWfZpS9KZS+8
-        Nt8/LwQGBOC8swx8HY12NB6LCJixY8=; b=ojNjgozSdRCqqWE/qcbG3fEu2plGB
-        0EL6QcWjmjE334JpyOrDxiLTxcQ1r7sC5dFcHAQEaXEynyTz45twS2R5BIQ0BWt3
-        yoKRcpw69MJzVu0+XbsS6lw4pFcXlYToCjvW3NYIPHhXplUq2zMnUal3tkLbRURT
-        skIANV1XdAdeDk2kn5aR6EDOnUFTeeCAtqjR6VbG8oQJOKz5UWORLYd4lHe5Wfyc
-        PdAvHMXPt3SD+9AkXEhsd+f2Mr8pu8owiJ5Z7VPVsE1BaKyrZSNDJqnDoMEV6zC6
-        50z/UMfghP2INJAMnZ+rBW6AC+UApA+piQ+HRB34S8Txuoj/hEGxbYgXg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=4fWfZpS9KZS+8Nt8/LwQGBOC8swx8HY12NB6LCJixY8=; b=T+xcO1jb
-        A0XU2JsglMZdiTzy6XTMPsVUJ9bYX2KlkAHUFvdtEyms2iCwRYzf/ekVLWRHtz2I
-        UDI0YQc6jhJ5HJo4RPed90a2kW/XEbufcqALBSt+syvRhZrBtyC5xosqVF3/MYd+
-        eM3nxQmap9FpRnImkQO2LDQoqE21+Q23c/SG0iZgP9hBNeWKNJhVN0A9VwRIL5tn
-        gjCS9OQEzt8NvltI3qPKxq20hUFpejqgpHTDKqLw2cwDYBSvJUr7zfzRhG9C9pIR
-        2cxOavA4JG+SlJwecbz/UEC8AxFops7bIqX9PrDfbUSM+8RPeQpKmeRTQTOYAtkO
-        nhVwBLvvcMqp8w==
-X-ME-Sender: <xms:ET9dYG7iWgvVx-f0_pcK4AeoSA4Sc9Tt7tPPDMm38B7HBVqxAeAQJg>
-    <xme:ET9dYLl1LxKFw_MtaeJpcmpZEZJ3P5AZ-5AJQn5AHtzdCYAm7pqSQrlet6NdLUi4m
-    EKTFfHoKpcXgffdmRE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehuddggedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgr
-    ihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeeggedtteejke
-    eggeeugfehueevudegvdetjeeviedugedvtdekffekhedtteduhfenucfkphepudelfedr
-    vdejrddufedrvdefheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:ET9dYB5X-obEF3FOW9h2PwbPSJk-5q7KbA0n3pgLvi8qapkq1CJ_4w>
-    <xmx:ET9dYMTjoRJ-L-icc2k8C6I_WpmjzhV3AHoVmLzLfLL4twDyzAqIww>
-    <xmx:ET9dYPyJQivKVrN9btWFWIaPPHBOE_EzPqmchaZ9zgDrF0vB_euwbQ>
-    <xmx:ET9dYNWbqcWlZhgixMNfWccxpfXLpPDqWgd5uhTBKa1ZYPHJlIAIvA>
-Received: from ThinkpadX1Yoga3.localdomain (unknown [193.27.13.235])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E0AE91080067;
-        Thu, 25 Mar 2021 21:55:28 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v4 5/5] ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
-Date:   Thu, 25 Mar 2021 21:55:11 -0400
-Message-Id: <20210326015511.218-5-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210326015511.218-1-alistair@alistair23.me>
-References: <20210326015511.218-1-alistair@alistair23.me>
+        id S230331AbhCZB44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 21:56:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230502AbhCZB43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:56:29 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1981AC06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 18:56:29 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 8so4275125ybc.13
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 18:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hrB2LTPaVmnjj9DVoKtdE6xPWCuIJ5kDPF5kkoCFRTc=;
+        b=JnpMerTMuvdTNr3jlTTTkhRSY71aQqnFp8O842+Bvp2NmhzWfvYc+uGEpNKJsdwnRM
+         e1yOgfdB+lrlo+kBUD1j/mzMjn53F9cik3CYhSZDCKAZW5nAp5jb4I6AtpDMwctfjLG8
+         5GhsCMKEfKscaztp1K6PellN2Eg/2nUM9QRb4u+2aLaE/ycCXjs6drgAhbkJHZhKuz2L
+         zFbvp4v2Ao83LlrOm/mS/VXOBwPe4K4Ws6dW+1+vPun7VqiyhE4+4heQO25CxGzv/e+X
+         Ia6Gs7vHxIjTM/2YrXaXm+n63tjtC9814owBgPYWw6jLS7kFDSiztEN/HZM/pGe333rJ
+         ufKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hrB2LTPaVmnjj9DVoKtdE6xPWCuIJ5kDPF5kkoCFRTc=;
+        b=SDZtYRkUMPoOVvBvmsx5xubxIrxWK3ocXRsBpzE+rFSnp287kvo5CFe12iI61Mm+qg
+         gems/bx8FzMIqndT73OJYoqh2+v2wEG6wnaE23y8Kc2VpdJ3+YcYw4zUnO8JJ/iMKxO1
+         xrvGSQHG4tuaXJRDz583A2zuE8me4Iu2RKIP4pUpNVLo2B6tu2h8dN/QrLM5J4gckjsL
+         ePMi4rPmeevhsLIzDub1FQ+3BbZqxyECLQ33XYHSarzDg4P5Hitu1n1m/fhoGfqRozr0
+         6PCtbkxg/Yn0xacf5DqlXVL30bWfDbWyR7OvTOxFU3F00sAO2dBQVnrsBjyVEb/T1O0y
+         PPZQ==
+X-Gm-Message-State: AOAM530RsQjjf38Ur1D2yKEwtiPbvBkGd9ELo7Pd2G6ahpQECeWtgGvM
+        BgBZ7uBv6wooLp5aVCxE+f7xDEwIKVnjU9G+1XLq4A==
+X-Google-Smtp-Source: ABdhPJxB7xf3Rq3TkTdpnCGF1jh//fwqvy8Tw1KzgPM4FI1tQ/iWxL5DcuEXT+HJIN5Qz+6iVFT0wDINRX4gmrarveI=
+X-Received: by 2002:a25:d3cf:: with SMTP id e198mr16063062ybf.228.1616723788120;
+ Thu, 25 Mar 2021 18:56:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210316215123.GA3712408@robh.at.kernel.org> <20210318210318.144961-1-sebastian.reichel@collabora.com>
+ <20210326012720.GA2113788@robh.at.kernel.org>
+In-Reply-To: <20210326012720.GA2113788@robh.at.kernel.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 25 Mar 2021 18:55:52 -0700
+Message-ID: <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
+Subject: Re: [RFC] clk: add boot clock support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
-reMarkable2.
+On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
+>
+> +Saravana
+>
+> On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
+> > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
+> > is provided by an I2C RTC. Specifying this properly results in a
+> > circular dependency, since the I2C RTC (and thus its clock) cannot
+> > be initialized without the i.MX6 clock controller being initialized.
+> >
+> > With current code the following path is executed when i.MX6 clock
+> > controller is probed (and ckil clock is specified to be the I2C RTC
+> > via DT):
+> >
+> > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
+> > 2. of_clk_get_by_name(ccm_node, "ckil");
+> > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
+> > 4. of_clk_get_hw(ccm_node, 0, "ckil")
+> > 5. spec = of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
+> > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
+> > 7. error is propagated back, i.MX6q clock controller is probe deferred
+> > 8. I2C controller is never initialized without clock controller
+> >    I2C RTC is never initialized without I2C controller
+> >    CKIL clock is never initialized without I2C RTC
+> >    clock controller is never initialized without CKIL
+> >
+> > To fix the circular dependency this registers a dummy clock when
+> > the RTC clock is tried to be acquired. The dummy clock will later
+> > be unregistered when the proper clock is registered for the RTC
+> > DT node. IIUIC clk_core_reparent_orphans() will take care of
+> > fixing up the clock tree.
+> >
+> > NOTE: For now the patch is compile tested only. If this approach
+> > is the correct one I will do some testing and properly submit this.
+> > You can find all the details about the hardware in the following
+> > patchset:
+> >
+> > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-sebastian.reichel@collabora.com/
+> >
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  .../bindings/clock/clock-bindings.txt         |   7 +
+> >  drivers/clk/clk.c                             | 146 ++++++++++++++++++
+> >  2 files changed, 153 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > index f2ea53832ac6..66d67ff4aa0f 100644
+> > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list of strings of clock output signal
+> >                   Clock consumer nodes must never directly reference
+> >                   the provider's clock-output-names property.
+> >
+> > +boot-clock-frequencies: This property is used to specify that a clock is enabled
+> > +                     by default with the provided frequency at boot time. This
+> > +                     is required to break circular clock dependencies. For clock
+> > +                     providers with #clock-cells = 0 this is a single u32
+> > +                     with the frequency in Hz. Otherwise it's a list of
+> > +                     clock cell specifier + frequency in Hz.
+>
+> Seems alright to me. I hadn't thought about the aspect of needing to
+> know the frequency. Other cases probably don't as you only need the
+> clocks once both components have registered.
+>
+> Note this could be lost being threaded in the other series.
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
-v3:
- - Change patch title
-v2:
- - N/A
+I read this thread and tried to understand it. But my head isn't right
+today (lack of sleep) so I couldn't wrap my head around it. I'll look
+at it again after the weekend. In the meantime, Sebastian can you
+please point me to the DT file and the specific device nodes (names or
+line number) where this cycle is present?
 
- arch/arm/boot/dts/imx7d-remarkable2.dts | 61 +++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+Keeping a clock on until all its consumers probe is part of my TODO
+list (next item after fw_devlink=on lands). I already have it working
+in AOSP, but need to clean it up for upstream. fw_devlink can also
+break *some* cycles (not all). So I'm wondering if the kernel will
+solve this automatically soon(ish). If it can solve it automatically,
+I'd rather not add new DT bindings because it'll make it more work for
+fw_devlink.
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 791ad55281cc..37834bc7fc72 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -22,6 +22,27 @@ memory@80000000 {
- 		reg = <0x80000000 0x40000000>;
- 	};
- 
-+	thermal-zones {
-+		epd-thermal {
-+			thermal-sensors = <&epd_pmic>;
-+			polling-delay-passive = <30000>;
-+			polling-delay = <30000>;
-+			trips {
-+				trip0 {
-+					temperature = <49000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <50000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	reg_brcm: regulator-brcm {
- 		compatible = "regulator-fixed";
- 		regulator-name = "brcm_reg";
-@@ -86,6 +107,32 @@ wacom_digitizer: digitizer@9 {
- 	};
- };
- 
-+&i2c4 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	pinctrl-1 = <&pinctrl_i2c4>;
-+	status = "okay";
-+
-+	epd_pmic: sy7636a@62 {
-+		compatible = "silergy,sy7636a";
-+		reg = <0x62>;
-+		status = "okay";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_epdpmic>;
-+		#thermal-sensor-cells = <0>;
-+
-+		epd-pwr-good-gpios = <&gpio6 21 GPIO_ACTIVE_HIGH>;
-+		regulators {
-+			compatible = "silergy,sy7636a-regulator";
-+			reg_epdpmic: vcom {
-+				regulator-name = "vcom";
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -179,6 +226,13 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
- 		>;
- 	};
- 
-+	pinctrl_epdpmic: epdpmicgrp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21 0x00000074
-+			MX7D_PAD_ENET1_RGMII_TXC__GPIO7_IO11 0x00000014
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
-@@ -186,6 +240,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
- 		>;
- 	};
- 
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C4_SDA__I2C4_SDA		0x4000007f
-+			MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
--- 
-2.31.0
-
+Thanks,
+Saravana
