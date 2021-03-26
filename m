@@ -2,85 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0590F34A830
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:35:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B66734A847
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:41:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbhCZNez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 09:34:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36140 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230142AbhCZNe1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 09:34:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BB18E61A0F;
-        Fri, 26 Mar 2021 13:34:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616765666;
-        bh=W5YY1G5LnmvMogsugSgvZil/6svypoY7PoQPCgl5ibQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SKTO9IUGNSQ/WIzR6yeOEBva8Qbp5t+TGw4FeJwPEXoVgTvCD57B6sIp6IVTUIjIx
-         oiDA0qbEF+SdY7n7bkaJPScCPRFpMtZGrTCsTbT8LOsUorOw9QYEH2g8ZsCMwyulYd
-         d/NuiDPMBuBBLaS4UPGpWdUxycCTdBqIQz6A1V+U=
-Date:   Fri, 26 Mar 2021 14:34:23 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/3] usb: dwc3: qcom: Add missing DWC3 OF node
- refcount decrement
-Message-ID: <YF3i37FUsyskb2qI@kroah.com>
-References: <20210212205521.14280-1-Sergey.Semin@baikalelectronics.ru>
- <20210218152904.75bg2v6uh5ool5h3@mobilestation>
- <YC6IjYlDXWJMyZIP@kroah.com>
- <20210218154051.hqhytxv6poizvfgm@mobilestation>
- <YFnRDaSTKCw4aDuQ@kroah.com>
- <20210324121858.b2hwbm6vmklbbt7c@mobilestation>
+        id S230108AbhCZNkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 09:40:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230046AbhCZNko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 09:40:44 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB44DC0613AA;
+        Fri, 26 Mar 2021 06:40:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 481D83FA15;
+        Fri, 26 Mar 2021 13:40:29 +0000 (UTC)
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linux-Arch <linux-arch@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210304213902.83903-1-marcan@marcan.st>
+ <20210304213902.83903-17-marcan@marcan.st>
+ <CAHp75Vco_rcjHJ4THLZ8CJP=yX2fesfAo_tOY8zohfSmTLEVgw@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [RFT PATCH v3 16/27] irqchip/apple-aic: Add support for the Apple
+ Interrupt Controller
+Message-ID: <8d7aced9-4aac-0821-a4b7-d27cb73be301@marcan.st>
+Date:   Fri, 26 Mar 2021 22:40:26 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210324121858.b2hwbm6vmklbbt7c@mobilestation>
+In-Reply-To: <CAHp75Vco_rcjHJ4THLZ8CJP=yX2fesfAo_tOY8zohfSmTLEVgw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 03:18:58PM +0300, Serge Semin wrote:
-> Hi Greg,
+On 06/03/2021 00.05, Andy Shevchenko wrote:
+>> +#define pr_fmt(fmt) "%s: " fmt, __func__
 > 
-> On Tue, Mar 23, 2021 at 12:29:17PM +0100, Greg Kroah-Hartman wrote:
-> > On Thu, Feb 18, 2021 at 06:40:51PM +0300, Serge Semin wrote:
-> > > On Thu, Feb 18, 2021 at 04:32:29PM +0100, Greg Kroah-Hartman wrote:
-> > > > On Thu, Feb 18, 2021 at 06:29:04PM +0300, Serge Semin wrote:
-> > > > > Bjorn, Greg, Felippe, Andy,
-> > > > > Any comments on this series? Bjorn, Greg you asked me to resend the
-> > > > > patches related with the DW USB3 node name change. I did as you said,
-> > > > > but no news since then. I'd be glad to have this patch accepted in
-> > > > > some -next repo and forget about it.
-> > > > 
-> > > 
-> > > > Sorry, but it's the merge window right now and I can't add anything new
-> > > > until 5.12-rc1 is out.  So can you wait until then?
-> > > 
-> > > Well, I don't think there is another choice but to wait now.)
-> > > Hopefully the patchset won't be forgotten when the merge window closes
-> > > as that happened with the original series...
-> > 
+> This is not needed, really, if you have unique / distinguishable
+> messages in the first place.
+> Rather people include module names, which may be useful.
+
+Makes sense, I'll switch to KBUILD_MODNAME.
+
+>> +#define MASK_BIT(x)            BIT((x) & 0x1f)
 > 
-> > Can you resend this if still needed?  I don't see them in my queue...
+> GENMASK(4,0)
+
+It's not really a register bitmask, but rather extracting the low bits 
+of an index... but sure, GENMASK also expresses that. Changed.
+
+>> +static atomic_t aic_vipi_flag[AIC_MAX_CPUS];
+>> +static atomic_t aic_vipi_enable[AIC_MAX_CPUS];
 > 
-> I see the very first patch of this series has already been merged in 
-> somewhere between v5.12-rc3 and v5.12-rc2. See commit 1cffb1c66499 ("usb: 
-> dwc3: qcom: Add missing DWC3 OF node refcount decrement"). But the rest of
-> the patches still hanging up unattended. I'll resend them in a few minutes.
-> Could you merge them in too?
+> Isn't it easier to handle these when they are full width, i.e. 32
+> items per the array?
 
-Do you have a lore.kernel.org link to your resend, I don't see it...
+I don't think so, it doesn't really buy us anything. It's just a maximum 
+beyond which the driver doesn't work in its current state anyway (if the 
+number were much larger it'd make sense to dynamically allocate these, 
+but not at this point).
 
-thanks,
+>> +static int aic_irq_set_affinity(struct irq_data *d,
+>> +                               const struct cpumask *mask_val, bool force)
+>> +{
+>> +       irq_hw_number_t hwirq = irqd_to_hwirq(d);
+>> +       struct aic_irq_chip *ic = irq_data_get_irq_chip_data(d);
+>> +       int cpu;
+>> +
+>> +       if (hwirq > ic->nr_hw)
+> 
+> >= ?
 
-greg k-h
+Good catch, but this is actually obsolete. Higher IRQs go into the FIQ 
+irqchip, so this should never happen (it's a leftover from when they 
+were a single one). I'll remove it.
+
+Ack on the other comments, thanks!
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
