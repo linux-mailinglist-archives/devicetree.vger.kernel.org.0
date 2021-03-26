@@ -2,103 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B56E34AC52
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 17:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E2534AC69
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 17:18:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbhCZQK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 12:10:58 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:35395 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230080AbhCZQKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 12:10:52 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E57C058081B;
-        Fri, 26 Mar 2021 12:10:51 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute3.internal (MEProxy); Fri, 26 Mar 2021 12:10:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm1; bh=ydSKVsbgvF7jbPFgx/6CxB2ZQoad
-        D/zDEYXlE4rQ4+M=; b=bWJPooEIpn0MwMMFQLSn7CNEsyRZ458l39Bvcp2b+FkU
-        U014axn4wWCyjs55Q7ppwoNE7X/zYkICbiLxgElKTVJA2uHsZpyW7F8RfPoncuDa
-        pmUYLbgHcPyX/Kheu4DVLyYokUM4j/Wjkl79GT8QEzM+q9GKXz9ZftP88bLZfdtk
-        QCsHvqBfA/BK5pYfS5Tt4l/k0NcFqJe+DXSo21qElqUD6OxRDRqqWdP6+SyI+Zg7
-        1VomAkHicAVg1XoMeLR4ma18uVhB9rVFZAy09XlwRpEXdh2U+R1utWVY8XPSqpML
-        nDL3r6hxlc/8DNw8CDFwSSXNKL5WorBG8EbUo1NebA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ydSKVs
-        bgvF7jbPFgx/6CxB2ZQoadD/zDEYXlE4rQ4+M=; b=aaZt7fpnHn+6HG7GPQd/fK
-        HwGycVf+4SgEU0/WXqVzn5JcSoQOAarNNqRKjCmnqkdQq/lo2u+XEKfh8O8fv9px
-        wMEH/2MH7ToF2Nr3j0vwySALiYQhEdfNhmU1hHrr2eugol1ukbyoLrjM4V/ycO+D
-        eAYuSRZgZ3AI9FKUxBu1QLgteow4eS8V+lnDKhcMCmQmFT9uWpETtGiaxjDyCMkG
-        n9Qt8r3FbLyoceP/xrzu9gDRxAC7lgiC4OU13uvVHgHomFKU+y9FZKv/gvLWyVeX
-        gfC0bb39ajLK0q7y1nYMHrpicPimy3DfQL/c4Ouyrc7QqnF0eiGA73qFEjLJ37Sg
-        ==
-X-ME-Sender: <xms:iQdeYLsHrDgf--H1Ek0pQghFMA_VQX-u5b3OL_J_KgXbf0TyoynUYw>
-    <xme:iQdeYMdoi0KjqAmitX98JooDnmkGC5_JewtKz3WkTl-cRm-rMAwcUUhNqvxQbBLMb
-    _ikKr0Eg7I7EKAgfEY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehvddgkeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:iQdeYOy-UrYEpxUk7FignU1Cb6nqOly_ZDnv3s-jPoHWDJH6h7mMiQ>
-    <xmx:iQdeYKO-NuchSDfCle5TT0KH8p2JRm7k2ZeeSVlQ_nbculalqOYd6A>
-    <xmx:iQdeYL9hHfaQBRCifL1hKSHYCHwd7ahPLTlnD5ctFf__lRh4Hp1_4g>
-    <xmx:iwdeYKVaB1qgxIudhtH2B9dKQ5zQKK6ZQKI4wheTo_m5qC2e2jhprSieqTA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6BB4451C005E; Fri, 26 Mar 2021 12:10:49 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <9f06872d-f0ec-43c3-9b53-d144337100b3@www.fastmail.com>
-In-Reply-To: <c1bcd90d344c2b68@bloch.sibelius.xs4all.nl>
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
- <20210323205346.GA1283560@robh.at.kernel.org>
- <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
- <CAK8P3a0fvnYLrG=cGiOQ6u8aZnriTeM0R=MW7FX=94mO13Rq0w@mail.gmail.com>
- <c1bcd90d344c2b68@bloch.sibelius.xs4all.nl>
-Date:   Fri, 26 Mar 2021 17:10:29 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Arnd Bergmann" <arnd@kernel.org>
-Cc:     "Rob Herring" <robh@kernel.org>, iommu@lists.linux-foundation.org,
-        joro@8bytes.org, "Will Deacon" <will@kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Marc Zyngier" <maz@kernel.org>, mohamed.mediouni@caramail.com,
-        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-Content-Type: text/plain
+        id S230196AbhCZQSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 12:18:07 -0400
+Received: from mx2.suse.de ([195.135.220.15]:35182 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230138AbhCZQRj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 12:17:39 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 1D57AAC6A;
+        Fri, 26 Mar 2021 16:17:38 +0000 (UTC)
+Message-ID: <c7c8e20d3d11c7d6cd203797c5faffa8a4d202a6.camel@suse.de>
+Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, f.fainelli@gmail.com,
+        phil@raspberrypi.com, Tim Gover <tim.gover@raspberrypi.com>,
+        sbranden@broadcom.com, alcooperx <alcooperx@gmail.com>
+Cc:     adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
+        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 26 Mar 2021 17:17:36 +0100
+In-Reply-To: <2d2a2638-8213-5d6e-0a3a-927ed5bb2ed7@i2se.com>
+References: <20210322185816.27582-1-nsaenz@kernel.org>
+         <20210322185816.27582-5-nsaenz@kernel.org>
+         <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
+         <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
+         <2d2a2638-8213-5d6e-0a3a-927ed5bb2ed7@i2se.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Zt3yxDeLYD9K7yjMoxO4"
+User-Agent: Evolution 3.38.4 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--=-Zt3yxDeLYD9K7yjMoxO4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 26, 2021, at 16:59, Mark Kettenis wrote:
-> Some of the DARTs provide a bypass facility.  That code make using the
-> standard "dma-ranges" property tricky.  That property would need to
-> contain the bypass address range.  But that would mean that if the
-> DART driver needs to look at that property to figure out the address
-> range that supports translation it will need to be able to distinguish
-> between the translatable address range and the bypass address range.
+On Thu, 2021-03-25 at 20:11 +0100, Stefan Wahren wrote:
+> Am 24.03.21 um 16:34 schrieb Nicolas Saenz Julienne:
+> > Hi Stefan,
+> >=20
+> > On Wed, 2021-03-24 at 16:16 +0100, Stefan Wahren wrote:
+> > > Hi Nicolas,
+> > >=20
+> > > Am 22.03.21 um 19:58 schrieb Nicolas Saenz Julienne:
+> > > > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > > >=20
+> > > > Force emmc2's frequency to 150MHz as the default 100MHz (set by FW)
+> > > > seems to interfere with the VPU clock when setup at frequencies big=
+ger
+> > > > than 500MHz (a pretty common case). This ends up causing unwarrante=
+d
+> > > > SDHCI CMD hangs  when no SD card is present.
+> > > >=20
+> > > > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > > > ---
+> > > > =C2=A0arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 6 ++++++
+> > > > =C2=A01 file changed, 6 insertions(+)
+> > > >=20
+> > > > diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/=
+dts/bcm2711-rpi-4-b.dts
+> > > > index 3b4ab947492a..9aa8408d9960 100644
+> > > > --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > > > +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > > > @@ -257,6 +257,12 @@ &emmc2 {
+> > > > =C2=A0	vqmmc-supply =3D <&sd_io_1v8_reg>;
+> > > > =C2=A0	vmmc-supply =3D <&sd_vcc_reg>;
+> > > > =C2=A0	broken-cd;
+> > > > +	/*
+> > > > +	 * Force the frequency to 150MHz as the default 100MHz seems to
+> > > > +	 * interfere with the VPU clock when setup at frequencies bigger =
+than
+> > > > +	 * 500MHz, causing unwarranted CMD hangs.
+> > > > +	 */
+> > > > +	clock-frequency =3D <150000000>;
+> > > i don't want to bike-shed here, but is there any chance to solve this=
+ in
+> > > clk-bcm2835 in a less hacky way?
+> > What do you have in mind?
+> Sorry, nothing specific.
+> >=20
+> > All I can think of is adding some kind of heuristic to the clock's prep=
+are()
+> > callback. That said, I don't feel it would be a better solution than th=
+is.
+>=20
+> Based on my limited knowledge and an old SD card specification, all
+> possibly connected devices could have different frequencies. So my
+> concern here is, that in case we limit the frequency to a specific value
+> we could break things just to suppress a warning.
 
-Do we understand if and why we even need to bypass certain streams?
-And do you have an example for a node in the ADT that contains this bypass range?
+SDHCI should be able to handle up to 233MHz IIRC, and there are divisors
+available, it depends on the implementation but the worst kind provide /2^n=
+.
+Not perfect, but good enough for things to work.
 
-I've only seen nodes with "bypass" and "bypass-adress" but that could just be
-some software abstraction Apple uses which doesn't map well to Linux or other OSes
-and might not even be required here.
+Now, I've been having a deeper look into how clocks are handled, and found =
+two
+new clues:
+
+ - First of all RPi4's sdhci-iproc needs SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
+   that is, the controller isn't properly identifying the clock frequency f=
+ed
+   into it, and defaults to saying it's configured at 100MHz. I'm not an SD=
+HCI
+   expert, so it's possible changing frequencies also needs a special opera=
+tion
+   to recalculate this variable. But this was making all internal calculati=
+ons
+   wrong when paired with this series.
+
+ - With this flag set SDHCI's core now properly calculates divisor values b=
+ased
+   on whatever clock frequency I set in DT. And guess what, the issue reapp=
+ears
+   even when running on 150MHz. It turns out, as I had some debugging enabl=
+ed,
+   the issue only happens when the controller is configured at 100KHz (that
+   only happens while running the card detect thread).
+
+So, I can now do this (note that for card detection try to communicate with=
+ the
+card starting at 400KHz down to 100KHz in 100KHz steps):
+
+----->8-----
+
+diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.=
+c
+index 536c382e2486..e5a5de63f347 100644
+--- a/drivers/mmc/host/sdhci-iproc.c
++++ b/drivers/mmc/host/sdhci-iproc.c
+@@ -173,6 +173,11 @@ static unsigned int sdhci_iproc_get_max_clock(struct s=
+dhci_host *host)
+                return pltfm_host->clock;
+ }
+=20
++static unsigned int sdhci_iproc_bcm2711_get_min_clock(struct sdhci_host *h=
+ost)
++{
++       return 200000;
++}
++
+ static const struct sdhci_ops sdhci_iproc_ops =3D {
+        .set_clock =3D sdhci_set_clock,
+        .get_max_clock =3D sdhci_iproc_get_max_clock,
+@@ -271,13 +276,15 @@ static const struct sdhci_ops sdhci_iproc_bcm2711_ops=
+ =3D {
+        .set_clock =3D sdhci_set_clock,
+        .set_power =3D sdhci_set_power_and_bus_voltage,
+        .get_max_clock =3D sdhci_iproc_get_max_clock,
++       .get_min_clock =3D sdhci_iproc_bcm2711_get_min_clock,
+        .set_bus_width =3D sdhci_set_bus_width,
+        .reset =3D sdhci_reset,
+        .set_uhs_signaling =3D sdhci_set_uhs_signaling,
+ };
+
+----->8-----
+
+ Which is rather nicer than what this series introduces. But I can't still
+ explain why configuring the controller at 100KHz is causing the hangs (whi=
+le
+ having the core clock setup at 500MHz), and I'm not sure if excluding 100K=
+Hz
+ from the polling frequency list is going to break support for older SD car=
+ds.
+
+ Regards,
+ Nicolas
 
 
-Sven
+
+--=-Zt3yxDeLYD9K7yjMoxO4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBeCSAACgkQlfZmHno8
+x/5RLwgAleM4SzPVpZZVff99Y7DvLl81vOMya3W5BxzUM+K5zSlWx3ICg79A01KZ
+ruxfEP4X7tmbS6TsjQemKN8lzTXErmkUxH7uHVhVLP13AQg4gIbmgvk0oSTEKKx5
+iglhU0VMURq+BzGEF/Uc6+kenKfQ1zf3U0USNQCRQTUx7d6mY//ToSWLkNNPwJ+T
+GPWLWk/ieEjoUzQ0XqZPRSXNfMYqdsXXSWlOTF1zpvuO4zGlVBuYcpP7tJZXjQ0X
+pIAbwmQdl6ikoNcbhLNT9mT/r6CraPF1Wt6cGRvV1d7EUyYJGb6A9i73EScXVO6o
+9591pHhkseO3d7kdp7MCAsG6ccyZhw==
+=Lzpt
+-----END PGP SIGNATURE-----
+
+--=-Zt3yxDeLYD9K7yjMoxO4--
 
