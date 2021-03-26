@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C455734AE80
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D938A34AE87
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:27:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbhCZSYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 14:24:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34412 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229957AbhCZSYA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 14:24:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4E81D619B6;
-        Fri, 26 Mar 2021 18:23:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616783039;
-        bh=W8+TXVmo3TkbP6PiUlApcKVziKCU56ZFoOlT9n6Zkxw=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Kios6cSeCsttAHy1KDawrB2JejkY8LwM6e5i7D9zKvCaJIDQYSh924HMf6D9v6ff6
-         R4zAZenWZQAhT42XoXYJUsj5uuuaIEN2RfqwXMaEIrhBMzlv1j4F8Ra32hehJXyyJS
-         m4rS3huyPf7W5Lp+ZA3PLXElDG8p19ojrXsnr8b5743qBfGqUG6VqZ80UfrGtb1yId
-         dMsj4qmJmFPUEzsz81TeKBbrooApWwAt/YTv0guFqDsU04SOFY8igyEW4K+CZ5kVVP
-         mJcsPksAQFTfvNWKfGvD0IzBKji33+c5eA94W1al1tqb48SXC8VSsQ7/C2T2NrmQR2
-         QRxVKXkQer9tQ==
-Content-Type: text/plain; charset="utf-8"
+        id S230106AbhCZS0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 14:26:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230026AbhCZS0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 14:26:39 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D2CC0613AA
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 11:26:38 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id f16so8515547ljm.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 11:26:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=dsV+/461uL86RBQXWt+O3MOKcum8LIWw0YCOchxb7jY=;
+        b=deeMKQO9NpE0tgnfdv6yiLMIK5zfO75TRuFpLhkw6QIe/3ig3PBApWMeoEqbKESVZ7
+         k+pA7mixze//X7gdrslvsopfdh6uYLETeWijY4vTICh6Kf6rJRvLSXV/ldluJWwXvbYI
+         qp8SfaYQyHvJoxpd6XdoN/bP13wEFxLfp7gfdIBYava2U6zXVf3qaZ60bRX374KPTgHi
+         qUdhKCgJY+eSoL74nJyABL5ThNccmdsFsJ4jXP3ftUiHBhfLKIB1wn12ZUXiltchP3QR
+         va939UOcxEP5jA+qGfCHAckQYp3YSWyTwx8IjdgFiZIIKPwmJj8+hYII54yuhuDZgSei
+         m4VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dsV+/461uL86RBQXWt+O3MOKcum8LIWw0YCOchxb7jY=;
+        b=JiJhAvO4KNz5cg2zpz0La3cNzCAwlzIidwFVOE6BeeDFO1l5Y3/ysc93kwRMIw8ojd
+         qrY7QIS9zNNouJG/h9HTfnq5kMgXr+F8g5p3uLwjLc6k85yO3fi9cRXBewb9AFGNbFvi
+         wS8SUHBAsv28du7kt3vGZF0i99/f2/cE0Mu/kvppp6DajmJoYG1+EHq6Q2cLrLYE/WcY
+         WektnJ5vhdruDdICIJcZ1W0NgmAmE2tNXzM1WsUMH8LwFBSAuxCviCmbCOuWrRp/asqV
+         LwKp1QmhD297KDEJwuzDurKWFw+fB5wQRoKTsGOt2oA7aykbgFMiJjCtmmSkH2Ro39Ce
+         5pHA==
+X-Gm-Message-State: AOAM5324/SW4jIod3tF1m1T67mHCi4q4UFwozcckeqwsh6TQvk1ZIsym
+        fIX7MzEC3FQqIBd+DZjbKLdV6XzeZb6nKJseIeH282F0MPY=
+X-Google-Smtp-Source: ABdhPJzpxAIiyVqHYMtj4EB98Qg03zqyniRewUWWa2gRQD/91hp6S9fXHx+UGalLCWrN1Er7IdXu1prvLCEqlpmTz7o=
+X-Received: by 2002:a2e:701:: with SMTP id 1mr9500098ljh.264.1616783197321;
+ Fri, 26 Mar 2021 11:26:37 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210326142459.30679-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20210326142459.30679-1-u.kleine-koenig@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 26 Mar 2021 15:26:25 -0300
+Message-ID: <CAOMZO5DXgZeEk3sA-ZFpDPLn8oGf+RNSY0OWNe5pyzHGhOpaNQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-evk: Add i2c bus driving the PMIC
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210326145816.9758-3-bartosz.dudziak@snejp.pl>
-References: <20210326145816.9758-1-bartosz.dudziak@snejp.pl> <20210326145816.9758-3-bartosz.dudziak@snejp.pl>
-Subject: Re: [PATCH 2/5] clk: qcom: gcc: Add support for Global Clock controller found on MSM8226
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Fri, 26 Mar 2021 11:23:58 -0700
-Message-ID: <161678303809.3012082.14127191260312393003@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bartosz Dudziak (2021-03-26 07:58:13)
-> Modify existing MSM8974 driver to support MSM8226 SoC. Override frequenci=
-es
-> which are different in this older chip. Register all the clocks to the
-> framework for the clients to be able to request for them.
+Hi Uwe,
 
-Alphabet sort includes? Preferably do that in a different patch.
+On Fri, Mar 26, 2021 at 11:25 AM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> There is no binding and driver for the PMIC itself, but making the bus
 
->=20
-> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-> ---
->  drivers/clk/qcom/gcc-msm8974.c | 185 ++++++++++++++++++++++++++++++---
->  1 file changed, 171 insertions(+), 14 deletions(-)
->=20
-> diff --git a/drivers/clk/qcom/gcc-msm8974.c b/drivers/clk/qcom/gcc-msm897=
-4.c
-> index 740d3c44c0..06cd669e10 100644
-> --- a/drivers/clk/qcom/gcc-msm8974.c
-> +++ b/drivers/clk/qcom/gcc-msm8974.c
-> @@ -3,16 +3,13 @@
->   * Copyright (c) 2013, The Linux Foundation. All rights reserved.
->   */
-> =20
-> -#include <linux/kernel.h>
-> -#include <linux/bitops.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/err.h>
-> -#include <linux/platform_device.h>
-> +#include <linux/kernel.h>
->  #include <linux/module.h>
-> -#include <linux/of.h>
->  #include <linux/of_device.h>
-> -#include <linux/clk-provider.h>
-> +#include <linux/of.h>
->  #include <linux/regmap.h>
-> -#include <linux/reset-controller.h>
-> =20
->  #include <dt-bindings/clock/qcom,gcc-msm8974.h>
->  #include <dt-bindings/reset/qcom,gcc-msm8974.h>
-> @@ -2727,7 +2880,11 @@ static int gcc_msm8974_probe(struct platform_devic=
-e *pdev)
->         if (ret)
->                 return ret;
-> =20
-> -       return qcom_cc_probe(pdev, &gcc_msm8974_desc);
-> +       regmap =3D qcom_cc_map(pdev, id->data);
-> +       if (IS_ERR(regmap))
-> +               return PTR_ERR(regmap);
-> +
-> +       return qcom_cc_really_probe(pdev, id->data, regmap);
+What about the commit below that landed in kernel 5.9?
 
-Is this doing anything? I think qcom_cc_probe(pdev, id->data) should
-work?
+commit 0935ff5f1f0a44f66a13e075ed49f97ad99d2fdc
+Author: Robin Gong <yibin.gong@nxp.com>
+Date:   Sat Jul 4 00:19:35 2020 +0800
+
+    regulator: pca9450: add pca9450 pmic driver
+
+    Add NXP pca9450 pmic driver.
+
+    Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+    Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+    Link: https://lore.kernel.org/r/1593793178-9737-2-git-send-email-yibin.=
+gong@nxp.com
+    Signed-off-by: Mark Brown <broonie@kernel.org>
