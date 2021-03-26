@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C28D134A205
+	by mail.lfdr.de (Postfix) with ESMTP id 75E5834A204
 	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbhCZGmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230182AbhCZGmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 26 Mar 2021 02:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35130 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbhCZGlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:25 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC522C0613B0
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id h13so5062120eds.5
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
+        with ESMTP id S230191AbhCZGl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:26 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59A5C0613B2
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:25 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id bx7so5029477edb.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=P8VaQolGFCOR51eNrv/jk6ZLBrbbZ7X7Ltpf1LoAnjQ=;
-        b=r/SymDirP7YsfplabAthL2rjNIEsp2UpQhJ6IQeQAt3/I84Eynq5qj3dKhWsBQR25L
-         EBBsBag5vV+/5jRLbAvlnNuKJfLDGFuctI6aeFt8PvZSCh6r1xcAO2czt/JbOeomouuc
-         aW0dptOiPwQYDJiYCZkgHXSdkJpNqoGgQxnldzOvvj0NGKKnn0Qg1Po74+7FMe5YbLCv
-         tNCDYWEdxvXieEB0EVWMuDx/nh11yG+8tnj58Q639qX0mSHLMcVe4XYVLMQ52Uob4PuR
-         rrJS+hycvoLfGbgY6Gr4k/vE3013BDdBejvCU0kPC2go8TstO2TooFkSAiHnmL5aRvw1
-         5Lig==
+        bh=n+0SLp5bys43157dIPELL3xi2LwO4Hd+7UwWQjJAfcc=;
+        b=JoyAMkb/CytOSLNJEkTp63AUySgtJVGlnaeGsk3LbwZYQOUMwTiruvczpg6DNGjQAR
+         o2xW20EAm6R97lv/lkN9XhJpXrCG7VdGuguIC9RaarehuzEEBD+7XEBarraCKEMT7ROY
+         egLuGyKcaRR6rHzi4GD+jHywLlrp3U7IBrp7cV+HM0/vJ5mMX1FNeZCJA0O7jSiSPpkH
+         R7S1wmIsroPI16FceH7EUrzdGvKF279UYYG1plhjmwqiPggvV6KDp1GuW1dk/VutwnwZ
+         mkoOhY0EHq+CL84h1BG52bSoRKSFGH7JJsuAKPlvXthKrp0nttl7aI+nwUyTRcKfX4Py
+         nJnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=P8VaQolGFCOR51eNrv/jk6ZLBrbbZ7X7Ltpf1LoAnjQ=;
-        b=i3S/1aC4g8y89QUoi6zXmSJ3+g2R/ttLehQmDDsCz//XWEOoXn0KeSGxom/QQtCvBN
-         p/mRrD9GjrJCIxOw7Tf5jbg9ipW4tFhgy3I9MTH1Q3MhHt9j/QEEX0MTVAvvgmS+qS5b
-         AtD102may9FvdsuJgFPrJOU1ttK6Y1HwVhw2XxsJS70DmYO5pHjmS2sY9TX4UYRv1YSV
-         6eqQYXKrzbiKfcOURq+FRTeP5s6ciCN0w0Xihykmt/RuslSV1WAlahhf2vmWWJ0A5bQs
-         N0P/UyP2SyZBktwGszp1iG4/e6cqcIRsIgKOcv25JunO6ETyWBqIlBl3ZGAyvP0TwUM+
-         0jgA==
-X-Gm-Message-State: AOAM530ESxaPI71p44HivW5Py/A1XoE907opvXSYN/Mi8rlZHU2L9H6c
-        SRtS/xi3thqBDg5VU8XoH7n4rw==
-X-Google-Smtp-Source: ABdhPJw0rOE3qXvEVF6WI9EL9K/FwKG5NOBkx2tZumsUnD+MCA3hyDs5WB9yIpydUIEdhMFsax2CNA==
-X-Received: by 2002:a05:6402:2695:: with SMTP id w21mr13146872edd.99.1616740883626;
-        Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
+        bh=n+0SLp5bys43157dIPELL3xi2LwO4Hd+7UwWQjJAfcc=;
+        b=BEhzCBsnFAq79aJvjZh1gu0upc5Vzg4YOa/epJ/8G5kqRCqjMEWn24aKh3LUF5QSE/
+         Jtczk4w1bkXSrS4TIXGf1ugvJFx/nZayoEef7YmIvyw7cqHqzaa2pbW+MWvYO24+ydOm
+         x9mH3T4glaKZR4jfBEpH43BqJpUB6K57fbmSsPLiEjERH2L12rusQ+duOHq1jYaPARQ2
+         Es1U5gSM/Xsh8sIvIrvqz1XCnAi1BlzWjKJhPNZy+gLP/9zz3KHOWteHOGtP3SRrUJMq
+         OHf9QGW+2LWLd+DESq8vNt32DLOnULYA9DY/w60KiNzSdkBLOGVbmCEtiEE+PEx643kP
+         BxwA==
+X-Gm-Message-State: AOAM530me+0NGiQVWpf++E95mBdGmsgEbLruyz236+sBYgRjoY8LqjHX
+        Ftxf7VQOh4eCgEWYldyLMZDKrg==
+X-Google-Smtp-Source: ABdhPJxnl8ZN+PJsjTE3BJgo9Bt+T9JJECuyMydl6w79Db+GZYloOGFIvDVWfA1MXWoE2s2RWTv/Ug==
+X-Received: by 2002:aa7:dd99:: with SMTP id g25mr12937150edv.230.1616740884618;
+        Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id ci22sm125325ejc.54.2021.03.25.23.41.22
+        by smtp.gmail.com with ESMTPSA id ci22sm125325ejc.54.2021.03.25.23.41.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
+        Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org
 Cc:     yung-chuan.liao@linux.intel.com,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel test robot <lkp@intel.com>
-Subject: [PATCH v5 7/9] soundwire: export sdw_compare_devid, sdw_extract_slave_id and sdw_slave_add
-Date:   Fri, 26 Mar 2021 06:39:42 +0000
-Message-Id: <20210326063944.31683-8-srinivas.kandagatla@linaro.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v5 8/9] soundwire: qcom: add auto enumeration support
+Date:   Fri, 26 Mar 2021 06:39:43 +0000
+Message-Id: <20210326063944.31683-9-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210326063944.31683-1-srinivas.kandagatla@linaro.org>
 References: <20210326063944.31683-1-srinivas.kandagatla@linaro.org>
@@ -67,70 +66,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exporting these three functions makes sense as it can be used by
-other controllers like Qualcomm during auto-enumeration!
+Qualcomm SoundWire controller supports Auto Enumeration of the
+devices within the IP. This patch enables support for this feature.
 
-Reported-by: kernel test robot <lkp@intel.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 ---
- drivers/soundwire/bus.c       | 4 +++-
- drivers/soundwire/slave.c     | 1 +
- include/linux/soundwire/sdw.h | 2 ++
- 3 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/soundwire/qcom.c | 86 +++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 81 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
-index 46885429928a..6d7708964735 100644
---- a/drivers/soundwire/bus.c
-+++ b/drivers/soundwire/bus.c
-@@ -603,7 +603,7 @@ static struct sdw_slave *sdw_get_slave(struct sdw_bus *bus, int i)
- 	return NULL;
+diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+index 6a563fb52444..c6c923329b15 100644
+--- a/drivers/soundwire/qcom.c
++++ b/drivers/soundwire/qcom.c
+@@ -57,6 +57,8 @@
+ #define SWRM_CMD_FIFO_RD_FIFO_ADDR				0x318
+ #define SWRM_RD_FIFO_CMD_ID_MASK				GENMASK(11, 8)
+ #define SWRM_ENUMERATOR_CFG_ADDR				0x500
++#define SWRM_ENUMERATOR_SLAVE_DEV_ID_1(m)		(0x530 + 0x8 * (m))
++#define SWRM_ENUMERATOR_SLAVE_DEV_ID_2(m)		(0x534 + 0x8 * (m))
+ #define SWRM_MCP_FRAME_CTRL_BANK_ADDR(m)		(0x101C + 0x40 * (m))
+ #define SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK			GENMASK(2, 0)
+ #define SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK			GENMASK(7, 3)
+@@ -143,6 +145,7 @@ struct qcom_swrm_ctrl {
+ 	enum sdw_slave_status status[SDW_MAX_DEVICES];
+ 	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
+ 	int (*reg_write)(struct qcom_swrm_ctrl *ctrl, int reg, int val);
++	u32 slave_status;
+ };
+ 
+ struct qcom_swrm_data {
+@@ -342,6 +345,7 @@ static void qcom_swrm_get_device_status(struct qcom_swrm_ctrl *ctrl)
+ 	int i;
+ 
+ 	ctrl->reg_read(ctrl, SWRM_MCP_SLV_STATUS, &val);
++	ctrl->slave_status = val;
+ 
+ 	for (i = 0; i < SDW_MAX_DEVICES; i++) {
+ 		u32 s;
+@@ -352,10 +356,74 @@ static void qcom_swrm_get_device_status(struct qcom_swrm_ctrl *ctrl)
+ 	}
  }
  
--static int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
-+int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
++static void qcom_swrm_set_slave_dev_num(struct sdw_bus *bus,
++					struct sdw_slave *slave, int devnum)
++{
++	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
++	u32 status;
++
++	ctrl->reg_read(ctrl, SWRM_MCP_SLV_STATUS, &status);
++	status = (status >> (devnum * SWRM_MCP_SLV_STATUS_SZ));
++	status &= SWRM_MCP_SLV_STATUS_MASK;
++
++	if (status == SDW_SLAVE_ATTACHED) {
++		if (slave)
++			slave->dev_num = devnum;
++		mutex_lock(&bus->bus_lock);
++		set_bit(devnum, bus->assigned);
++		mutex_unlock(&bus->bus_lock);
++	}
++}
++
++static int qcom_swrm_enumerate(struct sdw_bus *bus)
++{
++	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
++	struct sdw_slave *slave, *_s;
++	struct sdw_slave_id id;
++	u32 val1, val2;
++	bool found;
++	u64 addr;
++	int i;
++	char *buf1 = (char *)&val1, *buf2 = (char *)&val2;
++
++	for (i = 1; i <= SDW_MAX_DEVICES; i++) {
++		/*SCP_Devid5 - Devid 4*/
++		ctrl->reg_read(ctrl, SWRM_ENUMERATOR_SLAVE_DEV_ID_1(i), &val1);
++
++		/*SCP_Devid3 - DevId 2 Devid 1 Devid 0*/
++		ctrl->reg_read(ctrl, SWRM_ENUMERATOR_SLAVE_DEV_ID_2(i), &val2);
++
++		if (!val1 && !val2)
++			break;
++
++		addr = buf2[1] | (buf2[0] << 8) | (buf1[3] << 16) |
++			((u64)buf1[2] << 24) | ((u64)buf1[1] << 32) |
++			((u64)buf1[0] << 40);
++
++		sdw_extract_slave_id(bus, addr, &id);
++		found = false;
++		/* Now compare with entries */
++		list_for_each_entry_safe(slave, _s, &bus->slaves, node) {
++			if (sdw_compare_devid(slave, id) == 0) {
++				qcom_swrm_set_slave_dev_num(bus, slave, i);
++				found = true;
++				break;
++			}
++		}
++
++		if (!found) {
++			qcom_swrm_set_slave_dev_num(bus, NULL, i);
++			sdw_slave_add(bus, &id, NULL);
++		}
++	}
++
++	return 0;
++}
++
+ static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
  {
- 	if (slave->id.mfg_id != id.mfg_id ||
- 	    slave->id.part_id != id.part_id ||
-@@ -614,6 +614,7 @@ static int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
+ 	struct qcom_swrm_ctrl *swrm = dev_id;
+-	u32 value, intr_sts, intr_sts_masked;
++	u32 value, intr_sts, intr_sts_masked, slave_status;
+ 	u32 i;
+ 	u8 devnum = 0;
+ 	int ret = IRQ_HANDLED;
+@@ -384,8 +452,15 @@ static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
+ 			case SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS:
+ 				dev_err_ratelimited(swrm->dev, "%s: SWR new slave attached\n",
+ 					__func__);
+-				qcom_swrm_get_device_status(swrm);
+-				sdw_handle_slave_status(&swrm->bus, swrm->status);
++				swrm->reg_read(swrm, SWRM_MCP_SLV_STATUS, &slave_status);
++				if (swrm->slave_status == slave_status) {
++					dev_err(swrm->dev, "Slave status not changed %x\n",
++						slave_status);
++				} else {
++					qcom_swrm_get_device_status(swrm);
++					qcom_swrm_enumerate(&swrm->bus);
++					sdw_handle_slave_status(&swrm->bus, swrm->status);
++				}
+ 				break;
+ 			case SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET:
+ 				dev_err_ratelimited(swrm->dev,
+@@ -472,8 +547,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
  
+ 	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
+ 
+-	/* Disable Auto enumeration */
+-	ctrl->reg_write(ctrl, SWRM_ENUMERATOR_CFG_ADDR, 0);
++	/* Enable Auto enumeration */
++	ctrl->reg_write(ctrl, SWRM_ENUMERATOR_CFG_ADDR, 1);
+ 
+ 	ctrl->intr_mask = SWRM_INTERRUPT_STATUS_RMSK;
+ 	/* Mask soundwire interrupts */
+@@ -507,6 +582,7 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+ 		ctrl->reg_write(ctrl, SWRM_INTERRUPT_CPU_EN,
+ 				SWRM_INTERRUPT_STATUS_RMSK);
+ 	}
++	ctrl->slave_status = 0;
  	return 0;
  }
-+EXPORT_SYMBOL(sdw_compare_devid);
  
- /* called with bus_lock held */
- static int sdw_get_device_num(struct sdw_slave *slave)
-@@ -698,6 +699,7 @@ void sdw_extract_slave_id(struct sdw_bus *bus,
- 		"SDW Slave class_id 0x%02x, mfg_id 0x%04x, part_id 0x%04x, unique_id 0x%x, version 0x%x\n",
- 		id->class_id, id->mfg_id, id->part_id, id->unique_id, id->sdw_version);
- }
-+EXPORT_SYMBOL(sdw_extract_slave_id);
- 
- static int sdw_program_device_num(struct sdw_bus *bus)
- {
-diff --git a/drivers/soundwire/slave.c b/drivers/soundwire/slave.c
-index 180f38bd003b..92850e150d36 100644
---- a/drivers/soundwire/slave.c
-+++ b/drivers/soundwire/slave.c
-@@ -88,6 +88,7 @@ int sdw_slave_add(struct sdw_bus *bus,
- 
- 	return ret;
- }
-+EXPORT_SYMBOL(sdw_slave_add);
- 
- #if IS_ENABLED(CONFIG_ACPI)
- 
-diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
-index 2f52d6609076..f9003ba056ba 100644
---- a/include/linux/soundwire/sdw.h
-+++ b/include/linux/soundwire/sdw.h
-@@ -1011,5 +1011,7 @@ int sdw_write_no_pm(struct sdw_slave *slave, u32 addr, u8 value);
- int sdw_read_no_pm(struct sdw_slave *slave, u32 addr);
- int sdw_nread(struct sdw_slave *slave, u32 addr, size_t count, u8 *val);
- int sdw_nwrite(struct sdw_slave *slave, u32 addr, size_t count, u8 *val);
-+int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id);
-+void sdw_extract_slave_id(struct sdw_bus *bus, u64 addr, struct sdw_slave_id *id);
- 
- #endif /* __SOUNDWIRE_H */
 -- 
 2.21.0
 
