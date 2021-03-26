@@ -2,92 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3FC34A986
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5685E34A9A4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:25:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbhCZOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:20:51 -0400
-Received: from pegase1.c-s.fr ([93.17.236.30]:43073 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230100AbhCZOU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 10:20:27 -0400
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4F6PJQ0zLJz9v03Q;
-        Fri, 26 Mar 2021 15:20:22 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id s0KOf5I51hUM; Fri, 26 Mar 2021 15:20:22 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4F6PJP6Vfbz9v0P3;
-        Fri, 26 Mar 2021 15:20:21 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9B5C58B8CF;
-        Fri, 26 Mar 2021 15:20:23 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id apm4h56oZ3Cq; Fri, 26 Mar 2021 15:20:23 +0100 (CET)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 95C5C8B8C7;
-        Fri, 26 Mar 2021 15:20:22 +0100 (CET)
-Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
-To:     Andreas Schwab <schwab@linux-m68k.org>
-Cc:     will@kernel.org, danielwa@cisco.com, robh@kernel.org,
-        daniel@gimpelevich.san-francisco.ca.us, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
- <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
- <87zgyqdn3d.fsf@igel.home>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
-Date:   Fri, 26 Mar 2021 15:20:20 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S230113AbhCZOZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:25:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230187AbhCZOY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:24:56 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412AEC0613B1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:24:56 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnOE-0007g5-8r; Fri, 26 Mar 2021 15:24:42 +0100
+Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnOC-0006zY-EG; Fri, 26 Mar 2021 15:24:40 +0100
+Date:   Fri, 26 Mar 2021 15:24:40 +0100
+From:   Philipp Zabel <pza@pengutronix.de>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     ezequiel@collabora.com, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v6 13/13] arm64: dts: imx8mq: Add node to G2 hardware
+Message-ID: <20210326142440.GD8441@pengutronix.de>
+References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
+ <20210318082046.51546-14-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <87zgyqdn3d.fsf@igel.home>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210318082046.51546-14-benjamin.gaignard@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:21:32 up 36 days, 17:45, 97 users,  load average: 0.13, 0.09,
+ 0.09
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Le 26/03/2021 à 15:08, Andreas Schwab a écrit :
-> On Mär 26 2021, Christophe Leroy wrote:
+On Thu, Mar 18, 2021 at 09:20:46AM +0100, Benjamin Gaignard wrote:
+> Split VPU node in two: one for G1 and one for G2 since they are
+> different hardware blocks.
+> Add syscon for hardware control block.
+> Remove reg-names property that is useless.
+> Each VPU node only need one interrupt.
 > 
->> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
->> index f8f15332caa2..e7c91ee478d1 100644
->> --- a/arch/riscv/kernel/setup.c
->> +++ b/arch/riscv/kernel/setup.c
->> @@ -20,6 +20,7 @@
->>   #include <linux/swiotlb.h>
->>   #include <linux/smp.h>
->>   #include <linux/efi.h>
->> +#include <linux/cmdline.h>
->>   
->>   #include <asm/cpu_ops.h>
->>   #include <asm/early_ioremap.h>
->> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
->>   	}
->>   
->>   	pr_err("No DTB passed to the kernel\n");
->> -#ifdef CONFIG_CMDLINE_FORCE
->> -	strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
->> +	cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
->>   	pr_info("Forcing kernel command line to: %s\n", boot_command_line);
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 5:
+>  - use syscon instead of VPU reset
 > 
-> Shouldn't that message become conditional in some way?
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 43 ++++++++++++++++++-----
+>  1 file changed, 34 insertions(+), 9 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 17c449e12c2e..b537d153ebbd 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1329,15 +1329,16 @@ usb3_phy1: usb-phy@382f0040 {
+>  			status = "disabled";
+>  		};
+>  
+> -		vpu: video-codec@38300000 {
+> +		vpu_ctrl: syscon@38320000 {
+> +			compatible = "nxp,imx8mq-vpu-ctrl", "syscon";
+> +			reg = <0x38320000 0x10000>;
+> +		};
+> +
+> +		vpu_g1: video-codec@38300000 {
+>  			compatible = "nxp,imx8mq-vpu";
+> -			reg = <0x38300000 0x10000>,
+> -			      <0x38310000 0x10000>,
+> -			      <0x38320000 0x10000>;
+> -			reg-names = "g1", "g2", "ctrl";
+> -			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "g1", "g2";
+> +			reg = <0x38300000 0x10000>;
+> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "g1";
+>  			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+>  				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+>  				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> @@ -1350,9 +1351,33 @@ vpu: video-codec@38300000 {
+>  						 <&clk IMX8MQ_VPU_PLL_OUT>,
+>  						 <&clk IMX8MQ_SYS1_PLL_800M>,
+>  						 <&clk IMX8MQ_VPU_PLL>;
+> -			assigned-clock-rates = <600000000>, <600000000>,
+> +			assigned-clock-rates = <600000000>, <300000000>,
 
-You are right, I did something similar on ARM but looks like I missed it on RISCV.
+I'd like to see this mentioned in the commit message.
 
-Christophe
+> +					       <800000000>, <0>;
+> +			power-domains = <&pgc_vpu>;
+> +			nxp,imx8mq-vpu-ctrl = <&vpu_ctrl>;
+> +		};
+> +
+> +		vpu_g2: video-codec@38310000 {
+> +			compatible = "nxp,imx8mq-vpu-g2";
+> +			reg = <0x38310000 0x10000>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "g2";
+> +			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> +				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> +				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> +			clock-names = "g1", "g2",  "bus";
+> +			assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
+
+Can the G1 clock configuration be dropped from the G2 device node and
+the G2 clock configuration from the G1 device node? It looks weird that
+these devices configure each other's clocks.
+
+regards
+Philipp
