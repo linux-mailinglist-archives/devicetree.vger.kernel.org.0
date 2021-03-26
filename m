@@ -2,147 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6857D349F3E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:57:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3015934A01D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 04:13:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbhCZB44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 21:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230502AbhCZB43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:56:29 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1981AC06174A
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 18:56:29 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 8so4275125ybc.13
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 18:56:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hrB2LTPaVmnjj9DVoKtdE6xPWCuIJ5kDPF5kkoCFRTc=;
-        b=JnpMerTMuvdTNr3jlTTTkhRSY71aQqnFp8O842+Bvp2NmhzWfvYc+uGEpNKJsdwnRM
-         e1yOgfdB+lrlo+kBUD1j/mzMjn53F9cik3CYhSZDCKAZW5nAp5jb4I6AtpDMwctfjLG8
-         5GhsCMKEfKscaztp1K6PellN2Eg/2nUM9QRb4u+2aLaE/ycCXjs6drgAhbkJHZhKuz2L
-         zFbvp4v2Ao83LlrOm/mS/VXOBwPe4K4Ws6dW+1+vPun7VqiyhE4+4heQO25CxGzv/e+X
-         Ia6Gs7vHxIjTM/2YrXaXm+n63tjtC9814owBgPYWw6jLS7kFDSiztEN/HZM/pGe333rJ
-         ufKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hrB2LTPaVmnjj9DVoKtdE6xPWCuIJ5kDPF5kkoCFRTc=;
-        b=SDZtYRkUMPoOVvBvmsx5xubxIrxWK3ocXRsBpzE+rFSnp287kvo5CFe12iI61Mm+qg
-         gems/bx8FzMIqndT73OJYoqh2+v2wEG6wnaE23y8Kc2VpdJ3+YcYw4zUnO8JJ/iMKxO1
-         xrvGSQHG4tuaXJRDz583A2zuE8me4Iu2RKIP4pUpNVLo2B6tu2h8dN/QrLM5J4gckjsL
-         ePMi4rPmeevhsLIzDub1FQ+3BbZqxyECLQ33XYHSarzDg4P5Hitu1n1m/fhoGfqRozr0
-         6PCtbkxg/Yn0xacf5DqlXVL30bWfDbWyR7OvTOxFU3F00sAO2dBQVnrsBjyVEb/T1O0y
-         PPZQ==
-X-Gm-Message-State: AOAM530RsQjjf38Ur1D2yKEwtiPbvBkGd9ELo7Pd2G6ahpQECeWtgGvM
-        BgBZ7uBv6wooLp5aVCxE+f7xDEwIKVnjU9G+1XLq4A==
-X-Google-Smtp-Source: ABdhPJxB7xf3Rq3TkTdpnCGF1jh//fwqvy8Tw1KzgPM4FI1tQ/iWxL5DcuEXT+HJIN5Qz+6iVFT0wDINRX4gmrarveI=
-X-Received: by 2002:a25:d3cf:: with SMTP id e198mr16063062ybf.228.1616723788120;
- Thu, 25 Mar 2021 18:56:28 -0700 (PDT)
+        id S230273AbhCZDNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 23:13:15 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:44483 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230222AbhCZDNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 23:13:06 -0400
+X-UUID: 3a38c443ec3a403cb3fc11a769af1afb-20210326
+X-UUID: 3a38c443ec3a403cb3fc11a769af1afb-20210326
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 717496257; Fri, 26 Mar 2021 11:12:53 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 26 Mar 2021 11:12:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 26 Mar 2021 11:12:51 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Seiya Wang <seiya.wang@mediatek.com>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH 1/2] clk: mediatek: remove deprecated CLK_INFRA_CA57SEL for MT8173 SoC
+Date:   Fri, 26 Mar 2021 11:12:26 +0800
+Message-ID: <20210326031227.2357-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-References: <20210316215123.GA3712408@robh.at.kernel.org> <20210318210318.144961-1-sebastian.reichel@collabora.com>
- <20210326012720.GA2113788@robh.at.kernel.org>
-In-Reply-To: <20210326012720.GA2113788@robh.at.kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 25 Mar 2021 18:55:52 -0700
-Message-ID: <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
-Subject: Re: [RFC] clk: add boot clock support
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
->
-> +Saravana
->
-> On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
-> > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
-> > is provided by an I2C RTC. Specifying this properly results in a
-> > circular dependency, since the I2C RTC (and thus its clock) cannot
-> > be initialized without the i.MX6 clock controller being initialized.
-> >
-> > With current code the following path is executed when i.MX6 clock
-> > controller is probed (and ckil clock is specified to be the I2C RTC
-> > via DT):
-> >
-> > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
-> > 2. of_clk_get_by_name(ccm_node, "ckil");
-> > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
-> > 4. of_clk_get_hw(ccm_node, 0, "ckil")
-> > 5. spec = of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
-> > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
-> > 7. error is propagated back, i.MX6q clock controller is probe deferred
-> > 8. I2C controller is never initialized without clock controller
-> >    I2C RTC is never initialized without I2C controller
-> >    CKIL clock is never initialized without I2C RTC
-> >    clock controller is never initialized without CKIL
-> >
-> > To fix the circular dependency this registers a dummy clock when
-> > the RTC clock is tried to be acquired. The dummy clock will later
-> > be unregistered when the proper clock is registered for the RTC
-> > DT node. IIUIC clk_core_reparent_orphans() will take care of
-> > fixing up the clock tree.
-> >
-> > NOTE: For now the patch is compile tested only. If this approach
-> > is the correct one I will do some testing and properly submit this.
-> > You can find all the details about the hardware in the following
-> > patchset:
-> >
-> > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-sebastian.reichel@collabora.com/
-> >
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/clock/clock-bindings.txt         |   7 +
-> >  drivers/clk/clk.c                             | 146 ++++++++++++++++++
-> >  2 files changed, 153 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > index f2ea53832ac6..66d67ff4aa0f 100644
-> > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list of strings of clock output signal
-> >                   Clock consumer nodes must never directly reference
-> >                   the provider's clock-output-names property.
-> >
-> > +boot-clock-frequencies: This property is used to specify that a clock is enabled
-> > +                     by default with the provided frequency at boot time. This
-> > +                     is required to break circular clock dependencies. For clock
-> > +                     providers with #clock-cells = 0 this is a single u32
-> > +                     with the frequency in Hz. Otherwise it's a list of
-> > +                     clock cell specifier + frequency in Hz.
->
-> Seems alright to me. I hadn't thought about the aspect of needing to
-> know the frequency. Other cases probably don't as you only need the
-> clocks once both components have registered.
->
-> Note this could be lost being threaded in the other series.
+Remove CLK_INFRA_CA57SEL for MT8173 since it's no longer used.
 
-I read this thread and tried to understand it. But my head isn't right
-today (lack of sleep) so I couldn't wrap my head around it. I'll look
-at it again after the weekend. In the meantime, Sebastian can you
-please point me to the DT file and the specific device nodes (names or
-line number) where this cycle is present?
+Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+---
+ include/dt-bindings/clock/mt8173-clk.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-Keeping a clock on until all its consumers probe is part of my TODO
-list (next item after fw_devlink=on lands). I already have it working
-in AOSP, but need to clean it up for upstream. fw_devlink can also
-break *some* cycles (not all). So I'm wondering if the kernel will
-solve this automatically soon(ish). If it can solve it automatically,
-I'd rather not add new DT bindings because it'll make it more work for
-fw_devlink.
+diff --git a/include/dt-bindings/clock/mt8173-clk.h b/include/dt-bindings/clock/mt8173-clk.h
+index 3acebe937bfc..3d00c98b9654 100644
+--- a/include/dt-bindings/clock/mt8173-clk.h
++++ b/include/dt-bindings/clock/mt8173-clk.h
+@@ -186,7 +186,6 @@
+ #define CLK_INFRA_PMICWRAP		11
+ #define CLK_INFRA_CLK_13M		12
+ #define CLK_INFRA_CA53SEL               13
+-#define CLK_INFRA_CA57SEL               14 /* Deprecated. Don't use it. */
+ #define CLK_INFRA_CA72SEL               14
+ #define CLK_INFRA_NR_CLK                15
+ 
+-- 
+2.14.1
 
-Thanks,
-Saravana
