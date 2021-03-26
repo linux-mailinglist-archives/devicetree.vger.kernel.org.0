@@ -2,196 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDDF834AE9C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E5C34AECE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:53:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhCZSaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 14:30:35 -0400
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:43834 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbhCZSaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 14:30:07 -0400
-Received: by mail-ua1-f43.google.com with SMTP id b7so1844635uam.10;
-        Fri, 26 Mar 2021 11:30:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vZGkD+4E2RmAMLxrWzBsZkwCCLapq9ZQRvLGJF4GNDc=;
-        b=Ng12zlhcQH5p6RIHSBG/HvQCahO/IW1jmW9irIsuJTz/p/TIUDg8IHrOtlDulB5Lf4
-         SWB6W/F4bvanRi11K3rmYDZHVkakKsnOFJc//pRRum1Hm7N7qqIzU9FMOU5U4oEPo90T
-         lTac3W8p3JPxMGOKEDJByB1wU6uCZSMLSi7h2gapO+CKIZMP2liVVX8F4Up5l3Coz3zf
-         QUtrSUq6e1gdWx7urXAphTI5EGiBD8J9gzQxkuVFoLHrdf/a7M+hHOI0WJxbkh8Ighn+
-         BWbPCHU0/ARpkogu3ciROCpYz/+omyk2lQR3ycGtymFpK1HW8arJine0zTekrIvLOerT
-         SqTg==
-X-Gm-Message-State: AOAM531JKz+K7XuRtq/5cnGtjxTheEN+OShArhzDCTa5ctz2Bj+tb/GE
-        ofXCPZzKY3Oh67LxBKlBwHYsfrDtzx2KLjMn83c=
-X-Google-Smtp-Source: ABdhPJx0IhSE3AkZ3+3lDyKkbS3EoEFfE4627qSgDTDKiNvMtRzb4w4kqJdMTUKAhyc0CMv4LBbwcP4qpaDf7XslJk0=
-X-Received: by 2002:ab0:30b3:: with SMTP id b19mr9108849uam.58.1616783406884;
- Fri, 26 Mar 2021 11:30:06 -0700 (PDT)
+        id S230188AbhCZSw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 14:52:56 -0400
+Received: from mout.gmx.net ([212.227.17.20]:36281 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230134AbhCZSwj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 14:52:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1616784732;
+        bh=vouNfrqvwnj2jRCoiDlj0eW2eBcDSogKLdODonG/KnI=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=SCa92GsM3XsF4UQmE99IdhJFZvJ4vT+nzMpycsh58J/K78gRssvq5TiqbCxLzHDXb
+         nMe8MIcb6Oy/U+sVQyJ33qZbHYK+s1RuCNVT8Bqxz8uV6s9dZ09DSmPNQg3mTpB3cx
+         c2cXP9UKnKBe8iSHnBN4a5HkXvtbxPb+2PVlU6VA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MfpSb-1lssib042D-00gK0m; Fri, 26
+ Mar 2021 19:52:12 +0100
+Date:   Fri, 26 Mar 2021 19:52:07 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH 08/14] irqchip: Add driver for WPCM450 interrupt
+ controller
+Message-ID: <YF4tV+L71Lso94kT@latitude>
+References: <20210320181610.680870-1-j.neuschaefer@gmx.net>
+ <20210320181610.680870-9-j.neuschaefer@gmx.net>
+ <87sg4kiia4.wl-maz@kernel.org>
 MIME-Version: 1.0
-References: <20210205222644.2357303-9-saravanak@google.com>
- <20210210114435.122242-1-tudor.ambarus@microchip.com> <20210210114435.122242-2-tudor.ambarus@microchip.com>
- <CGME20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e@eucas1p2.samsung.com>
- <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com> <9b206c4d00dfe8b7f941260f18909914b2b2eecb.camel@suse.de>
- <161678243444.3012082.5031467952132861429@swboyd.mtv.corp.google.com>
-In-Reply-To: <161678243444.3012082.5031467952132861429@swboyd.mtv.corp.google.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 Mar 2021 19:29:55 +0100
-Message-ID: <CAMuHMdV5PGUujsFP2TXMxij4UxVnrrurh_qVhq8+480w21jJAg@mail.gmail.com>
-Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/vCPRjWtsUq/JNe6"
+Content-Disposition: inline
+In-Reply-To: <87sg4kiia4.wl-maz@kernel.org>
+X-Provags-ID: V03:K1:OkGnUsBmuQYhTqJmp/2lqe1nQZt9b9czacZw6IjmkhZkAOOmhC/
+ OIE+fyEAMzy9BuK7JUXvO8+6j/iHH0/c5fXydAZXWKEh8bbgN2q9KozHbG9Dqq3sEy30qf0
+ LZUf/aQtWH7PjPRaeAdCONwDIXcfVB3jV8vm7S4I+H4ICbhlcVQHR5JVv5zAhstnEm9dmBo
+ ylB6JaG3zVsZo8ONIx0xQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:OUEWgO+SBWg=:4rJ3YB5GY+AMLWGZ8QnMTy
+ mhq+izkM6FfkE4QxSh4efHDJZraFL/STrZQ1L31IUx8A4ZPv/qBPCrYSslLcBVSQJy8xlhJ2/
+ 8Ka9hm63QukTVkNMeKEhbUquunSAcJOq7kI5hkBxqmLiLdqs0rnfAKi46TcmmQRKn3xm6Lcq3
+ KzPw99DIUIll8w4OM/1yIRBy4cxTHxkjLWZeuKpjx42eR5zPrEK6s/7EGCa9m1FfV4Or2rbqX
+ JPcyMjE5hy+8650ontqA8yjJPrq87n7lmmgARQNOQW47xr7PAvZGXsHt1KSC5GQF3eRG0j/eM
+ vEXlPQZnDZOX5kd5/wXIYegqWZfBwiErOHYB1w7llg39gYJpqVf7XkcNGl7dYhulKjeXPU25b
+ wGZTsPl8boSpLIKWjvUsmojnefjlL9qiUOcuuJocKHyu1c0DCrmpT7SZDMEXqLWTr6ASuaVXZ
+ AoW2ON9bInM2IRjPct0Yn3sfGMtkOgmHknyaoCSzw15JEJ8tGxXu9zYScJZI6rmVmlwvikus2
+ qXAl2m1VT3ecSfoyc5E9Sp/1/8pkI39zaWSwsm9jY8bKIiuaINAEFtHh8vTT1SQp/YX9ALhBo
+ wKwkaTkvIufTNjVfP9TiE+jh6fNbRwPqvbDtSu0VtBVupbGvYTTSwRWJrhnFJ9VgQMrfK9Jlm
+ Vl+4qhPKVH6dBzIlZzR78bARH5B4n7b08ASJ1GxV4qtAnNTo+VaNZrmlWdUte+doEgGoS0cN7
+ yltQ53irHxno2zcRavgW0xezWugBp4CZO8DRsEI2c7XpvlUeqDEeJguqRa1NW+nbwiDfeUA0A
+ Awderu5gB3cIqTEB2oZIH7axB+yj8Q7SsfqG/QCp36NfKDGEB7/A/jWKCQAykgy+VkqQY92r9
+ FkhAO6HT+DQhOQsbygOjEYMyh1VvwiDo2EWt0YiVN+5utzcMjoY6rB/HP35ZHUpPJutEQse6/
+ EdhaYBVDLi5X8FLWGVQ5MPljimL29+qYj2tSDadd5ZI1KTM+eFzBq9LLM7reFjsZqsHG9687X
+ TSB5Ku6NnHPrx87bFHhaIjBOXZhRZcw02BYnspSI+8shIbJ1DXNqnV9+24gO/94hQQ9zMz1RY
+ d8n7zdr3s285SDE/EzKLcwOp+1A7fhlbgMZ6+vg4ShLUb7mhRlFiSA7DlTFKN62XpvmuMwwHE
+ 9PM+nZtoVZnkJbqidg/sZ6PqjjmOJuWOl/XOT4x/Vm8kHHjwXNOY0BY6tLkVlriKGvhvlpyaW
+ A56515AYTmKdNIxaS
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
 
-On Fri, Mar 26, 2021 at 7:13 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> Quoting Nicolas Saenz Julienne (2021-03-25 11:25:24)
-> > On Thu, 2021-03-25 at 14:31 +0100, Marek Szyprowski wrote:
-> > > On 10.02.2021 12:44, Tudor Ambarus wrote:
-> > > > This is a follow-up for:
-> > > > commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
-> > > >
-> > > > The above commit updated the deprecated of_clk_add_provider(),
-> > > > but missed to update the preferred of_clk_add_hw_provider().
-> > > > Update it now.
-> > > >
-> > > > Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-> > >
-> > > This patch, which landed in linux-next as commit 6579c8d97ad7 ("clk:
-> > > Mark fwnodes when their clock provider is added") causes the following
-> > > NULL pointer dereference on Raspberry Pi 3b+ boards:
-> > >
-> > > --->8---
-> > >
-> > > raspberrypi-firmware soc:firmware: Attached to firmware from
-> > > 2020-01-06T13:05:25
-> > > Unable to handle kernel NULL pointer dereference at virtual address
-> > > 0000000000000050
-> > > Mem abort info:
-> > >    ESR = 0x96000004
-> > >    EC = 0x25: DABT (current EL), IL = 32 bits
-> > >    SET = 0, FnV = 0
-> > >    EA = 0, S1PTW = 0
-> > > Data abort info:
-> > >    ISV = 0, ISS = 0x00000004
-> > >    CM = 0, WnR = 0
-> > > [0000000000000050] user address but active_mm is swapper
-> > > Internal error: Oops: 96000004 [#1] PREEMPT SMP
-> > > Modules linked in:
-> > > CPU: 0 PID: 10 Comm: kworker/0:1 Not tainted 5.12.0-rc4+ #2764
-> > > Hardware name: Raspberry Pi 3 Model B (DT)
-> > > Workqueue: events deferred_probe_work_func
-> > > pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=--)
-> > > pc : of_clk_add_hw_provider+0xac/0xe8
-> > > lr : of_clk_add_hw_provider+0x94/0xe8
-> > > sp : ffff8000130936b0
-> > > x29: ffff8000130936b0 x28: ffff800012494e04
-> > > x27: ffff00003b18cb05 x26: ffff00003aa5c010
-> > > x25: 0000000000000000 x24: 0000000000000000
-> > > x23: ffff00003aa1e380 x22: ffff8000106830d0
-> > > x21: ffff80001233f180 x20: 0000000000000018
-> > > x19: 0000000000000000 x18: ffff8000124d38b0
-> > > x17: 0000000000000013 x16: 0000000000000014
-> > > x15: ffff8000125758b0 x14: 00000000000184e0
-> > > x13: 000000000000292e x12: ffff80001258dd98
-> > > x11: 0000000000000001 x10: 0101010101010101
-> > > x9 : ffff80001233f288 x8 : 7f7f7f7f7f7f7f7f
-> > > x7 : fefefefeff6c626f x6 : 5d636d8080808080
-> > > x5 : 00000000006d635d x4 : 0000000000000000
-> > > x3 : 0000000000000000 x2 : 540eb5edae191600
-> > > x1 : 0000000000000000 x0 : 0000000000000000
-> > > Call trace:
-> > >   of_clk_add_hw_provider+0xac/0xe8
-> > >   devm_of_clk_add_hw_provider+0x5c/0xb8
-> > >   raspberrypi_clk_probe+0x110/0x210
-> > >   platform_probe+0x90/0xd8
-> > >   really_probe+0x108/0x3c0
-> > >   driver_probe_device+0x60/0xc0
-> > >   __device_attach_driver+0x9c/0xd0
-> > >   bus_for_each_drv+0x70/0xc8
-> > >   __device_attach+0xec/0x150
-> > >   device_initial_probe+0x10/0x18
-> > >   bus_probe_device+0x94/0xa0
-> > >   device_add+0x47c/0x780
-> > >   platform_device_add+0x110/0x248
-> > >   platform_device_register_full+0x120/0x150
-> > >   rpi_firmware_probe+0x158/0x1f8
-> > >   platform_probe+0x90/0xd8
-> > >   really_probe+0x108/0x3c0
-> > >   driver_probe_device+0x60/0xc0
-> > >   __device_attach_driver+0x9c/0xd0
-> > >   bus_for_each_drv+0x70/0xc8
-> > >   __device_attach+0xec/0x150
-> > >   device_initial_probe+0x10/0x18
-> > >   bus_probe_device+0x94/0xa0
-> > >   deferred_probe_work_func+0x70/0xa8
-> > >   process_one_work+0x2a8/0x718
-> > >   worker_thread+0x48/0x460
-> > >   kthread+0x134/0x160
-> > >   ret_from_fork+0x10/0x18
-> > > Code: b1006294 540000c0 b140069f 54000088 (3940e280)
-> > > ---[ end trace 7ead5ec2f0c51cfe ]---
-> > >
-> > > This patch mainly revealed that clk/bcm/clk-raspberrypi.c driver calls
-> > > devm_of_clk_add_hw_provider(), with a device pointer, which has a NULL
-> > > dev->of_node. I'm not sure if adding a check for a NULL np in
-> > > of_clk_add_hw_provider() is a right fix, though.
-> >
-> > I believe the right fix is not to call 'devm_of_clk_add_hw_provider()' if
-> > 'pdev->dev.of_node == NULL'. In such case, which is RPi3's, only the CPU clock
-> > is used, and it's defined and queried later through
-> > devm_clk_hw_register_clkdev().
-> >
-> > @Marek, I don't mind taking care of it if it's OK with you.
-> >
->
-> Ah I see this is related to the patch I just reviewed. Can you reference
-> this in the commit text? And instead of putting the change into the clk
-> provider let's check for NULL 'np' in of_clk_add_hw_provider() instead
-> and return 0 if there's nothing to do. That way we don't visit this
-> problem over and over again.
+--/vCPRjWtsUq/JNe6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm not sure the latter is what we reall want: shouldn't calling
-*of*_clk_add_hw_provider() with a NULL np be a bug in the provider?
+On Wed, Mar 24, 2021 at 05:16:35PM +0000, Marc Zyngier wrote:
+> On Sat, 20 Mar 2021 18:16:04 +0000,
+> Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
+> >=20
+> > The WPCM450 AIC ("Advanced Interrupt Controller") is the interrupt
+> > controller found in the Nuvoton WPCM450 SoC and other Winbond/Nuvoton
+> > SoCs.
+> >=20
+> > The list of registers if based on the AMI vendor kernel and the
+> > Nuvoton W90N745 datasheet.
+> >=20
+> > Although the hardware supports other interrupt modes, the driver only
+> > supports high-level interrupts at the moment, because other modes could
+> > not be tested so far.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+[...]
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +// Copyright 2021 Jonathan Neusch=C3=A4fer
+> > +
+> > +#include <linux/console.h>
+>=20
+> That's unexpected. Why do you need this?
 
-Gr{oetje,eeting}s,
+I forgot about linux/printk.h.
 
-                        Geert
+> > +#define AIC_SCR_SRCTYPE_LOW_LEVEL	(0 << 6)
+> > +#define AIC_SCR_SRCTYPE_HIGH_LEVEL	(1 << 6)
+> > +#define AIC_SCR_SRCTYPE_NEG_EDGE	(2 << 6)
+> > +#define AIC_SCR_SRCTYPE_POS_EDGE	(3 << 6)
+> > +#define AIC_SCR_PRIORITY(x)		(x)
+>=20
+> A mask would be welcomed for this field.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Ok, I'll add
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
++#define AIC_SCR_PRIORITY_MASK           0x7
+
+Should I apply it in AIC_SCR_PRIORITY(x), too?
+
+> > +
+> > +#define IRQS		32
+>=20
+> Please use something a bit less generic.
+
+Ok, I'll rename it to AIC_NUM_IRQS.
+
+> > +static void wpcm450_aic_init_hw(void)
+> > +{
+> > +	int i;
+> > +
+> > +	/* Disable (mask) all interrupts */
+> > +	writel(0xffffffff, aic->regs + AIC_MDCR);
+>=20
+> Consider using relaxed accessors throughout this driver.
+
+I'll read up on how to use them correctly.
+
+> > +static void __exception_irq_entry wpcm450_aic_handle_irq(struct pt_reg=
+s *regs)
+> > +{
+> > +	int hwirq;
+> > +
+> > +	/* Determine the interrupt source */
+> > +	/* Read IPER to signal that nIRQ can be de-asserted */
+> > +	hwirq =3D readl(aic->regs + AIC_IPER) / 4;
+> > +
+> > +	handle_domain_irq(aic->domain, hwirq, regs);
+> > +}
+> > +
+> > +static void wpcm450_aic_ack(struct irq_data *d)
+> > +{
+> > +	/* Signal end-of-service */
+> > +	writel(0, aic->regs + AIC_EOSCR);
+>=20
+> Is that an Ack or an EOI? My gut feeling is that the above read is the
+> Ack, and that this write should actually be an EOI callback.
+
+I agree that EOSCR (End of Service Command Register) matches the
+description of EOI.
+
+The reading IPER serves a dual purpose, as indicated above. I could
+move the IPER read to a separate irq_ack function and use ISNR
+(Interrupt source number register) in the IRQ handler instead. This
+should work (haven't tested it yet), but I'm not sure it's strictly
+better.
+
+> > +static void wpcm450_aic_mask(struct irq_data *d)
+> > +{
+> > +	unsigned int mask =3D 1U << d->hwirq;
+>=20
+> Consider using BIT().
+
+Will do.
+
+> > +static int wpcm450_aic_set_type(struct irq_data *d, unsigned int flow_=
+type)
+> > +{
+> > +	/*
+> > +	 * The hardware supports high/low level, as well as rising/falling ed=
+ge
+> > +	 * modes, and the DT binding accommodates for that, but as long as
+> > +	 * other modes than high level mode are not used and can't be tested,
+> > +	 * they are rejected in this driver.
+> > +	 */
+> > +	if ((flow_type & IRQ_TYPE_SENSE_MASK) !=3D IRQ_TYPE_LEVEL_HIGH) {
+> > +		pr_err("IRQ mode %#x is not supported\n", flow_type);
+>=20
+> The core kernel shouts loudly enough, no need for extra messages.
+
+Ok.
+
+> Otherwise, looks good.
+>=20
+> 	M.
+
+
+Thanks for your review!
+Jonathan Neusch=C3=A4fer
+
+--/vCPRjWtsUq/JNe6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBeLU8ACgkQCDBEmo7z
+X9tr6RAAwD+HGPSKLsoLr4AXFAWH1Zpa5j10/AATwVFzpwyJiClqMKu1rEPtHlm2
+2A6PD/y5X9Jl0IlmzKx6aWigahjx6qbkh3JZgnJR65kVKVlJsuyr+PvsC9ZOF0WU
+Tkc8ABVHaa3ZogBBQdIqcwOokDMv8C1vAxf1Fe7+p7XnzUz04HiDb9/sJmFO+rI5
+rItvh3KsrlBLrhdH++mlMVaNFA1FcdvMdZrajdDDVe02znZYUpW3pQ20A2FFgU6M
+NqDRc6x10sX62g8cZyt9HunlFOyykR6v9miVJG+t0SudErpq0twwa8VrseZPUGIU
+hmRb1tsi3Qj1MqTn0F6C4LovCxcqCG8Ew4O5BpF8A07ilRffMqq2Ux4tqzaylNyu
+kM/T+2+FTtj4c/ofVBU5q2js+Hywg8BkwlA0FmegMmfQdbwc91zLt28wRZ/Bq7A2
+lEfFdscPGKg34UP7ZImVa2/OZewchNkdLH4fovnqJj64SV+qb96Se+nmqIz1P8cw
+xVyOuSrKzmI3hosvPOOHbo94u41ltjgEiEBKIn6GXnS/7EYOd0kDjHJYPDavVMbN
+ZTBczNSLmLU7C2Kz2Tk/b3xpEnWPVLSaIrFV3X7INb495agu8r2oOzH60+4psVce
+sZdcnytva7c0Rwmsqhe3rarut05I6HNeOl06yeZv0loxtqz6hyw=
+=A8O7
+-----END PGP SIGNATURE-----
+
+--/vCPRjWtsUq/JNe6--
