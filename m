@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E2F34A4B6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3584734A4BE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:42:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbhCZJlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 05:41:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S230018AbhCZJmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 05:42:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbhCZJl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:41:28 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C775AC0613AA;
-        Fri, 26 Mar 2021 02:41:28 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id p2-20020a4aa8420000b02901bc7a7148c4so1155616oom.11;
-        Fri, 26 Mar 2021 02:41:28 -0700 (PDT)
+        with ESMTP id S230155AbhCZJlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:41:50 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D5BC0613AA;
+        Fri, 26 Mar 2021 02:41:49 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id s11-20020a056830124bb029021bb3524ebeso4715734otp.0;
+        Fri, 26 Mar 2021 02:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=2y+lCH0Vs6pyPQeq2bGx9F/tNaWiQ7TVbCtQl3Cu+oM=;
-        b=muBx9zICBCg6dm3W4RgszzK5iERFpCnGJm6lNtrBAfKmL7RFejhESwlS05sDSKK/Kw
-         Dtamzlxewrw3cIFoEQrGHQPq8c6hY6icmufXuxZ/fN/OkX8Ei0WMG6aSJKNHix+KCuVQ
-         Pnni61Ovh4jDsySszrPy3xNriEfuj+iqvMvK2Ry600tVN8RiamQdgidjlAQvwdrHsuRI
-         lnSsvcwMAbouh7gNfAoIM7r3PNAbox9K9kEYAQfo8WbeUd7csF7VvUviTJPrj5Xryw9u
-         V9BIdhLp4zqy7serZfXaPQah/RKbVJDECNLMEANTui/ttVDwZO0sVaxxcugUrzn4pgVt
-         ZAaw==
+        bh=Aqjc4e4P+BYL3ptPbOMRtOfrYGx7wKOgBenNti1wSGk=;
+        b=HRYgMfgZrN2RHxZvf3CIN/Auu/ev7Vlxga78g+PvATDM3d3gfec2gnyuyS1L8FzFfk
+         7JrEZDpiaFc1ENVCYPTfObyOeBlhawYOd2S/NEwekSZJKp+IvC3CsOw/IEYeyRHeOoUT
+         O0ax5A3pw/07lzm/aegmiaa2Ojl5jm7b8QimRnGSh/gnnLOfCxN8wJlPkFGqBEJKoQAG
+         x2TpyyAVRuI0j46ygm0/6kskpPkpVDiySl84Q7+yy25Gbczk/zL7w9SFQkMGFjXc631J
+         wcHskpkOqSU/VIrV5XweOG8h4fmqPckIInLNT8x05dZxc1O2xv67VWKpeACM4+73GEWt
+         7dKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2y+lCH0Vs6pyPQeq2bGx9F/tNaWiQ7TVbCtQl3Cu+oM=;
-        b=sJxfMfEWQOt37Xq6KBTqaPY3uKPFvqz5/CoTOy6qEFm5htn82hehgCzhECJLn+qs88
-         e5hMNxTZqQ9F2eo7WBQK0CDEdlHXkdYIs4h5/wpZQpfUC4DWSZ9aEf7LpqPJ4pkM8oFh
-         kDDTcn6vJe0CMj6MFEQMBiPkNJDq6NOv52Z4z1R2LgBLVmIqnbfyK9UCCl0CFrVx9o3u
-         v95GqtcznhGrURGKZ/rjDYLm12Q+UuwNTy804sELT7J7p42Ae11PCrNuKopsU8OdS7uG
-         S1flBdrZjEfQVbHd2bF5Xm9xEcdL8k+gs+ZRFFMkrnpOdMrww6OPZfbqcAyJLSTei4Qe
-         dU8A==
-X-Gm-Message-State: AOAM532EAImwWGIAl1yujZe/XR9q/0uumylmgJ7R2d4fwJB4RXwf9E0h
-        AKyoLD6qqQyYwmS/mLVN7ehzN1J0dojJfSSkAVU=
-X-Google-Smtp-Source: ABdhPJwquUJ1qtonkHAnnJwykvLpp6ObSIvVLd7Rm3IiefenhyBYSBoARcO70lQdHSF8v5anxB3Un178MZe50H68vG0=
-X-Received: by 2002:a05:6820:255:: with SMTP id b21mr10695602ooe.0.1616751688136;
- Fri, 26 Mar 2021 02:41:28 -0700 (PDT)
+        bh=Aqjc4e4P+BYL3ptPbOMRtOfrYGx7wKOgBenNti1wSGk=;
+        b=AljuRjWt6eWvFNBA2hW1VzuWkavoYeLiwFnfdbk7hUuY98eNaMeEy1IHbt6rKJiSBp
+         yzBh5M6222iwQklGL23jUQDD29lJxKNHgZ6IER5FSp+C59dRqH3s7U15BDIX5mopnt1a
+         V9v6QvahW2R5GLR4QU+N3WGJm5HBBN1lwWagBEQ07Ql2I0+ZzNLXlxKW5pEwwOBBo9p4
+         r+R5Ose94eJ+2YfG1oxJB2WIycu2wDypwUBEZV5j52rPTmn8BMKv14zZYX9cr/+9G86E
+         sCsIZrqMGG1xodDLfJSpfoLEn8bHrdPXII3CnCGkrNHwsEpyIR5IMQkconTtfnd7xLvw
+         o0RQ==
+X-Gm-Message-State: AOAM530HI+zVrVhJxVOSIvea80kSH+Wb1vfvGHF6DAl94c/5Y44cjPu9
+        Q/4us5/g8X7buka6Ts3dOPkIPcIJv0vbV8ywTIs=
+X-Google-Smtp-Source: ABdhPJw+hcU2eD3grVXPcFvEeWAOWTPAIj3y/l9tcWkeR4X29gZwIsJ16uGYOC8Akvhep9knlWfKLmxCAgq9pJe+46A=
+X-Received: by 2002:a05:6830:10d3:: with SMTP id z19mr11157103oto.362.1616751709324;
+ Fri, 26 Mar 2021 02:41:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210326091547.12375-1-zhangqing@rock-chips.com> <20210326091547.12375-5-zhangqing@rock-chips.com>
-In-Reply-To: <20210326091547.12375-5-zhangqing@rock-chips.com>
+References: <20210326091547.12375-1-zhangqing@rock-chips.com> <20210326091712.12478-1-zhangqing@rock-chips.com>
+In-Reply-To: <20210326091712.12478-1-zhangqing@rock-chips.com>
 From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Fri, 26 Mar 2021 10:41:16 +0100
-Message-ID: <CAFqH_51V6J0tJzpzszEHSOvXx-88XuCpGGHKeyq8vT1pFT924A@mail.gmail.com>
-Subject: Re: [PATCH v5 04/11] arm64: dts: rockchip: Fix power-controller node
- names for px30
+Date:   Fri, 26 Mar 2021 10:41:37 +0100
+Message-ID: <CAFqH_51868Omo6bC5MCgbsTjAXqhYTbgn86MwZjN3_gX6SfhgA@mail.gmail.com>
+Subject: Re: [PATCH v5 05/11] arm64: dts: rockchip: Fix power-controller node
+ names for rk3328
 To:     Elaine Zhang <zhangqing@rock-chips.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
@@ -77,83 +77,32 @@ mar=C3=A7 2021 a les 10:17:
 Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
 > ---
->  arch/arm64/boot/dts/rockchip/px30.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts=
-/rockchip/px30.dtsi
-> index c45b0cfcae09..fb3a863e0caf 100644
-> --- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-> @@ -247,20 +247,20 @@
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/d=
+ts/rockchip/rk3328.dtsi
+> index 063ed0adbec4..084acfd597af 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> @@ -303,13 +303,13 @@
+>                         #address-cells =3D <1>;
 >                         #size-cells =3D <0>;
 >
->                         /* These power domains are grouped by VD_LOGIC */
-> -                       pd_usb@PX30_PD_USB {
-> +                       power-domain@PX30_PD_USB {
->                                 reg =3D <PX30_PD_USB>;
->                                 clocks =3D <&cru HCLK_HOST>,
->                                          <&cru HCLK_OTG>,
->                                          <&cru SCLK_OTG_ADP>;
->                                 pm_qos =3D <&qos_usb_host>, <&qos_usb_otg=
->;
+> -                       pd_hevc@RK3328_PD_HEVC {
+> +                       power-domain@RK3328_PD_HEVC {
+>                                 reg =3D <RK3328_PD_HEVC>;
 >                         };
-> -                       pd_sdcard@PX30_PD_SDCARD {
-> +                       power-domain@PX30_PD_SDCARD {
->                                 reg =3D <PX30_PD_SDCARD>;
->                                 clocks =3D <&cru HCLK_SDMMC>,
->                                          <&cru SCLK_SDMMC>;
->                                 pm_qos =3D <&qos_sdmmc>;
+> -                       pd_video@RK3328_PD_VIDEO {
+> +                       power-domain@RK3328_PD_VIDEO {
+>                                 reg =3D <RK3328_PD_VIDEO>;
 >                         };
-> -                       pd_gmac@PX30_PD_GMAC {
-> +                       power-domain@PX30_PD_GMAC {
->                                 reg =3D <PX30_PD_GMAC>;
->                                 clocks =3D <&cru ACLK_GMAC>,
->                                          <&cru PCLK_GMAC>,
-> @@ -268,7 +268,7 @@
->                                          <&cru SCLK_GMAC_RX_TX>;
->                                 pm_qos =3D <&qos_gmac>;
+> -                       pd_vpu@RK3328_PD_VPU {
+> +                       power-domain@RK3328_PD_VPU {
+>                                 reg =3D <RK3328_PD_VPU>;
+>                                 clocks =3D <&cru ACLK_VPU>, <&cru HCLK_VP=
+U>;
 >                         };
-> -                       pd_mmc_nand@PX30_PD_MMC_NAND {
-> +                       power-domain@PX30_PD_MMC_NAND {
->                                 reg =3D <PX30_PD_MMC_NAND>;
->                                 clocks =3D  <&cru HCLK_NANDC>,
->                                           <&cru HCLK_EMMC>,
-> @@ -281,14 +281,14 @@
->                                 pm_qos =3D <&qos_emmc>, <&qos_nand>,
->                                          <&qos_sdio>, <&qos_sfc>;
->                         };
-> -                       pd_vpu@PX30_PD_VPU {
-> +                       power-domain@PX30_PD_VPU {
->                                 reg =3D <PX30_PD_VPU>;
->                                 clocks =3D <&cru ACLK_VPU>,
->                                          <&cru HCLK_VPU>,
->                                          <&cru SCLK_CORE_VPU>;
->                                 pm_qos =3D <&qos_vpu>, <&qos_vpu_r128>;
->                         };
-> -                       pd_vo@PX30_PD_VO {
-> +                       power-domain@PX30_PD_VO {
->                                 reg =3D <PX30_PD_VO>;
->                                 clocks =3D <&cru ACLK_RGA>,
->                                          <&cru ACLK_VOPB>,
-> @@ -304,7 +304,7 @@
->                                 pm_qos =3D <&qos_rga_rd>, <&qos_rga_wr>,
->                                          <&qos_vop_m0>, <&qos_vop_m1>;
->                         };
-> -                       pd_vi@PX30_PD_VI {
-> +                       power-domain@PX30_PD_VI {
->                                 reg =3D <PX30_PD_VI>;
->                                 clocks =3D <&cru ACLK_CIF>,
->                                          <&cru ACLK_ISP>,
-> @@ -315,7 +315,7 @@
->                                          <&qos_isp_wr>, <&qos_isp_m1>,
->                                          <&qos_vip>;
->                         };
-> -                       pd_gpu@PX30_PD_GPU {
-> +                       power-domain@PX30_PD_GPU {
->                                 reg =3D <PX30_PD_GPU>;
->                                 clocks =3D <&cru SCLK_GPU>;
->                                 pm_qos =3D <&qos_gpu>;
 > --
 > 2.17.1
 >
