@@ -2,107 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4751A34ADAA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 18:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F57734ADBF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 18:45:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbhCZRes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 13:34:48 -0400
-Received: from foss.arm.com ([217.140.110.172]:37458 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231265AbhCZReP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 13:34:15 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7A2FB1476;
-        Fri, 26 Mar 2021 10:34:14 -0700 (PDT)
-Received: from [10.57.27.121] (unknown [10.57.27.121])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 130703F7D7;
-        Fri, 26 Mar 2021 10:34:11 -0700 (PDT)
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Arnd Bergmann <arnd@kernel.org>
-Cc:     sven@svenpeter.dev, robh@kernel.org,
-        iommu@lists.linux-foundation.org, joro@8bytes.org, will@kernel.org,
-        marcan@marcan.st, maz@kernel.org, mohamed.mediouni@caramail.com,
-        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
- <20210323205346.GA1283560@robh.at.kernel.org>
- <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
- <CAK8P3a0fvnYLrG=cGiOQ6u8aZnriTeM0R=MW7FX=94mO13Rq0w@mail.gmail.com>
- <c1bcd90d344c2b68@bloch.sibelius.xs4all.nl>
- <9f06872d-f0ec-43c3-9b53-d144337100b3@www.fastmail.com>
- <CAK8P3a2b7k6JkxecW=yu-NF+fkNCxJ3Ja36nQ7LK8hsuO=4=sw@mail.gmail.com>
- <c1bcd9821a8f8c05@bloch.sibelius.xs4all.nl>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <e03833b1-1368-c5c3-424b-59e34bef19f3@arm.com>
-Date:   Fri, 26 Mar 2021 17:34:05 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230170AbhCZRoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 13:44:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37528 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhCZRo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 13:44:26 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1C3C0613AA
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 10:44:25 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id c4so6052098qkg.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 10:44:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YTiCPMS4dthdULxeLUAd4raLVXYHOILiM1vRqix30Ow=;
+        b=PbK4/qmiwnf4feqIwuNChtdWFYvloADtgfAKq6npa2snWi2rZrZkVtTBVnNtn1eXH7
+         /O9m+XEscpeDlaZ7PTOxVIFH7aWT8w1K8qklnys1Ob8AXEOVcavq5I+xGg5LM6IBlN9c
+         FgHPOIwoCk8iUQtZkvDhodQ/FZ05kPaRoWt16a7UXjPpEoOwWo17qJy13zkX/Ij70Utq
+         VCKh85h45oZ4xkFHs/TqELfixKKQqB03XpyrXzjZ4aGFmGFe2mSPovfDL1ZCj6oJQNyL
+         W4ct/MjShXCOcs2OdPgm0m/RT0XkQzgkBxxMSSr1dKSq36oAF2mJnJKFCAyj27mEKvRn
+         fWWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YTiCPMS4dthdULxeLUAd4raLVXYHOILiM1vRqix30Ow=;
+        b=k+4uDaVfn78YrKp36sgTCZQZ/dVVs1cC1c7DNRJsoeRPWzzb3gWsBkch7e+koInruP
+         sHuMd59ItewcJp2GAOgVMWtx6WAvnmqDIkf5PXaWx4w6N7NDjAFMBTurd8czCRJ584Uv
+         XYCbOuJZgwJOOZGsz+VZ/UcIQKvAMZebb+PvO697oXVT+NRgyYS05ZzJSxy0Je9GArkE
+         TlSXTQpTqRCOgxCu8N63DrzEUFMzPYbYRnPjryM8QGynAbGiZCSUt+e7DQY/tZC6GuQ8
+         Omll20rw8Q6rqqHH6T9Lv1EMxqh16RzhoqgM1XNHBhBzwgsJVWAAyfPgZHeGW/4LjPeV
+         lvng==
+X-Gm-Message-State: AOAM53148F69adAiH3YZ54W0tuRbfW8+qmhcaiudC6aNucCybEpnLPw0
+        NYLhrW45l91tmx90WdizMefYfwdQl2QDnlylOV83uw==
+X-Google-Smtp-Source: ABdhPJyDfbvLtsTUNR1uDU1zGMnuuEd3/ebE97k9a0Rt0IpEgxJ7+D/HRW49YpHNBZUyH1b8T02Zcdk4eWd6x72fMjY=
+X-Received: by 2002:a37:9e50:: with SMTP id h77mr14193891qke.138.1616780665134;
+ Fri, 26 Mar 2021 10:44:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <c1bcd9821a8f8c05@bloch.sibelius.xs4all.nl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20210318195930.2229546-1-dmitry.baryshkov@linaro.org>
+ <20210318195930.2229546-2-dmitry.baryshkov@linaro.org> <20210326012017.GA2110606@robh.at.kernel.org>
+In-Reply-To: <20210326012017.GA2110606@robh.at.kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 26 Mar 2021 20:44:13 +0300
+Message-ID: <CAA8EJprb6Cx=AHMT+4BUpqOVt7nCDUTFHuwPr3p2s8BB4W-g6Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: phy: qcom,qmp-usb3-dp: Add support
+ for SM8250
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-03-26 17:26, Mark Kettenis wrote:
->> From: Arnd Bergmann <arnd@kernel.org>
->> Date: Fri, 26 Mar 2021 17:38:24 +0100
->>
->> On Fri, Mar 26, 2021 at 5:10 PM Sven Peter <sven@svenpeter.dev> wrote:
->>> On Fri, Mar 26, 2021, at 16:59, Mark Kettenis wrote:
->>>> Some of the DARTs provide a bypass facility.  That code make using the
->>>> standard "dma-ranges" property tricky.  That property would need to
->>>> contain the bypass address range.  But that would mean that if the
->>>> DART driver needs to look at that property to figure out the address
->>>> range that supports translation it will need to be able to distinguish
->>>> between the translatable address range and the bypass address range.
->>>
->>> Do we understand if and why we even need to bypass certain streams?
->>
->> My guess is that this is a performance optimization.
->>
->> There are generally three reasons to want an iommu in the first place:
->>   - Pass a device down to a guest or user process without giving
->>     access to all of memory
->>   - Avoid problems with limitations in the device, typically when it
->> only supports
->>     32-bit bus addressing, but the installed memory is larger than 4GB
->>   - Protect kernel memory from broken drivers
->>
->> If you care about none of the above, but you do care about data transfer
->> speed, you are better off just leaving the IOMMU in bypass mode.
->> I don't think we have to support it if the IOMMU works reliably, but it's
->> something that users might want.
-> 
-> Another reason might be that a device needs access to large amounts of
-> physical memory at the same time and the 32-bit address space that the
-> DART provides is too tight.
-> 
-> In U-Boot I might want to use bypass where it works since there is no
-> proper IOMMU support in U-Boot.  Generally speaking, the goal is to
-> keep the code size down in U-Boot.  In OpenBSD I'll probably avoid
-> bypass mode if I can.
-> 
-> I haven't figured out how the bypass stuff really works.  Corellium
-> added support for it in their codebase when they added support for
-> Thunderbolt, and some of the DARTs that seem to be related to
-> Thunderbolt do indeed have a "bypass" property.  But it is unclear to
-> me how the different puzzle pieces fit together for Thunderbolt.
-> 
-> Anyway, from my viewpoint having the information about the IOVA
-> address space sit on the devices makes little sense.  This information
-> is needed by the DART driver, and there is no direct cnnection from
-> the DART to the individual devices in the devicetree.  The "iommus"
-> property makes a connection in the opposite direction.
+On Fri, 26 Mar 2021 at 04:20, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Mar 18, 2021 at 10:59:25PM +0300, Dmitry Baryshkov wrote:
+> > Add compatible for SM8250 in QMP USB3 DP PHY bindings.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml         | 1 -
+> >  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 ++
+> >  2 files changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > index 626447fee092..c558aa605b9d 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> > @@ -38,7 +38,6 @@ properties:
+> >        - qcom,sm8250-qmp-gen3x1-pcie-phy
+> >        - qcom,sm8250-qmp-gen3x2-pcie-phy
+> >        - qcom,sm8250-qmp-modem-pcie-phy
+> > -      - qcom,sm8250-qmp-usb3-phy
+>
+> Why is this being moved? Not sure what the differences between the 2
+> bindings, but doesn't seem like a backwards compatible change.
 
-What still seems unclear is whether these addressing limitations are a 
-property of the DART input interface, the device output interface, or 
-the interconnect between them. Although the observable end result 
-appears more or less the same either way, they are conceptually 
-different things which we have different abstractions to deal with.
+Hmm. I followed the existing schemas, but they are incorrect. It looks
+like the commit 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add
+DP phy information") has introduced backwards-incompatible change,
+which is not followed by the current kernel device trees. I'd proposed
+to move qcom,sc7180-qmp-usb3-phy and qcom,sdm845-qmp-usb3-phy back to
+bindings/phy/qcom,qmp-phy.yaml (as those device nodes do not use DP
+serdes block, etc).
 
-Robin.
+I'll include the fix into v4 of this series.
+
+>
+> >        - qcom,sm8250-qmp-usb3-uni-phy
+> >        - qcom,sm8350-qmp-ufs-phy
+> >        - qcom,sm8350-qmp-usb3-phy
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> > index 33974ad10afe..9792cc567cb5 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> > @@ -17,6 +17,8 @@ properties:
+> >        - qcom,sc7180-qmp-usb3-phy
+> >        - qcom,sdm845-qmp-usb3-dp-phy
+> >        - qcom,sdm845-qmp-usb3-phy
+> > +      - qcom,sm8250-qmp-usb3-dp-phy
+> > +      - qcom,sm8250-qmp-usb3-phy
+> >    reg:
+> >      items:
+> >        - description: Address and length of PHY's USB serdes block.
+> > --
+> > 2.30.2
+> >
+
+
+
+-- 
+With best wishes
+Dmitry
