@@ -2,116 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763DF349E86
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ACE9349E93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:21:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbhCZBSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 21:18:42 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:42655 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbhCZBS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:18:27 -0400
-Received: by mail-io1-f42.google.com with SMTP id r193so3818551ior.9;
-        Thu, 25 Mar 2021 18:18:27 -0700 (PDT)
+        id S229893AbhCZBUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 21:20:50 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:42806 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230216AbhCZBU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:20:27 -0400
+Received: by mail-io1-f47.google.com with SMTP id r193so3823419ior.9;
+        Thu, 25 Mar 2021 18:20:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uLEv/UUTMOz0YMtABzYyD5q0F3bD9ue+f7LZRR5uqaQ=;
-        b=OY9edyg0TvmQkHuh/2HMI++wxFmANudCYtIaV3ED27tyPLLTpGFwsAbcRvILk7+SxE
-         0x2nLwKtXJDDJDJ+1UhbXccbJmq3KKjsLDG2Z3vciUiBECU/APFzNTSJXkOLCLmb5eJA
-         GrL7eQB3rSLGLrrdfIdBq6K1TTZtks3OadlE1mL6OE5vEEgWA5BgBbzR3kNJlT6mkbNY
-         UvdE+/vLhveomoFbgcepiBGAXGK411OBRkcQ2gbMzPfNfIR5VJdDv7qWcqykAPvDQd37
-         98swN9M73lpo0M31Z3YoV33H/xhm50Z2XYpZl0xm+yVf2/IfSFQjW3ZlR1l4Y/CxTDCn
-         8hog==
-X-Gm-Message-State: AOAM533+yltcGUj15WWxKbmfJfEg3D4p1uC4LFYkiZgv5zTDj1YZNNXW
-        rSsaQWKob6Zpo9/6rRc+aQ==
-X-Google-Smtp-Source: ABdhPJzqjnBsjg5OOMfmunx455Sgg50aTb8Nxfxl10GMGD+dZ9XGG9xe6kn6gqUrOhukuU0sLugHyQ==
-X-Received: by 2002:a05:6638:224e:: with SMTP id m14mr10171656jas.8.1616721506708;
-        Thu, 25 Mar 2021 18:18:26 -0700 (PDT)
+        bh=g1oETLj9wrtiRU5jJdQngaNgqEMC1XIzi2QLypitg8M=;
+        b=f8IT7DmZXaLyDnisWOHCjo5x8L9z6YmOUDAvREHyIIbdRuRAbNvHxjMBZQn67XcG3u
+         g7olOlLrWGKdIY0AeNc8zjbGVRPOysoYZl48ez5LxUu+cXzfY7+wWm3HslfLdxvR/wuV
+         GbuHRi7OE6f5ceofHZ2btn6aef2ENA7L8/q7xAmeQbw+shUWz9TcBA4B+0N6ZSl+jA+7
+         8v2A6Cabn64Gkph5FOGdpnhAiAnmqGSSxExvj1gwOkIPnn4uYgS2PvqXyfIjfb3s8/ww
+         ImGtMj1+AYhqHFteRdkw02qEbnpMofISnkGml7zm0VoPpk3jQZlKePLVOOZJMn8LJPhJ
+         a1Pw==
+X-Gm-Message-State: AOAM533FWOEQtTNJtM8Wb9/TgMLYx5CWQ1gHykRdlydwzIhrU9kfI0Cj
+        Hn1VVt6y7gBZWfgd/11W3A==
+X-Google-Smtp-Source: ABdhPJxYmVVGBFzXcMDsujbo5nPWB+1tT0lwupMFLXYKKgZAlEzQvcn99uSGJxAzmIAXSUL6k6pbCA==
+X-Received: by 2002:a02:6654:: with SMTP id l20mr9845749jaf.55.1616721626359;
+        Thu, 25 Mar 2021 18:20:26 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e2sm3452684iov.26.2021.03.25.18.18.24
+        by smtp.gmail.com with ESMTPSA id y18sm3607719ili.16.2021.03.25.18.20.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 18:18:26 -0700 (PDT)
-Received: (nullmailer pid 2110362 invoked by uid 1000);
-        Fri, 26 Mar 2021 01:18:23 -0000
-Date:   Thu, 25 Mar 2021 19:18:23 -0600
+        Thu, 25 Mar 2021 18:20:25 -0700 (PDT)
+Received: (nullmailer pid 2113392 invoked by uid 1000);
+        Fri, 26 Mar 2021 01:20:17 -0000
+Date:   Thu, 25 Mar 2021 19:20:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dario Binacchi <dariobin@libero.it>
-Cc:     linux-kernel@vger.kernel.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: ti: dpll: add spread spectrum support
-Message-ID: <20210326011823.GA2102368@robh.at.kernel.org>
-References: <20210318172627.12173-1-dariobin@libero.it>
- <20210318172627.12173-3-dariobin@libero.it>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: phy: qcom,qmp-usb3-dp: Add support
+ for SM8250
+Message-ID: <20210326012017.GA2110606@robh.at.kernel.org>
+References: <20210318195930.2229546-1-dmitry.baryshkov@linaro.org>
+ <20210318195930.2229546-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210318172627.12173-3-dariobin@libero.it>
+In-Reply-To: <20210318195930.2229546-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 06:26:24PM +0100, Dario Binacchi wrote:
-> DT bindings for enabling and adjusting spread spectrum clocking have
-> been added.
+On Thu, Mar 18, 2021 at 10:59:25PM +0300, Dmitry Baryshkov wrote:
+> Add compatible for SM8250 in QMP USB3 DP PHY bindings.
 > 
-> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml         | 1 -
+>  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 ++
+>  2 files changed, 2 insertions(+), 1 deletion(-)
 > 
-> (no changes since v1)
-> 
->  .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Documentation/devicetree/bindings/clock/ti/dpll.txt
-> index df57009ff8e7..0810ae073294 100644
-> --- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
-> +++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
-> @@ -42,6 +42,11 @@ Required properties:
->  	"idlest" - contains the idle status register base address
->  	"mult-div1" - contains the multiplier / divider register base address
->  	"autoidle" - contains the autoidle register base address (optional)
-> +	"ssc-deltam" - DPLL supports spread spectrum clocking (SSC), contains
-> +		       the frequency spreading register base address (optional)
-> +	"ssc-modfreq" - DPLL supports spread spectrum clocking (SSC), contains
-> +		        the modulation frequency register base address
-> +			(optional)
->    ti,am3-* dpll types do not have autoidle register
->    ti,omap2-* dpll type does not support idlest / autoidle registers
->  
-> @@ -51,6 +56,14 @@ Optional properties:
->  	- ti,low-power-stop : DPLL supports low power stop mode, gating output
->  	- ti,low-power-bypass : DPLL output matches rate of parent bypass clock
->  	- ti,lock : DPLL locks in programmed rate
-> +	- ti,min-div : the minimum divisor to start from to round the DPLL
-> +		       target rate
-> +	- ti,ssc-deltam : DPLL supports spread spectrum clocking, frequency
-> +			  spreading in permille (10th of a percent)
-> +	- ti,ssc-modfreq : DPLL supports spread spectrum clocking, spread
-> +			   spectrum modulation frequency in kHz
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 626447fee092..c558aa605b9d 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -38,7 +38,6 @@ properties:
+>        - qcom,sm8250-qmp-gen3x1-pcie-phy
+>        - qcom,sm8250-qmp-gen3x2-pcie-phy
+>        - qcom,sm8250-qmp-modem-pcie-phy
+> -      - qcom,sm8250-qmp-usb3-phy
 
-Use a standard unit suffix (-hz or -mhz).
+Why is this being moved? Not sure what the differences between the 2 
+bindings, but doesn't seem like a backwards compatible change.
 
-> +	- ti,ssc-downspread : DPLL supports spread spectrum clocking, boolean
-> +			      to enable the downspread feature
->  
->  Examples:
->  	dpll_core_ck: dpll_core_ck@44e00490 {
-> @@ -83,3 +96,10 @@ Examples:
->  		clocks = <&sys_ck>, <&sys_ck>;
->  		reg = <0x0500>, <0x0540>;
->  	};
-> +
-> +	dpll_disp_ck: dpll_disp_ck {
-> +		#clock-cells = <0>;
-> +		compatible = "ti,am3-dpll-no-gate-clock";
-> +		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
-> +		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
-> +	};
+>        - qcom,sm8250-qmp-usb3-uni-phy
+>        - qcom,sm8350-qmp-ufs-phy
+>        - qcom,sm8350-qmp-usb3-phy
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> index 33974ad10afe..9792cc567cb5 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> @@ -17,6 +17,8 @@ properties:
+>        - qcom,sc7180-qmp-usb3-phy
+>        - qcom,sdm845-qmp-usb3-dp-phy
+>        - qcom,sdm845-qmp-usb3-phy
+> +      - qcom,sm8250-qmp-usb3-dp-phy
+> +      - qcom,sm8250-qmp-usb3-phy
+>    reg:
+>      items:
+>        - description: Address and length of PHY's USB serdes block.
 > -- 
-> 2.17.1
+> 2.30.2
 > 
