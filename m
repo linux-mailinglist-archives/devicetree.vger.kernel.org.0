@@ -2,135 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 793BA34AA58
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B06C934AA5D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:45:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbhCZOmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:42:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54318 "EHLO
+        id S230165AbhCZOo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:44:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbhCZOmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:42:37 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C2FC0613AA
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:42:37 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id kk2-20020a17090b4a02b02900c777aa746fso2562285pjb.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:42:37 -0700 (PDT)
+        with ESMTP id S229839AbhCZOou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:44:50 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC74AC0613AA
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:44:49 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id bx7so6566324edb.12
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:44:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=UFMq5oGqK9i1mDSf60y5PEUGhIBG7pRAYbpbnOiZny8=;
-        b=mv55z1PJnHOdzF+Razme2uGyDMAKDIds0+fVKvLTeYihRej0U/HhvFheWkOyEW46lQ
-         p/FQv3oZw1iOT9kemojIsWacZNZM17IMOOcrZ3aFKcJp3iVbq2Wwrc+JCTbiHP4wDWRV
-         ZJPXUndXDpIXRtpiBWQA23dRkPpyuvglb4olx7fs9YxqFcesoMgnuuQErBef1NUHs4Qn
-         G8A6rKGU3jYTlRnixV+NF8HtQ9Fbn4S6sAR1dr5IM8VP1KiE+1tlI7yEprtg+Td0Btl9
-         imuDP3zGuOHhDcJZ7p8rd1pMVs6DbhrNskSr51H5jc7MUT3OBWhNulA2m4f9fiZUXUkR
-         6RXg==
+        bh=rIvv+tA1LMtQGGiDuq1c1q8EFA36Pgjy5WH53f7HNx4=;
+        b=iYunu1vYc+nYwytgwT0664RyXaLgIIwSfKZuAagqasIYu9jy9foMpyWg8GYSfAPoSl
+         7gXmommvATo5YilSMCWKppg6LleO/43CCNHA5B/ru6Jk9NMhwzLrSDFzr+PaGarm07W7
+         mBEkYdqmxjgNwwSk3y9oMCN94y3a4cOYuEb01nuzMH/0mqtLNYzzrVRIT/+ZbQBty8W9
+         DoeDDyGU2UhxKa2OOCRbp8rXwfrOEd5I+reszDYXU/CDUOhm55Da+3J7D9UXrfsMjDCR
+         LtmDAYZ2TfiSrOTrb9+jife+nA0bQs7GxtgJWytM/0bTimRuWkn57mcH3yp8a70YHvQP
+         WdBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=UFMq5oGqK9i1mDSf60y5PEUGhIBG7pRAYbpbnOiZny8=;
-        b=UiybE2HweSbAWXQGxvtEPFW0j5GR9z7bzZRdQ0PNuua916sgFyp+zGNcr9NlXIz5hK
-         esxlT9650awzR015CtO+jWQss843lA+3MXaODzdDlWHE8P2A2ikrBtwpIu4TOqleULJM
-         SK+VR6Q/80N9uWD1pcYh3R9zlSRFVjA0FXBQG1rzM3ZRFgG30psBIke9Tll/Ry3CVYpu
-         +SEMXgL6J1tXrqtFJYPIULpQiu5hMBGZRnplBouWNIqvqR2/1NLVUiNda7Seo8IFO+Fh
-         LOcTz8wc2KHWPGSB4b7ks/pUYc2xKUar7IaD9umh+cSlL4CJiynQTFhiY+Chk32IOz3U
-         1kUg==
-X-Gm-Message-State: AOAM532HFDKUpiLBq7560eE1MgteUUw1GQuJuLKVasR+1JzI5JIVKhJm
-        xocRTW2GjkxLTtrxeBvEP4Jq2K7kQckUwo2b4iUqYA==
-X-Google-Smtp-Source: ABdhPJx47matal3VQ/+kh7d6hGrS8XwLC35YL0FwaAQVm4zRCOmCmdKu76eThs8vq4vrD+9j40M7EHNSMF06k5yz6gY=
-X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
- p18-20020a170902e752b02900e6822c355cmr15437871plf.69.1616769757181; Fri, 26
- Mar 2021 07:42:37 -0700 (PDT)
+        bh=rIvv+tA1LMtQGGiDuq1c1q8EFA36Pgjy5WH53f7HNx4=;
+        b=owsfTirS/D75xqIlLXMbK7CF/Bk5AsTmM1j//PazHlpmhzAt2eMER89IftbO1LRPlF
+         r/7XugtiuCdMzq9urMn/P+VwmA00r99yy9orPiHTfslhQX/wFKFEbImDmOvAYrpnCFCO
+         fcr1neqVY2HWPfeefDfodZdwO66O4xq6bGN/T74zCkklNgiDegm0bFg6x6Yxhiqog0mw
+         KE5HbGxjry7Uf4y9yTgnzfgeAwdWfrQioJwljRBZkZ+d+Z0Lc1DAsJ9wl4+sC57YtcqX
+         eI3tK9+gWnNmtJY9v0moak3xgacmf6EvpcmUzoJh5DKY+T8i1lsbK+kHZJtHpSg+221O
+         /lzA==
+X-Gm-Message-State: AOAM532nbXqLIn1MI3FLwOONQJPPeijBQt97k18maJFIgE/ihCPOoz6f
+        fw936g8kYx2wNODymZnMEKuutZEmWIMTXR1ASe/5Sw==
+X-Google-Smtp-Source: ABdhPJyu4ZYMKthWiIfIsLH5cJYN/YmYPXtv3Hl6Hl6YxrLqty3+4cM/fQnPI6E5xbB/otdrwsE35jlQjEFjqhXSpzo=
+X-Received: by 2002:a05:6402:17d6:: with SMTP id s22mr15385463edy.232.1616769888652;
+ Fri, 26 Mar 2021 07:44:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210326121955.1266230-1-adrien.grassein@gmail.com>
-In-Reply-To: <20210326121955.1266230-1-adrien.grassein@gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 26 Mar 2021 15:42:26 +0100
-Message-ID: <CAG3jFyv1kvr1rGok5WB4HL5yRH0f26ZrrmQzSv6uC9kQqSxF3Q@mail.gmail.com>
-Subject: Re: [PATCH v9 0/2] Add support of Lontium lt8912 MIPI to HDMI bridge
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <cover.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
+ <50f72f1f7f28e969a1e0353712fcc530bce9dd06.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
+ <CAMpxmJVjnAMig16qWkjpaHwQ+4Ld9yEc-gg-CGv28QQYBB6gNg@mail.gmail.com> <afaff71f75cd476c828671779acd1a3f8b66b62c.camel@fi.rohmeurope.com>
+In-Reply-To: <afaff71f75cd476c828671779acd1a3f8b66b62c.camel@fi.rohmeurope.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Fri, 26 Mar 2021 15:44:38 +0100
+Message-ID: <CAMpxmJXe9EVaDooPYphRV_500Dd9fU7WQHAFFL_-2-usxZG9kA@mail.gmail.com>
+Subject: Re: [PATCH v2 10/17] gpio: support ROHM BD71815 GPOs
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pushed: https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3aa6031deefa9a2c056af2182af02d3dc5df1067
+On Tue, Mar 23, 2021 at 10:57 AM Vaittinen, Matti
+<Matti.Vaittinen@fi.rohmeurope.com> wrote:
+>
+>
+> On Tue, 2021-01-19 at 12:07 +0100, Bartosz Golaszewski wrote:
+> > On Tue, Jan 19, 2021 at 8:23 AM Matti Vaittinen
+> > <matti.vaittinen@fi.rohmeurope.com> wrote:
+> > > Support GPO(s) found from ROHM BD71815 power management IC. The IC
+> > > has two
+> > > GPO pins but only one is properly documented in data-sheet. The
+> > > driver
+> > > exposes by default only the documented GPO. The second GPO is
+> > > connected to
+> > > E5 pin and is marked as GND in data-sheet. Control for this
+> > > undocumented
+> > > pin can be enabled using a special DT property.
+> > >
+> > > This driver is derived from work by Peter Yang <
+> > > yanglsh@embest-tech.com>
+> > > although not so much of original is left.
+> > >
+> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> >
+> > Hi Matti,
+> >
+> > looks great, just a couple nits.
+>
+> Hello Bartosz,
+>
+> I think fixed all the nits to v3. Can I translate this to an ack? (I
+> will respin the series as I guess the regulator part may have fallen
+> through the cracks so I'd like to add the relevant acks :] )
+>
+> Best Regards
+>         Matti Vaittinen
 
-On Fri, 26 Mar 2021 at 13:20, Adrien Grassein <adrien.grassein@gmail.com> wrote:
->
-> Hi,
-> this patch set adds the support of the Lontium lt8912 MIPI to HDMI
-> bridge in the kernel.
->
-> It's only support the video part, not the audio part yet
-> since I don't have the datasheet of this component.
-> I get the current i2c configuration from Digi and
-> Boundary drivers.
-> Developed using the DB_DSIHD board from BoundaryDevices.
->
-> Update in v2
->   - Use standard data-lanes instead of a custom prop;
->   - Use hdmi-connector node.
->
-> Update in v3
->   - Fix indentation;
->   - Implement missing bridge functions;
->   - Add some comments.
->
-> Update in v4
->   - Fix bridge ops;
->   - Fix i2c error detection.
->
-> Update in v5
->   - Fix lt8912 name (lt8912b instead of lt8912);
->   - Implement HPD via a workaround. In fact I don't have the datasheet
->     of this component yet so I can't say if the configuration of the
-> registers is correct or if I have an HW issue on my board. So, I choose
-> to implement a fake version of HPD using a workqueue and polling the
-> status regularly.
->
-> Update in v6
->   - Fix a warning found by "kernel test robot"
->
-> Update in v7
->   - Fix HPD logic (via an HW emulation);
->   - HPD from chip is still not working.
->
-> Update in v8
->   - Remove HPD logic (will be added later when HW bug qill be fixed).
->
-> Update in v9
->   - Fix errors found in scripts/checkpatch.pl --strict
->
-> Thanks,
->
-> Adrien Grassein (2):
->   dt-bindings: display: bridge: Add documentation for LT8912B
->   drm/bridge: Introduce LT8912B DSI to HDMI bridge
->
->  .../display/bridge/lontium,lt8912b.yaml       | 102 +++
->  MAINTAINERS                                   |   6 +
->  drivers/gpu/drm/bridge/Kconfig                |  14 +
->  drivers/gpu/drm/bridge/Makefile               |   1 +
->  drivers/gpu/drm/bridge/lontium-lt8912b.c      | 765 ++++++++++++++++++
->  5 files changed, 888 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
->  create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912b.c
->
-> --
-> 2.25.1
->
+Yes:
+
+Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
