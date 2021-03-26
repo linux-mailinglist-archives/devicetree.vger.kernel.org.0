@@ -2,90 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0F64349D71
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 01:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 173BC349D7F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 01:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbhCZAJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 20:09:21 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:41498 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbhCZAJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 20:09:12 -0400
-Received: by mail-il1-f174.google.com with SMTP id r8so3646357ilo.8;
-        Thu, 25 Mar 2021 17:09:11 -0700 (PDT)
+        id S229662AbhCZAKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 20:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229631AbhCZAKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 20:10:51 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84225C06174A;
+        Thu, 25 Mar 2021 17:10:51 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id u9so5794191ejj.7;
+        Thu, 25 Mar 2021 17:10:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=mT5OwuunEYDcF/A5QKQCRCMw6Xu5P0C3c2Xb7f+O/ng=;
+        b=MqG4GcFp1T+4lHPq/FX8ydJ0fdBUNf6rHjM77y+5+aipCgqK6PVOeWXRicaSVpOy9H
+         Ifx0EMe09J8m4AUANU8Jg740E0Ui/NEEsWGUJvVh3n4qOEgJEONvM5rqvv98H5MO/xqY
+         ScjmlTsDCz+6zfA52aOoT8LHGbB6vbysRUy/TV95Zbv/7doEVXqIgsqlcZNhqqRzvF1X
+         xiAWm0NzRs5KG8DPtJBZ4Fjxiy9xpik3YKyExRwjC+nV6slh3bBnii1O7PEP6kMC2wAQ
+         x31sg3N/9o4ShFW8BmN6M4hzH/HQ5DpWRoxOjSCGYY/NoZva6Jo9Ih1h55s95M6IUQ2p
+         gjDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=a11hWINvZadDTUc1x1p5mvJKc6CEu6ZdeGypWrdKiFU=;
-        b=tzGOkg2CaGCTcKWWsaoRRj9XUFHwBfgkDL6O51xSFlzcdW9KykGUdslmKGswt+9wxu
-         Q9Kmz5dCug1mW0OjYI6AM1ayJu4ivbjDj+WGyAjR7xPzgwROMxJ182LtotuPfEa+ccn2
-         APJys/lIzUGe49uIZdxV21ard3ZI52icYqK3QyH2JHqsAE0QXO8jFJvDC6ivc0XogYXn
-         omiZxrtri25o/AE/pif+cxnC8G1TEcR2figZsoS5a7WuAxA0uTq6llStnEhOYEeLM5jO
-         7t5Dskzh2owOiz94mtmK0WzH26jQ/qJjgnSAc/fjY1uEtFoQRnxDMA6BhX8blxnVSvja
-         L26w==
-X-Gm-Message-State: AOAM532UYVPSq9n3CRt3n6c9FcL9nI8gcm4rqWf4aYLSDpRMvxifZg8p
-        k5YjJVZtHyWJqV2waRxdbA==
-X-Google-Smtp-Source: ABdhPJzpAml0C5TSFU9R4CKJ+PFO/N5I4vdC0tlV9SBzBs50molUg1khoXURpZiOCFbTEj49M4Tgow==
-X-Received: by 2002:a92:c545:: with SMTP id a5mr7599351ilj.209.1616717351425;
-        Thu, 25 Mar 2021 17:09:11 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f13sm3377606ila.51.2021.03.25.17.09.08
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mT5OwuunEYDcF/A5QKQCRCMw6Xu5P0C3c2Xb7f+O/ng=;
+        b=Z36gryMqEbUzlG75NbOFEo1qKXVDwQ2LSpE1nEwp4Ve+3IDrXemWVnrtkcn2HbEuOo
+         BjASHQjYsEL9KeHR6c1FS2n8R8VwPov5CUzfGlteTEh3e31zC5HnxhvSDMTWjtxtRXME
+         9ML7B0xQwZ7D1YAM3pu7QYgt3R96YfHKarNSbRAzZXb4gx43vjeLQexDlJRjlJ6f1F1C
+         tYSwlxMiquSP7ol9AWtx7XL7KrMIwOmWGZU2UnOva2yS47lGIrflD+FbAPC5leYRLAQS
+         nl57AOZgMKcmcNbmv+ymdWDV+9l921B03lTw2udM5+He1gD4Q/blGOX8GMffhLSrLxS4
+         pRkQ==
+X-Gm-Message-State: AOAM532I46FbmGerW6DvHcA/5zqwQTa95hvOk1FnqCH1q6qWVRIa7XsO
+        h5wNpM823JYSTNvef0eq12Pbi+mdm90=
+X-Google-Smtp-Source: ABdhPJxRGw6iIHJfZ0tyhdpb+2IeT4rWgEvtDxb8QJ/7f+PA4gi/aPuDsZZu+S2ELvy6c5JUQKRdTA==
+X-Received: by 2002:a17:906:1986:: with SMTP id g6mr12299462ejd.533.1616717450281;
+        Thu, 25 Mar 2021 17:10:50 -0700 (PDT)
+Received: from pop-os.localdomain (cpc97922-walt21-2-0-cust248.13-2.cable.virginm.net. [82.16.251.249])
+        by smtp.gmail.com with ESMTPSA id f16sm3103899ejb.3.2021.03.25.17.10.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 17:09:09 -0700 (PDT)
-Received: (nullmailer pid 2001388 invoked by uid 1000);
-        Fri, 26 Mar 2021 00:09:07 -0000
-Date:   Thu, 25 Mar 2021 18:09:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, robdclark@chromium.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>,
-        eballetbo@gmail.com, Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        drinkcat@chromium.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on
- sc7180-trogdor-pompom
-Message-ID: <20210326000907.GA1965415@robh.at.kernel.org>
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
+        Thu, 25 Mar 2021 17:10:49 -0700 (PDT)
+From:   Joe Sandom <joe.g.sandom@gmail.com>
+To:     robh@kernel.org
+Cc:     Joe Sandom <joe.g.sandom@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RESEND][PATCH v6 2/2] Added AMS tsl2591 device tree binding
+Date:   Fri, 26 Mar 2021 00:10:45 +0000
+Message-Id: <20210326001046.6588-1-joe.g.sandom@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
-> The sc7180-trogdor-pompom board might be attached to any number of a
-> pile of eDP panels. At the moment I'm told that the list might include:
-> - KD KD116N21-30NV-A010
-> - KD KD116N09-30NH-A016
-> - Starry 2081116HHD028001-51D
-> - Sharp LQ116M1JW10
-> 
-> It should be noted that while the EDID programmed in the first 3
-> panels indicates that they should run with exactly the same timing (to
-> keep things simple), the 4th panel not only needs different timing but
-> has a different resolution.
-> 
-> As is true in general with eDP panels, we can figure out which panel
-> we have and all the info needed to drive its pixel clock by reading
-> the EDID. However, we can do this only after we've powered the panel
-> on. Powering on the panels requires following the timing diagram in
-> each panel's datasheet which specifies delays between certain
-> actions. This means that, while we can be quite dynamic about handling
-> things we can't just totally skip out on describing the panel like we
-> could do if it was connected to an external-facing DP port.
+Device tree binding for AMS/TAOS tsl2591 ambient light sensor.
 
-Is this a 'standard' eDP connector? AFAICT, there does seem to be 
-such a thing. I've said in the past I'd be okay with a edp-connector 
-node. If that needs just the "HPD absent delay" property, I think that 
-would be okay. It's just a never ending stream of new properties with 
-each new panel that I don't want to see.
+This driver supports configuration via device tree and sysfs.
+Supported channels for raw infrared light intensity,
+raw combined light intensity and illuminance in lux.
+The driver additionally supports iio events on lower and
+upper thresholds.
 
-Rob
+This is a very-high sensitivity light-to-digital converter that
+transforms light intensity into a digital signal.
+
+Datasheet: https://ams.com/tsl25911#tab/documents
+
+Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Changes in v6:
+- No changes
+
+Notes:
+- Re-submitted to align the version with part 1 of the patch series
+ 
+Reason for resend:
+- Correctly pointed out that I forgot to add reviewed-by tag offered by Rob Herring
+
+ .../bindings/iio/light/amstaos,tsl2591.yaml   | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+new file mode 100644
+index 000000000000..596a3bc770f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/amstaos,tsl2591.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AMS/TAOS TSL2591 Ambient Light Sensor (ALS)
++
++maintainers:
++  - Joe Sandom <joe.g.sandom@gmail.com>
++
++description: |
++  AMS/TAOS TSL2591 is a very-high sensitivity
++  light-to-digital converter that transforms light intensity into a digital
++  signal.
++
++properties:
++  compatible:
++    const: amstaos,tsl2591
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      Interrupt (INT:Pin 2) Active low. Should be set to IRQ_TYPE_EDGE_FALLING.
++      interrupt is used to detect if the light intensity has fallen below
++      or reached above the configured threshold values.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tsl2591@29 {
++            compatible = "amstaos,tsl2591";
++            reg = <0x29>;
++            interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
++       };
++    };
++...
+-- 
+2.17.1
+
