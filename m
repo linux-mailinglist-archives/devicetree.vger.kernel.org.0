@@ -2,164 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1083534AE55
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A4EE34AE68
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbhCZSOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 14:14:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60202 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230243AbhCZSN4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 14:13:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E8F096191A;
-        Fri, 26 Mar 2021 18:13:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616782436;
-        bh=4xWEzinB4T56m3AW6X0p5tMskUl3gpqeuEz4IxAalT0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=QkrmLuc0C0NmKfc2LAnmXlsoHEvKNKPPBQM68KiyxKMbgV5/e/FSqYnxUUtruhN39
-         WW6Awf7qh5Dw4HFWWbW1yOWm5Jv3c6MlWXMx2hDucpY7RWz0n06MJN1K/drNP6qEUs
-         GCGAw6i1P8rL4W3mXwdzpZRzPManvWAjodCzN6i1LZuYPM2+L8yKsb0t5Cv5vDkVnZ
-         NQTOZ6YOklBrnkoOXXPx2zkJeoNff4FSSw2ESanOvcwsBmks8uD5/+ojtrRJFAwT8F
-         J+rqqgjHd7Ag+10DKLQL7dPh0RzTHu83J3V6gLnxwTxmxp+Xzga3JbGJR6NTOpWoxS
-         v2wvPI4IB1r5w==
-Content-Type: text/plain; charset="utf-8"
+        id S230131AbhCZSTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 14:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230027AbhCZSTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 14:19:32 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7263C0613AA;
+        Fri, 26 Mar 2021 11:19:30 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 32so5192236pgm.1;
+        Fri, 26 Mar 2021 11:19:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fPcULTxfGuBNGNfwpX/3ckVBfW9Rgj2GR4nKZtxg0Xk=;
+        b=Dtvlg/5ZMJz5IBK5ODW3HoNDSP+NuYr1VNg0pO/GQj+GXdjd3nyAawWKUCAi3c2l/z
+         3IU/RdoSqAVJUfG5nQVXnQurscDLJSN8CejzW1L8zhoAFsdTwJtvxhh80aiFjKKcYoC8
+         ukjOvOOkYIk1cTfxH1fzUv7oAqYDa3eKm2vUj+JB9N2I8iRrnW6xFwQhi6/YrhXzYdnQ
+         UQnGyEM94JQxGSIl4pXXsbE0jKEjfIIjuqTXHqXAvE3ngcJ7o5q84pvVcxA7GlExjNY6
+         4LQ9Rm0tLw+JnpzxPFX8EStMdd4cKk0NrVhMWEpaaBp50L5qScb3RZ6BBGLtDomm0C8O
+         g/Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fPcULTxfGuBNGNfwpX/3ckVBfW9Rgj2GR4nKZtxg0Xk=;
+        b=fpARwFWHwPByCwqF5XbBR8JRyzTCSEm8vE2GC1cqeVYs7xXI/CIIAZ8Ir2yezqIC2U
+         IO2Oci04hjiv50BsIdgDTiWjDSlcUG81CLBnqYyHydBtErOzDSwfMFJrM/ucxuMoBYVv
+         4i1ff0MyxN5Cte+PHpiHnNOfU1rcpcamAYLCV5kzUBCNGr51ErO8Njgfdx57Y1DhRyxL
+         VXGeV5D1BfI4v1iTbYtGjvWD9VbqMbHB7h+heAdbkO/obLMeIEEJeqdgl760fuTTwppC
+         e7WVPMUS0KgPG0peWfDSRslSs0aL6KnJ3MlRd3tSMqNMXivvRfno1yfc17I3UDChpXHG
+         i3HQ==
+X-Gm-Message-State: AOAM533BmTnBAMUf00gOjrVylnHappXFgsM+/av7p43euNpo2IEhr3tW
+        7IM/h6bi6RB8cN7q6uCr2Cl2tLVzIcKQ0Xyw2Ik=
+X-Google-Smtp-Source: ABdhPJwpJ0VifO0DvAEnpGSW1wXyY6SlfUStROi7sFRd8LGyh7JcxjooQ5/YxnER1UR+BtbjE0dN9oLP+W5xQ2E9gz0=
+X-Received: by 2002:a65:4bc5:: with SMTP id p5mr13178859pgr.74.1616782770001;
+ Fri, 26 Mar 2021 11:19:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <9b206c4d00dfe8b7f941260f18909914b2b2eecb.camel@suse.de>
-References: <20210205222644.2357303-9-saravanak@google.com> <20210210114435.122242-1-tudor.ambarus@microchip.com> <20210210114435.122242-2-tudor.ambarus@microchip.com> <CGME20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e@eucas1p2.samsung.com> <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com> <9b206c4d00dfe8b7f941260f18909914b2b2eecb.camel@suse.de>
-Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        geert@linux-m68k.org, kernel-team@android.com,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>, corbet@lwn.net,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        khilman@kernel.org, len.brown@intel.com, lenb@kernel.org,
-        maz@kernel.org, mturquette@baylibre.com, pavel@ucw.cz,
-        rafael@kernel.org, robh+dt@kernel.org, saravanak@google.com,
-        tglx@linutronix.de, ulf.hansson@linaro.org
-Date:   Fri, 26 Mar 2021 11:13:54 -0700
-Message-ID: <161678243444.3012082.5031467952132861429@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <cover.1616760183.git.sander@svanheule.net> <31e5a5aeb833c43c07daafcf939864497ff1c349.1616760183.git.sander@svanheule.net>
+In-Reply-To: <31e5a5aeb833c43c07daafcf939864497ff1c349.1616760183.git.sander@svanheule.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 26 Mar 2021 20:19:13 +0200
+Message-ID: <CAHp75Vdi06dLxJNCo4f1CA=cS1MuPwG0nEAnVqt8BRrz9bnOtw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] gpio: Add Realtek Otto GPIO support
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bert Vermeulen <bert@biot.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Nicolas Saenz Julienne (2021-03-25 11:25:24)
-> On Thu, 2021-03-25 at 14:31 +0100, Marek Szyprowski wrote:
-> > Hi
-> >=20
-> > On 10.02.2021 12:44, Tudor Ambarus wrote:
-> > > This is a follow-up for:
-> > > commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is =
-added/removed")
-> > >=20
-> > > The above commit updated the deprecated of_clk_add_provider(),
-> > > but missed to update the preferred of_clk_add_hw_provider().
-> > > Update it now.
-> > >=20
-> > > Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-> >=20
-> > This patch, which landed in linux-next as commit 6579c8d97ad7 ("clk:=20
-> > Mark fwnodes when their clock provider is added") causes the following =
+On Fri, Mar 26, 2021 at 2:05 PM Sander Vanheule <sander@svanheule.net> wrote:
+>
+> Realtek MIPS SoCs (platform name Otto) have GPIO controllers with up to
+> 64 GPIOs, divided over two banks. Each bank has a set of registers for
+> 32 GPIOs, with support for edge-triggered interrupts.
+>
+> Each GPIO bank consists of four 8-bit GPIO ports (ABCD and EFGH). Most
+> registers pack one bit per GPIO, except for the IMR register, which
+> packs two bits per GPIO (AB-CD).
+>
+> Although the byte order is currently assumed to have port A..D at offset
+> 0x0..0x3, this has been observed to be reversed on other, Lexra-based,
+> SoCs (e.g. RTL8196E/97D/97F).
+>
+> Interrupt support is disabled for the fallback devicetree-compatible
+> 'realtek,otto-gpio'. This allows for quick support of GPIO banks in
+> which the byte order would be unknown. In this case, the port ordering
+> in the IMR registers may not match the reversed order in the other
+> registers (DCBA, and BA-DC or DC-BA).
 
-> > NULL pointer dereference on Raspberry Pi 3b+ boards:
-> >=20
-> > --->8---
-> >=20
-> > raspberrypi-firmware soc:firmware: Attached to firmware from=20
-> > 2020-01-06T13:05:25
-> > Unable to handle kernel NULL pointer dereference at virtual address=20
-> > 0000000000000050
-> > Mem abort info:
-> > =C2=A0=C2=A0 ESR =3D 0x96000004
-> > =C2=A0=C2=A0 EC =3D 0x25: DABT (current EL), IL =3D 32 bits
-> > =C2=A0=C2=A0 SET =3D 0, FnV =3D 0
-> > =C2=A0=C2=A0 EA =3D 0, S1PTW =3D 0
-> > Data abort info:
-> > =C2=A0=C2=A0 ISV =3D 0, ISS =3D 0x00000004
-> > =C2=A0=C2=A0 CM =3D 0, WnR =3D 0
-> > [0000000000000050] user address but active_mm is swapper
-> > Internal error: Oops: 96000004 [#1] PREEMPT SMP
-> > Modules linked in:
-> > CPU: 0 PID: 10 Comm: kworker/0:1 Not tainted 5.12.0-rc4+ #2764
-> > Hardware name: Raspberry Pi 3 Model B (DT)
-> > Workqueue: events deferred_probe_work_func
-> > pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=3D--)
-> > pc : of_clk_add_hw_provider+0xac/0xe8
-> > lr : of_clk_add_hw_provider+0x94/0xe8
-> > sp : ffff8000130936b0
-> > x29: ffff8000130936b0 x28: ffff800012494e04
-> > x27: ffff00003b18cb05 x26: ffff00003aa5c010
-> > x25: 0000000000000000 x24: 0000000000000000
-> > x23: ffff00003aa1e380 x22: ffff8000106830d0
-> > x21: ffff80001233f180 x20: 0000000000000018
-> > x19: 0000000000000000 x18: ffff8000124d38b0
-> > x17: 0000000000000013 x16: 0000000000000014
-> > x15: ffff8000125758b0 x14: 00000000000184e0
-> > x13: 000000000000292e x12: ffff80001258dd98
-> > x11: 0000000000000001 x10: 0101010101010101
-> > x9 : ffff80001233f288 x8 : 7f7f7f7f7f7f7f7f
-> > x7 : fefefefeff6c626f x6 : 5d636d8080808080
-> > x5 : 00000000006d635d x4 : 0000000000000000
-> > x3 : 0000000000000000 x2 : 540eb5edae191600
-> > x1 : 0000000000000000 x0 : 0000000000000000
-> > Call trace:
-> > =C2=A0=C2=A0of_clk_add_hw_provider+0xac/0xe8
-> > =C2=A0=C2=A0devm_of_clk_add_hw_provider+0x5c/0xb8
-> > =C2=A0=C2=A0raspberrypi_clk_probe+0x110/0x210
-> > =C2=A0=C2=A0platform_probe+0x90/0xd8
-> > =C2=A0=C2=A0really_probe+0x108/0x3c0
-> > =C2=A0=C2=A0driver_probe_device+0x60/0xc0
-> > =C2=A0=C2=A0__device_attach_driver+0x9c/0xd0
-> > =C2=A0=C2=A0bus_for_each_drv+0x70/0xc8
-> > =C2=A0=C2=A0__device_attach+0xec/0x150
-> > =C2=A0=C2=A0device_initial_probe+0x10/0x18
-> > =C2=A0=C2=A0bus_probe_device+0x94/0xa0
-> > =C2=A0=C2=A0device_add+0x47c/0x780
-> > =C2=A0=C2=A0platform_device_add+0x110/0x248
-> > =C2=A0=C2=A0platform_device_register_full+0x120/0x150
-> > =C2=A0=C2=A0rpi_firmware_probe+0x158/0x1f8
-> > =C2=A0=C2=A0platform_probe+0x90/0xd8
-> > =C2=A0=C2=A0really_probe+0x108/0x3c0
-> > =C2=A0=C2=A0driver_probe_device+0x60/0xc0
-> > =C2=A0=C2=A0__device_attach_driver+0x9c/0xd0
-> > =C2=A0=C2=A0bus_for_each_drv+0x70/0xc8
-> > =C2=A0=C2=A0__device_attach+0xec/0x150
-> > =C2=A0=C2=A0device_initial_probe+0x10/0x18
-> > =C2=A0=C2=A0bus_probe_device+0x94/0xa0
-> > =C2=A0=C2=A0deferred_probe_work_func+0x70/0xa8
-> > =C2=A0=C2=A0process_one_work+0x2a8/0x718
-> > =C2=A0=C2=A0worker_thread+0x48/0x460
-> > =C2=A0=C2=A0kthread+0x134/0x160
-> > =C2=A0=C2=A0ret_from_fork+0x10/0x18
-> > Code: b1006294 540000c0 b140069f 54000088 (3940e280)
-> > ---[ end trace 7ead5ec2f0c51cfe ]---
-> >=20
-> > This patch mainly revealed that clk/bcm/clk-raspberrypi.c driver calls =
+Thanks for the update!
+My comments below.
 
-> > devm_of_clk_add_hw_provider(), with a device pointer, which has a NULL =
+...
 
-> > dev->of_node. I'm not sure if adding a check for a NULL np in=20
-> > of_clk_add_hw_provider() is a right fix, though.
->=20
-> I believe the right fix is not to call 'devm_of_clk_add_hw_provider()' if
-> 'pdev->dev.of_node =3D=3D NULL'. In such case, which is RPi3's, only the =
-CPU clock
-> is used, and it's defined and queried later through
-> devm_clk_hw_register_clkdev().
->=20
-> @Marek, I don't mind taking care of it if it's OK with you.
->=20
+> +config GPIO_REALTEK_OTTO
+> +       bool "Realtek Otto GPIO support"
 
-Ah I see this is related to the patch I just reviewed. Can you reference
-this in the commit text? And instead of putting the change into the clk
-provider let's check for NULL 'np' in of_clk_add_hw_provider() instead
-and return 0 if there's nothing to do. That way we don't visit this
-problem over and over again.
+Why not module?
+
+> +       depends on MACH_REALTEK_RTL
+> +       default MACH_REALTEK_RTL
+> +       select GPIO_GENERIC
+> +       select GPIOLIB_IRQCHIP
+
+> +       help
+> +         The GPIO controller on the Otto MIPS platform supports up to two
+> +         banks of 32 GPIOs, with edge triggered interrupts. The 32 GPIOs
+> +         are grouped in four 8-bit wide ports.
+
+When allowing module build, here you may add what will be the name of it.
+
+...
+
+> +/*
+> + * Total register block size is 0x1C for four ports.
+> + * On the RTL8380/RLT8390 platforms port A, B, and C are implemented.
+
+D?
+
+> + * RTL8389 and RTL8328 implement a second bank with ports E, F, G, and H.
+> + *
+> + * Port information is stored with the first port at offset 0, followed by the
+> + * second, etc. Most registers store one bit per GPIO and should be read out in
+> + * reversed endian order. The two interrupt mask registers store two bits per
+> + * GPIO, and should be manipulated with swahw32, if required.
+> + */
+
+...
+
+> +/*
+
+Seems like kernel doc format with missed ** header and properly formed
+summary and description.
+
+> + * Realtek GPIO driver data
+> + * Because the interrupt mask register (IMR) combines the function of
+> + * IRQ type selection and masking, two extra values are stored.
+> + * intr_mask is used to mask/unmask the interrupts for certain GPIO,
+> + * and intr_type is used to store the selected interrupt types. The
+> + * logical AND of these values is written to IMR on changes.
+> + *
+> + * @gc Associated gpio_chip instance
+> + * @base Base address of the register block
+> + * @lock Lock for accessing the IRQ registers and values
+> + * @intr_mask Mask for GPIO interrupts
+> + * @intr_type GPIO interrupt type selection
+> + */
+> +struct realtek_gpio_ctrl {
+> +       struct gpio_chip gc;
+> +       void __iomem *base;
+> +       raw_spinlock_t lock;
+> +       u16 intr_mask[REALTEK_GPIO_PORTS_PER_BANK];
+> +       u16 intr_type[REALTEK_GPIO_PORTS_PER_BANK];
+> +};
+> +
+> +enum realtek_gpio_flags {
+> +       GPIO_INTERRUPTS = BIT(0),
+> +};
+
+...
+
+> +static struct realtek_gpio_ctrl *irq_data_to_ctrl(struct irq_data *data)
+> +{
+> +       struct gpio_chip *gc = irq_data_get_irq_chip_data(data);
+> +
+> +       return container_of(gc, struct realtek_gpio_ctrl, gc);
+> +}
+
+> +static unsigned int line_to_port(unsigned int line)
+> +{
+> +       return line / 8;
+> +}
+> +
+> +static unsigned int line_to_port_pin(unsigned int line)
+> +{
+> +       return line % 8;
+> +}
+
+These are useless. Just use them inline.
+
+...
+
+> +static u8 read_u8_reg(void __iomem *reg, unsigned int port)
+> +{
+> +       return ioread8(reg + port);
+> +}
+> +
+> +static void write_u8_reg(void __iomem *reg, unsigned int port, u8 value)
+> +{
+> +       iowrite8(value, reg + port);
+> +}
+> +
+> +static void write_u16_reg(void __iomem *reg, unsigned int port, u16 value)
+> +{
+> +       iowrite16(value, reg + 2 * port);
+> +}
+
+What's the point? You better provide a controller structure as a
+parameter. Look into other drivers. There are plenty of examples how
+to provide IO accessors in smarter way.
+
+...
+
+> +static void realtek_gpio_write_imr(struct realtek_gpio_ctrl *ctrl,
+> +       unsigned int port, u16 irq_type, u16 irq_mask)
+> +{
+> +       write_u16_reg(ctrl->base + REALTEK_GPIO_REG_IMR, port,
+> +                  irq_type & irq_mask);
+
+Can be one line.
+
+> +}
+
+...
+
+> +       write_u8_reg(ctrl->base + REALTEK_GPIO_REG_ISR, line_to_port(line),
+> +               BIT(line_to_port_pin(line)));
+
+line % 8 and line / 8 is much shorter. ANd then it becomes only one line.
+
+...
+
+> +static int realtek_gpio_irq_set_type(struct irq_data *data,
+> +       unsigned int flow_type)
+
+One line?
+
+...
+
+> +static void realtek_gpio_irq_handler(struct irq_desc *desc)
+> +{
+> +       struct gpio_chip *gc = irq_desc_get_handler_data(desc);
+> +       struct realtek_gpio_ctrl *ctrl = gpiochip_get_data(gc);
+> +       struct irq_chip *irq_chip = irq_desc_get_chip(desc);
+> +       void __iomem *reg_isr = ctrl->base + REALTEK_GPIO_REG_ISR;
+> +       unsigned int lines_done;
+> +       unsigned int port_pin_count;
+> +       unsigned int port;
+> +       unsigned int irq;
+
+> +       int offset;
+> +       unsigned long status;
+
+Rearrange them by swapping lines.
+
+> +       chained_irq_enter(irq_chip, desc);
+> +
+> +       for (lines_done = 0; lines_done < gc->ngpio; lines_done += 8) {
+> +               port = line_to_port(lines_done);
+> +               status = read_u8_reg(reg_isr, port);
+> +               port_pin_count = min(gc->ngpio - lines_done, 8U);
+> +               for_each_set_bit(offset, &status, port_pin_count) {
+> +                       irq = irq_find_mapping(gc->irq.domain, offset);
+> +                       generic_handle_irq(irq);
+
+> +                       write_u8_reg(reg_isr, port, BIT(offset));
+
+Shouldn't it be in the ->irq_ack() callback?
+
+> +               }
+> +       }
+
+...
+
+> +static const struct of_device_id realtek_gpio_of_match[] = {
+> +       { .compatible = "realtek,otto-gpio" },
+> +       {
+> +               .compatible = "realtek,rtl8380-gpio",
+> +               .data = (void *)GPIO_INTERRUPTS
+
+Not sure why this flag is needed right now. Drop it completely for good.
+
+> +       },
+> +       {
+> +               .compatible = "realtek,rtl8390-gpio",
+> +               .data = (void *)GPIO_INTERRUPTS
+
+Ditto.
+
+> +       },
+> +       {}
+> +};
+
+> +
+
+Extra blank line.
+
+> +MODULE_DEVICE_TABLE(of, realtek_gpio_of_match);
+
+
+...
+
+> +               iowrite32(GENMASK(31, 0), ctrl->base + REALTEK_GPIO_REG_ISR);
+
+This one perhaps needs a comment like "cleaning all IRQ states".
+Note, we have a proper callback for this, i.e. hw_init. Consider to use it.
+
+...
+
+> +};
+
+> +
+
+Extra blank line.
+
+> +builtin_platform_driver(realtek_gpio_driver);
+
+...
+
+So, looking into the code, I think you may easily get rid of 30-50 LOCs.
+So, expecting <= 300 LOCs in v5.
+
+-- 
+With Best Regards,
+Andy Shevchenko
