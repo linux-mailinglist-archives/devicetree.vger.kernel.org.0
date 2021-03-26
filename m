@@ -2,181 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0905349D83
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 01:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52BD2349D8A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 01:18:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbhCZAL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 20:11:27 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:45615 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbhCZALY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 20:11:24 -0400
-Received: by mail-il1-f172.google.com with SMTP id w2so3194296ilj.12;
-        Thu, 25 Mar 2021 17:11:23 -0700 (PDT)
+        id S229631AbhCZARz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 20:17:55 -0400
+Received: from mail-il1-f177.google.com ([209.85.166.177]:44864 "EHLO
+        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229622AbhCZAR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 20:17:28 -0400
+Received: by mail-il1-f177.google.com with SMTP id t6so3644141ilp.11;
+        Thu, 25 Mar 2021 17:17:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=P/I+wMdHICPtFWlW8kLfAQ7JiR1EZW/dP2yVRmWYJGU=;
-        b=bh/eufw9UDiJDF6CtK/sZ8HlZK7k2aEO1Ked96aDz/J/Atx6wIVSJ9t3w7IzsYVaS/
-         2pmdl9KGBzMwHqNBKSe5oxSleuQ6PJQLay1K6kNE67knT7c8XCz0Y3tkpTyqRTdlG2sM
-         mLNIRzLENVCWJvkw6jDfiRfr0lacw+L3NpMbs6kZ17BmvsgXXV8utjCs9/LyGiaYpiNG
-         ziOYs5uaez+Qk99hfut8RDBiKu0pOxgN+sQ2/Sm0Zv8JEddarElgzOTKvIsQ42dX3KMP
-         WuWAnnN4ujLfHuhuWBEUA2DO2Kmrp7zCb18VmltRGrvDACGxvzP8yX+acGs5zCmOmNtZ
-         oD+Q==
-X-Gm-Message-State: AOAM530VW9FxsEOReicoC1vfQH7NpYh/7WlZn+NHo91QrB9ERwpK6/27
-        GL3PwHI4PVRDifwFL1aBgg==
-X-Google-Smtp-Source: ABdhPJzWTUM7ViOUd0d1O5WVuFw0EBmZZAJwzZ9S1RfUkdCRF37cp6Wp77JMxNHIeBXaOjKMrxKidg==
-X-Received: by 2002:a05:6e02:1a89:: with SMTP id k9mr8673060ilv.29.1616717483503;
-        Thu, 25 Mar 2021 17:11:23 -0700 (PDT)
+        bh=LzkNs7zb3oaH5slSNnfze5rKPCk8h7J3wPJIRw9ZRT8=;
+        b=jjck+j4rmJgGb8XhuJbbgdiUT68d+s5b1DMiSom1m/ZZyHGDW+Uk4QZ+Us7ClRvl29
+         7hTVJT3p9qV7QSG/10Y+2W26X+u9l3tQhoitLy3Aed7aQFLLimx0HhxuOSKK2xvoLYrp
+         fW4mOfhhdHnGfnbOQ3T3SOisMOSTnQMpmjlBVMVPfNRgOYZe1678iJeCL+ViWYP/cvI4
+         8cGePInXuxJ+UWgxwF5yteRgbmC0bJ0GwEusX4ei/rNa9Dd9BxAX+G21BsQ3UpZui2Rd
+         OhPiaM1UjWGDhZEWIBAAusWPyWwEkLrgQPo5CVqVdTmLuOKu1KcV7GKLhRf4xgEVm7E2
+         kHpQ==
+X-Gm-Message-State: AOAM532bxP3Nnh04jgKmgydmS2zzd7+c71axWmAzn7hqrkHB8RO4nZKV
+        fBvP5lOTmVvoctQshd7YGIOLWDUwgQ==
+X-Google-Smtp-Source: ABdhPJwO1QI6jRCgAw4lTeldvQek3yCJdHIolsVNpeqKAZ/i353EZFrLiVm6qKo1Tn2NIMTjZ/s/CA==
+X-Received: by 2002:a92:ddd0:: with SMTP id d16mr8780446ilr.52.1616717848219;
+        Thu, 25 Mar 2021 17:17:28 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 14sm3554588ilt.54.2021.03.25.17.11.21
+        by smtp.gmail.com with ESMTPSA id a7sm3388564ilj.64.2021.03.25.17.17.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 17:11:22 -0700 (PDT)
-Received: (nullmailer pid 2004913 invoked by uid 1000);
-        Fri, 26 Mar 2021 00:11:20 -0000
-Date:   Thu, 25 Mar 2021 18:11:20 -0600
+        Thu, 25 Mar 2021 17:17:27 -0700 (PDT)
+Received: (nullmailer pid 2014659 invoked by uid 1000);
+        Fri, 26 Mar 2021 00:17:25 -0000
+Date:   Thu, 25 Mar 2021 18:17:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette =?iso-8859-1?Q?=A0?= 
-        <mturquette@baylibre.com>, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/6] dt-bindings: clock: Add SC7280 DISPCC clock
- binding
-Message-ID: <20210326001120.GA2001669@robh.at.kernel.org>
-References: <1615944142-12171-1-git-send-email-tdas@codeaurora.org>
- <1615944142-12171-2-git-send-email-tdas@codeaurora.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        jdelvare@suse.com, linux@roeck-us.net
+Subject: Re: [PATCH v3 1/3] dt-bindings: Add vendor prefix and trivial device
+ for BluTek BPA-RS600
+Message-ID: <20210326001725.GA2014607@robh.at.kernel.org>
+References: <20210317040231.21490-1-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1615944142-12171-2-git-send-email-tdas@codeaurora.org>
+In-Reply-To: <20210317040231.21490-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 06:52:17AM +0530, Taniya Das wrote:
-> Add device tree bindings for display clock controller subsystem for
-> Qualcomm Technology Inc's SC7280 SoCs.
+On Wed, 17 Mar 2021 17:02:29 +1300, Chris Packham wrote:
+> Add vendor prefix "blutek" for BluTek Power.
+> Add trivial device entry for BPA-RS600.
 > 
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  .../bindings/clock/qcom,sc7280-dispcc.yaml         | 94 ++++++++++++++++++++++
->  include/dt-bindings/clock/qcom,dispcc-sc7280.h     | 55 +++++++++++++
->  2 files changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7280-dispcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sc7280.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7280-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7280-dispcc.yaml
-> new file mode 100644
-> index 0000000..2178666
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sc7280-dispcc.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sc7280-dispcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display Clock & Reset Controller Binding for SC7280
-> +
-> +maintainers:
-> +  - Taniya Das <tdas@codeaurora.org>
-> +
-> +description: |
-> +  Qualcomm display clock control module which supports the clocks, resets and
-> +  power domains on SC7280.
-> +
-> +  See also dt-bindings/clock/qcom,dispcc-sc7280.h.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sc7280-dispcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: GPLL0 source from GCC
-> +      - description: Byte clock from DSI PHY
-> +      - description: Pixel clock from DSI PHY
-> +      - description: Link clock from DP PHY
-> +      - description: VCO DIV clock from DP PHY
-> +      - description: Link clock from EDP PHY
-> +      - description: VCO DIV clock from EDP PHY
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bi_tcxo
-> +      - const: gcc_disp_gpll0_clk
-> +      - const: dsi0_phy_pll_out_byteclk
-> +      - const: dsi0_phy_pll_out_dsiclk
-> +      - const: dp_phy_pll_link_clk
-> +      - const: dp_phy_pll_vco_div_clk
-> +      - const: edp_phy_pll_link_clk
-> +      - const: edp_phy_pll_vco_div_clk
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    clock-controller@af00000 {
-> +      compatible = "qcom,sc7280-dispcc";
-> +      reg = <0x0af00000 0x200000>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +               <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-> +               <&dsi_phy 0>,
-> +               <&dsi_phy 1>,
-> +               <&dp_phy 0>,
-> +               <&dp_phy 1>,
-> +               <&edp_phy 0>,
-> +               <&edp_phy 1>;
-> +      clock-names = "bi_tcxo",
-> +                    "gcc_disp_gpll0_clk",
-> +                    "dsi0_phy_pll_out_byteclk",
-> +                    "dsi0_phy_pll_out_dsiclk",
-> +                    "dp_phy_pll_link_clk",
-> +                    "dp_phy_pll_vco_div_clk",
-> +                    "edp_phy_pll_link_clk",
-> +                    "edp_phy_pll_vco_div_clk";
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,dispcc-sc7280.h b/include/dt-bindings/clock/qcom,dispcc-sc7280.h
-> new file mode 100644
-> index 0000000..2074b30
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,dispcc-sc7280.h
-> @@ -0,0 +1,55 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+> Notes:
+>     Changes in v3:
+>     - None
+>     Changes in v2:
+>     - None
+> 
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  2 files changed, 4 insertions(+)
+> 
 
-Dual license?
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
