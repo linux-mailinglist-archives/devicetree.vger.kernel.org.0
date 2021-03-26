@@ -2,168 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5FB534A0C7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 06:06:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE9634A102
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 06:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229458AbhCZFGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 01:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42804 "EHLO
+        id S229551AbhCZF2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 01:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbhCZFFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 01:05:37 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D2DC0613AA
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 22:05:37 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id q29so5819194lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 22:05:37 -0700 (PDT)
+        with ESMTP id S229471AbhCZF2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 01:28:04 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FFDC0613B1
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 22:28:04 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id ay2so358341plb.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 22:28:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R+P1w5UAdqHmM+w2WKoae+I32OQS1OCjKz2JQzblE8M=;
-        b=jP2L1DmX3TfLmopz8uAi8n3zMS++AxhBtBdnPBPaq4CRD9wbuR29GZURrpZrvwgRWV
-         6kR1RCzfZ6d6CR6JDBb57/4H/wbnLI7H9hbckY6PArpbJOByNbt8/JAyC6VewNqhuHBM
-         s6QZIPGWCLEYnmYOa9BokZ2QEf14YJ1ULHtp2OOAp/znczASaux1cXAbPQYSV+Ba/Fyh
-         opOEjQTTij9iBf8gRJCmQcJNmd7J2aJkrnkAWT5yNWblavf8TSgfBZdclRzw5mwvYiGS
-         JyBieeEVttCviBUEmB/x3Z2DAWSZc7wJbbUBHtL3BR957jIhROy2jev1F7TG+ZoJTMvH
-         tgPg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Wg6jUsg0M3YkhkdRzAVV3NbGB+vpbZqU99QuVAslRAA=;
+        b=xvkqgsknbTJsMGYLWLXMOMuDyGiIL+HYSOxfmlrzC8pH9prf/c17KrqMLTezyaLY5z
+         UFrUHgePtcdCwNfKI/L5B3dkzOP309lMmgBEaoDoimwnvAUvAVram5bw1b5c4IsOW36L
+         glKK55/C9x9q+UH2sTromVPOCqZJW6gK1S5a/mg9hwfKvXSSDSO+D1rkgNDrtzKAXCCw
+         4Zlnln6+vmLQC0vhK99ogtcJPKADJOaaTYCnJhUcHp97Qgr5m3+J/+bxPBLMgi/a9Tf5
+         njtm414zYbzcDpKn+6GdLoMnWlIxYSvVVnNN6w+DU/bP/6re1n5CAFD4Cg0zDSf7em2Z
+         sJ7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R+P1w5UAdqHmM+w2WKoae+I32OQS1OCjKz2JQzblE8M=;
-        b=J2NjWJHZNtsgSfS0Soh/gjxLmQfpS0woH2LG3fotI/kme2jrQpUW9VFW36UboVw/gI
-         QeppXga4aHujb6blI27C4jdljFsb4kHBsFCZJsHbct2SuKEEzwVwa/7g95Uhf471CIwv
-         AxqAPmEP7mMTpbwwUvqeZZeSpYv76CND5c4MnFRqtQPZ2EU3BpWba0bnrCU0nMHsgu8V
-         Fn7WBL5Nl0f8gwIsT13jvlFQhTE5R/UHAI/HPo2E/NXnkxHIl7JAOdibMl/kY8LWtYCU
-         8Dt9VwhgvogfpCNoghRvFr/sxddittZK5S390QnDUxWjU94wHZqI4hdRfTbWnpCoqiIC
-         rADw==
-X-Gm-Message-State: AOAM530Xm6eDikfSSJwlbGFKQ9Tl5nTVgPG/s7sGJ19AtmMaw1K7lR38
-        HGmt4usyBVMt4O/lyqOFd2Y43MsHNpFhp7oqsE8/dw==
-X-Google-Smtp-Source: ABdhPJxDTS/BzmmkUwmS24I15gC4uzsRkIi4ZptVl7DUUFVXNBPfeHGsGqp2yMsvqE65udXgJnXITl0tkkk2enrUaq0=
-X-Received: by 2002:ac2:4d9b:: with SMTP id g27mr7089312lfe.113.1616735135491;
- Thu, 25 Mar 2021 22:05:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Wg6jUsg0M3YkhkdRzAVV3NbGB+vpbZqU99QuVAslRAA=;
+        b=iKQFCiJPq2SOhzDVRRx63CtCHObEq5iqQxDuGXC8MVkkAihcKq2Zyz7sQoV1KSenWV
+         3eNl9GDYm2hsX/TTvRfl3AUaFvIKFW+lGnpMdBgKqIvBkbH+CQzHlcoi0lNs/eS+xIGb
+         eHn5+QqWNCDDVB+WC3VDh5Kq7JVP9lj0LK7vsQhFQCrZrYIhLFGC9GKFdicFCSI8RILq
+         45PZ1WHVr2hpJPaczVVyOBjnMyPyeUkmNz2M8EORAbdUBshBA2e3nLgmplbdsF638GTy
+         wnkJEcp/4d+pVSELkL6YoeQ0ve2OChEzr1SK07t3tcg0VDamLurmlR+Io5/obguuxa9R
+         RBDA==
+X-Gm-Message-State: AOAM530sBUnAqpzrbjjNQmvWedzExEQ8mQZ5Mg2CBfuY1q7Lgs2E2TcV
+        kZUejQtBir9KeRm6sFJnAfSgxA==
+X-Google-Smtp-Source: ABdhPJwpBoVDsdAvwPB+8Iw81E4aSQxXUKlwva1pexONAu6KmF6kD8g/LRd8g3u/J3em4uVil+Wm7w==
+X-Received: by 2002:a17:90b:358:: with SMTP id fh24mr12111965pjb.109.1616736483711;
+        Thu, 25 Mar 2021 22:28:03 -0700 (PDT)
+Received: from localhost ([136.185.154.93])
+        by smtp.gmail.com with ESMTPSA id n38sm367408pgb.2.2021.03.25.22.27.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Mar 2021 22:27:58 -0700 (PDT)
+Date:   Fri, 26 Mar 2021 10:57:56 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Seiya Wang <seiya.wang@mediatek.com>
+Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH 2/2] dt-bindings: cpufreq: update cpu type and clock name
+ for MT8173 SoC
+Message-ID: <20210326052756.ozalnigxh7x3hvqr@vireshk-i7>
+References: <20210326031227.2357-1-seiya.wang@mediatek.com>
+ <20210326031227.2357-2-seiya.wang@mediatek.com>
 MIME-Version: 1.0
-References: <20210325143255.1532452-1-sudeep.holla@arm.com> <20210325143255.1532452-2-sudeep.holla@arm.com>
-In-Reply-To: <20210325143255.1532452-2-sudeep.holla@arm.com>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Fri, 26 Mar 2021 10:35:23 +0530
-Message-ID: <CAFA6WYMrCzDUHn4O=tM7y+w01LcSPrRu3Awja7io1XtcZPhqYQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: Arm: Add Firmware Framework for
- Armv8-A (FF-A) binding
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210326031227.2357-2-seiya.wang@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
-
-Apologies for catching up late on this patch-set.
-
-On Thu, 25 Mar 2021 at 20:05, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> Since the FF-A v1.0 specification doesn't list the UUID of all the
-> partitions in the discovery API, we need to specify the UUID of the
-> partitions that need to be accessed by drivers within the kernel.
->
-
-Wouldn't we be able to implement auto-discovery of ffa partitions? I
-think enumeration of ffa partitions on FFA bus should be quite similar
-to enumeration of TAs on TEE bus (see [1]). Otherwise we need to put
-these redundant DT entries for every ffa partition which IMHO would
-bloat up device trees for every platform.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tee/optee/device.c#n153
-
--Sumit
-
-> This binding to provide the list of partitions that kernel drivers
-> may need to access.
->
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+On 26-03-21, 11:12, Seiya Wang wrote:
+> Update the cpu type of cpu2 and cpu3 since MT8173 used Cortex-a72.
+> 
+> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
 > ---
->  .../devicetree/bindings/arm/arm,ffa.yaml      | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,ffa.yaml
->
-> diff --git a/Documentation/devicetree/bindings/arm/arm,ffa.yaml b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> new file mode 100644
-> index 000000000000..42ed33464ba7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/arm,ffa.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm Firmware Framework for Arm v8-A (in-kernel users)
-> +
-> +maintainers:
-> +  - Sudeep Holla <sudeep.holla@arm.com>
-> +
-> +description: |
-> +  Firmware frameworks implementing partition according to the FF-A
-> +  specification defined by ARM document number ARM DEN 0077A ("Arm Firmware
-> +  Framework for Arm v8-A") [0], providing services to be used by other
-> +  partitions.
-> +
-> +  [0] https://developer.arm.com/docs/den0077/latest
-> +
-> +properties:
-> +  $nodename:
-> +    const: ffa
-> +
-> +  compatible:
-> +    oneOf:
-> +      - const: arm,ffa-1.0
-> +
-> +patternProperties:
-> +  "^ffa-partition-[0-9]+$":
-> +    type: object
-> +    description: One or more child nodes, each describing an FFA partition.
-> +    properties:
-> +      $nodename:
-> +        const: ffa_partition
-> +
-> +      compatible:
-> +        const: arm,ffa-1.0-partition
-> +
-> +      uuid:
-> +        $ref: '/schemas/types.yaml#definitions/string'
-> +        description: |
-> +          The 128-bit UUID [2] of the service implemented by this partition.
-> +
-> +          [2] https://tools.ietf.org/html/rfc4122
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ffa {
-> +      compatible = "arm,ffa-1.0";
-> +
-> +      ffa-partition-0 {
-> +        compatible = "arm,ffa-1.0-partition";
-> +        uuid = "12345678-9abc-def0-1234-56789abcdef0";
-> +      };
-> +    };
-> --
-> 2.25.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> index ea4994b35207..ef68711716fb 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> @@ -202,11 +202,11 @@ Example 2 (MT8173 SoC):
+>  
+>  	cpu2: cpu@100 {
+>  		device_type = "cpu";
+> -		compatible = "arm,cortex-a57";
+> +		compatible = "arm,cortex-a72";
+>  		reg = <0x100>;
+>  		enable-method = "psci";
+>  		cpu-idle-states = <&CPU_SLEEP_0>;
+> -		clocks = <&infracfg CLK_INFRA_CA57SEL>,
+> +		clocks = <&infracfg CLK_INFRA_CA72SEL>,
+>  			 <&apmixedsys CLK_APMIXED_MAINPLL>;
+>  		clock-names = "cpu", "intermediate";
+>  		operating-points-v2 = <&cpu_opp_table_b>;
+> @@ -214,11 +214,11 @@ Example 2 (MT8173 SoC):
+>  
+>  	cpu3: cpu@101 {
+>  		device_type = "cpu";
+> -		compatible = "arm,cortex-a57";
+> +		compatible = "arm,cortex-a72";
+>  		reg = <0x101>;
+>  		enable-method = "psci";
+>  		cpu-idle-states = <&CPU_SLEEP_0>;
+> -		clocks = <&infracfg CLK_INFRA_CA57SEL>,
+> +		clocks = <&infracfg CLK_INFRA_CA72SEL>,
+>  			 <&apmixedsys CLK_APMIXED_MAINPLL>;
+>  		clock-names = "cpu", "intermediate";
+>  		operating-points-v2 = <&cpu_opp_table_b>;
+
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+
+-- 
+viresh
