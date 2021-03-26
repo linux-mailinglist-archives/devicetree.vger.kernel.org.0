@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC7A349EB7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A21FE349ED2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:41:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhCZBbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 21:31:32 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:9855 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230155AbhCZBbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:31:11 -0400
-X-UUID: e409ad9f6d904a43a0b4bf5033141303-20210326
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VxpyOMauSLivU/LqjpxZ6z4fpqwX1nMTv/ksMPXytSA=;
-        b=ZWdWdwsB/IhhQw3ttqF6V6eQRlOtE+hfPfb8KRes2do13CIAow7ftAZAtDaIMQo1W31mY5zH91nJGaM16Crl3OsK7uMawzYxJ2q8Vft7Houd2pkFge11WIGDD+pjeyJX+6T+XskZ29BnIhAkzzzmNjdLAWYxQkXg9jwDJ3RFSYs=;
-X-UUID: e409ad9f6d904a43a0b4bf5033141303-20210326
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 702491464; Fri, 26 Mar 2021 09:31:00 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 26 Mar
- 2021 09:30:53 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 26 Mar 2021 09:30:52 +0800
-Message-ID: <1616722252.22957.3.camel@mhfsdcap03>
-Subject: Re: [PATCH] dt-bindings: i2c: Add device clock-stretch time via dts
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <matthias.bgg@gmail.com>, <wsa@the-dreams.de>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>
-Date:   Fri, 26 Mar 2021 09:30:52 +0800
-In-Reply-To: <20210324171217.GA3262580@robh.at.kernel.org>
-References: <1615622829-15167-1-git-send-email-qii.wang@mediatek.com>
-         <20210324171217.GA3262580@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230137AbhCZBks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 21:40:48 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:38750 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230006AbhCZBkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:40:43 -0400
+Received: by mail-io1-f44.google.com with SMTP id e8so3873110iok.5;
+        Thu, 25 Mar 2021 18:40:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/nZtzn3g/vwJOpDb+ADfWdP64r2tBwJPkLaskVNDJhA=;
+        b=LA3SyioJcM1HOiZXSUBMiQmXZwUvWTzEyvqVg7tR0oFEwrV+cogewvPn8nxjslYrLD
+         YR5550GCKCDEO/7b3+kFSuSxIF1L4nToxl5R3L9ZZvBIIc+Uc91O8IrR+ove+3JNjzB0
+         604E5lG730MoQP/veTRPFZYYuhLtsn/ruYo9AAhX26gv7ZNS7A9x+qZhAA0nEIrUJ7Z9
+         cru+6NmLeueCy4Rw+O60+3qPX/iUJDa32sooiV3R7RacPwOnrvhfrPuz8c8xcSFffMgk
+         J5fw9EBstm2dguskTJNH/Y0yVZuxOgAFB555xfdCe5eMpasLiBA/QmwA6jEHuxVOUHPb
+         3b1g==
+X-Gm-Message-State: AOAM533L/IK+3xQQ8VxGE31HtvoPfyBi7nSCzmGlZDm8MtWNHdjReCp6
+        roP4uKa7rlTZj/F+5i0bxQ==
+X-Google-Smtp-Source: ABdhPJxT6+UsV+NLqh2ul/vKOfBtJQth8BzvthJhxtpfpmhgBPfXNzJsAHGTteI+WblAGq7BNiJNcQ==
+X-Received: by 2002:a5d:818c:: with SMTP id u12mr8546949ion.81.1616722841515;
+        Thu, 25 Mar 2021 18:40:41 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h2sm3394649ioj.30.2021.03.25.18.40.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 18:40:40 -0700 (PDT)
+Received: (nullmailer pid 2145084 invoked by uid 1000);
+        Fri, 26 Mar 2021 01:40:37 -0000
+Date:   Thu, 25 Mar 2021 19:40:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Seiya Wang <seiya.wang@mediatek.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-watchdog@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-serial@vger.kernel.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: watchdog: Add compatible for
+ Mediatek MT8195
+Message-ID: <20210326014037.GA2144901@robh.at.kernel.org>
+References: <20210319023427.16711-1-seiya.wang@mediatek.com>
+ <20210319023427.16711-5-seiya.wang@mediatek.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 9A452831894ABC2ECCDFFDB024427EA9781CA86A0FDAE166AA0BE5DD9588A5432000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210319023427.16711-5-seiya.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTAzLTI0IGF0IDExOjEyIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gU2F0LCBNYXIgMTMsIDIwMjEgYXQgMDQ6MDc6MDlQTSArMDgwMCwgcWlpLndhbmdAbWVkaWF0
-ZWsuY29tIHdyb3RlOg0KPiA+IEZyb206IFFpaSBXYW5nIDxxaWkud2FuZ0BtZWRpYXRlay5jb20+
-DQo+ID4gDQo+ID4gdFNVLFNUQS90SEQsU1RBL3RTVSxTVE9QIG1heWJlIG91dCBvZiBzcGVjIGR1
-ZSB0byBkZXZpY2UNCj4gPiBjbG9jay1zdHJldGNoaW5nIG9yIGNpcmN1aXQgbG9zcywgd2UgY291
-bGQgZ2V0IGRldmljZQ0KPiA+IGNsb2NrLXN0cmV0Y2ggdGltZSBmcm9tIGR0cyB0byBhZGp1c3Qg
-dGhlc2UgcGFyYW1ldGVycw0KPiA+IHRvIG1lZXQgdGhlIHNwZWMgdmlhIEVYVF9DT05GIHJlZ2lz
-dGVyLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFFpaSBXYW5nIDxxaWkud2FuZ0BtZWRpYXRl
-ay5jb20+DQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9p
-MmMvaTJjLW10NjV4eC50eHQgfCAxICsNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9u
-KCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9pMmMvaTJjLW10NjV4eC50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvaTJjL2kyYy1tdDY1eHgudHh0DQo+ID4gaW5kZXggN2YwMTk0Zi4uOTdmNjZmMCAxMDA2NDQN
-Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tdDY1
-eHgudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9p
-MmMtbXQ2NXh4LnR4dA0KPiA+IEBAIC0zMiw2ICszMiw3IEBAIE9wdGlvbmFsIHByb3BlcnRpZXM6
-DQo+ID4gICAgLSBtZWRpYXRlayxoYXZlLXBtaWM6IHBsYXRmb3JtIGNhbiBjb250cm9sIGkyYyBm
-b3JtIHNwZWNpYWwgcG1pYyBzaWRlLg0KPiA+ICAgICAgT25seSBtdDY1ODkgYW5kIG10ODEzNSBz
-dXBwb3J0IHRoaXMgZmVhdHVyZS4NCj4gPiAgICAtIG1lZGlhdGVrLHVzZS1wdXNoLXB1bGw6IElP
-IGNvbmZpZyB1c2UgcHVzaC1wdWxsIG1vZGUuDQo+ID4gKyAgLSBjbG9jay1zdHJldGNoLW5zOiBT
-bGF2ZSBkZXZpY2UgY2xvY2stc3RyZXRjaCB0aW1lLg0KPiANCj4gU2hvdWxkIGJlIGEgY29tbW9u
-IEkyQyBwcm9wZXJ0eT8NCj4gDQoNCldvbGZyYW0gU2FuZyB3aWxsIGxvb2sgYXQgdGhpcyBuZXh0
-IGFuZCB0aGluayBhYm91dCBpdC4gSSBob3BlIGl0IHdvdWxkDQpiZSBhIGNvbW1vbiBJMkMgcHJv
-cGVydHkuDQoNCj4gPiAgDQo+ID4gIEV4YW1wbGU6DQo+ID4gIA0KPiA+IC0tIA0KPiA+IDEuOS4x
-DQo+ID4gDQoNCg==
+On Fri, 19 Mar 2021 10:34:22 +0800, Seiya Wang wrote:
+> This commit adds dt-binding documentation of watchdog for Mediatek MT8195 SoC
+> Platform.
+> 
+> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
+Acked-by: Rob Herring <robh@kernel.org>
