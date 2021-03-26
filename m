@@ -2,90 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D938A34AE87
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDDF834AE9C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 19:31:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbhCZS0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 14:26:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230026AbhCZS0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 14:26:39 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D2CC0613AA
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 11:26:38 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id f16so8515547ljm.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 11:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=dsV+/461uL86RBQXWt+O3MOKcum8LIWw0YCOchxb7jY=;
-        b=deeMKQO9NpE0tgnfdv6yiLMIK5zfO75TRuFpLhkw6QIe/3ig3PBApWMeoEqbKESVZ7
-         k+pA7mixze//X7gdrslvsopfdh6uYLETeWijY4vTICh6Kf6rJRvLSXV/ldluJWwXvbYI
-         qp8SfaYQyHvJoxpd6XdoN/bP13wEFxLfp7gfdIBYava2U6zXVf3qaZ60bRX374KPTgHi
-         qUdhKCgJY+eSoL74nJyABL5ThNccmdsFsJ4jXP3ftUiHBhfLKIB1wn12ZUXiltchP3QR
-         va939UOcxEP5jA+qGfCHAckQYp3YSWyTwx8IjdgFiZIIKPwmJj8+hYII54yuhuDZgSei
-         m4VA==
+        id S230134AbhCZSaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 14:30:35 -0400
+Received: from mail-ua1-f43.google.com ([209.85.222.43]:43834 "EHLO
+        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230003AbhCZSaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 14:30:07 -0400
+Received: by mail-ua1-f43.google.com with SMTP id b7so1844635uam.10;
+        Fri, 26 Mar 2021 11:30:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dsV+/461uL86RBQXWt+O3MOKcum8LIWw0YCOchxb7jY=;
-        b=JiJhAvO4KNz5cg2zpz0La3cNzCAwlzIidwFVOE6BeeDFO1l5Y3/ysc93kwRMIw8ojd
-         qrY7QIS9zNNouJG/h9HTfnq5kMgXr+F8g5p3uLwjLc6k85yO3fi9cRXBewb9AFGNbFvi
-         wS8SUHBAsv28du7kt3vGZF0i99/f2/cE0Mu/kvppp6DajmJoYG1+EHq6Q2cLrLYE/WcY
-         WektnJ5vhdruDdICIJcZ1W0NgmAmE2tNXzM1WsUMH8LwFBSAuxCviCmbCOuWrRp/asqV
-         LwKp1QmhD297KDEJwuzDurKWFw+fB5wQRoKTsGOt2oA7aykbgFMiJjCtmmSkH2Ro39Ce
-         5pHA==
-X-Gm-Message-State: AOAM5324/SW4jIod3tF1m1T67mHCi4q4UFwozcckeqwsh6TQvk1ZIsym
-        fIX7MzEC3FQqIBd+DZjbKLdV6XzeZb6nKJseIeH282F0MPY=
-X-Google-Smtp-Source: ABdhPJzpxAIiyVqHYMtj4EB98Qg03zqyniRewUWWa2gRQD/91hp6S9fXHx+UGalLCWrN1Er7IdXu1prvLCEqlpmTz7o=
-X-Received: by 2002:a2e:701:: with SMTP id 1mr9500098ljh.264.1616783197321;
- Fri, 26 Mar 2021 11:26:37 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=vZGkD+4E2RmAMLxrWzBsZkwCCLapq9ZQRvLGJF4GNDc=;
+        b=Ng12zlhcQH5p6RIHSBG/HvQCahO/IW1jmW9irIsuJTz/p/TIUDg8IHrOtlDulB5Lf4
+         SWB6W/F4bvanRi11K3rmYDZHVkakKsnOFJc//pRRum1Hm7N7qqIzU9FMOU5U4oEPo90T
+         lTac3W8p3JPxMGOKEDJByB1wU6uCZSMLSi7h2gapO+CKIZMP2liVVX8F4Up5l3Coz3zf
+         QUtrSUq6e1gdWx7urXAphTI5EGiBD8J9gzQxkuVFoLHrdf/a7M+hHOI0WJxbkh8Ighn+
+         BWbPCHU0/ARpkogu3ciROCpYz/+omyk2lQR3ycGtymFpK1HW8arJine0zTekrIvLOerT
+         SqTg==
+X-Gm-Message-State: AOAM531JKz+K7XuRtq/5cnGtjxTheEN+OShArhzDCTa5ctz2Bj+tb/GE
+        ofXCPZzKY3Oh67LxBKlBwHYsfrDtzx2KLjMn83c=
+X-Google-Smtp-Source: ABdhPJx0IhSE3AkZ3+3lDyKkbS3EoEFfE4627qSgDTDKiNvMtRzb4w4kqJdMTUKAhyc0CMv4LBbwcP4qpaDf7XslJk0=
+X-Received: by 2002:ab0:30b3:: with SMTP id b19mr9108849uam.58.1616783406884;
+ Fri, 26 Mar 2021 11:30:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210326142459.30679-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20210326142459.30679-1-u.kleine-koenig@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 26 Mar 2021 15:26:25 -0300
-Message-ID: <CAOMZO5DXgZeEk3sA-ZFpDPLn8oGf+RNSY0OWNe5pyzHGhOpaNQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-evk: Add i2c bus driving the PMIC
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+References: <20210205222644.2357303-9-saravanak@google.com>
+ <20210210114435.122242-1-tudor.ambarus@microchip.com> <20210210114435.122242-2-tudor.ambarus@microchip.com>
+ <CGME20210325133159eucas1p297b769beb681743fb32d362a86cc6e3e@eucas1p2.samsung.com>
+ <d24bebc5-0f78-021f-293f-e58defa32531@samsung.com> <9b206c4d00dfe8b7f941260f18909914b2b2eecb.camel@suse.de>
+ <161678243444.3012082.5031467952132861429@swboyd.mtv.corp.google.com>
+In-Reply-To: <161678243444.3012082.5031467952132861429@swboyd.mtv.corp.google.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Mar 2021 19:29:55 +0100
+Message-ID: <CAMuHMdV5PGUujsFP2TXMxij4UxVnrrurh_qVhq8+480w21jJAg@mail.gmail.com>
+Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Len Brown <len.brown@intel.com>, Len Brown <lenb@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Hi Stephen,
 
-On Fri, Mar 26, 2021 at 11:25 AM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
+On Fri, Mar 26, 2021 at 7:13 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> Quoting Nicolas Saenz Julienne (2021-03-25 11:25:24)
+> > On Thu, 2021-03-25 at 14:31 +0100, Marek Szyprowski wrote:
+> > > On 10.02.2021 12:44, Tudor Ambarus wrote:
+> > > > This is a follow-up for:
+> > > > commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
+> > > >
+> > > > The above commit updated the deprecated of_clk_add_provider(),
+> > > > but missed to update the preferred of_clk_add_hw_provider().
+> > > > Update it now.
+> > > >
+> > > > Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> > >
+> > > This patch, which landed in linux-next as commit 6579c8d97ad7 ("clk:
+> > > Mark fwnodes when their clock provider is added") causes the following
+> > > NULL pointer dereference on Raspberry Pi 3b+ boards:
+> > >
+> > > --->8---
+> > >
+> > > raspberrypi-firmware soc:firmware: Attached to firmware from
+> > > 2020-01-06T13:05:25
+> > > Unable to handle kernel NULL pointer dereference at virtual address
+> > > 0000000000000050
+> > > Mem abort info:
+> > >    ESR = 0x96000004
+> > >    EC = 0x25: DABT (current EL), IL = 32 bits
+> > >    SET = 0, FnV = 0
+> > >    EA = 0, S1PTW = 0
+> > > Data abort info:
+> > >    ISV = 0, ISS = 0x00000004
+> > >    CM = 0, WnR = 0
+> > > [0000000000000050] user address but active_mm is swapper
+> > > Internal error: Oops: 96000004 [#1] PREEMPT SMP
+> > > Modules linked in:
+> > > CPU: 0 PID: 10 Comm: kworker/0:1 Not tainted 5.12.0-rc4+ #2764
+> > > Hardware name: Raspberry Pi 3 Model B (DT)
+> > > Workqueue: events deferred_probe_work_func
+> > > pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=--)
+> > > pc : of_clk_add_hw_provider+0xac/0xe8
+> > > lr : of_clk_add_hw_provider+0x94/0xe8
+> > > sp : ffff8000130936b0
+> > > x29: ffff8000130936b0 x28: ffff800012494e04
+> > > x27: ffff00003b18cb05 x26: ffff00003aa5c010
+> > > x25: 0000000000000000 x24: 0000000000000000
+> > > x23: ffff00003aa1e380 x22: ffff8000106830d0
+> > > x21: ffff80001233f180 x20: 0000000000000018
+> > > x19: 0000000000000000 x18: ffff8000124d38b0
+> > > x17: 0000000000000013 x16: 0000000000000014
+> > > x15: ffff8000125758b0 x14: 00000000000184e0
+> > > x13: 000000000000292e x12: ffff80001258dd98
+> > > x11: 0000000000000001 x10: 0101010101010101
+> > > x9 : ffff80001233f288 x8 : 7f7f7f7f7f7f7f7f
+> > > x7 : fefefefeff6c626f x6 : 5d636d8080808080
+> > > x5 : 00000000006d635d x4 : 0000000000000000
+> > > x3 : 0000000000000000 x2 : 540eb5edae191600
+> > > x1 : 0000000000000000 x0 : 0000000000000000
+> > > Call trace:
+> > >   of_clk_add_hw_provider+0xac/0xe8
+> > >   devm_of_clk_add_hw_provider+0x5c/0xb8
+> > >   raspberrypi_clk_probe+0x110/0x210
+> > >   platform_probe+0x90/0xd8
+> > >   really_probe+0x108/0x3c0
+> > >   driver_probe_device+0x60/0xc0
+> > >   __device_attach_driver+0x9c/0xd0
+> > >   bus_for_each_drv+0x70/0xc8
+> > >   __device_attach+0xec/0x150
+> > >   device_initial_probe+0x10/0x18
+> > >   bus_probe_device+0x94/0xa0
+> > >   device_add+0x47c/0x780
+> > >   platform_device_add+0x110/0x248
+> > >   platform_device_register_full+0x120/0x150
+> > >   rpi_firmware_probe+0x158/0x1f8
+> > >   platform_probe+0x90/0xd8
+> > >   really_probe+0x108/0x3c0
+> > >   driver_probe_device+0x60/0xc0
+> > >   __device_attach_driver+0x9c/0xd0
+> > >   bus_for_each_drv+0x70/0xc8
+> > >   __device_attach+0xec/0x150
+> > >   device_initial_probe+0x10/0x18
+> > >   bus_probe_device+0x94/0xa0
+> > >   deferred_probe_work_func+0x70/0xa8
+> > >   process_one_work+0x2a8/0x718
+> > >   worker_thread+0x48/0x460
+> > >   kthread+0x134/0x160
+> > >   ret_from_fork+0x10/0x18
+> > > Code: b1006294 540000c0 b140069f 54000088 (3940e280)
+> > > ---[ end trace 7ead5ec2f0c51cfe ]---
+> > >
+> > > This patch mainly revealed that clk/bcm/clk-raspberrypi.c driver calls
+> > > devm_of_clk_add_hw_provider(), with a device pointer, which has a NULL
+> > > dev->of_node. I'm not sure if adding a check for a NULL np in
+> > > of_clk_add_hw_provider() is a right fix, though.
+> >
+> > I believe the right fix is not to call 'devm_of_clk_add_hw_provider()' if
+> > 'pdev->dev.of_node == NULL'. In such case, which is RPi3's, only the CPU clock
+> > is used, and it's defined and queried later through
+> > devm_clk_hw_register_clkdev().
+> >
+> > @Marek, I don't mind taking care of it if it's OK with you.
+> >
 >
-> There is no binding and driver for the PMIC itself, but making the bus
+> Ah I see this is related to the patch I just reviewed. Can you reference
+> this in the commit text? And instead of putting the change into the clk
+> provider let's check for NULL 'np' in of_clk_add_hw_provider() instead
+> and return 0 if there's nothing to do. That way we don't visit this
+> problem over and over again.
 
-What about the commit below that landed in kernel 5.9?
+I'm not sure the latter is what we reall want: shouldn't calling
+*of*_clk_add_hw_provider() with a NULL np be a bug in the provider?
 
-commit 0935ff5f1f0a44f66a13e075ed49f97ad99d2fdc
-Author: Robin Gong <yibin.gong@nxp.com>
-Date:   Sat Jul 4 00:19:35 2020 +0800
+Gr{oetje,eeting}s,
 
-    regulator: pca9450: add pca9450 pmic driver
+                        Geert
 
-    Add NXP pca9450 pmic driver.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-    Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-    Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-    Link: https://lore.kernel.org/r/1593793178-9737-2-git-send-email-yibin.=
-gong@nxp.com
-    Signed-off-by: Mark Brown <broonie@kernel.org>
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
