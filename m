@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 294A634AFC3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 21:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 513AD34AFCC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 21:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230027AbhCZUEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 16:04:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60790 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229986AbhCZUDt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 16:03:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A60E161A02;
-        Fri, 26 Mar 2021 20:03:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616789028;
-        bh=4LKLYKqudMoB6aEd0Ps7uLTpOx51F1Icssxa7AiFOw0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=prkDcNQpdnFzJnZv4Ul12AA/8zLGY27K6F+rBjzHhJq5NBK64WHUpsTem8eBtcfq8
-         HEU/kcqmBG6bk7WnfZ/IM91KhzhQE2pUDGa/zVEP4ococfpu86/s24LCtrU8wT2GyK
-         m6gUaMsN8IGte6bF3v8K/u3vkltqzOTXU/j30NXMfmjBWUvpR3aJWYqOM0+15uxvEs
-         LyEnaWEoeurwpOM/zxMXBSi9YSAaeaglJTAllj1WTCQJMYJTZ7QrGQhjLmJ3ajNCyS
-         LXCywYD3hnmQcNFxE9Lud5JbQkq41i3G35jD0V1uR7vTEi10VW2BiRXNMLm/7ThHYG
-         Kx2Z0hgshZvtw==
-Received: by mail-ot1-f54.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso6311170oti.11;
-        Fri, 26 Mar 2021 13:03:48 -0700 (PDT)
-X-Gm-Message-State: AOAM531uQ3TdQMWAMEyblGZEI/rkSNWF040dmZKC3+tccVON8I7jjC1l
-        w3BixtdxNeuUdPmdWZZBKU8izULwbFZw/NB2M+8=
-X-Google-Smtp-Source: ABdhPJyPEunl4Ngli4e/a9ttTgDySVGUAx1snwV7toHx9J8Evv0fmZt1qQLI1SgPLsSAWwUdD3HAzaFQDSDeIqyJHRs=
-X-Received: by 2002:a05:6830:148c:: with SMTP id s12mr13387334otq.251.1616789027968;
- Fri, 26 Mar 2021 13:03:47 -0700 (PDT)
+        id S230043AbhCZUGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 16:06:49 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:35377 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhCZUGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 16:06:31 -0400
+Received: by mail-io1-f44.google.com with SMTP id x17so6652934iog.2;
+        Fri, 26 Mar 2021 13:06:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZPC6AhpeUK9aDOYittyj6FiD+H8vNNaEbL6HgDphH9Y=;
+        b=QFyF30XkK6kvv3tsmiv46JJYIRxDKL+nVO/x1AiIlSGHF2U752hDXiNW2Wwa433Gh/
+         xMZqt6E8eRX1mo5EsnwYxX2dkcY9Sk1Sv4D6V9MWRZXB9I6q1QE3xAGtpFIzYuQMUOH4
+         B8ER3aUzZXz9Dl4iq+8RemFbFvB3Sv1sZOw1fScHOZlZNe6yvyJBtmbGTdKN63gAJsaA
+         leF/MelVRKSEuijc8jvONEvAS1pN76ioofCnlFx8ND0ahkJe9L6V9JW0APFAgxb/FHVN
+         +lx/AljWBaakgx1zwvQVQ+LD7r0LRGu/kBoK+bYiPmU5jW7o5WcQYrTq0svtOi7NiWDd
+         I5Dg==
+X-Gm-Message-State: AOAM5306DcU6rti5rM4ovaCBKC9DXDPuect6j5HWygvbk65+PZRV51um
+        EnKeeAMebccMTaCpCuSuSQ==
+X-Google-Smtp-Source: ABdhPJzyEzuLouL86I5aw/aN83geqOXKVBaxXOaOqVr7XPwcSkwq5woeldZd12J9taFb95HyphUP2A==
+X-Received: by 2002:a5d:9e09:: with SMTP id h9mr12176395ioh.178.1616789190894;
+        Fri, 26 Mar 2021 13:06:30 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id y18sm4914955ili.16.2021.03.26.13.06.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 13:06:29 -0700 (PDT)
+Received: (nullmailer pid 3781826 invoked by uid 1000);
+        Fri, 26 Mar 2021 20:06:26 -0000
+Date:   Fri, 26 Mar 2021 14:06:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com
+Subject: Re: [PATCH v6 09/11] dt-bindings: power: rockchip: Convert to
+ json-schema
+Message-ID: <20210326200626.GA3776228@robh.at.kernel.org>
+References: <20210326102738.14767-1-zhangqing@rock-chips.com>
+ <20210326103036.15173-1-zhangqing@rock-chips.com>
 MIME-Version: 1.0
-References: <20210320151903.60759-1-sven@svenpeter.dev> <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
- <20210323205346.GA1283560@robh.at.kernel.org> <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
- <CAK8P3a0fvnYLrG=cGiOQ6u8aZnriTeM0R=MW7FX=94mO13Rq0w@mail.gmail.com>
- <c1bcd90d344c2b68@bloch.sibelius.xs4all.nl> <9f06872d-f0ec-43c3-9b53-d144337100b3@www.fastmail.com>
- <CAK8P3a2b7k6JkxecW=yu-NF+fkNCxJ3Ja36nQ7LK8hsuO=4=sw@mail.gmail.com> <c1bcd9821a8f8c05@bloch.sibelius.xs4all.nl>
-In-Reply-To: <c1bcd9821a8f8c05@bloch.sibelius.xs4all.nl>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Fri, 26 Mar 2021 21:03:32 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1CFHgjuzmefKcbC3MPeBD0USeTe7oZsTcQ=6tagG3Cvw@mail.gmail.com>
-Message-ID: <CAK8P3a1CFHgjuzmefKcbC3MPeBD0USeTe7oZsTcQ=6tagG3Cvw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     sven@svenpeter.dev, Rob Herring <robh@kernel.org>,
-        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Hector Martin <marcan@marcan.st>,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210326103036.15173-1-zhangqing@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 6:28 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+On Fri, Mar 26, 2021 at 06:30:36PM +0800, Elaine Zhang wrote:
+> Convert the soc/rockchip/power_domain.txt binding document to
+> json-schema and move to the power bindings directory.
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> From: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Link:https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+> ---
+>  .../power/rockchip,power-controller.yaml      | 291 ++++++++++++++++++
+>  .../bindings/soc/rockchip/power_domain.txt    | 136 --------
+>  2 files changed, 291 insertions(+), 136 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
 
-> I haven't figured out how the bypass stuff really works.  Corellium
-> added support for it in their codebase when they added support for
-> Thunderbolt, and some of the DARTs that seem to be related to
-> Thunderbolt do indeed have a "bypass" property.  But it is unclear to
-> me how the different puzzle pieces fit together for Thunderbolt.
+My review checks tell me I already reviewed this and IIRC that was 
+pointed out to you in the last version. Am I supposed to review the 
+whole thing again or is it unchanged or ???. I have no idea with no 
+version history.
 
-As a general observation, bypass mode for Thunderbolt is what enabled
-the http://thunderclap.io/ attack. This is extremely useful for debugging
-a running kernel from another machine, but it's also something that
-should never be done in a production kernel.
+As there are other issues pointed out, I'm going with 'wait for the next 
+version'.
 
-         Arnd
+Rob
