@@ -2,226 +2,546 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E2234B202
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 23:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B38ED34B218
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 23:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230299AbhCZWNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 18:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbhCZWNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 18:13:06 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31C89C0613AA;
-        Fri, 26 Mar 2021 15:13:06 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id b2-20020a7bc2420000b029010be1081172so3732124wmj.1;
-        Fri, 26 Mar 2021 15:13:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ltWnH/bvsofzD2CW3kJWCR4lXIietfJIznplsGE/rhc=;
-        b=gMdsd5pmChcNiQTyOcQYDwJGLPiHpHzsyIkJQREaeMyNETOlDEUF6AQme7dc2zStt9
-         dEBZ5udoYo+R3KCzf1h91dA8x9wCoFmVGe0QMASadm9i7EpdOwgPv5GGgpcDtKTbSoZj
-         yynZnp7esJV7nQo3rJh5P53x48eXboJ3z8OKrHXZAXfN8QUk/6JEulmKtBkR9Yfhxra7
-         WiYi/etXJkK2oUzl6flIRrsIuXCAYYAbjs4TUwNoKtYISOBPfCUVzsK8ZEYbM121Mc0p
-         WYsd/0gJ/JYkLh7ND4hPnMB0mt7IYS1pRDnfYN4vLKFkSK2MyOBzXVa3wCnwR9XS5ICU
-         YR7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ltWnH/bvsofzD2CW3kJWCR4lXIietfJIznplsGE/rhc=;
-        b=sCbxFU8CvNP7WxFqLVcVwlPCfZTgVksOja5oyTfkKDncJDLJUswrqxjpsO5JRFXGNz
-         yUB1WoHXLbBYDsXIeSxR6dxu+reKr7B1kt8t5zGEs2NbJEX/I6y1zg9SA8DcCKHL98BJ
-         jGeeXffuUM3UgLG1GxdWDRO0Br40P0a7PGPPjQkjyNoUSdBRLaQAiAV/x552LqbW1UYu
-         j94aT7M+Avzf78ba/sQpPxMCzg6sa04fJHzy/fU5smM1mrV+D1rJbPFkgzMy+N22yAX8
-         qqgxkiF7kLWXyNvOaX7MnfwIbsJ/AMLy6+FFTto9sWdKRm2+C4fIYxEedbAS3MJqRUTu
-         LVTw==
-X-Gm-Message-State: AOAM532YpHNwxpTCYt9v42xm70ftO1v7SdhbWFmOsPK+AJRIWBW+M0jI
-        jpcUNK9UJV80oKY/t52TIp8YgOk9hK+sbfwsb2fmH/gh
-X-Google-Smtp-Source: ABdhPJwtSLPOwqEIE6ION2P2YC2aCDWsBR+3dtRGXvckklSzW5vVPovDGxdm2Vb4tR68Ths8uMNCS8fqTYV4lTluHbE=
-X-Received: by 2002:a1c:66c4:: with SMTP id a187mr14805476wmc.164.1616796784890;
- Fri, 26 Mar 2021 15:13:04 -0700 (PDT)
+        id S230026AbhCZWUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 18:20:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54712 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230114AbhCZWTl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 18:19:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1BB99619FF;
+        Fri, 26 Mar 2021 22:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616797181;
+        bh=rb2XANYYYu9LEhFUJadIJ+jQoTEzCLGvA6Jn5fs4DOk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=XEHYJ6xQiPkpfLnrWLVaGpGEV2QBxksuhjVLFqFBqVIlZt+IeDQVU6VVTnXJoRv6I
+         aA8kNXO6GY0qgakhE5oXwR25uTd2zwBMaxn3keVxVDb8SPK1A3nFwLz8tELT6fa7uv
+         8hOgpH5/ntAVbHMCv70lWUSIWGuDDZphFL0l8XHEaW+M/vPkUGM2+MjbZ/WkoMN37q
+         gUo+iiaZSZnMkqeeqSdbFmU6sgAfBGgGjNRZWur0Cc88rdmZyYNzT8khEBbmn73veF
+         cLuelCOCTaMos+LEKjm8kW6qB4ja0ptKXo/g+sR8uakRNmypRKXvb1zj5bzzJAYIQq
+         DHWAwQRQrqbsQ==
+Date:   Fri, 26 Mar 2021 23:19:36 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2] of: Fix kerneldoc output formatting
+Message-ID: <20210326231936.08ea87d8@coco.lan>
+In-Reply-To: <20210326192606.3702739-1-robh@kernel.org>
+References: <20210326192606.3702739-1-robh@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
- <YFKQaXOmOwYyeqvM@google.com> <CAF6AEGtu+GBwYfkH3x=UuPs5Ouj0TxqbVjpjFEtMKKWvd1-Gbg@mail.gmail.com>
- <YF3V8d4wB6i81fLN@orome.fritz.box> <CAF6AEGvS6Pnd-m-boqPEZdDY+VCkV5M8Ob9n6UiYWs_DxrPopQ@mail.gmail.com>
- <CAF6AEGvPN90RGP8hYXtAksJpGc4Sf5tRpNwNnV6=sxKei0Ms6A@mail.gmail.com> <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
-In-Reply-To: <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 26 Mar 2021 15:16:18 -0700
-Message-ID: <CAF6AEGt3MuQPROfOn6-M1ysD_QKwShb_t3mjUJ4QDBBT_3cwRg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on sc7180-trogdor-pompom
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 12:48 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Mar 26, 2021 at 9:20 AM Rob Clark <robdclark@gmail.com> wrote:
-> >
-> > On Fri, Mar 26, 2021 at 8:18 AM Rob Clark <robdclark@gmail.com> wrote:
-> > >
-> > > On Fri, Mar 26, 2021 at 5:38 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > > >
-> > > > On Wed, Mar 17, 2021 at 06:53:04PM -0700, Rob Clark wrote:
-> > > > > On Wed, Mar 17, 2021 at 4:27 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > > >
-> > > > > > On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
-> > > > > > > The sc7180-trogdor-pompom board might be attached to any number of a
-> > > > > > > pile of eDP panels. At the moment I'm told that the list might include:
-> > > > > > > - KD KD116N21-30NV-A010
-> > > > > > > - KD KD116N09-30NH-A016
-> > > > > > > - Starry 2081116HHD028001-51D
-> > > > > > > - Sharp LQ116M1JW10
-> > > > > > >
-> > > > > > > It should be noted that while the EDID programmed in the first 3
-> > > > > > > panels indicates that they should run with exactly the same timing (to
-> > > > > > > keep things simple), the 4th panel not only needs different timing but
-> > > > > > > has a different resolution.
-> > > > > > >
-> > > > > > > As is true in general with eDP panels, we can figure out which panel
-> > > > > > > we have and all the info needed to drive its pixel clock by reading
-> > > > > > > the EDID. However, we can do this only after we've powered the panel
-> > > > > > > on. Powering on the panels requires following the timing diagram in
-> > > > > > > each panel's datasheet which specifies delays between certain
-> > > > > > > actions. This means that, while we can be quite dynamic about handling
-> > > > > > > things we can't just totally skip out on describing the panel like we
-> > > > > > > could do if it was connected to an external-facing DP port.
-> > > > > > >
-> > > > > > > While the different panels have slightly different delays, it's
-> > > > > > > possible to come up with a set of unified delays that will work on all
-> > > > > > > the panels. From reading the datasheets:
-> > > > > > > * KD KD116N21-30NV-A010 and KD KD116N09-30NH-A016
-> > > > > > >   - HPD absent delay: 200 ms
-> > > > > > >   - Unprepare delay: 150 ms (datasheet is confusing, might be 500 ms)
-> > > > > > > * Starry 2081116HHD028001-51D
-> > > > > > >   - HPD absent delay: 100 ms
-> > > > > > >   - Enable delay: (link training done till enable BL): 200 ms
-> > > > > > >   - Unprepare delay: 500 ms
-> > > > > > > * Sharp LQ116M1JW10
-> > > > > > >   - HPD absent delay: 200 ms
-> > > > > > >   - Unprepare delay: 500 ms
-> > > > > > >   - Prepare to enable delay (power on till backlight): 100 ms
-> > > > > > >
-> > > > > > > Unified:
-> > > > > > > - HPD absent delay: 200 ms
-> > > > > > > - Unprepare delay: 500 ms
-> > > > > > > - Enable delay: 200 ms
-> > > > > > >
-> > > > > > > NOTE: in theory the only thing that we _really_ need unity on is the
-> > > > > > > "HPD absent delay" since once the panel asserts HPD we can read the
-> > > > > > > EDID and could make per-panel decisions if we wanted.
-> > > > > > >
-> > > > > > > Let's create a definition of "a panel that can be attached to pompom"
-> > > > > > > as a panel that provides a valid EDID and can work with the standard
-> > > > > > > pompom power sequencing. If more panels are later attached to pompom
-> > > > > > > then it's fine as long as they work in a compatible way.
-> > > > > > >
-> > > > > > > One might ask why we can't just use a generic string here and provide
-> > > > > > > the timings directly in the device tree file. As I understand it,
-> > > > > > > trying to describe generic power sequencing in the device tree is
-> > > > > > > frowned upon and the one instance (SD/MMC) is regarded as a mistake
-> > > > > > > that shouldn't be repeated. Specifying a power sequence per board (or
-> > > > > > > per board class) feels like a reasonable compromise. We're not trying
-> > > > > > > to define fully generic power sequence bindings but we can also take
-> > > > > > > advantage of the semi-probable properties of the attached device.
-> > > > > > >
-> > > > > > > NOTE: I believe that past instances of supporting this type of thing
-> > > > > > > have used the "white lie" approach. One representative panel was
-> > > > > > > listed in the device tree. The power sequencings of this
-> > > > > > > representative panel were OK to use across all panels that might be
-> > > > > > > attached and other differences were handled by EDID. This patch
-> > > > > > > attempts to set a new precedent and avoid the need for the white lie.
-> > > > > > >
-> > > > > > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > > > > > ---
-> > > > > >
-> > > > > > Sounds reasonable to me if DT maintainers can live with this abstract
-> > > > > > hardware definition. It's clearer than the 'white lie' approach.
-> > > > >
-> > > > > Yeah, it is a weird grey area between "discoverable" and "not
-> > > > > discoverable".. but I favor DT reflecting reality as much as
-> > > > > possible/feasible, so I think this is definity cleaner than "white
-> > > > > lies"
-> > > >
-> > > > This is practically no different than the "white lie". I suppose you
-> > > > could perhaps call it "more honest", if you want.
-> > > >
-> > > > The point remains that unless we describe exactly which panel we're
-> > > > dealing with, we ultimately have no way of properly quirking anything if
-> > > > we ever have to. Also, once we allow this kind of wildcard we can
-> > > > suddenly get into a situation where people might want to reuse this on
-> > > > something that's not at all a google-pompom board because the same
-> > > > particular power sequence happens to work on on some other board.
-> > > >
-> > > > Similarly I can imagine a situation where we could now have the same
-> > > > panel supported by multiple different wildcard compatible strings. How
-> > > > is that supposed to be any cleaner than what we have now?
-> > > >
-> > > > And I still keep wondering why bootloaders can't be taught about these
-> > > > kinds of things. We have in the past discussed various solutions where
-> > > > the bootloader could detect the type of panel connected and set the
-> > > > proper compatible string.
-> > >
-> > > The bootloader cannot detect the panel without powering up the panel,
-> > > which it normally does not do if you are not in dev-mode (it would add
-> > > a significant amount of time to bootup, which is why we can't do this)
-> >
-> > what if we had a sort of multi-choice panel node:
-> >
-> >    panel: panel {
-> >      compatible = "panel,one-of";
-> >      compatible-one-of = "vendor1,panel-a", "vendor2,panel-b",
-> > "vendor3,panel-c";
-> >   };
-> >
-> > The kernel could construct power sequence timings that are the
-> > superset of all the possible panels.  That seems about as explicit as
-> > we could get in this sort of case.
->
-> If we were to go this route, I'm inclined to say just shove all the
-> possible panel compatibles into 'compatible'. That kind of breaks the
-> notion of most specific to least specific. OTOH, it is saying the set
-> of panels are somehow 'compatible' with each other.
->
-> If there's not some level of compatibility between the panels, then
-> it's still the bootloader's problem.
->
+Em Fri, 26 Mar 2021 13:26:06 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-I'm not sure about this.. since there could be slight differences in
-various delay params between the possible panels.  I'd prefer that in
-panel-simple.c, we listed exact delay params "vendorFoo,panelBar", but
-it could mean that for a device that had three possible panels the
-worst case (max of all possible delays) could be higher than any
-individual choice.. and I don't think we should encourage the "white
-lie" approach (which will be the obvious outcome of not handling this
-directly in dt IME, based on prior art).  OTOH pushing it to the
-bootloader, when the bootloader actually has to power up the panel
-(and abide by the necessary delays) to figure out what choice we have
-isn't a viable option either.
+> The indentation of the kerneldoc comments affects the output formatting.
+> Leading tabs in particular don't work, sections need to be indented
+> under the section header, and several code blocks are reformatted.
+> 
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-It is better to be explicit about what we know and at the same time
-about what we don't know.
+Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 
-BR,
--R
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+> - Updated the example code blocks to use 'Example::' which depends (for 
+>   nice output) on Mauro's fix.
+> 
+> The rest of the series is here[1].
+> 
+> [1] https://lore.kernel.org/r/20210325164713.1296407-1-robh@kernel.org/
+> 
+>  drivers/of/base.c | 275 +++++++++++++++++++++++-----------------------
+>  drivers/of/fdt.c  |   9 +-
+>  2 files changed, 141 insertions(+), 143 deletions(-)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 457d1ec27300..a64c093d30ef 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -651,11 +651,11 @@ bool of_device_is_big_endian(const struct device_node *device)
+>  EXPORT_SYMBOL(of_device_is_big_endian);
+>  
+>  /**
+> - *	of_get_parent - Get a node's parent if any
+> - *	@node:	Node to get parent
+> + * of_get_parent - Get a node's parent if any
+> + * @node:	Node to get parent
+>   *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_get_parent(const struct device_node *node)
+>  {
+> @@ -673,15 +673,15 @@ struct device_node *of_get_parent(const struct device_node *node)
+>  EXPORT_SYMBOL(of_get_parent);
+>  
+>  /**
+> - *	of_get_next_parent - Iterate to a node's parent
+> - *	@node:	Node to get parent of
+> + * of_get_next_parent - Iterate to a node's parent
+> + * @node:	Node to get parent of
+>   *
+> - *	This is like of_get_parent() except that it drops the
+> - *	refcount on the passed node, making it suitable for iterating
+> - *	through a node's parents.
+> + * This is like of_get_parent() except that it drops the
+> + * refcount on the passed node, making it suitable for iterating
+> + * through a node's parents.
+>   *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_get_next_parent(struct device_node *node)
+>  {
+> @@ -719,13 +719,13 @@ static struct device_node *__of_get_next_child(const struct device_node *node,
+>  	     child = __of_get_next_child(parent, child))
+>  
+>  /**
+> - *	of_get_next_child - Iterate a node childs
+> - *	@node:	parent node
+> - *	@prev:	previous child of the parent node, or NULL to get first
+> + * of_get_next_child - Iterate a node childs
+> + * @node:	parent node
+> + * @prev:	previous child of the parent node, or NULL to get first
+>   *
+> - *	Returns a node pointer with refcount incremented, use of_node_put() on
+> - *	it when done. Returns NULL when prev is the last child. Decrements the
+> - *	refcount of prev.
+> + * Return: A node pointer with refcount incremented, use of_node_put() on
+> + * it when done. Returns NULL when prev is the last child. Decrements the
+> + * refcount of prev.
+>   */
+>  struct device_node *of_get_next_child(const struct device_node *node,
+>  	struct device_node *prev)
+> @@ -741,12 +741,12 @@ struct device_node *of_get_next_child(const struct device_node *node,
+>  EXPORT_SYMBOL(of_get_next_child);
+>  
+>  /**
+> - *	of_get_next_available_child - Find the next available child node
+> - *	@node:	parent node
+> - *	@prev:	previous child of the parent node, or NULL to get first
+> + * of_get_next_available_child - Find the next available child node
+> + * @node:	parent node
+> + * @prev:	previous child of the parent node, or NULL to get first
+>   *
+> - *      This function is like of_get_next_child(), except that it
+> - *      automatically skips any disabled nodes (i.e. status = "disabled").
+> + * This function is like of_get_next_child(), except that it
+> + * automatically skips any disabled nodes (i.e. status = "disabled").
+>   */
+>  struct device_node *of_get_next_available_child(const struct device_node *node,
+>  	struct device_node *prev)
+> @@ -772,12 +772,12 @@ struct device_node *of_get_next_available_child(const struct device_node *node,
+>  EXPORT_SYMBOL(of_get_next_available_child);
+>  
+>  /**
+> - *	of_get_next_cpu_node - Iterate on cpu nodes
+> - *	@prev:	previous child of the /cpus node, or NULL to get first
+> + * of_get_next_cpu_node - Iterate on cpu nodes
+> + * @prev:	previous child of the /cpus node, or NULL to get first
+>   *
+> - *	Returns a cpu node pointer with refcount incremented, use of_node_put()
+> - *	on it when done. Returns NULL when prev is the last child. Decrements
+> - *	the refcount of prev.
+> + * Return: A cpu node pointer with refcount incremented, use of_node_put()
+> + * on it when done. Returns NULL when prev is the last child. Decrements
+> + * the refcount of prev.
+>   */
+>  struct device_node *of_get_next_cpu_node(struct device_node *prev)
+>  {
+> @@ -834,15 +834,15 @@ struct device_node *of_get_compatible_child(const struct device_node *parent,
+>  EXPORT_SYMBOL(of_get_compatible_child);
+>  
+>  /**
+> - *	of_get_child_by_name - Find the child node by name for a given parent
+> - *	@node:	parent node
+> - *	@name:	child name to look for.
+> + * of_get_child_by_name - Find the child node by name for a given parent
+> + * @node:	parent node
+> + * @name:	child name to look for.
+>   *
+> - *      This function looks for child node for given matching name
+> + * This function looks for child node for given matching name
+>   *
+> - *	Returns a node pointer if found, with refcount incremented, use
+> - *	of_node_put() on it when done.
+> - *	Returns NULL if node is not found.
+> + * Return: A node pointer if found, with refcount incremented, use
+> + * of_node_put() on it when done.
+> + * Returns NULL if node is not found.
+>   */
+>  struct device_node *of_get_child_by_name(const struct device_node *node,
+>  				const char *name)
+> @@ -893,22 +893,22 @@ struct device_node *__of_find_node_by_full_path(struct device_node *node,
+>  }
+>  
+>  /**
+> - *	of_find_node_opts_by_path - Find a node matching a full OF path
+> - *	@path: Either the full path to match, or if the path does not
+> - *	       start with '/', the name of a property of the /aliases
+> - *	       node (an alias).  In the case of an alias, the node
+> - *	       matching the alias' value will be returned.
+> - *	@opts: Address of a pointer into which to store the start of
+> - *	       an options string appended to the end of the path with
+> - *	       a ':' separator.
+> - *
+> - *	Valid paths:
+> - *		/foo/bar	Full path
+> - *		foo		Valid alias
+> - *		foo/bar		Valid alias + relative path
+> - *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * of_find_node_opts_by_path - Find a node matching a full OF path
+> + * @path: Either the full path to match, or if the path does not
+> + *       start with '/', the name of a property of the /aliases
+> + *       node (an alias).  In the case of an alias, the node
+> + *       matching the alias' value will be returned.
+> + * @opts: Address of a pointer into which to store the start of
+> + *       an options string appended to the end of the path with
+> + *       a ':' separator.
+> + *
+> + * Valid paths:
+> + *  * /foo/bar	Full path
+> + *  * foo	Valid alias
+> + *  * foo/bar	Valid alias + relative path
+> + *
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_node_opts_by_path(const char *path, const char **opts)
+>  {
+> @@ -958,15 +958,15 @@ struct device_node *of_find_node_opts_by_path(const char *path, const char **opt
+>  EXPORT_SYMBOL(of_find_node_opts_by_path);
+>  
+>  /**
+> - *	of_find_node_by_name - Find a node by its "name" property
+> - *	@from:	The node to start searching from or NULL; the node
+> + * of_find_node_by_name - Find a node by its "name" property
+> + * @from:	The node to start searching from or NULL; the node
+>   *		you pass will not be searched, only the next one
+>   *		will. Typically, you pass what the previous call
+>   *		returned. of_node_put() will be called on @from.
+> - *	@name:	The name string to match against
+> + * @name:	The name string to match against
+>   *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_node_by_name(struct device_node *from,
+>  	const char *name)
+> @@ -985,16 +985,16 @@ struct device_node *of_find_node_by_name(struct device_node *from,
+>  EXPORT_SYMBOL(of_find_node_by_name);
+>  
+>  /**
+> - *	of_find_node_by_type - Find a node by its "device_type" property
+> - *	@from:	The node to start searching from, or NULL to start searching
+> + * of_find_node_by_type - Find a node by its "device_type" property
+> + * @from:	The node to start searching from, or NULL to start searching
+>   *		the entire device tree. The node you pass will not be
+>   *		searched, only the next one will; typically, you pass
+>   *		what the previous call returned. of_node_put() will be
+>   *		called on from for you.
+> - *	@type:	The type string to match against
+> + * @type:	The type string to match against
+>   *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_node_by_type(struct device_node *from,
+>  	const char *type)
+> @@ -1013,18 +1013,18 @@ struct device_node *of_find_node_by_type(struct device_node *from,
+>  EXPORT_SYMBOL(of_find_node_by_type);
+>  
+>  /**
+> - *	of_find_compatible_node - Find a node based on type and one of the
+> + * of_find_compatible_node - Find a node based on type and one of the
+>   *                                tokens in its "compatible" property
+> - *	@from:		The node to start searching from or NULL, the node
+> - *			you pass will not be searched, only the next one
+> - *			will; typically, you pass what the previous call
+> - *			returned. of_node_put() will be called on it
+> - *	@type:		The type string to match "device_type" or NULL to ignore
+> - *	@compatible:	The string to match to one of the tokens in the device
+> - *			"compatible" list.
+> - *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * @from:	The node to start searching from or NULL, the node
+> + *		you pass will not be searched, only the next one
+> + *		will; typically, you pass what the previous call
+> + *		returned. of_node_put() will be called on it
+> + * @type:	The type string to match "device_type" or NULL to ignore
+> + * @compatible:	The string to match to one of the tokens in the device
+> + *		"compatible" list.
+> + *
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_compatible_node(struct device_node *from,
+>  	const char *type, const char *compatible)
+> @@ -1044,16 +1044,16 @@ struct device_node *of_find_compatible_node(struct device_node *from,
+>  EXPORT_SYMBOL(of_find_compatible_node);
+>  
+>  /**
+> - *	of_find_node_with_property - Find a node which has a property with
+> - *                                   the given name.
+> - *	@from:		The node to start searching from or NULL, the node
+> - *			you pass will not be searched, only the next one
+> - *			will; typically, you pass what the previous call
+> - *			returned. of_node_put() will be called on it
+> - *	@prop_name:	The name of the property to look for.
+> - *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * of_find_node_with_property - Find a node which has a property with
+> + *                              the given name.
+> + * @from:	The node to start searching from or NULL, the node
+> + *		you pass will not be searched, only the next one
+> + *		will; typically, you pass what the previous call
+> + *		returned. of_node_put() will be called on it
+> + * @prop_name:	The name of the property to look for.
+> + *
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_node_with_property(struct device_node *from,
+>  	const char *prop_name)
+> @@ -1102,10 +1102,10 @@ const struct of_device_id *__of_match_node(const struct of_device_id *matches,
+>  
+>  /**
+>   * of_match_node - Tell if a device_node has a matching of_match structure
+> - *	@matches:	array of of device match structures to search in
+> - *	@node:		the of device structure to match against
+> + * @matches:	array of of device match structures to search in
+> + * @node:	the of device structure to match against
+>   *
+> - *	Low level utility function used by device matching.
+> + * Low level utility function used by device matching.
+>   */
+>  const struct of_device_id *of_match_node(const struct of_device_id *matches,
+>  					 const struct device_node *node)
+> @@ -1121,17 +1121,17 @@ const struct of_device_id *of_match_node(const struct of_device_id *matches,
+>  EXPORT_SYMBOL(of_match_node);
+>  
+>  /**
+> - *	of_find_matching_node_and_match - Find a node based on an of_device_id
+> - *					  match table.
+> - *	@from:		The node to start searching from or NULL, the node
+> - *			you pass will not be searched, only the next one
+> - *			will; typically, you pass what the previous call
+> - *			returned. of_node_put() will be called on it
+> - *	@matches:	array of of device match structures to search in
+> - *	@match:		Updated to point at the matches entry which matched
+> - *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.
+> + * of_find_matching_node_and_match - Find a node based on an of_device_id
+> + *				     match table.
+> + * @from:	The node to start searching from or NULL, the node
+> + *		you pass will not be searched, only the next one
+> + *		will; typically, you pass what the previous call
+> + *		returned. of_node_put() will be called on it
+> + * @matches:	array of of device match structures to search in
+> + * @match:	Updated to point at the matches entry which matched
+> + *
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.
+>   */
+>  struct device_node *of_find_matching_node_and_match(struct device_node *from,
+>  					const struct of_device_id *matches,
+> @@ -1460,21 +1460,21 @@ EXPORT_SYMBOL(of_parse_phandle);
+>   * Caller is responsible to call of_node_put() on the returned out_args->np
+>   * pointer.
+>   *
+> - * Example:
+> + * Example::
+>   *
+> - * phandle1: node1 {
+> + *  phandle1: node1 {
+>   *	#list-cells = <2>;
+> - * }
+> + *  };
+>   *
+> - * phandle2: node2 {
+> + *  phandle2: node2 {
+>   *	#list-cells = <1>;
+> - * }
+> + *  };
+>   *
+> - * node3 {
+> + *  node3 {
+>   *	list = <&phandle1 1 2 &phandle2 3>;
+> - * }
+> + *  };
+>   *
+> - * To get a device_node of the `node2' node you may call this:
+> + * To get a device_node of the ``node2`` node you may call this:
+>   * of_parse_phandle_with_args(node3, "list", "#list-cells", 1, &args);
+>   */
+>  int of_parse_phandle_with_args(const struct device_node *np, const char *list_name,
+> @@ -1512,29 +1512,29 @@ EXPORT_SYMBOL(of_parse_phandle_with_args);
+>   * Caller is responsible to call of_node_put() on the returned out_args->np
+>   * pointer.
+>   *
+> - * Example:
+> + * Example::
+>   *
+> - * phandle1: node1 {
+> - *	#list-cells = <2>;
+> - * }
+> + *  phandle1: node1 {
+> + *  	#list-cells = <2>;
+> + *  };
+>   *
+> - * phandle2: node2 {
+> - *	#list-cells = <1>;
+> - * }
+> + *  phandle2: node2 {
+> + *  	#list-cells = <1>;
+> + *  };
+>   *
+> - * phandle3: node3 {
+> - * 	#list-cells = <1>;
+> - * 	list-map = <0 &phandle2 3>,
+> - * 		   <1 &phandle2 2>,
+> - * 		   <2 &phandle1 5 1>;
+> - *	list-map-mask = <0x3>;
+> - * };
+> + *  phandle3: node3 {
+> + *  	#list-cells = <1>;
+> + *  	list-map = <0 &phandle2 3>,
+> + *  		   <1 &phandle2 2>,
+> + *  		   <2 &phandle1 5 1>;
+> + *  	list-map-mask = <0x3>;
+> + *  };
+>   *
+> - * node4 {
+> - *	list = <&phandle1 1 2 &phandle3 0>;
+> - * }
+> + *  node4 {
+> + *  	list = <&phandle1 1 2 &phandle3 0>;
+> + *  };
+>   *
+> - * To get a device_node of the `node2' node you may call this:
+> + * To get a device_node of the ``node2`` node you may call this:
+>   * of_parse_phandle_with_args(node4, "list", "list", 1, &args);
+>   */
+>  int of_parse_phandle_with_args_map(const struct device_node *np,
+> @@ -1694,19 +1694,19 @@ EXPORT_SYMBOL(of_parse_phandle_with_args_map);
+>   * Caller is responsible to call of_node_put() on the returned out_args->np
+>   * pointer.
+>   *
+> - * Example:
+> + * Example::
+>   *
+> - * phandle1: node1 {
+> - * }
+> + *  phandle1: node1 {
+> + *  };
+>   *
+> - * phandle2: node2 {
+> - * }
+> + *  phandle2: node2 {
+> + *  };
+>   *
+> - * node3 {
+> - *	list = <&phandle1 0 2 &phandle2 2 3>;
+> - * }
+> + *  node3 {
+> + *  	list = <&phandle1 0 2 &phandle2 2 3>;
+> + *  };
+>   *
+> - * To get a device_node of the `node2' node you may call this:
+> + * To get a device_node of the ``node2`` node you may call this:
+>   * of_parse_phandle_with_fixed_args(node3, "list", 2, 1, &args);
+>   */
+>  int of_parse_phandle_with_fixed_args(const struct device_node *np,
+> @@ -1952,13 +1952,12 @@ static void of_alias_add(struct alias_prop *ap, struct device_node *np,
+>  
+>  /**
+>   * of_alias_scan - Scan all properties of the 'aliases' node
+> + * @dt_alloc:	An allocator that provides a virtual address to memory
+> + *		for storing the resulting tree
+>   *
+>   * The function scans all the properties of the 'aliases' node and populates
+>   * the global lookup table with the properties.  It returns the
+>   * number of alias properties found, or an error code in case of failure.
+> - *
+> - * @dt_alloc:	An allocator that provides a virtual address to memory
+> - *		for storing the resulting tree
+>   */
+>  void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+>  {
+> @@ -2153,12 +2152,12 @@ bool of_console_check(struct device_node *dn, char *name, int index)
+>  EXPORT_SYMBOL_GPL(of_console_check);
+>  
+>  /**
+> - *	of_find_next_cache_node - Find a node's subsidiary cache
+> - *	@np:	node of type "cpu" or "cache"
+> + * of_find_next_cache_node - Find a node's subsidiary cache
+> + * @np:	node of type "cpu" or "cache"
+>   *
+> - *	Returns a node pointer with refcount incremented, use
+> - *	of_node_put() on it when done.  Caller should hold a reference
+> - *	to np.
+> + * Return: A node pointer with refcount incremented, use
+> + * of_node_put() on it when done.  Caller should hold a reference
+> + * to np.
+>   */
+>  struct device_node *of_find_next_cache_node(const struct device_node *np)
+>  {
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 4d6d195e089a..ba53da9c3895 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -349,11 +349,6 @@ static int unflatten_dt_nodes(const void *blob,
+>  
+>  /**
+>   * __unflatten_device_tree - create tree of device_nodes from flat blob
+> - *
+> - * unflattens a device-tree, creating the
+> - * tree of struct device_node. It also fills the "name" and "type"
+> - * pointers of the nodes so the normal device-tree walking functions
+> - * can be used.
+>   * @blob: The blob to expand
+>   * @dad: Parent device node
+>   * @mynodes: The device_node tree created by the call
+> @@ -361,6 +356,10 @@ static int unflatten_dt_nodes(const void *blob,
+>   * for the resulting tree
+>   * @detached: if true set OF_DETACHED on @mynodes
+>   *
+> + * unflattens a device-tree, creating the tree of struct device_node. It also
+> + * fills the "name" and "type" pointers of the nodes so the normal device-tree
+> + * walking functions can be used.
+> + *
+>   * Returns NULL on failure or the memory chunk containing the unflattened
+>   * device tree on success.
+>   */
+
+
+
+Thanks,
+Mauro
