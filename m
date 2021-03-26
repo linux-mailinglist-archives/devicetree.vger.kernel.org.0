@@ -2,107 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5568034AB6F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 16:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA1B034AB7C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 16:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbhCZP1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 11:27:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50848 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230098AbhCZP1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 11:27:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AD59E61A36;
-        Fri, 26 Mar 2021 15:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616772421;
-        bh=PgZvub/EEgXyOMtj36/Ui5nnRJqFFaiQoQ/VbltMCjA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Eg+BwZGAwSyILfvPcAOTVne302pKV2q+cmm5Ihp4Me5aUHSjUNGW3+nDtB8R91wcm
-         C2DZ9VNhmbn0jETV9GNehbOwe3JTYKhoqjnh/MiS11ee4oxdvW0wRf2ZrWgUDyfJma
-         hWNpN/TDOWiJIBIfJozhEVq7FS6Mk6XBvB49orLZFW6uYQR5hUuZGCCK5sAk8SD5SC
-         UeP3y50GhNpSvcc4yWyh8y4La1rfFodfJDuofdgE1ai4ujHIVkZF7oQxbAyMF7RCJU
-         u626vT1IL6nOSZEgmRmqhiGrDEBDKZfd4AiSGwBgBRCvns974kHSj2o73ajFlbU9P5
-         x5eyEjjSzm5/A==
-Received: by mail-ed1-f42.google.com with SMTP id bf3so6760125edb.6;
-        Fri, 26 Mar 2021 08:27:01 -0700 (PDT)
-X-Gm-Message-State: AOAM5314zhfTHmpNPiZvla7UF3/Hs8EnVkg1oA4GXjTiAG8dOURW35N+
-        ZUZGDbPp5z87wTpP5TtBFmSnG5H7B8Og419Mtw==
-X-Google-Smtp-Source: ABdhPJwqjia+Et0ifS4Qa3YP7BG89nAuXW50XJw7Bv12OLaUbiQxEkJ38eyAu5ZhN7DqGhRVJR72+O39P4k/LsEHPLw=
-X-Received: by 2002:a05:6402:5252:: with SMTP id t18mr16004050edd.258.1616772420155;
- Fri, 26 Mar 2021 08:27:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
- <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
- <87zgyqdn3d.fsf@igel.home> <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
-In-Reply-To: <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 26 Mar 2021 09:26:47 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
-Message-ID: <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
-Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Andreas Schwab <schwab@linux-m68k.org>,
-        Will Deacon <will@kernel.org>,
-        Daniel Walker <danielwa@cisco.com>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        microblaze <monstr@monstr.eu>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        nios2 <ley.foon.tan@intel.com>,
-        Openrisc <openrisc@lists.librecores.org>,
-        linux-hexagon@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        X86 ML <x86@kernel.org>, linux-xtensa@linux-xtensa.org,
-        SH-Linux <linux-sh@vger.kernel.org>,
-        sparclinux <sparclinux@vger.kernel.org>
+        id S230098AbhCZP2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 11:28:47 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:38088 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230115AbhCZP2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 11:28:38 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 80C151F470A1
+Message-ID: <986ee841d0c512a6f0ffe9dfa2e0803980b02aa0.camel@collabora.com>
+Subject: Re: [PATCH v6 13/13] arm64: dts: imx8mq: Add node to G2 hardware
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Philipp Zabel <pza@pengutronix.de>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Date:   Fri, 26 Mar 2021 12:28:25 -0300
+In-Reply-To: <4df3c9e4-0983-6007-f3b3-323882f903cf@collabora.com>
+References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
+         <20210318082046.51546-14-benjamin.gaignard@collabora.com>
+         <20210326142440.GD8441@pengutronix.de>
+         <4df3c9e4-0983-6007-f3b3-323882f903cf@collabora.com>
+Organization: Collabora
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.38.2-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 8:20 AM Christophe Leroy
-<christophe.leroy@csgroup.eu> wrote:
->
->
->
-> Le 26/03/2021 =C3=A0 15:08, Andreas Schwab a =C3=A9crit :
-> > On M=C3=A4r 26 2021, Christophe Leroy wrote:
-> >
-> >> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-> >> index f8f15332caa2..e7c91ee478d1 100644
-> >> --- a/arch/riscv/kernel/setup.c
-> >> +++ b/arch/riscv/kernel/setup.c
-> >> @@ -20,6 +20,7 @@
-> >>   #include <linux/swiotlb.h>
-> >>   #include <linux/smp.h>
-> >>   #include <linux/efi.h>
-> >> +#include <linux/cmdline.h>
-> >>
-> >>   #include <asm/cpu_ops.h>
-> >>   #include <asm/early_ioremap.h>
-> >> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
-> >>      }
-> >>
-> >>      pr_err("No DTB passed to the kernel\n");
-> >> -#ifdef CONFIG_CMDLINE_FORCE
-> >> -    strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-> >> +    cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
-> >>      pr_info("Forcing kernel command line to: %s\n", boot_command_line=
-);
-> >
-> > Shouldn't that message become conditional in some way?
-> >
->
-> You are right, I did something similar on ARM but looks like I missed it =
-on RISCV.
+On Fri, 2021-03-26 at 15:33 +0100, Benjamin Gaignard wrote:
+> 
+> Le 26/03/2021 à 15:24, Philipp Zabel a écrit :
+> > On Thu, Mar 18, 2021 at 09:20:46AM +0100, Benjamin Gaignard wrote:
+> > > Split VPU node in two: one for G1 and one for G2 since they are
+> > > different hardware blocks.
+> > > Add syscon for hardware control block.
+> > > Remove reg-names property that is useless.
+> > > Each VPU node only need one interrupt.
+> > > 
+> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > > ---
+> > > version 5:
+> > >   - use syscon instead of VPU reset
+> > > 
+> > >   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 43 ++++++++++++++++++-----
+> > >   1 file changed, 34 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > index 17c449e12c2e..b537d153ebbd 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > @@ -1329,15 +1329,16 @@ usb3_phy1: usb-phy@382f0040 {
+> > >                         status = "disabled";
+> > >                 };
+> > >   
+> > > -               vpu: video-codec@38300000 {
+> > > +               vpu_ctrl: syscon@38320000 {
+> > > +                       compatible = "nxp,imx8mq-vpu-ctrl", "syscon";
+> > > +                       reg = <0x38320000 0x10000>;
+> > > +               };
+> > > +
+> > > +               vpu_g1: video-codec@38300000 {
+> > >                         compatible = "nxp,imx8mq-vpu";
+> > > -                       reg = <0x38300000 0x10000>,
+> > > -                             <0x38310000 0x10000>,
+> > > -                             <0x38320000 0x10000>;
+> > > -                       reg-names = "g1", "g2", "ctrl";
+> > > -                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> > > -                                    <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> > > -                       interrupt-names = "g1", "g2";
+> > > +                       reg = <0x38300000 0x10000>;
+> > > +                       interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                       interrupt-names = "g1";
+> > >                         clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> > >                                  <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> > >                                  <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> > > @@ -1350,9 +1351,33 @@ vpu: video-codec@38300000 {
+> > >                                                  <&clk IMX8MQ_VPU_PLL_OUT>,
+> > >                                                  <&clk IMX8MQ_SYS1_PLL_800M>,
+> > >                                                  <&clk IMX8MQ_VPU_PLL>;
+> > > -                       assigned-clock-rates = <600000000>, <600000000>,
+> > > +                       assigned-clock-rates = <600000000>, <300000000>,
+> > I'd like to see this mentioned in the commit message.
+> 
+> Yes I would do that.
+> The value comes from the datasheet.
+> 
+> > 
+> > > +                                              <800000000>, <0>;
+> > > +                       power-domains = <&pgc_vpu>;
+> > > +                       nxp,imx8mq-vpu-ctrl = <&vpu_ctrl>;
+> > > +               };
+> > > +
+> > > +               vpu_g2: video-codec@38310000 {
+> > > +                       compatible = "nxp,imx8mq-vpu-g2";
+> > > +                       reg = <0x38310000 0x10000>;
+> > > +                       interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                       interrupt-names = "g2";
+> > > +                       clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> > > +                                <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> > > +                                <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> > > +                       clock-names = "g1", "g2",  "bus";
+> > > +                       assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
+> > Can the G1 clock configuration be dropped from the G2 device node and
+> > the G2 clock configuration from the G1 device node? It looks weird that
+> > these devices configure each other's clocks.
+> 
+> No because if only one device node is enabled we need to configure the both
+> clocks anyway.
+> 
 
-How is this hunk even useful? Under what conditions can you boot
-without a DTB? Even with a built-in DTB, the DT cmdline handling would
-be called.
+Since this is akward, how about adding a comment here in the dtsi to clarify it?
 
-Rob
+Thanks,
+Ezequiel
+
