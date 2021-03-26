@@ -2,100 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1AA349E77
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 763DF349E86
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:19:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbhCZBNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 21:13:15 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:35768 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbhCZBNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:13:13 -0400
-Received: by mail-io1-f51.google.com with SMTP id x17so3838063iog.2;
-        Thu, 25 Mar 2021 18:13:13 -0700 (PDT)
+        id S230045AbhCZBSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 21:18:42 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:42655 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230013AbhCZBS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:18:27 -0400
+Received: by mail-io1-f42.google.com with SMTP id r193so3818551ior.9;
+        Thu, 25 Mar 2021 18:18:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zbkw9Y7KdSrwPhBVHuNS2fuewhP21jNF8VYuw+vghOQ=;
-        b=V1L7V/Y6RhjKv8lWnCsPdqkZMCcSgoWa7GFWJn1y/9gHUd+aTT8UkLRxz1Pxjk4OO3
-         vCOZze2nZ66+cInC7BGTaW0l0kRwHsdcGOdxw+Ucc1Y0WIuyDHJfwWlpsFuYEqJ9QVjI
-         DMUI/8vRdcaEbxY6uFuwKOnR4o/JrEeWVKhRvWPtLjxBOrqJKIx+cndq1pUbdzBcAwBX
-         Aecm8dHzb1P6AMAV+scGjhbv8kmFGojy7qABlS35+dDpdA0TKPdfGmXd7OacAGYQUwXq
-         PsMDEQR1CeXoc8g0Zo+qbCOvvRyzDDOVWDNY5ECjxOD/C/nfMqKRHuE9TfTA8N6ViEHv
-         thiw==
-X-Gm-Message-State: AOAM5339oy8yEcPqtrfl0IOyqeyjY+tFymQxd6USiBUPeZrnQX6sZ591
-        IbXrp7+UI3Zu3N+y7Ri7rA==
-X-Google-Smtp-Source: ABdhPJz/kkzII6gaHn1Zz42FMOTzrlw/itwIj30ByvIYMFs2vADjcapKqUr0+yzTejwVWkn/CIALjA==
-X-Received: by 2002:a05:6638:2101:: with SMTP id n1mr10049485jaj.7.1616721193112;
-        Thu, 25 Mar 2021 18:13:13 -0700 (PDT)
+        bh=uLEv/UUTMOz0YMtABzYyD5q0F3bD9ue+f7LZRR5uqaQ=;
+        b=OY9edyg0TvmQkHuh/2HMI++wxFmANudCYtIaV3ED27tyPLLTpGFwsAbcRvILk7+SxE
+         0x2nLwKtXJDDJDJ+1UhbXccbJmq3KKjsLDG2Z3vciUiBECU/APFzNTSJXkOLCLmb5eJA
+         GrL7eQB3rSLGLrrdfIdBq6K1TTZtks3OadlE1mL6OE5vEEgWA5BgBbzR3kNJlT6mkbNY
+         UvdE+/vLhveomoFbgcepiBGAXGK411OBRkcQ2gbMzPfNfIR5VJdDv7qWcqykAPvDQd37
+         98swN9M73lpo0M31Z3YoV33H/xhm50Z2XYpZl0xm+yVf2/IfSFQjW3ZlR1l4Y/CxTDCn
+         8hog==
+X-Gm-Message-State: AOAM533+yltcGUj15WWxKbmfJfEg3D4p1uC4LFYkiZgv5zTDj1YZNNXW
+        rSsaQWKob6Zpo9/6rRc+aQ==
+X-Google-Smtp-Source: ABdhPJzqjnBsjg5OOMfmunx455Sgg50aTb8Nxfxl10GMGD+dZ9XGG9xe6kn6gqUrOhukuU0sLugHyQ==
+X-Received: by 2002:a05:6638:224e:: with SMTP id m14mr10171656jas.8.1616721506708;
+        Thu, 25 Mar 2021 18:18:26 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id d2sm3490299ilm.7.2021.03.25.18.13.11
+        by smtp.gmail.com with ESMTPSA id e2sm3452684iov.26.2021.03.25.18.18.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 18:13:12 -0700 (PDT)
-Received: (nullmailer pid 2102175 invoked by uid 1000);
-        Fri, 26 Mar 2021 01:13:10 -0000
-Date:   Thu, 25 Mar 2021 19:13:10 -0600
+        Thu, 25 Mar 2021 18:18:26 -0700 (PDT)
+Received: (nullmailer pid 2110362 invoked by uid 1000);
+        Fri, 26 Mar 2021 01:18:23 -0000
+Date:   Thu, 25 Mar 2021 19:18:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     wsa@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: stm32f7: add st,smbus-alert
- binding for SMBus Alert
-Message-ID: <20210326011310.GA2090957@robh.at.kernel.org>
-References: <1616075089-28115-1-git-send-email-alain.volmat@foss.st.com>
- <1616075089-28115-2-git-send-email-alain.volmat@foss.st.com>
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     linux-kernel@vger.kernel.org,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: ti: dpll: add spread spectrum support
+Message-ID: <20210326011823.GA2102368@robh.at.kernel.org>
+References: <20210318172627.12173-1-dariobin@libero.it>
+ <20210318172627.12173-3-dariobin@libero.it>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1616075089-28115-2-git-send-email-alain.volmat@foss.st.com>
+In-Reply-To: <20210318172627.12173-3-dariobin@libero.it>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 02:44:48PM +0100, Alain Volmat wrote:
-> Based on the SMBus specification, SMBus Alert active state is low.
-> As often on SoC, the SMBus Alert pin is not only dedicated to this
-> feature and can also be used for another purpose (by configuring it
-> as alternate function for other functions via pinctrl).
+On Thu, Mar 18, 2021 at 06:26:24PM +0100, Dario Binacchi wrote:
+> DT bindings for enabling and adjusting spread spectrum clocking have
+> been added.
 > 
-> "smbus" dt-binding has been introduced recently [1], however it is also
-> used to indicate usage of host-notify feature.
-> Relying on 'smbus' binding for SMBus-Alert as well as it was discussed
-> previously [2] would lead to requiring the SMBALERT# pin to be configured
-> as alternate function for i2c/smbus controller even if only host-notify is
-> needed.
-> Indeed, not doing so would lead to spurious SMBus Alert interrupts since
-> the i2c/smbus controller would see the (not configured) SMBA pin as low
-> level.
-> 
-> For that reason, SMBus-Alert needs to have its own binding in order
-> to only be enabled whenever SMBALERT# pin is configured as alternate
-> function for i2c/smbus controller.
-> 
-> [1] https://marc.info/?l=linux-i2c&m=159531254413805&w=2
-> [2] https://marc.info/?l=linux-renesas-soc&m=159361426409817&w=2
-
-Please use lore.kernel.org links.
-
-> 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> 
+> Signed-off-by: Dario Binacchi <dariobin@libero.it>
 > ---
-> v2: introduce st,smbus-alert property
-> ---
->  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> 
+> (no changes since v1)
+> 
+>  .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+> index df57009ff8e7..0810ae073294 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+> @@ -42,6 +42,11 @@ Required properties:
+>  	"idlest" - contains the idle status register base address
+>  	"mult-div1" - contains the multiplier / divider register base address
+>  	"autoidle" - contains the autoidle register base address (optional)
+> +	"ssc-deltam" - DPLL supports spread spectrum clocking (SSC), contains
+> +		       the frequency spreading register base address (optional)
+> +	"ssc-modfreq" - DPLL supports spread spectrum clocking (SSC), contains
+> +		        the modulation frequency register base address
+> +			(optional)
+>    ti,am3-* dpll types do not have autoidle register
+>    ti,omap2-* dpll type does not support idlest / autoidle registers
+>  
+> @@ -51,6 +56,14 @@ Optional properties:
+>  	- ti,low-power-stop : DPLL supports low power stop mode, gating output
+>  	- ti,low-power-bypass : DPLL output matches rate of parent bypass clock
+>  	- ti,lock : DPLL locks in programmed rate
+> +	- ti,min-div : the minimum divisor to start from to round the DPLL
+> +		       target rate
+> +	- ti,ssc-deltam : DPLL supports spread spectrum clocking, frequency
+> +			  spreading in permille (10th of a percent)
+> +	- ti,ssc-modfreq : DPLL supports spread spectrum clocking, spread
+> +			   spectrum modulation frequency in kHz
 
-With that,
+Use a standard unit suffix (-hz or -mhz).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-Though I defer to Wolfram whether this could/should be common instead.
-
-Rob
+> +	- ti,ssc-downspread : DPLL supports spread spectrum clocking, boolean
+> +			      to enable the downspread feature
+>  
+>  Examples:
+>  	dpll_core_ck: dpll_core_ck@44e00490 {
+> @@ -83,3 +96,10 @@ Examples:
+>  		clocks = <&sys_ck>, <&sys_ck>;
+>  		reg = <0x0500>, <0x0540>;
+>  	};
+> +
+> +	dpll_disp_ck: dpll_disp_ck {
+> +		#clock-cells = <0>;
+> +		compatible = "ti,am3-dpll-no-gate-clock";
+> +		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
+> +		reg = <0x0498>, <0x0448>, <0x0454>, <0x044c>, <0x0450>;
+> +	};
+> -- 
+> 2.17.1
+> 
