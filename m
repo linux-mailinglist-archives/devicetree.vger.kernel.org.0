@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD90134B008
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 21:18:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B586034B012
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 21:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbhCZURg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 16:17:36 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:47089 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230176AbhCZUR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 16:17:28 -0400
-Received: by mail-io1-f48.google.com with SMTP id j26so6629118iog.13;
-        Fri, 26 Mar 2021 13:17:27 -0700 (PDT)
+        id S230194AbhCZUTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 16:19:13 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:34577 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230196AbhCZUSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 16:18:55 -0400
+Received: by mail-io1-f50.google.com with SMTP id x16so6670300iob.1;
+        Fri, 26 Mar 2021 13:18:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/waVsYbxc/CEMfLtl1ZIVb7VmU/61u6EDNxRL9TvBpc=;
-        b=CIec+Hma59Sz9bX5HjyIV51Wj8nXE7CvncbbTPbnnGo/rnfSdPAOQhRjiRYsd/iR0l
-         sy/MVaosXCk8aRRPe2j34VIEEPvDynisdsZYsVxwb3VSmUxAyJoCImiJokAhuP/eTfOF
-         RIqCz2VGn78T7lkzUUAYVmjr/sCXWwa5OKHFkyBLSBwEZnSORMDZO+W1RbRmdoYAX+YZ
-         Tky9QCsEynez7m5ddlmEaAnjBU03wGM2+wHG9jSK9A+KWfCyN1rqblNnGGlLAyYXP2j5
-         9C30nXb7RgOOIbJdzqvApZ9nZRLffZPFkP84xwzNsKqIPbG4LNp+NTjY3Q2VHeHVYtev
-         1z7Q==
-X-Gm-Message-State: AOAM530ute+F5D/1zm3l5PPI5HeSUQdLltBb+1Bv7LUxa3OB2bafI0rS
-        fuIKuPPK4k+b/IeE86GApg==
-X-Google-Smtp-Source: ABdhPJxZzBaleRES7A/UrIChjERT4dMfo0japjM1iovfhStVjE/NXeNNsTYKiCfKKZqaLcowlCpFyw==
-X-Received: by 2002:a5e:c809:: with SMTP id y9mr11900357iol.192.1616789847392;
-        Fri, 26 Mar 2021 13:17:27 -0700 (PDT)
+        bh=Z5fnCZ8eriALH/wVywXxei9R/GBDBcSFb+uK/SYuxjI=;
+        b=ZMQV0bYl6z2dr9dfUPGZwyl6zmW+OF9FL17gwg5Ea/rF7bgzv/mtHnJKGrO5wN0IfS
+         L3SiBnKWfGXnFvLj8ZchlQUEFsGGERtij1tdyUKhINHScWZTnY1ZtTkw7QOAg4X0QMWc
+         rGpropGgbCB/48DDJzyHnwrRw9WdZe0iTSIbmMn1DNWhItPlJEbzjBxijxmlDJFZzil1
+         eQHc0MkoPFOxdqnyAeuFrVcNpEZEsR3bsgbiO6zoovl+xd3vwzVTAxKlBFQFovgfXVK/
+         Dc5dqvOsMNPDqawh9cIE8HTOL5cMX8Pq5QKXNpH2QXa7CXYGPw4OXMC1m1iO8U1FL/aI
+         JdvQ==
+X-Gm-Message-State: AOAM532JjKihVWJ7TxJDbfbkjl/Jt6q3fagASZxNAVUrTjjFv00sD9P7
+        ot4NMrbQRUFIFKat/dXwR0lLlagaTA==
+X-Google-Smtp-Source: ABdhPJw8hxpqliqEqveCE0yBH3PreXUErj+X7V6Syn7BEnO+wv2aoj4g5Y+Msh+D4irsnKkg8+KstA==
+X-Received: by 2002:a02:cb8f:: with SMTP id u15mr13266031jap.45.1616789935338;
+        Fri, 26 Mar 2021 13:18:55 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 74sm4761952iob.43.2021.03.26.13.17.25
+        by smtp.gmail.com with ESMTPSA id r15sm4864130iot.5.2021.03.26.13.18.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Mar 2021 13:17:26 -0700 (PDT)
-Received: (nullmailer pid 3797288 invoked by uid 1000);
-        Fri, 26 Mar 2021 20:17:24 -0000
-Date:   Fri, 26 Mar 2021 14:17:24 -0600
+        Fri, 26 Mar 2021 13:18:53 -0700 (PDT)
+Received: (nullmailer pid 3799500 invoked by uid 1000);
+        Fri, 26 Mar 2021 20:18:50 -0000
+Date:   Fri, 26 Mar 2021 14:18:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
-Cc:     ryder.lee@mediatek.com, jianjun.wang@mediatek.com,
-        linux-mediatek@lists.infradead.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        yong.wu@mediatek.com, bhelgaas@google.com, frank-w@public-files.de,
-        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 1/4] dt-bindings: PCI: mediatek: Update the Device
- tree bindings
-Message-ID: <20210326201724.GA3797259@robh.at.kernel.org>
-References: <20210323033833.14954-1-chuanjia.liu@mediatek.com>
- <20210323033833.14954-2-chuanjia.liu@mediatek.com>
+To:     dillon.minfei@gmail.com
+Cc:     mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, lkp@intel.com,
+        valentin.caron@foss.st.com, linux-arm-kernel@lists.infradead.org,
+        vladimir.murzin@arm.com, afzal.mohd.ma@gmail.com,
+        erwan.leray@foss.st.com, erwan.leray@st.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre.torgue@foss.st.com, linux-serial@vger.kernel.org,
+        rong.a.chen@intel.com, a.fatoum@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk
+Subject: Re: [PATCH v6 9/9] dt-bindings: serial: stm32: Use 'type: object'
+ instead of false for 'additionalProperties'
+Message-ID: <20210326201850.GA3799452@robh.at.kernel.org>
+References: <1616757302-7889-1-git-send-email-dillon.minfei@gmail.com>
+ <1616757302-7889-8-git-send-email-dillon.minfei@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210323033833.14954-2-chuanjia.liu@mediatek.com>
+In-Reply-To: <1616757302-7889-8-git-send-email-dillon.minfei@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Mar 2021 11:38:30 +0800, Chuanjia Liu wrote:
-> There are two independent PCIe controllers in MT2712 and MT7622
-> platform. Each of them should contain an independent MSI domain.
+On Fri, 26 Mar 2021 19:15:02 +0800, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
 > 
-> In old dts architecture, MSI domain will be inherited from the root
-> bridge, and all of the devices will share the same MSI domain.
-> Hence that, the PCIe devices will not work properly if the irq number
-> which required is more than 32.
+> To use additional properties 'bluetooth' on serial, need replace false with
+> 'type: object' for 'additionalProperties' to make it as a node, else will
+> run into dtbs_check warnings.
 > 
-> Split the PCIe node for MT2712 and MT7622 platform to comply with
-> the hardware design and fix MSI issue.
+> 'arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800:
+> 'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> Fixes: af1c2d81695b ("dt-bindings: serial: Convert STM32 UART to json-schema")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Tested-by: Valentin Caron <valentin.caron@foss.st.com>
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
 > ---
->  .../bindings/pci/mediatek-pcie-cfg.yaml       |  39 ++++
->  .../devicetree/bindings/pci/mediatek-pcie.txt | 201 ++++++++++--------
->  2 files changed, 146 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-cfg.yaml
+> 
+> v6: no changes
+> 
+>  Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
