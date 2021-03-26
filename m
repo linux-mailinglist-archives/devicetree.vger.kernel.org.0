@@ -2,211 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F7D334A4ED
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E99E34A4F9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbhCZJwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 05:52:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
+        id S229946AbhCZJx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 05:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbhCZJwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:52:17 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 548B1C0613AA;
-        Fri, 26 Mar 2021 02:52:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 88E681F46C28
-Received: by earth.universe (Postfix, from userid 1000)
-        id 575153C0C96; Fri, 26 Mar 2021 10:52:12 +0100 (CET)
-Date:   Fri, 26 Mar 2021 10:52:12 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [RFC] clk: add boot clock support
-Message-ID: <20210326095212.22ty5ueowiq36y6b@earth.universe>
-References: <20210316215123.GA3712408@robh.at.kernel.org>
- <20210318210318.144961-1-sebastian.reichel@collabora.com>
- <20210326012720.GA2113788@robh.at.kernel.org>
- <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
+        with ESMTP id S230083AbhCZJxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:53:01 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B631C0613AA;
+        Fri, 26 Mar 2021 02:53:01 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id c16so5176460oib.3;
+        Fri, 26 Mar 2021 02:53:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=OQNUcud1zkYdzkIjaa5FtppgaPtwU3jTgTAIM5VSySU=;
+        b=pm3MyKP3SbvYm32JdhQ6HJDzD10Clg4f0qoDUA8sBQ1aQX4BQz7YmfLKQdIYARfKXg
+         JmftkdKPLaa8VxOv/0j2sE43VvZP0fgnwa5mhPJ3TisRdQf9XTPkZjb0ENtVppXIGlD0
+         qgup1Ov1sAGaEwUUuaBYpsf3b3q30s17ZcpPV2nGmQGgu50GhRs8GT4D+yPHQ0SxTSNZ
+         cXJvyoXfnNaNZ/yfgXjB9qQtBUxH0eam2kV0+wb8yOXF0sPGB4M4pHP9A2AI3TLZuCVP
+         /1GJd2s+sgGdU+A/cDab/7UKtU+8OUTDm2mXy9OjQbPNcV7rbt0/5crs76FH7qVaPuH9
+         Asfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=OQNUcud1zkYdzkIjaa5FtppgaPtwU3jTgTAIM5VSySU=;
+        b=HA/rd5TQT3eerN1o3EqdHLnCnzFa+BvTIFx0At/5x0Bny1bsbApJx+ET0xgxTi1Pk3
+         TSH5pK8mxMTNVuQP44kFgVpwehq9/eI7uI1L4ZI9wkqNNNJxlxOi5pK7JJ/IBuCe21IC
+         WWihsDYOa1VafjQLpLd9M+Syji53ri0YYPOnWyylB2uuYng1J7jRvWBS1J+e6z/d6JJi
+         toT7LSJ5Cd6aaWRTCzGc4/Zn4WmJDQlIKmHQtql0McvXQq0QcC6KPRe67rtgvAmCBNIb
+         LUTV17wdttUwH9MfSnPK4wgp3jrXgO+LMPZVdCQo3M+7gRpPchvaqD9OmqfuQ4K/Yqaa
+         QO2w==
+X-Gm-Message-State: AOAM531ByMIkXSks+XXf/eoowrg2TXJkOL6SWEvlb1i1LS1kiCwJgN3f
+        aIlUOTjnk7l4mdW9OFmCL6uQNowvctMlYlFIHKVWDdEMGMe4JA==
+X-Google-Smtp-Source: ABdhPJzdEVG0jo5Gcp8tmM5tdCotj+i2e2qmLokrLAy/Utb7KG07+qLNMUoYlzSNG3+kzUP5N4EGFupD+rN9R5RQ7CU=
+X-Received: by 2002:a05:6808:bd6:: with SMTP id o22mr9251981oik.129.1616752380497;
+ Fri, 26 Mar 2021 02:53:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yuqc3nyfosvvvnh3"
-Content-Disposition: inline
-In-Reply-To: <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
+References: <20210326091547.12375-1-zhangqing@rock-chips.com> <20210326091751.12637-1-zhangqing@rock-chips.com>
+In-Reply-To: <20210326091751.12637-1-zhangqing@rock-chips.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 26 Mar 2021 10:52:48 +0100
+Message-ID: <CAFqH_53qnWdRQ01kRxVAKRWZnimW+gyNO=pv+ET4xFQB5QGOtA@mail.gmail.com>
+Subject: Re: [PATCH v5 08/11] dt-bindings: add power-domain header for RK3568 SoCs
+To:     Elaine Zhang <zhangqing@rock-chips.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, cl@rock-chips.com,
+        huangtao@rock-chips.com, kever.yang@rock-chips.com,
+        tony.xie@rock-chips.com, finley.xiao@rock-chips.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Missatge de Elaine Zhang <zhangqing@rock-chips.com> del dia dv., 26 de
+mar=C3=A7 2021 a les 10:18:
+>
+> According to a description from TRM, add all the power domains
+>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 
---yuqc3nyfosvvvnh3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-Hi Saravana,
-
-On Thu, Mar 25, 2021 at 06:55:52PM -0700, Saravana Kannan wrote:
-> On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > +Saravana
-> >
-> > On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
-> > > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
-> > > is provided by an I2C RTC. Specifying this properly results in a
-> > > circular dependency, since the I2C RTC (and thus its clock) cannot
-> > > be initialized without the i.MX6 clock controller being initialized.
-> > >
-> > > With current code the following path is executed when i.MX6 clock
-> > > controller is probed (and ckil clock is specified to be the I2C RTC
-> > > via DT):
-> > >
-> > > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
-> > > 2. of_clk_get_by_name(ccm_node, "ckil");
-> > > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
-> > > 4. of_clk_get_hw(ccm_node, 0, "ckil")
-> > > 5. spec =3D of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
-> > > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
-> > > 7. error is propagated back, i.MX6q clock controller is probe deferred
-> > > 8. I2C controller is never initialized without clock controller
-> > >    I2C RTC is never initialized without I2C controller
-> > >    CKIL clock is never initialized without I2C RTC
-> > >    clock controller is never initialized without CKIL
-> > >
-> > > To fix the circular dependency this registers a dummy clock when
-> > > the RTC clock is tried to be acquired. The dummy clock will later
-> > > be unregistered when the proper clock is registered for the RTC
-> > > DT node. IIUIC clk_core_reparent_orphans() will take care of
-> > > fixing up the clock tree.
-> > >
-> > > NOTE: For now the patch is compile tested only. If this approach
-> > > is the correct one I will do some testing and properly submit this.
-> > > You can find all the details about the hardware in the following
-> > > patchset:
-> > >
-> > > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-sebas=
-tian.reichel@collabora.com/
-> > >
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > ---
-> > >  .../bindings/clock/clock-bindings.txt         |   7 +
-> > >  drivers/clk/clk.c                             | 146 ++++++++++++++++=
-++
-> > >  2 files changed, 153 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.t=
-xt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > index f2ea53832ac6..66d67ff4aa0f 100644
-> > > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list of st=
-rings of clock output signal
-> > >                   Clock consumer nodes must never directly reference
-> > >                   the provider's clock-output-names property.
-> > >
-> > > +boot-clock-frequencies: This property is used to specify that a cloc=
-k is enabled
-> > > +                     by default with the provided frequency at boot =
-time. This
-> > > +                     is required to break circular clock dependencie=
-s. For clock
-> > > +                     providers with #clock-cells =3D 0 this is a sin=
-gle u32
-> > > +                     with the frequency in Hz. Otherwise it's a list=
- of
-> > > +                     clock cell specifier + frequency in Hz.
-> >
-> > Seems alright to me. I hadn't thought about the aspect of needing to
-> > know the frequency. Other cases probably don't as you only need the
-> > clocks once both components have registered.
-> >
-> > Note this could be lost being threaded in the other series.
->=20
-> I read this thread and tried to understand it. But my head isn't right
-> today (lack of sleep) so I couldn't wrap my head around it. I'll look
-> at it again after the weekend. In the meantime, Sebastian can you
-> please point me to the DT file and the specific device nodes (names or
-> line number) where this cycle is present?
-
-I have not yet sent an updated DT file, but if you look at this
-submission:
-
-https://lore.kernel.org/linux-devicetree/20210222171247.97609-7-sebastian.r=
-eichel@collabora.com/
-
-There is a node
-
-rtc: m41t62@68 { compatible =3D "st,m41t62"; };
-
-That is an I2C RTC, which provides a 32.768 kHz clock by default
-(i.e. after power loss). This clock signal is used to provide the
-i.MX6 CKIL:
-
-------------------------------------
-&clks {
-    clocks =3D <&rtc>;
-    clock-names =3D "ckil";
-};
-------------------------------------
-
-> Keeping a clock on until all its consumers probe is part of my TODO
-> list (next item after fw_devlink=3Don lands). I already have it working
-> in AOSP, but need to clean it up for upstream. fw_devlink can also
-> break *some* cycles (not all). So I'm wondering if the kernel will
-> solve this automatically soon(ish). If it can solve it automatically,
-> I'd rather not add new DT bindings because it'll make it more work for
-> fw_devlink.
-
-As written above on Congatec QMX6 an I2C RTC provides one of the
-SoC's input frequencies. The SoC basically expects that frequency
-to be always enabled and this is what it works like before clock
-support had been added to the RTC driver.
-
-With the link properly being described the Kernel tries to probe=20
-the SoC's clock controller during early boot. Then it tries to get a
-reference to the linked clock, using imx6q_obtain_fixed_clk_hw()
-and that returns -EPROBE_DEFER (because the RTC driver has not
-yet been probed). Without the clock controller basically none of
-the i.MX6 SoC drivers can probe including the I2C driver. Without
-the I2C bus being registered, the RTC driver never probes and the
-boot process is stuck.
-
-I'm not sure how fw_devlink can help here. I see exactly two
-options to solve this:
-
-a) do not describe the link and keep RTC clock enabled somehow.
-   (my initial patchset)
-b) describe the link, but ignore it during boot.
-   (what I'm trying to do here)
-
-Thanks,
-
--- Sebastian
-
---yuqc3nyfosvvvnh3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBdrr0ACgkQ2O7X88g7
-+pprNQ//ausWttZwADiPqm832XLLkBLS6xCGi1ntEuXqYXQAhNdD7ncGATlceYmE
-1UsfVgYstQDQE9aGyM0blkUNeUB4ejW4j5BFUkSG/+ANltZosa17qWMfgn9yS4px
-0bNqggfUKX5EHMtZmxkjnjxxZTYyzDB+sRhld7BePV7c5xdyIY91JEtEaEYTl0NX
-mX2KKroKOPH6heiXOBKg+qSUeK03Eek2ezmGnSfRBnOoQjsbyUTeYQpSRbDZ2CSF
-vp/6/nbKVAmRDfqoThWG+hVZP8Nyg8ukj6icHLUdg4nZyFV6i+Hlm3ebbzF2Li+g
-RpDmudDqm6b74R9ZcieIVvRw1N6oKtHcypLSa0nL/a8JICsZ3ykdh0Q3dwHEOGWm
-tMWbH0TIyVQgPeIOt7XfN+nPSBecD3sz31WU71iYwRMHxlm2plsdzarOwccTDE/z
-pug42JostOKofd7A4gMSJ2NW62Np5HfpGxpyjlIgMzw4Cj1j0I8j7V/tT/QNiA3a
-usLxEdS/g65EwewDC1Q7hXPY6ZczZz9ImFWFe9OifBqUldOn7DEruHkAEw8LEdmt
-vcF0HQXqhDsJ8pVkqt++ZZCkRECr7m2KmVkmD5dLpCTldMSxznO1mfV9CpLi4wwL
-dj24yan7oZ6wkajSdxmJ5QNM1Z7O0JcmEWoxzdI9rg8H4CtWlpw=
-=/IHI
------END PGP SIGNATURE-----
-
---yuqc3nyfosvvvnh3--
+> ---
+>  include/dt-bindings/power/rk3568-power.h | 32 ++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 include/dt-bindings/power/rk3568-power.h
+>
+> diff --git a/include/dt-bindings/power/rk3568-power.h b/include/dt-bindin=
+gs/power/rk3568-power.h
+> new file mode 100644
+> index 000000000000..6cc1af1a9d26
+> --- /dev/null
+> +++ b/include/dt-bindings/power/rk3568-power.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __DT_BINDINGS_POWER_RK3568_POWER_H__
+> +#define __DT_BINDINGS_POWER_RK3568_POWER_H__
+> +
+> +/* VD_CORE */
+> +#define RK3568_PD_CPU_0                0
+> +#define RK3568_PD_CPU_1                1
+> +#define RK3568_PD_CPU_2                2
+> +#define RK3568_PD_CPU_3                3
+> +#define RK3568_PD_CORE_ALIVE   4
+> +
+> +/* VD_PMU */
+> +#define RK3568_PD_PMU          5
+> +
+> +/* VD_NPU */
+> +#define RK3568_PD_NPU          6
+> +
+> +/* VD_GPU */
+> +#define RK3568_PD_GPU          7
+> +
+> +/* VD_LOGIC */
+> +#define RK3568_PD_VI           8
+> +#define RK3568_PD_VO           9
+> +#define RK3568_PD_RGA          10
+> +#define RK3568_PD_VPU          11
+> +#define RK3568_PD_CENTER       12
+> +#define RK3568_PD_RKVDEC       13
+> +#define RK3568_PD_RKVENC       14
+> +#define RK3568_PD_PIPE         15
+> +#define RK3568_PD_LOGIC_ALIVE  16
+> +
+> +#endif
+> --
+> 2.17.1
+>
+>
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
