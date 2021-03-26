@@ -2,154 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0BE34A641
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 12:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58E934A643
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 12:16:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbhCZLPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 07:15:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42994 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229832AbhCZLPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 07:15:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 33D0961A36;
-        Fri, 26 Mar 2021 11:15:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616757310;
-        bh=TGar1l22CGV/Y1xmxSx1j6P629QX5HKeQDyWELso18M=;
-        h=Subject:To:From:Date:From;
-        b=SuXZWhr/KP0Brf0+rVGkayg7jtcVNAoc5+whNnt3DPEAYK+jXjx2Bsh1+2XkMIBMI
-         6GvQjsQX1fqMH8WCsDU3ZQrEx/AX3W6YJiYwvhWofqJzBECO8UqS4AIahiaznYZDoA
-         uB0uslt74MLVTGfbcCIj+qZdrIN3TJur3VnAc4lw=
-Subject: patch "dt-bindings: iio: Add cros ec proximity yaml doc" added to staging-testing
-To:     swboyd@chromium.org, Jonathan.Cameron@huawei.com,
-        bleung@chromium.org, devicetree@vger.kernel.org,
-        dianders@chromium.org, dmitry.torokhov@gmail.com,
-        enric.balletbo@collabora.com, groeck@chromium.org,
-        gwendal@chromium.org, robh@kernel.org
-From:   <gregkh@linuxfoundation.org>
-Date:   Fri, 26 Mar 2021 12:12:24 +0100
-Message-ID: <161675714498100@kroah.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
+        id S230027AbhCZLPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 07:15:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229963AbhCZLPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 07:15:14 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280AFC0613AA;
+        Fri, 26 Mar 2021 04:15:11 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id o2so745072plg.1;
+        Fri, 26 Mar 2021 04:15:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=qZewbGCBGre6IA2gdv0UNHMD5H0zzQah+h3wfcdLeno=;
+        b=tKL5BNZEjoNFlbXFV/ArdRgMvL4T8BHwa0S+Z8gMGRwVo1Y/dRR/V+fcO04mfQpfOq
+         wXN56SeqyByp+GB+lutZYuHPodRdGxGxAisZwXXcZSJIB3SzjEkwGCvlIUAwYT2Inha3
+         ZcmFDdaoydbOafXA/hKGsLwzrrL0pg9yH5QgeVFouDfnEilt3oJ76mUnq3xpWoHs4aJl
+         ckkmW52s0OxzYfVEcBLPUaaYe/56RfPxqV7Npgl9jnIJ49HXyx3TY+xdgZkESH8fFatY
+         wwzOfmNicX7ehvXEwF0bWrlpty3h9Fv2MdVlVVaTqZza+TvVRf5dRXiin6nDRRKY4WwP
+         Opbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=qZewbGCBGre6IA2gdv0UNHMD5H0zzQah+h3wfcdLeno=;
+        b=ZtgVVczE11qXXniRsS7G65GuDUL8hKWWgJ+JM69pwwS+2ZZf6Nfp0ZEWmnOKnfrsR6
+         78YU5VBcK8EgISnboNmH9OfsyRy4eE1rm/2loi4/Tk8eHx49DvgXT4l+vNB7/fKcY+Oi
+         58k0SpPOp4r/o9f+0K82HRWfOpUkT+55acJ1TZ34g4MBVurHW0H/Oc1ElB+jnIw3FiuL
+         TKMCZmUfYN9GAOvXNdT7KfqZsmDlCoiqUMOfUVBgABdGfuvv61fr047ypJS1oNhs9dd+
+         p48fWHl7w2Y/pvj/btJJVRdZSk2H8rtBrBqGEZM5Zi8O5X8VJkSFbyxf9sajcsPO7LVg
+         qS3Q==
+X-Gm-Message-State: AOAM533i6fuflmn9KFUrVDZCwmV2h91SGOHzgIVoK8WYEz8BqYj5N3bm
+        NDQ6UzcX6s/OISKpH2HA4W4=
+X-Google-Smtp-Source: ABdhPJz1uyjnspJYTp77tANzqqBj5hZuWWfsI9BlnFhTkzVcn9qymlzZCesOvqehYIkQmit0/JiV6Q==
+X-Received: by 2002:a17:902:bf92:b029:e6:bc0:25ac with SMTP id v18-20020a170902bf92b02900e60bc025acmr14865974pls.49.1616757310569;
+        Fri, 26 Mar 2021 04:15:10 -0700 (PDT)
+Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
+        by smtp.gmail.com with ESMTPSA id l3sm8108414pfc.81.2021.03.26.04.15.05
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 26 Mar 2021 04:15:09 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     robh@kernel.org, valentin.caron@foss.st.com,
+        Alexandre.torgue@foss.st.com, rong.a.chen@intel.com,
+        a.fatoum@pengutronix.de, mcoquelin.stm32@gmail.com,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, vladimir.murzin@arm.com,
+        afzal.mohd.ma@gmail.com, gregkh@linuxfoundation.org,
+        erwan.leray@foss.st.com, erwan.leray@st.com,
+        linux-serial@vger.kernel.org, lkp@intel.com
+Cc:     dillon min <dillon.minfei@gmail.com>
+Subject: [PATCH v6 0/9] ARM: STM32: add art-pi(stm32h750xbh6) board support
+Date:   Fri, 26 Mar 2021 19:14:55 +0800
+Message-Id: <1616757302-7889-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: dillon min <dillon.minfei@gmail.com>
 
-This is a note to let you know that I've just added the patch titled
+This patchset intend to add art-pi board support, this board developed
+by rt-thread(https://www.rt-thread.org/).
 
-    dt-bindings: iio: Add cros ec proximity yaml doc
+Board resources:
+8MiB QSPI flash
+16MiB SPI flash
+32MiB SDRAM
+AP6212 wifi,bt,fm comb
 
-to my staging git tree which can be found at
-    git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
-in the staging-testing branch.
+sw context:
+- as stm32h750 just has 128k bytes internal flash, so running a fw on
+  internal flash to download u-boot/kernel to qspi flash, boot
+  u-boot/kernel from qspi flash. this fw is based on rt-thread.
+- kernel can be xip on qspi flash or load to sdram
+- root filesystem is jffs2(created by buildroot), stored on spi flash
 
-The patch will show up in the next release of the linux-next tree
-(usually sometime within the next 24 hours during the week.)
+to support the boad, add following changes.
+- fix r0-r3, r12 register restore failed after svc call,
+- add dts binding
+- update yaml doc
 
-The patch will be merged to the staging-next branch sometime soon,
-after it passes testing, and the merge window is open.
-
-If you have any questions about this process, please let me know.
-
-
-From 19ad93bc82e7d0ea7b02ada623cddfeab20c9046 Mon Sep 17 00:00:00 2001
-From: Stephen Boyd <swboyd@chromium.org>
-Date: Wed, 10 Feb 2021 18:46:00 -0800
-Subject: dt-bindings: iio: Add cros ec proximity yaml doc
-
-Some cros ECs support a front proximity MKBP event via
-'EC_MKBP_FRONT_PROXIMITY'. Add a DT binding to document this feature via
-a node that is a child of the main cros_ec device node. Devices that
-have this ability will describe this in firmware.
-
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Benson Leung <bleung@chromium.org>
-Cc: Guenter Roeck <groeck@chromium.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: <devicetree@vger.kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Cc: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-Link: https://lore.kernel.org/r/20210211024601.1963379-3-swboyd@chromium.org
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 ---
- .../google,cros-ec-mkbp-proximity.yaml        | 37 +++++++++++++++++++
- .../bindings/mfd/google,cros-ec.yaml          |  7 ++++
- 2 files changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+changes in v6:
+- add gpiox{gpio-ranges, ngpios} in stm32h7-pinctrl.dtsi
+- add status="disabled" in stm32h743.dtsi 
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
-new file mode 100644
-index 000000000000..099b4be927d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ChromeOS EC MKBP Proximity Sensor
-+
-+maintainers:
-+  - Stephen Boyd <swboyd@chromium.org>
-+  - Benson Leung <bleung@chromium.org>
-+  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-+
-+description: |
-+  Google's ChromeOS EC sometimes has the ability to detect user proximity.
-+  This is implemented on the EC as near/far logic and exposed to the OS
-+  via an MKBP switch bit.
-+
-+properties:
-+  compatible:
-+    const: google,cros-ec-mkbp-proximity
-+
-+  label:
-+    description: Name for proximity sensor
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    proximity {
-+      compatible = "google,cros-ec-mkbp-proximity";
-+      label = "proximity-wifi-lte";
-+    };
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 76bf16ee27ec..4dfa70a013ae 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -94,6 +94,9 @@ properties:
-   keyboard-controller:
-     $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
- 
-+  proximity:
-+    $ref: "/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#"
-+
-   codecs:
-     type: object
-     additionalProperties: false
-@@ -180,6 +183,10 @@ examples:
-             interrupts = <99 0>;
-             interrupt-parent = <&gpio7>;
-             spi-max-frequency = <5000000>;
-+
-+            proximity {
-+                    compatible = "google,cros-ec-mkbp-proximity";
-+            };
-         };
-     };
- 
+changes in v5:
+- accroding to rob's suggestion, replace false with 'type: object'
+  of 'additionalProperties'.
+- add Tested-by: Valentin Caron <valentin.caron@foss.st.com>
+
+changes in v4:
+- use unevaluatedProperties: false to fix dtbs_check warrnings instead of
+  add 'bluetooth' in st,stm32-uart.yaml
+
+changes in v3:
+- fix dtbs_check warrning: (8002cbd78fd5 and 4bc21d3dd678)
+  >> arch/arm/boot/dts/stm32h743i-eval.dt.yaml: soc: pin-controller:
+     {'type': 'object'} is not allowed for {'#address-cells': [[1]], '#size-cells':
+     [[1]], 'ranges': [[0,
+
+  >> arch/arm/boot/dts/stm32h743i-eval.dt.yaml: soc: 'i2c@40005C00',
+     'i2c@58001C00' do not match any of the regexes: '@(0|[1-9a-f][0-9a-f]*)$',
+     '^[^@]+$', 'pinctrl-[0-9]+'
+  >> arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800:
+     'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+changes in v2:
+- reorganize the pinctrl device tree about
+  stm32h7-pinctrl/stm32h743/750-pinctrl
+  stm32h7-pinctrl.dtsi --> stm32h743-pinctrl.dtsi --> stm32h743i-disco.dts
+                         |                          |-> stm32h743i-eval.dts
+                         |-> stm32h750-pinctrl.dtsi --> stm32h750i-art-pi.dts
+  same to the stm32f7/f4's pinctrl style
+- fix author name/copyright mistake
+- add compatible string st,stm32h750-pinctrl to pinctl-stm32h743.c as they
+  have same pin alternate functions, update Kconfig description
+- make item in stm32h750i-art-pi.dts sort by letter
+
+dillon min (9):
+  Documentation: arm: stm32: Add stm32h750 value line doc
+  dt-bindings: arm: stm32: Add compatible strings for ART-PI board
+  dt-bindings: pinctrl: stm32: Add stm32h750 pinctrl
+  ARM: dts: stm32: introduce stm32h7-pinctrl.dtsi to support stm32h750
+  ARM: dts: stm32: add stm32h750-pinctrl.dtsi
+  ARM: dts: stm32: add support for art-pi board based on stm32h750xbh6
+  ARM: stm32: Add a new SOC - STM32H750
+  pinctrl: stm32: Add STM32H750 MCU pinctrl support
+  dt-bindings: serial: stm32: Use 'type: object' instead of false for
+    'additionalProperties'
+
+ Documentation/arm/index.rst                        |   1 +
+ Documentation/arm/stm32/stm32h750-overview.rst     |  34 ++
+ .../devicetree/bindings/arm/stm32/stm32.yaml       |   4 +
+ .../bindings/pinctrl/st,stm32-pinctrl.yaml         |   1 +
+ .../devicetree/bindings/serial/st,stm32-uart.yaml  |   3 +-
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/stm32h7-pinctrl.dtsi             | 341 +++++++++++++++++++++
+ arch/arm/boot/dts/stm32h743-pinctrl.dtsi           | 307 +------------------
+ arch/arm/boot/dts/stm32h743.dtsi                   | 164 +++++++++-
+ arch/arm/boot/dts/stm32h750-pinctrl.dtsi           |  12 +
+ arch/arm/boot/dts/stm32h750.dtsi                   |   6 +
+ arch/arm/boot/dts/stm32h750i-art-pi.dts            | 229 ++++++++++++++
+ arch/arm/mach-stm32/board-dt.c                     |   1 +
+ drivers/pinctrl/stm32/Kconfig                      |   2 +-
+ drivers/pinctrl/stm32/pinctrl-stm32h743.c          |   3 +
+ 15 files changed, 804 insertions(+), 305 deletions(-)
+ create mode 100644 Documentation/arm/stm32/stm32h750-overview.rst
+ create mode 100644 arch/arm/boot/dts/stm32h7-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750.dtsi
+ create mode 100644 arch/arm/boot/dts/stm32h750i-art-pi.dts
+
 -- 
-2.31.0
-
+2.7.4
 
