@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E6C34A201
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C28D134A205
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhCZGl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 02:41:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
+        id S230238AbhCZGmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 02:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbhCZGlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:24 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA74C0613B5
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id j3so5021750edp.11
-        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
+        with ESMTP id S230182AbhCZGlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:25 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC522C0613B0
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id h13so5062120eds.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ENz5XBbvEDbbbtw8iA6jo2aOeQQAzNhPJSQZvZsIFcY=;
-        b=t0K+FB49i0EB8i0bKq6FlIB6jT/8VZNPaM0qKcZF8VlixXk8LlkAJHWNxAUqSmN5xB
-         isO+N1x52Cbz/aCSrvnQCwf9nKriAK2PnNdDyf0Hp9kU8ZrYNVc4HuA9YkLhC9W4f2jm
-         YLYVmr/ywto8tZXLdE4BtQalu5bzg+pNkGvpkR2Z0cpgiSh02RI14msKTDJyr67z+nEq
-         wwodbIe6ADWAJieaV8AZTXhTWfbEUfKp4trCyQF7vcMt++pau3ClTpfSrDWSRpMLL9KA
-         Z0eHnnaJmlW3MfpyYTTXVKbYmJbDo9Ayk4TcUBhhK9iBaSqVEpRkgd0ePrblQVFRwRAU
-         /P2w==
+        bh=P8VaQolGFCOR51eNrv/jk6ZLBrbbZ7X7Ltpf1LoAnjQ=;
+        b=r/SymDirP7YsfplabAthL2rjNIEsp2UpQhJ6IQeQAt3/I84Eynq5qj3dKhWsBQR25L
+         EBBsBag5vV+/5jRLbAvlnNuKJfLDGFuctI6aeFt8PvZSCh6r1xcAO2czt/JbOeomouuc
+         aW0dptOiPwQYDJiYCZkgHXSdkJpNqoGgQxnldzOvvj0NGKKnn0Qg1Po74+7FMe5YbLCv
+         tNCDYWEdxvXieEB0EVWMuDx/nh11yG+8tnj58Q639qX0mSHLMcVe4XYVLMQ52Uob4PuR
+         rrJS+hycvoLfGbgY6Gr4k/vE3013BDdBejvCU0kPC2go8TstO2TooFkSAiHnmL5aRvw1
+         5Lig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ENz5XBbvEDbbbtw8iA6jo2aOeQQAzNhPJSQZvZsIFcY=;
-        b=Hh+ufX80LRADiO7zoem6FFBr0ZZF+L2KL2NHzr5Xbl4e1uujAqFMGq7Xk4ELXiwiq6
-         3NpzapXgeSSbLmqU2dMmTqF8ZNDOOeX4nqWXUV/7ON7CDGjdzMoqVeGwM/kihoEXwZ0A
-         Dse+ZiQXd496utI9+wj46JGZPtklN83UxfYiuuexkoCyKK9hrkcBvjto20vn6hFvc0rW
-         43cKO/d2vrCGLsY0NeZkEJlM/dgUqw2HEyjY5dvNCz7zqAoA+BG8T5Wy3Vm7HuhNb4fC
-         lojbHBuqoOrLLzP4+sqZz3Zrtt1IvDTMrY3RFLASp3RKdnU9Q9I4ArPawoRHdAJJsCKO
-         2EBQ==
-X-Gm-Message-State: AOAM531/NQxa8Mu3aYZ4bTmP7mST3SITxz60RW3n0zwUZRj1YTtGfEvy
-        Wb69DnT9IBSbgKFnWhDpq0Mpyg==
-X-Google-Smtp-Source: ABdhPJxwc/kiNw+hAhKPzVPmmb39f3ZBAN2IWKgflXX1Yz87sp/E8zRO3ryLPzvIIRJ2iyvYOB0qyw==
-X-Received: by 2002:a50:ed90:: with SMTP id h16mr13138677edr.101.1616740882396;
-        Thu, 25 Mar 2021 23:41:22 -0700 (PDT)
+        bh=P8VaQolGFCOR51eNrv/jk6ZLBrbbZ7X7Ltpf1LoAnjQ=;
+        b=i3S/1aC4g8y89QUoi6zXmSJ3+g2R/ttLehQmDDsCz//XWEOoXn0KeSGxom/QQtCvBN
+         p/mRrD9GjrJCIxOw7Tf5jbg9ipW4tFhgy3I9MTH1Q3MhHt9j/QEEX0MTVAvvgmS+qS5b
+         AtD102may9FvdsuJgFPrJOU1ttK6Y1HwVhw2XxsJS70DmYO5pHjmS2sY9TX4UYRv1YSV
+         6eqQYXKrzbiKfcOURq+FRTeP5s6ciCN0w0Xihykmt/RuslSV1WAlahhf2vmWWJ0A5bQs
+         N0P/UyP2SyZBktwGszp1iG4/e6cqcIRsIgKOcv25JunO6ETyWBqIlBl3ZGAyvP0TwUM+
+         0jgA==
+X-Gm-Message-State: AOAM530ESxaPI71p44HivW5Py/A1XoE907opvXSYN/Mi8rlZHU2L9H6c
+        SRtS/xi3thqBDg5VU8XoH7n4rw==
+X-Google-Smtp-Source: ABdhPJw0rOE3qXvEVF6WI9EL9K/FwKG5NOBkx2tZumsUnD+MCA3hyDs5WB9yIpydUIEdhMFsax2CNA==
+X-Received: by 2002:a05:6402:2695:: with SMTP id w21mr13146872edd.99.1616740883626;
+        Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id ci22sm125325ejc.54.2021.03.25.23.41.21
+        by smtp.gmail.com with ESMTPSA id ci22sm125325ejc.54.2021.03.25.23.41.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 23:41:21 -0700 (PDT)
+        Thu, 25 Mar 2021 23:41:23 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org
 Cc:     yung-chuan.liao@linux.intel.com,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v5 6/9] soundwire: qcom: add support to new interrupts
-Date:   Fri, 26 Mar 2021 06:39:41 +0000
-Message-Id: <20210326063944.31683-7-srinivas.kandagatla@linaro.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH v5 7/9] soundwire: export sdw_compare_devid, sdw_extract_slave_id and sdw_slave_add
+Date:   Fri, 26 Mar 2021 06:39:42 +0000
+Message-Id: <20210326063944.31683-8-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210326063944.31683-1-srinivas.kandagatla@linaro.org>
 References: <20210326063944.31683-1-srinivas.kandagatla@linaro.org>
@@ -66,233 +67,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to new interrupts which includes reporting some of the
-error interrupts and adding support to SLAVE pending interrupt!
+Exporting these three functions makes sense as it can be used by
+other controllers like Qualcomm during auto-enumeration!
 
-This patch also changes the interrupt handler behaviour on handling
-any pending interrupts by checking it before returning out of irq handler.
-
+Reported-by: kernel test robot <lkp@intel.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 ---
- drivers/soundwire/qcom.c | 161 ++++++++++++++++++++++++++++++++-------
- 1 file changed, 135 insertions(+), 26 deletions(-)
+ drivers/soundwire/bus.c       | 4 +++-
+ drivers/soundwire/slave.c     | 1 +
+ include/linux/soundwire/sdw.h | 2 ++
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 0cbd611fb8c6..6a563fb52444 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -28,10 +28,21 @@
- #define SWRM_COMP_PARAMS_DIN_PORTS_MASK				GENMASK(9, 5)
- #define SWRM_INTERRUPT_STATUS					0x200
- #define SWRM_INTERRUPT_STATUS_RMSK				GENMASK(16, 0)
-+#define SWRM_INTERRUPT_STATUS_SLAVE_PEND_IRQ			BIT(0)
- #define SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED		BIT(1)
- #define SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS		BIT(2)
-+#define SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET			BIT(3)
-+#define SWRM_INTERRUPT_STATUS_RD_FIFO_OVERFLOW			BIT(4)
-+#define SWRM_INTERRUPT_STATUS_RD_FIFO_UNDERFLOW			BIT(5)
-+#define SWRM_INTERRUPT_STATUS_WR_CMD_FIFO_OVERFLOW		BIT(6)
- #define SWRM_INTERRUPT_STATUS_CMD_ERROR				BIT(7)
-+#define SWRM_INTERRUPT_STATUS_DOUT_PORT_COLLISION		BIT(8)
-+#define SWRM_INTERRUPT_STATUS_READ_EN_RD_VALID_MISMATCH		BIT(9)
- #define SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED		BIT(10)
-+#define SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2             BIT(13)
-+#define SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2              BIT(14)
-+#define SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP               BIT(16)
-+#define SWRM_INTERRUPT_MAX					17
- #define SWRM_INTERRUPT_MASK_ADDR				0x204
- #define SWRM_INTERRUPT_CLEAR					0x208
- #define SWRM_INTERRUPT_CPU_EN					0x210
-@@ -58,6 +69,7 @@
- #define SWRM_MCP_STATUS_BANK_NUM_MASK				BIT(0)
- #define SWRM_MCP_SLV_STATUS					0x1090
- #define SWRM_MCP_SLV_STATUS_MASK				GENMASK(1, 0)
-+#define SWRM_MCP_SLV_STATUS_SZ					2
- #define SWRM_DP_PORT_CTRL_BANK(n, m)	(0x1124 + 0x100 * (n - 1) + 0x40 * m)
- #define SWRM_DP_PORT_CTRL_2_BANK(n, m)	(0x1128 + 0x100 * (n - 1) + 0x40 * m)
- #define SWRM_DP_BLOCK_CTRL_1(n)		(0x112C + 0x100 * (n - 1))
-@@ -123,6 +135,7 @@ struct qcom_swrm_ctrl {
- 	int rows_index;
- 	unsigned long dout_port_mask;
- 	unsigned long din_port_mask;
-+	u32 intr_mask;
- 	u8 rcmd_id;
- 	u8 wcmd_id;
- 	struct qcom_swrm_port_config pconfig[QCOM_SDW_MAX_PORTS];
-@@ -304,6 +317,25 @@ static int qcom_swrm_cmd_fifo_rd_cmd(struct qcom_swrm_ctrl *swrm,
- 	return SDW_CMD_IGNORED;
+diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
+index 46885429928a..6d7708964735 100644
+--- a/drivers/soundwire/bus.c
++++ b/drivers/soundwire/bus.c
+@@ -603,7 +603,7 @@ static struct sdw_slave *sdw_get_slave(struct sdw_bus *bus, int i)
+ 	return NULL;
  }
  
-+static int qcom_swrm_get_alert_slave_dev_num(struct qcom_swrm_ctrl *ctrl)
-+{
-+	u32 val, status;
-+	int dev_num;
-+
-+	ctrl->reg_read(ctrl, SWRM_MCP_SLV_STATUS, &val);
-+
-+	for (dev_num = 0; dev_num < SDW_MAX_DEVICES; dev_num++) {
-+		status = (val >> (dev_num * SWRM_MCP_SLV_STATUS_SZ));
-+
-+		if ((status & SWRM_MCP_SLV_STATUS_MASK) == SDW_SLAVE_ALERT) {
-+			ctrl->status[dev_num] = status;
-+			return dev_num;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static void qcom_swrm_get_device_status(struct qcom_swrm_ctrl *ctrl)
+-static int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
++int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
  {
- 	u32 val;
-@@ -322,36 +354,112 @@ static void qcom_swrm_get_device_status(struct qcom_swrm_ctrl *ctrl)
+ 	if (slave->id.mfg_id != id.mfg_id ||
+ 	    slave->id.part_id != id.part_id ||
+@@ -614,6 +614,7 @@ static int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id)
  
- static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
- {
--	struct qcom_swrm_ctrl *ctrl = dev_id;
--	u32 sts, value;
-+	struct qcom_swrm_ctrl *swrm = dev_id;
-+	u32 value, intr_sts, intr_sts_masked;
-+	u32 i;
-+	u8 devnum = 0;
-+	int ret = IRQ_HANDLED;
- 
--	ctrl->reg_read(ctrl, SWRM_INTERRUPT_STATUS, &sts);
-+	swrm->reg_read(swrm, SWRM_INTERRUPT_STATUS, &intr_sts);
-+	intr_sts_masked = intr_sts & swrm->intr_mask;
- 
--	if (sts & SWRM_INTERRUPT_STATUS_CMD_ERROR) {
--		ctrl->reg_read(ctrl, SWRM_CMD_FIFO_STATUS, &value);
--		dev_err_ratelimited(ctrl->dev,
--				    "CMD error, fifo status 0x%x\n",
--				     value);
--		ctrl->reg_write(ctrl, SWRM_CMD_FIFO_CMD, 0x1);
--	}
--
--	if ((sts & SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED) ||
--	    sts & SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS) {
--		qcom_swrm_get_device_status(ctrl);
--		sdw_handle_slave_status(&ctrl->bus, ctrl->status);
--	}
--
--	/**
--	 * clear the interrupt before complete() is called, as complete can
--	 * schedule new read/writes which require interrupts, clearing the
--	 * interrupt would avoid missing interrupts in such cases.
--	 */
--	ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR, sts);
-+	do {
-+		for (i = 0; i < SWRM_INTERRUPT_MAX; i++) {
-+			value = intr_sts_masked & (1 << i);
-+			if (!value)
-+				continue;
-+
-+			switch (value) {
-+			case SWRM_INTERRUPT_STATUS_SLAVE_PEND_IRQ:
-+				devnum = qcom_swrm_get_alert_slave_dev_num(swrm);
-+				if (devnum < 0) {
-+					dev_err_ratelimited(swrm->dev,
-+					    "no slave alert found.spurious interrupt\n");
-+				} else {
-+					sdw_handle_slave_status(&swrm->bus, swrm->status);
-+				}
- 
--	if (sts & SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED)
--		complete(&ctrl->broadcast);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_NEW_SLAVE_ATTACHED:
-+			case SWRM_INTERRUPT_STATUS_CHANGE_ENUM_SLAVE_STATUS:
-+				dev_err_ratelimited(swrm->dev, "%s: SWR new slave attached\n",
-+					__func__);
-+				qcom_swrm_get_device_status(swrm);
-+				sdw_handle_slave_status(&swrm->bus, swrm->status);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET:
-+				dev_err_ratelimited(swrm->dev,
-+						"%s: SWR bus clsh detected\n",
-+						__func__);
-+				swrm->intr_mask &= ~SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET;
-+				swrm->reg_write(swrm, SWRM_INTERRUPT_CPU_EN, swrm->intr_mask);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_RD_FIFO_OVERFLOW:
-+				swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+				dev_err_ratelimited(swrm->dev,
-+					"%s: SWR read FIFO overflow fifo status 0x%x\n",
-+					__func__, value);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_RD_FIFO_UNDERFLOW:
-+				swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+				dev_err_ratelimited(swrm->dev,
-+					"%s: SWR read FIFO underflow fifo status 0x%x\n",
-+					__func__, value);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_WR_CMD_FIFO_OVERFLOW:
-+				swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+				dev_err(swrm->dev,
-+					"%s: SWR write FIFO overflow fifo status %x\n",
-+					__func__, value);
-+				swrm->reg_write(swrm, SWRM_CMD_FIFO_CMD, 0x1);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_CMD_ERROR:
-+				swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+				dev_err_ratelimited(swrm->dev,
-+					"%s: SWR CMD error, fifo status 0x%x, flushing fifo\n",
-+					__func__, value);
-+				swrm->reg_write(swrm, SWRM_CMD_FIFO_CMD, 0x1);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_DOUT_PORT_COLLISION:
-+				dev_err_ratelimited(swrm->dev,
-+						"%s: SWR Port collision detected\n",
-+						__func__);
-+				swrm->intr_mask &= ~SWRM_INTERRUPT_STATUS_DOUT_PORT_COLLISION;
-+				swrm->reg_write(swrm,
-+					SWRM_INTERRUPT_CPU_EN, swrm->intr_mask);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_READ_EN_RD_VALID_MISMATCH:
-+				dev_err_ratelimited(swrm->dev,
-+					"%s: SWR read enable valid mismatch\n",
-+					__func__);
-+				swrm->intr_mask &=
-+					~SWRM_INTERRUPT_STATUS_READ_EN_RD_VALID_MISMATCH;
-+				swrm->reg_write(swrm,
-+					SWRM_INTERRUPT_CPU_EN, swrm->intr_mask);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_SPECIAL_CMD_ID_FINISHED:
-+				complete(&swrm->broadcast);
-+				break;
-+			case SWRM_INTERRUPT_STATUS_BUS_RESET_FINISHED_V2:
-+				break;
-+			case SWRM_INTERRUPT_STATUS_CLK_STOP_FINISHED_V2:
-+				break;
-+			case SWRM_INTERRUPT_STATUS_EXT_CLK_STOP_WAKEUP:
-+				break;
-+			default:
-+				dev_err_ratelimited(swrm->dev,
-+						"%s: SWR unknown interrupt value: %d\n",
-+						__func__, value);
-+				ret = IRQ_NONE;
-+				break;
-+			}
-+		}
-+		swrm->reg_write(swrm, SWRM_INTERRUPT_CLEAR, intr_sts);
-+		swrm->reg_read(swrm, SWRM_INTERRUPT_STATUS, &intr_sts);
-+		intr_sts_masked = intr_sts & swrm->intr_mask;
-+	} while (intr_sts_masked);
- 
--	return IRQ_HANDLED;
-+	return ret;
+ 	return 0;
  }
++EXPORT_SYMBOL(sdw_compare_devid);
  
- static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
-@@ -367,6 +475,7 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 	/* Disable Auto enumeration */
- 	ctrl->reg_write(ctrl, SWRM_ENUMERATOR_CFG_ADDR, 0);
+ /* called with bus_lock held */
+ static int sdw_get_device_num(struct sdw_slave *slave)
+@@ -698,6 +699,7 @@ void sdw_extract_slave_id(struct sdw_bus *bus,
+ 		"SDW Slave class_id 0x%02x, mfg_id 0x%04x, part_id 0x%04x, unique_id 0x%x, version 0x%x\n",
+ 		id->class_id, id->mfg_id, id->part_id, id->unique_id, id->sdw_version);
+ }
++EXPORT_SYMBOL(sdw_extract_slave_id);
  
-+	ctrl->intr_mask = SWRM_INTERRUPT_STATUS_RMSK;
- 	/* Mask soundwire interrupts */
- 	ctrl->reg_write(ctrl, SWRM_INTERRUPT_MASK_ADDR,
- 			SWRM_INTERRUPT_STATUS_RMSK);
+ static int sdw_program_device_num(struct sdw_bus *bus)
+ {
+diff --git a/drivers/soundwire/slave.c b/drivers/soundwire/slave.c
+index 180f38bd003b..92850e150d36 100644
+--- a/drivers/soundwire/slave.c
++++ b/drivers/soundwire/slave.c
+@@ -88,6 +88,7 @@ int sdw_slave_add(struct sdw_bus *bus,
+ 
+ 	return ret;
+ }
++EXPORT_SYMBOL(sdw_slave_add);
+ 
+ #if IS_ENABLED(CONFIG_ACPI)
+ 
+diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
+index 2f52d6609076..f9003ba056ba 100644
+--- a/include/linux/soundwire/sdw.h
++++ b/include/linux/soundwire/sdw.h
+@@ -1011,5 +1011,7 @@ int sdw_write_no_pm(struct sdw_slave *slave, u32 addr, u8 value);
+ int sdw_read_no_pm(struct sdw_slave *slave, u32 addr);
+ int sdw_nread(struct sdw_slave *slave, u32 addr, size_t count, u8 *val);
+ int sdw_nwrite(struct sdw_slave *slave, u32 addr, size_t count, u8 *val);
++int sdw_compare_devid(struct sdw_slave *slave, struct sdw_slave_id id);
++void sdw_extract_slave_id(struct sdw_bus *bus, u64 addr, struct sdw_slave_id *id);
+ 
+ #endif /* __SOUNDWIRE_H */
 -- 
 2.21.0
 
