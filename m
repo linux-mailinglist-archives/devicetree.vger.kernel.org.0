@@ -2,84 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B586034B012
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 21:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 582B734B102
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 22:02:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbhCZUTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 16:19:13 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:34577 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbhCZUSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 16:18:55 -0400
-Received: by mail-io1-f50.google.com with SMTP id x16so6670300iob.1;
-        Fri, 26 Mar 2021 13:18:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Z5fnCZ8eriALH/wVywXxei9R/GBDBcSFb+uK/SYuxjI=;
-        b=ZMQV0bYl6z2dr9dfUPGZwyl6zmW+OF9FL17gwg5Ea/rF7bgzv/mtHnJKGrO5wN0IfS
-         L3SiBnKWfGXnFvLj8ZchlQUEFsGGERtij1tdyUKhINHScWZTnY1ZtTkw7QOAg4X0QMWc
-         rGpropGgbCB/48DDJzyHnwrRw9WdZe0iTSIbmMn1DNWhItPlJEbzjBxijxmlDJFZzil1
-         eQHc0MkoPFOxdqnyAeuFrVcNpEZEsR3bsgbiO6zoovl+xd3vwzVTAxKlBFQFovgfXVK/
-         Dc5dqvOsMNPDqawh9cIE8HTOL5cMX8Pq5QKXNpH2QXa7CXYGPw4OXMC1m1iO8U1FL/aI
-         JdvQ==
-X-Gm-Message-State: AOAM532JjKihVWJ7TxJDbfbkjl/Jt6q3fagASZxNAVUrTjjFv00sD9P7
-        ot4NMrbQRUFIFKat/dXwR0lLlagaTA==
-X-Google-Smtp-Source: ABdhPJw8hxpqliqEqveCE0yBH3PreXUErj+X7V6Syn7BEnO+wv2aoj4g5Y+Msh+D4irsnKkg8+KstA==
-X-Received: by 2002:a02:cb8f:: with SMTP id u15mr13266031jap.45.1616789935338;
-        Fri, 26 Mar 2021 13:18:55 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r15sm4864130iot.5.2021.03.26.13.18.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Mar 2021 13:18:53 -0700 (PDT)
-Received: (nullmailer pid 3799500 invoked by uid 1000);
-        Fri, 26 Mar 2021 20:18:50 -0000
-Date:   Fri, 26 Mar 2021 14:18:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     dillon.minfei@gmail.com
-Cc:     mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, lkp@intel.com,
-        valentin.caron@foss.st.com, linux-arm-kernel@lists.infradead.org,
-        vladimir.murzin@arm.com, afzal.mohd.ma@gmail.com,
-        erwan.leray@foss.st.com, erwan.leray@st.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre.torgue@foss.st.com, linux-serial@vger.kernel.org,
-        rong.a.chen@intel.com, a.fatoum@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk
-Subject: Re: [PATCH v6 9/9] dt-bindings: serial: stm32: Use 'type: object'
- instead of false for 'additionalProperties'
-Message-ID: <20210326201850.GA3799452@robh.at.kernel.org>
-References: <1616757302-7889-1-git-send-email-dillon.minfei@gmail.com>
- <1616757302-7889-8-git-send-email-dillon.minfei@gmail.com>
+        id S230107AbhCZVCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 17:02:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55186 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229957AbhCZVBt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 17:01:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C5BBD61A24
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 21:01:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616792509;
+        bh=jlkeGi9j17trfQ6S6m1guFm6W28IQ6cuMyY9jRNcnjE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CAz8OKIf9UsIG/W3Ed/my6oJhgz76p3AmM7HesB0vpUmMSpu4iFfIa5MuWVZggTWB
+         nPwHzQlu9ifrwr+cTGL6s/KwzrUkkBkiBoqTpibdcDmZUeIFYxqli+Hejh+SWgj5cq
+         9QJDolE1Ekc5IBm0qGU3iCUxZPt6iJJdp+4x1VdqYFsKL3i6mf5o0lYw9zk0ippUI0
+         P82AZOxQ4YE9Vhso6tcXZLjrdYMSuAkMRqkGbYlVayCDFLJ6dgYppYGRi5Dkrx0klR
+         181ipADnB6TNzOrzSucVtNUrVcytq6ORORJEJRS9i/G27l27QF+kpLm+XKfVBFLU6P
+         P6MlsVyy6KV7w==
+Received: by mail-ej1-f48.google.com with SMTP id w3so10389183ejc.4
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 14:01:48 -0700 (PDT)
+X-Gm-Message-State: AOAM530uGiJjLLt5nHkLc5HwPA5IKwoIUHifMcMgHZFs+ovwY6r7mFKs
+        7mG2nIq4UaQOv5jRzlXV3ECDg12NJn5vr+/qBw==
+X-Google-Smtp-Source: ABdhPJxe7HVKVAhRaeZmT0fSiqd+rP9S0dwUe9synkBMGqpzO4koufs4H1Nvzg/U7Pb2BUV7WfFne1leI7eV7LPz2Hc=
+X-Received: by 2002:a17:906:d153:: with SMTP id br19mr16892035ejb.360.1616792507280;
+ Fri, 26 Mar 2021 14:01:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1616757302-7889-8-git-send-email-dillon.minfei@gmail.com>
+References: <20210218152837.1080819-1-maxime@cerno.tech> <20210223212624.GA89721@robh.at.kernel.org>
+In-Reply-To: <20210223212624.GA89721@robh.at.kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 26 Mar 2021 15:01:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKtGz3mtzc1KTASVtAcc7PSV7Z8Y-n8JjOzxua8EpQ5ZQ@mail.gmail.com>
+Message-ID: <CAL_JsqKtGz3mtzc1KTASVtAcc7PSV7Z8Y-n8JjOzxua8EpQ5ZQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: bcm2711-hdmi: Fix broken schema
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Mar 2021 19:15:02 +0800, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
-> 
-> To use additional properties 'bluetooth' on serial, need replace false with
-> 'type: object' for 'additionalProperties' to make it as a node, else will
-> run into dtbs_check warnings.
-> 
-> 'arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800:
-> 'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Fixes: af1c2d81695b ("dt-bindings: serial: Convert STM32 UART to json-schema")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Tested-by: Valentin Caron <valentin.caron@foss.st.com>
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> ---
-> 
-> v6: no changes
-> 
->  Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+On Tue, Feb 23, 2021 at 2:26 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, 18 Feb 2021 16:28:37 +0100, Maxime Ripard wrote:
+> > For some reason, unevaluatedProperties doesn't work and
+> > additionalProperties is required. Fix it by switching to
+> > additionalProperties.
+> >
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml          | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+>
+> Applied, thanks!
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Something weird is going on with this fix. linux-next doesn't end up
+with the change even though 5.12-rc2 has it. I suspect it's because
+the original commit is in 2 branches (drm-misc-next and
+drm-misc-fixes), but the fix was applied by me. I'm not sure how
+linux-next didn't have a manual merge for this.
+
+Rob
