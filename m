@@ -2,204 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FFF334AAE3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 16:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F01B934AB04
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 16:11:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbhCZPFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 11:05:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60412 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230114AbhCZPEo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 11:04:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C387061A28;
-        Fri, 26 Mar 2021 15:04:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1616771080;
-        bh=CcDG1SYT+u5oJCFUbtBoRVBdku5chSBF/j8IcwTSwyA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FslLeGi3ttBCpMwtegrgb3z3Jo9maYQuWXpVaJsfbMi0cMLce4xQuBXm6iwbDyBJu
-         Wqc+4pQAnP76sDiYBuKQKxkAJshruFOVUM4rted2/fN3Ef93XjjXL5dnmEqUFNAO9e
-         hoyR+oYbvgzxSvB/aqrMzDUIZBLKXvK1JT5W2Kr/DA6ua8jhtsHnjx4e8WJTmGsIa2
-         e4Fnako4g0tZmhYLhifao8/XBPPKaTP5NVGYKGXCSpJx/WFDJdEHtdZzuqbjGKXZHs
-         5Mn2WuBXZZBRUS/K6Tlirn0e261TPnYR+Zqff0+P437/WKaaCfTmbL6HwTudxdrVdJ
-         JCXHPuMsIVGrw==
-Received: by mail-ed1-f47.google.com with SMTP id e7so6642556edu.10;
-        Fri, 26 Mar 2021 08:04:39 -0700 (PDT)
-X-Gm-Message-State: AOAM531560WAvyieJBqROiK+4HtTrlXBHpliTci6VsPh3Jx5h5n2eWnB
-        ANeOj+IFhqEwn+tKyoDSCJcjJ0MZXuwip1w7Iw==
-X-Google-Smtp-Source: ABdhPJysfZUE7pyMmQBkvm0tvpbMLtvvqy297Z/V6TC8r3w35DV43BQKmWP/tZVYr7jDjbifL0QLm4IUfTacC1zCtZ0=
-X-Received: by 2002:a05:6402:2d0:: with SMTP id b16mr15924985edx.194.1616771078263;
- Fri, 26 Mar 2021 08:04:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
-In-Reply-To: <cover.1616765869.git.christophe.leroy@csgroup.eu>
+        id S230104AbhCZPL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 11:11:28 -0400
+Received: from mail-il1-f176.google.com ([209.85.166.176]:39536 "EHLO
+        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230240AbhCZPK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 11:10:59 -0400
+Received: by mail-il1-f176.google.com with SMTP id y17so5293744ila.6;
+        Fri, 26 Mar 2021 08:10:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=V6kxHAMFGHc90myISo6VM6ueaBvRJahf0rAQgZck3Fs=;
+        b=QfqD78Aew0F67Y2f7i3gJmmZPDEn6nIgJlRbPWFlxYEelCD6SD4baLeJ7iGOOntSdn
+         llMgDKOgE1Sk/BqWCpoKo4XDHBEmh3CQaIdjZ0qfXNktVk3sIlqEvJNMEK+24DfcqsK2
+         T2ky/lNxkiEQZng1/9d3Dt/dgoFXbme8LeYjp2qbCrNTfYwxqQVKvyA0CdIuV4wBdkV1
+         PJ1qpgopCx7JB82GdiC+n3hnZ2JTwjZPTOEd0s11Z2iDF3fRledNSvfyhO4rDUd/cYl1
+         HxnENY258HWrAikrkEQXwGEFCNcv47zGcOuDKtxcZiaq47XKp80FTotzfulIm90/cHAX
+         RV8A==
+X-Gm-Message-State: AOAM530llm0AnzUOtAcr7aCO/X/PsjQfydUWK+ySc6Ks1QWDuCZpKTy5
+        JuHfGPUIsXPr9LUDf6uBOQ==
+X-Google-Smtp-Source: ABdhPJyStqL3NEZY7qbA5kS67RsQZxAe37NEbUFsqr6MXsMcQqzUF92vBsQzYpDKLriZ49f0Rmz3wQ==
+X-Received: by 2002:a92:c56f:: with SMTP id b15mr10756598ilj.41.1616771458456;
+        Fri, 26 Mar 2021 08:10:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id l14sm2530159ilj.14.2021.03.26.08.10.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 08:10:57 -0700 (PDT)
+Received: (nullmailer pid 3384057 invoked by uid 1000);
+        Fri, 26 Mar 2021 15:10:54 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 26 Mar 2021 09:04:25 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLQTM0Xw_skFeysJyYAyW3B=0u0xgePgoUYSpKaWw9SjQ@mail.gmail.com>
-Message-ID: <CAL_JsqLQTM0Xw_skFeysJyYAyW3B=0u0xgePgoUYSpKaWw9SjQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/17] Implement GENERIC_CMDLINE
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Will Deacon <will@kernel.org>, Daniel Walker <danielwa@cisco.com>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        microblaze <monstr@monstr.eu>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        nios2 <ley.foon.tan@intel.com>,
-        Openrisc <openrisc@lists.librecores.org>,
-        linux-hexagon@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        X86 ML <x86@kernel.org>, linux-xtensa@linux-xtensa.org,
-        SH-Linux <linux-sh@vger.kernel.org>,
-        sparclinux <sparclinux@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Nina Wu <nina-cm.wu@mediatek.com>
+Cc:     devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Neal Liu <neal.liu@mediatek.com>,
+        Nina Wu <Nina-CM.Wu@mediatek.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jackson-kt.Chang@mediatek.com
+In-Reply-To: <1616743871-8087-1-git-send-email-nina-cm.wu@mediatek.com>
+References: <1616743871-8087-1-git-send-email-nina-cm.wu@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: devapc: Update bindings
+Date:   Fri, 26 Mar 2021 09:10:54 -0600
+Message-Id: <1616771454.300082.3384056.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 7:44 AM Christophe Leroy
-<christophe.leroy@csgroup.eu> wrote:
->
-> The purpose of this series is to improve and enhance the
-> handling of kernel boot arguments.
->
-> It is first focussed on powerpc but also extends the capability
-> for other arches.
->
-> This is based on suggestion from Daniel Walker <danielwa@cisco.com>
->
-> Main changes in V3:
-> - Also accept destination equal to source in cmdline_build() by setting a tmp buffer in __initdata. Powerpc provides different source and destination and call __cmdline_build() directly.
-> - Taken comments received from Will and Rob
-> - Converted all architectures (Only tested on powerpc)
->
-> Christophe Leroy (17):
->   cmdline: Add generic function to build command line.
->   drivers: of: use cmdline building function
->   cmdline: Gives architectures opportunity to use generically defined
->     boot cmdline manipulation
->   powerpc: Convert to GENERIC_CMDLINE
->   arm: Convert to GENERIC_CMDLINE
->   arm64: Convert to GENERIC_CMDLINE
->   hexagon: Convert to GENERIC_CMDLINE
->   microblaze: Convert to GENERIC_CMDLINE
->   nios2: Convert to GENERIC_CMDLINE
->   openrisc: Convert to GENERIC_CMDLINE
->   riscv: Convert to GENERIC_CMDLINE
->   sh: Convert to GENERIC_CMDLINE
->   sparc: Convert to GENERIC_CMDLINE
->   xtensa: Convert to GENERIC_CMDLINE
->   x86: Convert to GENERIC_CMDLINE
->   mips: Convert to GENERIC_CMDLINE
->   cmdline: Remove CONFIG_CMDLINE_EXTEND
->
->  arch/arm/Kconfig                            | 38 +-------------
->  arch/arm/kernel/atags_parse.c               | 15 ++----
->  arch/arm64/Kconfig                          | 33 +-----------
->  arch/arm64/kernel/idreg-override.c          |  9 ++--
->  arch/hexagon/Kconfig                        | 11 +---
->  arch/hexagon/kernel/setup.c                 | 10 +---
->  arch/microblaze/Kconfig                     | 24 +--------
->  arch/microblaze/configs/mmu_defconfig       |  2 +-
->  arch/microblaze/kernel/head.S               |  4 +-
->  arch/mips/Kconfig                           |  1 +
->  arch/mips/Kconfig.debug                     | 44 ----------------
->  arch/mips/configs/ar7_defconfig             |  1 -
->  arch/mips/configs/bcm47xx_defconfig         |  1 -
->  arch/mips/configs/bcm63xx_defconfig         |  1 -
->  arch/mips/configs/bmips_be_defconfig        |  1 -
->  arch/mips/configs/bmips_stb_defconfig       |  1 -
->  arch/mips/configs/capcella_defconfig        |  1 -
->  arch/mips/configs/ci20_defconfig            |  1 -
->  arch/mips/configs/cu1000-neo_defconfig      |  1 -
->  arch/mips/configs/cu1830-neo_defconfig      |  1 -
->  arch/mips/configs/e55_defconfig             |  1 -
->  arch/mips/configs/generic_defconfig         |  1 -
->  arch/mips/configs/gpr_defconfig             |  1 -
->  arch/mips/configs/loongson3_defconfig       |  1 -
->  arch/mips/configs/mpc30x_defconfig          |  1 -
->  arch/mips/configs/rt305x_defconfig          |  1 -
->  arch/mips/configs/tb0219_defconfig          |  1 -
->  arch/mips/configs/tb0226_defconfig          |  1 -
->  arch/mips/configs/tb0287_defconfig          |  1 -
->  arch/mips/configs/workpad_defconfig         |  1 -
->  arch/mips/configs/xway_defconfig            |  1 -
->  arch/mips/kernel/relocate.c                 |  4 +-
->  arch/mips/kernel/setup.c                    | 40 +--------------
->  arch/mips/pic32/pic32mzda/early_console.c   |  2 +-
->  arch/mips/pic32/pic32mzda/init.c            |  2 -
->  arch/nios2/Kconfig                          | 24 +--------
->  arch/nios2/kernel/setup.c                   | 13 ++---
->  arch/openrisc/Kconfig                       | 10 +---
->  arch/powerpc/Kconfig                        | 37 +------------
->  arch/powerpc/kernel/prom_init.c             | 17 +++---
->  arch/riscv/Kconfig                          | 44 +---------------
->  arch/riscv/kernel/setup.c                   |  5 +-
->  arch/sh/Kconfig                             | 30 +----------
->  arch/sh/configs/ap325rxa_defconfig          |  2 +-
->  arch/sh/configs/dreamcast_defconfig         |  2 +-
->  arch/sh/configs/ecovec24-romimage_defconfig |  2 +-
->  arch/sh/configs/ecovec24_defconfig          |  2 +-
->  arch/sh/configs/edosk7760_defconfig         |  2 +-
->  arch/sh/configs/espt_defconfig              |  2 +-
->  arch/sh/configs/j2_defconfig                |  2 +-
->  arch/sh/configs/kfr2r09-romimage_defconfig  |  2 +-
->  arch/sh/configs/kfr2r09_defconfig           |  2 +-
->  arch/sh/configs/lboxre2_defconfig           |  2 +-
->  arch/sh/configs/microdev_defconfig          |  2 +-
->  arch/sh/configs/migor_defconfig             |  2 +-
->  arch/sh/configs/polaris_defconfig           |  2 +-
->  arch/sh/configs/r7780mp_defconfig           |  2 +-
->  arch/sh/configs/r7785rp_defconfig           |  2 +-
->  arch/sh/configs/rsk7201_defconfig           |  2 +-
->  arch/sh/configs/rsk7203_defconfig           |  2 +-
->  arch/sh/configs/rts7751r2d1_defconfig       |  2 +-
->  arch/sh/configs/rts7751r2dplus_defconfig    |  2 +-
->  arch/sh/configs/sdk7780_defconfig           |  2 +-
->  arch/sh/configs/sdk7786_defconfig           |  2 +-
->  arch/sh/configs/se7206_defconfig            |  2 +-
->  arch/sh/configs/se7343_defconfig            |  2 +-
->  arch/sh/configs/se7712_defconfig            |  2 +-
->  arch/sh/configs/se7721_defconfig            |  2 +-
->  arch/sh/configs/se7724_defconfig            |  2 +-
->  arch/sh/configs/se7751_defconfig            |  2 +-
->  arch/sh/configs/se7780_defconfig            |  2 +-
->  arch/sh/configs/sh03_defconfig              |  2 +-
->  arch/sh/configs/sh2007_defconfig            |  2 +-
->  arch/sh/configs/sh7757lcr_defconfig         |  2 +-
->  arch/sh/configs/sh7763rdp_defconfig         |  2 +-
->  arch/sh/configs/shmin_defconfig             |  2 +-
->  arch/sh/configs/shx3_defconfig              |  2 +-
->  arch/sh/configs/titan_defconfig             |  2 +-
->  arch/sh/configs/ul2_defconfig               |  2 +-
->  arch/sh/kernel/setup.c                      | 11 +---
->  arch/sparc/Kconfig                          | 18 +------
->  arch/sparc/prom/bootstr_64.c                |  2 +-
->  arch/x86/Kconfig                            | 45 +---------------
->  arch/x86/kernel/setup.c                     | 17 +-----
->  arch/xtensa/Kconfig                         | 15 +-----
->  arch/xtensa/configs/audio_kc705_defconfig   |  1 -
->  arch/xtensa/configs/common_defconfig        |  1 -
->  arch/xtensa/configs/generic_kc705_defconfig |  1 -
->  arch/xtensa/configs/iss_defconfig           |  1 -
->  arch/xtensa/configs/nommu_kc705_defconfig   |  1 -
->  arch/xtensa/configs/smp_lx200_defconfig     |  1 -
->  arch/xtensa/configs/virt_defconfig          |  1 -
->  arch/xtensa/configs/xip_kc705_defconfig     |  1 -
->  arch/xtensa/kernel/setup.c                  | 10 +---
->  drivers/firmware/efi/libstub/x86-stub.c     | 26 +++++-----
+On Fri, 26 Mar 2021 15:31:10 +0800, Nina Wu wrote:
+> From: Nina Wu <Nina-CM.Wu@mediatek.com>
+> 
+> To support newer hardware architecture of devapc,
+> update device tree bindings.
+> 
+> Signed-off-by: Nina Wu <Nina-CM.Wu@mediatek.com>
+> ---
+>  .../devicetree/bindings/soc/mediatek/devapc.yaml   | 41 ++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+> 
 
-You missed efi-stub.c which has CMDLINE_EXTEND.
+My bot found errors running 'make dt_binding_check' on your patch:
 
->  drivers/of/fdt.c                            | 23 ++-------
->  include/linux/cmdline.h                     | 57 +++++++++++++++++++++
->  init/Kconfig                                | 46 +++++++++++++++++
->  98 files changed, 209 insertions(+), 580 deletions(-)
->  create mode 100644 include/linux/cmdline.h
->
-> --
-> 2.25.0
->
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml: properties:version:enum: False schema does not allow [1, 2]
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml: properties:slave_type_num:enum: False schema does not allow [1, 4]
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml: ignoring, error in schema: properties: slave_type_num: enum
+warning: no schema found in file: ./Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+Documentation/devicetree/bindings/soc/mediatek/devapc.example.dts:51:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   51 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/soc/mediatek/devapc.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1380: dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1458687
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
