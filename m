@@ -2,194 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 762DF34A962
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF6434A96D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:19:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhCZOOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbhCZOOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:14:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1903BC0613AA
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:14:06 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lPnDj-0006Hs-Ik; Fri, 26 Mar 2021 15:13:51 +0100
-Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1lPnDj-0006e9-30; Fri, 26 Mar 2021 15:13:51 +0100
-Date:   Fri, 26 Mar 2021 15:13:51 +0100
-From:   Philipp Zabel <pza@pengutronix.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     ezequiel@collabora.com, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v6 03/13] media: hantro: Use syscon instead of 'ctrl'
- register
-Message-ID: <20210326141351.GB8441@pengutronix.de>
-References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
- <20210318082046.51546-4-benjamin.gaignard@collabora.com>
+        id S229986AbhCZOSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:18:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45818 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229848AbhCZOSU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 10:18:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C6A5361A02;
+        Fri, 26 Mar 2021 14:18:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1616768300;
+        bh=B2wQnGoW3sjS3jK2xpNARrCIjunm/tk41Pa8NA5DY5E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1yBm8JhuS01juL29Nf8Cm+AQNa8BlSM9LErBVnG18b9NDhG4PqA+jEt/BKX/2wYP+
+         4GVy3U0Qv2VJ+gjn26jWNzva5ZiReSohVrh2kuibvEocqni/vdrXpYHs1B6C5Bdj7g
+         S8UIfkLJMbEMgo6UnMd+ScTgUiSZwm4ZgyBfzs7A=
+Date:   Fri, 26 Mar 2021 15:18:18 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Martin Devera <devik@eaxlabs.cz>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
+        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/2] tty/serial: Add rx-tx-swap OF option to
+ stm32-usart
+Message-ID: <YF3tKmzX1PtlX59x@kroah.com>
+References: <1615559009.788146.2976052.nullmailer@robh.at.kernel.org>
+ <20210312153702.12349-1-devik@eaxlabs.cz>
+ <20210312153702.12349-2-devik@eaxlabs.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210318082046.51546-4-benjamin.gaignard@collabora.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:12:15 up 36 days, 17:36, 97 users,  load average: 0.14, 0.18,
- 0.16
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: pza@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210312153702.12349-2-devik@eaxlabs.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 18, 2021 at 09:20:36AM +0100, Benjamin Gaignard wrote:
-> In order to be able to share the control hardware block between
-> VPUs use a syscon instead a ioremap it in the driver.
-> To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
-> phandle is not found look at 'ctrl' reg-name.
-> With the method it becomes useless to provide a list of register
-> names so remove it.
+On Fri, Mar 12, 2021 at 04:37:02PM +0100, Martin Devera wrote:
+> STM32 F7/H7 usarts supports RX & TX pin swapping.
+> Add option to turn it on.
+> Tested on STM32MP157.
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> version 5:
->  - use syscon instead of VPU reset driver.
->  - if DT doesn't provide syscon keep backward compatibilty by using
->    'ctrl' reg-name.
-> 
->  drivers/staging/media/hantro/hantro.h       |  5 +-
->  drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
->  2 files changed, 34 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 65f9f7ea7dcf..a99a96b84b5e 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -13,6 +13,7 @@
->  #define HANTRO_H_
->  
->  #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->  #include <linux/videodev2.h>
->  #include <linux/wait.h>
->  #include <linux/clk.h>
-> @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
->   * @reg_bases:		Mapped addresses of VPU registers.
->   * @enc_base:		Mapped address of VPU encoder register for convenience.
->   * @dec_base:		Mapped address of VPU decoder register for convenience.
-> - * @ctrl_base:		Mapped address of VPU control block.
-> + * @ctrl_base:		Regmap of VPU control block.
->   * @vpu_mutex:		Mutex to synchronize V4L2 calls.
->   * @irqlock:		Spinlock to synchronize access to data structures
->   *			shared with interrupt handlers.
-> @@ -186,7 +187,7 @@ struct hantro_dev {
->  	void __iomem **reg_bases;
->  	void __iomem *enc_base;
->  	void __iomem *dec_base;
-> -	void __iomem *ctrl_base;
-> +	struct regmap *ctrl_base;
->  
->  	struct mutex vpu_mutex;	/* video_device lock */
->  	spinlock_t irqlock;
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index c222de075ef4..bd9d135dd440 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -7,6 +7,7 @@
->  
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
->  
->  #include "hantro.h"
->  #include "hantro_jpeg.h"
-> @@ -24,30 +25,28 @@
->  #define CTRL_G1_PP_FUSE		0x0c
->  #define CTRL_G2_DEC_FUSE	0x10
->  
-> +static const struct regmap_config ctrl_regmap_ctrl = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 0x14,
-> +};
-> +
->  static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
->  {
-> -	u32 val;
-> -
->  	/* Assert */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val &= ~reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
->  
->  	udelay(2);
->  
->  	/* Release */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val |= reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
-> +			   reset_bits, reset_bits);
->  }
->  
->  static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
->  {
-> -	u32 val;
-> -
-> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> -	val |= clock_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
-> +			   clock_bits, clock_bits);
->  }
->  
->  static int imx8mq_runtime_resume(struct hantro_dev *vpu)
-> @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
->  	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
->  
->  	/* Set values of the fuse registers */
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
-> +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
-> +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
-> +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
->  
->  	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
->  
-> @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
->  
->  static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
->  {
-> -	vpu->dec_base = vpu->reg_bases[0];
-> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
-> +	struct device_node *np = vpu->dev->of_node;
-> +
-> +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8mq-vpu-ctrl");
+> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-I think calling this nxp,imx8m-vpu-ctrl would allow to share this with
-i.MX8MM later. Otherwise,
+This does not apply to my tty-next branch at all.  Can you please rebase
+this series (and keep Rob's ack of patch 1) and resend?
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+thanks,
 
-thanks
-Philipp
+greg k-h
