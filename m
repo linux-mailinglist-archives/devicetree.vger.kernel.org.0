@@ -2,60 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF6434A96D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D18434A973
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhCZOSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:18:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45818 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229848AbhCZOSU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 10:18:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C6A5361A02;
-        Fri, 26 Mar 2021 14:18:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616768300;
-        bh=B2wQnGoW3sjS3jK2xpNARrCIjunm/tk41Pa8NA5DY5E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1yBm8JhuS01juL29Nf8Cm+AQNa8BlSM9LErBVnG18b9NDhG4PqA+jEt/BKX/2wYP+
-         4GVy3U0Qv2VJ+gjn26jWNzva5ZiReSohVrh2kuibvEocqni/vdrXpYHs1B6C5Bdj7g
-         S8UIfkLJMbEMgo6UnMd+ScTgUiSZwm4ZgyBfzs7A=
-Date:   Fri, 26 Mar 2021 15:18:18 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Martin Devera <devik@eaxlabs.cz>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 2/2] tty/serial: Add rx-tx-swap OF option to
- stm32-usart
-Message-ID: <YF3tKmzX1PtlX59x@kroah.com>
-References: <1615559009.788146.2976052.nullmailer@robh.at.kernel.org>
- <20210312153702.12349-1-devik@eaxlabs.cz>
- <20210312153702.12349-2-devik@eaxlabs.cz>
+        id S230159AbhCZOTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230131AbhCZOSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:18:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C779CC0613AA
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:18:54 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnIL-0006oS-Vy; Fri, 26 Mar 2021 15:18:37 +0100
+Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnIK-0006oK-Fa; Fri, 26 Mar 2021 15:18:36 +0100
+Date:   Fri, 26 Mar 2021 15:18:36 +0100
+From:   Philipp Zabel <pza@pengutronix.de>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     ezequiel@collabora.com, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v6 12/13] media: hantro: IMX8M: add variant for G2/HEVC
+ codec
+Message-ID: <20210326141836.GC8441@pengutronix.de>
+References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
+ <20210318082046.51546-13-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210312153702.12349-2-devik@eaxlabs.cz>
+In-Reply-To: <20210318082046.51546-13-benjamin.gaignard@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:18:17 up 36 days, 17:42, 97 users,  load average: 0.01, 0.07,
+ 0.11
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 04:37:02PM +0100, Martin Devera wrote:
-> STM32 F7/H7 usarts supports RX & TX pin swapping.
-> Add option to turn it on.
-> Tested on STM32MP157.
+On Thu, Mar 18, 2021 at 09:20:45AM +0100, Benjamin Gaignard wrote:
+> Add variant to IMX8M to enable G2/HEVC codec.
+> Define the capabilities for the hardware up to 3840x2160.
+> G2 doesn't have postprocessor, use the same clocks and got it
+> own interruption.
 > 
-> Signed-off-by: Martin Devera <devik@eaxlabs.cz>
-> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 
-This does not apply to my tty-next branch at all.  Can you please rebase
-this series (and keep Rob's ack of patch 1) and resend?
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-thanks,
-
-greg k-h
+regards
+Philipp
