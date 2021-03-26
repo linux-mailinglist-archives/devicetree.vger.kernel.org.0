@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E15E134A6AB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 12:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BEE734A6CD
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 13:05:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbhCZL5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 07:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
+        id S229589AbhCZMEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 08:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbhCZL5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 07:57:05 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8DFC0613AA
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 04:57:04 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id b4so7257204lfi.6
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 04:57:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Y/YJy6ENumZLg5/zvFHAeuvrrpukOzL88n9aSHHrphQ=;
-        b=aPcFuvKdA862pPL2UYtr5TE/4vlFoQDw4Z63nQepN+saeNxNGA8a8zwRoArd6EMTNe
-         aqi4CeEEtvwd9oos84Wc78G8uILwOhZPDHWwew//XfPnQoGfulKcFawY34Dtqw8hiaRs
-         WOVg4XAn2aoc/ti4KVNAdv3fEkVzsPV0IWAja4uJpLWi2v2Xz/DyGIsfU4uTn+vCAEg3
-         gbh67KaIHrl/NfD418cN+iVzxYLAYpUMRYvyr62fucCYqVUphTW0MAA39icB/uhBrak5
-         GzdRNbobqXcoX9ag6OvUtO4nNblp+I4IihHqCc/mbM8Wc6L7KL1vPwMfjqF+bd0kgp10
-         6U2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Y/YJy6ENumZLg5/zvFHAeuvrrpukOzL88n9aSHHrphQ=;
-        b=HuOg05ZAdhj4hwkiG8GcPvtioTBI2YfTGmYd7GtVQiw9G/ALYXmJAPTvlopw0y2jYA
-         5qA1qqsRlHVT2YlI/UfLtBi6TkcQTvv4Gvte6O9S5Wz6iy4gj22b6hDmFh7L++syJynv
-         n2+hnHttv9yAdDYAPoPNEbfsZe5cvEDMqryaLbXOGO8RsHqbDUlxQcHN0LWa7p5ez3QP
-         G+qDq/AuupVBRUWZaxPQYClZlarNYKH1bo8kBM1RmJAEgGf5LvWhiUAhQ0p765PicGIX
-         mXDvnoWqwYMcFuxhgZ5I254wlmxVedbO0rsab3DgH1mPUO/v4U87IGVYi1K69iXVmVvZ
-         HXYw==
-X-Gm-Message-State: AOAM532A+0dbpV2qipTnf54hlnQszxshxYF8sbHthYdA3Fm8nPOw7jIk
-        +fK0gGqy3p+PNIDFWAM8PolrJJSmXCXZxzV7M58cmQ==
-X-Google-Smtp-Source: ABdhPJwK6yp/8uK0rO8yQ6TqoS3aFd/xSINJSltbT5uI17puaOX+o1xEL/vwp04RUP5+w+XCFKiVytIHyeSptHFkUzU=
-X-Received: by 2002:ac2:5509:: with SMTP id j9mr7768919lfk.302.1616759823215;
- Fri, 26 Mar 2021 04:57:03 -0700 (PDT)
+        with ESMTP id S229933AbhCZMEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 08:04:14 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9829C0613B2
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 05:04:11 -0700 (PDT)
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eaff:9f01:cce8:c5ff:8b8d:f8cb])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 77EAA1E5E51;
+        Fri, 26 Mar 2021 13:04:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1616760247;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=EVsmFVeEo1wlLuqCsgNHIjMoIql8i6Dle436XRDTZaE=;
+        b=vRIrMGipd8yncEKpB5+KGmKkXgxgtYl2Aj6NzdMff5AjFI+UtrCJK7IxS+l7nNjPZjqLWN
+        ZpNgSXmTWW2BLdfvfpDMNqffzAHK6Q4JnNOFzB7oh4EgWOjlxBe8XqXkVNyW4tMmpheyOf
+        8tPJkxBfV0g5Hmp7QBR7BhHSY4fqddhaSuk7VfbV/Qp5a4+zfnSqb+J7LaJO18nhJca4F5
+        gr86Qc+Af50USjkx5S6p0bzVSMAzEUlOPnFeVjF3LLo+xEaR+iJEnw07TG/qpyNKxf9NsW
+        Jbs+/EsdMrJJ2U8DbtkaBy48lNZoD3ZYSULeHj8NoaiF0cO20eFy8k8CZdCkWg==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     bert@biot.com, bgolaszewski@baylibre.com, linus.walleij@linaro.org,
+        linux-kernel@vger.kernel.org, maz@kernel.org, robh+dt@kernel.org,
+        tglx@linutronix.de, andy.shevchenko@gmail.com,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v4 0/2] Add Realtek Otto GPIO support
+Date:   Fri, 26 Mar 2021 13:03:44 +0100
+Message-Id: <cover.1616760183.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210315082339.9787-1-sander@svanheule.net>
+References: <20210315082339.9787-1-sander@svanheule.net>
 MIME-Version: 1.0
-References: <20210325143255.1532452-1-sudeep.holla@arm.com>
- <20210325143255.1532452-2-sudeep.holla@arm.com> <CAFA6WYMrCzDUHn4O=tM7y+w01LcSPrRu3Awja7io1XtcZPhqYQ@mail.gmail.com>
- <20210326105545.44rdcbrumg3q6i7y@bogus>
-In-Reply-To: <20210326105545.44rdcbrumg3q6i7y@bogus>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Fri, 26 Mar 2021 17:26:52 +0530
-Message-ID: <CAFA6WYNf+Wmb3v56_-hUekn4UwSBe87OGJFehDx7t4iDWgg17g@mail.gmail.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: Arm: Add Firmware Framework for
- Armv8-A (FF-A) binding
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Mar 2021 at 16:25, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Fri, Mar 26, 2021 at 10:35:23AM +0530, Sumit Garg wrote:
-> > Hi Sudeep,
-> >
-> > Apologies for catching up late on this patch-set.
-> >
-> > On Thu, 25 Mar 2021 at 20:05, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > Since the FF-A v1.0 specification doesn't list the UUID of all the
-> > > partitions in the discovery API, we need to specify the UUID of the
-> > > partitions that need to be accessed by drivers within the kernel.
-> > >
-> >
-> > Wouldn't we be able to implement auto-discovery of ffa partitions? I
-> > think enumeration of ffa partitions on FFA bus should be quite similar
-> > to enumeration of TAs on TEE bus (see [1]). Otherwise we need to put
-> > these redundant DT entries for every ffa partition which IMHO would
-> > bloat up device trees for every platform.
-> >
->
-> Any suggestions on how to ? Clearly spec doesn't have that provision, I
-> had raised this point in the past. Jens has similar concern and he did
-> ask the same[1]. As I replied to him in that thread[2].
->
-> I am open to suggestion on how to auto-discover, currently as I see spec
-> doesn't support it.
->
+Add support for the GPIO controller employed by Realtek in multiple series of
+MIPS SoCs. These include the supported RTL838x and RTL839x. The register layout
+also matches the one found in the GPIO controller of other (Lexra-based) SoCs
+such as RTL8196E, RTL8197D, and RTL8197F.
 
-Thanks for sharing links to prior discussions and I can see that
-currently spec doesn't support it. But from an implementation
-perspective, I can't find any reason that we can't support
-auto-discover. Have a look at below proposed simple FFA ABI:
+For the platform name 'otto', I am not aware of any official resources as to
+what hardware this specifically applies to. However, in all of the GPL archives
+we've received, from vendors using compatible SoCs in their design, the
+platform under the MIPS architecture is referred to by this name.
 
-FFA_LIST_PARTITIONS
+The GPIO ports have been tested on a Zyxel GS1900-8 (RTL8380), and Zyxel
+GS1900-48 (RTL8393). Furthermore, the GPIO ports and interrupt controller have
+been tested on a Netgear GS110TPPv1 (RTL8381).
 
-- No input params.
-- Returns an array of secure partition UUIDs to which this non-secure
-virtual/physical FF-A instance is allowed to communicate with.
+Changes in v4:
+- Fix pointer notation style
+- Drop unused read_u16_reg() function
+- Drop 'inline' specifier from functions
 
-I think with auto-discovery, one of the major benefits is that if the
-OEM is using a common platform to cater to multiple use-cases which
-rely on different secure partitions then OEM doesn't have to bother
-about shipping separate DTs.
+Changes in v3:
+- Remove OF dependencies in driver probe
+- Don't accept IRQ_TYPE_NONE as a valid interrupt type
+- Remove (now unused) dev property from control structure
+- Use u8/u16 port registers, instead of raw u32 registers
+- Use 'line' name for gpiochip, 'port' and 'pin' names for hardware
+- Renamed DT bindings file
+- Dropped fallback-only DT compatible
+- Various code style clean-ups
 
--Sumit
+Changes in v2:
+- Clarify structure and usage of IMR registers
+- Added Linus' Reviewed-by tags
 
-> --
-> Regards,
-> Sudeep
->
-> [1] https://lore.kernel.org/linux-arm-kernel/20201216134659.GA4146223@jade/
-> [2] https://lore.kernel.org/linux-arm-kernel/20210113092236.pnabzaufzuzwprmw@bogus/
+Sander Vanheule (2):
+  dt-bindings: gpio: Binding for Realtek Otto GPIO
+  gpio: Add Realtek Otto GPIO support
+
+ .../bindings/gpio/realtek,otto-gpio.yaml      |  78 +++++
+ drivers/gpio/Kconfig                          |  11 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-realtek-otto.c              | 330 ++++++++++++++++++
+ 4 files changed, 420 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-realtek-otto.c
+
+-- 
+2.30.2
+
