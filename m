@@ -2,131 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA7B534A598
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 11:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CF334A5EB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 11:56:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbhCZKbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 06:31:17 -0400
-Received: from lucky1.263xmail.com ([211.157.147.131]:44764 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbhCZKbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 06:31:06 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 56A30B9F3C;
-        Fri, 26 Mar 2021 18:31:04 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P22964T140517909624576S1616754663590081_;
-        Fri, 26 Mar 2021 18:31:05 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <66fb285c9501a88f41efd567fc615ec8>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: robh+dt@kernel.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Elaine Zhang <zhangqing@rock-chips.com>
-To:     robh+dt@kernel.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cl@rock-chips.com, huangtao@rock-chips.com,
-        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v6 11/11] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Fri, 26 Mar 2021 18:31:02 +0800
-Message-Id: <20210326103102.15653-1-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210326102738.14767-1-zhangqing@rock-chips.com>
-References: <20210326102738.14767-1-zhangqing@rock-chips.com>
+        id S229931AbhCZK4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 06:56:13 -0400
+Received: from foss.arm.com ([217.140.110.172]:54724 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229898AbhCZKzt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 06:55:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0AB53143D;
+        Fri, 26 Mar 2021 03:55:49 -0700 (PDT)
+Received: from bogus (unknown [10.57.54.194])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7AC2D3F7D7;
+        Fri, 26 Mar 2021 03:55:47 -0700 (PDT)
+Date:   Fri, 26 Mar 2021 10:55:45 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Sumit Garg <sumit.garg@linaro.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        Marc Bonnici <marc.bonnici@arm.com>
+Subject: Re: [PATCH v5 1/7] dt-bindings: Arm: Add Firmware Framework for
+ Armv8-A (FF-A) binding
+Message-ID: <20210326105545.44rdcbrumg3q6i7y@bogus>
+References: <20210325143255.1532452-1-sudeep.holla@arm.com>
+ <20210325143255.1532452-2-sudeep.holla@arm.com>
+ <CAFA6WYMrCzDUHn4O=tM7y+w01LcSPrRu3Awja7io1XtcZPhqYQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFA6WYMrCzDUHn4O=tM7y+w01LcSPrRu3Awja7io1XtcZPhqYQ@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power-domains found on rk3568 socs.
+On Fri, Mar 26, 2021 at 10:35:23AM +0530, Sumit Garg wrote:
+> Hi Sudeep,
+>
+> Apologies for catching up late on this patch-set.
+>
+> On Thu, 25 Mar 2021 at 20:05, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > Since the FF-A v1.0 specification doesn't list the UUID of all the
+> > partitions in the discovery API, we need to specify the UUID of the
+> > partitions that need to be accessed by drivers within the kernel.
+> >
+>
+> Wouldn't we be able to implement auto-discovery of ffa partitions? I
+> think enumeration of ffa partitions on FFA bus should be quite similar
+> to enumeration of TAs on TEE bus (see [1]). Otherwise we need to put
+> these redundant DT entries for every ffa partition which IMHO would
+> bloat up device trees for every platform.
+>
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
----
- drivers/soc/rockchip/pm_domains.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Any suggestions on how to ? Clearly spec doesn't have that provision, I
+had raised this point in the past. Jens has similar concern and he did
+ask the same[1]. As I replied to him in that thread[2].
 
-diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-index 1d39ad92470a..940504cfb0f1 100644
---- a/drivers/soc/rockchip/pm_domains.c
-+++ b/drivers/soc/rockchip/pm_domains.c
-@@ -27,6 +27,7 @@
- #include <dt-bindings/power/rk3366-power.h>
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
-+#include <dt-bindings/power/rk3568-power.h>
- 
- struct rockchip_domain_info {
- 	const char *name;
-@@ -135,6 +136,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3399(name, pwr, status, req, wakeup)		\
- 	DOMAIN(name, pwr, status, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3568(name, pwr, req, wakeup)		\
-+	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
-+
- static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
- {
- 	struct rockchip_pmu *pmu = pd->pmu;
-@@ -848,6 +852,18 @@ static const struct rockchip_domain_info rk3399_pm_domains[] = {
- 	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399("sdioaudio", BIT(31), BIT(31), BIT(29), true),
- };
- 
-+static const struct rockchip_domain_info rk3568_pm_domains[] = {
-+	[RK3568_PD_NPU]		= DOMAIN_RK3568("npu", BIT(1), BIT(2), false),
-+	[RK3568_PD_GPU]		= DOMAIN_RK3568("gpu", BIT(0), BIT(1), false),
-+	[RK3568_PD_VI]		= DOMAIN_RK3568("vi", BIT(6), BIT(3), false),
-+	[RK3568_PD_VO]		= DOMAIN_RK3568("vo", BIT(7),  BIT(4), false),
-+	[RK3568_PD_RGA]		= DOMAIN_RK3568("rga", BIT(5),  BIT(5), false),
-+	[RK3568_PD_VPU]		= DOMAIN_RK3568("vpu", BIT(2), BIT(6), false),
-+	[RK3568_PD_RKVDEC]	= DOMAIN_RK3568("vdec", BIT(4), BIT(8), false),
-+	[RK3568_PD_RKVENC]	= DOMAIN_RK3568("venc", BIT(3), BIT(7), false),
-+	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
-+};
-+
- static const struct rockchip_pmu_info px30_pmu = {
- 	.pwr_offset = 0x18,
- 	.status_offset = 0x20,
-@@ -983,6 +999,17 @@ static const struct rockchip_pmu_info rk3399_pmu = {
- 	.domain_info = rk3399_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3568_pmu = {
-+	.pwr_offset = 0xa0,
-+	.status_offset = 0x98,
-+	.req_offset = 0x50,
-+	.idle_offset = 0x68,
-+	.ack_offset = 0x60,
-+
-+	.num_domains = ARRAY_SIZE(rk3568_pm_domains),
-+	.domain_info = rk3568_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1028,6 +1055,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3399-power-controller",
- 		.data = (void *)&rk3399_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-power-controller",
-+		.data = (void *)&rk3568_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
--- 
-2.17.1
+I am open to suggestion on how to auto-discover, currently as I see spec
+doesn't support it.
 
+--
+Regards,
+Sudeep
 
-
+[1] https://lore.kernel.org/linux-arm-kernel/20201216134659.GA4146223@jade/
+[2] https://lore.kernel.org/linux-arm-kernel/20210113092236.pnabzaufzuzwprmw@bogus/
