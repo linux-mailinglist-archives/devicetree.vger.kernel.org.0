@@ -2,89 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2145349DC6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 01:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C531349E55
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 02:01:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbhCZA3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Mar 2021 20:29:15 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:44630 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbhCZA3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 20:29:00 -0400
-Received: by mail-io1-f51.google.com with SMTP id v26so3725914iox.11;
-        Thu, 25 Mar 2021 17:29:00 -0700 (PDT)
+        id S230018AbhCZBBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Mar 2021 21:01:13 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:34699 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230080AbhCZBBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Mar 2021 21:01:10 -0400
+Received: by mail-io1-f54.google.com with SMTP id x16so3814027iob.1;
+        Thu, 25 Mar 2021 18:01:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HqP361nCuW7IrybuNXs/MVht6WlPAUMBMTJUt5NbOBY=;
-        b=I6zXN7xIncv/8CssIGBh4PPLCdw6Oa5rSg00e/hjF12rL4SruR9Hj5oSo+rnrhDPlK
-         m9D5tCZJfEfGIrh8aKRREH3gxutJsa1VbbTDdXupYKp5ogCssJlu7H6oHpBPyMrIwE1u
-         rkxHiHun/2PrbGMNlPjvlXrCEGHKCFZ815n/Kpq0puzcttKP7ZvDo7zxfS1q9CcnV1Xz
-         bVoaxNex1qKb+04IMkbYYReQ5gG/rYo8OQ9rsgRFH1fcoaeE2mg3B++usnuNBl6WxjDT
-         r7m8nmk4TiiEinV3yxMmgWKRVtAu8REJb+VtmchV0t9qf6EVc513pJZ2ExFejqEYSTGI
-         vzjg==
-X-Gm-Message-State: AOAM5325dpoA0uw0j8tSwNg6jmiVeMCdJTHu5sbqSAvbWgolM/bBfwds
-        UhD4C53QKJCfMqhMUEFIA1mD1ZxA+w==
-X-Google-Smtp-Source: ABdhPJw6W3NHdAqO/y5OThYoAM4qmj7MMyJPG3HX8vVwI93D07pwvhmlBcQDFuiXigdabDHe9NnU5Q==
-X-Received: by 2002:a6b:7c4a:: with SMTP id b10mr8401982ioq.170.1616718540205;
-        Thu, 25 Mar 2021 17:29:00 -0700 (PDT)
+        bh=Wi3cdmfz/h5xhXrcAv5eDkvRcmW484cG6XaUkEX+uj8=;
+        b=SVYxizsKLHLF/Um812LZP78nLf4Ni6mxDJKuVt3VpHJ7uiijzL5J3WpTUzbiG+3GhD
+         7s5n2DFc/IxDUevsbTulwk8hNw6VaUAK/fGtTkMILujsfQIlEEzbB2hn2LMyrTHkx3kD
+         Rw497EWmvmip49GUekIn259LGahXBI0e1yMVlABK+5BZjCu+Wtqv/fmKW2TA3MmQcrRC
+         cihGuNvG3qLWjZO+K39uBOj1TFc4a9l4K1bQcXdUGFz5zhhRivemCnA8nqLuEweTEiap
+         WTwHsU2G/7VimJr58kCudmgRaxIPbt4/F4Vcoe84nvG1obDJNplKkE2ryqAIxLRF6UuR
+         UGYw==
+X-Gm-Message-State: AOAM533Z/xDVVhosU/a4w2gdOnEN5qhu11xiraD45DojzPgUC9DA5A5S
+        3iRstJu6vSg9AhlOaM4xnA==
+X-Google-Smtp-Source: ABdhPJxHGgVfg99uoMDNH3k51OEkmQcJ2G8En7C57Uv6OKPcDb/m3feGvZuvfCcpQ0kIo5ldZTB+hQ==
+X-Received: by 2002:a02:cc1a:: with SMTP id n26mr9850175jap.21.1616720470209;
+        Thu, 25 Mar 2021 18:01:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k7sm3417611ils.35.2021.03.25.17.28.58
+        by smtp.gmail.com with ESMTPSA id f13sm3428079ila.51.2021.03.25.18.01.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Mar 2021 17:28:59 -0700 (PDT)
-Received: (nullmailer pid 2033074 invoked by uid 1000);
-        Fri, 26 Mar 2021 00:28:51 -0000
-Date:   Thu, 25 Mar 2021 18:28:51 -0600
+        Thu, 25 Mar 2021 18:01:09 -0700 (PDT)
+Received: (nullmailer pid 2083325 invoked by uid 1000);
+        Fri, 26 Mar 2021 01:01:06 -0000
+Date:   Thu, 25 Mar 2021 19:01:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add vbus-supply optional property
- to phy-stm32-usbphyc
-Message-ID: <20210326002851.GA2031564@robh.at.kernel.org>
-References: <20210317160954.15487-1-amelie.delaunay@foss.st.com>
- <20210317160954.15487-2-amelie.delaunay@foss.st.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add Qualcomm SM8350 DT
+ bindings
+Message-ID: <20210326010106.GA2083273@robh.at.kernel.org>
+References: <20210318094617.951212-1-vkoul@kernel.org>
+ <20210318094617.951212-2-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210317160954.15487-2-amelie.delaunay@foss.st.com>
+In-Reply-To: <20210318094617.951212-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 17, 2021 at 05:09:53PM +0100, Amelie Delaunay wrote:
-> This patch adds vbus-supply optional property to phy sub-nodes.
-> A regulator for USB VBUS may be needed for host mode.
+On Thu, 18 Mar 2021 15:16:16 +0530, Vinod Koul wrote:
+> The Qualcomm SM8350 platform has several bus fabrics that could be
+> controlled and tuned dynamically according to the bandwidth demand.
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/interconnect/qcom,rpmh.yaml      |  10 +
+>  .../dt-bindings/interconnect/qcom,sm8350.h    | 172 ++++++++++++++++++
+>  2 files changed, 182 insertions(+)
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sm8350.h
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> index 018cc1246ee1..ad2378c30334 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> @@ -71,6 +71,9 @@ patternProperties:
->        phy-supply:
->          description: regulator providing 3V3 power supply to the PHY.
->  
-> +      vbus-supply:
-> +        description: regulator providing 5V Vbus to the USB connector.
 
-Unless Vbus is powering the phy, then this only belongs in the USB 
-connector node.
-
-> +
->        "#phy-cells":
->          enum: [ 0x0, 0x1 ]
->  
-> -- 
-> 2.17.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
