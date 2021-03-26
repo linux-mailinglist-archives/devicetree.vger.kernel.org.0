@@ -2,220 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2871434A6FD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 13:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5C7934A703
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 13:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhCZMTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 08:19:18 -0400
-Received: from foss.arm.com ([217.140.110.172]:58358 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229882AbhCZMTJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 08:19:09 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 22468143D;
-        Fri, 26 Mar 2021 05:19:09 -0700 (PDT)
-Received: from C02TD0UTHF1T.local (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E9043F7D7;
-        Fri, 26 Mar 2021 05:19:05 -0700 (PDT)
-Date:   Fri, 26 Mar 2021 12:18:50 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
-        Marc Bonnici <marc.bonnici@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Kelley <mikelley@microsoft.com>
-Subject: Re: [PATCH v5 2/7] arm64: smccc: Add support for SMCCCv1.2
- input/output registers
-Message-ID: <20210326121833.GA56294@C02TD0UTHF1T.local>
-References: <20210325143255.1532452-1-sudeep.holla@arm.com>
- <20210325143255.1532452-3-sudeep.holla@arm.com>
- <20210325144113.GB41100@C02TD0UTHF1T.local>
+        id S229589AbhCZMUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 08:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51814 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229946AbhCZMUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 08:20:02 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA50C0613AA;
+        Fri, 26 Mar 2021 05:20:01 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id z2so5450726wrl.5;
+        Fri, 26 Mar 2021 05:20:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kg1U2pASZJh61Qap78Y/WB4kOKba5GuYu7Xequ9TovM=;
+        b=ApDLceLYrjN3KcZ8KGrUq7h5LqtlXdms3kCHUwf5LKOWChju9s8UbzZdFT00sHBWji
+         fxDtaruRNz7u5jRqT0p9wT15uDg9gQRDTa640vTdCrogo15MYfUNjXfIgkwMys9VuTTc
+         qBJvSQ2PB3HNIZ085nzvowSGsCTH8Lsg6+0CNfYVsaggIuJHUXWdwr6/2DMuS4vFZuHB
+         k9KV7vx31lQD89yiMQFDLRw32tMhe/uiDA1ZU8hnm/+BKv3D8CzX3hW0bRGfl/g9q6Df
+         Exw0MELumNmpzMIfwIuiwO9rArhA54V6WDXNkHdcL5bwP9LN4rAePu7MoTGenANMX7dQ
+         N0GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kg1U2pASZJh61Qap78Y/WB4kOKba5GuYu7Xequ9TovM=;
+        b=PWUs9BDO65Zf30bv6XasxOR0/M+5XV2CgJHTBDBCVEz1basLF7m9sfQca9ABO5wYsW
+         8t6l8CSBxTdZ3fcreaAQYd2TwGFssv0EQL5QgdfiOk2zRjNKRdw0pzbE018B4lCuQwqG
+         Nfdgu5x+MydgBHWI4Akkxz14rqKu5DqcWooJAFE51e8Rj2cB3p0z/ZP7q0gZZcEq0r1/
+         SapA0+zkTe9tmtDcrSjeHYdFWDOUebj89DnxzwN4nb6irNFdkosoVIk6mGHzKdhV7+hJ
+         lO2f3upWtX450tm5RPg77u0v3PYBtELk8botemMe7dVpjAdbZ8WFqYiDFDGcltQgnxdV
+         FjPQ==
+X-Gm-Message-State: AOAM533cJS7jZmI8tf5c+I44Gph9qjYwrL8SF/lG0tg35AIehO+U4R8K
+        O3Ae4fjarMosdrUES3/2luw=
+X-Google-Smtp-Source: ABdhPJyVXeITO6E5oyD1KdyzgwwiHT1pwD6OdpuDL3xMdY9Gk8FkQbcfYiCdNpBHrQP2N4FX8ZhDvQ==
+X-Received: by 2002:a5d:6412:: with SMTP id z18mr14247608wru.214.1616761200589;
+        Fri, 26 Mar 2021 05:20:00 -0700 (PDT)
+Received: from localhost.localdomain (2a01cb0008bd2700f1419764c24345e5.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:f141:9764:c243:45e5])
+        by smtp.gmail.com with ESMTPSA id l6sm11150102wrt.56.2021.03.26.05.19.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 05:20:00 -0700 (PDT)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robert.foss@linaro.org, airlied@linux.ie, daniel@ffwll.ch,
+        a.hajda@samsung.com, robh+dt@kernel.org, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v9 0/2] Add support of Lontium lt8912 MIPI to HDMI bridge
+Date:   Fri, 26 Mar 2021 13:19:53 +0100
+Message-Id: <20210326121955.1266230-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210325144113.GB41100@C02TD0UTHF1T.local>
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 02:41:13PM +0000, Mark Rutland wrote:
-> Hi Sudeep,
-> 
-> On Thu, Mar 25, 2021 at 02:32:50PM +0000, Sudeep Holla wrote:
-> > SMCCC v1.2 allows x8-x17 to be used as parameter registers and x4—x17
-> > to be used as result registers in SMC64/HVC64. Arm Firmware Framework
-> > for Armv8-A specification makes use of x0-x7 as parameter and result
-> > registers.
-> > 
-> > Current SMCCC interface in the kernel just use x0-x7 as parameter and
-> > x0-x3 as result registers. Let us add new interface to support x0-x7
-> > as parameter and result registers. This can be extended to include
-> > x8-x17 when there are users for the same.
-> 
-> Michael Kelley is also looking at using SMCCCv1.2, and on his HyperV
-> thread I'd suggested we should deal with the whole set of SMCCCv1.2
-> registers now to avoid future churn in this area (using struct both for
-> the arguments and return values).
-> 
-> How painful would it be to extend this patch to do that?
+Hi,
+this patch set adds the support of the Lontium lt8912 MIPI to HDMI
+bridge in the kernel.
 
-I *think* the major change with this would be making the interfaces:
+It's only support the video part, not the audio part yet
+since I don't have the datasheet of this component.
+I get the current i2c configuration from Digi and
+Boundary drivers.
+Developed using the DB_DSIHD board from BoundaryDevices.
 
-void arm_smccc_1_2_{hvc,smc}(struct arm_smccc_1_2_args *args,
-			     struct arm_smccc_1_2_res *res);
+Update in v2
+  - Use standard data-lanes instead of a custom prop;
+  - Use hdmi-connector node.
 
-... and callers manipulating the structs directly, with arm64 having
-more fields, e.g.
+Update in v3
+  - Fix indentation;
+  - Implement missing bridge functions;
+  - Add some comments.
 
-// arm64
-struct arm_smccc_1_2_args {
-	unsigned long a1;
-	...
-	unsigned long a17;
-}
+Update in v4
+  - Fix bridge ops;
+  - Fix i2c error detection.
 
-struct arm_smccc_1_2_res {
-	unsigned long a0;
-	...
-	unsigned long a17;
-}
+Update in v5
+  - Fix lt8912 name (lt8912b instead of lt8912);
+  - Implement HPD via a workaround. In fact I don't have the datasheet
+    of this component yet so I can't say if the configuration of the
+registers is correct or if I have an HW issue on my board. So, I choose
+to implement a fake version of HPD using a workqueue and polling the
+status regularly.
 
-// arm
-struct arm_smccc_1_2_args {
-	unsigned long a1;
-	...
-	unsigned long a7;
-}
+Update in v6
+  - Fix a warning found by "kernel test robot"
 
-struct arm_smccc_1_2_res {
-	unsigned long a0;
-	...
-	unsigned long a7;
-}
+Update in v7
+  - Fix HPD logic (via an HW emulation);
+  - HPD from chip is still not working.
 
-I think that can be hidden in the FF-A wrappers, so that doesn't need to
-be what FF-A drivers see. Does that sound plausible, or is that painful?
- 
-> > +  DEFINE(ARM_SMCCC_V1_2_RES_X0_OFFS,	offsetof(struct arm_smccc_v1_2_res, a0));
+Update in v8
+  - Remove HPD logic (will be added later when HW bug qill be fixed).
 
-As a general nit, for consistency with the existing arm_smccc_1_1 code,
-could we please drop the 'V' in these names, and use `ARM_SMCCC_1_2` or
-`arm_smccc_1_2` ?
-
-FWIW, other than the above comments, this all looks good to me
+Update in v9
+  - Fix errors found in scripts/checkpatch.pl --strict
 
 Thanks,
-Mark.
 
-> > diff --git a/arch/arm64/kernel/smccc-call.S b/arch/arm64/kernel/smccc-call.S
-> > index d62447964ed9..0ea15c1742f3 100644
-> > --- a/arch/arm64/kernel/smccc-call.S
-> > +++ b/arch/arm64/kernel/smccc-call.S
-> > @@ -43,3 +43,25 @@ SYM_FUNC_START(__arm_smccc_hvc)
-> >  	SMCCC	hvc
-> >  SYM_FUNC_END(__arm_smccc_hvc)
-> >  EXPORT_SYMBOL(__arm_smccc_hvc)
-> > +
-> > +	.macro SMCCC_v1_2 instr
-> > +	.cfi_startproc
-> > +	\instr #0
-> > +	ldr x8, [sp]
-> > +	stp x0, x1, [x8, #ARM_SMCCC_V1_2_RES_X0_OFFS]
-> > +	stp x2, x3, [x8, #ARM_SMCCC_V1_2_RES_X2_OFFS]
-> > +	stp x4, x5, [x8, #ARM_SMCCC_V1_2_RES_X4_OFFS]
-> > +	stp x6, x7, [x8, #ARM_SMCCC_V1_2_RES_X6_OFFS]
-> > +	ret
-> > +	.cfi_endproc
-> > +.endm
-> > +
-> > +SYM_FUNC_START(arm_smccc_v1_2_hvc)
-> > +	SMCCC_v1_2 hvc
-> > +SYM_FUNC_END(arm_smccc_v1_2_hvc)
-> > +EXPORT_SYMBOL(arm_smccc_v1_2_hvc)
-> > +
-> > +SYM_FUNC_START(arm_smccc_v1_2_smc)
-> > +	SMCCC_v1_2 smc
-> > +SYM_FUNC_END(arm_smccc_v1_2_smc)
-> > +EXPORT_SYMBOL(arm_smccc_v1_2_smc)
-> > diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
-> > index 62c54234576c..0b8fa285a054 100644
-> > --- a/include/linux/arm-smccc.h
-> > +++ b/include/linux/arm-smccc.h
-> > @@ -186,6 +186,56 @@ struct arm_smccc_res {
-> >  	unsigned long a3;
-> >  };
-> >  
-> > +#ifdef CONFIG_ARM64
-> > +/* TODO Need to implement for ARM too */
-> > +/**
-> > + * struct arm_smccc_v1_2_res - Result from SMC/HVC call
-> > + * @a0-a7 result values from registers 0 to 7
-> > + */
-> > +struct arm_smccc_v1_2_res {
-> > +	unsigned long a0;
-> > +	unsigned long a1;
-> > +	unsigned long a2;
-> > +	unsigned long a3;
-> > +	unsigned long a4;
-> > +	unsigned long a5;
-> > +	unsigned long a6;
-> > +	unsigned long a7;
-> > +};
-> > +
-> > +/**
-> > + * arm_smccc_v1_2_hvc() - make HVC calls
-> > + * @a0-a7: arguments passed in registers 0 to 7
-> > + * @res: result values from registers 0 to 7
-> > + *
-> > + * This function is used to make HVC calls following SMC Calling Convention
-> > + * v1.2 or above. The content of the supplied param are copied to registers
-> > + * 0 to 7 prior to the HVC instruction. The return values are updated with
-> > + * the content from register 0 to 7 on return from the HVC instruction.
-> > + */
-> > +asmlinkage
-> > +void arm_smccc_v1_2_hvc(unsigned long a0, unsigned long a1, unsigned long a2,
-> > +			unsigned long a3, unsigned long a4, unsigned long a5,
-> > +			unsigned long a6, unsigned long a7,
-> > +			struct arm_smccc_v1_2_res  *res);
-> > +
-> > +/**
-> > + * arm_smccc_v1_2_smc() - make SMC calls
-> > + * @a0-a7: arguments passed in registers 0 to 7
-> > + * @res: result values from registers 0 to 7
-> > + *
-> > + * This function is used to make SMC calls following SMC Calling Convention
-> > + * v1.2 or above. The content of the supplied param are copied to registers
-> > + * 0 to 7 prior to the SMC instruction. The return values are updated with
-> > + * the content from register 0 to 7 on return from the SMC instruction.
-> > + */
-> > +asmlinkage
-> > +void arm_smccc_v1_2_smc(unsigned long a0, unsigned long a1, unsigned long a2,
-> > +			unsigned long a3, unsigned long a4, unsigned long a5,
-> > +			unsigned long a6, unsigned long a7,
-> > +			struct arm_smccc_v1_2_res  *res);
-> > +#endif
-> > +
-> >  /**
-> >   * struct arm_smccc_quirk - Contains quirk information
-> >   * @id: quirk identification
-> > -- 
-> > 2.25.1
-> > 
-> > 
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Adrien Grassein (2):
+  dt-bindings: display: bridge: Add documentation for LT8912B
+  drm/bridge: Introduce LT8912B DSI to HDMI bridge
+
+ .../display/bridge/lontium,lt8912b.yaml       | 102 +++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/bridge/Kconfig                |  14 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/lontium-lt8912b.c      | 765 ++++++++++++++++++
+ 5 files changed, 888 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8912b.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912b.c
+
+-- 
+2.25.1
+
