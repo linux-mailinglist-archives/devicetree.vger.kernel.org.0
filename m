@@ -2,168 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4394A34ADF5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 18:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDC234AE19
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 18:59:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbhCZRwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 13:52:44 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:60891 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230204AbhCZRwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 13:52:20 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 7E5CE5803E0;
-        Fri, 26 Mar 2021 13:52:17 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute3.internal (MEProxy); Fri, 26 Mar 2021 13:52:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm1; bh=8kXwPtHhldbtwjNjOopwUJ4yeuP+
-        UupShvi+BRfDlsU=; b=kkWAJEnK7AL7xBL0aeNOCJjZAgkNurezljLLaszKkIkx
-        V4eNarYodtl3szZ/3/55p9PRCd4uqljo4oDOhD2G3kp8O86deVVDTNH+cNqZtgFy
-        EnSrpTG6gnEcW3BBjF6Nt+sPS8XHhyvwrYSfklOB+vW2ztwn4EXGaQ0dAwBgsqBI
-        FD6TnH5oNMrhiqHhegV/JP5NzH+DRx/4sf+pf+C0qADSlSc+8zl9gZ6xw+sNWIJy
-        bKHjbSxfZLrPXSd5k/RP9xZvK25rXvK/YAuYBnjRh5ON807srOKOGICtMLDCIIg2
-        oarIZEB9fx4ZOv9TNYZEE6njGrHcjblgGOL2cYkpnw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=8kXwPt
-        HhldbtwjNjOopwUJ4yeuP+UupShvi+BRfDlsU=; b=M1f3i3TpnYArNC62R6uBrG
-        blLIAjBY8OCsvChA96rOpEyqSBMP8UK9cN8jP4YDXTqDhpJ2DF89sds2txc3s0re
-        lYFK02qispO0elErLVdusUc+qMvaD4LBZsjATmVKqU6WRUaPRb+akKdSdUDmfoTG
-        rkbk/iQzy9X4QBgA0NvrUGGE2Qv2nsDKH+1HJJ2mY2CIAMjX2skcqQucQ+Wr8TLA
-        eVZWAHoB7rB9ycAZEGr0uqs2KFxCxd+RdMHZw0OWRW3YWSxUDnZFebg1eXhbb/80
-        7glSyB3atL1+a7aSUBUHtvh4ypM7IfIKBLRKkP0kV3witNlHJPWF1uLaVC5c5kfg
-        ==
-X-ME-Sender: <xms:Tx9eYDwDqo9TpOLlhJ2xDK8umKsnlIge2GdSa7L_DShU1HAWn-O_IQ>
-    <xme:Tx9eYLRkkTVBZr7cD08xlgDo503UEe2c5S7dfbf7zeDW55oxJmx7FP6Mtd52X8oEp
-    Dni-kPkm5mRVbRtg5M>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehvddguddtkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
-    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:UB9eYNXwsVT0b6-FKyVYiwn-V4ua6yk3lYtGApEn1vXlXVKaSNKk0Q>
-    <xmx:UB9eYNhUYu2UFxmtGa7qaNPGQ85JjsP2WEezmZA1pfjG51F14kURMg>
-    <xmx:UB9eYFD0ey7WFCshECRzcWnfC0GgeaCGN3G-OkRVCombv6Pgl2mKPA>
-    <xmx:UR9eYKLxUOwaIUsFagYHjyqxl_p3AQFbYcWYr9d8Vyvojj8xXSFJWtsbRnU>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E184E51C005F; Fri, 26 Mar 2021 13:52:15 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <45faaadd-eda7-464f-96ff-7324f566669e@www.fastmail.com>
-In-Reply-To: <e03833b1-1368-c5c3-424b-59e34bef19f3@arm.com>
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
- <20210323205346.GA1283560@robh.at.kernel.org>
- <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
- <CAK8P3a0fvnYLrG=cGiOQ6u8aZnriTeM0R=MW7FX=94mO13Rq0w@mail.gmail.com>
- <c1bcd90d344c2b68@bloch.sibelius.xs4all.nl>
- <9f06872d-f0ec-43c3-9b53-d144337100b3@www.fastmail.com>
- <CAK8P3a2b7k6JkxecW=yu-NF+fkNCxJ3Ja36nQ7LK8hsuO=4=sw@mail.gmail.com>
- <c1bcd9821a8f8c05@bloch.sibelius.xs4all.nl>
- <e03833b1-1368-c5c3-424b-59e34bef19f3@arm.com>
-Date:   Fri, 26 Mar 2021 18:51:55 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Robin Murphy" <robin.murphy@arm.com>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Arnd Bergmann" <arnd@kernel.org>
-Cc:     "Rob Herring" <robh@kernel.org>, iommu@lists.linux-foundation.org,
-        joro@8bytes.org, "Will Deacon" <will@kernel.org>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Marc Zyngier" <maz@kernel.org>, mohamed.mediouni@caramail.com,
-        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-Content-Type: text/plain
+        id S230209AbhCZR6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 13:58:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230233AbhCZR6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 13:58:13 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15EE3C0613B2
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 10:58:13 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id f16so8421691ljm.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 10:58:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PcQzTMILK75vkJ7HrFpUsFeadhrqqgnoJj8l6pMg2E0=;
+        b=cCmVEkNAO3CSNkizj4S0CRatIlx/hUglkQbwApjM7ENh8SwPcOpZs1uMzs0IhHFffj
+         +zPKkHr6LEPRvPliUxpOhsdQVhQNqATADL7DLHol6UhdDNNTT72BC4AxkRnVbc1gICOb
+         ByWrEnKtbQ9aNvEnhj8BGxaYzGzUjSs/gme/7iIZdBS+kCUtjRRcFKS1X9+fDvJksJeM
+         EsOGRzJhlXL6rXmQfvPqq+LBG4bbThRjjEpfD6B4JaprJ29fG64otsF4/IxvOGS08wTE
+         nIl+AzGFYfJP9aaQw9ixIDQoEiOHnf2FGxJRW/nP60DFbBtJvN9Bg0u8MRjDEV1+9b1B
+         aJbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PcQzTMILK75vkJ7HrFpUsFeadhrqqgnoJj8l6pMg2E0=;
+        b=hmbEunwu78nBDZ72zPXUK0MwMyzdYb44rIVtC3lA46+aaWXMqNNKidJtdhiq0GcAXu
+         RGSaFisjs1CvJJuRlP+dCx3KPR3LM4DuQXtum0fsWKNRiBHiIf3AHb7yRNpCyS5RD10G
+         RDFWJFGQsAx48oZuu2kNtUGnQVazibp7mBdWjbzyyxG+HPtd7rTPNPXXJgS6wOnY3gYU
+         HGiEjmj4JQvMvNfJkqeYlvEHMCcOlso8Odfutl3fScaM25B+f5FQNeMElDl+U4agaZQG
+         zMBEOpbk/+zO2S/Kn2sX1Td1g8ED2+iGx6DhQYudzwjaYWRtqgZeumVZDsPZ+lbOjLor
+         fjHw==
+X-Gm-Message-State: AOAM533gyDcfQ8VoY54EpwyYuupPHgl8VSgxGKE4RG/UiXTsvYHvc8hl
+        RCiod2nEI35xIcRPZCXFyKwJdCCpmDh+Bg==
+X-Google-Smtp-Source: ABdhPJyI9bZ1TlxCCO1oNWqQBchjpGf81z6SKUqDj3MKClhNympPrzkOi3o/ISuyUNtfEsYQFoWacw==
+X-Received: by 2002:a2e:545e:: with SMTP id y30mr9897883ljd.46.1616781491377;
+        Fri, 26 Mar 2021 10:58:11 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id f3sm1249554ljm.5.2021.03.26.10.58.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 10:58:11 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 0/7] phy: qcom-qmp: provide DP phy support for sm8250
+Date:   Fri, 26 Mar 2021 20:58:02 +0300
+Message-Id: <20210326175809.2923789-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v3:
+ - Move qcom,sc7180-qmp-usb3-phy and qcom,sdm845-qmp-usb3-phy from
+   qcom,qmp-usb3-dp.yaml to qcom,qmp-phy.yaml
+ - Do not touch qcom,sm8250-qmp-usb3-phy compatible
 
+Changes since v2:
+ - Drop unused qmp_v4_usb3_rx_tbl
 
-On Fri, Mar 26, 2021, at 18:34, Robin Murphy wrote:
-> On 2021-03-26 17:26, Mark Kettenis wrote:
-> > 
-> > Anyway, from my viewpoint having the information about the IOVA
-> > address space sit on the devices makes little sense.  This information
-> > is needed by the DART driver, and there is no direct cnnection from
-> > the DART to the individual devices in the devicetree.  The "iommus"
-> > property makes a connection in the opposite direction.
-> 
-> What still seems unclear is whether these addressing limitations are a 
-> property of the DART input interface, the device output interface, or 
-> the interconnect between them. Although the observable end result 
-> appears more or less the same either way, they are conceptually 
-> different things which we have different abstractions to deal with.
-> 
-> Robin.
->
-
-I'm not really sure if there is any way for us to figure out where these
-limitation comes from though.
-
-I've done some more experiments and looked at all DART nodes in Apple's Device
-Tree though. It seems that most (if not all) masters only connect 32 address
-lines even though the iommu can handle a much larger address space. I'll therefore
-remove the code to handle the full space for v2 since it's essentially dead
-code that can't be tested anyway.
-
-
-There are some exceptions though:
-
-There are the PCIe DARTs which have a different limitation which could be
-encoded as 'dma-ranges' in the pci bus node:
-
-           name         base      size
-         dart-apcie1: 00100000  3fe00000
-         dart-apcie2: 00100000  3fe00000
-         dart-apcie0: 00100000  3fe00000
-        dart-apciec0: 00004000  7fffc000
-        dart-apciec1: 80000000  7fffc000
-
-Then there are also these display controller DARTs. If we wanted to use dma-ranges
-we could just put them in a single sub bus:
-
-              name     base      size
-          dart-disp0: 00000000 fc000000
-            dart-dcp: 00000000 fc000000
-       dart-dispext0: 00000000 fc000000
-         dart-dcpext: 00000000 fc000000
-
-
-And finally we have these strange ones which might eventually each require
-another awkward sub-bus if we want to stick to the dma-ranges property.
-
-    name     base      size
-  dart-aop: 00030000 ffffffff ("always-on processor")
-  dart-pmp: 00000000 bff00000 (no idea yet)
-  dart-sio: 0021c000 fbde4000 (at least their Secure Enclave/TPM co-processor)
-  dart-ane: 00000000 e0000000 ("Neural Engine", their ML accelerator)
-
-
-For all we know these limitations could even arise for different reasons.
-(the secure enclave one looks like it might be imposed by the code running
-on there).
-
-
-Not really sure to proceed from here. I'll give the dma-ranges options a try
-for v2 and see how that one works out but that's not going to help us understand
-*why* these limitations exist. 
-At least I won't have to change much code if we agree on a different abstraction :)
-
-The important ones for now are probably the USB and the PCIe ones. We'll need the
-display ones after that and can probably ignore the strange ones for quite a while.
+Changes since v1:
+ - Provide dt bindings
+ - Split register renaming from sm8250-dp-phy patch
+ - Add respective changes to sm8250 device tree
 
 
 
-
-Best,
-
-Sven
