@@ -2,89 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FEC34A946
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A89034A959
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbhCZOJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:09:01 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:36066 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbhCZOIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:08:34 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4F6P2d6PvWz1ryY1;
-        Fri, 26 Mar 2021 15:08:25 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4F6P2d4qBqz1qqwS;
-        Fri, 26 Mar 2021 15:08:25 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id onoyYkV_BZHU; Fri, 26 Mar 2021 15:08:24 +0100 (CET)
-X-Auth-Info: OEvAU2bUcvvTBFMfvWGLhYIW4WQnHRDFk1cZLlSNZz300DmBDLQfVXreztynDrlR
-Received: from igel.home (ppp-46-244-160-134.dynamic.mnet-online.de [46.244.160.134])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Fri, 26 Mar 2021 15:08:24 +0100 (CET)
-Received: by igel.home (Postfix, from userid 1000)
-        id 998042C35E3; Fri, 26 Mar 2021 15:08:22 +0100 (CET)
-From:   Andreas Schwab <schwab@linux-m68k.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     will@kernel.org, danielwa@cisco.com, robh@kernel.org,
-        daniel@gimpelevich.san-francisco.ca.us, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
-Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
-        <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
-X-Yow:  I'd like some JUNK FOOD...  and then I want to be ALONE --
-Date:   Fri, 26 Mar 2021 15:08:22 +0100
-In-Reply-To: <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
-        (Christophe Leroy's message of "Fri, 26 Mar 2021 13:44:58 +0000
-        (UTC)")
-Message-ID: <87zgyqdn3d.fsf@igel.home>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+        id S229839AbhCZOMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229871AbhCZOMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 10:12:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64707C0613B1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 07:12:17 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnBv-0005tW-3S; Fri, 26 Mar 2021 15:11:59 +0100
+Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lPnBs-0006cN-1E; Fri, 26 Mar 2021 15:11:56 +0100
+Date:   Fri, 26 Mar 2021 15:11:56 +0100
+From:   Philipp Zabel <pza@pengutronix.de>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     ezequiel@collabora.com, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v6 02/13] dt-bindings: media: nxp,imx8mq-vpu: Update the
+ bindings for G2 support
+Message-ID: <20210326141156.GA8441@pengutronix.de>
+References: <20210318082046.51546-1-benjamin.gaignard@collabora.com>
+ <20210318082046.51546-3-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210318082046.51546-3-benjamin.gaignard@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:07:47 up 36 days, 17:31, 96 users,  load average: 0.09, 0.22,
+ 0.17
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mär 26 2021, Christophe Leroy wrote:
-
-> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-> index f8f15332caa2..e7c91ee478d1 100644
-> --- a/arch/riscv/kernel/setup.c
-> +++ b/arch/riscv/kernel/setup.c
-> @@ -20,6 +20,7 @@
->  #include <linux/swiotlb.h>
->  #include <linux/smp.h>
->  #include <linux/efi.h>
-> +#include <linux/cmdline.h>
+On Thu, Mar 18, 2021 at 09:20:35AM +0100, Benjamin Gaignard wrote:
+> Introducing G2 hevc video decoder lead to modify the bindings to allow
+> to get one node per VPUs.
+> VPUs share one hardware control block which is provided as a phandle on
+> an syscon.
+> Each node got now one reg and one interrupt.
+> Add a compatible for G2 hardware block: nxp,imx8mq-vpu-g2.
+> 
+> To be compatible with older DT the driver is still capable to use 'ctrl'
+> reg-name even if it is deprecated now.
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 5:
+> - This version doesn't break the backward compatibilty between kernel
+>   and DT.
+> 
+>  .../bindings/media/nxp,imx8mq-vpu.yaml        | 53 ++++++++++++-------
+>  1 file changed, 34 insertions(+), 19 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> index 762be3f96ce9..79502fc8bde5 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> @@ -15,22 +15,18 @@ description:
 >  
->  #include <asm/cpu_ops.h>
->  #include <asm/early_ioremap.h>
-> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
->  	}
+>  properties:
+>    compatible:
+> -    const: nxp,imx8mq-vpu
+> +    oneOf:
+> +      - const: nxp,imx8mq-vpu
+> +      - const: nxp,imx8mq-vpu-g2
 >  
->  	pr_err("No DTB passed to the kernel\n");
-> -#ifdef CONFIG_CMDLINE_FORCE
-> -	strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-> +	cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
->  	pr_info("Forcing kernel command line to: %s\n", boot_command_line);
+>    reg:
+> -    maxItems: 3
+> -
+> -  reg-names:
+> -    items:
+> -      - const: g1
+> -      - const: g2
+> -      - const: ctrl
+> +    maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 2
+> +    maxItems: 1
+>  
+>    interrupt-names:
+> -    items:
+> +    oneOf:
+>        - const: g1
+>        - const: g2
+>  
+> @@ -46,14 +42,18 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  nxp,imx8mq-vpu-ctrl:
+> +    description: Specifies a phandle to syscon VPU hardware control block
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> +
 
-Shouldn't that message become conditional in some way?
+Should we drop the 'q' here, i.e. nxp,imx8m-vpu-ctrl so we can use the same
+binding for i.MX8MM later?
 
-Andreas.
+>  required:
+>    - compatible
+>    - reg
+> -  - reg-names
+>    - interrupts
+>    - interrupt-names
+>    - clocks
+>    - clock-names
+> +  - nxp,imx8mq-vpu-ctrl
+>  
+>  additionalProperties: false
+>  
+> @@ -62,18 +62,33 @@ examples:
+>          #include <dt-bindings/clock/imx8mq-clock.h>
+>          #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  
+> -        vpu: video-codec@38300000 {
+> +        vpu_ctrl: syscon@38320000 {
+> +                 compatible = "nxp,imx8mq-vpu-ctrl", "syscon";
+> +                 reg = <0x38320000 0x10000>;
+> +        };
+> +
+> +        vpu_g1: video-codec@38300000 {
+>                  compatible = "nxp,imx8mq-vpu";
+> -                reg = <0x38300000 0x10000>,
+> -                      <0x38310000 0x10000>,
+> -                      <0x38320000 0x10000>;
+> -                reg-names = "g1", "g2", "ctrl";
+> -                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                             <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> -                interrupt-names = "g1", "g2";
+> +                reg = <0x38300000 0x10000>;
+> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +                interrupt-names = "g1";
+> +                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> +                         <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
 
--- 
-Andreas Schwab, schwab@linux-m68k.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
+Does the G1 VPU require the G2 clock and vice versa?
+
+regards
+Philipp
