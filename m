@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0289A34A7E3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:15:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6624634A7E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:15:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbhCZNOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 09:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
+        id S230094AbhCZNPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 09:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbhCZNOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 09:14:25 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A81CC0613AA
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:14:24 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id e7so6227306edu.10
-        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:14:24 -0700 (PDT)
+        with ESMTP id S229933AbhCZNPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 09:15:11 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9126C0613AA
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:15:10 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id hq27so8323800ejc.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:15:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=KmOPujpceCwNBwq8q46MhKQlq/vNV8oRKdM5lmTSaUY=;
-        b=rvFEbOCl8LSLZytnyKzqWkcEr+KE+lxvzCPOYoASrny6KeCKHT3ZjYS7wCyM+1oAwH
-         0glED00sVC4ECqCSQqjeFS59sQgLuAU+7a8mKVK1N2X6zGPqP/AwoOXTEaSZnOmZu0Gg
-         r2mljKEo66AVk4gQNEv+mgPlXKintjMJBVtIU1F4PkT3EJw6T1bB8RBxpG+/4Rdv4MBh
-         sTIuT5yqeftWODVBHKsaIaRPRDat4kKJsuyyJjNyNpKZ0cKoTQj4vomdWLPkq+kb/FZv
-         wVMD7DcmhHH3M3CoWOdkCgotl5r7d6BtW9QOgRB4pLFvxvG53nhubG8801D4EIisco0P
-         Vtqg==
+        bh=2J16m3JBhK3o86H5FC3pePsPlAfGY4Sh+XHvCjx2klY=;
+        b=qpu3G270UEuaCf9P/+CR4FdVpn3VFauM58BfowENzPNXn5RembVd4digrvdOmNadMX
+         L2ECrVwQ1/moXjZdtGdD6MXb0eYSNBMnpy/kWDBpiC06uU0JZ+3Ls4FR762bRFRMltqW
+         5NtJVfr5CbDKCLZKTc/1UQcHPSFbrYwUOk1+G73siskirYqPR9B54/Yyy7wctiskzlmD
+         n7kP+hgrXGrjHULG3S3MiGjpUnVpEtbqKmpUGeZWK3Y98BAOAQuLwDQB2aQJ9LZO4cSX
+         EKLtAMwvaJ6z5NzPBwOI/NaItjpFSWT/t7+OUkUt4bt/g2z0z+mLsJPPZFvKLDqBTcLF
+         3MVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=KmOPujpceCwNBwq8q46MhKQlq/vNV8oRKdM5lmTSaUY=;
-        b=GrW6f5RDX+V/pFeVr6AVemUvcfp75Pa4h4p8nFzkQb7Oqk/PZ+M7c8UgIbKpQD+6bd
-         SdfKBEZFEr8UMDPSBx5nam/RSp65d4QsKWf/2xZU26ttN8W1Mmrbg1ktSJ8IP17mtr8A
-         usGp62YXTB4qEwknT2H+tPNt5dirk7qSqrO/0ya5v3pt7i2p6uFxkwqM1H186pMLJcEJ
-         jqnJgBj+0A4z3DTbZlnx1bgqdtGqs+shwq4mGwBRgWPBrdpE0NOsOKLz1750/KjEAlRy
-         u90xFERSE8wR93Em2N2K6zL+WHanb4gqNfkVFWmo8eNuXk3hDZkqGnr5nowFifCGlIMt
-         GK5A==
-X-Gm-Message-State: AOAM531DP1NJHnnFnKQMQWyMCpuMx3CcZZcWCmMWLhGBuCG21sKVIT2k
-        Vh4sp6f8LvKSL6QG/L19OwhZxLQVqTmHntbrNqXoKQ==
-X-Google-Smtp-Source: ABdhPJzsPw0ybVJ9vSPBV1/CGr4FJVplRv3la+GUn0T+lu9wzMlLtHQYCZ+Q2QoQt4qrsbx1BvUjw/Q44M+P3iS2eTM=
-X-Received: by 2002:aa7:d813:: with SMTP id v19mr15022627edq.213.1616764463432;
- Fri, 26 Mar 2021 06:14:23 -0700 (PDT)
+        bh=2J16m3JBhK3o86H5FC3pePsPlAfGY4Sh+XHvCjx2klY=;
+        b=ZEO02d9RJ5+MJ7La0RR+GUlvFk3EaBzNC/eMyCRyDRctSKiKxaWxpc6OSrQ6VhaUx6
+         i12B+LH1QFA2OtLQFZ7QEnQ+un154Tg6SEcHTE2fmDxymALPgKXZlFsTHATkqkOVQyDN
+         B0yF/lLhiPklFZs9wl3CDhgD+uy9dy/fbpfk8+WQ9NcRBXagRSpIvQU61KPSfVlLv/nL
+         WQkjRDK95O3tQ5esq2alAiB2nX28yTRXPBe0UTlYCtzE6pGfZ5LrQyZDdrker3n+Xjsp
+         hEQocyJfqZaeFHk3R1sckGXNDYs8vxwgl9dN/7kjNIzyzjwcLEZfEF4+0yf9Q7Y1apqK
+         10fg==
+X-Gm-Message-State: AOAM531nFiBoPQhFhbCrhmXpwKeb15L7BcKm3YQkFEKen12cdtu7/Br4
+        7JhogYu31Mk+XY/755sWYR4+q7Xqv4xbMwCzuYzLIQ==
+X-Google-Smtp-Source: ABdhPJwcRSLkuHG1kkW5pQ8n1j55IpOHcz1Qepo6mqDzIWcjxnU2enWBgtTMvfvKZCY6D9oZa9fzwZkGvgTF7TGApp4=
+X-Received: by 2002:a17:906:565a:: with SMTP id v26mr15636859ejr.516.1616764509533;
+ Fri, 26 Mar 2021 06:15:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210324081923.20379-1-noltari@gmail.com> <20210324081923.20379-2-noltari@gmail.com>
-In-Reply-To: <20210324081923.20379-2-noltari@gmail.com>
+References: <20210324081923.20379-1-noltari@gmail.com> <20210324081923.20379-3-noltari@gmail.com>
+In-Reply-To: <20210324081923.20379-3-noltari@gmail.com>
 From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Fri, 26 Mar 2021 14:14:12 +0100
-Message-ID: <CAMpxmJXVnKHXvvaaObTiHemxfC77u-zikPfEtprQ7qdDn9Z0cg@mail.gmail.com>
-Subject: Re: [PATCH v9 01/22] gpio: guard gpiochip_irqchip_add_domain() with GPIOLIB_IRQCHIP
+Date:   Fri, 26 Mar 2021 14:14:59 +0100
+Message-ID: <CAMpxmJUcNvg3dN0DQY1ezzdta6rAKVZSPdS0P+XMwHM7JH=WeQ@mail.gmail.com>
+Subject: Re: [PATCH v9 02/22] gpio: regmap: set gpio_chip of_node
 To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
 Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,21 +73,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, Mar 24, 2021 at 9:19 AM =C3=81lvaro Fern=C3=A1ndez Rojas
 <noltari@gmail.com> wrote:
 >
-> The current code doesn't check if GPIOLIB_IRQCHIP is enabled, which resul=
-ts in
-> a compilation error when trying to build gpio-regmap if CONFIG_GPIOLIB_IR=
-QCHIP
-> isn't enabled.
+> This is needed for properly registering GPIO regmap as a child of a regma=
+p
+> pin controller.
 >
-> Fixes: 6a45b0e2589f ("gpiolib: Introduce gpiochip_irqchip_add_domain()")
-> Suggested-by: Michael Walle <michael@walle.cc>
 > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > Reviewed-by: Michael Walle <michael@walle.cc>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 > ---
 
 Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-
-I suppose this will go through the pinctrl tree.
-
-Bartosz
