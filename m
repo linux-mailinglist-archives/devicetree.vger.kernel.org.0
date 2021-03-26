@@ -2,48 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 649B134A971
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E3FC34A986
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 15:21:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbhCZOTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 10:19:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45954 "EHLO mail.kernel.org"
+        id S230236AbhCZOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 10:20:51 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:43073 "EHLO pegase1.c-s.fr"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230135AbhCZOTF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 10:19:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D3A5760190;
-        Fri, 26 Mar 2021 14:19:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1616768345;
-        bh=tfNIe4//8+r1CwXYQDUxEyprnoIfc5khzzoSiAZ9fbI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sV+2c+UoZkzTKM4GtvJVgpoR+tm+DNstT/pLPJaZjy02CvNoUB5WsIk4jPp9G+xIG
-         dTssGtWfCz+5+GVa/JQuc7eydLDXf27e2KrP20Atw1OPv4WUbHAnj9zlQRkoQYdNET
-         /67jNJ9Mvm46YEQ6+dvTibHfMsqnSpsCdAvXuYn8=
-Date:   Fri, 26 Mar 2021 15:18:55 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Al Cooper <alcooperx@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 0/2] 8250: Add driver for Broadcom UART
-Message-ID: <YF3tT7OrDeZEcO69@kroah.com>
-References: <20210325185256.16156-1-alcooperx@gmail.com>
+        id S230100AbhCZOU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 10:20:27 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4F6PJQ0zLJz9v03Q;
+        Fri, 26 Mar 2021 15:20:22 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id s0KOf5I51hUM; Fri, 26 Mar 2021 15:20:22 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4F6PJP6Vfbz9v0P3;
+        Fri, 26 Mar 2021 15:20:21 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9B5C58B8CF;
+        Fri, 26 Mar 2021 15:20:23 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id apm4h56oZ3Cq; Fri, 26 Mar 2021 15:20:23 +0100 (CET)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 95C5C8B8C7;
+        Fri, 26 Mar 2021 15:20:22 +0100 (CET)
+Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
+To:     Andreas Schwab <schwab@linux-m68k.org>
+Cc:     will@kernel.org, danielwa@cisco.com, robh@kernel.org,
+        daniel@gimpelevich.san-francisco.ca.us, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
+        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
+        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
+        x86@kernel.org, linux-xtensa@linux-xtensa.org,
+        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
+References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
+ <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
+ <87zgyqdn3d.fsf@igel.home>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
+Date:   Fri, 26 Mar 2021 15:20:20 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210325185256.16156-1-alcooperx@gmail.com>
+In-Reply-To: <87zgyqdn3d.fsf@igel.home>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 02:52:54PM -0400, Al Cooper wrote:
-> v7 - Change Kconfig for SERIAL_8250_BCM7271 from "bool" to "tristate"
->      so the driver can be built as a module.
 
-Much better, thanks for sticking with this, now queued up.
 
-greg k-h
+Le 26/03/2021 à 15:08, Andreas Schwab a écrit :
+> On Mär 26 2021, Christophe Leroy wrote:
+> 
+>> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+>> index f8f15332caa2..e7c91ee478d1 100644
+>> --- a/arch/riscv/kernel/setup.c
+>> +++ b/arch/riscv/kernel/setup.c
+>> @@ -20,6 +20,7 @@
+>>   #include <linux/swiotlb.h>
+>>   #include <linux/smp.h>
+>>   #include <linux/efi.h>
+>> +#include <linux/cmdline.h>
+>>   
+>>   #include <asm/cpu_ops.h>
+>>   #include <asm/early_ioremap.h>
+>> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
+>>   	}
+>>   
+>>   	pr_err("No DTB passed to the kernel\n");
+>> -#ifdef CONFIG_CMDLINE_FORCE
+>> -	strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+>> +	cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
+>>   	pr_info("Forcing kernel command line to: %s\n", boot_command_line);
+> 
+> Shouldn't that message become conditional in some way?
+> 
+
+You are right, I did something similar on ARM but looks like I missed it on RISCV.
+
+Christophe
