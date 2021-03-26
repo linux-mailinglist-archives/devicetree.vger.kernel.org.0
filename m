@@ -2,375 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A0F34A4DD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EEB34A4E7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbhCZJtl convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 Mar 2021 05:49:41 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46194 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229474AbhCZJtP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 05:49:15 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lPj5a-0002pi-2v; Fri, 26 Mar 2021 10:49:10 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     robh+dt@kernel.org, Elaine Zhang <zhangqing@rock-chips.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cl@rock-chips.com, huangtao@rock-chips.com,
-        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
-        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
-Subject: Re: [PATCH v5 07/11] soc: rockchip: pm-domains: Add a meaningful power domain name
-Date:   Fri, 26 Mar 2021 10:49:07 +0100
-Message-ID: <8751177.CDJkKcVGEf@diego>
-In-Reply-To: <20210326091739.12584-1-zhangqing@rock-chips.com>
-References: <20210326091547.12375-1-zhangqing@rock-chips.com> <20210326091739.12584-1-zhangqing@rock-chips.com>
+        id S229695AbhCZJuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 05:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230047AbhCZJuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:50:17 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F20DC0613B1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 02:50:17 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v4so4968388wrp.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 02:50:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MnI8RxXoHJw/2x8+1FFQSE5mboYTNfWyq0YhdaWKJtM=;
+        b=quboBXKApWPPi+Sz+/0FkCmAg6Kixg1YdFbqHA178/Imd3WpW8k4YpPnDU3AYAZE1U
+         rC+Ro1J3QVilPT4PwBMfYdVDZH7wz57EBkcZblYlFx15hruu5y4qR2vlnNHHETe/WtcI
+         uyVKWYqEj8LFhnEuLeyGExbTpH692wtLRoQSiSbr0LrzyVM6FVKsEYAEO7T2ZdmHFNQl
+         idPnV8krrh1WKw9A4izsTq80vIBW+1zP2qxvWYDpkS9yx0yoJ81ydGOZsjDLkYKidqJo
+         vFyHyh6IRCsxZzSHsfDvs+RCVME7Lv75nUZ/VVIkp5mJt28scLPXIztaS3sNbN/X3XdQ
+         3KFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MnI8RxXoHJw/2x8+1FFQSE5mboYTNfWyq0YhdaWKJtM=;
+        b=RYsC5kZtOnus6pfFM+ZvxVlJmPgFuIQOpeQOWn3kn8OvSnElI/fduNVumpTpswwTlP
+         JcKsvoK0EnZmpaWz46ATBvJ18gyqBLsGvKz3SXs5xXvpw5yBSlvnQs0uq7lAs4KX3BpD
+         Z2SRNGK3HkNUWzmx5czkrgQEB3uzQmbSmpEau7GtDYjUmtWXDkp9gExmJZuyfw4pShJf
+         m2X6f81z7f9p5HNTs5zBiideZMIMSnRcNN5OXeYLQjVcN9gZMrWzbjn+OMeB9d3K9hw0
+         H3ps9n6TtlZHdQHmLvmXZOfXGKSz5ybHTUDpQi9edUf2v6wi9eRmwUComs0NkEXm5tTb
+         bDcQ==
+X-Gm-Message-State: AOAM531EE7R1WPhMigJ2qXHVrkl24UldEOExwMqRJHtzifczvDkifsMw
+        IrsMXxUfLOLC2jOBoXsnI/pNQg==
+X-Google-Smtp-Source: ABdhPJy8IdrF20cvgAfp2ESQn+iJIkj1mkaWU5rGBnF/yaYKd5OSC6h+yUhCzFWqiLVTmxHEe4956A==
+X-Received: by 2002:a5d:6381:: with SMTP id p1mr13820517wru.266.1616752216009;
+        Fri, 26 Mar 2021 02:50:16 -0700 (PDT)
+Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id o7sm12079801wrs.16.2021.03.26.02.50.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Mar 2021 02:50:15 -0700 (PDT)
+Date:   Fri, 26 Mar 2021 10:49:57 +0100
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Will Deacon <will@kernel.org>
+Cc:     joro@8bytes.org, vivek.gautam@arm.com, guohanjun@huawei.com,
+        linux-acpi@vger.kernel.org, zhangfei.gao@linaro.org,
+        lenb@kernel.org, devicetree@vger.kernel.org, kevin.tian@intel.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        rjw@rjwysocki.net, iommu@lists.linux-foundation.org,
+        sudeep.holla@arm.com, robin.murphy@arm.com,
+        linux-accelerators@lists.ozlabs.org
+Subject: Re: [PATCH v13 07/10] iommu/arm-smmu-v3: Maintain a SID->device
+ structure
+Message-ID: <YF2uRXoUwFSAmQWI@myrica>
+References: <20210302092644.2553014-1-jean-philippe@linaro.org>
+ <20210302092644.2553014-8-jean-philippe@linaro.org>
+ <20210325174807.GD15504@willie-the-truck>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210325174807.GD15504@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elaine,
-
-Am Freitag, 26. März 2021, 10:17:39 CET schrieb Elaine Zhang:
-> Add the power domains names to the power domain info struct so we
-> have meaningful name for every power domain.
+On Thu, Mar 25, 2021 at 05:48:07PM +0000, Will Deacon wrote:
+> > +/* smmu->streams_mutex must be held */
 > 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Can you add a lockdep assertion for that?
 
-I like that approach very much, there is one tiny comment below.
+Sure
 
-> ---
->  drivers/soc/rockchip/pm_domains.c | 217 +++++++++++++++---------------
->  1 file changed, 112 insertions(+), 105 deletions(-)
+> > +__maybe_unused
+> > +static struct arm_smmu_master *
+> > +arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+> > +{
+> > +	struct rb_node *node;
+> > +	struct arm_smmu_stream *stream;
+> > +
+> > +	node = smmu->streams.rb_node;
+> > +	while (node) {
+> > +		stream = rb_entry(node, struct arm_smmu_stream, node);
+> > +		if (stream->id < sid)
+> > +			node = node->rb_right;
+> > +		else if (stream->id > sid)
+> > +			node = node->rb_left;
+> > +		else
+> > +			return stream->master;
+> > +	}
+> > +
+> > +	return NULL;
+> > +}
 > 
-> diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-> index 54eb6cfc5d5b..d661d967079f 100644
-> --- a/drivers/soc/rockchip/pm_domains.c
-> +++ b/drivers/soc/rockchip/pm_domains.c
-> @@ -29,6 +29,7 @@
->  #include <dt-bindings/power/rk3399-power.h>
->  
->  struct rockchip_domain_info {
-> +	const char *name;
->  	int pwr_mask;
->  	int status_mask;
->  	int req_mask;
-> @@ -85,8 +86,9 @@ struct rockchip_pmu {
->  
->  #define to_rockchip_pd(gpd) container_of(gpd, struct rockchip_pm_domain, genpd)
->  
-> -#define DOMAIN(pwr, status, req, idle, ack, wakeup)	\
-> +#define DOMAIN(_name, pwr, status, req, idle, ack, wakeup)	\
->  {							\
-> +	.name = _name,				\
->  	.pwr_mask = (pwr),				\
->  	.status_mask = (status),			\
->  	.req_mask = (req),				\
-> @@ -95,8 +97,9 @@ struct rockchip_pmu {
->  	.active_wakeup = (wakeup),			\
->  }
->  
-> -#define DOMAIN_M(pwr, status, req, idle, ack, wakeup)	\
-> +#define DOMAIN_M(_name, pwr, status, req, idle, ack, wakeup)	\
->  {							\
-> +	.name = _name,				\
->  	.pwr_w_mask = (pwr) << 16,			\
->  	.pwr_mask = (pwr),				\
->  	.status_mask = (status),			\
-> @@ -107,8 +110,9 @@ struct rockchip_pmu {
->  	.active_wakeup = wakeup,			\
->  }
->  
-> -#define DOMAIN_RK3036(req, ack, idle, wakeup)		\
-> +#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)		\
->  {							\
-> +	.name = _name,				\
->  	.req_mask = (req),				\
->  	.req_w_mask = (req) << 16,			\
->  	.ack_mask = (ack),				\
-> @@ -119,17 +123,17 @@ struct rockchip_pmu {
->  #define DOMAIN_PX30(pwr, status, req, wakeup)		\
->  	DOMAIN_M(pwr, status, req, (req) << 16, req, wakeup)
->  
-> -#define DOMAIN_RK3288(pwr, status, req, wakeup)		\
-> -	DOMAIN(pwr, status, req, req, (req) << 16, wakeup)
-> +#define DOMAIN_RK3288(name, pwr, status, req, wakeup)		\
-> +	DOMAIN(name, pwr, status, req, req, (req) << 16, wakeup)
->  
-> -#define DOMAIN_RK3328(pwr, status, req, wakeup)		\
-> -	DOMAIN_M(pwr, pwr, req, (req) << 10, req, wakeup)
-> +#define DOMAIN_RK3328(name, pwr, status, req, wakeup)		\
-> +	DOMAIN_M(name, pwr, pwr, req, (req) << 10, req, wakeup)
->  
-> -#define DOMAIN_RK3368(pwr, status, req, wakeup)		\
-> -	DOMAIN(pwr, status, req, (req) << 16, req, wakeup)
-> +#define DOMAIN_RK3368(name, pwr, status, req, wakeup)		\
-> +	DOMAIN(name, pwr, status, req, (req) << 16, req, wakeup)
->  
-> -#define DOMAIN_RK3399(pwr, status, req, wakeup)		\
-> -	DOMAIN(pwr, status, req, req, req, wakeup)
-> +#define DOMAIN_RK3399(name, pwr, status, req, wakeup)		\
-> +	DOMAIN(name, pwr, status, req, req, req, wakeup)
->  
->  static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
->  {
-> @@ -490,7 +494,10 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
->  		goto err_unprepare_clocks;
->  	}
->  
-> -	pd->genpd.name = node->name;
-> +	if (!pd->info->name)
-> +		pd->genpd.name = node->name;
-
-I guess we should make that "node->full_name" perhaps?
-And I guess it might be nicer to swap the cases
-
-if (pd->info->name)
-	pd->genpd.name = pd->info->name
-else
-	pd->genpd.name = node->full_name;
-
-for easier readability
-
-
-Heiko
-
-> +	else
-> +		pd->genpd.name = pd->info->name;
->  	pd->genpd.power_off = rockchip_pd_power_off;
->  	pd->genpd.power_on = rockchip_pd_power_on;
->  	pd->genpd.attach_dev = rockchip_pd_attach_dev;
-> @@ -716,129 +723,129 @@ static int rockchip_pm_domain_probe(struct platform_device *pdev)
->  }
->  
->  static const struct rockchip_domain_info px30_pm_domains[] = {
-> -	[PX30_PD_USB]		= DOMAIN_PX30(BIT(5),  BIT(5),  BIT(10), false),
-> -	[PX30_PD_SDCARD]	= DOMAIN_PX30(BIT(8),  BIT(8),  BIT(9),  false),
-> -	[PX30_PD_GMAC]		= DOMAIN_PX30(BIT(10), BIT(10), BIT(6),  false),
-> -	[PX30_PD_MMC_NAND]	= DOMAIN_PX30(BIT(11), BIT(11), BIT(5),  false),
-> -	[PX30_PD_VPU]		= DOMAIN_PX30(BIT(12), BIT(12), BIT(14), false),
-> -	[PX30_PD_VO]		= DOMAIN_PX30(BIT(13), BIT(13), BIT(7),  false),
-> -	[PX30_PD_VI]		= DOMAIN_PX30(BIT(14), BIT(14), BIT(8),  false),
-> -	[PX30_PD_GPU]		= DOMAIN_PX30(BIT(15), BIT(15), BIT(2),  false),
-> +	[PX30_PD_USB]		= DOMAIN_PX30("usb", BIT(5),  BIT(5),  BIT(10), false),
-> +	[PX30_PD_SDCARD]	= DOMAIN_PX30("sdcard", BIT(8),  BIT(8),  BIT(9),  false),
-> +	[PX30_PD_GMAC]		= DOMAIN_PX30("gmac", BIT(10), BIT(10), BIT(6),  false),
-> +	[PX30_PD_MMC_NAND]	= DOMAIN_PX30("mmc_nand", BIT(11), BIT(11), BIT(5),  false),
-> +	[PX30_PD_VPU]		= DOMAIN_PX30("vpu", BIT(12), BIT(12), BIT(14), false),
-> +	[PX30_PD_VO]		= DOMAIN_PX30("vo", BIT(13), BIT(13), BIT(7),  false),
-> +	[PX30_PD_VI]		= DOMAIN_PX30("vi", BIT(14), BIT(14), BIT(8),  false),
-> +	[PX30_PD_GPU]		= DOMAIN_PX30("gpu", BIT(15), BIT(15), BIT(2),  false),
->  };
->  
->  static const struct rockchip_domain_info rk3036_pm_domains[] = {
-> -	[RK3036_PD_MSCH]	= DOMAIN_RK3036(BIT(14), BIT(23), BIT(30), true),
-> -	[RK3036_PD_CORE]	= DOMAIN_RK3036(BIT(13), BIT(17), BIT(24), false),
-> -	[RK3036_PD_PERI]	= DOMAIN_RK3036(BIT(12), BIT(18), BIT(25), false),
-> -	[RK3036_PD_VIO]		= DOMAIN_RK3036(BIT(11), BIT(19), BIT(26), false),
-> -	[RK3036_PD_VPU]		= DOMAIN_RK3036(BIT(10), BIT(20), BIT(27), false),
-> -	[RK3036_PD_GPU]		= DOMAIN_RK3036(BIT(9),  BIT(21), BIT(28), false),
-> -	[RK3036_PD_SYS]		= DOMAIN_RK3036(BIT(8),  BIT(22), BIT(29), false),
-> +	[RK3036_PD_MSCH]	= DOMAIN_RK3036("msch", BIT(14), BIT(23), BIT(30), true),
-> +	[RK3036_PD_CORE]	= DOMAIN_RK3036("core", BIT(13), BIT(17), BIT(24), false),
-> +	[RK3036_PD_PERI]	= DOMAIN_RK3036("peri", BIT(12), BIT(18), BIT(25), false),
-> +	[RK3036_PD_VIO]		= DOMAIN_RK3036("vio", BIT(11), BIT(19), BIT(26), false),
-> +	[RK3036_PD_VPU]		= DOMAIN_RK3036("vpu", BIT(10), BIT(20), BIT(27), false),
-> +	[RK3036_PD_GPU]		= DOMAIN_RK3036("gpu", BIT(9),  BIT(21), BIT(28), false),
-> +	[RK3036_PD_SYS]		= DOMAIN_RK3036("sys", BIT(8),  BIT(22), BIT(29), false),
->  };
->  
->  static const struct rockchip_domain_info rk3066_pm_domains[] = {
-> -	[RK3066_PD_GPU]		= DOMAIN(BIT(9), BIT(9), BIT(3), BIT(24), BIT(29), false),
-> -	[RK3066_PD_VIDEO]	= DOMAIN(BIT(8), BIT(8), BIT(4), BIT(23), BIT(28), false),
-> -	[RK3066_PD_VIO]		= DOMAIN(BIT(7), BIT(7), BIT(5), BIT(22), BIT(27), false),
-> -	[RK3066_PD_PERI]	= DOMAIN(BIT(6), BIT(6), BIT(2), BIT(25), BIT(30), false),
-> -	[RK3066_PD_CPU]		= DOMAIN(0,      BIT(5), BIT(1), BIT(26), BIT(31), false),
-> +	[RK3066_PD_GPU]		= DOMAIN("gpu", BIT(9), BIT(9), BIT(3), BIT(24), BIT(29), false),
-> +	[RK3066_PD_VIDEO]	= DOMAIN("video", BIT(8), BIT(8), BIT(4), BIT(23), BIT(28), false),
-> +	[RK3066_PD_VIO]		= DOMAIN("vio", BIT(7), BIT(7), BIT(5), BIT(22), BIT(27), false),
-> +	[RK3066_PD_PERI]	= DOMAIN("peri", BIT(6), BIT(6), BIT(2), BIT(25), BIT(30), false),
-> +	[RK3066_PD_CPU]		= DOMAIN("cpu", 0,      BIT(5), BIT(1), BIT(26), BIT(31), false),
->  };
->  
->  static const struct rockchip_domain_info rk3128_pm_domains[] = {
-> -	[RK3128_PD_CORE]	= DOMAIN_RK3288(BIT(0), BIT(0), BIT(4), false),
-> -	[RK3128_PD_MSCH]	= DOMAIN_RK3288(0,      0,      BIT(6), true),
-> -	[RK3128_PD_VIO]		= DOMAIN_RK3288(BIT(3), BIT(3), BIT(2), false),
-> -	[RK3128_PD_VIDEO]	= DOMAIN_RK3288(BIT(2), BIT(2), BIT(1), false),
-> -	[RK3128_PD_GPU]		= DOMAIN_RK3288(BIT(1), BIT(1), BIT(3), false),
-> +	[RK3128_PD_CORE]	= DOMAIN_RK3288("core", BIT(0), BIT(0), BIT(4), false),
-> +	[RK3128_PD_MSCH]	= DOMAIN_RK3288("msch", 0,      0,      BIT(6), true),
-> +	[RK3128_PD_VIO]		= DOMAIN_RK3288("vio", BIT(3), BIT(3), BIT(2), false),
-> +	[RK3128_PD_VIDEO]	= DOMAIN_RK3288("video", BIT(2), BIT(2), BIT(1), false),
-> +	[RK3128_PD_GPU]		= DOMAIN_RK3288("gpu", BIT(1), BIT(1), BIT(3), false),
->  };
->  
->  static const struct rockchip_domain_info rk3188_pm_domains[] = {
-> -	[RK3188_PD_GPU]		= DOMAIN(BIT(9), BIT(9), BIT(3), BIT(24), BIT(29), false),
-> -	[RK3188_PD_VIDEO]	= DOMAIN(BIT(8), BIT(8), BIT(4), BIT(23), BIT(28), false),
-> -	[RK3188_PD_VIO]		= DOMAIN(BIT(7), BIT(7), BIT(5), BIT(22), BIT(27), false),
-> -	[RK3188_PD_PERI]	= DOMAIN(BIT(6), BIT(6), BIT(2), BIT(25), BIT(30), false),
-> -	[RK3188_PD_CPU]		= DOMAIN(BIT(5), BIT(5), BIT(1), BIT(26), BIT(31), false),
-> +	[RK3188_PD_GPU]		= DOMAIN("gpu", BIT(9), BIT(9), BIT(3), BIT(24), BIT(29), false),
-> +	[RK3188_PD_VIDEO]	= DOMAIN("video", BIT(8), BIT(8), BIT(4), BIT(23), BIT(28), false),
-> +	[RK3188_PD_VIO]		= DOMAIN("vio", BIT(7), BIT(7), BIT(5), BIT(22), BIT(27), false),
-> +	[RK3188_PD_PERI]	= DOMAIN("peri", BIT(6), BIT(6), BIT(2), BIT(25), BIT(30), false),
-> +	[RK3188_PD_CPU]		= DOMAIN("cpu", BIT(5), BIT(5), BIT(1), BIT(26), BIT(31), false),
->  };
->  
->  static const struct rockchip_domain_info rk3228_pm_domains[] = {
-> -	[RK3228_PD_CORE]	= DOMAIN_RK3036(BIT(0),  BIT(0),  BIT(16), true),
-> -	[RK3228_PD_MSCH]	= DOMAIN_RK3036(BIT(1),  BIT(1),  BIT(17), true),
-> -	[RK3228_PD_BUS]		= DOMAIN_RK3036(BIT(2),  BIT(2),  BIT(18), true),
-> -	[RK3228_PD_SYS]		= DOMAIN_RK3036(BIT(3),  BIT(3),  BIT(19), true),
-> -	[RK3228_PD_VIO]		= DOMAIN_RK3036(BIT(4),  BIT(4),  BIT(20), false),
-> -	[RK3228_PD_VOP]		= DOMAIN_RK3036(BIT(5),  BIT(5),  BIT(21), false),
-> -	[RK3228_PD_VPU]		= DOMAIN_RK3036(BIT(6),  BIT(6),  BIT(22), false),
-> -	[RK3228_PD_RKVDEC]	= DOMAIN_RK3036(BIT(7),  BIT(7),  BIT(23), false),
-> -	[RK3228_PD_GPU]		= DOMAIN_RK3036(BIT(8),  BIT(8),  BIT(24), false),
-> -	[RK3228_PD_PERI]	= DOMAIN_RK3036(BIT(9),  BIT(9),  BIT(25), true),
-> -	[RK3228_PD_GMAC]	= DOMAIN_RK3036(BIT(10), BIT(10), BIT(26), false),
-> +	[RK3228_PD_CORE]	= DOMAIN_RK3036("core", BIT(0),  BIT(0),  BIT(16), true),
-> +	[RK3228_PD_MSCH]	= DOMAIN_RK3036("msch", BIT(1),  BIT(1),  BIT(17), true),
-> +	[RK3228_PD_BUS]		= DOMAIN_RK3036("bus", BIT(2),  BIT(2),  BIT(18), true),
-> +	[RK3228_PD_SYS]		= DOMAIN_RK3036("sys", BIT(3),  BIT(3),  BIT(19), true),
-> +	[RK3228_PD_VIO]		= DOMAIN_RK3036("vio", BIT(4),  BIT(4),  BIT(20), false),
-> +	[RK3228_PD_VOP]		= DOMAIN_RK3036("vop", BIT(5),  BIT(5),  BIT(21), false),
-> +	[RK3228_PD_VPU]		= DOMAIN_RK3036("vpu", BIT(6),  BIT(6),  BIT(22), false),
-> +	[RK3228_PD_RKVDEC]	= DOMAIN_RK3036("vdec", BIT(7),  BIT(7),  BIT(23), false),
-> +	[RK3228_PD_GPU]		= DOMAIN_RK3036("gpu", BIT(8),  BIT(8),  BIT(24), false),
-> +	[RK3228_PD_PERI]	= DOMAIN_RK3036("peri", BIT(9),  BIT(9),  BIT(25), true),
-> +	[RK3228_PD_GMAC]	= DOMAIN_RK3036("gmac", BIT(10), BIT(10), BIT(26), false),
->  };
->  
->  static const struct rockchip_domain_info rk3288_pm_domains[] = {
-> -	[RK3288_PD_VIO]		= DOMAIN_RK3288(BIT(7),  BIT(7),  BIT(4), false),
-> -	[RK3288_PD_HEVC]	= DOMAIN_RK3288(BIT(14), BIT(10), BIT(9), false),
-> -	[RK3288_PD_VIDEO]	= DOMAIN_RK3288(BIT(8),  BIT(8),  BIT(3), false),
-> -	[RK3288_PD_GPU]		= DOMAIN_RK3288(BIT(9),  BIT(9),  BIT(2), false),
-> +	[RK3288_PD_VIO]		= DOMAIN_RK3288("vio", BIT(7),  BIT(7),  BIT(4), false),
-> +	[RK3288_PD_HEVC]	= DOMAIN_RK3288("hevc", BIT(14), BIT(10), BIT(9), false),
-> +	[RK3288_PD_VIDEO]	= DOMAIN_RK3288("video", BIT(8),  BIT(8),  BIT(3), false),
-> +	[RK3288_PD_GPU]		= DOMAIN_RK3288("gpu", BIT(9),  BIT(9),  BIT(2), false),
->  };
->  
->  static const struct rockchip_domain_info rk3328_pm_domains[] = {
-> -	[RK3328_PD_CORE]	= DOMAIN_RK3328(0, BIT(0), BIT(0), false),
-> -	[RK3328_PD_GPU]		= DOMAIN_RK3328(0, BIT(1), BIT(1), false),
-> -	[RK3328_PD_BUS]		= DOMAIN_RK3328(0, BIT(2), BIT(2), true),
-> -	[RK3328_PD_MSCH]	= DOMAIN_RK3328(0, BIT(3), BIT(3), true),
-> -	[RK3328_PD_PERI]	= DOMAIN_RK3328(0, BIT(4), BIT(4), true),
-> -	[RK3328_PD_VIDEO]	= DOMAIN_RK3328(0, BIT(5), BIT(5), false),
-> -	[RK3328_PD_HEVC]	= DOMAIN_RK3328(0, BIT(6), BIT(6), false),
-> -	[RK3328_PD_VIO]		= DOMAIN_RK3328(0, BIT(8), BIT(8), false),
-> -	[RK3328_PD_VPU]		= DOMAIN_RK3328(0, BIT(9), BIT(9), false),
-> +	[RK3328_PD_CORE]	= DOMAIN_RK3328("core", 0, BIT(0), BIT(0), false),
-> +	[RK3328_PD_GPU]		= DOMAIN_RK3328("gpu", 0, BIT(1), BIT(1), false),
-> +	[RK3328_PD_BUS]		= DOMAIN_RK3328("bus", 0, BIT(2), BIT(2), true),
-> +	[RK3328_PD_MSCH]	= DOMAIN_RK3328("msch", 0, BIT(3), BIT(3), true),
-> +	[RK3328_PD_PERI]	= DOMAIN_RK3328("peri", 0, BIT(4), BIT(4), true),
-> +	[RK3328_PD_VIDEO]	= DOMAIN_RK3328("video", 0, BIT(5), BIT(5), false),
-> +	[RK3328_PD_HEVC]	= DOMAIN_RK3328("hevc", 0, BIT(6), BIT(6), false),
-> +	[RK3328_PD_VIO]		= DOMAIN_RK3328("vio", 0, BIT(8), BIT(8), false),
-> +	[RK3328_PD_VPU]		= DOMAIN_RK3328("vpu", 0, BIT(9), BIT(9), false),
->  };
->  
->  static const struct rockchip_domain_info rk3366_pm_domains[] = {
-> -	[RK3366_PD_PERI]	= DOMAIN_RK3368(BIT(10), BIT(10), BIT(6), true),
-> -	[RK3366_PD_VIO]		= DOMAIN_RK3368(BIT(14), BIT(14), BIT(8), false),
-> -	[RK3366_PD_VIDEO]	= DOMAIN_RK3368(BIT(13), BIT(13), BIT(7), false),
-> -	[RK3366_PD_RKVDEC]	= DOMAIN_RK3368(BIT(11), BIT(11), BIT(7), false),
-> -	[RK3366_PD_WIFIBT]	= DOMAIN_RK3368(BIT(8),  BIT(8),  BIT(9), false),
-> -	[RK3366_PD_VPU]		= DOMAIN_RK3368(BIT(12), BIT(12), BIT(7), false),
-> -	[RK3366_PD_GPU]		= DOMAIN_RK3368(BIT(15), BIT(15), BIT(2), false),
-> +	[RK3366_PD_PERI]	= DOMAIN_RK3368("peri", BIT(10), BIT(10), BIT(6), true),
-> +	[RK3366_PD_VIO]		= DOMAIN_RK3368("vio", BIT(14), BIT(14), BIT(8), false),
-> +	[RK3366_PD_VIDEO]	= DOMAIN_RK3368("video", BIT(13), BIT(13), BIT(7), false),
-> +	[RK3366_PD_RKVDEC]	= DOMAIN_RK3368("vdec", BIT(11), BIT(11), BIT(7), false),
-> +	[RK3366_PD_WIFIBT]	= DOMAIN_RK3368("wifibt", BIT(8),  BIT(8),  BIT(9), false),
-> +	[RK3366_PD_VPU]		= DOMAIN_RK3368("vpu", BIT(12), BIT(12), BIT(7), false),
-> +	[RK3366_PD_GPU]		= DOMAIN_RK3368("gpu", BIT(15), BIT(15), BIT(2), false),
->  };
->  
->  static const struct rockchip_domain_info rk3368_pm_domains[] = {
-> -	[RK3368_PD_PERI]	= DOMAIN_RK3368(BIT(13), BIT(12), BIT(6), true),
-> -	[RK3368_PD_VIO]		= DOMAIN_RK3368(BIT(15), BIT(14), BIT(8), false),
-> -	[RK3368_PD_VIDEO]	= DOMAIN_RK3368(BIT(14), BIT(13), BIT(7), false),
-> -	[RK3368_PD_GPU_0]	= DOMAIN_RK3368(BIT(16), BIT(15), BIT(2), false),
-> -	[RK3368_PD_GPU_1]	= DOMAIN_RK3368(BIT(17), BIT(16), BIT(2), false),
-> +	[RK3368_PD_PERI]	= DOMAIN_RK3368("peri", BIT(13), BIT(12), BIT(6), true),
-> +	[RK3368_PD_VIO]		= DOMAIN_RK3368("vio", BIT(15), BIT(14), BIT(8), false),
-> +	[RK3368_PD_VIDEO]	= DOMAIN_RK3368("video", BIT(14), BIT(13), BIT(7), false),
-> +	[RK3368_PD_GPU_0]	= DOMAIN_RK3368("gpu_0", BIT(16), BIT(15), BIT(2), false),
-> +	[RK3368_PD_GPU_1]	= DOMAIN_RK3368("gpu_1", BIT(17), BIT(16), BIT(2), false),
->  };
->  
->  static const struct rockchip_domain_info rk3399_pm_domains[] = {
-> -	[RK3399_PD_TCPD0]	= DOMAIN_RK3399(BIT(8),  BIT(8),  0,	   false),
-> -	[RK3399_PD_TCPD1]	= DOMAIN_RK3399(BIT(9),  BIT(9),  0,	   false),
-> -	[RK3399_PD_CCI]		= DOMAIN_RK3399(BIT(10), BIT(10), 0,	   true),
-> -	[RK3399_PD_CCI0]	= DOMAIN_RK3399(0,	 0,	  BIT(15), true),
-> -	[RK3399_PD_CCI1]	= DOMAIN_RK3399(0,	 0,	  BIT(16), true),
-> -	[RK3399_PD_PERILP]	= DOMAIN_RK3399(BIT(11), BIT(11), BIT(1),  true),
-> -	[RK3399_PD_PERIHP]	= DOMAIN_RK3399(BIT(12), BIT(12), BIT(2),  true),
-> -	[RK3399_PD_CENTER]	= DOMAIN_RK3399(BIT(13), BIT(13), BIT(14), true),
-> -	[RK3399_PD_VIO]		= DOMAIN_RK3399(BIT(14), BIT(14), BIT(17), false),
-> -	[RK3399_PD_GPU]		= DOMAIN_RK3399(BIT(15), BIT(15), BIT(0),  false),
-> -	[RK3399_PD_VCODEC]	= DOMAIN_RK3399(BIT(16), BIT(16), BIT(3),  false),
-> -	[RK3399_PD_VDU]		= DOMAIN_RK3399(BIT(17), BIT(17), BIT(4),  false),
-> -	[RK3399_PD_RGA]		= DOMAIN_RK3399(BIT(18), BIT(18), BIT(5),  false),
-> -	[RK3399_PD_IEP]		= DOMAIN_RK3399(BIT(19), BIT(19), BIT(6),  false),
-> -	[RK3399_PD_VO]		= DOMAIN_RK3399(BIT(20), BIT(20), 0,	   false),
-> -	[RK3399_PD_VOPB]	= DOMAIN_RK3399(0,	 0,	  BIT(7),  false),
-> -	[RK3399_PD_VOPL]	= DOMAIN_RK3399(0, 	 0,	  BIT(8),  false),
-> -	[RK3399_PD_ISP0]	= DOMAIN_RK3399(BIT(22), BIT(22), BIT(9),  false),
-> -	[RK3399_PD_ISP1]	= DOMAIN_RK3399(BIT(23), BIT(23), BIT(10), false),
-> -	[RK3399_PD_HDCP]	= DOMAIN_RK3399(BIT(24), BIT(24), BIT(11), false),
-> -	[RK3399_PD_GMAC]	= DOMAIN_RK3399(BIT(25), BIT(25), BIT(23), true),
-> -	[RK3399_PD_EMMC]	= DOMAIN_RK3399(BIT(26), BIT(26), BIT(24), true),
-> -	[RK3399_PD_USB3]	= DOMAIN_RK3399(BIT(27), BIT(27), BIT(12), true),
-> -	[RK3399_PD_EDP]		= DOMAIN_RK3399(BIT(28), BIT(28), BIT(22), false),
-> -	[RK3399_PD_GIC]		= DOMAIN_RK3399(BIT(29), BIT(29), BIT(27), true),
-> -	[RK3399_PD_SD]		= DOMAIN_RK3399(BIT(30), BIT(30), BIT(28), true),
-> -	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399(BIT(31), BIT(31), BIT(29), true),
-> +	[RK3399_PD_TCPD0]	= DOMAIN_RK3399("tcpd0", BIT(8),  BIT(8),  0,	   false),
-> +	[RK3399_PD_TCPD1]	= DOMAIN_RK3399("tcpd1", BIT(9),  BIT(9),  0,	   false),
-> +	[RK3399_PD_CCI]		= DOMAIN_RK3399("cci", BIT(10), BIT(10), 0,	   true),
-> +	[RK3399_PD_CCI0]	= DOMAIN_RK3399("cci0", 0,	 0,	  BIT(15), true),
-> +	[RK3399_PD_CCI1]	= DOMAIN_RK3399("cci1", 0,	 0,	  BIT(16), true),
-> +	[RK3399_PD_PERILP]	= DOMAIN_RK3399("perilp", BIT(11), BIT(11), BIT(1),  true),
-> +	[RK3399_PD_PERIHP]	= DOMAIN_RK3399("perihp", BIT(12), BIT(12), BIT(2),  true),
-> +	[RK3399_PD_CENTER]	= DOMAIN_RK3399("center", BIT(13), BIT(13), BIT(14), true),
-> +	[RK3399_PD_VIO]		= DOMAIN_RK3399("vio", BIT(14), BIT(14), BIT(17), false),
-> +	[RK3399_PD_GPU]		= DOMAIN_RK3399("gpu", BIT(15), BIT(15), BIT(0),  false),
-> +	[RK3399_PD_VCODEC]	= DOMAIN_RK3399("vcodec", BIT(16), BIT(16), BIT(3),  false),
-> +	[RK3399_PD_VDU]		= DOMAIN_RK3399("vdu", BIT(17), BIT(17), BIT(4),  false),
-> +	[RK3399_PD_RGA]		= DOMAIN_RK3399("rga", BIT(18), BIT(18), BIT(5),  false),
-> +	[RK3399_PD_IEP]		= DOMAIN_RK3399("iep", BIT(19), BIT(19), BIT(6),  false),
-> +	[RK3399_PD_VO]		= DOMAIN_RK3399("vo", BIT(20), BIT(20), 0,	   false),
-> +	[RK3399_PD_VOPB]	= DOMAIN_RK3399("vopb", 0,	 0,	  BIT(7),  false),
-> +	[RK3399_PD_VOPL]	= DOMAIN_RK3399("vopl", 0, 	 0,	  BIT(8),  false),
-> +	[RK3399_PD_ISP0]	= DOMAIN_RK3399("isp0", BIT(22), BIT(22), BIT(9),  false),
-> +	[RK3399_PD_ISP1]	= DOMAIN_RK3399("isp1", BIT(23), BIT(23), BIT(10), false),
-> +	[RK3399_PD_HDCP]	= DOMAIN_RK3399("hdcp", BIT(24), BIT(24), BIT(11), false),
-> +	[RK3399_PD_GMAC]	= DOMAIN_RK3399("gmac", BIT(25), BIT(25), BIT(23), true),
-> +	[RK3399_PD_EMMC]	= DOMAIN_RK3399("emmc", BIT(26), BIT(26), BIT(24), true),
-> +	[RK3399_PD_USB3]	= DOMAIN_RK3399("usb3", BIT(27), BIT(27), BIT(12), true),
-> +	[RK3399_PD_EDP]		= DOMAIN_RK3399("edp", BIT(28), BIT(28), BIT(22), false),
-> +	[RK3399_PD_GIC]		= DOMAIN_RK3399("gic", BIT(29), BIT(29), BIT(27), true),
-> +	[RK3399_PD_SD]		= DOMAIN_RK3399("sd", BIT(30), BIT(30), BIT(28), true),
-> +	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399("sdioaudio", BIT(31), BIT(31), BIT(29), true),
->  };
->  
->  static const struct rockchip_pmu_info px30_pmu = {
+> [...]
 > 
+> > +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
+> > +				  struct arm_smmu_master *master)
+> > +{
+> > +	int i;
+> > +	int ret = 0;
+> > +	struct arm_smmu_stream *new_stream, *cur_stream;
+> > +	struct rb_node **new_node, *parent_node = NULL;
+> > +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
+> > +
+> > +	master->streams = kcalloc(fwspec->num_ids, sizeof(*master->streams),
+> > +				  GFP_KERNEL);
+> > +	if (!master->streams)
+> > +		return -ENOMEM;
+> > +	master->num_streams = fwspec->num_ids;
+> > +
+> > +	mutex_lock(&smmu->streams_mutex);
+> > +	for (i = 0; i < fwspec->num_ids; i++) {
+> > +		u32 sid = fwspec->ids[i];
+> > +
+> > +		new_stream = &master->streams[i];
+> > +		new_stream->id = sid;
+> > +		new_stream->master = master;
+> > +
+> > +		/*
+> > +		 * Check the SIDs are in range of the SMMU and our stream table
+> > +		 */
+> > +		if (!arm_smmu_sid_in_range(smmu, sid)) {
+> > +			ret = -ERANGE;
+> > +			break;
+> > +		}
+> > +
+> > +		/* Ensure l2 strtab is initialised */
+> > +		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
+> > +			ret = arm_smmu_init_l2_strtab(smmu, sid);
+> > +			if (ret)
+> > +				break;
+> > +		}
+> > +
+> > +		/* Insert into SID tree */
+> > +		new_node = &(smmu->streams.rb_node);
+> > +		while (*new_node) {
+> > +			cur_stream = rb_entry(*new_node, struct arm_smmu_stream,
+> > +					      node);
+> > +			parent_node = *new_node;
+> > +			if (cur_stream->id > new_stream->id) {
+> > +				new_node = &((*new_node)->rb_left);
+> > +			} else if (cur_stream->id < new_stream->id) {
+> > +				new_node = &((*new_node)->rb_right);
+> > +			} else {
+> > +				dev_warn(master->dev,
+> > +					 "stream %u already in tree\n",
+> > +					 cur_stream->id);
+> > +				ret = -EINVAL;
+> > +				break;
+> > +			}
+> > +		}
+> > +		if (ret)
+> > +			break;
+> > +
+> > +		rb_link_node(&new_stream->node, parent_node, new_node);
+> > +		rb_insert_color(&new_stream->node, &smmu->streams);
+> > +	}
+> > +
+> > +	if (ret) {
+> > +		for (i--; i >= 0; i--)
+> 
+> Is 'i--' really what you want for the initial value? Doesn't that correspond
+> to the ID you *didn't* add to the tree?
 
+In case of error we break out of the loop, with i corresponding to the
+stream that caused a fault but wasn't yet added to the tree. So i-- is
+the last stream that was successfully added, or -1 in which case we don't
+enter this for loop.
 
+> > +			rb_erase(&master->streams[i].node, &smmu->streams);
+> > +		kfree(master->streams);
+> 
+> Do you need to NULLify master->streams and/or reset master->num_streams
+> after this? Seems like they're left dangling.
 
+master is freed by arm_smmu_probe_device() when we return an error. Since
+this function is unlikely to ever have another caller I didn't bother
+cleaning up here
 
+Thanks,
+Jean
