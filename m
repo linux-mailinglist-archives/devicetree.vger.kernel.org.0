@@ -2,243 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F0534A20B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:42:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CBD34A223
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:45:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230355AbhCZGmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 02:42:04 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43182 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbhCZGlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:47 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12Q6feOP077322;
-        Fri, 26 Mar 2021 01:41:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616740900;
-        bh=j844GPEdevoz4+8UYBPOfyyBcn9R2FH5SvoKl9JCmjQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KlSud1SJPLooy7weoTtFhROUI9WSUy6SQUL2GEj1bljihDSSG4wy+xozCIefr8zyB
-         XOfVXTLreAQMmbjCnd6WSJ6JhTcCxacIJ7Y/nsjwJl4npxpczZJoQ/JrGZwR5ygyyy
-         nbelo5mj97GNoYOqX5Apc7XzehfDxsHhI7hG/Q10=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12Q6feXn013063
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 26 Mar 2021 01:41:40 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 26
- Mar 2021 01:41:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 26 Mar 2021 01:41:40 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12Q6fNO6089943;
-        Fri, 26 Mar 2021 01:41:37 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v9 3/3] arm64: dts: ti: k3-j7200: Add support for higher speed modes and update delay select values for MMCSD subsystems
-Date:   Fri, 26 Mar 2021 12:11:20 +0530
-Message-ID: <20210326064120.31919-4-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210326064120.31919-1-a-govindraju@ti.com>
-References: <20210326064120.31919-1-a-govindraju@ti.com>
+        id S230186AbhCZGpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 02:45:10 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:16148 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229839AbhCZGop (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Mar 2021 02:44:45 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4F6CBf5pjtz9tyk1;
+        Fri, 26 Mar 2021 07:44:42 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id SksxU02aQTWC; Fri, 26 Mar 2021 07:44:42 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4F6CBf42D0z9tyk0;
+        Fri, 26 Mar 2021 07:44:42 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 7DBA48B864;
+        Fri, 26 Mar 2021 07:44:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id YE_mnW0J1lyl; Fri, 26 Mar 2021 07:44:43 +0100 (CET)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id C29DA8B834;
+        Fri, 26 Mar 2021 07:44:42 +0100 (CET)
+Subject: Re: [PATCH v2 6/7] cmdline: Gives architectures opportunity to use
+ generically defined boot cmdline manipulation
+To:     Will Deacon <will@kernel.org>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, danielwa@cisco.com,
+        robh@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1614705851.git.christophe.leroy@csgroup.eu>
+ <2eb6fad3470256fff5c9f33cd876f344abb1628b.1614705851.git.christophe.leroy@csgroup.eu>
+ <20210303175747.GD19713@willie-the-truck>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <eed34cc3-59ab-eb8d-bb4c-2b7a4536f688@csgroup.eu>
+Date:   Fri, 26 Mar 2021 07:44:40 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210303175747.GD19713@willie-the-truck>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following speed modes are now supported in J7200 SoC,
-- HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
-- UHS-I speed modes in MMCSD1 subsystem [1].
 
-Add support for UHS-I modes by adding voltage regulator device tree nodes
-and corresponding pinmux details, to power cycle and voltage switch cards.
-Set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
-device tree nodes.
 
-Also update the delay values for various speed modes supported, based on
-the revised january 2021 J7200 datasheet[2].
+Le 03/03/2021 à 18:57, Will Deacon a écrit :
+> On Tue, Mar 02, 2021 at 05:25:22PM +0000, Christophe Leroy wrote:
+>> Most architectures have similar boot command line manipulation
+>> options. This patchs adds the definition in init/Kconfig, gated by
+>> CONFIG_HAVE_CMDLINE that the architectures can select to use them.
+>>
+>> In order to use this, a few architectures will have to change their
+>> CONFIG options:
+>> - riscv has to replace CMDLINE_FALLBACK by CMDLINE_FROM_BOOTLOADER
+>> - architectures using CONFIG_CMDLINE_OVERRIDE or
+>> CONFIG_CMDLINE_OVERWRITE have to replace them by CONFIG_CMDLINE_FORCE.
+>>
+>> Architectures also have to define CONFIG_DEFAULT_CMDLINE.
+>>
+>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> ---
+>>   init/Kconfig | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 56 insertions(+)
+>>
+>> diff --git a/init/Kconfig b/init/Kconfig
+>> index 22946fe5ded9..a0f2ad9467df 100644
+>> --- a/init/Kconfig
+>> +++ b/init/Kconfig
+>> @@ -117,6 +117,62 @@ config INIT_ENV_ARG_LIMIT
+>>   	  Maximum of each of the number of arguments and environment
+>>   	  variables passed to init from the kernel command line.
+>>   
+>> +config HAVE_CMDLINE
+>> +	bool
+>> +
+>> +config CMDLINE_BOOL
+>> +	bool "Default bootloader kernel arguments"
+>> +	depends on HAVE_CMDLINE
+>> +	help
+>> +	  On some platforms, there is currently no way for the boot loader to
+>> +	  pass arguments to the kernel. For these platforms, you can supply
+>> +	  some command-line options at build time by entering them here.  In
+>> +	  most cases you will need to specify the root device here.
+> 
+> Why is this needed as well as CMDLINE_FROM_BOOTLOADER? IIUC, the latter
+> will use CONFIG_CMDLINE if it fails to get anything from the bootloader,
+> which sounds like the same scenario.
+> 
+>> +config CMDLINE
+>> +	string "Initial kernel command string"
+> 
+> s/Initial/Default
+> 
+> which is then consistent with the rest of the text here.
+> 
+>> +	depends on CMDLINE_BOOL
+> 
+> Ah, so this is a bit different and I don't think lines-up with the
+> CMDLINE_BOOL help text.
 
-[1] - section 12.3.6.1.1 MMCSD Features, in
-      https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf,
-      (SPRUIU1A – JULY 2020 – REVISED JANUARY 2021)
+You are right, the help text is duplicated, I will change the text for the CMDLINE_BOOL
 
-[2] - https://www.ti.com/lit/ds/symlink/dra821u.pdf,
-      (SPRSP57B – APRIL 2020 – REVISED JANUARY 2021)
+> 
+>> +	default DEFAULT_CMDLINE
+>> +	help
+>> +	  On some platforms, there is currently no way for the boot loader to
+>> +	  pass arguments to the kernel. For these platforms, you can supply
+>> +	  some command-line options at build time by entering them here.  In
+>> +	  most cases you will need to specify the root device here.
+> 
+> (same stale text)
+> 
+>> +choice
+>> +	prompt "Kernel command line type" if CMDLINE != ""
+>> +	default CMDLINE_FROM_BOOTLOADER
+>> +	help
+>> +	  Selects the way you want to use the default kernel arguments.
+> 
+> How about:
+> 
+> "Determines how the default kernel arguments are combined with any
+>   arguments passed by the bootloader"
+> 
+>> +config CMDLINE_FROM_BOOTLOADER
+>> +	bool "Use bootloader kernel arguments if available"
+>> +	help
+>> +	  Uses the command-line options passed by the boot loader. If
+>> +	  the boot loader doesn't provide any, the default kernel command
+>> +	  string provided in CMDLINE will be used.
+>> +
+>> +config CMDLINE_EXTEND
+> 
+> Can we rename this to CMDLINE_APPEND, please? There is code in the tree
+> which disagrees about what CMDLINE_EXTEND means, so that will need be
+> to be updated to be consistent (e.g. the EFI stub parsing order). Having
+> the generic option with a different name means we won't accidentally end
+> up with the same inconsistent behaviours.
+> 
+>> +	bool "Extend bootloader kernel arguments"
+> 
+> "Append to the bootloader kernel arguments"
+> 
+>> +	help
+>> +	  The default kernel command string will be appended to the
+>> +	  command-line arguments provided during boot.
+> 
+> s/provided during boot/provided by the bootloader/
+> 
+>> +
+>> +config CMDLINE_PREPEND
+>> +	bool "Prepend bootloader kernel arguments"
+> 
+> "Prepend to the bootloader kernel arguments"
+> 
+>> +	help
+>> +	  The default kernel command string will be prepend to the
+>> +	  command-line arguments provided during boot.
+> 
+> s/prepend/prepended/
+> s/provided during boot/provided by the bootloader/
+> 
+>> +
+>> +config CMDLINE_FORCE
+>> +	bool "Always use the default kernel command string"
+>> +	help
+>> +	  Always use the default kernel command string, even if the boot
+>> +	  loader passes other arguments to the kernel.
+>> +	  This is useful if you cannot or don't want to change the
+>> +	  command-line options your boot loader passes to the kernel.
+> 
+> I find the "This is useful if ..." sentence really confusing, perhaps just
+> remove it? I'd then tweak it to be:
+> 
+>    "Always use the default kernel command string, ignoring any arguments
+>     provided by the bootloader."
+> 
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../dts/ti/k3-j7200-common-proc-board.dts     | 78 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 14 +++-
- 2 files changed, 90 insertions(+), 2 deletions(-)
+Taken all your suggested text.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index b493f939b09a..bedd01b7a32c 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -16,6 +16,65 @@
- 		stdout-path = "serial2:115200n8";
- 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
- 	};
-+
-+	evm_12v0: fixedregulator-evm12v0 {
-+		/* main supply */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: fixedregulator-vsys3v3 {
-+		/* Output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_5v0: fixedregulator-vsys5v0 {
-+		/* Output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixedregulator-sd {
-+		/* Output of TPS22918 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv: gpio-regulator-TLV71033 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpios = <&main_gpio0 55 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -45,6 +104,13 @@
- };
- 
- &main_pmx0 {
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
-+			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
-+		>;
-+	};
-+
- 	main_i2c1_pins_default: main-i2c1-pins-default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0xdc, PIN_INPUT_PULLUP, 3) /* (U3) ECAP0_IN_APWM_OUT.I2C1_SCL */
-@@ -70,6 +136,12 @@
- 			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
- 		>;
- 	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0xd0, PIN_OUTPUT, 7) /* (T5) SPI0_D1.GPIO0_55 */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -157,6 +229,10 @@
- };
- 
- &main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
- 	exp1: gpio@20 {
- 		compatible = "ti,tca6416";
- 		reg = <0x20>;
-@@ -206,6 +282,8 @@
- 	/* SD card */
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	pinctrl-names = "default";
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index e60650a62b14..f86c493a44f1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -512,11 +512,16 @@
- 		ti,otap-del-sel-mmc-hs = <0x0>;
- 		ti,otap-del-sel-ddr52 = <0x6>;
- 		ti,otap-del-sel-hs200 = <0x8>;
--		ti,otap-del-sel-hs400 = <0x0>;
-+		ti,otap-del-sel-hs400 = <0x5>;
-+		ti,itap-del-sel-legacy = <0x10>;
-+		ti,itap-del-sel-mmc-hs = <0xa>;
- 		ti,strobe-sel = <0x77>;
-+		ti,clkbuf-sel = <0x7>;
- 		ti,trm-icp = <0x8>;
- 		bus-width = <8>;
- 		mmc-ddr-1_8v;
-+		mmc-hs200-1_8v;
-+		mmc-hs400-1_8v;
- 		dma-coherent;
- 	};
- 
-@@ -534,7 +539,12 @@
- 		ti,otap-del-sel-sdr50 = <0xc>;
- 		ti,otap-del-sel-sdr104 = <0x5>;
- 		ti,otap-del-sel-ddr50 = <0xc>;
--		no-1-8-v;
-+		ti,itap-del-sel-legacy = <0x0>;
-+		ti,itap-del-sel-sd-hs = <0x0>;
-+		ti,itap-del-sel-sdr12 = <0x0>;
-+		ti,itap-del-sel-sdr25 = <0x0>;
-+		ti,clkbuf-sel = <0x7>;
-+		ti,trm-icp = <0x8>;
- 		dma-coherent;
- 	};
- 
--- 
-2.17.1
-
+Thanks
+Christophe
