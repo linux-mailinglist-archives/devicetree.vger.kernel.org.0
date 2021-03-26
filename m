@@ -2,84 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC6334A1BA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:24:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D3434A1F7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 07:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbhCZGYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 02:24:01 -0400
-Received: from [212.63.208.185] ([212.63.208.185]:44310 "EHLO
-        mail.marcansoft.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229782AbhCZGXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:23:48 -0400
-X-Greylist: delayed 58547 seconds by postgrey-1.27 at vger.kernel.org; Fri, 26 Mar 2021 02:23:46 EDT
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id EA5CA425DF;
-        Fri, 26 Mar 2021 06:23:32 +0000 (UTC)
-Subject: Re: [RFT PATCH v3 13/27] arm64: Add Apple vendor-specific system
- registers
-To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210304213902.83903-1-marcan@marcan.st>
- <20210304213902.83903-14-marcan@marcan.st>
- <20210324183818.GF13181@willie-the-truck>
- <20210324185921.GA27297@C02TD0UTHF1T.local>
- <20210324190428.GG13181@willie-the-truck>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <00d7b1ea-b455-c443-d350-d71a432573e5@marcan.st>
-Date:   Fri, 26 Mar 2021 15:23:30 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S230180AbhCZGlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 02:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229839AbhCZGlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 02:41:17 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E9AC0613B0
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:17 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id l4so6734625ejc.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Mar 2021 23:41:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=601vu5quzaQf6DnHp3OpM53cCBOhcUim1UL6VJ/oy0U=;
+        b=cT5DeJ+blY6t22wiG1Y2kVtLodJ9uXZElUCLgfFosUxxWW1blbg42q55+V/XI+9iDG
+         eSjqS+5sb2CyQx6VMpvU6ZtubD4icr2xzo2Aqbice9XnxxFxHRsdqpbvB/7joKFXdOFn
+         GbISma2EmFJF4V20w36YmFsDCll424vNjNBfZCAj7RGubZT9H4sAMFwX9zfqgy/A5FkT
+         ibbtew5DF8dfc/XLm1zcnSvCFYq/3ashV/B69dCdO8gHJHw6SKFu1c49I/K7Et8gJmwZ
+         HXklQvv8NvPIttHmY4AnRvnzGY9BKRoFg1/VRmGJYXjUSHuuVQnsm+QFspVXU/wOHzBL
+         NjLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=601vu5quzaQf6DnHp3OpM53cCBOhcUim1UL6VJ/oy0U=;
+        b=S24aAFzYz0utqIP4Fpp0VrTcn6eGLnP6Ftjkrq7lklo9Y0zuTayXkHeHQJEXdRkNfQ
+         HADRhc8xbWc46h8fbC5BhvYr+9ElIeUBkHgF4MBY2GUBQakMz7SHa+0NXAfkQB4BlyD2
+         AtuTtXPi+97M5TZmpgnOiD1Ous6dMHNnsEM0hpIxivKU3ltFcMkB3DF/rUujpkE3HdD3
+         UjN60CYa77okAzr0U5c31W5SHupiRKu9IgWfsu435HLwl+YGem8SIodWyBu2VlhCQiVu
+         GmHqkPVl1u/rz23cAHg2euRvoFNFAjajN5ggPXrG+8NNmx7VoTVWcDMIBlEa1zFB7pPL
+         vgzw==
+X-Gm-Message-State: AOAM530LFpTRYSxpZD49U+PuSpR7uyTGRUsI1qtcUMDMxs6cfu6jOZA/
+        w/l+xlND2BP5JdWD2CbmTUor9A==
+X-Google-Smtp-Source: ABdhPJw1JGdbPPuEEkOWdp72gOM1ahgIOoxvaklK9HwXG7IGdQ60CqpEKz5TGF11UDeZxqwBrNvBhg==
+X-Received: by 2002:a17:906:3f88:: with SMTP id b8mr13913431ejj.36.1616740876082;
+        Thu, 25 Mar 2021 23:41:16 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id ci22sm125325ejc.54.2021.03.25.23.41.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Mar 2021 23:41:15 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     vkoul@kernel.org
+Cc:     yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v5 0/9] soundwire: qcom: various improvements
+Date:   Fri, 26 Mar 2021 06:39:35 +0000
+Message-Id: <20210326063944.31683-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20210324190428.GG13181@willie-the-truck>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/03/2021 04.04, Will Deacon wrote:
-> On Wed, Mar 24, 2021 at 06:59:21PM +0000, Mark Rutland wrote:
->> So far we've kept arch/arm64/ largely devoid of IMP-DEF bits, and it
->> seems a shame to add something with the sole purpose of collating that,
->> especially given arch code shouldn't need to touch these if FW and
->> bootloader have done their jobs right.
->>
->> Can we put the definitions in the relevant drivers? That would sidestep
->> any pain with MAINTAINERS, too.
-> 
-> If we can genuinely ignore these in arch code, then sure. I just don't know
-> how long that is going to be the case, and ending up in a situation where
-> these are scattered randomly throughout the tree sounds horrible to me.
+Thanks for reviewing v4 of this patchset!
 
-I thought we would need some in KVM code, but given the direction Marc's 
-series ended up in, it seems we won't. So I'm happy keeping these in the 
-respective drivers; if this ends up being messy in the future it 
-shouldn't be a big deal to refactor it all into one file again.
+During testing SoundWire controller on SM8250 MTP, we found
+few issues like all the interrupts are not handled,
+all transport parameters are not read from device tree.
+Patch to add Auto Enumeration supported by the controller
+is also part of this series.
+
+Other major issue was register read/writes which was interrupt based
+was an overhead and puts lot of limitation on context it can be used from.
+
+With previous approach number of interrupts generated
+after enumeration are around 130:
+$ cat /proc/interrupts  | grep soundwire
+21: 130 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
+    
+after this patch they are just 3 interrupts
+$ cat /proc/interrupts  | grep soundwire
+21: 3 0 0 0 0 0 0 0 GICv3 234 Edge      soundwire
+
+So this patchset add various improvements to the existing driver
+to address above issues.
+
+Tested it on SM8250 MTP with 2x WSA881x speakers, HeadPhones on
+WCD938x via lpass-rx-macro and Analog MICs via lpass-tx-macro.
+Also tested on DragonBoard DB845c with 2xWSA881x speakers.
+
+Changes since v4:
+	- exported sdw_slave_add as kernel test robot reported error
+
+Srinivas Kandagatla (9):
+  dt-bindings: soundwire: qcom: clarify data port bus parameters
+  soundwire: qcom: add support to missing transport params
+  soundwire: qcom: set continue execution flag for ignored commands
+  soundwire: qcom: start the clock during initialization
+  soundwire: qcom: update register read/write routine
+  soundwire: qcom: add support to new interrupts
+  soundwire: export sdw_compare_devid, sdw_extract_slave_id and
+    sdw_slave_add
+  soundwire: qcom: add auto enumeration support
+  soundwire: qcom: wait for enumeration to be complete in probe
+
+ .../bindings/soundwire/qcom,sdw.txt           |  20 +
+ drivers/soundwire/bus.c                       |   4 +-
+ drivers/soundwire/qcom.c                      | 529 ++++++++++++++----
+ drivers/soundwire/slave.c                     |   1 +
+ include/linux/soundwire/sdw.h                 |   2 +
+ 5 files changed, 443 insertions(+), 113 deletions(-)
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.21.0
+
