@@ -2,283 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D451C34A828
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:34:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6597F34A82A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 14:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbhCZNdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 09:33:53 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:35381 "EHLO
-        mail-lf1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbhCZNdq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 09:33:46 -0400
-Received: by mail-lf1-f42.google.com with SMTP id 75so7724390lfa.2;
-        Fri, 26 Mar 2021 06:33:45 -0700 (PDT)
+        id S230153AbhCZNdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 09:33:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229671AbhCZNdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 09:33:41 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41DCC0613B1
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:33:34 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 15so7462532ljj.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Mar 2021 06:33:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=i4GckMD3jxBZ1SjM7hkwcHVsj1vCO9BsCUB+cH+LhOs=;
+        b=kXzzQdVIRqy9FvzUdXBBbv3rJAOhIWuMYrhZ7IXZBeMJQq5YXE7VQiIgY0iILSPfwn
+         x5GW4RgOUWcGRw4M+nmh+2Hneji3XF8hhHHku+m9mb8jwM1l2x0r1NvDowD5BTyZ3E9g
+         AkBBM39lcNIsYBry5zrekpLV9roz4suZ3qxV0jMS2KTVYYg93rhTF4yV4Ai7eiTflfR5
+         B+F5bieJl8n5Zl1eearOsMRycrJWJ0cwNEwARiLs2T6Tf4oIdsCj36cCZOmQJyRHYEYy
+         hFpAFkQy1TeniIlDWDgfLiH0SNJXqtI5IYM19Fw45JtmfDAv8eKKwd580gSA4BxaCjAO
+         lP/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=6L0iVFEX9yO7pm5mzQ9o4ynjIkd8dmTYsKzvYFQIVDE=;
-        b=M+gbP8GivEID9prYajARFo60euvB4TyX5km71cDWNZn90jt91po/JaslLRUOQtWDE2
-         S/RCvCTfdQPYJzO4M1v2Q6OERR4+Dj2UQvAQAQtuEyHn6FxzMhfeNwk3gc786gL4oca3
-         29a+xLirjV9iwHV1/OeY6ufZZuMBVR3MEEyPfU/ub35x7MxNXluKiSgTSriCiFprLagG
-         UoSOAeIn24OaOj0fuOg99DymBcMlrK2QCSAJwa+MI2SfPibV8NjhsuTnml4mpWCN+lFr
-         3ne4jgFgiEuNhuUP1lr953Okya8HLkzpsYd24rOfMF98MuKSMST+rcrT4rAcWHyVS574
-         yugQ==
-X-Gm-Message-State: AOAM530DICB9lQPYbhR3YfbYsIeGkU2kbCyEqJJrvVXUP+fHVWxv3zS3
-        5H1n4nsDfg2nEEEfib9GsO8=
-X-Google-Smtp-Source: ABdhPJzRiqdsfCtduyTTdqTzpFlCY4a7efT17ikR11p9/C77PAl86stoXG4xK7TbsoSzO0AzapLOmA==
-X-Received: by 2002:a05:6512:1191:: with SMTP id g17mr8081119lfr.87.1616765624254;
-        Fri, 26 Mar 2021 06:33:44 -0700 (PDT)
-Received: from dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
-        by smtp.gmail.com with ESMTPSA id l12sm1168804ljg.39.2021.03.26.06.33.42
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=i4GckMD3jxBZ1SjM7hkwcHVsj1vCO9BsCUB+cH+LhOs=;
+        b=SiSTNVQYUDbN0QLAY88ukz8nJ4wDnIOxMNiD81GglIuGcMNF/vrTIqEEYxPxVTImq1
+         gZqYfqMY56+iJLvFv0679UmXUrn4DEGq/xYA8tQuzOmo6ojdGB11xm0rtjyj+CxZGQek
+         nJFMDUYhKDj3BmfxZpMowVnx+hW+Hn721VI7jILjMfYsIZMYNRX/+flpHJvaXlSzDm0k
+         7aZWaT71PBaTCK926r+1CR/eWGhVzttlEQTpxOe/EqrwV/VguiWsE7EvQrAeHE3v37CA
+         dQwnajUj0+/3j7sd9TdWLGgndGxOgFcbeJs6tnDsdvIVpEfX3AgfCRsZ08vhPND8vSBi
+         AVZQ==
+X-Gm-Message-State: AOAM530EMNwnpRoBKYb3xLkR3Ku//mMwHZNb1/RX6dx00bIXL1MU/rBn
+        oHqgvn7V0di2Q/2OLroOYrRLTjLCJrQpAqJu
+X-Google-Smtp-Source: ABdhPJwA5e/nPEio+8dizSPpoa9ZiiGrO2zKbFmnVVhATcHjSfvKbfrQUR8vnhVpnF3urqHo/Q32zw==
+X-Received: by 2002:a2e:9b16:: with SMTP id u22mr9595624lji.184.1616765612840;
+        Fri, 26 Mar 2021 06:33:32 -0700 (PDT)
+Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id w28sm870344lfk.185.2021.03.26.06.33.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Mar 2021 06:33:43 -0700 (PDT)
-Message-ID: <8853471c798ce3dbbbd939c05a58fa5ce40be605.camel@fi.rohmeurope.com>
-Subject: Re: [PATCH v4 09/16] gpio: support ROHM BD71815 GPOs
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-In-Reply-To: <CAHp75VdxRkX15Ts+L1UJdXbpoaTu3Ue6o9o=Yh2cRCXCEi1jwA@mail.gmail.com>
-References: <cover.1616566395.git.matti.vaittinen@fi.rohmeurope.com>
-         <b2164e5965218f270e17bf29e00ad5c5a0b54bcf.1616566395.git.matti.vaittinen@fi.rohmeurope.com>
-         <CAHp75VdxRkX15Ts+L1UJdXbpoaTu3Ue6o9o=Yh2cRCXCEi1jwA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Fri, 26 Mar 2021 06:33:32 -0700 (PDT)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be overridden from DT
+In-Reply-To: <20210326125720.fzmqqmeotzbgt4kd@skbuf>
+References: <20210326105648.2492411-1-tobias@waldekranz.com> <20210326105648.2492411-3-tobias@waldekranz.com> <20210326125720.fzmqqmeotzbgt4kd@skbuf>
+Date:   Fri, 26 Mar 2021 14:33:31 +0100
+Message-ID: <87h7kykpjo.fsf@waldekranz.com>
 MIME-Version: 1.0
-Date:   Fri, 26 Mar 2021 15:33:29 +0200
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Fri, Mar 26, 2021 at 14:57, Vladimir Oltean <olteanv@gmail.com> wrote:
+> Hi Tobias,
+>
+> On Fri, Mar 26, 2021 at 11:56:47AM +0100, Tobias Waldekranz wrote:
+>>  	} else {
+>> -		dst->tag_ops = dsa_tag_driver_get(tag_protocol);
+>> -		if (IS_ERR(dst->tag_ops)) {
+>> -			if (PTR_ERR(dst->tag_ops) == -ENOPROTOOPT)
+>> -				return -EPROBE_DEFER;
+>> -			dev_warn(ds->dev, "No tagger for this switch\n");
+>> -			dp->master = NULL;
+>> -			return PTR_ERR(dst->tag_ops);
+>> -		}
+>> +		dst->tag_ops = tag_ops;
+>>  	}
+>
+> This will conflict with George's bug fix for 'net', am I right?
+> https://patchwork.kernel.org/project/netdevbpf/patch/20210322202650.45776-1-george.mccollister@gmail.com/
 
-On Fri, 2021-03-26 at 13:26 +0200, Andy Shevchenko wrote:
-> On Wed, Mar 24, 2021 at 12:20 PM Matti Vaittinen
-> <matti.vaittinen@fi.rohmeurope.com> wrote:
-> > Support GPO(s) found from ROHM BD71815 power management IC. The IC
-> > has two
-> > GPO pins but only one is properly documented in data-sheet. The
-> > driver
-> 
-> in the datasheet
-> 
-> > exposes by default only the documented GPO. The second GPO is
-> > connected to
-> > E5 pin and is marked as GND in data-sheet. Control for this
-> > undocumented
-> 
-> in the datasheet
-> 
-> > pin can be enabled using a special DT property.
-> > 
-> > This driver is derived from work by Peter Yang <
-> > yanglsh@embest-tech.com>
-> > although not so much of original is left.
-> 
-> of the original
-> 
-> Below my comments independently on the fact if this driver will be
-> completely rewritten, consider them as a good practice for your new
-> contribution.
+Yes; this version also fixes George's problem I think, as we do not
+assign dst->tag_ops until we know it is good, but it will not merge
+cleanly.
 
-Thank you for the review. I appreciate your help although I don't
-always agree necessity regarding all of the styling suggestions :) I
-did not respond here to the suggestions I agreed with.
+> Would you mind resending after David merges 'net' into 'net-next'?
 
-As Linus pointed out, few of the ROHM drivers should be revised for
-regmap_gpio usage in near future. I will definitely go through all the
-comments at that point if there is no reason to respin series earlier.
+Sure thing. Should I then call that v2 or a resend of v1? The patches
+will not be identical, so v2 I guess?
 
-
-> +       int val;
-> > +
-> > +       ret = regmap_read(bd71815->regmap, BD71815_REG_GPO, &val);
-> > +       if (ret)
-> > +               return ret;
-> > +       return (val >> offset) & 1;
-> 
-> !!(val & BIT(offset)) can also work and be in alignment with the
-> below code.
-
-This is an opinion, but to me !!(val & BIT(offset)) looks more
-confusing. I don't see the benefit from the change.
-
-> 
-> ...
-> 
-> > +       if (!bd71815->e5_pin_is_gpo && offset)
-> > +               return;
-> 
-> I wonder if you can use valid_mask instead of this.
-
-Do you mean re-naming the e5_pin_is_gpo to valid_mask? Or do you mean
-some GPIO framework internal feature allowing to define valid pins? (If
-my memory serves me right one can set invalid pins from DT - but by
-default all pins are valid and here we want to invalidate a pin by
-default). For renaming I don't see the value - if internal feature can
-be used then there may be value. Thanks for the pointer, I'll look what
-I find.
-
-> 
-> ...
-> 
-> > +       bit = BIT(offset);
-> 
-> Can be moved to the definition block.
-
-I don't like doing the assignment before we check if the operation is
-valid. And, making assignments which are not plain constants in
-declaration make reading the declaration much harder.
-
-> ...
-> 
-> > +       default:
-> > +               break;
-> > +       }
-> > +       return -EOPNOTSUPP;
-> 
-> You may return directly from default.
-
-I think there used to be compilers which didn't like having the return
-inside a block - even if the block was a default. I also prefer seeing
-return at the end of function which should return a value.
-
-> 
-> ...
-> 
-> > +       int ret;
-> > +       struct bd71815_gpio *g;
-> > +       struct device *dev;
-> > +       struct device *parent;
-> 
-> Reversed xmas tree order.
-
-What is the added value here? I understand alphabetical sorting - it
-helps looking if particular entry is included. I also understand type-
-based sorting. But reverse Xmas tree? I thin I have heard it eases
-reading declarations - which is questionable in this case. Double so
-when you also suggest moving assignments to declaration block which
-makes it _much_ harder to read? I won't change this unless it is
-mandated by the maintainers.
-
-> 
-> ...
-> 
-> > +       /*
-> > +        * Bind devm lifetime to this platform device => use dev
-> > for devm.
-> > +        * also the prints should originate from this device.
-> > +        */
-> 
-> Why is this comment needed?
-> 
-> 
-> > +       /* The device-tree and regmap come from MFD => use parent
-> > for that */
-> 
-> Why do you need this comment?
-> 
-> > +       parent = dev->parent;
-
-It is not always obvious (especially for someone not reading MFD driver
-code frequently) why we use parent device for some things and the
-device being probed to some other stuff. Typically this is not needed
-if the device is not MFD sub-device. And again, the comments in the
-middle of declaration block look confusing to me. I think removing
-comments and moving these to declaration make readability _much_ worse.
-
-> ...
-> 
-> > +       g->e5_pin_is_gpo = of_property_read_bool(parent->of_node,
-> > +                                                "rohm,enable-
-> > hidden-gpo");
-> 
-> You may use device_property_read_bool().
-
-Out of the curiosity - is there any other reason but ACPI? ACPI support
-can be added later if needed. I still think you're correct. This is
-definitely one of the points that fall in the category of things "I
-must consider as a good practice for (my) new contribution". So I try
-to keep this in mind in the future.
-
-> > +       g->chip.of_node = parent->of_node;
-> 
-> Redundant. GPIO library does it for you and even better.
-
-So I can nowadays just omit this? Thanks!
-
-> > +       ret = devm_gpiochip_add_data(dev, &g->chip, g);
-> > +       if (ret < 0) {
-> > +               dev_err(dev, "could not register gpiochip, %d\n",
-> > ret);
-> > +               return ret;
-> > +       }
-> > +
-> > +       return ret;
-> 
-> It's as simply as
-> return devm_gpiochip_add_data(...);
-
-Hm. I think you're right. The print does not add much value here.
-Thanks.
-
-> 
-> ...
-> 
-> > +static const struct platform_device_id bd7181x_gpo_id[] = {
-> > +       { "bd71815-gpo" },
-> > +       { },
-> 
-> No comma for the terminator line.
-> 
-> > +};
-> > +MODULE_DEVICE_TABLE(platform, bd7181x_gpo_id);
-> 
-> Why do you need this ID table exactly?
-> You have the same name as in the platform driver structure below.
-
-This driver was also supporting another IC (BD71817) - but as far as I
-know the BD71817 is no longer used too much so I dropped it. The ID
-table was left with this one entry only. I will see if this is any more
-needed. Thanks.
-
-> 
-> > +static struct platform_driver gpo_bd71815_driver = {
-> > +       .driver = {
-> > +               .name   = "bd71815-gpo",
-> > +               .owner  = THIS_MODULE,
-> 
-> This is done by module_*_driver() macros, drop it.
-> 
-> > +       },
-> > +       .probe          = gpo_bd71815_probe,
-> > +       .id_table       = bd7181x_gpo_id,
-> > +};
-> > +
-> 
-> > +MODULE_AUTHOR("Peter Yang <yanglsh@embest-tech.com>");
-> 
-> And I don't see a match with a committer/submitter/co-developer/etc.
-> Please, make corresponding fields and this macro (or macros, you may
-> have as many MODULE_AUTHOR() entries as developers of the code)
-> aligned to each other.
-
-I never knew there could be many MODULE_AUTHOR() entries. Thanks for
-pointing it out.
-
-> 
-> > +MODULE_DESCRIPTION("GPO interface for BD71815");
-> > +MODULE_LICENSE("GPL");
-
-Best Regards
-	--Matti
-
+> This process usually looks like commit d489ded1a369 ("Merge
+> git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net"). However,
+> during this kernel development cycle, I have seen no merge of 'net' into
+> 'net-next' since commit 05a59d79793d ("Merge
+> git://git.kernel.org:/pub/scm/linux/kernel/git/netdev/net"), but that
+> comes directly from Linus Torvalds' v5.12-rc2.
+>
+> Nonetheless, at some point (and sooner rather than later, I think),
+> David or Jakub should merge the two trees. I would prefer to do it this
+> way because the merge is going to be a bit messy otherwise, and I might
+> want to cherry-pick these patches to some trees and it would be nice if
+> the history was linear.
+>
+> Thanks!
