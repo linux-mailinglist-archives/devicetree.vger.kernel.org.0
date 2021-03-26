@@ -2,122 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3216C34A3A0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6895134A3FE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Mar 2021 10:17:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229474AbhCZJGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Mar 2021 05:06:13 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:8286 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229589AbhCZJFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Mar 2021 05:05:49 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12Q91f9o008067;
-        Fri, 26 Mar 2021 10:05:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=SfGDczMFdVs4NsLs7fVrUK95O9Wm/idmWV1zG/3B7ks=;
- b=jL43Rz2N0zLtHTkJh3ufuzEUV8+Z3TbBptIr1IKRqDN8NAiocMg+wO/0XU2hGOyNDTwW
- ji0JrhS0pLXUYBZWbzfUe4zCkA4B5smB/bpIbu1BRy37/gKzIgYmcHW+3MjOekBfu7St
- +q7Odmf1I+Vxhl+x5/cxHpAi37/K5p9/CPuFZLWZVAunbLZSc00vGWhtHFFLfDsMBufx
- 5tAJqD6zymWVKRgUiyp7ZUFhcOST0nnyDAAtKv8fEvUiVNXv7PPjlQUvEJ/6C99kbPBv
- iKsINgVvkqEB7VtkWTM2NLgG8bxpW2PuFoTM6SF0eP5EuQXhC4FCK806xy2XFqWfvED8 rg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37h136320v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 Mar 2021 10:05:35 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4A44A100034;
-        Fri, 26 Mar 2021 10:05:34 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 323C924187A;
-        Fri, 26 Mar 2021 10:05:34 +0100 (CET)
-Received: from lmecxl0995.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 26 Mar
- 2021 10:05:33 +0100
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add vbus-supply optional property
- to phy-stm32-usbphyc
-To:     Rob Herring <robh@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20210317160954.15487-1-amelie.delaunay@foss.st.com>
- <20210317160954.15487-2-amelie.delaunay@foss.st.com>
- <20210326002851.GA2031564@robh.at.kernel.org>
-From:   Amelie DELAUNAY <amelie.delaunay@foss.st.com>
-Message-ID: <5c0d0bc5-1243-fcda-4578-da6cad80c53c@foss.st.com>
-Date:   Fri, 26 Mar 2021 10:05:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210326002851.GA2031564@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-26_02:2021-03-26,2021-03-26 signatures=0
+        id S230196AbhCZJQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Mar 2021 05:16:24 -0400
+Received: from lucky1.263xmail.com ([211.157.147.135]:42930 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230436AbhCZJQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Mar 2021 05:16:07 -0400
+Received: from localhost (unknown [192.168.167.70])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 0BC5CA8B38;
+        Fri, 26 Mar 2021 17:15:52 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P13407T140450203645696S1616750150047354_;
+        Fri, 26 Mar 2021 17:15:51 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <2f809fe362478ed8f845c1cf2debc24f>
+X-RL-SENDER: zhangqing@rock-chips.com
+X-SENDER: zhangqing@rock-chips.com
+X-LOGIN-NAME: zhangqing@rock-chips.com
+X-FST-TO: robh+dt@kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Elaine Zhang <zhangqing@rock-chips.com>
+To:     robh+dt@kernel.org, heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cl@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com, tony.xie@rock-chips.com,
+        finley.xiao@rock-chips.com, Elaine Zhang <zhangqing@rock-chips.com>
+Subject: [PATCH v5 00/11] soc: rockchip: power-domain: add rk3568 powerdomains
+Date:   Fri, 26 Mar 2021 17:15:36 +0800
+Message-Id: <20210326091547.12375-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Fix power-controller node names for dtbs_check.
+Convert power domain documentation to json-schema.
+Add a meaningful power domain name.
+Support power domain function for RK3568 Soc.
 
-On 3/26/21 1:28 AM, Rob Herring wrote:
-> On Wed, Mar 17, 2021 at 05:09:53PM +0100, Amelie Delaunay wrote:
->> This patch adds vbus-supply optional property to phy sub-nodes.
->> A regulator for USB VBUS may be needed for host mode.
->>
->> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
->> ---
->>   Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
->> index 018cc1246ee1..ad2378c30334 100644
->> --- a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
->> +++ b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
->> @@ -71,6 +71,9 @@ patternProperties:
->>         phy-supply:
->>           description: regulator providing 3V3 power supply to the PHY.
->>   
->> +      vbus-supply:
->> +        description: regulator providing 5V Vbus to the USB connector.
-> 
-> Unless Vbus is powering the phy, then this only belongs in the USB
-> connector node.
-> 
+Change in V5:
+[PATCH v5 1/11]: New.
+[PATCH v5 2/11]: New.
+[PATCH v5 3/11]: New.
+[PATCH v5 4/11]: New.
+[PATCH v5 5/11]: New.
+[PATCH v5 6/11]: New.
+[PATCH v5 7/11]: New.
+[PATCH v5 8/11]: No change. Same as [PATCH v4 1/4].
+[PATCH v5 9/11]: [PATCH v4 2/4] Fix up yaml code styles.
+[PATCH v5 10/11]: No change. Same as [PATCH v4 3/4].
+[PATCH v5 11/11]: [PATCH v4 4/4] add a meaningful power domain name for
+RK3568 Soc.
 
-Do you mean I should declare a connector node as a child of the phy node 
-and get the vbus-supply property from this connector node ?
+Change in V4:
+[PATCH v4 1/4]: No change.
+[PATCH v4 2/4]: Fix up yaml code styles. Remove the new compatible to
+[PATCH v4 3/4]
+[PATCH v4 3/4]: Adding new compatible for RK3568 Soc.
+[PATCH v4 4/4]: No change. Same as [PATCH v3 3/3].
 
-In case of a on-board autonomous hub between the phy and the connectors, 
-so no driver to drive it nor to get the vbus-supply property to provide 
-VBUS to the hub, then the connectors, how to use connector ?
+Change in V3:
+[PATCH v3 1/3]: No change.
+[PATCH v3 2/3]: Fix up the code styles and add rk3568 base on:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+[PATCH v3 3/3]: No change.
 
-[USB controller]===[USB PHY]===[(USB HUB)]===|> USB A connector
-                               /              |> USB A connector
-                             VBUS             |> USB A connector
-                                              |> USB A connector
+Change in V2:
+[PATCH v2 1/3]: No change.
+[PATCH v2 2/3]: Fix up yaml code styles.
+[PATCH v2 3/3]: No change.
 
-Please advise.
+Elaine Zhang (11):
+  arm: dts: rockchip: Fix power-controller node names for rk3066a
+  arm: dts: rockchip: Fix power-controller node names for rk3188
+  arm: dts: rockchip: Fix power-controller node names for rk3288
+  arm64: dts: rockchip: Fix power-controller node names for px30
+  arm64: dts: rockchip: Fix power-controller node names for rk3328
+  arm64: dts: rockchip: Fix power-controller node names for rk3399
+  soc: rockchip: pm-domains: Add a meaningful power domain name
+  dt-bindings: add power-domain header for RK3568 SoCs
+  dt-bindings: power: rockchip: Convert to json-schema
+  dt-bindings: power: rockchip: Add bindings for RK3568 Soc
+  soc: rockchip: power-domain: add rk3568 powerdomains
 
-Regards,
-Amelie
+ .../power/rockchip,power-controller.yaml      | 293 ++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt    | 136 --------
+ arch/arm/boot/dts/rk3066a.dtsi                |   6 +-
+ arch/arm/boot/dts/rk3188.dtsi                 |   6 +-
+ arch/arm/boot/dts/rk3288.dtsi                 |   8 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |  16 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |   6 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  40 +--
+ drivers/soc/rockchip/pm_domains.c             | 248 ++++++++-------
+ include/dt-bindings/power/rk3568-power.h      |  32 ++
+ 10 files changed, 509 insertions(+), 282 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+ create mode 100644 include/dt-bindings/power/rk3568-power.h
 
->> +
->>         "#phy-cells":
->>           enum: [ 0x0, 0x1 ]
->>   
->> -- 
->> 2.17.1
->>
+-- 
+2.17.1
+
+
+
