@@ -2,128 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8415034B806
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 16:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0B434B811
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 16:59:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbhC0PeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 11:34:25 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:56821 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229582AbhC0PeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Mar 2021 11:34:12 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 67F1258055A;
-        Sat, 27 Mar 2021 11:34:12 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute3.internal (MEProxy); Sat, 27 Mar 2021 11:34:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm1; bh=C7jUmzBlfmU9VFdYvmkyNor1Zqsj
-        5fCr/9TW5SN6eG4=; b=cejNuovTAzdGTboZGSEobUwyj2OEBYn4LYOBN+UDnLmH
-        f55CfBtYftdhKeCuZ+MGt8o7smZ0EaSsAfy9iVYge7EJ2AbYWRo1xUnr41Bsj5WC
-        JfWy44cCOpuaKx9B37gWO3zrJa8jVeRXYWbzNs8k3Yqk+49lM5BhCWgHc6rnpnO7
-        3wttehSaRphhIJ091wvtCkbu7dF8xxNryyGWIQzkq8y5wRdeQqep4R6dVRt33gCQ
-        w3HIl+vARuRnFz9mUMMKR66Kfo1No4Szo0sW2mPFQa0kAmh74tIPEi3kNSHbEUX8
-        MkGRf++HdPhPu6V7OjWwMP6vxHsLoyVuVe6ZUNfvdg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=C7jUmz
-        BlfmU9VFdYvmkyNor1Zqsj5fCr/9TW5SN6eG4=; b=KSStNAPRTX4FY94hwirZH5
-        NtxQPIDTc2Tgq/dWZS3eABO/xJiFidm9zflpeUlb6i3Q6DAwnXeIYyVRqx1AcKLS
-        1qz7rYzsaNhX+T//2nR9xIwnQM9K0NNPkBSEQIS+phXRVysFUK3lhqaps3z3lHrE
-        F+9rTCBH0TKNRbHB5Y6roDui4sL0VdPnYuaQBSIYPO83epf8r2kGsg9eOp7b8JZa
-        F0+XDu/dxfdZQvTO7HCp/wTbXjZEnAZhte+dAi6doLS88uyE8twBdGVHcyZBHGPg
-        dpQ/9Y21a3E7TS2fZ4SJqnuOW5Z0qzShqpqbIu+WsrMMqxluMExX9TqFQwdfhPHQ
-        ==
-X-ME-Sender: <xms:clBfYOFPFuws3Bogj8L6vut9IW4jx38qBwnkGazFCO1hfksMFHfvtw>
-    <xme:clBfYPVEppoHRsrWMflX_-brzskMBca5R-sXBE2kVM8R6P9Fz9EFP366wzJsdWzj8
-    apJiIt9R_HhOVossw4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehgedgjeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:clBfYILS-zl8gTS50EZ6Xnlf0E7o21PnqahQbGpOM0GfyYJ9tL70GA>
-    <xmx:clBfYIHZFADctNDkDLF7q5lbiLRj-gRWHR9icvvmgbK1GtMPbOoTxQ>
-    <xmx:clBfYEVGemGhCYso8sTXthkYfvkPDIe96iyd9aMHfUdaQo0fGTSzzw>
-    <xmx:c1BfYDNrk4QCK_Cx8E802W2WRJYlwHEiW_qIyGoCM2tjsK1kUrDCZIeZ8f4>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6169E51C005E; Sat, 27 Mar 2021 11:34:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <26c9b3cc-a04f-444d-ada4-0c9bc99684e5@www.fastmail.com>
-In-Reply-To: <33b3ce35-c42f-331a-79a2-e38917d588ef@arm.com>
-References: <20210320151903.60759-1-sven@svenpeter.dev>
- <c1bcc0609e920bc6@bloch.sibelius.xs4all.nl>
- <20210323205346.GA1283560@robh.at.kernel.org>
- <43685c67-6d9c-4e72-b320-0462c2273bf0@www.fastmail.com>
- <33b3ce35-c42f-331a-79a2-e38917d588ef@arm.com>
-Date:   Sat, 27 Mar 2021 16:33:29 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Robin Murphy" <robin.murphy@arm.com>,
-        "Rob Herring" <robh@kernel.org>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>
-Cc:     iommu@lists.linux-foundation.org, joro@8bytes.org,
-        "Will Deacon" <will@kernel.org>, "Arnd Bergmann" <arnd@kernel.org>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Marc Zyngier" <maz@kernel.org>, mohamed.mediouni@caramail.com,
-        stan@corellium.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] Apple M1 DART IOMMU driver
-Content-Type: text/plain
+        id S230127AbhC0P65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 11:58:57 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:44668 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230043AbhC0P6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 11:58:35 -0400
+Received: by mail-oi1-f182.google.com with SMTP id a8so8860152oic.11;
+        Sat, 27 Mar 2021 08:58:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=5SuxDM5eMFIugBHxooQXY5NCqnrI/pfH9JxMhzhQSys=;
+        b=N9kFnbS6gGfP9V0PO1R7dcWCxKlanpS3/k9X+ZXcvWBtg1iEnbsa0s8o6ROndYYPNa
+         CCZ37TmPKSRmi8mck7AzVHOwEAXLLYN6yDv4wubqxNvJsiiH20x8GfZ4gOmGLPyuM0gI
+         Vw8LSQQ+6QqUplIWEoyOiXjLMeBHMzAAcLQOYi7HMtdoJyaaMccxKd+zWl4VUe/2NGea
+         gg062Q6ZnbTt/fEHjUHCVMYSRWR8reHvP3LxQ9JZBPE0bLR39v7mY+u6ryjkOxLZwhdp
+         ZAXamwxgglDTTQK4X9cfSOcYddv/ahxEBQgXfDrQjOCkP6RQf8Zk6X/veKqcmIvZt/N/
+         /rxg==
+X-Gm-Message-State: AOAM5308YiO4MzsVBrRFjnk7gg8TeWLZNRFLrV9V460rYStXFgb94JVC
+        G/9p+3RQZwMn0OMKsahgWA==
+X-Google-Smtp-Source: ABdhPJxLhrLhjniQGWIDx5mRjBUcw0OCSLrNYwJ4ofUnvan/uVGVBDySVtY2LfcLMGrmxSINDeakSA==
+X-Received: by 2002:aca:d514:: with SMTP id m20mr13540852oig.47.1616860715194;
+        Sat, 27 Mar 2021 08:58:35 -0700 (PDT)
+Received: from robh.at.kernel.org ([172.58.99.177])
+        by smtp.gmail.com with ESMTPSA id o6sm3059852otj.81.2021.03.27.08.58.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Mar 2021 08:58:34 -0700 (PDT)
+Received: (nullmailer pid 157291 invoked by uid 1000);
+        Sat, 27 Mar 2021 15:58:29 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jim Quinlan <jim2101024@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-pci@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        james.quinlan@broadcom.com, linux-kernel@vger.kernel.org
+In-Reply-To: <20210326191906.43567-2-jim2101024@gmail.com>
+References: <20210326191906.43567-1-jim2101024@gmail.com> <20210326191906.43567-2-jim2101024@gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
+Date:   Sat, 27 Mar 2021 09:58:29 -0600
+Message-Id: <1616860709.150621.157290.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
-
-
-On Thu, Mar 25, 2021, at 12:50, Robin Murphy wrote:
-> On 2021-03-25 07:53, Sven Peter wrote:
-> > The iommu binding documentation [1] mentions that
-> > 
-> >      The device tree node of the IOMMU device's parent bus must contain a valid
-> >      "dma-ranges" property that describes how the physical address space of the
-> >      IOMMU maps to memory. An empty "dma-ranges" property means that there is a
-> >      1:1 mapping from IOMMU to memory.
-> > 
-> > which, if I understand this correctly, means that the 'dma-ranges' for the
-> > parent bus of the iommu should be empty since the DART hardware can see the
-> > full physical address space with a 1:1 mapping.
-> > 
-> > 
-> > The documentation also mentions that
-> > 
-> >       When an "iommus" property is specified in a device tree node, the IOMMU
-> >       will be used for address translation. If a "dma-ranges" property exists
-> >       in the device's parent node it will be ignored.
-> > 
-> > which means that specifying a 'dma-ranges' in the parent bus of any devices
-> > that use the iommu will just be ignored.
+On Fri, 26 Mar 2021 15:18:59 -0400, Jim Quinlan wrote:
+> Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
+> allows optional regulators to be attached and controlled by the PCIe RC
+> driver.  That being said, this driver searches in the DT subnode (the EP
+> node, eg pci@0,0) for the regulator property.
 > 
-> I think that's just wrong and wants updating (or at least clarifying). 
-> The high-level view now is that we use "dma-ranges" to describe 
-> limitations imposed by a bridge or interconnect segment, and that can 
-> certainly happen upstream of an IOMMU. As it happens, I've just recently 
-> sent a patch for precisely that case[1].
+> The use of a regulator property in the pcie EP subnode such as
+> "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
+> file at
 > 
-> I guess what it might have been trying to say is that "dma-ranges" 
-> *does* become irrelevant in terms of constraining what physical memory 
-> is usable for DMA, but that shouldn't imply that its meaning doesn't 
-> just shift to a different purpose.
+> https://github.com/devicetree-org/dt-schema/pull/54
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-Should I add a patch to clarify this paragraph for v2 or submit a separate
-one-off patch? I'm not entirely sure about the process here but I could add
-a Suggested-by: to the commit if that's fine with you.
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/pci/brcm,stb-pcie.example.dts:48.48-49 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/pci/brcm,stb-pcie.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1380: dt_binding_check] Error 2
 
-Best,
+See https://patchwork.ozlabs.org/patch/1458942
 
-Sven
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
