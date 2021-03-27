@@ -2,73 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B3134B8D4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC3834B8DD
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhC0SQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 14:16:42 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:36726 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhC0SQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:16:28 -0400
-Received: by mail-ot1-f48.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso8363519otq.3;
-        Sat, 27 Mar 2021 11:16:27 -0700 (PDT)
+        id S230204AbhC0SYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 14:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230139AbhC0SYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:24:15 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54530C0613B3
+        for <devicetree@vger.kernel.org>; Sat, 27 Mar 2021 11:24:15 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id x21-20020a17090a5315b029012c4a622e4aso3248064pjh.2
+        for <devicetree@vger.kernel.org>; Sat, 27 Mar 2021 11:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=+HkyJ4r/cUeRZEJEAyr+q64APIM8DDyM52+WtIHA4MI=;
+        b=WbIwqBuYODjCUQgGQAO2Xh1gnLeRIQCrfeZKPcOO0wgFv3UV7eZsidDHy9ar5By5Ss
+         y3dZ58si+/v7dsNKQ5ImkdLDWDympIV8h+vOI1SOs7ATEqiIUDyDArApg8aOywDcPTav
+         Efx+HA117Ppy4J9Aoy4RBDzWHOA80OzTDHBrY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EiWtY8HAoFaOHhO63HVuyEaJaKbqYOtxk9O+hQVc9lM=;
-        b=V6xvQKSedAMY3/rQjNo0qsZmIJqSJwAObTUro2HJq8pEZXTvJjA65OhDXAA7aOv0Br
-         FHOWg5DEGvf/BpSa5Tmo7RLjMH5TuaBu3QhMUy2vCYrK56VBeC/GnR/LFpjdtbqfErDw
-         sEkQoA0rSBLqrmeFkI0ISj0FCJRlk25dpv/YbNNqSSTw+KZCT+c281OfYy6HfW+cgqvJ
-         H0QLUgf28QFSPHR6aeIt8oHsRJH//BRsDTDPZyl3EC0lm+CMiQPyGk9xzX0Be/J4BbXq
-         D+2g6hdBOGzntIxW7zVOW5q/UuS5HveZ9oD9v/eEbj8AIWbsnFuR3KW5mOHqT88NK4ok
-         yS1Q==
-X-Gm-Message-State: AOAM531jI+Gf1dDmKdneAlQgg5dpq6KZaNbXQjM4C9bE/sWugn0Q7Iwa
-        MB68SUa84YkDgfxkCKN8fA==
-X-Google-Smtp-Source: ABdhPJwDYQJ5WcvZEadfqIsyZqwt9zAduXFDT6jUipxdUcQDw9Pe45WBjGQLJV4oV4Vz2u+NK2mjrw==
-X-Received: by 2002:a9d:7a87:: with SMTP id l7mr16121284otn.367.1616868987398;
-        Sat, 27 Mar 2021 11:16:27 -0700 (PDT)
-Received: from robh.at.kernel.org ([172.58.99.41])
-        by smtp.gmail.com with ESMTPSA id m14sm3087890otn.69.2021.03.27.11.16.23
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=+HkyJ4r/cUeRZEJEAyr+q64APIM8DDyM52+WtIHA4MI=;
+        b=duZBI/AHYsPhHbhdyR/kUVaZxDwIE+eX2idFlSV12tyD8dBnqtzZtpYzwi2y80llqj
+         dlEwDWnujiE3wMLNcFXg39EGlITONERNEwrJq6TaKH6YfHtzd+UroiKOYPxvGKsnKQDg
+         l1eIpbif0lZkB7iub9VxZHYr9Mp4WeDHFn3VEP8VQIcUB6J5inehMjWyDjCmiCVHoee8
+         SzqEXhbrYxOp3upuxPzt4P6MBCg9EAGPyinPfgOmTjIQmmelSPMcGFHIbTjiWHZidQsV
+         m6OgUuqIks1xanixBbPsqXGlRVvGbXH2NJK/cD3gnNs81MrqwTny034INJgQGNAD8T8r
+         zdCQ==
+X-Gm-Message-State: AOAM533UQdojLSszZdnEpqherEzwMAex0lMvjn6VCozmx+qZ8V2b4rEG
+        xnzJkr7HRKSMkKdq0qB7kBAu/A==
+X-Google-Smtp-Source: ABdhPJynjwgI5oUqqbImRqE58g/QNNY5vcK4P5zwSWlbMqaRky2qrTiDnElsesEFPy9IeeNOynIoBQ==
+X-Received: by 2002:a17:902:9b8a:b029:e6:17bb:eff0 with SMTP id y10-20020a1709029b8ab02900e617bbeff0mr21494324plp.54.1616869454655;
+        Sat, 27 Mar 2021 11:24:14 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:201:4836:2ec9:9c88:3812])
+        by smtp.gmail.com with ESMTPSA id cp22sm11382811pjb.15.2021.03.27.11.24.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 11:16:26 -0700 (PDT)
-Received: (nullmailer pid 344794 invoked by uid 1000);
-        Sat, 27 Mar 2021 18:16:21 -0000
-Date:   Sat, 27 Mar 2021 12:16:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     devicetree@vger.kernel.org, maz@kernel.org, tglx@linutronix.de,
-        linus.walleij@linaro.org, robh+dt@kernel.org, bert@biot.com,
-        andy.shevchenko@gmail.com, bgolaszewski@baylibre.com,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: gpio: Binding for Realtek Otto GPIO
-Message-ID: <20210327181621.GA344012@robh.at.kernel.org>
-References: <cover.1616760183.git.sander@svanheule.net>
- <cda4ad68a031b60d407629e9232df495d3e260c2.1616760183.git.sander@svanheule.net>
+        Sat, 27 Mar 2021 11:24:14 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cda4ad68a031b60d407629e9232df495d3e260c2.1616760183.git.sander@svanheule.net>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210326175809.2923789-2-dmitry.baryshkov@linaro.org>
+References: <20210326175809.2923789-1-dmitry.baryshkov@linaro.org> <20210326175809.2923789-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v4 1/7] dt-bindings: phy: qcom,qmp-usb3-dp-phy: move usb3 compatibles back to qcom,qmp-phy.yaml
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Date:   Sat, 27 Mar 2021 11:24:12 -0700
+Message-ID: <161686945245.3012082.10570047641858984855@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Mar 2021 13:03:46 +0100, Sander Vanheule wrote:
-> Add a binding description for Realtek's GPIO controller found on several
-> of their MIPS-based SoCs (codenamed Otto), such as the RTL838x and
-> RTL839x series of switch SoCs.
-> 
-> A fallback binding 'realtek,otto-gpio' is provided for cases where the
-> actual port ordering is not known yet, and enabling the interrupt
-> controller may result in uncaught interrupts.
-> 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Quoting Dmitry Baryshkov (2021-03-26 10:58:03)
+> The commit 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy
+> information") has support for DP part of USB3+DP combo PHYs. However
+> this change is not backwards compatible, placing additional requirements
+> onto qcom,sc7180-qmp-usb3-phy and qcom,sdm845-qmp-usb3-phy device nodes
+> (to include separate DP part, etc). However the aforementioned nodes do
+> not inclue DP part, they strictly follow the schema defined in the
+> qcom,qmp-phy.yaml file. Move those compatibles, leaving
+> qcom,qmp-usb3-dp-phy.yaml to describe only real "combo" USB3+DP device no=
+des.
+>=20
+> Fixes: 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy info=
+rmation")
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Sandeep Maheswaram <sanm@codeaurora.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/gpio/realtek,otto-gpio.yaml      | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> 
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml         | 2 ++
+>  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Do=
+cumentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 626447fee092..0f42b36b0ac5 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -25,11 +25,13 @@ properties:
+>        - qcom,msm8998-qmp-pcie-phy
+>        - qcom,msm8998-qmp-ufs-phy
+>        - qcom,msm8998-qmp-usb3-phy
+> +      - qcom,sc7180x-qmp-usb3-phy
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Drop the x on sc7180?
+
+>        - qcom,sc8180x-qmp-ufs-phy
+>        - qcom,sc8180x-qmp-usb3-phy
+>        - qcom,sdm845-qhp-pcie-phy
+>        - qcom,sdm845-qmp-pcie-phy
+>        - qcom,sdm845-qmp-ufs-phy
+> +      - qcom,sdm845-qmp-usb3-phy
+>        - qcom,sdm845-qmp-usb3-uni-phy
+>        - qcom,sm8150-qmp-ufs-phy
+>        - qcom,sm8150-qmp-usb3-phy
+
+Otherwise
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
