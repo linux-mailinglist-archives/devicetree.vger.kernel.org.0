@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 256B334B897
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 18:47:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF6FB34B89E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 18:50:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbhC0Rq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 13:46:57 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:45573 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhC0Rqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 13:46:30 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 91-20020a9d08640000b0290237d9c40382so8280791oty.12;
-        Sat, 27 Mar 2021 10:46:29 -0700 (PDT)
+        id S230092AbhC0Rtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 13:49:40 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:38431 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230043AbhC0RtY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 13:49:24 -0400
+Received: by mail-ot1-f53.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so8316292otk.5;
+        Sat, 27 Mar 2021 10:49:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MvdlNB4rrh5cXUbkT13MasdcOB0zjm5lzGT4lbEJIpU=;
-        b=NoMcW0jvfAXJf2zORWwM4MKubvPJV0P5+Qo1xKiMtbEZrQf2rO3aY0REEcxF0rQ/sL
-         fZVHdcb+00PLo0gFuv6Z5h8mcGKpi3/fFHDZcVPcc7r9gjhW3OPhZtyE0t/0k48V8xg1
-         z3qvoRmUtqD08SAI+2WXPJvZDKcxuftlJ3ZwY16uJnJ18ggN+VGMYM5l4U4iHB/9AgfI
-         xQiSJBQMz4u3FnNgbfcPP1KujTRXz0xypM0ZkGFd4xuIv8AaviU7arcakZjOhJhFGzSQ
-         NeYM19PlHwrJa0ha+45r9k9USH1jjw7HtpUx797bcYGs2yM04ng0wh1fPX00R3s2EDDW
-         AzXg==
-X-Gm-Message-State: AOAM531GszlSdWmGyRiCv1t07xWJwglVndyRzyxsxoIH/allR1GTb2nZ
-        npCXSKvqVGzqvcptdxbmEg==
-X-Google-Smtp-Source: ABdhPJxtFyB4ZA46BkndEOd0gTTaFYH6ZjcKqbMiAWLj7IA5CckMcUOlz/Gvjbt/gmSlS/KlcbeEDw==
-X-Received: by 2002:a05:6830:1dfd:: with SMTP id b29mr16433356otj.48.1616867189474;
-        Sat, 27 Mar 2021 10:46:29 -0700 (PDT)
+        bh=TxaunK5j0AXYmEl9gm7hQTywtQwjsTwkNENu1sYzuWg=;
+        b=kGUa3xLeHKpsNE6JO0MAs4CNFEj+h4zwLUKL35e/YtXZIHENneyatwiMeXZKTaFdli
+         wy4y3gf+7Oo1kfc5VbKfFC5UNKpx9aIoXZlhIROM9yQxL4hUAdrAnu3GjeGjxdvt73fN
+         KW242ZILlCBgswxeHe+F+TcV6QuHQVoPCFLC72Xlmuqyz0WQpP8Eqq8dt7YdSMK2BcW7
+         ossLlTgLDnmpIo7s5ziCQkjnHExrr9fVDSWH9OhrKcGN2LwD5VR/kARL6KmHlF95wyRr
+         vKT42ZigeNtDQf2Dp2nsKmob+AcprmzEE8LgmMrRDpUR+Z83sCLAIgF73if6gc8a6GEj
+         ylXQ==
+X-Gm-Message-State: AOAM532xRBk6sQKzlmiIMiCmUqtPjzffCt+l4F86qqOVDQrFOhZX7Bxy
+        BwKC5UlyrnJr20ZdINt2jrQXhUAc4A==
+X-Google-Smtp-Source: ABdhPJzInKw7gY5QxpVn3hB/WrPt6eoCS2xzvi8DJ9n9ZJu/bkCOiGOmJa+fuqSeP7GNmqUCWofv8A==
+X-Received: by 2002:a05:6830:210e:: with SMTP id i14mr16544186otc.229.1616867364377;
+        Sat, 27 Mar 2021 10:49:24 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.107.88])
-        by smtp.gmail.com with ESMTPSA id i4sm2466697oik.21.2021.03.27.10.46.26
+        by smtp.gmail.com with ESMTPSA id c25sm3106350otk.35.2021.03.27.10.49.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 10:46:28 -0700 (PDT)
-Received: (nullmailer pid 305346 invoked by uid 1000);
-        Sat, 27 Mar 2021 17:46:24 -0000
-Date:   Sat, 27 Mar 2021 11:46:24 -0600
+        Sat, 27 Mar 2021 10:49:23 -0700 (PDT)
+Received: (nullmailer pid 309331 invoked by uid 1000);
+        Sat, 27 Mar 2021 17:49:20 -0000
+Date:   Sat, 27 Mar 2021 11:49:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alain Volmat <avolmat@me.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
+To:     Souradeep Chowdhury <schowdhu@codeaurora.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, vkoul@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 05/16] dt-bindings: clock: st: clkgen-pll: add new
- introduced compatible
-Message-ID: <20210327174624.GA305299@robh.at.kernel.org>
-References: <20210325075018.6598-1-avolmat@me.com>
- <20210325075018.6598-6-avolmat@me.com>
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH V2 1/5] dt-bindings: Added the yaml bindings for DCC
+Message-ID: <20210327174920.GA309261@robh.at.kernel.org>
+References: <cover.1616651305.git.schowdhu@codeaurora.org>
+ <5cd274f98b38d4b85c1ce212720b6b680f4a00f0.1616651305.git.schowdhu@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210325075018.6598-6-avolmat@me.com>
+In-Reply-To: <5cd274f98b38d4b85c1ce212720b6b680f4a00f0.1616651305.git.schowdhu@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Mar 2021 08:50:07 +0100, Alain Volmat wrote:
-> New compatible are added, supporting various kind of clkgen-pll
-> used for STiH407, STiH410 and STiH418
+On Thu, 25 Mar 2021 13:32:32 +0530, Souradeep Chowdhury wrote:
+> Documentation for Data Capture and Compare(DCC) device tree bindings
+> in yaml format.
 > 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
+> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/clock/st/st,clkgen-pll.txt | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      | 49 ++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
