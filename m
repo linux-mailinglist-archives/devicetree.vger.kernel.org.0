@@ -2,103 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F5634B900
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 490FD34B911
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 20:16:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbhC0Stl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 14:49:41 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:38520 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbhC0St3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:49:29 -0400
-Received: by mail-ot1-f51.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so8410229otk.5;
-        Sat, 27 Mar 2021 11:49:29 -0700 (PDT)
+        id S230350AbhC0TPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 15:15:24 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:33636 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230002AbhC0TOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 15:14:54 -0400
+Received: by mail-oo1-f50.google.com with SMTP id i25-20020a4aa1190000b02901bbd9429832so2090077ool.0;
+        Sat, 27 Mar 2021 12:14:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t9vjwbvSA4d41LnakPvjiWArh3waV0/TTjrDzhlkYGw=;
-        b=GrCusGQ4G6GfOsD8Dm25EWJrfAbl0Zia3LUA++nn+JHpc+tSE8f2VhnoiYBC9H8/Uy
-         ndUvgcswy29P3PYCs1DjBgQAZ3RoWxTKnZuqxoIXMlVsqnRf7nJoMf5FBVobVjecm6xk
-         SO8HtFBQK32xB4ioAtbUMwkQXlBTN9zbYL5rILNJX0H5v+T4iibNI24KNQdcEwtZjQ1A
-         ywQcA3fjwjLQIsLLcyvNj2sEPDBM2IEppImuzBMBDmraicIF8QaV7t9+8jh6y1x9Gs1+
-         tQjGiSFxY/CdtgQwPI8aFeAXkETss5OARZDFkR/uUgwEcvWqFFrcO1iEfUrCPSZn0RUN
-         Fc3w==
-X-Gm-Message-State: AOAM531Sls0YNzI4QvdWGUeQ4ZgEKtyYZfOKjlC5yb5EGVCgO9spYDpN
-        XiVCqNQmtXPvKY/B9lSdWg==
-X-Google-Smtp-Source: ABdhPJzcEQ/l3YzGg0qv1bIIijL8QD6vUoMjgfYQ79J1paaFNbOt8kLJUpdjEWD2HDxAhjgSM4fHyQ==
-X-Received: by 2002:a9d:6855:: with SMTP id c21mr13398834oto.146.1616870968778;
-        Sat, 27 Mar 2021 11:49:28 -0700 (PDT)
-Received: from robh.at.kernel.org ([172.58.99.41])
-        by smtp.gmail.com with ESMTPSA id x18sm3016496otr.73.2021.03.27.11.49.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RJM2bVHCK7BxNIGpfIcjAjD1sJBOUOHW5fDFqBo6mGU=;
+        b=FCfr5AYSKqT5b/nQLNHPIWPJHSU5+fQBrKdSqNiWhWjj6yX9bel2lNrjhbquBgyFs9
+         rmIsmN4j0L/dADQTe+opXP46cF/X/oZi4UhwtTvbVrwwa+FGcwF0bFEpEZrNIhw3SUej
+         XbodHKyPraOm8tInBy4t5gVhBUdMXvaP3lpJ1oPt6Sh9QrNdkpz794/j4KCIrADGiwxy
+         7OPfsz5qjQmrxKev1qyzXbTtN7toi2y4b2nsmJSXU/4sX+sCARQgsocOxqrnBfGReCHd
+         oRYH94Iiym4/A5JLCsbXFtg5mVqFAv9TrlOBK4NaISnl3vnM9VQ+oLZtDajW/WwapT43
+         xMJQ==
+X-Gm-Message-State: AOAM532HFLELFECQH8sclAmVP33GpjxXnC16RcCxq5BgC/gWXf4iN4Hw
+        JK13bIX1uGt12Fun6ujtvw==
+X-Google-Smtp-Source: ABdhPJxuVYP4PMMJrWg+7NZfyL/wCninyJW1DtmR9kRPcqdJGU+7CoadsQWAkRt9wBjvtuHifV5EaQ==
+X-Received: by 2002:a4a:d513:: with SMTP id m19mr339295oos.92.1616872493395;
+        Sat, 27 Mar 2021 12:14:53 -0700 (PDT)
+Received: from localhost.localdomain ([172.58.99.41])
+        by smtp.googlemail.com with ESMTPSA id k9sm3072686ots.24.2021.03.27.12.14.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 11:49:28 -0700 (PDT)
-Received: (nullmailer pid 376600 invoked by uid 1000);
-        Sat, 27 Mar 2021 18:49:25 -0000
-Date:   Sat, 27 Mar 2021 12:49:25 -0600
+        Sat, 27 Mar 2021 12:14:52 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: serial: tegra-tcu: Document "reg"
- property
-Message-ID: <20210327184925.GA367052@robh.at.kernel.org>
-References: <20210326174641.1612738-1-thierry.reding@gmail.com>
- <20210326174641.1612738-3-thierry.reding@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: mediatek,mtu3: Use graph schema
+Date:   Sat, 27 Mar 2021 14:14:48 -0500
+Message-Id: <20210327191448.410795-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210326174641.1612738-3-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 06:46:40PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> In order to support early console support with the Tegra TCU, add an
-> optional "reg" property that points to the TX mailbox.
+Users of the DT graph binding now should reference it for their 'port'
+schemas, so add it for Mediatek MTU3 binding.
 
-This will mean the same address in in DT twice which we try to avoid, 
-right? I guess it's fine, we could drop it if we ever enforce that. I'm 
-sure there's worse abuses with duplicates than this.
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-usb@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml     | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> index 0a321658ccb5..8c9ed7cfaa52 100644
-> --- a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> +++ b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> @@ -24,6 +24,9 @@ properties:
->    compatible:
->      const: nvidia,tegra194-tcu
->  
-> +  reg:
-> +    maxItems: 1
-> +
->    mbox-names:
->      items:
->        - const: rx
-> @@ -48,8 +51,9 @@ examples:
->    - |
->      #include <dt-bindings/mailbox/tegra186-hsp.h>
->  
-> -    tcu: tcu {
-> +    tcu: tcu@c168000 {
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+index f5c04b9d2de9..ca11a70ece7f 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+@@ -126,7 +126,7 @@ properties:
+       Any connector to the data bus of this controller should be modelled
+       using the OF graph bindings specified, if the "usb-role-switch"
+       property is used. See graph.txt
+-    type: object
++    $ref: /schemas/graph.yaml#/properties/port
+ 
+   enable-manual-drd:
+     $ref: /schemas/types.yaml#/definitions/flag
+-- 
+2.27.0
 
-While you're here:
-
-serial@...
-
->          compatible = "nvidia,tegra194-tcu";
-> +        reg = <0x0c168000 0x4>;
->          mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_SM 0>,
->                   <&hsp_aon TEGRA_HSP_MBOX_TYPE_SM 1>;
->          mbox-names = "rx", "tx";
-> -- 
-> 2.30.2
-> 
