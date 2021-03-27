@@ -2,79 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32DE934B957
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 21:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D260334B95B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 21:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbhC0UeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 16:34:16 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:40463 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbhC0UeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 16:34:04 -0400
-Received: by mail-ot1-f44.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so8539455otb.7;
-        Sat, 27 Mar 2021 13:34:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UQr/YqDsL+N492tX6ZjUqsg1uzoT4TgP24HOhBmQEDc=;
-        b=oYgSwWR67448JSls+1HW11JwnJa6fP6y+XDmoEU2jm0KRA9K2TMKLsuD5ZdVYZjfSA
-         KnndGXkiZJE6nP+f5GW9EN+D1/UR/qqkMrCcWKPvAQBc2QiNBbcdeDLkdsJD/jdnZcvG
-         0r15sm/om7xQmY5GSj/Mlaxr0z6ZeuO5r4FTNc+UYe9Cu/sPkXWvwE7TliTydx4DDGYo
-         76IPUxfFQaEMCbCwG8qNG+CjACxpkGNGCLeHSTHfDlOIVxrnrHlGWkkXgeFnA7pSPf+h
-         x/XR124tQrLOuEfba8R83Guoi9LC4dwA2CwaAqo3MN940P1ebQ4BFW3FXW7l72K127u7
-         9bNA==
-X-Gm-Message-State: AOAM53386/vYn+sG92YF515H7D0KlCQUIK8NWNvjYiWqcVlsNq5fgvvc
-        rQV4ynWZMoSOCTgMN20Fwg==
-X-Google-Smtp-Source: ABdhPJxnwkzW4ynrK8b9s45ZSbG6Op+W2lZ+P3SHBvp8SxMAvx7JmrZb6yxUP07j651JgD22SDKGxA==
-X-Received: by 2002:a9d:663:: with SMTP id 90mr14934121otn.311.1616877243571;
-        Sat, 27 Mar 2021 13:34:03 -0700 (PDT)
-Received: from localhost.localdomain ([172.58.99.41])
-        by smtp.googlemail.com with ESMTPSA id t19sm3121198otm.40.2021.03.27.13.34.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 13:34:02 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH] spi: dt-bindings: nvidia,tegra210-quad: Use documented compatible "jedec,spi-nor" in example
-Date:   Sat, 27 Mar 2021 15:33:57 -0500
-Message-Id: <20210327203357.552794-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S230114AbhC0Upi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 16:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230002AbhC0UpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 16:45:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B41FC0613B1
+        for <devicetree@vger.kernel.org>; Sat, 27 Mar 2021 13:45:09 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lQFnu-0007ZE-Cx; Sat, 27 Mar 2021 21:45:06 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lQFnr-00030n-CE; Sat, 27 Mar 2021 21:45:03 +0100
+Date:   Sat, 27 Mar 2021 21:45:03 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-evk: Add i2c bus driving the PMIC
+Message-ID: <20210327204503.ewn3sqzg2fv7fj3n@pengutronix.de>
+References: <20210326142459.30679-1-u.kleine-koenig@pengutronix.de>
+ <CAOMZO5DXgZeEk3sA-ZFpDPLn8oGf+RNSY0OWNe5pyzHGhOpaNQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="57xfzssoiotnvxgk"
+Content-Disposition: inline
+In-Reply-To: <CAOMZO5DXgZeEk3sA-ZFpDPLn8oGf+RNSY0OWNe5pyzHGhOpaNQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'spi-nor' compatible used in the example is not documented. Use the
-documented 'jedec,spi-nor' compatible instead.
 
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-spi@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--57xfzssoiotnvxgk
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-index 35a8045b2c70..53627c6e2ae3 100644
---- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-+++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-@@ -106,7 +106,7 @@ examples:
-             dma-names = "rx", "tx";
- 
-             flash@0 {
--                    compatible = "spi-nor";
-+                    compatible = "jedec,spi-nor";
-                     reg = <0>;
-                     spi-max-frequency = <104000000>;
-                     spi-tx-bus-width = <2>;
--- 
-2.27.0
+Hello Fabio,
 
+On Fri, Mar 26, 2021 at 03:26:25PM -0300, Fabio Estevam wrote:
+> On Fri, Mar 26, 2021 at 11:25 AM Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > There is no binding and driver for the PMIC itself, but making the bus
+>=20
+> What about the commit below that landed in kernel 5.9?
+>=20
+> commit 0935ff5f1f0a44f66a13e075ed49f97ad99d2fdc
+> Author: Robin Gong <yibin.gong@nxp.com>
+> Date:   Sat Jul 4 00:19:35 2020 +0800
+>=20
+>     regulator: pca9450: add pca9450 pmic driver
+>=20
+>     Add NXP pca9450 pmic driver.
+>=20
+>     Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+>     Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+>     Link: https://lore.kernel.org/r/1593793178-9737-2-git-send-email-yibi=
+n.gong@nxp.com
+>     Signed-off-by: Mark Brown <broonie@kernel.org>
+
+Hmm, now that you wrote that my git grep also finds it. How did you do
+that? :-)
+
+I will respin the patch and also add the pmic as an i2c device.
+
+Thanks and best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--57xfzssoiotnvxgk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBfmUwACgkQwfwUeK3K
+7AmO8gf/YufDUnUmhFzMDaJcqzCOZdF+yWpdCOhho4F1cE13pr0+5xBbvirePcUg
+ueel0zPkI5IoEwpkVZQulbHXK52NYl0PKu17k5ay6tKHkMj2awJBoR6kfn3RpOJ/
+f1xriBcfrpyYRYeTzF0QeFC/EnIHm+5s/UYZBdAWPdyJc/gd1p6IfOkSd33XZWA7
+xm0THSQOoP0lTJtZCJ06KEXefk8s6g+4iwEut7FB0CFP4HGsYv86XQQUnZKRG5Xs
+CI+FVGkE817cAAzMFaKxlAAWOiislZU9afJxUxIbM/zE5Us0zpR75hBXptEDdvcL
+03crFVw8K7PC4mYlobO3ANjgkLQNow==
+=6R1S
+-----END PGP SIGNATURE-----
+
+--57xfzssoiotnvxgk--
