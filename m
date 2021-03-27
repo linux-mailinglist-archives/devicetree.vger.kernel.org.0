@@ -2,132 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2402C34B8CA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:13:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4169734B8CD
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:14:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbhC0SMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 14:12:46 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:38843 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbhC0SMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:12:30 -0400
-Received: by mail-oi1-f179.google.com with SMTP id f9so9110667oiw.5;
-        Sat, 27 Mar 2021 11:12:30 -0700 (PDT)
+        id S230406AbhC0SNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 14:13:52 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:35398 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230170AbhC0SNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:13:47 -0400
+Received: by mail-oi1-f170.google.com with SMTP id x2so9137887oiv.2;
+        Sat, 27 Mar 2021 11:13:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YP5kPNXH4Z7KNhy2Y+OP7mxy+I7a4xpYnW3jiDBxHPk=;
-        b=QFyvfP3YyV7/PETFjGR5fG/dJtbqOrTcaKci/5MWFJyyctnqRsIOOU43LSB91e2+ar
-         z0jCswkQZd4xksxRFc3TbiesUeDuK4f9RwUH72iF8qsB4qH0aq+fqzCzFL/3DdBddmMX
-         Cjmd5ttknzlJQlIdFTDSRucjpcFDu+xD5CgbOPlbyLbdPd8hQSq5off17xWCpHFFWvsx
-         7sHy523vrju/+4GARu/ifXMJQWjXaatRawq935VXAEKJBKeUu7p9w31nmV8+QEBptjvC
-         CBPqgLcq5LpL2s9jqmVRUU69QaWEoLlxIfu20JYYztW0ZPXkBRPBK2KAd5GykIsdQsXG
-         kUdA==
-X-Gm-Message-State: AOAM5311wRkwtCT7cHmQSBj+2qWm6a6Cl7fGjUZ+YbpKEiMkhQBWhub7
-        L5NTEB25JI7s93naugwKOg==
-X-Google-Smtp-Source: ABdhPJx2CveBohR8AvcUvqsjAl1zx4Sij6ixL+jotWz2+OtxE1bi6KAmEwuIeGTb5bB0JhwDJcT3Og==
-X-Received: by 2002:aca:f0b:: with SMTP id 11mr13947987oip.8.1616868749681;
-        Sat, 27 Mar 2021 11:12:29 -0700 (PDT)
+        bh=/m822qwIfNMxw1ccD0nlRrn2NI1gk/a4me9EKJ2P4R8=;
+        b=FTeJMYFmwQup5/Duz7FL9Z2+dwfbqGDHVpX/l2NQvLOEZj14+2HNaavbEYXeJ+rJ00
+         L1wgz+JZvwq4N8OcaNNPKP7xP17fbksr05OoHpWMyl+vMZcjzPayqRrgeSnUMw72kVCP
+         jc/7ow6Y45wZGP4AEZl3TEl2X/K3o75//l8NMqmeCO2oWavYCmftEyck04YnBZ96OcNe
+         J+7Q48Ud243BoLBZtq3OhlsDLGYBDCSAb3ZEYpu4xl5Rp/ibg1ylXquDAkfWGu4sQNqX
+         ELL6ATriIcHISWrkAY43AEI9r6AGAFQ55jyfpwtnHe7B2sO28GwLcV73UBp2jexks7PV
+         kHAg==
+X-Gm-Message-State: AOAM532ouvMww85y56LbrD3qlz9xpiotPQZP3qvXAelGd4Ir6wsOdPd9
+        4mIPLkiYctu2EF83QBMoXGB/6nHoCA==
+X-Google-Smtp-Source: ABdhPJx1BksOJTZRJ8FlZR+/7yom8NbvnCXKQr28Ibqm9wbOPue971JWZrBqL3xmIU4peXEUydwIZQ==
+X-Received: by 2002:aca:dc87:: with SMTP id t129mr14143112oig.137.1616868826977;
+        Sat, 27 Mar 2021 11:13:46 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.41])
-        by smtp.gmail.com with ESMTPSA id h24sm2970188otg.20.2021.03.27.11.12.27
+        by smtp.gmail.com with ESMTPSA id a20sm2489163oia.49.2021.03.27.11.13.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 11:12:28 -0700 (PDT)
-Received: (nullmailer pid 339486 invoked by uid 1000);
-        Sat, 27 Mar 2021 18:12:22 -0000
-Date:   Sat, 27 Mar 2021 12:12:22 -0600
+        Sat, 27 Mar 2021 11:13:46 -0700 (PDT)
+Received: (nullmailer pid 341302 invoked by uid 1000);
+        Sat, 27 Mar 2021 18:13:43 -0000
+Date:   Sat, 27 Mar 2021 12:13:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hermes Zhang <chenhui.zhang@axis.com>
-Cc:     pavel@ucw.cz, dmurphy@ti.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        chenhuiz@axis.com, lkml@axis.com, kernel@axis.com
-Subject: Re: [PATCH v2 1/2] dt-binding: leds: Document leds-multi-gpio
- bindings
-Message-ID: <20210327181222.GA327657@robh.at.kernel.org>
-References: <20210326052801.17666-1-chenhui.zhang@axis.com>
- <20210326052801.17666-2-chenhui.zhang@axis.com>
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: Document
+ dsa,tag-protocol property
+Message-ID: <20210327181343.GA339863@robh.at.kernel.org>
+References: <20210326105648.2492411-1-tobias@waldekranz.com>
+ <20210326105648.2492411-4-tobias@waldekranz.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210326052801.17666-2-chenhui.zhang@axis.com>
+In-Reply-To: <20210326105648.2492411-4-tobias@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 01:28:00PM +0800, Hermes Zhang wrote:
-> From: Hermes Zhang <chenhuiz@axis.com>
+On Fri, Mar 26, 2021 at 11:56:48AM +0100, Tobias Waldekranz wrote:
+> The 'dsa,tag-protocol' is used to force a switch tree to use a
+> particular tag protocol, typically because the Ethernet controller
+> that it is connected to is not compatible with the default one.
 > 
-> This binding represents LED devices which are controller with
-> multiple GPIO lines in order to achieve more than two brightness
-> states.
-> 
-> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 > ---
->  .../bindings/leds/leds-multi-gpio.yaml        | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
+>  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-> new file mode 100644
-> index 000000000000..1549f21e8d6e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-multi-gpio.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-multi-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multiple GPIOs LED driver
-> +
-> +maintainers:
-> +  - Hermes Zhang <chenhuiz@axis.com>
-> +
-> +description:
-> +  This will support some LED made of multiple GPIOs and the brightness of the
-> +  LED could map to different states of the GPIOs.
-> +
-> +properties:
-> +  compatible:
-> +    const: multi-gpio-led
-> +
-> +  led-gpios:
-> +    description: Array of one or more GPIOs pins used to control the LED.
-> +    minItems: 1
-> +    maxItems: 8  # Should be enough
-> +
-> +  led-states:
-> +    description: |
-> +      The array list the supported states here which will map to brightness
-> +      from 0 to maximum. Each item in the array will present all the GPIOs
-> +      value by bit.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 1
-> +    maxItems: 256 # Should be enough
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index 8a3494db4d8d..5dcfab049aa2 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -70,6 +70,13 @@ patternProperties:
+>                device is what the switch port is connected to
+>              $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +          dsa,tag-protocol:
 
-Isn't this the same as the standard 'brightness-levels' from backlight 
-binding? The index is the level and the value is the h/w specific 
-setting.
+'dsa' is not a vendor.
+
+> +            description:
+> +              Instead of the default, the switch will use this tag protocol if
+> +              possible. Useful when a device supports multiple protcols and
+> +              the default is incompatible with the Ethernet device.
+> +            $ref: /schemas/types.yaml#/definitions/string
+
+You need to define the possible strings.
 
 > +
-> +required:
-> +  - compatible
-> +  - led-gpios
-> +  - led-states
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpios-led {
-> +      compatible = "multi-gpio-led";
-> +
-> +      led-gpios = <&gpio0 23 0x1>,
-> +                  <&gpio0 24 0x1>;
-> +      led-states = /bits/ 8 <0x00 0x01 0x02 0x03>;
-> +    };
-> +...
+>            phy-handle: true
+>  
+>            phy-mode: true
 > -- 
-> 2.20.1
+> 2.25.1
 > 
