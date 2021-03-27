@@ -2,432 +2,1051 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B504034B7AF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 15:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5523334B7C2
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 15:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbhC0OcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 10:32:13 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:33068 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbhC0OcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 10:32:01 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12REVtoM022725;
-        Sat, 27 Mar 2021 09:31:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1616855515;
-        bh=Bqq+ZJD6hb0PLHmizp2uIl7V+v/GEexNBR919IDrgng=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=loG1joLmGDQslh2UBa9rFxAx0rdXC8sxtpmOUf/FFmE06Bt4CZZXvjanzRQpKmkyY
-         jndJyWsboESYspEcyZGlqx1B6XycFVi3H2EbinhNsm89Xrg/5AzZ2S9NeRS8B4nrpg
-         mmIwzpkHIs13aQZgFpuafZmCpH/pBbL0KB4Twosc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12REVtnd020157
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 27 Mar 2021 09:31:55 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Sat, 27
- Mar 2021 09:31:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Sat, 27 Mar 2021 09:31:40 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12REVeZ6096026;
-        Sat, 27 Mar 2021 09:31:40 -0500
-Received: from localhost ([10.250.33.213])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 12REVeHR038819;
-        Sat, 27 Mar 2021 09:31:40 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 2/2] remoteproc: k3-r5: Extend support to R5F clusters on AM64x SoCs
-Date:   Sat, 27 Mar 2021 09:31:17 -0500
-Message-ID: <20210327143117.1840-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210327143117.1840-1-s-anna@ti.com>
-References: <20210327143117.1840-1-s-anna@ti.com>
+        id S230126AbhC0Ohh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 10:37:37 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:49581 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230180AbhC0Oh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Mar 2021 10:37:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1616855845;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QDUp0LNlWEs0cmeNBEkgNnaJ314GRCx4KTjMgRF3Bgo=;
+        b=XVWMtDBs6/LiuoyZKxshjmk1M+ANJzAuW0AuQIdnQtddvkFYBJqRa3HvkLd8oGRhVOaoeQ
+        7jfF1IlD/lS+WJ37eXVN0DLVik76nMWoD9lNkyTlJh1imWPZ8m9siwIWpojf6PUIIY/5+2
+        s7FnzDOFtI6SQ6+TtwpQZyqfFlTXyOo=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-91-Re285PzKNXqD8TFCMAiJkQ-1; Sat, 27 Mar 2021 10:37:21 -0400
+X-MC-Unique: Re285PzKNXqD8TFCMAiJkQ-1
+Received: by mail-qv1-f72.google.com with SMTP id n3so469080qvr.8
+        for <devicetree@vger.kernel.org>; Sat, 27 Mar 2021 07:37:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=QDUp0LNlWEs0cmeNBEkgNnaJ314GRCx4KTjMgRF3Bgo=;
+        b=omSZfnN0nuDwbHMEKQedFXUhSSKNUWWI43ve8WFkWfCdkcMKoFXpmTF+8kbXYEAzmi
+         fiRpKoaQN7Y6B7bdfRrwj9HedOga0kJV3XcGCE3Ug2ROi6GZBY+CWtqqIY5FoDLr/FrQ
+         2zpfb3Q5v8265GNz4zCzkKmmewrIm/RbrT4BxAfu83Cyrx+oohyTZDK9TFB+u983ySzc
+         tcQPGXS1KO4F0TnAzGffJ2JEyXnNPlpdhhRmI8JT6I22u1LT1fYCqmnXnVCaO0ikKZRS
+         3x7f0LzD1Mj070bcyLx0FhmaM6dk1YrUtXwXZHoRoUQyB4F8kPoITfZILL8p6OJxeg1Y
+         BgUQ==
+X-Gm-Message-State: AOAM5304xDUG+W5+xnU5zKfILd6cwl+tXXCM9G4mQosGPQkLCY49yAKg
+        Ncjv75FWan//RhsIPfFR0WRVfDDjddT05M5yWJ54ueYtWKbNHExTu/FuwCEEh+9kStGv65Bm6sn
+        ivobkWetOK8dAy6fkuudgXA==
+X-Received: by 2002:ae9:f312:: with SMTP id p18mr16370396qkg.162.1616855840509;
+        Sat, 27 Mar 2021 07:37:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyfJ5+CheICbzzTqWaTyztDdjFyMHD36IpL2Tz4hLNkUD1QuC7LG9YR+/goEc1vVYY4RoY8UQ==
+X-Received: by 2002:ae9:f312:: with SMTP id p18mr16370361qkg.162.1616855839964;
+        Sat, 27 Mar 2021 07:37:19 -0700 (PDT)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id k8sm7459484qth.74.2021.03.27.07.37.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 Mar 2021 07:37:19 -0700 (PDT)
+Subject: Re: [PATCH V4 XRT Alveo 01/20] Documentation: fpga: Add a document
+ describing XRT Alveo drivers
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210324052947.27889-1-lizhi.hou@xilinx.com>
+ <20210324052947.27889-2-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <11b72317-0f8b-00d7-1d86-9c2b8587f2dd@redhat.com>
+Date:   Sat, 27 Mar 2021 07:37:17 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
+In-Reply-To: <20210324052947.27889-2-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The K3 AM64x SoC family has a revised R5F sub-system and contains a
-subset of the R5F clusters present on J721E SoCs. The K3 AM64x SoCs
-only have two dual-core Arm R5F clusters/subsystems with 2 R5F cores
-each present within the MAIN voltage domain (MAIN_R5FSS0 & MAIN_R5FSS1).
+general problem with xmgmt needing to be changed to xrt-mgmt
 
-The revised IP has the following distinct features:
- 1. The R5FSS IP supports a new "Single-CPU" mode instead of the LockStep
-    mode on existing SoCs (AM65x, J721E or J7200). This mode is similar
-    to LockStep-mode on J7200 SoCs in terms of TCM usage without the
-    fault-tolerant safety feature provided by the LockStep mode.
 
-    The Core1 TCMs are combined with the Core0 TCMs effectively doubling
-    the amount of TCMs available in Single-CPU mode. The LockStep-mode
-    on previous AM65x and J721E SoCs could only use the Core0 TCMs. These
-    combined TCMs appear contiguous at the respective Core0 TCM addresses.
-    The code though is executed only on a single CPU (on Core0), and as
-    such, requires the halt signal to be programmed only for Core0, while
-    the resets need to be managed for both the cores.
+On 3/23/21 10:29 PM, Lizhi Hou wrote:
+> Describe XRT driver architecture and provide basic overview of
+> Xilinx Alveo platform.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>  Documentation/fpga/index.rst |   1 +
+>  Documentation/fpga/xrt.rst   | 844 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 845 insertions(+)
+>  create mode 100644 Documentation/fpga/xrt.rst
+>
+> diff --git a/Documentation/fpga/index.rst b/Documentation/fpga/index.rst
+> index f80f95667ca2..30134357b70d 100644
+> --- a/Documentation/fpga/index.rst
+> +++ b/Documentation/fpga/index.rst
+> @@ -8,6 +8,7 @@ fpga
+>      :maxdepth: 1
+>  
+>      dfl
+> +    xrt
+>  
+>  .. only::  subproject and html
+>  
+> diff --git a/Documentation/fpga/xrt.rst b/Documentation/fpga/xrt.rst
+> new file mode 100644
+> index 000000000000..0f7977464270
+> --- /dev/null
+> +++ b/Documentation/fpga/xrt.rst
+> @@ -0,0 +1,844 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +==================================
+> +XRTV2 Linux Kernel Driver Overview
+> +==================================
+> +
+> +Authors:
+> +
+> +* Sonal Santan <sonal.santan@xilinx.com>
+> +* Max Zhen <max.zhen@xilinx.com>
+> +* Lizhi Hou <lizhi.hou@xilinx.com>
+> +
+> +XRTV2 drivers are second generation `XRT <https://github.com/Xilinx/XRT>`_
+> +drivers which support `Alveo <https://www.xilinx.com/products/boards-and-kits/alveo.html>`_
+> +PCIe platforms from Xilinx.
+> +
+> +XRTV2 drivers support *subsystem* style data driven platforms where driver's
+> +configuration and behavior is determined by meta data provided by the platform
+> +(in *device tree* format). Primary management physical function (MPF) driver
+> +is called **xmgmt**. Primary user physical function (UPF) driver is called
+> +**xuser** and is under development. xrt driver framework and HW subsystem
+> +drivers are packaged into a library module called **xrt-lib**, which is
+> +shared by **xmgmt** and **xuser** (under development). The xrt driver framework
+> +implements a pseudo-bus which is used to discover HW subsystems and facilitate
+> +inter HW subsystem interaction.
+> +
+> +Driver Modules
+> +==============
+> +
+> +xrt-lib.ko
+> +----------
+> +
+> +Repository of all subsystem drivers and pure software modules that can potentially
+> +be shared between xmgmt and xuser. All these drivers are structured as Linux
+> +*platform driver* and are instantiated by xmgmt (or xuser under development) based
+> +on meta data associated with the hardware. The metadata is in the form of a device
+ok
+> +tree as mentioned before. Each platform driver statically defines a subsystem node
+> +array by using node name or a string in its ``compatible`` property. And this
+> +array is eventually translated to IOMEM resources of the platform device.
+> +
+> +The xrt-lib core infrastructure provides hooks to platform drivers for device node
+> +management, user file operations and ioctl callbacks. The core infrastructure also
+ok
+> +provides pseudo-bus functionality for platform driver registration, discovery and
+> +inter platform driver ioctl calls.
+if/where infrastructure moves is undecided.
+> +
+> +.. note::
+> +   See code in ``include/xleaf.h``
+> +
+> +
+> +xmgmt.ko
+> +--------
+> +
+> +The xmgmt driver is a PCIe device driver driving MPF found on Xilinx's Alveo
+> +PCIE device. It consists of one *root* driver, one or more *group* drivers
+> +and one or more *xleaf* drivers. The root and MPF specific xleaf drivers are
+> +in xmgmt.ko. The group driver and other xleaf drivers are in xrt-lib.ko.
+> +
+> +The instantiation of specific group driver or xleaf driver is completely data
+> +driven based on meta data (mostly in device tree format) found through VSEC
+> +capability and inside firmware files, such as platform xsabin or user xclbin file.
+> +The root driver manages the life cycle of multiple group drivers, which, in turn,
+> +manages multiple xleaf drivers. This allows a single set of drivers to support
+ok
+> +all kinds of subsystems exposed by different shells. The difference among all
+> +these subsystems will be handled in xleaf drivers with root and group drivers
+> +being part of the infrastructure and provide common services for all leaves
+> +found on all platforms.
+> +
+> +The driver object model looks like the following::
+> +
+> +                    +-----------+
+> +                    |   xroot   |
+> +                    +-----+-----+
+> +                          |
+> +              +-----------+-----------+
+> +              |                       |
+> +              v                       v
+> +        +-----------+          +-----------+
+> +        |   group   |    ...   |   group   |
+> +        +-----+-----+          +------+----+
+> +              |                       |
+> +              |                       |
+> +        +-----+----+            +-----+----+
+> +        |          |            |          |
+> +        v          v            v          v
+> +    +-------+  +-------+    +-------+  +-------+
+> +    | xleaf |..| xleaf |    | xleaf |..| xleaf |
+> +    +-------+  +-------+    +-------+  +-------+
+> +
+> +As an example for Xilinx Alveo U50 before user xclbin download, the tree
+> +looks like the following::
+> +
+> +                                +-----------+
+> +                                |   xmgmt   |
+> +                                +-----+-----+
+> +                                      |
+> +            +-------------------------+--------------------+
+> +            |                         |                    |
+> +            v                         v                    v
+> +       +--------+                +--------+            +--------+
+> +       | group0 |                | group1 |            | group2 |
+> +       +----+---+                +----+---+            +---+----+
+> +            |                         |                    |
+> +            |                         |                    |
+> +      +-----+-----+        +----+-----+---+    +-----+-----+----+--------+
+> +      |           |        |    |         |    |     |          |        |
+> +      v           v        |    v         v    |     v          v        |
+> + +------------+  +------+  | +------+ +------+ |  +------+ +-----------+ |
+> + | xmgmt_main |  | VSEC |  | | GPIO | | QSPI | |  |  CMC | | AXI-GATE0 | |
+> + +------------+  +------+  | +------+ +------+ |  +------+ +-----------+ |
+> +                           | +---------+       |  +------+ +-----------+ |
+> +                           +>| MAILBOX |       +->| ICAP | | AXI-GATE1 |<+
+> +                             +---------+       |  +------+ +-----------+
+> +                                               |  +-------+
+> +                                               +->| CALIB |
+> +                                                  +-------+
+> +
+> +After an xclbin is download, group3 will be added and the tree looks like the
+> +following::
+> +
+> +                                +-----------+
+> +                                |   xmgmt   |
+> +                                +-----+-----+
+> +                                      |
+> +            +-------------------------+--------------------+-----------------+
+> +            |                         |                    |                 |
+> +            v                         v                    v                 |
+> +       +--------+                +--------+            +--------+            |
+> +       | group0 |                | group1 |            | group2 |            |
+> +       +----+---+                +----+---+            +---+----+            |
+> +            |                         |                    |                 |
+> +            |                         |                    |                 |
+> +      +-----+-----+       +-----+-----+---+    +-----+-----+----+--------+   |
+> +      |           |       |     |         |    |     |          |        |   |
+> +      v           v       |     v         v    |     v          v        |   |
+> + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> + | xmgmt_main |  | VSEC | | | GPIO | | QSPI |  |  |  CMC | | AXI-GATE0 | |   |
+> + +------------+  +------+ | +------+ +------+  |  +------+ +-----------+ |   |
+> +                          | +---------+        |  +------+ +-----------+ |   |
+> +                          +>| MAILBOX |        +->| ICAP | | AXI-GATE1 |<+   |
+> +                            +---------+        |  +------+ +-----------+     |
+> +                                               |  +-------+                  |
+> +                                               +->| CALIB |                  |
+> +                                                  +-------+                  |
+> +                      +---+----+                                             |
+> +                      | group3 |<--------------------------------------------+
+> +                      +--------+
+> +                          |
+> +                          |
+> +     +-------+--------+---+--+--------+------+-------+
+> +     |       |        |      |        |      |       |
+> +     v       |        v      |        v      |       v
+> + +--------+  |   +--------+  |   +--------+  |    +-----+
+> + | CLOCK0 |  |   | CLOCK1 |  |   | CLOCK2 |  |    | UCS |
+> + +--------+  v   +--------+  v   +--------+  v    +-----+
+> + +-------------+ +-------------+ +-------------+
+> + | CLOCK-FREQ0 | | CLOCK-FREQ1 | | CLOCK-FREQ2 |
+> + +-------------+ +-------------+ +-------------+
+> +
+> +
+> +xmgmt-root
+> +^^^^^^^^^^
+> +
+> +The xmgmt-root driver is a PCIe device driver attached to MPF. It's part of the
+> +infrastructure of the MPF driver and resides in xmgmt.ko. This driver
+> +
+> +* manages one or more group drivers
+> +* provides access to functionalities that requires pci_dev, such as PCIE config
+> +  space access, to other xleaf drivers through root calls
+> +* facilities event callbacks for other xleaf drivers
+> +* facilities inter-leaf driver calls for other xleaf drivers
+> +
+> +When root driver starts, it will explicitly create an initial group instance,
+> +which contains xleaf drivers that will trigger the creation of other group
+> +instances. The root driver will wait for all group and leaves to be created
+> +before it returns from it's probe routine and claim success of the
+> +initialization of the entire xmgmt driver. If any leaf fails to initialize the
+> +xmgmt driver will still come online but with limited functionality.
+thanks for adding this
+> +
+> +.. note::
+> +   See code in ``lib/xroot.c`` and ``mgmt/root.c``
+> +
+> +
+> +group
+> +^^^^^
+> +
+> +The group driver represents a pseudo device whose life cycle is managed by
+ok
+> +root and does not have real IO mem or IRQ resources. It's part of the
+> +infrastructure of the MPF driver and resides in xrt-lib.ko. This driver
+> +
+> +* manages one or more xleaf drivers
+> +* provides access to root from leaves, so that root calls, event notifications
+> +  and inter-leaf calls can happen
+> +
+> +In xmgmt, an initial group driver instance will be created by the root. This
+> +instance contains leaves that will trigger group instances to be created to
+> +manage groups of leaves found on different partitions on hardware, such as
+> +VSEC, Shell, and User.
+> +
+> +Every *fpga_region* has a group object associated with it. The group is
+> +created when xclbin image is loaded on the fpga_region. The existing group
+> +is destroyed when a new xclbin image is loaded. The fpga_region persists
+> +across xclbin downloads.
+> +
+> +.. note::
+> +   See code in ``lib/group.c``
+> +
+> +
+> +xleaf
+> +^^^^^
+> +
+> +The xleaf driver is a platform device driver whose life cycle is managed by
+> +a group driver and may or may not have real IO mem or IRQ resources. They
+> +are the real meat of xmgmt and contains platform specific code to Shell and
+> +User found on a MPF.
+> +
+> +A xleaf driver may not have real hardware resources when it merely acts as a
+> +driver that manages certain in-memory states for xmgmt.
 
- 2. TCMs are auto-initialized during module power-up, and the behavior
-    is programmable through a MMR bit. This feature is the same as on
-    the recent J7200 SoCs.
+A xleaf driver without real hardware resources manages in-memory states for xrt-mgmt.
 
-Extend the support to these clusters in the K3 R5F remoteproc driver
-using AM64x specific compatibles. New TI-SCI flags and a unique cluster
-mode are also needed for the cluster mode detection on these SoCs. The
-reset assert and deassert sequence of both the cores in Single-CPU mode
-is agnostic of the order, so the same LockStep reset and release sequences
-are re-used.
+A more concise wording of above, change if you like.
 
-The integration of these clusters is very much similar to existing SoCs
-otherwise.
+I noticed use of xmgmt, this changed in v4 ot xrt-mgmt, check doc for others.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2: 
- - Address a minor comment from Mathieu to drop the unnecessary hunk 
-   double-checking the dt ti,cluster-mode values in k3_r5_probe()
-v1: https://patchwork.kernel.org/project/linux-remoteproc/patch/20210318215842.8196-3-s-anna@ti.com/
+>  These in-memory states
+> +could be shared by multiple other leaves.
+> +
+> +Leaf drivers assigned to specific hardware resources drive specific subsystem in
+drive a specific
+> +the device. To manipulate the subsystem or carry out a task, a xleaf driver may
+> +ask help from root via root calls and/or from other leaves via inter-leaf calls.
+ask for help
+> +
+> +A xleaf can also broadcast events through infrastructure code for other leaves
+> +to process. It can also receive event notification from infrastructure about
+> +certain events, such as post-creation or pre-exit of a particular xleaf.
+> +
+> +.. note::
+> +   See code in ``lib/xleaf/*.c``
+> +
+> +
+> +FPGA Manager Interaction
+> +========================
+> +
+> +fpga_manager
+> +------------
+> +
+> +An instance of fpga_manager is created by xmgmt_main and is used for xclbin
+> +image download. fpga_manager requires the full xclbin image before it can
+> +start programming the FPGA configuration engine via Internal Configuration
+> +Access Port (ICAP) platform driver.
+thanks for expanding icap
+> +
+> +fpga_region
+> +-----------
+> +
+> +For every interface exposed by the currently loaded xclbin/xsabin in the
+ok
+> +*parent* fpga_region a new instance of fpga_region is created like a *child*
+ok
+> +fpga_region. The device tree of the *parent* fpga_region defines the
+> +resources for a new instance of fpga_bridge which isolates the parent from
+> +child fpga_region. This new instance of fpga_bridge will be used when a
+ok
+> +xclbin image is loaded on the child fpga_region. After the xclbin image is
+> +downloaded to the fpga_region, an instance of group is created for the
+> +fpga_region using the device tree obtained as part of the xclbin. If this
+> +device tree defines any child interfaces then it can trigger the creation of
+> +fpga_bridge and fpga_region for the next region in the chain.
+a fpga_bridge and a fpga_region
+> +
+> +fpga_bridge
+> +-----------
+> +
+> +Like the fpga_region, matching fpga_bridge is also created by walking the
+ok
+> +device tree of the parent group.
+> +
+> +Driver Interfaces
+> +=================
+> +
+> +xmgmt Driver Ioctls
+> +-------------------
+> +
+> +Ioctls exposed by xmgmt driver to user space are enumerated in the following
+> +table:
+> +
+> +== ===================== ============================ ==========================
+> +#  Functionality         ioctl request code            data format
+> +== ===================== ============================ ==========================
+> +1  FPGA image download   XMGMT_IOCICAPDOWNLOAD_AXLF    xmgmt_ioc_bitstream_axlf
+> +== ===================== ============================ ==========================
+> +
+> +A user xclbin can be downloaded by using the xbmgmt tool from the XRT open source
+> +suite. See example usage below::
+ok
+> +
+> +  xbmgmt partition --program --path /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/test/verify.xclbin --force
+> +
+> +xmgmt Driver Sysfs
+> +------------------
+> +
+> +xmgmt driver exposes a rich set of sysfs interfaces. Subsystem platform
+> +drivers export sysfs node for every platform instance.
+> +
+> +Every partition also exports its UUIDs. See below for examples::
+> +
+> +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/interface_uuids
+> +  /sys/bus/pci/devices/0000:06:00.0/xmgmt_main.0/logic_uuids
+> +
+> +
+> +hwmon
+> +-----
+> +
+> +xmgmt driver exposes standard hwmon interface to report voltage, current,
+> +temperature, power, etc. These can easily be viewed using *sensors* command
+> +line utility.
+> +
+> +Alveo Platform Overview
+> +=======================
+> +
+> +Alveo platforms are architected as two physical FPGA partitions: *Shell* and
+> +*User*. The Shell provides basic infrastructure for the Alveo platform like
+> +PCIe connectivity, board management, Dynamic Function Exchange (DFX), sensors,
+> +clocking, reset, and security. User partition contains user compiled FPGA
 
- drivers/remoteproc/ti_k3_r5_remoteproc.c | 149 ++++++++++++++++++-----
- 1 file changed, 120 insertions(+), 29 deletions(-)
+The User partition
 
-diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-index 5cf8d030a1f0..2975393ebacd 100644
---- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-@@ -40,6 +40,8 @@
- #define PROC_BOOT_CFG_FLAG_R5_ATCM_EN			0x00002000
- /* Available from J7200 SoCs onwards */
- #define PROC_BOOT_CFG_FLAG_R5_MEM_INIT_DIS		0x00004000
-+/* Applicable to only AM64x SoCs */
-+#define PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE		0x00008000
- 
- /* R5 TI-SCI Processor Control Flags */
- #define PROC_BOOT_CTRL_FLAG_R5_CORE_HALT		0x00000001
-@@ -49,6 +51,8 @@
- #define PROC_BOOT_STATUS_FLAG_R5_WFI			0x00000002
- #define PROC_BOOT_STATUS_FLAG_R5_CLK_GATED		0x00000004
- #define PROC_BOOT_STATUS_FLAG_R5_LOCKSTEP_PERMITTED	0x00000100
-+/* Applicable to only AM64x SoCs */
-+#define PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY	0x00000200
- 
- /**
-  * struct k3_r5_mem - internal memory structure
-@@ -64,19 +68,29 @@ struct k3_r5_mem {
- 	size_t size;
- };
- 
-+/*
-+ * All cluster mode values are not applicable on all SoCs. The following
-+ * are the modes supported on various SoCs:
-+ *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
-+ *   LockStep mode   : AM65x, J721E and J7200 SoCs
-+ *   Single-CPU mode : AM64x SoCs only
-+ */
- enum cluster_mode {
- 	CLUSTER_MODE_SPLIT = 0,
- 	CLUSTER_MODE_LOCKSTEP,
-+	CLUSTER_MODE_SINGLECPU,
- };
- 
- /**
-  * struct k3_r5_soc_data - match data to handle SoC variations
-  * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
-  * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
-+ * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
-  */
- struct k3_r5_soc_data {
- 	bool tcm_is_double;
- 	bool tcm_ecc_autoinit;
-+	bool single_cpu_mode;
- };
- 
- /**
-@@ -369,6 +383,13 @@ static inline int k3_r5_core_run(struct k3_r5_core *core)
-  * applicable cores to allow loading into the TCMs. The .prepare() ops is
-  * invoked by remoteproc core before any firmware loading, and is followed
-  * by the .start() ops after loading to actually let the R5 cores run.
-+ *
-+ * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to
-+ * execute code, but combines the TCMs from both cores. The resets for both
-+ * cores need to be released to make this possible, as the TCMs are in general
-+ * private to each core. Only Core0 needs to be unhalted for running the
-+ * cluster in this mode. The function uses the same reset logic as LockStep
-+ * mode for this (though the behavior is agnostic of the reset release order).
-  */
- static int k3_r5_rproc_prepare(struct rproc *rproc)
- {
-@@ -386,7 +407,9 @@ static int k3_r5_rproc_prepare(struct rproc *rproc)
- 		return ret;
- 	mem_init_dis = !!(cfg & PROC_BOOT_CFG_FLAG_R5_MEM_INIT_DIS);
- 
--	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
-+	/* Re-use LockStep-mode reset logic for Single-CPU mode */
-+	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+	       cluster->mode == CLUSTER_MODE_SINGLECPU) ?
- 		k3_r5_lockstep_release(cluster) : k3_r5_split_release(core);
- 	if (ret) {
- 		dev_err(dev, "unable to enable cores for TCM loading, ret = %d\n",
-@@ -427,6 +450,12 @@ static int k3_r5_rproc_prepare(struct rproc *rproc)
-  * cores. The cores themselves are only halted in the .stop() ops, and the
-  * .unprepare() ops is invoked by the remoteproc core after the remoteproc is
-  * stopped.
-+ *
-+ * The Single-CPU mode on applicable SoCs (eg: AM64x) combines the TCMs from
-+ * both cores. The access is made possible only with releasing the resets for
-+ * both cores, but with only Core0 unhalted. This function re-uses the same
-+ * reset assert logic as LockStep mode for this mode (though the behavior is
-+ * agnostic of the reset assert order).
-  */
- static int k3_r5_rproc_unprepare(struct rproc *rproc)
- {
-@@ -436,7 +465,9 @@ static int k3_r5_rproc_unprepare(struct rproc *rproc)
- 	struct device *dev = kproc->dev;
- 	int ret;
- 
--	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
-+	/* Re-use LockStep-mode reset logic for Single-CPU mode */
-+	ret = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+	       cluster->mode == CLUSTER_MODE_SINGLECPU) ?
- 		k3_r5_lockstep_reset(cluster) : k3_r5_split_reset(core);
- 	if (ret)
- 		dev_err(dev, "unable to disable cores, ret = %d\n", ret);
-@@ -455,6 +486,10 @@ static int k3_r5_rproc_unprepare(struct rproc *rproc)
-  * first followed by Core0. The Split-mode requires that Core0 to be maintained
-  * always in a higher power state that Core1 (implying Core1 needs to be started
-  * always only after Core0 is started).
-+ *
-+ * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to execute
-+ * code, so only Core0 needs to be unhalted. The function uses the same logic
-+ * flow as Split-mode for this.
-  */
- static int k3_r5_rproc_start(struct rproc *rproc)
- {
-@@ -539,6 +574,10 @@ static int k3_r5_rproc_start(struct rproc *rproc)
-  * Core0 to be maintained always in a higher power state that Core1 (implying
-  * Core1 needs to be stopped first before Core0).
-  *
-+ * The Single-CPU mode on applicable SoCs (eg: AM64x) only uses Core0 to execute
-+ * code, so only Core0 needs to be halted. The function uses the same logic
-+ * flow as Split-mode for this.
-+ *
-  * Note that the R5F halt operation in general is not effective when the R5F
-  * core is running, but is needed to make sure the core won't run after
-  * deasserting the reset the subsequent time. The asserting of reset can
-@@ -665,7 +704,9 @@ static const struct rproc_ops k3_r5_rproc_ops = {
-  *
-  * Each R5FSS has a cluster-level setting for configuring the processor
-  * subsystem either in a safety/fault-tolerant LockStep mode or a performance
-- * oriented Split mode. Each R5F core has a number of settings to either
-+ * oriented Split mode on most SoCs. A fewer SoCs support a non-safety mode
-+ * as an alternate for LockStep mode that exercises only a single R5F core
-+ * called Single-CPU mode. Each R5F core has a number of settings to either
-  * enable/disable each of the TCMs, control which TCM appears at the R5F core's
-  * address 0x0. These settings need to be configured before the resets for the
-  * corresponding core are released. These settings are all protected and managed
-@@ -677,11 +718,13 @@ static const struct rproc_ops k3_r5_rproc_ops = {
-  * the cores are halted before the .prepare() step.
-  *
-  * The function is called from k3_r5_cluster_rproc_init() and is invoked either
-- * once (in LockStep mode) or twice (in Split mode). Support for LockStep-mode
-- * is dictated by an eFUSE register bit, and the config settings retrieved from
-- * DT are adjusted accordingly as per the permitted cluster mode. All cluster
-- * level settings like Cluster mode and TEINIT (exception handling state
-- * dictating ARM or Thumb mode) can only be set and retrieved using Core0.
-+ * once (in LockStep mode or Single-CPU modes) or twice (in Split mode). Support
-+ * for LockStep-mode is dictated by an eFUSE register bit, and the config
-+ * settings retrieved from DT are adjusted accordingly as per the permitted
-+ * cluster mode. Another eFUSE register bit dictates if the R5F cluster only
-+ * supports a Single-CPU mode. All cluster level settings like Cluster mode and
-+ * TEINIT (exception handling state dictating ARM or Thumb mode) can only be set
-+ * and retrieved using Core0.
-  *
-  * The function behavior is different based on the cluster mode. The R5F cores
-  * are configured independently as per their individual settings in Split mode.
-@@ -700,10 +743,16 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 	u32 set_cfg = 0, clr_cfg = 0;
- 	u64 boot_vec = 0;
- 	bool lockstep_en;
-+	bool single_cpu;
- 	int ret;
- 
- 	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
--	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ? core0 : kproc->core;
-+	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+	    cluster->mode == CLUSTER_MODE_SINGLECPU) {
-+		core = core0;
-+	} else {
-+		core = kproc->core;
-+	}
- 
- 	ret = ti_sci_proc_get_status(core->tsp, &boot_vec, &cfg, &ctrl,
- 				     &stat);
-@@ -713,23 +762,48 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 	dev_dbg(dev, "boot_vector = 0x%llx, cfg = 0x%x ctrl = 0x%x stat = 0x%x\n",
- 		boot_vec, cfg, ctrl, stat);
- 
-+	/* check if only Single-CPU mode is supported on applicable SoCs */
-+	if (cluster->soc_data->single_cpu_mode) {
-+		single_cpu =
-+			!!(stat & PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY);
-+		if (single_cpu && cluster->mode == CLUSTER_MODE_SPLIT) {
-+			dev_err(cluster->dev, "split-mode not permitted, force configuring for single-cpu mode\n");
-+			cluster->mode = CLUSTER_MODE_SINGLECPU;
-+		}
-+		goto config;
-+	}
-+
-+	/* check conventional LockStep vs Split mode configuration */
- 	lockstep_en = !!(stat & PROC_BOOT_STATUS_FLAG_R5_LOCKSTEP_PERMITTED);
- 	if (!lockstep_en && cluster->mode == CLUSTER_MODE_LOCKSTEP) {
- 		dev_err(cluster->dev, "lockstep mode not permitted, force configuring for split-mode\n");
- 		cluster->mode = CLUSTER_MODE_SPLIT;
- 	}
- 
-+config:
- 	/* always enable ARM mode and set boot vector to 0 */
- 	boot_vec = 0x0;
- 	if (core == core0) {
- 		clr_cfg = PROC_BOOT_CFG_FLAG_R5_TEINIT;
--		/*
--		 * LockStep configuration bit is Read-only on Split-mode _only_
--		 * devices and system firmware will NACK any requests with the
--		 * bit configured, so program it only on permitted devices
--		 */
--		if (lockstep_en)
--			clr_cfg |= PROC_BOOT_CFG_FLAG_R5_LOCKSTEP;
-+		if (cluster->soc_data->single_cpu_mode) {
-+			/*
-+			 * Single-CPU configuration bit can only be configured
-+			 * on Core0 and system firmware will NACK any requests
-+			 * with the bit configured, so program it only on
-+			 * permitted cores
-+			 */
-+			if (cluster->mode == CLUSTER_MODE_SINGLECPU)
-+				set_cfg = PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE;
-+		} else {
-+			/*
-+			 * LockStep configuration bit is Read-only on Split-mode
-+			 * _only_ devices and system firmware will NACK any
-+			 * requests with the bit configured, so program it only
-+			 * on permitted devices
-+			 */
-+			if (lockstep_en)
-+				clr_cfg |= PROC_BOOT_CFG_FLAG_R5_LOCKSTEP;
-+		}
- 	}
- 
- 	if (core->atcm_enable)
-@@ -894,12 +968,12 @@ static void k3_r5_reserved_mem_exit(struct k3_r5_rproc *kproc)
-  * cores are usable in Split-mode, but only the Core0 TCMs can be used in
-  * LockStep-mode. The newer revisions of the R5FSS IP maximizes these TCMs by
-  * leveraging the Core1 TCMs as well in certain modes where they would have
-- * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs). This is done by
-- * making a Core1 TCM visible immediately after the corresponding Core0 TCM.
-- * The SoC memory map uses the larger 64 KB sizes for the Core0 TCMs, and the
-- * dts representation reflects this increased size on supported SoCs. The Core0
-- * TCM sizes therefore have to be adjusted to only half the original size in
-- * Split mode.
-+ * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs, Single-CPU mode on
-+ * AM64x SoCs). This is done by making a Core1 TCM visible immediately after the
-+ * corresponding Core0 TCM. The SoC memory map uses the larger 64 KB sizes for
-+ * the Core0 TCMs, and the dts representation reflects this increased size on
-+ * supported SoCs. The Core0 TCM sizes therefore have to be adjusted to only
-+ * half the original size in Split mode.
-  */
- static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
- {
-@@ -909,6 +983,7 @@ static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
- 	struct k3_r5_core *core0;
- 
- 	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
- 	    !cluster->soc_data->tcm_is_double)
- 		return;
- 
-@@ -987,8 +1062,9 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
- 			goto err_add;
- 		}
- 
--		/* create only one rproc in lockstep mode */
--		if (cluster->mode == CLUSTER_MODE_LOCKSTEP)
-+		/* create only one rproc in lockstep mode or single-cpu mode */
-+		if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+		    cluster->mode == CLUSTER_MODE_SINGLECPU)
- 			break;
- 	}
- 
-@@ -1020,11 +1096,12 @@ static void k3_r5_cluster_rproc_exit(void *data)
- 	struct rproc *rproc;
- 
- 	/*
--	 * lockstep mode has only one rproc associated with first core, whereas
--	 * split-mode has two rprocs associated with each core, and requires
--	 * that core1 be powered down first
-+	 * lockstep mode and single-cpu modes have only one rproc associated
-+	 * with first core, whereas split-mode has two rprocs associated with
-+	 * each core, and requires that core1 be powered down first
- 	 */
--	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP) ?
-+	core = (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-+		cluster->mode == CLUSTER_MODE_SINGLECPU) ?
- 		list_first_entry(&cluster->cores, struct k3_r5_core, elem) :
- 		list_last_entry(&cluster->cores, struct k3_r5_core, elem);
- 
-@@ -1396,7 +1473,12 @@ static int k3_r5_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	cluster->dev = dev;
--	cluster->mode = CLUSTER_MODE_LOCKSTEP;
-+	/*
-+	 * default to most common efuse configurations - Split-mode on AM64x
-+	 * and LockStep-mode on all others
-+	 */
-+	cluster->mode = data->single_cpu_mode ?
-+				CLUSTER_MODE_SPLIT : CLUSTER_MODE_LOCKSTEP;
- 	cluster->soc_data = data;
- 	INIT_LIST_HEAD(&cluster->cores);
- 
-@@ -1450,17 +1532,26 @@ static int k3_r5_probe(struct platform_device *pdev)
- static const struct k3_r5_soc_data am65_j721e_soc_data = {
- 	.tcm_is_double = false,
- 	.tcm_ecc_autoinit = false,
-+	.single_cpu_mode = false,
- };
- 
- static const struct k3_r5_soc_data j7200_soc_data = {
- 	.tcm_is_double = true,
- 	.tcm_ecc_autoinit = true,
-+	.single_cpu_mode = false,
-+};
-+
-+static const struct k3_r5_soc_data am64_soc_data = {
-+	.tcm_is_double = true,
-+	.tcm_ecc_autoinit = true,
-+	.single_cpu_mode = true,
- };
- 
- static const struct of_device_id k3_r5_of_match[] = {
- 	{ .compatible = "ti,am654-r5fss", .data = &am65_j721e_soc_data, },
- 	{ .compatible = "ti,j721e-r5fss", .data = &am65_j721e_soc_data, },
- 	{ .compatible = "ti,j7200-r5fss", .data = &j7200_soc_data, },
-+	{ .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, k3_r5_of_match);
--- 
-2.30.1
+contains the user
+
+> +binary which is loaded by a process called DFX also known as partial
+> +reconfiguration.
+> +
+> +For DFX to work properly physical partitions require strict HW compatibility
+properly, physical
+> +with each other. Every physical partition has two interface UUIDs: *parent* UUID
+> +and *child* UUID. For simple single stage platforms, Shell → User forms parent
+> +child relationship.
+> +
+> +.. note::
+> +   Partition compatibility matching is key design component of Alveo platforms
+is a key
+> +   and XRT. Partitions have child and parent relationship. A loaded partition
+> +   exposes child partition UUID to advertise its compatibility requirement.When
+space needed after '.'
+> +   loading a child partition the xmgmt management driver matches parent UUID of
+> +   the child partition against child UUID exported by the parent. Parent and
+> +   child partition UUIDs are stored in the *xclbin* (for user) or *xsabin* (for
+> +   shell). Except for root UUID exported by VSEC, hardware itself does not know
+> +   about UUIDs. UUIDs are stored in xsabin and xclbin. The image format has a
+> +   special node called Partition UUIDs which define the compatibility UUIDs. See
+> +   :ref:`partition_uuids`.
+> +
+This is worded better, thanks.
+> +
+> +The physical partitions and their loading is illustrated below::
+> +
+> +           SHELL                               USER
+> +        +-----------+                  +-------------------+
+> +        |           |                  |                   |
+> +        | VSEC UUID | CHILD     PARENT |    LOGIC UUID     |
+> +        |           o------->|<--------o                   |
+> +        |           | UUID       UUID  |                   |
+> +        +-----+-----+                  +--------+----------+
+> +              |                                 |
+> +              .                                 .
+> +              |                                 |
+> +          +---+---+                      +------+--------+
+> +          |  POR  |                      | USER COMPILED |
+> +          | FLASH |                      |    XCLBIN     |
+> +          +-------+                      +---------------+
+> +
+> +
+> +Loading Sequence
+> +----------------
+> +
+> +The Shell partition is loaded from flash at system boot time. It establishes the
+> +PCIe link and exposes two physical functions to the BIOS. After the OS boots, xmgmt
+
+the xrt-mgmt
+
+> +driver attaches to the PCIe physical function 0 exposed by the Shell and then looks
+> +for VSEC in PCIe extended configuration space. Using VSEC it determines the logic
+
+in the PCIe
+
+Using VSEC, it
+
+> +UUID of Shell and uses the UUID to load matching *xsabin* file from Linux firmware
+> +directory. The xsabin file contains metadata to discover peripherals that are part
+
+contains the metadata
+
+the peripherals
+
+> +of Shell and firmware(s) for any embedded soft processors in Shell. The xsabin file
+
+of the Shell and the the firmware
+
+can drop '(s)'
+
+> +also contains Partition UUIDs as described here :ref:`partition_uuids`.
+> +
+> +The Shell exports a child interface UUID which is used for the compatibility check
+ok
+> +when loading user compiled xclbin over the User partition as part of DFX. When a user
+> +requests loading of a specific xclbin the xmgmt management driver reads the parent
+
+xclbin, the xrt-mgmt driver
+
+can drop 'managment' since 'mgmt' is management
+
+> +interface UUID specified in the xclbin and matches it with child interface UUID
+> +exported by Shell to determine if xclbin is compatible with the Shell. If match
+> +fails loading of xclbin is denied.
+It the match fails, loading is denied.
+> +
+> +xclbin loading is requested using ICAP_DOWNLOAD_AXLF ioctl command. When loading
+> +xclbin, xmgmt driver performs the following *logical* operations:
+ok
+> +
+> +1. Copy xclbin from user to kernel memory
+> +2. Sanity check the xclbin contents
+> +3. Isolate the User partition
+> +4. Download the bitstream using the FPGA config engine (ICAP)
+> +5. De-isolate the User partition
+> +6. Program the clocks (ClockWiz) driving the User partition
+> +7. Wait for memory controller (MIG) calibration
+for the
+> +8. Return the loading status back to the caller
+> +
+> +`Platform Loading Overview <https://xilinx.github.io/XRT/master/html/platforms_partitions.html>`_
+> +provides more detailed information on platform loading.
+> +
+> +
+> +xsabin
+> +------
+> +
+> +Each Alveo platform comes packaged with its own xsabin. The xsabin is a trusted
+ok
+> +component of the platform. For format details refer to :ref:`xsabin_xclbin_container_format`
+> +below. xsabin contains basic information like UUIDs, platform name and metadata in the
+> +form of device tree. See :ref:`device_tree_usage` below for details and example.
+ok
+> +
+> +xclbin
+> +------
+> +
+> +xclbin is compiled by end user using
+> +`Vitis <https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html>`_
+> +tool set from Xilinx. The xclbin contains sections describing user compiled
+> +acceleration engines/kernels, memory subsystems, clocking information etc. It also
+> +contains FPGA bitstream for the user partition, UUIDs, platform name, etc.
+
+needs to be either
+
+FPGA bitstreams
+
+or
+
+a FPGA bitstream
+
+> +
+> +
+> +.. _xsabin_xclbin_container_format:
+> +
+> +xsabin/xclbin Container Format
+> +------------------------------
+> +
+> +xclbin/xsabin is ELF-like binary container format. It is structured as series of
+> +sections. There is a file header followed by several section headers which is
+> +followed by sections. A section header points to an actual section. There is an
+> +optional signature at the end. The format is defined by header file ``xclbin.h``.
+ok
+> +The following figure illustrates a typical xclbin::
+> +
+> +
+> +           +---------------------+
+> +           |                     |
+> +           |       HEADER        |
+> +           +---------------------+
+> +           |   SECTION  HEADER   |
+> +           |                     |
+> +           +---------------------+
+> +           |         ...         |
+> +           |                     |
+> +           +---------------------+
+> +           |   SECTION  HEADER   |
+> +           |                     |
+> +           +---------------------+
+> +           |       SECTION       |
+> +           |                     |
+> +           +---------------------+
+> +           |         ...         |
+> +           |                     |
+> +           +---------------------+
+> +           |       SECTION       |
+> +           |                     |
+> +           +---------------------+
+> +           |      SIGNATURE      |
+> +           |      (OPTIONAL)     |
+> +           +---------------------+
+> +
+> +
+> +xclbin/xsabin files can be packaged, un-packaged and inspected using XRT utility
+using a XRT utility
+> +called **xclbinutil**. xclbinutil is part of XRT open source software stack. The
+of the XRT
+> +source code for xclbinutil can be found at
+> +https://github.com/Xilinx/XRT/tree/master/src/runtime_src/tools/xclbinutil
+> +
+> +For example to enumerate the contents of a xclbin/xsabin use the *--info* switch
+> +as shown below::
+> +
+> +
+> +  xclbinutil --info --input /opt/xilinx/firmware/u50/gen3x16-xdma/blp/test/bandwidth.xclbin
+> +  xclbinutil --info --input /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/partition.xsabin
+> +
+> +
+> +.. _device_tree_usage:
+> +
+> +Device Tree Usage
+> +-----------------
+> +
+> +As mentioned previously xsabin stores metadata which advertise HW subsystems present
+previously, xsabin
+> +in a partition. The metadata is stored in device tree format with a well defined schema.
+ok
+> +XRT management driver uses this information to bind *platform drivers* to the subsystem
+> +instantiations. The platform drivers are found in **xrt-lib.ko** kernel module defined
+> +later.
+> +
+> +Logic UUID
+> +^^^^^^^^^^
+> +A partition is identified uniquely through ``logic_uuid`` property::
+> +
+> +  /dts-v1/;
+> +  / {
+> +      logic_uuid = "0123456789abcdef0123456789abcdef";
+> +      ...
+> +    }
+> +
+> +Schema Version
+> +^^^^^^^^^^^^^^
+> +Schema version is defined through ``schema_version`` node. And it contains ``major``
+> +and ``minor`` properties as below::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       schema_version {
+> +           major = <0x01>;
+> +           minor = <0x00>;
+> +       };
+> +       ...
+> +    }
+> +
+> +.. _partition_uuids:
+> +
+> +Partition UUIDs
+> +^^^^^^^^^^^^^^^
+> +As mentioned earlier, each partition may have parent and child UUIDs. These UUIDs are
+> +defined by ``interfaces`` node and ``interface_uuid`` property::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       interfaces {
+> +           @0 {
+> +                  interface_uuid = "0123456789abcdef0123456789abcdef";
+> +           };
+> +           @1 {
+> +                  interface_uuid = "fedcba9876543210fedcba9876543210";
+> +           };
+> +           ...
+> +        };
+> +       ...
+> +    }
+> +
+> +
+> +Subsystem Instantiations
+> +^^^^^^^^^^^^^^^^^^^^^^^^
+> +Subsystem instantiations are captured as children of ``addressable_endpoints``
+> +node::
+> +
+> +  /dts-v1/;
+> +  / {
+> +       addressable_endpoints {
+> +           abc {
+> +               ...
+> +           };
+> +           def {
+> +               ...
+> +           };
+> +           ...
+> +       }
+> +  }
+> +
+> +Subnode 'abc' and 'def' are the name of subsystem nodes
+> +
+> +Subsystem Node
+> +^^^^^^^^^^^^^^
+> +Each subsystem node and its properties define a hardware instance::
+> +
+> +
+> +  addressable_endpoints {
+> +      abc {
+> +          reg = <0xa 0xb>
+> +          pcie_physical_function = <0x0>;
+> +          pcie_bar_mapping = <0x2>;
+> +          compatible = "abc def";
+> +          firmware {
+> +              firmware_product_name = "abc"
+> +              firmware_branch_name = "def"
+> +              firmware_version_major = <1>
+> +              firmware_version_minor = <2>
+> +          };
+> +      }
+> +      ...
+> +  }
+> +
+> +:reg:
+> + Property defines address range. '<0xa 0xb>' is BAR offset and length pair, both
+
+defines an address
+
+is the BAR
+
+> + are 64-bit integer.
+integers
+> +:pcie_physical_function:
+> + Property specifies which PCIe physical function the subsystem node resides.
+> +:pcie_bar_mapping:
+> + Property specifies which PCIe BAR the subsystem node resides. '<0x2>' is BAR
+> + index and it is 0 if this property is not defined.
+index. A value of 0 means the property is not defined.
+> +:compatible:
+> + Property is a list of strings. The first string in the list specifies the exact
+> + subsystem node. The following strings represent other devices that the device
+> + is compatible with.
+> +:firmware:
+> + Subnode defines the firmware required by this subsystem node.
+> +
+> +Alveo U50 Platform Example
+> +^^^^^^^^^^^^^^^^^^^^^^^^^^
+> +::
+> +
+> +  /dts-v1/;
+> +
+> +  /{
+> +        logic_uuid = "f465b0a3ae8c64f619bc150384ace69b";
+> +
+> +        schema_version {
+> +                major = <0x01>;
+> +                minor = <0x00>;
+> +        };
+> +
+> +        interfaces {
+> +
+> +                @0 {
+> +                        interface_uuid = "862c7020a250293e32036f19956669e5";
+> +                };
+> +        };
+> +
+> +        addressable_endpoints {
+> +
+> +                ep_blp_rom_00 {
+> +                        reg = <0x00 0x1f04000 0x00 0x1000>;
+this is 4 values, not 2
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +                };
+> +
+> +                ep_card_flash_program_00 {
+> +                        reg = <0x00 0x1f06000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_quad_spi-1.0\0axi_quad_spi";
+> +                        interrupts = <0x03 0x03>;
+interrupts not covered above
+> +                };
+> +
+> +                ep_cmc_firmware_mem_00 {
+> +                        reg = <0x00 0x1e20000 0x00 0x20000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "cmc";
+> +                                firmware_branch_name = "u50";
+> +                                firmware_version_major = <0x01>;
+> +                                firmware_version_minor = <0x00>;
+> +                        };
+> +                };
+> +
+> +                ep_cmc_intc_00 {
+> +                        reg = <0x00 0x1e03000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> +                        interrupts = <0x04 0x04>;
+> +                };
+> +
+> +                ep_cmc_mutex_00 {
+> +                        reg = <0x00 0x1e02000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_cmc_regmap_00 {
+> +                        reg = <0x00 0x1e08000 0x00 0x2000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "sc-fw";
+> +                                firmware_branch_name = "u50";
+> +                                firmware_version_major = <0x05>;
+> +                        };
+> +                };
+> +
+> +                ep_cmc_reset_00 {
+> +                        reg = <0x00 0x1e01000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ddr_mem_calib_00 {
+> +                        reg = <0x00 0x63000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_debug_bscan_mgmt_00 {
+> +                        reg = <0x00 0x1e90000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-debug_bridge-1.0\0debug_bridge";
+> +                };
+> +
+> +                ep_ert_base_address_00 {
+> +                        reg = <0x00 0x21000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ert_command_queue_mgmt_00 {
+> +                        reg = <0x00 0x40000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-ert_command_queue-1.0\0ert_command_queue";
+> +                };
+> +
+> +                ep_ert_command_queue_user_00 {
+> +                        reg = <0x00 0x40000 0x00 0x10000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-ert_command_queue-1.0\0ert_command_queue";
+> +                };
+> +
+> +                ep_ert_firmware_mem_00 {
+> +                        reg = <0x00 0x30000 0x00 0x8000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +
+> +                        firmware {
+> +                                firmware_product_name = "ert";
+> +                                firmware_branch_name = "v20";
+> +                                firmware_version_major = <0x01>;
+> +                        };
+> +                };
+> +
+> +                ep_ert_intc_00 {
+> +                        reg = <0x00 0x23000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_intc-1.0\0axi_intc";
+> +                        interrupts = <0x05 0x05>;
+> +                };
+> +
+> +                ep_ert_reset_00 {
+> +                        reg = <0x00 0x22000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_ert_sched_00 {
+> +                        reg = <0x00 0x50000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-ert_sched-1.0\0ert_sched";
+> +                        interrupts = <0x09 0x0c>;
+> +                };
+> +
+> +                ep_fpga_configuration_00 {
+> +                        reg = <0x00 0x1e88000 0x00 0x8000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_hwicap-1.0\0axi_hwicap";
+> +                        interrupts = <0x02 0x02>;
+> +                };
+> +
+> +                ep_icap_reset_00 {
+> +                        reg = <0x00 0x1f07000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_msix_00 {
+> +                        reg = <0x00 0x00 0x00 0x20000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-msix-1.0\0msix";
+> +                        pcie_bar_mapping = <0x02>;
+> +                };
+> +
+> +                ep_pcie_link_mon_00 {
+> +                        reg = <0x00 0x1f05000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_pr_isolate_plp_00 {
+> +                        reg = <0x00 0x1f01000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_pr_isolate_ulp_00 {
+> +                        reg = <0x00 0x1000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_gpio-1.0\0axi_gpio";
+> +                };
+> +
+> +                ep_uuid_rom_00 {
+> +                        reg = <0x00 0x64000 0x00 0x1000>;
+> +                        pcie_physical_function = <0x00>;
+> +                        compatible = "xilinx.com,reg_abs-axi_bram_ctrl-1.0\0axi_bram_ctrl";
+> +                };
+> +
+> +                ep_xdma_00 {
+> +                        reg = <0x00 0x00 0x00 0x10000>;
+> +                        pcie_physical_function = <0x01>;
+> +                        compatible = "xilinx.com,reg_abs-xdma-1.0\0xdma";
+> +                        pcie_bar_mapping = <0x02>;
+> +                };
+> +        };
+> +
+> +  }
+> +
+> +
+> +
+> +Deployment Models
+> +=================
+> +
+> +Baremetal
+> +---------
+> +
+> +In bare-metal deployments, both MPF and UPF are visible and accessible. xmgmt
+
+ok
+
+xmgnt -> xrt-mgmt
+
+> +driver binds to MPF. xmgmt driver operations are privileged and available to
+> +system administrator. The full stack is illustrated below::
+> +
+> +                            HOST
+> +
+> +                 [XMGMT]            [XUSER]
+> +                    |                  |
+> +                    |                  |
+> +                 +-----+            +-----+
+> +                 | MPF |            | UPF |
+> +                 |     |            |     |
+> +                 | PF0 |            | PF1 |
+> +                 +--+--+            +--+--+
+> +          ......... ^................. ^..........
+> +                    |                  |
+> +                    |   PCIe DEVICE    |
+> +                    |                  |
+> +                 +--+------------------+--+
+> +                 |         SHELL          |
+> +                 |                        |
+> +                 +------------------------+
+> +                 |         USER           |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 +------------------------+
+> +
+> +
+> +
+> +Virtualized
+> +-----------
+> +
+> +In virtualized deployments, privileged MPF is assigned to host but unprivileged
+
+an article is needed to precede 'MPF' and 'UPF'  pick either 'a' or 'the'
+
+Thanks for all the changes.
+
+Tom
+
+> +UPF is assigned to guest VM via PCIe pass-through. xmgmt driver in host binds
+> +to MPF. xmgmt driver operations are privileged and only accessible to the MPF.
+> +The full stack is illustrated below::
+> +
+> +
+> +                                 .............
+> +                  HOST           .    VM     .
+> +                                 .           .
+> +                 [XMGMT]         .  [XUSER]  .
+> +                    |            .     |     .
+> +                    |            .     |     .
+> +                 +-----+         .  +-----+  .
+> +                 | MPF |         .  | UPF |  .
+> +                 |     |         .  |     |  .
+> +                 | PF0 |         .  | PF1 |  .
+> +                 +--+--+         .  +--+--+  .
+> +          ......... ^................. ^..........
+> +                    |                  |
+> +                    |   PCIe DEVICE    |
+> +                    |                  |
+> +                 +--+------------------+--+
+> +                 |         SHELL          |
+> +                 |                        |
+> +                 +------------------------+
+> +                 |         USER           |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 |                        |
+> +                 +------------------------+
+> +
+> +
+> +
+> +
+> +
+> +Platform Security Considerations
+> +================================
+> +
+> +`Security of Alveo Platform <https://xilinx.github.io/XRT/master/html/security.html>`_
+> +discusses the deployment options and security implications in great detail.
 
