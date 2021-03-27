@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E458A34B7F0
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 16:21:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D46E034B7F3
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 16:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbhC0PUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 11:20:11 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:44669 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbhC0PTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 11:19:55 -0400
-Received: by mail-oi1-f179.google.com with SMTP id a8so8795176oic.11;
-        Sat, 27 Mar 2021 08:19:55 -0700 (PDT)
+        id S230092AbhC0PUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 11:20:43 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:44820 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230454AbhC0PU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 11:20:28 -0400
+Received: by mail-ot1-f47.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso8054527oti.11;
+        Sat, 27 Mar 2021 08:20:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=nfnKdAHB/EP3TU6RFTKDpMwYBzJ5rtNzgJbhutbUIg8=;
-        b=E6WcUymPekSIX5gEMq7wlmhV4bjgKNsWT+eTbI8n5gWvxYb+oKLNRlCABoqvg9lFW8
-         ur43YfIxEieQ13qndypJMVM/vP+FjRsT/Js+laccEtw2oua6vOJBoz1hteiPU0zSZQK1
-         HQPwulxz+OBUJsuY359IEYuvNt9u1p+/Y5Cm2OZMTUAS2upv0uWfIKvoytucBGnw0KKY
-         N3D55spPvzgvLHbVYGbpdiHKYck7naM3mg8zGBtE8jp1/c63ecRODo2lPBnpZtgPmPBb
-         jCN9DNo4KZi3E0yJ/xq/ht2z+TX1L0YvSEcv65hSTmtKgyeYQIX6gRgIXkpGpoDE/kZ8
-         vGKg==
-X-Gm-Message-State: AOAM531Cz8dnaDlMQ/XOO7PsYD6vmToNoldgRSqx+a4yu+h2NmDhwfO0
-        mXG9bzsI0/o6kDm/k1VB9w==
-X-Google-Smtp-Source: ABdhPJyFWMuW/TG7+Dj6H0NNbsspoDX4rQ+wr4XeeEwSHO2tuRHj5bzEAsG0U1r5f8L8fafXCJeLKw==
-X-Received: by 2002:aca:f597:: with SMTP id t145mr13882340oih.121.1616858395171;
-        Sat, 27 Mar 2021 08:19:55 -0700 (PDT)
+        bh=Y2nDl8Qp49K1yQrpV7e9/juhNchofsPL7Vdk+I1KTL0=;
+        b=YybwlyVcdt4tNVxaoxx2e91CArPwQSZhAoAdkLjclUxXuu0/x6sWEKLEjIO1fTxN1r
+         IdPna0TrsquH00tK/xHAZbVmEdHlr/ZTMAIBsXkpvQCZxWoaBUa5pOeaaFpwKHXVMgfN
+         +l23By99hTPuJVgNWxxxNCf45i+HoUfnsav0W4gvhDfo1Bwypq84q03NA3UttvDt/huQ
+         jcOASxHuugBZJXwYVz/P3DKzU08sDE7myQEEIjRfHQDELUDgCK/RDUCedOCO1elnX93H
+         ih/jvH3z0ZE4wq2Wd3bNASXTedF8eAv26zD3ZmGihVhI00IP4L401t+JWZwForJIrBV4
+         KzqQ==
+X-Gm-Message-State: AOAM533ex0JQjwpZw4NVaD2K+j/35oAMHRtEs+75AzEokraHjS+6hci2
+        wi/q8HHTHgeLUwmB8EH+Yg==
+X-Google-Smtp-Source: ABdhPJxdgNgpaoriB+w1PpB8N9T/oN78d8GoVYt97ZwEAMknW5UaOX07BVMK8zHhRiYw87X2laTSwQ==
+X-Received: by 2002:a05:6830:4001:: with SMTP id h1mr15454061ots.159.1616858427606;
+        Sat, 27 Mar 2021 08:20:27 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.102.185])
-        by smtp.gmail.com with ESMTPSA id t2sm2560759ool.18.2021.03.27.08.19.50
+        by smtp.gmail.com with ESMTPSA id y11sm3013487ots.80.2021.03.27.08.20.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 08:19:54 -0700 (PDT)
-Received: (nullmailer pid 139006 invoked by uid 1000);
-        Sat, 27 Mar 2021 15:19:48 -0000
-Date:   Sat, 27 Mar 2021 09:19:48 -0600
+        Sat, 27 Mar 2021 08:20:26 -0700 (PDT)
+Received: (nullmailer pid 139887 invoked by uid 1000);
+        Sat, 27 Mar 2021 15:20:23 -0000
+Date:   Sat, 27 Mar 2021 09:20:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, amitk@kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        rui.zhang@intel.com, Vinod Koul <vinod.koul@linaro.org>,
-        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org,
-        agross@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: thermal: qcom-tsens: Add compatible
- for sm8350
-Message-ID: <20210327151948.GA138949@robh.at.kernel.org>
-References: <20210324124308.1265626-1-robert.foss@linaro.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     linux-wireless@vger.kernel.org, nbd@nbd.name,
+        devicetree@vger.kernel.org, lorenzo.bianconi@redhat.com,
+        ryder.lee@mediatek.com, sean.wang@mediatek.com
+Subject: Re: [PATCH v3 1/2] dt-bindings:net:wireless:ieee80211: txt to yaml
+ conversion
+Message-ID: <20210327152023.GA139828@robh.at.kernel.org>
+References: <cover.1616621229.git.lorenzo@kernel.org>
+ <248bcf217858a827849758e5af48b02376bca28f.1616621229.git.lorenzo@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210324124308.1265626-1-robert.foss@linaro.org>
+In-Reply-To: <248bcf217858a827849758e5af48b02376bca28f.1616621229.git.lorenzo@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Mar 2021 13:43:08 +0100, Robert Foss wrote:
-> Add tsens bindings for sm8350.
+On Wed, 24 Mar 2021 22:49:59 +0100, Lorenzo Bianconi wrote:
+> Convert generic ieee80211 dts bindings from .txt to .yaml
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> 
-> Changes since v1:
->  - Vinod: Remove comment
-> 
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/net/wireless/ieee80211.txt       | 24 ----------
+>  .../bindings/net/wireless/ieee80211.yaml      | 45 +++++++++++++++++++
+>  2 files changed, 45 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ieee80211.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
