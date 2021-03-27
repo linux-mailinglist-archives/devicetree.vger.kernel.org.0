@@ -2,92 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4169734B8CD
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8B3134B8D4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 19:17:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230406AbhC0SNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 14:13:52 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:35398 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhC0SNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:13:47 -0400
-Received: by mail-oi1-f170.google.com with SMTP id x2so9137887oiv.2;
-        Sat, 27 Mar 2021 11:13:47 -0700 (PDT)
+        id S230329AbhC0SQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 14:16:42 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:36726 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230170AbhC0SQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 14:16:28 -0400
+Received: by mail-ot1-f48.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso8363519otq.3;
+        Sat, 27 Mar 2021 11:16:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/m822qwIfNMxw1ccD0nlRrn2NI1gk/a4me9EKJ2P4R8=;
-        b=FTeJMYFmwQup5/Duz7FL9Z2+dwfbqGDHVpX/l2NQvLOEZj14+2HNaavbEYXeJ+rJ00
-         L1wgz+JZvwq4N8OcaNNPKP7xP17fbksr05OoHpWMyl+vMZcjzPayqRrgeSnUMw72kVCP
-         jc/7ow6Y45wZGP4AEZl3TEl2X/K3o75//l8NMqmeCO2oWavYCmftEyck04YnBZ96OcNe
-         J+7Q48Ud243BoLBZtq3OhlsDLGYBDCSAb3ZEYpu4xl5Rp/ibg1ylXquDAkfWGu4sQNqX
-         ELL6ATriIcHISWrkAY43AEI9r6AGAFQ55jyfpwtnHe7B2sO28GwLcV73UBp2jexks7PV
-         kHAg==
-X-Gm-Message-State: AOAM532ouvMww85y56LbrD3qlz9xpiotPQZP3qvXAelGd4Ir6wsOdPd9
-        4mIPLkiYctu2EF83QBMoXGB/6nHoCA==
-X-Google-Smtp-Source: ABdhPJx1BksOJTZRJ8FlZR+/7yom8NbvnCXKQr28Ibqm9wbOPue971JWZrBqL3xmIU4peXEUydwIZQ==
-X-Received: by 2002:aca:dc87:: with SMTP id t129mr14143112oig.137.1616868826977;
-        Sat, 27 Mar 2021 11:13:46 -0700 (PDT)
+        bh=EiWtY8HAoFaOHhO63HVuyEaJaKbqYOtxk9O+hQVc9lM=;
+        b=V6xvQKSedAMY3/rQjNo0qsZmIJqSJwAObTUro2HJq8pEZXTvJjA65OhDXAA7aOv0Br
+         FHOWg5DEGvf/BpSa5Tmo7RLjMH5TuaBu3QhMUy2vCYrK56VBeC/GnR/LFpjdtbqfErDw
+         sEkQoA0rSBLqrmeFkI0ISj0FCJRlk25dpv/YbNNqSSTw+KZCT+c281OfYy6HfW+cgqvJ
+         H0QLUgf28QFSPHR6aeIt8oHsRJH//BRsDTDPZyl3EC0lm+CMiQPyGk9xzX0Be/J4BbXq
+         D+2g6hdBOGzntIxW7zVOW5q/UuS5HveZ9oD9v/eEbj8AIWbsnFuR3KW5mOHqT88NK4ok
+         yS1Q==
+X-Gm-Message-State: AOAM531jI+Gf1dDmKdneAlQgg5dpq6KZaNbXQjM4C9bE/sWugn0Q7Iwa
+        MB68SUa84YkDgfxkCKN8fA==
+X-Google-Smtp-Source: ABdhPJwDYQJ5WcvZEadfqIsyZqwt9zAduXFDT6jUipxdUcQDw9Pe45WBjGQLJV4oV4Vz2u+NK2mjrw==
+X-Received: by 2002:a9d:7a87:: with SMTP id l7mr16121284otn.367.1616868987398;
+        Sat, 27 Mar 2021 11:16:27 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.41])
-        by smtp.gmail.com with ESMTPSA id a20sm2489163oia.49.2021.03.27.11.13.45
+        by smtp.gmail.com with ESMTPSA id m14sm3087890otn.69.2021.03.27.11.16.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 11:13:46 -0700 (PDT)
-Received: (nullmailer pid 341302 invoked by uid 1000);
-        Sat, 27 Mar 2021 18:13:43 -0000
-Date:   Sat, 27 Mar 2021 12:13:43 -0600
+        Sat, 27 Mar 2021 11:16:26 -0700 (PDT)
+Received: (nullmailer pid 344794 invoked by uid 1000);
+        Sat, 27 Mar 2021 18:16:21 -0000
+Date:   Sat, 27 Mar 2021 12:16:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: Document
- dsa,tag-protocol property
-Message-ID: <20210327181343.GA339863@robh.at.kernel.org>
-References: <20210326105648.2492411-1-tobias@waldekranz.com>
- <20210326105648.2492411-4-tobias@waldekranz.com>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     devicetree@vger.kernel.org, maz@kernel.org, tglx@linutronix.de,
+        linus.walleij@linaro.org, robh+dt@kernel.org, bert@biot.com,
+        andy.shevchenko@gmail.com, bgolaszewski@baylibre.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: gpio: Binding for Realtek Otto GPIO
+Message-ID: <20210327181621.GA344012@robh.at.kernel.org>
+References: <cover.1616760183.git.sander@svanheule.net>
+ <cda4ad68a031b60d407629e9232df495d3e260c2.1616760183.git.sander@svanheule.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210326105648.2492411-4-tobias@waldekranz.com>
+In-Reply-To: <cda4ad68a031b60d407629e9232df495d3e260c2.1616760183.git.sander@svanheule.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 11:56:48AM +0100, Tobias Waldekranz wrote:
-> The 'dsa,tag-protocol' is used to force a switch tree to use a
-> particular tag protocol, typically because the Ethernet controller
-> that it is connected to is not compatible with the default one.
+On Fri, 26 Mar 2021 13:03:46 +0100, Sander Vanheule wrote:
+> Add a binding description for Realtek's GPIO controller found on several
+> of their MIPS-based SoCs (codenamed Otto), such as the RTL838x and
+> RTL839x series of switch SoCs.
 > 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> A fallback binding 'realtek,otto-gpio' is provided for cases where the
+> actual port ordering is not known yet, and enabling the interrupt
+> controller may result in uncaught interrupts.
+> 
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/gpio/realtek,otto-gpio.yaml      | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> index 8a3494db4d8d..5dcfab049aa2 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> @@ -70,6 +70,13 @@ patternProperties:
->                device is what the switch port is connected to
->              $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +          dsa,tag-protocol:
 
-'dsa' is not a vendor.
-
-> +            description:
-> +              Instead of the default, the switch will use this tag protocol if
-> +              possible. Useful when a device supports multiple protcols and
-> +              the default is incompatible with the Ethernet device.
-> +            $ref: /schemas/types.yaml#/definitions/string
-
-You need to define the possible strings.
-
-> +
->            phy-handle: true
->  
->            phy-mode: true
-> -- 
-> 2.25.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
