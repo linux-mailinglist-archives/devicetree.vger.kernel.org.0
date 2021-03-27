@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E90D34B844
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 17:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AC4C34B849
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 17:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230209AbhC0QlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 12:41:08 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:37483 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbhC0QlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 12:41:02 -0400
-Received: by mail-ot1-f44.google.com with SMTP id t23-20020a0568301e37b02901b65ab30024so8221280otr.4;
-        Sat, 27 Mar 2021 09:41:01 -0700 (PDT)
+        id S230237AbhC0Qmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 12:42:45 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:39647 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230229AbhC0Qmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 12:42:43 -0400
+Received: by mail-ot1-f45.google.com with SMTP id h6-20020a0568300346b02901b71a850ab4so8212017ote.6;
+        Sat, 27 Mar 2021 09:42:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Wb4sH2K63Zh3SiFRvUPI8IlBfub9eBg1HUipVUt8VBI=;
-        b=Kx0zRUC6uaTQ/N4Vu10Ltddq+l6cGnPHbCRrEh2EI5V84IcKEZSrrNmKzs/upQrVoF
-         TQmNqegVzgBHiZo23FPkig7jMASYfNgXh3eAXFy34FED9WZw/3aAhEJCLNk/2bxaXovi
-         XSvqx+ziXl8Gvp+AMZuo5sRa0WxEo5tb7uSFN6uQ4VWHD9X3iXvvvmkvleNy+btnEyu8
-         1SyB0gHeCQG+NpwsiGNDnkh4K7LQv4GIf74v44vIdCVgG0Q3N5izubJDA1GfXqdWlYRg
-         6xi+udYL0dyJgKFS5f9xwliOPXcJBx8ihzNMCyz9BVbJv0zjg91upSNWVAPEV8EQ4ZlQ
-         FRdw==
-X-Gm-Message-State: AOAM530is/QRXy/oJros2Do3Q5J6Mjyr29MRcCyBGWhEOWbIMQMlVQ5+
-        /+0EBAPzKlY7OL7PsTexlA==
-X-Google-Smtp-Source: ABdhPJywxocBdq+u+4dCiSNTO48Yh6y1yejg1pEi9Bp58/WqcYpE420zdyRI0SRmfytnYuV5CmQtlA==
-X-Received: by 2002:a9d:5a8d:: with SMTP id w13mr16600598oth.145.1616863261384;
-        Sat, 27 Mar 2021 09:41:01 -0700 (PDT)
+        bh=4Adu3Op/lND4oC5P4MkNjHnwnlBxB8vPxviuUDes9aI=;
+        b=Ids3vT87+HYnXNT/6dImzAk37ltZg9kmQDndSBHqfFgxX+5g9/iw6u3w+X6yrDBzpx
+         nLctFy+TvuZNSg0EpIxOxkHIsMDvQWTk65NpsRw8YtO7mQR3ZLUWAQ4m5shDcGwVvYNl
+         AQLzkTI4dwkSJXiNXxKKHNSFvQsS3D+/KDUNB+S+WJKIw5zlbxtQilIA9gjiIp5a+AK2
+         tVSxcXuaGq+nC06H775uH8ucy1u8K3NbKwesQatOX//c7a3SOrrKHCHmo2JpEafmBCpp
+         stDcTnSi1AGWZzCqmaLWv4sGTve32cgjWHASoJFGzmIMdQVPS02Jueqgatb7VVjGK71f
+         QC1w==
+X-Gm-Message-State: AOAM531NftyZhbUwCvi3KX+JGDlgyi2TvHLdf6VueWJ4RXETEQlDOUlJ
+        nP330ked4UP6gfyLyGODtQ==
+X-Google-Smtp-Source: ABdhPJxeQIDE4oB/aMKotfQ5MCqdfzWm41e7k0pkVPSry+xOdIxVkeNOaaIsWRPXbRcaRGLKgHA6Iw==
+X-Received: by 2002:a9d:3a4a:: with SMTP id j68mr16230064otc.4.1616863362965;
+        Sat, 27 Mar 2021 09:42:42 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.140])
-        by smtp.gmail.com with ESMTPSA id e15sm2842895otk.64.2021.03.27.09.40.58
+        by smtp.gmail.com with ESMTPSA id w7sm2868319ote.52.2021.03.27.09.42.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Mar 2021 09:41:00 -0700 (PDT)
-Received: (nullmailer pid 217627 invoked by uid 1000);
-        Sat, 27 Mar 2021 16:40:56 -0000
-Date:   Sat, 27 Mar 2021 10:40:56 -0600
+        Sat, 27 Mar 2021 09:42:42 -0700 (PDT)
+Received: (nullmailer pid 220138 invoked by uid 1000);
+        Sat, 27 Mar 2021 16:42:39 -0000
+Date:   Sat, 27 Mar 2021 10:42:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mukesh Savaliya <msavaliy@codeaurora.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: qcom: geni-se: document iommus
-Message-ID: <20210327164056.GA216078@robh.at.kernel.org>
-References: <20210321174522.123036-1-caleb@connolly.tech>
- <20210321174522.123036-4-caleb@connolly.tech>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 01/11] dt-bindings: drm/bridge: ti-sn65dsi8: Make
+ enable GPIO optional
+Message-ID: <20210327164239.GA220109@robh.at.kernel.org>
+References: <20210322030128.2283-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210321174522.123036-4-caleb@connolly.tech>
+In-Reply-To: <20210322030128.2283-2-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 21, 2021 at 05:46:32PM +0000, Caleb Connolly wrote:
-> Document the iommus property for QCOM Geni SE.
+On Mon, 22 Mar 2021 05:01:18 +0200, Laurent Pinchart wrote:
+> The SN65DSI86 EN pin can be hardwired to a high level, or connected to a
+> global reset signal, not controllable by the kernel. Make it optional in
+> those cases.
 > 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml         | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-> index 84671950ca0d..68c4ee55ae7d 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-> @@ -51,6 +51,9 @@ properties:
->    interconnect-names:
->      const: qup-core
->  
-> +  iommus:
 
-Need to define how many entries (maxItems: 1?)
-
-> +    description: the iommu and adress to be used to configure DMA for large transfers.
-
-The property doesn't define the address to be used.
-
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.30.2
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
