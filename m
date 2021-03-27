@@ -2,132 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B460F34B942
-	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 21:10:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3570434B94C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Mar 2021 21:29:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbhC0UJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 16:09:33 -0400
-Received: from mail2.protonmail.ch ([185.70.40.22]:19273 "EHLO
-        mail2.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbhC0UJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 16:09:09 -0400
-Date:   Sat, 27 Mar 2021 20:09:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1616875747;
-        bh=85GoW8qO8yhali/wL8Hzgwf0HB57PCsZmVrXXndAkHY=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=iBj9y6gdg4pKg6IcywkkEqnYFkfZYbaQl5Q89rmQNNXcyjk0O0L+/k5nO/jU3eJ6D
-         P+Eww1EXPu7GiIpbgB7QnX5/soWdNjPafX5HLU7JqSwh4XBjR/JxiOgyALdjvVGSfO
-         l7rWYlm8JBdad2tn9WLChSC4JaR07xVDy0wYxjKQ=
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Timon Baetz <timon.baetz@protonmail.com>
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: [PATCH v2] ARM: dts: exynos: Add front camera support to I9100
-Message-ID: <20210327200851.777327-1-timon.baetz@protonmail.com>
+        id S230224AbhC0U2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Mar 2021 16:28:51 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:46803 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230015AbhC0U2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 16:28:23 -0400
+Received: by mail-oo1-f46.google.com with SMTP id 125-20020a4a1a830000b02901b6a144a417so2094935oof.13;
+        Sat, 27 Mar 2021 13:28:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XNZ+EBfgEMxRAYAYmvTpo4CEdtKjfZhi1SZZY27qM3s=;
+        b=AKp7L+9zfL9pYjqMX2MmZTVuEQ+Ltl0dai3IB+tstJ9xy5HmlFoaUpSNLWcpwYqyig
+         UdK424ak7c3ft95+ihXzti8GiPVqZ9p0CtlvnHhG6ErdWLQ0ghYkyPb1Lbnhchw+yglU
+         CJt/8i9Y+55Qq9SjFt9Jy4AO8VZr4D7kgeo3sDhFRm+UiWlCq7yLPR89h+/f+YpoX067
+         CBYn6WFhseP1ggbNv4wRhvJlsrL3C6ymyPbqS+YbWyt5C5llQjciPL3+FmVOYeExQCYL
+         Fvz1HktSO1fic1blrjwYrfxaIyVBQhtPXqcc/2TSub3UjEhNm6yEAMWnMLdBGdklL+QE
+         6yqQ==
+X-Gm-Message-State: AOAM530VwpL7iEOonX7osDlvbxJqt8ZUEw+nkZGqQYoQ9tAPU75qFJ9v
+        NUGX0Vbqhq2fpfJbx4rwVYuGuLrnKA==
+X-Google-Smtp-Source: ABdhPJyjnLnM810IvrzTRnhmp/iGLuoOmVrLr0coFaIMeYBRZJYgtkA8ZNolpD8nyGJ7T8AdW6pCKA==
+X-Received: by 2002:a4a:4843:: with SMTP id p64mr16168509ooa.9.1616876902271;
+        Sat, 27 Mar 2021 13:28:22 -0700 (PDT)
+Received: from localhost.localdomain ([172.58.99.41])
+        by smtp.googlemail.com with ESMTPSA id f2sm2788994oos.16.2021.03.27.13.28.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Mar 2021 13:28:21 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: usb-nop-xceiv: Convert to DT schema
+Date:   Sat, 27 Mar 2021 15:28:16 -0500
+Message-Id: <20210327202816.545282-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for Samsung S5K5BAF CMOS image sensor and
-enable the associated MIPI CSI-2 receiver node.
+Convert the usb-nop-xceiv binding to DT schema.
 
-Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-usb@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-v2: Rename node from s5k5bafx to image-sensor and use GPIO_ACTIVE_LOW
+ .../devicetree/bindings/usb/usb-nop-xceiv.txt | 43 -------------
+ .../bindings/usb/usb-nop-xceiv.yaml           | 64 +++++++++++++++++++
+ 2 files changed, 64 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb-nop-xceiv.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
 
- arch/arm/boot/dts/exynos4210-i9100.dts | 52 ++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
-
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exy=
-nos4210-i9100.dts
-index 228de6d8c9d1..f47b6eaf208f 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -147,6 +147,36 @@ battery@36 {
- =09=09};
- =09};
-
-+=09i2c_s5k5baf: i2c-gpio-1 {
-+=09=09compatible =3D "i2c-gpio";
-+=09=09#address-cells =3D <1>;
-+=09=09#size-cells =3D <0>;
+diff --git a/Documentation/devicetree/bindings/usb/usb-nop-xceiv.txt b/Documentation/devicetree/bindings/usb/usb-nop-xceiv.txt
+deleted file mode 100644
+index 4dc6a8ee3071..000000000000
+--- a/Documentation/devicetree/bindings/usb/usb-nop-xceiv.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-USB NOP PHY
+-
+-Required properties:
+-- compatible: should be usb-nop-xceiv
+-- #phy-cells: Must be 0
+-
+-Optional properties:
+-- clocks: phandle to the PHY clock. Use as per Documentation/devicetree
+-  /bindings/clock/clock-bindings.txt
+-  This property is required if clock-frequency is specified.
+-
+-- clock-names: Should be "main_clk"
+-
+-- clock-frequency: the clock frequency (in Hz) that the PHY clock must
+-  be configured to.
+-
+-- vcc-supply: phandle to the regulator that provides power to the PHY.
+-
+-- reset-gpios: Should specify the GPIO for reset.
+-
+-- vbus-detect-gpio: should specify the GPIO detecting a VBus insertion
+-                    (see Documentation/devicetree/bindings/gpio/gpio.txt)
+-- vbus-regulator : should specifiy the regulator supplying current drawn from
+-  the VBus line (see Documentation/devicetree/bindings/regulator/regulator.txt).
+-
+-Example:
+-
+-	hsusb1_phy {
+-		compatible = "usb-nop-xceiv";
+-		clock-frequency = <19200000>;
+-		clocks = <&osc 0>;
+-		clock-names = "main_clk";
+-		vcc-supply = <&hsusb1_vcc_regulator>;
+-		reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
+-		vbus-detect-gpio = <&gpio2 13 GPIO_ACTIVE_HIGH>;
+-		vbus-regulator = <&vbus_regulator>;
+-		#phy-cells = <0>;
+-	};
+-
+-hsusb1_phy is a NOP USB PHY device that gets its clock from an oscillator
+-and expects that clock to be configured to 19.2MHz by the NOP PHY driver.
+-hsusb1_vcc_regulator provides power to the PHY and GPIO 7 controls RESET.
+-GPIO 13 detects VBus insertion, and accordingly notifies the vbus-regulator.
+diff --git a/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml b/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
+new file mode 100644
+index 000000000000..2824c17285ee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb-nop-xceiv.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+=09=09sda-gpios =3D <&gpc1 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+=09=09scl-gpios =3D <&gpc1 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+=09=09i2c-gpio,delay-us =3D <2>;
++title: USB NOP PHY
 +
-+=09=09image-sensor@2d {
-+=09=09=09compatible =3D "samsung,s5k5baf";
-+=09=09=09reg =3D <0x2d>;
-+=09=09=09vdda-supply =3D <&cam_io_en_reg>;
-+=09=09=09vddreg-supply =3D <&vt_core_15v_reg>;
-+=09=09=09vddio-supply =3D <&vtcam_reg>;
-+=09=09=09clocks =3D <&camera 0>;
-+=09=09=09clock-names =3D "mclk";
-+=09=09=09stbyn-gpios =3D <&gpl2 0 GPIO_ACTIVE_LOW>;
-+=09=09=09rstn-gpios =3D <&gpl2 1 GPIO_ACTIVE_LOW>;
-+=09=09=09clock-frequency =3D <24000000>;
++maintainers:
++  - Rob Herring <robh@kernel.org>
 +
-+=09=09=09port {
-+=09=09=09=09s5k5bafx_ep: endpoint {
-+=09=09=09=09=09remote-endpoint =3D <&csis1_ep>;
-+=09=09=09=09=09data-lanes =3D <1>;
-+=09=09=09=09};
-+=09=09=09};
-+=09=09};
-+=09};
++properties:
++  compatible:
++    const: usb-nop-xceiv
 +
- =09spi-3 {
- =09=09compatible =3D "spi-gpio";
- =09=09#address-cells =3D <1>;
-@@ -220,7 +250,11 @@ pmic_ap_clk: pmic-ap-clk {
- };
-
- &camera {
-+=09pinctrl-0 =3D <&cam_port_a_clk_active>;
-+=09pinctrl-names =3D "default";
- =09status =3D "okay";
-+=09assigned-clocks =3D <&clock CLK_MOUT_CAM0>, <&clock CLK_MOUT_CAM1>;
-+=09assigned-clock-parents =3D <&clock CLK_XUSBXTI>, <&clock CLK_XUSBXTI>;
- };
-
- &cpu0 {
-@@ -794,3 +828,21 @@ &serial_3 {
- &tmu {
- =09status =3D "okay";
- };
++  clocks:
++    maxItems: 1
 +
-+&csis_1 {
-+=09status =3D "okay";
-+=09vddcore-supply =3D <&vusb_reg>;
-+=09vddio-supply =3D <&vmipi_reg>;
-+=09clock-frequency =3D <160000000>;
-+=09#address-cells =3D <1>;
-+=09#size-cells =3D <0>;
++  clock-names:
++    const: main_clk
 +
-+=09port@4 {
-+=09=09reg =3D <4>;
-+=09=09csis1_ep: endpoint {
-+=09=09=09remote-endpoint =3D <&s5k5bafx_ep>;
-+=09=09=09data-lanes =3D <1>;
-+=09=09=09samsung,csis-hs-settle =3D <6>;
-+=09=09};
-+=09};
-+};
---
-2.25.1
-
++  clock-frequency: true
++
++  '#phy-cells':
++    const: 0
++
++  vcc-supply:
++    description: phandle to the regulator that provides power to the PHY.
++
++  reset-gpios:
++    maxItems: 1
++
++  vbus-detect-gpio:
++    description: Should specify the GPIO detecting a VBus insertion
++    maxItems: 1
++
++  vbus-regulator:
++    description: Should specifiy the regulator supplying current drawn from
++      the VBus line.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - '#phy-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    hsusb1_phy {
++        compatible = "usb-nop-xceiv";
++        clock-frequency = <19200000>;
++        clocks = <&osc 0>;
++        clock-names = "main_clk";
++        vcc-supply = <&hsusb1_vcc_regulator>;
++        reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
++        vbus-detect-gpio = <&gpio2 13 GPIO_ACTIVE_HIGH>;
++        vbus-regulator = <&vbus_regulator>;
++        #phy-cells = <0>;
++    };
++
++...
+-- 
+2.27.0
 
