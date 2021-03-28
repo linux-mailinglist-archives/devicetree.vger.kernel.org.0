@@ -2,147 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 606D634BD07
-	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 17:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F4434BD12
+	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 17:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbhC1PqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Mar 2021 11:46:05 -0400
-Received: from smtp.wifcom.cz ([85.207.3.150]:54756 "EHLO smtp.wifcom.cz"
+        id S229595AbhC1Pws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 11:52:48 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:51872 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230294AbhC1Pps (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Mar 2021 11:45:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=/6zusLrlarjoJKgAyXwKgpDFQJDYaG12zzl0PqOu+pE=;
-        b=iOmEVd2h2FjOysT1WCaXG7jx9rnkY3KeVovNJIBjX2mZpxw+Cj5Uf86dB1+3DC9WjWN0Is/MJBws5j09mxJD8Vh8n6ugRQEMj+hKd89CWLiRJxkO2jNUxHvf2p0jE77fwvE2A465k334/ehqCSqeR4aNdg5MFE6UqIYSNgczjxY=;
-From:   Martin Devera <devik@eaxlabs.cz>
-To:     linux-kernel@vger.kernel.org
-Cc:     Martin Devera <devik@eaxlabs.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jiri Slaby <jirislaby@kernel.org>, Le Ray <erwan.leray@st.com>,
-        fabrice.gasnier@foss.st.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v8 2/2] tty/serial: Add rx-tx-swap OF option to stm32-usart
-Date:   Sun, 28 Mar 2021 17:43:06 +0200
-Message-Id: <20210328154306.22674-2-devik@eaxlabs.cz>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210328154306.22674-1-devik@eaxlabs.cz>
-References: <YF3tKmzX1PtlX59x@kroah.com>
- <20210328154306.22674-1-devik@eaxlabs.cz>
-X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
-X-Wif-ss: -1.1 (-)
+        id S229593AbhC1Pwr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Mar 2021 11:52:47 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lQXiV-00DTZ9-6o; Sun, 28 Mar 2021 17:52:43 +0200
+Date:   Sun, 28 Mar 2021 17:52:43 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be
+ overridden from DT
+Message-ID: <YGCmS2rcypegGmYa@lunn.ch>
+References: <20210326105648.2492411-1-tobias@waldekranz.com>
+ <20210326105648.2492411-3-tobias@waldekranz.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210326105648.2492411-3-tobias@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32 F7/H7 usarts supports RX & TX pin swapping.
-Add option to turn it on.
-Tested on STM32MP157.
+> +static int dsa_switch_setup_tag_protocol(struct dsa_switch *ds)
+> +{
+> +	const struct dsa_device_ops *tag_ops = ds->dst->tag_ops;
+> +	struct dsa_switch_tree *dst = ds->dst;
+> +	int port, err;
+> +
+> +	if (tag_ops->proto == dst->default_proto)
+> +		return 0;
+> +
+> +	if (!ds->ops->change_tag_protocol) {
+> +		dev_err(ds->dev, "Tag protocol cannot be modified\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	for (port = 0; port < ds->num_ports; port++) {
+> +		if (!(dsa_is_dsa_port(ds, port) || dsa_is_cpu_port(ds, port)))
+> +			continue;
 
-Signed-off-by: Martin Devera <devik@eaxlabs.cz>
-Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
-v8:
-  - rebase to the latest tty-next
-v6:
-  - add version changelog
-v4:
-  - delete superfluous has_swap=false
-v3:
-  - add has_swap to stm32_usart_info (because F4 line
-    doesn't support swapping)
-  - move swap variable init from stm32_usart_of_get_port
-    to stm32_usart_init_port because info struct is not
-    initialized in stm32_usart_of_get_port yet
-  - set USART_CR2_SWAP in stm32_usart_startup too
-v2:
-  - change st,swap to rx-tx-swap (pointed out by Rob Herring)
-  - rebase patches as suggested by Greg Kroah-Hartman
----
- drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
- drivers/tty/serial/stm32-usart.h |  4 ++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
----
- drivers/tty/serial/stm32-usart.c | 11 ++++++++++-
- drivers/tty/serial/stm32-usart.h |  4 ++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
+dsa_is_dsa_port() is interesting. Do we care about the tagging
+protocol on DSA ports? We never see that traffic?
 
-diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-index cba4f4ddf164..4d277804c63e 100644
---- a/drivers/tty/serial/stm32-usart.c
-+++ b/drivers/tty/serial/stm32-usart.c
-@@ -671,6 +671,12 @@ static int stm32_usart_startup(struct uart_port *port)
- 	if (ret)
- 		return ret;
- 
-+	if (stm32_port->swap) {
-+		val = readl_relaxed(port->membase + ofs->cr2);
-+		val |= USART_CR2_SWAP;
-+		writel_relaxed(val, port->membase + ofs->cr2);
-+	}
-+
- 	/* RX FIFO Flush */
- 	if (ofs->rqr != UNDEF_REG)
- 		writel_relaxed(USART_RQR_RXFRQ, port->membase + ofs->rqr);
-@@ -789,7 +795,7 @@ static void stm32_usart_set_termios(struct uart_port *port,
- 	cr1 = USART_CR1_TE | USART_CR1_RE;
- 	if (stm32_port->fifoen)
- 		cr1 |= USART_CR1_FIFOEN;
--	cr2 = 0;
-+	cr2 = stm32_port->swap ? USART_CR2_SWAP : 0;
- 
- 	/* Tx and RX FIFO configuration */
- 	cr3 = readl_relaxed(port->membase + ofs->cr3);
-@@ -1047,6 +1053,9 @@ static int stm32_usart_init_port(struct stm32_port *stm32port,
- 	stm32port->wakeup_src = stm32port->info->cfg.has_wakeup &&
- 		of_property_read_bool(pdev->dev.of_node, "wakeup-source");
- 
-+	stm32port->swap = stm32port->info->cfg.has_swap &&
-+		of_property_read_bool(pdev->dev.of_node, "rx-tx-swap");
-+
- 	stm32port->fifoen = stm32port->info->cfg.has_fifo;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
-index a86773f1a4c4..77d1ac082e89 100644
---- a/drivers/tty/serial/stm32-usart.h
-+++ b/drivers/tty/serial/stm32-usart.h
-@@ -25,6 +25,7 @@ struct stm32_usart_offsets {
- struct stm32_usart_config {
- 	u8 uart_enable_bit; /* USART_CR1_UE */
- 	bool has_7bits_data;
-+	bool has_swap;
- 	bool has_wakeup;
- 	bool has_fifo;
- 	int fifosize;
-@@ -76,6 +77,7 @@ struct stm32_usart_info stm32f7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.fifosize = 1,
- 	}
- };
-@@ -97,6 +99,7 @@ struct stm32_usart_info stm32h7_info = {
- 	.cfg = {
- 		.uart_enable_bit = 0,
- 		.has_7bits_data = true,
-+		.has_swap = true,
- 		.has_wakeup = true,
- 		.has_fifo = true,
- 		.fifosize = 16,
-@@ -268,6 +271,7 @@ struct stm32_port {
- 	int last_res;
- 	bool tx_dma_busy;	 /* dma tx busy               */
- 	bool hw_flow_control;
-+	bool swap;		 /* swap RX & TX pins */
- 	bool fifoen;
- 	bool wakeup_src;
- 	int rdr_mask;		/* receive data register mask */
--- 
-2.11.0
+> +
+> +		err = ds->ops->change_tag_protocol(ds, port, tag_ops->proto);
+> +		if (err) {
+> +			dev_err(ds->dev, "Tag protocol \"%s\" is not supported\n",
+> +				tag_ops->name);
+> +			return err;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
+> -static int dsa_port_parse_cpu(struct dsa_port *dp, struct net_device *master)
+> +static int dsa_port_parse_cpu(struct dsa_port *dp, struct net_device *master,
+> +			      const char *user_protocol)
+>  {
+>  	struct dsa_switch *ds = dp->ds;
+>  	struct dsa_switch_tree *dst = ds->dst;
+> -	enum dsa_tag_protocol tag_protocol;
+> +	const struct dsa_device_ops *tag_ops;
+> +	enum dsa_tag_protocol default_proto;
+> +
+> +	/* Find out which protocol the switch would prefer. */
+> +	default_proto = dsa_get_tag_protocol(dp, master);
+> +	if (dst->default_proto) {
+> +		if (dst->default_proto != default_proto) {
+> +			dev_err(ds->dev,
+> +				"A DSA switch tree can have only one tagging protovol\n");
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		dst->default_proto = default_proto;
+> +	}
+> +
+> +	/* See if the user wants to override that preference. */
+> +	if (user_protocol && ds->ops->change_tag_protocol) {
+> +		tag_ops = dsa_find_tagger_by_name(user_protocol);
+> +	} else {
+> +		if (user_protocol)
+> +			dev_warn(ds->dev,
+> +				 "Tag protocol cannot be modified, using default\n");
+
+I would probably error out here. I don't think it is a good idea to
+ignore what DT says. We also potentially have forward compatibility
+problems. Somebody cut/pastes a DT fragment including an invalid
+override. But the driver does not support it, so it just gives this
+warning and keeps going. Sometime in the future, change support is
+added, it then becomes a real error, and the driver stops probing.
+
+       Andrew
