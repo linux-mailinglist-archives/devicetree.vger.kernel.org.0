@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CF0E34BF49
-	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 23:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0500C34BF7D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 23:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbhC1VZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Mar 2021 17:25:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49058 "EHLO
+        id S231146AbhC1Vxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 17:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231446AbhC1VYk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Mar 2021 17:24:40 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF9FC061756;
-        Sun, 28 Mar 2021 14:24:39 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id u21so16356688ejo.13;
-        Sun, 28 Mar 2021 14:24:39 -0700 (PDT)
+        with ESMTP id S231479AbhC1VxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Mar 2021 17:53:12 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5442DC061756;
+        Sun, 28 Mar 2021 14:53:12 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a7so16487369ejs.3;
+        Sun, 28 Mar 2021 14:53:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VOOl8ErxBPJ+MgHS2Kc6EjQi+pHkac3A/x3zjS/xmr4=;
-        b=J3+NAYWxzl9lECtWZwfBVuMBNSU1YAcpsSqHrUrMzB4Wb4nxPYcGQi5hZDUKfA1ZC5
-         KPWS2U7Os0GI29mtjO2+0AjGNbgUfe3xqd4bgA20hJZTsIjILLtElOFhQO07sxoWuhle
-         WN0PptMh2cDt6R8QbznycVbe18feuY4WtrGUYkrgdHvorNfw3dGHZume5D8Vihu49/W7
-         E8AmPbqDv5OdOJ5dXQYstPXT1+g+RVKKiI2lTKfyy2Ctw1aPt7wjcUuS8G2qrg7zR0tm
-         iXNcqr3pKMyeYnYRMEr8AKbgQ6vMlw8L3zxotSQZg15lvljlkFZCGd+qH8jxi4g2hfhP
-         YxbA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9uUIeFqykD3mIdpURPO74mzbtwGDbOUFi60bDCyMdr0=;
+        b=bAyjqMHNZIGEAV35IwIQitHj3X6hTqoJN5E4WWvGIasb5CRLgoQQ1yHPo7J6hKFRrG
+         NTKXe9lVCoAvhXUPu9ZNI0BO8Yo+C9QwTbIbdGPs4BA6AyEeuUNff6upS30k42AbU/Sj
+         XRCvNi5ccOhgc/nhMWDGj0c9SoTPXaemaEs8UgRwipkeJbrMI7rB6o1PUlsRtPp1W3on
+         MFfkIqUjM+emcQ2sWFNIN0niK2FF3UHV47vWj54QToU/H2rXNUpTM+O4Ooq1XGe9z1MY
+         xSGRwFzrgnyg++5XkCjbQHwNNMN4AjLKntj03FYBddXqfkziFzDxEfX//UPxl9Z7l6E/
+         fqgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VOOl8ErxBPJ+MgHS2Kc6EjQi+pHkac3A/x3zjS/xmr4=;
-        b=F6Ef+mVKrDu8zt2hm4ek0rjCGQp74VnlJ5c5Z7Kw7ylaTKMmrJopV5iNAF/J5GLaY/
-         z8M1TZBSjJI/QGXtkCKNSxRHHibc1p8xCBzg8FmWIgVA2bxV/DAJqFLOyUzmqrYPa1pM
-         1nUAv2rH97abS9QFIzaWlQSJt94QQGsQHpQl52fx34Ab55LJm4+EdO2O1esXbwmCmHH5
-         Js+5NngxIsbLtjsFoxg0J1cidxBPdsIs2wwn4BI0l5VzeOSJInMnFtQC1WTYL87Kx5DX
-         sKRQyPfQw40I+R+xrAGuSPGhLQJACkyO71UUhXel1KebZA0U2l4n8RybvHfAEnisfWw7
-         fD4Q==
-X-Gm-Message-State: AOAM531kO60PkBhDu4YClp6bdFYSXzdXLuIye4rmpD3b+7uflwWH6Iqf
-        YqLGnhCv6kQLKl34wMMvsuBln7n8A3Ikfo5vwYM=
-X-Google-Smtp-Source: ABdhPJxlBNQj9N4H3RLgqryBwaxCFGh6FH+L/AHqGXOl8bxIbiyTs/KSqTOor0E2c1ryHt/opy9mPi/6q2NoT2clB1E=
-X-Received: by 2002:a17:907:2716:: with SMTP id w22mr25634218ejk.328.1616966678759;
- Sun, 28 Mar 2021 14:24:38 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9uUIeFqykD3mIdpURPO74mzbtwGDbOUFi60bDCyMdr0=;
+        b=jDXRrTdQMQdX5/LKjj48y2hdaievxx00p90WNZRwLZpKRGi1oSEMe7C+PSBG+dYiI6
+         2nl5xFfeKVqhpHu8A7slPD1LVh50ashrHiRjE1++fekOypFIbS3t4xf8EYale0cKPz3a
+         p9TPmGeiIiIegigZqv7M+N13HDpNBHDDJz1wRVLFJ9ByoJQ9JniKxDbSC5xrsiRMBIki
+         hlbCuhQvTQUMp9CbQZjSRNf9D3lFLX1zUFqIvY+rqJ2al5FCIuk+9aJIPzsrqj7QlgE9
+         Bmx0GDZOnjesCgfC/OpgjCOQoUvOLIsCjMFl39CQBXSw4WOOad53MexOiJKeSx5yvidf
+         4+/g==
+X-Gm-Message-State: AOAM530m+0HQcv+zbohba55NzN7gGmAwWwa4RBxlycgOSNjansL0v4ll
+        FHwX/Sd9XkL4Si2C1sopcY4=
+X-Google-Smtp-Source: ABdhPJzWjPn3IMXCh/zVRGebZp4yRf4xw+iN22nBX1qMIO3SlYMwpuLVlMorQpUv1njBDVSYIgAEZg==
+X-Received: by 2002:a17:906:1408:: with SMTP id p8mr25339378ejc.89.1616968391092;
+        Sun, 28 Mar 2021 14:53:11 -0700 (PDT)
+Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
+        by smtp.gmail.com with ESMTPSA id lm24sm7132644ejb.53.2021.03.28.14.53.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Mar 2021 14:53:10 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 00:53:09 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
+        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be
+ overridden from DT
+Message-ID: <20210328215309.sgsenja2kmjx45t2@skbuf>
+References: <20210326105648.2492411-1-tobias@waldekranz.com>
+ <20210326105648.2492411-3-tobias@waldekranz.com>
+ <YGCmS2rcypegGmYa@lunn.ch>
 MIME-Version: 1.0
-References: <20210325152410.1795557-1-narmstrong@baylibre.com> <20210325152410.1795557-4-narmstrong@baylibre.com>
-In-Reply-To: <20210325152410.1795557-4-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 28 Mar 2021 23:24:28 +0200
-Message-ID: <CAFBinCCGUSaFpsey=hux=EkZnKAG4YXUUEt08tBVwrd1NHPHxw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: meson: set 128bytes FIFO size on uart A
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YGCmS2rcypegGmYa@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 25, 2021 at 4:25 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The first UART controller in "Everything-Else" power domain, usually used
-> for Bluetooth HCI has 128bytes FIFO depth.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Sun, Mar 28, 2021 at 05:52:43PM +0200, Andrew Lunn wrote:
+> > +static int dsa_switch_setup_tag_protocol(struct dsa_switch *ds)
+> > +{
+> > +	const struct dsa_device_ops *tag_ops = ds->dst->tag_ops;
+> > +	struct dsa_switch_tree *dst = ds->dst;
+> > +	int port, err;
+> > +
+> > +	if (tag_ops->proto == dst->default_proto)
+> > +		return 0;
+> > +
+> > +	if (!ds->ops->change_tag_protocol) {
+> > +		dev_err(ds->dev, "Tag protocol cannot be modified\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	for (port = 0; port < ds->num_ports; port++) {
+> > +		if (!(dsa_is_dsa_port(ds, port) || dsa_is_cpu_port(ds, port)))
+> > +			continue;
+> 
+> dsa_is_dsa_port() is interesting. Do we care about the tagging
+> protocol on DSA ports? We never see that traffic?
+
+I believe this comes from me (see dsa_switch_tag_proto_match). I did not
+take into consideration at that time the fact that Marvell switches can
+translate between DSA and EDSA. So I assumed that every switch in the
+tree needs a notification about the tagging protocol, not just the
+top-most one.
