@@ -2,107 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3440C34BF15
-	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 22:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4601C34BF42
+	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 23:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbhC1Uxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Mar 2021 16:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42346 "EHLO
+        id S231453AbhC1VYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 17:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231460AbhC1UxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Mar 2021 16:53:12 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79830C0613B6
-        for <devicetree@vger.kernel.org>; Sun, 28 Mar 2021 13:53:09 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id f26so13661910ljp.8
-        for <devicetree@vger.kernel.org>; Sun, 28 Mar 2021 13:53:09 -0700 (PDT)
+        with ESMTP id S229655AbhC1VYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Mar 2021 17:24:17 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777FEC061756;
+        Sun, 28 Mar 2021 14:24:17 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id ap14so3280895ejc.0;
+        Sun, 28 Mar 2021 14:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Vt2EBjJBXCElMumS8zwBKc0QOehEP6EtoAAqvcQaqEs=;
-        b=qGqLnEWup8BbxvY1vYr3gQCqVfVduGZLl3nyu+LIPx3CY5EQtUHH+rs+gHjFTAtZiN
-         oQqE3XC78l0FX5ekQWR19uDqbtluk06GSqDY1+cRKR8HD+M+Pn9x/va8LodrDYOjnFE8
-         JCKXIhFYr26/vzx8K2RYVgZ62qnPv5k6y8/XPgXZ0hEDi51YRNTLK65oLIjTM9ltjBP4
-         7Yp6ww6y5JWDzjXzHoKXf3ILv2U6Fsl7+eu8U07kw46ufJW1TUbHRQg5W0k/JHxuROQY
-         n4L/TM636Er0yJPvrbiGzJOyXj08hSrQLTHYhrzrK75m5BZkXd9tjQ46DUsh5QlFCh8+
-         RT6Q==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h8X3xkCb2iKB1gBnb2OIJ1fkuZbHQANnRKaUSTzssmg=;
+        b=ESp1OIAIKANj6P4M6l2SRGboimfHCB6ez6cMjR5+bnW41ngioW7pLqCe4Nr5o8WPr+
+         nw1AX2EFcyldrHMQslSs7QQP+/XPZQPvNURDiR22UA8jPEfLwta7Icid6eSeWVPss9dH
+         IFBv21gGNGwQZ+Cr129IDO75lofg6HGgLPDy4y0NBhdVe0iW6AkOnjyS6OUFMRmBPA+C
+         Vkt7E20tE4bgZv4MOc5XA52IvweWuGCAkCyKHrgRtYQrs8tXfIaOfR2frcrFZVAUfQuB
+         eq1HBc8KwmgMak16il8V0p82DAjML0EajwgZrYN8+Z5pWzYAdICjxcp4gDNwH47k8T0U
+         3BBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Vt2EBjJBXCElMumS8zwBKc0QOehEP6EtoAAqvcQaqEs=;
-        b=QV3a+TanVrP4YqaB9qkGjp37oWdNYV05csjyokYj+1G9l/PI+3lnWuwnIhf/6Zb8il
-         +cGLHwEHNVOtnV9VndQXvA0ZimRym4eNJ7h0/mdpb2uTEcw71Z/2A3lPRDu1X0XDL1if
-         fD9PzA5wKL8d0EfuJYrZ4Z3NL84pCEIcFETKrpGnt0JujwL8za/7mej6Ozgs96lNsa0T
-         XkRuT4VYy7YkGhG+Q2RJPU4aFNvAMR39hByu2HNvI7F3oRWeGp/aHcK1IJvl1+lO8Ugi
-         jjXsij6C5pKjj/ysg1EU64u88kktl+jr6ky9ldvuBjEEbZLBNvvt0PyHI9JzKF9wGy6M
-         p0BA==
-X-Gm-Message-State: AOAM531G4Aaj6J+rStoZDV/njc+kzG5gyjDGTSlB4ecjgoGv96NZpVL6
-        vDecSTTl2YnbsARuVT0yTAm2Dw==
-X-Google-Smtp-Source: ABdhPJzfOV14fcWpJ2QcFa4nkxYyMQCUo/hjWg+YC245Utp6YcM9i/JPj2j7WwHNl0AbDSdUvZ2fwg==
-X-Received: by 2002:a2e:8009:: with SMTP id j9mr16302365ljg.364.1616964788045;
-        Sun, 28 Mar 2021 13:53:08 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id j19sm1589788lfb.15.2021.03.28.13.53.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Mar 2021 13:53:07 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Manu Gautam <mgautam@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 7/7] arm64: dts: qcom: use dp_phy to provide clocks to dispcc
-Date:   Sun, 28 Mar 2021 23:52:57 +0300
-Message-Id: <20210328205257.3348866-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210328205257.3348866-1-dmitry.baryshkov@linaro.org>
-References: <20210328205257.3348866-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h8X3xkCb2iKB1gBnb2OIJ1fkuZbHQANnRKaUSTzssmg=;
+        b=PHNxsyVaT/W6suAxunbZXhaOLqXsMHF7WNBKR6c36XmGYJnS7qW4kj8HH0XpmoxD/O
+         VICH1eVauiiRoMXpW4krAqHCuNUzDFpkr+O97TVxy8UfedNal07J0/xgX4sQt1JaOQ+t
+         k5ZljEzcnadqFYUPAVycFBpEayfhQq3ctCr+xjVVLof9JPLpuQyD+W8EpWeYR5E5FYCF
+         feTBxWKJcnZ+IRszMUTVIH2+Qw1Kbk3RY4MDVLyeLn/9MuDIy09uzi6ZG4pNbsD3bPmU
+         74XzPoToktXvgzLtOMBdVHNnj75iPfbLuChcgUjDkJ7KQFHMbMhXQNE8jEiFWRBGLKDW
+         vTtw==
+X-Gm-Message-State: AOAM532GIr+BxggRrwlRV9oky41K9SMzVyUJE+t4SecjTK4jiMaNLiAV
+        ODe1aick7CnWzp1aOioJL8x6L9eXQgFfomhAX+zKhQ53+XM=
+X-Google-Smtp-Source: ABdhPJwO88tlg8QBHREqzsFMcEe9Jhi5Z9xZo47eaL0S4suKjsU2w2XhA5xvl8Lf4/MlD1zHmY0pKal0XDGBU0uXrLc=
+X-Received: by 2002:a17:906:52d0:: with SMTP id w16mr25472016ejn.172.1616966655864;
+ Sun, 28 Mar 2021 14:24:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210325152410.1795557-1-narmstrong@baylibre.com> <20210325152410.1795557-3-narmstrong@baylibre.com>
+In-Reply-To: <20210325152410.1795557-3-narmstrong@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sun, 28 Mar 2021 23:24:05 +0200
+Message-ID: <CAFBinCB0_xonzPnZck3Ji6x9x12uLshDYo29nnEjqh8unn_YyA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] tty: serial: meson: retrieve port FIFO size from DT
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Plug dp_phy-provided clocks to display clock controller.
-
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 0f79e6885004..a2478bd3590a 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2600,8 +2600,8 @@ dispcc: clock-controller@af00000 {
- 				 <&dsi0_phy 1>,
- 				 <&dsi1_phy 0>,
- 				 <&dsi1_phy 1>,
--				 <0>,
--				 <0>,
-+				 <&dp_phy 0>,
-+				 <&dp_phy 1>,
- 				 <0>,
- 				 <0>,
- 				 <0>,
-@@ -2614,8 +2614,8 @@ dispcc: clock-controller@af00000 {
- 				      "dsi0_phy_pll_out_dsiclk",
- 				      "dsi1_phy_pll_out_byteclk",
- 				      "dsi1_phy_pll_out_dsiclk",
--				      "dp_link_clk_divsel_ten",
--				      "dp_vco_divided_clk_src_mux",
-+				      "dp_phy_pll_link_clk",
-+				      "dp_phy_pll_vco_div_clk",
- 				      "dptx1_phy_pll_link_clk",
- 				      "dptx1_phy_pll_vco_div_clk",
- 				      "dptx2_phy_pll_link_clk",
--- 
-2.30.2
-
+On Thu, Mar 25, 2021 at 4:25 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Now the DT bindings has a property to get the FIFO size for a particular port,
+> retrieve it and use to setup the FIFO interrupts threshold.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
