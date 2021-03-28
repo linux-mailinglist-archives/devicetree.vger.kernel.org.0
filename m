@@ -2,91 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D87D34BA5A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 03:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0216034BB92
+	for <lists+devicetree@lfdr.de>; Sun, 28 Mar 2021 09:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbhC1BVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Mar 2021 21:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230442AbhC1BVD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Mar 2021 21:21:03 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B7FC0613B1;
-        Sat, 27 Mar 2021 18:21:03 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 77AD2527;
-        Sun, 28 Mar 2021 03:21:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1616894461;
-        bh=n9NwDJVlinrOdOhKsB7+CQlEiwm+wESdwsQGjOFT46Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HdZEGaeCYEW6FSI8bHdJeeCGwSawdyZ4doI63txBw/jyzj38STemY/Ie7xom59msd
-         /LtMBKvNs5qRHNXvO3tCxHux/p5g77S6C3jrN0xPle7eyDt5jy3e3NKmU3Lxet7iPY
-         e/WQFlxP2pBCE1BYkB+an8A+nQKTQRYj+bKbfZQw=
-Date:   Sun, 28 Mar 2021 04:20:18 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 0/5] Add r8a77965 DRIF support
-Message-ID: <YF/Z0kyepzD2MUJ6@pendragon.ideasonboard.com>
-References: <20201021135332.4928-1-fabrizio.castro.jz@renesas.com>
- <20201021214319.GO3942@pendragon.ideasonboard.com>
- <90cb3777-377c-84d0-9b35-8c4b15084ebd@xs4all.nl>
+        id S229647AbhC1HlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 03:41:12 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:58063 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229503AbhC1Hke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Mar 2021 03:40:34 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BBA45580830;
+        Sun, 28 Mar 2021 03:40:33 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Sun, 28 Mar 2021 03:40:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=MI94jwmE2zLqhfN/R9l+Jdqfny
+        JcLTSsv9uX8W7RVRE=; b=ssuZv+AFrzSuDD41TBt4dn2cF94qJZKbByHwNkWB8U
+        0MDHj9gb+fzYfS7q0BEUsRFqeoLm910DZH0xfd7YADc3RhgZjDCG2v2raUxMU/fR
+        j04JbluAfqKyQHB0S+PqshL+nZgbYZ6gF/JXAqN1iSKNFnx2pctngaUzizgCnWS/
+        hZlNULm3Jsg2CZAfy/TGumBaUcUg+vnhZpnT7qkLjBsx8Q+l5P9jbqt8RuE0WLay
+        CthyAiIa6be75L+rQDQqY33LQ2K1tFtc6ejsFNKtrZorU/HnyMaFTmZhAsKUa13K
+        j29mv95y2Zs7gDzuqX1hHDAaGsnauNmRapc5fFrfl5Kg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=MI94jwmE2zLqhfN/R
+        9l+JdqfnyJcLTSsv9uX8W7RVRE=; b=ENkFBFRf0FHBKM5TXCf9p+OXBY87FTrZU
+        IkEXDP7nbhhphIwE5P8tj/yEOldBFtrfx7DBm2Jwbh4XKfK2yGPL1tFR5hJQIiQc
+        5m+UIvJr0Jd3cK73W4djH6NpsiMMBHZrvSRm57ZiZwetKJzm8LQGAorc1WVz2oHj
+        BdMly1dGvQRSzjrCTtB9puhe80vcx2Qmbg0j/ZtqlId9idkp3OfDMALyQkODerUV
+        VwzxOfbWP3hOosl9CgxILNbNPhIdkEMa46jAJ2Ib89yPHnxI4mIgYSp+a8A+FxEg
+        wbkRQOycolY4yNOc7gtYqJgFxzmyTpNSP8euXrmJh6rCESLCIUtPQ==
+X-ME-Sender: <xms:7zJgYBopPunbEkBwirC9xV2Bf2z3od4HasX21IdEu5yETq1t62RkIg>
+    <xme:7zJgYDr4UuDabTsxXddDbYO7JC-19ub7H6rubBO4ieFb_9A2nrK6a_bD1QQpNJblg
+    Z10PgtNIKwtywJw0lY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehhedguddutdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfr
+    vghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrh
+    hnpeeiueeljedutdfgvdegleekjeetveehffdvudefteeklefhgffgkeeljeevheelhfen
+    ucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdhgihhthhhusgdrtghomhenucfkphepud
+    ejiedrudelledrvddutddrudehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgr
+    mhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:7zJgYOMkMCfK3IjSwdALAHcf6wJQEFX5dtodFra87xzHb4nOKtg2Ew>
+    <xmx:7zJgYM4SyxDD5JPuUtAKUpw6E1YqphakgiGBf6DzCRkUKGx8tELcow>
+    <xmx:7zJgYA7ah88jsotm5L6JlkoFr7P1WWuZCOliQYinfwx-HwFu5uw8Ug>
+    <xmx:8TJgYAwwm-GvqXyk_59nDfwl9upKKhiC9ZsCR4x8Sxl9nM3J-CTK2S4y96M>
+Received: from localhost.localdomain (ip-176-199-210-156.hsi06.unitymediagroup.de [176.199.210.156])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 41B0624005A;
+        Sun, 28 Mar 2021 03:40:29 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sven Peter <sven@svenpeter.dev>, Arnd Bergmann <arnd@kernel.org>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        iommu@lists.linux-foundation.org
+Subject: [PATCH v2 0/3] Apple M1 DART IOMMU driver
+Date:   Sun, 28 Mar 2021 09:40:06 +0200
+Message-Id: <20210328074009.95932-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.24.3 (Apple Git-128)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <90cb3777-377c-84d0-9b35-8c4b15084ebd@xs4all.nl>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+Hi,
 
-On Sat, Mar 27, 2021 at 11:05:01AM +0100, Hans Verkuil wrote:
-> On 21/10/2020 23:43, Laurent Pinchart wrote:
-> > On Wed, Oct 21, 2020 at 02:53:27PM +0100, Fabrizio Castro wrote:
-> >> Dear All,
-> >>
-> >> this series is to add DRIF support for the r8a77965
-> >> (a.k.a. R-Car M3-N). Version 5 fixes a warning reported
-> >> by 'make dt_binding_check', as reported by Rob.
-> > 
-> > Patch 1/5 to 4/5 taken in my tree, I'll send a pull request to
-> > linux-media when the merge window closes. I expect Geert to handle 5/5.
-> 
-> Patch 5 has been merged, but patches 1-4 aren't. I don't think there
-> was a PR for it. For some reason these patches are delegated to me in
-> patchwork. I've now delegated them to you for further processing.
+Here's v2 of my Apple M1 DART IOMMU driver series as a follow up to the original
+version [1].
 
-I've just sent a pull request, for these and other miscellaneous
-changes.
+Short summary: this series adds support for the iommu found in Apple's new M1
+SoC which is required to use DMA on most peripherals. So far this code has been
+tested with dwc3 in host and device mode on a M1 Mac Mini on top of the latest
+version of Hector's bringup series [2,3] together with my m1n1 bootloader
+branch to bring up USB [4]. It will also apply (but not be very useful) on
+top of iommu/next and v5.12-rc3.
 
-> >> Fabrizio Castro (5):
-> >>   MAINTAINERS: Update MAINTAINERS for Renesas DRIF driver
-> >>   media: dt-bindings: media: renesas,drif: Convert to json-schema
-> >>   media: dt-bindings: media: renesas,drif: Add r8a77990 support
-> >>   media: dt-bindings: media: renesas,drif: Add r8a77965 support
-> >>   arm64: dts: r8a77965: Add DRIF support
-> >>
-> >>  .../bindings/media/renesas,drif.txt           | 177 -----------
-> >>  .../bindings/media/renesas,drif.yaml          | 279 ++++++++++++++++++
-> >>  MAINTAINERS                                   |   4 +-
-> >>  arch/arm64/boot/dts/renesas/r8a77965.dtsi     | 120 ++++++++
-> >>  4 files changed, 401 insertions(+), 179 deletions(-)
-> >>  delete mode 100644 Documentation/devicetree/bindings/media/renesas,drif.txt
-> >>  create mode 100644 Documentation/devicetree/bindings/media/renesas,drif.yaml
+Thanks everyone for the suggestions and discussions so far. I believe they
+have already significantly improved the state of this driver and our
+understanding of the DART iommu!
+
+The part I'm most unsure about is the way I keep track of the multiple
+iommu nodes attached to a device. I would love to especially get some
+feedback there.
+
+
+Changes for v2:
+ - fixed devicetree binding linting issues pointed out by Rob Herring and
+   reworked that file.
+ - made DART-specific code in io-pgtable.c unconditional and removed flag from
+   Kconfig as proposed by Robin Murphy.
+ - allowed multiple DART nodes in the "iommus" property as proposed by
+   Rob Herring and Robin Murphy. this resulted in significant changes
+   to apple-iommu-dart.c.
+ - the domain aperture is now forced to 32bit if translation is enabled after
+   the original suggestion to limit the aperture by Mark Kettenis and the
+   follow-up discussion and investigation with Mark Kettenis, Arnd Bergmann,
+   Robin Murphy and Rob Herring. This change also simplified the code
+   in io-pgtable.c and made some of the improvements suggested during review
+   not apply anymore.
+ - added support for bypassed and isolated domain modes.
+ - reject IOMMU_MMIO and IOMMU_NOEXEC since it's unknown how to set these up
+   for now or if the hardware even supports these flags.
+ - renamed some registers to be less confusing (mainly s/DOMAIN/STREAM/ to
+   prevent confusion with linux's iommu domain concept).
+
+I have also fixed my email provider so this time the series should actually
+be a single thread and not contain any HTML by accident anymore...
+
+Best,
+
+
+Sven
+
+
+[1] https://lore.kernel.org/linux-iommu/20210320151903.60759-1-sven@svenpeter.dev/
+[2] https://lore.kernel.org/linux-arch/20210304213902.83903-1-marcan@marcan.st/
+[3] https://github.com/AsahiLinux/linux/tree/upstream-bringup-v4
+[4] https://github.com/svenpeter42/m1n1/tree/usb-dwc3-serial-wip
+
+Sven Peter (3):
+  iommu: io-pgtable: add DART pagetable format
+  dt-bindings: iommu: add DART iommu bindings
+  iommu: dart: Add DART iommu driver
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |  81 ++
+ MAINTAINERS                                   |   7 +
+ drivers/iommu/Kconfig                         |  14 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/apple-dart-iommu.c              | 858 ++++++++++++++++++
+ drivers/iommu/io-pgtable-arm.c                |  59 ++
+ drivers/iommu/io-pgtable.c                    |   1 +
+ include/linux/io-pgtable.h                    |   6 +
+ 8 files changed, 1027 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/apple,dart.yaml
+ create mode 100644 drivers/iommu/apple-dart-iommu.c
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
