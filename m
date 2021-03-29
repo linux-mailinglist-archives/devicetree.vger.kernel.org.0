@@ -2,90 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCD834CDD5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 12:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE7434CDE1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 12:24:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbhC2KTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 06:19:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbhC2KTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 06:19:39 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31365C061762
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 03:19:37 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id i26so17574616lfl.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 03:19:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jtArsucS8n9bt3Hdp227Kn1y94pWHajU5/Cur8Og900=;
-        b=SDmecpaoCDNLSzQHsUAVMti8ggfXK1pQp9KWpIoIyTjaFpMqOOI8bIhX1UDR5Wcm1v
-         Ymu1hWRLYXytdQQcbLq8joBKxxNRVE5yarnsfaStEV89Nb6zmdP3VGgVGz+dhEK1z8wT
-         4Jo1WkZR8+uTwZI2OoByMczdDJOFlWq+qodS8sVwaRZoerPjCvyPcWocTtFItgqOdIjh
-         UB9Kk3ZgrPwaqudCjnvWco8sH82Ztb4h68dnhAQyltn5zrJBlq8upuO4/xjb7M/LZxYQ
-         YZo7LVSs7DPkKMTzuDbS3879ZWpGqxTnSjLAPis1GPZN/9LsZj2ufk3WXDcjw/J/JTDE
-         xmuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jtArsucS8n9bt3Hdp227Kn1y94pWHajU5/Cur8Og900=;
-        b=dYxm/uBt0f99mrbrubM1vfhgfgSDP/JvoxuJH8MoJOz14CsCEeT3+j8BoyGzuwDuwj
-         o0Vd8nFfbEQshVYm3IkHN5TTJr7QNvDRBhfnrI7SeNx19nC04OP+1nm//zaM6gvLKqKO
-         +JWxIIaROuCHPpfCjRyiNfd5N7ECQEh2YUqxW2Jbn4URWsVN2GqPugbOtJFWBaHn7mZj
-         IPXUy6/pjCZQMwCYdoXM3lHkKzyJC14QaD/ajfSQpKHe5chz0Y324RdKriIr8yHrdJPu
-         vAC8mgEj1MF74+5rg5LWSGYn7owgRY4HbtEhSXyn8XAQ/8KXw3aWncdteMYWvlI0dE5E
-         O/Ig==
-X-Gm-Message-State: AOAM5312BcVoe6RoaDU9uVtU/nzbLBC44T2DhqeOCmcZGmVahb5wmoXI
-        AzQQQixcr3Mv9N52MPcIv9Cfh4SgdbFPigFuqxcjAw==
-X-Google-Smtp-Source: ABdhPJwlvnvUMrVGemIwCAWrik0185OOxhSbO9ZT0u7w8vVb6h1aw6MPR5V0HupYjDIaW4LJT7kgkbe6zKfpyUls29I=
-X-Received: by 2002:a19:343:: with SMTP id 64mr15314665lfd.649.1617013175657;
- Mon, 29 Mar 2021 03:19:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210324081923.20379-1-noltari@gmail.com>
-In-Reply-To: <20210324081923.20379-1-noltari@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 29 Mar 2021 12:19:25 +0200
-Message-ID: <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
-Subject: Re: [PATCH v9 00/22] pinctrl: add BCM63XX pincontrol support
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        id S231602AbhC2KYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 06:24:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41890 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229873AbhC2KXq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 06:23:46 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3A2FD61584;
+        Mon, 29 Mar 2021 10:23:41 +0000 (UTC)
+Date:   Mon, 29 Mar 2021 11:23:47 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org,
+        Robin van der Gracht <robin@protonic.nl>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v3 3/3] iio: adc: add ADC driver for the TI TSC2046
+ controller
+Message-ID: <20210329112347.6a42628f@jic23-huawei>
+In-Reply-To: <20210329073838.uneltwujt26dhrnl@pengutronix.de>
+References: <20210319144509.7627-1-o.rempel@pengutronix.de>
+        <20210319144509.7627-4-o.rempel@pengutronix.de>
+        <20210320154601.0131805d@jic23-huawei>
+        <20210322115635.GA14791@pengutronix.de>
+        <20210322142722.000053a6@Huawei.com>
+        <20210329073838.uneltwujt26dhrnl@pengutronix.de>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 24, 2021 at 9:19 AM =C3=81lvaro Fern=C3=A1ndez Rojas
-<noltari@gmail.com> wrote:
+On Mon, 29 Mar 2021 09:38:38 +0200
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-> This patchset adds appropriate binding documentation and drivers for
-> pin controller cores found in the BCM63XX MIPS SoCs currently supported.
+> On Mon, Mar 22, 2021 at 02:27:22PM +0000, Jonathan Cameron wrote:
+> > > > > +static DECLARE_TI_TSC2046_8_CHANNELS(tsc2046_adc, 12);
+> > > > > +
+> > > > > +static const struct tsc2046_adc_dcfg tsc2046_adc_dcfg_tsc2046e = {
+> > > > > +	.channels = tsc2046_adc_channels,
+> > > > > +	.num_channels = ARRAY_SIZE(tsc2046_adc_channels),
+> > > > > +};
+> > > > > +    
+> > > > 
+> > > > Hmm.  Flexibility that isn't yet used.  Normally I'm pretty resistant
+> > > > to this going in, unless I'm reassured that there is support for additional
+> > > > devices already in the pipeline.  Is that true here?  Otherwise
+> > > > this is basically unneeded complexity.    
+> > > 
+> > > In the long term this driver should replace
+> > > drivers/input/touchscreen/ads7846.c
+> > > 
+> > > This driver supports ti,ads7843, ti,ads7845, ti,ads7846.. at least with
+> > > following number of supported channels:
+> > > ti,ads7843 - 4 channels: x, y, aux0, aux1
+> > > ti,ads7845 - 3 channels: x, y, aux0
+> > > ti,ads7846 - 8 channels...
+> > > 
+> > > Currently I don't have this HW for testing and there a subtle
+> > > differences that have to be taken care of and tested.
+> > >   
+> > 
+> > Note that I'm only going to merge this driver with an explicit statement
+> > from Dmitry as input maintainer that he is fine with this approach.  
+> 
+> Since there is still no Dmitry's feedback please take a look to the
+> ti,ads7843 datasheet:
+> https://www.ti.com/lit/ds/symlink/ads7843.pdf
+> 
+> On the page 1 you can see, that this device has two general purpose ADC
+> inputs IN3, IN4. If some one will decide to mainline support for this
+> pins, will end with IIO ADC driver any way :)
 
-I have applied and pushed the v9 patch series with all the ACKs
-to the "devel" branch so the build servers can churn at it! Later
-today I will integrate it into linux-next.
+Understood, but I'm still going to want Dmitry to give an opinion on
+this.  That might take a little while though as he may well be busy!
 
-Any remaining issues can certainly be fixed in-tree.
+Jonathan
 
-Thanks for your perseverance in cleaning up these SoCs!!
+> 
+> Regards,
+> Oleksij
 
-Now, what about a patch set for the IRQ support? :)
-
-Yours,
-Linus Walleij
