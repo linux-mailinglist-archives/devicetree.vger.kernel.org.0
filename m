@@ -2,131 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D53034D485
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 18:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1845334D496
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 18:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbhC2QHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 12:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38422 "EHLO
+        id S230052AbhC2QNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 12:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbhC2QHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 12:07:21 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E17C061756
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:07:20 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id i19so9660062qtv.7
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:07:20 -0700 (PDT)
+        with ESMTP id S231138AbhC2QND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 12:13:03 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43262C061574;
+        Mon, 29 Mar 2021 09:13:02 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 12so6888427wmf.5;
+        Mon, 29 Mar 2021 09:13:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h2tJ34SW4jrHJri6gw67H0wvGraWyIt4USuLVf0C2eM=;
-        b=GC462xaBMRhJ2Eg7lkA6WeeOnHsYjJbAp7YGB3uHNWWsUKUWq0+/KNHc6unUex7fOZ
-         OyjUJ86cSqxt7XZpVIceOdbPGydX1JHY2Wo3UptaJvygqAWzsXDJwjju3fXAElFrutDI
-         HIyemZPRzo1F6TDoJ53UFlWlq4YWUTEmyu6hI=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=vumQFbft4TUafDDrGaQYDL2MVOcmMkJAnn1vxeYAC5E=;
+        b=ffNu/g88ZA6KOYVXv8Lsu6lVSv0qtWWmEHUdeUR4wT94EBzXxxW9HCfzLRSqpjBLKr
+         8GxL6K/RyLmxg/n4ZB0MG971BDRCVsAuslPPQZY+L7DZkgnQVbI07kPqmWeiDpq2eYqk
+         F16RrwcKxTA5rEttuftCPCX7d9X3D9XjM17eRQLmXmP0wwQxSXUq5hKdr8XMaUlV2r4+
+         3Opn5bEqYh38J/lUQF744l57/8Nlw5L7KZMjjYdIdvNAGeEF5eeKb57lqLlZ33dthW8/
+         +zk/qBafapF0a9YLtdUyMeXzWXifmSGY/rGuo3jeOmpobSLhtKTV349M2rd6MZscaJHq
+         EPSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h2tJ34SW4jrHJri6gw67H0wvGraWyIt4USuLVf0C2eM=;
-        b=Bb9xhP5iV1kYC3RRf/SoHJLh5SgqZ91n0M4ENo4XYVvQfFX9AqumBlOEKELArMfqrK
-         1iQPnSsovtM0/E+rCMUWQrtKe7lgAa2TNQRArAQie13s57qoqdk4hgomxwuWCcoqpkf2
-         zVzhDynm005fWYn/cUxZtTrdtJXcul33obgASGnSmhTSM2Z2Vv7mSNkIsoPutkqU5V93
-         Lj6dhVgmypBElWM4uC46jFXuqKdYJRLUOXL65pLpoGQ1BBMavvEhnzVJOgf+ZotCLvsP
-         S8C02EWY2J1QmF+ijH1QgIBupg5s5FvKbg+5jmdpmWUyCZCYQySXff8E7Jl50Pf0EeLS
-         0wLw==
-X-Gm-Message-State: AOAM532vCFlv6utQIuhMCKwSwxKyRJjC+ufKg4OsfrIrJj3d/aJ5xRPr
-        pVwm52ZSBptdzGaPFV2l458rUBk3coCJmg==
-X-Google-Smtp-Source: ABdhPJzsG4XZ7dNOBYsFO3tHt8+ub1EILc4mP2s+VMmxsX9l9P1U4jpA12jgRD5dHsE1RZd5VhJQzg==
-X-Received: by 2002:ac8:4558:: with SMTP id z24mr23119612qtn.66.1617034039608;
-        Mon, 29 Mar 2021 09:07:19 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id f9sm11259879qto.46.2021.03.29.09.07.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 09:07:19 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id k3so3945936ybh.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:07:18 -0700 (PDT)
-X-Received: by 2002:a25:69c1:: with SMTP id e184mr39188232ybc.345.1617034038260;
- Mon, 29 Mar 2021 09:07:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
- <YFKQaXOmOwYyeqvM@google.com> <CAF6AEGtu+GBwYfkH3x=UuPs5Ouj0TxqbVjpjFEtMKKWvd1-Gbg@mail.gmail.com>
- <YF3V8d4wB6i81fLN@orome.fritz.box>
-In-Reply-To: <YF3V8d4wB6i81fLN@orome.fritz.box>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 29 Mar 2021 09:07:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VDKQCMtxd2NMRefxQm5uzDS6_rUVP5YsTsDEYX+jSipw@mail.gmail.com>
-Message-ID: <CAD=FV=VDKQCMtxd2NMRefxQm5uzDS6_rUVP5YsTsDEYX+jSipw@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on sc7180-trogdor-pompom
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=vumQFbft4TUafDDrGaQYDL2MVOcmMkJAnn1vxeYAC5E=;
+        b=Oeq33FMLwA56Fkff2/Fe9DgBzD210kNWT7tUJOs3rh6cgg1uOMkq0QnZ6CMA9EuUiW
+         X6U8Z9Z/OogwSQ1/LOUYTTcUYzv9P46/aWhlucC36HqK3Kcy11NqUJrHkdFUn/jLswO2
+         D0Alp0LqOX9ENaBoCIpZ5losuc0Tti6spO2ezojRifyFUdOs0M/fWW6WMqU5tr2xb+hE
+         lx0SCtcJh70vDqeCPZjLQL9itr3lhq+9nGgTdSDltKQ9pvbTheH5BTLGrnneZxEix8Fx
+         MKRfC2TX9qphFcserpuy8Vumv1lgtbuJJ+j3Fr3hD886IOyfuHT0EiCidq90ef36TZAU
+         JMIA==
+X-Gm-Message-State: AOAM531PvhOQjdlKiF2EU/bCZsLSJD3ik/xYLegVUR/SMPDpfdbDI5Y3
+        MJMQ/G0uAUma2ta0ptj7EN4=
+X-Google-Smtp-Source: ABdhPJzRmUhFza6e/7DKRAMWFBmKOgWUb6fdMECHk398ZIn7NJxTfemfK+CMzjqLk48PjMSfCimDyA==
+X-Received: by 2002:a05:600c:259:: with SMTP id 25mr25764293wmj.5.1617034381001;
+        Mon, 29 Mar 2021 09:13:01 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id a6sm28570964wmm.0.2021.03.29.09.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 09:13:00 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: meson: misc ODROID-N2/N2+ changes
+Date:   Mon, 29 Mar 2021 16:12:53 +0000
+Message-Id: <20210329161256.31171-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series cleans-up and submits some minor patches used in HardKernel
+Linux 5.10 and 5.11 images for the ODROID N2/N2+, and fixes a stray tab.
 
-On Fri, Mar 26, 2021 at 5:38 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> The point remains that unless we describe exactly which panel we're
-> dealing with, we ultimately have no way of properly quirking anything if
-> we ever have to.
+Christian Hewitt (1):
+  arm64: dts: meson: remove extra tab from ODROID N2/N2+ ext_mdio node
 
-Just to clarify here: with my initial proposal we actually could still
-quirk things if we had to. If the quirk needed to be applied before
-power on we'd just have to apply the quirk to the whole board (which
-we'd have to do anyway). After the panel was powered on then we could
-read the EDID and apply a quirk based on what the EDID tells us,
-right?
+Hyeonki Hong (2):
+  arm64: dts: meson: add saradc node to ODROID N2/N2+
+  arm64: dts: meson: add GPIO line names to ODROID N2/N2+
 
+ .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 51 ++++++++++++++++++-
+ 1 file changed, 50 insertions(+), 1 deletion(-)
 
-> Also, once we allow this kind of wildcard we can
-> suddenly get into a situation where people might want to reuse this on
-> something that's not at all a google-pompom board because the same
-> particular power sequence happens to work on on some other board.
+-- 
+2.17.1
 
-That's a legit concern. Of course, people could already do that with
-existing panels right? One would also hope that if they reused this
-they also used the "more specific to least specific" rule, so someone
-could reuse (without any problems) with:
-
-compatible = "some-other-company,some-other-board-panel", "google,pompom-panel"
-
-That doesn't seem like it would be terrible.
-
-
-> Similarly I can imagine a situation where we could now have the same
-> panel supported by multiple different wildcard compatible strings. How
-> is that supposed to be any cleaner than what we have now?
-
-I'm tempted to call this (same panel supported by multiple different
-compatible strings) a feature, actually. Specifically:
-
-Even if the exact same hardware is shipped with more than one board,
-it may have a different EDID programmed into it. From what I've seen
-the timings used on a panel may need to be adjusted based on the SoC
-used (and what clock rates it can provide / features of the underlying
-display driver), EMI concerns, and power consumption concerns. Once a
-different EDID is programmed in it then it sorta becomes a "different"
-panel, right? I think sometimes (?) panel vendors assign a slightly
-different model number per board, but I'm not sure.
-
-
--Doug
