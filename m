@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB6634CF46
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF19E34CEF9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbhC2LoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:44:14 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:63026 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbhC2Lnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:43:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1617017316; x=1619609316;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=dag0VALSFXxJrNDdDso7no10SDPXXkuRDt61Ctbt0Rc=;
-        b=K1oH4h2CocmPw4sGcR3hBIdtlV9kD9LY6bGzB0yMnqWz63P6B1OfjI02ywYg9865
-        zAheioPcGBIM0tL6SWXQ6OTDLxqofP4llcfD5xBmpTj9/9Jwu0hm6QcTXqVLOG2T
-        p7tuCece7UegKPnQxGmC2y5LTeDQ3f1pciKfS5L39eI=;
-X-AuditID: c39127d2-85cb770000001c91-73-6061b9e48219
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 3C.8A.07313.4E9B1606; Mon, 29 Mar 2021 13:28:36 +0200 (CEST)
-Received: from lws-riedmueller.phytec.de ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021032913283634-253200 ;
-          Mon, 29 Mar 2021 13:28:36 +0200 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: [PATCH 3/3] ARM: dts: imx6: pbab01: Set vmmc supply for both SD interfaces
-Date:   Mon, 29 Mar 2021 13:28:19 +0200
-Message-Id: <20210329112819.64043-3-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210329112819.64043-1-s.riedmueller@phytec.de>
-References: <20210329112819.64043-1-s.riedmueller@phytec.de>
+        id S229557AbhC2L3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229502AbhC2L3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:29:21 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5237C061574;
+        Mon, 29 Mar 2021 04:29:19 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id u5-20020a7bcb050000b029010e9316b9d5so6487853wmj.2;
+        Mon, 29 Mar 2021 04:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=B4UbXj840h4a71/q2at4GMy9N6Sb2gByhZKiwU4vJrY=;
+        b=vH6Jk2ErhRmQrT8JMSNBb3j8ljVgY0/xJ5pSRb8OkKWdN7V8Fb/uQ6ezV/2eriBi0S
+         +XKgxqRkg/XIHcyMOg8OIThPyhC3X72qZ9LcZ2dn6QIthICoN4qMggesQFWxEdxL9EMr
+         ZHqLQRdhOFn8+INmmFZ4vYqtYHw4lq2DtiuCSWE6YFEMJI2js8vVYdV2OFX+lRTQX+1z
+         bL690l+yTWTOOUuV2xvaLLYbe7a8+KblJqL6/wtzaDkyaK6+sNUe6cOfR0ng9E8GjU2T
+         MS/V3CIT9SwlnA/clttGsasiWGgWLwTeua2qNoWcM+EWiMYDgxrCq6vgwIUbGD7L9nJf
+         hsdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=B4UbXj840h4a71/q2at4GMy9N6Sb2gByhZKiwU4vJrY=;
+        b=OalLnwTYnDhc//P9aRSjnqrTeXGLozHobBoafy/sWoCsfZ10w4GRjmsfX6O5166/1Z
+         +y5UUU2axQKwSiYuqtQqmZaYkeFXGQDbzegAExU7AiIFBdzTWxiupJnhyX8hhvUA4CXX
+         gfvQ+K6dS6SCjD+EsJb5vDNgyF/Rpj40J+Ui5r32WBZXnPABnU/OSXpN1DIyWm2BVATa
+         WPybXpbBl5G7nbD0Q7J/YgD8lTZgKg8MbzmnT5IGu6ZqVvVvEXblXHwJwGBTBC58XFdw
+         8L8GZniPUWPi9GfzGQz/I481KrXEUG/4ZbUZCkywjxL4ks1RbB7iKNVOvl/GwavaVzSN
+         3Sgg==
+X-Gm-Message-State: AOAM530QLyyWoe/fH1FM+JKEHo8esLzzX/2F/YC9A+eIh/5vhRDUNMUH
+        bK3o8c3v7Qq6jZAAeuhPFNo=
+X-Google-Smtp-Source: ABdhPJwh1CpNaMjP9xoCHDNi8l5BEedqRd9AdlvpPDnD5cmQsxeJJFyojmhA1GZ5Ktlc90ch/G+1lw==
+X-Received: by 2002:a05:600c:2106:: with SMTP id u6mr24768425wml.55.1617017358485;
+        Mon, 29 Mar 2021 04:29:18 -0700 (PDT)
+Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
+        by smtp.gmail.com with ESMTPSA id k24sm24211189wmr.48.2021.03.29.04.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Mar 2021 04:29:18 -0700 (PDT)
+Subject: Re: [PATCH 1/2] clk: mediatek: remove deprecated CLK_INFRA_CA57SEL
+ for MT8173 SoC
+To:     Seiya Wang <seiya.wang@mediatek.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
+References: <20210326031227.2357-1-seiya.wang@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <1c54a2f1-64e8-0fa5-e2e3-55c367332626@gmail.com>
+Date:   Mon, 29 Mar 2021 13:29:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 29.03.2021 13:28:36,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 29.03.2021 13:28:36
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJLMWRmVeSWpSXmKPExsWyRoCBS/fJzsQEg45Dahbzj5xjtXh41d9i
-        1dSdLBabHl9jtej6tZLZ4vKuOWwWrXuPsFv83b6JxeLFFnEHTo+ds+6ye2xa1cnmsXlJvcfG
-        dzuYPPr/Gnh83iQXwBbFZZOSmpNZllqkb5fAlfFrvUDBE46Kc6cesTcwbmLvYuTkkBAwkfj7
-        aDpjFyMXh5DANkaJBR/b2SCca4wSt793sYJUsQkYSSyY1sgEYosI5Eic2riZBcRmFuhkkvh9
-        MriLkYNDWCBYYsF9PZAwi4CqxJqGncwgNq+AjcT6hpOsEMvkJWZe+g62mFPAVuL/ouVgNUJA
-        NYcbIeK8AoISJ2c+YQG5QULgCqPEpT97mCGahSROLz7LDLFXW2LZwtfMExgFZiHpmYUktYCR
-        aRWjUG5mcnZqUWa2XkFGZUlqsl5K6iZGYHAfnqh+aQdj3xyPQ4xMHIyHGCU4mJVEeFlPxyYI
-        8aYkVlalFuXHF5XmpBYfYpTmYFES593AWxImJJCeWJKanZpakFoEk2Xi4JRqYJw3acV04Urz
-        X3pdOvlqrwPOHGwoNzbRZveYJBhwY/ItJaf9pz4xtVu9z1ZgWefOwbfr/syEW5mVPaz2Z7+E
-        B93n1mALO9IleMJN5jNDT9SRSfxGpw9r/7jxyKqg61PA0b8Het7Wdl+OC9ETyX9pr+Z35cS3
-        ZctZXyQ8WZXW5bShTsJJz+KdnRJLcUaioRZzUXEiAAd04UZcAgAA
+In-Reply-To: <20210326031227.2357-1-seiya.wang@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting the vmmc supplies is crucial since otherwise the supplying
-regulators get disabled and the SD interfaces are no longer powered
-which leads to system failures if the system is booted from that SD
-interface.
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
----
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/d=
-ts/imx6qdl-phytec-pfla02.dtsi
-index 995e99952aca..3ab12aa2a615 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -433,6 +433,7 @@ &usdhc2 {
- 	pinctrl-0 =3D <&pinctrl=5Fusdhc2>;
- 	cd-gpios =3D <&gpio1 4 GPIO=5FACTIVE=5FLOW>;
- 	wp-gpios =3D <&gpio1 2 GPIO=5FACTIVE=5FHIGH>;
-+	vmmc-supply =3D <&vdd=5Fsd1=5Freg>;
- 	status =3D "disabled";
- };
-=20
-@@ -442,5 +443,6 @@ &usdhc3 {
- 		     &pinctrl=5Fusdhc3=5Fcdwp>;
- 	cd-gpios =3D <&gpio1 27 GPIO=5FACTIVE=5FLOW>;
- 	wp-gpios =3D <&gpio1 29 GPIO=5FACTIVE=5FHIGH>;
-+	vmmc-supply =3D <&vdd=5Fsd0=5Freg>;
- 	status =3D "disabled";
- };
---=20
-2.25.1
+On 26/03/2021 04:12, Seiya Wang wrote:
+> Remove CLK_INFRA_CA57SEL for MT8173 since it's no longer used.
+> 
+> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
 
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>  include/dt-bindings/clock/mt8173-clk.h | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/clock/mt8173-clk.h b/include/dt-bindings/clock/mt8173-clk.h
+> index 3acebe937bfc..3d00c98b9654 100644
+> --- a/include/dt-bindings/clock/mt8173-clk.h
+> +++ b/include/dt-bindings/clock/mt8173-clk.h
+> @@ -186,7 +186,6 @@
+>  #define CLK_INFRA_PMICWRAP		11
+>  #define CLK_INFRA_CLK_13M		12
+>  #define CLK_INFRA_CA53SEL               13
+> -#define CLK_INFRA_CA57SEL               14 /* Deprecated. Don't use it. */
+>  #define CLK_INFRA_CA72SEL               14
+>  #define CLK_INFRA_NR_CLK                15
+>  
+> 
