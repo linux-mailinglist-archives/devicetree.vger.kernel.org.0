@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2F534DB2A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 00:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9BF34DB67
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 00:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232959AbhC2W0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 18:26:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48734 "EHLO mail.kernel.org"
+        id S232613AbhC2W2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 18:28:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47666 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232356AbhC2WXw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 18:23:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 21E1D61989;
-        Mon, 29 Mar 2021 22:23:28 +0000 (UTC)
+        id S231911AbhC2WZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 18:25:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 22F9961613;
+        Mon, 29 Mar 2021 22:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617056608;
-        bh=QYf+o391oxwQiLlr8qRgJfQwrpwQtS4oM5GXM2xDvmw=;
+        s=k20201202; t=1617056627;
+        bh=xijELzIbG11EAeYB9pA2+IKC5TFVDVEPkhj8LCfB5Ew=;
         h=From:To:Cc:Subject:Date:From;
-        b=vHWcbk5Eb3FvSVyGhleUTWnMRv9ETTpd29jop4bJs2fbcbAEqXUQX890qxtW4tWUB
-         KRAqOHRudHjXgZ8xhBxr5A3doDvBekF1S97NeAAGNTOBAkGxsd1Gp4cCuDvEwmv9UB
-         asH/83EU33fWduruzwVTWrpkLM9w/0sIrXEzrPW43Gov1DH3SC5NF13/P06FGD2BmW
-         6UFuFvcg55boIT78XEy/SJo1Ux9VBUVfrp4apruppxQyayScYP5hTH+zsk4sYaUUe+
-         DIBJ5l1uypDDvQ5J5XLBoIyouwjIp57SqHKCL6af5KIVq8RJklDU2O1CBP4iX+kXmd
-         nWbfbvLnhWgAw==
+        b=a7whbFxrH6UG1X76NSPZv05y71LXL007idmF5GYR2Zy4l3CkDWojdRmwKeefw41P5
+         Z6eC54mba9rGCEQNxZW994VCeZpld0UbxJjgN3712e9jPw4+/2DUGG75CUyvDoVTcn
+         3/0cRdhba4gebvNY/ONLIhEpTG9vE487Pie8NYld9Xx8r8lRpdktGhf55gHJhzOZF3
+         BIOMtdbwanelTRgx0jC1YR6Y/4weA539UKY+y0YF7ZqEoW1H1jBo9KhvHNZ4g1gVvk
+         df68bsUsEKyyqYT8lBB3aL8wV4bjBXWJeyPpSazQ1N9fgEN6KdShD1lP5EdRbPAWBS
+         pjRJLSXRWduRA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Mans Rullgard <mans@mansr.com>, Tony Lindgren <tony@atomide.com>,
         Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 01/15] ARM: dts: am33xx: add aliases for mmc interfaces
-Date:   Mon, 29 Mar 2021 18:23:12 -0400
-Message-Id: <20210329222327.2383533-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 01/12] ARM: dts: am33xx: add aliases for mmc interfaces
+Date:   Mon, 29 Mar 2021 18:23:34 -0400
+Message-Id: <20210329222345.2383777-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
 X-stable: review
@@ -60,10 +60,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
-index d3dd6a16e70a..e321acaf35d6 100644
+index e58fab8aec5d..8923273a2f73 100644
 --- a/arch/arm/boot/dts/am33xx.dtsi
 +++ b/arch/arm/boot/dts/am33xx.dtsi
-@@ -39,6 +39,9 @@ aliases {
+@@ -38,6 +38,9 @@ aliases {
  		ethernet1 = &cpsw_emac1;
  		spi0 = &spi0;
  		spi1 = &spi1;
