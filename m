@@ -2,91 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7409E34BF8B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 00:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 053C034C097
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 02:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231534AbhC1WFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Mar 2021 18:05:17 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:52120 "EHLO vps0.lunn.ch"
+        id S229656AbhC2Ais (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 20:38:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42920 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230184AbhC1WEp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Mar 2021 18:04:45 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lQdWR-00DWCD-8A; Mon, 29 Mar 2021 00:04:39 +0200
-Date:   Mon, 29 Mar 2021 00:04:39 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be
- overridden from DT
-Message-ID: <YGD9d/zeJtAXxC8K@lunn.ch>
-References: <20210326105648.2492411-1-tobias@waldekranz.com>
- <20210326105648.2492411-3-tobias@waldekranz.com>
- <YGCmS2rcypegGmYa@lunn.ch>
- <20210328215309.sgsenja2kmjx45t2@skbuf>
+        id S229822AbhC2AiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Mar 2021 20:38:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0915161922;
+        Mon, 29 Mar 2021 00:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616978300;
+        bh=Xn0UndLnRHTcnV9w5V4XY+G1MloCRyKASA1FTEQj8G4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A2/kj0xb3cFoaVuximJ2D22pa1TqyWlIFAqQQtA7bFQhA4UowrOlJmSAn5fLRw5Bp
+         WKvSutZAIw1kVdmSo7hirDAeLth5z0VCr9l91VsMMxy1IMUowLddMm5IUNSHPPtOcY
+         olo9/AcjjLnUoeYeCOHrqjhauqXFQ1IZA5bc/rrOJpLEitGmdnFnZEROqX6AvBvmIp
+         LglxPQAQth9hljlf4FjR+3RS1faE215HYSbkyjgNNmxfFZGVgu+6lNas2ydZcuEj1L
+         vFP2ip5UmsPzNkrXW2DaptApYmvFJ4n4QrwoOhsfwdvFXouWaKCLZqGin2fKSGolxy
+         zkhJBHVnrESzQ==
+Date:   Mon, 29 Mar 2021 08:38:15 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Michael Walle <michael@walle.cc>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>,
+        Guillaume Tucker <guillaume.tucker@collabora.com>,
+        "kernelci.org bot" <bot@kernelci.org>
+Subject: Re: [PATCH] arm64: dts: ls1028a: fix optee node
+Message-ID: <20210329003814.GC22955@dragon>
+References: <20210318083438.26536-1-michael@walle.cc>
+ <CADRPPNR=xy_oBZFS+hmO1k+uu2ckFyrK9EUP77N3buU5XpuHrw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210328215309.sgsenja2kmjx45t2@skbuf>
+In-Reply-To: <CADRPPNR=xy_oBZFS+hmO1k+uu2ckFyrK9EUP77N3buU5XpuHrw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 12:53:09AM +0300, Vladimir Oltean wrote:
-> On Sun, Mar 28, 2021 at 05:52:43PM +0200, Andrew Lunn wrote:
-> > > +static int dsa_switch_setup_tag_protocol(struct dsa_switch *ds)
-> > > +{
-> > > +	const struct dsa_device_ops *tag_ops = ds->dst->tag_ops;
-> > > +	struct dsa_switch_tree *dst = ds->dst;
-> > > +	int port, err;
-> > > +
-> > > +	if (tag_ops->proto == dst->default_proto)
-> > > +		return 0;
-> > > +
-> > > +	if (!ds->ops->change_tag_protocol) {
-> > > +		dev_err(ds->dev, "Tag protocol cannot be modified\n");
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	for (port = 0; port < ds->num_ports; port++) {
-> > > +		if (!(dsa_is_dsa_port(ds, port) || dsa_is_cpu_port(ds, port)))
-> > > +			continue;
-> > 
-> > dsa_is_dsa_port() is interesting. Do we care about the tagging
-> > protocol on DSA ports? We never see that traffic?
+On Mon, Mar 22, 2021 at 06:12:06PM -0500, Li Yang wrote:
+> On Thu, Mar 18, 2021 at 3:36 AM Michael Walle <michael@walle.cc> wrote:
+> >
+> > Don't enable the optee node in the SoC include. It is an optional
+> > component and actually, if enabled, breaks boards which doesn't have it.
 > 
-> I believe this comes from me (see dsa_switch_tag_proto_match). I did not
-> take into consideration at that time the fact that Marvell switches can
-> translate between DSA and EDSA. So I assumed that every switch in the
-> tree needs a notification about the tagging protocol, not just the
-> top-most one.
+> Hi Shawn,
+> 
+> Shall we make this a general rule?  I see quite a few SoC dtsi files
+> are having the optee node enabled by default.
 
-Hi Vladimir
 
-static int mv88e6xxx_setup_port_mode(struct mv88e6xxx_chip *chip, int port)
-{
-        if (dsa_is_dsa_port(chip->ds, port))
-                return mv88e6xxx_set_port_mode_dsa(chip, port);
+Yeah, we should probably make it a general rule considering the issue
+reported here.  I thought that optee driver is smart enough to stop
+probing if there is no optee os/firmware support found on given platform.
 
-So DSA ports, the ports connecting two switches together, are hard
-coded to use DSA.
-
-        if (dsa_is_user_port(chip->ds, port))
-                return mv88e6xxx_set_port_mode_normal(chip, port);
-
-        /* Setup CPU port mode depending on its supported tag format */
-        if (chip->info->tag_protocol == DSA_TAG_PROTO_DSA)
-                return mv88e6xxx_set_port_mode_dsa(chip, port);
-
-        if (chip->info->tag_protocol == DSA_TAG_PROTO_EDSA)
-                return mv88e6xxx_set_port_mode_edsa(chip, port);
-
-CPU ports can be configured to DSA or EDSA.
-
-The switches seem happy to translate between DSA and EDSA as needed.
-
-    Andrew
+Shawn
