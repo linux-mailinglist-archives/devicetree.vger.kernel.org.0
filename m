@@ -2,134 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DD4C34D32B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC54F34D33E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbhC2PBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:01:09 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:5922 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230447AbhC2PAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 11:00:49 -0400
-Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12TEWlcs101306;
-        Mon, 29 Mar 2021 11:00:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=o07fK/PX+s864FToqCu+tZMzQAp87DwjcfV0p7Ydg10=;
- b=eu7tN4U1iFQ3XFYrgl2OxpoZM2p/4mR2IrwsTZ8QiMGZl5eQDejuDAFmFjD3ptHOaWFm
- U9r8xvDEUWjhZo+LnlPFHOtPZrAXLPSMa8slxtVHVI5c1y97l6TGmxGm9mVYvThD9ghg
- usNIg9HteYQocctjFVAh2EOtIeC1V7PPgJZ4a3jwv0doflbKQcCjEiA8WT7nLIw4FeS/
- 6BFokSzCePXwHl1kdvASHQvTLoxNcoPrxb2shNj1oT0jue09mWaqLCuYN0MwAPsTPiQg
- oNwHV1aVToaqOzG3PKlZoSQ/tbgVurVgocuiYOm1gNlRsVdyK0AIrYTpmeLGmobSbfr1 Tg== 
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 37jhruas62-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Mar 2021 11:00:44 -0400
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
-        by ppma01dal.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12TExvEb011717;
-        Mon, 29 Mar 2021 15:00:43 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma01dal.us.ibm.com with ESMTP id 37hvb92xnn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Mar 2021 15:00:43 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 12TF0gMB29294924
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 29 Mar 2021 15:00:42 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 26C6478068;
-        Mon, 29 Mar 2021 15:00:42 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C844978067;
-        Mon, 29 Mar 2021 15:00:41 +0000 (GMT)
-Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.163.3.96])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Mon, 29 Mar 2021 15:00:41 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     joel@jms.id.au
-Cc:     andrew@aj.id.au, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH 22/22] ARM: dts: aspeed: Add Rainier 1S4U machine
-Date:   Mon, 29 Mar 2021 10:00:20 -0500
-Message-Id: <20210329150020.13632-23-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210329150020.13632-1-eajames@linux.ibm.com>
-References: <20210329150020.13632-1-eajames@linux.ibm.com>
+        id S230237AbhC2PEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52856 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229910AbhC2PDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:03:51 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11202C061574;
+        Mon, 29 Mar 2021 08:03:51 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id n138so18948800lfa.3;
+        Mon, 29 Mar 2021 08:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=50i/6vm6fwmnn7wcgvH81eY5FvT08NpnqhTvt5R4tYY=;
+        b=cZKgPuRSpMMu+T12m1VGG5+5GxYj8GG9zn4X5VGZcqg3xjWcjimifBZiPeoW+Y7A6H
+         /vsThmTwbF0FKRM5MF9ZVyE337FSMUZjyzNwSnIPkIpyEHeR4gpP4MTFz2Sf1QBySeFj
+         D2jcdq9UhFY7qsDQwC9rpn5fM1wA/sLQW6LV4l1yW4gM07+Ut8Ic4i+v5AnBACmohLBe
+         pBo3XtQEJkWRJ4hcNgX63aDaSsWAEfOwM0HHsn2KEd9+dCF1u4N0mrvqzfFtrJ4zK+D1
+         iIUp4ZVq2De1RwGga7l0xR+pUxyrH+/fibM4Ull28IH+B6gSndstQGS9ZP7ClEGArRou
+         3QIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=50i/6vm6fwmnn7wcgvH81eY5FvT08NpnqhTvt5R4tYY=;
+        b=J/6C6rUQsqvlXj2+vmdB89TjcC5hBIZiJCwqYzjvopCRA9iTZA6isgqvOnXaRrpl8c
+         FdLkekImevI37QkBI1qHJk8w1sC/I/9Lh4JJRzPjLarI95PRMGBdy1U7HaWmhzlH1+OA
+         srsRuDKnChXNZQ3qTmLc6lpf1mOWoyTUp/shS9Opu272tGovqlowvVnPyyiayaMLQjNR
+         DjlnueT3eXfSunV02rx7qC6c1VtzZINPseslVuVQZi+grHdyxKFOg0kcjUpUosn0aosG
+         FRjy/2VhEJKx51uOZb6SaHvm42HJGWeX059URQC3YzYi0aYFqT/dxjIWCkDtR5oYAX4y
+         tdaA==
+X-Gm-Message-State: AOAM5333q/apQ87qJB3r8n8Tajg+3N7Xix51NI17e5bl+Y5IlMYUqZoH
+        HjfoYue/HVVDGVwPRJTvpRtqu0g0hDxCm0KjB3c=
+X-Google-Smtp-Source: ABdhPJzmrhOVB8oB8x0Md2MlAR6MpClJP1671nQ0UbEFwNGOvfn9yM8Z4SsDwBwta6rlkcnCmTFI7gH8ExwWx3U/9lQ=
+X-Received: by 2002:a19:4147:: with SMTP id o68mr17999005lfa.295.1617030229622;
+ Mon, 29 Mar 2021 08:03:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: quRWxsSA4TXt5O_tVGfe0IuxHfeIJ319
-X-Proofpoint-ORIG-GUID: quRWxsSA4TXt5O_tVGfe0IuxHfeIJ319
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-29_09:2021-03-26,2021-03-29 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=989 mlxscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0
- suspectscore=0 malwarescore=0 clxscore=1015 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2103250000 definitions=main-2103290112
+References: <20210329130103.65857-1-s.riedmueller@phytec.de>
+In-Reply-To: <20210329130103.65857-1-s.riedmueller@phytec.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 29 Mar 2021 12:03:38 -0300
+Message-ID: <CAOMZO5DXqEmRq=SZw_N6KEs-me+gAfB_htaLhhkwDUZ6+7QP4g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable pinmuxing
+To:     Stefan Riedmueller <s.riedmueller@phytec.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 1S4U version of the Rainier system has only 4 fans. Create a new
-tree, include the 4U version, and delete the 2 extra fans.
+Hi Stefan,
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/Makefile                        |  1 +
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts | 14 ++++++++++++++
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts      |  2 +-
- 3 files changed, 16 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts
+On Mon, Mar 29, 2021 at 10:01 AM Stefan Riedmueller
+<s.riedmueller@phytec.de> wrote:
+>
+> The pinmuxing for the enable pin of the usbh1 node is wrong. It needs to
+> be muxed as GPIO. While at it, move the pinctrl to the vbus regulator
+> since it is actually the regulator enable pin.
+>
+> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index c2c8ec8c1cd5..8e1819fb4497 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1424,6 +1424,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-ibm-everest.dtb \
- 	aspeed-bmc-ibm-rainier.dtb \
- 	aspeed-bmc-ibm-rainier-v2.dtb \
-+	aspeed-bmc-ibm-rainier-1s4u.dtb \
- 	aspeed-bmc-ibm-rainier-4u.dtb \
- 	aspeed-bmc-ibm-rainier-4u-v2.dtb \
- 	aspeed-bmc-intel-s2600wf.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts
-new file mode 100644
-index 000000000000..78b2dab63624
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2021 IBM Corp.
-+/dts-v1/;
-+
-+#include "aspeed-bmc-ibm-rainier-4u-v2.dts"
-+
-+/ {
-+	model = "Rainier 1S4U";
-+};
-+
-+&max {
-+	/delete-node/ fan4;
-+	/delete-node/ fan5;
-+};
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index a8c0ed4d37c3..089358704e64 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -1979,7 +1979,7 @@ tmp275@48 {
- 		reg = <0x48>;
- 	};
- 
--	max31785@52 {
-+	max: max31785@52 {
- 		compatible = "maxim,max31785a";
- 		reg = <0x52>;
- 		#address-cells = <1>;
--- 
-2.27.0
+Thanks for the respin:
 
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
