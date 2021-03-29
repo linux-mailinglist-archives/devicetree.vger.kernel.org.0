@@ -2,716 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F12C34D99A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 23:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E911334D9BA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 23:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbhC2Vek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 17:34:40 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:46767 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbhC2Ve1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 17:34:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1617053667; x=1648589667;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ouuKmK1tT5f/XSKQEwLkolpYHk5kYVEvIHKQrcf4+0A=;
-  b=JnzzrWdA0TvXDp/gRBT75oA9NH+aDVVdP/WyWZ5FtGUdczalgpLlNq4I
-   RsmNd9nSg44tSFuBLCjo4RboZ1YHZ1ujY3wuBdY7oFf7V6UJDFw9o+y3a
-   5j7rkZzHFtchCjbqeo64s2d69Ovb8YqDgvCaUTGk0kgfiX+1nVhPZBrar
-   sAYHD1n5BwjOMHOdm+wGWApu+nHTYbqhWFPhANb0RCIwOx2Z8K4o0OTAU
-   B7Yit3i2kNb8dY12s6qmfvB/oO4F/bkOhkG5k03eCZxPXIdYCLnp6sw+T
-   /fmy1C6BUsgq0KzaDXgM8EMe3BCmhVdXhUHck85noolabLeQJE9wic5ig
-   g==;
-IronPort-SDR: Ky5ev9pBVpZ7doQ26qCNJpFy4+cwfihrRABWK8vltLeI9PtbD6rbo8YTHskiYAn8AgMsYzuoTy
- vvzEkBWZ13VgaHc1pCpErqJ0iLCGjk0BzC/nnfX8GfUvHA3Y25JBFOePfqu8tu8pMlW8znX9At
- Z5XYJ2AUZ7wOs92sAps0UT++AXrVyz9yM7xF3r+yFGNjcbwVTMcsQiw/ecqov8gfpCtxyptGsJ
- 1gcS8qDGrRbMAZHCGE/nZZmIUXdU0BHQdWYVhpzEaiod7h/wrmxElxqXTe2wPbbroWR0pWtYJu
- wTs=
-X-IronPort-AV: E=Sophos;i="5.81,288,1610434800"; 
-   d="scan'208";a="120956204"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Mar 2021 14:34:27 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 29 Mar 2021 14:34:26 -0700
-Received: from cristi-P53.amer.actel.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 29 Mar 2021 14:34:24 -0700
-From:   <cristian.birsan@microchip.com>
-To:     <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
-        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Cristian Birsan <cristian.birsan@microchip.com>
-Subject: [RFC PATCH 2/2] usb: typec: sama7g5_tcpc: add driver for Microchip sama7g5 tcpc
-Date:   Tue, 30 Mar 2021 00:33:57 +0300
-Message-ID: <20210329213357.431083-3-cristian.birsan@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210329213357.431083-1-cristian.birsan@microchip.com>
-References: <20210329213357.431083-1-cristian.birsan@microchip.com>
+        id S231246AbhC2VxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 17:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230467AbhC2VxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 17:53:05 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4C0C061574;
+        Mon, 29 Mar 2021 14:53:04 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 1FBC41F454FB
+Received: by earth.universe (Postfix, from userid 1000)
+        id 974053C0C96; Mon, 29 Mar 2021 23:53:00 +0200 (CEST)
+Date:   Mon, 29 Mar 2021 23:53:00 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Subject: Re: [RFC] clk: add boot clock support
+Message-ID: <20210329215300.4qnhmm4utmdectk5@earth.universe>
+References: <20210316215123.GA3712408@robh.at.kernel.org>
+ <20210318210318.144961-1-sebastian.reichel@collabora.com>
+ <20210326012720.GA2113788@robh.at.kernel.org>
+ <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
+ <20210326095212.22ty5ueowiq36y6b@earth.universe>
+ <CAGETcx81=GwChE0eZtKKAk4kDeq2S0ijS8X7FsMnk5HhzAcOhA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vkhbavartwpths7y"
+Content-Disposition: inline
+In-Reply-To: <CAGETcx81=GwChE0eZtKKAk4kDeq2S0ijS8X7FsMnk5HhzAcOhA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cristian Birsan <cristian.birsan@microchip.com>
 
-This patch adds initial driver support for the new Microchip USB
-Type-C Port Controller (TCPC) embedded in sama7g5 SoC.
+--vkhbavartwpths7y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Cristian Birsan <cristian.birsan@microchip.com>
----
- drivers/usb/typec/tcpm/Kconfig        |   8 +
- drivers/usb/typec/tcpm/Makefile       |   1 +
- drivers/usb/typec/tcpm/sama7g5_tcpc.c | 602 ++++++++++++++++++++++++++
- 3 files changed, 611 insertions(+)
- create mode 100644 drivers/usb/typec/tcpm/sama7g5_tcpc.c
+Hi,
 
-diff --git a/drivers/usb/typec/tcpm/Kconfig b/drivers/usb/typec/tcpm/Kconfig
-index 557f392fe24d..8ba0fd85741f 100644
---- a/drivers/usb/typec/tcpm/Kconfig
-+++ b/drivers/usb/typec/tcpm/Kconfig
-@@ -52,6 +52,14 @@ config TYPEC_FUSB302
- 	  Type-C Port Controller Manager to provide USB PD and USB
- 	  Type-C functionalities.
- 
-+config TYPEC_SAMA7G5
-+	tristate "Microchip SAMA7G5 Type-C Port Controller driver"
-+	select REGMAP_MMIO
-+	help
-+	  Say Y or M here if your system has SAMA7G5 TCPC controller.
-+	  It works with Type-C Port Controller Manager to provide USB
-+	  Type-C functionalities.
-+
- config TYPEC_WCOVE
- 	tristate "Intel WhiskeyCove PMIC USB Type-C PHY driver"
- 	depends on ACPI
-diff --git a/drivers/usb/typec/tcpm/Makefile b/drivers/usb/typec/tcpm/Makefile
-index 7d499f3569fd..9abe8a7ae1cc 100644
---- a/drivers/usb/typec/tcpm/Makefile
-+++ b/drivers/usb/typec/tcpm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_TYPEC_TCPM)		+= tcpm.o
- obj-$(CONFIG_TYPEC_FUSB302)		+= fusb302.o
-+obj-$(CONFIG_TYPEC_SAMA7G5)		+= sama7g5_tcpc.o
- obj-$(CONFIG_TYPEC_WCOVE)		+= typec_wcove.o
- typec_wcove-y				:= wcove.o
- obj-$(CONFIG_TYPEC_TCPCI)		+= tcpci.o
-diff --git a/drivers/usb/typec/tcpm/sama7g5_tcpc.c b/drivers/usb/typec/tcpm/sama7g5_tcpc.c
-new file mode 100644
-index 000000000000..d1a912976418
---- /dev/null
-+++ b/drivers/usb/typec/tcpm/sama7g5_tcpc.c
-@@ -0,0 +1,602 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Microchip SAMA7G5 Type-C Port Controller Driver
-+ *
-+ * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_gpio.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/usb/pd.h>
-+#include <linux/usb/tcpm.h>
-+#include <linux/usb/typec.h>
-+
-+#define SAMA7G5_TCPC_GCLK				32000
-+
-+/* TCPC registers offsets */
-+#define TCPC_CR			0x80		/* TCPC Control Register */
-+#define TCPC_UPC		0xA0		/* TCPC PHY Control Register */
-+#define TCPC_UPS		0xA4		/* TCPC PHY Status Register */
-+
-+#define TCPC_CR_RESET		0x54434301	/* Magic value */
-+
-+/* TCPC PHY Control Register */
-+#define TCPC_UPC_BCDETE		BIT(29)
-+#define TCPC_UPC_BCVSRCE	BIT(28)
-+#define	TCPC_UPC_BCDETSEL	BIT(27)
-+#define	TCPC_UPC_BCIDPSRCE	BIT(26)
-+#define TCPC_UPC_DMPDFE		BIT(25)
-+#define TCPC_UPC_DMPDFD		BIT(24)
-+#define TCPC_UPC_IP_OFF		(0 << 12)
-+#define TCPC_UPC_IP_0P5		(1 << 12)
-+#define TCPC_UPC_IP_1P5		(2 << 12)
-+#define TCPC_UPC_IP_3P0		(3 << 12)
-+#define TCPC_UPC_THRESHOLD0	(0 << 8)
-+#define TCPC_UPC_THRESHOLD2	(2 << 8)
-+#define TCPC_UPC_THRESHOLD4	(4 << 8)
-+#define TCPC_UPC_THRESHOLD6	(6 << 8)
-+
-+/* TCPC PHY  Status Register */
-+#define TCPC_UPS_CC2RDT		BIT(4)
-+#define TCPC_UPS_CC1ID		BIT(3)
-+#define TCPC_UPS_CC_MASK	GENMASK(4, 3)
-+#define TCPC_UPS_CHGDCP		BIT(2)
-+#define TCPC_UPS_DM		BIT(1)
-+#define TCPC_UPS_DP		BIT(0)
-+
-+#define TCPC_VERSION		0xFC
-+
-+/* USB Type-C measurement timings */
-+#define T_CC_MEASURE		100 /* 100 ms */
-+
-+#define SAMA7G5_TCPC_VBUS_IRQFLAGS (IRQF_ONESHOT \
-+			   | IRQF_TRIGGER_FALLING | IRQF_TRIGGER_RISING)
-+
-+struct sama7g5_tcpc {
-+	struct device *dev;
-+
-+	struct workqueue_struct *wq;
-+	struct delayed_work measure_work;
-+
-+	struct regmap *regmap;
-+	void __iomem *base;
-+
-+	struct clk *pclk;
-+	struct clk *gclk;
-+
-+	struct gpio_desc *vbus_pin;
-+	struct regulator *vbus;
-+
-+	/* lock for sharing states */
-+	struct mutex lock;
-+
-+	/* port status */
-+	enum typec_cc_polarity cc_polarity;
-+	enum typec_cc_status cc1_status;
-+	enum typec_cc_status cc2_status;
-+	enum typec_cc_status cc1_status_prev;
-+	enum typec_cc_status cc2_status_prev;
-+
-+	/* mutex used for VBUS detection */
-+	struct mutex vbus_mutex;
-+	int vbus_present;
-+	int vbus_present_prev;
-+
-+	unsigned int phy_status;
-+	unsigned int phy_status_old;
-+
-+	struct tcpc_dev tcpc;
-+	struct tcpm_port *tcpm;
-+};
-+
-+#define tcpc_to_sama7g5_tcpc(_tcpc_) \
-+		container_of(_tcpc_, struct sama7g5_tcpc, tcpc)
-+
-+static bool sama7g5_tcpc_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case TCPC_CR:
-+	case TCPC_UPC:
-+	case TCPC_UPS:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool sama7g5_tcpc_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case TCPC_CR:
-+	case TCPC_UPC:
-+	case TCPC_UPS:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_config sama7g5_tcpc_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = TCPC_VERSION,
-+	.readable_reg = sama7g5_tcpc_readable_reg,
-+	.writeable_reg = sama7g5_tcpc_writeable_reg,
-+};
-+
-+static int sama7g5_tcpc_get_vbus(struct tcpc_dev *tcpc)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = tcpc_to_sama7g5_tcpc(tcpc);
-+	int ret;
-+
-+	mutex_lock(&sama7g5_tcpc->vbus_mutex);
-+	ret = sama7g5_tcpc->vbus_present ? 1 : 0;
-+	mutex_unlock(&sama7g5_tcpc->vbus_mutex);
-+
-+	return ret;
-+}
-+
-+static int sama7g5_tcpc_set_vbus(struct tcpc_dev *tcpc, bool on, bool sink)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = tcpc_to_sama7g5_tcpc(tcpc);
-+	int ret;
-+
-+	mutex_lock(&sama7g5_tcpc->vbus_mutex);
-+	if (on)
-+		ret = regulator_enable(sama7g5_tcpc->vbus);
-+	else
-+		ret = regulator_disable(sama7g5_tcpc->vbus);
-+	mutex_unlock(&sama7g5_tcpc->vbus_mutex);
-+
-+	return ret;
-+}
-+
-+static int sama7g5_tcpc_set_vconn(struct tcpc_dev *tcpc, bool on)
-+{
-+	/* VCONN is not supported */
-+	return -EPERM;
-+}
-+
-+static int sama7g5_tcpc_get_cc(struct tcpc_dev *tcpc, enum typec_cc_status *cc1,
-+			       enum typec_cc_status *cc2)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = tcpc_to_sama7g5_tcpc(tcpc);
-+
-+	mutex_lock(&sama7g5_tcpc->lock);
-+	*cc1 = sama7g5_tcpc->cc1_status;
-+	*cc2 = sama7g5_tcpc->cc2_status;
-+	mutex_unlock(&sama7g5_tcpc->lock);
-+
-+	return 0;
-+}
-+
-+static int sama7g5_tcpc_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = tcpc_to_sama7g5_tcpc(tcpc);
-+	unsigned int ctrl;
-+	int ret = 0;
-+
-+	mutex_lock(&sama7g5_tcpc->lock);
-+	switch (cc) {
-+	case TYPEC_CC_RD:
-+		ctrl = TCPC_UPC_IP_OFF;
-+		break;
-+	case TYPEC_CC_RP_DEF:
-+		ctrl = TCPC_UPC_IP_0P5;
-+		break;
-+	default:
-+		ret =  -EINVAL;
-+		goto done;
-+	}
-+	ret = regmap_write(sama7g5_tcpc->regmap, TCPC_UPC, ctrl);
-+done:
-+	mutex_unlock(&sama7g5_tcpc->lock);
-+	return ret;
-+}
-+
-+static int sama7g5_tcpc_set_polarity(struct tcpc_dev *tcpc,
-+				     enum typec_cc_polarity pol)
-+{
-+	return 0;
-+}
-+
-+static int sama7g5_tcpc_set_roles(struct tcpc_dev *tcpc, bool attached,
-+			   enum typec_role role, enum typec_data_role data)
-+{
-+	return 0;
-+}
-+
-+static int sama7g5_tcpc_set_pd_rx(struct tcpc_dev *tcpc, bool on)
-+{
-+	return -EPERM;
-+}
-+
-+static int sama7g5_tcpc_pd_transmit(struct tcpc_dev *tcpc,
-+				    enum tcpm_transmit_type type,
-+				    const struct pd_message *msg)
-+{
-+	return -EPERM;
-+}
-+
-+static int sama7g5_tcpc_start_toggling(struct tcpc_dev *tcpc,
-+				       enum typec_port_type port_type,
-+				       enum typec_cc_status cc)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static void _sama7g5_tcpc_measure_snk(struct sama7g5_tcpc *sama7g5_tcpc)
-+{
-+	int ret;
-+
-+	/* Save previous CC1/CC2 state */
-+	sama7g5_tcpc->cc1_status_prev = sama7g5_tcpc->cc1_status;
-+	sama7g5_tcpc->cc2_status_prev = sama7g5_tcpc->cc2_status;
-+
-+	/* Comparator Threshold 2 */
-+	ret = regmap_write(sama7g5_tcpc->regmap, TCPC_UPC, TCPC_UPC_IP_OFF |
-+			   TCPC_UPC_THRESHOLD2);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to wite register: %d\n",
-+			ret);
-+
-+	usleep_range(560, 1000);
-+
-+	ret = regmap_read(sama7g5_tcpc->regmap, TCPC_UPS,
-+			  &sama7g5_tcpc->phy_status);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to read register: %d\n",
-+			ret);
-+
-+	if (!(sama7g5_tcpc->phy_status & TCPC_UPS_CC_MASK)) {
-+		/* VRa*/
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_OPEN;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_OPEN;
-+		return;
-+	}
-+
-+	/* CC1 or CC2 is connected wait for PD messages to end ~ 30ms */
-+	usleep_range(30000, 35000);
-+
-+	/* Comparator Threshold 4 */
-+	sama7g5_tcpc->phy_status_old = sama7g5_tcpc->phy_status;
-+
-+	ret = regmap_write(sama7g5_tcpc->regmap, TCPC_UPC, TCPC_UPC_IP_OFF |
-+			   TCPC_UPC_THRESHOLD4);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to wite register: %d\n",
-+			ret);
-+
-+	usleep_range(560, 1000);
-+	ret = regmap_read(sama7g5_tcpc->regmap, TCPC_UPS,
-+			  &sama7g5_tcpc->phy_status);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to read register: %d\n",
-+			ret);
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC1ID) &&
-+	    (!(sama7g5_tcpc->phy_status & TCPC_UPS_CC1ID))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_RP_DEF;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_OPEN;
-+		return;
-+	}
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC2RDT) &&
-+	    (!(sama7g5_tcpc->phy_status & TCPC_UPS_CC2RDT))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_OPEN;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_RP_DEF;
-+		return;
-+	}
-+
-+	/* Comparator Threshold 6 */
-+	sama7g5_tcpc->phy_status_old = sama7g5_tcpc->phy_status;
-+
-+	ret = regmap_write(sama7g5_tcpc->regmap, TCPC_UPC, TCPC_UPC_IP_OFF |
-+			   TCPC_UPC_THRESHOLD6);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to wite register: %d\n",
-+			ret);
-+
-+	usleep_range(560, 1000);
-+	ret = regmap_read(sama7g5_tcpc->regmap, TCPC_UPS,
-+			  &sama7g5_tcpc->phy_status);
-+	if (ret)
-+		dev_err(sama7g5_tcpc->dev, "failed to read register: %d\n",
-+			ret);
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC1ID) &&
-+	    (!(sama7g5_tcpc->phy_status & TCPC_UPS_CC1ID))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_RP_1_5;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_OPEN;
-+		return;
-+	}
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC1ID) &&
-+	    ((sama7g5_tcpc->phy_status & TCPC_UPS_CC1ID))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_RP_3_0;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_OPEN;
-+		return;
-+	}
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC2RDT) &&
-+	    (!(sama7g5_tcpc->phy_status & TCPC_UPS_CC2RDT))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_OPEN;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_RP_1_5;
-+		return;
-+	}
-+
-+	if ((sama7g5_tcpc->phy_status_old & TCPC_UPS_CC2RDT) &&
-+	    ((sama7g5_tcpc->phy_status & TCPC_UPS_CC2RDT))) {
-+		sama7g5_tcpc->cc1_status = TYPEC_CC_OPEN;
-+		sama7g5_tcpc->cc2_status = TYPEC_CC_RP_3_0;
-+		return;
-+	}
-+}
-+
-+static void sama7g5_tcpc_measure_work(struct work_struct *work)
-+{
-+	struct sama7g5_tcpc *port = container_of(work, struct sama7g5_tcpc,
-+						 measure_work.work);
-+
-+	mutex_lock(&port->lock);
-+
-+	_sama7g5_tcpc_measure_snk(port);
-+
-+	/* Check if the state has changed and notify TCPM */
-+	if (port->cc1_status != port->cc1_status_prev ||
-+	    port->cc2_status != port->cc2_status_prev)
-+		tcpm_cc_change(port->tcpm);
-+
-+	mod_delayed_work(port->wq, &port->measure_work,
-+			 msecs_to_jiffies(T_CC_MEASURE));
-+
-+	mutex_unlock(&port->lock);
-+}
-+
-+static int sama7g5_tcpc_init(struct tcpc_dev *tcpc)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = tcpc_to_sama7g5_tcpc(tcpc);
-+	int ret;
-+
-+	ret = regmap_write(sama7g5_tcpc->regmap, TCPC_CR, TCPC_CR_RESET);
-+	if (ret)
-+		return ret;
-+
-+	sama7g5_tcpc->wq =
-+		create_singlethread_workqueue(dev_name(sama7g5_tcpc->dev));
-+	if (!sama7g5_tcpc->wq)
-+		return -ENOMEM;
-+
-+	INIT_DELAYED_WORK(&sama7g5_tcpc->measure_work,
-+			  sama7g5_tcpc_measure_work);
-+
-+	sama7g5_tcpc->cc1_status = TYPEC_CC_OPEN;
-+	sama7g5_tcpc->cc2_status = TYPEC_CC_OPEN;
-+	sama7g5_tcpc->cc1_status_prev = TYPEC_CC_OPEN;
-+	sama7g5_tcpc->cc2_status_prev = TYPEC_CC_OPEN;
-+	sama7g5_tcpc->cc_polarity = TYPEC_POLARITY_CC1;
-+
-+	/* We do not have an interrupt so polling only */
-+	mod_delayed_work(sama7g5_tcpc->wq, &sama7g5_tcpc->measure_work,
-+			 msecs_to_jiffies(T_CC_MEASURE));
-+
-+	/* Enable VBUS detection */
-+	if (sama7g5_tcpc->vbus_pin)
-+		enable_irq(gpiod_to_irq(sama7g5_tcpc->vbus_pin));
-+
-+	return 0;
-+}
-+
-+static int vbus_is_present(struct sama7g5_tcpc *sama7g5_tcpc)
-+{
-+	if (sama7g5_tcpc->vbus_pin)
-+		return gpiod_get_value(sama7g5_tcpc->vbus_pin);
-+
-+	/* No Vbus detection: Assume always present */
-+	return 1;
-+}
-+
-+static irqreturn_t sama7g5_vbus_irq_thread(int irq, void *devid)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc = devid;
-+
-+	/* debounce */
-+	udelay(10);
-+
-+	mutex_lock(&sama7g5_tcpc->vbus_mutex);
-+
-+	sama7g5_tcpc->vbus_present = vbus_is_present(sama7g5_tcpc);
-+	if (sama7g5_tcpc->vbus_present != sama7g5_tcpc->vbus_present_prev) {
-+		/* VBUS changed, notify TCPM */
-+		tcpm_vbus_change(sama7g5_tcpc->tcpm);
-+		sama7g5_tcpc->vbus_present_prev = sama7g5_tcpc->vbus_present;
-+	}
-+
-+	mutex_unlock(&sama7g5_tcpc->vbus_mutex);
-+	return IRQ_HANDLED;
-+}
-+
-+static int sama7g5_tcpc_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct sama7g5_tcpc *sama7g5_tcpc;
-+
-+	struct resource *mem;
-+	void __iomem *base;
-+
-+	sama7g5_tcpc = devm_kzalloc(&pdev->dev, sizeof(*sama7g5_tcpc),
-+				    GFP_KERNEL);
-+	if (!sama7g5_tcpc)
-+		return -ENOMEM;
-+
-+	mem =  platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	base = devm_ioremap_resource(&pdev->dev, mem);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+	sama7g5_tcpc->base = base;
-+
-+	sama7g5_tcpc->regmap =  devm_regmap_init_mmio(&pdev->dev, base,
-+						&sama7g5_tcpc_regmap_config);
-+	if (IS_ERR(sama7g5_tcpc->regmap)) {
-+		dev_err(&pdev->dev, "Regmap init failed\n");
-+		return PTR_ERR(sama7g5_tcpc->regmap);
-+	}
-+
-+	/* Get the peripheral clock */
-+	sama7g5_tcpc->pclk = devm_clk_get(&pdev->dev, "pclk");
-+	if (IS_ERR(sama7g5_tcpc->pclk)) {
-+		ret = PTR_ERR(sama7g5_tcpc->pclk);
-+		dev_err(&pdev->dev,
-+			"failed to get the peripheral clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(sama7g5_tcpc->pclk);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to enable the peripheral clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Get the generic clock */
-+	sama7g5_tcpc->gclk = devm_clk_get(&pdev->dev, "gclk");
-+	if (IS_ERR(sama7g5_tcpc->gclk)) {
-+		ret = PTR_ERR(sama7g5_tcpc->gclk);
-+		dev_err(&pdev->dev,
-+			"failed to get the PMC generic clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = clk_set_rate(sama7g5_tcpc->gclk, SAMA7G5_TCPC_GCLK);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"unable to change gclk rate to: %u\n",
-+			SAMA7G5_TCPC_GCLK);
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(sama7g5_tcpc->gclk);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to enable the generic clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mutex_init(&sama7g5_tcpc->lock);
-+	mutex_init(&sama7g5_tcpc->vbus_mutex);
-+
-+	sama7g5_tcpc->vbus_pin = devm_gpiod_get_optional(&pdev->dev,
-+				"microchip,vbus", GPIOD_IN);
-+
-+	if (IS_ERR(sama7g5_tcpc->vbus_pin)) {
-+		ret = PTR_ERR(sama7g5_tcpc->vbus_pin);
-+		dev_err(&pdev->dev, "unable to claim vbus-gpio: %d\n", ret);
-+	}
-+
-+	sama7g5_tcpc->vbus = devm_regulator_get_optional(&pdev->dev, "vbus");
-+
-+	if (IS_ERR(sama7g5_tcpc->vbus)) {
-+		ret = PTR_ERR(sama7g5_tcpc->vbus);
-+		dev_err(&pdev->dev, "unable to claim vbus-supply: %d\n", ret);
-+	}
-+
-+	if (sama7g5_tcpc->vbus_pin) {
-+		irq_set_status_flags(gpiod_to_irq(sama7g5_tcpc->vbus_pin),
-+				     IRQ_NOAUTOEN);
-+		ret = devm_request_threaded_irq(&pdev->dev,
-+				gpiod_to_irq(sama7g5_tcpc->vbus_pin), NULL,
-+				sama7g5_vbus_irq_thread,
-+				SAMA7G5_TCPC_VBUS_IRQFLAGS,
-+				"sama7g5_tcpc", sama7g5_tcpc);
-+		if (ret) {
-+			sama7g5_tcpc->vbus_pin = NULL;
-+			dev_warn(&pdev->dev,
-+				 "failed to request vbus irq; "
-+				 "assuming always on\n");
-+		}
-+	}
-+
-+	sama7g5_tcpc->dev = &pdev->dev;
-+	platform_set_drvdata(pdev, sama7g5_tcpc);
-+
-+	sama7g5_tcpc->tcpc.init = sama7g5_tcpc_init;
-+	sama7g5_tcpc->tcpc.get_vbus = sama7g5_tcpc_get_vbus;
-+	sama7g5_tcpc->tcpc.set_vbus = sama7g5_tcpc_set_vbus;
-+	sama7g5_tcpc->tcpc.set_cc = sama7g5_tcpc_set_cc;
-+	sama7g5_tcpc->tcpc.get_cc = sama7g5_tcpc_get_cc;
-+	sama7g5_tcpc->tcpc.set_polarity = sama7g5_tcpc_set_polarity;
-+	sama7g5_tcpc->tcpc.set_vconn = sama7g5_tcpc_set_vconn;
-+	sama7g5_tcpc->tcpc.start_toggling = sama7g5_tcpc_start_toggling;
-+	sama7g5_tcpc->tcpc.set_pd_rx = sama7g5_tcpc_set_pd_rx;
-+	sama7g5_tcpc->tcpc.set_roles = sama7g5_tcpc_set_roles;
-+	sama7g5_tcpc->tcpc.pd_transmit = sama7g5_tcpc_pd_transmit;
-+
-+	sama7g5_tcpc->tcpc.fwnode = device_get_named_child_node(&pdev->dev,
-+								"connector");
-+	if (!sama7g5_tcpc->tcpc.fwnode) {
-+		dev_err(&pdev->dev, "Can't find connector node.\n");
-+		return -EINVAL;
-+	}
-+
-+	sama7g5_tcpc->tcpm = tcpm_register_port(sama7g5_tcpc->dev,
-+						&sama7g5_tcpc->tcpc);
-+	if (IS_ERR(sama7g5_tcpc->tcpm)) {
-+		fwnode_remove_software_node(sama7g5_tcpc->tcpc.fwnode);
-+		return PTR_ERR(sama7g5_tcpc->tcpm);
-+	}
-+
-+	return 0;
-+}
-+
-+static int sama7g5_tcpc_remove(struct platform_device *pdev)
-+{
-+	struct sama7g5_tcpc *sama7g5_tcpc;
-+
-+	sama7g5_tcpc = platform_get_drvdata(pdev);
-+
-+	/* Mask everything */
-+	if (sama7g5_tcpc->vbus_pin)
-+		disable_irq(gpiod_to_irq(sama7g5_tcpc->vbus_pin));
-+
-+
-+	if (!IS_ERR_OR_NULL(sama7g5_tcpc->tcpm))
-+		tcpm_unregister_port(sama7g5_tcpc->tcpm);
-+
-+	destroy_workqueue(sama7g5_tcpc->wq);
-+
-+	clk_disable_unprepare(sama7g5_tcpc->gclk);
-+	clk_disable_unprepare(sama7g5_tcpc->pclk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sama7g5_tcpc_dt_ids[] = {
-+	{
-+		.compatible = "microchip,sama7g5-tcpc",
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sama7g5_tcpc_dt_ids);
-+
-+static struct platform_driver sama7g5_tcpc_driver = {
-+	.probe	= sama7g5_tcpc_probe,
-+	.remove = sama7g5_tcpc_remove,
-+	.driver = {
-+		.name	= "microchip,sama7g5-tcpc",
-+		.of_match_table	= sama7g5_tcpc_dt_ids,
-+	},
-+};
-+module_platform_driver(sama7g5_tcpc_driver);
-+
-+MODULE_AUTHOR("Cristian Birsan <cristian.birsan@microchip.com>");
-+MODULE_DESCRIPTION("Microchip SAMA7G5 Type-C Port Controller Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+On Mon, Mar 29, 2021 at 01:03:20PM -0700, Saravana Kannan wrote:
+> On Fri, Mar 26, 2021 at 2:52 AM Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> > On Thu, Mar 25, 2021 at 06:55:52PM -0700, Saravana Kannan wrote:
+> > > On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
+> > > > On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
+> > > > > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
+> > > > > is provided by an I2C RTC. Specifying this properly results in a
+> > > > > circular dependency, since the I2C RTC (and thus its clock) cannot
+> > > > > be initialized without the i.MX6 clock controller being initializ=
+ed.
+> > > > >
+> > > > > With current code the following path is executed when i.MX6 clock
+> > > > > controller is probed (and ckil clock is specified to be the I2C R=
+TC
+> > > > > via DT):
+> > > > >
+> > > > > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
+> > > > > 2. of_clk_get_by_name(ccm_node, "ckil");
+> > > > > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
+> > > > > 4. of_clk_get_hw(ccm_node, 0, "ckil")
+> > > > > 5. spec =3D of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
+> > > > > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
+> > > > > 7. error is propagated back, i.MX6q clock controller is probe def=
+erred
+> > > > > 8. I2C controller is never initialized without clock controller
+> > > > >    I2C RTC is never initialized without I2C controller
+> > > > >    CKIL clock is never initialized without I2C RTC
+> > > > >    clock controller is never initialized without CKIL
+> > > > >
+> > > > > To fix the circular dependency this registers a dummy clock when
+> > > > > the RTC clock is tried to be acquired. The dummy clock will later
+> > > > > be unregistered when the proper clock is registered for the RTC
+> > > > > DT node. IIUIC clk_core_reparent_orphans() will take care of
+> > > > > fixing up the clock tree.
+> > > > >
+> > > > > NOTE: For now the patch is compile tested only. If this approach
+> > > > > is the correct one I will do some testing and properly submit thi=
+s.
+> > > > > You can find all the details about the hardware in the following
+> > > > > patchset:
+> > > > >
+> > > > > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-s=
+ebastian.reichel@collabora.com/
+> > > > >
+> > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > > > ---
+> > > > >  .../bindings/clock/clock-bindings.txt         |   7 +
+> > > > >  drivers/clk/clk.c                             | 146 ++++++++++++=
+++++++
+> > > > >  2 files changed, 153 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/clock/clock-bindin=
+gs.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > index f2ea53832ac6..66d67ff4aa0f 100644
+> > > > > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list o=
+f strings of clock output signal
+> > > > >                   Clock consumer nodes must never directly refere=
+nce
+> > > > >                   the provider's clock-output-names property.
+> > > > >
+> > > > > +boot-clock-frequencies: This property is used to specify that a =
+clock is enabled
+> > > > > +                     by default with the provided frequency at b=
+oot time. This
+> > > > > +                     is required to break circular clock depende=
+ncies. For clock
+> > > > > +                     providers with #clock-cells =3D 0 this is a=
+ single u32
+> > > > > +                     with the frequency in Hz. Otherwise it's a =
+list of
+> > > > > +                     clock cell specifier + frequency in Hz.
+> > > >
+> > > > Seems alright to me. I hadn't thought about the aspect of needing to
+> > > > know the frequency. Other cases probably don't as you only need the
+> > > > clocks once both components have registered.
+> > > >
+> > > > Note this could be lost being threaded in the other series.
+> > >
+> > > I read this thread and tried to understand it. But my head isn't right
+> > > today (lack of sleep) so I couldn't wrap my head around it. I'll look
+> > > at it again after the weekend. In the meantime, Sebastian can you
+> > > please point me to the DT file and the specific device nodes (names or
+> > > line number) where this cycle is present?
+> >
+> > I have not yet sent an updated DT file, but if you look at this
+> > submission:
+> >
+> > https://lore.kernel.org/linux-devicetree/20210222171247.97609-7-sebasti=
+an.reichel@collabora.com/
+> >
+> > There is a node
+> >
+> > rtc: m41t62@68 { compatible =3D "st,m41t62"; };
+> >
+> > That is an I2C RTC, which provides a 32.768 kHz clock by default
+> > (i.e. after power loss). This clock signal is used to provide the
+> > i.MX6 CKIL:
+> >
+> > ------------------------------------
+> > &clks {
+> >     clocks =3D <&rtc>;
+> >     clock-names =3D "ckil";
+> > };
+> > ------------------------------------
+> >
+> > > Keeping a clock on until all its consumers probe is part of my TODO
+> > > list (next item after fw_devlink=3Don lands). I already have it worki=
+ng
+> > > in AOSP, but need to clean it up for upstream. fw_devlink can also
+> > > break *some* cycles (not all). So I'm wondering if the kernel will
+> > > solve this automatically soon(ish). If it can solve it automatically,
+> > > I'd rather not add new DT bindings because it'll make it more work for
+> > > fw_devlink.
+> >
+> > As written above on Congatec QMX6 an I2C RTC provides one of the
+> > SoC's input frequencies. The SoC basically expects that frequency
+> > to be always enabled and this is what it works like before clock
+> > support had been added to the RTC driver.
+>=20
+> Thanks. I skimmed through the RTC driver code and
+> imx6q_obtain_fixed_clk_hw() and the DT files.
+>=20
+> >
+> > With the link properly being described the Kernel tries to probe
+> > the SoC's clock controller during early boot. Then it tries to get a
+> > reference to the linked clock, using imx6q_obtain_fixed_clk_hw()
+> > and that returns -EPROBE_DEFER (because the RTC driver has not
+> > yet been probed).
+>=20
+> But the RTC (which is a proper I2C device) will never probe before
+> CLK_OF_DECLARE() initializes the core clock controller. So, it's not
+> clear how "protected-clocks" helps here since it doesn't change
+> whether you get -EPROBE_DEFER from imx6q_obtain_fixed_clk_hw() (which
+> is called from the CLK_OF_DECLARE() callback). Oof... I see what you
+> are doing with of_clk_register_boot_clk(). You are having the consumer
+> register its own clock and then use it. Kinda beats the whole point of
+> describing the link in the first place.
 
+I agree, that it does not make sense from a code point of view for
+this platform. All of this is just to make the DT look correct.
+=46rom a platform point of view the most logical way is to handle the
+RTC clock as do-not-touch always enabled fixed-clock.
+
+> > Without the clock controller basically none of
+> > the i.MX6 SoC drivers can probe including the I2C driver. Without
+> > the I2C bus being registered, the RTC driver never probes and the
+> > boot process is stuck.
+> >
+> > I'm not sure how fw_devlink can help here.
+>=20
+> I'll explain how it'd help. Let's assume "fsl,imx6q-ccm" was
+> implemented as an actual platform device driver and not using
+> CLK_OF_DECLARE() to initialize ALL the clocks. I'll get to this
+> assumption later.
+>=20
+> In that case, fw_devlink will notice this cycle:
+> syntax: consumer -(reason)-> supplier
+> clks -(clocks property)-> rtc -(parent)-> i2c3  -(clocks property)-> clks.
+>=20
+> It'll then reason that it doesn't make sense for a device (clks) to
+> have a supplier (rtc) whose parent (i2c3) in turn depends on the
+> device (clks). It'll then drop the clks -> rtc dependency because
+> that's the most illogical one in terms of probing.
+>=20
+> So all you'd need to do is delete any -EPROBE defer you might do in
+> "fsl,imx6q-ccm" driver for "ckil". For cases where there's no cycle,
+> fw_devlink will make sure the supplier of ckil has probed first. For
+> cases where there's a cycle like this, it'll be smart enough to drop
+> this dependency during probe ordering.
+
+What do you mean drop? Anything using ckil will not be registered?
+That will basically kill the system within a few seconds, since the
+watchdog hardware uses ckil.
+
+> I don't know enough about the clocks in imx6q to comment if you can
+> get away without using CLK_OF_DECLARE() at all. The only clock that
+> really needs to use CLK_OF_DECLARE() is any clock that's needed for
+> the scheduler timer. Other than that, everything else can be
+> initialized by a normal driver. Including UART clocks. I can get into
+> more specifics if you go down this path.
+>=20
+> So, that's how fw_devlink could help here if you massage
+> drivers/clk/imx/clk-imx6q.c to be a proper platform driver. You'll
+> have to set fw_devlink=3Don in the kernel commandline though (it's work
+> in progress to set this by default). There are some additional details
+> here about keeping clocks on, but we can discuss the solution for that
+> if it becomes an issue.
+>=20
+> > I see exactly two
+> > options to solve this:
+> >
+> > a) do not describe the link and keep RTC clock enabled somehow.
+> >    (my initial patchset)
+> > b) describe the link, but ignore it during boot.
+> >    (what I'm trying to do here)
+> >
+>=20
+> Even if you completely ignore fw_devlink, why not just model this
+> clock as a fixed-clock in DT for this specific machine?
+>
+> It's clearly expecting the clock to be an always on fixed clock.
+
+Yes. SoC runs unreliably with this. Downstream vendor kernel does
+not contain a clock driver for the squarewave pin of the RTC (i.e.
+their driver does not yet contain 1373e77b4f10) and just works.
+Upstream kernel disables the RTC's squarewave and then goes into
+reboot loop because of watchdog going crazy.
+
+> This will also remove the need for adding "boot-clock-frequencies"
+> binding.  "fixed-clocks" devices are initialized very early on
+> (they use CLK_OF_DECLARE too) even without their parents probing
+> (not sure I agree with this, but this is how it works now).
+>
+> Something like:
+>=20
+> rtc: m41t62@68 {
+> compatible =3D "st,m41t62";
+> reg =3D <0x68>;
+>=20
+>     clock-ckil {
+>                     compatible =3D "fixed-clock";
+>                     #clock-cells =3D <0>;
+>                     clock-frequency =3D <32768>;
+>             };
+> };
+>=20
+> I hope this helps.
+
+This looks like a complex way of my initial patchset with
+'protected-clocks' property replaced by a fixed-clock
+node. RTC driver needs to check if that exists and avoid
+registering its own clock.
+
+-- Sebastian
+
+--vkhbavartwpths7y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBiTDEACgkQ2O7X88g7
++ppCeg//YS0A2pP5kWYsbjQYCUM9tVw9orRFCW5sTm4YuaTmjX1Jpl5Rb/0azuk1
+2Y8twLBPhRnzs/+wqtpOV7qghETyWqXfso/+avfSpoeg3kdh4wPRXpWQwPqZ6Glb
+R1wT+fjKovLvYVnhgghVtjOQlMz52wfHWk5vHEspwc7sfQwMNleIyQciuKd9l6NR
+5OdkXsU+6Z6K1iOQmCn3KAiRtmLwHqqne7zKE5M+FNHbt0FRP0eyJ+HgWeyEvblA
+lN7zlONu8ZRPno40Mfz1ki3pkdy5rZlATfSQl5W1Olf9uInYTvWPSHurcqGhWKW2
+q85gcRCIV1O7TDQK/kNi0IBP2K+xn+kuIgxCKrLKVU+34BMJXMjg5kW/bfDCELV2
+hVgU8Yxm4m0gwz0wmgjnLYXbMgz0buZRSxKT8gmuwhfMNJ7nTD9U69HinFZRMKtR
++jGUCgnz/q6rF0CL7NG/+bdGkD2jUsl+JsN03r8SiNkZrB1uHiWZ/fu5hdnKExYv
+z9KfFSxQpnsl5+fDmuCmuTH4aVABdH3otL0TQq859UhNCdBWr/Sx7eKSlSC2RrlN
+LYdwiNLyCx/xeDFMgpS23kxqAF8xway/n3UJXrxm8oJSy680gvd/yk8i45lz77T/
+v7B4690sNb3XrJJ4ccf9Tuj99CQCAq15zKE+GelK8eSBkYPDvU4=
+=yDed
+-----END PGP SIGNATURE-----
+
+--vkhbavartwpths7y--
