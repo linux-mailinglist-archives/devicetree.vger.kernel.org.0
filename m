@@ -2,67 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 517C334C796
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 10:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6EDB34C9E1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 10:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233157AbhC2IQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 04:16:41 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:15373 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232544AbhC2IO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 04:14:57 -0400
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4F850y21LZz9sGd;
-        Mon, 29 Mar 2021 16:12:50 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.179.202) by
- DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
- 14.3.498.0; Mon, 29 Mar 2021 16:14:47 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH 1/1] ASoC: intel, keembay-i2s: Fix a dt_binding_check warning
-Date:   Mon, 29 Mar 2021 16:14:35 +0800
-Message-ID: <20210329081435.2200-1-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
+        id S233400AbhC2IeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 04:34:05 -0400
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:41489 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233451AbhC2IbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 04:31:01 -0400
+Received: by mail-ua1-f41.google.com with SMTP id g5so3720391uan.8;
+        Mon, 29 Mar 2021 01:31:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DIyfy1DYdEXzkjvr5K0gqsI3w0hd8ue7rLH1IVU2OAM=;
+        b=ITvs0m3QY3hrYNV6UZDzhNSOrOcpxwYAAdU57BAz3p4FreEccT0js+O45hAs9lavYA
+         1cSlZUt91JZUpFwqjqWJgqGhf80sLRJWqUPr6H1TPy/SynYSe1z99+x6URahmil4/rNc
+         vI9x1BHnJkMYfiFCMu4QPmvoIr31kMmLwb1uNhzImgW/Gzr0O8k5nmkUj0z2YU8FT1BJ
+         hrz4VhzwvkqCszU45E9tGujhQiPZbiKBZvg9H+0l/g3P1BF89Iyl8iVs44HOPkyJv2lq
+         xM7biJq96fUBPZtKgSersMsmfmjfFsxJH6xVMb01Ka4/GtGiRXwp9BcePjn/bhp25DZ/
+         x/Bw==
+X-Gm-Message-State: AOAM5308Bp82qk//3ewZ5yoZuS0NMkp0bmIlS+s8S+4YtWFY6In6+KzI
+        4DaLY4xU3+fKvKKT6CGFMNodNBWqT4AJx49j5myVvW5QiH4=
+X-Google-Smtp-Source: ABdhPJzYZjPGlZS19eR5C99Z75A0Qz5bhqSseWx1ml+X60Y+xeqB25MaEGgEm0gR4RIBnTwzPp98lt/FKCq9YNyO9og=
+X-Received: by 2002:ab0:2c16:: with SMTP id l22mr13576385uar.100.1617006660653;
+ Mon, 29 Mar 2021 01:31:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.179.202]
-X-CFilter-Loop: Reflected
+References: <20210322172013.1152121-1-kieran.bingham+renesas@ideasonboard.com>
+In-Reply-To: <20210322172013.1152121-1-kieran.bingham+renesas@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 29 Mar 2021 10:30:49 +0200
+Message-ID: <CAMuHMdVzW=pAbJzSmC3Wt3zH4F8kUfd-s0JkQeg5NdPsGJAVrw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: falcon-cpu: Add GP LEDs
+To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The property "dmas" contains two items: DMA "TX" and "RX" channel,
-Therefore, its value also needs to be written in two parts.
+Hi Kieran,
 
-Otherwise, below YAML check warning is reported:
-Documentation/devicetree/bindings/sound/intel,keembay-i2s.example.dt.yaml:\
-i2s@20140000: dmas: [[4294967295, 29, 4294967295, 33]] is too short
+On Mon, Mar 22, 2021 at 6:20 PM Kieran Bingham
+<kieran.bingham+renesas@ideasonboard.com> wrote:
+> Three general purpose LEDs are provided on the Falcon CPU board.
+>
+> Connect GP_LED1, GP_LED2, and GP_LED3 to the gpio-leds frameworks as
+> indicator LEDs.
+>
+> These LEDs are arranged in a block of four LEDs on the board itself, but
+> the fourth LED is as yet unidentified.
+>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for your patch (which does not apply against renesas-devel)!
 
-diff --git a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-index 6f71294909a5fb4..803627e984f6089 100644
---- a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-@@ -81,6 +81,6 @@ examples:
-          interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-          clock-names = "osc", "apb_clk";
-          clocks = <&scmi_clk KEEM_BAY_PSS_AUX_I2S3>, <&scmi_clk KEEM_BAY_PSS_I2S3>;
--         dmas = <&axi_dma0 29 &axi_dma0 33>;
-+         dmas = <&axi_dma0 29>, <&axi_dma0 33>;
-          dma-names = "tx", "rx";
-      };
+> --
+
+--- ;-)
+
+> v2:
+>  - Move to r8a779a0-falcon-cpu.dtsi
+>  - Define the colour, and function.
+
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> @@ -6,12 +6,37 @@
+>   */
+>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+>  #include "r8a779a0.dtsi"
+>
+>  / {
+>         model = "Renesas Falcon CPU board";
+>         compatible = "renesas,falcon-cpu", "renesas,r8a779a0";
+>
+> +       leds {
+> +               compatible = "gpio-leds";
+> +
+> +               led1 {
+
+led-1?
+
+Documentation/devicetree/bindings/leds/leds-gpio.yaml says:
+
+  # The first form is preferred, but fall back to just 'led' anywhere in the
+  # node name to at least catch some child nodes.
+  "(^led-[0-9a-f]$|led)":
+
+> +                       gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
+> +                       color = <LED_COLOR_ID_GREEN>;
+> +                       function = LED_FUNCTION_INDICATOR;
+> +                       function-enumerator = <1>;
+> +               };
+> +               led2 {
+> +                       gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+> +                       color = <LED_COLOR_ID_GREEN>;
+> +                       function = LED_FUNCTION_INDICATOR;
+> +                       function-enumerator = <2>;
+> +               };
+> +               led3 {
+> +                       gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+> +                       color = <LED_COLOR_ID_GREEN>;
+> +                       function = LED_FUNCTION_INDICATOR;
+> +                       function-enumerator = <3>;
+> +               };
+> +       };
+> +
+>         memory@48000000 {
+>                 device_type = "memory";
+>                 /* first 128MB is reserved for secure area. */
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.13, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-1.8.3
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
