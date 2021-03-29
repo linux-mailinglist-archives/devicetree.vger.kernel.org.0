@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B210D34D5F4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 19:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 590C534D5FB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 19:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230226AbhC2RXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 13:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbhC2RW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 13:22:59 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203B6C061574;
-        Mon, 29 Mar 2021 10:22:59 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id z2so13648093wrl.5;
-        Mon, 29 Mar 2021 10:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0gRNq2eAkLmvH+yhlKLcp66Rj3Ad23U42HOwmj/mbKU=;
-        b=o5L/FHD2NRooZuUKXAkhJ9dRTYHC3RMSTsceG8wztcrJsP7EMSq7y5Crqjv8h2R6Yq
-         O4Ugy7Zgk4scwcFGcajgSiAbLMJA4FseEr6YARUzJp5eAVgcBLMp+rbgFbEqNkttrGup
-         FkpSJb6BgNvUbIE5GU4AzUoFvmYfQ/N2ufTfkO0IXNuq63NEdjIr6AfJ9L+CUYGhZpgU
-         eo6q8qTKyShLEQCJwegudNC13GDvUADhB4ypmDfQnGa///GLjw8LqA3ewBNrDXFSlkQ2
-         STj277reA/bn9I862J7kaP+aH/h2SYhPQPstdzPVBGueQpK9eb387ajVZiWI3nC2oUxW
-         pyhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0gRNq2eAkLmvH+yhlKLcp66Rj3Ad23U42HOwmj/mbKU=;
-        b=WdDHrrAPS+IQAQcgs670O3hb5oRE7kGpLvlj51vkLlhS0voyBzK0+2/k40vbX0Sik1
-         6OMGsRbpBzps220preLFkLpWtIDQZh+90DKjGz4xi+j96oIGD7Ruwn173b0XFG7oQ0kS
-         McawhSOJpKWfVJKR4y+JE6ve4sB5pDcHyMnOrO6DD+ec5iQsUtUmXU6LoH4oi6T1eKFq
-         5a0QjeekN/PgwzlnM2mQASFZKYaMIFDIPpgHl4fTYNTIm3zDjRTaJsWDN15cgAaHdRLw
-         futK6hjo51oanycvYPX8Au1KlcU2tQpAVap08PdGEryBz8nLP8229ZPyZcfpvc/XxE9g
-         6pBw==
-X-Gm-Message-State: AOAM533nZsh+GWicNWwPPIAoFINbE83SfwvlZjOV9r4687AhJ4NNFe58
-        VKRlePr7dPh6V+SO5xE8Ci4wXpfysTH8XBdQ
-X-Google-Smtp-Source: ABdhPJy/EMYWJxvna4g7gKFWJ4d0RX84xR2gk+FxfoXe60VFXgHaTZBcoxtDpG19Q2rIIs8ws980+A==
-X-Received: by 2002:a5d:4b43:: with SMTP id w3mr21801254wrs.406.1617038577756;
-        Mon, 29 Mar 2021 10:22:57 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id z15sm29379926wrw.50.2021.03.29.10.22.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 10:22:57 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: mt8173: fix wrong power-domain phandle of
- pmic
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <55dd47f2-f961-4228-a13a-fa90193f9cbf@gmail.com>
-Date:   Mon, 29 Mar 2021 19:22:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230394AbhC2RZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 13:25:11 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:51606 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230226AbhC2RY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 13:24:57 -0400
+X-UUID: ce6e32342d9f4717a1f9baa938ee65d3-20210330
+X-UUID: ce6e32342d9f4717a1f9baa938ee65d3-20210330
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <ryder.lee@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1129123698; Tue, 30 Mar 2021 01:24:51 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 30 Mar 2021 01:24:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 30 Mar 2021 01:24:49 +0800
+From:   Ryder Lee <ryder.lee@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Ryder Lee <ryder.lee@mediatek.com>
+Subject: [PATCH v2] arm64: dts: mt7622: add ePA/eLNA pinmux for built-in WiFi
+Date:   Tue, 30 Mar 2021 01:24:48 +0800
+Message-ID: <641c5e40f54e7c9c8eaa6be398d7169445b6fede.1617006498.git.ryder.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <1616048328-13579-1-git-send-email-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 33C84F3A3DC6B97209695C5BC5AA06205A65E043701F837A42238801DCC1A5FA2000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This just illustrates one of possible combinations. User should setup
+the corresponding pins according to the onboard RF data that stores
+in eeprom.
 
+Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+---
+change since v2 - add pinctrl-names = "default"
+---
+ arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-On 18/03/2021 07:18, Chunfeng Yun wrote:
-> Due to power domain controller is added, the power domain's
-> phanle is also changed from 'scpsys' to 'spm', but forget to
-> modify pmic node's
-> 
-> Fixes: 8b6562644df9 ("arm64: dts: mediatek: Add mt8173 power domain controller")
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+index 08ad0ffb24df..f2dc850010f1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+@@ -495,6 +495,16 @@
+ 			groups = "watchdog";
+ 		};
+ 	};
++
++	wmac_pins: wmac-pins {
++		mux {
++			function = "antsel";
++			groups = "antsel0", "antsel1", "antsel2", "antsel3",
++				 "antsel4", "antsel5", "antsel6", "antsel7",
++				 "antsel8", "antsel9", "antsel12", "antsel13",
++				 "antsel14", "antsel15", "antsel16", "antsel17";
++		};
++	};
+ };
+ 
+ &pwm {
+@@ -559,5 +569,7 @@
+ };
+ 
+ &wmac {
++	pinctrl-names = "default";
++	pinctrl-0 = <&wmac_pins>;
+ 	status = "okay";
+ };
+-- 
+2.18.0
 
-Applied to v5.12-next/dts64
-Thanks!
-
-> ---
->  arch/arm64/boot/dts/mediatek/mt8173-evb.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> index 6dffada2e66b..28aa634c9780 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
-> @@ -294,7 +294,7 @@
->  
->  &pwrap {
->  	/* Only MT8173 E1 needs USB power domain */
-> -	power-domains = <&scpsys MT8173_POWER_DOMAIN_USB>;
-> +	power-domains = <&spm MT8173_POWER_DOMAIN_USB>;
->  
->  	pmic: mt6397 {
->  		compatible = "mediatek,mt6397";
-> 
