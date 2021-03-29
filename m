@@ -2,124 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E57134C58D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 10:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51DA134C618
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 10:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbhC2IBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 04:01:20 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:6380 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231596AbhC2IA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 04:00:58 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12T7w1iT002406;
-        Mon, 29 Mar 2021 10:00:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=YARP2pjSPKUGCU0uuAV6W5anS3B8C1Bjy68KpzSsA10=;
- b=476iQQ/ln+z8k2S6OM44WSlaUduFXgR3sPWrk7EGcvnGpTSfV4PsJ3whyb6fFFUAAijL
- kphHP5Upu8cPLnbEZ1ohP+9bvlV+bV4uieGCHOdpDKlL7gRAT2VeXgYoPXXQT3uSrAvs
- MuYk0TJvuqeuAYBl8fHi7qZUa35Lf2ZM6f+aFtrQoc51IVLgQFWkQE5BAGbKQwYrRjzU
- dycYNFrHmS/RNulAPdCDLucbv0eREmRBbGIXQm3cDX3gbFYubWTMYBiA9WJbMe1vtG8O
- HcbHTjLkSFcSSDOCr/aLbdXyv3A4KF6DjUTRaTg6KB/TptjMFjvUjG+hNt6fJaVuWhPi ZA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37jy132qvq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Mar 2021 10:00:15 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 79E6110002A;
-        Mon, 29 Mar 2021 10:00:13 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 58DB92397B8;
-        Mon, 29 Mar 2021 10:00:13 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 29 Mar
- 2021 10:00:12 +0200
-Subject: Re: [PATCH v2 8/8] pinctrl: stm32: Add STM32H750 MCU pinctrl support
-To:     <dillon.minfei@gmail.com>, <robh+dt@kernel.org>,
-        <a.fatoum@pengutronix.de>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
-        <vladimir.murzin@arm.com>, <afzal.mohd.ma@gmail.com>
-References: <1615530274-31422-1-git-send-email-dillon.minfei@gmail.com>
- <1615530274-31422-9-git-send-email-dillon.minfei@gmail.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <eb2437ef-ecd2-e258-b77b-2fe9f70205f2@foss.st.com>
-Date:   Mon, 29 Mar 2021 10:00:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231929AbhC2IE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 04:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231886AbhC2IET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 04:04:19 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FA0C061574
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 01:04:19 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id f16so14916957ljm.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 01:04:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lbTjxeoxWT5PkRnNPIsg+iF2OmYYPj/AL1zeFNy9DYs=;
+        b=BSV5z8YyFfytOCd8/YoqmGw1IQBJgutV9Od43r8LMWiWXSSdk56ZU015qDMBAoiMWj
+         IrsqEATOF2GrLZ8v1DnlQJ37B5L52XRF8nNy9FpRXYO7YrZbczqn25wUGgW6QKgP+RjH
+         cyiq4chIVWIxhuHb/6aS60B3B6GLW8Q/yY20zLGWMkhLEcQoj6COHhiL3HFIB3t4+30J
+         HY8KQzbSRzhQYxXEQqFku4McwoVmckI0L6bwcu803tXDjJ63IIvgj8cEwn5n43g6i3K9
+         J+MiC7iHez4NFbDbYg/LFC/HkMZjg1MLrcqtABoElQ8PTyTYkQu7ZDcRfd/zia7YsLnU
+         x8UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lbTjxeoxWT5PkRnNPIsg+iF2OmYYPj/AL1zeFNy9DYs=;
+        b=hVNqoWU/uW2GQdyF6jSaszuIzVX75RyEMcL9CG8nABVcWcNP1lxinF9A7aGCepLIgX
+         fn8q3M/yC3mVwXy7xcitimxmUF812lRf4X5KQbUAyytWyAtW0v3r1d0TSRFe+fetNHj6
+         jz+wdNkkJIW3elu0C8vOTecrVT1RcHB0rae1QBJCcg+fqKjgeafE4oT2bwLMNHcJrUcH
+         fU2J6dlW1oIdo8ZF9dYwVkQga1EWv7gLFRwZpKI4HBoEsIm2A/QiX+M8nrWkZIlWzbDi
+         cH73jWemg8gBzWI6sTCpwq9e8aQv5bIKh0Kj1fmwcUxp0hqt3okKftu1XMlohwaYiXjC
+         5y4g==
+X-Gm-Message-State: AOAM530oaXTHJNZOCTaZRNeCPYAA2TeTPR+bBd03kSQKXe3Kyx3DxJeS
+        +yA9kM9L+agj/uho2Qz+yd0=
+X-Google-Smtp-Source: ABdhPJxy1uwP1UCeSUANkdByGInGLWGMcktjW2HnVBTFvn0+d82Y5ITPNC8ARVoSqYv8gmggeyX8vg==
+X-Received: by 2002:a05:651c:386:: with SMTP id e6mr16728756ljp.468.1617005057681;
+        Mon, 29 Mar 2021 01:04:17 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id n11sm1748456lfe.243.2021.03.29.01.04.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 01:04:17 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Vivek Unune <npcomplete13@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Set Linksys EA9500 power LED
+Date:   Mon, 29 Mar 2021 10:04:09 +0200
+Message-Id: <20210329080409.16766-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <1615530274-31422-9-git-send-email-dillon.minfei@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-29_04:2021-03-26,2021-03-29 signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dillon
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 3/12/21 7:24 AM, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
-> 
-> This patch adds STM32H750 pinctrl and GPIO support
-> since stm32h750 has the same pin alternate functions
-> with stm32h743, so just reuse the stm32h743's pinctrl
-> driver
-> 
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> ---
-> v2:
-> - add compatible string st,stm32h750-pinctrl to pinctl-stm32h743.c as they
->    have same pin alternate functions
-> - add STM32H750 to Kconfig description
-> 
->   drivers/pinctrl/stm32/Kconfig             | 2 +-
->   drivers/pinctrl/stm32/pinctrl-stm32h743.c | 3 +++
->   2 files changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/stm32/Kconfig b/drivers/pinctrl/stm32/Kconfig
-> index f36f29113370..fb1ffc94c57f 100644
-> --- a/drivers/pinctrl/stm32/Kconfig
-> +++ b/drivers/pinctrl/stm32/Kconfig
-> @@ -35,7 +35,7 @@ config PINCTRL_STM32F769
->   	select PINCTRL_STM32
->   
->   config PINCTRL_STM32H743
-> -	bool "STMicroelectronics STM32H743 pin control" if COMPILE_TEST && !MACH_STM32H743
-> +	bool "STMicroelectronics STM32H743/STM32H750 pin control" if COMPILE_TEST && !MACH_STM32H743
->   	depends on OF && HAS_IOMEM
->   	default MACH_STM32H743
->   	select PINCTRL_STM32
-> diff --git a/drivers/pinctrl/stm32/pinctrl-stm32h743.c b/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-> index ffe7b5271506..700206c7bc11 100644
-> --- a/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-> +++ b/drivers/pinctrl/stm32/pinctrl-stm32h743.c
-> @@ -1966,6 +1966,9 @@ static const struct of_device_id stm32h743_pctrl_match[] = {
->   		.compatible = "st,stm32h743-pinctrl",
->   		.data = &stm32h743_match_data,
->   	},
-> +	{	.compatible = "st,stm32h750-pinctrl",
-> +		.data = &stm32h743_match_data,
-> +	},
+Set Linux default trigger to default on, just like it's normally done
+for power LEDs.
 
-If you use exactly the same driver (i.e. same ball out and AF mux) then 
-you don't have to create a new compatible for that. Just use the same 
-than h743.(so you don't have to factorize DT files).
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm47094-linksys-panamera.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Regards
-Alex
+diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+index 8b77efd2224e..05d4f2931772 100644
+--- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
++++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+@@ -75,6 +75,7 @@ usb3 {
+ 		power {
+ 			label = "bcm53xx:white:power";
+ 			gpios = <&chipcommon 4 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		wifi-disabled {
+-- 
+2.26.2
 
->   	{ }
->   };
->   
-> 
