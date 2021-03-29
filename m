@@ -2,213 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83F1234D888
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3126234D8B4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:59:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbhC2TrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 15:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231725AbhC2TrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 15:47:01 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660B9C061574;
-        Mon, 29 Mar 2021 12:47:01 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id f26so17249081ljp.8;
-        Mon, 29 Mar 2021 12:47:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZoPfJ20qL3JwR6uAZFsq+CQb14ssqPbFmakTE1Xqn8E=;
-        b=gAEcf3kjHc73g/2UFR2E9nA+6aSTsgjfl2HKNT5W1j/XCJHwU09gmucK7o9P3KbbaJ
-         hEJ+WPYDfacZHK5EXuaUrglNDgQmIxEeK8Pm//BSWYEuSIdlFID43fq720I7Wm+rsSvr
-         eaCefeWR7jT73hE/lhy93+ai1U8QCWq+sOwkQAj/obMxadvJ4RcNCpDBKkIjT+i9Hftz
-         gKP2Zib3T7bz+n/y827/r+5egHBPUh8c32W3kEkpDLNQh+yVK9QUiukyCazcogUY1FpB
-         7Q+pEHldNkxbm2rvDKryjOO3KcD4NI1uKQAn/FICdTK+xNARmuC62Cgi+cATMe8pqmRX
-         cdWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZoPfJ20qL3JwR6uAZFsq+CQb14ssqPbFmakTE1Xqn8E=;
-        b=kH7TBKFX2EUqUS82bpUwm1IhFppa9ODScXUouAi3r/OIYHpmqUPmRAxV1eXn85uXXo
-         tjoyrEhtCzbgPnBhs7/lq/I8ML23qr+/mT1K9lTQRzY2Fx+Svs8QaPbU9nTB+ng6I6/v
-         qn+/al+HQFenqy2GX9EFYdmPibEvzMkFPKk9hZlQQNkejg45tPQXm69TfsEdKkGRJvhm
-         2RR/GozQJu5VNxQwxSLS15ZUURaGvM8RHGJF6g3NohAW1MnTWPezEt8vgoFDcEQnLDT/
-         +vm+d6iflT/vkAu46Ig13R7lFXD13/UG2SH4fnAipjHubiE1m5b31+Z5bG3jDdLUXHAK
-         4VjA==
-X-Gm-Message-State: AOAM533Z9Rw6Yr3jzgiKJS2HN6EwdkPJCVDfMFbWkBZLhhwunC0kprsz
-        AhrVOYU+LK2KdPqUYxTNSWnIycRb/LM=
-X-Google-Smtp-Source: ABdhPJyIVPdqkZkCmcg1E40ZR1lMcmNWqYzvl1gkaba/okG1lAD9Fcp4MZooTrtxIJuyz/pVi7s2Yw==
-X-Received: by 2002:a05:651c:110a:: with SMTP id d10mr19285949ljo.307.1617047219990;
-        Mon, 29 Mar 2021 12:46:59 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:1370:814d:b259:a10:76ff:fe69:21b6])
-        by smtp.gmail.com with ESMTPSA id p24sm1927693lfj.76.2021.03.29.12.46.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 12:46:59 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v1 6/6] memory: tegra: Print out info-level once per driver probe
-Date:   Mon, 29 Mar 2021 22:46:02 +0300
-Message-Id: <20210329194602.17049-7-digetx@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210329194602.17049-1-digetx@gmail.com>
-References: <20210329194602.17049-1-digetx@gmail.com>
+        id S229656AbhC2T6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 15:58:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231905AbhC2T63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 15:58:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5D93B61554;
+        Mon, 29 Mar 2021 19:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617047908;
+        bh=33BYQBr/4s8xc5+GccSIv0XFr7Cs0xd2pSG0T9cY22E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=K5fZj4fa3wTwxBVGVv7q1JKBJm1UWhEvTvaF+2bYcnBgMDkShzw2MgG8NsOTrRLuP
+         vQPGU4D+FLGTn9YK4trNp/AD91mkKtF9M8zS4Wc00OkShzwkYi0KjMKAhiz0ePEobD
+         IAzie5hN9XALsPgN+KSuBGzNxsZpxwd/8KZ2/pWdf+NnRWqdRCDA5AZ8HcloD8nm7j
+         ljEB4eKJINcXF7b/jF0VLQbCpGbEH6icy/BBzwtnUt0LL7yolsVx9UUrIps7KUpURM
+         UwDlhs5hpPeSZBXp6e47zMhrZtL/o9XEhpw9FeiMIEc5tHGj8LrJR1ajAmOpL5+4WG
+         N4BhJo1/+Bptw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Argus Lin <argus.lin@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        devicetree@vger.kernel.org,
+        Chipeng Chang <chipeng.chang@mediatek.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        linux-mediatek@lists.infradead.org,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Shuming Fan <shumingf@realtek.com>,
+        "Shane.Chien" <shane.chien@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        wsd_upstream@mediatek.com, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        alsa-devel@alsa-project.org, Dan Murphy <dmurphy@ti.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jack Yu <jack.yu@realtek.com>
+Subject: Re: [PATCH V2 0/2] Add mediatek MT6359 ASoC accdet jack driver
+Date:   Mon, 29 Mar 2021 20:58:08 +0100
+Message-Id: <161704724764.10039.3415916166435567719.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <1615383186-18500-1-git-send-email-argus.lin@mediatek.com>
+References: <1615383186-18500-1-git-send-email-argus.lin@mediatek.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Probing of EMC drivers may be deferred and in this case we get duplicated
-info messages during kernel boot. Use dev_info_once() helper to silence
-the duplicated messages.
+On Wed, 10 Mar 2021 21:33:04 +0800, Argus Lin wrote:
+> All of 3-pole and 4-pole jack are supported.
+> 
+> change since v2:
+>   - fixs missing blank at Kconfig.
+>   - fixs comment format and spelling mistake.
+>   - changes private structure mt6359_accdet to mt6359-accdet.h and uses this
+>     data as function parameter.
+>   - removes compatible string declaration.
+>   - uses regmap_read_poll_timeout as polling timer.
+>   - simplify jack detection and key detection report function.
+>   - adds mt6359_accdet_enable_jack_detect for sound card jack initialization.
+> 
+> [...]
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/memory/tegra/tegra124-emc.c | 12 ++++++------
- drivers/memory/tegra/tegra20-emc.c  | 20 ++++++++++----------
- drivers/memory/tegra/tegra30-emc.c  | 18 +++++++++---------
- 3 files changed, 25 insertions(+), 25 deletions(-)
+Applied to
 
-diff --git a/drivers/memory/tegra/tegra124-emc.c b/drivers/memory/tegra/tegra124-emc.c
-index 874e1a0f23cd..5699d909abc2 100644
---- a/drivers/memory/tegra/tegra124-emc.c
-+++ b/drivers/memory/tegra/tegra124-emc.c
-@@ -905,7 +905,7 @@ static int emc_init(struct tegra_emc *emc)
- 	else
- 		emc->dram_bus_width = 32;
- 
--	dev_info(emc->dev, "%ubit DRAM bus\n", emc->dram_bus_width);
-+	dev_info_once(emc->dev, "%ubit DRAM bus\n", emc->dram_bus_width);
- 
- 	emc->dram_type &= EMC_FBIO_CFG5_DRAM_TYPE_MASK;
- 	emc->dram_type >>= EMC_FBIO_CFG5_DRAM_TYPE_SHIFT;
-@@ -1419,8 +1419,8 @@ static int tegra_emc_opp_table_init(struct tegra_emc *emc)
- 		goto put_hw_table;
- 	}
- 
--	dev_info(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
--		 hw_version, clk_get_rate(emc->clk) / 1000000);
-+	dev_info_once(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
-+		      hw_version, clk_get_rate(emc->clk) / 1000000);
- 
- 	/* first dummy rate-set initializes voltage state */
- 	err = dev_pm_opp_set_rate(emc->dev, clk_get_rate(emc->clk));
-@@ -1475,9 +1475,9 @@ static int tegra_emc_probe(struct platform_device *pdev)
- 		if (err)
- 			return err;
- 	} else {
--		dev_info(&pdev->dev,
--			 "no memory timings for RAM code %u found in DT\n",
--			 ram_code);
-+		dev_info_once(&pdev->dev,
-+			      "no memory timings for RAM code %u found in DT\n",
-+			      ram_code);
- 	}
- 
- 	err = emc_init(emc);
-diff --git a/drivers/memory/tegra/tegra20-emc.c b/drivers/memory/tegra/tegra20-emc.c
-index d653a6be8d7f..da8a0da8da79 100644
---- a/drivers/memory/tegra/tegra20-emc.c
-+++ b/drivers/memory/tegra/tegra20-emc.c
-@@ -411,12 +411,12 @@ static int tegra_emc_load_timings_from_dt(struct tegra_emc *emc,
- 	sort(emc->timings, emc->num_timings, sizeof(*timing), cmp_timings,
- 	     NULL);
- 
--	dev_info(emc->dev,
--		 "got %u timings for RAM code %u (min %luMHz max %luMHz)\n",
--		 emc->num_timings,
--		 tegra_read_ram_code(),
--		 emc->timings[0].rate / 1000000,
--		 emc->timings[emc->num_timings - 1].rate / 1000000);
-+	dev_info_once(emc->dev,
-+		      "got %u timings for RAM code %u (min %luMHz max %luMHz)\n",
-+		      emc->num_timings,
-+		      tegra_read_ram_code(),
-+		      emc->timings[0].rate / 1000000,
-+		      emc->timings[emc->num_timings - 1].rate / 1000000);
- 
- 	return 0;
- }
-@@ -429,7 +429,7 @@ tegra_emc_find_node_by_ram_code(struct device *dev)
- 	int err;
- 
- 	if (of_get_child_count(dev->of_node) == 0) {
--		dev_info(dev, "device-tree doesn't have memory timings\n");
-+		dev_info_once(dev, "device-tree doesn't have memory timings\n");
- 		return NULL;
- 	}
- 
-@@ -496,7 +496,7 @@ static int emc_setup_hw(struct tegra_emc *emc)
- 	else
- 		emc->dram_bus_width = 32;
- 
--	dev_info(emc->dev, "%ubit DRAM bus\n", emc->dram_bus_width);
-+	dev_info_once(emc->dev, "%ubit DRAM bus\n", emc->dram_bus_width);
- 
- 	return 0;
- }
-@@ -931,8 +931,8 @@ static int tegra_emc_opp_table_init(struct tegra_emc *emc)
- 		goto put_hw_table;
- 	}
- 
--	dev_info(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
--		 hw_version, clk_get_rate(emc->clk) / 1000000);
-+	dev_info_once(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
-+		      hw_version, clk_get_rate(emc->clk) / 1000000);
- 
- 	/* first dummy rate-set initializes voltage state */
- 	err = dev_pm_opp_set_rate(emc->dev, clk_get_rate(emc->clk));
-diff --git a/drivers/memory/tegra/tegra30-emc.c b/drivers/memory/tegra/tegra30-emc.c
-index 6985da0ffb35..829f6d673c96 100644
---- a/drivers/memory/tegra/tegra30-emc.c
-+++ b/drivers/memory/tegra/tegra30-emc.c
-@@ -998,12 +998,12 @@ static int emc_load_timings_from_dt(struct tegra_emc *emc,
- 	if (err)
- 		return err;
- 
--	dev_info(emc->dev,
--		 "got %u timings for RAM code %u (min %luMHz max %luMHz)\n",
--		 emc->num_timings,
--		 tegra_read_ram_code(),
--		 emc->timings[0].rate / 1000000,
--		 emc->timings[emc->num_timings - 1].rate / 1000000);
-+	dev_info_once(emc->dev,
-+		      "got %u timings for RAM code %u (min %luMHz max %luMHz)\n",
-+		      emc->num_timings,
-+		      tegra_read_ram_code(),
-+		      emc->timings[0].rate / 1000000,
-+		      emc->timings[emc->num_timings - 1].rate / 1000000);
- 
- 	return 0;
- }
-@@ -1015,7 +1015,7 @@ static struct device_node *emc_find_node_by_ram_code(struct device *dev)
- 	int err;
- 
- 	if (of_get_child_count(dev->of_node) == 0) {
--		dev_info(dev, "device-tree doesn't have memory timings\n");
-+		dev_info_once(dev, "device-tree doesn't have memory timings\n");
- 		return NULL;
- 	}
- 
-@@ -1503,8 +1503,8 @@ static int tegra_emc_opp_table_init(struct tegra_emc *emc)
- 		goto put_hw_table;
- 	}
- 
--	dev_info(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
--		 hw_version, clk_get_rate(emc->clk) / 1000000);
-+	dev_info_once(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
-+		      hw_version, clk_get_rate(emc->clk) / 1000000);
- 
- 	/* first dummy rate-set initializes voltage state */
- 	err = dev_pm_opp_set_rate(emc->dev, clk_get_rate(emc->clk));
--- 
-2.30.2
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/2] dt-bindings: mediatek: mt6359: add ASoC mt6359 ASoC accdet jack document
+      commit: e61c589587c772c5f672b22683c3e0b38be20702
+[2/2] ASoC: mediatek: mt6359: add MT6359 accdet jack driver
+      commit: eef07b9e0925e16457ab9444b56a7f93b541aee3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
