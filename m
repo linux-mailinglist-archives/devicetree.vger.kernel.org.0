@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B39C34C37B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 08:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F1BB34C391
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 08:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbhC2GDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 02:03:38 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:45099 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229502AbhC2GDH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 02:03:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1616997787;
-  x=1648533787;
-  h=from:to:cc:subject:date:message-id:references:
-   content-transfer-encoding:mime-version;
-  bh=6TtND9PQIr5Ym9feqaAO8smz4OK2c/OlqmLq061Vq+E=;
-  b=XMW1i6Rof+UcYdL2aGtOerRDqu+wfnC7h7cGL15EWCTh5p1w+EEX6GFX
-   P3Njg0jLZFuKc0gw+M0CDlo3kDEr03p5rVJIJTir73Pxj8n94p0ltxH4o
-   aSvLL+aQ3Xl2tYI+8lNwE3QnlI4XvzGwrDhv2lOWTPHj44tCK6ml0wLBJ
-   pxb5JK31mlQJiHh0VUWANr4bFYQFIP9Y39nCqlYR+FYShtgoezThSI4HT
-   mEjoznxqx/shvxSZyebA7gudRVq0/8YCmzbfE0TwRKo6OLX4CtqFJHtR5
-   0zly6bPqyexo9SIwD7mlWo4SYIor7smEzbE4bjckZlO+9MQ0JHf9SOcK/
-   Q==;
-From:   Hermes Zhang <Hermes.Zhang@axis.com>
-To:     Rob Herring <robh@kernel.org>, Hermes Zhang <Hermes.Zhang@axis.com>
-CC:     "pavel@ucw.cz" <pavel@ucw.cz>, "dmurphy@ti.com" <dmurphy@ti.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lkml@axis.com" <lkml@axis.com>, kernel <kernel@axis.com>
-Subject: Re: [PATCH v2 1/2] dt-binding: leds: Document leds-multi-gpio
- bindings
-Thread-Topic: [PATCH v2 1/2] dt-binding: leds: Document leds-multi-gpio
- bindings
-Thread-Index: AQHXIgDl2ysDeRaH6UilDJnuafb3DQ==
-Date:   Mon, 29 Mar 2021 06:03:05 +0000
-Message-ID: <f29fa789cef74d869db6728f90f28d50@XBOX01.axis.com>
-References: <20210326052801.17666-1-chenhui.zhang@axis.com>
- <20210326052801.17666-2-chenhui.zhang@axis.com>
- <20210327181222.GA327657@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S230229AbhC2GKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 02:10:18 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:23036 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229706AbhC2GJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 02:09:53 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12T5t1kH017111;
+        Mon, 29 Mar 2021 08:09:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=qep9y4/69l92YA1EjW2kQGKevET5+Foel7W2OczJ070=;
+ b=johFUWX2y9lH9QYZYBRwzdER9y8NxfR5PUssJWLCbRewF3xTWju8M0HN66CQX93sNDfs
+ G5kj0MIY50ExifSDKBbjKSP8Z35NuZzd0Ym/grgl0ySOouWQH8Uj8OUSZGknAmbVf+Zr
+ HsoPs7qKjk7SNHOz8T/Ijm3B6SFbS78IrS/J7cCCKZY9n+7ngbiBIgqPSyxvmBVUzrHc
+ rKQwNxITKXvU69j2iuoVLQwDXx6mLcq14Z3B5tP7JbRnaJ07q+NuzOVp0YmLLZh72zEz
+ BQKHxiTTMUEzPcqGDu91+l2SwGZqYSXpOlUjsRSNjRJ1MtDvZZZH2FavtjbilqyCqJWC 0w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37jvdmjm9j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 Mar 2021 08:09:10 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EB905100040;
+        Mon, 29 Mar 2021 08:09:08 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B181D221772;
+        Mon, 29 Mar 2021 08:09:08 +0200 (CEST)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 29 Mar 2021 08:09:08
+ +0200
+From:   Alain Volmat <alain.volmat@foss.st.com>
+To:     <wsa@kernel.org>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <alain.volmat@foss.st.com>
+Subject: [PATCH v3 0/2] i2c: stm32f7: add SMBus-Alert support
+Date:   Mon, 29 Mar 2021 08:09:03 +0200
+Message-ID: <1616998145-28278-1-git-send-email-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-29_02:2021-03-26,2021-03-29 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/28/21 2:12 AM, Rob Herring wrote:=0A=
->> +=0A=
->> +  led-gpios:=0A=
->> +    description: Array of one or more GPIOs pins used to control the LE=
-D.=0A=
->> +    minItems: 1=0A=
->> +    maxItems: 8  # Should be enough=0A=
->> +=0A=
->> +  led-states:=0A=
->> +    description: |=0A=
->> +      The array list the supported states here which will map to bright=
-ness=0A=
->> +      from 0 to maximum. Each item in the array will present all the GP=
-IOs=0A=
->> +      value by bit.=0A=
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array=0A=
->> +    minItems: 1=0A=
->> +    maxItems: 256 # Should be enough=0A=
-> Isn't this the same as the standard 'brightness-levels' from backlight =
-=0A=
-> binding? The index is the level and the value is the h/w specific =0A=
-> setting.=0A=
-=0A=
-Yes, it seems same.=0A=
-=0A=
-=0A=
-Best Regards,=0A=
-=0A=
-Hermes=0A=
-=0A=
+This serie adds support for SMBus Alert on the STM32F7.
+A new binding st,smbus-alert is added in order to differenciate
+with the existing smbus binding.
+
+SMBA alert control and status logic must be enabled along with
+SMBALERT# pin configured via pinctrl in the device tree. This is the
+rational for adding "st,smbus-alert" property.
+
+---
+v3:
+use lore.kernel.org links instead of marc.info
+
+v2:
+When SMBUS alert isn't available on the board (SMBA unused), this
+logic musn't be enabled. Enabling it unconditionally wrongly lead to get
+SMBA interrupts.
+So, add "st,smbus-alert" dedicated binding to have a smbus alert with a
+consistent pin configuration in DT.
+
+Alain Volmat (2):
+  dt-bindings: i2c: stm32f7: add st,smbus-alert binding for SMBus Alert
+  i2c: stm32f7: add SMBus-Alert support
+
+ .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  5 ++
+ drivers/i2c/busses/i2c-stm32f7.c              | 73 +++++++++++++++++++
+ 2 files changed, 78 insertions(+)
+
+-- 
+2.17.1
+
