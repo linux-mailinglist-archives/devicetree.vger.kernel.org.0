@@ -2,197 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 245B634D57E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 18:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D622034D5C1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 19:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231145AbhC2QvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 12:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48022 "EHLO
+        id S231178AbhC2RJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 13:09:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbhC2QvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 12:51:05 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FFC3C061574
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:51:04 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id o16so2666268ljp.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:51:04 -0700 (PDT)
+        with ESMTP id S229861AbhC2RIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 13:08:45 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D70AC061574;
+        Mon, 29 Mar 2021 10:08:45 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 12so6969046wmf.5;
+        Mon, 29 Mar 2021 10:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=30lqEwjqAKqZiY/a72YPhPXj4BzndpAet2EzHCE8wZM=;
-        b=M3jpOqC2flYFHYLQwTomIzBU/vytWlnHjRKpvO7YTF3Kz9wwYyJ6M/0+N/lL+UwNqn
-         kBSQ1Elz6OXP7y06KdlBmY+dlOtwRsHIqAM2YwVZTrYGmcoEKvYXAR1BH+8QczOmgZCN
-         znwSg7fGYsez8nt1XvdgQ4bwjVQIbydDjzdATy+KO9RZK6h1t2fHgxWfAhcBItEVmawP
-         ZVlQfOVy4IE7VZEh7gEfEiB541JV6oCaMsbiWKJ37vVt2R38/UrCvtkgRierB3Dw3l7k
-         Me4IbHiASKY15XbQ+PrShltCI+ZFlVo4ePeCsPiZIVrl8pqnIl54GpHIhLqHHk2lN9Vy
-         EQZQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=y2ZHeMj4ec57luc4oS02DRiziRVFT/KvHjnr58lcOHE=;
+        b=NrOmoj8+szpaD0TUhTvIHhUPkTOQ4tVlROIC1p2MCcryzroeZGHR3ttV2nqcQ6oH5c
+         DB5Hsax5Ay315Hv2z6ey7gCtkk5cZa32qjHVVEnR1x+IhlGqsDYxvMT8bHXri9eH5OdU
+         iV91ITQsfx4xQmpheYY61o487elN7DDJXcQOKAFwhDUqzEBUwQ62Om7I411XW8n00GlQ
+         zN6pBQPrqEuT2ZLESk0oz4jpwGdimFrZxe21VX1PzHzHcwrjLpmavXsAVeKqM5ZocEy3
+         PmlQBi6XAX1JpR9uGn5aIq2Xe0Oo6HdvSx8rG+0qKaby+UGTty7qiwGdhpaHSCn7wjDm
+         oZbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=30lqEwjqAKqZiY/a72YPhPXj4BzndpAet2EzHCE8wZM=;
-        b=BRP9/YDKLF01BzGI01cTwjLJaZFLZ06tbsuk+KZt/U3DfO75LNG9gXF5H80tbqynbi
-         xZ3KzZiuRUV0m7tjQcKcnG4l26lSg9YF/PIj2RI0UvS023rT5Q2zuFtEId+gJIP0NEv+
-         7yut92f4kPKE7TC+O8W8GfqHP/x1eQCwNYBZyd28Z8UrpOI6fz1K6jvPjAG5ZmcRqb96
-         66aGz+BL+zPZNlAqPBQIDJmzWSUsFXlxS8LUQXltVEMd2Q/Hwp1N/rk1vfJfDto/nXLL
-         T4zkQRYvy8C40JfXb48hdWDdqXNbtcwZOrGNyEFwpgRVfthvPJVhDfypxD9ADCK2scMr
-         ggcg==
-X-Gm-Message-State: AOAM5306koqniHXUhiJ3H1ibIuAB2M7h14iimlA7Wv+jpN8btgf1togh
-        2rYMKN0DVpFuTSXXjKBmiHk=
-X-Google-Smtp-Source: ABdhPJxZWjtG4qKLv9jS6iGzu2XiayL0MC7dndlAyoadgxBqXlzWIG/ubKHKWR57saY7gvP6dayeJA==
-X-Received: by 2002:a2e:8051:: with SMTP id p17mr18198250ljg.130.1617036663060;
-        Mon, 29 Mar 2021 09:51:03 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id q12sm2500469ljj.49.2021.03.29.09.51.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 09:51:02 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH RESEND] dt-bindings: phy: bcm-ns-usb3-phy: convert to yaml
-Date:   Mon, 29 Mar 2021 18:50:56 +0200
-Message-Id: <20210329165056.31647-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        bh=y2ZHeMj4ec57luc4oS02DRiziRVFT/KvHjnr58lcOHE=;
+        b=VoQ3r4Z9Fec3TewuHI7i+G25+LascosOHrE4FnDehvDSjq/u2gaCvXEkyqg3V75HHH
+         AOnDzp0tLs22ajLJb90uL5AWSPLP0wAEaSS+XAF7ejwoIl8KUkD0ejOMX32YQ4uVmxT0
+         +B7MwAEz8mTPxbuR+HZ6eL4ONe4jotQpvPKGCkfzExvkHH1aGJlWQT2blB6CTifIRF2G
+         YW/CjOkWlm3wmoQ0dFutA1YV1VcZ5vdnEsfyVqMlPNMXQ5KCl7df70FdeyZpfXyrBL1O
+         i5hoXBCZxBnKTY7PQadxquV/BW2HY7lmapk4hfev71M93DVMVbyfMfoAFRwnGFhCREIe
+         c09A==
+X-Gm-Message-State: AOAM532dg6yxtUmy65OnBpOpsMP/LlnWcKYWFkey+vwwlg7U0Tph/kvu
+        ZSKr6HXMurv+mmfXHYaCHvM=
+X-Google-Smtp-Source: ABdhPJz/bx5hehJCuehhLrvgunl5jW1+LBDS5GpNha2CBGC2FnW+8T+XE8v2Vs/jtpJf5vn6ags7Iw==
+X-Received: by 2002:a1c:1f4c:: with SMTP id f73mr100191wmf.25.1617037724150;
+        Mon, 29 Mar 2021 10:08:44 -0700 (PDT)
+Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
+        by smtp.gmail.com with ESMTPSA id c8sm34819213wrd.55.2021.03.29.10.08.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Mar 2021 10:08:43 -0700 (PDT)
+Subject: Re: [v7,1/3] arm64: dts: mt8183: add thermal zone node
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Michael Kao <michael.kao@mediatek.com>
+Cc:     fan.chen@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        srv_heupstream@mediatek.com,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+References: <20210316070144.28440-1-michael.kao@mediatek.com>
+ <20210316070144.28440-2-michael.kao@mediatek.com>
+ <CAJMQK-gQxMmq-4+Hb2vuTmz9T7XOZPV3=uwTp-8doHRVD4y_Jg@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <b4fb751f-c440-9a39-ea89-21c4543c9d8b@gmail.com>
+Date:   Mon, 29 Mar 2021 19:08:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJMQK-gQxMmq-4+Hb2vuTmz9T7XOZPV3=uwTp-8doHRVD4y_Jg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-1. Change syntax from txt to yaml
-2. Drop "Driver for" from the title
-3. Drop "reg = <0x0>;" from example (noticed by dt_binding_check)
-4. Specify license
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-I sent this patch back in November and got it reviewed in December.
-Somehow it has missed linux-phy.git though.
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201116074650.16070-1-zajec5@gmail.com/
----
- .../bindings/phy/bcm-ns-usb3-phy.txt          | 34 ----------
- .../bindings/phy/bcm-ns-usb3-phy.yaml         | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.txt
- create mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.yaml
+On 22/03/2021 12:20, Hsin-Yi Wang wrote:
+> On Tue, Mar 16, 2021 at 3:02 PM Michael Kao <michael.kao@mediatek.com> wrote:
+>>
+>> From: "michael.kao" <michael.kao@mediatek.com>
+>>
+>> Add thermal zone node to Mediatek MT8183 dts file.
+>>
+>> Evaluate the thermal zone every 500ms while not cooling
+>> and every 100ms when passive cooling is performed.
+>>
+>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+>> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> 
+> Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> 
 
-diff --git a/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.txt b/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.txt
-deleted file mode 100644
-index 32f057260351..000000000000
---- a/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--Driver for Broadcom Northstar USB 3.0 PHY
--
--Required properties:
--
--- compatible: one of: "brcm,ns-ax-usb3-phy", "brcm,ns-bx-usb3-phy".
--- reg: address of MDIO bus device
--- usb3-dmp-syscon: phandle to syscon with DMP (Device Management Plugin)
--		   registers
--- #phy-cells: must be 0
--
--Initialization of USB 3.0 PHY depends on Northstar version. There are currently
--three known series: Ax, Bx and Cx.
--Known A0: BCM4707 rev 0
--Known B0: BCM4707 rev 4, BCM53573 rev 2
--Known B1: BCM4707 rev 6
--Known C0: BCM47094 rev 0
--
--Example:
--	mdio: mdio@0 {
--		reg = <0x0>;
--		#size-cells = <1>;
--		#address-cells = <0>;
--
--		usb3-phy@10 {
--			compatible = "brcm,ns-ax-usb3-phy";
--			reg = <0x10>;
--			usb3-dmp-syscon = <&usb3_dmp>;
--			#phy-cells = <0>;
--		};
--	};
--
--	usb3_dmp: syscon@18105000 {
--		reg = <0x18105000 0x1000>;
--	};
-diff --git a/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.yaml
-new file mode 100644
-index 000000000000..7fd419db45d0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/bcm-ns-usb3-phy.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/bcm-ns-usb3-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Northstar USB 3.0 PHY
-+
-+description: |
-+  Initialization of USB 3.0 PHY depends on Northstar version. There are currently
-+  three known series: Ax, Bx and Cx.
-+  Known A0: BCM4707 rev 0
-+  Known B0: BCM4707 rev 4, BCM53573 rev 2
-+  Known B1: BCM4707 rev 6
-+  Known C0: BCM47094 rev 0
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,ns-ax-usb3-phy
-+      - brcm,ns-bx-usb3-phy
-+
-+  reg:
-+    description: address of MDIO bus device
-+    maxItems: 1
-+
-+  usb3-dmp-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the DMP (Device Management Plugin) syscon
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - usb3-dmp-syscon
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        usb3-phy@10 {
-+            compatible = "brcm,ns-ax-usb3-phy";
-+            reg = <0x10>;
-+            usb3-dmp-syscon = <&usb3_dmp>;
-+            #phy-cells = <0>;
-+        };
-+    };
-+
-+    usb3_dmp: syscon@18105000 {
-+        reg = <0x18105000 0x1000>;
-+    };
--- 
-2.26.2
+Applied to v5.12-next/dts64
 
+Thanks!
+
+> Tested this patch on mt8183 devices.
+> 
+>> ---
+>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 85 ++++++++++++++++++++++++
+>>  1 file changed, 85 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> index 5b782a4769e7..d3550af06408 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> @@ -657,6 +657,87 @@
+>>                         status = "disabled";
+>>                 };
+>>
+>> +               thermal: thermal@1100b000 {
+>> +                       #thermal-sensor-cells = <1>;
+>> +                       compatible = "mediatek,mt8183-thermal";
+>> +                       reg = <0 0x1100b000 0 0x1000>;
+>> +                       clocks = <&infracfg CLK_INFRA_THERM>,
+>> +                                <&infracfg CLK_INFRA_AUXADC>;
+>> +                       clock-names = "therm", "auxadc";
+>> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+>> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+>> +                       mediatek,auxadc = <&auxadc>;
+>> +                       mediatek,apmixedsys = <&apmixedsys>;
+>> +                       nvmem-cells = <&thermal_calibration>;
+>> +                       nvmem-cell-names = "calibration-data";
+>> +               };
+>> +
+>> +               thermal-zones {
+>> +                       cpu_thermal: cpu_thermal {
+>> +                               polling-delay-passive = <100>;
+>> +                               polling-delay = <500>;
+>> +                               thermal-sensors = <&thermal 0>;
+>> +                               sustainable-power = <5000>;
+>> +                       };
+>> +
+>> +                       /* The tzts1 ~ tzts6 don't need to polling */
+>> +                       /* The tzts1 ~ tzts6 don't need to thermal throttle */
+>> +
+>> +                       tzts1: tzts1 {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 1>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +
+>> +                       tzts2: tzts2 {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 2>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +
+>> +                       tzts3: tzts3 {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 3>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +
+>> +                       tzts4: tzts4 {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 4>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +
+>> +                       tzts5: tzts5 {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 5>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +
+>> +                       tztsABB: tztsABB {
+>> +                               polling-delay-passive = <0>;
+>> +                               polling-delay = <0>;
+>> +                               thermal-sensors = <&thermal 6>;
+>> +                               sustainable-power = <5000>;
+>> +                               trips {};
+>> +                               cooling-maps {};
+>> +                       };
+>> +               };
+>> +
+>>                 pwm0: pwm@1100e000 {
+>>                         compatible = "mediatek,mt8183-disp-pwm";
+>>                         reg = <0 0x1100e000 0 0x1000>;
+>> @@ -926,6 +1007,10 @@
+>>                         reg = <0 0x11f10000 0 0x1000>;
+>>                         #address-cells = <1>;
+>>                         #size-cells = <1>;
+>> +                       thermal_calibration: calib@180 {
+>> +                               reg = <0x180 0xc>;
+>> +                       };
+>> +
+>>                         mipi_tx_calibration: calib@190 {
+>>                                 reg = <0x190 0xc>;
+>>                         };
+>> --
+>> 2.18.0
+>>
