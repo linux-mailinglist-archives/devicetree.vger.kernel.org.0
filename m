@@ -2,67 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD08B34C4ED
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E007734C4F1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231296AbhC2H3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 03:29:16 -0400
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:44018 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbhC2H2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:28:43 -0400
-Received: by mail-ua1-f43.google.com with SMTP id b7so3626264uam.10;
-        Mon, 29 Mar 2021 00:28:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dvbWeiO/clTTMNAnX8lNGcmJO6+fNShyOgdR5/QqtBI=;
-        b=aWum01dQlKLWW7MmYbZYQrEyGZDMA2voISMn5NhyTpLLDYCfdaIuCiVs6UcvNBmLZ8
-         3758HhiwNb15CZKqksAv4kXB1L6rmdrnRymCY+5eVvHnW7YQZoUp5/t6BvSJfG8cKs8q
-         e8uythQYslVMufmWhVSfw1+48SWFHA2b1O+MykL6RmK1XC/bJypE/D5jZ8UI3G7PZgZr
-         UYPn+aP9+Bq5PfeIEuUVdAX6YsxPTDko063EkVOODHm0ocAm74rqZ4WnSdQ5QUF8xHx5
-         heLtolisXgAtcHGZeHUBGn+s6ybGvgTMSHW+l8uCoWi9lZure6jUzokXBw2WWHYviiI3
-         vpzQ==
-X-Gm-Message-State: AOAM533MF4Yd3wYHPh+uSEJGHqEcH+ODE9ZXWJfJNADXA848ia1dsGoh
-        RxCWOukQjj0vB01SB2Hc8nG8zmSeK5IcEoS6TVnyHRkR
-X-Google-Smtp-Source: ABdhPJxRJZb0+HfOZj6Fiup/boinTl1lnnkCjy1tUsJc4fi574Gx+jzft8S3NIHMRUPhr3qxhwITbJmF1sACKxL5sr8=
-X-Received: by 2002:ab0:6954:: with SMTP id c20mr13903558uas.106.1617002922749;
- Mon, 29 Mar 2021 00:28:42 -0700 (PDT)
+        id S230452AbhC2HaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 03:30:25 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:46670 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230503AbhC2HaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:30:10 -0400
+Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
+        by sparta.prtnl (Postfix) with ESMTP id D864544A022C;
+        Mon, 29 Mar 2021 09:30:08 +0200 (CEST)
 MIME-Version: 1.0
-References: <20210322172919.1154686-1-kieran.bingham+renesas@ideasonboard.com> <20210322172919.1154686-2-kieran.bingham+renesas@ideasonboard.com>
-In-Reply-To: <20210322172919.1154686-2-kieran.bingham+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 29 Mar 2021 09:28:31 +0200
-Message-ID: <CAMuHMdVp9R=MZUkvJ=wH-5Lu=BWCGcOF7gJJuZv+aC_J99FMEw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r8a779a0: Add FCPVD support
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+Date:   Mon, 29 Mar 2021 09:30:08 +0200
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 16/17] auxdisplay: ht16k33: Add support for segment
+ displays
+Reply-To: robin@protonic.nl
+In-Reply-To: <CAMuHMdXJV3duE=uhCD3XSVn35Y5=iafOOUu5_57-1TtW062ZJg@mail.gmail.com>
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-17-geert@linux-m68k.org>
+ <2868cd091dc6ff0cab14b5da07f89984@protonic.nl>
+ <CAMuHMdXJV3duE=uhCD3XSVn35Y5=iafOOUu5_57-1TtW062ZJg@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <8376c4a183971aef9631c1bc64f9222c@protonic.nl>
+X-Sender: robin@protonic.nl
+Organization: Protonic Holland
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 6:29 PM Kieran Bingham
-<kieran.bingham+renesas@ideasonboard.com> wrote:
-> Provide FCPVD support for the V3U.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On 2021-03-29 09:15, Geert Uytterhoeven wrote:
+> Hoi Robin,
+> 
+> On Mon, Mar 29, 2021 at 9:09 AM Robin van der Gracht 
+> <robin@protonic.nl> wrote:
+>> On 2021-03-22 15:48, Geert Uytterhoeven wrote:
+>> > The Holtek HT16K33 LED controller is not only used for driving
+>> > dot-matrix displays, but also for driving segment displays.
+>> >
+>> > Add support for 4-digit 7-segment and quad 14-segment alphanumeric
+>> > displays, like the Adafruit 7-segment and 14-segment display backpack
+>> > and FeatherWing expansion boards.  Use the character line display core
+>> > support to display a message, which will be scrolled if it doesn't fit.
+>> >
+>> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>> > ---
+>> > The 7-segment support is based on schematics, and untested on actual
+>> > hardware.
+>> > ---
+>> >  drivers/auxdisplay/ht16k33.c | 198 +++++++++++++++++++++++++++++++++--
+>> >  1 file changed, 191 insertions(+), 7 deletions(-)
+>> >
+>> ...
+>> >
+>> > +static int ht16k33_seg_probe(struct i2c_client *client,
+>> > +                          struct ht16k33_priv *priv, uint32_t brightness)
+>> > +{
+>> > +     struct ht16k33_seg *seg = &priv->seg;
+>> > +     struct device *dev = &client->dev;
+>> > +     int err;
+>> > +
+>> > +     err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
+>> > +     if (err)
+>> > +             return err;
+>> > +
+>> > +     switch (priv->type) {
+>> > +     case DISP_MATRIX:
+>> > +             /* not handled here */
+>> > +             break;
+>> 
+>> This 'case' shouldn't happen. Having said that, the break here will
+>> still
+>> cause the linedisp_register() function to be called for the 
+>> DISP_MATRIX
+>> type.
+>> If you'd like to handle this case, a return (or setting 'err') should
+>> prevent this.
+> 
+> This function is never called if priv->type == DISP_MATRIX, so this
+> cannot happen.  However, gcc complains if not all enum values are
+> handled in a switch() statement, hence the dummy case.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.13.
+I see. But if it's there it should work right? :P
 
-Gr{oetje,eeting}s,
+> Is there a better way to handle this?
 
-                        Geert
+How about adding the default case:
+
+default:
+     /* not handled */
+     err = -EINVAL;
+
+Groetjes/Kind regards,
+Robin van der Gracht
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Protonic Holland
+Factorij 36
+1689AL Zwaag
++31 (0)229 212928
+https://www.protonic.nl
