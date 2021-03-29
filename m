@@ -2,297 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E12DF34D328
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FED34D335
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:01:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230373AbhC2PBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:01:09 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:6750 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230399AbhC2PAq (ORCPT
+        id S229628AbhC2PBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:01:13 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:2800 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229709AbhC2PA4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 11:00:46 -0400
-Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12TEWkam101227;
-        Mon, 29 Mar 2021 11:00:39 -0400
+        Mon, 29 Mar 2021 11:00:56 -0400
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12TEXkps146438;
+        Mon, 29 Mar 2021 11:00:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
  : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding; s=pp1;
- bh=4UiF+4wUynROgb4PsS7S72wI6ksEtVXYl7MxrwH6khU=;
- b=gXsI7UgzzXFOytG8I+5qfFXOjZPU6vhsxq82byFuGsNnDvI98ZCDKZ9rz220aTFUSCs6
- s+XJPmoJqintPq1G1Qmh9b1PF+AV0CNsBYbSWOf2VFtg9HR5oKq3zYU0UA+h0SjUd2tZ
- kWyv13oVSG4vwKEEl8HEkyonl8QbIUximjTawoJxNWGer/p5ESqGrPX/HlZRfNcRAvQJ
- oPfP97j1GBb/rEaRG3iIHP4CsCYzMVfbwaaOaVKxkDazwpbBel+ahFTjY+6GHrwuyAD6
- 1qIDLPyGlhv1msSLmjW4cePczb/ki6EnYtlVDijPjNq3Hs0xpiCVO+x0WjRxHtofgKvp RQ== 
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 37jhruas10-1
+ bh=DdePwPToW0GKkBDJiVeIwm2ZSPVugNUb09w5UB8Gchc=;
+ b=AZsCtvG3s92h0gPm8qpfka/uO/cEJRmU3dBrrmYuMNY391X8E1IWGRxqKneZ6yD2vqve
+ f6CAc64v6Dtztp18/Ofe7zqSX9gmpMol/GlkY0lKFIY6PhvXaGn5rbI/1j9WvkTVgW8Y
+ HY/nWchjX6zRa3bTFOsEb118tU6/SGWBtNto6WCpzkivscPUVEsww7EL5ysREryEohZY
+ F++AKH2qRdurjekTtLjQwYKdFXT6ZsGWLVKGaugVwvxXvaeEpac4XavbUYdEWxRMYux5
+ wdVzWSNLL67vqL99uz3X5+j7BRYij3pfewqXQeFXJogX8+P7CqDMxaGZTDM+Xmu1I2om AQ== 
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 37jj8ajgy9-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Mar 2021 11:00:38 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12TEtJUj004928;
-        Mon, 29 Mar 2021 15:00:37 GMT
+        Mon, 29 Mar 2021 11:00:47 -0400
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12TEqlCG007199;
+        Mon, 29 Mar 2021 15:00:41 GMT
 Received: from b03cxnp07027.gho.boulder.ibm.com (b03cxnp07027.gho.boulder.ibm.com [9.17.130.14])
-        by ppma01wdc.us.ibm.com with ESMTP id 37hvb8q59b-1
+        by ppma04wdc.us.ibm.com with ESMTP id 37hvb8q4cc-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Mar 2021 15:00:37 +0000
+        Mon, 29 Mar 2021 15:00:41 +0000
 Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp07027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 12TF0a3F31064574
+        by b03cxnp07027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 12TF0ath28377440
         (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
         Mon, 29 Mar 2021 15:00:36 GMT
 Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 00D2978067;
+        by IMSVA (Postfix) with ESMTP id 72FEE78066;
         Mon, 29 Mar 2021 15:00:36 +0000 (GMT)
 Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 991F87805E;
-        Mon, 29 Mar 2021 15:00:35 +0000 (GMT)
+        by IMSVA (Postfix) with ESMTP id 134947805E;
+        Mon, 29 Mar 2021 15:00:36 +0000 (GMT)
 Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.163.3.96])
         by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
         Mon, 29 Mar 2021 15:00:35 +0000 (GMT)
 From:   Eddie James <eajames@linux.ibm.com>
 To:     joel@jms.id.au
 Cc:     andrew@aj.id.au, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, Alpana Kumari <alpankum@in.ibm.com>,
-        Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH 09/22] ARM: dts: aspeed: rainier: Add presence GPIOs
-Date:   Mon, 29 Mar 2021 10:00:07 -0500
-Message-Id: <20210329150020.13632-10-eajames@linux.ibm.com>
+        linux-aspeed@lists.ozlabs.org, Eddie James <eajames@linux.ibm.com>,
+        Matthew Barth <msbarth@linux.ibm.com>
+Subject: [PATCH 10/22] ARM: dts: aspeed: rainier: Enable fan watchdog
+Date:   Mon, 29 Mar 2021 10:00:08 -0500
+Message-Id: <20210329150020.13632-11-eajames@linux.ibm.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210329150020.13632-1-eajames@linux.ibm.com>
 References: <20210329150020.13632-1-eajames@linux.ibm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: ZyE9uO8CRK303GP_FCjoCTnf33nqYyd7
-X-Proofpoint-ORIG-GUID: ZyE9uO8CRK303GP_FCjoCTnf33nqYyd7
+X-Proofpoint-GUID: twl6fA7AMm61OC8fkNZXV9d_D9OyRVMG
+X-Proofpoint-ORIG-GUID: twl6fA7AMm61OC8fkNZXV9d_D9OyRVMG
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
  definitions=2021-03-29_09:2021-03-26,2021-03-29 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=838 mlxscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0
- suspectscore=0 malwarescore=0 clxscore=1015 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=999 priorityscore=1501 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2103250000 definitions=main-2103290112
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alpana Kumari <alpankum@in.ibm.com>
+Set watchdog 1 to pulse the fan watchdog circuit that drives the FAULT
+pin of the MAX31785, resulting in fans running at full speed, if at
+any point the BMC stops pulsing it, such as a BMC reboot at runtime.
+Enable watchdog 2 for BMC reboots.
 
-This commit adds presence detect GPIO chips for various FRUs on
-Rainier. Also, correct the I2C address for the tca9554.
-
-Signed-off-by: Alpana Kumari <alpankum@in.ibm.com>
+Signed-off-by: Matthew Barth <msbarth@linux.ibm.com>
 Signed-off-by: Eddie James <eajames@linux.ibm.com>
 ---
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 169 ++++++++++++++++++-
- 1 file changed, 160 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index 78238ffc8997..1d66dc995797 100644
+index 1d66dc995797..a8c0ed4d37c3 100644
 --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
 +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -1538,20 +1538,64 @@ eeprom@51 {
- 		reg = <0x51>;
+@@ -3135,6 +3135,20 @@ flash@0 {
  	};
- 
--	tca9554@40 {
-+	tca_pres1: tca9554@20{
- 		compatible = "ti,tca9554";
--		reg = <0x40>;
-+		reg = <0x20>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
--		smbus0-hog {
--			gpio-hog;
--			gpios = <4 GPIO_ACTIVE_HIGH>;
--			output-high;
--			line-name = "smbus0";
-+		gpio-line-names = "",
-+			"RUSSEL_FW_I2C_ENABLE_N",
-+			"RUSSEL_OPPANEL_PRESENCE_N",
-+			"BLYTH_OPPANEL_PRESENCE_N",
-+			"CPU_TPM_CARD_PRESENT_N",
-+			"DASD_BP2_PRESENT_N",
-+			"DASD_BP1_PRESENT_N",
-+			"DASD_BP0_PRESENT_N";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
- 		};
--	};
- 
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
  };
  
- &i2c1 {
-@@ -1574,6 +1618,104 @@ power-supply@69 {
- 		compatible = "ibm,cffps";
- 		reg = <0x69>;
- 	};
++&wdt1 {
++	aspeed,reset-type = "none";
++	aspeed,external-signal;
++	aspeed,ext-push-pull;
++	aspeed,ext-active-high;
 +
-+	pca_pres1: pca9552@61 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x61>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdtrst1_default>;
++};
 +
-+		gpio-controller;
-+		#gpio-cells = <2>;
++&wdt2 {
++	status = "okay";
++};
 +
-+		gpio-line-names =
-+			"SLOT0_PRSNT_EN_RSVD", "SLOT1_PRSNT_EN_RSVD",
-+			"SLOT2_PRSNT_EN_RSVD", "SLOT3_PRSNT_EN_RSVD",
-+			"SLOT4_PRSNT_EN_RSVD", "SLOT0_EXPANDER_PRSNT_N",
-+			"SLOT1_EXPANDER_PRSNT_N", "SLOT2_EXPANDER_PRSNT_N",
-+			"SLOT3_EXPANDER_PRSNT_N", "SLOT4_EXPANDER_PRSNT_N",
-+			"", "", "", "", "", "";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@8 {
-+			reg = <8>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@9 {
-+			reg = <9>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@10 {
-+			reg = <10>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@11 {
-+			reg = <11>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@12 {
-+			reg = <12>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@13 {
-+			reg = <13>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@14 {
-+			reg = <14>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@15 {
-+			reg = <15>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
- };
- 
- &i2c4 {
-@@ -2423,7 +2565,7 @@ eeprom@51 {
- 		reg = <0x51>;
- 	};
- 
--	pca1: pca9552@61 {
-+	pca_pres3: pca9552@61 {
- 		compatible = "nxp,pca9552";
- 		reg = <0x61>;
- 		#address-cells = <1>;
-@@ -2431,6 +2573,15 @@ pca1: pca9552@61 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-+		gpio-line-names =
-+			"SLOT6_PRSNT_EN_RSVD", "SLOT7_PRSNT_EN_RSVD",
-+			"SLOT8_PRSNT_EN_RSVD", "SLOT9_PRSNT_EN_RSVD",
-+			"SLOT10_PRSNT_EN_RSVD", "SLOT11_PRSNT_EN_RSVD",
-+			"SLOT6_EXPANDER_PRSNT_N", "SLOT7_EXPANDER_PRSNT_N",
-+			"SLOT8_EXPANDER_PRSNT_N", "SLOT9_EXPANDER_PRSNT_N",
-+			"SLOT10_EXPANDER_PRSNT_N", "SLOT11_EXPANDER_PRSNT_N",
-+			"", "", "", "";
-+
- 		gpio@0 {
- 			reg = <0>;
- 			type = <PCA955X_TYPE_GPIO>;
+ &xdma {
+ 	status = "okay";
+ 	memory-region = <&vga_memory>;
 -- 
 2.27.0
 
