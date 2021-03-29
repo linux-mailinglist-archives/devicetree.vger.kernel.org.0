@@ -2,86 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFAC834CECA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06BDA34CED3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231941AbhC2LXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:23:53 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:64250 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232454AbhC2LX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:23:27 -0400
-X-UUID: 637f2a78da4843cba6fa98dd58edd6b0-20210329
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=e+j3HOJYkEgb4OFdcu6vsVJWYgl5xZHQHq7OrdvlVdk=;
-        b=fvqRQz4vub0rn+hY9GXwfnflPZeII3egNZf+hCvN+GJ/lr5VH2NOjgp4rC3PEdaSa2bN4h8jHpIkRertFNScEx2a23EPIc1RuOCaJnDFFM2C9Z4xs5wgJC4UJskxBRLG/0PSM6GM9T7Y0e+cB2N5vl5q8AuyAbN6/TZ/09W4w3U=;
-X-UUID: 637f2a78da4843cba6fa98dd58edd6b0-20210329
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1676497308; Mon, 29 Mar 2021 19:23:21 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 29 Mar
- 2021 19:23:17 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 29 Mar 2021 19:23:16 +0800
-Message-ID: <1617016996.10316.5.camel@mhfsdcap03>
-Subject: Re: [PATCH Resend 0/6] Mediatek pinctrl patch on mt8195
-From:   zhiyong tao <zhiyong.tao@mediatek.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        <hui.liu@mediatek.com>, Eddie Huang <eddie.huang@mediatek.com>,
-        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
-        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
-        Sj Huang <sj.huang@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Date:   Mon, 29 Mar 2021 19:23:16 +0800
-In-Reply-To: <CAHp75Vcms=dAXcACraU4BHENee6j+CTwQtMVtURdnMHVAmTXkw@mail.gmail.com>
-References: <20210329080611.9312-1-zhiyong.tao@mediatek.com>
-         <CAHp75Vcms=dAXcACraU4BHENee6j+CTwQtMVtURdnMHVAmTXkw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232638AbhC2LY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231911AbhC2LYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:24:25 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FAFC061574;
+        Mon, 29 Mar 2021 04:24:24 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id p19so6434441wmq.1;
+        Mon, 29 Mar 2021 04:24:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e1a+kwffYzcMpQSHQ60B4gj/nqd34pu7XrkW9Q/Wixk=;
+        b=JMaGuu1/1AzbM8khYOCfsDA83fsN5lLMMQFTORmksRJjFb3rHTdeYvFJlZQUUbKzZ0
+         9We3OPZGsM2B6oIDjrodT/7NDDBtos84rwVAXbbeCCoWPVcQeAo07JzZCnOuKrlrk51Y
+         Had8K4Zw2SfS6OQ4nh8t4o14ILF14kr1oowJlxzldlNGqpC3fI3UniJBXwCz7YZr2hFk
+         +7c5jUfZ1OPfFAPZ8NW2m2NMnBoVrep5HBCeqX5WGgpiCixDDobOlUCL0/BK3xJOt9+V
+         cantxZWUwthSRe1tW7x0e7kJHLqWOsv5u/Qt37HKR02juAAzdUycyVAwfbtmBcb48hdO
+         EGWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e1a+kwffYzcMpQSHQ60B4gj/nqd34pu7XrkW9Q/Wixk=;
+        b=EmAKrxMdgu/F19mAbzsjP6h4CawX/mZeRPLR2B1823aH9e3/uytygt/eJeBxM5VNcl
+         K4ynPgGGmueON+DDequple8/rx6noXDMughL2Q7aQnG69y02AT7DPOd+aTxjvOfPAiop
+         KaMMeVw3cRko2gThzxlKy5Z/xNc61SlWOjlBi5XJPHKAksEjvGiD620SbozyVttVUZ8/
+         uq2nqb7zyZ0RezLD0rdxW1nOtUGNtTbU2ZHCc0gvI3LCOoGTt4ase9N23jFY1SB4kVIj
+         eQdzITUxySwbteIaHdYSyDNRefCjl863plIGWVeyFmXqRhYaVayp20REoSnJ+vrWnSp/
+         jS3w==
+X-Gm-Message-State: AOAM531QqDmz2FkNLF/00afYo8dS+5PCa/bQY/Rl16upvnBTm9nw2Fwu
+        t11RGwwVeyZh43iaFNFSe4inrwvOEh/zmQ==
+X-Google-Smtp-Source: ABdhPJxO5uaGZe0cOQbx0p1x8BvQjis31yBV3+DstmIQFPcMrOOWCSYX7J5Kah/aMmyTwI9nQ1zaQw==
+X-Received: by 2002:a05:600c:3790:: with SMTP id o16mr24435924wmr.110.1617017063717;
+        Mon, 29 Mar 2021 04:24:23 -0700 (PDT)
+Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
+        by smtp.gmail.com with ESMTPSA id b65sm24516037wmh.4.2021.03.29.04.24.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Mar 2021 04:24:23 -0700 (PDT)
+Subject: Re: [PATCH v2 13/13] arm64: dts: mt8183: update wakeup register
+ offset
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+References: <1616482975-17841-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1616482975-17841-13-git-send-email-chunfeng.yun@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <a11c871f-4bfc-c069-b413-7fb6cd203b6f@gmail.com>
+Date:   Mon, 29 Mar 2021 13:24:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 9B1EC72129735A46A7FFA3D75144C8A618421BEB0AA235F01220821420B777472000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <1616482975-17841-13-git-send-email-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTAzLTI5IGF0IDEzOjQ3ICswMzAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
-DQo+IE9uIE1vbiwgTWFyIDI5LCAyMDIxIGF0IDExOjA5IEFNIFpoaXlvbmcgVGFvIDx6aGl5b25n
-LnRhb0BtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gVGhpcyBzZXJpZXMgaW5jbHVkZXMg
-NiBwYXRjaGVzOg0KPiA+IDEuYWRkIHBpbmN0cmwgZmlsZSBvbiBtdDgxOTUuDQo+ID4gMi5hZGQg
-cGluY3RybCBiaW5kaW5nIGRvY3VtZW50IG9uIG10ODE5NS4NCj4gPiAzLmFkZCBwaW5jdHJsIGRl
-dmljZSBub2RlIG9uIG10ODE5NS4NCj4gPiA0LmFkZCBwaW5jdHJsIGRyaXZlciBvbiBNVDgxOTUu
-DQo+ID4gNS5hZGQgcGluY3RybCBkcml2ZSBmb3IgSTJDIHJlbGF0ZWQgcGlucyBvbiBNVDgxOTUu
-DQo+ID4gNi5hZGQgcGluY3RybCByc2VsIHNldHRpbmcgb24gTVQ4MTk1Lg0KPiANCj4gWW91IHN1
-Ym1pdHRlZCB0aGUgc2FtZSB2ZXJzaW9uIG9mIHRoZSBzZXJpZXMgdHdpY2UsIGJ1dCBpdCBjb25m
-dXNlcyBwZW9wbGUuDQo+IE5vdyB5b3UgaGF2ZSB0byBwcm9wZXJseSBzZW5kIHRoZSBzZXJpZXMg
-b25seSBvbmUgdGltZSB3aXRoIHRoZQ0KPiBjb3JyZWN0IHZlcnNpb24gYWRkZWQgYW5kIGNoYW5n
-ZWxvZyBleHBsYWlucyB0aGUgY2hhbmdlcyBkb25lIGJldHdlZW4NCj4gdGhlIHZlcnNpb25zLg0K
-PiANCj4gDQoNCj09PiBIaSwgQW5keSwNClRoZXJlIGFyZSBubyBjaGFuZ2UgYmV0d2VlbiB0aGUg
-dHdvIHZlcnNpb24uDQpCZWNhdXNlIHdlIGdldCB0aGUgcmVmdXNlZCBtYWlsIGZyb20NCiJsaW51
-eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmciLg0KVGhlIGVycm9yIG1haWw6DQpEZWxp
-dmVyeSBoYXMgZmFpbGVkIHRvIHRoZXNlIHJlY2lwaWVudHMgb3IgZ3JvdXBzOg0KbGludXgtYXJt
-LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQpBIHByb2JsZW0gb2NjdXJyZWQgd2hpbGUgZGVs
-aXZlcmluZyB0aGlzIG1lc3NhZ2UgdG8gdGhpcyBlbWFpbCBhZGRyZXNzLg0KVHJ5IHNlbmRpbmcg
-dGhpcyBtZXNzYWdlIGFnYWluLiBJZiB0aGUgcHJvYmxlbSBjb250aW51ZXMsIHBsZWFzZSBjb250
-YWN0DQp5b3VyIGhlbHBkZXNrLg0KVGhlIGZvbGxvd2luZyBvcmdhbml6YXRpb24gcmVqZWN0ZWQg
-eW91ciBtZXNzYWdlOiBkZXNpYXRvLmluZnJhZGVhZC5vcmcNCls5MC4xNTUuOTIuMTk5XS4NCg0K
-V2Ugd2lsbCBzZW5kIHYwIHZlcnNpb24gIGFuZCBhZGQgdjAgdmVyc2lvbiBpbiBldmVyeSBwYXRj
-aCBuZXh0IHRpbWUuDQoNClRoYW5rcy4NCg0K
 
+
+On 23/03/2021 08:02, Chunfeng Yun wrote:
+> Use wakeup control register offset exactly, and update revision
+> number
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v2: modify revision format
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 80519a145f13..9ea84d636556 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -874,7 +874,7 @@
+>  			clocks = <&infracfg CLK_INFRA_UNIPRO_SCK>,
+>  				 <&infracfg CLK_INFRA_USB>;
+>  			clock-names = "sys_ck", "ref_ck";
+> -			mediatek,syscon-wakeup = <&pericfg 0x400 0>;
+> +			mediatek,syscon-wakeup = <&pericfg 0x420 101>;
+
+applied to v5.12-next/dts64
+
+Thanks
+
+>  			#address-cells = <2>;
+>  			#size-cells = <2>;
+>  			ranges;
+> 
