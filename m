@@ -2,132 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1EB534C4DC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC59234C4EB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230322AbhC2H0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 03:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231167AbhC2HZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:25:42 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C410C061574;
-        Mon, 29 Mar 2021 00:25:42 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u9so17818731ejj.7;
-        Mon, 29 Mar 2021 00:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=2HsxoO5OOCRDiy9d5jLFpws46spRCGRa1MKFXTt9FFM=;
-        b=qrnCacltnyPo4rT2C0pe5zTMy8L8TZjPuuLY5V80632eYFpm6uA/40Q672Lp10OY+5
-         HwPvcidrMeiiIAXo0zkL/Yt0yZ5vbB+iys5OH/esgEd9Wl4H/PvzZETvPxUAsrf2+pTZ
-         jQOR/UwzN1M2J0KFIZntZtnJm+tR0eSvtcKlxs0f1o9XDpsbUXmaVS5PU0Cj71C4Z5ag
-         qjws+MsmPy0spsQvmzP5hxw+3l1m7Hgl4x5AIAw8hEsvNUBw34OmKyNXetkr99jFvJmS
-         iCkA9evG/MGduV+So3N7yJptcbPNfbg/MU2m/T8eV+OJ1lGj9sO97rCVdMVBv12idap2
-         3DmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=2HsxoO5OOCRDiy9d5jLFpws46spRCGRa1MKFXTt9FFM=;
-        b=Idn1JLihq+oWJtqcIRWg67ssY3HaSA6h4+4TFEMMlZLL1FKXxxVfcvPdByiSGeIVDu
-         CeMfuwJO2gZPef1naOg0M44pAC20pnF9Ux/wMdLf77kyh1wpgvP8S4rJcyO0tAKyY8tn
-         s82myi54pdSI36H0Lyc+CNO1OPT/cwc2yiNKzaR7+xfcs3mViKPijwi9EicMrJp33BTW
-         zK+884r5NPFFuyAdtjWzJIx0Jj/Wx7k7gzor1ny1aisQi+V/sCtyAg0iHLNdHutYl97c
-         q7aTvd7d4fcQ64VHs4MTBGzH4PAyjnXBfAoty9i6Njh42eV53cdwXRtkh8uVPDnbI1Ba
-         sP/w==
-X-Gm-Message-State: AOAM532W6iM/qBfDfEoYmvnTAoiPb9z176qBM+hPi8ZBOBvYLvZwd3Vz
-        zpdxFnGZ3UwLNXuuKp/m+28=
-X-Google-Smtp-Source: ABdhPJzVxlIZYzWp0GS19yC4AHGGmVvjsJ6vj1Rvr+xf+Y+LUX01dEA8alX6NqXbQHQN6kU3NTzoeA==
-X-Received: by 2002:a17:906:e84:: with SMTP id p4mr26996018ejf.248.1617002740829;
-        Mon, 29 Mar 2021 00:25:40 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id gr16sm7736387ejb.44.2021.03.29.00.25.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 00:25:39 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 09:26:05 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: serial: tegra-tcu: Document "reg"
- property
-Message-ID: <YGGBDRtGiziF+Kj+@orome.fritz.box>
-References: <20210326174641.1612738-1-thierry.reding@gmail.com>
- <20210326174641.1612738-3-thierry.reding@gmail.com>
- <20210327184925.GA367052@robh.at.kernel.org>
+        id S231159AbhC2H2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 03:28:44 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:15378 "EHLO
+        szxga06-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230450AbhC2H2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:28:32 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4F83zs0tT3zkgXG;
+        Mon, 29 Mar 2021 15:26:49 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.179.202) by
+ DGGEMS402-HUB.china.huawei.com (10.3.19.202) with Microsoft SMTP Server id
+ 14.3.498.0; Mon, 29 Mar 2021 15:28:20 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-usb <linux-usb@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH 0/2] dt-bindings: usb: dwc3-imx8mp: Use the correct name for child node "snps,dwc3"
+Date:   Mon, 29 Mar 2021 15:27:12 +0800
+Message-ID: <20210329072714.2135-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZXFD0XUUFURAyx6e"
-Content-Disposition: inline
-In-Reply-To: <20210327184925.GA367052@robh.at.kernel.org>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.179.202]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+File snps,dwc3.yaml describes the schema of Synopsys DesignWare USB3
+Controller, it directly or indirectly contains "$ref: usb.yaml". So the
+node name of "snps,dwc3" must start with "usb". Otherwise, the following
+warning will be displayed:
 
---ZXFD0XUUFURAyx6e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.example.dt.yaml: \
+dwc3@38100000: $nodename:0: 'dwc3@38100000' does not match '^usb(@.*)?'
+        From schema: Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
-On Sat, Mar 27, 2021 at 12:49:25PM -0600, Rob Herring wrote:
-> On Fri, Mar 26, 2021 at 06:46:40PM +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > In order to support early console support with the Tegra TCU, add an
-> > optional "reg" property that points to the TX mailbox.
->=20
-> This will mean the same address in in DT twice which we try to avoid,=20
-> right? I guess it's fine, we could drop it if we ever enforce that. I'm=
-=20
-> sure there's worse abuses with duplicates than this.
->=20
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml     | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra194-t=
-cu.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> > index 0a321658ccb5..8c9ed7cfaa52 100644
-> > --- a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-> > @@ -24,6 +24,9 @@ properties:
-> >    compatible:
-> >      const: nvidia,tegra194-tcu
-> > =20
-> > +  reg:
-> > +    maxItems: 1
-> > +
 
-After looking at this again, I think I may add a comment here to clarify
-the restrictions of this property.
+Zhen Lei (2):
+  dt-bindings: usb: dwc3-imx8mp: Use the correct name for child node
+    "snps,dwc3"
+  arm64: dts: imx8mp: Use the correct name for child node "snps,dwc3"
 
-Thierry
+ Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml | 9 +++------
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi                  | 4 ++--
+ 2 files changed, 5 insertions(+), 8 deletions(-)
 
---ZXFD0XUUFURAyx6e
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+1.8.3
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBhgQ0ACgkQ3SOs138+
-s6E4qA/+KRy3n1toeZm+vOePuYxYEybMLCSUpwb5WvwLslfjMAyiKEwsviz509Ya
-auDKF3Q+MlOU8f4VdlMu42oaBxAlGZqjpKcB5ag+PnCUUN3cirDXGsNBkYN/GT8I
-2NcsRi0k2pSB9TiL60aFr99Mm+zA89QFo19X4B1/sWRUEpw2TtpGOHHOmpQZFhA2
-vDG+ClxX6XsQVcJyLwVTfetBKzY2RL3/zVFoTnfdDjSaKk0O3Q+K4HpJdLjvbdY6
-t5+hfpmGiidvHICKg3dvb8admLop8m9a4FSJj3zSwKtk+UNV0Upllet2PB2j/iui
-8w76t6AOGbxys3kbU2bQIkPpRgdHn3Qx/8+260hNeHU889J4LPLv321UhSXxzbyf
-orgP8NoI98xyOCY8xmajUXSpURvI2oAMnPbEb/wNvwOH60gToHHnLhHDe9FrQmmQ
-jIIzHCaUkqrYN9vFyRdNj+uMkAgCQ0r4izq4qU85qJrEct1OtD/RNOAE73j47BHO
-ZPH6JlmJYfu3tW2bgoRTNGIJ+0LbJrAtCGKQUDMOsuxydhFmQtf/PRbC93OcmMh9
-cVhNbXlGOZTpt259GApu86ejS4/wIBi47hP6RvAHuV0Rz+qOB8hGRMtrXOyBzreC
-23FAA+Cnx/LGh0jULjQDnflhWb4hrI8Da8fG6AejM0/wEGrKa+0=
-=oGkQ
------END PGP SIGNATURE-----
-
---ZXFD0XUUFURAyx6e--
