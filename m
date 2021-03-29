@@ -2,139 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB2234D3CB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7D834D3FF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhC2P0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:26:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57812 "EHLO
+        id S231384AbhC2PeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:34:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbhC2P0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:26:34 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDD4C061574;
-        Mon, 29 Mar 2021 08:26:31 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id g25so6854351wmh.0;
-        Mon, 29 Mar 2021 08:26:31 -0700 (PDT)
+        with ESMTP id S230329AbhC2Pdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:33:39 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B67EC061574;
+        Mon, 29 Mar 2021 08:33:39 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id y1so16385063ljm.10;
+        Mon, 29 Mar 2021 08:33:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pVsxfbxI3K7GA4FFYH0yy3ggGjDTL25VjE0xUpkqj58=;
-        b=WXDtbKB0+76S9xXdtQ6UIVOL98eUnJU766WdbNd+xYvGjtL8AOwVQpm9tG+igKGair
-         hk7lm4iFc2636sXASZJi9HHOi/Jv3dokvUDsdU8ZUutqY0YoSrpqlA3NNDlGgnjaCoc4
-         oUM9G1dcGQpjhKtBC0oJDoVQBNYZG+t5eo1nmAsC5TgEwMMGTWBK2UmEHzYyy7V5XWF/
-         2fOowYxTQkzlKH7ils/Dqbi9zfEAF0m6jjx4Sf3KSNWVazCnn4fIQdReIXI364uDdCwQ
-         QVeDjB9y2DmpUj0w/uWOUTnhRFZA8GknPiVaXN5w4d6UphRKdaKYjOkcPytNVQvAI31w
-         3a1Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ktl91u+6i2FDi36gd93XSP7u6zX63G4S8FcsPppuBok=;
+        b=E1EG6YLTQO+IqCI8yF3MTXrIJZdBuCBudX2yspne0z/Bdt2dsObL+Hp9r7w9z8qj+3
+         nG9EtW2JeSx2RQMA0aPidmSMnizGNujUrF/N6zSOz2CLBnJ76llY8+NIjUoUYXJXkeLn
+         AP+qRK7HWZyeAZNEQpVq0g/O4ZjqXvA83zTOfVnF3yJmJbfyNH/HPt78A0JebI2PJuHB
+         ym1ob8pHMwk/5p1q/NrHAmkf294n3KsvAPdINEc47IuCu/nKmC7PvaBl3mtNUzahUebl
+         4MxoDyAkU8nSZ3jW6FmkINngohcKYXchjIgwPyx+B0hSA6jgGSLtCsYilVn4k82ZPg5B
+         dNvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=pVsxfbxI3K7GA4FFYH0yy3ggGjDTL25VjE0xUpkqj58=;
-        b=eOG6MHlb+PEYzp3PXwh71b42pA+n4Uj4ZfYgl9qNMRRKY3tqLnsJOumy7UilXJXmrm
-         zza07KVRV4GMAXCnzncfbXzlqcIGHDTiGEOvxB1B2qwON/4NR2oACv8u4151ntSD96M3
-         ZJmo4q3cTmog+FzMLpfR08oIr2lb8H0rJ7faeSJty0GxVxBZL37LJK4txjxuw5XzWKPI
-         g0kE2szemMw8iwAi56ET3u6kxlREXPm00gZAcWm8EPJiNyRD3kT+xpFaS9TOkwZYy1Y6
-         oTTmOXvNjYknEDtYMORAtT6Q8gw6OS3l2TpzsezcTk4gU3IMgitxTfd+ZA18/iuosEZO
-         whCw==
-X-Gm-Message-State: AOAM5325LApivd5ubdjrYJtX9y0FzzKsza2Hq0DK6Z54ehfu7egXQssH
-        cRHyzOm5dxxi/Xg2mryatVHNSm69t6tNwQ==
-X-Google-Smtp-Source: ABdhPJzjfFaDdwLJ9ucjx+qAIuDEy4nFJSnA1nNxnCmsCL449bMsQm0G7Y9a/8Po9VAybCyw92ZR2A==
-X-Received: by 2002:a05:600c:4f44:: with SMTP id m4mr25159222wmq.175.1617031590669;
-        Mon, 29 Mar 2021 08:26:30 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id e17sm34198560wra.65.2021.03.29.08.26.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 08:26:30 -0700 (PDT)
-Subject: Re: [PATCH v2] arm64: dts: mt8183: Add gce client reg for display
- subcomponents
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20210324070842.1037233-1-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <aa98e29a-3e8e-db22-50e8-e0b8fa496bdf@gmail.com>
-Date:   Mon, 29 Mar 2021 17:26:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=ktl91u+6i2FDi36gd93XSP7u6zX63G4S8FcsPppuBok=;
+        b=YB//52PhAAV7kig4oTL4WgwwTk//LNXlxIpIeTyq4uS8SRyf76iJ/GvToCES27PudN
+         Ej2Mhn50mnhjr9JpPig5xRS8omBtFLw6hMYykdxhnh+oMXJfIjvAV15ke6Ro9RyMpyhD
+         5H4Ychd2355vWjkXbYlSUdVTwGsKgnVFRUiADPkc1cf8drK+07Rqkp9IVEk3XdFHYkoc
+         DiOg6ufsCuXt3iHlhh7qCZnijdNECULjg0uTFl07DtdpQREQzrpj5OsZzk1kRmLSZY7o
+         6ytMTF6l8bE49/4uoJ7S3cUJXds4RQnnskcmfxonHc8egJIhxgkG0xYHOizfnTgrljGX
+         /T0A==
+X-Gm-Message-State: AOAM531bwx9HG3SscOYFOYgcj1la8snCrMozubQsCAL/I+g5AY4eYWIV
+        IKpsN8UIAu79WFUx4JJSp2U=
+X-Google-Smtp-Source: ABdhPJzIaDmWQh93tZglZ8hQeDfOUoOxtCTkFaimpYMGp2SLDDP+2uPglT4qug8m9WlF1WRF0ctB7A==
+X-Received: by 2002:a2e:8616:: with SMTP id a22mr18140346lji.509.1617032017798;
+        Mon, 29 Mar 2021 08:33:37 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id c9sm1112144lfv.10.2021.03.29.08.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 08:33:37 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH net] dt-bindings: net: bcm4908-enet: fix Ethernet generic properties
+Date:   Mon, 29 Mar 2021 17:33:28 +0200
+Message-Id: <20210329153328.28493-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20210324070842.1037233-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+This binding file uses $ref: ethernet-controller.yaml# so it's required
+to use "unevaluatedProperties" (instead of "additionalProperties") to
+make Ethernet properties validate.
 
-On 24/03/2021 08:08, Hsin-Yi Wang wrote:
-> Add mediatek,gce-client-reg for mmsys, ccorr, aal, gamma, dither.
-> 
-> Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Fixes: f08b5cf1eb1f ("dt-bindings: net: bcm4908-enet: include ethernet-controller.yaml")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied to v5.12-next/dts64
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
+index 79c38ea14237..13c26f23a820 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
+@@ -32,7 +32,7 @@ required:
+   - interrupts
+   - interrupt-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.26.2
 
-Thanks!
-
-> ---
-> v1->v2:
-> Add for mmsys.
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 80519a145f13..16f4b1fc0fb9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -983,6 +983,9 @@ mmsys: syscon@14000000 {
->  			compatible = "mediatek,mt8183-mmsys", "syscon";
->  			reg = <0 0x14000000 0 0x1000>;
->  			#clock-cells = <1>;
-> +			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> +				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->  		};
->  
->  		ovl0: ovl@14008000 {
-> @@ -1058,6 +1061,7 @@ ccorr0: ccorr@1400f000 {
->  			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->  			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
->  		};
->  
->  		aal0: aal@14010000 {
-> @@ -1067,6 +1071,7 @@ aal0: aal@14010000 {
->  			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->  			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
->  		};
->  
->  		gamma0: gamma@14011000 {
-> @@ -1075,6 +1080,7 @@ gamma0: gamma@14011000 {
->  			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->  			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
->  		};
->  
->  		dither0: dither@14012000 {
-> @@ -1083,6 +1089,7 @@ dither0: dither@14012000 {
->  			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
->  			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
->  		};
->  
->  		dsi0: dsi@14014000 {
-> 
