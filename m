@@ -2,84 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58E6E34D661
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 19:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EA434D6E9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 20:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbhC2R4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 13:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230449AbhC2Rzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 13:55:55 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5315C061574
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 10:55:52 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id o19so15204481edc.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 10:55:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=anholt-net.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6MnTmV7Ubg2sTi3Xa2Quc7eX0k5n11budl3ddfjJpTQ=;
-        b=gJtMzc9yrdH/AglObhliCl1eLVPtYjBzEmGKhMs9v04xve8sR8xROi3HbQURzWGDBs
-         x8hjM/XW/JAvIauCyjxGZxqaSPBn0pcf+T7fLRHs7eObNBz2kPQmyxHodjG+nu+2gJZy
-         FIVdwhqEuY1c/omIMQ0qtK55Vk+CN/qmkvUprAWKV84JmQMF9rzoH+lH0KmtH7NZN+W6
-         fxLZuGFGvtrYKg/jzLgyYqQQ+6MAMaONyDWHCjxn3cfuCalDKFQDPkJYCBBcW6SuypKs
-         wssZhiDV5SEqInSyh8F8f74PMu8fBNBcKYbISCWdYueBbiapEn7mxGLyhaKBuVsq+1Nt
-         6gpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6MnTmV7Ubg2sTi3Xa2Quc7eX0k5n11budl3ddfjJpTQ=;
-        b=On8Bvfjy/ouE6E5Te9jQa+UOorrbyuWowNzpzTgLvoaS/nar3AsNuo5TPkEqKMjJXn
-         moIuUepcg2giGcQrMbht+YpAZaQkwOn3e6xjA0GtN351b+LOcLP2X3vohh6rc1VDJDVb
-         /oOJZ1B0BuSC9BJXltLZYTqMCdL6ZASISUopTeEZn/Q77LJbgqFJYQGU2q+YhVCjogAW
-         7Xy50WTe+xRJ95HI28k3GOV+f6yEU43h5sgdeA/SuJIMgu7KdbkpjbpPSCiwtOEHEH0A
-         fBZBgnHlhCo4qXnViE8tkM2KObElDqkQULpvpsGZRxKFpgp9JCR7tfGocX8M7VJSiMah
-         9X4w==
-X-Gm-Message-State: AOAM531xb/wrWvy0d08ZEa19eAa8yursTiMmiIJskWgBHuvNhXDykF9G
-        upIyLxA/u7e0ic+mg3G6qw9RY5tkQGMQMpcmtlxlFA==
-X-Google-Smtp-Source: ABdhPJyyEm9oNlLOtY/Bv1/0xqF/9Vl1Ci9LBjhH/1QbEkuGJ2ahfATbkAxlMF/PRkZVCCe8dvKLypvNECTtIrpoWYA=
-X-Received: by 2002:aa7:d588:: with SMTP id r8mr29436114edq.88.1617040551435;
- Mon, 29 Mar 2021 10:55:51 -0700 (PDT)
+        id S231246AbhC2SWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 14:22:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45500 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229711AbhC2SV4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 14:21:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B6246192F;
+        Mon, 29 Mar 2021 18:21:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617042116;
+        bh=kXXNq0dmCm0hnDHX95YhDo2GckeFUbqTf+Vy/Sj1jII=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CMlVL+AXpKGC1PhE0ZVob7HpQCZ1WS+ADxg9wBBos3cnQxcPM/76/gNufY6mSpfB/
+         SZIskvFnqMPoO2uOp2ziIElwYystz3hL+ANT4zQ3YzElwWHQZOApT62ZJG2T2KIVxN
+         4w8nRG0yxxSISUX8SNt9h+iCT6Og0pxPe1pP3h2cN2LCLHidVmGTNkoXBcRX702IyQ
+         W+GSerRAkNuum/Gfmy7z1jgLeJMmj3C4kCv6VlfMNVUEXsCwaRVhi0jQGDA4KGbZgG
+         4/dbbVHQ6BmNiskgCszIWmpS/W/pE+BvQOfcc4KTt+uE+SkTG3suBb6hfYZ7I0V1TE
+         7XuzoX0iN450A==
+Received: by mail-ej1-f46.google.com with SMTP id l4so20899366ejc.10;
+        Mon, 29 Mar 2021 11:21:55 -0700 (PDT)
+X-Gm-Message-State: AOAM53082jbnZpaZs9QXubfpfmFt21nSMV0g6PuZ6hM840CLyuuI3LGM
+        kQSVqPjE0cZdGC74jn4pve4SVGDaNyOLTVgHpQ==
+X-Google-Smtp-Source: ABdhPJzostUqG07SvP2TdnshS72q9Psgvp2zPmUNYqwhr48uhIFFg3ifwYD6akjgiF4UQn5rCWRhbcYhEHh3cLnHZ60=
+X-Received: by 2002:a17:906:7d48:: with SMTP id l8mr29395652ejp.108.1617042114445;
+ Mon, 29 Mar 2021 11:21:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210326231303.3071950-1-eric@anholt.net> <20210329144729.GB4203@willie-the-truck>
-In-Reply-To: <20210329144729.GB4203@willie-the-truck>
-From:   Eric Anholt <eric@anholt.net>
-Date:   Mon, 29 Mar 2021 10:55:40 -0700
-Message-ID: <CADaigPV0yHFUnGt_ncsS=wBHCMyex_wp=PVAibxSaAMEs8GS=Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
-To:     Will Deacon <will@kernel.org>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, freedreno@lists.freedesktop.org,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+References: <20210327224116.69309-1-linux@roeck-us.net>
+In-Reply-To: <20210327224116.69309-1-linux@roeck-us.net>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 29 Mar 2021 13:21:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK6r=hfXdSZhsWb72O0QMDaOPnWTiYnOjp1fvztRj865A@mail.gmail.com>
+Message-ID: <CAL_JsqK6r=hfXdSZhsWb72O0QMDaOPnWTiYnOjp1fvztRj865A@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Improve error checking
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
+On Sat, Mar 27, 2021 at 5:41 PM Guenter Roeck <linux@roeck-us.net> wrote:
 >
-> On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
-> > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
-> > the GPU from wedging and then sometimes wedging the kernel after a
-> > page fault), but it doesn't have separate pagetables support yet in
-> > drm/msm so we can't go all the way to the TTBR1 path.
+> If an unaligned pointer is passed to of_fdt_unflatten_tree(),
+> populate_node() as called from unflatten_dt_nodes() will fail.
+> unflatten_dt_nodes() will return 0 and set *nodepp to NULL.
+> This is not expected to happen in __unflatten_device_tree(),
+> which then tries to write into the NULL pointer, causing a crash
+> on openrisc if CONFIG_OF_UNITTEST=y.
 >
-> What do you mean by "doesn't have separate pagetables support yet"? The
-> compatible string doesn't feel like the right way to determine this.
+>  ### dt-test ### start of unittest - you will see error messages
+> Unable to handle kernel NULL pointer dereference
+>  at virtual address 0x00000064
+>
+> Oops#: 0000
+> CPU #: 0
+>    PC: c03a25d4    SR: 0000807f    SP: c102dd50
+> GPR00: 00000000 GPR01: c102dd50 GPR02: c102dd78 GPR03: c1704004
+> GPR04: 00000000 GPR05: c102dc18 GPR06: c102ddc8 GPR07: c102dcf7
+> GPR08: 00000001 GPR09: c03a25a0 GPR10: c102c000 GPR11: c16fd75c
+> GPR12: 0000ffb7 GPR13: 00000000 GPR14: 00000008 GPR15: 00000000
+> GPR16: c16fd75c GPR17: 00000064 GPR18: c1704004 GPR19: 00000004
+> GPR20: 00000000 GPR21: 00000000 GPR22: c102ddc8 GPR23: 00000018
+> GPR24: 00000001 GPR25: 00000010 GPR26: c16fd75c GPR27: 00000008
+> GPR28: deadbeef GPR29: 00000000 GPR30: c0720128 GPR31: 00060000
+>   RES: c16fd75c oGPR11: ffffffff
+> Process swapper (pid: 1, stackpage=c1028ba0)
+>
+> Stack:
+> Call trace:
+> [<(ptrval)>] __unflatten_device_tree+0xe0/0x184
+> [<(ptrval)>] of_fdt_unflatten_tree+0x60/0x90
+> [<(ptrval)>] of_unittest+0xb4/0x3614
+> [<(ptrval)>] ? __kernfs_create_file+0x130/0x188
+> [<(ptrval)>] ? sysfs_add_file_mode_ns+0x13c/0x288
+> [<(ptrval)>] ? of_unittest+0x0/0x3614
+> [<(ptrval)>] ? lock_is_held_type+0x160/0x20c
+> [<(ptrval)>] ? of_unittest+0x0/0x3614
+> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
+> [<(ptrval)>] do_one_initcall+0x98/0x340
+> [<(ptrval)>] ? parse_args+0x220/0x4e4
+> [<(ptrval)>] ? lock_is_held_type+0x160/0x20c
+> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
+> [<(ptrval)>] ? rcu_read_lock_sched_held+0x34/0x88
+> [<(ptrval)>] kernel_init_freeable+0x1c0/0x240
+> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
+> [<(ptrval)>] ? kernel_init+0x0/0x154
+> [<(ptrval)>] kernel_init+0x1c/0x154
+> [<(ptrval)>] ? calculate_sigpending+0x54/0x64
+> [<(ptrval)>] ret_from_fork+0x1c/0x150
+>
+> This problem affects all architectures with a 4-byte memory alignment.
+> Since commit 79edff12060f ("scripts/dtc: Update to upstream version
+> v1.6.0-51-g183df9e9c2b9"), devicetree code in the Linux kernel mandates
+> an 8-byte memory alignment of devicetree pointers, but it does not take
+> into account that functions such as kmalloc() or kmemdup() may not return
+> accordingly aligned pointers.
 
-In my past experience with DT, software looking at the (existing)
-board-specific compatibles has been a typical mechanism used to
-resolve something like this "ok, but you need to actually get down to
-what board is involved here to figure out how to play along with the
-rest of Linux that later attaches to other DT nodes".  Do you have a
-preferred mechanism here?
+AFAICT, openrisc would get:
+
+#define ARCH_KMALLOC_MINALIGN __alignof__(unsigned long long)
+
+Is that not 8 bytes?
+
+Specifically, the problem is here is the unittest DT is copied with
+kmemdup(). I don't think there are other allocations which could be a
+problem.
+
+> To fix the immediate crash, check if *mynodes is NULL in
+> __unflatten_device_tree() before writing into it.
+>
+> Also affected by this problem is the code calling of_fdt_unflatten_tree().
+> That code checks for errors using the content of the mynodes pointer,
+> which is not set by the devicetree code if the alignment problem is
+> observed. Result is that the callers of of_fdt_unflatten_tree() check
+> if an uninitialized pointer is set to NULL. Preinitialize that pointer
+> to avoid the problem.
+>
+> With this code in place, devicetree code on openrisc (and any other
+
+"devicetree unittest code"
+
+The only other dtb copy is unflatten_and_copy_device_tree() which
+should be fine since it gives memblock the alignment requirement.
+
+> architecture with 4-byte memory alignment) will still not work properly,
+> but at least it won't crash anymore. The resulting log message is
+>
+>  ### dt-test ### start of unittest - you will see error messages
+>  ### dt-test ### unittest_data_add: No tree to attach; not running tests
+>
+> when trying to run devicetree unittests.
+>
+> Fixes: 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+>  drivers/of/fdt.c      | 2 +-
+>  drivers/of/overlay.c  | 2 +-
+>  drivers/of/unittest.c | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index dcc1dd96911a..ab95fdb4461d 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -415,7 +415,7 @@ void *__unflatten_device_tree(const void *blob,
+>                 pr_warn("End of tree marker overwritten: %08x\n",
+>                         be32_to_cpup(mem + size));
+>
+> -       if (detached && mynodes) {
+> +       if (detached && mynodes && *mynodes) {
+>                 of_node_set_flag(*mynodes, OF_DETACHED);
+>                 pr_debug("unflattened tree is detached\n");
+>         }
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index 50bbe0edf538..e12c643b6ba8 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -1017,7 +1017,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>         const void *new_fdt;
+>         int ret;
+>         u32 size;
+> -       struct device_node *overlay_root;
+> +       struct device_node *overlay_root = NULL;
+>
+>         *ovcs_id = 0;
+>         ret = 0;
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index eb100627c186..5dc4d2378bfd 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -1408,7 +1408,7 @@ static void attach_node_and_children(struct device_node *np)
+>  static int __init unittest_data_add(void)
+>  {
+>         void *unittest_data;
+> -       struct device_node *unittest_data_node, *np;
+> +       struct device_node *unittest_data_node = NULL, *np;
+>         /*
+>          * __dtb_testcases_begin[] and __dtb_testcases_end[] are magically
+>          * created by cmd_dt_S_dtb in scripts/Makefile.lib
+> --
+> 2.17.1
+>
