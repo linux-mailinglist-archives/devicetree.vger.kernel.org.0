@@ -2,93 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D0434D0E4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7879434D0EF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:07:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbhC2NEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 09:04:21 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:39793 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbhC2NEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:04:00 -0400
-Received: by mail-oi1-f174.google.com with SMTP id i81so12986911oif.6;
-        Mon, 29 Mar 2021 06:04:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Y1aIiE7SFwLQK579HkpbIqGKLeyiA5YPx8hVoVVgXFQ=;
-        b=BcScOans1nnoINUCY/3Sal7AMheU5Qv7Di1q4kPXS1u+m6Ql8c0ORO+K4/SjLHWOro
-         wCASqsrtGIDPpFT9SKvfk/l6oM/zEYLg2NFJU1DjQWEGws1i1Xgv5dZsdg7J8/Wcy3te
-         0BOilnoXtGDPt2r51T1qfASUhF3D6yehoaz3Uc5R4uN3axIwZ/Sh1fF6p1Rk7bcXlvzG
-         R4712kwEIaMQSVYbzoa/RHJkGKy+hwLBRSPWB3rGxyIGsg0pdMK0vrkBkPv2Dp/Kh57H
-         +HRY2Sgyfb2EJZST7CYSiEr1qblpNKnBOIPj7HIbizOJ/KNtkXVO1Cty8fuUhIvY5X3o
-         wrjw==
-X-Gm-Message-State: AOAM531M3/Xvdike69TOlc7j3Fll88oMp8dwSy3p3F1RmK5aNg72estx
-        GFIztVJDqJmb2gp26VxnOQ==
-X-Google-Smtp-Source: ABdhPJxVuo/+GjIyZRUdPE+WRTKXBoClchzvVKeZT69JaPvZAiRQuZKQWu0b5ZjOPvHdZRAEBZmUjQ==
-X-Received: by 2002:aca:6545:: with SMTP id j5mr18291241oiw.31.1617023038568;
-        Mon, 29 Mar 2021 06:03:58 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w12sm4346423oti.53.2021.03.29.06.03.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 06:03:57 -0700 (PDT)
-Received: (nullmailer pid 2404780 invoked by uid 1000);
-        Mon, 29 Mar 2021 13:03:52 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, hui.liu@mediatek.com,
-        sean.wang@mediatek.com, erin.lo@mediatek.com, jg_poxu@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mark.rutland@arm.com, biao.huang@mediatek.com,
-        srv_heupstream@mediatek.com, matthias.bgg@gmail.com,
-        linus.walleij@linaro.org, sean.wang@kernel.org,
-        eddie.huang@mediatek.com, hongzhou.yang@mediatek.com,
-        sj.huang@mediatek.com, seiya.wang@mediatek.com,
-        linux-gpio@vger.kernel.org, robh+dt@kernel.org
-In-Reply-To: <20210329065047.8388-3-zhiyong.tao@mediatek.com>
-References: <20210329065047.8388-1-zhiyong.tao@mediatek.com> <20210329065047.8388-3-zhiyong.tao@mediatek.com>
-Subject: Re: [PATCH 2/6] dt-bindings: pinctrl: mt8195: add binding document
-Date:   Mon, 29 Mar 2021 08:03:52 -0500
-Message-Id: <1617023032.510147.2404779.nullmailer@robh.at.kernel.org>
+        id S231665AbhC2NG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 09:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231213AbhC2NG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:06:28 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1E0C061574
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 06:06:28 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lQrb3-0006o4-6z; Mon, 29 Mar 2021 15:06:21 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lQrb2-000345-I5; Mon, 29 Mar 2021 15:06:20 +0200
+Date:   Mon, 29 Mar 2021 15:06:20 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings:iio:adc: add generic settling-time-us
+ and oversampling-ratio channel properties
+Message-ID: <20210329130620.utfdlgwzixrenqka@pengutronix.de>
+References: <20210329073131.1759-1-o.rempel@pengutronix.de>
+ <20210329073131.1759-2-o.rempel@pengutronix.de>
+ <20210329112532.174825d6@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210329112532.174825d6@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:57:12 up 117 days,  3:03, 48 users,  load average: 0.14, 0.14,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 14:50:43 +0800, Zhiyong Tao wrote:
-> The commit adds mt8195 compatible node in binding document.
+On Mon, Mar 29, 2021 at 11:25:32AM +0100, Jonathan Cameron wrote:
+> On Mon, 29 Mar 2021 09:31:29 +0200
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> ---
->  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 152 ++++++++++++++++++
->  1 file changed, 152 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> > Settling time and over sampling is a typical challenge for different IIO ADC
+> > devices. So, introduce channel specific settling-time-us and oversampling-ratio
+> > properties to cover this use case.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/adc.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > index 912a7635edc4..d5bc86d2a2af 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > @@ -39,4 +39,12 @@ properties:
+> >        The first value specifies the positive input pin, the second
+> >        specifies the negative input pin.
+> >  
+> > +  settling-time-us:
+> > +    description:
+> > +      Time between enabling the channel and firs stable readings.
 > 
+> first
 
-My bot found errors running 'make dt_binding_check' on your patch:
+ack
 
-yamllint warnings/errors:
+> > +
+> > +  oversampling-ratio:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Number of data samples which are averaged for each read.
+> 
+> I think I've asked about this in previous reviews, but I want a clear statement
+> of why you think this property is a feature of the 'board' (and hence should be
+> in device tree) rather than setting sensible defaults and leaving any control
+> to userspace?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.example.dts:19:18: fatal error: dt-bindings/pinctrl/mt8195-pinfunc.h: No such file or directory
-   19 |         #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1380: dt_binding_check] Error 2
+yes, my reply was:
+> Oversampling is used as replacement of or addition to the low-pass filter. The
+> filter can be implemented on board, but it will change settling time
+> characteristic. Since low-pass filter is board specific characteristic, this
+> property belongs in device tree as well.
 
-See https://patchwork.ozlabs.org/patch/1459436
+I could imagine that this values can be overwritten from user space for
+diagnostic, but we need some working default values. 
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Should I integrate this comment in to the yaml?
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
