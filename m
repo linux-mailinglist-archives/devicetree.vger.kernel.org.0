@@ -2,96 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E44734CF2E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2882E34CF49
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhC2Lfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
+        id S230495AbhC2LrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:47:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhC2LfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:35:23 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72808C061574;
-        Mon, 29 Mar 2021 04:35:20 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id q6-20020a17090a4306b02900c42a012202so5764998pjg.5;
-        Mon, 29 Mar 2021 04:35:20 -0700 (PDT)
+        with ESMTP id S230467AbhC2LrS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:47:18 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113E1C061574;
+        Mon, 29 Mar 2021 04:47:18 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id u5-20020a7bcb050000b029010e9316b9d5so6515774wmj.2;
+        Mon, 29 Mar 2021 04:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Umme6mEPlLLIx55BS0/fsIeUWDF0jAkw4yGXSPzrUwc=;
-        b=brFXGjZHymZcp686J9d/6p2f8IT65PLY2NBImZxpbx5+mGPhPaKBwL+hAGI1XLqNWU
-         nB3ac5y5ej+oc5dRA8Y0pIj6Ywpcib2ECoDJLC2AC7wvbvYdBNIXejmAQWr6M9vEYGlm
-         XGemkv431JO08H5OPHM0pLE4OaLfs4vS+eaG3jYmizQU6Ek/eqe2fZMMPClEtpODUkxU
-         ff8NLv9S+KzN+vVr8CMFY1AUwPHgth2vrZrwzcWkfiGTWmzyq3LduA5Vj+v22rldOWtm
-         kZ2wm+it+9TY5ZZQqvWTiplmGjslQJu+WC6YXdO6sU+tlVwqHnkzGskt96p21B1W61QQ
-         Nq0g==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/+Lj/2HaePE9ZbmLrkf0oDmdmPYd6wO1doOsEpNfmzk=;
+        b=PZgKOycvkhuVEF8tOTQP+bdoe4R1L0KUCVi9bDR1Ync5LAYraWl+5ilxmPkKZOltou
+         kp14FSZmOi9km59EwQmlxrbWiIj14qKW1Br4KzbWlT6KKbxrkTruUOqA3ljgxwbShptE
+         pdlE12Cqk4j4yf+jtK0P2v2gMHY+bDD+O2cpYPTg4C7lpxqk0QlPKUDKS0vNiXqlTZpN
+         oZBoo9qEI6zU/Gfpophy1pProg00WYcjFOfUSsIBHp8fd6YfzFOzX1aPt8DL8SWa2esL
+         4Mif7iz7yHeb4ZIFBWdfLCN3DrPlV4zQObYTiE+BFexnmIkP6C0YNIMBXDEOv7yYp7T3
+         1L8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Umme6mEPlLLIx55BS0/fsIeUWDF0jAkw4yGXSPzrUwc=;
-        b=qgk64eJ5q91nAWLct1CvRHjnemipstaK6m2eCxt/b/CyoSgfkJgEzRfR3LkEEyUdAr
-         m7n5FKydlVvaIBTWWtH77W1n4ROiQyH1Kiv/Gd2fCYpIKvR7llcbJXu3yqZr06AXXFJp
-         APeTTyLz6H5kz9AmyWDde5uBK1h3D/9BLuKveSgO6DSTVOEkLVC1YAKs/70CMilwe5Sg
-         GHkgSR3N83qxHo87U7sN4TSSKo+Hz5R0yYpMvGbXJrGbqsxuF+uXnpdM5hOL2QuVXao/
-         HDqjzcszTM3ilIiRQEMhDU+bvUcoCYaoWBz2ORP1kQHvTvnRe2YsdNauWA3LGdYBiMq+
-         8t2Q==
-X-Gm-Message-State: AOAM530bmUsJKY7Y4qPEBjgUmQwgEkIqASbP2pyvKbt7mFRLjoGXqltp
-        e2zjVf4lBVKO35+ERxnFN/kTMuZGQ2AUJ0Gj33M=
-X-Google-Smtp-Source: ABdhPJw9Z3cD04cZW1D9XRH2rAhuFWVzadwm4hfCMZEGCTzN1BM+n77RrvvFbcEELGixncXb6MLAn2pEtP2QhPhPYic=
-X-Received: by 2002:a17:902:ee02:b029:e6:5397:d79c with SMTP id
- z2-20020a170902ee02b02900e65397d79cmr28359551plb.21.1617017720012; Mon, 29
- Mar 2021 04:35:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210329113103.11003-1-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210329113103.11003-1-zhiyong.tao@mediatek.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 29 Mar 2021 14:35:04 +0300
-Message-ID: <CAHp75Vc7x=VoNqQKXOyxhkixR3SivQn3yGkejTkZ8bO0Tv6bDA@mail.gmail.com>
-Subject: Re: [PATCH Resend v0 0/6] Mediatek pinctrl patch on mt8195
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/+Lj/2HaePE9ZbmLrkf0oDmdmPYd6wO1doOsEpNfmzk=;
+        b=ed1wvL8fEYZp2u8fzTguGuuIqz0/k/KjrLhyx0PqYEeUZ/UK/PNyI+GDhVB+1/htY8
+         qfi9MSKeGY/PZOjIJwix/kfkMoc+37jRc59mdNzjzaZ+QiaHPKwK70qqiSOtC55zUpEi
+         l/YsxKyfSFlHJ0LNponFBuGUQx5lAa7aC1zXsbqcL4ypms/qRpMkDY5apDb1Qd8EkdUQ
+         1nhiMHMU83IzgDIGbf3jFw0bQYK90GIUiDBwZX3Rsf7EQPqXLc8Ug7cGg8B6QwTJNGEu
+         VFIiJZnjzJ9y7wQVEsrE16/7thxz74ssnBQbejzEdP8KDZPqODa0UUMG/YjVNIhLe+5g
+         c6pQ==
+X-Gm-Message-State: AOAM533e1Yvoot8UCtqVuKr7qxWyn3t7IzlUl30aQXFi4spPPGexFnSA
+        lEtttMXNO/TVwwzbrlTh0O0=
+X-Google-Smtp-Source: ABdhPJzE5G8N/olo2jafAg3eQ871kyiQXpS6UKbqstv3IT1K7rSSv/tb4wT1nCl68AXIzS5QCdcyjA==
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr24202271wmi.107.1617018436804;
+        Mon, 29 Mar 2021 04:47:16 -0700 (PDT)
+Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
+        by smtp.gmail.com with ESMTPSA id 1sm25030535wmj.2.2021.03.29.04.47.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Mar 2021 04:47:16 -0700 (PDT)
+Subject: Re: [PATCH v4 1/4] dt-bindings: arm64: dts: mediatek: Add
+ mt8183-kukui-jacuzzi-damu
+To:     Hsin-Yi Wang <hsinyi@chromium.org>, linux-kernel@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        sean.wang@kernel.org, srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        jg_poxu@mediatek.com, biao.huang@mediatek.com,
-        hongzhou.yang@mediatek.com, erin.lo@mediatek.com,
-        Sean Wang <sean.wang@mediatek.com>, seiya.wang@mediatek.com,
-        Sj Huang <sj.huang@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, Ben Ho <Ben.Ho@mediatek.com>
+References: <20210319035245.2751911-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <16cc2611-c2d3-e283-2f40-a424b2067f72@gmail.com>
+Date:   Mon, 29 Mar 2021 13:47:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <20210319035245.2751911-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 2:32 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
->
-> This series includes 6 patches:
-> 1.add pinctrl file on mt8195.
-> 2.add pinctrl binding document on mt8195.
-> 3.add pinctrl device node on mt8195.
-> 4.add pinctrl driver on MT8195.
-> 5.add pinctrl drive for I2C related pins on MT8195.
-> 6.add pinctrl rsel setting on MT8195.
 
-Patch series w/o version is de facto v1.
-Dropping to v0 seems not right.
-You missed changelog.
 
-So, send v2 properly.
+On 19/03/2021 04:52, Hsin-Yi Wang wrote:
+> mt8183-kukui-jacuzzi-damu board also known as ASUS Chromebook Flip CM3,
+> using mediatek mt8183 SoC.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-Material to study:
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+Whole series applied to v5.12-next/dts64
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks
+
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 93b3bdf6eaeb..a86716cdd408 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -125,6 +125,10 @@ properties:
+>                - google,krane-sku176
+>            - const: google,krane
+>            - const: mediatek,mt8183
+> +      - description: Google Damu (ASUS Chromebook Flip CM3)
+> +        items:
+> +          - const: google,damu
+> +          - const: mediatek,mt8183
+>  
+>  additionalProperties: true
+>  
+> 
