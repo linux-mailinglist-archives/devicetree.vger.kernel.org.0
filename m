@@ -2,213 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA2534D84D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AFE134D853
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbhC2Tdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 15:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54776 "EHLO
+        id S231770AbhC2Tey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 15:34:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbhC2TdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 15:33:17 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E466C061574;
-        Mon, 29 Mar 2021 12:33:16 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id f9so14136094oiw.5;
-        Mon, 29 Mar 2021 12:33:16 -0700 (PDT)
+        with ESMTP id S231799AbhC2Tel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 15:34:41 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF540C061762
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 12:34:40 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id q6-20020a17090a4306b02900c42a012202so6432626pjg.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 12:34:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jPScsdRkQfFjP+HYKirx6Bz5sPBqP9dzj9KzBot1OO8=;
-        b=l1LjTiWsLuGSCfzvRxju8eWyfJE4nZL1WoqxzQ8O34pXA1i0vlyCjNUSO9h2xF9m5q
-         5nYg4U8dnZrOFN21WSOa2uTPaLiJeiI5szmYPORfqoHI02xv89GCQqBrDeLbmnhi4Ulh
-         3qLDJW+w21l4Jz0t6zBKmZEc5Nc+ki3lpkTAqyfyZsqtQbBmE503rZJKzwmyknYFKydr
-         uEZE4I1dvAO29bxjfppYRguWpw/4T5f+/rj3TljaRFboDknP5/rWDUim8ldKN30xjQKA
-         oKWJdO3UMACEre6HqNx2cdf1MUvyLa05djhX09K+Y1VTqZ9uBgjpgbkQFD9N+seDynDq
-         fNRg==
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=4/AjcviJM+MN/+F8Vy+FJ7ln76QoDZiyxq5y8TMSkpE=;
+        b=L2srLFum8RmHEw+td2eI6LO1Ehlsob/6OnhmJPb9xldC56tHgR9+SpUmCCf4q83+i/
+         abpeKNTf2iWhHwOZeBskvs1/5uO2FaxsbGpMUyX7XzNaLvu3vJXjkylw0SYu48LWzpcn
+         zChuKzk+1zZOYVBoZ/6n6BgjKUhdio/7Mzv7E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=jPScsdRkQfFjP+HYKirx6Bz5sPBqP9dzj9KzBot1OO8=;
-        b=KpyYj1SqR+1kpa6hqBj/SZ2F070v2Ks7EKqQ3WAHybSkuQlNbiCFlsCJDoQSg/2pm5
-         eE0GDp4gcaSosIhNz6ow212XxAiFgC1jM85TLSzrareF6ChmJrpHPJ4a5Iqrkki6XvgH
-         riL/gRB79BWWxE75zSxIHPMmi3/Dm7dEgPTlWFNPbKwthc/mSgaIDXBa3RPuDkwU4vKM
-         6yrlAsDLkZjMSCgwNdNu4qjnl9LdgIuJ02RPgZvu0clUB+4aKNqw9bKrKaczMwWsZCVk
-         jdlvWNdIO+ImTXeCiA2gMyGugCILe4fPzQau84EhKkloMThmJM+ykDXOomuhu+YHN3G5
-         QBgg==
-X-Gm-Message-State: AOAM5315Jl/CjAy+aBkk3lX/DCOnUoJ7Rb9eVWZuKyWyOlYq1IYoLVia
-        Lko5FAMuwWp9cjWlMsE5XkRxZW539aQ=
-X-Google-Smtp-Source: ABdhPJxmz6VMDuVEjaxY+xsVkCuL589ETKpl8DRnRVp55MLg4ryeGtf1JXVpHEuOrwa2nUn/RaQeHg==
-X-Received: by 2002:aca:1204:: with SMTP id 4mr508824ois.92.1617046395435;
-        Mon, 29 Mar 2021 12:33:15 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id g84sm3701155oia.45.2021.03.29.12.33.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 12:33:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH] of/fdt: Improve error checking
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210327224116.69309-1-linux@roeck-us.net>
- <CAL_JsqK6r=hfXdSZhsWb72O0QMDaOPnWTiYnOjp1fvztRj865A@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <9d720238-fd72-f38e-be3c-ec9f66d95ebb@roeck-us.net>
-Date:   Mon, 29 Mar 2021 12:33:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=4/AjcviJM+MN/+F8Vy+FJ7ln76QoDZiyxq5y8TMSkpE=;
+        b=DY727Hmlg6w5UZErASDbBSR/66ihvA6XW/8jjWRWUSwB3FJrHRv82i0Qa+gksyrm/v
+         RXLrRMxLEdUiuYiNXwJvoMphnjmDhpMjAOuKY3TDAs5dwJAkq3EBWm452Afsrtamm11n
+         3BTJ/rQioAFIoW3BxqBQm0zIbZLBhjbcTVlOuV7g8fu2h5zfJ+ZsYDLwZP6AuyRTJgnh
+         ynabt+GjMiarK1svkOaLl8rLK9jNGYMcC45o8+CmZkcvF4mFe+VrggY0qD9jrpciKYxQ
+         lXJbsguK3MskHAA3CWhxFMiKoqUmo5LQxbYpU14F9bGhR/1hud3OcUk1F9SyBj8gfyMu
+         Zdtg==
+X-Gm-Message-State: AOAM530Fz6jN1yGOWyedpebe/plKhiq7I3qp8aVrVpxMBAsYv8aSjIDY
+        vs4DsqvZBpcF639Brt9Y0yy3rg==
+X-Google-Smtp-Source: ABdhPJz3TidD50Ag7Kik9OP4JEultVxXJ9TyLE4CvKWcc8IlgTj554nkINbgbuyrv1G2biVaUOu2sA==
+X-Received: by 2002:a17:90a:66c2:: with SMTP id z2mr673191pjl.139.1617046480184;
+        Mon, 29 Mar 2021 12:34:40 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:201:4091:2b37:966b:1fca])
+        by smtp.gmail.com with ESMTPSA id cp22sm323225pjb.15.2021.03.29.12.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 12:34:39 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqK6r=hfXdSZhsWb72O0QMDaOPnWTiYnOjp1fvztRj865A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <5cd274f98b38d4b85c1ce212720b6b680f4a00f0.1616651305.git.schowdhu@codeaurora.org>
+References: <cover.1616651305.git.schowdhu@codeaurora.org> <5cd274f98b38d4b85c1ce212720b6b680f4a00f0.1616651305.git.schowdhu@codeaurora.org>
+Subject: Re: [PATCH V2 1/5] dt-bindings: Added the yaml bindings for DCC
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+Date:   Mon, 29 Mar 2021 12:34:38 -0700
+Message-ID: <161704647819.3012082.13027529193947275446@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/29/21 11:21 AM, Rob Herring wrote:
-> On Sat, Mar 27, 2021 at 5:41 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> If an unaligned pointer is passed to of_fdt_unflatten_tree(),
->> populate_node() as called from unflatten_dt_nodes() will fail.
->> unflatten_dt_nodes() will return 0 and set *nodepp to NULL.
->> This is not expected to happen in __unflatten_device_tree(),
->> which then tries to write into the NULL pointer, causing a crash
->> on openrisc if CONFIG_OF_UNITTEST=y.
->>
->>  ### dt-test ### start of unittest - you will see error messages
->> Unable to handle kernel NULL pointer dereference
->>  at virtual address 0x00000064
->>
->> Oops#: 0000
->> CPU #: 0
->>    PC: c03a25d4    SR: 0000807f    SP: c102dd50
->> GPR00: 00000000 GPR01: c102dd50 GPR02: c102dd78 GPR03: c1704004
->> GPR04: 00000000 GPR05: c102dc18 GPR06: c102ddc8 GPR07: c102dcf7
->> GPR08: 00000001 GPR09: c03a25a0 GPR10: c102c000 GPR11: c16fd75c
->> GPR12: 0000ffb7 GPR13: 00000000 GPR14: 00000008 GPR15: 00000000
->> GPR16: c16fd75c GPR17: 00000064 GPR18: c1704004 GPR19: 00000004
->> GPR20: 00000000 GPR21: 00000000 GPR22: c102ddc8 GPR23: 00000018
->> GPR24: 00000001 GPR25: 00000010 GPR26: c16fd75c GPR27: 00000008
->> GPR28: deadbeef GPR29: 00000000 GPR30: c0720128 GPR31: 00060000
->>   RES: c16fd75c oGPR11: ffffffff
->> Process swapper (pid: 1, stackpage=c1028ba0)
->>
->> Stack:
->> Call trace:
->> [<(ptrval)>] __unflatten_device_tree+0xe0/0x184
->> [<(ptrval)>] of_fdt_unflatten_tree+0x60/0x90
->> [<(ptrval)>] of_unittest+0xb4/0x3614
->> [<(ptrval)>] ? __kernfs_create_file+0x130/0x188
->> [<(ptrval)>] ? sysfs_add_file_mode_ns+0x13c/0x288
->> [<(ptrval)>] ? of_unittest+0x0/0x3614
->> [<(ptrval)>] ? lock_is_held_type+0x160/0x20c
->> [<(ptrval)>] ? of_unittest+0x0/0x3614
->> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
->> [<(ptrval)>] do_one_initcall+0x98/0x340
->> [<(ptrval)>] ? parse_args+0x220/0x4e4
->> [<(ptrval)>] ? lock_is_held_type+0x160/0x20c
->> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
->> [<(ptrval)>] ? rcu_read_lock_sched_held+0x34/0x88
->> [<(ptrval)>] kernel_init_freeable+0x1c0/0x240
->> [<(ptrval)>] ? ignore_unknown_bootoption+0x0/0x24
->> [<(ptrval)>] ? kernel_init+0x0/0x154
->> [<(ptrval)>] kernel_init+0x1c/0x154
->> [<(ptrval)>] ? calculate_sigpending+0x54/0x64
->> [<(ptrval)>] ret_from_fork+0x1c/0x150
->>
->> This problem affects all architectures with a 4-byte memory alignment.
->> Since commit 79edff12060f ("scripts/dtc: Update to upstream version
->> v1.6.0-51-g183df9e9c2b9"), devicetree code in the Linux kernel mandates
->> an 8-byte memory alignment of devicetree pointers, but it does not take
->> into account that functions such as kmalloc() or kmemdup() may not return
->> accordingly aligned pointers.
-> 
-> AFAICT, openrisc would get:
-> 
-> #define ARCH_KMALLOC_MINALIGN __alignof__(unsigned long long)
-> 
-> Is that not 8 bytes?
-> 
-No. I checked. Quite surprisingly, it is 4. sizeof(unsigned long long)
-is 8, though.
+Quoting Souradeep Chowdhury (2021-03-25 01:02:32)
+> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml b/Do=
+cumentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> new file mode 100644
+> index 0000000..c6e0a9c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/msm/qcom,dcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Data Capture and Compare
+> +
+> +maintainers:
+> +  - Souradeep Chowdhury <schowdhu@codeaurora.org>
+> +
+> +description: |
+> +    DCC (Data Capture and Compare) is a DMA engine which is used to save
+> +    configuration data or system memory contents during catastrophic fai=
+lure
+> +    or SW trigger.DCC is used to capture and store data for debugging pu=
+rpose
 
-> Specifically, the problem is here is the unittest DT is copied with
-> kmemdup(). I don't think there are other allocations which could be a
-> problem.
-> 
+Add space between trigger. and DCC?
 
-Plus, as Frank points out, there is a copy in overlays, and I wasn't
-sure if the other uses of kmalloc()/kmemdup() in devicetree code are safe.
-That is why I didn't try to fix that.
+> +
+> +
 
->> To fix the immediate crash, check if *mynodes is NULL in
->> __unflatten_device_tree() before writing into it.
->>
->> Also affected by this problem is the code calling of_fdt_unflatten_tree().
->> That code checks for errors using the content of the mynodes pointer,
->> which is not set by the devicetree code if the alignment problem is
->> observed. Result is that the callers of of_fdt_unflatten_tree() check
->> if an uninitialized pointer is set to NULL. Preinitialize that pointer
->> to avoid the problem.
->>
->> With this code in place, devicetree code on openrisc (and any other
-> 
-> "devicetree unittest code"
-> 
-> The only other dtb copy is unflatten_and_copy_device_tree() which
-> should be fine since it gives memblock the alignment requirement.
-> 
-Plus overlays.
+Drop double newline?
 
-Thanks,
-Guenter
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,sm8150-dcc
+> +      - const: qcom,dcc
+> +
+> +  reg:
+> +    items:
+> +      - description: DCC base register region
+> +      - description: DCC RAM base register region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dcc
+> +      - const: dcc-ram
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+
+Do we really need reg names? Seems like we can assume the ordering.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dcc@10a2000{
+
+dma@10a2000? Or debug@10a2000?
+
+> +                compatible =3D "qcom,sm8150-dcc","qcom,dcc";
+> +                reg =3D <0x010a2000  0x1000>,
+> +                      <0x010ad000  0x2000>;
+> +                reg-names =3D "dcc", "dcc-ram";
+> +    };
