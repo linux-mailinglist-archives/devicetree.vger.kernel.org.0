@@ -2,924 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2E9F34CE59
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 12:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 501C634CE8D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:14:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232677AbhC2K6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 06:58:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49166 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232411AbhC2K6Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 06:58:25 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3270E61924;
-        Mon, 29 Mar 2021 10:58:20 +0000 (UTC)
-Date:   Mon, 29 Mar 2021 11:58:26 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH v5 3/3] iio: adc: add ADC driver for the TI TSC2046
- controller
-Message-ID: <20210329115826.03bc5745@jic23-huawei>
-In-Reply-To: <20210329073131.1759-4-o.rempel@pengutronix.de>
-References: <20210329073131.1759-1-o.rempel@pengutronix.de>
-        <20210329073131.1759-4-o.rempel@pengutronix.de>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S231481AbhC2LOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:14:15 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:51961 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231584AbhC2LNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:13:55 -0400
+X-UUID: af5f7e916a054d958e140f1157c005bc-20210329
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=hFgBU9yLcCHCyobJXrDH3btoHx/jN6JEEmH0JPSgREg=;
+        b=VwbSU6dOtwWfcO6Xh4fRiI43G2aYtS2ogZXRXAwJl7vFV4fUtF147vFtkb3cRLZlrZq5vRs9gihGWp4zgz/Q+JlNi+0+ruaWLD4t8Ue6BX+xAvLwh/Ky+DwIZWBb2fCo4z5JUhhZTTZ3/DOypol+eeFDbl8PJ3IgXXq/YNtlJ8g=;
+X-UUID: af5f7e916a054d958e140f1157c005bc-20210329
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 719700478; Mon, 29 Mar 2021 19:13:50 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 29 Mar 2021 19:13:49 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 29 Mar 2021 19:13:49 +0800
+Message-ID: <1617016429.8590.3.camel@mtksdaap41>
+Subject: Re: [PATCH v6 4/8] dt-bindings: regulator: Add document for MT6359
+ regulator
+From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        "Fei Shao" <fshao@chromium.org>, Ran Bi <ran.bi@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 29 Mar 2021 19:13:49 +0800
+In-Reply-To: <20210316212802.GA3670080@robh.at.kernel.org>
+References: <1615829757-3223-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <1615829757-3223-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <20210316212802.GA3670080@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 09:31:31 +0200
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-
-> Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
-> the touchscreen use case. By implementing it as an IIO ADC device, we can
-> make use of resistive-adc-touch and iio-hwmon drivers.
-> 
-> Polled readings are currently not implemented to keep this patch small, so
-> iio-hwmon will not work out of the box for now.
-> 
-> So far, this driver was tested with a custom version of resistive-adc-touch driver,
-> since it needs to be extended to make use of Z1 and Z2 channels. The X/Y
-> are working without additional changes.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Hi Oleksij,
-
-Couple of things in here I missed before, but big question is still whether
-Dmitry is happy with what you mention in the cover letter:
-
-"This driver can replace drivers/input/touchscreen/ads7846.c and has
-following advantages over it:
-- less code to maintain
-- shared code paths (resistive-adc-touch, iio-hwmon, etc)
-- can be used as plain IIO ADC to investigate signaling issues or test
-  real capacity of the plates and attached low-pass filters
-  (or use the touchscreen as a microphone if you like ;) )"
-
-So two things that need addressing in here are
-iio_dev->name (part number, not hybrid of that an spi device name)
-Why oversampling is DT rather than userspace controllable.
-For that I'm looking for clear reasoning for the choice.
-
-Thanks,
-
-Jonathan
-
-
-
-> ---
->  MAINTAINERS                  |   8 +
->  drivers/iio/adc/Kconfig      |  12 +
->  drivers/iio/adc/Makefile     |   1 +
->  drivers/iio/adc/ti-tsc2046.c | 726 +++++++++++++++++++++++++++++++++++
->  4 files changed, 747 insertions(+)
->  create mode 100644 drivers/iio/adc/ti-tsc2046.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9a9bf18bba00..e288fae26cde 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18013,6 +18013,14 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/net/nfc/trf7970a.txt
->  F:	drivers/nfc/trf7970a.c
->  
-> +TI TSC2046 ADC DRIVER
-> +M:	Oleksij Rempel <o.rempel@pengutronix.de>
-> +R:	kernel@pengutronix.de
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
-> +F:	drivers/iio/adc/ti-tsc2046.c
-> +
->  TI TWL4030 SERIES SOC CODEC DRIVER
->  M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
->  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 769381b05b9a..6fe8d1046b4b 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1188,6 +1188,18 @@ config TI_TLC4541
->  	  This driver can also be built as a module. If so, the module will be
->  	  called ti-tlc4541.
->  
-> +config TI_TSC2046
-> +	tristate "Texas Instruments TSC2046 ADC driver"
-> +	depends on SPI
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-> +	help
-> +	  Say yes here to build support for ADC functionality of Texas
-> +	  Instruments TSC2046 touch screen controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will be
-> +	  called ti-tsc2046.
-> +
->  config TWL4030_MADC
->  	tristate "TWL4030 MADC (Monitoring A/D Converter)"
->  	depends on TWL4030_CORE
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index a226657d19c0..f70d877c555a 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -106,6 +106,7 @@ obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
->  obj-$(CONFIG_TI_ADS131E08) += ti-ads131e08.o
->  obj-$(CONFIG_TI_AM335X_ADC) += ti_am335x_adc.o
->  obj-$(CONFIG_TI_TLC4541) += ti-tlc4541.o
-> +obj-$(CONFIG_TI_TSC2046) += ti-tsc2046.o
->  obj-$(CONFIG_TWL4030_MADC) += twl4030-madc.o
->  obj-$(CONFIG_TWL6030_GPADC) += twl6030-gpadc.o
->  obj-$(CONFIG_VF610_ADC) += vf610_adc.o
-> diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
-> new file mode 100644
-> index 000000000000..7fe3c677ab1c
-> --- /dev/null
-> +++ b/drivers/iio/adc/ti-tsc2046.c
-> @@ -0,0 +1,726 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Texas Instruments TSC2046 SPI ADC driver
-> + *
-> + * Copyright (c) 2021 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/module.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include <asm/unaligned.h>
-> +
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +#include <linux/iio/trigger.h>
-> +
-> +/*
-> + * The PENIRQ of TSC2046 controller is implemented as level shifter attached to
-> + * the X+ line. If voltage of the X+ line reaches a specific level the IRQ will
-> + * be activated or deactivated.
-> + * To make this kind of IRQ reusable as trigger following additions were
-> + * implemented:
-> + * - rate limiting:
-> + *   For typical touchscreen use case, we need to trigger about each 10ms.
-> + * - hrtimer:
-> + *   Continue triggering at least once after the IRQ was deactivated. Then
-> + *   deactivate this trigger to stop sampling in order to reduce power
-> + *   consumption.
-> + */
-> +
-> +#define TI_TSC2046_NAME				"tsc2046"
-> +
-> +/* This driver doesn't aim at the peak continuous sample rate */
-> +#define	TI_TSC2046_MAX_SAMPLE_RATE		125000
-> +#define	TI_TSC2046_SAMPLE_BITS \
-> +	BITS_PER_TYPE(struct tsc2046_adc_atom)
-> +#define	TI_TSC2046_MAX_CLK_FREQ \
-> +	(TI_TSC2046_MAX_SAMPLE_RATE * TI_TSC2046_SAMPLE_BITS)
-> +
-> +#define TI_TSC2046_SAMPLE_INTERVAL_US		10000
-> +
-> +#define TI_TSC2046_START			BIT(7)
-> +#define TI_TSC2046_ADDR				GENMASK(6, 4)
-> +#define TI_TSC2046_ADDR_TEMP1			7
-> +#define TI_TSC2046_ADDR_AUX			6
-> +#define TI_TSC2046_ADDR_X			5
-> +#define TI_TSC2046_ADDR_Z2			4
-> +#define TI_TSC2046_ADDR_Z1			3
-> +#define TI_TSC2046_ADDR_VBAT			2
-> +#define TI_TSC2046_ADDR_Y			1
-> +#define TI_TSC2046_ADDR_TEMP0			0
-> +
-> +/*
-> + * The mode bit sets the resolution of the ADC. With this bit low, the next
-> + * conversion has 12-bit resolution, whereas with this bit high, the next
-> + * conversion has 8-bit resolution. This driver is optimized for 12-bit mode.
-> + * So, for this driver, this bit should stay zero.
-> + */
-> +#define TI_TSC2046_8BIT_MODE			BIT(3)
-> +
-> +/*
-> + * SER/DFR - The SER/DFR bit controls the reference mode, either single-ended
-> + * (high) or differential (low).
-> + */
-> +#define TI_TSC2046_SER				BIT(2)
-> +
-> +/*
-> + * If VREF_ON and ADC_ON are both zero, then the chip operates in
-> + * auto-wake/suspend mode. In most case this bits should stay zero.
-> + */
-> +#define TI_TSC2046_PD1_VREF_ON			BIT(1)
-> +#define TI_TSC2046_PD0_ADC_ON			BIT(0)
-> +
-> +/*
-> + * All supported devices can do 8 or 12bit resolution. This driver
-> + * supports only 12bit mode, here we have a 16bit data transfer, where
-> + * the MSB and the 3 LSB are 0.
-> + */
-> +#define TI_TSC2046_DATA_12BIT			GENMASK(14, 3)
-> +
-> +#define TI_TSC2046_MAX_CHAN			8
-> +
-> +/* Represents a HW sample */
-> +struct tsc2046_adc_atom {
-> +	/*
-> +	 * Command transmitted to the controller. This field is empty on the RX
-> +	 * buffer.
-> +	 */
-> +	u8 cmd;
-> +	/*
-> +	 * Data received from the controller. This field is empty for the TX
-> +	 * buffer
-> +	 */
-> +	__be16 data;
-> +} __packed;
-> +
-> +/* Layout of atomic buffers within big buffer */
-> +struct tsc2046_adc_group_layout {
-> +	/* Group offset within the SPI RX buffer */
-> +	unsigned int offset;
-> +	/*
-> +	 * Amount of tsc2046_adc_atom structs within the same command gathered
-> +	 * within same group.
-> +	 */
-> +	unsigned int count;
-> +	/*
-> +	 * Settling samples (tsc2046_adc_atom structs) which should be skipped
-> +	 * before good samples will start.
-> +	 */
-> +	unsigned int skip;
-> +};
-> +
-> +struct tsc2046_adc_dcfg {
-> +	const struct iio_chan_spec *channels;
-> +	unsigned int num_channels;
-> +};
-> +
-> +struct tsc2046_adc_ch_cfg {
-> +	unsigned int settling_time_us;
-> +	unsigned int oversampling_ratio;
-> +};
-> +
-> +struct tsc2046_adc_priv {
-> +	struct spi_device *spi;
-> +	const struct tsc2046_adc_dcfg *dcfg;
-> +
-> +	struct iio_trigger *trig;
-> +	struct hrtimer trig_timer;
-> +	spinlock_t trig_lock;
-> +	unsigned int trig_more_count;
-> +
-> +	struct spi_transfer xfer;
-> +	struct spi_message msg;
-> +
-> +	struct {
-> +		/* Scan data for each channel */
-> +		u16 data[TI_TSC2046_MAX_CHAN];
-> +		/* Timestamp */
-> +		s64 ts __aligned(8);
-> +	} scan_buf;
-> +
-> +	/*
-> +	 * Lock to protect the layout and the SPI transfer buffer.
-> +	 * tsc2046_adc_group_layout can be changed within update_scan_mode(),
-> +	 * in this case the l[] and tx/rx buffer will be out of sync to each
-> +	 * other.
-> +	 */
-> +	struct mutex slock;
-> +	struct tsc2046_adc_group_layout l[TI_TSC2046_MAX_CHAN];
-> +	struct tsc2046_adc_atom *rx;
-> +	struct tsc2046_adc_atom *tx;
-> +
-> +	struct tsc2046_adc_atom *rx_one;
-> +	struct tsc2046_adc_atom *tx_one;
-> +
-> +	unsigned int count;
-> +	unsigned int groups;
-> +	u32 effective_speed_hz;
-> +	u32 scan_interval_us;
-> +	u32 time_per_scan_us;
-> +	u32 time_per_bit_ns;
-> +
-> +	struct tsc2046_adc_ch_cfg ch_cfg[TI_TSC2046_MAX_CHAN];
-> +};
-> +
-> +#define TI_TSC2046_V_CHAN(index, bits, name)			\
-> +{								\
-> +	.type = IIO_VOLTAGE,					\
-> +	.indexed = 1,						\
-> +	.channel = index,					\
-> +	.datasheet_name = "#name",				\
-> +	.scan_index = index,					\
-> +	.scan_type = {						\
-> +		.sign = 'u',					\
-> +		.realbits = bits,				\
-> +		.storagebits = 16,				\
-> +		.endianness = IIO_CPU,				\
-> +	},							\
-> +}
-> +
-> +#define DECLARE_TI_TSC2046_8_CHANNELS(name, bits) \
-> +const struct iio_chan_spec name ## _channels[] = { \
-> +	TI_TSC2046_V_CHAN(0, bits, TEMP0), \
-> +	TI_TSC2046_V_CHAN(1, bits, Y), \
-> +	TI_TSC2046_V_CHAN(2, bits, VBAT), \
-> +	TI_TSC2046_V_CHAN(3, bits, Z1), \
-> +	TI_TSC2046_V_CHAN(4, bits, Z2), \
-> +	TI_TSC2046_V_CHAN(5, bits, X), \
-> +	TI_TSC2046_V_CHAN(6, bits, AUX), \
-> +	TI_TSC2046_V_CHAN(7, bits, TEMP1), \
-> +	IIO_CHAN_SOFT_TIMESTAMP(8), \
-> +}
-> +
-> +static DECLARE_TI_TSC2046_8_CHANNELS(tsc2046_adc, 12);
-> +
-> +static const struct tsc2046_adc_dcfg tsc2046_adc_dcfg_tsc2046e = {
-> +	.channels = tsc2046_adc_channels,
-> +	.num_channels = ARRAY_SIZE(tsc2046_adc_channels),
-> +};
-> +
-> +/*
-> + * Convert time to a number of samples which can be transferred within this
-> + * time.
-> + */
-> +static unsigned int tsc2046_adc_time_to_count(struct tsc2046_adc_priv *priv,
-> +					      unsigned long time)
-> +{
-> +	unsigned int bit_count, sample_count;
-> +
-> +	bit_count = DIV_ROUND_UP(time * NSEC_PER_USEC, priv->time_per_bit_ns);
-> +	sample_count = DIV_ROUND_UP(bit_count, TI_TSC2046_SAMPLE_BITS);
-> +
-> +	dev_dbg(&priv->spi->dev, "Effective speed %u, time per bit: %u, count bits: %u, count samples: %u\n",
-> +		priv->effective_speed_hz, priv->time_per_bit_ns,
-> +		bit_count, sample_count);
-> +
-> +	return sample_count;
-> +}
-> +
-> +static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
-> +			      bool keep_power)
-> +{
-> +	u32 pd;
-> +
-> +	/*
-> +	 * if PD bits are 0, controller will automatically disable ADC, VREF and
-> +	 * enable IRQ.
-> +	 */
-> +	if (keep_power)
-> +		pd = TI_TSC2046_PD0_ADC_ON;
-> +	else
-> +		pd = 0;
-> +
-> +	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
-> +}
-> +
-> +static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
-> +{
-> +	return FIELD_GET(TI_TSC2046_DATA_12BIT, get_unaligned_be16(&buf->data));
-> +}
-> +
-> +static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
-> +				u32 *effective_speed_hz)
-> +{
-> +	struct spi_transfer xfer;
-> +	struct spi_message msg;
-> +	int ret;
-> +
-> +	memset(&xfer, 0, sizeof(xfer));
-> +	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
-> +	priv->tx_one->data = 0;
-> +	xfer.tx_buf = priv->tx_one;
-> +	xfer.rx_buf = priv->rx_one;
-> +	xfer.len = sizeof(*priv->tx_one);
-> +	spi_message_init(&msg);
-> +	spi_message_add_tail(&xfer, &msg);
-> +
-> +	/*
-> +	 * We aren't using spi_write_then_read() because we need to be able
-> +	 * to get hold of the effective_speed_hz from the xfer
-> +	 */
-> +	ret = spi_sync(priv->spi, &msg);
-
-There is a handy wrapper, spi_sync_transfer() which will reduce boilerplate a
-little and still let you get to the xfer.
-
-> +	if (ret) {
-> +		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
-> +				    ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	if (effective_speed_hz)
-> +		*effective_speed_hz = xfer.effective_speed_hz;
-> +
-> +	return tsc2046_adc_get_value(priv->rx_one);
-> +}
-> +
-> +static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
-> +					   unsigned int group,
-> +					   unsigned int ch_idx)
-> +{
-> +	struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
-> +	struct tsc2046_adc_group_layout *cur;
-> +	unsigned int max_count, count_skip;
-> +	unsigned int offset = 0;
-> +
-> +	if (group)
-> +		offset = priv->l[group - 1].offset + priv->l[group - 1].count;
-> +
-> +	count_skip = tsc2046_adc_time_to_count(priv, ch->settling_time_us);
-> +	max_count = count_skip + ch->oversampling_ratio;
-> +
-> +	cur = &priv->l[group];
-> +	cur->offset = offset;
-> +	cur->count = max_count;
-> +	cur->skip = count_skip;
-> +
-> +	return sizeof(*priv->tx) * max_count;
-> +}
-> +
-> +static void tsc2046_adc_group_set_cmd(struct tsc2046_adc_priv *priv,
-> +				      unsigned int group, int ch_idx)
-> +{
-> +	struct tsc2046_adc_group_layout *l = &priv->l[group];
-> +	unsigned int i;
-> +	u8 cmd;
-> +
-> +	/*
-> +	 * Do not enable automatic power down on working samples. Otherwise the
-> +	 * plates will never be completely charged.
-> +	 */
-> +	cmd = tsc2046_adc_get_cmd(priv, ch_idx, true);
-> +
-> +	for (i = 0; i < l->count - 1; i++)
-> +		priv->tx[l->offset + i].cmd = cmd;
-> +
-> +	/* automatically power down on last sample */
-> +	priv->tx[l->offset + i].cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
-> +}
-> +
-> +static u16 tsc2046_adc_get_val(struct tsc2046_adc_priv *priv, int group)
-> +{
-> +	struct tsc2046_adc_group_layout *l;
-> +	unsigned int val, val_normalized = 0;
-> +	int valid_count, i;
-> +
-> +	l = &priv->l[group];
-> +	valid_count = l->count - l->skip;
-> +
-> +	for (i = 0; i < valid_count; i++) {
-> +		val = tsc2046_adc_get_value(&priv->rx[l->offset + l->skip + i]);
-> +		val_normalized += val;
-> +	}
-> +
-> +	return DIV_ROUND_UP(val_normalized, valid_count);
-> +}
-> +
-> +static int tsc2046_adc_scan(struct iio_dev *indio_dev)
-> +{
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +	struct device *dev = &priv->spi->dev;
-> +	int group;
-> +	int ret;
-> +
-> +	ret = spi_sync(priv->spi, &priv->msg);
-> +	if (ret < 0) {
-> +		dev_err_ratelimited(dev, "SPI transfer failed: %pe\n", ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	for (group = 0; group < priv->groups; group++)
-> +		priv->scan_buf.data[group] = tsc2046_adc_get_val(priv, group);
-> +
-> +	ret = iio_push_to_buffers_with_timestamp(indio_dev, &priv->scan_buf,
-> +						 iio_get_time_ns(indio_dev));
-> +	/* If the consumer is kfifo, we may get a EBUSY here - ignore it. */
-> +	if (ret < 0 && ret != -EBUSY) {
-> +		dev_err_ratelimited(dev, "Failed to push scan buffer %pe\n",
-> +				    ERR_PTR(ret));
-> +
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t tsc2046_adc_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +
-> +	mutex_lock(&priv->slock);
-> +	tsc2046_adc_scan(indio_dev);
-> +	mutex_unlock(&priv->slock);
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
-> +					const unsigned long *active_scan_mask)
-> +{
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +	unsigned int ch_idx, group = 0;
-> +	size_t size;
-> +
-> +	mutex_lock(&priv->slock);
-> +
-> +	size = 0;
-> +	for_each_set_bit(ch_idx, active_scan_mask, indio_dev->num_channels) {
-> +		size += tsc2046_adc_group_set_layout(priv, group, ch_idx);
-> +		tsc2046_adc_group_set_cmd(priv, group, ch_idx);
-> +		group++;
-> +	}
-> +
-> +	priv->groups = group;
-> +	priv->xfer.len = size;
-> +	priv->time_per_scan_us = size * 8 * priv->time_per_bit_ns / NSEC_PER_USEC;
-> +
-> +	if ((priv->scan_interval_us - priv->time_per_scan_us) < 0)
-> +		dev_warn(&priv->spi->dev, "The scan interval (%d) is less then calculated scan time (%d)\n",
-> +			 priv->scan_interval_us, priv->time_per_scan_us);
-> +
-> +	mutex_unlock(&priv->slock);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct iio_info tsc2046_adc_info = {
-> +	.update_scan_mode = tsc2046_adc_update_scan_mode,
-> +};
-> +
-> +static enum hrtimer_restart tsc2046_adc_trig_more(struct hrtimer *hrtimer)
-> +{
-> +	struct tsc2046_adc_priv *priv = container_of(hrtimer,
-> +						     struct tsc2046_adc_priv,
-> +						     trig_timer);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&priv->trig_lock, flags);
-> +
-> +	disable_irq_nosync(priv->spi->irq);
-> +
-> +	priv->trig_more_count++;
-> +	iio_trigger_poll(priv->trig);
-> +
-> +	spin_unlock_irqrestore(&priv->trig_lock, flags);
-> +
-> +	return HRTIMER_NORESTART;
-> +}
-> +
-> +static irqreturn_t tsc2046_adc_irq(int irq, void *dev_id)
-> +{
-> +	struct iio_dev *indio_dev = dev_id;
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +
-> +	spin_lock(&priv->trig_lock);
-> +
-> +	hrtimer_try_to_cancel(&priv->trig_timer);
-> +
-> +	priv->trig_more_count = 0;
-> +	disable_irq_nosync(priv->spi->irq);
-> +	iio_trigger_poll(priv->trig);
-> +
-> +	spin_unlock(&priv->trig_lock);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void tsc2046_adc_reenable_trigger(struct iio_trigger *trig)
-> +{
-> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +	unsigned long flags;
-> +	int delta;
-> +
-> +	/*
-> +	 * We can sample it as fast as we can, but usually we do not need so
-> +	 * many samples. Reduce the sample rate for default (touchscreen) use
-> +	 * case.
-> +	 * Currently we do not need a highly precise sample rate. It is enough
-> +	 * to have calculated numbers.
-> +	 */
-> +	delta = priv->scan_interval_us - priv->time_per_scan_us;
-> +	if (delta > 0)
-> +		fsleep(delta);
-> +
-> +	spin_lock_irqsave(&priv->trig_lock, flags);
-> +
-> +	/*
-> +	 * We need to trigger at least one extra sample to detect state
-> +	 * difference on ADC side.
-> +	 */
-> +	if (!priv->trig_more_count) {
-> +		int timeout_ms = DIV_ROUND_UP(priv->scan_interval_us,
-> +					      USEC_PER_MSEC);
-> +
-> +		hrtimer_start(&priv->trig_timer, ms_to_ktime(timeout_ms),
-> +			      HRTIMER_MODE_REL_SOFT);
-> +	}
-> +
-> +	enable_irq(priv->spi->irq);
-> +
-> +	spin_unlock_irqrestore(&priv->trig_lock, flags);
-> +}
-> +
-> +static int tsc2046_adc_set_trigger_state(struct iio_trigger *trig, bool enable)
-> +{
-> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-> +
-> +	if (enable) {
-> +		enable_irq(priv->spi->irq);
-> +	} else {
-> +		disable_irq(priv->spi->irq);
-> +		hrtimer_try_to_cancel(&priv->trig_timer);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct iio_trigger_ops tsc2046_adc_trigger_ops = {
-> +	.set_trigger_state = tsc2046_adc_set_trigger_state,
-> +	.reenable = tsc2046_adc_reenable_trigger,
-> +};
-> +
-> +static int tsc2046_adc_setup_spi_msg(struct tsc2046_adc_priv *priv)
-> +{
-> +	unsigned int ch_idx;
-> +	size_t size;
-> +	int ret;
-> +
-> +	priv->tx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->tx_one),
-> +				    GFP_KERNEL);
-> +	if (!priv->tx_one)
-> +		return -ENOMEM;
-> +
-> +	priv->rx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->rx_one),
-> +				    GFP_KERNEL);
-> +	if (!priv->rx_one)
-> +		return -ENOMEM;
-> +
-> +	/*
-> +	 * Make dummy read to set initial power state and get real SPI clock
-> +	 * freq. It seems to be not important which channel is used for this
-> +	 * case.
-> +	 */
-> +	ret = tsc2046_adc_read_one(priv, TI_TSC2046_ADDR_TEMP0,
-> +				   &priv->effective_speed_hz);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/*
-> +	 * In case SPI controller do not report effective_speed_hz, use
-> +	 * configure value and hope it will match.
-> +	 */
-> +	if (!priv->effective_speed_hz)
-> +		priv->effective_speed_hz = priv->spi->max_speed_hz;
-> +
-> +
-> +	priv->scan_interval_us = TI_TSC2046_SAMPLE_INTERVAL_US;
-> +	priv->time_per_bit_ns = DIV_ROUND_UP(NSEC_PER_SEC,
-> +					     priv->effective_speed_hz);
-> +
-> +	/*
-> +	 * Calculate and allocate maximal size buffer if all channels are
-> +	 * enabled.
-> +	 */
-> +	size = 0;
-> +	for (ch_idx = 0; ch_idx < priv->dcfg->num_channels; ch_idx++)
-> +		size += tsc2046_adc_group_set_layout(priv, ch_idx, ch_idx);
-> +
-> +	priv->tx = devm_kzalloc(&priv->spi->dev, size, GFP_KERNEL);
-> +	if (!priv->tx)
-> +		return -ENOMEM;
-> +
-> +	priv->rx = devm_kzalloc(&priv->spi->dev, size, GFP_KERNEL);
-> +	if (!priv->rx)
-> +		return -ENOMEM;
-> +
-> +	spi_message_init(&priv->msg);
-> +	priv->msg.context = priv;
-> +
-> +	priv->xfer.tx_buf = priv->tx;
-> +	priv->xfer.rx_buf = priv->rx;
-> +	priv->xfer.len = size;
-> +	spi_message_add_tail(&priv->xfer, &priv->msg);
-> +
-> +	return 0;
-> +}
-> +
-> +static void tsc2046_adc_parse_fwnode(struct tsc2046_adc_priv *priv)
-> +{
-> +	struct fwnode_handle *child;
-> +	struct device *dev = &priv->spi->dev;
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(priv->ch_cfg); i++) {
-> +		priv->ch_cfg[i].settling_time_us = 1;
-> +		priv->ch_cfg[i].oversampling_ratio = 1;
-> +	}
-> +
-> +	device_for_each_child_node(dev, child) {
-> +		u32 stl, overs, reg;
-> +		int ret;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret) {
-> +			dev_err(dev, "invalid reg on %pfw, err: %pe\n", child,
-> +				ERR_PTR(ret));
-> +			continue;
-> +		}
-> +
-> +		if (reg >= ARRAY_SIZE(priv->ch_cfg)) {
-> +			dev_err(dev, "%pfw: Unsupported reg value: %i, max supported is: %zu.\n",
-> +				child, reg, ARRAY_SIZE(priv->ch_cfg));
-> +			continue;
-> +		}
-> +
-> +		ret = fwnode_property_read_u32(child, "settling-time-us", &stl);
-
-I should have picked up on this before.  We should ideally distinguish between
-the property not being present (in which case we carry on) and the read of a
-present property failing. Also good to sanity check range etc here and return
-an error if they are invalid.
-
-		if (device_property_present(child, "settling-time-us")) {
-			ret = fw_node_property_read_u32(...)
-			if (ret)
-				return ret;
-		}
-
-You can do it by checking the error value of fw_node_property_read_u32, but that
-ends up looking more messy and harder to follow.
-
-
-> +		if (!ret)
-> +			priv->ch_cfg[reg].settling_time_us = stl;
-> +
-> +		ret = fwnode_property_read_u32(child, "oversampling-ratio",
-> +					       &overs);
-
-As per review on patch 1, this is the main remaining question I have.
-Why is oversampling ratio controlled from DT?
-
-> +		if (!ret)
-> +			priv->ch_cfg[reg].oversampling_ratio = overs;
-> +	}
-> +}
-> +
-> +static int tsc2046_adc_probe(struct spi_device *spi)
-> +{
-> +	const struct tsc2046_adc_dcfg *dcfg;
-> +	struct device *dev = &spi->dev;
-> +	struct tsc2046_adc_priv *priv;
-> +	struct iio_dev *indio_dev;
-> +	struct iio_trigger *trig;
-> +	const char *name;
-> +	int ret;
-> +
-> +	if (spi->max_speed_hz > TI_TSC2046_MAX_CLK_FREQ) {
-> +		dev_err(dev, "SPI max_speed_hz is too high: %d Hz. Max supported freq is %zu Hz\n",
-> +			spi->max_speed_hz, TI_TSC2046_MAX_CLK_FREQ);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dcfg = device_get_match_data(dev);
-> +	if (!dcfg)
-> +		return -EINVAL;
-> +
-> +	spi->bits_per_word = 8;
-> +	spi->mode &= ~SPI_MODE_X_MASK;
-> +	spi->mode |= SPI_MODE_0;
-> +	ret = spi_setup(spi);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Error in SPI setup\n");
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	priv = iio_priv(indio_dev);
-> +	priv->dcfg = dcfg;
-> +
-> +	spi_set_drvdata(spi, indio_dev);
-> +
-> +	priv->spi = spi;
-> +
-> +	name = devm_kasprintf(dev, GFP_KERNEL, "%s-%s",
-> +			      TI_TSC2046_NAME, dev_name(dev));
-
-I'd missed this before, what does this name end up as?
-
-For IIO devices, that field is used for part number, not a hybrid
-of that and the name of the spi device (which you can get trivially
-from the appropriate directory links in sysfs).
-If we do need a more complex name (usually describing something like
-location within the device if there are systems with multiple identical
-parts) then we have the label attribute for that.
-
-
-> +	if (!name)
-> +		return -ENOMEM;
-> +
-> +	indio_dev->name = name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
-> +	indio_dev->channels = dcfg->channels;
-> +	indio_dev->num_channels = dcfg->num_channels;
-> +	indio_dev->info = &tsc2046_adc_info;
-> +
-> +	tsc2046_adc_parse_fwnode(priv);
-> +
-> +	ret = tsc2046_adc_setup_spi_msg(priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_init(&priv->slock);
-> +
-> +	/* TODO: remove IRQ_NOAUTOEN after needed patches are mainline */
-
-For this, I'm happy to merge in the immutable branch that exists for
-that patch (it's already gone in via at least 2 trees)
-
-https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=irq-no-autoen-2021-03-25
-
-So if you want to do it directly, just note that dependency in the cover letter.
-
-I'll shortly be doing a sweep of IIO to clean up all the other instances of
-this and hence pulling that patch in anyway.
-
-> +	irq_set_status_flags(spi->irq, IRQ_NOAUTOEN);
-> +	ret = devm_request_irq(dev, spi->irq, &tsc2046_adc_irq,
-> +			       0, name, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	trig = devm_iio_trigger_alloc(dev, "touchscreen-%s", indio_dev->name);
-> +	if (!trig)
-> +		return -ENOMEM;
-> +
-> +	priv->trig = trig;
-> +	iio_trigger_set_drvdata(trig, indio_dev);
-> +	trig->ops = &tsc2046_adc_trigger_ops;
-> +
-> +	spin_lock_init(&priv->trig_lock);
-> +	hrtimer_init(&priv->trig_timer, CLOCK_MONOTONIC,
-> +		     HRTIMER_MODE_REL_SOFT);
-> +	priv->trig_timer.function = tsc2046_adc_trig_more;
-> +
-> +	ret = devm_iio_trigger_register(dev, trig);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register trigger\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +					      &tsc2046_adc_trigger_handler, NULL);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to setup triggered buffer\n");
-> +		return ret;
-> +	}
-> +
-> +	/* set default trigger */
-> +	indio_dev->trig = iio_trigger_get(priv->trig);
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id ads7950_of_table[] = {
-> +	{ .compatible = "ti,tsc2046e-adc", .data = &tsc2046_adc_dcfg_tsc2046e },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ads7950_of_table);
-> +
-> +static struct spi_driver tsc2046_adc_driver = {
-> +	.driver = {
-> +		.name = "tsc2046",
-> +		.of_match_table = ads7950_of_table,
-> +	},
-> +	.probe = tsc2046_adc_probe,
-> +};
-> +module_spi_driver(tsc2046_adc_driver);
-> +
-> +MODULE_AUTHOR("Oleksij Rempel <kernel@pengutronix.de>");
-> +MODULE_DESCRIPTION("TI TSC2046 ADC");
-> +MODULE_LICENSE("GPL v2");
+SGksDQoNCk9uIFR1ZSwgMjAyMS0wMy0xNiBhdCAxNToyOCAtMDYwMCwgUm9iIEhlcnJpbmcgd3Jv
+dGU6DQo+IE9uIFR1ZSwgTWFyIDE2LCAyMDIxIGF0IDAxOjM1OjUzQU0gKzA4MDAsIEhzaW4tSHNp
+dW5nIFdhbmcgd3JvdGU6DQo+ID4gYWRkIGR0LWJpbmRpbmcgZG9jdW1lbnQgZm9yIE1lZGlhVGVr
+IE1UNjM1OSBQTUlDDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSHNpbi1Ic2l1bmcgV2FuZyA8
+aHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gY2hhbmdlcyBzaW5j
+ZSB2NToNCj4gPiAtIG5vIGNoYW5nZS4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL3JlZ3Vs
+YXRvci9tdDYzNTktcmVndWxhdG9yLnlhbWwgIHwgMTY5ICsrKysrKysrKysrKysrKysrKw0KPiA+
+ICAxIGZpbGUgY2hhbmdlZCwgMTY5IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAw
+NjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbXQ2MzU5LXJl
+Z3VsYXRvci55YW1sDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbXQ2MzU5LXJlZ3VsYXRvci55YW1sIGIvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9tdDYzNTktcmVndWxhdG9yLnlhbWwN
+Cj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uNjJmZjkz
+ZWVmZDM5DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbXQ2MzU5LXJlZ3VsYXRvci55YW1sDQo+ID4gQEAgLTAs
+MCArMSwxNjkgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1Ig
+QlNELTItQ2xhdXNlKQ0KPiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDov
+L2RldmljZXRyZWUub3JnL3NjaGVtYXMvcmVndWxhdG9yL210NjM1OS1yZWd1bGF0b3IueWFtbCMN
+Cj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlh
+bWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogTVQ2MzU5IFJlZ3VsYXRvciBmcm9tIE1lZGlhVGVrIElu
+dGVncmF0ZWQNCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gSHNpbi1Ic2l1bmcg
+V2FuZyA8aHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20+DQo+ID4gKw0KPiA+ICtkZXNjcmlw
+dGlvbjogfA0KPiA+ICsgIExpc3Qgb2YgcmVndWxhdG9ycyBwcm92aWRlZCBieSB0aGlzIGNvbnRy
+b2xsZXIuIEl0IGlzIG5hbWVkDQo+ID4gKyAgYWNjb3JkaW5nIHRvIGl0cyByZWd1bGF0b3IgdHlw
+ZSwgYnVja188bmFtZT4gYW5kIGxkb188bmFtZT4uDQo+ID4gKyAgTVQ2MzU5IHJlZ3VsYXRvcnMg
+bm9kZSBzaG91bGQgYmUgc3ViIG5vZGUgb2YgdGhlIE1UNjM5NyBNRkQgbm9kZS4NCj4gPiArDQo+
+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgJG5vZGVuYW1lOg0KPiA+ICsgICAgcGF0dGVybjogIl5w
+bWljJCINCj4gDQo+IFRoZSBlcnJvcnMgYXJlIGJlY2F1c2UgdGhpcyBzY2hlbWEgd2lsbCBiZSBh
+cHBsaWVkIHRvIGV2ZXJ5ICdwbWljJyBub2RlLg0KPiANCj4gPiArDQo+ID4gKyAgbXQ2MzU5cmVn
+dWxhdG9yOg0KPiANCj4gVGhlIG5vZGUgbmFtZSBoZXJlIHNob3VsZCBiZSBqdXN0ICdyZWd1bGF0
+b3JzJywgYnV0IHRoYXQgc2hvdWxkIGJlIGluIA0KPiB0aGUgTUZEIHNjaGVtYSBhbmQgeW91IHNo
+b3VsZCByZW1vdmUgdGhpcyBsZXZlbCBoZXJlLiBTbyB0aGUgTUZEIHdvdWxkIA0KPiBoYXZlOg0K
+PiANCj4gcHJvcGVydGllczoNCj4gICByZWd1bGF0b3JzOg0KPiAgICAgdHlwZTogb2JqZWN0DQo+
+ICAgICAkcmVmOiBzY2hlbWFzL3JlZ3VsYXRvci9tdDYzNTktcmVndWxhdG9yLnlhbWwjDQo+IA0K
+PiA+ICsgICAgdHlwZTogb2JqZWN0DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAg
+bGlzdCBvZiByZWd1bGF0b3JzIHByb3ZpZGVkIGJ5IHRoaXMgY29udHJvbGxlci4NCj4gPiArDQo+
+ID4gKyAgICBwYXR0ZXJuUHJvcGVydGllczoNCj4gDQo+IEFuZCB0aGlzIHNob3VsZCBiZSBhdCB0
+aGUgdG9wIGxldmVsIG9mIHRoaXMgZG9jLg0KPiANCj4gPiArICAgICAgIl5idWNrX3YoczF8Z3B1
+MTF8bW9kZW18cHV8Y29yZXxzMnxwYXxwcm9jMnxwcm9jMXxjb3JlX3NzaHViKSQiOg0KPiA+ICsg
+ICAgICAgIHR5cGU6IG9iamVjdA0KPiA+ICsgICAgICAgICRyZWY6ICJyZWd1bGF0b3IueWFtbCMi
+DQo+ID4gKw0KPiA+ICsgICAgICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAgICAgICByZWd1bGF0
+b3ItbmFtZToNCj4gPiArICAgICAgICAgICAgcGF0dGVybjogIl52KHMxfGdwdTExfG1vZGVtfHB1
+fGNvcmV8czJ8cGF8cHJvYzJ8cHJvYzF8Y29yZV9zc2h1YikkIg0KPiA+ICsNCj4gPiArICAgICAg
+ICB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICsgICAgICAiXmxkb192
+KGlicnxyZjEyfHVzYnxjYW1pb3xlZnVzZXx4bzIyKSQiOg0KPiA+ICsgICAgICAgIHR5cGU6IG9i
+amVjdA0KPiA+ICsgICAgICAgICRyZWY6ICJyZWd1bGF0b3IueWFtbCMiDQo+ID4gKw0KPiA+ICsg
+ICAgICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbmFtZToNCj4gPiAr
+ICAgICAgICAgICAgcGF0dGVybjogIl52KGlicnxyZjEyfHVzYnxjYW1pb3xlZnVzZXx4bzIyKSQi
+DQo+ID4gKw0KPiA+ICsgICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCj4gPiAr
+DQo+ID4gKyAgICAgICJebGRvX3YocmZja3xlbWN8YTEyfGEwOXx1ZnN8YmJjaykkIjoNCj4gPiAr
+ICAgICAgICB0eXBlOiBvYmplY3QNCj4gPiArICAgICAgICAkcmVmOiAicmVndWxhdG9yLnlhbWwj
+Ig0KPiA+ICsNCj4gPiArICAgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgICAgcmVndWxh
+dG9yLW5hbWU6DQo+ID4gKyAgICAgICAgICAgIHBhdHRlcm46ICJedihyZmNrfGVtY3xhMTJ8YTA5
+fHVmc3xiYmNrKSQiDQo+ID4gKw0KPiA+ICsgICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczog
+ZmFsc2UNCj4gPiArDQo+ID4gKyAgICAgICJebGRvX3ZjbigxOHwxM3wzM18xX2J0fDEzXzFfd2lm
+aXwzM18yX2J0fDMzXzJfd2lmaSkkIjoNCj4gPiArICAgICAgICB0eXBlOiBvYmplY3QNCj4gPiAr
+ICAgICAgICAkcmVmOiAicmVndWxhdG9yLnlhbWwjIg0KPiA+ICsNCj4gPiArICAgICAgICBwcm9w
+ZXJ0aWVzOg0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLW5hbWU6DQo+ID4gKyAgICAgICAgICAg
+IHBhdHRlcm46ICJedmNuKDE4fDEzfDMzXzFfYnR8MTNfMV93aWZpfDMzXzJfYnR8MzNfMl93aWZp
+KSQiDQo+ID4gKw0KPiA+ICsgICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCj4g
+PiArDQo+ID4gKyAgICAgICJebGRvX3ZzcmFtXyhwcm9jMnxvdGhlcnN8bWR8cHJvYzF8b3RoZXJz
+X3NzaHViKSQiOg0KPiA+ICsgICAgICAgIHR5cGU6IG9iamVjdA0KPiA+ICsgICAgICAgICRyZWY6
+ICJyZWd1bGF0b3IueWFtbCMiDQo+ID4gKw0KPiA+ICsgICAgICAgIHByb3BlcnRpZXM6DQo+ID4g
+KyAgICAgICAgICByZWd1bGF0b3ItbmFtZToNCj4gPiArICAgICAgICAgICAgcGF0dGVybjogIl52
+c3JhbV8ocHJvYzJ8b3RoZXJzfG1kfHByb2MxfG90aGVyc19zc2h1YikkIg0KPiA+ICsNCj4gPiAr
+ICAgICAgICB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICsgICAgICAi
+Xmxkb192KGZlfGJpZnxpbykyOCQiOg0KPiA+ICsgICAgICAgIHR5cGU6IG9iamVjdA0KPiA+ICsg
+ICAgICAgICRyZWY6ICJyZWd1bGF0b3IueWFtbCMiDQo+ID4gKw0KPiA+ICsgICAgICAgIHByb3Bl
+cnRpZXM6DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbmFtZToNCj4gPiArICAgICAgICAgICAg
+cGF0dGVybjogIl52KGZlfGJpZnxpbykyOCQiDQo+ID4gKw0KPiA+ICsgICAgICAgIHVuZXZhbHVh
+dGVkUHJvcGVydGllczogZmFsc2UNCj4gPiArDQo+ID4gKyAgICAgICJebGRvX3YoYXVkfGlvfGF1
+eHxyZnxtKTE4JCI6DQo+ID4gKyAgICAgICAgdHlwZTogb2JqZWN0DQo+ID4gKyAgICAgICAgJHJl
+ZjogInJlZ3VsYXRvci55YW1sIyINCj4gPiArDQo+ID4gKyAgICAgICAgcHJvcGVydGllczoNCj4g
+PiArICAgICAgICAgIHJlZ3VsYXRvci1uYW1lOg0KPiA+ICsgICAgICAgICAgICBwYXR0ZXJuOiAi
+XnYoYXVkfGlvfGF1eHxyZnxtKTE4JCINCj4gPiArDQo+ID4gKyAgICAgICAgdW5ldmFsdWF0ZWRQ
+cm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArICAgICAgIl5sZG9fdnNpbVsxMl0kIjoNCj4g
+PiArICAgICAgICB0eXBlOiBvYmplY3QNCj4gPiArICAgICAgICAkcmVmOiAicmVndWxhdG9yLnlh
+bWwjIg0KPiA+ICsNCj4gPiArICAgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgICAgcmVn
+dWxhdG9yLW5hbWU6DQo+ID4gKyAgICAgICAgICAgIHBhdHRlcm46ICJednNpbVsxMl0kIg0KPiA+
+ICsNCj4gPiArICAgICAgICByZXF1aXJlZDoNCj4gPiArICAgICAgICAgIC0gcmVndWxhdG9yLW5h
+bWUNCj4gPiArDQo+ID4gKyAgICAgICAgdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+
+ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtleGFtcGxl
+czoNCj4gPiArICAtIHwNCj4gPiArICAgIHBtaWMgew0KPiA+ICsgICAgICBtdDYzNTlyZWd1bGF0
+b3Igew0KPiANCj4gSSBwcmVmZXIgdG8gc2VlIGEgc2luZ2xlIGNvbXBsZXRlIGV4YW1wbGUgaW4g
+dGhlIE1GRCBzY2hlbWEgcmF0aGVyIHRoYW4gDQo+IHBpZWNlbWVhbCBzY2hlbWFzIGluIGVhY2gg
+c3ViIHNjaGVtYS4NCj4gDQoNClRoYW5rcyBmb3IgeW91ciBjb21tZW50Lg0KSG93ZXZlciwgTVQ2
+Mzk3IG1mZCBkcml2ZXIgc3VwcG9ydHMgc2V2ZXJhbCBtZWRpYXRlayBwbWljcyB3aGljaCBoYXZl
+DQpkaWZmZXJlbnQgcmVndWxhdG9yIGNhcGFiaWxpdHksIHNvIGl0IGlzIGhhcmQgdG8gbGlzdCBh
+bGwgcmVndWxhdG9ycyBvZg0KZWFjaCBwbWljIGluIHRoZSBNRkQgc2NoZW1hLg0KDQpUaGFua3Mu
+DQoNCj4gPiArICAgICAgICBtdDYzNTlfdmdwdTExX2J1Y2tfcmVnOiBidWNrX3ZncHUxMSB7DQo+
+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbmFtZSA9ICJ2Z3B1MTEiOw0KPiA+ICsgICAgICAgICAg
+cmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8NDAwMDAwPjsNCj4gPiArICAgICAgICAgIHJlZ3Vs
+YXRvci1tYXgtbWljcm92b2x0ID0gPDExOTM3NTA+Ow0KPiA+ICsgICAgICAgICAgcmVndWxhdG9y
+LWVuYWJsZS1yYW1wLWRlbGF5ID0gPDIwMD47DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItYWx3
+YXlzLW9uOw0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLWFsbG93ZWQtbW9kZXMgPSA8MCAxIDI+
+Ow0KPiA+ICsgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgIG10NjM1OV92Y2FtaW9fbGRv
+X3JlZzogbGRvX3ZjYW1pbyB7DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbmFtZSA9ICJ2Y2Ft
+aW8iOw0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTcwMDAwMD47
+DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxOTAwMDAwPjsNCj4g
+PiArICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICBtdDYzNTlfdmNuMThfbGRvX3JlZzog
+bGRvX3ZjbjE4IHsNCj4gPiArICAgICAgICAgIHJlZ3VsYXRvci1uYW1lID0gInZjbjE4IjsNCj4g
+PiArICAgICAgICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDE4MDAwMDA+Ow0KPiA+ICsg
+ICAgICAgICAgcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8MTgwMDAwMD47DQo+ID4gKyAgICAg
+ICAgICByZWd1bGF0b3ItZW5hYmxlLXJhbXAtZGVsYXkgPSA8MjQwPjsNCj4gPiArICAgICAgICB9
+Ow0KPiA+ICsNCj4gPiArICAgICAgICBtdDYzNTlfdnNyYW1fcHJvYzJfbGRvX3JlZzogbGRvX3Zz
+cmFtX3Byb2MyIHsNCj4gPiArICAgICAgICAgIHJlZ3VsYXRvci1uYW1lID0gInZzcmFtX3Byb2My
+IjsNCj4gPiArICAgICAgICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDUwMDAwMD47DQo+
+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMjkzNzUwPjsNCj4gPiAr
+ICAgICAgICAgIHJlZ3VsYXRvci1yYW1wLWRlbGF5ID0gPDc1MDA+Ow0KPiA+ICsgICAgICAgICAg
+cmVndWxhdG9yLWVuYWJsZS1yYW1wLWRlbGF5ID0gPDI0MD47DQo+ID4gKyAgICAgICAgICByZWd1
+bGF0b3ItYWx3YXlzLW9uOw0KPiA+ICsgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgIG10
+NjM1OV92ZmUyOF9sZG9fcmVnOiBsZG9fdmZlMjggew0KPiA+ICsgICAgICAgICAgcmVndWxhdG9y
+LW5hbWUgPSAidmZlMjgiOw0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQg
+PSA8MjgwMDAwMD47DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwy
+ODAwMDAwPjsNCj4gPiArICAgICAgICAgIHJlZ3VsYXRvci1lbmFibGUtcmFtcC1kZWxheSA9IDwx
+MjA+Ow0KPiA+ICsgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgIG10NjM1OV92YXVkMThf
+bGRvX3JlZzogbGRvX3ZhdWQxOCB7DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbmFtZSA9ICJ2
+YXVkMTgiOw0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTgwMDAw
+MD47DQo+ID4gKyAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsN
+Cj4gPiArICAgICAgICAgIHJlZ3VsYXRvci1lbmFibGUtcmFtcC1kZWxheSA9IDwyNDA+Ow0KPiA+
+ICsgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgIG10NjM1OV92c2ltMV9sZG9fcmVnOiBs
+ZG9fdnNpbTEgew0KPiA+ICsgICAgICAgICAgcmVndWxhdG9yLW5hbWUgPSAidnNpbTEiOw0KPiA+
+ICsgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTcwMDAwMD47DQo+ID4gKyAg
+ICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMTAwMDAwPjsNCj4gPiArICAgICAg
+ICAgIHJlZ3VsYXRvci1lbmFibGUtcmFtcC1kZWxheSA9IDw0ODA+Ow0KPiA+ICsgICAgICAgIH07
+DQo+ID4gKyAgICAgIH07DQo+ID4gKyAgICB9Ow0KPiA+ICsuLi4NCj4gPiAtLSANCj4gPiAyLjE4
+LjANCj4gPiANCg0K
 
