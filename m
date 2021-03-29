@@ -2,121 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E53734D2EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 16:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68AE934D321
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbhC2O5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 10:57:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbhC2O5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 10:57:05 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C469C061574
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 07:57:05 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id w8so14083144ybt.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 07:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kKi8HN+bpgIonbipayQY6bUaqDWQRM56PWjQCa1XcVc=;
-        b=QHeXTIE0ojKJtQ0VDW1civaMMSYxCTYIxgjq32eR6dbldNbJ7h34t8c01oC8YDfRcV
-         +VfX7+582QTTxV7FU2T+0vinC8y9SAnTAPI2oyf4H2fJoytHlIUn/HU1KebfH/VjGAOA
-         gUDS5T0FIs1S8Hyvg6Iw76337LbQmKY4tI39R/AtDZoGCVkZy+8FqZDzE0eArbRy39Ua
-         DPUVqWL1FDXXwDvhxpJZ8HpSprI9KioF7qtuh+GGsZ09Gst3MBl6CyJigBzZRWpk4aF7
-         /ExD1o3GqUcKDji/hVdsgRgXcEjq/aY3FAb/1WNU6JDHKh4f6xlC3SviRJ/gTj51od+O
-         juqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kKi8HN+bpgIonbipayQY6bUaqDWQRM56PWjQCa1XcVc=;
-        b=nhdHpIeLOvPzDFygbvnc/DynGT3Z3FPj3qQcnlx1llaBfnKMPwbg0UxZk3U+4X7kRP
-         6hiUhEdnx+PU/js+YSq5QL/mw1WGAUpCbrpx2TsXWweZ6A5bj72LA21linn14NtC4wsW
-         prqNSXuLctvL5G73Wkrq4gbjr02zcKZm8dWk3+eTeDnG+gqCP3AirWisnMvIJov128X3
-         Q7Sgww4uKOegmxHeFS911hoGFJLB0M2Sak55E/hS3yHFqo3Xx47FJ+yoJwzAfa7VLhWV
-         AAOo/hKooct1RQbyQ258jxCP6ydJAb0Q3EpM3d/D5D2QONOSJyBmaUSIvLPqHw1eS06r
-         RRmQ==
-X-Gm-Message-State: AOAM532tCUuFj7N5DCsOkTg2WKTmAbkC7K2Ny/+nU88S1NVE7x/Kiqcb
-        mUnuEZyPT0mJ9PM81AdDt0YzYV3raoOl71TNj/eaVg==
-X-Google-Smtp-Source: ABdhPJzu5ULT+omARvahbH1jKInTaaNAdmdNq4fRz3u1JYVIeDwdMailkmG8CbM4ZA/xaEU/YPrnxVrzakIRb4bNgp0=
-X-Received: by 2002:a25:69c1:: with SMTP id e184mr38733388ybc.345.1617029823530;
- Mon, 29 Mar 2021 07:57:03 -0700 (PDT)
+        id S230052AbhC2PBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:01:05 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:4262 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230366AbhC2PAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 11:00:46 -0400
+Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 12TEXiik127565;
+        Mon, 29 Mar 2021 11:00:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=AN4hdJZ0MsMZuPxJjikdHVAlfmL9PV9h6iu+52Gywu8=;
+ b=l51NtAGMo08XepkOtm2Y0fTkJjaXdTTmbl853GYkkgvBbVcPaPF9XLHifXW6zgpY7vte
+ tGBwCUdXLjk4UVtXrPWblgujxXXivnaflOhP+gDdT8jMEU3aVkKQ1qu2tzXMzGYqfm+0
+ y3p5EsEgq7JiOO3uxl2xZBND013t7kFTVe2WV/7a4S21c+A60Lmx8W3V5xRkKDlywicr
+ mVmYtR79celz27wDBjl4m0hduxrTK1tV6YObORYf1SoaZqDvrsWlDXgMvhDITDik+7kk
+ 1jjlbPDUC/scQhaYV+WR6uAHhnx06PtxbIBE+yzR0fSoc1HiSQz+BgzFrn1PYMbwgkVQ aA== 
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 37jhnkk07c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 Mar 2021 11:00:34 -0400
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12TEqlee007196;
+        Mon, 29 Mar 2021 15:00:33 GMT
+Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
+        by ppma04wdc.us.ibm.com with ESMTP id 37hvb8q4b9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 Mar 2021 15:00:33 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 12TF0W4J31392048
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 29 Mar 2021 15:00:32 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D8BD77806B;
+        Mon, 29 Mar 2021 15:00:31 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 8A8C078072;
+        Mon, 29 Mar 2021 15:00:31 +0000 (GMT)
+Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.163.3.96])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Mon, 29 Mar 2021 15:00:31 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     joel@jms.id.au
+Cc:     andrew@aj.id.au, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 00/22] ARM: dts: aspeed: Updates for Rainier and Everest machines
+Date:   Mon, 29 Mar 2021 09:59:58 -0500
+Message-Id: <20210329150020.13632-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
- <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
- <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org> <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
-In-Reply-To: <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
-From:   Doug Anderson <dianders@google.com>
-Date:   Mon, 29 Mar 2021 07:56:52 -0700
-Message-ID: <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com>
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: IVIdx3z3jX6BanOTNOl3v6w3_mTtmkw_
+X-Proofpoint-ORIG-GUID: IVIdx3z3jX6BanOTNOl3v6w3_mTtmkw_
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-03-29_09:2021-03-26,2021-03-29 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ mlxscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ mlxlogscore=794 bulkscore=0 phishscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2103250000 definitions=main-2103290112
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series updates the device trees for the Rainier and Everest system
+BMCs. For Rainier, the changes have been tested fairly extensively in
+hardware. Everest has largely been tested in simulation and some basic
+hardware verification testing.
 
-On Thu, Mar 25, 2021 at 11:57 PM <sbhanu@codeaurora.org> wrote:
->
-> >>> +                       max-frequency = <192000000>;
-> >> Why do you need to specify this?
-> This helps to avoid lower speed modes running in high clock rate,
-> and As Veerabhadrarao Badiganti mentioned
+Alpana Kumari (3):
+  ARM: dts: aspeed: rainier: Add presence GPIOs
+  ARM: dts: aspeed: everest: GPIOs support
+  ARM: dts: aspeed: rainier: Support pass 2 planar
 
-Just to be clear, both Stephen and I agree that you should remove
-"max-frequency" here (see previous discussion). Bjorn is, of course,
-the file decision maker. However, unless he says "yeah, totally keep
-it in" I'd suggest dropping it from the next version.
+Brandon Wyman (2):
+  ARM: dts: aspeed: rainier: Add gpio-keys-polled for fans
+  ARM: dts: aspeed: everest: Add power supply i2c devices
 
+Eddie James (7):
+  ARM: dts: aspeed: rainier: Add additional processor CFAMs
+  ARM: dts: aspeed: rainier: Enable fan watchdog
+  ARM: dts: aspeed: rainier 4U: Fix fan configuration
+  ARM: dts: Aspeed: Everest: Add FSI CFAMs and re-number engines
+  ARM: dts: Aspeed: Everest: Add RTC
+  ARM: dts: aspeed: everest: Enable fan watchdog
+  ARM: dts: aspeed: Add Rainier 1S4U machine
 
-> >>> +                                       required-opps =
-> >>> <&rpmhpd_opp_low_svs>;
-> >>> +                                       opp-peak-kBps = <1200000
-> >>> 76000>;
-> >>> +                                       opp-avg-kBps = <1200000
-> >>> 50000>;
-> >> Why are the kBps numbers so vastly different than the ones on sc7180
-> >> for the same OPP point. That implies:
-> >>
-> >> a) sc7180 is wrong.
-> >>
-> >> b) This patch is wrong.
-> >>
-> >> c) The numbers are essentially random and don't really matter.
-> >>
-> >> Can you identify which of a), b), or c) is correct, or propose an
-> >> alternate explanation of the difference?
-> >>
->
-> We calculated bus votes values for both sc7180 and sc7280 with ICB tool,
-> above mentioned values we got for sc7280.
+Jim Wright (1):
+  ARM: dts: aspeed: everest: Add UCD90320 power sequencer
 
-I don't know what an ICB tool is. Please clarify.
+Matthew Barth (2):
+  ARM: dts: Aspeed: Everest: Add max31785 fan controller device
+  ARM: dts: Aspeed: Everest: Add pca9552 fan presence
 
-Also: just because a tool spits out numbers that doesn't mean it's
-correct. Presumably the tool could be wrong or incorrectly configured.
-We need to understand why these numbers are different.
+PriyangaRamasamy (1):
+  ARM: dts: aspeed: Everest: Add I2C components
 
--Doug
+Vishwanatha Subbanna (6):
+  ARM: dts: aspeed: rainier: Add Operator Panel LEDs
+  ARM: dts: aspeed: rainier: Add directly controlled LEDs
+  ARM: dts: aspeed: rainier: Add leds that are off PCA9552
+  ARM: dts: aspeed: rainier: Add leds that are off pic16f882
+  ARM: dts: aspeed: rainier: Add leds on optional DASD cards
+  ARM: dts: aspeed: rainier: Add leds on optional PCI cable cards
+
+ arch/arm/boot/dts/Makefile                    |    3 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts  | 1770 +++++++++++-
+ .../boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts  |   14 +
+ .../boot/dts/aspeed-bmc-ibm-rainier-4u-v2.dts |  198 ++
+ .../boot/dts/aspeed-bmc-ibm-rainier-4u.dts    |   14 +
+ .../boot/dts/aspeed-bmc-ibm-rainier-v2.dts    |  198 ++
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts  | 2367 +++++++++++++++--
+ 7 files changed, 4290 insertions(+), 274 deletions(-)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-ibm-rainier-1s4u.dts
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-ibm-rainier-4u-v2.dts
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-ibm-rainier-v2.dts
+
+-- 
+2.27.0
+
