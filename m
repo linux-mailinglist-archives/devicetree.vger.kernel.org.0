@@ -2,93 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 672C734D044
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2475234D04B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbhC2Mm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 08:42:26 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:64720 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbhC2Ml6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:41:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1617021716; x=1619613716;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XHa/uvdSReX/Iz6rxPW8tM4ztE/6qivKRg5PaEzjBh0=;
-        b=bDgO7WSQEoKRBKRxd2LC/3F2N1hoU6KhcLvX47C1riRUHHGhtdJvEWRWJn/AaUxT
-        9FIJ2fEhrTgBU03nTp1D4acLoBVIIG7g3U7uixQrb1Ucx6s6Hzfxuf2aUrXeJ7jG
-        XP4Xdfkm8jZWheIwegdGYGkOlbl8WNVTtiB+zlE7B0Q=;
-X-AuditID: c39127d2-868b870000001c91-fe-6061cb14dc80
-Received: from florix.phytec.de (florix.phytec.de [172.16.0.118])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7D.1B.07313.41BC1606; Mon, 29 Mar 2021 14:41:56 +0200 (CEST)
-Received: from Berlix.phytec.de (172.16.0.117) by Florix.phytec.de
- (172.16.0.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 29 Mar
- 2021 14:41:56 +0200
-Received: from Berlix.phytec.de ([fe80::f594:d241:d581:a5be]) by
- berlix.phytec.de ([fe80::f594:d241:d581:a5be%3]) with mapi id 15.01.2176.009;
- Mon, 29 Mar 2021 14:41:56 +0200
-From:   =?utf-8?B?U3RlZmFuIFJpZWRtw7xsbGVy?= <S.Riedmueller@phytec.de>
-To:     "festevam@gmail.com" <festevam@gmail.com>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 3/3] ARM: dts: imx6: pbab01: Set vmmc supply for both SD
- interfaces
-Thread-Topic: [PATCH 3/3] ARM: dts: imx6: pbab01: Set vmmc supply for both SD
- interfaces
-Thread-Index: AQHXJI6oDU6feJ4y+02SO/HWBz4AL6qatFcAgAAS0YA=
-Date:   Mon, 29 Mar 2021 12:41:56 +0000
-Message-ID: <64f317c57ef0493e221482d68bc0a06c83cb15d9.camel@phytec.de>
-References: <20210329112819.64043-1-s.riedmueller@phytec.de>
-         <20210329112819.64043-3-s.riedmueller@phytec.de>
-         <CAOMZO5DMnqZTedg_bb=NCZ4_cfP1sDam=N0-FrDRYTeKi+4n-g@mail.gmail.com>
-In-Reply-To: <CAOMZO5DMnqZTedg_bb=NCZ4_cfP1sDam=N0-FrDRYTeKi+4n-g@mail.gmail.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.0.116]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <94DBDCB091F67341831183E311EF8641@phytec.de>
-Content-Transfer-Encoding: base64
+        id S231146AbhC2Mpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 08:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231363AbhC2MpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:45:13 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF319C061574;
+        Mon, 29 Mar 2021 05:45:12 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a7so19240756ejs.3;
+        Mon, 29 Mar 2021 05:45:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PRjvtr4F64Lfhlb500oBv4oKg6yHpyCw2SlD0qWwryU=;
+        b=XK57e1dCm3jZAiJj1Hq1O9xpkLK+sjO6QIX20Xy5urts752G58q13Ey2E0AbxR6mEN
+         QObTaMS54TQo3/dDAl4CyiTympMoqOcljosYp9tPC3bqJawZa6pM6wSiyRbqkp4Yda+z
+         4Lsc9n+65sP7ibXp/gmHA/XOka3nVOcuTELm2/GIP4lYvabNKHe9YNQOd+JKK5G+rJ8u
+         LfkY94E/MfXvXhRPnqbMwvJkA62+sGivKE1c5tl/nK1rlBqIZNjGKJ8uwHC4v8GsKo1G
+         t6hsxWNYQsjkXIlxmP6IdUGxqN11vN4sxKJmiom6aixIUr1o10xC1JFWO4B8gXaouxqY
+         dhOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PRjvtr4F64Lfhlb500oBv4oKg6yHpyCw2SlD0qWwryU=;
+        b=jC/7d7znEN9F9TO9/BtgjG8rQTS6YPZt7dYqiJZKQVBY240RPNZhh3yNARQUJ88CvX
+         tLcvzoFHKGdEldhZzAwlOkuJPetHfJZ6nnZ+V/0wBkrP1f+QwJb3yuBJm+OriOPOlxF+
+         frsoJhDR0oIdWBhfzCPgQFsZCXb+BNCRjXlUs1v2Ev3TcrOwE7PTTkvb7U4VuOQcPYmh
+         nxeYUr2ORUBnA7/x2BJBuWsxW+vuAZkvn0mOScpW89VoepERXzMyKcosEONvHPRm23t1
+         xl8pCiRRspHp8dSbXb9W27C7BHluCpiLaKMMU7DTsNzVYhV3lS1l45wlM7Xpo3iMAXmN
+         UN1Q==
+X-Gm-Message-State: AOAM533H2oz5g1RaTNZy8FTtyviNL/EFNLbuhK4hmu4rIQ2GnDRSvKg/
+        0CpaMhyZCfeCdoOvsFF0Q9VgKjWyHF+XRCoAlU4=
+X-Google-Smtp-Source: ABdhPJzLjyvBi3ljZHfxd7NFG8eK4gJgPcDHpB4gdejVWYO7wINAxWSv/i65H/7AETTy1a3ouUk2ejg0NE7896GNpfU=
+X-Received: by 2002:a17:906:ae8d:: with SMTP id md13mr28348994ejb.275.1617021911347;
+ Mon, 29 Mar 2021 05:45:11 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsWyRoChTFfkdGKCwf11Ohbzj5xjtXh41d9i
-        1dSdLBabHl9jtej6tZLZ4vKuOWwWrXuPsFv83b6JxeLFFnEHTo+ds+6ye2xa1cnmsXlJvcfG
-        dzuYPPr/Gnh83iQXwBbFZZOSmpNZllqkb5fAlbGr+xhrwQr2iuvb77A1ME5g72Lk4JAQMJH4
-        sVOhi5GLQ0hgOZPEnb4rrBDOQ0aJDbOuMkI4mxgltj68xtLFyMnBJuAi8bntGxuILSKgK7Hi
-        RBdYEbPAHmaJE63/2EESwgKREg8n9jNCFEVJNNzpg2qwkpi8agkTyGoWAVWJk4ejQcK8Am4S
-        i44uZIZYtoNRYnb/elaQBKdAoMTHdQ1gMxkFZCU6G94xgdjMAuISm559B6uREBCQWLLnPDOE
-        LSrx8vE/qLiCRFtPJ9guZgFNifW79CFaLSRubHsLNUZRYkr3Q3aIGwQlTs58wjKBUXwWkg2z
-        ELpnIemehaR7FpLuBYysqxiFcjOTs1OLMrP1CjIqS1KT9VJSNzECo/nwRPVLOxj75ngcYmTi
-        YDzEKMHBrCTCK3wgMUGINyWxsiq1KD++qDQntfgQozQHi5I47wbekjAhgfTEktTs1NSC1CKY
-        LBMHp1QDoyFn/dvmCQFLZjX5fMg9y97xZteB1A3SZQYKC669Pjmt/+yP6LwNbuxS8x9aPfA5
-        vTLobPLui69+HYnQe3dB2ujdT4OX5abS59gOrbdkTFoYu6Z+s7/92TQ3L6Vn3/Z8++XeNans
-        uuhpm0L/hla7Hf/3b096xRyYlHj+Vq6sTPV8lbx/zzO5spRYijMSDbWYi4oTATuxG9nUAgAA
+References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-4-aford173@gmail.com>
+ <CAMuHMdXjQV7YrW5T_P4tkJk_d44NNTQ8Eu7v2ReESjg6R3tvfw@mail.gmail.com>
+In-Reply-To: <CAMuHMdXjQV7YrW5T_P4tkJk_d44NNTQ8Eu7v2ReESjg6R3tvfw@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 29 Mar 2021 07:45:00 -0500
+Message-ID: <CAHCN7xLWDx_AjtN7=moJ6VFsimuf16AJOhrxEryvdw5VnKsJwA@mail.gmail.com>
+Subject: Re: [PATCH V3 4/5] net: ethernet: ravb: Enable optional refclk
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     netdev <netdev@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRmFiaW8sDQoNCk9uIE1vbiwgMjAyMS0wMy0yOSBhdCAwODozNCAtMDMwMCwgRmFiaW8gRXN0
-ZXZhbSB3cm90ZToNCj4gT24gTW9uLCBNYXIgMjksIDIwMjEgYXQgODoyOCBBTSBTdGVmYW4gUmll
-ZG11ZWxsZXINCj4gPHMucmllZG11ZWxsZXJAcGh5dGVjLmRlPiB3cm90ZToNCj4gPiBTZXR0aW5n
-IHRoZSB2bW1jIHN1cHBsaWVzIGlzIGNydWNpYWwgc2luY2Ugb3RoZXJ3aXNlIHRoZSBzdXBwbHlp
-bmcNCj4gPiByZWd1bGF0b3JzIGdldCBkaXNhYmxlZCBhbmQgdGhlIFNEIGludGVyZmFjZXMgYXJl
-IG5vIGxvbmdlciBwb3dlcmVkDQo+ID4gd2hpY2ggbGVhZHMgdG8gc3lzdGVtIGZhaWx1cmVzIGlm
-IHRoZSBzeXN0ZW0gaXMgYm9vdGVkIGZyb20gdGhhdCBTRA0KPiA+IGludGVyZmFjZS4NCj4gDQo+
-IEl0IHNlZW1zIHRoYXQgdGhpcyBkZXNlcnZlcyBhIEZpeGVzIHRhZy4NCg0KSSB0aGluayB0aGlz
-IG11c3QgYmUgYnJva2VuIGZvciBzb21lIHRpbWUgbm93LiBNeSBndWVzcyBpcyB0aGF0IGl0IGJy
-b2tlIHdoZW4NCnRoZSBQTUlDIHN1cHBvcnQgZm9yIHRoZSBTT00gd2FzIGFkZGVkLiBTbyBJIGNh
-biBhZGQgYSBmaXhlcyB0YWcgZm9yIHRoYXQNCmNvbW1pdC4NCg0KVGhhbmtzLA0KU3RlZmFuDQoN
-Cj4gDQo+IFJldmlld2VkLWJ5OiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+DQo=
+On Thu, Mar 4, 2021 at 2:08 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Adam,
+>
+> On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
+> > For devices that use a programmable clock for the AVB reference clock,
+> > the driver may need to enable them.  Add code to find the optional clock
+> > and enable it when available.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/net/ethernet/renesas/ravb_main.c
+> > +++ b/drivers/net/ethernet/renesas/ravb_main.c
+> > @@ -2148,6 +2148,13 @@ static int ravb_probe(struct platform_device *pdev)
+> >                 goto out_release;
+> >         }
+> >
+> > +       priv->refclk = devm_clk_get_optional(&pdev->dev, "refclk");
+> > +       if (IS_ERR(priv->refclk)) {
+> > +               error = PTR_ERR(priv->refclk);
+> > +               goto out_release;
+> > +       }
+> > +       clk_prepare_enable(priv->refclk);
+> > +
+>
+> Shouldn't the reference clock be disabled in case of any failure below?
+>
+I'll generate a V4.
+
+Should I just regenerate this patch since it seems like the rest are
+OK, or should I regenerate the whole series?
+
+adam
+> >         ndev->max_mtu = 2048 - (ETH_HLEN + VLAN_HLEN + ETH_FCS_LEN);
+> >         ndev->min_mtu = ETH_MIN_MTU;
+> >
+> > @@ -2260,6 +2267,9 @@ static int ravb_remove(struct platform_device *pdev)
+> >         if (priv->chip_id != RCAR_GEN2)
+> >                 ravb_ptp_stop(ndev);
+> >
+> > +       if (priv->refclk)
+> > +               clk_disable_unprepare(priv->refclk);
+> > +
+> >         dma_free_coherent(ndev->dev.parent, priv->desc_bat_size, priv->desc_bat,
+> >                           priv->desc_bat_dma);
+> >         /* Set reset mode */
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
