@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A052434D0A5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4AB334D0AF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbhC2M5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 08:57:55 -0400
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:33450 "EHLO
-        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbhC2M5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:57:41 -0400
-Received: by mail-lj1-f180.google.com with SMTP id 15so15879208ljj.0;
-        Mon, 29 Mar 2021 05:57:40 -0700 (PDT)
+        id S230466AbhC2M67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 08:58:59 -0400
+Received: from mail-lf1-f44.google.com ([209.85.167.44]:44750 "EHLO
+        mail-lf1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231314AbhC2M6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:58:41 -0400
+Received: by mail-lf1-f44.google.com with SMTP id b83so18246261lfd.11;
+        Mon, 29 Mar 2021 05:58:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UJNxYjxrYMcId07K6NsPlynPvsrOQqM+TOZJRJlcxV0=;
-        b=FsNlsRcoqQdcAO99DklRAyuMnM0su+ortDoRzgaYWn8tWfLk6/pvizT4svuzRkLVxO
-         NIxbvy4cqvbGhOYK0YLeD1ReHFfoYBW8N+9dJWD+BuuixJXgn7G39sKNb3jav4RJ9g/I
-         xreUkf/CrQo1J7muxLF+4Wq/7GO9mvPuDzcoaq4EpAc4joj+m/TbMjLF51GWRepEirx4
-         zJHYsRK8XIYNKxJM89K519elIwrWGytHQLkPqKn0SY5hRcLPM5182BMfVRC42qLUgOQx
-         Asst3aD4chLszszJRlE8AqAuL+0hAfyK4yvQayaJBKeJEg8dhxlGEtdOHG9AUNu+rmok
-         zsAg==
-X-Gm-Message-State: AOAM533H79927FcZWva1XdnacxGwGlhNWleONBYqaQRPIkls77jN2CJx
-        kGXnTGG9t/JDZ/AO4n0axeQ=
-X-Google-Smtp-Source: ABdhPJx7/4UdgSOjVVfPgToQqq1yxgLT5E6TYnTbWd0q+VpDRtRmr88wF4Na+h1uPQTqbswOgHCZ1g==
-X-Received: by 2002:a2e:9c1:: with SMTP id 184mr18228750ljj.481.1617022660003;
-        Mon, 29 Mar 2021 05:57:40 -0700 (PDT)
+        bh=ZfS8Vt87E1ADblwrU6g+l0X23kT/AQ0c9dBIVi99eLI=;
+        b=XgGjhU0o1we/1CDlk44efjPUj/JMYAuKi7SxiE/756KM7SS8+p/asE2vfU+Iw+FCZU
+         w/vaQEaFmBIXB6qWu4wbgimVTCuPIelZOsYAhqpSE0MawFsE7quZbhxdvH03UfVhnKtd
+         NWI1uwNSrFOFc5Pn0tZ5yIDJqinl0858LL+Em52sgXBT+z9jAnwZh3R5lQ6orsbScBRP
+         6dBBZuJ2COjRdfc9cPkei/F2lSlG3XZG+cPIYPrkB327+Em1obrwyfpmZ0iJ4OxaAsiC
+         ms79b0gySAa2qvVULggtKOWhRWEY+brXHOJzLh1UV9TrNg7UvXKJSrROX4V0nbm+U7Wi
+         6Yuw==
+X-Gm-Message-State: AOAM5333u1Q8HiGd9sV329vA2yZn00w9HNGbTtQJH3ncTC+CpyccnLdV
+        wkwXgpFvfVpfftPZ/NyQYWM=
+X-Google-Smtp-Source: ABdhPJy3OFBf/wiw2VKDbATJLvfpBsQB89O5R1h6wDj2YUu1yUIHXL+rlvCQhYfh+QTVE+Lw4KWO8A==
+X-Received: by 2002:a05:6512:108b:: with SMTP id j11mr15944535lfg.289.1617022719667;
+        Mon, 29 Mar 2021 05:58:39 -0700 (PDT)
 Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
-        by smtp.gmail.com with ESMTPSA id z10sm1823970lfa.201.2021.03.29.05.57.39
+        by smtp.gmail.com with ESMTPSA id f13sm2424584ljc.20.2021.03.29.05.58.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 05:57:39 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 15:57:33 +0300
+        Mon, 29 Mar 2021 05:58:39 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 15:58:33 +0300
 From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
@@ -42,8 +42,8 @@ Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-power@fi.rohmeurope.com
-Subject: [PATCH v5 10/19] regulator: helpers: Export helper voltage listing
-Message-ID: <1200ef7a50c84327ada019b85f6527b4fc9b5ce1.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+Subject: [PATCH v5 12/19] regulator: rohm-regulator: Support SNVS HW state.
+Message-ID: <7a8323c92bcc039436b142e91bb86bbb9112aaf7.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
 References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -53,84 +53,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some drivers need to translate voltage values to selectors prior regulator
-registration. Currently a regulator_desc based list_voltages helper is only
-exported for regulators using the linear_ranges. Export similar helper also
-for regulators using simple linear mapping.
+The ROHM BD71815 supports setting voltage levels/regulator status
+for HW-states "RUN", "SUSPEND", "LPSR" and "SNVS". Add DT parsing
+helper also for SNVS state.
 
 Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 ---
 Changes since v3:
  - No changes
- drivers/regulator/helpers.c      | 36 +++++++++++++++++++++++++-------
- include/linux/regulator/driver.h |  2 ++
- 2 files changed, 30 insertions(+), 8 deletions(-)
+ drivers/regulator/rohm-regulator.c | 6 ++++++
+ include/linux/mfd/rohm-generic.h   | 6 +++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/regulator/helpers.c b/drivers/regulator/helpers.c
-index f42b394a0c46..3e19ecbf7267 100644
---- a/drivers/regulator/helpers.c
-+++ b/drivers/regulator/helpers.c
-@@ -508,6 +508,33 @@ int regulator_map_voltage_pickable_linear_range(struct regulator_dev *rdev,
- }
- EXPORT_SYMBOL_GPL(regulator_map_voltage_pickable_linear_range);
+diff --git a/drivers/regulator/rohm-regulator.c b/drivers/regulator/rohm-regulator.c
+index 63aabb8c7786..6e0d9c08ec1c 100644
+--- a/drivers/regulator/rohm-regulator.c
++++ b/drivers/regulator/rohm-regulator.c
+@@ -95,6 +95,12 @@ int rohm_regulator_set_dvs_levels(const struct rohm_dvs_config *dvs,
+ 				mask = dvs->lpsr_mask;
+ 				omask = dvs->lpsr_on_mask;
+ 				break;
++			case ROHM_DVS_LEVEL_SNVS:
++				prop = "rohm,dvs-snvs-voltage";
++				reg = dvs->snvs_reg;
++				mask = dvs->snvs_mask;
++				omask = dvs->snvs_on_mask;
++				break;
+ 			default:
+ 				return -EINVAL;
+ 			}
+diff --git a/include/linux/mfd/rohm-generic.h b/include/linux/mfd/rohm-generic.h
+index 9e2880e06950..a9144284cf6d 100644
+--- a/include/linux/mfd/rohm-generic.h
++++ b/include/linux/mfd/rohm-generic.h
+@@ -27,7 +27,8 @@ struct rohm_regmap_dev {
+ #define ROHM_DVS_LEVEL_IDLE		BIT(1)
+ #define ROHM_DVS_LEVEL_SUSPEND		BIT(2)
+ #define ROHM_DVS_LEVEL_LPSR		BIT(3)
+-#define ROHM_DVS_LEVEL_VALID_AMOUNT	4
++#define ROHM_DVS_LEVEL_SNVS		BIT(4)
++#define ROHM_DVS_LEVEL_VALID_AMOUNT	5
+ #define ROHM_DVS_LEVEL_UNKNOWN		0
  
-+/**
-+ * regulator_desc_list_voltage_linear - List voltages with simple calculation
-+ *
-+ * @desc: Regulator desc for regulator which volatges are to be listed
-+ * @selector: Selector to convert into a voltage
-+ *
-+ * Regulators with a simple linear mapping between voltages and
-+ * selectors can set min_uV and uV_step in the regulator descriptor
-+ * and then use this function prior regulator registration to list
-+ * the voltages. This is useful when voltages need to be listed during
-+ * device-tree parsing.
-+ */
-+int regulator_desc_list_voltage_linear(const struct regulator_desc *desc,
-+				       unsigned int selector)
-+{
-+	if (selector >= desc->n_voltages)
-+		return -EINVAL;
-+
-+	if (selector < desc->linear_min_sel)
-+		return 0;
-+
-+	selector -= desc->linear_min_sel;
-+
-+	return desc->min_uV + (desc->uV_step * selector);
-+}
-+EXPORT_SYMBOL_GPL(regulator_desc_list_voltage_linear);
-+
  /**
-  * regulator_list_voltage_linear - List voltages with simple calculation
-  *
-@@ -521,14 +548,7 @@ EXPORT_SYMBOL_GPL(regulator_map_voltage_pickable_linear_range);
- int regulator_list_voltage_linear(struct regulator_dev *rdev,
- 				  unsigned int selector)
- {
--	if (selector >= rdev->desc->n_voltages)
--		return -EINVAL;
--	if (selector < rdev->desc->linear_min_sel)
--		return 0;
--
--	selector -= rdev->desc->linear_min_sel;
--
--	return rdev->desc->min_uV + (rdev->desc->uV_step * selector);
-+	return regulator_desc_list_voltage_linear(rdev->desc, selector);
- }
- EXPORT_SYMBOL_GPL(regulator_list_voltage_linear);
+@@ -66,6 +67,9 @@ struct rohm_dvs_config {
+ 	unsigned int lpsr_reg;
+ 	unsigned int lpsr_mask;
+ 	unsigned int lpsr_on_mask;
++	unsigned int snvs_reg;
++	unsigned int snvs_mask;
++	unsigned int snvs_on_mask;
+ };
  
-diff --git a/include/linux/regulator/driver.h b/include/linux/regulator/driver.h
-index d7c77ee370f3..39a540111645 100644
---- a/include/linux/regulator/driver.h
-+++ b/include/linux/regulator/driver.h
-@@ -543,4 +543,6 @@ void *regulator_get_init_drvdata(struct regulator_init_data *reg_init_data);
- int regulator_desc_list_voltage_linear_range(const struct regulator_desc *desc,
- 					     unsigned int selector);
- 
-+int regulator_desc_list_voltage_linear(const struct regulator_desc *desc,
-+				       unsigned int selector);
- #endif
+ #if IS_ENABLED(CONFIG_REGULATOR_ROHM)
 -- 
 2.25.4
 
