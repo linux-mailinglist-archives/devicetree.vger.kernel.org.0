@@ -2,80 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC54F34D33E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BFA534D353
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:09:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbhC2PEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52856 "EHLO
+        id S229711AbhC2PIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbhC2PDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:03:51 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11202C061574;
-        Mon, 29 Mar 2021 08:03:51 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id n138so18948800lfa.3;
-        Mon, 29 Mar 2021 08:03:50 -0700 (PDT)
+        with ESMTP id S229910AbhC2PI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:08:26 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EC7C061574
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:08:26 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id a1so16351326ljp.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=50i/6vm6fwmnn7wcgvH81eY5FvT08NpnqhTvt5R4tYY=;
-        b=cZKgPuRSpMMu+T12m1VGG5+5GxYj8GG9zn4X5VGZcqg3xjWcjimifBZiPeoW+Y7A6H
-         /vsThmTwbF0FKRM5MF9ZVyE337FSMUZjyzNwSnIPkIpyEHeR4gpP4MTFz2Sf1QBySeFj
-         D2jcdq9UhFY7qsDQwC9rpn5fM1wA/sLQW6LV4l1yW4gM07+Ut8Ic4i+v5AnBACmohLBe
-         pBo3XtQEJkWRJ4hcNgX63aDaSsWAEfOwM0HHsn2KEd9+dCF1u4N0mrvqzfFtrJ4zK+D1
-         iIUp4ZVq2De1RwGga7l0xR+pUxyrH+/fibM4Ull28IH+B6gSndstQGS9ZP7ClEGArRou
-         3QIQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PDDmFmsHZgwdbTfVjpjnsy2iBOi2U6nao1mVmmYBSic=;
+        b=NknxoUeYE+8xYhdPNOy4TCHwUS7oxr8ZVQfzM27GSP4VpPbF7/6IVGywf8ZvgLaHTo
+         Mgm/UKLTFfhxbUWGeOcuNQX4L6kGmGP51YwiUFR0hD8Pbqo08sFuQDrJhTmd1S3JNYue
+         EfVct2+dHyokXqR4qu49Z9Eu/YQ9luAi87+beCEJantV8kRrroyCyPpNPJU1B8QD/Caj
+         1A3uTzvMVr/a4Yg7S/B0jo6vWs1gblfIYRsNHRkqNZNQrB8OxwhtvWCh0jr34HpurzJ/
+         WYUrv5v9v+8NeUM/vsFTa7KNR3pV3iI89YUCuI1vQkpQd+L/szys8vREFjg5xDn2cwnA
+         V2yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=50i/6vm6fwmnn7wcgvH81eY5FvT08NpnqhTvt5R4tYY=;
-        b=J/6C6rUQsqvlXj2+vmdB89TjcC5hBIZiJCwqYzjvopCRA9iTZA6isgqvOnXaRrpl8c
-         FdLkekImevI37QkBI1qHJk8w1sC/I/9Lh4JJRzPjLarI95PRMGBdy1U7HaWmhzlH1+OA
-         srsRuDKnChXNZQ3qTmLc6lpf1mOWoyTUp/shS9Opu272tGovqlowvVnPyyiayaMLQjNR
-         DjlnueT3eXfSunV02rx7qC6c1VtzZINPseslVuVQZi+grHdyxKFOg0kcjUpUosn0aosG
-         FRjy/2VhEJKx51uOZb6SaHvm42HJGWeX059URQC3YzYi0aYFqT/dxjIWCkDtR5oYAX4y
-         tdaA==
-X-Gm-Message-State: AOAM5333q/apQ87qJB3r8n8Tajg+3N7Xix51NI17e5bl+Y5IlMYUqZoH
-        HjfoYue/HVVDGVwPRJTvpRtqu0g0hDxCm0KjB3c=
-X-Google-Smtp-Source: ABdhPJzmrhOVB8oB8x0Md2MlAR6MpClJP1671nQ0UbEFwNGOvfn9yM8Z4SsDwBwta6rlkcnCmTFI7gH8ExwWx3U/9lQ=
-X-Received: by 2002:a19:4147:: with SMTP id o68mr17999005lfa.295.1617030229622;
- Mon, 29 Mar 2021 08:03:49 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PDDmFmsHZgwdbTfVjpjnsy2iBOi2U6nao1mVmmYBSic=;
+        b=DQjr86iIrV6gj8bFow0slTX8ApY+StpxQmVsj10eerRvASBP7SiLW8nbRmJKn9g7RD
+         zPk+84yTzPBRWO4Nl0OSSiqEgkGPInUw4aNaWd5vGjntP2hM8vkrJNeENgXPzKtz29H+
+         2/SPsa2aNBBymTi0fRt5l9CScFuT/26SbXLUy3vviKoOiK8MnWAxbW02tyXuY7YM6eWB
+         /gIDnUt2/hWJPgXt9Kxp1g0cKZceVWxQ2dLUEP9dwwQPk7xJuC3qcerXOxR6cjgOPMHx
+         53g2NIhSinsF9fTvjo0yDVuBaZTWjqYd0OyED0BJfMP2a1tHZM03PMJDK/GWoju0R1q/
+         cXvw==
+X-Gm-Message-State: AOAM532gH4ihhNtfMQxuYGCIV+Li/ZHe2+snHFFIZDvxPMKAa4MKWakb
+        R4M0uJkEypqFr1Bkhzt1MKs=
+X-Google-Smtp-Source: ABdhPJyzv+4TA8ltw+KgeNf2jfYPXfh2rNdpNFCj/iUr6AuE7N4cB3x+gwlwCt91EN/hXRPh9jYjJQ==
+X-Received: by 2002:a2e:8591:: with SMTP id b17mr17952575lji.230.1617030504907;
+        Mon, 29 Mar 2021 08:08:24 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id d4sm1865477lfs.45.2021.03.29.08.08.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 08:08:24 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH RFC] dt-bindings: mtd: allow NVMEM cells in BCM4908 partitions
+Date:   Mon, 29 Mar 2021 17:07:23 +0200
+Message-Id: <20210329150723.26584-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210329130103.65857-1-s.riedmueller@phytec.de>
-In-Reply-To: <20210329130103.65857-1-s.riedmueller@phytec.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 29 Mar 2021 12:03:38 -0300
-Message-ID: <CAOMZO5DXqEmRq=SZw_N6KEs-me+gAfB_htaLhhkwDUZ6+7QP4g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable pinmuxing
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Mon, Mar 29, 2021 at 10:01 AM Stefan Riedmueller
-<s.riedmueller@phytec.de> wrote:
->
-> The pinmuxing for the enable pin of the usbh1 node is wrong. It needs to
-> be muxed as GPIO. While at it, move the pinctrl to the vbus regulator
-> since it is actually the regulator enable pin.
->
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+Every MTD partition can be NVMEM provider now. It's not handled by the
+shared partition.yaml so add proper "compatible" to the BCM4908.
 
-Thanks for the respin:
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+Ideally I'd like to have:
+1. partition.yaml allowing "nvmem-cells" by using nvmem-cells.yaml
+2. brcm,bcm4908-partitions.yaml using partition.yaml and extending the
+   compatible list by "brcm,bcm4908-firmware"
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+I don't know if such a solution is possible to implement using YAML?
+
+Proposed solution (RFC) isn't a really clean one:
+1. It duplicates "nvmem-cells" which is already in the nvmem-cells.yaml
+2. Generic "nvmem-cells" should be part of the partition.yaml
+
+Rob? Help? :)
+---
+ .../bindings/mtd/partitions/brcm,bcm4908-partitions.yaml      | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
+index 7b113e5e3421..28aa3bdd1103 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
+@@ -32,7 +32,9 @@ patternProperties:
+     $ref: "partition.yaml#"
+     properties:
+       compatible:
+-        const: brcm,bcm4908-firmware
++        enum:
++          - brcm,bcm4908-firmware
++          - nvmem-cells
+     unevaluatedProperties: false
+ 
+ required:
+-- 
+2.26.2
+
