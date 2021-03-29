@@ -2,120 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA23F34CEFC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD34F34CF05
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbhC2L3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:29:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbhC2L3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:29:32 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0EDC061574;
-        Mon, 29 Mar 2021 04:29:31 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id k8so12489606wrc.3;
-        Mon, 29 Mar 2021 04:29:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=i2Q5jhlwjrk9FBYJg4e9MsdVUp4rHTY83siPq5FBlxc=;
-        b=tZ/j8mBOAsEl8O51Jd/uLW/7eD7Yc0kadz6MTsdOPkHO62+I2TOPHXn2I3XDFtQo6s
-         KILd/fbgO82YSdcx7sT4Cv7TYGcson5CtGe62Eh5aD/ybie/wVhfWV2nT1ZzJ1WBz9+B
-         +5bqRICvmP79uZ0Ce1nC8BH0a7/O0NkaWhu10n0PKXOrKLx+kJGvvuPRyVaX60bxzCeF
-         NUFChgzyHjgLpAkofiZqbkOM+dzdyBah9Ip2OiXIaUPK6jA78RCXSujTloex5u0Usmro
-         DTe0nF9jLinyH3KTX5ga6l82h6ERfqNwqClBmmqG3/VwOJDHSUQrEzrQZgHmstXpgab6
-         eIDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=i2Q5jhlwjrk9FBYJg4e9MsdVUp4rHTY83siPq5FBlxc=;
-        b=ju/gIPH1pausyOkD7GkuXhdLhk0H0PvipuyDGUYyfd+w0bk+TQr+c517/C84MNSpsf
-         IyJDOKarJKhW9OCXmO/LHHzzTIEPrTp1/tpAu9gsrVJrmsC+g//IUNSoGtLB7g8Z9m6J
-         topeXS+uX1u7GkOaD1AM+eMJ44B0e1esmDbHN0hQNnG1MMBgrbJFpXGP8KZ+P4lIpZhi
-         gVUs/z16UHzsvJLfVkHbDHRtThXaDtPgoAXky497i0+Dd4S6fEbEhGIYJTEYBCwuXl46
-         9r/ZTekhCLCHDdcj4V6zLVzcuOUsFrLCmTBPJKg4JEeldl9UXq+ynGtWlUr9HY4nY3Z4
-         vo0Q==
-X-Gm-Message-State: AOAM530+MmHVu52L/0SRCpqyyH9oGpKskBHg36uAQvJXPvG5qtomRBGz
-        C+rBXQaGz4Ib/qhOofjSMxU=
-X-Google-Smtp-Source: ABdhPJy/hWvL+p84DPBEAVpW9viyFKwk9h3tUV6b9J6xEIHRfpzQ202GV7+umxvUEZOSt8Cc/97NXw==
-X-Received: by 2002:a5d:6384:: with SMTP id p4mr23695472wru.368.1617017370459;
-        Mon, 29 Mar 2021 04:29:30 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id k13sm34402847wri.27.2021.03.29.04.29.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 04:29:29 -0700 (PDT)
-Subject: Re: [PATCH 2/2] dt-bindings: cpufreq: update cpu type and clock name
- for MT8173 SoC
-To:     Seiya Wang <seiya.wang@mediatek.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
-References: <20210326031227.2357-1-seiya.wang@mediatek.com>
- <20210326031227.2357-2-seiya.wang@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <e460b0b8-9e99-974d-e6bc-e6fc89177ecb@gmail.com>
-Date:   Mon, 29 Mar 2021 13:29:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230282AbhC2LbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:31:22 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:35642 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230329AbhC2LbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:31:12 -0400
+X-UUID: 7929704c2fe74511bb2266ac005820ae-20210329
+X-UUID: 7929704c2fe74511bb2266ac005820ae-20210329
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2064813091; Mon, 29 Mar 2021 19:31:08 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 29 Mar 2021 19:31:06 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 29 Mar 2021 19:31:05 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <sj.huang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH Resend v0 0/6] Mediatek pinctrl patch on mt8195 
+Date:   Mon, 29 Mar 2021 19:30:57 +0800
+Message-ID: <20210329113103.11003-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210326031227.2357-2-seiya.wang@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series includes 6 patches:
+1.add pinctrl file on mt8195.
+2.add pinctrl binding document on mt8195.
+3.add pinctrl device node on mt8195.
+4.add pinctrl driver on MT8195.
+5.add pinctrl drive for I2C related pins on MT8195.
+6.add pinctrl rsel setting on MT8195.
+
+Zhiyong Tao (6):
+  dt-bindings: pinctrl: mt8195: add pinctrl file
+  dt-bindings: pinctrl: mt8195: add binding document
+  arm64: dts: mt8195: add pinctrl device node
+  pinctrl: add pinctrl driver on mt8195
+  pinctrl: add drive for I2C related pins on MT8195
+  pinctrl: add rsel setting on MT8195
+
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |  152 ++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   21 +
+ drivers/pinctrl/mediatek/Kconfig              |    6 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8195.c     |  872 +++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  |   29 +
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |   14 +
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8195.h | 1669 +++++++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |   16 +
+ include/dt-bindings/pinctrl/mt8195-pinfunc.h  |  961 ++++++++++
+ 10 files changed, 3741 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8195.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8195.h
+ create mode 100644 include/dt-bindings/pinctrl/mt8195-pinfunc.h
+
+--
+2.18.0
 
 
-On 26/03/2021 04:12, Seiya Wang wrote:
-> Update the cpu type of cpu2 and cpu3 since MT8173 used Cortex-a72.
-> 
-> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> index ea4994b35207..ef68711716fb 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> @@ -202,11 +202,11 @@ Example 2 (MT8173 SoC):
->  
->  	cpu2: cpu@100 {
->  		device_type = "cpu";
-> -		compatible = "arm,cortex-a57";
-> +		compatible = "arm,cortex-a72";
->  		reg = <0x100>;
->  		enable-method = "psci";
->  		cpu-idle-states = <&CPU_SLEEP_0>;
-> -		clocks = <&infracfg CLK_INFRA_CA57SEL>,
-> +		clocks = <&infracfg CLK_INFRA_CA72SEL>,
->  			 <&apmixedsys CLK_APMIXED_MAINPLL>;
->  		clock-names = "cpu", "intermediate";
->  		operating-points-v2 = <&cpu_opp_table_b>;
-> @@ -214,11 +214,11 @@ Example 2 (MT8173 SoC):
->  
->  	cpu3: cpu@101 {
->  		device_type = "cpu";
-> -		compatible = "arm,cortex-a57";
-> +		compatible = "arm,cortex-a72";
->  		reg = <0x101>;
->  		enable-method = "psci";
->  		cpu-idle-states = <&CPU_SLEEP_0>;
-> -		clocks = <&infracfg CLK_INFRA_CA57SEL>,
-> +		clocks = <&infracfg CLK_INFRA_CA72SEL>,
->  			 <&apmixedsys CLK_APMIXED_MAINPLL>;
->  		clock-names = "cpu", "intermediate";
->  		operating-points-v2 = <&cpu_opp_table_b>;
-> 
