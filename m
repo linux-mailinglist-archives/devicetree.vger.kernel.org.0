@@ -2,196 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1F434D44A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95DFF34D451
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbhC2Pup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34808 "EHLO
+        id S231580AbhC2PwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231228AbhC2Puh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:50:37 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36B8C061574;
-        Mon, 29 Mar 2021 08:50:35 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id x16so13350973wrn.4;
-        Mon, 29 Mar 2021 08:50:35 -0700 (PDT)
+        with ESMTP id S231222AbhC2Pvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:51:55 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03975C061756
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:54 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id c3so12844650qkc.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vVulNAgkS7cIMGOyXspAyuoXQyG90qaflFWTYWzViY8=;
-        b=us3HZyuNffumsXVeXyRuENc7s34ifchnF542A6lj2hS+NnszHKEcwB8Y+AUtrA/8Rm
-         t/jA7hiAGrbtp/buv0has+6o9C2u24MMu26s6ZFDjJaSSWOGzyK7bnajq8Oj8QPbaLuc
-         DWdEk8Cb5XtSCAqWsy7XbwxOj5wlI8IpPvfdvp7ysAfMvL2JR1cqXn4xG/LnLKayqnVY
-         xjt14dtv0RR8gNmvsD0iM2a8LHlBSxtSIFVeeXSfZtfFltyCiW75R7Ls+dM8U/bzeykE
-         wZVC4ACAUziojXxTWq1oS011PND6G/ZPTyCIy5OlHcGsswCp4llo2Tww2d4qHlc2hqL0
-         1btw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=V3qjU94W0m6oCH9pAstUGYT+pDFUIdoKlke6iELSfpY=;
+        b=MDFfvvLK5Mx5KUuybyKzi3JYBXVAPMFnhownMqnpXnf9cddYVDT8Mz03muUdRBLo89
+         uVbTmHZ8ghNE0VAFQJE+zzIJqs19cYYVum6SB0+TqEMF6sGQAUuwmCVy/5oleHnMdmOo
+         x0j9UsokM8EVvQh7KoCTOMRR+duh6+xxvWv08=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=vVulNAgkS7cIMGOyXspAyuoXQyG90qaflFWTYWzViY8=;
-        b=bCu3CotydwpaGa01XXyB/77p+3k64qWG8IsH200tjJ0iX7bJJugSRzyl0XOIApgxjE
-         uWqtFsmx/XADeuvopePm8zJpbzkht7ZJv6na34nQdVPmErK1W5UCqaYJPQhDa5XsgxgV
-         Veyt8fiu1Myi4B1EBcPQdZcs1lMR+eebfWdbVquydDJ0ypy6TmLB2U8MfksC4/n6maoo
-         2tBCRgKSVS2+jA6uoT+QJywVbwJIdDISqNJt9vim2dmABNoPrst6+I74yISGc2NTCmkW
-         WOl2zgSUHdvhN9wZVAgv/arj5P4sxHStqdVeTn1TWBES/fqgI2fGsRleDyU5XgSStB9m
-         JxKg==
-X-Gm-Message-State: AOAM5307je0nwo6kq8MSe5DGxyXXR18V6Q4MpwJtaqpP+bd2aG/4Acm6
-        uL+rCJUHohIE0nurPCNmsRo=
-X-Google-Smtp-Source: ABdhPJy0o4dA+W1psLIjVopkFnM6kqV/xT30PKw+7t3FhVq6F4Y6LEVnDswVcB7WIALHAoUL/sGvWQ==
-X-Received: by 2002:adf:ed49:: with SMTP id u9mr29467162wro.337.1617033034649;
-        Mon, 29 Mar 2021 08:50:34 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id f2sm31416341wrq.34.2021.03.29.08.50.33
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V3qjU94W0m6oCH9pAstUGYT+pDFUIdoKlke6iELSfpY=;
+        b=mhyvxWGhOSNb61N4oY0un8B7tgISYJPuUlErSrkw2mKnGDHWQIdCUF0DvXdtGRwuWu
+         YC1e45hkMwDmYyt3zMmBteHRy/6yWHAhmqcd4RcWIcNCK//8eioJxW2GNCjqRycqZxna
+         vPkYdAf96cNnvnlRq1tdmI2aBp1wu4wOZsKyqOnJwPtTz1HOZ1Y9YIIMiOB3VIrNAwOU
+         g1NbCN4A1jYZbcOHrLpVAzD4oNxP50P1k/zarc06rQ2jnYmtfQIr0/xNvjwTsAT7xbvK
+         FArXZkfdE8AE6CBgdq/Yt6uKuCitKvU+Z0/bDljVXfuRHvH2Z22XXVo6pBiuKYNNT5gV
+         nH4A==
+X-Gm-Message-State: AOAM530N+mYfpJWSrw/T3j0RGdAyT5UUOUoW6m+MQr2oReYpp5JRwyi9
+        tQC8YAmQ04MP61piyzZCNu7ZKdXBl8HLCQ==
+X-Google-Smtp-Source: ABdhPJx5zv/Rv9HOCNsCl9lvCKNnztfPs4eITaSXdw2e3oj04QQzcwNGIpBg1t7b6CARKTgFuns1pQ==
+X-Received: by 2002:a37:ba83:: with SMTP id k125mr25335567qkf.336.1617033113601;
+        Mon, 29 Mar 2021 08:51:53 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id b10sm13424585qkg.50.2021.03.29.08.51.52
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 08:50:34 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: add MT6779 spi master dts node
-To:     Mason Zhang <Mason.Zhang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hanks.chen@mediateka.com, wsd_upstream@mediatek.com
-References: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <d3666864-cb46-755c-0d0d-d05ac9af0379@gmail.com>
-Date:   Mon, 29 Mar 2021 17:50:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        Mon, 29 Mar 2021 08:51:52 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id l15so14316894ybm.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:52 -0700 (PDT)
+X-Received: by 2002:a25:4092:: with SMTP id n140mr29624662yba.276.1617033111899;
+ Mon, 29 Mar 2021 08:51:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
+ <YFKQaXOmOwYyeqvM@google.com> <CAF6AEGtu+GBwYfkH3x=UuPs5Ouj0TxqbVjpjFEtMKKWvd1-Gbg@mail.gmail.com>
+ <YF3V8d4wB6i81fLN@orome.fritz.box> <CAF6AEGvS6Pnd-m-boqPEZdDY+VCkV5M8Ob9n6UiYWs_DxrPopQ@mail.gmail.com>
+ <CAF6AEGvPN90RGP8hYXtAksJpGc4Sf5tRpNwNnV6=sxKei0Ms6A@mail.gmail.com> <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
+In-Reply-To: <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 29 Mar 2021 08:51:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VPdFzv0gTqOjJ4z9b8EKc+G4ikt0KmDOz+MA4DYvoyaw@mail.gmail.com>
+Message-ID: <CAD=FV=VPdFzv0gTqOjJ4z9b8EKc+G4ikt0KmDOz+MA4DYvoyaw@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on sc7180-trogdor-pompom
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Clark <robdclark@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+On Fri, Mar 26, 2021 at 12:48 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Fri, Mar 26, 2021 at 9:20 AM Rob Clark <robdclark@gmail.com> wrote:
+> >
+> > On Fri, Mar 26, 2021 at 8:18 AM Rob Clark <robdclark@gmail.com> wrote:
+> > >
+> > > On Fri, Mar 26, 2021 at 5:38 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > > >
+> > > > On Wed, Mar 17, 2021 at 06:53:04PM -0700, Rob Clark wrote:
+> > > > > On Wed, Mar 17, 2021 at 4:27 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > > > > >
+> > > > > > On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
+> > > > > > > The sc7180-trogdor-pompom board might be attached to any number of a
+> > > > > > > pile of eDP panels. At the moment I'm told that the list might include:
+> > > > > > > - KD KD116N21-30NV-A010
+> > > > > > > - KD KD116N09-30NH-A016
+> > > > > > > - Starry 2081116HHD028001-51D
+> > > > > > > - Sharp LQ116M1JW10
+> > > > > > >
+> > > > > > > It should be noted that while the EDID programmed in the first 3
+> > > > > > > panels indicates that they should run with exactly the same timing (to
+> > > > > > > keep things simple), the 4th panel not only needs different timing but
+> > > > > > > has a different resolution.
+> > > > > > >
+> > > > > > > As is true in general with eDP panels, we can figure out which panel
+> > > > > > > we have and all the info needed to drive its pixel clock by reading
+> > > > > > > the EDID. However, we can do this only after we've powered the panel
+> > > > > > > on. Powering on the panels requires following the timing diagram in
+> > > > > > > each panel's datasheet which specifies delays between certain
+> > > > > > > actions. This means that, while we can be quite dynamic about handling
+> > > > > > > things we can't just totally skip out on describing the panel like we
+> > > > > > > could do if it was connected to an external-facing DP port.
+> > > > > > >
+> > > > > > > While the different panels have slightly different delays, it's
+> > > > > > > possible to come up with a set of unified delays that will work on all
+> > > > > > > the panels. From reading the datasheets:
+> > > > > > > * KD KD116N21-30NV-A010 and KD KD116N09-30NH-A016
+> > > > > > >   - HPD absent delay: 200 ms
+> > > > > > >   - Unprepare delay: 150 ms (datasheet is confusing, might be 500 ms)
+> > > > > > > * Starry 2081116HHD028001-51D
+> > > > > > >   - HPD absent delay: 100 ms
+> > > > > > >   - Enable delay: (link training done till enable BL): 200 ms
+> > > > > > >   - Unprepare delay: 500 ms
+> > > > > > > * Sharp LQ116M1JW10
+> > > > > > >   - HPD absent delay: 200 ms
+> > > > > > >   - Unprepare delay: 500 ms
+> > > > > > >   - Prepare to enable delay (power on till backlight): 100 ms
+> > > > > > >
+> > > > > > > Unified:
+> > > > > > > - HPD absent delay: 200 ms
+> > > > > > > - Unprepare delay: 500 ms
+> > > > > > > - Enable delay: 200 ms
+> > > > > > >
+> > > > > > > NOTE: in theory the only thing that we _really_ need unity on is the
+> > > > > > > "HPD absent delay" since once the panel asserts HPD we can read the
+> > > > > > > EDID and could make per-panel decisions if we wanted.
+> > > > > > >
+> > > > > > > Let's create a definition of "a panel that can be attached to pompom"
+> > > > > > > as a panel that provides a valid EDID and can work with the standard
+> > > > > > > pompom power sequencing. If more panels are later attached to pompom
+> > > > > > > then it's fine as long as they work in a compatible way.
+> > > > > > >
+> > > > > > > One might ask why we can't just use a generic string here and provide
+> > > > > > > the timings directly in the device tree file. As I understand it,
+> > > > > > > trying to describe generic power sequencing in the device tree is
+> > > > > > > frowned upon and the one instance (SD/MMC) is regarded as a mistake
+> > > > > > > that shouldn't be repeated. Specifying a power sequence per board (or
+> > > > > > > per board class) feels like a reasonable compromise. We're not trying
+> > > > > > > to define fully generic power sequence bindings but we can also take
+> > > > > > > advantage of the semi-probable properties of the attached device.
+> > > > > > >
+> > > > > > > NOTE: I believe that past instances of supporting this type of thing
+> > > > > > > have used the "white lie" approach. One representative panel was
+> > > > > > > listed in the device tree. The power sequencings of this
+> > > > > > > representative panel were OK to use across all panels that might be
+> > > > > > > attached and other differences were handled by EDID. This patch
+> > > > > > > attempts to set a new precedent and avoid the need for the white lie.
+> > > > > > >
+> > > > > > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > > > > > > ---
+> > > > > >
+> > > > > > Sounds reasonable to me if DT maintainers can live with this abstract
+> > > > > > hardware definition. It's clearer than the 'white lie' approach.
+> > > > >
+> > > > > Yeah, it is a weird grey area between "discoverable" and "not
+> > > > > discoverable".. but I favor DT reflecting reality as much as
+> > > > > possible/feasible, so I think this is definity cleaner than "white
+> > > > > lies"
+> > > >
+> > > > This is practically no different than the "white lie". I suppose you
+> > > > could perhaps call it "more honest", if you want.
+> > > >
+> > > > The point remains that unless we describe exactly which panel we're
+> > > > dealing with, we ultimately have no way of properly quirking anything if
+> > > > we ever have to. Also, once we allow this kind of wildcard we can
+> > > > suddenly get into a situation where people might want to reuse this on
+> > > > something that's not at all a google-pompom board because the same
+> > > > particular power sequence happens to work on on some other board.
+> > > >
+> > > > Similarly I can imagine a situation where we could now have the same
+> > > > panel supported by multiple different wildcard compatible strings. How
+> > > > is that supposed to be any cleaner than what we have now?
+> > > >
+> > > > And I still keep wondering why bootloaders can't be taught about these
+> > > > kinds of things. We have in the past discussed various solutions where
+> > > > the bootloader could detect the type of panel connected and set the
+> > > > proper compatible string.
+> > >
+> > > The bootloader cannot detect the panel without powering up the panel,
+> > > which it normally does not do if you are not in dev-mode (it would add
+> > > a significant amount of time to bootup, which is why we can't do this)
+> >
+> > what if we had a sort of multi-choice panel node:
+> >
+> >    panel: panel {
+> >      compatible = "panel,one-of";
+> >      compatible-one-of = "vendor1,panel-a", "vendor2,panel-b",
+> > "vendor3,panel-c";
+> >   };
+> >
+> > The kernel could construct power sequence timings that are the
+> > superset of all the possible panels.  That seems about as explicit as
+> > we could get in this sort of case.
+>
+> If we were to go this route, I'm inclined to say just shove all the
+> possible panel compatibles into 'compatible'. That kind of breaks the
+> notion of most specific to least specific. OTOH, it is saying the set
+> of panels are somehow 'compatible' with each other.
+>
+> If there's not some level of compatibility between the panels, then
+> it's still the bootloader's problem.
+
+I guess I missed all the fun! OK, so I think the approach is:
+
+1. List all the possible panels straight in the "compatible" string in
+arbitrary order.
 
 
-On 26/02/2021 11:59, Mason Zhang wrote:
-> this patch add spi master dts node for mt6779 SOC.
-> 
-> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> index 370f309d32de..ca72eb09cff9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> @@ -219,6 +219,102 @@
->  			status = "disabled";
->  		};
->  
-> +		spi0: spi0@1100a000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1100a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI0>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
+2. We'll change the interpretation of "compatible" but just for panels.
 
-Please also update binding description accordingling and add as another patch. I
-wasn't able to find a 2/2 neither. I foudn v1 2/2 which on a quick look seemed
-the same as this patch.
+2a) Normal interpretation of "compatible" (from devicetree spec) is
+most specific to least specific. We look at the first "compatible"
+string. If we have a driver for that specific device, use it. If not
+then move on to the next "compatible" and look for a driver for it.
 
-Regards,
-Matthias
+2b) Interpretation of "compatible" for panels nodes: an unordered list
+of possible panels that might be stuffed. In order to be listed like
+this there must logically be a way to drive things in a way that would
+be compatible with all possible panels here.
 
-> +
-> +		spi1: spi1@11010000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11010000 0 0x1000>;
-> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI1>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi2: spi2@11012000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11012000 0 0x1000>;
-> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI2>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi3: spi3@11013000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11013000 0 0x1000>;
-> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI3>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi4: spi4@11018000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11018000 0 0x1000>;
-> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI4>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi5: spi5@11019000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11019000 0 0x1000>;
-> +			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI5>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi6: spi6@1101d000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1101d000 0 0x1000>;
-> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI6>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi7: spi7@1101e000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1101e000 0 0x1000>;
-> +			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI7>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
->  		audio: clock-controller@11210000 {
->  			compatible = "mediatek,mt6779-audio", "syscon";
->  			reg = <0 0x11210000 0 0x1000>;
-> 
+
+Presumably no existing panels are relying on the old interpretation?
+Personally I like Rob Clark's "panel,one-of" a bit better just because
+it doesn't require the redefinition of a standard property, but if
+everyone likes the redefinition then I won't object.
+
+
+-Doug
