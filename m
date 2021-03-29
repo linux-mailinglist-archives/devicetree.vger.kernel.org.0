@@ -2,282 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FDD934D0F3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F93634D0F9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbhC2NIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 09:08:07 -0400
-Received: from foss.arm.com ([217.140.110.172]:51378 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231224AbhC2NHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 09:07:33 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A2C1C1474;
-        Mon, 29 Mar 2021 06:07:31 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1A45B3F7D7;
-        Mon, 29 Mar 2021 06:07:29 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 14:07:25 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     srikanth.thokala@intel.com
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, andriy.shevchenko@linux.intel.com,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com, kw@linux.com,
-        maz@kernel.org, gustavo.pimentel@synopsys.com
-Subject: Re: [PATCH v8 2/2] PCI: keembay: Add support for Intel Keem Bay
-Message-ID: <20210329130725.GA4983@e121166-lin.cambridge.arm.com>
-References: <20210218021757.21931-1-srikanth.thokala@intel.com>
- <20210218021757.21931-3-srikanth.thokala@intel.com>
+        id S231295AbhC2NIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 09:08:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231635AbhC2NIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:08:06 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EA6C061574
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 06:08:03 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id o16so1805733ljp.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 06:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5DqD91IdBjvvLGakNnhfDBTd0+KmCKC+LSrm3UXS08I=;
+        b=aQ2tRvbk8eNabR1nUHwL4qvrlFFN3lGOpyYD0XHjWW8taibXINCCi38XGNJuhJJA/y
+         T/GLCoU6DT856kETVKorfaqVP7kHDFRhpXHjUDtzo0wxxJpWFzE6HTAM13Qf71Mp34PM
+         Whm6o+VaYjKF1vGAqzMzaeWi11tLLSM3fBya8zEWZ0hbODIV4FY9p9KroMQFT7zaLquF
+         EvifELyl7n669BX0e9FtdT4NGVikad9zpnzTnPWaYC0HZJawziRqlNc+n7QpYbnazHnY
+         y7Y95IszWHR80v9GDXwruNyq2ZdvQc7LzRhHcLjjrlhZDyrjXna5LF2nCH0+UnBdN8Lc
+         XzuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5DqD91IdBjvvLGakNnhfDBTd0+KmCKC+LSrm3UXS08I=;
+        b=gk6WDt/t60apBn8pVVwxHbZCLmBcq7o7dxpHsa2LVQrOuHiVaCBlbt8Jkdr1o0YqCu
+         USwvO2QajvYf20DjULcJ4Mznr0w6OGWt9CKtBcCkadSDfmY+2Zdl8AKbYI4u79thGK6h
+         Qi4zwvfGHSEppnSEPKUpwBT1hbyaU+fIFm2Xym7vUr7/8rkTnDwF2DC52pp3Bv7D0eBB
+         tsCohL0/nCCkM1m9cmpSWrNu/LaPfTuUlBNIkVT1WM5WOkUrjHSql+/whD9PehBr4Zba
+         NFCssCH/K640TxKbprClhy8YlhZl5B7ofZM0IFkBZGp0x43OypyUQSR8aGsGdsM02lxp
+         KjYQ==
+X-Gm-Message-State: AOAM53136z9KUn6gkin+KzalTCAjryTmDAzGBDsq6nN9TknnuYtYiTzj
+        gZrW19JSfZ0Jzg79YWBuzH2Ahw==
+X-Google-Smtp-Source: ABdhPJwND9qPzXfn/Ylkr6FGtKR1ouYOoUzz8tuK3mvKPRuV9RsGnTzxB2Jg68iYZ0axe+GvjRiRfA==
+X-Received: by 2002:a2e:8084:: with SMTP id i4mr18426714ljg.122.1617023282174;
+        Mon, 29 Mar 2021 06:08:02 -0700 (PDT)
+Received: from localhost.localdomain (c-14cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.20])
+        by smtp.gmail.com with ESMTPSA id x4sm2434511ljj.91.2021.03.29.06.08.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 06:08:01 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Ferruh Yigit <fery@cypress.com>,
+        Javier Martinez Canillas <javier@osg.samsung.com>
+Subject: [PATCH v2] Input: cyttsp - Convert bindings to YAML and extend
+Date:   Mon, 29 Mar 2021 15:07:58 +0200
+Message-Id: <20210329130758.2082126-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210218021757.21931-3-srikanth.thokala@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+ Marc, Gustavo]
+This converts the CYTTSP "Cypress TrueTouch Standard Product"
+to YAML bindings and fixes and adds some things in the process:
 
-On Thu, Feb 18, 2021 at 07:47:57AM +0530, srikanth.thokala@intel.com wrote:
-> +static irqreturn_t keembay_pcie_irq_handler(int irq, void *arg)
-> +{
-> +	struct keembay_pcie *pcie = arg;
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct pcie_port *pp = &pci->pp;
-> +	u32 val, mask, status;
-> +
-> +	val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
-> +	mask = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-> +
-> +	status = val & mask;
-> +	if (!status)
-> +		return IRQ_NONE;
-> +
-> +	if (status & MSI_CTRL_INT)
-> +		dw_handle_msi_irq(pp);
-> +
-> +	writel(status, pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int keembay_pcie_setup_irq(struct keembay_pcie *pcie)
-> +{
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct device *dev = pci->dev;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	int irq, ret;
-> +
-> +	irq = platform_get_irq_byname(pdev, "pcie");
-> +	if (irq < 0)
-> +		return irq;
-> +
-> +	ret = devm_request_irq(dev, irq, keembay_pcie_irq_handler,
-> +			       IRQF_SHARED | IRQF_NO_THREAD, "pcie", pcie);
-Mmm. What's this "pcie" line is actually signaling ? It looks like
-MSIs are reported through it and for that AFAIK the dwc core should
-set-up a chained IRQ in the core code unless the pcie_port->msi_irq is
-set (which is what this driver does).
+- Rename the bindings file to cypress,cy8ctma340 after the main
+  product in the series.
+- Add proper compatibles for the two known products:
+  CY8CTMA340 and CY8CTST341.
+- Deprecate "cypress,cyttsp-spi" and "cypress,cyttsp-i2c"
+  because device compatibles should be named after the
+  hardware and not after which bus they are connected to.
+  The topology implicitly tells us which bus it is and what
+  interface to used.
+- Add VCPIN and VDD supplies, these are present just like
+  on the CY8CTMA140.
 
-If DWC core code can't handle this host controller MSI logic, the
-MSI handling should be setup as a chained IRQ, not an IRQ action,
-this is an IRQ layering issue/abuse that came up in the past,
-I don't want to add more core that relies on it.
+Cc: devicetree@vger.kernel.org
+Cc: Ferruh Yigit <fery@cypress.com>
+Cc: Javier Martinez Canillas <javier@osg.samsung.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Use minItems and maxItems directly without -items
+- Drop u32 type from all properties ending with "-ms"
+  that thus have implicit types.
+- Add maintiner to Cc.
 
-Lorenzo
+Patch to add the new compatibles to the Linux driver is sent
+separately.
+---
+ .../input/touchscreen/cypress,cy8ctma340.yaml | 149 ++++++++++++++++++
+ .../bindings/input/touchscreen/cyttsp.txt     |  93 -----------
+ 2 files changed, 149 insertions(+), 93 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
 
-> +	if (ret)
-> +		dev_err(dev, "Failed to request IRQ: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static void keembay_pcie_ep_init(struct dw_pcie_ep *ep)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-> +
-> +	writel(EDMA_INT_EN, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-> +}
-> +
-> +static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-> +				     enum pci_epc_irq_type type,
-> +				     u16 interrupt_num)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +
-> +	switch (type) {
-> +	case PCI_EPC_IRQ_LEGACY:
-> +		/* Legacy interrupts are not supported in Keem Bay */
-> +		dev_err(pci->dev, "Legacy IRQ is not supported\n");
-> +		return -EINVAL;
-> +	case PCI_EPC_IRQ_MSI:
-> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-> +	case PCI_EPC_IRQ_MSIX:
-> +		return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-> +	default:
-> +		dev_err(pci->dev, "Unknown IRQ type %d\n", type);
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct pci_epc_features keembay_pcie_epc_features = {
-> +	.linkup_notifier	= false,
-> +	.msi_capable		= true,
-> +	.msix_capable		= true,
-> +	.reserved_bar		= BIT(BAR_1) | BIT(BAR_3) | BIT(BAR_5),
-> +	.bar_fixed_64bit	= BIT(BAR_0) | BIT(BAR_2) | BIT(BAR_4),
-> +	.align			= SZ_16K,
-> +};
-> +
-> +static const struct pci_epc_features *
-> +keembay_pcie_get_features(struct dw_pcie_ep *ep)
-> +{
-> +	return &keembay_pcie_epc_features;
-> +}
-> +
-> +static const struct dw_pcie_ep_ops keembay_pcie_ep_ops = {
-> +	.ep_init	= keembay_pcie_ep_init,
-> +	.raise_irq	= keembay_pcie_ep_raise_irq,
-> +	.get_features	= keembay_pcie_get_features,
-> +};
-> +
-> +static const struct dw_pcie_host_ops keembay_pcie_host_ops = {
-> +};
-> +
-> +static int keembay_pcie_add_pcie_port(struct keembay_pcie *pcie,
-> +				      struct platform_device *pdev)
-> +{
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct pcie_port *pp = &pci->pp;
-> +	struct device *dev = &pdev->dev;
-> +	u32 val;
-> +	int ret;
-> +
-> +	pp->ops = &keembay_pcie_host_ops;
-> +	pp->msi_irq = -ENODEV;
-> +
-> +	pcie->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(pcie->reset))
-> +		return PTR_ERR(pcie->reset);
-> +
-> +	ret = keembay_pcie_probe_clocks(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = readl(pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
-> +	val |= PHY0_SRAM_BYPASS;
-> +	writel(val, pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
-> +
-> +	writel(PCIE_DEVICE_TYPE, pcie->apb_base + PCIE_REGS_PCIE_CFG);
-> +
-> +	ret = keembay_pcie_pll_init(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = readl(pcie->apb_base + PCIE_REGS_PCIE_CFG);
-> +	writel(val | PCIE_RSTN, pcie->apb_base + PCIE_REGS_PCIE_CFG);
-> +	keembay_ep_reset_deassert(pcie);
-> +
-> +	ret = dw_pcie_host_init(pp);
-> +	if (ret) {
-> +		keembay_ep_reset_assert(pcie);
-> +		dev_err(dev, "Failed to initialize host: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-> +	if (IS_ENABLED(CONFIG_PCI_MSI))
-> +		val |= MSI_CTRL_INT_EN;
-> +	writel(val, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-> +
-> +	return 0;
-> +}
-> +
-> +static int keembay_pcie_probe(struct platform_device *pdev)
-> +{
-> +	const struct keembay_pcie_of_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	struct keembay_pcie *pcie;
-> +	struct dw_pcie *pci;
-> +	enum dw_pcie_device_mode mode;
-> +	int ret;
-> +
-> +	data = device_get_match_data(dev);
-> +	if (!data)
-> +		return -ENODEV;
-> +
-> +	mode = (enum dw_pcie_device_mode)data->mode;
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	pci = &pcie->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &keembay_pcie_ops;
-> +
-> +	pcie->mode = mode;
-> +
-> +	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-> +	if (IS_ERR(pcie->apb_base))
-> +		return PTR_ERR(pcie->apb_base);
-> +
-> +	ret = keembay_pcie_setup_irq(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	switch (pcie->mode) {
-> +	case DW_PCIE_RC_TYPE:
-> +		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_HOST))
-> +			return -ENODEV;
-> +
-> +		return keembay_pcie_add_pcie_port(pcie, pdev);
-> +	case DW_PCIE_EP_TYPE:
-> +		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_EP))
-> +			return -ENODEV;
-> +
-> +		pci->ep.ops = &keembay_pcie_ep_ops;
-> +		return dw_pcie_ep_init(&pci->ep);
-> +	default:
-> +		dev_err(dev, "Invalid device type %d\n", pcie->mode);
-> +		return -ENODEV;
-> +	}
-> +}
-> +
-> +static const struct keembay_pcie_of_data keembay_pcie_rc_of_data = {
-> +	.mode = DW_PCIE_RC_TYPE,
-> +};
-> +
-> +static const struct keembay_pcie_of_data keembay_pcie_ep_of_data = {
-> +	.mode = DW_PCIE_EP_TYPE,
-> +};
-> +
-> +static const struct of_device_id keembay_pcie_of_match[] = {
-> +	{
-> +		.compatible = "intel,keembay-pcie",
-> +		.data = &keembay_pcie_rc_of_data,
-> +	},
-> +	{
-> +		.compatible = "intel,keembay-pcie-ep",
-> +		.data = &keembay_pcie_ep_of_data,
-> +	},
-> +	{}
-> +};
-> +
-> +static struct platform_driver keembay_pcie_driver = {
-> +	.driver = {
-> +		.name = "keembay-pcie",
-> +		.of_match_table = keembay_pcie_of_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +	.probe  = keembay_pcie_probe,
-> +};
-> +builtin_platform_driver(keembay_pcie_driver);
-> -- 
-> 2.17.1
-> 
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+new file mode 100644
+index 000000000000..29eb0b7ebe6a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+@@ -0,0 +1,149 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/cypress,cy8ctma340.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cypress CY8CTMA340 series touchscreen controller bindings
++
++description: The Cypress CY8CTMA340 series (also known as "CYTTSP" after
++  the marketing name Cypress TrueTouch Standard Product) touchscreens can
++  be connected to either I2C or SPI buses.
++
++maintainers:
++  - Javier Martinez Canillas <javier@dowhile0.org>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  $nodename:
++    pattern: "^touchscreen(@.*)?$"
++
++  compatible:
++    oneOf:
++      - const: cypress,cy8ctma340
++      - const: cypress,cy8ctst341
++      - const: cypress,cyttsp-spi
++        description: Legacy compatible for SPI connected CY8CTMA340
++        deprecated: true
++      - const: cypress,cyttsp-i2c
++        description: Legacy compatible for I2C connected CY8CTMA340
++        deprecated: true
++
++  reg:
++    description: I2C address when used on the I2C bus, or the SPI chip
++      select index when used on the SPI bus
++
++  clock-frequency:
++    description: I2C client clock frequency, defined for host when using
++      the device on the I2C bus
++    minimum: 0
++    maximum: 400000
++
++  spi-max-frequency:
++    description: SPI clock frequency, defined for host, defined when using
++      the device on the SPI bus. The throughput is maximum 2 Mbps so the
++      typical value is 2000000, if higher rates are used the total throughput
++      needs to be restricted to 2 Mbps.
++    minimum: 0
++    maximum: 6000000
++
++  interrupts:
++    description: Interrupt to host, must be flagged as
++      IRQ_TYPE_EDGE_FALLING.
++    maxItems: 1
++
++  vcpin-supply:
++    description: Analog power supply regulator on VCPIN pin
++
++  vdd-supply:
++    description: Digital power supply regulator on VDD pin
++
++  reset-gpios:
++    description: Reset line for the touchscreen, should be tagged
++      as GPIO_ACTIVE_LOW
++
++  bootloader-key:
++    description: the 8-byte bootloader key that is required to switch
++      the chip from bootloader mode (default mode) to application mode
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 8
++    maxItems: 8
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-fuzz-x: true
++  touchscreen-fuzz-y: true
++
++  active-distance:
++    description: the distance in pixels beyond which a touch must move
++      before movement is detected and reported by the device
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 15
++
++  active-interval-ms:
++    description: the minimum period in ms between consecutive
++      scanning/processing cycles when the chip is in active mode
++    minimum: 0
++    maximum: 255
++
++  lowpower-interval-ms:
++    description: the minimum period in ms between consecutive
++      scanning/processing cycles when the chip is in low-power mode
++    minimum: 0
++    maximum: 2550
++
++  touch-timeout-ms:
++    description: minimum time in ms spent in the active power state while no
++      touches are detected before entering low-power mode
++    minimum: 0
++    maximum: 2550
++
++  use-handshake:
++    description: enable register-based handshake (boolean). This should only
++      be used if the chip is configured to use 'blocking communication with
++      timeout' (in this case the device generates an interrupt at the end of
++      every scanning/processing cycle)
++    $ref: /schemas/types.yaml#/definitions/flag
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - bootloader-key
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      num-cs = <1>;
++      cs-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
++
++      touchscreen@0 {
++        compatible = "cypress,cy8ctma340";
++        reg = <0>;
++        interrupt-parent = <&gpio>;
++        interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&gpio 21 GPIO_ACTIVE_LOW>;
++        vdd-supply = <&ldo_aux1_reg>;
++        vcpin-supply = <&ldo_aux2_reg>;
++        bootloader-key = /bits/ 8 <0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07>;
++        touchscreen-size-x = <480>;
++        touchscreen-size-y = <800>;
++        active-interval-ms = <0>;
++        touch-timeout-ms = <255>;
++        lowpower-interval-ms = <10>;
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt b/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
+deleted file mode 100644
+index 6ee274aa8b03..000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
++++ /dev/null
+@@ -1,93 +0,0 @@
+-* Cypress cyttsp touchscreen controller
+-
+-Required properties:
+- - compatible		: must be "cypress,cyttsp-i2c" or "cypress,cyttsp-spi"
+- - reg			: Device I2C address or SPI chip select number
+- - spi-max-frequency	: Maximum SPI clocking speed of the device (for cyttsp-spi)
+- - interrupts		: (gpio) interrupt to which the chip is connected
+-			  (see interrupt binding[0]).
+- - bootloader-key	: the 8-byte bootloader key that is required to switch
+-			  the chip from bootloader mode (default mode) to
+-			  application mode.
+-			  This property has to be specified as an array of 8
+-			  '/bits/ 8' values.
+-
+-Optional properties:
+- - reset-gpios		: the reset gpio the chip is connected to
+-			  (see GPIO binding[1] for more details).
+- - touchscreen-size-x	: horizontal resolution of touchscreen (in pixels)
+- - touchscreen-size-y	: vertical resolution of touchscreen (in pixels)
+- - touchscreen-fuzz-x	: horizontal noise value of the absolute input device
+-			  (in pixels)
+- - touchscreen-fuzz-y	: vertical noise value of the absolute input device
+-			  (in pixels)
+- - active-distance	: the distance in pixels beyond which a touch must move
+-			  before movement is detected and reported by the device.
+-			  Valid values: 0-15.
+- - active-interval-ms	: the minimum period in ms between consecutive
+-			  scanning/processing cycles when the chip is in active mode.
+-			  Valid values: 0-255.
+- - lowpower-interval-ms	: the minimum period in ms between consecutive
+-			  scanning/processing cycles when the chip is in low-power mode.
+-			  Valid values: 0-2550
+- - touch-timeout-ms	: minimum time in ms spent in the active power state while no
+-			  touches are detected before entering low-power mode.
+-			  Valid values: 0-2550
+- - use-handshake	: enable register-based handshake (boolean). This should
+-			  only be used if the chip is configured to use 'blocking
+-			  communication with timeout' (in this case the device
+-			  generates an interrupt at the end of every
+-			  scanning/processing cycle).
+-
+-[0]: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+-[1]: Documentation/devicetree/bindings/gpio/gpio.txt
+-
+-Example:
+-	&i2c1 {
+-		/* ... */
+-		cyttsp@a {
+-			compatible = "cypress,cyttsp-i2c";
+-			reg = <0xa>;
+-			interrupt-parent = <&gpio0>;
+-			interrupts = <28 0>;
+-			reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+-
+-			touchscreen-size-x = <800>;
+-			touchscreen-size-y = <480>;
+-			touchscreen-fuzz-x = <4>;
+-			touchscreen-fuzz-y = <7>;
+-
+-			bootloader-key = /bits/ 8 <0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08>;
+-			active-distance = <8>;
+-			active-interval-ms = <0>;
+-			lowpower-interval-ms = <200>;
+-			touch-timeout-ms = <100>;
+-		};
+-
+-		/* ... */
+-	};
+-
+-	&mcspi1 {
+-		/* ... */
+-		cyttsp@0 {
+-			compatible = "cypress,cyttsp-spi";
+-			spi-max-frequency = <6000000>;
+-			reg = <0>;
+-			interrupt-parent = <&gpio0>;
+-			interrupts = <28 0>;
+-			reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+-
+-			touchscreen-size-x = <800>;
+-			touchscreen-size-y = <480>;
+-			touchscreen-fuzz-x = <4>;
+-			touchscreen-fuzz-y = <7>;
+-
+-			bootloader-key = /bits/ 8 <0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08>;
+-			active-distance = <8>;
+-			active-interval-ms = <0>;
+-			lowpower-interval-ms = <200>;
+-			touch-timeout-ms = <100>;
+-		};
+-
+-		/* ... */
+-	};
+-- 
+2.29.2
+
