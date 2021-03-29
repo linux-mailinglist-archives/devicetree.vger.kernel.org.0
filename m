@@ -2,140 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2515B34D0C6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22DC734D0CF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:02:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231565AbhC2NAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 09:00:37 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:37845 "EHLO
-        mail-lf1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231719AbhC2NAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:00:21 -0400
-Received: by mail-lf1-f42.google.com with SMTP id q29so18230982lfb.4;
-        Mon, 29 Mar 2021 06:00:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5cuEkWsts5CYm8tzF18/ipAE9RcejE/Tr2lA/A3e7EE=;
-        b=H68mRpgK2wqtwKVL52A/XK7Q/psxP1kT4vZXek4/O7+Hyr6ZqvGgvnMwEOqOVf9i5C
-         nse/T0qD1ZRqICvnkEqlJkLU+6paQJKqqgzBd65CJnxRQvlUVCbP2K2ZmKXgW30x2eAZ
-         c/4+Hknuxy2BMRprffs3msV6j86f69SHLzcNMiXHA7cVpyKY/SvCCvK6HZ+WFLtNYykU
-         6LOnSsEHuFiye/gJ/WdQq1l1YJRjDC5lyFs9iUDtxRS50vorytcI7y7DpfTW+8s0o7pW
-         W6dn8HkRLPBBrCk4dgBjqFZh3qYvas4eE9YTCO+Ydc9q2Bn33CO+rDMvlO3b+7si0w3D
-         esAQ==
-X-Gm-Message-State: AOAM5326ZRLZizV+wcFyjc1DyvTg2+fo2yS4j7ZzDPJOYRNjvIoy3eN5
-        KGCex+p6WE+1Gtf3jcUfV24=
-X-Google-Smtp-Source: ABdhPJx2mlhd+2xIytYJ0VJGbLsLlnBBpw0YSunyfF6gdod0AB0h5RWeVDJ8g1oRHK+9q7NueHtPMA==
-X-Received: by 2002:ac2:5444:: with SMTP id d4mr16866969lfn.126.1617022819870;
-        Mon, 29 Mar 2021 06:00:19 -0700 (PDT)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
-        by smtp.gmail.com with ESMTPSA id m6sm1917321lfb.150.2021.03.29.06.00.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 06:00:19 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 16:00:13 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: [PATCH v5 16/19] regulator: bd71815: use ramp-delay helper
-Message-ID: <31db9c2bf1e9e1883d8caf4bf3b90475a8a1166e.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+        id S231299AbhC2NBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 09:01:39 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:65312 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231742AbhC2NBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:01:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1617022864; x=1619614864;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=KkyaLvXgnh8FHwhgimfkJzNBhe8FYXfqUyA0puTFtrg=;
+        b=NICHpzJr7Tv+1CxFlfsYlHFDQlNu/cEgLx12UmKOodcGMnv0YrHwyK8OALvIKfJp
+        olUvWhJq5sISZcgTbNeC4HppmIGcA5n7Nx3vxZueiCxAUrLcOXYFx+DkvoNBqcZb
+        r5qap9lPJXYXDsrKGnh/lIzO5YhFeANsEPUf3BZQuLw=;
+X-AuditID: c39127d2-85cb770000001c91-35-6061cf90f966
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 8E.4B.07313.09FC1606; Mon, 29 Mar 2021 15:01:04 +0200 (CEST)
+Received: from lws-riedmueller.phytec.de ([172.16.23.108])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021032915010496-253808 ;
+          Mon, 29 Mar 2021 15:01:04 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH v2 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable pinmuxing
+Date:   Mon, 29 Mar 2021 15:01:01 +0200
+Message-Id: <20210329130103.65857-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 29.03.2021 15:01:04,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 29.03.2021 15:01:05
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrALMWRmVeSWpSXmKPExsWyRoCBS3fC+cQEg53zLCzmHznHavHwqr/F
+        qqk7WSw2Pb7GatH1ayWzxeVdc9gsWvceYbf4u30Ti8WLLeIOnB47Z91l99i0qpPNY/OSeo+N
+        73YwefT/NfD4vEkugC2KyyYlNSezLLVI3y6BK2PTcq2ChTwVk3v3sTYwdnN1MXJySAiYSDRu
+        nMXWxcjFISSwjVHi1pbdzBDONUaJJy//MoFUsQkYSSyY1ghmiwjkSJzauJkFxGYW6GSS+H0y
+        GMQWFvCVmDD/EmsXIwcHi4CqxNf9qSBhXgEbibN3F7JBLJOXmHnpOztEXFDi5MwnLBDxK4wS
+        e26qQ9hCEqcXn2WGGK8tsWzha+YJjHyzkLTMQpJawMi0ilEoNzM5O7UoM1uvIKOyJDVZLyV1
+        EyMwVA9PVL+0g7FvjschRiYOxkOMEhzMSiK8wgcSE4R4UxIrq1KL8uOLSnNSiw8xSnOwKInz
+        buAtCRMSSE8sSc1OTS1ILYLJMnFwSjUwRnvN3qn6d4rkSqbHMR8X3fue9vt83kerwim++7fZ
+        zOCIqH0RMUf/0aNqzqVn7CLfJ6RmsQl7ny14cd5dql/X1Jt31uepq1/ES79X8mL7+72jZim7
+        0+vD32KsZpUY9HOYv+u+u95b45H8MX4tQ9PP2htOfF87r3pGzTsvpYa+fy9FwlmkN/hdVmIp
+        zkg01GIuKk4EALO2rFFDAgAA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use generic regamp ramp-delay helper function instead of implementing own.
+The pinmuxing for the enable pin of the usbh1 node is wrong. It needs to
+be muxed as GPIO. While at it, move the pinctrl to the vbus regulator
+since it is actually the regulator enable pin.
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
 ---
-Changes since v4:
- - new patch
- drivers/regulator/bd71815-regulator.c | 37 +++++----------------------
- 1 file changed, 6 insertions(+), 31 deletions(-)
+Changes in v2:
+ - Use default pad ctl value instead of 0x80000000
 
-diff --git a/drivers/regulator/bd71815-regulator.c b/drivers/regulator/bd71815-regulator.c
-index b1448e34c629..00bab1307c14 100644
---- a/drivers/regulator/bd71815-regulator.c
-+++ b/drivers/regulator/bd71815-regulator.c
-@@ -264,36 +264,7 @@ static int buck12_set_hw_dvs_levels(struct device_node *np,
-  * 10: 2.50mV/usec	10mV 4uS
-  * 11: 1.25mV/usec	10mV 8uS
-  */
--static int bd7181x_buck12_set_ramp_delay(struct regulator_dev *rdev,
--					 int ramp_delay)
--{
--	struct bd71815_pmic *pmic = rdev_get_drvdata(rdev);
--	int id = rdev->desc->id;
--	unsigned int ramp_value = BD71815_BUCK_RAMPRATE_10P00MV;
--
--	switch (ramp_delay) {
--	case 1 ... 1250:
--		ramp_value = BD71815_BUCK_RAMPRATE_1P25MV;
--		break;
--	case 1251 ... 2500:
--		ramp_value = BD71815_BUCK_RAMPRATE_2P50MV;
--		break;
--	case 2501 ... 5000:
--		ramp_value = BD71815_BUCK_RAMPRATE_5P00MV;
--		break;
--	case 5001 ... 10000:
--		ramp_value = BD71815_BUCK_RAMPRATE_10P00MV;
--		break;
--	default:
--		ramp_value = BD71815_BUCK_RAMPRATE_10P00MV;
--		dev_err(pmic->dev,
--			"%s: ramp_delay: %d not supported, setting 10000mV//us\n",
--			rdev->desc->name, ramp_delay);
--	}
--
--	return regmap_update_bits(pmic->regmap, BD71815_REG_BUCK1_MODE + id*0x1,
--			BD71815_BUCK_RAMPRATE_MASK, ramp_value << 6);
--}
-+static const unsigned int bd7181x_ramp_table[] = { 1250, 2500, 5000, 10000 };
- 
- static int bd7181x_led_set_current_limit(struct regulator_dev *rdev,
- 					int min_uA, int max_uA)
-@@ -429,7 +400,7 @@ static const struct regulator_ops bd7181x_buck12_regulator_ops = {
- 	.set_voltage_sel = bd7181x_buck12_set_voltage_sel,
- 	.get_voltage_sel = bd7181x_buck12_get_voltage_sel,
- 	.set_voltage_time_sel = regulator_set_voltage_time_sel,
--	.set_ramp_delay = bd7181x_buck12_set_ramp_delay,
-+	.set_ramp_delay = regulator_set_ramp_delay_regmap,
+ arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/d=
+ts/imx6qdl-phytec-pfla02.dtsi
+index 7a1e53195785..9f39c926cc08 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+@@ -31,6 +31,8 @@ reg=5Fusb=5Fotg=5Fvbus: regulator@0 {
+=20
+ 		reg=5Fusb=5Fh1=5Fvbus: regulator@1 {
+ 			compatible =3D "regulator-fixed";
++			pinctrl-names =3D "default";
++			pinctrl-0 =3D <&pinctrl=5Fusbh1=5Fvbus>;
+ 			reg =3D <1>;
+ 			regulator-name =3D "usb=5Fh1=5Fvbus";
+ 			regulator-min-microvolt =3D <5000000>;
+@@ -328,9 +330,9 @@ MX6QDL=5FPAD=5FKEY=5FROW0=5F=5FUART4=5FRX=5FDATA	0x1b0b1
+ 			>;
+ 		};
+=20
+-		pinctrl=5Fusbh1: usbh1grp {
++		pinctrl=5Fusbh1=5Fvbus: usbh1vbusgrp {
+ 			fsl,pins =3D <
+-				MX6QDL=5FPAD=5FGPIO=5F0=5F=5FUSB=5FH1=5FPWR		0x80000000
++				MX6QDL=5FPAD=5FGPIO=5F0=5F=5FGPIO1=5FIO00		0x1b0b0
+ 			>;
+ 		};
+=20
+@@ -415,8 +417,6 @@ &uart4 {
+=20
+ &usbh1 {
+ 	vbus-supply =3D <&reg=5Fusb=5Fh1=5Fvbus>;
+-	pinctrl-names =3D "default";
+-	pinctrl-0 =3D <&pinctrl=5Fusbh1>;
+ 	status =3D "disabled";
  };
- 
- static const struct regulator_ops bd7181x_led_regulator_ops = {
-@@ -499,6 +470,10 @@ static const struct regulator_ops bd7181x_led_regulator_ops = {
- 			.vsel_mask = 0x3f,				\
- 			.enable_reg = (ereg),				\
- 			.enable_mask = 0x04,				\
-+			.ramp_reg = (ereg),				\
-+			.ramp_mask = BD71815_BUCK_RAMPRATE_MASK,	\
-+			.ramp_delay_table = bd7181x_ramp_table,		\
-+			.n_ramp_values = ARRAY_SIZE(bd7181x_ramp_table),\
- 			.of_parse_cb = buck12_set_hw_dvs_levels,	\
- 		},							\
- 		.dvs = (_dvs),						\
--- 
-2.25.4
+=20
+--=20
+2.25.1
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
