@@ -2,159 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8453A34D50C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 18:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432D734D558
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 18:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbhC2Q0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 12:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbhC2QZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 12:25:53 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E270C0613DC
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:25:38 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id q3so12922873qkq.12
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:25:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jztd5AwJm/fvH4fWUcE2uu3MOmcPF16IqdUeZ0+QaXA=;
-        b=KajWM90pu4syudeTTfZfPIslohQWrOxBbIFjv7IgjSIugY8agIwogQVVr+5ynnJDmh
-         W8H74erJgaG1nfF8YWmLAzwAVoIdAOGgPFUmabr1o5Z6g2BzKM7BM3ymZ0JD/QoOgvI8
-         f/6dhynoxw3VHSmbj60YkJB/e3ok7pwDEWJCU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jztd5AwJm/fvH4fWUcE2uu3MOmcPF16IqdUeZ0+QaXA=;
-        b=LUpYdcQ6vv6b2zH9u7ydLslWPWXdWFYdSQCXUAygcAtwFJEKqUgPEeRTfG3SAP3nkH
-         IRAHezAW9u9+S/xxIl4NJP+A9yCAgOdmOIIjuvV68ikKWVhkW9pZofcQbvwXw/CYpBsy
-         ywIXDw/M0zwXzSuKvaubydGwzJLMzw8zy6Q1kWRmV+uNxqETK6XSwfesxYTUmaSATW8i
-         i6rhEx0OTffVGJS/gZUJLOcDNLQHU0twbIor6/DxFytPUH/okcP0o+ckyrLICXiEueVs
-         m1iuFmDraPXZxQOLxkCymcdSg3EsG5ikGol6opnaojihW9p8t/II2GHoIYe7wJVpm5Wz
-         tYIQ==
-X-Gm-Message-State: AOAM531LiwnmBuRzv6GWl+Bxh0ijEUOC14MlTGfOpwTkclHT4VAN20d9
-        nTJBI8hG7cKrAZfjdcUF496Xm9LCXcMqxQ==
-X-Google-Smtp-Source: ABdhPJx8hOZeDkmeRKrMtlDP6Vh3Yua1Lue/RXj7Akaq5lhnqoOhM4sdOzjnywtn9O0CHp8mf0k8yQ==
-X-Received: by 2002:ae9:ee07:: with SMTP id i7mr25425714qkg.233.1617035137962;
-        Mon, 29 Mar 2021 09:25:37 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id q125sm13671467qkf.68.2021.03.29.09.25.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 09:25:37 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id k3so4006388ybh.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 09:25:36 -0700 (PDT)
-X-Received: by 2002:a25:3741:: with SMTP id e62mr36095324yba.343.1617035136321;
- Mon, 29 Mar 2021 09:25:36 -0700 (PDT)
+        id S231145AbhC2QpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 12:45:18 -0400
+Received: from smtp-17.italiaonline.it ([213.209.10.17]:38564 "EHLO libero.it"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230482AbhC2QpH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 12:45:07 -0400
+Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
+ ([87.20.116.197])
+        by smtp-17.iol.local with ESMTPA
+        id Quy8lKyqctpGHQuyEliOkJ; Mon, 29 Mar 2021 18:42:33 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1617036153; bh=BrNKkRQtWd5xquv9TwU2ha5NNM/KSP7ccLi3tRmSmNo=;
+        h=From;
+        b=X6V3ykASzNscbC0iUVXp9q9q+Y4fNLeRRvcXrndrWb123fjybiBY5SNzbfz9Y1YpV
+         4sqEbhrd8O41ofW4xZhZnvZfERCszHD8brEcjzXtiZsBcaXn5SBTg/JxZmisDewzb1
+         8/8dPqBEPgN21KQukPNHE8zq81dvMdsHzJ1ZDoufAbTYjp/7CChBWeXH8Sv60iIRwp
+         uNoypeC98cUPkd11b9iuTUEjqrZKI9jJIRFMQxv4tWbEpi+MBJDjfxIIs4jAxXSwUJ
+         V2r+N9AGW7MsEQHQXYVtxiJjV961TLU3NlwZlKedAjl1rFJ1TGQ/A0wwGyYxGsDg8f
+         Lz+NInesBXSeQ==
+X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=60620379 cx=a_exe
+ a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
+ a=IkcTkHD0fZMA:10 a=wWb8P1eRJa4rfLIeBvsA:9 a=QEXdDO2ut3YA:10
+ a=fCgQI5UlmZDRPDxm0A3o:22
+From:   Dario Binacchi <dariobin@libero.it>
+To:     linux-kernel@vger.kernel.org
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Dario Binacchi <dariobin@libero.it>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: [PATCH v3 0/4] clk: ti: add am33xx spread spectrum clock support
+Date:   Mon, 29 Mar 2021 18:42:17 +0200
+Message-Id: <20210329164222.26794-1-dariobin@libero.it>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
- <20210326000907.GA1965415@robh.at.kernel.org>
-In-Reply-To: <20210326000907.GA1965415@robh.at.kernel.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 29 Mar 2021 09:25:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XqG8oH5HCttKSNYJV2eHwLxq-tm1C+UFLn+cAHUrBaHg@mail.gmail.com>
-Message-ID: <CAD=FV=XqG8oH5HCttKSNYJV2eHwLxq-tm1C+UFLn+cAHUrBaHg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on sc7180-trogdor-pompom
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfIn27ZCUTmtRp+5x956SWoq43721p+yw9pLk/daDddlqNQ/gz0EePul9ixgUr+xfaol7JtaGqlt16lM+6lUrob04UJPZ1187PdtRMIG9GhvLriHyJWcj
+ vOaA0ECpRQE5zy06Uo1ctYjWpibCahNpI1C177MEuGwHbSKCtevpGCrT5Lg92dLHOw6YGVU9l995kCO9/oLD7tQItD2ArOvLm2VOr5kA1V3WNtXRmfHImbD2
+ LYzYI9knJxkEUQizaVC6DgHwFIHIIkrXBVOc1KR9hrYMkdf5kR+GU/FO9ujMdMSs7yU5pAGIoFotkfKEv6iW6/EYcWeXf4h5J83fQhu7wOxXjiBU6F/SBQWb
+ AtaSNsCZwlsVSRHe6IGY4Jh4beNn3OfZnzjBWbi8CBi1UjUzZe6EPQsPtgg4t72BXxIHE80B7UIlLM4BGw2GMPWlhHYAocy2m1HYvouRRI0dnxPw8rWzTE7b
+ y79QESQJOKoYedTmHipmpznZ6r8NqfkIv09VHixSw07fdSAAawMzq3yB+EvBiF6wdoWjENuu18gaLCHm5iyLjydekC5sDezDkPFyaiK84P2UqGAGK9Xq3hfO
+ p6NiE5ihyjPEnBXwMQ1b5u7faJ231nU9oiM+62QLTw8zyw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Thu, Mar 25, 2021 at 5:09 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
-> > The sc7180-trogdor-pompom board might be attached to any number of a
-> > pile of eDP panels. At the moment I'm told that the list might include:
-> > - KD KD116N21-30NV-A010
-> > - KD KD116N09-30NH-A016
-> > - Starry 2081116HHD028001-51D
-> > - Sharp LQ116M1JW10
-> >
-> > It should be noted that while the EDID programmed in the first 3
-> > panels indicates that they should run with exactly the same timing (to
-> > keep things simple), the 4th panel not only needs different timing but
-> > has a different resolution.
-> >
-> > As is true in general with eDP panels, we can figure out which panel
-> > we have and all the info needed to drive its pixel clock by reading
-> > the EDID. However, we can do this only after we've powered the panel
-> > on. Powering on the panels requires following the timing diagram in
-> > each panel's datasheet which specifies delays between certain
-> > actions. This means that, while we can be quite dynamic about handling
-> > things we can't just totally skip out on describing the panel like we
-> > could do if it was connected to an external-facing DP port.
->
-> Is this a 'standard' eDP connector? AFAICT, there does seem to be
-> such a thing.
-
-To answer this one: there's not any "standard" physical plug as far as
-I can tell. There's a connector on the board side for the LCD that has
-a whole hodgepodge of signals on it. Maybe USB for a camera. Some
-power signals. Maybe a PWM for a backlight. Maybe some DMIC signals.
-eDP signals which might be anywhere from 1 to 4 lanes. HPD (which is
-really a "panel ready" signal for eDP). The size / style of connector
-and the exact set of signals (and their ordering) is board specific.
-You then get a board-specific cable that splits things out. Some might
-go to a camera/MIC sub board. Some go to the panel and hook onto a
-panel-specific connector which has pin count and orderings defined by
-that panel. :-P
+As reported by the TI spruh73x RM, MPU and LCD modules support spread
+spectrum clocking (SSC) on their output clocks. SSC is used to spread
+the spectral peaking of the clock to reduce any electromagnetic
+interference (EMI) that may be caused due to the clock’s fundamental
+or any of its harmonics.
+The series allows you to enable and adjust the spread spectrum clocking
+for all am33xx PLLs for which it is supported.
 
 
-> I've said in the past I'd be okay with a edp-connector
-> node. If that needs just the "HPD absent delay" property, I think that
-> would be okay. It's just a never ending stream of new properties with
-> each new panel that I don't want to see.
+Changes in v3:
+- Add '-hz' suffix to "ti,ssc-modfreq" binding.
+- Add Tony Lindgren acked tag.
+- Use "ti,ssc-modfreq-hz" binding instead of "ti,ssc-modfreq".
 
-Thinking about this we'd need at least one other property right now
-which is an enable delay. Specifically at least one panel I've
-supported recently lied about HPD for a short period after bootup.
-Specifically see commit 667d73d72f31 ("drm: panel: simple: Delay HPD
-checking on boe_nv133fhm_n61 for 15 ms"). ...and, of course, the
-existing power supply / enable signals that "simple-panel" already
-has.
+Changes in v2:
+- Remove SSC registers from dpll_core_ck@490 node (SSC is not supported)
+- Add SSC registers to dpll_mpu_ck@488 node.
+- Move the DT changes to the previous patch in the series.
 
-Also: if we weren't going to add the other delay properties in the
-device tree, we'd have to add the code right away that used the EDID
-to set other delays. That wouldn't be the end of the world, but it
-would be code to write.
+Dario Binacchi (4):
+  clk: ti: fix typo in routine description
+  dt-bindings: ti: dpll: add spread spectrum support
+  ARM: dts: am33xx-clocks: add spread spectrum support
+  clk: ti: add am33xx spread spectrum clock support
 
+ .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++
+ arch/arm/boot/dts/am33xx-clocks.dtsi          |  4 +-
+ drivers/clk/ti/dpll.c                         | 42 +++++++++
+ drivers/clk/ti/dpll3xxx.c                     | 87 ++++++++++++++++++-
+ include/linux/clk/ti.h                        | 24 +++++
+ 5 files changed, 174 insertions(+), 3 deletions(-)
 
-One last thought to add: I've looked at ~10 panels specs recently.
-Though they are all a little different from each other, I will say
-that almost every one of them seems to have the exact same timing
-diagram in it just with different numbers filled in. To me that backs
-up the idea that you can/should do the power sequence with a fairly
-standard (parameterized) driver. I can't link the datasheets I have
-but searching for "edp panel datasheet" finds me this random
-datasheet:
+-- 
+2.17.1
 
-https://www.data-modul.com/sites/default/files/products/NV156QUM-N72_specification_12039472.pdf
-
-See "8.0 POWER SEQUENCE" in that document. All the panels have a
-nearly identical diagram with different numbers filled in. You can
-kinda tell it was copied from some other panel since some numbers
-(like T4) aren't even defined.
-
--Doug
