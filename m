@@ -2,109 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BDA34CED3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2066434CF44
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232638AbhC2LY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbhC2LYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:24:25 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FAFC061574;
-        Mon, 29 Mar 2021 04:24:24 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id p19so6434441wmq.1;
-        Mon, 29 Mar 2021 04:24:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=e1a+kwffYzcMpQSHQ60B4gj/nqd34pu7XrkW9Q/Wixk=;
-        b=JMaGuu1/1AzbM8khYOCfsDA83fsN5lLMMQFTORmksRJjFb3rHTdeYvFJlZQUUbKzZ0
-         9We3OPZGsM2B6oIDjrodT/7NDDBtos84rwVAXbbeCCoWPVcQeAo07JzZCnOuKrlrk51Y
-         Had8K4Zw2SfS6OQ4nh8t4o14ILF14kr1oowJlxzldlNGqpC3fI3UniJBXwCz7YZr2hFk
-         +7c5jUfZ1OPfFAPZ8NW2m2NMnBoVrep5HBCeqX5WGgpiCixDDobOlUCL0/BK3xJOt9+V
-         cantxZWUwthSRe1tW7x0e7kJHLqWOsv5u/Qt37HKR02juAAzdUycyVAwfbtmBcb48hdO
-         EGWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e1a+kwffYzcMpQSHQ60B4gj/nqd34pu7XrkW9Q/Wixk=;
-        b=EmAKrxMdgu/F19mAbzsjP6h4CawX/mZeRPLR2B1823aH9e3/uytygt/eJeBxM5VNcl
-         K4ynPgGGmueON+DDequple8/rx6noXDMughL2Q7aQnG69y02AT7DPOd+aTxjvOfPAiop
-         KaMMeVw3cRko2gThzxlKy5Z/xNc61SlWOjlBi5XJPHKAksEjvGiD620SbozyVttVUZ8/
-         uq2nqb7zyZ0RezLD0rdxW1nOtUGNtTbU2ZHCc0gvI3LCOoGTt4ase9N23jFY1SB4kVIj
-         eQdzITUxySwbteIaHdYSyDNRefCjl863plIGWVeyFmXqRhYaVayp20REoSnJ+vrWnSp/
-         jS3w==
-X-Gm-Message-State: AOAM531QqDmz2FkNLF/00afYo8dS+5PCa/bQY/Rl16upvnBTm9nw2Fwu
-        t11RGwwVeyZh43iaFNFSe4inrwvOEh/zmQ==
-X-Google-Smtp-Source: ABdhPJxO5uaGZe0cOQbx0p1x8BvQjis31yBV3+DstmIQFPcMrOOWCSYX7J5Kah/aMmyTwI9nQ1zaQw==
-X-Received: by 2002:a05:600c:3790:: with SMTP id o16mr24435924wmr.110.1617017063717;
-        Mon, 29 Mar 2021 04:24:23 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id b65sm24516037wmh.4.2021.03.29.04.24.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 04:24:23 -0700 (PDT)
-Subject: Re: [PATCH v2 13/13] arm64: dts: mt8183: update wakeup register
- offset
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        id S230523AbhC2Lnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:43:41 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:63022 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230506AbhC2Lna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:43:30 -0400
+X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Mon, 29 Mar 2021 07:43:29 EDT
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1617017307; x=1619609307;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=84GErCcn3zk/3XbjrFZiXM4ByN4FwJAVu0bVQMG9bQY=;
+        b=NnQyzmWx2i+eFokHEduz1ENAoYaC2m1tHzr912EjJQ3tMRjFvBy+Hkg8IqgnaO/V
+        lMjHLfTiEK8ES9V91EnmtpwsogsJJY3fy2OXqWR7Yjp7BuxQSnDKpW8FqKp4Rnc1
+        5HgfKUOit1770FwUQrqI1bHD5xzqISGz2IujBYtdSKE=;
+X-AuditID: c39127d2-868b870000001c91-68-6061b9dbda95
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 3A.8A.07313.BD9B1606; Mon, 29 Mar 2021 13:28:27 +0200 (CEST)
+Received: from lws-riedmueller.phytec.de ([172.16.23.108])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021032913282721-253196 ;
+          Mon, 29 Mar 2021 13:28:27 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-References: <1616482975-17841-1-git-send-email-chunfeng.yun@mediatek.com>
- <1616482975-17841-13-git-send-email-chunfeng.yun@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <a11c871f-4bfc-c069-b413-7fb6cd203b6f@gmail.com>
-Date:   Mon, 29 Mar 2021 13:24:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable pinmuxing
+Date:   Mon, 29 Mar 2021 13:28:17 +0200
+Message-Id: <20210329112819.64043-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <1616482975-17841-13-git-send-email-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 29.03.2021 13:28:27,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 29.03.2021 13:28:27
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrELMWRmVeSWpSXmKPExsWyRoCBS/f2zsQEg++zlCzmHznHavHwqr/F
+        qqk7WSw2Pb7GatH1ayWzxeVdc9gsWvceYbf4u30Ti8WLLeIOnB47Z91l99i0qpPNY/OSeo+N
+        73YwefT/NfD4vEkugC2KyyYlNSezLLVI3y6BK2P79W+MBfe4K3Zd5WtgvMnZxcjJISFgIjFx
+        /nGWLkYuDiGBbYwSm3vvsEE41xglTjZ9ZASpYhMwklgwrZEJxBYRyJE4tXEzC4jNLNDJJPH7
+        ZDCILSzgJTHrxWywehYBVYkvU3eA2bwCNhJvfn9hgdgmLzHz0nd2iLigxMmZT8A2SwhcYZRo
+        Wb+NFaJISOL04rPMEAu0JZYtfM08gZFvFpKeWUhSCxiZVjEK5WYmZ6cWZWbrFWRUlqQm66Wk
+        bmIEhuvhieqXdjD2zfE4xMjEwXiIUYKDWUmEl/V0bIIQb0piZVVqUX58UWlOavEhRmkOFiVx
+        3g28JWFCAumJJanZqakFqUUwWSYOTqkGxuWCdk/5hM7d27f++sXdZs7R6yxO9QrPs1gXrfbB
+        MjH3Kc+8CSp6rfrnvb3StfLerRDZdmndUkGLfWqBn5N5AvULleQdjT0jfhezmCeVLJSyV7Bl
+        YT5x2vnz4hMhZ6uf12a1rem8qP/2zJOCTSlbDOqWHV794qWSvd7s5TvrlIq3MVpv5GitVmIp
+        zkg01GIuKk4EAECI/PVFAgAA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The pinmuxing for the enable pin of the usbh1 node is wrong. It needs to
+be muxed as GPIO. While at it, move the pinctrl to the vbus regulator
+since it is actually the regulator enable pin.
 
+Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+---
+ arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-On 23/03/2021 08:02, Chunfeng Yun wrote:
-> Use wakeup control register offset exactly, and update revision
-> number
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v2: modify revision format
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 80519a145f13..9ea84d636556 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -874,7 +874,7 @@
->  			clocks = <&infracfg CLK_INFRA_UNIPRO_SCK>,
->  				 <&infracfg CLK_INFRA_USB>;
->  			clock-names = "sys_ck", "ref_ck";
-> -			mediatek,syscon-wakeup = <&pericfg 0x400 0>;
-> +			mediatek,syscon-wakeup = <&pericfg 0x420 101>;
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/d=
+ts/imx6qdl-phytec-pfla02.dtsi
+index 7a1e53195785..995e99952aca 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+@@ -31,6 +31,8 @@ reg=5Fusb=5Fotg=5Fvbus: regulator@0 {
+=20
+ 		reg=5Fusb=5Fh1=5Fvbus: regulator@1 {
+ 			compatible =3D "regulator-fixed";
++			pinctrl-names =3D "default";
++			pinctrl-0 =3D <&pinctrl=5Fusbh1=5Fvbus>;
+ 			reg =3D <1>;
+ 			regulator-name =3D "usb=5Fh1=5Fvbus";
+ 			regulator-min-microvolt =3D <5000000>;
+@@ -328,9 +330,9 @@ MX6QDL=5FPAD=5FKEY=5FROW0=5F=5FUART4=5FRX=5FDATA	0x1b0b1
+ 			>;
+ 		};
+=20
+-		pinctrl=5Fusbh1: usbh1grp {
++		pinctrl=5Fusbh1=5Fvbus: usbh1vbusgrp {
+ 			fsl,pins =3D <
+-				MX6QDL=5FPAD=5FGPIO=5F0=5F=5FUSB=5FH1=5FPWR		0x80000000
++				MX6QDL=5FPAD=5FGPIO=5F0=5F=5FGPIO1=5FIO00		0x80000000
+ 			>;
+ 		};
+=20
+@@ -415,8 +417,6 @@ &uart4 {
+=20
+ &usbh1 {
+ 	vbus-supply =3D <&reg=5Fusb=5Fh1=5Fvbus>;
+-	pinctrl-names =3D "default";
+-	pinctrl-0 =3D <&pinctrl=5Fusbh1>;
+ 	status =3D "disabled";
+ };
+=20
+--=20
+2.25.1
 
-applied to v5.12-next/dts64
-
-Thanks
-
->  			#address-cells = <2>;
->  			#size-cells = <2>;
->  			ranges;
-> 
