@@ -2,134 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7EC34D1B2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F1734D1AF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbhC2NrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 09:47:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
+        id S231847AbhC2NrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 09:47:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbhC2Nqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:46:51 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849EBC061574;
-        Mon, 29 Mar 2021 06:46:50 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id o16so12986863wrn.0;
-        Mon, 29 Mar 2021 06:46:50 -0700 (PDT)
+        with ESMTP id S231698AbhC2NrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:47:02 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19D0C061762
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 06:47:01 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id b83so18492366lfd.11
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 06:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VSdiOrRt5A5A6ik3jTpUtYldOZfvz8Pi38YucpFr6l8=;
-        b=MCxyXVvcvdvVoXMVp3fxHBlxeNbm0IApsEt53rYdfT2KvWP0Fy3id135pTc+dZdIDX
-         6QFBnBke6LhWl4locC7ajLCVbNeUazqfvD9XrUawL/6kzf1V6XNjNAFSALC3tSpoX+kR
-         KaR/AMntZT04YpyR7jX3BQ1+YuPpe+yebmmeIaZ9UsI67dSoXTQLk37WTCDQnhOYrN4d
-         evwlIxgxwKu25DZsI2jtFL5GI4oUY/L0SEqeAs6Lk7ItE8f3sZt+MfZsD4ZAHomL6tPs
-         H9y5KR/OkI47MRN93bfq3yW2kfx4kzR6usGKGrwuCtHV4Ss9EFHrsRBzPBhpM0xPNpX1
-         +VEA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=53xSj5DfXd9H1GpbknrIL485EwLdmQCgbXSAs/QT+/o=;
+        b=yhPWMG13vhBx59H2VpJc5BK8cY4/JSTE4JcwVrJ+ZIjc4fA911utIUFjfl5tIzLq9R
+         qSfY+azU5HU3eE/ivaeU6HdLvDQGMnm2jBcupDt95pGHdfk1ZLCrY7g4kZYAEc22Pgtt
+         1UIhdAr0aERFI/nNcSGaOsQ8y2EgROOz85LpRyvAZkQZQGTlIwu8+7UdEGXUOZX2rE6g
+         pEo3efviOuF+PXy+3kLaX3SMNQtB32DCX1BFNfDRHYzmWO1YX99xPNkOylJWee+UVa6m
+         1jkomPURjQile+F4rkWZZMoYX1oPwop3LBFUwA1hOU+4kHE4AEiArUXJmVY59ROOZPvf
+         PbWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VSdiOrRt5A5A6ik3jTpUtYldOZfvz8Pi38YucpFr6l8=;
-        b=lO9aZWqm4Cxg3orzrZGD35Su+AtZuMgLBe0YEOvvThfx/X6PIxMI26Hg6X53rttPgo
-         kobV/crmlJfeZR4D0SdIlFkLg1sY9pZ51sWF+/kx/r+SNE7aMqnkKCWFwTfJgOzRiKKY
-         amAiRwAiRUoAZVFM04KqbkR2fzO/7/TuaipruubMPWaLXNyPK3R/t3VJS5lTTZ3E/Bkp
-         TEi+N7KM8j13HaKspUhvCgmV7g9IorStVmkJ+/qN09m0Irw4r72WJkyfdQEm4lWqaqZ6
-         HTXyKfDb8h23Fd843oERD28czr0/GqHfUDBAdpw6R3ZA2bf72SNZnj1gPC2Bf1oM1K01
-         mHWQ==
-X-Gm-Message-State: AOAM532fvBb2VMdzHHJ2VyY8r7OlOLNM+JgP+pDhPFdIVsqGC64q1oFD
-        c2m19K6vGr5Pzf4vILhEAO+lt1/50hoCNQ==
-X-Google-Smtp-Source: ABdhPJzGJUBfC8jn1gAhsDG4i4XVmBFR5fUJC6pZnEJYT0DqoJ040+EuDixRc4Y8BFCQ2QHGOqdung==
-X-Received: by 2002:a05:6000:1a8a:: with SMTP id f10mr27951844wry.232.1617025609329;
-        Mon, 29 Mar 2021 06:46:49 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id x14sm29409219wrw.13.2021.03.29.06.46.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 06:46:48 -0700 (PDT)
-Subject: Re: [PATCH v5 07/13] arm64: dts: mediatek: mt2712: harmonize node
- names
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Cawa Cheng <cawa.cheng@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20210316092232.9806-1-chunfeng.yun@mediatek.com>
- <20210316092232.9806-7-chunfeng.yun@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <f4ab274f-3dd4-69f3-2bd3-cc786491bad8@gmail.com>
-Date:   Mon, 29 Mar 2021 15:46:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=53xSj5DfXd9H1GpbknrIL485EwLdmQCgbXSAs/QT+/o=;
+        b=SSshtsdht/BtVIzrfMU/qMIGkMkG4JYubcmMSv9YKZ/Z8UHu5xQT+fmv6qPRTwTgBw
+         6FvhNSf+KZU/nY2WFDdWZzGLfqzRhKT4aDzfaNjxdqnyDs/fDITJnzLOTcXuteMNS7Fh
+         zsGF+176LWyni7GIPMlT1Jg81WZrOuHIQQ1MRNVK5fZxKTkayJS9R9EcgfbJbKKA16R8
+         MzMh0Zd5nsiVGPUOVVXNCMoB4ZnepXlJ/KTcCg+P0Qg1WbbvWBRddYE1eZa8QgVYRKB+
+         Bsy/wysMH8QSy2l/fgX2w86L/sm+4Xwq3r8AY8EVCZ9qvtR7KH3KFld6k6GIc+exif1P
+         Plmg==
+X-Gm-Message-State: AOAM530m5k85SN+73t6yPJq9qqr0KSwRYwQTohdbs00ApvXAOLQtblyb
+        Z8pUoYwz2n4IaVTsuFYWHcobBzUkGuSgV33J/JP0TA==
+X-Google-Smtp-Source: ABdhPJx6Axg9ofLpquCRIjMCOhfnJFBxvPAErT/NqyJYw09/tE2YGisLWKD/dFqP42J60embz/z2dwtQ7xqxrQLa49s=
+X-Received: by 2002:a19:548:: with SMTP id 69mr16333313lff.465.1617025620232;
+ Mon, 29 Mar 2021 06:47:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210316092232.9806-7-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-2-brad@pensando.io>
+In-Reply-To: <20210329015938.20316-2-brad@pensando.io>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 29 Mar 2021 15:46:48 +0200
+Message-ID: <CACRpkda2XvgoLENQbh2dFVQqgm=fxF4=ZwG-T-DBmLjLWxABCA@mail.gmail.com>
+Subject: Re: [PATCH v2 01/13] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 29, 2021 at 3:59 AM Brad Larson <brad@pensando.io> wrote:
 
+> This GPIO driver is for the Pensando Elba SoC which
+> provides control of four chip selects on two SPI busses.
+>
+> Signed-off-by: Brad Larson <brad@pensando.io>
 
-On 16/03/2021 10:22, Chunfeng Yun wrote:
-> This is used to fix dtbs_check warning.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+You have not addressed mine nor Andy's comments
+on v1. Go back, read and reply, and rewrite.
 
-Applied now to v5.12-next/dts64
-
-> ---
-> v2~v5: no changes
-> ---
->  arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-> index db17d0a4ed57..a9cca9c146fd 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-> @@ -805,7 +805,7 @@
->  		ranges;
->  		status = "disabled";
->  
-> -		usb_host0: xhci@11270000 {
-> +		usb_host0: usb@11270000 {
->  			compatible = "mediatek,mt2712-xhci",
->  				     "mediatek,mtk-xhci";
->  			reg = <0 0x11270000 0 0x1000>;
-> @@ -818,7 +818,7 @@
->  		};
->  	};
->  
-> -	u3phy0: usb-phy@11290000 {
-> +	u3phy0: t-phy@11290000 {
->  		compatible = "mediatek,mt2712-tphy",
->  			     "mediatek,generic-tphy-v2";
->  		#address-cells = <1>;
-> @@ -869,7 +869,7 @@
->  		ranges;
->  		status = "disabled";
->  
-> -		usb_host1: xhci@112c0000 {
-> +		usb_host1: usb@112c0000 {
->  			compatible = "mediatek,mt2712-xhci",
->  				     "mediatek,mtk-xhci";
->  			reg = <0 0x112c0000 0 0x1000>;
-> @@ -882,7 +882,7 @@
->  		};
->  	};
->  
-> -	u3phy1: usb-phy@112e0000 {
-> +	u3phy1: t-phy@112e0000 {
->  		compatible = "mediatek,mt2712-tphy",
->  			     "mediatek,generic-tphy-v2";
->  		#address-cells = <1>;
-> 
+Yours,
+Linus Walleij
