@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFF834CF28
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A293534CF2B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 13:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbhC2Ld3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 07:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35076 "EHLO
+        id S230307AbhC2LfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 07:35:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbhC2LdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:33:16 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AEFC061574;
-        Mon, 29 Mar 2021 04:33:15 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id z8so15449975ljm.12;
-        Mon, 29 Mar 2021 04:33:15 -0700 (PDT)
+        with ESMTP id S230180AbhC2Ler (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 07:34:47 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F61C061574;
+        Mon, 29 Mar 2021 04:34:47 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id u10so15533585lju.7;
+        Mon, 29 Mar 2021 04:34:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=w8ATlugdUKHKEB9wJ7F1PnANsFFKdh699zUWIyxPztU=;
-        b=OR8qtqRV4a+IW1FCVWOkV3na+4Y6egNU6k9igZtgw1+FyEESDCAadpQptmxXr33lUl
-         UWq0gN58wQqQlXpzfRg7HKimXvXLDlzZ20sWtRqjlob23py4LwtSu2ItYZL6N2AMBMX2
-         Ptgpp55oInk7d7vzmFdZjEsANdUUyUtRZVRHaDPYpw0s6YzLAX5vJWRwjlBUydgsYBOA
-         5McIr34DfHjDgekpB4Wfqj6b5MkIsSBHfRdDcWvEm/ggDPR1zFtkLDN6D/2v8Dr3g0kf
-         5E+k/8QbBjUYxN15NkNlbPFluyOU3mvOKi6it8VYZrl/MyQ7bwtxUtH/9xHO5vVQLhAu
-         rpPg==
+        bh=w1/R1XphoAkVry8zc1fxL9DKWTUBErY7ZmGmBHxUfKs=;
+        b=bKIsqfk3VLuh1MyLuIhzFAURd+vO2mRsHK3O3QTqJ4FU53QbpVSzrASmkomLo1qbhT
+         sCBTL+Hk1H5EGb5Z10CVd2elUNODVZJRbyXSGb4WvGH4GZOLjH69JGFDKpHt1YbcUkGM
+         zieMAf4Z8NtIQ9jBUVxOPQv8uNsI5E8FxKini/NMCOJQT15XcIID+tyVmOelLir6Zk3T
+         rcyvrjXqrfaS+lyczPV5e2vZvvaiFdv8WKfVe0RhWrwXLtxugwGSVGsU2qPxucM1Ubau
+         OVvTEQzMFGY5EJ/G0Uvb7xc9aBRDBPz/wdomVAf4Pn3jhYRxMR7aZXtvVGsCVAmGG/tv
+         gOnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=w8ATlugdUKHKEB9wJ7F1PnANsFFKdh699zUWIyxPztU=;
-        b=p5/q3iCjfVh6aCKVAth37nTPoY8V1c70LeVhuvuHmZIvDcm0LvWA+PMrj5gYTSi2Pa
-         V8jVBC2zI6D61aN+P3CZUlF4YOuVf8xYelHpUcMYpYXS31JXLtIfswUanNlAjuQjNpEW
-         Fn/bwv3LnYWqNNl8vMo9yP4ooHrYhbugoWoifN5xtutoa4GtcUt085bstNnTvxw/bk2d
-         Pl/GNGOU/HteQw144bfDPi2bjq7w2UiJbOKEcbE0Nhi7pohjzYI+n8J2MCTBU5ql9WUd
-         Hm3t878JdZEwCBXzIb5kSLNlL+o9QrA524OceDGcc6jZhpuxryhIaV5+odHYbzcJkLf9
-         AsUw==
-X-Gm-Message-State: AOAM530D4lMJOaBAk8/LBlPt1ZxFinqb12FUobMr0PTYqfhWP/p7D3U+
-        r7xql0EqTqn3IyyNh6tmchPp8YqRMBVMAYa2t84=
-X-Google-Smtp-Source: ABdhPJzVzu5EgEK4lO1S/FQgcXTQJf0jJcXHehvP4HGvREOs1yeJjfz6iSsqWBowmWQ6ZQ4PNlLrBFKfhDHM1nakjDU=
-X-Received: by 2002:a2e:6f15:: with SMTP id k21mr18083545ljc.444.1617017593652;
- Mon, 29 Mar 2021 04:33:13 -0700 (PDT)
+        bh=w1/R1XphoAkVry8zc1fxL9DKWTUBErY7ZmGmBHxUfKs=;
+        b=kbZyZuyYUJLlrqu0wjjYL5vRiNpQP8zUc8iZzRGfinKi8YHt6dR6xdgdeuS6w4i0aN
+         G08A+AAEUiBGWY5UzF7rTHLcfzVIBJ6SVTFzpOd5pOsXDj3cMmqEgbZhKG0hulz/CH35
+         TL2EqzpLapxEcJzsXPJsQpGKTtXjCeFDHwxCZGOE9/xe4+9AYYjrSDMrNHYmI4btQjVf
+         Do7zBHfRGGQ55r/zMi3J/P96yu6qrIiCk8H3WvE34zDqXRnUZG7ZuSpLozcJQRmY3CYi
+         dKK61//W8aTk2AXoKlHaDL+ck6TbW2at52nfFuYHPG0Uupb0Xm1GbTnKw+aTR3aHDxEi
+         odxA==
+X-Gm-Message-State: AOAM532Ulvy/6jmi2MQzkMRlhR9owxfy+ZuJnUhMjHgbfJCqWDPPyfkL
+        B8CafCljlmEpujza8w+RSVYy1mxgeK+H2L3huck=
+X-Google-Smtp-Source: ABdhPJx3iPPCoc+iw8VS+NXlQfLxOFzLLjuNoGBhMASpCD+3oiVf+Evo/hbO9Uo7gXDei2gOLANPvTdrbOg10q/qVp8=
+X-Received: by 2002:a2e:575c:: with SMTP id r28mr17636576ljd.347.1617017685625;
+ Mon, 29 Mar 2021 04:34:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210329112819.64043-1-s.riedmueller@phytec.de> <20210329112819.64043-2-s.riedmueller@phytec.de>
-In-Reply-To: <20210329112819.64043-2-s.riedmueller@phytec.de>
+References: <20210329112819.64043-1-s.riedmueller@phytec.de> <20210329112819.64043-3-s.riedmueller@phytec.de>
+In-Reply-To: <20210329112819.64043-3-s.riedmueller@phytec.de>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 29 Mar 2021 08:33:02 -0300
-Message-ID: <CAOMZO5DBGraT1_r8k7_-pp_w8yMR-32N8QYRkt9V88PXAcAdGw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ARM: dts: imx6: pbab01: Set USB OTG port to peripheral
+Date:   Mon, 29 Mar 2021 08:34:34 -0300
+Message-ID: <CAOMZO5DMnqZTedg_bb=NCZ4_cfP1sDam=N0-FrDRYTeKi+4n-g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: imx6: pbab01: Set vmmc supply for both SD interfaces
 To:     Stefan Riedmueller <s.riedmueller@phytec.de>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -68,10 +68,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Mon, Mar 29, 2021 at 8:28 AM Stefan Riedmueller
 <s.riedmueller@phytec.de> wrote:
 >
-> Due to a hardware bug preventing the correct detection if the ID pin
-> the USB OTG port cannot be used in otg mode. It can either be set to
-> host or peripheral. Set it to peripheral so vbus is disabled by default.
->
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+> Setting the vmmc supplies is crucial since otherwise the supplying
+> regulators get disabled and the SD interfaces are no longer powered
+> which leads to system failures if the system is booted from that SD
+> interface.
+
+It seems that this deserves a Fixes tag.
 
 Reviewed-by: Fabio Estevam <festevam@gmail.com>
