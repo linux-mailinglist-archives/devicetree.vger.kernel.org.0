@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB11834CD3F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 11:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF39834CD69
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 11:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbhC2Jnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 05:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231688AbhC2JnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 05:43:15 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F3CC061574
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 02:43:14 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id c17so9514447pfn.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 02:43:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GCO+HLMUHqwP+IidTwyt4nWDFD74p2XFYnz20c69ZzM=;
-        b=N+NkL0BvHbk+8P2TYKNJJBjn8k338s2pxeZF2+J5Ud0AXYiYmUd0XADwi0aNi7RLLK
-         e81q/O1crM45iSPKGItcAD2JZZZ+we77sM0nrvcLqdLGCv3rG+lSB5AljFFUFIHq2awu
-         Q9c2RM8DkcdWhwF9cYDPa3KhSracOQgkoF7kCRUOM82F4BqtndtSPyNs4vnt8jFDh8S5
-         nemZKrxDXlpsnJSv7lo+zhIEkXp/xrISrCUPuZoL5tQzwJAm8nkiv286a7U/iBcnpqmL
-         mLldh/Sk2Tnh4UIwPlh7wzGiSt1TrDs7I5obVmVXRP2Y8oOoeMIp/gPSwehz+Io1vGK0
-         gsuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GCO+HLMUHqwP+IidTwyt4nWDFD74p2XFYnz20c69ZzM=;
-        b=CZ1+0CVfemWaC8p5295qxagRbIyD8NLhHl5yuulNzXUsX7MHl43i4s5vQ2r9T4JtH2
-         pRDjf4CCK5h6TlrUrNIND49dJHpkf1Z+Ts9u4cDjNhKK1LWdzLTWLLIXRqKU315RmP+G
-         Opp8xw5ye4+USNN9+4jWRLgOKnz3FrdFBw0DIWF7WCYEwXFLLkPO3l+SouoZFWtK/Dul
-         RzHqT4XbzPc/Gb3GSpLmAUWIJcPAjt5h7ZOD/4lWeUOYoYYYnTx1oJX6KkTYCZcSlj/s
-         mK6KbP00nPg6HP1oH5ayy6MsPdENIigoyIXaaDWeK/fWNxLHb9IjTaTFIBwpbnfFRjE9
-         +DYQ==
-X-Gm-Message-State: AOAM531kTlEkY10S7baOO52kkSzA/DRce6YI0mtm60AhpvPrrVBI3ga3
-        vgmt4E55Z3JV1e69VOw7OJc=
-X-Google-Smtp-Source: ABdhPJykhOXy1F3yQ7v6t33crenlcHFMadoq2XUxA9qPwLfpW/z3mLy27Ru8ch8eCQwmp8u/MFW3hQ==
-X-Received: by 2002:a63:4462:: with SMTP id t34mr22756427pgk.389.1617010994285;
-        Mon, 29 Mar 2021 02:43:14 -0700 (PDT)
-Received: from rashmica.home.majoof.com (150.24.220.111.sta.wbroadband.net.au. [111.220.24.150])
-        by smtp.gmail.com with ESMTPSA id q25sm15970980pff.104.2021.03.29.02.43.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 02:43:13 -0700 (PDT)
-From:   Rashmica Gupta <rashmica.g@gmail.com>
-To:     linux-aspeed@lists.ozlabs.org, joel@jms.id.au, robh+dt@kernel.org,
-        andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: rainier: Update to access sensors via iio-hwmon
-Date:   Mon, 29 Mar 2021 20:42:55 +1100
-Message-Id: <20210329094255.347713-1-rashmica.g@gmail.com>
-X-Mailer: git-send-email 2.26.3
+        id S231786AbhC2JyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 05:54:14 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:27945 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232272AbhC2JyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 05:54:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1617011642; x=1648547642;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=iqjkFOT92R42EBV1+ip/OTCYxN2E0rr9W21GWrOPJW8=;
+  b=GN6EXJuBnRT5xkUI2jK5E8432C/OKFPzsBvnUro8n16vcZOzeQMshlAi
+   8Wn01WJWSNAFifCFXuInZYHlzwzx9rDPLSZkscGCjqPK0bQd2H/OzLG7y
+   2Tozbmz9IHY95RZyFUZikiUf2G3P3wY1fu54qJ2n/X+alwhj0V8weCGqu
+   aIWHiVao8dLVP6piKrJ0T5Hl4aGKjwTCqsN9/Mfra1PJH013O36fMJchp
+   vIRK+t09xKVTLXqOyFAmJapY3SPB6gZxLM5XqM4hEm997feeL5T13wKYG
+   oX1yMZ1w7CcAmGdKlrFlC10Z8YRGwjOUW3bE48Dec935DB0h1CI6mp8/N
+   Q==;
+IronPort-SDR: EoF2F1D8H+Crm52uj2dRiGS01WnW/ncbQQVWt6qQT27wItBj0vseQ0vbtuiTw1HcZ6Pn2hGTru
+ iUtw7exDg2R7F3tDpNlJriU97PK7EHrqQRw0QrmWDQq1jfxGwBeDi0E3oQaJV3/eW2oinR+ZFn
+ /5LK4W8KScUGTywyXB/OIzdqA7WDtPGA/YeEkbS9YtsL1c8EZPsXrmcVITXgvPxqgIhWirHajI
+ fQbFxj46KE1jpa+qZlgTdbZ+SQ2AlTlGCzNodS6iBzysEdjXoTxavzN24SZYTBJyX70DUiH+Cc
+ kzU=
+X-IronPort-AV: E=Sophos;i="5.81,287,1610434800"; 
+   d="scan'208";a="108891101"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Mar 2021 02:54:02 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 29 Mar 2021 02:54:02 -0700
+Received: from [10.171.246.61] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Mon, 29 Mar 2021 02:54:00 -0700
+Subject: Re: [PATCH v2 00/10] Microship SAMA5D4 VPU support et al
+To:     Emil Velikov <emil.l.velikov@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Ludovic Desroches" <ludovic.desroches@microchip.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-media@vger.kernel.org>,
+        linux-rockchip <linux-rockchip@lists.infradead.org>
+References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
+ <5ecf1d3b8a8f88d6387a1549faeb4f4180cf5d4b.camel@collabora.com>
+ <CACvgo51uNyQgzGdW=f-0wxvjv-+OD1p7E4DJXRzu1GvnAHbcCQ@mail.gmail.com>
+ <50b3b4b3-6c5b-3f1e-3499-c88574ce9f74@microchip.com>
+ <YFxObibxqK23WTMf@piout.net>
+ <CACvgo53V8sZ2PA0NTR1=JCqcFGBecqs7=aB4uofApOa-C0GZCA@mail.gmail.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <3aeb1924-d461-ab8b-440b-81f33a1a8213@microchip.com>
+Date:   Mon, 29 Mar 2021 11:53:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACvgo53V8sZ2PA0NTR1=JCqcFGBecqs7=aB4uofApOa-C0GZCA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Rashmica Gupta <rashmica.g@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+On 25/03/2021 at 15:22, Emil Velikov wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Greetings all,
+> 
+> On Thu, 25 Mar 2021 at 08:48, Alexandre Belloni
+> <alexandre.belloni@bootlin.com> wrote:
+>>
+>> On 24/03/2021 14:44:14+0100, Nicolas Ferre wrote:
+>>> Now, when we have the tag from Rob, how to coordinate these different
+>>> pieces? Will it go through the media git tree? Will we benefit from a stable
+>>> branch to share or will we just have to wait for the driver to hit Mainline
+>>> before adding the defconfig and DT patches?
+>>>
+> Thanks for the Acked-by Nicolas.
+> 
+>>
+>> I think the defconfig and dt patches can go through at91 as soon as we
+>> get Rob's ack. There is no build dependency so it can be taken at any
+>> time. Worst case, we end up with a selected config option that doesn't
+>> exist.
+>>
+> My personal preference is to merge everything in one go.
+> I believe it will be easier from maintainer's point of view, plus odds
+> of conflicts with the AT91 tree are close to zero.
+> 
+> Then again, as long as the maintainers are happy - I'm fine either way.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index fefb0b8fd6d5..2dc72de07906 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -173,6 +173,16 @@ i2c2mux3: i2c@3 {
- 		};
- 	};
- 
-+	iio-hwmon-dps310 {
-+		compatible = "iio-hwmon";
-+		io-channels = <&dps 0>;
-+	};
-+
-+	iio-hwmon-si7020 {
-+		compatible = "iio-hwmon";
-+		io-channels = <&si 1>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -1972,9 +1982,10 @@ &i2c7 {
- 	multi-master;
- 	status = "okay";
- 
--	si7021-a20@20 {
-+	si:si7021-a20@20 {
- 		compatible = "silabs,si7020";
- 		reg = <0x20>;
-+		#io-channel-cells = <1>;
- 	};
- 
- 	tmp275@48 {
+I'm taking defconfig 2 last patches of your series right now. No need to 
+include them in subsequent versions.
+
+For DT, I'm waiting for settlement on refined code. As indicated by 
+Alexandre, changes will need to travel through arm-soc tree so we'll 
+coordinate when patches are ready.
+
+Thanks a lot! Best regards,
+   Nicolas
+
+
 -- 
-2.26.3
-
+Nicolas Ferre
