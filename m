@@ -2,65 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160D834D7DA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0706E34D7DD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 21:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbhC2TMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 15:12:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55094 "EHLO mail.kernel.org"
+        id S231698AbhC2TMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 15:12:53 -0400
+Received: from mail.bugwerft.de ([46.23.86.59]:39866 "EHLO mail.bugwerft.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231725AbhC2TMJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 15:12:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 55B8261981;
-        Mon, 29 Mar 2021 19:12:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617045129;
-        bh=Vc2qS5hN4gZcx9XVb4kiJ5C2Wd27YQis4mRFE/m1Yi0=;
-        h=In-Reply-To:References:Subject:From:To:Date:From;
-        b=fV1LNkzXGn9Mc3Fw6yeG1RGnwBl2WsKC+w4QRKp7Y6UuilQaL/ElEbExswvzSGKcF
-         XRpur9mkXWS2+CYUagZyNrfQoHv2HvQPw84Zsxdd5ZHn9HQt3XgA0MtcWEKcdwxovS
-         O9Ax0FSHhjwRz0OzabCYph24IIRRdY1UwvWt6kNzP31rEm1H2FnotG6oP92K3FUrZU
-         PGRpPxvQfJ1HD4ik8UADPr+WNu9lEcCwGoBKXAm8buLNa17z3wFfO3By+hSjWmmDXI
-         Hz7476i8jjwwRMvblxSGWQqp6y4TwfJ4/kFYZbLX4VRpTfxykg+llkwvg6WMKXPXci
-         /yEQMAOLlKh6w==
-Content-Type: text/plain; charset="utf-8"
+        id S231734AbhC2TMZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 15:12:25 -0400
+Received: from hq-00021.holoplot.net (pd95ef077.dip0.t-ipconnect.de [217.94.240.119])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id A7C2F4C5A73;
+        Mon, 29 Mar 2021 19:12:22 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     airlied@linux.ie, daniel@ffwll.ch
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Daniel Mack <daniel@zonque.org>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH v5 2/2] drm/tiny: add driver for newhaven,1.8-128160EF
+Date:   Mon, 29 Mar 2021 21:12:09 +0200
+Message-Id: <20210329191210.2190504-4-daniel@zonque.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210329191210.2190504-1-daniel@zonque.org>
+References: <20210329191210.2190504-1-daniel@zonque.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <cover.1615954045.git.greentime.hu@sifive.com>
-References: <cover.1615954045.git.greentime.hu@sifive.com>
-Subject: Re: [PATCH v2 0/6] Add SiFive FU740 PCIe host controller driver support
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     alex.dewar90@gmail.com, aou@eecs.berkeley.edu, bhelgaas@google.com,
-        devicetree@vger.kernel.org, erik.danie@sifive.com,
-        greentime.hu@sifive.com, hayashi.kunihiko@socionext.com,
-        helgaas@kernel.org, hes@sifive.com, jh80.chung@samsung.com,
-        khilman@baylibre.com, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-riscv@lists.infradead.org, lorenzo.pieralisi@arm.com,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        vidyas@nvidia.com, zong.li@sifive.com
-Date:   Mon, 29 Mar 2021 12:12:08 -0700
-Message-ID: <161704512808.3012082.7539298875497991635@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Greentime Hu (2021-03-17 23:08:07)
-> This patchset includes SiFive FU740 PCIe host controller driver. We also
-> add pcie_aux clock and pcie_power_on_reset controller to prci driver for
-> PCIe driver to use it.
->=20
-> This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon R5
-> 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based on
-> v5.11 Linux kernel.
+This patch adds support for Newhaven's NHD-1.8-128160EF display, featuring
+an Ilitek ILI9163 controller.
 
-Can I merge the clk patches to clk-next? Or is the dts patch going to be
-sent in for the merge window? I'd like to merge the clk patches if the
-other patches are going to miss the next merge window.
+Signed-off-by: Daniel Mack <daniel@zonque.org>
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ drivers/gpu/drm/tiny/Kconfig   |  13 ++
+ drivers/gpu/drm/tiny/Makefile  |   1 +
+ drivers/gpu/drm/tiny/ili9163.c | 224 +++++++++++++++++++++++++++++++++
+ 3 files changed, 238 insertions(+)
+ create mode 100644 drivers/gpu/drm/tiny/ili9163.c
 
->=20
-> Changes in v2:
->  - Refine codes based on reviewers' feedback
->  - Remove define and use the common one
+diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+index 2b6414f0fa759..9de0c0eeea6f5 100644
+--- a/drivers/gpu/drm/tiny/Kconfig
++++ b/drivers/gpu/drm/tiny/Kconfig
+@@ -41,6 +41,19 @@ config TINYDRM_HX8357D
+ 
+ 	  If M is selected the module will be called hx8357d.
+ 
++config TINYDRM_ILI9163
++	tristate "DRM support for ILI9163 display panels"
++	depends on DRM && SPI
++	select DRM_KMS_HELPER
++	select DRM_KMS_CMA_HELPER
++	select DRM_MIPI_DBI
++	select BACKLIGHT_CLASS_DEVICE
++	help
++	  DRM driver for the following Ilitek ILI9163 panels:
++	  * NHD-1.8-128160EF 128x160 TFT
++
++	  If M is selected the module will be called ili9163.
++
+ config TINYDRM_ILI9225
+ 	tristate "DRM support for ILI9225 display panels"
+ 	depends on DRM && SPI
+diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+index 6ae4e9e5a35fb..78016b2ed11b5 100644
+--- a/drivers/gpu/drm/tiny/Makefile
++++ b/drivers/gpu/drm/tiny/Makefile
+@@ -3,6 +3,7 @@
+ obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
+ obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
+ obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
++obj-$(CONFIG_TINYDRM_ILI9163)		+= ili9163.o
+ obj-$(CONFIG_TINYDRM_ILI9225)		+= ili9225.o
+ obj-$(CONFIG_TINYDRM_ILI9341)		+= ili9341.o
+ obj-$(CONFIG_TINYDRM_ILI9486)		+= ili9486.o
+diff --git a/drivers/gpu/drm/tiny/ili9163.c b/drivers/gpu/drm/tiny/ili9163.c
+new file mode 100644
+index 0000000000000..6fa9e59b69321
+--- /dev/null
++++ b/drivers/gpu/drm/tiny/ili9163.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++#include <linux/backlight.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/module.h>
++#include <linux/property.h>
++#include <linux/spi/spi.h>
++
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_fb_helper.h>
++#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_gem_framebuffer_helper.h>
++#include <drm/drm_mipi_dbi.h>
++#include <drm/drm_modeset_helper.h>
++#include <video/mipi_display.h>
++
++#define ILI9163_FRMCTR1		0xb1
++
++#define ILI9163_PWCTRL1		0xc0
++#define ILI9163_PWCTRL2		0xc1
++#define ILI9163_VMCTRL1		0xc5
++#define ILI9163_VMCTRL2		0xc7
++#define ILI9163_PWCTRLA		0xcb
++#define ILI9163_PWCTRLB		0xcf
++
++#define ILI9163_EN3GAM		0xf2
++
++#define ILI9163_MADCTL_BGR	BIT(3)
++#define ILI9163_MADCTL_MV	BIT(5)
++#define ILI9163_MADCTL_MX	BIT(6)
++#define ILI9163_MADCTL_MY	BIT(7)
++
++static void yx240qv29_enable(struct drm_simple_display_pipe *pipe,
++			     struct drm_crtc_state *crtc_state,
++			     struct drm_plane_state *plane_state)
++{
++	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(pipe->crtc.dev);
++	struct mipi_dbi *dbi = &dbidev->dbi;
++	u8 addr_mode;
++	int ret, idx;
++
++	if (!drm_dev_enter(pipe->crtc.dev, &idx))
++		return;
++
++	drm_dbg_kms(&dbidev->drm, "\n");
++
++	ret = mipi_dbi_poweron_conditional_reset(dbidev);
++	if (ret < 0)
++		goto out_exit;
++	if (ret == 1)
++		goto out_enable;
++
++	/* Gamma */
++	mipi_dbi_command(dbi, MIPI_DCS_SET_GAMMA_CURVE, 0x04);
++	mipi_dbi_command(dbi, ILI9163_EN3GAM, 0x00);
++
++	/* Frame Rate */
++	mipi_dbi_command(dbi, ILI9163_FRMCTR1, 0x0a, 0x14);
++
++	/* Power Control */
++	mipi_dbi_command(dbi, ILI9163_PWCTRL1, 0x0a, 0x00);
++	mipi_dbi_command(dbi, ILI9163_PWCTRL2, 0x02);
++
++	/* VCOM */
++	mipi_dbi_command(dbi, ILI9163_VMCTRL1, 0x2f, 0x3e);
++	mipi_dbi_command(dbi, ILI9163_VMCTRL2, 0x40);
++
++	/* Memory Access Control */
++	mipi_dbi_command(dbi, MIPI_DCS_SET_PIXEL_FORMAT, MIPI_DCS_PIXEL_FMT_16BIT);
++
++	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
++	msleep(100);
++
++	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
++	msleep(100);
++
++out_enable:
++	switch (dbidev->rotation) {
++	default:
++		addr_mode = 0;
++		break;
++	case 90:
++		addr_mode = ILI9163_MADCTL_MV | ILI9163_MADCTL_MX;
++		break;
++	case 180:
++		addr_mode = ILI9163_MADCTL_MX | ILI9163_MADCTL_MY;
++		break;
++	case 270:
++		addr_mode = ILI9163_MADCTL_MV | ILI9163_MADCTL_MY;
++		break;
++	}
++	addr_mode |= ILI9163_MADCTL_BGR;
++	mipi_dbi_command(dbi, MIPI_DCS_SET_ADDRESS_MODE, addr_mode);
++	mipi_dbi_enable_flush(dbidev, crtc_state, plane_state);
++out_exit:
++	drm_dev_exit(idx);
++}
++
++static const struct drm_simple_display_pipe_funcs ili9163_pipe_funcs = {
++	.enable = yx240qv29_enable,
++	.disable = mipi_dbi_pipe_disable,
++	.update = mipi_dbi_pipe_update,
++	.prepare_fb = drm_gem_fb_simple_display_pipe_prepare_fb,
++};
++
++static const struct drm_display_mode yx240qv29_mode = {
++	DRM_SIMPLE_MODE(128, 160, 28, 35),
++};
++
++DEFINE_DRM_GEM_CMA_FOPS(ili9163_fops);
++
++static struct drm_driver ili9163_driver = {
++	DRM_GEM_CMA_DRIVER_OPS_VMAP,
++	.date			= "20210208",
++	.debugfs_init		= mipi_dbi_debugfs_init,
++	.desc			= "Ilitek ILI9163",
++	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
++	.fops			= &ili9163_fops,
++	.major			= 1,
++	.minor			= 0,
++	.name			= "ili9163",
++};
++
++static const struct of_device_id ili9163_of_match[] = {
++	{ .compatible = "newhaven,1.8-128160EF" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, ili9163_of_match);
++
++static const struct spi_device_id ili9163_id[] = {
++	{ "nhd-1.8-128160EF", 0 },
++	{ }
++};
++MODULE_DEVICE_TABLE(spi, ili9163_id);
++
++static int ili9163_probe(struct spi_device *spi)
++{
++	struct device *dev = &spi->dev;
++	struct mipi_dbi_dev *dbidev;
++	struct drm_device *drm;
++	struct mipi_dbi *dbi;
++	struct gpio_desc *dc;
++	u32 rotation = 0;
++	int ret;
++
++	dbidev = devm_drm_dev_alloc(dev, &ili9163_driver,
++				    struct mipi_dbi_dev, drm);
++	if (IS_ERR(dbidev))
++		return PTR_ERR(dbidev);
++
++	dbi = &dbidev->dbi;
++	drm = &dbidev->drm;
++
++	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(dbi->reset)) {
++		drm_err(drm, "Failed to get gpio 'reset'\n");
++		return PTR_ERR(dbi->reset);
++	}
++
++	dc = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
++	if (IS_ERR(dc)) {
++		drm_err(drm, "Failed to get gpio 'dc'\n");
++		return PTR_ERR(dc);
++	}
++
++	dbidev->backlight = devm_of_find_backlight(dev);
++	if (IS_ERR(dbidev->backlight))
++		return PTR_ERR(dbidev->backlight);
++
++	device_property_read_u32(dev, "rotation", &rotation);
++
++	ret = mipi_dbi_spi_init(spi, dbi, dc);
++	if (ret)
++		return ret;
++
++	ret = mipi_dbi_dev_init(dbidev, &ili9163_pipe_funcs, &yx240qv29_mode, rotation);
++	if (ret)
++		return ret;
++
++	drm_mode_config_reset(drm);
++
++	ret = drm_dev_register(drm, 0);
++	if (ret)
++		return ret;
++
++	drm_fbdev_generic_setup(drm, 0);
++
++	spi_set_drvdata(spi, drm);
++
++	return 0;
++}
++
++static int ili9163_remove(struct spi_device *spi)
++{
++	struct drm_device *drm = spi_get_drvdata(spi);
++
++	drm_dev_unplug(drm);
++	drm_atomic_helper_shutdown(drm);
++
++	return 0;
++}
++
++static void ili9163_shutdown(struct spi_device *spi)
++{
++	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
++}
++
++static struct spi_driver ili9163_spi_driver = {
++	.driver = {
++		.name = "ili9163",
++		.of_match_table = ili9163_of_match,
++	},
++	.id_table = ili9163_id,
++	.probe = ili9163_probe,
++	.remove = ili9163_remove,
++	.shutdown = ili9163_shutdown,
++};
++module_spi_driver(ili9163_spi_driver);
++
++MODULE_DESCRIPTION("Ilitek ILI9163 DRM driver");
++MODULE_AUTHOR("Daniel Mack <daniel@zonque.org>");
++MODULE_LICENSE("GPL");
+-- 
+2.30.2
+
