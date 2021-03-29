@@ -2,243 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DFF34D451
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6789D34D464
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 17:59:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbhC2PwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 11:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35090 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231222AbhC2Pvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 11:51:55 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03975C061756
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:54 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id c3so12844650qkc.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=V3qjU94W0m6oCH9pAstUGYT+pDFUIdoKlke6iELSfpY=;
-        b=MDFfvvLK5Mx5KUuybyKzi3JYBXVAPMFnhownMqnpXnf9cddYVDT8Mz03muUdRBLo89
-         uVbTmHZ8ghNE0VAFQJE+zzIJqs19cYYVum6SB0+TqEMF6sGQAUuwmCVy/5oleHnMdmOo
-         x0j9UsokM8EVvQh7KoCTOMRR+duh6+xxvWv08=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V3qjU94W0m6oCH9pAstUGYT+pDFUIdoKlke6iELSfpY=;
-        b=mhyvxWGhOSNb61N4oY0un8B7tgISYJPuUlErSrkw2mKnGDHWQIdCUF0DvXdtGRwuWu
-         YC1e45hkMwDmYyt3zMmBteHRy/6yWHAhmqcd4RcWIcNCK//8eioJxW2GNCjqRycqZxna
-         vPkYdAf96cNnvnlRq1tdmI2aBp1wu4wOZsKyqOnJwPtTz1HOZ1Y9YIIMiOB3VIrNAwOU
-         g1NbCN4A1jYZbcOHrLpVAzD4oNxP50P1k/zarc06rQ2jnYmtfQIr0/xNvjwTsAT7xbvK
-         FArXZkfdE8AE6CBgdq/Yt6uKuCitKvU+Z0/bDljVXfuRHvH2Z22XXVo6pBiuKYNNT5gV
-         nH4A==
-X-Gm-Message-State: AOAM530N+mYfpJWSrw/T3j0RGdAyT5UUOUoW6m+MQr2oReYpp5JRwyi9
-        tQC8YAmQ04MP61piyzZCNu7ZKdXBl8HLCQ==
-X-Google-Smtp-Source: ABdhPJx5zv/Rv9HOCNsCl9lvCKNnztfPs4eITaSXdw2e3oj04QQzcwNGIpBg1t7b6CARKTgFuns1pQ==
-X-Received: by 2002:a37:ba83:: with SMTP id k125mr25335567qkf.336.1617033113601;
-        Mon, 29 Mar 2021 08:51:53 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id b10sm13424585qkg.50.2021.03.29.08.51.52
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 08:51:52 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id l15so14316894ybm.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 08:51:52 -0700 (PDT)
-X-Received: by 2002:a25:4092:: with SMTP id n140mr29624662yba.276.1617033111899;
- Mon, 29 Mar 2021 08:51:51 -0700 (PDT)
+        id S230244AbhC2P7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 11:59:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34356 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229709AbhC2P6y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 11:58:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4717B6148E;
+        Mon, 29 Mar 2021 15:58:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617033533;
+        bh=NnjETCPQpSIHF+fPiignvyEBk3xGcXLngA81Rv7A/3w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bpwP2d991M4o1SHyIp0bfBts73Vu1kWY5jw1JFxHh2cwKsDBbhJtodPxCYUO0gIAG
+         iEBQcUphAXrNgM2jcCMB5vcMwxO46gd7BC6muPaG5EG3T2rYHMYwOMOWdvL1jcS+Rg
+         IWOXvyJpjBtl1jyCSjl2vr0ZNIEK2QzFjS4bLY46PusaL+sTTDtw5b+Ljjy9UGGwCO
+         sEY13lYr3Lpv8wXZK9tk1gYuLNreehI546NKSoba6Ur452JlliE6ILPDFCRDVZQ85H
+         5DUFu2zueiaXUdzWx8Ca9HKvFTO3pPGzDP4NHQiBIJxpvj4hvzAjBTHg2O4Mm0oQVf
+         3F2vo+2R90JXA==
+Date:   Mon, 29 Mar 2021 16:58:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Brad Larson <brad@pensando.io>
+Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        fancer.lancer@gmail.com, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 03/13] spi: dw: Add support for Pensando Elba SoC SPI
+Message-ID: <20210329155843.GD5166@sirena.org.uk>
+References: <20210329015938.20316-1-brad@pensando.io>
+ <20210329015938.20316-4-brad@pensando.io>
 MIME-Version: 1.0
-References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
- <YFKQaXOmOwYyeqvM@google.com> <CAF6AEGtu+GBwYfkH3x=UuPs5Ouj0TxqbVjpjFEtMKKWvd1-Gbg@mail.gmail.com>
- <YF3V8d4wB6i81fLN@orome.fritz.box> <CAF6AEGvS6Pnd-m-boqPEZdDY+VCkV5M8Ob9n6UiYWs_DxrPopQ@mail.gmail.com>
- <CAF6AEGvPN90RGP8hYXtAksJpGc4Sf5tRpNwNnV6=sxKei0Ms6A@mail.gmail.com> <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
-In-Reply-To: <CAL_JsqKk+c83GMRzpc11Naj7QDYSfHdrg-8ZnxRBBM4phemQxg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 29 Mar 2021 08:51:40 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VPdFzv0gTqOjJ4z9b8EKc+G4ikt0KmDOz+MA4DYvoyaw@mail.gmail.com>
-Message-ID: <CAD=FV=VPdFzv0gTqOjJ4z9b8EKc+G4ikt0KmDOz+MA4DYvoyaw@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on sc7180-trogdor-pompom
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="KdquIMZPjGJQvRdI"
+Content-Disposition: inline
+In-Reply-To: <20210329015938.20316-4-brad@pensando.io>
+X-Cookie: Never give an inch!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Fri, Mar 26, 2021 at 12:48 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, Mar 26, 2021 at 9:20 AM Rob Clark <robdclark@gmail.com> wrote:
-> >
-> > On Fri, Mar 26, 2021 at 8:18 AM Rob Clark <robdclark@gmail.com> wrote:
-> > >
-> > > On Fri, Mar 26, 2021 at 5:38 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > > >
-> > > > On Wed, Mar 17, 2021 at 06:53:04PM -0700, Rob Clark wrote:
-> > > > > On Wed, Mar 17, 2021 at 4:27 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > > >
-> > > > > > On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
-> > > > > > > The sc7180-trogdor-pompom board might be attached to any number of a
-> > > > > > > pile of eDP panels. At the moment I'm told that the list might include:
-> > > > > > > - KD KD116N21-30NV-A010
-> > > > > > > - KD KD116N09-30NH-A016
-> > > > > > > - Starry 2081116HHD028001-51D
-> > > > > > > - Sharp LQ116M1JW10
-> > > > > > >
-> > > > > > > It should be noted that while the EDID programmed in the first 3
-> > > > > > > panels indicates that they should run with exactly the same timing (to
-> > > > > > > keep things simple), the 4th panel not only needs different timing but
-> > > > > > > has a different resolution.
-> > > > > > >
-> > > > > > > As is true in general with eDP panels, we can figure out which panel
-> > > > > > > we have and all the info needed to drive its pixel clock by reading
-> > > > > > > the EDID. However, we can do this only after we've powered the panel
-> > > > > > > on. Powering on the panels requires following the timing diagram in
-> > > > > > > each panel's datasheet which specifies delays between certain
-> > > > > > > actions. This means that, while we can be quite dynamic about handling
-> > > > > > > things we can't just totally skip out on describing the panel like we
-> > > > > > > could do if it was connected to an external-facing DP port.
-> > > > > > >
-> > > > > > > While the different panels have slightly different delays, it's
-> > > > > > > possible to come up with a set of unified delays that will work on all
-> > > > > > > the panels. From reading the datasheets:
-> > > > > > > * KD KD116N21-30NV-A010 and KD KD116N09-30NH-A016
-> > > > > > >   - HPD absent delay: 200 ms
-> > > > > > >   - Unprepare delay: 150 ms (datasheet is confusing, might be 500 ms)
-> > > > > > > * Starry 2081116HHD028001-51D
-> > > > > > >   - HPD absent delay: 100 ms
-> > > > > > >   - Enable delay: (link training done till enable BL): 200 ms
-> > > > > > >   - Unprepare delay: 500 ms
-> > > > > > > * Sharp LQ116M1JW10
-> > > > > > >   - HPD absent delay: 200 ms
-> > > > > > >   - Unprepare delay: 500 ms
-> > > > > > >   - Prepare to enable delay (power on till backlight): 100 ms
-> > > > > > >
-> > > > > > > Unified:
-> > > > > > > - HPD absent delay: 200 ms
-> > > > > > > - Unprepare delay: 500 ms
-> > > > > > > - Enable delay: 200 ms
-> > > > > > >
-> > > > > > > NOTE: in theory the only thing that we _really_ need unity on is the
-> > > > > > > "HPD absent delay" since once the panel asserts HPD we can read the
-> > > > > > > EDID and could make per-panel decisions if we wanted.
-> > > > > > >
-> > > > > > > Let's create a definition of "a panel that can be attached to pompom"
-> > > > > > > as a panel that provides a valid EDID and can work with the standard
-> > > > > > > pompom power sequencing. If more panels are later attached to pompom
-> > > > > > > then it's fine as long as they work in a compatible way.
-> > > > > > >
-> > > > > > > One might ask why we can't just use a generic string here and provide
-> > > > > > > the timings directly in the device tree file. As I understand it,
-> > > > > > > trying to describe generic power sequencing in the device tree is
-> > > > > > > frowned upon and the one instance (SD/MMC) is regarded as a mistake
-> > > > > > > that shouldn't be repeated. Specifying a power sequence per board (or
-> > > > > > > per board class) feels like a reasonable compromise. We're not trying
-> > > > > > > to define fully generic power sequence bindings but we can also take
-> > > > > > > advantage of the semi-probable properties of the attached device.
-> > > > > > >
-> > > > > > > NOTE: I believe that past instances of supporting this type of thing
-> > > > > > > have used the "white lie" approach. One representative panel was
-> > > > > > > listed in the device tree. The power sequencings of this
-> > > > > > > representative panel were OK to use across all panels that might be
-> > > > > > > attached and other differences were handled by EDID. This patch
-> > > > > > > attempts to set a new precedent and avoid the need for the white lie.
-> > > > > > >
-> > > > > > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > > > > > ---
-> > > > > >
-> > > > > > Sounds reasonable to me if DT maintainers can live with this abstract
-> > > > > > hardware definition. It's clearer than the 'white lie' approach.
-> > > > >
-> > > > > Yeah, it is a weird grey area between "discoverable" and "not
-> > > > > discoverable".. but I favor DT reflecting reality as much as
-> > > > > possible/feasible, so I think this is definity cleaner than "white
-> > > > > lies"
-> > > >
-> > > > This is practically no different than the "white lie". I suppose you
-> > > > could perhaps call it "more honest", if you want.
-> > > >
-> > > > The point remains that unless we describe exactly which panel we're
-> > > > dealing with, we ultimately have no way of properly quirking anything if
-> > > > we ever have to. Also, once we allow this kind of wildcard we can
-> > > > suddenly get into a situation where people might want to reuse this on
-> > > > something that's not at all a google-pompom board because the same
-> > > > particular power sequence happens to work on on some other board.
-> > > >
-> > > > Similarly I can imagine a situation where we could now have the same
-> > > > panel supported by multiple different wildcard compatible strings. How
-> > > > is that supposed to be any cleaner than what we have now?
-> > > >
-> > > > And I still keep wondering why bootloaders can't be taught about these
-> > > > kinds of things. We have in the past discussed various solutions where
-> > > > the bootloader could detect the type of panel connected and set the
-> > > > proper compatible string.
-> > >
-> > > The bootloader cannot detect the panel without powering up the panel,
-> > > which it normally does not do if you are not in dev-mode (it would add
-> > > a significant amount of time to bootup, which is why we can't do this)
-> >
-> > what if we had a sort of multi-choice panel node:
-> >
-> >    panel: panel {
-> >      compatible = "panel,one-of";
-> >      compatible-one-of = "vendor1,panel-a", "vendor2,panel-b",
-> > "vendor3,panel-c";
-> >   };
-> >
-> > The kernel could construct power sequence timings that are the
-> > superset of all the possible panels.  That seems about as explicit as
-> > we could get in this sort of case.
->
-> If we were to go this route, I'm inclined to say just shove all the
-> possible panel compatibles into 'compatible'. That kind of breaks the
-> notion of most specific to least specific. OTOH, it is saying the set
-> of panels are somehow 'compatible' with each other.
->
-> If there's not some level of compatibility between the panels, then
-> it's still the bootloader's problem.
+--KdquIMZPjGJQvRdI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I guess I missed all the fun! OK, so I think the approach is:
+On Sun, Mar 28, 2021 at 06:59:28PM -0700, Brad Larson wrote:
 
-1. List all the possible panels straight in the "compatible" string in
-arbitrary order.
+> @@ -56,7 +56,7 @@ struct dw_spi_mscc {
+>  /*
+>   * The Designware SPI controller (referred to as master in the documenta=
+tion)
+>   * automatically deasserts chip select when the tx fifo is empty. The ch=
+ip
+> - * selects then needs to be either driven as GPIOs or, for the first 4 u=
+sing the
+> + * selects then needs to be either driven as GPIOs or, for the first 4 u=
+sing
+>   * the SPI boot controller registers. the final chip select is an OR gate
+>   * between the Designware SPI controller and the SPI boot controller.
+>   */
 
+This is an unrelated fix, please send as a separate patch as covered in
+submitting-patches.rst.
 
-2. We'll change the interpretation of "compatible" but just for panels.
+> @@ -237,6 +237,31 @@ static int dw_spi_canaan_k210_init(struct platform_d=
+evice *pdev,
+>  	return 0;
+>  }
+> =20
+> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> +{
+> +	struct dw_spi *dws =3D spi_master_get_devdata(spi->master);
+> +
+> +	if (!enable) {
+> +		/*
+> +		 * Using a GPIO-based chip-select, the DW SPI
+> +		 * controller still needs its own CS bit selected
+> +		 * to start the serial engine.  On Elba the specific
+> +		 * CS doesn't matter to start the serial engine,
+> +		 * so using CS0.
+> +		 */
 
-2a) Normal interpretation of "compatible" (from devicetree spec) is
-most specific to least specific. We look at the first "compatible"
-string. If we have a driver for that specific device, use it. If not
-then move on to the next "compatible" and look for a driver for it.
+Why does this comment only apply to one branch of the conditional?
 
-2b) Interpretation of "compatible" for panels nodes: an unordered list
-of possible panels that might be stuffed. In order to be listed like
-this there must logically be a way to drive things in a way that would
-be compatible with all possible panels here.
+--KdquIMZPjGJQvRdI
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Presumably no existing panels are relying on the old interpretation?
-Personally I like Rob Clark's "panel,one-of" a bit better just because
-it doesn't require the redefinition of a standard property, but if
-everyone likes the redefinition then I won't object.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBh+TIACgkQJNaLcl1U
+h9AT8Af/XdN+n+l5mAqCUJXpWq/mDrkEBdZmfQE2koLvAsnVW0/Z9eaodG0TkxrP
+bTvF8W1AUheE0TQ/szrur71ck/fldoZX2xnc6OKhwO18e5rr1sVnoqCIIyqlvdJ6
+HPeGsJ9XWXWx/NZIV7Z3XaQxFV6c/L8ySwYbAy8iAkcr/WUYVThji4DddHgtSYkC
+0WIxxF5HvRjz9TcGCvf7LdeX3k9kqgT2esVALZ+HMbRkB0iMQAkL53hziP/xVl45
+5kyX5G+2mUE2bpxLX3Y9akKSvk5lj2fH2tBbLTjiFDiLVq4Kg8kMGvGscnQwqRL6
+kDe1GVPDkT7ZxqfuUX7w1OAD1SZ5Og==
+=vwts
+-----END PGP SIGNATURE-----
 
-
--Doug
+--KdquIMZPjGJQvRdI--
