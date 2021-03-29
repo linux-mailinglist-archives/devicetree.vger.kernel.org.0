@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E98C34C51C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CBA34C52F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229483AbhC2HlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 03:41:13 -0400
-Received: from mail-vs1-f41.google.com ([209.85.217.41]:42629 "EHLO
-        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230516AbhC2HlB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:41:01 -0400
-Received: by mail-vs1-f41.google.com with SMTP id b5so5917283vsl.9;
-        Mon, 29 Mar 2021 00:41:01 -0700 (PDT)
+        id S231311AbhC2HrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 03:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231224AbhC2Hq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:46:57 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95ADEC061762
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 00:46:56 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id x7so11768841wrw.10
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 00:46:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=gKqOr9BTXct/tRsLbZ99P7dlk5cf6Eud2sZybPk3YFo=;
+        b=kaPRrDWVtSv6ShmZ7l0uPXzHIzC5TB8pxZhs6iM8eklwxyqkk3hSXri0EW3sEsdSGZ
+         RYCosMqpvYPmWWK3Olvp7jvfSIGhDkPsQKuk7lJkUEASFm3Wq1vve2XYqAesVqVKWacb
+         IM0SwInTrz2+8mBitRL5PfkWeFKG2RijXhy57LrcyzeHwtdEoCTCgFdfENO55ziqjP+V
+         vNrESlDG8snaSn2HAQB/eOCuWt2JqREsKn+UGUGZxecGRwCsrUsU7QRUiugwtTmWzPtS
+         2SEGvscbjiki2IqS3XojMj1mgyecW99Fz8h5nRRNOnkmecGF6OJSGCOtapM9VIC0/Sgb
+         I1mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rvucXyZIiF5l7X3LSpV4S0alfsgQo0dfn+ISLlJ3Rxk=;
-        b=I+/f5bg4m77bgSg3BcRhk3C/PLLpILTKQdjCG1ydyCJBkplyO1xZ6VohgHEMpgDdtt
-         sKL9b2xqRDWD9n6SJ/EgZFXJ6bNAsGNeiR2PBggY2IXHfVz3ohgNeZMDkh8YzJLkxc5R
-         iPSztMwRj1v8RKf1972H5GbYHKEuvfBNWwtUX5llJjsm1OSdFH2aJR3+RUyIDYO0EBuP
-         /llgkK0EfPqoJRWOxwj3BcTssrwYyxWcHlqv9d4ub+SmrX3ugBjmz3+EngQHHGj3feTA
-         kXfWuKhFfBQAfs6FKyz0wb8M01OfbHU027asfmTW+tJWoSBzHIKfP2HTjmOku5JNbqcN
-         PzGQ==
-X-Gm-Message-State: AOAM530FmZFRGKeGxWsSgS71qt87ekJllNXDTW062OnIkbEUqc9v2CM6
-        7leZTYGnpsPhKTzmRCi1u2ou6ut6By8myd+aGracFXl5
-X-Google-Smtp-Source: ABdhPJxfhfk8pS9GfNI76dcLDeJe0ZDV3lU+YFGaB/JcfGajWIDmLLyYqEe1Yll0N6XAsASIKXoS4KzFCb0DctMSQmw=
-X-Received: by 2002:a67:efd0:: with SMTP id s16mr13945819vsp.3.1617003660893;
- Mon, 29 Mar 2021 00:41:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=gKqOr9BTXct/tRsLbZ99P7dlk5cf6Eud2sZybPk3YFo=;
+        b=E/INVpt/KCd6dCgaAMWa98zzeL1/qa5gN8U4/IVJa4YA0ZH3Xmo/cDbyroGhtpRwfp
+         7tBTUZ/9VkpjSm0ssrprwpXJinsWXaBbur1Cz68gt7AeIVyQkFSYZSU2Y+UFJi9mZYJl
+         F+IPhmgfq66OV4z1342dJcbwJXpYvTV5lhHfmgn2tpUkZg0SGoirgd6XVPgD0t7Srtrj
+         oDMl2DBZ8vyhKmOmSaF8k+TN3p9uwQ2z+jfyeuGwSVvSOgyQ7pg+osARZ/3H+SzOn+JX
+         HYgTEqlRYyyRtrQWTbxRMmH2xT7e4qBjLrctM8L2jA1xiIc2m6gzHNQjYO65APWrKDNd
+         yXww==
+X-Gm-Message-State: AOAM5322r9V6MtxW+xum/KiyXwxPBSJ/FZHZkGvkyPf7tqdlg+J9ba0P
+        8OQRul7h3zOYLioUuBLkYWctuA==
+X-Google-Smtp-Source: ABdhPJzWzZhMRMPnCKckhJQXhaq4Dq6bmLUHi3xHIiorsZ6H00ywKErdNka2kYZzNUgvcZShJCKXEg==
+X-Received: by 2002:a05:6000:1149:: with SMTP id d9mr26758779wrx.347.1617004015168;
+        Mon, 29 Mar 2021 00:46:55 -0700 (PDT)
+Received: from dell ([91.110.221.217])
+        by smtp.gmail.com with ESMTPSA id r206sm18457285wma.46.2021.03.29.00.46.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 00:46:54 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 08:46:50 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v7 01/13] dt-bindings: mfd: Add 'nxp,imx8mq-vpu-ctrl' to
+ syscon list
+Message-ID: <20210329074650.GC2916463@dell>
+References: <20210329065743.11961-1-benjamin.gaignard@collabora.com>
+ <20210329065743.11961-2-benjamin.gaignard@collabora.com>
 MIME-Version: 1.0
-References: <20210322172919.1154686-1-kieran.bingham+renesas@ideasonboard.com> <20210322172919.1154686-3-kieran.bingham+renesas@ideasonboard.com>
-In-Reply-To: <20210322172919.1154686-3-kieran.bingham+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 29 Mar 2021 09:40:49 +0200
-Message-ID: <CAMuHMdU0tPay7VmP23PFxG=5peYgVLZdYEtEbUbaDh9b7kobgA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: r8a779a0: Add VSPD support
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210329065743.11961-2-benjamin.gaignard@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 22, 2021 at 6:29 PM Kieran Bingham
-<kieran.bingham+renesas@ideasonboard.com> wrote:
-> Provide VSPD support on the V3U.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On Mon, 29 Mar 2021, Benjamin Gaignard wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.13.
+> Add 'nxp,imx8mq-vpu-ctrl' in the list of possible syscon.
+> It will used to access to the VPU control registers.
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+> version 7:
+>  - Add Rob ack
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Gr{oetje,eeting}s,
-
-                        Geert
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
