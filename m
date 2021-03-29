@@ -2,153 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C55BC34D1C4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D1234D1DB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 15:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231626AbhC2NsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 09:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36436 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231952AbhC2Nrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:47:43 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B32CC061574;
-        Mon, 29 Mar 2021 06:47:43 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id v4so12899193wrp.13;
-        Mon, 29 Mar 2021 06:47:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LDEzUvKkjAIAvpEGtHLesvgMticNcLTXLAP3FMyOp20=;
-        b=QgMv/ynDdRRfWLLD1H+6oPildJRa0NtXPSoikSLeCdIBE9YYdG9IhWa3D0NHkYueHe
-         8chQPBQz5nGPtY9fgNvn9APGFCv6tmTskaHuxDYLAJmQQ9a8TDj+H/Mds222JcgNMPdn
-         UH2Jvu2nq9lc8DlHoRfJveHMdC8kgU/2tB7M65tY41CEth45jvkrap7CtyHshYRJ3VBx
-         aDhyqbRUyg7O/cZBPJsVP7uLx3UMHWekrJOYgJhUIk93zpV+YhvS3Ky0ydwFcirY0E6p
-         Zf7IN+mNu9Sf9MUFmyPW/CWXNWJWotMApizLID1AuUkyC5hb4QK1H++JUgU1QdLJKel2
-         rFIw==
+        id S231810AbhC2Nxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 09:53:33 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:42808 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231774AbhC2NxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 09:53:02 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 31-20020a9d00220000b02901b64b9b50b1so12310351ota.9;
+        Mon, 29 Mar 2021 06:53:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=LDEzUvKkjAIAvpEGtHLesvgMticNcLTXLAP3FMyOp20=;
-        b=Gw7agG7ejgAYb4JEpUGJlIA7SFmfvPPhfTiUTW6eHkhpCHKyEZ03Y294/WtclBmR65
-         3PjjSHhc0jAkznw+LerjMUvYtTru1msGTqaEH9MyPfNzn/PCON4zxP+OaeEdLrFKPynQ
-         vVqE+nS+cWIUfoWbxg4ISSdgvGcIn79XZPNvccVIMxk4iHc55RQjTA3Rc5idZ72asnJp
-         M2HkFCL7ZxQ0KvUECDs079jzkSHKj1DsS2NYOJQitzu3UTo3JI07Zrh1djyLpDuSnsGz
-         lIB7ZFq7VKPRWKE0iQX5sD+Qx9u9FOv6KG3VTUVU4IdNQ/ZRSt2NsrTcHjAxBAmizb7k
-         ijbQ==
-X-Gm-Message-State: AOAM531GhMOMRBkm1G7/i6hAmTtjMgxnqGIWX14Hun7YNbOXbwDxADex
-        bUVuIQeqZBwiF2qCK0fY1uMmDzSdWa/YcQ==
-X-Google-Smtp-Source: ABdhPJyzByzyqLM6tlsL+vq+denDIyXkVf9F+7u6Otbf7WudUQp4OKErhkmujtGBPS5iAhA+nISOvg==
-X-Received: by 2002:adf:fd48:: with SMTP id h8mr29064992wrs.229.1617025662200;
-        Mon, 29 Mar 2021 06:47:42 -0700 (PDT)
-Received: from ziggy.stardust (80.174.240.175.dyn.user.ono.com. [80.174.240.175])
-        by smtp.gmail.com with ESMTPSA id y205sm30561793wmc.18.2021.03.29.06.47.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Mar 2021 06:47:41 -0700 (PDT)
-Subject: Re: [PATCH v5 13/13] arm: dts: mt2701: harmonize node names and
- compatibles
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jie Qiu <jie.qiu@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Cawa Cheng <cawa.cheng@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20210316092232.9806-1-chunfeng.yun@mediatek.com>
- <20210316092232.9806-13-chunfeng.yun@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <b6e523bb-8991-b5e8-576d-55190e7fc49f@gmail.com>
-Date:   Mon, 29 Mar 2021 15:47:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2kx0G07YczhDjJFsWiCaS8pRYvouvk30VF+p/QfTjfQ=;
+        b=uGe+wqwHHs1k8mCZaonfi2DWNjIl9/YHTG3UjuaQbg7XjhEupKR5q0TI6nqdkuavs9
+         A1DYQ+7rBJEgCNBwCcwkGtHa1iF8Bf9U/RyXnbsFNRBRti68nH2qUIxDhLRgC94SPg0j
+         xwOXporZsJv2OIqEGKNVxxm9BJhshoF22iDBj2dumfOj7HMKVKExEIH6dzZnqZPWd9i9
+         0DHxj5tPC09CxiLoP7VhkNRYCV6ViNmUiqJTcJIL2wRGGDnNxG6ldil/s4eEEtsmmddC
+         SE/fVswPszUUU7xjVvGqH2oGHGCU4ddIKvnKDE4cFgH1j0TDExD/kLpaRSecjcGrBNEE
+         LCWQ==
+X-Gm-Message-State: AOAM530gbm/MJSUWyX7fpcWTpxRZ98JXGqAt5SzxKORVaG51LDEfKlmA
+        RJXGXAssSDJZZfHlEN7Huw==
+X-Google-Smtp-Source: ABdhPJwaihSqXeKVUznslk6PKBV7X4dxzic9ks8hZXlzs/XK31nyBmCTPSWG7Qb7dkg/ViDIU/d4RQ==
+X-Received: by 2002:a9d:20c6:: with SMTP id x64mr22311868ota.262.1617025981177;
+        Mon, 29 Mar 2021 06:53:01 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y10sm3450231oih.37.2021.03.29.06.52.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 06:53:00 -0700 (PDT)
+Received: (nullmailer pid 2469448 invoked by uid 1000);
+        Mon, 29 Mar 2021 13:52:59 -0000
+Date:   Mon, 29 Mar 2021 08:52:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] spi: dt-bindings: nvidia,tegra210-quad: Use documented
+ compatible "jedec,spi-nor" in example
+Message-ID: <20210329135259.GA2423613@robh.at.kernel.org>
+References: <20210327203357.552794-1-robh@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210316092232.9806-13-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210327203357.552794-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/03/2021 10:22, Chunfeng Yun wrote:
-> This is used to fix dtbs_check warning
+On Sat, Mar 27, 2021 at 03:33:57PM -0500, Rob Herring wrote:
+> The 'spi-nor' compatible used in the example is not documented. Use the
+> documented 'jedec,spi-nor' compatible instead.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-
-
-Applied now to v5.12-next/dts32
-
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: linux-spi@vger.kernel.org
+> Cc: linux-tegra@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> v2~v5: no changes
-> ---
->  arch/arm/boot/dts/mt2701.dtsi | 19 +++++++++++--------
->  1 file changed, 11 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/mt2701.dtsi b/arch/arm/boot/dts/mt2701.dtsi
-> index fade14284017..4776f85d6d5b 100644
-> --- a/arch/arm/boot/dts/mt2701.dtsi
-> +++ b/arch/arm/boot/dts/mt2701.dtsi
-> @@ -607,7 +607,7 @@
->  	};
->  
->  	usb0: usb@1a1c0000 {
-> -		compatible = "mediatek,mt8173-xhci";
-> +		compatible = "mediatek,mt2701-xhci", "mediatek,mtk-xhci";
->  		reg = <0 0x1a1c0000 0 0x1000>,
->  		      <0 0x1a1c4700 0 0x0100>;
->  		reg-names = "mac", "ippc";
-> @@ -620,8 +620,9 @@
->  		status = "disabled";
->  	};
->  
-> -	u3phy0: usb-phy@1a1c4000 {
-> -		compatible = "mediatek,mt2701-u3phy";
-> +	u3phy0: t-phy@1a1c4000 {
-> +		compatible = "mediatek,mt2701-tphy",
-> +			     "mediatek,generic-tphy-v1";
->  		reg = <0 0x1a1c4000 0 0x0700>;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -646,7 +647,7 @@
->  	};
->  
->  	usb1: usb@1a240000 {
-> -		compatible = "mediatek,mt8173-xhci";
-> +		compatible = "mediatek,mt2701-xhci", "mediatek,mtk-xhci";
->  		reg = <0 0x1a240000 0 0x1000>,
->  		      <0 0x1a244700 0 0x0100>;
->  		reg-names = "mac", "ippc";
-> @@ -659,8 +660,9 @@
->  		status = "disabled";
->  	};
->  
-> -	u3phy1: usb-phy@1a244000 {
-> -		compatible = "mediatek,mt2701-u3phy";
-> +	u3phy1: t-phy@1a244000 {
-> +		compatible = "mediatek,mt2701-tphy",
-> +			     "mediatek,generic-tphy-v1";
->  		reg = <0 0x1a244000 0 0x0700>;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -700,8 +702,9 @@
->  		status = "disabled";
->  	};
->  
-> -	u2phy0: usb-phy@11210000 {
-> -		compatible = "mediatek,generic-tphy-v1";
-> +	u2phy0: t-phy@11210000 {
-> +		compatible = "mediatek,mt2701-tphy",
-> +			     "mediatek,generic-tphy-v1";
->  		reg = <0 0x11210000 0 0x0800>;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> 
+>  Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Ugg, I guess I should have tested this first:
+
+Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.example.dt.yaml: flash@0: 'nvidia,rx-clk-tap-delay', 'nvidia,tx-clk-tap-delay' do not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+
+
+This issue has come up a couple of times recently. There's not really an 
+easy fix for this other than dropping the properties from the example 
+and that doesn't help for actual dts file checks.
+
+The issue is nvidia,tegra210-quad.yaml is applied to the SPI controller 
+node and jedec,spi-nor.yaml is applied to the child node. Since those 
+are independent, there's never a single schema with all possible child 
+properties.
+
+We could have a schema listing all these slave properties and every SPI 
+slave binding has to reference that schema.
+
+Rob
