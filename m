@@ -2,270 +2,1941 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2CB734D8C7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 22:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0AD34D8D0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 22:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbhC2UE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 16:04:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33148 "EHLO
+        id S231848AbhC2UGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 16:06:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbhC2UD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 16:03:57 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FB84C061756
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:03:57 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id o66so14980353ybg.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:03:57 -0700 (PDT)
+        with ESMTP id S231841AbhC2UFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 16:05:49 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0584FC061756
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:05:48 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id h3so10563857pfr.12
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:05:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=c+SVnf+eZNzV5BnrsHjXuTPhUW9NQDOxp0HhmQNkvME=;
-        b=T1+5NkN80jgzut/IEEWJL6Sjns6vfZJ4/CUm0fJotNLiYdFyLaKO8nqtx4bPuBwueJ
-         NMNHPk6+HTKHAq6V+OtXgZgMojOMH5lLuDwA2gIH90EzgLhA7Cbjao/ToWgrR/Kwlhg8
-         KtZrsRoE28Cplq4R8xfZD6m1sPX6ES9jFAIEphgleU1ga9hQOSiQZMvZDdRDCCagFZWt
-         Uiz9OYOmA/6oDlnBsumL+S/oO/rm1pGtTaHEjCLY22XIunwTQMrKJLJkEyymFbCJXFAC
-         J2iozu1tlR+kj443NTOv55qIzGhncAEJ4hzzk/VXSdjoymrwJrqEZw+R0NOSvkREMD0E
-         4OEA==
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=volifUdZnyXtw9Vknx18Dn/f9+QqahAZPCnHGVaMx6I=;
+        b=ggMW5XzXdlmWwWxvMQ1FuCT8nalT//RzySmP1KDwLv4rkHSrm6HaY0OdaJimZRlHFl
+         yqo7J0XjuzTZPw/nVYsp3mGyxwomHoyXLVIMc+D51kbaLzVTXUNOw97EZnn6ltxhMMh7
+         0fFpPJ5tjKIUDbQhY1mwJrAMZdoJU/aNZ5iWY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c+SVnf+eZNzV5BnrsHjXuTPhUW9NQDOxp0HhmQNkvME=;
-        b=F0PavIJiU+0IMGj4beyKoTblwcYJyFjjNXw8RbkvvDpgZhaFrZyFmvQrEkeuQVzyKf
-         Im2KVsAEp6u+10eHj59IMRCQlSQ0pegIf2xVhb4H2Ax2qDvrdIKeM8etDzG6HZVAHgTi
-         ExjB9HvMN8S8D6KagzD5GndspLrUIoygHUZNSN99mzjWXfg8efe0qg/3/zs0IOIMzEut
-         ujqFCEpcaiIR5cA5RPZLlyhe3T2kQPqK3MbaPKEe/JLPnTySiWewwp6au/AmF/ZpGaz6
-         ryF6EbNH3beIpUc3VaMCHuwF5LJId1U5AjHBlRxfo3T6pq80QkxHyYraMdUe/q5YDRmR
-         CNPw==
-X-Gm-Message-State: AOAM530d8RdtguFf4DF9QxlSmIJH4YIFmR1Ra4+grZiHC/brCumP3EPj
-        0grOb6+9LiA9jhSfkM0+t/CXvI+RRGq528Evt1qXHQ==
-X-Google-Smtp-Source: ABdhPJwhFMfjrq3D9ur5h5lAawAYkP9YVyiZiWKYWVXENhjEzDFg6lHzfsFuCMc3FRS4PIUdm0hoYxSYiFcGeAQveYg=
-X-Received: by 2002:a25:dc4c:: with SMTP id y73mr38871511ybe.346.1617048236369;
- Mon, 29 Mar 2021 13:03:56 -0700 (PDT)
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=volifUdZnyXtw9Vknx18Dn/f9+QqahAZPCnHGVaMx6I=;
+        b=qmLXMk8erDb6Toj6ehi+tO4evK2WJsPbD5mWZNSJK7wpqqid21KlejC1Z9EAWR32S9
+         zjVVrjftaBmE6HeN8RmmVmJ+xUseWmHGB2l8F8x6QnwsxuEJKueQGZjhwM0lf7kxdU10
+         7ImHS6rKODdQdNev9XHSAuXMg85ab3Rc2XRNJ2sbhLcPR4CWt0suh9D1HZAguBvkmxUe
+         vkTHizJuOchuhyVoPOOyzW/h6Y/XxJlnvgCGkHW9mjCmiInX6S1FWvgbQKhYzBw5EY/t
+         n4tJSlah8DvY2V76AQ8MXuJzX7R2FkLWJB+Ud0+XBrvjyNn0L+G7XM4tb57uFwJrcChg
+         Kvgg==
+X-Gm-Message-State: AOAM532ix+BM4yWYapW1zRZitXz3bPVdffiqECUCI6RXojnLbTdX06FT
+        I8SlUHFQEoMVbHKuvgqvwg4P0g==
+X-Google-Smtp-Source: ABdhPJwNUfVnb6eInaAUzfW5o/BdacS0MSvZj3UkuoHf4nd4eZlZ66v0/XoGSTSE5NMtDH0TAvB0tQ==
+X-Received: by 2002:a65:5088:: with SMTP id r8mr9354552pgp.434.1617048347974;
+        Mon, 29 Mar 2021 13:05:47 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:201:4091:2b37:966b:1fca])
+        by smtp.gmail.com with ESMTPSA id o197sm18424205pfd.42.2021.03.29.13.05.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 13:05:47 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210316215123.GA3712408@robh.at.kernel.org> <20210318210318.144961-1-sebastian.reichel@collabora.com>
- <20210326012720.GA2113788@robh.at.kernel.org> <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
- <20210326095212.22ty5ueowiq36y6b@earth.universe>
-In-Reply-To: <20210326095212.22ty5ueowiq36y6b@earth.universe>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 29 Mar 2021 13:03:20 -0700
-Message-ID: <CAGETcx81=GwChE0eZtKKAk4kDeq2S0ijS8X7FsMnk5HhzAcOhA@mail.gmail.com>
-Subject: Re: [RFC] clk: add boot clock support
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <dc058ed6d05f1aec4e97fee6d4c007abdf3b54a0.1616651305.git.schowdhu@codeaurora.org>
+References: <cover.1616651305.git.schowdhu@codeaurora.org> <dc058ed6d05f1aec4e97fee6d4c007abdf3b54a0.1616651305.git.schowdhu@codeaurora.org>
+Subject: Re: [PATCH V2 2/5] soc: qcom: dcc: Add driver support for Data Capture and Compare unit(DCC)
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+Date:   Mon, 29 Mar 2021 13:05:45 -0700
+Message-ID: <161704834593.3012082.17486072850156076295@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 2:52 AM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi Saravana,
->
-> On Thu, Mar 25, 2021 at 06:55:52PM -0700, Saravana Kannan wrote:
-> > On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > +Saravana
-> > >
-> > > On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
-> > > > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
-> > > > is provided by an I2C RTC. Specifying this properly results in a
-> > > > circular dependency, since the I2C RTC (and thus its clock) cannot
-> > > > be initialized without the i.MX6 clock controller being initialized.
-> > > >
-> > > > With current code the following path is executed when i.MX6 clock
-> > > > controller is probed (and ckil clock is specified to be the I2C RTC
-> > > > via DT):
-> > > >
-> > > > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
-> > > > 2. of_clk_get_by_name(ccm_node, "ckil");
-> > > > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
-> > > > 4. of_clk_get_hw(ccm_node, 0, "ckil")
-> > > > 5. spec = of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
-> > > > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
-> > > > 7. error is propagated back, i.MX6q clock controller is probe deferred
-> > > > 8. I2C controller is never initialized without clock controller
-> > > >    I2C RTC is never initialized without I2C controller
-> > > >    CKIL clock is never initialized without I2C RTC
-> > > >    clock controller is never initialized without CKIL
-> > > >
-> > > > To fix the circular dependency this registers a dummy clock when
-> > > > the RTC clock is tried to be acquired. The dummy clock will later
-> > > > be unregistered when the proper clock is registered for the RTC
-> > > > DT node. IIUIC clk_core_reparent_orphans() will take care of
-> > > > fixing up the clock tree.
-> > > >
-> > > > NOTE: For now the patch is compile tested only. If this approach
-> > > > is the correct one I will do some testing and properly submit this.
-> > > > You can find all the details about the hardware in the following
-> > > > patchset:
-> > > >
-> > > > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-sebastian.reichel@collabora.com/
-> > > >
-> > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > > ---
-> > > >  .../bindings/clock/clock-bindings.txt         |   7 +
-> > > >  drivers/clk/clk.c                             | 146 ++++++++++++++++++
-> > > >  2 files changed, 153 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > > index f2ea53832ac6..66d67ff4aa0f 100644
-> > > > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list of strings of clock output signal
-> > > >                   Clock consumer nodes must never directly reference
-> > > >                   the provider's clock-output-names property.
-> > > >
-> > > > +boot-clock-frequencies: This property is used to specify that a clock is enabled
-> > > > +                     by default with the provided frequency at boot time. This
-> > > > +                     is required to break circular clock dependencies. For clock
-> > > > +                     providers with #clock-cells = 0 this is a single u32
-> > > > +                     with the frequency in Hz. Otherwise it's a list of
-> > > > +                     clock cell specifier + frequency in Hz.
-> > >
-> > > Seems alright to me. I hadn't thought about the aspect of needing to
-> > > know the frequency. Other cases probably don't as you only need the
-> > > clocks once both components have registered.
-> > >
-> > > Note this could be lost being threaded in the other series.
-> >
-> > I read this thread and tried to understand it. But my head isn't right
-> > today (lack of sleep) so I couldn't wrap my head around it. I'll look
-> > at it again after the weekend. In the meantime, Sebastian can you
-> > please point me to the DT file and the specific device nodes (names or
-> > line number) where this cycle is present?
->
-> I have not yet sent an updated DT file, but if you look at this
-> submission:
->
-> https://lore.kernel.org/linux-devicetree/20210222171247.97609-7-sebastian.reichel@collabora.com/
->
-> There is a node
->
-> rtc: m41t62@68 { compatible = "st,m41t62"; };
->
-> That is an I2C RTC, which provides a 32.768 kHz clock by default
-> (i.e. after power loss). This clock signal is used to provide the
-> i.MX6 CKIL:
->
-> ------------------------------------
-> &clks {
->     clocks = <&rtc>;
->     clock-names = "ckil";
-> };
-> ------------------------------------
->
-> > Keeping a clock on until all its consumers probe is part of my TODO
-> > list (next item after fw_devlink=on lands). I already have it working
-> > in AOSP, but need to clean it up for upstream. fw_devlink can also
-> > break *some* cycles (not all). So I'm wondering if the kernel will
-> > solve this automatically soon(ish). If it can solve it automatically,
-> > I'd rather not add new DT bindings because it'll make it more work for
-> > fw_devlink.
->
-> As written above on Congatec QMX6 an I2C RTC provides one of the
-> SoC's input frequencies. The SoC basically expects that frequency
-> to be always enabled and this is what it works like before clock
-> support had been added to the RTC driver.
+Quoting Souradeep Chowdhury (2021-03-25 01:02:33)
+> The DCC is a DMA Engine designed to capture and store data
+> during system crash or software triggers.The DCC operates
+> based on user inputs via the sysfs interface.The user gives
+> addresses as inputs and these addresses are stored in the
+> form of linkedlists.In case of a system crash or a manual
+> software trigger by the user through the sysfs interface,
+> the dcc captures and stores the values at these addresses.
+> This patch contains the driver which has all the methods
+> pertaining to the sysfs interface, auxiliary functions to
+> support all the four fundamental operations of dcc namely
+> read, write, first read then write and loop.The probe method
+> here instantiates all the resources necessary for dcc to
+> operate mainly the dedicated dcc sram where it stores the
+> values.The DCC driver can be used for debugging purposes
+> without going for a reboot since it can perform manual
+> triggers.
+>=20
+> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> ---
+>  drivers/soc/qcom/Kconfig  |    8 +
+>  drivers/soc/qcom/Makefile |    1 +
+>  drivers/soc/qcom/dcc.c    | 1549 +++++++++++++++++++++++++++++++++++++++=
+++++++
 
-Thanks. I skimmed through the RTC driver code and
-imx6q_obtain_fixed_clk_hw() and the DT files.
+Where's the document for various sysfs attributes in Documentation/ABI?
 
->
-> With the link properly being described the Kernel tries to probe
-> the SoC's clock controller during early boot. Then it tries to get a
-> reference to the linked clock, using imx6q_obtain_fixed_clk_hw()
-> and that returns -EPROBE_DEFER (because the RTC driver has not
-> yet been probed).
+>  3 files changed, 1558 insertions(+)
+>  create mode 100644 drivers/soc/qcom/dcc.c
+>=20
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index 79b568f..8819e0b 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -69,6 +69,14 @@ config QCOM_LLCC
+>           SDM845. This provides interfaces to clients that use the LLCC.
+>           Say yes here to enable LLCC slice driver.
+>=20
+> +config QCOM_DCC
+> +       tristate "Qualcomm Technologies, Inc. Data Capture and Compare en=
+gine driver"
 
-But the RTC (which is a proper I2C device) will never probe before
-CLK_OF_DECLARE() initializes the core clock controller. So, it's not
-clear how "protected-clocks" helps here since it doesn't change
-whether you get -EPROBE_DEFER from imx6q_obtain_fixed_clk_hw() (which
-is called from the CLK_OF_DECLARE() callback). Oof... I see what you
-are doing with of_clk_register_boot_clk(). You are having the consumer
-register its own clock and then use it. Kinda beats the whole point of
-describing the link in the first place.
+Put (DCC) after Compare?
 
-> Without the clock controller basically none of
-> the i.MX6 SoC drivers can probe including the I2C driver. Without
-> the I2C bus being registered, the RTC driver never probes and the
-> boot process is stuck.
->
-> I'm not sure how fw_devlink can help here.
+> +       depends on ARCH_QCOM || COMPILE_TEST
+> +       help
+> +         This option enables driver for Data Capture and Compare engine.=
+ DCC
+> +         driver provides interface to configure DCC block and read back
+> +         captured data from DCC's internal SRAM.
+> +
+>  config QCOM_KRYO_L2_ACCESSORS
+>         bool
+>         depends on ARCH_QCOM && ARM64 || COMPILE_TEST
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index ad675a6..1b00870 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -26,3 +26,4 @@ obj-$(CONFIG_QCOM_LLCC) +=3D llcc-qcom.o
+>  obj-$(CONFIG_QCOM_RPMHPD) +=3D rpmhpd.o
+>  obj-$(CONFIG_QCOM_RPMPD) +=3D rpmpd.o
+>  obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=3D        kryo-l2-accessors.o
+> +obj-$(CONFIG_QCOM_DCC) +=3D dcc.o
 
-I'll explain how it'd help. Let's assume "fsl,imx6q-ccm" was
-implemented as an actual platform device driver and not using
-CLK_OF_DECLARE() to initialize ALL the clocks. I'll get to this
-assumption later.
+Can this be sorted based on config or file name instead of adding to the
+end of the file and leading to endless conflicts?
 
-In that case, fw_devlink will notice this cycle:
-syntax: consumer -(reason)-> supplier
-clks -(clocks property)-> rtc -(parent)-> i2c3  -(clocks property)-> clks.
+> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
+> new file mode 100644
+> index 0000000..a55d8ca7
+> --- /dev/null
+> +++ b/drivers/soc/qcom/dcc.c
+> @@ -0,0 +1,1549 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cdev.h>
+> +#include <linux/delay.h>
+> +#include <linux/fs.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/uaccess.h>
+> +
+> +
+> +#define TIMEOUT_US             100
+> +
+> +#define dcc_writel(drvdata, val, off)                                  \
+> +       writel((val), drvdata->base + dcc_offset_conv(drvdata, off))
+> +#define dcc_readl(drvdata, off)                                         =
+       \
+> +       readl(drvdata->base + dcc_offset_conv(drvdata, off))
+> +
+> +#define dcc_sram_readl(drvdata, off)                                   \
+> +       readl(drvdata->ram_base + off)
+> +
+> +#define DCC_SRAM_NODE "dcc_sram"
+> +
+> +/* DCC registers */
+> +#define DCC_HW_INFO                    0x04
+> +#define DCC_LL_NUM_INFO                        0x10
+> +#define DCC_STATUS                     0x1C
+> +#define DCC_LL_LOCK(m)                 (0x34 + 0x80 * m)
+> +#define DCC_LL_CFG(m)                  (0x38 + 0x80 * m)
+> +#define DCC_LL_BASE(m)                 (0x3c + 0x80 * m)
+> +#define DCC_FD_BASE(m)                 (0x40 + 0x80 * m)
+> +#define DCC_LL_TIMEOUT(m)              (0x44 + 0x80 * m)
+> +#define DCC_LL_INT_ENABLE(m)           (0x4C + 0x80 * m)
+> +#define DCC_LL_INT_STATUS(m)           (0x50 + 0x80 * m)
+> +#define DCC_LL_SW_TRIGGER(m)           (0x60 + 0x80 * m)
+> +#define DCC_LL_BUS_ACCESS_STATUS(m)    (0x64 + 0x80 * m)
+> +
+> +#define DCC_MAP_LEVEL1                 0x18
+> +#define DCC_MAP_LEVEL2                 0x34
+> +#define DCC_MAP_LEVEL3                 0x4C
+> +
+> +#define DCC_MAP_OFFSET1                        0x10
+> +#define DCC_MAP_OFFSET2                        0x18
+> +#define DCC_MAP_OFFSET3                        0x1C
+> +#define DCC_MAP_OFFSET4                        0x8
+> +
+> +#define DCC_FIX_LOOP_OFFSET            16
+> +#define DCC_VER_INFO_BIT               9
+> +
+> +#define DCC_READ                       0
+> +#define DCC_WRITE                      1
+> +#define DCC_LOOP                       2
+> +#define DCC_READ_WRITE                 3
+> +
+> +#define MAX_DCC_OFFSET                 GENMASK(9, 2)
+> +#define MAX_DCC_LEN                    GENMASK(6, 0)
+> +#define MAX_LOOP_CNT                   GENMASK(7, 0)
+> +
+> +#define DCC_ADDR_DESCRIPTOR            0x00
+> +#define DCC_LOOP_DESCRIPTOR            BIT(30)
+> +#define DCC_RD_MOD_WR_DESCRIPTOR       BIT(31)
+> +#define DCC_LINK_DESCRIPTOR            GENMASK(31, 30)
+> +
+> +#define DCC_READ_IND                   0x00
+> +#define DCC_WRITE_IND                  (BIT(28))
+> +
+> +#define DCC_AHB_IND                    0x00
+> +#define DCC_APB_IND                    BIT(29)
+> +
+> +#define DCC_MAX_LINK_LIST              8
+> +#define DCC_INVALID_LINK_LIST          GENMASK(7, 0)
+> +
+> +#define DCC_VER_MASK1                  GENMASK(6, 0)
+> +#define DCC_VER_MASK2                  GENMASK(5, 0)
+> +
+> +#define DCC_RD_MOD_WR_ADDR              0xC105E
+> +
+> +struct qcom_dcc_config {
+> +       const int dcc_ram_offset;
 
-It'll then reason that it doesn't make sense for a device (clks) to
-have a supplier (rtc) whose parent (i2c3) in turn depends on the
-device (clks). It'll then drop the clks -> rtc dependency because
-that's the most illogical one in terms of probing.
+Why const here? The container structure can be const and then this is
+easier to read.
 
-So all you'd need to do is delete any -EPROBE defer you might do in
-"fsl,imx6q-ccm" driver for "ckil". For cases where there's no cycle,
-fw_devlink will make sure the supplier of ckil has probed first. For
-cases where there's a cycle like this, it'll be smart enough to drop
-this dependency during probe ordering.
+> +};
+> +
+> +enum dcc_descriptor_type {
+> +       DCC_ADDR_TYPE,
+> +       DCC_LOOP_TYPE,
+> +       DCC_READ_WRITE_TYPE,
+> +       DCC_WRITE_TYPE
+> +};
+> +
+> +enum dcc_mem_map_ver {
+> +       DCC_MEM_MAP_VER1 =3D 1,
+> +       DCC_MEM_MAP_VER2 =3D 2,
+> +       DCC_MEM_MAP_VER3 =3D 3
+> +};
+> +
+> +struct dcc_config_entry {
+> +       u32                             base;
+> +       u32                             offset;
+> +       u32                             len;
+> +       u32                             index;
+> +       u32                             loop_cnt;
+> +       u32                             write_val;
+> +       u32                             mask;
+> +       bool                            apb_bus;
+> +       enum dcc_descriptor_type        desc_type;
+> +       struct list_head                list;
+> +};
+> +
+> +struct dcc_drvdata {
 
-I don't know enough about the clocks in imx6q to comment if you can
-get away without using CLK_OF_DECLARE() at all. The only clock that
-really needs to use CLK_OF_DECLARE() is any clock that's needed for
-the scheduler timer. Other than that, everything else can be
-initialized by a normal driver. Including UART clocks. I can get into
-more specifics if you go down this path.
+Can we get some kernel doc on this structure?
 
-So, that's how fw_devlink could help here if you massage
-drivers/clk/imx/clk-imx6q.c to be a proper platform driver. You'll
-have to set fw_devlink=on in the kernel commandline though (it's work
-in progress to set this by default). There are some additional details
-here about keeping clocks on, but we can discuss the solution for that
-if it becomes an issue.
+> +       void __iomem            *base;
+> +       u32                     reg_size;
+> +       struct device           *dev;
+> +       struct mutex            mutex;
 
-> I see exactly two
-> options to solve this:
->
-> a) do not describe the link and keep RTC clock enabled somehow.
->    (my initial patchset)
-> b) describe the link, but ignore it during boot.
->    (what I'm trying to do here)
->
+In particular what this mutex is protecting.
 
-Even if you completely ignore fw_devlink, why not just model this
-clock as a fixed-clock in DT for this specific machine? It's clearly
-expecting the clock to be an always on fixed clock. This will also
-remove the need for adding "boot-clock-frequencies" binding.
-"fixed-clocks" devices are initialized very early on (they use
-CLK_OF_DECLARE too) even without their parents probing (not sure I
-agree with this, but this is how it works now).
+> +       void __iomem            *ram_base;
+> +       u32                     ram_size;
+> +       u32                     ram_offset;
+> +       enum dcc_mem_map_ver    mem_map_ver;
+> +       u32                     ram_cfg;
+> +       u32                     ram_start;
 
-Something like:
+phys_addr_t?
 
-rtc: m41t62@68 {
-compatible = "st,m41t62";
-reg = <0x68>;
+> +       bool                    *enable;
+> +       bool                    *configured;
+> +       bool                    interrupt_disable;
+> +       char                    *sram_node;
 
-    clock-ckil {
-                    compatible = "fixed-clock";
-                    #clock-cells = <0>;
-                    clock-frequency = <32768>;
-            };
-};
+This is always a define, so why make a struct member?
 
-I hope this helps.
+> +       struct cdev             sram_dev;
+> +       struct class            *sram_class;
+> +       struct list_head        *cfg_head;
+> +       u32                     *nr_config;
+> +       u32                     nr_link_list;
 
--Saravana
+size_t?
+
+> +       u8                      curr_list;
+> +       u8                      loopoff;
+> +};
+> +
+> +struct dcc_cfg_attr {
+> +       u32     addr;
+> +       u32     prev_addr;
+> +       u32     prev_off;
+> +       u32     link;
+> +       u32     sram_offset;
+> +};
+> +
+> +struct dcc_cfg_loop_attr {
+> +       u32     loop;
+> +       bool    loop_start;
+> +       u32     loop_cnt;
+> +       u32     loop_len;
+> +       u32     loop_off;
+> +};
+> +
+> +static size_t dcc_offset_conv(struct dcc_drvdata *drvdata, size_t off)
+> +{
+> +       if (drvdata->mem_map_ver =3D=3D DCC_MEM_MAP_VER1) {
+> +               if ((off & DCC_VER_MASK1) >=3D DCC_MAP_LEVEL3)
+> +                       return (off - DCC_MAP_OFFSET3);
+
+Drop useless parenthesis please.
+
+> +               if ((off & DCC_VER_MASK1) >=3D DCC_MAP_LEVEL2)
+> +                       return (off - DCC_MAP_OFFSET2);
+
+Drop useless parenthesis please.
+
+> +               else if ((off & DCC_VER_MASK1) >=3D DCC_MAP_LEVEL1)
+> +                       return (off - DCC_MAP_OFFSET1);
+
+Drop useless parenthesis please.
+
+> +       } else if (drvdata->mem_map_ver =3D=3D DCC_MEM_MAP_VER2) {
+> +               if ((off & DCC_VER_MASK1) >=3D DCC_MAP_LEVEL2)
+> +                       return (off - DCC_MAP_OFFSET4);
+
+Drop useless parenthesis please.
+
+> +       }
+
+Newline please.
+
+> +       return off;
+> +}
+> +
+> +static int dcc_sram_writel(struct dcc_drvdata *drvdata,
+> +                                       u32 val, u32 off)
+> +{
+> +       if (unlikely(off > (drvdata->ram_size - 4)))
+> +               return -EINVAL;
+
+Can this be pushed up one level? It would be great if we didn't have to
+track the fact that we've gone off the end of the ram in each writel
+call, instead doing something for every word in the ram and stopping
+that loop higher up.
+
+> +
+> +       writel((val), drvdata->ram_base + off);
+
+Drop useless parenthesis please.
+
+> +
+> +       return 0;
+> +}
+> +
+> +static bool dcc_ready(struct dcc_drvdata *drvdata)
+> +{
+> +       u32 val;
+> +
+> +       /* poll until DCC ready */
+
+Drop useless comment please.
+
+> +       if (!readl_poll_timeout((drvdata->base + DCC_STATUS), val,
+> +                               (FIELD_GET(GENMASK(1, 0), val) =3D=3D 0),=
+ 1, TIMEOUT_US))
+> +               return true;
+> +
+> +       return false;
+
+return !readl_poll_timeout(...) instead?
+
+> +}
+> +
+> +static int dcc_read_status(struct dcc_drvdata *drvdata)
+> +{
+> +       int curr_list;
+> +       u32 bus_status;
+> +       u32 ll_cfg =3D 0;
+> +       u32 tmp_ll_cfg =3D 0;
+
+Drop assignments as they're overwritten.
+
+> +
+> +       for (curr_list =3D 0; curr_list < drvdata->nr_link_list; curr_lis=
+t++) {
+> +               if (!drvdata->enable[curr_list])
+> +                       continue;
+> +
+> +               bus_status =3D dcc_readl(drvdata, DCC_LL_BUS_ACCESS_STATU=
+S(curr_list));
+> +
+> +               if (bus_status) {
+> +                       dev_err(drvdata->dev,
+> +                               "Read access error for list %d err: 0x%x.=
+\n",
+> +                               curr_list, bus_status);
+> +
+> +                       ll_cfg =3D dcc_readl(drvdata, DCC_LL_CFG(curr_lis=
+t));
+> +                       tmp_ll_cfg =3D ll_cfg & ~BIT(9);
+> +                       dcc_writel(drvdata, tmp_ll_cfg, DCC_LL_CFG(curr_l=
+ist));
+> +                       dcc_writel(drvdata, 0x3,
+> +                               DCC_LL_BUS_ACCESS_STATUS(curr_list));
+> +                       dcc_writel(drvdata, ll_cfg, DCC_LL_CFG(curr_list)=
+);
+> +                       return -ENODATA;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int dcc_sw_trigger(struct dcc_drvdata *drvdata)
+> +{
+> +       int ret =3D 0;
+> +       int curr_list;
+> +       u32 ll_cfg =3D 0;
+> +       u32 tmp_ll_cfg =3D 0;
+
+Drop assignments as they're overwritten.
+
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       for (curr_list =3D 0; curr_list < drvdata->nr_link_list; curr_lis=
+t++) {
+> +               if (!drvdata->enable[curr_list])
+> +                       continue;
+> +               ll_cfg =3D dcc_readl(drvdata, DCC_LL_CFG(curr_list));
+> +               tmp_ll_cfg =3D ll_cfg & ~BIT(9);
+> +               dcc_writel(drvdata, tmp_ll_cfg, DCC_LL_CFG(curr_list));
+> +               dcc_writel(drvdata, 1, DCC_LL_SW_TRIGGER(curr_list));
+> +               dcc_writel(drvdata, ll_cfg, DCC_LL_CFG(curr_list));
+> +       }
+
+Does the mutex need to be held while waiting for ready?
+
+> +
+> +       if (!dcc_ready(drvdata)) {
+> +               dev_err(drvdata->dev,
+> +                       "DCC is busy after receiving sw tigger.\n");
+> +               ret =3D -EBUSY;
+> +               goto err;
+> +       }
+> +
+> +       ret =3D dcc_read_status(drvdata);
+> +
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static void _dcc_ll_cfg_reset_link(struct dcc_cfg_attr *cfg)
+> +{
+> +       cfg->addr =3D 0x00;
+> +       cfg->link =3D 0;
+> +       cfg->prev_off =3D 0;
+> +       cfg->prev_addr =3D cfg->addr;
+> +}
+> +
+> +static int _dcc_ll_cfg_read_write(struct dcc_drvdata *drvdata,
+> +                                 struct dcc_config_entry *entry,
+> +                                 struct dcc_cfg_attr *cfg)
+> +{
+> +       int ret;
+> +
+> +       if (cfg->link) {
+> +               /*
+> +                * write new offset =3D 1 to continue
+> +                * processing the list
+> +                */
+> +
+> +               ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->sram_off=
+set);
+> +               if (ret)
+> +                       return ret;
+> +               cfg->sram_offset +=3D 4;
+> +               /* Reset link and prev_off */
+> +               _dcc_ll_cfg_reset_link(cfg);
+> +       }
+> +
+> +       cfg->addr =3D DCC_RD_MOD_WR_DESCRIPTOR;
+> +       ret =3D dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
+> +       if (ret)
+> +               return ret;
+> +
+> +       cfg->sram_offset +=3D 4;
+> +       ret =3D dcc_sram_writel(drvdata, entry->mask, cfg->sram_offset);
+> +       if (ret)
+> +               return ret;
+> +
+> +       cfg->sram_offset +=3D 4;
+> +       ret =3D dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offs=
+et);
+> +       if (ret)
+> +               return ret;
+> +
+> +       cfg->sram_offset +=3D 4;
+> +       cfg->addr =3D 0;
+> +       return ret;
+> +}
+> +
+> +static int _dcc_ll_cfg_loop(struct dcc_drvdata *drvdata, struct dcc_conf=
+ig_entry *entry,
+> +                           struct dcc_cfg_attr *cfg,
+> +                           struct dcc_cfg_loop_attr *cfg_loop,
+> +                           u32 *total_len)
+> +{
+> +
+> +       int ret;
+> +
+> +       /* Check if we need to write link of prev entry */
+> +       if (cfg->link) {
+> +               ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->sram_off=
+set);
+> +               if (ret)
+> +                       return ret;
+> +               cfg->sram_offset +=3D 4;
+> +       }
+> +
+> +       if (cfg_loop->loop_start) {
+> +               cfg_loop->loop =3D (cfg->sram_offset - cfg_loop->loop_off=
+) / 4;
+> +               cfg_loop->loop |=3D (cfg_loop->loop_cnt << drvdata->loopo=
+ff) &
+> +               GENMASK(27, drvdata->loopoff);
+
+What is 27? Can it be a define?
+
+> +               cfg_loop->loop |=3D DCC_LOOP_DESCRIPTOR;
+> +               *total_len +=3D (*total_len - cfg_loop->loop_len) * cfg_l=
+oop->loop_cnt;
+> +
+> +               ret =3D dcc_sram_writel(drvdata, cfg_loop->loop, cfg->sra=
+m_offset);
+> +
+
+Drop newline?
+
+> +               if (ret)
+> +                       return ret;
+> +               cfg->sram_offset +=3D 4;
+> +
+> +               cfg_loop->loop_start =3D false;
+> +               cfg_loop->loop_len =3D 0;
+> +               cfg_loop->loop_off =3D 0;
+> +       } else {
+> +               cfg_loop->loop_start =3D true;
+> +               cfg_loop->loop_cnt =3D entry->loop_cnt - 1;
+> +               cfg_loop->loop_len =3D *total_len;
+> +               cfg_loop->loop_off =3D cfg->sram_offset;
+> +       }
+> +
+> +       /* Reset link and prev_off */
+> +
+
+Drop newline?
+
+> +       _dcc_ll_cfg_reset_link(cfg);
+> +
+> +       return ret;
+> +}
+> +
+> +static int _dcc_ll_cfg_write(struct dcc_drvdata *drvdata,
+> +                            struct dcc_config_entry *entry,
+> +                            struct dcc_cfg_attr *cfg,
+> +                            u32 *total_len)
+> +{
+> +       u32 off;
+> +       int ret;
+> +
+> +       if (cfg->link) {
+> +               /*
+> +                * write new offset =3D 1 to continue
+> +                * processing the list
+> +                */
+> +               ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->sram_off=
+set);
+> +
+> +               if (ret)
+> +                       return ret;
+> +
+> +               cfg->sram_offset +=3D 4;
+> +               /* Reset link and prev_off */
+> +               cfg->addr =3D 0x00;
+> +               cfg->prev_off =3D 0;
+> +               cfg->prev_addr =3D cfg->addr;
+> +       }
+> +
+> +       off =3D entry->offset/4;
+> +       /* write new offset-length pair to correct position */
+> +       cfg->link |=3D ((off & GENMASK(7, 0)) | BIT(15) | ((entry->len <<=
+ 8) & GENMASK(14, 8)));
+> +       cfg->link |=3D DCC_LINK_DESCRIPTOR;
+> +
+> +       /* Address type */
+> +       cfg->addr =3D (entry->base >> 4) & GENMASK(27, 0);
+> +       if (entry->apb_bus)
+> +               cfg->addr |=3D DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_=
+APB_IND;
+> +       else
+> +               cfg->addr |=3D DCC_ADDR_DESCRIPTOR | DCC_WRITE_IND | DCC_=
+AHB_IND;
+> +       ret =3D dcc_sram_writel(drvdata, cfg->addr, cfg->sram_offset);
+> +
+> +       if (ret)
+> +               return ret;
+> +       cfg->sram_offset +=3D 4;
+> +
+> +       ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->sram_offset);
+> +       if (ret)
+> +               return ret;
+> +       cfg->sram_offset +=3D 4;
+> +
+> +       ret =3D dcc_sram_writel(drvdata, entry->write_val, cfg->sram_offs=
+et);
+> +
+> +       if (ret)
+> +               return ret;
+> +
+> +       cfg->sram_offset +=3D 4;
+> +       cfg->addr =3D 0x00;
+> +       cfg->link =3D 0;
+> +       return ret;
+> +}
+> +
+> +static int _dcc_ll_cfg_default(struct dcc_drvdata *drvdata,
+> +                              struct dcc_config_entry *entry,
+> +                              struct dcc_cfg_attr *cfg,
+> +                              u32 *pos, u32 *total_len)
+> +{
+> +       int ret;
+> +       u32 off;
+> +
+> +       cfg->addr =3D (entry->base >> 4) & GENMASK(27, 0);
+
+There's 27 again!
+
+> +
+> +       if (entry->apb_bus)
+> +               cfg->addr |=3D DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_A=
+PB_IND;
+> +       else
+> +               cfg->addr |=3D DCC_ADDR_DESCRIPTOR | DCC_READ_IND | DCC_A=
+HB_IND;
+> +
+> +       off =3D entry->offset/4;
+> +
+> +       *total_len +=3D entry->len * 4;
+> +
+> +       if (!cfg->prev_addr || cfg->prev_addr !=3D cfg->addr || cfg->prev=
+_off > off) {
+> +               /* Check if we need to write prev link entry */
+> +               if (cfg->link) {
+> +                       ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->=
+sram_offset);
+> +                       if (ret)
+> +                               return ret;
+> +                       cfg->sram_offset +=3D 4;
+> +               }
+> +               dev_dbg(drvdata->dev, "DCC: sram address 0x%x\n", cfg->sr=
+am_offset);
+> +
+> +               /* Write address */
+> +               ret =3D dcc_sram_writel(drvdata, cfg->addr, cfg->sram_off=
+set);
+> +
+> +               if (ret)
+> +                       return ret;
+> +
+> +               cfg->sram_offset +=3D 4;
+> +
+> +               /* Reset link and prev_off */
+> +               cfg->link =3D 0;
+> +               cfg->prev_off =3D 0;
+> +       }
+> +
+> +       if ((off - cfg->prev_off) > 0xFF || entry->len > MAX_DCC_LEN) {
+> +               dev_err(drvdata->dev, "DCC: Programming error Base: 0x%x,=
+ offset 0x%x\n",
+> +               entry->base, entry->offset);
+> +               ret =3D -EINVAL;
+> +               return ret;
+> +       }
+> +
+> +       if (cfg->link) {
+> +               /*
+> +                * link already has one offset-length so new
+> +                * offset-length needs to be placed at
+> +                * bits [29:15]
+> +                */
+> +               *pos =3D 15;
+> +
+> +               /* Clear bits [31:16] */
+> +               cfg->link &=3D GENMASK(14, 0);
+> +       } else {
+> +               /*
+> +                * link is empty, so new offset-length needs
+> +                * to be placed at bits [15:0]
+> +                */
+> +               *pos =3D 0;
+> +               cfg->link =3D 1 << 15;
+> +       }
+> +
+> +       /* write new offset-length pair to correct position */
+> +       cfg->link |=3D (((off-cfg->prev_off) & GENMASK(7, 0)) |
+> +                    ((entry->len << 8) & GENMASK(14, 8))) << *pos;
+
+Can this be split to multiple statements? It's crazy hard to read.
+
+> +
+> +       cfg->link |=3D DCC_LINK_DESCRIPTOR;
+> +
+> +       if (*pos) {
+> +               ret =3D dcc_sram_writel(drvdata, cfg->link, cfg->sram_off=
+set);
+> +               if (ret)
+> +                       return ret;
+> +               cfg->sram_offset +=3D 4;
+> +               cfg->link =3D 0;
+> +       }
+> +
+> +       cfg->prev_off  =3D off + entry->len - 1;
+> +       cfg->prev_addr =3D cfg->addr;
+> +       return ret;
+> +}
+> +
+> +static int __dcc_ll_cfg(struct dcc_drvdata *drvdata, int curr_list)
+> +{
+> +       int ret =3D 0;
+> +       u32 total_len, pos;
+> +       struct dcc_config_entry *entry;
+> +       struct dcc_cfg_attr cfg;
+> +       struct dcc_cfg_loop_attr cfg_loop;
+> +
+> +       memset(&cfg, 0, sizeof(cfg));
+> +       memset(&cfg_loop, 0, sizeof(cfg_loop));
+> +       cfg.sram_offset =3D drvdata->ram_cfg * 4;
+> +       total_len =3D 0;
+> +
+> +       list_for_each_entry(entry, &drvdata->cfg_head[curr_list], list) {
+> +               switch (entry->desc_type) {
+> +               case DCC_READ_WRITE_TYPE:
+> +                       ret =3D _dcc_ll_cfg_read_write(drvdata, entry, &c=
+fg);
+> +                       if (ret)
+> +                               goto overstep;
+> +                       break;
+> +
+> +               case DCC_LOOP_TYPE:
+> +                       ret =3D _dcc_ll_cfg_loop(drvdata, entry, &cfg, &c=
+fg_loop, &total_len);
+> +                       if (ret)
+> +                               goto overstep;
+> +                       break;
+> +
+> +               case DCC_WRITE_TYPE:
+> +                       ret =3D _dcc_ll_cfg_write(drvdata, entry, &cfg, &=
+total_len);
+> +                       if (ret)
+> +                               goto overstep;
+> +                       break;
+> +
+> +               default:
+> +                       ret =3D _dcc_ll_cfg_default(drvdata, entry, &cfg,=
+ &pos, &total_len);
+> +                       if (ret)
+> +                               goto overstep;
+> +                       break;
+> +               }
+> +       }
+> +
+> +       if (cfg.link) {
+> +               ret =3D dcc_sram_writel(drvdata, cfg.link, cfg.sram_offse=
+t);
+> +               if (ret)
+> +                       goto overstep;
+> +               cfg.sram_offset +=3D 4;
+> +       }
+> +
+> +       if (cfg_loop.loop_start) {
+> +               dev_err(drvdata->dev, "DCC: Programming error: Loop unter=
+minated\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       /* Handling special case of list ending with a rd_mod_wr */
+> +       if (cfg.addr =3D=3D DCC_RD_MOD_WR_DESCRIPTOR) {
+> +               cfg.addr =3D (DCC_RD_MOD_WR_ADDR) & GENMASK(27, 0);
+> +               cfg.addr |=3D DCC_ADDR_DESCRIPTOR;
+> +               ret =3D dcc_sram_writel(drvdata, cfg.addr, cfg.sram_offse=
+t);
+> +               if (ret)
+> +                       goto overstep;
+> +               cfg.sram_offset +=3D 4;
+> +       }
+> +
+> +       /* Setting zero to indicate end of the list */
+> +       cfg.link =3D DCC_LINK_DESCRIPTOR;
+> +       ret =3D dcc_sram_writel(drvdata, cfg.link, cfg.sram_offset);
+> +       if (ret)
+> +               goto overstep;
+> +       cfg.sram_offset +=3D 4;
+> +
+> +       /* Update ram_cfg and check if the data will overstep */
+> +
+> +       drvdata->ram_cfg =3D (cfg.sram_offset + total_len) / 4;
+> +
+> +       if (cfg.sram_offset + total_len > drvdata->ram_size) {
+> +               cfg.sram_offset +=3D total_len;
+> +               goto overstep;
+> +       }
+> +
+> +       drvdata->ram_start =3D cfg.sram_offset/4;
+> +       return 0;
+> +overstep:
+> +       ret =3D -EINVAL;
+> +       memset_io(drvdata->ram_base, 0, drvdata->ram_size);
+> +       dev_err(drvdata->dev, "DCC SRAM oversteps, 0x%x (0x%x)\n",
+> +       cfg.sram_offset, drvdata->ram_size);
+> +
+> +err:
+> +       return ret;
+> +}
+> +
+> +static int dcc_valid_list(struct dcc_drvdata *drvdata, int curr_list)
+> +{
+> +       u32 lock_reg;
+> +
+> +       if (list_empty(&drvdata->cfg_head[curr_list]))
+> +               return -EINVAL;
+> +
+> +       if (drvdata->enable[curr_list]) {
+> +               dev_err(drvdata->dev, "List %d is already enabled\n",
+> +                               curr_list);
+> +               return -EINVAL;
+> +       }
+> +
+> +       lock_reg =3D dcc_readl(drvdata, DCC_LL_LOCK(curr_list));
+> +       if (lock_reg & 0x1) {
+> +               dev_err(drvdata->dev, "List %d is already locked\n",
+> +                               curr_list);
+> +               return -EINVAL;
+> +       }
+> +
+> +       dev_err(drvdata->dev, "DCC list passed %d\n", curr_list);
+> +       return 0;
+> +}
+> +
+> +static bool is_dcc_enabled(struct dcc_drvdata *drvdata)
+> +{
+> +       bool dcc_enable =3D false;
+> +       int list;
+> +
+> +       for (list =3D 0; list < DCC_MAX_LINK_LIST; list++) {
+> +               if (drvdata->enable[list]) {
+> +                       dcc_enable =3D true;
+> +                       break;
+> +               }
+> +       }
+> +
+> +       return dcc_enable;
+> +}
+> +
+> +static int dcc_enable(struct dcc_drvdata *drvdata)
+> +{
+> +       int ret =3D 0;
+> +       int list;
+> +       u32 ram_cfg_base;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (!is_dcc_enabled(drvdata)) {
+> +               memset_io(drvdata->ram_base,
+> +                       0xDE, drvdata->ram_size);
+> +       }
+> +
+> +       for (list =3D 0; list < drvdata->nr_link_list; list++) {
+> +
+> +               if (dcc_valid_list(drvdata, list))
+> +                       continue;
+> +
+> +               /* 1. Take ownership of the list */
+> +               dcc_writel(drvdata, BIT(0), DCC_LL_LOCK(list));
+> +
+> +               /* 2. Program linked-list in the SRAM */
+> +               ram_cfg_base =3D drvdata->ram_cfg;
+> +               ret =3D __dcc_ll_cfg(drvdata, list);
+> +               if (ret) {
+> +                       dcc_writel(drvdata, 0, DCC_LL_LOCK(list));
+> +                       dev_info(drvdata->dev, "DCC ram programming faile=
+d\n");
+> +                       goto err;
+> +               }
+> +
+> +               /* 3. program DCC_RAM_CFG reg */
+> +               dcc_writel(drvdata, ram_cfg_base +
+> +                       drvdata->ram_offset/4, DCC_LL_BASE(list));
+> +               dcc_writel(drvdata, drvdata->ram_start +
+> +                       drvdata->ram_offset/4, DCC_FD_BASE(list));
+> +               dcc_writel(drvdata, 0xFFF, DCC_LL_TIMEOUT(list));
+> +
+> +               /* 4. Clears interrupt status register */
+> +               dcc_writel(drvdata, 0, DCC_LL_INT_ENABLE(list));
+> +               dcc_writel(drvdata, (BIT(0) | BIT(1) | BIT(2)),
+> +                                       DCC_LL_INT_STATUS(list));
+> +
+> +               dev_info(drvdata->dev, "All values written to enable.\n");
+
+Debug print?
+
+> +               /* Make sure all config is written in sram */
+> +               mb();
+
+This won't work as intended.
+
+> +
+> +               drvdata->enable[list] =3D true;
+> +
+> +               /* 5. Configure trigger */
+> +               dcc_writel(drvdata, BIT(9), DCC_LL_CFG(list));
+> +       }
+> +
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static void dcc_disable(struct dcc_drvdata *drvdata)
+> +{
+> +       int curr_list;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (!dcc_ready(drvdata))
+> +               dev_err(drvdata->dev, "DCC is not ready Disabling DCC...\=
+n");
+
+Is that two sentences? And a debug print?
+
+> +
+> +       for (curr_list =3D 0; curr_list < drvdata->nr_link_list; curr_lis=
+t++) {
+> +               if (!drvdata->enable[curr_list])
+> +                       continue;
+> +               dcc_writel(drvdata, 0, DCC_LL_CFG(curr_list));
+> +               dcc_writel(drvdata, 0, DCC_LL_BASE(curr_list));
+> +               dcc_writel(drvdata, 0, DCC_FD_BASE(curr_list));
+> +               dcc_writel(drvdata, 0, DCC_LL_LOCK(curr_list));
+> +               drvdata->enable[curr_list] =3D false;
+> +       }
+> +       memset_io(drvdata->ram_base, 0, drvdata->ram_size);
+> +       drvdata->ram_cfg =3D 0;
+> +       drvdata->ram_start =3D 0;
+> +       mutex_unlock(&drvdata->mutex);
+> +}
+> +
+> +static ssize_t curr_list_show(struct device *dev,
+> +       struct device_attribute *attr, char *buf)
+> +{
+> +       int ret;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +       if (drvdata->curr_list =3D=3D DCC_INVALID_LINK_LIST) {
+> +               dev_err(dev, "curr_list is not set.\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       ret =3D scnprintf(buf, PAGE_SIZE, "%d\n", drvdata->curr_list);
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static ssize_t curr_list_store(struct device *dev,
+> +                                               struct device_attribute *=
+attr,
+> +                                               const char *buf, size_t s=
+ize)
+> +{
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +       unsigned long val;
+> +       u32 lock_reg;
+> +       bool dcc_enable =3D false;
+> +
+> +       if (kstrtoul(buf, 16, &val))
+> +               return -EINVAL;
+> +
+> +       if (val >=3D drvdata->nr_link_list)
+> +               return -EINVAL;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       dcc_enable =3D is_dcc_enabled(drvdata);
+> +       if (drvdata->curr_list !=3D DCC_INVALID_LINK_LIST && dcc_enable) {
+> +               dev_err(drvdata->dev, "DCC is enabled, please disable it =
+first.\n");
+> +               mutex_unlock(&drvdata->mutex);
+> +               return -EINVAL;
+> +       }
+> +
+> +       lock_reg =3D dcc_readl(drvdata, DCC_LL_LOCK(val));
+> +       if (lock_reg & 0x1) {
+> +               dev_err(drvdata->dev, "DCC linked list is already configu=
+red\n");
+> +               mutex_unlock(&drvdata->mutex);
+> +               return -EINVAL;
+> +       }
+> +       drvdata->curr_list =3D val;
+> +       mutex_unlock(&drvdata->mutex);
+> +
+> +       return size;
+> +}
+> +
+> +static DEVICE_ATTR_RW(curr_list);
+> +
+> +
+> +static ssize_t trigger_store(struct device *dev,
+> +                                       struct device_attribute *attr,
+> +                                       const char *buf, size_t size)
+> +{
+> +       int ret =3D 0;
+> +       unsigned long val;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       if (kstrtoul(buf, 16, &val))
+> +               return -EINVAL;
+> +       if (val !=3D 1)
+> +               return -EINVAL;
+> +
+> +       ret =3D dcc_sw_trigger(drvdata);
+> +       if (!ret)
+> +               ret =3D size;
+> +
+> +       return ret;
+> +}
+> +static DEVICE_ATTR_WO(trigger);
+> +
+> +static ssize_t enable_show(struct device *dev,
+> +       struct device_attribute *attr, char *buf)
+> +{
+> +       int ret;
+> +       bool dcc_enable =3D false;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(dev, "Select link list to program using curr_list=
+\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       dcc_enable =3D is_dcc_enabled(drvdata);
+> +
+> +       ret =3D scnprintf(buf, PAGE_SIZE, "%u\n",
+> +                               (unsigned int)dcc_enable);
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+
+What does the mutex being held serve here?
+
+> +       return ret;
+> +}
+> +
+> +static ssize_t enable_store(struct device *dev,
+> +                               struct device_attribute *attr,
+> +                               const char *buf, size_t size)
+> +{
+> +       int ret =3D 0;
+> +       unsigned long val;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       if (kstrtoul(buf, 16, &val))
+> +               return -EINVAL;
+> +
+> +       if (val)
+> +               ret =3D dcc_enable(drvdata);
+> +       else
+> +               dcc_disable(drvdata);
+> +
+> +       if (!ret)
+> +               ret =3D size;
+> +
+> +       return ret;
+> +
+> +}
+> +
+> +static DEVICE_ATTR_RW(enable);
+> +
+> +static ssize_t config_show(struct device *dev,
+> +       struct device_attribute *attr, char *buf)
+> +{
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +       struct dcc_config_entry *entry;
+> +       char local_buf[64];
+> +       int len =3D 0, count =3D 0;
+> +
+> +       buf[0] =3D '\0';
+
+Why?
+
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(dev, "Select link list to program using curr_list=
+\n");
+> +               count =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       list_for_each_entry(entry,
+> +       &drvdata->cfg_head[drvdata->curr_list], list) {
+> +               switch (entry->desc_type) {
+> +               case DCC_READ_WRITE_TYPE:
+> +                       len =3D snprintf(local_buf, 64, "Index: 0x%x, mas=
+k: 0x%x, val: 0x%x\n",
+> +                               entry->index, entry->mask, entry->write_v=
+al);
+> +                       break;
+> +               case DCC_LOOP_TYPE:
+> +                       len =3D snprintf(local_buf, 64, "Index: 0x%x, Loo=
+p: %d\n",
+> +                               entry->index, entry->loop_cnt);
+> +                       break;
+> +               case DCC_WRITE_TYPE:
+> +                       len =3D snprintf(local_buf, 64,
+> +                               "Write Index: 0x%x, Base: 0x%x, Offset: 0=
+x%x, len: 0x%x APB: %d\n",
+> +                               entry->index, entry->base, entry->offset,=
+ entry->len,
+> +                               entry->apb_bus);
+> +                       break;
+> +               default:
+> +                       len =3D snprintf(local_buf, 64,
+> +                               "Read Index: 0x%x, Base: 0x%x, Offset: 0x=
+%x, len: 0x%x APB: %d\n",
+> +                               entry->index, entry->base, entry->offset,
+> +                               entry->len, entry->apb_bus);
+> +               }
+> +
+> +               if ((count + len) > PAGE_SIZE) {
+> +                       dev_err(dev, "DCC: Couldn't write complete config=
+\n");
+> +                       break;
+> +               }
+> +               strlcat(buf, local_buf, PAGE_SIZE);
+> +               count +=3D len;
+> +       }
+> +
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return count;
+> +}
+> +
+> +static int dcc_config_add(struct dcc_drvdata *drvdata, unsigned int addr,
+> +                               unsigned int len, int apb_bus)
+> +{
+> +       int ret;
+> +       struct dcc_config_entry *entry, *pentry;
+> +       unsigned int base, offset;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(drvdata->dev, "Select link list to program using =
+curr_list\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (!len || len > (drvdata->ram_size / 8)) {
+
+What is 8?
+
+> +               dev_err(drvdata->dev, "DCC: Invalid length\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       base =3D addr & GENMASK(31, 4);
+
+Make a define for the GENMASK?
+
+> +
+> +       if (!list_empty(&drvdata->cfg_head[drvdata->curr_list])) {
+> +               pentry =3D list_last_entry(&drvdata->cfg_head[drvdata->cu=
+rr_list],
+> +                       struct dcc_config_entry, list);
+> +
+> +               if (pentry->desc_type =3D=3D DCC_ADDR_TYPE &&
+> +                               addr >=3D (pentry->base + pentry->offset)=
+ &&
+> +                               addr <=3D (pentry->base +
+> +                                       pentry->offset + MAX_DCC_OFFSET))=
+ {
+> +
+> +                       /* Re-use base address from last entry */
+> +                       base =3D pentry->base;
+> +
+> +                       if ((pentry->len * 4 + pentry->base + pentry->off=
+set)
+> +                                       =3D=3D addr) {
+> +                               len +=3D pentry->len;
+> +
+> +                               if (len > MAX_DCC_LEN)
+> +                                       pentry->len =3D MAX_DCC_LEN;
+> +                               else
+> +                                       pentry->len =3D len;
+> +
+> +                               addr =3D pentry->base + pentry->offset +
+> +                                       pentry->len * 4;
+> +                               len -=3D pentry->len;
+> +                       }
+> +               }
+> +       }
+> +
+> +       offset =3D addr - base;
+> +
+> +       while (len) {
+> +               entry =3D devm_kzalloc(drvdata->dev, sizeof(*entry), GFP_=
+KERNEL);
+> +               if (!entry) {
+> +                       ret =3D -ENOMEM;
+> +                       goto err;
+> +               }
+> +
+> +               entry->base =3D base;
+> +               entry->offset =3D offset;
+> +               entry->len =3D min_t(u32, len, MAX_DCC_LEN);
+> +               entry->index =3D drvdata->nr_config[drvdata->curr_list]++;
+> +               entry->desc_type =3D DCC_ADDR_TYPE;
+> +               entry->apb_bus =3D apb_bus;
+> +               INIT_LIST_HEAD(&entry->list);
+> +               list_add_tail(&entry->list,
+> +                       &drvdata->cfg_head[drvdata->curr_list]);
+> +
+> +               len -=3D entry->len;
+> +               offset +=3D MAX_DCC_LEN * 4;
+> +       }
+> +
+
+err:
+
+> +       mutex_unlock(&drvdata->mutex);
+> +       return 0;
+
+return ret;
+
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+
+Remove these three lines.
+
+> +}
+> +
+> +static ssize_t config_store(struct device *dev,
+> +                               struct device_attribute *attr,
+> +                               const char *buf, size_t size)
+> +{
+> +       int ret, len, apb_bus;
+> +       unsigned int base;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +       int nval;
+> +
+> +       nval =3D sscanf(buf, "%x %i %d", &base, &len, &apb_bus);
+> +       if (nval <=3D 0 || nval > 3)
+> +               return -EINVAL;
+> +
+> +       if (nval =3D=3D 1) {
+> +               len =3D 1;
+> +               apb_bus =3D 0;
+> +       } else if (nval =3D=3D 2) {
+> +               apb_bus =3D 0;
+> +       } else {
+> +               apb_bus =3D 1;
+> +       }
+> +
+> +       ret =3D dcc_config_add(drvdata, base, len, apb_bus);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return size;
+> +
+> +}
+> +
+> +static DEVICE_ATTR_RW(config);
+> +
+> +static void dcc_config_reset(struct dcc_drvdata *drvdata)
+> +{
+> +       struct dcc_config_entry *entry, *temp;
+> +       int curr_list;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       for (curr_list =3D 0; curr_list < drvdata->nr_link_list; curr_lis=
+t++) {
+> +               list_for_each_entry_safe(entry, temp,
+> +                       &drvdata->cfg_head[curr_list], list) {
+> +                       list_del(&entry->list);
+> +                       devm_kfree(drvdata->dev, entry);
+> +                       drvdata->nr_config[curr_list]--;
+> +               }
+> +       }
+> +       drvdata->ram_start =3D 0;
+> +       drvdata->ram_cfg =3D 0;
+> +       mutex_unlock(&drvdata->mutex);
+> +}
+> +
+> +
+> +static ssize_t config_reset_store(struct device *dev,
+> +       struct device_attribute *attr,
+> +       const char *buf, size_t size)
+> +{
+> +       unsigned long val;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       if (kstrtoul(buf, 16, &val))
+> +               return -EINVAL;
+> +
+> +       if (val)
+> +               dcc_config_reset(drvdata);
+> +
+> +       return size;
+> +}
+> +
+> +static DEVICE_ATTR_WO(config_reset);
+> +
+> +static ssize_t ready_show(struct device *dev,
+> +       struct device_attribute *attr, char *buf)
+> +{
+> +       int ret;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(dev, "Select link list to program using curr_list=
+\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (!drvdata->enable[drvdata->curr_list]) {
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       ret =3D scnprintf(buf, PAGE_SIZE, "%u\n",
+> +                       (unsigned int)FIELD_GET(BIT(1), dcc_readl(drvdata=
+, DCC_STATUS)));
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static DEVICE_ATTR_RO(ready);
+> +
+> +static ssize_t interrupt_disable_show(struct device *dev,
+> +                                               struct device_attribute *=
+attr,
+> +                                               char *buf)
+> +{
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       return scnprintf(buf, PAGE_SIZE, "%u\n",
+> +                               (unsigned int)drvdata->interrupt_disable);
+> +}
+> +
+> +static ssize_t interrupt_disable_store(struct device *dev,
+> +       struct device_attribute *attr,
+> +       const char *buf, size_t size)
+> +{
+> +       unsigned long val;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       if (kstrtoul(buf, 16, &val))
+> +               return -EINVAL;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +       drvdata->interrupt_disable =3D (val ? 1:0);
+> +       mutex_unlock(&drvdata->mutex);
+> +       return size;
+> +}
+> +
+> +static DEVICE_ATTR_RW(interrupt_disable);
+> +
+> +static int dcc_add_loop(struct dcc_drvdata *drvdata, unsigned long loop_=
+cnt)
+> +{
+> +       struct dcc_config_entry *entry;
+> +
+> +       entry =3D devm_kzalloc(drvdata->dev, sizeof(*entry), GFP_KERNEL);
+> +       if (!entry)
+> +               return -ENOMEM;
+> +
+> +       entry->loop_cnt =3D min_t(u32, loop_cnt, MAX_LOOP_CNT);
+> +       entry->index =3D drvdata->nr_config[drvdata->curr_list]++;
+> +       entry->desc_type =3D DCC_LOOP_TYPE;
+> +       INIT_LIST_HEAD(&entry->list);
+> +       list_add_tail(&entry->list, &drvdata->cfg_head[drvdata->curr_list=
+]);
+> +
+> +       return 0;
+> +}
+> +
+> +static ssize_t loop_store(struct device *dev,
+> +       struct device_attribute *attr,
+> +       const char *buf, size_t size)
+> +{
+> +       int ret;
+> +       unsigned long loop_cnt;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (kstrtoul(buf, 16, &loop_cnt)) {
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(dev, "Select link list to program using curr_list=
+\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       ret =3D dcc_add_loop(drvdata, loop_cnt);
+> +       if (ret)
+> +               goto err;
+> +
+> +       mutex_unlock(&drvdata->mutex);
+> +       return size;
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static DEVICE_ATTR_WO(loop);
+> +
+> +static int dcc_rd_mod_wr_add(struct dcc_drvdata *drvdata, unsigned int m=
+ask,
+> +                               unsigned int val)
+> +{
+> +       int ret =3D 0;
+> +       struct dcc_config_entry *entry;
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(drvdata->dev, "Select link list to program using =
+curr_list\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (list_empty(&drvdata->cfg_head[drvdata->curr_list])) {
+> +               dev_err(drvdata->dev, "DCC: No read address programmed\n"=
+);
+> +               ret =3D -EPERM;
+> +               goto err;
+> +       }
+> +
+> +       entry =3D devm_kzalloc(drvdata->dev, sizeof(*entry), GFP_KERNEL);
+> +       if (!entry) {
+> +               ret =3D -ENOMEM;
+> +               goto err;
+> +       }
+> +
+> +       entry->desc_type =3D DCC_READ_WRITE_TYPE;
+> +       entry->mask =3D mask;
+> +       entry->write_val =3D val;
+> +       entry->index =3D drvdata->nr_config[drvdata->curr_list]++;
+> +       INIT_LIST_HEAD(&entry->list);
+> +       list_add_tail(&entry->list, &drvdata->cfg_head[drvdata->curr_list=
+]);
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static ssize_t rd_mod_wr_store(struct device *dev,
+> +       struct device_attribute *attr,
+> +       const char *buf, size_t size)
+> +{
+> +       int ret;
+> +       int nval;
+> +       unsigned int mask, val;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       nval =3D sscanf(buf, "%x %x", &mask, &val);
+> +
+> +       if (nval <=3D 1 || nval > 2)
+> +               return -EINVAL;
+> +
+> +       ret =3D dcc_rd_mod_wr_add(drvdata, mask, val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return size;
+> +
+> +}
+> +
+> +static DEVICE_ATTR_WO(rd_mod_wr);
+> +
+> +static int dcc_add_write(struct dcc_drvdata *drvdata, unsigned int addr,
+> +                               unsigned int write_val, int apb_bus)
+> +{
+> +       struct dcc_config_entry *entry;
+> +
+> +       entry =3D devm_kzalloc(drvdata->dev, sizeof(*entry), GFP_KERNEL);
+> +       if (!entry)
+> +               return -ENOMEM;
+> +
+> +       entry->desc_type =3D DCC_WRITE_TYPE;
+> +       entry->base =3D addr & GENMASK(31, 4);
+> +       entry->offset =3D addr - entry->base;
+> +       entry->write_val =3D write_val;
+> +       entry->index =3D drvdata->nr_config[drvdata->curr_list]++;
+> +       entry->len =3D 1;
+> +       entry->apb_bus =3D apb_bus;
+> +       INIT_LIST_HEAD(&entry->list);
+> +       list_add_tail(&entry->list, &drvdata->cfg_head[drvdata->curr_list=
+]);
+> +
+> +       return 0;
+> +}
+> +
+> +static ssize_t config_write_store(struct device *dev,
+> +                                               struct device_attribute *=
+attr,
+> +                                               const char *buf, size_t s=
+ize)
+> +{
+> +       int ret;
+> +       int nval;
+> +       unsigned int addr, write_val;
+> +       int apb_bus =3D 0;
+> +       struct dcc_drvdata *drvdata =3D dev_get_drvdata(dev);
+> +
+> +       mutex_lock(&drvdata->mutex);
+> +
+> +       nval =3D sscanf(buf, "%x %x %d", &addr, &write_val, &apb_bus);
+> +
+> +       if (nval <=3D 1 || nval > 3) {
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (drvdata->curr_list >=3D drvdata->nr_link_list) {
+> +               dev_err(dev, "Select link list to program using curr_list=
+\n");
+> +               ret =3D -EINVAL;
+> +               goto err;
+> +       }
+> +
+> +       if (nval =3D=3D 3 && apb_bus !=3D 0)
+> +               apb_bus =3D 1;
+> +
+> +       ret =3D dcc_add_write(drvdata, addr, write_val, apb_bus);
+> +       if (ret)
+> +               goto err;
+> +
+> +       mutex_unlock(&drvdata->mutex);
+> +       return size;
+> +err:
+> +       mutex_unlock(&drvdata->mutex);
+> +       return ret;
+> +}
+> +
+> +static DEVICE_ATTR_WO(config_write);
+> +
+> +static const struct device_attribute *dcc_attrs[] =3D {
+> +       &dev_attr_trigger,
+> +       &dev_attr_enable,
+> +       &dev_attr_config,
+> +       &dev_attr_config_reset,
+> +       &dev_attr_ready,
+> +       &dev_attr_interrupt_disable,
+> +       &dev_attr_loop,
+> +       &dev_attr_rd_mod_wr,
+> +       &dev_attr_curr_list,
+> +       &dev_attr_config_write,
+> +       NULL,
+> +};
+> +
+> +static int dcc_create_files(struct device *dev,
+> +                                       const struct device_attribute **a=
+ttrs)
+> +{
+> +       int ret =3D 0, i;
+> +
+> +       for (i =3D 0; attrs[i] !=3D NULL; i++) {
+> +               ret =3D device_create_file(dev, attrs[i]);
+> +               if (ret) {
+> +                       dev_err(dev, "DCC: Couldn't create sysfs attribut=
+e: %s\n",
+> +                               attrs[i]->attr.name);
+> +                       break;
+> +               }
+> +       }
+> +       return ret;
+> +}
+> +
+> +static int dcc_sram_open(struct inode *inode, struct file *file)
+> +{
+> +       struct dcc_drvdata *drvdata =3D container_of(inode->i_cdev,
+> +               struct dcc_drvdata,
+> +               sram_dev);
+> +       file->private_data =3D drvdata;
+> +
+> +       return  0;
+> +}
+> +
+> +static ssize_t dcc_sram_read(struct file *file, char __user *data,
+> +                                               size_t len, loff_t *ppos)
+> +{
+> +       unsigned char *buf;
+> +       struct dcc_drvdata *drvdata =3D file->private_data;
+
+const?
+
+> +
+> +       /* EOF check */
+> +       if (drvdata->ram_size <=3D *ppos)
+> +               return 0;
+> +
+> +       if ((*ppos + len) > drvdata->ram_size)
+> +               len =3D (drvdata->ram_size - *ppos);
+> +
+> +       buf =3D kzalloc(len, GFP_KERNEL);
+> +       if (!buf)
+> +               return -ENOMEM;
+> +
+> +       memcpy_fromio(buf, drvdata->ram_base + *ppos, len);
+> +
+> +       if (copy_to_user(data, buf, len)) {
+
+Is there any sort of memcpy_fromio_to_user() API? That would avoid the
+extra buffer allocation by copying to userspace in the readl loop.
+
+> +               dev_err(drvdata->dev, "DCC: Couldn't copy all data to use=
+r\n");
+
+I think we don't want this sort of error message in userspace
+triggerable copy operations.
+
+> +               kfree(buf);
+> +               return -EFAULT;
+> +       }
+> +
+> +       *ppos +=3D len;
+> +
+> +       kfree(buf);
+> +
+> +       return len;
+> +}
+> +
+> +static const struct file_operations dcc_sram_fops =3D {
+> +       .owner          =3D THIS_MODULE,
+> +       .open           =3D dcc_sram_open,
+> +       .read           =3D dcc_sram_read,
+> +       .llseek         =3D no_llseek,
+> +};
+> +
+> +static int dcc_sram_dev_register(struct dcc_drvdata *drvdata)
+> +{
+> +       int ret;
+> +       struct device *device;
+> +       dev_t dev;
+> +
+> +       ret =3D alloc_chrdev_region(&dev, 0, 1, drvdata->sram_node);
+> +       if (ret)
+> +               goto err_alloc;
+> +
+> +       cdev_init(&drvdata->sram_dev, &dcc_sram_fops);
+> +
+> +       drvdata->sram_dev.owner =3D THIS_MODULE;
+> +       ret =3D cdev_add(&drvdata->sram_dev, dev, 1);
+> +       if (ret)
+> +               goto err_cdev_add;
+> +
+> +       drvdata->sram_class =3D class_create(THIS_MODULE, drvdata->sram_n=
+ode);
+> +       if (IS_ERR(drvdata->sram_class)) {
+> +               ret =3D PTR_ERR(drvdata->sram_class);
+> +               goto err_class_create;
+> +       }
+> +
+> +       device =3D device_create(drvdata->sram_class, NULL,
+> +                                               drvdata->sram_dev.dev, dr=
+vdata,
+> +                                               drvdata->sram_node);
+> +       if (IS_ERR(device)) {
+> +               ret =3D PTR_ERR(device);
+> +               goto err_dev_create;
+> +       }
+> +
+> +       return 0;
+> +err_dev_create:
+> +       class_destroy(drvdata->sram_class);
+> +err_class_create:
+> +       cdev_del(&drvdata->sram_dev);
+> +err_cdev_add:
+> +       unregister_chrdev_region(drvdata->sram_dev.dev, 1);
+> +err_alloc:
+> +       return ret;
+> +}
+> +
+> +static void dcc_sram_dev_deregister(struct dcc_drvdata *drvdata)
+> +{
+> +       device_destroy(drvdata->sram_class, drvdata->sram_dev.dev);
+> +       class_destroy(drvdata->sram_class);
+> +       cdev_del(&drvdata->sram_dev);
+> +       unregister_chrdev_region(drvdata->sram_dev.dev, 1);
+> +}
+> +
+> +static int dcc_sram_dev_init(struct dcc_drvdata *drvdata)
+> +{
+> +       int ret =3D 0;
+> +
+> +       drvdata->sram_node =3D DCC_SRAM_NODE;
+> +       if (!drvdata->sram_node)
+> +               return -ENOMEM;
+> +
+> +       ret =3D dcc_sram_dev_register(drvdata);
+> +       if (ret)
+> +               dev_err(drvdata->dev, "DCC: sram node not registered.\n");
+> +
+> +       return ret;
+> +}
+> +
+> +static void dcc_sram_dev_exit(struct dcc_drvdata *drvdata)
+> +{
+> +       dcc_sram_dev_deregister(drvdata);
+> +}
+> +
+> +static int dcc_probe(struct platform_device *pdev)
+> +{
+> +       int ret =3D 0, i;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct dcc_drvdata *dcc;
+> +       struct resource *res;
+> +       const struct qcom_dcc_config *cfg;
+> +
+> +       dcc =3D devm_kzalloc(dev, sizeof(*dcc), GFP_KERNEL);
+> +       if (!dcc)
+> +               return -ENOMEM;
+> +
+> +       dcc->dev =3D &pdev->dev;
+> +       platform_set_drvdata(pdev, dcc);
+> +
+> +       dcc->base =3D devm_platform_ioremap_resource_byname(pdev, "dcc");
+> +       if (!dcc->base)
+> +               return -ENOMEM;
+> +
+> +       res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "dcc-r=
+am");
+> +       if (!res)
+> +               return -EINVAL;
+> +
+> +       dcc->ram_size =3D resource_size(res);
+> +
+> +       dcc->ram_base =3D devm_ioremap(dev, res->start, resource_size(res=
+));
+> +       if (!dcc->ram_base)
+> +               return -ENOMEM;
+
+How about
+
+	dcc->base =3D devm_platform_ioremap_resource(pdev, 0);
+	if (IS_ERR(dcc->base))
+		return PTR_ERR(dcc->base);
+
+	dcc->ram_base =3D devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+	if (IS_ERR(dcc->ram_base))
+		return PTR_ERR(dcc->ram_base);
+
+	dcc->ram_size =3D resource_size(res);
+
+> +
+> +       cfg =3D of_device_get_match_data(&pdev->dev);
+
+	if (!cfg)
+		return -EINVAL;
+
+
+> +       dcc->ram_offset =3D cfg->dcc_ram_offset;
+> +
+> +       if (FIELD_GET(BIT(DCC_VER_INFO_BIT), dcc_readl(dcc, DCC_HW_INFO))=
+) {
+> +               dcc->mem_map_ver =3D DCC_MEM_MAP_VER3;
+> +               dcc->nr_link_list =3D dcc_readl(dcc, DCC_LL_NUM_INFO);
+> +               if (dcc->nr_link_list =3D=3D 0)
+> +                       return  -EINVAL;
+> +       } else if ((dcc_readl(dcc, DCC_HW_INFO) & DCC_VER_MASK2) =3D=3D D=
+CC_VER_MASK2) {
+
+Can we u32 val =3D dcc_readl(dcc, DCC_HW_INFO) once instead of twice?
+
+> +               dcc->mem_map_ver =3D DCC_MEM_MAP_VER2;
+> +               dcc->nr_link_list =3D dcc_readl(dcc, DCC_LL_NUM_INFO);
+> +               if (dcc->nr_link_list =3D=3D 0)
+> +                       return  -EINVAL;
+> +       } else {
+> +               dcc->mem_map_ver =3D DCC_MEM_MAP_VER1;
+> +               dcc->nr_link_list =3D DCC_MAX_LINK_LIST;
+> +       }
+> +
+> +       if ((dcc_readl(dcc, DCC_HW_INFO) & BIT(6)) =3D=3D BIT(6))
+
+Err thrice.
+
+> +               dcc->loopoff =3D DCC_FIX_LOOP_OFFSET;
+> +       else
+> +               dcc->loopoff =3D get_bitmask_order((dcc->ram_size +
+> +                               dcc->ram_offset) / 4 - 1);
+> +
+> +       mutex_init(&dcc->mutex);
+> +       dcc->enable =3D devm_kcalloc(dev, dcc->nr_link_list,
+> +                       sizeof(bool), GFP_KERNEL);
+> +       if (!dcc->enable)
+> +               return -ENOMEM;
+> +
+> +       dcc->configured =3D devm_kcalloc(dev, dcc->nr_link_list,
+> +                       sizeof(bool), GFP_KERNEL);
+> +       if (!dcc->configured)
+> +               return -ENOMEM;
+> +
+> +       dcc->nr_config =3D devm_kcalloc(dev, dcc->nr_link_list,
+> +                       sizeof(u32), GFP_KERNEL);
+> +       if (!dcc->nr_config)
+> +               return -ENOMEM;
+> +
+> +       dcc->cfg_head =3D devm_kcalloc(dev, dcc->nr_link_list,
+> +                       sizeof(struct list_head), GFP_KERNEL);
+> +       if (!dcc->cfg_head)
+> +               return -ENOMEM;
+
+These are a lot of allocations. Any chance we can do one instead of this
+many?
+
+> +
+> +       for (i =3D 0; i < dcc->nr_link_list; i++)
+> +               INIT_LIST_HEAD(&dcc->cfg_head[i]);
+> +
+> +
+
+Drop double newline?
+
+> +       memset_io(dcc->ram_base, 0, dcc->ram_size);
+> +       dcc->curr_list =3D DCC_INVALID_LINK_LIST;
+> +       ret =3D dcc_sram_dev_init(dcc);
+> +       if (ret)
+> +               goto out;
+
+		return ret;
+
+> +
+> +       ret =3D dcc_create_files(dev, dcc_attrs);
+> +       if (ret)
+> +               goto out;
+> +
+> +out:
+> +       return ret;
+
+Just
+
+	return dcc_create_files(...)
+
+> +}
+> +
+> +static int dcc_remove(struct platform_device *pdev)
+> +{
+> +       struct dcc_drvdata *drvdata =3D platform_get_drvdata(pdev);
+> +
+> +       dcc_sram_dev_exit(drvdata);
+> +
+> +       dcc_config_reset(drvdata);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct qcom_dcc_config sm8150_cfg =3D {
+> +       .dcc_ram_offset =3D 0x5000,
+> +};
+> +
+> +static const struct of_device_id dcc_match_table[] =3D {
+> +       { .compatible =3D "qcom,sm8150-dcc", .data =3D &sm8150_cfg },
+
+Missing a {} terminator.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, dcc_match_table);
+> +
+> +static struct platform_driver dcc_driver =3D {
+> +       .probe                                  =3D dcc_probe,
+> +       .remove                                 =3D dcc_remove,
+> +       .driver                                 =3D {
+
+This tabbing is very odd. I'd expect
+
+> +static struct platform_driver dcc_driver =3D {
+> +       .probe   =3D dcc_probe,
+> +       .remove  =3D dcc_remove,
+> +       .driver  =3D {
+
+that (ignoring spaces instead of tabs)
+
+> +               .name           =3D "qcom-dcc",
+> +               .of_match_table =3D dcc_match_table,
+> +       },
+> +};
+> +
+> +module_platform_driver(dcc_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("Qualcomm Technologies Inc. DCC driver");
+> +
