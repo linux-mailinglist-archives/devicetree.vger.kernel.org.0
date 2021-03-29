@@ -2,178 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2F434D8DB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 22:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D9D34D99B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 23:35:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbhC2UJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 16:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230346AbhC2UJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 16:09:35 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67813C061762
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:09:35 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id f10so10116405pgl.9
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 13:09:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=Iy90H+4nmGRZh69/cuBoLTgrfWmHOCln5PyIFtnQ2/0=;
-        b=SiUmb69ugIMVdsK+/7Ow+hKzUf7ZfrtTKAEvMYfY+cpN5jBYq/n1XrSgBdfqUtoO5t
-         qdKyUtJHA+xh+0JhcQKgDRPlTqOMA3pSw/kGV07xj5PFRivzB2KPT/P9ekgHJ7moXw9q
-         WV5of9beWP7U5FBhs6KVhbEpVJF0bgM2qwR6g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=Iy90H+4nmGRZh69/cuBoLTgrfWmHOCln5PyIFtnQ2/0=;
-        b=Hf5gDTy0y9+WqXp7sIn3lw5mRUHsukeDUNda5WGax8aDEDTCIRzt3yxLf9SgXVSAfS
-         95fr5hh++W/Kg0hZTDnAtPqXAJh1UEaOdR7x1LtLUzs/qlWZSQOATyl98ZGg3Kz8uUpF
-         gtPklJdh5LL+Nn5YEJ0gzdfGue1mBPGcMOg9JWGp/VC9ml+APSV3skp3zPCslwQ0MAOk
-         heyHwqFskm+NVKShZUIPcM3gX/+9eJrOVhiZZz1SjJIALn+YMoWWaiVZWE1eLTFgvJrk
-         RGgBVMDSstzH8tuBrjcBV2XJ84s7xTyeyn4+es+Eupm5lIx3xGumDrzrUD2o4Y/tLR7X
-         rJTw==
-X-Gm-Message-State: AOAM531694y6j0XYkysIIPqyMG3xZ8jTuwH+e4tv5cRRmA6y9+bxynzr
-        xWHazos3c/n7KgAWVUB1ajtQOQ==
-X-Google-Smtp-Source: ABdhPJzcN9RMODHe8byZALIgMDw61p/BLnwTKQQkqfoP+YVO/t/ieO/7kvyL1kmlboOfH95p5IqgpQ==
-X-Received: by 2002:a63:4e48:: with SMTP id o8mr25316541pgl.420.1617048574853;
-        Mon, 29 Mar 2021 13:09:34 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:4091:2b37:966b:1fca])
-        by smtp.gmail.com with ESMTPSA id z2sm18182420pfq.198.2021.03.29.13.09.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 13:09:34 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S231131AbhC2Vek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 17:34:40 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:59118 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231574AbhC2VeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 17:34:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1617053658; x=1648589658;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2kTOQKtN0t9m6S1C1pzGz3PzM5EesinMEa6hjWzfgDY=;
+  b=kxaO3nsASkgb20dQ9qR8HFy6g6oJj+C4559h7sjvBOo1a9S+kuhREMHM
+   QseiTMFEfvgWPOP1iY6NfqcBS/ITU0jrvvkCkHmtni3+Lwk7bu+Lqss13
+   LeO1FJ0KO7l+P4UmLuRxP++1Xx/1ZNpCxcNfPnf0GmFXERwavmIWg3XJm
+   0iUlvUDu/07VTUk7iLFibFJ4Q0C5+1Fyqt2p2U8knGljExiPO0of84Cbs
+   XE3OHNPWy5h0X1FDIU/1Zs9pAomN4eYHbLMscuiTQSgcqGoU56ZCo+XGX
+   Dsvdd4OzS0tXqZpbEr4JfU/bmedbeMoIDRBpK2PW+u3BNe849RJ9sJAdX
+   g==;
+IronPort-SDR: UCF/K/3Bzx1tQnCR0a0OpheQyJ5HyNk4EBJkUnwMqtphT9lMSwdNvYB8BjLv1ZWU1tTjM+jcif
+ SkwiJiMWowts4FeIxJV/J+32skB0dbG4tDkHAT6lg68sZp/8jjly8OMry3/G6RAFJ4k9CbIr5i
+ ynPvtFSKl3g7fvf+Reu0OEeK4q/XaFRGmlOWMTA0k1nm24J6aN7Xrqy0Kq/jAxBdf4+lx5dlsC
+ bchp3ssUON9u+wcM4hq+IXMJOmtgwppbyEbI7UZ6OKvvWfQGaaWMI/ktCjY3S5eSUVQHeSF5BC
+ VcQ=
+X-IronPort-AV: E=Sophos;i="5.81,288,1610434800"; 
+   d="scan'208";a="115079626"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Mar 2021 14:34:18 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 29 Mar 2021 14:34:17 -0700
+Received: from cristi-P53.amer.actel.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Mon, 29 Mar 2021 14:34:15 -0700
+From:   <cristian.birsan@microchip.com>
+To:     <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
+        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Cristian Birsan <cristian.birsan@microchip.com>
+Subject: [RFC PATCH 0/2] usb: typec: Add driver for Microchip sama7g5 tcpc
+Date:   Tue, 30 Mar 2021 00:33:55 +0300
+Message-ID: <20210329213357.431083-1-cristian.birsan@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <eeb3cfe92cba2c7981170f3c3ff96dd440b69f25.1616651305.git.schowdhu@codeaurora.org>
-References: <cover.1616651305.git.schowdhu@codeaurora.org> <eeb3cfe92cba2c7981170f3c3ff96dd440b69f25.1616651305.git.schowdhu@codeaurora.org>
-Subject: Re: [PATCH V2 3/5] DCC: Added the sysfs entries for DCC(Data Capture and Compare) driver
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
-        Souradeep Chowdhury <schowdhu@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Souradeep Chowdhury <schowdhu@codeaurora.org>
-Date:   Mon, 29 Mar 2021 13:09:33 -0700
-Message-ID: <161704857307.3012082.499264834486221320@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Souradeep Chowdhury (2021-03-25 01:02:34)
-> The DCC is a DMA engine designed to store register values either in
-> case of a system crash or in case of software triggers manually done
-> by the user.Using DCC hardware and the sysfs interface of the driver
-> the user can exploit various functionalities of DCC.The user can specify
-> the register addresses,the values of which is stored by DCC in it's
-> dedicated SRAM.The register addresses can be used either to read from,
-> write to,first read and store value and then write or to loop.All these
-> options can be exploited using the sysfs interface given to the user.
-> Following are the sysfs interfaces exposed in DCC driver which are
-> documented
-> 1)trigger
-> 2)config
-> 3)config_write
-> 4)config_reset
-> 5)enable
-> 6)rd_mod_wr
-> 7)loop
->=20
-> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
-> ---
->  Documentation/ABI/testing/sysfs-driver-dcc | 114 +++++++++++++++++++++++=
-++++++
+From: Cristian Birsan <cristian.birsan@microchip.com>
 
-Please combine this with the driver patch.
+This patch set adds initial driver support for Microchip USB Type-C Port
+Controller (TCPC) embedded in sama7g5 SoC.
 
->  1 file changed, 114 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+The controller does not implement power delivery and the driver uses dummy
+functions to register the port with TCPM. The current silicon version is
+not able to trigger interrupts so the driver will poll for changes on
+CC1/CC2 lines.
 
-Perhaps this should be an ioctl interface instead of a sysfs interface?
+Support for sink is implemented and tested with an USB device. The plan is
+to extend the driver and add source support.
 
->=20
-> diff --git a/Documentation/ABI/testing/sysfs-driver-dcc b/Documentation/A=
-BI/testing/sysfs-driver-dcc
-> new file mode 100644
-> index 0000000..05d24f0
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-dcc
-> @@ -0,0 +1,114 @@
-> +What:           /sys/bus/platform/devices/.../trigger
-> +Date:           March 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +               This is the sysfs interface for manual software
-> +               triggers.The user can simply enter a 1 against
-> +               the sysfs file and enable a manual trigger.
-> +               Example:
-> +               echo  1 > /sys/bus/platform/devices/.../trigger
-> +
-> +What:           /sys/bus/platform/devices/.../enable
-> +Date:           March 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +               This sysfs interface is used for enabling the
-> +               the dcc hardware.Without this being set to 1,
+Cristian Birsan (2):
+  dt-bindings: usb: Add DT bindings for Microchip sama7g5 tcpc
+  usb: typec: sama7g5_tcpc: add driver for Microchip sama7g5 tcpc
 
-Space after period please.
+ .../bindings/usb/microchip,sama7g5-tcpc.yaml  |  80 +++
+ drivers/usb/typec/tcpm/Kconfig                |   8 +
+ drivers/usb/typec/tcpm/Makefile               |   1 +
+ drivers/usb/typec/tcpm/sama7g5_tcpc.c         | 602 ++++++++++++++++++
+ 4 files changed, 691 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,sama7g5-tcpc.yaml
+ create mode 100644 drivers/usb/typec/tcpm/sama7g5_tcpc.c
 
-> +               the dcc hardware ceases to function.
-> +               Example:
-> +               echo  0 > /sys/bus/platform/devices/.../enable
-> +               (disable interface)
-> +               echo  1 > /sys/bus/platform/devices/.../enable
-> +               (enable interface)
-> +
-> +What:           /sys/bus/platform/devices/.../config
-> +Date:           March 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +               This is the most commonly used sysfs interface
-> +               file and this basically stores the addresses of
-> +               the registers which needs to be read in case of
-> +               a hardware crash or manual software triggers.
-> +               Example:
-> +               echo  0x80000010 10 > /sys/bus/platform/devices/../config
-> +               This specifies that 10 words starting from address
-> +               0x80000010 is to be read.In case there are no words to be
-> +               specified we can simply enter the address.
-> +
-> +What:           /sys/bus/platform/devices/.../config_write
-> +Date:           March 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +               This file allows user to write a value to the register
-> +               address given as argument.The values are entered in the
-> +               form of <register_address> <value>.The reason for this
-> +               feature of dcc is that for accessing certain registers
-> +               it is necessary to set some bits of soe other register.
+-- 
+2.25.1
 
-s/soe/some/?
-
-> +               That is achievable by giving DCC this privelege.
-
-s/privelege/privilege/
-
-> +               Example:
-> +               echo 0x80000000 0xFF > /sys/bus/platform/devices/.../conf=
-ig_write
-> +
-> +What:           /sys/bus/platform/devices/.../config_reset
-> +Date:           March 2021
-> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
-> +Description:
-> +               This file is used to reset the configuration of
-> +               a dcc driver to the default configuration.
-> +               Example:
-> +               echo  1 > /sys/bus/platform/devices/.../config_reset
-> +
