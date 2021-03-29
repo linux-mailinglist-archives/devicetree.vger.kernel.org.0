@@ -2,126 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C4E34C420
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 08:54:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DF9334C437
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 08:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhC2Gxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 02:53:33 -0400
-Received: from mail-dm6nam12on2067.outbound.protection.outlook.com ([40.107.243.67]:56293
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229689AbhC2Gx1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 02:53:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TzHkEcFbgqSgzGzkE3ImBRRMPumRpxy800sNoWTnuxH6nMt9K8DKdsAXAqq63RGRlSM9fEEKuScsrDNWYb7WPc/HzUzniChxOvYXlfx0N44967wGVk+UFwZfCwVjamR4ed2VbssUNuJnIkDo4Ww0Pyd89Nq7SNe0+e+5RbuHlmiU2eYoIJZSLp6GPW8YjnPqhBBy93CGwkFlUqurgNadbh6hRDEWljGp1qUSBDKi1UVYosDDEniLgRvFkizmRLMX1l3iB5NI98KG6FEWcsr7Bw5n1tz3eC9p0Mm2Mj5kp97DRv6JQTYVWPFTBFwVCNOEQ+49dSpZhVsgbv2mMjQe+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LNiNgxjf1T3eniHlp1Ug6ebCE12smi+S/NcN2PxuauU=;
- b=aqtnsuspl5kmQ1vJJT1HFtsrmyPR5TcpFTnasEdi5BpJD4IWntXUCeYGs7E1WMCRrsw7Z/l+uyS0x10CierAx4qkrD/CDXlyPRRzBs04pb4WBk3+vEViQ2d/kl9FEr7TMlB2cEKBojHtrrnPbM5+eCU8uycsC7ehW5zck9oBDIFwu9eHNlG2VSk9f8DeLlqxVxrPPbSQLMQu7EbyTi+sFBKtZtBmU1bSITe0zceihe6NDi+dVwqlGju0Ful9GZF95pdZ9uo/TonbmDwiHhpQmdTKt94xbA5np3CBESkEZ4+KMng6nNhSjn9pQ4TykzHtCkLTkm7AsilfdH7YaJOj/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LNiNgxjf1T3eniHlp1Ug6ebCE12smi+S/NcN2PxuauU=;
- b=L9dJN8CgS4XokSwF/4qFcid1766IUMHaPFNlJjNqNLynRmDJx1fwFA9q+FzHRbWz0vG/7b666lAKzzpqgvU8F7M6o6e2ZjRlMmvJFjbjmbApe4xdRnvN3YKLQcXyi+XIFqR/jhbaz4M5r8fFw7UM/jPosMDFH/KHbu6/L0oXSrNvuXw/HnWjUiQobWJBvuLNXAqzrwSsPupDaqvF4HwI9+bxyCptRiTdPt95RF/e5Bfx3cgblQLeLAKbIfFqZ9vHhQR3+mYz7Rbu3yYxhLYJbJGvqkMkaLEU+BKsJU3DSuDxQXH0imw2VOt54x8SF5Is+tS1G46iIT0ZRp10a1F1Ow==
-Received: from MW4PR04CA0278.namprd04.prod.outlook.com (2603:10b6:303:89::13)
- by MWHPR1201MB0014.namprd12.prod.outlook.com (2603:10b6:300:e7::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Mon, 29 Mar
- 2021 06:53:25 +0000
-Received: from CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:89:cafe::90) by MW4PR04CA0278.outlook.office365.com
- (2603:10b6:303:89::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24 via Frontend
- Transport; Mon, 29 Mar 2021 06:53:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT041.mail.protection.outlook.com (10.13.174.217) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3955.18 via Frontend Transport; Mon, 29 Mar 2021 06:53:24 +0000
-Received: from [10.25.96.165] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 29 Mar
- 2021 06:53:21 +0000
-Subject: Re: [PATCH v2] ASoC: dt-bindings: nvidia,tegra210-ahub: Add missing
- child nodes
-To:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        <alsa-devel@alsa-project.org>, <linux-tegra@vger.kernel.org>
-References: <20210326195003.3756394-1-robh@kernel.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <108e9222-c5db-a541-c839-37f35e6e172e@nvidia.com>
-Date:   Mon, 29 Mar 2021 12:23:18 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S230329AbhC2G6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 02:58:25 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:44954 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229441AbhC2G55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 02:57:57 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: benjamin.gaignard)
+        with ESMTPSA id 503441F45B59
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v7 00/13] Add HANTRO G2/HEVC decoder support for IMX8MQ
+Date:   Mon, 29 Mar 2021 08:57:30 +0200
+Message-Id: <20210329065743.11961-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210326195003.3756394-1-robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2e71292d-5ba2-4acf-4a21-08d8f27f599a
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0014:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB00140E82D03D62D833E2CB5FA77E9@MWHPR1201MB0014.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:854;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Xzk3QyR789fo7SCU2uK+SwsqzYH0YoiM/k8/bUQTlXvdPPthz2ZCxe6IRlgnuav6HtcLrhtzHlRe8AZnrJnCYSQJrcBbCrilijdCwbdk9iHFbk7VU4jcLK5q8nvCthuO0EdwgAm2qMdnD/g0ar6Qtt4Fp2woyfGxBQ8vPe69NanMJ0dPF0r2qGJl8t8pBkVzVENWFELbXYpCsDFG7toIMwIFOUmHUUtBK68pMtt8WkPnJ0T56p8Z3PKfRMwZrMjXVUzawy4xm0I34bXVWzZ3M+WlMUF7bXhgrSt/4DeuWseVrBQ05xFVeMXUQCvxywwJkYOZzceKcMkOtue7yWU4VExRY27s1b/syuQCCkatANxHARkdVfXONkbqFZJEpMch0agGiB6YdA9hq0q3ahBkp/YUJptqkf8FwNUteL/jIJ6i1jBSIspMCqK7PWiiw3aQFwHG/0Hoj87OfDlt26QdE3AKiTfJUOiX8SjkIfJQlSeicCaObthsGwM6VgMqO0nFyQZLnbZuxVx4qzEfhQTLmR4LbQDbFAzNbo6BUXPG4VCKLdv+trdAfixebt+WyHnIfbdZXSdqK7rAfTlVAhNPQdjFFahlea08QNo/Lk2HCFIjXWPo3+GkqhaisZc0Gio/rSzqvqrSfkjoH37VHPLJ0Hvg5ZgpstTKm8QJP2IKNDULkgT8zIq5MJS1/anFAwomFr77CM5Pl1rjYt/N4ug1Rg9sW19OHzntYIjE7LvxlhtQNw//3t+LkqUqerjM+bEW
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(136003)(39860400002)(376002)(396003)(346002)(36840700001)(46966006)(86362001)(356005)(478600001)(47076005)(36860700001)(336012)(70206006)(4744005)(5660300002)(4326008)(426003)(83380400001)(16526019)(966005)(53546011)(6666004)(82740400003)(316002)(82310400003)(26005)(31686004)(70586007)(7636003)(8936002)(2616005)(54906003)(110136005)(16576012)(2906002)(31696002)(36756003)(8676002)(186003)(36906005)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2021 06:53:24.9847
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e71292d-5ba2-4acf-4a21-08d8f27f599a
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0014
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The IMX8MQ got two VPUs but until now only G1 has been enabled.
+This series aim to add the second VPU (aka G2) and provide basic 
+HEVC decoding support.
 
+To be able to decode HEVC it is needed to add/update some of the
+structures in the uapi. In addition of them one HANTRO dedicated
+control is required to inform the driver of the numbre of bits to skip
+at the beginning of the slice header.
+The hardware require to allocate few auxiliary buffers to store the
+references frame or tile size data.
 
-On 3/27/2021 1:20 AM, Rob Herring wrote:
-> The nvidia,tegra210-ahub binding is missing schema for child nodes. This
-> results in warnings if 'additionalProperties: false' is set (or when the
-> tools implement 'unevaluatedProperties' support). Add the child nodes
-> and reference their schema if one exists.
->
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Jonathan Hunter <jonathanh@nvidia.com>
-> Cc: Sameer Pujar <spujar@nvidia.com>
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-tegra@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->   - Also add 'dspk' child node
->
-> This patch ideally should be applied before this series[1].
->
-> [1] https://lore.kernel.org/r/20210323163634.877511-1-robh@kernel.org/
-> ---
->   .../bindings/sound/nvidia,tegra210-ahub.yaml     | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
+The driver has been tested with fluster test suite stream.
+For example with this command: ./fluster.py run -ts JCT-VC-HEVC_V1 -d GStreamer-H.265-V4L2SL-Gst1.0
 
-Acked-by: Sameer Pujar <spujar@nvidia.com>
+Finally the both VPUs will have a node the device-tree and be
+independent from v4l2 point of view.
+
+A branch with all the dev is available here:
+https://gitlab.collabora.com/benjamin.gaignard/for-upstream/-/commits/upstream_g2_v7
+
+version 7:
+ - Remove 'q' from syscon phandle name to make usable for iMX8MM too.
+   Update the bindings documentation.
+ - Add review/ack tags.
+ - Rebase on top of media_tree/master
+ - Be more accurate when computing the size of the memory needed motion
+   vectors.
+ - Explain why the all clocks need to set in the both DT node.
+
+version 6:
+ - fix the errors reported by kernel test robot
+
+version 5:
+ - use syscon instead of VPU reset driver.
+ - Do not break kernel/DT backward compatibility.
+ - Add documentation for dedicated Hantro control.
+ - Fix the remarks done by Ezequeil (typo, comments, unused function)
+ - Run v4l2-compliance without errors (see below).
+ - Do not add field to distinguish version, check postproc reg instead
+
+version 4:
+- Split the changes in hevc controls in 2 commits to make them easier to
+  review.
+- Change hantro_codec_ops run() prototype to return errors   
+- Hantro v4l2 dedicated control is now only an integer
+- rebase on top of VPU reset changes posted here:
+  https://www.spinics.net/lists/arm-kernel/msg878440.html
+- Various fix from previous remarks
+- Limit the modifications in API to what the driver needs
+
+version 3:
+- Fix typo in Hantro v4l2 dedicated control
+- Add documentation for the new structures and fields
+- Rebased on top of media_tree for-linus-5.12-rc1 tag
+
+version 2:
+- remove all change related to scaling
+- squash commits to a coherent split
+- be more verbose about the added fields
+- fix the comments done by Ezequiel about dma_alloc_coherent usage
+- fix Dan's comments about control copy, reverse the test logic
+in tile_buffer_reallocate, rework some goto and return cases.
+- be more verbose about why I change the bindings
+- remove all sign-off expect mime since it is confusing
+- remove useless clocks in VPUs nodes
+
+./v4l2-compliance -m 1 
+v4l2-compliance 1.21.0-4705, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 733f7a54f79d 2021-02-03 08:25:49
+
+Compliance test for hantro-vpu device /dev/media1:
+
+Media Driver Info:
+	Driver name      : hantro-vpu
+	Model            : hantro-vpu
+	Serial           : 
+	Bus info         : platform: hantro-vpu
+	Media version    : 5.11.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 5.11.0
+
+Required ioctls:
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/media1 open: OK
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test for unlimited opens: OK
+
+Media Controller ioctls:
+	test MEDIA_IOC_G_TOPOLOGY: OK
+	Entities: 3 Interfaces: 1 Pads: 4 Links: 4
+	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+	test MEDIA_IOC_SETUP_LINK: OK
+
+Total for hantro-vpu device /dev/media1: 8, Succeeded: 8, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for hantro-vpu device /dev/video1:
+
+Driver Info:
+	Driver name      : hantro-vpu
+	Card type        : nxp,imx8mq-vpu-g2-dec
+	Bus info         : platform: hantro-vpu
+	Driver version   : 5.11.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : hantro-vpu
+	Model            : hantro-vpu
+	Serial           : 
+	Bus info         : platform: hantro-vpu
+	Media version    : 5.11.0
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 5.11.0
+Interface Info:
+	ID               : 0x0300000c
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000001 (1)
+	Name             : nxp,imx8mq-vpu-g2-dec-source
+	Function         : V4L2 I/O
+	Pad 0x01000002   : 0: Source
+	  Link 0x02000008: to remote pad 0x1000004 of entity 'nxp,imx8mq-vpu-g2-dec-proc': Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 8 Private Controls: 1
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for hantro-vpu device /dev/video1: 46, Succeeded: 46, Failed: 0, Warnings: 0
+
+Grand Total for hantro-vpu device /dev/media1: 54, Succeeded: 54, Failed: 0, Warnings: 0
+
+Benjamin
+
+Benjamin Gaignard (13):
+  dt-bindings: mfd: Add 'nxp,imx8mq-vpu-ctrl' to syscon list
+  dt-bindings: media: nxp,imx8mq-vpu: Update the bindings for G2 support
+  media: hantro: Use syscon instead of 'ctrl' register
+  media: hevc: Add fields and flags for hevc PPS
+  media: hevc: Add decode params control
+  media: hantro: change hantro_codec_ops run prototype to return errors
+  media: hantro: Define HEVC codec profiles and supported features
+  media: hantro: Only use postproc when post processed formats are
+    defined
+  media: uapi: Add a control for HANTRO driver
+  media: hantro: handle V4L2_PIX_FMT_HEVC_SLICE control
+  media: hantro: Introduce G2/HEVC decoder
+  media: hantro: IMX8M: add variant for G2/HEVC codec
+  arm64: dts: imx8mq: Add node to G2 hardware
+
+ .../bindings/media/nxp,imx8mq-vpu.yaml        |  53 +-
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ .../userspace-api/media/drivers/hantro.rst    |  14 +
+ .../userspace-api/media/drivers/index.rst     |   1 +
+ .../media/v4l/ext-ctrls-codec.rst             | 108 +++-
+ .../media/v4l/vidioc-queryctrl.rst            |   6 +
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  43 +-
+ drivers/media/v4l2-core/v4l2-ctrls.c          |  26 +-
+ drivers/staging/media/hantro/Makefile         |   2 +
+ drivers/staging/media/hantro/hantro.h         |  18 +-
+ drivers/staging/media/hantro/hantro_drv.c     |  99 ++-
+ .../staging/media/hantro/hantro_g1_h264_dec.c |  10 +-
+ .../media/hantro/hantro_g1_mpeg2_dec.c        |   4 +-
+ .../staging/media/hantro/hantro_g1_vp8_dec.c  |   6 +-
+ .../staging/media/hantro/hantro_g2_hevc_dec.c | 587 ++++++++++++++++++
+ drivers/staging/media/hantro/hantro_g2_regs.h | 198 ++++++
+ .../staging/media/hantro/hantro_h1_jpeg_enc.c |   4 +-
+ drivers/staging/media/hantro/hantro_hevc.c    | 325 ++++++++++
+ drivers/staging/media/hantro/hantro_hw.h      |  69 +-
+ .../staging/media/hantro/hantro_postproc.c    |  14 +
+ drivers/staging/media/hantro/hantro_v4l2.c    |   5 +-
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   | 128 +++-
+ .../media/hantro/rk3399_vpu_hw_jpeg_enc.c     |   4 +-
+ .../media/hantro/rk3399_vpu_hw_mpeg2_dec.c    |   4 +-
+ .../media/hantro/rk3399_vpu_hw_vp8_dec.c      |   6 +-
+ drivers/staging/media/sunxi/cedrus/cedrus.c   |   6 +
+ drivers/staging/media/sunxi/cedrus/cedrus.h   |   1 +
+ .../staging/media/sunxi/cedrus/cedrus_dec.c   |   2 +
+ .../staging/media/sunxi/cedrus/cedrus_h265.c  |  12 +-
+ include/media/hevc-ctrls.h                    |  33 +-
+ include/uapi/linux/v4l2-controls.h            |  13 +
+ 31 files changed, 1682 insertions(+), 120 deletions(-)
+ create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_hevc_dec.c
+ create mode 100644 drivers/staging/media/hantro/hantro_g2_regs.h
+ create mode 100644 drivers/staging/media/hantro/hantro_hevc.c
+
+-- 
+2.25.1
+
