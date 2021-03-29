@@ -2,136 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 225B034C4AD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E5E34C4B1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 09:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230247AbhC2HPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 03:15:46 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:38421 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbhC2HPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:15:21 -0400
-Received: by mail-vs1-f44.google.com with SMTP id r12so2281518vsj.5;
-        Mon, 29 Mar 2021 00:15:21 -0700 (PDT)
+        id S230226AbhC2HQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 03:16:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34114 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230359AbhC2HQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 03:16:02 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE558C061574;
+        Mon, 29 Mar 2021 00:16:01 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id x21so13044514eds.4;
+        Mon, 29 Mar 2021 00:16:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=FJcPCNegtTNY6tjrs0+qJzDacUnxk6/HlUNmGPp/Ezs=;
+        b=A8JlPkDBNZoMCmparFyuMFqTBBL8NymWvmW17R+Yk3I8T6I3QcgyZA2gJLJ5bU7pd1
+         MMDZI/qKBH0skcjyOj9gP7EDc/Edlr8oetIoEHYf/UiLwQz7qCdTtxR6VbZPhDr6fi2h
+         XeITrvDLDCPIk7d3eEK+RPMiOZIguwr53/67q44+ZaOFak7EeD7zPEQN9C+jwuh9YcFn
+         Gzb/Qlpfpb/mlYHeS3iBXY96fMGmLfUm5EAe2O7VvV8JMy4nan692l1XrnILrcRQxiIr
+         bfzucm9nPSIZ+xYzME8AFhfvjPMjXeZ2IUoyszp7CQZcsdcNoKOpD71XFPTa/1s54Aqn
+         LIUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R+Y1qLkJ0VZf/i1XHHe8V+cBjsex9rRaMaM82dXviM4=;
-        b=ti8jf8t71IdVMHBQSRgBrvsDMAnfS3OFfdQuUNP2/nLWeK0b68NWNR0kutyDsiL48X
-         HiLGmlrJcI2OnrrpdI0YuGa+/yJUCB8c8f3FDJpPTbDo2pZz+Q0mOIyxNgljx9KDQtog
-         P9L9D5gbVVqeHnhcimhmAaMhUt3AD74zcWog7O80B7AY3g92o7tS8WnH3YHQs0Wsq8f3
-         WUBDxwFlaUMmEvrCYaZ4kR6zuWDtWr2m8tMIpOEpMnaTl2L+v8C89zVMrs0eOSmxl6CT
-         REGG+GDfKdutuzqINPBye+JZHjj4YPV1EQzPcTX46Kse2jFJlYM58OxqiU7im3TuFYf9
-         G9DA==
-X-Gm-Message-State: AOAM532kBEvW5XMWhbZM2wEkxJRlH3hZpgzfhK+Q6I9M9IF/gizM29FV
-        fW4tfuA62M/f8QyanrfQvMR84HICOwzuZZgA5xS/6ymM
-X-Google-Smtp-Source: ABdhPJyGEYd+Q49zYMlQ9mf1eQCEc+DZYIpnEMkPvYFXBxBNcExj7l3rm+tPGvIUCTs8h3guIJh/RY+hb+rv38ipfV0=
-X-Received: by 2002:a67:1ac7:: with SMTP id a190mr8074891vsa.18.1617002120644;
- Mon, 29 Mar 2021 00:15:20 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FJcPCNegtTNY6tjrs0+qJzDacUnxk6/HlUNmGPp/Ezs=;
+        b=UbBAbqX+MvqCi49TA9wXKIvmfAf0GSdAZO/MyOSq78x4kJz1MGKdHxPSm0ImiYgITx
+         4QNJnVjlC6a2ZduNED4c9pVleRjw71ZPfBPpJ0clWWENuoLXjkyPRwKJgV0g0f/N2dOJ
+         X5LnHBtBsvCPJ/i/h4NDWdnn+QjzfjGo50oSReuIgAuO6iTAN+ebhbzV8DvoHtKClBoz
+         IPBS4R0Nskj3+J50VWqcSsSDMMVVlyNDsB1GH+eZAE1vyRoTdzHBd5WHl1O/fDCHBkX/
+         caihovjXgaEhQ6+dl98SJNAzDnE1Enci3wH3fnwIFgS9GdYK6l0GjcXrA5ynMI1zP5ny
+         ObnA==
+X-Gm-Message-State: AOAM530auEACUASoiBcIRhqYtbT2jA1zhPopQ5fg4L1ftheEjZv07GPT
+        PdT4rqpPHUvq1CB1osYGzyQ=
+X-Google-Smtp-Source: ABdhPJwV2N9jQkHfaPnw02erYh3eVSN2frpGIkfJ/Is+KJo2kbOtZu3jsOxq143bPZJhj//ecU9/Fw==
+X-Received: by 2002:a05:6402:11c9:: with SMTP id j9mr27178789edw.348.1617002160538;
+        Mon, 29 Mar 2021 00:16:00 -0700 (PDT)
+Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
+        by smtp.gmail.com with ESMTPSA id i2sm8468828edy.72.2021.03.29.00.15.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 00:16:00 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 10:15:59 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
+        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be
+ overridden from DT
+Message-ID: <20210329071559.nmg56nxft5vim5r7@skbuf>
+References: <20210326105648.2492411-1-tobias@waldekranz.com>
+ <20210326105648.2492411-3-tobias@waldekranz.com>
+ <YGCmS2rcypegGmYa@lunn.ch>
+ <20210328215309.sgsenja2kmjx45t2@skbuf>
+ <YGD9d/zeJtAXxC8K@lunn.ch>
 MIME-Version: 1.0
-References: <20210322144848.1065067-1-geert@linux-m68k.org>
- <20210322144848.1065067-17-geert@linux-m68k.org> <2868cd091dc6ff0cab14b5da07f89984@protonic.nl>
-In-Reply-To: <2868cd091dc6ff0cab14b5da07f89984@protonic.nl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 29 Mar 2021 09:15:09 +0200
-Message-ID: <CAMuHMdXJV3duE=uhCD3XSVn35Y5=iafOOUu5_57-1TtW062ZJg@mail.gmail.com>
-Subject: Re: [PATCH 16/17] auxdisplay: ht16k33: Add support for segment displays
-To:     Robin van der Gracht <robin@protonic.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YGD9d/zeJtAXxC8K@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hoi Robin,
-
-On Mon, Mar 29, 2021 at 9:09 AM Robin van der Gracht <robin@protonic.nl> wrote:
-> On 2021-03-22 15:48, Geert Uytterhoeven wrote:
-> > The Holtek HT16K33 LED controller is not only used for driving
-> > dot-matrix displays, but also for driving segment displays.
+On Mon, Mar 29, 2021 at 12:04:39AM +0200, Andrew Lunn wrote:
+> On Mon, Mar 29, 2021 at 12:53:09AM +0300, Vladimir Oltean wrote:
+> > On Sun, Mar 28, 2021 at 05:52:43PM +0200, Andrew Lunn wrote:
+> > > > +static int dsa_switch_setup_tag_protocol(struct dsa_switch *ds)
+> > > > +{
+> > > > +	const struct dsa_device_ops *tag_ops = ds->dst->tag_ops;
+> > > > +	struct dsa_switch_tree *dst = ds->dst;
+> > > > +	int port, err;
+> > > > +
+> > > > +	if (tag_ops->proto == dst->default_proto)
+> > > > +		return 0;
+> > > > +
+> > > > +	if (!ds->ops->change_tag_protocol) {
+> > > > +		dev_err(ds->dev, "Tag protocol cannot be modified\n");
+> > > > +		return -EINVAL;
+> > > > +	}
+> > > > +
+> > > > +	for (port = 0; port < ds->num_ports; port++) {
+> > > > +		if (!(dsa_is_dsa_port(ds, port) || dsa_is_cpu_port(ds, port)))
+> > > > +			continue;
+> > >
+> > > dsa_is_dsa_port() is interesting. Do we care about the tagging
+> > > protocol on DSA ports? We never see that traffic?
 > >
-> > Add support for 4-digit 7-segment and quad 14-segment alphanumeric
-> > displays, like the Adafruit 7-segment and 14-segment display backpack
-> > and FeatherWing expansion boards.  Use the character line display core
-> > support to display a message, which will be scrolled if it doesn't fit.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > ---
-> > The 7-segment support is based on schematics, and untested on actual
-> > hardware.
-> > ---
-> >  drivers/auxdisplay/ht16k33.c | 198 +++++++++++++++++++++++++++++++++--
-> >  1 file changed, 191 insertions(+), 7 deletions(-)
-> >
-> ...
-> >
-> > +static int ht16k33_seg_probe(struct i2c_client *client,
-> > +                          struct ht16k33_priv *priv, uint32_t brightness)
-> > +{
-> > +     struct ht16k33_seg *seg = &priv->seg;
-> > +     struct device *dev = &client->dev;
-> > +     int err;
-> > +
-> > +     err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     switch (priv->type) {
-> > +     case DISP_MATRIX:
-> > +             /* not handled here */
-> > +             break;
+> > I believe this comes from me (see dsa_switch_tag_proto_match). I did not
+> > take into consideration at that time the fact that Marvell switches can
+> > translate between DSA and EDSA. So I assumed that every switch in the
+> > tree needs a notification about the tagging protocol, not just the
+> > top-most one.
 >
-> This 'case' shouldn't happen. Having said that, the break here will
-> still
-> cause the linedisp_register() function to be called for the DISP_MATRIX
-> type.
-> If you'd like to handle this case, a return (or setting 'err') should
-> prevent this.
+> Hi Vladimir
+>
+> static int mv88e6xxx_setup_port_mode(struct mv88e6xxx_chip *chip, int port)
+> {
+>         if (dsa_is_dsa_port(chip->ds, port))
+>                 return mv88e6xxx_set_port_mode_dsa(chip, port);
+>
+> So DSA ports, the ports connecting two switches together, are hard
+> coded to use DSA.
+>
+>         if (dsa_is_user_port(chip->ds, port))
+>                 return mv88e6xxx_set_port_mode_normal(chip, port);
+>
+>         /* Setup CPU port mode depending on its supported tag format */
+>         if (chip->info->tag_protocol == DSA_TAG_PROTO_DSA)
+>                 return mv88e6xxx_set_port_mode_dsa(chip, port);
+>
+>         if (chip->info->tag_protocol == DSA_TAG_PROTO_EDSA)
+>                 return mv88e6xxx_set_port_mode_edsa(chip, port);
+>
+> CPU ports can be configured to DSA or EDSA.
+>
+> The switches seem happy to translate between DSA and EDSA as needed.
 
-This function is never called if priv->type == DISP_MATRIX, so this
-cannot happen.  However, gcc complains if not all enum values are
-handled in a switch() statement, hence the dummy case.
-
-Is there a better way to handle this?
-
-> > +     case DISP_QUAD_7SEG:
-> > +             INIT_DELAYED_WORK(&priv->work, ht16k33_seg7_update);
-> > +             seg->map.seg7 = initial_map_seg7;
-> > +             seg->map_size = sizeof(seg->map.seg7);
-> > +             err = device_create_file(dev, &dev_attr_map_seg7);
-> > +             break;
-> > +
-> > +     case DISP_QUAD_14SEG:
-> > +             INIT_DELAYED_WORK(&priv->work, ht16k33_seg14_update);
-> > +             seg->map.seg14 = initial_map_seg14;
-> > +             seg->map_size = sizeof(seg->map.seg14);
-> > +             err = device_create_file(dev, &dev_attr_map_seg14);
-> > +             break;
-> > +     }
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     err = linedisp_register(&seg->linedisp, dev, 4, seg->curr,
-> > +                             ht16k33_linedisp_update);
-> > +     if (err)
-> > +             goto err_remove_map_file;
-> > +
-> > +     return 0;
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+I agree, and this is a particular feature of Marvell, not something that
+can be said in general. However, I have nothing against deleting the
+dsa_is_dsa_port checks from dsa_switch_tag_proto_match and from Tobias'
+patch, since nobody needs them at the moment.
