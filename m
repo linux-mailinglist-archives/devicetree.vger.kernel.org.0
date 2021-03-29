@@ -2,191 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C6434D025
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8122034D03D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 14:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbhC2MeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 08:34:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbhC2MeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:34:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1142FC061574
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 05:34:13 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lQr5v-0003Ij-4D; Mon, 29 Mar 2021 14:34:11 +0200
-Received: from ukl by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lQr5u-0004YI-Ci; Mon, 29 Mar 2021 14:34:10 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: imx8mp-evk: Add PMIC device
-Date:   Mon, 29 Mar 2021 14:34:09 +0200
-Message-Id: <20210329123409.26975-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
+        id S230504AbhC2Mjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 08:39:48 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:64634 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231124AbhC2Mjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 08:39:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1617021577; x=1619613577;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=VNM0UtqlM+r85P41I9g1vivhzSRSzLEHiMDkKSZJmjw=;
+        b=AtSUzWfzV+ES+QBTFvDv2xc2Oj1sLH3QcB4tg6wpYQe5eDqWT5JOKxW09cWTTaWu
+        59WdoBIyGvQ5vPT0kmCD0iRFWntMUfVCjjSR+WR20LKZ/JYCdqX3e56Fd9f7WK5v
+        cwKmaOWaoAPkPgeF/Vn5h7Vj3/CZklaAiQX+eYh0K0Y=;
+X-AuditID: c39127d2-85cb770000001c91-c9-6061ca89690c
+Received: from florix.phytec.de (florix.phytec.de [172.16.0.118])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 29.1B.07313.98AC1606; Mon, 29 Mar 2021 14:39:37 +0200 (CEST)
+Received: from Berlix.phytec.de (172.16.0.117) by Florix.phytec.de
+ (172.16.0.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 29 Mar
+ 2021 14:39:37 +0200
+Received: from Berlix.phytec.de ([fe80::f594:d241:d581:a5be]) by
+ berlix.phytec.de ([fe80::f594:d241:d581:a5be%3]) with mapi id 15.01.2176.009;
+ Mon, 29 Mar 2021 14:39:37 +0200
+From:   =?utf-8?B?U3RlZmFuIFJpZWRtw7xsbGVy?= <S.Riedmueller@phytec.de>
+To:     "festevam@gmail.com" <festevam@gmail.com>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable pinmuxing
+Thread-Topic: [PATCH 1/3] ARM: dts: imx6: pfla02: Fix USB vbus enable
+ pinmuxing
+Thread-Index: AQHXJI6jENN0NZmfXkefOB2FaqSgpaqas7iAgAASy4A=
+Date:   Mon, 29 Mar 2021 12:39:37 +0000
+Message-ID: <b449e9c40d225b3dbec9c79435b856f89ccdde29.camel@phytec.de>
+References: <20210329112819.64043-1-s.riedmueller@phytec.de>
+         <CAOMZO5AxkToaa3wFbx2KP6AyAnWVYKVsKOs-mgNMZLOzo3miuA@mail.gmail.com>
+In-Reply-To: <CAOMZO5AxkToaa3wFbx2KP6AyAnWVYKVsKOs-mgNMZLOzo3miuA@mail.gmail.com>
+Accept-Language: en-US, de-DE
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.0.116]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <311B64546FB78F4CB90ABAE54782B748@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMIsWRmVeSWpSXmKPExsWyRoChTLfzVGKCQedaS4v5R86xWjy86m+x
+        aupOFotNj6+xWnT9WslscXnXHDaL1r1H2C3+bt/EYvFii7gDp8fOWXfZPTat6mTz2Lyk3mPj
+        ux1MHv1/DTw+b5ILYIvisklJzcksSy3St0vgyti3eAFjwTn2in8PV7I2MG5h72Lk5JAQMJHY
+        cuk/axcjF4eQwHImiUn/7jBBOA8ZJa5P7WeBcDYxSjQuvsYM0sIm4CLxue0bG4gtIqArseJE
+        FyNIEbPAHmaJE63/wOYKC/hJTD91ix2iKFDi6o4FLBC2lcTMNzvBbBYBVYnXe46DDeIVcJO4
+        +moB1LYWRomOI3fAijiBmqe07wfbzCggK9HZ8I4JxGYWEJfY9Ow7K8QTAhJL9pxnhrBFJV4+
+        /gcVV5Bo6+kEqucAqteUWL9LH6LVQuLczIlsELaixJTuh+wQNwhKnJz5hGUCo/gsJBtmIXTP
+        QtI9C0n3LCTdCxhZVzEK5WYmZ6cWZWbrFWRUlqQm66WkbmIERvThieqXdjD2zfE4xMjEwXiI
+        UYKDWUmEV/hAYoIQb0piZVVqUX58UWlOavEhRmkOFiVx3g28JWFCAumJJanZqakFqUUwWSYO
+        TqkGRtOlJZcundxSdWVyc545S9CjH1urZNRkI1Z9OmC3cm+e1c0QQSchXt6FEcmhM1qMhUz8
+        1oosDMmM5t0067nnHTGX5I2SYVKLcw9HWaxetONA9ikGqV72+WlR+9K2b3tueOcy2yvB9VfW
+        8GbEK1Y5+rRqlK12/+pi9uC6Wv0s7qBpB51qlr9bqMRSnJFoqMVcVJwIAD3urmnWAgAA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The imx8mp-evk uses an PCA9450C as PMIC that supplies various
-regulators.
-
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
-Hello,
-
-this is formally v2 of https://lore.kernel.org/r/20210326142459.30679-1-u.kleine-koenig@pengutronix.de
-where I claimed there was no binding for the PMIC but Fabio caught me
-:-)
-
-Best regards
-Uwe
-
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 99 ++++++++++++++++++++
- 1 file changed, 99 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 7db4273cc88b..3488d7dd14e5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -102,6 +102,92 @@ ethphy1: ethernet-phy@1 {
- 	};
- };
- 
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9450c";
-+		reg = <0x25>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1025000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1045000>;
-+				regulator-max-microvolt = <1155000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1710000>;
-+				regulator-max-microvolt = <1890000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- &i2c3 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -227,6 +313,13 @@ MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x19
- 		>;
- 	};
- 
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
-+		>;
-+	};
-+
- 	pinctrl_i2c3: i2c3grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c3
-@@ -234,6 +327,12 @@ MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c3
- 		>;
- 	};
- 
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
-+		>;
-+	};
-+
- 	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
--- 
-2.29.2
-
+SGkgRmFiaW8sDQoNCk9uIE1vbiwgMjAyMS0wMy0yOSBhdCAwODozMiAtMDMwMCwgRmFiaW8gRXN0
+ZXZhbSB3cm90ZToNCj4gSGkgU3RlZmFuLA0KPiANCj4gT24gTW9uLCBNYXIgMjksIDIwMjEgYXQg
+ODoyOCBBTSBTdGVmYW4gUmllZG11ZWxsZXINCj4gPHMucmllZG11ZWxsZXJAcGh5dGVjLmRlPiB3
+cm90ZToNCj4gDQo+ID4gLSAgICAgICAgICAgICAgIHBpbmN0cmxfdXNiaDE6IHVzYmgxZ3JwIHsN
+Cj4gPiArICAgICAgICAgICAgICAgcGluY3RybF91c2JoMV92YnVzOiB1c2JoMXZidXNncnAgew0K
+PiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGZzbCxwaW5zID0gPA0KPiA+IC0gICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgTVg2UURMX1BBRF9HUElPXzBfX1VTQl9IMV9QV1IgICAgICAg
+ICAgIDB4DQo+ID4gODAwMDAwMDANCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IE1YNlFETF9QQURfR1BJT18wX19HUElPMV9JTzAwICAgICAgICAgICAweA0KPiA+IDgwMDAwMDAw
+DQo+IA0KPiBXaGlsZSB5b3UgYXJlIG9uIGl0LCBjb3VsZCB5b3UgcGxlYXNlIHVzZSBhdm9pZCB0
+aGUgdXNhZ2Ugb2YNCj4gMHg4MDAwMDAwMCBhbmQgZXhwbGljaXRseSBwYXNzIHRoZSBkZWZhdWx0
+IHZhbHVlIGluc3RlYWQ/DQoNClRoYW5rcyBmb3IgeW91ciByZXZpZXcuIFN1cmUsIEknbGwgZml4
+IHRoYXQgaW4gYSB2Mi4NCg0KU3RlZmFuDQo=
