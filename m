@@ -2,93 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A47A734C1B3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 04:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBDB34C1EE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 04:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbhC2CAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Mar 2021 22:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbhC2CAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Mar 2021 22:00:04 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CD1C0613B4
-        for <devicetree@vger.kernel.org>; Sun, 28 Mar 2021 19:00:04 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id o2so3659816plg.1
-        for <devicetree@vger.kernel.org>; Sun, 28 Mar 2021 19:00:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=AUT/fx38q5jzHp0KnGD15nyHtPKW1998V0+UJkFXEGk=;
-        b=Fatmgx4bbKgLWkUqRoiO8p/pewMHfBVdaojdQ8DnCIAerwmYI168oyuDMwEC046Dkm
-         abax/+QVucUuZr6HMyxsyxoV2bp8YOzt7wZStiliDGPY/FMZMWKLCj42wq6hu4JTHdE9
-         qd4VArE7xvCnu9/Ddnx9HsL0GVjdLqrKqMuUZD+3vvygCHFDmPDAO2zNpMhsdPZIfwLS
-         +3MnxcxKkh3beRViCgwbPVYABlOiRJOB4+QQmUpCvBuQUNnLxV/4LKOzzvCjhmQimQXo
-         P9ppgVDwaAm4xzplaUoVrnJWCvluAnQxTbAXcVtgcuDcmnNOGlgqx2F2WZMJQviIRtZV
-         tzdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=AUT/fx38q5jzHp0KnGD15nyHtPKW1998V0+UJkFXEGk=;
-        b=BXbJaT62WEsXjTZIHwM+iKKwGHD/MTe7vf2bddCIuPy3aWYwrxreeCesGhhfOb7E6E
-         /GZH1JwrEKeK9AJq+9fbPDjKWn9fima7eHgx1K8G8ZRY3X2nobR2MsWW1Z3rZwDKMkBc
-         eC7gQXlZWDfQC4EtfZeACExkUW356kSX+aMiMSSlS0rYNKP/INwzibNm5ZjmvGQYEy4X
-         pFW2413zX1V+0nLu5w64ShvRbthbEFugsqp1kx7tuBGQ3LCMxKWpwZSyjzZhQsN34HXZ
-         /GNMsMYoTjAiqM8jP+5HNButxQdaT5Kgy4OXtIv9YwQrizPNnLxRYBF8CjdETcAAjTV1
-         6qOg==
-X-Gm-Message-State: AOAM533thhm/jYB5OMYzTXrbhi5IQdrzWIHN5hC1WR2aPkC+DKTbQ/q6
-        13u4iB0DmrsqGYpyuKXQUOtv6Q==
-X-Google-Smtp-Source: ABdhPJyVsLefzEtdM9V5TgiaRr9fa4c2/h685XCffpBKXzNUaBp5HAE7FMtuN8Bx6CudThzRHfR2Zw==
-X-Received: by 2002:a17:90a:d41:: with SMTP id 1mr24992479pju.232.1616983204271;
-        Sun, 28 Mar 2021 19:00:04 -0700 (PDT)
-Received: from platform-dev1.pensando.io ([12.226.153.42])
-        by smtp.gmail.com with ESMTPSA id w37sm14728027pgl.13.2021.03.28.19.00.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Mar 2021 19:00:03 -0700 (PDT)
-From:   Brad Larson <brad@pensando.io>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     arnd@arndb.de, linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, fancer.lancer@gmail.com,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
-        brad@pensando.io, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 13/13] gpio: Use linux/gpio/driver.h
-Date:   Sun, 28 Mar 2021 18:59:38 -0700
-Message-Id: <20210329015938.20316-14-brad@pensando.io>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210329015938.20316-1-brad@pensando.io>
-References: <20210329015938.20316-1-brad@pensando.io>
+        id S229822AbhC2CZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Mar 2021 22:25:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50848 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229719AbhC2CZf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Mar 2021 22:25:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3E5061554;
+        Mon, 29 Mar 2021 02:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1616984735;
+        bh=QWb/HF9UilknbtV40E2RWyidJoP+mF2Xzwk3N0FcIZA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b4eBbqabuaDEvyEgdx4kiGdmCAKVeeXQcLNGN39y8qyReSeAQbOZ0lvFa3WTKmarI
+         R21Ylo75DtDN0Sr7qFdFD8M1jlScwFWR1svvOIjUdtJ3HKBpMUJQSkshM34HN9IUwG
+         PbFJHfROp+Q0BPIdVHlV/T80JS8QbrM0ryK31Zu/Ew4zKpH6KGhq7TamljA0VAgm47
+         vtwL//g7eoFYoJ/pxtqCH4YWm6BuUi38EcCVFdoMKGJ0pjl0bKeJWl58cu/t3AQ+ge
+         L6A7TvNCerY6NoaEkhLgUqAvuV/sMIQF3J27o+QWASEeYxxUyrvVA60rW6KMObMZhv
+         SrfHb3t+F7Tkw==
+Date:   Mon, 29 Mar 2021 10:25:30 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oliver =?iso-8859-1?Q?St=E4bler?= <oliver.staebler@bytesatwork.ch>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: imx8mm/q: Fix pad control of SD1_DATA0
+Message-ID: <20210329022529.GN22955@dragon>
+References: <CAOMZO5B_uHS_Z2LuMwHDmn9erORrsrNBMHMjkW-hW+pnfHZThQ@mail.gmail.com>
+ <20210324132841.5841-1-oliver.staebler@bytesatwork.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210324132841.5841-1-oliver.staebler@bytesatwork.ch>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New drivers should include <linux/gpio/driver.h> instead
-of legacy <linux/gpio.h>.
+On Wed, Mar 24, 2021 at 02:28:41PM +0100, Oliver Stäbler wrote:
+> Fix address of the pad control register
+> (IOMUXC_SW_PAD_CTL_PAD_SD1_DATA0) for SD1_DATA0_GPIO2_IO2.  This seems
+> to be a typo but it leads to an exception when pinctrl is applied due to
+> wrong memory address access.
+> 
+> Signed-off-by: Oliver Stäbler <oliver.staebler@bytesatwork.ch>
 
-Signed-off-by: Brad Larson <brad@pensando.io>
----
- drivers/gpio/gpio-elba-spics.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpio/gpio-elba-spics.c b/drivers/gpio/gpio-elba-spics.c
-index 351bbaeea033..c0dce5333f35 100644
---- a/drivers/gpio/gpio-elba-spics.c
-+++ b/drivers/gpio/gpio-elba-spics.c
-@@ -6,11 +6,10 @@
-  */
- 
- #include <linux/err.h>
--#include <linux/gpio.h>
-+#include <linux/gpio/driver.h>
- #include <linux/module.h>
- #include <linux/io.h>
- #include <linux/init.h>
--//#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/spinlock.h>
- #include <linux/types.h>
--- 
-2.17.1
-
+Applied, thanks.
