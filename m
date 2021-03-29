@@ -2,100 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0412634D24F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 16:24:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C1234D2B3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Mar 2021 16:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbhC2OYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 10:24:12 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:44866 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbhC2OYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 10:24:05 -0400
-Received: by mail-ot1-f49.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso12404215oti.11;
-        Mon, 29 Mar 2021 07:24:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7cbBvFM0u5OOnkRup8d3vCsO5p4xHsXrVbhJ/10pY0w=;
-        b=F69CHwuNTaGVZ1Dr3unTAKI/xVf/tpgPmTiTcowqdjfzbhxLw7BzPBmnBwVMoV3CJ2
-         3Qa/FzATCL1xy8xteNorRqw7H+XsfWFGnHvh3nfX+YUoRz8UDrL2DNcuPlq3twz3ZvfJ
-         +kg19s7M9rO9bxmt7uOoiRz16ZQh79CGenAz+OqIWKY9iC1kzLIgn6R2M/jm1U7xs2D3
-         /mT3OWX1iwJ8ZSsyUv47j2nYFvS16RwS+brsXH0Obkz1VrPxErYo0/xmRKpCAt4sfo7E
-         Ssz54uNbXTWVagSfHLtlRePjEyvynUfuSbaVuF6jNcjZfIzZzP0sws5qeMtf+m+J4nUy
-         FcmA==
-X-Gm-Message-State: AOAM532EfY91w+hYdkq+nHefXOputm/v1+zjnDJKmUrEZ9VcTjdp+CgB
-        KAfc0hL3OQJ/7DdDwcwaypqcrY/bsA==
-X-Google-Smtp-Source: ABdhPJyf+sxdZg6l+rP9zu3h8+b7BWR69/FryoT+K89LgslfDxApt6g8N/GPYaZYTup2PKBl9h9+jQ==
-X-Received: by 2002:a05:6830:12d5:: with SMTP id a21mr22715211otq.34.1617027844013;
-        Mon, 29 Mar 2021 07:24:04 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r2sm4368294otk.55.2021.03.29.07.24.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 07:24:02 -0700 (PDT)
-Received: (nullmailer pid 2512548 invoked by uid 1000);
-        Mon, 29 Mar 2021 14:24:00 -0000
-Date:   Mon, 29 Mar 2021 09:24:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     marcel.ziswiler@toradex.com, robh+dt@kernel.org, airlied@linux.ie,
-        tzimmermann@suse.de, guido.gunther@puri.sm,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, shawnguo@kernel.org,
-        laurentiu.palcu@oss.nxp.com, devicetree@vger.kernel.org,
-        s.hauer@pengutronix.de, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 3/6] dt-bindings: display: imx: Add i.MX8qxp/qm DPR
- channel binding
-Message-ID: <20210329142400.GA2512413@robh.at.kernel.org>
-References: <1616997446-8783-1-git-send-email-victor.liu@nxp.com>
- <1616997446-8783-4-git-send-email-victor.liu@nxp.com>
+        id S230420AbhC2Orm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 10:47:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41392 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231233AbhC2Orf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Mar 2021 10:47:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B735660295;
+        Mon, 29 Mar 2021 14:47:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617029254;
+        bh=QmIftYcSBB5/j37ikRpbaopMaPJQYPRqWGVN0N5sWFo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tFhNX5fo7AsHwvq51sdRIDHwQybyYINTNq3/3EiYjmzRfe8orwPSfNlSIeyIBBtpx
+         8R7GSjvjU7teEUghRvUzonKqpXFS0aSTUxMefyqv2iZCJ4PBCG7fkFWudLQGv5ZHBj
+         S+HOPJ9kNO2wOfx+jjhEIsQPDM01f811bsOJBbNcrtv1394E07pFR7j3czTu1TBEju
+         B+k25ajEQk5NDWmDLKo3PuGCEhUNT4iJ12TPzCFmlUW3yDjjDzhLrpxAaGnoStFYNW
+         jn7MvkFREy7cxAHBBpKvspSP3heLGB3YM89OMZhggpSR9T3Pi5lTPe091nYsHseM/7
+         4cJHGpsFuRPIQ==
+Date:   Mon, 29 Mar 2021 15:47:29 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Eric Anholt <eric@anholt.net>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
+Message-ID: <20210329144729.GB4203@willie-the-truck>
+References: <20210326231303.3071950-1-eric@anholt.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1616997446-8783-4-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20210326231303.3071950-1-eric@anholt.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 13:57:23 +0800, Liu Ying wrote:
-> This patch adds bindings for i.MX8qxp/qm Display Prefetch Resolve Channel.
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v8->v9:
-> * Reference 'interrupts-extended' schema instead of 'interrupts' to require
->   an additional interrupt(r_rtram_stall) because the reference manual does
->   mention it, though the driver doesn't get/use it for now.
->   Reference 'interrupt-names' schema to define the two interrupt names -
->   'dpr_wrap' and 'r_rtram_stall'.
-> * Drop Rob's R-b tag, as review is needed.
-> 
-> v7->v8:
-> * No change.
-> 
-> v6->v7:
-> * No change.
-> 
-> v5->v6:
-> * No change.
-> 
-> v4->v5:
-> * No change.
-> 
-> v3->v4:
-> * Improve compatible property by using enum instead of oneOf+const. (Rob)
-> * Add Rob's R-b tag.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * Use new dt binding way to add clocks in the example.
-> 
->  .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     | 100 +++++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> 
+On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
+> db820c wants to use the qcom smmu path to get HUPCF set (which keeps
+> the GPU from wedging and then sometimes wedging the kernel after a
+> page fault), but it doesn't have separate pagetables support yet in
+> drm/msm so we can't go all the way to the TTBR1 path.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+What do you mean by "doesn't have separate pagetables support yet"? The
+compatible string doesn't feel like the right way to determine this.
+
+Will
