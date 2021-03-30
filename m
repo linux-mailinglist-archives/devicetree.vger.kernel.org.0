@@ -2,108 +2,706 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E81834DD4C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 03:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4CFA34DDB8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 03:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbhC3BGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 21:06:49 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56250 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230202AbhC3BGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 21:06:40 -0400
-X-UUID: db084fc00fb74977aa5c34dc16a2e480-20210330
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eIwgc0r+QIYxa5BYwiIyGnWzADT9Ny1eTWElVufgXQA=;
-        b=R+ERG0/MSmU6Ql4mz3kIyZLwLgD4NgH/0VznsLh+ODR3M7+aPeDjvhfCNTQkYJfK/hZJfQgcXs1DPLjWMnnJ1pJR4VDjYIZKnf3jtyxDfcjaAtgcJztlLbk3sdbuOVbg80RsWsz8LD1Fta9uydz5nk2GC3zLCIOrjodBD17O09g=;
-X-UUID: db084fc00fb74977aa5c34dc16a2e480-20210330
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <nina-cm.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1520473993; Tue, 30 Mar 2021 09:06:36 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 30 Mar 2021 09:06:35 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 30 Mar 2021 09:06:35 +0800
-Message-ID: <1617066395.9554.12.camel@mtksdccf07>
-Subject: Re: [PATCH 1/2] dt-bindings: devapc: Update bindings
-From:   Nina Wu <nina-cm.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <Jackson-kt.Chang@mediatek.com>,
-        <nina-cm.wu@mediatek.com>
-Date:   Tue, 30 Mar 2021 09:06:35 +0800
-In-Reply-To: <8417423c-0462-f3af-b3a0-2af638850d51@gmail.com>
-References: <1616743871-8087-1-git-send-email-nina-cm.wu@mediatek.com>
-         <8417423c-0462-f3af-b3a0-2af638850d51@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S229763AbhC3Bn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 21:43:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229628AbhC3BnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 21:43:04 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282C3C061762;
+        Mon, 29 Mar 2021 18:43:04 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id d12so14922859oiw.12;
+        Mon, 29 Mar 2021 18:43:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hcN4e2ZIjSqTaT+HE3O5zc/5f5nqimNJqKvrwB/lfk8=;
+        b=rB5gt5/zb+Ms0XAYGnn7/5lnsrPPo3IZ1oJzuW9GcClKTOSj4BaGqPXbwWfs7VvJVt
+         bbXzt4WazzDmfcMWX02U+tZBh/gFLnnyHKTiMav+lYmnF0gg80Wct/h3sRo5HQWf7cGr
+         q+D2Va98xYIkQeqBcbP8ihZQvzu+etfEv2NtYUfeondb4+UZQ6uC7vHP9uyT7JdSxbvS
+         HM6OkjOoZv/a/iWPN5VzFXFF6lnILrTX6scvxS2chonvbypP7o+va9lyWg2/tXPuB6dk
+         2N+1ON2kWCoJh8xEoOePWzKGx43aRes5dIw7e0db4vqjavlvlmKvhkrg3oEpJZKjBIy9
+         5yqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=hcN4e2ZIjSqTaT+HE3O5zc/5f5nqimNJqKvrwB/lfk8=;
+        b=BoxQl4usvQHHxyuB81MqccYNiaZApOKU98nyMbQciM9kHhBomUeAViklVD7Wg2kJ3b
+         tjtamq36tK7uw0Hx82x52gVw0mnSuHXzSsQZbXHGBwHe/axZyWco1tTsYW8Id3POE8zz
+         pxVR2QaA6tYFdOhiQyHsGSqmvy9NBlI+35vOiTVU+AFWf8yLPBpr3jjgB0Ikoatubpug
+         Czh64Hq7EUBYXw9rLTzBDWUDTxtcilhOT1nmTrLUcg1oAOp1pYPUksguVpuTjyDPgvGT
+         F6zr2kPwbejfCYa5AGG44DicVcP8jcqMt0qJ6DCq2aLPRr8qT9FVCJo+AZ43LVPHtmBL
+         6tFA==
+X-Gm-Message-State: AOAM530vOKUczjaj4Rh55efp1+2PrRYQKKQ6sKJUWaVfAHpytw73vT/g
+        fOVg8qpmrtOxKHu4wzkzb9g=
+X-Google-Smtp-Source: ABdhPJyRWPzJbZG1k0ujG8DqyTAdvwA0COENYeFj3vyjFziiJ9C6Zedd9y0v55YAf77EGa1LhM9YfA==
+X-Received: by 2002:a54:4703:: with SMTP id k3mr1468266oik.26.1617068583292;
+        Mon, 29 Mar 2021 18:43:03 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n17sm3844075oic.8.2021.03.29.18.43.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Mar 2021 18:43:02 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v2 3/4] hwmon: smpro: Add Ampere's Altra smpro-hwmon
+ driver
+To:     Quan Nguyen <quan@os.amperecomputing.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20210329015238.19474-1-quan@os.amperecomputing.com>
+ <20210329015238.19474-4-quan@os.amperecomputing.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <bac92db0-3ef6-1615-0e92-aabd54fd0580@roeck-us.net>
+Date:   Mon, 29 Mar 2021 18:43:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210329015238.19474-4-quan@os.amperecomputing.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIE1hdHRoaWFzDQoNCk9uIE1vbiwgMjAyMS0wMy0yOSBhdCAxMzoxNiArMDIwMCwgTWF0dGhp
-YXMgQnJ1Z2dlciB3cm90ZToNCj4gDQo+IE9uIDI2LzAzLzIwMjEgMDg6MzEsIE5pbmEgV3Ugd3Jv
-dGU6DQo+ID4gRnJvbTogTmluYSBXdSA8TmluYS1DTS5XdUBtZWRpYXRlay5jb20+DQo+ID4gDQo+
-ID4gVG8gc3VwcG9ydCBuZXdlciBoYXJkd2FyZSBhcmNoaXRlY3R1cmUgb2YgZGV2YXBjLA0KPiA+
-IHVwZGF0ZSBkZXZpY2UgdHJlZSBiaW5kaW5ncy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBO
-aW5hIFd1IDxOaW5hLUNNLld1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2Rldmlj
-ZXRyZWUvYmluZGluZ3Mvc29jL21lZGlhdGVrL2RldmFwYy55YW1sICAgfCA0MSArKysrKysrKysr
-KysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0MSBpbnNlcnRpb25zKCspDQo+ID4g
-DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2Mv
-bWVkaWF0ZWsvZGV2YXBjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-c29jL21lZGlhdGVrL2RldmFwYy55YW1sDQo+ID4gaW5kZXggMzFlNGQzYy4uNDg5ZjZhOSAxMDA2
-NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL21lZGlh
-dGVrL2RldmFwYy55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbA0KPiA+IEBAIC0yMCw5ICsyMCwyNyBAQCBwcm9w
-ZXJ0aWVzOg0KPiA+ICAgIGNvbXBhdGlibGU6DQo+ID4gICAgICBlbnVtOg0KPiA+ICAgICAgICAt
-IG1lZGlhdGVrLG10Njc3OS1kZXZhcGMNCj4gPiArICAgICAgLSBtZWRpYXRlayxtdDgxOTItZGV2
-YXBjDQo+ID4gKw0KPiA+ICsgIHZlcnNpb246DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogVGhlIHZl
-cnNpb24gb2YgdGhlIGhhcmR3YXJlIGFyY2hpdGVjdHVyZQ0KPiA+ICsgICAgJHJlZjogL3NjaGVt
-YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBlbnVtOiBbMSwgMl0N
-Cj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIHNsYXZlX3R5cGVfbnVtOg0KPiA+
-ICsgICAgZGVzY3JpcHRpb246IFRoZSBudW1iZXIgb2YgdGhlIGRldmFwYyBzZXQNCj4gPiArICAg
-ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ICsgICAg
-ZW51bTogWzEsIDRdDQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICANCj4gPiAgICByZWc6DQo+
-ID4gICAgICBkZXNjcmlwdGlvbjogVGhlIGJhc2UgYWRkcmVzcyBvZiBkZXZhcGMgcmVnaXN0ZXIg
-YmFuaw0KPiA+ICsgICAgbWF4SXRlbXM6IDQNCj4gPiArDQo+ID4gKyAgdmlvX2lkeF9udW06DQo+
-ID4gKyAgICBkZXNjcmlwdGlvbjogVGhlIG51bWJlciBvZiB0aGUgZGV2aWNlcyBjb250cm9sbGVk
-IGJ5IGRldmFwYw0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlv
-bnMvdWludDMyLWFycmF5DQo+IA0KPiBUaGlzIGNhbiBhbGwgcGVyIGNvbXBhdGlibGUgRFQgZGF0
-YSBvYmplY3RzIGluIHRoZSBkcml2ZXIuIERvbid0IGFkZCBuZXcNCj4gcHJvcGVydGllcyBoZXJl
-Lg0KDQpJIHdpbGwgdHJ5IHRvIHJlbW92ZSBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uDQpUaGFua3MN
-Cg0KDQo+IA0KPiBSZWdhcmRzLA0KPiBNYXR0aGlhcw0KPiANCj4gPiAgICAgIG1heEl0ZW1zOiAx
-DQo+ID4gIA0KPiA+ICAgIGludGVycnVwdHM6DQo+ID4gQEAgLTM5LDcgKzU3LDEwIEBAIHByb3Bl
-cnRpZXM6DQo+ID4gIA0KPiA+ICByZXF1aXJlZDoNCj4gPiAgICAtIGNvbXBhdGlibGUNCj4gPiAr
-ICAtIHZlcnNpb24NCj4gPiArICAtIHNsYXZlX3R5cGVfbnVtDQo+ID4gICAgLSByZWcNCj4gPiAr
-ICAtIHZpb19pZHhfbnVtDQo+ID4gICAgLSBpbnRlcnJ1cHRzDQo+ID4gICAgLSBjbG9ja3MNCj4g
-PiAgICAtIGNsb2NrLW5hbWVzDQo+ID4gQEAgLTUzLDggKzc0LDI4IEBAIGV4YW1wbGVzOg0KPiA+
-ICANCj4gPiAgICAgIGRldmFwYzogZGV2YXBjQDEwMjA3MDAwIHsNCj4gPiAgICAgICAgY29tcGF0
-aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktZGV2YXBjIjsNCj4gPiArICAgICAgdmVyc2lvbiA9IDwx
-PjsNCj4gPiArICAgICAgc2xhdmVfdHlwZV9udW0gPSA8MT47DQo+ID4gICAgICAgIHJlZyA9IDww
-eDEwMjA3MDAwIDB4MTAwMD47DQo+ID4gKyAgICAgIHZpb19pZHhfbnVtID0gPDUxMT47DQo+ID4g
-ICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAxNjggSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4g
-PiAgICAgICAgY2xvY2tzID0gPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfREVWSUNFX0FQQz47DQo+
-ID4gICAgICAgIGNsb2NrLW5hbWVzID0gImRldmFwYy1pbmZyYS1jbG9jayI7DQo+ID4gICAgICB9
-Ow0KPiA+ICsgIC0gfA0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1j
-b250cm9sbGVyL2FybS1naWMuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9j
-ay9tdDgxOTItY2xrLmg+DQo+ID4gKw0KPiA+ICsgICAgZGV2YXBjOiBkZXZhcGNAMTAyMDcwMDAg
-ew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyLWRldmFwYyI7DQo+
-ID4gKyAgICAgICAgdmVyc2lvbiA9IDwyPjsNCj4gPiArICAgICAgICBzbGF2ZV90eXBlX251bSA9
-IDw0PjsNCj4gPiArICAgICAgICByZWcgPSA8MCAweDEwMjA3MDAwIDAgMHgxMDAwPiwNCj4gPiAr
-ICAgICAgICAgICAgPDAgMHgxMDI3NDAwMCAwIDB4MTAwMD4sDQo+ID4gKyAgICAgICAgICAgIDww
-IDB4MTAyNzUwMDAgMCAweDEwMDA+LA0KPiA+ICsgICAgICAgICAgICA8MCAweDExMDIwMDAwIDAg
-MHgxMDAwPjsNCj4gPiArICAgICAgICB2aW9faWR4X251bSA9IDwzNjcgMjkyIDI0MiA1OD47DQo+
-ID4gKyAgICAgICAgaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE4NyBJUlFfVFlQRV9MRVZFTF9ISUdI
-PjsNCj4gPiArICAgICAgICBjbG9ja3MgPSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9ERVZJQ0Vf
-QVBDPjsNCj4gPiArICAgICAgICBjbG9jay1uYW1lcyA9ICJkZXZhcGMtaW5mcmEtY2xvY2siOw0K
-PiA+ICsgICAgfTsNCj4gPiANCg0K
+On 3/28/21 6:52 PM, Quan Nguyen wrote:
+> This commit adds support for Ampere SMpro hwmon driver. This driver
+> supports accessing various CPU sensors provided by the SMpro co-processor
+> including temperature, power, voltages, and current.
+> 
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> ---
+>  drivers/hwmon/Kconfig       |   8 +
+>  drivers/hwmon/Makefile      |   1 +
+>  drivers/hwmon/smpro-hwmon.c | 494 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 503 insertions(+)
+>  create mode 100644 drivers/hwmon/smpro-hwmon.c
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 0ddc974b102e..ba4b5a911baf 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -67,6 +67,14 @@ config SENSORS_ABITUGURU3
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called abituguru3.
+>  
+> +config SENSORS_SMPRO
+> +	tristate "Ampere's Altra SMpro hardware monitoring driver"
+> +	depends on MFD_SMPRO
+> +	help
+> +	  If you say yes here you get support for the thermal, voltage,
+> +	  current and power sensors of Ampere's Altra processor family SoC
+> +	  with SMpro co-processor.
+> +
+>  config SENSORS_AD7314
+>  	tristate "Analog Devices AD7314 and compatibles"
+>  	depends on SPI
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 59e78bc212cf..b25391f9c651 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -174,6 +174,7 @@ obj-$(CONFIG_SENSORS_SHT3x)	+= sht3x.o
+>  obj-$(CONFIG_SENSORS_SHTC1)	+= shtc1.o
+>  obj-$(CONFIG_SENSORS_SIS5595)	+= sis5595.o
+>  obj-$(CONFIG_SENSORS_SMM665)	+= smm665.o
+> +obj-$(CONFIG_SENSORS_SMPRO)	+= smpro-hwmon.o
+>  obj-$(CONFIG_SENSORS_SMSC47B397)+= smsc47b397.o
+>  obj-$(CONFIG_SENSORS_SMSC47M1)	+= smsc47m1.o
+>  obj-$(CONFIG_SENSORS_SMSC47M192)+= smsc47m192.o
+> diff --git a/drivers/hwmon/smpro-hwmon.c b/drivers/hwmon/smpro-hwmon.c
+> new file mode 100644
+> index 000000000000..4277736ebc6e
+> --- /dev/null
+> +++ b/drivers/hwmon/smpro-hwmon.c
+> @@ -0,0 +1,494 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Ampere Computing SoC's SMPro Hardware Monitoring Driver
+> + *
+> + * Copyright (c) 2021, Ampere Computing LLC
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +
+> +/* Identification Registers */
+> +#define MANUFACTURER_ID_REG		0x02
+> +#define AMPERE_MANUFACTURER_ID		0xCD3A
+> +
+> +/* Logical Power Sensor Registers */
+> +#define SOC_TEMP_REG			0x10
+> +#define SOC_VRD_TEMP_REG		0x11
+> +#define DIMM_VRD_TEMP_REG		0x12
+> +#define CORE_VRD_TEMP_REG		0x13
+> +#define CH0_DIMM_TEMP_REG		0x14
+> +#define CH1_DIMM_TEMP_REG		0x15
+> +#define CH2_DIMM_TEMP_REG		0x16
+> +#define CH3_DIMM_TEMP_REG		0x17
+> +#define CH4_DIMM_TEMP_REG		0x18
+> +#define CH5_DIMM_TEMP_REG		0x19
+> +#define CH6_DIMM_TEMP_REG		0x1A
+> +#define CH7_DIMM_TEMP_REG		0x1B
+> +#define RCA_VRD_TEMP_REG		0x1C
+> +
+> +#define CORE_VRD_PWR_REG		0x20
+> +#define SOC_PWR_REG			0x21
+> +#define DIMM_VRD1_PWR_REG		0x22
+> +#define DIMM_VRD2_PWR_REG		0x23
+> +#define CORE_VRD_PWR_MW_REG		0x26
+> +#define SOC_PWR_MW_REG			0x27
+> +#define DIMM_VRD1_PWR_MW_REG		0x28
+> +#define DIMM_VRD2_PWR_MW_REG		0x29
+> +#define RCA_VRD_PWR_REG			0x2A
+> +#define RCA_VRD_PWR_MW_REG		0x2B
+> +
+> +#define MEM_HOT_THRESHOLD_REG		0x32
+> +#define SOC_VR_HOT_THRESHOLD_REG	0x33
+> +#define CORE_VRD_VOLT_REG		0x34
+> +#define SOC_VRD_VOLT_REG		0x35
+> +#define DIMM_VRD1_VOLT_REG		0x36
+> +#define DIMM_VRD2_VOLT_REG		0x37
+> +#define RCA_VRD_VOLT_REG		0x38
+> +
+> +#define CORE_VRD_CURR_REG		0x39
+> +#define SOC_VRD_CURR_REG		0x3A
+> +#define DIMM_VRD1_CURR_REG		0x3B
+> +#define DIMM_VRD2_CURR_REG		0x3C
+> +#define RCA_VRD_CURR_REG		0x3D
+> +
+> +struct smpro_hwmon {
+> +	struct regmap *regmap;
+> +};
+> +
+> +struct smpro_sensor {
+> +	const u8 reg;
+> +	const u8 reg_ext;
+> +	const char *label;
+> +};
+> +
+> +static const struct smpro_sensor temperature[] = {
+> +	{
+> +		.reg = SOC_TEMP_REG,
+> +		.label = "temp1 SoC"
+> +	},
+> +	{
+> +		.reg = SOC_VRD_TEMP_REG,
+> +		.label = "temp2 SoC VRD"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD_TEMP_REG,
+> +		.label = "temp3 DIMM VRD"
+> +	},
+> +	{
+> +		.reg = CORE_VRD_TEMP_REG,
+> +		.label = "temp4 CORE VRD"
+> +	},
+> +	{
+> +		.reg = CH0_DIMM_TEMP_REG,
+> +		.label = "temp5 CH0 DIMM"
+> +	},
+> +	{
+> +		.reg = CH1_DIMM_TEMP_REG,
+> +		.label = "temp6 CH1 DIMM"
+> +	},
+> +	{
+> +		.reg = CH2_DIMM_TEMP_REG,
+> +		.label = "temp7 CH2 DIMM"
+> +	},
+> +	{
+> +		.reg = CH3_DIMM_TEMP_REG,
+> +		.label = "temp8 CH3 DIMM"
+> +	},
+> +	{
+> +		.reg = CH4_DIMM_TEMP_REG,
+> +		.label = "temp9 CH4 DIMM"
+> +	},
+> +	{
+> +		.reg = CH5_DIMM_TEMP_REG,
+> +		.label = "temp10 CH5 DIMM"
+> +	},
+> +	{
+> +		.reg = CH6_DIMM_TEMP_REG,
+> +		.label = "temp11 CH6 DIMM"
+> +	},
+> +	{
+> +		.reg = CH7_DIMM_TEMP_REG,
+> +		.label = "temp12 CH7 DIMM"
+> +	},
+> +	{
+> +		.reg = RCA_VRD_TEMP_REG,
+> +		.label = "temp13 RCA VRD"
+> +	},
+> +};
+> +
+> +static const struct smpro_sensor voltage[] = {
+> +	{
+> +		.reg = CORE_VRD_VOLT_REG,
+> +		.label = "vout0 CORE VRD"
+> +	},
+> +	{
+> +		.reg = SOC_VRD_VOLT_REG,
+> +		.label = "vout1 SoC VRD"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD1_VOLT_REG,
+> +		.label = "vout2 DIMM VRD1"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD2_VOLT_REG,
+> +		.label = "vout3 DIMM VRD2"
+> +	},
+> +	{
+> +		.reg = RCA_VRD_VOLT_REG,
+> +		.label = "vout4 RCA VRD"
+> +	},
+> +};
+> +
+> +static const struct smpro_sensor curr_sensor[] = {
+> +	{
+> +		.reg = CORE_VRD_CURR_REG,
+> +		.label = "iout1 CORE VRD"
+> +	},
+> +	{
+> +		.reg = SOC_VRD_CURR_REG,
+> +		.label = "iout2 SoC VRD"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD1_CURR_REG,
+> +		.label = "iout3 DIMM VRD1"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD2_CURR_REG,
+> +		.label = "iout4 DIMM VRD2"
+> +	},
+> +	{
+> +		.reg = RCA_VRD_CURR_REG,
+> +		.label = "iout5 RCA VRD"
+> +	},
+> +};
+> +
+> +static const struct smpro_sensor power[] = {
+> +	{
+> +		.reg = CORE_VRD_PWR_REG,
+> +		.reg_ext = CORE_VRD_PWR_MW_REG,
+> +		.label = "power1 CORE VRD"
+> +	},
+> +	{
+> +		.reg = SOC_PWR_REG,
+> +		.reg_ext = SOC_PWR_MW_REG,
+> +		.label = "power2 SoC"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD1_PWR_REG,
+> +		.reg_ext = DIMM_VRD1_PWR_MW_REG,
+> +		.label = "power3 DIMM VRD1"
+> +	},
+> +	{
+> +		.reg = DIMM_VRD2_PWR_REG,
+> +		.reg_ext = DIMM_VRD2_PWR_MW_REG,
+> +		.label = "power4 DIMM VRD2"
+> +	},
+> +	{
+> +		.reg = RCA_VRD_PWR_REG,
+> +		.reg_ext = RCA_VRD_PWR_MW_REG,
+> +		.label = "power5 RCA VRD"
+> +	},
+> +};
+> +
+> +static int smpro_read_temp(struct device *dev, u32 attr, int channel, long *val)
+> +{
+> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
+> +	unsigned int value;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_input:
+> +		ret = regmap_read(hwmon->regmap,
+> +				  temperature[channel].reg, &value);
+> +		if (ret)
+> +			return ret;
+> +		*val = (value & 0x1ff) * 1000;
+> +		break;
+> +	case hwmon_temp_crit:
+> +		if (temperature[channel].reg == SOC_VRD_TEMP_REG) {
+> +			ret = regmap_read(hwmon->regmap, SOC_VR_HOT_THRESHOLD_REG, &value);
+> +			if (ret)
+> +				return ret;
+> +			*val = (value & 0x1ff) * 1000;
+> +		} else {
+> +			/* Report same MEM HOT threshold across DIMM channels */
+> +			ret = regmap_read(hwmon->regmap, MEM_HOT_THRESHOLD_REG, &value);
+> +			if (ret)
+> +				return ret;
+> +			*val = (value & 0x1ff) * 1000;
+> +		}
+
+To avoid code duplication:
+
+		reg = temperature[channel].reg == SOC_VRD_TEMP_REG ? SOC_VR_HOT_THRESHOLD_REG : MEM_HOT_THRESHOLD_REG;
+		ret = regmap_read(hwmon->regmap, reg, &value);
+		if (ret)
+			return ret;
+
+But then why don't you just use reg_ext to store SOC_VR_HOT_THRESHOLD_REG
+or MEM_HOT_THRESHOLD_REG ? It is already available, after all, and with it
+the code could be simplified to
+
+		ret = regmap_read(hwmon->regmap, temperature[channel].reg_ext, &value);
+		if (ret)
+			return ret;
+
+I don't have a datasheet, but I do wonder what is in bit 9..15. Any idea ?
+Main question is if there is a sign bit, as theoretic as it may be.
+
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int smpro_read_in(struct device *dev, u32 attr, int channel, long *val)
+> +{
+> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
+> +	unsigned int value;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_input:
+> +		ret = regmap_read(hwmon->regmap, voltage[channel].reg, &value);
+> +		if (ret < 0)
+> +			return ret;
+> +		/* Scale reported by the hardware is 1mV */
+> +		*val = value & 0x7fff;
+
+What is in bit 15 ?
+
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int smpro_read_curr(struct device *dev, u32 attr, int channel, long *val)
+> +{
+> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
+> +	unsigned int value;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_curr_input:
+> +		ret = regmap_read(hwmon->regmap, curr_sensor[channel].reg, &value);
+> +		if (ret < 0)
+> +			return ret;
+> +		/* Scale reported by the hardware is 1mA */
+> +		*val = value & 0x7fff;
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int smpro_read_power(struct device *dev, u32 attr, int channel, long *val_pwr)
+> +{
+> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
+> +	unsigned int val = 0, val_mw = 0;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_power_input:
+> +		ret = regmap_read(hwmon->regmap, power[channel].reg, &val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regmap_read(hwmon->regmap, power[channel].reg_ext, &val_mw);
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val_pwr = val * 1000000 + val_mw * 1000;
+> +		return 0;
+> +
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int smpro_read(struct device *dev, enum hwmon_sensor_types type,
+> +		      u32 attr, int channel, long *val)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		return smpro_read_temp(dev, attr, channel, val);
+> +	case hwmon_in:
+> +		return smpro_read_in(dev, attr, channel, val);
+> +	case hwmon_power:
+> +		return smpro_read_power(dev, attr, channel, val);
+> +	case hwmon_curr:
+> +		return smpro_read_curr(dev, attr, channel, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int smpro_write(struct device *dev, enum hwmon_sensor_types type,
+> +		       u32 attr, int channel, long val)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+
+There are no writeable attributes, thus the write function is not needed.
+
+> +
+> +static int smpro_read_string(struct device *dev, enum hwmon_sensor_types type,
+> +			     u32 attr, int channel, const char **str)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_label:
+> +			*str = temperature[channel].label;
+> +			return 0;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +		break;
+> +
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_label:
+> +			*str = voltage[channel].label;
+> +			return 0;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +		break;
+> +
+> +	case hwmon_curr:
+> +		switch (attr) {
+> +		case hwmon_curr_label:
+> +			*str = curr_sensor[channel].label;
+> +			return 0;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +		break;
+> +
+> +	case hwmon_power:
+> +		switch (attr) {
+> +		case hwmon_power_label:
+> +			*str = power[channel].label;
+> +			return 0;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	return -EOPNOTSUPP;
+
+If you are returning -ENOPSUPP by default, might as well replace
+all the same returns above with break;
+
+> +}
+> +
+> +static umode_t smpro_is_visible(const void *data, enum hwmon_sensor_types type,
+> +				u32 attr, int channel)
+> +{
+> +	const struct smpro_hwmon *hwmon = data;
+> +	unsigned int value;
+> +	int ret;
+> +
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_input:
+> +		case hwmon_temp_label:
+> +		case hwmon_temp_crit:
+> +			ret = regmap_read(hwmon->regmap, temperature[channel].reg, &value);
+> +			if (ret || value == 0xFFFF)
+> +				return 0;
+> +		break;
+> +		}
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0444;
+> +}
+> +
+> +static const struct hwmon_channel_info *smpro_info[] = {
+> +	HWMON_CHANNEL_INFO(temp,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL),
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL),
+> +	HWMON_CHANNEL_INFO(power,
+> +			   HWMON_P_INPUT | HWMON_P_LABEL,
+> +			   HWMON_P_INPUT | HWMON_P_LABEL,
+> +			   HWMON_P_INPUT | HWMON_P_LABEL,
+> +			   HWMON_P_INPUT | HWMON_P_LABEL,
+> +			   HWMON_P_INPUT | HWMON_P_LABEL),
+> +	HWMON_CHANNEL_INFO(curr,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL,
+> +			   HWMON_C_INPUT | HWMON_C_LABEL),
+> +	NULL
+> +};
+> +
+> +static const struct hwmon_ops smpro_hwmon_ops = {
+> +	.is_visible = smpro_is_visible,
+> +	.read = smpro_read,
+> +	.write = smpro_write,
+> +	.read_string = smpro_read_string,
+> +};
+> +
+> +static const struct hwmon_chip_info smpro_chip_info = {
+> +	.ops = &smpro_hwmon_ops,
+> +	.info = smpro_info,
+> +};
+> +
+> +static bool is_valid_id(struct regmap *regmap)
+> +{
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(regmap, MANUFACTURER_ID_REG, &val);
+> +
+> +	return  (ret || (val != AMPERE_MANUFACTURER_ID)) ? false : true;
+
+I am quite concerned about this: The calling code will translate it to
+-EPROBE_DEFER even if the manufacturer ID is wrong. It should return
+-ENODEV in that case. There should be a better means to determine if the
+controller is not available at all, or not yet.
+
+> +}
+> +
+> +static int smpro_hwmon_probe(struct platform_device *pdev)
+> +{
+> +	struct smpro_hwmon *hwmon;
+> +	struct device *hwmon_dev;
+> +
+> +	hwmon = devm_kzalloc(&pdev->dev, sizeof(struct smpro_hwmon), GFP_KERNEL);
+> +	if (!hwmon)
+> +		return -ENOMEM;
+> +
+> +	hwmon->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!hwmon->regmap)
+> +		return -ENODEV;
+> +
+> +	/* Check for valid ID */
+> +	if (!is_valid_id(hwmon->regmap))
+> +		return -EPROBE_DEFER;
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev, "smpro_hwmon",
+> +							 hwmon, &smpro_chip_info, NULL);
+> +
+> +	return PTR_ERR_OR_ZERO(hwmon_dev);
+> +}
+> +
+> +static const struct of_device_id smpro_hwmon_of_match[] = {
+> +	{ .compatible = "ampere,ac01-hwmon" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, smpro_hwmon_of_match);
+> +
+> +static struct platform_driver smpro_hwmon_driver = {
+> +	.probe		= smpro_hwmon_probe,
+> +	.driver = {
+> +		.name	= "smpro-hwmon",
+> +		.of_match_table = smpro_hwmon_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(smpro_hwmon_driver);
+> +
+> +MODULE_AUTHOR("Thu Nguyen <thu@os.amperecomputing.com>");
+> +MODULE_AUTHOR("Quan Nguyen <quan@os.amperecomputing.com>");
+> +MODULE_DESCRIPTION("Ampere Altra SMPro hwmon driver");
+> +MODULE_LICENSE("GPL v2");
+> 
 
