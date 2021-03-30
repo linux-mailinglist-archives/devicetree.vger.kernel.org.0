@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E4034DF4A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0111734DF4E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:30:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbhC3D2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 23:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
+        id S231314AbhC3D3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 23:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbhC3D17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:27:59 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF1B4C061762
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so14350454otn.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
+        with ESMTP id S231145AbhC3D2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:28:21 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0A4C061764
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:28:11 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso14288511oti.11
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:28:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=8DbFJ3M1KptfbL7xxLrTG18whdlv0dnlNnoRLxaa9Tg=;
-        b=G6bCnZEXEeDMrcEirVNwI79rVnOvK5cnEBznAA6jt7cWSs8Ywg/5KusLilOi8zv/tm
-         yFeAuIlS4+JKUjKURUdTohpFARW+q5WVTCmwa2Z5FU7AIWSbmnZXgcDQf4OavpeYfOjh
-         mytTXHHObIprDm+hNjuq79cNTcv45PKsIp6m7PlUtOg0YFJB5plkUplw4M9bzz6zmVmk
-         yATQhT6QVqDI2KsaRUK9qdbUM2VFvJ2GKpQD/ew3PkDOb7MgfrnVRcybGOCAkWjFAQG6
-         vLLdoHCSa0r2J0AWbHdheUtV5tSJmbogmBA0te2G0IvNuriakwvd8AqenxeL93NwAMOI
-         ZuCQ==
+        bh=dq+eBETJzh+IwQFdZNDvsn/tEJj1fNCRg9j0kkHOAYE=;
+        b=rReCcxh3hA7evyrVAe1zbXwbgu+v0Snn6vsRNg0EFcJ3G8FdBdZ4G/YAv0GW5YU0MB
+         Bt52tvTIGV4ZxPPAfpoApHHmfOM9BLD+BGKvRYYCbQuLQBVSGeHY9vi2r0AvbtXKyKNJ
+         0MIaPrSuQdg3oTlO4QQk7ajuMuz0jS8c9Lz/4XVRcdMb0maf9mBMj/cYZ8JfFxAx7PG7
+         AX8q9XqC+tJXv59bZCAiQFhJziMdhB8VOOwmdgcnQFDuCbT2UA4redni8jkAzD/uPQ2X
+         1yEKrxRVfpuvwaiSrjOy9BYSriLPoA5/r2O93MSKZ2N6fXWwyNULctmCBxxdvrx5RoS4
+         hCPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8DbFJ3M1KptfbL7xxLrTG18whdlv0dnlNnoRLxaa9Tg=;
-        b=e9jWEPgPaEBKqbA8qFiPLCNGQVKDDyuFuHtyWAu8xU1oWGg0M1nGJePCVONwXJhQkY
-         3TMVdMKn+bybm8alMwFz4GIeOz+OvB20aqqpGkH4sx56j2uPJWa6YMtS3JomwI+wu+gW
-         TlHT9cFS4c/jaIfOChgFejl538k+6tEX/61sy6lXs0Gi6OMURBMI5U8Qsi+BBXwgVHkl
-         csejXg9eP4CpQeX2sV6rmmuiip1KCuN3eGW81S+oaNsFCHmWBbAr8jWlcAce3rb6Sana
-         LbXxps9T69Eaz1qPJjMqsMtkQvyEUGO2wwYL2aeDjCn13xRQZ7+9YwJhIoHLdJwZhbaX
-         9ACA==
-X-Gm-Message-State: AOAM533JbD1wH/pL3J5p6EvhoxCHP+Cdp3tXyqkxvFPMVkmOqOu6Jz3b
-        uTi5vbmQ6kBVROUqY0zDtiFRsA==
-X-Google-Smtp-Source: ABdhPJzkO+2sPQfxp3IkoZFiefo3ExhfKmCm6Rdil8CIyeiMiC/iYxryzL7zecU76P2w2kIdfV2xTA==
-X-Received: by 2002:a9d:1c7:: with SMTP id e65mr25209471ote.259.1617074877280;
-        Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
+        bh=dq+eBETJzh+IwQFdZNDvsn/tEJj1fNCRg9j0kkHOAYE=;
+        b=GhO0I06fsuguqIrE+vnAYw5bn0ZUqO1ZZFs4JbWkwG/lpu6ZbueYROo2XtcUfS1gOk
+         UvtvT6zhfDXXskAkfvx2pjHNNjV+uU1QAnojHWY8RKUm9dz4ZLLJM4QnzBeJPEJb5tY+
+         iqTy/+jAcN4f+Lh8LdwxWCAEwW6hejid/mtzbmGZDO2aZIaja/NqxG0e3VWS+qgFpBR5
+         E03cMveMxrXFbbNqFul6C3BZByWa4sNG//MddD0Bh7azQq0q2PJB0SmrF9EbL/Ov3gek
+         Nwo2j4SgXH9PE+OOGSe37EvDE9kKE5cA7VVr+qWLjsKsyJtt626458MZhbONhwFX7DoE
+         MnSA==
+X-Gm-Message-State: AOAM5302L1wmi7ZLpFNJTrsI53xhaZWxw1s1jb05TdrjcFjYU08S6EIO
+        CkX4sx8SfyiijIs/cidErLhybg==
+X-Google-Smtp-Source: ABdhPJzeQGS1J4X9mtmDhNNTR7kvClVQ7XbPuKmlo5rvCfDCGuEiueLkO66dmZ8vT+z4tY7AlPJidQ==
+X-Received: by 2002:a9d:458e:: with SMTP id x14mr26450187ote.231.1617074890477;
+        Mon, 29 Mar 2021 20:28:10 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g13sm4820693otq.3.2021.03.29.20.27.56
+        by smtp.gmail.com with ESMTPSA id f8sm3879486oij.4.2021.03.29.20.28.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 20:27:56 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 22:27:54 -0500
+        Mon, 29 Mar 2021 20:28:10 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 22:28:08 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
@@ -57,76 +57,42 @@ Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
         Jonathan Marek <jonathan@marek.ca>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 1/7] dt-bindings: phy: qcom,qmp-usb3-dp-phy: move usb3
- compatibles back to qcom,qmp-phy.yaml
-Message-ID: <YGKaumYvK4EI8haV@builder.lan>
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 2/7] dt-bindings: phy: qcom,qmp-usb3-dp: Add support
+ for SM8250
+Message-ID: <YGKayHJrS0rI9A6z@builder.lan>
 References: <20210328205257.3348866-1-dmitry.baryshkov@linaro.org>
- <20210328205257.3348866-2-dmitry.baryshkov@linaro.org>
+ <20210328205257.3348866-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210328205257.3348866-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20210328205257.3348866-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun 28 Mar 15:52 CDT 2021, Dmitry Baryshkov wrote:
 
-> The commit 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy
-> information") has support for DP part of USB3+DP combo PHYs. However
-> this change is not backwards compatible, placing additional requirements
-> onto qcom,sc7180-qmp-usb3-phy and qcom,sdm845-qmp-usb3-phy device nodes
-> (to include separate DP part, etc). However the aforementioned nodes do
-> not inclue DP part, they strictly follow the schema defined in the
-> qcom,qmp-phy.yaml file. Move those compatibles, leaving
-> qcom,qmp-usb3-dp-phy.yaml to describe only real "combo" USB3+DP device nodes.
+> Add compatible for SM8250 in QMP USB3 DP PHY bindings.
 > 
-> Fixes: 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy information")
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Sandeep Maheswaram <sanm@codeaurora.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 > ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml         | 2 ++
->  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 --
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index 626447fee092..7808ec8bc712 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -25,11 +25,13 @@ properties:
->        - qcom,msm8998-qmp-pcie-phy
->        - qcom,msm8998-qmp-ufs-phy
->        - qcom,msm8998-qmp-usb3-phy
-> +      - qcom,sc7180-qmp-usb3-phy
->        - qcom,sc8180x-qmp-ufs-phy
->        - qcom,sc8180x-qmp-usb3-phy
->        - qcom,sdm845-qhp-pcie-phy
->        - qcom,sdm845-qmp-pcie-phy
->        - qcom,sdm845-qmp-ufs-phy
-> +      - qcom,sdm845-qmp-usb3-phy
->        - qcom,sdm845-qmp-usb3-uni-phy
->        - qcom,sm8150-qmp-ufs-phy
->        - qcom,sm8150-qmp-usb3-phy
 > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-> index 33974ad10afe..62c0179d1765 100644
+> index 62c0179d1765..217aa6c91893 100644
 > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
 > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-> @@ -14,9 +14,7 @@ properties:
->    compatible:
+> @@ -15,6 +15,7 @@ properties:
 >      enum:
 >        - qcom,sc7180-qmp-usb3-dp-phy
-> -      - qcom,sc7180-qmp-usb3-phy
 >        - qcom,sdm845-qmp-usb3-dp-phy
-> -      - qcom,sdm845-qmp-usb3-phy
+> +      - qcom,sm8250-qmp-usb3-dp-phy
 >    reg:
 >      items:
 >        - description: Address and length of PHY's USB serdes block.
