@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B035434F482
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6259E34F48E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233026AbhC3WqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 18:46:15 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:43589 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232967AbhC3Wpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:45:54 -0400
-Received: by mail-oi1-f182.google.com with SMTP id n8so18067732oie.10;
-        Tue, 30 Mar 2021 15:45:53 -0700 (PDT)
+        id S233118AbhC3Wqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 18:46:49 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:41681 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233048AbhC3Wqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:46:40 -0400
+Received: by mail-ot1-f49.google.com with SMTP id l12-20020a9d6a8c0000b0290238e0f9f0d8so17137323otq.8;
+        Tue, 30 Mar 2021 15:46:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cLGY/U77bjaTReaj2IIARZWRCCbRNc7FTLFruMbM/vg=;
-        b=XekdCQ8KlZQi7e/+9+/AtwCxZR/TdIcQ64FuX/Fd7DXWAaPtGJql14+5JZDUxZir8J
-         CE+RCNwQMQxpza5wjtn9j6NsijImZwD2SEYAWRVnXKzvDA24rpWU6SDDGlFyqVclWbzt
-         /26WKC8LErHribyMgGfad9YJtIMG7qTi49FEzJywANi3H+R9gEs53sk8/zWOYfGxYhXx
-         4V1uq6JCqLPcUC+CGU92zfObC7BYX/xEsRg33EKHQ5GB6cB+ZJ5/+mdnIBshLDbEQX8t
-         VM8bkK1+M64X/u5BE11AYv+MZU6Zqhn96jl1vj/UL7cBw/TxOEoC+0bIOkTlgLfb5UJO
-         XCgA==
-X-Gm-Message-State: AOAM533ht2nkVCL3OJrM6aJjyb+eQq/UIYDiLwA+jtot7MUp6M6igSQO
-        SAEDOyOIojzcK17CBACdqg==
-X-Google-Smtp-Source: ABdhPJwEBrY+z1c9H+Ydo5wbfdprtBqSKqvER/L2vbgFu9N7KHmRm7qB+S0Adse53LXloREJLLHdAw==
-X-Received: by 2002:a54:4492:: with SMTP id v18mr141539oiv.49.1617144353522;
-        Tue, 30 Mar 2021 15:45:53 -0700 (PDT)
+        bh=aGzeEH5mBTJMAUFMUyumPvxqBcopNYVaqYyCfVRg1PE=;
+        b=nJNP9OtAGz2AQR0J7+O7DyCp4tdhwqpwCu9WWVctyKS+LZhQ8bgKDlCPy9X2de1bAd
+         CPAblagR3wmzs0viuop8s6KTln8Gu2/25SdR6S0qsdgsomXxh4zoonPfaKNjBOr5Q3Sx
+         vUqsc2BbZ3/e61gZ3vQ7TXjwyWJhabjr2hZlPcqFbuG9HO1wsZQt/3NkWMt5ammtxwV5
+         eLRjrG+0hSQzaj49ARjJs1tdQDn35Xb5oNAuhv+XxWzgaez3hVLupLVfrwmzOgd2OZmZ
+         dK2HCZyWaX0o1KkGXMX0fRzM+C/C5mBsDkaN1VMRwPcVbfGrG16i7+vQVRf59KLdod0F
+         6Nww==
+X-Gm-Message-State: AOAM532vVTCn4fSKLu9WjSZTyUTf4PKpSGLgb+9h4ZcpjufFFhreQ8c2
+        a+VjC/LaHXBTLB0F2GSmPA==
+X-Google-Smtp-Source: ABdhPJzcaM6kUVKoGLiXQ246HIWyIy+Xp/TRzyneLWkFrzP2NKiKBct6ibzozzNzngKcnVWjng9qdw==
+X-Received: by 2002:a9d:65cf:: with SMTP id z15mr150593oth.310.1617144400277;
+        Tue, 30 Mar 2021 15:46:40 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s193sm79142oih.52.2021.03.30.15.45.52
+        by smtp.gmail.com with ESMTPSA id p3sm80707oif.53.2021.03.30.15.46.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 15:45:52 -0700 (PDT)
-Received: (nullmailer pid 850891 invoked by uid 1000);
-        Tue, 30 Mar 2021 22:45:51 -0000
-Date:   Tue, 30 Mar 2021 17:45:51 -0500
+        Tue, 30 Mar 2021 15:46:39 -0700 (PDT)
+Received: (nullmailer pid 852063 invoked by uid 1000);
+        Tue, 30 Mar 2021 22:46:38 -0000
+Date:   Tue, 30 Mar 2021 17:46:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: renesas, rsnd: Clear warning
- 'dais' is a required property
-Message-ID: <20210330224551.GA842101@robh.at.kernel.org>
-References: <20210330030631.2253-1-thunder.leizhen@huawei.com>
- <20210330030631.2253-2-thunder.leizhen@huawei.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, broonie@kernel.org, perex@perex.cz,
+        devicetree@vger.kernel.org, tiwai@suse.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: ak5558: Add compatible string for
+ ak5552
+Message-ID: <20210330224638.GA852033@robh.at.kernel.org>
+References: <1617085972-6094-1-git-send-email-shengjiu.wang@nxp.com>
+ <1617085972-6094-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210330030631.2253-2-thunder.leizhen@huawei.com>
+In-Reply-To: <1617085972-6094-2-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 11:06:30AM +0800, Zhen Lei wrote:
-> When I do dt_binding_check, below warning is reported:
-> Documentation/devicetree/bindings/sound/renesas,rsnd.example.dt.yaml: \
-> sound@ec500000: 'dais' is a required property
+On Tue, 30 Mar 2021 14:32:52 +0800, Shengjiu Wang wrote:
+> Add compatible string "asahi-kasei,ak5552" for ak5552
 > 
-> I looked at all the dts files in the "arch/arm64/boot/dts/renesas/"
-> directory, I found that all nodes that contain the "dais" property have
-> compatible string: "audio-graph-card". So I can be sure that the
-> "$ref: audio-graph.yaml#" should be corrected to
-> "$ref: audio-graph-card.yaml#".
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/ak5558.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> In addition, not all nodes have compatible string "audio-graph-card", so
-> the "$ref: audio-graph-card.yaml#" should be described as "anyOf". To
-> ensure the validation of "anyOf" always passes, group it with the "if"
-> statement, because the result of the "if" statement is always not empty.
 
-'anyOf' is probably not right here.
-
-In any case, the is going to conflict with my series[1].
-
-Rob
-
-[1] https://lore.kernel.org/r/20210323163634.877511-1-robh@kernel.org/
+Acked-by: Rob Herring <robh@kernel.org>
