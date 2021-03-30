@@ -2,108 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10E6234DF46
+	by mail.lfdr.de (Postfix) with ESMTP id E3E4034DF4A
 	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhC3D2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 23:28:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
+        id S229762AbhC3D2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 23:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbhC3D1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:27:53 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677FAC061765
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:52 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id ce10so22592477ejb.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:52 -0700 (PDT)
+        with ESMTP id S229763AbhC3D17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:27:59 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF1B4C061762
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so14350454otn.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X1Mep0NDTZqgj41CwSzTV/L+FLNZGsP0ABu2o9b8U30=;
-        b=3iJ6rnxNoJ1aTUrQb8MBityRh32IAoO48UjECVfi4BfI7/zw8eIa5QZsOXEdPj0Ult
-         Ty+5a/+z0tH9MGN4pMs0E1CwVUioqhcepi7Lu84N7r0PBy5kF9ickSommc4x+k/a2Q7B
-         5E293VfrAtZ/le8pjgcG94Y36E9PUx/WExrGl7fcifPHy0mLzvlaUp7FheK3iZx4EuNi
-         xLS+LonWNrdG4ZdbOnJAxJSrspZk93opFaXsRh4zZX/Fj+TzE1GWOpuunFDm3ojdS1fg
-         kI34Wh6qDZgX/BJt7lnSbqWQ9Hr7UdJ4czc18A6HG2VK+wbwPnHSNukupFvn+R7FyiIC
-         4ApA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8DbFJ3M1KptfbL7xxLrTG18whdlv0dnlNnoRLxaa9Tg=;
+        b=G6bCnZEXEeDMrcEirVNwI79rVnOvK5cnEBznAA6jt7cWSs8Ywg/5KusLilOi8zv/tm
+         yFeAuIlS4+JKUjKURUdTohpFARW+q5WVTCmwa2Z5FU7AIWSbmnZXgcDQf4OavpeYfOjh
+         mytTXHHObIprDm+hNjuq79cNTcv45PKsIp6m7PlUtOg0YFJB5plkUplw4M9bzz6zmVmk
+         yATQhT6QVqDI2KsaRUK9qdbUM2VFvJ2GKpQD/ew3PkDOb7MgfrnVRcybGOCAkWjFAQG6
+         vLLdoHCSa0r2J0AWbHdheUtV5tSJmbogmBA0te2G0IvNuriakwvd8AqenxeL93NwAMOI
+         ZuCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X1Mep0NDTZqgj41CwSzTV/L+FLNZGsP0ABu2o9b8U30=;
-        b=MDi4Hq9NSNrdUibYvhyrwD/YbSityNbAaYkJSFjHmHV/4IhisIrTeFP4cWsjKFJqHQ
-         Tk17SKn00DUoxvbKEudxCytbHBeO/wwlQR/3vFlgAskWXXIF4hqMSrCIZgwywwfetDY9
-         pvb20WtEZYcvqlmYFU8z8riYuTmGg3EyqYTV39i4pIAat4rbKprwx+oxLGg7t0n8kHEx
-         gaOoMHcxEqvUQJ7Q4dk97GBKuOYEWKCXHjjKBE0cj7wLBOi/Cqs3Zi3ZMszdS/wwbFOv
-         R4agzaSLzFbxpg5OZHVcl2EW3dtpUOayIZMG2RtFC2Ug3aeUKOJsMM4joBIOt95YyDJQ
-         nUtQ==
-X-Gm-Message-State: AOAM531BPRu3cq19La3nHJcmGs+3ir86rqePfbOuvcjHtSQqambr0RVD
-        kibAi2EIwPCH52Tv+sNQVBihdqrzmrDmnFYexpHmE1a7Lii7VA==
-X-Google-Smtp-Source: ABdhPJxJVT4ikpn8Ll3+BLlxrg5DXp62plos3RcvXhSBKDJOAEk7g5/fDnEiJIF4vigHrmnSsJ9PwiqWINiWEhcCWS8=
-X-Received: by 2002:a17:906:e0d6:: with SMTP id gl22mr30956801ejb.444.1617074870919;
- Mon, 29 Mar 2021 20:27:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8DbFJ3M1KptfbL7xxLrTG18whdlv0dnlNnoRLxaa9Tg=;
+        b=e9jWEPgPaEBKqbA8qFiPLCNGQVKDDyuFuHtyWAu8xU1oWGg0M1nGJePCVONwXJhQkY
+         3TMVdMKn+bybm8alMwFz4GIeOz+OvB20aqqpGkH4sx56j2uPJWa6YMtS3JomwI+wu+gW
+         TlHT9cFS4c/jaIfOChgFejl538k+6tEX/61sy6lXs0Gi6OMURBMI5U8Qsi+BBXwgVHkl
+         csejXg9eP4CpQeX2sV6rmmuiip1KCuN3eGW81S+oaNsFCHmWBbAr8jWlcAce3rb6Sana
+         LbXxps9T69Eaz1qPJjMqsMtkQvyEUGO2wwYL2aeDjCn13xRQZ7+9YwJhIoHLdJwZhbaX
+         9ACA==
+X-Gm-Message-State: AOAM533JbD1wH/pL3J5p6EvhoxCHP+Cdp3tXyqkxvFPMVkmOqOu6Jz3b
+        uTi5vbmQ6kBVROUqY0zDtiFRsA==
+X-Google-Smtp-Source: ABdhPJzkO+2sPQfxp3IkoZFiefo3ExhfKmCm6Rdil8CIyeiMiC/iYxryzL7zecU76P2w2kIdfV2xTA==
+X-Received: by 2002:a9d:1c7:: with SMTP id e65mr25209471ote.259.1617074877280;
+        Mon, 29 Mar 2021 20:27:57 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id g13sm4820693otq.3.2021.03.29.20.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Mar 2021 20:27:56 -0700 (PDT)
+Date:   Mon, 29 Mar 2021 22:27:54 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/7] dt-bindings: phy: qcom,qmp-usb3-dp-phy: move usb3
+ compatibles back to qcom,qmp-phy.yaml
+Message-ID: <YGKaumYvK4EI8haV@builder.lan>
+References: <20210328205257.3348866-1-dmitry.baryshkov@linaro.org>
+ <20210328205257.3348866-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-5-brad@pensando.io>
- <CAHp75VeQmc5ZyQV9AHcq2wm0xxBXb7by7RhidrRyCzmtRkXBAg@mail.gmail.com>
-In-Reply-To: <CAHp75VeQmc5ZyQV9AHcq2wm0xxBXb7by7RhidrRyCzmtRkXBAg@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Mon, 29 Mar 2021 20:27:40 -0700
-Message-ID: <CAK9rFnxO6AUjjihZ3Y+tspUZqCWhNa5BH5EhK2x4mk8FJv0k7w@mail.gmail.com>
-Subject: Re: [PATCH v2 04/13] spidev: Add Pensando CPLD compatible
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210328205257.3348866-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 3:45 AM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Mon, Mar 29, 2021 at 5:01 AM Brad Larson <brad@pensando.io> wrote:
-> >
-> > Pensando Elba SoC platforms have a SPI connected CPLD
-> > for platform management.
->
-> And? It's not a good justification to spread the (debugging only)
-> spidev interface.
->
-> What tool is going to use it? Why can't you have a driver for that in
-> the kernel?
+On Sun 28 Mar 15:52 CDT 2021, Dmitry Baryshkov wrote:
 
-The driver is in userspace and we need to instantiate /dev/spi0.N
-in the /dev directory.  The CPLD includes a device id and version
-id that userspace applications use to differentiate functionality on
-different boards.  It wouldn't really be appropriate to use one of
-the existing entries.
+> The commit 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy
+> information") has support for DP part of USB3+DP combo PHYs. However
+> this change is not backwards compatible, placing additional requirements
+> onto qcom,sc7180-qmp-usb3-phy and qcom,sdm845-qmp-usb3-phy device nodes
+> (to include separate DP part, etc). However the aforementioned nodes do
+> not inclue DP part, they strictly follow the schema defined in the
+> qcom,qmp-phy.yaml file. Move those compatibles, leaving
+> qcom,qmp-usb3-dp-phy.yaml to describe only real "combo" USB3+DP device nodes.
+> 
+> Fixes: 724fabf5df13 ("dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy information")
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Sandeep Maheswaram <sanm@codeaurora.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-For example even with high pin count SoCs we are offloading
-low speed functionality into the CPLD connected over SPI.  The
-elba-asic-common.dtsi file shows a compatible string of
-"pensando,cpld-rd1173" which does have a kernel driver we
-intend to contribute later if there is interest.  This IP in the CPLD
-is readily available from Lattice which provides two I2C Masters
-which in our case we use for access to the network port transceivers.
-What was missing in the kernel was a bridge driver that exposes
-what looks like a standard I2C device to userspace where the
-drivers/i2c/busses/i2c-rd1173.c handles the spi transfers to the
-Lattice IP in the CPLD.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml         | 2 ++
+>  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 626447fee092..7808ec8bc712 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -25,11 +25,13 @@ properties:
+>        - qcom,msm8998-qmp-pcie-phy
+>        - qcom,msm8998-qmp-ufs-phy
+>        - qcom,msm8998-qmp-usb3-phy
+> +      - qcom,sc7180-qmp-usb3-phy
+>        - qcom,sc8180x-qmp-ufs-phy
+>        - qcom,sc8180x-qmp-usb3-phy
+>        - qcom,sdm845-qhp-pcie-phy
+>        - qcom,sdm845-qmp-pcie-phy
+>        - qcom,sdm845-qmp-ufs-phy
+> +      - qcom,sdm845-qmp-usb3-phy
+>        - qcom,sdm845-qmp-usb3-uni-phy
+>        - qcom,sm8150-qmp-ufs-phy
+>        - qcom,sm8150-qmp-usb3-phy
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> index 33974ad10afe..62c0179d1765 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> @@ -14,9 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - qcom,sc7180-qmp-usb3-dp-phy
+> -      - qcom,sc7180-qmp-usb3-phy
+>        - qcom,sdm845-qmp-usb3-dp-phy
+> -      - qcom,sdm845-qmp-usb3-phy
+>    reg:
+>      items:
+>        - description: Address and length of PHY's USB serdes block.
+> -- 
+> 2.30.2
+> 
