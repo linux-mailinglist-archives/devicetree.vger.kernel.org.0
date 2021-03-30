@@ -2,142 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C58334DE97
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8A034DEB9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbhC3Cpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 22:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbhC3CpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 22:45:00 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B36C0613D8
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:45:00 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id r12so22468911ejr.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:45:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=32flZyp3WozO8lIXzXD7USfpYU9mLvWV/46KDv96M4c=;
-        b=36V+7DKZW42b+x00xPJJkQ8AdCNvVhNdB2easokmT3xnPDOzIFk5JQfPcoYrQS0FV7
-         y/lY+UMQMHN7AHc6oKpD3jP2jNpFBziZjFVGC/U/ZxWB8Nw3JT2/l2kO5KErGODjmf4D
-         KdNgdRiPBNzzpsoE+P6Y68vkcoaGtCL5Tadh1FV4ach/gvSIbVFBFxL7f4SisSq2dfbf
-         kEq6hPyyYmsKQfurZV3/Q3EbHNdvjkZHHPE1L42miViRjss8i0BAyk4AMnWo2tJNX/U2
-         yIGysaj0uxLor2j3g06meF5dZf40fCbiysm/DCE6JjWtdJt7jAhyqrAPN7DKnebIeFoG
-         ip9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=32flZyp3WozO8lIXzXD7USfpYU9mLvWV/46KDv96M4c=;
-        b=E2UGANJEtOtGliS4BzYiSlAGlZOQphsZJTgNn0Dlq2ewiIhefmu6yzEZJfe5cRgzYB
-         iaKG1momiLVx2eC+4k5bgzdgLZVNmDeN/IT3I1S/rbVO/ZYHx7cukrnZrgPJt7+/Bk2w
-         ElsDJ53H0CZ1ylSa0aCi+jB+63/2SdczK2IxRuf+m8QHYzHXwM+yYnMy6UxRIlOv/uj1
-         pdBE9drwQLoyhXZHxrSf/5hDEcfClW+sTOx65PiCPn1/xadEVS5YpDNVzk+JF+hnVwmZ
-         XS8SZoK7B15/okGDFc+WQ9DmdJVAauQTzFA4N0N1lXM82CpRSBcZmnPfaKHFdP9mLgvm
-         HSeg==
-X-Gm-Message-State: AOAM531OlXFkxDl3wcuDW1Q5CFdQ8TsDk8lCysGvn7EaTdiaSdTVO8RM
-        tNmp4XQGX2ZQB8cdGu5soCiw0zJV/A7AKKSuCQeSHQ==
-X-Google-Smtp-Source: ABdhPJymBNv/wStyAK7Xv3++W1Lyzxdz3kZId4lfpMyLUA0fLgtLQPj8xZGU514By7Gp7E3WvrYyMAVVt4CstCfZulY=
-X-Received: by 2002:a17:906:ecaa:: with SMTP id qh10mr31367400ejb.425.1617072298792;
- Mon, 29 Mar 2021 19:44:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
-In-Reply-To: <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Mon, 29 Mar 2021 19:44:48 -0700
-Message-ID: <CAK9rFnzD98U_abHWUFkzghBkU5GX5d6Z1hOmQn7aXS=M7t_c8w@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        id S229689AbhC3Cvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 22:51:33 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41025 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229762AbhC3Cv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 22:51:28 -0400
+X-UUID: 0c137f90c13f436787ea52a2694f622c-20210330
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=h3tgTgAhTPVHl6C7nGiDPVcZVqzWaFEKu+Mj0evMIr4=;
+        b=LI7e3Glzwpjv1aUej04C4LHb49W1O+HP+7QCPeYeNiwA4nkulkaLUAjZKbYHa+kRIPbMAy1thXHAoqgRTqNU235yUxSLgW3TvMS5vlolspzNH3jHdEQ31HWUtfeX6ONqGonQuGvD1wl5dqC1buA0UCC7mYVMLyMBDi1Ta0S9fpk=;
+X-UUID: 0c137f90c13f436787ea52a2694f622c-20210330
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <michael.kao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1474408315; Tue, 30 Mar 2021 10:51:25 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 30 Mar 2021 10:51:24 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 30 Mar 2021 10:51:24 +0800
+Message-ID: <1617072684.13941.2.camel@mtksdccf07>
+Subject: Re: [PATCH v2] thermal: cpufreq_cooling: fix slab OOB issue
+From:   Michael Kao <michael.kao@mediatek.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CC:     Zhang Rui <rui.zhang@intel.com>, <fan.chen@mediatek.com>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        brian-sy yang <brian-sy.yang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>,
+        "Eduardo Valentin" <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 30 Mar 2021 10:51:24 +0800
+In-Reply-To: <20201229050831.19493-1-michael.kao@mediatek.com>
+References: <20201229050831.19493-1-michael.kao@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 12:29 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> Hi Brad,
->
-> thanks for your patch!
->
-> On Thu, Mar 4, 2021 at 4:42 AM Brad Larson <brad@pensando.io> wrote:
->
-> > This GPIO driver is for the Pensando Elba SoC which
-> > provides control of four chip selects on two SPI busses.
-> >
-> > Signed-off-by: Brad Larson <brad@pensando.io>
-> (...)
->
-> > +#include <linux/gpio.h>
->
-> Use this in new drivers:
-> #include <linux/gpio/driver.h>
->
-> > + * pin:             3            2        |       1            0
-> > + * bit:         7------6------5------4----|---3------2------1------0
-> > + *     cs1  cs1_ovr  cs0  cs0_ovr |  cs1  cs1_ovr  cs0  cs0_ovr
-> > + *                ssi1            |             ssi0
-> > + */
-> > +#define SPICS_PIN_SHIFT(pin)   (2 * (pin))
-> > +#define SPICS_MASK(pin)                (0x3 << SPICS_PIN_SHIFT(pin))
-> > +#define SPICS_SET(pin, val)    ((((val) << 1) | 0x1) << SPICS_PIN_SHIFT(pin))
->
-> So 2 bits per GPIO line in one register? (Nice doc!)
->
-> > +struct elba_spics_priv {
-> > +       void __iomem *base;
-> > +       spinlock_t lock;
-> > +       struct gpio_chip chip;
-> > +};
-> > +
-> > +static int elba_spics_get_value(struct gpio_chip *chip, unsigned int pin)
-> > +{
-> > +       return -ENXIO;
-> > +}
->
-> Write a comment that the chip only supports output mode,
-> because it repurposes SPI CS pins as generic GPIO out,
-> maybe at the top of the file?
->
+RGVhciBEYW5pZWwsDQoNCktpbmRseSBwaW5nLg0KQ2FuIHRoaXMgcGF0Y2ggYmUgbWVyZ2VkPyBP
+ciBhbnkgY29tbWVudD8NCg0KQlIsDQpNaWNoYWVsDQoNCk9uIFR1ZSwgMjAyMC0xMi0yOSBhdCAx
+MzowOCArMDgwMCwgTWljaGFlbCBLYW8gd3JvdGU6DQo+IEZyb206IGJyaWFuLXN5IHlhbmcgPGJy
+aWFuLXN5LnlhbmdAbWVkaWF0ZWsuY29tPg0KPiANCj4gU2xhYiBPT0IgaXNzdWUgaXMgc2Nhbm5l
+ZCBieSBLQVNBTiBpbiBjcHVfcG93ZXJfdG9fZnJlcSgpLg0KPiBJZiBwb3dlciBpcyBsaW1pdGVk
+IGJlbG93IHRoZSBwb3dlciBvZiBPUFAwIGluIEVNIHRhYmxlLA0KPiBpdCB3aWxsIGNhdXNlIHNs
+YWIgb3V0LW9mLWJvdW5kIGlzc3VlIHdpdGggbmVnYXRpdmUgYXJyYXkNCj4gaW5kZXguDQo+IA0K
+PiBSZXR1cm4gdGhlIGxvd2VzdCBmcmVxdWVuY3kgaWYgbGltaXRlZCBwb3dlciBjYW5ub3QgZm91
+bmQNCj4gYSBzdWl0YWJsZSBPUFAgaW4gRU0gdGFibGUgdG8gZml4IHRoaXMgaXNzdWUuDQo+IA0K
+PiBCYWNrdHJhY2U6DQo+IFs8ZmZmZmZmZDAyZDJhMzdmMD5dIGRpZSsweDEwNC8weDVhYw0KPiBb
+PGZmZmZmZmQwMmQyYTU2MzA+XSBidWdfaGFuZGxlcisweDY0LzB4ZDANCj4gWzxmZmZmZmZkMDJk
+Mjg4Y2U0Pl0gYnJrX2hhbmRsZXIrMHgxNjAvMHgyNTgNCj4gWzxmZmZmZmZkMDJkMjgxZTVjPl0g
+ZG9fZGVidWdfZXhjZXB0aW9uKzB4MjQ4LzB4M2YwDQo+IFs8ZmZmZmZmZDAyZDI4NDQ4OD5dIGVs
+MV9kYmcrMHgxNC8weGJjDQo+IFs8ZmZmZmZmZDAyZDc1ZDFkND5dIF9fa2FzYW5fcmVwb3J0KzB4
+MWRjLzB4MWUwDQo+IFs8ZmZmZmZmZDAyZDc1YzJlMD5dIGthc2FuX3JlcG9ydCsweDEwLzB4MjAN
+Cj4gWzxmZmZmZmZkMDJkNzVkZWY4Pl0gX19hc2FuX3JlcG9ydF9sb2FkOF9ub2Fib3J0KzB4MTgv
+MHgyOA0KPiBbPGZmZmZmZmQwMmU2ZmNlNWM+XSBjcHVmcmVxX3Bvd2VyMnN0YXRlKzB4MTgwLzB4
+NDNjDQo+IFs8ZmZmZmZmZDAyZTZlYWQ4MD5dIHBvd2VyX2FjdG9yX3NldF9wb3dlcisweDExNC8w
+eDFkNA0KPiBbPGZmZmZmZmQwMmU2ZmFjMjQ+XSBhbGxvY2F0ZV9wb3dlcisweGFlYy8weGRlMA0K
+PiBbPGZmZmZmZmQwMmU2ZjlmODA+XSBwb3dlcl9hbGxvY2F0b3JfdGhyb3R0bGUrMHgzZWMvMHg1
+YTQNCj4gWzxmZmZmZmZkMDJlNmVhODg4Pl0gaGFuZGxlX3RoZXJtYWxfdHJpcCsweDE2MC8weDI5
+NA0KPiBbPGZmZmZmZmQwMmU2ZWRkMDg+XSB0aGVybWFsX3pvbmVfZGV2aWNlX2NoZWNrKzB4ZTQv
+MHgxNTQNCj4gWzxmZmZmZmZkMDJkMzUxY2I0Pl0gcHJvY2Vzc19vbmVfd29yaysweDVlNC8weGUy
+OA0KPiBbPGZmZmZmZmQwMmQzNTJmNDQ+XSB3b3JrZXJfdGhyZWFkKzB4YTRjLzB4ZmFjDQo+IFs8
+ZmZmZmZmZDAyZDM2MDEyND5dIGt0aHJlYWQrMHgzM2MvMHgzNTgNCj4gWzxmZmZmZmZkMDJkMjg5
+OTQwPl0gcmV0X2Zyb21fZm9yaysweGMvMHgxOA0KPiANCj4gRml4ZXM6IDM3MWEzYmM3OWMxMWIg
+KCJ0aGVybWFsL2RyaXZlcnMvY3B1ZnJlcV9jb29saW5nOiBGaXggd3JvbmcgZnJlcXVlbmN5IGNv
+bnZlcnRlZCBmcm9tIHBvd2VyIikNCj4gU2lnbmVkLW9mZi1ieTogYnJpYW4tc3kgeWFuZyA8YnJp
+YW4tc3kueWFuZ0BtZWRpYXRlay5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IE1pY2hhZWwgS2FvIDxt
+aWNoYWVsLmthb0BtZWRpYXRlay5jb20+DQo+IFJldmlld2VkLWJ5OiBMdWthc3ogTHViYSA8bHVr
+YXN6Lmx1YmFAYXJtLmNvbT4NCj4gLS0tDQo+IA0KPiBDaGFuZ2VzIGZyb20gdjE6DQo+IC0gYWRk
+IGZpeGVzIHRhZw0KPiAtIGFkZCByZXZpZXdlZC1ieQ0KPiANCj4gIGRyaXZlcnMvdGhlcm1hbC9j
+cHVmcmVxX2Nvb2xpbmcuYyB8IDIgKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigr
+KSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdGhlcm1hbC9jcHVm
+cmVxX2Nvb2xpbmcuYyBiL2RyaXZlcnMvdGhlcm1hbC9jcHVmcmVxX2Nvb2xpbmcuYw0KPiBpbmRl
+eCBjYzI5NTlmMjJmMDEuLmZiMzNiMzQ4MGE4ZiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy90aGVy
+bWFsL2NwdWZyZXFfY29vbGluZy5jDQo+ICsrKyBiL2RyaXZlcnMvdGhlcm1hbC9jcHVmcmVxX2Nv
+b2xpbmcuYw0KPiBAQCAtMTIzLDcgKzEyMyw3IEBAIHN0YXRpYyB1MzIgY3B1X3Bvd2VyX3RvX2Zy
+ZXEoc3RydWN0IGNwdWZyZXFfY29vbGluZ19kZXZpY2UgKmNwdWZyZXFfY2RldiwNCj4gIHsNCj4g
+IAlpbnQgaTsNCj4gIA0KPiAtCWZvciAoaSA9IGNwdWZyZXFfY2Rldi0+bWF4X2xldmVsOyBpID49
+IDA7IGktLSkgew0KPiArCWZvciAoaSA9IGNwdWZyZXFfY2Rldi0+bWF4X2xldmVsOyBpID4gMDsg
+aS0tKSB7DQo+ICAJCWlmIChwb3dlciA+PSBjcHVmcmVxX2NkZXYtPmVtLT50YWJsZVtpXS5wb3dl
+cikNCj4gIAkJCWJyZWFrOw0KPiAgCX0NCg0K
 
-I'll add a comment regarding gpio pin mode.  Yes output
-only mode as SPI chip-selects.
-
-> I suppose these systems also actually (ab)use the SPI cs
-> for things that are not really SPI CS? Because otherwise
-> this could just be part of the SPI driver (native chip select).
->
-> > +static const struct of_device_id ebla_spics_of_match[] = {
-> > +       { .compatible = "pensando,elba-spics" },
->
-> Have you documented this?
-
-Yes in Documentation/devicetree/bindings, I'll double check
-the content for completeness.  The SPI CS isn't used for
-something else, the integrated DesignWare IP doesn't
-support 4 chip-selects on two spi busses.
-
->
-> Other than that this is a nice and complete driver.
->
-> Yours,
-> Linus Walleij
-
-Thanks for the review!
