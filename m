@@ -2,354 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5071C34EBE5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DECAD34EBFA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:19:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232215AbhC3PPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 11:15:04 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42608 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbhC3POt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:14:49 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 1AA1F1F45489
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: add analogix,anx7688.yaml
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
-        airlied@linux.ie, daniel@ffwll.ch, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, drinkcat@chromium.org, hsinyi@chromium.org,
-        kernel@collabora.com, dafna3@gmail.com, robh+dt@kernel.org,
-        megous@megous.com
-References: <20210305124351.15079-1-dafna.hirschfeld@collabora.com>
- <20210305124351.15079-2-dafna.hirschfeld@collabora.com>
- <YEJBgEPO4J5+/HhD@pendragon.ideasonboard.com>
- <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
- <YEJL+T7IaW8Asq1Q@pendragon.ideasonboard.com>
- <7729b82c-ff87-8d05-366c-4c0a6b85a8f2@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <1b1352be-fd6d-6cdd-1745-dbca4378fcfa@collabora.com>
-Date:   Tue, 30 Mar 2021 17:14:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S232023AbhC3PSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 11:18:48 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:38653 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231719AbhC3PSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:18:23 -0400
+Received: by mail-ot1-f49.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so15912641otk.5;
+        Tue, 30 Mar 2021 08:18:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PlZUNayRrmgaKgXVXtAL3PXk2F0oj39eu7kyoW5Ud/k=;
+        b=r6rHI1zJ+r6SgfV0txfGJp9CJp6K2NSmEJBQox0vOMTSK6rlH2W/46SyUYpw1kzhso
+         vwDWYCaNkIE7H62J8Pivg6buIKM8GlkftOKWE2zQMfmVBesyPHT4/mxflKW1r52iQL7Z
+         xwqOk2hRFMKmTXnKNMnssJt0pun1Me21cpDzftsVlXraIigB3eX9R/FYewGZwvVtsQPt
+         C/184K8rYICDpSwYHAgKRy1lEQqS0VljNCte7mnNo191QAgomweNwy9yzcLXPAI/BEP3
+         XC1EhX9VSJR3xjqef2L7ImxzNVUhMVX/vbjW+2fPa3WcUADZhfSieWfsboi/DRoNORNo
+         yqKg==
+X-Gm-Message-State: AOAM533b2DTKP8p8A/rx/iF1VxdkSCa/wkynEzuL0mIm88LdyfiM/YWa
+        rIfsZvCPV6DhYs8mm14Etw==
+X-Google-Smtp-Source: ABdhPJw8DvKlnSSfnVW/ySoAGDIq18w0ithxPe/i7w68DXnVExjOMD2+U4R56xLkHWo3rb9lqExncQ==
+X-Received: by 2002:a05:6830:1bf5:: with SMTP id k21mr28157540otb.129.1617117503382;
+        Tue, 30 Mar 2021 08:18:23 -0700 (PDT)
+Received: from robh.at.kernel.org ([172.58.99.136])
+        by smtp.gmail.com with ESMTPSA id h59sm5190376otb.29.2021.03.30.08.18.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Mar 2021 08:18:21 -0700 (PDT)
+Received: (nullmailer pid 326348 invoked by uid 1000);
+        Tue, 30 Mar 2021 15:18:18 -0000
+Date:   Tue, 30 Mar 2021 10:18:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wsa@kernel.org, robh+dt@kernel.org,
+        linux@roeck-us.net, jdelvare@suse.com
+Subject: Re: [PATCH v2 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
+Message-ID: <20210330151818.GA321862@robh.at.kernel.org>
+References: <20210329015206.17437-1-chris.packham@alliedtelesis.co.nz>
+ <20210329015206.17437-3-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-In-Reply-To: <7729b82c-ff87-8d05-366c-4c0a6b85a8f2@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210329015206.17437-3-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna,
-
-Many thanks to take this challenge and work on this.
-
-On 30/3/21 15:35, Dafna Hirschfeld wrote:
-> Hi,
+On Mon, 29 Mar 2021 14:52:02 +1300, Chris Packham wrote:
+> Convert i2c-mpc to YAML.
 > 
-> On 05.03.21 16:19, Laurent Pinchart wrote:
->> Hi Dafna,
->>
->> On Fri, Mar 05, 2021 at 04:14:03PM +0100, Dafna Hirschfeld wrote:
->>> On 05.03.21 15:34, Laurent Pinchart wrote:
->>>> On Fri, Mar 05, 2021 at 01:43:50PM +0100, Dafna Hirschfeld wrote:
->>>>> ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
->>>>> DisplayPort 1.3 Ultra-HDi (4096x2160p60).
->>>>> The integrated crosspoint switch (the MUX) supports USB 3.1 data transfer
->>>>> along with the DisplayPort Alternate Mode signaling over USB Type-C.
->>>>> Additionally, an on-chip microcontroller (OCM) is available to manage the
->>>>> signal switching, Channel Configuration (CC) detection, USB Power
->>>>> Delivery (USB-PD), Vendor Defined Message (VDM) protocol support and other
->>>>> functions as defined in the USB TypeC and USB Power Delivery
->>>>> specifications.
->>>>>
->>>>> ANX7688 is found on Acer Chromebook R13 (elm) and on
->>>>> Pine64 PinePhone.
->>>>>
->>>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->>>>> ---
->>>>>    .../bindings/usb/analogix,anx7688.yaml        | 177 ++++++++++++++++++
->>>>>    1 file changed, 177 insertions(+)
->>>>>    create mode 100644
->>>>> Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
->>>>> b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..6c4dd6b4b28b
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
->>>>> @@ -0,0 +1,177 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/usb/analogix,anx7688.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Analogix ANX7688 Type-C Port Controller with HDMI to DP conversion
->>>>> +
->>>>> +maintainers:
->>>>> +  - Nicolas Boichat <drinkcat@chromium.org>
->>>>> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
->>>>> +
->>>>> +description: |
->>>>> +  ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
->>>>> +  DisplayPort 1.3 Ultra-HDi (4096x2160p60).
->>>>> +  The integrated crosspoint switch (the MUX) supports USB 3.1 data
->>>>> transfer along with
->>>>> +  the DisplayPort Alternate Mode signaling over USB Type-C. Additionally,
->>>>> +  an on-chip microcontroller (OCM) is available to manage the signal
->>>>> switching,
->>>>> +  Channel Configuration (CC) detection, USB Power Delivery (USB-PD), Vendor
->>>>> +  Defined Message (VDM) protocol support and other functions as defined in
->>>>> the
->>>>> +  USB TypeC and USB Power Delivery specifications.
->>>>> +
->>>>> +
->>>>
->>>> Extra blank line ?
->>>>
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: analogix,anx7688
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  avdd33-supply:
->>>>> +    description: 3.3V Analog core supply voltage.
->>>>> +
->>>>> +  dvdd18-supply:
->>>>> +    description: 1.8V Digital I/O supply voltage.
->>>>> +
->>>>> +  avdd18-supply:
->>>>> +    description: 1.8V Analog core power supply voltage.
->>>>> +
->>>>> +  avdd10-supply:
->>>>> +    description: 1.0V Analog core power supply voltage.
->>>>> +
->>>>> +  dvdd10-supply:
->>>>> +    description: 1.0V Digital core supply voltage.
->>>>> +
->>>>
->>>> That's lots of supplies. If there's a reasonable chance that some of
->>>> them will always be driven by the same regulator (especially if the
->>>> ANX7688 documentation requires that), then they could be grouped. For
->>>> instance dvdd18-supply and avdd18-supply could be grouped into
->>>> vdd18-supply. It would still allow us to extend the bindings in a
->>>> backward compatible way later if a system uses different regulators. You
->>>> have more information about the hardware than I do, so it's your call.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 > 
-> Can you explain what do you mean by 'grouped' ?
-> Do you mean that instead of having two properties dvdd18-supply and avdd18-supply
-> I have only one property vdd18-supply?
+> Notes:
+>     Changes in v2:
+>     - Rework compatible validation
+>     - Remove irrelevant i2ccontrol from example
+> 
+>  .../devicetree/bindings/i2c/i2c-mpc.txt       | 62 -------------
+>  .../devicetree/bindings/i2c/i2c-mpc.yaml      | 91 +++++++++++++++++++
+>  2 files changed, 91 insertions(+), 62 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
 > 
 
-You can simplify all this with vdd33, vdd18 vdd10. For the Chromebook case all
-the analogic and digital part are the same regulator just filtered. That's a
-common configuration and if there is some hardware that needs it we can extend
-later.
-
->>>>
->>>>> +  hdmi5v-supply:
->>>>> +    description: 5V power supply for the HDMI.
->>>>> +
->>>>> +  hdmi_vt-supply:
->>>>> +    description: Termination voltage for HDMI input.
->>>>
->>>> Maybe hdmi-vt-supply ?
->>>>
->>>>> +
->>>>> +  clocks:
->>>>> +    description: The input clock specifier.
->>>>> +    maxItems: 1
->>>>
->>>> How about
->>>>
->>>>       items:
->>>>         - description: The input clock specifier.
->>>>
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: xtal
->>>>> +
->>>>> +  hpd-gpios:
->>>>> +    description: |
->>>>> +      In USB Type-C applications, DP_HPD has no use. In standard DisplayPort
->>>>> +      applications, DP_HPD is used as DP hot-plug.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  enable-gpios:
->>>>> +    description: Chip power down control. No internal pull-down or pull-up
->>>>> resistor.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  reset-gpios:
->>>>> +    description: Reset input signal. Active low.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  vbus-det-gpios:
->>>>> +    description: |
->>>>> +      An input gpio for VBUS detection and high voltage detection,
->>>>> +      external resistance divide VBUS voltage to 1/8.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    description: |
->>>>> +      The interrupt notifies 4 possible events - TCPC ALERT int, PD int,
->>>>> DP int, HDMI int.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  cabledet-gpios:
->>>>> +    description: An output gpio, indicates by the device that a cable is
->>>>> plugged.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  vbus-ctrl-gpios:
->>>>> +    description:
->>>>> +      External VBUS power path. Enable VBUS source and disable VBUS sink
->>>>> or vice versa.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  vconn-en1-gpios:
->>>>> +    description: Controls the VCONN switch on the CC1 pin.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  vconn-en2-gpios:
->>>>> +    description: Controls the VCONN switch on the CC2 pin.
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  ports:
->>>>> +    $ref: /schemas/graph.yaml#/properties/ports
->>>>> +
->>>>> +    properties:
->>>>> +      port@0:
->>>>> +        $ref: /schemas/graph.yaml#/properties/port
->>>>> +        description: Video port for HDMI input.
->>>>> +
->>>>> +      port@1:
->>>>> +        $ref: /schemas/graph.yaml#/properties/port
->>>>> +        description: USB port for the USB3 input.
->>>>> +
->>>>> +      port@2:
->>>>> +        $ref: /schemas/graph.yaml#/properties/port
->>>>> +        description: USB Type-c connector, see connector/usb-connector.yaml.
->>>>> +
->>>>> +    required:
->>>>> +      - port@0
->>>>
->>>> As all the ports exist at the hardware level, should they always be
->>>> present ? The endpoints are optional of course, in case a port isn't
->>>> connected on a particular system.
->>>>
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>
->>>> Shouldn't clocks and regulators be also required ?
->>>
->>> hmm, theoretically yes. Practically, in the case of Acer R13 (mediatek elm)
->>> device,
->>> the ANX7688 is powered up and controlled by the Embedded Controller. The
->>> kernel only
->>> needs to read few registers from that device for the drm bridge driver.
->>> (also mentioned that in the cover letter).
-
-I think that for the Chromebook you can assume that these supplies are a
-fixed-regulator that are always on.
-
->>
->> This may not be a popular opinion, but if the ANX7688 is fully
->> controlled by the EC, I wonder if we shouldn't have an "EC DRM bridge"
->> driver that would interrogate the EC instead :-)
-> 
-
-We can do this, and tbh will be more easy for us, but we were already asked to
-do it generic, so ...
-
-
-> But the driver in patch 2/2 do access the anx7688 device with I2C.
-> It does interrogate the EC.
-> 
->>
->> Is there a risk of bus conflicts if the EC and the main SoC try to
->> access the ANX7688 over I2C at the same time ?
-> 
-
-No, there is a kind of i2c tunnel but you don't talk directly with the ANX7688.
-The EC exposes the anx bus control to the AP.
-
-
-> The SoC access the anx7688 though something called 'i2c-tunnel' (see
-> google,cros-ec-i2c-tunnel.yaml)
-> So the I2C tunnels though the EC (I don't know how this is really implemented to
-> be honest).
-> 
-> 
-> Thanks,
-> Dafna
-> 
->>
->>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>>
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/gpio/gpio.h>
->>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>>> +
->>>>> +    i2c0 {
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <0>;
->>>>> +
->>>>> +        anx7688: anx7688@2c {
->>>>> +            compatible = "analogix,anx7688";
->>>>> +            reg = <0x2c>;
->>>>> +            avdd33-supply = <&reg_dcdc1>;
->>>>> +            dvdd18-supply = <&reg_ldo_io1>;
->>>>> +            avdd18-supply = <&reg_ldo_io1>;
->>>>> +            avdd10-supply = <&reg_anx1v0>;
->>>>> +            dvdd10-supply = <&reg_anx1v0>;
->>>>> +            hdmi_vt-supply = <&reg_dldo1>;
->>>>> +            enable-gpios = <&pio 3 10 GPIO_ACTIVE_LOW>; /* PD10 */
->>>>> +            reset-gpios = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
->>>>> +            interrupt-parent = <&r_pio>;
->>>>> +            interrupts = <0 11 IRQ_TYPE_EDGE_FALLING>; /* PL11 */
->>>>> +            cabledet-gpios = <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
->>>>> +            vconn-en1-gpios = <&pio 3 9 GPIO_ACTIVE_LOW>; /* PD9 */
->>>>> +            vconn-en2-gpios = <&pio 3 9 GPIO_ACTIVE_LOW>; /* PD9 */
->>>>> +            ports {
->>>>> +                #address-cells = <1>;
->>>>> +                #size-cells = <0>;
->>>>> +
->>>>> +                port@0 {
->>>>> +                    reg = <0>;
->>>>> +                    anx7688_in0: endpoint {
->>>>> +                        remote-endpoint = <&hdmi0_out>;
->>>>> +                    };
->>>>> +                };
->>>>> +
->>>>> +                port@1 {
->>>>> +                    reg = <1>;
->>>>> +                    anx7688_in1: endpoint {
->>>>> +                        remote-endpoint = <&usbdrd_phy_ss>;
->>>>> +                    };
->>>>> +                };
->>>>> +                port@2 {
->>>>> +                    reg = <2>;
->>>>> +                    anx7688_out: endpoint {
->>>>> +                        remote-endpoint = <&typec_connector>;
->>>>> +                    };
->>>>> +                };
->>>>> +            };
->>>>> +        };
->>>>> +    };
->>
+Reviewed-by: Rob Herring <robh@kernel.org>
