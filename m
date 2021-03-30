@@ -2,116 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C34F34DF68
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F3B34DF73
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbhC3Ddv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 23:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44884 "EHLO
+        id S231144AbhC3Dge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 23:36:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231300AbhC3Dd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:33:29 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AF4C061765
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:33:29 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id h6-20020a0568300346b02901b71a850ab4so14326546ote.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:33:29 -0700 (PDT)
+        with ESMTP id S230122AbhC3Dg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:36:26 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F631C061762
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:36:25 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id j17so7505083qvo.13
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:36:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Ql+HmMVz0sH5JvqPIDDXRRneez0X7Lfo0B0gyoh7cLM=;
-        b=xNnTtYTScqIxt3EB9zSXP2rDikXQFXlNLrRtRx7KgGzF5eHkcpRCP6js5A8uHFOVar
-         F8sohG2dY7SxS95uWnuxZoDNGafqo+8YFtcf1pqwYrFJvNvIwGiLNGpCAhQ85673CXoW
-         /HsmgZQFB3OGZ3v5IfwiN/36cWxqR8L9cx/RA78hWVY0TWUB99dWREIIJ69t7jlH8A0v
-         f6XaTxIjNAlRTrv0PlKs2uP+jnoUOcAPH5lrH1/oImxRRO2FTMtDEntz9nlJlp56Roq4
-         KUORmj1PI5ZbzAZ8ghkRk7NJZrdPJHKZ2VtWLglYfzlSe+sNwIIHL5rVKsREx3rou4O4
-         Q/8g==
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5oFbwfLQwyYfYwndfNuhqzfmnicAmT4eTuezCa87hZ8=;
+        b=Ig+y6Y+c1gyTxgnPBQWPhpOyXg4OoXKv2BE4qr6DHkGfLyEyHrKOUH7MGn1otpkWcN
+         kyE/XgUxXw2odCG9cs8Z01SbUYyCaZ5Lu35u7upzKgWerIlCX9tcG+ej8dGbF4oft59o
+         Jz45nZZMBILlzNrBpaIkRVJbA0/irRVXLZ8M5ZS6fbuk1zvqLF+xmgeATsd8G2M9wchi
+         ZqQaXZAQqhmisluHGosx2pBeGVINB4/GAWUybfaWEiIDOJmmYrmqzWrCWg05rXXqsEwA
+         DRvVz8/su4/18C7RTUF8HDL18/u0ZvAZd8OvyXlYSmkfecn/kES13pwqea31yuVPL438
+         0pHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ql+HmMVz0sH5JvqPIDDXRRneez0X7Lfo0B0gyoh7cLM=;
-        b=hg41NVOkILCHSSB+SRlPHmxIZup1X9ig4bOVFapcw9epkjpFjMjaZ6TKAPVvT2bphU
-         sT8e/Y5KDn5H6nngrfnk7w6OUgEfLcKx7B4lmPrqkB2awCjeelNIctaJay8mFQSgHmVL
-         NB8wQ4D3DS8epkAIlNnxb3yV8LpL90GjrHnRN5LevKmBLyNoZLzqsLHmSVSTeh/3fzyB
-         2HmPlAHtIzlZ0D4reQklBnaFk2ftosicoHhqSVNVHRKIPb92kuc9YYru5tz/e8xe+jtp
-         f5br4YFonMqPPPH/ZFEyzYOHrwjK2BY7rNJ12NixrAVEQQgvD6QiJfOAPXfFV42YBDET
-         UifQ==
-X-Gm-Message-State: AOAM532S79k+D9qHCG1oBdJJfc3D5StgdLFPyfSlAx7QF8nbEPfycWnW
-        rRBT7g3eNIgSdHqncRcurcPk7w==
-X-Google-Smtp-Source: ABdhPJyj67MR0So7sgsQ2b0tv1kudAjEpKQylBYgPjsDUahMPCBwQtkZHMmijKOUyL4r+Xcf2cd+/Q==
-X-Received: by 2002:a9d:6ad9:: with SMTP id m25mr25971757otq.267.1617075208795;
-        Mon, 29 Mar 2021 20:33:28 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c25sm4991615otk.35.2021.03.29.20.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 20:33:28 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 22:33:26 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 7/7] arm64: dts: qcom: use dp_phy to provide clocks to
- dispcc
-Message-ID: <YGKcBrWE6VLerK0I@builder.lan>
-References: <20210328205257.3348866-1-dmitry.baryshkov@linaro.org>
- <20210328205257.3348866-8-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5oFbwfLQwyYfYwndfNuhqzfmnicAmT4eTuezCa87hZ8=;
+        b=mP1RTDHyVERE+2m6rDCZiBd/Zb+Qwkb+qMNh8lLxeXM1vdxoi96zH3lqWKnSYaOjH6
+         0Ai9WyvGy/KfGqF1glX9jWKi+afPtzXCibbcoFyMoNFh0JFWvkZe/wsMQSO09PcCZ5Wc
+         yrnvXYxOJUKPy5GU3cSFc3Qon0YVA5SrBU4K5jGW1tGrVCsxs+JnuEtJwq7o8mWKUHnW
+         qWDmD4u/GtUVkolTD/mSJoVfiyqe7r1badFSRJX522VRYDwkF4IAMO056/FofxzeOK0j
+         GcV8DOU94q03PWnipofyXTsnOa89k1Ag1SYolejOqlYYVNM4GEtTx7fD1iOiekfkAibd
+         SNBg==
+X-Gm-Message-State: AOAM533m6487vpLV51GrHehhLb6WQkGCbNsew0ylEvlGsZTzFtd8ivU6
+        zbQzdGQPQnCAHKzADHGmdBKnr/D7xOuWb33mKzxpWw==
+X-Google-Smtp-Source: ABdhPJycQJX/y0PAtsFp+YXjKCTZ+dLVuREDX7kiJ+wyKRjUQUcZEbZpXPSdS3GtQqa6UBU6KpvoUU+fWG5o791GvQ0=
+X-Received: by 2002:a0c:e9c7:: with SMTP id q7mr28188265qvo.7.1617075384531;
+ Mon, 29 Mar 2021 20:36:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210328205257.3348866-8-dmitry.baryshkov@linaro.org>
+References: <cover.1615954045.git.greentime.hu@sifive.com> <91d016e59bab9d9175168a63e7bcd81fdb69b549.1615954046.git.greentime.hu@sifive.com>
+ <161704524201.3012082.13807741329367593907@swboyd.mtv.corp.google.com>
+In-Reply-To: <161704524201.3012082.13807741329367593907@swboyd.mtv.corp.google.com>
+From:   Greentime Hu <greentime.hu@sifive.com>
+Date:   Tue, 30 Mar 2021 11:36:12 +0800
+Message-ID: <CAHCEehL63aJQPA3DdRCa3pZHWX3DH9ktgKbo1+nD=KWxADsogA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] clk: sifive: Use reset-simple in prci driver for
+ PCIe driver
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     alex.dewar90@gmail.com, Albert Ou <aou@eecs.berkeley.edu>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        devicetree@vger.kernel.org, Erik Danie <erik.danie@sifive.com>,
+        hayashi.kunihiko@socionext.com, Bjorn Helgaas <helgaas@kernel.org>,
+        hes@sifive.com, jh80.chung@samsung.com, khilman@baylibre.com,
+        linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-pci@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        lorenzo.pieralisi@arm.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        vidyas@nvidia.com, Zong Li <zong.li@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 28 Mar 15:52 CDT 2021, Dmitry Baryshkov wrote:
+Stephen Boyd <sboyd@kernel.org> =E6=96=BC 2021=E5=B9=B43=E6=9C=8830=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=883:14=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Quoting Greentime Hu (2021-03-17 23:08:09)
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> > index 71ab75a46491..f094df93d911 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -173,7 +173,7 @@ config RESET_SCMI
+> >
+> >  config RESET_SIMPLE
+> >         bool "Simple Reset Controller Driver" if COMPILE_TEST
+> > -       default ARCH_AGILEX || ARCH_ASPEED || ARCH_BITMAIN || ARCH_REAL=
+TEK || ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARC
+> > +       default ARCH_AGILEX || ARCH_ASPEED || ARCH_BITMAIN || ARCH_REAL=
+TEK || ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARC || RISC=
+V
+>
+> This conflicts. Can this default be part of the riscv defconfig instead?
+>
 
-> Plug dp_phy-provided clocks to display clock controller.
-> 
+Maybe I should remove this since it has been selected by CLK_SIFIVE_PRCI?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+ config CLK_SIFIVE_PRCI
+        bool "PRCI driver for SiFive SoCs"
++       select RESET_CONTROLLER
++       select RESET_SIMPLE
 
-Regards,
-Bjorn
-
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 0f79e6885004..a2478bd3590a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -2600,8 +2600,8 @@ dispcc: clock-controller@af00000 {
->  				 <&dsi0_phy 1>,
->  				 <&dsi1_phy 0>,
->  				 <&dsi1_phy 1>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&dp_phy 0>,
-> +				 <&dp_phy 1>,
->  				 <0>,
->  				 <0>,
->  				 <0>,
-> @@ -2614,8 +2614,8 @@ dispcc: clock-controller@af00000 {
->  				      "dsi0_phy_pll_out_dsiclk",
->  				      "dsi1_phy_pll_out_byteclk",
->  				      "dsi1_phy_pll_out_dsiclk",
-> -				      "dp_link_clk_divsel_ten",
-> -				      "dp_vco_divided_clk_src_mux",
-> +				      "dp_phy_pll_link_clk",
-> +				      "dp_phy_pll_vco_div_clk",
->  				      "dptx1_phy_pll_link_clk",
->  				      "dptx1_phy_pll_vco_div_clk",
->  				      "dptx2_phy_pll_link_clk",
-> -- 
-> 2.30.2
-> 
+> >         help
+> >           This enables a simple reset controller driver for reset lines=
+ that
+> >           that can be asserted and deasserted by toggling bits in a con=
+tiguous,
+> > @@ -187,6 +187,7 @@ config RESET_SIMPLE
+> >            - RCC reset controller in STM32 MCUs
+> >            - Allwinner SoCs
+> >            - ZTE's zx2967 family
+> > +          - SiFive FU740 SoCs
+> >
+> >  config RESET_STM32MP157
+> >         bool "STM32MP157 Reset Driver" if COMPILE_TEST
