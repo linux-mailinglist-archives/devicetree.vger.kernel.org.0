@@ -2,73 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DECAD34EBFA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B2E34EC02
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232023AbhC3PSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 11:18:48 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:38653 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231719AbhC3PSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:18:23 -0400
-Received: by mail-ot1-f49.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so15912641otk.5;
-        Tue, 30 Mar 2021 08:18:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PlZUNayRrmgaKgXVXtAL3PXk2F0oj39eu7kyoW5Ud/k=;
-        b=r6rHI1zJ+r6SgfV0txfGJp9CJp6K2NSmEJBQox0vOMTSK6rlH2W/46SyUYpw1kzhso
-         vwDWYCaNkIE7H62J8Pivg6buIKM8GlkftOKWE2zQMfmVBesyPHT4/mxflKW1r52iQL7Z
-         xwqOk2hRFMKmTXnKNMnssJt0pun1Me21cpDzftsVlXraIigB3eX9R/FYewGZwvVtsQPt
-         C/184K8rYICDpSwYHAgKRy1lEQqS0VljNCte7mnNo191QAgomweNwy9yzcLXPAI/BEP3
-         XC1EhX9VSJR3xjqef2L7ImxzNVUhMVX/vbjW+2fPa3WcUADZhfSieWfsboi/DRoNORNo
-         yqKg==
-X-Gm-Message-State: AOAM533b2DTKP8p8A/rx/iF1VxdkSCa/wkynEzuL0mIm88LdyfiM/YWa
-        rIfsZvCPV6DhYs8mm14Etw==
-X-Google-Smtp-Source: ABdhPJw8DvKlnSSfnVW/ySoAGDIq18w0ithxPe/i7w68DXnVExjOMD2+U4R56xLkHWo3rb9lqExncQ==
-X-Received: by 2002:a05:6830:1bf5:: with SMTP id k21mr28157540otb.129.1617117503382;
-        Tue, 30 Mar 2021 08:18:23 -0700 (PDT)
-Received: from robh.at.kernel.org ([172.58.99.136])
-        by smtp.gmail.com with ESMTPSA id h59sm5190376otb.29.2021.03.30.08.18.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 08:18:21 -0700 (PDT)
-Received: (nullmailer pid 326348 invoked by uid 1000);
-        Tue, 30 Mar 2021 15:18:18 -0000
-Date:   Tue, 30 Mar 2021 10:18:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsa@kernel.org, robh+dt@kernel.org,
-        linux@roeck-us.net, jdelvare@suse.com
-Subject: Re: [PATCH v2 2/6] dt-bindings: i2c: convert i2c-mpc to json-schema
-Message-ID: <20210330151818.GA321862@robh.at.kernel.org>
-References: <20210329015206.17437-1-chris.packham@alliedtelesis.co.nz>
- <20210329015206.17437-3-chris.packham@alliedtelesis.co.nz>
+        id S232226AbhC3PTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 11:19:52 -0400
+Received: from mx2.suse.de ([195.135.220.15]:45992 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231929AbhC3PTc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 11:19:32 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 8325CAE03;
+        Tue, 30 Mar 2021 15:19:31 +0000 (UTC)
+From:   Mian Yousaf Kaukab <ykaukab@suse.de>
+To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mian Yousaf Kaukab <ykaukab@suse.de>
+Subject: [PATCH] arm64: dts: ls1012a: enable PCIe on freeway board
+Date:   Tue, 30 Mar 2021 17:19:20 +0200
+Message-Id: <20210330151920.29146-1-ykaukab@suse.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210329015206.17437-3-chris.packham@alliedtelesis.co.nz>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 14:52:02 +1300, Chris Packham wrote:
-> Convert i2c-mpc to YAML.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v2:
->     - Rework compatible validation
->     - Remove irrelevant i2ccontrol from example
-> 
->  .../devicetree/bindings/i2c/i2c-mpc.txt       | 62 -------------
->  .../devicetree/bindings/i2c/i2c-mpc.yaml      | 91 +++++++++++++++++++
->  2 files changed, 91 insertions(+), 62 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
-> 
+ls1012a-freeway board contains a M.2 2230 slot. Update the status of
+pcei1 node to okay so that the pcie controller can be probed.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Mian Yousaf Kaukab <ykaukab@suse.de>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
+index 6290e2f9de6a..e3f371788f85 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
+@@ -38,3 +38,7 @@ w25q16dw0: flash@0 {
+ 		spi-tx-bus-width = <2>;
+ 	};
+ };
++
++&pcie1 {
++	status = "okay";
++};
+-- 
+2.26.2
+
