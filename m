@@ -2,127 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A410B34E348
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:39:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764E534E350
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbhC3IjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        id S231560AbhC3Ikj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbhC3Iih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:38:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF4DC061762
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 01:38:36 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1lR9tH-0005fI-95; Tue, 30 Mar 2021 10:38:23 +0200
-Subject: Re: [PATCH v1 2/4] arm64: dts: imx8mq-nitrogen: add USB HOST support
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     devicetree@vger.kernel.org, will@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-        krzk@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, catalin.marinas@arm.com,
-        festevam@gmail.com, linux-arm-kernel@lists.infradead.org
-References: <20210330083514.5874-1-adrien.grassein@gmail.com>
- <20210330083514.5874-3-adrien.grassein@gmail.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <0d173681-7eb6-798f-7d9b-66a221625d34@pengutronix.de>
-Date:   Tue, 30 Mar 2021 10:38:20 +0200
+        with ESMTP id S231512AbhC3IkK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:40:10 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DEB6C061762;
+        Tue, 30 Mar 2021 01:40:09 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id x16so15371467wrn.4;
+        Tue, 30 Mar 2021 01:40:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=KYFd8n1ROMP/PhNJKCkoXzuKMYVkHaAgxZobxYlBuxg=;
+        b=HnYqDSBD571OkJq1AiWFRplK0UjsoINPaNxJpJYh2J8TRi458ayh2fssRYpp9lNwId
+         5CN2CpkUyErY1kFHq8IIz/TMBLoknBZuJdKI3BFjn9gboLvt43GduHTe/qk1Pvgtqicr
+         mcRpRN9RGv1f7GIb7xFYPpo+PYUYIoCtJy8bC5UgADUooE73MP3KjiDxRIs24MUb0nbP
+         aY2wJHx/To2HF/sVeMTlwCLtcF6+P8GU0Kyh+Fxdt69nhDYkgLnRbLtflBax0W0rn/kW
+         4eo1e8vYCaT83iAghW+CF5Yhbx8NHkxEfi3OIWo3h4sBBNMM7FT5MIa9sojIqpDUIXVQ
+         N2qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=KYFd8n1ROMP/PhNJKCkoXzuKMYVkHaAgxZobxYlBuxg=;
+        b=Hup6V0+f2XE99g+hy+qEuhmDH57L+2NlLx2tyHHu06fqt74kbHUGk3piFksdEHMC93
+         NQAIRVXN8byL0p64h0Y0i8cQaLlc3JPzW5kvmrnVYfDiYPbBuF0FNjq5W+M2jfeGpV45
+         Ttrx2nMT5g88BOySBEA17f7Ev08q7arU7FqgqNlwBCliwH9HcKXm+8y2YuH42Gwkotv0
+         I75dJjKJ2WER8nN/35RGn/zWjSHDUraPFyoS2iFmyobzhA3n90fBho1fMKMEc0sYYgAs
+         Cx8+AuuTMCYFIM9IbPVbM8TbClAVSHNa4aZAYRC84QA0jJ+aWviJzi55E5p/uw/3lmBY
+         ha3g==
+X-Gm-Message-State: AOAM5303/Q5V3B6Rg+OLeTKzrYeQ79AWXivfh/SCdf6Zo9S0thxILZZc
+        hWJgErBmfAG2yKl+6EGXqE4=
+X-Google-Smtp-Source: ABdhPJyj2XcA7fdSNLk3kTIn/Xyjsh1wmkHsRwu51iJjR0oVgv3IzGhb4J6aBkD0o2pgDPxxbawBXg==
+X-Received: by 2002:adf:ea8d:: with SMTP id s13mr32590659wrm.32.1617093608360;
+        Tue, 30 Mar 2021 01:40:08 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id v7sm2374395wme.47.2021.03.30.01.40.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 01:40:07 -0700 (PDT)
+Subject: Re: [PATCH v4 2/2] arm64: dts: mt8192: add eFuse support for MT8192
+ SoC
+To:     Yz.Wu@mediatek.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Seiya Wang <seiya.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+References: <1612151986-19820-1-git-send-email-Yz.Wu@mediatek.com>
+ <1612151986-19820-3-git-send-email-Yz.Wu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <6dd478f3-d29e-0583-00fd-dc85d5a3a4ff@gmail.com>
+Date:   Tue, 30 Mar 2021 10:40:06 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210330083514.5874-3-adrien.grassein@gmail.com>
+In-Reply-To: <1612151986-19820-3-git-send-email-Yz.Wu@mediatek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Adrien,
 
-On 30.03.21 10:35, Adrien Grassein wrote:
-> Add the description for the USB host port.
-> At this time, the port will not work directly from the
-> kernel because it's connected through a resettable hub
-> that is not handle in the kernel. It should be controlled
-> in the bootloader or in the userspace.
 
-Couldn't you add a gpio-hog that gets the hub out of reset?
-
-Cheers,
-Ahmad
-
+On 01/02/2021 04:59, Yz.Wu@mediatek.com wrote:
+> From: Ryan Wu <Yz.Wu@mediatek.com>
 > 
-> In the case of the Boundary's u-boot, this is done on the
-> boot script:
-> "
-> starting USB...
-> Bus usb@38100000: Register 2000140 NbrPorts 2
-> Starting the controller
-> USB XHCI 1.10
-> Bus usb@38200000: Register 2000140 NbrPorts 2
-> Starting the controller
-> USB XHCI 1.10
-> scanning bus usb@38100000 for devices... 1 USB Device(s) found
-> scanning bus usb@38200000 for devices... 3 USB Device(s) found
-> "
+> Add eFuse node to read Mediatek eFuse
 > 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
 > ---
->  .../boot/dts/freescale/imx8mq-nitrogen.dts    | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
+> This patch dependents on "arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile"[1]
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> index b46f45a82be1..7a52e247c527 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> @@ -213,6 +213,22 @@ &usb3_phy0 {
->  	status = "okay";
->  };
->  
-> +&usb_dwc3_1 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +/*
-> + * On this board, USB host is connected to a resettable hub.
-> + * The reset signal is connected to the GPIO <&gpio1 14 GPIO_ACTIVE_LOW>.
-> + * You need to activate it in the bootloader or in the userspace.
-> + */
-> +&usb3_phy1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usb3_1>;
-> +};
-> +
->  &usdhc1 {
->  	assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
->  	assigned-clock-rates = <400000000>;
-> @@ -388,6 +404,12 @@ MX8MQ_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x16
->  		>;
->  	};
->  
-> +	pinctrl_usb3_1: usb3-1grp {
-> +		fsl,pins = <
-> +			MX8MQ_IOMUXC_GPIO1_IO14_GPIO1_IO14		0x16
-> +		>;
-> +	};
-> +
->  	pinctrl_usdhc1: usdhc1grp {
->  		fsl,pins = <
->  			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
+> mt8192.dtsi file is needed for this patch.
+> Please also accept this patch together with [1].
 > 
+> [1]http://lists.infradead.org/pipermail/linux-mediatek/2020-November/019378.html
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 69d45c7..4a0d941 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -422,6 +422,11 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		efuse: efuse@11c10000 {
+> +			compatible = "mediatek,mt8192-efuse",
+> +				     "mediatek,efuse";
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+We are missing
+#address-cells = <1>;
+#size-cells = <1>;
+
+Regards,
+Matthias
+
+> +		};
+> +
+>  		i2c3: i2c3@11cb0000 {
+>  			compatible = "mediatek,mt8192-i2c";
+>  			reg = <0 0x11cb0000 0 0x1000>,
+> 
