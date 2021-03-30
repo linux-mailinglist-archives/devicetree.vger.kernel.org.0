@@ -2,135 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A9634DD55
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 03:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E81834DD4C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 03:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbhC3BKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 21:10:36 -0400
-Received: from mailgate.ics.forth.gr ([139.91.1.2]:58694 "EHLO
-        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbhC3BKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 21:10:15 -0400
-X-Greylist: delayed 1066 seconds by postgrey-1.27 at vger.kernel.org; Mon, 29 Mar 2021 21:10:15 EDT
-Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
-        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 12U0qOie066171
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 03:52:24 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
-        q=dns/txt; i=@ics.forth.gr; t=1617065539; x=1619657539;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=4Ytp87wkA+alvM5YO/7dlXgP5/jZJBWXepwASfozGUU=;
-        b=CXdKG8AeuRZiwZ+qSuU9itQVeS+S6jzZD+LSRTjBq4uIMwy1EtYl2LFohFQ3P0aL
-        1snhQLBfGMnJPLlMUvta1R1ExG60xpMGjvqAzE108mPHfXrfMlKUizgfR2G3CWnj
-        dKei0YP7+vI+q9xmsTyWmdWtYdS0hBwgkfMMp+y/DHsFRhQlCWvNoRqg2neDGsDy
-        A/MbNsCxbPucEdxZvgGboLEud/obw/iKdEC8cDqcfAJRCeFRpho58PpEswmR8XMQ
-        DBZlttMlmL7pkMgUDfZroBTVf9b7EC2+ikG/v595zLMuOGi9LkWZ5Pgiy0gLVEtB
-        d2DVMQG/q9QvZWbAMsyDiw==;
-X-AuditID: 8b5b014d-a4c337000000209f-f6-60627642ff7a
-Received: from enigma.ics.forth.gr (enigma-2.ics.forth.gr [139.91.151.35])
-        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id 86.6D.08351.24672606; Tue, 30 Mar 2021 03:52:18 +0300 (EEST)
-X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
+        id S230089AbhC3BGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 21:06:49 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56250 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230202AbhC3BGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 21:06:40 -0400
+X-UUID: db084fc00fb74977aa5c34dc16a2e480-20210330
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eIwgc0r+QIYxa5BYwiIyGnWzADT9Ny1eTWElVufgXQA=;
+        b=R+ERG0/MSmU6Ql4mz3kIyZLwLgD4NgH/0VznsLh+ODR3M7+aPeDjvhfCNTQkYJfK/hZJfQgcXs1DPLjWMnnJ1pJR4VDjYIZKnf3jtyxDfcjaAtgcJztlLbk3sdbuOVbg80RsWsz8LD1Fta9uydz5nk2GC3zLCIOrjodBD17O09g=;
+X-UUID: db084fc00fb74977aa5c34dc16a2e480-20210330
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <nina-cm.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1520473993; Tue, 30 Mar 2021 09:06:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 30 Mar 2021 09:06:35 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 30 Mar 2021 09:06:35 +0800
+Message-ID: <1617066395.9554.12.camel@mtksdccf07>
+Subject: Re: [PATCH 1/2] dt-bindings: devapc: Update bindings
+From:   Nina Wu <nina-cm.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <Jackson-kt.Chang@mediatek.com>,
+        <nina-cm.wu@mediatek.com>
+Date:   Tue, 30 Mar 2021 09:06:35 +0800
+In-Reply-To: <8417423c-0462-f3af-b3a0-2af638850d51@gmail.com>
+References: <1616743871-8087-1-git-send-email-nina-cm.wu@mediatek.com>
+         <8417423c-0462-f3af-b3a0-2af638850d51@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Tue, 30 Mar 2021 03:52:17 +0300
-From:   Nick Kossifidis <mick@ics.forth.gr>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Andreas Schwab <schwab@linux-m68k.org>,
-        Will Deacon <will@kernel.org>,
-        Daniel Walker <danielwa@cisco.com>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        linux-kernel@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        microblaze <monstr@monstr.eu>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        nios2 <ley.foon.tan@intel.com>,
-        Openrisc <openrisc@lists.librecores.org>,
-        linux-hexagon@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        X86 ML <x86@kernel.org>, linux-xtensa@linux-xtensa.org,
-        SH-Linux <linux-sh@vger.kernel.org>,
-        sparclinux <sparclinux@vger.kernel.org>, paul.walmsley@sifive.com
-Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
-Organization: FORTH
-In-Reply-To: <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
- <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
- <87zgyqdn3d.fsf@igel.home> <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
- <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
-Message-ID: <3ae0c2faa08f76efb8a446f262b712df@mailhost.ics.forth.gr>
-X-Sender: mick@mailhost.ics.forth.gr
-User-Agent: Roundcube Webmail/1.3.16
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCIsWRmVeSWpSXmKPExsXSHT1dWde5LCnB4AO/xZ1Jz9ktjh7vZbZo
-        XriE2WL+kXOsFvd3NzJadOz6ymKx6fE1Vov3LTvYLC7vmsNm0blpK6PFts8tbBZz/kxhtlh5
-        di27xe/v/1gtnnw8DVTceZnNom0Wv8X/PTvYLfqXdrBZNJxcwWrRcsfU4seGx6wOYh5Tfm9k
-        9fh68xyTx/0Hz1k9Fu95yeSxaVUnm8ehwx2MHi8Obmf22Lyk3mP9hm2MHudnLGT0+Ns1hdnj
-        UvN1do/Pm+QCeKO4bFJSczLLUov07RK4MpqW3GYuuMdT8eD2fOYGxrVcXYycHBICJhKb5j1j
-        72Lk4hASOM4ocWFHFwtEwlRi9t5ORhCbV0BQ4uTMJ2BxZgELialX9jNC2PISzVtnM4PYLAKq
-        Els+QMTZBDQl5l86CFYvIqAo8bttGivIAmaBz+wSj242AhVxcAgL2Essn2UHUsMvICzx6e5F
-        VhCbUyBQ4uqL32wQB61hkjh69A8zxBEuEv8+TmeFOE5F4sPvB+wgc0SB7M1zlSYwCs5Ccuos
-        JKfOQnLqAkbmVYwCiWXGepnJxXpp+UUlGXrpRZsYwRHN6LuD8fbmt3qHGJk4GA8xSnAwK4nw
-        Ch9ITBDiTUmsrEotyo8vKs1JLT7EKM3BoiTOy6s3IV5IID2xJDU7NbUgtQgmy8TBKdXAZDF7
-        Ibu7bpJ0S056lY5T1mb7vUI9xyRZInM7SjMP8ahbfi7Uu/0qNq1njospX8DU78dj3x2SfDtV
-        xHr+FbGLEcWvzua/LQj7ONkr3DCLIUHfakKWSpDXwry3fhOKIt/ODEo56nXrAdt29SnP+nMU
-        /0fe/8z4TdbTnDN88c+XOWxtenuYQhzmfH6zlLlrvXps4O6P71n8I2qa5vKWSe5VsPzLdTHu
-        SsfRmr9zrF4xMis2pC6wc3hy+6X3kX3s6p2BTRKZ765un2UqyV7ZejbXdqbCqqDP7v8XdzH4
-        y8tEl3xTvfqpobI9Nip3m3ir+7L5W7548iblXFzk8i1x838fU8lVvJ6yk1SXnTbzEFViKc5I
-        NNRiLipOBAC7YhWKVwMAAA==
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Στις 2021-03-26 17:26, Rob Herring έγραψε:
-> On Fri, Mar 26, 2021 at 8:20 AM Christophe Leroy
-> <christophe.leroy@csgroup.eu> wrote:
->> 
->> 
->> 
->> Le 26/03/2021 à 15:08, Andreas Schwab a écrit :
->> > On Mär 26 2021, Christophe Leroy wrote:
->> >
->> >> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
->> >> index f8f15332caa2..e7c91ee478d1 100644
->> >> --- a/arch/riscv/kernel/setup.c
->> >> +++ b/arch/riscv/kernel/setup.c
->> >> @@ -20,6 +20,7 @@
->> >>   #include <linux/swiotlb.h>
->> >>   #include <linux/smp.h>
->> >>   #include <linux/efi.h>
->> >> +#include <linux/cmdline.h>
->> >>
->> >>   #include <asm/cpu_ops.h>
->> >>   #include <asm/early_ioremap.h>
->> >> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
->> >>      }
->> >>
->> >>      pr_err("No DTB passed to the kernel\n");
->> >> -#ifdef CONFIG_CMDLINE_FORCE
->> >> -    strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
->> >> +    cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
->> >>      pr_info("Forcing kernel command line to: %s\n", boot_command_line);
->> >
->> > Shouldn't that message become conditional in some way?
->> >
->> 
->> You are right, I did something similar on ARM but looks like I missed 
->> it on RISCV.
-> 
-> How is this hunk even useful? Under what conditions can you boot
-> without a DTB? Even with a built-in DTB, the DT cmdline handling would
-> be called.
-> 
-> Rob
-> 
-
-cced Paul who introduced this:
-https://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git/commit/arch/riscv/kernel/setup.c?id=8fd6e05c7463b635e51ec7df0a1858c1b5a6e350
+SGksIE1hdHRoaWFzDQoNCk9uIE1vbiwgMjAyMS0wMy0yOSBhdCAxMzoxNiArMDIwMCwgTWF0dGhp
+YXMgQnJ1Z2dlciB3cm90ZToNCj4gDQo+IE9uIDI2LzAzLzIwMjEgMDg6MzEsIE5pbmEgV3Ugd3Jv
+dGU6DQo+ID4gRnJvbTogTmluYSBXdSA8TmluYS1DTS5XdUBtZWRpYXRlay5jb20+DQo+ID4gDQo+
+ID4gVG8gc3VwcG9ydCBuZXdlciBoYXJkd2FyZSBhcmNoaXRlY3R1cmUgb2YgZGV2YXBjLA0KPiA+
+IHVwZGF0ZSBkZXZpY2UgdHJlZSBiaW5kaW5ncy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBO
+aW5hIFd1IDxOaW5hLUNNLld1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2Rldmlj
+ZXRyZWUvYmluZGluZ3Mvc29jL21lZGlhdGVrL2RldmFwYy55YW1sICAgfCA0MSArKysrKysrKysr
+KysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0MSBpbnNlcnRpb25zKCspDQo+ID4g
+DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2Mv
+bWVkaWF0ZWsvZGV2YXBjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+c29jL21lZGlhdGVrL2RldmFwYy55YW1sDQo+ID4gaW5kZXggMzFlNGQzYy4uNDg5ZjZhOSAxMDA2
+NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL21lZGlh
+dGVrL2RldmFwYy55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbA0KPiA+IEBAIC0yMCw5ICsyMCwyNyBAQCBwcm9w
+ZXJ0aWVzOg0KPiA+ICAgIGNvbXBhdGlibGU6DQo+ID4gICAgICBlbnVtOg0KPiA+ICAgICAgICAt
+IG1lZGlhdGVrLG10Njc3OS1kZXZhcGMNCj4gPiArICAgICAgLSBtZWRpYXRlayxtdDgxOTItZGV2
+YXBjDQo+ID4gKw0KPiA+ICsgIHZlcnNpb246DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogVGhlIHZl
+cnNpb24gb2YgdGhlIGhhcmR3YXJlIGFyY2hpdGVjdHVyZQ0KPiA+ICsgICAgJHJlZjogL3NjaGVt
+YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBlbnVtOiBbMSwgMl0N
+Cj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIHNsYXZlX3R5cGVfbnVtOg0KPiA+
+ICsgICAgZGVzY3JpcHRpb246IFRoZSBudW1iZXIgb2YgdGhlIGRldmFwYyBzZXQNCj4gPiArICAg
+ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ICsgICAg
+ZW51bTogWzEsIDRdDQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICANCj4gPiAgICByZWc6DQo+
+ID4gICAgICBkZXNjcmlwdGlvbjogVGhlIGJhc2UgYWRkcmVzcyBvZiBkZXZhcGMgcmVnaXN0ZXIg
+YmFuaw0KPiA+ICsgICAgbWF4SXRlbXM6IDQNCj4gPiArDQo+ID4gKyAgdmlvX2lkeF9udW06DQo+
+ID4gKyAgICBkZXNjcmlwdGlvbjogVGhlIG51bWJlciBvZiB0aGUgZGV2aWNlcyBjb250cm9sbGVk
+IGJ5IGRldmFwYw0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlv
+bnMvdWludDMyLWFycmF5DQo+IA0KPiBUaGlzIGNhbiBhbGwgcGVyIGNvbXBhdGlibGUgRFQgZGF0
+YSBvYmplY3RzIGluIHRoZSBkcml2ZXIuIERvbid0IGFkZCBuZXcNCj4gcHJvcGVydGllcyBoZXJl
+Lg0KDQpJIHdpbGwgdHJ5IHRvIHJlbW92ZSBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uDQpUaGFua3MN
+Cg0KDQo+IA0KPiBSZWdhcmRzLA0KPiBNYXR0aGlhcw0KPiANCj4gPiAgICAgIG1heEl0ZW1zOiAx
+DQo+ID4gIA0KPiA+ICAgIGludGVycnVwdHM6DQo+ID4gQEAgLTM5LDcgKzU3LDEwIEBAIHByb3Bl
+cnRpZXM6DQo+ID4gIA0KPiA+ICByZXF1aXJlZDoNCj4gPiAgICAtIGNvbXBhdGlibGUNCj4gPiAr
+ICAtIHZlcnNpb24NCj4gPiArICAtIHNsYXZlX3R5cGVfbnVtDQo+ID4gICAgLSByZWcNCj4gPiAr
+ICAtIHZpb19pZHhfbnVtDQo+ID4gICAgLSBpbnRlcnJ1cHRzDQo+ID4gICAgLSBjbG9ja3MNCj4g
+PiAgICAtIGNsb2NrLW5hbWVzDQo+ID4gQEAgLTUzLDggKzc0LDI4IEBAIGV4YW1wbGVzOg0KPiA+
+ICANCj4gPiAgICAgIGRldmFwYzogZGV2YXBjQDEwMjA3MDAwIHsNCj4gPiAgICAgICAgY29tcGF0
+aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktZGV2YXBjIjsNCj4gPiArICAgICAgdmVyc2lvbiA9IDwx
+PjsNCj4gPiArICAgICAgc2xhdmVfdHlwZV9udW0gPSA8MT47DQo+ID4gICAgICAgIHJlZyA9IDww
+eDEwMjA3MDAwIDB4MTAwMD47DQo+ID4gKyAgICAgIHZpb19pZHhfbnVtID0gPDUxMT47DQo+ID4g
+ICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAxNjggSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4g
+PiAgICAgICAgY2xvY2tzID0gPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfREVWSUNFX0FQQz47DQo+
+ID4gICAgICAgIGNsb2NrLW5hbWVzID0gImRldmFwYy1pbmZyYS1jbG9jayI7DQo+ID4gICAgICB9
+Ow0KPiA+ICsgIC0gfA0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1j
+b250cm9sbGVyL2FybS1naWMuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9j
+ay9tdDgxOTItY2xrLmg+DQo+ID4gKw0KPiA+ICsgICAgZGV2YXBjOiBkZXZhcGNAMTAyMDcwMDAg
+ew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyLWRldmFwYyI7DQo+
+ID4gKyAgICAgICAgdmVyc2lvbiA9IDwyPjsNCj4gPiArICAgICAgICBzbGF2ZV90eXBlX251bSA9
+IDw0PjsNCj4gPiArICAgICAgICByZWcgPSA8MCAweDEwMjA3MDAwIDAgMHgxMDAwPiwNCj4gPiAr
+ICAgICAgICAgICAgPDAgMHgxMDI3NDAwMCAwIDB4MTAwMD4sDQo+ID4gKyAgICAgICAgICAgIDww
+IDB4MTAyNzUwMDAgMCAweDEwMDA+LA0KPiA+ICsgICAgICAgICAgICA8MCAweDExMDIwMDAwIDAg
+MHgxMDAwPjsNCj4gPiArICAgICAgICB2aW9faWR4X251bSA9IDwzNjcgMjkyIDI0MiA1OD47DQo+
+ID4gKyAgICAgICAgaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE4NyBJUlFfVFlQRV9MRVZFTF9ISUdI
+PjsNCj4gPiArICAgICAgICBjbG9ja3MgPSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9ERVZJQ0Vf
+QVBDPjsNCj4gPiArICAgICAgICBjbG9jay1uYW1lcyA9ICJkZXZhcGMtaW5mcmEtY2xvY2siOw0K
+PiA+ICsgICAgfTsNCj4gPiANCg0K
 
