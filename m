@@ -2,92 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 499AC34E5C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD14234E5D2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231697AbhC3Ks7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 06:48:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53962 "EHLO
+        id S231664AbhC3KxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 06:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231561AbhC3Ksp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 06:48:45 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0D8C061574;
-        Tue, 30 Mar 2021 03:48:45 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id m20-20020a7bcb940000b029010cab7e5a9fso10029232wmi.3;
-        Tue, 30 Mar 2021 03:48:45 -0700 (PDT)
+        with ESMTP id S231602AbhC3Kws (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 06:52:48 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5EBDC061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 03:52:47 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id ce10so24151597ejb.6
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 03:52:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Q//pqem2+12d7QEjvjgaohlrsZ0f7RzdSyBP0d8mQF8=;
-        b=XAAkVB7wU7qFKtSJlIbXEuV0fqSLgWmM7CgKkpyrJZrHMLETXXA0GIEtbJDfHnrIxa
-         DnrA9/t+AGUEYEiHhrppYvAvUcj6TjuE8CVO0pcajCmO+v324od1o1qi2gphEOkIiHzZ
-         kLEhzQRZh6e2vl8RSEjU0MXkRCltLjmubLh2ad1zSg64+wFfCYXOX3oy7FotQT6jKG9f
-         Tkzk6idkrKaYy/z1NzZSKhwqossCXQ3/BsHyA/tCexS6cAus2ZG8rJvg3/H+mqcO5v/E
-         zXcTeyYRpaytvboHZ09XiFGDw+afgcrmMZYlYgkcuWsm5HJm4H4PJh1xa4hLBZhHqXSk
-         rDLw==
+        bh=oBnG2TakhmLmvRYGUb/04MxUlScMZhhVFfbZVw+gUk8=;
+        b=QO/iA9QDZIu8GXp0AL3Lvs2JqtFzX0YqsG/jYvAPbv2DLBCb+2nmO1jCXW4SpJK8Xs
+         dru4QYZR55PU74HwrxjxYBr8IQNqeAWKs89bRLOB5o3ein4RnIfG+6bak94mPZoCZPBV
+         /9lzXQxl0teYtKvl94ZtT4dYUEarYNWmXIEaOA6vYc63f0rgSYQG30A6R1alsiFej/Uk
+         RZqQGn+EcuaWdlIhPv1QYwB+dUYOIKhCwFSPjlk8wAhieAXzOzU6bbJuWogsYJs4LIFQ
+         A6kiFP5cy2oLuqbXHrPXDMYVULH/e/Q3d6yIfsYR7e0pD6eGxpS9rnBxnGkOJKCOabzL
+         m4Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Q//pqem2+12d7QEjvjgaohlrsZ0f7RzdSyBP0d8mQF8=;
-        b=OR9Qg6ULl8+6oQjdS14MtTsXUupBueTnu7D3lggLMsRtr6Q5H4gDWURWb+NbgfMaTt
-         0QKwXwLNncOrW7qMsPEbEx5gMjkr0U3t0M7khiLnc6pstloewc9jyC2Y8Ljg8UwujKIH
-         wTSZJduw9qWncUoqVZUsHaQMdHQocsQfpmLiyhs5wySU2Xi/CtArYiKttC9cVA/En1XF
-         W8lr5EMpRUIdme7/BUQtwBSgbB+n5DNTruuro45eR6kHHF6bXb7oCtvQ7Iv4ThjmR4h6
-         Yc2wFjYDnEn3KEDrLbFhVyhr+p9M+2SbMpL6vBp78sPHnHHEjF0ovkwCH3x41k/Ca9cM
-         jqrg==
-X-Gm-Message-State: AOAM5309NMi5e/iH0weDbfDgGf6piNMnb6ago07U7svOMMl691Vt7Izj
-        Y7rePCdU24Ye582L/c/4Sr8=
-X-Google-Smtp-Source: ABdhPJwvPii3xPnYowk2vyInsF26PMhunrL16Vuj5UvYFQF18+YD+34YeHDpiFXR6Zds8mztAtBjQg==
-X-Received: by 2002:a7b:cf11:: with SMTP id l17mr3360588wmg.128.1617101323947;
-        Tue, 30 Mar 2021 03:48:43 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id p14sm2901836wmc.30.2021.03.30.03.48.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Mar 2021 03:48:43 -0700 (PDT)
-Subject: Re: [PATCH v10 1/4] dt-bindings: mediatek: Add smi dts binding for
- Mediatek MT6765 SoC
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wendell Lin <Wendell.Lin@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Mars Cheng <mars.cheng@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Owen Chen <owen.chen@mediatek.com>,
-        Evan Green <evgreen@chromium.org>, Yong.Wu@mediatek.com,
-        Joerg Roedel <jroedel@suse.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Ryder Lee <Ryder.Lee@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Ainge Hsu <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-References: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
- <1615358218-6540-1-git-send-email-macpaul.lin@mediatek.com>
- <1615358218-6540-2-git-send-email-macpaul.lin@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <5caf003d-e7c5-1f2f-d499-726788d5e490@gmail.com>
-Date:   Tue, 30 Mar 2021 12:48:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=oBnG2TakhmLmvRYGUb/04MxUlScMZhhVFfbZVw+gUk8=;
+        b=fhcj0sn/BbYIjvlFTXvSqN0iXVAg9aPdiwToCbP5NIkcpmHcTVtiAVGU3i31wcnR4E
+         WrLQ14TDB8Uk2WceLS2L8hwqjLM9e6LQFH3bToMO9eErXpxuPgFXFCEn8AKIya7dNPuB
+         CHVhLxjrr4FBpDPjBWG+ujl/ygootVIx58Gcm5ptUwerLwZHqeAO8zkESC/v+KURcZSX
+         dU7zVHOfYzkvRX043IbYVWfBZBA+XSVjkITEvVGoF67cdgSFK8YNPII3mqAcMsNtWrCI
+         GYznKwdKCRJAmxxW3PnoFOikdBa61z+8Na3YINfQ4fJKynPhpi2nhMyo+eYgOcTMi3w0
+         4LPw==
+X-Gm-Message-State: AOAM530jauweB6zCFEZ9alb/CYhAzBthDYukSrFdmMmuSEEyi114tHLS
+        Th+iuIffljFxIyUVvyamEo5Csw==
+X-Google-Smtp-Source: ABdhPJwiSti2LSfBiErK0gC7qLs349y9VjSzb3XhCSCrYwvv2JKnlUDY6yBTiGdZb1mp86wjJtscMA==
+X-Received: by 2002:a17:906:26d4:: with SMTP id u20mr28662103ejc.114.1617101566583;
+        Tue, 30 Mar 2021 03:52:46 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id l1sm10879470edt.59.2021.03.30.03.52.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Mar 2021 03:52:46 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Add SoC compatible for sc7280
+To:     Rajendra Nayak <rnayak@codeaurora.org>, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org
+References: <1616651056-11844-1-git-send-email-rnayak@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <b8b1c34e-8faa-857d-4508-8a24cc31c3a0@linaro.org>
+Date:   Tue, 30 Mar 2021 11:52:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1615358218-6540-2-git-send-email-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1616651056-11844-1-git-send-email-rnayak@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -96,34 +69,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/03/2021 07:36, Macpaul Lin wrote:
-> From: Mars Cheng <mars.cheng@mediatek.com>
+On 25/03/2021 05:44, Rajendra Nayak wrote:
+> Document SoC compatible for sc7280
 > 
-> This patch adds MT6765 smi binding document
-> 
-> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
-> Signed-off-by: Owen Chen <owen.chen@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Patch looks good, but where is the driver part for it?
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 > ---
->  .../bindings/memory-controllers/mediatek,smi-common.yaml         | 1 +
->  1 file changed, 1 insertion(+)
+>   Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> index a08a32340987..4a4f4377576f 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> @@ -31,6 +31,7 @@ properties:
->        - enum:
->            - mediatek,mt2701-smi-common
->            - mediatek,mt2712-smi-common
-> +          - mediatek,mt6765-smi-common
->            - mediatek,mt6779-smi-common
->            - mediatek,mt8167-smi-common
->            - mediatek,mt8173-smi-common
+> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> index 992777c..861b205 100644
+> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> @@ -24,6 +24,7 @@ properties:
+>             - qcom,msm8998-qfprom
+>             - qcom,qcs404-qfprom
+>             - qcom,sc7180-qfprom
+> +          - qcom,sc7280-qfprom
+>             - qcom,sdm845-qfprom
+>         - const: qcom,qfprom
+>   
 > 
+
+Applied both,
+thanks,
+srini
