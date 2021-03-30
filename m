@@ -2,115 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBEF34DF3E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E6234DF46
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 05:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbhC3DYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 23:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42792 "EHLO
+        id S230329AbhC3D2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 23:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231318AbhC3DX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:23:56 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883AFC061764
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:23:56 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id k25so15147253oic.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:23:56 -0700 (PDT)
+        with ESMTP id S229911AbhC3D1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 23:27:53 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677FAC061765
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:52 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id ce10so22592477ejb.6
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 20:27:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XJ+II/5N1Hvyz6uuWXUQ+m2jul22u5rdFG3d3xmYGQ8=;
-        b=XZ+lX/K9m/+z8BBmBTImdTLIfNIzicQmjr8dApFMHb34CaUpGb+6UaShh/SsxI8NMV
-         wy7NjhxmVtzhIFO1S7zFnavjcN9SOIa0DrRY75lCrqO8QKOI37fA6M8pwsbOeoRryyPX
-         cfbNpSAaErtz6Hw1KJzd5RsjFHW56cnetudVdLeQXyrFKQ+gsoCZhdjHhllX8QjhFJyJ
-         ToJMwGn1k0R1CI4TfQepIQYuIyloIZR7td0va/lJMndsgJ+w88BePemr6NbL02O/lgBw
-         YjdvQ2+ZtdOgRxY8wInf4vVEMvqqJ7j7dfJnqcShb/ECNnOlHzzocuhE588fspEYpuFr
-         h4fA==
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X1Mep0NDTZqgj41CwSzTV/L+FLNZGsP0ABu2o9b8U30=;
+        b=3iJ6rnxNoJ1aTUrQb8MBityRh32IAoO48UjECVfi4BfI7/zw8eIa5QZsOXEdPj0Ult
+         Ty+5a/+z0tH9MGN4pMs0E1CwVUioqhcepi7Lu84N7r0PBy5kF9ickSommc4x+k/a2Q7B
+         5E293VfrAtZ/le8pjgcG94Y36E9PUx/WExrGl7fcifPHy0mLzvlaUp7FheK3iZx4EuNi
+         xLS+LonWNrdG4ZdbOnJAxJSrspZk93opFaXsRh4zZX/Fj+TzE1GWOpuunFDm3ojdS1fg
+         kI34Wh6qDZgX/BJt7lnSbqWQ9Hr7UdJ4czc18A6HG2VK+wbwPnHSNukupFvn+R7FyiIC
+         4ApA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XJ+II/5N1Hvyz6uuWXUQ+m2jul22u5rdFG3d3xmYGQ8=;
-        b=q956h2KN6M8QXOz3W4zBVMBmirXXBONskS8NxMpSd2AjE9/hbUxU72UL2SLXuJxazi
-         /XFgLVWUW0/iek97WIU+Ivx9oZz/4k6EgiHV8E6lFKbPVaRnVKBdlhZ7qSimXA8ppby4
-         qXcw3w+TCI2FeghIhWaXv7ciHyqz3aEaq2Wwqr2sJZzE4POp1o+ySAx2enc+3IpAW0UL
-         0KxpaBMKV6uTpwtKLvfE7AQ5a0Bu/UOzmHW3feUupHjrQE944StMpwjATSvIFQYWUxEl
-         mTTjXNlAvrYqOcWguSmTGSuNh29GrSjhkKUiec+BY5c2eTeZiFeeYbjFGWJ0q3zVugwM
-         G5wg==
-X-Gm-Message-State: AOAM532gKjf6L4DX4trpBImMIZt+51DO3wFnRfTsS4f7rx34nXl3sqit
-        kYE7Ffk1svCd1dk/EBqg3G13Nw==
-X-Google-Smtp-Source: ABdhPJxSeYNl2vFSLyTptFO+41Pe1NYsTjHnY8kt49eeWG8rQvjgKMnfTIdXVMS4Fynhf0gv023U8g==
-X-Received: by 2002:aca:db85:: with SMTP id s127mr1639701oig.142.1617074635948;
-        Mon, 29 Mar 2021 20:23:55 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w2sm4196653oov.23.2021.03.29.20.23.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Mar 2021 20:23:55 -0700 (PDT)
-Date:   Mon, 29 Mar 2021 22:23:53 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Eric Anholt <eric@anholt.net>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: msm8996: Mark the GPU's SMMU as an
- adreno one.
-Message-ID: <YGKZybLYu5xQW9Yn@builder.lan>
-References: <20210326231303.3071950-1-eric@anholt.net>
- <20210326231303.3071950-2-eric@anholt.net>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X1Mep0NDTZqgj41CwSzTV/L+FLNZGsP0ABu2o9b8U30=;
+        b=MDi4Hq9NSNrdUibYvhyrwD/YbSityNbAaYkJSFjHmHV/4IhisIrTeFP4cWsjKFJqHQ
+         Tk17SKn00DUoxvbKEudxCytbHBeO/wwlQR/3vFlgAskWXXIF4hqMSrCIZgwywwfetDY9
+         pvb20WtEZYcvqlmYFU8z8riYuTmGg3EyqYTV39i4pIAat4rbKprwx+oxLGg7t0n8kHEx
+         gaOoMHcxEqvUQJ7Q4dk97GBKuOYEWKCXHjjKBE0cj7wLBOi/Cqs3Zi3ZMszdS/wwbFOv
+         R4agzaSLzFbxpg5OZHVcl2EW3dtpUOayIZMG2RtFC2Ug3aeUKOJsMM4joBIOt95YyDJQ
+         nUtQ==
+X-Gm-Message-State: AOAM531BPRu3cq19La3nHJcmGs+3ir86rqePfbOuvcjHtSQqambr0RVD
+        kibAi2EIwPCH52Tv+sNQVBihdqrzmrDmnFYexpHmE1a7Lii7VA==
+X-Google-Smtp-Source: ABdhPJxJVT4ikpn8Ll3+BLlxrg5DXp62plos3RcvXhSBKDJOAEk7g5/fDnEiJIF4vigHrmnSsJ9PwiqWINiWEhcCWS8=
+X-Received: by 2002:a17:906:e0d6:: with SMTP id gl22mr30956801ejb.444.1617074870919;
+ Mon, 29 Mar 2021 20:27:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210326231303.3071950-2-eric@anholt.net>
+References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-5-brad@pensando.io>
+ <CAHp75VeQmc5ZyQV9AHcq2wm0xxBXb7by7RhidrRyCzmtRkXBAg@mail.gmail.com>
+In-Reply-To: <CAHp75VeQmc5ZyQV9AHcq2wm0xxBXb7by7RhidrRyCzmtRkXBAg@mail.gmail.com>
+From:   Brad Larson <brad@pensando.io>
+Date:   Mon, 29 Mar 2021 20:27:40 -0700
+Message-ID: <CAK9rFnxO6AUjjihZ3Y+tspUZqCWhNa5BH5EhK2x4mk8FJv0k7w@mail.gmail.com>
+Subject: Re: [PATCH v2 04/13] spidev: Add Pensando CPLD compatible
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 26 Mar 18:13 CDT 2021, Eric Anholt wrote:
+On Mon, Mar 29, 2021 at 3:45 AM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Mon, Mar 29, 2021 at 5:01 AM Brad Larson <brad@pensando.io> wrote:
+> >
+> > Pensando Elba SoC platforms have a SPI connected CPLD
+> > for platform management.
+>
+> And? It's not a good justification to spread the (debugging only)
+> spidev interface.
+>
+> What tool is going to use it? Why can't you have a driver for that in
+> the kernel?
 
-> This enables the adreno-specific SMMU path that sets HUPCF so
-> (user-managed) page faults don't wedge the GPU.
-> 
-> Signed-off-by: Eric Anholt <eric@anholt.net>
+The driver is in userspace and we need to instantiate /dev/spi0.N
+in the /dev directory.  The CPLD includes a device id and version
+id that userspace applications use to differentiate functionality on
+different boards.  It wouldn't really be appropriate to use one of
+the existing entries.
 
-Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+For example even with high pin count SoCs we are offloading
+low speed functionality into the CPLD connected over SPI.  The
+elba-asic-common.dtsi file shows a compatible string of
+"pensando,cpld-rd1173" which does have a kernel driver we
+intend to contribute later if there is interest.  This IP in the CPLD
+is readily available from Lattice which provides two I2C Masters
+which in our case we use for access to the network port transceivers.
+What was missing in the kernel was a bridge driver that exposes
+what looks like a standard I2C device to userspace where the
+drivers/i2c/busses/i2c-rd1173.c handles the spi transfers to the
+Lattice IP in the CPLD.
 
-@Will, can you pick this together with the driver patch? (So that they
-land in order)
-
-Regards,
-Bjorn
-
-> ---
-> 
-> We've been seeing a flaky test per day or so in Mesa CI where the
-> kernel gets wedged after an iommu fault turns into CP errors.  With
-> this patch, the CI isn't throwing the string of CP errors on the
-> faults in any of the ~10 jobs I've run so far.
-> 
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 6de136e3add9..432b87ec9c5e 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -1127,7 +1127,7 @@ cci_i2c1: i2c-bus@1 {
->  		};
->  
->  		adreno_smmu: iommu@b40000 {
-> -			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
-> +			compatible = "qcom,msm8996-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
->  			reg = <0x00b40000 0x10000>;
->  
->  			#global-interrupts = <1>;
-> -- 
-> 2.31.0
-> 
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
