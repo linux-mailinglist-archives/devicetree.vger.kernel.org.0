@@ -2,170 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7888334E395
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0903E34E39C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:58:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbhC3IzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
+        id S231628AbhC3I5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231310AbhC3IzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:55:00 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5830C061762;
-        Tue, 30 Mar 2021 01:54:59 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id e14so23587907ejz.11;
-        Tue, 30 Mar 2021 01:54:59 -0700 (PDT)
+        with ESMTP id S231614AbhC3I5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:57:25 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C1EC061762;
+        Tue, 30 Mar 2021 01:57:25 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id t5-20020a1c77050000b029010e62cea9deso7981656wmi.0;
+        Tue, 30 Mar 2021 01:57:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=P7HNS/Ipii5EIzZR9IYki1b0ukYKIl9NuAxV1POMrSE=;
-        b=sG8lmF6BKVCyZ3vjjdjhF/BAGuXOpGhu3mjj1LvcoWKJ9jYIh6B/fXjLtU7M6gvpqu
-         6Hlpqnizr405/YY2FCulW6jBt0wamgpPi62GW+FuK1gmc8M92hTfKkGBStPtEiGrbvA8
-         Iwka7d/nPKJjBhYNUogKVN+2IlkNmPK9F6mkb0oOxRBwmemJliVeQePa3SvVK+MBhV1v
-         +VaLxBd3PYkdkowFqqHG4pNiUJaXivLuhQeyLVncv+X5lU9xTga14CZlduKZtP98hvPS
-         bbM9VnbFGCG5V/a0gcjZZzOA4oW/7xuY0U359MyTasWA4djf4FStJh4I3368jkDQ5zF3
-         vGwA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MVk3x6ly3uTfXv9OyHlmA2lht7ASwMRy2yMGeaAU04s=;
+        b=PCZ0Bt4HUBMbaIE4ap2fsbPrFjmMEw7kqtUHhEqR3rh1xtZFns+5FEcLcDsY/ygtMX
+         ifwQt0i2MRHu+orfHe/1QEqvxvuWYp6Qo9d1KpHeWUgb/BdeYOt70GbBxnHEBbpd0SRC
+         xZiHlF4C3SmeqfGPQs9yctsZ00+HxkoT4UITpjGd9s6Dly0+aDzkZxgqtZbuLCvdqGXe
+         72wyvZiFTwK/IuwyQcHEqxurnyKCC8DRmVLm/coYZqgxRMcFbRzfI/c9cmg0/QftRHFv
+         /BNTfQC1xzLmak16Zp/7kXBBhhzOEh3xaKBwFB6/r3P8PH2a82l+82Wgz3UXvCH+RSYj
+         eLfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=P7HNS/Ipii5EIzZR9IYki1b0ukYKIl9NuAxV1POMrSE=;
-        b=kSnk3P3bVenK0Q16nOa4PSgQmzWquwXcthJun3FVmo3Hn3ShidpLwmEKeP06fYLJKO
-         Wu3eHcwEuN6Pb3RoVH/o8998NLIakjE4ApHlVTaw85zOfxYUxn/il5eavPHTdhOAfP4u
-         4IbgBtHkVHwRViFPU+jFKt8WEJlu0FZn9/z2B8Q8NXolCc2dG+jkdrjeFCNV6GkQ/xXS
-         NRmTrKIVV1BX2AHrAlFeuLpBdpjyz77WcmGb/P7tyU1n/A4iqkst0jhd9EZySmhBmBcJ
-         /rpLnxUyt3O9lLxsrABOehu+WmFbv0uvGWq1kxPO8Wgf3epFUDlj9Xvd/+FjIPuQHEM0
-         G5gg==
-X-Gm-Message-State: AOAM531kazjtp8YlsPJSOzxc19rhPL/83ClL4bTHsE4wzp/1zt29WEBO
-        2e4760Lh1XEPgSii4H+rOee49sV/j5/enjllt1M=
-X-Google-Smtp-Source: ABdhPJy027q9fOnoFIO4xK0TfOdIcvSRegQVIDdJgpm87bR0iMSQWOJC8NT5qh6SSjodeYl60vtNBi0tJz5i5muZD8E=
-X-Received: by 2002:a17:906:9515:: with SMTP id u21mr32912350ejx.86.1617094498524;
- Tue, 30 Mar 2021 01:54:58 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MVk3x6ly3uTfXv9OyHlmA2lht7ASwMRy2yMGeaAU04s=;
+        b=SLQbKFW2F0Uw0PbTzOS2Bi3/bGe/J4l/zRJK2HrNOUe6f8awERkYK4hVFRvPcPzP52
+         LuLt9EspBC/vl3WxPj+gOJAq2f5mvm0j9TBfqGcA6TlPJx3JRyQdtAWFMnOgVZ322X69
+         r8XA6D3GAmCZ5W6MQy/dPcXEVE8xatuZFDW1Gnpx1NXPoDedMt7dH/SQ409+6iCbsqTN
+         Cc+zavJT4STvhPHY0BzrLUvtdG4JoLAt/cugYWzDPcMRY6cOqZoZBVh+Yw/fOek99g9h
+         K4AmdttAzDgjt0Hs6zLKvnDflbJUhAnM4vtvpOeBp916RB/KAV1PnblttSBEFc9uiXFM
+         wS6g==
+X-Gm-Message-State: AOAM530LhpCLzMzERfvBBRM17MiysWfelEKd1tU8xqMc5RG6g3rhWRlU
+        m8LdV1PieIIsTHw76KC1mx5oi31HheIRow==
+X-Google-Smtp-Source: ABdhPJy+NVavPPoVso7DUmLFx9qjpMJ8wh5HMbnY+yuGrAD54aoYMEamo2kTfTK2ef9pGXb93JGTUA==
+X-Received: by 2002:a7b:ce91:: with SMTP id q17mr3051502wmj.28.1617094643995;
+        Tue, 30 Mar 2021 01:57:23 -0700 (PDT)
+Received: from [192.168.1.10] (176.red-79-148-190.dynamicip.rima-tde.net. [79.148.190.176])
+        by smtp.gmail.com with ESMTPSA id w6sm33352228wrl.49.2021.03.30.01.57.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 01:57:23 -0700 (PDT)
+Subject: Re: [PATCH v9 00/22] pinctrl: add BCM63XX pincontrol support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210324081923.20379-1-noltari@gmail.com>
+ <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
+From:   =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>
+Message-ID: <609f038d-3037-5cda-b489-f0816eb95658@gmail.com>
+Date:   Tue, 30 Mar 2021 10:57:23 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210330083514.5874-1-adrien.grassein@gmail.com>
- <20210330083514.5874-3-adrien.grassein@gmail.com> <0d173681-7eb6-798f-7d9b-66a221625d34@pengutronix.de>
-In-Reply-To: <0d173681-7eb6-798f-7d9b-66a221625d34@pengutronix.de>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Tue, 30 Mar 2021 10:54:47 +0200
-Message-ID: <CABkfQAE_RkqGW5f6TkPJVGNZKOWVRr5LLTeRvWQuJ4riiR+SVw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] arm64: dts: imx8mq-nitrogen: add USB HOST support
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     DTML <devicetree@vger.kernel.org>, will@kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        bjorn.andersson@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>, catalin.marinas@arm.com,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ahmad,
+Hi Linus,
 
-Le mar. 30 mars 2021 =C3=A0 10:38, Ahmad Fatoum <a.fatoum@pengutronix.de> a=
- =C3=A9crit :
->
-> Hello Adrien,
->
-> On 30.03.21 10:35, Adrien Grassein wrote:
-> > Add the description for the USB host port.
-> > At this time, the port will not work directly from the
-> > kernel because it's connected through a resettable hub
-> > that is not handle in the kernel. It should be controlled
-> > in the bootloader or in the userspace.
->
-> Couldn't you add a gpio-hog that gets the hub out of reset?
->
+El 29/03/2021 a las 12:19, Linus Walleij escribió:
+> On Wed, Mar 24, 2021 at 9:19 AM Álvaro Fernández Rojas
+> <noltari@gmail.com> wrote:
+> 
+>> This patchset adds appropriate binding documentation and drivers for
+>> pin controller cores found in the BCM63XX MIPS SoCs currently supported.
+> 
+> I have applied and pushed the v9 patch series with all the ACKs
+> to the "devel" branch so the build servers can churn at it! Later
+> today I will integrate it into linux-next.
+> 
+> Any remaining issues can certainly be fixed in-tree.
+> 
+> Thanks for your perseverance in cleaning up these SoCs!!
 
-Let's try, I didn't think about this solution ^^.
+Many thanks for your support! :D
 
-> Cheers,
-> Ahmad
->
-> >
-> > In the case of the Boundary's u-boot, this is done on the
-> > boot script:
-> > "
-> > starting USB...
-> > Bus usb@38100000: Register 2000140 NbrPorts 2
-> > Starting the controller
-> > USB XHCI 1.10
-> > Bus usb@38200000: Register 2000140 NbrPorts 2
-> > Starting the controller
-> > USB XHCI 1.10
-> > scanning bus usb@38100000 for devices... 1 USB Device(s) found
-> > scanning bus usb@38200000 for devices... 3 USB Device(s) found
-> > "
-> >
-> > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> > ---
-> >  .../boot/dts/freescale/imx8mq-nitrogen.dts    | 22 +++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts b/arch/a=
-rm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > index b46f45a82be1..7a52e247c527 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> > @@ -213,6 +213,22 @@ &usb3_phy0 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&usb_dwc3_1 {
-> > +     dr_mode =3D "host";
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +/*
-> > + * On this board, USB host is connected to a resettable hub.
-> > + * The reset signal is connected to the GPIO <&gpio1 14 GPIO_ACTIVE_LO=
-W>.
-> > + * You need to activate it in the bootloader or in the userspace.
-> > + */
-> > +&usb3_phy1 {
-> > +     status =3D "okay";
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_usb3_1>;
-> > +};
-> > +
-> >  &usdhc1 {
-> >       assigned-clocks =3D <&clk IMX8MQ_CLK_USDHC1>;
-> >       assigned-clock-rates =3D <400000000>;
-> > @@ -388,6 +404,12 @@ MX8MQ_IOMUXC_GPIO1_IO13_USB1_OTG_OC              0=
-x16
-> >               >;
-> >       };
-> >
-> > +     pinctrl_usb3_1: usb3-1grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MQ_IOMUXC_GPIO1_IO14_GPIO1_IO14              0=
-x16
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_usdhc1: usdhc1grp {
-> >               fsl,pins =3D <
-> >                       MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK                 0=
-x83
-> >
->
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  =
-|
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
+> 
+> Now, what about a patch set for the IRQ support? :)
 
-Thanks,
-Adrien
+If you could give me some guidance on that matter it would be much 
+appreciated, because your comments [1] are now outdated since I switched 
+to GPIO_REGMAP
+[1] 
+http://patchwork.ozlabs.org/project/linux-gpio/patch/20210225164216.21124-3-noltari@gmail.com/
+
+> 
+> Yours,
+> Linus Walleij
+> 
+
+Best regards,
+Álvaro.
